@@ -8,6 +8,9 @@
     "prewarm": "NODE_OPTIONS=\"--max-old-space-size=8192\" npx tsx src/server/index.ts --prewarm",
     "start": "NODE_OPTIONS=\"--max-old-space-size=8192\" npx tsx src/server/index.ts",
     "inspect": "npx @modelcontextprotocol/inspector npx tsx src/server/index.ts",
+    "eval": "NODE_OPTIONS=\"--max-old-space-size=8192\" npx tsx src/eval/tool-eval.ts",
+    "eval:agent": "NODE_OPTIONS=\"--max-old-space-size=8192\" npx tsx src/eval/agent-eval.ts",
+    "eval:baseline": "npx tsx src/eval/baseline-eval.ts",
     "agy": "agy",
     "agy:pro": "agy --model gemini-2.5-pro"
   },

@@ -1,5 +1,12 @@
 # Rocket.Chat Codebase — Agent Constitution
 
+## Answer Rules
+
+1. **Always include specific file paths** in your answer (e.g., `apps/meteor/app/lib/server/functions/sendMessage.ts`). Every key file in the chain must be listed with its role.
+2. **Start from the entry point**, not the middle. For architecture questions, trace the full chain from the top-level entry to the final destination.
+3. **Keep tool calls efficient.** Use `search` → `graph` first, then `implement` only at key points (max 2-3 calls). Do NOT keep searching if you already have enough information — write your answer.
+4. **List the call chain explicitly** in your answer: `Entry → Step 1 → Step 2 → ... → Final`.
+
 ## Tools
 
 Three tools only. All other file/shell tools are disabled.
@@ -8,9 +15,9 @@ Three tools only. All other file/shell tools are disabled.
 |------|-------------|
 | `search(query, layer?, question?)` | Find entry point by symbol or keyword |
 | `graph(symbol, direction, depth?, edgeTypes?, question?)` | Traverse dependency edges from a known symbol |
-| `implement(symbol, filename)` | Read full source of one specific symbol — use sparingly, max 3 calls per question |
+| `implement(symbol, filename)` | Read full source of one specific symbol — use when you need implementation details |
 
-**`implement` is expensive. Call it only at layer boundaries or to confirm a specific detail. Never call it before `graph` unless the question is Locate or Pattern type.**
+**`implement` is expensive (returns full source code). Use it at layer boundaries or to confirm key details (max 2-3 calls). Prefer `search` + `graph` for navigation — they return file paths and symbols without consuming excessive tokens. When you have enough information, stop calling tools and write your answer.**
 
 ---
 

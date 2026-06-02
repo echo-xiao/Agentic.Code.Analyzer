@@ -3,14 +3,12 @@ import * as path from 'path';
 import * as fs from 'fs';
 import type { CallEdge, EdgeType } from './state.js';
 
-// 系统内置函数，不作为 callee 追踪
 const BUILTIN_IGNORE = new Set([
     'console', 'Math', 'Object', 'Array', 'String', 'Number', 'JSON',
     'Promise', 'Error', 'setTimeout', 'clearTimeout', 'setInterval',
     'parseInt', 'parseFloat', 'require', 'import', 'super', 'toString'
 ]);
 
-// TypeScript 内置/工具类型，不作为 type 边追踪
 const TS_BUILTIN_TYPES = new Set([
     'Promise', 'Array', 'Record', 'Map', 'Set', 'WeakMap', 'WeakSet',
     'Partial', 'Required', 'Readonly', 'Pick', 'Omit', 'Extract', 'Exclude',
@@ -22,13 +20,12 @@ const TS_BUILTIN_TYPES = new Set([
     'ReadonlyArray', 'ReadonlyMap', 'ReadonlySet',
 ]);
 
-// Rocket.Chat callbacks 系统的方法名
 const CALLBACKS_EMIT_METHODS = new Set(['run', 'runAsync', 'priority']);
 const CALLBACKS_LISTEN_METHODS = new Set(['add', 'addFrom']);
 
 export class SkeletonGenerator {
     static generate(filePath: string): { skeleton: string, mapping: any } {
-        const project = new Project({ skipAddingFilesFromTsConfig: true });
+        const project = new Project({ skipAddingFilesFromTsConfig: true, compilerOptions: { allowJs: true } });
         const sourceFile = project.addSourceFileAtPath(filePath);
 
         const mapping: any = {
@@ -39,7 +36,6 @@ export class SkeletonGenerator {
 
         this.processImports(sourceFile, filePath, mapping);
 
-        // 注意顺序：先提取调用关系（函数体存在时），再剥离函数体
         this.processClasses(sourceFile, mapping);
         this.processFunctions(sourceFile, mapping);
         this.processInterfacesAndTypes(sourceFile, mapping);
@@ -51,12 +47,8 @@ export class SkeletonGenerator {
         return { skeleton: skeletonMd, mapping };
     }
 
-    /**
-     * 在函数体被剥离前，提取其中的所有边（调用、事件、pubsub、JSX 渲染等）
-     * 返回 CallEdge[]，包含边类型信息
-     */
     private static extractCalls(node: any): CallEdge[] {
-        const calls = new Map<string, CallEdge>(); // key = `${name}:${edgeType}` 去重
+        const calls = new Map<string, CallEdge>();
 
         const add = (name: string, edgeType: EdgeType, event?: string) => {
             if (!name || name.length <= 1 || BUILTIN_IGNORE.has(name)) return;
@@ -73,8 +65,6 @@ export class SkeletonGenerator {
                     const objText = expr.getExpression().getText();
                     const args = call.getArguments();
 
-                    // ── Rocket.Chat callbacks 事件系统 ────────────────────────
-                    // callbacks.run('afterSaveMessage') → event_emit
                     if (CALLBACKS_EMIT_METHODS.has(method) &&
                         (objText === 'callbacks' || objText.endsWith('.callbacks'))) {
                         const firstArg = args[0];
@@ -83,8 +73,6 @@ export class SkeletonGenerator {
                         }
                     }
 
-                    // callbacks.add('afterSaveMessage', handler) → event_listen
-                    // 在 callGraph 中建虚拟边：eventName → handler
                     if (CALLBACKS_LISTEN_METHODS.has(method) &&
                         (objText === 'callbacks' || objText.endsWith('.callbacks'))) {
                         const eventArg = args[0];
@@ -100,27 +88,24 @@ export class SkeletonGenerator {
                                 }
                             }
                             if (handlerName) {
-                                // event 字段存事件名，initializeGlobalIndex 会据此建虚拟边
                                 add(handlerName, 'event_listen', eventName);
+                            } else {
+                                add(eventName, 'event_listen');
                             }
                         }
                     }
 
-                    // ── AppEvents / EventEmitter 泛用事件 ─────────────────────
-                    // AppEvents.emit('IPostMessageSent') / emitter.emit('X')
                     if (method === 'emit') {
                         const firstArg = args[0];
                         if (firstArg) {
                             if (Node.isStringLiteral(firstArg)) {
                                 add(firstArg.getLiteralValue(), 'event_emit');
                             } else if (Node.isPropertyAccessExpression(firstArg)) {
-                                // AppEvents.Message.PostMessage 这类枚举引用
                                 add(firstArg.getText(), 'event_emit');
                             }
                         }
                     }
 
-                    // AppEvents.on('X', handler) / emitter.on('X', fn)
                     if (method === 'on' || method === 'once') {
                         const eventArg = args[0];
                         const handlerArg = args[1];
@@ -148,8 +133,6 @@ export class SkeletonGenerator {
                         }
                     }
 
-                    // ── Meteor Pub/Sub ────────────────────────────────────────
-                    // Meteor.publish('roomMessages', fn) → pubsub_publish
                     if (objText === 'Meteor' && method === 'publish') {
                         const nameArg = args[0];
                         if (nameArg && Node.isStringLiteral(nameArg)) {
@@ -157,7 +140,6 @@ export class SkeletonGenerator {
                         }
                     }
 
-                    // Meteor.subscribe('roomMessages') → pubsub_subscribe
                     if (objText === 'Meteor' && method === 'subscribe') {
                         const nameArg = args[0];
                         if (nameArg && Node.isStringLiteral(nameArg)) {
@@ -165,7 +147,6 @@ export class SkeletonGenerator {
                         }
                     }
 
-                    // ── 字符串分发调用：Meteor.call / sdk.call / callAsync ────
                     if (method === 'call' || method === 'callAsync') {
                         const firstArg = args[0];
                         if (firstArg && Node.isStringLiteral(firstArg)) {
@@ -174,7 +155,27 @@ export class SkeletonGenerator {
                         }
                     }
 
-                    // ── 普通属性调用：this.sendMessage / chat?.flows.sendMessage ─
+                    if (method === 'methods' && (objText === 'Meteor')) {
+                        const firstArg = args[0];
+                        if (firstArg && Node.isObjectLiteralExpression(firstArg)) {
+                            for (const prop of firstArg.getProperties()) {
+                                if (Node.isMethodDeclaration(prop) || Node.isPropertyAssignment(prop)) {
+                                    const nameNode = prop.getNameNode?.();
+                                    if (nameNode) {
+                                        const methodName = Node.isStringLiteral(nameNode)
+                                            ? nameNode.getLiteralValue()
+                                            : Node.isIdentifier(nameNode)
+                                                ? nameNode.getText()
+                                                : null;
+                                        if (methodName) {
+                                            add(methodName, 'call');
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+
                     const name = method;
                     if (name && name.length > 1 && !BUILTIN_IGNORE.has(name) &&
                         !CALLBACKS_EMIT_METHODS.has(name) && !CALLBACKS_LISTEN_METHODS.has(name) &&
@@ -183,12 +184,10 @@ export class SkeletonGenerator {
                     }
 
                 } else if (Node.isIdentifier(expr)) {
-                    // 普通函数调用：onSend() / sendMessage()
                     add(expr.getText(), 'call');
                 }
             });
 
-            // ── JSX 渲染关系：<ComposerContainer /> ──────────────────────────
             node.getDescendantsOfKind(SyntaxKind.JsxOpeningElement).forEach((el: any) => {
                 const tagName = el.getTagNameNode()?.getText?.();
                 if (tagName && /^[A-Z]/.test(tagName) && !BUILTIN_IGNORE.has(tagName)) {
@@ -202,7 +201,6 @@ export class SkeletonGenerator {
                 }
             });
 
-            // ── JSX prop 传递：<Comp onSend={handler} /> ──────────────────────
             node.getDescendantsOfKind(SyntaxKind.JsxAttribute).forEach((attr: any) => {
                 const init = attr.getInitializer();
                 if (Node.isJsxExpression(init)) {
@@ -214,15 +212,12 @@ export class SkeletonGenerator {
                 }
             });
 
-            // ── new X() 实例化 ────────────────────────────────────────────────
             node.getDescendantsOfKind(SyntaxKind.NewExpression).forEach((expr: any) => {
                 const ctor = expr.getExpression();
                 const name = Node.isIdentifier(ctor) ? ctor.getText() : null;
                 if (name) add(name, 'new');
             });
 
-            // ── TypeScript 类型注解引用：(chat: ChatAPI) → type 边 ────────────
-            // 不含 TS 内置工具类型（Partial/Promise 等），仅追踪项目自定义接口/类
             node.getDescendantsOfKind(SyntaxKind.TypeReference).forEach((typeRef: any) => {
                 const typeName = typeRef.getTypeName?.();
                 if (!typeName) return;
@@ -233,16 +228,11 @@ export class SkeletonGenerator {
                 }
             });
 
-        } catch { /* 忽略 AST 解析错误 */ }
+        } catch { /* ignore */ }
 
         return Array.from(calls.values());
     }
 
-    /**
-     * 在函数体被剥离前，提取内部命名 arrow function（on[A-Z] / handle[A-Z] 模式）
-     * 这些是 React 组件内的事件处理回调，graph 无法从外层 symbol 直接感知
-     */
-    // React hook 包装器：unwrap 取第一个参数（arrow function body）
     private static readonly HOOK_WRAPPERS = new Set([
         'useCallback', 'useMemo', 'useEffectEvent', 'useEvent',
     ]);
@@ -276,7 +266,6 @@ export class SkeletonGenerator {
         };
 
         try {
-            // ── 1. const onXxx / const handleXxx = (useEffectEvent|useCallback|...)? (() => ...)
             fnNode.getDescendantsOfKind(SyntaxKind.VariableDeclaration).forEach((v: any) => {
                 const name = v.getName?.();
                 if (!name || !HANDLER_RE.test(name)) return;
@@ -286,7 +275,6 @@ export class SkeletonGenerator {
                 register(name, unwrapped, v.getStartLineNumber());
             });
 
-            // ── 2. { onXxx: async () => {...} } 对象属性赋值（如 useMemo 返回的 composerProps）
             fnNode.getDescendantsOfKind(SyntaxKind.PropertyAssignment).forEach((pa: any) => {
                 const nameNode = pa.getNameNode?.();
                 const name = nameNode && Node.isIdentifier(nameNode) ? nameNode.getText() : null;
@@ -330,11 +318,10 @@ export class SkeletonGenerator {
             const classExported = cls.isExported();
             mapping.symbols.push({ type: 'class', name: className, exported: classExported, line: cls.getStartLineNumber() });
 
-            // 方法级别：提取调用 → 剥离函数体
             cls.getMethods().forEach(method => {
                 const methodName = method.getName();
-                this.extractInnerFunctions(method, `${className}.${methodName}`, mapping); // 剥离前提取内部 handler
-                const calls = this.extractCalls(method); // 剥离前提取！
+                this.extractInnerFunctions(method, `${className}.${methodName}`, mapping);
+                const calls = this.extractCalls(method);
                 mapping.symbols.push({
                     type: 'method',
                     name: methodName,
@@ -363,7 +350,6 @@ export class SkeletonGenerator {
                 }
             });
 
-            // 类属性初始化器（如 flows: { sendMessage: (...) => sendMessage(...) }）
             cls.getProperties().forEach(prop => {
                 const calls = this.extractCalls(prop);
                 if (calls.length > 0) {
@@ -384,8 +370,8 @@ export class SkeletonGenerator {
         sourceFile.getFunctions().forEach(fn => {
             const name = fn.getName();
             if (name && fn.getBody()) {
-                this.extractInnerFunctions(fn, name, mapping); // 剥离前提取内部 handler
-                const calls = this.extractCalls(fn); // 剥离前提取！
+                this.extractInnerFunctions(fn, name, mapping);
+                const calls = this.extractCalls(fn);
                 mapping.symbols.push({ type: 'function', name, exported: fn.isExported(), line: fn.getStartLineNumber(), calls });
                 fn.setBodyText('/* Implementation Hidden */');
             }
@@ -393,11 +379,11 @@ export class SkeletonGenerator {
 
         sourceFile.getVariableDeclarations().forEach(v => {
             const initializer = v.getInitializer();
+            const exported = v.getVariableStatement()?.isExported() ?? false;
             if (initializer && (Node.isArrowFunction(initializer) || Node.isFunctionExpression(initializer))) {
                 const name = v.getName();
-                this.extractInnerFunctions(initializer, name, mapping); // 剥离前提取内部 handler
-                const calls = this.extractCalls(initializer); // 剥离前提取！
-                const exported = v.getVariableStatement()?.isExported() ?? false;
+                this.extractInnerFunctions(initializer, name, mapping);
+                const calls = this.extractCalls(initializer);
                 mapping.symbols.push({
                     type: 'variable_function',
                     name,
@@ -407,7 +393,17 @@ export class SkeletonGenerator {
                 });
                 try {
                     (initializer as any).setBodyText('/* Implementation Hidden */');
-                } catch { /* Skip expression-body arrows */ }
+                } catch { /* ignore */ }
+            } else if (exported && initializer) {
+                const name = v.getName();
+                const calls = this.extractCalls(initializer);
+                mapping.symbols.push({
+                    type: 'variable',
+                    name,
+                    exported,
+                    line: v.getStartLineNumber(),
+                    calls
+                });
             }
         });
     }

@@ -13,15 +13,10 @@ const PATH_HINTS: Array<{ keywords: string[]; segment: string }> = [
 ];
 
 export class CodeRetriever {
-    /**
-     * Fuzzy symbol search with path-context reranking.
-     * Returns top 5 results.
-     */
     static search(query: string, limit = 5, layer?: string): any[] {
         const symbolList = Array.from(GLOBAL_INDEX.symbols.keys());
         const fuzzyResults = fuzzysort.go(query, symbolList, { threshold: -3000, limit: 50 });
 
-        // Explicit layer parameter → deterministic segment boost (0.5), overrides keyword inference
         const q = query.toLowerCase();
         const layerSegment = layer ? `/${layer}/` : null;
         const inferredSegments = PATH_HINTS
@@ -31,17 +26,14 @@ export class CodeRetriever {
         return fuzzyResults
             .map(res => {
                 const rawScore = Math.max(0, 1 + res.score / 3000);
-                // Penalize when query is much shorter than target: fuzzysort treats "api" as a
-                // valid subsequence of "applyDepartmentRestrictionsPatch", giving a misleadingly
-                // high score. Require the query to cover at least 40% of the target length.
                 const lengthRatio = query.length / res.target.length;
                 const baseScore = lengthRatio < 0.4 ? rawScore * (lengthRatio / 0.4) : rawScore;
                 const paths = Array.from(GLOBAL_INDEX.symbols.get(res.target) ?? []);
                 let pathBonus = 0;
                 if (layerSegment && paths.some(p => p.includes(layerSegment))) {
-                    pathBonus = 0.5; // explicit layer → strong boost
+                    pathBonus = 0.5;
                 } else if (inferredSegments.length > 0 && paths.some(p => inferredSegments.some(s => p.includes(s)))) {
-                    pathBonus = 0.3; // inferred from query keywords → soft boost
+                    pathBonus = 0.3;
                 }
                 const finalScore = baseScore + pathBonus;
                 return { symbolName: res.target, paths, score: baseScore, finalScore };
@@ -50,18 +42,12 @@ export class CodeRetriever {
             .slice(0, limit);
     }
 
-    /**
-     * Build read_symbol_details context:
-     * 1. Disambiguate by caller import graph
-     * 2. Return primary skeleton + up to 5 callee skeletons
-     */
     static getContext(symbolName: string, callerFile?: string): string[] {
         const paths = GLOBAL_INDEX.symbols.get(symbolName);
         if (!paths) return [];
 
         let sortedPaths = Array.from(paths);
 
-        // 若 filename 精确匹配某个 symbol path，只返回该文件
         if (callerFile) {
             const q = callerFile.toLowerCase().replace(/\.tsx?$/, '');
             const exactMatch = sortedPaths.find(p =>
@@ -123,17 +109,12 @@ export class CodeRetriever {
         return results;
     }
 
-    /**
-     * 从原始源文件中提取指定 symbol 的实际实现代码。
-     * 返回 { text: 实现代码, filePath: 源文件路径 }，找不到返回 null。
-     */
     static getImplementation(symbolName: string, preferredFile?: string): { text: string; filePath: string } | null {
         const paths = GLOBAL_INDEX.symbols.get(symbolName);
         if (!paths || paths.size === 0) return null;
 
         let sortedPaths = Array.from(paths);
 
-        // 精确文件匹配
         if (preferredFile) {
             const q = preferredFile.toLowerCase().replace(/\.tsx?$/, '');
             const exact = sortedPaths.find(p => p.toLowerCase().replace(/\.tsx?$/, '').endsWith(q));
@@ -146,12 +127,10 @@ export class CodeRetriever {
                 const sourceFile = project.addSourceFileAtPath(filePath);
                 let text: string | null = null;
 
-                // 函数声明
                 for (const fn of sourceFile.getFunctions()) {
                     if (fn.getName() === symbolName) { text = fn.getFullText().trim(); break; }
                 }
 
-                // 变量声明（箭头函数 / const fn = ...）
                 if (!text) {
                     for (const v of sourceFile.getVariableDeclarations()) {
                         if (v.getName() === symbolName) {
@@ -161,14 +140,12 @@ export class CodeRetriever {
                     }
                 }
 
-                // 类
                 if (!text) {
                     for (const cls of sourceFile.getClasses()) {
                         if (cls.getName() === symbolName) { text = cls.getFullText().trim(); break; }
                     }
                 }
 
-                // 接口 / 类型别名
                 if (!text) {
                     for (const iface of sourceFile.getInterfaces()) {
                         if (iface.getName() === symbolName) { text = iface.getFullText().trim(); break; }
@@ -182,7 +159,7 @@ export class CodeRetriever {
 
                 sourceFile.forget();
                 if (text) return { text, filePath };
-            } catch { /* 跳过解析失败的文件 */ }
+            } catch { /* ignore */ }
         }
 
         return null;

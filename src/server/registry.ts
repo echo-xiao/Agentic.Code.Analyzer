@@ -4,31 +4,25 @@ import { spawnSync } from 'child_process';
 import { CodeRetriever } from './retriever.js';
 import { GLOBAL_INDEX } from '../indexer/state.js';
 import type { EdgeType } from '../indexer/state.js';
-import { embedQuery, cosineSimilarity } from '../indexer/embedder.js';
 import { getOutputPaths, TARGET_SRC_DIR } from '../config.js';
 
-// ============================================================================
-// Session 追踪：记录本次会话中的工具调用情况，用于评估指标
-// ============================================================================
 const SESSION = {
     startTime: Date.now(),
     calls: [] as Array<{ tool: string; symbol?: string; tokensReturned: number; ts: number }>,
-    symbolHits: new Map<string, number>(),   // 符号 -> 被调用次数（重复调用率）
-    totalSkeletonTokens: 0                   // 累计返回的 skeleton token 估算数
+    symbolHits: new Map<string, number>(),
+    totalSkeletonTokens: 0
 };
 
 function trackCall(tool: string, response: string, symbol?: string) {
-    const tokens = Math.ceil(response.length / 4); // 粗估：4 字符 ≈ 1 token
+    const tokens = Math.ceil(response.length / 4);
     SESSION.calls.push({ tool, symbol, tokensReturned: tokens, ts: Date.now() });
     SESSION.totalSkeletonTokens += tokens;
     if (symbol) {
         SESSION.symbolHits.set(symbol, (SESSION.symbolHits.get(symbol) ?? 0) + 1);
     }
-    // 写入 log，供事后分析
     console.error(`[TOOL_CALL] tool=${tool} symbol=${symbol ?? '-'} tokens=${tokens} ts=${new Date().toISOString()}`);
 }
 
-// 进程退出时写 session 摘要到 log
 process.on('exit', () => {
     const duration = ((Date.now() - SESSION.startTime) / 1000).toFixed(1);
     const repeated = Array.from(SESSION.symbolHits.values()).filter(c => c > 1).length;
@@ -49,9 +43,6 @@ process.on('exit', () => {
     ].join('\n'));
 });
 
-// ============================================================================
-// 工具定义（MCP server 暴露的三个工具）
-// ============================================================================
 export const TOOL_DEFINITIONS = [
     {
         name: "search",
@@ -100,9 +91,6 @@ export const TOOL_DEFINITIONS = [
     }
 ];
 
-// ============================================================================
-// Architecture hints: injected into search results when query matches keywords
-// ============================================================================
 const ARCHITECTURE_HINTS: Array<{ keywords: string[]; hint: string }> = [
     {
         keywords: ['sendMessage', 'ComposerMessage', 'ComposerContainer', 'MessageBox', 'handleSendMessage', 'onSend', 'RoomComposer'],
@@ -181,8 +169,6 @@ function isTestFile(filePath: string): boolean {
         p.includes('/e2e/') || p.includes('/__tests__/');
 }
 
-// BFS through fileDependents (reverse import graph) starting from startFile.
-// Returns a map of file → shortest import distance from startFile.
 function computeImportDistances(startFile: string): Map<string, number> {
     const dist = new Map<string, number>();
     const queue: string[] = [startFile];
@@ -202,8 +188,6 @@ function computeImportDistances(startFile: string): Map<string, number> {
     return dist;
 }
 
-// strict=true: used by graph — no fallback, returns empty if nothing matches
-// strict=false (default): used by search — falls back to all results if nothing matches
 function filterByLayer(paths: string[], layer: string, strict = false): string[] {
     const seg = LAYER_SEGMENTS[layer];
     if (!seg) return paths;
@@ -212,9 +196,6 @@ function filterByLayer(paths: string[], layer: string, strict = false): string[]
     return strict ? [] : paths;
 }
 
-// ============================================================================
-// 工具分发器
-// ============================================================================
 export async function handleToolCall(name: string, args: any): Promise<any> {
     switch (name) {
 
@@ -226,8 +207,6 @@ export async function handleToolCall(name: string, args: any): Promise<any> {
             const seenPaths = new Set<string>();
             const q = query.toLowerCase();
 
-            // ── 1. Symbol index search ─────────────────────────────────────────
-            // 1a. Exact match
             const exactMatch = GLOBAL_INDEX.symbols.get(query);
             if (exactMatch && exactMatch.size > 0) {
                 let paths = Array.from(exactMatch);
@@ -238,7 +217,6 @@ export async function handleToolCall(name: string, args: any): Promise<any> {
                 }
             }
 
-            // 1b. Prefix match (if no exact hit)
             if (sections.length === 0) {
                 const prefixHits = Array.from(GLOBAL_INDEX.symbols.keys())
                     .filter(k => k.toLowerCase().startsWith(q))
@@ -253,40 +231,10 @@ export async function handleToolCall(name: string, args: any): Promise<any> {
                 }
             }
 
-            // 1c. Fuzzy match + optional embedding rerank (if still no hit)
             if (sections.length === 0) {
-                const ranked = CodeRetriever.search(query, 20, layer); // 多召回，后续 rerank
+                const ranked = CodeRetriever.search(query, 20, layer);
                 if (ranked.length > 0) {
-                    let finalRanked = ranked;
-
-                    // Embedding rerank：若 embeddings 已加载则用语义相似度重排
-                    if (GLOBAL_INDEX.embeddings.size > 0) {
-                        const queryVec = await embedQuery(query).catch(() => null);
-                        if (queryVec) {
-                            const withEmb = ranked.map(r => {
-                                // 找该 symbol 最佳的 embedding（取最高相似度的那个文件）
-                                let maxSim = 0;
-                                for (const filePath of (r.paths ?? [])) {
-                                    const key = `${r.symbolName}@${filePath}`;
-                                    const vec = GLOBAL_INDEX.embeddings.get(key);
-                                    if (vec) {
-                                        const sim = cosineSimilarity(queryVec, vec);
-                                        if (sim > maxSim) maxSim = sim;
-                                    }
-                                }
-                                // 0.4 fuzzy + 0.6 embedding 加权
-                                const blended = maxSim > 0
-                                    ? 0.4 * r.finalScore + 0.6 * maxSim
-                                    : r.finalScore;
-                                return { ...r, finalScore: blended };
-                            });
-                            withEmb.sort((a, b) => b.finalScore - a.finalScore);
-                            finalRanked = withEmb;
-                        }
-                    }
-
-                    // Filter out low-confidence matches (score < 0.3 after length-ratio penalty)
-                    const top = finalRanked.filter(r => r.finalScore >= 0.3).slice(0, 5);
+                    const top = ranked.filter(r => r.finalScore >= 0.3).slice(0, 5);
                     if (top.length > 0) {
                         top.forEach(r => r.paths.forEach((p: string) => seenPaths.add(p)));
                         sections.push(`🔍 Symbols:\n${top.map((r, i) =>
@@ -296,7 +244,6 @@ export async function handleToolCall(name: string, args: any): Promise<any> {
                 }
             }
 
-            // ── 2. File path search (complement, deduped) ──────────────────────
             let pathMatches = Array.from(GLOBAL_INDEX.allFiles)
                 .filter(f => f.toLowerCase().includes(q) && !seenPaths.has(f));
             if (layer) pathMatches = filterByLayer(pathMatches, layer);
@@ -305,7 +252,6 @@ export async function handleToolCall(name: string, args: any): Promise<any> {
                 sections.push(`📁 Files:\n${pathMatches.join('\n')}`);
             }
 
-            // ── 3. Full-text search (only for call-pattern queries) ────────────
             const isCallPattern = /[.'"(\s]/.test(query);
             if (isCallPattern) {
                 const grepArgs = [
@@ -317,7 +263,6 @@ export async function handleToolCall(name: string, args: any): Promise<any> {
                 ];
                 const grep = spawnSync('grep', grepArgs, { encoding: 'utf-8', maxBuffer: 4 * 1024 * 1024 });
                 if (grep.stdout) {
-                    // 按文件去重：每个文件只展示第一行示例 + 匹配次数
                     const byFile = new Map<string, { example: string; count: number }>();
                     for (const line of grep.stdout.trim().split('\n').filter(Boolean)) {
                         const m = line.match(/^(.+?):(\d+):(.*)$/);
@@ -353,7 +298,6 @@ export async function handleToolCall(name: string, args: any): Promise<any> {
 
             const impl = CodeRetriever.getImplementation(symbolName, filename);
             if (!impl) {
-                // Check if symbol exists at all (wrong filename?)
                 const paths = GLOBAL_INDEX.symbols.get(symbolName);
                 if (paths && paths.size > 0) {
                     return ok(
@@ -368,7 +312,6 @@ export async function handleToolCall(name: string, args: any): Promise<any> {
             const relativePath = impl.filePath.split('Rocket.Chat/')[1] || impl.filePath;
             let result = `## File: ${relativePath}\n\n\`\`\`typescript\n${impl.text}\n\`\`\``;
 
-            // Append callee skeletons (skip index 0, that's the main file skeleton)
             const contexts = CodeRetriever.getContext(symbolName, filename);
             const callees = contexts.slice(1);
             if (callees.length > 0) {
@@ -384,15 +327,6 @@ export async function handleToolCall(name: string, args: any): Promise<any> {
             if (!query) return err("Missing parameter: query");
             const maxDepth = Math.min(typeof rawDepth === 'number' ? rawDepth : 4, 6);
 
-            // Pre-compute question embedding for semantic pruning (if embeddings loaded and question provided)
-            let questionVec: Float32Array | null = null;
-            if (question && GLOBAL_INDEX.embeddings.size > 0) {
-                questionVec = await embedQuery(question).catch(() => null);
-            }
-
-            // edgeTypes 过滤集合
-            // 默认排除 'type' 边（TypeScript 类型注解引用），避免 IMessage/IUser 等通用类型产生噪声
-            // 如需追踪类型依赖，显式传入 edgeTypes: ['type'] 或 ['call', 'type']
             const DEFAULT_EDGE_TYPES = new Set<EdgeType>([
                 'call', 'jsx', 'new', 'event_emit', 'event_listen', 'pubsub_publish', 'pubsub_subscribe', 'type'
             ]);
@@ -402,7 +336,6 @@ export async function handleToolCall(name: string, args: any): Promise<any> {
 
             const edgeAllowed = (et: EdgeType): boolean => allowedEdgeTypes.has(et);
 
-            // 边类型标签（用于输出展示）
             const edgeLabel: Record<EdgeType, string> = {
                 call: '',
                 jsx: ' [jsx]',
@@ -415,7 +348,6 @@ export async function handleToolCall(name: string, args: any): Promise<any> {
             };
 
             if (direction === "down") {
-                // 构建 caller→[{callee, edgeType}]（反转 callGraph）
                 const calleesOf = new Map<string, Array<{ callee: string; edgeType: EdgeType }>>();
                 for (const [callee, callersList] of GLOBAL_INDEX.callGraph.entries()) {
                     for (const { caller, edgeType } of callersList) {
@@ -450,30 +382,7 @@ export async function handleToolCall(name: string, args: any): Promise<any> {
                         })
                         : entries;
 
-                    // Semantic pruning: rank edges by cosine similarity to question embedding.
-                    // Falls back to original order if embeddings are not available.
-                    let ranked = filtered;
-                    if (questionVec) {
-                        const scored = filtered.map(e => {
-                            let maxSim = 0;
-                            for (const f of GLOBAL_INDEX.symbols.get(e.callee) ?? []) {
-                                const vec = GLOBAL_INDEX.embeddings.get(`${e.callee}@${f}`);
-                                if (vec) {
-                                    const s = cosineSimilarity(questionVec!, vec);
-                                    if (s > maxSim) maxSim = s;
-                                }
-                            }
-                            return { ...e, sim: maxSim };
-                        });
-                        // Sort by similarity descending, prune edges with very low relevance
-                        ranked = scored
-                            .filter(e => e.sim > 0.1)
-                            .sort((a, b) => b.sim - a.sim);
-                        // Fall back if pruning removed everything
-                        if (ranked.length === 0) ranked = filtered;
-                    }
-
-                    const shown = ranked.slice(0, 6);
+                    const shown = filtered.slice(0, 6);
                     for (const { callee, edgeType } of shown) {
                         const key = `${sym}→${callee}`;
                         const pad = '  '.repeat(indent);
@@ -485,7 +394,7 @@ export async function handleToolCall(name: string, args: any): Promise<any> {
                         out.push(`${pad}→ \`${callee}\`${label}${rf ? ` · ${rf}` : ''}`);
                         traverseDown(callee, indent + 1, d - 1);
                     }
-                    if (ranked.length > 6) out.push(`${'  '.repeat(indent)}… +${ranked.length - 6} more`);
+                    if (filtered.length > 6) out.push(`${'  '.repeat(indent)}… +${filtered.length - 6} more`);
                 };
 
                 traverseDown(query, 1, maxDepth);
@@ -494,7 +403,6 @@ export async function handleToolCall(name: string, args: any): Promise<any> {
                 return ok(out.join('\n'));
             }
 
-            // ── direction = "up" ─────────────────────────────────────────────
             const symbolFiles = GLOBAL_INDEX.symbols.get(query);
             if (!symbolFiles && !GLOBAL_INDEX.callGraph.has(query)) {
                 return ok(`Symbol "${query}" not found. Use search first.`);
@@ -510,9 +418,6 @@ export async function handleToolCall(name: string, args: any): Promise<any> {
             const startFile = symbolFiles ? Array.from(symbolFiles)[0] : '';
             const importDist = startFile ? computeImportDistances(startFile) : new Map<string, number>();
 
-            // ── 文件感知过滤：只保留实际 import 了 fromFile 的 caller ──────────
-            // 解决同名 symbol 跨文件混淆问题（e.g. 多个 sendMessage 函数）
-            // 若过滤后为空（动态派发、间接调用等情况）则回退到全量结果
             const scopeCallers = (
                 callers: Array<{ caller: string; file: string; edgeType: EdgeType }>,
                 fromFile: string | null
@@ -521,18 +426,16 @@ export async function handleToolCall(name: string, args: any): Promise<any> {
                 const importers = GLOBAL_INDEX.fileDependents.get(fromFile);
                 if (!importers || importers.size === 0) return callers;
                 const scoped = callers.filter(c => importers.has(c.file) || c.file === fromFile);
-                return scoped.length > 0 ? scoped : callers; // 空则回退
+                return scoped.length > 0 ? scoped : callers;
             };
 
-            // ── mode=impact: BFS 分层展示，不剪枝 ────────────────────────────
             if (mode === 'impact') {
                 const out: string[] = [
                     `## Impact Analysis: changing \`${query}\`\n`,
                     `📍 \`${query}\` · ${relStart}\n`,
                 ];
 
-                // frontier: {sym, file} 对，保持文件上下文
-                const visited = new Set<string>(); // `sym@file`
+                const visited = new Set<string>();
                 let frontier: Array<{ sym: string; file: string }> = [{ sym: query, file: startFile }];
                 visited.add(`${query}@${startFile}`);
 
@@ -542,7 +445,7 @@ export async function handleToolCall(name: string, args: any): Promise<any> {
 
                     for (const { sym, file: fromFile } of frontier) {
                         let callers = (GLOBAL_INDEX.callGraph.get(sym) ?? []) as Array<{ caller: string; file: string; edgeType: EdgeType }>;
-                        callers = scopeCallers(callers, fromFile); // file-aware 过滤
+                        callers = scopeCallers(callers, fromFile);
                         for (const { caller, file, edgeType } of callers) {
                             if (!edgeAllowed(edgeType as EdgeType)) continue;
                             if (layer && filterByLayer([file], layer, true).length === 0) continue;
@@ -587,30 +490,25 @@ export async function handleToolCall(name: string, args: any): Promise<any> {
                 return ok(out.join('\n'));
             }
 
-            // ── mode=tree (default): 递归树状展示 ────────────────────────────
             const out: string[] = [
                 `## Call Graph ↑ upstream of \`${query}\` (depth=${maxDepth})\n`,
                 `📍 \`${query}\` · ${relStart}`,
             ];
-            const visited = new Set<string>(); // `sym@file`
+            const visited = new Set<string>();
 
-            // fromFile: 当前 symbol 所在文件，用于 import 过滤
             const traverseUp = (sym: string, fromFile: string | null, indent: number, d: number) => {
                 if (d <= 0) { out.push(`${'  '.repeat(indent)}… (max depth reached)`); return; }
                 let callers = GLOBAL_INDEX.callGraph.get(sym);
                 if (!callers || callers.length === 0) return;
 
-                // file-aware 过滤：剔除不可能 import fromFile 的 caller
                 callers = scopeCallers(callers, fromFile);
 
-                // edgeTypes 过滤
                 callers = callers.filter(c => edgeAllowed(c.edgeType as EdgeType));
                 if (layer) {
                     const f = callers.filter(c => filterByLayer([c.file], layer, true).length > 0);
                     if (f.length > 0) callers = f;
                 }
 
-                // Group by file
                 const byFile = new Map<string, Array<{ caller: string; edgeType: EdgeType }>>();
                 for (const { caller, file, edgeType } of callers) {
                     if (!byFile.has(file)) byFile.set(file, []);
@@ -637,7 +535,6 @@ export async function handleToolCall(name: string, args: any): Promise<any> {
                     }
                     visited.add(key);
                     out.push(`${pad0}← ${labels} · ${rel}`);
-                    // 递归时携带 caller 的 file 作为下一层的 fromFile
                     for (const { caller } of entries.slice(0, 3)) traverseUp(caller, file, indent + 1, d - 1);
                 }
                 const notes: string[] = [];

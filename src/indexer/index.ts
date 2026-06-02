@@ -7,23 +7,15 @@ import { SkeletonGenerator } from './skeleton.js';
 import { LocalDatabase } from './local-db.js';
 import { TARGET_SRC_DIR, OUTPUT_DIR, CACHE_FILE, getOutputPaths } from '../config.js';
 import { GLOBAL_INDEX } from './state.js';
-import { computeAllEmbeddings } from './embedder.js';
 
-// ============================================================================
-// 1. 扫描目录：递归获取所有 .ts 文件
-// ============================================================================
 export function scanDirectory(dir: string): string[] {
-    return globSync('**/*.{ts,tsx}', {
+    return globSync('**/*.{ts,tsx,js}', {
         cwd: dir,
         absolute: true,
-        ignore: ['**/node_modules/**', '**/*.d.ts', '**/*.test.ts', '**/*.spec.ts', '**/*.test.tsx', '**/*.spec.tsx', '**/dist/**']
+        ignore: ['**/node_modules/**', '**/*.d.ts', '**/*.test.ts', '**/*.spec.ts', '**/*.test.tsx', '**/*.spec.tsx', '**/dist/**', '**/*.min.js']
     });
 }
 
-// ============================================================================
-// 2. 预热：MD5 增量哈希 + AST 脱水，产物写入 output/
-//    返回 updatedCount 供调用方决定是否需要重建索引
-// ============================================================================
 export function preWarmCache(): { updatedCount: number; totalFiles: number } {
     if (!fs.existsSync(OUTPUT_DIR)) fs.mkdirSync(OUTPUT_DIR, { recursive: true });
 
@@ -41,7 +33,12 @@ export function preWarmCache(): { updatedCount: number; totalFiles: number } {
 
     for (const file of allFiles) {
         bar.increment({ filename: path.basename(file) });
-        const { needsUpdate, currentHash } = hasher.shouldUpdate(file);
+        let needsUpdate: boolean, currentHash: string;
+        try {
+            ({ needsUpdate, currentHash } = hasher.shouldUpdate(file));
+        } catch {
+            continue;
+        }
         if (needsUpdate) {
             try {
                 const { skeleton, mapping } = SkeletonGenerator.generate(file);
@@ -65,10 +62,6 @@ export function preWarmCache(): { updatedCount: number; totalFiles: number } {
     return { updatedCount, totalFiles: allFiles.length };
 }
 
-// ============================================================================
-// 3. 内存索引：从 output/*.mapping.json 构建 Symbol Map + PageRank
-//    结果通过 LocalDatabase 持久化，下次无变更时直接加载跳过重建
-// ============================================================================
 export function initializeGlobalIndex() {
     console.error('🧠 Building memory-resident index...');
     GLOBAL_INDEX.symbols.clear();
@@ -116,4 +109,4 @@ export function initializeGlobalIndex() {
     console.error(`✅ Index ready: ${GLOBAL_INDEX.symbols.size} symbols, ${GLOBAL_INDEX.allFiles.size} files.`);
 }
 
-export { LocalDatabase, computeAllEmbeddings };
+export { LocalDatabase };
