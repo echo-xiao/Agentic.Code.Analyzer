@@ -2,56 +2,58 @@
 
 ## Gemini Answer
 
-Slash commands in Rocket.Chat are managed through a central `slashCommands` object, responsible for both registration and execution.
+Slash commands in Rocket.Chat follow a client-server architecture, involving a dedicated client-side processing flow, a server-side registry for command definitions, and a DDP (Distributed Data Protocol) method call for execution.
 
-**1. Registration:**
+Here's a breakdown of the process from registration to execution:
 
-*   **Entry Point:** New slash commands are registered using the `slashCommands.add` method, which is typically called during server startup or module initialization.
-*   **Mechanism:** The `slashCommands.add` method (defined in `apps/meteor/app/utils/server/slashCommand.ts`) takes an object with properties such as:
-    *   `command`: The name of the slash command (e.g., "mute").
-    *   `callback`: The function to execute when the command is invoked.
-    *   `options`: Additional settings like `params`, `description`, and `permission`.
-    *   `appId`: (Optional) The ID of the App that registered the command.
-    *   `providesPreview`, `previewer`, `previewCallback`: For commands that offer previews before full execution.
-*   **Storage:** Registered commands are stored in the `slashCommands.commands` object, which acts as a registry mapping command names to their respective configurations and callback functions.
+### 1. Registration
 
-**Example Registration:**
-Many core slash commands, like `/mute`, `/invite`, `/create`, are registered using `slashCommands.add` in their respective server-side files (e.g., `apps/meteor/app/slashcommands-mute/server/mute.ts`).
+Slash commands are registered on the server using the `slashCommands.add()` method, which resides in `apps/meteor/app/utils/server/slashCommand.ts`.
 
-**2. Execution:**
+*   **Mechanism**: The `slashCommands.add()` method takes an object containing the command's name, a callback function (which defines the command's actual logic), optional parameters, a description, permissions, and other properties like `clientOnly` or preview-related functions. This information is stored in an internal `commands` registry.
+*   **Examples**: Built-in commands like `/invite`, `/kick`, and `/join` are registered in their respective server-side files, such as `apps/meteor/app/slashcommands-invite/server/server.ts` or `apps/meteor/app/slashcommands-leave/server/leave.ts`, by calling `slashCommands.add()` with their specific details.
 
-*   **Entry Point:** When a user types a slash command in the chat, the execution flow is initiated by a call to the `slashCommands.run` method.
-*   **REST API Integration:** The `slashCommands.run` method is exposed to the client-side via a REST API endpoint. The specific endpoint handling command execution is registered using `API.v1.addRoute` in `apps/meteor/app/api/server/v1/commands.ts`.
-*   **Mechanism:**
-    1.  The `slashCommands.run` method (defined in `apps/meteor/app/utils/server/slashCommand.ts`) receives the `command` name, `params`, `message` object (containing `rid` and `_id`), `userId`, and an optional `triggerId`.
-    2.  It retrieves the corresponding command configuration from `this.commands[command]`.
-    3.  It performs a basic validation to ensure a `message.rid` is present.
-    4.  Finally, it executes the `callback` function associated with the registered command, passing the command details as arguments.
-*   **Previews:** For commands that support previews, `slashCommands.getPreviews` is called to fetch preview information, and `slashCommands.executePreview` handles the execution of a selected preview item.
+### 2. Client-side Processing
+
+When a user types a message in the chat input, the client-side code intercepts and processes it to identify if it's a slash command.
+
+*   **Entry Point**: The `processSlashCommand` function, located in `apps/meteor/client/lib/chats/flows/processSlashCommand.ts`, is responsible for this initial parsing.
+*   **Parsing**: It uses a regular expression to detect messages starting with `/` followed by a command name.
+*   **Validation & Client-only commands**: `processSlashCommand` checks for command permissions and handles commands marked as `clientOnly` directly on the client if applicable.
+*   **Server Communication**: For server-side commands, the client does not execute the command directly. Instead, it constructs a DDP method call to the server using `sdk.call('slashCommand', { cmd: commandName, params, msg: message, triggerId })`. This call passes the command name, its parameters, the original message object, and a `triggerId` to the server.
+
+### 3. Server-side Execution
+
+Upon receiving the DDP method call, the server takes over to execute the registered command.
+
+*   **Execution Method**: The `slashCommands.run()` method in `apps/meteor/app/utils/server/slashCommand.ts` is invoked.
+*   **Command Retrieval**: `slashCommands.run()` looks up the command name in its internal `commands` registry.
+*   **Callback Execution**: If the command is found and has a valid `callback` function, `slashCommands.run()` executes this callback, passing the `command`, `params`, `message`, `triggerId`, and `userId` as arguments. This callback contains the core logic of the slash command, such as sending messages, modifying room settings, or interacting with other server services.
 
 **Call Chain:**
 
-1.  **Client-side (User input):** User types `/command` in the chat.
-2.  **Server-side (REST API):** A client-side component makes an API call to the `/api/v1/commands.run` endpoint (defined in `apps/meteor/app/api/server/v1/commands.ts`).
-3.  **Command Execution:** The API endpoint's handler calls `slashCommands.run` (from `apps/meteor/app/utils/server/slashCommand.ts`).
-4.  **Callback Execution:** `slashCommands.run` invokes the `callback` function registered for the specific command.
+1.  **Client Entry**: User types `/command` in the chat input.
+2.  **Client-side Processing**: `apps/meteor/client/lib/chats/flows/processSlashCommand.ts` (`processSlashCommand`) parses the message.
+3.  **DDP Method Call**: `processSlashCommand` calls `sdk.call('slashCommand', { cmd, params, msg, triggerId })`.
+4.  **Server-side Execution**: The DDP method `slashCommand` on the server eventually triggers `apps/meteor/app/utils/server/slashCommand.ts` (`slashCommands.run`).
+5.  **Command Logic**: `slashCommands.run` executes the registered callback function (e.g., from `apps/meteor/app/slashcommands-invite/server/server.ts`) for the specific command.
 
-## Tool Calls (8 calls, 61,437 tokens)
+## Tool Calls (7 calls, 30,069 tokens)
 
-**Step 1:** `search({"query":"slashCommands"})` → 442 tokens
-**Step 2:** `graph({"layer":"server","query":"slashCommands","direction":"down"})` → 672 tokens
-**Step 3:** `implement({"symbolName":"slashCommands","filename":"apps/meteor/app/utils/server/slashCommand.ts"})` → 694 tokens
-**Step 4:** `graph({"direction":"up","layer":"server","query":"slashCommands.add"})` → 14 tokens
-**Step 5:** `search({"layer":"server","query":"slashCommands.add"})` → 605 tokens
-**Step 6:** `search({"layer":"server","query":"slashCommands.run"})` → 77 tokens
-**Step 7:** `implement({"symbolName":"slashCommands.run","filename":"apps/meteor/app/api/server/v1/commands.ts"})` → 18 tokens
-**Step 8:** `search({"query":"API.v1.addRoute","filename":"apps/meteor/app/api/server/v1/commands.ts","layer":"server"})` → 1467 tokens
+**Step 1:** `search({"query":"register slash command"})` → 17 tokens
+**Step 2:** `search({"query":"slash command"})` → 592 tokens
+**Step 3:** `graph({"query":"slashCommands","layer":"server","direction":"down"})` → 786 tokens
+**Step 4:** `search({"query":"processSlashCommand","layer":"client"})` → 182 tokens
+**Step 5:** `implement({"symbolName":"processSlashCommand","filename":"apps/meteor/client/lib/chats/flows/processSlashComma)` → 489 tokens
+**Step 6:** `implement({"filename":"apps/meteor/app/utils/server/slashCommand.ts","symbolName":"slashCommands"})` → 722 tokens
+**Step 7:** `search({"query":"slashCommands.add","layer":"server"})` → 413 tokens
 
 ## Metrics
 
 | Metric | Value |
 |--------|-------|
-| Files hit | 4/6 |
-| Symbols hit | 1/2 |
-| Tool calls | 8 |
-| Total tokens | 61,437 |
+| Files hit | 5/6 |
+| Symbols hit | 2/2 |
+| Tool calls | 7 |
+| Total tokens | 30,069 |
+| Pass | YES |

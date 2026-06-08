@@ -2,42 +2,42 @@
 
 ## Gemini Answer
 
-Rocket.Chat Apps hook into events like `afterSaveMessage` through the Apps Engine via the `AppListenerManager`.
+To understand how the Rocket.Chat Apps Engine hooks into events like `afterSaveMessage`, we need to trace how events are triggered and how the Apps Engine registers its listeners.
 
-Here's the breakdown of the process:
+Here's the current understanding based on the available information:
 
-1.  **App Registration:** When an app is loaded and enabled, the `AppManager` (located at `packages/apps-engine/src/server/AppManager.ts`) registers the app's implemented listeners with the `AppListenerManager`.
-2.  **Listener Management:** The `AppListenerManager` (located at `packages/apps-engine/src/server/managers/AppListenerManager.ts`) maintains a map of event interfaces (like `IPostMessageSent`, which is analogous to `afterSaveMessage`) to a list of app IDs that have registered for those events.
-3.  **Event Execution:** When a core Rocket.Chat event occurs (e.g., a message is saved), the `AppListenerManager.executeListener` method is called with the specific event interface (e.g., `AppInterface.IPostMessageSent`) and the relevant data.
-4.  **App Invocation:** Inside `executeListener`, the `AppListenerManager` iterates through all the app IDs registered for that event. For each registered app, it retrieves the `ProxiedApp` instance and then calls the corresponding method on the app's sandbox (e.g., `app.call(AppMethod.EXECUTEPOSTMESSAGESENT, data)`). This `app.call` mechanism acts as a bridge, allowing the core system to invoke methods defined within the isolated environment of the Rocket.Chat App.
+1.  **`afterSaveMessage` Callback Execution:** The `afterSaveMessage` function, located at `apps/meteor/app/lib/server/lib/afterSaveMessage.ts`, explicitly calls `callbacks.run('afterSaveMessage', message, { room, user, roomUpdater: updater })`. This indicates that `afterSaveMessage` is a general callback event that other modules can subscribe to.
 
-Essentially, the `AppListenerManager` acts as the central dispatcher for events to all active Rocket.Chat Apps. Apps declare which events they are interested in, and the `AppListenerManager` ensures their corresponding handler methods are executed when those events fire in the core system.
+2.  **Missing Apps Engine Hook Registration:** While we know `afterSaveMessage` is a callback, the specific mechanism for how the Apps Engine registers its hooks for this event is not directly evident from the `search` and `graph` results for "Apps Engine event," "Apps Engine listener," "Apps Engine IHook," or "Apps Engine register hook." Similarly, searching for "callbacks.add afterSaveMessage" did not yield direct results within the `packages` layer.
 
-**Call Chain:**
+**Call Chain (Partial):**
 
-`AppManager` → `AppListenerManager.registerListeners` (during app enablement) → `AppListenerManager.executeListener` (when an event like `afterSaveMessage` occurs) → `ProxiedApp.call` (invokes the app's handler).
+`afterSaveMessage` (in `apps/meteor/app/lib/server/lib/afterSaveMessage.ts`) → `callbacks.run('afterSaveMessage', ...)`
 
-**Key Files:**
+**Next Steps (Hypothesized):**
 
-*   `packages/apps-engine/src/server/AppManager.ts`: Manages the lifecycle of apps, including registration of listeners.
-*   `packages/apps-engine/src/server/managers/AppListenerManager.ts`: The core component responsible for dispatching events to registered app listeners.
+The Apps Engine likely uses `callbacks.add` internally to register its own event handlers for `afterSaveMessage` and other lifecycle events. To fully understand the connection, one would need to:
 
-## Tool Calls (8 calls, 132,521 tokens)
+1.  **Search for `callbacks.add` within the Apps Engine codebase** (likely in `packages/` or `ee/packages/`) to find where the Apps Engine registers its listeners.
+2.  **Investigate the Apps Engine's internal event handling mechanism** to see how it maps platform events (like `afterSaveMessage`) to the `IHook` implementations provided by individual apps.
 
-**Step 1:** `search({"query":"AppListenerManager"})` → 84 tokens
-**Step 2:** `graph({"question":"How does AppListenerManager handle events?","direction":"down","query":"AppListenerMana)` → 45 tokens
-**Step 3:** `search({"query":"executeListener","layer":"server"})` → 34 tokens
-**Step 4:** `search({"layer":"server","query":"afterSaveMessage App"})` → 16 tokens
-**Step 5:** `implement({"symbolName":"AppListenerManager","filename":"packages/apps-engine/src/server/managers/AppListenerM)` → 8358 tokens
-**Step 6:** `search({"layer":"server","query":"AppListenerManager.executeListener"})` → 20 tokens
-**Step 7:** `search({"layer":"server","query":"AppManager"})` → 78 tokens
-**Step 8:** `implement({"symbolName":"AppManager","filename":"packages/apps-engine/src/server/AppManager.ts"})` → 8195 tokens
+## Tool Calls (8 calls, 25,807 tokens)
+
+**Step 1:** `search({"query":"Apps Engine event","layer":"packages"})` → 193 tokens
+**Step 2:** `search({"query":"Apps Engine listener","layer":"packages"})` → 195 tokens
+**Step 3:** `search({"query":"afterSaveMessage","layer":"packages"})` → 261 tokens
+**Step 4:** `graph({"query":"afterSaveMessage","direction":"down","edgeTypes":["event_listen"]})` → 158 tokens
+**Step 5:** `search({"layer":"packages","query":"callbacks.add afterSaveMessage"})` → 19 tokens
+**Step 6:** `search({"query":"Apps Engine IHook","layer":"packages"})` → 15 tokens
+**Step 7:** `search({"layer":"packages","query":"Apps Engine register hook"})` → 17 tokens
+**Step 8:** `implement({"symbolName":"afterSaveMessage","filename":"apps/meteor/app/lib/server/lib/afterSaveMessage.ts"})` → 189 tokens
 
 ## Metrics
 
 | Metric | Value |
 |--------|-------|
-| Files hit | 2/6 |
-| Symbols hit | 5/5 |
+| Files hit | 0/6 |
+| Symbols hit | 0/5 |
 | Tool calls | 8 |
-| Total tokens | 132,521 |
+| Total tokens | 25,807 |
+| Pass | NO |

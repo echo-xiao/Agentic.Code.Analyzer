@@ -2,42 +2,38 @@
 
 ## Gemini Answer
 
-The auto-translate feature in Rocket.Chat works by leveraging a `TranslationProviderRegistry` to manage and execute translations through different providers.
+The auto-translate feature in Rocket.Chat works by leveraging a `TranslationProviderRegistry` on the server-side.
 
-Here's a breakdown of the process:
+Here's the breakdown of the process:
 
-1.  **Initiation**: The translation of a message can be explicitly triggered by the `translateMessage` function located in `apps/meteor/app/autotranslate/server/functions/translateMessage.ts`. This function takes the target language and the message as input.
+1.  **Entry Point:** The `translateMessage` function, located at `apps/meteor/app/autotranslate/server/functions/translateMessage.ts`, is responsible for initiating the translation.
+2.  **Provider Check:** It first verifies if auto-translation is enabled via `TranslationProviderRegistry.enabled`. If not, it returns.
+3.  **Room and Message Validation:** It checks for a valid message and room ID.
+4.  **Translation Invocation:** If all checks pass, it calls `TranslationProviderRegistry.translateMessage(message, room, targetLanguage)`. This static method within the `TranslationProviderRegistry` handles the actual translation.
 
-2.  **Provider Registry**: The `translateMessage` function delegates the actual translation task to the `TranslationProviderRegistry` class, which is defined in `apps/meteor/app/autotranslate/server/autotranslate.ts`. This registry is responsible for:
-    *   Registering different translation providers (e.g., Microsoft Translate, Google Translate).
-    *   Determining if auto-translation is enabled.
-    *   Identifying the currently active translation provider.
-    *   Calling the `translateMessage` method of the active provider.
+The `TranslationProviderRegistry` (located at `apps/meteor/app/autotranslate/server/autotranslate.ts`) is a central component that manages different translation providers (e.g., GoogleAutoTranslate, MSTranslate, DeepLTranslate). It offers several methods, including `translateMessage` which is the one utilized in this flow. The architecture indicates that `translateMessage` within this registry is responsible for receiving the message and room information and dispatching it to the active translation provider. The translated content is then stored in the `message.translations` field.
 
-3.  **Active Provider**: The `TranslationProviderRegistry` retrieves the `AutoTranslate` instance of the configured translation service. This `AutoTranslate` instance contains the specific logic and API calls required to communicate with the chosen external translation service (e.g., Google Translate API).
+The overall call chain is:
 
-4.  **Automatic Translation Trigger**: The `TranslationProviderRegistry` also registers an `afterSaveMessage` callback. This means that after a message is successfully saved to the database, this callback is invoked. If auto-translation is enabled and an active provider is set, the provider's `translateMessage` method will be called to translate the newly saved message.
+`apps/meteor/app/autotranslate/server/functions/translateMessage.ts` (translateMessage) → `apps/meteor/app/autotranslate/server/autotranslate.ts` (TranslationProviderRegistry.translateMessage) → (Active Translation Provider's `_translateMessage` method)
 
-**Call Chain:**
-
-`Entry` (e.g., user action, message save) → `apps/meteor/app/autotranslate/server/functions/translateMessage.ts` (or `afterSaveMessage` callback) → `TranslationProviderRegistry` (in `apps/meteor/app/autotranslate/server/autotranslate.ts`) → Active `AutoTranslate` provider (e.g., `_translateMessage` in `apps/meteor/app/autotranslate/server/msTranslate.ts` or `apps/meteor/app/autotranslate/server/googleTranslate.ts` etc.)
-
-## Tool Calls (8 calls, 44,426 tokens)
+## Tool Calls (8 calls, 30,533 tokens)
 
 **Step 1:** `search({"query":"auto-translate"})` → 15 tokens
-**Step 2:** `search({"query":"translate message"})` → 207 tokens
-**Step 3:** `graph({"layer":"server","direction":"down","query":"translateMessage"})` → 644 tokens
-**Step 4:** `implement({"symbolName":"_translateMessage","filename":"apps/meteor/app/autotranslate/server/msTranslate.ts"})` → 135 tokens
-**Step 5:** `implement({"filename":"apps/meteor/app/autotranslate/server/autotranslate.ts","symbolName":"translateMessage"})` → 89 tokens
-**Step 6:** `implement({"symbolName":"translateMessage","filename":"apps/meteor/app/autotranslate/server/functions/translat)` → 140 tokens
-**Step 7:** `search({"query":"TranslationProviderRegistry","layer":"server"})` → 35 tokens
-**Step 8:** `implement({"filename":"apps/meteor/app/autotranslate/server/autotranslate.ts","symbolName":"TranslationProvide)` → 658 tokens
+**Step 2:** `search({"layer":"server","query":"translate message"})` → 249 tokens
+**Step 3:** `graph({"filename":"apps/meteor/app/autotranslate/server/autotranslate.ts","query":"translateMessage","laye)` → 745 tokens
+**Step 4:** `implement({"filename":"apps/meteor/app/autotranslate/server/autotranslate.ts","symbolName":"translateMessage"})` → 89 tokens
+**Step 5:** `implement({"filename":"apps/meteor/app/autotranslate/server/functions/translateMessage.ts","symbolName":"trans)` → 170 tokens
+**Step 6:** `graph({"direction":"down","query":"TranslationProviderRegistry.translateMessage","layer":"server"})` → 21 tokens
+**Step 7:** `search({"layer":"server","query":"TranslationProviderRegistry"})` → 174 tokens
+**Step 8:** `implement({"filename":"apps/meteor/app/autotranslate/server/autotranslate.ts","symbolName":"TranslationProvide)` → 324 tokens
 
 ## Metrics
 
 | Metric | Value |
 |--------|-------|
-| Files hit | 5/6 |
+| Files hit | 3/6 |
 | Symbols hit | 2/2 |
 | Tool calls | 8 |
-| Total tokens | 44,426 |
+| Total tokens | 30,533 |
+| Pass | NO |

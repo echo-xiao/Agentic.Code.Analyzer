@@ -2,42 +2,35 @@
 
 ## Gemini Answer
 
-New endpoints in Rocket.Chat's REST API are registered through classes that extend the `APIClass`. The process involves defining routes using specific HTTP method functions (`get`, `post`, `put`, `delete`) provided by the `APIClass`.
+New endpoints are registered in the Rocket.Chat REST API through the `APIClass`.
 
 Here's the call chain:
 
-1.  **`APIClass`** (`apps/meteor/app/api/server/ApiClass.ts`): This is the base class for defining REST API endpoints.
-    *   Developers define API routes by calling methods such as `get()`, `post()`, `put()`, or `delete()` on an instance of a class that extends `APIClass`.
-    *   These methods take the `subpath` for the endpoint, `options` (which can include authentication requirements, rate limiting configurations, and parameter validation), and the `action` function (which is the actual handler for the API request).
-    *   Internally, these methods delegate to a `method()` function which then calls the `addRoute()` method.
+1.  **`startRestAPI`** (at `apps/meteor/app/api/server/api.ts`): This function initializes the REST API by setting up middleware and routing.
+2.  Within `startRestAPI`, the `API.v1.router` and `API.default.router` are used.
+3.  **`API`** (at `apps/meteor/app/api/server/api.ts`): This object defines the main API structure, including `API.v1` and `API.default`.
+4.  **`createApi`** (at `apps/meteor/app/api/server/api.ts`): This function is responsible for creating instances of `APIClass` for different API versions (e.g., `v1`).
+5.  **`APIClass`**: This class, when instantiated by `createApi`, is where individual routes are added using methods like `addRoute()` or the typed `.get()`, `.post()`, `.put()`, and `.delete()` methods.
 
-2.  **`addRoute()`** (within `APIClass`, `apps/meteor/app/api/server/ApiClass.ts`):
-    *   This method (though marked as deprecated in favor of the direct HTTP verb methods) is responsible for processing the route definition.
-    *   It applies various middleware functions, including `authenticationMiddlewareForHono`, `permissionsMiddleware`, and `license` checks, based on the options provided.
-    *   Crucially, it interacts with the internal `router` instance.
+The registration process begins with `startRestAPI`, which uses the `API` object. The `API` object, in turn, utilizes the `createApi` function to construct instances of `APIClass`. It is within these `APIClass` instances that the actual registration of new REST API endpoints occurs.
 
-3.  **`RocketChatAPIRouter`** (initialized within `APIClass` constructor, `apps/meteor/app/api/server/ApiClass.ts`):
-    *   An instance of `RocketChatAPIRouter` is created within the `APIClass` constructor.
-    *   The `addRoute` method calls the corresponding HTTP verb method (e.g., `this.router.get()`, `this.router.post()`) on this `router` instance, passing the full route path, options, middleware functions, and the `action` (route handler) as arguments.
+## Tool Calls (8 calls, 46,447 tokens)
 
-In summary, new REST API endpoints are registered by:
-
-*   Creating a class that extends `APIClass` (`apps/meteor/app/api/server/ApiClass.ts`).
-*   Using the `get()`, `post()`, `put()`, or `delete()` methods within that class, providing the endpoint's path, configuration options, and the function that handles the request.
-*   The `APIClass` then uses its internal `RocketChatAPIRouter` instance to formally register these routes with the server's routing system, applying necessary middleware for authentication, permissions, and rate limiting.
-
-## Tool Calls (4 calls, 30,466 tokens)
-
-**Step 1:** `search({"query":"ApiClass"})` → 27 tokens
-**Step 2:** `graph({"direction":"down","depth":2,"query":"ApiClass"})` → 12 tokens
-**Step 3:** `implement({"symbolName":"ApiClass","filename":"apps/meteor/app/api/server/ApiClass.ts"})` → 15 tokens
-**Step 4:** `implement({"filename":"apps/meteor/app/api/server/ApiClass.ts","symbolName":"APIClass"})` → 7781 tokens
+**Step 1:** `search({"query":"REST API"})` → 602 tokens
+**Step 2:** `graph({"query":"startRestAPI","direction":"down","layer":"server"})` → 1093 tokens
+**Step 3:** `implement({"symbolName":"startRestAPI","filename":"apps/meteor/app/api/server/api.ts"})` → 153 tokens
+**Step 4:** `implement({"filename":"apps/meteor/app/api/server/ApiClass.ts","symbolName":"ApiClass"})` → 15 tokens
+**Step 5:** `search({"query":"API","layer":"server"})` → 573 tokens
+**Step 6:** `implement({"symbolName":"API","filename":"apps/meteor/app/api/server/api.ts"})` → 259 tokens
+**Step 7:** `search({"layer":"server","query":"createApi"})` → 215 tokens
+**Step 8:** `implement({"symbolName":"createApi","filename":"apps/meteor/app/api/server/api.ts"})` → 104 tokens
 
 ## Metrics
 
 | Metric | Value |
 |--------|-------|
-| Files hit | 1/6 |
+| Files hit | 2/6 |
 | Symbols hit | 4/5 |
-| Tool calls | 4 |
-| Total tokens | 30,466 |
+| Tool calls | 8 |
+| Total tokens | 46,447 |
+| Pass | NO |

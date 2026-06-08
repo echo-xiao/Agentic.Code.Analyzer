@@ -2,35 +2,39 @@
 
 ## Gemini Answer
 
-Federation messages in Rocket.Chat are sent across different servers via the `FederationMatrix` service, which acts as an intermediary to the Matrix federation protocol.
+Federation messages are sent across different servers in Rocket.Chat through the `FederationMatrix` service, which handles the communication with the Matrix protocol.
 
 Here's the call chain:
 
-**Entry** → `FederationMatrix` (defined in `ee/packages/federation-matrix/src/FederationMatrix.ts`)
-The `FederationMatrix` class is a core-service responsible for handling all federation-related operations, including sending messages, presence updates, and room actions to other federated servers (Matrix homeservers).
+`FederationMatrix.sendMessage()` in `ee/packages/federation-matrix/src/FederationMatrix.ts` is the entry point for sending messages. This method determines whether the message contains files or is a text message.
 
-**Step 1** → `FederationMatrix.sendMessage` (in `ee/packages/federation-matrix/src/FederationMatrix.ts`)
-When a message needs to be federated, this method is invoked. It determines the type of message (text or file) and delegates to the appropriate handler.
+1.  **`FederationMatrix.sendMessage`** (`ee/packages/federation-matrix/src/FederationMatrix.ts`)
+    *   If the message has files, it calls `this.handleFileMessage()`.
+    *   If it's a text message, it calls `this.handleTextMessage()`.
+2.  **`FederationMatrix.handleTextMessage`** (`ee/packages/federation-matrix/src/FederationMatrix.ts`)
+    *   This method prepares the message for the Matrix protocol by calling `toExternalMessageFormat()`.
+    *   It also handles threaded messages and quoted messages by calling `this.handleThreadedMessage()` and `this.handleQuoteMessage()` respectively.
+    *   Finally, it calls `federationSDK.sendMessage()` to send the message to the Matrix network.
 
-**Step 2** → `FederationMatrix.handleTextMessage` or `FederationMatrix.handleFileMessage` (in `ee/packages/federation-matrix/src/FederationMatrix.ts`)
-These private methods prepare the message content (text or file) into the format expected by the Matrix protocol. They also handle aspects like threading and quoting.
+The `federationSDK` is responsible for interacting with the Matrix protocol's HTTP API to send messages to remote servers. This indicates an event-driven architecture for incoming messages, where the `PUT /_matrix/federation/v1/send/:txnId` endpoint is the entry point, leading to `federationSDK.processIncomingTransaction()` which dispatches events to listeners like `'homeserver.matrix.message'` for persistence in the local database.
 
-**Final** → `federationSDK.sendMessage` or `federationSDK.sendFileMessage` (implicitly within `ee/packages/federation-matrix/src/FederationMatrix.ts`)
-The `federationSDK` is the crucial component that abstracts the actual communication with the Matrix homeserver. It makes the necessary API calls to send the prepared message (as a text event or file event) to the target federated server using the Matrix federation protocol. This `federationSDK` handles the HTTP requests and the underlying network communication to transmit the message data. Other methods like `federationSDK.sendReaction`, `federationSDK.updateMessage`, and `federationSDK.sendTypingNotification` are also used by `FederationMatrix` for various federated actions.
+## Tool Calls (8 calls, 35,842 tokens)
 
-## Tool Calls (5 calls, 48,392 tokens)
-
-**Step 1:** `search({"query":"FederationMatrix"})` → 81 tokens
-**Step 2:** `graph({"depth":4,"query":"FederationMatrix","direction":"down"})` → 47 tokens
-**Step 3:** `graph({"filename":"ee/packages/federation-matrix/src/FederationMatrix.ts","direction":"down","query":"Fede)` → 47 tokens
-**Step 4:** `implement({"filename":"ee/packages/federation-matrix/src/FederationMatrix.ts","symbolName":"FederationMatrix"})` → 8274 tokens
-**Step 5:** `search({"query":"federationSDK"})` → 14 tokens
+**Step 1:** `search({"query":"federation send message","layer":"server"})` → 73 tokens
+**Step 2:** `search({"layer":"server","query":"federation message"})` → 183 tokens
+**Step 3:** `graph({"query":"saveMessageFromFederation","layer":"server","direction":"down"})` → 725 tokens
+**Step 4:** `implement({"filename":"ee/packages/federation-matrix/lib/FederationMatrix.ts","symbolName":"FederationMatrix.s)` → 274 tokens
+**Step 5:** `graph({"layer":"ee","query":"FederationMatrix.handleTextMessage","direction":"down"})` → 18 tokens
+**Step 6:** `implement({"symbolName":"FederationMatrix","filename":"ee/packages/federation-matrix/src/FederationMatrix.ts"})` → 1188 tokens
+**Step 7:** `implement({"filename":"ee/packages/federation-matrix/src/FederationMatrix.ts","symbolName":"FederationMatrix.h)` → 240 tokens
+**Step 8:** `search({"query":"federationSDK","layer":"ee"})` → 14 tokens
 
 ## Metrics
 
 | Metric | Value |
 |--------|-------|
 | Files hit | 1/6 |
-| Symbols hit | 1/5 |
-| Tool calls | 5 |
-| Total tokens | 48,392 |
+| Symbols hit | 3/5 |
+| Tool calls | 8 |
+| Total tokens | 35,842 |
+| Pass | NO |

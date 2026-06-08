@@ -2,83 +2,81 @@
 
 ## Gemini Answer
 
-To add a new service in Rocket.Chat, you need to define a new class that extends the `ServiceClass` and then register it with the application's API during startup.
+To add a new service in Rocket.Chat, you primarily need to create a new class that extends `ServiceClassInternal` or `ServiceClass`.
 
-Here's the step-by-step process:
+The core principles for adding a new service are:
 
-1.  **Define your Service Class**:
-    *   Create a new TypeScript class that extends `ServiceClass` from `packages/core-services/src/types/ServiceClass.ts`.
-    *   Your class must define a `protected name: string;` property, which is the unique identifier for your service.
-    *   You can override the `created()`, `started()`, and `stopped()` lifecycle methods to execute code when the service is initialized, started, or stopped, respectively.
-    *   Add any custom methods and properties to your service class to implement its functionality.
+1.  **Service Class Definition**:
+    *   New services extend `ServiceClassInternal` (for monolith services) or `ServiceClass`.
+    *   You define the service's methods within this class.
 
-2.  **Register your Service**:
-    *   Locate the `registerServices` function in `apps/meteor/server/services/startup.ts`.
-    *   Inside this function, create an instance of your new service class.
-    *   Call `api.registerService()` with your service instance. If your service has dependencies on other services, you can pass an array of their names as the second argument.
+2.  **Service Name**:
+    *   Each service needs a unique `name` property. For example, `RoomService` has `protected name = 'room';`.
 
-**Example Structure:**
+3.  **No Direct Imports Between Services**:
+    *   Services should not directly import and call methods from other services. Instead, they interact via a messaging bus using `proxify('IServiceName')` which then uses `api.call('namespace.method')` and `LocalBroker.call()`.
+    *   The `LocalBroker` stores methods as `'serviceName.methodName'` and binds them to the corresponding `ServiceClass` method.
 
+**Example Walkthrough: `RoomService`**
 
+1.  **`RoomService` Definition**: The `RoomService` is defined in `apps/meteor/server/services/room/service.ts`.
+    
 ```typescript
-// services/MyNewService/service.ts (example path)
-import { ServiceClass } from '@rocket.chat/core-services';
-
-class MyNewService extends ServiceClass {
-    protected name = 'MyNewService';
-
-    async created(): Promise<void> {
-        console.log('MyNewService: created!');
+    class RoomService extends ServiceClassInternal implements IRoomService {
+      protected name = 'room';
+      // ... service methods ...
     }
+    ```
 
-    async started(): Promise<void> {
-        console.log('MyNewService: started!');
-        // Your service's startup logic here
+    This shows that `RoomService` extends `ServiceClassInternal` and implements the `IRoomService` interface (defined in `packages/core-services/src/types/IRoomService.ts`).
+
+2.  **`ServiceClassInternal`**: This class is defined in `packages/core-services/src/types/ServiceClass.ts`.
+    
+```typescript
+    class ServiceClassInternal extends ServiceClass {
+      protected override internal = true;
     }
+    ```
 
-    async stopped(): Promise<void> {
-        console.log('MyNewService: stopped!');
-        // Your service's cleanup logic here
-    }
+    It extends `ServiceClass` and sets an `internal` flag to `true`.
 
-    public myCustomMethod(message: string): string {
-        return `MyNewService received: ${message}`;
-    }
-}
+3.  **`ServiceClass`**: This is the base class for all services, defined in `packages/core-services/src/types/ServiceClass.ts`. It provides fundamental functionalities for services, such as:
+    *   `name`: An abstract property to define the service's name.
+    *   `events`: An `EventEmitter` for handling events.
+    *   `settings`: An `EventEmitter` for handling setting changes.
+    *   `setApi(api: IApiService)`: To set the API interface for inter-service communication.
+    *   `onEvent` and `emit`: Methods for event handling.
+    *   `onSettingChanged`: For reacting to setting changes.
+    *   Lifecycle hooks: `created()`, `started()`, `stopped()`.
 
-// In apps/meteor/server/services/startup.ts
-import { MyNewService } from './MyNewService/service'; // Adjust import path
+Therefore, to add a new service, you would:
 
-export const registerServices = async (): Promise<void> => {
-    // ... other service registrations
-    api.registerService(new MyNewService());
-    // ...
-};
-```
-
+*   Create a new TypeScript file (e.g., `apps/meteor/server/services/your-new-service/service.ts`).
+*   Define a class in this file that extends `ServiceClassInternal` (or `ServiceClass` if it's not a monolith-specific internal service).
+*   Implement your service's logic as methods within this class.
+*   Ensure proper naming and follow the inter-service communication pattern (using `proxify` and `api.call`) rather than direct imports.
 
 **Call Chain:**
 
-1.  **`apps/meteor/server/services/startup.ts`** (`registerServices`): This function is responsible for instantiating and registering all server-side services.
-2.  **`packages/core-services/src/lib/Api.ts`** (`api.registerService`): The `api` object (an instance of `Api`) provides the `registerService` method, which acts as an intermediary.
-3.  **`packages/core-services/src/LocalBroker.ts`** (`broker.createService`): The `Api` then delegates the actual service creation and registration to the `LocalBroker`, which manages the lifecycle and method exposure of all services.
-4.  **Your new `ServiceClass` instance**: The `LocalBroker` then interacts with your service instance, calling its lifecycle methods and making its public methods available for inter-service communication via the broker.
+`YourNewServiceClass` → `ServiceClassInternal` → `ServiceClass`
 
-## Tool Calls (7 calls, 45,164 tokens)
+## Tool Calls (8 calls, 36,307 tokens)
 
-**Step 1:** `search({"query":"ServiceClass","layer":"server"})` → 99 tokens
-**Step 2:** `implement({"symbolName":"ServiceClass","filename":"packages/core-services/src/types/ServiceClass.ts"})` → 582 tokens
-**Step 3:** `search({"query":"LocalBroker","layer":"packages"})` → 97 tokens
-**Step 4:** `implement({"symbolName":"LocalBroker","filename":"packages/core-services/src/LocalBroker.ts"})` → 1674 tokens
-**Step 5:** `graph({"depth":2,"query":"createService","filename":"packages/core-services/src/LocalBroker.ts","direction)` → 263 tokens
-**Step 6:** `implement({"filename":"apps/meteor/server/services/startup.ts","symbolName":"registerServices"})` → 499 tokens
-**Step 7:** `implement({"filename":"packages/core-services/src/lib/Api.ts","symbolName":"Api"})` → 498 tokens
+**Step 1:** `search({"layer":"server","query":"service"})` → 600 tokens
+**Step 2:** `search({"query":"ServiceClass"})` → 167 tokens
+**Step 3:** `graph({"query":"ServiceClass","direction":"up"})` → 226 tokens
+**Step 4:** `search({"query":"RoomService"})` → 84 tokens
+**Step 5:** `implement({"symbolName":"RoomService","filename":"apps/meteor/server/services/room/service.ts"})` → 1000 tokens
+**Step 6:** `search({"query":"ServiceClassInternal"})` → 173 tokens
+**Step 7:** `implement({"filename":"packages/core-services/src/types/ServiceClass.ts","symbolName":"ServiceClassInternal"})` → 74 tokens
+**Step 8:** `implement({"filename":"packages/core-services/src/types/ServiceClass.ts","symbolName":"ServiceClass"})` → 399 tokens
 
 ## Metrics
 
 | Metric | Value |
 |--------|-------|
-| Files hit | 0/6 |
-| Symbols hit | 1/4 |
-| Tool calls | 7 |
-| Total tokens | 45,164 |
+| Files hit | 2/6 |
+| Symbols hit | 4/4 |
+| Tool calls | 8 |
+| Total tokens | 36,307 |
+| Pass | NO |

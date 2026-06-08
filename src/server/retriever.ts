@@ -87,54 +87,47 @@ export class CodeRetriever {
                     const sym = (mapping.symbols ?? []).find(
                         (s: any) => s.name === symbolName || s.qualifiedName?.endsWith(`.${symbolName}`)
                     );
-                    sym?.calls?.forEach((c: string) => calleeSymbols.add(c));
+                    sym?.calls?.forEach((c: any) => calleeSymbols.add(typeof c === 'string' ? c : c.name));
                 } catch { /* ignore */ }
-            }
-        }
-
-        let calleeCount = 0;
-        for (const callee of calleeSymbols) {
-            if (calleeCount >= 5) break;
-            for (const calleePath of GLOBAL_INDEX.symbols.get(callee) ?? []) {
-                const calleeSkeletonPath = getOutputPaths(calleePath).skeletonPath;
-                if (fs.existsSync(calleeSkeletonPath) && !included.has(calleeSkeletonPath)) {
-                    results.push(fs.readFileSync(calleeSkeletonPath, 'utf-8'));
-                    included.add(calleeSkeletonPath);
-                    calleeCount++;
-                    break;
-                }
             }
         }
 
         return results;
     }
 
-    static getImplementation(symbolName: string, preferredFile?: string): { text: string; filePath: string } | null {
+    private static resolveFile(symbolName: string, preferredFile?: string): string[] {
         const paths = GLOBAL_INDEX.symbols.get(symbolName);
-        if (!paths || paths.size === 0) return null;
-
-        let sortedPaths = Array.from(paths);
-
+        if (!paths || paths.size === 0) return [];
+        let sorted = Array.from(paths);
         if (preferredFile) {
             const q = preferredFile.toLowerCase().replace(/\.tsx?$/, '');
-            const exact = sortedPaths.find(p => p.toLowerCase().replace(/\.tsx?$/, '').endsWith(q));
-            if (exact) sortedPaths = [exact];
+            const exact = sorted.find(p => p.toLowerCase().replace(/\.tsx?$/, '').endsWith(q));
+            if (exact) sorted = [exact];
         }
+        return sorted;
+    }
+
+    static getImplementation(symbolName: string, preferredFile?: string): { text: string; filePath: string; kind: string; methods?: string[] } | null {
+        const sortedPaths = this.resolveFile(symbolName, preferredFile);
+        if (sortedPaths.length === 0) return null;
 
         for (const filePath of sortedPaths) {
             try {
                 const project = new Project({ skipAddingFilesFromTsConfig: true });
                 const sourceFile = project.addSourceFileAtPath(filePath);
                 let text: string | null = null;
+                let kind = 'symbol';
+                let methods: string[] | undefined;
 
                 for (const fn of sourceFile.getFunctions()) {
-                    if (fn.getName() === symbolName) { text = fn.getFullText().trim(); break; }
+                    if (fn.getName() === symbolName) { text = fn.getFullText().trim(); kind = 'function'; break; }
                 }
 
                 if (!text) {
                     for (const v of sourceFile.getVariableDeclarations()) {
                         if (v.getName() === symbolName) {
                             text = v.getVariableStatement()?.getFullText().trim() ?? v.getFullText().trim();
+                            kind = 'variable';
                             break;
                         }
                     }
@@ -142,26 +135,75 @@ export class CodeRetriever {
 
                 if (!text) {
                     for (const cls of sourceFile.getClasses()) {
-                        if (cls.getName() === symbolName) { text = cls.getFullText().trim(); break; }
+                        if (cls.getName() === symbolName) {
+                            kind = 'class';
+                            methods = cls.getMethods().map(m => m.getName()).filter(Boolean);
+                            // Return skeleton: signatures only, no method bodies
+                            const lines: string[] = [];
+                            const heritage = cls.getHeritageClauses().map(h => h.getText()).join(' ');
+                            lines.push(`class ${symbolName}${heritage ? ' ' + heritage : ''} {`);
+                            for (const ctor of cls.getConstructors()) {
+                                const params = ctor.getParameters().map(p => p.getText()).join(', ');
+                                lines.push(`  constructor(${params}) { /* ... */ }`);
+                            }
+                            for (const prop of cls.getProperties()) {
+                                lines.push(`  ${prop.getText()};`);
+                            }
+                            for (const method of cls.getMethods()) {
+                                const mods = method.getModifiers().map(m => m.getText()).join(' ');
+                                const name = method.getName();
+                                const params = method.getParameters().map(p => p.getText()).join(', ');
+                                const ret = method.getReturnTypeNode()?.getText() ?? '';
+                                lines.push(`  ${mods ? mods + ' ' : ''}${name}(${params})${ret ? ': ' + ret : ''} { /* ... */ }`);
+                            }
+                            lines.push('}');
+                            text = lines.join('\n');
+                            break;
+                        }
                     }
                 }
 
                 if (!text) {
                     for (const iface of sourceFile.getInterfaces()) {
-                        if (iface.getName() === symbolName) { text = iface.getFullText().trim(); break; }
+                        if (iface.getName() === symbolName) { text = iface.getFullText().trim(); kind = 'interface'; break; }
                     }
                 }
                 if (!text) {
                     for (const t of sourceFile.getTypeAliases()) {
-                        if (t.getName() === symbolName) { text = t.getFullText().trim(); break; }
+                        if (t.getName() === symbolName) { text = t.getFullText().trim(); kind = 'type'; break; }
                     }
                 }
 
                 sourceFile.forget();
-                if (text) return { text, filePath };
+                if (text) return { text, filePath, kind, methods };
             } catch { /* ignore */ }
         }
 
+        return null;
+    }
+
+    static getClassMethod(className: string, methodName: string, preferredFile?: string): { text: string; filePath: string } | null {
+        const sortedPaths = this.resolveFile(className, preferredFile);
+        if (sortedPaths.length === 0) return null;
+
+        for (const filePath of sortedPaths) {
+            try {
+                const project = new Project({ skipAddingFilesFromTsConfig: true });
+                const sourceFile = project.addSourceFileAtPath(filePath);
+                for (const cls of sourceFile.getClasses()) {
+                    if (cls.getName() === className) {
+                        for (const method of cls.getMethods()) {
+                            if (method.getName() === methodName) {
+                                const text = method.getFullText().trim();
+                                sourceFile.forget();
+                                return { text, filePath };
+                            }
+                        }
+                    }
+                }
+                sourceFile.forget();
+            } catch { /* ignore */ }
+        }
         return null;
     }
 }

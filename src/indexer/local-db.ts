@@ -69,11 +69,4 @@ export class LocalDatabase {
         });
         console.error('👀 Watching index for changes...');
     }
-
-    clear(outputDir: string) {
-        if (fs.existsSync(outputDir)) {
-            fs.rmSync(outputDir, { recursive: true, force: true });
-            console.error("🧹 Local database cleared.");
-        }
-    }
 }
