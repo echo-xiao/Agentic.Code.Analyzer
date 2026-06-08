@@ -285,7 +285,7 @@ async function main() {
 
     const logsDir = path.join(__dirname, '..', '..', 'logs');
     fs.mkdirSync(logsDir, { recursive: true });
-    const reportPath = path.join(logsDir, 'tool-eval.md');
+    const reportPath = path.join(logsDir, 'layer1-tool-eval.md');
     fs.writeFileSync(reportPath, report, 'utf-8');
 
     console.error(`\nReport: ${reportPath}`);

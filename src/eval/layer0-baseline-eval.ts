@@ -130,7 +130,7 @@ async function main() {
         lines.push(`| ${i + 1} | ${r.id} | ${r.questionType} | ${r.subsystem} | ${r.tokens.total.toLocaleString()} | ${words} |`);
     }
 
-    const reportPath = path.join(PROJECT_ROOT, 'logs', 'baseline-eval.md');
+    const reportPath = path.join(PROJECT_ROOT, 'logs', 'layer0-baseline-eval.md');
     fs.writeFileSync(reportPath, lines.join('\n'), 'utf-8');
     console.error(`\nReport: ${reportPath}`);
     console.error(`Answers: logs/baseline/`);

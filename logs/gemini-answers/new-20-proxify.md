@@ -2,38 +2,50 @@
 
 ## Gemini Answer
 
-The `core-services proxify()` pattern in Rocket.Chat facilitates inter-service communication by creating a proxy object that intercepts method calls. Instead of services directly calling each other, these calls are routed through a `LocalBroker`.
+Rocket.Chat's `core-services` use a `proxify()` pattern for inter-service communication, avoiding direct imports between services. This pattern establishes a robust message bus system.
 
-Here's how it works:
+The core communication flow is as follows:
+**Entry → Step 1 → Step 2 → Step 3 → Final**
 
-1.  **`proxify(namespace)`**: This function, found in `packages/core-services/src/lib/proxify.ts`, takes a `namespace` (which corresponds to the service's name) as an argument.
-2.  **Proxy Creation**: It returns a `Proxy` object.
-3.  **`handler(namespace)`**: The `Proxy` object uses a `handler` function (also defined within `packages/core-services/src/lib/proxify.ts`, though its implementation details weren't directly available in the tool output) that is responsible for intercepting method calls made on the proxy.
-4.  **LocalBroker**: When a method is called on the proxified service object, the `handler` does not execute the method directly. Instead, it dispatches the call (along with its arguments and the service `namespace`) to the `LocalBroker`.
-5.  **Service Instance**: The `LocalBroker` then routes this call to the actual implementation of the service, which is a `ServiceClass` instance.
+1.  **`proxify('IServiceName')`** (located at `packages/core-services/src/lib/proxify.ts`)
+    *   Client code requests a proxified instance of a service, for example, `proxify('RoomService')`.
+    *   The `proxify` function creates and returns a JavaScript `Proxy` object. This proxy intercepts any method calls made on the service instance.
 
-This pattern acts as a central message bus for service-to-service communication, decoupling services and allowing for more flexible and maintainable architecture. If a service implementation isn't found through a direct `graph` traversal, it's recommended to search for the `ServiceClass` with the corresponding service name, as the `proxify` mechanism abstracts the direct call chain.
+2.  **`Proxy.handler`** (internal to `packages/core-services/src/lib/proxify.ts`)
+    *   When a method is invoked on the proxified service object (e.g., `proxifiedRoomService.createRoom()`), the `Proxy`'s `handler` intercepts this call.
+    *   The `handler` then constructs a fully qualified method name string, such as `'RoomService.createRoom'`, and prepares the arguments.
 
-**Call Chain:**
+3.  **`api.call('namespace.method')`** (example usage seen in `ee/packages/omnichannel-services/src/QueueWorker.ts`)
+    *   The `handler` ultimately translates the intercepted call into an `api.call` with the service's namespace and method name (e.g., `api.call('RoomService.createRoom', [args])`).
+    *   This `api.call` is an internal mechanism that bridges to the message broker.
 
-`ServiceName.method(args)` (on the proxified object) → `proxify('ServiceName')` (defined in `packages/core-services/src/lib/proxify.ts`) → `LocalBroker` (defined in `packages/core-services/src/LocalBroker.ts`) → `ServiceClass` instance (the actual service implementation).
+4.  **`LocalBroker.call(method, data, options)`** (located at `packages/core-services/src/LocalBroker.ts`)
+    *   The `api.call` then delegates to the `LocalBroker.call` method.
+    *   The `LocalBroker` is responsible for managing and dispatching service calls within the application. It maintains an internal `Map` where service methods are stored as `'serviceName.methodName'` keys, bound to their respective service class functions.
+    *   The `call` method of `LocalBroker` retrieves the actual bound function based on the provided method string.
 
-## Tool Calls (8 calls, 41,191 tokens)
+5.  **Bound ServiceClass method**
+    *   Finally, the `LocalBroker` executes the actual service method (e.g., `RoomService.createRoom()`) with the provided data and options. Services extend `ServiceClassInternal` (for the monolith) or `ServiceClass` to integrate with this broker pattern.
 
-**Step 1:** `search({"query":"proxify"})` → 115 tokens
-**Step 2:** `implement({"symbolName":"proxify","filename":"packages/core-services/src/lib/proxify.ts"})` → 51 tokens
-**Step 3:** `search({"query":"handler","layer":"packages"})` → 511 tokens
-**Step 4:** `implement({"filename":"packages/core-services/src/lib/proxify.ts","symbolName":"proxify"})` → 51 tokens
-**Step 5:** `search({"query":"handler.ts","layer":"packages"})` → 331 tokens
-**Step 6:** `implement({"symbolName":"proxify","filename":"packages/core-services/src/lib/proxify.ts"})` → 51 tokens
-**Step 7:** `implement({"filename":"packages/core-services/src/lib/proxify.ts"})` → 8 tokens
-**Step 8:** `search({"query":"handler","layer":"packages"})` → 511 tokens
+This pattern ensures services remain decoupled, communicating through a defined interface rather than direct imports, which simplifies refactoring and promotes a microservices-like architecture within the larger application.
+
+## Tool Calls (8 calls, 38,058 tokens)
+
+**Step 1:** `search({"query":"proxify","layer":"packages"})` → 181 tokens
+**Step 2:** `graph({"direction":"down","layer":"packages","query":"proxify"})` → 1107 tokens
+**Step 3:** `implement({"symbolName":"proxify","filename":"packages/core-services/src/lib/proxify.ts"})` → 76 tokens
+**Step 4:** `implement({"symbolName":"proxify","filename":"packages/core-services/src/lib/proxify.ts"})` → 76 tokens
+**Step 5:** `search({"query":"api.call","layer":"packages"})` → 75 tokens
+**Step 6:** `search({"layer":"packages","query":"LocalBroker.call"})` → 15 tokens
+**Step 7:** `search({"layer":"packages","query":"LocalBroker"})` → 165 tokens
+**Step 8:** `implement({"filename":"packages/core-services/src/LocalBroker.ts","symbolName":"LocalBroker"})` → 462 tokens
 
 ## Metrics
 
 | Metric | Value |
 |--------|-------|
 | Files hit | 2/6 |
-| Symbols hit | 3/4 |
+| Symbols hit | 4/4 |
 | Tool calls | 8 |
-| Total tokens | 41,191 |
+| Total tokens | 38,058 |
+| Pass | NO |

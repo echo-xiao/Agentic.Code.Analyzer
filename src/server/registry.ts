@@ -1,16 +1,18 @@
 import * as fs from 'fs';
 import * as path from 'path';
+import { fileURLToPath } from 'url';
 import { spawnSync } from 'child_process';
 import { CodeRetriever } from './retriever.js';
 import { GLOBAL_INDEX } from '../indexer/state.js';
 import type { EdgeType } from '../indexer/state.js';
-import { getOutputPaths, TARGET_SRC_DIR } from '../config.js';
+import { TARGET_SRC_DIR } from '../config.js';
 
 const SESSION = {
     startTime: Date.now(),
     calls: [] as Array<{ tool: string; symbol?: string; tokensReturned: number; ts: number }>,
     symbolHits: new Map<string, number>(),
-    totalSkeletonTokens: 0
+    totalSkeletonTokens: 0,
+    hasCalledSearchOrGraph: false,
 };
 
 function trackCall(tool: string, response: string, symbol?: string) {
@@ -72,82 +74,32 @@ export const TOOL_DEFINITIONS = [
                     items: { type: "string", enum: ["call", "jsx", "new", "event_emit", "event_listen", "pubsub_publish", "pubsub_subscribe", "type"] },
                     description: "Filter to specific edge types. Default: all types including 'type' edges (TypeScript type annotation references). Example: ['call','event_listen'] to only traverse direct calls and event listeners."
                 },
-                question: { type: "string", description: "Original user question. When provided, enables semantic pruning — edges irrelevant to the question are deprioritized during traversal." }
             },
             required: ["query"]
         }
     },
     {
         name: "implement",
-        description: "Step 3 — Read the full source implementation of a specific symbol, plus callee skeletons for downstream context. Call this ONLY after graph has mapped the relationship network. `filename` is REQUIRED — use the exact path returned by search or graph.",
+        description: "Read source implementation. For functions/variables: returns full source. For classes: returns method signatures (skeleton) — use `symbolName='ClassName.methodName'` to read a specific method's full source. Call ONLY after search/graph has located the symbol. `filename` is REQUIRED.",
         inputSchema: {
             type: "object",
             properties: {
-                symbolName: { type: "string", description: "Symbol name (e.g. sendMessage, executeSendMessage)" },
-                filename: { type: "string", description: "REQUIRED: exact file path from search/explore results (e.g. 'apps/meteor/server/methods/sendMessage.ts')" }
+                symbolName: { type: "string", description: "Symbol name (e.g. 'sendMessage') or class method (e.g. 'RoomService.createRoom')" },
+                filename: { type: "string", description: "REQUIRED: exact file path from search/graph results" }
             },
             required: ["symbolName", "filename"]
         }
     }
 ];
 
-const ARCHITECTURE_HINTS: Array<{ keywords: string[]; hint: string }> = [
-    {
-        keywords: ['sendMessage', 'ComposerMessage', 'ComposerContainer', 'MessageBox', 'handleSendMessage', 'onSend', 'RoomComposer'],
-        hint: `⚠️ Architecture Note (Flow 1 — Client Message Sending):
-Entry point is RoomBody, NOT sendMessage. Traversing graph up from sendMessage will surface server/federation noise.
-Chain: RoomBody → ComposerContainer → ComposerMessage → MessageBox → sendMessage → sdk.call('sendMessage')
-Use implement on each component in order. graph(sendMessage, up, client) works but start from RoomBody if possible.`,
-    },
-    {
-        keywords: ['executeSendMessage', 'canSendMessage', 'afterSaveMessage', 'beforeSaveMessage'],
-        hint: `⚠️ Architecture Note (Flow 2 — Server Message Sending):
-Chain: Meteor.methods(sendMessage) → executeSendMessage → sendMessage(server) → Messages.insertOne → afterSaveMessage callbacks
-Entry file: apps/meteor/app/lib/server/methods/sendMessage.ts`,
-    },
-    {
-        keywords: ['sendNotificationsOnMessage', 'sendNotification', 'sendMessageNotifications'],
-        hint: `⚠️ Architecture Note (Flow 4 — Push Notifications):
-Triggered by afterSaveMessage callback chain after DB write.
-Entry: sendNotificationsOnMessage → per-user shouldNotifyMobile/Desktop/Email checks → push queue`,
-    },
-    {
-        keywords: ['StreamerCentral', 'Streamer', 'Meteor.publish', 'registerPublication'],
-        hint: `⚠️ Architecture Note (Flow 7 — DDP Subscription/Real-time):
-Client subscribes → server publish initial data → StreamerCentral pushes deltas via DDP WebSocket.
-Entry: apps/meteor/server/modules/streamer/streamer.module.ts`,
-    },
-    {
-        keywords: ['AppManager', 'AppListenerManager', 'RealAppBridges', 'ProxiedApp', 'AppBridge'],
-        hint: `⚠️ Architecture Note (Flow 8 — Apps Engine):
-App registers hooks → AppListenerManager fires at event points → Bridge adapts core ↔ App.
-Entry: packages/apps-engine/src/server/AppManager.ts`,
-    },
-    {
-        keywords: ['registerLoginHandler', 'authenticationMiddleware', 'loginWithPassword', 'loginWithLDAP'],
-        hint: `⚠️ Architecture Note (Flow 9 — Authentication):
-Client calls Meteor.loginWith*() → server Accounts.registerLoginHandler → returns token → REST uses authenticationMiddleware.
-Entry: apps/meteor/app/authentication/server/index.ts`,
-    },
-    {
-        keywords: ['proxify', 'LocalBroker', 'ServiceClass', 'createService'],
-        hint: `⚠️ Special Pattern (core-services Bus):
-Services do NOT call each other directly. Calls go through proxify() → LocalBroker.
-If you can't find an implementation via graph, search for the ServiceClass with matching name.
-Entry: packages/core-services/src/LocalBroker.ts`,
-    },
-    {
-        keywords: ['parse', 'Markup', 'GazzodownText', 'MessageContentBody', 'message-parser'],
-        hint: `⚠️ Special Pattern (Message Rendering Pipeline):
-This is a data transformation pipeline, NOT a call chain. graph cannot traverse it.
-Chain: parse() → AST → <Markup> → <GazzodownText> → <MessageContentBody>
-Use implement on each step directly.`,
-    },
-];
+const __registryDir = path.dirname(fileURLToPath(import.meta.url));
+const ARCHITECTURE: Array<{ keywords: string[]; hint: string }> = JSON.parse(
+    fs.readFileSync(path.resolve(__registryDir, '..', 'architecture.json'), 'utf-8')
+);
 
 function getArchitectureHint(query: string): string | null {
     const q = query.toLowerCase();
-    for (const { keywords, hint } of ARCHITECTURE_HINTS) {
+    for (const { keywords, hint } of ARCHITECTURE) {
         if (keywords.some(k => q.includes(k.toLowerCase()) || k.toLowerCase().includes(q))) {
             return hint;
         }
@@ -200,6 +152,7 @@ export async function handleToolCall(name: string, args: any): Promise<any> {
     switch (name) {
 
         case "search": {
+            SESSION.hasCalledSearchOrGraph = true;
             const { query, layer } = args;
             if (!query) return err("Missing parameter: query");
 
@@ -273,11 +226,15 @@ export async function handleToolCall(name: string, args: any): Promise<any> {
                         byFile.get(rel)!.count++;
                     }
                     if (byFile.size > 0) {
-                        const formatted = Array.from(byFile.entries())
+                        const sorted = Array.from(byFile.entries())
+                            .sort((a, b) => b[1].count - a[1].count);
+                        const top = sorted.slice(0, 10);
+                        const formatted = top
                             .map(([file, { example, count }]) =>
                                 `  ${file} (${count} match${count > 1 ? 'es' : ''})\n    → ${example}`)
                             .join('\n');
-                        sections.push(`🔍 Text matches for "${query}" (${byFile.size} files):\n${formatted}`);
+                        const extra = sorted.length > 10 ? `\n  … +${sorted.length - 10} more files` : '';
+                        sections.push(`🔍 Text matches for "${query}" (${sorted.length} files, top 10 by count):\n${formatted}${extra}`);
                     }
                 }
             }
@@ -285,16 +242,38 @@ export async function handleToolCall(name: string, args: any): Promise<any> {
             if (sections.length === 0) return ok(`No results for "${query}". Try a different keyword.`);
 
             const hint = getArchitectureHint(query);
-            const output = hint
+            const body = hint
                 ? `${hint}\n\n---\n\n${sections.join('\n\n')}`
                 : sections.join('\n\n');
-            return ok(output);
+            const navHint = `\n\n💡 **Next:** Use graph("${query}", "down") to trace the call chain, or graph("${query}", "up") to find callers.`;
+            return ok(body + navHint);
         }
 
         case "implement": {
             const { symbolName, filename } = args;
             if (!symbolName) return err("Missing parameter: symbolName");
-            if (!filename) return err("Missing parameter: filename — provide the exact file path from search/explore results.");
+            if (!filename) return err("Missing parameter: filename — provide the exact file path from search/graph results.");
+
+            // Enforce: must call search or graph before implement
+            if (!SESSION.hasCalledSearchOrGraph) {
+                return ok(
+                    `⚠️ Use search or graph first to locate symbols before reading implementations.\n` +
+                    `Example: search("${symbolName}") → find the file → then implement.`
+                );
+            }
+
+            // Support ClassName.methodName syntax
+            if (symbolName.includes('.')) {
+                const [className, methodName] = symbolName.split('.', 2);
+                const method = CodeRetriever.getClassMethod(className, methodName, filename);
+                if (!method) {
+                    return ok(`Method "${methodName}" not found in class "${className}" in "${filename}". Use implement("${className}", "${filename}") to see available methods.`);
+                }
+                const rel = method.filePath.split('Rocket.Chat/')[1] || method.filePath;
+                const result = `## ${className}.${methodName} — ${rel}\n\n\`\`\`typescript\n${method.text}\n\`\`\`\n\n💡 **Next:** graph("${methodName}", "down") to trace callees, or graph("${methodName}", "up") to find callers.`;
+                trackCall(name, result, symbolName);
+                return ok(result);
+            }
 
             const impl = CodeRetriever.getImplementation(symbolName, filename);
             if (!impl) {
@@ -312,18 +291,22 @@ export async function handleToolCall(name: string, args: any): Promise<any> {
             const relativePath = impl.filePath.split('Rocket.Chat/')[1] || impl.filePath;
             let result = `## File: ${relativePath}\n\n\`\`\`typescript\n${impl.text}\n\`\`\``;
 
-            const contexts = CodeRetriever.getContext(symbolName, filename);
-            const callees = contexts.slice(1);
-            if (callees.length > 0) {
-                result += `\n\n---\n\n### Callee Skeletons\n\n${callees.join('\n\n---\n\n')}`;
+            // For classes: list methods and hint to use ClassName.methodName
+            if (impl.kind === 'class' && impl.methods && impl.methods.length > 0) {
+                result += `\n\n📋 **Methods (${impl.methods.length}):** ${impl.methods.join(', ')}\n`;
+                result += `💡 To read a specific method: implement("${symbolName}.methodName", "${filename}")`;
             }
+
+            // Navigation hints
+            result += `\n\n💡 **Next:** graph("${symbolName}", "down") to trace callees, or graph("${symbolName}", "up") to find callers.`;
 
             trackCall(name, result, symbolName);
             return ok(result);
         }
 
         case "graph": {
-            const { query, direction = "up", depth: rawDepth, layer, mode = "tree", edgeTypes, question } = args;
+            SESSION.hasCalledSearchOrGraph = true;
+            const { query, direction = "up", depth: rawDepth, layer, mode = "tree", edgeTypes } = args;
             if (!query) return err("Missing parameter: query");
             const maxDepth = Math.min(typeof rawDepth === 'number' ? rawDepth : 4, 6);
 
@@ -399,8 +382,10 @@ export async function handleToolCall(name: string, args: any): Promise<any> {
 
                 traverseDown(query, 1, maxDepth);
                 if (out.length <= 2) out.push('  (no callees found in index)');
-                trackCall(name, out.join('\n'));
-                return ok(out.join('\n'));
+                const graphHintDown = getArchitectureHint(query);
+                const graphOutDown = graphHintDown ? `${graphHintDown}\n\n---\n\n${out.join('\n')}` : out.join('\n');
+                trackCall(name, graphOutDown);
+                return ok(graphOutDown);
             }
 
             const symbolFiles = GLOBAL_INDEX.symbols.get(query);
@@ -486,8 +471,10 @@ export async function handleToolCall(name: string, args: any): Promise<any> {
                 }
 
                 if (out.length <= 3) out.push('  (no dependents found — symbol may be a leaf node)');
-                trackCall(name, out.join('\n'));
-                return ok(out.join('\n'));
+                const graphHintImpact = getArchitectureHint(query);
+                const graphOutImpact = graphHintImpact ? `${graphHintImpact}\n\n---\n\n${out.join('\n')}` : out.join('\n');
+                trackCall(name, graphOutImpact);
+                return ok(graphOutImpact);
             }
 
             const out: string[] = [
@@ -545,8 +532,10 @@ export async function handleToolCall(name: string, args: any): Promise<any> {
 
             traverseUp(query, startFile || null, 1, maxDepth);
             if (out.length <= 2) out.push('  (no callers found — try without layer filter, or check symbol name)');
-            trackCall(name, out.join('\n'));
-            return ok(out.join('\n'));
+            const graphHintUp = getArchitectureHint(query);
+            const graphOutUp = graphHintUp ? `${graphHintUp}\n\n---\n\n${out.join('\n')}` : out.join('\n');
+            trackCall(name, graphOutUp);
+            return ok(graphOutUp);
         }
 
         default:

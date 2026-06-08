@@ -449,3 +449,120 @@ docs/
 ```
 
 ---
+
+## Iteration 7 — Major Refactor: Architecture Knowledge + Tool Behavior (2026-06-08)
+
+### Changes Applied
+
+#### Bug Fixes
+1. **`retriever.ts:90` callee skeleton bug** — `calls` field in mapping.json is `{ name, edgeType }` objects, but code treated them as strings → `calleeSymbols` always contained `"[object Object]"` → implement tool's callee skeletons never worked. Fixed with `typeof c === 'string' ? c : c.name`.
+
+#### Dead Code / Dependency Cleanup
+2. **Removed 5 unused npm dependencies:** `pdfkit`, `strip-ansi`, `graphology`, `graphology-metrics`, `dotenv` (removed 32 packages)
+3. **Moved `@google/generative-ai` to devDependencies** (only used in eval scripts, not MCP server)
+4. **Removed unused exports:** `LOGS_DIR` (config.ts), `LocalDatabase.clear()` (local-db.ts)
+5. **Removed unused imports:** `fs`, `getOutputPaths` (registry.ts)
+6. **Removed stale `question` parameter** from graph tool definition and AGENTS.md (embedding residue)
+
+#### Tool Behavior Changes
+7. **implement: class skeleton mode** — Classes now return method signatures only (not full source). Use `implement("ClassName.methodName", file)` to read a specific method's full source. Reduces class responses from 10K+ to ~500 tokens.
+8. **implement: enforce search/graph first** — SESSION tracks `hasCalledSearchOrGraph`. If implement is called before any search/graph, returns a guidance message instead of source code.
+9. **implement: navigation hints** — Every implement response ends with `graph("symbol", "down")` / `graph("symbol", "up")` suggestion.
+10. **search: navigation hints** — Every search response ends with graph suggestion.
+11. **graph: architecture hints** — Graph results now include relevant architecture context from `architecture.json`.
+12. **grep: limited + sorted** — Full-text grep results sorted by match count, limited to top 10 files.
+13. **Callee skeletons removed** — `getContext()` no longer appends callee skeleton files. `graph(down)` replaces this functionality at 1/10th the token cost.
+
+#### Architecture Knowledge Extraction
+14. **AGENTS.md stripped to rules only** — Removed all architecture sections (Architecture, Dynamic Patterns, Subsystem Entry Points). Kept: Answer Rules, Tools table with cost, Navigation Rules, Question Type strategies, Source Roots.
+15. **`architecture.json` created** — 30 entries of architecture knowledge loaded at startup by registry.ts. No file paths (tool finds those). Two categories:
+    - 6 dynamic patterns: DDP dispatch, callback events, proxify service bus, real-time streaming, Apps Engine hooks, message rendering pipeline
+    - 24 subsystem architectures: client/server message, notifications, REST API, DB models, livechat, auth/LDAP, settings, licensing, federation, room creation, file upload, E2E encryption, 2FA, slash commands, webhooks, search, teams, video conference, auto-translate, user presence, data import, email, startup/migrations
+16. **Source-verified** — All 30 entries verified against Rocket.Chat source code via 9 parallel agents. 8 corrections applied (E2E encryption mechanism, Settings API, File Upload two-step flow, Federation event-driven architecture, Room Creation Apps Engine hooks, DDP terminology, Callback event names, Slash Command client→server flow).
+
+#### File Renames
+17. **Eval scripts:** `tool-eval.ts` → `layer1-tool-eval.ts`, `agent-eval.ts` → `layer2-agent-eval.ts`, `baseline-eval.ts` → `layer0-baseline-eval.ts`
+18. **Log reports:** `tool-eval.md` → `layer1-tool-eval.md`, etc.
+19. **Added `compare.ts`** — Generates comparison report across baseline/gemini/benchmark answers.
+
+### Layer 1 Results
+
+**25/34 passed** (unchanged from Iter 6 — architecture knowledge doesn't inflate L1 because no file paths are embedded)
+
+| Metric | Iter 6 | Iter 7 |
+|--------|--------|--------|
+| Pass rate | 25/34 | 25/34 |
+| File recall | 94.6% | 94.6% |
+| Symbol recall | 100% | 100% |
+| Graph reachability | 100% | 100% |
+
+9 remaining failures are all **generic filename** issues (router.ts, permissions.ts, chat.ts, definition.ts, widget.ts, bridges.js, Logger.ts, Helper.ts, Webdav.ts, models.ts). These files have no distinctive exported symbol matching their filename.
+
+### Layer 2 Results (pre-refactor baseline, callee bug fix only)
+
+| Metric | Iter 6 | Iter 7 pre-refactor |
+|--------|--------|---------------------|
+| Good answers (3+ paths) | 29/34 | 28/34 |
+| File hit rate | 37.6% | 42.4% (+4.8%) |
+| Symbol coverage | 48.4% | 49.8% (+1.4%) |
+| Avg tokens / question | 47K | 69K (+47%) |
+| implement share | 88% | 88% |
+
+Callee bug fix improved accuracy but token cost exploded due to skeleton attachments. This motivated the full refactor.
+
+### Layer 2 Results (post-refactor)
+
+| Metric | Pre-refactor | Post-refactor | Delta |
+|--------|-------------|---------------|-------|
+| Pass (80% threshold) | 1/34 | 2/34 | +1 |
+| **Total tokens** | **2,358,961** | **984,673** | **-58%** |
+| **Avg tokens/question** | **69,381** | **28,961** | **-58%** |
+| implement avg response | 3,070 tokens | 544 tokens | **-82%** |
+| implement total | 227,186 | 55,409 | -76% |
+| Passed: new-12-ldap-auth, new-17-slash-commands |
+
+**Key wins:**
+- Token consumption dropped 58%, now within reach of the 1M free tier
+- implement responses 82% smaller — class skeleton mode working (Users 12K→53, RoutingManager 13K→973)
+- Gemini started using ClassName.methodName syntax (FederationMatrix.sendMessage, PushNotification.send, SettingsRegistry.add)
+- More graph calls (50 vs 36) — navigation hints working
+
+**Remaining bottleneck:** Pass rate still low (2/34) because Gemini Flash doesn't reliably include file paths in its answers. The hardcoded 80% threshold is misleading — qualitative review below.
+
+### Claude-as-Judge Evaluation (34 testcases)
+
+Manual evaluation by Claude comparing each Gemini+Tools answer against benchmark reference:
+
+| Classification | Count | % | Description |
+|---|---:|---:|---|
+| **GOOD** | 6 | 18% | Correct flow, complete chain, real file paths |
+| **ACCEPTABLE** | 16 | 47% | Core flow correct, missing depth/detail |
+| **WEAK** | 9 | 26% | Concept right but too shallow |
+| **WRONG** | 3 | 9% | Tool loop failure or completely missed mechanism |
+
+**Average scores (1-5):** Correctness 3.8, Completeness 2.7, File Paths 3.1
+
+**65% of answers (GOOD + ACCEPTABLE) are usable.** The 80% string-match threshold misrepresents actual quality — most answers describe the correct architecture but don't list every file path.
+
+**Root causes of weak/wrong answers:**
+
+| Problem | Count | Fix |
+|---|---:|---|
+| Shallow navigation (stops after 2-3 calls) | 9 | AGENTS.md: "call graph(down) for EACH symbol" |
+| Generic answers (correct but no specifics) | 8 | Model limitation — Claude/Gemini Pro would improve |
+| Ambiguous symbols (sendMessage = 6+ defs) | 3 | Tool: show symbol type + layer in search results |
+| Impact analysis too shallow | 3 | Tool: suggest graph(up, mode="impact") for impact questions |
+| Tool loop / failure | 3 | Code: detect 3+ calls to same symbol → suggest different query |
+
+### Expected Impact
+
+| Change | Expected Effect |
+|--------|----------------|
+| Class skeleton mode | Tokens ↓↓ (class responses 10K+ → ~500) |
+| Enforce search/graph first | Accuracy ↑ (no more blind implement calls) |
+| Navigation hints | Accuracy ↑ (LLM guided to use graph after search) |
+| Architecture injection | Accuracy ↑ (LLM gets pattern context in tool results) |
+| AGENTS.md simplified | Tokens ↓ (smaller system prompt) |
+| Callee skeletons removed | Tokens ↓ (no more 3 extra skeleton files per implement) |
+
+---

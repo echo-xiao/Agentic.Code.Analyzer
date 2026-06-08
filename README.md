@@ -26,8 +26,7 @@ An offline indexer builds a typed dependency graph (11 edge kinds). Three MCP to
 Source (.ts/.tsx)
   → hasher.ts      incremental MD5, skip unchanged
   → skeleton.ts    AST parse: signatures + 11 typed edges
-  → embedder.ts    Gemini API: symbol → float32[768]
-  → GLOBAL_INDEX   symbols · callGraph · fileDependents · embeddings
+  → GLOBAL_INDEX   symbols · callGraph · fileDependents
         ↓
   AGENTS.md (navigation rules) + MCP tools → LLM
         ↓
@@ -43,8 +42,11 @@ git clone https://github.com/RocketChat/Rocket.Chat.git
 
 cd Agentic.Code.Analyzer
 npm install
-export GEMINI_API_KEY=your_key
 npm start
+
+# For eval scripts only:
+export GEMINI_API_KEY=your_key
+npm run eval:agent
 ```
 
 The analyzer expects `Rocket.Chat` as a sibling directory by default. To use a different path:
@@ -96,9 +98,9 @@ This is a standard MCP server. Add to your client's MCP config:
 
 | Tool | Description |
 |------|-------------|
-| `search(query, layer?, question?)` | Fuzzy symbol search reranked by embedding similarity (0.4 × fuzzy + 0.6 × cosine). Supports `client`/`server` layer filter. |
-| `graph(symbol, direction, depth?, edgeTypes?, question?)` | BFS downstream or upstream. When `question` is provided, applies semantic pruning — edges with cosine similarity < 0.1 are dropped. |
-| `implement(symbol, filename)` | Full source + up to 5 callee skeletons. Capped at 3 calls per question. |
+| `search(query, layer?)` | Fuzzy symbol search with path-aware scoring. Supports `client`/`server` layer filter. |
+| `graph(query, direction?, depth?, layer?, mode?, edgeTypes?)` | BFS upstream or downstream traversal. `mode=impact` shows blast radius layer-by-layer. |
+| `implement(symbolName, filename)` | Full source + up to 5 callee skeletons. |
 
 ## Question types → tool strategy
 
@@ -132,14 +134,13 @@ src/
     index.ts          scan, prewarm, build GLOBAL_INDEX
     skeleton.ts       AST parse → signatures + 11 edge types
     hasher.ts         incremental MD5 change detection
-    embedder.ts       Gemini embedding API
     state.ts          GLOBAL_INDEX type definitions
     local-db.ts       index persistence to disk
   eval/             evaluation framework
-    session-recorder.ts   record agy sessions (tool calls + AI output)
-    evaluator.ts          score sessions against 5 metrics
-    testcases.json        ground truth: questions + expected files/symbols
-    claude_answers.md     Claude baseline (for comparison)
+    layer0-baseline-eval.ts  Layer 0: Gemini without tools (control group)
+    layer1-tool-eval.ts      Layer 1: deterministic tool recall/reachability
+    layer2-agent-eval.ts     Layer 2: Gemini + tools end-to-end scoring
+    testcases.json           ground truth: questions + expected files/symbols
   config.ts         paths and constants
 AGENTS.md           navigation rules (auto-loaded by agy)
 .agents/            workspace MCP config (auto-loaded by agy)

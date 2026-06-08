@@ -2,40 +2,43 @@
 
 ## Gemini Answer
 
-An incoming webhook in Rocket.Chat is processed through the following chain of functions:
+An incoming webhook in Rocket.Chat is processed through the following chain:
 
-**Call Chain:** `POST /hooks/:integrationId/:token` → `executeIntegrationRest` → `processWebhookMessage` → `sendMessage` → `Messages.insertOne` → `afterSaveMessage` callbacks
+**Call Chain:** `POST /hooks/:integrationId/:token` → `executeIntegrationRest()` → `processWebhookMessage()` → `sendMessage()`
 
-1.  **`POST /hooks/:integrationId/:token`** (Entry Point): An external service sends a POST request to this endpoint with the webhook payload.
-2.  **`executeIntegrationRest`** (`apps/meteor/app/integrations/server/api/api.ts`):
-    *   This function is the initial handler for the incoming webhook.
-    *   It retrieves integration details, processes the request body, and handles potential scripts associated with the integration.
-    *   It then calls `processWebhookMessage` to continue the message processing.
-3.  **`processWebhookMessage`** (`apps/meteor/app/lib/server/functions/processWebhookMessage.ts`):
-    *   This function is responsible for preparing the message and determining the target channels/rooms.
-    *   It iterates through the specified channels (or rooms) in the webhook payload.
-    *   For each channel, it calls `getRoomWithOptionToJoin` to resolve the room and performs permission validation using `validateRoomMessagePermissionsAsync` and `validateWebhookMessage`.
-    *   Finally, for each valid room, it calls the `sendMessage` function to actually send the message.
-4.  **`sendMessage`** (likely `apps/meteor/app/lib/server/functions/sendMessage.ts` based on common message flow):
-    *   This function takes the user, message, and room as arguments.
-    *   It handles the core logic of saving the message to the database. This typically involves:
-        *   Inserting the message into the `Messages` collection (e.g., `Messages.insertOne`).
-        *   Triggering various `afterSaveMessage` callbacks, which can include functionalities like push notifications, Mentions, Apps Engine hooks, etc.
+**Detailed Steps:**
 
-## Tool Calls (6 calls, 38,687 tokens)
+1.  **Incoming Request (Entry Point):** An HTTP POST request is received at the endpoint `POST /hooks/:integrationId/:token`.
+2.  **`executeIntegrationRest` (apps/meteor/app/integrations/server/api/api.ts):**
+    *   This function is the primary handler for incoming webhook requests.
+    *   It first verifies if the integration is `enabled`.
+    *   It parses the request `bodyParams`, `urlParams`, and `headers`.
+    *   If an integration script is defined and valid, it executes this script within an isolated sandbox using `scriptEngine.processIncomingRequest`. This script has the ability to transform the incoming payload (`bodyParams`) or return a custom `scriptResponse`.
+    *   Finally, it calls `processWebhookMessage` with the processed `bodyParams`, the associated `user`, and `defaultValues` (channel, alias, avatar, emoji) for the integration.
+3.  **`processWebhookMessage` (apps/meteor/app/lib/server/functions/processWebhookMessage.ts):**
+    *   This function is responsible for taking the webhook payload and transforming it into a Rocket.Chat message.
+    *   It extracts the target `channels` (or `roomId`) from the `messageObj` (which is the `bodyParams` from the webhook).
+    *   For each specified channel, it performs the following:
+        *   Retrieves the corresponding `IRoom` object using `getRoomWithOptionToJoin`.
+        *   Validates user permissions to send messages to that room via `validateRoomMessagePermissionsAsync`.
+        *   Validates the message content itself against the room and user context using `validateWebhookMessage`.
+    *   After validation, it iterates through the validated rooms and calls `sendMessage(user, removeEmpty(message), roomData.room)` to actually send the message to each designated channel. It can handle errors per channel if `separateResponse` is enabled in the webhook payload.
+4.  **`sendMessage`:** This is the ultimate function responsible for creating and dispatching the message within Rocket.Chat.
 
-**Step 1:** `search({"query":"executeIntegrationRest"})` → 32 tokens
-**Step 2:** `graph({"query":"executeIntegrationRest","direction":"down"})` → 951 tokens
-**Step 3:** `implement({"symbolName":"executeIntegrationRest","filename":"apps/meteor/app/integrations/server/api/api.ts"})` → 1140 tokens
-**Step 4:** `search({"query":"processWebhookMessage"})` → 36 tokens
-**Step 5:** `graph({"query":"processWebhookMessage","direction":"down"})` → 778 tokens
-**Step 6:** `implement({"filename":"apps/meteor/app/lib/server/functions/processWebhookMessage.ts","symbolName":"processWeb)` → 564 tokens
+## Tool Calls (5 calls, 23,150 tokens)
+
+**Step 1:** `search({"query":"incoming webhook","layer":"server"})` → 370 tokens
+**Step 2:** `graph({"layer":"server","query":"executeIntegrationRest","direction":"down"})` → 850 tokens
+**Step 3:** `graph({"direction":"up","layer":"server","query":"processWebhookMessage"})` → 368 tokens
+**Step 4:** `implement({"filename":"apps/meteor/app/integrations/server/api/api.ts","symbolName":"executeIntegrationRest"})` → 1172 tokens
+**Step 5:** `implement({"symbolName":"processWebhookMessage","filename":"apps/meteor/app/lib/server/functions/processWebhoo)` → 596 tokens
 
 ## Metrics
 
 | Metric | Value |
 |--------|-------|
-| Files hit | 2/6 |
-| Symbols hit | 2/3 |
-| Tool calls | 6 |
-| Total tokens | 38,687 |
+| Files hit | 3/6 |
+| Symbols hit | 3/3 |
+| Tool calls | 5 |
+| Total tokens | 23,150 |
+| Pass | NO |

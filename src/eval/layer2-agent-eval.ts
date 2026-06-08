@@ -92,7 +92,6 @@ const GEMINI_FUNCTIONS: FunctionDeclaration[] = [
                 depth: { type: SchemaType.NUMBER, description: 'Max traversal depth (default 4, max 6)' },
                 layer: { type: SchemaType.STRING, description: 'Restrict to this layer' },
                 mode: { type: SchemaType.STRING, description: 'tree or impact' },
-                question: { type: SchemaType.STRING, description: 'Original user question for semantic pruning' },
             },
             required: ['query'],
         },
@@ -239,8 +238,6 @@ async function runTestCase(
     const symFound = symbolHits.filter(s => s.inToolResults || s.inLLMAnswer).length;
     const symbolCoverageRate = symTotal > 0 ? symFound / symTotal : 1;
 
-    const pass = fileHitRate >= 0.8 && symbolCoverageRate >= 0.8;
-
     return {
         id: tc.id,
         question: tc.question,
@@ -255,7 +252,7 @@ async function runTestCase(
         fileHitRate,
         symbolCoverageRate,
         judge: null,
-        pass,
+        pass: fileHitRate >= 0.8 && symbolCoverageRate >= 0.8,
     };
 }
 
@@ -286,13 +283,14 @@ ${toolTrace}
 | Symbols hit | ${r.symbolHits.filter(s => s.inToolResults || s.inLLMAnswer).length}/${r.symbolHits.length} |
 | Tool calls | ${r.toolCalls.length} |
 | Total tokens | ${r.tokens.total.toLocaleString()} |
+| Pass | ${r.pass ? 'YES' : 'NO'} |
 `;
         fs.writeFileSync(path.join(dir, `${r.id}.md`), content, 'utf-8');
     }
 }
 
 function loadLayer1Results(): Map<string, boolean> | null {
-    const l1Path = path.join(PROJECT_ROOT, 'logs', 'tool-eval.md');
+    const l1Path = path.join(PROJECT_ROOT, 'logs', 'layer1-tool-eval.md');
     if (!fs.existsSync(l1Path)) return null;
     const content = fs.readFileSync(l1Path, 'utf-8');
     const map = new Map<string, boolean>();
@@ -624,7 +622,7 @@ async function main() {
 
     const logsDir = path.join(PROJECT_ROOT, 'logs');
     fs.mkdirSync(logsDir, { recursive: true });
-    const reportPath = path.join(logsDir, 'agent-eval.md');
+    const reportPath = path.join(logsDir, 'layer2-agent-eval.md');
     fs.writeFileSync(reportPath, report, 'utf-8');
 
     console.error(`Report: ${reportPath}`);
