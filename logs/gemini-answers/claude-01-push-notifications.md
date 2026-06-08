@@ -2,45 +2,43 @@
 
 ## Gemini Answer
 
-Push notifications in Rocket.Chat follow a server-side process, starting from message saving and culminating in dispatch to either a cloud gateway or native push services (APN/FCM).
+Rocket.Chat's push notification system works as follows:
 
-Here's the detailed call chain:
+**Call Chain:** `afterSaveMessage` callback → `sendAllNotifications` → `sendMessageNotifications` → `sendNotification` → `Notification.scheduleItem` → `NotificationQueue` worker → `PushNotification.send()` → `PushClass.send` → `PushClass.sendNotification` → (Gateway or Native specific sender)
 
-**Entry → Step 1 → Step 2 → Step 3 → Step 4 → Step 5 → Final**
+1.  **Trigger:** The process begins after a message is saved. An `afterSaveMessage` callback, registered with low priority, initiates the notification flow.
+2.  **Initial Sending Logic:** This callback leads to `sendAllNotifications` which then calls `sendMessageNotifications`. For each user, a `sendNotification` function is invoked (found in `apps/meteor/app/lib/server/lib/sendNotificationsOnMessage.ts` and `apps/meteor/app/push/server/push.ts`).
+3.  **Mobile Notification Check & Queueing:** The `sendNotification` function checks if `shouldNotifyMobile`. If a mobile notification is required, it schedules an item using `Notification.scheduleItem({type:'push'})`. These items are queued with a delay: 120 seconds for online users and 0 seconds for offline users.
+4.  **Queue Processing:** A `NotificationQueue` worker (located in `apps/meteor/app/notification-queue/server/NotificationQueue.ts`) processes these queued push items.
+5.  **Push Notification Sending:** The worker calls `PushNotification.send()`, which ultimately delegates to the `PushClass` (defined in `apps/meteor/app/push/server/push.ts`).
+6.  **`PushClass.send` Method:** The `send` method of the `PushClass` prepares the notification payload and then calls its private `sendNotification` method.
+    *   **File:** `apps/meteor/app/push/server/push.ts`
+    *   **Symbol:** `PushClass.send`
+7.  **Routing (Gateway vs. Native):** The `PushClass.sendNotification` method determines the routing based on server configuration:
+    *   **Gateway Mode:** If Rocket.Chat is configured to use a gateway, it performs an HTTP POST to the cloud gateway via the `sendGatewayPush` method.
+    *   **Native Mode:** If in native mode, it directly sends notifications using `sendAPN()` for Apple devices or `sendFCM()` for Google Firebase Cloud Messaging via the `sendNotificationNative` method.
+    *   **File:** `apps/meteor/app/push/server/push.ts`
+    *   **Symbol:** `PushClass.sendNotification` (private method)
 
-1.  **Entry Point:** The process begins with the `afterSaveMessage` callback, a server-side event with low priority.
-2.  **Notification Scheduling:** Following the `afterSaveMessage` callback, the system calls `sendAllNotifications` which then calls `sendMessageNotifications` leading to a per-user `sendNotification` function. If mobile notification conditions are met, `Notification.scheduleItem({type:'push'})` is called. This queues the push notification (with a 120-second delay for online users, 0 seconds for offline users).
-3.  **Queue Processing:** A `NotificationQueue` worker (defined in `apps/meteor/app/notification-queue/server/NotificationQueue.ts`) processes the queued push items.
-4.  **Notification Configuration:** The queue worker then invokes `PushNotification.send()` (from `apps/meteor/app/push-notifications/server/lib/PushNotification.ts`). This method (`PushNotification.send`) is responsible for gathering and configuring the notification payload, including details like room ID, user ID, message, and category.
-5.  **Push Service Dispatch:** Inside `PushNotification.send`, the final dispatch is handled by `await Push.send(config)` (likely defined in `apps/meteor/app/push/server/push.ts`). This `Push` object determines the routing based on the Rocket.Chat server's configuration:
-    *   **Gateway Mode:** An HTTP POST request is sent to a configured cloud gateway.
-    *   **Native Mode:** The notification is sent directly using `sendAPN()` for Apple devices or `sendFCM()` for Google Firebase Cloud Messaging.
+Push notifications can be entirely disabled using the `Troubleshoot_Disable_Notifications` setting.
 
-**Key Files Involved:**
+## Tool Calls (8 calls, 40,142 tokens)
 
-*   `apps/meteor/app/push-notifications/server/lib/PushNotification.ts`: Contains the `PushNotification` class and its `send` method, which is crucial for preparing and initiating the push notification.
-*   `apps/meteor/app/notification-queue/server/NotificationQueue.ts`: Implements the `NotificationQueue` worker that processes queued notifications and calls `PushNotification.send`.
-*   `apps/meteor/app/push/server/push.ts`: This file is expected to contain the `Push` object and its `send` method, responsible for the actual communication with APN, FCM, or the cloud gateway.
-
-Push notifications can be disabled entirely via the `Troubleshoot_Disable_Notifications` setting.
-
-## Tool Calls (8 calls, 29,488 tokens)
-
-**Step 1:** `search({"query":"push notification","layer":"server"})` → 288 tokens
-**Step 2:** `graph({"layer":"server","filename":"apps/meteor/app/push-notifications/server/lib/PushNotification.ts","di)` → 231 tokens
+**Step 1:** `search({"layer":"server","query":"sendNotification"})` → 273 tokens
+**Step 2:** `graph({"query":"sendNotification","direction":"down","layer":"server"})` → 1054 tokens
 **Step 3:** `search({"layer":"server","query":"PushNotification.send"})` → 267 tokens
-**Step 4:** `graph({"direction":"down","filename":"apps/meteor/app/notification-queue/server/NotificationQueue.ts","lay)` → 15 tokens
-**Step 5:** `implement({"filename":"apps/meteor/app/push-notifications/server/lib/PushNotification.ts","symbolName":"PushNo)` → 272 tokens
-**Step 6:** `implement({"filename":"apps/meteor/app/push-notifications/server/lib/PushNotification.ts","symbolName":"PushNo)` → 167 tokens
-**Step 7:** `search({"layer":"server","query":"Push.send"})` → 141 tokens
-**Step 8:** `implement({"filename":"apps/meteor/app/push/server/push.ts","symbolName":"Push.send"})` → 42 tokens
+**Step 4:** `graph({"direction":"down","query":"PushNotification.send","layer":"server"})` → 15 tokens
+**Step 5:** `search({"layer":"server","query":"PushClass"})` → 241 tokens
+**Step 6:** `graph({"query":"PushClass","layer":"server","direction":"down"})` → 220 tokens
+**Step 7:** `implement({"symbolName":"PushClass","filename":"apps/meteor/app/push/server/push.ts"})` → 565 tokens
+**Step 8:** `implement({"filename":"apps/meteor/app/push/server/push.ts","symbolName":"PushClass.send"})` → 295 tokens
 
 ## Metrics
 
 | Metric | Value |
 |--------|-------|
 | Files hit | 3/6 |
-| Symbols hit | 4/5 |
+| Symbols hit | 5/5 |
 | Tool calls | 8 |
-| Total tokens | 29,488 |
+| Total tokens | 40,142 |
 | Pass | NO |

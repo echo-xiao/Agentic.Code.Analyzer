@@ -2,54 +2,52 @@
 
 ## Gemini Answer
 
-In Rocket.Chat, database models are used to query data by providing an interface to interact with the underlying MongoDB collections. These models inherit methods for common database operations like `find`, `findOne`, `insertOne`, `updateOne`, and `deleteOne` from a base class (`BaseRaw`).
+**Example - Querying Users by Role:**
 
-Here's how it works:
-
-**Call Chain:**
-
-1.  **Model Definition:** `packages/models/src/models/Users.ts` defines the `UsersRaw` class, which serves as the concrete implementation for the `Users` model. This class extends `BaseRaw<IUser, DefaultFields<IUser>>` and implements `IUsersModel`, providing a range of methods for querying and manipulating user data.
-2.  **Model Usage (Example):** `apps/meteor/app/api/server/v1/users.ts` demonstrates how a server-side API endpoint utilizes the `Users` model to retrieve user data.
-
-**How to Query Data:**
-
-You query data by importing the desired model (e.g., `Users`) and calling its methods. The methods often accept a query object (similar to MongoDB query syntax) and an optional `options` object for further control (e.g., `projection` to specify returned fields).
-
-**Example:**
-
-To query a user by their ID, you would use a method like `findOneById`. Below is an example from `apps/meteor/app/api/server/v1/users.ts`:
+The `findUsersInRoles` method (defined in `packages/models/src/models/Users.ts`) is a specialized query that internally calls the generic `find` method from `BaseRaw`.
 
 
 ```typescript
-const user = await Users.findOneById(this.bodyParams.userId, { projection: fields });
+// packages/models/src/models/Users.ts
+class UsersRaw extends BaseRaw<IUser, DefaultFields<IUser>> implements IUsersModel {
+  // ... other methods
+  findUsersInRoles: IUsersModel['findUsersInRoles'] = (roles: IRole['_id'][] | IRole['_id'], _scope?: null, options?: any) => {
+		roles = ([] as string[]).concat(roles);
+
+		const query = {
+			roles: { $in: roles },
+		};
+
+		return this.find(query, options); // <--- Delegation to BaseRaw.find()
+	};
+  // ... other methods
+}
 ```
 
 
 In this example:
-*   `Users` is the imported model.
-*   `findOneById` is a method provided by the `Users` model (inherited or specifically implemented) to find a single user by their `_id`.
-*   `this.bodyParams.userId` is the ID of the user being sought.
-*   `{ projection: fields }` is an optional `options` object. The `projection` field specifies which fields of the user document should be returned.
+1.  `UsersRaw` is the database model for users.
+2.  `findUsersInRoles` is a method that takes roles and optional query options.
+3.  It constructs a MongoDB query (`{ roles: { $in: roles } }`).
+4.  It then calls `this.find(query, options)`, which is the `find` method inherited from `BaseRaw`, to execute the database query and return a cursor to the matching user documents.
 
-Other common query methods available on the `Users` model (as seen in `packages/models/src/models/Users.ts`) include:
+**Summary:**
 
-*   `find(query, options)`: To find multiple documents matching a query.
-*   `findOneByUsername(username, options)`: To find a single user by their username.
-*   `findByUsernames(usernames, options)`: To find multiple users by a list of usernames.
-*   `count(query)`: To count documents matching a query.
+To query data using a database model in Rocket.Chat:
+1.  Identify the relevant model class (e.g., `UsersRaw`) in `packages/models/src/models/Users.ts`.
+2.  Utilize the provided high-level query methods on the model instance (e.g., `Users.findOneByUsername`, `Users.findUsersInRoles`).
+3.  These methods, in turn, leverage the `find` and `findOne` operations inherited from `BaseRaw` to interact with the MongoDB collection.
 
-By using these methods, developers can interact with the database in a structured and type-safe manner within the Rocket.Chat codebase.
-
-## Tool Calls (8 calls, 36,484 tokens)
+## Tool Calls (8 calls, 42,977 tokens)
 
 **Step 1:** `search({"query":"Users model"})` → 203 tokens
-**Step 2:** `search({"layer":"server","query":"Users"})` → 598 tokens
-**Step 3:** `search({"query":"UsersRaw","layer":"packages"})` → 212 tokens
-**Step 4:** `graph({"depth":2,"query":"UsersRaw","direction":"down"})` → 191 tokens
-**Step 5:** `graph({"query":"UsersRaw","depth":3,"direction":"up"})` → 245 tokens
-**Step 6:** `search({"query":"Users.findOne"})` → 415 tokens
-**Step 7:** `implement({"symbolName":"Users.findOneById","filename":"apps/meteor/app/api/server/v1/users.ts"})` → 46 tokens
-**Step 8:** `implement({"symbolName":"UsersRaw","filename":"packages/models/src/models/Users.ts"})` → 6775 tokens
+**Step 2:** `graph({"query":"IUsersModel","direction":"down"})` → 38 tokens
+**Step 3:** `search({"query":"Users","layer":"packages"})` → 569 tokens
+**Step 4:** `graph({"filename":"packages/models/src/index.ts","direction":"down","depth":2,"query":"Users"})` → 295 tokens
+**Step 5:** `implement({"symbolName":"Users","filename":"packages/models/src/index.ts"})` → 53 tokens
+**Step 6:** `search({"layer":"packages","query":"UsersRaw"})` → 212 tokens
+**Step 7:** `implement({"symbolName":"UsersRaw","filename":"packages/models/src/models/Users.ts"})` → 6775 tokens
+**Step 8:** `implement({"filename":"packages/models/src/models/Users.ts","symbolName":"UsersRaw.findUsersInRoles"})` → 47 tokens
 
 ## Metrics
 
@@ -58,5 +56,5 @@ By using these methods, developers can interact with the database in a structure
 | Files hit | 0/6 |
 | Symbols hit | 0/2 |
 | Tool calls | 8 |
-| Total tokens | 36,484 |
+| Total tokens | 42,977 |
 | Pass | NO |

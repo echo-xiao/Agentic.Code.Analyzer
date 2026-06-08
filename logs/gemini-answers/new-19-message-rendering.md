@@ -2,27 +2,37 @@
 
 ## Gemini Answer
 
-The process of rendering a message from raw text to React components in Rocket.Chat involves a pipeline that transforms the message through several stages.
+The process of rendering a message from raw text to React components in Rocket.Chat follows a pipeline involving several key steps and components:
 
-The rendering process begins with `createMarkdownMessageRenderer` located at `apps/meteor/app/markdown/lib/markdown.js`. This function acts as an entry point, determining which parser to use for the message.
+**Call Chain:** `message.msg` (raw text) → `parseMessageTextToAstMarkdown` → `textToMessageToken` → `parse` → AST nodes → `<Markup>` component → React components (e.g., `ParagraphBlock`, `HeadingBlock`).
 
-The core parsing of the raw message text into an Abstract Syntax Tree (AST) occurs in the `parse` function found in `packages/message-parser/src/index.ts`. This function takes the raw message string and options, then uses a grammar to convert it into an AST representation.
+Here's a detailed breakdown of the rendering pipeline:
 
-Finally, the AST nodes are consumed by the `<Markup>` component in `packages/gazzodown/src/Markup.tsx`. This component is responsible for translating the AST into actual React components, such as `ParagraphBlock`, `HeadingBlock`, `QuoteBlock`, and other block components.
+1.  **Initial Parsing and AST Generation (Client-side):**
+    *   The raw message text (`message.msg`) first enters the rendering pipeline through the `parseMessageTextToAstMarkdown` function.
+    *   **File:** `apps/meteor/client/lib/parseMessageTextToAstMarkdown.ts`
+    *   This function then calls `textToMessageToken` to handle the actual parsing logic.
+    *   **File:** `apps/meteor/client/lib/parseMessageTextToAstMarkdown.ts`
+    *   `textToMessageToken` internally utilizes the `parse` function from the `@rocket.chat/message-parser` package. This function is responsible for converting the raw text into an Abstract Syntax Tree (AST), which is a structured representation of the message content.
+    *   **File:** `packages/message-parser/src/index.ts`
 
-Call chain:
-`createMarkdownMessageRenderer` (apps/meteor/app/markdown/lib/markdown.js) → `parse` (packages/message-parser/src/index.ts) → `<Markup>` component (packages/gazzodown/src/Markup.tsx) → React Components
+2.  **Rendering AST to React Components:**
+    *   The generated AST nodes are then passed as props to the `<Markup>` React component.
+    *   **File:** `packages/gazzodown/src/Markup.tsx`
+    *   The `<Markup>` component traverses the AST and renders each node into its corresponding React component (e.g., `ParagraphBlock`, `HeadingBlock`, `QuoteBlock`, `EmojiSpan`, `LinkSpan`, `BoldSpan`, etc.). These block components are responsible for the final visual representation of the message on the UI.
 
-## Tool Calls (8 calls, 38,260 tokens)
+In summary, the raw text is first transformed into an Abstract Syntax Tree by the `parse` function in `packages/message-parser`, and then this AST is consumed by the `<Markup>` React component in `packages/gazzodown` to produce the final interactive and styled React components displayed to the user.
 
-**Step 1:** `search({"layer":"client","query":"message render"})` → 223 tokens
-**Step 2:** `graph({"direction":"down","query":"createMarkdownMessageRenderer"})` → 863 tokens
-**Step 3:** `search({"query":"markedParser"})` → 14 tokens
-**Step 4:** `implement({"filename":"apps/meteor/app/markdown/lib/markdown.js","symbolName":"createMarkdownMessageRenderer"})` → 131 tokens
-**Step 5:** `search({"query":"parsers","layer":"app"})` → 426 tokens
-**Step 6:** `search({"query":"parse","layer":"packages"})` → 547 tokens
-**Step 7:** `implement({"filename":"packages/message-parser/src/index.ts","symbolName":"parse"})` → 64 tokens
-**Step 8:** `search({"layer":"packages","query":"Markup"})` → 645 tokens
+## Tool Calls (8 calls, 27,030 tokens)
+
+**Step 1:** `search({"query":"render message","layer":"client"})` → 333 tokens
+**Step 2:** `graph({"query":"renderMessageBlocks","direction":"down","layer":"client"})` → 44 tokens
+**Step 3:** `search({"layer":"client","query":"parse message"})` → 299 tokens
+**Step 4:** `implement({"symbolName":"parseMessageTextToAstMarkdown","filename":"apps/meteor/client/lib/parseMessageTextToA)` → 437 tokens
+**Step 5:** `search({"query":"textToMessageToken","layer":"client"})` → 67 tokens
+**Step 6:** `implement({"filename":"apps/meteor/client/lib/parseMessageTextToAstMarkdown.ts","symbolName":"textToMessageTok)` → 151 tokens
+**Step 7:** `search({"filename":"packages/message-parser","layer":"packages","query":"parse"})` → 547 tokens
+**Step 8:** `search({"layer":"packages","query":"Markup","filename":"packages/gazzodown"})` → 645 tokens
 
 ## Metrics
 
@@ -31,5 +41,5 @@ Call chain:
 | Files hit | 5/6 |
 | Symbols hit | 2/4 |
 | Tool calls | 8 |
-| Total tokens | 38,260 |
+| Total tokens | 27,030 |
 | Pass | NO |

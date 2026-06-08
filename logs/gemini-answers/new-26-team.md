@@ -2,42 +2,53 @@
 
 ## Gemini Answer
 
-The Team feature in Rocket.Chat is primarily managed by the `TeamService` on the server side, which orchestrates the creation, management, and interaction of teams with rooms and members.
+The Team feature in Rocket.Chat allows users to group multiple channels (rooms) together, providing a hierarchical structure for organizing conversations and members. The core logic for managing teams resides in the `TeamService`, which handles operations like creating, updating, and deleting teams, as well as managing members and associated rooms.
 
-Here's how the Team creation process works:
+Here's a breakdown of how the Team feature works, focusing on the team creation process as an example:
 
-**Call Chain: `Client/API Request` → `TeamService.create` → `checkUsernameAvailability` & `Rooms.findOneByName` → `Users.findOneById` → `Users.findActiveByIdsOrUsernames` → `Room.create` → `Team.insertOne` → `TeamMember.insertMany` → `Rooms.setTeamMainById` & `Team.updateMainRoomForTeam` → `Message.saveSystemMessage` → `notifyOnRoomChangedById`**
+**Architecture:**
 
-1.  **Request Initiation**: A client-side action or an API request initiates the team creation process, which eventually calls the `create` method of the `TeamService`.
+1.  **`TeamService`** (apps/meteor/server/services/team/service.ts): This is the central service that extends `ServiceClassInternal` and exposes methods for all team-related operations (e.g., `create`, `addMembers`, `removeMembers`, `listRooms`).
+2.  **`Team` Model** (packages/models/src/models/Team.ts - inferred from `Team.insertOne`): Stores information about the team itself.
+3.  **`TeamMember` Model** (packages/models/src/models/TeamMember.ts): Stores the relationship between users and teams, including roles within the team.
+4.  **`Rooms` Model** (inferred from `Rooms.findOneByName`, `Room.create`, `Rooms.setTeamMainById`): Manages the channels/rooms associated with a team.
+5.  **`Users` Model** (inferred from `Users.findOneById`, `Users.findActiveByIdsOrUsernames`): Manages user information.
+6.  **`Message` Model** (inferred from `Message.saveSystemMessage`): Used for saving system messages related to team operations.
 
-2.  **`TeamService.create` (`apps/meteor/server/services/team/service.ts`)**: This method acts as the central entry point for creating a new team.
-    *   **Validation**: It first performs several validation checks:
-        *   It verifies the availability of the proposed team name using `checkUsernameAvailability` (likely located in `apps/meteor/app/lib/server/functions/checkUsernameAvailability.ts`).
-        *   It checks for existing rooms with the same name using `Rooms.findOneByName` (from `packages/models/src/models/Rooms.ts`).
-    *   **User and Member Data Retrieval**:
-        *   It retrieves the details of the user creating the team (`createdBy`) using `Users.findOneById` (from `packages/models/src/models/Users.ts`).
-        *   It fetches active user details for all specified members using `Users.findActiveByIdsOrUsernames` (from `packages/models/src/models/Users.ts`).
-    *   **Main Room Creation**:
-        *   If no existing room ID is provided, it creates a new room to serve as the team's main channel by calling `Room.create` (likely in `apps/meteor/server/lib/Room.ts`). The room type is set based on the team's privacy (private 'p' or public 'c'), and the members are associated with this room.
-    *   **Team Data Insertion**:
-        *   The new team's information is then inserted into the `Team` model using `Team.insertOne` (from `packages/models/src/models/Team.ts`).
-    *   **Team Member Data Insertion**:
-        *   It prepares a list of team members, including the owner/creator, and inserts them into the `TeamMember` model using `TeamMember.insertMany` (from `packages/models/src/models/TeamMember.ts`).
-    *   **Main Room Association**:
-        *   The newly created or existing room is marked as the main room for the team using `Rooms.setTeamMainById` (from `packages/models/src/models/Rooms.ts`).
-        *   The `Team` model is updated to link the team with its main room ID using `Team.updateMainRoomForTeam` (from `packages/models/src/models/Team.ts`).
-    *   **System Messages and Notifications**:
-        *   If an existing room was converted into a team, a system message (`user-converted-to-team`) is saved using `Message.saveSystemMessage` (from `packages/models/src/models/Message.ts`).
-        *   Finally, clients are notified about the room change using `notifyOnRoomChangedById` (likely from `apps/meteor/app/lib/server/functions/notifyOnRoomChangedById.ts`).
+**Call Chain for Team Creation:**
 
-In summary, the `TeamService` acts as the orchestrator, interacting with various models (`Team`, `TeamMember`, `Rooms`, `Users`, `Message`) and helper functions to ensure the proper creation, validation, and linkage of teams, rooms, and members within the Rocket.Chat system.
+1.  **Entry Point:** `TeamService.create` (apps/meteor/server/services/team/service.ts)
+    *   **File:** `apps/meteor/server/services/team/service.ts`
+    *   **Role:** Initiates the team creation process.
+    *   **Logic:**
+        *   **Validation:** Checks if the requested team name is available using `checkUsernameAvailability(team.name)` and `Rooms.findOneByName(team.name)`.
+        *   **User Retrieval:** Fetches the creator's (`uid`) username using `Users.findOneById`.
+        *   **Member Processing:** If `members` are provided, it retrieves their user IDs and usernames using `Users.findActiveByIdsOrUsernames`.
+        *   **Main Room Creation:**
+            *   If no existing `room.id` is provided, a new room is created using `Room.create`.
+            *   The room's type (`p` for private, `c` for public) is determined by the `team.type`.
+            *   The `members` are added to this initial room.
+        *   **Team Data Insertion:** The team's metadata (name, creation date, created by user) is inserted into the `Team` model using `Team.insertOne`.
+        *   **Team Member Insertion:**
+            *   A list of `ITeamMember` objects is constructed, including the team owner/creator and any additional members.
+            *   These team members are then inserted into the `TeamMember` model using `TeamMember.insertMany`.
+        *   **Linking Room and Team:**
+            *   The newly created room (or the existing one if converting) is marked as the main room for the team using `Rooms.setTeamMainById`.
+            *   The `roomId` is updated in the `Team` record using `Team.updateMainRoomForTeam`.
+        *   **System Message (optional):** If an existing room was converted into a team, a system message (`user-converted-to-team`) is saved using `Message.saveSystemMessage`.
+        *   **Notification:** A `notifyOnRoomChangedById` event is triggered for the new room.
+        *   The newly created `ITeam` object is returned.
 
-## Tool Calls (4 calls, 18,479 tokens)
+In summary, the Team feature leverages the `TeamService` as its primary interface, interacting with several underlying data models (`Team`, `TeamMember`, `Rooms`, `Users`, `Message`) to manage the creation, membership, and organization of channels within a team.
+
+## Tool Calls (6 calls, 23,890 tokens)
 
 **Step 1:** `search({"query":"Team"})` → 518 tokens
-**Step 2:** `graph({"layer":"server","direction":"down","query":"TeamService"})` → 111 tokens
-**Step 3:** `implement({"symbolName":"TeamService","filename":"apps/meteor/server/services/team/service.ts"})` → 1664 tokens
-**Step 4:** `implement({"symbolName":"TeamService.create","filename":"apps/meteor/server/services/team/service.ts"})` → 751 tokens
+**Step 2:** `graph({"query":"TeamService","direction":"down"})` → 111 tokens
+**Step 3:** `search({"query":"TeamMember","layer":"packages"})` → 126 tokens
+**Step 4:** `graph({"direction":"up","query":"TeamMember"})` → 42 tokens
+**Step 5:** `implement({"symbolName":"TeamService","filename":"apps/meteor/server/services/team/service.ts"})` → 1664 tokens
+**Step 6:** `implement({"symbolName":"TeamService.create","filename":"apps/meteor/server/services/team/service.ts"})` → 751 tokens
 
 ## Metrics
 
@@ -45,6 +56,6 @@ In summary, the `TeamService` acts as the orchestrator, interacting with various
 |--------|-------|
 | Files hit | 3/6 |
 | Symbols hit | 2/2 |
-| Tool calls | 4 |
-| Total tokens | 18,479 |
+| Tool calls | 6 |
+| Total tokens | 23,890 |
 | Pass | NO |

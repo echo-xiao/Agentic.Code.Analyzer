@@ -2,48 +2,87 @@
 
 ## Gemini Answer
 
-LDAP authentication in Rocket.Chat follows this process:
+Rocket.Chat's LDAP authentication works by registering a custom login handler that intercepts login requests and directs them to the LDAP service. The process involves the following key steps and files:
 
-**Call Chain:**
+**Call Chain:** `Meteor.loginWith*()` → `Accounts.registerLoginHandler` → `configureLDAP` → `LDAPService.loginRequest` → `LDAPManager.login`
 
-1.  **Entry Point:** When a user attempts to log in using a `Meteor.loginWith*()` method, the request is handled by `Accounts.registerLoginHandler`.
-2.  **LDAP Handler Registration:** The `configureLDAP()` function (located in `apps/meteor/server/configuration/ldap.ts`) registers a specific handler for 'ldap' logins with `Accounts.registerLoginHandler('ldap', fn)`.
-3.  **LDAP Login Request:** If the login request includes an `ldap` flag, the registered handler dispatches the request to `LDAP.loginRequest(username, password)` via a core-services proxy.
-4.  **LDAP Service Invocation:** This call is then handled by `LDAPService.loginRequest()` (located in `apps/meteor/server/services/ldap/service.ts`).
-5.  **LDAP Manager Login:** `LDAPService.loginRequest()`, in turn, calls `LDAPManager.login()` (located in `apps/meteor/server/lib/ldap/Manager.ts`).
-6.  **LDAP Connection and Authentication:**
-    *   `LDAPManager.login()` creates an `LDAPConnection` (defined in `apps/meteor/server/lib/ldap/Connection.ts`).
-    *   It then connects to the LDAP server using `ldap.connect()`.
-    *   The user is searched by their username via `ldap.searchByUsername()`.
-    *   Authentication is performed using `ldap.authenticate(dn, password)`.
-    *   Group filters are checked.
-    *   The user is either found or created in MongoDB.
-    *   The user's avatar is synced.
-    *   Finally, `LDAPManager.login()` returns `{userId}` upon successful authentication.
+1.  **`configureLDAP`** (in `apps/meteor/server/configuration/ldap.ts`):
+    *   This function is responsible for initializing and registering the LDAP login handler with Meteor's `Accounts.registerLoginHandler('ldap', fn)` system. This handler is triggered when a user attempts to log in with LDAP.
 
-**Fallback Mechanism:**
+2.  **`LDAPService.loginRequest`** (in `apps/meteor/server/services/ldap/service.ts`):
+    *   When an LDAP login attempt is made, the registered handler dispatches to this method.
+    *   Its primary role is to act as a proxy, forwarding the authentication request (username and password) directly to the core LDAP management logic.
+    *   **Implementation Snippet:**
+        
+```typescript
+        async loginRequest(username: string, password: string): Promise<LDAPLoginResult> {
+        		return LDAPManager.login(username, password);
+        	}
+        ```
 
-*   If LDAP authentication fails and the `LDAP_Login_Fallback` setting is enabled, Rocket.Chat falls back to other registered login handlers via `Accounts._runLoginHandlers()` to attempt default password authentication.
-*   A `beforeValidateLogin` callback prevents password logins for users primarily authenticated via LDAP, unless the fallback option is specifically enabled.
 
-**Key Files Involved:**
+3.  **`LDAPManager.login`** (in `apps/meteor/server/lib/ldap/Manager.ts`):
+    *   This is the central component for handling the actual LDAP authentication and user management within Rocket.Chat.
+    *   **Core Logic:**
+        *   It first verifies if LDAP is enabled via the `LDAP_Enable` setting. If not, or if authentication fails later, it can fall back to the default login method if configured.
+        *   An `LDAPConnection` is established to connect to the configured LDAP server.
+        *   It attempts to find and authenticate the user against the LDAP server using `this.findUser(ldap, username, password)`.
+        *   If the user is successfully found and authenticated in LDAP, it proceeds with user synchronization:
+            *   It checks for federation settings.
+            *   It slugifies the username for Rocket.Chat's internal use.
+            *   It determines if the user already exists in Rocket.Chat's database (`this.findExistingUser`).
+            *   If the user exists, it updates their information using `this.loginExistingUser`.
+            *   If the user does not exist, a new Rocket.Chat user account is created based on the LDAP data using `this.loginNewUserFromLDAP`.
+        *   Finally, the LDAP connection is disconnected.
+    *   **Implementation Snippet (abbreviated):**
+        
+```typescript
+        public static async login(username: string, password: string): Promise<LDAPLoginResult> {
+        		logger.debug({ msg: 'Init LDAP login', username });
 
-*   `apps/meteor/server/configuration/ldap.ts`: Contains `configureLDAP()` which registers the LDAP login handler.
-*   `apps/meteor/server/services/ldap/service.ts`: Implements `LDAPService.loginRequest()`.
-*   `apps/meteor/server/lib/ldap/Manager.ts`: Contains `LDAPManager.login()` which orchestrates the LDAP connection, search, and authentication.
-*   `apps/meteor/server/lib/ldap/Connection.ts`: Handles the actual LDAP connection and operations.
-*   `packages/core-services/src/index.ts`: Defines the `LDAP` symbol, likely for proxying LDAP service calls.
+        		if (settings.get('LDAP_Enable') !== true) {
+        			return this.fallbackToDefaultLogin(username, password);
+        		}
 
-## Tool Calls (8 calls, 31,872 tokens)
+        		let ldapUser: ILDAPEntry | undefined;
 
-**Step 1:** `search({"query":"LDAP authentication","layer":"server"})` → 16 tokens
-**Step 2:** `search({"query":"LDAP","layer":"server"})` → 588 tokens
-**Step 3:** `graph({"layer":"server","direction":"down","query":"LDAPService.loginRequest"})` → 16 tokens
-**Step 4:** `search({"layer":"server","query":"LDAPService"})` → 287 tokens
-**Step 5:** `graph({"direction":"down","query":"LDAPService.loginRequest","layer":"server"})` → 16 tokens
-**Step 6:** `search({"layer":"server","query":"configureLDAP"})` → 262 tokens
-**Step 7:** `graph({"query":"configureLDAP","direction":"down","layer":"server"})` → 1234 tokens
-**Step 8:** `graph({"layer":"server","direction":"down","query":"LDAPManager.login"})` → 14 tokens
+        		const ldap = new LDAPConnection();
+        		try {
+        			try {
+        				await ldap.connect();
+        				ldapUser = await this.findUser(ldap, username, password);
+        			} catch (err) {
+        				logger.error({ err });
+        			}
+
+        			if (ldapUser === undefined) {
+        				return this.fallbackToDefaultLogin(username, password);
+        			}
+
+        			// ... (federation, username slugification, existing user check) ...
+
+        			await ldap.bindAuthenticationUser();
+        			if (user) {
+        				return await this.loginExistingUser(ldap, user, ldapUser, password);
+        			}
+
+        			return await this.loginNewUserFromLDAP(slugifiedUsername, ldap, ldapUser, password);
+        		} finally {
+        			ldap.disconnect();
+        		}
+        	}
+        ```
+
+## Tool Calls (8 calls, 31,962 tokens)
+
+**Step 1:** `search({"query":"LDAP","layer":"server"})` → 588 tokens
+**Step 2:** `graph({"layer":"server","query":"LDAPManager.login","direction":"down"})` → 14 tokens
+**Step 3:** `search({"layer":"server","query":"LDAPService.loginRequest"})` → 17 tokens
+**Step 4:** `search({"query":"configureLDAP","layer":"server"})` → 262 tokens
+**Step 5:** `graph({"query":"configureLDAP","layer":"server","direction":"down"})` → 1234 tokens
+**Step 6:** `implement({"symbolName":"loginRequest","filename":"apps/meteor/server/services/ldap/service.ts"})` → 55 tokens
+**Step 7:** `implement({"filename":"apps/meteor/server/services/ldap/service.ts","symbolName":"LDAPService.loginRequest"})` → 84 tokens
+**Step 8:** `implement({"filename":"apps/meteor/server/lib/ldap/Manager.ts","symbolName":"LDAPManager.login"})` → 355 tokens
 
 ## Metrics
 
@@ -52,5 +91,5 @@ LDAP authentication in Rocket.Chat follows this process:
 | Files hit | 6/6 |
 | Symbols hit | 4/4 |
 | Tool calls | 8 |
-| Total tokens | 31,872 |
+| Total tokens | 31,962 |
 | Pass | YES |
