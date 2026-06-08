@@ -2,69 +2,97 @@
 
 ## Gemini Answer
 
-To create a new package in the Rocket.Chat monorepo, you generally follow these steps, inspired by the structure of existing packages like `packages/ui-kit/`:
+Creating a new package in the Rocket.Chat monorepo typically involves a manual process, as no dedicated script for "create package" was found within the codebase via search.
 
-1.  **Create the Package Directory**:
-    Create a new folder for your package inside the `packages/` directory. For example, `packages/my-new-package/`.
+Here are the general steps to create a new package:
+
+1.  **Create a New Directory**:
+    *   Navigate to the `packages/` directory at the root of the monorepo.
+    *   Create a new directory for your package (e.g., `packages/your-new-package`).
 
 2.  **Initialize `package.json`**:
-    Inside your new package directory (`packages/my-new-package/`), create a `package.json` file. This file defines your package's metadata, dependencies, and scripts.
+    *   Inside your new package directory (`packages/your-new-package`), create a `package.json` file.
+    *   Populate it with essential information such as `name`, `version`, `description`, `main` (entry point), and `scripts` (e.g., `build`, `test`).
 
-    *   **Essential fields**:
-        *   `name`: A unique name for your package (e.g., `@rocket.chat/my-new-package`).
-        *   `version`: An initial version number (e.g., `1.0.0`).
-        *   `main`, `module`, `types`: These specify the entry points for CommonJS, ES modules, and TypeScript declaration files, respectively (e.g., `"main": "lib/index.js"`, `"module": "src/index.ts"`, `"types": "src/index.ts"`).
-        *   `scripts`: Define commands for building, testing, linting, etc. (e.g., `"build": "tsc"`, `"test": "jest"`).
-        *   `dependencies`, `devDependencies`, `peerDependencies`: List any other packages your new package relies on.
-    *   **Example from existing packages (inferred)**:
-        *   `packages/ui-kit/package.json` would contain similar definitions for the `ui-kit` package.
+    Example `package.json`:
+    
+```json
+    {
+      "name": "@rocket.chat/your-new-package",
+      "version": "1.0.0",
+      "description": "A brief description of your new package",
+      "main": "src/index.ts",
+      "types": "src/index.ts",
+      "scripts": {
+        "build": "tsc",
+        "start": "tsc --watch"
+      },
+      "dependencies": {
+        // Add dependencies here
+      },
+      "devDependencies": {
+        "@tsconfig/recommended": "1.0.1",
+        "typescript": "4.9.5"
+      },
+      "publishConfig": {
+        "access": "public"
+      }
+    }
+    ```
 
-3.  **Configure TypeScript (`tsconfig.json`)**:
-    Add a `tsconfig.json` file to your package's root directory (`packages/my-new-package/tsconfig.json`). This configures TypeScript for your package. It often extends a base `tsconfig` from the monorepo to ensure consistency.
 
-    *   **Example from existing packages**:
-        *   `packages/ui-kit/tsconfig.json` defines the TypeScript compilation settings for the `ui-kit` package.
+3.  **Add `tsconfig.json` (for TypeScript packages)**:
+    *   If your package uses TypeScript, create a `tsconfig.json` file in your new package directory.
+    *   This file will configure the TypeScript compiler for your package.
 
-4.  **Create Source Code Directory (`src/`)**:
-    Create a `src/` directory within your package (`packages/my-new-package/src/`). This will house your package's source code.
+    Example `tsconfig.json`:
+    
+```json
+    {
+      "extends": "@tsconfig/recommended/tsconfig.json",
+      "compilerOptions": {
+        "rootDir": "./src",
+        "outDir": "./dist",
+        "declaration": true,
+        "tsBuildInfoFile": "node_modules/.tsbuildinfo"
+      },
+      "include": ["src"],
+      "references": [
+        // Add references to other internal packages if needed
+      ]
+    }
+    ```
 
-5.  **Define Main Entry Point (`src/index.ts`)**:
-    Inside the `src/` directory, create an `index.ts` file (`packages/my-new-package/src/index.ts`). This file serves as the main entry point for your package, exporting its public API (functions, classes, interfaces).
 
-    *   **Example from existing packages**:
-        *   `packages/ui-kit/src/index.ts` is the main entry point for the `ui-kit` package.
+4.  **Install Dependencies and Bootstrap**:
+    *   After creating the directory and basic configuration files, run the monorepo's package manager command to install dependencies and link the new package. Rocket.Chat uses Lerna and Yarn Workspaces, so you would typically run:
+        
+```bash
+        yarn
+        ```
 
-6.  **Add Testing Configuration (e.g., `jest.config.ts`)**:
-    If your package will have tests, include a testing configuration file, such as `jest.config.ts`, in the package's root (`packages/my-new-package/jest.config.ts`).
+        or if using Lerna directly:
+        
+```bash
+        npx lerna bootstrap
+        ```
 
-    *   **Example from existing packages**:
-        *   `packages/ui-kit/jest.config.ts` defines the Jest testing configuration for the `ui-kit` package.
+    *   These commands will discover your new package, install its dependencies, and create symlinks for any local dependencies within the monorepo.
 
-7.  **Add Documentation (`README.md`)**:
-    It's good practice to include a `README.md` file in your package's root to describe its purpose, how to use it, and any other relevant information.
+**Call Chain:**
+The creation process is manual, involving direct interaction with the file system and running monorepo-level commands.
 
-8.  **Integrate with Monorepo Workspaces**:
-    Finally, you'll likely need to inform the monorepo's package manager (e.g., Yarn or npm workspaces) about your new package. This usually involves adding the path to your new package in the `workspaces` array within the root `package.json` of the monorepo.
+**Key Files/Paths:**
+*   `packages/your-new-package/`: The directory for your new package.
+*   `packages/your-new-package/package.json`: Defines the package's metadata and scripts.
+*   `packages/your-new-package/tsconfig.json`: (For TypeScript) Configures TypeScript compilation.
 
-**Call Chain (Inferred Structure):**
+## Tool Calls (4 calls, 12,070 tokens)
 
-The process of creating a new package is not a direct code execution flow but rather a structural setup. The understanding is derived from observing the file structure of an existing package:
-
-`packages/ui-kit/`
-`  → packages/ui-kit/package.json` (defines the package)
-`  → packages/ui-kit/tsconfig.json` (TypeScript configuration)
-`  → packages/ui-kit/src/` (source code directory)
-`    → packages/ui-kit/src/index.ts` (main entry point)
-`  → packages/ui-kit/jest.config.ts` (testing configuration)
-
-## Tool Calls (6 calls, 17,294 tokens)
-
-**Step 1:** `search({"query":"package.json","layer":"packages"})` → 77 tokens
-**Step 2:** `search({"layer":"packages","query":"ui-kit"})` → 370 tokens
-**Step 3:** `search({"query":"packages/ui-kit/package.json"})` → 18 tokens
-**Step 4:** `implement({"symbolName":"package.json","filename":"packages/ui-kit/package.json"})` → 40 tokens
-**Step 5:** `search({"query":"packages/ui-kit/src/index.ts"})` → 59 tokens
-**Step 6:** `implement({"filename":"packages/ui-kit/src/index.ts","symbolName":"index"})` → 15 tokens
+**Step 1:** `search({"query":"create package"})` → 15 tokens
+**Step 2:** `search({"query":"package","layer":"packages"})` → 556 tokens
+**Step 3:** `search({"query":"lerna.json"})` → 14 tokens
+**Step 4:** `search({"layer":"server","query":"create-package"})` → 15 tokens
 
 ## Metrics
 
@@ -72,6 +100,6 @@ The process of creating a new package is not a direct code execution flow but ra
 |--------|-------|
 | Files hit | 4/5 |
 | Symbols hit | 0/1 |
-| Tool calls | 6 |
-| Total tokens | 17,294 |
+| Tool calls | 4 |
+| Total tokens | 12,070 |
 | Pass | NO |

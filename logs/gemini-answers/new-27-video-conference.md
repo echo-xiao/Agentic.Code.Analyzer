@@ -2,59 +2,46 @@
 
 ## Gemini Answer
 
-Rocket.Chat's video conference system is designed with a modular architecture, leveraging a core service and pluggable providers for flexibility.
+The Rocket.Chat video conference system is built around a pluggable provider architecture, allowing for integration with various video conferencing solutions.
 
-Here's a breakdown of how it works:
+The core components and their interactions are:
 
-**1. Core Service and Architecture:**
-The video conferencing functionality is primarily handled by the `VideoConfService`, which extends `ServiceClassInternal`. This service acts as the central hub for managing video conference sessions on the server side. While a direct call chain for the `VideoConference` symbol was not fully mapped in the graph due to its nature as a proxied model (`packages/models/src/index.ts`), the architectural description indicates that the server-side logic resides in files such as `apps/meteor/server/services/video-conference/service.ts`. This file likely contains methods like `VideoConference.create` for starting new conferences.
+*   **`IVideoConfProvider`** (`packages/apps-engine/src/definition/videoConfProviders/IVideoConfProvider.ts`): This interface defines the contract for any video conference provider. Apps that want to offer video conferencing capabilities must implement this interface.
 
-**2. Pluggable Providers:**
-Rocket.Chat supports various video conference providers through a registry system. This allows for integration with different services (e.g., Jitsi, as mentioned in the search results) and custom solutions via the Apps Engine.
-*   **Provider Definition**: The interface for these providers is defined in `packages/apps-engine/src/definition/videoConfProviders/IVideoConfProvider.ts`.
-*   **Provider Management**: The `AppVideoConfProviderManager` (`packages/apps-engine/src/server/managers/AppVideoConfProviderManager.ts`) is responsible for managing these providers, especially those integrated via the Apps Engine.
-*   **App Bridge**: `apps/meteor/app/apps/server/bridges/videoConferences.ts` serves as a bridge for interactions between Apps and the core video conferencing system.
+*   **`AppVideoConfProviderManager`** (`packages/apps-engine/src/server/managers/AppVideoConfProviderManager.ts`): This manager is responsible for registering and unregistering video conference providers provided by Rocket.Chat Apps.
+    *   **`AppVideoConfProviderManager.registerProvider`**: This method takes an `appId` and `AppVideoConfProvider` object, and calls the `doRegisterProvider` method on the `VideoConferenceBridge`.
 
-**3. Client-Side Management:**
-On the client side, the `VideoConfManager` (`apps/meteor/client/lib/VideoConfManager.ts`) is responsible for handling the user interface and the lifecycle of video calls, including:
-*   Initiating calls.
-*   Managing the ringing state.
-*   Allowing users to accept or reject calls.
+*   **`VideoConferenceBridge`** (`packages/apps-engine/src/server/bridges/VideoConferenceBridge.ts`): This bridge acts as an intermediary between the App's video conference provider and the Rocket.Chat server.
+    *   **`VideoConferenceBridge.doRegisterProvider`**: This method checks if the App has the necessary permissions (`hasProviderPermission`) and then calls `this.registerProvider` (another method within the `VideoConferenceBridge` itself) to complete the registration.
+    *   **`VideoConferenceBridge.registerProvider`**: This method actually handles the registration of the `IVideoConfProvider` instance with the Rocket.Chat system.
 
-**4. Room Compatibility:**
-Before a video conference can be initiated, the system checks for room compatibility using `isRoomCompatibleWithVideoConfRinging` (`apps/meteor/server/lib/isRoomCompatibleWithVideoConfRinging.ts`). This ensures that a video conference can be properly started within a given chat room.
+*   **`VideoConfService`** (`apps/meteor/server/services/video-conference/service.ts`): This is a server-side service that likely exposes methods for initiating, managing, and ending video conferences, using the registered providers.
 
-**Call Chain (Architectural Overview):**
-The overall flow involves interactions between the client, the `VideoConfService` on the server, and the configured video conference providers.
+*   **`VideoConfManager`** (`apps/meteor/client/lib/VideoConfManager.ts`): On the client-side, this manager handles the lifecycle of a video call, including ringing, accepting, and rejecting calls. It also contains logic to check if a room is compatible with video conferencing (`isRoomCompatibleWithVideoConfRinging`).
 
-`Client-side (VideoConfManager)` → `Server-side (VideoConfService)` → `Video Conference Provider (e.g., Jitsi via AppVideoConfProviderManager)`
+The overall flow for registering a video conference provider from an App is:
 
-**Key Files Involved:**
-*   `packages/models/src/index.ts`: Defines the `VideoConference` model (proxied).
-*   `apps/meteor/server/services/video-conference/service.ts`: Contains the core server-side logic for video conferencing.
-*   `packages/apps-engine/src/definition/videoConfProviders/IVideoConfProvider.ts`: Interface for video conference providers.
-*   `apps/meteor/app/apps/server/bridges/videoConferences.ts`: Bridge for Apps Engine video conference interactions.
-*   `packages/apps-engine/src/server/managers/AppVideoConfProviderManager.ts`: Manages video conference providers.
-*   `apps/meteor/client/lib/VideoConfManager.ts`: Client-side logic for managing video calls.
-*   `apps/meteor/server/lib/isRoomCompatibleWithVideoConfRinging.ts`: Logic to determine if a room is compatible with video conferencing.
+`AppManager.enableApp` (within `packages/apps-engine/src/server/AppManager.ts`) → `AppVideoConfProviderManager.registerProviders` (within `packages/apps-engine/src/server/managers/AppVideoConfProviderManager.ts`) → `AppVideoConfProviderManager.registerProvider` (within `packages/apps-engine/src/server/managers/AppVideoConfProviderManager.ts`) → `VideoConferenceBridge.doRegisterProvider` (within `packages/apps-engine/src/server/bridges/VideoConferenceBridge.ts`) → `VideoConferenceBridge.registerProvider` (within `packages/apps-engine/src/server/bridges/VideoConferenceBridge.ts`).
 
-## Tool Calls (8 calls, 29,036 tokens)
+Once a provider is registered, the `VideoConfService` on the server can utilize it to create and manage video conferences, and the `VideoConfManager` on the client handles the user interface and call interactions.
+
+## Tool Calls (8 calls, 40,751 tokens)
 
 **Step 1:** `search({"query":"video conference"})` → 612 tokens
-**Step 2:** `graph({"direction":"down","depth":3,"query":"apps/meteor/server/services/video-conference/service.ts"})` → 24 tokens
-**Step 3:** `graph({"query":"VideoConference","layer":"server","depth":3,"direction":"down"})` → 35 tokens
-**Step 4:** `implement({"symbolName":"NOT_A_SYMBOL","filename":"apps/meteor/server/services/video-conference/service.ts"})` → 16 tokens
-**Step 5:** `search({"layer":"server","query":"video-conference service"})` → 17 tokens
-**Step 6:** `implement({"symbolName":"VideoConference","filename":"apps/meteor/server/services/video-conference/service.ts")` → 65 tokens
-**Step 7:** `search({"layer":"server","query":"VideoConf"})` → 543 tokens
-**Step 8:** `graph({"query":"VideoConf","direction":"down","layer":"server","depth":3})` → 129 tokens
+**Step 2:** `graph({"query":"VideoConfManager","direction":"down","layer":"client"})` → 880 tokens
+**Step 3:** `graph({"layer":"server","direction":"down","query":"apps/meteor/server/services/video-conference/service.t)` → 24 tokens
+**Step 4:** `graph({"direction":"down","query":"VideoConfService","layer":"server"})` → 137 tokens
+**Step 5:** `search({"query":"IVideoConfProvider"})` → 104 tokens
+**Step 6:** `graph({"query":"IVideoConfProvider","direction":"up"})` → 782 tokens
+**Step 7:** `implement({"symbolName":"AppVideoConfProviderManager.registerProvider","filename":"packages/apps-engine/src/se)` → 106 tokens
+**Step 8:** `implement({"filename":"packages/apps-engine/src/server/bridges/VideoConferenceBridge.ts","symbolName":"VideoCo)` → 110 tokens
 
 ## Metrics
 
 | Metric | Value |
 |--------|-------|
-| Files hit | 5/6 |
+| Files hit | 2/6 |
 | Symbols hit | 1/2 |
 | Tool calls | 8 |
-| Total tokens | 29,036 |
+| Total tokens | 40,751 |
 | Pass | NO |

@@ -2,50 +2,41 @@
 
 ## Gemini Answer
 
-Rocket.Chat's `core-services` use a `proxify()` pattern for inter-service communication, avoiding direct imports between services. This pattern establishes a robust message bus system.
+The `proxify()` pattern in Rocket.Chat's `core-services` facilitates inter-service communication without direct imports. It works as follows:
 
-The core communication flow is as follows:
-**Entry → Step 1 → Step 2 → Step 3 → Final**
+1.  **`proxify(namespace)`** (at `packages/core-services/src/lib/proxify.ts`): This function takes a `namespace` (representing a service name) and returns a `Proxy` object.
 
-1.  **`proxify('IServiceName')`** (located at `packages/core-services/src/lib/proxify.ts`)
-    *   Client code requests a proxified instance of a service, for example, `proxify('RoomService')`.
-    *   The `proxify` function creates and returns a JavaScript `Proxy` object. This proxy intercepts any method calls made on the service instance.
+2.  **`handler(namespace)`** (at `packages/core-services/src/lib/proxify.ts`): This internal function defines the `ProxyHandler` for the `Proxy` object. When a method is accessed on the proxified service, the `get` trap is triggered.
 
-2.  **`Proxy.handler`** (internal to `packages/core-services/src/lib/proxify.ts`)
-    *   When a method is invoked on the proxified service object (e.g., `proxifiedRoomService.createRoom()`), the `Proxy`'s `handler` intercepts this call.
-    *   The `handler` then constructs a fully qualified method name string, such as `'RoomService.createRoom'`, and prepares the arguments.
+    *   The `get` trap returns a function that, when called with parameters, invokes `api.call(`${namespace}.${prop}`, params)`. Here, `prop` is the name of the method being called on the proxified service.
 
-3.  **`api.call('namespace.method')`** (example usage seen in `ee/packages/omnichannel-services/src/QueueWorker.ts`)
-    *   The `handler` ultimately translates the intercepted call into an `api.call` with the service's namespace and method name (e.g., `api.call('RoomService.createRoom', [args])`).
-    *   This `api.call` is an internal mechanism that bridges to the message broker.
+3.  **`api.call()`**: This is the central mechanism for dispatching inter-service calls. While a direct `api.call` implementation wasn't fully retrieved due to tool limitations, the search results indicate that `api.call` ultimately dispatches to `LocalBroker.call()`.
 
-4.  **`LocalBroker.call(method, data, options)`** (located at `packages/core-services/src/LocalBroker.ts`)
-    *   The `api.call` then delegates to the `LocalBroker.call` method.
-    *   The `LocalBroker` is responsible for managing and dispatching service calls within the application. It maintains an internal `Map` where service methods are stored as `'serviceName.methodName'` keys, bound to their respective service class functions.
-    *   The `call` method of `LocalBroker` retrieves the actual bound function based on the provided method string.
+4.  **`LocalBroker.call()`**: (mentioned in the search output, defined in `packages/core-services/src/LocalBroker.ts`): The `LocalBroker` is responsible for storing and routing service methods. It maps method names in the format `'serviceName.methodName'` to their bound service class methods.
 
-5.  **Bound ServiceClass method**
-    *   Finally, the `LocalBroker` executes the actual service method (e.g., `RoomService.createRoom()`) with the provided data and options. Services extend `ServiceClassInternal` (for the monolith) or `ServiceClass` to integrate with this broker pattern.
+This pattern ensures that services interact through a standardized message bus, promoting loose coupling and making it easier to manage dependencies and potentially scale services independently.
 
-This pattern ensures services remain decoupled, communicating through a defined interface rather than direct imports, which simplifies refactoring and promotes a microservices-like architecture within the larger application.
+**Call Chain:**
 
-## Tool Calls (8 calls, 38,058 tokens)
+`Service A` calls `proxify('ServiceB').someMethod()` → `proxify()` (packages/core-services/src/lib/proxify.ts) → `handler()` (packages/core-services/src/lib/proxify.ts) → `api.call('ServiceB.someMethod', params)` (packages/core-services/src/lib/proxify.ts calls this implicitly) → `LocalBroker.call()` (packages/core-services/src/LocalBroker.ts) → `Service B.someMethod()` (bound method on the target service).
+
+## Tool Calls (8 calls, 38,164 tokens)
 
 **Step 1:** `search({"query":"proxify","layer":"packages"})` → 181 tokens
-**Step 2:** `graph({"direction":"down","layer":"packages","query":"proxify"})` → 1107 tokens
-**Step 3:** `implement({"symbolName":"proxify","filename":"packages/core-services/src/lib/proxify.ts"})` → 76 tokens
-**Step 4:** `implement({"symbolName":"proxify","filename":"packages/core-services/src/lib/proxify.ts"})` → 76 tokens
-**Step 5:** `search({"query":"api.call","layer":"packages"})` → 75 tokens
-**Step 6:** `search({"layer":"packages","query":"LocalBroker.call"})` → 15 tokens
-**Step 7:** `search({"layer":"packages","query":"LocalBroker"})` → 165 tokens
-**Step 8:** `implement({"filename":"packages/core-services/src/LocalBroker.ts","symbolName":"LocalBroker"})` → 462 tokens
+**Step 2:** `graph({"direction":"down","query":"proxify","layer":"packages"})` → 1107 tokens
+**Step 3:** `implement({"filename":"packages/core-services/src/lib/proxify.ts","symbolName":"proxify"})` → 76 tokens
+**Step 4:** `implement({"filename":"packages/core-services/src/lib/proxify.ts","symbolName":"handler"})` → 97 tokens
+**Step 5:** `search({"layer":"packages","query":"api.call"})` → 75 tokens
+**Step 6:** `search({"query":"LocalBroker","layer":"packages"})` → 165 tokens
+**Step 7:** `search({"query":"api","layer":"packages"})` → 601 tokens
+**Step 8:** `implement({"filename":"packages/core-services/src/api.ts","symbolName":"api.call"})` → 41 tokens
 
 ## Metrics
 
 | Metric | Value |
 |--------|-------|
-| Files hit | 2/6 |
+| Files hit | 4/6 |
 | Symbols hit | 4/4 |
 | Tool calls | 8 |
-| Total tokens | 38,058 |
+| Total tokens | 38,164 |
 | Pass | NO |

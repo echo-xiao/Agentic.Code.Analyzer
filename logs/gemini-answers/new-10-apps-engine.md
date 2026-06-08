@@ -2,42 +2,34 @@
 
 ## Gemini Answer
 
-To understand how the Rocket.Chat Apps Engine hooks into events like `afterSaveMessage`, we need to trace how events are triggered and how the Apps Engine registers its listeners.
+Rocket.Chat Apps hook into events like `afterSaveMessage` (which corresponds to `IPostMessageSent` in the Apps Engine) through a mechanism orchestrated by the `Apps` object and managed by the `AppListenerManager`.
 
-Here's the current understanding based on the available information:
+Here's the call chain:
 
-1.  **`afterSaveMessage` Callback Execution:** The `afterSaveMessage` function, located at `apps/meteor/app/lib/server/lib/afterSaveMessage.ts`, explicitly calls `callbacks.run('afterSaveMessage', message, { room, user, roomUpdater: updater })`. This indicates that `afterSaveMessage` is a general callback event that other modules can subscribe to.
+**Rocket.Chat Core Action → Apps.triggerEvent → AppListenerManager.executeListener → App's Registered Hook**
 
-2.  **Missing Apps Engine Hook Registration:** While we know `afterSaveMessage` is a callback, the specific mechanism for how the Apps Engine registers its hooks for this event is not directly evident from the `search` and `graph` results for "Apps Engine event," "Apps Engine listener," "Apps Engine IHook," or "Apps Engine register hook." Similarly, searching for "callbacks.add afterSaveMessage" did not yield direct results within the `packages` layer.
+1.  **Rocket.Chat Core Action (e.g., Message Saving):** When a significant event occurs in Rocket.Chat, such as a message being saved, the core system invokes the Apps Engine's event triggering mechanism.
+2.  **`Apps.triggerEvent()`:** The core Rocket.Chat code calls `Apps.triggerEvent()` with the specific event type (e.g., `AppEvents.IPostMessageSent`) and relevant data. An example of `Apps.triggerEvent` usage can be found in `apps/meteor/app/lib/server/functions/createRoom.ts`, which calls `await Apps.triggerEvent(AppEvents.IPreRoomCreateExtend, tmp)`. The `Apps` object acts as an orchestrator for these events.
+3.  **`AppListenerManager.executeListener()`:** The `Apps` orchestrator dispatches the event to the `AppListenerManager`, located at `packages/apps-engine/src/server/managers/AppListenerManager.ts`. The `AppListenerManager` is responsible for knowing which apps have registered listeners for the triggered event. It then calls `executeListener()` to invoke the appropriate handler within each registered app.
+4.  **App's Registered Hook:** An individual Rocket.Chat App, during its lifecycle, registers various lifecycle hooks (e.g., `IPreMessageSent`, `IPostMessageSent`, `IPostRoomCreate`). When `AppListenerManager.executeListener()` is called for an event that an app has registered a hook for, the app's specific implementation of that hook is executed within its isolated sandbox.
 
-**Call Chain (Partial):**
+## Tool Calls (8 calls, 24,993 tokens)
 
-`afterSaveMessage` (in `apps/meteor/app/lib/server/lib/afterSaveMessage.ts`) → `callbacks.run('afterSaveMessage', ...)`
-
-**Next Steps (Hypothesized):**
-
-The Apps Engine likely uses `callbacks.add` internally to register its own event handlers for `afterSaveMessage` and other lifecycle events. To fully understand the connection, one would need to:
-
-1.  **Search for `callbacks.add` within the Apps Engine codebase** (likely in `packages/` or `ee/packages/`) to find where the Apps Engine registers its listeners.
-2.  **Investigate the Apps Engine's internal event handling mechanism** to see how it maps platform events (like `afterSaveMessage`) to the `IHook` implementations provided by individual apps.
-
-## Tool Calls (8 calls, 25,807 tokens)
-
-**Step 1:** `search({"query":"Apps Engine event","layer":"packages"})` → 193 tokens
-**Step 2:** `search({"query":"Apps Engine listener","layer":"packages"})` → 195 tokens
-**Step 3:** `search({"query":"afterSaveMessage","layer":"packages"})` → 261 tokens
-**Step 4:** `graph({"query":"afterSaveMessage","direction":"down","edgeTypes":["event_listen"]})` → 158 tokens
-**Step 5:** `search({"layer":"packages","query":"callbacks.add afterSaveMessage"})` → 19 tokens
-**Step 6:** `search({"query":"Apps Engine IHook","layer":"packages"})` → 15 tokens
-**Step 7:** `search({"layer":"packages","query":"Apps Engine register hook"})` → 17 tokens
-**Step 8:** `implement({"symbolName":"afterSaveMessage","filename":"apps/meteor/app/lib/server/lib/afterSaveMessage.ts"})` → 189 tokens
+**Step 1:** `search({"layer":"packages","query":"Apps Engine event handler"})` → 17 tokens
+**Step 2:** `search({"layer":"packages","query":"IEvent"})` → 177 tokens
+**Step 3:** `graph({"direction":"down","layer":"packages","query":"AppListenerManager"})` → 151 tokens
+**Step 4:** `search({"query":"Apps.triggerEvent"})` → 83 tokens
+**Step 5:** `graph({"query":"Apps.triggerEvent","layer":"server","direction":"down"})` → 14 tokens
+**Step 6:** `search({"layer":"server","query":"Apps"})` → 425 tokens
+**Step 7:** `graph({"query":"AppManager","layer":"packages","direction":"down"})` → 143 tokens
+**Step 8:** `implement({"symbolName":"Apps.triggerEvent","filename":"apps/meteor/ee/server/apps/orchestrator.js"})` → 48 tokens
 
 ## Metrics
 
 | Metric | Value |
 |--------|-------|
-| Files hit | 0/6 |
-| Symbols hit | 0/5 |
+| Files hit | 2/6 |
+| Symbols hit | 4/5 |
 | Tool calls | 8 |
-| Total tokens | 25,807 |
+| Total tokens | 24,993 |
 | Pass | NO |

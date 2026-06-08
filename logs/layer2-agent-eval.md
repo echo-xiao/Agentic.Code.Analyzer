@@ -1,6 +1,6 @@
 # Layer 2 — Agent Eval Report
 
-6/8/2026, 11:18:56 AM | Model: gemini-2.5-flash | Testcases: 34
+6/8/2026, 1:59:51 PM | Model: gemini-2.5-flash | Testcases: 34
 
 ---
 
@@ -8,16 +8,16 @@
 
 | Metric | Value |
 |--------|-------|
-| **Good answers (3+ file paths)** | **33/34 (97.1%)** |
-| Weak answers (has content, <3 paths) | 1/34 |
+| **Good answers (3+ file paths)** | **32/34 (94.1%)** |
+| Weak answers (has content, <3 paths) | 2/34 |
 | Empty answers | 0/34 |
-| File hit rate (avg, string match) | 44.0% |
-| Symbol coverage (avg, string match) | 68.0% |
-| Avg tool calls / question | 6.7 |
-| Avg tokens / question | 28,961 |
-| Total tokens (all 34) | 984,673 |
+| File hit rate (avg, string match) | 43.9% |
+| Symbol coverage (avg, string match) | 70.2% |
+| Avg tool calls / question | 6.9 |
+| Avg tokens / question | 31,330 |
+| Total tokens (all 34) | 1,065,207 |
 | Free tier limit | 1,000,000 TPM |
-| Within free tier? | YES (98.5% used) |
+| Within free tier? | NO (106.5% used) |
 
 ## 2. Accuracy by Dimension
 
@@ -26,7 +26,7 @@
 |------|-------|--------|------|
 | architecture | 9 | 0 | 0.0% |
 | call-chain | 4 | 0 | 0.0% |
-| pattern | 6 | 1 | 16.7% |
+| pattern | 6 | 0 | 0.0% |
 | locate | 8 | 0 | 0.0% |
 | routing | 4 | 1 | 25.0% |
 | impact | 3 | 0 | 0.0% |
@@ -51,7 +51,7 @@
 | authentication | 1 | 1 | 100.0% |
 | rooms | 1 | 0 | 0.0% |
 | ee licensing | 1 | 0 | 0.0% |
-| slash commands | 1 | 1 | 100.0% |
+| slash commands | 1 | 0 | 0.0% |
 | integrations | 1 | 0 | 0.0% |
 | message rendering | 1 | 0 | 0.0% |
 | core-services | 1 | 0 | 0.0% |
@@ -65,7 +65,7 @@
 ### By Difficulty
 | Difficulty | Count | Passed | Rate |
 |------------|-------|--------|------|
-| medium | 17 | 1 | 5.9% |
+| medium | 17 | 0 | 0.0% |
 | hard | 17 | 1 | 5.9% |
 
 ## 3. Token Analysis
@@ -73,94 +73,94 @@
 ### Per-Question Token Distribution
 | # | ID | Input | Output | Total | Tool Calls |
 |---|---|------:|-------:|------:|-----------:|
-| 1 | tour-04-msg-client | 32,701 | 487 | 34,703 | 7 |
-| 2 | tour-05-msg-server | 30,023 | 971 | 33,749 | 7 |
-| 3 | tour-06-endpoint | 20,846 | 772 | 24,069 | 8 |
-| 4 | tour-07-db-model-create | 32,687 | 888 | 35,592 | 8 |
-| 5 | tour-08-db-model-use | 34,092 | 758 | 36,484 | 8 |
-| 6 | tour-10-new-service | 33,867 | 946 | 36,307 | 8 |
-| 7 | tour-11-new-package | 13,630 | 1,157 | 17,294 | 6 |
-| 8 | claude-01-push-notifications | 26,026 | 883 | 29,488 | 8 |
-| 9 | claude-02-msg-permissions | 7,800 | 606 | 8,851 | 3 |
-| 10 | claude-03-file-upload | 40,365 | 667 | 42,262 | 8 |
-| 11 | claude-04-e2e-encryption | 4,839 | 720 | 6,105 | 2 |
-| 12 | claude-05-call-chain | 50,558 | 1,068 | 57,326 | 8 |
-| 13 | claude-06-livechat-routing | 37,470 | 828 | 40,704 | 8 |
-| 14 | claude-07-api-endpoints | 44,276 | 547 | 46,447 | 8 |
-| 15 | claude-08-federation | 34,043 | 608 | 35,842 | 8 |
-| 16 | new-09-realtime-streamer | 34,492 | 544 | 36,608 | 8 |
-| 17 | new-10-apps-engine | 22,976 | 625 | 25,807 | 8 |
-| 18 | new-11-settings | 29,211 | 760 | 31,297 | 8 |
-| 19 | new-12-ldap-auth | 29,483 | 853 | 31,872 | 8 |
-| 20 | new-13-room-creation | 5,938 | 709 | 7,408 | 2 |
-| 21 | new-14-ee-license | 12,814 | 681 | 14,588 | 5 |
-| 22 | new-15-impact-aftersave | 9,707 | 681 | 11,603 | 5 |
-| 23 | new-16-impact-streamer | 26,789 | 1,864 | 33,429 | 8 |
-| 24 | new-17-slash-commands | 27,624 | 1,003 | 30,069 | 7 |
-| 25 | new-18-webhook | 21,486 | 646 | 23,150 | 5 |
-| 26 | new-19-message-rendering | 36,453 | 458 | 38,260 | 8 |
-| 27 | new-20-proxify | 33,980 | 838 | 38,058 | 8 |
-| 28 | new-21-impact-settings | 4,750 | 268 | 5,400 | 2 |
-| 29 | new-22-2fa | 47,298 | 1,070 | 50,913 | 8 |
-| 30 | new-23-omnichannel | 10,736 | 827 | 12,867 | 5 |
-| 31 | new-24-autotranslate | 28,423 | 642 | 30,533 | 8 |
-| 32 | new-25-search | 28,243 | 710 | 30,073 | 8 |
-| 33 | new-26-team | 15,743 | 980 | 18,479 | 4 |
-| 34 | new-27-video-conference | 24,841 | 1,042 | 29,036 | 8 |
+| 1 | tour-04-msg-client | 45,479 | 907 | 49,646 | 8 |
+| 2 | tour-05-msg-server | 42,561 | 988 | 45,799 | 8 |
+| 3 | tour-06-endpoint | 20,024 | 823 | 22,769 | 7 |
+| 4 | tour-07-db-model-create | 32,764 | 648 | 35,932 | 8 |
+| 5 | tour-08-db-model-use | 39,845 | 1,101 | 42,977 | 8 |
+| 6 | tour-10-new-service | 20,453 | 808 | 22,272 | 6 |
+| 7 | tour-11-new-package | 9,210 | 836 | 12,070 | 4 |
+| 8 | claude-01-push-notifications | 37,225 | 829 | 40,142 | 8 |
+| 9 | claude-02-msg-permissions | 4,971 | 194 | 5,548 | 2 |
+| 10 | claude-03-file-upload | 23,994 | 732 | 26,857 | 8 |
+| 11 | claude-04-e2e-encryption | 33,542 | 853 | 35,946 | 8 |
+| 12 | claude-05-call-chain | 66,481 | 903 | 70,981 | 8 |
+| 13 | claude-06-livechat-routing | 31,140 | 587 | 33,476 | 8 |
+| 14 | claude-07-api-endpoints | 16,026 | 652 | 17,707 | 5 |
+| 15 | claude-08-federation | 26,858 | 628 | 28,985 | 8 |
+| 16 | new-09-realtime-streamer | 21,584 | 810 | 23,872 | 6 |
+| 17 | new-10-apps-engine | 21,731 | 638 | 24,993 | 8 |
+| 18 | new-11-settings | 30,144 | 811 | 32,492 | 8 |
+| 19 | new-12-ldap-auth | 29,062 | 1,126 | 31,962 | 8 |
+| 20 | new-13-room-creation | 50,996 | 786 | 53,116 | 8 |
+| 21 | new-14-ee-license | 18,374 | 692 | 20,705 | 7 |
+| 22 | new-15-impact-aftersave | 6,978 | 234 | 8,248 | 3 |
+| 23 | new-16-impact-streamer | 22,673 | 659 | 25,385 | 8 |
+| 24 | new-17-slash-commands | 34,784 | 859 | 37,084 | 8 |
+| 25 | new-18-webhook | 21,256 | 449 | 22,958 | 5 |
+| 26 | new-19-message-rendering | 24,969 | 690 | 27,030 | 8 |
+| 27 | new-20-proxify | 35,786 | 716 | 38,164 | 8 |
+| 28 | new-21-impact-settings | 4,765 | 284 | 5,422 | 2 |
+| 29 | new-22-2fa | 46,565 | 918 | 49,012 | 8 |
+| 30 | new-23-omnichannel | 25,085 | 1,015 | 27,289 | 7 |
+| 31 | new-24-autotranslate | 32,755 | 877 | 35,449 | 8 |
+| 32 | new-25-search | 42,788 | 895 | 46,278 | 8 |
+| 33 | new-26-team | 21,202 | 1,043 | 23,890 | 6 |
+| 34 | new-27-video-conference | 38,148 | 941 | 40,751 | 8 |
 
 ### Token Breakdown by Tool
 | Tool | Times Called | Avg Response Tokens | Total |
 |------|------------:|--------------------:|------:|
-| search | 98 | 262 | 25,698 |
-| graph | 68 | 419 | 28,461 |
-| implement | 62 | 451 | 27,990 |
+| search | 100 | 271 | 27,096 |
+| graph | 76 | 403 | 30,658 |
+| implement | 60 | 535 | 32,096 |
 
 ### Token Efficiency
 | Metric | Value |
 |--------|-------|
-| Most expensive question | claude-05-call-chain (57,326 tokens, 8 tool calls) |
-| Cheapest question | new-21-impact-settings (5,400 tokens, 2 tool calls) |
-| implement share of tool tokens | 34.1% (above 30% threshold) |
+| Most expensive question | claude-05-call-chain (70,981 tokens, 8 tool calls) |
+| Cheapest question | new-21-impact-settings (5,422 tokens, 2 tool calls) |
+| implement share of tool tokens | 35.7% (above 30% threshold) |
 | Questions exceeding 10 tool calls | 0 |
 
 ## 4. Per-Testcase Results
 
 | # | ID | Subsystem | Files | Symbols | Tools | Tokens | Pass |
 |---|---|---|---|---|---|---|---|
-| 1 | tour-04-msg-client | message chat | 1/6 | 2/5 | 7 | 34,703 | **FAIL** |
-| 2 | tour-05-msg-server | message chat | 4/6 | 1/3 | 7 | 33,749 | **FAIL** |
-| 3 | tour-06-endpoint | api | 3/6 | 3/4 | 8 | 24,069 | **FAIL** |
-| 4 | tour-07-db-model-create | database | 2/6 | 2/3 | 8 | 35,592 | **FAIL** |
-| 5 | tour-08-db-model-use | database | 0/6 | 0/2 | 8 | 36,484 | **FAIL** |
-| 6 | tour-10-new-service | services | 2/6 | 4/4 | 8 | 36,307 | **FAIL** |
-| 7 | tour-11-new-package | tooling | 4/5 | 0/1 | 6 | 17,294 | **FAIL** |
-| 8 | claude-01-push-notifications | push notifications | 3/6 | 4/5 | 8 | 29,488 | **FAIL** |
-| 9 | claude-02-msg-permissions | authorization | 3/6 | 4/4 | 3 | 8,851 | **FAIL** |
-| 10 | claude-03-file-upload | file upload | 2/6 | 2/6 | 8 | 42,262 | **FAIL** |
-| 11 | claude-04-e2e-encryption | e2e encryption | 4/6 | 3/6 | 2 | 6,105 | **FAIL** |
-| 12 | claude-05-call-chain | message chat | 4/6 | 1/8 | 8 | 57,326 | **FAIL** |
-| 13 | claude-06-livechat-routing | livechat | 2/6 | 5/6 | 8 | 40,704 | **FAIL** |
-| 14 | claude-07-api-endpoints | api | 2/6 | 4/5 | 8 | 46,447 | **FAIL** |
-| 15 | claude-08-federation | federation | 1/6 | 3/5 | 8 | 35,842 | **FAIL** |
-| 16 | new-09-realtime-streamer | streamer | 2/5 | 4/4 | 8 | 36,608 | **FAIL** |
-| 17 | new-10-apps-engine | apps engine | 0/6 | 0/5 | 8 | 25,807 | **FAIL** |
-| 18 | new-11-settings | settings | 1/6 | 2/3 | 8 | 31,297 | **FAIL** |
-| 19 | new-12-ldap-auth | authentication | 6/6 | 4/4 | 8 | 31,872 | PASS |
-| 20 | new-13-room-creation | rooms | 2/6 | 3/3 | 2 | 7,408 | **FAIL** |
-| 21 | new-14-ee-license | ee licensing | 3/6 | 4/5 | 5 | 14,588 | **FAIL** |
-| 22 | new-15-impact-aftersave | message chat | 1/6 | 2/4 | 5 | 11,603 | **FAIL** |
-| 23 | new-16-impact-streamer | streamer | 2/5 | 3/5 | 8 | 33,429 | **FAIL** |
-| 24 | new-17-slash-commands | slash commands | 5/6 | 2/2 | 7 | 30,069 | PASS |
-| 25 | new-18-webhook | integrations | 3/6 | 3/3 | 5 | 23,150 | **FAIL** |
-| 26 | new-19-message-rendering | message rendering | 5/6 | 2/4 | 8 | 38,260 | **FAIL** |
-| 27 | new-20-proxify | core-services | 2/6 | 4/4 | 8 | 38,058 | **FAIL** |
-| 28 | new-21-impact-settings | settings | 1/5 | 2/3 | 2 | 5,400 | **FAIL** |
-| 29 | new-22-2fa | 2fa | 3/6 | 4/4 | 8 | 50,913 | **FAIL** |
-| 30 | new-23-omnichannel | omnichannel | 3/6 | 3/4 | 5 | 12,867 | **FAIL** |
-| 31 | new-24-autotranslate | autotranslate | 3/6 | 2/2 | 8 | 30,533 | **FAIL** |
-| 32 | new-25-search | search | 1/6 | 3/3 | 8 | 30,073 | **FAIL** |
-| 33 | new-26-team | team | 3/6 | 2/2 | 4 | 18,479 | **FAIL** |
-| 34 | new-27-video-conference | video conference | 5/6 | 1/2 | 8 | 29,036 | **FAIL** |
+| 1 | tour-04-msg-client | message chat | 1/6 | 2/5 | 8 | 49,646 | **FAIL** |
+| 2 | tour-05-msg-server | message chat | 4/6 | 1/3 | 8 | 45,799 | **FAIL** |
+| 3 | tour-06-endpoint | api | 3/6 | 3/4 | 7 | 22,769 | **FAIL** |
+| 4 | tour-07-db-model-create | database | 2/6 | 2/3 | 8 | 35,932 | **FAIL** |
+| 5 | tour-08-db-model-use | database | 0/6 | 0/2 | 8 | 42,977 | **FAIL** |
+| 6 | tour-10-new-service | services | 2/6 | 4/4 | 6 | 22,272 | **FAIL** |
+| 7 | tour-11-new-package | tooling | 4/5 | 0/1 | 4 | 12,070 | **FAIL** |
+| 8 | claude-01-push-notifications | push notifications | 3/6 | 5/5 | 8 | 40,142 | **FAIL** |
+| 9 | claude-02-msg-permissions | authorization | 1/6 | 4/4 | 2 | 5,548 | **FAIL** |
+| 10 | claude-03-file-upload | file upload | 2/6 | 3/6 | 8 | 26,857 | **FAIL** |
+| 11 | claude-04-e2e-encryption | e2e encryption | 5/6 | 3/6 | 8 | 35,946 | **FAIL** |
+| 12 | claude-05-call-chain | message chat | 4/6 | 6/8 | 8 | 70,981 | **FAIL** |
+| 13 | claude-06-livechat-routing | livechat | 2/6 | 5/6 | 8 | 33,476 | **FAIL** |
+| 14 | claude-07-api-endpoints | api | 2/6 | 4/5 | 5 | 17,707 | **FAIL** |
+| 15 | claude-08-federation | federation | 1/6 | 4/5 | 8 | 28,985 | **FAIL** |
+| 16 | new-09-realtime-streamer | streamer | 0/5 | 0/4 | 6 | 23,872 | **FAIL** |
+| 17 | new-10-apps-engine | apps engine | 2/6 | 4/5 | 8 | 24,993 | **FAIL** |
+| 18 | new-11-settings | settings | 1/6 | 2/3 | 8 | 32,492 | **FAIL** |
+| 19 | new-12-ldap-auth | authentication | 6/6 | 4/4 | 8 | 31,962 | PASS |
+| 20 | new-13-room-creation | rooms | 3/6 | 3/3 | 8 | 53,116 | **FAIL** |
+| 21 | new-14-ee-license | ee licensing | 4/6 | 4/5 | 7 | 20,705 | **FAIL** |
+| 22 | new-15-impact-aftersave | message chat | 1/6 | 1/4 | 3 | 8,248 | **FAIL** |
+| 23 | new-16-impact-streamer | streamer | 3/5 | 3/5 | 8 | 25,385 | **FAIL** |
+| 24 | new-17-slash-commands | slash commands | 4/6 | 2/2 | 8 | 37,084 | **FAIL** |
+| 25 | new-18-webhook | integrations | 3/6 | 3/3 | 5 | 22,958 | **FAIL** |
+| 26 | new-19-message-rendering | message rendering | 5/6 | 2/4 | 8 | 27,030 | **FAIL** |
+| 27 | new-20-proxify | core-services | 4/6 | 4/4 | 8 | 38,164 | **FAIL** |
+| 28 | new-21-impact-settings | settings | 1/5 | 2/3 | 2 | 5,422 | **FAIL** |
+| 29 | new-22-2fa | 2fa | 3/6 | 4/4 | 8 | 49,012 | **FAIL** |
+| 30 | new-23-omnichannel | omnichannel | 2/6 | 3/4 | 7 | 27,289 | **FAIL** |
+| 31 | new-24-autotranslate | autotranslate | 3/6 | 2/2 | 8 | 35,449 | **FAIL** |
+| 32 | new-25-search | search | 2/6 | 3/3 | 8 | 46,278 | **FAIL** |
+| 33 | new-26-team | team | 3/6 | 2/2 | 6 | 23,890 | **FAIL** |
+| 34 | new-27-video-conference | video conference | 2/6 | 1/2 | 8 | 40,751 | **FAIL** |
 
 ## 5. Per-Testcase Details
 
@@ -173,13 +173,14 @@
 
 | Step | Tool | Args | Tokens |
 |------|------|------|-------:|
-| 1 | search | `{"layer":"client","query":"sendMessage"}` | 243 |
-| 2 | graph | `{"layer":"client","direction":"down","query":"sendMessage"}` | 680 |
-| 3 | implement | `{"filename":"apps/meteor/app/lib/client/methods/sendMessage.ts","symbolName":"se` | 352 |
-| 4 | implement | `{"filename":"apps/meteor/client/lib/chats/flows/sendMessage.ts","symbolName":"se` | 625 |
-| 5 | graph | `{"query":"process","layer":"client","depth":3,"direction":"down"}` | 1191 |
-| 6 | search | `{"query":"callMethod","layer":"client"}` | 59 |
-| 7 | implement | `{"filename":"apps/meteor/client/providers/ServerProvider.tsx","symbolName":"call` | 99 |
+| 1 | search | `{"query":"sendMessage","layer":"client"}` | 243 |
+| 2 | graph | `{"layer":"client","query":"sendMessage","direction":"down"}` | 680 |
+| 3 | implement | `{"symbolName":"sendMessage","filename":"apps/meteor/client/lib/chats/flows/sendM` | 625 |
+| 4 | search | `{"query":"process","layer":"client"}` | 328 |
+| 5 | implement | `{"symbolName":"sendMessage","filename":"apps/meteor/app/lib/client/methods/sendM` | 352 |
+| 6 | search | `{"query":"sdk.call('sendMessage')","layer":"client"}` | 17 |
+| 7 | search | `{"query":"process","layer":"client/lib/chats/flows"}` | 619 |
+| 8 | graph | `{"layer":"client","direction":"down","query":"process"}` | 1561 |
 
 **File Hits:**
 
@@ -204,17 +205,33 @@
 
 **LLM Answer (truncated):**
 
-> The client-side message sending process in Rocket.Chat follows this call chain:
+> To send a message on the client side in Rocket.Chat, the process begins with the `sendMessage` function located at `apps/meteor/client/lib/chats/flows/sendMessage.ts`.
 > 
-> **Entry** → **Step 1** → **Step 2** → **Final DDP Call**
+> Here's a breakdown of the client-side message sending flow:
 > 
-> 1.  **`sendMessage`** (`apps/meteor/client/lib/chats/flows/sendMessage.ts`): This function acts as the primary entry point for sending messages on the client. It handles preliminary logic such as checking room subscriptions, joining rooms if necessary, and composing the message object (including text, quoted messages, and attachments).
+> 1.  **`sendMessage` (client-side entry point):**
+>     *   **File:** `apps/meteor/client/lib/chats/flows/sendMessage.ts`
+>     *   This function is responsible for orchestrating the client-side message sending. It performs initial checks, such as verifying if the user is subscribed to the room and joining the room if necessary.
+>     *   It also handles message preparation, including trimming the text, closing unclosed code blocks, and retrieving any associated file uploads or quoted messages.
+>     *   If there's text, files, or an edited message, it calls `chat.data.composeMessage` to construct the message object.
+>     *   Crucially, it then calls the `process` function (within the same file) to handle further message processing, including potential slash commands, message editing, or uploads.
+>     *   In the case of an edited message, it also includes logic to preserve attachments and files for encrypted messages.
 > 
-> 2.  **`process`** (within `apps/meteor/client/lib/chats/flows/sendMessage.ts`): After composing the message, the `sendMessage` function calls an internal `process` function. This `process` function further prepares the message for transmission and eventually triggers the DDP (Distributed Data Protocol) call to the server.
+> 2.  **`process` (within `sendMessage` flow):**
+>     *   **File:** `apps/meteor/client/lib/chats/flows/sendMessage.ts`
+>     *   This `process` function, which is called by the `sendMessage` function, is where the message is ultimately sent to the server.
+>     *   Based on the `graph` output, the `process` function eventually calls `MinimalDDPClient.ts`.
+>     *   Within this `process` function, `callMethod` from `Client.ts` is invoked, which in turn uses `MinimalDDPClient.ts` to make the actual DDP (Distributed Data Protocol) method call to the server.
 > 
-> 3.  **`callMethod`** (`apps/meteor/client/providers/ServerProvider.tsx`): The `process` function (or a function called by it) eventually invokes `callMethod`. This `callMethod` serves as a wrapper that directly calls the Meteor framework's asynchronous method invocation.
+> 3.  **DDP Method Dispatch via `MinimalDDPClient.ts`:**
+>     *   The `MinimalDDPClient.ts` (as indicated by the graph output) is responsible for handling the DDP protocol over WebSockets. This is the mechanism by which the client communicates with the server.
+>     *   The client calls `sdk.call('sendMessage')` (or a similar DDP method, as suggested by the `search` output's "DDP Method Dispatch" pattern). The `sendMessage` method on the server is then responsible for handling the message and persisting it.
 > 
-> 4.  **`Meteor.callAsync`**: This is the underlying Meteor DDP function that transmits the message data from the client to the Rocket.Chat server via a WebSocket connection. It handles the network communication and method dispatch to the server-side Meteor method.
+> **Call Chain:**
+> 
+> `apps/meteor/client/lib/chats/flows/sendMessage.ts` (`sendMessage` function) → `apps/meteor/client/lib/chats/flows/sendMessage.ts` (`process` function) → `MinimalDDPClient.ts` (via `call` from `MinimalDDPClient.ts` within `callMethod` of `Client.ts`) → DDP protocol over WebSocket to the server's `Meteor.methods({ sendMessage })` handler.
+> 
+> Therefore, the client-side journey of a message starts in `apps/meteor/client/lib/chats/flows/sendMessage.ts`, which prepares the message and then uses the DDP client to send it to the server.
 
 **Root Cause Analysis:**
 
@@ -241,12 +258,13 @@
 | Step | Tool | Args | Tokens |
 |------|------|------|-------:|
 | 1 | search | `{"query":"sendMessage","layer":"server"}` | 411 |
-| 2 | graph | `{"layer":"server","direction":"down","query":"sendMessage"}` | 637 |
-| 3 | graph | `{"query":"sendMessage","direction":"down","layer":"server","depth":2}` | 335 |
-| 4 | implement | `{"symbolName":"sendMessage","filename":"apps/meteor/app/lib/server/methods/sendM` | 352 |
-| 5 | implement | `{"filename":"apps/meteor/app/lib/server/functions/sendMessage.ts","symbolName":"` | 621 |
-| 6 | graph | `{"direction":"down","layer":"server","depth":1,"query":"sendMessage"}` | 174 |
-| 7 | graph | `{"direction":"down","layer":"server","filename":"apps/meteor/app/lib/server/func` | 637 |
+| 2 | graph | `{"layer":"server","query":"sendMessage","filename":"apps/meteor/app/lib/server/f` | 637 |
+| 3 | graph | `{"query":"sendMessage","direction":"down","filename":"apps/meteor/app/lib/server` | 637 |
+| 4 | implement | `{"filename":"apps/meteor/app/lib/server/methods/sendMessage.ts","symbolName":"se` | 352 |
+| 5 | search | `{"layer":"server","query":"Meteor.methods sendMessage"}` | 18 |
+| 6 | implement | `{"filename":"apps/meteor/server/services/messages/service.ts","symbolName":"send` | 461 |
+| 7 | implement | `{"filename":"apps/meteor/server/services/messages/service.ts","symbolName":""}` | 8 |
+| 8 | implement | `{"filename":"apps/meteor/app/lib/server/functions/sendMessage.ts","symbolName":"` | 621 |
 
 **File Hits:**
 
@@ -269,37 +287,43 @@
 
 **LLM Answer (truncated):**
 
-> The server-side message sending process in Rocket.Chat begins with a client-side DDP method call, which is then handled by a server-side Meteor method. The core logic for processing and persisting the message resides in `apps/meteor/app/lib/server/functions/sendMessage.ts`.
+> A message is sent on the Rocket.Chat server-side through the `sendMessage` function located in `apps/meteor/app/lib/server/functions/sendMessage.ts`.
 > 
-> Here's the call chain for how a message is sent on the server side:
+> Here's a breakdown of the process:
 > 
 > **Call Chain:**
-> Entry Point (Client Call) → `apps/meteor/app/lib/server/methods/sendMessage.ts` (Meteor Method Handler - implied) → `apps/meteor/app/lib/server/functions/sendMessage.ts` → Validation/Preparation → Apps Integration Hooks → Database Persistence (`Messages.insertOne`/`Messages.updateOne`) → Post-Save Hooks → Real-time Notification
 > 
-> **Detailed Steps:**
+> 1.  **Entry Point:** The `sendMessage` function in `apps/meteor/app/lib/server/functions/sendMessage.ts` serves as a core entry point for sending messages. This function is likely called by various server-side processes or DDP methods invoked from the client.
 > 
-> 1.  **Client Initiates Message Send:** A client application (e.g., web UI, mobile app) calls a Meteor method, typically named `sendMessage`. This method call is handled by the DDP (Distributed Data Protocol) over a WebSocket connection.
+> 2.  **Message Validation and Preparation:**
+>     *   The function first validates the `user`, `message`, and `room._id` parameters.
+>     *   It then calls `validateMessage` to further validate the message.
+>     *   `prepareMessageObject` is called to prepare the message object for storage.
 > 
-> 2.  **Server Method Handler:** The server-side Meteor method, likely defined in `apps/meteor/app/lib/server/methods/sendMessage.ts`, receives the DDP call. This method acts as an entry point and delegates the actual message processing to the core function.
+> 3.  **Read Receipts:** If `Message_Read_Receipt_Enabled` is active in the settings, the message's `unread` property is set to `true`.
 > 
-> 3.  **Core Message Processing (`sendMessage`)**:
->     *   **File:** `apps/meteor/app/lib/server/functions/sendMessage.ts`
->     *   This function performs the central message handling:
->         *   **Validation:** It first calls `validateMessage` to ensure the message, room, and user are valid.
->         *   **Preparation:** `prepareMessageObject` is invoked to format the message object with necessary server-side data.
->         *   **Apps Integration (Pre-Send Hooks):** Rocket.Chat Apps can intercept the message via several event triggers:
->             *   `AppEvents.IPreMessageSentPrevent`: Allows apps to prevent the message from being sent.
->             *   `AppEvents.IPreMessageSentExtend`: Allows apps to extend the message object.
->             *   `AppEvents.IPreMessageSentModify`: Allows apps to modify the message content.
->         *   **Before Save Hook:** `Message.beforeSave` is executed to perform any final processing or transformations before the message is written to the database.
->         *   **Database Persistence:**
->             *   If the message has an `_id` and the `upsert` option is true, `Messages.updateOne` is called to update an existing message in the `Messages` MongoDB collection.
->             *   Otherwise, for a new message, `Messages.insertOne` is called to insert it into the `Messages` collection.
->         *   **Apps Integration (Post-Send Hooks):** After saving, Apps are notified via `AppEvents.IPostSystemMessageSent` (for system messages) or `AppEvents.IPostMessageSent` (for regular messages).
->         *   **After Save Hook:** `afterSaveMessage` is called to perform actions immediately after the message has been saved, such as broadcasting the message to subscribed clients.
->         *   **Real-time Notification:** Finally, `notifyOnRoomChangedById(message.rid)` is invoked. This function is critical for the real-time nature of Rocket.Chat, signaling to connected clients that the specified room has been updated, prompting them to fetch the new message.
+> 4.  **Rocket.Chat Apps Integration:**
+>     *   The system checks if Rocket.Chat Apps are loaded (`Apps.self?.isLoaded()`).
+>     *   If so, it triggers several events for message prevention (`AppEvents.IPreMessageSentPrevent`), modification (`AppEvents.IPreMessageSentModify`), and extension (`AppEvents.IPreMessageSentExtend`). This allows installed apps to interact with and potentially alter the message before it is sent.
+>     *   If an app prevents the message from being sent, the function returns early.
+>     *   Any modifications from apps are applied to the message, and the message is re-validated.
 > 
-> This comprehensive flow ensures message validation, extensibility through apps, robust database persistence, and immediate real-time updates to all relevant clients.
+> 5.  **Before Save Hook:** The `Message.beforeSave` hook is called, allowing further processing and modification of the message before it's persisted.
+> 
+> 6.  **Database Persistence:**
+>     *   If `message._id` exists and `upsert` is true, the message is updated in the `Messages` collection using `Messages.updateOne`.
+>     *   Otherwise, it checks if a message with the same `_id` already exists. If not, the message is inserted into the `Messages` collection using `Messages.insertOne`.
+> 
+> 7.  **Post-Save Events:**
+>     *   After the message is saved, if Rocket.Chat Apps are loaded, it triggers either `AppEvents.IPostSystemMessageSent` (for system messages) or `AppEvents.IPostMessageSent` (for regular messages).
+>     *   `afterSaveMessage` is called for any additional post-save processing.
+> 
+> 8.  **Notification:** `notifyOnRoomChangedById` is called to notify clients about changes in the room due to the new message.
+> 
+> **Key Files:**
+> 
+> *   `apps/meteor/app/lib/server/functions/sendMessage.ts`: Contains the core logic for sending a message on the server.
+> *   `apps/meteor/server/services/messages/service.ts`: Another file with a `sendMessage` symbol, likely a service-layer abstraction that might call the function in `app/lib/server/functions/sendMessage.ts` or have its own implementation for specific scenarios. (Further investigation with `graph(down)` on this file would clarify its role.)
 
 **Root Cause Analysis:**
 
@@ -321,72 +345,80 @@
 
 | Step | Tool | Args | Tokens |
 |------|------|------|-------:|
-| 1 | search | `{"query":"REST API endpoint","layer":"server"}` | 133 |
-| 2 | graph | `{"query":"ApiClass","direction":"down","layer":"server"}` | 12 |
-| 3 | implement | `{"filename":"apps/meteor/app/api/server/ApiClass.ts","symbolName":"ApiClass"}` | 15 |
-| 4 | graph | `{"layer":"server","direction":"down","query":"LivechatInquiriesEndpoints"}` | 232 |
-| 5 | graph | `{"direction":"up","layer":"server","query":"LivechatInquiriesEndpoints"}` | 241 |
-| 6 | implement | `{"filename":"apps/meteor/app/api/server/ApiClass.ts","symbolName":"ApiClass"}` | 15 |
-| 7 | search | `{"layer":"server","query":"API.v1.addRoute"}` | 419 |
-| 8 | graph | `{"direction":"down","query":"API.v1.addRoute","layer":"server"}` | 14 |
+| 1 | search | `{"layer":"server","query":"rest api endpoint"}` | 72 |
+| 2 | graph | `{"direction":"down","query":"LivechatInquiriesEndpoints","layer":"server"}` | 232 |
+| 3 | search | `{"layer":"server","query":"API.v1.addRoute"}` | 419 |
+| 4 | implement | `{"filename":"apps/meteor/app/api/server/v1/channels.ts","symbolName":"API.v1.add` | 44 |
+| 5 | search | `{"layer":"server","query":"createApi"}` | 215 |
+| 6 | implement | `{"symbolName":"createApi","filename":"apps/meteor/app/api/server/api.ts"}` | 104 |
+| 7 | implement | `{"filename":"apps/meteor/app/api/server/api.ts","symbolName":"APIClass"}` | 1578 |
 
 **File Hits:**
 
 | Expected File | Found? | Found Via |
 |---------------|--------|-----------|
-| `apps/meteor/app/api/server/api.ts` | YES | search (step 7) |
-| `apps/meteor/app/api/server/ApiClass.ts` | YES | search (step 1) |
+| `apps/meteor/app/api/server/api.ts` | YES | search (step 3) |
+| `apps/meteor/app/api/server/ApiClass.ts` | YES | implement (step 7) |
 | `apps/meteor/app/api/server/router.ts` | **NO** | - |
 | `apps/meteor/app/api/server/middlewares/authenticationHono.ts` | **NO** | - |
 | `apps/meteor/app/api/server/middlewares/permissions.ts` | **NO** | - |
-| `apps/meteor/app/api/server/v1/chat.ts` | YES | search (step 7) |
+| `apps/meteor/app/api/server/v1/chat.ts` | YES | search (step 3) |
 
 **Symbol Coverage:**
 
 | Symbol | In Tool Results? | In LLM Answer? |
 |--------|-----------------|----------------|
 | `addRoute` | YES | YES |
-| `APIClass` | YES | **NO** |
-| `createApi` | YES | **NO** |
+| `APIClass` | YES | YES |
+| `createApi` | YES | YES |
 | `executeSendMessage` | **NO** | **NO** |
 
 **LLM Answer (truncated):**
 
-> To create a new REST API endpoint in Rocket.Chat, you primarily use the `API.v1` instance and its `addRoute` method, or its more modern `.get()`, `.post()`, `.put()`, or `.delete()` methods.
+> To create a new REST API endpoint in Rocket.Chat, you primarily use the `API.v1.addRoute()` method or the more specific `API.v1.get()`, `API.v1.post()`, `API.v1.put()`, and `API.v1.delete()` methods. These methods are available on the `API.v1` instance, which is an instance of `APIClass`.
 > 
-> **Entry → Step 1 → Step 2 → Final**
+> Here's the call chain and relevant files:
 > 
-> 1.  **Entry Point:** The primary way to register new routes is through `API.v1.addRoute()`.
-> 2.  **Implementation:** The `API.v1` instance is derived from `ApiClass` (likely defined in `apps/meteor/app/api/server/ApiClass.ts`). You would call `API.v1.addRoute()` within your server-side API definition files.
-> 3.  **Examples:** You can find numerous examples of how to define endpoints using `API.v1.addRoute()` in files like:
+> **Call Chain:**
+> 
+> `createApi()` → `APIClass` → `addRoute()`/`get()`/`post()`/`put()`/`delete()`
+> 
+> **Detailed Steps and Key Files:**
+> 
+> 1.  **API Instance Creation:** The `API.v1` instance is created using the `createApi` function, typically found in:
+>     *   `apps/meteor/app/api/server/api.ts`
+> 
+>     This function returns an instance of `APIClass`.
+> 
+> 2.  **API Class Definition:** The `APIClass` itself, which defines the `addRoute`, `get`, `post`, `put`, and `delete` methods, is defined in:
+>     *   `apps/meteor/app/api/server/ApiClass.ts`
+> 
+> 3.  **Defining the Endpoint:** You would then use the `addRoute` method or one of the HTTP-verb-specific methods (`get`, `post`, `put`, `delete`) on the `API.v1` object to define your endpoint. For example, to add a GET route, you might use:
+> 
+>     
+> ```typescript
+>     API.v1.addRoute('my-new-endpoint', { authRequired: true }, {
+>       get() {
+>         return API.v1.success({ message: 'Hello from your new endpoint!' });
+>       },
+>     });
+>     ```
+> 
+>     or, for a more modern approach:
+>     
+> ```typescript
+>     API.v1.get('my-new-endpoint', { authRequired: true }, function() {
+>       return API.v1.success({ message: 'Hello from your new endpoint!' });
+>     });
+>     ```
+> 
+> 
+>     Examples of existing endpoints can be found in various files, such as:
 >     *   `apps/meteor/app/api/server/v1/channels.ts`
 >     *   `apps/meteor/app/api/server/v1/users.ts`
 >     *   `apps/meteor/app/api/server/v1/groups.ts`
->     *   `apps/meteor/app/livechat/server/api/v1/contact.ts`
 > 
-> **To create a new endpoint:**
-> 
-> 1.  You would typically create a new file (e.g., `apps/meteor/app/api/server/v1/myNewEndpoint.ts`) or extend an existing one.
-> 2.  Inside this file, you would call `API.v1.addRoute()` and provide the route path, HTTP method(s), and a handler function. Alternatively, you can use the more specific `API.v1.get()`, `API.v1.post()`, etc., methods.
-> 
-> **Example Structure (conceptual based on search results):**
-> 
-> 
-> ```typescript
-> // apps/meteor/app/api/server/v1/myNewEndpoint.ts
-> 
-> API.v1.addRoute('my-new-endpoint', { authRequired: true }, {
->   get() {
->     // Handle GET request
->     return API.v1.success({ message: 'This is my new GET endpoint!' });
->   },
->   post() {
->     // Handle POST request
->     const { someData } = this.bodyParams; // Access request body parameters
->     return API.v1.success({ received: someData });
->   },
-> });
-> ```
+> In summary, you define new REST API endpoints by calling `API.v1.addRoute()` (or the corresponding HTTP verb methods) within your server-side code, typically in files under `apps/meteor/app/api/server/v1/`. The `APIClass` in `apps/meteor/app/api/server/ApiClass.ts` provides the methods for registering these routes.
 
 **Root Cause Analysis:**
 
@@ -408,21 +440,21 @@
 
 | Step | Tool | Args | Tokens |
 |------|------|------|-------:|
-| 1 | search | `{"query":"Model","layer":"packages"}` | 518 |
-| 2 | implement | `{"filename":"packages/models/src/models/Users.ts","symbolName":"Users"}` | 53 |
-| 3 | implement | `{"filename":"packages/models/src/models/WorkspaceCredentials.ts","symbolName":"W` | 72 |
-| 4 | search | `{"layer":"packages","query":"BaseRaw"}` | 211 |
-| 5 | implement | `{"filename":"packages/models/src/models/BaseRaw.ts","symbolName":"BaseRaw"}` | 1137 |
-| 6 | graph | `{"edgeTypes":["extends"],"query":"BaseRaw","mode":"tree","direction":"up"}` | 201 |
-| 7 | graph | `{"depth":2,"mode":"tree","direction":"up","query":"BaseRaw"}` | 537 |
-| 8 | implement | `{"filename":"packages/models/src/models/Reports.ts","symbolName":"Reports"}` | 55 |
+| 1 | search | `{"query":"model"}` | 520 |
+| 2 | implement | `{"symbolName":"Users","filename":"packages/models/src/models/Users.ts"}` | 53 |
+| 3 | search | `{"query":"BaseRaw"}` | 211 |
+| 4 | implement | `{"symbolName":"BaseRaw","filename":"packages/models/src/models/BaseRaw.ts"}` | 1137 |
+| 5 | implement | `{"filename":"packages/models/src/models/WorkspaceCredentials.ts","symbolName":"W` | 72 |
+| 6 | search | `{"query":"registerModel","layer":"server"}` | 214 |
+| 7 | graph | `{"query":"registerModel","layer":"server","direction":"up"}` | 199 |
+| 8 | graph | `{"layer":"server","direction":"up","query":"registerServiceModels"}` | 48 |
 
 **File Hits:**
 
 | Expected File | Found? | Found Via |
 |---------------|--------|-----------|
 | `packages/models/src/models/Messages.ts` | **NO** | - |
-| `packages/models/src/models/BaseRaw.ts` | YES | search (step 4) |
+| `packages/models/src/models/BaseRaw.ts` | YES | search (step 3) |
 | `apps/meteor/server/models.ts` | **NO** | - |
 | `packages/core-typings/src/IMessage/IMessage.ts` | **NO** | - |
 | `packages/model-typings/src/models/IMessagesModel.ts` | **NO** | - |
@@ -440,37 +472,23 @@
 
 > To create a new database model in Rocket.Chat, follow these steps:
 > 
-> 1.  **Define Document Interface**:
->     *   Create an interface for your document in `packages/core-typings`, ensuring it extends `IRocketChatRecord`.
+> **Call Chain:**
 > 
-> 2.  **Define Model Interface**:
->     *   Create an interface for your model in `packages/model-typings`, extending `IBaseModel<T>`, where `T` is your document interface.
+> 1.  **Define Document Interface:** Start by defining the document interface in `core-typings`. This interface should extend `IRocketChatRecord`.
+> 2.  **Define Model Interface:** Next, define the model interface in `model-typings`. This interface should extend `IBaseModel<T>`.
+> 3.  **Implement Model Class:** Implement a new class in the `packages/models` directory. This class must extend `BaseRaw<T>`, which is found in `packages/models/src/models/BaseRaw.ts`. The `BaseRaw` class provides methods for MongoDB collection operations like `find`, `findOne`, `insertOne`, `updateOne`, and `deleteOne`, and an override for `modelIndexes()` to define MongoDB indexes.
+> 4.  **Register Model:** Finally, register the new model during server startup using `registerModel`, which is part of the `proxify` mechanism located in `packages/models/src/proxify.ts`. The `registerModel` function is called by `registerServiceModels` in `packages/models/src/index.ts`.
 > 
-> 3.  **Implement Model Class**:
->     *   In the `packages/models` directory, create a new file for your model.
->     *   Implement a class that extends `BaseRaw<T>`, where `T` is your document interface. This `BaseRaw` class (located at `packages/models/src/models/BaseRaw.ts`) provides a wrapper for MongoDB collection operations like `find`, `findOne`, `insertOne`, `updateOne`, `deleteOne`, etc.
->     *   Override the `modelIndexes()` method in your new model class to define any necessary MongoDB indexes.
+> **Key Files and Symbols:**
 > 
-> 4.  **Register Model**:
->     *   Register your new model via `registerModel` during the server startup process.
+> *   `packages/models/src/models/BaseRaw.ts`: The base class for all database models, providing core MongoDB operations.
+> *   `packages/models/src/proxify.ts`: Contains the `registerModel` function used for registering new models.
+> *   `packages/models/src/index.ts`: The entry point for registering service models via `registerServiceModels`.
 > 
-> 5.  **Access Model**:
->     *   Models are accessed through proxified imports, for example, `import { Messages } from '@rocket.chat/models'`. This routing is handled via `LocalBroker`. You can see examples of this in `packages/models/src/index.ts` where models like `Users`, `WorkspaceCredentials`, and `Reports` are proxified.
+> **Example Model Usage (from existing models):**
 > 
-> **Example File Paths and Call Chain:**
-> 
-> *   **Base Model:** `packages/models/src/models/BaseRaw.ts`
-> *   **Example Model Implementation (Proxified):**
->     *   `packages/models/src/index.ts` (proxifies the model)
->     *   `packages/models/src/models/Users.ts` (actual model file)
->     *   `packages/models/src/models/WorkspaceCredentials.ts` (actual model file)
->     *   `packages/models/src/models/Reports.ts` (actual model file)
-> 
-> **Call Chain (Illustrative for how existing models use BaseRaw):**
-> 
-> `SomeModel` (e.g., `UsersSessions`, `Subscriptions`, `Reports`) → `extends BaseRaw` (in `packages/models/src/models/BaseRaw.ts`)
-> 
-> For instance, `UsersSessions` (defined in `packages/models/src/models/UsersSessions.ts`) extends `BaseRaw`, and its methods like `clearConnectionsFromInstanceId`, `updateConnectionStatusById`, etc., in turn, are called by functions in `ee/packages/presence/src/Presence.ts`. Similarly, `Subscriptions` (in `packages/models/src/models/Subscriptions.ts`) extends `BaseRaw`, and its method `setAsReadByRoomIdAndUserId` is called by `readMessages` in `apps/meteor/server/lib/readMessages.ts`.
+> Models like `Users` and `WorkspaceCredentials` are accessed via proxified imports, for instance:
+> `import { Users } from '@rocket.chat/models'`. These are defined in `packages/models/src/index.ts` as `export const Users = proxify<IUsersModel>('IUsersModel');` and `export const WorkspaceCredentials = proxify<IWorkspaceCredentialsModel>('IWorkspaceCredentialsModel');`.
 
 **Root Cause Analysis:**
 
@@ -494,13 +512,13 @@
 | Step | Tool | Args | Tokens |
 |------|------|------|-------:|
 | 1 | search | `{"query":"Users model"}` | 203 |
-| 2 | search | `{"layer":"server","query":"Users"}` | 598 |
-| 3 | search | `{"query":"UsersRaw","layer":"packages"}` | 212 |
-| 4 | graph | `{"depth":2,"query":"UsersRaw","direction":"down"}` | 191 |
-| 5 | graph | `{"query":"UsersRaw","depth":3,"direction":"up"}` | 245 |
-| 6 | search | `{"query":"Users.findOne"}` | 415 |
-| 7 | implement | `{"symbolName":"Users.findOneById","filename":"apps/meteor/app/api/server/v1/user` | 46 |
-| 8 | implement | `{"symbolName":"UsersRaw","filename":"packages/models/src/models/Users.ts"}` | 6775 |
+| 2 | graph | `{"query":"IUsersModel","direction":"down"}` | 38 |
+| 3 | search | `{"query":"Users","layer":"packages"}` | 569 |
+| 4 | graph | `{"filename":"packages/models/src/index.ts","direction":"down","depth":2,"query":` | 295 |
+| 5 | implement | `{"symbolName":"Users","filename":"packages/models/src/index.ts"}` | 53 |
+| 6 | search | `{"layer":"packages","query":"UsersRaw"}` | 212 |
+| 7 | implement | `{"symbolName":"UsersRaw","filename":"packages/models/src/models/Users.ts"}` | 6775 |
+| 8 | implement | `{"filename":"packages/models/src/models/Users.ts","symbolName":"UsersRaw.findUse` | 47 |
 
 **File Hits:**
 
@@ -522,43 +540,41 @@
 
 **LLM Answer (truncated):**
 
-> In Rocket.Chat, database models are used to query data by providing an interface to interact with the underlying MongoDB collections. These models inherit methods for common database operations like `find`, `findOne`, `insertOne`, `updateOne`, and `deleteOne` from a base class (`BaseRaw`).
+> **Example - Querying Users by Role:**
 > 
-> Here's how it works:
-> 
-> **Call Chain:**
-> 
-> 1.  **Model Definition:** `packages/models/src/models/Users.ts` defines the `UsersRaw` class, which serves as the concrete implementation for the `Users` model. This class extends `BaseRaw<IUser, DefaultFields<IUser>>` and implements `IUsersModel`, providing a range of methods for querying and manipulating user data.
-> 2.  **Model Usage (Example):** `apps/meteor/app/api/server/v1/users.ts` demonstrates how a server-side API endpoint utilizes the `Users` model to retrieve user data.
-> 
-> **How to Query Data:**
-> 
-> You query data by importing the desired model (e.g., `Users`) and calling its methods. The methods often accept a query object (similar to MongoDB query syntax) and an optional `options` object for further control (e.g., `projection` to specify returned fields).
-> 
-> **Example:**
-> 
-> To query a user by their ID, you would use a method like `findOneById`. Below is an example from `apps/meteor/app/api/server/v1/users.ts`:
+> The `findUsersInRoles` method (defined in `packages/models/src/models/Users.ts`) is a specialized query that internally calls the generic `find` method from `BaseRaw`.
 > 
 > 
 > ```typescript
-> const user = await Users.findOneById(this.bodyParams.userId, { projection: fields });
+> // packages/models/src/models/Users.ts
+> class UsersRaw extends BaseRaw<IUser, DefaultFields<IUser>> implements IUsersModel {
+>   // ... other methods
+>   findUsersInRoles: IUsersModel['findUsersInRoles'] = (roles: IRole['_id'][] | IRole['_id'], _scope?: null, options?: any) => {
+> 		roles = ([] as string[]).concat(roles);
+> 
+> 		const query = {
+> 			roles: { $in: roles },
+> 		};
+> 
+> 		return this.find(query, options); // <--- Delegation to BaseRaw.find()
+> 	};
+>   // ... other methods
+> }
 > ```
 > 
 > 
 > In this example:
-> *   `Users` is the imported model.
-> *   `findOneById` is a method provided by the `Users` model (inherited or specifically implemented) to find a single user by their `_id`.
-> *   `this.bodyParams.userId` is the ID of the user being sought.
-> *   `{ projection: fields }` is an optional `options` object. The `projection` field specifies which fields of the user document should be returned.
+> 1.  `UsersRaw` is the database model for users.
+> 2.  `findUsersInRoles` is a method that takes roles and optional query options.
+> 3.  It constructs a MongoDB query (`{ roles: { $in: roles } }`).
+> 4.  It then calls `this.find(query, options)`, which is the `find` method inherited from `BaseRaw`, to execute the database query and return a cursor to the matching user documents.
 > 
-> Other common query methods available on the `Users` model (as seen in `packages/models/src/models/Users.ts`) include:
+> **Summary:**
 > 
-> *   `find(query, options)`: To find multiple documents matching a query.
-> *   `findOneByUsername(username, options)`: To find a single user by their username.
-> *   `findByUsernames(usernames, options)`: To find multiple users by a list of usernames.
-> *   `count(query)`: To count documents matching a query.
-> 
-> By using these methods, developers can interact with the database in a structured and type-safe manner within the Rocket.Chat codebase.
+> To query data using a database model in Rocket.Chat:
+> 1.  Identify the relevant model class (e.g., `UsersRaw`) in `packages/models/src/models/Users.ts`.
+> 2.  Utilize the provided high-level query methods on the model instance (e.g., `Users.findOneByUsername`, `Users.findUsersInRoles`).
+> 3.  These methods, in turn, leverage the `find` and `findOne` operations inherited from `BaseRaw` to interact with the MongoDB collection.
 
 **Root Cause Analysis:**
 
@@ -584,21 +600,19 @@
 
 | Step | Tool | Args | Tokens |
 |------|------|------|-------:|
-| 1 | search | `{"layer":"server","query":"service"}` | 600 |
-| 2 | search | `{"query":"ServiceClass"}` | 167 |
-| 3 | graph | `{"query":"ServiceClass","direction":"up"}` | 226 |
-| 4 | search | `{"query":"RoomService"}` | 84 |
-| 5 | implement | `{"symbolName":"RoomService","filename":"apps/meteor/server/services/room/service` | 1000 |
-| 6 | search | `{"query":"ServiceClassInternal"}` | 173 |
-| 7 | implement | `{"filename":"packages/core-services/src/types/ServiceClass.ts","symbolName":"Ser` | 74 |
-| 8 | implement | `{"filename":"packages/core-services/src/types/ServiceClass.ts","symbolName":"Ser` | 399 |
+| 1 | search | `{"query":"service","layer":"server"}` | 600 |
+| 2 | search | `{"query":"ServiceClass","layer":"server"}` | 167 |
+| 3 | search | `{"layer":"server","query":"RoomService"}` | 84 |
+| 4 | implement | `{"symbolName":"RoomService","filename":"apps/meteor/server/services/room/service` | 1000 |
+| 5 | graph | `{"direction":"up","layer":"server","query":"RoomService"}` | 47 |
+| 6 | implement | `{"symbolName":"registerServices","filename":"apps/meteor/server/services/startup` | 529 |
 
 **File Hits:**
 
 | Expected File | Found? | Found Via |
 |---------------|--------|-----------|
-| `apps/meteor/server/services/room/service.ts` | YES | search (step 4) |
-| `packages/core-services/src/types/IRoomService.ts` | YES | search (step 4) |
+| `apps/meteor/server/services/room/service.ts` | YES | search (step 3) |
+| `packages/core-services/src/types/IRoomService.ts` | YES | search (step 3) |
 | `packages/core-services/src/index.ts` | **NO** | - |
 | `apps/meteor/startRocketChat.ts` | **NO** | - |
 | `apps/meteor/app/lib/server/functions/createRoom.ts` | **NO** | - |
@@ -615,63 +629,59 @@
 
 **LLM Answer (truncated):**
 
-> To add a new service in Rocket.Chat, you primarily need to create a new class that extends `ServiceClassInternal` or `ServiceClass`.
+> To add a new service in Rocket.Chat, you primarily need to define a service class and then register it. The architecture relies on a service bus pattern for inter-service communication.
 > 
-> The core principles for adding a new service are:
+> Here's the step-by-step process:
 > 
-> 1.  **Service Class Definition**:
->     *   New services extend `ServiceClassInternal` (for monolith services) or `ServiceClass`.
->     *   You define the service's methods within this class.
+> 1.  **Define Your Service Class:**
+>     *   Create a new TypeScript file for your service, typically under `apps/meteor/server/services/your-service-name/service.ts`.
+>     *   Your service class must extend `ServiceClassInternal` (for monolith applications) or `ServiceClass` (for microservices).
+>     *   Define a `protected name` property within your class. This name will be used for service identification and method calls.
+>     *   Implement your service methods within this class.
 > 
-> 2.  **Service Name**:
->     *   Each service needs a unique `name` property. For example, `RoomService` has `protected name = 'room';`.
-> 
-> 3.  **No Direct Imports Between Services**:
->     *   Services should not directly import and call methods from other services. Instead, they interact via a messaging bus using `proxify('IServiceName')` which then uses `api.call('namespace.method')` and `LocalBroker.call()`.
->     *   The `LocalBroker` stores methods as `'serviceName.methodName'` and binds them to the corresponding `ServiceClass` method.
-> 
-> **Example Walkthrough: `RoomService`**
-> 
-> 1.  **`RoomService` Definition**: The `RoomService` is defined in `apps/meteor/server/services/room/service.ts`.
+>     **Example (based on `RoomService`):**
+>     `apps/meteor/server/services/room/service.ts`
 >     
 > ```typescript
 >     class RoomService extends ServiceClassInternal implements IRoomService {
 >       protected name = 'room';
->       // ... service methods ...
+>       async yourServiceMethod(arg1: string): Promise<any> {
+>         // ... implementation ...
+>       }
+>       // ... other service methods ...
 >     }
 >     ```
 > 
->     This shows that `RoomService` extends `ServiceClassInternal` and implements the `IRoomService` interface (defined in `packages/core-services/src/types/IRoomService.ts`).
+>     This structure is based on the `RoomService` class found in `apps/meteor/server/services/room/service.ts`, which extends `ServiceClassInternal` as defined in `packages/core-services/src/types/ServiceClass.ts`.
 > 
-> 2.  **`ServiceClassInternal`**: This class is defined in `packages/core-services/src/types/ServiceClass.ts`.
+> 2.  **Register Your Service:**
+>     *   Instantiate your service class.
+>     *   Call `api.registerService()` with your instantiated service. This registration typically happens in a server startup file.
+> 
+>     **Example (based on `registerServices`):**
+>     `apps/meteor/server/services/startup.ts`
 >     
 > ```typescript
->     class ServiceClassInternal extends ServiceClass {
->       protected override internal = true;
->     }
+>     export const registerServices = async (): Promise<void> => {
+>         // ... other service registrations ...
+>         api.registerService(new YourNewService()); // Register your service here
+>         api.registerService(new RoomService()); // Example of existing registration
+>         // ...
+>     };
 >     ```
 > 
->     It extends `ServiceClass` and sets an `internal` flag to `true`.
+>     The `RoomService` is registered in `apps/meteor/server/services/startup.ts` within the `registerServices` function.
 > 
-> 3.  **`ServiceClass`**: This is the base class for all services, defined in `packages/core-services/src/types/ServiceClass.ts`. It provides fundamental functionalities for services, such as:
->     *   `name`: An abstract property to define the service's name.
->     *   `events`: An `EventEmitter` for handling events.
->     *   `settings`: An `EventEmitter` for handling setting changes.
->     *   `setApi(api: IApiService)`: To set the API interface for inter-service communication.
->     *   `onEvent` and `emit`: Methods for event handling.
->     *   `onSettingChanged`: For reacting to setting changes.
->     *   Lifecycle hooks: `created()`, `started()`, `stopped()`.
-> 
-> Therefore, to add a new service, you would:
-> 
-> *   Create a new TypeScript file (e.g., `apps/meteor/server/services/your-new-service/service.ts`).
-> *   Define a class in this file that extends `ServiceClassInternal` (or `ServiceClass` if it's not a monolith-specific internal service).
-> *   Implement your service's logic as methods within this class.
-> *   Ensure proper naming and follow the inter-service communication pattern (using `proxify` and `api.call`) rather than direct imports.
+> 3.  **Calling Your Service (Inter-service Communication):**
+>     Services do not call each other via direct imports. Instead, they use a proxy mechanism:
+>     *   `proxify('IServiceName')` creates a proxy for the service.
+>     *   `api.call('namespace.method')` is then used to invoke methods on the registered service.
+>     *   The `LocalBroker` (which stores methods as `'serviceName.methodName'`) handles the actual routing to the bound `ServiceClass` method.
 > 
 > **Call Chain:**
-> 
-> `YourNewServiceClass` → `ServiceClassInternal` → `ServiceClass`
+> `apps/meteor/server/services/startup.ts` (`registerServices` function)
+>   → `api.registerService()`
+>     → `apps/meteor/server/services/room/service.ts` (instantiation of `RoomService` or your new service)
 
 **Root Cause Analysis:**
 
@@ -693,12 +703,10 @@
 
 | Step | Tool | Args | Tokens |
 |------|------|------|-------:|
-| 1 | search | `{"query":"package.json","layer":"packages"}` | 77 |
-| 2 | search | `{"layer":"packages","query":"ui-kit"}` | 370 |
-| 3 | search | `{"query":"packages/ui-kit/package.json"}` | 18 |
-| 4 | implement | `{"symbolName":"package.json","filename":"packages/ui-kit/package.json"}` | 40 |
-| 5 | search | `{"query":"packages/ui-kit/src/index.ts"}` | 59 |
-| 6 | implement | `{"filename":"packages/ui-kit/src/index.ts","symbolName":"index"}` | 15 |
+| 1 | search | `{"query":"create package"}` | 15 |
+| 2 | search | `{"query":"package","layer":"packages"}` | 556 |
+| 3 | search | `{"query":"lerna.json"}` | 14 |
+| 4 | search | `{"layer":"server","query":"create-package"}` | 15 |
 
 **File Hits:**
 
@@ -718,60 +726,90 @@
 
 **LLM Answer (truncated):**
 
-> To create a new package in the Rocket.Chat monorepo, you generally follow these steps, inspired by the structure of existing packages like `packages/ui-kit/`:
+> Creating a new package in the Rocket.Chat monorepo typically involves a manual process, as no dedicated script for "create package" was found within the codebase via search.
 > 
-> 1.  **Create the Package Directory**:
->     Create a new folder for your package inside the `packages/` directory. For example, `packages/my-new-package/`.
+> Here are the general steps to create a new package:
+> 
+> 1.  **Create a New Directory**:
+>     *   Navigate to the `packages/` directory at the root of the monorepo.
+>     *   Create a new directory for your package (e.g., `packages/your-new-package`).
 > 
 > 2.  **Initialize `package.json`**:
->     Inside your new package directory (`packages/my-new-package/`), create a `package.json` file. This file defines your package's metadata, dependencies, and scripts.
+>     *   Inside your new package directory (`packages/your-new-package`), create a `package.json` file.
+>     *   Populate it with essential information such as `name`, `version`, `description`, `main` (entry point), and `scripts` (e.g., `build`, `test`).
 > 
->     *   **Essential fields**:
->         *   `name`: A unique name for your package (e.g., `@rocket.chat/my-new-package`).
->         *   `version`: An initial version number (e.g., `1.0.0`).
->         *   `main`, `module`, `types`: These specify the entry points for CommonJS, ES modules, and TypeScript declaration files, respectively (e.g., `"main": "lib/index.js"`, `"module": "src/index.ts"`, `"types": "src/index.ts"`).
->         *   `scripts`: Define commands for building, testing, linting, etc. (e.g., `"build": "tsc"`, `"test": "jest"`).
->         *   `dependencies`, `devDependencies`, `peerDependencies`: List any other packages your new package relies on.
->     *   **Example from existing packages (inferred)**:
->         *   `packages/ui-kit/package.json` would contain similar definitions for the `ui-kit` package.
+>     Example `package.json`:
+>     
+> ```json
+>     {
+>       "name": "@rocket.chat/your-new-package",
+>       "version": "1.0.0",
+>       "description": "A brief description of your new package",
+>       "main": "src/index.ts",
+>       "types": "src/index.ts",
+>       "scripts": {
+>         "build": "tsc",
+>         "start": "tsc --watch"
+>       },
+>       "dependencies": {
+>         // Add dependencies here
+>       },
+>       "devDependencies": {
+>         "@tsconfig/recommended": "1.0.1",
+>         "typescript": "4.9.5"
+>       },
+>       "publishConfig": {
+>         "access": "public"
+>       }
+>     }
+>     ```
 > 
-> 3.  **Configure TypeScript (`tsconfig.json`)**:
->     Add a `tsconfig.json` file to your package's root directory (`packages/my-new-package/tsconfig.json`). This configures TypeScript for your package. It often extends a base `tsconfig` from the monorepo to ensure consistency.
 > 
->     *   **Example from existing packages**:
->         *   `packages/ui-kit/tsconfig.json` defines the TypeScript compilation settings for the `ui-kit` package.
+> 3.  **Add `tsconfig.json` (for TypeScript packages)**:
+>     *   If your package uses TypeScript, create a `tsconfig.json` file in your new package directory.
+>     *   This file will configure the TypeScript compiler for your package.
 > 
-> 4.  **Create Source Code Directory (`src/`)**:
->     Create a `src/` directory within your package (`packages/my-new-package/src/`). This will house your package's source code.
+>     Example `tsconfig.json`:
+>     
+> ```json
+>     {
+>       "extends": "@tsconfig/recommended/tsconfig.json",
+>       "compilerOptions": {
+>         "rootDir": "./src",
+>         "outDir": "./dist",
+>         "declaration": true,
+>         "tsBuildInfoFile": "node_modules/.tsbuildinfo"
+>       },
+>       "include": ["src"],
+>       "references": [
+>         // Add references to other internal packages if needed
+>       ]
+>     }
+>     ```
 > 
-> 5.  **Define Main Entry Point (`src/index.ts`)**:
->     Inside the `src/` directory, create an `index.ts` file (`packages/my-new-package/src/index.ts`). This file serves as the main entry point for your package, exporting its public API (functions, classes, interfaces).
 > 
->     *   **Example from existing packages**:
->         *   `packages/ui-kit/src/index.ts` is the main entry point for the `ui-kit` package.
+> 4.  **Install Dependencies and Bootstrap**:
+>     *   After creating the directory and basic configuration files, run the monorepo's package manager command to install dependencies and link the new package. Rocket.Chat uses Lerna and Yarn Workspaces, so you would typically run:
+>         
+> ```bash
+>         yarn
+>         ```
 > 
-> 6.  **Add Testing Configuration (e.g., `jest.config.ts`)**:
->     If your package will have tests, include a testing configuration file, such as `jest.config.ts`, in the package's root (`packages/my-new-package/jest.config.ts`).
+>         or if using Lerna directly:
+>         
+> ```bash
+>         npx lerna bootstrap
+>         ```
 > 
->     *   **Example from existing packages**:
->         *   `packages/ui-kit/jest.config.ts` defines the Jest testing configuration for the `ui-kit` package.
+>     *   These commands will discover your new package, install its dependencies, and create symlinks for any local dependencies within the monorepo.
 > 
-> 7.  **Add Documentation (`README.md`)**:
->     It's good practice to include a `README.md` file in your package's root to describe its purpose, how to use it, and any other relevant information.
+> **Call Chain:**
+> The creation process is manual, involving direct interaction with the file system and running monorepo-level commands.
 > 
-> 8.  **Integrate with Monorepo Workspaces**:
->     Finally, you'll likely need to inform the monorepo's package manager (e.g., Yarn or npm workspaces) about your new package. This usually involves adding the path to your new package in the `workspaces` array within the root `package.json` of the monorepo.
-> 
-> **Call Chain (Inferred Structure):**
-> 
-> The process of creating a new package is not a direct code execution flow but rather a structural setup. The understanding is derived from observing the file structure of an existing package:
-> 
-> `packages/ui-kit/`
-> `  → packages/ui-kit/package.json` (defines the package)
-> `  → packages/ui-kit/tsconfig.json` (TypeScript configuration)
-> `  → packages/ui-kit/src/` (source code directory)
-> `    → packages/ui-kit/src/index.ts` (main entry point)
-> `  → packages/ui-kit/jest.config.ts` (testing configuration)
+> **Key Files/Paths:**
+> *   `packages/your-new-package/`: The directory for your new package.
+> *   `packages/your-new-package/package.json`: Defines the package's metadata and scripts.
+> *   `packages/your-new-package/tsconfig.json`: (For TypeScript) Configures TypeScript compilation.
 
 **Root Cause Analysis:**
 
@@ -791,68 +829,65 @@
 
 | Step | Tool | Args | Tokens |
 |------|------|------|-------:|
-| 1 | search | `{"query":"push notification","layer":"server"}` | 288 |
-| 2 | graph | `{"layer":"server","filename":"apps/meteor/app/push-notifications/server/lib/Push` | 231 |
+| 1 | search | `{"layer":"server","query":"sendNotification"}` | 273 |
+| 2 | graph | `{"query":"sendNotification","direction":"down","layer":"server"}` | 1054 |
 | 3 | search | `{"layer":"server","query":"PushNotification.send"}` | 267 |
-| 4 | graph | `{"direction":"down","filename":"apps/meteor/app/notification-queue/server/Notifi` | 15 |
-| 5 | implement | `{"filename":"apps/meteor/app/push-notifications/server/lib/PushNotification.ts",` | 272 |
-| 6 | implement | `{"filename":"apps/meteor/app/push-notifications/server/lib/PushNotification.ts",` | 167 |
-| 7 | search | `{"layer":"server","query":"Push.send"}` | 141 |
-| 8 | implement | `{"filename":"apps/meteor/app/push/server/push.ts","symbolName":"Push.send"}` | 42 |
+| 4 | graph | `{"direction":"down","query":"PushNotification.send","layer":"server"}` | 15 |
+| 5 | search | `{"layer":"server","query":"PushClass"}` | 241 |
+| 6 | graph | `{"query":"PushClass","layer":"server","direction":"down"}` | 220 |
+| 7 | implement | `{"symbolName":"PushClass","filename":"apps/meteor/app/push/server/push.ts"}` | 565 |
+| 8 | implement | `{"filename":"apps/meteor/app/push/server/push.ts","symbolName":"PushClass.send"}` | 295 |
 
 **File Hits:**
 
 | Expected File | Found? | Found Via |
 |---------------|--------|-----------|
-| `apps/meteor/app/lib/server/lib/sendNotificationsOnMessage.ts` | **NO** | - |
+| `apps/meteor/app/lib/server/lib/sendNotificationsOnMessage.ts` | YES | search (step 1) |
 | `apps/meteor/app/lib/server/functions/notifications/mobile.js` | **NO** | - |
 | `apps/meteor/app/notification-queue/server/NotificationQueue.ts` | YES | search (step 3) |
 | `apps/meteor/app/push/server/push.ts` | YES | search (step 1) |
 | `apps/meteor/app/push/server/apn.ts` | **NO** | - |
-| `apps/meteor/app/push/server/fcm.ts` | YES | search (step 1) |
+| `apps/meteor/app/push/server/fcm.ts` | **NO** | - |
 
 **Symbol Coverage:**
 
 | Symbol | In Tool Results? | In LLM Answer? |
 |--------|-----------------|----------------|
-| `shouldNotifyMobile` | YES | **NO** |
+| `shouldNotifyMobile` | YES | YES |
 | `NotificationQueue` | YES | YES |
 | `PushNotification` | YES | YES |
-| `PushClass` | YES | **NO** |
-| `sendNotificationGateway` | **NO** | **NO** |
+| `PushClass` | YES | YES |
+| `sendNotificationGateway` | YES | **NO** |
 
 **LLM Answer (truncated):**
 
-> Push notifications in Rocket.Chat follow a server-side process, starting from message saving and culminating in dispatch to either a cloud gateway or native push services (APN/FCM).
+> Rocket.Chat's push notification system works as follows:
 > 
-> Here's the detailed call chain:
+> **Call Chain:** `afterSaveMessage` callback → `sendAllNotifications` → `sendMessageNotifications` → `sendNotification` → `Notification.scheduleItem` → `NotificationQueue` worker → `PushNotification.send()` → `PushClass.send` → `PushClass.sendNotification` → (Gateway or Native specific sender)
 > 
-> **Entry → Step 1 → Step 2 → Step 3 → Step 4 → Step 5 → Final**
+> 1.  **Trigger:** The process begins after a message is saved. An `afterSaveMessage` callback, registered with low priority, initiates the notification flow.
+> 2.  **Initial Sending Logic:** This callback leads to `sendAllNotifications` which then calls `sendMessageNotifications`. For each user, a `sendNotification` function is invoked (found in `apps/meteor/app/lib/server/lib/sendNotificationsOnMessage.ts` and `apps/meteor/app/push/server/push.ts`).
+> 3.  **Mobile Notification Check & Queueing:** The `sendNotification` function checks if `shouldNotifyMobile`. If a mobile notification is required, it schedules an item using `Notification.scheduleItem({type:'push'})`. These items are queued with a delay: 120 seconds for online users and 0 seconds for offline users.
+> 4.  **Queue Processing:** A `NotificationQueue` worker (located in `apps/meteor/app/notification-queue/server/NotificationQueue.ts`) processes these queued push items.
+> 5.  **Push Notification Sending:** The worker calls `PushNotification.send()`, which ultimately delegates to the `PushClass` (defined in `apps/meteor/app/push/server/push.ts`).
+> 6.  **`PushClass.send` Method:** The `send` method of the `PushClass` prepares the notification payload and then calls its private `sendNotification` method.
+>     *   **File:** `apps/meteor/app/push/server/push.ts`
+>     *   **Symbol:** `PushClass.send`
+> 7.  **Routing (Gateway vs. Native):** The `PushClass.sendNotification` method determines the routing based on server configuration:
+>     *   **Gateway Mode:** If Rocket.Chat is configured to use a gateway, it performs an HTTP POST to the cloud gateway via the `sendGatewayPush` method.
+>     *   **Native Mode:** If in native mode, it directly sends notifications using `sendAPN()` for Apple devices or `sendFCM()` for Google Firebase Cloud Messaging via the `sendNotificationNative` method.
+>     *   **File:** `apps/meteor/app/push/server/push.ts`
+>     *   **Symbol:** `PushClass.sendNotification` (private method)
 > 
-> 1.  **Entry Point:** The process begins with the `afterSaveMessage` callback, a server-side event with low priority.
-> 2.  **Notification Scheduling:** Following the `afterSaveMessage` callback, the system calls `sendAllNotifications` which then calls `sendMessageNotifications` leading to a per-user `sendNotification` function. If mobile notification conditions are met, `Notification.scheduleItem({type:'push'})` is called. This queues the push notification (with a 120-second delay for online users, 0 seconds for offline users).
-> 3.  **Queue Processing:** A `NotificationQueue` worker (defined in `apps/meteor/app/notification-queue/server/NotificationQueue.ts`) processes the queued push items.
-> 4.  **Notification Configuration:** The queue worker then invokes `PushNotification.send()` (from `apps/meteor/app/push-notifications/server/lib/PushNotification.ts`). This method (`PushNotification.send`) is responsible for gathering and configuring the notification payload, including details like room ID, user ID, message, and category.
-> 5.  **Push Service Dispatch:** Inside `PushNotification.send`, the final dispatch is handled by `await Push.send(config)` (likely defined in `apps/meteor/app/push/server/push.ts`). This `Push` object determines the routing based on the Rocket.Chat server's configuration:
->     *   **Gateway Mode:** An HTTP POST request is sent to a configured cloud gateway.
->     *   **Native Mode:** The notification is sent directly using `sendAPN()` for Apple devices or `sendFCM()` for Google Firebase Cloud Messaging.
-> 
-> **Key Files Involved:**
-> 
-> *   `apps/meteor/app/push-notifications/server/lib/PushNotification.ts`: Contains the `PushNotification` class and its `send` method, which is crucial for preparing and initiating the push notification.
-> *   `apps/meteor/app/notification-queue/server/NotificationQueue.ts`: Implements the `NotificationQueue` worker that processes queued notifications and calls `PushNotification.send`.
-> *   `apps/meteor/app/push/server/push.ts`: This file is expected to contain the `Push` object and its `send` method, responsible for the actual communication with APN, FCM, or the cloud gateway.
-> 
-> Push notifications can be disabled entirely via the `Troubleshoot_Disable_Notifications` setting.
+> Push notifications can be entirely disabled using the `Troubleshoot_Disable_Notifications` setting.
 
 **Root Cause Analysis:**
 
 | Problem | Category | Detail |
 |---------|----------|--------|
-| `sendNotificationsOnMessage.ts` not found | **Search/LLM gap** | File is in index but search didn't surface it, or LLM didn't look for it |
 | `mobile.js` not found | **Search/LLM gap** | File is in index but search didn't surface it, or LLM didn't look for it |
 | `apn.ts` not found | **Search/LLM gap** | File is in index but search didn't surface it, or LLM didn't look for it |
-| `sendNotificationGateway` missing | **LLM didn't mention** | Symbol exists in index but LLM never searched for it or mentioned it |
+| `fcm.ts` not found | **Search/LLM gap** | File is in index but search didn't surface it, or LLM didn't look for it |
 
 ---
 
@@ -865,17 +900,16 @@
 
 | Step | Tool | Args | Tokens |
 |------|------|------|-------:|
-| 1 | search | `{"query":"message permission validation","layer":"server"}` | 118 |
-| 2 | graph | `{"layer":"server","query":"validateRoomMessagePermissionsAsync","direction":"dow` | 550 |
-| 3 | implement | `{"symbolName":"validateRoomMessagePermissionsAsync","filename":"apps/meteor/app/` | 409 |
+| 1 | search | `{"layer":"server","query":"message permission validation"}` | 118 |
+| 2 | graph | `{"query":"validateRoomMessagePermissionsAsync","direction":"down","layer":"serve` | 550 |
 
 **File Hits:**
 
 | Expected File | Found? | Found Via |
 |---------------|--------|-----------|
 | `apps/meteor/app/authorization/server/functions/canSendMessage.ts` | YES | search (step 1) |
-| `apps/meteor/app/authorization/server/functions/canAccessRoom.ts` | YES | LLM answer |
-| `apps/meteor/app/authorization/server/functions/hasPermission.ts` | YES | LLM answer |
+| `apps/meteor/app/authorization/server/functions/canAccessRoom.ts` | **NO** | - |
+| `apps/meteor/app/authorization/server/functions/hasPermission.ts` | **NO** | - |
 | `apps/meteor/app/lib/server/methods/sendMessage.ts` | **NO** | - |
 | `apps/meteor/app/lib/server/functions/sendMessage.ts` | **NO** | - |
 | `apps/meteor/app/lib/server/lib/validateCustomMessageFields.ts` | **NO** | - |
@@ -884,40 +918,27 @@
 
 | Symbol | In Tool Results? | In LLM Answer? |
 |--------|-----------------|----------------|
-| `canSendMessageAsync` | YES | YES |
+| `canSendMessageAsync` | YES | **NO** |
 | `validateRoomMessagePermissionsAsync` | YES | YES |
-| `executeSendMessage` | YES | YES |
+| `executeSendMessage` | YES | **NO** |
 | `validateMessage` | YES | **NO** |
 
 **LLM Answer (truncated):**
 
-> The logic for message permission validation is primarily located in the `validateRoomMessagePermissionsAsync` function within `apps/meteor/app/authorization/server/functions/canSendMessage.ts`.
+> The core logic for message permission validation is located in `apps/meteor/app/authorization/server/functions/canSendMessage.ts`, specifically within the `validateRoomMessagePermissionsAsync` function. This function performs various checks, including verifying if the room exists, is not archived, the user can access it, is not blocked, and handles read-only permissions and muted statuses. For more granular permission checks, it calls `hasPermissionAsync`.
 > 
-> Here's the call chain and the relevant files:
+> The call chain is as follows:
 > 
-> *   **Entry Point**: `validateRoomMessagePermissionsAsync` in `apps/meteor/app/authorization/server/functions/canSendMessage.ts`
-> 
-> Within `validateRoomMessagePermissionsAsync`, the following checks are performed:
-> 
-> 1.  **Room Existence and Archive Status**: Checks if the room exists and is not archived.
-> 2.  **Room Access**: Calls `canAccessRoomAsync` (defined in `apps/meteor/app/authorization/server/functions/canAccessRoom.ts`) to verify if the user has general access to the room.
-> 3.  **Blocked Status**: Utilizes `roomCoordinator.getRoomDirectives` to determine if a member action (BLOCK) is allowed and then checks if the user is blocked or has blocked another user in the room via `Subscriptions.findOneByRoomIdAndUserId`.
-> 4.  **Read-only Rooms**: If the room is read-only (`room.ro === true`), it checks for the `post-readonly` permission using `hasPermissionAsync` (defined in `packages/server/lib/src/hasPermission.ts`, which may also involve `apps/meteor/app/authorization/server/functions/hasPermission.ts`). It also verifies if the user is explicitly unmuted in a read-only room.
-> 5.  **Muted Users**: Checks if the user is muted in the room.
-> 
-> **Call Chain:**
-> `Entry (e.g., sendMessage method)` → `executeSendMessage` → `canSendMessageAsync` → `validateRoomMessagePermissionsAsync` (apps/meteor/app/authorization/server/functions/canSendMessage.ts)
-> 
-> **Key Files:**
-> *   `apps/meteor/app/authorization/server/functions/canSendMessage.ts` (contains `validateRoomMessagePermissionsAsync`)
-> *   `apps/meteor/app/authorization/server/functions/canAccessRoom.ts` (contains `canAccessRoomAsync`)
-> *   `packages/server/lib/src/hasPermission.ts` (contains `hasPermissionAsync` for general permissions)
-> *   `apps/meteor/app/lib/server/functions/deleteMessage.ts` (contains `deleteMessageValidatingPermission` for message deletion specific permission)
+> `apps/meteor/app/authorization/server/functions/canSendMessage.ts` (validateRoomMessagePermissionsAsync)
+>   ↓
+> `packages/server-core/src/hasPermission.ts` (hasPermissionAsync)
 
 **Root Cause Analysis:**
 
 | Problem | Category | Detail |
 |---------|----------|--------|
+| `canAccessRoom.ts` not found | **Search/LLM gap** | File is in index but search didn't surface it, or LLM didn't look for it |
+| `hasPermission.ts` not found | **Search/LLM gap** | File is in index but search didn't surface it, or LLM didn't look for it |
 | `sendMessage.ts` not found | **Search/LLM gap** | File is in index but search didn't surface it, or LLM didn't look for it |
 | `sendMessage.ts` not found | **Search/LLM gap** | File is in index but search didn't surface it, or LLM didn't look for it |
 | `validateCustomMessageFields.ts` not found | **Search/LLM gap** | File is in index but search didn't surface it, or LLM didn't look for it |
@@ -933,69 +954,69 @@
 
 | Step | Tool | Args | Tokens |
 |------|------|------|-------:|
-| 1 | search | `{"query":"uploadFile","layer":"server"}` | 232 |
-| 2 | graph | `{"direction":"down","layer":"server","query":"uploadFile"}` | 1306 |
-| 3 | search | `{"layer":"server","query":"Storage"}` | 389 |
-| 4 | implement | `{"filename":"apps/meteor/app/file-upload/server/config/_configUploadStorage.ts",` | 18 |
-| 5 | search | `{"query":"FileUploadClass","layer":"server"}` | 185 |
-| 6 | graph | `{"direction":"down","layer":"server","query":"FileUploadClass"}` | 163 |
+| 1 | search | `{"query":"file upload","layer":"server"}` | 447 |
+| 2 | graph | `{"direction":"down","layer":"server","query":"FileUploadClass"}` | 163 |
+| 3 | search | `{"query":"rooms.media","layer":"server"}` | 65 |
+| 4 | graph | `{"layer":"server","query":"rooms.media","direction":"down","depth":3}` | 13 |
+| 5 | implement | `{"symbolName":"rooms.media","filename":"apps/meteor/app/api/server/v1/rooms.ts"}` | 45 |
+| 6 | search | `{"layer":"server","query":"POST rooms.media"}` | 15 |
 | 7 | implement | `{"filename":"apps/meteor/app/file-upload/server/lib/FileUpload.ts","symbolName":` | 419 |
-| 8 | graph | `{"layer":"server","query":"FileUploadClass.insert","direction":"down"}` | 15 |
+| 8 | search | `{"query":"API.v1.addRoute media","layer":"server"}` | 16 |
 
 **File Hits:**
 
 | Expected File | Found? | Found Via |
 |---------------|--------|-----------|
 | `apps/meteor/client/lib/chats/flows/uploadFiles.ts` | **NO** | - |
-| `apps/meteor/app/api/server/v1/rooms.ts` | **NO** | - |
-| `apps/meteor/app/file-upload/server/lib/FileUpload.ts` | YES | search (step 5) |
+| `apps/meteor/app/api/server/v1/rooms.ts` | YES | search (step 3) |
+| `apps/meteor/app/file-upload/server/lib/FileUpload.ts` | YES | search (step 1) |
 | `apps/meteor/app/file-upload/server/config/GridFS.ts` | **NO** | - |
 | `apps/meteor/app/file-upload/server/config/Webdav.ts` | **NO** | - |
-| `apps/meteor/server/services/upload/service.ts` | YES | search (step 1) |
+| `apps/meteor/server/services/upload/service.ts` | **NO** | - |
 
 **Symbol Coverage:**
 
 | Symbol | In Tool Results? | In LLM Answer? |
 |--------|-----------------|----------------|
-| `uploadFiles` | YES | YES |
+| `uploadFiles` | YES | **NO** |
 | `UploadsStore` | **NO** | **NO** |
-| `MultipartUploadHandler` | **NO** | **NO** |
+| `MultipartUploadHandler` | YES | **NO** |
 | `FileUploadClass` | YES | YES |
 | `ufsComplete` | **NO** | **NO** |
 | `parseFileIntoMessageAttachments` | **NO** | **NO** |
 
 **LLM Answer (truncated):**
 
-> The storage workflow for file uploads in Rocket.Chat follows a two-step REST flow, managed on the server-side.
+> The storage workflow for file uploads in Rocket.Chat involves the `FileUploadClass` located in `apps/meteor/app/file-upload/server/lib/FileUpload.ts`. This class handles the core logic for file operations on the server side.
+> 
+> Based on the initial search and graph traversal, here's a high-level overview:
+> 
+> 1.  **Client-side:** The client handles file selection and the UI for uploads.
+> 2.  **Server-side API:** There is a two-step REST API flow for file uploads:
+>     *   `POST rooms.media/:rid`: This endpoint is responsible for uploading the file to the chosen storage backend.
+>     *   `POST rooms.mediaConfirm/:rid/:fileId`: This endpoint confirms the upload and is used to create a message in the chat with a reference to the uploaded file as an attachment.
+> 3.  **`FileUploadClass` (`apps/meteor/app/file-upload/server/lib/FileUpload.ts`):** This class is central to processing files. It has methods like `insert`, `delete`, `getStore`, etc., for managing files.
+>     *   **Pluggable Storage:** Rocket.Chat supports various storage backends, including GridFS (the default), Amazon S3, WebDAV, and the local FileSystem. The `FileUploadClass` interacts with these different stores.
+>     *   **Metadata Storage:** File metadata, such as file ID, name, size, and type, is stored in the `Uploads` collection.
+> 4.  **Message Creation:** After a successful upload, `sendFileMessage()` is likely called to create the actual chat message with the attachment reference.
 > 
 > **Call Chain:**
 > 
-> 1.  **Client-side:** `uploadFiles()` (client-side) initiates the file selection and upload UI.
-> 2.  **Server-side (Step 1 - Upload to Storage):** A `POST` request to `rooms.media/:rid` handles the initial file upload to the designated storage backend.
-> 3.  **Server-side (Step 2 - Confirm and Create Message):** A subsequent `POST` request to `rooms.mediaConfirm/:rid/:fileId` confirms the successful upload and proceeds to create a chat message with the file as an attachment.
-> 
-> **Key Components and Files:**
-> 
-> *   **`apps/meteor/server/services/upload/service.ts`**: This file likely contains the `uploadFile` service, which orchestrates the file upload process.
-> *   **`apps/meteor/app/file-upload/server/lib/FileUpload.ts`**: The `FileUploadClass` is responsible for processing files and interacting with the various storage backends. This class includes methods like `insert` for handling file data and metadata.
-> *   **Storage Backends**: Rocket.Chat supports pluggable storage backends, including:
->     *   GridFS (default)
->     *   S3
->     *   WebDAV (methods like `uploadFileToWebdav` in `apps/meteor/app/webdav/server/methods/uploadFileToWebdav.ts` and `apps/meteor/app/webdav/server/lib/uploadFileToWebdav.ts` are relevant here)
->     *   FileSystem
-> *   **`Uploads` collection**: File metadata, such as file ID, type, and size, is stored in the `Uploads` MongoDB collection.
-> *   **`sendFileMessage()`**: After successful storage and confirmation, this function creates the final chat message with a reference to the uploaded attachment.
+> *   Entry (client-side upload initiation)
+> *   `POST rooms.media/:rid` (API endpoint in `apps/meteor/app/api/server/v1/rooms.ts`)
+> *   `FileUploadClass.insert` (in `apps/meteor/app/file-upload/server/lib/FileUpload.ts`) interacts with the configured storage backend.
+> *   `POST rooms.mediaConfirm/:rid/:fileId` (API endpoint in `apps/meteor/app/api/server/v1/rooms.ts`)
+> *   `sendFileMessage()` (not explicitly found in the graph, but implied for message creation).
 
 **Root Cause Analysis:**
 
 | Problem | Category | Detail |
 |---------|----------|--------|
 | `uploadFiles.ts` not found | **Search/LLM gap** | File is in index but search didn't surface it, or LLM didn't look for it |
-| `rooms.ts` not found | **Search/LLM gap** | File is in index but search didn't surface it, or LLM didn't look for it |
 | `GridFS.ts` not found | **Search/LLM gap** | File is in index but search didn't surface it, or LLM didn't look for it |
 | `Webdav.ts` not found | **Search/LLM gap** | File is in index but search didn't surface it, or LLM didn't look for it |
+| `service.ts` not found | **Search/LLM gap** | File is in index but search didn't surface it, or LLM didn't look for it |
 | `UploadsStore` missing | **LLM didn't mention** | Symbol exists in index but LLM never searched for it or mentioned it |
-| `MultipartUploadHandler` missing | **LLM didn't mention** | Symbol exists in index but LLM never searched for it or mentioned it |
 | `ufsComplete` missing | **LLM didn't mention** | Symbol exists in index but LLM never searched for it or mentioned it |
 | `parseFileIntoMessageAttachments` missing | **LLM didn't mention** | Symbol exists in index but LLM never searched for it or mentioned it |
 
@@ -1010,19 +1031,25 @@
 
 | Step | Tool | Args | Tokens |
 |------|------|------|-------:|
-| 1 | search | `{"query":"E2E encryption keys"}` | 16 |
-| 2 | search | `{"query":"E2E"}` | 540 |
+| 1 | search | `{"query":"e2e encryption key management"}` | 18 |
+| 2 | search | `{"query":"e2e encryption"}` | 278 |
+| 3 | graph | `{"direction":"down","query":"createAndLoadKeys","layer":"client"}` | 1036 |
+| 4 | search | `{"query":"Keychain"}` | 206 |
+| 5 | graph | `{"query":"Keychain","direction":"down","layer":"client"}` | 185 |
+| 6 | graph | `{"layer":"client","direction":"up","query":"Keychain"}` | 217 |
+| 7 | implement | `{"symbolName":"Keychain","filename":"apps/meteor/client/lib/e2ee/keychain.ts"}` | 162 |
+| 8 | search | `{"query":"EncryptedKeyCodec"}` | 62 |
 
 **File Hits:**
 
 | Expected File | Found? | Found Via |
 |---------------|--------|-----------|
-| `apps/meteor/client/lib/e2ee/rocketchat.e2e.ts` | YES | search (step 2) |
+| `apps/meteor/client/lib/e2ee/rocketchat.e2e.ts` | YES | graph (step 3) |
 | `apps/meteor/client/lib/e2ee/rocketchat.e2e.room.ts` | **NO** | - |
 | `apps/meteor/client/lib/e2ee/crypto/rsa.ts` | YES | LLM answer |
 | `apps/meteor/client/lib/e2ee/crypto/aes.ts` | YES | LLM answer |
 | `apps/meteor/client/lib/e2ee/crypto/pbkdf2.ts` | YES | LLM answer |
-| `apps/meteor/client/lib/e2ee/keychain.ts` | **NO** | - |
+| `apps/meteor/client/lib/e2ee/keychain.ts` | YES | search (step 4) |
 
 **Symbol Coverage:**
 
@@ -1037,45 +1064,33 @@
 
 **LLM Answer (truncated):**
 
-> Rocket.Chat manages end-to-end (E2E) encryption keys through a client-side architecture primarily located in `apps/meteor/client/lib/e2ee/`.
+> Rocket.Chat manages E2E encryption keys primarily on the client-side within the `apps/meteor/client/lib/e2ee/` directory.
 > 
-> Here's the key management process:
+> The key management process is as follows:
 > 
-> 1.  **RSA Key Pair Generation:**
->     *   The `E2E` class, defined in `apps/meteor/client/lib/e2ee/rocketchat.e2e.ts`, is responsible for generating an RSA key pair.
->     *   This happens within the `createAndLoadKeys()` method.
+> 1.  **Key Generation:** The `createAndLoadKeys()` method within `apps/meteor/client/lib/e2ee/rocketchat.e2e.ts` generates an RSA key pair for the user.
+> 2.  **Private Key Encryption:** The generated private key is then encrypted using a two-step process:
+>     *   A derived key is generated from the user's password using PBKDF2 (Password-Based Key Derivation Function 2).
+>     *   This derived key is then used with AES-GCM (Advanced Encryption Standard – Galois/Counter Mode) to encrypt the private RSA key.
+> 3.  **Key Storage Management:** The `Keychain` class, located in `apps/meteor/client/lib/e2ee/keychain.ts`, is responsible for managing the storage of these encrypted keys. It utilizes an `EncryptedKeyCodec` for this purpose.
+>     *   The `Keychain` class has methods like `decryptKey()` and `encryptKey()` to handle the secure storage and retrieval of the private key.
+> 4.  **Per-Room Session Keys:** For individual rooms, `E2ERoom.createGroupKey()` generates an AES session key. This session key is then encrypted for each participant in the room using their respective RSA public keys via `encryptGroupKeyForParticipant()`.
+> 5.  **Cryptographic Primitives:** The core cryptographic operations (RSA, AES, PBKDF2) are implemented in files within the `apps/meteor/client/lib/e2ee/crypto/` directory, specifically `rsa.ts`, `aes.ts`, and `pbkdf2.ts`.
+> 6.  **Server-Side Enforcement:** The server-side enforces E2E encryption through settings such as `E2E_Enable` and `E2E_Allow_Unencrypted_Messages`, as seen in `apps/meteor/app/discussion/server/methods/createDiscussion.ts`.
 > 
-> 2.  **Private Key Encryption:**
->     *   The generated RSA private key is encrypted for secure storage.
->     *   **Key Derivation:** PBKDF2 (Password-Based Key Derivation Function 2) is used to derive a strong encryption key from the user's password. This process leverages utilities from the `crypto/pbkdf2.ts` file.
->     *   **Encryption:** The derived key then encrypts the private key using AES-GCM (Advanced Encryption Standard - Galois/Counter Mode). AES utilities are found in `crypto/aes.ts`, and RSA-specific operations in `crypto/rsa.ts`.
+> **Call Chain for Key Management:**
 > 
-> 3.  **Per-Room Session Key Management (AES):**
->     *   For each encrypted room, an AES session key (group key) is generated by `E2ERoom.createGroupKey()`.
->     *   This AES session key is then encrypted for each participant in the room using their respective RSA public keys via `encryptGroupKeyForParticipant()`. This ensures that only authorized members can decrypt the session key and thus the messages within that specific room.
-> 
-> 4.  **Key Storage:**
->     *   The `Keychain` component, utilizing `EncryptedKeyCodec`, manages the storage of these encrypted keys on the client-side.
-> 
-> 5.  **Server-Side Control:**
->     *   While key generation and management are client-side, the server enforces E2E encryption through settings like `E2E_Enable` and `E2E_Allow_Unencrypted_Messages`.
-> 
-> **Key Files and Modules:**
-> 
-> *   **Entry Point/Main Class:** `apps/meteor/client/lib/e2ee/rocketchat.e2e.ts` (E2E class)
-> *   **Key Derivation:** `packages/rocketchat-ui-sidenav/client/tabs/e2e/crypto/pbkdf2.ts`
-> *   **Encryption Algorithms:**
->     *   `packages/rocketchat-ui-sidenav/client/tabs/e2e/crypto/rsa.ts` (RSA operations)
->     *   `packages/rocketchat-ui-sidenav/client/tabs/e2e/crypto/aes.ts` (AES operations)
-> *   **REST API Typings:** `packages/rest-typings/src/v1/e2e.ts`, `packages/rest-typings/src/v1/e2e/e2eSetUserPublicAndPrivateKeysParamsPOST.ts`
-> *   **Message Type Registrations:** `packages/message-types/src/registrations/e2ee.ts`
+> *   `apps/meteor/client/lib/e2ee/rocketchat.e2e.ts` (E2E class, `createAndLoadKeys()`)
+> *   `apps/meteor/client/lib/e2ee/keychain.ts` (Keychain class, `decryptKey()`, `encryptKey()`, `EncryptedKeyCodec`)
+> *   `apps/meteor/client/lib/e2ee/crypto/pbkdf2.ts` (PBKDF2 for key derivation)
+> *   `apps/meteor/client/lib/e2ee/crypto/aes.ts` (AES-GCM for private key encryption)
+> *   `apps/meteor/client/lib/e2ee/crypto/rsa.ts` (RSA for key pair generation and public key encryption of session keys)
 
 **Root Cause Analysis:**
 
 | Problem | Category | Detail |
 |---------|----------|--------|
 | `rocketchat.e2e.room.ts` not found | **Search/LLM gap** | File is in index but search didn't surface it, or LLM didn't look for it |
-| `keychain.ts` not found | **Search/LLM gap** | File is in index but search didn't surface it, or LLM didn't look for it |
 | `resetRoomKey` missing | **LLM didn't mention** | Symbol exists in index but LLM never searched for it or mentioned it |
 | `resetUserE2EEncriptionKey` missing | **LLM didn't mention** | Symbol exists in index but LLM never searched for it or mentioned it |
 | `initiateKeyDistribution` missing | **LLM didn't mention** | Symbol exists in index but LLM never searched for it or mentioned it |
@@ -1091,20 +1106,20 @@
 
 | Step | Tool | Args | Tokens |
 |------|------|------|-------:|
-| 1 | search | `{"query":"sendMessage","layer":"server"}` | 411 |
-| 2 | graph | `{"layer":"server","query":"sendMessage","direction":"down"}` | 637 |
-| 3 | graph | `{"direction":"down","query":"sendMessage","layer":"server"}` | 637 |
-| 4 | graph | `{"query":"sendMessage","filename":"apps/meteor/app/lib/server/functions/sendMess` | 637 |
-| 5 | graph | `{"layer":"server","filename":"apps/meteor/app/lib/server/methods/sendMessage.ts"` | 637 |
-| 6 | implement | `{"filename":"apps/meteor/app/lib/server/methods/sendMessage.ts","symbolName":"se` | 352 |
-| 7 | implement | `{"filename":"apps/meteor/app/lib/server/methods/sendMessage.ts","symbolName":"se` | 352 |
-| 8 | implement | `{"filename":"apps/meteor/server/services/messages/service.ts","symbolName":"send` | 461 |
+| 1 | search | `{"query":"sendMessage"}` | 820 |
+| 2 | graph | `{"direction":"down","layer":"server","query":"sendMessage"}` | 637 |
+| 3 | implement | `{"symbolName":"sendMessage","filename":"apps/meteor/app/lib/server/functions/sen` | 621 |
+| 4 | graph | `{"layer":"server","direction":"down","query":"sendMessage"}` | 637 |
+| 5 | graph | `{"direction":"down","query":"sendMessage","filename":"apps/meteor/app/lib/server` | 1084 |
+| 6 | graph | `{"query":"sendMessage","direction":"down","filename":"apps/meteor/server/service` | 1084 |
+| 7 | graph | `{"query":"validateMessage","layer":"server","direction":"down"}` | 1333 |
+| 8 | search | `{"layer":"server","query":"executeSendMessage"}` | 168 |
 
 **File Hits:**
 
 | Expected File | Found? | Found Via |
 |---------------|--------|-----------|
-| `apps/meteor/client/lib/chats/flows/sendMessage.ts` | YES | implement (step 8) |
+| `apps/meteor/client/lib/chats/flows/sendMessage.ts` | YES | search (step 1) |
 | `apps/meteor/app/lib/server/methods/sendMessage.ts` | YES | search (step 1) |
 | `apps/meteor/app/api/server/v1/chat.ts` | **NO** | - |
 | `apps/meteor/app/authorization/server/functions/canSendMessage.ts` | YES | search (step 1) |
@@ -1115,47 +1130,46 @@
 
 | Symbol | In Tool Results? | In LLM Answer? |
 |--------|-----------------|----------------|
-| `executeSendMessage` | **NO** | **NO** |
-| `canSendMessageAsync` | **NO** | **NO** |
-| `validateRoomMessagePermissionsAsync` | **NO** | **NO** |
+| `executeSendMessage` | YES | YES |
+| `canSendMessageAsync` | YES | **NO** |
+| `validateRoomMessagePermissionsAsync` | YES | **NO** |
 | `sendMessage` | YES | YES |
-| `validateMessage` | **NO** | **NO** |
-| `afterSaveMessage` | **NO** | **NO** |
+| `validateMessage` | YES | YES |
+| `afterSaveMessage` | YES | YES |
 | `sendAllNotifications` | **NO** | **NO** |
 | `NotificationQueue` | **NO** | **NO** |
 
 **LLM Answer (truncated):**
 
-> The complete call chain for `sendMessage` on the server-side, based on the available information and common Rocket.Chat architecture patterns, involves a DDP method entry point that delegates to core server services and functions.
+> The complete call chain for `sendMessage` starts with a client-side DDP method call, which is then handled on the server by `executeSendMessage`, leading to the core `sendMessage` function, which in turn orchestrates various validation, persistence, and event-triggering steps.
 > 
-> However, it's important to note the following limitations from the tool interactions:
-> *   The `graph` tool, when queried for `sendMessage`, returned very generic low-level calls (`fetch`, `stringify`, `now`, `debug`, `create`, `error`, `fill`, `get`), which did not allow for tracing the specific application-level business logic call chain.
-> *   An `implement` call on `apps/meteor/app/lib/server/methods/sendMessage.ts` (a likely Meteor method entry point) revealed a test helper function, not the actual server-side implementation that handles incoming client requests. This prevented a detailed look into how the Meteor method might delegate to other services.
-> *   An `implement` call on `apps/meteor/server/services/messages/service.ts` indicated the symbol was not found within that file, which contradicts the `search` result listing it as a symbol definition.
-> *   An `implement` call on `apps/meteor/app/lib/server/functions/sendMessage.ts` did not return any output.
+> Here is the call chain:
 > 
-> Given these limitations, the following is the most plausible high-level call chain, inferred from the file names identified by the `search` tool and the typical DDP method dispatch pattern in Meteor applications:
+> **Entry → Step 1 → Step 2 → Step 3 → Final**
 > 
-> **Call Chain:**
-> 
-> 1.  **Client-Side Initiation (via DDP):** A client-side action (e.g., in `apps/meteor/client/lib/chats/flows/sendMessage.ts` or similar client code) calls the `sendMessage` Meteor method.
-> 2.  **DDP Method Handler:** The client's DDP call is handled on the server by a Meteor method. This is most likely defined in:
->     *   `apps/meteor/app/lib/server/methods/sendMessage.ts` (This file is named as a Meteor method, though its `implement` revealed a test helper, suggesting the actual method implementation might reside in a related or imported file that wasn't successfully traced).
-> 3.  **Core Message Service/Function:** The Meteor method then delegates the actual message processing and storage to a server-side service or a utility function. Potential candidates for this core logic, as identified by `search`, include:
->     *   `apps/meteor/server/services/messages/service.ts` (Likely a central service for message operations).
->     *   `apps/meteor/app/lib/server/functions/sendMessage.ts` (Could be a helper function called by the service or method).
-> 
-> **Summary of Key Files:**
-> 
-> *   **Entry Point (DDP Method):** `apps/meteor/app/lib/server/methods/sendMessage.ts` (Conceptual entry point for client requests, pending exact implementation location confirmation).
-> *   **Core Server-Side Logic:**
->     *   `apps/meteor/server/services/messages/service.ts`
->     *   `apps/meteor/app/lib/server/functions/sendMessage.ts`
-> *   **Other Related `sendMessage` Implementations (from search, potentially distinct flows):**
->     *   `apps/meteor/ee/app/livechat-enterprise/server/api/lib/outbound.ts`
->     *   `apps/meteor/app/slackbridge/server/SlackAPI.ts`
->     *   `apps/meteor/app/livechat/server/lib/messages.ts`
->     *   `apps/meteor/app/integrations/server/lib/triggerHandler.ts`
+> 1.  **Client-side DDP Method Dispatch:**
+>     *   Client calls a DDP method named `sendMessage` (e.g., `sdk.call('sendMessage')`)
+>     *   **File:** (Client-side, not directly available in server tools, but implied by DDP pattern)
+> 2.  **Server DDP Method Handler:**
+>     *   The DDP method is handled on the server by `executeSendMessage`.
+>     *   **File:** `apps/meteor/app/lib/server/methods/sendMessage.ts`
+> 3.  **Core Message Sending Function:**
+>     *   `executeSendMessage` calls the main `sendMessage` function.
+>     *   **Symbol:** `sendMessage`
+>     *   **File:** `apps/meteor/app/lib/server/functions/sendMessage.ts`
+> 4.  **Internal Steps within `sendMessage` (apps/meteor/app/lib/server/functions/sendMessage.ts):**
+>     *   `validateMessage`
+>         *   **File:** Likely `apps/meteor/app/livechat/server/hooks/leadCapture.ts` (based on graph context for `validateMessage`)
+>         *   Calls various helper functions like `get`, `isArray`, `check` (from `ufs-filter.ts`), `hasPermissionAsync` (from `hasPermission.ts`), `validateCustomMessageFields` (from `validateCustomMessageFields.ts`), and `objectMaybeIncluding`.
+>     *   `prepareMessageObject` (function)
+>     *   `Apps.self?.triggerEvent(AppEvents.IPreMessageSentPrevent, message)` (Rocket.Chat Apps Engine pre-message sent prevention hook)
+>     *   `Apps.self?.triggerEvent(AppEvents.IPreMessageSentExtend, message)` (Rocket.Chat Apps Engine pre-message sent extend hook)
+>     *   `Apps.self?.triggerEvent(AppEvents.IPreMessageSentModify, result)` (Rocket.Chat Apps Engine pre-message sent modification hook)
+>     *   `Message.beforeSave({ message, room, user, previewUrls, parseUrls: message.parseUrls })` (Message pre-save hook)
+>     *   `Messages.updateOne` or `Messages.insertOne` (MongoDB operations for message persistence)
+>     *   `Apps.self?.triggerEvent(messageEvent, message)` (Rocket.Chat Apps Engine post-message sent hook: `AppEvents.IPostSystemMessageSent` or `AppEvents.IPostMessageSent`)
+>     *   `afterSaveMessage` (function)
+>     *   `notifyOnRoomChangedById(message.rid)` (notification mechanism)
 
 **Root Cause Analysis:**
 
@@ -1163,11 +1177,6 @@
 |---------|----------|--------|
 | `chat.ts` not found | **Search/LLM gap** | File is in index but search didn't surface it, or LLM didn't look for it |
 | `afterSaveMessage.ts` not found | **Search/LLM gap** | File is in index but search didn't surface it, or LLM didn't look for it |
-| `executeSendMessage` missing | **LLM didn't mention** | Symbol exists in index but LLM never searched for it or mentioned it |
-| `canSendMessageAsync` missing | **LLM didn't mention** | Symbol exists in index but LLM never searched for it or mentioned it |
-| `validateRoomMessagePermissionsAsync` missing | **LLM didn't mention** | Symbol exists in index but LLM never searched for it or mentioned it |
-| `validateMessage` missing | **LLM didn't mention** | Symbol exists in index but LLM never searched for it or mentioned it |
-| `afterSaveMessage` missing | **LLM didn't mention** | Symbol exists in index but LLM never searched for it or mentioned it |
 | `sendAllNotifications` missing | **LLM didn't mention** | Symbol exists in index but LLM never searched for it or mentioned it |
 | `NotificationQueue` missing | **LLM didn't mention** | Symbol exists in index but LLM never searched for it or mentioned it |
 
@@ -1182,24 +1191,24 @@
 
 | Step | Tool | Args | Tokens |
 |------|------|------|-------:|
-| 1 | search | `{"layer":"server","query":"Livechat request"}` | 390 |
-| 2 | graph | `{"direction":"down","query":"QueueManager.requestRoom","layer":"server"}` | 16 |
-| 3 | search | `{"layer":"server","query":"Livechat"}` | 611 |
-| 4 | graph | `{"layer":"server","query":"Livechat","direction":"down"}` | 764 |
-| 5 | search | `{"query":"livechat/room","layer":"server"}` | 238 |
-| 6 | search | `{"layer":"server","query":"QueueManager"}` | 273 |
-| 7 | implement | `{"filename":"apps/meteor/app/livechat/server/lib/QueueManager.ts","symbolName":"` | 973 |
-| 8 | graph | `{"direction":"up","layer":"server","query":"QueueManager.requestRoom"}` | 16 |
+| 1 | search | `{"query":"Livechat request","layer":"server"}` | 390 |
+| 2 | graph | `{"layer":"server","direction":"down","query":"QueueManager.requestRoom"}` | 16 |
+| 3 | search | `{"layer":"server","query":"QueueManager"}` | 273 |
+| 4 | graph | `{"query":"QueueManager.requestRoom","direction":"down","layer":"server"}` | 16 |
+| 5 | implement | `{"filename":"apps/meteor/app/livechat/server/lib/QueueManager.ts","symbolName":"` | 973 |
+| 6 | graph | `{"layer":"server","query":"QueueManager.requestRoom","direction":"down"}` | 16 |
+| 7 | search | `{"layer":"server","query":"Livechat API"}` | 390 |
+| 8 | search | `{"query":"Livechat POST","layer":"server"}` | 407 |
 
 **File Hits:**
 
 | Expected File | Found? | Found Via |
 |---------------|--------|-----------|
 | `packages/livechat/src/widget.ts` | **NO** | - |
-| `packages/livechat/src/api.ts` | YES | search (step 3) |
+| `packages/livechat/src/api.ts` | **NO** | - |
 | `apps/meteor/app/livechat/server/api/v1/room.ts` | **NO** | - |
-| `apps/meteor/app/livechat/server/lib/QueueManager.ts` | YES | search (step 6) |
-| `apps/meteor/app/livechat/server/lib/RoutingManager.ts` | **NO** | - |
+| `apps/meteor/app/livechat/server/lib/QueueManager.ts` | YES | search (step 3) |
+| `apps/meteor/app/livechat/server/lib/RoutingManager.ts` | YES | LLM answer |
 | `apps/meteor/app/livechat/server/lib/routing/AutoSelection.ts` | **NO** | - |
 
 **Symbol Coverage:**
@@ -1215,49 +1224,31 @@
 
 **LLM Answer (truncated):**
 
-> Livechat requests are routed to the server-side in Rocket.Chat through a multi-step process, starting with `QueueManager.requestRoom()`.
+> Livechat requests are routed to the server-side in Rocket.Chat starting with the `QueueManager.requestRoom()` method. This method initiates a new conversation by creating a room and an inquiry.
 > 
-> The routing process unfolds as follows:
+> The call chain is as follows:
 > 
-> 1.  **Entry Point: `QueueManager.requestRoom()`**
->     *   A new Livechat conversation begins with a call to `QueueManager.requestRoom()`. This method, found in `apps/meteor/app/livechat/server/lib/QueueManager.ts`, is responsible for creating a new room and an associated inquiry within a database transaction.
+> `QueueManager.requestRoom()` (located in `apps/meteor/app/livechat/server/lib/QueueManager.ts`)
+> → `processNewInquiry()` (located in `apps/meteor/app/livechat/server/lib/QueueManager.ts`)
 > 
-> 2.  **Inquiry Processing: `processNewInquiry()`**
->     *   After creating the inquiry, `QueueManager.requestRoom()` triggers `processNewInquiry()` (also part of the `QueueManager`'s logic or a closely related server-side function).
->     *   This function evaluates the status of the inquiry:
->         *   If the inquiry status is `READY`, it immediately proceeds to delegate the inquiry.
->         *   If the inquiry status is `QUEUED`, it saves the inquiry to a queue for later processing.
+> From `processNewInquiry()`, the routing branches:
+> *   If the inquiry status is `READY`, it proceeds to `RoutingManager.delegateInquiry()`.
+> *   If the inquiry is `QUEUED`, it is saved to a queue, and later processed by the `OmnichannelService`'s `OmnichannelQueue` worker, which then also calls `RoutingManager.delegateInquiry()`.
 > 
-> 3.  **Routing Delegation: `RoutingManager.delegateInquiry()`**
->     *   The core routing logic resides within `RoutingManager.delegateInquiry()`. This function takes the inquiry and applies a specific routing strategy (e.g., `AutoSelection`, `Manual`).
->     *   Once a strategy is determined, it calls `takeInquiry()` to assign an agent to the conversation.
+> The `RoutingManager.delegateInquiry()` then applies a routing strategy (e.g., AutoSelection, Manual) and ultimately assigns an agent using `takeInquiry()` and `assignAgent()`.
 > 
-> 4.  **Agent Assignment: `takeInquiry()` → `assignAgent()`**
->     *   `takeInquiry()` selects an agent based on the chosen routing strategy.
->     *   Subsequently, `assignAgent()` updates the Livechat room to reflect the assigned agent.
-> 
-> **Background Queue Processing:**
-> 
-> *   Inquiries initially marked as `QUEUED` are handled by a background process.
-> *   The `OmnichannelService` initiates an `OmnichannelQueue` worker.
-> *   This worker continuously executes a loop to process queued inquiries, eventually calling `RoutingManager.delegateInquiry()` for each of them to assign an agent.
-> 
-> **Call Chain:**
-> 
-> `QueueManager.requestRoom()` (apps/meteor/app/livechat/server/lib/QueueManager.ts) → `processNewInquiry()` → `RoutingManager.delegateInquiry()` → `takeInquiry()` → `assignAgent()`
-> 
-> **Key Files:**
-> 
-> *   `apps/meteor/app/livechat/server/lib/QueueManager.ts`: Contains the `QueueManager` class, including the `requestRoom` and `processNewInquiry` methods, which are the initial entry points for Livechat requests on the server-side.
-> *   Implicitly, server-side files related to `RoutingManager`, `OmnichannelService`, and `OmnichannelQueue` worker (not explicitly located in the provided search results but mentioned in the architectural overview).
+> **Key files:**
+> *   `apps/meteor/app/livechat/server/lib/QueueManager.ts`: Contains the `QueueManager` class with `requestRoom()` and `processNewInquiry()` methods.
+> *   `apps/meteor/app/livechat/server/lib/RoutingManager.ts`: Contains the `RoutingManager` class with `delegateInquiry()`, which handles routing strategies.
+> *   `apps/meteor/app/livechat/server/lib/OmnichannelService.ts`: Contains the `OmnichannelService` which starts the `OmnichannelQueue` worker for background processing of queued inquiries.
 
 **Root Cause Analysis:**
 
 | Problem | Category | Detail |
 |---------|----------|--------|
 | `widget.ts` not found | **Search/LLM gap** | File is in index but search didn't surface it, or LLM didn't look for it |
+| `api.ts` not found | **Search/LLM gap** | File is in index but search didn't surface it, or LLM didn't look for it |
 | `room.ts` not found | **Search/LLM gap** | File is in index but search didn't surface it, or LLM didn't look for it |
-| `RoutingManager.ts` not found | **Search/LLM gap** | File is in index but search didn't surface it, or LLM didn't look for it |
 | `AutoSelection.ts` not found | **Search/LLM gap** | File is in index but search didn't surface it, or LLM didn't look for it |
 | `LivechatClientImpl` missing | **LLM didn't mention** | Symbol exists in index but LLM never searched for it or mentioned it |
 
@@ -1272,21 +1263,18 @@
 
 | Step | Tool | Args | Tokens |
 |------|------|------|-------:|
-| 1 | search | `{"query":"REST API"}` | 602 |
-| 2 | graph | `{"query":"startRestAPI","direction":"down","layer":"server"}` | 1093 |
-| 3 | implement | `{"symbolName":"startRestAPI","filename":"apps/meteor/app/api/server/api.ts"}` | 153 |
-| 4 | implement | `{"filename":"apps/meteor/app/api/server/ApiClass.ts","symbolName":"ApiClass"}` | 15 |
-| 5 | search | `{"query":"API","layer":"server"}` | 573 |
-| 6 | implement | `{"symbolName":"API","filename":"apps/meteor/app/api/server/api.ts"}` | 259 |
-| 7 | search | `{"layer":"server","query":"createApi"}` | 215 |
-| 8 | implement | `{"symbolName":"createApi","filename":"apps/meteor/app/api/server/api.ts"}` | 104 |
+| 1 | search | `{"layer":"server","query":"API.v1.addRoute"}` | 419 |
+| 2 | graph | `{"layer":"server","direction":"down","query":"API.v1.addRoute"}` | 14 |
+| 3 | search | `{"query":"createApi","layer":"server"}` | 215 |
+| 4 | graph | `{"layer":"server","query":"createApi","direction":"down"}` | 195 |
+| 5 | implement | `{"filename":"apps/meteor/app/api/server/ApiClass.ts","symbolName":"APIClass.addR` | 1712 |
 
 **File Hits:**
 
 | Expected File | Found? | Found Via |
 |---------------|--------|-----------|
 | `apps/meteor/app/api/server/api.ts` | YES | search (step 1) |
-| `apps/meteor/app/api/server/ApiClass.ts` | YES | search (step 1) |
+| `apps/meteor/app/api/server/ApiClass.ts` | YES | implement (step 5) |
 | `apps/meteor/app/api/server/router.ts` | **NO** | - |
 | `apps/meteor/app/api/server/middlewares/authenticationHono.ts` | **NO** | - |
 | `apps/meteor/app/api/server/middlewares/permissions.ts` | **NO** | - |
@@ -1299,22 +1287,38 @@
 | `addRoute` | YES | YES |
 | `APIClass` | YES | YES |
 | `createApi` | YES | YES |
-| `_internalRouteActionHandler` | **NO** | **NO** |
-| `RocketChatAPIRouter` | YES | **NO** |
+| `_internalRouteActionHandler` | YES | **NO** |
+| `RocketChatAPIRouter` | **NO** | **NO** |
 
 **LLM Answer (truncated):**
 
-> New endpoints are registered in the Rocket.Chat REST API through the `APIClass`.
+> New endpoints in Rocket.Chat's REST API are registered through a structured process, primarily using the `API.v1.addRoute` method. This method, part of the `APIClass`, handles middleware for authentication, permissions, rate limiting, and then delegates the actual route registration to an underlying router.
 > 
-> Here's the call chain:
+> Here's the call chain for endpoint registration:
 > 
-> 1.  **`startRestAPI`** (at `apps/meteor/app/api/server/api.ts`): This function initializes the REST API by setting up middleware and routing.
-> 2.  Within `startRestAPI`, the `API.v1.router` and `API.default.router` are used.
-> 3.  **`API`** (at `apps/meteor/app/api/server/api.ts`): This object defines the main API structure, including `API.v1` and `API.default`.
-> 4.  **`createApi`** (at `apps/meteor/app/api/server/api.ts`): This function is responsible for creating instances of `APIClass` for different API versions (e.g., `v1`).
-> 5.  **`APIClass`**: This class, when instantiated by `createApi`, is where individual routes are added using methods like `addRoute()` or the typed `.get()`, `.post()`, `.put()`, and `.delete()` methods.
+> **Entry → Step 1 → Step 2 → Final**
 > 
-> The registration process begins with `startRestAPI`, which uses the `API` object. The `API` object, in turn, utilizes the `createApi` function to construct instances of `APIClass`. It is within these `APIClass` instances that the actual registration of new REST API endpoints occurs.
+> 1.  **Entry Point: API Endpoint Definition** (e.g., `apps/meteor/app/api/server/v1/channels.ts`)
+>     New endpoints are defined by calling `API.v1.addRoute()`. For example:
+>     `API.v1.addRoute('channels.list', { authRequired: true }, { get() { ... } });`
+> 
+> 2.  **`createApi` function** (`apps/meteor/app/api/server/api.ts`)
+>     The `API.v1` object itself is an instance created by the `createApi` function, which initializes an `APIClass` instance.
+> 
+> 3.  **`APIClass.addRoute` Method** (`apps/meteor/app/api/server/ApiClass.ts`)
+>     The `addRoute` method of the `APIClass` is responsible for processing the route definition. It performs the following key actions:
+>     *   Checks and applies permissions (`checkPermissions`).
+>     *   Adds rate-limiting rules if configured (`addRateLimiterRuleForRoutes`).
+>     *   Wraps the provided endpoint action with an internal handler that includes:
+>         *   Request context setup (`this.queryOperations`, `this.queryFields`, `this.logger`).
+>         *   Authentication token processing.
+>         *   Rate limit enforcement (`api.enforceRateLimit`).
+>         *   Parameter validation (`_options.validateParams`).
+>         *   Two-factor authentication processing (`api.processTwoFactor`).
+>         *   Error handling for various API errors (e.g., unauthorized, forbidden, too many requests).
+>     *   Registers the route with the underlying router (e.g., Hono) using `this.router[method.toLowerCase()]`, passing the path, options, and middleware functions for authentication (`authenticationMiddlewareForHono`), permissions (`permissionsMiddleware`), and licensing (`license`).
+> 
+> This chain ensures that all new REST API endpoints adhere to Rocket.Chat's security, performance, and operational standards.
 
 **Root Cause Analysis:**
 
@@ -1324,7 +1328,7 @@
 | `authenticationHono.ts` not found | **Search/LLM gap** | File is in index but search didn't surface it, or LLM didn't look for it |
 | `permissions.ts` not found | **Search/LLM gap** | File is in index but search didn't surface it, or LLM didn't look for it |
 | `definition.ts` not found | **Search/LLM gap** | File is in index but search didn't surface it, or LLM didn't look for it |
-| `_internalRouteActionHandler` missing | **Not in symbol index** | Symbol not extracted by skeleton.ts |
+| `RocketChatAPIRouter` missing | **LLM didn't mention** | Symbol exists in index but LLM never searched for it or mentioned it |
 
 ---
 
@@ -1337,20 +1341,20 @@
 
 | Step | Tool | Args | Tokens |
 |------|------|------|-------:|
-| 1 | search | `{"query":"federation send message","layer":"server"}` | 73 |
-| 2 | search | `{"layer":"server","query":"federation message"}` | 183 |
-| 3 | graph | `{"query":"saveMessageFromFederation","layer":"server","direction":"down"}` | 725 |
-| 4 | implement | `{"filename":"ee/packages/federation-matrix/lib/FederationMatrix.ts","symbolName"` | 274 |
-| 5 | graph | `{"layer":"ee","query":"FederationMatrix.handleTextMessage","direction":"down"}` | 18 |
-| 6 | implement | `{"symbolName":"FederationMatrix","filename":"ee/packages/federation-matrix/src/F` | 1188 |
-| 7 | implement | `{"filename":"ee/packages/federation-matrix/src/FederationMatrix.ts","symbolName"` | 240 |
-| 8 | search | `{"query":"federationSDK","layer":"ee"}` | 14 |
+| 1 | search | `{"query":"federation message send","layer":"server"}` | 73 |
+| 2 | search | `{"layer":"server","query":"federation send"}` | 222 |
+| 3 | search | `{"layer":"server","query":"federation message"}` | 183 |
+| 4 | search | `{"layer":"server","query":"federation"}` | 544 |
+| 5 | search | `{"query":"FederationMatrix.sendMessage","layer":"ee"}` | 192 |
+| 6 | graph | `{"layer":"ee","query":"FederationMatrix.sendMessage","direction":"down"}` | 17 |
+| 7 | implement | `{"symbolName":"FederationMatrix.sendMessage","filename":"apps/meteor/ee/server/h` | 274 |
+| 8 | implement | `{"filename":"ee/packages/federation-matrix/src/FederationMatrix.ts","symbolName"` | 240 |
 
 **File Hits:**
 
 | Expected File | Found? | Found Via |
 |---------------|--------|-----------|
-| `ee/packages/federation-matrix/src/FederationMatrix.ts` | YES | implement (step 4) |
+| `ee/packages/federation-matrix/src/FederationMatrix.ts` | YES | implement (step 7) |
 | `ee/packages/federation-matrix/src/api/_matrix/transactions.ts` | **NO** | - |
 | `ee/packages/federation-matrix/src/events/message.ts` | **NO** | - |
 | `ee/packages/federation-matrix/src/events/reaction.ts` | **NO** | - |
@@ -1362,28 +1366,25 @@
 | Symbol | In Tool Results? | In LLM Answer? |
 |--------|-----------------|----------------|
 | `FederationMatrix` | YES | YES |
-| `processIncomingTransaction` | YES | YES |
+| `processIncomingTransaction` | YES | **NO** |
 | `saveMessageFromFederation` | YES | **NO** |
-| `FederationActions` | **NO** | **NO** |
+| `FederationActions` | YES | **NO** |
 | `generateFederationKeys` | **NO** | **NO** |
 
 **LLM Answer (truncated):**
 
-> Federation messages are sent across different servers in Rocket.Chat through the `FederationMatrix` service, which handles the communication with the Matrix protocol.
+> Federation messages in Rocket.Chat are sent across different servers primarily through the `FederationMatrix` service within the `ee/packages/federation-matrix/src/FederationMatrix.ts` file.
 > 
-> Here's the call chain:
+> Here's the call chain for sending a federation message:
 > 
-> `FederationMatrix.sendMessage()` in `ee/packages/federation-matrix/src/FederationMatrix.ts` is the entry point for sending messages. This method determines whether the message contains files or is a text message.
+> `apps/meteor/ee/server/hooks/federation/index.ts` → `FederationMatrix.sendMessage` → `FederationMatrix.handleTextMessage` → `federationSDK.sendMessage`
 > 
-> 1.  **`FederationMatrix.sendMessage`** (`ee/packages/federation-matrix/src/FederationMatrix.ts`)
->     *   If the message has files, it calls `this.handleFileMessage()`.
->     *   If it's a text message, it calls `this.handleTextMessage()`.
-> 2.  **`FederationMatrix.handleTextMessage`** (`ee/packages/federation-matrix/src/FederationMatrix.ts`)
->     *   This method prepares the message for the Matrix protocol by calling `toExternalMessageFormat()`.
->     *   It also handles threaded messages and quoted messages by calling `this.handleThreadedMessage()` and `this.handleQuoteMessage()` respectively.
->     *   Finally, it calls `federationSDK.sendMessage()` to send the message to the Matrix network.
+> 1.  **Entry Point:** The process starts when a message is ready to be sent to a federated server. This is handled by a hook in `apps/meteor/ee/server/hooks/federation/index.ts` which calls `FederationMatrix.sendMessage`.
+> 2.  **`FederationMatrix.sendMessage`**: Located in `ee/packages/federation-matrix/src/FederationMatrix.ts`, this method acts as the main entry for sending messages. It determines if the message contains files or is a simple text message.
+> 3.  **`FederationMatrix.handleTextMessage`**: For text messages, `FederationMatrix.sendMessage` delegates to `FederationMatrix.handleTextMessage` (also in `ee/packages/federation-matrix/src/FederationMatrix.ts`). This method prepares the message for the external Matrix format and handles threaded or quoted messages.
+> 4.  **`federationSDK.sendMessage`**: Finally, `FederationMatrix.handleTextMessage` calls `federationSDK.sendMessage`. This `federationSDK` is responsible for the actual communication with the Matrix protocol HTTP API on the remote server to send the message.
 > 
-> The `federationSDK` is responsible for interacting with the Matrix protocol's HTTP API to send messages to remote servers. This indicates an event-driven architecture for incoming messages, where the `PUT /_matrix/federation/v1/send/:txnId` endpoint is the entry point, leading to `federationSDK.processIncomingTransaction()` which dispatches events to listeners like `'homeserver.matrix.message'` for persistence in the local database.
+> After the message is sent, `FederationMatrix.sendMessage` updates the message's `federationEventId` in the local database using `Messages.setFederationEventIdById` from `packages/models/src/models/Messages.ts`.
 
 **Root Cause Analysis:**
 
@@ -1394,7 +1395,6 @@
 | `reaction.ts` not found | **Search/LLM gap** | File is in index but search didn't surface it, or LLM didn't look for it |
 | `invite.ts` not found | **Search/LLM gap** | File is in index but search didn't surface it, or LLM didn't look for it |
 | `message.parsers.ts` not found | **Search/LLM gap** | File is in index but search didn't surface it, or LLM didn't look for it |
-| `FederationActions` missing | **LLM didn't mention** | Symbol exists in index but LLM never searched for it or mentioned it |
 | `generateFederationKeys` missing | **LLM didn't mention** | Symbol exists in index but LLM never searched for it or mentioned it |
 
 ---
@@ -1409,20 +1409,18 @@
 | Step | Tool | Args | Tokens |
 |------|------|------|-------:|
 | 1 | search | `{"query":"sendMessage","layer":"server"}` | 411 |
-| 2 | graph | `{"direction":"down","layer":"server","query":"sendMessage"}` | 637 |
-| 3 | search | `{"query":"stream-room-messages","layer":"server"}` | 16 |
-| 4 | search | `{"layer":"server","query":"publish"}` | 242 |
-| 5 | search | `{"layer":"server","query":"notifyOnMessageChange"}` | 186 |
-| 6 | graph | `{"query":"notifyOnMessageChange","layer":"server","direction":"down"}` | 625 |
-| 7 | implement | `{"symbolName":"notifyOnMessageChange","filename":"apps/meteor/app/lib/server/lib` | 118 |
-| 8 | search | `{"layer":"server","query":"watch.messages"}` | 141 |
+| 2 | graph | `{"filename":"apps/meteor/app/lib/server/methods/sendMessage.ts","direction":"dow` | 637 |
+| 3 | graph | `{"direction":"down","depth":3,"edgeTypes":["pubsub_publish","event_emit"],"filen` | 143 |
+| 4 | graph | `{"edgeTypes":["pubsub_publish","event_emit"],"direction":"down","filename":"apps` | 143 |
+| 5 | implement | `{"filename":"apps/meteor/app/lib/server/methods/sendMessage.ts","symbolName":"se` | 352 |
+| 6 | implement | `{"symbolName":"sendMessage","filename":"apps/meteor/app/lib/server/functions/sen` | 621 |
 
 **File Hits:**
 
 | Expected File | Found? | Found Via |
 |---------------|--------|-----------|
-| `apps/meteor/app/lib/server/lib/notifyListener.ts` | YES | search (step 5) |
-| `apps/meteor/server/modules/listeners/listeners.module.ts` | YES | search (step 8) |
+| `apps/meteor/app/lib/server/lib/notifyListener.ts` | **NO** | - |
+| `apps/meteor/server/modules/listeners/listeners.module.ts` | **NO** | - |
 | `apps/meteor/server/modules/notifications/notifications.module.ts` | **NO** | - |
 | `apps/meteor/server/modules/streamer/streamer.module.ts` | **NO** | - |
 | `apps/meteor/client/lib/streamer/streamer.ts` | **NO** | - |
@@ -1431,33 +1429,49 @@
 
 | Symbol | In Tool Results? | In LLM Answer? |
 |--------|-----------------|----------------|
-| `notifyOnMessageChange` | YES | YES |
-| `StreamerCentral` | YES | **NO** |
-| `Streamer` | YES | **NO** |
-| `streamRoomMessage` | YES | **NO** |
+| `notifyOnMessageChange` | **NO** | **NO** |
+| `StreamerCentral` | **NO** | **NO** |
+| `Streamer` | **NO** | **NO** |
+| `streamRoomMessage` | **NO** | **NO** |
 
 **LLM Answer (truncated):**
 
-> After a message is saved to the database, its real-time appearance on the client follows this chain:
+> The real-time appearance of a new message on the client, after being saved to the database, follows this flow:
 > 
-> 1.  **`notifyOnMessageChange`** (`apps/meteor/app/lib/server/lib/notifyListener.ts`): This function is triggered after a message is saved. It constructs the message data to be broadcast.
-> 2.  **`api.broadcast('watch.messages', { message })`** (`apps/meteor/app/lib/server/lib/notifyListener.ts`): Inside `notifyOnMessageChange`, an event named 'watch.messages' is broadcast through the `api.broadcast` mechanism.
-> 3.  **`service.onEvent('watch.messages')`** (`apps/meteor/server/modules/listeners/listeners.module.ts`): A listener in the server's `listeners.module.ts` captures the 'watch.messages' event. This listener then processes the incoming message.
+> **Call Chain:** `Client (DDP Method Call) → sendMessage (server method) → notifyOnRoomChangedById (server function) → (client receives update)`
 > 
-> The full call chain is:
-> `notifyOnMessageChange` (apps/meteor/app/lib/server/lib/notifyListener.ts)
-> `→ api.broadcast('watch.messages')` (apps/meteor/app/lib/server/lib/notifyListener.ts)
-> `→ service.onEvent('watch.messages')` (apps/meteor/server/modules/listeners/listeners.module.ts)
+> 1.  **Client Initiates Message Send:** The client-side code calls a DDP (Distributed Data Protocol) method, typically `sdk.call('sendMessage')`. This initiates the process by sending the message data to the server via a WebSocket connection.
 > 
-> This process ultimately leads to the message being pushed to the client via DDP (Distributed Data Protocol) over a WebSocket connection, enabling real-time updates.
+> 2.  **Server `sendMessage` Method:** The server receives the DDP method call and handles it through the `sendMessage` function located at `apps/meteor/app/lib/server/functions/sendMessage.ts`.
+>     *   This function first validates and prepares the message object.
+>     *   It then interacts with the database, either inserting a new message via `Messages.insertOne(message)` or updating an existing one with `Messages.updateOne`.
+>     *   Crucially, after the message is saved to the database, it calls `notifyOnRoomChangedById(message.rid)`. This is the key function responsible for triggering real-time updates to clients subscribed to the room where the message was sent.
+> 
+> 3.  **`notifyOnRoomChangedById` (Real-time Notification):** The `notifyOnRoomChangedById` function (whose implementation details would reveal the specific pub/sub mechanism like Meteor's publications or a custom event system) is responsible for publishing the change to all clients that are currently subscribed to changes in the `message.rid` (room ID). This typically involves:
+>     *   Identifying all active client subscriptions for the given room.
+>     *   Sending the new message data (or a notification that data has changed) to these subscribed clients over the WebSocket connection.
+> 
+> 4.  **Client Receives Update:** Upon receiving the update from the server, the client-side code (e.g., a React component or a Meteor client-side collection) processes the new message data and renders it in the chat interface, making the message appear in real-time.
+> 
+> **Key Files:**
+> 
+> *   `apps/meteor/app/lib/server/methods/sendMessage.ts`: The DDP method definition on the server, which serves as the entry point for clients sending messages.
+> *   `apps/meteor/app/lib/server/functions/sendMessage.ts`: The core server-side function responsible for validating, saving, and initiating real-time notifications for new messages.
+> *   `notifyOnRoomChangedById`: (Implicitly called by `sendMessage`) This function, once implemented, would reveal the specific real-time publication or event mechanism used to push updates to clients.
 
 **Root Cause Analysis:**
 
 | Problem | Category | Detail |
 |---------|----------|--------|
+| `notifyListener.ts` not found | **Search/LLM gap** | File is in index but search didn't surface it, or LLM didn't look for it |
+| `listeners.module.ts` not found | **Search/LLM gap** | File is in index but search didn't surface it, or LLM didn't look for it |
 | `notifications.module.ts` not found | **Search/LLM gap** | File is in index but search didn't surface it, or LLM didn't look for it |
 | `streamer.module.ts` not found | **Search/LLM gap** | File is in index but search didn't surface it, or LLM didn't look for it |
 | `streamer.ts` not found | **Search/LLM gap** | File is in index but search didn't surface it, or LLM didn't look for it |
+| `notifyOnMessageChange` missing | **LLM didn't mention** | Symbol exists in index but LLM never searched for it or mentioned it |
+| `StreamerCentral` missing | **LLM didn't mention** | Symbol exists in index but LLM never searched for it or mentioned it |
+| `Streamer` missing | **LLM didn't mention** | Symbol exists in index but LLM never searched for it or mentioned it |
+| `streamRoomMessage` missing | **LLM didn't mention** | Symbol exists in index but LLM never searched for it or mentioned it |
 
 ---
 
@@ -1470,21 +1484,21 @@
 
 | Step | Tool | Args | Tokens |
 |------|------|------|-------:|
-| 1 | search | `{"query":"Apps Engine event","layer":"packages"}` | 193 |
-| 2 | search | `{"query":"Apps Engine listener","layer":"packages"}` | 195 |
-| 3 | search | `{"query":"afterSaveMessage","layer":"packages"}` | 261 |
-| 4 | graph | `{"query":"afterSaveMessage","direction":"down","edgeTypes":["event_listen"]}` | 158 |
-| 5 | search | `{"layer":"packages","query":"callbacks.add afterSaveMessage"}` | 19 |
-| 6 | search | `{"query":"Apps Engine IHook","layer":"packages"}` | 15 |
-| 7 | search | `{"layer":"packages","query":"Apps Engine register hook"}` | 17 |
-| 8 | implement | `{"symbolName":"afterSaveMessage","filename":"apps/meteor/app/lib/server/lib/afte` | 189 |
+| 1 | search | `{"layer":"packages","query":"Apps Engine event handler"}` | 17 |
+| 2 | search | `{"layer":"packages","query":"IEvent"}` | 177 |
+| 3 | graph | `{"direction":"down","layer":"packages","query":"AppListenerManager"}` | 151 |
+| 4 | search | `{"query":"Apps.triggerEvent"}` | 83 |
+| 5 | graph | `{"query":"Apps.triggerEvent","layer":"server","direction":"down"}` | 14 |
+| 6 | search | `{"layer":"server","query":"Apps"}` | 425 |
+| 7 | graph | `{"query":"AppManager","layer":"packages","direction":"down"}` | 143 |
+| 8 | implement | `{"symbolName":"Apps.triggerEvent","filename":"apps/meteor/ee/server/apps/orchest` | 48 |
 
 **File Hits:**
 
 | Expected File | Found? | Found Via |
 |---------------|--------|-----------|
-| `packages/apps-engine/src/server/AppManager.ts` | **NO** | - |
-| `packages/apps-engine/src/server/managers/AppListenerManager.ts` | **NO** | - |
+| `packages/apps-engine/src/server/AppManager.ts` | YES | search (step 6) |
+| `packages/apps-engine/src/server/managers/AppListenerManager.ts` | YES | search (step 2) |
 | `packages/apps-engine/src/definition/metadata/AppInterface.ts` | **NO** | - |
 | `apps/meteor/app/apps/server/bridges/bridges.js` | **NO** | - |
 | `apps/meteor/app/apps/server/bridges/listeners.ts` | **NO** | - |
@@ -1494,48 +1508,34 @@
 
 | Symbol | In Tool Results? | In LLM Answer? |
 |--------|-----------------|----------------|
-| `AppManager` | **NO** | **NO** |
-| `AppListenerManager` | **NO** | **NO** |
-| `executeListener` | **NO** | **NO** |
+| `AppManager` | YES | **NO** |
+| `AppListenerManager` | YES | YES |
+| `executeListener` | YES | YES |
 | `AppInterface` | **NO** | **NO** |
-| `IPostMessageSent` | **NO** | **NO** |
+| `IPostMessageSent` | YES | YES |
 
 **LLM Answer (truncated):**
 
-> To understand how the Rocket.Chat Apps Engine hooks into events like `afterSaveMessage`, we need to trace how events are triggered and how the Apps Engine registers its listeners.
+> Rocket.Chat Apps hook into events like `afterSaveMessage` (which corresponds to `IPostMessageSent` in the Apps Engine) through a mechanism orchestrated by the `Apps` object and managed by the `AppListenerManager`.
 > 
-> Here's the current understanding based on the available information:
+> Here's the call chain:
 > 
-> 1.  **`afterSaveMessage` Callback Execution:** The `afterSaveMessage` function, located at `apps/meteor/app/lib/server/lib/afterSaveMessage.ts`, explicitly calls `callbacks.run('afterSaveMessage', message, { room, user, roomUpdater: updater })`. This indicates that `afterSaveMessage` is a general callback event that other modules can subscribe to.
+> **Rocket.Chat Core Action → Apps.triggerEvent → AppListenerManager.executeListener → App's Registered Hook**
 > 
-> 2.  **Missing Apps Engine Hook Registration:** While we know `afterSaveMessage` is a callback, the specific mechanism for how the Apps Engine registers its hooks for this event is not directly evident from the `search` and `graph` results for "Apps Engine event," "Apps Engine listener," "Apps Engine IHook," or "Apps Engine register hook." Similarly, searching for "callbacks.add afterSaveMessage" did not yield direct results within the `packages` layer.
-> 
-> **Call Chain (Partial):**
-> 
-> `afterSaveMessage` (in `apps/meteor/app/lib/server/lib/afterSaveMessage.ts`) → `callbacks.run('afterSaveMessage', ...)`
-> 
-> **Next Steps (Hypothesized):**
-> 
-> The Apps Engine likely uses `callbacks.add` internally to register its own event handlers for `afterSaveMessage` and other lifecycle events. To fully understand the connection, one would need to:
-> 
-> 1.  **Search for `callbacks.add` within the Apps Engine codebase** (likely in `packages/` or `ee/packages/`) to find where the Apps Engine registers its listeners.
-> 2.  **Investigate the Apps Engine's internal event handling mechanism** to see how it maps platform events (like `afterSaveMessage`) to the `IHook` implementations provided by individual apps.
+> 1.  **Rocket.Chat Core Action (e.g., Message Saving):** When a significant event occurs in Rocket.Chat, such as a message being saved, the core system invokes the Apps Engine's event triggering mechanism.
+> 2.  **`Apps.triggerEvent()`:** The core Rocket.Chat code calls `Apps.triggerEvent()` with the specific event type (e.g., `AppEvents.IPostMessageSent`) and relevant data. An example of `Apps.triggerEvent` usage can be found in `apps/meteor/app/lib/server/functions/createRoom.ts`, which calls `await Apps.triggerEvent(AppEvents.IPreRoomCreateExtend, tmp)`. The `Apps` object acts as an orchestrator for these events.
+> 3.  **`AppListenerManager.executeListener()`:** The `Apps` orchestrator dispatches the event to the `AppListenerManager`, located at `packages/apps-engine/src/server/managers/AppListenerManager.ts`. The `AppListenerManager` is responsible for knowing which apps have registered listeners for the triggered event. It then calls `executeListener()` to invoke the appropriate handler within each registered app.
+> 4.  **App's Registered Hook:** An individual Rocket.Chat App, during its lifecycle, registers various lifecycle hooks (e.g., `IPreMessageSent`, `IPostMessageSent`, `IPostRoomCreate`). When `AppListenerManager.executeListener()` is called for an event that an app has registered a hook for, the app's specific implementation of that hook is executed within its isolated sandbox.
 
 **Root Cause Analysis:**
 
 | Problem | Category | Detail |
 |---------|----------|--------|
-| `AppManager.ts` not found | **Search/LLM gap** | File is in index but search didn't surface it, or LLM didn't look for it |
-| `AppListenerManager.ts` not found | **Search/LLM gap** | File is in index but search didn't surface it, or LLM didn't look for it |
 | `AppInterface.ts` not found | **Search/LLM gap** | File is in index but search didn't surface it, or LLM didn't look for it |
 | `bridges.js` not found | **Search/LLM gap** | File is in index but search didn't surface it, or LLM didn't look for it |
 | `listeners.ts` not found | **Search/LLM gap** | File is in index but search didn't surface it, or LLM didn't look for it |
 | `index.ts` not found | **Search/LLM gap** | File is in index but search didn't surface it, or LLM didn't look for it |
-| `AppManager` missing | **LLM didn't mention** | Symbol exists in index but LLM never searched for it or mentioned it |
-| `AppListenerManager` missing | **LLM didn't mention** | Symbol exists in index but LLM never searched for it or mentioned it |
-| `executeListener` missing | **LLM didn't mention** | Symbol exists in index but LLM never searched for it or mentioned it |
 | `AppInterface` missing | **LLM didn't mention** | Symbol exists in index but LLM never searched for it or mentioned it |
-| `IPostMessageSent` missing | **LLM didn't mention** | Symbol exists in index but LLM never searched for it or mentioned it |
 
 ---
 
@@ -1548,14 +1548,14 @@
 
 | Step | Tool | Args | Tokens |
 |------|------|------|-------:|
-| 1 | search | `{"query":"registerSetting"}` | 15 |
-| 2 | search | `{"query":"Settings"}` | 645 |
-| 3 | search | `{"query":"SettingsRegistry","layer":"server"}` | 195 |
-| 4 | graph | `{"layer":"server","direction":"down","query":"SettingsRegistry.add"}` | 15 |
-| 5 | implement | `{"filename":"apps/meteor/app/settings/server/SettingsRegistry.ts","symbolName":"` | 267 |
-| 6 | graph | `{"depth":2,"layer":"server","query":"SettingsRegistry.add","direction":"down"}` | 15 |
+| 1 | search | `{"query":"Settings"}` | 645 |
+| 2 | graph | `{"direction":"down","query":"SettingsRegistry.add","layer":"server"}` | 15 |
+| 3 | search | `{"layer":"server","query":"SettingsRegistry"}` | 195 |
+| 4 | graph | `{"query":"SettingsRegistry.add","direction":"down","layer":"server"}` | 15 |
+| 5 | implement | `{"symbolName":"SettingsRegistry","filename":"apps/meteor/app/settings/server/Set` | 267 |
+| 6 | graph | `{"layer":"server","direction":"down","depth":2,"query":"SettingsRegistry.add"}` | 15 |
 | 7 | implement | `{"symbolName":"SettingsRegistry.add","filename":"apps/meteor/app/settings/server` | 929 |
-| 8 | implement | `{"filename":"packages/models/src/models/Settings.ts","symbolName":"Settings"}` | 57 |
+| 8 | search | `{"query":"Settings model"}` | 66 |
 
 **File Hits:**
 
@@ -1573,36 +1573,35 @@
 | Symbol | In Tool Results? | In LLM Answer? |
 |--------|-----------------|----------------|
 | `SettingsRegistry` | YES | YES |
-| `CachedSettings` | YES | YES |
+| `CachedSettings` | YES | **NO** |
 | `SettingsRaw` | **NO** | **NO** |
 
 **LLM Answer (truncated):**
 
-> The Rocket.Chat Settings system operates in a layered fashion, handling registration, storage, caching, and client-side access.
-> 
-> **1. Registration:**
-> *   Settings are registered on the server-side through the `SettingsRegistry` class, specifically using the `SettingsRegistry.add` method found in `apps/meteor/app/settings/server/SettingsRegistry.ts`.
-> *   When a setting is added, it undergoes validation and potential overwriting based on existing settings or enterprise-specific rules.
-> *   The `add` method ultimately calls `this.model.insertOne(setting)` to persist the setting in the database and `this.store.set(setting)` to update the in-memory cache.
-> 
-> **2. Storage:**
-> *   Settings are stored in MongoDB via the `Settings` model. This model is defined in `packages/models/src/models/Settings.ts`.
-> 
-> **3. Caching:**
-> *   After being stored in the database, settings are cached in memory by `CachedSettings` (a Map-based store with an Emitter). This ensures quick access to setting values without constant database lookups.
-> *   The `SettingsRegistry` interacts with this cache via the `store` property, calling `store.set()` to update it.
-> 
-> **4. Client-side Access:**
-> *   Clients access settings through Meteor methods: `public-settings/get` and `private-settings/get`. These methods likely retrieve settings from the `CachedSettings` store, ensuring efficient delivery of settings to the client.
-> *   Client-side code can then use hooks like `useSettings` (found in `packages/ui-contexts/src/hooks/useSettings.ts`) to consume these settings.
+> The Rocket.Chat Settings system operates through a well-defined architecture, from server-side registration and storage to client-side access.
 > 
 > **Call Chain:**
 > 
-> 1.  **Setting Registration:** `apps/meteor/app/settings/server/SettingsRegistry.ts` (`SettingsRegistry.add`)
-> 2.  **Database Storage:** `packages/models/src/models/Settings.ts` (`Settings` model)
-> 3.  **In-memory Caching:** `apps/meteor/app/settings/server/SettingsRegistry.ts` (`this.store.set`, which points to `CachedSettings`)
-> 4.  **Client Access (Meteor Methods):** (Implied by initial search, not directly traced with graph but crucial for client access) `public-settings/get` and `private-settings/get`
-> 5.  **Client-side Usage:** `packages/ui-contexts/src/hooks/useSettings.ts` (React hook for consuming settings)
+> 1.  **Settings Registration (Server-side):**
+>     *   `apps/meteor/app/settings/server/SettingsRegistry.ts` (Symbol: `SettingsRegistry`): Settings are registered using the `SettingsRegistry.add()` method. This method handles the initial definition of a setting, including its ID, default value, type, group, section, and other options.
+>     *   `SettingsRegistry.add()` (Method in `apps/meteor/app/settings/server/SettingsRegistry.ts`):
+>         *   It validates the input, calculates sorting keys, and applies default properties.
+>         *   It checks for enterprise settings and ensures they have `invalidValue` defined.
+>         *   It then overwrites settings based on existing configurations.
+>         *   Finally, it persists the setting to the MongoDB database via the `ISettingsModel` and updates the in-memory `ICachedSettings` store.
+> 
+> 2.  **Settings Storage and Caching (Server-side):**
+>     *   `packages/models/src/models/Settings.ts` (Symbol: `Settings`): Settings are stored in MongoDB using the `Settings` model.
+>     *   `ISettingsModel` (Interface in `packages/model-typings/src/models/ISettingsModel.ts`): This interface defines the contract for interacting with the settings in the database. The `SettingsRegistry.add()` method directly interacts with this model to insert new settings (`this.model.insertOne(setting)`).
+>     *   `ICachedSettings`: Settings are cached in memory using a Map-based store with an Emitter, allowing services to watch for changes.
+> 
+> 3.  **Client-side Access:**
+>     *   `apps/meteor/client/lib/settings/settings.ts` (Symbol: `Settings` - client-side representation): The client accesses settings through Meteor methods:
+>         *   `public-settings/get`: Retrieves publicly available settings.
+>         *   `private-settings/get`: Retrieves settings that require authentication.
+>     *   `packages/ui-contexts/src/SettingsContext.ts`, `packages/ui-contexts/src/hooks/useSettings.ts`: These files likely provide React contexts and hooks for accessing settings within the client-side UI, leveraging the Meteor methods for data retrieval.
+> 
+> In summary, settings are declared on the server via `SettingsRegistry.add()`, stored in MongoDB using the `Settings` model, and cached in memory for efficient server-side access. On the client, settings are retrieved via dedicated Meteor methods and made available to the UI through React contexts and hooks.
 
 **Root Cause Analysis:**
 
@@ -1626,25 +1625,25 @@
 
 | Step | Tool | Args | Tokens |
 |------|------|------|-------:|
-| 1 | search | `{"query":"LDAP authentication","layer":"server"}` | 16 |
-| 2 | search | `{"query":"LDAP","layer":"server"}` | 588 |
-| 3 | graph | `{"layer":"server","direction":"down","query":"LDAPService.loginRequest"}` | 16 |
-| 4 | search | `{"layer":"server","query":"LDAPService"}` | 287 |
-| 5 | graph | `{"direction":"down","query":"LDAPService.loginRequest","layer":"server"}` | 16 |
-| 6 | search | `{"layer":"server","query":"configureLDAP"}` | 262 |
-| 7 | graph | `{"query":"configureLDAP","direction":"down","layer":"server"}` | 1234 |
-| 8 | graph | `{"layer":"server","direction":"down","query":"LDAPManager.login"}` | 14 |
+| 1 | search | `{"query":"LDAP","layer":"server"}` | 588 |
+| 2 | graph | `{"layer":"server","query":"LDAPManager.login","direction":"down"}` | 14 |
+| 3 | search | `{"layer":"server","query":"LDAPService.loginRequest"}` | 17 |
+| 4 | search | `{"query":"configureLDAP","layer":"server"}` | 262 |
+| 5 | graph | `{"query":"configureLDAP","layer":"server","direction":"down"}` | 1234 |
+| 6 | implement | `{"symbolName":"loginRequest","filename":"apps/meteor/server/services/ldap/servic` | 55 |
+| 7 | implement | `{"filename":"apps/meteor/server/services/ldap/service.ts","symbolName":"LDAPServ` | 84 |
+| 8 | implement | `{"filename":"apps/meteor/server/lib/ldap/Manager.ts","symbolName":"LDAPManager.l` | 355 |
 
 **File Hits:**
 
 | Expected File | Found? | Found Via |
 |---------------|--------|-----------|
-| `apps/meteor/server/configuration/ldap.ts` | YES | search (step 6) |
-| `apps/meteor/server/services/ldap/service.ts` | YES | search (step 2) |
-| `apps/meteor/server/lib/ldap/Manager.ts` | YES | search (step 2) |
-| `apps/meteor/server/lib/ldap/Connection.ts` | YES | search (step 2) |
-| `apps/meteor/server/lib/ldap/UserConverter.ts` | YES | search (step 2) |
-| `apps/meteor/server/lib/ldap/Logger.ts` | YES | search (step 2) |
+| `apps/meteor/server/configuration/ldap.ts` | YES | search (step 4) |
+| `apps/meteor/server/services/ldap/service.ts` | YES | search (step 1) |
+| `apps/meteor/server/lib/ldap/Manager.ts` | YES | search (step 1) |
+| `apps/meteor/server/lib/ldap/Connection.ts` | YES | search (step 1) |
+| `apps/meteor/server/lib/ldap/UserConverter.ts` | YES | search (step 1) |
+| `apps/meteor/server/lib/ldap/Logger.ts` | YES | search (step 1) |
 
 **Symbol Coverage:**
 
@@ -1657,37 +1656,76 @@
 
 **LLM Answer (truncated):**
 
-> LDAP authentication in Rocket.Chat follows this process:
+> Rocket.Chat's LDAP authentication works by registering a custom login handler that intercepts login requests and directs them to the LDAP service. The process involves the following key steps and files:
 > 
-> **Call Chain:**
+> **Call Chain:** `Meteor.loginWith*()` → `Accounts.registerLoginHandler` → `configureLDAP` → `LDAPService.loginRequest` → `LDAPManager.login`
 > 
-> 1.  **Entry Point:** When a user attempts to log in using a `Meteor.loginWith*()` method, the request is handled by `Accounts.registerLoginHandler`.
-> 2.  **LDAP Handler Registration:** The `configureLDAP()` function (located in `apps/meteor/server/configuration/ldap.ts`) registers a specific handler for 'ldap' logins with `Accounts.registerLoginHandler('ldap', fn)`.
-> 3.  **LDAP Login Request:** If the login request includes an `ldap` flag, the registered handler dispatches the request to `LDAP.loginRequest(username, password)` via a core-services proxy.
-> 4.  **LDAP Service Invocation:** This call is then handled by `LDAPService.loginRequest()` (located in `apps/meteor/server/services/ldap/service.ts`).
-> 5.  **LDAP Manager Login:** `LDAPService.loginRequest()`, in turn, calls `LDAPManager.login()` (located in `apps/meteor/server/lib/ldap/Manager.ts`).
-> 6.  **LDAP Connection and Authentication:**
->     *   `LDAPManager.login()` creates an `LDAPConnection` (defined in `apps/meteor/server/lib/ldap/Connection.ts`).
->     *   It then connects to the LDAP server using `ldap.connect()`.
->     *   The user is searched by their username via `ldap.searchByUsername()`.
->     *   Authentication is performed using `ldap.authenticate(dn, password)`.
->     *   Group filters are checked.
->     *   The user is either found or created in MongoDB.
->     *   The user's avatar is synced.
->     *   Finally, `LDAPManager.login()` returns `{userId}` upon successful authentication.
+> 1.  **`configureLDAP`** (in `apps/meteor/server/configuration/ldap.ts`):
+>     *   This function is responsible for initializing and registering the LDAP login handler with Meteor's `Accounts.registerLoginHandler('ldap', fn)` system. This handler is triggered when a user attempts to log in with LDAP.
 > 
-> **Fallback Mechanism:**
+> 2.  **`LDAPService.loginRequest`** (in `apps/meteor/server/services/ldap/service.ts`):
+>     *   When an LDAP login attempt is made, the registered handler dispatches to this method.
+>     *   Its primary role is to act as a proxy, forwarding the authentication request (username and password) directly to the core LDAP management logic.
+>     *   **Implementation Snippet:**
+>         
+> ```typescript
+>         async loginRequest(username: string, password: string): Promise<LDAPLoginResult> {
+>         		return LDAPManager.login(username, password);
+>         	}
+>         ```
 > 
-> *   If LDAP authentication fails and the `LDAP_Login_Fallback` setting is enabled, Rocket.Chat falls back to other registered login handlers via `Accounts._runLoginHandlers()` to attempt default password authentication.
-> *   A `beforeValidateLogin` callback prevents password logins for users primarily authenticated via LDAP, unless the fallback option is specifically enabled.
 > 
-> **Key Files Involved:**
+> 3.  **`LDAPManager.login`** (in `apps/meteor/server/lib/ldap/Manager.ts`):
+>     *   This is the central component for handling the actual LDAP authentication and user management within Rocket.Chat.
+>     *   **Core Logic:**
+>         *   It first verifies if LDAP is enabled via the `LDAP_Enable` setting. If not, or if authentication fails later, it can fall back to the default login method if configured.
+>         *   An `LDAPConnection` is established to connect to the configured LDAP server.
+>         *   It attempts to find and authenticate the user against the LDAP server using `this.findUser(ldap, username, password)`.
+>         *   If the user is successfully found and authenticated in LDAP, it proceeds with user synchronization:
+>             *   It checks for federation settings.
+>             *   It slugifies the username for Rocket.Chat's internal use.
+>             *   It determines if the user already exists in Rocket.Chat's database (`this.findExistingUser`).
+>             *   If the user exists, it updates their information using `this.loginExistingUser`.
+>             *   If the user does not exist, a new Rocket.Chat user account is created based on the LDAP data using `this.loginNewUserFromLDAP`.
+>         *   Finally, the LDAP connection is disconnected.
+>     *   **Implementation Snippet (abbreviated):**
+>         
+> ```typescript
+>         public static async login(username: string, password: string): Promise<LDAPLoginResult> {
+>         		logger.debug({ msg: 'Init LDAP login', username });
 > 
-> *   `apps/meteor/server/configuration/ldap.ts`: Contains `configureLDAP()` which registers the LDAP login handler.
-> *   `apps/meteor/server/services/ldap/service.ts`: Implements `LDAPService.loginRequest()`.
-> *   `apps/meteor/server/lib/ldap/Manager.ts`: Contains `LDAPManager.login()` which orchestrates the LDAP connection, search, and authentication.
-> *   `apps/meteor/server/lib/ldap/Connection.ts`: Handles the actual LDAP connection and operations.
-> *   `packages/core-services/src/index.ts`: Defines the `LDAP` symbol, likely for proxying LDAP service calls.
+>         		if (settings.get('LDAP_Enable') !== true) {
+>         			return this.fallbackToDefaultLogin(username, password);
+>         		}
+> 
+>         		let ldapUser: ILDAPEntry | undefined;
+> 
+>         		const ldap = new LDAPConnection();
+>         		try {
+>         			try {
+>         				await ldap.connect();
+>         				ldapUser = await this.findUser(ldap, username, password);
+>         			} catch (err) {
+>         				logger.error({ err });
+>         			}
+> 
+>         			if (ldapUser === undefined) {
+>         				return this.fallbackToDefaultLogin(username, password);
+>         			}
+> 
+>         			// ... (federation, username slugification, existing user check) ...
+> 
+>         			await ldap.bindAuthenticationUser();
+>         			if (user) {
+>         				return await this.loginExistingUser(ldap, user, ldapUser, password);
+>         			}
+> 
+>         			return await this.loginNewUserFromLDAP(slugifiedUsername, ldap, ldapUser, password);
+>         		} finally {
+>         			ldap.disconnect();
+>         		}
+>         	}
+>         ```
 
 ---
 
@@ -1700,18 +1738,24 @@
 
 | Step | Tool | Args | Tokens |
 |------|------|------|-------:|
-| 1 | search | `{"layer":"server","query":"createChannel"}` | 257 |
-| 2 | graph | `{"layer":"server","direction":"down","query":"createChannel"}` | 939 |
+| 1 | search | `{"query":"create channel"}` | 435 |
+| 2 | graph | `{"layer":"client","direction":"down","query":"CreateChannelModal"}` | 636 |
+| 3 | search | `{"layer":"server","query":"createChannel"}` | 257 |
+| 4 | graph | `{"filename":"apps/meteor/app/lib/server/methods/createChannel.ts","direction":"d` | 939 |
+| 5 | graph | `{"query":"createChannelMethod","filename":"apps/meteor/app/lib/server/methods/cr` | 1038 |
+| 6 | implement | `{"symbolName":"createChannelMethod","filename":"apps/meteor/app/lib/server/metho` | 401 |
+| 7 | search | `{"query":"createRoom","layer":"server"}` | 481 |
+| 8 | graph | `{"filename":"apps/meteor/app/lib/server/functions/createRoom.ts","query":"create` | 730 |
 
 **File Hits:**
 
 | Expected File | Found? | Found Via |
 |---------------|--------|-----------|
-| `apps/meteor/app/lib/server/methods/createChannel.ts` | YES | search (step 1) |
-| `apps/meteor/app/lib/server/functions/createRoom.ts` | YES | LLM answer |
+| `apps/meteor/app/lib/server/methods/createChannel.ts` | YES | search (step 3) |
+| `apps/meteor/app/lib/server/functions/createRoom.ts` | YES | search (step 7) |
 | `apps/meteor/app/lib/server/functions/createDirectRoom.ts` | **NO** | - |
 | `apps/meteor/server/services/room/service.ts` | **NO** | - |
-| `apps/meteor/server/lib/callbacks/beforeCreateRoomCallback.ts` | **NO** | - |
+| `apps/meteor/server/lib/callbacks/beforeCreateRoomCallback.ts` | YES | search (step 7) |
 | `apps/meteor/server/lib/callbacks/beforeAddUserToRoom.ts` | **NO** | - |
 
 **Symbol Coverage:**
@@ -1724,33 +1768,26 @@
 
 **LLM Answer (truncated):**
 
-> When a user creates a new channel in Rocket.Chat, the following sequence of operations occurs:
+> When a user creates a new channel in Rocket.Chat, the process starts with the `CreateChannelModal` in the client-side code. This modal handles the user input and initiates the channel creation process.
 > 
-> **Call Chain:** `createChannel (DDP Method) → createChannelMethod → createRoom → Rooms.createWithFullRoomData`
+> The client-side `CreateChannelModal` (located at `apps/meteor/client/navbar/NavBarPagesGroup/actions/CreateChannelModal.tsx`) interacts with the server to create the channel.
 > 
-> 1.  **DDP Method Call:** The process begins with a DDP (Distributed Data Protocol) method call to `createChannel` from the client.
-> 2.  **Server-Side Method Execution:** This call is handled on the server by the `createChannelMethod` function located in `apps/meteor/app/lib/server/methods/createChannel.ts`.
-> 3.  **Parameter Validation and Permissions:**
->     *   `createChannelMethod` first validates the parameters provided for the new channel (e.g., channel name, type, members).
->     *   It performs permission checks by calling `hasPermissionAsync` (from `apps/meteor/app/lib/server/functions/hasPermission.ts`) to ensure the user has the necessary authorization to create a channel.
->     *   It might also check for existing channels with the same name using `findChannelByIdOrName` (from `apps/meteor/app/api/server/v1/channels.ts`) to prevent duplicates.
-> 4.  **Room Creation Logic:** The core channel creation is delegated to the `createRoom` function. This function orchestrates several steps:
->     *   **Pre-creation Callbacks and Hooks:**
->         *   `prepareCreateRoomCallback.run()` is executed.
->         *   Apps Engine pre-hooks (e.g., `IPreRoomCreatePrevent`, `IPreRoomCreateModify`, `IPreRoomCreateExtend`) are triggered, allowing apps to intervene before the room is created.
->         *   `beforeCreateRoomCallback.run()` is executed.
->     *   **Database Insertion:** `Rooms.createWithFullRoomData()` is called to insert the new room's data into the database.
->     *   **User Subscriptions:** `createUsersSubscriptions()` is invoked to set up the necessary subscriptions for all users who are part of the new channel.
->     *   **Post-creation Callbacks and Events:**
->         *   `callbacks.runAsync('afterCreateChannel'/'afterCreatePrivateGroup'/'afterCreateRoom')` executes various callbacks after the channel has been successfully created.
->         *   `Apps.triggerEvent(IPostRoomCreate)` signals the Apps Engine that a new room has been created.
+> The server-side handling begins with the `createChannelMethod`.
 > 
-> **Key Files Involved:**
+> **Call Chain:**
 > 
-> *   `apps/meteor/app/lib/server/methods/createChannel.ts`: Defines the `createChannelMethod` and initiates the channel creation flow.
-> *   `apps/meteor/app/lib/server/functions/createRoom.ts`: (Implicitly called based on architecture description from search) Contains the central logic for creating a room.
-> *   `apps/meteor/app/lib/server/functions/hasPermission.ts`: Used for checking user permissions.
-> *   `apps/meteor/app/api/server/v1/channels.ts`: Contains `findChannelByIdOrName` for name validation.
+> 1.  **`CreateChannelModal`** (`apps/meteor/client/navbar/NavBarPagesGroup/actions/CreateChannelModal.tsx`): This is the client-side entry point, responsible for the UI and gathering channel creation parameters. It dispatches a call to the server.
+> 2.  **`createChannelMethod`** (`apps/meteor/app/lib/server/methods/createChannel.ts`): This DDP (Distributed Data Protocol) method on the server receives the channel creation request. It performs validation checks, such as ensuring the user has the necessary permissions (`hasPermissionAsync`) and verifying the provided `teamId` if creating a channel within a team.
+> 3.  **`createRoom`** (`apps/meteor/app/lib/server/functions/createRoom.ts`): The `createChannelMethod` then calls the `createRoom` function, which is the core logic for creating any type of room (including channels). This function handles:
+>     *   `prepareCreateRoomCallback.run()`: Executes callbacks before room creation.
+>     *   Apps Engine pre-hooks (`IPreRoomCreatePrevent`/`Modify`/`Extend`): Allows Rocket.Chat Apps to intervene before a room is created.
+>     *   `beforeCreateRoomCallback.run()`: Executes another set of callbacks.
+>     *   `Rooms.createWithFullRoomData()`: Inserts the new room data into the database.
+>     *   `createUsersSubscriptions()`: Creates subscriptions for users in the new channel.
+>     *   `callbacks.runAsync('afterCreateChannel'/'afterCreatePrivateGroup'/'afterCreateRoom')`: Executes post-creation callbacks.
+>     *   `Apps.triggerEvent(IPostRoomCreate)`: Triggers an Apps Engine event after the room is created.
+> 
+> This sequence ensures that the channel is properly created, permissions are checked, and any relevant hooks or integrations are triggered.
 
 **Root Cause Analysis:**
 
@@ -1758,7 +1795,6 @@
 |---------|----------|--------|
 | `createDirectRoom.ts` not found | **Search/LLM gap** | File is in index but search didn't surface it, or LLM didn't look for it |
 | `service.ts` not found | **Search/LLM gap** | File is in index but search didn't surface it, or LLM didn't look for it |
-| `beforeCreateRoomCallback.ts` not found | **Search/LLM gap** | File is in index but search didn't surface it, or LLM didn't look for it |
 | `beforeAddUserToRoom.ts` not found | **Search/LLM gap** | File is in index but search didn't surface it, or LLM didn't look for it |
 
 ---
@@ -1772,20 +1808,22 @@
 
 | Step | Tool | Args | Tokens |
 |------|------|------|-------:|
-| 1 | search | `{"query":"enterprise feature gating","layer":"ee"}` | 17 |
-| 2 | search | `{"query":"license","layer":"ee"}` | 446 |
-| 3 | graph | `{"layer":"ee","direction":"down","query":"license"}` | 173 |
-| 4 | implement | `{"symbolName":"hasModule","filename":"ee/packages/license/src/modules.ts"}` | 69 |
-| 5 | implement | `{"symbolName":"LicenseManager","filename":"ee/packages/license/src/license.ts"}` | 1200 |
+| 1 | search | `{"layer":"ee","query":"feature gating"}` | 72 |
+| 2 | search | `{"layer":"ee","query":"ee feature"}` | 186 |
+| 3 | graph | `{"query":"isFeatureAvailableForUser","direction":"down","layer":"ee"}` | 61 |
+| 4 | search | `{"query":"license","layer":"ee"}` | 446 |
+| 5 | graph | `{"query":"hasModule","direction":"down","layer":"ee"}` | 139 |
+| 6 | implement | `{"symbolName":"hasModule","filename":"ee/packages/license/src/modules.ts"}` | 69 |
+| 7 | implement | `{"filename":"ee/packages/license/src/license.ts","symbolName":"LicenseManager"}` | 1200 |
 
 **File Hits:**
 
 | Expected File | Found? | Found Via |
 |---------------|--------|-----------|
-| `ee/packages/license/src/license.ts` | YES | search (step 2) |
-| `ee/packages/license/src/licenseImp.ts` | YES | search (step 2) |
-| `ee/packages/license/src/modules.ts` | YES | search (step 2) |
-| `ee/packages/license/src/events/listeners.ts` | **NO** | - |
+| `ee/packages/license/src/license.ts` | YES | search (step 4) |
+| `ee/packages/license/src/licenseImp.ts` | YES | search (step 4) |
+| `ee/packages/license/src/modules.ts` | YES | search (step 4) |
+| `ee/packages/license/src/events/listeners.ts` | YES | search (step 2) |
 | `ee/packages/license/src/events/emitter.ts` | **NO** | - |
 | `ee/packages/license/src/validation/runValidation.ts` | **NO** | - |
 
@@ -1794,39 +1832,36 @@
 | Symbol | In Tool Results? | In LLM Answer? |
 |--------|-----------------|----------------|
 | `LicenseManager` | YES | YES |
-| `LicenseImp` | YES | YES |
-| `onValidateLicense` | YES | YES |
+| `LicenseImp` | YES | **NO** |
+| `onValidateLicense` | YES | **NO** |
 | `hasModule` | YES | YES |
 | `LicenseService` | **NO** | **NO** |
 
 **LLM Answer (truncated):**
 
-> Enterprise feature gating in Rocket.Chat is managed by a centralized licensing system within the `ee/packages/license` directory. The core mechanism involves a `LicenseManager` that validates the active license, an underlying `LicenseImp` for implementation details, and `hasModule()` checks scattered throughout the codebase to gate specific features.
+> Rocket.Chat's enterprise feature gating mechanism is centered around the `ee/packages/license/` package, specifically the `LicenseManager` and the `hasModule` function.
+> 
+> Here's the call chain and how it works:
+> 
+> 1.  **License Application (Entry Point):** An encrypted license is applied to the system via `LicenseManager.setLicense(encryptedLicense, isNewLicense)`.
+>     *   **File:** `ee/packages/license/src/license.ts`
+> 2.  **License Validation:** The `setLicense` method internally invokes `LicenseManager.validateLicense()` to parse and validate the provided license. During this process, the active modules permitted by the license are identified.
+>     *   **File:** `ee/packages/license/src/license.ts`
+> 3.  **Module Population:** Upon successful validation, the `LicenseManager` instance's `modules` property (a `Set<LicenseModule>`) is populated with the names of all enabled enterprise modules/features.
+>     *   **File:** `ee/packages/license/src/license.ts` (specifically, the `modules = new Set<LicenseModule>();` property within the `LicenseManager` class)
+> 4.  **Feature Gating (Check):** Throughout the codebase, when an enterprise feature needs to determine if it should be enabled or accessible, it calls `hasModule(moduleName)`.
+>     *   **File:** `ee/packages/license/src/modules.ts` (the `hasModule` function)
+>     5. **Module Availability Check:** The `hasModule` function simply checks if the requested `moduleName` exists in the `LicenseManager.modules` Set. If it's present, the feature is considered available; otherwise, it's not.
+>     *   **File:** `ee/packages/license/src/modules.ts` (implementation of `hasModule`)
 > 
 > **Call Chain:**
 > 
-> 1.  **Entry Point:** Setting or revalidating a license, often initiated via `LicenseManager.setLicense()` in `ee/packages/license/src/license.ts`.
-> 2.  **License Validation:** `LicenseManager.setLicense()` triggers `LicenseManager.validateLicense()` within `ee/packages/license/src/license.ts`. This process parses the license and determines the active modules.
-> 3.  **Module Population:** The `LicenseManager` populates its internal `modules` set (a `Set<LicenseModule>`) with the features enabled by the validated license.
-> 4.  **Feature Gating:** Throughout the Rocket.Chat codebase, enterprise features use `hasModule()` from `ee/packages/license/src/modules.ts` to check if a particular module (feature) is enabled. This function directly queries the `modules` set on the `LicenseManager` instance.
-> 5.  **License Events:** Changes to the license status (validation, invalidation) emit events via `onValidateLicense` listeners, allowing other parts of the system to react.
-> 
-> **Key Files and Symbols:**
-> 
-> *   **`ee/packages/license/src/license.ts`**: Contains the `LicenseManager` class, responsible for:
->     *   Validating the format and content of the enterprise license.
->     *   Maintaining the `modules` set, which stores all currently enabled enterprise features/modules.
->     *   Exposing methods like `setLicense()` to apply new licenses and `hasValidLicense()` to check the overall license status.
-> *   **`ee/packages/license/src/modules.ts`**: Defines the `hasModule()` function, which is the primary method used across the application to check if a specific enterprise module is active. It works by checking if the module exists within the `LicenseManager`'s `modules` set.
-> *   **`apps/meteor/ee/app/api-enterprise/server/middlewares/license.ts`**: An example entry point where the `license` symbol is used, demonstrating how license checks might be integrated into server-side middleware, potentially leveraging `hasModule`.
-> 
-> In essence, the `LicenseManager` acts as the central authority for all license-related information, and features consult this manager via `hasModule()` to determine their availability.
+> `LicenseManager.setLicense` (`ee/packages/license/src/license.ts`) → `LicenseManager.validateLicense` (`ee/packages/license/src/license.ts`) → (Populates `LicenseManager.modules` property) → `hasModule` (`ee/packages/license/src/modules.ts`) → `LicenseManager.modules.has(module)` (`ee/packages/license/src/license.ts` property and `ee/packages/license/src/modules.ts` usage)
 
 **Root Cause Analysis:**
 
 | Problem | Category | Detail |
 |---------|----------|--------|
-| `listeners.ts` not found | **Search/LLM gap** | File is in index but search didn't surface it, or LLM didn't look for it |
 | `emitter.ts` not found | **Search/LLM gap** | File is in index but search didn't surface it, or LLM didn't look for it |
 | `runValidation.ts` not found | **Search/LLM gap** | File is in index but search didn't surface it, or LLM didn't look for it |
 | `LicenseService` missing | **LLM didn't mention** | Symbol exists in index but LLM never searched for it or mentioned it |
@@ -1843,10 +1878,8 @@
 | Step | Tool | Args | Tokens |
 |------|------|------|-------:|
 | 1 | search | `{"query":"afterSaveMessage"}` | 261 |
-| 2 | graph | `{"edgeTypes":["event_listen"],"direction":"down","query":"afterSaveMessage"}` | 158 |
+| 2 | graph | `{"query":"afterSaveMessage","direction":"down","edgeTypes":["event_listen"]}` | 158 |
 | 3 | search | `{"query":"callbacks.add('afterSaveMessage'"}` | 263 |
-| 4 | graph | `{"layer":"server","direction":"down","query":"RocketAdapter.onMessage"}` | 16 |
-| 5 | graph | `{"layer":"server","direction":"down","filename":"apps/meteor/app/search/server/e` | 348 |
 
 **File Hits:**
 
@@ -1865,37 +1898,19 @@
 |--------|-----------------|----------------|
 | `afterSaveMessage` | YES | YES |
 | `sendAllNotifications` | **NO** | **NO** |
-| `notifyOnMessageChange` | YES | YES |
+| `notifyOnMessageChange` | **NO** | **NO** |
 | `sendMessage` | **NO** | **NO** |
 
 **LLM Answer (truncated):**
 
-> The `afterSaveMessage` callback system is central to several key functionalities within Rocket.Chat. If this system were changed, the following areas would be impacted:
+> If the `afterSaveMessage` callback system were changed, the following modules would be impacted, as they register handlers for this event:
 > 
-> **Call Chain:**
+> Call Chain: `afterSaveMessage event triggered` → `SlackBridge listener` → `Search listener`
 > 
-> 1.  **Entry Point:** `afterSaveMessage` callback event.
-> 2.  **Listeners (identified via `callbacks.add('afterSaveMessage'`)**:
->     *   `apps/meteor/app/slackbridge/server/RocketAdapter.ts`: `RocketAdapter.onMessage` (responsible for Slack Bridge integration).
->     *   `apps/meteor/app/search/server/events/index.ts`: `afterSaveMessage` function (part of the search and event processing system).
+> Key files and their roles:
 > 
-> **Impact on `apps/meteor/app/search/server/events/index.ts`'s `afterSaveMessage` handler:**
-> 
-> *   **Room Data Management:** Interacts with `IRoom` (room data) and uses `getUpdater` and `ModifyUpdater` for updates.
-> *   **Event Promotion:** Calls `promoteEvent` in `apps/meteor/app/lib/server/lib/EventService.ts`, which handles event processing and error logging.
-> *   **Post-Save Actions (`afterSave` in `service.ts`):**
->     *   **Message Broadcasting:** `notifyOnMessageChange` in `apps/meteor/app/lib/server/lib/notifyListener.ts` which uses `broadcast` from `LocalBroker.ts` to inform clients about message changes.
->     *   **URL Parsing/OEmbed:** `rocketUrlParser` in `apps/meteor/app/oembed/server/AfterSaveOEmbed.ts` for processing URLs within messages (e.g., generating rich link previews).
-> 
-> **Summary of Impact:**
-> 
-> Changing the `afterSaveMessage` callback system would directly affect:
-> 
-> *   **Slack Bridge Integration:** Messages handled by the Slack Bridge would cease to function correctly if `RocketAdapter.onMessage` is disrupted.
-> *   **Search Functionality:** The system for indexing and searching messages, as handled by `apps/meteor/app/search/server/events/index.ts`, would be compromised.
-> *   **Real-time Notifications:** Users would no longer receive real-time updates for message changes due to issues with `notifyOnMessageChange` and message broadcasting.
-> *   **OEmbed/URL Previews:** The automatic parsing and display of rich previews for URLs in messages would be impacted.
-> *   **Core Event Processing:** The general event promotion and error logging mechanisms tied to message saving would be affected.
+> *   **apps/meteor/app/slackbridge/server/RocketAdapter.ts**: This file registers a handler (`this.onMessage`) to the `afterSaveMessage` event, indicating that the SlackBridge integration processes messages after they are saved.
+> *   **apps/meteor/app/search/server/events/index.ts**: This file also registers a handler (`afterSaveMessage`) to the `afterSaveMessage` event, suggesting that the search functionality updates its index or performs other search-related operations after a message is saved.
 
 **Root Cause Analysis:**
 
@@ -1907,6 +1922,7 @@
 | `notifyUsersOnMessage.ts` not found | **Search/LLM gap** | File is in index but search didn't surface it, or LLM didn't look for it |
 | `mentionUserNotInChannel.ts` not found | **Search/LLM gap** | File is in index but search didn't surface it, or LLM didn't look for it |
 | `sendAllNotifications` missing | **LLM didn't mention** | Symbol exists in index but LLM never searched for it or mentioned it |
+| `notifyOnMessageChange` missing | **LLM didn't mention** | Symbol exists in index but LLM never searched for it or mentioned it |
 | `sendMessage` missing | **LLM didn't mention** | Symbol exists in index but LLM never searched for it or mentioned it |
 
 ---
@@ -1920,14 +1936,14 @@
 
 | Step | Tool | Args | Tokens |
 |------|------|------|-------:|
-| 1 | search | `{"query":"Streamer"}` | 508 |
-| 2 | graph | `{"direction":"up","mode":"impact","layer":"server","query":"Streamer"}` | 178 |
-| 3 | search | `{"query":"StreamerCentral"}` | 205 |
-| 4 | graph | `{"layer":"server","direction":"up","query":"StreamerCentral","mode":"impact"}` | 164 |
-| 5 | search | `{"query":"api.broadcast","layer":"server"}` | 419 |
-| 6 | graph | `{"direction":"up","mode":"impact","layer":"server","query":"api.broadcast"}` | 13 |
-| 7 | search | `{"query":"notifyOnMessageChange","layer":"server"}` | 186 |
-| 8 | graph | `{"mode":"impact","layer":"server","direction":"up","query":"notifyOnMessageChang` | 1276 |
+| 1 | search | `{"query":"Streamer","layer":"server"}` | 229 |
+| 2 | graph | `{"mode":"impact","query":"Streamer","layer":"server","direction":"up"}` | 178 |
+| 3 | graph | `{"direction":"up","layer":"server","mode":"impact","query":"Streamer._emit"}` | 13 |
+| 4 | search | `{"layer":"server","query":"StreamerCentral"}` | 183 |
+| 5 | graph | `{"layer":"server","mode":"impact","query":"StreamerCentral","direction":"up"}` | 164 |
+| 6 | search | `{"layer":"server","query":"streamRoomMessage"}` | 187 |
+| 7 | graph | `{"layer":"server","mode":"impact","query":"streamRoomMessage","direction":"up"}` | 167 |
+| 8 | search | `{"query":"notifyOnMessageChange","layer":"server"}` | 186 |
 
 **File Hits:**
 
@@ -1935,7 +1951,7 @@
 |---------------|--------|-----------|
 | `apps/meteor/server/modules/streamer/streamer.module.ts` | YES | search (step 1) |
 | `apps/meteor/server/modules/streamer/types.ts` | YES | search (step 1) |
-| `apps/meteor/server/modules/notifications/notifications.module.ts` | **NO** | - |
+| `apps/meteor/server/modules/notifications/notifications.module.ts` | YES | search (step 6) |
 | `apps/meteor/server/modules/listeners/listeners.module.ts` | **NO** | - |
 | `apps/meteor/app/notifications/server/lib/Presence.ts` | **NO** | - |
 
@@ -1951,78 +1967,28 @@
 
 **LLM Answer (truncated):**
 
-> The blast radius of changing the `Streamer` module in Rocket.Chat is extensive, impacting numerous core functionalities that rely on real-time communication. The `Streamer` module is fundamental to how Rocket.Chat pushes updates to clients.
+> The Streamer module in Rocket.Chat is a critical component of its real-time messaging infrastructure. Changing this module, particularly its core `_emit` functionality, would have a significant blast radius across the application, affecting all features that rely on real-time message updates.
 > 
-> The impact can be traced from the entry point `notifyOnMessageChange` (which uses `api.broadcast` and ultimately the `Streamer` module) up through its callers.
+> The core real-time message flow is as follows:
 > 
-> **Call Chain:**
-> `notifyOnMessageChange` (apps/meteor/app/lib/server/lib/notifyListener.ts)
->   → `api.broadcast`
->   → `ListenersModule event handler`
->   → `streamRoomMessage.emitWithoutBroadcast`
->   → `Streamer._emit()` (apps/meteor/server/modules/streamer/streamer.module.ts)
->   → `DDP WebSocket`
->   → `client Streamer.receive()` (apps/meteor/client/lib/streamer/streamer.ts)
+> **Call Chain:** `notifyOnMessageChange` → `api.broadcast('watch.messages')` → `ListenersModule event handler` → `streamRoomMessage.emitWithoutBroadcast` → `Streamer._emit()` → `DDP WebSocket` → `client Streamer.receive()`.
 > 
-> **Key Files in the Call Chain:**
-> *   `apps/meteor/app/lib/server/lib/notifyListener.ts`
-> *   `apps/meteor/server/modules/streamer/streamer.module.ts`
-> *   `apps/meteor/client/lib/streamer/streamer.ts`
+> **Key files and their roles:**
 > 
-> **Blast Radius (Upstream Callers of `notifyOnMessageChange`):**
+> 1.  **Entry Point:** `notifyOnMessageChange` in `apps/meteor/app/lib/server/lib/notifyListener.ts`
+>     *   This function is triggered after a database write related to messages.
+> 2.  **Broadcasting:** The system then uses `api.broadcast('watch.messages')`.
+> 3.  **Event Handling:** A `ListenersModule event handler` then processes this broadcast.
+> 4.  **Message Streaming:** `streamRoomMessage.emitWithoutBroadcast(roomId, message)` in `apps/meteor/server/modules/notifications/notifications.module.ts` is invoked.
+> 5.  **Core Streamer Functionality:** This, in turn, calls `Streamer._emit()` from `apps/meteor/server/modules/streamer/streamer.module.ts`. This is the method responsible for sending the real-time update over the DDP WebSocket.
+> 6.  **Client Reception:** The DDP WebSocket then delivers the message to the client, where `client Streamer.receive()` processes it.
 > 
-> **Direct Callers (15 symbols):**
-> These are the most immediate functions that will be affected as they directly call `notifyOnMessageChange`:
-> *   `declineLivechatCall` (apps/meteor/server/services/video-conference/service.ts)
-> *   `saveSystemMessage`, `afterSave` (apps/meteor/server/services/messages/service.ts)
-> *   `onEmailReceived` (apps/meteor/server/features/EmailInbox/EmailInbox_Incoming.ts)
-> *   `markMessageAsReadBySender` (apps/meteor/ee/server/lib/message-read-receipt/ReadReceipt.ts)
-> *   `unfollowMessage` (apps/meteor/app/threads/server/methods/unfollowMessage.ts)
-> *   `followMessage` (apps/meteor/app/threads/server/methods/followMessage.ts)
-> *   `processThreads` (apps/meteor/app/threads/server/hooks/aftersavemessage.ts)
-> *   `setReaction` (apps/meteor/app/reactions/server/setReaction.ts)
-> *   `starMessage` (apps/meteor/app/message-star/server/starMessage.ts)
-> *   `unpinMessage` (apps/meteor/app/message-pin/server/pinMessage.ts)
-> *   `deleteMessage` (apps/meteor/app/lib/server/functions/deleteMessage.ts)
-> *   `deleteThreadMessage` (apps/meteor/app/lib/server/functions/deleteMessage.ts)
-> *   `updateAndNotifyParentRoomWithParentMessage` (apps/meteor/app/discussion/server/hooks/propagateDiscussionMetadata.ts)
-> *   `notifyTranslatedMessage` (apps/meteor/app/autotranslate/server/autotranslate.ts)
-> 
-> **Indirect Dependents (2-hop, 10 symbols):**
-> These functions are higher-level operations that eventually lead to a `Streamer` interaction:
-> *   `saveSystemMessageAndNotifyUser` (apps/meteor/server/services/messages/service.ts)
-> *   `afterSaveMessage`, `afterSaveMessageAsync` (apps/meteor/app/lib/server/lib/afterSaveMessage.ts)
-> *   `configureEmailInboxes` (apps/meteor/server/features/EmailInbox/EmailInbox.ts)
-> *   `executeSetReaction` (apps/meteor/app/reactions/server/setReaction.ts)
-> *   `deleteMessage` (apps/meteor/server/services/messages/service.ts)
-> *   `processMessageDeleted` (apps/meteor/app/slackbridge/server/SlackAdapter.ts)
-> *   `deleteMessageValidatingPermission` (apps/meteor/app/lib/server/functions/deleteMessage.ts)
-> *   `delete` (apps/meteor/app/apps/server/bridges/messages.ts)
-> *   `translateMessage` (apps/meteor/app/autotranslate/server/autotranslate.ts)
-> 
-> **3-hop Dependents (56 symbols):**
-> This layer reveals broader features and services that, several steps removed, interact with the `Streamer` module:
-> *   Livechat operations (`saveTransferHistory` in `apps/meteor/app/livechat/server/lib/transfer.ts`, `afterRoomClosed` in `apps/meteor/app/livechat/server/lib/closeRoom.ts`, `requestRoom` in `apps/meteor/app/livechat/server/lib/QueueManager.ts`)
-> *   Message manipulation (`updateMessage` in `apps/meteor/app/lib/server/functions/updateMessage.ts`, `sendMessage` in `apps/meteor/app/lib/server/functions/sendMessage.ts`)
-> *   Discussion creation (`create` in `apps/meteor/app/discussion/server/methods/createDiscussion.ts`)
-> *   Reactions (`reactToMessage` in `apps/meteor/server/services/messages/service.ts`, `onReactionRemoved`, `onReactionAdded` in `apps/meteor/app/slackbridge/server/SlackAdapter.ts`)
-> *   App Engine interactions (`removeLocal` in `packages/apps-engine/src/server/AppManager.ts`, `unregisterProviders` in `packages/apps-engine/src/server/managers/AppVideoConfProviderManager.ts`)
-> 
-> **4-hop Dependents (98 symbols):**
-> This represents a very broad set of functionalities across various modules. It includes:
-> *   More Livechat room management (`returnRoomAsInquiry` in `apps/meteor/app/livechat/server/lib/rooms.ts`, `forwardRoomToAgent` in `apps/meteor/app/livechat/server/lib/Helper.ts`, `forwardRoomToDepartment` in `apps/meteor/app/livechat/server/lib/Helper.ts`, `closeRoom` in `apps/meteor/app/livechat/server/lib/closeRoom.ts`, `createRoom` in `apps/meteor/app/livechat/server/lib/rooms.ts`)
-> *   Extensive message update and creation (`updateMessageRemovingFiles` in `apps/meteor/server/services/upload/service.ts`, `updateMessage` in `apps/meteor/server/services/messages/service.ts`)
-> *   Slack Bridge interactions (`postMessageUpdate`, `processMessageChanged` in `apps/meteor/app/slackbridge/server/SlackAdapter.ts`)
-> *   Various message sending functions (`sendMessageWithValidation` in `apps/meteor/server/services/messages/service.ts`, `sendHistoryMessage` in `apps/meteor/server/services/media-call/service.ts`, `sendErrorReplyMessage` in `apps/meteor/server/features/EmailInbox/EmailInbox_Outgoing.ts`)
-> 
-> **Conclusion:**
-> Changes to the `Streamer` module will affect almost every real-time feature in Rocket.Chat, including core messaging functions (sending, deleting, updating messages, reactions), Livechat operations, email inbox processing, video conferencing, third-party integrations (e.g., Slack Bridge), and the App Engine. Any modification will require extensive testing across the entire platform.
+> Therefore, any changes to the `Streamer` module in `apps/meteor/server/modules/streamer/streamer.module.ts`, especially `Streamer._emit()`, would directly impact the real-time delivery of messages and other related events that utilize this streaming mechanism. All features relying on instant updates for messages would be affected.
 
 **Root Cause Analysis:**
 
 | Problem | Category | Detail |
 |---------|----------|--------|
-| `notifications.module.ts` not found | **Search/LLM gap** | File is in index but search didn't surface it, or LLM didn't look for it |
 | `listeners.module.ts` not found | **Search/LLM gap** | File is in index but search didn't surface it, or LLM didn't look for it |
 | `Presence.ts` not found | **Search/LLM gap** | File is in index but search didn't surface it, or LLM didn't look for it |
 | `streamRoom` missing | **LLM didn't mention** | Symbol exists in index but LLM never searched for it or mentioned it |
@@ -2030,7 +1996,7 @@
 
 ---
 
-### #24 new-17-slash-commands — PASS
+### #24 new-17-slash-commands — FAIL
 
 **Q:** How do slash commands work in Rocket.Chat — from registration to execution?
 **Type:** pattern | **Subsystem:** slash commands | **Difficulty:** medium
@@ -2039,24 +2005,25 @@
 
 | Step | Tool | Args | Tokens |
 |------|------|------|-------:|
-| 1 | search | `{"query":"register slash command"}` | 17 |
-| 2 | search | `{"query":"slash command"}` | 592 |
-| 3 | graph | `{"query":"slashCommands","layer":"server","direction":"down"}` | 786 |
-| 4 | search | `{"query":"processSlashCommand","layer":"client"}` | 182 |
-| 5 | implement | `{"symbolName":"processSlashCommand","filename":"apps/meteor/client/lib/chats/flo` | 489 |
-| 6 | implement | `{"filename":"apps/meteor/app/utils/server/slashCommand.ts","symbolName":"slashCo` | 722 |
-| 7 | search | `{"query":"slashCommands.add","layer":"server"}` | 413 |
+| 1 | search | `{"query":"registerSlashCommand"}` | 16 |
+| 2 | search | `{"query":"slash command register"}` | 17 |
+| 3 | search | `{"query":"slash command"}` | 592 |
+| 4 | graph | `{"filename":"apps/meteor/app/utils/server/slashCommand.ts","query":"slashCommand` | 995 |
+| 5 | graph | `{"query":"slashCommands.add","direction":"up","layer":"server"}` | 14 |
+| 6 | implement | `{"symbolName":"slashCommands","filename":"apps/meteor/app/utils/server/slashComm` | 722 |
+| 7 | graph | `{"query":"slashCommands.add","direction":"up","layer":"server"}` | 14 |
+| 8 | search | `{"query":"slashCommands.add","layer":"server"}` | 413 |
 
 **File Hits:**
 
 | Expected File | Found? | Found Via |
 |---------------|--------|-----------|
-| `apps/meteor/app/utils/server/slashCommand.ts` | YES | search (step 2) |
-| `apps/meteor/client/lib/chats/flows/processSlashCommand.ts` | YES | search (step 4) |
+| `apps/meteor/app/utils/server/slashCommand.ts` | YES | search (step 3) |
+| `apps/meteor/client/lib/chats/flows/processSlashCommand.ts` | **NO** | - |
 | `apps/meteor/client/lib/chats/flows/sendMessage.ts` | **NO** | - |
-| `apps/meteor/app/slashcommands-invite/server/server.ts` | YES | search (step 7) |
-| `apps/meteor/app/slashcommands-kick/server/server.ts` | YES | search (step 7) |
-| `apps/meteor/app/slashcommands-join/server/server.ts` | YES | search (step 7) |
+| `apps/meteor/app/slashcommands-invite/server/server.ts` | YES | search (step 8) |
+| `apps/meteor/app/slashcommands-kick/server/server.ts` | YES | search (step 8) |
+| `apps/meteor/app/slashcommands-join/server/server.ts` | YES | search (step 8) |
 
 **Symbol Coverage:**
 
@@ -2067,41 +2034,40 @@
 
 **LLM Answer (truncated):**
 
-> Slash commands in Rocket.Chat follow a client-server architecture, involving a dedicated client-side processing flow, a server-side registry for command definitions, and a DDP (Distributed Data Protocol) method call for execution.
+> Slash commands in Rocket.Chat follow a client-server architecture, with registration and execution handled on the server.
 > 
-> Here's a breakdown of the process from registration to execution:
+> **1. Registration:**
+>    - Slash commands are registered on the server-side using `slashCommands.add()`. This method is found in `apps/meteor/app/utils/server/slashCommand.ts`.
+>    - The `add` method takes an object with properties like `command` (the command string, e.g., "invite"), `callback` (the function to execute), `options` (parameters, description, permission, etc.), `providesPreview`, `previewer`, `previewCallback`, and `appId`.
+>    - Examples of built-in commands registering themselves can be seen in files like:
+>      - `apps/meteor/app/slashcommands-inviteall/server/server.ts`
+>      - `apps/meteor/app/slashcommands-leave/server/leave.ts`
+>      - `apps/meteor/app/slashcommands-mute/server/unmute.ts`
+>      - `apps/meteor/app/slashcommands-create/server/server.ts`
+>      - `apps/meteor/app/slashcommands-kick/server/server.ts`
+>      - `apps/meteor/app/slashcommands-invite/server/server.ts`
+>      - `apps/meteor/app/slashcommands-me/server/me.ts`
+>      - `apps/meteor/app/slashcommands-ban/server/ban.ts`
 > 
-> ### 1. Registration
-> 
-> Slash commands are registered on the server using the `slashCommands.add()` method, which resides in `apps/meteor/app/utils/server/slashCommand.ts`.
-> 
-> *   **Mechanism**: The `slashCommands.add()` method takes an object containing the command's name, a callback function (which defines the command's actual logic), optional parameters, a description, permissions, and other properties like `clientOnly` or preview-related functions. This information is stored in an internal `commands` registry.
-> *   **Examples**: Built-in commands like `/invite`, `/kick`, and `/join` are registered in their respective server-side files, such as `apps/meteor/app/slashcommands-invite/server/server.ts` or `apps/meteor/app/slashcommands-leave/server/leave.ts`, by calling `slashCommands.add()` with their specific details.
-> 
-> ### 2. Client-side Processing
-> 
-> When a user types a message in the chat input, the client-side code intercepts and processes it to identify if it's a slash command.
-> 
-> *   **Entry Point**: The `processSlashCommand` function, located in `apps/meteor/client/lib/chats/flows/processSlashCommand.ts`, is responsible for this initial parsing.
-> *   **Parsing**: It uses a regular expression to detect messages starting with `/` followed by a command name.
-> *   **Validation & Client-only commands**: `processSlashCommand` checks for command permissions and handles commands marked as `clientOnly` directly on the client if applicable.
-> *   **Server Communication**: For server-side commands, the client does not execute the command directly. Instead, it constructs a DDP method call to the server using `sdk.call('slashCommand', { cmd: commandName, params, msg: message, triggerId })`. This call passes the command name, its parameters, the original message object, and a `triggerId` to the server.
-> 
-> ### 3. Server-side Execution
-> 
-> Upon receiving the DDP method call, the server takes over to execute the registered command.
-> 
-> *   **Execution Method**: The `slashCommands.run()` method in `apps/meteor/app/utils/server/slashCommand.ts` is invoked.
-> *   **Command Retrieval**: `slashCommands.run()` looks up the command name in its internal `commands` registry.
-> *   **Callback Execution**: If the command is found and has a valid `callback` function, `slashCommands.run()` executes this callback, passing the `command`, `params`, `message`, `triggerId`, and `userId` as arguments. This callback contains the core logic of the slash command, such as sending messages, modifying room settings, or interacting with other server services.
+> **2. Execution:**
+>    - **Client-side:** When a user types a message, the `sendMessage` flow on the client-side uses `processSlashCommand()` to parse the message. It uses a regex (`/^\\/([^\\s]+)(.*)/`) to detect slash commands.
+>    - **Client to Server Communication:** The client does not execute commands directly. Instead, it calls `sdk.call('slashCommand', { cmd, params, msg, triggerId })`. This call crosses the DDP (Distributed Data Protocol) boundary to the server.
+>    - **Server-side Execution:** The server-side `slashCommands` registry, specifically the `run()` method in `apps/meteor/app/utils/server/slashCommand.ts`, is responsible for executing the command.
+>      - The `run()` method takes `command`, `message`, `params`, `triggerId`, and `userId` as arguments.
+>      - It retrieves the registered command from `this.commands[command]`.
+>      - If a valid `callback` function is found for the command, it executes the `callback` with the provided context (`command`, `params`, `message`, `triggerId`, `userId`).
+>      - Error handling is in place to ensure a message with a room ID (`rid`) is provided for command execution.
 > 
 > **Call Chain:**
 > 
-> 1.  **Client Entry**: User types `/command` in the chat input.
-> 2.  **Client-side Processing**: `apps/meteor/client/lib/chats/flows/processSlashCommand.ts` (`processSlashCommand`) parses the message.
-> 3.  **DDP Method Call**: `processSlashCommand` calls `sdk.call('slashCommand', { cmd, params, msg, triggerId })`.
-> 4.  **Server-side Execution**: The DDP method `slashCommand` on the server eventually triggers `apps/meteor/app/utils/server/slashCommand.ts` (`slashCommands.run`).
-> 5.  **Command Logic**: `slashCommands.run` executes the registered callback function (e.g., from `apps/meteor/app/slashcommands-invite/server/server.ts`) for the specific command.
+> `Client-side (sendMessage flow) → processSlashCommand() → sdk.call('slashCommand', { ... }) → Server-side (DDP method call) → slashCommands.run()`
+
+**Root Cause Analysis:**
+
+| Problem | Category | Detail |
+|---------|----------|--------|
+| `processSlashCommand.ts` not found | **Search/LLM gap** | File is in index but search didn't surface it, or LLM didn't look for it |
+| `sendMessage.ts` not found | **Search/LLM gap** | File is in index but search didn't surface it, or LLM didn't look for it |
 
 ---
 
@@ -2115,10 +2081,10 @@
 | Step | Tool | Args | Tokens |
 |------|------|------|-------:|
 | 1 | search | `{"query":"incoming webhook","layer":"server"}` | 370 |
-| 2 | graph | `{"layer":"server","query":"executeIntegrationRest","direction":"down"}` | 850 |
-| 3 | graph | `{"direction":"up","layer":"server","query":"processWebhookMessage"}` | 368 |
-| 4 | implement | `{"filename":"apps/meteor/app/integrations/server/api/api.ts","symbolName":"execu` | 1172 |
-| 5 | implement | `{"symbolName":"processWebhookMessage","filename":"apps/meteor/app/lib/server/fun` | 596 |
+| 2 | graph | `{"direction":"down","query":"executeIntegrationRest","layer":"server"}` | 850 |
+| 3 | graph | `{"query":"processWebhookMessage","direction":"down","layer":"server"}` | 800 |
+| 4 | implement | `{"symbolName":"processWebhookMessage","filename":"apps/meteor/app/lib/server/fun` | 596 |
+| 5 | search | `{"query":"sendMessage","layer":"server"}` | 411 |
 
 **File Hits:**
 
@@ -2126,7 +2092,7 @@
 |---------------|--------|-----------|
 | `apps/meteor/app/integrations/server/api/api.ts` | YES | graph (step 2) |
 | `apps/meteor/app/lib/server/functions/processWebhookMessage.ts` | YES | graph (step 3) |
-| `apps/meteor/app/integrations/server/lib/triggerHandler.ts` | YES | graph (step 3) |
+| `apps/meteor/app/integrations/server/lib/triggerHandler.ts` | YES | search (step 5) |
 | `apps/meteor/app/integrations/server/lib/isolated-vm/isolated-vm.ts` | **NO** | - |
 | `apps/meteor/app/integrations/server/lib/updateHistory.ts` | **NO** | - |
 | `apps/meteor/app/integrations/lib/outgoingEvents.ts` | **NO** | - |
@@ -2141,28 +2107,19 @@
 
 **LLM Answer (truncated):**
 
-> An incoming webhook in Rocket.Chat is processed through the following chain:
+> An incoming webhook in Rocket.Chat is processed through the following steps:
 > 
-> **Call Chain:** `POST /hooks/:integrationId/:token` → `executeIntegrationRest()` → `processWebhookMessage()` → `sendMessage()`
+> **Call Chain:** `POST /hooks/:integrationId/:token` → `executeIntegrationRest` → `processWebhookMessage` → `sendMessage`
 > 
-> **Detailed Steps:**
-> 
-> 1.  **Incoming Request (Entry Point):** An HTTP POST request is received at the endpoint `POST /hooks/:integrationId/:token`.
-> 2.  **`executeIntegrationRest` (apps/meteor/app/integrations/server/api/api.ts):**
->     *   This function is the primary handler for incoming webhook requests.
->     *   It first verifies if the integration is `enabled`.
->     *   It parses the request `bodyParams`, `urlParams`, and `headers`.
->     *   If an integration script is defined and valid, it executes this script within an isolated sandbox using `scriptEngine.processIncomingRequest`. This script has the ability to transform the incoming payload (`bodyParams`) or return a custom `scriptResponse`.
->     *   Finally, it calls `processWebhookMessage` with the processed `bodyParams`, the associated `user`, and `defaultValues` (channel, alias, avatar, emoji) for the integration.
-> 3.  **`processWebhookMessage` (apps/meteor/app/lib/server/functions/processWebhookMessage.ts):**
->     *   This function is responsible for taking the webhook payload and transforming it into a Rocket.Chat message.
->     *   It extracts the target `channels` (or `roomId`) from the `messageObj` (which is the `bodyParams` from the webhook).
->     *   For each specified channel, it performs the following:
->         *   Retrieves the corresponding `IRoom` object using `getRoomWithOptionToJoin`.
->         *   Validates user permissions to send messages to that room via `validateRoomMessagePermissionsAsync`.
->         *   Validates the message content itself against the room and user context using `validateWebhookMessage`.
->     *   After validation, it iterates through the validated rooms and calls `sendMessage(user, removeEmpty(message), roomData.room)` to actually send the message to each designated channel. It can handle errors per channel if `separateResponse` is enabled in the webhook payload.
-> 4.  **`sendMessage`:** This is the ultimate function responsible for creating and dispatching the message within Rocket.Chat.
+> 1.  **Incoming Request:** The process begins with a `POST` request to the `/hooks/:integrationId/:token` endpoint.
+> 2.  **`executeIntegrationRest()`:** This function, located in `apps/meteor/app/integrations/server/api/api.ts`, authenticates the incoming request and runs the integration script within an isolated-vm sandbox for security.
+> 3.  **`processWebhookMessage()`:** After the integration script is executed, `processWebhookMessage()`, found in `apps/meteor/app/lib/server/functions/processWebhookMessage.ts`, takes over. This function performs the following actions:
+>     *   It constructs the message object using `buildMessage()` based on the webhook payload.
+>     *   It determines the target room(s) by calling `getRoomWithOptionToJoin()`.
+>     *   It validates user permissions for the room(s) using `validateRoomMessagePermissionsAsync()`.
+>     *   It further validates the webhook message with `validateWebhookMessage()`.
+>     *   Finally, for each intended channel, it calls `sendMessage()`.
+> 4.  **`sendMessage()`:** This function, located in `apps/meteor/app/lib/server/functions/sendMessage.ts`, is responsible for sending the message to the specified room(s).
 
 **Root Cause Analysis:**
 
@@ -2183,21 +2140,21 @@
 
 | Step | Tool | Args | Tokens |
 |------|------|------|-------:|
-| 1 | search | `{"layer":"client","query":"message render"}` | 223 |
-| 2 | graph | `{"direction":"down","query":"createMarkdownMessageRenderer"}` | 863 |
-| 3 | search | `{"query":"markedParser"}` | 14 |
-| 4 | implement | `{"filename":"apps/meteor/app/markdown/lib/markdown.js","symbolName":"createMarkd` | 131 |
-| 5 | search | `{"query":"parsers","layer":"app"}` | 426 |
-| 6 | search | `{"query":"parse","layer":"packages"}` | 547 |
-| 7 | implement | `{"filename":"packages/message-parser/src/index.ts","symbolName":"parse"}` | 64 |
-| 8 | search | `{"layer":"packages","query":"Markup"}` | 645 |
+| 1 | search | `{"query":"render message","layer":"client"}` | 333 |
+| 2 | graph | `{"query":"renderMessageBlocks","direction":"down","layer":"client"}` | 44 |
+| 3 | search | `{"layer":"client","query":"parse message"}` | 299 |
+| 4 | implement | `{"symbolName":"parseMessageTextToAstMarkdown","filename":"apps/meteor/client/lib` | 437 |
+| 5 | search | `{"query":"textToMessageToken","layer":"client"}` | 67 |
+| 6 | implement | `{"filename":"apps/meteor/client/lib/parseMessageTextToAstMarkdown.ts","symbolNam` | 151 |
+| 7 | search | `{"filename":"packages/message-parser","layer":"packages","query":"parse"}` | 547 |
+| 8 | search | `{"layer":"packages","query":"Markup","filename":"packages/gazzodown"}` | 645 |
 
 **File Hits:**
 
 | Expected File | Found? | Found Via |
 |---------------|--------|-----------|
-| `packages/message-parser/src/index.ts` | YES | search (step 6) |
-| `packages/message-parser/src/definitions.ts` | YES | search (step 6) |
+| `packages/message-parser/src/index.ts` | YES | search (step 7) |
+| `packages/message-parser/src/definitions.ts` | YES | search (step 7) |
 | `packages/gazzodown/src/Markup.tsx` | YES | search (step 8) |
 | `packages/gazzodown/src/blocks/ParagraphBlock.tsx` | YES | search (step 8) |
 | `packages/gazzodown/src/blocks/HeadingBlock.tsx` | YES | search (step 8) |
@@ -2214,16 +2171,26 @@
 
 **LLM Answer (truncated):**
 
-> The process of rendering a message from raw text to React components in Rocket.Chat involves a pipeline that transforms the message through several stages.
+> The process of rendering a message from raw text to React components in Rocket.Chat follows a pipeline involving several key steps and components:
 > 
-> The rendering process begins with `createMarkdownMessageRenderer` located at `apps/meteor/app/markdown/lib/markdown.js`. This function acts as an entry point, determining which parser to use for the message.
+> **Call Chain:** `message.msg` (raw text) → `parseMessageTextToAstMarkdown` → `textToMessageToken` → `parse` → AST nodes → `<Markup>` component → React components (e.g., `ParagraphBlock`, `HeadingBlock`).
 > 
-> The core parsing of the raw message text into an Abstract Syntax Tree (AST) occurs in the `parse` function found in `packages/message-parser/src/index.ts`. This function takes the raw message string and options, then uses a grammar to convert it into an AST representation.
+> Here's a detailed breakdown of the rendering pipeline:
 > 
-> Finally, the AST nodes are consumed by the `<Markup>` component in `packages/gazzodown/src/Markup.tsx`. This component is responsible for translating the AST into actual React components, such as `ParagraphBlock`, `HeadingBlock`, `QuoteBlock`, and other block components.
+> 1.  **Initial Parsing and AST Generation (Client-side):**
+>     *   The raw message text (`message.msg`) first enters the rendering pipeline through the `parseMessageTextToAstMarkdown` function.
+>     *   **File:** `apps/meteor/client/lib/parseMessageTextToAstMarkdown.ts`
+>     *   This function then calls `textToMessageToken` to handle the actual parsing logic.
+>     *   **File:** `apps/meteor/client/lib/parseMessageTextToAstMarkdown.ts`
+>     *   `textToMessageToken` internally utilizes the `parse` function from the `@rocket.chat/message-parser` package. This function is responsible for converting the raw text into an Abstract Syntax Tree (AST), which is a structured representation of the message content.
+>     *   **File:** `packages/message-parser/src/index.ts`
 > 
-> Call chain:
-> `createMarkdownMessageRenderer` (apps/meteor/app/markdown/lib/markdown.js) → `parse` (packages/message-parser/src/index.ts) → `<Markup>` component (packages/gazzodown/src/Markup.tsx) → React Components
+> 2.  **Rendering AST to React Components:**
+>     *   The generated AST nodes are then passed as props to the `<Markup>` React component.
+>     *   **File:** `packages/gazzodown/src/Markup.tsx`
+>     *   The `<Markup>` component traverses the AST and renders each node into its corresponding React component (e.g., `ParagraphBlock`, `HeadingBlock`, `QuoteBlock`, `EmojiSpan`, `LinkSpan`, `BoldSpan`, etc.). These block components are responsible for the final visual representation of the message on the UI.
+> 
+> In summary, the raw text is first transformed into an Abstract Syntax Tree by the `parse` function in `packages/message-parser`, and then this AST is consumed by the `<Markup>` React component in `packages/gazzodown` to produce the final interactive and styled React components displayed to the user.
 
 **Root Cause Analysis:**
 
@@ -2245,22 +2212,22 @@
 | Step | Tool | Args | Tokens |
 |------|------|------|-------:|
 | 1 | search | `{"query":"proxify","layer":"packages"}` | 181 |
-| 2 | graph | `{"direction":"down","layer":"packages","query":"proxify"}` | 1107 |
-| 3 | implement | `{"symbolName":"proxify","filename":"packages/core-services/src/lib/proxify.ts"}` | 76 |
-| 4 | implement | `{"symbolName":"proxify","filename":"packages/core-services/src/lib/proxify.ts"}` | 76 |
-| 5 | search | `{"query":"api.call","layer":"packages"}` | 75 |
-| 6 | search | `{"layer":"packages","query":"LocalBroker.call"}` | 15 |
-| 7 | search | `{"layer":"packages","query":"LocalBroker"}` | 165 |
-| 8 | implement | `{"filename":"packages/core-services/src/LocalBroker.ts","symbolName":"LocalBroke` | 462 |
+| 2 | graph | `{"direction":"down","query":"proxify","layer":"packages"}` | 1107 |
+| 3 | implement | `{"filename":"packages/core-services/src/lib/proxify.ts","symbolName":"proxify"}` | 76 |
+| 4 | implement | `{"filename":"packages/core-services/src/lib/proxify.ts","symbolName":"handler"}` | 97 |
+| 5 | search | `{"layer":"packages","query":"api.call"}` | 75 |
+| 6 | search | `{"query":"LocalBroker","layer":"packages"}` | 165 |
+| 7 | search | `{"query":"api","layer":"packages"}` | 601 |
+| 8 | implement | `{"filename":"packages/core-services/src/api.ts","symbolName":"api.call"}` | 41 |
 
 **File Hits:**
 
 | Expected File | Found? | Found Via |
 |---------------|--------|-----------|
 | `packages/core-services/src/lib/proxify.ts` | YES | search (step 1) |
-| `packages/core-services/src/LocalBroker.ts` | YES | search (step 7) |
-| `packages/core-services/src/types/ServiceClass.ts` | **NO** | - |
-| `packages/core-services/src/index.ts` | **NO** | - |
+| `packages/core-services/src/LocalBroker.ts` | YES | search (step 6) |
+| `packages/core-services/src/types/ServiceClass.ts` | YES | search (step 7) |
+| `packages/core-services/src/index.ts` | YES | search (step 7) |
 | `packages/core-services/src/types/IBroker.ts` | **NO** | - |
 | `packages/core-services/src/events/Events.ts` | **NO** | - |
 
@@ -2270,44 +2237,33 @@
 |--------|-----------------|----------------|
 | `proxify` | YES | YES |
 | `LocalBroker` | YES | YES |
-| `ServiceClass` | YES | YES |
-| `ServiceClassInternal` | YES | YES |
+| `ServiceClass` | YES | **NO** |
+| `ServiceClassInternal` | YES | **NO** |
 
 **LLM Answer (truncated):**
 
-> Rocket.Chat's `core-services` use a `proxify()` pattern for inter-service communication, avoiding direct imports between services. This pattern establishes a robust message bus system.
+> The `proxify()` pattern in Rocket.Chat's `core-services` facilitates inter-service communication without direct imports. It works as follows:
 > 
-> The core communication flow is as follows:
-> **Entry → Step 1 → Step 2 → Step 3 → Final**
+> 1.  **`proxify(namespace)`** (at `packages/core-services/src/lib/proxify.ts`): This function takes a `namespace` (representing a service name) and returns a `Proxy` object.
 > 
-> 1.  **`proxify('IServiceName')`** (located at `packages/core-services/src/lib/proxify.ts`)
->     *   Client code requests a proxified instance of a service, for example, `proxify('RoomService')`.
->     *   The `proxify` function creates and returns a JavaScript `Proxy` object. This proxy intercepts any method calls made on the service instance.
+> 2.  **`handler(namespace)`** (at `packages/core-services/src/lib/proxify.ts`): This internal function defines the `ProxyHandler` for the `Proxy` object. When a method is accessed on the proxified service, the `get` trap is triggered.
 > 
-> 2.  **`Proxy.handler`** (internal to `packages/core-services/src/lib/proxify.ts`)
->     *   When a method is invoked on the proxified service object (e.g., `proxifiedRoomService.createRoom()`), the `Proxy`'s `handler` intercepts this call.
->     *   The `handler` then constructs a fully qualified method name string, such as `'RoomService.createRoom'`, and prepares the arguments.
+>     *   The `get` trap returns a function that, when called with parameters, invokes `api.call(`${namespace}.${prop}`, params)`. Here, `prop` is the name of the method being called on the proxified service.
 > 
-> 3.  **`api.call('namespace.method')`** (example usage seen in `ee/packages/omnichannel-services/src/QueueWorker.ts`)
->     *   The `handler` ultimately translates the intercepted call into an `api.call` with the service's namespace and method name (e.g., `api.call('RoomService.createRoom', [args])`).
->     *   This `api.call` is an internal mechanism that bridges to the message broker.
+> 3.  **`api.call()`**: This is the central mechanism for dispatching inter-service calls. While a direct `api.call` implementation wasn't fully retrieved due to tool limitations, the search results indicate that `api.call` ultimately dispatches to `LocalBroker.call()`.
 > 
-> 4.  **`LocalBroker.call(method, data, options)`** (located at `packages/core-services/src/LocalBroker.ts`)
->     *   The `api.call` then delegates to the `LocalBroker.call` method.
->     *   The `LocalBroker` is responsible for managing and dispatching service calls within the application. It maintains an internal `Map` where service methods are stored as `'serviceName.methodName'` keys, bound to their respective service class functions.
->     *   The `call` method of `LocalBroker` retrieves the actual bound function based on the provided method string.
+> 4.  **`LocalBroker.call()`**: (mentioned in the search output, defined in `packages/core-services/src/LocalBroker.ts`): The `LocalBroker` is responsible for storing and routing service methods. It maps method names in the format `'serviceName.methodName'` to their bound service class methods.
 > 
-> 5.  **Bound ServiceClass method**
->     *   Finally, the `LocalBroker` executes the actual service method (e.g., `RoomService.createRoom()`) with the provided data and options. Services extend `ServiceClassInternal` (for the monolith) or `ServiceClass` to integrate with this broker pattern.
+> This pattern ensures that services interact through a standardized message bus, promoting loose coupling and making it easier to manage dependencies and potentially scale services independently.
 > 
-> This pattern ensures services remain decoupled, communicating through a defined interface rather than direct imports, which simplifies refactoring and promotes a microservices-like architecture within the larger application.
+> **Call Chain:**
+> 
+> `Service A` calls `proxify('ServiceB').someMethod()` → `proxify()` (packages/core-services/src/lib/proxify.ts) → `handler()` (packages/core-services/src/lib/proxify.ts) → `api.call('ServiceB.someMethod', params)` (packages/core-services/src/lib/proxify.ts calls this implicitly) → `LocalBroker.call()` (packages/core-services/src/LocalBroker.ts) → `Service B.someMethod()` (bound method on the target service).
 
 **Root Cause Analysis:**
 
 | Problem | Category | Detail |
 |---------|----------|--------|
-| `ServiceClass.ts` not found | **Search/LLM gap** | File is in index but search didn't surface it, or LLM didn't look for it |
-| `index.ts` not found | **Search/LLM gap** | File is in index but search didn't surface it, or LLM didn't look for it |
 | `IBroker.ts` not found | **Search/LLM gap** | File is in index but search didn't surface it, or LLM didn't look for it |
 | `Events.ts` not found | **Search/LLM gap** | File is in index but search didn't surface it, or LLM didn't look for it |
 
@@ -2322,8 +2278,8 @@
 
 | Step | Tool | Args | Tokens |
 |------|------|------|-------:|
-| 1 | search | `{"query":"CachedSettings"}` | 193 |
-| 2 | graph | `{"direction":"up","mode":"impact","query":"CachedSettings"}` | 281 |
+| 1 | search | `{"query":"CachedSettings","layer":"server"}` | 193 |
+| 2 | graph | `{"layer":"server","direction":"up","query":"CachedSettings","mode":"impact"}` | 281 |
 
 **File Hits:**
 
@@ -2345,11 +2301,9 @@
 
 **LLM Answer (truncated):**
 
-> If the `CachedSettings` system were changed (located in `apps/meteor/app/settings/server/CachedSettings.ts`), the following components would be affected:
+> If the `CachedSettings` system were changed, the following modules and functions would be affected:
 > 
-> **Call Chain (Impact from `CachedSettings`):**
-> 
-> *   **Entry Point:** `CachedSettings` (in `apps/meteor/app/settings/server/CachedSettings.ts`)
+> **Call Chain:** `CachedSettings` (apps/meteor/app/settings/server/CachedSettings.ts)
 > 
 > *   **Direct Callers:**
 >     *   `metricsMiddleware` in `apps/meteor/app/api/server/middlewares/metrics.ts`
@@ -2359,8 +2313,10 @@
 >     *   `loadAPI` in `apps/meteor/ee/server/apps/communication/rest.ts`
 >     *   `startRestAPI` in `apps/meteor/app/api/server/api.ts`
 > 
-> *   **3-Hop Dependents:**
+> *   **3-hop Dependents:**
 >     *   `constructor` in `apps/meteor/ee/server/apps/communication/rest.ts`
+> 
+> Therefore, changes to `CachedSettings` would primarily impact the REST API's middleware (metrics and CORS) and its initialization, including an enterprise edition (EE) specific REST communication module.
 
 **Root Cause Analysis:**
 
@@ -2383,24 +2339,24 @@
 
 | Step | Tool | Args | Tokens |
 |------|------|------|-------:|
-| 1 | search | `{"query":"two-factor authentication"}` | 17 |
-| 2 | search | `{"query":"2FA"}` | 635 |
-| 3 | graph | `{"query":"twoFactorRequired","direction":"down"}` | 1455 |
-| 4 | implement | `{"symbolName":"checkCodeForUser","filename":"apps/meteor/app/2fa/server/code/ind` | 547 |
-| 5 | graph | `{"query":"getSecondFactorMethod","direction":"down","layer":"server"}` | 599 |
-| 6 | implement | `{"symbolName":"getMethodByNameOrFirstActiveForUser","filename":"apps/meteor/app/` | 122 |
-| 7 | search | `{"query":"checkMethods"}` | 14 |
-| 8 | implement | `{"filename":"apps/meteor/app/2fa/server/code/index.ts","symbolName":"*"}` | 14 |
+| 1 | search | `{"query":"twoFactor"}` | 473 |
+| 2 | graph | `{"direction":"down","layer":"server","query":"twoFactorRequired"}` | 1094 |
+| 3 | implement | `{"symbolName":"checkCodeForUser","filename":"apps/meteor/app/2fa/server/index.ts` | 547 |
+| 4 | graph | `{"query":"getSecondFactorMethod","direction":"down","layer":"server"}` | 599 |
+| 5 | implement | `{"symbolName":"getMethodByNameOrFirstActiveForUser","filename":"apps/meteor/app/` | 122 |
+| 6 | search | `{"layer":"server","query":"TOTPCheck"}` | 174 |
+| 7 | implement | `{"symbolName":"TOTPCheck.verify","filename":"apps/meteor/app/2fa/server/code/TOT` | 131 |
+| 8 | search | `{"query":"TOTP.verify"}` | 147 |
 
 **File Hits:**
 
 | Expected File | Found? | Found Via |
 |---------------|--------|-----------|
-| `apps/meteor/app/2fa/server/twoFactorRequired.ts` | YES | search (step 2) |
-| `apps/meteor/app/2fa/server/code/index.ts` | YES | search (step 2) |
+| `apps/meteor/app/2fa/server/twoFactorRequired.ts` | YES | search (step 1) |
+| `apps/meteor/app/2fa/server/code/index.ts` | YES | implement (step 3) |
 | `apps/meteor/app/2fa/server/code/ICodeCheck.ts` | **NO** | - |
-| `apps/meteor/app/2fa/server/code/TOTPCheck.ts` | **NO** | - |
-| `apps/meteor/app/2fa/server/code/EmailCheck.ts` | YES | search (step 2) |
+| `apps/meteor/app/2fa/server/code/TOTPCheck.ts` | YES | search (step 6) |
+| `apps/meteor/app/2fa/server/code/EmailCheck.ts` | **NO** | - |
 | `apps/meteor/app/2fa/server/code/PasswordCheckFallback.ts` | **NO** | - |
 
 **Symbol Coverage:**
@@ -2414,48 +2370,37 @@
 
 **LLM Answer (truncated):**
 
-> Two-factor authentication (2FA) in Rocket.Chat works by intercepting sensitive method/endpoint calls and enforcing a secondary verification step. This process is orchestrated on the server-side, with different methods available for verification.
+> Two-factor authentication (2FA) in Rocket.Chat works by acting as a middleware wrapper, `twoFactorRequired`, applied to sensitive methods and endpoints.
 > 
-> Here's the detailed call chain:
+> Here's the architectural flow:
 > 
-> **Entry → `twoFactorRequired` → `checkCodeForUser` → `getSecondFactorMethod` → `getMethodByNameOrFirstActiveForUser` → `selectedMethod.verify`**
+> **Entry → `twoFactorRequired` (apps/meteor/app/2fa/server/twoFactorRequired.ts) → `checkCodeForUser` (apps/meteor/app/2fa/server/code/index.ts)**
 > 
-> 1.  **`twoFactorRequired` (apps/meteor/app/2fa/server/twoFactorRequired.ts)**:
->     This function acts as a middleware wrapper for methods and endpoints that require 2FA. When a sensitive operation is attempted by a user with 2FA enabled, this middleware is triggered.
+> 1.  **`twoFactorRequired`** (apps/meteor/app/2fa/server/twoFactorRequired.ts) is the initial entry point, serving as a middleware.
+> 2.  It then calls `checkCodeForUser` (apps/meteor/app/2fa/server/code/index.ts) to handle the actual 2FA verification.
+> 3.  **`checkCodeForUser`** (apps/meteor/app/2fa/server/code/index.ts) is responsible for:
+>     *   Retrieving the user attempting to authenticate.
+>     *   Checking for 2FA code and method in HTTP headers if not provided otherwise.
+>     *   Determining if the user is already authorized for a token (e.g., "remember me" functionality).
+>     *   Calling `getSecondFactorMethod` to identify the appropriate 2FA method.
+> 4.  **`getSecondFactorMethod`** (apps/meteor/app/2fa/server/code/index.ts) then:
+>     *   Checks if a specific method name is provided and active.
+>     *   If not, it iterates through all available 2FA methods (`checkMethods`) and returns the first one that is enabled for the user using `getMethodByNameOrFirstActiveForUser` (apps/meteor/app/2fa/server/code/index.ts).
+>     *   This function (`getMethodByNameOrFirstActiveForUser`) iterates through registered 2FA check methods (like `TOTPCheck`, `EmailCheck`, `PasswordCheckFallback`) and returns the first enabled one.
+> 5.  Once a method is selected, `checkCodeForUser` (apps/meteor/app/2fa/server/code/index.ts) calls the `verify` method of the selected 2FA method.
+> 6.  For **TOTP (Time-based One-Time Password)**, the flow is:
+>     *   **`TOTPCheck.verify`** (apps/meteor/app/2fa/server/code/TOTPCheck.ts) is invoked.
+>     *   This method checks if TOTP is enabled for the user and if a secret exists.
+>     *   Finally, it calls **`TOTP.verify`** (likely located in a `TOTP` utility module, as suggested by `apps/meteor/app/2fa/server/code/TOTPCheck.ts`) to perform the actual verification of the provided TOTP code against the user's secret, also considering backup tokens.
 > 
-> 2.  **`checkCodeForUser` (apps/meteor/app/2fa/server/code/index.ts)**:
->     This is the core function for verifying a 2FA code.
->     *   It first checks if 2FA is globally enabled through the `Accounts_TwoFactorAuthentication_Enabled` setting.
->     *   It determines the user for whom 2FA is being verified.
->     *   It attempts to extract the 2FA code and method from HTTP headers (`x-2fa-code` and `x-2fa-method`) if present.
->     *   It then calls `getSecondFactorMethod` to select the appropriate 2FA verification method.
->     *   If no code is provided, it throws a `totp-required` error, providing the method name and available methods.
->     *   If a code is provided, it calls the `verify` method of the `selectedMethod` (e.g., `TOTPCheck.verify` or `EmailCheck.verify`).
->     *   If verification fails, it checks if the maximum failed attempts have been reached and throws a `totp-invalid` or `totp-max-attempts` error.
->     *   Upon successful verification, it may call `rememberAuthorization` to remember the authorization for the session.
-> 
-> 3.  **`getSecondFactorMethod` (apps/meteor/app/2fa/server/code/index.ts)**:
->     This function is responsible for identifying which 2FA method should be used for the current verification attempt. It primarily delegates to `getMethodByNameOrFirstActiveForUser`.
-> 
-> 4.  **`getMethodByNameOrFirstActiveForUser` (apps/meteor/app/2fa/server/code/index.ts)**:
->     This function retrieves the specific 2FA method to be used.
->     *   If a method name is provided, it attempts to find that specific method from a collection of registered 2FA check methods (`checkMethods`).
->     *   If no specific method is named, it iterates through all available 2FA methods and returns the first one that is enabled for the given user.
-> 
-> **Available 2FA Methods:**
-> Rocket.Chat supports different 2FA methods, each implementing an `ICodeCheck` interface with `verify()` and `isEnabled()` methods:
-> *   **TOTPCheck**: Handles Time-based One-Time Passwords, typically used with authenticator apps (e.g., Google Authenticator). This uses the standard RFC 6238.
-> *   **EmailCheck** (`apps/meteor/app/2fa/server/code/EmailCheck.ts`): Sends a temporary verification code to the user's registered email address via the Mailer service.
-> *   **PasswordCheckFallback**: Implied as a fallback mechanism, though not explicitly detailed in the provided architectural overview.
-> 
-> In summary, when 2FA is required, Rocket.Chat's server-side logic (`twoFactorRequired` → `checkCodeForUser`) dynamically selects an enabled 2FA method (TOTP or Email) and then attempts to verify the provided code using that method's specific implementation.
+> In summary, the 2FA process is a server-side middleware that selects an active verification method (TOTP, Email, or Password Fallback) and then delegates the code validation to that specific method's `verify` function.
 
 **Root Cause Analysis:**
 
 | Problem | Category | Detail |
 |---------|----------|--------|
 | `ICodeCheck.ts` not found | **Search/LLM gap** | File is in index but search didn't surface it, or LLM didn't look for it |
-| `TOTPCheck.ts` not found | **Search/LLM gap** | File is in index but search didn't surface it, or LLM didn't look for it |
+| `EmailCheck.ts` not found | **Search/LLM gap** | File is in index but search didn't surface it, or LLM didn't look for it |
 | `PasswordCheckFallback.ts` not found | **Search/LLM gap** | File is in index but search didn't surface it, or LLM didn't look for it |
 
 ---
@@ -2470,10 +2415,12 @@
 | Step | Tool | Args | Tokens |
 |------|------|------|-------:|
 | 1 | search | `{"layer":"server","query":"Omnichannel queue"}` | 284 |
-| 2 | graph | `{"direction":"down","layer":"server","query":"OmnichannelQueue"}` | 224 |
-| 3 | search | `{"query":"QueueManager.requestRoom","layer":"server"}` | 266 |
-| 4 | search | `{"query":"RoutingManager.delegateInquiry","layer":"server"}` | 352 |
-| 5 | search | `{"layer":"server","query":"closeRoom"}` | 347 |
+| 2 | graph | `{"layer":"server","direction":"down","query":"OmnichannelQueue"}` | 224 |
+| 3 | search | `{"query":"closeRoom","layer":"server"}` | 347 |
+| 4 | graph | `{"layer":"server","direction":"down","depth":2,"query":"closeRoom"}` | 488 |
+| 5 | implement | `{"filename":"apps/meteor/app/livechat/server/lib/closeRoom.ts","symbolName":"clo` | 352 |
+| 6 | implement | `{"filename":"apps/meteor/app/livechat/server/lib/closeRoom.ts","symbolName":"doC` | 892 |
+| 7 | implement | `{"symbolName":"afterRoomClosed","filename":"apps/meteor/app/livechat/server/lib/` | 612 |
 
 **File Hits:**
 
@@ -2481,9 +2428,9 @@
 |---------------|--------|-----------|
 | `apps/meteor/server/services/omnichannel/service.ts` | **NO** | - |
 | `apps/meteor/server/services/omnichannel/queue.ts` | YES | search (step 1) |
-| `apps/meteor/app/livechat/server/lib/closeRoom.ts` | YES | search (step 5) |
+| `apps/meteor/app/livechat/server/lib/closeRoom.ts` | YES | search (step 3) |
 | `apps/meteor/app/livechat/server/lib/RoutingManager.ts` | **NO** | - |
-| `apps/meteor/app/livechat/server/lib/Helper.ts` | YES | search (step 4) |
+| `apps/meteor/app/livechat/server/lib/Helper.ts` | **NO** | - |
 | `apps/meteor/app/livechat/lib/inquiries.ts` | **NO** | - |
 
 **Symbol Coverage:**
@@ -2497,35 +2444,47 @@
 
 **LLM Answer (truncated):**
 
-> The Omnichannel queue in Rocket.Chat processes and closes livechat conversations through a structured flow involving several server-side components.
+> The Omnichannel queue processes and closes a livechat conversation through a defined workflow involving queue management, routing, and a dedicated room closing mechanism.
 > 
-> **Call Chain:**
+> Here's the detailed call chain:
 > 
-> 1.  **Processing a Livechat Conversation:**
->     `Entry (New Conversation)` → `QueueManager.requestRoom` → `processNewInquiry` → (`QUEUED` Path) `OmnichannelQueue` (Worker Loop) → `RoutingManager.delegateInquiry` → `takeInquiry` → `assignAgent`
->     `Entry (New Conversation)` → `QueueManager.requestRoom` → `processNewInquiry` → (`READY` Path) `RoutingManager.delegateInquiry` → `takeInquiry` → `assignAgent`
+> **Entry → Queue Processing → Room Closing → Post-Closure Actions**
 > 
-> 2.  **Closing a Livechat Conversation:**
->     `Entry (Close Action)` → `closeRoom` → `afterRoomClosed`
+> 1.  **Queue Processing (OmnichannelQueue):**
+>     *   **File:** `apps/meteor/server/services/omnichannel/queue.ts`
+>     *   The `OmnichannelService` starts an `OmnichannelQueue` worker.
+>     *   This worker's `execute()` loop is responsible for processing queued inquiries.
+>     *   When an inquiry is picked from the queue, `OmnichannelQueue` calls `RoutingManager.delegateInquiry()`.
+>     *   **File:** (Implicit from architecture description) `apps/meteor/server/services/omnichannel/RoutingManager.ts`
+>     *   `RoutingManager.delegateInquiry()` then applies a routing strategy (e.g., AutoSelection, Manual) to assign an agent to the inquiry, typically by calling `takeInquiry()` and `assignAgent()`.
 > 
-> **Detailed Process:**
+> 2.  **Room Closing (`closeRoom`):**
+>     *   **File:** `apps/meteor/app/livechat/server/lib/closeRoom.ts`
+>     *   The `closeRoom` function initiates a MongoDB transaction to ensure atomicity of the closing process.
+>     *   Inside the transaction, it calls `doCloseRoom`.
+>     *   **File:** `apps/meteor/app/livechat/server/lib/closeRoom.ts`
+>     *   `doCloseRoom` performs the core closing logic:
+>         *   It validates the room state and checks for comment requirements.
+>         *   Determines whether the room was closed by a user or a visitor and gathers relevant closing data (e.g., `closedAt`, `chatDuration`).
+>         *   Removes the associated inquiry from the `LivechatInquiry` collection using `LivechatInquiry.removeByRoomId`.
+>         *   Updates the room status in the `LivechatRooms` collection to "closed" using `LivechatRooms.closeRoomById`.
+>         *   Removes all associated subscriptions using `Subscriptions.removeByRoomId`.
+>         *   Notifies about changes to the inquiry, subscription, and room objects.
+>     *   After `doCloseRoom` completes, the transaction is committed in `closeRoom`.
 > 
-> **1. Processing a Livechat Conversation:**
+> 3.  **Post-Closure Actions (`afterRoomClosed`):**
+>     *   **File:** `apps/meteor/app/livechat/server/lib/closeRoom.ts`
+>     *   After the transaction is successfully committed, `closeRoom` calls `afterRoomClosed` to perform actions that don't need to be part of the atomic transaction.
+>     *   `afterRoomClosed` handles:
+>         *   Sending a system message of type `livechat-close` to the room, notifying users that the conversation has ended, using `Message.saveSystemMessageAndNotifyUser`.
+>         *   Optionally sending a system message (`command`, `promptTranscript`) if livechat transcripts are enabled.
+>         *   Triggering App Events: `AppEvents.ILivechatRoomClosedHandler` (deprecated) and `AppEvents.IPostLivechatRoomClosed` to allow external applications to react to the room closure.
+>         *   Running internal callbacks (`livechat.closeRoom`) for further custom logic.
+>         *   Notifying about the updated room and removed inquiry.
 > 
-> *   **New Conversation Initiation:** When a new livechat conversation begins, the process starts with a call to `QueueManager.requestRoom` (found in `apps/meteor/app/livechat/server/lib/rooms.ts`). This function is responsible for creating a new chat room and an associated inquiry.
-> *   **Inquiry Processing:** After creating the inquiry, `processNewInquiry` evaluates its status.
->     *   **Immediate Delegation (READY):** If the inquiry is ready for an agent, `RoutingManager.delegateInquiry` is called immediately. This function (referenced in `apps/meteor/app/livechat/server/lib/QueueManager.ts`, `apps/meteor/app/livechat/server/lib/Helper.ts`, and `apps/meteor/server/services/omnichannel/queue.ts`) applies a configured routing strategy (e.g., AutoSelection, Manual) to find and assign an available agent to the inquiry. This involves `takeInquiry` and `assignAgent` to update the room with the assigned agent.
->     *   **Queueing (QUEUED):** If no agent is immediately available or the inquiry needs to be queued, it is saved to the Omnichannel queue.
-> *   **Background Queue Processing:** The `OmnichannelService` starts an `OmnichannelQueue` worker (defined in `apps/meteor/server/services/omnichannel/queue.ts`). This worker runs an `execute()` loop that continuously processes queued inquiries. For each queued inquiry, it calls `RoutingManager.delegateInquiry` to attempt to assign an agent, following the same routing logic as above.
+> **Summary of the Call Chain:**
 > 
-> **2. Closing a Livechat Conversation:**
-> 
-> *   **Room Closure:** Livechat conversations are closed through the `closeRoom` function (located in `apps/meteor/app/livechat/server/lib/closeRoom.ts`). This function executes within a MongoDB transaction to ensure data consistency.
-> *   **Resource Cleanup:** During the closure, `closeRoom` performs several critical actions:
->     *   It formally closes the chat room.
->     *   It removes the associated inquiry from the system.
->     *   It removes any related subscriptions.
-> *   **Post-Closure Actions:** Following the successful closure of the room, `afterRoomClosed` is invoked. This step handles post-closure tasks, such as saving a system message indicating the conversation has ended and triggering various application events that might be necessary for other modules or integrations.
+> `OmnichannelService` (starts worker) → `OmnichannelQueue` (worker loop) → `RoutingManager.delegateInquiry()` → `closeRoom()` → `doCloseRoom()` (within transaction) → `afterRoomClosed()` (post-transaction)
 
 **Root Cause Analysis:**
 
@@ -2533,6 +2492,7 @@
 |---------|----------|--------|
 | `service.ts` not found | **Search/LLM gap** | File is in index but search didn't surface it, or LLM didn't look for it |
 | `RoutingManager.ts` not found | **Search/LLM gap** | File is in index but search didn't surface it, or LLM didn't look for it |
+| `Helper.ts` not found | **Search/LLM gap** | File is in index but search didn't surface it, or LLM didn't look for it |
 | `inquiries.ts` not found | **Search/LLM gap** | File is in index but search didn't surface it, or LLM didn't look for it |
 | `transfer` missing | **LLM didn't mention** | Symbol exists in index but LLM never searched for it or mentioned it |
 
@@ -2547,57 +2507,61 @@
 
 | Step | Tool | Args | Tokens |
 |------|------|------|-------:|
-| 1 | search | `{"query":"auto-translate"}` | 15 |
-| 2 | search | `{"layer":"server","query":"translate message"}` | 249 |
-| 3 | graph | `{"filename":"apps/meteor/app/autotranslate/server/autotranslate.ts","query":"tra` | 745 |
-| 4 | implement | `{"filename":"apps/meteor/app/autotranslate/server/autotranslate.ts","symbolName"` | 89 |
-| 5 | implement | `{"filename":"apps/meteor/app/autotranslate/server/functions/translateMessage.ts"` | 170 |
-| 6 | graph | `{"direction":"down","query":"TranslationProviderRegistry.translateMessage","laye` | 21 |
-| 7 | search | `{"layer":"server","query":"TranslationProviderRegistry"}` | 174 |
-| 8 | implement | `{"filename":"apps/meteor/app/autotranslate/server/autotranslate.ts","symbolName"` | 324 |
+| 1 | search | `{"query":"auto translate"}` | 339 |
+| 2 | graph | `{"query":"AutoTranslate","direction":"down","filename":"apps/meteor/client/views` | 700 |
+| 3 | search | `{"query":"TranslationProviderRegistry","layer":"server"}` | 174 |
+| 4 | graph | `{"query":"TranslationProviderRegistry","direction":"down","depth":3,"filename":"` | 149 |
+| 5 | search | `{"layer":"server","query":"afterSaveMessage"}` | 261 |
+| 6 | graph | `{"edgeTypes":["event_listen"],"query":"afterSaveMessage","direction":"down"}` | 158 |
+| 7 | implement | `{"symbolName":"TranslationProviderRegistry","filename":"apps/meteor/app/autotran` | 324 |
+| 8 | implement | `{"symbolName":"TranslationProviderRegistry.registerCallbacks","filename":"apps/m` | 168 |
 
 **File Hits:**
 
 | Expected File | Found? | Found Via |
 |---------------|--------|-----------|
-| `apps/meteor/app/autotranslate/server/autotranslate.ts` | YES | search (step 2) |
+| `apps/meteor/app/autotranslate/server/autotranslate.ts` | YES | search (step 1) |
 | `apps/meteor/app/autotranslate/server/googleTranslate.ts` | **NO** | - |
-| `apps/meteor/app/autotranslate/server/msTranslate.ts` | YES | search (step 2) |
-| `apps/meteor/app/autotranslate/server/deeplTranslate.ts` | **NO** | - |
+| `apps/meteor/app/autotranslate/server/msTranslate.ts` | YES | search (step 1) |
+| `apps/meteor/app/autotranslate/server/deeplTranslate.ts` | YES | search (step 1) |
 | `apps/meteor/app/autotranslate/server/index.ts` | **NO** | - |
-| `apps/meteor/app/autotranslate/server/functions/translateMessage.ts` | YES | implement (step 4) |
+| `apps/meteor/app/autotranslate/server/functions/translateMessage.ts` | **NO** | - |
 
 **Symbol Coverage:**
 
 | Symbol | In Tool Results? | In LLM Answer? |
 |--------|-----------------|----------------|
 | `TranslationProviderRegistry` | YES | YES |
-| `AutoTranslate` | YES | **NO** |
+| `AutoTranslate` | YES | YES |
 
 **LLM Answer (truncated):**
 
-> The auto-translate feature in Rocket.Chat works by leveraging a `TranslationProviderRegistry` on the server-side.
+> The auto-translate feature in Rocket.Chat works by intercepting messages after they are saved and then translating them using a configured translation provider.
 > 
-> Here's the breakdown of the process:
+> Here's a breakdown of the process:
 > 
-> 1.  **Entry Point:** The `translateMessage` function, located at `apps/meteor/app/autotranslate/server/functions/translateMessage.ts`, is responsible for initiating the translation.
-> 2.  **Provider Check:** It first verifies if auto-translation is enabled via `TranslationProviderRegistry.enabled`. If not, it returns.
-> 3.  **Room and Message Validation:** It checks for a valid message and room ID.
-> 4.  **Translation Invocation:** If all checks pass, it calls `TranslationProviderRegistry.translateMessage(message, room, targetLanguage)`. This static method within the `TranslationProviderRegistry` handles the actual translation.
+> **Entry Point:** The `AutoTranslate` component in `apps/meteor/client/views/room/contextualBar/AutoTranslate/AutoTranslate.tsx` likely handles the client-side UI for enabling and configuring auto-translate.
 > 
-> The `TranslationProviderRegistry` (located at `apps/meteor/app/autotranslate/server/autotranslate.ts`) is a central component that manages different translation providers (e.g., GoogleAutoTranslate, MSTranslate, DeepLTranslate). It offers several methods, including `translateMessage` which is the one utilized in this flow. The architecture indicates that `translateMessage` within this registry is responsible for receiving the message and room information and dispatching it to the active translation provider. The translated content is then stored in the `message.translations` field.
+> **Server-Side Translation Logic:**
 > 
-> The overall call chain is:
+> 1.  **`TranslationProviderRegistry`:** This class, found in `apps/meteor/app/autotranslate/server/autotranslate.ts`, is the central hub for managing translation providers. It keeps track of available providers (like GoogleAutoTranslate, MSTranslate, and DeepLTranslate) and the currently active one.
+> 2.  **`registerCallbacks`:** The `TranslationProviderRegistry.registerCallbacks()` method in `apps/meteor/app/autotranslate/server/autotranslate.ts` plays a crucial role. When auto-translate is enabled, it registers a callback function with the `afterSaveMessage` event.
+> 3.  **`afterSaveMessage` Callback:** This callback is executed every time a message is saved. It has a `MEDIUM` priority and is identified by the tag `'autotranslate'`. The callback's logic is `(message, { room }) => provider.translateMessage(message, { room })`.
+> 4.  **`translateMessage`:** The `TranslationProviderRegistry.translateMessage()` method (also in `apps/meteor/app/autotranslate/server/autotranslate.ts`) is then called. This method, in turn, delegates the actual translation task to the currently active translation provider.
+> 5.  **Translation Providers:** Each translation provider (e.g., `MsAutoTranslate` in `apps/meteor/app/autotranslate/server/msTranslate.ts` or `DeeplAutoTranslate` in `apps/meteor/app/autotranslate/server/deeplTranslate.ts`) implements a base `AutoTranslate` class and provides its own `_translateMessage()` method to interact with the respective translation API.
+> 6.  **Storing Translations:** After a message is translated, the translations are stored in the `message.translations` field.
 > 
-> `apps/meteor/app/autotranslate/server/functions/translateMessage.ts` (translateMessage) → `apps/meteor/app/autotranslate/server/autotranslate.ts` (TranslationProviderRegistry.translateMessage) → (Active Translation Provider's `_translateMessage` method)
+> **Call Chain:**
+> 
+> `AutoTranslate` (client-side UI) → `TranslationProviderRegistry.setEnable()` (implicitly called by UI) → `TranslationProviderRegistry.registerCallbacks()` → `callbacks.add('afterSaveMessage', ...)` → (When a message is saved) `callbacks.run('afterSaveMessage')` → `TranslationProviderRegistry.getActiveProvider().translateMessage()` → Specific translation provider's `_translateMessage()` (e.g., `MsAutoTranslate._translateMessage()`).
 
 **Root Cause Analysis:**
 
 | Problem | Category | Detail |
 |---------|----------|--------|
 | `googleTranslate.ts` not found | **Search/LLM gap** | File is in index but search didn't surface it, or LLM didn't look for it |
-| `deeplTranslate.ts` not found | **Search/LLM gap** | File is in index but search didn't surface it, or LLM didn't look for it |
 | `index.ts` not found | **Search/LLM gap** | File is in index but search didn't surface it, or LLM didn't look for it |
+| `translateMessage.ts` not found | **Search/LLM gap** | File is in index but search didn't surface it, or LLM didn't look for it |
 
 ---
 
@@ -2610,21 +2574,21 @@
 
 | Step | Tool | Args | Tokens |
 |------|------|------|-------:|
-| 1 | search | `{"query":"message search","layer":"client"}` | 250 |
-| 2 | graph | `{"query":"MessageSearchTab","direction":"down","layer":"client"}` | 150 |
-| 3 | graph | `{"direction":"down","layer":"client","query":"useMessageSearchQuery"}` | 170 |
-| 4 | search | `{"layer":"server","query":"SearchProviderService"}` | 151 |
-| 5 | implement | `{"filename":"apps/meteor/app/search/server/service/SearchProviderService.ts","sy` | 168 |
-| 6 | graph | `{"layer":"server","direction":"up","query":"SearchProviderService"}` | 137 |
-| 7 | search | `{"query":"search messages","layer":"server"}` | 201 |
-| 8 | graph | `{"layer":"server","query":"messageSearch","direction":"down"}` | 1398 |
+| 1 | search | `{"query":"message search"}` | 283 |
+| 2 | graph | `{"layer":"server","query":"messageSearch","direction":"down"}` | 1398 |
+| 3 | graph | `{"query":"SearchProviderService","layer":"server","direction":"down"}` | 127 |
+| 4 | implement | `{"symbolName":"messageSearch","filename":"apps/meteor/server/methods/messageSear` | 417 |
+| 5 | graph | `{"direction":"up","query":"SearchProviderService.search","layer":"server"}` | 17 |
+| 6 | implement | `{"filename":"apps/meteor/app/search/server/service/SearchProviderService.ts","sy` | 168 |
+| 7 | search | `{"query":"SearchProvider"}` | 233 |
+| 8 | implement | `{"filename":"packages/core-typings/src/search/IMessageSearchProvider.ts","symbol` | 114 |
 
 **File Hits:**
 
 | Expected File | Found? | Found Via |
 |---------------|--------|-----------|
-| `apps/meteor/app/search/server/service/SearchProviderService.ts` | YES | search (step 4) |
-| `apps/meteor/app/search/server/model/SearchProvider.ts` | **NO** | - |
+| `apps/meteor/app/search/server/service/SearchProviderService.ts` | YES | graph (step 3) |
+| `apps/meteor/app/search/server/model/SearchProvider.ts` | YES | search (step 7) |
 | `apps/meteor/app/search/server/provider/DefaultProvider.ts` | **NO** | - |
 | `apps/meteor/app/search/server/model/ISearchResult.ts` | **NO** | - |
 | `apps/meteor/app/search/server/model/Settings.ts` | **NO** | - |
@@ -2635,32 +2599,37 @@
 | Symbol | In Tool Results? | In LLM Answer? |
 |--------|-----------------|----------------|
 | `SearchProviderService` | YES | YES |
-| `SearchProvider` | YES | **NO** |
+| `SearchProvider` | YES | YES |
 | `DefaultProvider` | YES | **NO** |
 
 **LLM Answer (truncated):**
 
-> Message search in Rocket.Chat is handled by a pluggable `SearchProviderService` on the server.
+> Rocket.Chat's message search functionality primarily relies on a server-side method that directly queries the MongoDB `Messages` collection. While there's a pluggable `SearchProviderService` architecture, the default implementation, `messageSearch`, handles the search process by parsing the user's query and constructing a MongoDB query.
 > 
-> Here's the architectural flow:
+> Here's the breakdown of how message search works:
 > 
 > **Call Chain:**
+> 1.  **Client-side UI (e.g., `MessageSearchTab` in `apps/meteor/client/views/room/contextualBar/MessageSearchTab/MessageSearchTab.tsx`)** initiates the search request. This UI might use hooks like `useMessageSearchQuery` (in `apps/meteor/client/views/room/contextualBar/MessageSearchTab/hooks/useMessageSearchQuery.ts`) to prepare the search parameters.
+> 2.  The client calls the **`messageSearch`** server method.
+> 3.  **`messageSearch` (in `apps/meteor/server/methods/messageSearch.ts`)**:
+>     *   Performs access control checks to ensure the user can access the room (if `rid` is provided). It also checks the `Search.defaultProvider.GlobalSearchEnabled` setting for global searches.
+>     *   Retrieves user details using `Users.findOneById`.
+>     *   Parses the search `text` into a MongoDB `query` and `options` using `parseMessageSearchQuery` (from `apps/meteor/server/lib/parseMessageSearchQuery.ts`). This is a crucial step that transforms user-friendly search syntax into a database-understandable query.
+>     *   Augments the MongoDB query to exclude removed messages (`t: {$ne: 'rm'}`) and hidden messages (`_hidden: {$ne: true}`).
+>     *   If a `rid` (room ID) is provided, it restricts the search to that specific room. Otherwise, for global searches, it finds all rooms the user is subscribed to via `Subscriptions.findByUserId` and searches within those.
+>     *   Executes the final MongoDB query on the `Messages` collection using `Messages.find`. It uses `readSecondaryPreferred` (from `apps/meteor/server/lib/readSecondaryPreferred.ts`) for database read preference.
+>     *   Returns the `docs` (search results) from the `Messages` collection.
 > 
-> 1.  **Client-side Entry Point:** `MessageSearchTab` (found in `apps/meteor/client/views/room/contextualBar/MessageSearchTab/MessageSearchTab.tsx`) is the main React component for the message search UI.
-> 2.  **Client-side Query Hook:** `useMessageSearchQuery` (found in `apps/meteor/client/views/room/contextualBar/MessageSearchTab/hooks/useMessageSearchQuery.ts`) is responsible for managing the client-side search query, debouncing, and ultimately triggering the server-side search. It uses `useQuery` internally.
-> 3.  **Server-side Method:** The client-side hook likely calls a server-side method to perform the actual search. Based on the search results, `messageSearch` (found in `apps/meteor/server/methods/messageSearch.ts`) is the server method responsible for processing message search requests.
-> 4.  **Search Provider Service:** The `messageSearch` method likely interacts with the `SearchProviderService` (found in `apps/meteor/app/search/server/service/SearchProviderService.ts`). This service manages different search providers.
->     *   `SearchProviderService.ts` has methods like `use`, `register`, and `start`. It holds a `providers` record and an `activeProvider`.
->     *   The `SearchProviderService` is designed to be pluggable, meaning it can support various search backends (e.g., MongoDB's `$text` index, or potentially Elasticsearch for Enterprise Edition). The default provider uses MongoDB's text search capabilities.
-> 5.  **Database Interaction:** The active search provider's `search()` method (which is not directly implemented by `SearchProviderService` but by the registered providers) performs the actual database query (e.g., using `find` operations on the messages collection).
-> 
-> In summary, the client initiates a search via UI components and hooks, which then call a server method. This server method leverages a flexible `SearchProviderService` to delegate the actual search operation to an active provider, which then queries the database.
+> **Pluggable Search Architecture (Broader Context):**
+> Rocket.Chat has a more general `SearchProviderService` (defined in `apps/meteor/app/search/server/service/SearchProviderService.ts`) designed to allow for different search backends (e.g., MongoDB, Elasticsearch).
+> *   The `SearchProviderService` manages various `SearchProvider` implementations.
+> *   The `IMessageSearchProvider` interface (in `packages/core-typings/src/search/IMessageSearchProvider.ts`) defines the structure and capabilities a search provider should have.
+> *   The `messageSearch` method investigated acts as the concrete implementation for the default MongoDB search provider.
 
 **Root Cause Analysis:**
 
 | Problem | Category | Detail |
 |---------|----------|--------|
-| `SearchProvider.ts` not found | **Search/LLM gap** | File is in index but search didn't surface it, or LLM didn't look for it |
 | `DefaultProvider.ts` not found | **Search/LLM gap** | File is in index but search didn't surface it, or LLM didn't look for it |
 | `ISearchResult.ts` not found | **Search/LLM gap** | File is in index but search didn't surface it, or LLM didn't look for it |
 | `Settings.ts` not found | **Search/LLM gap** | File is in index but search didn't surface it, or LLM didn't look for it |
@@ -2678,9 +2647,11 @@
 | Step | Tool | Args | Tokens |
 |------|------|------|-------:|
 | 1 | search | `{"query":"Team"}` | 518 |
-| 2 | graph | `{"layer":"server","direction":"down","query":"TeamService"}` | 111 |
-| 3 | implement | `{"symbolName":"TeamService","filename":"apps/meteor/server/services/team/service` | 1664 |
-| 4 | implement | `{"symbolName":"TeamService.create","filename":"apps/meteor/server/services/team/` | 751 |
+| 2 | graph | `{"query":"TeamService","direction":"down"}` | 111 |
+| 3 | search | `{"query":"TeamMember","layer":"packages"}` | 126 |
+| 4 | graph | `{"direction":"up","query":"TeamMember"}` | 42 |
+| 5 | implement | `{"symbolName":"TeamService","filename":"apps/meteor/server/services/team/service` | 1664 |
+| 6 | implement | `{"symbolName":"TeamService.create","filename":"apps/meteor/server/services/team/` | 751 |
 
 **File Hits:**
 
@@ -2702,35 +2673,44 @@
 
 **LLM Answer (truncated):**
 
-> The Team feature in Rocket.Chat is primarily managed by the `TeamService` on the server side, which orchestrates the creation, management, and interaction of teams with rooms and members.
+> The Team feature in Rocket.Chat allows users to group multiple channels (rooms) together, providing a hierarchical structure for organizing conversations and members. The core logic for managing teams resides in the `TeamService`, which handles operations like creating, updating, and deleting teams, as well as managing members and associated rooms.
 > 
-> Here's how the Team creation process works:
+> Here's a breakdown of how the Team feature works, focusing on the team creation process as an example:
 > 
-> **Call Chain: `Client/API Request` → `TeamService.create` → `checkUsernameAvailability` & `Rooms.findOneByName` → `Users.findOneById` → `Users.findActiveByIdsOrUsernames` → `Room.create` → `Team.insertOne` → `TeamMember.insertMany` → `Rooms.setTeamMainById` & `Team.updateMainRoomForTeam` → `Message.saveSystemMessage` → `notifyOnRoomChangedById`**
+> **Architecture:**
 > 
-> 1.  **Request Initiation**: A client-side action or an API request initiates the team creation process, which eventually calls the `create` method of the `TeamService`.
+> 1.  **`TeamService`** (apps/meteor/server/services/team/service.ts): This is the central service that extends `ServiceClassInternal` and exposes methods for all team-related operations (e.g., `create`, `addMembers`, `removeMembers`, `listRooms`).
+> 2.  **`Team` Model** (packages/models/src/models/Team.ts - inferred from `Team.insertOne`): Stores information about the team itself.
+> 3.  **`TeamMember` Model** (packages/models/src/models/TeamMember.ts): Stores the relationship between users and teams, including roles within the team.
+> 4.  **`Rooms` Model** (inferred from `Rooms.findOneByName`, `Room.create`, `Rooms.setTeamMainById`): Manages the channels/rooms associated with a team.
+> 5.  **`Users` Model** (inferred from `Users.findOneById`, `Users.findActiveByIdsOrUsernames`): Manages user information.
+> 6.  **`Message` Model** (inferred from `Message.saveSystemMessage`): Used for saving system messages related to team operations.
 > 
-> 2.  **`TeamService.create` (`apps/meteor/server/services/team/service.ts`)**: This method acts as the central entry point for creating a new team.
->     *   **Validation**: It first performs several validation checks:
->         *   It verifies the availability of the proposed team name using `checkUsernameAvailability` (likely located in `apps/meteor/app/lib/server/functions/checkUsernameAvailability.ts`).
->         *   It checks for existing rooms with the same name using `Rooms.findOneByName` (from `packages/models/src/models/Rooms.ts`).
->     *   **User and Member Data Retrieval**:
->         *   It retrieves the details of the user creating the team (`createdBy`) using `Users.findOneById` (from `packages/models/src/models/Users.ts`).
->         *   It fetches active user details for all specified members using `Users.findActiveByIdsOrUsernames` (from `packages/models/src/models/Users.ts`).
->     *   **Main Room Creation**:
->         *   If no existing room ID is provided, it creates a new room to serve as the team's main channel by calling `Room.create` (likely in `apps/meteor/server/lib/Room.ts`). The room type is set based on the team's privacy (private 'p' or public 'c'), and the members are associated with this room.
->     *   **Team Data Insertion**:
->         *   The new team's information is then inserted into the `Team` model using `Team.insertOne` (from `packages/models/src/models/Team.ts`).
->     *   **Team Member Data Insertion**:
->         *   It prepares a list of team members, including the owner/creator, and inserts them into the `TeamMember` model using `TeamMember.insertMany` (from `packages/models/src/models/TeamMember.ts`).
->     *   **Main Room Association**:
->         *   The newly created or existing room is marked as the main room for the team using `Rooms.setTeamMainById` (from `packages/models/src/models/Rooms.ts`).
->         *   The `Team` model is updated to link the team with its main room ID using `Team.updateMainRoomForTeam` (from `packages/models/src/models/Team.ts`).
->     *   **System Messages and Notifications**:
->         *   If an existing room was converted into a team, a system message (`user-converted-to-team`) is saved using `Message.saveSystemMessage` (from `packages/models/src/models/Message.ts`).
->         *   Finally, clients are notified about the room change using `notifyOnRoomChangedById` (likely from `apps/meteor/app/lib/server/functions/notifyOnRoomChangedById.ts`).
+> **Call Chain for Team Creation:**
 > 
-> In summary, the `TeamService` acts as the orchestrator, interacting with various models (`Team`, `TeamMember`, `Rooms`, `Users`, `Message`) and helper functions to ensure the proper creation, validation, and linkage of teams, rooms, and members within the Rocket.Chat system.
+> 1.  **Entry Point:** `TeamService.create` (apps/meteor/server/services/team/service.ts)
+>     *   **File:** `apps/meteor/server/services/team/service.ts`
+>     *   **Role:** Initiates the team creation process.
+>     *   **Logic:**
+>         *   **Validation:** Checks if the requested team name is available using `checkUsernameAvailability(team.name)` and `Rooms.findOneByName(team.name)`.
+>         *   **User Retrieval:** Fetches the creator's (`uid`) username using `Users.findOneById`.
+>         *   **Member Processing:** If `members` are provided, it retrieves their user IDs and usernames using `Users.findActiveByIdsOrUsernames`.
+>         *   **Main Room Creation:**
+>             *   If no existing `room.id` is provided, a new room is created using `Room.create`.
+>             *   The room's type (`p` for private, `c` for public) is determined by the `team.type`.
+>             *   The `members` are added to this initial room.
+>         *   **Team Data Insertion:** The team's metadata (name, creation date, created by user) is inserted into the `Team` model using `Team.insertOne`.
+>         *   **Team Member Insertion:**
+>             *   A list of `ITeamMember` objects is constructed, including the team owner/creator and any additional members.
+>             *   These team members are then inserted into the `TeamMember` model using `TeamMember.insertMany`.
+>         *   **Linking Room and Team:**
+>             *   The newly created room (or the existing one if converting) is marked as the main room for the team using `Rooms.setTeamMainById`.
+>             *   The `roomId` is updated in the `Team` record using `Team.updateMainRoomForTeam`.
+>         *   **System Message (optional):** If an existing room was converted into a team, a system message (`user-converted-to-team`) is saved using `Message.saveSystemMessage`.
+>         *   **Notification:** A `notifyOnRoomChangedById` event is triggered for the new room.
+>         *   The newly created `ITeam` object is returned.
+> 
+> In summary, the Team feature leverages the `TeamService` as its primary interface, interacting with several underlying data models (`Team`, `TeamMember`, `Rooms`, `Users`, `Message`) to manage the creation, membership, and organization of channels within a team.
 
 **Root Cause Analysis:**
 
@@ -2752,13 +2732,13 @@
 | Step | Tool | Args | Tokens |
 |------|------|------|-------:|
 | 1 | search | `{"query":"video conference"}` | 612 |
-| 2 | graph | `{"direction":"down","depth":3,"query":"apps/meteor/server/services/video-confere` | 24 |
-| 3 | graph | `{"query":"VideoConference","layer":"server","depth":3,"direction":"down"}` | 35 |
-| 4 | implement | `{"symbolName":"NOT_A_SYMBOL","filename":"apps/meteor/server/services/video-confe` | 16 |
-| 5 | search | `{"layer":"server","query":"video-conference service"}` | 17 |
-| 6 | implement | `{"symbolName":"VideoConference","filename":"apps/meteor/server/services/video-co` | 65 |
-| 7 | search | `{"layer":"server","query":"VideoConf"}` | 543 |
-| 8 | graph | `{"query":"VideoConf","direction":"down","layer":"server","depth":3}` | 129 |
+| 2 | graph | `{"query":"VideoConfManager","direction":"down","layer":"client"}` | 880 |
+| 3 | graph | `{"layer":"server","direction":"down","query":"apps/meteor/server/services/video-` | 24 |
+| 4 | graph | `{"direction":"down","query":"VideoConfService","layer":"server"}` | 137 |
+| 5 | search | `{"query":"IVideoConfProvider"}` | 104 |
+| 6 | graph | `{"query":"IVideoConfProvider","direction":"up"}` | 782 |
+| 7 | implement | `{"symbolName":"AppVideoConfProviderManager.registerProvider","filename":"package` | 106 |
+| 8 | implement | `{"filename":"packages/apps-engine/src/server/bridges/VideoConferenceBridge.ts","` | 110 |
 
 **File Hits:**
 
@@ -2766,9 +2746,9 @@
 |---------------|--------|-----------|
 | `apps/meteor/server/services/video-conference/service.ts` | YES | search (step 1) |
 | `packages/core-services/src/types/IVideoConfService.ts` | **NO** | - |
-| `apps/meteor/server/lib/videoConfProviders.ts` | YES | search (step 7) |
-| `apps/meteor/server/lib/videoConfTypes.ts` | YES | search (step 7) |
-| `apps/meteor/server/lib/isRoomCompatibleWithVideoConfRinging.ts` | YES | search (step 7) |
+| `apps/meteor/server/lib/videoConfProviders.ts` | **NO** | - |
+| `apps/meteor/server/lib/videoConfTypes.ts` | **NO** | - |
+| `apps/meteor/server/lib/isRoomCompatibleWithVideoConfRinging.ts` | **NO** | - |
 | `packages/models/src/models/VideoConference.ts` | YES | search (step 1) |
 
 **Symbol Coverage:**
@@ -2780,47 +2760,37 @@
 
 **LLM Answer (truncated):**
 
-> Rocket.Chat's video conference system is designed with a modular architecture, leveraging a core service and pluggable providers for flexibility.
+> The Rocket.Chat video conference system is built around a pluggable provider architecture, allowing for integration with various video conferencing solutions.
 > 
-> Here's a breakdown of how it works:
+> The core components and their interactions are:
 > 
-> **1. Core Service and Architecture:**
-> The video conferencing functionality is primarily handled by the `VideoConfService`, which extends `ServiceClassInternal`. This service acts as the central hub for managing video conference sessions on the server side. While a direct call chain for the `VideoConference` symbol was not fully mapped in the graph due to its nature as a proxied model (`packages/models/src/index.ts`), the architectural description indicates that the server-side logic resides in files such as `apps/meteor/server/services/video-conference/service.ts`. This file likely contains methods like `VideoConference.create` for starting new conferences.
+> *   **`IVideoConfProvider`** (`packages/apps-engine/src/definition/videoConfProviders/IVideoConfProvider.ts`): This interface defines the contract for any video conference provider. Apps that want to offer video conferencing capabilities must implement this interface.
 > 
-> **2. Pluggable Providers:**
-> Rocket.Chat supports various video conference providers through a registry system. This allows for integration with different services (e.g., Jitsi, as mentioned in the search results) and custom solutions via the Apps Engine.
-> *   **Provider Definition**: The interface for these providers is defined in `packages/apps-engine/src/definition/videoConfProviders/IVideoConfProvider.ts`.
-> *   **Provider Management**: The `AppVideoConfProviderManager` (`packages/apps-engine/src/server/managers/AppVideoConfProviderManager.ts`) is responsible for managing these providers, especially those integrated via the Apps Engine.
-> *   **App Bridge**: `apps/meteor/app/apps/server/bridges/videoConferences.ts` serves as a bridge for interactions between Apps and the core video conferencing system.
+> *   **`AppVideoConfProviderManager`** (`packages/apps-engine/src/server/managers/AppVideoConfProviderManager.ts`): This manager is responsible for registering and unregistering video conference providers provided by Rocket.Chat Apps.
+>     *   **`AppVideoConfProviderManager.registerProvider`**: This method takes an `appId` and `AppVideoConfProvider` object, and calls the `doRegisterProvider` method on the `VideoConferenceBridge`.
 > 
-> **3. Client-Side Management:**
-> On the client side, the `VideoConfManager` (`apps/meteor/client/lib/VideoConfManager.ts`) is responsible for handling the user interface and the lifecycle of video calls, including:
-> *   Initiating calls.
-> *   Managing the ringing state.
-> *   Allowing users to accept or reject calls.
+> *   **`VideoConferenceBridge`** (`packages/apps-engine/src/server/bridges/VideoConferenceBridge.ts`): This bridge acts as an intermediary between the App's video conference provider and the Rocket.Chat server.
+>     *   **`VideoConferenceBridge.doRegisterProvider`**: This method checks if the App has the necessary permissions (`hasProviderPermission`) and then calls `this.registerProvider` (another method within the `VideoConferenceBridge` itself) to complete the registration.
+>     *   **`VideoConferenceBridge.registerProvider`**: This method actually handles the registration of the `IVideoConfProvider` instance with the Rocket.Chat system.
 > 
-> **4. Room Compatibility:**
-> Before a video conference can be initiated, the system checks for room compatibility using `isRoomCompatibleWithVideoConfRinging` (`apps/meteor/server/lib/isRoomCompatibleWithVideoConfRinging.ts`). This ensures that a video conference can be properly started within a given chat room.
+> *   **`VideoConfService`** (`apps/meteor/server/services/video-conference/service.ts`): This is a server-side service that likely exposes methods for initiating, managing, and ending video conferences, using the registered providers.
 > 
-> **Call Chain (Architectural Overview):**
-> The overall flow involves interactions between the client, the `VideoConfService` on the server, and the configured video conference providers.
+> *   **`VideoConfManager`** (`apps/meteor/client/lib/VideoConfManager.ts`): On the client-side, this manager handles the lifecycle of a video call, including ringing, accepting, and rejecting calls. It also contains logic to check if a room is compatible with video conferencing (`isRoomCompatibleWithVideoConfRinging`).
 > 
-> `Client-side (VideoConfManager)` → `Server-side (VideoConfService)` → `Video Conference Provider (e.g., Jitsi via AppVideoConfProviderManager)`
+> The overall flow for registering a video conference provider from an App is:
 > 
-> **Key Files Involved:**
-> *   `packages/models/src/index.ts`: Defines the `VideoConference` model (proxied).
-> *   `apps/meteor/server/services/video-conference/service.ts`: Contains the core server-side logic for video conferencing.
-> *   `packages/apps-engine/src/definition/videoConfProviders/IVideoConfProvider.ts`: Interface for video conference providers.
-> *   `apps/meteor/app/apps/server/bridges/videoConferences.ts`: Bridge for Apps Engine video conference interactions.
-> *   `packages/apps-engine/src/server/managers/AppVideoConfProviderManager.ts`: Manages video conference providers.
-> *   `apps/meteor/client/lib/VideoConfManager.ts`: Client-side logic for managing video calls.
-> *   `apps/meteor/server/lib/isRoomCompatibleWithVideoConfRinging.ts`: Logic to determine if a room is compatible with video conferencing.
+> `AppManager.enableApp` (within `packages/apps-engine/src/server/AppManager.ts`) → `AppVideoConfProviderManager.registerProviders` (within `packages/apps-engine/src/server/managers/AppVideoConfProviderManager.ts`) → `AppVideoConfProviderManager.registerProvider` (within `packages/apps-engine/src/server/managers/AppVideoConfProviderManager.ts`) → `VideoConferenceBridge.doRegisterProvider` (within `packages/apps-engine/src/server/bridges/VideoConferenceBridge.ts`) → `VideoConferenceBridge.registerProvider` (within `packages/apps-engine/src/server/bridges/VideoConferenceBridge.ts`).
+> 
+> Once a provider is registered, the `VideoConfService` on the server can utilize it to create and manage video conferences, and the `VideoConfManager` on the client handles the user interface and call interactions.
 
 **Root Cause Analysis:**
 
 | Problem | Category | Detail |
 |---------|----------|--------|
 | `IVideoConfService.ts` not found | **Search/LLM gap** | File is in index but search didn't surface it, or LLM didn't look for it |
+| `videoConfProviders.ts` not found | **Search/LLM gap** | File is in index but search didn't surface it, or LLM didn't look for it |
+| `videoConfTypes.ts` not found | **Search/LLM gap** | File is in index but search didn't surface it, or LLM didn't look for it |
+| `isRoomCompatibleWithVideoConfRinging.ts` not found | **Search/LLM gap** | File is in index but search didn't surface it, or LLM didn't look for it |
 | `IVideoConfService` missing | **LLM didn't mention** | Symbol exists in index but LLM never searched for it or mentioned it |
 
 ---
@@ -2852,7 +2822,7 @@
 | 21 | new-14-ee-license | ee licensing | PASS | **FAIL** | **LLM navigation bug** — fix AGENTS.md |
 | 22 | new-15-impact-aftersave | message chat | PASS | **FAIL** | **LLM navigation bug** — fix AGENTS.md |
 | 23 | new-16-impact-streamer | streamer | PASS | **FAIL** | **LLM navigation bug** — fix AGENTS.md |
-| 24 | new-17-slash-commands | slash commands | PASS | PASS | OK |
+| 24 | new-17-slash-commands | slash commands | PASS | **FAIL** | **LLM navigation bug** — fix AGENTS.md |
 | 25 | new-18-webhook | integrations | PASS | **FAIL** | **LLM navigation bug** — fix AGENTS.md |
 | 26 | new-19-message-rendering | message rendering | PASS | **FAIL** | **LLM navigation bug** — fix AGENTS.md |
 | 27 | new-20-proxify | core-services | PASS | **FAIL** | **LLM navigation bug** — fix AGENTS.md |
@@ -2867,7 +2837,7 @@
 ### Diagnosis Summary
 | Diagnosis | Count |
 |-----------|------:|
-| Both pass | 1 |
+| Both pass | 0 |
 | Index/graph bug (L1+L2 fail) | 8 |
-| LLM navigation bug (L1 pass, L2 fail) | 24 |
+| LLM navigation bug (L1 pass, L2 fail) | 25 |
 | LLM found alt route (L1 fail, L2 pass) | 1 |
