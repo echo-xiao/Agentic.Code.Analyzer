@@ -301,13 +301,13 @@ function loadLayer1Results(): Map<string, boolean> | null {
     return map.size > 0 ? map : null;
 }
 
-function formatReport(results: TestResult[], l1: Map<string, boolean> | null): string {
+function formatReport(results: TestResult[], l1: Map<string, boolean> | null, modelNameForReport = 'gemini-2.5-flash'): string {
     const L: string[] = [];
     const passed = results.filter(r => r.pass).length;
     const total = results.length;
 
     L.push(`# Layer 2 — Agent Eval Report\n`);
-    L.push(`${new Date().toLocaleString('en-US')} | Model: gemini-2.5-flash | Testcases: ${total}\n`);
+    L.push(`${new Date().toLocaleString('en-US')} | Model: ${modelNameForReport} | Testcases: ${total}\n`);
     L.push(`---\n`);
 
     // Section 1: Overall Summary
@@ -595,9 +595,10 @@ async function main() {
             console.error(`${result.pass ? 'PASS' : 'FAIL'} (${result.toolCalls.length} calls, ${result.tokens.total} tokens)`);
             results.push(result);
 
-            // rate limit: free tier is 15 RPM for flash
+            // rate limit: free tier is 15 RPM for flash, 5 RPM for pro
+            const isPro = modelName.includes('pro');
             if (i < selected.length - 1) {
-                await new Promise(r => setTimeout(r, 4500));
+                await new Promise(r => setTimeout(r, isPro ? 13000 : 4500));
             }
         } catch (e: any) {
             console.error(`ERROR: ${e?.message?.slice(0, 100)}`);
@@ -618,7 +619,7 @@ async function main() {
     console.error(`Gemini answers saved to logs/gemini-answers/`);
 
     const l1 = loadLayer1Results();
-    const report = formatReport(results, l1);
+    const report = formatReport(results, l1, modelName);
 
     const logsDir = path.join(PROJECT_ROOT, 'logs');
     fs.mkdirSync(logsDir, { recursive: true });

@@ -2,46 +2,62 @@
 
 ## Gemini Answer
 
-The Rocket.Chat video conference system is built around a pluggable provider architecture, allowing for integration with various video conferencing solutions.
+The video conference system in Rocket.Chat is designed around a provider-based architecture, allowing for multiple video conferencing solutions to be integrated. The core logic resides on the server, while the client manages the user interface and call state.
 
-The core components and their interactions are:
+Here is a step-by-step breakdown of how it works:
 
-*   **`IVideoConfProvider`** (`packages/apps-engine/src/definition/videoConfProviders/IVideoConfProvider.ts`): This interface defines the contract for any video conference provider. Apps that want to offer video conferencing capabilities must implement this interface.
+**Call Chain:** `Client UI → VideoConfManager → Server API → VideoConfService → videoConfProviders → Conference Provider (e.g., Jitsi)`
 
-*   **`AppVideoConfProviderManager`** (`packages/apps-engine/src/server/managers/AppVideoConfProviderManager.ts`): This manager is responsible for registering and unregistering video conference providers provided by Rocket.Chat Apps.
-    *   **`AppVideoConfProviderManager.registerProvider`**: This method takes an `appId` and `AppVideoConfProvider` object, and calls the `doRegisterProvider` method on the `VideoConferenceBridge`.
+### 1. Client-Side Initiation (Entry Point)
 
-*   **`VideoConferenceBridge`** (`packages/apps-engine/src/server/bridges/VideoConferenceBridge.ts`): This bridge acts as an intermediary between the App's video conference provider and the Rocket.Chat server.
-    *   **`VideoConferenceBridge.doRegisterProvider`**: This method checks if the App has the necessary permissions (`hasProviderPermission`) and then calls `this.registerProvider` (another method within the `VideoConferenceBridge` itself) to complete the registration.
-    *   **`VideoConferenceBridge.registerProvider`**: This method actually handles the registration of the `IVideoConfProvider` instance with the Rocket.Chat system.
+A user starts a video conference from a chat room. The UI components for this are located in `packages/ui-video-conf/`.
 
-*   **`VideoConfService`** (`apps/meteor/server/services/video-conference/service.ts`): This is a server-side service that likely exposes methods for initiating, managing, and ending video conferences, using the registered providers.
+-   **File**: `apps/meteor/client/lib/VideoConfManager.ts`
+-   **Symbol**: `VideoConfManager`
+-   **Role**: This client-side manager is responsible for the entire call lifecycle from the user's perspective. It handles actions like starting a call, showing ringing notifications, and managing accept/reject/end call states. It interacts with the UI modals to display the call pop-up.
 
-*   **`VideoConfManager`** (`apps/meteor/client/lib/VideoConfManager.ts`): On the client-side, this manager handles the lifecycle of a video call, including ringing, accepting, and rejecting calls. It also contains logic to check if a room is compatible with video conferencing (`isRoomCompatibleWithVideoConfRinging`).
+### 2. Server-Side Service
 
-The overall flow for registering a video conference provider from an App is:
+The client communicates with the server, which orchestrates the creation and management of the video conference.
 
-`AppManager.enableApp` (within `packages/apps-engine/src/server/AppManager.ts`) → `AppVideoConfProviderManager.registerProviders` (within `packages/apps-engine/src/server/managers/AppVideoConfProviderManager.ts`) → `AppVideoConfProviderManager.registerProvider` (within `packages/apps-engine/src/server/managers/AppVideoConfProviderManager.ts`) → `VideoConferenceBridge.doRegisterProvider` (within `packages/apps-engine/src/server/bridges/VideoConferenceBridge.ts`) → `VideoConferenceBridge.registerProvider` (within `packages/apps-engine/src/server/bridges/VideoConferenceBridge.ts`).
+-   **File**: `apps/meteor/server/services/video-conference/service.ts`
+-   **Symbol**: `VideoConfService`
+-   **Role**: This is the main backend service that handles the business logic for video conferences. It receives requests from the client to start or join a call.
 
-Once a provider is registered, the `VideoConfService` on the server can utilize it to create and manage video conferences, and the `VideoConfManager` on the client handles the user interface and call interactions.
+### 3. Provider Registry (The Core)
 
-## Tool Calls (8 calls, 40,751 tokens)
+The `VideoConfService` does not contain the logic for any specific video conferencing tool. Instead, it uses a registry of providers. This allows administrators to choose and configure their preferred video solution.
 
-**Step 1:** `search({"query":"video conference"})` → 612 tokens
-**Step 2:** `graph({"query":"VideoConfManager","direction":"down","layer":"client"})` → 880 tokens
-**Step 3:** `graph({"layer":"server","direction":"down","query":"apps/meteor/server/services/video-conference/service.t)` → 24 tokens
-**Step 4:** `graph({"direction":"down","query":"VideoConfService","layer":"server"})` → 137 tokens
-**Step 5:** `search({"query":"IVideoConfProvider"})` → 104 tokens
-**Step 6:** `graph({"query":"IVideoConfProvider","direction":"up"})` → 782 tokens
-**Step 7:** `implement({"symbolName":"AppVideoConfProviderManager.registerProvider","filename":"packages/apps-engine/src/se)` → 106 tokens
-**Step 8:** `implement({"filename":"packages/apps-engine/src/server/bridges/VideoConferenceBridge.ts","symbolName":"VideoCo)` → 110 tokens
+-   **File**: `apps/meteor/server/lib/videoConfProviders.ts`
+-   **Symbol**: `videoConfProviders`
+-   **Role**: This acts as a central registry where different video conference providers can be added or removed. By default, Rocket.Chat includes a Jitsi provider. Other providers can be added through the Rocket.Chat Apps Engine. When a call is initiated, the `VideoConfService` consults this registry to determine which active provider should handle the request.
+
+### 4. Apps Engine Integration
+
+The system is extensible, allowing third-party applications to register their own video conference providers.
+
+-   **File**: `packages/apps-engine/src/server/managers/AppVideoConfProviderManager.ts`
+-   **Role**: This manager handles the logic for apps that want to add their own video conferencing capabilities, bridging them with the central `videoConfProviders` registry.
+
+In summary, when a user starts a video call, the client-side `VideoConfManager` sends a request to the server. The `VideoConfService` on the server picks it up, queries the `videoConfProviders` registry for the active provider, and then delegates the call generation to that provider. The provider returns a unique conference URL and call details, which are sent back to the client to embed the video call interface.
+
+## Tool Calls (8 calls, 38,112 tokens)
+
+**Step 1:** `search({"query":"videoconf"})` → 559 tokens
+**Step 2:** `search({"query":"VideoConfManager"})` → 156 tokens
+**Step 3:** `graph({"query":"VideoConfManager","direction":"down"})` → 888 tokens
+**Step 4:** `search({"query":"VideoConfService"})` → 186 tokens
+**Step 5:** `graph({"query":"VideoConfService","direction":"down"})` → 137 tokens
+**Step 6:** `search({"query":"videoconference path:app/"})` → 17 tokens
+**Step 7:** `search({"query":"video path:app/"})` → 15 tokens
+**Step 8:** `search({"query":"videoConfProviders"})` → 241 tokens
 
 ## Metrics
 
 | Metric | Value |
 |--------|-------|
-| Files hit | 2/6 |
-| Symbols hit | 1/2 |
+| Files hit | 3/6 |
+| Symbols hit | 2/2 |
 | Tool calls | 8 |
-| Total tokens | 40,751 |
+| Total tokens | 38,112 |
 | Pass | NO |

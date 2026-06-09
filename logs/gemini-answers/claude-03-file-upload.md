@@ -2,44 +2,50 @@
 
 ## Gemini Answer
 
-The storage workflow for file uploads in Rocket.Chat involves the `FileUploadClass` located in `apps/meteor/app/file-upload/server/lib/FileUpload.ts`. This class handles the core logic for file operations on the server side.
+The file upload process in Rocket.Chat starts with a client-side action that hits a REST API endpoint on the server. The server then uses a configurable storage system to save the file and associate it with a message in a room.
 
-Based on the initial search and graph traversal, here's a high-level overview:
+The storage workflow can be broken down into the following steps:
 
-1.  **Client-side:** The client handles file selection and the UI for uploads.
-2.  **Server-side API:** There is a two-step REST API flow for file uploads:
-    *   `POST rooms.media/:rid`: This endpoint is responsible for uploading the file to the chosen storage backend.
-    *   `POST rooms.mediaConfirm/:rid/:fileId`: This endpoint confirms the upload and is used to create a message in the chat with a reference to the uploaded file as an attachment.
-3.  **`FileUploadClass` (`apps/meteor/app/file-upload/server/lib/FileUpload.ts`):** This class is central to processing files. It has methods like `insert`, `delete`, `getStore`, etc., for managing files.
-    *   **Pluggable Storage:** Rocket.Chat supports various storage backends, including GridFS (the default), Amazon S3, WebDAV, and the local FileSystem. The `FileUploadClass` interacts with these different stores.
-    *   **Metadata Storage:** File metadata, such as file ID, name, size, and type, is stored in the `Uploads` collection.
-4.  **Message Creation:** After a successful upload, `sendFileMessage()` is likely called to create the actual chat message with the attachment reference.
+**Entry → REST API → Upload Handler → Storage → Message Creation**
 
-**Call Chain:**
+1.  **Entry Point: REST API**
+    The process begins when a file is uploaded to the `rooms.media/:rid` REST endpoint. This route is defined in the following file:
+    *   **File:** `apps/meteor/app/api/server/v1/rooms.ts`
+    This file configures the API endpoint that receives the initial file data from the client.
 
-*   Entry (client-side upload initiation)
-*   `POST rooms.media/:rid` (API endpoint in `apps/meteor/app/api/server/v1/rooms.ts`)
-*   `FileUploadClass.insert` (in `apps/meteor/app/file-upload/server/lib/FileUpload.ts`) interacts with the configured storage backend.
-*   `POST rooms.mediaConfirm/:rid/:fileId` (API endpoint in `apps/meteor/app/api/server/v1/rooms.ts`)
-*   `sendFileMessage()` (not explicitly found in the graph, but implied for message creation).
+2.  **File Processing: `FileUpload`**
+    The request is handled by a dedicated upload handler which utilizes the `FileUpload` library. The core logic for handling file uploads, including validation and storage, is centralized here. The main class responsible is `FileUploadClass`.
+    *   **File:** `apps/meteor/app/file-upload/server/lib/FileUpload.ts`
+    This class orchestrates the process of receiving the file stream and passing it to the configured storage backend.
 
-## Tool Calls (8 calls, 26,857 tokens)
+3.  **Pluggable Storage Backends**
+    Rocket.Chat supports multiple storage providers. The system checks the configuration and directs the file to the appropriate storage engine (e.g., GridFS for MongoDB, Amazon S3, Google Cloud Storage, WebDAV, or the local filesystem).
+    *   **S3 Config:** `apps/meteor/app/file-upload/server/config/AmazonS3.ts`
+    *   **Google Storage Config:** `apps/meteor/app/file-upload/server/config/GoogleStorage.ts`
+    *   **WebDAV Config:** `apps/meteor/app/file-upload/server/config/Webdav.ts`
 
-**Step 1:** `search({"query":"file upload","layer":"server"})` → 447 tokens
-**Step 2:** `graph({"direction":"down","layer":"server","query":"FileUploadClass"})` → 163 tokens
-**Step 3:** `search({"query":"rooms.media","layer":"server"})` → 65 tokens
-**Step 4:** `graph({"layer":"server","query":"rooms.media","direction":"down","depth":3})` → 13 tokens
-**Step 5:** `implement({"symbolName":"rooms.media","filename":"apps/meteor/app/api/server/v1/rooms.ts"})` → 45 tokens
-**Step 6:** `search({"layer":"server","query":"POST rooms.media"})` → 15 tokens
-**Step 7:** `implement({"filename":"apps/meteor/app/file-upload/server/lib/FileUpload.ts","symbolName":"FileUploadClass"})` → 419 tokens
-**Step 8:** `search({"query":"API.v1.addRoute media","layer":"server"})` → 16 tokens
+4.  **Message Creation**
+    After the file is successfully uploaded to the chosen storage backend, a confirmation step occurs. A separate method is called to create the actual message in the chat room, which includes the file attachment details.
+    *   **File:** `apps/meteor/app/file-upload/server/methods/sendFileMessage.ts`
+    The `sendFileMessage` Meteor method is invoked to create a message in the `rocketchat_messages` collection, linking to the uploaded file's metadata stored in the `rocketchat_uploads` collection.
+
+## Tool Calls (8 calls, 33,696 tokens)
+
+**Step 1:** `search({"query":"upload","layer":"server"})` → 539 tokens
+**Step 2:** `search({"query":"rooms.media","layer":"server"})` → 65 tokens
+**Step 3:** `graph({"query":"apps/meteor/app/api/server/v1/rooms.ts","direction":"down"})` → 19 tokens
+**Step 4:** `search({"query":"rooms.ts"})` → 377 tokens
+**Step 5:** `graph({"query":"FileUploadClass","direction":"down"})` → 163 tokens
+**Step 6:** `graph({"query":"FileUploadClass","direction":"up"})` → 991 tokens
+**Step 7:** `search({"query":"apps/meteor/app/api/server/v1/rooms.ts"})` → 66 tokens
+**Step 8:** `implement({"filename":"apps/meteor/app/api/server/v1/rooms.ts","symbolName":"API.v1.addRoute"})` → 43 tokens
 
 ## Metrics
 
 | Metric | Value |
 |--------|-------|
-| Files hit | 2/6 |
-| Symbols hit | 3/6 |
+| Files hit | 4/6 |
+| Symbols hit | 2/6 |
 | Tool calls | 8 |
-| Total tokens | 26,857 |
+| Total tokens | 33,696 |
 | Pass | NO |

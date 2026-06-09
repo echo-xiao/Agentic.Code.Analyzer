@@ -2,52 +2,65 @@
 
 ## Gemini Answer
 
-**Example - Querying Users by Role:**
+To query data using a database model in Rocket.Chat, you import the desired model from the `@rocket.chat/models` package and then call its data access methods. These models are wrappers around MongoDB collections, providing standard methods like `find`, `findOne`, `updateOne`, and `aggregate`.
 
-The `findUsersInRoles` method (defined in `packages/models/src/models/Users.ts`) is a specialized query that internally calls the generic `find` method from `BaseRaw`.
+Here is the typical flow:
 
+**Entry → Import Model → Call Query Method**
 
+1.  **Entry Point:** A server-side function, API endpoint, or service needs to fetch data. For this example, we'll look at a function that gathers statistics: `getServicesStatistics`.
+
+2.  **Model Definition:** The core model logic is implemented in a class that extends `BaseRaw`. For the user collection, this is `UsersRaw`.
+    *   **File:** `packages/models/src/models/Users.ts`
+
+3.  **Model Import:** In the file that needs to query data, you import the proxified model. This proxy makes the model available throughout the application.
+    *   **File:** `apps/meteor/app/statistics/server/lib/getServicesStatistics.ts`
+    *   **Code:**
+        
 ```typescript
-// packages/models/src/models/Users.ts
-class UsersRaw extends BaseRaw<IUser, DefaultFields<IUser>> implements IUsersModel {
-  // ... other methods
-  findUsersInRoles: IUsersModel['findUsersInRoles'] = (roles: IRole['_id'][] | IRole['_id'], _scope?: null, options?: any) => {
-		roles = ([] as string[]).concat(roles);
-
-		const query = {
-			roles: { $in: roles },
-		};
-
-		return this.find(query, options); // <--- Delegation to BaseRaw.find()
-	};
-  // ... other methods
-}
-```
+        import { Users } from '@rocket.chat/models';
+        ```
 
 
-In this example:
-1.  `UsersRaw` is the database model for users.
-2.  `findUsersInRoles` is a method that takes roles and optional query options.
-3.  It constructs a MongoDB query (`{ roles: { $in: roles } }`).
-4.  It then calls `this.find(query, options)`, which is the `find` method inherited from `BaseRaw`, to execute the database query and return a cursor to the matching user documents.
+4.  **Query Execution:** You use the imported model object (`Users`) to call standard MongoDB query methods. The arguments typically consist of a query filter and an options object for projections, sorting, etc. In `getServicesStatistics`, the model is used to count users with different activity levels.
 
-**Summary:**
+    *   **Example Usage (Conceptual):**
+        
+```typescript
+        // This is a conceptual example based on the file's purpose.
+        // It demonstrates how the Users model would be used inside getServicesStatistics.
 
-To query data using a database model in Rocket.Chat:
-1.  Identify the relevant model class (e.g., `UsersRaw`) in `packages/models/src/models/Users.ts`.
-2.  Utilize the provided high-level query methods on the model instance (e.g., `Users.findOneByUsername`, `Users.findUsersInRoles`).
-3.  These methods, in turn, leverage the `find` and `findOne` operations inherited from `BaseRaw` to interact with the MongoDB collection.
+        async function getServicesStatistics() {
+            // Find one active user by their username
+            const activeUser = await Users.findOne({ 'status': 'online', 'username': 'someuser' }, { projection: { name: 1, username: 1 } });
 
-## Tool Calls (8 calls, 42,977 tokens)
+            // Count the total number of non-active users
+            const nonActiveUsersCount = await Users.countDocuments({ 'status': { $ne: 'online' } });
+
+            // Find all admin users, projecting only their username
+            const adminUsers = await Users.find({ roles: 'admin' }, { projection: { username: 1 } }).toArray();
+
+            return {
+                activeUser,
+                nonActiveUsersCount,
+                adminUsers,
+            };
+        }
+        ```
+
+
+This pattern of importing from `@rocket.chat/models` and calling inherited `BaseRaw` methods is the standard way to perform database queries on the server side of the Rocket.Chat codebase.
+
+## Tool Calls (8 calls, 30,141 tokens)
 
 **Step 1:** `search({"query":"Users model"})` → 203 tokens
-**Step 2:** `graph({"query":"IUsersModel","direction":"down"})` → 38 tokens
-**Step 3:** `search({"query":"Users","layer":"packages"})` → 569 tokens
-**Step 4:** `graph({"filename":"packages/models/src/index.ts","direction":"down","depth":2,"query":"Users"})` → 295 tokens
-**Step 5:** `implement({"symbolName":"Users","filename":"packages/models/src/index.ts"})` → 53 tokens
-**Step 6:** `search({"layer":"packages","query":"UsersRaw"})` → 212 tokens
-**Step 7:** `implement({"symbolName":"UsersRaw","filename":"packages/models/src/models/Users.ts"})` → 6775 tokens
-**Step 8:** `implement({"filename":"packages/models/src/models/Users.ts","symbolName":"UsersRaw.findUsersInRoles"})` → 47 tokens
+**Step 2:** `search({"query":"UsersRaw"})` → 212 tokens
+**Step 3:** `graph({"query":"UsersRaw.findOne","direction":"up"})` → 14 tokens
+**Step 4:** `graph({"direction":"up","query":"UsersRaw"})` → 245 tokens
+**Step 5:** `search({"query":"import { Users } from '@rocket.chat/models'"})` → 365 tokens
+**Step 6:** `search({"query":"mute file:apps/meteor/app/slashcommands-mute/server/mute.ts"})` → 26 tokens
+**Step 7:** `implement({"symbolName":"*","filename":"apps/meteor/app/slashcommands-mute/server/mute.ts"})` → 14 tokens
+**Step 8:** `search({"query":"file:apps/meteor/app/slashcommands-mute/server/mute.ts"})` → 25 tokens
 
 ## Metrics
 
@@ -56,5 +69,5 @@ To query data using a database model in Rocket.Chat:
 | Files hit | 0/6 |
 | Symbols hit | 0/2 |
 | Tool calls | 8 |
-| Total tokens | 42,977 |
+| Total tokens | 30,141 |
 | Pass | NO |
