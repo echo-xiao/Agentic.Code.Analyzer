@@ -2,28 +2,35 @@
 
 ## Gemini Answer
 
-Federation messages in Rocket.Chat are sent across different servers primarily through the `FederationMatrix` service within the `ee/packages/federation-matrix/src/FederationMatrix.ts` file.
+Sending a federated message in Rocket.Chat involves a sequence of function calls that process the message and transmit it to a remote server using the Matrix protocol. The process begins after a message is saved in a federated room, triggering a series of hooks.
 
-Here's the call chain for sending a federation message:
+The call chain for sending a federated message is as follows:
 
-`apps/meteor/ee/server/hooks/federation/index.ts` → `FederationMatrix.sendMessage` → `FederationMatrix.handleTextMessage` → `federationSDK.sendMessage`
+`afterSaveMessage` hook → `FederationMatrix.sendMessage` → `FederationMatrix.handleTextMessage` → `federationSDK.sendMessage` → Matrix Protocol HTTP API
 
-1.  **Entry Point:** The process starts when a message is ready to be sent to a federated server. This is handled by a hook in `apps/meteor/ee/server/hooks/federation/index.ts` which calls `FederationMatrix.sendMessage`.
-2.  **`FederationMatrix.sendMessage`**: Located in `ee/packages/federation-matrix/src/FederationMatrix.ts`, this method acts as the main entry for sending messages. It determines if the message contains files or is a simple text message.
-3.  **`FederationMatrix.handleTextMessage`**: For text messages, `FederationMatrix.sendMessage` delegates to `FederationMatrix.handleTextMessage` (also in `ee/packages/federation-matrix/src/FederationMatrix.ts`). This method prepares the message for the external Matrix format and handles threaded or quoted messages.
-4.  **`federationSDK.sendMessage`**: Finally, `FederationMatrix.handleTextMessage` calls `federationSDK.sendMessage`. This `federationSDK` is responsible for the actual communication with the Matrix protocol HTTP API on the remote server to send the message.
+1.  **Entry Point: Message Hook**
+    The process starts with an `afterSaveMessage` hook that executes when a new message is posted. In a federated context, this hook calls into the federation logic. The main logic is orchestrated in `apps/meteor/ee/server/hooks/federation/index.ts`.
 
-After the message is sent, `FederationMatrix.sendMessage` updates the message's `federationEventId` in the local database using `Messages.setFederationEventIdById` from `packages/models/src/models/Messages.ts`.
+2.  **`FederationMatrix.sendMessage`**
+    *   **File**: `ee/packages/federation-matrix/src/FederationMatrix.ts`
+    This function is the primary handler for sending the message. It determines whether the message contains text or files and calls the appropriate handler (`handleTextMessage` or `handleFileMessage`). It also retrieves the user and room federation identifiers (Matrix User ID and Room ID).
 
-## Tool Calls (8 calls, 28,985 tokens)
+3.  **`FederationMatrix.handleTextMessage`**
+    *   **File**: `ee/packages/federation-matrix/src/FederationMatrix.ts`
+    For standard text messages, this private method prepares the payload. It transforms the message into the external Matrix format, handles threading (replies), and processes quotes. Once the message is prepared, it makes the final call to the federation SDK.
 
-**Step 1:** `search({"query":"federation message send","layer":"server"})` → 73 tokens
-**Step 2:** `search({"layer":"server","query":"federation send"})` → 222 tokens
-**Step 3:** `search({"layer":"server","query":"federation message"})` → 183 tokens
-**Step 4:** `search({"layer":"server","query":"federation"})` → 544 tokens
-**Step 5:** `search({"query":"FederationMatrix.sendMessage","layer":"ee"})` → 192 tokens
-**Step 6:** `graph({"layer":"ee","query":"FederationMatrix.sendMessage","direction":"down"})` → 17 tokens
-**Step 7:** `implement({"symbolName":"FederationMatrix.sendMessage","filename":"apps/meteor/ee/server/hooks/federation/inde)` → 274 tokens
+4.  **`federationSDK.sendMessage`**
+    This function, part of the low-level federation SDK, is responsible for the final step: sending the message payload to the remote homeserver via the Matrix federation HTTP API. It constructs and executes the `PUT /_matrix/federation/v1/send/:txnId` request to the destination server.
+
+## Tool Calls (8 calls, 26,655 tokens)
+
+**Step 1:** `search({"layer":"server","query":"federation"})` → 544 tokens
+**Step 2:** `graph({"direction":"down","query":"FederationMatrix.sendMessage"})` → 17 tokens
+**Step 3:** `search({"layer":"ee","query":"FederationMatrix.sendMessage"})` → 192 tokens
+**Step 4:** `graph({"query":"FederationMatrix.sendMessage","direction":"down"})` → 17 tokens
+**Step 5:** `search({"query":"federationSDK.sendMessage","layer":"ee"})` → 17 tokens
+**Step 6:** `implement({"symbolName":"FederationMatrix.sendMessage","filename":"apps/meteor/ee/server/hooks/federation/inde)` → 274 tokens
+**Step 7:** `graph({"direction":"down","query":"FederationMatrix.handleTextMessage"})` → 18 tokens
 **Step 8:** `implement({"filename":"ee/packages/federation-matrix/src/FederationMatrix.ts","symbolName":"FederationMatrix.h)` → 240 tokens
 
 ## Metrics
@@ -31,7 +38,7 @@ After the message is sent, `FederationMatrix.sendMessage` updates the message's 
 | Metric | Value |
 |--------|-------|
 | Files hit | 1/6 |
-| Symbols hit | 4/5 |
+| Symbols hit | 3/5 |
 | Tool calls | 8 |
-| Total tokens | 28,985 |
+| Total tokens | 26,655 |
 | Pass | NO |

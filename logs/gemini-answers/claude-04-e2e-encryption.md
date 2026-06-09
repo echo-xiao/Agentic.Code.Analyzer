@@ -2,45 +2,58 @@
 
 ## Gemini Answer
 
-Rocket.Chat manages E2E encryption keys primarily on the client-side within the `apps/meteor/client/lib/e2ee/` directory.
+End-to-end (E2E) encryption key management in Rocket.Chat is a client-driven process where the server's role is primarily to store and exchange encrypted keys, without having access to the private keys themselves. The process involves generating a personal RSA key pair for the user and separate AES keys for each encrypted room.
 
-The key management process is as follows:
+Here is the step-by-step process for how keys are managed:
 
-1.  **Key Generation:** The `createAndLoadKeys()` method within `apps/meteor/client/lib/e2ee/rocketchat.e2e.ts` generates an RSA key pair for the user.
-2.  **Private Key Encryption:** The generated private key is then encrypted using a two-step process:
-    *   A derived key is generated from the user's password using PBKDF2 (Password-Based Key Derivation Function 2).
-    *   This derived key is then used with AES-GCM (Advanced Encryption Standard – Galois/Counter Mode) to encrypt the private RSA key.
-3.  **Key Storage Management:** The `Keychain` class, located in `apps/meteor/client/lib/e2ee/keychain.ts`, is responsible for managing the storage of these encrypted keys. It utilizes an `EncryptedKeyCodec` for this purpose.
-    *   The `Keychain` class has methods like `decryptKey()` and `encryptKey()` to handle the secure storage and retrieval of the private key.
-4.  **Per-Room Session Keys:** For individual rooms, `E2ERoom.createGroupKey()` generates an AES session key. This session key is then encrypted for each participant in the room using their respective RSA public keys via `encryptGroupKeyForParticipant()`.
-5.  **Cryptographic Primitives:** The core cryptographic operations (RSA, AES, PBKDF2) are implemented in files within the `apps/meteor/client/lib/e2ee/crypto/` directory, specifically `rsa.ts`, `aes.ts`, and `pbkdf2.ts`.
-6.  **Server-Side Enforcement:** The server-side enforces E2E encryption through settings such as `E2E_Enable` and `E2E_Allow_Unencrypted_Messages`, as seen in `apps/meteor/app/discussion/server/methods/createDiscussion.ts`.
+**Entry → Key Pair Generation → Local Storage → Server Sync → Room Key Exchange**
 
-**Call Chain for Key Management:**
+1.  **Entry Point: Key Pair Generation**
+    The process begins on the client side when a user enables E2E encryption. The client generates a public/private RSA-4096 key pair.
 
-*   `apps/meteor/client/lib/e2ee/rocketchat.e2e.ts` (E2E class, `createAndLoadKeys()`)
-*   `apps/meteor/client/lib/e2ee/keychain.ts` (Keychain class, `decryptKey()`, `encryptKey()`, `EncryptedKeyCodec`)
-*   `apps/meteor/client/lib/e2ee/crypto/pbkdf2.ts` (PBKDF2 for key derivation)
-*   `apps/meteor/client/lib/e2ee/crypto/aes.ts` (AES-GCM for private key encryption)
-*   `apps/meteor/client/lib/e2ee/crypto/rsa.ts` (RSA for key pair generation and public key encryption of session keys)
+    *   **File:** `apps/meteor/client/lib/e2ee/rocketchat.e2e.ts`
+    *   **Symbol:** `E2E.createAndLoadKeys`
+    *   **Logic:** This method calls an underlying RSA library (`Rsa.generate()`) to create the key pair. The public key is stored in plain text, while the private key is encrypted with a key derived from the user's password using PBKDF2 and AES-GCM.
 
-## Tool Calls (8 calls, 35,946 tokens)
+2.  **Local Storage and Server Upload**
+    After generation, the keys are stored locally in the browser's storage. The client then uploads the public key and the *encrypted* private key to the server.
 
-**Step 1:** `search({"query":"e2e encryption key management"})` → 18 tokens
-**Step 2:** `search({"query":"e2e encryption"})` → 278 tokens
-**Step 3:** `graph({"direction":"down","query":"createAndLoadKeys","layer":"client"})` → 1036 tokens
-**Step 4:** `search({"query":"Keychain"})` → 206 tokens
-**Step 5:** `graph({"query":"Keychain","direction":"down","layer":"client"})` → 185 tokens
-**Step 6:** `graph({"layer":"client","direction":"up","query":"Keychain"})` → 217 tokens
-**Step 7:** `implement({"symbolName":"Keychain","filename":"apps/meteor/client/lib/e2ee/keychain.ts"})` → 162 tokens
-**Step 8:** `search({"query":"EncryptedKeyCodec"})` → 62 tokens
+    *   **File:** `apps/meteor/app/e2e/server/methods/setUserPublicAndPrivateKeys.ts`
+    *   **Logic:** A Meteor method on the server receives the user's public key and encrypted private key and stores them in the database. The server never sees the unencrypted private key.
+
+3.  **Fetching Room Keys**
+    When the client needs to participate in encrypted conversations, it requests the necessary keys from the server.
+
+    *   **Client File:** `apps/meteor/client/lib/e2ee/rocketchat.e2e.ts`
+    *   **Client Symbol:** `E2E.requestSubscriptionKeys`
+    *   **Server File:** `apps/meteor/app/e2e/server/methods/requestSubscriptionKeys.ts`
+    *   **Logic:** The client calls the `e2e.requestSubscriptionKeys` Meteor method. The server responds by sending the client the encrypted room keys for all channels the user is a member of.
+
+4.  **Group Room Key Management**
+    Each encrypted room has its own symmetric AES-256 key used for encrypting messages within that room. This room key is then encrypted for each member of the room using their individual public RSA key.
+
+    *   **Server File:** `apps/meteor/app/e2e/server/methods/updateGroupKey.ts`
+    *   **Logic:** When a new user is added to a room, the room key is encrypted with their public RSA key and stored by the server. The server then provides this encrypted key to the new user's client, which can decrypt it with its private key.
+
+This architecture ensures that the server facilitates the key exchange but cannot decrypt message content, as it only ever has access to public keys and encrypted private/room keys.
+
+## Tool Calls (8 calls, 36,477 tokens)
+
+**Step 1:** `search({"query":"E2E","layer":"server"})` → 559 tokens
+**Step 2:** `graph({"direction":"down","query":"E2E"})` → 184 tokens
+**Step 3:** `implement({"symbolName":"E2E.createAndLoadKeys","filename":"apps/meteor/client/lib/e2ee/rocketchat.e2e.ts"})` → 315 tokens
+**Step 4:** `implement({"filename":"apps/meteor/client/lib/e2ee/rocketchat.e2e.ts","symbolName":"E2E.requestSubscriptionKey)` → 83 tokens
+**Step 5:** `search({"query":"e2e.requestSubscriptionKeys","layer":"server"})` → 239 tokens
+**Step 6:** `implement({"symbolName":"e2e.requestSubscriptionKeys","filename":"apps/meteor/app/e2e/server/methods/requestSu)` → 60 tokens
+**Step 7:** `implement({"symbolName":"requestSubscriptionKeys","filename":"apps/meteor/app/e2e/server/methods/requestSubscr)` → 62 tokens
+**Step 8:** `graph({"query":"e2e.requestSubscriptionKeys","direction":"down","layer":"server"})` → 17 tokens
 
 ## Metrics
 
 | Metric | Value |
 |--------|-------|
-| Files hit | 5/6 |
-| Symbols hit | 3/6 |
+| Files hit | 1/6 |
+| Symbols hit | 4/6 |
 | Tool calls | 8 |
-| Total tokens | 35,946 |
+| Total tokens | 36,477 |
 | Pass | NO |

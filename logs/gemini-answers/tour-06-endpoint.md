@@ -2,60 +2,105 @@
 
 ## Gemini Answer
 
-To create a new REST API endpoint in Rocket.Chat, you primarily use the `API.v1.addRoute()` method or the more specific `API.v1.get()`, `API.v1.post()`, `API.v1.put()`, and `API.v1.delete()` methods. These methods are available on the `API.v1` instance, which is an instance of `APIClass`.
+To create a new REST API endpoint, you add a new route to the `API.v1` object. This process involves creating a new file and using the `API.v1.addRoute()` method to define the endpoint's path, options, and handlers.
 
-Here's the call chain and relevant files:
+### Call Chain and File Locations
 
-**Call Chain:**
+The chain for defining and registering an endpoint is straightforward. Your code calls `addRoute` on the `API.v1` object, which then configures middleware and registers the route with the underlying web server.
 
-`createApi()` → `APIClass` → `addRoute()`/`get()`/`post()`/`put()`/`delete()`
+`Your file → API.v1.addRoute() → APIClass.addRoute() → Router registration`
 
-**Detailed Steps and Key Files:**
+1.  **API Object Definition**: `apps/meteor/app/api/server/api.ts`
+    This file contains the `createApi` factory function that instantiates the `API.v1` object as an instance of `APIClass`.
 
-1.  **API Instance Creation:** The `API.v1` instance is created using the `createApi` function, typically found in:
-    *   `apps/meteor/app/api/server/api.ts`
+2.  **API Class Implementation**: `apps/meteor/app/api/server/ApiClass.ts`
+    This file holds the core logic for the REST API, including the `addRoute` method. This method is responsible for adding middleware for authentication, rate limiting, permissions, and error handling to your endpoint's handler.
 
-    This function returns an instance of `APIClass`.
+3.  **Endpoint Examples**: `apps/meteor/app/api/server/v1/`
+    This directory contains numerous files where existing endpoints are defined. A very simple example is the `info` endpoint, typically found in a file like `misc.ts`.
 
-2.  **API Class Definition:** The `APIClass` itself, which defines the `addRoute`, `get`, `post`, `put`, and `delete` methods, is defined in:
-    *   `apps/meteor/app/api/server/ApiClass.ts`
+### How to Create a New Endpoint
 
-3.  **Defining the Endpoint:** You would then use the `addRoute` method or one of the HTTP-verb-specific methods (`get`, `post`, `put`, `delete`) on the `API.v1` object to define your endpoint. For example, to add a GET route, you might use:
+Follow these steps to create a new endpoint (e.g., `/api/v1/my-endpoint`):
 
-    
+**1. Create a New File**
+
+Create a new TypeScript file in the API directory, for example: `apps/meteor/app/api/server/v1/myEndpoint.ts`.
+
+**2. Use `API.v1.addRoute` to Define the Endpoint**
+
+In your new file, call `API.v1.addRoute` to define the endpoint. While the method is marked as deprecated in favor of newer typed methods (`.get()`, `.post()`), `addRoute` is still widely used and demonstrates the core concepts clearly.
+
+The `addRoute` method takes three main arguments:
+*   **Path**: The URL path for your endpoint (e.g., `'my-endpoint'`).
+*   **Options**: An object to configure the endpoint, most importantly `authRequired: true` or `false`. You can also set permissions via `permissionsRequired`.
+*   **Operations**: An object where keys are HTTP methods (e.g., `get`, `post`) and values are the handler functions.
+
+**3. Implement the Handler Function**
+
+The handler function is where your endpoint's logic lives. Inside the handler, the `this` context provides access to request data:
+*   `this.queryParams`: For URL query parameters.
+*   `this.bodyParams`: For the JSON body of a POST/PUT request.
+*   `this.user`: The user object, if `authRequired: true`.
+*   `this.userId`: The ID of the authenticated user.
+
+To return a response, use the helper methods `API.v1.success(data)` for a 200 OK response or `API.v1.failure(message, errorType)` for an error.
+
+### Example: A Simple `GET` Endpoint
+
+Here is a complete example for `apps/meteor/app/api/server/v1/myEndpoint.ts`:
+
+
 ```typescript
-    API.v1.addRoute('my-new-endpoint', { authRequired: true }, {
-      get() {
-        return API.v1.success({ message: 'Hello from your new endpoint!' });
-      },
-    });
-    ```
+import { API } from '../api';
 
-    or, for a more modern approach:
-    
-```typescript
-    API.v1.get('my-new-endpoint', { authRequired: true }, function() {
-      return API.v1.success({ message: 'Hello from your new endpoint!' });
-    });
-    ```
+// Defines a new endpoint at /api/v1/my-endpoint
+API.v1.addRoute('my-endpoint', {
+	// This endpoint requires the user to be authenticated
+	authRequired: true,
+	// Optional: define role permissions required to access this endpoint
+	permissionsRequired: ['view-l-room'],
+	// General information about the endpoint for documentation
+	info: {
+		name: 'myEndpoint',
+		description: 'An example endpoint that returns user information.',
+		// Describe expected query parameters for documentation purposes
+		parameters: [
+			{ name: 'active', in: 'query', description: 'Filters for active users', required: false, type: 'boolean' },
+		],
+	},
+}, {
+	// This block defines the handler for the GET HTTP method
+	get() {
+		// Access the authenticated user's data
+		const { user } = this;
 
+		// Access query parameters, e.g., /api/v1/my-endpoint?active=true
+		const { active } = this.queryParams;
+		console.log(`Filter active users: ${active}`);
 
-    Examples of existing endpoints can be found in various files, such as:
-    *   `apps/meteor/app/api/server/v1/channels.ts`
-    *   `apps/meteor/app/api/server/v1/users.ts`
-    *   `apps/meteor/app/api/server/v1/groups.ts`
+		// Return a successful response with a JSON payload
+		return API.v1.success({
+			message: `Hello, ${user.username}!`,
+			user,
+		});
+	},
+	// You could add other methods like post, put, delete here
+	// post() {
+	//   const { myParam } = this.bodyParams;
+	//   ...
+	//   return API.v1.success();
+	// }
+});
+```
 
-In summary, you define new REST API endpoints by calling `API.v1.addRoute()` (or the corresponding HTTP verb methods) within your server-side code, typically in files under `apps/meteor/app/api/server/v1/`. The `APIClass` in `apps/meteor/app/api/server/ApiClass.ts` provides the methods for registering these routes.
+## Tool Calls (5 calls, 23,413 tokens)
 
-## Tool Calls (7 calls, 22,769 tokens)
-
-**Step 1:** `search({"layer":"server","query":"rest api endpoint"})` → 72 tokens
-**Step 2:** `graph({"direction":"down","query":"LivechatInquiriesEndpoints","layer":"server"})` → 232 tokens
-**Step 3:** `search({"layer":"server","query":"API.v1.addRoute"})` → 419 tokens
-**Step 4:** `implement({"filename":"apps/meteor/app/api/server/v1/channels.ts","symbolName":"API.v1.addRoute"})` → 44 tokens
-**Step 5:** `search({"layer":"server","query":"createApi"})` → 215 tokens
-**Step 6:** `implement({"symbolName":"createApi","filename":"apps/meteor/app/api/server/api.ts"})` → 104 tokens
-**Step 7:** `implement({"filename":"apps/meteor/app/api/server/api.ts","symbolName":"APIClass"})` → 1578 tokens
+**Step 1:** `search({"query":"API.v1.addRoute","layer":"server"})` → 419 tokens
+**Step 2:** `graph({"query":"API.v1.addRoute","direction":"down","layer":"server"})` → 14 tokens
+**Step 3:** `search({"layer":"server","query":"createApi"})` → 215 tokens
+**Step 4:** `implement({"symbolName":"createApi","filename":"apps/meteor/app/api/server/api.ts"})` → 104 tokens
+**Step 5:** `implement({"symbolName":"APIClass.addRoute","filename":"apps/meteor/app/api/server/api.ts"})` → 1712 tokens
 
 ## Metrics
 
@@ -63,6 +108,6 @@ In summary, you define new REST API endpoints by calling `API.v1.addRoute()` (or
 |--------|-------|
 | Files hit | 3/6 |
 | Symbols hit | 3/4 |
-| Tool calls | 7 |
-| Total tokens | 22,769 |
+| Tool calls | 5 |
+| Total tokens | 23,413 |
 | Pass | NO |

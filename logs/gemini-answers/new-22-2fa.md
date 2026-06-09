@@ -2,48 +2,45 @@
 
 ## Gemini Answer
 
-Two-factor authentication (2FA) in Rocket.Chat works by acting as a middleware wrapper, `twoFactorRequired`, applied to sensitive methods and endpoints.
+Two-factor authentication (2FA) in Rocket.Chat is an orchestrated process that validates a user's identity using a second factor, such as a Time-based One-Time Password (TOTP) from an authenticator app.
 
-Here's the architectural flow:
+The process begins when a user performs a sensitive action that requires 2FA. A central function, `checkCodeForUser`, manages the verification by coordinating between different possible 2FA methods.
 
-**Entry → `twoFactorRequired` (apps/meteor/app/2fa/server/twoFactorRequired.ts) → `checkCodeForUser` (apps/meteor/app/2fa/server/code/index.ts)**
+### Call Chain
 
-1.  **`twoFactorRequired`** (apps/meteor/app/2fa/server/twoFactorRequired.ts) is the initial entry point, serving as a middleware.
-2.  It then calls `checkCodeForUser` (apps/meteor/app/2fa/server/code/index.ts) to handle the actual 2FA verification.
-3.  **`checkCodeForUser`** (apps/meteor/app/2fa/server/code/index.ts) is responsible for:
-    *   Retrieving the user attempting to authenticate.
-    *   Checking for 2FA code and method in HTTP headers if not provided otherwise.
-    *   Determining if the user is already authorized for a token (e.g., "remember me" functionality).
-    *   Calling `getSecondFactorMethod` to identify the appropriate 2FA method.
-4.  **`getSecondFactorMethod`** (apps/meteor/app/2fa/server/code/index.ts) then:
-    *   Checks if a specific method name is provided and active.
-    *   If not, it iterates through all available 2FA methods (`checkMethods`) and returns the first one that is enabled for the user using `getMethodByNameOrFirstActiveForUser` (apps/meteor/app/2fa/server/code/index.ts).
-    *   This function (`getMethodByNameOrFirstActiveForUser`) iterates through registered 2FA check methods (like `TOTPCheck`, `EmailCheck`, `PasswordCheckFallback`) and returns the first enabled one.
-5.  Once a method is selected, `checkCodeForUser` (apps/meteor/app/2fa/server/code/index.ts) calls the `verify` method of the selected 2FA method.
-6.  For **TOTP (Time-based One-Time Password)**, the flow is:
-    *   **`TOTPCheck.verify`** (apps/meteor/app/2fa/server/code/TOTPCheck.ts) is invoked.
-    *   This method checks if TOTP is enabled for the user and if a secret exists.
-    *   Finally, it calls **`TOTP.verify`** (likely located in a `TOTP` utility module, as suggested by `apps/meteor/app/2fa/server/code/TOTPCheck.ts`) to perform the actual verification of the provided TOTP code against the user's secret, also considering backup tokens.
+`Entry (Sensitive Action) → checkCodeForUser → TOTPCheck.verify → TOTP.verify`
 
-In summary, the 2FA process is a server-side middleware that selects an active verification method (TOTP, Email, or Password Fallback) and then delegates the code validation to that specific method's `verify` function.
+### Step-by-Step Breakdown
 
-## Tool Calls (8 calls, 49,012 tokens)
+1.  **Orchestration (`checkCodeForUser`)**
+    *   **File**: `apps/meteor/app/2fa/server/code/index.ts`
+    *   The `checkCodeForUser` function is the main entry point for 2FA validation. It first checks if 2FA is enabled globally. It retrieves the user and determines the appropriate 2FA method to use (e.g., TOTP, email). If no code is provided, it throws an error indicating that 2FA is required. If a code is provided, it calls the `verify` method on the selected checker class.
 
-**Step 1:** `search({"query":"twoFactor"})` → 473 tokens
-**Step 2:** `graph({"direction":"down","layer":"server","query":"twoFactorRequired"})` → 1094 tokens
-**Step 3:** `implement({"symbolName":"checkCodeForUser","filename":"apps/meteor/app/2fa/server/index.ts"})` → 547 tokens
-**Step 4:** `graph({"query":"getSecondFactorMethod","direction":"down","layer":"server"})` → 599 tokens
-**Step 5:** `implement({"symbolName":"getMethodByNameOrFirstActiveForUser","filename":"apps/meteor/app/2fa/server/code/inde)` → 122 tokens
-**Step 6:** `search({"layer":"server","query":"TOTPCheck"})` → 174 tokens
-**Step 7:** `implement({"symbolName":"TOTPCheck.verify","filename":"apps/meteor/app/2fa/server/code/TOTPCheck.ts"})` → 131 tokens
-**Step 8:** `search({"query":"TOTP.verify"})` → 147 tokens
+2.  **TOTP Provider (`TOTPCheck.verify`)**
+    *   **File**: `apps/meteor/app/2fa/server/code/TOTPCheck.ts`
+    *   This class implements the verification logic specifically for TOTP (authenticator apps). The `verify` method first confirms that the user has TOTP enabled and a secret key stored in their profile (`user.services.totp.secret`). It then passes the user's secret, the provided code, and any backup tokens to the core TOTP library for validation.
+
+3.  **Core Validation (`TOTP.verify`)**
+    *   **File**: `apps/meteor/app/2fa/server/lib/totp.ts`
+    *   The `TOTP.verify` function performs the final cryptographic check. It validates the provided token against the user's stored secret, accounting for time-based code generation (as per RFC 6238). It also checks against the user's single-use backup codes. If the code is valid, it returns `true`, confirming the user's identity. Otherwise, it returns `false`, and the `checkCodeForUser` function handles the failure, tracking failed attempts to prevent brute-force attacks.
+
+## Tool Calls (8 calls, 35,143 tokens)
+
+**Step 1:** `search({"query":"2fa totp login"})` → 15 tokens
+**Step 2:** `search({"layer":"server","query":"totp"})` → 221 tokens
+**Step 3:** `graph({"direction":"down","query":"TOTPCheck"})` → 153 tokens
+**Step 4:** `graph({"query":"TOTPCheck","direction":"up"})` → 162 tokens
+**Step 5:** `search({"query":"checkCodeForUser"})` → 178 tokens
+**Step 6:** `graph({"direction":"down","query":"checkCodeForUser"})` → 1280 tokens
+**Step 7:** `implement({"symbolName":"checkCodeForUser","filename":"apps/meteor/app/2fa/server/code/index.ts"})` → 547 tokens
+**Step 8:** `implement({"filename":"apps/meteor/app/2fa/server/code/TOTPCheck.ts","symbolName":"TOTPCheck.verify"})` → 131 tokens
 
 ## Metrics
 
 | Metric | Value |
 |--------|-------|
-| Files hit | 3/6 |
+| Files hit | 2/6 |
 | Symbols hit | 4/4 |
 | Tool calls | 8 |
-| Total tokens | 49,012 |
+| Total tokens | 35,143 |
 | Pass | NO |
