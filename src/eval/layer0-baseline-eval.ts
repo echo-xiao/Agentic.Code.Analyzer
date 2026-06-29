@@ -3,19 +3,10 @@ import * as fs from 'fs';
 import * as path from 'path';
 import { fileURLToPath } from 'url';
 import { GoogleGenerativeAI } from '@google/generative-ai';
+import { loadTestcases } from './load-testcases.js';
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const PROJECT_ROOT = path.resolve(__dirname, '..', '..');
-
-interface TestCase {
-    id: string;
-    question: string;
-    questionType: string;
-    subsystem: string;
-    difficulty: string;
-    groundTruthFiles: string[];
-    keySymbols?: string[];
-}
 
 interface BaselineResult {
     id: string;
@@ -43,9 +34,7 @@ async function main() {
         },
     });
 
-    const testcases: TestCase[] = JSON.parse(
-        fs.readFileSync(path.join(__dirname, 'testcases.json'), 'utf-8')
-    );
+    const { flat: testcases } = loadTestcases(path.join(__dirname, 'testcases.json'));
 
     const filter = process.argv.find(a => a.startsWith('--filter='));
     const filterVal = filter?.split('=')[1]?.toLowerCase();
@@ -55,7 +44,7 @@ async function main() {
 
     console.error(`Running ${selected.length} baseline questions with ${modelName} (NO tools)...\n`);
 
-    const baselineDir = path.join(PROJECT_ROOT, 'logs', 'baseline');
+    const baselineDir = path.join(PROJECT_ROOT, 'logs', 'layer0-answers');
     fs.mkdirSync(baselineDir, { recursive: true });
 
     const results: BaselineResult[] = [];
@@ -133,7 +122,7 @@ async function main() {
     const reportPath = path.join(PROJECT_ROOT, 'logs', 'layer0-baseline-eval.md');
     fs.writeFileSync(reportPath, lines.join('\n'), 'utf-8');
     console.error(`\nReport: ${reportPath}`);
-    console.error(`Answers: logs/baseline/`);
+    console.error(`Answers: logs/layer0-answers/`);
     console.log(`\n${results.length} answers | ${totalTokens.toLocaleString()} total tokens`);
 }
 

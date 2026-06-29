@@ -1,8 +1,6 @@
 import fuzzysort from 'fuzzysort';
-import * as fs from 'fs';
 import { Project } from 'ts-morph';
 import { GLOBAL_INDEX } from '../indexer/state.js';
-import { getOutputPaths } from '../config.js';
 
 const PATH_HINTS: Array<{ keywords: string[]; segment: string }> = [
     { keywords: ['client', 'ui', 'component', 'react'], segment: 'client' },
@@ -40,59 +38,6 @@ export class CodeRetriever {
             })
             .sort((a, b) => b.finalScore - a.finalScore)
             .slice(0, limit);
-    }
-
-    static getContext(symbolName: string, callerFile?: string): string[] {
-        const paths = GLOBAL_INDEX.symbols.get(symbolName);
-        if (!paths) return [];
-
-        let sortedPaths = Array.from(paths);
-
-        if (callerFile) {
-            const q = callerFile.toLowerCase().replace(/\.tsx?$/, '');
-            const exactMatch = sortedPaths.find(p =>
-                p.toLowerCase().replace(/\.tsx?$/, '').endsWith(q)
-            );
-            if (exactMatch) sortedPaths = [exactMatch];
-        }
-
-        if (callerFile && sortedPaths.length > 1) {
-            const callerMappingPath = getOutputPaths(callerFile).mappingPath;
-            if (fs.existsSync(callerMappingPath)) {
-                try {
-                    const callerMapping = JSON.parse(fs.readFileSync(callerMappingPath, 'utf-8'));
-                    const importedPaths = new Set<string>(
-                        (callerMapping.imports ?? [])
-                            .filter((imp: any) => imp.resolved && imp.resolved !== 'external')
-                            .map((imp: any) => imp.resolved)
-                    );
-                    sortedPaths.sort((a, b) => (importedPaths.has(a) ? 0 : 1) - (importedPaths.has(b) ? 0 : 1));
-                } catch { /* ignore */ }
-            }
-        }
-
-        const results: string[] = [];
-        const included = new Set<string>();
-        const calleeSymbols = new Set<string>();
-
-        for (const sourcePath of sortedPaths) {
-            const { skeletonPath, mappingPath } = getOutputPaths(sourcePath);
-            if (fs.existsSync(skeletonPath) && !included.has(skeletonPath)) {
-                results.push(fs.readFileSync(skeletonPath, 'utf-8'));
-                included.add(skeletonPath);
-            }
-            if (fs.existsSync(mappingPath)) {
-                try {
-                    const mapping = JSON.parse(fs.readFileSync(mappingPath, 'utf-8'));
-                    const sym = (mapping.symbols ?? []).find(
-                        (s: any) => s.name === symbolName || s.qualifiedName?.endsWith(`.${symbolName}`)
-                    );
-                    sym?.calls?.forEach((c: any) => calleeSymbols.add(typeof c === 'string' ? c : c.name));
-                } catch { /* ignore */ }
-            }
-        }
-
-        return results;
     }
 
     private static resolveFile(symbolName: string, preferredFile?: string): string[] {

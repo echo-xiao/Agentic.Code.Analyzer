@@ -7,20 +7,11 @@ import { OUTPUT_DIR } from '../config.js';
 import { preWarmCache, initializeGlobalIndex, LocalDatabase } from '../indexer/index.js';
 import { handleToolCall } from '../server/registry.js';
 import { GLOBAL_INDEX } from '../indexer/state.js';
+import { loadTestcases, type TestCase } from './load-testcases.js';
+import { runJudge, extractCitedFiles, type JudgeScore } from './judge.js';
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const PROJECT_ROOT = path.resolve(__dirname, '..', '..');
-
-interface TestCase {
-    id: string;
-    question: string;
-    questionType: string;
-    subsystem: string;
-    difficulty: string;
-    groundTruthFiles: string[];
-    groundTruthPath?: Array<{ file: string; symbol: string }>;
-    keySymbols?: string[];
-}
 
 interface ToolCallRecord {
     step: number;
@@ -42,15 +33,6 @@ interface SymbolHit {
     inLLMAnswer: boolean;
 }
 
-interface JudgeScore {
-    correctness: number;
-    completeness: number;
-    keyFiles: number;
-    overall: number;
-    strengths: string;
-    weaknesses: string;
-}
-
 interface TestResult {
     id: string;
     question: string;
@@ -64,6 +46,8 @@ interface TestResult {
     tokens: { prompt: number; candidates: number; total: number };
     fileHitRate: number;
     symbolCoverageRate: number;
+    answerRecall: number;      // core files covered in the answer (deterministic)
+    answerPrecision: number;   // cited files that are correct (deterministic, anti-hallucination)
     judge: JudgeScore | null;
     pass: boolean;
 }
@@ -210,20 +194,11 @@ async function runTestCase(
         ?.join('\n') ?? '';
 
     const allToolText = toolCalls.map(t => t.responseText).join('\n');
-    const allText = allToolText + '\n' + llmAnswer;
 
+    // Hits are scored on the FINAL ANSWER only (not raw tool output).
     const fileHits: FileHit[] = tc.groundTruthFiles.map(f => {
-        let foundVia: string | null = null;
-        for (const tc2 of toolCalls) {
-            if (fileMatches(tc2.responseText, f) || fileMatches(JSON.stringify(tc2.args), f)) {
-                foundVia = `${tc2.tool} (step ${tc2.step})`;
-                break;
-            }
-        }
-        if (!foundVia && fileMatches(llmAnswer, f)) {
-            foundVia = 'LLM answer';
-        }
-        return { file: f, found: foundVia !== null, foundVia };
+        const found = fileMatches(llmAnswer, f);
+        return { file: f, found, foundVia: found ? 'answer' : null };
     });
 
     const symbolHits: SymbolHit[] = (tc.keySymbols ?? []).map(sym => ({
@@ -235,8 +210,24 @@ async function runTestCase(
     const fileHitRate = tc.groundTruthFiles.length > 0
         ? fileHits.filter(f => f.found).length / tc.groundTruthFiles.length : 1;
     const symTotal = symbolHits.length;
-    const symFound = symbolHits.filter(s => s.inToolResults || s.inLLMAnswer).length;
+    const symFound = symbolHits.filter(s => s.inLLMAnswer).length;   // answer-only
     const symbolCoverageRate = symTotal > 0 ? symFound / symTotal : 1;
+
+    // Answer-level precision/recall (deterministic, Track A on the answer).
+    const core = (tc.core && tc.core.length ? tc.core : tc.groundTruthFiles) ?? [];
+    const supporting = tc.supporting ?? [];
+    const gtAll = Array.from(new Set([...core, ...supporting]));
+    const answerRecall = core.length
+        ? core.filter(f => fileMatches(llmAnswer, f)).length / core.length : 1;
+    const cited = extractCitedFiles(llmAnswer);
+    const answerPrecision = cited.length
+        ? cited.filter(p => gtAll.some(g => fileMatches(p, g) || p.endsWith(g))).length / cited.length : 1;
+
+    // Track B quality (semantic). null if ANTHROPIC_API_KEY unset.
+    const judge = await runJudge(tc, llmAnswer);
+
+    // Pass: judge verdict if available; else fall back to deterministic answer recall.
+    const pass = judge ? judge.verdict === 'PASS' : answerRecall >= 0.8;
 
     return {
         id: tc.id,
@@ -251,13 +242,15 @@ async function runTestCase(
         tokens: { prompt: totalPrompt, candidates: totalCandidates, total: totalTokens },
         fileHitRate,
         symbolCoverageRate,
-        judge: null,
-        pass: fileHitRate >= 0.8 && symbolCoverageRate >= 0.8,
+        answerRecall,
+        answerPrecision,
+        judge,
+        pass,
     };
 }
 
 function saveGeminiAnswers(results: TestResult[]) {
-    const dir = path.join(PROJECT_ROOT, 'logs', 'gemini-answers');
+    const dir = path.join(PROJECT_ROOT, 'logs', 'layer2-answers');
     fs.mkdirSync(dir, { recursive: true });
 
     for (const r of results) {
@@ -303,7 +296,6 @@ function loadLayer1Results(): Map<string, boolean> | null {
 
 function formatReport(results: TestResult[], l1: Map<string, boolean> | null, modelNameForReport = 'gemini-2.5-flash'): string {
     const L: string[] = [];
-    const passed = results.filter(r => r.pass).length;
     const total = results.length;
 
     L.push(`# Layer 2 — Agent Eval Report\n`);
@@ -316,7 +308,6 @@ function formatReport(results: TestResult[], l1: Map<string, boolean> | null, mo
     const avgSymCov = results.reduce((s, r) => s + r.symbolCoverageRate, 0) / total;
     const avgTools = results.reduce((s, r) => s + r.toolCalls.length, 0) / total;
     const avgTokens = results.reduce((s, r) => s + r.tokens.total, 0) / total;
-    const totalTokens = results.reduce((s, r) => s + r.tokens.total, 0);
 
     const emptyAnswers = results.filter(r => r.llmAnswer.trim().split(/\s+/).length < 10).length;
     const goodAnswers = results.filter(r => {
@@ -335,9 +326,26 @@ function formatReport(results: TestResult[], l1: Map<string, boolean> | null, mo
     L.push(`| Symbol coverage (avg, string match) | ${(avgSymCov * 100).toFixed(1)}% |`);
     L.push(`| Avg tool calls / question | ${avgTools.toFixed(1)} |`);
     L.push(`| Avg tokens / question | ${Math.round(avgTokens).toLocaleString()} |`);
-    L.push(`| Total tokens (all ${total}) | ${totalTokens.toLocaleString()} |`);
-    L.push(`| Free tier limit | 1,000,000 TPM |`);
-    L.push(`| Within free tier? | ${totalTokens < 1_000_000 ? 'YES' : 'NO'} (${(totalTokens / 1_000_000 * 100).toFixed(1)}% used) |`);
+    L.push('');
+    L.push(`> Token note: per-question figure above. Do NOT sum across questions and compare to a per-minute (TPM) limit — that conflates cumulative billed tokens with a rate. Real user free-tier cost = agy \`/context\`, not this self-loop proxy.`);
+    L.push('');
+
+    const judged = results.filter(r => r.judge);
+    const avgAnsRecall = results.reduce((s, r) => s + r.answerRecall, 0) / total;
+    const avgAnsPrec = results.reduce((s, r) => s + r.answerPrecision, 0) / total;
+    L.push(`### Quality (Track B)`);
+    L.push(`| Metric | Value |`);
+    L.push(`|--------|-------|`);
+    if (judged.length > 0) {
+        const v = (x: string) => judged.filter(r => r.judge!.verdict === x).length;
+        const avgOverall = judged.reduce((s, r) => s + r.judge!.overall, 0) / judged.length;
+        L.push(`| **Judge verdict** | PASS ${v('PASS')} / PARTIAL ${v('PARTIAL')} / FAIL ${v('FAIL')} (of ${judged.length}) |`);
+        L.push(`| **Judge overall (avg)** | ${avgOverall.toFixed(2)} |`);
+    } else {
+        L.push(`| Judge | not run — set ANTHROPIC_API_KEY (using deterministic fallback) |`);
+    }
+    L.push(`| Answer recall (core files) | ${(avgAnsRecall * 100).toFixed(1)}% |`);
+    L.push(`| Answer precision (cited files) | ${(avgAnsPrec * 100).toFixed(1)}% |`);
     L.push('');
 
     // Section 2: Accuracy by Dimension
@@ -430,14 +438,15 @@ function formatReport(results: TestResult[], l1: Map<string, boolean> | null, mo
 
     // Section 4: Per-Testcase Details
     L.push(`## 4. Per-Testcase Results\n`);
-    L.push(`| # | ID | Subsystem | Files | Symbols | Tools | Tokens | Pass |`);
-    L.push(`|---|---|---|---|---|---|---|---|`);
+    L.push(`| # | ID | Subsystem | Files | Symbols | Verdict | Tools | Tokens | Pass |`);
+    L.push(`|---|---|---|---|---|---|---|---|---|`);
     for (let i = 0; i < results.length; i++) {
         const r = results[i];
         const fh = `${r.fileHits.filter(f => f.found).length}/${r.fileHits.length}`;
-        const sh = `${r.symbolHits.filter(s => s.inToolResults || s.inLLMAnswer).length}/${r.symbolHits.length}`;
+        const sh = `${r.symbolHits.filter(s => s.inLLMAnswer).length}/${r.symbolHits.length}`;
+        const vd = r.judge ? r.judge.verdict : '-';
         const status = r.pass ? 'PASS' : '**FAIL**';
-        L.push(`| ${i + 1} | ${r.id} | ${r.subsystem} | ${fh} | ${sh} | ${r.toolCalls.length} | ${r.tokens.total.toLocaleString()} | ${status} |`);
+        L.push(`| ${i + 1} | ${r.id} | ${r.subsystem} | ${fh} | ${sh} | ${vd} | ${r.toolCalls.length} | ${r.tokens.total.toLocaleString()} | ${status} |`);
     }
     L.push('');
 
@@ -575,9 +584,7 @@ async function main() {
         systemInstruction: { role: 'user', parts: [{ text: agentsMd }] },
     });
 
-    const testcases: TestCase[] = JSON.parse(
-        fs.readFileSync(path.join(__dirname, 'testcases.json'), 'utf-8')
-    );
+    const { flat: testcases } = loadTestcases(path.join(__dirname, 'testcases.json'));
     const filter = process.argv.find(a => a.startsWith('--filter='));
     const filterVal = filter?.split('=')[1]?.toLowerCase();
     const selected = filterVal
@@ -609,14 +616,14 @@ async function main() {
                 fileHits: tc.groundTruthFiles.map(f => ({ file: f, found: false, foundVia: null })),
                 symbolHits: (tc.keySymbols ?? []).map(s => ({ symbol: s, inToolResults: false, inLLMAnswer: false })),
                 tokens: { prompt: 0, candidates: 0, total: 0 },
-                fileHitRate: 0, symbolCoverageRate: 0, judge: null, pass: false,
+                fileHitRate: 0, symbolCoverageRate: 0, answerRecall: 0, answerPrecision: 0, judge: null, pass: false,
             });
             await new Promise(r => setTimeout(r, 5000));
         }
     }
 
     saveGeminiAnswers(results);
-    console.error(`Gemini answers saved to logs/gemini-answers/`);
+    console.error(`Answers saved to logs/layer2-answers/`);
 
     const l1 = loadLayer1Results();
     const report = formatReport(results, l1, modelName);
