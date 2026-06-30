@@ -202,6 +202,25 @@ export async function handleToolCall(name: string, args: any): Promise<any> {
                 }
             }
 
+            // Graph-aware subsystem cluster: seed lexically, expand along the call graph, rank the
+            // neighbourhood. This is what lets ONE query surface the whole subsystem (the other core
+            // files are graph neighbours of the entry symbol, not name-alikes of the query).
+            const cluster = CodeRetriever.search(query, 12, layer);
+            const clusterLines: string[] = [];
+            let crank = 1;
+            for (const r of cluster) {
+                const p = r.paths[0];
+                if (!p || seenPaths.has(p)) continue;
+                seenPaths.add(p);
+                const rel = p.split('Rocket.Chat/')[1] || p;
+                const tag = r.hop === 0 ? 'seed' : `${r.hop} hop${r.hop > 1 ? 's' : ''}`;
+                clusterLines.push(`${crank}. ${rel}  ·  \`${r.symbolName}\` (${tag})`);
+                crank++;
+            }
+            if (clusterLines.length > 0) {
+                sections.push(`🧭 Subsystem (ranked by graph proximity to \`${query}\`):\n${clusterLines.join('\n')}`);
+            }
+
             if (sections.length === 0) {
                 const prefixHits = Array.from(GLOBAL_INDEX.symbols.keys())
                     .filter(k => k.toLowerCase().startsWith(q))
@@ -401,7 +420,23 @@ export async function handleToolCall(name: string, args: any): Promise<any> {
                         })
                         : entries;
 
-                    const shown = filtered.slice(0, 6);
+                    // Rank children by relevance before truncating: real (non-test), higher-fan-in
+                    // definitions first. The old arbitrary `.slice(0,6)` (index scan order) is a
+                    // direct cause of thin, downstream-missing answers — it could drop the important
+                    // callee and keep an incidental one.
+                    const centralityOf = (sym: string): number => {
+                        const cp = GLOBAL_INDEX.symbols.get(sym);
+                        if (!cp) return 0;
+                        return Math.max(0, ...Array.from(cp).map(p => GLOBAL_INDEX.fileDependents.get(p)?.size ?? 0));
+                    };
+                    const isTestSym = (sym: string): boolean => {
+                        const cp = GLOBAL_INDEX.symbols.get(sym);
+                        return cp ? Array.from(cp).every(p => isTestFile(p)) : false;
+                    };
+                    const ranked = [...filtered].sort((a, b) =>
+                        (isTestSym(a.callee) ? 1 : 0) - (isTestSym(b.callee) ? 1 : 0) ||
+                        centralityOf(b.callee) - centralityOf(a.callee));
+                    const shown = ranked.slice(0, 6);
                     for (const { callee, edgeType } of shown) {
                         const key = `${sym}→${callee}`;
                         const pad = '  '.repeat(indent);

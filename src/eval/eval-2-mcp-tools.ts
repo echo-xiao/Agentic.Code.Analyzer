@@ -42,6 +42,8 @@ interface TestResult {
     graphReachability: { found: string[]; missed: string[]; rate: number } | null;
     order: OrderMetric;
     retrieval: RetrievalMetrics;
+    sanityPass: boolean;
+    retrievalPass: boolean;
     pass: boolean;
 }
 
@@ -288,9 +290,15 @@ async function runTestCase(tc: TestCase): Promise<TestResult> {
     const symRate = symTotal > 0 ? searchSymFound.length / symTotal : 1;
     const graphRate = graphResult?.rate ?? 1;
 
-    const pass = fileRate >= 0.95 && symRate >= 0.8 && graphRate >= 0.5;
-
     const retrieval = computeRetrievalMetrics(tc);
+
+    // SANITY (substring): "if you already know every symbol name, can the index find the files?"
+    // This is near-100% by construction and must NOT be the headline gate — it masks real quality.
+    const sanityPass = fileRate >= 0.95 && symRate >= 0.8 && graphRate >= 0.5;
+    // RETRIEVAL (honest): a SINGLE realistic query must locate the subsystem — at least a third of
+    // its core files surfaced within the top 10. This is what actually drives agent answer quality.
+    const retrievalPass = retrieval.diagnosis === 'n/a' || retrieval.recallAt10 >= 0.3;
+    const pass = sanityPass && retrievalPass;
 
     return {
         id: tc.id,
@@ -309,6 +317,8 @@ async function runTestCase(tc: TestCase): Promise<TestResult> {
         graphReachability: graphResult,
         order: orderMetric,
         retrieval,
+        sanityPass,
+        retrievalPass,
         pass,
     };
 }
@@ -318,9 +328,19 @@ function formatReport(results: TestResult[]): string {
     const passed = results.filter(r => r.pass).length;
     const total = results.length;
 
+    const sanityPassed = results.filter(r => r.sanityPass).length;
+    const retrievalPassed = results.filter(r => r.retrievalPass).length;
+
     lines.push(`# Layer 1 — Tool Eval Report`);
     lines.push(`\n${new Date().toLocaleString('en-US')}\n`);
     lines.push(`## Summary: ${passed}/${total} passed\n`);
+    lines.push(`> Gate = **sanity** (substring recall, near-100% by construction — a floor, not a score) `);
+    lines.push(`> **AND retrieval** (a single realistic query surfaces ≥30% of core files in top-10 — the honest bar).\n`);
+    lines.push(`| Gate | Pass |`);
+    lines.push(`|---|---:|`);
+    lines.push(`| Sanity (substring recall) | ${sanityPassed}/${total} |`);
+    lines.push(`| **Retrieval (single-query R@10 ≥ 0.3)** | **${retrievalPassed}/${total}** |`);
+    lines.push(`| Combined | ${passed}/${total} |\n`);
 
     const avgFileRecall = results.reduce((s, r) => s + r.searchFileRecall.rate, 0) / total;
     const avgSymRecall = results.reduce((s, r) => s + r.searchSymbolRecall.rate, 0) / total;
@@ -352,8 +372,8 @@ function formatReport(results: TestResult[]): string {
     lines.push('');
 
     lines.push(`## Per-Testcase Results\n`);
-    lines.push(`| # | ID | Subsystem | Files | Symbols | Graph | Pass |`);
-    lines.push(`|---|---|---|---|---|---|---|`);
+    lines.push(`| # | ID | Subsystem | Files | Symbols | Graph | R@10 | Retr | Pass |`);
+    lines.push(`|---|---|---|---|---|---|---:|---|---|`);
 
     for (let i = 0; i < results.length; i++) {
         const r = results[i];
@@ -362,8 +382,10 @@ function formatReport(results: TestResult[]): string {
         const gc = r.graphReachability
             ? `${r.graphReachability.found.length}/${r.graphReachability.found.length + r.graphReachability.missed.length}`
             : '-';
+        const r10 = `${(r.retrieval.recallAt10 * 100).toFixed(0)}%`;
+        const retr = r.retrievalPass ? '✅' : '❌';
         const status = r.pass ? 'PASS' : '**FAIL**';
-        lines.push(`| ${i + 1} | ${r.id} | ${r.subsystem} | ${fc} | ${sc} | ${gc} | ${status} |`);
+        lines.push(`| ${i + 1} | ${r.id} | ${r.subsystem} | ${fc} | ${sc} | ${gc} | ${r10} | ${retr} | ${status} |`);
     }
 
     // Ranking quality per testcase + search-truncation diagnosis
