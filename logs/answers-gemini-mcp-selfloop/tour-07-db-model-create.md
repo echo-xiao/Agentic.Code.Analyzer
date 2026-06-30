@@ -2,30 +2,28 @@
 
 ## Gemini Answer
 
-To create a new database model in Rocket.Chat, you should follow this architectural pattern:
+To create a new database model in Rocket.Chat, follow these steps:
 
-1.  **Define the document interface**: Create an interface for your document in `packages/core-typings` that extends `IRocketChatRecord`. This interface will define the structure of the data stored in your collection.
-2.  **Define the model interface**: Create an interface for your model in `packages/model-typings` that extends `IBaseModel<T>`, where `T` is your document interface. This interface will define the methods available on your model.
-3.  **Implement the model class**: In the `packages/models` directory, implement a class that extends `BaseRaw<T>`, where `T` is your document interface. This class will contain the actual implementation of your model's methods, interacting with the MongoDB collection. An example of such a model is `UsersSessions` (defined in `packages/models/src/models/UsersSessions.ts`), which extends `BaseRaw`.
-4.  **Register the model**: Register your new model in the server startup process using `registerModel`.
+1.  **Define the document interface**: Create an interface for your document in `packages/core-typings/`, extending `IRocketChatRecord`. For example, `IUser` in `packages/core-typings/src/IUser.ts` defines the structure for a user document.
 
-Models are typically accessed through proxified imports, for example, `import { Messages } from '@rocket.chat/models'`, which routes through a `LocalBroker`. The `BaseRaw` class (located at `packages/models/src/models/BaseRaw.ts`) also provides an override for `modelIndexes()` to define MongoDB indexes.
+2.  **Define the model interface**: Create an interface for your model in `packages/model-typings/src/models/`, extending `IBaseModel<T>`, where `T` is your document interface. This interface will define the custom methods available for your model. An example is `IUsersModel` in `packages/model-typings/src/models/IUsersModel.ts`.
 
-**Call Chain for `BaseRaw` (upstream example):**
+3.  **Implement the model class**: Create a class in the `packages/models/src/models/` directory that extends `BaseRaw<T, DefaultFields<T>>` and implements your model interface. This class will contain the actual database operations and custom methods. An example is `UsersRaw` in `packages/models/src/models/Users.ts`. This class also provides an `override modelIndexes()` method for defining MongoDB indexes.
 
-`BaseRaw` (packages/models/src/models/BaseRaw.ts)
-  ← `UsersSessions` (packages/models/src/models/UsersSessions.ts)
-    ← `setConnectionStatus` (ee/packages/presence/src/Presence.ts)
-      ← `configureServer` (ee/apps/ddp-streamer/src/configureServer.ts)
-        ← `main` (apps/meteor/server/main.ts)
+4.  **Register the model**: Register your new model using the `registerModel` function. This function, found in `packages/models/src/proxify.ts`, is used during server startup to make the model accessible throughout the application.
 
-## Tool Calls (8 calls, 36,867 tokens)
+After these steps, your new model will be accessible via proxified imports like `import { YourModel } from '@rocket.chat/models'`.
 
-**Step 1:** `search({"query":"model","layer":"server"})` → 569 tokens
-**Step 2:** `graph({"direction":"up","query":"BaseRaw","layer":"packages"})` → 1026 tokens
-**Step 3:** `implement({"symbolName":"Users","filename":"packages/models/src/models/Users.ts"})` → 53 tokens
-**Step 4:** `search({"query":"class Users extends BaseRaw","layer":"packages"})` → 18 tokens
-**Step 5:** `implement({"filename":"packages/models/src/models/UsersSessions.ts","symbolName":"UsersSessions"})` → 63 tokens
-**Step 6:** `search({"query":"extends BaseRaw","layer":"packages"})` → 15 tokens
-**Step 7:** `implement({"symbolName":"Users","filename":"apps/meteor/ee/server/models/Users.ts"})` → 137 tokens
-**Step 8:** `search({"query":"BaseRaw","layer":"packages"})` → 211 tokens
+**Call Chain:**
+`search("Model")` → `graph("registerModel", "down", file="packages/models/src/proxify.ts")` → `implement("IUser", "packages/core-typings/src/IUser.ts")` → `implement("IUsersModel", "packages/model-typings/src/models/IUsersModel.ts")` → `implement("UsersRaw", "packages/models/src/models/Users.ts")` → `implement("registerModel", "packages/models/src/proxify.ts")`
+
+## Tool Calls (8 calls, 97,601 tokens)
+
+**Step 1:** `search({"query":"Model"})` → 742 tokens
+**Step 2:** `graph({"file":"packages/models/src/proxify.ts","query":"registerModel","direction":"down"})` → 1401 tokens
+**Step 3:** `search({"layer":"packages","query":"IUser"})` → 642 tokens
+**Step 4:** `search({"layer":"packages","query":"IUsersModel"})` → 271 tokens
+**Step 5:** `search({"layer":"packages","query":"Users"})` → 809 tokens
+**Step 6:** `implement({"symbolName":"IUser","filename":"packages/core-typings/src/IUser.ts"})` → 444 tokens
+**Step 7:** `implement({"symbolName":"IUsersModel","filename":"packages/model-typings/src/models/IUsersModel.ts"})` → 5596 tokens
+**Step 8:** `implement({"filename":"packages/models/src/models/Users.ts","symbolName":"UsersRaw"})` → 6775 tokens

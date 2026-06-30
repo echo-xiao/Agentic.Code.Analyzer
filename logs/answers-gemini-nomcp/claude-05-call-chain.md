@@ -2,95 +2,126 @@
 
 ## Baseline Answer (no tools)
 
-The `sendMessage` functionality in Rocket.Chat involves a comprehensive call chain, starting from the client-side user interface, through DDP (Distributed Data Protocol), to the server-side business logic, and finally to database persistence and real-time updates.
+The complete call chain for `sendMessage` in Rocket.Chat, starting from a user typing in the UI, involves several layers from the frontend to the backend, leveraging Meteor's method calls and Rocket.Chat's internal message processing pipeline.
 
-Here is the complete call chain:
+Here's a detailed breakdown:
 
-1.  **Client-side UI Event (User Action)**
-    *   The user types a message in the chat input field (e.g., in a channel, direct message, or thread).
-    *   This interaction is primarily handled by the React component:
-        *   `client/views/room/MessageInput/MessageInput.tsx` (or similar components in `ee/client/views/room/MessageInput` for Enterprise features).
-    *   When the user presses `Enter` or clicks the `Send` button, an event handler (e.g., `handleSend`) in this component is triggered. This handler prepares the message data.
+### 1. Frontend - User Action & UI Component
 
-2.  **Client-side Orchestrator Function**
-    *   The UI event handler typically calls a dedicated client-side function to manage the message sending process.
-    *   **File:** `app/ui-message/client/lib/sendMessages.ts`
-    *   **Function:** `sendMessages(params: IMessageParams, tmid?: string)`
-    *   This function constructs the `IMessage` object, including properties like `_id`, `rid` (room ID), `msg` (message content), `ts` (timestamp), `u` (user data), and potentially `attachments`, `tmid` (thread message ID), etc.
-    *   It then wraps the server-side method invocation in a Promise:
-        ```typescript
-        // From app/ui-message/client/lib/sendMessages.ts
-        return new Promise<void>((resolve, reject) => {
-            Meteor.call('sendMessage', message, (error: Meteor.Error, result: IMessage) => {
-                if (error) {
-                    return reject(error);
-                }
-                resolve();
-            });
-        });
-        ```
+*   **User Action:** A user types a message into the chat input field and presses `Enter` or clicks the "Send" button.
+*   **Component:** The primary component responsible for handling message input is `Composer`.
+    *   **File:** `client/views/room/Composer/Composer.js`
+    *   **Action:** Inside this component, an event handler (e.g., `handleSend` or an internal function called by it) is triggered. This function gathers the message text, the current room ID, and other relevant context.
+    *   **Call:** It then typically calls a prop function passed down from a parent container or directly triggers a `Meteor.call`. The message object is constructed here.
 
-3.  **DDP (Distributed Data Protocol)**
-    *   `Meteor.call('sendMessage', message)` uses Meteor's DDP client to send the `sendMessage` method invocation and the prepared `message` object to the Rocket.Chat server.
+### 2. Frontend - Meteor Method Call
 
-4.  **Server-side `sendMessage` Method Definition**
-    *   This is the entry point on the server for the `sendMessage` DDP call.
-    *   **File:** `app/api/server/lib/methods/sendMessage.ts`
-    *   **Function:** `Meteor.methods({ sendMessage(message) { ... } })`
-    *   This method performs initial validation (e.g., user authentication (`this.userId`), basic message object structure).
-    *   It then delegates the core message processing to a shared server-side function:
-        ```typescript
-        // Simplified from app/api/server/lib/methods/sendMessage.ts
-        const sendMessageMethod = function (message) {
-            if (!this.userId) {
-                throw new Meteor.Error('not-authorized');
-            }
-            // ... other validations ...
-            return sendMessage(this.userId, message, this); // Calls the core logic
-        };
-        Meteor.methods({
-            sendMessage: sendMessageMethod,
-        });
-        ```
-    *   The `sendMessage` function called here is imported from `app/lib/server/functions/sendMessage.ts`.
+*   **File:** (Implicitly called from the component, e.g., `client/views/room/Composer/Composer.js`)
+*   **Action:** The frontend makes a remote procedure call (RPC) to the Rocket.Chat server using Meteor's DDP protocol.
+*   **Call:** `Meteor.call('sendMessage', messageObject);`
+    *   `messageObject` typically contains:
+        *   `rid`: Room ID
+        *   `msg`: The actual message text
+        *   (Potentially other fields like `attachments`, `file`, etc.)
 
-5.  **Core Server-side Message Processing Function**
-    *   This function contains the bulk of the business logic for handling a new message.
-    *   **File:** `app/lib/server/functions/sendMessage.ts`
-    *   **Function:** `sendMessage(user: IUser, msg: IMessage, room?: IRoom, originalMessage?: IMessage, { email, ...options }: ISendMessageOptions = {})`
-    *   **Key steps within this function:**
-        *   **Retrieve User and Room:** Fetches the `IUser` and `IRoom` objects from the database.
-        *   **Permissions:** Checks if the `user` has permission to send messages in the `room` using `roomAccesses.hasPermission('sendMessage', room._id, user._id)`.
-        *   **Callbacks (`beforeSaveMessage`):**
-            *   `callbacks.run('beforeSaveMessage', msg, room, user)`: A critical hook point where other modules can modify the message object or prevent it from being saved (e.g., profanity filters, integrations, bot pre-processing).
-            *   Referenced in: `app/lib/callbacks/server/index.ts`, `app/lib/callbacks/server/message/beforeSave.ts`.
-        *   **Message Processing:**
-            *   **Mentions:** `MessageMentions.extractAndPopulate(msg, room)` (from `app/lib/server/lib/MessageMentions.ts`) processes `@user` mentions.
-            *   **Channel Mentions:** `MessageChannels.extractAndPopulate(msg, room)` (from `app/lib/server/lib/MessageChannels.ts`) processes `#channel` mentions.
-            *   **URLs:** `MessageUrls.extractAndPopulate(msg, room)` (from `app/lib/server/lib/MessageUrls.ts`) extracts and processes URLs, often creating preview attachments.
-            *   **Timestamps & Metadata:** Adds/updates `_id`, `ts`, `editedAt`, `editedBy`, `unread` status, etc.
-        *   **Persistence (Database Insert/Update):**
-            *   `Messages.insertOne(msg)` (for new messages) or `Messages.update({ _id: msg._id }, { $set: msg })` (for edited messages).
-            *   Database interaction handled by `app/models/server/raw/Messages.ts`.
-        *   **Room Activity Update:**
-            *   `Rooms.touch(room._id)`: Updates the room's `_updatedAt` timestamp.
-            *   `Rooms.incMsgCount(room._id, 1)`: Increments the message count for the room.
-            *   Database interaction handled by `app/models/server/raw/Rooms.ts`.
-        *   **Callbacks (`afterSaveMessage`):**
-            *   `callbacks.run('afterSaveMessage', msg, room, user, originalMessage)`: Another crucial hook for post-save actions.
-            *   **Notifications:** This callback triggers `app/lib/server/functions/notifications/messages.ts` to send push, email, and desktop notifications.
-            *   **Integrations:** Can trigger outgoing webhooks or bot responses (e.g., via `app/integrations/lib/callHandler.ts`).
-        *   **Real-time Updates (DDP Streams):**
-            *   `api.broadcast('room', room._id, [message])`: Broadcasts the new message to all clients subscribed to the room. This is handled by `app/api/server/api.ts` which utilizes `RocketChat.stream.emit` or similar internal mechanisms.
-            *   The streaming infrastructure is managed by `app/stream/index.ts`.
-        *   **Return Value:** The function returns the processed `IMessage` object.
+### 3. Backend - Meteor Method Definition
 
-This detailed chain outlines the complete flow from a user typing a message to it being saved in the database and visible to other users in real-time.
+*   **File:** `server/methods/sendMessage.js`
+*   **Action:** This is the entry point on the server side for the `sendMessage` method.
+*   **`Meteor.methods` Definition:**
+    ```javascript
+    Meteor.methods({
+        sendMessage(message) {
+            // ... initial validation and context setup ...
+            // Calls a higher-level API wrapper for actual message processing
+            return RocketChat.Message.sendMessage(Meteor.user(), message);
+        }
+    });
+    ```
+    *   **Validation:** Performs initial checks (e.g., `check(message, Object);`, ensures user is logged in, has permission to send messages in the room).
+    *   **Permissions:** Verifies if the `userId` has permission to send messages in the specified room (`rid`).
+    *   **Abstraction:** Delegates the core logic to `RocketChat.Message.sendMessage` for a more structured service layer approach.
+
+### 4. Backend - `RocketChat.Message.sendMessage` (High-Level Service)
+
+*   **File:** `app/lib/server/functions/sendMessage.js`
+*   **Action:** This function orchestrates the complete message processing pipeline.
+*   **`RocketChat.Message.sendMessage` Definition:**
+    ```javascript
+    RocketChat.Message.sendMessage = function (user, message, room) {
+        // ... more extensive validation (room existence, user in room, message length, etc.) ...
+        // Apply 'onValidateMessage' hooks
+        // Process the message for markdown, mentions, unfurls, etc.
+        const processedMessage = RocketChat.Message.processMessage(message, room, user);
+        // Save the message to the database
+        const savedMessage = RocketChat.Message.save(processedMessage, room, user);
+        // ... update room's last message, notify users, apply 'onAfterSendMessage' hooks ...
+        return savedMessage;
+    };
+    ```
+    *   **Hooks (`onValidateMessage`):** Fires server-side hooks that allow plugins or custom logic to validate or modify the message *before* it's processed and saved.
+    *   **Message Processing:** Calls `RocketChat.Message.processMessage` to handle transformations.
+    *   **Message Saving:** Calls `RocketChat.Message.save` to persist the message.
+    *   **Post-Save Actions:** Updates the room's `lastMessage`, handles notifications (push, desktop), and triggers `onAfterSendMessage` hooks.
+
+### 5. Backend - `RocketChat.Message.processMessage` (Message Transformation)
+
+*   **File:** `app/lib/server/functions/processMessage.js`
+*   **Action:** This function takes the raw message object and transforms it into its final renderable and storable state.
+*   **Processing Steps:**
+    *   **Markdown:** Converts markdown syntax (e.g., `*bold*`, `_italic_`) into HTML.
+    *   **Mentions:** Identifies `@username` and `@all/@here` mentions, linking them to users.
+    *   **Channels:** Identifies `#channel` links.
+    *   **Emojis:** Converts shortcodes (e.g., `:smile:`) to emoji characters or images.
+    *   **Unfurls:** Processes URLs in the message to generate rich previews (link unfurling).
+    *   **Attachments:** Handles pre-uploaded file attachments or any other custom message properties.
+    *   **Returns:** A fully processed message object, ready for persistence.
+
+### 6. Backend - `RocketChat.Message.save` (Persistence & Broadcasting)
+
+*   **File:** `app/lib/server/functions/saveMessage.js`
+*   **Action:** This is where the message is finally inserted into the database, and mechanisms for broadcasting are triggered.
+*   **`RocketChat.Message.save` Definition:**
+    ```javascript
+    RocketChat.Message.save = function (message, room, user, subscription) {
+        // ... prepare message object with _id, ts, u (user object), etc. ...
+        // Apply 'onServerSendMessage' hooks
+        const messageId = Messages.insert(message); // <- Actual database insert
+        // ... update room (lastMessage, counter), user (message count) ...
+        // Apply 'onAfterSaveMessage' hooks
+        // Trigger push notifications
+        // ... other side effects like sending webhooks, updating unreads ...
+        return Messages.findOne(messageId);
+    };
+    ```
+    *   **`Messages.insert(message)`:** Inserts the processed message into the `rocketchat_message` MongoDB collection.
+    *   **Hooks (`onServerSendMessage`):** Fires hooks *just before* the message is inserted.
+    *   **Room & User Updates:** Updates the `lastMessage` field in the `rocketchat_room` collection, increments message counters for the room and user.
+    *   **Hooks (`onAfterSaveMessage`):** Fires hooks *after* the message has been saved to the database. These are often used for post-processing, integrations, or analytics.
+    *   **Notifications:** Triggers `RocketChat.PushNotification.newMessage` and other notification handlers (desktop, email, webhooks).
+    *   **DDP Reactivity:** Crucially, because `Messages` is a reactive collection, once the `insert` operation completes, Meteor's DDP server automatically pushes the new message to all clients *subscribed* to the relevant room's message publication. This is how other users in the chat room see the new message appear in real-time.
+
+### Summary of the Call Chain:
+
+1.  **`client/views/room/Composer/Composer.js`** (User input)
+    *   Calls `Meteor.call('sendMessage', messageObject)`
+2.  **`server/methods/sendMessage.js`** (Meteor Method)
+    *   Calls `RocketChat.Message.sendMessage(user, message)`
+3.  **`app/lib/server/functions/sendMessage.js`** (`RocketChat.Message.sendMessage`)
+    *   Calls `RocketChat.Message.processMessage(message, room, user)`
+    *   Calls `RocketChat.Message.save(processedMessage, room, user)`
+4.  **`app/lib/server/functions/processMessage.js`** (`RocketChat.Message.processMessage`)
+    *   Returns processed message.
+5.  **`app/lib/server/functions/saveMessage.js`** (`RocketChat.Message.save`)
+    *   `Messages.insert(message)` (Database write)
+    *   Triggers DDP reactivity for clients.
+
+This chain ensures thorough validation, processing, persistence, and real-time delivery of messages within Rocket.Chat.
 
 ## Metrics
 
 | Metric | Value |
 |--------|-------|
-| Tokens | 4,561 |
+| Tokens | 3,637 |
 | Model | gemini-2.5-flash |
 | Tools | NONE |

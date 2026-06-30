@@ -2,36 +2,35 @@
 
 ## Gemini Answer
 
-LDAP authentication in Rocket.Chat follows a server-side flow initiated by a login request. The process involves several steps, from the initial login attempt to user synchronization with the Rocket.Chat database.
+LDAP authentication in Rocket.Chat works as follows:
 
-The authentication flow is as follows:
+The authentication process begins when a user attempts to log in via a `Meteor.loginWith*()` method. This triggers `Accounts.registerLoginHandler`, which dispatches to registered handlers.
 
-**Entry Point → `LDAPService.loginRequest` → `LDAPManager.login` → `LDAPConnection.connect` → `LDAPConnection.findUser` → `LDAPConnection.bindAuthenticationUser` → `LDAPManager.loginExistingUser` or `LDAPManager.loginNewUserFromLDAP`**
+1.  **Handler Registration**: The `configureLDAP()` function, located in `apps/meteor/server/configuration/ldap.ts`, registers a specific handler with `Accounts.registerLoginHandler('ldap', fn)`. This handler is responsible for processing LDAP login requests.
+2.  **LDAP Login Request**: When a login request with an LDAP flag is received, it calls `LDAP.loginRequest(username, password)` via a core-services proxy. This, in turn, invokes `LDAPService.loginRequest()` from `apps/meteor/server/services/ldap/service.ts`.
+3.  **Core Authentication Logic**: The `LDAPService.loginRequest()` method then calls `LDAPManager.login()` from `apps/meteor/server/lib/ldap/Manager.ts`. This is where the primary LDAP authentication logic resides.
 
-Here's a detailed breakdown:
+**Call Chain:** `Meteor.loginWith*()` → `Accounts.registerLoginHandler` (via `apps/meteor/server/configuration/ldap.ts::configureLDAP`) → `LDAPService.loginRequest` (in `apps/meteor/server/services/ldap/service.ts`) → `LDAPManager.login` (in `apps/meteor/server/lib/ldap/Manager.ts`).
 
-1.  **Client Login Request**: The authentication process begins when a user attempts to log in using a method like `Meteor.loginWith*()`.
-2.  **Login Handler Dispatch**: Rocket.Chat's authentication system, managed by `Accounts.registerLoginHandler`, dispatches the login request to the registered LDAP handler. This handler is set up by `configureLDAP()` and checks for an `ldap` flag in the login request.
-3.  **LDAP Service Call**: The registered LDAP handler then calls `LDAP.loginRequest(username, password)` (mediated via a core-services proxy). This function is found in `packages/core-services/src/index.ts`.
-4.  **LDAP Service Implementation**: The actual logic for this request resides in `LDAPService.loginRequest()` within the file `apps/meteor/server/services/ldap/service.ts`. This service method in turn calls the main LDAP manager.
-5.  **LDAP Manager Login**: The core authentication logic is handled by `LDAPManager.login(username, password)`, located in `apps/meteor/server/lib/ldap/Manager.ts`.
-    *   **LDAP Enablement Check**: The `login` method first verifies if the `LDAP_Enable` setting is active. If not, it falls back to the default Rocket.Chat login mechanism.
-    *   **Establish LDAP Connection**: An `LDAPConnection` object (from `apps/meteor/server/lib/ldap/Connection.ts`) is created and connected to the LDAP server using `ldap.connect()`.
-    *   **User Search and Authentication**: It then attempts to locate the user in LDAP and authenticate them by calling `this.findUser(ldap, username, password)`. This typically involves searching the LDAP directory for the user's distinguished name (DN) and then attempting a bind operation with the provided DN and password.
-    *   **Fallback if User Not Found**: If the user is not found in LDAP, or authentication fails, the system falls back to the default login method (if configured).
-    *   **Existing User Check**: The system then attempts to find if an existing user with the slugified username already exists in the Rocket.Chat database by calling `this.findExistingUser`.
-    *   **Admin Bind for Groups**: The LDAP connection is then bound to an administrative user using `ldap.bindAuthenticationUser()`. This ensures that Rocket.Chat has the necessary permissions to query for group memberships or other user attributes.
-    *   **User Synchronization/Creation**:
-        *   If an existing user is found in Rocket.Chat, `this.loginExistingUser` is called to synchronize user data with LDAP attributes and complete the login.
-        *   If no existing user is found, `this.loginNewUserFromLDAP` is called to create a new user in Rocket.Chat, populating their profile with data fetched from LDAP.
-    *   **Disconnect**: Finally, the LDAP connection is disconnected using `ldap.disconnect()`.
+The `LDAPManager.login()` method performs the following steps (from `apps/meteor/server/lib/ldap/Manager.ts`):
 
-This detailed process ensures that user authentication and synchronization with LDAP are handled securely and efficiently within Rocket.Chat.
+*   **LDAP Enablement Check**: It first verifies if LDAP is enabled through the `LDAP_Enable` setting. If not, it falls back to the default Rocket.Chat login mechanism.
+*   **Establish Connection**: An `LDAPConnection` is created and an attempt is made to connect to the LDAP server.
+*   **User Search and Authentication**: It searches for the user in the LDAP directory using the provided username and password. If the user is not found, it falls back to the default login.
+*   **Federation Check**: It checks if a federation home server is configured for the LDAP user. If so, it reverts to the default login.
+*   **Username Processing**: The username obtained from LDAP is slugified.
+*   **Existing User Check**: It attempts to find an existing Rocket.Chat user corresponding to the authenticated LDAP user.
+*   **Bind Admin User**: The LDAP connection is bound to an administrative user to ensure full access for retrieving group information.
+*   **Login Flow**:
+    *   If an existing Rocket.Chat user is found, it proceeds with `this.loginExistingUser`.
+    *   If it's a new user, it calls `this.loginNewUserFromLDAP` to create the user in Rocket.Chat and complete the login.
+*   **Disconnect**: Finally, the LDAP connection is disconnected.
 
-## Tool Calls (5 calls, 18,276 tokens)
+In case LDAP authentication fails and the `LDAP_Login_Fallback` setting is enabled, Rocket.Chat will attempt to authenticate the user using the default password authentication handlers. Additionally, a `beforeValidateLogin` callback prevents password logins for LDAP users unless this fallback is explicitly enabled.
 
-**Step 1:** `search({"query":"LDAP","layer":"server"})` → 609 tokens
-**Step 2:** `graph({"direction":"down","layer":"server","query":"LDAPManager.login","file":"apps/meteor/server/lib/ldap)` → 14 tokens
-**Step 3:** `graph({"layer":"server","query":"LDAPManager","direction":"down","file":"apps/meteor/server/lib/ldap/Manag)` → 239 tokens
-**Step 4:** `implement({"symbolName":"LDAPManager","filename":"apps/meteor/server/lib/ldap/Manager.ts"})` → 959 tokens
-**Step 5:** `implement({"filename":"apps/meteor/server/lib/ldap/Manager.ts","symbolName":"LDAPManager.login"})` → 355 tokens
+## Tool Calls (4 calls, 22,337 tokens)
+
+**Step 1:** `search({"layer":"server","query":"LDAP"})` → 772 tokens
+**Step 2:** `graph({"layer":"server","direction":"down","query":"configureLDAP"})` → 1973 tokens
+**Step 3:** `graph({"direction":"down","query":"LDAPManager.login","layer":"server"})` → 14 tokens
+**Step 4:** `implement({"filename":"apps/meteor/server/lib/ldap/Manager.ts","symbolName":"LDAPManager.login"})` → 355 tokens

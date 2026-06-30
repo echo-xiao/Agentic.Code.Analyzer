@@ -2,69 +2,86 @@
 
 ## Baseline Answer (no tools)
 
-The auto-translate feature in Rocket.Chat allows users to translate messages into their preferred language using various third-party translation services. Here's a breakdown of how it works:
+The auto-translate feature in Rocket.Chat allows users to translate messages into their preferred language, either manually or automatically. This functionality is not built directly into Rocket.Chat's core translation engine but rather relies on **external translation services integrated via the Rocket.Chat Apps-Engine**.
 
-### 1. Configuration (Server-Side)
+The most common implementation uses the **Google Translate App**. Here's a breakdown of how it works:
 
-*   **Admin Settings**: Administrators enable and configure the auto-translate feature via the Rocket.Chat admin panel. They select the desired translation engine (e.g., Google Translate, DeepL, Yandex, LibreTranslate, AWS Translate, Microsoft Translator), provide necessary API keys or endpoints, and set other options.
-*   **Settings Persistence**: These configurations are stored in the `Rocket.Chat.settings` collection in the database.
-*   **Code Paths**:
-    *   `app/autotranslate/server/settings.js`: Defines all the administrative settings related to auto-translate, including options for different providers (API keys, regions, etc.).
+### 1. Configuration & Setup
 
-### 2. Client-Side Interaction & Triggering Translation
+1.  **Enable Auto-translate Globally**: A workspace administrator must enable the `AutoTranslate_Enabled` setting in `Admin > Workspace > Settings > Auto-translate`.
+2.  **Select Translation Service**: The admin chooses a translation service, e.g., `Google Translate`, from `AutoTranslate_Service`.
+3.  **Provide API Credentials**: The necessary API key for the chosen service (e.g., `AutoTranslate_GoogleAPIKey`) must be provided.
+4.  **Install the Translation App**: The specific translation app (e.g., "Google Translate" from the Marketplace) must be installed and enabled in `Admin > Apps`. This app registers itself with Rocket.Chat's Apps-Engine to handle translation requests.
 
-*   **UI Indicator**: When a user views a message that might be in a different language, a "Translate" button or option appears in the message's action menu or toolbar.
-*   **User Action**: When the user clicks the "Translate" button, the Rocket.Chat client prepares a request.
-*   **Meteor Method Call**: The client then makes a Meteor method call to the server, passing the `_id` of the message to be translated and the target language (usually the user's preferred language).
-*   **Code Paths**:
-    *   `client/components/message/MessageToolbar/MessageToolbar.js` or similar components: Render the "Translate" button in the message actions.
-    *   `client/views/room/MessageList/Message/MessageActions.js`: Handles the click event for the translate action and invokes the server method.
-    *   The actual Meteor call happens implicitly through the actions, typically invoking `Meteor.call('autoTranslate.translateMessage', messageId, targetLanguage)`.
+### 2. User & Room Preferences
 
-### 3. Server-Side Translation Logic
+Users and rooms can define specific auto-translate settings:
 
-Upon receiving the `autoTranslate.translateMessage` Meteor method call:
+*   **User's Preferred Language**: Each user can set their `My Language` (target language) in `User Menu > My Account > Preferences > Auto-translate`.
+*   **User's Auto-translate Toggle**: Users can choose to `Auto-translate messages` in their preferences, which applies to messages in other languages.
+*   **Room-Specific Auto-translate**: Users can enable/disable auto-translate for specific rooms via `Room Info > Auto-translate`.
 
-1.  **Message Retrieval**: The server fetches the original message document from the `rocketchat_message` collection using the provided `messageId`.
-2.  **Cached Translation Check**: It first checks if a translation for the requested `targetLanguage` already exists within the message document (stored in `message.autoTranslate.translations`). If found, it returns the cached translation, avoiding redundant API calls.
-3.  **Source Language Detection**: If no cached translation exists, the server attempts to determine the source language of the message text (`message.msg`). This can be done by passing the text to the translation service's language detection feature or using an internal language detection library if available.
-4.  **Provider Selection**: Based on the admin settings, the server selects the active translation provider (e.g., Google, DeepL).
-5.  **External API Call**: The server constructs an HTTP request to the chosen external translation service's API, sending the original message text, the detected source language, and the target language.
-6.  **Response Handling**: It waits for the response from the external service, which contains the translated text.
-7.  **Error Handling**: Handles potential errors from the translation service (e.g., API key invalid, rate limits, network issues).
-8.  **Code Paths**:
-    *   `app/autotranslate/server/autotranslate.js`: Contains the main server-side logic, including the `AutoTranslate` class and its `translateMessage` method, which orchestrates the entire process. This file also registers the Meteor method `autoTranslate.translateMessage`.
-    *   `app/autotranslate/server/providers/`: This directory contains individual files for each supported translation provider, implementing the specific API calls and request/response parsing for that service:
-        *   `google.js`
-        *   `deepl.js`
-        *   `libre.js`
-        *   `yandex.js`
-        *   `microsoft.js`
-        *   `aws.js`
+### 3. Message Flow & Translation Process
 
-### 4. Storing and Delivering Translation
+When a message needs to be translated, the following steps generally occur:
 
-1.  **Persistence**: Once the translation is successfully received from the external service, the Rocket.Chat server updates the original message document in the `rocketchat_message` collection. The translated text is stored in a specific field, typically under `message.autoTranslate.translations[targetLanguage]`. This caching mechanism prevents re-translation of the same message for the same user/language, reducing API costs and improving performance.
-2.  **Real-time Update**: Since messages are often subscribed to in real-time, the client's subscription for the message document is updated automatically via DDP (Distributed Data Protocol).
-3.  **Code Paths**:
-    *   `app/autotranslate/server/autotranslate.js`: Responsible for updating the `rocketchat_message` collection.
-    *   `app/models/server/models/Messages.js`: Defines the `Messages` collection model.
+1.  **Language Detection (Optional but Recommended)**:
+    *   When a message is sent, the system (often the client or the translation app itself) might attempt to detect the original language of the message. This information (`msg.autoTranslate.originalLanguage`) can be stored with the message.
 
-### 5. Displaying Translated Message (Client-Side)
+2.  **Translation Trigger**:
+    *   **Manual Translation**: A user hovers over a message and clicks the "Translate" action button.
+    *   **Automatic Translation**: If a user has `Auto-translate messages` enabled in their preferences, the room's auto-translate is enabled, and the message's detected original language is different from the user's `My Language` (target language), the translation is triggered automatically.
 
-1.  **UI Re-render**: Upon receiving the updated message document from the server (which now includes the translation), the client-side message rendering component re-renders.
-2.  **Conditional Display**: The component checks if a translation for the user's preferred language exists in `message.autoTranslate.translations`. If it does, it displays the translated text instead of the original message content.
-3.  **Toggle Option**: Users often have an option to "Show Original" or "Hide Translation" to switch between the original and translated versions of the message.
-4.  **Code Paths**:
-    *   `client/views/room/MessageList/Message/MessageContent.js` (or similar components): This is where the logic to display either the original or translated text resides, checking `message.autoTranslate?.translations?.[currentLanguage]`.
-    *   `client/lib/autotranslate.js`: Contains client-side helper functions and reactive variables to manage the display state (e.g., whether to show translated or original).
+3.  **Client-Server Request**:
+    *   The client-side UI, upon a manual or automatic trigger, sends a request to the Rocket.Chat server. This typically involves a `Meteor.call('autoTranslate.translateMessage', messageId, targetLanguage)`.
 
-In essence, the feature acts as a proxy: the Rocket.Chat server sits between the client and the chosen third-party translation service, caching results and providing a unified API for the client.
+4.  **Server-Side Processing (Apps-Engine & Translation App)**:
+    *   The server-side method (`autoTranslate.translateMessage`) receives the request.
+    *   It then leverages the **Apps-Engine** to delegate the actual translation task to the installed and configured translation App (e.g., the Google Translate App).
+    *   The Translation App receives the message text and the `targetLanguage`.
+    *   Using its internal logic and configured API key, the App makes an HTTP request to the external translation service (e.g., Google Translate API).
+
+5.  **External Translation Service**:
+    *   The external service performs the translation and returns the translated text to the Translation App.
+
+6.  **Response Handling & Message Update**:
+    *   The Translation App sends the translated text back to the Rocket.Chat server.
+    *   The server updates the message object in the database (e.g., `Messages` collection) by adding the translated text under `msg.autoTranslate.translated[targetLanguage] = translatedText`. This stores the translated version, so it doesn't need to be re-translated repeatedly.
+    *   The updated message (or just the translated text) is then sent back to the requesting client.
+
+7.  **Client-Side Display**:
+    *   The client receives the updated message with the translated text.
+    *   The message rendering component detects the presence of `msg.autoTranslate.translated` and displays the translated version.
+    *   Depending on the `AutoTranslate_ShowOriginal` setting, the UI might show both the original and the translated text, or provide an option to toggle between them.
+
+### Key File Paths and Components
+
+*   **Server-Side Logic (Rocket.Chat Core)**:
+    *   `app/autotranslate/server/methods/translateMessage.js`: Contains the core server methods (`autoTranslate.translateMessage`, `autoTranslate.saveTranslation`) that initiate and save translations. This is where the integration with the Apps-Engine usually happens for translation.
+    *   `app/autotranslate/server/lib/autotranslate.js`: Server-side utilities and functions related to auto-translation.
+    *   `app/autotranslate/server/settings.js`: Defines all the Auto-translate related settings visible in the Admin panel.
+
+*   **Apps-Engine (Server)**:
+    *   `app/apps/server/lib/AppServer.ts`: The main server-side component for managing and running Apps.
+    *   `app/apps/server/bridges/IMessageBridge.ts`: An interface apps use to interact with Rocket.Chat messages. Translation apps often use a specific bridge or a method provided by the Apps-Engine to handle translation requests.
+
+*   **Translation App (e.g., Google Translate App)**:
+    *   This lives in its own repository (e.g., `https://github.com/RocketChat/Apps.GoogleTranslate`).
+    *   It contains the logic to connect to the external API and respond to translation requests routed by the Apps-Engine.
+
+*   **Client-Side Logic (Rocket.Chat Core)**:
+    *   `client/components/message/Message/Message.tsx`: This React component (or its equivalent in older UI) is responsible for rendering individual messages. It includes logic to check for `msg.autoTranslate` and display the translated text, along with toggle options.
+    *   `client/components/message/MessageActions/MessageActionMenu.tsx`: Where the "Translate" button is added to the message action menu.
+    *   `client/views/room/MessageList/lib/autoTranslate.ts`: Client-side helper functions to determine if a message should be auto-translated, get the target language, etc.
+    *   `client/lib/preferences/autoTranslate.ts`: Client-side management of user auto-translate preferences.
+    *   `client/hooks/useAutoTranslate.ts`: Modern UI might use a hook to manage translation state for messages.
+
+In summary, Rocket.Chat offloads the heavy lifting of translation to external services, acting as an intermediary via its flexible Apps-Engine to provide a seamless user experience.
 
 ## Metrics
 
 | Metric | Value |
 |--------|-------|
-| Tokens | 3,793 |
+| Tokens | 3,967 |
 | Model | gemini-2.5-flash |
 | Tools | NONE |

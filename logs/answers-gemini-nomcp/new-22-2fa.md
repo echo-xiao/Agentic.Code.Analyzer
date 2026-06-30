@@ -2,147 +2,135 @@
 
 ## Baseline Answer (no tools)
 
-Rocket.Chat implements Two-Factor Authentication (2FA) to add an extra layer of security beyond just a username and password. It supports several methods, primarily TOTP (Authenticator Apps), Email OTP, and WebAuthn (security keys), along with recovery codes.
+Rocket.Chat implements two-factor authentication (2FA) to add an extra layer of security to user accounts. It primarily supports two types of 2FA: **Time-based One-Time Password (TOTP)**, compatible with apps like Google Authenticator or Authy, and **Email-based 2FA**. Additionally, it provides **recovery codes** for emergency access.
 
-Here's a breakdown of how 2FA works in Rocket.Chat, including its architecture and key components:
+Here's a breakdown of how 2FA works in Rocket.Chat:
 
-## 1. Supported 2FA Methods
+---
 
-Rocket.Chat generally supports the following 2FA methods:
+### 1. General 2FA Flow (Enabling and Logging In)
 
-*   **TOTP (Time-based One-Time Password):** The most common method, using authenticator apps like Google Authenticator, Authy, Microsoft Authenticator, etc.
-*   **Email OTP (One-Time Password):** A code is sent to the user's registered email address.
-*   **WebAuthn (FIDO2 Security Keys):** Using hardware security keys (like YubiKey) or platform authenticators (fingerprint, Face ID). *Note: WebAuthn is often an Enterprise Edition feature in Rocket.Chat.*
-*   **Recovery Codes:** A set of one-time-use codes provided to the user when 2FA is initially enabled, for emergency access if their primary 2FA method is unavailable.
+**Enabling 2FA:**
+1.  A user navigates to their profile settings and chooses to enable 2FA.
+2.  Rocket.Chat generates a secret key (for TOTP) or activates email-based 2FA.
+3.  The user is prompted to verify the setup (e.g., by entering a TOTP code from their authenticator app or an email code).
+4.  Once verified, 2FA is enabled for their account, and recovery codes are typically generated.
 
-## 2. General 2FA Flow
+**Logging In with 2FA Enabled:**
+1.  The user enters their username/email and password.
+2.  Rocket.Chat verifies the primary credentials.
+3.  If successful and 2FA is enabled for the user, Rocket.Chat prompts for the second factor (TOTP code, email code, or a recovery code).
+4.  The user enters the code.
+5.  Rocket.Chat validates the second factor. If valid, the user is logged in.
 
-Regardless of the specific method, the general 2FA login flow in Rocket.Chat follows these steps:
+---
 
-1.  **Primary Authentication:** The user submits their username and password (or logs in via OAuth/SAML).
-2.  **2FA Check:** The Rocket.Chat server checks the user's document in the database to see if 2FA is enabled for them.
-3.  **2FA Prompt:** If 2FA is enabled, the server responds to the client, indicating that a second factor is required. The client (web, desktop, mobile app) then displays a UI to prompt the user for the 2FA code or interaction.
-4.  **2FA Submission:** The user provides the 2FA code (from their authenticator app, email, or by interacting with their security key) to the client.
-5.  **2FA Validation:** The client sends the 2FA code/response to the Rocket.Chat server. The server validates this against the user's stored 2FA configuration.
-6.  **Login Completion:** If the 2FA validation is successful, the server completes the login process, issuing an authentication token to the client. If it fails, an error is returned.
+### 2. Time-based One-Time Password (TOTP)
 
-## 3. Detailed Breakdown by Method
+This is the most common form of 2FA, using apps like Google Authenticator, Authy, or Microsoft Authenticator.
 
-### A. TOTP (Authenticator App)
+**Key Components & Files:**
 
-**Enabling TOTP:**
+*   **Server Settings**:
+    *   `TwoFactor_Enable` and `TwoFactor_Enable_TOTP` are administrator settings to enable/disable 2FA globally and specifically TOTP. These are managed via the admin panel, backed by `app/settings/server/settings.ts` and `app/2fa/server/settings.ts`.
+*   **User Interface**:
+    *   Client-side components for enabling 2FA are typically found in `client/views/account/security/twoFactorAuth/`.
+*   **Enabling TOTP**:
+    1.  When a user initiates TOTP setup, the server generates a cryptographically secure random secret key.
+    2.  This secret is temporarily stored and presented to the user, often as a QR code (generated client-side from the secret) for easy scanning by authenticator apps.
+    3.  The user is asked to enter a code from their authenticator app to verify the setup.
+    4.  The server-side method `Meteor.methods({ '2fa:validateAndSave' })` (defined in `app/2fa/server/methods/validateAndSave.ts`) is called with the generated secret and the user-provided code.
+    5.  It uses a library like `speakeasy` (or similar, details might evolve) to validate the code against the secret.
+    6.  If valid, the secret is hashed and stored in the user's document in the `users` collection: `services.twoFactor.enabled: true`, `services.twoFactor.secret: <hashed_secret>`, and `services.twoFactor.codes: [...]` (for recovery codes).
+*   **Logging in with TOTP**:
+    1.  After a successful password login, Rocket.Chat checks if `user.services.twoFactor.enabled` is `true`.
+    2.  If so, the login flow is paused, and the client is prompted for a 2FA code.
+    3.  The user enters the TOTP code from their authenticator app.
+    4.  The client sends this code to the server via `Meteor.methods({ '2fa:check' })` (defined in `app/2fa/server/methods/check.ts`).
+    5.  The core logic for checking TOTP codes resides in `app/2fa/server/lib/check.ts` and `app/2fa/server/lib/Utils.ts`. It retrieves the stored (hashed) secret for the user, uses the same TOTP library to verify the provided code against the secret within an acceptable time window.
+    6.  If the code is valid, the login process completes.
 
-1.  **User Action:** A user navigates to their profile settings (`/account/security`) and chooses to enable "Authenticator App".
-2.  **Secret Generation:** The server (specifically, a Meteor method like `2fa:totp:generate`) generates a unique, cryptographically strong secret key for the user.
-3.  **QR Code Display:** This secret key, along with the user's email and the Rocket.Chat instance name, is encoded into a URI (e.g., `otpauth://totp/...`). The server then generates a QR code from this URI and sends it to the client. The manual key is also displayed.
-4.  **User Setup:** The user scans the QR code with their authenticator app (or manually enters the key).
-5.  **Initial Verification:** The user enters a code from their authenticator app into Rocket.Chat to verify the setup.
-6.  **Server Storage & Recovery Codes:** If the verification is successful, the server stores the encrypted TOTP `secret` in the user's document (`users.services.totp.secret`) and marks TOTP as enabled. It also generates and presents **recovery codes** to the user, which are stored securely (hashed) in the user's document (`users.services.twoFactor.codes`).
+---
 
-**Login with TOTP:**
+### 3. Email-based 2FA
 
-1.  **Initial Login:** User submits username/password via `loginWithPassword`.
-2.  **Server Check:** The server's login handler (e.g., in `apps/meteor/server/methods/login.ts` or a login hook) checks if `user.services.totp.enabled` is `true`.
-3.  **Prompt:** If enabled, the server responds with a flag like `totpNeeded: true`. The client displays the TOTP input field.
-4.  **Code Submission:** User enters the TOTP code from their authenticator app, and the client calls a method like `loginWithTotp`.
-5.  **Server Validation:** The server retrieves the stored `secret` for the user. It then uses a TOTP library (e.g., `otp-generator` or similar, potentially wrapped in `apps/meteor/app/2fa/server/totp.ts`) to verify the provided code against the secret, usually allowing for a small time-based skew (+/- 1 window).
-6.  **Authentication:** If the code is valid, the user is successfully logged in.
+This method sends a one-time code to the user's registered email address.
 
-### B. Email OTP
+**Key Components & Files:**
 
-**Enabling Email OTP:**
+*   **Server Settings**:
+    *   `TwoFactor_Enable_Email` is an administrator setting to enable/disable email 2FA.
+*   **Enabling Email 2FA**:
+    1.  The user enables email 2FA in their profile settings.
+    2.  This sets `services.twoFactor.enabled: true` and `services.twoFactor.email: true` in their user document. The method involved is likely `Meteor.methods({ '2fa:enableEmailCode' })` in `app/2fa/server/methods/enableEmailCode.ts`.
+*   **Logging in with Email 2FA**:
+    1.  After a successful password login, if `user.services.twoFactor.enabled` and `user.services.twoFactor.email` are `true`, the login flow is paused.
+    2.  The client prompts for an email 2FA code.
+    3.  The user requests to send the code (e.g., by clicking a button). This triggers `Meteor.methods({ '2fa:sendEmailCode' })` (defined in `app/2fa/server/methods/sendEmailCode.ts`).
+    4.  This method generates a random numeric code, temporarily stores it in the user's document (e.g., `services.emailCode.code`, `services.emailCode.expire`) and sends it to the user's registered email address. The email sending logic relies on Rocket.Chat's mailer system.
+    5.  The user enters the received code.
+    6.  The client sends this code via `Meteor.methods({ '2fa:check' })`.
+    7.  The server-side `app/2fa/server/lib/check.ts` verifies the provided code against the temporarily stored code for that user, ensuring it hasn't expired.
+    8.  If valid, the login process completes, and the temporary email code is cleared.
 
-1.  **User Action:** A user navigates to their profile settings (`/account/security`) and chooses to enable "Email Code".
-2.  **Initial Code Generation & Email:** The server (e.g., `2fa:email:generateCode`) generates an OTP, sends it to the user's registered email, and temporarily stores it (or a hash of it).
-3.  **Initial Verification:** The user enters the received email code into Rocket.Chat.
-4.  **Server Storage & Recovery Codes:** If the verification is successful, the server marks `user.services.email2fa.enabled` as `true` in the user's document and generates recovery codes.
+---
 
-**Login with Email OTP:**
+### 4. Recovery Codes
 
-1.  **Initial Login:** User submits username/password via `loginWithPassword`.
-2.  **Server Check:** The server checks if `user.services.email2fa.enabled` is `true`.
-3.  **Code Generation & Email:** If enabled, the server generates a new OTP, emails it to the user, and temporarily stores this new code (e.g., with an expiry time).
-4.  **Prompt:** The server responds with a flag like `emailCodeNeeded: true`. The client displays the email OTP input field.
-5.  **Code Submission:** User enters the email OTP, and the client calls a method like `loginWithEmailCode`.
-6.  **Server Validation:** The server retrieves the temporarily stored code and compares it with the provided code.
-7.  **Authentication:** If the code is valid, the user is successfully logged in.
+Recovery codes are single-use codes provided when 2FA is set up, intended for use if the user loses access to their primary 2FA method.
 
-### C. WebAuthn (Security Keys)
+**Key Components & Files:**
 
-*Note: WebAuthn is often an Enterprise Edition feature in Rocket.Chat (`ee/app/webauthn`).*
+*   **Generation**:
+    1.  When a user enables any 2FA method, they are typically prompted to generate and save recovery codes.
+    2.  This process involves `Meteor.methods({ '2fa:generateRecoveryCodes' })` (defined in `app/2fa/server/methods/generateRecoveryCodes.ts`).
+    3.  This method generates a set of unique, random codes, hashes them, and stores them in the user's document as `services.twoFactor.recoveryCodes: [...]`.
+*   **Usage**:
+    1.  During the 2FA prompt at login, the user can choose to enter a recovery code instead of a TOTP or email code.
+    2.  The code is sent via `Meteor.methods({ '2fa:check' })`.
+    3.  The `app/2fa/server/lib/check.ts` logic checks if the provided code matches any of the hashed recovery codes stored for the user.
+    4.  If a match is found, the specific recovery code is marked as used (or removed from the list) to prevent reuse, and the login proceeds.
 
-**Enabling WebAuthn:**
+---
 
-1.  **User Action:** User initiates WebAuthn setup in their security settings.
-2.  **Challenge Generation:** The server generates a WebAuthn "challenge" and sends it to the client.
-3.  **Client-Side WebAuthn API:** The client-side JavaScript uses the WebAuthn API (`navigator.credentials.create()`) to interact with the user's security key or platform authenticator.
-4.  **Credential Creation:** The user interacts with their key (e.g., touches it, uses fingerprint). The authenticator generates a new key pair, and the public key, credential ID, and attestation data are sent back to the client.
-5.  **Server Storage:** The client sends this information to the server. The server verifies the attestation and stores the public key credential in `user.services.webauthn.credentials` in the user's document. Recovery codes are also generated.
+### 5. Database Schema (`users` collection)
 
-**Login with WebAuthn:**
+The `users` collection stores 2FA-related information within the `services` field:
 
-1.  **Initial Login:** User submits username/password.
-2.  **Server Check:** The server checks if `user.services.webauthn.credentials` exists.
-3.  **Challenge Generation:** If enabled, the server generates a new WebAuthn "assertion challenge" and sends it to the client.
-4.  **Client-Side WebAuthn API:** The client uses `navigator.credentials.get()` to interact with the user's security key.
-5.  **Assertion:** The user interacts with their key, which signs the challenge. The signed assertion is sent back to the client.
-6.  **Server Validation:** The client sends the assertion to the server. The server verifies the signature using the stored public key and completes the login.
+```javascript
+{
+  "_id": "userId",
+  "username": "...",
+  "emails": [...],
+  "services": {
+    "password": { ... },
+    // TOTP and Email 2FA details
+    "twoFactor": {
+      "enabled": true, // Boolean: Is 2FA enabled for this user?
+      "secret": "hashed_totp_secret", // String: Hashed TOTP secret for TOTP-based 2FA
+      "email": true, // Boolean: Is email 2FA enabled?
+      "codes": [ // Array of strings: Hashed recovery codes
+        "hashed_recovery_code_1",
+        "hashed_recovery_code_2",
+        // ...
+      ]
+    },
+    // Temporary storage for email 2FA code during login
+    "emailCode": {
+      "code": "123456", // String: The current email 2FA code (cleared after use/expiry)
+      "expire": "ISODate(...)" // Date: When the email code expires
+    },
+    // ... other services like google, github, etc.
+  }
+}
+```
 
-### D. Recovery Codes
-
-*   **Generation:** Recovery codes are generated and shown to the user *only once* when any 2FA method is initially enabled. They are stored as securely hashed values in the user's document (`users.services.twoFactor.codes`).
-*   **Usage:** If a user loses access to their primary 2FA method, they can use one of these codes instead of a TOTP or email code.
-*   **Validation:** When a recovery code is provided, the server hashes it and compares it against the stored hashes. If a match is found, that specific recovery code is marked as *used* (often by removing its hash from the array) to prevent reuse. The user is then logged in. If all recovery codes are used, the user must contact an administrator for assistance.
-
-## 4. Key Architectural Components and File Paths
-
-### Frontend (Client-side - React)
-
-*   **Security Settings UI:**
-    *   `apps/meteor/client/views/account/security/SecurityPage.tsx`: The main entry point for account security settings.
-    *   `apps/meteor/client/views/account/security/TwoFactorAuth.tsx`: Component managing the display and interaction for 2FA setup (enable/disable, QR code display, etc.).
-*   **Login Forms:**
-    *   `apps/meteor/client/views/login/LoginPage.tsx`: The primary login page.
-    *   `apps/meteor/client/views/login/TwoFactorTOTP.tsx`: Component for entering TOTP codes during login.
-    *   `apps/meteor/client/views/login/TwoFactorEmail.tsx`: Component for entering Email OTP codes during login.
-    *   `apps/meteor/client/views/login/TwoFactorWebauthn.tsx`: Component for WebAuthn interaction during login.
-    *   `apps/meteor/client/views/login/TwoFactorRecovery.tsx`: Component for entering recovery codes during login.
-
-### Backend (Server-side - Meteor/Node.js)
-
-*   **2FA Core Logic:**
-    *   `apps/meteor/app/2fa/server/`: This directory contains the main server-side logic for 2FA.
-        *   `apps/meteor/app/2fa/server/totp.ts`: Logic for TOTP generation and validation.
-        *   `apps/meteor/app/2fa/server/recovery.ts`: Logic for recovery code generation and validation.
-        *   `apps/meteor/app/2fa/server/methods.ts`: Meteor methods related to 2FA operations (enabling, disabling, generating codes, etc.).
-    *   `apps/meteor/ee/app/2fa-email-otp/server/`: (Enterprise Edition) Logic for Email OTP.
-    *   `apps/meteor/ee/app/webauthn/server/`: (Enterprise Edition) Logic for WebAuthn.
-*   **Login Methods:**
-    *   `apps/meteor/server/methods/login.ts`: Contains `Meteor.methods` like `loginWithPassword`, which handle the initial authentication and then delegate 2FA checks.
-    *   `apps/meteor/server/methods/loginWithTotp.ts`: Handles the submission and validation of TOTP codes.
-    *   `apps/meteor/server/methods/loginWithEmailCode.ts`: Handles the submission and validation of Email OTP codes.
-    *   `apps/meteor/server/methods/loginWithWebauthn.ts`: Handles the submission and validation of WebAuthn assertions.
-    *   `apps/meteor/server/methods/loginWithRecoveryCode.ts`: Handles the submission and validation of recovery codes.
-*   **User Document Structure:**
-    *   `apps/meteor/app/lib/server/startup/createAdminUser.js` (example): Shows how user data is structured.
-    *   The `users` collection in MongoDB stores 2FA-related data within the `services` field:
-        *   `user.services.totp.enabled`: Boolean, indicates if TOTP is active.
-        *   `user.services.totp.secret`: Encrypted TOTP secret key.
-        *   `user.services.email2fa.enabled`: Boolean, indicates if Email OTP is active.
-        *   `user.services.twoFactor.enabled`: General flag indicating *any* 2FA is enabled.
-        *   `user.services.twoFactor.codes`: Array of hashed recovery codes.
-        *   `user.services.webauthn.credentials`: Array of WebAuthn credentials (public keys, IDs, etc.).
-*   **Server Hooks:**
-    *   `apps/meteor/server/startup/hooks.ts`: Contains `Meteor.startup` code that might register login hooks or other server-side initialization relevant to 2FA.
-
-## Conclusion
-
-Rocket.Chat's 2FA implementation is robust, leveraging server-side cryptographic operations for TOTP and recovery codes, integrating with email services for OTP, and utilizing the WebAuthn API for security keys. The system is designed to seamlessly guide users through the setup and login process, enhancing the overall security posture of the platform.
+This comprehensive approach ensures strong authentication by leveraging standard 2FA methods and providing robust recovery options.
 
 ## Metrics
 
 | Metric | Value |
 |--------|-------|
-| Tokens | 5,144 |
+| Tokens | 3,359 |
 | Model | gemini-2.5-flash |
 | Tools | NONE |

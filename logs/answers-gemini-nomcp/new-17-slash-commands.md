@@ -2,98 +2,115 @@
 
 ## Baseline Answer (no tools)
 
-Slash commands in Rocket.Chat provide a powerful way for users to interact with the system and installed apps by typing commands directly into the chat message input, prefixed with a slash (`/`). The process from registration to execution involves several key steps on the server-side.
+Slash commands in Rocket.Chat are a powerful mechanism for users to interact with the system or external services directly from the chat input. They follow a well-defined lifecycle from registration to execution, involving both server-side processing and client-side submission.
 
-Here's a breakdown:
+Let's break down how they work:
 
-## 1. Registration of Slash Commands
+### 1. Registration
 
-Slash commands need to be registered with the Rocket.Chat server so the system knows how to handle them. There are two primary ways commands are registered:
+Slash commands need to be registered with Rocket.Chat so the system knows what to do when a user types `/command`. There are three primary ways commands are registered:
 
-### a. Core (Built-in) Commands
+#### a) Built-in (Core) Commands
 
-Rocket.Chat ships with many built-in commands (e.g., `/help`, `/me`, `/msg`, `/invite`).
-*   **Definition:** These commands are defined in individual files under `app/slashcommands/server/commands/`.
-*   **Registration Logic:** Each command file typically imports the `SlashCommands` utility and calls its `register` method.
-    *   **File:** `app/slashcommands/server/lib/SlashCommands.ts` (manages all registered commands).
-    *   **Example (from `app/slashcommands/server/commands/MeCommand.ts`):**
-        ```typescript
-        import { SlashCommands } from '../lib/SlashCommands';
-        import { Meteor } from 'meteor/meteor';
+These are commands shipped with Rocket.Chat and are available by default.
 
-        SlashCommands.register({
-            command: 'me',
-            callback: async function meCommand(command, params, item) {
-                // ... command logic ...
-                const message = params.trim();
-                if (!message) {
-                    return; // No message provided, do nothing
-                }
-                Meteor.call('sendMessage', {
-                    _id: Random.id(), // Generate a unique ID for the message
-                    rid: item.rid,
-                    msg: `_${message}_`, // Format message as italic
-                    ts: new Date(),
-                    u: item.u,
-                    private: true, // This message should not be processed as a command again
-                });
-            },
-            options: {
-                description: 'Me_Description',
-                params: 'your_message',
-            },
+*   **Location:** They are typically defined in individual files within `app/slashcommands/server/commands/`.
+*   **Registration:** The main server-side entry point for built-in commands is `app/slashcommands/server/server.js`. This file iterates through the command definitions and registers them using `RocketChat.slashCommands.add()`.
+*   **Example (`/me` command):**
+    *   **Definition:** `app/slashcommands/server/commands/Me.js`
+        ```javascript
+        RocketChat.slashCommands.add('me', async function(command, param, item) {
+            // ... logic to send the message styled as an action ...
+            const user = await API.v1.users.info({ userId: Meteor.userId() });
+            const msg = `_${ param }_`;
+            await ChatMessage.sendMessage(user, { _id: Random.id(), rid: item.rid, msg });
+        }, {
+            description: 'Displays a message about what you\'re doing',
+            params: 'your_action',
         });
         ```
-    *   The `register` method takes an object with:
-        *   `command`: The string that triggers the command (e.g., `'me'`).
-        *   `callback`: The actual function to execute when the command is called.
-        *   `options`: An object for metadata like `description`, `params` (for UI help), `permission` (required role to execute).
+    *   This `RocketChat.slashCommands.add` function adds the command name (`'me'`), its callback function, and optional metadata (description, parameters) to an internal registry.
 
-### b. Apps-Engine Commands
+#### b) Custom Commands
 
-Commands provided by Rocket.Chat Apps (installed via the Marketplace) are registered through the Apps-Engine API.
-*   **App Definition:** An App defines its slash commands using the `ISlashCommand` interface and registers them during its initialization phase (e.g., in the `initialize` method of `RocketChatApp`).
-*   **Apps-Engine to Core:** The Apps-Engine internally handles the translation and registration of these commands with the core `SlashCommands` utility. It essentially calls `SlashCommands.register` on behalf of the App, but instead of a direct `callback`, it registers a special executor that points back to the App's runtime. This ensures that when the command is invoked, the execution is routed back to the correct App in its isolated environment.
+Administrators can define custom slash commands via the Rocket.Chat UI (Administration > Workspace > Custom Commands). These are typically used for simple text responses or triggering webhooks.
 
-## 2. Message Processing and Command Detection
+*   **Storage:** Custom commands are stored in the `rocketchat_custom_commands` MongoDB collection.
+*   **Loading:** On server startup, `app/custom-commands/server/server.js` listens for changes in this collection and registers/unregisters commands with `RocketChat.slashCommands.add()` or `RocketChat.slashCommands.remove()` accordingly.
+*   **Callback:** The callback for custom commands is generic and often involves sending a predefined message or making an HTTP POST request to a configured URL (webhook).
 
-When a user sends a message, it goes through a server-side pipeline:
+#### c) Apps-Engine Commands
 
-*   **Entry Point:** The primary function responsible for processing incoming messages is `sendMessage` on the server.
-    *   **File:** `app/lib/server/functions/sendMessage.ts`
-*   **Slash Command Check:** Inside `sendMessage`, one of the first checks performed is whether the message `msg` starts with a `/`.
-    *   If `msg.startsWith('/')` is true, the message is then passed to the `SlashCommands.run()` function.
-    *   **File:** `app/slashcommands/server/lib/SlashCommands.ts`
-*   Crucially, if `SlashCommands.run()` successfully identifies and executes a command, the original message text (`/command params`) is typically *not* displayed in the chat. The command's output (e.g., a new message, a system notification) is shown instead.
+Rocket.Chat Apps can register their own slash commands, allowing for more complex integrations and dynamic behavior.
 
-## 3. Command Execution
+*   **Interface:** Apps define slash commands by implementing the `ISlashCommand` interface and registering them via the `IAppAccessors.slashCommands.registerCommand()` method during the app's initialization (`initialize` or `onEnable`).
+*   **Runtime:** The Apps-Engine runtime (`app/apps/server/lib/RuntimeContext.js`) manages these commands. The `AppSlashCommandManager` (`app/apps/server/managers/AppSlashCommandManager.js`) handles their registration with Rocket.Chat's internal slash command registry.
+*   **Execution:** When an Apps-Engine command is executed, the Apps-Engine isolates the execution context, allowing apps to perform complex logic, interact with external APIs, create modals, or send multiple messages.
 
-The `SlashCommands.run()` function is the heart of the execution process:
+### 2. Execution Flow
 
-*   **File:** `app/slashcommands/server/lib/SlashCommands.ts`
-*   **Parsing:** `SlashCommands.run()` first extracts the command name (the word immediately after the `/`) and any parameters that follow.
-*   **Lookup:** It then looks up the extracted command name in its internal registry (the `commands` map populated during registration).
-*   **Permission Check:** If the registered command has a `permission` option, `SlashCommands.run()` verifies if the sending user has the necessary role/permission in the current room. If not, the command execution is aborted, and a permission error message might be sent back to the user.
-*   **Dispatch:**
-    *   **Core Commands:** If it's a core command, `SlashCommands.run()` directly invokes the `callback` function registered for that command. It passes arguments like:
-        *   `command`: The command string itself (e.g., 'me').
-        *   `params`: The string of parameters that followed the command.
-        *   `item`: The original message object (`IMessage`).
-        *   `room`: The `IRoom` object where the command was sent.
-        *   `user`: The `IUser` object of the sender.
-    *   **Apps-Engine Commands:** If it's an App-provided command, `SlashCommands.run()` calls the special `executor` function that was registered by the Apps-Engine. This executor then communicates with the Apps-Engine runtime, which dispatches the execution to the corresponding App's `executeCommand` method, ensuring the App's logic runs in its sandboxed environment.
-*   **Post-Execution:** The callback or executor function performs the intended action of the command. This could involve:
-    *   Calling `Meteor.call('sendMessage', ...)` to send new messages to the chat (e.g., `/giphy` or `/me`).
-    *   Updating room settings or user preferences.
-    *   Interacting with external APIs.
-    *   Returning an error message if the command was used incorrectly.
+The execution of a slash command follows these steps:
 
-In essence, slash commands provide an extensible server-side mechanism that intercepts user messages, parses them, performs permission checks, and then dispatches their execution to either built-in handlers or external App integrations.
+#### a) Client-side Submission
+
+1.  **Typing:** A user types a message starting with `/` (e.g., `/giphy funny cat`) into the message input field.
+2.  **Sending:** When the user presses Enter or clicks Send, the client-side `sendMessage` logic (found in `client/lib/chat.js` or similar messaging components) prepares the message object.
+3.  **Method Call:** The client then invokes the `Meteor.call('sendMessage', message)` method on the server.
+
+#### b) Server-side Message Processing
+
+1.  **`sendMessage` Method:** The `Meteor.methods.sendMessage` handler (`app/lib/server/methods/sendMessage.js`) on the server receives the message.
+2.  **Callback Chain:** Before the message is actually saved to the database or broadcasted, Rocket.Chat runs a series of callbacks. The most critical one for slash commands is `beforeSaveMessage`.
+    *   This callback chain is managed by `app/lib/server/lib/callbacks.js`.
+    *   The `RocketChat.callbacks.run('beforeSaveMessage', message)` is executed.
+3.  **Slash Command Recognition:** One of the functions hooked into `beforeSaveMessage` is `RocketChat.slashCommands.run(message)`. This is the core logic for identifying and executing slash commands:
+    *   **Check Prefix:** It first checks if the `message.msg` starts with `/`.
+    *   **Parse Command:** It then parses the message to extract the command name (e.g., `giphy` from `/giphy`) and any parameters (e.g., `funny cat`).
+    *   **Lookup:** It looks up the extracted command name in its global registry of all registered slash commands (built-in, custom, and Apps-Engine).
+    *   **Execute Callback:** If a matching command is found, `RocketChat.slashCommands.run` calls the associated callback function.
+    *   **Return Value:** The callback function can:
+        *   Perform its action and return `false`, indicating that the original message should *not* be saved or displayed (e.g., `/me` command, which sends a new styled message instead of the original raw `/me` message).
+        *   Perform its action and return the modified `message` object, allowing it to proceed through the normal message saving process.
+
+#### c) Command Execution
+
+The command's callback function (whether it's for a built-in, custom, or Apps-Engine command) then performs its specific logic:
+
+*   **Built-in:**
+    *   `/me`: Sends a new message in the "action" style.
+    *   `/topic`: Updates the room's topic.
+    *   `/mute`, `/kick`: Perform moderation actions.
+*   **Custom:**
+    *   Sends a predefined message to the chat.
+    *   Makes an HTTP POST request to a specified webhook URL, potentially receiving a response to be displayed in chat.
+*   **Apps-Engine:**
+    *   Executes the app's defined logic within an isolated runtime context.
+    *   Can interact with other Rocket.Chat APIs (send messages, update user info, create modals).
+    *   Can make external API calls.
+
+### Key Components and File Paths:
+
+*   **Slash Command Registry & Runner:**
+    *   `app/slashcommands/server/server.js`: Main server-side logic for `RocketChat.slashCommands.add`, `run`, etc.
+*   **Built-in Command Definitions:**
+    *   `app/slashcommands/server/commands/*.js`: Individual command implementations (e.g., `Me.js`, `Topic.js`).
+*   **Custom Commands (Admin UI):**
+    *   `app/custom-commands/server/server.js`: Server-side logic for loading and managing custom commands from the database.
+    *   `app/custom-commands/server/methods/updateCustomCommand.js`: Method for saving custom commands via the UI.
+*   **Apps-Engine Commands:**
+    *   `app/apps/server/lib/RuntimeContext.js`: Where App commands are registered with the system.
+    *   `app/apps/server/managers/AppSlashCommandManager.js`: Manages the lifecycle of App slash commands.
+*   **Message Processing Entry Point:**
+    *   `app/lib/server/methods/sendMessage.js`: The server-side method that receives messages from the client.
+*   **Callback System:**
+    *   `app/lib/server/lib/callbacks.js`: Manages the `beforeSaveMessage` and other message-processing callbacks.
+
+In summary, Rocket.Chat's slash command system is a well-integrated feature that leverages a robust server-side registry and callback mechanism to provide extensible and dynamic chat interactions.
 
 ## Metrics
 
 | Metric | Value |
 |--------|-------|
-| Tokens | 3,029 |
+| Tokens | 3,502 |
 | Model | gemini-2.5-flash |
 | Tools | NONE |

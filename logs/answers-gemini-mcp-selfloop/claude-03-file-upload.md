@@ -2,35 +2,51 @@
 
 ## Gemini Answer
 
-The file upload storage workflow in Rocket.Chat involves a two-step REST API process on the server, handled by the `FileUpload` class in `apps/meteor/app/file-upload/server/lib/FileUpload.ts`.
-
-Here's the breakdown of the workflow:
-
-1.  **Client-side upload:** The client initiates the file upload through the `uploadFiles()` function, which manages the file selection and UI aspects.
-2.  **Server-side REST API:**
-    *   **Step 1: Upload to storage:** A `POST` request is sent to `rooms.media/:rid`. This endpoint handles the actual file upload to the configured storage backend.
-    *   **Step 2: Confirm upload and create message:** After the file is uploaded, a `POST` request to `rooms.mediaConfirm/:rid/:fileId` is made. This confirms the upload and creates a chat message with the uploaded file as an attachment.
-3.  **File Processing and Storage:**
-    *   The `FileUploadClass` (defined in `apps/meteor/app/file-upload/server/lib/FileUpload.ts`) is responsible for processing the uploaded files.
-    *   Rocket.Chat supports pluggable storage backends, including:
-        *   GridFS (default)
-        *   Amazon S3
-        *   WebDAV
-        *   Local FileSystem
-    *   File metadata is stored in the `Uploads` collection.
-    *   Finally, the `sendFileMessage()` function creates the chat message and includes a reference to the stored attachment.
+The file upload workflow in Rocket.Chat, specifically on the server-side, follows these steps:
 
 **Call Chain:**
 
-Entry (Client) → `uploadFiles()` → `POST rooms.media/:rid` → `FileUploadClass.insert()` (in `apps/meteor/app/file-upload/server/lib/FileUpload.ts`) → Configured Storage Backend (GridFS, S3, etc.) → `POST rooms.mediaConfirm/:rid/:fileId` → `sendFileMessage()` → Final Message with Attachment.
+1.  **Client-side upload initiation:** The client-side handles the selection and initial upload UI, likely involving a function like `useFileUpload` in `apps/meteor/client/views/room/body/hooks/useFileUpload.ts` or `FileUploadModal` in `apps/meteor/client/views/room/modals/FileUploadModal/FileUploadModal.tsx`.
+2.  **REST API Endpoints:** The server-side receives the file via a two-step REST flow:
+    *   `POST rooms.media/:rid`: This endpoint is responsible for uploading the file to storage.
+    *   `POST rooms.mediaConfirm/:rid/:fileId`: This endpoint confirms the upload and creates a message with the attachment.
+3.  **`uploadFile` function:** The `uploadFile` function, located in `apps/meteor/server/services/upload/service.ts`, is a key entry point for handling file uploads on the server.
+4.  **`FileUploadClass.insert`:** When a file is uploaded, the `insert` method of the `FileUploadClass` (defined in `apps/meteor/app/file-upload/server/lib/FileUpload.ts`) is called. This method first calls `_validateFile` to ensure the file meets the defined criteria.
+5.  **`FileUploadClass._doInsert`:** After validation, `insert` calls `_doInsert` in the same class (`apps/meteor/app/file-upload/server/lib/FileUpload.ts`).
+    *   `_doInsert` first calls `this.store.create` to create an entry for the file in the underlying storage system (e.g., GridFS, S3, WebDAV, or FileSystem).
+    *   It then obtains a temporary file path using `UploadFS.getTempFilePath(fileId)`.
+    *   The file content (which can be a string, Buffer, or Readable stream) is written to this temporary file using Node.js `fs.promises.rename`, `fs.promises.writeFile`, or `content.pipe(fs.createWriteStream(tmpFile))`.
+    *   Finally, it calls `ufsComplete(fileId, this.name)` to finalize the upload process.
 
-## Tool Calls (8 calls, 30,868 tokens)
+**Key Files and their Roles:**
 
-**Step 1:** `search({"query":"file upload","layer":"server"})` → 447 tokens
-**Step 2:** `graph({"file":"apps/meteor/app/file-upload/server/lib/FileUpload.ts","query":"FileUpload","layer":"server")` → 461 tokens
-**Step 3:** `search({"query":"rooms.media","layer":"server"})` → 65 tokens
-**Step 4:** `graph({"direction":"down","file":"apps/meteor/app/api/server/v1/rooms.ts","layer":"server","query":"rooms.)` → 13 tokens
-**Step 5:** `implement({"symbolName":"rooms.ts","filename":"apps/meteor/app/api/server/v1/rooms.ts"})` → 44 tokens
-**Step 6:** `search({"query":"'rooms.media/:rid'","layer":"server"})` → 70 tokens
-**Step 7:** `implement({"filename":"apps/meteor/app/file-upload/server/lib/FileUpload.ts","symbolName":"FileUploadClass"})` → 419 tokens
-**Step 8:** `graph({"direction":"down","file":"apps/meteor/app/file-upload/server/lib/FileUpload.ts","layer":"server",")` → 15 tokens
+*   `apps/meteor/client/views/room/body/hooks/useFileUpload.ts`: Handles client-side file upload logic.
+*   `apps/meteor/client/views/room/modals/FileUploadModal/FileUploadModal.tsx`: Provides the UI for file uploads.
+*   `apps/meteor/server/services/upload/service.ts`: Contains the `uploadFile` function, a server-side entry point for file uploads.
+*   `apps/meteor/app/file-upload/server/lib/FileUpload.ts`: Defines the `FileUploadClass`, which is central to the server-side file processing, including `insert` and `_doInsert` methods. It also orchestrates interaction with the configured storage backend.
+*   `packages/livechat/src/routes/Chat/container.js`: Contains `doFileUpload`, likely for Livechat specific file uploads.
+*   `apps/meteor/app/smarsh-connector/server/functions/generateEml.ts`: May handle attachments that are not direct file uploads.
+*   `apps/meteor/app/api/server/lib/MultipartUploadHandler.ts`: Handles multipart form data uploads.
+*   `apps/meteor/app/api/server/lib/getUploadFormData.ts`: Retrieves upload form data.
+*   `apps/meteor/app/utils/server/restrictions.ts`: Contains functions like `fileUploadIsValidContentType` for validating file types.
+*   `apps/meteor/app/importer/server/classes/Importer.ts`: Contains `startFileUpload`, likely for handling file uploads during data import.
+*   `apps/meteor/server/lib/dataExport/copyFileUpload.ts`: Handles copying file uploads for data export.
+*   `packages/apps-engine/src/definition/uploads/IPreFileUpload.ts`: Defines an interface for pre-file upload hooks.
+*   `apps/meteor/server/services/upload/service.ts`: Contains `uploadFile` and interacts with the storage mechanisms.
+
+**Storage:**
+
+Rocket.Chat supports pluggable storage backends, with **GridFS** being the default. Other supported options include **S3, WebDAV, and FileSystem**. File metadata is stored in the **Uploads collection**.
+
+After a successful upload, `sendFileMessage()` is responsible for creating the chat message that includes a reference to the uploaded attachment.
+
+## Tool Calls (8 calls, 57,750 tokens)
+
+**Step 1:** `search({"query":"file upload","layer":"server"})` → 530 tokens
+**Step 2:** `graph({"query":"FileUploadClass","direction":"down","layer":"server","file":"apps/meteor/app/file-upload/s)` → 163 tokens
+**Step 3:** `graph({"file":"apps/meteor/server/services/upload/service.ts","direction":"down","query":"uploadFile","lay)` → 2615 tokens
+**Step 4:** `implement({"filename":"apps/meteor/app/file-upload/server/lib/FileUpload.ts","symbolName":"FileUpload.server.l)` → 54 tokens
+**Step 5:** `implement({"filename":"apps/meteor/app/file-upload/server/lib/FileUpload.ts","symbolName":"_doInsert"})` → 58 tokens
+**Step 6:** `implement({"filename":"apps/meteor/app/file-upload/server/lib/FileUpload.ts","symbolName":"FileUploadClass"})` → 419 tokens
+**Step 7:** `implement({"filename":"apps/meteor/app/file-upload/server/lib/FileUpload.ts","symbolName":"FileUploadClass.ins)` → 124 tokens
+**Step 8:** `implement({"filename":"apps/meteor/app/file-upload/server/lib/FileUpload.ts","symbolName":"FileUploadClass._do)` → 249 tokens

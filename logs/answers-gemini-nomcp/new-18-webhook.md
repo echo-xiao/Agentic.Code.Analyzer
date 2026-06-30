@@ -2,120 +2,120 @@
 
 ## Baseline Answer (no tools)
 
-Processing an incoming webhook in Rocket.Chat involves several steps, from the initial HTTP request to the final message delivery. The core logic for handling incoming webhooks resides primarily in the `server/lib/webhooks.js` file, with the route definition in `server/startup/integrations.js`.
+Processing an incoming webhook in Rocket.Chat involves several steps, from receiving the HTTP request to transforming the payload and finally inserting the message into a room.
 
-Here's a detailed breakdown of how an incoming webhook is processed:
+Here's a detailed breakdown of the process:
 
-### 1. HTTP Request Arrival and Route Matching
+1.  **HTTP Endpoint Reception:**
+    *   All incoming webhook requests hit a specific API endpoint. This endpoint is typically handled by the `integrations` module.
+    *   The core route is defined in `server/api/v1/integrations.js`.
+    *   Specifically, the `POST /api/v1/integrations.incoming/:_id` route is responsible for receiving the webhook payload. The `_id` in the URL identifies the specific incoming integration configured by the user.
+    *   The `authRequired: false` setting for this route means that no user authentication is required, as the `_id` (token) itself serves as the authentication mechanism.
 
-*   **Endpoint:** The webhook request targets a specific URL pattern, typically `/api/v1/webhooks/:webhookId`. The `:webhookId` is a unique token generated when the incoming webhook is created in Rocket.Chat.
-*   **Method:** Most incoming webhooks are `POST` requests, but some integrations might also use `GET`.
-*   **Route Definition:** The HTTP route handler is set up during Rocket.Chat's startup phase.
-    *   **File:** `server/startup/integrations.js`
-    *   **Code Snippet (Conceptual):**
-        ```javascript
-        import { WebApp } from 'meteor/webapp';
-        import { processWebhook } from '../lib/webhooks'; // Simplified import path
+    ```javascript
+    // server/api/v1/integrations.js
+    API.v1.addRoute('integrations.incoming/:_id', { authRequired: false }, {
+        post() {
+            const { _id } = this.urlParams;
+            const data = this.request.body;
+            const query = this.request.query; // Query parameters might be used by some integrations
 
-        WebApp.connectHandlers.use('/api/v1/webhooks/', async (req, res, next) => {
-            if (req.url.indexOf('/api/v1/webhooks/') === 0) {
-                // Extract webhookId from the URL (e.g., /api/v1/webhooks/your-secret-id)
-                const webhookId = req.url.split('/api/v1/webhooks/')[1]?.split('?')[0];
-
-                if (webhookId) {
-                    try {
-                        await processWebhook(webhookId, req, res);
-                    } catch (e) {
-                        // Handle errors
-                        res.writeHead(500);
-                        res.end(JSON.stringify({ success: false, error: e.message }));
-                    }
-                    return;
-                }
+            // ... further processing ...
+            const integration = Integrations.model.findOne({ _id, type: 'webhook-incoming', enabled: true });
+            if (!integration) {
+                return API.v1.failure('Integration not found or disabled.');
             }
-            next(); // Pass to the next handler if not a webhook
+
+            // Calls the Integrations service to process the webhook
+            const result = Integrations.processWebhook({ integration, data, query, request: this.request });
+
+            if (result.error) {
+                return API.v1.failure(result.error);
+            }
+
+            return API.v1.success(result.data);
+        },
+    });
+    ```
+
+2.  **Integration Lookup and Validation:**
+    *   Upon receiving a request, the system uses the `_id` from the URL to look up the corresponding incoming integration record in the `integrations` collection (`rocketchat_integrations` in MongoDB).
+    *   It verifies that the integration exists, is of type `webhook-incoming`, and is `enabled`. If not, an error is returned.
+
+    ```javascript
+    // app/integrations/server/lib/Integrations.js (Simplified)
+    Integrations.processWebhook = function ({ integration, data, query, request }) {
+        // ... (fetches integration record as seen above in API route)
+        return Integrations.processIncomingWebhook({ integration, request: { body: data, query, headers: request.headers } });
+    };
+    ```
+
+3.  **Script Identification and Loading:**
+    *   The `Integrations.processIncomingWebhook` function (located in `app/integrations/server/lib/Integrations.js`) is central.
+    *   It determines *how* to parse and transform the incoming payload. There are two main approaches:
+        *   **Custom Script:** If the integration has a `scriptEnabled` flag set to `true` and a `script` defined, Rocket.Chat will use this custom JavaScript code provided by the user.
+        *   **Predefined Script:** If no custom script is enabled, Rocket.Chat tries to infer the webhook type (e.g., `github`, `gitlab`, `slack`, `zapier`) based on the integration's `triggerWords`, URL parameters, or by examining the payload structure. It then loads a corresponding predefined script from `app/integrations/server/lib/incoming/`. For example:
+            *   `app/integrations/server/lib/incoming/slack.js`
+            *   `app/integrations/server/lib/incoming/github.js`
+            *   `app/integrations/server/lib/incoming/gitlab.js`
+            *   `app/integrations/server/lib/incoming/zapier.js`
+
+4.  **Script Execution (Payload Transformation):**
+    *   The identified (custom or predefined) script is executed in a secure sandboxed environment using Node.js's `vm` module. This prevents malicious scripts from accessing sensitive server resources.
+    *   The script receives the incoming `request` object (containing `body`, `headers`, `query`) and is expected to return an object (or an array of objects) conforming to Rocket.Chat's internal message format.
+    *   Helper functions and modules are made available to the script, such as `console.log`, `_` (lodash), `s` (underscore.string), `CryptoJS`, `HTTP` (for making outgoing requests), and the `Integrations` object itself (for more advanced operations like finding a user or room).
+
+    ```javascript
+    // app/integrations/server/lib/Integrations.js
+    Integrations.runIncomingWebhookScript = function ({ script, request, integration }) {
+        // ... sets up vm sandbox context with request, console, _, s, CryptoJS, HTTP, etc.
+        const sandbox = {
+            _, s, CryptoJS, HTTP, console,
+            request: deepClone(request), // Deep clone to prevent script from modifying original request
+            integration: deepClone(integration),
+            // ... other helpers
+            // A special 'send' function is exposed if the script wants to manually send messages
+            // rather than returning them.
+            send(message) { /* ... calls Integrations.processMessage ... */ },
+        };
+
+        const vmContext = vm.createContext(sandbox);
+        // Executes the script within the sandbox
+        const scriptResult = vm.runInContext(script, vmContext, {
+            timeout: process.env.NODE_ENV === 'development' ? 0 : 10000, // 10s timeout
+            filename: `${ integration._id }.js`,
+            displayErrors: true,
         });
-        ```
-    *   The `WebApp.connectHandlers.use` middleware intercepts requests to `/api/v1/webhooks/`.
 
-### 2. Webhook ID Extraction and Configuration Retrieval
+        // The scriptResult is expected to be a message object or an array of message objects
+        // or undefined if the script handled sending messages itself via 'send'
+        return scriptResult;
+    };
+    ```
 
-*   The `webhookId` is extracted from the URL path.
-*   **Database Lookup:** Using this `webhookId`, Rocket.Chat fetches the corresponding incoming webhook configuration from the database.
-    *   **Collection:** `rocketchat_integration` (accessible via `RocketChat.models.Integrations`).
-    *   **File:** This lookup happens within the `processWebhook` function (or similar) in `server/lib/webhooks.js`.
-    *   **Data Retrieved:** This includes the webhook's `username`, default `channel`, `script` (if any), `enabled` status, `token`, etc.
+5.  **Message Object Creation and Normalization:**
+    *   The `Integrations.runIncomingWebhookScript` returns a message object (or an array of messages) that the `Integrations.processIncomingWebhook` function then processes.
+    *   This resulting object is passed to `Integrations.processMessage` (also in `app/integrations/server/lib/Integrations.js`).
+    *   `Integrations.processMessage` performs several crucial steps:
+        *   **User Resolution:** It identifies the `bot` user associated with the integration. If `integration.username` is set, it uses that; otherwise, it defaults to `rocket.cat` or another configured bot user. It ensures the message is sent by an existing, valid user.
+        *   **Room Resolution:** It determines the target room(s) based on the script's output (`channel` property), `integration.channel` settings, or default room configurations. It can handle multiple target rooms.
+        *   **Message Formatting:** It ensures the message conforms to Rocket.Chat's internal message schema, populating fields like `msg`, `alias`, `emoji`, `attachments`, `parseUrls`, `mentions`, `groupable`, `ts`, `_updatedAt`, etc.
+        *   **Mentions/Channel Linking:** It processes any `@mentions` or `#channel` links within the message text.
+        *   **Persistence:** It prepares the message to be saved to the `rocketchat_message` collection.
 
-### 3. Validation and Request Parsing
+6.  **Message Saving and Real-time Delivery:**
+    *   Finally, `Integrations.processMessage` calls `RocketChat.sendMessage` (defined in `server/lib/sendMessages.js`).
+    *   `RocketChat.sendMessage` is the standard method for sending messages in Rocket.Chat. It handles:
+        *   Saving the message to the `rocketchat_message` MongoDB collection.
+        *   Triggering relevant hooks (`beforeSaveMessage`, `afterSaveMessage`, `afterSaveMessagePopulate`).
+        *   Publishing the new message via DDP (Distributed Data Protocol) to all connected clients that are subscribed to the target room. This ensures that the message appears in real-time in web, desktop, and mobile applications.
 
-*   **Validation:**
-    *   Checks if the webhook exists and is enabled.
-    *   Validates the request method if necessary.
-*   **Request Body Parsing:** The incoming HTTP request body is parsed. Rocket.Chat's webhook handler attempts to parse it based on the `Content-Type` header:
-    *   `application/json`: Parses as JSON.
-    *   `application/x-www-form-urlencoded`: Parses as form data.
-    *   Plain text: Treated as a string.
-*   **File:** `server/lib/webhooks.js`
-
-### 4. Custom Script Execution (If Defined)
-
-This is the most powerful part of incoming webhooks.
-
-*   **Sandbox Environment:** If the retrieved webhook configuration includes a `script`, Rocket.Chat executes this script within a secure Node.js `vm` (Virtual Machine) sandbox. This isolates the script from the main application process for security.
-*   **Context for the Script:** The script is provided with an execution context that includes:
-    *   `request`: An object containing `url`, `method`, `headers`, `query` parameters, and the parsed `body` of the incoming HTTP request.
-    *   `settings`: An object containing relevant Rocket.Chat server settings.
-    *   `_`: The Lodash utility library.
-    *   `IncomingWebhook`: An object providing helper functions for the script, such as `IncomingWebhook.generateMessage(messagePayload)` to easily format messages.
-*   **Script's Role:** The custom script's responsibility is to process the incoming `request.body` and return an object (or an array of objects) that conforms to Rocket.Chat's internal message structure (similar to the Slack-compatible webhook payload).
-    *   The script can modify the `username`, `channel`, `text`, `attachments`, `emoji`, etc., based on the incoming data.
-    *   If the script returns `null` or `undefined`, no message will be sent.
-*   **File:** `server/lib/webhooks.js` contains the logic for creating the sandbox and executing the script.
-
-### 5. Default Payload Processing (If No Script)
-
-*   If no custom `script` is defined for the webhook, Rocket.Chat attempts to interpret the incoming payload directly. It expects a payload that is compatible with common webhook formats (e.g., Slack-compatible webhooks).
-*   It looks for fields like `text`, `attachments`, `username`, `icon_emoji`, `avatar_url`, `channel`, etc., in the parsed `request.body`.
-*   **File:** `server/lib/webhooks.js` contains this default mapping logic.
-
-### 6. Message Construction
-
-*   Based on either the output of the custom script or the default payload processing, Rocket.Chat constructs one or more internal message objects.
-*   The `username` and `channel` (or direct message recipient) specified in the webhook configuration act as defaults, which can be overridden by the script's output or the payload itself.
-*   The actual sender of the message in Rocket.Chat's system will be an internal "integration" user associated with the webhook, but the message will appear to come from the configured `username`.
-
-### 7. Message Sending
-
-*   The constructed message object(s) are then passed to Rocket.Chat's core message sending function.
-*   **File:** `app/lib/server/functions/sendMessage.js`
-*   **Function:** `RocketChat.sendMessage(user, message, room)`
-*   This function handles:
-    *   Storing the message in the `rocketchat_message` collection.
-    *   Broadcasting the message via DDP to all connected clients in the target room/channel.
-    *   Triggering server-side hooks (e.g., `afterSendMessage`, `beforeSaveMessage`).
-    *   Processing mentions, link previews, and other message enrichments.
-
-### 8. Response to Sender
-
-*   After processing the webhook and sending the message(s), Rocket.Chat sends an HTTP response back to the client that initiated the webhook.
-*   Typically, a `200 OK` status with a success message is returned. If an error occurs during processing (e.g., webhook not found, script error), an appropriate `4xx` or `5xx` status with an error message is returned.
-*   **File:** `server/lib/webhooks.js` handles sending the `res.writeHead()` and `res.end()`.
-
----
-
-**Key Files Involved:**
-
-*   `server/startup/integrations.js`: Sets up the HTTP route for incoming webhooks.
-*   `server/lib/webhooks.js`: Contains the core logic for parsing requests, retrieving webhook configurations, executing custom scripts, and constructing/sending messages.
-*   `app/lib/server/functions/sendMessage.js`: The central function for persisting and broadcasting messages within Rocket.Chat.
-*   `app/models/server/raw/Integrations.js`: The model for interacting with the `rocketchat_integration` collection to fetch webhook configurations.
-
-This architecture allows for both simple, configuration-driven webhooks and highly customized, script-driven integrations, providing great flexibility for connecting Rocket.Chat with external services.
+In essence, an incoming webhook is a highly configurable mechanism that allows external services to inject data into Rocket.Chat rooms by hitting a specific, token-authenticated endpoint. The core logic revolves around dynamically executing a JavaScript script (either user-defined or predefined) to transform the external service's payload into Rocket.Chat's native message format, which is then processed and delivered like any other message.
 
 ## Metrics
 
 | Metric | Value |
 |--------|-------|
-| Tokens | 3,795 |
+| Tokens | 3,693 |
 | Model | gemini-2.5-flash |
 | Tools | NONE |
