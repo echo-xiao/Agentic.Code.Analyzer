@@ -7,7 +7,7 @@ import { preWarmCache, initializeGlobalIndex, LocalDatabase } from '../indexer/i
 import { handleToolCall } from '../server/registry.js';
 import { CodeRetriever } from '../server/retriever.js';
 import { GLOBAL_INDEX } from '../indexer/state.js';
-import { loadTestcases, type TestCase } from './load-testcases.js';
+import { loadTestcases, type TestCase } from './utils/load-testcases.js';
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 
@@ -447,7 +447,7 @@ async function main() {
 
     console.error(`Index ready: ${GLOBAL_INDEX.symbols.size} symbols, ${GLOBAL_INDEX.allFiles.size} files.\n`);
 
-    const { flat: testcases } = loadTestcases(path.join(__dirname, 'testcases.json'));
+    const { flat: testcases } = loadTestcases(path.join(__dirname, 'utils', 'testcases.json'));
 
     const filter = process.argv.find(a => a.startsWith('--filter='));
     const filterVal = filter?.split('=')[1]?.toLowerCase();
@@ -469,7 +469,7 @@ async function main() {
 
     const logsDir = path.join(__dirname, '..', '..', 'logs');
     fs.mkdirSync(logsDir, { recursive: true });
-    const reportPath = path.join(logsDir, 'layer1-tool-eval.md');
+    const reportPath = path.join(logsDir, 'eval-2-mcp-tools.md');
     fs.writeFileSync(reportPath, report, 'utf-8');
 
     console.error(`\nReport: ${reportPath}`);
