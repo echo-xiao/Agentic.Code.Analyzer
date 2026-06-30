@@ -2,41 +2,33 @@
 
 ## Gemini Answer
 
-    *   **Role:** As shown in the implementation, `hasModule` simply checks if the provided `module` is present in the `modules` set managed by the `LicenseManager`. If the module is in the set, the feature is considered enabled.
+Enterprise feature gating in Rocket.Chat works through a system that validates the active license and then checks for the availability of specific modules (features) across the codebase.
 
-3.  **Enterprise Feature Checkpoints (Examples of where `hasModule` is called):**
-    *   **File:** `ee/packages/omni-core-ee/src/isDepartmentCreationAvailable.ts`
-        *   **Symbol:** `isDepartmentCreationAvailablePatch`
-    *   **File:** `ee/packages/omni-core-ee/src/patches/applyDepartmentRestrictions.ts`
-        *   **Symbol:** `applyDepartmentRestrictionsPatch`
-    *   **File:** `ee/packages/federation-matrix/src/api/middlewares/isLicenseEnabled.ts`
-        *   **Symbol:** `isLicenseEnabledMiddleware`
-    *   **File:** `apps/meteor/ee/server/methods/getReadReceipts.ts`
-        *   **Symbol:** `getReadReceiptsFunction`
-    *   **File:** `apps/meteor/ee/server/lib/ldap/Manager.ts`
-        *   **Symbols:** `syncAbacAttributes`, `syncUsersAbacAttributes`
-    *   **Role:** Various parts of the codebase implement checks using `hasModule()` to conditionally enable or disable specific functionalities based on the active license.
+The general architecture involves:
+1.  **LicenseManager**: This component is responsible for validating the enterprise license.
+2.  **LicenseImp**: This likely handles the underlying implementation details of the license management.
+3.  **`hasModule()` checks**: Throughout the Rocket.Chat codebase, especially in enterprise-specific files, functions like `hasModule()` are used to determine if a particular enterprise feature is enabled by the current license. If the feature is not available, actions tied to that feature are restricted.
+4.  **Event Listeners**: License changes are handled by emitting events, which are then listened to by `onValidateLicense` listeners. This ensures that the system reacts to license updates and adjusts feature availability accordingly.
 
-**Flow:**
-When an enterprise feature is about to be used, the relevant code calls `hasModule()` with the specific module name required for that feature. The `hasModule()` function, which is associated with the `LicenseManager`, then checks its internal list of enabled modules. If the required module is present, the feature proceeds; otherwise, it is gated (e.g., by throwing an error or preventing access). Changes to the license status trigger `onValidateLicense` listeners, which update the `LicenseManager` and, consequently, the set of enabled modules, allowing for dynamic feature activation/deactivation.
+When an enterprise feature is accessed without a valid license or if the license does not include that specific module, an error such as `"This is an enterprise feature"` is thrown.
 
-## Tool Calls (8 calls, 26,256 tokens)
+Key files and directories involved in this process include:
+*   `ee/packages/license/`: This directory likely contains the core logic for license management, including `LicenseManager` and `LicenseImp`.
+*   `apps/meteor/ee/server/api/roles.ts`: Throws an error if an enterprise role action is attempted without a valid license.
+*   `apps/meteor/ee/app/api-enterprise/server/middlewares/license.ts`: Contains middleware that likely intercepts API calls to check for enterprise features.
+*   `apps/meteor/ee/server/methods/getReadReceipts.ts`: Throws an error if read receipts, an enterprise feature, are accessed without the necessary license.
+*   `apps/meteor/ee/server/api/chat.ts`: Also contains checks for enterprise features related to chat functionalities.
 
-**Step 1:** `search({"query":"enterprise feature","layer":"server"})` → 203 tokens
-**Step 2:** `graph({"layer":"server","query":"apps/meteor/ee/app/api-enterprise/server/middlewares/license.ts","directi)` → 26 tokens
-**Step 3:** `search({"layer":"server","query":"license"})` → 513 tokens
-**Step 4:** `graph({"direction":"down","layer":"ee","query":"LicenseManager"})` → 119 tokens
-**Step 5:** `search({"layer":"ee","query":"hasModule"})` → 163 tokens
-**Step 6:** `graph({"query":"hasModule","direction":"up","layer":"ee"})` → 646 tokens
-**Step 7:** `implement({"symbolName":"hasModule","filename":"ee/packages/license/src/modules.ts"})` → 69 tokens
-**Step 8:** `implement({"symbolName":"hasModule","filename":"ee/packages/license/src/modules.ts"})` → 69 tokens
+**Call Chain:**
+`LicenseManager` (in `ee/packages/license/`) → `LicenseImp` (in `ee/packages/license/`) → `hasModule()` checks (various files like `apps/meteor/ee/server/api/roles.ts`, `apps/meteor/ee/app/api-enterprise/server/middlewares/license.ts`, etc.) → Restriction/Error (`Meteor.Error('error-action-not-allowed', 'This is an enterprise feature')`).
 
-## Metrics
+## Tool Calls (8 calls, 23,456 tokens)
 
-| Metric | Value |
-|--------|-------|
-| Files hit | 0/6 |
-| Symbols hit | 4/5 |
-| Tool calls | 8 |
-| Total tokens | 26,256 |
-| Pass | NO |
+**Step 1:** `search({"layer":"server","query":"enterprise feature gating"})` → 17 tokens
+**Step 2:** `search({"query":"enterprise feature","layer":"server"})` → 203 tokens
+**Step 3:** `graph({"query":"license.ts","file":"apps/meteor/ee/app/api-enterprise/server/middlewares/license.ts","laye)` → 12 tokens
+**Step 4:** `implement({"filename":"apps/meteor/ee/app/api-enterprise/server/middlewares/license.ts","symbolName":"license.)` → 57 tokens
+**Step 5:** `implement({"symbolName":"default","filename":"apps/meteor/ee/app/api-enterprise/server/middlewares/license.ts")` → 15 tokens
+**Step 6:** `search({"query":"apps/meteor/ee/app/api-enterprise/server/middlewares/license.ts"})` → 85 tokens
+**Step 7:** `search({"layer":"server","query":"license"})` → 513 tokens
+**Step 8:** `graph({"query":"LicenseManager","layer":"packages","file":"ee/packages/license/LicenseManager.ts","directi)` → 119 tokens

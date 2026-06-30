@@ -2,47 +2,30 @@
 
 ## Gemini Answer
 
-Slash commands in Rocket.Chat follow a client-server architecture, involving both registration and execution phases.
-
-**1. Registration:**
-
-*   **Server-side registration:** Slash commands are registered on the server using `slashCommands.add()`. This function, located in `apps/meteor/app/utils/server/slashCommand.ts`, takes an object conforming to `ISlashCommandAddParams` which includes the command name, a callback function for its execution, optional parameters, description, and permissions. This `slashCommands` object acts as a registry, storing the command details.
-*   **AppSlashCommand:** The `AppSlashCommand` symbol in `packages/apps-engine/src/server/managers/AppSlashCommand.ts` suggests that applications can also register their own slash commands, likely using a similar mechanism that ultimately ties into the `slashCommands` registry.
-
-**2. Execution:**
-
-*   **Client-side detection:** When a user types a message in the client, `processSlashCommand()` in `apps/meteor/client/lib/chats/flows/processSlashCommand.ts` is responsible for parsing the message. It uses a regular expression (`/^\\/([^\\s]+)(.*)/`) to detect if the message starts with a slash and extracts the command and its parameters.
-*   **DDP Call to Server:** The client does not execute the command directly. Instead, `processSlashCommand()` makes a Distributed Data Protocol (DDP) call to the server using `sdk.call('slashCommand', { cmd, params, msg, triggerId })`. This call transmits the command name, parameters, the message object, and a trigger ID to the server.
-*   **Server-side Execution:** On the server, the DDP call is handled, and the `slashCommands.run()` method, defined in `apps/meteor/app/utils/server/slashCommand.ts`, is invoked.
-    *   `slashCommands.run()` retrieves the registered command from its `commands` registry based on the `command` name.
-    *   It performs a basic validation to ensure a room ID (`message.rid`) is provided.
-    *   Finally, it executes the `callback` function associated with the registered command, passing the command, parameters, message, trigger ID, and user ID.
+Slash commands in Rocket.Chat follow a client-server architecture, with registration and execution handled on the server.
 
 **Call Chain:**
 
-1.  `apps/meteor/client/lib/chats/flows/processSlashCommand.ts` (client)
-2.  `MinimalDDPClient.ts` (client - initiates DDP call)
-3.  (DDP communication)
-4.  `apps/meteor/app/utils/server/slashCommand.ts` (`slashCommands.run()` on server)
-5.  Registered command's `callback` function (server - specific command logic)
+1.  **Client-side Parsing and Invocation:** When a user types a message in the client, `sendMessage` (part of the client-side flow) uses a regular expression (`/^\\/([^\\s]+)(.*)/`) to detect slash commands. The client does not execute the command directly but instead invokes a server method via `sdk.call('slashCommand', { cmd, params, msg, triggerId })`.
+2.  **Server-side Method Call:** The `slashCommand` server method (defined in `apps/meteor/app/utils/server/slashCommand.ts`) is the entry point for handling slash commands on the server.
+3.  **Command Registration:** Slash commands are registered on the server using the `slashCommands.add()` method, located in `apps/meteor/app/utils/server/slashCommand.ts`. This method stores command details such as the command name, a callback function for execution, parameters, description, permissions, and app ID (if applicable). Built-in commands like "invite", "kick", and "join" use this method to register themselves.
+4.  **Command Execution:** When the `slashCommand` server method is called, it ultimately delegates to the `slashCommands.run()` method (also in `apps/meteor/app/utils/server/slashCommand.ts`). This method retrieves the registered command's callback function and executes it with the provided parameters, message details, user ID, and trigger ID.
 
-## Tool Calls (8 calls, 54,407 tokens)
+**Key Files:**
 
-**Step 1:** `search({"layer":"server","query":"slash command"})` → 297 tokens
-**Step 2:** `graph({"layer":"server","direction":"down","query":"slashCommands"})` → 786 tokens
-**Step 3:** `implement({"symbolName":"slashCommands.add","filename":"apps/meteor/app/utils/server/slashCommand.ts"})` → 51 tokens
-**Step 4:** `implement({"filename":"apps/meteor/app/utils/server/slashCommand.ts","symbolName":"slashCommands"})` → 722 tokens
-**Step 5:** `search({"query":"slashCommand","layer":"client"})` → 542 tokens
-**Step 6:** `graph({"direction":"down","layer":"client","query":"processSlashCommand"})` → 2064 tokens
-**Step 7:** `search({"layer":"server","query":"Meteor.methods.slashCommand"})` → 18 tokens
-**Step 8:** `graph({"layer":"server","query":"slashCommands.run","direction":"up"})` → 14 tokens
+*   **`apps/meteor/app/utils/server/slashCommand.ts`**: This file contains the `slashCommands` object, which manages the registration (`add` method) and execution (`run` method) of slash commands. It also defines the `slashCommand` Meteor method that the client calls.
+*   **`packages/apps-engine/src/server/managers/AppSlashCommandManager.ts`**: This manager is involved in the registration of slash commands, likely for commands introduced by Rocket.Chat Apps.
+*   **`packages/apps-engine/src/server/bridges/CommandBridge.ts`**: This file is mentioned in search results as related to how Apps can change system slash command behavior.
 
-## Metrics
+In summary, the client detects a slash command and sends it to the server. The server, through the `slashCommand` Meteor method and the `slashCommands` registry, executes the appropriate callback function associated with the command.
 
-| Metric | Value |
-|--------|-------|
-| Files hit | 2/6 |
-| Symbols hit | 2/2 |
-| Tool calls | 8 |
-| Total tokens | 54,407 |
-| Pass | NO |
+## Tool Calls (8 calls, 43,133 tokens)
+
+**Step 1:** `search({"query":"registerCommand","layer":"server"})` → 116 tokens
+**Step 2:** `graph({"file":"packages/apps-engine/src/server/managers/AppSlashCommandManager.ts","query":"AppSlashComman)` → 19 tokens
+**Step 3:** `graph({"direction":"down","file":"packages/apps-engine/src/server/managers/AppSlashCommandManager.ts","que)` → 849 tokens
+**Step 4:** `search({"layer":"server","query":"slash command"})` → 291 tokens
+**Step 5:** `graph({"file":"apps/meteor/app/utils/server/slashCommand.ts","query":"slashCommand","direction":"down"})` → 719 tokens
+**Step 6:** `implement({"symbolName":"slashCommands","filename":"apps/meteor/app/utils/server/slashCommand.ts"})` → 722 tokens
+**Step 7:** `implement({"filename":"apps/meteor/app/utils/server/slashCommand.ts","symbolName":"slashCommand"})` → 55 tokens
+**Step 8:** `implement({"filename":"apps/meteor/app/utils/server/slashCommand.ts","symbolName":"file"})` → 55 tokens

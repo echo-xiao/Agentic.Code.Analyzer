@@ -9,7 +9,7 @@ import * as path from 'path';
 import { fileURLToPath } from 'url';
 import { GoogleGenerativeAI, type FunctionDeclaration, type Part, SchemaType } from '@google/generative-ai';
 import { OUTPUT_DIR } from '../config.js';
-import { preWarmCache, initializeGlobalIndex, LocalDatabase } from '../indexer/index.js';
+import { ensureIndex } from '../indexer/index.js';
 import { handleToolCall } from '../server/registry.js';
 import { GLOBAL_INDEX } from '../indexer/state.js';
 import { loadTestcases, type TestCase } from './utils/load-testcases.js';
@@ -48,6 +48,7 @@ const GEMINI_FUNCTIONS: FunctionDeclaration[] = [
                 depth: { type: SchemaType.NUMBER, description: 'Max traversal depth (default 4, max 6)' },
                 layer: { type: SchemaType.STRING, description: 'Restrict to this layer' },
                 mode: { type: SchemaType.STRING, description: 'tree or impact' },
+                file: { type: SchemaType.STRING, description: 'Pin the traversal root when the symbol has multiple definitions (collisions). Exact file path from search; omit to auto-pick the most-imported one.' },
             },
             required: ['query'],
         },
@@ -123,10 +124,7 @@ async function main() {
     if (!apiKey) { console.error('GEMINI_API_KEY not set. Export it and retry.'); process.exit(1); }
 
     console.error('Loading index...');
-    if (!fs.existsSync(OUTPUT_DIR)) fs.mkdirSync(OUTPUT_DIR, { recursive: true });
-    const { updatedCount } = preWarmCache();
-    const db = new LocalDatabase(OUTPUT_DIR);
-    if (updatedCount > 0 || !db.loadIndex(GLOBAL_INDEX)) { initializeGlobalIndex(); db.saveIndex(GLOBAL_INDEX); }
+    await ensureIndex();
     console.error(`Index ready: ${GLOBAL_INDEX.symbols.size} symbols, ${GLOBAL_INDEX.allFiles.size} files.\n`);
 
     const agentsMd = fs.readFileSync(path.join(PROJECT_ROOT, 'AGENTS.md'), 'utf-8');

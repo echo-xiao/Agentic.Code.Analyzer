@@ -2,8 +2,7 @@
 import * as fs from 'fs';
 import * as path from 'path';
 import { fileURLToPath } from 'url';
-import { OUTPUT_DIR } from '../config.js';
-import { preWarmCache, initializeGlobalIndex, LocalDatabase } from '../indexer/index.js';
+import { ensureIndex } from '../indexer/index.js';
 import { handleToolCall } from '../server/registry.js';
 import { CodeRetriever } from '../server/retriever.js';
 import { GLOBAL_INDEX } from '../indexer/state.js';
@@ -436,15 +435,7 @@ function formatReport(results: TestResult[]): string {
 
 async function main() {
     console.error('Loading index...');
-    if (!fs.existsSync(OUTPUT_DIR)) fs.mkdirSync(OUTPUT_DIR, { recursive: true });
-
-    const { updatedCount } = preWarmCache();
-    const db = new LocalDatabase(OUTPUT_DIR);
-    if (updatedCount > 0 || !db.loadIndex(GLOBAL_INDEX)) {
-        initializeGlobalIndex();
-        db.saveIndex(GLOBAL_INDEX);
-    }
-
+    await ensureIndex();
     console.error(`Index ready: ${GLOBAL_INDEX.symbols.size} symbols, ${GLOBAL_INDEX.allFiles.size} files.\n`);
 
     const { flat: testcases } = loadTestcases(path.join(__dirname, 'utils', 'testcases.json'));

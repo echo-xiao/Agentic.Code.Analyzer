@@ -2,46 +2,25 @@
 
 ## Gemini Answer
 
-New endpoints are primarily registered in the Rocket.Chat REST API using the `API.v1` object.
+New endpoints are registered in Rocket.Chat's REST API through the following call chain:
 
-The process for registering new endpoints involves:
+**Entry → Step 1 → Step 2 → Step 3 → Final**
 
-1.  **API Initialization**: The `API.v1` object is instantiated via `createApi({ version:'v1', useDefaultAuth:true })`.
-2.  **Route Registration**: Routes are registered using either:
-    *   The `APIClass.addRoute()` method (for legacy routes).
-    *   Typed methods such as `.get()`, `.post()`, `.put()`, or `.delete()` directly on the `API.v1` object.
+1.  **`createApi`** (`apps/meteor/app/api/server/api.ts`): This function is responsible for initializing the core API object.
+2.  **`APIClass`** (`apps/meteor/app/api/server/ApiClass.ts`): The `createApi` function instantiates the `APIClass`. This class provides methods for defining API routes.
+3.  **`APIClass.addRoute`** (or `APIClass.get`/`post`/`put`/`delete`) (`apps/meteor/app/api/server/ApiClass.ts`): Developers use these methods (though `addRoute` is deprecated in favor of the typed `get`, `post`, etc.) to define a new API endpoint.
+    *   The `addRoute` method takes a `subpath`, `options`, and `endpoints` (which define the HTTP methods and their corresponding action handlers).
+    *   Inside `addRoute`, a series of middleware functions are applied, including:
+        *   `authenticationMiddlewareForHono`
+        *   `permissionsMiddleware`
+        *   `license`
+    *   Finally, the route, along with its options, middleware, and the actual action handler, is registered with an internal `router` object (e.g., `this.router[method.toLowerCase()](route, options, ...middleware, action)`). This `router` is responsible for integrating the route with the underlying HTTP server.
 
-**Call Chain:**
-`API.v1` instantiation → `API.v1.addRoute()` or `API.v1.get/post/put/delete()`
+## Tool Calls (6 calls, 25,165 tokens)
 
-**Key Files and Examples:**
-
-*   **`apps/meteor/app/api/server/ApiClass.ts`**: This file likely defines the `ApiClass` and its methods, including `addRoute` and the typed HTTP methods.
-*   **`apps/meteor/app/api/server/v1/users.ts`**: Contains examples of `API.v1.addRoute()` for user-related endpoints.
-*   **`apps/meteor/app/api/server/v1/channels.ts`**: Contains examples of `API.v1.addRoute()` for channel-related endpoints.
-*   **`apps/meteor/app/api/server/v1/groups.ts`**: Contains examples of `API.v1.addRoute()` for group-related endpoints.
-*   **`apps/meteor/app/api/server/v1/chat.ts`**: Contains examples of `API.v1.addRoute()` for chat-related endpoints.
-
-**Middleware Chain (Context):**
-After registration, the requests to these endpoints pass through a middleware chain: `WebApp.rawConnectHandlers` → `remoteAddressMiddleware` → `CORS` → `logger` → `metrics` → `tracerSpan` → `router dispatch` → `authenticationMiddlewareForHono` → `permissionsMiddleware` → `license check` → `route handler`. Route handlers receive `APIActionContext` (with `this.bodyParams`, `this.queryParams`, `this.user`) and return `API.v1.success()` or `API.v1.failure()`.
-
-## Tool Calls (8 calls, 25,255 tokens)
-
-**Step 1:** `search({"query":"rest api register endpoint","layer":"server"})` → 18 tokens
-**Step 2:** `search({"layer":"server","query":"Restivus"})` → 13 tokens
-**Step 3:** `search({"layer":"server","query":"API.v1"})` → 285 tokens
-**Step 4:** `graph({"layer":"server","direction":"down","query":"API.v1.addRoute"})` → 14 tokens
-**Step 5:** `search({"query":"API.v1","filename":"app/api/server/v1","layer":"server"})` → 285 tokens
-**Step 6:** `search({"layer":"server","query":"API.v1"})` → 285 tokens
-**Step 7:** `search({"filename":"app/api/server","query":"addRoute","layer":"server"})` → 215 tokens
-**Step 8:** `implement({"symbolName":"ApiClass.addRoute","filename":"apps/meteor/app/api/server/ApiClass.ts"})` → 47 tokens
-
-## Metrics
-
-| Metric | Value |
-|--------|-------|
-| Files hit | 1/6 |
-| Symbols hit | 3/5 |
-| Tool calls | 8 |
-| Total tokens | 25,255 |
-| Pass | NO |
+**Step 1:** `search({"query":"API.v1.addRoute"})` → 419 tokens
+**Step 2:** `graph({"file":"apps/meteor/app/api/server/v1/channels.ts","query":"API.v1.addRoute","direction":"down"})` → 14 tokens
+**Step 3:** `search({"query":"createApi"})` → 215 tokens
+**Step 4:** `graph({"direction":"down","query":"createApi","file":"apps/meteor/app/api/server/api.ts"})` → 195 tokens
+**Step 5:** `implement({"filename":"apps/meteor/app/api/server/ApiClass.ts","symbolName":"APIClass"})` → 1579 tokens
+**Step 6:** `implement({"filename":"apps/meteor/app/api/server/ApiClass.ts","symbolName":"APIClass.addRoute"})` → 1712 tokens

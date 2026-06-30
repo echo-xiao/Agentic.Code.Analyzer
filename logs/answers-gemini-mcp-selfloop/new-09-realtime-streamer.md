@@ -2,46 +2,35 @@
 
 ## Gemini Answer
 
-When a new message is saved to the database, Rocket.Chat leverages a real-time broadcast mechanism to update connected clients. The process begins with the `sendMessage` function on the server, which handles the message's persistence and subsequent notification.
+A new message appears in real-time on the client after being saved to the database through the following server-side flow:
 
-Here's the call chain:
+**Entry Point:** `sendMessage` in `apps/meteor/app/lib/server/functions/sendMessage.ts`
 
-**Entry** → `sendMessage` (server-side message handling) → `notifyOnRoomChangedById` (room change notification) → `api.broadcast` (real-time client update)
+**Call Chain:**
 
-1.  **Message Saving (`apps/meteor/app/lib/server/functions/sendMessage.ts`)**:
-    The `sendMessage` function is responsible for validating and saving the new message to the database.
-    *   It first performs validation checks using `validateMessage` and prepares the message object.
-    *   It then checks for any Rocket.Chat Apps integrations that might prevent or modify the message.
-    *   Finally, the message is inserted or updated in the `Messages` collection using `Messages.insertOne(message)` or `Messages.updateOne`.
+1.  **`sendMessage`** (`apps/meteor/app/lib/server/functions/sendMessage.ts`): This function is responsible for validating, preparing, and saving the message to the `Messages` collection in the database.
+    *   It calls `validateMessage` and `prepareMessageObject` for message processing.
+    *   It triggers `AppEvents.IPreMessageSentPrevent`, `AppEvents.IPreMessageSentModify`, and `AppEvents.IPreMessageSentExtend` for Rocket.Chat App integrations.
+    *   It persists the message to the database using `Messages.updateOne` or `Messages.insertOne`.
+    *   It triggers `AppEvents.IPostSystemMessageSent` or `AppEvents.IPostMessageSent` for Rocket.Chat App integrations after saving.
+    *   Finally, it calls `afterSaveMessage` and `notifyOnRoomChangedById`.
 
-2.  **Room Change Notification (`apps/meteor/app/lib/server/lib/notifyListener.ts`)**:
-    After the message is successfully saved, the `sendMessage` function calls `void notifyOnRoomChangedById(message.rid);`. This function is located in `apps/meteor/app/lib/server/lib/notifyListener.ts`.
-    *   `notifyOnRoomChangedById` takes the room ID (`message.rid`) and a `clientAction` (defaulting to 'updated').
-    *   It retrieves the room information using `Rooms.findByIds`.
-    *   For each eligible room, it calls `void api.broadcast('watch.rooms', { clientAction, room: item });`.
+2.  **`notifyOnRoomChangedById`** (`apps/meteor/app/lib/server/lib/notifyListener.ts`): This function is called after a message is saved. Its purpose is to notify relevant listeners that a change has occurred in a room.
+    *   It calls `LocalBroker.broadcast`.
 
-3.  **Real-time Broadcast (`api.broadcast`)**:
-    The `api.broadcast('watch.rooms', { clientAction, room: item });` call is the crucial step for real-time updates. This function (likely part of the DDP/Meteor publication/subscription system) broadcasts a 'watch.rooms' event over WebSockets to all connected clients that are subscribed to room changes.
-    *   Clients subscribed to the `'watch.rooms'` publication receive this event, which includes the `clientAction` (e.g., 'updated') and the `room` object containing the latest message details or other room updates.
-    *   Upon receiving this broadcast, the client-side code updates the UI to display the new message in real-time without requiring a page refresh.
+3.  **`LocalBroker.broadcast`** (`packages/core-services/src/LocalBroker.ts`): This method is responsible for broadcasting an event to local listeners and emitting a "broadcast" event.
+    *   It calls `this.broadcastLocal(event, ...args)` to handle local broadcasting.
+    *   It then emits a generic `'broadcast'` event with the event name and arguments using `this.events.emit('broadcast', event, args)`. This `EventEmitter` mechanism is likely how the server-side pub/sub system triggers the real-time update to connected clients.
 
-## Tool Calls (8 calls, 45,102 tokens)
+The `LocalBroker.broadcast` method, by emitting an event, signals to connected clients that a change has occurred, which then allows the client-side to react and display the new message in real-time. The exact mechanism for how the client subscribes and receives these broadcasts would involve DDP (Distributed Data Protocol) over WebSockets, with the client listening for specific events related to room changes or new messages.
 
-**Step 1:** `search({"query":"sendMessage","layer":"server"})` → 411 tokens
-**Step 2:** `graph({"direction":"down","depth":3,"query":"sendMessage","layer":"server"})` → 722 tokens
-**Step 3:** `graph({"depth":4,"layer":"server","query":"sendMessage","direction":"down"})` → 637 tokens
-**Step 4:** `search({"query":"stream-room-messages"})` → 16 tokens
-**Step 5:** `implement({"filename":"apps/meteor/app/lib/server/functions/sendMessage.ts","symbolName":"sendMessage"})` → 621 tokens
-**Step 6:** `search({"query":"notifyOnRoomChangedById","layer":"server"})` → 69 tokens
-**Step 7:** `graph({"depth":3,"direction":"down","query":"notifyOnRoomChangedById","layer":"server"})` → 174 tokens
-**Step 8:** `implement({"filename":"apps/meteor/app/lib/server/lib/notifyListener.ts","symbolName":"notifyOnRoomChangedById)` → 146 tokens
+## Tool Calls (8 calls, 47,494 tokens)
 
-## Metrics
-
-| Metric | Value |
-|--------|-------|
-| Files hit | 1/5 |
-| Symbols hit | 0/4 |
-| Tool calls | 8 |
-| Total tokens | 45,102 |
-| Pass | NO |
+**Step 1:** `search({"query":"sendMessage","layer":"server"})` → 412 tokens
+**Step 2:** `graph({"query":"sendMessage","layer":"server","file":"apps/meteor/app/lib/server/functions/sendMessage.ts")` → 900 tokens
+**Step 3:** `implement({"symbolName":"sendMessage","filename":"apps/meteor/app/lib/server/functions/sendMessage.ts"})` → 621 tokens
+**Step 4:** `graph({"layer":"server","direction":"down","query":"notifyOnRoomChangedById"})` → 359 tokens
+**Step 5:** `implement({"symbolName":"broadcast","filename":"apps/meteor/app/lib/server/lib/LocalBroker.ts"})` → 141 tokens
+**Step 6:** `implement({"symbolName":"broadcast","filename":"packages/core-services/src/LocalBroker.ts"})` → 140 tokens
+**Step 7:** `implement({"filename":"packages/core-services/src/LocalBroker.ts","symbolName":"LocalBroker"})` → 462 tokens
+**Step 8:** `implement({"filename":"packages/core-services/src/LocalBroker.ts","symbolName":"LocalBroker.broadcast"})` → 101 tokens

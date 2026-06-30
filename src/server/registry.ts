@@ -69,6 +69,7 @@ export const TOOL_DEFINITIONS = [
                 depth: { type: "number", description: "Max traversal depth (default 4, max 6)" },
                 layer: { type: "string", enum: ["client", "server", "packages", "ee"], description: "Restrict to this layer." },
                 mode: { type: "string", enum: ["tree", "impact"], description: "tree=standard tree view (default), impact=layer-by-layer blast radius (use for impact analysis)" },
+                file: { type: "string", description: "Pin the traversal root when the symbol has multiple definitions (collisions like 'Streamer', 'sendMessage'). Pass the exact file path from search results. Omit to auto-pick the most-imported definition." },
                 edgeTypes: {
                     type: "array",
                     items: { type: "string", enum: ["call", "jsx", "new", "event_emit", "event_listen", "pubsub_publish", "pubsub_subscribe", "type"] },
@@ -118,8 +119,18 @@ function isTestFile(filePath: string): boolean {
     const p = filePath.toLowerCase();
     return p.includes('.test.ts') || p.includes('.spec.ts') ||
         p.includes('.test.tsx') || p.includes('.spec.tsx') ||
-        p.includes('/e2e/') || p.includes('/__tests__/');
+        p.includes('/e2e/') || p.includes('/__tests__/') ||
+        // Test-data/helper files live under /tests/ without a .test suffix, yet are imported by
+        // many other tests → high fan-in. Without this they'd win centrality root selection
+        // (e.g. tests/data/livechat/rooms.ts outranking the real sendMessage definition).
+        p.includes('/tests/') || p.includes('/test/') || p.includes('.mocks.');
 }
+
+// Event/pubsub dependents register via string-keyed dispatch (callbacks.add, Meteor.subscribe…)
+// and do NOT statically import the emitter — so import-based scoping would wrongly drop them.
+// Only static edges (call/new/jsx/type) carry a real import relationship to scope on.
+const DYNAMIC_EDGES = new Set<EdgeType>(['event_emit', 'event_listen', 'pubsub_publish', 'pubsub_subscribe']);
+function isDynamicEdge(et: EdgeType): boolean { return DYNAMIC_EDGES.has(et); }
 
 function computeImportDistances(startFile: string): Map<string, number> {
     const dist = new Map<string, number>();
@@ -138,6 +149,27 @@ function computeImportDistances(startFile: string): Map<string, number> {
         }
     }
     return dist;
+}
+
+// Choose which definition of a colliding symbol to traverse from.
+// Preference order: explicit file > highest fan-in centrality (most-imported) > non-test.
+// Avoids the old `Array.from(symbolFiles)[0]` (insertion order ≈ random) that traced the wrong
+// definition for collisions like `Streamer` (message streamer vs admin deploy UI).
+function pickRootFile(files: string[], preferredFile?: string): string {
+    if (files.length === 0) return '';
+    if (files.length === 1) return files[0];
+    if (preferredFile) {
+        const q = preferredFile.toLowerCase().replace(/\.tsx?$/, '');
+        const exact = files.find(p => p.toLowerCase().replace(/\.tsx?$/, '').endsWith(q));
+        if (exact) return exact;
+    }
+    return [...files].sort((a, b) => {
+        const ta = isTestFile(a) ? 1 : 0, tb = isTestFile(b) ? 1 : 0;
+        if (ta !== tb) return ta - tb;
+        const ca = GLOBAL_INDEX.fileDependents.get(a)?.size ?? 0;
+        const cb = GLOBAL_INDEX.fileDependents.get(b)?.size ?? 0;
+        return cb - ca;
+    })[0];
 }
 
 function filterByLayer(paths: string[], layer: string, strict = false): string[] {
@@ -205,8 +237,11 @@ export async function handleToolCall(name: string, args: any): Promise<any> {
                 sections.push(`📁 Files:\n${pathMatches.join('\n')}`);
             }
 
+            // Run content grep for call-pattern queries, OR as a last resort when the symbol/file
+            // index matched nothing — so a wrong entry-symbol guess still surfaces a file instead of
+            // returning "no results" and letting the agent give up (federation / apps-engine).
             const isCallPattern = /[.'"(\s]/.test(query);
-            if (isCallPattern) {
+            if (isCallPattern || sections.length === 0) {
                 const grepArgs = [
                     '-r', '-n', '-F',
                     '--include=*.ts', '--include=*.tsx',
@@ -306,7 +341,7 @@ export async function handleToolCall(name: string, args: any): Promise<any> {
 
         case "graph": {
             SESSION.hasCalledSearchOrGraph = true;
-            const { query, direction = "up", depth: rawDepth, layer, mode = "tree", edgeTypes } = args;
+            const { query, direction = "up", depth: rawDepth, layer, mode = "tree", edgeTypes, file: preferredFile } = args;
             if (!query) return err("Missing parameter: query");
             const maxDepth = Math.min(typeof rawDepth === 'number' ? rawDepth : 4, 6);
 
@@ -347,7 +382,8 @@ export async function handleToolCall(name: string, args: any): Promise<any> {
                 }
                 let startFiles = Array.from(symbolFiles);
                 if (layer) { const f = filterByLayer(startFiles, layer); if (f.length) startFiles = f; }
-                const relStart = startFiles[0].split('Rocket.Chat/')[1] || startFiles[0];
+                const rootDown = pickRootFile(startFiles, preferredFile);
+                const relStart = rootDown.split('Rocket.Chat/')[1] || rootDown;
 
                 const out: string[] = [
                     `## Call Graph ↓ downstream of \`${query}\` (depth=${maxDepth})\n`,
@@ -394,13 +430,13 @@ export async function handleToolCall(name: string, args: any): Promise<any> {
             }
 
             let relStart = '(unknown file)';
+            let startFile = '';
             if (symbolFiles) {
                 let files = Array.from(symbolFiles);
                 if (layer) { const f = filterByLayer(files, layer); if (f.length) files = f; }
-                relStart = files[0].split('Rocket.Chat/')[1] || files[0];
+                startFile = pickRootFile(files, preferredFile);
+                relStart = startFile.split('Rocket.Chat/')[1] || startFile;
             }
-
-            const startFile = symbolFiles ? Array.from(symbolFiles)[0] : '';
             const importDist = startFile ? computeImportDistances(startFile) : new Map<string, number>();
 
             const scopeCallers = (
@@ -429,8 +465,11 @@ export async function handleToolCall(name: string, args: any): Promise<any> {
                     const layerEntries: Array<{ sym: string; file: string; edgeType: EdgeType }> = [];
 
                     for (const { sym, file: fromFile } of frontier) {
-                        let callers = (GLOBAL_INDEX.callGraph.get(sym) ?? []) as Array<{ caller: string; file: string; edgeType: EdgeType }>;
-                        callers = scopeCallers(callers, fromFile);
+                        const allCallers = (GLOBAL_INDEX.callGraph.get(sym) ?? []) as Array<{ caller: string; file: string; edgeType: EdgeType }>;
+                        // Scope only static edges by import distance; keep dynamic (event/pubsub) deps unconditionally.
+                        const staticScoped = scopeCallers(allCallers.filter(c => !isDynamicEdge(c.edgeType as EdgeType)), fromFile);
+                        const dynamic = allCallers.filter(c => isDynamicEdge(c.edgeType as EdgeType));
+                        const callers = [...staticScoped, ...dynamic];
                         for (const { caller, file, edgeType } of callers) {
                             if (!edgeAllowed(edgeType as EdgeType)) continue;
                             if (layer && filterByLayer([file], layer, true).length === 0) continue;

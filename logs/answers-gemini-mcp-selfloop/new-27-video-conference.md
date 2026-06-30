@@ -2,55 +2,48 @@
 
 ## Gemini Answer
 
-The video conference system in Rocket.Chat appears to be built around a `VideoConference` model, likely defined in `packages/models/src/index.ts`. This model is responsible for managing video conference data.
+The video conference system in Rocket.Chat uses a client-side `VideoConfManager` (`apps/meteor/client/lib/VideoConfManager.ts`) to manage the call lifecycle, including starting, accepting, rejecting, and joining calls.
 
-From the initial searches, it's clear that there are REST API endpoints related to video conferencing, indicated by files like:
-* `packages/rest-typings/src/v1/videoConference/index.ts`
-* `packages/rest-typings/src/v1/videoConference/VideoConfStartProps.ts`
-* `apps/meteor/app/api/server/v1/videoConference.ts`
+**Call Chain for Starting a Video Conference:**
 
-The `apps/meteor/app/api/server/v1/videoConference.ts` file likely defines the server-side logic for handling video conference requests, including starting, listing, joining, and canceling conferences, based on the corresponding `VideoConfStartProps`, `VideoConfListProps`, `VideoConfJoinProps`, and `VideoConfCancelProps` typings.
+1.  **`VideoConfManager.startCall`** (`apps/meteor/client/lib/VideoConfManager.ts`):
+    *   Initiates a call from the client side.
+    *   Makes a REST API call to `/v1/video-conference.start` on the server.
+    *   Handles different call types (`direct`, `videoconference`, `livechat`) and dispatches to `callUser` or `joinCall` accordingly.
 
-There are also server-side bridges and accessors for video conferencing, as shown in:
-* `packages/apps-engine/src/server/bridges/VideoConferenceBridge.ts`
-* `packages/apps-engine/src/server/accessors/VideoConferenceRead.ts`
-* `packages/apps-engine/src/server/accessors/VideoConferenceExtend.ts`
-* `packages/apps-engine/src/server/accessors/VideoConferenceBuilder.ts`
-* `apps/meteor/app/apps/server/bridges/videoConferences.ts`
+2.  **`POST /v1/video-conference.start`** (`apps/meteor/app/api/server/v1/videoConference.ts`):
+    *   This is the server-side endpoint that receives the request to start a video conference.
+    *   It likely interacts with a `VideoConfService` (identified in earlier searches as extending `ServiceClassInternal`) to provision and manage the video conference.
 
-These bridges and accessors suggest an integration with Rocket.Chat's Apps Engine, allowing custom applications to interact with the video conferencing functionality.
+**Key Components and Their Roles:**
 
-Furthermore, there are UI components related to video conferencing:
-* `packages/ui-kit/src/blocks/layout/VideoConferenceBlock.ts`
-* `packages/fuselage-ui-kit/src/blocks/VideoConferenceBlock/index.ts`
-* `packages/fuselage-ui-kit/src/blocks/VideoConferenceBlock/VideoConferenceBlock.tsx`
-* `packages/fuselage-ui-kit/src/blocks/VideoConferenceBlock/hooks/useVideoConfDataStream.ts`
-* `packages/fuselage-ui-kit/src/blocks/VideoConferenceBlock/hooks/useVideoConfData.ts`
+*   **`apps/meteor/client/lib/VideoConfManager.ts`**: This is the central client-side component for managing video conference calls. It handles:
+    *   Starting new calls (`startCall`).
+    *   Accepting incoming calls (`acceptIncomingCall`).
+    *   Rejecting incoming calls (`rejectIncomingCall`).
+    *   Joining existing calls (`joinCall`).
+    *   Managing call states (busy, ringing, calling).
+    *   Loading video conference capabilities (`loadCapabilities`).
+    *   Communicating with the server via `sdk.rest.post` for various actions.
+    *   Receiving real-time notifications about video conference events via `sdk.stream('notify-user', ...)` and processing them in `onVideoConfNotification`.
 
-These files indicate that there's a client-side representation and interaction mechanism for video conferences, likely using React components and hooks to manage real-time data streams.
+*   **`apps/meteor/ee/server/configuration/videoConference.ts`**: This file contains the server-side configuration for video conferencing, including `videoConference` which likely exposes methods for managing video conference instances.
 
-The call chain, based on the available information, starts with client-side actions that trigger calls to the REST API endpoints defined in `apps/meteor/app/api/server/v1/videoConference.ts`. These API endpoints then interact with the `VideoConference` model and potentially other server-side services or apps through the `VideoConferenceBridge` and related accessors to manage the video conference lifecycle. Client-side UI components (`VideoConferenceBlock.tsx`) consume data streams (`useVideoConfDataStream.ts`) to display the conference information.
+*   **`apps/meteor/server/services/video-conference/service.ts`**: This service (`join` function) on the server likely handles the core logic for joining video conferences, interacting with user and room data, and potentially with external video conference providers.
 
-**Call Chain (Inferred):**
-Client UI Action (e.g., "Start Video Call") → `VideoConferenceBlock.tsx` (client) → REST API Endpoint (`apps/meteor/app/api/server/v1/videoConference.ts`) → Server-side logic utilizing `VideoConference` model and potentially `VideoConferenceBridge` → Data persistence/external video conference service → Real-time updates to client via `useVideoConfDataStream.ts`
+*   **`apps/meteor/app/api/server/v1/videoConference.ts`**: This file defines the server-side REST API endpoints for video conferencing, such as `video-conference.start`, `video-conference.join`, and `video-conference.cancel`.
 
-## Tool Calls (8 calls, 28,536 tokens)
+*   **`packages/apps-engine/src/definition/videoConfProviders/IVideoConfProvider.ts`**: This interface suggests that Rocket.Chat supports pluggable video conference providers (e.g., Jitsi, or other custom integrations via the Apps Engine). The `VideoConfService` likely uses these providers.
 
-**Step 1:** `search({"query":"conference"})` → 460 tokens
-**Step 2:** `graph({"layer":"server","direction":"down","query":"VideoConference"})` → 35 tokens
-**Step 3:** `search({"query":"videoConference","layer":"server"})` → 295 tokens
-**Step 4:** `graph({"direction":"down","layer":"server","query":"apps/meteor/app/api/server/v1/videoConference.ts"})` → 22 tokens
-**Step 5:** `implement({"symbolName":"videoConference","filename":"apps/meteor/app/api/server/v1/videoConference.ts"})` → 17 tokens
-**Step 6:** `search({"layer":"server","query":"addRoute"})` → 215 tokens
-**Step 7:** `implement({"symbolName":"VideoConference","filename":"apps/meteor/app/api/server/v1/videoConference.ts"})` → 65 tokens
-**Step 8:** `search({"layer":"server","query":"videoConference.start"})` → 16 tokens
+The overall flow involves the client-side `VideoConfManager` initiating actions by calling REST API endpoints on the Rocket.Chat server. The server-side API then interacts with internal services and potentially external video conference providers to manage the actual video conference sessions. The client also listens for real-time notifications from the server to update its UI and manage the call state.
 
-## Metrics
+## Tool Calls (8 calls, 79,642 tokens)
 
-| Metric | Value |
-|--------|-------|
-| Files hit | 0/6 |
-| Symbols hit | 0/2 |
-| Tool calls | 8 |
-| Total tokens | 28,536 |
-| Pass | NO |
+**Step 1:** `search({"query":"video conference"})` → 608 tokens
+**Step 2:** `graph({"file":"apps/meteor/ee/server/configuration/videoConference.ts","direction":"down","depth":3,"query)` → 707 tokens
+**Step 3:** `graph({"depth":3,"file":"apps/meteor/server/services/video-conference/service.ts","query":"join","directio)` → 289 tokens
+**Step 4:** `search({"query":"VideoConfManager"})` → 156 tokens
+**Step 5:** `graph({"depth":3,"direction":"down","query":"VideoConfManager","file":"apps/meteor/client/lib/VideoConfMan)` → 434 tokens
+**Step 6:** `implement({"filename":"apps/meteor/client/lib/VideoConfManager.ts","symbolName":"VideoConfManager"})` → 5557 tokens
+**Step 7:** `search({"query":"/v1/video-conference.start"})` → 129 tokens
+**Step 8:** `search({"layer":"server","query":"video-conference.start"})` → 77 tokens
