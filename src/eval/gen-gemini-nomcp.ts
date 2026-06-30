@@ -3,7 +3,7 @@ import * as fs from 'fs';
 import * as path from 'path';
 import { fileURLToPath } from 'url';
 import { GoogleGenerativeAI } from '@google/generative-ai';
-import { loadTestcases } from './load-testcases.js';
+import { loadTestcases } from './utils/load-testcases.js';
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const PROJECT_ROOT = path.resolve(__dirname, '..', '..');
@@ -34,7 +34,7 @@ async function main() {
         },
     });
 
-    const { flat: testcases } = loadTestcases(path.join(__dirname, 'testcases.json'));
+    const { flat: testcases } = loadTestcases(path.join(__dirname, 'utils', 'testcases.json'));
 
     const filter = process.argv.find(a => a.startsWith('--filter='));
     const filterVal = filter?.split('=')[1]?.toLowerCase();
@@ -44,7 +44,7 @@ async function main() {
 
     console.error(`Running ${selected.length} baseline questions with ${modelName} (NO tools)...\n`);
 
-    const baselineDir = path.join(PROJECT_ROOT, 'logs', 'layer0-answers');
+    const baselineDir = path.join(PROJECT_ROOT, 'logs', 'answers-gemini-nomcp');
     fs.mkdirSync(baselineDir, { recursive: true });
 
     const results: BaselineResult[] = [];
@@ -99,30 +99,10 @@ async function main() {
     const totalTokens = results.reduce((s, r) => s + r.tokens.total, 0);
     const avgTokens = totalTokens / results.length;
 
-    const lines: string[] = [];
-    lines.push(`# Baseline Eval Report (No Tools)\n`);
-    lines.push(`${new Date().toLocaleString('en-US')} | Model: ${modelName} | Testcases: ${results.length}\n`);
-    lines.push(`## Summary\n`);
-    lines.push(`| Metric | Value |`);
-    lines.push(`|--------|-------|`);
-    lines.push(`| Avg tokens / question | ${Math.round(avgTokens).toLocaleString()} |`);
-    lines.push(`| Total tokens | ${totalTokens.toLocaleString()} |`);
-    lines.push(`| Tools | NONE |`);
-    lines.push('');
-
-    lines.push(`## Per-Question\n`);
-    lines.push(`| # | ID | Type | Subsystem | Tokens | Words |`);
-    lines.push(`|---|---|---|---|------:|------:|`);
-    for (let i = 0; i < results.length; i++) {
-        const r = results[i];
-        const words = r.answer.split(/\s+/).length;
-        lines.push(`| ${i + 1} | ${r.id} | ${r.questionType} | ${r.subsystem} | ${r.tokens.total.toLocaleString()} | ${words} |`);
-    }
-
-    const reportPath = path.join(PROJECT_ROOT, 'logs', 'layer0-baseline-eval.md');
-    fs.writeFileSync(reportPath, lines.join('\n'), 'utf-8');
-    console.error(`\nReport: ${reportPath}`);
-    console.error(`Answers: logs/layer0-answers/`);
+    // Generator only: writes answers to answers-gemini-nomcp/. The comparison report
+    // (eval-1-nomcp-vs-mcp-agent.md) is produced by compare.ts from these saved answers.
+    void avgTokens;
+    console.error(`Answers: logs/answers-gemini-nomcp/`);
     console.log(`\n${results.length} answers | ${totalTokens.toLocaleString()} total tokens`);
 }
 

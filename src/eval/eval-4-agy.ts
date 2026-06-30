@@ -18,8 +18,7 @@
 import * as fs from 'fs';
 import * as path from 'path';
 import { fileURLToPath } from 'url';
-import { loadTestcases, type TestCase } from './load-testcases.js';
-import { runJudge, type JudgeScore } from './judge.js';
+import { loadTestcases, type TestCase } from './utils/load-testcases.js';
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const PROJECT_ROOT = path.resolve(__dirname, '..', '..');
@@ -38,7 +37,7 @@ interface Transcript {
 function transcriptPath(groupId: string) { return path.join(SESS_DIR, `${groupId}.json`); }
 
 function initTemplates() {
-    const { groups } = loadTestcases(path.join(__dirname, 'testcases.json'));
+    const { groups } = loadTestcases(path.join(__dirname, 'utils', 'testcases.json'));
     fs.mkdirSync(SESS_DIR, { recursive: true });
     for (const g of groups) {
         const p = transcriptPath(g.id);
@@ -58,7 +57,7 @@ function initTemplates() {
 async function main() {
     if (process.argv.includes('--init')) { initTemplates(); return; }
 
-    const { groups, flat } = loadTestcases(path.join(__dirname, 'testcases.json'));
+    const { groups, flat } = loadTestcases(path.join(__dirname, 'utils', 'testcases.json'));
     const byId = new Map<string, TestCase>(flat.map(t => [t.id, t]));
 
     if (!fs.existsSync(SESS_DIR)) {
@@ -86,8 +85,7 @@ async function main() {
         for (const a of t.answers) {
             const tc = byId.get(a.id);
             if (!tc) { details.push(`- \`${a.id}\` — not found in testcases`); continue; }
-            let j: JudgeScore | null = null;
-            if (a.answer.trim()) j = await runJudge(tc, a.answer);
+            const j: { verdict: string; overall: number; reasoning: string } | null = null; // no API judge; Claude fills semantic manually
             if (j?.verdict === 'PASS') pass++;
             const v = j ? j.verdict : (a.answer.trim() ? 'unjudged' : 'no-answer');
             details.push(`- \`${a.id}\` — ${v}${j ? ` (overall ${j.overall.toFixed(2)})` : ''}: ${tc.question}`);
@@ -104,7 +102,7 @@ async function main() {
     L.push(details.join('\n'));
 
     fs.mkdirSync(path.join(PROJECT_ROOT, 'logs'), { recursive: true });
-    const out = path.join(PROJECT_ROOT, 'logs', 'agy-session-eval.md');
+    const out = path.join(PROJECT_ROOT, 'logs', 'eval-4-agy-vs-claude.md');
     fs.writeFileSync(out, L.join('\n'), 'utf-8');
     console.error(`Report: ${out}`);
 }

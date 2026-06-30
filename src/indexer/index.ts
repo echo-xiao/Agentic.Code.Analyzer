@@ -21,7 +21,9 @@ export function preWarmCache(): { updatedCount: number; totalFiles: number } {
 
     console.error('🚀 Starting Incremental Dehydration...');
     const hasher = new CodebaseHasher(CACHE_FILE);
+    console.error(`🔍 Scanning ${TARGET_SRC_DIR} for source files (a few seconds)...`);
     const allFiles = scanDirectory(TARGET_SRC_DIR);
+    console.error(`   found ${allFiles.length} files — checking for changes...`);
     let updatedCount = 0;
 
     const bar = new cliProgress.SingleBar({
@@ -33,9 +35,9 @@ export function preWarmCache(): { updatedCount: number; totalFiles: number } {
 
     for (const file of allFiles) {
         bar.increment({ filename: path.basename(file) });
-        let needsUpdate: boolean, currentHash: string;
+        let needsUpdate: boolean, currentHash: string, mtimeMs: number, size: number;
         try {
-            ({ needsUpdate, currentHash } = hasher.shouldUpdate(file));
+            ({ needsUpdate, currentHash, mtimeMs, size } = hasher.shouldUpdate(file));
         } catch {
             continue;
         }
@@ -47,7 +49,7 @@ export function preWarmCache(): { updatedCount: number; totalFiles: number } {
                 if (!fs.existsSync(outDir)) fs.mkdirSync(outDir, { recursive: true });
                 fs.writeFileSync(skeletonPath, skeleton, 'utf-8');
                 fs.writeFileSync(mappingPath, JSON.stringify(mapping, null, 2), 'utf-8');
-                hasher.updateRecord(file, currentHash);
+                hasher.updateRecord(file, currentHash, mtimeMs, size);
                 updatedCount++;
             } catch (e) {
                 console.error(`❌ Failed to process ${file}:`, e);
