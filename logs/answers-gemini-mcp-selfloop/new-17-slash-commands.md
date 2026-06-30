@@ -2,35 +2,53 @@
 
 ## Gemini Answer
 
-Rocket.Chat's slash command functionality involves both client-side parsing and server-side registration and execution.
+Slash commands in Rocket.Chat are registered and managed through the `AppSlashCommandManager` in the `packages/apps-engine` package.
 
-**Call Chain:**
+Here's the call chain from registration to execution:
 
-1.  **Client-side Parsing and Initiation:**
-    *   `apps/meteor/client/lib/chats/flows/processSlashCommand.ts` → `processSlashCommand`: This function is responsible for detecting slash commands in a user's message.
-        *   It uses a `parse` function (likely in the same file or a utility) to extract the command and its parameters from the message using a regular expression (`/^\\/([^\\s]+)(.*)/`).
-        *   If the command is client-only, it's handled immediately by a client-side callback.
-        *   For server-side commands, it sends a telemetry event and generates a `triggerId`.
-        *   It then makes an SDK call to the server: `sdk.call('slashCommand', { cmd: commandName, params, msg: message, triggerId })`. This call crosses the DDP (Distributed Data Protocol) to the server.
+**Registration:**
 
-2.  **Server-side Registration and Execution:**
-    *   `apps/meteor/app/utils/server/slashCommand.ts` → `slashCommands`: This object acts as the central registry and executor for slash commands on the server.
-        *   `slashCommands.add()`: This method is used to register new slash commands. Many built-in commands (e.g., `/invite`, `/kick`, `/join`) register themselves using this method. It takes the command name, a callback function, and various options like permissions, description, and previewer functions.
-        *   `slashCommands.run()`: This asynchronous method is invoked when the `slashCommand` DDP method is called from the client. It looks up the registered command by its name and executes its associated callback function, passing the command, parameters, message, trigger ID, and user ID.
-        *   `slashCommands.getPreviews()` and `slashCommands.executePreview()`: These methods handle the preview functionality for slash commands, allowing apps to provide a dynamic preview of the command's effect before execution.
+1.  **`AppSlashCommandManager.constructor`** (packages/apps-engine/src/server/managers/AppSlashCommandManager.ts): The constructor of `AppSlashCommandManager` initializes the command bridge.
+2.  **`AppBridges.getCommandBridge`** (packages/apps-engine/src/server/bridges/AppBridges.ts): This abstract method is implemented to provide an instance of `CommandBridge`.
+3.  **`CommandBridge.doRegisterCommand`** (packages/apps-engine/src/server/bridges/CommandBridge.ts): This method is responsible for registering the slash command. It first checks for default permissions using `hasDefaultPermission` and then calls the abstract `registerCommand` method.
+4.  **`AppSlashCommandManager.registerCommand`** (packages/apps-engine/src/server/managers/AppSlashCommandManager.ts): This method handles the actual registration of the command, likely storing it in a collection for later retrieval.
 
-**In summary:**
+**Execution (based on the `graph` output, the execution flow is not fully detailed but implies a lookup and then execution):**
 
-*   The client (`apps/meteor/client/lib/chats/flows/processSlashCommand.ts`) identifies a slash command in a message, performs some initial checks, and then relays it to the server via `sdk.call('slashCommand')`.
-*   The server (`apps/meteor/app/utils/server/slashCommand.ts`) maintains a registry of available slash commands (`slashCommands.commands`), added through `slashCommands.add()`. When a command is received from the client, `slashCommands.run()` executes the appropriate server-side logic defined in the command's callback.
+When a user types a slash command, the system would:
 
-## Tool Calls (8 calls, 48,974 tokens)
+1.  Look up the command using methods like `has` or `findOne` (as seen in the `graph` output for `registerCommand` which also shows these methods being called).
+2.  Once the command is identified, its associated action would be triggered. The `graph` output for `registerCommand` also shows calls to `set` and `getNotifier`, suggesting that command registration might involve setting up listeners or notifications for when the command is invoked.
 
-**Step 1:** `search({"query":"slash command registration"})` → 341 tokens
-**Step 2:** `search({"query":"slash command"})` → 658 tokens
-**Step 3:** `graph({"direction":"down","query":"slashCommand","file":"apps/meteor/app/utils/server/slashCommand.ts"})` → 568 tokens
-**Step 4:** `search({"query":"slashCommands.add"})` → 403 tokens
-**Step 5:** `search({"layer":"server","query":"slashCommands"})` → 771 tokens
-**Step 6:** `implement({"symbolName":"slashCommands","filename":"apps/meteor/app/utils/server/slashCommand.ts"})` → 722 tokens
-**Step 7:** `search({"layer":"client","query":"processSlashCommand"})` → 331 tokens
-**Step 8:** `implement({"symbolName":"processSlashCommand","filename":"apps/meteor/client/lib/chats/flows/processSlashComma)` → 489 tokens
+**Key Files:**
+
+*   `packages/apps-engine/src/server/managers/AppSlashCommandManager.ts`: Manages the registration and lifecycle of slash commands.
+*   `packages/apps-engine/src/server/bridges/CommandBridge.ts`: Provides the interface for apps to interact with slash commands.
+*   `packages/apps-engine/src/server/bridges/AppBridges.ts`: An abstract class that provides access to various bridges, including the `CommandBridge`.
+
+## Tool Calls (8 calls, 43,403 tokens)
+
+**Step 1:** `search({"query":"registerCommand"})` → 258 tokens
+**Step 2:** `graph({"query":"registerCommand","file":"packages/apps-engine/src/server/managers/AppSlashCommandManager.t)` → 1406 tokens
+**Step 3:** `implement({"symbolName":"doRegisterCommand","filename":"packages/apps-engine/src/server/bridges/CommandBridge.)` → 62 tokens
+**Step 4:** `implement({"symbolName":"CommandBridge","filename":"packages/apps-engine/src/server/bridges/CommandBridge.ts"})` → 469 tokens
+**Step 5:** `implement({"filename":"packages/apps-engine/src/server/bridges/CommandBridge.ts","symbolName":"CommandBridge.d)` → 104 tokens
+**Step 6:** `graph({"layer":"server","query":"CommandBridge","direction":"up"})` → 77 tokens
+**Step 7:** `implement({"filename":"packages/apps-engine/src/server/bridges/AppBridges.ts","symbolName":"AppBridges.getComm)` → 69 tokens
+**Step 8:** `graph({"layer":"server","direction":"up","query":"AppBridges"})` → 199 tokens
+
+## Files Seen In Tool Results (13)
+
+- `packages/apps-engine/tests/test-data/bridges/commandBridge.ts`
+- `packages/apps-engine/src/server/managers/AppSlashCommandManager.ts`
+- `packages/apps-engine/src/server/bridges/CommandBridge.ts`
+- `apps/meteor/app/apps/server/bridges/commands.ts`
+- `packages/apps-engine/src/server/AppManager.ts`
+- `apps/meteor/ee/lib/misc/Utilities.ts`
+- `packages/apps-engine/deno-runtime/lib/accessors/mod.ts`
+- `packages/rest-typings/src/v1/statistics.ts`
+- `packages/apps-engine/src/server/managers/AppSlashCommand.ts`
+- `packages/apps-engine/src/server/bridges/AppBridges.ts`
+- `packages/apps-engine/src/server/managers/AppAccessorManager.ts`
+- `packages/apps-engine/src/server/accessors/ModifyExtender.ts`
+- `packages/apps-engine/src/server/accessors/Http.ts`

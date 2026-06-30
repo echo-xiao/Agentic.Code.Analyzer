@@ -2,159 +2,233 @@
 
 ## Baseline Answer (no tools)
 
-To create a new database model in Rocket.Chat, you follow a pattern that leverages its existing model abstraction built on top of MongoDB. Rocket.Chat uses `app/models/lib/Base.js` as a foundational class for all its database models, providing common CRUD (Create, Read, Update, Delete) operations.
+Creating a new database model in Rocket.Chat involves defining a new MongoDB collection and an associated class that extends Rocket.Chat's `BaseDb` (or `Base`) model, often with a `simpl-schema` for validation.
 
 Here's a step-by-step guide:
 
-### 1. Create the Model File
+### 1. Choose a Model Name and Collection Name
 
-*   **Location**: New server-side database models are typically located in `app/models/server/`.
-*   **Filename**: Name your file descriptively, e.g., `MyNewModel.js`.
+*   **Model Class Name**: Use `PascalCase` (e.g., `MyNewFeature`).
+*   **Collection Name**: Use `snake_case` (e.g., `my_new_feature`). This is the actual name of the collection in MongoDB.
 
-### 2. Define the Model Class
+### 2. Create the Model File
 
-Your model class will extend `RocketChat.models.Base` (or `Base` if imported directly).
+Create a new JavaScript file for your model in the `app/models/server/` directory.
 
-**File Path Example:** `app/models/server/MyNewModel.js`
+**File Path Example:** `app/models/server/MyNewFeature.js`
+
+### 3. Define the Schema (Recommended)
+
+Rocket.Chat heavily uses `simpl-schema` for defining and validating document structures. This ensures data integrity.
 
 ```javascript
-import { Base } from '../lib/Base'; // Path to RocketChat.models.Base
+// app/models/server/MyNewFeature.js
+import { BaseDb } from './BaseDb';
+import { SimpleSchema } from 'meteor/aldeed:simple-schema';
 
-// If you plan to define a schema and potentially use it for manual validation,
-// you might import SimpleSchema (if 'simpl-schema' package is installed).
-// import SimpleSchema from 'simpl-schema';
-
-class MyNewModel extends Base {
-	constructor() {
-		// Call the parent constructor with the *actual MongoDB collection name*.
-		// This name will be used in your database.
-		super('my_new_collection_name');
-
-		// --- Recommended: Create MongoDB Indexes ---
-		// Define indexes for frequently queried fields to improve performance.
-		// These are created when the server starts.
-		this._collection.createIndex({ name: 1 }, { unique: true }); // Example: Ensure 'name' is unique
-		this._collection.createIndex({ userId: 1 }); // Example: Index by user ID for common lookups
-		this._collection.createIndex({ status: 1, createdAt: -1 }); // Example: Compound index for status and latest items
-	}
-
-	// --- Optional: Define a Schema for Documentation and Validation ---
-	// While Rocket.Chat's `Base` doesn't automatically enforce this schema
-	// like `aldeed:collection2` would, it's highly recommended to define one
-	// for clarity, documentation, and to use for manual validation within your methods.
-	schema = {
-		_id: { type: String, optional: true }, // MongoDB _id, usually auto-generated
-		name: { type: String, unique: true, min: 3, max: 100 },
-		description: { type: String, optional: true, max: 500 },
-		status: { type: String, allowedValues: ['active', 'inactive', 'archived'], defaultValue: 'active' },
-		createdAt: { type: Date, autoValue: function() { if (this.isInsert) return new Date(); }, optional: true },
-		updatedAt: { type: Date, autoValue: function() { if (this.isUpdate) return new Date(); }, optional: true },
-		userId: { type: String }, // The user who created this item
-		metadata: { type: Object, blackbox: true, optional: true }, // Flexible field for additional data
-	};
-
-	// --- Custom Data Access and Manipulation Methods ---
-	// You should add methods specific to your model here.
-	// These methods typically wrap or extend the basic operations provided by `Base`.
-
-	/**
-	 * Finds all active items, optionally filtered by a user.
-	 * @param {string} [userId] Optional user ID to filter items by.
-	 * @param {object} [options] MongoDB query options (sort, fields, limit, skip).
-	 * @returns {Mongo.Cursor} A Meteor/MongoDB cursor to the matching documents.
-	 */
-	findActive(userId, options = {}) {
-		const query = { status: 'active' };
-		if (userId) {
-			query.userId = userId;
-		}
-		return this.find(query, options); // `this.find` is inherited from `Base`
-	}
-
-	/**
-	 * Finds a single item by its unique name.
-	 * @param {string} name The unique name of the item.
-	 * @param {object} [options] MongoDB query options.
-	 * @returns {object|null} The item document or null if not found.
-	 */
-	findOneByName(name, options = {}) {
-		return this.findOne({ name: name }, options); // `this.findOne` is inherited from `Base`
-	}
-
-	/**
-	 * Creates and inserts a new item into the collection.
-	 * @param {object} doc The document data to insert. Must contain 'name' and 'userId'.
-	 * @returns {string} The `_id` of the newly inserted document.
-	 */
-	create(doc) {
-		// Example of basic validation before insertion
-		if (!doc.name || !doc.userId) {
-			throw new Meteor.Error('invalid-data', 'Name and userId are required to create a new item.');
-		}
-		// You could use `SimpleSchema.validate(doc, this.schema)` here for stricter validation.
-
-		const newDoc = {
-			...doc,
-			createdAt: new Date(),
-			status: doc.status || 'active', // Set default status if not provided
-		};
-
-		return this.insert(newDoc); // `this.insert` is inherited from `Base`
-	}
-
-	/**
-	 * Updates an item's status by its `_id`.
-	 * @param {string} _id The ID of the item to update.
-	 * @param {string} newStatus The new status ('active', 'inactive', 'archived').
-	 * @returns {number} The number of documents modified.
-	 */
-	updateStatus(_id, newStatus) {
-		// Validate against allowed values in the schema
-		if (!this.schema.status.allowedValues.includes(newStatus)) {
-			throw new Meteor.Error('invalid-status', `Invalid status value: ${newStatus}`);
-		}
-		return this.update({ _id: _id }, { $set: { status: newStatus, updatedAt: new Date() } }); // `this.update` is inherited from `Base`
-	}
-
-	/**
-	 * Removes an item from the collection by its `_id`.
-	 * @param {string} _id The ID of the item to remove.
-	 * @returns {number} The number of documents removed.
-	 */
-	removeById(_id) {
-		return this.remove({ _id: _id }); // `this.remove` is inherited from `Base`
-	}
-}
-
-// --- Register the Model with RocketChat.models ---
-// This makes your model globally accessible throughout the Rocket.Chat server.
-// The `RocketChat` global object is populated during server startup.
-if (typeof RocketChat !== 'undefined' && RocketChat.models) {
-	RocketChat.models.MyNewModel = new MyNewModel();
-}
-
-// In modern Rocket.Chat code, you might explicitly export the class
-// and then instantiate it in an index file, but the above direct assignment
-// to `RocketChat.models` is common in existing server models.
+// 1. Define your schema
+const myNewFeatureSchema = new SimpleSchema({
+  // Unique identifier for the document (MongoDB's _id is automatically handled)
+  _id: {
+    type: String,
+    regEx: SimpleSchema.RegEx.Id,
+    optional: true, // _id is optional on insert, generated by MongoDB
+  },
+  name: {
+    type: String,
+    index: 1, // Create an index on this field for faster queries
+    unique: true, // Ensure names are unique
+    min: 3,
+    max: 50,
+  },
+  description: {
+    type: String,
+    optional: true, // This field is not required
+    max: 200,
+  },
+  userId: {
+    type: String,
+    regEx: SimpleSchema.RegEx.Id, // Assumes userId is a valid MongoDB ID
+    index: 1,
+  },
+  status: {
+    type: String,
+    allowedValues: ['active', 'inactive', 'pending'], // Enforce specific values
+    defaultValue: 'pending',
+  },
+  // Automatic createdAt and updatedAt fields are handled by BaseDb
+  createdAt: {
+    type: Date,
+    autoValue() {
+      if (this.isInsert) {
+        return new Date();
+      } else if (this.isUpsert) {
+        return { $setOnInsert: new Date() };
+      }
+      this.unset(); // Prevent user from supplying their own value
+      return undefined;
+    },
+  },
+  updatedAt: {
+    type: Date,
+    autoValue() {
+      if (this.isUpdate) {
+        return new Date();
+      }
+      return undefined;
+    },
+    optional: true,
+  },
+  // Add any other fields your model needs
+});
 ```
 
-### Key Concepts Explained:
+### 4. Create the Model Class
 
-1.  **`app/models/lib/Base.js`**: This is the core abstraction for Rocket.Chat's MongoDB models. It encapsulates a `Mongo.Collection` instance and provides common methods (`find`, `findOne`, `insert`, `update`, `remove`) as well as convenience methods like `findBy*` and `findOneBy*`.
-2.  **`super('my_new_collection_name')`**: In your constructor, you *must* call `super()` with the desired MongoDB collection name. This initializes the `Base` class with a `Mongo.Collection` instance linked to that specific collection.
-3.  **`this._collection.createIndex()`**: It's crucial to define MongoDB indexes in your model's constructor. Indexes significantly speed up query performance, especially on fields you frequently query or sort by. For example, if you often search by `userId`, an index on `userId` is essential.
-4.  **`schema` property (Optional but Recommended)**: Although `Base.js` doesn't automatically enforce a schema, defining a `schema` property on your model class is a strong convention in Rocket.Chat. It serves as:
-    *   **Documentation**: Clearly outlines the expected structure of documents in your collection.
-    *   **Validation Reference**: You can use this schema manually within your custom methods (e.g., before `insert` or `update`) for data validation, potentially using a package like `simpl-schema`.
-5.  **Custom Methods**: Implement methods like `findActive`, `findOneByName`, `create`, `updateStatus`, etc. These methods encapsulate specific business logic for querying and manipulating data in your collection, making your code cleaner and more maintainable. They typically leverage the `this.find()`, `this.findOne()`, `this.insert()`, `this.update()`, and `this.remove()` methods inherited from `Base.js`.
-6.  **`RocketChat.models.MyNewModel = new MyNewModel()`**: This line is critical. It instantiates your model and assigns it to the global `RocketChat.models` object, making it accessible by its name (`RocketChat.models.MyNewModel`) from anywhere else on the server-side.
+Extend `BaseDb` (or `Base` for simpler models without schema validation or automatic timestamps). `BaseDb` is generally preferred as it provides schema integration and automatic `createdAt`/`updatedAt` handling.
 
-By following this pattern, your new model will seamlessly integrate with Rocket.Chat's database layer and be available for use in methods, publications, and other server-side logic.
+```javascript
+// app/models/server/MyNewFeature.js (continued)
+
+// 2. Create your model class
+class MyNewFeatureClass extends BaseDb {
+  constructor() {
+    // Call super with:
+    // 1. The collection name (snake_case)
+    // 2. The SimpleSchema instance
+    // 3. Options (e.g., to control automatic timestamping)
+    super('my_new_feature', myNewFeatureSchema, {
+      preventSetUpdatedAt: false, // Allow BaseDb to automatically set updatedAt
+      preventSetCreatedAt: false, // Allow BaseDb to automatically set createdAt
+    });
+  }
+
+  // 3. Add custom methods for specific queries or business logic
+  // These methods provide a higher-level API for interacting with your collection.
+
+  /**
+   * Finds features by a specific user ID.
+   * @param {string} userId The ID of the user.
+   * @param {object} options Query options (e.g., sort, limit).
+   * @returns {Mongo.Cursor} A Meteor cursor.
+   */
+  findByUserId(userId, options) {
+    return this.find({ userId }, options);
+  }
+
+  /**
+   * Finds a single feature by its name.
+   * @param {string} name The name of the feature.
+   * @param {object} options Query options.
+   * @returns {object|null} The feature document or null.
+   */
+  findByName(name, options) {
+    return this.findOne({ name }, options);
+  }
+
+  /**
+   * Updates the status of a feature.
+   * @param {string} featureId The ID of the feature.
+   * @param {string} newStatus The new status ('active', 'inactive', 'pending').
+   * @returns {number} The number of documents updated.
+   */
+  updateStatus(featureId, newStatus) {
+    return this.update(
+      { _id: featureId },
+      { $set: { status: newStatus } }
+    );
+  }
+
+  // You can also override default methods (insert, update, remove)
+  // if you need to add custom logic before or after the database operation.
+  // For example:
+  // insert(doc) {
+  //   // Custom logic before insert
+  //   const result = super.insert(doc);
+  //   // Custom logic after insert
+  //   return result;
+  // }
+}
+
+// 4. Export an instance of your model
+export const MyNewFeature = new MyNewFeatureClass();
+```
+
+### 5. Register the Model (Import it)
+
+For your model to be initialized and available, it needs to be imported somewhere in the server-side code. The standard place for this is `app/models/server/index.js`.
+
+**File Path:** `app/models/server/index.js`
+
+Add an import statement for your new model:
+
+```javascript
+// app/models/server/index.js
+
+// ... other imports ...
+import './MyNewFeature'; // Add this line to import your new model
+// ... other imports ...
+```
+
+By importing it, the `MyNewFeatureClass` constructor will run, initializing the MongoDB collection and attaching the schema.
+
+### 6. Using Your New Model
+
+Once created and imported, you can use your model anywhere on the server:
+
+```javascript
+// Example usage in a Meteor method or API endpoint
+import { MyNewFeature } from '../../models/server/MyNewFeature'; // Adjust path as needed
+
+Meteor.methods({
+  'myNewFeature.create'(name, description, userId) {
+    // Validate input (optional, schema handles most of it)
+    check(name, String);
+    check(description, Match.Maybe(String));
+    check(userId, String);
+
+    // Insert a new document
+    const featureId = MyNewFeature.insert({
+      name,
+      description,
+      userId,
+      // createdAt and updatedAt are handled by BaseDb
+    });
+
+    return featureId;
+  },
+
+  'myNewFeature.getByName'(name) {
+    check(name, String);
+    return MyNewFeature.findByName(name).fetch();
+  },
+
+  'myNewFeature.updateStatus'(featureId, newStatus) {
+    check(featureId, String);
+    check(newStatus, String); // Schema will validate allowedValues
+
+    const updatedCount = MyNewFeature.updateStatus(featureId, newStatus);
+    if (updatedCount === 0) {
+      throw new Meteor.Error('feature-not-found', 'Feature not found or status already set.');
+    }
+    return updatedCount;
+  },
+});
+```
+
+### Key Files and Concepts:
+
+*   **`app/models/server/Base.js`**: The fundamental base class for all models, providing basic collection setup and CRUD methods.
+*   **`app/models/server/BaseDb.js`**: Extends `Base` and adds `simpl-schema` integration, automatic `createdAt`/`updatedAt` fields, and other common database utilities. Most new models should extend this.
+*   **`meteor/aldeed:simple-schema`**: The package used for defining and validating document schemas.
+*   **`app/models/server/index.js`**: The central file that imports all server-side models, ensuring they are initialized when the Rocket.Chat server starts.
+*   **Indexes**: Defined within `SimpleSchema` using `index: 1` or `unique: true` for performance.
+*   **Migrations**: If your model's schema changes over time (e.g., adding new required fields, changing types), you'll need to create database migrations in `server/startup/migrations/` to update existing documents in production environments.
 
 ## Metrics
 
 | Metric | Value |
 |--------|-------|
-| Tokens | 5,955 |
+| Tokens | 3,734 |
 | Model | gemini-2.5-flash |
 | Tools | NONE |

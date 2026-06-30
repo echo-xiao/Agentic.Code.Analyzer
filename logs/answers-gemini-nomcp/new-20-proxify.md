@@ -2,140 +2,156 @@
 
 ## Baseline Answer (no tools)
 
-Rocket.Chat's `proxify()` pattern within `packages/core-services` is a fundamental mechanism for enabling inter-service communication in a decoupled, RPC-like manner. It allows one service to call methods on another service as if they were local functions, while abstracting away the underlying transport (which is typically Meteor's DDP).
+The `proxify()` pattern in Rocket.Chat's `core-services` is a fundamental mechanism for enabling inter-service communication, particularly on the server-side. It allows one service to call a method exposed by another service as if it were a local function, abstracting away the underlying Remote Procedure Call (RPC) details.
 
-### Core Idea
+Essentially, `proxify()` creates a "proxy" function that, when invoked, translates the call into a `Meteor.call` to the target service's method.
 
-The main goal of `proxify()` is to create a **client-side proxy** object for a remote service. When you call a method on this proxy, it translates that local call into a remote procedure call (RPC) to the actual service instance, potentially running in a different Node.js process.
+### Core Concept
 
-### Key Components
+1.  **Service Definition:** Each service defines its methods using `ServiceClass.prototype.registerServiceMethod()`. This registers a `Meteor.method` with a specific naming convention (e.g., `serviceName.methodName`).
+2.  **Proxy Creation:** The `proxify()` function takes a service name and a method name. It returns a new function.
+3.  **Inter-Service Call:** When the returned proxy function is called, it internally executes a `Meteor.call(serviceName.methodName, ...args)`.
+4.  **Execution:** The `Meteor.call` is handled by the Meteor framework, which routes the call to the registered method on the target service within the same server process.
 
-1.  **`packages/core-services/src/ServiceClass.ts`**:
-    *   This is the base class for all Rocket.Chat services.
-    *   It provides the `addMethod(name, fn)` helper to register Meteor methods for the service.
-    *   Crucially, it includes `this.call(method, ...args)` and `this.apply(method, args)` methods. These are what the proxy ultimately uses to dispatch calls.
-    *   It manages a DDP client (`_ddpClient`) for services that are *not* the primary Rocket.Chat application process (e.g., worker services) to connect back to the main app process where most services are hosted and exposed.
+### Key Components and Files
 
-2.  **`packages/core-services/src/proxify.ts`**:
-    *   This is the factory function that generates the proxy object.
-    *   It takes a `serviceId` (e.g., `'federation'`) as an argument.
+*   **`app/core-services/server/index.js`**: This file is the entry point for `core-services` on the server. It exports `proxify` and the `Service` class.
+*   **`app/core-services/server/ServiceClass.js`**: Defines the `ServiceClass` from which all Rocket.Chat services inherit. It contains the `registerServiceMethod` function.
+*   **`app/core-services/server/Service.js`**: The singleton instance of `ServiceClass` that services extend.
 
-3.  **`packages/core-services/src/ServiceBase.ts`**:
-    *   Provides foundational utilities for services, including how they register themselves and their methods.
+### How it Works Step-by-Step
 
-### How it Works (Step-by-Step)
+#### 1. Defining and Exposing a Service Method
 
-Let's imagine `ServiceA` needs to call a method `doSomething()` on `ServiceB`.
+A service (let's call it `ServiceB`) defines its methods by extending `Service` and using `this.registerServiceMethod()`:
 
-**1. Defining ServiceB (The Server Side)**
+**`app/services/service-b/server/service-b.js`** (Example)
 
-`ServiceB` extends `ServiceClass` and defines its methods using `addMethod()`:
+```javascript
+import { Service } from '@rocket.chat/core-services';
 
-```typescript
-// packages/my-service-b/server/service.ts
-import { ServiceClass } from '@rocket.chat/core-services';
+class ServiceBClass extends Service {
+	constructor() {
+		super('ServiceB'); // Register service with name 'ServiceB'
 
-class ServiceB extends ServiceClass {
-    protected name = 'service-b'; // The service ID
+		this.registerServiceMethod('doSomethingInB', async (param1, param2) => {
+			// Logic for doSomethingInB
+			console.log(`ServiceB: doSomethingInB called with ${param1}, ${param2}`);
+			return `Result from ServiceB for ${param1}`;
+		});
 
-    constructor() {
-        super();
-
-        this.addMethod('doSomething', async (arg1: string, arg2: number) => {
-            console.log(`ServiceB: doSomething called with ${arg1}, ${arg2}`);
-            // ... actual logic of ServiceB ...
-            return `Result from ServiceB: ${arg1}-${arg2}`;
-        });
-
-        // Other methods...
-    }
+		this.registerServiceMethod('anotherMethod', async (data) => {
+			// More logic
+			return `Another result: ${data}`;
+		});
+	}
 }
 
-// Instantiate the service so it registers its methods with Meteor
-export const serviceB = new ServiceB();
+export const ServiceB = new ServiceBClass();
 ```
 
-When `serviceB` is instantiated, its `addMethod` calls register standard Meteor methods. For example, `doSomething` will be registered as a Meteor method named `service-b/doSomething`.
+When `ServiceB` is initialized, `this.registerServiceMethod('doSomethingInB', ...)` effectively creates a `Meteor.method` named `'ServiceB.doSomethingInB'` that points to the provided async function.
 
-**2. Consuming ServiceB (The Client Side) in ServiceA**
+#### 2. Calling a Service Method using `proxify()`
 
-`ServiceA` uses `proxify()` to get a proxy for `ServiceB`:
+Another service (let's call it `ServiceA`) wants to call `ServiceB.doSomethingInB()`:
 
-```typescript
-// packages/my-service-a/server/service.ts
-import { ServiceClass, proxify } from '@rocket.chat/core-services';
+**`app/services/service-a/server/service-a.js`** (Example)
 
-interface IServiceB {
-    doSomething(arg1: string, arg2: number): Promise<string>;
-    // Other methods...
+```javascript
+import { Service, proxify } from '@rocket.chat/core-services';
+
+// Create a proxy for ServiceB's methods
+const ServiceBProxy = {
+	doSomethingInB: proxify('ServiceB', 'doSomethingInB'),
+	anotherMethod: proxify('ServiceB', 'anotherMethod'),
+};
+
+class ServiceAClass extends Service {
+	constructor() {
+		super('ServiceA');
+
+		this.registerServiceMethod('callServiceB', async (value) => {
+			console.log('ServiceA: Calling ServiceB.doSomethingInB...');
+			try {
+				// Call the proxified method
+				const result = await ServiceBProxy.doSomethingInB(value, 'fixed_param');
+				console.log('ServiceA: Received result from ServiceB:', result);
+
+				const anotherResult = await ServiceBProxy.anotherMethod({ key: value });
+				console.log('ServiceA: Received another result from ServiceB:', anotherResult);
+
+				return `ServiceA processed: ${result} and ${anotherResult}`;
+			} catch (error) {
+				console.error('ServiceA: Error calling ServiceB:', error);
+				throw error;
+			}
+		});
+	}
 }
 
-class ServiceA extends ServiceClass {
-    protected name = 'service-a';
-
-    private serviceB: IServiceB;
-
-    constructor() {
-        super();
-
-        // Get the proxy for ServiceB
-        this.serviceB = proxify<IServiceB>('service-b');
-
-        this.addMethod('callServiceB', async (data: { text: string; num: number }) => {
-            console.log(`ServiceA: calling ServiceB's doSomething...`);
-            const result = await this.serviceB.doSomething(data.text, data.num);
-            console.log(`ServiceA: received result from ServiceB: ${result}`);
-            return `ServiceA processed: ${result}`;
-        });
-    }
-}
-
-export const serviceA = new ServiceA();
+export const ServiceA = new ServiceAClass();
 ```
 
-**3. The `proxify()` Mechanism (Under the Hood)**
-
-When `proxify('service-b')` is called:
-
-*   It creates a plain JavaScript object.
-*   It uses a `Proxy` object (a native JavaScript feature) or dynamically adds methods to this object for every possible method a service *could* have (or uses a `get` trap on the `Proxy`).
-*   When `this.serviceB.doSomething(data.text, data.num)` is called on the proxy object:
-    1.  The proxy intercepts the `doSomething` call.
-    2.  It constructs the full Meteor method name: `service-b/doSomething`.
-    3.  It then uses `this.call()` (which is available from `ServiceA`'s `ServiceClass` base) to dispatch this call.
-    4.  The `ServiceClass`'s `this.call()` method intelligently decides how to make the actual call:
-        *   **If ServiceA is running in the *main Rocket.Chat process***: It directly calls `Meteor.call('service-b/doSomething', arg1, arg2)`. Meteor's internal method dispatcher finds the `service-b/doSomething` handler (registered by `ServiceB`) and executes it.
-        *   **If ServiceA is running in a *separate Node.js process*** (e.g., a dedicated worker for a specific service): Its `ServiceClass` instance will have an internal DDP client (`this._ddpClient`) connected to the main Rocket.Chat process. `this.call()` will then use `this._ddpClient.call('service-b/doSomething', arg1, arg2)` to send the method invocation over DDP.
-
-**4. Response Flow**
-
-*   The `service-b/doSomething` method executes on the server where `ServiceB` is running.
-*   The return value (or any thrown error) is transmitted back via DDP.
-*   The `this.call()` in `ServiceA` receives this result/error.
-*   The proxy then returns the result to the caller in `ServiceA` (or re-throws the error).
+In this example:
+*   `proxify('ServiceB', 'doSomethingInB')` returns a function.
+*   When `ServiceBProxy.doSomethingInB(value, 'fixed_param')` is called, it internally executes `Meteor.call('ServiceB.doSomethingInB', value, 'fixed_param')`.
+*   Meteor then finds the registered method `'ServiceB.doSomethingInB'` and executes the original function defined in `ServiceB`.
 
 ### Benefits of the `proxify()` Pattern
 
-*   **Decoupling:** Services don't need to know the physical location or specific implementation details of other services. They just interact via a defined interface.
-*   **Modularity:** Promotes a microservices-like architecture within the Rocket.Chat codebase, allowing services to be developed, tested, and potentially deployed independently (even if currently in the same monorepo).
-*   **Consistency:** All inter-service communication happens through the same `proxify`/`ServiceClass` mechanism, making the codebase more predictable.
-*   **Abstraction:** Hides the complexity of DDP, network communication, and error handling from the service developer.
-*   **Scalability:** While not fully distributed microservices out-of-the-box, it lays the groundwork. If a service becomes a bottleneck, it could theoretically be moved to its own Node.js process (or even a separate server) with minimal changes to its callers, as long as a DDP connection can be established.
+1.  **Abstraction:** It hides the underlying RPC mechanism (`Meteor.call`) from the calling service, making inter-service calls look like regular function calls.
+2.  **Decoupling:** Services don't need to know the internal implementation details of other services, only their exposed method signatures. This promotes a cleaner separation of concerns.
+3.  **Maintainability:** If the underlying communication mechanism changes (e.g., from `Meteor.call` to a dedicated message queue), only `proxify()` and `registerServiceMethod` would need to be updated, not every service call site.
+4.  **Centralized Error Handling:** `proxify` can be extended to include common error handling, logging, or retry logic for inter-service communication.
+5.  **Testability:** It makes it easier to mock external service calls during testing, as you can simply replace the proxified function with a mock.
+6.  **Monorepo Advantage:** While Rocket.Chat is a monorepo, this pattern allows it to adopt a microservices-like architecture *within* the single server process, improving organization and scalability of development.
 
-### File Paths to Look At
+### File Paths
 
-*   `packages/core-services/src/index.ts`: Exports `proxify` and `ServiceClass`.
-*   `packages/core-services/src/proxify.ts`: The `proxify` function implementation.
-*   `packages/core-services/src/ServiceClass.ts`: The base class for all services, containing `addMethod`, `call`, and `apply`.
-*   `packages/core-services/src/ServiceBase.ts`: Provides a common base for service initialization.
-*   You'll find examples of services *using* `proxify` throughout the `app/` and `packages/` directories, for instance, `app/livechat/server/lib/LivechatEnterprise.ts` might `proxify` other internal services.
+*   **`app/core-services/server/index.js`**:
+    ```javascript
+    // Simplified snippet
+    import { ServiceClass } from './ServiceClass';
 
-In essence, `proxify()` is a clever use of Meteor's built-in DDP and JavaScript Proxies to create a robust and idiomatic way for services within Rocket.Chat to communicate, fostering a more maintainable and scalable architecture.
+    export class Service extends ServiceClass {
+        // ...
+    }
+
+    export const proxify = (serviceName, methodName) => {
+        return async (...args) => {
+            return Meteor.call(`${serviceName}.${methodName}`, ...args);
+        };
+    };
+    ```
+
+*   **`app/core-services/server/ServiceClass.js`**:
+    ```javascript
+    // Simplified snippet
+    export class ServiceClass {
+        constructor(serviceName) {
+            this.serviceName = serviceName;
+        }
+
+        registerServiceMethod(methodName, methodFunction) {
+            const fullMethodName = `${this.serviceName}.${methodName}`;
+            Meteor.methods({
+                [fullMethodName]: async function(...args) {
+                    // Add context, error handling, etc.
+                    return methodFunction.apply(this, args);
+                },
+            });
+        }
+        // ...
+    }
+    ```
+
+This pattern is crucial for how Rocket.Chat manages its internal logic, allowing different parts of the application to communicate in a structured and maintainable way, even within a single Meteor server instance.
 
 ## Metrics
 
 | Metric | Value |
 |--------|-------|
-| Tokens | 3,535 |
+| Tokens | 3,111 |
 | Model | gemini-2.5-flash |
 | Tools | NONE |

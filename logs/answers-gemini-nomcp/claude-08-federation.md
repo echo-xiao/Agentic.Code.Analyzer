@@ -2,66 +2,51 @@
 
 ## Baseline Answer (no tools)
 
-Rocket.Chat's federation mechanism, often referred to as "Federation V1" or "Matrix Bridge," operates with a central **Federation Bridge** server. This bridge acts as a hub, orchestrating message exchange between participating Rocket.Chat instances. Messages are **not** sent directly from one Rocket.Chat instance to another.
+Rocket.Chat's federation module (`@rocket.chat/federation`) handles sending messages across different servers primarily using **HTTP/HTTPS POST requests** with a custom JSON-based event format.
 
-Here's a breakdown of how federation messages are sent across different servers:
+Here's a breakdown of how federation messages are sent:
 
-### Key Architectural Components
+1.  **Event Triggering and Transformation:**
+    *   When an event occurs on a local Rocket.Chat server that needs to be federated (e.g., a new message in a federated room, a user profile update, a room creation), the federation module intercepts it.
+    *   These local events are then transformed into a standardized **Federation Event** format. This format is a JSON object containing details like the event type, sender, recipient, and the actual payload (e.g., message content, user data).
+    *   You can see the definition of these event types and their structures within `packages/federation/src/domain/FederationEvent.ts` and related files.
 
-1.  **Rocket.Chat Instance (Client to Bridge):** Each Rocket.Chat server that participates in federation acts as a "client" to the central Federation Bridge. It has a built-in federation SDK.
-2.  **Federation Bridge (Hub Server):** A separate Rocket.Chat instance running specific federation-bus packages. This server is responsible for receiving messages from one instance, determining destination instances, and forwarding the messages.
-3.  **Custom Protocol over HTTPS/WebSockets:** Communication between instances and the Bridge uses a custom JSON-based protocol over standard web protocols.
-4.  **Cryptographic Signing:** Messages are signed by the originating instance (and sometimes by the Bridge) to ensure authenticity and integrity.
+2.  **Recipient Determination:**
+    *   The federation module determines which remote server(s) need to receive this event. For instance, if a message is sent in a federated room, it will identify all remote servers participating in that room.
 
-### Step-by-Step Flow of Sending a Federated Message
+3.  **HTTP/HTTPS Transport:**
+    *   The core mechanism for sending these events is an **HTTP/HTTPS POST request**.
+    *   The local server acts as an HTTP client, sending the Federation Event to a specific endpoint on the remote server.
+    *   The primary endpoint for receiving federation events on a remote server is typically `/api/v1/federation.events`.
 
-Let's assume a user on `Instance A` sends a message in a federated room that includes users from `Instance B` and `Instance C`.
+4.  **Security and Authentication:**
+    *   **HTTPS:** All communication between federated servers is expected to happen over HTTPS to ensure encryption in transit.
+    *   **Request Signing (HMAC):** To ensure the authenticity and integrity of the messages, Rocket.Chat federation uses a shared secret (configured between federated servers) to sign each outgoing request using HMAC (Hash-based Message Authentication Code). The remote server then verifies this signature upon receipt. This prevents unauthorized servers from injecting messages and ensures messages haven't been tampered with.
+    *   The signature is typically included in a custom HTTP header.
 
-#### 1. Message Originates on `Instance A` (Originating Server)
+5.  **Key Code Locations:**
 
-*   **User Action:** A user sends a message in a federated room (e.g., `#federated-room`).
-*   **Server-Side Interception:** The core Rocket.Chat message sending logic (located around `app/lib/server/methods/sendMessage.ts` and related event hooks) identifies that the room is federated. This is typically done by checking the `federation.enabled` and `federation.origin` properties on the room document in the database.
-*   **Federation Hook Trigger:** A specific hook, `onFederatedRoomMessage`, is triggered within the `packages/federation` module.
-    *   **File:** `packages/federation/src/server/hooks/onFederatedRoomMessage.ts`
-*   **Message Preparation:** The message payload is prepared for federation. This includes:
-    *   The message content, sender details, timestamp, room ID.
-    *   Crucially, it includes a signature generated using `Instance A`'s private key. This signature proves that the message genuinely originated from `Instance A`.
-*   **Sending to Bridge:** The `packages/federation/src/client/FederationClient.ts` component is invoked. It makes an outbound HTTPS POST request to the configured Federation Bridge's API endpoint (e.g., `https://my-federation-bridge.com/api/v1/federation/messages`).
-    *   **File:** `packages/federation/src/client/FederationClient.ts`
-    *   **Method:** `sendRoomMessage(payload: FederationRoomMessageDto)`
-    *   **Data Transfer Object (DTO):** The message is encapsulated in a DTO like `FederationRoomMessageDto` or `FederationMessageDto` (defined in `packages/federation/src/domain/FederationMessage.ts`).
+    *   **Federation Services (Triggering Sends):** These services encapsulate the business logic for different types of federated entities (rooms, users) and determine when to send events.
+        *   `packages/federation/src/application/RoomService.ts`: Handles sending room-related events (e.g., new messages, room creation/updates).
+        *   `packages/federation/src/application/UserService.ts`: Handles sending user-related events (e.g., user profile updates).
+        *   `packages/federation/src/application/AbstractFederationService.ts`: Provides a base for these services, often delegating the actual sending to an `IFederationService` implementation.
 
-#### 2. Message Processed by the Federation Bridge (Hub Server)
+    *   **HTTP Federation Service (Actual Sending):** This is where the HTTP client logic resides.
+        *   `packages/federation/src/infrastructure/http/HttpFederationService.ts`: This class implements the `IFederationService` interface and is responsible for constructing the HTTP requests, signing them, and sending them to the appropriate remote servers. It uses an underlying HTTP client (e.g., `axios` or a similar library).
+            *   Look for methods like `sendEvent` or `sendEvents` within this file.
 
-*   **Bridge API Endpoint:** The Federation Bridge, running the `packages/federation-bus` module, exposes API endpoints to receive these messages.
-    *   **File:** `packages/federation-bus/src/server/sdk/v1/bridge.endpoints.ts` (specifically, handling `/v1/federation/messages`).
-*   **Message Reception:** The Bridge receives the signed message payload from `Instance A`.
-*   **Signature Verification:** The Bridge verifies the message's signature using `Instance A`'s public key (which it has stored). This confirms the message's authenticity and integrity.
-    *   **File:** `packages/federation-bus/src/server/application/AbstractFederationApplicationService.ts` (base for verification logic).
-*   **Destination Determination:** The Bridge looks up the federated room in its own database to identify all participating Rocket.Chat instances (e.g., `Instance B` and `Instance C`).
-*   **Message Forwarding:** For each destination instance, the Bridge prepares a new (or modified) message payload. It then initiates an outbound HTTPS POST request to *each* of the destination instances.
-    *   **File:** `packages/federation-bus/src/server/application/ForwardRoomMessageService.ts` contains the core logic for this.
-    *   The Bridge might also add its own signature or specific metadata to the message before forwarding.
+    *   **Federation Event Definition:**
+        *   `packages/federation/src/domain/FederationEvent.ts`: Defines the structure and types of the federation events that are sent.
 
-#### 3. Message Received by `Instance B` and `Instance C` (Receiving Servers)
+    *   **Receiving Endpoint (on the remote server):**
+        *   `packages/federation/src/infrastructure/http/endpoints/events.ts`: This file defines the API endpoint (`/api/v1/federation.events`) that remote servers listen on to receive incoming federation events. It's responsible for validating the request (including the HMAC signature) and then processing the event.
 
-*   **Instance API Endpoint:** `Instance B` and `Instance C` (also running the `packages/federation` module) expose their own federation API endpoints to receive incoming messages from the Bridge.
-    *   **File:** `packages/federation/src/server/sdk/v1/endpoints.ts` (specifically, handling `/v1/federation/messages`).
-*   **Message Reception:** `Instance B` and `Instance C` receive the forwarded message payload from the Federation Bridge.
-*   **Verification:** They verify the message's authenticity (e.g., checking the Bridge's signature, or the original instance's if passed through).
-*   **Message Insertion:** If valid, the message is inserted into the local database of `Instance B` and `Instance C`.
-*   **Real-time Update:** The message becomes visible to users on `Instance B` and `Instance C` in real-time through standard Rocket.Chat publication mechanisms (e.g., DDP/MongoDB change streams).
-
-### Summary of the Flow:
-
-`User on Instance A` -> `Instance A` (federation client SDK) -> `Federation Bridge` (API endpoint) -> `Federation Bridge` (forwarding logic) -> `Instance B` (federation API) / `Instance C` (federation API) -> `Local Database Insertion`.
-
-This hub-and-spoke model simplifies routing and ensures a central point for policy enforcement and troubleshooting, though it makes the Federation Bridge a single point of failure and a potential performance bottleneck.
+In summary, when a federated event needs to be sent, a specific federation service (e.g., `RoomService`) calls the `HttpFederationService`, which then crafts a signed HTTP POST request containing the JSON-formatted Federation Event and sends it to the `/api/v1/federation.events` endpoint of the target remote server.
 
 ## Metrics
 
 | Metric | Value |
 |--------|-------|
-| Tokens | 3,140 |
+| Tokens | 1,654 |
 | Model | gemini-2.5-flash |
 | Tools | NONE |

@@ -33,6 +33,8 @@ async function main() {
             role: 'user',
             parts: [{ text: 'You are a software architect expert on the Rocket.Chat open-source codebase (https://github.com/RocketChat/Rocket.Chat). Answer questions about its architecture, code structure, and implementation details. Always include specific file paths when possible.' }],
         },
+        // Determinism: greedy decode so the no-MCP baseline is reproducible across runs (see gen:mcp).
+        generationConfig: { temperature: 0, topK: 1, topP: 1, candidateCount: 1 },
     });
 
     const { flat: testcases } = loadTestcases(path.join(__dirname, 'utils', 'testcases.json'));

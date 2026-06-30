@@ -14,6 +14,7 @@ import { ensureIndex } from '../indexer/index.js';
 import { handleToolCall } from '../server/registry.js';
 import { GLOBAL_INDEX } from '../indexer/state.js';
 import { loadTestcases, type TestCase } from './utils/load-testcases.js';
+import { extractCitedFiles } from './utils/eval-util.js';
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const PROJECT_ROOT = path.resolve(__dirname, '..', '..');
@@ -23,6 +24,10 @@ interface ToolCallRecord { step: number; tool: string; args: Record<string, any>
 interface AnswerRecord {
     id: string; question: string; questionType: string; subsystem: string;
     llmAnswer: string; toolCalls: ToolCallRecord[]; tokens: number;
+    // File paths that appeared in ANY tool result during the run. Lets eval-3 split a missed core
+    // file into "never retrieved" (not here) vs "retrieved but the agent didn't write it" (here but
+    // absent from the answer) — i.e. retrieval failure vs synthesis failure.
+    seenFiles: string[];
 }
 
 const GEMINI_FUNCTIONS: FunctionDeclaration[] = [
@@ -72,6 +77,7 @@ function extractToolResultText(result: any): string { return result?.content?.[0
 
 async function runTestCase(model: any, tc: TestCase): Promise<AnswerRecord> {
     const toolCalls: ToolCallRecord[] = [];
+    const seenFiles = new Set<string>();
     let totalTokens = 0;
     let step = 0;
     const chat = model.startChat({ history: [] });
@@ -97,6 +103,7 @@ async function runTestCase(model: any, tc: TestCase): Promise<AnswerRecord> {
             step++;
             const toolResult = await handleToolCall(fc.name, fc.args ?? {});
             const resultText = extractToolResultText(toolResult);
+            for (const f of extractCitedFiles(resultText)) seenFiles.add(f);
             toolCalls.push({ step, tool: fc.name, args: fc.args ?? {}, responseTokensEst: Math.ceil(resultText.length / 4) });
             fnResponses.push({ functionResponse: { name: fc.name, response: { content: resultText } } } as any);
         }
@@ -107,7 +114,7 @@ async function runTestCase(model: any, tc: TestCase): Promise<AnswerRecord> {
 
     const llmAnswer = response.response.candidates?.[0]?.content?.parts
         ?.filter((p: any) => p.text)?.map((p: any) => p.text)?.join('\n') ?? '';
-    return { id: tc.id, question: tc.question, questionType: tc.questionType, subsystem: tc.subsystem, llmAnswer, toolCalls, tokens: totalTokens };
+    return { id: tc.id, question: tc.question, questionType: tc.questionType, subsystem: tc.subsystem, llmAnswer, toolCalls, tokens: totalTokens, seenFiles: Array.from(seenFiles) };
 }
 
 function saveAnswers(records: AnswerRecord[]) {
@@ -115,7 +122,8 @@ function saveAnswers(records: AnswerRecord[]) {
     for (const r of records) {
         const trace = r.toolCalls.map(t =>
             `**Step ${t.step}:** \`${t.tool}(${JSON.stringify(t.args).substring(0, 100)})\` → ${t.responseTokensEst} tokens`).join('\n');
-        const content = `# ${r.question}\n\n## Gemini Answer\n\n${r.llmAnswer}\n\n## Tool Calls (${r.toolCalls.length} calls, ${r.tokens.toLocaleString()} tokens)\n\n${trace}\n`;
+        const seen = r.seenFiles.length ? r.seenFiles.map(f => `- \`${f}\``).join('\n') : '_(none)_';
+        const content = `# ${r.question}\n\n## Gemini Answer\n\n${r.llmAnswer}\n\n## Tool Calls (${r.toolCalls.length} calls, ${r.tokens.toLocaleString()} tokens)\n\n${trace}\n\n## Files Seen In Tool Results (${r.seenFiles.length})\n\n${seen}\n`;
         fs.writeFileSync(path.join(ANSWERS_DIR, `${r.id}.md`), content, 'utf-8');
     }
 }
@@ -135,6 +143,10 @@ async function main() {
         model: modelName,
         tools: [{ functionDeclarations: GEMINI_FUNCTIONS }],
         systemInstruction: { role: 'user', parts: [{ text: agentsMd }] },
+        // Determinism: greedy decode (temperature 0, top-k 1, single candidate) so re-runs over an
+        // unchanged index produce the same answers. Without this the agent samples at temp ~1.0 and
+        // PASS counts drift ±3 between runs, making single-run before/after comparisons meaningless.
+        generationConfig: { temperature: 0, topK: 1, topP: 1, candidateCount: 1 },
     });
 
     const { flat: testcases } = loadTestcases(path.join(__dirname, 'utils', 'testcases.json'));
@@ -156,7 +168,7 @@ async function main() {
             if (i < selected.length - 1) await new Promise(r => setTimeout(r, isPro ? 13000 : 4500));
         } catch (e: any) {
             console.error(`ERROR: ${e?.message?.slice(0, 100)}`);
-            records.push({ id: tc.id, question: tc.question, questionType: tc.questionType, subsystem: tc.subsystem, llmAnswer: `ERROR: ${e?.message}`, toolCalls: [], tokens: 0 });
+            records.push({ id: tc.id, question: tc.question, questionType: tc.questionType, subsystem: tc.subsystem, llmAnswer: `ERROR: ${e?.message}`, toolCalls: [], tokens: 0, seenFiles: [] });
             await new Promise(r => setTimeout(r, 5000));
         }
     }

@@ -1,16 +1,18 @@
 # Layer 1 — Tool Eval Report
 
-6/30/2026, 9:53:50 AM
+6/30/2026, 12:31:16 PM
 
 ## Summary: 24/34 passed
 
 > Gate = **sanity** (substring recall, near-100% by construction — a floor, not a score) 
-> **AND retrieval** (a single realistic query surfaces ≥30% of core files in top-10 — the honest bar).
+> **AND retrieval** (a single realistic query surfaces ≥30% of core files in top-10) 
+> **AND order** (ordered Qs only: graph(down) recovers ≥60% of the chain in causal order).
 
 | Gate | Pass |
 |---|---:|
 | Sanity (substring recall) | 33/34 |
 | **Retrieval (single-query R@10 ≥ 0.3)** | **25/34** |
+| **Chain order (LCS ≥ 60%, ordered Qs)** | **16/17** |
 | Combined | 24/34 |
 
 | Metric | Average |
@@ -22,7 +24,7 @@
 | **Recall@5 / @10 / @20** | 41.8% / 49.4% / 58.4% |
 | **MRR** (core files) | 0.268 |
 | **F1@5** | 31.5% |
-| **Chain order LCS** (ordered Qs: 17, report-only) | 78.7% |
+| **Chain order LCS** (ordered Qs: 17, gate ≥ 60%) | 78.7% |
 
 ## Per-Testcase Results
 
@@ -109,27 +111,27 @@
 | ranked-low | 5 | in top-50 but >5 → improve ranking / re-rank (not just bigger top-k) |
 | ok | 6 | core files in top-5 — no change |
 
-## Chain Order (LCS — ordered questions only, report-only, not a pass gate)
+## Chain Order (LCS — ordered questions only, pass gate ≥ 60%)
 
-| # | ID | Chain | LCS | Order | Observed order |
-|---|---|----:|----:|----:|---|
-| 1 | tour-04-msg-client | 6 | 5 | 83% | RoomBody → ComposerContainer → onSend → sendMessage → handleSendMessage → ChatAPI |
-| 2 | new-19-message-rendering | 2 | 2 | 100% | parse → Markup |
-| 3 | claude-01-push-notifications | 6 | 4 | 67% | sendAllNotifications → shouldNotifyMobile → NotificationQueue → PushClass |
-| 4 | new-09-realtime-streamer | 5 | 4 | 80% | notifyOnMessageChange → streamRoomMessage → Streamer → Streamer → listeners |
-| 5 | tour-05-msg-server | 5 | 3 | 60% | sendMessage → sendMessage → ChatAPI → ChatMessages → executeSendMessage |
-| 6 | claude-05-call-chain | 8 | 6 | 75% | sendMessage → sendMessage → sendMessage → executeSendMessage → canSendMessageAsync → validateRoomMessagePermissionsAsync → validateMessage → afterSaveMessage |
-| 10 | claude-08-federation | 4 | 3 | 75% | FederationMatrix → sendMessage → processIncomingTransaction |
-| 11 | new-18-webhook | 3 | 2 | 67% | executeIntegrationRest → processWebhookMessage → triggerHandler |
-| 17 | new-11-settings | 3 | 3 | 100% | SettingsRegistry → CachedSettings → public-settings/get |
-| 18 | claude-03-file-upload | 3 | 2 | 67% | uploadFiles → FileUploadClass → roomsMedia |
-| 19 | new-10-apps-engine | 5 | 3 | 60% | AppListenerManager → executeListener → AppManager → AppInterface |
-| 26 | new-22-2fa | 4 | 3 | 75% | twoFactorRequired → checkCodeForUser → TOTPCheck → EmailCheck |
-| 27 | claude-04-e2e-encryption | 5 | 4 | 80% | createAndLoadKeys → createGroupKey → Keychain → generate |
-| 28 | new-12-ldap-auth | 4 | 4 | 100% | configureLDAP → LDAPService → LDAPManager → LDAPConnection |
-| 31 | new-13-room-creation | 3 | 3 | 100% | createChannelMethod → createRoom → RoomService |
-| 32 | new-23-omnichannel | 3 | 3 | 100% | OmnichannelService → OmnichannelQueue → closeRoom |
-| 33 | claude-06-livechat-routing | 6 | 3 | 50% | requestRoom → delegateInquiry → takeInquiry → LivechatClientImpl → widget → createRoom |
+| # | ID | Chain | LCS | Order | Gate | Observed order |
+|---|---|----:|----:|----:|---|---|
+| 1 | tour-04-msg-client | 6 | 5 | 83% | ✅ | RoomBody → ComposerContainer → onSend → sendMessage → handleSendMessage → ChatAPI |
+| 2 | new-19-message-rendering | 2 | 2 | 100% | ✅ | parse → Markup |
+| 3 | claude-01-push-notifications | 6 | 4 | 67% | ✅ | sendAllNotifications → shouldNotifyMobile → NotificationQueue → PushClass |
+| 4 | new-09-realtime-streamer | 5 | 4 | 80% | ✅ | notifyOnMessageChange → streamRoomMessage → Streamer → Streamer → listeners |
+| 5 | tour-05-msg-server | 5 | 3 | 60% | ✅ | sendMessage → sendMessage → ChatAPI → ChatMessages → executeSendMessage |
+| 6 | claude-05-call-chain | 8 | 6 | 75% | ✅ | sendMessage → sendMessage → sendMessage → executeSendMessage → canSendMessageAsync → validateRoomMessagePermissionsAsync → validateMessage → afterSaveMessage |
+| 10 | claude-08-federation | 4 | 3 | 75% | ✅ | FederationMatrix → sendMessage → processIncomingTransaction |
+| 11 | new-18-webhook | 3 | 2 | 67% | ✅ | executeIntegrationRest → processWebhookMessage → triggerHandler |
+| 17 | new-11-settings | 3 | 3 | 100% | ✅ | SettingsRegistry → CachedSettings → public-settings/get |
+| 18 | claude-03-file-upload | 3 | 2 | 67% | ✅ | uploadFiles → FileUploadClass → roomsMedia |
+| 19 | new-10-apps-engine | 5 | 3 | 60% | ✅ | AppListenerManager → executeListener → AppManager → AppInterface |
+| 26 | new-22-2fa | 4 | 3 | 75% | ✅ | twoFactorRequired → checkCodeForUser → TOTPCheck → EmailCheck |
+| 27 | claude-04-e2e-encryption | 5 | 4 | 80% | ✅ | createAndLoadKeys → createGroupKey → Keychain → generate |
+| 28 | new-12-ldap-auth | 4 | 4 | 100% | ✅ | configureLDAP → LDAPService → LDAPManager → LDAPConnection |
+| 31 | new-13-room-creation | 3 | 3 | 100% | ✅ | createChannelMethod → createRoom → RoomService |
+| 32 | new-23-omnichannel | 3 | 3 | 100% | ✅ | OmnichannelService → OmnichannelQueue → closeRoom |
+| 33 | claude-06-livechat-routing | 6 | 3 | 50% | ❌ | requestRoom → delegateInquiry → takeInquiry → LivechatClientImpl → widget → createRoom |
 
 
 ## Failures
@@ -176,3 +178,7 @@
 ### claude-06-livechat-routing — livechat
 
 **Q:** How are Livechat requests routed to the server-side in Rocket.Chat?
+
+**Chain order below gate (50% < 60%):**
+- expected: LivechatClientImpl → widget → createRoom → requestRoom → delegateInquiry → takeInquiry
+- observed: requestRoom → delegateInquiry → takeInquiry → LivechatClientImpl → widget → createRoom

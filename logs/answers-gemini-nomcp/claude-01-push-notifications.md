@@ -2,97 +2,157 @@
 
 ## Baseline Answer (no tools)
 
-Push notifications in Rocket.Chat involve several components working together, from the client device registering to the server sending the notification via a push gateway. Here's a detailed breakdown:
+Push notifications in Rocket.Chat are a critical component for real-time communication, ensuring users are notified of new messages, mentions, and other events even when they are not actively using the application. The system has evolved, but the core principles remain.
 
-### Overall Flow
+Here's a detailed breakdown of how push notifications work in Rocket.Chat, including the server-side logic, external services, and client-side reception:
 
-1.  **Device Registration**: The Rocket.Chat mobile app (or desktop app) registers with the native push service (FCM for Android/Web, APN for iOS) and obtains a unique device token. This token is then sent to the Rocket.Chat server.
-2.  **Server Storage**: The Rocket.Chat server stores this device token and associated metadata (device type, app ID, etc.) in its database, linked to the user.
-3.  **Notification Trigger**: When a new message arrives that should trigger a push notification (e.g., direct message, mention, message in a watched room, depending on user settings), the Rocket.Chat server identifies the target users and their devices.
-4.  **Payload Generation**: The server generates a notification payload containing message details, sender, room information, and sound/vibration preferences.
-5.  **Push Gateway Communication**: The Rocket.Chat server sends this payload and the device tokens to a **Unified Push Gateway (UPG)**. Rocket.Chat often uses its cloud-hosted UPG for simplicity, but a self-hosted alternative is possible.
-6.  **Native Service Relay**: The UPG translates the generic Rocket.Chat payload into the specific format required by FCM (Firebase Cloud Messaging) or APN (Apple Push Notification service).
-7.  **Native Service Delivery**: FCM/APN deliver the notification to the target device.
-8.  **Client-side Reception**: The Rocket.Chat app on the device receives the notification, processes its content, and displays it to the user.
+## High-Level Overview
 
-### Key Components and File Paths
+1.  **Event Trigger:** A new message or event occurs on the Rocket.Chat server.
+2.  **Notification Logic:** The server determines which users should receive a notification based on their preferences and the event type.
+3.  **Token Retrieval:** For each eligible user, the server retrieves their registered device tokens (APN for iOS, FCM for Android/Web).
+4.  **Payload Construction:** A notification payload (containing message details, sender, room ID, etc.) is created.
+5.  **Push Gateway Interaction:** The Rocket.Chat server sends this payload to the appropriate external push notification service (APN or FCM).
+6.  **External Service Delivery:** APN/FCM deliver the notification to the user's device.
+7.  **Client Reception:** The mobile app or web browser (via Service Worker) receives and processes the notification.
 
-Let's dive into the specifics within the Rocket.Chat codebase:
+## Detailed Flow and Components
 
-#### 1. Device Registration (Client to Server)
+### 1. Event Trigger and Notification Determination (Server-Side)
 
-*   **Client-side (Mobile App - React Native)**:
-    *   The mobile application integrates with native push notification libraries (e.g., `@react-native-firebase/messaging` for FCM).
-    *   It obtains a device token from FCM/APN.
-    *   This token, along with device information, is sent to the Rocket.Chat server using a Meteor method.
-    *   **Relevant files**:
-        *   `apps/mobile/src/lib/notifications.ts`: Handles the initialization of push notifications, requesting permissions, obtaining the device token, and sending it to the server.
-        *   `apps/mobile/src/push.ts`: Push notification setup and handling logic specific to the mobile app.
+*   **Trigger:** The primary trigger is a new message being sent in a channel or direct message. Other triggers can include mentions, direct messages, or specific system events.
+*   **Core Logic:** When a message is inserted into the database, a server-side hook or observer is activated.
+    *   **File:** `app/lib/server/lib/sendNotificationsOnMessage.ts` is a key file responsible for orchestrating the notification process for new messages.
+*   **User Preferences & Room Settings:** Before sending, Rocket.Chat checks:
+    *   **User's Global Preferences:** `User Menu > My Account > Preferences > Notifications`. This includes settings like "Desktop Notifications," "Mobile Notifications," "Email Notifications," and "Audio Notifications."
+    *   **Room-Specific Preferences:** Users can mute specific rooms or customize notification settings per room.
+    *   **Message Type:** Is it a direct message, a mention, or a regular message in a channel? This influences the notification type and content.
+    *   **User Status:** Is the user online, away, or offline? Notifications might be suppressed or delayed if the user is actively online in the same room.
 
-*   **Server-side (Receiving Token)**:
-    *   The Rocket.Chat server exposes a Meteor method for clients to register their push tokens.
-    *   **`app/push/server/push_methods.js`**: Contains the `push-enable` method. When a client calls this method, it provides its device token, device type, and app ID.
-    *   **`app/models/server/models/Users.js`**: Methods within this file (like `saveUserPushData`) are called to store the device information. The push tokens are typically stored in the `users.services.push` field of the `users` collection in MongoDB, containing entries for `apn`, `gcm` (FCM), and `web` tokens, along with device-specific metadata.
+### 2. Push Token Registration and Storage
 
-#### 2. Server-side Notification Trigger and Payload Generation
+*   **Client-Side Registration:** When a user logs into a Rocket.Chat mobile app (iOS/Android) or enables web push notifications in a browser, the client-side code registers with the respective push service (APN or FCM) to obtain a unique device token.
+*   **Server-Side Storage:** This device token is then sent to the Rocket.Chat server and stored in the `users` collection in MongoDB.
+    *   **Collection:** `users`
+    *   **Field:** `services.push.apn` (for iOS tokens) and `services.push.gcm` (for Android/Web tokens). Each can be an array of tokens if a user has multiple devices.
+    *   **Example:**
+        ```json
+        {
+          "_id": "userId123",
+          "username": "john.doe",
+          "services": {
+            "push": {
+              "apn": [
+                {
+                  "token": "apn_device_token_1",
+                  "appName": "mainApp",
+                  "userId": "userId123"
+                }
+              ],
+              "gcm": [
+                {
+                  "token": "fcm_device_token_1",
+                  "appName": "mainApp",
+                  "userId": "userId123"
+                },
+                {
+                  "token": "fcm_web_token_2",
+                  "appName": "web",
+                  "userId": "userId123"
+                }
+              ]
+            }
+          }
+        }
+        ```
+*   **Retrieval:** When a notification needs to be sent, the server queries the `users` collection to get the relevant tokens for the target user(s).
+    *   **File:** `app/models/server/raw/Users.ts` (or `RocketChat.models.Users` methods) handles database interactions.
 
-*   **Message Processing**: When a message is sent, the server determines if a push notification should be sent based on user preferences (e.g., "Notify for all messages," "Mentions only," "Nothing").
-*   **`app/notifications/server/lib/senders/PushSender.ts`**: This class is responsible for creating the push notification object and adding relevant data like message text, sender, room ID, badges, etc.
-*   **`app/notifications/server/lib/Notification.ts`**: Defines the structure of a generic notification object, which is then adapted for push.
-*   **`app/lib/server/lib/sendNotifications.js`**: This module (or similar logic in `app/notifications/server`) is generally where the high-level decision to send notifications (including push) is made after a message is processed. It filters users based on online status, notification preferences, etc.
-*   **`app/push/server/push_events.js`**: Listens to server events (e.g., `rocketchat.sendMessage` or `Messages.insert`) and triggers the push notification logic.
+### 3. Payload Construction
 
-#### 3. Push Gateway Communication (Server to UPG)
+*   The server constructs a JSON payload containing all necessary information for the client to display and process the notification.
+*   **Common Payload Fields:**
+    *   `title`: The notification title (e.g., sender's name).
+    *   `text`: The notification body (e.g., message content).
+    *   `messageId`: The ID of the message that triggered the notification.
+    *   `rid`: The room ID.
+    *   `sender`: Details about the sender.
+    *   `type`: `MESSAGE`, `MENTION`, `DM`, etc.
+    *   `badge`: Number of unread messages (for app icon badge).
+    *   `sound`: Notification sound.
+    *   `image`: URL to an image (e.g., sender's avatar).
+*   **File:** `app/lib/server/lib/sendNotificationsOnMessage.ts` is where the payload is formatted.
 
-*   **`app/push/server/lib/sender.js`**: This is the core logic for sending the actual HTTP request to the configured Unified Push Gateway (UPG). It constructs the JSON payload based on the notification data and device tokens.
-*   **`app/push/server/lib/PushNotification.js`**: A helper class used to format the notification data before sending it to the `sender.js`.
-*   **Settings**: The Rocket.Chat server needs to be configured with the UPG URL and a secret key for authentication. These are usually found in the `rocketchat_settings` collection or via the UI:
-    *   `Push_enable` (boolean): Enables/disables push notifications.
-    *   `Push_gateway` (string): The URL of the Unified Push Gateway (e.g., `https://push.rocket.chat`).
-    *   `Push_secret_key` (string): The secret key used to authenticate with the UPG.
-    *   **Relevant files**: `server/startup/settings.ts` (default settings), `app/settings/server/lib/callbacks.js` (settings handlers).
+### 4. Sending to Push Gateways (Rocket.Chat Push Module)
 
-#### 4. Unified Push Gateway (UPG)
+Rocket.Chat uses its internal push module (historically `rocketchat:push` package, now integrated) to interact with external push services.
 
-*   This is a **separate microservice** (not part of the main Rocket.Chat codebase) that acts as an intermediary.
-*   **Function**: It receives generic push requests from Rocket.Chat servers. For each request, it:
-    *   Authenticates the Rocket.Chat server using the `Push_secret_key`.
-    *   Identifies the target devices and their push service (FCM or APN).
-    *   Translates the generic payload into the specific format required by FCM or APN.
-    *   Sends the notification to the respective native push service (FCM or APN).
-    *   Handles potential errors or feedback from FCM/APN.
+*   **Orchestration:** `app/push/server/lib/PushNotification.ts` acts as the central point for sending notifications. It determines whether to use APN or FCM based on the device token type.
+*   **APN (Apple Push Notification service):**
+    *   Used for iOS devices.
+    *   **File:** `app/push/server/lib/APN.ts` contains the logic for connecting to APN, signing requests with certificates/keys, and sending the APN-specific payload.
+    *   Requires an Apple Developer account and APN certificates/keys configured in Rocket.Chat's administration settings.
+*   **FCM (Firebase Cloud Messaging):**
+    *   Used for Android devices and Web Push notifications.
+    *   **File:** `app/push/server/lib/FCM.ts` contains the logic for connecting to FCM and sending the FCM-specific payload.
+    *   Requires a Firebase project and a Server Key configured in Rocket.Chat's administration settings.
 
-#### 5. Native Push Services (FCM / APN)
+#### Legacy Rocket.Chat Push Gateway (Deprecated for New Setups)
 
-*   **Firebase Cloud Messaging (FCM)**: Google's service for sending push notifications to Android devices, web browsers, and iOS devices. The UPG uses FCM's API to send notifications.
-*   **Apple Push Notification service (APN)**: Apple's service for sending push notifications to iOS and macOS devices. The UPG uses APN's API.
-*   These services are responsible for delivering the notification reliably to the device, even if the app is closed.
+In older versions or specific deployments, Rocket.Chat could be configured to send all push notifications to a central Rocket.Chat Push Gateway (e.g., `push.rocket.chat`). This gateway acted as a proxy, forwarding the notifications to APN/FCM.
 
-#### 6. Client-side Reception and Display
+*   **Pros:** Simplified setup for admins (didn't need to configure APN/FCM directly).
+*   **Cons:** Added an extra hop, potential privacy concerns (though the gateway only saw encrypted payloads), and reliance on an external service.
+*   **Modern Approach:** Direct integration with FCM/APN is now the recommended and default approach, giving administrators full control and potentially better performance.
 
-*   **Mobile App (React Native)**:
-    *   The mobile app's native code (Android/iOS) receives the push notification from FCM/APN.
-    *   `react-native-push-notification` or similar libraries (often integrated with Firebase modules) handle the incoming notification in the JavaScript layer.
-    *   The app parses the payload, extracts message details, and displays a system notification to the user.
-    *   If the app is in the background, tapping the notification typically opens the app to the relevant chat room.
-    *   **Relevant files**:
-        *   `apps/mobile/src/notifications/LocalNotification.ts`: Logic for displaying and handling the received notification payload.
-        *   `apps/mobile/src/services/deepLinking.ts`: Handles navigating to specific parts of the app when a notification is tapped (e.g., opening a specific room).
+### 5. External Service Delivery (APN/FCM)
 
-#### Desktop and Web Push
+*   APN and FCM are highly scalable, reliable services designed to deliver notifications to devices globally.
+*   They handle device connectivity, network conditions, and power management to ensure efficient delivery.
 
-*   **Web Push**: For web browsers, the process is similar to Android, using FCM (or browser-specific push services) and Service Workers.
-    *   `app/notifications/client/push.js` (legacy, but indicates client-side push setup).
-    *   `app/push/client/push.js` (client-side Meteor package for push subscriptions).
-*   **Desktop App**: Uses Electron's notification capabilities, often triggered by the same server-side push logic or specific desktop notification services.
-    *   `app/notification-desktop/client/init.js`: Desktop-specific notification initialization.
+### 6. Client-Side Reception and Processing
 
-By abstracting away the complexities of APN and FCM through the Unified Push Gateway, Rocket.Chat simplifies its server-side notification logic and allows for easier maintenance and scaling of push services.
+*   **Mobile Apps (iOS/Android):**
+    *   The native operating system receives the push notification.
+    *   The Rocket.Chat mobile app (built with React Native) has native modules that listen for these notifications.
+    *   Upon reception, the app processes the payload:
+        *   Displays a system notification (banner, sound, vibration).
+        *   Updates the app icon badge count.
+        *   If the app is in the foreground, it might update the UI directly or trigger a local notification.
+        *   The app can use the `messageId` and `rid` to navigate to the correct message/room when the user taps the notification.
+*   **Web/Desktop Apps:**
+    *   **Service Workers:** For web push notifications, the browser's Service Worker (a JavaScript file running in the background) receives the notification.
+        *   **File:** `public/service-worker.js` (or similar) contains the logic for handling push events.
+        *   The Service Worker then uses the browser's Notification API to display the notification to the user.
+    *   **Electron Desktop App:** The Electron app behaves similarly to a web app but has more direct access to system notifications. It uses the same underlying web push mechanisms or specific Electron APIs for notifications.
+
+## Administration Settings
+
+Administrators configure push notifications via:
+
+*   **Administration > Workspace > Push**
+    *   `Push_Enable`: Global toggle for push notifications.
+    *   `Push_Gateway`: (Legacy) URL of the Rocket.Chat Push Gateway.
+    *   `Push_APN_Cert`, `Push_APN_Key`: APN certificate and key for iOS.
+    *   `Push_GCM_API_Key`: FCM Server Key for Android/Web.
+    *   `Push_GCM_Project_Number`: FCM Project Number.
+
+## Key Files and Modules
+
+*   `app/lib/server/lib/sendNotificationsOnMessage.ts`: Main entry point for message-based notifications.
+*   `app/push/server/lib/PushNotification.ts`: Orchestrates sending push notifications.
+*   `app/push/server/lib/APN.ts`: APN specific implementation.
+*   `app/push/server/lib/FCM.ts`: FCM specific implementation.
+*   `app/models/server/raw/Users.ts`: Handles user data, including push tokens.
+*   `app/settings/server/settings.ts`: Where push-related administration settings are defined and loaded.
+*   `public/service-worker.js`: Client-side logic for web push notifications.
+
+By combining these server-side processes with external push services and client-side handling, Rocket.Chat delivers a robust and reliable push notification experience.
 
 ## Metrics
 
 | Metric | Value |
 |--------|-------|
-| Tokens | 3,561 |
+| Tokens | 4,154 |
 | Model | gemini-2.5-flash |
 | Tools | NONE |

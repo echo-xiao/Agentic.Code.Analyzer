@@ -2,119 +2,88 @@
 
 ## Baseline Answer (no tools)
 
-Rocket.Chat Apps leverage the **Apps Engine** to hook into various events throughout the Rocket.Chat lifecycle, including message saving, user creation, room changes, and more. This is achieved by implementing specific interfaces defined by the Apps Engine.
+Rocket.Chat Apps hook into events like `afterSaveMessage` through the **Apps Engine's listener mechanism**. This involves the App declaring its intent to listen to specific events, and the Apps Engine acting as an intermediary to register these listeners with the Rocket.Chat core.
 
-Let's break down how an App hooks into an event like `afterSaveMessage`.
+Here's a breakdown of the process:
 
-### 1. The Apps Engine and Interfaces
+1.  **App Declares Listeners:**
+    *   An App, written using the Apps Engine SDK, defines which events it wants to listen to. This is typically done by implementing specific interfaces that extend `IListener` and are associated with an `IEvent`.
+    *   For `afterSaveMessage`, an App would implement the `IMessageAfterSave` interface.
 
-The Apps Engine acts as a secure sandbox for your apps. Instead of directly modifying Rocket.Chat's core, your app declares its capabilities and intentions by implementing predefined interfaces. Each interface corresponds to a specific type of event or lifecycle hook.
+    **Example (within an App's `app.ts` or a dedicated listener file):**
 
-For `afterSaveMessage`, the relevant interface is `IPostMessageSaved`.
+    ```typescript
+    import {
+        IAppAccessors,
+        IConfigurationExtend,
+        IEnvironmentRead,
+        ILogger,
+    } from '@rocket.chat/apps-engine/definition/accessors';
+    import { App } from '@rocket.chat/apps-engine/definition/App';
+    import { IMessage, IMessageAfterSave } from '@rocket.chat/apps-engine/definition/messages';
+    import { IAppInfo } from '@rocket.chat/apps-engine/definition/metadata';
 
-### 2. Implementing `IPostMessageSaved` in Your App
+    export class MyAwesomeApp extends App implements IMessageAfterSave {
+        constructor(info: IAppInfo, logger: ILogger) {
+            super(info, logger);
+        }
 
-Your Rocket.Chat App class (which extends `App` from `@rocket.chat/apps-engine/definition/App`) needs to implement the `IPostMessageSaved` interface. This signals to the Apps Engine that your app wants to be notified whenever a message has been successfully saved.
+        public async extendConfiguration(configuration: IConfigurationExtend, environmentRead: IEnvironmentRead): Promise<void> {
+            // You might register settings, slash commands, etc. here
+        }
 
-**File Path Example:** `your-app/RocketChatApp.ts`
-
-```typescript
-import {
-    IAppAccessors,
-    IAppInfo,
-    IAppSettings,
-    IConfigurationExtend,
-    IHttp,
-    ILogger,
-    IModify,
-    IPersistence,
-    IRead,
-} from '@rocket.chat/apps-engine/definition/api';
-import { App } from '@rocket.chat/apps-engine/definition/App';
-import { IPostMessageSaved, IMessage } from '@rocket.chat/apps-engine/definition/messages';
-import { ISetting } from '@rocket.chat/apps-engine/definition/settings';
-
-// Your App's main class
-export class MyAwesomeApp extends App implements IPostMessageSaved {
-    constructor(info: IAppInfo, logger: ILogger) {
-        super(info, logger);
-    }
-
-    // This method is required by the IPostMessageSaved interface
-    // It will be called AFTER a message has been saved to the database.
-    public async executePostMessageSaved(
-        message: IMessage,
-        read: IRead,
-        http: IHttp,
-        persistence: IPersistence,
-        modify: IModify,
-    ): Promise<void> {
-        this.getLogger().info('A message was saved!');
-        this.getLogger().info(`Message ID: ${message.id}`);
-        this.getLogger().info(`Sender: ${message.sender?.username}`);
-        this.getLogger().info(`Text: ${message.text}`);
-
-        // Example: You could do something with the saved message
-        // For instance, fetch a related thread, update a custom field,
-        // or send a notification to another service.
-
-        try {
-            // Let's say you want to add a reaction to the message
-            // (Note: This is an example of what you *could* do, not always best practice for 'post-save')
-            // For a post-save hook, you'd typically react to the message's content
-            // or trigger an external process.
-            const reactionModifier = modify.getReactor();
-            await reactionModifier.reactToMessage('rocket', message, message.sender);
-
-        } catch (error) {
-            this.getLogger().error('Error reacting to message:', error);
+        // This is the hook for afterSaveMessage
+        public async executeMessageAfterSave(
+            message: IMessage,
+            read: IEnvironmentRead,
+            http: IAppAccessors,
+            persist: IAppAccessors,
+        ): Promise<void> {
+            this.getLogger().info(`Message "${message.id}" by "${message.sender.username}" was saved!`);
+            // Your custom logic here
         }
     }
+    ```
 
-    // Other App lifecycle methods would go here (initialize, extendConfiguration, etc.)
-    protected async extendConfiguration(
-        configuration: IConfigurationExtend,
-        environmentRead: IRead,
-        _settings: IAppSettings,
-    ): Promise<void> {
-        // You can register settings, slash commands, APIs, etc., here.
-    }
-}
-```
+2.  **Apps Engine Discovers Listeners:**
+    *   When an App is loaded and initialized by the Apps Engine, the engine inspects the App's class definition.
+    *   It checks which `IListener` interfaces the App class implements (e.g., `IMessageAfterSave`, `IUserCreate`, `IRoomAfterCreate`, etc.).
+    *   The Apps Engine SDK provides helper functions to identify these listeners.
 
-### 3. How Rocket.Chat Core Dispatches Events to Apps
+    **Relevant Apps Engine SDK file:**
+    *   `@rocket.chat/apps-engine/definition/App.ts`: The base `App` class.
+    *   `@rocket.chat/apps-engine/definition/messages/IMessageAfterSave.ts`: Defines the `IMessageAfterSave` interface and the `executeMessageAfterSave` method signature.
+    *   `@rocket.chat/apps-engine/definition/listeners/IListener.ts`: The base interface for all listeners.
 
-The magic happens within the Rocket.Chat server when specific actions occur. When a message is saved, the core code responsible for message persistence will trigger the Apps Engine's event dispatcher.
+3.  **Apps Engine Registers with Rocket.Chat Core:**
+    *   The Apps Engine (running within the Rocket.Chat server) has its own internal event bus and a mechanism to subscribe to core Rocket.Chat events.
+    *   For each listener discovered in an App, the Apps Engine registers a corresponding handler with the Rocket.Chat core's event system.
+    *   When a core event (like a message being saved) occurs, the Rocket.Chat core emits this event. The Apps Engine's registered handler catches it.
 
-Here's the simplified flow:
+    **Relevant Rocket.Chat Core files:**
+    *   `app/apps/server/bridges/MessageBridge.ts`: This bridge is responsible for interacting with messages. It has methods like `afterSave` which the Apps Engine calls.
+    *   `app/apps/server/bridges/AppDetailBridge.ts`: Manages the details of loaded apps.
+    *   `app/apps/server/bridges/AppActivationBridge.ts`: Handles app activation/deactivation.
+    *   `app/apps/server/bridges/AppMessageBridge.ts`: Specifically deals with message-related events.
+    *   `app/apps/server/bridges/AppListenerBridge.ts`: This is the core bridge that manages the registration and execution of app listeners. It contains the logic to map core events to app listener methods.
 
-1.  **Core Action:** A user sends a message, and Rocket.Chat's server-side logic processes and saves it to the database.
-    *   **Relevant File:** `app/lib/server/lib/messages.ts` (specifically the `sendMessage` and `saveMessage` functions).
+4.  **Event Execution Flow (specifically for `afterSaveMessage`):**
+    *   A user sends a message in Rocket.Chat.
+    *   The message is processed and saved to the database by the Rocket.Chat core.
+    *   **After** the message is successfully saved, the core Rocket.Chat message saving logic (e.g., in `app/lib/server/functions/sendMessage.ts` or related message processing files) explicitly calls out to the Apps Engine.
+    *   It typically does this by invoking a method on the `AppListenerBridge` (or a similar bridge) that corresponds to `afterSaveMessage`.
+    *   The `AppListenerBridge` then iterates through all currently enabled Apps that have registered an `IMessageAfterSave` listener.
+    *   For each such App, it calls the `executeMessageAfterSave` method, passing the message object and the necessary accessors (read, http, persist).
+    *   The App's custom logic within `executeMessageAfterSave` is then executed.
 
-2.  **Event Broadcast:** After successfully saving the message, the core code calls into the Apps Engine's API to broadcast the `postMessageSaved` event.
-    *   **Example Code Snippet from `app/lib/server/lib/messages.ts` (simplified):**
-        ```typescript
-        import { Apps } from '../../../apps/server/orchestrator';
-        // ...
-        const messageId = await RocketChat.models.Messages.insert(message);
-        // ...
-        await Apps.api.getEventBridge().postMessageSaved(message);
-        ```
+**In summary:**
 
-3.  **Apps Engine Dispatcher:** The `Apps.api.getEventBridge().postMessageSaved(message)` call reaches the Apps Engine's internal `ServerRuntime`.
-    *   **Relevant File:** `packages/apps-engine/src/server/ServerRuntime.ts`
-
-4.  **Listener Manager:** The `ServerRuntime` delegates to the `AppListenerManager`. This manager keeps track of all installed and enabled apps and which interfaces they implement.
-    *   **Relevant File:** `packages/apps-engine/src/server/managers/AppListenerManager.ts`
-
-5.  **Execution:** The `AppListenerManager` identifies all enabled apps that implement `IPostMessageSaved`. For each such app, it then calls the `executePostMessageSaved` method, passing in the `IMessage` object and the various accessors (`IRead`, `IHttp`, `IPersistence`, `IModify`) that the app can use to interact with Rocket.Chat.
-
-This architecture ensures a clear separation of concerns, allowing apps to extend Rocket.Chat's functionality without directly modifying its core codebase, while also providing a robust and secure execution environment.
+The Apps Engine acts as a robust abstraction layer. Apps declare their intent using SDK interfaces, and the Apps Engine handles the complex task of integrating these declarations with the underlying Rocket.Chat core's event system, ensuring that App logic is executed at the appropriate lifecycle points of various Rocket.Chat entities.
 
 ## Metrics
 
 | Metric | Value |
 |--------|-------|
-| Tokens | 2,772 |
+| Tokens | 1,569 |
 | Model | gemini-2.5-flash |
 | Tools | NONE |

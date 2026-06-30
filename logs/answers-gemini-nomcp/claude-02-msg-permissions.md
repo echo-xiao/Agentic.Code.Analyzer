@@ -2,46 +2,46 @@
 
 ## Baseline Answer (no tools)
 
-The core logic for message permission validation in Rocket.Chat is centralized in the authorization system and then applied within the specific server-side methods that handle message operations.
+The core logic for message permission validation in Rocket.Chat is distributed across several key areas, primarily on the server-side:
 
-Here's a breakdown:
-
-1.  **Core Permission Checking Function:**
-    The central function responsible for checking if a user has a specific permission is located at:
-    *   `app/authorization/server/functions/hasPermission.js`
-
-    This function takes a permission string (e.g., `'sendMessage'`, `'edit-message'`), a user ID, and often a room ID (`rid`) as context to determine if the user has the required access.
-
-2.  **Integration into Message-Related Methods:**
-    This `hasPermission` function is then invoked within the various server-side methods that perform message actions. Each method will call `hasPermission` with the relevant permission string before proceeding with the action.
-
-    Here are some key examples:
+1.  **Invocation Points (Meteor Methods):**
+    When a user attempts to perform a message-related action (send, edit, delete, react, etc.), the corresponding Meteor method on the server is invoked. These methods are the first place where permission checks are initiated.
 
     *   **Sending Messages:**
-        *   **File:** `app/lib/server/methods/sendMessage.js`
-        *   **Logic:** Inside the `sendMessage` method, you'll find checks using `hasPermission('sendMessage', ...)` to ensure the user can send messages in the given room.
-
+        *   `server/methods/sendMessage.js`
+        *   Inside this method, you'll find calls to `RocketChat.authz.hasPermission(userId, 'sendMessage', rid)` to check if the user can send messages in the given room (`rid`).
     *   **Editing Messages:**
-        *   **File:** `app/lib/server/methods/updateMessage.js`
-        *   **Logic:** This method checks for permissions like `edit-message-own` (to edit one's own messages) or `edit-message-any` (to edit any message). It also considers the time limit for editing messages defined in settings.
-
+        *   `server/methods/editMessage.js`
+        *   This method checks permissions like `'edit-message'` or `'edit-other-message'` depending on whether the user is editing their own message or someone else's, and also considers the `Message_AllowEditing` and `Message_AllowEditing_BlockDuration` settings.
     *   **Deleting Messages:**
-        *   **File:** `app/lib/server/methods/deleteMessage.js`
-        *   **Logic:** Similar to editing, this method checks for `delete-message-own` or `delete-message-any` permissions, and also considers the time limit for deleting messages.
-
+        *   `server/methods/deleteMessage.js`
+        *   Checks for `'delete-message'` or `'delete-other-message'` permissions, along with `Message_AllowDeleting` and `Message_AllowDeleting_BlockDuration` settings.
     *   **Reacting to Messages:**
-        *   **File:** `app/lib/server/methods/setReaction.js`
-        *   **Logic:** This method typically checks for the `react-to-message` permission.
+        *   `server/methods/setReaction.js`
+        *   Checks for `'react-to-message'` permission.
+    *   **Pinning/Unpinning Messages:**
+        *   `server/methods/pinMessage.js`
+        *   Checks for `'pin-message'` permission.
+    *   **Starring/Unstarring Messages:**
+        *   `server/methods/starMessage.js`
+        *   Checks for `'star-message'` permission.
 
-    *   **Other Message Actions (Pinning, Starring, etc.):**
-        Each specific action (like pinning a message, starring a message, converting a message to a discussion) will have its corresponding server-side method that includes a `hasPermission` check with a specific permission string (e.g., `pin-message`, `star-message`, `create-discussion`).
+2.  **Core Permission Checking Function:**
+    The actual logic for determining if a user has a specific permission resides in a central authorization function.
 
-**In summary:** The permission validation logic resides within the specific server-side Meteor methods that handle each message-related operation, and these methods rely on the core `hasPermission` function to evaluate user permissions based on their assigned roles and the context of the room or message.
+    *   **`app/authorization/server/functions/hasPermission.js`**: This is the primary server-side function that takes a `userId`, a `permission` name (e.g., `'sendMessage'`, `'edit-message'`), and an optional `scope` (like a `roomId`). It queries the `rocketchat_permissions` and `rocketchat_roles` collections to determine if the user's assigned roles grant them the requested permission within the given scope.
+
+3.  **Permission Definitions:**
+    The available permissions themselves are defined in a configuration file.
+
+    *   **`app/authorization/lib/permissions.js`**: This file lists all the default permissions available in Rocket.Chat, including those related to messages (e.g., `'sendMessage'`, `'edit-message'`, `'delete-message'`, `'react-to-message'`, `'pin-message'`, `'star-message'`). These permissions are then assigned to various roles (e.g., `admin`, `moderator`, `user`, `guest`).
+
+In summary, when a message action occurs, a Meteor method calls `RocketChat.authz.hasPermission` with the specific message-related permission, and that function then performs the lookup against the user's roles and the defined permissions.
 
 ## Metrics
 
 | Metric | Value |
 |--------|-------|
-| Tokens | 1,604 |
+| Tokens | 1,886 |
 | Model | gemini-2.5-flash |
 | Tools | NONE |

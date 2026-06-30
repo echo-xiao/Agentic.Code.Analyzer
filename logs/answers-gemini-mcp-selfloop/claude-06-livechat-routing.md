@@ -2,33 +2,44 @@
 
 ## Gemini Answer
 
-Livechat requests are routed to the server-side starting with the `QueueManager.requestRoom` method. This method is responsible for initiating a new conversation by creating a room and an inquiry.
+Livechat requests are routed to the server-side in Rocket.Chat through a process that involves `QueueManager` and `RoutingManager`.
 
-The call chain for Livechat request routing on the server-side is as follows:
+The initial entry point for a new Livechat conversation is `QueueManager.requestRoom()`. This function is responsible for creating a room and an inquiry in a transaction.
 
-**Entry → Step 1 → Step 2 → Step 3 → Final**
+The call chain for Livechat request routing is as follows:
 
-1.  **Entry Point**: A Livechat request from the client-side hits the server, initiating the process.
-2.  **`QueueManager.requestRoom`** (`apps/meteor/app/livechat/server/lib/QueueManager.ts`): This function handles the initial setup for a new conversation. It performs checks for online agents and then proceeds to create the room and inquiry in a transactional manner.
-3.  **`QueueManager.startConversation`** (called within `QueueManager.requestRoom` in `apps/meteor/app/livechat/server/lib/QueueManager.ts`): This method is responsible for the transactional creation of the Livechat room and the associated inquiry.
-4.  **`QueueManager.processNewInquiry`** (called within `QueueManager.requestRoom` in `apps/meteor/app/livechat/server/lib/QueueManager.ts`): After the room and inquiry are created, `processNewInquiry` evaluates the inquiry's status.
-    *   If the inquiry is **READY**, it is immediately routed via `RoutingManager.delegateInquiry()`.
-    *   If the inquiry is **QUEUED**, it is saved to a queue, to be processed later by a background worker (`OmnichannelQueue worker` started by `OmnichannelService`).
-5.  **`RoutingManager.delegateInquiry`** (architectural detail, called by `processNewInquiry`): This is where the actual routing strategy (e.g., AutoSelection, Manual) is applied to assign an agent to the inquiry and update the room.
+1.  **`QueueManager.requestRoom()`** (found in `apps/meteor/app/livechat/server/lib/rooms.ts`): This function initiates the process by creating a room and an inquiry.
+2.  **`processNewInquiry()`**: After `requestRoom()`, this function checks the status of the inquiry.
+    *   If the inquiry is `READY`, it immediately calls `RoutingManager.delegateInquiry()`.
+    *   If the inquiry is `QUEUED`, it saves the inquiry to a queue.
+3.  **`RoutingManager.delegateInquiry()`** (found in `apps/meteor/app/livechat/server/lib/QueueManager.ts`, `apps/meteor/app/livechat/server/lib/Helper.ts`, and `apps/meteor/server/services/omnichannel/queue.ts`): This is a crucial step where the routing strategy is applied (e.g., AutoSelection, Manual).
+4.  **`takeInquiry()`**: This function assigns an agent based on the chosen routing strategy.
+5.  **`assignAgent()`**: This function updates the room with the assigned agent.
 
-In summary, the server-side routing for Livechat requests begins with `QueueManager.requestRoom`, which orchestrates the creation of the chat room and inquiry, and then delegates the inquiry based on its status, either immediately or via a queuing mechanism.
+Additionally, for queued inquiries, a background worker called `OmnichannelQueue` (started by `OmnichannelService` in `apps/meteor/server/services/omnichannel/queue.ts`) processes these inquiries in a loop, also calling `RoutingManager.delegateInquiry()`.
 
-**Key files involved:**
-*   `apps/meteor/app/livechat/server/lib/QueueManager.ts` (for `QueueManager.requestRoom`, `startConversation`, and `processNewInquiry`)
-*   `packages/rest-typings/src/v1/omnichannel.ts` (defining `POSTLivechatMonitorCreateRequest` as a related API endpoint)
+Therefore, the primary server-side routing mechanism for Livechat requests flows through `QueueManager.requestRoom()` which then delegates to `RoutingManager.delegateInquiry()` for agent assignment based on various routing strategies.
 
-## Tool Calls (8 calls, 31,491 tokens)
+## Tool Calls (8 calls, 25,416 tokens)
 
-**Step 1:** `search({"layer":"server","query":"Livechat request"})` → 255 tokens
+**Step 1:** `search({"query":"Livechat request","layer":"server"})` → 255 tokens
 **Step 2:** `graph({"direction":"down","layer":"server","query":"POSTLivechatMonitorCreateRequest"})` → 231 tokens
-**Step 3:** `graph({"query":"QueueManager.requestRoom","layer":"server","direction":"down"})` → 16 tokens
-**Step 4:** `search({"query":"Livechat API","layer":"server"})` → 450 tokens
-**Step 5:** `search({"query":"QueueManager","layer":"server"})` → 273 tokens
-**Step 6:** `graph({"file":"apps/meteor/app/livechat/server/lib/QueueManager.ts","query":"QueueManager.requestRoom","la)` → 16 tokens
-**Step 7:** `implement({"filename":"apps/meteor/app/livechat/server/lib/QueueManager.ts","symbolName":"QueueManager.request)` → 908 tokens
-**Step 8:** `graph({"layer":"server","direction":"down","file":"apps/meteor/app/livechat/server/lib/QueueManager.ts","q)` → 17 tokens
+**Step 3:** `graph({"query":"QueueManager.requestRoom","direction":"down","layer":"server"})` → 16 tokens
+**Step 4:** `search({"query":"QueueManager.requestRoom","layer":"server"})` → 266 tokens
+**Step 5:** `graph({"direction":"down","file":"apps/meteor/app/livechat/server/lib/rooms.ts","query":"QueueManager.requ)` → 16 tokens
+**Step 6:** `search({"query":"RoutingManager.delegateInquiry","layer":"server"})` → 352 tokens
+**Step 7:** `graph({"direction":"down","layer":"server","file":"apps/meteor/app/livechat/server/lib/QueueManager.ts","q)` → 17 tokens
+**Step 8:** `search({"layer":"server","query":"RoutingManager"})` → 366 tokens
+
+## Files Seen In Tool Results (10)
+
+- `packages/rest-typings/src/v1/omnichannel.ts`
+- `apps/meteor/app/livechat/server/lib/rooms.ts`
+- `apps/meteor/app/livechat/server/lib/QueueManager.ts`
+- `apps/meteor/app/livechat/server/lib/Helper.ts`
+- `apps/meteor/server/services/omnichannel/queue.ts`
+- `apps/meteor/app/livechat/server/lib/RoutingManager.ts`
+- `apps/meteor/definition/IRoutingManagerConfig.ts`
+- `apps/meteor/app/lib/server/lib/notifyListener.ts`
+- `apps/meteor/server/lib/migrations.ts`
+- `apps/meteor/app/livechat/server/lib/hooks.ts`

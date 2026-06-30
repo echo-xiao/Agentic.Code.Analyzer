@@ -2,31 +2,47 @@
 
 ## Gemini Answer
 
-New endpoints in Rocket.Chat's REST API are registered through an instance of `APIClass`, which is typically created by calling the `createApi` function.
+New endpoints in Rocket.Chat's REST API are primarily registered through the `ApiClass` in `apps/meteor/app/api/server/ApiClass.ts`. This class likely utilizes the `packages/http-router/src/Router.ts` to handle the actual route registration with the underlying HTTP server.
 
-The registration process follows this call chain:
+For applications built with the Apps-Engine, the process starts in `packages/apps-engine/src/server/managers/AppApiManager.ts` with the `registerApis` function. This then delegates to `packages/apps-engine/src/server/bridges/ApiBridge.ts`'s `registerApi` and `doRegisterApi` methods, which in turn would interact with the core `ApiClass` and `Router` to establish the endpoints.
 
-`Entry → createApi → APIClass.addRoute`
+**Call Chain:**
 
-1.  **`createApi`** (defined in `apps/meteor/app/api/server/api.ts`): This function is responsible for initializing the REST API version (e.g., `API.v1`). It creates an instance of `APIClass`.
-2.  **`APIClass.addRoute`** (defined in `apps/meteor/app/api/server/ApiClass.ts`): This method of the `APIClass` is used to register individual API routes. While it's noted as a legacy method, it internally calls the more specific HTTP method functions (`get`, `post`, `put`, `delete`) on an internal `router` object.
+1.  **Entry Point (Core API):** `apps/meteor/app/api/server/ApiClass.ts` (defines API routes)
+2.  **Route Registration:** `packages/http-router/src/Router.ts` (handles the actual registration of typed routes)
 
-When `APIClass.addRoute` is invoked, it processes the provided subpaths, options, and endpoint handlers. It also integrates several key functionalities:
+**Call Chain (Apps-Engine):**
 
-*   **Permissions and Authentication:** It checks permissions and handles authentication through `authenticationMiddlewareForHono` and `permissionsMiddleware`.
-*   **Rate Limiting:** It applies rate limiting rules to prevent abuse.
-*   **Deprecation Handling:** It checks for deprecated routes and can throw errors or parse deprecation headers.
-*   **Error Handling:** It wraps the route's action in a try-catch block to handle errors gracefully and return appropriate API responses (e.g., `tooManyRequests`, `unauthorized`, `forbidden`, `failure`).
-*   **Request Context:** It sets up the request context, including user information, IP address, and connection details, making them available to the route handler.
+1.  **Entry Point (Apps-Engine):** `packages/apps-engine/src/server/managers/AppApiManager.ts` (`registerApis`)
+2.  **API Bridge:** `packages/apps-engine/src/server/bridges/ApiBridge.ts` (`registerApi`, `doRegisterApi`)
+3.  **Core API Integration:** `apps/meteor/app/api/server/ApiClass.ts` (utilizes core API mechanisms)
+4.  **Route Registration:** `packages/http-router/src/Router.ts` (registers the routes)
 
-In summary, `createApi` sets up the API version, and then the `APIClass` instance's `addRoute` (or direct `get`/`post`/`put`/`delete` methods) is used to define the endpoint paths, HTTP methods, and their corresponding logic, along with various middleware for robust API management.
+## Tool Calls (8 calls, 46,728 tokens)
 
-## Tool Calls (7 calls, 24,768 tokens)
+**Step 1:** `search({"query":"REST API register","layer":"server"})` → 284 tokens
+**Step 2:** `graph({"query":"registerApis","layer":"server","file":"packages/apps-engine/src/server/managers/AppApiMana)` → 1778 tokens
+**Step 3:** `implement({"filename":"packages/apps-engine/src/server/bridges/ApiBridge.ts","symbolName":"doRegisterApi"})` → 59 tokens
+**Step 4:** `implement({"symbolName":"doRegisterApi","filename":"/Users/echoooooo/Desktop/code/Rocket.Chat/packages/apps-en)` → 70 tokens
+**Step 5:** `search({"layer":"server","query":"registerTypedRoutes"})` → 146 tokens
+**Step 6:** `implement({"filename":"/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/app/api/server/ApiClass.ts","symb)` → 84 tokens
+**Step 7:** `implement({"filename":"/Users/echoooooo/Desktop/code/Rocket.Chat/packages/http-router/src/Router.ts","symbolNa)` → 83 tokens
+**Step 8:** `implement({"filename":"apps/meteor/app/api/server/ApiClass.ts","symbolName":"addRoute"})` → 51 tokens
 
-**Step 1:** `search({"query":"REST API registration","layer":"server"})` → 16 tokens
-**Step 2:** `search({"layer":"server","query":"API.v1.addRoute"})` → 419 tokens
-**Step 3:** `graph({"layer":"server","query":"API.v1.addRoute","direction":"down"})` → 14 tokens
-**Step 4:** `search({"layer":"server","query":"createApi"})` → 448 tokens
-**Step 5:** `graph({"file":"apps/meteor/app/api/server/api.ts","direction":"down","layer":"server","query":"createApi"})` → 195 tokens
-**Step 6:** `search({"layer":"server","query":"APIClass"})` → 414 tokens
-**Step 7:** `implement({"symbolName":"APIClass.addRoute","filename":"apps/meteor/app/api/server/ApiClass.ts"})` → 1712 tokens
+## Files Seen In Tool Results (15)
+
+- `packages/apps-engine/src/server/managers/AppApiManager.ts`
+- `apps/meteor/app/cloud/server/functions/startRegisterWorkspaceSetupWizard.ts`
+- `packages/apps-engine/src/server/managers/AppOutboundCommunicationProviderManager.ts`
+- `apps/meteor/ee/server/apps/communication/endpoints/appLogsDistinctInstanceHandler.ts`
+- `apps/meteor/app/apple/server/appleOauthRegisterService.ts`
+- `packages/apps-engine/src/server/bridges/ApiBridge.ts`
+- `packages/apps-engine/src/server/bridges/OutboundMessagesBridge.ts`
+- `apps/meteor/app/livechat/server/lib/outboundcommunication.ts`
+- `apps/meteor/ee/server/apps/communication/rest.ts`
+- `apps/meteor/app/api/server/ApiClass.ts`
+- `apps/meteor/app/api/server/definition.ts`
+- `apps/meteor/app/api/server/api.ts`
+- `packages/apps-engine/src/server/logging/AppConsole.ts`
+- `apps/meteor/server/lib/i18n.ts`
+- `packages/http-router/src/Router.ts`

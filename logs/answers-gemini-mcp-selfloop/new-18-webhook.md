@@ -2,39 +2,82 @@
 
 ## Gemini Answer
 
-Here's how an incoming webhook is processed in Rocket.Chat:
+An incoming webhook in Rocket.Chat is processed through the following steps:
 
 **Call Chain:**
+`POST /hooks/:integrationId/:token` (API Route)
+  → `executeIntegrationRest` (apps/meteor/app/integrations/server/api/api.ts)
+    → `scriptEngine.processIncomingRequest` (executes the integration script)
+    → `processWebhookMessage` (apps/meteor/app/lib/server/functions/processWebhookMessage.ts)
+      → `buildMessage` (apps/meteor/app/lib/server/functions/processWebhookMessage.ts)
+      → `getRoomWithOptionToJoin` (apps/meteor/app/lib/server/functions/processWebhookMessage.ts)
+      → `validateRoomMessagePermissionsAsync` (apps/meteor/app/authorization/server/functions/canSendMessage.ts)
+      → `validateWebhookMessage` (apps/meteor/app/lib/server/functions/processWebhookMessage.ts)
+      → `sendMessage` (apps/meteor/app/lib/server/functions/sendMessage.ts)
 
-1.  **`POST /hooks/:integrationId/:token`**: An incoming webhook request is initiated by an HTTP POST request to this endpoint.
-2.  **`executeIntegrationRest()`** (in `apps/meteor/app/integrations/server/api/api.ts`): This function is the entry point for processing the webhook. It first authenticates the incoming request.
-    *   It checks if the integration is enabled.
-    *   It retrieves default values for the message (channel, alias, avatar, emoji) from the integration configuration.
-    *   It uses `getEngine()` to obtain a script engine for the integration.
-    *   It parses the request body parameters using `getBodyParams()`.
-    *   If a script is associated with the integration and a request body is present, the script engine's `processIncomingRequest()` method is called to execute the custom script logic.
-    *   The `scriptEngine.processIncomingRequest()` method (from the `IntegrationScriptEngine` class, likely implemented by `IsolatedVMScriptEngine` in `apps/meteor/app/integrations/server/lib/isolated-vm/isolated-vm.ts`) executes the integration script within an isolated-vm sandbox for security.
-    *   The `executeIntegrationRest()` function then processes the result of the script execution, handling any errors or modifying the message parameters based on the script's output.
-3.  **`processWebhookMessage()`** (in `apps/meteor/app/lib/server/functions/processWebhookMessage.ts`): After the integration script (if any) has been executed, this function is called to construct and send the actual message within Rocket.Chat.
-    *   It validates permissions for the target room.
-    *   It builds the message object based on the webhook payload and default values.
-    *   It uses `getRoomWithOptionToJoin()` to ensure the bot can access and potentially join the destination channel.
-4.  **`sendMessage()`** (in `apps/meteor/app/lib/server/functions/sendMessage.ts`): This function handles the final steps of sending the message to the specified channel, including notifying relevant users and updating the room.
+**Detailed Processing:**
 
-**Key Files and Their Roles:**
+1.  **API Entry Point (`POST /hooks/:integrationId/:token`)**: An incoming webhook request is received at the `/hooks/:integrationId/:token` endpoint. This route is handled by an internal API mechanism that dispatches the request to `executeIntegrationRest`.
 
-*   **`apps/meteor/app/integrations/server/api/api.ts`**: Contains the `executeIntegrationRest` function, which is the initial handler for incoming webhook HTTP requests, responsible for authentication, script execution, and initial message parameter processing.
-*   **`apps/meteor/app/integrations/server/lib/isolated-vm/isolated-vm.ts`**: Defines the `IsolatedVMScriptEngine` class, which is responsible for safely executing custom integration scripts in a sandboxed environment. The `processIncomingRequest` method, although not directly found in the class definition with the last `implement` call, is part of its superclass `IntegrationScriptEngine` and handles the script's execution.
-*   **`apps/meteor/app/lib/server/functions/processWebhookMessage.ts`**: Contains the `processWebhookMessage` function, which takes the processed webhook payload and constructs a Rocket.Chat message, handling room permissions and other message-related logic.
-*   **`apps/meteor/app/lib/server/functions/sendMessage.ts`**: Contains the `sendMessage` function, the core Rocket.Chat function responsible for sending messages, including notifying users and updating the chat room.
+2.  **`executeIntegrationRest`** (apps/meteor/app/integrations/server/api/api.ts):
+    *   This function is the primary handler for incoming webhook requests.
+    *   It first checks if the integration is enabled.
+    *   It retrieves the integration's default values for channel, alias, avatar, and emoji.
+    *   It obtains a `scriptEngine` specific to the integration.
+    *   The raw request body is read and parsed.
+    *   Crucially, it calls `scriptEngine.processIncomingRequest`, which executes the custom JavaScript script defined for the integration within an isolated-vm sandbox. This script transforms the incoming payload into a format Rocket.Chat understands.
+    *   After the script execution, the modified payload (or the original if no script is present) is passed to the next stage.
+    *   Finally, it calls `processWebhookMessage` to handle the actual message creation and sending.
 
-## Tool Calls (8 calls, 95,704 tokens)
+3.  **`processWebhookMessage`** (apps/meteor/app/lib/server/functions/processWebhookMessage.ts):
+    *   This function takes the processed message object, the user associated with the integration, and default values.
+    *   It extracts the target channels from the message object or uses the default channel.
+    *   It calls `buildMessage` (defined within the same file) to construct the final message object based on the webhook payload.
+    *   For each specified channel:
+        *   It uses `getRoomWithOptionToJoin` (defined within the same file) to find the target room and, if necessary, automatically join the user to it.
+        *   It performs permission checks using `validateRoomMessagePermissionsAsync` (apps/meteor/app/authorization/server/functions/canSendMessage.ts) to ensure the user has the right to send messages to the room.
+        *   It validates the webhook message itself using `validateWebhookMessage` (also within the same file).
+        *   If `separateResponse` is enabled in the webhook payload, it handles errors for individual channels, allowing other messages to be sent even if one fails.
+    *   After validation and room resolution, it calls `sendMessage` to dispatch the message.
 
-**Step 1:** `search({"query":"incoming webhook"})` → 456 tokens
-**Step 2:** `graph({"query":"executeIntegrationRest","direction":"down","layer":"server"})` → 2130 tokens
-**Step 3:** `implement({"symbolName":"executeIntegrationRest","filename":"apps/meteor/app/integrations/server/api/api.ts"})` → 1172 tokens
-**Step 4:** `graph({"layer":"server","query":"processWebhookMessage","direction":"down"})` → 1855 tokens
-**Step 5:** `graph({"query":"sendMessage","layer":"server","direction":"down"})` → 2057 tokens
-**Step 6:** `search({"layer":"server","query":"getEngine"})` → 391 tokens
-**Step 7:** `implement({"symbolName":"IsolatedVMScriptEngine.processIncomingRequest","filename":"apps/meteor/app/integratio)` → 71 tokens
-**Step 8:** `implement({"symbolName":"IsolatedVMScriptEngine","filename":"apps/meteor/app/integrations/server/lib/isolated-)` → 275 tokens
+4.  **`buildMessage`** (apps/meteor/app/lib/server/functions/processWebhookMessage.ts):
+    *   This internal helper function constructs the message object that will be sent to the chat, applying default values and structuring the payload correctly.
+
+5.  **`getRoomWithOptionToJoin`** (apps/meteor/app/lib/server/functions/processWebhookMessage.ts):
+    *   This helper function resolves the target room based on the channel identifier provided in the webhook payload. It can also handle joining the user to the room if configured.
+
+6.  **`validateRoomMessagePermissionsAsync`** (apps/meteor/app/authorization/server/functions/canSendMessage.ts):
+    *   This function ensures that the integration has the necessary permissions to send messages to the resolved room.
+
+7.  **`validateWebhookMessage`** (apps/meteor/app/lib/server/functions/processWebhookMessage.ts):
+    *   This function performs specific validations on the message content generated by the webhook.
+
+8.  **`sendMessage`** (apps/meteor/app/lib/server/functions/sendMessage.ts):
+    *   This is the final step where the constructed and validated message is actually sent to the specified Rocket.Chat room. This function handles the persistence of the message to the database and notifies relevant clients.
+
+## Tool Calls (6 calls, 45,554 tokens)
+
+**Step 1:** `search({"query":"incoming webhook","layer":"server"})` → 404 tokens
+**Step 2:** `graph({"direction":"down","query":"executeIntegrationRest","layer":"server"})` → 2130 tokens
+**Step 3:** `search({"layer":"server","query":"processWebhookMessage"})` → 328 tokens
+**Step 4:** `graph({"layer":"server","file":"apps/meteor/app/lib/server/functions/processWebhookMessage.ts","direction")` → 1855 tokens
+**Step 5:** `implement({"filename":"apps/meteor/app/integrations/server/api/api.ts","symbolName":"executeIntegrationRest"})` → 1172 tokens
+**Step 6:** `implement({"symbolName":"processWebhookMessage","filename":"apps/meteor/app/lib/server/functions/processWebhoo)` → 596 tokens
+
+## Files Seen In Tool Results (15)
+
+- `apps/meteor/client/views/admin/integrations/incoming/EditIncomingWebhook.tsx`
+- `apps/meteor/client/views/admin/integrations/incoming/IncomingWebhookForm.tsx`
+- `apps/meteor/app/settings/server/CachedSettings.ts`
+- `apps/meteor/app/mailer/server/api.ts`
+- `apps/meteor/app/api/server/ApiClass.ts`
+- `apps/meteor/app/statistics/server/startup/monitor.ts`
+- `apps/meteor/app/meteor-accounts-saml/server/lib/settings.ts`
+- `apps/meteor/app/utils/server/restrictions.ts`
+- `apps/meteor/server/startup/migrations/v298.ts`
+- `apps/meteor/app/integrations/server/api/api.ts`
+- `apps/meteor/app/lib/server/functions/processWebhookMessage.ts`
+- `apps/meteor/app/authorization/server/functions/canSendMessage.ts`
+- `apps/meteor/server/services/uikit-core-app/service.ts`
+- `apps/meteor/app/lib/server/lib/notifyListener.ts`
+- `apps/meteor/app/lib/server/functions/sendMessage.ts`

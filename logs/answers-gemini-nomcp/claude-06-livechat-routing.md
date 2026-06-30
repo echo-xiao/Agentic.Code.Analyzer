@@ -2,66 +2,68 @@
 
 ## Baseline Answer (no tools)
 
-Livechat requests in Rocket.Chat are primarily routed to the server-side using **DDP (Distributed Data Protocol) over WebSockets**. The Livechat widget, which is embedded on an external website, acts as a DDP client, establishing a real-time connection to the Rocket.Chat instance and invoking specific DDP methods.
+Livechat requests in Rocket.Chat are routed to the server-side through a combination of **REST API endpoints** for initial setup and configuration, and **DDP (Distributed Data Protocol) over WebSockets** for real-time chat interactions.
 
-Here's a detailed breakdown of how this routing works:
+Here's a breakdown of how these requests are handled:
 
-1.  **Client-Side Initiation (Livechat Widget):**
-    *   When a user visits a website with the Rocket.Chat Livechat widget embedded, a JavaScript file (e.g., `livechat.js`) is loaded.
-    *   This script initiates a **WebSocket connection** to the Rocket.Chat server (e.g., `wss://your-rocketchat-instance.com/websocket`).
-    *   Once the WebSocket connection is established, the widget uses the DDP protocol to communicate. It behaves like a DDP client, capable of calling server-side methods and subscribing to data.
-    *   When a visitor starts a chat, sends a message, or performs any other action, the client-side Livechat logic invokes specific DDP methods on the server.
+### 1. REST API Endpoints (Initial Setup & Configuration)
 
-    *Relevant Client-Side File:*
-    *   The core communication logic for the widget is found within `app/livechat/client/lib/client.js` and other files in `app/livechat/client`.
+For initial requests from the Livechat widget, such as fetching configuration, checking agent availability, or creating a new visitor session, Rocket.Chat exposes a set of REST API endpoints.
 
-2.  **Transport Layer (DDP over WebSockets):**
-    *   All communication between the Livechat widget and the Rocket.Chat server flows over this single, persistent WebSocket connection.
-    *   **DDP** (Distributed Data Protocol) is the application-level protocol used by Meteor (on which Rocket.Chat is built) for real-time, bi-directional communication. It enables remote procedure calls (RPC for method invocations) and subscriptions to data.
+*   **Client-Side Initiation:** The Livechat widget, typically embedded on an external website, makes HTTP requests (GET, POST) to these endpoints. The client-side logic for making these calls can be found in files like:
+    *   `app/livechat/client/lib/api.js`: This file contains the `Livechat` object which encapsulates methods for interacting with the server, including making REST API calls.
 
-3.  **Server-Side DDP Method Handling:**
-    *   On the server, Rocket.Chat defines a dedicated set of DDP methods specifically for Livechat operations. These methods are typically prefixed with `livechat:` to distinguish them from regular user methods.
-    *   When the DDP server receives a method invocation from the Livechat widget (e.g., `livechat:getInitialData`, `livechat:sendMessage`), the Meteor framework dispatches this call to the corresponding server-side function.
-    *   These server-side methods contain the business logic to handle Livechat requests, such as:
-        *   Registering new visitors.
-        *   Creating and managing chat rooms.
-        *   Routing chats to available agents.
-        *   Storing messages and chat transcripts.
-        *   Updating visitor information.
+*   **Server-Side Routing:** Rocket.Chat uses the `rocketchat:api` package (which leverages `nimble:restivus`) to define and route these REST API calls.
+    *   **Definition Files:** The primary definitions for Livechat REST API endpoints are located in:
+        *   `app/api/server/v1/livechat.js`: This file defines most of the `/api/v1/livechat/*` endpoints, handling operations like getting visitor information, starting a new chat via API, fetching department information, etc.
+        *   `app/api/server/v1/livechat/agent.js`: Contains API endpoints specifically for Livechat agents.
+        *   `app/api/server/v1/livechat/department.js`: Contains API endpoints for Livechat departments.
+    *   **Routing Mechanism:** When an HTTP request hits the Rocket.Chat server at a path like `/api/v1/livechat/config`, the `rocketchat:api` package matches the URL and HTTP method to the corresponding handler function defined in these files.
 
-    *Relevant Server-Side Files:*
-    *   The primary place where Livechat DDP methods are defined is:
-        *   **`app/livechat/server/lib/methods.js`**: This file contains the implementations for most Livechat-related DDP methods, such as `livechat:getInitialData`, `livechat:registerGuest`, `livechat:sendMessage`, `livechat:setCustomFields`, `livechat:closeRoom`, etc.
-    *   These methods often delegate to core Livechat service logic found in:
-        *   **`app/livechat/server/lib/Livechat.js`**: Contains the main business logic for Livechat operations (e.g., creating rooms, assigning agents, processing messages).
-        *   **`app/livechat/server/lib/routing.js`**: Handles the logic for routing incoming Livechat requests to available agents or queues.
-        *   **`app/livechat/server/lib/queueManager.js`**: Manages the queuing of Livechat requests when agents are unavailable.
-    *   Initializations and startup tasks related to Livechat are often found in:
-        *   **`app/livechat/server/startup.js`**
+*   **Example Flow (Getting Configuration):**
+    1.  Widget loads and calls `Livechat.api.get('livechat/config')` (client-side).
+    2.  This translates to an HTTP GET request to `/api/v1/livechat/config`.
+    3.  The server-side `app/api/server/v1/livechat.js` file has a definition like `API.v1.addRoute('livechat/config', { get() { ... } });`.
+    4.  The `get()` handler function is executed, which retrieves the Livechat configuration from the database and returns it.
 
-4.  **Distinguishing Livechat Requests:**
-    *   Livechat requests are differentiated from regular logged-in user requests by:
-        *   **Method Prefix:** The `livechat:` prefix on the DDP method names clearly indicates their purpose.
-        *   **Context:** Livechat sessions are typically associated with an anonymous `visitor` (identified by a `visitorToken`) rather than a logged-in Rocket.Chat user. The server-side methods validate this `visitorToken` and operate within the context of a guest user.
+### 2. DDP (Distributed Data Protocol) over WebSockets (Real-time Chat)
 
-**Example Flow for a New Livechat Request:**
+Once a Livechat session is established, real-time communication, such as sending messages, typing indicators, and status updates, primarily occurs via DDP over WebSockets. This leverages Meteor's reactive capabilities.
 
-1.  A visitor clicks the Livechat widget on an external website.
-2.  The widget invokes the DDP method `livechat:getInitialData` on the Rocket.Chat server, potentially providing an existing `visitorToken` or requesting a new one.
-3.  The server-side `livechat:getInitialData` method (in `app/livechat/server/lib/methods.js`) processes this, fetching settings, creating a new `visitor` if needed, and returning initial chat data.
-4.  When the visitor types and sends a message, the widget invokes the `livechat:sendMessage` DDP method, passing the message content and visitor details.
-5.  The server-side `livechat:sendMessage` method (also in `app/livechat/server/lib/methods.js`) then:
-    *   Creates a chat room if one doesn't exist for the visitor.
-    *   Uses logic from `app/livechat/server/lib/routing.js` and `app/livechat/server/lib/queueManager.js` to find and assign an available agent.
-    *   Saves the message to the database.
-    *   Notifies the assigned agent (via DDP subscriptions) of the new incoming message.
+*   **Client-Side Initiation:** The Livechat widget establishes a DDP connection to the Rocket.Chat server. When a visitor sends a message or performs an action that requires real-time server interaction, the client-side code calls a **Meteor Method**.
+    *   `app/livechat/client/lib/api.js`: Contains methods like `Livechat.sendMessage` which internally call Meteor Methods.
+    *   `app/livechat/client/lib/stream/livechat.js`: Manages the DDP stream for real-time updates from the server.
 
-In essence, Rocket.Chat leverages its robust DDP/WebSocket infrastructure to provide a real-time, event-driven mechanism for routing and handling all Livechat interactions, treating the external widget as a specialized DDP client.
+*   **Server-Side Routing (Meteor Methods):** Meteor's core framework handles the routing of DDP method calls.
+    *   **Definition Files:** Server-side Meteor Methods for Livechat are primarily defined in the `app/livechat/server/methods/` directory. Each file typically defines one or more methods using `Meteor.methods({ ... })`.
+        *   `app/livechat/server/methods/sendMessage.js`: Handles the `livechat:sendMessage` method call, processing messages sent by visitors.
+        *   `app/livechat/server/methods/startLivechat.js`: Handles the `livechat:startLivechat` method call, initiating a new chat session.
+        *   `app/livechat/server/methods/closeLivechat.js`: Handles closing a livechat session.
+        *   `app/livechat/server/methods/visitorSetDepartment.js`: Handles setting a department for a visitor.
+    *   **Routing Mechanism:** When a client calls a Meteor Method (e.g., `Meteor.call('livechat:sendMessage', ...) `), the Meteor server identifies the corresponding server-side method definition and executes its logic.
+
+*   **Example Flow (Sending a Message):**
+    1.  Visitor types a message and clicks send in the widget.
+    2.  Client-side code in `app/livechat/client/lib/api.js` calls `Meteor.call('livechat:sendMessage', roomId, messageData)`.
+    3.  The DDP connection sends this method call to the server.
+    4.  The Meteor server finds the `livechat:sendMessage` method defined in `app/livechat/server/methods/sendMessage.js`.
+    5.  The server-side method executes, saving the message to the database, potentially notifying agents, and broadcasting the message to all participants via DDP publications.
+
+### 3. Core Livechat Business Logic
+
+Regardless of whether the request comes via REST API or DDP Meteor Method, the routing mechanism ultimately dispatches it to the relevant server-side business logic. This logic is primarily contained within the `app/livechat/server/` directory:
+
+*   `app/livechat/server/lib/Livechat.js`: This is a central file containing many core Livechat functions and utilities that are invoked by both API endpoints and Meteor methods to perform operations like creating rooms, assigning agents, handling visitor data, etc.
+*   `app/livechat/server/lib/QueueManager.js`: Manages agent queues and routing logic.
+*   `app/livechat/server/lib/Messages.js`: Handles message-related operations.
+*   `app/livechat/server/lib/Visitor.js`: Handles visitor-related operations.
+
+In summary, Rocket.Chat uses a dual-pronged approach for Livechat request routing: **REST APIs for initial interactions and DDP/WebSockets for real-time communication**, both funneling into a well-structured Livechat module on the server-side.
 
 ## Metrics
 
 | Metric | Value |
 |--------|-------|
-| Tokens | 3,145 |
+| Tokens | 3,384 |
 | Model | gemini-2.5-flash |
 | Tools | NONE |
