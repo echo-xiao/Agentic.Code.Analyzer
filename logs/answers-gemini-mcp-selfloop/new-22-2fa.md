@@ -2,54 +2,38 @@
 
 ## Gemini Answer
 
-Two-factor authentication (2FA) in Rocket.Chat is implemented through a middleware wrapper `twoFactorRequired` in `apps/meteor/app/2fa/server/twoFactorRequired.ts`. This middleware is applied to sensitive methods and endpoints to enforce 2FA verification.
+Rocket.Chat implements two-factor authentication (2FA) by employing a middleware wrapper called `twoFactorRequired()` which is applied to sensitive methods and endpoints.
 
-The core of the 2FA process resides in the `checkCodeForUser` function, located in `apps/meteor/app/2fa/server/code/index.ts`. This function orchestrates the verification process by attempting different 2FA methods in a predefined order.
+Here's how it works:
 
-Here's the detailed call chain for 2FA verification:
+**Call Chain:**
 
-Entry → `twoFactorRequired` (apps/meteor/app/2fa/server/twoFactorRequired.ts) → `checkCodeForUser` (apps/meteor/app/2fa/server/code/index.ts)
+1.  **`twoFactorRequired()`** (located in `apps/meteor/app/2fa/server/twoFactorRequired.ts`): This function acts as the entry point for 2FA validation. When a sensitive action is attempted, this middleware is triggered.
+2.  **`checkCodeForUser()`** (located in `apps/meteor/app/2fa/server/code/index.ts`): This is the core function responsible for verifying the 2FA code.
+    *   It first checks if 2FA is globally enabled via `Accounts_TwoFactorAuthentication_Enabled` setting.
+    *   It retrieves the user information for whom the 2FA check is being performed.
+    *   It attempts to extract the 2FA code and method from `x-2fa-code` and `x-2fa-method` headers if not provided directly.
+    *   It then calls `isAuthorizedForToken()` to check if the user is already authorized for the current session (e.g., "remember me" functionality).
+    *   It determines the appropriate second-factor method to use by calling `getSecondFactorMethod()`.
+    *   If no code is provided, it throws a `totp-required` error, prompting the user for the 2FA code.
+    *   Finally, it calls the `verify()` method on the `selectedMethod` (e.g., TOTP or Email) to validate the provided 2FA code. If the code is invalid, it throws `totp-invalid` or `totp-max-attempts` errors.
+    *   If the code is valid and "remember me" is enabled, it calls `rememberAuthorization()` to store the authorization.
+3.  **`getSecondFactorMethod()`** (located in `apps/meteor/app/2fa/server/code/index.ts`): This function identifies the active 2FA method for a given user. It iterates through available methods (TOTP, Email, Password Fallback) and returns the first enabled and active one for the user.
+    *   It checks the `isEnabled()` status of each method.
+    *   It utilizes the `ICodeCheck` interface (defined in `ICodeCheck.ts`) which requires `verify()` and `isEnabled()` methods for each 2FA implementation.
+    *   **TOTPCheck (Authenticator App):** Uses standard RFC 6238 time-based codes.
+    *   **EmailCheck (Email Code):** Sends a temporary code via the Mailer.
+    *   **PasswordCheckFallback:** A fallback mechanism (details not fully explored in the provided `implement` output, but implied by the "Architecture" description).
 
-Inside `checkCodeForUser`:
+In essence, `twoFactorRequired` acts as a gatekeeper, delegating the actual verification logic to `checkCodeForUser`, which in turn leverages specific 2FA method implementations (like TOTP or Email) to validate the user's second factor.
 
-1.  It first checks if 2FA is generally enabled via the `Accounts_TwoFactorAuthentication_Enabled` setting.
-2.  It retrieves the user for whom 2FA is being checked.
-3.  It checks for 2FA codes and methods in the request headers (`x-2fa-code` and `x-2fa-method`).
-4.  It determines the `selectedMethod` for 2FA from available methods. This selection prioritizes methods like TOTP (authenticator app) and Email.
-5.  If no code is provided, it throws an error indicating that 2FA is required, along with the expected method and available methods.
-6.  It calls the `verify` method of the `selectedMethod` to validate the provided code.
-
-The specific 2FA verification methods, such as TOTP and Email, implement the `ICodeCheck` interface (defined in `apps/meteor/app/2fa/server/code/ICodeCheck.ts`). Each method provides its own `verify` and `isEnabled` implementations.
-
-For example:
-
-*   **TOTPCheck**:
-    *   File: `apps/meteor/app/2fa/server/code/TOTPCheck.ts`
-    *   Its `verify` method (which was not fully retrievable due to tool limits but is known to be part of the ICodeCheck interface) handles the validation of time-based one-time passwords, commonly used with authenticator apps.
-*   **EmailCheck**:
-    *   File: `apps/meteor/app/2fa/server/code/EmailCheck.ts`
-    *   Its `verify` method (also part of the ICodeCheck interface) handles the verification of codes sent via email.
-
-If the verification fails, `checkCodeForUser` will throw an error, potentially indicating too many failed attempts if a rate limit is reached. If successful, and the "remember me" option is not disabled, it will call `rememberAuthorization` to store authorization for the connection.
-
-## Tool Calls (9 calls, 33,732 tokens)
+## Tool Calls (8 calls, 53,073 tokens)
 
 **Step 1:** `search({"query":"two factor authentication"})` → 138 tokens
-**Step 2:** `search({"query":"TwoFactor","layer":"server"})` → 203 tokens
-**Step 3:** `graph({"layer":"server","query":"twoFactorRequired","direction":"down"})` → 1094 tokens
-**Step 4:** `implement({"filename":"apps/meteor/app/2fa/server/index.ts","symbolName":"checkCodeForUser"})` → 547 tokens
-**Step 5:** `implement({"filename":"apps/meteor/app/2fa/server/index.ts","symbolName":"verify"})` → 97 tokens
-**Step 6:** `search({"query":"ICodeCheck","layer":"server"})` → 58 tokens
-**Step 7:** `graph({"layer":"server","direction":"up","query":"ICodeCheck.verify"})` → 14 tokens
-**Step 8:** `search({"layer":"server","query":"TOTPCheck"})` → 174 tokens
-**Step 9:** `search({"layer":"server","query":"EmailCheck"})` → 175 tokens
-
-## Metrics
-
-| Metric | Value |
-|--------|-------|
-| Files hit | 5/6 |
-| Symbols hit | 4/4 |
-| Tool calls | 9 |
-| Total tokens | 33,732 |
-| Pass | YES |
+**Step 2:** `search({"query":"saveUserProfile"})` → 62 tokens
+**Step 3:** `graph({"query":"saveUserProfile","file":"apps/meteor/server/methods/saveUserProfile.ts","direction":"down")` → 1858 tokens
+**Step 4:** `search({"query":"TwoFactor"})` → 473 tokens
+**Step 5:** `graph({"direction":"down","query":"twoFactorRequired","file":"apps/meteor/app/2fa/server/twoFactorRequired)` → 904 tokens
+**Step 6:** `search({"query":"checkCodeForUser"})` → 178 tokens
+**Step 7:** `implement({"filename":"apps/meteor/app/2fa/server/code/index.ts","symbolName":"checkCodeForUser"})` → 547 tokens
+**Step 8:** `search({"query":"getSecondFactorMethod"})` → 65 tokens

@@ -2,34 +2,28 @@
 
 ## Gemini Answer
 
-My apologies, I seem to have exhausted my tool calls and was unable to pinpoint the exact mechanism for sending federation messages across different servers.
+Federation messages in Rocket.Chat are sent across different servers through the `FederationMatrix.sendMessage()` method, which is part of the `FederationMatrix` service.
 
-From the searches, I can see that `startFederationService` in `apps/meteor/ee/server/startup/federation.ts` is likely the entry point for the federation service. There are also interfaces like `IFederationService` in `packages/core-services/src/types/IFederationService.ts`.
+Here's the call chain and key files involved:
 
-However, I could not find a specific "send message" or "send federated" function within the call graph of `startFederationService` or directly through a search, nor could I implement `IFederationService` to see its methods.
+**Call Chain:**
 
-To properly answer your question about how federation messages are sent, I would need to:
+`FederationMatrix.sendMessage()` → `federationSDK.sendMessage()` → Matrix protocol HTTP API to remote server.
 
-1.  Investigate the implementation of the `IFederationService` or other related federation services to identify the specific methods responsible for sending messages.
-2.  Trace the call graph of those identified methods to understand the underlying communication protocols and mechanisms used for inter-server communication (e.g., REST API calls, pub/sub, etc.).
+**Key Files:**
 
-## Tool Calls (8 calls, 32,415 tokens)
+*   **`ee/packages/federation-matrix/src/FederationMatrix.ts`**: This file contains the `FederationMatrix` class, which is responsible for handling federation-related operations, including sending messages. The `sendMessage` method within this class is the entry point for sending messages.
+*   **`ee/server/hooks/federation/index.ts`**: This file likely contains the logic that triggers the `FederationMatrix.sendMessage()` method when a message needs to be federated.
 
-**Step 1:** `search({"query":"federation message send","layer":"server"})` → 73 tokens
-**Step 2:** `search({"layer":"server","query":"federation send message"})` → 73 tokens
-**Step 3:** `search({"layer":"server","query":"FederationService"})` → 205 tokens
-**Step 4:** `graph({"layer":"packages","query":"IFederationService","direction":"down"})` → 43 tokens
-**Step 5:** `graph({"direction":"down","query":"startFederationService","layer":"server"})` → 1387 tokens
-**Step 6:** `search({"layer":"ee","query":"FederationService"})` → 205 tokens
-**Step 7:** `search({"layer":"ee","query":"sendFederated"})` → 14 tokens
-**Step 8:** `search({"layer":"ee","query":"sendFederation"})` → 15 tokens
+When a message is sent from Rocket.Chat to a federated server, the `FederationMatrix.sendMessage()` method is invoked. This method then uses the `federationSDK.sendMessage()` to interact with the Matrix protocol HTTP API, which ultimately sends the message to the remote Matrix server.
 
-## Metrics
+## Tool Calls (8 calls, 30,722 tokens)
 
-| Metric | Value |
-|--------|-------|
-| Files hit | 0/6 |
-| Symbols hit | 0/5 |
-| Tool calls | 8 |
-| Total tokens | 32,415 |
-| Pass | NO |
+**Step 1:** `search({"layer":"server","query":"federation sendMessage"})` → 176 tokens
+**Step 2:** `search({"layer":"server","query":"Federation send"})` → 222 tokens
+**Step 3:** `search({"layer":"server","query":"federation"})` → 510 tokens
+**Step 4:** `graph({"direction":"down","query":"FederationMatrix.sendMessage","file":"ee/packages/federation-matrix/src)` → 17 tokens
+**Step 5:** `search({"query":"FederationMatrix.sendMessage","layer":"ee"})` → 192 tokens
+**Step 6:** `search({"layer":"ee","query":"FederationMatrix"})` → 213 tokens
+**Step 7:** `graph({"direction":"down","query":"FederationMatrix.sendMessage","file":"/Users/echoooooo/Desktop/code/Roc)` → 17 tokens
+**Step 8:** `implement({"filename":"/Users/echoooooo/Desktop/code/Rocket.Chat/ee/packages/federation-matrix/src/FederationM)` → 1199 tokens

@@ -2,33 +2,36 @@
 
 ## Gemini Answer
 
-An incoming webhook in Rocket.Chat is processed through the following steps:
+An incoming webhook in Rocket.Chat is processed through the following chain:
 
-1.  **Incoming Request:** A `POST` request is made to the `/hooks/:integrationId/:token` endpoint. This is handled by the API routing, which directs the request to the integration processing logic.
+**Call Chain:** `POST /hooks/:integrationId/:token` → `executeIntegrationRest` → `scriptEngine.processIncomingRequest` → `processWebhookMessage`
 
-2.  **Integration Execution:** The `executeIntegrationRest` function in `apps/meteor/app/integrations/server/api/api.ts` is invoked. This function is responsible for authenticating the request and running the integration script within an `isolated-vm` sandbox for security.
+Here's a detailed breakdown of the process:
 
-3.  **Message Processing:** After the integration script is executed, the `processWebhookMessage` function located in `apps/meteor/app/lib/server/functions/processWebhookMessage.ts` is called. This function takes the payload from the webhook and constructs a message object that can be handled by Rocket.Chat's messaging system.
+1.  **Entry Point: `POST /hooks/:integrationId/:token`**
+    *   An incoming HTTP POST request to the `/hooks/:integrationId/:token` endpoint initiates the webhook processing. This endpoint is handled on the server side.
 
-**Call Chain:**
+2.  **`executeIntegrationRest` (`apps/meteor/app/integrations/server/api/api.ts`)**
+    *   This function serves as the primary handler for incoming webhook requests.
+    *   It first performs checks to ensure the integration is enabled (`this.request.integration.enabled`).
+    *   It initializes a `scriptEngine` using `getEngine(this.request.integration)` to handle the execution of any custom integration scripts.
+    *   It parses the request body to extract `bodyParams`.
 
-`POST /hooks/:integrationId/:token` (handled by API routing)
-→ `executeIntegrationRest` (`apps/meteor/app/integrations/server/api/api.ts`)
-→ `processWebhookMessage` (`apps/meteor/app/lib/server/functions/processWebhookMessage.ts`)
+3.  **`scriptEngine.processIncomingRequest` (within `executeIntegrationRest`)**
+    *   If the integration has a valid script enabled (`scriptEngine.integrationHasValidScript(this.request.integration)`), the raw request content and `bodyParams` are passed to `scriptEngine.processIncomingRequest`.
+    *   This is where the user-defined integration script runs within an isolated environment (isolated-vm sandbox), allowing for custom logic to transform the incoming payload.
+    *   The script's output can modify the `bodyParams` or return a `scriptResponse`.
 
-## Tool Calls (4 calls, 13,950 tokens)
+4.  **`processWebhookMessage` (`apps/meteor/app/lib/server/functions/processWebhookMessage.ts`)**
+    *   After the integration script (if any) has been executed, `executeIntegrationRest` explicitly calls `processWebhookMessage(bodyParams, this.user, defaultValues)`.
+    *   This function is responsible for taking the processed `bodyParams` (which represent the webhook payload) and creating actual Rocket.Chat messages based on the content, the associated user (`this.user`), and default values (like channel, alias, avatar, emoji) configured for the integration.
 
-**Step 1:** `search({"query":"incoming webhook","layer":"server"})` → 370 tokens
-**Step 2:** `graph({"layer":"server","query":"executeIntegrationRest","direction":"down"})` → 850 tokens
-**Step 3:** `search({"layer":"server","query":"processWebhookMessage"})` → 193 tokens
-**Step 4:** `graph({"layer":"server","query":"processWebhookMessage","direction":"up"})` → 368 tokens
+Finally, `executeIntegrationRest` handles the response, returning success or failure based on the outcome of `processWebhookMessage` and any `scriptResponse`.
 
-## Metrics
+## Tool Calls (5 calls, 21,849 tokens)
 
-| Metric | Value |
-|--------|-------|
-| Files hit | 2/6 |
-| Symbols hit | 3/3 |
-| Tool calls | 4 |
-| Total tokens | 13,950 |
-| Pass | NO |
+**Step 1:** `search({"layer":"server","query":"incoming webhook"})` → 370 tokens
+**Step 2:** `graph({"direction":"down","layer":"server","query":"executeIntegrationRest"})` → 976 tokens
+**Step 3:** `search({"query":"processWebhookMessage","layer":"server"})` → 193 tokens
+**Step 4:** `graph({"direction":"up","query":"processWebhookMessage","layer":"server","file":"apps/meteor/app/lib/serve)` → 436 tokens
+**Step 5:** `implement({"filename":"apps/meteor/app/integrations/server/api/api.ts","symbolName":"executeIntegrationRest"})` → 1172 tokens

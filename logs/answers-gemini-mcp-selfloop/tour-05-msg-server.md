@@ -2,54 +2,51 @@
 
 ## Gemini Answer
 
-The server-side message sending in Rocket.Chat follows a multi-step process, starting with a core `sendMessage` function that handles validation, app integrations, database persistence, and finally, broadcasting updates to clients.
-
-The primary entry point for server-side message sending is `sendMessage` in `apps/meteor/app/lib/server/functions/sendMessage.ts`. This function orchestrates the following flow:
+The server-side message sending process in Rocket.Chat is primarily handled by the `sendMessage` function.
 
 **Call Chain:**
 
-`sendMessage` (`apps/meteor/app/lib/server/functions/sendMessage.ts`)
-1.  **Message Validation:** Calls `validateMessage` to ensure the message, room, and user are valid.
-2.  **Message Preparation:** Calls `prepareMessageObject` to format the message object.
-3.  **Apps Engine Hooks (Pre-Send):** Integrates with the Rocket.Chat Apps Engine via `Apps.self?.triggerEvent` for `IPreMessageSentPrevent`, `IPreMessageSentModify`, and `IPreMessageSentExtend` to allow external apps to modify or prevent the message from being sent.
-4.  **Before Save Hook:** Invokes `Message.beforeSave` for any pre-database storage processing.
-5.  **Database Persistence:**
-    *   If `upsert` is true and an `_id` exists, it calls `Messages.updateOne` to update an existing message in the database.
-    *   Otherwise, it calls `Messages.insertOne` to insert a new message into the `Messages` collection.
-6.  **Apps Engine Hooks (Post-Send):** Triggers `IPostSystemMessageSent` or `IPostMessageSent` events via `Apps.self?.triggerEvent` after the message has been saved.
-7.  **`afterSaveMessage`**: This function is called to perform actions after the message is saved.
-    *   `afterSaveMessage` (`apps/meteor/app/lib/server/functions/sendMessage.ts`)
-    *   Triggers an internal `afterSaveMessage` event (which is handled by various modules for tasks like notifications, auto-translation, and app integration).
-    *   Calls `afterSave` within `apps/meteor/server/services/messages/service.ts`, which further calls `notifyOnMessageChange` (`apps/meteor/server/services/messages/notifyListener.ts`).
-8.  **`notifyOnRoomChangedById`**: This function is called to notify clients about the changes in the room.
-    *   `notifyOnRoomChangedById` (`apps/meteor/app/lib/server/lib/notifyListener.ts`)
-    *   This function utilizes `LocalBroker.ts` to `broadcast` the room changes, ensuring real-time updates are propagated to connected clients.
+`apps/meteor/app/lib/server/functions/sendMessage.ts` → `Messages.updateOne` / `Messages.insertOne`
 
-**Key Files and Their Roles:**
+**Detailed Steps:**
 
-*   `apps/meteor/app/lib/server/functions/sendMessage.ts`: The central server-side function for sending messages, handling the main logic flow from validation to persistence and post-save actions.
-*   `apps/meteor/server/services/messages/service.ts`: Contains service-level logic related to messages, including further processing after a message is saved, which triggers notifications.
-*   `apps/meteor/server/services/messages/notifyListener.ts`: Responsible for notifying clients about message changes, often broadcasting updates.
-*   `packages/rocketchat-apps/lib/server/Apps.ts`: Manages the Rocket.Chat Apps Engine, allowing external applications to hook into the message sending process.
-*   `packages/rocketchat-models/server/models/Messages.ts`: Provides the interface for interacting with the `Messages` database collection for insertion and updates.
-*   `apps/meteor/app/lib/server/lib/notifyListener.ts`: Contains the `notifyOnRoomChangedById` function responsible for broadcasting room changes to clients.
-*   `packages/rocketchat-channel-broker/lib/LocalBroker.ts`: Handles the local broadcasting mechanism to propagate real-time updates to connected clients.
+1.  **Entry Point (`apps/meteor/app/lib/server/functions/sendMessage.ts`)**: The `sendMessage` function is the central point for sending messages on the server. It takes the `user`, `message` object, and `room` as arguments.
+2.  **Validation and Preparation**:
+    *   The message undergoes initial validation using `validateMessage` to ensure it meets requirements for the room and user.
+    *   `prepareMessageObject` is called to add necessary server-side fields to the message, such as `_id`, `ts` (timestamp), and user details (`u`).
+    *   If the `Message_Read_Receipt_Enabled` setting is active, the `message.unread` flag is set to `true`.
+3.  **Apps Engine Hooks (Pre-Send)**:
+    *   The Rocket.Chat Apps Engine provides several hooks that can interact with the message before it's saved to the database:
+        *   `AppEvents.IPreMessageSentPrevent`: Apps can use this hook to prevent the message from being sent entirely.
+        *   `AppEvents.IPreMessageSentExtend`: Apps can extend the message object with additional data.
+        *   `AppEvents.IPreMessageSentModify`: Apps can modify the message content or attributes.
+    *   After app modifications, the message is re-validated with `validateMessage`.
+4.  **Before Save Hook**:
+    *   `Message.beforeSave` is invoked, allowing other server-side logic (e.g., URL parsing, markdown processing) to modify the message one last time before it hits the database.
+5.  **Database Interaction (`packages/models/src/models/Messages.ts`)**:
+    *   The function then checks if the message is an update (`message._id` exists and `upsert` is true) or a new message.
+    *   If it's an update, `Messages.updateOne` is called to update the existing message in the `messages` collection.
+    *   If it's a new message, a check is performed to prevent duplicates, and then `Messages.insertOne` is called to insert the new message into the `messages` collection. The `_id` of the newly inserted message is assigned back to the message object.
+6.  **Apps Engine Hooks (Post-Send)**:
+    *   After the message is successfully saved, the Apps Engine triggers post-send events:
+        *   `AppEvents.IPostSystemMessageSent` (for system messages).
+        *   `AppEvents.IPostMessageSent` (for regular user messages).
+7.  **Post-Save Actions**:
+    *   `afterSaveMessage` is called to handle any further processing required after the message is saved (e.g., updating room activity, notifying other services).
+    *   `notifyOnRoomChangedById` is called to inform clients about changes in the room due to the new message.
 
-## Tool Calls (6 calls, 28,535 tokens)
+**Key Files Involved:**
 
-**Step 1:** `search({"query":"sendMessage","layer":"server"})` → 411 tokens
-**Step 2:** `graph({"query":"sendMessage","layer":"server","direction":"down"})` → 637 tokens
-**Step 3:** `graph({"filename":"apps/meteor/app/lib/server/functions/sendMessage.ts","layer":"server","query":"sendMess)` → 637 tokens
-**Step 4:** `implement({"filename":"apps/meteor/app/lib/server/functions/sendMessage.ts","symbolName":"sendMessage"})` → 621 tokens
-**Step 5:** `graph({"query":"afterSaveMessage","layer":"server","direction":"down"})` → 348 tokens
-**Step 6:** `graph({"layer":"server","query":"notifyOnRoomChangedById","direction":"down"})` → 315 tokens
+*   `apps/meteor/app/lib/server/functions/sendMessage.ts`: The main server-side function orchestrating message sending.
+*   `packages/models/src/models/Messages.ts`: Defines the `Messages` collection and provides methods like `insertOne` and `updateOne` for interacting with the database.
 
-## Metrics
+## Tool Calls (8 calls, 74,703 tokens)
 
-| Metric | Value |
-|--------|-------|
-| Files hit | 1/6 |
-| Symbols hit | 1/3 |
-| Tool calls | 6 |
-| Total tokens | 28,535 |
-| Pass | NO |
+**Step 1:** `search({"query":"sendMessage","layer":"server"})` → 412 tokens
+**Step 2:** `graph({"direction":"down","file":"/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/app/lib/server/fun)` → 1530 tokens
+**Step 3:** `graph({"query":"sendMessage","direction":"down","file":"/Users/echoooooo/Desktop/code/Rocket.Chat/apps/met)` → 1529 tokens
+**Step 4:** `implement({"symbolName":"sendMessage","filename":"/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/app/li)` → 621 tokens
+**Step 5:** `search({"query":"Messages","layer":"server"})` → 592 tokens
+**Step 6:** `search({"layer":"server","query":"Messages"})` → 592 tokens
+**Step 7:** `search({"query":"Messages.ts"})` → 589 tokens
+**Step 8:** `implement({"filename":"/Users/echoooooo/Desktop/code/Rocket.Chat/packages/models/src/models/Messages.ts","symb)` → 68 tokens

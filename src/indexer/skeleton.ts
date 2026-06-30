@@ -36,6 +36,9 @@ export class SkeletonGenerator {
 
         this.processImports(sourceFile, filePath, mapping);
 
+        // Run BEFORE processClasses/processFunctions, which mutate the AST (setBodyText).
+        this.processTopLevel(sourceFile, filePath, mapping);
+
         this.processClasses(sourceFile, mapping);
         this.processFunctions(sourceFile, mapping);
         this.processInterfacesAndTypes(sourceFile, mapping);
@@ -285,6 +288,42 @@ export class SkeletonGenerator {
                 register(name, unwrapped, pa.getStartLineNumber());
             });
         } catch { /* ignore */ }
+    }
+
+    // Module-top-level statements (bare `callbacks.add('afterSaveMessage', (m)=>..., ...)`,
+    // `Meteor.startup(() => {...})`, etc.) are NOT inside any declared function/class/variable,
+    // so the per-symbol extractCalls passes never see them — the most common Rocket.Chat hook
+    // registration pattern was completely invisible to the graph (e.g. notifications listening on
+    // afterSaveMessage). Capture them under a synthetic module symbol (named after the file).
+    private static readonly TOP_LEVEL_SKIP = new Set<SyntaxKind>([
+        SyntaxKind.FunctionDeclaration, SyntaxKind.ClassDeclaration,
+        SyntaxKind.InterfaceDeclaration, SyntaxKind.TypeAliasDeclaration,
+        SyntaxKind.EnumDeclaration, SyntaxKind.ImportDeclaration,
+        SyntaxKind.ExportDeclaration, SyntaxKind.VariableStatement,
+        SyntaxKind.ModuleDeclaration,
+    ]);
+
+    private static processTopLevel(sourceFile: SourceFile, filePath: string, mapping: any) {
+        const moduleName = path.basename(filePath).replace(/\.(tsx?|jsx?)$/, '');
+        const calls = new Map<string, CallEdge>();
+        try {
+            for (const stmt of sourceFile.getStatements()) {
+                if (this.TOP_LEVEL_SKIP.has(stmt.getKind())) continue;
+                for (const c of this.extractCalls(stmt)) {
+                    const key = c.event ? `${c.name}:${c.edgeType}:${c.event}` : `${c.name}:${c.edgeType}`;
+                    if (!calls.has(key)) calls.set(key, c);
+                }
+            }
+        } catch { /* ignore */ }
+        if (calls.size > 0) {
+            mapping.symbols.push({
+                type: 'module',
+                name: moduleName,
+                exported: false,
+                line: 1,
+                calls: Array.from(calls.values()),
+            });
+        }
     }
 
     private static processImports(sourceFile: SourceFile, filePath: string, mapping: any) {

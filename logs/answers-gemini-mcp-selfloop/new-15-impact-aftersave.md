@@ -2,32 +2,26 @@
 
 ## Gemini Answer
 
-The `afterSaveMessage` callback system is triggered in two main locations:
+If the `afterSaveMessage` callback system were changed, the following areas would be impacted:
 
-*   **Entry → `callbacks.add('afterSaveMessage', this.onMessage.bind(this))` → `apps/meteor/app/slackbridge/server/RocketAdapter.ts`**:
-    *   The `RocketAdapter.onMessage` method handles messages that need to be bridged to Slack.
-    *   Impact: Changes to `afterSaveMessage` would affect how messages (new, edited, or with file shares) are processed and sent to connected Slack workspaces. It could break or alter the integration between Rocket.Chat and Slack.
+**Call Chain:**
 
-*   **Entry → `callbacks.add('afterSaveMessage', afterSaveMessage, callbacks.priority.MEDIUM, 'search-events')` → `apps/meteor/app/search/server/events/index.ts`**:
-    *   The `afterSaveMessage` function within this file calls `searchEventService.promoteEvent('message.save', m._id, m)`.
-    *   Impact: Altering `afterSaveMessage` would directly impact the search event system, specifically the `message.save` event. This could lead to issues with message indexing, search result accuracy, or other functionalities dependent on the `searchEventService`.
+1.  **Entry Point: Definition/Reference of `afterSaveMessage`**
+    *   `apps/meteor/ee/app/message-read-receipt/server/hooks/afterSaveMessage.ts`
+    *   `apps/meteor/app/search/server/events/index.ts`
+    *   `apps/meteor/app/lib/server/lib/afterSaveMessage.ts`
+    *   `apps/meteor/app/threads/server/hooks/aftersavemessage.ts`
 
-In summary, changing the `afterSaveMessage` callback system would impact the **Slack Bridge integration** and the **Rocket.Chat search event processing**.
+2.  **Impacted Functional Areas (Listeners):**
+    The `afterSaveMessage` callback is a common event used by various modules. Changes to this system would directly affect the functionality of features that listen to this event. These include:
+    *   **Notifications**
+    *   **Autotranslate**
+    *   **Slackbridge**
+    *   **Apps Engine**
 
-## Tool Calls (5 calls, 14,917 tokens)
+## Tool Calls (4 calls, 11,654 tokens)
 
-**Step 1:** `search({"query":"afterSaveMessage"})` → 261 tokens
-**Step 2:** `graph({"edgeTypes":["event_listen"],"query":"afterSaveMessage","direction":"down"})` → 158 tokens
-**Step 3:** `search({"query":"callbacks.add('afterSaveMessage'"})` → 263 tokens
-**Step 4:** `implement({"symbolName":"RocketAdapter.onMessage","filename":"apps/meteor/app/slackbridge/server/RocketAdapter)` → 275 tokens
-**Step 5:** `implement({"filename":"apps/meteor/app/search/server/events/index.ts","symbolName":"afterSaveMessage"})` → 88 tokens
-
-## Metrics
-
-| Metric | Value |
-|--------|-------|
-| Files hit | 0/6 |
-| Symbols hit | 1/4 |
-| Tool calls | 5 |
-| Total tokens | 14,917 |
-| Pass | NO |
+**Step 1:** `search({"query":"afterSaveMessage"})` → 262 tokens
+**Step 2:** `graph({"direction":"down","file":"/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/ee/app/message-rea)` → 180 tokens
+**Step 3:** `graph({"edgeTypes":["event_listen"],"query":"afterSaveMessage","direction":"down"})` → 175 tokens
+**Step 4:** `search({"query":"callbacks.run('afterSaveMessage')"})` → 19 tokens
