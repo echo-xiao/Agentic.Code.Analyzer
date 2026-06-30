@@ -2,132 +2,120 @@
 
 ## Baseline Answer (no tools)
 
-The Team feature in Rocket.Chat is a powerful organizational tool that allows users to group related channels (rooms) and manage access to them more efficiently. Instead of individually inviting users to multiple channels, you can invite them to a team, and they automatically gain access to the channels within that team.
+The Team feature in Rocket.Chat provides a way to group related channels, discussions, and users, fostering better organization and collaboration within a larger Rocket.Chat workspace. It allows for a more structured approach to managing communication, especially in larger organizations or projects.
 
-Here's a breakdown of how it works from an architectural and implementation perspective:
+Here's a breakdown of how it works:
 
-## Core Concepts
+### 1. Core Concepts
 
-1.  **Organizational Container:** A Team acts as a container for channels. It's not a chat room itself, but it has a dedicated "Team Discussion" channel.
-2.  **Membership Management:** Users are members of a team. Team membership dictates access to channels associated with that team.
-3.  **Channel Association:** Channels (public or private) can be associated with a team. When a channel is added to a team, its `teamId` field is populated.
-4.  **Implicit Access:** When a user joins a team, they automatically gain access (get subscribed) to all public channels within that team. For private channels, they would still need to be explicitly added to the channel (though adding them to the team might streamline this process depending on settings and workflows).
+*   **Grouping Channels:** The primary purpose of a team is to group multiple channels (public, private, discussions) under a single umbrella. This makes it easier for users to discover and navigate related conversations.
+*   **Team Membership:** Users can be members of one or more teams. A user's membership in a team often dictates their access to the team's private channels.
+*   **Team Roles:** Within a team, users can have specific roles (e.g., owner, member) which grant them different levels of permission to manage the team, its members, and its channels.
+*   **Team Type:** Teams can be public or private.
+    *   **Public Teams:** Discoverable by all users, and anyone can join. Channels within a public team can still be private.
+    *   **Private Teams:** Only discoverable and joinable by invitation.
+*   **Main Channel:** Each team has a default "main channel" that's created alongside the team, often serving as a general discussion point for all team members.
 
-## Data Model (MongoDB Collections)
+### 2. Data Models and Collections
 
-The Team feature primarily relies on a few key MongoDB collections:
+The Team feature relies on several key MongoDB collections:
 
-1.  **`rocketchat_team`**:
-    *   This is the main collection for storing Team entities.
-    *   **`_id`**: Unique ID of the team.
-    *   **`name`**: Display name of the team.
-    *   **`type`**: `0` for private, `1` for public (similar to room types).
-    *   **`teamLead`**: The `_id` of the user who is the primary owner/creator of the team.
-    *   **`roomId`**: The `_id` of the dedicated "Team Discussion" channel associated with this team (more on this below).
-    *   **`t`**: Set to `team` to distinguish it from regular rooms.
-    *   `createdAt`, `updatedAt`, etc.
+*   **`teams` Collection:**
+    *   Stores information about each team.
+    *   **File:** `app/models/server/models/Teams.js`
+    *   **Schema (simplified):**
+        ```typescript
+        interface ITeam {
+          _id: string;
+          name: string; // Display name of the team
+          slug: string; // URL-friendly identifier
+          type: TeamType; // 'public' | 'private'
+          teamMain: boolean; // Indicates if this team is the main team (legacy concept, less used now)
+          // Other fields like createdAt, _updatedAt, userId (creator), etc.
+        }
+        ```
+*   **`team_members` Collection:**
+    *   Links users to teams and defines their roles within that team.
+    *   **File:** `app/models/server/models/TeamMembers.js`
+    *   **Schema (simplified):**
+        ```typescript
+        interface ITeamMember {
+          _id: string;
+          teamId: string; // ID of the team
+          userId: string; // ID of the user
+          roles: string[]; // e.g., ['owner', 'member']
+          // Other fields like createdAt, _updatedAt, createdBy, etc.
+        }
+        ```
+*   **`rooms` Collection:**
+    *   Channels, private groups, and discussions are stored here.
+    *   A crucial addition for the Team feature is the `teamId` field.
+    *   **File:** `app/models/server/models/Rooms.js`
+    *   **Schema (simplified, relevant part):**
+        ```typescript
+        interface IRoom {
+          _id: string;
+          name: string;
+          t: RoomType; // 'c' (channel), 'p' (private group), 'd' (direct), 'l' (livechat)
+          teamId?: string; // THIS IS THE LINK TO THE TEAM
+          // Other fields like usersCount, owner, etc.
+        }
+        ```
+    *   If a room has a `teamId`, it belongs to that team. If `teamId` is `undefined`, it's a standalone room.
 
-    *Relevant file:* `app/teams/server/lib/definition/IRocketChatTeam.ts` (interface definition)
+### 3. Server-Side Logic and APIs
 
-2.  **`rocketchat_room`**:
-    *   Existing channels (rooms) are linked to teams via the `teamId` field.
-    *   **`teamId`**: If a channel belongs to a team, this field will contain the `_id` of the `rocketchat_team` document.
-    *   **`_id`**: For the special "Team Discussion" channel, its `_id` is referenced in the `rocketchat_team.roomId` field. It's a regular `c` (channel) or `p` (private channel) room type, but its association is strong.
+Most of the team management logic resides on the server:
 
-    *Relevant file:* `app/definitions/IRoom.ts` (interface definition)
+*   **Methods for Team Management:**
+    *   **Creating a Team:** `app/lib/server/functions/createTeam.js` and `app/teams/server/methods/createTeam.js` handle the creation of the `team` entry, the default main channel, and adding the creator as an owner.
+    *   **Updating a Team:** Methods in `app/teams/server/methods/` (e.g., `updateTeam`).
+    *   **Deleting a Team:** Methods for removing the team, its members, and handling its associated rooms (e.g., converting them to standalone rooms or archiving them). See `app/lib/server/functions/deleteTeam.js`.
+*   **Membership Management:**
+    *   `app/lib/server/functions/addUserToTeam.js`: Adds a user to a team and manages their roles.
+    *   `app/lib/server/functions/removeUserFromTeam.js`: Removes a user from a team.
+*   **Room-Team Association:**
+    *   `app/lib/server/functions/addRoomToTeam.js`: Assigns a `teamId` to an existing room or creates a new room within a team.
+    *   `app/lib/server/functions/removeRoomFromTeam.js`: Removes a room from a team (sets `teamId` to `undefined`).
+*   **Publications:**
+    *   `app/teams/server/publications/teams.js`: Publishes the teams a user is a member of.
+    *   `app/teams/server/publications/teamMembers.js`: Publishes members of a specific team.
+    *   `app/teams/server/publications/teamRooms.js`: Publishes rooms associated with a specific team.
+    *   `app/teams/server/publications/teamChannelMembers.js`: Publishes members of a team channel.
+*   **Permissions:** Team-specific permissions are handled via `app/authorization/lib/permissions.js` definitions and checked by server-side functions (e.g., `app/authorization/server/functions/canAccessRoom.js` or `canAccessTeam.js` which verifies if a user has access to a private team and its rooms).
 
-3.  **`rocketchat_team_members`**:
-    *   This collection explicitly defines which users are members of which teams and their roles within the team.
-    *   **`_id`**: Unique ID for the membership entry.
-    *   **`teamId`**: The `_id` of the team.
-    *   **`userId`**: The `_id` of the user.
-    *   **`roles`**: An array of roles the user has *within this team* (e.g., `["owner", "moderator", "member"]`).
-    *   `createdAt`, `updatedAt`, etc.
+### 4. Client-Side Implementation (UI)
 
-    *Relevant file:* `app/teams/server/lib/definition/IRocketChatTeamMember.ts` (interface definition)
+The client-side integrates with the server methods and publications to provide the user interface for managing and interacting with teams:
 
-4.  **`rocketchat_subscription`**:
-    *   This collection tracks a user's subscription to individual channels.
-    *   When a user joins a team, the backend logic automatically creates/updates subscriptions for them to the channels associated with that team. Conversely, when a user leaves a team, their subscriptions to that team's channels are removed.
+*   **Side Navigation:** The left sidebar (`client/views/sideNav/SideNav/TeamSection.tsx`) displays the teams a user is part of, often collapsing them to save space.
+*   **Team View:** When a user navigates to a team (e.g., `/team/my-team-slug`), a dedicated view (`client/views/teams/TeamView/TeamView.tsx`) shows the team's main channel, list of channels, members, and settings.
+*   **Modals:**
+    *   `client/views/teams/CreateTeamModal/`: For creating new teams.
+    *   `client/views/teams/AddExistingModal/`: For adding existing channels or users to a team.
+*   **Contextual Bar:** When viewing a channel that belongs to a team, the contextual bar might show related team channels (`client/views/room/contextualBar/TeamChannels/`).
+*   **Room Creation/Editing:** The room creation and editing modals (`client/views/modals/CreateChannelModal/`) include options to associate a new or existing channel with a team.
+*   **Routing:** The client-side router (e.g., `client/router.js` and `client/startup/router.ts`) defines routes for team views (e.g., `/team/:teamId/:roomName?`).
 
-    *Relevant file:* `app/definitions/ISubscription.ts` (interface definition)
+### 5. Workflow Example: Creating a Team
 
-## Backend Implementation Details
+1.  **User Action:** A user clicks "Create New" -> "Team" in the UI.
+2.  **Client-side:** The `CreateTeamModal` is displayed. User enters team name, slug, and chooses public/private.
+3.  **Method Call:** The client calls the `createTeam` server method.
+    *   **File:** `app/teams/server/methods/createTeam.js`
+4.  **Server-side:**
+    *   A new entry is created in the `teams` collection (`app/models/server/models/Teams.js`).
+    *   A new channel (the "main" team channel) is created in the `rooms` collection, with its `teamId` set to the newly created team's ID.
+    *   The user who created the team is added to the `team_members` collection as an `owner` of that team.
+    *   The user is also added as a member of the team's main channel.
+5.  **Client-side Update:** The client-side subscriptions (`app/teams/server/publications/teams.js`) detect the new team, and the UI updates to show the new team in the sidebar. The user is redirected to the new team's main channel.
 
-### API Endpoints
-
-The core logic is exposed via dedicated API endpoints under `/api/v1/teams.*`.
-
-*   **`teams.create`**: Creates a new team. This involves:
-    *   Creating an entry in `rocketchat_team`.
-    *   Creating a new `rocketchat_room` for the default "Team Discussion" channel and linking it to the team via `teamId` and updating `rocketchat_team.roomId`.
-    *   Adding the creator as a member in `rocketchat_team_members` with the 'owner' role.
-    *   Subscribing the creator to the "Team Discussion" channel.
-*   **`teams.addMembers` / `teams.removeMembers`**: Manages team members.
-    *   Updates `rocketchat_team_members`.
-    *   Crucially, it then iterates through all channels associated with the `teamId` and automatically subscribes/unsubscribes the user from those channels (especially public ones).
-*   **`teams.addRoom` / `teams.removeRoom`**: Associates/disassociates a channel with a team.
-    *   Updates the `teamId` field in the `rocketchat_room` document.
-    *   If a channel is added to a team, existing team members are automatically subscribed to that channel (if it's public). If removed, subscriptions are removed.
-*   **`teams.info` / `teams.list` / `teams.listRooms` / `teams.listMembers`**: Retrieval endpoints for team data, members, and channels.
-
-*Relevant files:*
-*   `app/api/server/v1/teams/teams.js` (API definitions)
-*   `app/teams/server/lib/Team.ts` (main service logic for managing teams)
-
-### Services & Managers
-
-The actual business logic for interacting with the database and managing subscriptions resides in server-side services.
-
-*   **`TeamService`**: This is a central service that encapsulates the methods for creating, updating, deleting teams, adding/removing members, and managing channels within teams. It orchestrates the changes across `rocketchat_team`, `rocketchat_room`, `rocketchat_team_members`, and `rocketchat_subscription`.
-    *   For example, when `addMembers` is called, it won't just insert into `rocketchat_team_members` but also call functions that loop through `rocketchat_room` to find team channels and then modify `rocketchat_subscription` accordingly.
-
-*Relevant files:*
-*   `app/teams/server/lib/Team.ts` (where the core logic resides)
-*   `app/teams/server/functions/addUserToDefaultTeamRoom.ts` (example of a helper function)
-*   `app/teams/server/functions/removeUserFromAllTeamRooms.ts` (example of a helper function)
-
-### Permissions
-
-Standard Rocket.Chat permission system applies, with specific permissions for teams:
-
-*   `create-team`: Allows users to create new teams.
-*   `edit-team`: Allows editing team details.
-*   `view-all-teams`: Allows viewing all teams in the system.
-*   `add-team-member`: Allows adding members to a team.
-*   `remove-team-member`: Allows removing members from a team.
-*   `add-team-channel`: Allows adding channels to a team.
-*   `remove-team-channel`: Allows removing channels from a team.
-
-*Relevant file:* `app/authorization/server/startup.js` (where default permissions are defined)
-
-## Frontend Interaction (UI/UX)
-
-1.  **Sidebar:** Teams typically appear in the left-hand sidebar, often as collapsible sections. Clicking on a team usually expands to show its associated channels and the default "Team Discussion" channel.
-    *   The client queries the `teams.list` and `teams.listRooms` APIs to populate this view.
-2.  **Team View:** When you select a team from the sidebar, the main content area might show a "Team Home" or directly open the "Team Discussion" channel. There are also dedicated tabs/sections for managing team members, channels, and team settings.
-3.  **Team Creation/Management Modals:** Users can initiate team creation from the sidebar or a dedicated menu. Modals guide them through naming the team, setting its type (public/private), and inviting initial members/channels.
-4.  **Channel Creation/Editing:** When creating a new channel or editing an existing one, there's an option to associate it with an existing team.
-
-*Relevant files (examples, as these vary based on UI framework):*
-*   `client/components/sidebar/Sidebar.tsx` (for displaying teams)
-*   `client/views/teams/TeamInfo/TeamInfo.tsx` (for team management UI)
-*   `client/views/teams/AddExistingModal/index.tsx` (for adding existing channels to a team)
-*   `client/views/teams/TeamMembers/index.tsx` (for managing team members)
-
-## Key Workflows
-
-*   **Create Team:** User initiates creation -> Backend creates `rocketchat_team` and the default "Team Discussion" `rocketchat_room` -> Creator is added to `rocketchat_team_members` as owner and subscribed to the discussion room.
-*   **Add Member to Team:** User invites -> Backend adds entry to `rocketchat_team_members` -> Backend iterates through `rocketchat_room` documents with `teamId` and creates `rocketchat_subscription` entries for the new member to all public team channels.
-*   **Add Channel to Team:** User associates existing channel -> Backend updates `rocketchat_room.teamId` -> Backend iterates through `rocketchat_team_members` and creates `rocketchat_subscription` entries for all existing team members to the newly added channel.
-*   **Leave Team:** User leaves -> Backend removes entry from `rocketchat_team_members` -> Backend iterates through `rocketchat_room` documents with `teamId` and removes `rocketchat_subscription` entries for the user from those channels.
-
-By abstracting channel access behind team membership, Rocket.Chat simplifies large-scale collaboration and channel management, making it much easier to onboard new users into relevant sets of discussions.
+In essence, the Team feature leverages the existing room and user models by introducing the `teamId` relationship and dedicated `teams` and `team_members` collections, providing a structured layer for organizing Rocket.Chat communication.
 
 ## Metrics
 
 | Metric | Value |
 |--------|-------|
-| Tokens | 4,342 |
+| Tokens | 3,424 |
 | Model | gemini-2.5-flash |
 | Tools | NONE |

@@ -4,6 +4,7 @@
  * logs/answers-gemini-mcp-selfloop/. GENERATOR ONLY — comparison reports are produced
  * by eval-reports.ts (eval-1 / eval-3) from the saved answers.
  */
+import "./utils/load-env.js";
 import * as fs from 'fs';
 import * as path from 'path';
 import { fileURLToPath } from 'url';

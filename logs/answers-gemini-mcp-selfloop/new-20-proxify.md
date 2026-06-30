@@ -2,35 +2,32 @@
 
 ## Gemini Answer
 
-The `proxify()` pattern in Rocket.Chat's `core-services` facilitates inter-service communication by creating a proxy object that, when a method is called on it, translates that call into an `api.call()` to the appropriate service method. This prevents direct imports between services and promotes a more decoupled architecture.
+The `core-services proxify()` pattern in Rocket.Chat facilitates inter-service communication by abstracting direct service imports. Instead, it uses a proxy to route method calls through a central `LocalBroker`.
 
-Here's the breakdown of the call chain and relevant files:
+The core components and their roles are:
 
-*   **`proxify()`** (in `packages/core-services/src/lib/proxify.ts`):
-    *   This function takes a `namespace` (which is the service name) as an argument.
-    *   It returns a `Proxy` object.
+1.  **`proxify` function** (`packages/core-services/src/lib/proxify.ts`):
+    *   When a service needs to interact with another service, it calls `proxify('IServiceName')`.
+    *   This function returns a `Proxy` object. The `Proxy`'s handler intercepts any method calls made on this object.
 
-*   **`handler()`** (in `packages/core-services/src/lib/proxify.ts`):
-    *   This is the handler for the `Proxy` object created by `proxify()`.
-    *   When a `get` operation occurs on the proxy (i.e., a method is accessed), it returns a function.
-    *   This returned function, when invoked, calls `api.call()` with a concatenated string of the `namespace` and the `prop` (the method name), along with the method parameters.
+2.  **`Proxy` handler (internal to `proxify.ts`)**:
+    *   When a method is invoked on the proxified object (e.g., `proxifiedService.someMethod(args)`), the handler intercepts this call.
+    *   It constructs a fully qualified method name string (e.g., `'IServiceName.someMethod'`) and forwards this string, along with the arguments, to the `LocalBroker`.
 
-*   **`api.call()`** (in `packages/core-services/src/lib/Api.ts`):
-    *   The `Api` class is responsible for managing services and handling inter-service communication.
-    *   The `call` method of the `Api` class is the central point for dispatching calls to registered services.
-    *   While the `graph` output didn't explicitly show `LocalBroker.call()`, the pattern description indicates that `api.call()` eventually delegates to `LocalBroker.call()`, which then invokes the bound method of the target service. The `LocalBroker` effectively maps "serviceName.methodName" to the actual function within the service.
+3.  **`LocalBroker`** (`packages/core-services/src/LocalBroker.ts`):
+    *   The `LocalBroker` maintains a map (`this.methods`) where keys are the fully qualified method names (e.g., `'serviceName.methodName'`) and values are the actual bound functions of the service methods.
+    *   Its `call(method: string, data: any, ...)` method receives the method name and data from the `Proxy` handler.
+    *   It then retrieves the corresponding service method from its `methods` map using `this.methods.get(method)` and executes it with the provided `data`.
 
 **Call Chain:**
 
-`proxify("IServiceName")` → `Proxy` object method call (`handler`) → `api.call("namespace.method", params)` → (implicitly) `LocalBroker.call()` → `bound ServiceClass method`
+`Calling Code (e.g., Apps-Engine accessor)` → `proxify('IServiceName')` (`packages/core-services/src/lib/proxify.ts`) → `Proxy` Handler → `LocalBroker.call('IServiceName.method', args)` (`packages/core-services/src/LocalBroker.ts`) → `Actual Service Method`
 
-## Tool Calls (8 calls, 35,643 tokens)
+## Tool Calls (6 calls, 19,550 tokens)
 
-**Step 1:** `search({"query":"proxify","layer":"packages"})` → 181 tokens
-**Step 2:** `graph({"file":"packages/core-services/src/lib/proxify.ts","direction":"down","query":"proxify","layer":"pa)` → 933 tokens
+**Step 1:** `search({"query":"proxify","layer":"packages"})` → 265 tokens
+**Step 2:** `graph({"depth":3,"file":"packages/core-services/src/lib/proxify.ts","query":"proxify","direction":"up"})` → 514 tokens
 **Step 3:** `implement({"filename":"packages/core-services/src/lib/proxify.ts","symbolName":"proxify"})` → 76 tokens
-**Step 4:** `implement({"symbolName":"handler","filename":"packages/core-services/src/lib/proxify.ts"})` → 97 tokens
-**Step 5:** `search({"query":"api.call","layer":"packages"})` → 75 tokens
-**Step 6:** `search({"query":"LocalBroker.call"})` → 15 tokens
-**Step 7:** `search({"layer":"packages","query":"api "})` → 213 tokens
-**Step 8:** `implement({"filename":"packages/core-services/src/lib/Api.ts","symbolName":"Api"})` → 318 tokens
+**Step 4:** `implement({"filename":"packages/core-services/src/lib/proxify.ts","symbolName":"packages/core-services/src/lib)` → 62 tokens
+**Step 5:** `search({"layer":"packages","query":"LocalBroker"})` → 165 tokens
+**Step 6:** `implement({"symbolName":"LocalBroker.call","filename":"packages/core-services/src/LocalBroker.ts"})` → 165 tokens

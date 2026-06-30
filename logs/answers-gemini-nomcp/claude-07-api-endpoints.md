@@ -2,122 +2,103 @@
 
 ## Baseline Answer (no tools)
 
-Rocket.Chat primarily uses the **Restivus** Meteor package to define and register its REST API endpoints, specifically for the `/api/v1` routes.
+Rocket.Chat registers its REST API endpoints primarily using a custom API framework built into the server. The core mechanism involves calling the `API.v1.addRoute` method.
 
-Here's a breakdown of how it works:
+Here's a detailed breakdown of how new endpoints are registered:
 
-### 1. The Core Mechanism: `API.v1.addRoute`
+1.  **The `API` Object:**
+    At the heart of the Rocket.Chat REST API is the global `API` object (or `RocketChat.API` in some contexts). This object is responsible for managing routes, handling requests, and enforcing security policies (authentication, permissions, rate limiting).
 
-Most of the `v1` REST API endpoints are registered using the `API.v1.addRoute` method.
+    You can find its definition and initialization in:
+    *   `app/api/server/api.js`
 
-**Location:** You'll find endpoint definitions primarily within the `app/api/server/v1/` directory. Each file in this directory typically groups related endpoints.
+2.  **`API.v1.addRoute()` Method:**
+    This is the primary method used to register new API endpoints for version 1 of the API. It typically takes three arguments:
+    *   **`route` (string):** The path segment for the route. For example, `'users'` would register endpoints under `/api/v1/users`.
+    *   **`options` (object):** An object containing configuration for the route, such as:
+        *   `authRequired` (boolean, default: `true`): Whether the endpoint requires user authentication.
+        *   `permissionsRequired` (array or string): Specific permissions a user must have to access the endpoint.
+        *   `rateLimiterOptions` (object): Configuration for rate limiting, if desired.
+        *   `anonymous` (boolean): If `true`, the route can be accessed anonymously without a user session.
+    *   **`handlers` (object):** An object where each key corresponds to an HTTP method (e.g., `get`, `post`, `put`, `delete`) and its value is the handler function for that method. The handler function receives `this.requestParams()` (URL and query parameters), `this.bodyParams()` (request body), and `this.userId` (if authenticated).
 
-**Example (from `app/api/server/v1/users.ts`):**
+3.  **Endpoint File Structure:**
+    Most API endpoints are defined in separate files, typically grouped by API version and functionality within the `app/api/server/` directory.
 
-```typescript
-import { API } from '../_lib/v1/methods'; // This imports the Restivus instance
+    *   For v1 endpoints, you'll find them in `app/api/server/v1/`.
+    *   Each file usually defines one or more routes related to a specific domain (e.g., `users.js` for user-related endpoints, `channels.js` for channel-related endpoints).
 
-// ... other imports and helper functions ...
+4.  **Example of Registering an Endpoint:**
 
-API.v1.addRoute('users.list', { authRequired: true }, {
-	get() {
-		const { offset, count, fields, query } = this.parseJsonQuery();
-		const { sort, projection, options } = this.get)//getFindOptions({ offset, count, fields });
-		
-		// Ensure that the query does not return "bot" users if hideBots is enabled
-		const findQuery = query;
+    Let's look at a simplified example, similar to how the `status` endpoint is registered:
 
-		// If the hideBots setting is enabled, add a query to filter out bots
-		const hideBots = settings.get('Hide_Bots_From_Search');
-		if (hideBots) {
-			findQuery.roles = { $ne: 'bot' };
-		}
-		
-		// Find users based on the constructed query and options
-		const { cursor, total } = Users.findPaginated(findQuery, options);
+    **File:** `app/api/server/v1/status.js`
 
-		return API.v1.success({
-			users: cursor.fetch(),
-			count: cursor.count(),
-			offset,
-			total,
-		});
-	},
-});
+    ```javascript
+    import { API } from '../api'; // Import the API object
 
-API.v1.addRoute('users.create', { authRequired: true }, {
-	post() {
-		// ... logic for creating a user ...
-	},
-});
-```
+    API.v1.addRoute('status', { authRequired: false }, {
+        /**
+         * @openapi
+         * /api/v1/status:
+         *   get:
+         *     summary: Get Rocket.Chat server status
+         *     description: Returns the current status of the Rocket.Chat server.
+         *     responses:
+         *       200:
+         *         description: Server status information.
+         *         content:
+         *           application/json:
+         *             schema:
+         *               type: object
+         *               properties:
+         *                 status:
+         *                   type: string
+         *                   example: online
+         *                 // ... other status properties
+         */
+        get() {
+            // No authentication required for this endpoint.
+            // this.requestParams() would contain URL/query parameters if any.
+            // this.bodyParams() would contain the request body for POST/PUT.
 
-**Explanation:**
+            return API.v1.success({
+                status: 'online',
+                version: process.env.ROOT_URL, // Example of accessing server data
+                // ... any other relevant status information
+            });
+        },
+        /**
+         * @openapi
+         * /api/v1/status:
+         *   post:
+         *     summary: Updates server status (requires authentication and specific permissions)
+         *     description: This is a placeholder; actual implementation would vary.
+         *     security:
+         *       - authToken: []
+         *     responses:
+         *       200:
+         *         description: Status updated successfully.
+         */
+        post() {
+            // This would typically require `authRequired: true` and `permissionsRequired`
+            // return API.v1.success({ message: 'Status updated' });
+            throw new Error('Not implemented'); // Example: if POST isn't supported for status
+        },
+    });
+    ```
 
-1.  **`API.v1` Object:** This is an instance of the `Restivus` class, configured specifically for the `v1` API. It's initialized in `app/api/server/_lib/v1/methods.ts`.
-2.  **`addRoute(routeName, options, handlers)`:**
-    *   **`routeName`**: A string that defines the path for the endpoint. `Restivus` automatically prepends `/api/v1/` to this. So, `'users.list'` becomes `/api/v1/users.list`, and `'users.create'` becomes `/api/v1/users.create`. If you use a path with slashes, like `'users/:userId/info'`, it will correctly handle path parameters.
-    *   **`options`**: An object for route-specific configurations:
-        *   `authRequired: true/false`: Indicates if the user needs to be authenticated to access this endpoint.
-        *   `roleRequired: 'admin'` (or an array of roles): Restricts access to users with specific roles.
-        *   `rateLimit: true/false`: Enables/disables rate limiting for this route.
-        *   `middleware`: Custom Express-style middleware functions can be added here.
-    *   **`handlers`**: An object where keys are HTTP verbs (`get`, `post`, `put`, `delete`, `patch`) and values are the corresponding handler functions. Inside these functions, `this` refers to the route context provided by `Restivus`, which includes methods like `parseJsonQuery()`, `getLoggedInUser()`, `bodyParams`, `queryParams`, etc.
+5.  **Initialization:**
+    To ensure all these endpoint files are loaded and their routes are registered, there's usually an `index.js` file (or similar) in the `app/api/server/` directory that imports all the specific route files. This ensures that when the server starts, `API.v1.addRoute` is called for every defined endpoint.
 
-### 2. Restivus Initialization (`API.v1` instance)
+    *   `app/api/server/index.js` often serves this purpose by importing all files from `app/api/server/v1/` and other API versions.
 
-The `API.v1` object, which is the core of the v1 REST API, is initialized in:
-
-**File:** `app/api/server/_lib/v1/methods.ts`
-
-```typescript
-import { Restivus } from 'meteor/nimble:restivus';
-import { settings } from '../../../../settings/server';
-import { getPaginationItems } from '../../../../lib/server/functions/getPaginationItems';
-
-class APIClass extends Restivus {
-	constructor(options = {}) {
-		super(options);
-		// ... additional configuration ...
-	}
-}
-
-export const API = {
-	v1: new APIClass({
-		version: 'v1',
-		apiPath: 'api/', // This means routes will be at /api/v1/...
-		use;//UseAuth: true,
-		prettyJson: true,
-		enableCors: true,
-		// ... more global configurations ...
-	}),
-};
-
-// ... further global configuration or helper methods for API.v1 ...
-```
-
-Here, `API.v1` is instantiated, and global options like `version`, `apiPath`, `useAuth`, `prettyJson`, and `enableCors` are set. These global options can then be overridden or extended at the individual route level using the `options` parameter in `addRoute`.
-
-### 3. Other API Registration Mechanisms (Less Common for `v1` REST)
-
-While `Restivus` handles most of the `/api/v1` routes, Rocket.Chat also uses other mechanisms:
-
-*   **Internal DDP Methods:** Many functionalities are exposed as DDP (Distributed Data Protocol) methods. These aren't REST endpoints directly, but they form the basis for much of the real-time functionality and can sometimes be called via a REST wrapper if needed for external integrations.
-*   **Custom Express Routes:** For highly specific, non-`v1` API routes (e.g., certain webhook integrations or very old legacy routes), you might find direct Express-style route definitions using `WebApp.connectHandlers.use()` or similar, but this is rare for new development.
-*   **Apps-Engine API:** For Rocket.Chat Apps (the extensibility framework), apps can define their own custom API endpoints. These are registered through the Apps-Engine itself and typically follow a path like `/api/apps/public/:appId/`. This is a separate routing layer managed by the Apps-Engine.
-
-### In Summary:
-
-To register a new REST API endpoint in Rocket.Chat (for the primary `/api/v1` API):
-
-1.  **Create/Edit a file** in `app/api/server/v1/` (e.g., `myNewFeature.ts`).
-2.  **Import `API`** from `../_lib/v1/methods`.
-3.  **Use `API.v1.addRoute`** to define your endpoint, specifying the route name, authentication/authorization options, and handler functions for the desired HTTP verbs.
+This system allows for a structured and maintainable way to define, configure, and expose REST API endpoints in Rocket.Chat, leveraging a common set of utilities for authentication, authorization, and response handling.
 
 ## Metrics
 
 | Metric | Value |
 |--------|-------|
-| Tokens | 2,895 |
+| Tokens | 1,990 |
 | Model | gemini-2.5-flash |
 | Tools | NONE |

@@ -2,99 +2,97 @@
 
 ## Baseline Answer (no tools)
 
-LDAP authentication in Rocket.Chat provides a robust way to integrate with existing directory services like OpenLDAP, Active Directory, or FreeIPA, allowing users to log in using their LDAP credentials.
+LDAP (Lightweight Directory Access Protocol) authentication in Rocket.Chat allows organizations to leverage their existing directory services for user management and authentication. This means users can log in to Rocket.Chat using their existing corporate credentials, and Rocket.Chat can automatically provision user accounts based on LDAP data.
 
-Here's a detailed breakdown of how it works, including code locations:
+Here's a breakdown of how it works in Rocket.Chat, from configuration to the actual authentication flow, with specific file paths where relevant:
 
-## Overview
+## 1. Core Concepts & Components
 
-At a high level, Rocket.Chat's LDAP integration involves:
-1.  **Configuration:** Administrators define LDAP server details, bind credentials, search bases, filters, and attribute mappings.
-2.  **Authentication Flow:** When a user attempts to log in, Rocket.Chat tries to bind to the LDAP server using the provided username and password.
-3.  **User Provisioning/Synchronization:** If authentication is successful, Rocket.Chat either creates a new user account in its MongoDB database (provisioning) or updates an existing one (synchronization) based on LDAP attributes.
-4.  **Background Synchronization:** Periodically, Rocket.Chat can synchronize user data (attributes, active state) from LDAP to its local database.
+*   **`ldapjs` library:** Rocket.Chat's server-side code uses the `ldapjs` Node.js library to communicate with LDAP servers.
+*   **Meteor Accounts System:** Rocket.Chat is built on Meteor, which has a robust accounts system. LDAP authentication is integrated as a custom login handler within this system.
+*   **`rocketchat-ldap` package:** This is the dedicated Meteor package (`packages/rocketchat-ldap/`) responsible for all LDAP-related logic, including settings, server-side connection, user synchronization, and authentication.
+*   **Settings:** All LDAP configurations (server URL, bind DN, search filters, attribute mapping, etc.) are stored as Rocket.Chat settings, accessible via the Admin UI.
 
-## 1. Configuration (Admin Panel)
+## 2. Configuration (Admin UI)
 
-All LDAP settings are managed via the Rocket.Chat administration interface:
-*   `Administration > Workspace > Settings > LDAP`
+Admins configure LDAP settings under **Administration > Workspace > Settings > LDAP**.
 
-Key configuration parameters include:
+Key settings include:
 
-*   **Enable LDAP:** `LDAP_Enable` (boolean)
-*   **Host and Port:** `LDAP_Host`, `LDAP_Port`
-*   **TLS/SSL:** `LDAP_TLS`, `LDAP_CA_Cert` (for secure communication)
-*   **Bind DN and Password:** `LDAP_Bind_DN`, `LDAP_Bind_Password` (used by Rocket.Chat to search the directory; often a service account)
-*   **Search Base:** `LDAP_Search_Base` (the starting point for user searches, e.g., `ou=users,dc=example,dc=com`)
-*   **Search Filter:** `LDAP_Search_Filter` (an LDAP filter to find users, e.g., `(&(objectClass=user)(sAMAccountName=#{username}))` for Active Directory, or `(&(objectClass=person)(uid=#{username}))` for OpenLDAP)
-*   **User Unique ID Field:** `LDAP_Unique_ID_Field` (the attribute used to uniquely identify users, often `sAMAccountName` or `uid`)
-*   **Attribute Mapping:** Defines how LDAP attributes map to Rocket.Chat user fields (e.g., `LDAP_User_Email_Field`, `LDAP_User_Name_Field`, `LDAP_User_Username_Field`).
-*   **Synchronization Settings:** `LDAP_Sync_User_Data`, `LDAP_Sync_User_Data_Interval`, `LDAP_Sync_User_Active_State`, `LDAP_Sync_Users_on_Login` (control how and when user data is synchronized).
-*   **Group Synchronization:** `LDAP_Enable_Group_Sync`, `LDAP_Group_Filter_Enable`, `LDAP_Group_Filter_Groups`, `LDAP_Group_BaseDN` (for mapping LDAP groups to Rocket.Chat roles).
+*   **LDAP Enabled:** Toggles the feature on/off.
+*   **Server URL:** The address of the LDAP server (e.g., `ldap://myldap.example.com:389` or `ldaps://myldap.example.com:636`).
+*   **Bind DN:** The Distinguished Name (DN) of a service account that Rocket.Chat will use to connect to and search the LDAP directory.
+*   **Bind Password:** The password for the `Bind DN`.
+*   **Search DN:** The base DN from which Rocket.Chat will start searching for users (e.g., `ou=users,dc=example,dc=com`).
+*   **Search Filter:** An LDAP filter to specify which objects are users (e.g., `(&(objectClass=person)(sAMAccountName=*))`).
+*   **User DN:** Specifies how the user's DN is constructed for direct authentication (e.g., `sAMAccountName=%u,ou=users,dc=example,dc=com` or `uid=%u,ou=people,dc=example,dc=com`).
+*   **Attribute Map:** Defines how LDAP attributes (e.g., `sAMAccountName`, `cn`, `mail`) are mapped to Rocket.Chat user fields (e.g., `username`, `name`, `email`).
+*   **Sync Settings:** Controls whether users are created/updated on login, and for more advanced synchronization (often enterprise features).
 
-These settings are stored in Rocket.Chat's `rocketchat_settings` collection in MongoDB.
+These settings are registered in the `rocketchat-ldap` package here:
+*   `packages/rocketchat-ldap/server/startup/settings.js`
 
-## 2. Authentication Flow (Login Process)
+## 3. Detailed Authentication Flow
 
-When a user tries to log in using LDAP credentials:
+When a user attempts to log in via the Rocket.Chat login screen (entering a username and password):
 
-1.  **User Input:** The user enters their username and password on the Rocket.Chat login screen.
-2.  **Login Handler:** Rocket.Chat's authentication system intercepts this login request. A specific login handler for LDAP is registered.
-    *   **File:** `app/ldap/server/index.ts` (this file registers the login handler).
-    *   **Function:** `Accounts.registerLoginHandler` (from Meteor's `accounts-base` package) is used here.
-3.  **LDAP Service Call:** The login handler invokes the core LDAP service with the provided username and password.
-    *   **File:** `app/ldap/server/lib/Ldap.ts` (contains the `Ldap` class with methods for interacting with LDAP).
-    *   **Method:** Typically, a method like `Ldap.prototype.authenticate` or `Ldap.prototype.login` is called.
-4.  **Construct User DN:** Based on the `LDAP_Search_Base` and `LDAP_Unique_ID_Field` settings, Rocket.Chat constructs a full Distinguished Name (DN) for the user who is attempting to log in (e.g., `uid=johndoe,ou=users,dc=example,dc=com`). This is often done by first performing a search using the `LDAP_Bind_DN` and `LDAP_Bind_Password` to find the user's actual DN based on their username.
-    *   **File:** `app/ldap/server/lib/sync.ts` (has functions like `getLdapUser` that search for the user).
-5.  **Bind for Authentication:** The critical step: Rocket.Chat attempts to perform an LDAP `bind` operation to the LDAP server *using the user's constructed DN and the password they provided*.
-    *   **Library:** This interaction is handled by the `ldapjs` npm package.
-    *   If the bind is successful, it means the user's credentials are valid according to the LDAP server.
-    *   If the bind fails, authentication fails, and an error is returned to the user.
-6.  **Retrieve User Attributes:** If the bind is successful, Rocket.Chat performs another search (often using the `LDAP_Bind_DN` service account) to fetch the user's complete set of attributes from their LDAP entry.
-    *   **File:** `app/ldap/server/lib/users.ts` (contains logic for fetching and processing user attributes).
-7.  **User Provisioning/Synchronization:**
-    *   **Check Existing User:** Rocket.Chat checks if a user with the corresponding `LDAP_Unique_ID_Field` value already exists in its `rocketchat_users` collection.
-    *   **Create New User:** If no user exists and `LDAP_Sync_User_Data` is enabled, a new user account is created in MongoDB. The Rocket.Chat user's fields (username, email, name, etc.) are populated based on the configured attribute mappings (`LDAP_User_Email_Field`, `LDAP_User_Name_Field`, etc.) from the fetched LDAP attributes.
-    *   **Update Existing User:** If the user already exists and `LDAP_Sync_User_Data` is enabled, the user's attributes in Rocket.Chat are updated based on the latest LDAP data, according to the `LDAP_Sync_User_Data_Fields` setting.
-    *   **File:** `app/ldap/server/lib/users.ts` (`syncUser` function) is central to this.
-8.  **Login to Rocket.Chat:** Finally, the user is logged into Rocket.Chat, and a new session is established.
+1.  **Client-Side Request:** The user submits their username and password from the client (browser/desktop app). This triggers a Meteor method call to `login` on the server.
+    *   Relevant file: `app/authentication/server/methods/login.js` (this is the general Meteor login method).
 
-## 3. Background Synchronization
+2.  **Server-Side Login Handler:** Rocket.Chat's authentication system checks its registered login handlers. The `rocketchat-ldap` package registers a custom login handler specifically for LDAP:
+    *   Relevant file: `packages/rocketchat-ldap/server/login.js`
+    *   Within this file, `Accounts.registerLoginHandler((loginRequest) => { ... });` is used to hook into the Meteor authentication process.
 
-Rocket.Chat also supports background synchronization of LDAP users, independent of login attempts:
+3.  **LDAP Enabled Check:** The login handler first checks if LDAP is enabled in Rocket.Chat's settings. If not, it falls through to other authentication methods (e.g., local password, OAuth).
+    *   Relevant file: `packages/rocketchat-ldap/server/lib/LDAP.js` (contains the `LDAP` class and its methods).
 
-*   **Scheduler:** A `SyncedCron` job (Meteor package) is set up to run periodically.
-    *   **File:** `app/ldap/server/startup.ts` (registers the cron job).
-*   **Frequency:** The frequency is determined by `LDAP_Sync_User_Data_Interval`.
-*   **Process:**
-    1.  The cron job triggers the LDAP synchronization process.
-    2.  It uses the `LDAP_Bind_DN` and `LDAP_Bind_Password` to search the LDAP directory for all users matching the `LDAP_Search_Filter`.
-    3.  For each user found in LDAP:
-        *   It retrieves their attributes.
-        *   It checks for a corresponding user in Rocket.Chat.
-        *   It either creates the user (if `LDAP_Sync_Create_new_users` is enabled) or updates their data (if `LDAP_Sync_User_Data` is enabled), similar to the login flow.
-    4.  It can also deactivate users in Rocket.Chat who are no longer found or active in LDAP, if `LDAP_Sync_User_Active_State` is enabled.
-*   **File:** `app/ldap/server/lib/sync.ts` (`syncLdapUsers` function) is the core logic for background sync.
+4.  **Initial Bind (Service Account):**
+    *   Rocket.Chat attempts to connect to the configured LDAP server using the `Bind DN` and `Bind Password` (service account). This establishes a session with sufficient privileges to search the directory.
+    *   This is handled by the `LDAP.prototype.bind()` method in `packages/rocketchat-ldap/server/lib/LDAP.js`.
 
-## Key Code Locations & Libraries
+5.  **User Search:**
+    *   Using the established service account connection, Rocket.Chat performs a search within the `Search DN` using the `Search Filter` and the provided username to locate the user's full LDAP entry.
+    *   This usually involves a call to `LDAP.prototype.search()` in `packages/rocketchat-ldap/server/lib/LDAP.js`.
+    *   The `Search Filter` often includes `sAMAccountName={username}` or `uid={username}` to pinpoint the user.
 
-*   **Main Module Directory:** `app/ldap`
-*   **Server-Side Entry Point:** `app/ldap/server/index.ts` (Registers login handlers, startup functions)
-*   **LDAP Class & Core Interaction:** `app/ldap/server/lib/Ldap.ts` (Encapsulates the `ldapjs` client, connection, and bind operations)
-*   **User Synchronization Logic:** `app/ldap/server/lib/users.ts` (Handles creating, updating, and deactivating users based on LDAP data)
-*   **Background Sync Logic:** `app/ldap/server/lib/sync.ts` (Manages the periodic synchronization process, including fetching all users from LDAP)
-*   **Settings Definition:** `app/settings/server/settings.ts` (While settings are stored in DB, their definitions and defaults reside here or within the `app/ldap/server/settings` directory)
-*   **Logging:** `app/ldap/server/lib/logger.ts` (Dedicated logger for LDAP operations)
-*   **Dependencies:**
-    *   `ldapjs`: The primary Node.js library used for all LDAP client operations (connecting, binding, searching).
+6.  **User Authentication (User's Credentials):**
+    *   If the user is found, Rocket.Chat attempts a *second* bind operation, this time trying to bind directly as the found user with the password provided by the user in the login form.
+    *   This is the critical step that validates the user's password against the LDAP server.
+    *   The `User DN` setting (e.g., `uid=%u,ou=people,dc=example,dc=com`) is used to construct the user's full DN for this bind attempt.
+    *   This logic resides within `packages/rocketchat-ldap/server/lib/LDAP.js` and is orchestrated by `packages/rocketchat-ldap/server/login.js`.
 
-In essence, Rocket.Chat leverages `ldapjs` to perform the necessary bind and search operations against an LDAP server, integrating these actions into its Meteor-based authentication system and providing robust user management capabilities through provisioning and synchronization.
+7.  **Success/Failure:**
+    *   If the user's bind succeeds, the user is authenticated against LDAP.
+    *   If any bind or search fails, the authentication attempt fails, and an appropriate error is returned.
+
+8.  **User Provisioning and Synchronization:**
+    *   If LDAP authentication is successful, Rocket.Chat needs to ensure the user exists in its local MongoDB database and that their profile information is up-to-date.
+    *   This is handled by the `LDAP.prototype.syncUser()` method, which calls helper functions like `LDAP.prototype.getLdapUserByUsername()` and `LDAP.prototype.createOrUpdateUser()`.
+    *   Relevant file: `packages/rocketchat-ldap/server/lib/sync.js` and `packages/rocketchat-ldap/server/lib/LDAP.js`.
+    *   **Attribute Mapping:** LDAP attributes from the retrieved user entry (e.g., `cn`, `mail`, `displayName`) are mapped to Rocket.Chat user fields (e.g., `name`, `email`, `username`) according to the `Attribute Map` settings.
+    *   If the user doesn't exist in Rocket.Chat, a new user account is created.
+    *   If the user already exists, their profile information (email, name, etc.) is updated based on the LDAP data, depending on sync settings.
+
+9.  **Rocket.Chat Session Creation:**
+    *   Finally, if all steps are successful, Rocket.Chat's internal authentication system creates a session for the user, allowing them to access the platform.
+    *   The `Accounts.setLoggedInUser()` and `Accounts._generateStampedLoginToken()` methods are used for this.
+
+## 4. Enterprise Features
+
+While the core LDAP authentication is available in the community edition, the Rocket.Chat Enterprise Edition offers more advanced LDAP features, such as:
+
+*   **Live Sync:** Periodically synchronizing user data and groups from LDAP to Rocket.Chat, even for users who haven't recently logged in.
+*   **Group Synchronization:** Mapping LDAP groups to Rocket.Chat roles or channels, automatically adding/removing users from groups.
+*   **Password Change Policy:** Handling password change requests back to LDAP.
+
+These features typically involve more background jobs, additional `cron` like mechanisms, and more complex `LDAP.js` interactions, often residing in the `ee/` directory structure.
+
+In summary, Rocket.Chat's LDAP integration is a robust, server-side process that leverages the `ldapjs` library and Meteor's accounts system to provide secure and manageable user authentication and provisioning based on an organization's existing LDAP directory.
 
 ## Metrics
 
 | Metric | Value |
 |--------|-------|
-| Tokens | 3,852 |
+| Tokens | 3,500 |
 | Model | gemini-2.5-flash |
 | Tools | NONE |

@@ -2,35 +2,37 @@
 
 ## Gemini Answer
 
-A new message appears in real-time on the client after being saved to the database through the following server-side flow:
+A new message appearing in real-time on the client after being saved to the database follows a publish-subscribe pattern, primarily driven by the server broadcasting changes.
 
-**Entry Point:** `sendMessage` in `apps/meteor/app/lib/server/functions/sendMessage.ts`
+Here's the likely call chain:
+
+**Server-Side Flow:**
+
+1.  **`sendMessage`** (`apps/meteor/app/lib/server/functions/sendMessage.ts`):
+    *   This function is responsible for processing and saving a new message to the database. It likely uses `Messages.insertOne` to persist the message.
+2.  **`notifyOnRoomChangedById`** (`apps/meteor/app/lib/server/lib/notifyListener.ts`):
+    *   After the message is saved, `sendMessage` (or a function in its call chain) invokes `notifyOnRoomChangedById`.
+    *   This function, in turn, uses `api.broadcast('watch.rooms', { clientAction, room: item })` to inform connected clients about a change in a specific room. The `clientAction` would indicate that a new message has been added, and `room` would contain the updated room information, potentially including the new message. This `api.broadcast` is the real-time notification mechanism.
+
+**Client-Side (Inferred):**
+
+Although a direct client-side listener for `'watch.rooms'` was not explicitly found with the provided tools, the presence of `api.broadcast('watch.rooms', ...)` on the server strongly implies that clients are subscribed to this event stream. A typical client-side implementation would involve:
+
+1.  **Subscription to `watch.rooms`**: The client-side, upon entering a room or initializing, would establish a subscription to the `watch.rooms` event channel for the relevant room ID.
+2.  **Event Listener**: A client-side listener would await messages broadcast on `watch.rooms`.
+3.  **UI Update**: Upon receiving an event (containing the new message data), the client's message list component would update its state, causing the new message to render in the UI in real-time.
 
 **Call Chain:**
 
-1.  **`sendMessage`** (`apps/meteor/app/lib/server/functions/sendMessage.ts`): This function is responsible for validating, preparing, and saving the message to the `Messages` collection in the database.
-    *   It calls `validateMessage` and `prepareMessageObject` for message processing.
-    *   It triggers `AppEvents.IPreMessageSentPrevent`, `AppEvents.IPreMessageSentModify`, and `AppEvents.IPreMessageSentExtend` for Rocket.Chat App integrations.
-    *   It persists the message to the database using `Messages.updateOne` or `Messages.insertOne`.
-    *   It triggers `AppEvents.IPostSystemMessageSent` or `AppEvents.IPostMessageSent` for Rocket.Chat App integrations after saving.
-    *   Finally, it calls `afterSaveMessage` and `notifyOnRoomChangedById`.
+`sendMessage` (apps/meteor/app/lib/server/functions/sendMessage.ts) → `notifyOnRoomChangedById` (apps/meteor/app/lib/server/lib/notifyListener.ts) → `api.broadcast('watch.rooms', ...)` (client-side subscription to `watch.rooms` and UI update)
 
-2.  **`notifyOnRoomChangedById`** (`apps/meteor/app/lib/server/lib/notifyListener.ts`): This function is called after a message is saved. Its purpose is to notify relevant listeners that a change has occurred in a room.
-    *   It calls `LocalBroker.broadcast`.
+## Tool Calls (8 calls, 40,078 tokens)
 
-3.  **`LocalBroker.broadcast`** (`packages/core-services/src/LocalBroker.ts`): This method is responsible for broadcasting an event to local listeners and emitting a "broadcast" event.
-    *   It calls `this.broadcastLocal(event, ...args)` to handle local broadcasting.
-    *   It then emits a generic `'broadcast'` event with the event name and arguments using `this.events.emit('broadcast', event, args)`. This `EventEmitter` mechanism is likely how the server-side pub/sub system triggers the real-time update to connected clients.
-
-The `LocalBroker.broadcast` method, by emitting an event, signals to connected clients that a change has occurred, which then allows the client-side to react and display the new message in real-time. The exact mechanism for how the client subscribes and receives these broadcasts would involve DDP (Distributed Data Protocol) over WebSockets, with the client listening for specific events related to room changes or new messages.
-
-## Tool Calls (8 calls, 47,494 tokens)
-
-**Step 1:** `search({"query":"sendMessage","layer":"server"})` → 412 tokens
-**Step 2:** `graph({"query":"sendMessage","layer":"server","file":"apps/meteor/app/lib/server/functions/sendMessage.ts")` → 900 tokens
-**Step 3:** `implement({"symbolName":"sendMessage","filename":"apps/meteor/app/lib/server/functions/sendMessage.ts"})` → 621 tokens
-**Step 4:** `graph({"layer":"server","direction":"down","query":"notifyOnRoomChangedById"})` → 359 tokens
-**Step 5:** `implement({"symbolName":"broadcast","filename":"apps/meteor/app/lib/server/lib/LocalBroker.ts"})` → 141 tokens
-**Step 6:** `implement({"symbolName":"broadcast","filename":"packages/core-services/src/LocalBroker.ts"})` → 140 tokens
-**Step 7:** `implement({"filename":"packages/core-services/src/LocalBroker.ts","symbolName":"LocalBroker"})` → 462 tokens
-**Step 8:** `implement({"filename":"packages/core-services/src/LocalBroker.ts","symbolName":"LocalBroker.broadcast"})` → 101 tokens
+**Step 1:** `search({"layer":"server","query":"publishMessage"})` → 98 tokens
+**Step 2:** `search({"query":"stream-room-messages","layer":"server"})` → 103 tokens
+**Step 3:** `graph({"layer":"server","query":"stream-room-messages","direction":"down"})` → 15 tokens
+**Step 4:** `search({"layer":"server","query":"Messages.insert"})` → 132 tokens
+**Step 5:** `graph({"query":"sendMessage","layer":"server","direction":"down","file":"apps/meteor/app/lib/server/functi)` → 2057 tokens
+**Step 6:** `graph({"query":"notifyOnRoomChangedById","file":"apps/meteor/server/modules/listeners/notifyListener.ts",")` → 496 tokens
+**Step 7:** `implement({"filename":"apps/meteor/app/lib/server/lib/notifyListener.ts","symbolName":"notifyOnRoomChangedById)` → 146 tokens
+**Step 8:** `search({"layer":"client","query":"watch.rooms"})` → 14 tokens

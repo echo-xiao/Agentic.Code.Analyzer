@@ -2,404 +2,336 @@
 
 ## Baseline Answer (no tools)
 
-Adding a new "service" in Rocket.Chat typically means creating a new logical module or feature domain within the existing monorepo that encapsulates specific business logic, data interactions, and potentially exposes an API. Rocket.Chat often organizes these within the `app/` directory or specifically `app/services/` for more backend-focused, reusable modules.
+In Rocket.Chat, a "service" generally refers to a logical module that encapsulates specific business logic, interacts with the database, and exposes methods for other parts of the application (e.g., API endpoints, UI components, other services).
 
-Here's a comprehensive guide on how to add a new service, covering common patterns and file locations:
+Rocket.Chat has evolved its service architecture, moving towards a more structured, class-based approach using TypeScript, particularly for new features. The modern approach heavily leverages the `@rocket.chat/sdk` package for service definition and client-server communication.
 
-## Understanding "Service" in Rocket.Chat
+Here's a breakdown of how to add a new service, focusing on the modern best practices:
 
-In Rocket.Chat, a "service" isn't usually a separate microservice running independently (unless you're talking about Enterprise features or specific external integrations). Instead, it's a well-defined module or set of files within the main codebase responsible for a particular functionality.
+## Modern Approach: `server/services` and `app/sdk/client/services`
 
-Common scenarios for creating a new service:
-*   Integrating with an external system (e.g., a new push notification provider, a new payment gateway).
-*   Encapsulating complex business logic that can be reused across different parts of the application.
-*   Providing a new API surface for a specific feature.
+This is the recommended approach for new services that involve both server-side logic and potentially client-side interaction.
 
-Let's assume we want to create a service called `MyCoolService`.
+### 1. Server-Side Service Implementation
 
-## Core Steps and File Paths
+This is where your core business logic resides.
 
-### 1. **Directory Structure**
+**a. Create the Service File:**
 
-First, create a dedicated directory for your service. The most common patterns are:
+*   **Path:** `server/services/<your-service-name>/<your-service-name>.ts`
+*   **Content:**
+    *   Define a class that extends `ServiceClass` from `@rocket.chat/sdk`.
+    *   Give it a unique `name`.
+    *   Implement your business logic methods.
+    *   Use dependency injection (`@inject`) to get access to other services, models, or utilities.
 
-*   **`app/services/<your-service-name>`**: Ideal for backend-focused services that might be consumed by various parts of the application (e.g., `app/services/federation`, `app/services/oauth`).
-*   **`app/<your-feature-name>/server`**: If the service is tightly coupled to a specific feature that also has client-side components (e.g., `app/livechat/server`).
-
-For this example, let's use `app/services/my-cool-service`.
-
-```
-Rocket.Chat/
-├── app/
-│   ├── services/
-│   │   └── my-cool-service/
-│   │       ├── server/
-│   │       │   ├── my-cool-service.ts  <-- Main service logic
-│   │       │   ├── settings.ts         <-- Service-specific settings
-│   │       │   ├── methods.ts          <-- DDP/Meteor methods
-│   │       │   ├── api.ts              <-- REST API endpoints
-│   │       │   └── index.ts            <-- Entry point for server-side
-│   │       └── lib/
-│   │           └── index.ts            <-- Shared utility functions/types
-│   └── (other app modules)
-```
-
-### 2. **Service Core Logic (`app/services/my-cool-service/server/my-cool-service.ts`)**
-
-This file will contain the primary business logic for your service. It should be a class or an object that exports functions. Using a class is often preferred for better organization and type safety, especially with TypeScript.
+**Example: `server/services/example-preferences/ExamplePreferencesService.ts`**
 
 ```typescript
-// app/services/my-cool-service/server/my-cool-service.ts
-import { Settings } from '../../../settings/server';
-import { SystemLogger } from '../../../logger/server';
-import { IMyCoolServiceResult } from '../lib'; // Assuming types are defined in lib
+import { ServiceClass, AppEvents, registerService } from '@rocket.chat/sdk';
+import { Settings } from '../../app/models/server'; // Example: Interacting with an existing model
+import { Users } from '../../app/models/server';
+import { ISetting } from '@rocket.chat/apps-engine/definition/settings';
+import { ILoggedInUser } from '@rocket.chat/apps-engine/definition/users';
+import { PermissionsService } from '../permissions/permissions'; // Example: Injecting another service
+import { inject } from 'tsyringe';
 
-class MyCoolService {
-	private logger = new SystemLogger('MyCoolService');
-	private someSettingValue: string | undefined;
+// Define the interface for the service methods (optional but good for type safety)
+interface IExamplePreferencesService {
+	getPreference(userId: string, key: string): Promise<any>;
+	setPreference(userId: string, key: string, value: any): Promise<boolean>;
+}
 
-	constructor() {
-		this.initialize();
+export class ExamplePreferencesService extends ServiceClass implements IExamplePreferencesService {
+	public readonly name = 'ExamplePreferences'; // Unique service name
+
+	// Inject other services or dependencies
+	constructor(@inject('PermissionsService') private permissionsService: PermissionsService) {
+		super();
 	}
 
-	private async initialize() {
-		// Watch for settings changes if your service depends on them
-		Settings.watch('MyCoolService_Enabled', (value) => {
-			this.logger.debug(`MyCoolService_Enabled changed to: ${value}`);
-			// Handle enable/disable logic
-		});
-
-		Settings.watch('MyCoolService_ApiKey', (value) => {
-			this.someSettingValue = value as string;
-			this.logger.debug('MyCoolService API Key updated.');
-		});
-
-		// You can also fetch initial values
-		this.someSettingValue = await Settings.get<string>('MyCoolService_ApiKey');
-
-		this.logger.info('MyCoolService initialized');
+	protected onSetup(): void {
+		// This method is called when the service is registered.
+		// You can register DDP methods here, but usually, methods are automatically exposed if defined as public.
+		// This is also a good place for initializations or event listeners.
+		this.logger.debug('ExamplePreferencesService setup complete.');
 	}
 
-	public async performCoolAction(data: { input: string }): Promise<IMyCoolServiceResult> {
-		this.logger.info(`Performing cool action with input: ${data.input}`);
-		if (!this.someSettingValue) {
-			throw new Error('MyCoolService is not configured. Missing API Key.');
+	protected onActivate(): void {
+		// This method is called when the service becomes active.
+		this.logger.debug('ExamplePreferencesService activated.');
+
+		// Example: Registering an internal event listener
+		this.api.onEvent(AppEvents.USER_CREATED, (user) => {
+			this.logger.info(`New user created: ${user.username}. Initializing preferences...`);
+			// You could call a method to set default preferences for new users here.
+			// this.setDefaultPreferences(user._id);
+		});
+	}
+
+	/**
+	 * Retrieves a specific user preference.
+	 * @param userId The ID of the user.
+	 * @param key The preference key.
+	 */
+	public async getPreference(userId: string, key: string): Promise<any> {
+		if (!userId || !key) {
+			throw new Error('User ID and preference key are required.');
 		}
-		// Simulate some async operation
-		await new Promise(resolve => setTimeout(resolve, 500));
-
-		const processedResult = `Processed: ${data.input.toUpperCase()} - using key: ${this.someSettingValue.substring(0, 5)}...`;
-		this.logger.debug(`Cool action result: ${processedResult}`);
-
-		return {
-			success: true,
-			output: processedResult,
-			timestamp: new Date(),
-		};
-	}
-
-	public async getStatus(): Promise<string> {
-		return `MyCoolService is ${this.someSettingValue ? 'active' : 'inactive'}.`;
-	}
-
-	// ... other methods
-}
-
-export const myCoolService = new MyCoolService();
-```
-
-### 3. **Shared Utilities/Types (`app/services/my-cool-service/lib/index.ts`)**
-
-This file is for types, interfaces, or utility functions that might be needed on both the client and server side (though for a pure backend service, it's mostly for types).
-
-```typescript
-// app/services/my-cool-service/lib/index.ts
-export interface IMyCoolServiceResult {
-	success: boolean;
-	output: string;
-	timestamp: Date;
-}
-
-export const SOME_SHARED_CONSTANT = 'shared-value';
-```
-
-### 4. **Service-Specific Settings (`app/services/my-cool-service/server/settings.ts`)**
-
-Define any settings that configure your service. These will appear in the Rocket.Chat administration panel.
-
-```typescript
-// app/services/my-cool-service/server/settings.ts
-import { settings } from '../../../settings/server';
-
-settings.addGroup('MyCoolService', function () {
-	this.add('MyCoolService_Enabled', true, {
-		type: 'boolean',
-		public: true,
-		i18nLabel: 'MyCoolService_Enabled',
-		i18nDescription: 'MyCoolService_Enabled_Description',
-	});
-
-	this.add('MyCoolService_ApiKey', '', {
-		type: 'string',
-		public: false, // Keep sensitive information private
-		i18nLabel: 'MyCoolService_ApiKey',
-		i18nDescription: 'MyCoolService_ApiKey_Description',
-		secret: true, // Hides the value in the UI
-	});
-
-	this.add('MyCoolService_Endpoint', 'https://api.mycoolservice.com', {
-		type: 'string',
-		public: false,
-		i18nLabel: 'MyCoolService_Endpoint',
-	});
-});
-```
-
-### 5. **Meteor Methods (DDP) (`app/services/my-cool-service/server/methods.ts`)**
-
-If your service needs to expose functionality to the client side via DDP (real-time protocol), define Meteor methods.
-
-```typescript
-// app/services/my-cool-service/server/methods.ts
-import { Meteor } from 'meteor/meteor';
-import { check } from 'meteor/check';
-import { myCoolService } from './my-cool-service';
-import { hasPermission } from '../../../authorization/server'; // For permission checks
-
-Meteor.methods({
-	'myCoolService:performAction'(input: string) {
-		check(input, String);
 
 		// Example permission check
-		if (!Meteor.userId() || !hasPermission(Meteor.userId(), 'view-my-cool-service')) {
-			throw new Meteor.Error('not-authorized', 'User not authorized to perform this action');
+		if (!(await this.permissionsService.hasPermission(userId, 'view-user-preferences'))) {
+			throw new Error('Not authorized to view user preferences.');
 		}
 
-		return myCoolService.performCoolAction({ input });
-	},
-
-	'myCoolService:getStatus'() {
-		// This might not require specific permissions, or a lighter one
-		if (!Meteor.userId()) {
-			throw new Meteor.Error('not-authorized', 'User not logged in');
-		}
-		return myCoolService.getStatus();
-	},
-});
-```
-
-### 6. **REST API Endpoints (`app/services/my-cool-service/server/api.ts`)**
-
-For exposing a standard HTTP/REST API, use `API.v1.addRoute`. This is often preferred for integrations with external systems or when a stateless interaction is sufficient.
-
-```typescript
-// app/services/my-cool-service/server/api.ts
-import { API } from '../../../api/server';
-import { myCoolService } from './my-cool-service';
-
-API.v1.addRoute('my-cool-service.performAction', { authRequired: true }, {
-	post() {
-		const { input } = this.bodyParams;
-		if (typeof input !== 'string') {
-			return API.v1.failure('Invalid input parameter. Must be a string.');
+		// Example: Fetching from a custom collection or the Settings collection
+		const user = Users.findOneById(userId);
+		if (!user) {
+			throw new Error('User not found.');
 		}
 
-		try {
-			// You'd typically want to do permission checks here as well
-			// E.g., if (!this.userId || !hasPermission(this.userId, 'some-permission')) { ... }
+		// In a real scenario, you'd likely have a dedicated collection for user preferences.
+		// For this example, let's simulate fetching from user.settings (if it existed) or a generic setting.
+		// const userPreference = UserPreferencesCollection.findOne({ userId, key });
+		// return userPreference?.value;
 
-			const result = Promise.await(myCoolService.performCoolAction({ input })); // Use Promise.await for sync-like behavior in Meteor Fibers
-			return API.v1.success({ result });
-		} catch (error: any) {
-			return API.v1.failure(error.message, error.statusCode || 500);
+		// Or, if it's a global setting that might be overridden:
+		const setting = Settings.findOneById(key) as ISetting | undefined;
+		if (setting) {
+			// Logic to check if user has an override
+			this.logger.debug(`Fetching preference "${key}" for user "${userId}".`);
+			return setting.value; // Or user.settings[key] if implemented
 		}
-	},
-});
 
-API.v1.addRoute('my-cool-service.status', { authRequired: false }, {
-	get() {
-		try {
-			const status = Promise.await(myCoolService.getStatus());
-			return API.v1.success({ status });
-		} catch (error: any) {
-			return API.v1.failure(error.message, error.statusCode || 500);
+		return null;
+	}
+
+	/**
+	 * Sets a specific user preference.
+	 * @param userId The ID of the user.
+	 * @param key The preference key.
+	 * @param value The value to set.
+	 */
+	public async setPreference(userId: string, key: string, value: any): Promise<boolean> {
+		if (!userId || !key) {
+			throw new Error('User ID and preference key are required.');
 		}
-	},
-});
-```
 
-### 7. **Server-side Entry Point (`app/services/my-cool-service/server/index.ts`)**
+		// Example permission check
+		if (!(await this.permissionsService.hasPermission(userId, 'edit-user-preferences'))) {
+			throw new Error('Not authorized to edit user preferences.');
+		}
 
-This file ensures all server-side components of your service are loaded when the application starts.
+		const user = Users.findOneById(userId);
+		if (!user) {
+			throw new Error('User not found.');
+		}
 
-```typescript
-// app/services/my-cool-service/server/index.ts
-import './settings';
-import './methods';
-import './api';
-import './my-cool-service'; // Initialize the service instance
-// If you have models, background jobs, etc., import them here too
-```
+		this.logger.debug(`Setting preference "${key}" to "${value}" for user "${userId}".`);
 
-### 8. **Global Server Initialization (`app/app.ts` or `server/startup/index.ts`)**
+		// In a real scenario, you'd update a dedicated collection for user preferences.
+		// Example: UserPreferencesCollection.upsert({ userId, key }, { $set: { value } });
+		// For this example, let's just log and return true.
+		this.logger.info(`User ${user.username} updated preference ${key} to ${value}`);
 
-Ensure your service's server-side entry point is imported so it runs on startup.
-
-```typescript
-// app/app.ts (or server/startup/index.ts if it's a very core service)
-// ... other imports
-import '../app/services/my-cool-service/server'; // Add this line
-```
-
-### 9. **Permissions (`app/authorization/server/startup/permissions.ts`)**
-
-If your service introduces new actions that require specific user roles, define permissions.
-
-```typescript
-// app/authorization/server/startup/permissions.ts
-import { authorization } from '../index';
-
-Meteor.startup(() => {
-	// ... existing permissions
-
-	authorization.addPermission('view-my-cool-service', ['admin', 'owner']);
-	authorization.addPermission('perform-my-cool-service-action', ['admin', 'owner', 'user']);
-});
-```
-
-### 10. **Translations (`i18n/en.i18n.json` and others)**
-
-Add translation keys for your settings, UI elements, and any messages.
-
-```json
-// i18n/en.i18n.json
-{
-  "MyCoolService_Enabled": "Enable My Cool Service",
-  "MyCoolService_Enabled_Description": "Activates the functionality of My Cool Service.",
-  "MyCoolService_ApiKey": "My Cool Service API Key",
-  "MyCoolService_ApiKey_Description": "The secret API key for My Cool Service integration.",
-  "not-authorized": "Not Authorized"
+		// Simulate a database update
+		return true;
+	}
 }
 ```
 
-### 11. **Database Interactions (if applicable)**
+**b. Register the Service:**
 
-If your service needs its own data, define a new collection and model.
+*   **Path:** `server/services/<your-service-name>/index.ts`
+*   **Content:** This file is responsible for importing and registering your service with Rocket.Chat's service manager.
 
-*   **Collection Declaration (`app/models/server/raw/MyCoolServiceCollection.ts`)**
-
-    ```typescript
-    // app/models/server/raw/MyCoolServiceCollection.ts
-    import { MongoInternals } from 'meteor/mongo';
-
-    export const MyCoolServiceCollection = new MongoInternals.RemoteCollection('my_cool_service_data');
-    ```
-
-*   **Model (`app/models/server/MyCoolService.ts`)**
-
-    ```typescript
-    // app/models/server/MyCoolService.ts
-    import { BaseDb } from './_BaseDb';
-    import { MyCoolServiceCollection } from './raw/MyCoolServiceCollection';
-
-    interface IMyCoolServiceData {
-        _id: string;
-        userId: string;
-        timestamp: Date;
-        data: any;
-    }
-
-    class MyCoolServiceDb extends BaseDb<IMyCoolServiceData> {
-        constructor() {
-            super(MyCoolServiceCollection);
-        }
-
-        async create(userId: string, data: any): Promise<string> {
-            const record = {
-                userId,
-                timestamp: new Date(),
-                data,
-            };
-            const result = await this.col.insertOne(record);
-            return result.insertedId;
-        }
-
-        findByUserId(userId: string) {
-            return this.col.find({ userId }).toArray();
-        }
-    }
-
-    export const MyCoolService = new MyCoolServiceDb();
-    ```
-
-    Then you'd use `MyCoolService` from your `my-cool-service.ts` file.
-
-### 12. **Background Jobs (optional) (`app/agenda/server/index.ts` or `app/services/my-cool-service/server/background-jobs.ts`)**
-
-If your service needs to schedule periodic tasks, integrate with Agenda.
+**Example: `server/services/example-preferences/index.ts`**
 
 ```typescript
-// app/services/my-cool-service/server/background-jobs.ts
-import { Agenda } from 'agenda';
-import { SystemLogger } from '../../../logger/server';
-import { myCoolService } from './my-cool-service';
+import { registerService } from '@rocket.chat/sdk';
+import { ExamplePreferencesService } from './ExamplePreferencesService';
 
-const agendaLogger = new SystemLogger('MyCoolServiceAgenda');
-
-Meteor.startup(() => {
-	const agenda = Agenda.create({ db: { address: process.env.MONGO_URL } }); // Ensure Mongo URL is set
-
-	agenda.define('my-cool-service-cleanup', async (job) => {
-		agendaLogger.info('Running my-cool-service-cleanup job...');
-		try {
-			// Example: Call a method on your service
-			// await myCoolService.cleanupOldData();
-			agendaLogger.info('my-cool-service-cleanup job completed.');
-		} catch (error) {
-			agendaLogger.error('Error in my-cool-service-cleanup job:', error);
-		}
-	});
-
-	// Schedule the job
-	agenda.on('ready', () => {
-		agenda.every('0 0 * * *', 'my-cool-service-cleanup'); // Run daily at midnight
-		agenda.start();
-	});
-
-	agenda.on('error', (err) => agendaLogger.error('Agenda error:', err));
-});
+// Register the service using its class
+registerService(ExamplePreferencesService);
 ```
-*And then import `background-jobs.ts` in your `app/services/my-cool-service/server/index.ts`.*
 
-### 13. **Client-Side Integration (if applicable)**
+### 2. Client-Side SDK (for Services Callable from the Client)
 
-If your service has a UI component:
+If your service needs to expose methods that can be called directly from the client (e.g., via DDP), you need to define a client-side SDK counterpart.
 
-*   **Client Entry Point (`app/services/my-cool-service/client/index.ts`)**
-    This would import client-side UI, routes, or helper functions.
-*   **Routes (`client/router.ts`)**
-    Define new routes using `FlowRouter.route`.
-*   **UI Components (`client/views`, `client/components`)**
-    Build React or Blaze components to interact with your service via Meteor methods or REST API.
+*   **Path:** `app/sdk/client/services/<your-service-name>.ts`
+*   **Content:**
+    *   Define a class with the *same name* as your server-side service.
+    *   Extend `ServiceClass` from `@rocket.chat/sdk`.
+    *   The methods in this client-side class will automatically `call` the corresponding server-side methods via DDP.
 
-## Best Practices
+**Example: `app/sdk/client/services/ExamplePreferencesService.ts`**
 
-*   **TypeScript First:** Use TypeScript for all new code to leverage type safety and better tooling.
-*   **Logger:** Use `SystemLogger` for consistent logging.
-*   **Settings:** Centralize configuration through the `settings` API.
-*   **Permissions:** Always implement robust permission checks, especially for methods and API endpoints.
-*   **Error Handling:** Provide meaningful error messages and handle exceptions gracefully.
-*   **Modularity:** Keep your service focused on a single responsibility.
-*   **Testing:** Write unit and integration tests for your service logic.
-    *   `tests/unit/server/services/my-cool-service.test.ts`
-*   **Documentation:** Add comments to your code and update the Rocket.Chat documentation if it's a significant feature.
+```typescript
+import { ServiceClass } from '@rocket.chat/sdk';
+import { registerService } from '../../lib/services'; // Helper to register client services
 
-By following these steps, you can effectively add and integrate a new service into the Rocket.Chat ecosystem.
+interface IExamplePreferencesService {
+	getPreference(key: string): Promise<any>;
+	setPreference(key: string, value: any): Promise<boolean>;
+}
+
+export class ExamplePreferencesService extends ServiceClass implements IExamplePreferencesService {
+	public readonly name = 'ExamplePreferences'; // MUST match the server-side service name
+
+	// The `super()` call connects this client-side instance to the server-side service.
+	// You don't need to explicitly call `this.call` for methods, as it's handled by ServiceClass.
+	constructor() {
+		super();
+	}
+
+	/**
+	 * Retrieves a specific user preference from the server.
+	 * @param key The preference key.
+	 */
+	public async getPreference(key: string): Promise<any> {
+		// When called, this will invoke the server-side ExamplePreferencesService.getPreference method
+		// The current user's ID is automatically passed by the DDP method invocation.
+		return this.call<any>('getPreference', key);
+	}
+
+	/**
+	 * Sets a specific user preference on the server.
+	 * @param key The preference key.
+	 * @param value The value to set.
+	 */
+	public async setPreference(key: string, value: any): Promise<boolean> {
+		// When called, this will invoke the server-side ExamplePreferencesService.setPreference method
+		// The current user's ID is automatically passed by the DDP method invocation.
+		return this.call<boolean>('setPreference', key, value);
+	}
+}
+
+// Register the client-side service for discovery
+registerService(ExamplePreferencesService);
+```
+**Important Note:** The client-side `getPreference` and `setPreference` methods above only take `key` and `value` respectively. The `userId` is automatically determined by the DDP method context on the server side (i.e., `this.userId` in the server method). If you *need* to explicitly pass a `userId` from the client (e.g., for an admin action), ensure the server-side method handles permission checks carefully.
+
+### 3. Integrate and Use the Service
+
+**a. From Other Server-Side Services or Modules:**
+
+You can inject your service into other services or access it directly.
+
+*   **Using `@inject` (Recommended for services):**
+    ```typescript
+    import { ServiceClass, inject } from '@rocket.chat/sdk';
+    import { ExamplePreferencesService } from '../example-preferences/ExamplePreferencesService';
+
+    class MyOtherService extends ServiceClass {
+        constructor(@inject('ExamplePreferencesService') private examplePrefs: ExamplePreferencesService) {
+            super();
+        }
+
+        public async doSomethingWithPrefs(userId: string) {
+            const pref = await this.examplePrefs.getPreference(userId, 'myCustomPref');
+            console.log('User preference:', pref);
+            await this.examplePrefs.setPreference(userId, 'myCustomPref', true);
+        }
+    }
+    ```
+
+*   **Using `ServiceManager.getService` (Less common, but possible):**
+    ```typescript
+    import { ServiceManager } from '@rocket.chat/sdk';
+
+    const examplePrefs = ServiceManager.getService('ExamplePreferences') as ExamplePreferencesService;
+    if (examplePrefs) {
+        examplePrefs.getPreference('someUserId', 'someKey').then(console.log);
+    }
+    ```
+
+**b. From Client-Side UI Components (React, Blaze):**
+
+You typically interact with the client-side SDK.
+
+```typescript
+// In a client-side component (e.g., React hook, Blaze helper)
+import { ServiceManager } from '@rocket.chat/sdk';
+import { ExamplePreferencesService } from '../../app/sdk/client/services/ExamplePreferencesService'; // Ensure this path is correct for your project
+
+// Get the client-side instance of your service
+const examplePrefsClient = ServiceManager.getService('ExamplePreferences') as ExamplePreferencesService;
+
+if (examplePrefsClient) {
+    // Call methods on the client-side SDK, which will communicate with the server
+    examplePrefsClient.getPreference('myClientPref').then((pref) => {
+        console.log('Client-side preference:', pref);
+    }).catch((error) => {
+        console.error('Error fetching preference:', error);
+    });
+
+    examplePrefsClient.setPreference('myClientPref', 'someValue').then((success) => {
+        console.log('Preference set:', success);
+    }).catch((error) => {
+        console.error('Error setting preference:', error);
+    });
+}
+```
+
+## Legacy Approach: `app/services` (Functional, Less Structured)
+
+While still present, this approach is less preferred for new, complex features. It usually involves a single file defining a set of functions or a class that doesn't necessarily extend `ServiceClass` from the SDK.
+
+*   **Path:** `app/services/<your-service-name>.js` (or `.ts`)
+*   **Content:**
+    ```javascript
+    // app/services/legacy-example.js
+    import { Meteor } from 'meteor/meteor';
+    import { check } from 'meteor/check';
+    import { Settings } from '../models/server'; // Example model import
+
+    export const LegacyExampleService = {
+      // Server-side method (can be called via Meteor.call if defined)
+      getGlobalSetting(settingId) {
+        check(settingId, String);
+        return Settings.findOneById(settingId)?.value;
+      },
+
+      // Example of a purely internal server-side function
+      _internalHelper() {
+        // ...
+      },
+
+      // A method that might be exposed via Meteor.methods
+      // Note: You'd still need to explicitly define this in server/methods or similar.
+    };
+
+    // To make it callable via Meteor.call, you'd typically do:
+    // Meteor.methods({
+    //   'legacyExample.getGlobalSetting': function(settingId) {
+    //     // Add security checks here (e.g., this.userId, permissions)
+    //     return LegacyExampleService.getGlobalSetting(settingId);
+    //   },
+    // });
+    ```
+*   **Usage:** You would import `LegacyExampleService` directly in other server files. For client-side access, you'd define `Meteor.methods` on the server and `Meteor.call` on the client.
+
+## Key Considerations and Best Practices
+
+1.  **Modularity:** Keep services focused on a single responsibility.
+2.  **Type Safety:** Use TypeScript for all new services.
+3.  **Dependency Injection (`@inject`):** Prefer injecting dependencies rather than using global singletons or direct imports of other services when possible. This improves testability and maintainability.
+4.  **Security:** Always perform permission checks (`this.userId`, `hasPermission`) on the server-side methods, especially for methods callable from the client. Never trust client-side input.
+5.  **Error Handling:** Implement robust error handling and throw meaningful exceptions.
+6.  **Validation:** Validate all input parameters using `check` or a more advanced validation library.
+7.  **Database Interactions:** Services often interact with the database. Use Rocket.Chat's existing model layer (e.g., `Users`, `Rooms`, `Settings`) or create new collections and models as needed.
+8.  **Testing:** Write unit tests for your service logic.
+9.  **Naming Conventions:** Use clear, descriptive names for your services and their methods (e.g., `NotificationService`, `PermissionService`).
+10. **`onSetup()` and `onActivate()`:** These methods in `ServiceClass` are useful for initial setup, event listeners, and ensuring resources are ready when the service starts and becomes active.
+11. **Client-Server Communication:** The `@rocket.chat/sdk`'s `ServiceClass` abstracts DDP methods, making client-server communication much simpler and type-safe.
+
+By following the `server/services` and `app/sdk/client/services` pattern, you'll be aligning with Rocket.Chat's modern architecture, resulting in more robust, maintainable, and testable code.
 
 ## Metrics
 
 | Metric | Value |
 |--------|-------|
-| Tokens | 5,624 |
+| Tokens | 5,186 |
 | Model | gemini-2.5-flash |
 | Tools | NONE |

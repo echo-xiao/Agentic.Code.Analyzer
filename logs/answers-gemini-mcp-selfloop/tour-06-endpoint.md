@@ -2,24 +2,67 @@
 
 ## Gemini Answer
 
-To create a new REST API endpoint in Rocket.Chat, you would follow these steps:
+To create a new REST API endpoint in Rocket.Chat, you should use the `API.v1` (or `API.default` for legacy APIs) object and its specific HTTP method functions (`get`, `post`, `put`, `delete`). The `addRoute` method is deprecated.
 
-1.  **Initialize the API Instance**: An API instance, such as `API.v1`, is typically created using a `createApi()` function.
-2.  **Define the Route**: Register your new endpoint using the `.get()`, `.post()`, `.put()`, or `.delete()` methods available on the API instance. The `addRoute()` method is also available but is considered a legacy approach.
-3.  **Implement the Route Handler**: Provide a handler function for your route. This function will receive an `APIActionContext` object, which provides access to `this.bodyParams` (request body parameters), `this.queryParams` (URL query parameters), and `this.user` (authenticated user information). The handler should return a response using `API.v1.success()` or `API.v1.failure()`.
+The general process is as follows:
 
-The core logic for defining and handling these routes resides within the `ApiClass` in `apps/meteor/app/api/server/ApiClass.ts`. This file manages the routing and middleware chain, which includes: `WebApp.rawConnectHandlers` → `remoteAddressMiddleware` → `CORS` → `logger` → `metrics` → `tracerSpan` → router dispatch → `authenticationMiddlewareForHono` → `permissionsMiddleware` → license check → route handler.
+1.  **Identify the API object:** Most new endpoints should be added to `API.v1`.
+    *   `apps/meteor/app/api/server/api.ts`
+2.  **Choose the HTTP method:** Select the appropriate method (`get`, `post`, `put`, `delete`) based on your endpoint's functionality. These methods are part of the `APIClass`.
+    *   `apps/meteor/app/api/server/ApiClass.ts`
+3.  **Define the endpoint:** Call the chosen method with the following parameters:
+    *   `subpath`: The URL path for your endpoint (e.g., `'/my-new-endpoint'`).
+    *   `options`: An object specifying various settings for the endpoint, such as `authRequired` (boolean), `permissions` (array of strings), `rateLimiterOptions`, `validateParams`, etc.
+    *   `action`: An asynchronous function that will be executed when the endpoint is called. This function receives `this` context with properties like `queryParams`, `bodyParams`, `request`, `response`, `userId`, `user`, etc.
 
 **Call Chain:**
-Your new API endpoint definition file → `API.v1.get/post/put/delete` (in `apps/meteor/app/api/server/ApiClass.ts`) → Your custom route handler function.
+`Entry` (e.g., a new file defining your endpoint) → `API.v1.get/post/put/delete` → `APIClass.method` (internal handling of the route) → `Router.method` (from Hono library)
 
-## Tool Calls (8 calls, 28,048 tokens)
+**Example (conceptual):**
 
-**Step 1:** `search({"query":"REST API endpoint","layer":"server"})` → 133 tokens
-**Step 2:** `graph({"direction":"down","file":"apps/meteor/app/api/server/ApiClass.ts","query":"ApiClass"})` → 12 tokens
-**Step 3:** `graph({"file":"apps/meteor/app/api/server/ApiClass.ts","query":"ApiClass","direction":"down"})` → 12 tokens
-**Step 4:** `graph({"file":"apps/meteor/app/livechat/imports/server/rest/inquiries.ts","query":"LivechatInquiriesEndpoi)` → 232 tokens
-**Step 5:** `implement({"symbolName":"ApiClass","filename":"apps/meteor/app/api/server/ApiClass.ts"})` → 15 tokens
-**Step 6:** `search({"layer":"server","query":"addRoute"})` → 215 tokens
-**Step 7:** `graph({"query":"addRoute","direction":"down","file":"apps/meteor/app/api/server/ApiClass.ts"})` → 1146 tokens
-**Step 8:** `implement({"symbolName":"ApiClass.addRoute","filename":"apps/meteor/app/api/server/ApiClass.ts"})` → 47 tokens
+Imagine you want to create a new GET endpoint at `/api/v1/my-new-endpoint` that returns a simple message.
+
+
+```typescript
+// In a new file, e.g., apps/meteor/app/api/server/v1/myNewEndpoint.ts
+import { API } from '../api'; // Adjust the import path as necessary
+
+API.v1.get(
+	'my-new-endpoint',
+	{
+		authRequired: true, // Example: This endpoint requires authentication
+		permissions: ['view-l-room'], // Example: User needs 'view-l-room' permission
+	},
+	async function () {
+		// Access request data:
+		// const { myParam } = this.queryParams;
+		// const userId = this.userId;
+
+		// Perform some server-side logic
+		const message = `Hello from your new API endpoint, ${this.user?.username || 'Guest'}!`;
+
+		// Return a success response
+		return API.v1.success({
+			message,
+		});
+	},
+);
+```
+
+
+**Key Files Involved:**
+
+*   `apps/meteor/app/api/server/api.ts`: Defines the `API` object and initializes `API.v1` and `API.default`.
+*   `apps/meteor/app/api/server/ApiClass.ts`: Contains the `APIClass` definition, which provides the `get`, `post`, `put`, and `delete` methods for registering routes.
+*   `apps/meteor/app/api/server/v1/users.ts` (and other similar files): Examples of how existing API endpoints are defined using `API.v1.addRoute` (or the newer `get`/`post`/etc. methods).
+
+## Tool Calls (8 calls, 50,550 tokens)
+
+**Step 1:** `search({"query":"rest api","layer":"server"})` → 295 tokens
+**Step 2:** `graph({"direction":"down","layer":"server","file":"apps/meteor/app/api/server/api.ts","query":"startRestAP)` → 1618 tokens
+**Step 3:** `implement({"symbolName":"startRestAPI","filename":"apps/meteor/app/api/server/api.ts"})` → 153 tokens
+**Step 4:** `search({"query":"API.v1","layer":"server"})` → 285 tokens
+**Step 5:** `implement({"filename":"apps/meteor/app/api/server/v1/users.ts","symbolName":"API.v1.addRoute"})` → 43 tokens
+**Step 6:** `implement({"filename":"apps/meteor/app/api/server/api.ts","symbolName":"API"})` → 259 tokens
+**Step 7:** `implement({"filename":"apps/meteor/app/api/server/api.ts","symbolName":"APIClass"})` → 1578 tokens
+**Step 8:** `implement({"filename":"apps/meteor/app/api/server/ApiClass.ts","symbolName":"APIClass.addRoute"})` → 1712 tokens
