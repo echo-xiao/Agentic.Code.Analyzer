@@ -2,344 +2,192 @@
 
 ## Baseline Answer (no tools)
 
-Creating a new package in the Rocket.Chat monorepo primarily involves using the `nx generate` command, as Rocket.Chat leverages Nx for workspace management. This ensures that the package is correctly integrated into the monorepo's build, test, and linting systems.
+Creating a new package in the Rocket.Chat monorepo involves a few steps, leveraging Yarn Workspaces and the existing tooling for TypeScript, building, and linting. New packages are typically placed in the `packages/` directory.
 
 Here's a step-by-step guide:
 
-### Prerequisites
+### 1. Create the Package Directory
 
-Before you start, make sure you have:
+Navigate to the `packages/` directory and create a new folder for your package. It's common practice to use a hyphen-separated name.
 
-1.  **Cloned the Rocket.Chat monorepo:**
-    ```bash
-    git clone https://github.com/RocketChat/Rocket.Chat.git
-    cd Rocket.Chat
-    ```
-2.  **Installed dependencies:**
-    ```bash
-    pnpm install
-    ```
-    (or `npm install`, `yarn install` if you're not using pnpm as the preferred package manager)
-3.  **Nx CLI installed globally or locally:**
-    ```bash
-    npm install -g nx # or pnpm install -g nx
-    ```
-    (If you don't install globally, you can prefix commands with `npx nx` or `pnpm nx`).
-
-### Recommended Method: Using `nx generate`
-
-This is the preferred and most robust way to create a new package because it handles most of the boilerplate, including `project.json`, `package.json`, `tsconfig.json`, and initial source files, and correctly registers the project with Nx.
-
-1.  **Generate a new JavaScript/TypeScript library:**
-
-    We'll use the `@nrwl/js:library` generator. It's crucial to place it in the `packages` directory and use the `@rocket.chat/` scope for the `importPath`.
-
-    ```bash
-    pnpm nx g @nrwl/js:library --name=my-new-package \
-      --directory=packages \
-      --publishable \
-      --importPath=@rocket.chat/my-new-package \
-      --compiler=swc \
-      --unitTestRunner=vitest \
-      --linter=eslint \
-      --tags="scope:my-new-package,type:library" \
-      --strict \
-      --buildable
-    ```
-
-    Let's break down these options:
-
-    *   `--name=my-new-package`: The project name within the Nx workspace. This will typically match the package's folder name.
-    *   `--directory=packages`: This tells Nx to create the package inside the `packages/` folder.
-    *   `--publishable`: Marks the library as publishable to an NPM registry. This sets up the `build` target correctly to produce distributable artifacts.
-    *   `--importPath=@rocket.chat/my-new-package`: **Crucial!** This defines the public NPM scope and how other packages will import it. Always use `@rocket.chat/` for internal Rocket.Chat packages.
-    *   `--compiler=swc`: Uses SWC for faster compilation. Rocket.Chat heavily uses SWC.
-    *   `--unitTestRunner=vitest`: Sets up Vitest for unit testing, which is the preferred modern testing framework in Rocket.Chat.
-    *   `--linter=eslint`: Configures ESLint for linting.
-    *   `--tags="scope:my-new-package,type:library"`: Adds tags to the project for better dependency graph visualization and linting rules. You can customize `scope` to a more generic group if it's part of a larger domain.
-    *   `--strict`: Enables strict TypeScript mode.
-    *   `--buildable`: Makes the library buildable, even if it's not strictly publishable (often used together with `--publishable`).
-
-2.  **Review the generated files:**
-
-    Nx will create a new folder `packages/my-new-package` with the following structure:
-
-    ```
-    packages/
-    └── my-new-package/
-        ├── project.json            # Nx configuration for this project (build, test, lint targets)
-        ├── package.json            # Standard NPM package metadata
-        ├── tsconfig.json           # TypeScript configuration for this package
-        ├── tsconfig.lib.json
-        ├── tsconfig.spec.json
-        ├── .eslintrc.json          # ESLint configuration
-        ├── README.md               # Basic README
-        ├── src/
-        │   ├── index.ts            # Entry point for your library
-        │   └── lib/my-new-package.spec.ts # Example test file
-        └── vite.config.ts          # Vitest configuration
-    ```
-
-    It will also update files like `tsconfig.base.json` (to include the new path alias) and potentially `nx.json` (to register the new project).
-
-3.  **Add `CHANGELOG.md`:**
-
-    Rocket.Chat packages usually include a `CHANGELOG.md`. Create an empty one:
-    ```bash
-    touch packages/my-new-package/CHANGELOG.md
-    ```
-
-4.  **Initial Development and Testing:**
-
-    *   Start adding your code to `packages/my-new-package/src/index.ts` and other source files.
-    *   You can run tests for your new package:
-        ```bash
-        pnpm nx test my-new-package
-        ```
-    *   You can build your new package:
-        ```bash
-        pnpm nx build my-new-package
-        ```
-        The output will be in `dist/packages/my-new-package`.
-
-5.  **Commit your changes:**
-    ```bash
-    git add .
-    git commit -m "feat(my-new-package): initialize new package"
-    ```
-
-### Manual Creation (for deep understanding or troubleshooting)
-
-While `nx generate` is preferred, understanding the manual steps is helpful. If you were to create a package manually, you would essentially replicate what `nx generate` does:
-
-1.  **Create the package directory:**
-    ```bash
-    mkdir -p packages/my-new-package/src
-    ```
-
-2.  **Create `packages/my-new-package/package.json`:**
-
-    ```json
-    {
-      "name": "@rocket.chat/my-new-package",
-      "version": "0.0.1",
-      "type": "module",
-      "main": "./dist/index.js",
-      "module": "./dist/index.js",
-      "types": "./dist/index.d.ts",
-      "exports": {
-        ".": {
-          "import": "./dist/index.js",
-          "types": "./dist/index.d.ts"
-        }
-      },
-      "publishConfig": {
-        "access": "public"
-      },
-      "scripts": {
-        "build": "pnpm nx build",
-        "test": "pnpm nx test"
-      },
-      "dependencies": {},
-      "devDependencies": {
-        "@nrwl/js": "YOUR_NX_VERSION",
-        "@nrwl/vite": "YOUR_NX_VERSION",
-        "@swc/cli": "YOUR_SWC_VERSION",
-        "@swc/core": "YOUR_SWC_VERSION",
-        "@types/node": "YOUR_NODE_TYPES_VERSION",
-        "typescript": "YOUR_TS_VERSION",
-        "vite": "YOUR_VITE_VERSION",
-        "vitest": "YOUR_VITEST_VERSION",
-        "eslint": "YOUR_ESLINT_VERSION"
-        // ... (look at other packages for common devDependencies)
-      }
-    }
-    ```
-    *   **Important:** Replace `YOUR_NX_VERSION`, `YOUR_SWC_VERSION`, etc., with the versions used in the root `package.json` or other Rocket.Chat packages.
-
-3.  **Create `packages/my-new-package/project.json`:**
-
-    This file is critical for Nx to understand your project. It defines build, test, and lint targets.
-
-    ```json
-    {
-      "name": "my-new-package",
-      "$schema": "../../node_modules/nx/schemas/project-schema.json",
-      "sourceRoot": "packages/my-new-package/src",
-      "projectType": "library",
-      "tags": ["scope:my-new-package", "type:library"],
-      "targets": {
-        "build": {
-          "executor": "@nrwl/js:swc",
-          "outputs": ["{options.outputPath}"],
-          "options": {
-            "outputPath": "dist/packages/my-new-package",
-            "tsConfig": "packages/my-new-package/tsconfig.lib.json",
-            "packageJson": "packages/my-new-package/package.json",
-            "main": "packages/my-new-package/src/index.ts",
-            "assets": ["packages/my-new-package/*.md"]
-          },
-          "configurations": {
-            "production": {
-              "minify": true
-            }
-          }
-        },
-        "test": {
-          "executor": "@nrwl/vite:test",
-          "outputs": ["{options.reportsDirectory}"],
-          "options": {
-            "passWithNoTests": true,
-            "reportsDirectory": "../../coverage/packages/my-new-package"
-          }
-        },
-        "lint": {
-          "executor": "@nrwl/linter:eslint",
-          "outputs": ["{options.outputFile}"],
-          "options": {
-            "lintFilePatterns": ["packages/my-new-package/**/*.ts"]
-          }
-        }
-      }
-    }
-    ```
-
-4.  **Create `packages/my-new-package/tsconfig.json` and `tsconfig.lib.json`:**
-
-    `tsconfig.json`:
-    ```json
-    {
-      "extends": "../../tsconfig.base.json",
-      "compilerOptions": {
-        "outDir": "../../dist/out-tsc",
-        "declaration": true,
-        "declarationMap": true
-      },
-      "files": [],
-      "include": [],
-      "references": [
-        {
-          "path": "./tsconfig.lib.json"
-        },
-        {
-          "path": "./tsconfig.spec.json"
-        }
-      ]
-    }
-    ```
-
-    `tsconfig.lib.json`:
-    ```json
-    {
-      "extends": "./tsconfig.json",
-      "compilerOptions": {
-        "outDir": "../../dist/out-tsc",
-        "module": "ESNext",
-        "target": "ESNext",
-        "lib": ["es2021"],
-        "emitDecoratorMetadata": true,
-        "experimentalDecorators": true,
-        "importHelpers": true,
-        "strict": true,
-        "forceConsistentCasingInFileNames": true,
-        "noFallthroughCasesInSwitch": true,
-        "noImplicitReturns": true,
-        "noPropertyAccessFromIndexSignature": true,
-        "noUncheckedIndexedAccess": true,
-        "noImplicitOverride": true,
-        "noImplicitAny": true,
-        "esModuleInterop": true,
-        "resolveJsonModule": true,
-        "moduleResolution": "node",
-        "baseUrl": ".",
-        "paths": {
-          "@rocket.chat/my-new-package": ["./src/index.ts"]
-        }
-      },
-      "include": ["src/**/*.ts"],
-      "exclude": ["src/**/*.spec.ts"]
-    }
-    ```
-    You would also need `tsconfig.spec.json` for tests, usually extending `tsconfig.lib.json`.
-
-5.  **Create `packages/my-new-package/.eslintrc.json`:**
-
-    ```json
-    {
-      "extends": ["../../.eslintrc.json"],
-      "ignorePatterns": ["!**/*"],
-      "overrides": [
-        {
-          "files": ["*.ts", "*.tsx", "*.js", "*.jsx"],
-          "rules": {}
-        },
-        {
-          "files": ["*.ts", "*.tsx"],
-          "rules": {}
-        },
-        {
-          "files": ["*.js", "*.jsx"],
-          "rules": {}
-        }
-      ]
-    }
-    ```
-
-6.  **Create `packages/my-new-package/src/index.ts`:**
-
-    ```typescript
-    export function myNewPackage(): string {
-      return 'Hello from my-new-package!';
-    }
-    ```
-
-7.  **Create `packages/my-new-package/CHANGELOG.md` and `README.md`.**
-
-8.  **Update `tsconfig.base.json` (Root level):**
-
-    You'd need to manually add the path mapping to the root `tsconfig.base.json` so TypeScript can resolve imports:
-
-    ```json
-    // tsconfig.base.json
-    {
-      "compilerOptions": {
-        // ... other options
-        "paths": {
-          "@rocket.chat/my-new-package": ["packages/my-new-package/src/index.ts"],
-          // ... existing paths
-        }
-      }
-    }
-    ```
-
-### Using the New Package in Other Projects
-
-Once your package is created, you can import and use it in other Rocket.Chat projects within the monorepo:
-
-```typescript
-// packages/another-package/src/some-file.ts
-import { myNewPackage } from '@rocket.chat/my-new-package';
-
-console.log(myNewPackage()); // Outputs: Hello from my-new-package!
+```bash
+cd packages/
+mkdir my-new-package
+cd my-new-package
 ```
 
-When you define dependencies in `packages/another-package/project.json`, you should specify `@rocket.chat/my-new-package` in its `implicitDependencies` or directly in the `dependencies` array within `package.json` if it's a runtime dependency. Nx will handle the build order automatically.
+### 2. Initialize `package.json`
+
+Create a `package.json` file. Rocket.Chat uses the `@rocket.chat/` scope for its internal packages.
 
 ```json
-// packages/another-package/project.json
+// packages/my-new-package/package.json
 {
-  // ...
-  "implicitDependencies": ["my-new-package"], // This tells Nx that `another-package` depends on `my-new-package`
-  // ...
+  "name": "@rocket.chat/my-new-package",
+  "version": "0.0.1",
+  "description": "A brief description of what your package does.",
+  "license": "MIT",
+  "private": false,
+  "publishConfig": {
+    "access": "public"
+  },
+  "main": "dist/index.js",
+  "module": "dist/index.mjs",
+  "types": "dist/index.d.ts",
+  "files": [
+    "dist"
+  ],
+  "scripts": {
+    "build": "tsup",
+    "dev": "tsup --watch",
+    "lint": "eslint . --ext .ts,.tsx --cache",
+    "lint:fix": "eslint . --ext .ts,.tsx --cache --fix",
+    "test": "vitest run",
+    "test:watch": "vitest watch"
+  },
+  "devDependencies": {
+    "@rocket.chat/eslint-config": "workspace:~",
+    "@rocket.chat/tsconfig": "workspace:~",
+    "@types/node": "^20.11.5",
+    "eslint": "^8.56.0",
+    "tsup": "^8.0.1",
+    "typescript": "~5.3.3",
+    "vitest": "^1.2.1"
+  },
+  "peerDependencies": {
+    "react": ">=18.0.0"
+  }
 }
 ```
 
-By following the `nx generate` method, you ensure consistency and proper integration into the Rocket.Chat development workflow.
+**Key points in `package.json`:**
+
+*   **`name`**: Must be scoped as `@rocket.chat/your-package-name`.
+*   **`version`**: Start with `0.0.1`. Versioning is typically managed by Changesets for releases.
+*   **`main`, `module`, `types`**: These point to the output files after building, usually in a `dist/` directory.
+*   **`files`**: Specifies which files/directories to include when the package is published.
+*   **`scripts`**:
+    *   `build`: Uses `tsup` for building.
+    *   `lint`: Uses `eslint` with the shared `@rocket.chat/eslint-config`.
+    *   `test`: Uses `vitest` for testing.
+*   **`devDependencies`**:
+    *   `@rocket.chat/eslint-config`: Uses the shared ESLint configuration.
+    *   `@rocket.chat/tsconfig`: Uses the shared TypeScript configuration.
+    *   `tsup`: The build tool.
+    *   `vitest`: The testing framework.
+*   **`peerDependencies`**: If your package depends on a specific version of a library that consumers of your package should also provide (e.g., React), list it here.
+
+### 3. Create `tsconfig.json`
+
+Create a `tsconfig.json` file that extends the base Rocket.Chat TypeScript configuration.
+
+```json
+// packages/my-new-package/tsconfig.json
+{
+  "extends": "@rocket.chat/tsconfig/base.json",
+  "compilerOptions": {
+    "outDir": "./dist",
+    "rootDir": "./src"
+  },
+  "include": ["src"],
+  "exclude": ["node_modules", "dist"]
+}
+```
+
+**Key points in `tsconfig.json`:**
+
+*   **`extends`**: Points to the shared base TypeScript configuration located at `packages/tsconfig/base.json`.
+*   **`compilerOptions.outDir`**: Where compiled JavaScript and type definitions will be placed.
+*   **`compilerOptions.rootDir`**: The root directory for your source files.
+*   **`include`**: Specifies which files to include in the compilation.
+*   **`exclude`**: Specifies files to exclude.
+
+### 4. Configure `tsup`
+
+Create a `tsup.config.ts` file for your build configuration.
+
+```typescript
+// packages/my-new-package/tsup.config.ts
+import { tsupConfig } from '@rocket.chat/ts-build-tools';
+
+export default tsupConfig({
+  // If your package has React components, uncomment the following line:
+  // react: true,
+});
+```
+
+**Key points in `tsup.config.ts`:**
+
+*   **`@rocket.chat/ts-build-tools`**: This package provides a standardized `tsup` configuration for Rocket.Chat packages, located at `packages/ts-build-tools/src/tsup.ts`.
+*   You can pass options to `tsupConfig` if your package has specific needs (e.g., `react: true` for React components).
+
+### 5. Create Source Files
+
+Create your main source file (e.g., `src/index.ts` or `src/index.tsx` if it's a React component).
+
+```bash
+mkdir src
+touch src/index.ts
+```
+
+```typescript
+// packages/my-new-package/src/index.ts
+export const sayHello = (name: string): string => {
+  return `Hello, ${name}! Welcome to @rocket.chat/my-new-package.`;
+};
+```
+
+### 6. Install Dependencies
+
+Go back to the monorepo root and run `yarn install` to hoist and link the new package's dependencies.
+
+```bash
+cd ../../ # From packages/my-new-package to monorepo root
+yarn install
+```
+
+Yarn Workspaces will automatically detect the new package in `packages/my-new-package` and link it.
+
+### 7. Build and Test
+
+You can now build and test your new package:
+
+```bash
+cd packages/my-new-package
+yarn build
+yarn test
+```
+
+Or from the monorepo root:
+
+```bash
+yarn workspace @rocket.chat/my-new-package build
+yarn workspace @rocket.chat/my-new-package test
+```
+
+### 8. Add to `changeset` (Optional, but recommended for future releases)
+
+If your package is intended to be released, you'll want to create an initial changeset.
+
+```bash
+yarn changeset add
+```
+
+Follow the prompts to describe the initial change (e.g., "feat: Initial package setup"). This will create a markdown file in `.changeset/` that will be used to generate release notes and update versions.
+
+### Example File Paths:
+
+*   `packages/my-new-package/package.json`
+*   `packages/my-new-package/tsconfig.json`
+*   `packages/my-new-package/tsup.config.ts`
+*   `packages/my-new-package/src/index.ts`
+
+By following these steps, you'll have a new, properly configured package within the Rocket.Chat monorepo, ready for development and integration with other internal packages.
 
 ## Metrics
 
 | Metric | Value |
 |--------|-------|
-| Tokens | 4,946 |
+| Tokens | 2,150 |
 | Model | gemini-2.5-flash |
 | Tools | NONE |

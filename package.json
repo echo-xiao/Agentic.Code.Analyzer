@@ -10,10 +10,12 @@
     "inspect": "npx @modelcontextprotocol/inspector npx tsx src/server/index.ts",
     "gen:nomcp": "npx tsx src/eval/gen-gemini-nomcp.ts",
     "gen:mcp": "NODE_OPTIONS=\"--max-old-space-size=8192\" npx tsx src/eval/gen-gemini-mcp-selfloop.ts",
-    "eval:1": "npx tsx src/eval/eval-1-nomcp-vs-mcp.ts",
+    "eval:1": "NODE_OPTIONS=\"--max-old-space-size=8192\" npx tsx src/eval/eval-1-nomcp-vs-mcp.ts",
     "eval:2": "NODE_OPTIONS=\"--max-old-space-size=8192\" npx tsx src/eval/eval-2-mcp-tools.ts",
     "eval:3": "npx tsx src/eval/eval-3-mcp-vs-claude.ts",
     "eval:4": "npx tsx src/eval/eval-4-agy.ts",
+    "reports": "npm run eval:1 && npm run eval:2 && npm run eval:3",
+    "refresh": "npm run prewarm && npm run gen:nomcp && npm run gen:mcp && npm run reports",
     "agy": "agy --model gemini-2.5-flash",
     "agy:pro": "agy --model gemini-2.5-pro"
   },

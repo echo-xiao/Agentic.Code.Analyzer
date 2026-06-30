@@ -1,0 +1,173 @@
+{
+  "_note": "Manual semantic verdicts, hand-written by Claude in-session (NO API). Each entry judged the Gemini MCP answer vs the Claude reference on MECHANISM match. answerHash ties the verdict to the answer it was judged against; eval-3 marks ⚠️stale if the current answer differs. Full regenerate each run per user pref.",
+  "tour-04-msg-client": {
+    "verdict": "PARTIAL",
+    "reason": "Got MessageBox→ComposerMessage→flows/sendMessage middle; wrongly ends at LivechatClientImpl REST (should be sdk.call DDP), missed RoomBody/ComposerContainer top.",
+    "answerHash": "83d7c7a3"
+  },
+  "new-19-message-rendering": {
+    "verdict": "FAIL",
+    "reason": "Answered UIKit/Fuselage surface-renderer + markdown.js path; missed the core message-parser(parse→AST)→gazzodown Markup pipeline entirely.",
+    "answerHash": "1bf6042f"
+  },
+  "claude-01-push-notifications": {
+    "verdict": "FAIL",
+    "reason": "No answer — Gemini errored (503 timeout).",
+    "answerHash": "3229c9b8"
+  },
+  "new-09-realtime-streamer": {
+    "verdict": "PARTIAL",
+    "reason": "Right concept (post-write api.broadcast bus) but traced watch.rooms/notifyOnRoomChangedById; missed notifyOnMessageChange→ListenersModule→streamRoomMessage.",
+    "answerHash": "9b531770"
+  },
+  "tour-05-msg-server": {
+    "verdict": "PARTIAL",
+    "reason": "Save half right (validate→beforeSave→insert→afterSave); missed method/DDP entry, executeSendMessage, and the canSendMessage permission gate.",
+    "answerHash": "af531087"
+  },
+  "claude-05-call-chain": {
+    "verdict": "PARTIAL",
+    "reason": "Good client→DDP→method→functions/sendMessage spine; server detail is a noisy callee list, missed executeSendMessage/canSendMessageAsync naming + REST entry.",
+    "answerHash": "2716fbf9"
+  },
+  "new-24-autotranslate": {
+    "verdict": "PASS",
+    "reason": "Registry + afterSaveMessage hook + provider.translateMessage + Google/MS/DeepL providers — mechanism matches.",
+    "answerHash": "3aadcbc3"
+  },
+  "new-15-impact-aftersave": {
+    "verdict": "PARTIAL",
+    "reason": "Right mechanism (callbacks.run/add) but thin blast radius — only slackbridge+search; missed notifications/realtime/apps-engine consumers.",
+    "answerHash": "ada27f83"
+  },
+  "new-16-impact-streamer": {
+    "verdict": "FAIL",
+    "reason": "Blast radius wrong — followed `instances` into admin-workspace UI; missed that Streamer powers all realtime messaging/presence/notifications.",
+    "answerHash": "84d8593a"
+  },
+  "claude-08-federation": {
+    "verdict": "PARTIAL",
+    "reason": "Correct entry FederationMatrix.sendMessage→federationSDK→Matrix; thin/uncertain on files, missed parsers/transactions/inbound.",
+    "answerHash": "cf03fb06"
+  },
+  "new-18-webhook": {
+    "verdict": "PASS",
+    "reason": "executeIntegrationRest→script engine→processWebhookMessage→sendMessage — accurate full chain.",
+    "answerHash": "803ba8d0"
+  },
+  "claude-07-api-endpoints": {
+    "verdict": "PARTIAL",
+    "reason": "Named ApiClass.addRoute but diluted with apps-engine ApiBridge; missed createApi→bootstrap→middleware core.",
+    "answerHash": "1d4f7a65"
+  },
+  "new-25-search": {
+    "verdict": "PARTIAL",
+    "reason": "Answered the message-search query path (method→Messages.find); missed the SearchProviderService/DefaultProvider provider architecture asked.",
+    "answerHash": "3125d858"
+  },
+  "new-27-video-conference": {
+    "verdict": "FAIL",
+    "reason": "No answer — Gemini errored (503 timeout).",
+    "answerHash": "3229c9b8"
+  },
+  "tour-06-endpoint": {
+    "verdict": "PASS",
+    "reason": "API.v1.addRoute pattern with options/handlers + example — correct and practical for the how-to.",
+    "answerHash": "855ca67e"
+  },
+  "new-17-slash-commands": {
+    "verdict": "PARTIAL",
+    "reason": "Answered apps-engine AppSlashCommandManager registration; missed the core slashCommands.add/run mechanism + client path; execution vague.",
+    "answerHash": "62949e59"
+  },
+  "new-11-settings": {
+    "verdict": "PASS",
+    "reason": "SettingsRegistry.add→CachedSettings→Settings model→public/private-settings/get — full chain.",
+    "answerHash": "4b26b96e"
+  },
+  "claude-03-file-upload": {
+    "verdict": "PASS",
+    "reason": "Two-step rooms.media/mediaConfirm + UFS storage backends; mentions uploadFiles entry — matches.",
+    "answerHash": "286ba16d"
+  },
+  "new-10-apps-engine": {
+    "verdict": "PARTIAL",
+    "reason": "Got callbacks.run(afterSaveMessage) trigger but missed the apps-engine listener mechanism (AppListenerManager/AppInterface/bridges); admits the gap.",
+    "answerHash": "57144d72"
+  },
+  "new-20-proxify": {
+    "verdict": "PASS",
+    "reason": "proxify→Proxy get trap→api.call(namespace.prop)→LocalBroker — exact.",
+    "answerHash": "5cc2d342"
+  },
+  "tour-07-db-model-create": {
+    "verdict": "PASS",
+    "reason": "3-layer typings→BaseRaw impl→registerModel — matches.",
+    "answerHash": "12b36bf9"
+  },
+  "tour-08-db-model-use": {
+    "verdict": "PARTIAL",
+    "reason": "Right import + BaseRaw query pattern but generic; missed the loadHistory→loadMessageHistory→findVisibleByRoomId... specifics.",
+    "answerHash": "d5156211"
+  },
+  "tour-11-new-package": {
+    "verdict": "PASS",
+    "reason": "Correct package-creation steps (dir/package.json/tsconfig/src) incl. ee/packages — matches.",
+    "answerHash": "a04df513"
+  },
+  "tour-10-new-service": {
+    "verdict": "PASS",
+    "reason": "ServiceClassInternal + Api.registerService→LocalBroker registration — matches (registerService facet).",
+    "answerHash": "03c5b8b3"
+  },
+  "new-21-impact-settings": {
+    "verdict": "PARTIAL",
+    "reason": "Found CachedSettings but blast radius narrow/noisy (API middleware + Wizard storybook); missed widest-across-every-subsystem framing.",
+    "answerHash": "8a14ef9d"
+  },
+  "new-22-2fa": {
+    "verdict": "PASS",
+    "reason": "twoFactorRequired→checkCodeForUser→getSecondFactorMethod→TOTP/Email — full chain.",
+    "answerHash": "d763e660"
+  },
+  "claude-04-e2e-encryption": {
+    "verdict": "PASS",
+    "reason": "RSA + PBKDF2/AES + per-room createGroupKey + Keychain — matches; minor slip (AES-GCM vs CBC for master key).",
+    "answerHash": "1a2aa697"
+  },
+  "new-12-ldap-auth": {
+    "verdict": "PASS",
+    "reason": "configureLDAP handler→LDAP service→LDAPManager.login→connection/search/auth + fallback — full chain.",
+    "answerHash": "7e9e82ca"
+  },
+  "claude-02-msg-permissions": {
+    "verdict": "PASS",
+    "reason": "Pinpointed canSendMessage.ts validateRoomMessagePermissionsAsync + hasPermission + canAccessRoom — correct location.",
+    "answerHash": "5d85fffc"
+  },
+  "new-14-ee-license": {
+    "verdict": "PASS",
+    "reason": "LicenseManager.hasModule against modules Set, populated by license validation — the feature-gating mechanism.",
+    "answerHash": "a735c18d"
+  },
+  "new-13-room-creation": {
+    "verdict": "PASS",
+    "reason": "createChannelMethod→createRoom + perms/federation/callbacks — core chain right (missed explicit RoomService link).",
+    "answerHash": "d63dbada"
+  },
+  "new-23-omnichannel": {
+    "verdict": "PARTIAL",
+    "reason": "Queue processing right (requestRoom→delegateInquiry→take→assign + queue loop); answer cut off, missed the closeRoom half asked.",
+    "answerHash": "c2a3b967"
+  },
+  "claude-06-livechat-routing": {
+    "verdict": "PARTIAL",
+    "reason": "Server routing chain (requestRoom→delegateInquiry→takeInquiry→assign) correct; missed client widget→api→endpoint entry half.",
+    "answerHash": "40fe929a"
+  },
+  "new-26-team": {
+    "verdict": "PASS",
+    "reason": "TeamService hub + Team/TeamMember models + REST API — matches.",
+    "answerHash": "c9e364b4"
+  }
+}

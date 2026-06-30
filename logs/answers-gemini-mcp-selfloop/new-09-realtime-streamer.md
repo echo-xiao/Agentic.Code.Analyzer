@@ -2,37 +2,96 @@
 
 ## Gemini Answer
 
-A new message appearing in real-time on the client after being saved to the database follows a publish-subscribe pattern, primarily driven by the server broadcasting changes.
+When a new message is saved to the database, it appears in real-time on the client through a server-side broadcasting mechanism.
 
-Here's the likely call chain:
+Here's the call chain:
 
-**Server-Side Flow:**
+`apps/meteor/app/lib/server/functions/sendMessage.ts` (server) → `notifyOnRoomChangedById` (server) → `api.broadcast` (server) → `LocalBroker.broadcast` (server) → `LocalBroker.broadcastLocal` (server)
 
-1.  **`sendMessage`** (`apps/meteor/app/lib/server/functions/sendMessage.ts`):
-    *   This function is responsible for processing and saving a new message to the database. It likely uses `Messages.insertOne` to persist the message.
-2.  **`notifyOnRoomChangedById`** (`apps/meteor/app/lib/server/lib/notifyListener.ts`):
-    *   After the message is saved, `sendMessage` (or a function in its call chain) invokes `notifyOnRoomChangedById`.
-    *   This function, in turn, uses `api.broadcast('watch.rooms', { clientAction, room: item })` to inform connected clients about a change in a specific room. The `clientAction` would indicate that a new message has been added, and `room` would contain the updated room information, potentially including the new message. This `api.broadcast` is the real-time notification mechanism.
+1.  **`sendMessage`** in `apps/meteor/app/lib/server/functions/sendMessage.ts`: This function is responsible for saving the message to the database. After the message is saved, it triggers the notification process.
+2.  **`notifyOnRoomChangedById`** in `apps/meteor/app/lib/server/lib/notifyListener.ts`: This function is called by `sendMessage`. It retrieves the updated room information and then uses `api.broadcast` to send out a notification.
+    
+```typescript
+    export const notifyOnRoomChangedById = async <T extends IRocketChatRecord>(
+    	ids: T['_id'] | T['_id'][],
+    	clientAction: ClientAction = 'updated',
+    ): Promise<void> => {
+    	const eligibleIds = Array.isArray(ids) ? ids : [ids];
+    	const items = Rooms.findByIds(eligibleIds);
+    	for await (const item of items) {
+    		void api.broadcast('watch.rooms', { clientAction, room: item });
+    	}
+    };
+    ```
 
-**Client-Side (Inferred):**
+3.  **`api.broadcast`** in `packages/core-services/src/lib/Api.ts`: This is a wrapper around the actual broker's broadcast method. It ensures that a broker is available before attempting to broadcast the event.
+    
+```typescript
+    async broadcast<T extends keyof EventSignatures>(event: T, ...args: Parameters<EventSignatures[T]>): Promise<void> {
+    		if (!this.broker) {
+    			throw new Error(`No broker set to broadcast: ${event}, ${JSON.stringify(args)}`);
+    		}
 
-Although a direct client-side listener for `'watch.rooms'` was not explicitly found with the provided tools, the presence of `api.broadcast('watch.rooms', ...)` on the server strongly implies that clients are subscribed to this event stream. A typical client-side implementation would involve:
+    		return this.broker.broadcast(event, ...args);
+    	}
+    ```
 
-1.  **Subscription to `watch.rooms`**: The client-side, upon entering a room or initializing, would establish a subscription to the `watch.rooms` event channel for the relevant room ID.
-2.  **Event Listener**: A client-side listener would await messages broadcast on `watch.rooms`.
-3.  **UI Update**: Upon receiving an event (containing the new message data), the client's message list component would update its state, causing the new message to render in the UI in real-time.
+4.  **`LocalBroker.broadcast`** in `packages/core-services/src/LocalBroker.ts`: This method is responsible for broadcasting the event locally. It calls `broadcastLocal` and also emits a generic 'broadcast' event.
+    
+```typescript
+    async broadcast<T extends keyof EventSignatures>(event: T, ...args: Parameters<EventSignatures[T]>): Promise<void> {
+    		void this.broadcastLocal(event, ...args);
 
-**Call Chain:**
+    		this.events.emit('broadcast', event, args);
+    	}
+    ```
 
-`sendMessage` (apps/meteor/app/lib/server/functions/sendMessage.ts) → `notifyOnRoomChangedById` (apps/meteor/app/lib/server/lib/notifyListener.ts) → `api.broadcast('watch.rooms', ...)` (client-side subscription to `watch.rooms` and UI update)
+5.  **`LocalBroker.broadcastLocal`** in `packages/core-services/src/LocalBroker.ts`: This is the core method that handles the actual local broadcasting of the event. This event is then picked up by connected clients, allowing the new message to appear in real-time.
 
-## Tool Calls (8 calls, 40,078 tokens)
+## Tool Calls (8 calls, 56,843 tokens)
 
-**Step 1:** `search({"layer":"server","query":"publishMessage"})` → 98 tokens
-**Step 2:** `search({"query":"stream-room-messages","layer":"server"})` → 103 tokens
-**Step 3:** `graph({"layer":"server","query":"stream-room-messages","direction":"down"})` → 15 tokens
-**Step 4:** `search({"layer":"server","query":"Messages.insert"})` → 132 tokens
-**Step 5:** `graph({"query":"sendMessage","layer":"server","direction":"down","file":"apps/meteor/app/lib/server/functi)` → 2057 tokens
-**Step 6:** `graph({"query":"notifyOnRoomChangedById","file":"apps/meteor/server/modules/listeners/notifyListener.ts",")` → 496 tokens
-**Step 7:** `implement({"filename":"apps/meteor/app/lib/server/lib/notifyListener.ts","symbolName":"notifyOnRoomChangedById)` → 146 tokens
-**Step 8:** `search({"layer":"client","query":"watch.rooms"})` → 14 tokens
+**Step 1:** `search({"query":"sendMessage","layer":"server"})` → 588 tokens
+**Step 2:** `graph({"file":"apps/meteor/app/lib/server/functions/sendMessage.ts","direction":"down","layer":"server","q)` → 2057 tokens
+**Step 3:** `implement({"filename":"apps/meteor/server/lib/notifyListener.ts","symbolName":"notifyOnRoomChangedById"})` → 146 tokens
+**Step 4:** `search({"query":"api.broadcast","layer":"server"})` → 419 tokens
+**Step 5:** `implement({"filename":"packages/ddp-client/src/LocalBroker.ts","symbolName":"broadcast"})` → 140 tokens
+**Step 6:** `implement({"filename":"packages/core-services/src/LocalBroker.ts","symbolName":"broadcast"})` → 140 tokens
+**Step 7:** `implement({"filename":"packages/core-services/src/lib/Api.ts","symbolName":"Api.broadcast"})` → 115 tokens
+**Step 8:** `implement({"filename":"packages/core-services/src/LocalBroker.ts","symbolName":"LocalBroker.broadcast"})` → 101 tokens
+
+## Files Seen In Tool Results (34)
+
+- `apps/meteor/server/services/messages/service.ts`
+- `apps/meteor/ee/app/livechat-enterprise/server/api/lib/outbound.ts`
+- `apps/meteor/app/slackbridge/server/SlackAPI.ts`
+- `apps/meteor/app/livechat/server/lib/messages.ts`
+- `apps/meteor/app/lib/server/methods/sendMessage.ts`
+- `apps/meteor/app/lib/server/functions/sendMessage.ts`
+- `apps/meteor/app/integrations/server/lib/triggerHandler.ts`
+- `apps/meteor/app/livechat/server/sendMessageBySMS.ts`
+- `apps/meteor/app/livechat/server/hooks/sendToCRM.ts`
+- `packages/livechat/src/lib/triggerActions.ts`
+- `apps/meteor/client/views/room/composer/messageBox/MessageBox.tsx`
+- `packages/rest-typings/src/v1/chat.ts`
+- `packages/apps-engine/src/server/managers/AppOutboundCommunicationProviderManager.ts`
+- `apps/meteor/server/features/EmailInbox/EmailInbox_Outgoing.ts`
+- `apps/meteor/tests/e2e/page-objects/omnichannel/omnichannel-livechat.ts`
+- `apps/meteor/server/lib/sendMessagesToAdmins.ts`
+- `apps/meteor/app/livechat/server/methods/sendMessageLivechat.ts`
+- `apps/meteor/app/authorization/server/functions/canSendMessage.ts`
+- `apps/meteor/app/lib/server/lib/notifyListener.ts`
+- `apps/meteor/ee/server/apps/communication/websockets.ts`
+- `apps/meteor/app/slashcommands-invite/server/server.ts`
+- `apps/meteor/app/slashcommands-inviteall/server/server.ts`
+- `apps/meteor/ee/app/license/server/startup.ts`
+- `apps/meteor/tests/unit/server/services/calendar/statusEvents/applyStatusChange.ts`
+- `apps/meteor/server/services/banner/service.ts`
+- `apps/meteor/app/slashcommands-archiveroom/server/server.ts`
+- `apps/meteor/app/slashcommands-hide/server/hide.ts`
+- `apps/meteor/app/slashcommands-unarchiveroom/server/server.ts`
+- `packages/ddp-client/src/LocalBroker.ts`
+- `packages/core-services/src/LocalBroker.ts`
+- `packages/core-services/src/lib/Api.ts`
+- `ee/packages/presence/src/Presence.ts`
+- `ee/packages/network-broker/src/NetworkBroker.ts`
+- `apps/meteor/tests/mocks/server/BrokerMocked.ts`

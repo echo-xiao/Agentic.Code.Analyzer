@@ -10,6 +10,11 @@ import { loadTestcases, type TestCase } from './utils/load-testcases.js';
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 
+// Chain-order gate: for `ordered` questions (call-chain / routing), graph(down) must recover at least
+// this fraction of the spine IN ORDER (LCS / chain length). Getting the files but in the wrong causal
+// order is a real failure for these question types, so it counts toward pass — not report-only.
+const ORDER_GATE = 0.6;
+
 // Track A — ranking quality of the search tool (precision / recall@k / MRR).
 interface RetrievalMetrics {
     primaryQuery: string;
@@ -44,6 +49,7 @@ interface TestResult {
     retrieval: RetrievalMetrics;
     sanityPass: boolean;
     retrievalPass: boolean;
+    orderPass: boolean;   // ordered Qs only: LCS/chain ≥ ORDER_GATE (true / non-applicable)
     pass: boolean;
 }
 
@@ -298,7 +304,9 @@ async function runTestCase(tc: TestCase): Promise<TestResult> {
     // RETRIEVAL (honest): a SINGLE realistic query must locate the subsystem — at least a third of
     // its core files surfaced within the top 10. This is what actually drives agent answer quality.
     const retrievalPass = retrieval.diagnosis === 'n/a' || retrieval.recallAt10 >= 0.3;
-    const pass = sanityPass && retrievalPass;
+    // ORDER: for ordered questions, the causal chain must be recovered in order (≥ ORDER_GATE).
+    const orderPass = !orderMetric.applicable || orderMetric.score >= ORDER_GATE;
+    const pass = sanityPass && retrievalPass && orderPass;
 
     return {
         id: tc.id,
@@ -319,6 +327,7 @@ async function runTestCase(tc: TestCase): Promise<TestResult> {
         retrieval,
         sanityPass,
         retrievalPass,
+        orderPass,
         pass,
     };
 }
@@ -330,16 +339,20 @@ function formatReport(results: TestResult[]): string {
 
     const sanityPassed = results.filter(r => r.sanityPass).length;
     const retrievalPassed = results.filter(r => r.retrievalPass).length;
+    const orderedResults = results.filter(r => r.order.applicable);
+    const orderPassed = orderedResults.filter(r => r.orderPass).length;
 
     lines.push(`# Layer 1 — Tool Eval Report`);
     lines.push(`\n${new Date().toLocaleString('en-US')}\n`);
     lines.push(`## Summary: ${passed}/${total} passed\n`);
     lines.push(`> Gate = **sanity** (substring recall, near-100% by construction — a floor, not a score) `);
-    lines.push(`> **AND retrieval** (a single realistic query surfaces ≥30% of core files in top-10 — the honest bar).\n`);
+    lines.push(`> **AND retrieval** (a single realistic query surfaces ≥30% of core files in top-10) `);
+    lines.push(`> **AND order** (ordered Qs only: graph(down) recovers ≥${ORDER_GATE * 100}% of the chain in causal order).\n`);
     lines.push(`| Gate | Pass |`);
     lines.push(`|---|---:|`);
     lines.push(`| Sanity (substring recall) | ${sanityPassed}/${total} |`);
     lines.push(`| **Retrieval (single-query R@10 ≥ 0.3)** | **${retrievalPassed}/${total}** |`);
+    lines.push(`| **Chain order (LCS ≥ ${ORDER_GATE * 100}%, ordered Qs)** | **${orderPassed}/${orderedResults.length}** |`);
     lines.push(`| Combined | ${passed}/${total} |\n`);
 
     const avgFileRecall = results.reduce((s, r) => s + r.searchFileRecall.rate, 0) / total;
@@ -368,7 +381,7 @@ function formatReport(results: TestResult[]): string {
     lines.push(`| **Recall@5 / @10 / @20** | ${(avgRec5 * 100).toFixed(1)}% / ${(avgRec10 * 100).toFixed(1)}% / ${(avgRec20 * 100).toFixed(1)}% |`);
     lines.push(`| **MRR** (core files) | ${avgMrr.toFixed(3)} |`);
     lines.push(`| **F1@5** | ${(avgF1 * 100).toFixed(1)}% |`);
-    lines.push(`| **Chain order LCS** (ordered Qs: ${orderedAgg.length}, report-only) | ${avgOrder === null ? 'n/a' : (avgOrder * 100).toFixed(1) + '%'} |`);
+    lines.push(`| **Chain order LCS** (ordered Qs: ${orderedAgg.length}, gate ≥ ${ORDER_GATE * 100}%) | ${avgOrder === null ? 'n/a' : (avgOrder * 100).toFixed(1) + '%'} |`);
     lines.push('');
 
     lines.push(`## Per-Testcase Results\n`);
@@ -412,17 +425,18 @@ function formatReport(results: TestResult[]): string {
     for (const [d, c] of diagCount) lines.push(`| ${d} | ${c} | ${actions[d] ?? ''} |`);
     lines.push('');
 
-    // Chain order (LCS) — ordered questions only. Report-only: NOT part of the pass gate.
+    // Chain order (LCS) — ordered questions only. PASS GATE: score must reach ORDER_GATE.
     if (orderedAgg.length > 0) {
-        lines.push(`## Chain Order (LCS — ordered questions only, report-only, not a pass gate)\n`);
-        lines.push(`| # | ID | Chain | LCS | Order | Observed order |`);
-        lines.push(`|---|---|----:|----:|----:|---|`);
+        lines.push(`## Chain Order (LCS — ordered questions only, pass gate ≥ ${ORDER_GATE * 100}%)\n`);
+        lines.push(`| # | ID | Chain | LCS | Order | Gate | Observed order |`);
+        lines.push(`|---|---|----:|----:|----:|---|---|`);
         for (let i = 0; i < results.length; i++) {
             const r = results[i];
             if (!r.order.applicable) continue;
             const o = r.order;
             const obs = o.observedChain.join(' → ') || '(none surfaced)';
-            lines.push(`| ${i + 1} | ${r.id} | ${o.expectedChain.length} | ${o.lcs} | ${(o.score * 100).toFixed(0)}% | ${obs} |`);
+            const gate = r.orderPass ? '✅' : '❌';
+            lines.push(`| ${i + 1} | ${r.id} | ${o.expectedChain.length} | ${o.lcs} | ${(o.score * 100).toFixed(0)}% | ${gate} | ${obs} |`);
         }
         lines.push('');
     }
@@ -449,6 +463,12 @@ function formatReport(results: TestResult[]): string {
                 for (const s of r.graphReachability.missed) lines.push(`- \`${s}\``);
                 lines.push('');
             }
+            if (r.order.applicable && !r.orderPass) {
+                lines.push(`**Chain order below gate (${(r.order.score * 100).toFixed(0)}% < ${ORDER_GATE * 100}%):**`);
+                lines.push(`- expected: ${r.order.expectedChain.join(' → ')}`);
+                lines.push(`- observed: ${r.order.observedChain.join(' → ') || '(none surfaced)'}`);
+                lines.push('');
+            }
         }
     }
 
@@ -456,6 +476,8 @@ function formatReport(results: TestResult[]): string {
 }
 
 async function main() {
+    // Delete the stale report up front so a mid-run crash leaves no misleading old file.
+    fs.rmSync(path.join(__dirname, '..', '..', 'logs', 'eval-2-mcp-tools.md'), { force: true });
     console.error('Loading index...');
     await ensureIndex();
     console.error(`Index ready: ${GLOBAL_INDEX.symbols.size} symbols, ${GLOBAL_INDEX.allFiles.size} files.\n`);

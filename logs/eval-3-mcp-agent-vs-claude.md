@@ -1,49 +1,56 @@
 # eval-3 — How good is the agent?  (Gemini + MCP vs Claude reference)
 
-6/30/2026, 9:07:06 AM | 34 testcases
+6/30/2026, 12:32:02 PM | 34 testcases | deterministic (no key, frozen rubric)
 
-**Hard** = % of files Claude cites that Gemini also mentions. **Semantic** (verdict) = Claude's per-pair judgment.
+**Hard: Gemini covers 23% of Claude's cited files (avg).**
 
-**Hard: Gemini covers 26% of Claude's cited files (avg).**
+**Synthesis split (core spine): retrieval-recall 44% (tools surfaced it) → synthesis-recall 78% (agent then wrote it).**
+> 17 core files were surfaced by the tools but never written into an answer — that gap, not retrieval, is the lever.
 
-**Semantic (Claude per-pair judgment, re-judged this run): PASS 17 / PARTIAL 17 / FAIL 0.**
+**Auto verdict (frozen rubric): PASS 9 / PARTIAL 11 / FAIL 14.**
 
+> Frozen rubric — verdict is a pure function of measured signals (reproducible, no hand-judging).
+> Gated on **core-spine coverage** (must-find files), not Claude's full citation list (Claude over-cites):
+> - **FAIL** if the answer is empty/ERROR, **or** core coverage < 25% (the spine was missed).
+> - **PASS** if core coverage ≥ 50% **and** both chain endpoints (entry + terminal symbol) appear.
+> - **PARTIAL** otherwise.
 
-> Semantic verdict column: filled by Claude (reads each Gemini vs Claude answer). With ANTHROPIC_API_KEY an API judge can fill it automatically.
+**Manual verdict (Claude hand-judged, no API): 34/34 judged. Agrees with auto rubric on 15/34.**
+> Hand-written semantic reads in `logs/semantic-verdicts.json` — catch "right mechanism, different files" cases the file-overlap rubric can't see. Blank = not yet judged.
 
-| # | id | type | hard (Claude files) | missed Claude files | verdict | reason (Gemini vs Claude) |
-|---|---|---|---:|---|---|---|
-| 1 | tour-04-msg-client | architecture | 2/7 (29%) | RoomBody.tsx, ComposerContainer.tsx, ComposerMessage.tsx, ChatAPI.ts, processSlashCommand.ts | PARTIAL | Got MessageBox→ComposerMessage→flows/sendMessage middle chain; missed RoomBody/ComposerContainer top and wrongly terminated via LivechatClientImpl instead of sdk.call DDP |
-| 2 | new-19-message-rendering | architecture | 1/10 (10%) | Markup.tsx, RoomMessageContent.tsx, ThreadMessageContent.tsx, definitions.ts, ParagraphBlock.tsx, HeadingBlock.tsx +3 | PASS | Correct pipeline message-parser parse → gazzodown Markup (recovered; baseline had wrong UIKit surface) |
-| 3 | claude-01-push-notifications | architecture | 1/8 (13%) | sendMessage.ts, mobile.js, NotificationQueue.ts, push.ts, apn.ts, fcm.ts +1 | PASS | Full afterSaveMessage→sendAllNotifications→shouldNotifyMobile→NotificationQueue→PushNotification.send→gateway/APN/FCM |
-| 4 | new-09-realtime-streamer | architecture | 0/5 (0%) | notifyListener.ts, listeners.module.ts, notifications.module.ts, streamer.module.ts, streamer.ts | PARTIAL | Right concept (post-write broadcast bus) but wrong path via insertMessage→LocalBroker; misses notifyOnMessageChange→watch.messages→ListenersModule→streamer |
-| 5 | tour-05-msg-server | call-chain | 3/6 (50%) | canSendMessage.ts, ChatAPI.ts, ChatMessages.ts | PARTIAL | method→functions/sendMessage but vague; misses executeSendMessage→canSendMessage layer; mixes in video-conf/media-call noise |
-| 6 | claude-05-call-chain | call-chain | 3/9 (33%) | chat.ts, afterSaveMessage.ts, canSendMessage.ts, sendNotificationsOnMessage.ts, notifyListener.ts, NotificationQueue.ts | PARTIAL | Solid spine client→method→function→validate→save→afterSave; misses executeSendMessage/canSendMessageAsync naming and REST entry path |
-| 7 | new-24-autotranslate | locate | 1/8 (13%) | autotranslate.ts, msTranslate.ts, deeplTranslate.ts, index.ts, translateMessage.ts, getSupportedLanguages.ts +1 | PASS | Registry pattern + provider.translateMessage + GoogleAutoTranslate + afterSaveMessage hook, matches |
-| 8 | new-15-impact-aftersave | impact | 5/8 (63%) | mentionUserNotInChannel.ts, notifyUsersOnMessage.ts, notifyListener.ts | PARTIAL | Good blast-radius caller list; frames as triggers not registered handlers; thin on notifications/realtime handler side |
-| 9 | new-16-impact-streamer | impact | 1/5 (20%) | notifications.module.ts, listeners.module.ts, types.ts, Presence.ts | PARTIAL | Finds streamer.module but blast radius mostly wrong (admin-workspace UI noise); misses presence/notifications/all streams |
-| 10 | claude-08-federation | routing | 1/11 (9%) | message.parsers.ts, transactions.ts, message.ts, reaction.ts, invite.ts, service.ts +4 | PARTIAL | Correct entry FederationMatrix.sendMessage + right EE package; thin downstream (misses parsers/transactions/federation-sdk) |
-| 11 | new-18-webhook | routing | 2/8 (25%) | isolated-vm.ts, triggerHandler.ts, updateHistory.ts, outgoingEvents.ts, addOutgoingIntegration.ts, deleteOutgoingIntegration.ts | PASS | executeIntegrationRest→script engine→processWebhookMessage→sendMessage, accurate |
-| 12 | claude-07-api-endpoints | locate | 0/10 (0%) | index.ts, api.ts, ApiClass.ts, authenticationHono.ts, permissions.ts, license.ts +4 | PARTIAL | Answered the apps-engine API bridge (registerApis/ApiBridge); missing core createApi→APIClass→addRoute mechanism |
-| 13 | new-25-search | locate | 1/8 (13%) | SearchProviderService.ts, SearchProvider.ts, DefaultProvider.ts, ISearchResult.ts, Settings.ts, index.ts +1 | PARTIAL | Answered messageSearch query path; misses SearchProviderService/DefaultProvider provider architecture (different facet) |
-| 14 | new-27-video-conference | locate | 1/11 (9%) | service.ts, videoConfProviders.ts, updateStatsCounter.ts, IVideoConfService.ts, VideoConference.ts, videoConfTypes.ts +4 | PARTIAL | Focused on apps-engine provider integration; misses core VideoConfService service.ts (regression vs baseline) |
-| 15 | tour-06-endpoint | pattern | 1/9 (11%) | api.ts, chat.ts, index.ts, router.ts, authenticationHono.ts, permissions.ts +2 | PASS | Got APIClass + addRoute pattern (meandered via ExtractRoutesFromAPI type but core correct) |
-| 16 | new-17-slash-commands | pattern | 4/6 (67%) | processSlashCommand.ts, sendMessage.ts | PASS | slashCommands.add registration + client detection via sdk.call + run execution, matches |
-| 17 | new-11-settings | architecture | 2/7 (29%) | CachedSettings.ts, getSettingDefaults.ts, overrideSetting.ts, overwriteSetting.ts, validateSetting.ts | PASS | SettingsRegistry.add → CachedSettings → model → public-settings/get, full chain |
-| 18 | claude-03-file-upload | architecture | 1/9 (11%) | uploadFiles.ts, rooms.ts, GridFS.ts, server.ts, Webdav.ts, service.ts +2 | PASS | Two-step rooms.media/mediaConfirm + FileUpload + pluggable backends; misses client uploadFiles entry |
-| 19 | new-10-apps-engine | architecture | 0/9 (0%) | AppInterface.ts, AppManager.ts, AppListenerManager.ts, bridges.js, listeners.ts, orchestrator.js +3 | PARTIAL | Got callbacks.run/add system but apps-engine listener mechanism (AppListenerManager/executeListener/AppInterface) only inferred |
-| 20 | new-20-proxify | locate | 1/8 (13%) | LocalBroker.ts, ServiceClass.ts, index.ts, service.ts, IBroker.ts, Events.ts +1 | PASS | proxify→Proxy get trap→api.call(namespace.prop), exact match |
-| 21 | tour-07-db-model-create | pattern | 3/7 (43%) | Messages.ts, models.ts, IMessage.ts, IMessagesModel.ts | PASS | 3-layer typings→BaseRaw impl→registerModel, matches |
-| 22 | tour-08-db-model-use | pattern | 2/6 (33%) | loadHistory.ts, loadMessageHistory.ts, normalizeMessagesForUser.ts, getHiddenSystemMessages.ts | PARTIAL | Right import+query pattern but generic Users example, not Claude loadHistory→loadMessageHistory specifics |
-| 23 | tour-11-new-package | pattern | 4/9 (44%) | authentication.ts, package.js, tsconfig.js, package.js, authenticationHono.ts | PASS | Correct package-creation process (dir/package.json/tsconfig/src); recovered from baseline empty answer |
-| 24 | tour-10-new-service | pattern | 1/9 (11%) | service.ts, startRocketChat.ts, index.ts, service.ts, IRoomService.ts, createRoom.ts +2 | PASS | ServiceClassInternal + api.registerService in registerServices, matches |
-| 25 | new-21-impact-settings | impact | 1/5 (20%) | index.ts, SettingsRegistry.ts, index.ts, cached.ts | PARTIAL | Gives a blast radius but narrow + Wizard/storybook noise; misses widest-radius-across-every-subsystem framing |
-| 26 | new-22-2fa | architecture | 3/8 (38%) | index.ts, ICodeCheck.ts, PasswordCheckFallback.ts, totp.ts, loginHandler.ts | PASS | twoFactorRequired→checkCodeForUser→getSecondFactorMethod→TOTP/Email verify, full chain |
-| 27 | claude-04-e2e-encryption | architecture | 5/7 (71%) | keychain.ts, helper.ts | PASS | RSA/PBKDF2/AES/Keychain/group-key model matches (minor AES-GCM vs CBC for master key) |
-| 28 | new-12-ldap-auth | routing | 2/6 (33%) | ldap.ts, service.ts, UserConverter.ts, Logger.ts | PARTIAL | Ran out of tool calls; right files (Connection/Manager/service) but hedged/incomplete, misses configureLDAP entry + service proxy chain |
-| 29 | claude-02-msg-permissions | locate | 4/7 (57%) | sendMessage.ts, validateCustomMessageFields.ts, chat.ts | PASS | executeSendMessage→canSendMessageAsync→validateRoomMessagePermissionsAsync + hasPermission, pinpointed |
-| 30 | new-14-ee-license | locate | 2/9 (22%) | licenseImp.ts, listeners.ts, emitter.ts, runValidation.ts, validateFormat.ts, token.ts +1 | PARTIAL | Right LicenseManager + license-set flow but answers setLicense more than the hasModule/feature-gating asked |
-| 31 | new-13-room-creation | call-chain | 2/8 (25%) | service.ts, createDirectRoom.ts, beforeCreateRoomCallback.ts, beforeAddUserToRoom.ts, getValidRoomName.ts, notifyListener.ts | PASS | createChannel→createChannelMethod→createRoom + checks/callbacks; misses explicit RoomService link |
-| 32 | new-23-omnichannel | call-chain | 1/9 (11%) | service.ts, closeRoom.ts, RoutingManager.ts, Helper.ts, inquiries.ts, settings.ts +2 | PARTIAL | Got queue processing (execute→checkQueue→processWaitingQueue→delegateInquiry); misses the closeRoom half the question asked |
-| 33 | claude-06-livechat-routing | routing | 2/11 (18%) | widget.ts, api.ts, room.ts, RoutingManager.ts, AutoSelection.ts, ManualSelection.ts +3 | PARTIAL | Server routing chain (requestRoom→delegateInquiry→takeInquiry) correct; misses client widget→api half |
-| 34 | new-26-team | locate | 3/7 (43%) | ITeamService.ts, ITeam.ts, addUserToRoom.ts, removeUserFromRoom.ts | PASS | TeamService.create hub + creation lifecycle, thorough |
+| # | id | type | core cov (gate) | hard (Claude files) | retr→synth (core) | auto verdict | manual verdict | manual reason |
+|---|---|---|---:|---:|---|---|---|---|
+| 1 | tour-04-msg-client | architecture | 2/6 (33%) | 2/7 (29%) | 33% → 100% | PARTIAL | PARTIAL | Got MessageBox→ComposerMessage→flows/sendMessage middle; wrongly ends at LivechatClientImpl REST (should be sdk.call DDP), missed RoomBody/ComposerContainer top. |
+| 2 | new-19-message-rendering | architecture | 0/2 (0%) | 0/10 (0%) | 0% → 100% | FAIL | FAIL | Answered UIKit/Fuselage surface-renderer + markdown.js path; missed the core message-parser(parse→AST)→gazzodown Markup pipeline entirely. |
+| 3 | claude-01-push-notifications | architecture | 0/6 (0%) | 0/8 (0%) | 0% → 100% | FAIL | FAIL | No answer — Gemini errored (503 timeout). |
+| 4 | new-09-realtime-streamer | architecture | 1/5 (20%) | 1/5 (20%) | 20% → 100% | FAIL | **PARTIAL** (≠auto) | Right concept (post-write api.broadcast bus) but traced watch.rooms/notifyOnRoomChangedById; missed notifyOnMessageChange→ListenersModule→streamRoomMessage. |
+| 5 | tour-05-msg-server | call-chain | 1/5 (20%) | 1/6 (17%) | 60% → 33% | FAIL | **PARTIAL** (≠auto) | Save half right (validate→beforeSave→insert→afterSave); missed method/DDP entry, executeSendMessage, and the canSendMessage permission gate. |
+| 6 | claude-05-call-chain | call-chain | 4/8 (50%) | 4/9 (44%) | 88% → 57% | PARTIAL | PARTIAL | Good client→DDP→method→functions/sendMessage spine; server detail is a noisy callee list, missed executeSendMessage/canSendMessageAsync naming + REST entry. |
+| 7 | new-24-autotranslate | locate | 3/3 (100%) | 2/8 (25%) | 100% → 100% | PASS | PASS | Registry + afterSaveMessage hook + provider.translateMessage + Google/MS/DeepL providers — mechanism matches. |
+| 8 | new-15-impact-aftersave | impact | 0/3 (0%) | 0/8 (0%) | 67% → 0% | FAIL | **PARTIAL** (≠auto) | Right mechanism (callbacks.run/add) but thin blast radius — only slackbridge+search; missed notifications/realtime/apps-engine consumers. |
+| 9 | new-16-impact-streamer | impact | 1/3 (33%) | 1/5 (20%) | 33% → 100% | PARTIAL | **FAIL** (≠auto) | Blast radius wrong — followed `instances` into admin-workspace UI; missed that Streamer powers all realtime messaging/presence/notifications. |
+| 10 | claude-08-federation | routing | 0/4 (0%) | 1/11 (9%) | 0% → 100% | FAIL | **PARTIAL** (≠auto) | Correct entry FederationMatrix.sendMessage→federationSDK→Matrix; thin/uncertain on files, missed parsers/transactions/inbound. |
+| 11 | new-18-webhook | routing | 2/3 (67%) | 2/8 (25%) | 67% → 100% | PASS | PASS | executeIntegrationRest→script engine→processWebhookMessage→sendMessage — accurate full chain. |
+| 12 | claude-07-api-endpoints | locate | 3/7 (43%) | 1/10 (10%) | 57% → 75% | PARTIAL | PARTIAL | Named ApiClass.addRoute but diluted with apps-engine ApiBridge; missed createApi→bootstrap→middleware core. |
+| 13 | new-25-search | locate | 0/3 (0%) | 1/8 (13%) | 0% → 100% | FAIL | **PARTIAL** (≠auto) | Answered the message-search query path (method→Messages.find); missed the SearchProviderService/DefaultProvider provider architecture asked. |
+| 14 | new-27-video-conference | locate | 0/1 (0%) | 0/11 (0%) | 0% → 100% | FAIL | FAIL | No answer — Gemini errored (503 timeout). |
+| 15 | tour-06-endpoint | pattern | 1/2 (50%) | 2/9 (22%) | 100% → 50% | PASS | PASS | API.v1.addRoute pattern with options/handlers + example — correct and practical for the how-to. |
+| 16 | new-17-slash-commands | pattern | 0/4 (0%) | 0/6 (0%) | 0% → 100% | FAIL | **PARTIAL** (≠auto) | Answered apps-engine AppSlashCommandManager registration; missed the core slashCommands.add/run mechanism + client path; execution vague. |
+| 17 | new-11-settings | architecture | 2/3 (67%) | 2/7 (29%) | 67% → 100% | PASS | PASS | SettingsRegistry.add→CachedSettings→Settings model→public/private-settings/get — full chain. |
+| 18 | claude-03-file-upload | architecture | 2/3 (67%) | 3/9 (33%) | 67% → 100% | PASS | PASS | Two-step rooms.media/mediaConfirm + UFS storage backends; mentions uploadFiles entry — matches. |
+| 19 | new-10-apps-engine | architecture | 0/5 (0%) | 0/9 (0%) | 0% → 100% | FAIL | **PARTIAL** (≠auto) | Got callbacks.run(afterSaveMessage) trigger but missed the apps-engine listener mechanism (AppListenerManager/AppInterface/bridges); admits the gap. |
+| 20 | new-20-proxify | locate | 1/3 (33%) | 1/8 (13%) | 33% → 100% | PARTIAL | **PASS** (≠auto) | proxify→Proxy get trap→api.call(namespace.prop)→LocalBroker — exact. |
+| 21 | tour-07-db-model-create | pattern | 0/2 (0%) | 1/7 (14%) | 0% → 100% | FAIL | **PASS** (≠auto) | 3-layer typings→BaseRaw impl→registerModel — matches. |
+| 22 | tour-08-db-model-use | pattern | 0/2 (0%) | 2/6 (33%) | 0% → 100% | FAIL | **PARTIAL** (≠auto) | Right import + BaseRaw query pattern but generic; missed the loadHistory→loadMessageHistory→findVisibleByRoomId... specifics. |
+| 23 | tour-11-new-package | pattern | 1/1 (100%) | 4/9 (44%) | 0% → 100% | PASS | PASS | Correct package-creation steps (dir/package.json/tsconfig/src) incl. ee/packages — matches. |
+| 24 | tour-10-new-service | pattern | 0/4 (0%) | 0/9 (0%) | 100% → 0% | FAIL | **PASS** (≠auto) | ServiceClassInternal + Api.registerService→LocalBroker registration — matches (registerService facet). |
+| 25 | new-21-impact-settings | impact | 1/3 (33%) | 1/5 (20%) | 33% → 100% | PARTIAL | PARTIAL | Found CachedSettings but blast radius narrow/noisy (API middleware + Wizard storybook); missed widest-across-every-subsystem framing. |
+| 26 | new-22-2fa | architecture | 1/4 (25%) | 1/8 (13%) | 75% → 33% | PARTIAL | **PASS** (≠auto) | twoFactorRequired→checkCodeForUser→getSecondFactorMethod→TOTP/Email — full chain. |
+| 27 | claude-04-e2e-encryption | architecture | 5/5 (100%) | 6/7 (86%) | 40% → 100% | PARTIAL | **PASS** (≠auto) | RSA + PBKDF2/AES + per-room createGroupKey + Keychain — matches; minor slip (AES-GCM vs CBC for master key). |
+| 28 | new-12-ldap-auth | routing | 4/4 (100%) | 4/6 (67%) | 100% → 100% | PASS | PASS | configureLDAP handler→LDAP service→LDAPManager.login→connection/search/auth + fallback — full chain. |
+| 29 | claude-02-msg-permissions | locate | 2/4 (50%) | 3/7 (43%) | 50% → 100% | PARTIAL | **PASS** (≠auto) | Pinpointed canSendMessage.ts validateRoomMessagePermissionsAsync + hasPermission + canAccessRoom — correct location. |
+| 30 | new-14-ee-license | locate | 1/3 (33%) | 2/9 (22%) | 33% → 100% | PARTIAL | **PASS** (≠auto) | LicenseManager.hasModule against modules Set, populated by license validation — the feature-gating mechanism. |
+| 31 | new-13-room-creation | call-chain | 2/3 (67%) | 2/8 (25%) | 67% → 100% | PARTIAL | **PASS** (≠auto) | createChannelMethod→createRoom + perms/federation/callbacks — core chain right (missed explicit RoomService link). |
+| 32 | new-23-omnichannel | call-chain | 2/3 (67%) | 3/9 (33%) | 67% → 100% | PASS | **PARTIAL** (≠auto) | Queue processing right (requestRoom→delegateInquiry→take→assign + queue loop); answer cut off, missed the closeRoom half asked. |
+| 33 | claude-06-livechat-routing | routing | 1/6 (17%) | 2/11 (18%) | 50% → 33% | FAIL | **PARTIAL** (≠auto) | Server routing chain (requestRoom→delegateInquiry→takeInquiry→assign) correct; missed client widget→api→endpoint entry half. |
+| 34 | new-26-team | locate | 1/1 (100%) | 3/7 (43%) | 100% → 100% | PASS | PASS | TeamService hub + Team/TeamMember models + REST API — matches. |

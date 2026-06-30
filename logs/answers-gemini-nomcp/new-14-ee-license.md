@@ -2,124 +2,132 @@
 
 ## Baseline Answer (no tools)
 
-Rocket.Chat implements enterprise feature gating primarily through its **licensing system**, which determines the "plan" (e.g., Community, Pro, Enterprise) a server is running. This plan then dictates which features are enabled or disabled throughout the application, both on the server and client sides.
+Rocket.Chat implements enterprise feature gating through a robust licensing system that integrates deeply with its settings, UI components, and server-side logic. The core idea is to tie the availability of specific features to a valid license obtained from Rocket.Chat Cloud.
 
 Here's a breakdown of how it works:
 
-### 1. Core Licensing Module (`app/license/server`)
+### 1. The Licensing System (Server-Side Core)
 
-The heart of the feature gating is the `app/license/server` module. This module is responsible for:
+The heart of the enterprise feature gating lies in the `app/license` package, specifically on the server.
 
-*   **Reading and Validating Licenses:** It processes the license key provided by Rocket.Chat Cloud, validating its authenticity, expiry, and the associated plan. Licenses are typically stored in the `rocketchat_license` MongoDB collection.
-*   **Determining Active Features:** Based on the validated license, it identifies the set of features that are enabled for the current server.
-*   **Providing Feature Check Functions:** It exposes methods to query whether a specific feature is active.
+*   **License Storage:** The workspace's license is typically stored as a JSON Web Token (JWT) in the database (e.g., in the `rocketchat_settings` collection under a key like `License_token`). This token is obtained when the workspace connects to Rocket.Chat Cloud and registers.
+*   **License Validation:**
+    *   On server startup, and periodically, the system validates the stored JWT.
+    *   The JWT contains crucial information:
+        *   `workspaceId`: Unique identifier for the workspace.
+        *   `expiry`: When the license expires.
+        *   `features`: A list of specific enterprise features enabled for this license (e.g., `['engagement-dashboard', 'ldap-sync', 'auditing']`).
+        *   `isEnterprise`: A boolean flag indicating if it's an enterprise license.
+        *   `trial`: Information about any active trial period.
+    *   The validation process ensures the token is valid, not expired, and signed correctly.
+*   **`app/license/server/license.ts`**: This file is central.
+    *   It defines the `License` object, which is a singleton that manages the current license state.
+    *   `License.has(featureName: string)`: This is the primary function used throughout the server to check if a specific feature is enabled by the current license. It checks the `features` array within the parsed JWT.
+    *   `License.get.isEnterprise`: A getter to quickly check if *any* enterprise license is active.
+    *   `License.get.features`: Returns the array of enabled features.
+    *   `License.get.trial`: Provides details about an active trial, if any.
+    *   It uses `Tracker.Dependency` to make license changes reactive, meaning any part of the server code observing `License.has()` will automatically re-run if the license changes (e.g., expires, is updated).
 
-**Key Files:**
+### 2. Settings Integration
 
-*   **`app/license/server/index.ts`**: The main entry point for the license service, initializing it and making its methods available.
-*   **`app/license/server/planFeatures.ts`**: This is a crucial file! It contains a mapping of **feature names** to the **plans** they belong to. This central definition allows the system to consistently check feature availability.
-    *   *Example structure (simplified):*
+Many enterprise features are controlled by settings in the Administration panel. Rocket.Chat's settings system is designed to integrate with the licensing system:
+
+*   **`settings.add()` with `licenseFeature`**: When defining a setting (e.g., in `app/settings/server/settings.ts` or feature-specific settings files), you can specify a `licenseFeature` property.
+    *   **Example:**
         ```typescript
-        export const planFeatures: Record<string, FeaturePlan[]> = {
-            'omnichannel-livechat-monitors': ['enterprise'],
-            'teams': ['pro', 'enterprise'],
-            'auditing': ['enterprise'],
-            'ldap-advanced': ['enterprise'],
-            // ... more features
-        };
-        ```
-*   **`app/license/server/license.ts`**: Defines the `License` class (or similar singleton) that manages the active license, parses its details, and provides methods like `License.has('featureName')`, `License.isPro()`, `License.isEnterprise()`, etc.
-
-### 2. Server-Side Feature Gating
-
-Server-side gating is critical for security and enforcing business rules. If a feature is not licensed, the server will prevent its execution or access.
-
-**How it's implemented:**
-
-*   **API Endpoints:** Many API endpoints check for specific features. Before allowing a request to proceed, the API handler will call `License.has('feature-name')`.
-    *   *Example:* An API endpoint for an Enterprise-only feature (e.g., advanced audit logs) would have a check like:
-        ```typescript
-        // In an API route handler (e.g., ee/server/api/v1/auditing.ts)
-        API.v1.addRoute('auditing/:type', { authRequired: true }, {
-            get() {
-                if (!License.has('auditing')) {
-                    throw new Meteor.Error('not-authorized', 'Auditing feature requires an Enterprise license.');
-                }
-                // ... logic for fetching audit logs
-            }
-        });
-        ```
-*   **Meteor Methods:** Similarly, DDP methods called from the client will perform license checks.
-    *   *Example:* A method to configure a specific integration available only in Enterprise:
-        ```typescript
-        // In a server/methods file (e.g., ee/server/methods/configureAdvancedIntegration.ts)
-        Meteor.methods({
-            'advancedIntegration.configure'(settings) {
-                if (!License.has('advanced-integration')) {
-                    throw new Meteor.Error('not-authorized', 'This integration requires an Enterprise license.');
-                }
-                // ... configuration logic
-            },
-        });
-        ```
-*   **Settings:** Many administration settings are feature-gated. The setting itself might only appear if the feature is licensed, or its value might only be applied if the license permits. This is often handled within `app/settings/server/settings.ts` or specific `ee/app/settings/server/*.ts` files using `settings.add()` with a `conditions` or `enableQuery` property that checks `License.has()`.
-    *   *Example:*
-        ```typescript
-        // In app/settings/server/settings.ts or ee/app/settings/server/settings.ts
-        settings.add('Enterprise_Feature_Enabled', false, {
+        settings.add('Engagement_Dashboard_Enabled', false, {
             type: 'boolean',
-            group: 'Enterprise',
+            group: 'Engagement Dashboard',
             public: true,
-            enterprise: true, // A shorthand some settings might use for license check
-            enableQuery: () => License.has('some-enterprise-feature'), // Explicit check
+            i18nLabel: 'Engagement_Dashboard_Enabled',
+            licenseFeature: 'engagement-dashboard', // This links the setting to the 'engagement-dashboard' feature
         });
         ```
-*   **Backend Jobs/Services:** Any background processes or services that provide premium functionality will also perform license checks before running.
+*   **Automatic Gating:** If a setting has `licenseFeature` defined, it will only be visible and editable in the Administration panel if the current license *has* that specific feature. Otherwise, the setting will be hidden or disabled, preventing users from enabling a feature they are not licensed for.
 
-### 3. Client-Side Feature Awareness
+### 3. Client-Side Access and UI Gating
 
-The client-side (UI) needs to know which features are enabled to render the appropriate UI elements (e.g., show/hide menu items, disable buttons, display "Upgrade to Enterprise" messages).
+The client-side needs to know which features are available to correctly render the UI, show/hide menu items, and enable/disable buttons.
 
-**How it's implemented:**
-
-*   **Publications:** The server publishes the active license and plan information (often an anonymized version without the key itself) to the client. This allows the client-side `License` service to reactively update its state.
-    *   *Example:* `app/license/server/publications/license.ts` might publish `license.plan`, `license.active`, `license.expires`, etc.
-*   **Client-Side `License` Module:** A client-side `License` service (e.g., `client/lib/license.ts` or similar) mirrors the server-side functionality. It subscribes to the license publication and provides helper functions like `hasLicense('feature-name')`, `isPro`, `isEnterprise` for UI components.
-*   **UI Components:** React components (or older Blaze templates) then use these client-side helpers to conditionally render parts of the UI.
-    *   *Example in a React component:*
+*   **`app/license/client/license.ts`**: This file provides client-side helpers.
+    *   It exposes a reactive data source (often via a Meteor publication/subscription or a dedicated API endpoint) that provides the current license status and enabled features to the client.
+    *   `useLicense()` (or similar hooks/helpers): React components can use this to get the current license information.
+    *   `hasLicenseFeature(featureName: string)`: A client-side helper function that mirrors the server-side `License.has()`, allowing UI components to conditionally render based on feature availability.
+*   **UI Components:**
+    *   **`FeatureToggle` (or similar):** Rocket.Chat often uses wrapper components or conditional rendering logic in React components.
         ```typescript
-        import { useLicense } from '@rocket.chat/ui-contexts'; // A common pattern for context/hooks
+        import { hasLicenseFeature } from '../../lib/license'; // Example path
 
-        const MyFeatureButton = () => {
-            const { hasAtLeastOneLicense, queryLicense } = useLicense();
-
-            const isAdvancedFeatureLicensed = hasAtLeastOneLicense('my-advanced-feature');
-
-            if (!isAdvancedFeatureLicensed) {
+        const MyEnterpriseFeatureButton = () => {
+            if (!hasLicenseFeature('my-enterprise-feature')) {
                 return <UpgradeToEnterpriseButton />;
             }
-
-            return <button onClick={() => alert('Advanced feature!')}>Use Advanced Feature</button>;
+            return <ActualFeatureButton onClick={doSomethingEnterprise} />;
         };
         ```
-    *   This ensures that users only see and interact with features they are entitled to, improving UX and guiding them towards upgrades.
+    *   **Admin Panel Navigation:** Menu items in the Administration panel (e.g., for LDAP, Engagement Dashboard, Auditing) are often conditionally rendered based on `hasLicenseFeature()`.
+    *   **Disabled States:** If a feature is not licensed, related UI elements might be shown but disabled, with a tooltip indicating "License Required" or "Upgrade to Enterprise."
 
-### Summary of the Flow:
+### 4. How Individual Features Use It
 
-1.  **License Activation:** An administrator enters a license key in the Rocket.Chat admin UI, which is then sent to Rocket.Chat Cloud for validation.
-2.  **Server-Side Storage:** The validated license (including the plan type) is stored in the `rocketchat_license` collection.
-3.  **License Service Initialization:** On server startup, the `app/license/server/license.ts` module reads the license and initializes the `License` service.
-4.  **Feature Mapping:** `app/license/server/planFeatures.ts` defines which features belong to which plans.
-5.  **Runtime Checks:**
-    *   **Server:** Any request (API, Method call, setting update) for a gated feature calls `License.has('feature-name')`. If the check fails, access is denied.
-    *   **Client:** The client receives license information via a publication. UI components use client-side helpers (`useLicense`, etc.) to conditionally render or disable UI elements based on `License.has('feature-name')` checks.
+Throughout the codebase, specific enterprise features will explicitly check for their license:
 
-This robust system ensures that enterprise features are correctly gated and managed across the entire Rocket.Chat application stack.
+*   **Server-Side Logic:**
+    ```typescript
+    import { License } from '../../license/server/license';
+
+    // In an API endpoint or method
+    Meteor.methods({
+        'engagementDashboard.getData'() {
+            if (!License.has('engagement-dashboard')) {
+                throw new Meteor.Error('error-license-required', 'Engagement Dashboard requires an enterprise license.');
+            }
+            // ... proceed with data retrieval
+        },
+    });
+    ```
+*   **Client-Side Logic:**
+    ```typescript
+    import { hasLicenseFeature } from '../../license/client/license';
+
+    // In a React component's useEffect or event handler
+    const handleLdapSync = () => {
+        if (!hasLicenseFeature('ldap-sync')) {
+            alert('LDAP Sync is an enterprise feature. Please upgrade your license.');
+            return;
+        }
+        // ... initiate LDAP sync
+    };
+    ```
+
+### 5. Trial Periods
+
+The licensing system also supports trial periods. The JWT can contain information about an active trial.
+
+*   `License.get.trial`: This object provides details like `start`, `end`, and `has  Trial`.
+*   Features can be enabled during a trial, and the UI might display banners or notifications indicating the remaining trial days. Once the trial expires, the features revert to their unlicensed state.
+
+### Key File Paths
+
+*   **Core License Logic (Server):**
+    *   `app/license/server/license.ts`
+    *   `app/license/server/methods/getLicenseStatus.ts` (API for client)
+    *   `app/license/server/startup.ts` (Initial license loading/validation)
+*   **Core License Logic (Client):**
+    *   `app/license/client/license.ts`
+    *   `client/views/admin/info/LicenseCard.tsx` (UI for displaying license info)
+*   **Settings Integration:**
+    *   `app/settings/server/settings.ts` (and other feature-specific `settings.ts` files)
+*   **Cloud Connection:**
+    *   `app/cloud/server/functions/connectWorkspace.ts` (Where the license token is typically fetched)
+    *   `app/cloud/server/functions/syncWorkspace.ts` (Periodic sync)
+
+In summary, Rocket.Chat's enterprise feature gating is a comprehensive system built around a validated JWT license. It uses server-side checks for core logic and API access, integrates with the settings system to gate configuration options, and provides client-side helpers to dynamically adjust the user interface based on the available features.
 
 ## Metrics
 
 | Metric | Value |
 |--------|-------|
-| Tokens | 3,254 |
+| Tokens | 3,230 |
 | Model | gemini-2.5-flash |
 | Tools | NONE |

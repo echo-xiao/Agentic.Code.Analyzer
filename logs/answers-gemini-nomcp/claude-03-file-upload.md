@@ -2,88 +2,79 @@
 
 ## Baseline Answer (no tools)
 
-Rocket.Chat employs a robust and flexible workflow for file uploads, designed to handle various storage backends and ensure efficient delivery. The core of this workflow involves client-side initiation, server-side processing and validation, interaction with a chosen storage adapter, and metadata persistence in MongoDB.
+Rocket.Chat's file upload workflow is designed to be flexible, supporting various storage backends while maintaining a consistent API for clients. Here's a detailed breakdown of the process:
 
-Here's a detailed breakdown of the storage workflow for file uploads:
+### 1. Client-Side Initiation
 
-### 1. User Initiates Upload (Client-side)
+1.  **User Action**: A user initiates a file upload by dragging and dropping a file into the chat input, or by clicking the attachment icon and selecting a file from their local system.
+2.  **File Preparation**: The client-side (React frontend) reads the file, potentially generates a preview (e.g., for images), and prepares it for transmission.
+3.  **HTTP Request**: An HTTP `POST` request is sent to the Rocket.Chat server, typically using `multipart/form-data` to include the file data and other metadata (like the target room ID).
 
-1.  **User Action:** A user clicks the attachment icon in the chat interface (web, desktop, or mobile app) and selects one or more files from their local device.
-2.  **Client-side Processing:** The client application prepares the selected file(s) for upload. This might involve creating a preview, determining file size, and setting up the upload request.
-    *   **Relevant client files:**
-        *   `app/ui-file-upload/client/views/attachmentMenu.html`: The UI component for the attachment menu.
-        *   `app/ui-file-upload/client/lib/fileUpload.js`: Client-side logic for handling file selection and initiating the upload process.
+### 2. Server-Side Endpoint Handling
 
-### 2. File Data Sent to Server
+1.  **API Endpoint**: The request is received by the `/api/v1/files.upload` endpoint.
+    *   **File Path**: `app/api/server/v1/misc.ts`
+2.  **Request Processing**: This endpoint extracts the file stream and other form fields from the incoming request. It then delegates the core file handling logic to the `FileUpload` service.
 
-1.  **Request Transmission:** The client sends the file's binary data along with associated metadata (filename, MIME type, size, target room ID) to the Rocket.Chat server. This is often done via an HTTP POST request to a dedicated upload endpoint, or in some cases, via Meteor methods for smaller files.
-    *   The `ostrio:files` package (or a similar internal implementation pattern) often handles the specifics of chunking and transmitting large files efficiently.
+### 3. Core File Upload Service
 
-### 3. Server-side Processing & Validation
+1.  **`FileUpload` Service**: The central server-side logic for managing file uploads resides in the `FileUpload` class.
+    *   **File Path**: `app/file-upload/server/lib/FileUpload.ts`
+2.  **Metadata Extraction**: The `FileUpload` service reads the incoming file stream to extract essential metadata such as:
+    *   File name
+    *   File type (MIME type)
+    *   File size
+    *   Checksum (e.g., MD5)
+    *   Dimensions (for images/videos)
+3.  **Temporary Metadata Storage**: An initial entry for the file is created in the `rocketchat_uploads` MongoDB collection. This entry contains the extracted metadata and a unique `_id` for the file.
+    *   **File Path**: `app/models/server/raw/Uploads.ts` (for interacting with the `rocketchat_uploads` collection)
 
-1.  **Request Reception:** The Rocket.Chat server receives the upload request.
-2.  **Authentication & Authorization:** The server verifies the user's authentication and checks if they have the necessary permissions to upload files in the specified room.
-3.  **File Validation:** A series of validations are performed based on server settings:
-    *   **File Size:** Checks against `FileUpload_MaxFileSize` and `FileUpload_MaxVideoSize` / `FileUpload_MaxAudioSize`.
-    *   **File Type:** Checks against `Block_Invalid_Mime_Type` settings to prevent disallowed file types.
-    *   **Virus Scanning:** If configured (e.g., with ClamAV integration), the file might be sent for a virus scan before permanent storage.
-    *   **Relevant server files:**
-        *   `app/file-upload/server/lib/FileUpload.js`: The central server-side utility for handling file uploads.
-        *   `app/file-upload/server/lib/fileUploadServices.js`: Manages the different storage adapters.
-        *   `app/file-upload/server/methods/sendFileMessage.js`: The Meteor method that typically orchestrates the final stages of the upload and message creation.
+### 4. Storage Provider Selection
 
-### 4. Storage Adapter Selection & File Saving
+1.  **Configurable Storage**: Rocket.Chat uses a pluggable storage adapter system. The `FileUpload` service determines which storage adapter to use based on the `FileUpload_Storage_Type` setting configured in the administration panel.
+2.  **Adapter Instantiation**: The appropriate storage adapter is instantiated. Rocket.Chat supports several out-of-the-box:
+    *   **GridFS (Default)**: Stores files directly within MongoDB.
+        *   **File Path**: `app/file-upload/server/lib/storage/GridFS.ts`
+    *   **Amazon S3**: Stores files in an Amazon S3 bucket.
+        *   **File Path**: `app/file-upload/server/lib/storage/AmazonS3.ts`
+    *   **Google Cloud Storage**: Stores files in a Google Cloud Storage bucket.
+        *   **File Path**: `app/file-upload/server/lib/storage/GoogleCloudStorage.ts`
+    *   **WebDAV**: Stores files on a WebDAV server.
+        *   **File Path**: `app/file-upload/server/lib/storage/WebDAV.ts`
+    *   **File System**: Stores files on the local server's file system (often used for development or specific on-premise setups).
+        *   **File Path**: `app/file-upload/server/lib/storage/FileSystem.ts`
 
-1.  **Storage Adapter Dispatch:** Based on the `FileUpload_Storage_Type` setting (configured in `Administration > File Upload`), Rocket.Chat invokes the appropriate storage adapter.
-2.  **File Storage:** The binary file data is then written to the chosen backend:
-    *   **GridFS (MongoDB):** The file data is stored in the `fs.chunks` collection, and metadata in `fs.files` directly within the Rocket.Chat MongoDB database. This is often the default or a common choice for smaller deployments.
-    *   **Amazon S3 (or S3-compatible storage):** The file is uploaded to the specified S3 bucket. The adapter returns the S3 object key and potentially a public URL. This is a common and recommended choice for production environments due to scalability and reliability.
-    *   **Google Cloud Storage:** Similar to S3, the file is uploaded to a GCS bucket, and its URI/URL is returned.
-    *   **Filesystem:** The file is saved to a configured directory on the Rocket.Chat server's local disk. This is generally used for development or very small, single-server instances.
-    *   **Relevant server files (Storage Services):**
-        *   `app/file-upload/server/lib/fileUploadServices/AmazonS3.js`
-        *   `app/file-upload/server/lib/fileUploadServices/GoogleCloudStorage.js`
-        *   `app/file-upload/server/lib/fileUploadServices/GridFS.js`
-        *   `app/file-upload/server/lib/fileUploadServices/FileSystem.js`
+### 5. File Content Storage
 
-### 5. Metadata Storage (MongoDB)
+1.  **Adapter `write` Method**: The selected storage adapter's `write` method is invoked. This method takes the file stream and the file metadata as input.
+2.  **Content Transfer**: The adapter then streams the file content to its respective storage backend:
+    *   For **GridFS**, it writes the file chunks into MongoDB's `fs.files` and `fs.chunks` collections.
+    *   For **S3** or **GCS**, it uploads the file to the configured bucket.
+    *   For **WebDAV**, it performs an HTTP PUT request to the WebDAV server.
+    *   For **File System**, it writes the file to a specified local directory.
 
-1.  **Uploads Collection:** Irrespective of where the actual file data is stored, a document containing comprehensive metadata about the uploaded file is created in the `rocketchat_uploads` MongoDB collection.
-    *   This document includes fields such as:
-        *   `_id`: Unique identifier for the upload.
-        *   `name`: Original filename.
-        *   `type`: MIME type.
-        *   `size`: File size in bytes.
-        *   `url`: The direct URL to access the file (e.g., S3 URL, or a Rocket.Chat internal URL for GridFS/Filesystem).
-        *   `userId`: The ID of the user who uploaded the file.
-        *   `roomId`: The ID of the room where the file was uploaded.
-        *   `uploadedAt`: Timestamp of the upload.
-        *   `complete`: A boolean indicating if the upload process finished successfully.
-        *   `path` / `store`: Internal references to the file's location within the chosen storage backend.
-    *   **Relevant server file:**
-        *   `app/models/server/models/Uploads.js`: Defines the `RocketChat.models.Uploads` collection.
+### 6. Metadata Update and Message Creation
 
-### 6. Message Creation & Association
+1.  **Final Metadata Update**: Once the file content is successfully stored by the adapter, the `rocketchat_uploads` document for that file is updated with the final storage details (e.g., S3 ETag, GCS selfLink, GridFS file ID, local file path). This ensures the database record accurately reflects where the file content resides.
+2.  **Message Creation**: After the file is fully uploaded and its metadata is finalized, the server calls the `sendFileMessage` method.
+    *   **File Path**: `app/file-upload/server/methods/sendFileMessage.ts`
+    *   This method creates a new message document in the `rocketchat_message` collection.
+    *   The message document includes an `attachments` array, which contains details about the uploaded file, crucially referencing the `_id` of the entry in `rocketchat_uploads`.
+    *   **File Path**: `app/models/server/raw/Messages.ts` (for interacting with the `rocketchat_message` collection)
+3.  **Message Broadcast**: The newly created message (with the file attachment) is then broadcasted to the relevant chat room, making the file visible and accessible to all participants.
 
-1.  **Message Document:** Once the file is successfully stored and its metadata recorded, a new message document is created in the `rocketchat_message` collection.
-2.  **Attachment Linkage:** This message document includes an `attachments` array, which contains an object referencing the `_id` of the newly created upload document from the `rocketchat_uploads` collection.
-3.  **Real-time Broadcast:** The new message, now containing the attachment details, is broadcasted in real-time to all subscribed clients in the room via DDP (websockets).
-    *   **Relevant server file:**
-        *   `app/file-upload/server/methods/sendFileMessage.js`: This method finalizes the upload, creates the message, and publishes it.
+### 7. File Access (Download/View)
 
-### 7. File Retrieval (Client-side)
+1.  **Request for File**: When a user requests to view or download an uploaded file, Rocket.Chat uses the `_id` from the message attachment to look up the file's metadata in the `rocketchat_uploads` collection.
+2.  **Retrieval by Adapter**: Based on the storage details in the metadata, the appropriate storage adapter's `get` or `getFileStream` method is used to retrieve the file content from its backend.
+3.  **Stream to Client**: The file content is then streamed back to the client, allowing the user to view or download it.
 
-1.  **Attachment Rendering:** When a client loads a message with an attachment, it uses the `url` field from the `rocketchat_uploads` document (referenced by the message's `attachments`) to display the file.
-2.  **Access Method:**
-    *   **Cloud Storage (S3, GCS):** The `url` usually points directly to the file in the cloud storage bucket. Clients access these files directly, offloading bandwidth from the Rocket.Chat server.
-    *   **GridFS / Filesystem:** The `url` typically points to a Rocket.Chat server endpoint (e.g., `/ufs/GridFS/file-id/filename.ext`). The Rocket.Chat server intercepts these requests and streams the file content directly from MongoDB's GridFS or the local filesystem to the client.
-
-This modular design allows Rocket.Chat administrators to choose the most suitable storage solution for their deployment, ranging from simple local storage to highly scalable cloud-based options.
+This comprehensive workflow ensures robust, scalable, and flexible file handling within Rocket.Chat.
 
 ## Metrics
 
 | Metric | Value |
 |--------|-------|
-| Tokens | 3,858 |
+| Tokens | 3,263 |
 | Model | gemini-2.5-flash |
 | Tools | NONE |

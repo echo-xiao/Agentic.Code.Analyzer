@@ -2,199 +2,186 @@
 
 ## Baseline Answer (no tools)
 
-Rocket.Chat leverages MongoDB as its primary database and builds an abstraction layer on top of Meteor's `Mongo.Collection` to define its database models. These models provide a consistent interface for querying, inserting, updating, and removing data.
+Rocket.Chat leverages Meteor's `Mongo.Collection` for database interactions, but it wraps these collections in its own model classes to provide a more structured and extensible way to query and manage data.
 
-Here's a breakdown of how you use database models to query data in Rocket.Chat:
+Here's a breakdown of how you use a database model to query data in Rocket.Chat:
 
----
+### 1. Understanding Rocket.Chat's Model Structure
 
-### 1. The Model Abstraction (`RocketChat.models` / `Base.models`)
+Rocket.Chat defines its database models primarily in the `app/models/server/raw/` directory. These models extend a `Base` class (e.g., `app/models/server/raw/Base.ts`) which provides common methods and wraps the underlying `Mongo.Collection`.
 
-Rocket.Chat encapsulates its collections within `RocketChat.models` (or `Base.models` in newer, more modular contexts, often aliased for convenience). These are typically found in the `app/models/server` directory, often as `raw` collections that provide direct access to the `Mongo.Collection` instance and expose many helper methods.
-
-**Example Model Definition (simplified):**
-You'll find these in files like:
-*   `app/models/server/raw/Users.ts`
-*   `app/models/server/raw/Rooms.ts`
-*   `app/models/server/raw/Messages.ts`
-*   `app/models/server/raw/Settings.ts`
-
-These files define the `Raw` collection classes (e.g., `RawUser`, `RawRoom`) which extend `BaseRaw` (which itself wraps a `Mongo.Collection`). They expose numerous helper methods in addition to the standard MongoDB methods.
-
-**Accessing Models:**
-You generally access them as global objects or via `RocketChat.models` (or `Base.models`):
+**Example Model Definition (`app/models/server/raw/Users.ts`):**
 
 ```typescript
-// Common way (globally exposed)
-import { Users, Rooms, Messages } from '../../app/models/server/raw'; // or just `Users` if it's globally available in the context
+import { BaseRaw } from './Base';
+import { IUser } from '../../../definition/IUser';
 
-// Or via the RocketChat.models namespace
-const { Users, Rooms, Messages } = RocketChat.models;
+export class UsersRaw extends BaseRaw<IUser> {
+	constructor() {
+		super('users'); // 'users' is the name of the MongoDB collection
+	}
+
+	// Custom query methods for the Users collection go here
+	findByUsername(username: string, options?: FindOneOptions<IUser>): Promise<IUser | null> {
+		return this.findOne({ username }, options);
+	}
+
+	// ... other custom methods
+}
 ```
 
----
+You'll typically interact with instances of these models, which are usually exported and made available globally or through dependency injection. For example, the `Users` model is often accessed as `RocketChat.models.Users` or directly imported.
 
-### 2. Basic Querying Methods (`find`, `findOne`)
+### 2. Basic Querying with `find` and `findOne`
 
-The core of querying uses the standard MongoDB `find` and `findOne` methods, which are exposed by Rocket.Chat's models.
+The core of querying comes from the `Mongo.Collection` methods `find` and `findOne`, which are exposed through Rocket.Chat's model instances.
 
-*   **`find(selector, options)`**: Returns a MongoDB cursor for all documents matching the `selector`.
-    *   `selector`: A MongoDB query object.
-    *   `options`: An object specifying sort, limit, fields (projection), skip, etc.
-*   **`findOne(selector, options)`**: Returns a single document matching the `selector`, or `undefined` if none is found.
+#### `findOne(selector, options)`
 
-**Examples:**
+Retrieves a single document that matches the `selector`.
 
-```typescript
-import { Users, Rooms, Messages, Settings } from '../../app/models/server/raw';
+*   **`selector`**: An object specifying the query criteria (e.g., `{ _id: 'someId' }`, `{ username: 'john.doe' }`).
+*   **`options`**: An optional object for projection (`fields`), sorting (`sort`), etc.
 
-// 1. Find a single user by ID
-const userId = 'someUserId';
-const user = Users.findOne({ _id: userId });
-console.log(user?.username);
-// Example usage: server/methods/checkUserHasPermission.ts
-
-// 2. Find a room by its name and type
-const roomName = 'general';
-const room = Rooms.findOne({ name: roomName, t: 'c' }); // 't' is the type field ('c' for channel)
-console.log(room?._id);
-// Example usage: server/methods/joinRoom.ts
-
-// 3. Find all public channels, sorted by name
-const publicChannels = Rooms.find(
-    { t: 'c' },
-    { sort: { name: 1 }, fields: { name: 1, usersCount: 1 } } // Project only name and usersCount
-).fetch(); // .fetch() retrieves all documents as an array
-console.log(publicChannels);
-// Example usage: app/ui-utils/client/lib/RoomManager.ts (client-side via subscription)
-
-// 4. Find the last 10 messages in a specific room
-const roomId = 'someRoomId';
-const lastMessages = Messages.find(
-    { rid: roomId },
-    { sort: { ts: -1 }, limit: 10 } // 'ts' is the timestamp field
-).fetch();
-console.log(lastMessages.map(msg => msg.msg));
-// Example usage: server/publications/messages.ts
-
-// 5. Get a specific setting value
-const siteName = Settings.findOneById('Site_Name')?.value;
-console.log(siteName);
-// Example usage: server/startup/settings.ts
-```
-
----
-
-### 3. Model-Specific Helper Methods
-
-Rocket.Chat's models often extend `Mongo.Collection` with custom helper methods for common, high-level operations. These are particularly useful as they abstract away common query patterns.
-
-**Examples:**
+**Example:** Get a user by their ID.
 
 ```typescript
-import { Users, Rooms, Messages } from '../../app/models/server/raw';
+import { UsersRaw } from '../../app/models/server/raw/Users'; // Assuming you're in a context where you can import it
 
-// Users Model Helpers (from app/models/server/raw/Users.ts)
-const userByUsername = Users.findByUsername('john.doe');
-const activeUsers = Users.findByActiveUsers();
-const guestUsers = Users.findGuests().fetch();
-
-// Rooms Model Helpers (from app/models/server/raw/Rooms.ts)
-const roomByName = Rooms.findByNameAndType('general', 'c');
-const userRooms = Rooms.findBySubscriptionUserId('someUserId').fetch();
-const directMessagesBetweenUsers = Rooms.findDMByParticipants(['userAId', 'userBId']);
-
-// Messages Model Helpers (from app/models/server/raw/Messages.ts)
-const messagesInRoom = Messages.findByRoomId('someRoomId').fetch();
-const starredMessages = Messages.findStarredByUser('someUserId', 'someRoomId').fetch();
-```
-
----
-
-### 4. Aggregation Framework (`aggregate`)
-
-For more complex queries, data transformations, and "joins" (via `$lookup`), Rocket.Chat uses MongoDB's aggregation framework. This is typically accessed via the `aggregate` method on the collection instance.
-
-**Example:** Count messages per user in a specific room.
-
-```typescript
-import { Messages } from '../../app/models/server/raw';
-
-async function getMessageCountPerUser(roomId: string) {
-    const pipeline = [
-        { $match: { rid: roomId } }, // Filter messages for the specific room
-        {
-            $group: {
-                _id: '$u.username', // Group by the username of the user who sent the message
-                count: { $sum: 1 } // Count the messages
-            }
-        },
-        { $sort: { count: -1 } } // Sort by count descending
-    ];
-
-    // The aggregate method returns a promise in the Raw collections
-    const result = await Messages.col.aggregate(pipeline).toArray(); // 'col' gives access to the underlying Mongo.Collection
-    console.log(result);
-    /*
-    [
-        { _id: 'john.doe', count: 15 },
-        { _id: 'jane.smith', count: 10 }
-    ]
-    */
+// In a server-side context (e.g., a Meteor Method, a publication, or a background job)
+async function getUserById(userId: string) {
+	const user = await new UsersRaw().findOne({ _id: userId });
+	if (user) {
+		console.log(`Found user: ${user.username}`);
+	} else {
+		console.log('User not found.');
+	}
+	return user;
 }
 
-// Example usage context: server/methods/getRoomAuditingData.ts often uses aggregation
+// Or, if you have a global instance like RocketChat.models.Users
+async function getUserByIdGlobal(userId: string) {
+	const user = await RocketChat.models.Users.findOne({ _id: userId });
+	return user;
+}
 ```
-**Important Note:** Rocket.Chat's `Raw` collections expose a `.col` property which is the actual `Mongo.Collection` instance, allowing direct access to methods like `aggregate`.
 
----
+#### `find(selector, options)`
 
-### 5. Reactive Queries (Meteor Publications)
+Retrieves multiple documents that match the `selector`. It returns a **cursor**, not the documents directly. You need to use `fetch()` on the cursor to get an array of documents.
 
-In the Meteor framework, `Meteor.publish` functions use `find` to define reactive data sources for clients. When data in the collection changes, the client's subscription automatically updates.
+*   **`selector`**: An object specifying the query criteria.
+*   **`options`**: An optional object for projection (`fields`), sorting (`sort`), limiting (`limit`), skipping (`skip`), etc.
 
-**Example (from `server/publications/messages.ts`):**
+**Example:** Get the 10 most recent messages in a specific room.
 
 ```typescript
-import { Messages } from '../../app/models/server/raw';
+import { MessagesRaw } from '../../app/models/server/raw/Messages'; // Assuming import
 
-Meteor.publish('someRoomMessages', function(roomId: string, limit: number) {
-    // Ensure the user is logged in and has access to the room
-    if (!this.userId) {
-        return this.ready();
-    }
+async function getRecentMessages(roomId: string) {
+	const messagesCursor = await new MessagesRaw().find(
+		{ rid: roomId },
+		{
+			sort: { ts: -1 }, // Sort by timestamp descending
+			limit: 10, // Get only 10 messages
+			projection: { msg: 1, u: 1, ts: 1 }, // Only return these fields
+		},
+	);
 
-    // This find call is reactive. If messages in this room change,
-    // the client subscribed to 'someRoomMessages' will be updated.
-    return Messages.find(
-        { rid: roomId },
-        {
-            sort: { ts: -1 }, // newest first
-            limit: limit
-        }
-    );
-});
+	const messages = await messagesCursor.toArray(); // Convert cursor to array
+	messages.forEach(message => {
+		console.log(`[${message.u.username}] ${message.msg}`);
+	});
+	return messages;
+}
+
+// Or using the global instance
+async function getRecentMessagesGlobal(roomId: string) {
+	const messages = await RocketChat.models.Messages.find(
+		{ rid: roomId },
+		{
+			sort: { ts: -1 },
+			limit: 10,
+			projection: { msg: 1, u: 1, ts: 1 },
+		},
+	).toArray(); // Use .toArray() directly on the promise if the model returns a promise-like cursor
+	return messages;
+}
 ```
 
----
+### 3. Rocket.Chat's Custom Query Helpers
 
-### Key Considerations and Best Practices:
+Rocket.Chat's model classes often include custom helper methods that encapsulate common query patterns, making the code cleaner and more readable.
 
-*   **Server-Side Logic:** Most direct database interactions (inserts, updates, removes, complex finds) should occur on the server. Client-side interactions typically go through `Meteor.call` for methods or `Meteor.subscribe` for publications.
-*   **Security:** Always validate and sanitize user input before using it in queries. Implement proper permission checks (e.g., `RocketChat.authz.hasPermission`) to ensure users can only access data they are authorized for.
-*   **Performance:**
-    *   **Indexing:** Ensure appropriate indexes are created for frequently queried fields. Rocket.Chat sets up many indexes on startup.
-    *   **Projection (`fields` option):** Only retrieve the fields you need to reduce network overhead and memory usage (`{ fields: { _id: 1, name: 1 } }`).
-    *   **Pagination (`skip`, `limit`):** For large result sets, always paginate to avoid fetching too much data at once.
-    *   **`raw` collections:** Sometimes, for very specific performance needs or direct MongoDB features, you might interact with the underlying `Mongo.Collection` directly via `RocketChat.models.SomeModel.col`.
-*   **Schema:** While MongoDB is schema-less, Rocket.Chat uses `simpl-schema` (or similar validation) to define and validate the structure of its documents. This helps ensure data consistency. You'll often find schema definitions within the model files themselves or in an `app/schema` directory.
+**Example (`app/models/server/raw/Users.ts`):**
 
-By understanding these concepts, you can effectively query and manage data within the Rocket.Chat codebase.
+```typescript
+// Inside UsersRaw class
+findByUsername(username: string, options?: FindOneOptions<IUser>): Promise<IUser | null> {
+	return this.findOne({ username }, options);
+}
+
+findActiveUsers(options?: FindOptions<IUser>): Promise<FindCursor<IUser>> {
+	return this.find({ active: true }, options);
+}
+```
+
+**Usage:**
+
+```typescript
+// Get a user by username using the custom helper
+const userByUsername = await RocketChat.models.Users.findByUsername('jane.doe');
+
+// Get all active users
+const activeUsers = await RocketChat.models.Users.findActiveUsers({
+	sort: { username: 1 },
+	projection: { username: 1, emails: 1 },
+}).toArray();
+```
+
+These custom methods are defined directly within the respective model files (e.g., `app/models/server/raw/Rooms.ts`, `app/models/server/raw/Messages.ts`, etc.).
+
+### 4. Advanced Querying with `rawCollection()`
+
+For more complex MongoDB operations that are not directly supported by `Mongo.Collection`'s `find` or `findOne` (like aggregations, specific update operators, or advanced indexing commands), Rocket.Chat's models provide access to the underlying native MongoDB collection via `rawCollection()`.
+
+**Example: Performing an Aggregation**
+
+```typescript
+import { MessagesRaw } from '../../app/models/server/raw/Messages';
+
+async function countMessagesPerUserInRoom(roomId: string) {
+	const messagesCollection = await new MessagesRaw().rawCollection(); // Get the native collection
+
+	const result = await messagesCollection.aggregate([
+		{ $match: { rid: roomId } },
+		{
+			$group: {
+				_id: '$u.username',
+				count: { $sum: 1 },
+			},
+		},
+		{ $sort: { count: -1 } },
+	]).toArray();
+
+	console.log('Message counts per user:', result);
+	return result;
+}
+```
+
+### Key Considerations:
+
+*   **Server-Side Only:** Direct database queries using these models should almost exclusively happen on the server-side. Client-side data access in Meteor/Rocket.Chat is typically done through `Meteor.subscribe` and reactive data sources.
+*   **`async`/`await`:** Modern Rocket.Chat code heavily uses `async`/`await` for database operations, as the underlying `rawCollection()` methods are asynchronous and even `Mongo.Collection` methods are often wrapped to return Promises.
+*   **Performance:** Always consider indexing, limiting results, and projecting only necessary fields (`projection` or `fields` option) to optimize query performance.
+*   **Security:** When building features, ensure that any user-provided input used in queries is properly sanitized and validated to prevent injection attacks.
+
+By understanding these patterns, you can effectively query data within the Rocket.Chat codebase using its established model architecture.
 
 ## Metrics
 
 | Metric | Value |
 |--------|-------|
-| Tokens | 3,624 |
+| Tokens | 3,248 |
 | Model | gemini-2.5-flash |
 | Tools | NONE |

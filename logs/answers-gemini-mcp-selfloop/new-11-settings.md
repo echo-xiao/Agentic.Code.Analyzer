@@ -2,37 +2,95 @@
 
 ## Gemini Answer
 
-The Rocket.Chat settings system involves several key components, from registering a setting on the server to its availability on the client.
+The Rocket.Chat Settings system operates through a server-side registry, a MongoDB model for persistence, and a memory cache for efficient access. Client-side access is managed via Meteor methods.
 
-The server-side registration of a setting primarily occurs through the `SettingsRegistry` class, located at `apps/meteor/app/settings/server/SettingsRegistry.ts`. The `add` method of `SettingsRegistry` is responsible for adding new settings to the system. This method takes an `_id` (the setting's unique identifier), its initial `value`, and various `options` such as `sorter`, `section`, and `group`.
+Here's the breakdown:
 
-**Call Chain: `SettingsRegistry.add` (`apps/meteor/app/settings/server/SettingsRegistry.ts`)**
+**1. Registration:**
+*   Settings are registered on the server using `SettingsRegistry.add()`.
+*   The `SettingsRegistry` class is located at `apps/meteor/app/settings/server/SettingsRegistry.ts`.
+*   The `add` method in `SettingsRegistry` handles the initial setup of a setting, including its ID, default value, type, and other options. It also manages sorting and ensures enterprise settings have an `invalidValue` option.
+*   During registration, settings are validated and potentially overwritten by existing configurations.
+*   Finally, the setting is inserted into the MongoDB `Settings` model and stored in the `CachedSettings` instance.
 
-1.  **`SettingsRegistry.add`**:
-    *   It first performs validation on the provided `_id` and `value`.
-    *   It calculates a `sorter` key based on `group` and `section` to order settings.
-    *   It creates a `settingFromCode` object by applying default values, and checks for enterprise-specific settings.
-    *   It applies any overwrites to the `settingFromCode` and existing `settingStored` (if any).
-    *   It validates the setting's type and value.
-    *   If a setting with the same `_id` already exists and has changed, it calls `this.saveUpdatedSetting` to update the setting in the database and then `this.store.set` to update the cached setting.
-    *   If the setting is new, it inserts the setting into the database using `this.model.insertOne(setting)` and then updates the `CachedSettings` using `this.store.set(setting)`.
+**2. Storage and Caching:**
+*   Settings are stored in MongoDB via the `Settings` model.
+*   A memory-based cache, `CachedSettings`, located at `apps/meteor/app/settings/server/CachedSettings.ts`, stores settings for quick retrieval. This cache is a Map-based store with an Emitter, allowing services to watch for changes.
 
-The `SettingsRegistry` class interacts with `ICachedSettings` (an interface implemented by `CachedSettings`) for managing the in-memory representation of settings and `ISettingsModel` for database operations.
+**3. Client-Side Access:**
+*   Clients access settings through Meteor methods:
+    *   `public-settings/get` for publicly available settings.
+    *   `private-settings/get` for settings requiring authentication.
 
-The `CachedSettings` class, located at `apps/meteor/app/settings/server/CachedSettings.ts`, extends `Emitter` and is responsible for:
-*   Storing settings in an in-memory `Map`.
-*   Providing methods to `get`, `getSetting`, `has`, `watch`, `change`, and `set` settings.
-*   Emitting events when settings change, allowing other parts of the system to react to updates.
+**Call Chain:**
 
-When `SettingsRegistry.add` calls `this.store.set(setting)`, it updates the `CachedSettings` instance, which then makes the setting available for client-side access through its `get` methods and `watch` methods. This allows the client to subscribe to setting changes and react accordingly.
+1.  **Registration:** `SettingsRegistry.add()` (in `apps/meteor/app/settings/server/SettingsRegistry.ts`)
+    *   This method validates the setting, applies any overrides, and then:
+        *   Inserts the setting into the MongoDB `Settings` model.
+        *   Updates the `CachedSettings` instance (in `apps/meteor/app/settings/server/CachedSettings.ts`).
 
-## Tool Calls (8 calls, 33,739 tokens)
+2.  **Client Access:**
+    *   `Meteor.call('public-settings/get')`
+    *   `Meteor.call('private-settings/get')`
 
-**Step 1:** `search({"query":"registerSetting","layer":"server"})` → 369 tokens
-**Step 2:** `search({"layer":"server","query":"addSetting"})` → 298 tokens
-**Step 3:** `graph({"query":"SettingsRegistry.add","file":"apps/meteor/app/settings/server/SettingsRegistry.ts","layer")` → 15 tokens
-**Step 4:** `implement({"symbolName":"SettingsRegistry","filename":"apps/meteor/app/settings/server/SettingsRegistry.ts"})` → 267 tokens
-**Step 5:** `graph({"layer":"server","query":"SettingsRegistry.add","file":"apps/meteor/app/settings/server/SettingsReg)` → 15 tokens
-**Step 6:** `implement({"filename":"apps/meteor/app/settings/server/CachedSettings.ts","symbolName":"CachedSettings"})` → 581 tokens
-**Step 7:** `graph({"layer":"server","query":"CachedSettings.set","direction":"up","file":"apps/meteor/app/settings/ser)` → 14 tokens
-**Step 8:** `implement({"symbolName":"SettingsRegistry.add","filename":"apps/meteor/app/settings/server/SettingsRegistry.ts)` → 929 tokens
+## Tool Calls (8 calls, 38,031 tokens)
+
+**Step 1:** `search({"layer":"server","query":"Settings"})` → 817 tokens
+**Step 2:** `graph({"layer":"server","query":"SettingsRegistry.add","direction":"down"})` → 15 tokens
+**Step 3:** `search({"query":"SettingsRegistry","layer":"server"})` → 426 tokens
+**Step 4:** `graph({"file":"apps/meteor/app/settings/server/SettingsRegistry.ts","query":"SettingsRegistry.add","layer")` → 15 tokens
+**Step 5:** `implement({"symbolName":"SettingsRegistry","filename":"apps/meteor/app/settings/server/SettingsRegistry.ts"})` → 267 tokens
+**Step 6:** `graph({"direction":"down","query":"SettingsRegistry.add","layer":"server","file":"apps/meteor/app/settings)` → 15 tokens
+**Step 7:** `implement({"filename":"apps/meteor/app/settings/server/SettingsRegistry.ts","symbolName":"SettingsRegistry.add)` → 929 tokens
+**Step 8:** `search({"layer":"server","query":"CachedSettings"})` → 413 tokens
+
+## Files Seen In Tool Results (48)
+
+- `apps/meteor/app/settings/server/functions/settings.mocks.ts`
+- `apps/meteor/app/search/server/model/Settings.ts`
+- `packages/apps-engine/src/server/accessors/UserBuilder.ts`
+- `apps/meteor/app/meteor-accounts-saml/server/lib/settings.ts`
+- `apps/meteor/app/search/server/model/SearchProvider.ts`
+- `apps/meteor/app/settings/server/cached.ts`
+- `apps/meteor/app/importer/server/classes/Importer.ts`
+- `packages/ui-contexts/src/hooks/useSettings.ts`
+- `apps/meteor/client/views/marketplace/AppDetailsPage/tabs/AppSettings/AppSettings.tsx`
+- `packages/models/src/models/Settings.ts`
+- `apps/meteor/app/livechat/server/lib/settings.ts`
+- `apps/meteor/ee/app/settings/server/settings.ts`
+- `packages/apps-engine/src/server/managers/AppSettingsManager.ts`
+- `packages/apps-engine/src/server/accessors/SettingsExtend.ts`
+- `packages/apps-engine/src/server/accessors/ServerSettingsModify.ts`
+- `ee/packages/media-calls/src/server/getDefaultSettings.ts`
+- `apps/meteor/tests/unit/app/settings/server/functions/validateSettings.tests.ts`
+- `apps/meteor/tests/unit/app/settings/server/functions/settings.tests.ts`
+- `apps/meteor/tests/unit/app/settings/server/functions/overrideGenerator.tests.ts`
+- `apps/meteor/tests/unit/app/settings/server/functions/getSettingDefaults.tests.ts`
+- `apps/meteor/tests/unit/app/settings/server/functions/compareSettingsMetadata.tests.ts`
+- `apps/meteor/server/settings/webdav.ts`
+- `apps/meteor/server/settings/video-conference.ts`
+- `apps/meteor/server/settings/userDataDownload.ts`
+- `apps/meteor/server/settings/troubleshoot.ts`
+- `apps/meteor/server/settings/threads.ts`
+- `apps/meteor/server/settings/smarsh.ts`
+- `apps/meteor/app/settings/server/SettingsRegistry.ts`
+- `apps/meteor/app/settings/server/index.ts`
+- `apps/meteor/app/api/server/ApiClass.ts`
+- `apps/meteor/server/lib/callbacks.ts`
+- `apps/meteor/app/settings/server/CachedSettings.ts`
+- `apps/meteor/server/lib/ldap/Connection.ts`
+- `apps/meteor/app/livechat/server/lib/Helper.ts`
+- `apps/meteor/app/ui-master/server/inject.ts`
+- `packages/apps-engine/src/server/AppManager.ts`
+- `apps/meteor/ee/app/livechat-enterprise/server/lib/Helper.ts`
+- `apps/meteor/app/integrations/server/methods/incoming/updateIncomingIntegration.ts`
+- `apps/meteor/server/configuration/configureAssets.ts`
+- `apps/meteor/server/configuration/configureIRC.ts`
+- `apps/meteor/server/configuration/configureCORS.ts`
+- `apps/meteor/server/configuration/configureSMTP.ts`
+- `apps/meteor/server/configuration/configureLogLevel.ts`
+- `apps/meteor/server/configuration/configureCDN.ts`
+- `apps/meteor/server/configuration/oauth.ts`
+- `apps/meteor/app/settings/server/startup.ts`
+- `apps/meteor/server/configuration/pushNotification.ts`
+- `apps/meteor/server/configuration/ldap.ts`

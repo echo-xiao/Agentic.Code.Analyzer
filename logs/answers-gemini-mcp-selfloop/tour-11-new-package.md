@@ -2,66 +2,131 @@
 
 ## Gemini Answer
 
-To create a new package in the Rocket.Chat monorepo, you typically follow a structured manual process that mirrors existing packages, rather than using an automated script. This involves setting up the necessary directory structure and configuration files.
+To create a new package in the Rocket.Chat monorepo, you'll follow a manual process that involves setting up the package's directory structure, `package.json`, and `tsconfig.json`. There isn't a dedicated script for generating new packages, so you'll need to create these files and configurations yourself.
 
-Here's a breakdown of the steps and key files, using `packages/web-ui-registration` as an example of an existing package structure:
+Here's a step-by-step guide:
 
-**Call Chain (Inferred from common monorepo practices):**
+1.  **Create the Package Directory:**
+    *   Navigate to the `packages/` directory in the Rocket.Chat monorepo root.
+    *   Create a new directory for your package. The directory name will typically be the package name (e.g., `packages/my-new-package`).
+    *   If your package is an Enterprise Edition (EE) feature, create it under `ee/packages/` instead.
 
-1.  **Create Directory:** Manually create a new folder for your package:
-    `packages/your-new-package-name/`
-    (or `ee/packages/your-new-package-name/` for enterprise features).
+2.  **Initialize `package.json`:**
+    *   Inside your new package directory (e.g., `packages/my-new-package/`), create a `package.json` file.
+    *   Populate it with essential information, including:
+        *   `name`: The unique name of your package (e.g., `@rocket.chat/my-new-package`).
+        *   `version`: Initial version (e.g., `1.0.0`).
+        *   `main`: The entry point for your package (e.g., `dist/index.js`).
+        *   `types`: The TypeScript declaration file entry point (e.g., `dist/index.d.ts`).
+        *   `scripts`: Build scripts (e.g., `build`, `dev`, `lint`).
+        *   `dependencies` and `devDependencies`: Any external or internal packages your new package relies on.
 
-2.  **Initialize `package.json`:** Create the primary configuration file for your package.
-    *   **File:** `packages/your-new-package-name/package.json`
-    *   **Purpose:** Defines package metadata, dependencies, scripts, and entry points.
-    *   **Key fields to include:**
-        *   `name`: e.g., `@rocket.chat/your-new-package-name`
-        *   `version`: e.g., `1.0.0`
-        *   `private`: `true` (for internal monorepo packages)
-        *   `main`: `dist/index.js` (JavaScript entry point after build)
-        *   `types`: `dist/index.d.ts` (TypeScript declaration file)
-        *   `scripts`: e.g., `"build": "tsc -p tsconfig.json"`, `"lint": "eslint src --ext .ts,.tsx"`
-        *   `dependencies`, `devDependencies`, `peerDependencies`: List external and internal package requirements.
-
-3.  **Create `tsconfig.json`:** Configure TypeScript compilation for your package.
-    *   **File:** `packages/your-new-package-name/tsconfig.json`
-    *   **Purpose:** Extends the monorepo's base TypeScript configuration and defines package-specific options.
-    *   **Key fields to include:**
-        *   `extends`: Typically `@rocket.chat/tsconfig/references/packages`
-        *   `compilerOptions`: e.g., `"rootDir": "./src"`, `"outDir": "./dist"`
-        *   `include`: e.g., `"./src"`
-        *   `references`: List any other internal monorepo packages your package depends on.
-
-4.  **Create Source Entry Point:** Set up your main source code directory and file.
-    *   **File:** `packages/your-new-package-name/src/index.ts`
-    *   **Purpose:** The main entry point for your package's logic.
-
-5.  **Monorepo Integration (Root `package.json`):** Ensure the root `package.json` of the monorepo includes your new package in its `workspaces` configuration. This is crucial for `yarn` or `npm` to recognize and link your new package.
-
-    *   **File:** `package.json` (at the monorepo root)
-    *   **Purpose:** Lists all packages managed by the monorepo.
-    *   **Example entry (if not already covered by a wildcard):**
-        
+    *Example `package.json` structure:*
+    
 ```json
-        "workspaces": [
-          "packages/*",
-          "ee/packages/*",
-          "packages/your-new-package-name"
-        ]
-        ```
+    {
+      "name": "@rocket.chat/my-new-package",
+      "version": "1.0.0",
+      "description": "A brief description of your new package.",
+      "main": "dist/index.js",
+      "types": "dist/index.d.ts",
+      "scripts": {
+        "build": "tsc -p tsconfig.json",
+        "dev": "tsc -p tsconfig.json --watch",
+        "lint": "eslint src/",
+        "test": "echo \"Error: no test specified\" && exit 1"
+      },
+      "dependencies": {
+        // Add your dependencies here
+      },
+      "devDependencies": {
+        "@rocket.chat/eslint-config": "latest",
+        "@rocket.chat/tsconfig": "latest",
+        "@types/node": "^18.0.0",
+        "eslint": "^8.0.0",
+        "typescript": "~5.3.0"
+      },
+      "publishConfig": {
+        "access": "public"
+      }
+    }
+    ```
 
 
-6.  **Install Dependencies:** After setting up the files, run your package manager's install command from the monorepo root:
-    `yarn install`
+3.  **Configure TypeScript (`tsconfig.json`):**
+    *   Create a `tsconfig.json` file in your new package directory.
+    *   It's recommended to extend the base Rocket.Chat `tsconfig` for consistency.
+    *   Define your `compilerOptions` and `include` paths.
 
-This process ensures your new package is correctly integrated into the Rocket.Chat monorepo, allowing for proper dependency resolution, build processes, and linting.
+    *Example `tsconfig.json` structure:*
+    
+```json
+    {
+      "extends": "@rocket.chat/tsconfig/bases/react-library.json", // Or another appropriate base
+      "compilerOptions": {
+        "rootDir": "./src",
+        "outDir": "./dist",
+        "tsBuildInfoFile": "./dist/.tsbuildinfo"
+      },
+      "include": [
+        "./src/**/*.ts",
+        "./src/**/*.tsx"
+      ],
+      "exclude": [
+        "node_modules",
+        "dist"
+      ]
+    }
+    ```
 
-## Tool Calls (6 calls, 18,981 tokens)
+    *Note: You might need to adjust `extends` based on whether your package is a React library, a Node.js library, etc. Common bases are found in `packages/tsconfig/bases/`.*
 
-**Step 1:** `search({"query":"create package","layer":"packages"})` → 369 tokens
-**Step 2:** `search({"query":"new package template"})` → 16 tokens
-**Step 3:** `search({"query":"package.json","layer":"packages"})` → 77 tokens
-**Step 4:** `search({"query":"index.ts","layer":"packages"})` → 363 tokens
-**Step 5:** `implement({"symbolName":"index.ts","filename":"packages/web-ui-registration/src/index.ts"})` → 45 tokens
-**Step 6:** `implement({"filename":"packages/web-ui-registration/package.json","symbolName":"package.json"})` → 47 tokens
+4.  **Create Source Code Directory:**
+    *   Inside your package directory, create a `src/` directory.
+    *   Add your TypeScript/JavaScript files here (e.g., `src/index.ts`).
+
+5.  **Add to Monorepo Workspaces:**
+    *   Open the root `package.json` file of the Rocket.Chat monorepo.
+    *   Locate the `workspaces` array.
+    *   Add the path to your new package (e.g., `packages/my-new-package`) to this array. This allows the monorepo's package manager (e.g., Yarn, pnpm) to recognize and manage your package.
+
+    *Example root `package.json` modification:*
+    
+```json
+    {
+      "name": "rocketchat-monorepo",
+      "private": true,
+      "workspaces": [
+        "apps/*",
+        "packages/*",
+        "ee/apps/*",
+        "ee/packages/*",
+        "packages/my-new-package" // Add your new package here
+      ],
+      // ... other configurations
+    }
+    ```
+
+
+6.  **Install Dependencies:**
+    *   From the monorepo root, run your package manager's install command (e.g., `yarn install` or `pnpm install`). This will hoist dependencies and link your new package within the monorepo.
+
+7.  **Build and Test:**
+    *   Run the build script for your new package (e.g., `yarn workspace @rocket.chat/my-new-package build`).
+    *   Implement and run tests for your package.
+
+By following these steps, you can successfully integrate a new package into the Rocket.Chat monorepo.
+
+## Tool Calls (5 calls, 12,339 tokens)
+
+**Step 1:** `search({"query":"new package"})` → 69 tokens
+**Step 2:** `search({"query":"package.json","layer":"packages"})` → 77 tokens
+**Step 3:** `search({"query":"packages/*/package.json"})` → 17 tokens
+**Step 4:** `search({"query":"packages/ui-kit/package.json"})` → 18 tokens
+**Step 5:** `search({"layer":"packages","query":"package.json"})` → 77 tokens
+
+## Files Seen In Tool Results (3)
+
+- `packages/livechat/src/components/Button/stories.tsx`
+- `ee/packages/pdf-worker/.storybook/main.ts`
+- `packages/ui-kit/package.js`

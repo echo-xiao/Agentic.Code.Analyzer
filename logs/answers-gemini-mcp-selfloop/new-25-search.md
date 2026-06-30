@@ -2,42 +2,53 @@
 
 ## Gemini Answer
 
-Message search in Rocket.Chat is handled on the server-side, primarily through the `messageSearch` method located in `apps/meteor/server/methods/messageSearch.ts`. This method is responsible for processing search queries and retrieving relevant messages.
+Rocket.Chat's message search functionality follows a client-server architecture, where the client initiates a search request, and the server processes it by constructing and executing a MongoDB query.
 
 Here's the detailed call chain:
 
-**Entry Point:** `messageSearch` (apps/meteor/server/methods/messageSearch.ts)
+**Call Chain:** `MessageSearchTab` (Client UI) → `useMessageSearchQuery` (Client Hook) → `messageSearch` (Server Method) → `parseMessageSearchQuery` (Query Parsing Logic) → `Messages.find` (Database Interaction)
 
-1.  **`messageSearch`** (apps/meteor/server/methods/messageSearch.ts):
-    *   Receives `userId`, `text` (search query), `rid` (room ID, optional), `limit`, and `offset`.
-    *   Performs access checks:
-        *   If `rid` is provided, it calls `canAccessRoomIdAsync` (apps/meteor/app/authorization/server/functions/canAccessRoom.ts) to verify user access to the specific room.
-        *   If no `rid` is provided (global search), it checks the `Search.defaultProvider.GlobalSearchEnabled` setting.
-    *   Retrieves user information using `Users.findOneById` (packages/rocketchat-models/server/models/Users.ts).
-    *   Parses the search `text` into a MongoDB query and options using `parseMessageSearchQuery` (apps/meteor/server/lib/parseMessageSearchQuery.ts).
-    *   Constructs the final MongoDB query, adding conditions to exclude removed messages (`t: {$ne: 'rm'}`) and hidden messages (`_hidden: {$ne: true}`).
-    *   If a `rid` is provided, the query is scoped to that room.
-    *   If no `rid` is provided, the query includes all rooms the user is subscribed to, fetched via `Subscriptions.findByUserId` (packages/rocketchat-models/server/models/Subscriptions.ts).
-    *   Finally, it executes the MongoDB query using `Messages.find` (packages/rocketchat-models/server/models/Messages.ts) with `readPreference: readSecondaryPreferred` (apps/meteor/server/lib/readSecondaryPreferred.ts) and the generated options, returning the results.
+1.  **Client UI Entry Point**: The message search process begins in the `MessageSearchTab` component (`apps/meteor/client/views/room/contextualBar/MessageSearchTab/MessageSearchTab.tsx`). This React component provides the user interface for entering search queries and displaying results.
 
-2.  **`parseMessageSearchQuery`** (apps/meteor/server/lib/parseMessageSearchQuery.ts):
-    *   This function takes the raw search `text` and user-related options.
-    *   It internally utilizes a `MessageSearchQueryParser` to transform the human-readable search string into a MongoDB compatible query object and options, including handling regular expressions if `Message_AlwaysSearchRegExp` setting is enabled.
+2.  **Client-Side Hook**: The `MessageSearchTab` component utilizes the `useMessageSearchQuery` hook (`apps/meteor/client/views/room/contextualBar/MessageSearchTab/hooks/useMessageSearchQuery.ts`). This hook is responsible for:
+    *   Obtaining a reference to the server-side method using `useMethod('rocketchatSearch.search')`.
+    *   Constructing the search parameters (`searchText`, `limit`, `globalSearch`).
+    *   Calling the server method with these parameters to fetch search results.
 
-3.  **`SearchProviderService`** (apps/meteor/app/search/server/service/SearchProviderService.ts):
-    *   This service manages different search providers.
-    *   It has a `register` method to add new search providers and a `use` method to set the active provider.
-    *   The `DefaultProvider` (apps/meteor/app/search/server/provider/DefaultProvider.ts) is the default implementation, which leverages MongoDB's text search capabilities. This architecture allows for pluggable search solutions, meaning other providers (e.g., Elasticsearch) could be integrated.
+3.  **Server-Side Method**: The client-side call is handled by the `messageSearch` method (`apps/meteor/server/methods/messageSearch.ts`) on the server. This method performs the following key steps:
+    *   **Access Control**: It first verifies if the `userId` has permission to access the specified `rid` (room ID) using `canAccessRoomIdAsync`. For global searches (no `rid` provided), it checks the `Search.defaultProvider.GlobalSearchEnabled` setting.
+    *   **Query Parsing**: It calls `parseMessageSearchQuery` to transform the raw `text` search string into a structured MongoDB `query` object and `options`.
+    *   **Query Modification**: It adds additional filters to the MongoDB `query`, such as:
+        *   `t: { $ne: 'rm' }` to exclude removed messages.
+        *   `_hidden: { $ne: true }` to exclude hidden messages.
+        *   If a `rid` is provided, it filters messages for that specific room.
+        *   If no `rid` is provided (global search), it retrieves all room IDs the user is subscribed to and filters messages within those rooms.
+    *   **Database Query Execution**: Finally, it executes the constructed MongoDB query against the `Messages` collection using `Messages.find(query, options).toArray()` to retrieve the matching messages.
 
-In summary, the message search in Rocket.Chat starts with a client-side request to the `messageSearch` Meteor method. This method then handles authorization, parses the search query into a MongoDB query, and executes it against the `Messages` collection, potentially utilizing a pluggable `SearchProviderService` with a `DefaultProvider` for MongoDB text search.
+4.  **Query Parsing Logic**: The `parseMessageSearchQuery` function (`apps/meteor/server/lib/parseMessageSearchQuery.ts`) is a wrapper around the `MessageSearchQueryParser` class. The `MessageSearchQueryParser` class contains the core logic for interpreting the search string. Its `parse` method sequentially applies various `consume*` methods (e.g., `consumeFrom`, `consumeMention`, `consumeBefore`, `consumeAfter`, `consumeMessageText`) to break down the search query into its components and build the corresponding MongoDB query and options.
 
-## Tool Calls (8 calls, 47,480 tokens)
+In essence, Rocket.Chat's default message search leverages MongoDB's querying capabilities, with a sophisticated parser on the server to translate user-friendly search syntax into efficient database queries. While the architecture allows for pluggable search providers, the core `messageSearch` method directly interacts with MongoDB.
+
+## Tool Calls (8 calls, 46,385 tokens)
 
 **Step 1:** `search({"query":"message search"})` → 374 tokens
-**Step 2:** `graph({"layer":"server","file":"apps/meteor/server/methods/messageSearch.ts","direction":"down","query":"m)` → 964 tokens
-**Step 3:** `implement({"filename":"apps/meteor/server/methods/messageSearch.ts","symbolName":"messageSearch"})` → 417 tokens
-**Step 4:** `graph({"file":"apps/meteor/server/lib/parseMessageSearchQuery.ts","layer":"server","query":"parseMessageSe)` → 677 tokens
-**Step 5:** `search({"query":"SearchProviderService","layer":"server"})` → 190 tokens
-**Step 6:** `implement({"filename":"apps/meteor/app/search/server/service/SearchProviderService.ts","symbolName":"SearchPro)` → 168 tokens
-**Step 7:** `graph({"file":"apps/meteor/app/search/server/service/SearchProviderService.ts","query":"SearchProviderServ)` → 16 tokens
-**Step 8:** `search({"layer":"server","query":"DefaultProvider"})` → 393 tokens
+**Step 2:** `graph({"direction":"down","query":"messageSearch","file":"apps/meteor/server/methods/messageSearch.ts","la)` → 964 tokens
+**Step 3:** `implement({"symbolName":"messageSearch","filename":"apps/meteor/server/methods/messageSearch.ts"})` → 417 tokens
+**Step 4:** `implement({"filename":"apps/meteor/server/lib/parseMessageSearchQuery.ts","symbolName":"parseMessageSearchQuer)` → 270 tokens
+**Step 5:** `implement({"filename":"apps/meteor/server/lib/parseMessageSearchQuery.ts","symbolName":"MessageSearchQueryPars)` → 459 tokens
+**Step 6:** `implement({"filename":"apps/meteor/server/lib/parseMessageSearchQuery.ts","symbolName":"MessageSearchQueryPars)` → 260 tokens
+**Step 7:** `implement({"filename":"apps/meteor/client/views/room/contextualBar/MessageSearchTab/MessageSearchTab.tsx","sym)` → 1028 tokens
+**Step 8:** `implement({"filename":"apps/meteor/client/views/room/contextualBar/MessageSearchTab/hooks/useMessageSearchQuer)` → 244 tokens
+
+## Files Seen In Tool Results (10)
+
+- `apps/meteor/server/lib/parseMessageSearchQuery.ts`
+- `apps/meteor/client/views/room/contextualBar/MessageSearchTab/hooks/useMessageSearchProviderQuery.ts`
+- `apps/meteor/client/views/room/contextualBar/MessageSearchTab/hooks/useMessageSearchQuery.ts`
+- `apps/meteor/server/methods/messageSearch.ts`
+- `apps/meteor/client/views/room/contextualBar/MessageSearchTab/components/MessageSearchForm.tsx`
+- `apps/meteor/client/views/room/contextualBar/MessageSearchTab/MessageSearchTab.tsx`
+- `packages/core-typings/src/search/IMessageSearchSuggestion.ts`
+- `packages/core-typings/src/search/IMessageSearchProvider.ts`
+- `apps/meteor/client/views/room/composer/hooks/useMessageComposerIsArchived.ts`
+- `apps/meteor/tests/e2e/page-objects/fragments/home-flextab.ts`

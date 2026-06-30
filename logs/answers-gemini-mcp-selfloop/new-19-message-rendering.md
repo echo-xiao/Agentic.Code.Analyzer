@@ -2,41 +2,54 @@
 
 ## Gemini Answer
 
-The process of rendering a message from raw text to React components in Rocket.Chat's client-side involves several steps, primarily orchestrated by the `RoomMessageContent` and `GazzodownText` components.
+The process of rendering a message from raw text to React components in Rocket.Chat involves several steps, primarily handled by the UI Kit and Markdown processing.
 
-**Call Chain:**
+The initial search for "render message" pointed to several potential entry points, with `createMarkdownMessageRenderer` in `apps/meteor/app/markdown/lib/markdown.js` and `renderMessageBlocks` in `packages/livechat/src/components/uiKit/message/index.tsx` being relevant.
 
-`RoomMessage` (apps/meteor/client/components/message/variants/RoomMessage.tsx)
-  → `RoomMessageContent` (apps/meteor/client/components/message/variants/room/RoomMessageContent.tsx)
-    → `MessageContentBody` (apps/meteor/client/components/message/MessageContentBody.tsx)
-      → `GazzodownText` (apps/meteor/client/components/GazzodownText/GazzodownText.tsx)
+Tracing `createMarkdownMessageRenderer` showed its involvement in markdown processing, utilizing various string utility functions and potentially interacting with `markedParser`. However, `markedParser` itself was not found as a direct symbol in the `markdown.js` file.
 
-**Rendering Process:**
+Further investigation into `renderMessageBlocks` revealed that it uses `uiKitMessage` from `packages/ui-kit/src/surfaces/message/uiKitMessage.ts`. This `uiKitMessage` function likely acts as a central point for rendering UI Kit message blocks.
 
-1.  **`RoomMessage`**: This is a variant component for displaying messages within a room. It acts as an entry point, orchestrating the display of different message elements.
+The `FuselageMessageSurfaceRenderer` in `packages/fuselage-ui-kit/src/surfaces/FuselageMessageSurfaceRenderer.tsx` is a key component in this rendering process. It extends `FuselageSurfaceRenderer` and overrides methods like `plain_text` and `mrkdwn` to use `renderTextObject`. This indicates that `FuselageMessageSurfaceRenderer` is responsible for taking the parsed markdown or plain text and converting it into Fuselage (Rocket.Chat's design system) React components.
 
-2.  **`RoomMessageContent`**: This component, found in `apps/meteor/client/components/message/variants/room/RoomMessageContent.tsx`, is responsible for rendering the main content of a room message. It uses various React hooks (e.g., `useChat`, `useMessageListReadReceipts`) to gather necessary context and data for rendering.
+The `renderTextObject` function, located in `packages/ui-kit/src/rendering/renderTextObject.ts`, is a higher-order function that takes renderers and a context, then returns a function to render a `TextObject`. It uses `getTextObjectRenderer` to select the appropriate renderer based on the text object's type (e.g., `plain_text`, `mrkdwn`) and then calls that renderer to produce the final React component.
 
-3.  **`MessageContentBody`**: Located in `apps/meteor/client/components/message/MessageContentBody.tsx`, this component likely serves as a wrapper or container for the actual text content of the message. It is here that the `GazzodownText` component is utilized.
+Therefore, the call chain for rendering a message from raw text to React components is:
 
-4.  **`GazzodownText`**: This component, defined in `apps/meteor/client/components/GazzodownText/GazzodownText.tsx`, is crucial for converting raw message text into a format suitable for rendering as React components. It takes the `children` prop, which would be the raw message text, and applies several transformations and interactions:
-    *   **Highlighting**: It processes `highlights` (e.g., search results) using `highlightRegex` to mark specific portions of the text.
-    *   **Search Text Marking**: If `searchText` is provided, it uses `markRegex` to highlight occurrences of the search term within the message.
-    *   **Emoji Conversion**: It checks user preferences for `convertAsciiEmoji` and `useEmoji` to determine if ASCII emoticons should be converted to graphical emojis.
-    *   **Mentions (Users and Channels)**:
-        *   It resolves user mentions using `resolveUserMention` and provides an `onUserMentionClick` handler to display user cards.
-        *   It resolves channel mentions using `resolveChannelMention` and provides an `onChannelMentionClick` handler to navigate to the mentioned channel.
-    *   **Markup Interaction Context**: It wraps its children with `MarkupInteractionContext.Provider`, passing down various props and functions (like `detectEmoji`, `highlightRegex`, `markRegex`, mention resolvers, and click handlers) to make them available to nested components for interactive rendering.
+**Entry → Markdown Processing → UI Kit Message Rendering → Fuselage Surface Rendering → Text Object Rendering → React Components**
 
-In essence, `GazzodownText` acts as an interpreter, taking the raw text and applying styling, interactions, and conversions based on user preferences and context, before rendering the final React components. The actual conversion of markup (like Markdown) into an Abstract Syntax Tree (AST) and then into block components is handled by the `packages/message-parser` and `packages/gazzodown` libraries, which are utilized by `GazzodownText` indirectly through its children and the `MarkupInteractionContext`.
+1.  **`apps/meteor/app/markdown/lib/markdown.js`**: `createMarkdownMessageRenderer` is involved in processing the raw text, likely converting it into a structured format.
+2.  **`packages/livechat/src/components/uiKit/message/index.tsx`**: `renderMessageBlocks` is a key function that initiates the rendering of message blocks.
+3.  **`packages/ui-kit/src/surfaces/message/uiKitMessage.ts`**: `uiKitMessage` is used by `renderMessageBlocks` to handle the overall UI Kit message rendering.
+4.  **`packages/fuselage-ui-kit/src/surfaces/FuselageMessageSurfaceRenderer.tsx`**: `FuselageMessageSurfaceRenderer` is responsible for rendering the message surface using Fuselage components. It specifically handles `plain_text` and `mrkdwn` content.
+5.  **`packages/ui-kit/src/rendering/renderTextObject.ts`**: `renderTextObject` is used by `FuselageMessageSurfaceRenderer` to render individual text objects within the message, selecting the appropriate renderer based on the text object's type and ultimately producing the React components.
 
-## Tool Calls (8 calls, 48,588 tokens)
+## Tool Calls (8 calls, 37,996 tokens)
 
-**Step 1:** `search({"layer":"client","query":"message rendering"})` → 245 tokens
-**Step 2:** `search({"query":"Message body rendering","layer":"client"})` → 17 tokens
-**Step 3:** `search({"query":"Message component","layer":"client"})` → 274 tokens
-**Step 4:** `search({"query":"Message","layer":"client"})` → 993 tokens
-**Step 5:** `graph({"direction":"down","query":"RoomMessage","layer":"client","file":"apps/meteor/client/components/mes)` → 517 tokens
-**Step 6:** `search({"layer":"client","query":"MessageContent"})` → 336 tokens
-**Step 7:** `graph({"query":"RoomMessageContent","file":"apps/meteor/client/components/message/variants/room/RoomMessag)` → 2132 tokens
-**Step 8:** `implement({"filename":"apps/meteor/client/components/GazzodownText/GazzodownText.tsx","symbolName":"GazzodownT)` → 852 tokens
+**Step 1:** `search({"query":"render message","layer":"client"})` → 475 tokens
+**Step 2:** `graph({"file":"apps/meteor/app/markdown/lib/markdown.js","direction":"down","query":"createMarkdownMessage)` → 993 tokens
+**Step 3:** `implement({"filename":"apps/meteor/app/markdown/lib/markdown.js","symbolName":"markedParser"})` → 16 tokens
+**Step 4:** `graph({"query":"renderMessageBlocks","file":"packages/livechat/src/components/uiKit/message/index.tsx","di)` → 68 tokens
+**Step 5:** `graph({"direction":"down","file":"packages/livechat/src/lib/uiKitMessage.ts","query":"uiKitMessage"})` → 47 tokens
+**Step 6:** `graph({"direction":"down","query":"FuselageMessageSurfaceRenderer","file":"packages/fuselage-ui-kit/src/su)` → 54 tokens
+**Step 7:** `implement({"filename":"packages/fuselage-ui-kit/src/surfaces/FuselageMessageSurfaceRenderer.tsx","symbolName":)` → 188 tokens
+**Step 8:** `implement({"filename":"packages/fuselage-ui-kit/src/surfaces/FuselageMessageSurfaceRenderer.tsx","symbolName":)` → 123 tokens
+
+## Files Seen In Tool Results (16)
+
+- `apps/meteor/app/autotranslate/client/lib/autotranslate.ts`
+- `apps/meteor/client/lib/utils/renderMessageEmoji.ts`
+- `apps/meteor/client/components/message/toolbar/items/actions/ReplyInThreadMessageAction.tsx`
+- `packages/livechat/src/helpers/canRenderMessage.ts`
+- `apps/meteor/app/markdown/lib/markdown.js`
+- `apps/meteor/ee/server/lib/message-read-receipt/ReadReceipt.ts`
+- `packages/livechat/src/components/uiKit/message/index.tsx`
+- `packages/models/src/models/Reports.ts`
+- `packages/fuselage-ui-kit/src/surfaces/FuselageMessageSurfaceRenderer.tsx`
+- `packages/models/src/models/Messages.ts`
+- `packages/models/src/models/Users.ts`
+- `apps/meteor/client/views/room/MessageList/lib/autoTranslate.ts`
+- `apps/meteor/client/views/omnichannel/components/outboundMessage/components/OutboundMessageWizard/steps/RepliesStep.spec.tsx`
+- `apps/meteor/client/views/omnichannel/components/outboundMessage/components/OutboundMessageWizard/steps/MessageStep.spec.tsx`
+- `packages/ui-kit/src/surfaces/message/uiKitMessage.ts`
+- `packages/ui-kit/src/rendering/renderTextObject.ts`

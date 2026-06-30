@@ -2,103 +2,108 @@
 
 ## Baseline Answer (no tools)
 
-Rocket.Chat registers its REST API endpoints primarily using a custom API framework built into the server. The core mechanism involves calling the `API.v1.addRoute` method.
+New endpoints in the Rocket.Chat REST API are primarily registered using the `API.v1.addRoute` method. This method is part of the custom API framework built into Rocket.Chat, which itself leverages Express.js.
 
-Here's a detailed breakdown of how new endpoints are registered:
+Here's a breakdown of the process:
 
-1.  **The `API` Object:**
-    At the heart of the Rocket.Chat REST API is the global `API` object (or `RocketChat.API` in some contexts). This object is responsible for managing routes, handling requests, and enforcing security policies (authentication, permissions, rate limiting).
+1.  **The `API` Class:**
+    The core of the REST API registration lives in the `API` class, specifically the `v1` instance.
+    *   **File:** `app/api/server/v1/api.js`
 
-    You can find its definition and initialization in:
-    *   `app/api/server/api.js`
+    This file defines the `API` class, which manages routes, middleware (like authentication and rate limiting), and integrates with Express.
 
-2.  **`API.v1.addRoute()` Method:**
-    This is the primary method used to register new API endpoints for version 1 of the API. It typically takes three arguments:
-    *   **`route` (string):** The path segment for the route. For example, `'users'` would register endpoints under `/api/v1/users`.
-    *   **`options` (object):** An object containing configuration for the route, such as:
-        *   `authRequired` (boolean, default: `true`): Whether the endpoint requires user authentication.
-        *   `permissionsRequired` (array or string): Specific permissions a user must have to access the endpoint.
-        *   `rateLimiterOptions` (object): Configuration for rate limiting, if desired.
-        *   `anonymous` (boolean): If `true`, the route can be accessed anonymously without a user session.
-    *   **`handlers` (object):** An object where each key corresponds to an HTTP method (e.g., `get`, `post`, `put`, `delete`) and its value is the handler function for that method. The handler function receives `this.requestParams()` (URL and query parameters), `this.bodyParams()` (request body), and `this.userId` (if authenticated).
+2.  **The `addRoute` Method:**
+    The `API.v1.addRoute` method is used to define a new API endpoint. It takes the following parameters:
 
-3.  **Endpoint File Structure:**
-    Most API endpoints are defined in separate files, typically grouped by API version and functionality within the `app/api/server/` directory.
+    *   `path` (String): The URL path for the endpoint (e.g., `'users.list'`).
+    *   `endpoints` (Object): An object where keys are HTTP methods (e.g., `get`, `post`, `put`, `delete`) and values are the handler functions for those methods.
+    *   `options` (Object, optional): An object containing various options for the route, such as:
+        *   `authRequired` (Boolean): Whether authentication is required for this endpoint (defaults to `true`).
+        *   `rateLimiterOptions` (Object): Options for rate limiting this specific route.
+        *   `permissionsRequired` (Array): An array of permissions required to access this endpoint.
+        *   `roleRequired` (Array): An array of roles required to access this endpoint.
+        *   `validateParams` (Function): A function to validate the request parameters.
 
-    *   For v1 endpoints, you'll find them in `app/api/server/v1/`.
-    *   Each file usually defines one or more routes related to a specific domain (e.g., `users.js` for user-related endpoints, `channels.js` for channel-related endpoints).
+3.  **Example of Endpoint Registration:**
 
-4.  **Example of Registering an Endpoint:**
+    Most API endpoints are defined in files within the `app/api/server/v1/` directory, grouped by resource (e.g., `users.js`, `channels.js`, `messages.js`).
 
-    Let's look at a simplified example, similar to how the `status` endpoint is registered:
-
-    **File:** `app/api/server/v1/status.js`
+    Let's look at an example from `app/api/server/v1/users.js` for the `users.list` endpoint:
 
     ```javascript
-    import { API } from '../api'; // Import the API object
+    // app/api/server/v1/users.js
 
-    API.v1.addRoute('status', { authRequired: false }, {
-        /**
-         * @openapi
-         * /api/v1/status:
-         *   get:
-         *     summary: Get Rocket.Chat server status
-         *     description: Returns the current status of the Rocket.Chat server.
-         *     responses:
-         *       200:
-         *         description: Server status information.
-         *         content:
-         *           application/json:
-         *             schema:
-         *               type: object
-         *               properties:
-         *                 status:
-         *                   type: string
-         *                   example: online
-         *                 // ... other status properties
-         */
+    import { API } from '../api';
+    import { findUsers, findUser, findUserPresence, findUserByUsername } from '../lib/users';
+    import { getUserInfo } from '../lib/users.info';
+
+    API.v1.addRoute('users.list', { authRequired: true }, {
         get() {
-            // No authentication required for this endpoint.
-            // this.requestParams() would contain URL/query parameters if any.
-            // this.bodyParams() would contain the request body for POST/PUT.
+            const { offset, count, fields, query, sort } = this.parseJsonQuery();
+            const { text, filter, active, status, statusExact, role, username, email, name } = this.queryParams;
 
-            return API.v1.success({
-                status: 'online',
-                version: process.env.ROOT_URL, // Example of accessing server data
-                // ... any other relevant status information
-            });
+            // ... (logic to build query and options)
+
+            const users = Promise.await(findUsers({
+                query: parsedQuery,
+                pagination: {
+                    offset,
+                    count,
+                },
+                sort: parsedSort,
+                fields: parsedFields,
+            }));
+
+            return API.v1.success(users);
         },
-        /**
-         * @openapi
-         * /api/v1/status:
-         *   post:
-         *     summary: Updates server status (requires authentication and specific permissions)
-         *     description: This is a placeholder; actual implementation would vary.
-         *     security:
-         *       - authToken: []
-         *     responses:
-         *       200:
-         *         description: Status updated successfully.
-         */
+    });
+
+    // Another example for a POST endpoint:
+    API.v1.addRoute('users.create', { authRequired: true }, {
         post() {
-            // This would typically require `authRequired: true` and `permissionsRequired`
-            // return API.v1.success({ message: 'Status updated' });
-            throw new Error('Not implemented'); // Example: if POST isn't supported for status
+            const { username, email, name, password, active, roles, joinDefaultChannels, verified, requirePasswordChange, sendWelcomeEmail, customFields } = this.bodyParams;
+
+            // ... (logic to create user)
+
+            const userId = Promise.await(Meteor.callAsync('createMyAccount', {
+                username,
+                email,
+                name,
+                password,
+                active,
+                roles,
+                joinDefaultChannels,
+                verified,
+                requirePasswordChange,
+                sendWelcomeEmail,
+                customFields,
+            }));
+
+            const user = Promise.await(getUserInfo(userId));
+
+            return API.v1.success({ user });
         },
     });
     ```
 
-5.  **Initialization:**
-    To ensure all these endpoint files are loaded and their routes are registered, there's usually an `index.js` file (or similar) in the `app/api/server/` directory that imports all the specific route files. This ensures that when the server starts, `API.v1.addRoute` is called for every defined endpoint.
+    In this example:
+    *   `API.v1.addRoute('users.list', ...)` registers the endpoint.
+    *   `authRequired: true` specifies that a valid authentication token is needed.
+    *   The `get()` method defines the handler for GET requests to `/api/v1/users.list`.
+    *   The `post()` method defines the handler for POST requests to `/api/v1/users.create`.
 
-    *   `app/api/server/index.js` often serves this purpose by importing all files from `app/api/server/v1/` and other API versions.
+4.  **Middleware Integration:**
+    The `API` class automatically applies global middleware to registered routes. This includes:
+    *   **Authentication:** `API.v1.authMiddleware` checks for a valid `X-Auth-Token` and `X-User-Id` in the request headers.
+    *   **Rate Limiting:** `API.v1.rateLimiter` applies rate limits based on user, IP, and route.
+    *   **Permissions:** The `permissionsRequired` and `roleRequired` options are handled by middleware to ensure the authenticated user has the necessary privileges.
 
-This system allows for a structured and maintainable way to define, configure, and expose REST API endpoints in Rocket.Chat, leveraging a common set of utilities for authentication, authorization, and response handling.
+In summary, new REST API endpoints are registered by calling `API.v1.addRoute` in the server-side API files, specifying the path, HTTP method handlers, and any required options like authentication or permissions.
 
 ## Metrics
 
 | Metric | Value |
 |--------|-------|
-| Tokens | 1,990 |
+| Tokens | 1,648 |
 | Model | gemini-2.5-flash |
 | Tools | NONE |
