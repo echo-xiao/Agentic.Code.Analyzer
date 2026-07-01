@@ -71,7 +71,9 @@ function verdictFor(opts: {
 
 function main() {
     // Delete the stale report up front so a mid-run crash leaves no misleading old file.
-    fs.rmSync(path.join(LOGS, 'eval-3-mcp-agent-vs-claude.md'), { force: true });
+    fs.mkdirSync(path.join(LOGS, 'reports'), { recursive: true });
+    fs.mkdirSync(path.join(LOGS, 'data'), { recursive: true });
+    fs.rmSync(path.join(LOGS, 'reports', 'eval-3-mcp-agent-vs-claude.md'), { force: true });
     const { flat: testcases } = loadTestcases(path.join(__dirname, 'utils', 'testcases.json'));
     const sidecar = loadSidecar();
     const rows = testcases.map(tc => {
@@ -116,10 +118,14 @@ function main() {
         const manual = m ? m.verdict : null;
         const manualReason = m ? m.reason : '';
 
+        // Separate infra failures (empty / "ERROR …" e.g. Gemini 503) from capability failures so the
+        // funnel report can exclude them from retrieval/synthesis averages instead of scoring them 0.
+        const errored = !a2.trim() || /^ERROR\b/.test(a2.trim());
+
         return {
             id: tc.id, type: tc.questionType, claudeFiles: claudeFiles.length,
             hit: claudeFiles.length - missed.length, missed, hardCov,
-            coreN: core.length, coreWritten: written.length, coreCov, seen: hasSeen,
+            coreN: core.length, coreWritten: written.length, coreCov, seen: hasSeen, errored,
             retrievalRecall, synthRecall, droppedBySynth, verdict, reason,
             manual, manualReason, manualStale,
         };
@@ -174,7 +180,14 @@ function main() {
     });
     L.push('');
 
-    fs.writeFileSync(path.join(LOGS, 'eval-3-mcp-agent-vs-claude.md'), L.join('\n'), 'utf-8');
+    fs.writeFileSync(path.join(LOGS, 'reports', 'eval-3-mcp-agent-vs-claude.md'), L.join('\n'), 'utf-8');
+    // Machine-readable sidecar for the unified funnel report (src/eval/report.ts). Join key = id.
+    fs.writeFileSync(path.join(LOGS, 'data', 'eval-3-data.json'), JSON.stringify(rows.map(r => ({
+        id: r.id, type: r.type, hardCov: r.hardCov,
+        coreN: r.coreN, coreWritten: r.coreWritten, coreCov: r.coreCov, seen: r.seen, errored: r.errored,
+        retrievalRecall: r.retrievalRecall, synthRecall: r.synthRecall, dropped: r.droppedBySynth.length,
+        verdict: r.verdict, manual: r.manual, manualStale: r.manualStale,
+    }))), 'utf-8');
     console.error(`Wrote logs/eval-3-mcp-agent-vs-claude.md`);
     const synthStr = seenRows.length ? `retr ${(avgRetr * 100).toFixed(0)}%→synth ${(avgSynth * 100).toFixed(0)}%` : 'synth n/a (re-run gen:mcp)';
     console.log(`eval-3: hard ${(avgHard * 100).toFixed(0)}% | ${synthStr} | auto PASS ${counts.PASS}/PARTIAL ${counts.PARTIAL}/FAIL ${counts.FAIL} | manual ${judged.length}/${n} judged${staleN ? ` (${staleN} stale)` : ''}`);

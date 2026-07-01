@@ -1,6 +1,6 @@
 # eval-3 — How good is the agent?  (Gemini + MCP vs Claude reference)
 
-6/30/2026, 12:32:02 PM | 34 testcases | deterministic (no key, frozen rubric)
+6/30/2026, 7:35:30 PM | 34 testcases | deterministic (no key, frozen rubric)
 
 **Hard: Gemini covers 23% of Claude's cited files (avg).**
 
