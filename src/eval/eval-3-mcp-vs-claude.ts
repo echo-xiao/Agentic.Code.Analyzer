@@ -153,8 +153,7 @@ function main() {
     L.push(`${new Date().toLocaleString('en-US')} | ${n} testcases | deterministic (no key, frozen rubric)\n`);
     L.push(`**Hard: Gemini covers ${(avgHard * 100).toFixed(0)}% of Claude's cited files (avg).**\n`);
     if (seenRows.length) {
-        L.push(`**Synthesis split (core spine): retrieval-recall ${(avgRetr * 100).toFixed(0)}% (tools surfaced it) → synthesis-recall ${(avgSynth * 100).toFixed(0)}% (agent then wrote it).**`);
-        L.push(`> ${totalDropped} core files were surfaced by the tools but never written into an answer — that gap, not retrieval, is the lever.\n`);
+        L.push(`**Synthesis split (core spine): retrieval-recall ${(avgRetr * 100).toFixed(0)}% (tools surfaced it) → synthesis-recall ${(avgSynth * 100).toFixed(0)}% (agent then wrote it).**\n`);
     } else {
         L.push(`**Synthesis split: n/a — re-run \`npm run gen:mcp\` to record per-answer "Files Seen In Tool Results", then this splits coverage into retrieval vs synthesis.**\n`);
     }

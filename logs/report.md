@@ -1,19 +1,15 @@
 # Retrieval funnel — unified report
 
-6/30/2026, 7:36:18 PM | 34 testcases | joined from eval-1/2/3 sidecars (deterministic)
+6/30/2026, 8:05:40 PM | 34 testcases | joined from eval-1/2/3 sidecars (deterministic)
 
 > ⚠ 2 infra failure(s) excluded from capability averages: claude-01-push-notifications, new-27-video-conference (empty / 503).
 
 ## 1. Token efficiency — is the graph worth its tokens? (eval-1)
 
-Orthogonal to the funnel: the funnel says *where* quality leaks; this says *whether the graph earns its cost*.
-
 | | no-MCP | naive @ same answer size | with MCP |
 |---|---:|---:|---:|
 | Avg coverage | 14% | 21% | 38% |
 | Avg tokens / question | 3,258 | ~33,670 | 33,670 |
-
-> At equal answer size, plain search reaches 21% while the graph agent reaches 38% — the graph adds **+17 pts** beyond what tokens alone buy. Cost: ~10× the tokens.
 
 ## 2. The funnel — one path, every stage ÷ the same 117 core files
 
@@ -30,12 +26,12 @@ AGENT
   written into the answer       38%  ███████████░░░░░░░░░░░░░░░░░░░ <- synth 77% of surfaced, drops 17
 ```
 
-**Three levers, sized** (all ÷ 117):
-- **never rank (recall-miss): 44%** — 51 core files absent even from top-50 → fix matching / graph reach.
-- **ranked-but-not-gathered: 8%** — 9 files rank in top-50 but the agent never surfaces them → re-rank + make the agent dig / walk the graph.
-- **surfaced-but-not-written (synthesis): 11%** — 17 files → citation prompt.
+**Three stages, sized** (all ÷ 117):
+- **never rank (recall-miss): 44%** — 51 core files absent even from top-50.
+- **ranked-but-not-gathered: 8%** — 9 files rank in top-50 but the agent never surfaces them.
+- **surfaced-but-not-written (synthesis): 11%** — 17 files.
 
-> Index is a floor, not a stage (file 100% / sym 100% / graph 100%). Diagnostics: chain-order LCS 79% (17 ordered Qs) · diag recall-miss 11/mixed 12/ranked-low 5/ok 6. Seen-log under-counts retrieval on `*` rows → 49% surfaced is a lower bound.
+> Index: file 100% / sym 100% / graph 100%. Chain-order LCS 79% (17 ordered Qs) · diag recall-miss 11/mixed 12/ranked-low 5/ok 6. Seen-log under-counts retrieval on `*` rows → 49% surfaced is a lower bound.
 
 ## 3. Detail — every testcase × every gate
 
@@ -80,18 +76,16 @@ Diag: rm=recall-miss · rl=ranked-low · mx=mixed · ok. `*` on G2 = seen-log un
 
 **Bottleneck distribution:** OK 13 · G2 6 · MEAS 5 · G1-recall 4 · G1-mix 2 · ERR 2 · G1-rank 1 · G3 1.
 
-## 4. Summary — by question type: weak gate + targeted fix
+## 4. Summary — by question type
 
-> The **type** column is a reliable diagnostic (where each type leaks); per-type graph-**traversal** routing as a fix was tested on eval-2 and came out flat/negative (core is already 100% graph-reachable), so the fixes below are the levers that actually move recall — global anti-dilution re-ranking + seed matching — not type routing.
-
-| type | n | avg R@10 | end cov | bottlenecks | targeted fix |
-|---|---:|---:|---:|---|---|
-| architecture | 9 | 38% | 39% | OK×3, G1-recall×2, G1-mix, ERR, G2, MEAS | anti-dilution re-rank (hold reachable core in top-50); type-routed traversal tested flat |
-| call-chain | 4 | 39% | 51% | OK×3, G1-rank | re-rank + force synthesis to reach the terminal symbol (deeper-down helped only 1/4 — weak) |
-| locate | 8 | 55% | 51% | OK×3, MEAS×2, G1-mix, G2, ERR | symbol-aware matching + synonyms / disambiguation (seed-level — the one non-traversal recall fix) |
-| pattern | 6 | 79% | 25% | OK×2, MEAS×2, G1-recall, G2 | force file citation in synthesis; relax / redefine core spine (much of this gap is measurement) |
-| routing | 4 | 33% | 46% | OK×2, G2, G1-recall | anti-dilution re-rank — NOT traversal routing (edge-typed graph walk tested negative) |
-| impact | 3 | 44% | 22% | G2×2, G3 | synthesis breadth (list all callers); graph(up) traversal tested negative — do not route by type |
+| type | n | avg R@10 | end cov | bottlenecks |
+|---|---:|---:|---:|---|
+| architecture | 9 | 38% | 39% | OK×3, G1-recall×2, G1-mix, ERR, G2, MEAS |
+| call-chain | 4 | 39% | 51% | OK×3, G1-rank |
+| locate | 8 | 55% | 51% | OK×3, MEAS×2, G1-mix, G2, ERR |
+| pattern | 6 | 79% | 25% | OK×2, MEAS×2, G1-recall, G2 |
+| routing | 4 | 33% | 46% | OK×2, G2, G1-recall |
+| impact | 3 | 44% | 22% | G2×2, G3 |
 
 ## 5. How the bottleneck is classified
 
