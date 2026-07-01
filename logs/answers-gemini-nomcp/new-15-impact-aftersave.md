@@ -2,82 +2,69 @@
 
 ## Baseline Answer (no tools)
 
-The `afterSaveMessage` callback in Rocket.Chat is one of the most critical server-side hooks. It's part of the `RocketChat.callbacks` system and is invoked *after* a message has been successfully saved (inserted or updated) into the `rocketchat_message` collection in the database.
+The `afterSaveMessage` callback in Rocket.Chat is a critical extension point that fires immediately after a message has been successfully saved to the database. Changing its system would have a **wide-ranging impact** across many core functionalities and integrations.
 
-Changing this callback system, whether by altering its signature, modifying its execution logic, or removing/disabling it, would have a **profound and widespread impact** across almost every aspect of Rocket.Chat's real-time communication, notification, and integration functionalities.
+Here's a breakdown of the key areas that would be affected:
 
-Here's a breakdown of the key areas that would be impacted:
+### Core Functionalities
 
-### 1. Real-time Communication & UI Updates
+1.  **Notifications (Push, Email, Desktop):**
+    *   **Impact:** This is arguably the most significant impact. The `afterSaveMessage` callback is heavily used to trigger various notification mechanisms. If this system changes, all real-time and delayed notifications for new messages, mentions, and direct messages would likely break or behave unexpectedly.
+    *   **Relevant files:**
+        *   `app/lib/server/functions/sendMessage.ts`: This is where the `afterSaveMessage` callback is typically executed after a message is inserted into the `RocketChatMessages` collection.
+        *   `app/lib/server/lib/sendNotifications.ts`: This file contains the logic that subscribes to `afterSaveMessage` to process and send notifications.
+        *   `app/lib/callbacks.ts`: Defines the `afterSaveMessage` callback itself.
 
-*   **Impact:** Users would not see new messages appear in real-time in their chat windows. Edits or deletions of messages would also not propagate.
-*   **Details:** The `afterSaveMessage` callback is responsible for triggering the real-time publication of the message to relevant users via Meteor's DDP (Distributed Data Protocol). This ensures that when a message is saved on the server, it's immediately pushed to all subscribed clients.
-*   **Relevant Code:**
-    *   The callback itself is invoked within `app/lib/server/functions/sendMessage.js` (or similar message-handling functions).
-    *   The actual real-time update logic is often handled by a callback registered in `app/stream-room-messages/server/index.js`, which publishes the message to the `stream-room-messages` stream.
+2.  **Real-time Updates (Livechat, UI Reactivity):**
+    *   **Impact:** While many real-time updates are handled by MongoDB oplog tailing and Meteor's DDP, `afterSaveMessage` can be used for additional server-side processing that then triggers further client-side updates. Changes could affect how quickly or accurately clients reflect new messages, especially for complex message types or custom behaviors.
+    *   **Relevant files:** Various modules that might react to message changes and publish updates.
 
-### 2. Notifications (Push, Email, Desktop, Mentions)
+3.  **Message Processing and Enrichment:**
+    *   **Impact:** Many features that modify or react to message content *after* initial saving but *before* final display or notification rely on this hook. This includes:
+        *   **Link Previews:** Generating and attaching rich link previews.
+        *   **Mentions:** Processing mentions (`@username`) to link to users and trigger specific notifications.
+        *   **Emoji/Reaction Handling:** While reactions are often separate, complex emoji processing or custom reactions might use this.
+        *   **Custom Message Types:** Any custom message types that require specific post-save logic (e.g., polls, file uploads with additional metadata processing) would be affected.
+        *   **Message Auditing/Logging:** If any custom auditing or logging of messages happens post-save, it would be impacted.
+    *   **Relevant files:**
+        *   `app/lib/server/lib/sendNotifications.ts` (for mentions).
+        *   `app/lib/callbacks.ts` (where other modules register their `afterSaveMessage` handlers).
+        *   Potentially modules related to specific message types or integrations.
 
-*   **Impact:** Users would stop receiving any form of notification for new messages, mentions (`@username`, `@all`, `@here`), or direct messages.
-*   **Details:** The system relies on `afterSaveMessage` to identify when a message warrants a notification (e.g., it's a DM, a mention, or a message in a channel the user is following). It then queues or directly sends push notifications (mobile), email notifications, or triggers desktop notifications.
-*   **Relevant Code:**
-    *   `app/lib/server/lib/sendNotifications.js`: This file contains the core logic for determining and sending various types of notifications, and it registers an `afterSaveMessage` callback.
-    *   `app/mentions/server/index.js`: Handles specific logic for `@username`, `@all`, `@here` mentions, which often tie into the notification system via `afterSaveMessage`.
-    *   `app/push/server/push.js`: The underlying push notification service.
+4.  **Integrations and Webhooks:**
+    *   **Impact:** External integrations often need to be notified when a new message is posted. `afterSaveMessage` is a prime candidate for triggering outgoing webhooks or API calls to external services. Any such integrations would need to be re-evaluated or rewritten.
+    *   **Relevant files:**
+        *   `app/integrations/server/lib/integrations.ts` (or similar integration-related files that might subscribe to this hook).
 
-### 3. Integrations & Bots
+5.  **Statistics and Analytics:**
+    *   **Impact:** Features that track message counts, user activity, or other communication metrics often increment counters or log events after a message is saved. Changing the callback could disrupt these statistics.
+    *   **Relevant files:**
+        *   `app/statistics/server/lib/statistics.ts` (or similar modules that update statistics based on message activity).
 
-*   **Impact:** Outgoing webhooks would stop firing, and many bot integrations (like Hubot or custom bots that listen for messages) would cease to function.
-*   **Details:** Many integrations are designed to react to new messages. Outgoing webhooks, for instance, are explicitly triggered by an `afterSaveMessage` callback to send message data to external services.
-*   **Relevant Code:**
-    *   `app/integrations/server/lib/triggerOutgoingWebhooks.js`: This file registers an `afterSaveMessage` callback specifically for triggering outgoing webhooks.
-    *   Custom bot integrations often register their own `afterSaveMessage` callbacks or rely on the message stream that `afterSaveMessage` populates.
+6.  **Message History and Archiving:**
+    *   **Impact:** While the message is already saved, any secondary storage, archiving, or compliance features that perform actions on a message *after* it's committed to the primary database might use this hook.
 
-### 4. Message Features & Actions
+### Technical Considerations
 
-*   **Impact:** Many core message-related features would break or behave unexpectedly.
-*   **Details:** Features like message starring, pinning, reactions, read receipts, and even some aspects of message editing/deletion often have logic that needs to run *after* the message state has been updated in the database. While some of these might use other hooks, `afterSaveMessage` is a common point for post-processing.
-*   **Relevant Code (examples of features that might use it or similar post-save logic):**
-    *   `app/message-pin/server/index.js`
-    *   `app/message-star/server/index.js`
-    *   `app/message-read-receipt/server/index.js`
-    *   `app/message-actions/server/index.js` (general message actions)
+*   **Backward Compatibility:** Any change to the `afterSaveMessage` system would almost certainly break backward compatibility for existing Rocket.Chat installations, custom apps, and integrations that rely on the current callback structure.
+*   **Performance:** The `afterSaveMessage` callback can be synchronous or asynchronous depending on its implementation and the registered handlers. Modifying the system could introduce performance bottlenecks if not carefully designed, especially if it changes how multiple handlers are executed.
+*   **Error Handling:** The current system likely has established patterns for error handling within callbacks. A new system would need robust error handling to prevent a single faulty callback from crashing message saving or other critical processes.
+*   **API/SPI Changes:** If the signature of the callback or the way to register/unregister handlers changes, it's a breaking API/SPI change for developers extending Rocket.Chat.
 
-### 5. Rocket.Chat Apps Engine
+### Summary of Impact
 
-*   **Impact:** Any Rocket.Chat App that registers an `IPreMessageSaved` or `IPostMessageSaved` hook would either fail to execute or receive incorrect data.
-*   **Details:** The Apps Engine provides a robust way for developers to extend Rocket.Chat. Apps can register their own listeners for message lifecycle events. The `afterSaveMessage` callback is the underlying mechanism that triggers these app-specific hooks.
-*   **Relevant Code:**
-    *   `app/apps/server/bridges/message.js`: This bridge handles the interaction between Apps and the core message system, including invoking app-defined hooks related to message saving.
+Changing the `afterSaveMessage` callback system would be a **major architectural shift** with significant implications. It would directly affect:
 
-### 6. Search & Indexing
+*   **User Experience:** Notifications, real-time updates, and message content display.
+*   **Developer Experience:** How custom features and integrations are built and maintained.
+*   **System Stability:** Potential for regressions, performance issues, and data inconsistencies if not handled with extreme care.
 
-*   **Impact:** If an external search solution (like Elasticsearch) is integrated and relies on `afterSaveMessage` to index new content, search results would become outdated or incomplete.
-*   **Details:** While not a core Rocket.Chat feature out-of-the-box, many deployments integrate external search. The most logical place to trigger indexing of a new message is immediately after it's saved.
-*   **Relevant Code:** This would typically be in a custom package or an integration package (e.g., `rocketchat-search` if it were a separate package).
-
-### 7. Auditing & Analytics
-
-*   **Impact:** Message audit logs would be incomplete, and message-related statistics (e.g., messages per day, active users) might not be updated correctly.
-*   **Details:** If an auditing system is in place to log every message, or if statistics are updated based on message activity, `afterSaveMessage` is the ideal point to trigger these updates.
-*   **Relevant Code:**
-    *   `app/audit/server/index.js` (if an audit log is enabled for messages).
-    *   `app/statistics/server/lib/statistics.js` (might update message counts).
-
-### Types of Changes and Their Consequences:
-
-*   **Removing/Disabling the Callback:** Catastrophic. Nothing listed above would work.
-*   **Changing the Callback Signature:** All existing registered callbacks would break, leading to runtime errors and silent failures across the system.
-*   **Modifying Execution Order:** If the order of registered callbacks is changed, it could lead to subtle bugs (e.g., notifications sent before message data is fully processed, or integrations receiving incomplete data).
-*   **Introducing Asynchronicity without proper handling:** If the callback system is made asynchronous without careful consideration of race conditions and data consistency, it could lead to messages appearing out of order, notifications being missed, or data corruption.
-*   **Performance Degradation:** If a new callback is added that performs a very slow operation, it would block the processing of all subsequent callbacks and delay the real-time delivery of messages, leading to a poor user experience.
-
-In summary, `afterSaveMessage` is a central nervous system component for Rocket.Chat's real-time capabilities. Any modification to it requires extreme caution and thorough testing across the entire application stack.
+Such a change would require a comprehensive migration strategy, extensive testing, and clear communication to the developer community.
 
 ## Metrics
 
 | Metric | Value |
 |--------|-------|
-| Tokens | 3,309 |
+| Tokens | 64,138 |
 | Model | gemini-2.5-flash |
 | Tools | NONE |

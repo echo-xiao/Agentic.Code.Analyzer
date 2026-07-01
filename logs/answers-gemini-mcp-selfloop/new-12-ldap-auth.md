@@ -2,57 +2,53 @@
 
 ## Gemini Answer
 
-LDAP authentication in Rocket.Chat follows a specific flow, starting with the `Meteor.loginWith*()` method and dispatching to registered login handlers.
+LDAP authentication in Rocket.Chat follows a structured flow, starting from the client-side login request and proceeding through several server-side components.
 
-Here's the detailed breakdown:
+Here's the call chain:
 
-**Call Chain:**
+`Meteor.loginWith*()` (Client-side) → `Accounts.registerLoginHandler('ldap', fn)` (Server-side, registered by `configureLDAP()`) → `LDAP.loginRequest(username, password)` (via `core-services` proxy) → `LDAPService.loginRequest()` → `LDAPManager.login()`
 
-1.  **Entry Point:** `Meteor.loginWith*()`
-2.  **Handler Registration:** `configureLDAP()` (located in `apps/meteor/server/configuration/ldap.ts`) registers a handler with `Accounts.registerLoginHandler('ldap', fn)`.
-3.  **Login Request:** When an LDAP login is initiated, the registered handler checks for an LDAP flag in the login request and calls `LDAP.loginRequest(username, password)` via a `core-services` proxy.
-4.  **Service Layer:** This call is handled by `LDAPService.loginRequest()` (located in `apps/meteor/server/services/ldap/service.ts`).
-5.  **Manager Layer:** `LDAPService.loginRequest()` then calls `LDAPManager.login(username, password)`. (The `LDAPManager` is likely located in `apps/meteor/server/lib/ldap/Manager.ts`).
-6.  **LDAP Operations:** Inside `LDAPManager.login()`:
-    *   An `LDAPConnection` is created.
-    *   `ldap.connect()` establishes a connection to the LDAP server.
-    *   `ldap.searchByUsername()` searches for the user.
-    *   `ldap.authenticate(dn, password)` authenticates the user against the LDAP server.
-    *   Group filters are checked.
-    *   The user is found or created in MongoDB.
-    *   The user's avatar is synced.
-    *   Finally, `{userId}` is returned.
-7.  **Fallback Mechanism:** If LDAP authentication fails and the `LDAP_Login_Fallback` setting is enabled, `Accounts._runLoginHandlers()` is called to attempt default password authentication.
-8.  **Login Validation:** A `beforeValidateLogin` callback prevents password logins for LDAP users unless the fallback is enabled.
+**Detailed Breakdown:**
 
-**Key Files:**
+1.  **Client-side Login:** The process begins when a user attempts to log in using `Meteor.loginWith*()` on the client.
+2.  **Login Handler Registration:** On the server, a function like `configureLDAP()` (likely found in `apps/meteor/server/configuration/ldap.ts`) registers a specific handler for 'ldap' logins using `Accounts.registerLoginHandler('ldap', fn)`. This handler is responsible for processing LDAP login requests.
+3.  **LDAP Login Request:** When an LDAP login is initiated, the registered handler dispatches the request, which eventually calls `LDAP.loginRequest(username, password)`. This call is proxied through `packages/core-services/src/index.ts`.
+4.  **LDAP Service:** The request then reaches `LDAPService.loginRequest()`, located in `apps/meteor/server/services/ldap/service.ts`. This service acts as an intermediary, preparing the request for the core LDAP management logic.
+5.  **LDAP Manager:** The central authentication logic resides within `LDAPManager.login()`, which can be found in either `apps/meteor/server/lib/ldap/Manager.ts` or `apps/meteor/ee/server/lib/ldap/Manager.ts` (for Enterprise Edition). This function performs the following steps:
+    *   Creates an `LDAPConnection` (from `apps/meteor/server/lib/ldap/Connection.ts`).
+    *   Connects to the LDAP server (`ldap.connect()`).
+    *   Searches for the user by username (`ldap.searchByUsername()`).
+    *   Authenticates the user with their distinguished name (DN) and password (`ldap.authenticate(dn, password)`).
+    *   Checks for group filters to ensure the user is authorized.
+    *   Finds or creates the user in the MongoDB database.
+    *   Syncs the user's avatar.
+    *   Returns the `userId` upon successful authentication.
+6.  **Fallback Mechanism:** If LDAP authentication fails and the `LDAP_Login_Fallback` setting is enabled, Rocket.Chat can fall back to other authentication methods, such as default password authentication, by calling `Accounts._runLoginHandlers()`.
+7.  **Login Validation:** A `beforeValidateLogin` callback is used to prevent password logins for LDAP users unless the fallback mechanism is explicitly enabled.
 
-*   `apps/meteor/server/configuration/ldap.ts`: Contains `configureLDAP()`, which registers the LDAP login handler.
-*   `apps/meteor/server/services/ldap/service.ts`: Contains `LDAPService.loginRequest()`, which acts as an intermediary to the `LDAPManager`.
-*   `apps/meteor/server/lib/ldap/Manager.ts`: Likely contains `LDAPManager.login()`, which orchestrates the core LDAP authentication logic.
-*   `apps/meteor/server/lib/ldap/Connection.ts`: Likely defines the `LDAPConnection` class used for connecting to the LDAP server.
+**Key Files Involved:**
 
-## Tool Calls (8 calls, 43,688 tokens)
+*   `apps/meteor/server/configuration/ldap.ts`: Registers the LDAP login handler.
+*   `packages/core-services/src/index.ts`: Provides the `LDAP` proxy for login requests.
+*   `apps/meteor/server/services/ldap/service.ts`: Contains `LDAPService.loginRequest()`.
+*   `apps/meteor/server/lib/ldap/Manager.ts` or `apps/meteor/ee/server/lib/ldap/Manager.ts`: Implements `LDAPManager.login()`, the core LDAP authentication logic.
+*   `apps/meteor/server/lib/ldap/Connection.ts`: Manages the connection to the LDAP server.
 
-**Step 1:** `search({"layer":"server","query":"LDAP"})` → 772 tokens
-**Step 2:** `graph({"query":"LDAPManager.login","file":"apps/meteor/server/lib/ldap/Manager.ts","layer":"server","direc)` → 14 tokens
-**Step 3:** `graph({"direction":"down","layer":"server","query":"LDAPService.loginRequest","file":"apps/meteor/server/s)` → 16 tokens
-**Step 4:** `graph({"query":"LDAPService","file":"apps/meteor/server/services/ldap/service.ts","direction":"down","laye)` → 240 tokens
-**Step 5:** `search({"layer":"server","query":"configureLDAP"})` → 460 tokens
-**Step 6:** `graph({"direction":"down","query":"configureLDAP","layer":"server","file":"apps/meteor/server/configuratio)` → 1973 tokens
-**Step 7:** `implement({"filename":"apps/meteor/server/services/ldap/service.ts","symbolName":"loginRequest"})` → 55 tokens
-**Step 8:** `implement({"filename":"apps/meteor/server/services/ldap/service.ts","symbolName":"LDAPService.loginRequest"})` → 84 tokens
+## Tool Calls (2 calls, 7,947 tokens)
 
-## Files Seen In Tool Results (33)
+**Step 1:** `search({"query":"LDAP","layer":"server"})` → 772 tokens
+**Step 2:** `graph({"file":"apps/meteor/server/lib/ldap/Manager.ts","direction":"down","query":"LDAPManager.login"})` → 14 tokens
+
+## Files Seen In Tool Results (25)
 
 - `packages/core-services/src/index.ts`
 - `apps/meteor/tests/end-to-end/api/LDAP.ts`
 - `apps/meteor/server/lib/ldap/Manager.ts`
 - `apps/meteor/ee/server/configuration/ldap.ts`
+- `apps/meteor/server/services/ldap/service.ts`
 - `apps/meteor/ee/server/lib/ldap/Manager.ts`
 - `apps/meteor/ee/server/sdk/index.ts`
 - `apps/meteor/server/lib/ldap/ldapKeyExists.ts`
-- `apps/meteor/server/services/ldap/service.ts`
 - `apps/meteor/client/views/admin/settings/groups/LDAPGroupPage.tsx`
 - `apps/meteor/server/lib/ldap/Connection.ts`
 - `apps/meteor/server/settings/ldap.ts`
@@ -70,11 +66,3 @@ Here's the detailed breakdown:
 - `apps/meteor/server/lib/ldap/operations/executeOperation.ts`
 - `apps/meteor/server/configuration/ldap.ts`
 - `apps/meteor/ee/server/settings/ldap.ts`
-- `apps/meteor/app/settings/server/CachedSettings.ts`
-- `apps/meteor/server/configuration/index.ts`
-- `packages/apps-engine/src/server/AppManager.ts`
-- `apps/meteor/app/api/server/api.ts`
-- `apps/meteor/app/mailer/server/api.ts`
-- `apps/meteor/app/file-upload/server/lib/FileUpload.ts`
-- `apps/meteor/app/lib/server/functions/checkUsernameAvailability.ts`
-- `apps/meteor/server/lib/callbacks/callbacksBase.ts`

@@ -2,86 +2,96 @@
 
 ## Gemini Answer
 
-To add a new service in Rocket.Chat, you generally follow these steps:
+To add a new service in Rocket.Chat, you need to create a new class that extends either `ServiceClassInternal` or `ServiceClass`.
 
-1.  **Define your Service Class**: Create a new class for your service that extends `ServiceClassInternal` (for services within the main Rocket.Chat monolith) or `ServiceClass` (for standalone microservices). An example of this can be seen in `apps/meteor/server/services/user/service.ts`, where `UserService` extends `ServiceClassInternal`.
+Here's a breakdown of the key components and their roles:
 
-2.  **Register the Service**: The service needs to be registered with the system's service broker. This is typically done by calling `Api.registerService()`.
+*   **`ServiceClass`** (defined in `packages/core-services/src/types/ServiceClass.ts`): This is the base class for all services. It provides fundamental functionalities like event handling (`onEvent`, `emit`), setting listeners (`onSettingChanged`), and lifecycle methods (`created`, `started`, `stopped`).
+*   **`ServiceClassInternal`** (defined in `packages/core-services/src/types/ServiceClass.ts`): This class extends `ServiceClass` and is used for internal services within the Rocket.Chat monolith. It sets the `internal` property to `true`. Most services in `apps/meteor/server/services` extend this class (e.g., `UserService` in `apps/meteor/server/services/user/service.ts`).
+*   **`LocalBroker`**: Services communicate with each other through a `LocalBroker` (as indicated by the "core-services Bus" pattern). Services do not directly import and call methods from other services. Instead, they use a proxy mechanism (`proxify('IServiceName')`) which then calls `api.call('namespace.method')`. The `LocalBroker` stores methods as `'serviceName.methodName'` and binds them to the respective `ServiceClass` methods.
 
-The call chain for service registration generally looks like this:
+**Call Chain for Service Implementation:**
 
-`YourServiceFile` (e.g., `ee/apps/queue-worker/src/service.ts`) → `Api.registerService` (in `packages/core-services/src/lib/Api.ts`) → `LocalBroker.createService` (in `packages/core-services/src/LocalBroker.ts`) → `LocalBroker.start` (in `packages/core-services/src/LocalBroker.ts`) → `LocalBroker.startService` (in `packages/core-services/src/LocalBroker.ts`).
+1.  **`ServiceClass`** (`packages/core-services/src/types/ServiceClass.ts`): Provides the core structure and methods for a service.
+2.  **`ServiceClassInternal`** (`packages/core-services/src/types/ServiceClass.ts`): Extends `ServiceClass` for internal services.
+3.  **`UserService`** (example: `apps/meteor/server/services/user/service.ts`): An example of a service that extends `ServiceClassInternal` and implements specific service logic (e.g., `ensureLoginTokensLimit`).
 
-Key files involved:
+**Steps to add a new service:**
 
-*   `packages/core-services/src/lib/Api.ts`: Contains the `Api` object, which includes the `registerService` method.
-*   `packages/core-services/src/LocalBroker.ts`: Manages the lifecycle of services, including `createService`, `start`, and `startService`.
-*   `apps/meteor/server/services/user/service.ts`: An example of a service implementation (`UserService`) extending `ServiceClassInternal`.
-*   `ee/apps/*/src/service.ts`: Examples of how individual services are defined and likely registered (e.g., `ee/apps/queue-worker/src/service.ts`).
+1.  **Create a new service file:** In `apps/meteor/server/services/`, create a new directory and a TypeScript file for your service (e.g., `apps/meteor/server/services/my-new-service/service.ts`).
+2.  **Define your service class:** Create a class that extends `ServiceClassInternal` (for internal services) or `ServiceClass` (for standalone services).
+    
+```typescript
+    import { ServiceClassInternal } from '@rocket.chat/core-services';
+    import type { IMyNewService } from './IMyNewService'; // Define your service interface
 
-## Tool Calls (8 calls, 43,471 tokens)
+    class MyNewService extends ServiceClassInternal implements IMyNewService {
+      protected name = 'my-new-service';
 
-**Step 1:** `search({"query":"add service","layer":"server"})` → 274 tokens
-**Step 2:** `search({"query":"service","layer":"packages"})` → 897 tokens
-**Step 3:** `graph({"direction":"up","query":"startService","file":"packages/core-services/src/LocalBroker.ts"})` → 954 tokens
-**Step 4:** `implement({"symbolName":"UserService","filename":"apps/meteor/server/services/user/service.ts"})` → 128 tokens
-**Step 5:** `implement({"filename":"apps/meteor/server/services/user/service.ts","symbolName":"service"})` → 182 tokens
-**Step 6:** `implement({"filename":"apps/meteor/server/services/meteor/service.ts","symbolName":"service"})` → 182 tokens
-**Step 7:** `implement({"filename":"ee/apps/queue-worker/src/service.ts","symbolName":"default"})` → 15 tokens
-**Step 8:** `search({"query":"Api.registerService"})` → 16 tokens
+      async myNewMethod(param1: string): Promise<string> {
+        // Implement your service logic here
+        return `Hello from MyNewService: ${param1}`;
+      }
+    }
+    ```
 
-## Files Seen In Tool Results (53)
+3.  **Define an interface for your service:** Create an interface (e.g., `IMyNewService.ts`) that defines the methods your service will expose. This is crucial for type safety and for the `proxify` mechanism.
+4.  **Register your service:** The service needs to be registered with the `LocalBroker` so it can be discovered and called by other services. This typically happens during the server startup. You can observe how existing services are registered in files like `apps/meteor/ee/server/startup/services.ts` (though the `services` symbol itself is defined in `packages/core-services/src/LocalBroker.ts`).
 
-- `apps/meteor/server/lib/oauth/addOAuthService.ts`
-- `apps/meteor/app/meteor-accounts-saml/server/lib/settings.ts`
-- `apps/meteor/app/lib/server/methods/addOAuthService.ts`
-- `apps/meteor/app/importer/server/classes/converters/UserConverter.ts`
-- `apps/meteor/app/meteor-accounts-saml/server/lib/ServiceProvider.ts`
-- `apps/meteor/server/services/room/hooks/BeforeFederationActions.ts`
-- `apps/meteor/app/livechat/server/lib/AnalyticsTyped.ts`
-- `packages/models/src/models/Users.ts`
-- `apps/meteor/app/lib/server/lib/notifyListener.ts`
-- `ee/apps/queue-worker/src/service.ts`
-- `ee/apps/presence-service/src/service.ts`
-- `ee/apps/omnichannel-transcript/src/service.ts`
-- `ee/apps/ddp-streamer/src/service.ts`
-- `ee/apps/authorization-service/src/service.ts`
-- `ee/apps/account-service/src/service.ts`
+By following these steps, you can integrate a new service into the Rocket.Chat architecture, leveraging the existing service bus for inter-service communication.
+
+## Tool Calls (8 calls, 71,291 tokens)
+
+**Step 1:** `search({"query":"service","layer":"server"})` → 798 tokens
+**Step 2:** `graph({"layer":"server","query":"service","direction":"down","file":"apps/meteor/server/services/meteor/se)` → 2900 tokens
+**Step 3:** `implement({"filename":"apps/meteor/ee/server/startup/services.ts","symbolName":"services"})` → 139 tokens
+**Step 4:** `implement({"filename":"apps/meteor/server/services/user/service.ts","symbolName":"UserService"})` → 128 tokens
+**Step 5:** `search({"layer":"server","query":"ServiceClassInternal"})` → 429 tokens
+**Step 6:** `implement({"filename":"packages/core-services/src/types/ServiceClass.ts","symbolName":"ServiceClassInternal"})` → 74 tokens
+**Step 7:** `search({"layer":"packages","query":"ServiceClass"})` → 267 tokens
+**Step 8:** `implement({"filename":"packages/core-services/src/types/ServiceClass.ts","symbolName":"ServiceClass"})` → 399 tokens
+
+## Files Seen In Tool Results (42)
+
 - `apps/meteor/server/services/meteor/service.ts`
-- `packages/core-services/src/lib/Api.ts`
-- `packages/core-typings/src/omnichannel/sms.ts`
-- `ee/packages/abac/src/index.ts`
-- `packages/media-signaling/src/lib/Call.ts`
-- `apps/meteor/client/lib/loginServices.ts`
 - `apps/meteor/server/services/user/service.ts`
-- `apps/meteor/server/services/omnichannel-integrations/service.ts`
+- `apps/meteor/ee/server/startup/services.ts`
 - `apps/meteor/server/services/room/service.ts`
 - `apps/meteor/server/services/push/service.ts`
-- `packages/media-signaling/src/definition/call/IClientMediaCall.ts`
+- `apps/meteor/server/services/omnichannel-integrations/service.ts`
+- `apps/meteor/client/lib/loginServices.ts`
+- `ee/packages/abac/src/index.ts`
+- `packages/core-typings/src/omnichannel/sms.ts`
+- `packages/media-signaling/src/lib/Call.ts`
+- `apps/meteor/ee/app/license/server/license.internalService.ts`
+- `apps/meteor/tests/unit/server/services/utils.ts`
+- `apps/meteor/tests/unit/server/services/user/service.tests.ts`
+- `apps/meteor/tests/unit/server/services/team/service.tests.ts`
+- `apps/meteor/tests/unit/server/services/room/hooks/FederationActions.tests.ts`
+- `apps/meteor/tests/unit/server/services/omnichannel-analytics/mockData.ts`
+- `apps/meteor/tests/unit/server/services/omnichannel-analytics/OverviewData.tests.ts`
+- `apps/meteor/tests/unit/server/services/omnichannel-analytics/ChartData.tests.ts`
+- `apps/meteor/tests/unit/server/services/omnichannel-analytics/AgentData.tests.ts`
+- `apps/meteor/tests/unit/server/services/omnichannel/queue.tests.ts`
+- `apps/meteor/tests/unit/server/services/nps/spec.tests.ts`
+- `apps/meteor/tests/unit/server/services/messages/hooks/BeforeSaveSpotify.tests.ts`
+- `apps/meteor/tests/unit/server/services/messages/hooks/BeforeSavePreventMention.tests.ts`
+- `apps/meteor/tests/unit/server/services/messages/hooks/BeforeSaveMarkdownParser.tests.ts`
+- `apps/meteor/tests/unit/server/services/messages/hooks/BeforeSaveJumpToMessage.tests.ts`
+- `apps/meteor/tests/unit/server/services/messages/hooks/BeforeSaveCheckMAC.tests.ts`
 - `packages/core-services/src/LocalBroker.ts`
-- `packages/web-ui-registration/src/LoginServicesButton.tsx`
-- `packages/web-ui-registration/src/LoginServices.tsx`
-- `packages/ui-contexts/src/hooks/useLoginWithService.ts`
-- `packages/ui-contexts/src/hooks/useLoginServices.ts`
-- `packages/models/src/models/LoginServiceConfiguration.ts`
-- `packages/model-typings/src/models/IOmnichannelServiceLevelAgreementsModel.ts`
-- `packages/model-typings/src/models/ILoginServiceConfigurationModel.ts`
-- `packages/media-signaling/src/lib/services/states.ts`
-- `packages/media-signaling/src/lib/services/webrtc/index.ts`
-- `packages/media-signaling/src/lib/services/webrtc/Processor.ts`
-- `packages/media-signaling/src/lib/services/webrtc/Negotiation.ts`
-- `packages/media-signaling/src/definition/services/negotiation.ts`
-- `packages/media-signaling/src/definition/services/index.ts`
-- `packages/media-signaling/src/definition/services/MediaStreamFactory.ts`
-- `packages/media-signaling/src/definition/services/IServiceProcessorFactoryList.ts`
-- `ee/packages/network-broker/src/NetworkBroker.ts`
+- `packages/core-services/src/lib/Api.ts`
+- `apps/meteor/tests/mocks/server/BrokerMocked.ts`
+- `packages/core-services/src/types/ServiceClass.ts`
+- `apps/meteor/server/services/apps-engine/service.ts`
+- `apps/meteor/server/services/nps/service.ts`
+- `apps/meteor/server/services/calendar/service.ts`
+- `apps/meteor/server/services/banner/service.ts`
 - `apps/meteor/ee/server/local-services/instance/service.ts`
-- `packages/ui-voip/src/hooks/useTonePlayer.ts`
-- `packages/tracing/src/index.ts`
-- `packages/instance-status/src/index.ts`
-- `packages/ddp-client/src/TimeoutControl.ts`
-- `packages/apps-engine/src/server/runtime/deno/LivenessManager.ts`
-- `ee/packages/federation-matrix/src/events/index.ts`
-- `ee/apps/ddp-streamer/src/Client.ts`
-- `ee/apps/ddp-streamer/src/DDPStreamer.ts`
-- `packages/cron/src/index.ts`
+- `apps/meteor/server/services/uikit-core-app/service.ts`
+- `apps/meteor/ee/server/local-services/ldap/service.ts`
+- `apps/meteor/ee/app/settings/server/settings.internalService.ts`
+- `apps/meteor/app/livechat/server/roomAccessValidator.internalService.ts`
+- `apps/meteor/server/services/video-conference/service.ts`
+- `packages/core-services/src/index.ts`
+- `packages/ddp-client/src/types/Account.ts`

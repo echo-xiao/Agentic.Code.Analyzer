@@ -2,40 +2,36 @@
 
 ## Gemini Answer
 
-Slash commands in Rocket.Chat are registered and managed through the `AppSlashCommandManager` in the `packages/apps-engine` package.
+Slash commands in Rocket.Chat are registered and executed through the Apps-Engine, which provides a bridge between Rocket.Chat's core and individual applications.
 
-Here's the call chain from registration to execution:
+Here's the breakdown of the process:
 
-**Registration:**
+**1. Registration:**
 
-1.  **`AppSlashCommandManager.constructor`** (packages/apps-engine/src/server/managers/AppSlashCommandManager.ts): The constructor of `AppSlashCommandManager` initializes the command bridge.
-2.  **`AppBridges.getCommandBridge`** (packages/apps-engine/src/server/bridges/AppBridges.ts): This abstract method is implemented to provide an instance of `CommandBridge`.
-3.  **`CommandBridge.doRegisterCommand`** (packages/apps-engine/src/server/bridges/CommandBridge.ts): This method is responsible for registering the slash command. It first checks for default permissions using `hasDefaultPermission` and then calls the abstract `registerCommand` method.
-4.  **`AppSlashCommandManager.registerCommand`** (packages/apps-engine/src/server/managers/AppSlashCommandManager.ts): This method handles the actual registration of the command, likely storing it in a collection for later retrieval.
+*   **`AppSlashCommandManager.ts`** (`packages/apps-engine/src/server/managers/AppSlashCommandManager.ts`): This manager is responsible for handling the registration of slash commands. When an app wants to register a command, it calls the `registerCommand` method on this manager.
+*   **`CommandBridge.ts`** (`packages/apps-engine/src/server/bridges/CommandBridge.ts`): The `AppSlashCommandManager` delegates the actual registration to the `CommandBridge`. Specifically, the `doRegisterCommand` method in `CommandBridge` is called. This method performs a permission check using `hasDefaultPermission` and then calls the abstract `registerCommand` method.
+*   The `CommandBridge.registerCommand` method is an abstract method, meaning its implementation is provided by a concrete bridge that connects to the Rocket.Chat core.
 
-**Execution (based on the `graph` output, the execution flow is not fully detailed but implies a lookup and then execution):**
+**2. Execution:**
 
-When a user types a slash command, the system would:
+The information gathered primarily focuses on the registration aspect. To fully understand execution, further investigation would be needed to trace how the registered commands are invoked and processed within the Rocket.Chat core. However, based on the `graph` output, we can infer that the `CommandBridge` plays a crucial role in mediating between the app's command definition and the core system's command handling.
 
-1.  Look up the command using methods like `has` or `findOne` (as seen in the `graph` output for `registerCommand` which also shows these methods being called).
-2.  Once the command is identified, its associated action would be triggered. The `graph` output for `registerCommand` also shows calls to `set` and `getNotifier`, suggesting that command registration might involve setting up listeners or notifications for when the command is invoked.
+**Call Chain (Registration):**
 
-**Key Files:**
+`AppSlashCommandManager.registerCommand` → `CommandBridge.doRegisterCommand` → `CommandBridge.registerCommand` (abstract)
 
-*   `packages/apps-engine/src/server/managers/AppSlashCommandManager.ts`: Manages the registration and lifecycle of slash commands.
-*   `packages/apps-engine/src/server/bridges/CommandBridge.ts`: Provides the interface for apps to interact with slash commands.
-*   `packages/apps-engine/src/server/bridges/AppBridges.ts`: An abstract class that provides access to various bridges, including the `CommandBridge`.
+The `CommandBridge` itself is accessed via `AppBridges.getCommandBridge` (`packages/apps-engine/src/server/bridges/AppBridges.ts`), which is then used by `AppAccessorManager` (`packages/apps-engine/src/server/managers/AppAccessorManager.ts`) to provide the bridge to apps.
 
-## Tool Calls (8 calls, 43,403 tokens)
+## Tool Calls (8 calls, 40,971 tokens)
 
 **Step 1:** `search({"query":"registerCommand"})` → 258 tokens
-**Step 2:** `graph({"query":"registerCommand","file":"packages/apps-engine/src/server/managers/AppSlashCommandManager.t)` → 1406 tokens
-**Step 3:** `implement({"symbolName":"doRegisterCommand","filename":"packages/apps-engine/src/server/bridges/CommandBridge.)` → 62 tokens
-**Step 4:** `implement({"symbolName":"CommandBridge","filename":"packages/apps-engine/src/server/bridges/CommandBridge.ts"})` → 469 tokens
-**Step 5:** `implement({"filename":"packages/apps-engine/src/server/bridges/CommandBridge.ts","symbolName":"CommandBridge.d)` → 104 tokens
-**Step 6:** `graph({"layer":"server","query":"CommandBridge","direction":"up"})` → 77 tokens
+**Step 2:** `graph({"query":"registerCommand","layer":"server","direction":"down","file":"packages/apps-engine/src/serv)` → 1364 tokens
+**Step 3:** `implement({"filename":"packages/apps-engine/src/server/bridges/CommandBridge.ts","symbolName":"doRegisterComma)` → 62 tokens
+**Step 4:** `implement({"filename":"packages/apps-engine/src/server/bridges/CommandBridge.ts","symbolName":"CommandBridge.d)` → 104 tokens
+**Step 5:** `implement({"symbolName":"CommandBridge.registerCommand","filename":"packages/apps-engine/src/server/bridges/Co)` → 139 tokens
+**Step 6:** `graph({"query":"CommandBridge","layer":"server","direction":"up","mode":"impact"})` → 99 tokens
 **Step 7:** `implement({"filename":"packages/apps-engine/src/server/bridges/AppBridges.ts","symbolName":"AppBridges.getComm)` → 69 tokens
-**Step 8:** `graph({"layer":"server","direction":"up","query":"AppBridges"})` → 199 tokens
+**Step 8:** `graph({"query":"AppBridges","layer":"server","direction":"up","mode":"impact"})` → 204 tokens
 
 ## Files Seen In Tool Results (13)
 

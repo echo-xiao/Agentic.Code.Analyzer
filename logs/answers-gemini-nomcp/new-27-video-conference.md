@@ -2,95 +2,74 @@
 
 ## Baseline Answer (no tools)
 
-Rocket.Chat's video conferencing system works primarily by **integrating with external WebRTC-based video conferencing providers**, rather than implementing its own full WebRTC stack from scratch. The most deeply integrated and commonly used provider is **Jitsi Meet**.
+Rocket.Chat's video conferencing system primarily leverages **Jitsi Meet**, an open-source, secure, and scalable video conferencing solution. Rocket.Chat does not implement its own WebRTC stack from scratch but rather integrates with Jitsi Meet to provide this functionality.
 
 Here's a breakdown of how it works:
 
-### 1. Core Principle: External Provider Integration
+### 1. Core Technology: Jitsi Meet
 
-Rocket.Chat acts as a **coordinator and UI wrapper** for external video conferencing services. When you initiate a video call in Rocket.Chat, it doesn't start a WebRTC session directly within its own server. Instead, it generates a unique link to a conference room on a configured external service and then either opens that link in a new tab/window or embeds it within an `<iframe>` in the Rocket.Chat UI.
+*   **WebRTC-based**: Jitsi Meet is built on WebRTC, allowing real-time communication directly in the browser without plugins.
+*   **Open Source**: Its open-source nature aligns well with Rocket.Chat's philosophy, allowing for self-hosting and customization.
+*   **Scalable**: Jitsi can be scaled to support many concurrent users and conferences.
 
-### 2. Primary Integration: Jitsi Meet
+### 2. Integration Mechanism
 
-Jitsi Meet is the default and most robustly integrated video conferencing solution in Rocket.Chat.
+When a user initiates a video call in Rocket.Chat:
 
-**How Jitsi Meet Integration Works:**
+1.  **URL Generation**: Rocket.Chat generates a unique Jitsi meeting URL. This URL typically includes parameters for the room name, and potentially user display name and avatar, which Jitsi uses to pre-configure the meeting.
+2.  **Embedding/Opening**:
+    *   By default, Rocket.Chat embeds the Jitsi meeting within an `<iframe>` directly into the Rocket.Chat UI (e.g., in a dedicated video conference view or a modal).
+    *   Alternatively, administrators can configure Rocket.Chat to open the Jitsi meeting in a new browser tab or window.
+3.  **Parameter Passing**: Rocket.Chat passes user context (like the user's display name and avatar) to Jitsi. This ensures that participants see familiar names and images within the Jitsi interface.
+4.  **Authentication (Optional)**: For self-hosted Jitsi instances, Rocket.Chat can be configured to use JWT (JSON Web Token) authentication. In this scenario, Rocket.Chat's server generates a JWT token, which is then passed to Jitsi to authenticate users and enforce permissions (e.g., who can start a meeting, who can moderate).
 
-1.  **Configuration:**
-    *   Administrators configure Jitsi Meet settings in `Admin -> Workspace -> Settings -> Video Conference`.
-    *   Key settings include:
-        *   `Video_Conference_Provider`: Set to `Jitsi`.
-        *   `Jitsi_Domain`: The domain of your Jitsi Meet instance (e.g., `meet.jit.si` for the public service, or your self-hosted domain).
-        *   `Jitsi_URL_Room_Prefix`: A prefix for room names (e.g., `RocketChat`).
-        *   `Jitsi_Enabled`: To enable/disable the feature.
-        *   `Jitsi_Enable_Embedded`: To control whether Jitsi is embedded in an `<iframe>` or opens in a new tab.
+### 3. Key Configuration Settings (Admin Panel)
 
-    *   **Relevant Files:**
-        *   `app/jitsi/server/settings.js`: Registers Jitsi-specific settings.
-        *   `app/settings/server/functions/settings.js`: General settings registration.
+Rocket.Chat administrators can configure the Jitsi integration via the `Administration > Settings > Video Conference` section:
 
-2.  **Initiating a Call:**
-    *   A user clicks the "Call" button (often a video camera icon) in the header of a channel or direct message.
-    *   **Relevant Files:**
-        *   `client/views/room/Header/Omnichannel/CallButtons.tsx` (or similar for general room header buttons).
-        *   `client/components/VideoConference/VideoConferenceProvider.tsx`: Provides context for managing video conference state.
+*   **`Jitsi_Enabled`**: Enables or disables the Jitsi integration.
+*   **`Jitsi_Domain`**: The URL of your Jitsi Meet instance (e.g., `meet.jit.si` or your self-hosted domain).
+*   **`Jitsi_SSL`**: Whether to use SSL for the Jitsi connection.
+*   **`Jitsi_Open_New_Window`**: If enabled, Jitsi calls will open in a new browser tab instead of being embedded in the Rocket.Chat UI.
+*   **`Jitsi_Enable_Bridge_Mode`**: Allows for a more direct peer-to-peer connection when possible, reducing server load.
+*   **`Jitsi_Application_ID` / `Jitsi_Application_Secret`**: Used for JWT authentication with a self-hosted Jitsi instance.
+*   **`Jitsi_URL_Room_Prefix`**: A prefix added to the room name when generating the Jitsi URL.
 
-3.  **Server-Side Link Generation:**
-    *   When the "Call" button is clicked, the client-side UI triggers a server method (e.g., `createVideoConference` or `startVideoConference`).
-    *   The Rocket.Chat server, based on the configured `Jitsi_Domain` and `Jitsi_URL_Room_Prefix`, generates a unique Jitsi Meet room URL. This URL typically looks like `https://[Jitsi_Domain]/[Jitsi_URL_Room_Prefix][RoomId]`. The `RoomId` is often derived from the Rocket.Chat room's ID or a unique identifier.
-    *   **Relevant Files:**
-        *   `app/jitsi/server/functions/createJitsiMeetUrl.js`: Contains the logic for constructing the Jitsi URL.
-        *   `app/videoconference/server/methods/startVideoConference.js`: The server method that orchestrates starting a conference, calling the provider-specific URL generation.
-        *   `app/videoconference/server/lib/VideoConference.js`: Core server-side logic for video conferencing.
+### 4. User Experience
 
-4.  **Client-Side Rendering:**
-    *   The generated Jitsi Meet URL is sent back to the Rocket.Chat client.
-    *   If `Jitsi_Enable_Embedded` is true, the client renders an `<iframe>` element within the Rocket.Chat UI, pointing its `src` attribute to the Jitsi Meet URL.
-    *   If `Jitsi_Enable_Embedded` is false, a new browser tab or window is opened with the Jitsi Meet URL.
-    *   **Relevant Files:**
-        *   `client/components/VideoConference/VideoConference.tsx`: The main component responsible for rendering the video conference UI (e.g., the `<iframe>`).
-        *   `client/components/VideoConference/VideoConferenceWrapper.tsx`: Wraps the conference component.
+*   **Starting a Call**: Users can initiate a video call directly from a channel or direct message conversation by clicking the "Video Call" button (often represented by a camera icon) in the message input area or the room header.
+*   **Joining a Call**: Other participants in the conversation will see a notification or a button to join the ongoing call.
+*   **In-Call Features**: Once in the Jitsi meeting, users have access to all standard Jitsi features, including:
+    *   Video and audio controls (mute, camera on/off)
+    *   Screen sharing
+    *   Text chat within the Jitsi interface
+    *   Participant list
+    *   Raise hand
+    *   Background blur/virtual backgrounds (if supported by Jitsi version)
 
-5.  **Jitsi Meet Handles the WebRTC:**
-    *   Once the Jitsi Meet URL is loaded (either in the iframe or new tab), the Jitsi Meet application takes over.
-    *   Jitsi Meet (which consists of Jitsi Meet web app, Jitsi Videobridge for media routing, and Jitsi Conference Focus for signaling) handles all the WebRTC complexities:
-        *   **Signaling:** Establishing peer connections between participants.
-        *   **Media Streaming:** Capturing audio/video from user devices and sending it to other participants (via Jitsi Videobridge).
-        *   **UI:** Providing the in-call controls (mute, video on/off, screen sharing, chat, etc.).
+### 5. Relevant Code Paths
 
-6.  **Rocket.Chat UI Updates:**
-    *   Rocket.Chat might display a "Call in progress" banner or update the room header to indicate an active video conference.
-    *   **Relevant Files:**
-        *   `client/views/room/Header/Header.tsx`: Manages the room header display.
+The core logic for Jitsi integration resides primarily in the `app/videobridge` package:
 
-### 3. Other Video Conference Providers
+*   **Client-side Call Initiation & Embedding**:
+    *   `app/videobridge/client/lib/callManager.js`: Manages the state and initiation of video calls.
+    *   `app/videobridge/client/views/videoConference/videoConference.html`: The template responsible for rendering the Jitsi iframe or managing the new window.
+    *   `app/videobridge/client/views/videoConference/videoConference.js`: The client-side logic that handles embedding the Jitsi iframe, passing parameters, and managing its lifecycle.
+    *   `app/ui-utils/client/lib/call.js`: Contains utility functions related to initiating calls.
+*   **Server-side (for JWT)**:
+    *   `app/videobridge/server/methods/generateJitsiToken.js`: If JWT authentication is configured, this server method is responsible for generating the secure token that Rocket.Chat passes to Jitsi.
+*   **Settings**:
+    *   The settings themselves are stored in the `rocketchat_settings` MongoDB collection.
+    *   The UI for these settings is found in `app/ui-sidenav/client/admin/adminFlex.html` and related JavaScript files for the administration panel.
 
-Rocket.Chat also supports integration with other providers, often through dedicated apps or similar configuration mechanisms:
+### 6. Extensibility
 
-*   **Google Meet:** Can be integrated, often by simply providing a Google Meet link.
-*   **BigBlueButton:** Popular for educational and webinar use cases, offering more advanced features like whiteboards and polls.
-*   **Pexip, Whereby, etc.:** Other providers can be integrated, sometimes requiring custom development or specific Rocket.Chat Apps.
-
-For these, the general flow remains similar: Rocket.Chat generates or uses a link to the external service, and that service handles the actual video conferencing.
-
-### Summary of the Flow:
-
-1.  **User Action:** User clicks "Call" button in a Rocket.Chat room.
-2.  **Client Request:** Rocket.Chat client sends a request to the Rocket.Chat server to start a video conference.
-3.  **Server Logic:** Rocket.Chat server identifies the configured video conference provider (e.g., Jitsi Meet).
-4.  **URL Generation:** The server generates a unique conference room URL for the chosen provider.
-5.  **Client Rendering:** The server sends this URL back to the client. The client then either:
-    *   Opens a new browser tab/window with the URL.
-    *   Embeds the URL in an `<iframe>` within the Rocket.Chat UI.
-6.  **External Service Takes Over:** The external video conferencing service (e.g., Jitsi Meet) loads and handles all WebRTC signaling, media streaming, and in-call UI.
-7.  **Rocket.Chat UI:** Rocket.Chat updates its own UI to reflect the ongoing call.
-
-This architecture allows Rocket.Chat to leverage the robust and specialized WebRTC implementations of dedicated video conferencing platforms while providing a seamless user experience within its own application.
+While Jitsi Meet is the default and most deeply integrated solution, Rocket.Chat's architecture allows for other video conference providers. For instance, it also supports BigBlueButton, though its integration is typically for more structured webinar/classroom scenarios rather than quick ad-hoc video calls. The `app/videobridge` package is designed with some level of abstraction to potentially support different providers, even if Jitsi is the primary focus.
 
 ## Metrics
 
 | Metric | Value |
 |--------|-------|
-| Tokens | 3,262 |
+| Tokens | 2,329 |
 | Model | gemini-2.5-flash |
 | Tools | NONE |

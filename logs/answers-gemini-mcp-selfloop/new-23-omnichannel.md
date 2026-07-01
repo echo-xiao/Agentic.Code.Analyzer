@@ -28,16 +28,16 @@ The Omnichannel queue processes and closes a livechat conversation through the f
 **Call Chain for Closing:**
 `apps/meteor/app/livechat/server/lib/closeRoom.ts` (`closeRoom`) → MongoDB Transaction → `afterRoomClosed()`
 
-## Tool Calls (8 calls, 26,801 tokens)
+## Tool Calls (8 calls, 26,687 tokens)
 
 **Step 1:** `search({"query":"Omnichannel queue","layer":"server"})` → 347 tokens
-**Step 2:** `graph({"direction":"down","layer":"server","file":"apps/meteor/server/services/omnichannel/queue.ts","quer)` → 224 tokens
-**Step 3:** `search({"layer":"server","query":"QueueManager.requestRoom"})` → 266 tokens
-**Step 4:** `search({"query":"RoutingManager.delegateInquiry","layer":"server"})` → 352 tokens
-**Step 5:** `search({"layer":"server","query":"closeRoom"})` → 527 tokens
-**Step 6:** `graph({"layer":"server","file":"apps/meteor/app/livechat/server/lib/rooms.ts","query":"QueueManager.reques)` → 16 tokens
+**Step 2:** `graph({"direction":"down","file":"apps/meteor/server/services/omnichannel/queue.ts","layer":"server","quer)` → 224 tokens
+**Step 3:** `search({"query":"QueueManager.requestRoom","layer":"server"})` → 266 tokens
+**Step 4:** `search({"layer":"server","query":"RoutingManager.delegateInquiry"})` → 352 tokens
+**Step 5:** `search({"query":"closeRoom","layer":"server"})` → 527 tokens
+**Step 6:** `graph({"file":"apps/meteor/app/livechat/server/lib/rooms.ts","layer":"server","direction":"down","query":")` → 16 tokens
 **Step 7:** `search({"layer":"server","query":"QueueManager"})` → 273 tokens
-**Step 8:** `graph({"direction":"down","file":"apps/meteor/app/livechat/server/lib/QueueManager.ts","layer":"server","q)` → 16 tokens
+**Step 8:** `graph({"file":"apps/meteor/app/livechat/server/lib/QueueManager.ts","query":"QueueManager.requestRoom","la)` → 16 tokens
 
 ## Files Seen In Tool Results (25)
 
