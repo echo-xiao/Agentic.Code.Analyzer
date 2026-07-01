@@ -7,6 +7,19 @@ import { GLOBAL_INDEX } from '../indexer/state.js';
 import type { EdgeType } from '../indexer/state.js';
 import { TARGET_SRC_DIR } from '../config.js';
 
+// Leave-one-out channel ablation (causal attribution). Set e.g. ABLATE_CHANNELS=cluster to disable
+// the 🧭 section in search; combine with commas. Off by default → no behaviour change.
+const ABLATE = new Set((process.env.ABLATE_CHANNELS ?? '').toLowerCase().split(',').map(s => s.trim()).filter(Boolean));
+// ONLY_CHANNELS=exact → keep ONLY exact, disable the rest (add-one / marginal-from-empty design).
+// Takes precedence over ABLATE_CHANNELS. Empty ONLY_CHANNELS (e.g. "none") = all channels off.
+const ONLY_RAW = process.env.ONLY_CHANNELS;
+const ONLY = ONLY_RAW !== undefined
+    ? new Set(ONLY_RAW.toLowerCase().split(',').map(s => s.trim()).filter(s => s && s !== 'none'))
+    : null;
+const chanOn = (c: string): boolean => ONLY ? ONLY.has(c) : !ABLATE.has(c);
+if (ONLY) console.error(`[ONLY] channels enabled: ${[...ONLY].join(', ') || '(none — all off)'}`);
+else if (ABLATE.size > 0) console.error(`[ABLATE] channels disabled: ${[...ABLATE].join(', ')}`);
+
 const SESSION = {
     startTime: Date.now(),
     calls: [] as Array<{ tool: string; symbol?: string; tokensReturned: number; ts: number }>,
@@ -193,7 +206,7 @@ export async function handleToolCall(name: string, args: any): Promise<any> {
             const q = query.toLowerCase();
 
             const exactMatch = GLOBAL_INDEX.symbols.get(query);
-            if (exactMatch && exactMatch.size > 0) {
+            if (chanOn('exact') && exactMatch && exactMatch.size > 0) {
                 let paths = Array.from(exactMatch);
                 if (layer) paths = filterByLayer(paths, layer);
                 if (paths.length > 0) {
@@ -205,7 +218,7 @@ export async function handleToolCall(name: string, args: any): Promise<any> {
             // Graph-aware subsystem cluster: seed lexically, expand along the call graph, rank the
             // neighbourhood. This is what lets ONE query surface the whole subsystem (the other core
             // files are graph neighbours of the entry symbol, not name-alikes of the query).
-            const cluster = CodeRetriever.search(query, 12, layer);
+            const cluster = chanOn('cluster') ? CodeRetriever.search(query, 12, layer) : [];
             const clusterLines: string[] = [];
             let crank = 1;
             for (const r of cluster) {
@@ -221,7 +234,7 @@ export async function handleToolCall(name: string, args: any): Promise<any> {
                 sections.push(`🧭 Subsystem (ranked by graph proximity to \`${query}\`):\n${clusterLines.join('\n')}`);
             }
 
-            if (sections.length === 0) {
+            if (sections.length === 0 && chanOn('prefix')) {
                 const prefixHits = Array.from(GLOBAL_INDEX.symbols.keys())
                     .filter(k => k.toLowerCase().startsWith(q))
                     .slice(0, 5);
@@ -235,7 +248,7 @@ export async function handleToolCall(name: string, args: any): Promise<any> {
                 }
             }
 
-            if (sections.length === 0) {
+            if (sections.length === 0 && chanOn('score')) {
                 const ranked = CodeRetriever.search(query, 20, layer);
                 if (ranked.length > 0) {
                     const top = ranked.filter(r => r.finalScore >= 0.3).slice(0, 5);
@@ -252,7 +265,7 @@ export async function handleToolCall(name: string, args: any): Promise<any> {
                 .filter(f => f.toLowerCase().includes(q) && !seenPaths.has(f));
             if (layer) pathMatches = filterByLayer(pathMatches, layer);
             pathMatches = pathMatches.slice(0, 15);
-            if (pathMatches.length > 0) {
+            if (chanOn('path') && pathMatches.length > 0) {
                 sections.push(`📁 Files:\n${pathMatches.join('\n')}`);
             }
 
@@ -260,7 +273,7 @@ export async function handleToolCall(name: string, args: any): Promise<any> {
             // index matched nothing — so a wrong entry-symbol guess still surfaces a file instead of
             // returning "no results" and letting the agent give up (federation / apps-engine).
             const isCallPattern = /[.'"(\s]/.test(query);
-            if (isCallPattern || sections.length === 0) {
+            if ((isCallPattern || sections.length === 0) && chanOn('grep')) {
                 const grepArgs = [
                     '-r', '-n', '-F',
                     '--include=*.ts', '--include=*.tsx',
