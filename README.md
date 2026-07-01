@@ -93,3 +93,21 @@ npm run report      # unified report → logs/report.md
   free-tier Gemini are noisy; judge trends.
 - Failure triage (report.md): G1 → engine (seeds/expand/down/up) · route/G2 → plan/intent or
   architecture.json (an `--oracle` rerun separates them) · G3 → gen prompt / plan strategy.
+- `logs/reports/tools-BASELINE-pre-refactor.md` is a **frozen** anchor (24/34, captured before the
+  control/data refactor). `tools.md` is regenerated on every `eval:tools` run; diff it against the
+  frozen baseline to catch regressions in untouched testcases.
+
+## Roadmap
+
+The control/data refactor was **phase 1** — structural cleanup that froze the ranking formula, so
+it moved zero accuracy by design (tools 24/34, bit-identical to the baseline). The seams it created
+(`seeds.ts` / `expand.ts` / `intent.ts` as standalone units) are what make phase 2 tractable.
+
+**Phase 2 — lift seed recall on concept queries.** The dominant failure bucket is retrieval-recall
+= 0: core files never surfaced. In eval-3 that's 6 questions — `claude-07-api-endpoints`,
+`new-25-search`, `tour-06-endpoint`, `new-17-slash-commands`, `tour-08-db-model-use`,
+`new-10-apps-engine` — all concept-shaped queries (“API endpoints”, “slash commands”) where
+`lexicalSeeds` (fuzzysort over symbol names) matches nothing and only grep saves it. The lever is a
+concept → symbol/edge seed map (feed `architecture.json`-style anchors into `seeds.ts`) so these get
+a structured entry when the name-fuzzy seed misses. Gate stays `eval:tools` — the other 28 must not
+regress.
