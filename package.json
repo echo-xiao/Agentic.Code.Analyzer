@@ -8,15 +8,12 @@
     "prewarm": "NODE_OPTIONS=\"--max-old-space-size=8192\" npx tsx src/server/index.ts --prewarm",
     "start": "NODE_OPTIONS=\"--max-old-space-size=8192\" npx tsx src/server/index.ts",
     "inspect": "npx @modelcontextprotocol/inspector npx tsx src/server/index.ts",
-    "gen:nomcp": "npx tsx src/eval/gen-gemini-nomcp.ts",
-    "gen:mcp": "NODE_OPTIONS=\"--max-old-space-size=8192\" npx tsx src/eval/gen-gemini-mcp-selfloop.ts",
-    "eval:1": "NODE_OPTIONS=\"--max-old-space-size=8192\" npx tsx src/eval/eval-1-nomcp-vs-mcp.ts",
-    "eval:2": "NODE_OPTIONS=\"--max-old-space-size=8192\" npx tsx src/eval/eval-2-mcp-tools.ts",
-    "eval:3": "npx tsx src/eval/eval-3-mcp-vs-claude.ts",
-    "eval:4": "npx tsx src/eval/eval-4-agy.ts",
-    "refresh": "npm run prewarm && npm run gen:nomcp && npm run gen:mcp && npm run eval:1 && npm run eval:2 && npm run eval:3 && npx tsx src/eval/report.ts",
-    "agy": "agy --model gemini-2.5-flash",
-    "agy:pro": "agy --model gemini-2.5-pro"
+    "gen:nomcp": "npx tsx src/eval/gen.ts --mode=nomcp",
+    "gen:mcp": "NODE_OPTIONS=\"--max-old-space-size=8192\" npx tsx src/eval/gen.ts --mode=mcp",
+    "eval:tools": "NODE_OPTIONS=\"--max-old-space-size=8192\" npx tsx src/eval/tools.ts",
+    "eval:token": "NODE_OPTIONS=\"--max-old-space-size=8192\" npx tsx src/eval/token.ts",
+    "report": "npx tsx src/eval/report.ts",
+    "refresh": "npm run prewarm && npm run gen:nomcp && npm run gen:mcp && npm run eval:tools && npm run eval:token && npm run report"
   },
   "dependencies": {
     "@modelcontextprotocol/sdk": "^1.27.1",

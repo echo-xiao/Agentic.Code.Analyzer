@@ -1,10 +1,10 @@
-# Layer 1 — Tool Eval Report
+# tools — deterministic tool-capability eval
 
-7/1/2026, 3:25:36 PM
+7/1/2026, 3:43:17 PM
 
 ## Summary: 24/34 passed
 
-> Gate = **sanity** (substring recall, near-100% by construction — a floor, not a score) 
+> Gate = **sanity** (substring recall over search+expand, near-100% by construction — a floor, not a score) 
 > **AND retrieval** (a single realistic query surfaces ≥30% of core files in top-10) 
 > **AND order** (ordered Qs only: graph(down) recovers ≥60% of the chain in causal order).
 
@@ -17,8 +17,8 @@
 
 | Metric | Average |
 |--------|---------|
-| File recall (search, substring) | 99.0% |
-| Symbol recall (search, substring) | 100.0% |
+| File recall (search+expand, substring) | 99.0% |
+| Symbol recall (search+expand, substring) | 100.0% |
 | Graph reachability | 100.0% |
 | **Precision@5** (primary query) | 27.6% |
 | **Recall@5 / @10 / @20** | 42.8% / 50.3% / 58.4% |
@@ -64,7 +64,7 @@
 | 32 | new-23-omnichannel | omnichannel | 6/6 | 4/4 | 3/3 | 33% | ✅ | PASS |
 | 33 | claude-06-livechat-routing | livechat | 6/6 | 6/6 | 6/6 | 0% | ❌ | **FAIL** |
 | 34 | new-26-team | team | 6/6 | 2/2 | - | 100% | ✅ | PASS |
-## Retrieval Ranking (primary query → search top-50)
+## Retrieval Ranking (primary query → expand top-50)
 
 | # | ID | Query | P@5 | R@5 | R@10 | R@20 | MRR | Diagnosis |
 |---|---|---|----:|----:|----:|----:|----:|---|
@@ -160,14 +160,14 @@
 
 **Q:** How are new endpoints registered in the REST API in Rocket.Chat?
 
-**Missed files (search):**
+**Missed files (search+expand):**
 - `apps/meteor/app/api/server/definition.ts`
 
 ### tour-06-endpoint — api
 
 **Q:** How do you create a new REST API endpoint in Rocket.Chat?
 
-**Missed files (search):**
+**Missed files (search+expand):**
 - `apps/meteor/app/api/server/middlewares/permissions.ts`
 
 ### new-17-slash-commands — slash commands

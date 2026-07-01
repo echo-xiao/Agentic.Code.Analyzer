@@ -1,10 +1,20 @@
 #!/usr/bin/env npx tsx
+/**
+ * tools — deterministic tool-capability eval (no API, seconds). The capability CEILING and the
+ * regression gate: R@k ranking quality, graph reachability, chain order (LCS).
+ *
+ * Metric definitions are FROZEN — they match the pre-refactor eval-2 exactly. The only change at
+ * the refactor was WHERE the ranked neighborhood lives: it moved from search's 🧭 section into
+ * graph(move=expand), so the seed-surface measurement pools search + graph(expand) text — the same
+ * capability measured at the new tool boundary.
+ */
 import * as fs from 'fs';
 import * as path from 'path';
 import { fileURLToPath } from 'url';
 import { ensureIndex } from '../indexer/index.js';
 import { handleToolCall } from '../server/registry.js';
-import { CodeRetriever } from '../server/retriever.js';
+import { lexicalSeeds } from '../server/engine/seeds.js';
+import { expandNeighborhood } from '../server/engine/expand.js';
 import { GLOBAL_INDEX } from '../indexer/state.js';
 import { loadTestcases, type TestCase } from './utils/load-testcases.js';
 
@@ -15,7 +25,7 @@ const __dirname = path.dirname(fileURLToPath(import.meta.url));
 // order is a real failure for these question types, so it counts toward pass — not report-only.
 const ORDER_GATE = 0.6;
 
-// Track A — ranking quality of the search tool (precision / recall@k / MRR).
+// Track A — ranking quality of the retrieval engine (precision / recall@k / MRR).
 interface RetrievalMetrics {
     primaryQuery: string;
     rankedDepth: number;
@@ -86,7 +96,7 @@ function firstSymbolIndex(text: string, symbol: string): number {
     return m ? m.index : -1;
 }
 
-// Run the *primary* search query and measure how well it ranks the core GT files.
+// Run the *primary* query through the ranking engine and measure how well it ranks the core GT files.
 function computeRetrievalMetrics(tc: TestCase): RetrievalMetrics {
     const core = (tc.core && tc.core.length ? tc.core : tc.groundTruthFiles) ?? [];
     const supporting = tc.supporting ?? [];
@@ -103,7 +113,8 @@ function computeRetrievalMetrics(tc: TestCase): RetrievalMetrics {
     };
     if (!primaryQuery || core.length === 0) return empty;
 
-    const results = CodeRetriever.search(primaryQuery, 50);
+    // Same call the old CodeRetriever.search(query, 50) made: seeds → expand(maxHop 2) → rank.
+    const results = expandNeighborhood(lexicalSeeds(primaryQuery), { maxHop: 2, limit: 50 });
     const rankedFiles: string[] = [];
     const seen = new Set<string>();
     for (const r of results) {
@@ -171,11 +182,15 @@ async function runTestCase(tc: TestCase): Promise<TestResult> {
     const allSearchText: string[] = [];
     const searched = new Set<string>();
 
+    // Seed surface = search (exact + grep) POOLED WITH graph(expand) — the ranked neighborhood
+    // that pre-refactor lived inside search itself.
     const doSearch = async (query: string) => {
         if (!query || searched.has(query)) return;
         searched.add(query);
         const result = await handleToolCall('search', { query });
         allSearchText.push(extractText(result));
+        const expanded = await handleToolCall('graph', { query, move: 'expand', depth: 2 });
+        allSearchText.push(extractText(expanded));
     };
 
     for (const sym of (tc.keySymbols ?? [])) {
@@ -225,14 +240,14 @@ async function runTestCase(tc: TestCase): Promise<TestResult> {
         const downText: string[] = [];   // forward traversals only — used for chain-order scoring
         const graphed = new Set<string>();
 
-        const doGraph = async (sym: string, dir: 'up' | 'down', depth = 5) => {
-            const key = `${sym}:${dir}`;
+        const doGraph = async (sym: string, move: 'up' | 'down', depth = 5) => {
+            const key = `${sym}:${move}`;
             if (graphed.has(key)) return;
             graphed.add(key);
-            const res = await handleToolCall('graph', { query: sym, direction: dir, depth });
+            const res = await handleToolCall('graph', { query: sym, move, depth });
             const txt = extractText(res);
             allGraphText.push(txt);
-            if (dir === 'down') downText.push(txt);
+            if (move === 'down') downText.push(txt);
         };
 
         const entrySymbol = tc.groundTruthPath[0].symbol;
@@ -271,7 +286,7 @@ async function runTestCase(tc: TestCase): Promise<TestResult> {
             rate: total > 0 ? graphFound.length / total : 1,
         };
 
-        // Chain order (LCS) — only for questions flagged `ordered`. Partial credit, report-only.
+        // Chain order (LCS) — only for questions flagged `ordered`. Partial credit.
         if (tc.ordered) {
             const expectedChain = tc.groundTruthPath.map(s => s.symbol).filter(Boolean);
             const orderSrc = downText.join('\n') || combinedGraph;
@@ -343,10 +358,10 @@ function formatReport(results: TestResult[]): string {
     const orderedResults = results.filter(r => r.order.applicable);
     const orderPassed = orderedResults.filter(r => r.orderPass).length;
 
-    lines.push(`# Layer 1 — Tool Eval Report`);
+    lines.push(`# tools — deterministic tool-capability eval`);
     lines.push(`\n${new Date().toLocaleString('en-US')}\n`);
     lines.push(`## Summary: ${passed}/${total} passed\n`);
-    lines.push(`> Gate = **sanity** (substring recall, near-100% by construction — a floor, not a score) `);
+    lines.push(`> Gate = **sanity** (substring recall over search+expand, near-100% by construction — a floor, not a score) `);
     lines.push(`> **AND retrieval** (a single realistic query surfaces ≥30% of core files in top-10) `);
     lines.push(`> **AND order** (ordered Qs only: graph(down) recovers ≥${ORDER_GATE * 100}% of the chain in causal order).\n`);
     lines.push(`| Gate | Pass |`);
@@ -375,8 +390,8 @@ function formatReport(results: TestResult[]): string {
 
     lines.push(`| Metric | Average |`);
     lines.push(`|--------|---------|`);
-    lines.push(`| File recall (search, substring) | ${(avgFileRecall * 100).toFixed(1)}% |`);
-    lines.push(`| Symbol recall (search, substring) | ${(avgSymRecall * 100).toFixed(1)}% |`);
+    lines.push(`| File recall (search+expand, substring) | ${(avgFileRecall * 100).toFixed(1)}% |`);
+    lines.push(`| Symbol recall (search+expand, substring) | ${(avgSymRecall * 100).toFixed(1)}% |`);
     lines.push(`| Graph reachability | ${(avgGraphReach * 100).toFixed(1)}% |`);
     lines.push(`| **Precision@5** (primary query) | ${(avgPrec5 * 100).toFixed(1)}% |`);
     lines.push(`| **Recall@5 / @10 / @20** | ${(avgRec5 * 100).toFixed(1)}% / ${(avgRec10 * 100).toFixed(1)}% / ${(avgRec20 * 100).toFixed(1)}% |`);
@@ -403,7 +418,7 @@ function formatReport(results: TestResult[]): string {
     }
 
     // Ranking quality per testcase + search-truncation diagnosis
-    lines.push(`## Retrieval Ranking (primary query → search top-50)\n`);
+    lines.push(`## Retrieval Ranking (primary query → expand top-50)\n`);
     lines.push(`| # | ID | Query | P@5 | R@5 | R@10 | R@20 | MRR | Diagnosis |`);
     lines.push(`|---|---|---|----:|----:|----:|----:|----:|---|`);
     for (let i = 0; i < results.length; i++) {
@@ -450,12 +465,12 @@ function formatReport(results: TestResult[]): string {
             lines.push(`**Q:** ${r.question}\n`);
 
             if (r.searchFileRecall.missed.length > 0) {
-                lines.push(`**Missed files (search):**`);
+                lines.push(`**Missed files (search+expand):**`);
                 for (const f of r.searchFileRecall.missed) lines.push(`- \`${f}\``);
                 lines.push('');
             }
             if (r.searchSymbolRecall.missed.length > 0) {
-                lines.push(`**Missed symbols (search):**`);
+                lines.push(`**Missed symbols (search+expand):**`);
                 for (const s of r.searchSymbolRecall.missed) lines.push(`- \`${s}\``);
                 lines.push('');
             }
@@ -478,7 +493,7 @@ function formatReport(results: TestResult[]): string {
 
 async function main() {
     // Delete the stale report up front so a mid-run crash leaves no misleading old file.
-    fs.rmSync(path.join(__dirname, '..', '..', 'logs', 'reports', 'eval-2-mcp-tools.md'), { force: true });
+    fs.rmSync(path.join(__dirname, '..', '..', 'logs', 'reports', 'tools.md'), { force: true });
     console.error('Loading index...');
     await ensureIndex();
     console.error(`Index ready: ${GLOBAL_INDEX.symbols.size} symbols, ${GLOBAL_INDEX.allFiles.size} files.\n`);
@@ -506,11 +521,11 @@ async function main() {
     const logsDir = path.join(__dirname, '..', '..', 'logs');
     fs.mkdirSync(path.join(logsDir, 'reports'), { recursive: true });
     fs.mkdirSync(path.join(logsDir, 'data'), { recursive: true });
-    const reportPath = path.join(logsDir, 'reports', 'eval-2-mcp-tools.md');
+    const reportPath = path.join(logsDir, 'reports', 'tools.md');
     fs.writeFileSync(reportPath, report, 'utf-8');
 
-    // Machine-readable sidecar for the unified funnel report (src/eval/report.ts). Join key = id.
-    fs.writeFileSync(path.join(logsDir, 'data', 'eval-2-data.json'), JSON.stringify(results.map(r => ({
+    // Machine-readable sidecar for the unified report (src/eval/report.ts). Join key = id.
+    fs.writeFileSync(path.join(logsDir, 'data', 'tools-data.json'), JSON.stringify(results.map(r => ({
         id: r.id, subsystem: r.subsystem,
         fileRecall: r.searchFileRecall.rate, symRecall: r.searchSymbolRecall.rate,
         graphReach: r.graphReachability?.rate ?? null,

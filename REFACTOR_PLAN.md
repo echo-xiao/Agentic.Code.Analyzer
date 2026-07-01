@@ -190,8 +190,8 @@ synth     surface 了没写进 / 机制说错         → 合成（agents 的 re
 
 一个 commit：抽 `lexicalSeeds`+`expandNeighborhood`、`CodeRetriever.search` 变薄壳、加 `plan`+`SESSION.intent`、graph 收成 `move`、search 砍到 exact+grep、`implement→details`、删 `chanOn/ABLATE/ONLY` 与整个 AGENTS.md/constitution、题型策略落在 `plan`/`intent.ts`。
 
-**验收只看一件事：agents 效果有没有提升。** 重构前后各跑一遍 gen，Claude 手动判 pass/partial/fail，比 pass 率——升了即成，没升回 report 看归因。tools/token 只是过程中的信号，不当验收门。
-⚠️ 跑 agents 需 Rocket.Chat 源码（`details`/`grep` 依赖它）；当前缺源码，验收待源码就位。
+**验收主门 = tools（确定性）：R@k / 图可达 / 链序逐项不回退**（重构前基线 24/34，冻结于 `logs/reports/eval-2-BASELINE-pre-refactor.md`）。agents 的 pass 率单跑噪声大（免费 Gemini），作趋势参考、不作单次门；token 作效率参考。
+📌 落地记录（2026-07-01）：重构完成，tools 验收 24/34 逐题一致、R@k/MRR 逐位相同，零回退。本次为 phase 1（结构收敛+接缝）；accuracy 提升在 phase 2 打种子层（6 个 retrievalRecall=0 的概念查询题）。
 
 ---
 

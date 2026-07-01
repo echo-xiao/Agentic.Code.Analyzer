@@ -1,13 +1,13 @@
 #!/usr/bin/env npx tsx
 /**
- * eval-1 — Does MCP help, and WHY?  Three-way coverage comparison:
+ * token — is the graph worth its tokens?  Three-way coverage comparison:
  *   - no-MCP   : Gemini with no tools (baseline).
- *   - naive    : dumb keyword search ONLY (no graph, no agent), given the SAME token budget as MCP.
- *   - MCP      : Gemini + graph/agent.
+ *   - naive    : dumb keyword retrieval ONLY (no agent loop), given the SAME token budget as MCP.
+ *   - MCP      : Gemini + plan/search/graph/details agent.
  * The naive column is the control: if MCP beats naive at an equal token budget, the lift comes from
- * the GRAPH/agent, not just from spending more tokens. Naive is deterministic (no LLM) and computed
- * inline here — it needs the code index, so this loads the index like eval-2 does.
- * Run: npm run eval:1
+ * the AGENT (choosing moves, following the trail), not just from spending more tokens. Naive is
+ * deterministic (no LLM) and computed inline here — it needs the code index.
+ * Run: npm run eval:token   (after gen --mode=nomcp and gen --mode=mcp)
  */
 import * as fs from 'fs';
 import * as path from 'path';
@@ -22,13 +22,14 @@ const PROJECT_ROOT = path.resolve(__dirname, '..', '..');
 const LOGS = path.join(PROJECT_ROOT, 'logs');
 const D_NOMCP = path.join(LOGS, 'answers-gemini-nomcp');
 const D_MCP = path.join(LOGS, 'answers-gemini-mcp-selfloop');
-const REPORT = path.join(LOGS, 'reports', 'eval-1-nomcp-vs-mcp-agent.md');
+const REPORT = path.join(LOGS, 'reports', 'token.md');
 
 // ── Naive baseline (the FAIR control) ───────────────────────────────────────────────────────────
-// A dumb keyword retriever: search ONLY (no graph, no agent loop), querying the QUESTION text. Its
-// output is capped to the SAME SIZE as MCP's written answer (NOT MCP's total token spend) — so both
-// are scored on an equal-length "answer" and naive can't win just by dumping a giant keyword blob.
-// Coverage = "in the same space, does plain search surface as many core files as the agent wrote".
+// A dumb keyword retriever: search + expand per question keyword (no agent loop, no move choice,
+// no details). Its output is capped to the SAME SIZE as MCP's written answer (NOT MCP's total
+// token spend) — so both are scored on an equal-length "answer" and naive can't win just by
+// dumping a giant keyword blob. Coverage = "in the same space, does mechanical retrieval surface
+// as many core files as the agent wrote".
 const STOP = new Set(['the','a','an','is','are','how','what','where','does','do','in','on','of','to','and','from','for','with','rocket','chat','rocketchat','side','work','works','new','get','use','used','using']);
 
 function queryTerms(question: string): string[] {
@@ -43,11 +44,17 @@ async function naiveCoverage(tc: TestCase, answerChars: number, core: string[], 
     let chars = 0;
     for (const q of queryTerms(tc.question)) {
         if (chars >= charBudget) break;
-        const res = await handleToolCall('search', { query: q });
-        const txt = res?.content?.[0]?.text ?? '';
-        if (!txt) continue;
-        parts.push(txt);
-        chars += txt.length;
+        for (const call of [
+            () => handleToolCall('search', { query: q }),
+            () => handleToolCall('graph', { query: q, move: 'expand', depth: 2 }),
+        ]) {
+            if (chars >= charBudget) break;
+            const res = await call();
+            const txt = res?.content?.[0]?.text ?? '';
+            if (!txt) continue;
+            parts.push(txt);
+            chars += txt.length;
+        }
     }
     const body = parts.join('\n').slice(0, charBudget);
     return coverage(body, core, syms);
@@ -83,10 +90,10 @@ async function main() {
     const avgCov0 = avg(r => r.cov0), avgCovN = avg(r => r.covN), avgCov2 = avg(r => r.cov2);
     const avgTok0 = avg(r => r.tok0), avgTok2 = avg(r => r.tok2);
     const improved = rows.filter(r => r.cov2 > r.cov0).length;
-    const graphGain = (avgCov2 - avgCovN) * 100; // MCP minus same-budget naive = the graph's contribution
+    const graphGain = (avgCov2 - avgCovN) * 100; // MCP minus same-budget naive = the agent's contribution
 
     const L: string[] = [];
-    L.push(`# eval-1 — Does MCP help, and why?  (no-MCP vs naive@same-budget vs MCP)\n`);
+    L.push(`# token — is the graph worth its tokens?  (no-MCP vs naive@same-budget vs MCP)\n`);
     L.push(`${new Date().toLocaleString('en-US')} | ${n} testcases | deterministic, no Gemini/key\n`);
     L.push(`Coverage = answer mentions of {core files ∪ key symbols}.\n`);
     L.push(`| Metric | no MCP | naive (same answer size) | with MCP |`);
@@ -104,11 +111,11 @@ async function main() {
     L.push('');
 
     fs.writeFileSync(REPORT, L.join('\n'), 'utf-8');
-    // Machine-readable sidecar for the unified funnel report (src/eval/report.ts). Join key = id.
-    fs.writeFileSync(path.join(LOGS, 'data', 'eval-1-data.json'),
+    // Machine-readable sidecar for the unified report (src/eval/report.ts). Join key = id.
+    fs.writeFileSync(path.join(LOGS, 'data', 'token-data.json'),
         JSON.stringify({ n, avgCov0, avgCovN, avgCov2, avgTok0, avgTok2, improved, graphGain, rows }), 'utf-8');
-    console.error(`Wrote logs/eval-1-nomcp-vs-mcp-agent.md`);
-    console.log(`eval-1: no-MCP ${(avgCov0 * 100).toFixed(0)}% | naive@budget ${(avgCovN * 100).toFixed(0)}% | MCP ${(avgCov2 * 100).toFixed(0)}% → graph adds ${graphGain >= 0 ? '+' : ''}${graphGain.toFixed(0)} pts`);
+    console.error(`Wrote logs/reports/token.md`);
+    console.log(`token: no-MCP ${(avgCov0 * 100).toFixed(0)}% | naive@budget ${(avgCovN * 100).toFixed(0)}% | MCP ${(avgCov2 * 100).toFixed(0)}% → agent adds ${graphGain >= 0 ? '+' : ''}${graphGain.toFixed(0)} pts`);
 }
 
 main().catch(e => { console.error('Fatal:', e); process.exit(2); });
