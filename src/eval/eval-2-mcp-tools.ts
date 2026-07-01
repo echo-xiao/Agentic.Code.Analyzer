@@ -23,6 +23,7 @@ interface RetrievalMetrics {
     recallAt5: number;
     recallAt10: number;
     recallAt20: number;
+    recallAt50: number;
     mrr: number;
     precisionAt5: number;
     f1At5: number;
@@ -98,7 +99,7 @@ function computeRetrievalMetrics(tc: TestCase): RetrievalMetrics {
 
     const empty: RetrievalMetrics = {
         primaryQuery, rankedDepth: 0, coreRanks: core.map(f => ({ file: f, rank: null })),
-        recallAt5: 0, recallAt10: 0, recallAt20: 0, mrr: 0, precisionAt5: 0, f1At5: 0, diagnosis: 'n/a',
+        recallAt5: 0, recallAt10: 0, recallAt20: 0, recallAt50: 0, mrr: 0, precisionAt5: 0, f1At5: 0, diagnosis: 'n/a',
     };
     if (!primaryQuery || core.length === 0) return empty;
 
@@ -120,7 +121,7 @@ function computeRetrievalMetrics(tc: TestCase): RetrievalMetrics {
 
     const coreRanks = core.map(f => ({ file: f, rank: bestRank(f) }));
     const within = (k: number) => coreRanks.filter(c => c.rank !== null && c.rank <= k).length / core.length;
-    const recallAt5 = within(5), recallAt10 = within(10), recallAt20 = within(20);
+    const recallAt5 = within(5), recallAt10 = within(10), recallAt20 = within(20), recallAt50 = within(50);
     const mrr = coreRanks.reduce((s, c) => s + (c.rank ? 1 / c.rank : 0), 0) / core.length;
 
     const top5 = rankedFiles.slice(0, 5);
@@ -138,7 +139,7 @@ function computeRetrievalMetrics(tc: TestCase): RetrievalMetrics {
     }
 
     return { primaryQuery, rankedDepth: rankedFiles.length, coreRanks,
-        recallAt5, recallAt10, recallAt20, mrr, precisionAt5, f1At5, diagnosis };
+        recallAt5, recallAt10, recallAt20, recallAt50, mrr, precisionAt5, f1At5, diagnosis };
 }
 
 function extractText(result: any): string {
@@ -477,7 +478,7 @@ function formatReport(results: TestResult[]): string {
 
 async function main() {
     // Delete the stale report up front so a mid-run crash leaves no misleading old file.
-    fs.rmSync(path.join(__dirname, '..', '..', 'logs', 'eval-2-mcp-tools.md'), { force: true });
+    fs.rmSync(path.join(__dirname, '..', '..', 'logs', 'reports', 'eval-2-mcp-tools.md'), { force: true });
     console.error('Loading index...');
     await ensureIndex();
     console.error(`Index ready: ${GLOBAL_INDEX.symbols.size} symbols, ${GLOBAL_INDEX.allFiles.size} files.\n`);
@@ -503,9 +504,22 @@ async function main() {
     const report = formatReport(results);
 
     const logsDir = path.join(__dirname, '..', '..', 'logs');
-    fs.mkdirSync(logsDir, { recursive: true });
-    const reportPath = path.join(logsDir, 'eval-2-mcp-tools.md');
+    fs.mkdirSync(path.join(logsDir, 'reports'), { recursive: true });
+    fs.mkdirSync(path.join(logsDir, 'data'), { recursive: true });
+    const reportPath = path.join(logsDir, 'reports', 'eval-2-mcp-tools.md');
     fs.writeFileSync(reportPath, report, 'utf-8');
+
+    // Machine-readable sidecar for the unified funnel report (src/eval/report.ts). Join key = id.
+    fs.writeFileSync(path.join(logsDir, 'data', 'eval-2-data.json'), JSON.stringify(results.map(r => ({
+        id: r.id, subsystem: r.subsystem,
+        fileRecall: r.searchFileRecall.rate, symRecall: r.searchSymbolRecall.rate,
+        graphReach: r.graphReachability?.rate ?? null,
+        recallAt5: r.retrieval.recallAt5, recallAt10: r.retrieval.recallAt10, recallAt20: r.retrieval.recallAt20,
+        recallAt50: r.retrieval.recallAt50,
+        mrr: r.retrieval.mrr, precisionAt5: r.retrieval.precisionAt5, diagnosis: r.retrieval.diagnosis,
+        orderApplicable: r.order.applicable, orderScore: r.order.score, orderPass: r.orderPass,
+        sanityPass: r.sanityPass, retrievalPass: r.retrievalPass, pass: r.pass,
+    }))), 'utf-8');
 
     console.error(`\nReport: ${reportPath}`);
 

@@ -1,6 +1,6 @@
 # eval-1 — Does MCP help, and why?  (no-MCP vs naive@same-budget vs MCP)
 
-6/30/2026, 12:31:01 PM | 34 testcases | deterministic, no Gemini/key
+6/30/2026, 7:36:02 PM | 34 testcases | deterministic, no Gemini/key
 
 Coverage = answer mentions of {core files ∪ key symbols}.
 

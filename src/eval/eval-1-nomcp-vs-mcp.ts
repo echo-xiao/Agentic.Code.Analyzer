@@ -22,7 +22,7 @@ const PROJECT_ROOT = path.resolve(__dirname, '..', '..');
 const LOGS = path.join(PROJECT_ROOT, 'logs');
 const D_NOMCP = path.join(LOGS, 'answers-gemini-nomcp');
 const D_MCP = path.join(LOGS, 'answers-gemini-mcp-selfloop');
-const REPORT = path.join(LOGS, 'eval-1-nomcp-vs-mcp-agent.md');
+const REPORT = path.join(LOGS, 'reports', 'eval-1-nomcp-vs-mcp-agent.md');
 
 // ── Naive baseline (the FAIR control) ───────────────────────────────────────────────────────────
 // A dumb keyword retriever: search ONLY (no graph, no agent loop), querying the QUESTION text. Its
@@ -55,6 +55,8 @@ async function naiveCoverage(tc: TestCase, answerChars: number, core: string[], 
 
 async function main() {
     // Delete the stale report up front so a mid-run crash leaves no misleading old file.
+    fs.mkdirSync(path.join(LOGS, 'reports'), { recursive: true });
+    fs.mkdirSync(path.join(LOGS, 'data'), { recursive: true });
     fs.rmSync(REPORT, { force: true });
     await ensureIndex();
 
@@ -103,6 +105,9 @@ async function main() {
     L.push('');
 
     fs.writeFileSync(REPORT, L.join('\n'), 'utf-8');
+    // Machine-readable sidecar for the unified funnel report (src/eval/report.ts). Join key = id.
+    fs.writeFileSync(path.join(LOGS, 'data', 'eval-1-data.json'),
+        JSON.stringify({ n, avgCov0, avgCovN, avgCov2, avgTok0, avgTok2, improved, graphGain, rows }), 'utf-8');
     console.error(`Wrote logs/eval-1-nomcp-vs-mcp-agent.md`);
     console.log(`eval-1: no-MCP ${(avgCov0 * 100).toFixed(0)}% | naive@budget ${(avgCovN * 100).toFixed(0)}% | MCP ${(avgCov2 * 100).toFixed(0)}% → graph adds ${graphGain >= 0 ? '+' : ''}${graphGain.toFixed(0)} pts`);
 }
