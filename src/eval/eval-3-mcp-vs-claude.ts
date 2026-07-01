@@ -2,18 +2,18 @@
 /**
  * eval-3 — How good is the agent?  Gemini + MCP (self-loop) vs Claude reference answers.
  *
- * Four columns:
- *   1. HARD coverage   — % of files Claude cites that Gemini also mentions (deterministic).
+ * Three deterministic columns (no key, reproducible):
+ *   1. HARD coverage   — % of files Claude cites that Gemini also mentions.
  *   2. SYNTHESIS split — of the core spine, what the tools surfaced (retrieval) vs what the agent
  *      actually wrote (synthesis). Isolates the real bottleneck: files retrieved-but-not-written.
- *   3. AUTO verdict    — PASS/PARTIAL/FAIL from a FROZEN rubric (deterministic, reproducible).
- *   4. MANUAL verdict  — hand-written semantic judgments (by Claude, in-session — NO API call),
- *      stored in logs/semantic-verdicts.json. Each carries the answer hash it was judged against,
- *      so a verdict is flagged STALE (needs re-judging) when its Gemini answer later changes.
+ *   3. AUTO verdict    — PASS/PARTIAL/FAIL from a FROZEN rubric (file-overlap based).
+ *
+ * The SEMANTIC verdict ("did the agent get the mechanism right, regardless of which files") is NOT
+ * computed here — the file-overlap rubric can't see "right mechanism, different files". It is judged
+ * by Claude in-conversation and written to logs/reports/eval-3-mcp-agent-vs-claude-semantic-judgment.md.
  * Run: npm run eval:3
  */
 import * as fs from 'fs';
-import * as crypto from 'crypto';
 import * as path from 'path';
 import { fileURLToPath } from 'url';
 import { loadTestcases } from './utils/load-testcases.js';
@@ -24,20 +24,6 @@ const PROJECT_ROOT = path.resolve(__dirname, '..', '..');
 const LOGS = path.join(PROJECT_ROOT, 'logs');
 const D_MCP = path.join(LOGS, 'answers-gemini-mcp-selfloop');
 const D_CLAUDE = path.join(LOGS, 'answers-claude');
-const SIDECAR = path.join(LOGS, 'semantic-verdicts.json');
-
-// answerHash ties a manual verdict to the exact Gemini answer it was judged against.
-function answerHash(text: string): string { return crypto.createHash('md5').update(text).digest('hex').slice(0, 8); }
-
-interface ManualVerdict { verdict: Verdict; reason: string; answerHash?: string; }
-function loadSidecar(): Record<string, ManualVerdict> {
-    try {
-        const raw = JSON.parse(fs.readFileSync(SIDECAR, 'utf-8'));
-        const out: Record<string, ManualVerdict> = {};
-        for (const [k, v] of Object.entries(raw)) if (!k.startsWith('_') && v && typeof v === 'object') out[k] = v as ManualVerdict;
-        return out;
-    } catch { return {}; }
-}
 
 // ── FROZEN RUBRIC (do not tune per run) ──────────────────────────────────────────────────────
 // Verdict is a pure function of measurable signals. Hard FAIL conditions take precedence.
@@ -75,7 +61,6 @@ function main() {
     fs.mkdirSync(path.join(LOGS, 'data'), { recursive: true });
     fs.rmSync(path.join(LOGS, 'reports', 'eval-3-mcp-agent-vs-claude.md'), { force: true });
     const { flat: testcases } = loadTestcases(path.join(__dirname, 'utils', 'testcases.json'));
-    const sidecar = loadSidecar();
     const rows = testcases.map(tc => {
         const mcpFile = path.join(D_MCP, `${tc.id}.md`);
         const a2 = readSection(mcpFile, '## Gemini Answer', ['## Tool Calls']);
@@ -110,14 +95,6 @@ function main() {
         const gateCov = core.length ? coreCov : hardCov;
         const { verdict, reason } = verdictFor({ answer: a2, cov: gateCov, covLabel: core.length ? 'core cov' : 'hard cov', entryOk, terminalOk, hasEndpoints });
 
-        // Manual semantic verdict (hand-written by Claude in-session; no API). Flag STALE when the
-        // answer it was judged against no longer matches the current answer.
-        const m = sidecar[tc.id];
-        const curHash = answerHash(a2);
-        const manualStale = !!m && !!m.answerHash && m.answerHash !== curHash;
-        const manual = m ? m.verdict : null;
-        const manualReason = m ? m.reason : '';
-
         // Separate infra failures (empty / "ERROR …" e.g. Gemini 503) from capability failures so the
         // funnel report can exclude them from retrieval/synthesis averages instead of scoring them 0.
         const errored = !a2.trim() || /^ERROR\b/.test(a2.trim());
@@ -127,7 +104,6 @@ function main() {
             hit: claudeFiles.length - missed.length, missed, hardCov,
             coreN: core.length, coreWritten: written.length, coreCov, seen: hasSeen, errored,
             retrievalRecall, synthRecall, droppedBySynth, verdict, reason,
-            manual, manualReason, manualStale,
         };
     });
 
@@ -142,11 +118,6 @@ function main() {
     const totalDropped = rows.reduce((s, r) => s + r.droppedBySynth.length, 0);
     const counts = { PASS: 0, PARTIAL: 0, FAIL: 0 } as Record<Verdict, number>;
     rows.forEach(r => counts[r.verdict]++);
-
-    // Manual verdict coverage + agreement vs the auto rubric (over fresh, non-stale judgments only).
-    const judged = rows.filter(r => r.manual && !r.manualStale);
-    const staleN = rows.filter(r => r.manualStale).length;
-    const agree = judged.filter(r => r.manual === r.verdict).length;
 
     const L: string[] = [];
     L.push(`# eval-3 — How good is the agent?  (Gemini + MCP vs Claude reference)\n`);
@@ -163,19 +134,16 @@ function main() {
     L.push(`> - **FAIL** if the answer is empty/ERROR, **or** core coverage < ${RUBRIC.FAIL_IF_COV_BELOW * 100}% (the spine was missed).`);
     L.push(`> - **PASS** if core coverage ≥ ${RUBRIC.PASS_COV_AT_LEAST * 100}% **and** both chain endpoints (entry + terminal symbol) appear.`);
     L.push(`> - **PARTIAL** otherwise.\n`);
-    L.push(`**Manual verdict (Claude hand-judged, no API): ${judged.length}/${n} judged${staleN ? `, ${staleN} STALE (answer changed → re-judge)` : ''}. Agrees with auto rubric on ${agree}/${judged.length || 0}.**`);
-    L.push(`> Hand-written semantic reads in \`logs/semantic-verdicts.json\` — catch "right mechanism, different files" cases the file-overlap rubric can't see. Blank = not yet judged.\n`);
-    L.push(`| # | id | type | core cov (gate) | hard (Claude files) | retr→synth (core) | auto verdict | manual verdict | manual reason |`);
-    L.push(`|---|---|---|---:|---:|---|---|---|---|`);
+    L.push(`> Semantic verdict (right mechanism, different files) is judged by Claude in \`logs/reports/eval-3-mcp-agent-vs-claude-semantic-judgment.md\`.\n`);
+    L.push(`| # | id | type | core cov (gate) | hard (Claude files) | retr→synth (core) | auto verdict |`);
+    L.push(`|---|---|---|---:|---:|---|---|`);
     rows.forEach((r, i) => {
         const coreCol = r.coreN ? `${r.coreWritten}/${r.coreN} (${Math.round(r.coreCov * 100)}%)` : '-';
         const hard = r.claudeFiles ? `${r.hit}/${r.claudeFiles} (${Math.round(r.hardCov * 100)}%)` : '-';
         const synth = (r.seen && r.coreN)
             ? `${(r.retrievalRecall * 100).toFixed(0)}% → ${(r.synthRecall * 100).toFixed(0)}%`
             : '-';
-        let manualCol = '—';
-        if (r.manual) manualCol = r.manualStale ? `${r.manual} ⚠️stale` : (r.manual === r.verdict ? r.manual : `**${r.manual}** (≠auto)`);
-        L.push(`| ${i + 1} | ${r.id} | ${r.type} | ${coreCol} | ${hard} | ${synth} | ${r.verdict} | ${manualCol} | ${r.manual ? r.manualReason : ''} |`);
+        L.push(`| ${i + 1} | ${r.id} | ${r.type} | ${coreCol} | ${hard} | ${synth} | ${r.verdict} |`);
     });
     L.push('');
 
@@ -185,21 +153,11 @@ function main() {
         id: r.id, type: r.type, hardCov: r.hardCov,
         coreN: r.coreN, coreWritten: r.coreWritten, coreCov: r.coreCov, seen: r.seen, errored: r.errored,
         retrievalRecall: r.retrievalRecall, synthRecall: r.synthRecall, dropped: r.droppedBySynth.length,
-        verdict: r.verdict, manual: r.manual, manualStale: r.manualStale,
+        verdict: r.verdict,
     }))), 'utf-8');
     console.error(`Wrote logs/eval-3-mcp-agent-vs-claude.md`);
     const synthStr = seenRows.length ? `retr ${(avgRetr * 100).toFixed(0)}%→synth ${(avgSynth * 100).toFixed(0)}%` : 'synth n/a (re-run gen:mcp)';
-    console.log(`eval-3: hard ${(avgHard * 100).toFixed(0)}% | ${synthStr} | auto PASS ${counts.PASS}/PARTIAL ${counts.PARTIAL}/FAIL ${counts.FAIL} | manual ${judged.length}/${n} judged${staleN ? ` (${staleN} stale)` : ''}`);
-
-    // Loud, unmissable signal so manual verdicts never silently rot (no need to be reminded).
-    const staleIds = rows.filter(r => r.manualStale).map(r => r.id);
-    const unjudgedIds = rows.filter(r => !r.manual).map(r => r.id);
-    if (staleIds.length || unjudgedIds.length) {
-        console.error(`\n⚠️  MANUAL VERDICTS NEED REFRESH:`);
-        if (staleIds.length) console.error(`   STALE (answer changed since judged): ${staleIds.join(', ')}`);
-        if (unjudgedIds.length) console.error(`   NOT YET JUDGED: ${unjudgedIds.join(', ')}`);
-        console.error(`   → re-read each pair (Gemini vs Claude) and update logs/semantic-verdicts.json\n`);
-    }
+    console.log(`eval-3: hard ${(avgHard * 100).toFixed(0)}% | ${synthStr} | auto PASS ${counts.PASS}/PARTIAL ${counts.PARTIAL}/FAIL ${counts.FAIL}`);
 }
 
 main();
