@@ -2,8 +2,6 @@
 import * as fs from 'fs';
 import * as path from 'path';
 
-export const LOGS = (projectRoot: string) => path.join(projectRoot, 'logs');
-
 // Does the answer text mention this ground-truth file (full path, dir/base, or dir/base-no-ext)?
 export function fileMatches(text: string, gtFile: string): boolean {
     if (text.includes(gtFile)) return true;
@@ -13,7 +11,7 @@ export function fileMatches(text: string, gtFile: string): boolean {
     return text.includes(`${dir}/${base.replace(/\.(tsx?|js)$/, '')}`);
 }
 
-export function symMatch(text: string, sym: string): boolean {
+function symMatch(text: string, sym: string): boolean {
     return new RegExp(`\\b${sym.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')}\\b`).test(text);
 }
 
