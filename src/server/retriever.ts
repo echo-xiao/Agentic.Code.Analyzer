@@ -32,6 +32,32 @@ function getNeighbors(): Map<string, Set<string>> {
     return n;
 }
 
+// Same adjacency but keeping the edge type per link, for edge-type-weighted proximity.
+let TYPED_NEIGHBORS: Map<string, Array<{ nb: string; et: string }>> | null = null;
+function getTypedNeighbors(): Map<string, Array<{ nb: string; et: string }>> {
+    if (TYPED_NEIGHBORS) return TYPED_NEIGHBORS;
+    const n = new Map<string, Array<{ nb: string; et: string }>>();
+    const link = (a: string, b: string, et: string) => {
+        if (a === b) return;
+        let s = n.get(a); if (!s) { s = []; n.set(a, s); } s.push({ nb: b, et });
+    };
+    for (const [callee, callers] of GLOBAL_INDEX.callGraph as Map<string, Array<{ caller: string; edgeType: string }>>) {
+        for (const { caller, edgeType } of callers) { link(callee, caller, edgeType); link(caller, callee, edgeType); }
+    }
+    TYPED_NEIGHBORS = n;
+    return n;
+}
+
+// Edge-type cost: strong structural edges keep a symbol "close"; weak `type` refs push it far;
+// dynamic-dispatch edges sit in between. Used to weight proximity so that, among equidistant graph
+// neighbours, the ones wired by real calls outrank type-only references.
+const EDGE_COST: Record<string, number> = {
+    call: 1, new: 1, jsx: 1,
+    event_emit: 1.3, event_listen: 1.3, pubsub_publish: 1.3, pubsub_subscribe: 1.3,
+    rest_call: 1.3, rest_route: 1.3, stream_def: 1.3, stream_sub: 1.3,
+    type: 2.5,
+};
+
 function isTestPath(p: string): boolean {
     const s = p.toLowerCase();
     return s.includes('.test.') || s.includes('.spec.') || s.includes('.mocks.') ||
@@ -93,6 +119,24 @@ export class CodeRetriever {
             if (hop.size > 6000) break; // safety on hub explosions
         }
 
+        // Weighted distance (edge-type-aware) over the SAME neighbourhood — refines proximity only,
+        // recall unchanged. Bellman-Ford-lite: ≤2-edge paths converge in a few passes.
+        const typed = getTypedNeighbors();
+        const wdist = new Map<string, number>();
+        for (const s of seeds) wdist.set(s, 0);
+        for (let pass = 0; pass < 3; pass++) {
+            for (const node of hop.keys()) {
+                let best = wdist.get(node) ?? Infinity;
+                for (const { nb, et } of typed.get(node) ?? []) {
+                    const dnb = wdist.get(nb);
+                    if (dnb === undefined) continue;
+                    const cand = dnb + (EDGE_COST[et] ?? 1);
+                    if (cand < best) best = cand;
+                }
+                if (best < (wdist.get(node) ?? Infinity)) wdist.set(node, best);
+            }
+        }
+
         // 3. RANK — proximity to seed dominates (subsystem membership); lexical pins the seed at the
         // top; a mild centrality reward favours real definitions; an IDF-style hub penalty suppresses
         // generic utilities that neighbour everything but belong to no single subsystem.
@@ -110,7 +154,7 @@ export class CodeRetriever {
                 centralityOf(b) - centralityOf(a));
 
             const lex = lexical.get(sym) ?? 0;
-            const proximity = 1 / (1 + h);
+            const proximity = 1 / (1 + (wdist.get(sym) ?? h));
             const cent = centralityOf(paths[0]);
             const nbrs = neighbors.get(sym);
             const degree = nbrs?.size ?? 0;
