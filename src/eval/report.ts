@@ -45,7 +45,7 @@ interface J {
     orderApplicable: boolean; orderScore: number; orderPass: boolean;   // G1.5
     retrievalRecall: number; coreN: number; coreWritten: number; seen: boolean; // G2
     synthRecall: number; coreCov: number; dropped: number;             // G3
-    errored: boolean; manual: string | null;
+    errored: boolean;
 }
 const rows: J[] = ids.map(id => {
     const a = by2.get(id) ?? {};
@@ -58,7 +58,7 @@ const rows: J[] = ids.map(id => {
         orderApplicable: !!a.orderApplicable, orderScore: a.orderScore ?? 1, orderPass: a.orderPass ?? true,
         retrievalRecall: b.retrievalRecall ?? 0, coreN: b.coreN ?? 0, coreWritten: b.coreWritten ?? 0, seen: !!b.seen,
         synthRecall: b.synthRecall ?? 0, coreCov: b.coreCov ?? 0, dropped: b.dropped ?? 0,
-        errored: !!b.errored, manual: b.manual ?? null,
+        errored: !!b.errored,
     };
 });
 
@@ -67,7 +67,6 @@ const rows: J[] = ids.map(id => {
 function bottleneck(j: J): { tag: string; note: string } {
     if (j.errored) return { tag: 'ERR', note: 'infra (503 / empty answer) — excluded from capability averages' };
     if (j.coreCov >= 0.5) return { tag: 'OK', note: '' };
-    if (j.manual === 'PASS') return { tag: 'MEAS', note: 'manual verdict PASS — file-overlap under-rates (spine/semantic)' };
     if (j.recallAt10 < 0.3) {
         const t = j.diagnosis === 'recall-miss' ? 'G1-recall'
             : j.diagnosis === 'ranked-low' ? 'G1-rank'
@@ -139,6 +138,7 @@ const cnt = (f: number) => Math.round(f * sumCore);
 const bar = (x: number) => '█'.repeat(Math.round(x * 30)).padEnd(30, '░');
 const row = (label: string, f: number, tail = '') => `${label.padEnd(30)} ${pct(f).padStart(4)}  ${bar(f)} ${tail}`;
 L.push(`## 2. The funnel — one path, every stage ÷ the same ${sumCore} core files\n`);
+L.push(`> Per-FILE pooled fractions (of all ${sumCore} core files, how many survive each stage) — NOT eval-2's per-testcase mean R@k. Absolute numbers differ: the funnel weights bigger-spine testcases more.\n`);
 L.push('```');
 L.push(`INDEX (floor)`);
 L.push(row('  indexed & graph-reachable', 1));
@@ -203,7 +203,6 @@ L.push(`Front → back; the first leaking gate is the binding one:\n`);
 L.push('```');
 L.push(`ERR   answer empty / "ERROR …"  (infra, e.g. Gemini 503)`);
 L.push(`OK    end core coverage ≥ 50%`);
-L.push(`MEAS  manual verdict = PASS but coverage < 50%  (file-overlap under-rates: right mechanism, different files)`);
 L.push(`G1-*  R@10 < 30%   → recall (rm) / rank (rl) / mixed (mx) by eval-2 diagnosis`);
 L.push(`G2    R@10 ok but retrieval-recall < 50%  (search could, agent didn't gather)`);
 L.push(`G3    gathered but synthesis-recall < 70%  (surfaced, not written)`);
