@@ -2,52 +2,51 @@
 
 ## Gemini Answer
 
-Rocket.Chat Apps hook into events like `afterSaveMessage` through the `callbacks` system. The `callbacks.add` function is used to register event listeners.
+Rocket.Chat Apps hook into events like `afterSaveMessage` through the Apps Engine's event system. The core mechanism relies on a callback pattern where events are registered and then executed.
 
-Here's the general flow:
+Here's the call chain:
 
-1.  **Event Trigger**: An action within Rocket.Chat (e.g., saving a message) triggers a `callbacks.run('eventName')` call. For `afterSaveMessage`, this happens in `apps/meteor/app/lib/server/lib/afterSaveMessage.ts`.
-2.  **Listener Registration**: Apps Engine, during its initialization or when an app is enabled, registers its own handlers for specific events using `callbacks.add('eventName', handlerFunction, priority, 'handlerId')`.
-3.  **Execution**: When `callbacks.run('afterSaveMessage')` is executed, all registered `handlerFunction`s for that event are called sequentially, ordered by their priority.
+`afterSaveMessage` (event) → `afterSaveMessage` (event listener)
 
-While I couldn't pinpoint the exact file where the Apps Engine specifically calls `callbacks.add` for `afterSaveMessage` with the provided tools, the `search` results for `callbacks.add` show numerous examples of how other modules register their own handlers for various events, including `afterSaveMessage` (e.g., `apps/meteor/app/slackbridge/server/RocketAdapter.ts`). This indicates that the Apps Engine would follow a similar pattern to register its event listeners.
+1.  **`apps/meteor/app/lib/server/lib/afterSaveMessage.ts`**: This file likely contains the core logic for the `afterSaveMessage` event, where the event is initially triggered.
+2.  **`apps/meteor/ee/app/message-read-receipt/server/hooks/afterSaveMessage.ts`**: This is an example of a specific module (in this case, the Enterprise Edition's message read receipt feature) that registers a handler for the `afterSaveMessage` event.
+3.  **`apps/meteor/app/search/server/events/index.ts`**: Another example of a module registering a handler for the `afterSaveMessage` event, likely related to search indexing.
 
-**Call Chain:**
+The Apps Engine itself, specifically the `AppManager` in `packages/apps-engine/src/server/AppManager.ts`, is responsible for managing the lifecycle of installed apps, including their event listeners. The `AppManager` has an `AppListenerManager` which is responsible for handling the registration and execution of app-defined event listeners. When an app is installed and enabled, its event listeners are registered with the `AppListenerManager`, which then hooks them into the Rocket.Chat server's callback system.
 
-`apps/meteor/app/lib/server/lib/afterSaveMessage.ts` (where `afterSaveMessage` is run) → Apps Engine's internal event handler (registered via `callbacks.add`)
+Therefore, when `callbacks.run('afterSaveMessage')` is executed in the Rocket.Chat server, all registered handlers, including those from the Apps Engine, are sequentially executed.
 
-## Tool Calls (8 calls, 27,006 tokens)
+## Tool Calls (8 calls, 29,729 tokens)
 
-**Step 1:** `search({"query":"afterSaveMessage","layer":"server"})` → 468 tokens
-**Step 2:** `graph({"edgeTypes":["event_listen"],"layer":"server","query":"afterSaveMessage","direction":"down"})` → 175 tokens
-**Step 3:** `search({"layer":"server","query":"Apps Engine event"})` → 77 tokens
-**Step 4:** `search({"layer":"packages","query":"callbacks.add afterSaveMessage"})` → 19 tokens
-**Step 5:** `search({"layer":"packages","query":"Apps Engine event listener"})` → 85 tokens
-**Step 6:** `search({"layer":"server","query":"Apps Engine initialize"})` → 17 tokens
-**Step 7:** `search({"query":"Apps Engine register event","layer":"packages"})` → 18 tokens
-**Step 8:** `search({"layer":"server","query":"callbacks.add"})` → 496 tokens
+**Step 1:** `search({"query":"afterSaveMessage","layer":"packages"})` → 410 tokens
+**Step 2:** `graph({"edgeTypes":["event_listen"],"direction":"down","query":"afterSaveMessage"})` → 175 tokens
+**Step 3:** `search({"query":"Apps Engine afterSaveMessage","layer":"packages"})` → 18 tokens
+**Step 4:** `search({"layer":"packages","query":"Apps Engine event handler"})` → 17 tokens
+**Step 5:** `search({"layer":"packages","query":"Apps Engine bridge"})` → 372 tokens
+**Step 6:** `graph({"query":"AppManager.add","direction":"down","file":"packages/apps-engine/src/server/AppManager.ts"})` → 13 tokens
+**Step 7:** `graph({"direction":"down","file":"packages/apps-engine/src/server/AppManager.ts","query":"AppManager.add"})` → 13 tokens
+**Step 8:** `implement({"filename":"packages/apps-engine/src/server/AppManager.ts","symbolName":"AppManager"})` → 1718 tokens
 
-## Files Seen In Tool Results (22)
+## Files Seen In Tool Results (21)
 
 - `apps/meteor/ee/app/message-read-receipt/server/hooks/afterSaveMessage.ts`
 - `apps/meteor/app/search/server/events/index.ts`
 - `apps/meteor/app/lib/server/lib/afterSaveMessage.ts`
 - `apps/meteor/app/threads/server/hooks/aftersavemessage.ts`
 - `apps/meteor/app/livechat/server/hooks/afterSaveOmnichannelMessage.ts`
-- `apps/meteor/app/autotranslate/server/autotranslate.ts`
-- `apps/meteor/app/lib/server/lib/sendNotificationsOnMessage.ts`
-- `apps/meteor/app/search/server/events/EventService.ts`
-- `apps/meteor/server/services/messages/service.ts`
-- `apps/meteor/ee/server/lib/message-read-receipt/ReadReceipt.ts`
-- `apps/meteor/app/lib/server/lib/notifyUsersOnMessage.ts`
-- `apps/meteor/app/discussion/server/hooks/propagateDiscussionMetadata.ts`
-- `packages/rest-typings/src/v1/omnichannel.ts`
-- `apps/meteor/ee/server/hooks/federation/index.ts`
-- `apps/meteor/app/integrations/server/triggers.ts`
-- `apps/meteor/app/livechat/server/business-hour/BusinessHourManager.ts`
-- `apps/meteor/app/livechat/server/hooks/sendToCRM.ts`
-- `apps/meteor/ee/app/authorization/server/callback.ts`
-- `apps/meteor/app/slackbridge/server/RocketAdapter.ts`
-- `apps/meteor/app/livechat/server/hooks/afterUserActions.ts`
-- `apps/meteor/ee/server/lib/engagementDashboard/startup.ts`
-- `apps/meteor/app/markdown/server/index.ts`
+- `packages/models/src/models/BaseRaw.ts`
+- `packages/models/src/updater.ts`
+- `packages/core-typings/src/IMessage/IMessage.ts`
+- `packages/core-typings/src/IRoom.ts`
+- `packages/model-typings/src/updater.ts`
+- `packages/apps-engine/src/server/bridges/LivechatBridge.ts`
+- `apps/meteor/client/views/marketplace/sidebarItems.tsx`
+- `packages/apps-engine/src/server/managers/AppPermissionManager.ts`
+- `packages/apps-engine/src/server/errors/PermissionDeniedError.ts`
+- `packages/apps-engine/src/definition/permissions/IPermission.ts`
+- `packages/apps-engine/src/server/bridges/RoomBridge.ts`
+- `packages/apps-engine/src/server/bridges/CloudWorkspaceBridge.ts`
+- `packages/apps-engine/src/server/bridges/UiInteractionBridge.ts`
+- `packages/apps-engine/src/server/AppManager.ts`
+- `apps/meteor/client/views/marketplace/components/MarketplaceRequestBadge.tsx`
+- `packages/apps-engine/src/server/bridges/VideoConferenceBridge.ts`

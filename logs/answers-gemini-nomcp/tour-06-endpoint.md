@@ -2,178 +2,194 @@
 
 ## Baseline Answer (no tools)
 
-Creating a new REST API endpoint in Rocket.Chat involves defining a new route using the `API.v1.addRoute` method. Most of the API endpoints are located in the `app/api/server/v1/` directory.
+Creating a new REST API endpoint in Rocket.Chat involves defining a new route using its internal API framework, which is built on top of Express.js. The core of this process revolves around the `app/api/server/api.js` module.
 
-Here's a step-by-step guide with an example:
+Here's a step-by-step guide with specific file paths and an example:
 
-### 1. Choose or Create a New API File
+### 1. Choose a Location for Your Endpoint File
 
-You can either add your new endpoint to an existing API file (e.g., `app/api/server/v1/users.js` for user-related endpoints) or create a new file for a new domain of endpoints. For a new domain, it's best to create a new file in `app/api/server/v1/` (e.g., `app/api/server/v1/myCustomFeature.js`).
+Rocket.Chat's API endpoints are typically organized by version and resource. For v1 endpoints, you'll usually create a new file within the `app/api/server/v1/` directory.
 
-Rocket.Chat automatically loads all files within the `app/api/server/v1/` directory, so you don't need to explicitly register your new file.
+*   **Example Path:** `app/api/server/v1/myCustomEndpoint.js`
 
-### 2. Define the Route using `API.v1.addRoute`
+### 2. Define Your Endpoint
 
-Inside your chosen or new file, you'll use `API.v1.addRoute` to define your endpoint.
+Inside your new file, you'll import the `API` object and use its `v1.addRoute` method to register your endpoint.
 
-**Example: Creating a simple `/api/v1/my-custom-feature` endpoint**
-
-Let's create a new file: `app/api/server/v1/myCustomFeature.js`
+**File:** `app/api/server/v1/myCustomEndpoint.js`
 
 ```javascript
-// app/api/server/v1/myCustomFeature.js
+import { API } from '../api'; // Import the API object from the parent directory
+import { check } from 'meteor/check'; // Useful for basic type checking, though Joi is preferred for complex validation
 
-import { API } from '../api'; // Import the API instance
+// Define your new API route
+// The first argument is the path segment (e.g., /api/v1/my-custom-endpoint)
+// The second argument is an options object (e.g., { authRequired: true } for authenticated access)
+// The third argument is an object where keys are HTTP methods (get, post, put, delete)
+// and values are the handler functions for those methods.
+API.v1.addRoute('my-custom-endpoint', { authRequired: true }, {
+    /**
+     * @api {get} /api/v1/my-custom-endpoint Get a custom message
+     * @apiName GetMyCustomEndpoint
+     * @apiGroup MyCustom
+     * @apiDescription Returns a simple custom message.
+     * @apiSuccess {String} message A custom success message.
+     * @apiError (Error 401) Unauthorized If the user is not authenticated.
+     */
+    get() {
+        // 'this' context provides useful properties and methods:
+        // this.userId: The ID of the authenticated user
+        // this.user: The full user object of the authenticated user
+        // this.queryParams: Object containing URL query parameters
+        // this.urlParams: Object containing URL path parameters (e.g., for /users/:id)
+        // this.request: The raw Express request object
+        // this.response: The raw Express response object
 
-// Define a new route for /api/v1/my-custom-feature
-API.v1.addRoute('my-custom-feature', { authRequired: true }, {
-	/**
-	 * @summary Get information about the custom feature
-	 * @route GET /api/v1/my-custom-feature
-	 * @returns {object} JSON object with feature details
-	 */
-	get() {
-		// Access query parameters if needed
-		const { param1, param2 } = this.queryParams;
+        // Since authRequired: true, this.userId will be available if logged in.
+        // You can add further authorization checks here if needed (e.g., role-based).
+        if (!this.userId) {
+            return this.unauthorized(); // Sends a 401 Unauthorized response
+        }
 
-		// Perform some logic
-		const featureData = {
-			id: 'custom-feature-123',
-			name: 'My Awesome Custom Feature',
-			status: 'active',
-			requestedParams: { param1, param2 },
-			userId: this.userId, // The ID of the authenticated user
-		};
+        // Example of accessing query parameters:
+        // const { greetingType } = this.queryParams;
+        // let message = 'Hello from your custom endpoint!';
+        // if (greetingType === 'formal') {
+        //     message = 'Greetings from your custom endpoint!';
+        // }
 
-		// Return a success response
-		return API.v1.success(featureData);
-	},
+        return this.success({ // Sends a 200 OK JSON response
+            message: `Hello, ${this.user.username}! This is your custom GET endpoint.`,
+            timestamp: new Date(),
+        });
+    },
 
-	/**
-	 * @summary Create or update the custom feature
-	 * @route POST /api/v1/my-custom-feature
-	 * @body {string} name - The name of the feature
-	 * @body {string} description - A description
-	 * @returns {object} JSON object with success status
-	 */
-	post() {
-		// Access body parameters
-		const { name, description } = this.bodyParams;
+    /**
+     * @api {post} /api/v1/my-custom-endpoint Post a greeting
+     * @apiName PostMyCustomEndpoint
+     * @apiGroup MyCustom
+     * @apiParam {String} name The name to greet.
+     * @apiSuccess {String} greeting A personalized greeting.
+     * @apiError (Error 400) InvalidParams If 'name' is missing or invalid.
+     * @apiError (Error 401) Unauthorized If the user is not authenticated.
+     */
+    post() {
+        if (!this.userId) {
+            return this.unauthorized();
+        }
 
-		if (!name) {
-			return API.v1.failure('Name is required for creating the feature.');
-		}
+        // this.bodyParams: Object containing the request body parameters (for POST/PUT)
+        const { name } = this.bodyParams;
 
-		// Perform some logic, e.g., save to database
-		console.log(`User ${this.userId} is creating/updating feature: ${name} - ${description}`);
+        // Input validation is crucial.
+        // You can use Meteor's 'check' for simple types or Joi for complex schemas.
+        try {
+            check(name, String);
+        } catch (e) {
+            // Sends a 400 Bad Request JSON response
+            return this.failure({
+                message: 'Invalid parameter: "name" must be a string.',
+                details: e.message,
+            });
+        }
 
-		// Return a success response
-		return API.v1.success({
-			message: 'Custom feature processed successfully!',
-			name,
-			description,
-			userId: this.userId,
-		});
-	},
+        return this.success({
+            greeting: `Hello, ${name}! Your message was received by ${this.user.username}.`,
+            receivedAt: new Date(),
+        });
+    },
 
-	/**
-	 * @summary Delete the custom feature
-	 * @route DELETE /api/v1/my-custom-feature/:id
-	 * @param {string} id - The ID of the feature to delete
-	 * @returns {object} JSON object with success status
-	 */
-	delete() {
-		// Access URL parameters (e.g., from /my-custom-feature/:id)
-		const { id } = this.urlParams;
+    /**
+     * @api {delete} /api/v1/my-custom-endpoint/:id Delete an item
+     * @apiName DeleteMyCustomEndpoint
+     * @apiGroup MyCustom
+     * @apiParam {String} id The ID of the item to delete.
+     * @apiSuccess {String} message Confirmation of deletion.
+     * @apiError (Error 401) Unauthorized If the user is not authenticated.
+     * @apiError (Error 403) Forbidden If the user does not have permission.
+     * @apiError (Error 404) NotFound If the item does not exist.
+     */
+    delete() {
+        if (!this.userId) {
+            return this.unauthorized();
+        }
 
-		if (!id) {
-			return API.v1.failure('Feature ID is required for deletion.');
-		}
+        // Example of checking user permissions
+        // Rocket.Chat provides `hasPermission` and `hasRole` helpers.
+        // You might need to import them or access them via a service.
+        // For simplicity, let's assume a direct check for now.
+        // In a real scenario, you'd use `RocketChat.authz.hasPermission(this.userId, 'delete-my-custom-items')`
+        // if (!RocketChat.authz.hasPermission(this.userId, 'delete-my-custom-items')) {
+        //     return this.unauthorized('User does not have permission to delete items.'); // 403 Forbidden
+        // }
 
-		// Perform deletion logic
-		console.log(`User ${this.userId} is deleting feature with ID: ${id}`);
+        const { id } = this.urlParams; // Access path parameters
 
-		// Return a success response
-		return API.v1.success({
-			message: `Custom feature with ID ${id} deleted successfully.`,
-			userId: this.userId,
-		});
-	},
+        if (!id) {
+            return this.failure('Missing parameter: "id" in URL.');
+        }
+
+        // Simulate deletion logic
+        // if (!itemExists(id)) {
+        //     return this.notFound(); // Sends a 404 Not Found response
+        // }
+        // deleteItem(id);
+
+        return this.success({
+            message: `Item with ID "${id}" deleted successfully.`,
+        });
+    },
 });
 ```
 
-### Key Components Explained:
+### Key Concepts and Best Practices:
 
-1.  **`import { API } from '../api';`**:
-    *   This imports the main API instance from `app/api/server/api.js`. All API routes are registered against this instance.
+1.  **`API.v1.addRoute(path, options, methods)`**:
+    *   `path`: The URL path segment (e.g., `'my-custom-endpoint'`). The full path will be `/api/v1/my-custom-endpoint`.
+    *   `options`: An object for route-specific settings.
+        *   `authRequired: true`: Requires the user to be logged in. If `false` or omitted, the endpoint is public.
+        *   `permissions`: An array of permissions required to access the endpoint.
+    *   `methods`: An object mapping HTTP verbs (`get`, `post`, `put`, `delete`) to their respective handler functions.
 
-2.  **`API.v1.addRoute('my-custom-feature', { authRequired: true }, { ... });`**:
-    *   **`'my-custom-feature'`**: This is the path segment for your route. The full path will be `/api/v1/my-custom-feature`. You can also define URL parameters here, e.g., `'my-custom-feature/:id'`.
-    *   **`{ authRequired: true }`**: This is an options object.
-        *   `authRequired: true` (default for most routes) means the user must be logged in and provide a valid `X-Auth-Token` and `X-User-Id` in the request headers.
-        *   Set to `false` for public endpoints.
-        *   Other options can include `permissions` for fine-grained access control (e.g., `permissions: ['view-l-room']`).
-    *   **`{ ... }`**: This is an object where you define the handler functions for different HTTP methods (GET, POST, PUT, DELETE, etc.).
+2.  **`this` Context in Handlers**:
+    Inside the handler functions, `this` refers to the current request context, providing:
+    *   `this.userId`: The ID of the authenticated user.
+    *   `this.user`: The full user object.
+    *   `this.queryParams`: URL query parameters (e.g., `?param=value`).
+    *   `this.bodyParams`: Request body parameters (for POST/PUT).
+    *   `this.urlParams`: Parameters extracted from the URL path (e.g., `/users/:id` would have `this.urlParams.id`).
+    *   `this.request`, `this.response`: Raw Express request and response objects.
 
-3.  **Handler Functions (`get()`, `post()`, `delete()`)**:
-    *   Each function corresponds to an HTTP method.
-    *   **`this` context**: Inside these functions, `this` refers to the current request context, providing useful properties:
-        *   `this.userId`: The ID of the authenticated user making the request.
-        *   `this.queryParams`: An object containing URL query parameters (e.g., `?param1=value`).
-        *   `this.bodyParams`: An object containing parameters from the request body (for POST, PUT).
-        *   `this.urlParams`: An object containing parameters extracted from the URL path (e.g., `id` from `/my-custom-feature/:id`).
-        *   `this.request`: The raw Node.js `http.IncomingMessage` object.
-        *   `this.response`: The raw Node.js `http.ServerResponse` object.
+3.  **Response Helpers**:
+    Rocket.Chat's API framework provides convenient methods for sending responses:
+    *   `this.success(data)`: Sends a `200 OK` response with JSON data.
+    *   `this.failure(error)`: Sends a `400 Bad Request` response with an error message. You can pass a string or an object.
+    *   `this.notFound()`: Sends a `404 Not Found` response.
+    *   `this.unauthorized(message)`: Sends a `401 Unauthorized` response.
+    *   `this.notAllowed(message)`: Sends a `403 Forbidden` response.
 
-4.  **Response Methods (`API.v1.success()`, `API.v1.failure()`)**:
-    *   **`API.v1.success(data)`**: Returns a successful JSON response with `statusCode: 200` and the provided `data`.
-    *   **`API.v1.failure(error)`**: Returns an error JSON response with `statusCode: 400` (or other appropriate status codes if specified) and the `error` message. You can also pass an object with `error` and `statusCode`.
+4.  **Input Validation**:
+    *   **Always validate** `this.queryParams` and `this.bodyParams`.
+    *   For simple type checks, `meteor/check` (`check(value, Type)`) is sufficient.
+    *   For complex schemas, Rocket.Chat often uses `Joi`. You can define a Joi schema and use `this.validate(schema)` to validate parameters.
 
-### 3. Restart Rocket.Chat
+5.  **Authentication and Authorization**:
+    *   `authRequired: true` handles basic authentication (user must be logged in).
+    *   For authorization (checking user roles or specific permissions), you'll need to implement checks within your handler using Rocket.Chat's permission system (e.g., `RocketChat.authz.hasPermission(this.userId, 'my-custom-permission')`).
 
-After creating or modifying an API file, you need to restart your Rocket.Chat instance for the changes to take effect.
+6.  **Error Handling**:
+    *   Return meaningful error messages and appropriate HTTP status codes.
+    *   Log server-side errors but avoid exposing sensitive internal details to the client.
 
-### 4. Test Your Endpoint
+7.  **Documentation**:
+    *   Use JSDoc-style comments (as shown in the example) to describe your endpoints, parameters, and responses. Tools like `apidoc` can parse these comments to generate API documentation.
 
-You can test your new endpoint using tools like Postman, Insomnia, `curl`, or directly from your browser for GET requests.
-
-**Example `curl` commands:**
-
-**GET Request:**
-```bash
-curl -X GET \
-  http://localhost:3000/api/v1/my-custom-feature?param1=test&param2=another \
-  -H 'X-Auth-Token: YOUR_AUTH_TOKEN' \
-  -H 'X-User-Id: YOUR_USER_ID'
-```
-
-**POST Request:**
-```bash
-curl -X POST \
-  http://localhost:3000/api/v1/my-custom-feature \
-  -H 'Content-Type: application/json' \
-  -H 'X-Auth-Token: YOUR_AUTH_TOKEN' \
-  -H 'X-User-Id: YOUR_USER_ID' \
-  -d '{
-    "name": "New Feature",
-    "description": "This is a description for the new feature."
-  }'
-```
-
-**DELETE Request:**
-```bash
-curl -X DELETE \
-  http://localhost:3000/api/v1/my-custom-feature/someFeatureId123 \
-  -H 'X-Auth-Token: YOUR_AUTH_TOKEN' \
-  -H 'X-User-Id: YOUR_USER_ID'
-```
-
-Remember to replace `YOUR_AUTH_TOKEN` and `YOUR_USER_ID` with actual values obtained from a logged-in user (e.g., by inspecting network requests after logging into Rocket.Chat or using the `/api/v1/login` endpoint).
+After creating this file, Rocket.Chat's server will automatically pick up and register the new routes when it starts or restarts. You can then test your endpoints using tools like Postman, Insomnia, or `curl`.
 
 ## Metrics
 
 | Metric | Value |
 |--------|-------|
-| Tokens | 2,364 |
+| Tokens | 4,519 |
 | Model | gemini-2.5-flash |
 | Tools | NONE |

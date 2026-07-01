@@ -2,36 +2,49 @@
 
 ## Gemini Answer
 
-The complete call chain for `sendMessage` involves a client-side initiation, a DDP method dispatch, and a server-side handling and processing.
+The complete call chain for `sendMessage` in Rocket.Chat involves both client-side initiation and server-side processing via a DDP (Distributed Data Protocol) method call.
 
-**Call Chain:**
+Here's the call chain:
 
-1.  **Entry:** `sendMessage` (apps/meteor/client/lib/chats/flows/sendMessage.ts)
-2.  `methodCall` (packages/ddp-client/src/legacy/RocketchatSDKLegacy.ts)
-3.  `callAsync` (packages/ddp-client/src/ClientStream.ts)
-4.  `callAsyncWithOptions` (packages/ddp-client/src/ClientStream.ts)
-5.  `call` (packages/ddp-client/src/MinimalDDPClient.ts) - This dispatches the DDP method call "sendMessage" to the server.
+**Entry → Step 1 → Step 2 → Step 3 → Step 4 → Final**
 
-**Server-side Handling:**
+1.  **Client-side Initiation:**
+    *   `sendMessage` in `apps/meteor/client/lib/chats/flows/sendMessage.ts` is the primary client-side function responsible for preparing and sending a message.
+    *   This function calls `process` (within the same file).
 
-6.  The DDP method "sendMessage" is received and handled by the `Meteor.methods` definition in `apps/meteor/app/lib/server/methods/sendMessage.ts`.
-7.  This server-side method then calls the core `sendMessage` function: `sendMessage` (apps/meteor/app/lib/server/functions/sendMessage.ts)
-    *   `notifyOnRoomChangedById` (apps/meteor/server/lib/notifyListener.ts)
-    *   `hasPermissionAsync` (apps/meteor/app/authorization/server/functions/hasPermission.ts)
-    *   `api` (apps/meteor/app/api/server/api.ts)
-    *   `request` (packages/api-data/api-data.ts)
-    *   `methodCall` (packages/ddp-client/src/legacy/RocketchatSDKLegacy.ts)
-    *   `updateOne` (packages/models/src/lib/BaseRaw.ts)
+2.  **DDP Method Dispatch:**
+    *   The `process` function then calls `sendMessage` in `packages/ddp-client/src/livechat/LivechatClientImpl.ts`.
+    *   This `sendMessage` function in `LivechatClientImpl.ts` utilizes `methodCall` in `packages/ddp-client/src/legacy/RocketchatSDKLegacy.ts` to dispatch a DDP method call to the server. This is the point where the client communicates with the server.
+    *   The DDP method call is handled by `callAsync` in `packages/ddp-client/src/client/ClientStream.ts`, which ultimately uses `call` in `packages/ddp-client/src/client/MinimalDDPClient.ts` to send the message over the WebSocket.
 
-## Tool Calls (7 calls, 73,873 tokens)
+3.  **Server-side Handling:**
+    *   The server receives this DDP method call, which is then handled by the `sendMessage` method defined on the server, typically found in `apps/meteor/app/lib/server/functions/sendMessage.ts`.
+    *   This server-side `sendMessage` performs various operations, including:
+        *   `notifyOnRoomChangedById` in `apps/meteor/server/lib/notifyListener.ts` (for real-time updates).
+        *   `hasPermissionAsync` in `apps/meteor/app/authorization/server/functions/hasPermission.ts` (for permission checks).
+        *   Interactions with the `api` (e.g., `apps/meteor/app/api/server/api.ts`) for various API-related tasks.
+        *   Database operations such as `updateOne` in `packages/model-typings/src/raw/BaseRaw.ts` (for persisting the message).
+
+**Key Files in the Call Chain:**
+
+*   `apps/meteor/client/lib/chats/flows/sendMessage.ts` (Client-side entry point)
+*   `packages/ddp-client/src/livechat/LivechatClientImpl.ts` (Client-side DDP method caller)
+*   `packages/ddp-client/src/legacy/RocketchatSDKLegacy.ts` (DDP method dispatch)
+*   `packages/ddp-client/src/client/ClientStream.ts` (DDP call handling)
+*   `packages/ddp-client/src/client/MinimalDDPClient.ts` (DDP client for WebSocket communication)
+*   `apps/meteor/app/lib/server/functions/sendMessage.ts` (Server-side method handler)
+*   `apps/meteor/server/lib/notifyListener.ts` (Notification handling)
+*   `apps/meteor/app/authorization/server/functions/hasPermission.ts` (Permission checks)
+*   `apps/meteor/app/api/server/api.ts` (API interactions)
+*   `packages/model-typings/src/raw/BaseRaw.ts` (Database operations)
+
+## Tool Calls (5 calls, 49,032 tokens)
 
 **Step 1:** `search({"query":"sendMessage"})` → 968 tokens
-**Step 2:** `graph({"query":"sendMessage","file":"apps/meteor/app/lib/server/functions/sendMessage.ts","direction":"dow)` → 2727 tokens
-**Step 3:** `graph({"file":"apps/meteor/client/lib/chats/flows/sendMessage.ts","query":"sendMessage","direction":"down")` → 2726 tokens
-**Step 4:** `implement({"symbolName":"sendMessage","filename":"apps/meteor/app/lib/server/methods/sendMessage.ts"})` → 509 tokens
-**Step 5:** `implement({"symbolName":"apps/meteor/app/lib/server/methods/sendMessage.ts","filename":"apps/meteor/app/lib/se)` → 70 tokens
-**Step 6:** `implement({"symbolName":"apps/meteor/app/lib/server/methods/sendMessage.ts","filename":"apps/meteor/app/lib/se)` → 70 tokens
-**Step 7:** `implement({"filename":"apps/meteor/app/lib/server/methods/sendMessage.ts","symbolName":"sendMessage"})` → 509 tokens
+**Step 2:** `graph({"file":"apps/meteor/app/lib/server/functions/sendMessage.ts","query":"sendMessage","direction":"dow)` → 2417 tokens
+**Step 3:** `graph({"query":"sendMessage","file":"apps/meteor/client/lib/chats/flows/sendMessage.ts","direction":"down")` → 2416 tokens
+**Step 4:** `implement({"symbolName":"sendMessage","filename":"apps/meteor/client/lib/chats/flows/sendMessage.ts"})` → 625 tokens
+**Step 5:** `graph({"file":"apps/meteor/client/lib/chats/flows/sendMessage.ts","direction":"down","query":"process"})` → 2686 tokens
 
 ## Files Seen In Tool Results (33)
 
