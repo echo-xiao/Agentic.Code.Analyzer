@@ -72,7 +72,7 @@ export const TOOL_DEFINITIONS = [
                 file: { type: "string", description: "Pin the traversal root when the symbol has multiple definitions (collisions like 'Streamer', 'sendMessage'). Pass the exact file path from search results. Omit to auto-pick the most-imported definition." },
                 edgeTypes: {
                     type: "array",
-                    items: { type: "string", enum: ["call", "jsx", "new", "event_emit", "event_listen", "pubsub_publish", "pubsub_subscribe", "type"] },
+                    items: { type: "string", enum: ["call", "jsx", "new", "event_emit", "event_listen", "pubsub_publish", "pubsub_subscribe", "rest_call", "rest_route", "stream_def", "stream_sub", "type"] },
                     description: "Filter to specific edge types. Default: all types including 'type' edges (TypeScript type annotation references). Example: ['call','event_listen'] to only traverse direct calls and event listeners."
                 },
             },
@@ -129,7 +129,7 @@ function isTestFile(filePath: string): boolean {
 // Event/pubsub dependents register via string-keyed dispatch (callbacks.add, Meteor.subscribe…)
 // and do NOT statically import the emitter — so import-based scoping would wrongly drop them.
 // Only static edges (call/new/jsx/type) carry a real import relationship to scope on.
-const DYNAMIC_EDGES = new Set<EdgeType>(['event_emit', 'event_listen', 'pubsub_publish', 'pubsub_subscribe']);
+const DYNAMIC_EDGES = new Set<EdgeType>(['event_emit', 'event_listen', 'pubsub_publish', 'pubsub_subscribe', 'rest_call', 'rest_route', 'stream_def', 'stream_sub']);
 function isDynamicEdge(et: EdgeType): boolean { return DYNAMIC_EDGES.has(et); }
 
 function computeImportDistances(startFile: string): Map<string, number> {
@@ -365,7 +365,7 @@ export async function handleToolCall(name: string, args: any): Promise<any> {
             const maxDepth = Math.min(typeof rawDepth === 'number' ? rawDepth : 4, 6);
 
             const DEFAULT_EDGE_TYPES = new Set<EdgeType>([
-                'call', 'jsx', 'new', 'event_emit', 'event_listen', 'pubsub_publish', 'pubsub_subscribe', 'type'
+                'call', 'jsx', 'new', 'event_emit', 'event_listen', 'pubsub_publish', 'pubsub_subscribe', 'rest_call', 'rest_route', 'stream_def', 'stream_sub', 'type'
             ]);
             const allowedEdgeTypes: Set<EdgeType> = edgeTypes?.length > 0
                 ? new Set(edgeTypes as EdgeType[])

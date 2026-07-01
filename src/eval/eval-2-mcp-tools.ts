@@ -414,12 +414,12 @@ function formatReport(results: TestResult[]): string {
     const diagCount = new Map<string, number>();
     for (const r of results) diagCount.set(r.retrieval.diagnosis, (diagCount.get(r.retrieval.diagnosis) ?? 0) + 1);
     lines.push(`### Truncation diagnosis summary`);
-    lines.push(`| Diagnosis | Count | Action |`);
+    lines.push(`| Diagnosis | Count | Meaning |`);
     lines.push(`|-----------|------:|--------|`);
     const actions: Record<string, string> = {
-        'ok': 'core files in top-5 — no change',
-        'ranked-low': 'in top-50 but >5 → improve ranking / re-rank (not just bigger top-k)',
-        'recall-miss': 'absent from top-50 → fix matching (threshold / split / hints)',
+        'ok': 'core files in top-5',
+        'ranked-low': 'in top-50 but ranked >5',
+        'recall-miss': 'absent from top-50',
         'mixed': 'both ranking + matching issues',
         'n/a': 'no core files / no query',
     };

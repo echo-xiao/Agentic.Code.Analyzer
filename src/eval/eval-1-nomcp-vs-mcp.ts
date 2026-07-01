@@ -95,7 +95,6 @@ async function main() {
     L.push(`| Avg tokens / question | ${Math.round(avgTok0).toLocaleString()} | ~${Math.round(avgTok2).toLocaleString()} | ${Math.round(avgTok2).toLocaleString()} |`);
     L.push(`| Questions improved (MCP > no-MCP) | — | — | ${improved}/${n} |`);
     L.push('');
-    L.push(`> **Is the lift the graph, or just more tokens?** In the SAME answer space, dumb keyword search reaches ${(avgCovN * 100).toFixed(0)}%, while the MCP agent reaches ${(avgCov2 * 100).toFixed(0)}% — so the graph/agent adds **${graphGain >= 0 ? '+' : ''}${graphGain.toFixed(0)} pts beyond what equal-length plain search buys**. ${graphGain > 5 ? 'The lift is the graph, not just tokens.' : 'Plain search keeps up here — the graph adds little on this (file-name coverage) metric; its value shows in eval-3 (answer correctness).'}\n`);
     L.push(`| # | id | type | cov no-MCP | cov naive | cov MCP | MCP−naive | tok no-MCP | tok MCP |`);
     L.push(`|---|---|---|---:|---:|---:|---:|---:|---:|`);
     rows.forEach((r, i) => {

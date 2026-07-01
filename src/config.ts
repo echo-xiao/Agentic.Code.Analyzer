@@ -13,7 +13,7 @@ export const TARGET_SRC_DIR = process.env.ROCKET_CHAT_SRC
 // upload storm throttles the thousands of small-file reads during an index rebuild.
 export const OUTPUT_DIR = path.join(PROJECT_ROOT, 'output.nosync');
 export const CACHE_FILE = path.join(OUTPUT_DIR, '.hash_cache.json');
-export const GENERATOR_VERSION = '7';
+export const GENERATOR_VERSION = '10';
 
 export function getOutputPaths(sourceFile: string): { skeletonPath: string; mappingPath: string } {
     const rel = path.relative(TARGET_SRC_DIR, sourceFile).replace(/\.(tsx?|js)$/, '');

@@ -1,11 +1,10 @@
 # eval-3 — How good is the agent?  (Gemini + MCP vs Claude reference)
 
-6/30/2026, 7:35:30 PM | 34 testcases | deterministic (no key, frozen rubric)
+6/30/2026, 8:05:40 PM | 34 testcases | deterministic (no key, frozen rubric)
 
 **Hard: Gemini covers 23% of Claude's cited files (avg).**
 
 **Synthesis split (core spine): retrieval-recall 44% (tools surfaced it) → synthesis-recall 78% (agent then wrote it).**
-> 17 core files were surfaced by the tools but never written into an answer — that gap, not retrieval, is the lever.
 
 **Auto verdict (frozen rubric): PASS 9 / PARTIAL 11 / FAIL 14.**
 

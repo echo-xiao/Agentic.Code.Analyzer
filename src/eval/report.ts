@@ -81,20 +81,6 @@ function bottleneck(j: J): { tag: string; note: string } {
 // Log artifact: agent WROTE more core than the seen-log recorded as retrieved (G2 under-counts).
 const undercounts = (j: J) => j.coreN > 0 && j.retrievalRecall * j.coreN + 1e-9 < j.coreWritten;
 
-// ── per-type playbook (targeted fix per question type) ─────────────────────────────────────────
-// NOTE: per-type graph-TRAVERSAL routing (walk up for impact, deeper for routing, etc.) was
-// implemented and measured on eval-2 — it came out flat/negative (chains are already 100% graph-
-// reachable; widening the walk just floods top-50 ranking). So the fixes below point at the levers
-// that actually move recall — global anti-dilution RE-RANKING and seed MATCHING — not type routing.
-const PLAYBOOK: Record<string, { weak: string; why: string; fix: string }> = {
-    architecture: { weak: 'G1 retrieval (recall/mixed)', why: 'core files are graph-reachable but rank past top-50', fix: 'anti-dilution re-rank (hold reachable core in top-50); type-routed traversal tested flat' },
-    'call-chain': { weak: 'G1 ranking + G3 tail', why: 'chain found but ranked low; synthesis drops the terminal node', fix: 're-rank + force synthesis to reach the terminal symbol (deeper-down helped only 1/4 — weak)' },
-    locate: { weak: 'G1 recall-miss', why: 'query terms mismatch the naming; the seed itself fails', fix: 'symbol-aware matching + synonyms / disambiguation (seed-level — the one non-traversal recall fix)' },
-    pattern: { weak: 'G3 + measurement', why: 'files found but not named; core spine too strict for how-to Qs', fix: 'force file citation in synthesis; relax / redefine core spine (much of this gap is measurement)' },
-    routing: { weak: 'G1 recall + ranking', why: 'dispatch/callback edges ARE indexed (100% reachable), but core ranks past top-50', fix: 'anti-dilution re-rank — NOT traversal routing (edge-typed graph walk tested negative)' },
-    impact: { weak: 'G2 breadth + G3', why: 'blast radius thin; up-only traversal floods ranking', fix: 'synthesis breadth (list all callers); graph(up) traversal tested negative — do not route by type' },
-};
-
 // ── aggregates ─────────────────────────────────────────────────────────────────────────────────
 const pct = (x: number) => `${(x * 100).toFixed(0)}%`;
 const mean = (xs: number[]) => (xs.length ? xs.reduce((s, v) => s + v, 0) / xs.length : 0);
@@ -126,13 +112,11 @@ if (erroredIds.length) L.push(`> ⚠ ${erroredIds.length} infra failure(s) exclu
 
 // 1 — token efficiency (eval-1, orthogonal axis)
 L.push(`## 1. Token efficiency — is the graph worth its tokens? (eval-1)\n`);
-L.push(`Orthogonal to the funnel: the funnel says *where* quality leaks; this says *whether the graph earns its cost*.\n`);
 L.push(`| | no-MCP | naive @ same answer size | with MCP |`);
 L.push(`|---|---:|---:|---:|`);
 L.push(`| Avg coverage | ${pct(e1.avgCov0)} | ${pct(e1.avgCovN)} | ${pct(e1.avgCov2)} |`);
 L.push(`| Avg tokens / question | ${Math.round(e1.avgTok0).toLocaleString()} | ~${Math.round(e1.avgTok2).toLocaleString()} | ${Math.round(e1.avgTok2).toLocaleString()} |`);
 L.push('');
-L.push(`> At equal answer size, plain search reaches ${pct(e1.avgCovN)} while the graph agent reaches ${pct(e1.avgCov2)} — the graph adds **${e1.graphGain >= 0 ? '+' : ''}${e1.graphGain.toFixed(0)} pts** beyond what tokens alone buy. Cost: ~${(e1.avgTok2 / Math.max(1, e1.avgTok0)).toFixed(0)}× the tokens.\n`);
 
 // 2 — the funnel (TRUE cumulative funnel: share of ALL core files still alive at each stage).
 // SAME DENOMINATOR for every stage: sumCore over the same liveCore row-set. Pooled file counts, not
@@ -168,11 +152,11 @@ L.push(`AGENT`);
 L.push(row("  surfaced by agent's loop", fRetr, `<- gather ${pct(gatherRate)} of ceiling`));
 L.push(row('  written into the answer', fWrit, `<- synth ${pct(synthRate)} of surfaced, drops ${totalDropped}`));
 L.push('```');
-L.push(`\n**Three levers, sized** (all ÷ ${sumCore}):`);
-L.push(`- **never rank (recall-miss): ${pct(1 - r50)}** — ${cnt(1 - r50)} core files absent even from top-50 → fix matching / graph reach.`);
-L.push(`- **ranked-but-not-gathered: ${pct(Math.max(0, r50 - fRetr))}** — ${cnt(Math.max(0, r50 - fRetr))} files rank in top-50 but the agent never surfaces them → re-rank + make the agent dig / walk the graph.`);
-L.push(`- **surfaced-but-not-written (synthesis): ${pct(Math.max(0, fRetr - fWrit))}** — ${totalDropped} files → citation prompt.\n`);
-L.push(`> Index is a floor, not a stage (file ${pct(g0file)} / sym ${pct(g0sym)} / graph ${pct(g0graph)}). Diagnostics: chain-order LCS ${pct(g15)} (${g15rows.length} ordered Qs) · diag ${[...diagDist].map(([d, c]) => `${d} ${c}`).join('/')}. Seen-log under-counts retrieval on \`*\` rows → ${pct(fRetr)} surfaced is a lower bound.\n`);
+L.push(`\n**Three stages, sized** (all ÷ ${sumCore}):`);
+L.push(`- **never rank (recall-miss): ${pct(1 - r50)}** — ${cnt(1 - r50)} core files absent even from top-50.`);
+L.push(`- **ranked-but-not-gathered: ${pct(Math.max(0, r50 - fRetr))}** — ${cnt(Math.max(0, r50 - fRetr))} files rank in top-50 but the agent never surfaces them.`);
+L.push(`- **surfaced-but-not-written (synthesis): ${pct(Math.max(0, fRetr - fWrit))}** — ${totalDropped} files.\n`);
+L.push(`> Index: file ${pct(g0file)} / sym ${pct(g0sym)} / graph ${pct(g0graph)}. Chain-order LCS ${pct(g15)} (${g15rows.length} ordered Qs) · diag ${[...diagDist].map(([d, c]) => `${d} ${c}`).join('/')}. Seen-log under-counts retrieval on \`*\` rows → ${pct(fRetr)} surfaced is a lower bound.\n`);
 
 // 3 — detail table
 L.push(`## 3. Detail — every testcase × every gate\n`);
@@ -196,10 +180,9 @@ for (const r of rows) dist.set(bottleneck(r).tag, (dist.get(bottleneck(r).tag) ?
 L.push(`**Bottleneck distribution:** ${[...dist].sort((a, b) => b[1] - a[1]).map(([t, c]) => `${t} ${c}`).join(' · ')}.\n`);
 
 // 4 — summary by type
-L.push(`## 4. Summary — by question type: weak gate + targeted fix\n`);
-L.push(`> The **type** column is a reliable diagnostic (where each type leaks); per-type graph-**traversal** routing as a fix was tested on eval-2 and came out flat/negative (core is already 100% graph-reachable), so the fixes below are the levers that actually move recall — global anti-dilution re-ranking + seed matching — not type routing.\n`);
-L.push(`| type | n | avg R@10 | end cov | bottlenecks | targeted fix |`);
-L.push(`|---|---:|---:|---:|---|---|`);
+L.push(`## 4. Summary — by question type\n`);
+L.push(`| type | n | avg R@10 | end cov | bottlenecks |`);
+L.push(`|---|---:|---:|---:|---|`);
 const typeOrder = ['architecture', 'call-chain', 'locate', 'pattern', 'routing', 'impact'];
 const types = [...new Set(rows.map(r => r.type))].sort((a, b) => (typeOrder.indexOf(a) + 1 || 99) - (typeOrder.indexOf(b) + 1 || 99));
 for (const t of types) {
@@ -210,8 +193,7 @@ for (const t of types) {
     const bd = new Map<string, number>();
     for (const r of g) bd.set(bottleneck(r).tag, (bd.get(bottleneck(r).tag) ?? 0) + 1);
     const bdStr = [...bd].sort((a, b) => b[1] - a[1]).map(([k, c]) => `${k}${c > 1 ? '×' + c : ''}`).join(', ');
-    const pb = PLAYBOOK[t];
-    L.push(`| ${t} | ${g.length} | ${pct(avgR)} | ${pct(avgEnd)} | ${bdStr} | ${pb ? pb.fix : '—'} |`);
+    L.push(`| ${t} | ${g.length} | ${pct(avgR)} | ${pct(avgEnd)} | ${bdStr} |`);
 }
 L.push('');
 

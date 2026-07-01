@@ -1,6 +1,6 @@
 # eval-1 — Does MCP help, and why?  (no-MCP vs naive@same-budget vs MCP)
 
-6/30/2026, 7:36:02 PM | 34 testcases | deterministic, no Gemini/key
+6/30/2026, 8:05:39 PM | 34 testcases | deterministic, no Gemini/key
 
 Coverage = answer mentions of {core files ∪ key symbols}.
 
@@ -9,8 +9,6 @@ Coverage = answer mentions of {core files ∪ key symbols}.
 | Avg coverage | 14.5% | 20.7% | 38.1% |
 | Avg tokens / question | 3,258 | ~33,670 | 33,670 |
 | Questions improved (MCP > no-MCP) | — | — | 22/34 |
-
-> **Is the lift the graph, or just more tokens?** In the SAME answer space, dumb keyword search reaches 21%, while the MCP agent reaches 38% — so the graph/agent adds **+17 pts beyond what equal-length plain search buys**. The lift is the graph, not just tokens.
 
 | # | id | type | cov no-MCP | cov naive | cov MCP | MCP−naive | tok no-MCP | tok MCP |
 |---|---|---|---:|---:|---:|---:|---:|---:|

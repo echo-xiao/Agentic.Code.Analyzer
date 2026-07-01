@@ -59,6 +59,10 @@ export class SkeletonGenerator {
             if (!calls.has(key)) calls.set(key, { name, edgeType, ...(event ? { event } : {}) });
         };
 
+        // Normalize a REST path to a version-less key so the client call and server route match:
+        // '/v1/livechat/room' → 'livechat/room', 'livechat/room' → 'livechat/room'.
+        const normRoute = (p: string) => p.replace(/^\//, '').replace(/^v\d+\//, '');
+
         try {
             node.getDescendantsOfKind(SyntaxKind.CallExpression).forEach((call: any) => {
                 const expr = call.getExpression();
@@ -179,15 +183,60 @@ export class SkeletonGenerator {
                         }
                     }
 
+                    // REST client call: X.rest.get/post('/v1/path', …) — the path literal is the
+                    // cross-layer link to the server route registration (client↔server seam).
+                    if (/(^|\.)rest$/.test(objText) &&
+                        ['get', 'post', 'put', 'delete'].includes(method)) {
+                        const p = args[0];
+                        if (p && Node.isStringLiteral(p)) add(normRoute(p.getLiteralValue()), 'rest_call');
+                    }
+                    // REST server route registration: API.v1.addRoute('path') / API.v1.get/post('path').
+                    if (method === 'addRoute' ||
+                        (/(^|\.)API(\.(v\d+|default))?$/.test(objText) &&
+                            ['get', 'post', 'put', 'delete'].includes(method))) {
+                        const p = args[0];
+                        if (p && Node.isStringLiteral(p)) add(normRoute(p.getLiteralValue()), 'rest_route');
+                    }
+                    // Service-bus broadcast: api.broadcast('watch.rooms') — emit half, pairs with onEvent.
+                    if (method === 'broadcast') {
+                        const p = args[0];
+                        if (p && Node.isStringLiteral(p)) add(p.getLiteralValue(), 'event_emit');
+                    }
+                    // Streamer subscribe (client): sdk.stream('notify-user', …) — pairs with new Streamer(…).
+                    if (method === 'stream') {
+                        const p = args[0];
+                        if (p && Node.isStringLiteral(p)) add(p.getLiteralValue(), 'stream_sub');
+                    }
+                    // Slash command registration: slashCommands.add('kick', …) or .add({ command: 'kick' }).
+                    if (method === 'add' && /(^|\.)slashCommands$/.test(objText)) {
+                        const a = args[0];
+                        if (a && Node.isStringLiteral(a)) add(a.getLiteralValue(), 'event_listen');
+                        else if (a && Node.isObjectLiteralExpression(a)) {
+                            for (const prop of a.getProperties()) {
+                                if (Node.isPropertyAssignment(prop) && prop.getName?.() === 'command') {
+                                    const init = prop.getInitializer?.();
+                                    if (init && Node.isStringLiteral(init)) add(init.getLiteralValue(), 'event_listen');
+                                }
+                            }
+                        }
+                    }
+
                     const name = method;
                     if (name && name.length > 1 && !BUILTIN_IGNORE.has(name) &&
                         !CALLBACKS_EMIT_METHODS.has(name) && !CALLBACKS_LISTEN_METHODS.has(name) &&
-                        !['emit', 'on', 'once', 'publish', 'subscribe'].includes(name)) {
+                        !['emit', 'on', 'once', 'publish', 'subscribe', 'broadcast'].includes(name)) {
                         add(name, 'call');
                     }
 
                 } else if (Node.isIdentifier(expr)) {
-                    add(expr.getText(), 'call');
+                    const fnName = expr.getText();
+                    // Service-bus listener: onEvent('watch.rooms', handler) — listen half of broadcast.
+                    if (fnName === 'onEvent') {
+                        const evt = call.getArguments()[0];
+                        if (evt && Node.isStringLiteral(evt)) add(evt.getLiteralValue(), 'event_listen');
+                    } else {
+                        add(fnName, 'call');
+                    }
                 }
             });
 
@@ -219,6 +268,13 @@ export class SkeletonGenerator {
                 const ctor = expr.getExpression();
                 const name = Node.isIdentifier(ctor) ? ctor.getText() : null;
                 if (name) add(name, 'new');
+                // Streamer definition: new [this.|Meteor.]Streamer('notify-user') — pairs with sdk.stream(…).
+                const ctorName = Node.isIdentifier(ctor) ? ctor.getText()
+                    : Node.isPropertyAccessExpression(ctor) ? ctor.getName() : null;
+                if (ctorName === 'Streamer' || (ctorName && ctorName.endsWith('Streamer'))) {
+                    const a = expr.getArguments?.()[0];
+                    if (a && Node.isStringLiteral(a)) add(a.getLiteralValue(), 'stream_def');
+                }
             });
 
             node.getDescendantsOfKind(SyntaxKind.TypeReference).forEach((typeRef: any) => {
@@ -234,6 +290,27 @@ export class SkeletonGenerator {
         } catch { /* ignore */ }
 
         return Array.from(calls.values());
+    }
+
+    // Class heritage: `extends ServiceClassInternal implements IRoomService` — the base class and
+    // interfaces are a shared static anchor linking a service to its consumers (who reference the
+    // same interface). Emitted as `type` edges on the class symbol (heritage lives on the class
+    // declaration, outside any method, so extractCalls never sees it).
+    private static extractHeritage(cls: any): CallEdge[] {
+        const out: CallEdge[] = [];
+        try {
+            for (const hc of cls.getHeritageClauses?.() ?? []) {
+                for (const t of hc.getTypeNodes?.() ?? []) {
+                    const e = t.getExpression?.();
+                    const nm = e && Node.isIdentifier(e) ? e.getText() : null;
+                    if (nm && nm.length > 1 && /^[A-Z]/.test(nm) &&
+                        !BUILTIN_IGNORE.has(nm) && !TS_BUILTIN_TYPES.has(nm)) {
+                        out.push({ name: nm, edgeType: 'type' });
+                    }
+                }
+            }
+        } catch { /* ignore */ }
+        return out;
     }
 
     private static readonly HOOK_WRAPPERS = new Set([
@@ -355,7 +432,7 @@ export class SkeletonGenerator {
             if (!className) return;
 
             const classExported = cls.isExported();
-            mapping.symbols.push({ type: 'class', name: className, exported: classExported, line: cls.getStartLineNumber() });
+            mapping.symbols.push({ type: 'class', name: className, exported: classExported, line: cls.getStartLineNumber(), calls: this.extractHeritage(cls) });
 
             cls.getMethods().forEach(method => {
                 const methodName = method.getName();
