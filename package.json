@@ -11,9 +11,8 @@
     "gen:nomcp": "npx tsx src/eval/gen.ts --mode=nomcp",
     "gen:mcp": "NODE_OPTIONS=\"--max-old-space-size=8192\" npx tsx src/eval/gen.ts --mode=mcp",
     "eval:tools": "NODE_OPTIONS=\"--max-old-space-size=8192\" npx tsx src/eval/tools.ts",
-    "eval:token": "NODE_OPTIONS=\"--max-old-space-size=8192\" npx tsx src/eval/token.ts",
-    "report": "npx tsx src/eval/report.ts",
-    "refresh": "npm run prewarm && npm run gen:nomcp && npm run gen:mcp && npm run eval:tools && npm run eval:token && npm run report"
+    "report": "NODE_OPTIONS=\"--max-old-space-size=8192\" npx tsx src/eval/report.ts",
+    "refresh": "npm run prewarm && npm run gen:nomcp && npm run gen:mcp && npm run eval:tools && npm run report"
   },
   "dependencies": {
     "@modelcontextprotocol/sdk": "^1.27.1",

@@ -1,5 +1,7 @@
 # agents — semantic verdicts (manual, judged by Claude)
 
+**Judged: 2026-07-01** · against the `gen:mcp` run of that date (786,582 tokens). Re-judge whenever answers regenerate — see the refresh discipline below. The quantitative counterpart is `logs/reports/metrics.md`.
+
 > **What this is.** The semantic ground truth: did the agent get the MECHANISM right, regardless of
 > which files it cited? Automated file-overlap rubrics misjudge "right mechanism, different files"
 > as FAIL, so this table is judged by Claude reading each answer in
