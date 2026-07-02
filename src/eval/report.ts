@@ -108,6 +108,12 @@ interface J {
     resolvedIntent: string | null; intentSource: string; routeOk: boolean | null;
     failureMode: string | null; fault: 'agent' | 'engine' | null; bindingTool: string;
 }
+// map each failure mode to the pipeline stage it belongs to, so `binding` stays consistent with `mode`.
+const MODE_TO_STAGE: Record<string, string> = {
+    misrouted: 'route', 'weak-query': 'search', 'engine-unrankable': 'search',
+    'no-pivot': 'graph', 'gave-up': 'graph', 'wrong-subsystem': 'graph',
+    'dropped-synth': 'synth', 'sloppy-source': 'synth',
+};
 const byTools = new Map(tools.map(r => [r.id, r]));
 const rows: J[] = agent.map(b => {
     const a = byTools.get(b.id) ?? {};
@@ -125,7 +131,8 @@ const rows: J[] = agent.map(b => {
         : b.retrievalRecall < 0.5 ? 'no-pivot'
         : b.synthRecall < 0.7 ? 'dropped-synth' : 'no-pivot';
     const fault: 'agent' | 'engine' | null = mode ? (mode === 'engine-unrankable' ? 'engine' : 'agent') : null;
-    const bindingTool = routeOk === false ? 'route' : r50 < 0.3 ? 'search' : b.retrievalRecall < 0.5 ? 'graph' : b.synthRecall < 0.7 ? 'synth' : 'ok';
+    // binding = the pipeline stage of the (authoritative) semantic failure mode; PASS → ok.
+    const bindingTool = (!v || v.verdict === 'PASS') ? 'ok' : (mode ? (MODE_TO_STAGE[mode] ?? 'graph') : 'graph');
     return {
         id: b.id, type,
         fileRecall: a.fileRecall ?? 0, symRecall: a.symRecall ?? 0, graphReach: a.graphReach ?? null,
@@ -141,21 +148,8 @@ const rows: J[] = agent.map(b => {
     };
 });
 
-// ── bottleneck classifier (front → back: the first gate that leaks is the binding one) ──────────
-// Heuristic and deliberately transparent — the rules are printed in the report so a tag can be audited.
-function bottleneck(j: J): { tag: string; note: string } {
-    if (j.errored) return { tag: 'ERR', note: 'infra (503 / empty answer) — excluded from capability averages' };
-    if (j.coreCov >= 0.5) return { tag: 'OK', note: '' };
-    if (j.recallAt10 < 0.3) {
-        const t = j.diagnosis === 'recall-miss' ? 'G1-recall'
-            : j.diagnosis === 'ranked-low' ? 'G1-rank'
-            : 'G1-mix';
-        return { tag: t, note: 'retrieval cannot rank core into top-10' };
-    }
-    if (j.retrievalRecall < 0.5) return { tag: 'G2', note: "retrieval could, but the agent's loop didn't gather it" };
-    if (j.synthRecall < 0.7) return { tag: 'G3', note: 'gathered but not written into the answer' };
-    return { tag: 'G1-mix', note: 'residual' };
-}
+// Binding stage per row is computed inline as `bindingTool` (route→search→graph→synth); see the
+// rows.map above. The old G1/G2/G3 bottleneck() classifier was retired in the pipeline redesign.
 // Log artifact: agent WROTE more core than the seen-log recorded as retrieved (G2 under-counts).
 const undercounts = (j: J) => j.coreN > 0 && j.retrievalRecall * j.coreN + 1e-9 < j.coreWritten;
 
@@ -202,7 +196,34 @@ L.push(`| Avg coverage | ${pct(token.avgCov0)} | ${pct(token.avgCovN)} | ${pct(t
 L.push(`| Avg tokens / question | ${Math.round(token.avgTok0).toLocaleString()} | ~${Math.round(token.avgTok2).toLocaleString()} | ${Math.round(token.avgTok2).toLocaleString()} |`);
 L.push('');
 
-// 3 — the funnel (TRUE cumulative funnel: share of ALL core files still alive at each stage).
+// 3 — agent behavior diagnosis: what did the agent do wrong, agent-fault vs engine-fault?
+L.push(`## 3. Agent behavior diagnosis — agent-fault vs engine-fault\n`);
+const passN = rows.filter(r => r.verdict === 'PASS').length;
+const nonPass = rows.filter(r => r.verdict && r.verdict !== 'PASS');
+const agentFaultN = nonPass.filter(r => r.fault === 'agent').length;
+const engineFaultN = nonPass.filter(r => r.fault === 'engine').length;
+L.push(`**${passN}/${rows.length} PASS · of the ${nonPass.length} non-PASS: ${agentFaultN} agent-fault (fix prompt/plan/loop) · ${engineFaultN} engine-fault (fix ranking).**\n`);
+const MODE_LEVER: Record<string, string> = {
+    'misrouted': 'plan / intent.ts keyword table',
+    'weak-query': 'search query terms / seeds',
+    'no-pivot': 'graph expand/down/up depth+direction',
+    'gave-up': "gen prompt (don't stop early)",
+    'wrong-subsystem': 'plan strategy / architecture.json hint',
+    'dropped-synth': 'gen prompt (write what you saw)',
+    'sloppy-source': 'gen prompt (cite real load-bearing files)',
+    'engine-unrankable': 'ENGINE: retrieval ranking (not agent)',
+};
+const byMode = new Map<string, string[]>();
+for (const r of nonPass) { const k = r.failureMode ?? 'unclassified'; if (!byMode.has(k)) byMode.set(k, []); byMode.get(k)!.push(r.id); }
+L.push(`| failure mode | fault | # | testcases | fix-lever |`);
+L.push(`|---|---|---:|---|---|`);
+for (const [m, ids] of [...byMode].sort((a, b) => b[1].length - a[1].length)) {
+    const f = m === 'engine-unrankable' ? 'engine' : 'agent';
+    L.push(`| ${m} | ${f} | ${ids.length} | ${ids.join(', ')} | ${MODE_LEVER[m] ?? '—'} |`);
+}
+L.push('');
+
+// 4 — the funnel (TRUE cumulative funnel: share of ALL core files still alive at each stage).
 // SAME DENOMINATOR for every stage: sumCore over the same liveCore row-set. Pooled file counts, not
 // averages-of-ratios, so 100% → X% → Y% is monotonic. A file passes through only two stages: the agent
 // surfaces it (retrieval), then writes it (synthesis). R@10 / chain-order are DIAGNOSTICS that explain
@@ -221,51 +242,65 @@ const r5 = poolR(r => r.recallAt5), r10 = poolR(r => r.recallAt10), r20 = poolR(
 const cnt = (f: number) => Math.round(f * sumCore);
 const bar = (x: number) => '█'.repeat(Math.round(x * 30)).padEnd(30, '░');
 const row = (label: string, f: number, tail = '') => `${label.padEnd(30)} ${pct(f).padStart(4)}  ${bar(f)} ${tail}`;
-L.push(`## 3. The funnel — one path, every stage ÷ the same ${sumCore} core files\n`);
+L.push(`## 4. The funnel — one path, every stage ÷ the same ${sumCore} core files\n`);
 L.push(`> Per-FILE pooled fractions (of all ${sumCore} core files, how many survive each stage) — NOT tools' per-testcase mean R@k. Absolute numbers differ: the funnel weights bigger-spine testcases more.\n`);
 L.push('```');
 L.push(`INDEX (floor)`);
 L.push(row('  indexed & graph-reachable', 1));
-L.push(`RETRIEVAL — how deep core ranks in one query`);
+L.push(`SEARCH+GRAPH rank — how deep core ranks in one query`);
 L.push(row('  ranked in top-5', r5));
 L.push(row('  ranked in top-10', r10));
 L.push(row('  ranked in top-20', r20));
 const gatherRate = r50 ? Math.min(1, fRetr / r50) : 0;   // of the single-query top-50 ceiling, how much the agent pulls in
-L.push(row('  ranked in top-50 (ceiling)', r50, `<- ceiling; ${pct(1 - r50)} never rank (recall-miss)`));
-L.push(`AGENT`);
-L.push(row("  surfaced by agent's loop", fRetr, `<- gather ${pct(gatherRate)} of ceiling`));
+L.push(row('  ranked in top-50 (ceiling)', r50, `<- ${pct(1 - r50)} never rank = ENGINE-fault (recall-miss)`));
+L.push(`GRAPH loop — agent multi-turn gather`);
+L.push(row('  surfaced by agent loop', fRetr, `<- gather ${pct(gatherRate)} of ceiling`));
+L.push(`SYNTH — agent writes what it surfaced`);
 L.push(row('  written into the answer', fWrit, `<- synth ${pct(synthRate)} of surfaced, drops ${totalDropped}`));
 L.push('```');
 L.push(`\n**Three stages, sized** (all ÷ ${sumCore}):`);
-L.push(`- **never rank (recall-miss): ${pct(1 - r50)}** — ${cnt(1 - r50)} core files absent even from top-50.`);
-L.push(`- **ranked-but-not-gathered: ${pct(Math.max(0, r50 - fRetr))}** — ${cnt(Math.max(0, r50 - fRetr))} files rank in top-50 but the agent never surfaces them.`);
-L.push(`- **surfaced-but-not-written (synthesis): ${pct(Math.max(0, fRetr - fWrit))}** — ${totalDropped} files.\n`);
+L.push(`- **never rank (recall-miss): ${pct(1 - r50)}** — ${cnt(1 - r50)} core files absent even from top-50 (**ENGINE-fault**).`);
+L.push(`- **ranked-but-not-gathered: ${pct(Math.max(0, r50 - fRetr))}** — ${cnt(Math.max(0, r50 - fRetr))} files rank in top-50 but the agent never surfaces them (**agent-fault**).`);
+L.push(`- **surfaced-but-not-written (synthesis): ${pct(Math.max(0, fRetr - fWrit))}** — ${totalDropped} files (**agent-fault**).\n`);
 L.push(`> Index: file ${pct(g0file)} / sym ${pct(g0sym)} / graph ${pct(g0graph)}. Chain-order LCS ${pct(g15)} (${g15rows.length} ordered Qs) · diag ${[...diagDist].map(([d, c]) => `${d} ${c}`).join('/')}. Seen-log under-counts retrieval on \`*\` rows → ${pct(fRetr)} surfaced is a lower bound.\n`);
 
-// 4 — detail table
-L.push(`## 4. Detail — every testcase × every gate\n`);
-L.push(`Diag: rm=recall-miss · rl=ranked-low · mx=mixed · ok. \`*\` on G2 = seen-log under-counts (agent wrote more than it logged). Bottleneck = binding gate (rules in §5).\n`);
-L.push(`| # | id | type | G1 R@10·diag | G1.5 order | G2 gather | G3 synth | end cov | verdict | bottleneck |`);
-L.push(`|---|---|---|---|---:|---:|---:|---:|---|---|`);
+// 5 — per-tool scorecards
+L.push(`## 5. Per-tool scorecards — is each tool pulling its weight?\n`);
+const routeKnown = rows.filter(r => r.verdict).length;
+const routeHit = rows.filter(r => r.routeOk === true).length;
+const bindN = (t: string) => rows.filter(r => r.bindingTool === t).length;
+L.push(`| tool | metric | leak | binds # | fix-lever |`);
+L.push(`|---|---|---|---:|---|`);
+L.push(`| plan (route) | intent accuracy | ${routeHit}/${routeKnown} correct | ${bindN('route')} | intent.ts table / architecture.json |`);
+L.push(`| search (seed) | R@10 ${pct(r10)} · R@50 ${pct(r50)} | ${pct(1 - r50)} never rank | ${bindN('search')} | seeds / engine ranking |`);
+L.push(`| graph (traverse) | gather ${pct(gatherRate)} of ceiling · order ${pct(g15)} | ${pct(Math.max(0, r50 - fRetr))} ranked-not-gathered | ${bindN('graph')} | engine expand/down/up |`);
+L.push(`| details | fetch step | — (not a binding stage) | ${bindN('details')} | — |`);
+L.push(`| synth (write) | synth ${pct(synthRate)} of surfaced | drops ${totalDropped} files | ${bindN('synth')} | gen prompt / plan strategy |`);
+L.push('');
+
+// 6 — detail table
+L.push(`## 6. Detail — every testcase × every stage\n`);
+L.push(`Diag: rm=recall-miss · rl=ranked-low · mx=mixed · ok. route ✓/✗ = plan intent vs question type. \`*\` on gather = seen-log under-counts. binding = first leaking stage (route→search→graph→synth).\n`);
+L.push(`| # | id | type | route | R@10·diag | gather | synth | end cov | mode | verdict | binding |`);
+L.push(`|---|---|---|:-:|---|---:|---:|---:|---|---|---|`);
 rows.forEach((r, i) => {
-    const b = bottleneck(r);
     const diagAbbr: Record<string, string> = { 'recall-miss': 'rm', 'ranked-low': 'rl', 'mixed': 'mx', 'ok': 'ok', 'n/a': '—' };
+    const routec = r.routeOk == null ? '—' : r.routeOk ? '✓' : '✗';
     const g1c = `${pct(r.recallAt10)} ${diagAbbr[r.diagnosis] ?? r.diagnosis}`;
-    const g15c = r.orderApplicable ? pct(r.orderScore) + (r.orderPass ? '' : '✗') : '—';
     const g2c = r.errored ? '—' : pct(r.retrievalRecall) + (undercounts(r) ? '*' : '');
     const g3c = r.errored ? '—' : pct(r.synthRecall);
     const endc = r.errored ? '—' : `${r.coreWritten}/${r.coreN} ${pct(r.coreCov)}`;
-    L.push(`| ${i + 1} | ${r.id} | ${short[r.type] ?? r.type} | ${g1c} | ${g15c} | ${g2c} | ${g3c} | ${endc} | ${r.verdict ?? '—'} | ${b.tag} |`);
+    L.push(`| ${i + 1} | ${r.id} | ${short[r.type] ?? r.type} | ${routec} | ${g1c} | ${g2c} | ${g3c} | ${endc} | ${r.failureMode ?? '—'} | ${r.verdict ?? '—'} | ${r.bindingTool} |`);
 });
 L.push('');
-// bottleneck distribution
+// binding-tool distribution
 const dist = new Map<string, number>();
-for (const r of rows) dist.set(bottleneck(r).tag, (dist.get(bottleneck(r).tag) ?? 0) + 1);
-L.push(`**Bottleneck distribution:** ${[...dist].sort((a, b) => b[1] - a[1]).map(([t, c]) => `${t} ${c}`).join(' · ')}.\n`);
+for (const r of rows) dist.set(r.bindingTool, (dist.get(r.bindingTool) ?? 0) + 1);
+L.push(`**Binding-tool distribution:** ${[...dist].sort((a, b) => b[1] - a[1]).map(([t, c]) => `${t} ${c}`).join(' · ')}.\n`);
 
 // summary by type
 L.push(`### By question type\n`);
-L.push(`| type | n | avg R@10 | end cov | bottlenecks |`);
+L.push(`| type | n | avg R@10 | end cov | binding |`);
 L.push(`|---|---:|---:|---:|---|`);
 const typeOrder = ['architecture', 'call-chain', 'locate', 'pattern', 'routing', 'impact'];
 const types = [...new Set(rows.map(r => r.type))].sort((a, b) => (typeOrder.indexOf(a) + 1 || 99) - (typeOrder.indexOf(b) + 1 || 99));
@@ -275,23 +310,11 @@ for (const t of types) {
     const avgR = mean(g.map(r => r.recallAt10));
     const avgEnd = mean(gl.filter(r => r.coreN > 0).map(r => r.coreCov));
     const bd = new Map<string, number>();
-    for (const r of g) bd.set(bottleneck(r).tag, (bd.get(bottleneck(r).tag) ?? 0) + 1);
+    for (const r of g) bd.set(r.bindingTool, (bd.get(r.bindingTool) ?? 0) + 1);
     const bdStr = [...bd].sort((a, b) => b[1] - a[1]).map(([k, c]) => `${k}${c > 1 ? '×' + c : ''}`).join(', ');
     L.push(`| ${t} | ${g.length} | ${pct(avgR)} | ${pct(avgEnd)} | ${bdStr} |`);
 }
 L.push('');
-
-// 5 — classifier rules (transparency) + triage planes
-L.push(`## 5. How the bottleneck is classified — and which plane fixes it\n`);
-L.push(`Front → back; the first leaking gate is the binding one:\n`);
-L.push('```');
-L.push(`ERR   answer empty / "ERROR …"  (infra, e.g. Gemini 503)`);
-L.push(`OK    end core coverage ≥ 50%`);
-L.push(`G1-*  R@10 < 30%   → recall (rm) / rank (rl) / mixed (mx) by tools diagnosis`);
-L.push(`G2    R@10 ok but retrieval-recall < 50%  (retrieval could, agent didn't gather)`);
-L.push(`G3    gathered but synthesis-recall < 70%  (surfaced, not written)`);
-L.push('```');
-L.push(`Triage: **G1 → engine** (seeds/expand/down/up) · **route/G2 → plan/intent table or architecture.json** (an oracle rerun — gen --oracle — separates the two) · **G3 → gen prompt / plan strategy**. The report gives the signal; a human picks the fix (auto-tuning overfits the testcases). Judging criteria stay frozen.\n`);
 
 fs.writeFileSync(OUT, L.join('\n'), 'utf-8');
 console.error(`Wrote logs/report.md`);
