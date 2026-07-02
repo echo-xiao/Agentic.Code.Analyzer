@@ -17,6 +17,7 @@ import * as path from 'path';
 import { fileURLToPath } from 'url';
 import { loadTestcases } from './utils/load-testcases.js';
 import { extractCitedFiles, fileMatches, readSection } from './utils/eval-util.js';
+import { classifyIntent, INTENTS } from '../server/intent.js';
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const LOGS = path.resolve(__dirname, '..', '..', 'logs');
@@ -37,7 +38,7 @@ const token = load('token-data.json');          // { avgCov0, avgCovN, avgCov2, 
 
 // ── derive agent gather/synth metrics from the saved answers (was eval-3's mechanical block) ───
 interface AgentRow {
-    id: string; type: string;
+    id: string; type: string; question: string;
     coreN: number; coreWritten: number; coreCov: number; seen: boolean; errored: boolean;
     retrievalRecall: number; synthRecall: number; dropped: number;
 }
@@ -64,21 +65,35 @@ const agent: AgentRow[] = testcases.map(tc => {
     const errored = !a2.trim() || /^ERROR\b/.test(a2.trim());
 
     return {
-        id: tc.id, type: tc.questionType,
+        id: tc.id, type: tc.questionType, question: tc.question,
         coreN: core.length, coreWritten: written.length, coreCov, seen: hasSeen, errored,
         retrievalRecall, synthRecall, dropped,
     };
 });
 
 // ── manual verdicts (src/eval/verdicts.md) ─────────────────────────────────────────────────────
-const verdicts = new Map<string, { verdict: string; reason: string }>();
+const verdicts = new Map<string, { verdict: string; mode: string; reason: string }>();
 try {
     const md = fs.readFileSync(path.join(__dirname, 'verdicts.md'), 'utf-8');
     for (const line of md.split('\n')) {
-        const m = line.match(/^\|\s*([\w-]+)\s*\|\s*(PASS|PARTIAL|FAIL)\s*\|\s*(.*?)\s*\|/i);
-        if (m && m[1] !== 'id') verdicts.set(m[1], { verdict: m[2].toUpperCase(), reason: m[3] });
+        const m = line.match(/^\|\s*([\w-]+)\s*\|\s*(PASS|PARTIAL|FAIL)\s*\|\s*([\w—-]+)\s*\|\s*(.*?)\s*\|/i);
+        if (m && m[1] !== 'id') verdicts.set(m[1], { verdict: m[2].toUpperCase(), mode: m[3], reason: m[4] });
     }
 } catch { /* verdicts pending */ }
+
+// Resolve each testcase's plan intent for routing accuracy: prefer the untruncated `## Plan` line
+// (new answers), else recover from the truncated plan({..."intent":"arc}) args, else classify offline.
+function resolveIntent(mcpFile: string, question: string): { intent: string | null; source: 'plan' | 'prefix' | 'classifier' } {
+    let txt = ''; try { txt = fs.readFileSync(mcpFile, 'utf-8'); } catch { /* */ }
+    const planLine = txt.match(/##\s*Plan[\s\S]*?intent:\s*([\w-]+)/i);
+    if (planLine && (INTENTS as string[]).includes(planLine[1])) return { intent: planLine[1], source: 'plan' };
+    const prefix = txt.match(/"intent"\s*:\s*"([a-z-]+)/i);
+    if (prefix && prefix[1]) {
+        const hit = (INTENTS as string[]).find(i => i.startsWith(prefix[1]));
+        if (hit) return { intent: hit, source: 'prefix' };
+    }
+    return { intent: classifyIntent(question), source: 'classifier' };
+}
 
 // ── joined rows ──────────────────────────────────────────────────────────────────────────────
 interface J {
@@ -90,20 +105,39 @@ interface J {
     synthRecall: number; coreCov: number; dropped: number;             // G3
     errored: boolean;
     verdict: string | null;
+    resolvedIntent: string | null; intentSource: string; routeOk: boolean | null;
+    failureMode: string | null; fault: 'agent' | 'engine' | null; bindingTool: string;
 }
 const byTools = new Map(tools.map(r => [r.id, r]));
 const rows: J[] = agent.map(b => {
     const a = byTools.get(b.id) ?? {};
+    const v = verdicts.get(b.id);
+    const type = b.type ?? a.subsystem ?? '?';
+    const r50 = a.recallAt50 ?? a.recallAt20 ?? 0;
+    const { intent, source } = resolveIntent(path.join(D_MCP, `${b.id}.md`), b.question);
+    const routeOk = v ? (intent === type) : null;
+    // failure mode: semantic label from verdicts.md wins; else mechanical fallback from R@50/gather/synth.
+    const mode: string | null = (v && v.mode && v.mode !== '—') ? v.mode
+        : !v ? null
+        : v.verdict === 'PASS' ? null
+        : routeOk === false ? 'misrouted'
+        : r50 < 0.3 ? 'engine-unrankable'
+        : b.retrievalRecall < 0.5 ? 'no-pivot'
+        : b.synthRecall < 0.7 ? 'dropped-synth' : 'no-pivot';
+    const fault: 'agent' | 'engine' | null = mode ? (mode === 'engine-unrankable' ? 'engine' : 'agent') : null;
+    const bindingTool = routeOk === false ? 'route' : r50 < 0.3 ? 'search' : b.retrievalRecall < 0.5 ? 'graph' : b.synthRecall < 0.7 ? 'synth' : 'ok';
     return {
-        id: b.id, type: b.type ?? a.subsystem ?? '?',
+        id: b.id, type,
         fileRecall: a.fileRecall ?? 0, symRecall: a.symRecall ?? 0, graphReach: a.graphReach ?? null,
         recallAt5: a.recallAt5 ?? 0, recallAt10: a.recallAt10 ?? 0, recallAt20: a.recallAt20 ?? 0,
-        recallAt50: a.recallAt50 ?? a.recallAt20 ?? 0, diagnosis: a.diagnosis ?? 'n/a',
+        recallAt50: r50, diagnosis: a.diagnosis ?? 'n/a',
         orderApplicable: !!a.orderApplicable, orderScore: a.orderScore ?? 1, orderPass: a.orderPass ?? true,
         retrievalRecall: b.retrievalRecall, coreN: b.coreN, coreWritten: b.coreWritten, seen: b.seen,
         synthRecall: b.synthRecall, coreCov: b.coreCov, dropped: b.dropped,
         errored: b.errored,
-        verdict: verdicts.get(b.id)?.verdict ?? null,
+        verdict: v?.verdict ?? null,
+        resolvedIntent: intent, intentSource: source, routeOk,
+        failureMode: mode, fault, bindingTool,
     };
 });
 
