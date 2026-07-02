@@ -242,47 +242,42 @@ const r5 = poolR(r => r.recallAt5), r10 = poolR(r => r.recallAt10), r20 = poolR(
 const cnt = (f: number) => Math.round(f * sumCore);
 const bar = (x: number) => '█'.repeat(Math.round(x * 30)).padEnd(30, '░');
 const row = (label: string, f: number, tail = '') => `${label.padEnd(30)} ${pct(f).padStart(4)}  ${bar(f)} ${tail}`;
-L.push(`## 4. The funnel — one path, every stage ÷ the same ${sumCore} core files\n`);
-L.push(`> Per-FILE pooled fractions (of all ${sumCore} core files, how many survive each stage) — NOT tools' per-testcase mean R@k. Absolute numbers differ: the funnel weights bigger-spine testcases more.\n`);
+L.push(`## 4. The agent funnel — of the same ${sumCore} core files, how many the agent surfaces then writes\n`);
+L.push(`> Pooled per-file fractions from the ACTUAL multi-turn agent run (seen-log → written). This is the agent's real path — a single-query ranking probe (R@k) is NOT a stage the agent flows through; it lives in §5 (search tool-capability).\n`);
 L.push('```');
 L.push(`INDEX (floor)`);
 L.push(row('  indexed & graph-reachable', 1));
-L.push(`SEARCH+GRAPH rank — how deep core ranks in one query`);
-L.push(row('  ranked in top-5', r5));
-L.push(row('  ranked in top-10', r10));
-L.push(row('  ranked in top-20', r20));
-const gatherRate = r50 ? Math.min(1, fRetr / r50) : 0;   // of the single-query top-50 ceiling, how much the agent pulls in
-L.push(row('  ranked in top-50 (ceiling)', r50, `<- ${pct(1 - r50)} never rank = ENGINE-fault (recall-miss)`));
-L.push(`GRAPH loop — agent multi-turn gather`);
-L.push(row('  surfaced by agent loop', fRetr, `<- gather ${pct(gatherRate)} of ceiling`));
-L.push(`SYNTH — agent writes what it surfaced`);
+L.push(`AGENT surfaced — seen across the multi-turn loop`);
+L.push(row('  surfaced by agent loop', fRetr, `<- ${pct(1 - fRetr)} never surfaced`));
+L.push(`AGENT written — synthesised into the answer`);
 L.push(row('  written into the answer', fWrit, `<- synth ${pct(synthRate)} of surfaced, drops ${totalDropped}`));
 L.push('```');
-L.push(`\n**Three stages, sized** (all ÷ ${sumCore}):`);
-L.push(`- **never rank (recall-miss): ${pct(1 - r50)}** — ${cnt(1 - r50)} core files absent even from top-50 (**ENGINE-fault**).`);
-L.push(`- **ranked-but-not-gathered: ${pct(Math.max(0, r50 - fRetr))}** — ${cnt(Math.max(0, r50 - fRetr))} files rank in top-50 but the agent never surfaces them (**agent-fault**).`);
-L.push(`- **surfaced-but-not-written (synthesis): ${pct(Math.max(0, fRetr - fWrit))}** — ${totalDropped} files (**agent-fault**).\n`);
-L.push(`> Index: file ${pct(g0file)} / sym ${pct(g0sym)} / graph ${pct(g0graph)}. Chain-order LCS ${pct(g15)} (${g15rows.length} ordered Qs) · diag ${[...diagDist].map(([d, c]) => `${d} ${c}`).join('/')}. Seen-log under-counts retrieval on \`*\` rows → ${pct(fRetr)} surfaced is a lower bound.\n`);
+L.push(`\n**Two agent stages, sized** (all ÷ ${sumCore}):`);
+L.push(`- **not surfaced: ${pct(1 - fRetr)}** — ${cnt(1 - fRetr)} core files the agent never pulled into a tool result. The single-query probe (§5) splits this: ~${pct(1 - r50)} never rank even in top-50 (**tool ceiling / engine**) vs ~${pct(Math.max(0, r50 - fRetr))} rank but the loop skipped them (**agent**).`);
+L.push(`- **surfaced-but-not-written: ${pct(Math.max(0, fRetr - fWrit))}** — ${totalDropped} files seen but not written (**agent / synthesis**).\n`);
+L.push(`> Floor: file ${pct(g0file)} / sym ${pct(g0sym)} / graph ${pct(g0graph)} reachable. Seen-log under-counts retrieval on \`*\` rows → ${pct(fRetr)} surfaced is a lower bound.\n`);
 
 // 5 — per-tool scorecards
-L.push(`## 5. Per-tool scorecards — is each tool pulling its weight?\n`);
+L.push(`## 5. Stage contribution — real, end-to-end (no isolation experiments)\n`);
+L.push(`> Real numbers from the ACTUAL multi-turn run — NOT isolated per-tool capability (that needs ablation/oracle, deliberately not run). search & graph aren't separable end-to-end, so they're one row.\n`);
+L.push(`**Do the tools help? Coverage no-MCP ${pct(token.avgCov0)} → naive ${pct(token.avgCovN)} → MCP ${pct(token.avgCov2)}** — the agent's navigation adds **+${((token.avgCov2 - token.avgCov0) * 100).toFixed(0)} pts over pure LLM, +${((token.avgCov2 - token.avgCovN) * 100).toFixed(0)} over same-budget keyword dump.**\n`);
 const routeKnown = rows.filter(r => r.verdict).length;
 const routeHit = rows.filter(r => r.routeOk === true).length;
 const bindN = (t: string) => rows.filter(r => r.bindingTool === t).length;
-L.push(`| tool | metric | leak | binds # | fix-lever |`);
-L.push(`|---|---|---|---:|---|`);
-L.push(`| plan (route) | intent accuracy | ${routeHit}/${routeKnown} correct | ${bindN('route')} | intent.ts table / architecture.json |`);
-L.push(`| search (seed) | R@10 ${pct(r10)} · R@50 ${pct(r50)} | ${pct(1 - r50)} never rank | ${bindN('search')} | seeds / engine ranking |`);
-L.push(`| graph (traverse) | gather ${pct(gatherRate)} of ceiling · order ${pct(g15)} | ${pct(Math.max(0, r50 - fRetr))} ranked-not-gathered | ${bindN('graph')} | engine expand/down/up |`);
-L.push(`| details | fetch step | — (not a binding stage) | ${bindN('details')} | — |`);
-L.push(`| synth (write) | synth ${pct(synthRate)} of surfaced | drops ${totalDropped} files | ${bindN('synth')} | gen prompt / plan strategy |`);
+L.push(`| stage | real metric (this run) | leak (real) | fix-lever |`);
+L.push(`|---|---|---|---|`);
+L.push(`| plan (route) | intent = question type in ${routeHit}/${routeKnown} | misroute cost unmeasured (needs oracle) | intent.ts / architecture.json |`);
+L.push(`| retrieval (search+graph) | surfaced ${pct(fRetr)} of core · R@50 ceiling ${pct(r50)} (probe) · chain-order ${pct(g15)} | ${pct(1 - fRetr)} never surfaced | seeds / ranking / graph depth |`);
+L.push(`| synth (write) | wrote ${pct(synthRate)} of what it surfaced | dropped ${totalDropped} files | gen prompt |`);
+L.push(`| details | fetch — negligible leak | — | — |`);
 L.push('');
+L.push(`Where each non-PASS is blocked (semantic binding stage): graph ${bindN('graph')} · search ${bindN('search')} · synth ${bindN('synth')}${bindN('route') ? ` · route ${bindN('route')}` : ''}.\n`);
 
 // 6 — detail table
 L.push(`## 6. Detail — every testcase × every stage\n`);
 L.push(`Diag: rm=recall-miss · rl=ranked-low · mx=mixed · ok. route ✓/✗ = plan intent vs question type. \`*\` on gather = seen-log under-counts. binding = first leaking stage (route→search→graph→synth).\n`);
-L.push(`| # | id | type | route | R@10·diag | gather | synth | end cov | mode | verdict | binding |`);
-L.push(`|---|---|---|:-:|---|---:|---:|---:|---|---|---|`);
+L.push(`| # | id | type | route | R@10·diag | gather | synth | end cov | mode | verdict | binding | reason |`);
+L.push(`|---|---|---|:-:|---|---:|---:|---:|---|---|---|---|`);
 rows.forEach((r, i) => {
     const diagAbbr: Record<string, string> = { 'recall-miss': 'rm', 'ranked-low': 'rl', 'mixed': 'mx', 'ok': 'ok', 'n/a': '—' };
     const routec = r.routeOk == null ? '—' : r.routeOk ? '✓' : '✗';
@@ -290,7 +285,8 @@ rows.forEach((r, i) => {
     const g2c = r.errored ? '—' : pct(r.retrievalRecall) + (undercounts(r) ? '*' : '');
     const g3c = r.errored ? '—' : pct(r.synthRecall);
     const endc = r.errored ? '—' : `${r.coreWritten}/${r.coreN} ${pct(r.coreCov)}`;
-    L.push(`| ${i + 1} | ${r.id} | ${short[r.type] ?? r.type} | ${routec} | ${g1c} | ${g2c} | ${g3c} | ${endc} | ${r.failureMode ?? '—'} | ${r.verdict ?? '—'} | ${r.bindingTool} |`);
+    const reasonc = (verdicts.get(r.id)?.reason ?? '—').replace(/\|/g, '\\|');
+    L.push(`| ${i + 1} | ${r.id} | ${short[r.type] ?? r.type} | ${routec} | ${g1c} | ${g2c} | ${g3c} | ${endc} | ${r.failureMode ?? '—'} | ${r.verdict ?? '—'} | ${r.bindingTool} | ${reasonc} |`);
 });
 L.push('');
 // binding-tool distribution
