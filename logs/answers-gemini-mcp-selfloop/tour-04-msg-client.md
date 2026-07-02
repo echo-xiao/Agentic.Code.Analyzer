@@ -2,41 +2,53 @@
 
 ## Gemini Answer
 
-A message is sent on the client side in Rocket.Chat through the following call chain:
+The client-side message sending flow in Rocket.Chat starts with the `sendMessage` function located in `apps/meteor/client/lib/chats/flows/sendMessage.ts`.
 
-1.  **`handleSendMessage`** in `apps/meteor/client/views/room/composer/messageBox/MessageBox.tsx`: This is the initial entry point when a user interacts with the message box to send a message.
-2.  **`onSend`** in `apps/meteor/client/views/room/composer/messageBox/ComposerMessage.tsx`: `handleSendMessage` calls this function, which is responsible for further processing of the message.
-3.  **`sendMessage`** in `apps/meteor/client/lib/chats/flows/sendMessage.ts`: `onSend` then calls this `sendMessage` function, which handles client-side message preparation, including joining a room if necessary, clearing unread marks, composing the message data, and handling file uploads.
-4.  **`process`** in `apps/meteor/client/lib/chats/flows/sendMessage.ts`: Within the `sendMessage` function, the `process` function is called. This function is responsible for the actual dispatch of the message.
-5.  **`call`** in `packages/ddp-client/src/MinimalDDPClient.ts`: The `process` function ultimately makes a DDP method call to the server using `MinimalDDPClient.call()`. This is the point where the client-side message sending logic transitions to network communication, sending the message data to the server via the DDP protocol over a WebSocket connection. The server-side `Meteor.methods({ sendMessage })` would then handle this incoming call.
+Here's the call chain:
 
-## Tool Calls (6 calls, 41,089 tokens)
+1.  **Entry Point:** `sendMessage` (apps/meteor/client/lib/chats/flows/sendMessage.ts)
+    *   This function handles initial checks like room subscription and message content validation.
+    *   It then calls the `process` function.
 
-**Step 1:** `search({"query":"sendMessage","layer":"client"})` → 600 tokens
-**Step 2:** `graph({"file":"apps/meteor/client/views/room/composer/messageBox/MessageBox.tsx","direction":"down","layer)` → 1699 tokens
-**Step 3:** `implement({"filename":"packages/livechat/src/lib/LivechatClientImpl.ts","symbolName":"sendMessage"})` → 352 tokens
-**Step 4:** `graph({"layer":"client","file":"apps/meteor/client/lib/chats/flows/sendMessage.ts","query":"sendMessage",")` → 1013 tokens
-**Step 5:** `implement({"filename":"apps/meteor/client/lib/chats/flows/sendMessage.ts","symbolName":"sendMessage"})` → 625 tokens
-**Step 6:** `graph({"file":"apps/meteor/client/lib/chats/flows/sendMessage.ts","direction":"down","query":"process","la)` → 1898 tokens
+2.  **Processing Message:** `process` (apps/meteor/client/lib/chats/flows/sendMessage.ts)
+    *   This function performs various pre-processing steps, such as handling reactions, long messages, slash commands, and file uploads.
+    *   It also applies the `onClientBeforeSendMessage` hook.
+    *   Crucially, it then makes a DDP (Distributed Data Protocol) call to the server using `sdk.call('sendMessage', message, previewUrls)`. This is the point where the client communicates with the server to actually send the message.
 
-## Files Seen In Tool Results (19)
+The `sdk.call` method is part of the DDP client, which handles the communication over WebSockets. While the `details` tool could not directly show the implementation of `call` within `MinimalDDPClient.ts` (due to symbol collision), the pattern indicates that `sdk.call('sendMessage')` dispatches a DDP method to the server. The server then has a corresponding `Meteor.methods({ sendMessage })` handler to process the message on the server-side.
+
+## Tool Calls (8 calls, 46,540 tokens)
+
+**Step 1:** `plan({"question":"How is a message sent on the client side in Rocket.Chat?","intent":"call-chain"})` → 81 tokens
+**Step 2:** `search({"query":"sendMessage","layer":"client"})` → 253 tokens
+**Step 3:** `graph({"file":"/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/client/lib/chats/flows/sendMessage.ts)` → 3279 tokens
+**Step 4:** `details({"filename":"/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/client/lib/chats/flows/sendMessag)` → 621 tokens
+**Step 5:** `details({"symbolName":"call","filename":"/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/client/lib/Mi)` → 444 tokens
+**Step 6:** `details({"filename":"/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/client/lib/chats/flows/sendMessag)` → 317 tokens
+**Step 7:** `details({"filename":"/Users/echoooooo/Desktop/code/Rocket.Chat/packages/ddp-client/src/MinimalDDPClient.ts",)` → 445 tokens
+**Step 8:** `details({"symbolName":"call","filename":"/Users/echoooooo/Desktop/code/Rocket.Chat/packages/ddp-client/src/M)` → 445 tokens
+
+## Files Seen In Tool Results (22)
 
 - `apps/meteor/client/lib/chats/flows/sendMessage.ts`
 - `apps/meteor/app/lib/client/methods/sendMessage.ts`
-- `apps/meteor/client/views/room/composer/messageBox/MessageBox.tsx`
-- `apps/meteor/app/livechat/server/sendMessageBySMS.ts`
-- `packages/livechat/src/lib/triggerActions.ts`
-- `apps/meteor/app/livechat/server/hooks/sendToCRM.ts`
-- `apps/meteor/app/lib/server/functions/sendMessage.ts`
-- `packages/rest-typings/src/v1/chat.ts`
-- `apps/meteor/tests/e2e/page-objects/omnichannel/omnichannel-livechat.ts`
-- `apps/meteor/tests/e2e/utils/omnichannel/rooms.ts`
-- `apps/meteor/tests/data/messages.helper.ts`
 - `apps/meteor/client/views/omnichannel/triggers/actions/SendMessageActionForm.tsx`
 - `apps/meteor/client/lib/onClientBeforeSendMessage.ts`
-- `ee/packages/omni-core-ee/src/outbound-communication/validators/canSendMessage.ts`
-- `apps/meteor/tests/e2e/utils/sendMessage.ts`
-- `apps/meteor/server/lib/sendMessagesToAdmins.ts`
-- `apps/meteor/app/livechat/server/methods/sendMessageLivechat.ts`
-- `apps/meteor/app/lib/server/methods/sendMessage.ts`
-- `apps/meteor/app/authorization/server/functions/canSendMessage.ts`
+- `apps/meteor/client/lib/MinimalDDPClient.ts`
+- `packages/ddp-client/src/MinimalDDPClient.ts`
+- `packages/ddp-client/src/DDPSDK.ts`
+- `packages/ddp-client/src/ClientStream.ts`
+- `packages/core-services/src/LocalBroker.ts`
+- `packages/core-services/src/lib/ServiceStarter.ts`
+- `packages/core-services/src/lib/Api.ts`
+- `packages/apps-engine/tests/test-data/bridges/httpBridge.ts`
+- `packages/apps-engine/src/server/ProxiedApp.ts`
+- `packages/apps-engine/src/server/bridges/HttpBridge.ts`
+- `packages/apps-engine/src/server/accessors/VideoConferenceBuilder.ts`
+- `packages/apps-engine/src/client/AppsEngineUIClient.ts`
+- `packages/apps-engine/deno-runtime/lib/accessors/builders/VideoConferenceBuilder.ts`
+- `ee/packages/network-broker/src/NetworkBroker.ts`
+- `ee/apps/ddp-streamer/src/Server.ts`
+- `apps/meteor/tests/mocks/server/BrokerMocked.ts`
+- `apps/meteor/app/statistics/server/lib/telemetryEvents.ts`
+- `apps/meteor/app/apps/server/bridges/http.ts`

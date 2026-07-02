@@ -2,37 +2,33 @@
 
 ## Gemini Answer
 
-The core logic for message permission validation is primarily located in `apps/meteor/app/authorization/server/functions/canSendMessage.ts`, specifically within the `validateRoomMessagePermissionsAsync` function. This function is part of the broader message sending flow initiated by the `sendMessage` Meteor method.
+The core logic for message permission validation is located in the `canSendMessageAsync` function within the file `apps/meteor/app/authorization/server/functions/canSendMessage.ts`.
 
-The call chain for message permission validation is as follows:
+This function performs the initial room validation and then calls `validateRoomMessagePermissionsAsync` to handle the specific message permission checks.
 
-`Meteor.methods({ sendMessage })` → `executeSendMessage` → `canSendMessageAsync` → `validateRoomMessagePermissionsAsync`
+## Tool Calls (8 calls, 14,623 tokens)
 
-**Key files and their roles:**
+**Step 1:** `plan({"question":"Where is the logic for message permission validation located?","intent":"locate"})` → 75 tokens
+**Step 2:** `search({"query":"validateMessagePermissions"})` → 29 tokens
+**Step 3:** `search({"query":"message permission"})` → 98 tokens
+**Step 4:** `search({"query":"canSendMessage"})` → 203 tokens
+**Step 5:** `details({"symbolName":"canSendMessage","filename":"apps/meteor/app/authorization/server/functions/canSendMes)` → 17 tokens
+**Step 6:** `details({"filename":"apps/meteor/app/authorization/server/functions/canSendMessage.ts","symbolName":""})` → 8 tokens
+**Step 7:** `graph({"file":"apps/meteor/app/authorization/server/functions/canSendMessage.ts","query":"canSendMessage",)` → 431 tokens
+**Step 8:** `details({"symbolName":"canSendMessageAsync","filename":"apps/meteor/app/authorization/server/functions/canSe)` → 158 tokens
 
-*   **`apps/meteor/app/authorization/server/functions/canSendMessage.ts`**: Contains `validateRoomMessagePermissionsAsync`, which performs checks such as:
-    *   Verifying the room's existence and active status (not archived).
-    *   Calling `canAccessRoomAsync` to ensure the user has access to the room.
-    *   Checking for user-specific restrictions like being blocked or muted.
-    *   Evaluating read-only room permissions.
-*   **`apps/meteor/app/authorization/server/functions/hasPermission.ts`**: Contains `hasPermissionAsync`, a general utility function used by `validateRoomMessagePermissionsAsync` and other authorization checks to determine if a user has a specific permission.
-*   **`apps/meteor/app/authorization/server/functions/canAccessRoom.ts`**: Contains `canAccessRoomAsync`, which is called by `validateRoomMessagePermissionsAsync` to determine if a user can access a given room.
-*   **`apps/meteor/app/lib/server/functions/deleteMessage.ts`**: Contains `deleteMessageValidatingPermission`, which handles permission validation specifically for deleting messages.
+## Files Seen In Tool Results (13)
 
-## Tool Calls (2 calls, 6,665 tokens)
-
-**Step 1:** `search({"query":"message permission","layer":"server"})` → 291 tokens
-**Step 2:** `graph({"file":"apps/meteor/app/authorization/server/functions/canSendMessage.ts","query":"validateRoomMess)` → 653 tokens
-
-## Files Seen In Tool Results (10)
-
-- `apps/meteor/app/lib/server/functions/deleteMessage.ts`
+- `apps/meteor/tests/end-to-end/api/chat.ts`
+- `ee/packages/omni-core-ee/src/outbound-communication/validators/canSendMessage.ts`
 - `apps/meteor/app/authorization/server/functions/canSendMessage.ts`
-- `apps/meteor/server/methods/deleteFileMessage.ts`
-- `apps/meteor/app/authorization/server/functions/canDeleteMessage.ts`
-- `apps/meteor/app/authorization/server/functions/canAccessRoom.ts`
-- `apps/meteor/app/lib/server/functions/processWebhookMessage.ts`
-- `apps/meteor/server/lib/rooms/roomCoordinator.ts`
-- `apps/meteor/app/authorization/server/functions/hasPermission.ts`
-- `apps/meteor/app/livechat/server/lib/messages.ts`
-- `apps/meteor/app/lib/server/lib/notifyListener.ts`
+- `apps/meteor/tests/e2e/page-objects/omnichannel/omnichannel-livechat.ts`
+- `apps/meteor/app/lib/server/methods/sendMessage.ts`
+- `packages/apps-engine/src/server/managers/AppPermissionManager.ts`
+- `apps/meteor/ee/server/configuration/videoConference.ts`
+- `ee/packages/omni-core-ee/src/units/addRoleBasedRestrictionsToDepartment.ts`
+- `packages/models/src/models/BaseRaw.ts`
+- `apps/meteor/app/lib/server/functions/sendMessage.ts`
+- `apps/meteor/app/lib/server/methods/updateMessage.ts`
+- `apps/meteor/server/lib/callbacks/callbacksBase.ts`
+- `packages/models/src/models/Users.ts`

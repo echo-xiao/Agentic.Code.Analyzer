@@ -2,33 +2,26 @@
 
 ## Gemini Answer
 
-A new message appears in real-time on the client after being saved to the database through a real-time streaming mechanism.
+A new message appears in real-time on the client after being saved to the database through the following flow:
 
-Here's the call chain:
+1.  **`sendMessage`** (apps/meteor/app/lib/server/functions/sendMessage.ts): This server-side function is responsible for handling the initial message saving process.
+2.  **`notifyOnRoomChangedById`** (apps/meteor/app/lib/server/lib/notifyListener.ts): After a message is saved, `sendMessage` calls this function to notify about changes in the room where the message was sent.
+3.  **`api.broadcast`** (packages/core-services/src/lib/Api.ts): Inside `notifyOnRoomChangedById`, the `api.broadcast` method is invoked with the event `'watch.rooms'` and the updated room information. This broadcasts the change to all connected clients.
 
-**Entry (Server-side message saving) → Real-time Notification (Server) → Client-side Subscription & Display**
+The `api.broadcast` method, part of the `Api` class in `packages/core-services/src/lib/Api.ts`, is a core mechanism for real-time communication in Rocket.Chat. It uses a broker (likely a message broker like Redis or a similar pub/sub system) to distribute events to all subscribed clients, ensuring that any client currently viewing the room receives the new message in real-time.
 
-1.  **`sendMessage`** (apps/meteor/app/lib/server/functions/sendMessage.ts): This function is responsible for saving the message to the database.
-2.  **`notifyOnRoomChangedById`** (apps/meteor/app/lib/server/lib/notifyListener.ts): After the message is saved, `sendMessage` calls `notifyOnRoomChangedById`. This function is crucial for real-time updates.
-3.  **`api.broadcast('watch.rooms', { clientAction, room: item })`** (inside `notifyOnRoomChangedById` in apps/meteor/app/lib/server/lib/notifyListener.ts): This line broadcasts an event named `watch.rooms` to all connected clients. The event includes the `clientAction` (e.g., 'updated') and the `room` object, which would contain the new message.
-4.  **Client-side Streamer**: On the client, a `Streamer` instance (defined in apps/meteor/client/lib/streamer/streamer.ts) is responsible for listening to these broadcasted events. While a direct `Streamer.on('watch.rooms')` wasn't found in the provided search results, the `Streamer` class has an `on` method (`Streamer.on(eventName, callback, ...args)`) which is designed to subscribe to real-time events. It's highly probable that the client-side code subscribes to the `watch.rooms` event using this `Streamer.on` method.
-5.  **`Streamer.receive`** (apps/meteor/client/lib/streamer/streamer.ts): When the server broadcasts the `watch.rooms` event, the client-side `Streamer`'s `receive` method would process this incoming event and its data.
-6.  **UI Update**: The callback function registered with `Streamer.on` for the `watch.rooms` event would then update the client's UI to display the new message in the relevant room.
+## Tool Calls (8 calls, 51,717 tokens)
 
-In summary, the server saves the message, broadcasts a `watch.rooms` event, and the client, subscribed to this event via a `Streamer` instance, receives the update and renders the new message.
+**Step 1:** `plan({"question":"How does a new message appear in real-time on the client after being saved to the datab)` → 81 tokens
+**Step 2:** `search({"query":"sendMessage","layer":"server"})` → 421 tokens
+**Step 3:** `graph({"file":"/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/app/lib/server/functions/sendMessage.)` → 3279 tokens
+**Step 4:** `details({"filename":"/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/server/lib/notifyListener.ts","sy)` → 139 tokens
+**Step 5:** `details({"filename":"/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/server/lib/api.ts","symbolName":")` → 61 tokens
+**Step 6:** `search({"layer":"client","query":"watch.rooms"})` → 25 tokens
+**Step 7:** `details({"filename":"/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/app/lib/server/lib/notifyListener)` → 54 tokens
+**Step 8:** `details({"symbolName":"Api","filename":"/Users/echoooooo/Desktop/code/Rocket.Chat/packages/core-services/src)` → 325 tokens
 
-## Tool Calls (8 calls, 52,439 tokens)
-
-**Step 1:** `search({"layer":"server","query":"sendMessage"})` → 588 tokens
-**Step 2:** `graph({"direction":"down","file":"apps/meteor/app/lib/server/functions/sendMessage.ts","query":"sendMessag)` → 1882 tokens
-**Step 3:** `implement({"filename":"apps/meteor/server/lib/notifyListener.ts","symbolName":"notifyOnRoomChangedById"})` → 146 tokens
-**Step 4:** `search({"layer":"client","query":"watch.rooms"})` → 14 tokens
-**Step 5:** `search({"layer":"client","query":"api.on"})` → 13 tokens
-**Step 6:** `search({"layer":"client","query":"Meteor.subscribe"})` → 193 tokens
-**Step 7:** `search({"query":"Streamer","layer":"client"})` → 329 tokens
-**Step 8:** `implement({"filename":"apps/meteor/client/lib/streamer/streamer.ts","symbolName":"Streamer"})` → 399 tokens
-
-## Files Seen In Tool Results (28)
+## Files Seen In Tool Results (15)
 
 - `apps/meteor/server/services/messages/service.ts`
 - `apps/meteor/ee/app/livechat-enterprise/server/api/lib/outbound.ts`
@@ -37,24 +30,11 @@ In summary, the server saves the message, broadcasts a `watch.rooms` event, and 
 - `apps/meteor/app/lib/server/methods/sendMessage.ts`
 - `apps/meteor/app/lib/server/functions/sendMessage.ts`
 - `apps/meteor/app/integrations/server/lib/triggerHandler.ts`
-- `apps/meteor/app/livechat/server/sendMessageBySMS.ts`
-- `apps/meteor/app/livechat/server/hooks/sendToCRM.ts`
-- `packages/livechat/src/lib/triggerActions.ts`
-- `apps/meteor/client/views/room/composer/messageBox/MessageBox.tsx`
-- `packages/rest-typings/src/v1/chat.ts`
-- `packages/apps-engine/src/server/managers/AppOutboundCommunicationProviderManager.ts`
-- `apps/meteor/server/features/EmailInbox/EmailInbox_Outgoing.ts`
-- `apps/meteor/tests/e2e/page-objects/omnichannel/omnichannel-livechat.ts`
 - `apps/meteor/server/lib/sendMessagesToAdmins.ts`
+- `apps/meteor/app/livechat/server/sendMessageBySMS.ts`
 - `apps/meteor/app/livechat/server/methods/sendMessageLivechat.ts`
 - `apps/meteor/app/authorization/server/functions/canSendMessage.ts`
 - `apps/meteor/app/lib/server/lib/notifyListener.ts`
-- `apps/meteor/client/lib/presence.ts`
-- `apps/meteor/client/lib/streamer/streamer.ts`
-- `apps/meteor/client/lib/streamer/index.ts`
-- `apps/meteor/app/notifications/server/lib/Presence.ts`
-- `apps/meteor/ee/server/apps/communication/websockets.ts`
-- `packages/ddp-client/src/types/streams.ts`
-- `apps/meteor/server/modules/streamer/types.ts`
-- `apps/meteor/client/lib/streamer/emitter.ts`
-- `apps/meteor/client/lib/streamer/ddp.ts`
+- `apps/meteor/server/lib/api.ts`
+- `packages/core-services/src/api.ts`
+- `packages/core-services/src/lib/Api.ts`

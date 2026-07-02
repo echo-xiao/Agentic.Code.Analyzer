@@ -1,6 +1,6 @@
 # tools — deterministic tool-capability eval
 
-7/1/2026, 3:43:17 PM
+7/1/2026, 6:13:36 PM
 
 ## Summary: 24/34 passed
 

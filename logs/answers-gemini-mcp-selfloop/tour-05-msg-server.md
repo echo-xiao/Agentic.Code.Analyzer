@@ -2,45 +2,66 @@
 
 ## Gemini Answer
 
-On the server side, a message in Rocket.Chat is sent through a series of validations, preparations, app integrations, and database operations, orchestrated by the `sendMessage` function.
+The server-side message sending in Rocket.Chat follows a structured flow, primarily orchestrated by the `sendMessage` function. The core process involves validation, app integration hooks, pre-save processing, database persistence, post-save actions, and client notifications.
 
-The call chain for sending a message on the server side is as follows:
+Here's the detailed call chain:
 
-`sendMessage` (apps/meteor/app/lib/server/functions/sendMessage.ts)
-  → `validateMessage` (likely within apps/meteor/app/lib/server/functions/sendMessage.ts or a related file)
-  → `prepareMessageObject` (likely within apps/meteor/app/lib/server/functions/sendMessage.ts or a related file)
-  → `Apps.self?.triggerEvent` (packages/apps-engine/src/server/Apps.ts) - for pre-message events
-  → `Message.beforeSave` (apps/meteor/app/lib/server/lib/Message.ts)
-  → `Messages.updateOne` or `Messages.insertOne` or `Messages.findOneById` (apps/meteor/app/lib/server/lib/Messages.ts) - for database persistence
-  → `Apps.self?.triggerEvent` (packages/apps-engine/src/server/Apps.ts) - for post-message events
-  → `afterSaveMessage` (likely within apps/meteor/app/lib/server/functions/sendMessage.ts or a related file)
-  → `notifyOnRoomChangedById` (apps/meteor/app/lib/server/functions/notifyListener.ts)
+**Entry Point:** `sendMessage` in `apps/meteor/app/lib/server/methods/sendMessage.ts` (DDP method called by clients)
 
-Here's a detailed breakdown of the process:
+**Core Logic:** `sendMessage` in `apps/meteor/app/lib/server/functions/sendMessage.ts`
 
-1.  **Initial Validation and Preparation**: The `sendMessage` function, located in `apps/meteor/app/lib/server/functions/sendMessage.ts`, first validates the user, message, and room. It then prepares the message object, adding necessary fields like `_id`, `ts` (timestamp), and `u` (user information). If read receipts are enabled, the message is marked as `unread`.
+**Flow:**
 
-2.  **Rocket.Chat Apps Integration (Pre-send)**: Before the message is saved, Rocket.Chat Apps can interact with it. The system triggers `IPreMessageSentPrevent`, `IPreMessageSentExtend`, and `IPreMessageSentModify` events via `Apps.self?.triggerEvent` (defined in `packages/apps-engine/src/server/Apps.ts`). This allows installed apps to prevent the message from being sent, extend its data, or modify its content.
+1.  **Initial Validation and Preparation:**
+    *   `sendMessage` (apps/meteor/app/lib/server/functions/sendMessage.ts)
+        *   Performs initial checks for user, message, and room validity.
+        *   Calls `validateMessage(message, room, user)` to ensure message content is valid.
+        *   Calls `prepareMessageObject(message, room._id, user)` to set up the message object.
 
-3.  **`Message.beforeSave` Hook**: The message then passes through the `Message.beforeSave` hook (likely defined in `apps/meteor/app/lib/server/lib/Message.ts`), which performs further processing or transformations before persistence.
+2.  **App Integration (Pre-send Hooks):**
+    *   `sendMessage` (apps/meteor/app/lib/server/functions/sendMessage.ts)
+        *   Triggers `AppEvents.IPreMessageSentPrevent` via `Apps.self?.triggerEvent` to allow apps to prevent message sending.
+        *   Triggers `AppEvents.IPreMessageSentExtend` and `AppEvents.IPreMessageSentModify` via `Apps.self?.triggerEvent` to allow apps to extend or modify the message object before it's saved.
 
-4.  **Database Persistence**:
-    *   If the message has an `_id` and the `upsert` option is true, the system updates an existing message in the `Messages` collection using `Messages.updateOne` (from `apps/meteor/app/lib/server/lib/Messages.ts`).
-    *   Otherwise, it checks if a message with the given `_id` already exists using `Messages.findOneById`. If not, the new message is inserted into the `Messages` collection using `Messages.insertOne` (both from `apps/meteor/app/lib/server/lib/Messages.ts`).
+3.  **Before Save Processing:**
+    *   `sendMessage` (apps/meteor/app/lib/server/functions/sendMessage.ts)
+        *   Calls `Message.beforeSave({ message, room, user, previewUrls, parseUrls: message.parseUrls })`. This is a critical step where the message undergoes final transformations, such as markdown parsing, URL preview generation, and other pre-persistence logic.
 
-5.  **Rocket.Chat Apps Integration (Post-send)**: After the message is successfully saved to the database, Rocket.Chat Apps are notified. The system triggers either `IPostSystemMessageSent` (for system messages) or `IPostMessageSent` (for regular messages) events via `Apps.self?.triggerEvent`.
+4.  **Database Persistence:**
+    *   `sendMessage` (apps/meteor/app/lib/server/functions/sendMessage.ts)
+        *   If `message._id` exists and `upsert` is true, it calls `Messages.updateOne` to update an existing message.
+        *   Otherwise, it calls `Messages.insertOne(message)` to insert a new message into the database.
+        *   `Messages` is a database collection or service responsible for message storage.
 
-6.  **`afterSaveMessage` Hook**: A final `afterSaveMessage` hook is called (likely within `apps/meteor/app/lib/server/functions/sendMessage.ts` or a related file) for any post-save processing.
+5.  **App Integration (Post-send Hooks):**
+    *   `sendMessage` (apps/meteor/app/lib/server/functions/sendMessage.ts)
+        *   Triggers `AppEvents.IPostSystemMessageSent` (for system messages) or `AppEvents.IPostMessageSent` via `Apps.self?.triggerEvent` to notify apps after the message has been saved.
 
-7.  **Client Notification**: Finally, `notifyOnRoomChangedById` (from `apps/meteor/app/lib/server/functions/notifyListener.ts`) is called to inform clients about the change in the room, ensuring real-time updates.
+6.  **After Save Actions:**
+    *   `sendMessage` (apps/meteor/app/lib/server/functions/sendMessage.ts)
+        *   Calls `afterSaveMessage(message, room, user)`. This function handles post-persistence tasks like sending notifications, updating unread counts, and other side effects.
 
-## Tool Calls (3 calls, 16,827 tokens)
+7.  **Client Notification:**
+    *   `sendMessage` (apps/meteor/app/lib/server/functions/sendMessage.ts)
+        *   Calls `notifyOnRoomChangedById(message.rid)` (notifyListener.ts) to inform clients about changes in the room, which triggers UI updates to display the new message.
 
-**Step 1:** `search({"layer":"server","query":"sendMessage"})` → 588 tokens
-**Step 2:** `graph({"file":"apps/meteor/app/lib/server/functions/sendMessage.ts","query":"sendMessage","layer":"server")` → 1882 tokens
-**Step 3:** `implement({"filename":"apps/meteor/app/lib/server/functions/sendMessage.ts","symbolName":"sendMessage"})` → 621 tokens
+**Key Files:**
 
-## Files Seen In Tool Results (18)
+*   **apps/meteor/app/lib/server/methods/sendMessage.ts**: The DDP method that serves as the primary entry point for client-initiated message sending.
+*   **apps/meteor/app/lib/server/functions/sendMessage.ts**: Contains the core server-side logic for processing and sending messages, including validation, app hooks, and database interaction.
+*   **apps/meteor/server/services/messages/service.ts**: (Likely where `Message.beforeSave` and `afterSaveMessage` are defined, based on common service patterns, though not explicitly detailed in the graph output).
+*   **apps/meteor/app/lib/server/lib/notifyListener.ts**: Handles notifications to clients about room changes.
+*   **apps/meteor/app/lib/server/lib/BaseRaw.ts**: Provides base methods for database operations, including `updateOne` and `insertOne`.
+
+## Tool Calls (5 calls, 34,208 tokens)
+
+**Step 1:** `plan({"question":"How is a message sent on the server side in Rocket.Chat?","intent":"call-chain"})` → 81 tokens
+**Step 2:** `search({"query":"sendMessage","layer":"server"})` → 421 tokens
+**Step 3:** `graph({"file":"/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/app/lib/server/functions/sendMessage.)` → 3279 tokens
+**Step 4:** `graph({"move":"down","depth":5,"file":"/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/app/lib/serve)` → 3279 tokens
+**Step 5:** `details({"filename":"/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/app/lib/server/functions/sendMess)` → 617 tokens
+
+## Files Seen In Tool Results (11)
 
 - `apps/meteor/server/services/messages/service.ts`
 - `apps/meteor/ee/app/livechat-enterprise/server/api/lib/outbound.ts`
@@ -49,14 +70,7 @@ Here's a detailed breakdown of the process:
 - `apps/meteor/app/lib/server/methods/sendMessage.ts`
 - `apps/meteor/app/lib/server/functions/sendMessage.ts`
 - `apps/meteor/app/integrations/server/lib/triggerHandler.ts`
-- `apps/meteor/app/livechat/server/sendMessageBySMS.ts`
-- `apps/meteor/app/livechat/server/hooks/sendToCRM.ts`
-- `packages/livechat/src/lib/triggerActions.ts`
-- `apps/meteor/client/views/room/composer/messageBox/MessageBox.tsx`
-- `packages/rest-typings/src/v1/chat.ts`
-- `packages/apps-engine/src/server/managers/AppOutboundCommunicationProviderManager.ts`
-- `apps/meteor/server/features/EmailInbox/EmailInbox_Outgoing.ts`
-- `apps/meteor/tests/e2e/page-objects/omnichannel/omnichannel-livechat.ts`
 - `apps/meteor/server/lib/sendMessagesToAdmins.ts`
+- `apps/meteor/app/livechat/server/sendMessageBySMS.ts`
 - `apps/meteor/app/livechat/server/methods/sendMessageLivechat.ts`
 - `apps/meteor/app/authorization/server/functions/canSendMessage.ts`

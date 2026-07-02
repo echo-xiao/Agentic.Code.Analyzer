@@ -2,87 +2,96 @@
 
 ## Baseline Answer (no tools)
 
-The Omnichannel queue processing and closing of a livechat conversation in Rocket.Chat involves several key components and steps, primarily managed by the `app/livechat/server/lib/Livechat.js` and `app/livechat/server/lib/QueueManager.js` modules.
+The Omnichannel queue process and the closing of a livechat conversation in Rocket.Chat involve several interconnected components and steps, primarily managed by the `rocketchat:livechat` package.
 
-Here's a breakdown of how a livechat conversation is processed through the queue and subsequently closed:
+Here's a breakdown of the process:
 
----
+### 1. Livechat Initiation and Queueing
 
-### 1. Omnichannel Queue Processing
+1.  **Visitor Starts Chat:**
+    *   When a visitor initiates a chat from the widget, a client-side method (e.g., `Livechat.startChat`) is invoked, which calls the server-side method `livechat:startLivechat`.
+    *   **File:** `app/livechat/server/methods/startLivechat.js`
+    *   This method first registers or identifies the guest (`Livechat.registerGuest`) and then creates a new livechat room (type `l`) in the `Rooms` collection.
 
-When a visitor initiates a livechat, Rocket.Chat goes through a series of steps to either assign an agent immediately or place the conversation in a queue.
+2.  **Inquiry Creation:**
+    *   A new document is created in the `LivechatInquiry` collection with a `status` of `'queued'`. This inquiry represents the pending chat request.
+    *   **File:** `app/models/server/raw/LivechatInquiry.js`
 
-1.  **Visitor Initiates Chat:**
-    *   A visitor opens the livechat widget and sends their first message.
-    *   On the server, the `Livechat.newRoom` method in `app/livechat/server/lib/Livechat.js` is invoked. This method is responsible for creating the initial chat room.
+3.  **Routing and Queue Management:**
+    *   The `Livechat.startChat` method then delegates the inquiry to the `RoutingManager`.
+    *   **File:** `app/livechat/server/lib/RoutingManager.js`
+    *   The `RoutingManager` determines the appropriate routing method based on the Omnichannel settings (e.g., `Auto_Selection`, `Manual_Selection`, `Load_Balancing`, `Longest_Idle`).
+    *   It attempts to find an available agent or department.
+    *   If an agent is immediately available and the routing method allows for automatic assignment, the inquiry proceeds to assignment.
+    *   If no agent is immediately available or the routing method requires manual selection, the inquiry remains in the queue (`LivechatInquiry.status: 'queued'`).
+    *   The `QueueManager` handles the actual queueing logic, making the inquiry visible to agents in the Omnichannel queue panel.
+    *   **File:** `app/livechat/server/lib/QueueManager.js`
+    *   **Routing Methods:** `app/livechat/server/lib/routingMethods/` (e.g., `Auto_Selection.js`, `Manual_Selection.js`)
 
-2.  **Room Creation and Initial Status:**
-    *   A new `LivechatRoom` document is created in the `rocketchat_livechat_room` collection.
-    *   Its `status` is typically set to `open` or `queued`, and the `servedBy` field is initially `null`.
-    *   The visitor's information is also recorded or updated in the `rocketchat_livechat_visitor` collection.
+### 2. Agent Assignment
 
-3.  **Department Routing (Optional):**
-    *   If departments are configured and the visitor selected one (or was routed automatically), the system first identifies the target department. This helps in finding agents specialized in that area.
+1.  **Delegation:**
+    *   The `RoutingManager.delegateInquiry()` method is central here. It iterates through available agents (considering department, capacity, and routing method) to find the best match.
+    *   **File:** `app/livechat/server/lib/RoutingManager.js`
 
-4.  **Queue Manager (`app/livechat/server/lib/QueueManager.js`):**
-    *   The core logic for assigning agents and managing the queue resides in `app/livechat/server/lib/QueueManager.js`.
-    *   `Livechat.newRoom` internally calls methods within `QueueManager` (e.g., `QueueManager.requestRoom` or `QueueManager.assignAgent`) to find an available agent.
+2.  **Assignment:**
+    *   Once an agent is selected (either automatically by the system or manually by an agent taking an inquiry from the queue via `livechat:takeInquiry`), the `Livechat.assignAgent()` method is called.
+    *   **File:** `app/livechat/server/lib/Livechat.js`
+    *   This method updates the `room` document in the `Rooms` collection, setting the `servedBy` field to the assigned agent's details.
+    *   It also updates the `LivechatInquiry` document, changing its `status` from `'queued'` to `'taken'`.
+    *   **File:** `app/models/server/raw/Rooms.js`
 
-    *   **Auto-Assignment:**
-        *   If the `Livechat_auto_assign_agent` setting is enabled, the system attempts to find an available agent immediately.
-        *   It considers factors like:
-            *   **Agent Status:** Only `online` or `busy` agents are considered.
-            *   **Max Simultaneous Chats:** Agents are only assigned if they haven't reached their `livechat.maxNumberSimultaneousChats` limit.
-            *   **Department:** Agents must be assigned to the relevant department.
-            *   **Priority:** Agents can have a priority, influencing assignment order.
-            *   **Round Robin / Least Busy:** Rocket.Chat uses algorithms (like round-robin or finding the least busy agent) to distribute chats fairly.
-        *   If an agent is found, the `servedBy` field of the `LivechatRoom` is updated with the agent's ID and username. The agent receives a notification, and the chat is now "live."
+3.  **Conversation:**
+    *   With an agent assigned, the livechat conversation begins, and messages are exchanged between the visitor and the agent within the designated livechat room.
 
-    *   **Queueing:**
-        *   If no agent is immediately available (either because auto-assignment is off, all agents are busy, or no agents are online), the room is placed in the queue.
-        *   The `LivechatRoom`'s `status` might remain `open` but with `servedBy: null`, indicating it's waiting.
-        *   Visitors in the queue might see a message indicating their position or an estimated wait time.
-        *   Agents can manually "Take" chats from the queue using the agent dashboard. This action updates the `servedBy` field and assigns the chat to that agent.
-        *   The `Livechat_queue_inactivity_timeout` setting (managed by `app/livechat/server/lib/AutoClose.js`) can automatically close rooms that remain in the queue for too long without an agent.
+### 3. Closing a Livechat Conversation
 
----
+A livechat conversation can be closed in a few ways:
 
-### 2. Closing a Livechat Conversation
+#### A. Agent or Visitor Initiated Closure
 
-The process of closing a livechat conversation involves updating the room status, notifying participants, and triggering various post-chat actions. The central method for closing is `Livechat.closeRoom` in `app/livechat/server/lib/Livechat.js`.
+1.  **Action Triggered:**
+    *   **Agent:** Clicks "End Chat" or "Close Conversation" in the agent panel. This triggers a client-side call to a server method like `livechat:closeLivechat` or `livechat:closeRoom`.
+    *   **Visitor:** Clicks "End Chat" in the livechat widget. This also triggers a client-side call to a server method like `livechat:closeLivechat`.
+    *   **File:** `app/livechat/server/methods/closeLivechat.js` (or `app/livechat/server/methods/closeRoom.js`)
 
-1.  **Initiation of Closure:**
-    *   **Agent Closes:** An agent clicks the "End Chat" button in the chat interface. This typically invokes a client-side method that calls `Meteor.call('livechat:closeRoom', roomId, { ... })` on the server.
-    *   **Visitor Closes:** A visitor closes the chat widget or explicitly ends the conversation. This also triggers a call to `Meteor.call('livechat:closeRoom', roomId, { ... })`.
-    *   **Inactivity Timeout:**
-        *   The `app/livechat/server/lib/AutoClose.js` module is responsible for automatically closing inactive chats.
-        *   It periodically checks `LivechatRooms` for rooms that have exceeded the configured `Livechat_close_room_timeout` (for agent inactivity) or `Livechat_visitor_inactivity_timeout` (for visitor inactivity) settings.
-        *   When a timeout is detected, `Livechat.autoCloseRoom` is called, which in turn calls `Livechat.closeRoom`.
-    *   **API Call:** An external system or integration can close a chat via the Rocket.Chat Livechat API (e.g., `POST /api/v1/livechat/room/:rid/close`). This endpoint also calls `Livechat.closeRoom`.
-    *   **Transfer (Implicit Closure):** In some transfer scenarios, the original room might be closed (depending on configuration and transfer type) and a new room created or the existing room reassigned.
+2.  **Server-Side Processing:**
+    *   The server method invokes `Livechat.closeRoom()`.
+    *   **File:** `app/livechat/server/lib/Livechat.js`
+    *   This method performs the following critical updates:
+        *   **Rooms Collection:** The `room` document's `open` field is set to `false`, and `closedAt`, `closedBy`, and `closer` fields are populated with the relevant information (timestamp, user ID, and user type, respectively).
+        *   **File:** `app/models/server/raw/Rooms.js`
+        *   **LivechatInquiry Collection:** The corresponding `LivechatInquiry` document's `status` is updated to `'closed'`.
+        *   **File:** `app/models/server/raw/LivechatInquiry.js`
 
-2.  **`Livechat.closeRoom` Execution (`app/livechat/server/lib/Livechat.js`):**
-    *   **Validation:** The method first validates if the room exists and if the user attempting to close it has the necessary permissions (e.g., the assigned agent, the visitor of the room, or an administrator).
-    *   **Update Room Status:** The `status` field of the `LivechatRoom` document in the `rocketchat_livechat_room` collection is updated to `closed`.
-    *   **Add Closing Message:** A system message (e.g., "Chat ended by agent," "Chat ended by visitor," or "Chat ended due to inactivity") is inserted into the `rocketchat_livechat_message` collection for that room.
-    *   **Update Agent Status:** If an agent was serving the room, their `livechat.open` count (number of open chats) is decremented. This makes them available for new chats if their count drops below their maximum.
-    *   **Post-Chat Survey (Optional):** If the `Livechat_enable_post_chat_form` setting is enabled, the system might trigger the post-chat survey process, making it available to the visitor.
-    *   **Transcript (Optional):** If `Livechat_enable_transcript` is enabled, the system prepares and sends the chat transcript to the visitor's email address (if provided).
-    *   **Hooks and Events:**
-        *   Crucially, the `livechat:roomClosed` hook is triggered. This is a powerful mechanism that allows other modules, custom integrations, or external systems to react to the chat closure.
-        *   Examples of modules that might listen to this hook include:
-            *   Analytics modules to record chat duration, agent performance, and other metrics.
-            *   CRM integrations to update contact records or create new leads based on the conversation.
-            *   Custom integrations for data warehousing or external reporting.
-    *   **Visitor Status:** The visitor's `v.status` might be updated (e.g., from `online` to `offline` if they have no other open chats).
-    *   **Remove from Queue (if applicable):** If the room was in a queue, it's effectively removed from active consideration for assignment.
+3.  **Post-Chat Actions:**
+    *   After closing the room, `Livechat.closeRoom()` can trigger several post-chat actions based on system settings:
+        *   **Analytics:** Saves analytics data related to the chat duration, agent, etc.
+            *   **File:** `app/livechat/server/lib/analytics.js`
+        *   **Transcript:** Sends the chat transcript to the visitor's email if configured.
+            *   **File:** `app/livechat/server/lib/transcript.js`
+        *   **Survey:** Presents a post-chat survey to the visitor.
+            *   **File:** `app/livechat/server/lib/survey.js`
 
-By following these steps, Rocket.Chat ensures that livechat conversations are efficiently routed to agents and properly concluded, with all relevant data updated and post-chat actions triggered.
+#### B. Auto-Close Due to Inactivity
+
+1.  **Scheduled Job:**
+    *   Rocket.Chat has a background job that periodically checks for inactive livechat rooms if the `Livechat_enable_autoclose_room` setting is enabled and `Livechat_autoclose_room_timeout` is configured.
+    *   **File:** `app/livechat/server/lib/autocloseOpenRooms.js`
+
+2.  **Inactivity Check:**
+    *   This job queries the `Rooms` collection for livechat rooms that are still `open` and whose `lastMessage.ts` (timestamp of the last message) or `ts` (room creation timestamp if no messages) exceeds the configured inactivity timeout.
+
+3.  **Automatic Closure:**
+    *   For each identified inactive room, the job invokes `Livechat.closeRoom()` (similar to agent/visitor initiated closure), but with `closer` set to `'system'`.
+    *   This updates the room and inquiry statuses and triggers post-chat actions as described above.
+
+In summary, the process flows from inquiry creation and intelligent routing to agent assignment, and finally to a structured closure that can be initiated by either party or automatically by the system, with robust post-chat functionalities.
 
 ## Metrics
 
 | Metric | Value |
 |--------|-------|
-| Tokens | 4,222 |
+| Tokens | 3,708 |
 | Model | gemini-2.5-flash |
 | Tools | NONE |

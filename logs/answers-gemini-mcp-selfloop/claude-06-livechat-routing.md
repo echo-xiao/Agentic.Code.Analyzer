@@ -2,50 +2,64 @@
 
 ## Gemini Answer
 
-Livechat requests are routed to the server-side in Rocket.Chat primarily through a REST API endpoint, which then orchestrates the creation and routing of the Livechat room.
+The routing of Livechat requests to the server-side in Rocket.Chat begins with `QueueManager.requestRoom()`. This function is responsible for creating a new room and an inquiry within a transaction.
 
-Here's the detailed call chain:
+Here's the flow:
 
-1.  **Entry Point (REST API):** Client-side Livechat requests are initially handled by the `room` endpoint defined in `apps/meteor/app/livechat/server/api/v1/room.ts`.
-2.  **Room Creation Logic:** This endpoint calls `createRoom` located in `apps/meteor/app/livechat/server/lib/rooms.ts`.
-3.  **Queue Management:** The `createRoom` function then invokes `startConversation` (or `requestRoom`) within `apps/meteor/app/livechat/server/lib/QueueManager.ts`.
-4.  **Livechat Room Initialization:** `startConversation` in `QueueManager.ts` is responsible for calling `createLivechatRoom` in `apps/meteor/app/livechat/server/lib/Helper.ts`, which sets up the Livechat room and its associated inquiry.
-5.  **Inquiry Processing and Routing:** Following the room creation, `QueueManager.requestRoom()` (part of the overall flow) proceeds to `processNewInquiry()` and subsequently `RoutingManager.delegateInquiry()`. This step applies the configured routing strategy (e.g., AutoSelection, Manual) to assign an agent to the new Livechat inquiry.
+1.  **`QueueManager.requestRoom()`** (apps/meteor/app/livechat/server/lib/rooms.ts): This function initiates the Livechat request by creating a room and an inquiry.
+2.  **`processNewInquiry()`**: After the room and inquiry are created, this function checks the status of the inquiry.
+3.  **`RoutingManager.delegateInquiry()`**:
+    *   If the inquiry status is `READY`, `RoutingManager.delegateInquiry()` is called immediately.
+    *   If the inquiry status is `QUEUED`, the inquiry is saved to the queue.
+4.  **Routing Strategy**: `RoutingManager.delegateInquiry()` then applies a routing strategy (e.g., AutoSelection, Manual) to determine how the inquiry should be handled.
+5.  **`takeInquiry()`**: This function assigns an agent to the inquiry.
+6.  **`assignAgent()`**: This function updates the room with the assigned agent.
 
-**Call Chain:**
-`Client Request` → `apps/meteor/app/livechat/server/api/v1/room.ts` (`room` endpoint) → `apps/meteor/app/livechat/server/lib/rooms.ts` (`createRoom`) → `apps/meteor/app/livechat/server/lib/QueueManager.ts` (`startConversation` / `requestRoom`) → `apps/meteor/app/livechat/server/lib/Helper.ts` (`createLivechatRoom`) → `RoutingManager.delegateInquiry()` (internal routing logic).
+Additionally, there's a background process:
 
-## Tool Calls (8 calls, 25,026 tokens)
+*   **`OmnichannelService`**: This service starts an `OmnichannelQueue` worker.
+*   **`execute()` loop**: This loop processes queued inquiries, which also calls `RoutingManager.delegateInquiry()`.
 
-**Step 1:** `search({"query":"Livechat request","layer":"server"})` → 255 tokens
-**Step 2:** `graph({"direction":"down","layer":"server","query":"POSTLivechatMonitorCreateRequest"})` → 231 tokens
-**Step 3:** `search({"query":"Livechat API route","layer":"server"})` → 256 tokens
-**Step 4:** `search({"layer":"server","query":"QueueManager.requestRoom"})` → 266 tokens
-**Step 5:** `graph({"query":"QueueManager.requestRoom","direction":"up","file":"apps/meteor/app/livechat/server/lib/roo)` → 16 tokens
-**Step 6:** `search({"query":"Livechat new room","layer":"server"})` → 437 tokens
-**Step 7:** `graph({"direction":"up","query":"createLivechatRoom","file":"apps/meteor/app/livechat/server/lib/Helper.ts)` → 260 tokens
-**Step 8:** `graph({"query":"startConversation","direction":"up","file":"apps/meteor/app/livechat/server/lib/QueueManag)` → 366 tokens
+The `Livechat` symbol in `packages/livechat/src/api.ts` appears to be a client-side implementation (`LivechatClientImpl.create`) that connects to the host via websockets, suggesting it's the client-side component that initiates these requests.
 
-## Files Seen In Tool Results (21)
+## Tool Calls (8 calls, 20,437 tokens)
 
-- `packages/rest-typings/src/v1/omnichannel.ts`
-- `apps/meteor/app/livechat/server/lib/rooms.ts`
-- `apps/meteor/app/api/server/lib/rooms.ts`
-- `packages/models/src/models/LivechatRooms.ts`
-- `apps/meteor/tests/data/livechat/rooms.ts`
-- `apps/meteor/app/livechat/server/lib/Helper.ts`
-- `apps/meteor/app/livechat/server/lib/takeInquiry.ts`
+**Step 1:** `plan({"question":"How are Livechat requests routed to the server-side in Rocket.Chat?","intent":"routing")` → 89 tokens
+**Step 2:** `search({"query":"Livechat request","layer":"server"})` → 26 tokens
+**Step 3:** `search({"query":"Livechat.API","layer":"server"})` → 25 tokens
+**Step 4:** `search({"layer":"server","query":"Livechat"})` → 621 tokens
+**Step 5:** `graph({"query":"Livechat","file":"/Users/echoooooo/Desktop/code/Rocket.Chat/packages/livechat/src/api.ts",)` → 489 tokens
+**Step 6:** `details({"symbolName":"Livechat","filename":"/Users/echoooooo/Desktop/code/Rocket.Chat/packages/livechat/src)` → 57 tokens
+**Step 7:** `search({"query":"QueueManager.requestRoom","layer":"server"})` → 272 tokens
+**Step 8:** `graph({"depth":4,"query":"QueueManager.requestRoom","move":"down","file":"apps/meteor/app/livechat/server/)` → 16 tokens
+
+## Files Seen In Tool Results (28)
+
+- `packages/livechat/src/api.ts`
 - `packages/apps-engine/src/server/bridges/LivechatBridge.ts`
-- `apps/meteor/ee/app/livechat-enterprise/server/api/contacts.ts`
-- `apps/meteor/app/lib/server/lib/notifyListener.ts`
-- `apps/meteor/app/lib/server/functions/sendMessage.ts`
-- `apps/meteor/app/livechat/server/lib/QueueManager.ts`
-- `apps/meteor/app/livechat/server/lib/messages.ts`
-- `apps/meteor/app/livechat/server/api/v1/room.ts`
-- `packages/livechat/src/routes/Chat/container.js`
-- `packages/livechat/src/routes/Chat/connector.tsx`
-- `ee/packages/federation-matrix/src/events/index.ts`
-- `apps/meteor/client/views/teams/contextualBar/info/TeamsInfoWithData.tsx`
-- `apps/meteor/client/views/teams/contextualBar/info/TeamsInfo.tsx`
-- `apps/meteor/app/livechat/imports/server/rest/sms.ts`
-- `apps/meteor/app/apps/server/bridges/livechat.ts`
+- `packages/apps-engine/src/server/accessors/LivechatUpdater.ts`
+- `packages/apps-engine/src/server/accessors/LivechatRead.ts`
+- `packages/apps-engine/src/server/accessors/LivechatMessageBuilder.ts`
+- `packages/apps-engine/src/server/accessors/LivechatCreator.ts`
+- `apps/meteor/tests/unit/app/livechat/server/hooks/sendToCRM.tests.ts`
+- `apps/meteor/tests/unit/app/lib/server/functions/closeLivechatRoom.tests.ts`
+- `apps/meteor/server/services/authorization/canAccessRoomLivechat.ts`
+- `apps/meteor/server/lib/rooms/roomTypes/livechat.ts`
+- `apps/meteor/ee/server/models/LivechatUnitMonitors.ts`
+- `apps/meteor/ee/server/models/LivechatUnit.ts`
+- `apps/meteor/ee/server/models/LivechatTag.ts`
+- `apps/meteor/ee/server/models/LivechatRooms.ts`
+- `apps/meteor/ee/server/models/LivechatInquiry.ts`
+- `apps/meteor/ee/server/models/LivechatDepartmentAgents.ts`
+- `apps/meteor/server/services/video-conference/service.ts`
+- `packages/models/src/index.ts`
+- `apps/meteor/app/apps/server/bridges/listeners.ts`
+- `packages/message-types/src/registrations/livechat.ts`
+- `apps/meteor/tests/e2e/page-objects/omnichannel/omnichannel-livechat.ts`
+- `apps/meteor/tests/end-to-end/api/livechat/11-livechat.ts`
+- `apps/meteor/client/lib/rooms/roomCoordinator.tsx`
+- `packages/models/src/models/VideoConference.ts`
+- `apps/meteor/ee/server/models/raw/LivechatTag.ts`
+- `apps/meteor/ee/server/models/raw/LivechatUnit.ts`
+- `packages/apps-engine/src/server/bridges/AppBridges.ts`
+- `apps/meteor/app/livechat/server/lib/rooms.ts`
