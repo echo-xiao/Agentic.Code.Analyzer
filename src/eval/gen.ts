@@ -150,8 +150,16 @@ async function runMcpCase(model: any, tc: TestCase, oracle: boolean): Promise<An
 function saveMcpAnswers(dir: string, records: AnswerRecord[]) {
     fs.mkdirSync(dir, { recursive: true });
     for (const r of records) {
+        // Basename-ify path args (file/filename) so the meaningful tail survives the length cap —
+        // otherwise a long absolute path pushes the basename (the useful bit) past the cutoff.
+        const prettyArgs = (a: Record<string, any>) => {
+            const o: Record<string, any> = {};
+            for (const [k, v] of Object.entries(a ?? {}))
+                o[k] = (k === 'file' || k === 'filename') && typeof v === 'string' ? v.split('/').pop() : v;
+            return JSON.stringify(o);
+        };
         const trace = r.toolCalls.map(t =>
-            `**Step ${t.step}:** \`${t.tool}(${JSON.stringify(t.args).substring(0, 100)})\` → ${t.responseTokensEst} tokens`).join('\n');
+            `**Step ${t.step}:** \`${t.tool}(${prettyArgs(t.args).substring(0, 120)})\` → ${t.responseTokensEst} tokens`).join('\n');
         const seen = r.seenFiles.length ? r.seenFiles.map(f => `- \`${f}\``).join('\n') : '_(none)_';
         const content = `# ${r.question}\n\n## Plan\n\nintent: ${r.resolvedIntent ?? 'unknown'}\n\n## Gemini Answer\n\n${r.llmAnswer}\n\n## Tool Calls (${r.toolCalls.length} calls, ${r.tokens.toLocaleString()} tokens)\n\n${trace}\n\n## Files Seen In Tool Results (${r.seenFiles.length})\n\n${seen}\n`;
         fs.writeFileSync(path.join(dir, `${r.id}.md`), content, 'utf-8');

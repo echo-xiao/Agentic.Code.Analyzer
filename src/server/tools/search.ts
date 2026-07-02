@@ -5,7 +5,7 @@ import { spawnSync } from 'child_process';
 import { GLOBAL_INDEX } from '../../indexer/state.js';
 import { TARGET_SRC_DIR } from '../../config.js';
 import { SESSION } from '../session.js';
-import { filterByLayer, getArchitectureHint, relPath } from '../engine/common.js';
+import { filterByLayer, relPath } from '../engine/common.js';
 
 export function runSearch(args: { query?: string; layer?: string }): string {
     const { query, layer } = args;
@@ -76,10 +76,7 @@ export function runSearch(args: { query?: string; layer?: string }): string {
 
     if (sections.length === 0) return `No results for "${query}". Try a different keyword, or a call pattern (e.g. 'API.v1.addRoute').`;
 
-    const hint = getArchitectureHint(query);
-    const body = hint
-        ? `${hint}\n\n---\n\n${sections.join('\n\n')}`
-        : sections.join('\n\n');
+    const body = sections.join('\n\n');
     const navHint = `\n\n💡 **Next:** graph("${query}") — move="expand" maps the subsystem, "down" traces callees in order, "up" shows dependents. (plan sets the default move.)`;
     return body + navHint;
 }

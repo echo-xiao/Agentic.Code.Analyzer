@@ -15,7 +15,7 @@ import { ensureIndex } from '../indexer/index.js';
 import { handleToolCall } from '../server/registry.js';
 import { loadTestcases } from './utils/load-testcases.js';
 import { coverage, extractCitedFiles, fileMatches, readSection, tokensOf } from './utils/eval-util.js';
-import { classifyIntent, INTENTS } from '../server/intent.js';
+import { classifyIntent, INTENTS, RECIPES } from '../server/intent.js';
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const LOGS = path.resolve(__dirname, '..', '..', 'logs');
@@ -64,6 +64,57 @@ function resolveIntent(mcpFile: string, question: string): string | null {
     return classifyIntent(question);
 }
 
+// Parse the saved answer's "## Tool Calls" trace into a HUMAN-READABLE summary: one line per call,
+// in order, showing WHAT each call did — plan's intent, search's query(·layer), graph's target + move
+// (↓=down chain / ↑=up impact / default expand), details' file. Adjacent identical lines collapse ×N.
+// Args are recorded truncated (~100 chars), so a graph/details file path is often clipped mid-basename;
+// we UN-TRUNCATE it by prefix-matching the clipped path against the full paths in the same answer's
+// "## Files Seen In Tool Results" list. Fields are regexed out (the JSON is truncated, can't parse).
+function parseTrace(mcpFile: string, resolvedIntent: string | null): { calls: number; summary: string; hitBudget: boolean } {
+    let txt = ''; try { txt = fs.readFileSync(mcpFile, 'utf-8'); } catch { /* */ }
+    const header = txt.match(/## Tool Calls \((\d+) calls/);
+    const calls = header ? +header[1] : 0;
+    const seen = [...txt.matchAll(/^- `([^`]+)`/gm)].map(m => m[1]);   // full relative paths (seen-log)
+    // Resolved intent (same value the route column uses: ## Plan line → plan() args prefix → offline
+    // classifier). It also determines the default graph move (impact→up / call-chain→down / else expand)
+    // that the tool applies when a graph call OMITS `move` — so a clipped/omitted move still shows right.
+    const planIntent = resolvedIntent ?? '';
+    const recipeMove = (RECIPES as Record<string, { move: string }>)[planIntent]?.move ?? 'expand';
+    const arg = (raw: string, re: RegExp) => { const m = raw.match(re); return m ? m[1] : ''; };
+    const relOf = (p: string) => { const m = p.match(/(?:^|\/)((?:apps|packages|ee)\/.+)$/); return m ? m[1] : (p.split('/').pop() || p); };
+    // resolve a (possibly clipped, possibly absolute) file arg → full basename via the seen-log
+    const resolveFile = (rawPath: string): string => {
+        if (!rawPath) return '?';
+        const rel = relOf(rawPath);
+        const full = seen.find(s => s.startsWith(rel)) ?? seen.find(s => s.includes(rel)) ?? rel;
+        return full.split('/').pop() || full;
+    };
+    const lines: string[] = [];
+    for (const m of txt.matchAll(/\*\*Step \d+:\*\*\s*`(\w+)\((.*?)\)`/g)) {
+        const tool = m[1], raw = m[2];
+        if (tool === 'plan') lines.push(`plan: ${planIntent || arg(raw, /"intent"\s*:\s*"([^"]+)"/) || '?'}`);
+        else if (tool === 'search') {
+            const q = arg(raw, /"query"\s*:\s*"([^"]+)"/), layer = arg(raw, /"layer"\s*:\s*"([^"]+)"/);
+            lines.push(`search: "${q}"${layer ? ' ·' + layer : ''}`);
+        } else if (tool === 'graph') {
+            const move = arg(raw, /"move"\s*:\s*"([^"]+)"/) || recipeMove;   // omitted move → intent's default
+            const q = arg(raw, /"query"\s*:\s*"([^"]+)"/), f = arg(raw, /"file"\s*:\s*"([^"]*)"?/);
+            const mv = ({ expand: '', down: '↓', up: '↑' } as Record<string, string>)[move] ?? move;
+            lines.push(`graph${mv}: ${q || resolveFile(f)}`);
+        } else if (tool === 'details') {
+            lines.push(`details: ${resolveFile(arg(raw, /"filename"\s*:\s*"([^"]*)"?/))}`);
+        } else lines.push(tool);
+    }
+    const seq: { base: string; n: number }[] = [];   // collapse ADJACENT identical lines
+    for (const ln of lines) {
+        const last = seq[seq.length - 1];
+        if (last && last.base === ln) last.n++; else seq.push({ base: ln, n: 1 });
+    }
+    const ordered = seq.map(s => s.n > 1 ? `${s.base} ×${s.n}` : s.base).join('<br>') || '(nothing)';
+    const hitBudget = calls >= 8;
+    return { calls, summary: `${calls} calls${hitBudget ? ' ⛔' : ''}<br>${ordered}`, hitBudget };
+}
+
 function load(name: string): any {
     const p = path.join(LOGS, 'data', name);
     if (!fs.existsSync(p)) { console.error(`Missing ${name} — run \`npm run eval:tools\` first.`); process.exit(1); }
@@ -105,22 +156,26 @@ async function main() {
         const a = byTools.get(tc.id) ?? {};
         const type = tc.questionType ?? a.subsystem ?? '?';
         const r50 = a.recallAt50 ?? a.recallAt20 ?? 0;
-        const routeOk = resolveIntent(mcpFile, tc.question ?? '') === type;
+        const resolved = resolveIntent(mcpFile, tc.question ?? '');
+        const routeOk = resolved === type;
         // Auto-triage: mechanical, front→back, first trip wins. NO semantic judgment.
+        // route is DELIBERATELY not a gate: intent≠type is a labeling disagreement (~0 precision as a
+        // failure cause — 0/12 semantic failures are misrouted), it only sets a default move the agent
+        // can override. The route✓/✗ column stays as a fact; it just no longer drives the stage.
         const stage = errored ? 'err'
             : coreCov >= 0.5 ? 'ok'
-                : !routeOk ? 'route'
-                    : r50 < 0.3 ? 'search'
-                        : retrievalRecall < 0.5 ? 'graph'
-                            : synthRecall < 0.7 ? 'synth' : 'ok';
+                : r50 < 0.3 ? 'search'
+                    : retrievalRecall < 0.5 ? 'graph'
+                        : synthRecall < 0.7 ? 'synth' : 'ok';
 
         rows.push({
             id: tc.id, type,
             recallAt5: a.recallAt5 ?? 0, recallAt10: a.recallAt10 ?? 0, recallAt20: a.recallAt20 ?? 0, recallAt50: r50,
+            coreRanks: a.coreRanks ?? null,
             diagnosis: a.diagnosis ?? 'n/a', orderApplicable: !!a.orderApplicable, orderScore: a.orderScore ?? 1,
             fileRecall: a.fileRecall ?? 0, symRecall: a.symRecall ?? 0, graphReach: a.graphReach ?? null,
             coreN: core.length, coreWritten: written.length, coreCov, retrievalRecall, synthRecall, dropped, errored,
-            cov0, covN, cov2, tok0, tok2, routeOk, stage,
+            cov0, covN, cov2, tok0, tok2, routeOk, stage, trace: parseTrace(mcpFile, resolved),
         });
     }
 
@@ -180,22 +235,44 @@ async function main() {
 
     // 3 — auto-triage
     L.push(`## 3. Auto-triage — mechanical "suspected stage" per testcase (no semantic judgment)\n`);
-    L.push(`> Front→back, first trip wins, numbers only: route (intent≠type) → search (R@50<30%) → graph (surfaced<50%) → synth (synth<70%); ok if end coverage ≥50%. Flags WHICH question + stage to inspect — the WHY is in verdicts.md.\n`);
+    L.push(`> Front→back, first trip wins, numbers only: search (R@50<30%) → graph (surfaced<50%) → synth (synth<70%); ok if end coverage ≥50%. Flags WHICH question + stage to inspect — the WHY is in verdicts.md. **route (intent≠type) is shown as a column but is NOT a gate** — it's a labeling disagreement with ~0 precision as a failure cause (0/12 semantic failures are misrouted), so it no longer drives the stage.\n`);
     const dist = new Map<string, number>();
     for (const r of rows) dist.set(r.stage, (dist.get(r.stage) ?? 0) + 1);
     L.push(`**Suspected-stage distribution:** ${[...dist].sort((a, b) => b[1] - a[1]).map(([t, c]) => `${t} ${c}`).join(' · ')}.\n`);
-    L.push(`| # | id | type | route | R@10·diag | surfaced | synth | end cov | suspected stage |`);
-    L.push(`|---|---|---|:-:|---|---:|---:|---:|---|`);
+    L.push(`> Column key: **R@10·diag** = single-query probe recall@10 + diagnosis (rm=recall-miss / rl=ranked-low / mx=mixed / ok). **core ranks** = each core file's rank in that probe; \`#2 · 5 miss\` = one file ranks #2, the other five never appear at all (engine can't reach them by ranking). Full per-file breakdown in §4. **trace** = the agent's ACTUAL calls in order, one per line, showing what each did: \`plan:\` intent · \`search:\` query(·layer) · \`graph:\`/\`graph↓\`(down chain)/\`graph↑\`(up impact) target · \`details:\` file. **surfaced/synth** = the agent's actual run, not the probe.\n`);
+    L.push(`| # | id | type | route | R@10·diag | core ranks | surfaced | synth | end cov | trace (agent 实际调用) | suspected stage |`);
+    L.push(`|---|---|---|:-:|---|---|---:|---:|---:|---|---|`);
     const diagAbbr: Record<string, string> = { 'recall-miss': 'rm', 'ranked-low': 'rl', 'mixed': 'mx', 'ok': 'ok', 'n/a': '—' };
+    const coreRankStr = (cr: { file: string; rank: number | null }[] | null): string => {
+        if (!cr || !cr.length) return '—';
+        const ranked = cr.filter(c => c.rank != null).map(c => c.rank as number).sort((a, b) => a - b);
+        const missed = cr.length - ranked.length;
+        const parts = ranked.map(r => `#${r}`);
+        if (missed) parts.push(`${missed} miss`);
+        return parts.join(' · ');
+    };
     rows.forEach((r, i) => {
         const routec = r.routeOk == null ? '—' : r.routeOk ? '✓' : '✗';
-        const g1c = `${pct(r.recallAt10)} ${diagAbbr[r.diagnosis] ?? r.diagnosis}`;
+        const rkc = `${pct(r.recallAt10)} ${diagAbbr[r.diagnosis] ?? r.diagnosis}`;
+        const ranksc = coreRankStr(r.coreRanks);
         const surf = r.errored ? '—' : pct(r.retrievalRecall);
         const syn = r.errored ? '—' : pct(r.synthRecall);
         const endc = r.errored ? '—' : `${r.coreWritten}/${r.coreN} ${pct(r.coreCov)}`;
-        L.push(`| ${i + 1} | ${r.id} | ${short[r.type] ?? r.type} | ${routec} | ${g1c} | ${surf} | ${syn} | ${endc} | ${r.stage} |`);
+        L.push(`| ${i + 1} | ${r.id} | ${short[r.type] ?? r.type} | ${routec} | ${rkc} | ${ranksc} | ${surf} | ${syn} | ${endc} | ${r.trace.summary} | ${r.stage} |`);
     });
     L.push('');
+
+    // 4 — per-core-file probe rank (every core file listed, MISS marked). §3's core@probe expanded.
+    L.push(`## 4. Per-core-file probe rank — every core file, its rank or MISS\n`);
+    L.push(`> §3's \`core@probe\` expanded: the single-query graph(expand) rank of EACH core file, best-rank first. \`MISS\` = never appears in the ranked neighborhood at all (engine can't reach it by ranking). A deep rank (#100+) is effectively unreachable — the agent won't page that far.\n`);
+    rows.forEach(r => {
+        const cr: { file: string; rank: number | null }[] = r.coreRanks ?? [];
+        const ranked = cr.filter(c => c.rank != null).length;
+        L.push(`**${r.id}** · ${short[r.type] ?? r.type} · ${ranked}/${cr.length} ranked · surfaced ${r.errored ? '—' : pct(r.retrievalRecall)}`);
+        [...cr].sort((a, b) => (a.rank ?? Infinity) - (b.rank ?? Infinity))
+            .forEach(c => L.push(`- \`${c.rank == null ? 'MISS' : '#' + c.rank}\` ${c.file}`));
+        L.push('');
+    });
 
     fs.mkdirSync(path.join(LOGS, 'reports'), { recursive: true });
     fs.writeFileSync(OUT, L.join('\n'), 'utf-8');
