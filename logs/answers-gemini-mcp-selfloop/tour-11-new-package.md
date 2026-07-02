@@ -2,66 +2,45 @@
 
 ## Gemini Answer
 
-To create a new package in the Rocket.Chat monorepo, you generally follow a standard pattern for JavaScript/TypeScript packages within a monorepo structure. The core idea is to create a new directory under the `packages/` root, and then populate it with the necessary configuration and source files.
+I was unable to find a definitive guide or tool within the Rocket.Chat codebase for creating a new package. My searches for "create package", "new-package", "generate package", "yarn workspace", and "CONTRIBUTING.md" did not yield specific instructions or scripts for this process.
 
-Here's a breakdown of the typical process and the key files involved:
+While I found many `package.json` files and references to existing packages, I could not locate a clear pattern or utility for generating a new one. This suggests that the process might involve manual creation and configuration, or that the relevant information is not directly discoverable through code navigation alone.
 
-**Call Chain:** This process is conceptual and involves manual file creation and configuration, rather than a direct code execution chain.
+To create a new package in the Rocket.Chat monorepo, you would likely need to:
 
-**Entry Point:** The `packages/` directory within the Rocket.Chat monorepo.
+1.  **Manually create a new directory** within the `packages/` directory.
+2.  **Create a `package.json` file** inside this new directory, defining the package's name, version, dependencies, and scripts. You can refer to existing `package.json` files in other packages (e.g., `packages/web-ui-registration/package.json`) for structure and common configurations.
+3.  **Add source code** (e.g., TypeScript files) to the new package.
+4.  **Configure build processes** (e.g., `tsconfig.json`, webpack configurations) if necessary, again by referencing existing packages.
+5.  **Integrate the new package** into the monorepo's build system, which likely involves updating the root `package.json` workspaces or other configuration files.
 
-**Steps to Create a New Package:**
+Without a dedicated tool or explicit documentation within the codebase, the exact steps for integration would require further investigation into the monorepo's build and dependency management.
 
-1.  **Create a New Package Directory:**
-    *   Navigate to the `packages/` directory in the monorepo root.
-    *   Create a new directory for your package (e.g., `packages/my-new-package`).
-    *   *Example Location:* `packages/web-ui-registration/` (as seen in `search` results for `packages/web-ui-registration/src/index.ts`)
+## Tool Calls (8 calls, 20,502 tokens)
 
-2.  **Initialize `package.json`:**
-    *   Inside your new package directory (`packages/my-new-package/`), create a `package.json` file.
-    *   This file defines your package's metadata, scripts, and dependencies.
-    *   *Key fields to include:*
-        *   `name`: The unique name of your package (e.g., `@rocket.chat/my-new-package`).
-        *   `version`: The package version (e.g., `1.0.0`).
-        *   `main`: The entry point for your package (e.g., `dist/index.js`).
-        *   `types`: The TypeScript declaration file entry point (e.g., `dist/index.d.ts`).
-        *   `scripts`: Build, test, and other utility scripts (e.g., `build`, `test`).
-        *   `dependencies` and `devDependencies`: Other packages your package relies on.
+**Step 1:** `plan({"question":"How do you create a new package in the Rocket.Chat monorepo?","intent":"pattern"})` → 80 tokens
+**Step 2:** `search({"query":"create package"})` → 26 tokens
+**Step 3:** `search({"query":"new-package"})` → 25 tokens
+**Step 4:** `search({"query":"generate","layer":"packages"})` → 384 tokens
+**Step 5:** `search({"query":"package"})` → 667 tokens
+**Step 6:** `search({"query":"yarn workspace"})` → 95 tokens
+**Step 7:** `search({"query":"package.json"})` → 360 tokens
+**Step 8:** `search({"query":"CONTRIBUTING.md"})` → 26 tokens
 
-3.  **Add Source Code:**
-    *   Create a `src/` directory inside your package (e.g., `packages/my-new-package/src/`).
-    *   Place your TypeScript or JavaScript source files here (e.g., `packages/my-new-package/src/index.ts`).
-    *   *Example File:* `packages/web-ui-registration/src/index.ts`
+## Files Seen In Tool Results (49)
 
-4.  **Configure TypeScript (if applicable):**
-    *   If your package uses TypeScript, create a `tsconfig.json` file in your package's root (e.g., `packages/my-new-package/tsconfig.json`).
-    *   This file configures the TypeScript compiler for your package.
-
-5.  **Set up Build Process:**
-    *   Configure a build process to compile your source code (e.g., TypeScript to JavaScript, bundling). This often involves tools like Rollup, Webpack, or simply `tsc`.
-    *   The build script would be defined in your `package.json` (e.g., `"build": "rollup -c"`).
-
-6.  **Add Tests:**
-    *   Create a `__tests__/` or `tests/` directory for your unit and integration tests.
-    *   Configure a testing framework like Jest.
-
-**Distinction from Meteor Packages:**
-
-It's important to note that the `search` results also showed `package.js` files (e.g., `apps/meteor/packages/rocketchat-version/package.js`). These are specific to Meteor packages, which have a different structure and build process than standard npm packages within the `packages/` directory. When creating a "new package in the Rocket.Chat monorepo," the expectation is typically a standard npm package under `packages/`.
-
-By following these steps, you can establish a new, independent package within the Rocket.Chat monorepo, allowing for modular development and reusability.
-
-## Tool Calls (5 calls, 15,255 tokens)
-
-**Step 1:** `search({"query":"create new package monorepo"})` → 18 tokens
-**Step 2:** `search({"query":"packages/package.json"})` → 16 tokens
-**Step 3:** `search({"query":"package","layer":"packages"})` → 839 tokens
-**Step 4:** `graph({"query":"web-ui-registration","layer":"packages"})` → 15 tokens
-**Step 5:** `search({"layer":"packages","query":"package.json"})` → 77 tokens
-
-## Files Seen In Tool Results (36)
-
-- `packages/package.js`
+- `packages/message-parser/tests/helpers.ts`
+- `packages/message-parser/src/utils.ts`
+- `apps/meteor/tests/unit/server/services/calendar/statusEvents/generateCronJobId.tests.ts`
+- `apps/meteor/server/startup/generateKeys.ts`
+- `apps/meteor/server/services/calendar/statusEvents/generateCronJobId.ts`
+- `apps/meteor/lib/utils/generatePath.ts`
+- `apps/meteor/imports/personal-access-tokens/server/api/methods/regenerateToken.ts`
+- `apps/meteor/imports/personal-access-tokens/server/api/methods/generateToken.ts`
+- `apps/meteor/app/smarsh-connector/server/functions/generateEml.ts`
+- `apps/meteor/app/lib/server/lib/generatePassword.ts`
+- `apps/meteor/app/importer/server/classes/converters/generateTempPassword.ts`
+- `apps/meteor/app/2fa/server/methods/regenerateCodes.ts`
 - `apps/meteor/packages/rocketchat-version/package.js`
 - `apps/meteor/packages/rocketchat-postcss/package.js`
 - `apps/meteor/packages/rocketchat-mongo-config/package.js`
@@ -73,14 +52,6 @@ By following these steps, you can establish a new, independent package within th
 - `apps/meteor/packages/meteor-cookies/package.js`
 - `apps/meteor/packages/linkedin-oauth/package.js`
 - `apps/meteor/packages/autoupdate/package.js`
-- `packages/release-action/src/utils.ts`
-- `packages/apps-engine/src/server/compiler/AppPackageParser.ts`
-- `apps/meteor/packages/rocketchat-postcss/build.js`
-- `packages/apps-engine/src/server/compiler/IParseAppPackageResult.ts`
-- `apps/meteor/app/emoji/lib/rocketchat.ts`
-- `packages/livechat/src/components/Button/stories.tsx`
-- `apps/meteor/tests/data/apps/helper.ts`
-- `packages/apps-engine/src/server/AppManager.ts`
 - `packages/web-ui-registration/src/index.ts`
 - `packages/web-ui-registration/src/SecretRegisterInvalidForm.tsx`
 - `packages/web-ui-registration/src/SecretRegisterForm.tsx`
@@ -96,4 +67,14 @@ By following these steps, you can establish a new, independent package within th
 - `packages/web-ui-registration/src/GuestForm.tsx`
 - `packages/web-ui-registration/src/EmailConfirmationForm.tsx`
 - `packages/web-ui-registration/src/CMSPage.tsx`
+- `packages/release-action/src/fixWorkspaceVersionsBeforePublish.ts`
+- `packages/apps-engine/src/server/compiler/AppPackageParser.ts`
 - `ee/packages/pdf-worker/.storybook/main.ts`
+- `packages/fuselage-ui-kit/.storybook/main.ts`
+- `packages/fuselage-ui-kit/.storybook/preview.tsx`
+- `packages/ui-video-conf/.storybook/main.ts`
+- `packages/ui-composer/.storybook/main.ts`
+- `packages/web-ui-registration/.storybook/main.ts`
+- `packages/web-ui-registration/.storybook/preview.tsx`
+- `packages/livechat/.storybook/preview.tsx`
+- `packages/livechat/webpack.config.ts`

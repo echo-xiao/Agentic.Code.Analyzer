@@ -206,7 +206,7 @@ async function main() {
                 console.error(`OK (${tokens} tokens)`);
                 if (i < selected.length - 1) await pause(isPro ? 13000 : 4500);
             } catch (e: any) {
-                console.error(`ERROR: ${e?.message?.slice(0, 100)}`);
+                console.error(`ERROR: ${e?.message ?? e}`);
                 await pause(5000);
             }
         }

@@ -2,56 +2,46 @@
 
 ## Gemini Answer
 
-New endpoints are registered in the Rocket.Chat REST API primarily through the Apps-Engine, which allows applications to extend Rocket.Chat's functionality.
+New endpoints are registered in the Rocket.Chat REST API primarily through the `ApiClass` in `apps/meteor/app/api/server/ApiClass.ts`.
 
-The process begins with `AppApiManager.registerApis` in `packages/apps-engine/src/server/managers/AppApiManager.ts`. This function orchestrates the registration of APIs provided by an app.
+The process involves:
 
-The core registration logic is handled by the `ApiBridge`. Specifically, `ApiBridge.doRegisterApi` in `packages/apps-engine/src/server/bridges/ApiBridge.ts` is called, which in turn calls the abstract `ApiBridge.registerApi` method.
+1.  **`createApi`**: An API instance (e.g., `API.v1`) is created using `createApi({ version:'v1', useDefaultAuth:true })`.
+2.  **`addRoute` or typed methods**: Routes are then registered using either the legacy `APIClass.addRoute()` method or the more modern typed methods like `.get()`, `.post()`, `.put()`, and `.delete()`.
 
-The concrete implementation of `ApiBridge.registerApi` is found in `AppApisBridge.registerApi` within `apps/meteor/app/apps/server/bridges/api.ts`. This method performs the following steps:
+The full middleware chain for handling these API requests includes:
 
-1.  It logs the API registration for debugging purposes.
-2.  It verifies the API and its endpoint configuration.
-3.  It retrieves or creates an `express.Router()` instance associated with the app's ID.
-4.  It constructs the `routePath` ensuring it starts with a `/`.
-5.  It then uses the `router[method]` (typically `router.all`) to register the endpoint with the Express router. This registration includes:
-    *   The `routePath`.
-    *   `authenticationMiddleware` to handle authentication based on `endpoint.authRequired`.
-    *   `Meteor.bindEnvironment(this._appApiExecutor(endpoint, appId))` which wraps the API execution logic within a Meteor environment.
+*   `WebApp.rawConnectHandlers`
+*   `remoteAddressMiddleware`
+*   `CORS`
+*   `logger`
+*   `metrics`
+*   `tracerSpan`
+*   `router dispatch`
+*   `authenticationMiddlewareForHono` (validates `x-user-id`, `x-auth-token` headers, or OAuth tokens)
+*   `permissionsMiddleware`
+*   `license check`
+*   `route handler`
 
-In summary, the call chain for registering new REST API endpoints is:
+Route handlers receive an `APIActionContext` object containing `this.bodyParams`, `this.queryParams`, and `this.user`, and are expected to return `API.v1.success()` or `API.v1.failure()`.
 
-`AppApiManager.registerApis` (packages/apps-engine/src/server/managers/AppApiManager.ts) → `ApiBridge.doRegisterApi` (packages/apps-engine/src/server/bridges/ApiBridge.ts) → `AppApisBridge.registerApi` (apps/meteor/app/apps/server/bridges/api.ts) which ultimately uses `express.Router()` to define the endpoint.
+## Tool Calls (8 calls, 17,341 tokens)
 
-## Tool Calls (8 calls, 46,536 tokens)
+**Step 1:** `plan({"question":"How are new endpoints registered in the REST API in Rocket.Chat?","intent":"pattern"})` → 80 tokens
+**Step 2:** `search({"query":"addRoute","layer":"server"})` → 225 tokens
+**Step 3:** `graph({"file":"apps/meteor/app/api/server/ApiClass.ts","query":"addRoute","move":"expand"})` → 379 tokens
+**Step 4:** `details({"filename":"apps/meteor/app/api/server/ApiClass.ts","symbolName":"addRoute"})` → 51 tokens
+**Step 5:** `details({"filename":"apps/meteor/app/api/server/ApiClass.ts","symbolName":"ApiClass"})` → 15 tokens
+**Step 6:** `details({"symbolName":"ApiClass","filename":"apps/meteor/app/api/server/ApiClass.ts"})` → 15 tokens
+**Step 7:** `details({"symbolName":"addManagementRoutes","filename":"apps/meteor/ee/server/apps/communication/rest.ts"})` → 59 tokens
+**Step 8:** `search({"query":"apps/meteor/app/api/server/ApiClass.ts"})` → 229 tokens
 
-**Step 1:** `search({"query":"rest api register","layer":"server"})` → 284 tokens
-**Step 2:** `graph({"query":"registerApis","direction":"down","layer":"server","file":"packages/apps-engine/src/server/)` → 1778 tokens
-**Step 3:** `implement({"symbolName":"doRegisterApi","filename":"packages/apps-engine/src/server/bridges/ApiBridge.ts"})` → 59 tokens
-**Step 4:** `implement({"symbolName":"ApiBridge.doRegisterApi","filename":"packages/apps-engine/src/server/bridges/ApiBridg)` → 94 tokens
-**Step 5:** `implement({"filename":"packages/apps-engine/src/server/bridges/ApiBridge.ts","symbolName":"ApiBridge.registerA)` → 110 tokens
-**Step 6:** `graph({"direction":"up","file":"packages/apps-engine/src/server/bridges/ApiBridge.ts","mode":"impact","que)` → 15 tokens
-**Step 7:** `search({"query":"ApiBridge"})` → 288 tokens
-**Step 8:** `implement({"filename":"apps/meteor/app/apps/server/bridges/api.ts","symbolName":"AppApisBridge.registerApi"})` → 245 tokens
+## Files Seen In Tool Results (7)
 
-## Files Seen In Tool Results (19)
-
-- `packages/apps-engine/src/server/managers/AppApiManager.ts`
-- `apps/meteor/app/cloud/server/functions/startRegisterWorkspaceSetupWizard.ts`
-- `packages/apps-engine/src/server/managers/AppOutboundCommunicationProviderManager.ts`
-- `apps/meteor/ee/server/apps/communication/endpoints/appLogsDistinctInstanceHandler.ts`
-- `apps/meteor/app/apple/server/appleOauthRegisterService.ts`
-- `packages/apps-engine/src/server/bridges/ApiBridge.ts`
-- `packages/apps-engine/src/server/bridges/OutboundMessagesBridge.ts`
-- `apps/meteor/app/livechat/server/lib/outboundcommunication.ts`
+- `apps/meteor/app/api/server/ApiClass.ts`
 - `apps/meteor/ee/server/apps/communication/rest.ts`
-- `packages/apps-engine/src/server/bridges/AppBridges.ts`
-- `apps/meteor/app/apps/server/bridges/api.ts`
-- `apps/meteor/app/apps/server/bridges/internal.ts`
-- `apps/meteor/app/apps/server/bridges/email.ts`
-- `apps/meteor/app/apps/server/bridges/settings.ts`
-- `apps/meteor/app/apps/server/bridges/listeners.ts`
-- `packages/apps-engine/tests/test-data/bridges/apiBridge.ts`
-- `apps/meteor/app/apps/server/bridges/internalFederation.ts`
-- `packages/apps-engine/tests/test-data/bridges/appBridges.ts`
-- `packages/apps-engine/src/server/bridges/AppActivationBridge.ts`
+- `apps/meteor/app/lib/server/functions/addUserToDefaultChannels.ts`
+- `ee/packages/abac/src/index.ts`
+- `apps/meteor/client/views/admin/engagementDashboard/EngagementDashboardRoute.tsx`
+- `apps/meteor/app/version-check/server/functions/buildVersionUpdateMessage.ts`
+- `packages/media-signaling/src/lib/services/webrtc/Processor.ts`

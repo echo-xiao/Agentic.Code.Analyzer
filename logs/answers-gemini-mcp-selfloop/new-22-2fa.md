@@ -2,69 +2,60 @@
 
 ## Gemini Answer
 
-Rocket.Chat's two-factor authentication (2FA) system is implemented as a middleware that intercepts sensitive operations and verifies a user's 2FA code. The process involves several key components:
+Rocket.Chat implements two-factor authentication (2FA) through a system that prioritizes different verification methods, with Time-based One-Time Password (TOTP) being a primary method.
 
-**Call Chain:**
+Here's a breakdown of the 2FA flow:
 
-`twoFactorRequired` (middleware) → `checkCodeForUser` → `getMethodByNameOrFirstActiveForUser` → `ICodeCheck.verify` (e.g., `TOTPCheck.verify`) → `TOTP.verify`
+**Entry → Verification Flow → Final**
 
-**Detailed Flow:**
+1.  **Entry: `twoFactorRequired()` middleware**
+    *   Sensitive methods or endpoints are protected by the `twoFactorRequired()` middleware. When these are accessed, the 2FA process is initiated.
+2.  **Verification Flow: `checkCodeForUser()`**
+    *   The `twoFactorRequired()` middleware calls `checkCodeForUser()`. This function attempts to verify the user's identity using a prioritized list of 2FA methods.
+3.  **Step 1: `TOTPCheck`**
+    *   The system first attempts verification using `TOTPCheck` (for authenticator apps).
+    *   The `TOTPCheck.verify()` method is invoked, located in `apps/meteor/app/2fa/server/code/TOTPCheck.ts`.
+    *   This method checks if TOTP is enabled for the user and if a secret exists.
+    *   It then delegates the actual code verification to `TOTP.verify()`.
+4.  **Step 2: `TOTP.verify()`**
+    *   The `TOTP.verify()` function, found in `apps/meteor/app/2fa/server/lib/totp.ts`, handles the core logic for verifying the provided code.
+    *   **Backup Code Verification:**
+        *   If the provided code is 8 characters long and the user has backup tokens, it's treated as a backup code.
+        *   The code is hashed using `SHA256` and compared against the user's stored `hashedBackup` tokens.
+        *   If a match is found, the backup code is marked as used by removing it from the user's `backupTokens` via `Users.update2FABackupCodesByUserId()`.
+    *   **TOTP Code Verification:**
+        *   If it's not a backup code, the system proceeds with standard TOTP verification.
+        *   It retrieves the `Accounts_TwoFactorAuthentication_MaxDelta` setting, which defines the allowed time window for the TOTP code.
+        *   It uses the `speakeasy` library's `speakeasy.totp.verifyDelta()` (if `maxDelta` is configured) or `speakeasy.totp.verify()` to validate the provided code against the user's secret and the current time.
+5.  **Step 3 (Fallback): `EmailCheck` and `PasswordCheckFallback`**
+    *   If TOTP verification fails or is not enabled, `checkCodeForUser()` proceeds to try `EmailCheck` (for email-based codes) and then `PasswordCheckFallback` as a last resort.
 
-1.  **`twoFactorRequired`** (`apps/meteor/app/2fa/server/twoFactorRequired.ts`): This acts as a middleware wrapper for sensitive methods or API endpoints. When a protected action is attempted, this middleware is triggered to ensure 2FA is enforced.
+**Key Files and Their Roles:**
 
-2.  **`checkCodeForUser`** (`apps/meteor/app/2fa/server/code/index.ts`): This function is called by `twoFactorRequired`. Its primary responsibility is to orchestrate the 2FA code verification process.
+*   **`apps/meteor/app/2fa/server/lib/totp.ts`**: This file defines the `TOTP` object, which is central to 2FA. It provides functions for generating TOTP secrets, creating OTP authentication URLs, and critically, the `verify` method that handles both TOTP code and backup code validation using the `speakeasy` library.
+*   **`apps/meteor/app/2fa/server/code/TOTPCheck.ts`**: This file implements the `ICodeCheck` interface specifically for TOTP. Its `verify` method acts as an orchestrator, checking user settings and then calling the core `TOTP.verify()` function.
+*   **`apps/meteor/client/views/account/security/TwoFactorTOTP.tsx`**: This client-side component is responsible for the user interface where users can enable, disable, or manage their TOTP settings within their account security.
+*   **`apps/meteor/client/components/TwoFactorModal/TwoFactorTotpModal.tsx`**: This component renders the modal window that prompts users to enter their TOTP code during login or when performing sensitive actions.
 
-3.  **`getMethodByNameOrFirstActiveForUser`** (`apps/meteor/app/2fa/server/code/index.ts`): Within `checkCodeForUser`, this function determines which 2FA method is active for the user. It checks if a specific method name is provided and enabled; otherwise, it iterates through all available 2FA methods (such as TOTP, Email, or Password Fallback) and returns the first one that is enabled for the user. This function returns an object that implements the `ICodeCheck` interface.
+## Tool Calls (8 calls, 18,603 tokens)
 
-4.  **`ICodeCheck.verify`** (e.g., `TOTPCheck.verify` in `apps/meteor/app/2fa/server/code/TOTPCheck.ts`): Each 2FA method (like TOTP, Email, or Password Fallback) implements the `ICodeCheck` interface, which includes a `verify` method. This method is responsible for validating the provided 2FA code against the user's stored credentials for that specific method.
+**Step 1:** `plan({"question":"How does two-factor authentication (2FA) work in Rocket.Chat?","intent":"architecture"})` → 85 tokens
+**Step 2:** `search({"query":"two-factor authentication OR 2FA"})` → 30 tokens
+**Step 3:** `search({"query":"TOTP"})` → 330 tokens
+**Step 4:** `graph({"query":"TOTP","move":"expand"})` → 384 tokens
+**Step 5:** `details({"filename":"apps/meteor/app/2fa/server/code/TOTPCheck.ts","symbolName":"TOTPCheck"})` → 186 tokens
+**Step 6:** `details({"filename":"apps/meteor/app/2fa/server/code/TOTPCheck.ts","symbolName":"TOTPCheck.verify"})` → 129 tokens
+**Step 7:** `details({"symbolName":"TOTP.verify","filename":"apps/meteor/app/2fa/server/lib/totp.ts"})` → 44 tokens
+**Step 8:** `details({"symbolName":"TOTP","filename":"apps/meteor/app/2fa/server/lib/totp.ts"})` → 425 tokens
 
-5.  **`TOTP.verify`** (likely in `apps/meteor/app/2fa/server/lib/totp.ts`): For Time-based One-Time Password (TOTP) authentication, the `TOTPCheck.verify` method delegates the actual code validation to `TOTP.verify`. This function takes the user's TOTP secret, the provided code, and other relevant information (like backup tokens) to determine if the code is valid according to the RFC 6238 standard.
+## Files Seen In Tool Results (9)
 
-In summary, when a user attempts a protected action, the `twoFactorRequired` middleware initiates a check. `checkCodeForUser` then identifies the user's active 2FA method and calls its `verify` function. For TOTP, this ultimately leads to `TOTP.verify` to validate the code.
-
-## Tool Calls (7 calls, 52,951 tokens)
-
-**Step 1:** `search({"query":"two-factor authentication"})` → 17 tokens
-**Step 2:** `search({"query":"2FA"})` → 631 tokens
-**Step 3:** `graph({"query":"twoFactorRequired","file":"apps/meteor/app/2fa/server/twoFactorRequired.ts","direction":"d)` → 2812 tokens
-**Step 4:** `graph({"query":"checkCodeForUser","file":"apps/meteor/app/2fa/server/index.ts","direction":"down"})` → 1852 tokens
-**Step 5:** `implement({"filename":"apps/meteor/app/2fa/server/index.ts","symbolName":"getMethodByNameOrFirstActiveForUser")` → 122 tokens
-**Step 6:** `search({"query":"TOTPCheck"})` → 450 tokens
-**Step 7:** `implement({"filename":"apps/meteor/app/2fa/server/code/TOTPCheck.ts","symbolName":"TOTPCheck.verify"})` → 131 tokens
-
-## Files Seen In Tool Results (34)
-
-- `apps/meteor/app/2fa/server/code/EmailCheck.ts`
-- `apps/meteor/tests/end-to-end/api/methods/2fa-enable.ts`
-- `packages/models/src/models/Users.ts`
-- `packages/ddp-client/src/legacy/RocketchatSDKLegacy.ts`
-- `apps/meteor/app/lib/server/functions/deleteUser.ts`
-- `apps/meteor/app/lib/server/lib/notifyListener.ts`
-- `apps/meteor/app/api/server/ApiClass.ts`
-- `apps/meteor/client/views/hooks/useRequire2faSetup.ts`
-- `apps/meteor/client/lib/2fa/utils.ts`
-- `apps/meteor/client/lib/2fa/process2faReturn.ts`
-- `apps/meteor/client/lib/2fa/overrideLoginMethod.ts`
-- `apps/meteor/app/2fa/server/twoFactorRequired.ts`
-- `apps/meteor/app/2fa/server/loginHandler.ts`
-- `apps/meteor/app/2fa/server/index.ts`
-- `apps/meteor/app/2fa/server/MethodInvocationOverride.js`
-- `apps/meteor/app/2fa/server/methods/validateTempToken.ts`
-- `apps/meteor/app/2fa/server/methods/regenerateCodes.ts`
-- `apps/meteor/app/2fa/server/methods/enable.ts`
-- `apps/meteor/app/2fa/server/methods/disable.ts`
-- `apps/meteor/app/2fa/server/methods/checkCodesRemaining.ts`
 - `apps/meteor/app/2fa/server/lib/totp.ts`
+- `apps/meteor/client/views/admin/users/hooks/useResetTOTPAction.tsx`
+- `apps/meteor/client/views/account/security/TwoFactorTOTP.tsx`
+- `apps/meteor/client/meteor/overrides/totpOnCall.ts`
+- `apps/meteor/client/components/TwoFactorModal/TwoFactorTotpModal.tsx`
 - `apps/meteor/app/2fa/server/functions/resetTOTP.ts`
-- `apps/meteor/app/2fa/server/code/index.ts`
 - `apps/meteor/app/2fa/server/code/TOTPCheck.ts`
-- `apps/meteor/client/views/root/MainLayout/TwoFactorAuthSetupCheck.tsx`
-- `apps/meteor/client/views/root/hooks/loggedIn/useTwoFactorAuthSetupCheck.tsx`
-- `apps/meteor/app/2fa/server/code/ICodeCheck.ts`
-- `apps/meteor/client/views/root/MainLayout/MainContent.tsx`
-- `apps/meteor/client/views/root/MainLayout/PasswordChangeCheck.tsx`
-- `apps/meteor/client/views/root/MainLayout/TwoFactorRequiredModal.tsx`
-- `apps/meteor/client/views/root/MainLayout/LoggedInArea.tsx`
-- `apps/meteor/client/views/account/security/AccountSecurityPage.tsx`
-- `apps/meteor/client/views/root/MainLayout/LayoutWithSidebar.tsx`
-- `packages/ui-contexts/src/hooks/useLayout.ts`
+- `packages/models/src/models/Users.ts`
+- `apps/meteor/client/lib/2fa/utils.ts`

@@ -6,81 +6,53 @@ Rocket.Chat manages end-to-end (E2E) encryption keys primarily on the client-sid
 
 Here's a breakdown of the key management process:
 
-**1. Key Generation and Initial Storage:**
+**1. User Key Generation and Storage:**
 
-*   The `E2E` class, located in `apps/meteor/client/lib/e2ee/rocketchat.e2e.ts`, is responsible for generating the RSA key pair.
-*   The `createAndLoadKeys()` method within the `E2E` class uses `Rsa.generate()` to create a new RSA key pair.
-*   The public key is then exported using `Rsa.exportPublicKey()` and stored in `Accounts.storageLocation` (likely local storage) as `public_key`.
-*   Similarly, the private key is exported using `Rsa.exportPrivateKey()` and stored in `Accounts.storageLocation` as `private_key`.
+*   **RSA Key Pair Generation:** The `E2E.createAndLoadKeys()` method in `apps/meteor/client/lib/e2ee/rocketchat.e2e.ts` is responsible for generating an RSA key pair (public and private keys) for the user.
+*   **Private Key Encryption:** The private key is then encrypted using a derived key from PBKDF2 (Password-Based Key Derivation Function 2) and AES-GCM encryption. This ensures that the private key is protected even if stored locally.
+*   **Key Storage:** Both the public and encrypted private keys are stored locally using `Accounts.storageLocation.setItem()`.
 
-**2. Private Key Encryption and Persistence:**
+**2. Room Key Management:**
 
-*   The `persistKeys()` method in `apps/meteor/client/lib/e2ee/rocketchat.e2e.ts` handles the encryption and server-side persistence of the keys.
-*   It takes the `public_key`, `private_key`, and a `password` as input.
-*   The `Keychain` class (defined in `apps/meteor/client/lib/e2ee/keychain.ts`) is used to encrypt the private key. Specifically, `this.keychain.encryptKey(private_key, password)` performs this encryption.
-*   The architecture description indicates that this encryption uses PBKDF2 for key derivation from the password and AES-GCM for encrypting the private key.
-*   Finally, the encrypted private key (along with the public key) is sent to the server via a REST API endpoint: `sdk.rest.post('/v1/e2e.setUserPublicAndPrivateKeys')`.
+*   **AES Session Key Generation:** For each E2E encrypted room, `E2ERoom.createGroupKey()` in `apps/meteor/client/lib/e2ee/rocketchat.e2e.room.ts` generates an AES session key. This session key is used for encrypting and decrypting messages within that specific room.
+*   **Session Key Encryption for Participants:** The generated AES session key is then encrypted for each participant in the room using their respective RSA public keys via `encryptGroupKeyForParticipant()`. This ensures that only authorized members of the room can decrypt the session key and, consequently, the room's messages.
+*   **Server Interaction:** The encrypted room key and its ID are sent to the server using `sdk.call('e2e.setRoomKeyID')` and `sdk.rest.post('/v1/e2e.updateGroupKey')`. The server, however, does not have access to the unencrypted keys; it merely stores and distributes the encrypted keys.
 
-**3. Per-Room Session Keys:**
+**3. Cryptographic Primitives:**
 
-*   For per-room encryption, the `E2ERoom.createGroupKey()` method (in `apps/meteor/client/lib/e2ee/rocketchat.e2e.room.ts`) generates an AES session key.
-*   This session key is then encrypted for each participant in the room using their respective RSA public keys via `encryptGroupKeyForParticipant()`.
+*   The `crypto/` directory contains the implementations for the cryptographic algorithms used, including `rsa.ts` for RSA operations, `aes.ts` for AES encryption, and `pbkdf2.ts` for key derivation.
+
+**4. Server-Side Settings:**
+
+*   The server enforces E2E encryption settings such as `E2E_Enable` and `E2E_Allow_Unencrypted_Messages`, but it does not directly manage the encryption keys themselves.
 
 **Key Files and Their Roles:**
 
-*   **`apps/meteor/client/lib/e2ee/rocketchat.e2e.ts`**: Contains the main `E2E` class, responsible for generating, loading, and persisting user's RSA key pairs.
-*   **`apps/meteor/client/lib/e2ee/keychain.ts`**: Manages the encryption and decryption of the private key using PBKDF2 and AES-GCM.
-*   **`apps/meteor/client/lib/e2ee/rocketchat.e2e.room.ts`**: Handles the generation and distribution of per-room AES session keys.
-*   **`apps/meteor/client/lib/e2ee/crypto/rsa.ts`**: Provides RSA key generation and export functionalities.
-*   **`apps/meteor/client/lib/e2ee/crypto/aes.ts`**: Likely contains AES encryption/decryption utilities.
-*   **`apps/meteor/client/lib/e2ee/crypto/pbkdf2.ts`**: Implements the PBKDF2 key derivation function.
+*   **`apps/meteor/client/lib/e2ee/rocketchat.e2e.ts`**: Contains the `E2E` class, responsible for generating and managing the user's RSA key pair, including the encryption of the private key.
+*   **`apps/meteor/client/lib/e2ee/rocketchat.e2e.room.ts`**: Contains the `E2ERoom` class, which handles the generation and distribution of AES session keys for individual rooms, encrypting them for each participant.
+*   **`apps/meteor/client/views/root/hooks/loggedIn/useE2EEncryption.ts`**: A client-side hook related to E2E encryption.
+*   **`apps/meteor/client/views/room/hooks/useE2EEState.ts`**: Another client-side hook related to E2E encryption state within a room.
 
-**Call Chain:**
+In summary, Rocket.Chat's E2E key management is a client-side process where users generate their own RSA key pairs, and room-specific AES session keys are created and encrypted for each participant using their public keys. The server acts as a secure intermediary for distributing these encrypted keys without ever having access to the unencrypted cryptographic material.
 
-1.  **`E2E.createAndLoadKeys()`** (in `apps/meteor/client/lib/e2ee/rocketchat.e2e.ts`): Generates RSA key pair and stores them locally.
-2.  **`E2E.persistKeys()`** (in `apps/meteor/client/lib/e2ee/rocketchat.e2e.ts`): Encrypts the private key and sends both public and encrypted private keys to the server.
-3.  **`Keychain.encryptKey()`** (in `apps/meteor/client/lib/e2ee/keychain.ts`): Performs the actual encryption of the private key using PBKDF2 and AES-GCM.
-4.  **`sdk.rest.post('/v1/e2e.setUserPublicAndPrivateKeys')`**: Sends the keys to the server.
+## Tool Calls (8 calls, 15,527 tokens)
 
-## Tool Calls (8 calls, 39,636 tokens)
+**Step 1:** `plan({"question":"How are the keys managed for end-to-end (E2E) encryption in Rocket.Chat?","intent":"arc)` → 85 tokens
+**Step 2:** `search({"query":"E2E encryption keys"})` → 27 tokens
+**Step 3:** `search({"query":"e2e encryption"})` → 248 tokens
+**Step 4:** `graph({"move":"expand","depth":2,"query":"e2e encryption"})` → 348 tokens
+**Step 5:** `details({"symbolName":"createAndLoadKeys","filename":"apps/meteor/client/lib/e2ee/rocketchat.e2e.ts"})` → 57 tokens
+**Step 6:** `details({"symbolName":"createGroupKey","filename":"apps/meteor/client/lib/e2ee/rocketchat.e2e.room.ts"})` → 59 tokens
+**Step 7:** `details({"filename":"apps/meteor/client/lib/e2ee/rocketchat.e2e.ts","symbolName":"E2E.createAndLoadKeys"})` → 310 tokens
+**Step 8:** `details({"filename":"apps/meteor/client/lib/e2ee/rocketchat.e2e.room.ts","symbolName":"E2ERoom.createGroupKe)` → 145 tokens
 
-**Step 1:** `search({"query":"e2e encryption key management"})` → 18 tokens
-**Step 2:** `search({"query":"e2e encryption"})` → 386 tokens
-**Step 3:** `graph({"query":"E2E.createAndLoadKeys","direction":"down","layer":"client"})` → 15 tokens
-**Step 4:** `search({"query":"E2E","layer":"client"})` → 778 tokens
-**Step 5:** `implement({"filename":"apps/meteor/client/lib/e2ee/rocketchat.e2e.ts","symbolName":"E2E"})` → 1114 tokens
-**Step 6:** `implement({"filename":"apps/meteor/client/lib/e2ee/rocketchat.e2e.ts","symbolName":"E2E.createAndLoadKeys"})` → 315 tokens
-**Step 7:** `implement({"filename":"apps/meteor/client/lib/e2ee/rocketchat.e2e.ts","symbolName":"E2E.persistKeys"})` → 211 tokens
-**Step 8:** `search({"layer":"client","query":"Keychain"})` → 253 tokens
+## Files Seen In Tool Results (8)
 
-## Files Seen In Tool Results (29)
-
+- `apps/meteor/app/discussion/server/methods/createDiscussion.ts`
 - `apps/meteor/client/views/root/hooks/loggedIn/useE2EEncryption.ts`
 - `packages/core-typings/src/IMessage/IMessage.ts`
 - `apps/meteor/app/mentions/lib/MentionsParser.ts`
 - `apps/meteor/client/lib/e2ee/rocketchat.e2e.room.ts`
 - `apps/meteor/client/lib/e2ee/rocketchat.e2e.ts`
 - `apps/meteor/client/views/room/hooks/useE2EEState.ts`
-- `apps/meteor/app/discussion/server/methods/createDiscussion.ts`
-- `apps/meteor/client/lib/e2ee/E2EEState.ts`
-- `apps/meteor/client/views/room/hooks/useE2EERoom.ts`
-- `packages/message-types/src/registrations/e2ee.ts`
-- `packages/models/src/models/Rooms.ts`
-- `apps/meteor/tests/e2e/page-objects/fragments/e2ee.ts`
-- `apps/meteor/client/views/room/hooks/useE2EERoomState.ts`
-- `apps/meteor/client/views/room/modals/E2EEModals/ResetKeysE2EEModal.tsx`
-- `apps/meteor/client/views/room/modals/E2EEModals/EnableE2EEModal.tsx`
-- `apps/meteor/client/views/room/modals/E2EEModals/DisableE2EEModal.tsx`
-- `apps/meteor/client/views/room/modals/E2EEModals/BaseDisableE2EEModal.tsx`
-- `apps/meteor/client/views/room/hooks/useE2EEResetRoomKey.ts`
-- `apps/meteor/client/views/room/Header/RoomHeaderE2EESetup.tsx`
-- `apps/meteor/client/views/room/Header/RoomToolbox/RoomToolboxE2EESetup.tsx`
-- `apps/meteor/client/views/room/E2EESetup/RoomE2EESetup.tsx`
-- `apps/meteor/client/views/room/E2EESetup/RoomE2EENotAllowed.tsx`
-- `apps/meteor/client/views/hooks/useResetE2EPasswordMutation.ts`
-- `apps/meteor/client/views/e2e/SaveE2EPasswordModal.tsx`
-- `apps/meteor/client/views/e2e/EnterE2EPasswordModal/index.ts`
-- `apps/meteor/client/views/e2e/EnterE2EPasswordModal/EnterE2EPasswordModal.stories.tsx`
-- `apps/meteor/client/views/e2e/EnterE2EPasswordModal/EnterE2EPasswordModal.tsx`
-- `apps/meteor/client/lib/e2ee/keychain.ts`
-- `apps/meteor/client/lib/e2ee/logger.ts`
+- `apps/meteor/client/router/index.tsx`

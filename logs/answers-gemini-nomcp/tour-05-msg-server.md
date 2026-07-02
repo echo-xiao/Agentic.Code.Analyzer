@@ -2,123 +2,106 @@
 
 ## Baseline Answer (no tools)
 
-Sending a message on the server side in Rocket.Chat involves a well-defined flow, starting from the API or Meteor method call, going through validation, persistence, and finally real-time propagation and notifications.
+Sending a message on the server side in Rocket.Chat involves a well-defined flow, leveraging Meteor's DDP (Distributed Data Protocol), MongoDB for persistence, and a robust system of hooks and functions.
 
-Here's a detailed breakdown of the process, including key file paths:
+Here's a breakdown of the process, including key file paths:
 
-### 1. Entry Point: Receiving the Message Request
+### 1. Entry Point: Meteor Method Call
 
-The server can receive a message sending request through two primary channels:
+The process begins when a client (web, desktop, mobile) invokes a Meteor Method. The primary method for sending a message is `sendMessage`.
 
-*   **REST API:**
-    *   For programmatic message sending (e.g., bots, integrations), the `POST /api/v1/chat.postMessage` or `POST /api/v1/chat.sendMessage` endpoints are used.
-    *   **File:** `app/api/server/v1/chat.js`
-    *   These API endpoints typically call a shared server-side function to handle the actual message logic.
+*   **File:** `app/lib/server/methods/sendMessage.ts` (or `server/methods/sendMessage.ts` in newer structures)
 
-*   **Meteor Method (DDP):**
-    *   When a user sends a message from the Rocket.Chat client (web, desktop, mobile), it invokes the `sendMessage` Meteor method via DDP.
-    *   **File:** `app/lib/server/methods/sendMessage.js`
-    *   This method also delegates to a core server-side function.
+This method receives the message payload (room ID, message text, attachments, etc.) from the client.
 
-### 2. Core Message Sending Logic: `sendMessage` Function
+### 2. Initial Validation & Authorization
 
-Both the REST API and the Meteor method ultimately call a central server-side function, often named `sendMessage`, which encapsulates the core logic.
+Inside the `sendMessage` method:
 
-*   **File:** `app/lib/server/functions/sendMessage.js`
+*   **User Authentication:** It first verifies that the user is logged in.
+*   **Room Access:** Checks if the user has permission to send messages in the specified room (`rid`).
+*   **Rate Limiting:** May apply rate limits to prevent spamming.
 
-This function takes parameters like the `user` object, the `message` object (containing `rid` for room ID and `msg` for text), and potentially `extraData`.
+### 3. Message Pre-processing & Construction
 
-### 3. Validation and Pre-processing
+If validation passes, the server starts constructing the full message object. This involves several steps, often delegated to helper functions:
 
-Inside the `sendMessage` function, several crucial steps occur before the message is persisted:
+*   **File:** `app/lib/server/functions/sendMessage.ts` (This is a crucial orchestrator function)
+*   **File:** `app/lib/server/functions/parseMessage.ts` (Handles parsing mentions, links, markdown)
+*   **File:** `app/lib/server/functions/getMessageType.ts` (Determines if it's a special command like `/me`, `/giphy`, etc.)
+*   **File:** `app/lib/server/functions/processMessage.ts` (A more general processor that might orchestrate other parsing functions)
 
-*   **User and Room Validation:**
-    *   Checks if the `user` is authenticated and authorized to send messages.
-    *   Verifies that the `room` (`rid`) exists and the `user` is a member of that room.
-    *   **Files:** `app/models/server/raw/Rooms.js`, `app/models/server/raw/Subscriptions.js`
+Key pre-processing steps include:
 
-*   **Message Content Validation:**
-    *   Validates the message text (e.g., length constraints).
-    *   Handles different message types (e.g., `t` field for `message_pinned`, `message_removed`, etc.).
+*   **Markdown Rendering:** Converts markdown syntax to HTML.
+*   **Mentions Parsing:** Identifies `@username` and `#channel` mentions, linking them to user/room IDs.
+*   **Link Previews:** If enabled, fetches metadata for URLs to create rich link previews.
+*   **Emoji Conversion:** Converts shortcodes (e.g., `:smile:`) to actual emoji characters or images.
+*   **Attachments:** Processes any attached files (uploading, storing metadata).
+*   **Custom Message Types:** If the message starts with a command (e.g., `/me`), it's handled as a special message type.
 
-*   **Hooks (`beforeSaveMessage`):**
-    *   Rocket.Chat utilizes a powerful callback system. The `callbacks.run('beforeSaveMessage', message, room)` hook is executed.
-    *   This allows custom code, integrations, or plugins to modify the message object (e.g., censor words, add metadata) or even prevent it from being sent.
-    *   **File:** `app/lib/server/lib/callbacks.js` (where the callback system is defined)
+At this stage, a comprehensive message object (`IMessage`) is built, containing all necessary metadata, parsed content, and references.
 
-*   **Parsing Mentions and URLs:**
-    *   The message text is parsed to identify user mentions (`@username`) and channel mentions (`#channel`). These are stored in the `mentions` array of the message object.
-    *   URLs within the message are also extracted and stored in the `urls` array.
-    *   **Files:** `app/lib/server/lib/parseMentions.js`, `app/lib/server/lib/parseUrls.js`
+### 4. Before Save Hooks
 
-*   **Markdown to HTML Conversion:**
-    *   The message text, often written in Markdown, is converted to HTML for proper rendering in the client.
+Rocket.Chat has a powerful callback system. Before the message is saved to the database, `beforeSaveMessage` hooks are triggered. These are used by various modules and integrations to modify or validate the message further.
 
-### 4. Message Creation and Persistence
+*   **File:** `app/lib/server/lib/callbacks.ts` (Defines the callback system)
+*   **Example Usage:** Many integrations or custom apps might register callbacks here.
 
-After pre-processing, the message object is finalized and saved to the database.
+### 5. Database Persistence
 
-*   **`createMessage` Function:**
-    *   The `sendMessage` function often delegates the actual message object construction and database insertion to a helper function like `createMessage`.
-    *   **File:** `app/lib/server/functions/createMessage.js`
-    *   This function constructs the complete message document, including fields like `_id`, `rid`, `msg`, `ts` (timestamp), `u` (user object), `mentions`, `urls`, `_updatedAt`, etc.
+The fully constructed and processed message object is then inserted into the `rocketchat_message` MongoDB collection.
 
-*   **Database Insertion:**
-    *   The constructed message object is then inserted into the `rocketchat_message` MongoDB collection.
-    *   **File:** `app/models/server/raw/Messages.js` (This file defines the `Messages` model, which interacts with the `rocketchat_message` collection).
-    *   The insertion is typically done via `Messages.insert(messageObject)`.
+*   **File:** `app/models/server/raw/Messages.ts` (Provides the interface for interacting with the `rocketchat_message` collection)
 
-### 5. Post-Persistence Actions
+### 6. After Save Hooks & Post-Persistence Actions
 
-Once the message is saved, several follow-up actions are triggered:
+Immediately after the message is saved:
 
-*   **Update Room Last Message:**
-    *   The `rocketchat_room` collection is updated to reflect the `lastMessage` and `_updatedAt` fields for the room where the message was sent. This is crucial for displaying the latest message in the room list on the client.
-    *   **File:** `app/models/server/raw/Rooms.js` (specifically `Rooms.updateLastMessage(rid, message)`)
+*   **`afterSaveMessage` Hooks:** These are triggered, allowing modules to react to the message being saved (e.g., updating search indexes, logging).
+*   **Room Activity Update:** The `lastMessage` field and `lm` (last message timestamp) of the room are updated in the `rocketchat_room` collection.
+    *   **File:** `app/models/server/raw/Rooms.ts`
+*   **User Message Count:** The sender's message count might be incremented.
+    *   **File:** `app/models/server/raw/Users.ts`
+*   **Thread Updates:** If it's a reply to a thread, the thread's metadata (e.g., `tcount`, `tlm`) is updated.
+*   **Webhooks:** If outgoing webhooks are configured for the room, the message data is sent to the webhook URL.
+    *   **File:** `app/integrations/server/lib/webhooks.ts`
 
-*   **Hooks (`afterSaveMessage`):**
-    *   The `callbacks.run('afterSaveMessage', message, room)` hook is executed.
-    *   This allows for post-save actions such as logging, triggering external services, or further processing.
+### 7. Real-time Notifications (DDP & Push)
 
-*   **Real-time Propagation (DDP/Publications):**
-    *   As Rocket.Chat is built on Meteor, the insertion into the `Messages` collection automatically triggers updates to any clients subscribed to the relevant Meteor publications (e.g., `roomMessages` publication).
-    *   Clients receive the new message via DDP (Distributed Data Protocol) and update their UI in real-time without needing to refresh.
+This is where Meteor's reactivity shines:
 
-*   **Notifications:**
-    *   The server determines if notifications need to be sent based on user preferences, room type (e.g., direct message), and message content (e.g., mentions).
-    *   This can include:
-        *   **Push Notifications:** For mobile devices (via APN/FCM).
-        *   **Email Notifications:** If configured.
-        *   **Desktop Notifications:** For web/desktop clients.
-    *   **File:** `app/lib/server/lib/sendNotifications.js` (or related modules that handle notification logic).
+*   **DDP (Data Distribution Protocol):** Because clients are subscribed to publications that include messages for their active rooms, the insertion of a new message into `rocketchat_message` automatically triggers a real-time update to all subscribed clients. Meteor handles pushing the new message data to them.
+    *   **File:** `app/lib/server/publications/messages.ts` (Defines the publication for messages)
+*   **`api.broadcast`:** For certain events or to ensure all clients receive a specific message update, Rocket.Chat also uses its own broadcast mechanism.
+    *   **File:** `app/lib/server/lib/broadcast.ts`
+*   **Push Notifications:** If the message is directed to users who are not currently active in the room (e.g., mentions, direct messages), push notifications are generated and sent via configured push gateways (e.g., FCM, APN).
+    *   **File:** `app/lib/server/lib/sendNotifications.ts`
 
-*   **Livechat Specifics:**
-    *   If the message is part of a Livechat conversation, additional logic might be triggered, such as updating visitor status, routing the conversation, or sending automated responses.
+### 8. After Send Hooks
 
-### Summary of the Server-Side Flow:
+Finally, `afterSendMessage` hooks are triggered. These are typically used for actions that should happen *after* the message has been fully processed and sent to clients, such as logging, analytics, or further integration with external systems.
 
-1.  **Client/API Call** (`sendMessage` Meteor Method or `chat.postMessage` REST API)
-2.  **`app/lib/server/methods/sendMessage.js`** (or `app/api/server/v1/chat.js`)
-3.  Calls **`app/lib/server/functions/sendMessage.js`**
-4.  **Validation & Pre-processing:**
-    *   User/Room checks
-    *   `callbacks.run('beforeSaveMessage')`
-    *   Mentions/URL parsing
-5.  Calls **`app/lib/server/functions/createMessage.js`**
-6.  **Database Persistence:**
-    *   `Messages.insert(messageObject)` (via `app/models/server/raw/Messages.js`)
-7.  **Post-Persistence Actions:**
-    *   `Rooms.updateLastMessage(rid, message)` (via `app/models/server/raw/Rooms.js`)
-    *   `callbacks.run('afterSaveMessage')`
-    *   **Real-time Updates** (DDP to subscribed clients)
-    *   **Notifications** (Push, Email, Desktop via `app/lib/server/lib/sendNotifications.js`)
+### Summary of the Flow:
 
-This comprehensive process ensures that messages are properly validated, stored, and propagated to all relevant clients and notification services in a robust and real-time manner.
+1.  **Client calls `sendMessage` Meteor Method.**
+2.  **Server validates** user and room permissions.
+3.  **Message content is pre-processed** (markdown, mentions, links, attachments).
+4.  **`beforeSaveMessage` hooks** are executed.
+5.  **Message is inserted into `rocketchat_message` collection** in MongoDB.
+6.  **`afterSaveMessage` hooks** are executed.
+7.  **Room and user metadata are updated.**
+8.  **Real-time updates** are pushed to subscribed clients via DDP.
+9.  **Push notifications** are sent to relevant users.
+10. **`afterSendMessage` hooks** are executed.
+
+This modular and hook-driven architecture allows Rocket.Chat to be highly extensible and integrate various features and third-party services seamlessly.
 
 ## Metrics
 
 | Metric | Value |
 |--------|-------|
-| Tokens | 3,621 |
+| Tokens | 2,866 |
 | Model | gemini-2.5-flash |
 | Tools | NONE |

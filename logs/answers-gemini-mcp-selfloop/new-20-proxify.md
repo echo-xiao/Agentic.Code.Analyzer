@@ -2,61 +2,56 @@
 
 ## Gemini Answer
 
-The `proxify()` pattern in Rocket.Chat's `core-services` facilitates inter-service communication without direct imports, promoting a decoupled architecture.
+The `proxify()` pattern in Rocket.Chat's `core-services` facilitates inter-service communication by abstracting direct service calls. Instead of services directly importing and calling methods from other services, they use a proxy mechanism.
 
 Here's how it works:
 
-1.  **`proxify(namespace)`**:
-    *   Located in `packages/core-services/src/lib/proxify.ts`.
-    *   This function takes a `namespace` (which represents the service name, e.g., 'IServiceName') as an argument.
-    *   It returns a `Proxy` object.
+1.  **`proxify()` function**: Located in `packages/core-services/src/lib/proxify.ts`, the `proxify<T>(namespace: string)` function creates a JavaScript Proxy. This proxy intercepts calls to the methods of a service.
 
-2.  **`handler(namespace)`**:
-    *   Also in `packages/core-services/src/lib/proxify.ts`.
-    *   This is the core of the proxy's behavior. When a method is called on the proxified object (e.g., `proxifiedService.methodName(...)`), the `get` trap of the `ProxyHandler` is triggered.
-    *   The `get` trap constructs a full method string in the format `${namespace}.${prop}` (e.g., `IServiceName.methodName`).
-    *   It then calls `api.call()` with this constructed method string and the parameters passed to the original method.
+2.  **Proxy `handler`**: The `proxify` function uses a `handler` (also defined in `packages/core-services/src/lib/proxify.ts`) to define the behavior of the proxy. When a method is accessed on the proxified object, the `get` trap of the handler is triggered.
 
-3.  **`api.call()`**:
-    *   While `api.call` is used in `proxify.ts`, its implementation is not directly available in the provided tool outputs. However, the pattern description states that `api.call()` ultimately leads to `LocalBroker.call()`.
+3.  **`api.call()`**: Inside the `handler`, the `get` trap returns a function that, when called, executes `api.call(`${namespace}.${prop}`, params)`. This means that any method call on the proxified service is transformed into a call to a generic `api.call` function, with the service's namespace and the method name concatenated (e.g., `IServiceName.methodName`) and the original parameters.
 
-4.  **`LocalBroker.call()`**:
-    *   Located in `packages/core-services/src/LocalBroker.ts`.
-    *   This method receives the full method string (e.g., `IServiceName.methodName`) and the data (parameters).
-    *   It retrieves the actual bound function from its internal `methods` map using the method string as a key.
-    *   It then executes this bound function with the provided data.
-    *   The `LocalBroker` also handles tracing and context propagation using `tracerActiveSpan` and `asyncLocalStorage`.
+4.  **LocalBroker**: Although `api.call` was not directly found in the search, the pattern description indicates that `api.call` then dispatches to `LocalBroker.call()`. The `LocalBroker` is responsible for storing and mapping method names (like `serviceName.methodName`) to the actual bound functions of the service classes. Services extend either `ServiceClassInternal` (for the monolith) or `ServiceClass`.
 
-**Call Chain:**
+In essence, the flow is:
 
-`proxify()` (packages/core-services/src/lib/proxify.ts)
-  → `handler()` (packages/core-services/src/lib/proxify.ts)
-    → `api.call()` (implicitly handled by the system, as per pattern description)
-      → `LocalBroker.call()` (packages/core-services/src/LocalBroker.ts)
-        → `this.methods.get(method)?.(...data)` (packages/core-services/src/LocalBroker.ts)
+**Calling Service** → `proxify('IServiceName')` → `api.call('namespace.method')` → `LocalBroker.call()` → **Target Service's bound method**.
 
-In essence, `proxify()` creates a dynamic proxy that intercepts method calls, translates them into a standardized `serviceName.methodName` format, and then dispatches them through a `LocalBroker` to the actual service implementation. This allows services to communicate without direct code dependencies, making the system more modular and maintainable.
+This pattern ensures loose coupling between services, allowing them to communicate without direct dependencies, which is crucial for a microservices-oriented architecture.
 
-## Tool Calls (8 calls, 43,236 tokens)
+## Tool Calls (8 calls, 21,283 tokens)
 
-**Step 1:** `search({"query":"proxify","layer":"packages"})` → 265 tokens
-**Step 2:** `graph({"direction":"down","query":"proxify","file":"packages/core-services/src/lib/proxify.ts"})` → 1396 tokens
-**Step 3:** `implement({"filename":"packages/core-services/src/lib/proxify.ts","symbolName":"proxify"})` → 76 tokens
-**Step 4:** `implement({"filename":"packages/core-services/src/lib/proxify.ts","symbolName":"handler"})` → 97 tokens
-**Step 5:** `search({"query":"api.call"})` → 101 tokens
-**Step 6:** `search({"layer":"packages","query":"LocalBroker"})` → 233 tokens
-**Step 7:** `implement({"symbolName":"LocalBroker","filename":"packages/core-services/src/LocalBroker.ts"})` → 462 tokens
-**Step 8:** `implement({"filename":"packages/core-services/src/LocalBroker.ts","symbolName":"LocalBroker.call"})` → 165 tokens
+**Step 1:** `plan({"question":"How does the core-services proxify() pattern work for inter-service communication in Ro)` → 85 tokens
+**Step 2:** `search({"query":"proxify"})` → 191 tokens
+**Step 3:** `graph({"depth":2,"file":"packages/core-services/src/lib/proxify.ts","query":"proxify","move":"expand"})` → 274 tokens
+**Step 4:** `details({"filename":"packages/core-services/src/lib/proxify.ts","symbolName":"proxify"})` → 73 tokens
+**Step 5:** `search({"layer":"packages/core-services","query":"handler"})` → 714 tokens
+**Step 6:** `details({"filename":"packages/core-services/src/lib/proxify.ts","symbolName":"handler"})` → 94 tokens
+**Step 7:** `search({"layer":"packages/core-services","query":"api.call"})` → 24 tokens
+**Step 8:** `details({"symbolName":"proxify","filename":"packages/core-services/src/lib/proxify.ts"})` → 73 tokens
 
-## Files Seen In Tool Results (10)
+## Files Seen In Tool Results (22)
 
 - `packages/models/src/proxify.ts`
 - `packages/core-services/src/lib/proxify.ts`
 - `packages/apps-engine/deno-runtime/lib/accessors/mod.ts`
+- `ee/apps/ddp-streamer/src/Client.ts`
 - `packages/apps-engine/deno-runtime/lib/wrapAppForRequest.ts`
 - `packages/apps-engine/src/server/accessors/ModifyUpdater.ts`
-- `ee/packages/omnichannel-services/src/QueueWorker.ts`
-- `packages/core-services/src/LocalBroker.ts`
-- `packages/core-services/src/types/IBroker.ts`
-- `packages/core-services/src/lib/Api.ts`
-- `ee/packages/network-broker/src/NetworkBroker.ts`
+- `packages/apps-engine/src/server/accessors/ModifyCreator.ts`
+- `packages/apps-engine/src/definition/uikit/IUIKitActionHandler.ts`
+- `packages/apps-engine/src/definition/uikit/livechat/IUIKitLivechatActionHandler.ts`
+- `packages/apps-engine/src/definition/livechat/ILivechatRoomClosedHandler.ts`
+- `packages/apps-engine/deno-runtime/error-handlers.ts`
+- `packages/apps-engine/deno-runtime/lib/accessors/formatResponseErrorHandler.ts`
+- `packages/apps-engine/deno-runtime/handlers/videoconference-handler.ts`
+- `packages/apps-engine/deno-runtime/handlers/slashcommand-handler.ts`
+- `packages/apps-engine/deno-runtime/handlers/scheduler-handler.ts`
+- `packages/apps-engine/deno-runtime/handlers/outboundcomms-handler.ts`
+- `packages/apps-engine/deno-runtime/handlers/api-handler.ts`
+- `packages/apps-engine/deno-runtime/handlers/uikit/handler.ts`
+- `packages/apps-engine/deno-runtime/handlers/tests/helpers/mod.ts`
+- `packages/apps-engine/deno-runtime/handlers/listener/handler.ts`
+- `packages/apps-engine/deno-runtime/handlers/lib/assertions.ts`
+- `packages/apps-engine/deno-runtime/handlers/app/handler.ts`

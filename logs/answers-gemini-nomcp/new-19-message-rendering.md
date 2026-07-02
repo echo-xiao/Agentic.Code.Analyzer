@@ -2,91 +2,88 @@
 
 ## Baseline Answer (no tools)
 
-Rocket.Chat's message rendering process is a sophisticated pipeline that transforms raw user input into interactive React components, handling markdown, emojis, mentions, and more. It involves both server-side processing (for storage and initial sanitization) and extensive client-side rendering.
+Rocket.Chat's message rendering pipeline is a multi-stage process involving both server-side pre-processing and client-side rendering to transform raw text into interactive React components.
 
-Here's a breakdown of the journey:
+Here's a breakdown of how it works:
 
-### 1. Server-Side Processing (When a message is sent)
+### 1. Server-Side Pre-processing and Parsing
 
-When a user sends a message, the raw text first hits the Rocket.Chat server.
+When a message is sent, the Rocket.Chat server performs initial parsing and enrichment before storing it in the database and broadcasting it to clients. This step is crucial for efficiency, consistency, and enabling features like link previews and mentions.
 
-*   **Entry Point:** The client sends the raw message text to the server, typically via a DDP method call that eventually invokes `RocketChat.sendMessage`.
-*   **`sendMessage` Function:** Located in `app/lib/server/functions/sendMessage.ts`, this function orchestrates the message creation.
-*   **`parseMessage` Function:** This is a crucial step, found in `app/lib/server/functions/parseMessage.ts`. It performs several key operations:
-    *   **Sanitization:** It sanitizes the raw message text to prevent XSS attacks, ensuring no malicious scripts are embedded.
-    *   **Basic HTML Conversion:** It performs some basic markdown-to-HTML conversion for storage. For instance, `*bold*` might become `<strong>bold</strong>`. This creates the `html` field on the message object.
-    *   **Metadata Extraction:** It identifies and extracts metadata like:
-        *   **Mentions:** `@username` are parsed, and the `mentions` array on the message object is populated with user IDs.
-        *   **Channels:** `#channelname` are parsed, and the `channels` array is populated with channel IDs.
-        *   **URLs:** Any URLs are extracted and stored in the `urls` array.
-    *   **Emoji Conversion (Partial):** While full emoji rendering happens client-side, the server might do some initial processing or validation related to emoji codes.
-*   **Database Storage:** The processed message object, containing the `msg` (raw text), `html` (sanitized basic HTML), `mentions`, `channels`, `urls`, and other fields, is then saved into the `rocketchat_message` MongoDB collection.
+*   **Entry Point:** The `sendMessage` function (located in `app/lib/server/functions/sendMessage.js`) is the primary entry point for processing new messages.
+*   **Core Parsing:** The server uses its internal markdown parser to analyze the message text. This parser is defined in `app/markdown/lib/markdown.js` and instantiated server-side.
+    *   **Mentions:** It identifies `@username` and `#channel` mentions, resolving them to user and room IDs.
+    *   **Links:** It extracts URLs and, if enabled, fetches metadata for link previews (e.g., title, description, image).
+    *   **Emojis:** It identifies `:emoji:` shortcodes.
+    *   **Markdown:** It parses standard markdown syntax (bold, italic, code blocks, etc.).
+*   **Output:** The server stores the original `msg` field (raw text) but also generates additional fields on the message object, most notably the `md` field.
+    *   **`md` field:** This is a structured representation (an Abstract Syntax Tree or AST-like structure) of the parsed markdown. It's an array of objects, where each object describes a part of the message (e.g., a paragraph, a plain text segment, a mention, a link, an emoji). This pre-parsed structure is then sent to the client.
+    *   **`urls` field:** An array containing details about extracted URLs, including any fetched metadata for link previews.
+    *   **`mentions` field:** An array of user objects that were mentioned.
+    *   **`channels` field:** An array of room objects that were mentioned.
 
-### 2. Client-Side Rendering (When a message is displayed)
+**Key Server-Side Files:**
+*   `app/lib/server/functions/parseMessage.js`: Contains the core logic for parsing the message text on the server.
+*   `app/markdown/lib/markdown.js`: The shared markdown parser library used by both client and server.
+*   `app/markdown/lib/parser.js`: The underlying parsing engine.
 
-When a user views a channel, the client fetches messages from the server. The rendering process then kicks in to transform the stored message data into interactive React components.
+### 2. Client-Side Rendering
 
-*   **Fetching Messages:** The client subscribes to the `rocketchat_message` collection, receiving message objects from the server.
-*   **Core Message Component:** The primary component responsible for rendering a single message is `app/ui-message/client/components/Message/Message.tsx`. This component orchestrates the display of the message's header, body, attachments, reactions, etc.
-*   **Message Body Component:** The actual text content rendering happens within `app/ui-message/client/components/Message/Body.tsx`. This component uses a custom hook to prepare the message content.
-*   **`useMessageBody` Hook:** Located in `app/ui-message/client/components/Message/hooks/useMessageBody.ts`, this hook is responsible for taking the message object and generating the final HTML string that will be rendered. It calls the `renderMessageBody` function.
-*   **`renderMessageBody` Function:** This is where the heavy lifting of transforming the message text into renderable HTML occurs. It typically involves these steps:
+When a message arrives at the client (via DDP/WebSocket), the React application takes the pre-processed message object and renders it.
 
-    1.  **Markdown Parsing:**
-        *   Rocket.Chat uses its own custom markdown parser, primarily found in `app/markdown/lib/markdown.ts`.
-        *   The `RocketChat.Markdown.parse(message.msg)` function (or sometimes `message.html` if it's already pre-processed) takes the raw message text and converts it into an HTML string.
-        *   This parser is highly configurable, with rules defined in `app/markdown/lib/parser/original/rules.ts` and the rendering logic in `app/markdown/lib/parser/original/render.ts`. It handles:
-            *   Bold (`**text**`, `*text*`)
-            *   Italic (`_text_`, `/text/`)
-            *   Strikethrough (`~text~`)
-            *   Code blocks (```code```) and inline code (`code`)
-            *   Blockquotes (`> quote`)
-            *   Lists (`- item`, `1. item`)
-            *   Links (`[text](url)`)
-            *   And more.
+*   **Main Message Component:** The primary component responsible for rendering a message is `client/components/message/body/MessageBody.tsx`. This component receives the full message object as a prop.
+*   **Content Rendering:** `MessageBody` delegates the rendering of the actual message text and its parsed markdown to `client/components/message/body/MessageContent.tsx` and subsequently `client/components/message/body/MessageText.tsx`.
+*   **The `md` Field is Key:** `MessageText` is the component that primarily consumes the `message.md` field. It iterates through this array of structured markdown fragments and recursively renders them into appropriate React components or HTML elements.
 
-    2.  **Emoji Conversion:**
-        *   After markdown parsing, the resulting HTML string is further processed to replace emoji shortcodes (e.g., `:smile:`) with actual `<img>` tags pointing to emoji assets.
-        *   This is handled by `app/emoji/client/lib/emoji.ts` and its `RocketChat.Emoji.render` function, which supports both standard and custom emojis.
+**How `message.md` is rendered:**
 
-    3.  **Mentions, Channels, and Links Highlighting:**
-        *   The `html` string is then processed to wrap `@username`, `#channelname`, and URLs with appropriate `<a>` tags.
-        *   This leverages the `mentions`, `channels`, and `urls` arrays stored on the message object, ensuring that only valid entities are highlighted and linked correctly.
-        *   These `<a>` tags often include specific CSS classes (e.g., `mention-link`, `channel-link`) for styling and event listeners for click actions (e.g., opening a user profile, navigating to a channel).
+The `message.md` field is an array of objects, each with a `type` and a `value`. The `MessageText` component (or helper functions within it) uses a mapping or a `switch` statement to render different types:
 
-    4.  **Final HTML String:** The output of `renderMessageBody` is a complete HTML string, ready for display.
+*   **`PARAGRAPH`**: Renders a `<p>` tag. Its `value` is another array of `md` objects, which are recursively rendered.
+*   **`PLAIN_TEXT`**: Renders a simple `<span>` containing the text `value`.
+*   **`MENTION_TEXT`**: Renders a `<UserMention>` or `<ChannelMention>` component (e.g., `client/components/UserMention/UserMention.tsx`, `client/components/ChannelMention/ChannelMention.tsx`), passing the username/channel name. These components handle styling and potential click actions.
+*   **`LINK`**: Renders an `<a>` tag. Its `value` object contains `src` (the URL) and `value` (the link text), which are used to construct the anchor.
+*   **`EMOJI`**: Renders an `<Emoji>` component (e.g., `client/components/Emoji/Emoji.tsx`), which displays the appropriate emoji image or unicode character.
+*   **`CODE` / `CODE_BLOCK`**: Renders `<code>` or `<pre><code>` tags, often with syntax highlighting applied.
+*   **`BOLD` / `ITALIC` / `STRIKE`**: Renders `<strong>`, `<em>`, `<s>` tags, recursively rendering their `value` (which is an array of `md` objects).
+*   **`QUOTE`**: Renders a `<blockquote>` tag.
+*   **`LIST_ITEM` / `UNORDERED_LIST` / `ORDERED_LIST`**: Renders `<li>`, `<ul>`, `<ol>` tags respectively.
 
-*   **React Rendering:**
-    *   The `MessageBody` component receives this final HTML string.
-    *   For performance and simplicity, Rocket.Chat often uses `dangerouslySetInnerHTML` to inject this HTML string directly into a `div` element within the React component.
-    *   Example: `<div dangerouslySetInnerHTML={{ __html: finalHtmlString }} />`
-    *   While `dangerouslySetInnerHTML` is generally discouraged due to XSS risks, it's used here because the HTML has already undergone extensive server-side and client-side sanitization and is generated from trusted sources (the markdown parser and emoji/mention processors).
-    *   Any interactive elements (like attachments, reactions, action buttons) are rendered as separate, distinct React components alongside the main message body.
+**Other Client-Side Components:**
 
-### Summary of the Flow:
+Beyond the main message text, `MessageBody` also orchestrates the rendering of other message features:
 
-1.  **Raw Text** (User Input)
-2.  **Server-Side `parseMessage`** (`app/lib/server/functions/parseMessage.ts`)
-    *   Sanitization
-    *   Basic HTML (`html` field)
-    *   Metadata extraction (`mentions`, `channels`, `urls`)
-3.  **Database Storage** (`rocketchat_message` collection)
-4.  **Client-Side Fetch** (Message object retrieved)
-5.  **`Message/Body.tsx`** (`app/ui-message/client/components/Message/Body.tsx`)
-6.  **`useMessageBody` hook** (`app/ui-message/client/components/Message/hooks/useMessageBody.ts`)
-7.  **`renderMessageBody` function**
-    *   **`RocketChat.Markdown.parse()`** (`app/markdown/lib/markdown.ts`) -> HTML string
-    *   **`RocketChat.Emoji.render()`** (`app/emoji/client/lib/emoji.ts`) -> HTML string with `<img>` for emojis
-    *   **Mentions/Channels/Links processing** -> HTML string with `<a>` tags
-8.  **Final HTML String**
-9.  **React Component** (`<div dangerouslySetInnerHTML={{ __html: finalHtmlString }} />`) -> **Rendered React Components**
+*   **Link Previews:** If `message.urls` exists and contains metadata, `MessageBody` renders `LinkPreview` components (e.g., `client/components/message/body/LinkPreview.tsx`) to display rich previews below the message text.
+*   **Attachments:** If `message.attachments` exists (for file uploads, images, videos), `MessageBody` renders `MessageAttachments` (e.g., `client/components/message/body/MessageAttachments.tsx`) which then uses specific components for different attachment types (e.g., `ImageAttachment`, `VideoAttachment`, `FileAttachment`).
+*   **Reactions:** `client/components/message/body/MessageReactions.tsx` renders the emoji reactions associated with the message.
+*   **Thread Replies:** If the message is part of a thread, `client/components/message/body/MessageThread.tsx` might be used to show thread details.
 
-This multi-stage process ensures that messages are securely stored, efficiently parsed, and beautifully rendered with all the rich text features Rocket.Chat users expect.
+**Client-Side Markdown Parser (for completeness):**
+While the `md` field is usually pre-filled by the server, Rocket.Chat also has a client-side instance of the markdown parser (`app/markdown/client/index.js`). This is primarily used for real-time message previews as a user types, or if a message somehow arrives without the `md` field (though less common for persisted messages).
+
+### Summary of the Pipeline:
+
+1.  **Raw Text Input:** User types `Hello @user, check out this link: https://example.com`
+2.  **Server-Side Parsing (`parseMessage.js`):**
+    *   Identifies `@user` as a mention.
+    *   Extracts `https://example.com` as a URL, fetches metadata.
+    *   Generates `message.md` (e.g., `[{ type: 'PARAGRAPH', value: [{ type: 'PLAIN_TEXT', value: 'Hello ' }, { type: 'MENTION_TEXT', value: '@user' }, { type: 'PLAIN_TEXT', value: ', check out this link: ' }, { type: 'LINK', value: { src: 'https://example.com', value: 'https://example.com' } }] }]`).
+    *   Generates `message.urls` with link preview data.
+3.  **Client-Side Rendering (`MessageBody.tsx` -> `MessageContent.tsx` -> `MessageText.tsx`):**
+    *   `MessageBody` receives the message object.
+    *   `MessageText` iterates `message.md`:
+        *   Renders "Hello " as plain text.
+        *   Renders `@user` using `<UserMention username="user" />`.
+        *   Renders ", check out this link: " as plain text.
+        *   Renders `https://example.com` using `<a href="https://example.com">https://example.com</a>`.
+    *   `MessageBody` also checks `message.urls` and renders a `<LinkPreview url={...} />` component below the text.
+
+This layered approach ensures that messages are efficiently processed on the server and then flexibly rendered into rich, interactive UI elements on the client.
 
 ## Metrics
 
 | Metric | Value |
 |--------|-------|
-| Tokens | 3,585 |
+| Tokens | 3,984 |
 | Model | gemini-2.5-flash |
 | Tools | NONE |

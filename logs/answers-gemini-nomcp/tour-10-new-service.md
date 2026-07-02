@@ -2,327 +2,353 @@
 
 ## Baseline Answer (no tools)
 
-Adding a new "service" in Rocket.Chat typically refers to implementing a new logical unit of functionality or an integration point within the existing application. Rocket.Chat is a large Meteor application, so this usually involves creating new modules, database collections, API endpoints, and potentially UI components.
+Adding a new "service" in Rocket.Chat typically refers to creating a new logical module or feature set within the existing Meteor application structure. While Rocket.Chat is moving towards a more microservices-oriented architecture for some components (like the `apps-engine` or `push` services), for most in-tree features, it still follows a modular pattern within the main monorepo.
 
-Here's a structured approach to adding a new service, focusing on common Rocket.Chat patterns and file locations:
+The most common pattern for a new service involves creating a dedicated directory under `app/` and structuring its server-side, client-side, and shared logic.
 
-### 1. Define the Service Scope and Structure
+Here's a step-by-step guide, focusing on the common `ServiceClass` pattern used in many Rocket.Chat modules:
 
-First, determine what your service will do and how it will interact with other parts of Rocket.Chat. Create a dedicated directory for your service, usually under `app/` or `server/`. For example, `app/my-new-service/`.
+### 1. Choose a Location and Create the Directory Structure
+
+The standard place for a new service is within the `app/` directory.
 
 ```
 app/
-└── my-new-service/
-    ├── client/             # Client-side code (UI, routing, subscriptions)
-    │   ├── components/
+└── <your-service-name>/
+    ├── client/          # Client-side code (UI, routes, subscriptions)
     │   ├── views/
     │   └── router.ts
-    ├── server/             # Server-side code (logic, database, API, methods, publications)
-    │   ├── api/
-    │   │   └── v1/
-    │   ├── models/
+    ├── lib/             # Shared code (e.g., ServiceClass definition, constants, types)
+    │   └── Service.ts
+    ├── server/          # Server-side code (methods, publications, startup, settings, permissions)
     │   ├── methods/
     │   ├── publications/
-    │   ├── permissions.ts
+    │   ├── startup/
     │   ├── settings.ts
-    │   └── index.ts        # Main server-side entry point
-    ├── i18n/               # Internationalization files
-    │   └── en.i18n.json
-    ├── definition/         # Shared TypeScript interfaces/types
-    │   └── IMyNewService.ts
-    └── tests/              # Tests for the service
-        ├── server/
-        └── client/
+    │   └── permissions.ts
+    └── tests/           # Tests for your service
+        ├── client/
+        └── server/
 ```
 
-### 2. Server-Side Logic (Core of the Service)
+**Example:** Look at `app/livechat/`, `app/federation/`, or `app/apps/` for inspiration.
 
-Most of your service's business logic will reside on the server.
+### 2. Define the Service Class (Recommended Pattern)
 
-#### a. Database Collection (if needed)
+Many Rocket.Chat services use a `ServiceClass` pattern to encapsulate their logic.
 
-If your service needs to store data, define a new MongoDB collection.
+**File:** `app/<your-service-name>/lib/Service.ts`
 
-*   **File:** `app/my-new-service/server/models/MyNewServiceCollection.ts`
-*   **Content:**
-    ```typescript
-    import { Mongo } from 'meteor/mongo';
-    import { IMyNewService } from '../../../definition/IMyNewService'; // Define your interface here
+```typescript
+import { ServiceClass } from '@rocket.chat/core-services'; // Or a similar base class if you need specific functionality
 
-    export const MyNewServiceCollection = new Mongo.Collection<IMyNewService>('my_new_service');
-    ```
-*   **Interface:** `definition/IMyNewService.ts`
-    ```typescript
-    export interface IMyNewService {
-        _id: string;
-        name: string;
-        description: string;
-        createdAt: Date;
-        createdBy: string;
-        // ... other fields
-    }
-    ```
+export class MyNewService extends ServiceClass {
+	// The name of your service, used for logging and identification
+	protected name = 'my-new-service';
 
-#### b. Meteor Methods
+	constructor() {
+		super(); // Call the parent constructor
 
-Implement server-side functions that can be called from the client.
+		// You can register methods directly here or in separate files
+		// this.addMethod('myNewService.doSomething', this.doSomething);
+	}
 
-*   **File:** `app/my-new-service/server/methods/myNewServiceMethods.ts`
-*   **Content:**
-    ```typescript
-    import { Meteor } from 'meteor/meteor';
-    import { MyNewServiceCollection } from '../models/MyNewServiceCollection';
-    import { hasPermission } from '../../authorization/server/functions/hasPermission';
+	// Lifecycle hook: Called when the service is initialized
+	async onInit(): Promise<void> {
+		this.logger.debug('MyNewService initialized');
+		// Perform any initial setup here
+	}
 
-    Meteor.methods({
-        'myNewService.create'(data: Partial<IMyNewService>) {
-            if (!Meteor.userId() || !hasPermission(Meteor.userId(), 'manage-my-new-service')) {
-                throw new Meteor.Error('not-authorized');
-            }
-            // Add validation and business logic
-            return MyNewServiceCollection.insert({
-                ...data,
-                createdAt: new Date(),
-                createdBy: Meteor.userId(),
-            });
-        },
-        'myNewService.get'(serviceId: string) {
-            if (!Meteor.userId() || !hasPermission(Meteor.userId(), 'view-my-new-service')) {
-                throw new Meteor.Error('not-authorized');
-            }
-            return MyNewServiceCollection.findOne(serviceId);
-        },
-    });
-    ```
+	// Lifecycle hook: Called when the service starts
+	async onStart(): Promise<void> {
+		this.logger.debug('MyNewService started');
+		// Register methods, publications, observers, etc.
+		this.registerMethods();
+		this.registerPublications();
+		this.registerObservers();
+	}
 
-#### c. Meteor Publications
+	// Lifecycle hook: Called when the service stops (e.g., during shutdown)
+	async onStop(): Promise<void> {
+		this.logger.debug('MyNewService stopped');
+		// Clean up resources
+	}
 
-If your client needs reactive data from your collection, define publications.
+	// --- Custom methods for your service ---
 
-*   **File:** `app/my-new-service/server/publications/myNewServicePublication.ts`
-*   **Content:**
-    ```typescript
-    import { Meteor } from 'meteor/meteor';
-    import { MyNewServiceCollection } from '../models/MyNewServiceCollection';
-    import { hasPermission } from '../../authorization/server/functions/hasPermission';
+	private registerMethods(): void {
+		// Example: Register a Meteor method
+		Meteor.methods({
+			'myNewService.doSomething': this.doSomething.bind(this),
+			'myNewService.getData': this.getData.bind(this),
+		});
+	}
 
-    Meteor.publish('myNewService.all', function() {
-        if (!this.userId || !hasPermission(this.userId, 'view-my-new-service')) {
-            return this.ready();
-        }
-        return MyNewServiceCollection.find({});
-    });
-    ```
+	private registerPublications(): void {
+		// Example: Register a Meteor publication
+		Meteor.publish('myNewService.allData', function (this: Meteor.Publication) {
+			if (!this.userId) {
+				return this.ready();
+			}
+			// Example: Return some data
+			return MyCollection.find({});
+		});
+	}
 
-#### d. REST API Endpoints (if needed)
+	private registerObservers(): void {
+		// Example: Observe changes in a collection
+		// MyCollection.find({}).observeChanges({
+		// 	added: (_id, fields) => this.logger.info('New item added', _id, fields),
+		// });
+	}
 
-Expose functionality via Rocket.Chat's REST API.
+	public async doSomething(param1: string): Promise<string> {
+		// Ensure user is logged in and has permission
+		if (!Meteor.userId()) {
+			throw new Meteor.Error('not-authorized', 'User not authorized');
+		}
+		// Check permissions if needed
+		// if (!hasPermission(Meteor.userId(), 'my-new-service-permission')) {
+		// 	throw new Meteor.Error('not-allowed', 'Permission denied');
+		// }
 
-*   **File:** `app/my-new-service/server/api/v1/myNewServiceRoutes.ts`
-*   **Content:**
-    ```typescript
-    import { API } from '../../api/server'; // Correct path to API
+		this.logger.info(`Doing something with: ${param1}`);
+		// ... service logic ...
+		return `Processed: ${param1}`;
+	}
 
-    API.v1.addRoute('my-new-service.list', { authRequired: true }, {
-        get() {
-            if (!this.userId || !this.hasPermission('view-my-new-service')) {
-                return API.v1.unauthorized();
-            }
-            const services = MyNewServiceCollection.find().fetch();
-            return API.v1.success({ services });
-        },
-        post() {
-            if (!this.userId || !this.hasPermission('manage-my-new-service')) {
-                return API.v1.unauthorized();
-            }
-            const { name, description } = this.bodyParams;
-            // Call your method or directly insert
-            const serviceId = Meteor.call('myNewService.create', { name, description });
-            return API.v1.success({ serviceId });
-        },
-    });
-    ```
+	public async getData(): Promise<any[]> {
+		// ... fetch data ...
+		return [{ id: '1', value: 'test' }];
+	}
+}
+```
 
-#### e. Settings
+### 3. Implement Server-Side Logic (Methods, Publications, Startup)
 
-Add configuration options for your service that can be managed via the admin UI.
+While you can register methods and publications directly in the `ServiceClass`, for larger services, it's common to separate them into dedicated files.
 
-*   **File:** `app/my-new-service/server/settings.ts`
-*   **Content:**
-    ```typescript
-    import { settings } from '../../settings/server';
+**File:** `app/<your-service-name>/server/methods/myMethod.ts`
 
-    settings.addGroup('My_New_Service', function() {
-        this.add('MyNewService_Enabled', true, {
-            type: 'boolean',
-            public: true,
-            i18nLabel: 'MyNewService_Enabled',
-            i18nDescription: 'MyNewService_Enabled_Description',
-        });
-        this.add('MyNewService_API_Key', '', {
-            type: 'string',
-            public: false, // Keep sensitive settings private
-            i18nLabel: 'MyNewService_API_Key',
-        });
-    });
-    ```
+```typescript
+import { Meteor } from 'meteor/meteor';
+import { MyNewService } from '../../lib/Service'; // Import your service instance
 
-#### f. Permissions
+Meteor.methods({
+	'myNewService.anotherMethod': async function (arg: string) {
+		// Access your service instance if it's globally available or passed around
+		// For simplicity, if you instantiate it in startup, you might need to export it.
+		// Or, if your service methods are bound to the class, you don't need this.
+		// This example assumes methods are registered *within* the service class.
+		// If you want to define methods *outside* the service class but still use its logic:
+		// const service = new MyNewService(); // Not ideal, creates new instance
+		// OR: export a global instance from lib/Service.ts and import it here.
+		// For the ServiceClass pattern, methods are usually registered *by* the service.
+		console.log(`Another method called with: ${arg}`);
+		return `Processed by another method: ${arg}`;
+	},
+});
+```
 
-Define new roles and permissions specific to your service.
+**File:** `app/<your-service-name>/server/publications/myData.ts`
 
-*   **File:** `app/my-new-service/server/permissions.ts`
-*   **Content:**
-    ```typescript
-    import { RocketChat } from 'meteor/rocketchat:lib'; // Or direct import from models/permissions
+```typescript
+import { Meteor } from 'meteor/meteor';
+// import { MyCollection } from '../../lib/collections'; // If you have a collection
 
-    RocketChat.models.Permissions.create('manage-my-new-service', ['admin']);
-    RocketChat.models.Permissions.create('view-my-new-service', ['admin', 'user']);
-    ```
+Meteor.publish('myNewService.someSpecificData', function (this: Meteor.Publication, userId: string) {
+	if (!this.userId) {
+		return this.ready();
+	}
+	// Example: Publish data based on a parameter
+	// return MyCollection.find({ owner: userId });
+	return this.ready(); // No data for this example
+});
+```
 
-#### g. Server-Side Entry Point
+**File:** `app/<your-service-name>/server/startup/init.ts`
 
-Ensure all your server-side files are loaded by Meteor.
+This is where you instantiate and start your service.
 
-*   **File:** `app/my-new-service/server/index.ts`
-*   **Content:**
-    ```typescript
-    import './models/MyNewServiceCollection';
-    import './methods/myNewServiceMethods';
-    import './publications/myNewServicePublication';
-    import './api/v1/myNewServiceRoutes';
-    import './settings';
-    import './permissions';
-    // Add any other server-side initializations here
-    ```
+```typescript
+import { Meteor } from 'meteor/meteor';
+import { MyNewService } from '../../lib/Service';
 
-### 3. Client-Side Integration (if UI is needed)
+// Instantiate your service
+export const myNewServiceInstance = new MyNewService();
 
-If your service requires a user interface, you'll need client-side code. Rocket.Chat primarily uses React for newer UI components.
+Meteor.startup(async () => {
+	// Initialize and start the service
+	await myNewServiceInstance.init();
+	await myNewServiceInstance.start();
+});
+```
 
-#### a. Routing
+### 4. Add Settings (Optional but Recommended)
 
-Add new client-side routes to access your service's UI.
+If your service needs configuration, define settings.
 
-*   **File:** `app/my-new-service/client/router.ts`
-*   **Content:**
-    ```typescript
-    import { FlowRouter } from 'meteor/kadira:flow-router';
-    import { lazy } from 'react';
-    import { registerAdminSidebarItem } from '../../ui-admin/client/sidebarItems'; // Example for admin UI
+**File:** `app/<your-service-name>/server/settings.ts`
 
-    FlowRouter.route('/admin/my-new-service', {
-        name: 'my-new-service-admin',
-        action() {
-            const MyNewServiceAdminPage = lazy(() => import('./views/MyNewServiceAdminPage'));
-            // Use Rocket.Chat's layout manager to render your React component
-            // Example: render(<AdminLayout page={<MyNewServiceAdminPage />} />);
-        },
-    });
+```typescript
+import { settings } from '../../settings/server';
 
-    // Register sidebar item for admin panel
-    registerAdminSidebarItem({
-        href: '/admin/my-new-service',
-        i18nLabel: 'MyNewService_Admin_Title',
-        icon: 'puzzle', // Choose an appropriate icon
-        permissionGranted: () => true, // Or check specific permissions
-    });
-    ```
+settings.addGroup('MyNewService', function () {
+	this.add('MyNewService_Enabled', true, {
+		type: 'boolean',
+		group: 'MyNewService',
+		public: true,
+		i18nLabel: 'MyNewService_Enabled',
+		i18nDescription: 'MyNewService_Enabled_Description',
+	});
 
-#### b. UI Components
+	this.add('MyNewService_API_Key', '', {
+		type: 'string',
+		group: 'MyNewService',
+		public: false, // Keep sensitive settings private
+		i18nLabel: 'MyNewService_API_Key',
+		i18nDescription: 'MyNewService_API_Key_Description',
+		secret: true,
+	});
+});
+```
 
-Create React components for your service's pages and forms.
+You can then access these settings using `settings.get('MyNewService_Enabled')` on the server.
 
-*   **File:** `app/my-new-service/client/views/MyNewServiceAdminPage.tsx`
-*   **Content (Example):**
-    ```tsx
-    import React, { useEffect, useState } from 'react';
-    import { Meteor } from 'meteor/meteor';
-    import { useSubscription, useMethod } from '@rocket.chat/ui-contexts'; // Rocket.Chat hooks
-    import { MyNewServiceCollection } from '../../server/models/MyNewServiceCollection'; // Client-side access to collection
+### 5. Add Permissions (Optional)
 
-    const MyNewServiceAdminPage: React.FC = () => {
-        const [services, setServices] = useState([]);
-        const isLoading = useSubscription('myNewService.all'); // Subscribe to your publication
-        const createService = useMethod('myNewService.create');
+If your service requires specific user roles or permissions.
 
-        useEffect(() => {
-            if (!isLoading) {
-                const cursor = MyNewServiceCollection.find({});
-                const handle = cursor.observeChanges({
-                    added: (id, fields) => setServices(prev => [...prev, { _id: id, ...fields }]),
-                    changed: (id, fields) => setServices(prev => prev.map(s => (s._id === id ? { ...s, ...fields } : s))),
-                    removed: (id) => setServices(prev => prev.filter(s => s._id !== id)),
-                });
-                return () => handle.stop();
-            }
-        }, [isLoading]);
+**File:** `app/<your-service-name>/server/permissions.ts`
 
-        const handleCreate = async () => {
-            try {
-                await createService({ name: 'New Service', description: 'A new service entry' });
-                alert('Service created!');
-            } catch (error) {
-                alert(`Error creating service: ${error.reason}`);
-            }
-        };
+```typescript
+import { api } from '../../api/server/sdk/api';
 
-        return (
-            <div>
-                <h1>My New Service Admin</h1>
-                <button onClick={handleCreate}>Create New Service</button>
-                <ul>
-                    {services.map((service: any) => (
-                        <li key={service._id}>{service.name} - {service.description}</li>
-                    ))}
-                </ul>
-            </div>
-        );
-    };
+api.addPermission('access-my-new-service', ['admin', 'owner', 'moderator']);
+api.addPermission('manage-my-new-service-settings', ['admin']);
+```
 
-    export default MyNewServiceAdminPage;
-    ```
+You can check permissions using `hasPermission(userId, 'access-my-new-service')`.
 
-### 4. Internationalization (i18n)
+### 6. Add Client-Side Components (Optional)
 
-Add translation keys for all new strings in your service.
+If your service has a UI, you'll add React components, Blaze templates, and potentially client-side routing.
 
-*   **File:** `app/my-new-service/i18n/en.i18n.json`
-*   **Content:**
-    ```json
-    {
-        "MyNewService_Enabled": "Enable My New Service",
-        "MyNewService_Enabled_Description": "Enables the custom service functionality.",
-        "MyNewService_API_Key": "My New Service API Key",
-        "MyNewService_Admin_Title": "My New Service Management",
-        "Create_New_Service": "Create New Service"
-    }
-    ```
-    Remember to add these keys to other language files as well.
+**File:** `app/<your-service-name>/client/views/MyNewServicePage.tsx`
 
-### 5. Testing
+```typescript
+import React from 'react';
+import { useMethod, useSubscription } from '@rocket.chat/ui-contexts'; // Example hooks
 
-Write unit and integration tests for your new service.
+const MyNewServicePage: React.FC = () => {
+	const callDoSomething = useMethod('myNewService.doSomething');
+	const { data: someData, isLoading: dataLoading } = useSubscription('myNewService.allData');
 
-*   **Server Tests:** `app/my-new-service/tests/server/my-new-service.spec.ts`
-*   **Client Tests:** `app/my-new-service/tests/client/my-new-service.spec.ts`
+	const handleClick = async () => {
+		try {
+			const result = await callDoSomething('hello from client');
+			console.log('Method result:', result);
+		} catch (error) {
+			console.error('Method error:', error);
+		}
+	};
 
-### Key Rocket.Chat Specifics to Remember:
+	return (
+		<div>
+			<h1>My New Service Page</h1>
+			<button onClick={handleClick}>Call Server Method</button>
+			{dataLoading ? <p>Loading data...</p> : <pre>{JSON.stringify(someData, null, 2)}</pre>}
+		</div>
+	);
+};
 
-*   **`RocketChat` Global Object:** Many core functionalities are exposed via the `RocketChat` global object (e.g., `RocketChat.models`, `RocketChat.callbacks`, `RocketChat.settings`).
-*   **`API.v1`:** For registering REST API endpoints.
-*   **`settings` module:** For managing application settings.
-*   **`authorization` module:** For handling user permissions.
-*   **`callbacks` module:** For hooking into various Rocket.Chat events (e.g., `RocketChat.callbacks.add('afterSaveMessage', ...) `).
-*   **`definition/` directory:** For shared TypeScript interfaces and types.
-*   **`ee/` directory:** If your service is an Enterprise Edition feature, it should reside under `ee/my-new-service/`.
+export default MyNewServicePage;
+```
 
-By following these steps, you can effectively integrate a new service or feature into the Rocket.Chat codebase.
+**File:** `app/<your-service-name>/client/router.ts` (for client-side routing)
+
+```typescript
+import { FlowRouter } from 'meteor/kadira:flow-router';
+import { BlazeLayout } from 'meteor/kadira:blaze-layout';
+import { lazy } from 'react';
+
+// Assuming you have a main layout template
+import '../../client/main'; // Or wherever your main layout is defined
+
+// Lazy load your React component
+const MyNewServicePage = lazy(() => import('./views/MyNewServicePage'));
+
+FlowRouter.route('/my-new-service', {
+	name: 'my-new-service-page',
+	action() {
+		BlazeLayout.render('mainLayout', {
+			center: MyNewServicePage, // Render your React component in the 'center' region
+		});
+	},
+});
+```
+
+### 7. Testing
+
+Write tests for your service logic.
+
+**File:** `app/<your-service-name>/tests/server/unit/myService.test.ts`
+
+```typescript
+import { expect } from 'chai';
+import { MyNewService } from '../../../lib/Service';
+import { stub, restore } from 'sinon';
+import { Meteor } from 'meteor/meteor';
+
+describe('MyNewService', function () {
+	let service: MyNewService;
+	let userIdStub: sinon.SinonStub;
+
+	beforeEach(function () {
+		service = new MyNewService();
+		userIdStub = stub(Meteor, 'userId').returns('test-user-id');
+	});
+
+	afterEach(function () {
+		restore();
+	});
+
+	it('should return processed string when doSomething is called', async function () {
+		const result = await service.doSomething('test-param');
+		expect(result).to.equal('Processed: test-param');
+	});
+
+	it('should throw error if user is not authorized for doSomething', async function () {
+		userIdStub.returns(null); // Simulate no logged-in user
+		let error: any;
+		try {
+			await service.doSomething('test-param');
+		} catch (e) {
+			error = e;
+		}
+		expect(error).to.be.an.instanceOf(Meteor.Error);
+		expect(error.error).to.equal('not-authorized');
+	});
+});
+```
+
+### Key Considerations:
+
+*   **TypeScript:** Rocket.Chat heavily uses TypeScript. It's highly recommended to write your new service in TypeScript for better maintainability and type safety.
+*   **Modularity:** Keep your service focused on a single responsibility.
+*   **Error Handling:** Implement robust error handling for all server-side methods.
+*   **Security:** Always validate user input and check permissions on the server.
+*   **Settings vs. Hardcoding:** Use settings for any configurable values.
+*   **Existing Patterns:** Look at how existing services like `app/livechat`, `app/federation`, `app/apps`, or `app/threads` are structured for best practices.
+*   **Meteor's Build System:** Files in `app/` are automatically loaded by Meteor based on their directory structure (`lib` first, then `server`, then `client`).
+*   **`@rocket.chat/core-services`:** This package provides a base `ServiceClass` and other utilities that are useful for building new services.
+
+By following these steps, you can effectively integrate a new feature or module as a "service" within the Rocket.Chat codebase.
 
 ## Metrics
 
 | Metric | Value |
 |--------|-------|
-| Tokens | 6,715 |
+| Tokens | 4,801 |
 | Model | gemini-2.5-flash |
 | Tools | NONE |
