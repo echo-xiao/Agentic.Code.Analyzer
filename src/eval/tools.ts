@@ -384,6 +384,7 @@ async function main() {
         recallAt5: r.retrieval.recallAt5, recallAt10: r.retrieval.recallAt10, recallAt20: r.retrieval.recallAt20,
         recallAt50: r.retrieval.recallAt50,
         mrr: r.retrieval.mrr, precisionAt5: r.retrieval.precisionAt5, diagnosis: r.retrieval.diagnosis,
+        coreRanks: r.retrieval.coreRanks,   // [{file, rank|null}] — the single-query probe rank of each core file
         orderApplicable: r.order.applicable, orderScore: r.order.score, orderPass: r.orderPass,
         sanityPass: r.sanityPass, retrievalPass: r.retrievalPass, pass: r.pass,
     }))), 'utf-8');

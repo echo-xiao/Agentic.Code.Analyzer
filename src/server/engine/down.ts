@@ -3,7 +3,7 @@
 import * as path from 'path';
 import { GLOBAL_INDEX } from '../../indexer/state.js';
 import type { EdgeType } from '../../indexer/state.js';
-import { edgeLabel, filterByLayer, getArchitectureHint, isTestFile, pickRootFile, relPath, resolveEdgeFilter } from './common.js';
+import { edgeLabel, filterByLayer, isTestFile, pickRootFile, relPath, resolveEdgeFilter } from './common.js';
 
 export interface DownOpts { depth: number; layer?: string; edgeTypes?: string[]; file?: string; }
 
@@ -79,6 +79,5 @@ export function graphDown(query: string, opts: DownOpts): string {
 
     traverseDown(query, 1, maxDepth);
     if (out.length <= 2) out.push('  (no callees found in index)');
-    const hint = getArchitectureHint(query);
-    return hint ? `${hint}\n\n---\n\n${out.join('\n')}` : out.join('\n');
+    return out.join('\n');
 }

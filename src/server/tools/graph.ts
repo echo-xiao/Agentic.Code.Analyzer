@@ -8,7 +8,7 @@ import { lexicalSeeds } from '../engine/seeds.js';
 import { expandNeighborhood } from '../engine/expand.js';
 import { graphDown } from '../engine/down.js';
 import { graphUp } from '../engine/up.js';
-import { getArchitectureHint, relPath } from '../engine/common.js';
+import { relPath } from '../engine/common.js';
 
 const MOVES: Move[] = ['expand', 'down', 'up'];
 const DEFAULT_DEPTH: Record<Move, number> = { expand: 2, down: 4, up: 4 };
@@ -51,7 +51,6 @@ export function runGraph(args: GraphArgs): string {
         rank++;
     }
     const body = `🧭 Subsystem (ranked by graph proximity to \`${query}\`, depth=${depth}):\n${lines.join('\n')}`;
-    const hint = getArchitectureHint(query);
     const navHint = `\n\n💡 **Next:** details("<symbol>", "<file>") on 1-2 key hits, or graph("${query}", move="down") for the call order.`;
-    return (hint ? `${hint}\n\n---\n\n${body}` : body) + navHint;
+    return body + navHint;
 }

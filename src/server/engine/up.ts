@@ -8,7 +8,7 @@
 import { GLOBAL_INDEX } from '../../indexer/state.js';
 import type { EdgeType } from '../../indexer/state.js';
 import {
-    computeImportDistances, edgeLabel, filterByLayer, getArchitectureHint,
+    computeImportDistances, edgeLabel, filterByLayer,
     isDynamicEdge, isTestFile, pickRootFile, relPath, resolveEdgeFilter,
 } from './common.js';
 
@@ -106,6 +106,5 @@ export function graphUp(query: string, opts: UpOpts): string {
     }
 
     if (out.length <= 3) out.push('  (no dependents found — symbol may be a leaf node, or try without layer filter)');
-    const hint = getArchitectureHint(query);
-    return hint ? `${hint}\n\n---\n\n${out.join('\n')}` : out.join('\n');
+    return out.join('\n');
 }
