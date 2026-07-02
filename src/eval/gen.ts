@@ -95,6 +95,8 @@ interface AnswerRecord {
     // File paths that appeared in ANY tool result during the run. Lets report.ts split a missed core
     // file into "never retrieved" vs "retrieved but not written" — retrieval vs synthesis failure.
     seenFiles: string[];
+    // Resolved plan intent (SESSION.intent after the loop) — untruncated, for report.ts routing accuracy.
+    resolvedIntent: string | null;
 }
 
 function extractToolResultText(result: any): string { return result?.content?.[0]?.text ?? ''; }
@@ -142,7 +144,7 @@ async function runMcpCase(model: any, tc: TestCase, oracle: boolean): Promise<An
 
     const llmAnswer = response.response.candidates?.[0]?.content?.parts
         ?.filter((p: any) => p.text)?.map((p: any) => p.text)?.join('\n') ?? '';
-    return { id: tc.id, question: tc.question, questionType: tc.questionType, subsystem: tc.subsystem, llmAnswer, toolCalls, tokens: totalTokens, seenFiles: Array.from(seenFiles) };
+    return { id: tc.id, question: tc.question, questionType: tc.questionType, subsystem: tc.subsystem, llmAnswer, toolCalls, tokens: totalTokens, seenFiles: Array.from(seenFiles), resolvedIntent: SESSION.intent ?? null };
 }
 
 function saveMcpAnswers(dir: string, records: AnswerRecord[]) {
@@ -151,7 +153,7 @@ function saveMcpAnswers(dir: string, records: AnswerRecord[]) {
         const trace = r.toolCalls.map(t =>
             `**Step ${t.step}:** \`${t.tool}(${JSON.stringify(t.args).substring(0, 100)})\` → ${t.responseTokensEst} tokens`).join('\n');
         const seen = r.seenFiles.length ? r.seenFiles.map(f => `- \`${f}\``).join('\n') : '_(none)_';
-        const content = `# ${r.question}\n\n## Gemini Answer\n\n${r.llmAnswer}\n\n## Tool Calls (${r.toolCalls.length} calls, ${r.tokens.toLocaleString()} tokens)\n\n${trace}\n\n## Files Seen In Tool Results (${r.seenFiles.length})\n\n${seen}\n`;
+        const content = `# ${r.question}\n\n## Plan\n\nintent: ${r.resolvedIntent ?? 'unknown'}\n\n## Gemini Answer\n\n${r.llmAnswer}\n\n## Tool Calls (${r.toolCalls.length} calls, ${r.tokens.toLocaleString()} tokens)\n\n${trace}\n\n## Files Seen In Tool Results (${r.seenFiles.length})\n\n${seen}\n`;
         fs.writeFileSync(path.join(dir, `${r.id}.md`), content, 'utf-8');
     }
 }
@@ -242,7 +244,7 @@ async function main() {
             if (i < selected.length - 1) await pause(isPro ? 13000 : 4500);
         } catch (e: any) {
             console.error(`ERROR: ${e?.message?.slice(0, 100)}`);
-            records.push({ id: tc.id, question: tc.question, questionType: tc.questionType, subsystem: tc.subsystem, llmAnswer: `ERROR: ${e?.message}`, toolCalls: [], tokens: 0, seenFiles: [] });
+            records.push({ id: tc.id, question: tc.question, questionType: tc.questionType, subsystem: tc.subsystem, llmAnswer: `ERROR: ${e?.message}`, toolCalls: [], tokens: 0, seenFiles: [], resolvedIntent: null });
             await pause(5000);
         }
     }
