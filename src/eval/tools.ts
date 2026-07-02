@@ -348,149 +348,6 @@ async function runTestCase(tc: TestCase): Promise<TestResult> {
     };
 }
 
-function formatReport(results: TestResult[]): string {
-    const lines: string[] = [];
-    const passed = results.filter(r => r.pass).length;
-    const total = results.length;
-
-    const sanityPassed = results.filter(r => r.sanityPass).length;
-    const retrievalPassed = results.filter(r => r.retrievalPass).length;
-    const orderedResults = results.filter(r => r.order.applicable);
-    const orderPassed = orderedResults.filter(r => r.orderPass).length;
-
-    lines.push(`# tools — deterministic tool-capability eval`);
-    lines.push(`\n${new Date().toLocaleString('en-US')}\n`);
-    lines.push(`## Summary: ${passed}/${total} passed\n`);
-    lines.push(`> Gate = **sanity** (substring recall over search+expand, near-100% by construction — a floor, not a score) `);
-    lines.push(`> **AND retrieval** (a single realistic query surfaces ≥30% of core files in top-10) `);
-    lines.push(`> **AND order** (ordered Qs only: graph(down) recovers ≥${ORDER_GATE * 100}% of the chain in causal order).\n`);
-    lines.push(`| Gate | Pass |`);
-    lines.push(`|---|---:|`);
-    lines.push(`| Sanity (substring recall) | ${sanityPassed}/${total} |`);
-    lines.push(`| **Retrieval (single-query R@10 ≥ 0.3)** | **${retrievalPassed}/${total}** |`);
-    lines.push(`| **Chain order (LCS ≥ ${ORDER_GATE * 100}%, ordered Qs)** | **${orderPassed}/${orderedResults.length}** |`);
-    lines.push(`| Combined | ${passed}/${total} |\n`);
-
-    const avgFileRecall = results.reduce((s, r) => s + r.searchFileRecall.rate, 0) / total;
-    const avgSymRecall = results.reduce((s, r) => s + r.searchSymbolRecall.rate, 0) / total;
-    const graphResults = results.filter(r => r.graphReachability);
-    const avgGraphReach = graphResults.length > 0
-        ? graphResults.reduce((s, r) => s + r.graphReachability!.rate, 0) / graphResults.length : 0;
-
-    const avgPrec5 = results.reduce((s, r) => s + r.retrieval.precisionAt5, 0) / total;
-    const avgRec5 = results.reduce((s, r) => s + r.retrieval.recallAt5, 0) / total;
-    const avgRec10 = results.reduce((s, r) => s + r.retrieval.recallAt10, 0) / total;
-    const avgRec20 = results.reduce((s, r) => s + r.retrieval.recallAt20, 0) / total;
-    const avgMrr = results.reduce((s, r) => s + r.retrieval.mrr, 0) / total;
-    const avgF1 = results.reduce((s, r) => s + r.retrieval.f1At5, 0) / total;
-
-    const orderedAgg = results.filter(r => r.order.applicable);
-    const avgOrder = orderedAgg.length
-        ? orderedAgg.reduce((s, r) => s + r.order.score, 0) / orderedAgg.length : null;
-
-    lines.push(`| Metric | Average |`);
-    lines.push(`|--------|---------|`);
-    lines.push(`| File recall (search+expand, substring) | ${(avgFileRecall * 100).toFixed(1)}% |`);
-    lines.push(`| Symbol recall (search+expand, substring) | ${(avgSymRecall * 100).toFixed(1)}% |`);
-    lines.push(`| Graph reachability | ${(avgGraphReach * 100).toFixed(1)}% |`);
-    lines.push(`| **Precision@5** (primary query) | ${(avgPrec5 * 100).toFixed(1)}% |`);
-    lines.push(`| **Recall@5 / @10 / @20** | ${(avgRec5 * 100).toFixed(1)}% / ${(avgRec10 * 100).toFixed(1)}% / ${(avgRec20 * 100).toFixed(1)}% |`);
-    lines.push(`| **MRR** (core files) | ${avgMrr.toFixed(3)} |`);
-    lines.push(`| **F1@5** | ${(avgF1 * 100).toFixed(1)}% |`);
-    lines.push(`| **Chain order LCS** (ordered Qs: ${orderedAgg.length}, gate ≥ ${ORDER_GATE * 100}%) | ${avgOrder === null ? 'n/a' : (avgOrder * 100).toFixed(1) + '%'} |`);
-    lines.push('');
-
-    lines.push(`## Per-Testcase Results\n`);
-    lines.push(`| # | ID | Subsystem | Files | Symbols | Graph | R@10 | Retr | Pass |`);
-    lines.push(`|---|---|---|---|---|---|---:|---|---|`);
-
-    for (let i = 0; i < results.length; i++) {
-        const r = results[i];
-        const fc = `${r.searchFileRecall.found.length}/${r.searchFileRecall.found.length + r.searchFileRecall.missed.length}`;
-        const sc = `${r.searchSymbolRecall.found.length}/${r.searchSymbolRecall.found.length + r.searchSymbolRecall.missed.length}`;
-        const gc = r.graphReachability
-            ? `${r.graphReachability.found.length}/${r.graphReachability.found.length + r.graphReachability.missed.length}`
-            : '-';
-        const r10 = `${(r.retrieval.recallAt10 * 100).toFixed(0)}%`;
-        const retr = r.retrievalPass ? '✅' : '❌';
-        const status = r.pass ? 'PASS' : '**FAIL**';
-        lines.push(`| ${i + 1} | ${r.id} | ${r.subsystem} | ${fc} | ${sc} | ${gc} | ${r10} | ${retr} | ${status} |`);
-    }
-
-    // Ranking quality per testcase + search-truncation diagnosis
-    lines.push(`## Retrieval Ranking (primary query → expand top-50)\n`);
-    lines.push(`| # | ID | Query | P@5 | R@5 | R@10 | R@20 | MRR | Diagnosis |`);
-    lines.push(`|---|---|---|----:|----:|----:|----:|----:|---|`);
-    for (let i = 0; i < results.length; i++) {
-        const m = results[i].retrieval;
-        lines.push(`| ${i + 1} | ${results[i].id} | \`${m.primaryQuery}\` | ${(m.precisionAt5 * 100).toFixed(0)}% | ${(m.recallAt5 * 100).toFixed(0)}% | ${(m.recallAt10 * 100).toFixed(0)}% | ${(m.recallAt20 * 100).toFixed(0)}% | ${m.mrr.toFixed(2)} | ${m.diagnosis} |`);
-    }
-    lines.push('');
-    const diagCount = new Map<string, number>();
-    for (const r of results) diagCount.set(r.retrieval.diagnosis, (diagCount.get(r.retrieval.diagnosis) ?? 0) + 1);
-    lines.push(`### Truncation diagnosis summary`);
-    lines.push(`| Diagnosis | Count | Meaning |`);
-    lines.push(`|-----------|------:|--------|`);
-    const actions: Record<string, string> = {
-        'ok': 'core files in top-5',
-        'ranked-low': 'in top-50 but ranked >5',
-        'recall-miss': 'absent from top-50',
-        'mixed': 'both ranking + matching issues',
-        'n/a': 'no core files / no query',
-    };
-    for (const [d, c] of diagCount) lines.push(`| ${d} | ${c} | ${actions[d] ?? ''} |`);
-    lines.push('');
-
-    // Chain order (LCS) — ordered questions only. PASS GATE: score must reach ORDER_GATE.
-    if (orderedAgg.length > 0) {
-        lines.push(`## Chain Order (LCS — ordered questions only, pass gate ≥ ${ORDER_GATE * 100}%)\n`);
-        lines.push(`| # | ID | Chain | LCS | Order | Gate | Observed order |`);
-        lines.push(`|---|---|----:|----:|----:|---|---|`);
-        for (let i = 0; i < results.length; i++) {
-            const r = results[i];
-            if (!r.order.applicable) continue;
-            const o = r.order;
-            const obs = o.observedChain.join(' → ') || '(none surfaced)';
-            const gate = r.orderPass ? '✅' : '❌';
-            lines.push(`| ${i + 1} | ${r.id} | ${o.expectedChain.length} | ${o.lcs} | ${(o.score * 100).toFixed(0)}% | ${gate} | ${obs} |`);
-        }
-        lines.push('');
-    }
-
-    const failures = results.filter(r => !r.pass);
-    if (failures.length > 0) {
-        lines.push(`\n## Failures\n`);
-        for (const r of failures) {
-            lines.push(`### ${r.id} — ${r.subsystem}\n`);
-            lines.push(`**Q:** ${r.question}\n`);
-
-            if (r.searchFileRecall.missed.length > 0) {
-                lines.push(`**Missed files (search+expand):**`);
-                for (const f of r.searchFileRecall.missed) lines.push(`- \`${f}\``);
-                lines.push('');
-            }
-            if (r.searchSymbolRecall.missed.length > 0) {
-                lines.push(`**Missed symbols (search+expand):**`);
-                for (const s of r.searchSymbolRecall.missed) lines.push(`- \`${s}\``);
-                lines.push('');
-            }
-            if (r.graphReachability && r.graphReachability.missed.length > 0) {
-                lines.push(`**Unreachable via graph(down):**`);
-                for (const s of r.graphReachability.missed) lines.push(`- \`${s}\``);
-                lines.push('');
-            }
-            if (r.order.applicable && !r.orderPass) {
-                lines.push(`**Chain order below gate (${(r.order.score * 100).toFixed(0)}% < ${ORDER_GATE * 100}%):**`);
-                lines.push(`- expected: ${r.order.expectedChain.join(' → ')}`);
-                lines.push(`- observed: ${r.order.observedChain.join(' → ') || '(none surfaced)'}`);
-                lines.push('');
-            }
-        }
-    }
-
-    return lines.join('\n');
-}
-
 async function main() {
     // Delete the stale report up front so a mid-run crash leaves no misleading old file.
     fs.rmSync(path.join(__dirname, '..', '..', 'logs', 'reports', 'tools.md'), { force: true });
@@ -516,13 +373,8 @@ async function main() {
         results.push(result);
     }
 
-    const report = formatReport(results);
-
     const logsDir = path.join(__dirname, '..', '..', 'logs');
-    fs.mkdirSync(path.join(logsDir, 'reports'), { recursive: true });
     fs.mkdirSync(path.join(logsDir, 'data'), { recursive: true });
-    const reportPath = path.join(logsDir, 'reports', 'tools.md');
-    fs.writeFileSync(reportPath, report, 'utf-8');
 
     // Machine-readable sidecar for the unified report (src/eval/report.ts). Join key = id.
     fs.writeFileSync(path.join(logsDir, 'data', 'tools-data.json'), JSON.stringify(results.map(r => ({
@@ -535,8 +387,6 @@ async function main() {
         orderApplicable: r.order.applicable, orderScore: r.order.score, orderPass: r.orderPass,
         sanityPass: r.sanityPass, retrievalPass: r.retrievalPass, pass: r.pass,
     }))), 'utf-8');
-
-    console.error(`\nReport: ${reportPath}`);
 
     const passed = results.filter(r => r.pass).length;
     console.log(`\n${passed}/${results.length} passed`);

@@ -1,318 +1,206 @@
 #!/usr/bin/env npx tsx
 /**
- * report — the unified attribution view. Deterministic join + derive, no model call:
- *
- *   1. Headline        — manual semantic verdicts (verdicts.md; "pending" until judged)
- *   2. Token efficiency— token-data.json (is the graph worth its tokens?)
- *   3. The funnel      — where quality leaks: index → retrieve/rank → order → gather → synth
- *   4. Detail table    — per-testcase × per-gate, binding bottleneck auto-classified
- *   5. Classifier rules
- *
- * Inputs: logs/data/tools-data.json (eval:tools) · logs/data/token-data.json (eval:token) ·
- * logs/answers-gemini-mcp-selfloop/ (gen --mode=mcp; gather/synth derived here) ·
- * src/eval/verdicts.md (manual).
+ * report — the QUANTITATIVE report → logs/reports/metrics.md. Deterministic, NO semantic info.
+ *   1. Value       — coverage no-MCP / naive / MCP + lift + token cost (naive control folded in from the old token eval)
+ *   2. Funnel      — index → agent-surfaced → written (pooled per core file) + single-query R@k / reachability / chain-order probes
+ *   3. Auto-triage — per-testcase mechanical "suspected stage" (route→search→graph→synth), NO verdicts / reason / mode
+ * Semantic analysis lives SEPARATELY in logs/reports/verdicts.md (hand-judged). This file never reads it.
+ * Inputs: logs/data/tools-data.json (eval:tools) · logs/answers-gemini-{mcp-selfloop,nomcp}/ · the code index (naive control).
+ * Run: npm run report   (after gen:mcp / gen:nomcp / eval:tools)
  */
 import * as fs from 'fs';
 import * as path from 'path';
 import { fileURLToPath } from 'url';
+import { ensureIndex } from '../indexer/index.js';
+import { handleToolCall } from '../server/registry.js';
 import { loadTestcases } from './utils/load-testcases.js';
-import { extractCitedFiles, fileMatches, readSection } from './utils/eval-util.js';
+import { coverage, extractCitedFiles, fileMatches, readSection, tokensOf } from './utils/eval-util.js';
 import { classifyIntent, INTENTS } from '../server/intent.js';
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const LOGS = path.resolve(__dirname, '..', '..', 'logs');
 const D_MCP = path.join(LOGS, 'answers-gemini-mcp-selfloop');
-const OUT = path.join(LOGS, 'report.md');
+const D_NOMCP = path.join(LOGS, 'answers-gemini-nomcp');
+const OUT = path.join(LOGS, 'reports', 'metrics.md');
 
-// ── load sidecars ────────────────────────────────────────────────────────────────────────────
-function load(name: string): any {
-    const p = path.join(LOGS, 'data', name);
-    if (!fs.existsSync(p)) {
-        console.error(`Missing ${name} — run \`npm run eval:tools\` / \`npm run eval:token\` first.`);
-        process.exit(1);
-    }
-    return JSON.parse(fs.readFileSync(p, 'utf-8'));
+// ── naive baseline: dumb keyword retrieval capped to MCP's answer length (folded in from token.ts) ──
+// The control: if MCP beats naive at the SAME answer size, the lift comes from the AGENT choosing moves,
+// not from spending more tokens. Deterministic (no LLM); needs the code index.
+const STOP = new Set(['the', 'a', 'an', 'is', 'are', 'how', 'what', 'where', 'does', 'do', 'in', 'on', 'of', 'to', 'and', 'from', 'for', 'with', 'rocket', 'chat', 'rocketchat', 'side', 'work', 'works', 'new', 'get', 'use', 'used', 'using']);
+function queryTerms(question: string): string[] {
+    const camel = question.match(/\b[a-z]+[A-Z][A-Za-z]+\b|\b[A-Z][a-z]+[A-Z][A-Za-z]+\b/g) ?? [];
+    const words = (question.toLowerCase().match(/[a-z][a-z0-9]{3,}/g) ?? []).filter(w => !STOP.has(w));
+    return Array.from(new Set([...camel, ...words.sort((a, b) => b.length - a.length)])).slice(0, 12);
 }
-const tools: any[] = load('tools-data.json');   // per-tc retrieval/order/sanity
-const token = load('token-data.json');          // { avgCov0, avgCovN, avgCov2, avgTok0, avgTok2, … }
-
-// ── derive agent gather/synth metrics from the saved answers (was eval-3's mechanical block) ───
-interface AgentRow {
-    id: string; type: string; question: string;
-    coreN: number; coreWritten: number; coreCov: number; seen: boolean; errored: boolean;
-    retrievalRecall: number; synthRecall: number; dropped: number;
-}
-const { flat: testcases } = loadTestcases(path.join(__dirname, 'utils', 'testcases.json'));
-const agent: AgentRow[] = testcases.map(tc => {
-    const mcpFile = path.join(D_MCP, `${tc.id}.md`);
-    const a2 = readSection(mcpFile, '## Gemini Answer', ['## Tool Calls']);
-    // Guard: readSection falls back to the whole file when the marker is absent. Answers generated
-    // before seen-files tracking lack this section → treat as "no seen data".
-    const SEEN_MARKER = '## Files Seen In Tool Results';
-    const hasSeen = (() => { try { return fs.readFileSync(mcpFile, 'utf-8').includes(SEEN_MARKER); } catch { return false; } })();
-    const seenText = hasSeen ? readSection(mcpFile, SEEN_MARKER, []) : '';
-    const seenFiles = extractCitedFiles(seenText);
-
-    const core = (tc.core && tc.core.length ? tc.core : tc.groundTruthFiles) ?? [];
-    const retrieved = core.filter(f => seenFiles.some(s => fileMatches(s, f)) || fileMatches(seenText, f));
-    const written = core.filter(f => fileMatches(a2, f));
-    const writtenOfRetrieved = retrieved.filter(f => fileMatches(a2, f));
-    const retrievalRecall = core.length ? retrieved.length / core.length : 1;       // tools surfaced it
-    const synthRecall = retrieved.length ? writtenOfRetrieved.length / retrieved.length : 1; // …and agent wrote it
-    const dropped = retrieved.filter(f => !fileMatches(a2, f)).length; // retrieved but not written
-    const coreCov = core.length ? written.length / core.length : 0;
-    // Infra failures (empty / "ERROR …" e.g. Gemini 503) are excluded from capability averages.
-    const errored = !a2.trim() || /^ERROR\b/.test(a2.trim());
-
-    return {
-        id: tc.id, type: tc.questionType, question: tc.question,
-        coreN: core.length, coreWritten: written.length, coreCov, seen: hasSeen, errored,
-        retrievalRecall, synthRecall, dropped,
-    };
-});
-
-// ── manual verdicts (src/eval/verdicts.md) ─────────────────────────────────────────────────────
-const verdicts = new Map<string, { verdict: string; mode: string; reason: string }>();
-try {
-    const md = fs.readFileSync(path.join(__dirname, 'verdicts.md'), 'utf-8');
-    for (const line of md.split('\n')) {
-        const m = line.match(/^\|\s*([\w-]+)\s*\|\s*(PASS|PARTIAL|FAIL)\s*\|\s*([\w—-]+)\s*\|\s*(.*?)\s*\|/i);
-        if (m && m[1] !== 'id') verdicts.set(m[1], { verdict: m[2].toUpperCase(), mode: m[3], reason: m[4] });
+async function naiveCoverage(question: string, answerChars: number, core: string[], syms: string[]): Promise<number> {
+    const charBudget = Math.max(1, answerChars);
+    const parts: string[] = [];
+    let chars = 0;
+    for (const q of queryTerms(question)) {
+        if (chars >= charBudget) break;
+        for (const call of [
+            () => handleToolCall('search', { query: q }),
+            () => handleToolCall('graph', { query: q, move: 'expand', depth: 2 }),
+        ]) {
+            if (chars >= charBudget) break;
+            const res = await call();
+            const txt = res?.content?.[0]?.text ?? '';
+            if (!txt) continue;
+            parts.push(txt);
+            chars += txt.length;
+        }
     }
-} catch { /* verdicts pending */ }
+    return coverage(parts.join('\n').slice(0, charBudget), core, syms);
+}
 
-// Resolve each testcase's plan intent for routing accuracy: prefer the untruncated `## Plan` line
-// (new answers), else recover from the truncated plan({..."intent":"arc}) args, else classify offline.
-function resolveIntent(mcpFile: string, question: string): { intent: string | null; source: 'plan' | 'prefix' | 'classifier' } {
+// Resolve each testcase's plan intent for the routing triage (mechanical): ## Plan line → truncated
+// plan({..."intent":"arc}) args prefix → offline classifier fallback.
+function resolveIntent(mcpFile: string, question: string): string | null {
     let txt = ''; try { txt = fs.readFileSync(mcpFile, 'utf-8'); } catch { /* */ }
     const planLine = txt.match(/##\s*Plan[\s\S]*?intent:\s*([\w-]+)/i);
-    if (planLine && (INTENTS as string[]).includes(planLine[1])) return { intent: planLine[1], source: 'plan' };
+    if (planLine && (INTENTS as string[]).includes(planLine[1])) return planLine[1];
     const prefix = txt.match(/"intent"\s*:\s*"([a-z-]+)/i);
-    if (prefix && prefix[1]) {
-        const hit = (INTENTS as string[]).find(i => i.startsWith(prefix[1]));
-        if (hit) return { intent: hit, source: 'prefix' };
+    if (prefix && prefix[1]) { const hit = (INTENTS as string[]).find(i => i.startsWith(prefix[1])); if (hit) return hit; }
+    return classifyIntent(question);
+}
+
+function load(name: string): any {
+    const p = path.join(LOGS, 'data', name);
+    if (!fs.existsSync(p)) { console.error(`Missing ${name} — run \`npm run eval:tools\` first.`); process.exit(1); }
+    return JSON.parse(fs.readFileSync(p, 'utf-8'));
+}
+
+async function main() {
+    await ensureIndex();   // for the naive control (handleToolCall)
+    const tools: any[] = load('tools-data.json');
+    const byTools = new Map(tools.map(r => [r.id, r]));
+    const { flat: testcases } = loadTestcases(path.join(__dirname, 'utils', 'testcases.json'));
+    const SEEN_MARKER = '## Files Seen In Tool Results';
+
+    const rows: any[] = [];
+    for (const tc of testcases) {
+        const mcpFile = path.join(D_MCP, `${tc.id}.md`);
+        const nomcpFile = path.join(D_NOMCP, `${tc.id}.md`);
+        const core = (tc.core && tc.core.length ? tc.core : tc.groundTruthFiles) ?? [];
+        const syms = tc.keySymbols ?? [];
+        const a2 = readSection(mcpFile, '## Gemini Answer', ['## Tool Calls']);
+        const a0 = readSection(nomcpFile, '## Baseline Answer (no tools)', ['## Metrics']);
+        const hasSeen = (() => { try { return fs.readFileSync(mcpFile, 'utf-8').includes(SEEN_MARKER); } catch { return false; } })();
+        const seenText = hasSeen ? readSection(mcpFile, SEEN_MARKER, []) : '';
+        const seenFiles = extractCitedFiles(seenText);
+
+        const retrieved = core.filter((f: string) => seenFiles.some((s: string) => fileMatches(s, f)) || fileMatches(seenText, f));
+        const written = core.filter((f: string) => fileMatches(a2, f));
+        const retrievalRecall = core.length ? retrieved.length / core.length : 1;   // surfaced
+        const synthRecall = retrieved.length ? retrieved.filter((f: string) => fileMatches(a2, f)).length / retrieved.length : 1;
+        const dropped = retrieved.filter((f: string) => !fileMatches(a2, f)).length;
+        const coreCov = core.length ? written.length / core.length : 0;
+        const errored = !a2.trim() || /^ERROR\b/.test(a2.trim());
+
+        const cov0 = coverage(a0, core, syms), cov2 = coverage(a2, core, syms);
+        const covN = await naiveCoverage(tc.question, a2.length, core, syms);
+        const tok0 = tokensOf(nomcpFile, /\| Tokens \| ([\d,]+) \|/);
+        const tok2 = tokensOf(mcpFile, /## Tool Calls \(\d+ calls, ([\d,]+) tokens\)/);
+
+        const a = byTools.get(tc.id) ?? {};
+        const type = tc.questionType ?? a.subsystem ?? '?';
+        const r50 = a.recallAt50 ?? a.recallAt20 ?? 0;
+        const routeOk = resolveIntent(mcpFile, tc.question ?? '') === type;
+        // Auto-triage: mechanical, front→back, first trip wins. NO semantic judgment.
+        const stage = errored ? 'err'
+            : coreCov >= 0.5 ? 'ok'
+                : !routeOk ? 'route'
+                    : r50 < 0.3 ? 'search'
+                        : retrievalRecall < 0.5 ? 'graph'
+                            : synthRecall < 0.7 ? 'synth' : 'ok';
+
+        rows.push({
+            id: tc.id, type,
+            recallAt5: a.recallAt5 ?? 0, recallAt10: a.recallAt10 ?? 0, recallAt20: a.recallAt20 ?? 0, recallAt50: r50,
+            diagnosis: a.diagnosis ?? 'n/a', orderApplicable: !!a.orderApplicable, orderScore: a.orderScore ?? 1,
+            fileRecall: a.fileRecall ?? 0, symRecall: a.symRecall ?? 0, graphReach: a.graphReach ?? null,
+            coreN: core.length, coreWritten: written.length, coreCov, retrievalRecall, synthRecall, dropped, errored,
+            cov0, covN, cov2, tok0, tok2, routeOk, stage,
+        });
     }
-    return { intent: classifyIntent(question), source: 'classifier' };
-}
 
-// ── joined rows ──────────────────────────────────────────────────────────────────────────────
-interface J {
-    id: string; type: string;
-    fileRecall: number; symRecall: number; graphReach: number | null;   // G0
-    recallAt5: number; recallAt10: number; recallAt20: number; recallAt50: number; diagnosis: string; // G1 (ranking depth)
-    orderApplicable: boolean; orderScore: number; orderPass: boolean;   // G1.5
-    retrievalRecall: number; coreN: number; coreWritten: number; seen: boolean; // G2
-    synthRecall: number; coreCov: number; dropped: number;             // G3
-    errored: boolean;
-    verdict: string | null;
-    resolvedIntent: string | null; intentSource: string; routeOk: boolean | null;
-    failureMode: string | null; fault: 'agent' | 'engine' | null; bindingTool: string;
-}
-// map each failure mode to the pipeline stage it belongs to, so `binding` stays consistent with `mode`.
-const MODE_TO_STAGE: Record<string, string> = {
-    misrouted: 'route', 'weak-query': 'search', 'engine-unrankable': 'search',
-    'no-pivot': 'graph', 'gave-up': 'graph', 'wrong-subsystem': 'graph',
-    'dropped-synth': 'synth', 'sloppy-source': 'synth',
-};
-const byTools = new Map(tools.map(r => [r.id, r]));
-const rows: J[] = agent.map(b => {
-    const a = byTools.get(b.id) ?? {};
-    const v = verdicts.get(b.id);
-    const type = b.type ?? a.subsystem ?? '?';
-    const r50 = a.recallAt50 ?? a.recallAt20 ?? 0;
-    const { intent, source } = resolveIntent(path.join(D_MCP, `${b.id}.md`), b.question);
-    const routeOk = v ? (intent === type) : null;
-    // failure mode: semantic label from verdicts.md wins; else mechanical fallback from R@50/gather/synth.
-    const mode: string | null = (v && v.mode && v.mode !== '—') ? v.mode
-        : !v ? null
-        : v.verdict === 'PASS' ? null
-        : routeOk === false ? 'misrouted'
-        : r50 < 0.3 ? 'engine-unrankable'
-        : b.retrievalRecall < 0.5 ? 'no-pivot'
-        : b.synthRecall < 0.7 ? 'dropped-synth' : 'no-pivot';
-    const fault: 'agent' | 'engine' | null = mode ? (mode === 'engine-unrankable' ? 'engine' : 'agent') : null;
-    // binding = the pipeline stage of the (authoritative) semantic failure mode; PASS → ok.
-    const bindingTool = (!v || v.verdict === 'PASS') ? 'ok' : (mode ? (MODE_TO_STAGE[mode] ?? 'graph') : 'graph');
-    return {
-        id: b.id, type,
-        fileRecall: a.fileRecall ?? 0, symRecall: a.symRecall ?? 0, graphReach: a.graphReach ?? null,
-        recallAt5: a.recallAt5 ?? 0, recallAt10: a.recallAt10 ?? 0, recallAt20: a.recallAt20 ?? 0,
-        recallAt50: r50, diagnosis: a.diagnosis ?? 'n/a',
-        orderApplicable: !!a.orderApplicable, orderScore: a.orderScore ?? 1, orderPass: a.orderPass ?? true,
-        retrievalRecall: b.retrievalRecall, coreN: b.coreN, coreWritten: b.coreWritten, seen: b.seen,
-        synthRecall: b.synthRecall, coreCov: b.coreCov, dropped: b.dropped,
-        errored: b.errored,
-        verdict: v?.verdict ?? null,
-        resolvedIntent: intent, intentSource: source, routeOk,
-        failureMode: mode, fault, bindingTool,
-    };
-});
+    const n = rows.length;
+    const mean = (xs: number[]) => xs.length ? xs.reduce((s, v) => s + v, 0) / xs.length : 0;
+    const sum = (xs: number[]) => xs.reduce((s, v) => s + v, 0);
+    const pct = (x: number) => `${(x * 100).toFixed(0)}%`;
+    const live = rows.filter(r => !r.errored);
+    const erroredIds = rows.filter(r => r.errored).map(r => r.id);
 
-// Binding stage per row is computed inline as `bindingTool` (route→search→graph→synth); see the
-// rows.map above. The old G1/G2/G3 bottleneck() classifier was retired in the pipeline redesign.
-// Log artifact: agent WROTE more core than the seen-log recorded as retrieved (G2 under-counts).
-const undercounts = (j: J) => j.coreN > 0 && j.retrievalRecall * j.coreN + 1e-9 < j.coreWritten;
+    const avgCov0 = mean(rows.map(r => r.cov0)), avgCovN = mean(rows.map(r => r.covN)), avgCov2 = mean(rows.map(r => r.cov2));
+    const avgTok0 = mean(rows.map(r => r.tok0)), avgTok2 = mean(rows.map(r => r.tok2));
 
-// ── aggregates ─────────────────────────────────────────────────────────────────────────────────
-const pct = (x: number) => `${(x * 100).toFixed(0)}%`;
-const mean = (xs: number[]) => (xs.length ? xs.reduce((s, v) => s + v, 0) / xs.length : 0);
-const live = rows.filter(r => !r.errored);              // capability rows (drop infra failures)
-const erroredIds = rows.filter(r => r.errored).map(r => r.id);
+    const liveCore = live.filter(r => r.coreN > 0);
+    const sumCore = sum(liveCore.map(r => r.coreN));
+    const sumRetr = sum(liveCore.map(r => Math.min(r.coreN, Math.round(r.retrievalRecall * r.coreN))));
+    const sumWrit = sum(liveCore.map(r => r.coreWritten));
+    const fRetr = sumCore ? sumRetr / sumCore : 0, fWrit = sumCore ? sumWrit / sumCore : 0;
+    const synthRate = sumRetr ? Math.min(1, sumWrit / sumRetr) : 0;
+    const totalDropped = rows.reduce((s, r) => s + r.dropped, 0);
+    const poolR = (get: (r: any) => number) => sumCore ? sum(liveCore.map(r => get(r) * r.coreN)) / sumCore : 0;
+    const r5 = poolR(r => r.recallAt5), r10 = poolR(r => r.recallAt10), r20 = poolR(r => r.recallAt20), r50 = poolR(r => r.recallAt50);
+    const cnt = (f: number) => Math.round(f * sumCore);
+    const g0file = mean(rows.map(r => r.fileRecall)), g0sym = mean(rows.map(r => r.symRecall));
+    const g0graph = mean(rows.filter(r => r.graphReach != null).map(r => r.graphReach as number));
+    const g15rows = rows.filter(r => r.orderApplicable);
+    const g15 = mean(g15rows.map(r => r.orderScore));
 
-const g0file = mean(rows.map(r => r.fileRecall));
-const g0sym = mean(rows.map(r => r.symRecall));
-const g0graph = mean(rows.filter(r => r.graphReach != null).map(r => r.graphReach as number));
-const g15rows = rows.filter(r => r.orderApplicable);
-const g15 = mean(g15rows.map(r => r.orderScore));
-const totalDropped = rows.reduce((s, r) => s + r.dropped, 0);
+    const short: Record<string, string> = { architecture: 'arch', 'call-chain': 'chain', locate: 'loc', pattern: 'patt', routing: 'rout', impact: 'imp' };
+    const bar = (x: number) => '█'.repeat(Math.round(x * 30)).padEnd(30, '░');
+    const rowbar = (label: string, f: number, tail = '') => `${label.padEnd(30)} ${pct(f).padStart(4)}  ${bar(f)} ${tail}`;
+    const L: string[] = [];
+    L.push(`# metrics — quantitative pipeline report (no semantic analysis)\n`);
+    L.push(`${new Date().toLocaleString('en-US')} | ${n} testcases | deterministic (index + answers + tools-data), NO verdicts. Semantic analysis lives in logs/reports/verdicts.md.\n`);
+    if (erroredIds.length) L.push(`> ⚠ ${erroredIds.length} infra failure(s) excluded from averages: ${erroredIds.join(', ')} (empty / 503).\n`);
 
-const diagDist = new Map<string, number>();
-for (const r of rows) diagDist.set(r.diagnosis, (diagDist.get(r.diagnosis) ?? 0) + 1);
+    // 1 — value
+    L.push(`## 1. Value — do the tools help?\n`);
+    L.push(`| | no-MCP | naive @ same answer size | with MCP |`);
+    L.push(`|---|---:|---:|---:|`);
+    L.push(`| Avg coverage | ${pct(avgCov0)} | ${pct(avgCovN)} | ${pct(avgCov2)} |`);
+    L.push(`| Avg tokens / question | ${Math.round(avgTok0).toLocaleString()} | ~${Math.round(avgTok2).toLocaleString()} | ${Math.round(avgTok2).toLocaleString()} |`);
+    L.push('');
+    L.push(`**The agent's navigation adds +${((avgCov2 - avgCov0) * 100).toFixed(0)} pts over pure LLM, +${((avgCov2 - avgCovN) * 100).toFixed(0)} over same-budget keyword dump** — the lift is choosing moves, not just spending tokens.\n`);
 
-// ── render ───────────────────────────────────────────────────────────────────────────────────
-const short: Record<string, string> = { architecture: 'arch', 'call-chain': 'chain', locate: 'loc', pattern: 'patt', routing: 'rout', impact: 'imp' };
-const L: string[] = [];
-L.push(`# Unified report — verdicts · token · funnel · attribution\n`);
-L.push(`${new Date().toLocaleString('en-US')} | ${rows.length} testcases | joined from tools/token sidecars + answers + verdicts.md (deterministic)\n`);
-if (erroredIds.length) L.push(`> ⚠ ${erroredIds.length} infra failure(s) excluded from capability averages: ${erroredIds.join(', ')} (empty / 503).\n`);
+    // 2 — funnel
+    L.push(`## 2. The agent funnel — of the same ${sumCore} core files, how many the agent surfaces then writes\n`);
+    L.push(`> Pooled per-file fractions from the ACTUAL multi-turn run (seen-log → written). R@k below is a single-query PROBE (tool ceiling), NOT a stage the agent flows through.\n`);
+    L.push('```');
+    L.push(rowbar('INDEX  indexed & reachable', 1));
+    L.push(rowbar('AGENT  surfaced (seen-log)', fRetr, `<- ${pct(1 - fRetr)} never surfaced`));
+    L.push(rowbar('AGENT  written (answer)', fWrit, `<- synth ${pct(synthRate)} of surfaced, drops ${totalDropped}`));
+    L.push('```');
+    L.push(`\n**Two agent stages** (÷ ${sumCore}): not-surfaced ${pct(1 - fRetr)} (${cnt(1 - fRetr)} files) · surfaced-but-not-written ${pct(Math.max(0, fRetr - fWrit))} (${totalDropped} files).`);
+    L.push(`> Single-query probe (tool capability, NOT the agent path): R@5/10/20/50 = ${pct(r5)}/${pct(r10)}/${pct(r20)}/${pct(r50)}. Of "never surfaced": ~${pct(1 - r50)} never rank in top-50 (engine) vs ~${pct(Math.max(0, r50 - fRetr))} rank-but-skipped (agent loop).`);
+    L.push(`> Floor: substring recall file ${pct(g0file)} / sym ${pct(g0sym)} · graph reachability ${pct(g0graph)} · chain-order LCS ${pct(g15)} (${g15rows.length} ordered Qs).\n`);
 
-// 1 — headline: manual semantic verdicts
-L.push(`## 1. Headline — semantic verdicts (manual, verdicts.md)\n`);
-if (verdicts.size > 0) {
-    const counts = { PASS: 0, PARTIAL: 0, FAIL: 0 } as Record<string, number>;
-    for (const r of rows) if (r.verdict) counts[r.verdict] = (counts[r.verdict] ?? 0) + 1;
-    const judged = rows.filter(r => r.verdict).length;
-    L.push(`**PASS ${counts.PASS} / PARTIAL ${counts.PARTIAL} / FAIL ${counts.FAIL}** (${judged}/${rows.length} judged)\n`);
-    if (judged < rows.length) L.push(`> ⚠ ${rows.length - judged} answers not yet judged — refresh verdicts.md.\n`);
-} else {
-    L.push(`_Pending — no verdicts in src/eval/verdicts.md yet. Judge each answer in logs/answers-gemini-mcp-selfloop/ after gen --mode=mcp; single-run PASS counts are noisy, judge trends._\n`);
-}
-
-// 2 — token efficiency (orthogonal axis)
-L.push(`## 2. Token efficiency — is the graph worth its tokens? (token)\n`);
-L.push(`| | no-MCP | naive @ same answer size | with MCP |`);
-L.push(`|---|---:|---:|---:|`);
-L.push(`| Avg coverage | ${pct(token.avgCov0)} | ${pct(token.avgCovN)} | ${pct(token.avgCov2)} |`);
-L.push(`| Avg tokens / question | ${Math.round(token.avgTok0).toLocaleString()} | ~${Math.round(token.avgTok2).toLocaleString()} | ${Math.round(token.avgTok2).toLocaleString()} |`);
-L.push('');
-
-// 3 — agent behavior diagnosis: what did the agent do wrong, agent-fault vs engine-fault?
-L.push(`## 3. Agent behavior diagnosis — agent-fault vs engine-fault\n`);
-const passN = rows.filter(r => r.verdict === 'PASS').length;
-const nonPass = rows.filter(r => r.verdict && r.verdict !== 'PASS');
-const agentFaultN = nonPass.filter(r => r.fault === 'agent').length;
-const engineFaultN = nonPass.filter(r => r.fault === 'engine').length;
-L.push(`**${passN}/${rows.length} PASS · of the ${nonPass.length} non-PASS: ${agentFaultN} agent-fault (fix prompt/plan/loop) · ${engineFaultN} engine-fault (fix ranking).**\n`);
-const MODE_LEVER: Record<string, string> = {
-    'misrouted': 'plan / intent.ts keyword table',
-    'weak-query': 'search query terms / seeds',
-    'no-pivot': 'graph expand/down/up depth+direction',
-    'gave-up': "gen prompt (don't stop early)",
-    'wrong-subsystem': 'plan strategy / architecture.json hint',
-    'dropped-synth': 'gen prompt (write what you saw)',
-    'sloppy-source': 'gen prompt (cite real load-bearing files)',
-    'engine-unrankable': 'ENGINE: retrieval ranking (not agent)',
-};
-const byMode = new Map<string, string[]>();
-for (const r of nonPass) { const k = r.failureMode ?? 'unclassified'; if (!byMode.has(k)) byMode.set(k, []); byMode.get(k)!.push(r.id); }
-L.push(`| failure mode | fault | # | testcases | fix-lever |`);
-L.push(`|---|---|---:|---|---|`);
-for (const [m, ids] of [...byMode].sort((a, b) => b[1].length - a[1].length)) {
-    const f = m === 'engine-unrankable' ? 'engine' : 'agent';
-    L.push(`| ${m} | ${f} | ${ids.length} | ${ids.join(', ')} | ${MODE_LEVER[m] ?? '—'} |`);
-}
-L.push('');
-
-// 4 — the funnel (TRUE cumulative funnel: share of ALL core files still alive at each stage).
-// SAME DENOMINATOR for every stage: sumCore over the same liveCore row-set. Pooled file counts, not
-// averages-of-ratios, so 100% → X% → Y% is monotonic. A file passes through only two stages: the agent
-// surfaces it (retrieval), then writes it (synthesis). R@10 / chain-order are DIAGNOSTICS that explain
-// the retrieval leak — not sequential stages, so they sit below the funnel.
-const sum = (xs: number[]) => xs.reduce((s, v) => s + v, 0);
-const liveCore = live.filter(r => r.coreN > 0);
-const sumCore = sum(liveCore.map(r => r.coreN));                                                   // the ONE denominator
-const sumRetr = sum(liveCore.map(r => Math.min(r.coreN, Math.round(r.retrievalRecall * r.coreN))));
-const sumWrit = sum(liveCore.map(r => r.coreWritten));
-const fRetr = sumCore ? sumRetr / sumCore : 0;
-const fWrit = sumCore ? sumWrit / sumCore : 0;
-const synthRate = sumRetr ? Math.min(1, sumWrit / sumRetr) : 0;
-// pooled single-query recall at each ranking depth (nested subsets of the same sumCore → monotonic)
-const poolR = (get: (r: J) => number) => sumCore ? sum(liveCore.map(r => get(r) * r.coreN)) / sumCore : 0;
-const r5 = poolR(r => r.recallAt5), r10 = poolR(r => r.recallAt10), r20 = poolR(r => r.recallAt20), r50 = poolR(r => r.recallAt50);
-const cnt = (f: number) => Math.round(f * sumCore);
-const bar = (x: number) => '█'.repeat(Math.round(x * 30)).padEnd(30, '░');
-const row = (label: string, f: number, tail = '') => `${label.padEnd(30)} ${pct(f).padStart(4)}  ${bar(f)} ${tail}`;
-L.push(`## 4. The agent funnel — of the same ${sumCore} core files, how many the agent surfaces then writes\n`);
-L.push(`> Pooled per-file fractions from the ACTUAL multi-turn agent run (seen-log → written). This is the agent's real path — a single-query ranking probe (R@k) is NOT a stage the agent flows through; it lives in §5 (search tool-capability).\n`);
-L.push('```');
-L.push(`INDEX (floor)`);
-L.push(row('  indexed & graph-reachable', 1));
-L.push(`AGENT surfaced — seen across the multi-turn loop`);
-L.push(row('  surfaced by agent loop', fRetr, `<- ${pct(1 - fRetr)} never surfaced`));
-L.push(`AGENT written — synthesised into the answer`);
-L.push(row('  written into the answer', fWrit, `<- synth ${pct(synthRate)} of surfaced, drops ${totalDropped}`));
-L.push('```');
-L.push(`\n**Two agent stages, sized** (all ÷ ${sumCore}):`);
-L.push(`- **not surfaced: ${pct(1 - fRetr)}** — ${cnt(1 - fRetr)} core files the agent never pulled into a tool result. The single-query probe (§5) splits this: ~${pct(1 - r50)} never rank even in top-50 (**tool ceiling / engine**) vs ~${pct(Math.max(0, r50 - fRetr))} rank but the loop skipped them (**agent**).`);
-L.push(`- **surfaced-but-not-written: ${pct(Math.max(0, fRetr - fWrit))}** — ${totalDropped} files seen but not written (**agent / synthesis**).\n`);
-L.push(`> Floor: file ${pct(g0file)} / sym ${pct(g0sym)} / graph ${pct(g0graph)} reachable. Seen-log under-counts retrieval on \`*\` rows → ${pct(fRetr)} surfaced is a lower bound.\n`);
-
-// 5 — per-tool scorecards
-L.push(`## 5. Stage contribution — real, end-to-end (no isolation experiments)\n`);
-L.push(`> Real numbers from the ACTUAL multi-turn run — NOT isolated per-tool capability (that needs ablation/oracle, deliberately not run). search & graph aren't separable end-to-end, so they're one row.\n`);
-L.push(`**Do the tools help? Coverage no-MCP ${pct(token.avgCov0)} → naive ${pct(token.avgCovN)} → MCP ${pct(token.avgCov2)}** — the agent's navigation adds **+${((token.avgCov2 - token.avgCov0) * 100).toFixed(0)} pts over pure LLM, +${((token.avgCov2 - token.avgCovN) * 100).toFixed(0)} over same-budget keyword dump.**\n`);
-const routeKnown = rows.filter(r => r.verdict).length;
-const routeHit = rows.filter(r => r.routeOk === true).length;
-const bindN = (t: string) => rows.filter(r => r.bindingTool === t).length;
-L.push(`| stage | real metric (this run) | leak (real) | fix-lever |`);
-L.push(`|---|---|---|---|`);
-L.push(`| plan (route) | intent = question type in ${routeHit}/${routeKnown} | misroute cost unmeasured (needs oracle) | intent.ts / architecture.json |`);
-L.push(`| retrieval (search+graph) | surfaced ${pct(fRetr)} of core · R@50 ceiling ${pct(r50)} (probe) · chain-order ${pct(g15)} | ${pct(1 - fRetr)} never surfaced | seeds / ranking / graph depth |`);
-L.push(`| synth (write) | wrote ${pct(synthRate)} of what it surfaced | dropped ${totalDropped} files | gen prompt |`);
-L.push(`| details | fetch — negligible leak | — | — |`);
-L.push('');
-L.push(`Where each non-PASS is blocked (semantic binding stage): graph ${bindN('graph')} · search ${bindN('search')} · synth ${bindN('synth')}${bindN('route') ? ` · route ${bindN('route')}` : ''}.\n`);
-
-// 6 — detail table
-L.push(`## 6. Detail — every testcase × every stage\n`);
-L.push(`Diag: rm=recall-miss · rl=ranked-low · mx=mixed · ok. route ✓/✗ = plan intent vs question type. \`*\` on gather = seen-log under-counts. binding = first leaking stage (route→search→graph→synth).\n`);
-L.push(`| # | id | type | route | R@10·diag | gather | synth | end cov | mode | verdict | binding | reason |`);
-L.push(`|---|---|---|:-:|---|---:|---:|---:|---|---|---|---|`);
-rows.forEach((r, i) => {
+    // 3 — auto-triage
+    L.push(`## 3. Auto-triage — mechanical "suspected stage" per testcase (no semantic judgment)\n`);
+    L.push(`> Front→back, first trip wins, numbers only: route (intent≠type) → search (R@50<30%) → graph (surfaced<50%) → synth (synth<70%); ok if end coverage ≥50%. Flags WHICH question + stage to inspect — the WHY is in verdicts.md.\n`);
+    const dist = new Map<string, number>();
+    for (const r of rows) dist.set(r.stage, (dist.get(r.stage) ?? 0) + 1);
+    L.push(`**Suspected-stage distribution:** ${[...dist].sort((a, b) => b[1] - a[1]).map(([t, c]) => `${t} ${c}`).join(' · ')}.\n`);
+    L.push(`| # | id | type | route | R@10·diag | surfaced | synth | end cov | suspected stage |`);
+    L.push(`|---|---|---|:-:|---|---:|---:|---:|---|`);
     const diagAbbr: Record<string, string> = { 'recall-miss': 'rm', 'ranked-low': 'rl', 'mixed': 'mx', 'ok': 'ok', 'n/a': '—' };
-    const routec = r.routeOk == null ? '—' : r.routeOk ? '✓' : '✗';
-    const g1c = `${pct(r.recallAt10)} ${diagAbbr[r.diagnosis] ?? r.diagnosis}`;
-    const g2c = r.errored ? '—' : pct(r.retrievalRecall) + (undercounts(r) ? '*' : '');
-    const g3c = r.errored ? '—' : pct(r.synthRecall);
-    const endc = r.errored ? '—' : `${r.coreWritten}/${r.coreN} ${pct(r.coreCov)}`;
-    const reasonc = (verdicts.get(r.id)?.reason ?? '—').replace(/\|/g, '\\|');
-    L.push(`| ${i + 1} | ${r.id} | ${short[r.type] ?? r.type} | ${routec} | ${g1c} | ${g2c} | ${g3c} | ${endc} | ${r.failureMode ?? '—'} | ${r.verdict ?? '—'} | ${r.bindingTool} | ${reasonc} |`);
-});
-L.push('');
-// binding-tool distribution
-const dist = new Map<string, number>();
-for (const r of rows) dist.set(r.bindingTool, (dist.get(r.bindingTool) ?? 0) + 1);
-L.push(`**Binding-tool distribution:** ${[...dist].sort((a, b) => b[1] - a[1]).map(([t, c]) => `${t} ${c}`).join(' · ')}.\n`);
+    rows.forEach((r, i) => {
+        const routec = r.routeOk == null ? '—' : r.routeOk ? '✓' : '✗';
+        const g1c = `${pct(r.recallAt10)} ${diagAbbr[r.diagnosis] ?? r.diagnosis}`;
+        const surf = r.errored ? '—' : pct(r.retrievalRecall);
+        const syn = r.errored ? '—' : pct(r.synthRecall);
+        const endc = r.errored ? '—' : `${r.coreWritten}/${r.coreN} ${pct(r.coreCov)}`;
+        L.push(`| ${i + 1} | ${r.id} | ${short[r.type] ?? r.type} | ${routec} | ${g1c} | ${surf} | ${syn} | ${endc} | ${r.stage} |`);
+    });
+    L.push('');
 
-// summary by type
-L.push(`### By question type\n`);
-L.push(`| type | n | avg R@10 | end cov | binding |`);
-L.push(`|---|---:|---:|---:|---|`);
-const typeOrder = ['architecture', 'call-chain', 'locate', 'pattern', 'routing', 'impact'];
-const types = [...new Set(rows.map(r => r.type))].sort((a, b) => (typeOrder.indexOf(a) + 1 || 99) - (typeOrder.indexOf(b) + 1 || 99));
-for (const t of types) {
-    const g = rows.filter(r => r.type === t);
-    const gl = g.filter(r => !r.errored);
-    const avgR = mean(g.map(r => r.recallAt10));
-    const avgEnd = mean(gl.filter(r => r.coreN > 0).map(r => r.coreCov));
-    const bd = new Map<string, number>();
-    for (const r of g) bd.set(r.bindingTool, (bd.get(r.bindingTool) ?? 0) + 1);
-    const bdStr = [...bd].sort((a, b) => b[1] - a[1]).map(([k, c]) => `${k}${c > 1 ? '×' + c : ''}`).join(', ');
-    L.push(`| ${t} | ${g.length} | ${pct(avgR)} | ${pct(avgEnd)} | ${bdStr} |`);
+    fs.mkdirSync(path.join(LOGS, 'reports'), { recursive: true });
+    fs.writeFileSync(OUT, L.join('\n'), 'utf-8');
+    console.error(`Wrote logs/reports/metrics.md`);
+    console.log(`metrics: coverage no-MCP ${pct(avgCov0)} / naive ${pct(avgCovN)} / MCP ${pct(avgCov2)} | funnel surfaced ${pct(fRetr)} → written ${pct(fWrit)} | triage ${[...dist].sort((a, b) => b[1] - a[1]).map(([t, c]) => `${t}:${c}`).join(' ')}`);
 }
-L.push('');
 
-fs.writeFileSync(OUT, L.join('\n'), 'utf-8');
-console.error(`Wrote logs/report.md`);
-const vStr = verdicts.size ? `verdicts ${rows.filter(r => r.verdict === 'PASS').length}P/${rows.filter(r => r.verdict === 'PARTIAL').length}p/${rows.filter(r => r.verdict === 'FAIL').length}F` : 'verdicts pending';
-console.log(`report: ${vStr} | funnel (n=${sumCore}) indexed 100% → top50 ${pct(r50)} → surfaced ${pct(fRetr)} → written ${pct(fWrit)}${erroredIds.length ? ` | ${erroredIds.length} infra excluded` : ''}`);
+main().catch(e => { console.error('Fatal:', e); process.exit(2); });
