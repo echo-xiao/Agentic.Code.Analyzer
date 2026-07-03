@@ -1,15 +1,15 @@
 # metrics — quantitative pipeline report (no semantic analysis)
 
-7/2/2026, 1:53:18 PM | 34 testcases | deterministic (index + answers + tools-data), NO verdicts. Semantic analysis lives in logs/reports/verdicts.md.
+7/2/2026, 7:25:39 PM | 34 testcases | deterministic (index + answers + tools-data), NO verdicts. Semantic analysis lives in logs/reports/verdicts.md.
 
 ## 1. Value — do the tools help?
 
 | | no-MCP | naive @ same answer size | with MCP |
 |---|---:|---:|---:|
-| Avg coverage | 14% | 12% | 45% |
-| Avg tokens / question | 5,013 | ~23,135 | 23,135 |
+| Avg coverage | 14% | 9% | 49% |
+| Avg tokens / question | 5,013 | ~27,307 | 27,307 |
 
-**The agent's navigation adds +31 pts over pure LLM, +33 over same-budget keyword dump** — the lift is choosing moves, not just spending tokens.
+**The agent's navigation adds +35 pts over pure LLM, +40 over same-budget keyword dump** — the lift is choosing moves, not just spending tokens.
 
 ## 2. The agent funnel — of the same 124 core files, how many the agent surfaces then writes
 
@@ -17,58 +17,58 @@
 
 ```
 INDEX  indexed & reachable     100%  ██████████████████████████████ 
-AGENT  surfaced (seen-log)      51%  ███████████████░░░░░░░░░░░░░░░ <- 49% never surfaced
-AGENT  written (answer)         40%  ████████████░░░░░░░░░░░░░░░░░░ <- synth 78% of surfaced, drops 14
+AGENT  surfaced (seen-log)      52%  ████████████████░░░░░░░░░░░░░░ <- 48% never surfaced
+AGENT  written (answer)         42%  █████████████░░░░░░░░░░░░░░░░░ <- synth 80% of surfaced, drops 13
 ```
 
-**Two agent stages** (÷ 124): not-surfaced 49% (61 files) · surfaced-but-not-written 11% (14 files).
-> Single-query probe (tool capability, NOT the agent path): R@5/10/20/50 = 35%/43%/52%/55%. Of "never surfaced": ~45% never rank in top-50 (engine) vs ~4% rank-but-skipped (agent loop).
-> Floor: substring recall file 99% / sym 100% · graph reachability 100% · chain-order LCS 79% (17 ordered Qs).
+**Two agent stages** (÷ 124): not-surfaced 48% (59 files) · surfaced-but-not-written 10% (13 files).
+> Single-query probe (tool capability, NOT the agent path): R@5/10/20/50 = 35%/43%/52%/55%. Of "never surfaced": ~45% never rank in top-50 (engine) vs ~2% rank-but-skipped (agent loop).
+> Floor: substring recall file 99% / sym 100% · graph reachability 100% · chain-order LCS 57% (17 ordered Qs).
 
 ## 3. Auto-triage — mechanical "suspected stage" per testcase (no semantic judgment)
 
 > Front→back, first trip wins, numbers only: search (R@50<30%) → graph (surfaced<50%) → synth (synth<70%); ok if end coverage ≥50%. Flags WHICH question + stage to inspect — the WHY is in verdicts.md. **route (intent≠type) is shown as a column but is NOT a gate** — it's a labeling disagreement with ~0 precision as a failure cause (0/12 semantic failures are misrouted), so it no longer drives the stage.
 
-**Suspected-stage distribution:** ok 15 · graph 12 · synth 4 · search 3.
+**Suspected-stage distribution:** ok 18 · graph 9 · search 5 · synth 2.
 
 > Column key: **R@10·diag** = single-query probe recall@10 + diagnosis (rm=recall-miss / rl=ranked-low / mx=mixed / ok). **core ranks** = each core file's rank in that probe; `#2 · 5 miss` = one file ranks #2, the other five never appear at all (engine can't reach them by ranking). Full per-file breakdown in §4. **trace** = the agent's ACTUAL calls in order, one per line, showing what each did: `plan:` intent · `search:` query(·layer) · `graph:`/`graph↓`(down chain)/`graph↑`(up impact) target · `details:` file. **surfaced/synth** = the agent's actual run, not the probe.
 
 | # | id | type | route | R@10·diag | core ranks | surfaced | synth | end cov | trace (agent 实际调用) | suspected stage |
 |---|---|---|:-:|---|---|---:|---:|---:|---|---|
-| 1 | tour-04-msg-client | arch | ✗ | 17% rm | #2 · 5 miss | 17% | 100% | 1/6 17% | 8 calls ⛔<br>plan: call-chain<br>search: "sendMessage" ·client<br>graph↓: sendMessage.ts<br>details: sendMessage.ts<br>details: MinimalDDPClient.ts<br>details: sendMessage.ts<br>details: MinimalDDPClient.ts ×2 | search |
-| 2 | new-19-message-rendering | arch | ✓ | 0% mx | #14 · 1 miss | 100% | 100% | 2/2 100% | 8 calls ⛔<br>plan: architecture<br>search: "render message" ·client<br>search: "message component" ·client<br>search: "parse message" ·client<br>search: "markdown" ·client<br>graph↓: parseMessageTextToAstMarkdown<br>search: "parse" ·packages<br>search: "Markup" ·packages | ok |
-| 3 | claude-01-push-notifications | arch | ✓ | 17% rm | #2 · 5 miss | 50% | 100% | 3/6 50% | 6 calls<br>plan: architecture<br>search: "push notification" ·server<br>graph: fcm.ts<br>graph: push.ts<br>search: "send notification" ·server<br>graph: sendNotificationsOnMessage | ok |
-| 4 | new-09-realtime-streamer | arch | ✗ | 20% rm | #1 · 4 miss | 20% | 100% | 1/5 20% | 8 calls ⛔<br>plan: pattern<br>search: "sendMessage" ·server<br>graph: sendMessage.ts<br>details: notifyListener.ts<br>details: api.ts<br>search: "watch.rooms" ·client<br>details: notifyListener.ts<br>details: api.ts | search |
-| 5 | tour-05-msg-server | chain | ✓ | 20% mx | #2 · #335 · 3 miss | 60% | 100% | 3/5 60% | 5 calls<br>plan: call-chain<br>search: "sendMessage" ·server<br>graph↓: sendMessage.ts ×2<br>details: sendMessage.ts | ok |
-| 6 | claude-05-call-chain | chain | ✓ | 38% mx | #5 · #5 · #6 · #12 · #30 · #30 · 2 miss | 88% | 57% | 4/8 50% | 11 calls ⛔<br>plan: call-chain<br>search: "sendMessage"<br>graph↓: sendMessage<br>graph↓: sendMessage.ts<br>details: sendMessage.ts ×3<br>search: "validateMessage"<br>search: "prepareMessageObject"<br>search: "Message.beforeSave"<br>search: "afterSaveMessage" | ok |
-| 7 | new-24-autotranslate | loc | ✗ | 67% rm | #1 · #1 · 1 miss | 100% | 100% | 3/3 100% | 8 calls ⛔<br>plan: architecture<br>search: "autoTranslate"<br>graph: autoTranslate<br>details: autotranslate.ts<br>search: "afterSaveMessage autoTranslate" ·server<br>search: "afterSaveMessage" ·server<br>graph↓: afterSaveMessage ×2 | ok |
+| 1 | tour-04-msg-client | arch | ✗ | 17% rm | #2 · 5 miss | 17% | 100% | 1/6 17% | 8 calls ⛔<br>plan: call-chain<br>search: "ComposerMessage" ·client<br>graph↓: ComposerMessage<br>details: ComposerMessage.tsx<br>details: LivechatClientImpl.ts<br>details: MinimalDDPClient.ts<br>search: "chat.flows.sendMessage" ·client<br>search: "ChatContext" ·client | search |
+| 2 | new-19-message-rendering | arch | ✗ | 0% mx | #14 · 1 miss | 100% | 100% | 2/2 100% | 6 calls<br>plan: call-chain<br>search: "Markup" ·packages<br>graph↓: Markup<br>search: "parse" ·packages<br>details: index.tsx<br>details: Markup.tsx | ok |
+| 3 | claude-01-push-notifications | arch | ✓ | 17% rm | #2 · 5 miss | 17% | 100% | 1/6 17% | 8 calls ⛔<br>plan: architecture<br>search: "sendAllNotifications" ·server<br>graph↓: sendAllNotifications<br>details: messenger.ts<br>search: "Notification.scheduleItem" ·server<br>details: sendNotificationsOnMessage.ts ×3 | search |
+| 4 | new-09-realtime-streamer | arch | ✗ | 20% rm | #1 · 4 miss | 80% | 25% | 1/5 20% | 8 calls ⛔<br>plan: call-chain<br>search: "notifyOnMessageChange" ·server<br>graph↓: notifyOnMessageChange<br>search: "api.broadcast" ·server<br>details: notifyListener.ts<br>search: "streamRoomMessage" ·server<br>details: notifications.module.ts<br>search: "emitWithoutBroadcast" ·server | search |
+| 5 | tour-05-msg-server | chain | ✓ | 20% mx | #2 · #335 · 3 miss | 60% | 33% | 1/5 20% | 8 calls ⛔<br>plan: call-chain<br>search: "executeSendMessage" ·server<br>graph↓: executeSendMessage<br>search: "sendMessage(user, message, room)" ·server<br>search: "Messages.insertOne" ·server<br>graph↑: Messages.insertOne<br>graph↑: insertOne<br>details: sendMessage.ts | search |
+| 6 | claude-05-call-chain | chain | ✓ | 38% mx | #5 · #5 · #6 · #12 · #30 · #30 · 2 miss | 75% | 33% | 2/8 25% | 7 calls<br>plan: call-chain<br>search: "sendMessage"<br>graph↓: sendMessage<br>details: sendMessage.ts ×2<br>graph↓: sendMessage<br>details: sendMessage.ts | synth |
+| 7 | new-24-autotranslate | loc | ✗ | 67% rm | #1 · #1 · 1 miss | 100% | 100% | 3/3 100% | 7 calls<br>plan: architecture<br>search: "AutoTranslate"<br>graph: AutoTranslate<br>details: autotranslate.ts<br>search: "TranslationProviderRegistry" ·server<br>details: autotranslate.ts ×2 | ok |
 | 8 | new-15-impact-aftersave | imp | ✓ | 33% rl | #3 · #17 · #68 | 100% | 100% | 3/3 100% | 3 calls<br>plan: impact<br>search: "afterSaveMessage"<br>graph↑: afterSaveMessage | ok |
-| 9 | new-16-impact-streamer | imp | ✓ | 67% mx | #1 · #10 · 1 miss | 33% | 100% | 1/3 33% | 4 calls<br>plan: impact<br>search: "Streamer module"<br>search: "Streamer"<br>graph↑: streamer.module.ts | graph |
-| 10 | claude-08-federation | rout | ✗ | 50% rm | #4 · #4 · 2 miss | 50% | 100% | 2/4 50% | 8 calls ⛔<br>plan: call-chain<br>search: "sendFederationMessage"<br>search: "federation message"<br>search: "federation outbound"<br>search: "Federation"<br>graph↓: FederationMatrix.sendMessage<br>search: "FederationMatrix" ·ee<br>graph↓: FederationMatrix.sendMessage | ok |
-| 11 | new-18-webhook | rout | ✗ | 33% rl | #1 · #12 · #59 | 67% | 100% | 2/3 67% | 6 calls<br>plan: call-chain<br>search: "incoming webhook"<br>graph↓: executeIntegrationRest<br>graph↓: processWebhookMessage<br>details: processWebhookMessage.ts<br>details: sendMessage.ts | ok |
-| 12 | claude-07-api-endpoints | loc | ✗ | 14% mx | #1 · #17 · #17 · #17 · 3 miss | 43% | 100% | 3/7 43% | 8 calls ⛔<br>plan: pattern<br>search: "addRoute" ·server<br>graph: addRoute<br>details: ApiClass.ts ×3<br>details: rest.ts<br>search: "apps/meteor/app/api/server/ApiClass.ts" | graph |
-| 13 | new-25-search | loc | ✗ | 33% rm | #2 · 2 miss | 0% | 100% | 0/3 0% | 5 calls<br>plan: architecture<br>search: "search messages"<br>search: "message search"<br>graph: parseMessageSearchQuery<br>details: messageSearch.ts | graph |
-| 14 | new-27-video-conference | loc | ✗ | 100% ok | #1 | 100% | 0% | 0/1 0% | 8 calls ⛔<br>plan: architecture<br>search: "video conference"<br>graph: IVideoConfProvider<br>details: IVideoConfProvider.ts<br>details: AppVideoConfProviderManager.ts<br>graph↑: AppVideoConfProviderManager.ts ×2<br>details: service.ts | synth |
-| 15 | tour-06-endpoint | patt | ✓ | 50% rm | #2 · 1 miss | 100% | 50% | 1/2 50% | 8 calls ⛔<br>plan: pattern<br>search: "API endpoint"<br>graph: ApiClass<br>details: ApiClass.ts ×2<br>search: "createApi"<br>details: api.ts<br>search: "API.v1.addRoute" | ok |
-| 16 | new-17-slash-commands | patt | ✗ | 25% rm | #1 · 3 miss | 75% | 100% | 3/4 75% | 8 calls ⛔<br>plan: call-chain<br>search: "slash command registration"<br>search: "slash command"<br>graph↓: ISlashCommandsExtend<br>search: "processSlashCommand" ·client<br>graph↓: processSlashCommand.ts<br>search: "slashCommands.add" ·server<br>search: "slashCommands" ·server | ok |
-| 17 | new-11-settings | arch | ✓ | 33% mx | #1 · #15 · 1 miss | 67% | 100% | 2/3 67% | 8 calls ⛔<br>plan: architecture<br>search: "Settings registration"<br>search: "Settings" ·server<br>search: "SettingsRegistry"<br>graph: SettingsRegistry.ts<br>details: SettingsRegistry.ts ×2<br>search: "CachedSettings" | ok |
-| 18 | claude-03-file-upload | arch | ✓ | 33% mx | #4 · #26 · 1 miss | 33% | 100% | 1/3 33% | 8 calls ⛔<br>plan: architecture<br>search: "file upload"<br>graph: MultipartUploadHandler.ts<br>details: MultipartUploadHandler.ts<br>graph: MultipartUploadHandler.parseRequest<br>search: "rooms.media"<br>details: rooms.ts ×2 | graph |
-| 19 | new-10-apps-engine | arch | ✓ | 60% mx | #3 · #8 · #8 · #392 · 1 miss | 0% | 100% | 0/5 0% | 8 calls ⛔<br>plan: architecture<br>search: "Apps Engine afterSaveMessage"<br>search: "afterSaveMessage"<br>graph: afterSaveMessage<br>search: "callbacks.add" ·packages<br>search: "AppsEngine" ·packages<br>details: AppsEngineRuntime.ts<br>search: "AppsEngineService" ·server | graph |
-| 20 | new-20-proxify | loc | ✗ | 33% rm | #2 · 2 miss | 33% | 100% | 1/3 33% | 8 calls ⛔<br>plan: architecture<br>search: "proxify"<br>graph: proxify<br>details: proxify.ts<br>search: "handler" ·packages/core-services<br>details: proxify.ts<br>search: "api.call" ·packages/core-services<br>details: proxify.ts | graph |
-| 21 | tour-07-db-model-create | patt | ✓ | 100% ok | #1 · #5 | 0% | 100% | 0/2 0% | 8 calls ⛔<br>plan: pattern<br>search: "model definition"<br>search: "schema"<br>graph: schemas.ts<br>details: IBanner.ts<br>details: schemas.ts<br>search: "Mongo.Collection"<br>search: "new Mongo.Collection" ·server | graph |
-| 22 | tour-08-db-model-use | patt | ✓ | 100% ok | #2 · #3 | 0% | 100% | 0/2 0% | 8 calls ⛔<br>plan: pattern<br>search: "model.find"<br>graph: model.find<br>details: startup.ts<br>details: SettingsRegistry.ts<br>search: "Mongo.Collection"<br>search: "new Mongo.Collection"<br>details: FileUpload.ts | graph |
-| 23 | tour-11-new-package | patt | ✓ | 100% ok | #2 | 100% | 0% | 0/1 0% | 8 calls ⛔<br>plan: pattern<br>search: "create package"<br>search: "new-package"<br>search: "generate" ·packages<br>search: "package"<br>search: "yarn workspace"<br>search: "package.json"<br>search: "CONTRIBUTING.md" | synth |
-| 24 | tour-10-new-service | patt | ✓ | 100% ok | #2 · #2 · #2 · #2 | 100% | 0% | 0/4 0% | 8 calls ⛔<br>plan: pattern<br>search: "service"<br>graph: service<br>details: ServiceClass.ts<br>details: service.ts<br>search: "AccountService"<br>details: service.ts<br>search: "UserService" | synth |
+| 9 | new-16-impact-streamer | imp | ✓ | 67% mx | #1 · #10 · 1 miss | 33% | 100% | 1/3 33% | 3 calls<br>plan: impact<br>search: "Streamer"<br>graph↑: Streamer | graph |
+| 10 | claude-08-federation | rout | ✗ | 50% rm | #4 · #4 · 2 miss | 50% | 100% | 2/4 50% | 8 calls ⛔<br>plan: call-chain<br>search: "FederationMatrix" ·ee<br>graph↓: FederationMatrix.sendMessage<br>search: "federationSDK" ·ee<br>details: FederationMatrix.ts<br>graph↓: FederationMatrix.sendMessage<br>details: FederationMatrix.ts ×2 | ok |
+| 11 | new-18-webhook | rout | ✗ | 33% rl | #1 · #12 · #59 | 100% | 67% | 2/3 67% | 5 calls<br>plan: call-chain<br>search: "processWebhookMessage"<br>graph↓: processWebhookMessage<br>graph↑: processWebhookMessage<br>details: api.ts | ok |
+| 12 | claude-07-api-endpoints | loc | ✗ | 14% mx | #1 · #17 · #17 · #17 · 3 miss | 57% | 100% | 4/7 57% | 8 calls ⛔<br>plan: pattern<br>search: "createApi"<br>graph: createApi<br>details: ApiClass.ts<br>search: "API.v1.addRoute"<br>details: channels.ts ×2<br>search: "API.v1.addRoute('/channels.list'" | ok |
+| 13 | new-25-search | loc | ✗ | 33% rm | #2 · 2 miss | 67% | 100% | 2/3 67% | 8 calls ⛔<br>plan: architecture<br>search: "searchProviderService"<br>graph: SearchProviderService<br>details: SearchProviderService.ts<br>search: "DefaultProvider"<br>details: DefaultProvider.ts<br>search: "new DefaultProvider()"<br>search: "SearchProviderService.search" | ok |
+| 14 | new-27-video-conference | loc | ✗ | 100% ok | #1 | 100% | 100% | 1/1 100% | 8 calls ⛔<br>plan: architecture<br>search: "videoConfProviders"<br>graph: videoConfProviders<br>details: AppVideoConfProviderManager.ts<br>search: "VideoConfService"<br>details: service.ts<br>search: "VideoConfManager" ·client<br>details: VideoConfManager.ts | ok |
+| 15 | tour-06-endpoint | patt | ✓ | 50% rm | #2 · 1 miss | 50% | 100% | 1/2 50% | 8 calls ⛔<br>plan: pattern<br>search: "createApi"<br>graph: createApi<br>details: ApiClass.ts<br>details: api.ts<br>search: "API.v1.get"<br>details: moderation.ts ×2 | ok |
+| 16 | new-17-slash-commands | patt | ✗ | 25% rm | #1 · 3 miss | 75% | 67% | 2/4 50% | 8 calls ⛔<br>plan: call-chain<br>search: "slashCommands" ·server<br>graph↓: slashCommands<br>details: slashCommand.ts<br>search: "processSlashCommand" ·client<br>graph↓: processSlashCommand<br>search: "slashCommand" ·server<br>search: "Meteor.methods({ slashCommand:" ·server | ok |
+| 17 | new-11-settings | arch | ✓ | 33% mx | #1 · #15 · 1 miss | 33% | 100% | 1/3 33% | 7 calls<br>plan: architecture<br>search: "Settings"<br>graph: Settings<br>details: SettingsRegistry.ts<br>details: settings.ts ×2<br>details: useSettings.ts | graph |
+| 18 | claude-03-file-upload | arch | ✗ | 33% mx | #4 · #26 · 1 miss | 33% | 0% | 0/3 0% | 8 calls ⛔<br>plan: call-chain<br>search: "FileUploadClass"<br>graph↓: FileUploadClass<br>search: "sendFileMessage"<br>graph↓: sendFileMessage<br>search: "rooms.media upload" ·server<br>search: "upload file" ·server<br>search: "MultipartUploadHandler" | graph |
+| 19 | new-10-apps-engine | arch | ✓ | 60% mx | #3 · #8 · #8 · #392 · 1 miss | 60% | 67% | 2/5 40% | 8 calls ⛔<br>plan: architecture<br>search: "afterSaveMessage"<br>graph: afterSaveMessage<br>details: afterSaveMessage.ts<br>search: "callbacks.add('afterSaveMessage'"<br>search: "Apps Engine callbacks.add"<br>search: "AppManager"<br>graph: AppManager | synth |
+| 20 | new-20-proxify | loc | ✗ | 33% rm | #2 · 2 miss | 67% | 100% | 2/3 67% | 8 calls ⛔<br>plan: architecture<br>search: "proxify"<br>graph: proxify<br>details: proxify.ts ×2<br>search: "handler" ·packages<br>search: "LocalBroker"<br>details: LocalBroker.ts | ok |
+| 21 | tour-07-db-model-create | patt | ✓ | 100% ok | #1 · #5 | 0% | 100% | 0/2 0% | 5 calls<br>plan: pattern<br>search: "IBaseModel"<br>graph: IBaseModel<br>details: BaseRaw.ts<br>details: proxify.ts | graph |
+| 22 | tour-08-db-model-use | patt | ✓ | 100% ok | #2 · #3 | 0% | 100% | 0/2 0% | 5 calls<br>plan: pattern<br>search: "MessagesRaw"<br>graph: MessagesRaw<br>details: Messages.ts<br>details: BaseRaw.ts | graph |
+| 23 | tour-11-new-package | patt | ✓ | 100% ok | #2 | 0% | 100% | 0/1 0% | 8 calls ⛔<br>plan: pattern<br>search: "create package"<br>search: "new package"<br>search: "workspace"<br>search: "create-package"<br>search: "pnpm-workspace.yaml"<br>search: "package.json"<br>details: AppPackageParser.ts | graph |
+| 24 | tour-10-new-service | patt | ✓ | 100% ok | #2 · #2 · #2 · #2 | 0% | 100% | 0/4 0% | 8 calls ⛔<br>plan: pattern<br>search: "ServiceClass"<br>graph: ServiceClass<br>details: Api.ts<br>details: LocalBroker.ts<br>details: service.ts<br>details: ServiceClass.ts<br>search: "registerService" ·packages | graph |
 | 25 | new-21-impact-settings | imp | ✓ | 67% rm | #1 · #2 · 1 miss | 33% | 100% | 1/3 33% | 3 calls<br>plan: impact<br>search: "CachedSettings"<br>graph↑: CachedSettings | graph |
-| 26 | new-22-2fa | arch | ✓ | 100% rl | #1 · #4 · #6 · #7 | 25% | 100% | 1/4 25% | 8 calls ⛔<br>plan: architecture<br>search: "two-factor authentication OR 2FA"<br>search: "TOTP"<br>graph: TOTP<br>details: TOTPCheck.ts ×2<br>details: totp.ts ×2 | graph |
-| 27 | claude-04-e2e-encryption | arch | ✓ | 60% mx | #1 · #2 · #8 · #12 · 1 miss | 40% | 100% | 2/5 40% | 8 calls ⛔<br>plan: architecture<br>search: "E2E encryption keys"<br>search: "e2e encryption"<br>graph: e2e encryption<br>details: rocketchat.e2e.ts<br>details: rocketchat.e2e.room.ts<br>details: rocketchat.e2e.ts<br>details: rocketchat.e2e.room.ts | graph |
-| 28 | new-12-ldap-auth | rout | ✗ | 50% rm | #1 · #2 · 2 miss | 75% | 67% | 2/4 50% | 8 calls ⛔<br>plan: call-chain<br>search: "LDAP authentication login" ·server<br>search: "LDAP" ·server<br>graph↓: processLdapVariables.ts<br>details: Manager.ts<br>graph↓: Manager.ts<br>search: "LDAPService.loginRequest" ·server<br>search: "LDAP.loginRequest" ·packages | ok |
-| 29 | claude-02-msg-permissions | loc | ✓ | 25% rl | #1 · #12 · #12 · #35 | 100% | 50% | 2/4 50% | 8 calls ⛔<br>plan: locate<br>search: "validateMessagePermissions"<br>search: "message permission"<br>search: "canSendMessage"<br>details: canSendMessage.ts ×2<br>graph: canSendMessage<br>details: canSendMessage.ts | ok |
-| 30 | new-14-ee-license | loc | ✗ | 67% rl | #1 · #7 · #643 | 67% | 100% | 2/3 67% | 7 calls<br>plan: architecture<br>search: "enterprise feature" ·ee<br>graph: license.ts<br>details: license.ts<br>details: licenseImp.ts<br>search: "hasModule" ·ee<br>details: modules.ts | ok |
-| 31 | new-13-room-creation | chain | ✓ | 67% mx | #1 · #7 · 1 miss | 67% | 50% | 1/3 33% | 8 calls ⛔<br>plan: call-chain<br>search: "createChannel"<br>graph↓: createChannel.ts<br>search: "Rooms.createWithFullRoomData"<br>details: createRoom.ts<br>search: "createWithFullRoomData"<br>details: Rooms.ts ×2 | synth |
-| 32 | new-23-omnichannel | chain | ✓ | 33% mx | #6 · 2 miss | 0% | 100% | 0/3 0% | 4 calls<br>plan: call-chain<br>search: "Omnichannel queue process"<br>search: "livechat queue"<br>search: "LivechatManager" ·server | graph |
-| 33 | claude-06-livechat-routing | rout | ✓ | 0% rm | 6 miss | 17% | 100% | 1/6 17% | 8 calls ⛔<br>plan: routing<br>search: "Livechat request" ·server<br>search: "Livechat.API" ·server<br>search: "Livechat" ·server<br>graph: Livechat<br>details: api.ts<br>search: "QueueManager.requestRoom" ·server<br>graph↓: QueueManager.requestRoom | search |
-| 34 | new-26-team | loc | ✗ | 100% ok | #1 | 100% | 100% | 1/1 100% | 8 calls ⛔<br>plan: architecture<br>search: "Team"<br>graph: TeamService<br>details: service.ts<br>details: Team.ts ×2<br>search: "ITeam"<br>details: ITeam.ts | ok |
+| 26 | new-22-2fa | arch | ✓ | 100% rl | #1 · #4 · #6 · #7 | 50% | 100% | 2/4 50% | 8 calls ⛔<br>plan: architecture<br>search: "twoFactorRequired"<br>graph: twoFactorRequired<br>search: "checkCodeForUser"<br>details: index.tsx<br>search: "getSecondFactorMethod"<br>details: index.tsx<br>search: "ICodeCheck" | ok |
+| 27 | claude-04-e2e-encryption | arch | ✓ | 60% mx | #1 · #2 · #8 · #12 · 1 miss | 60% | 100% | 3/5 60% | 8 calls ⛔<br>plan: architecture<br>search: "e2e" ·client<br>graph: e2e<br>details: rocketchat.e2e.ts<br>details: rocketchat.e2ee.ts<br>details: rocketchat.e2e.ts<br>search: "Keychain"<br>details: keychain.ts | ok |
+| 28 | new-12-ldap-auth | rout | ✗ | 50% rm | #1 · #2 · 2 miss | 75% | 100% | 3/4 75% | 8 calls ⛔<br>plan: call-chain<br>search: "LDAPManager.login" ·server<br>graph↓: LDAPManager.login<br>search: "LDAPManager" ·server<br>graph↓: LDAPManager.login<br>search: "LDAPService.loginRequest" ·server<br>search: "configureLDAP" ·server<br>graph↓: configureLDAP | ok |
+| 29 | claude-02-msg-permissions | loc | ✓ | 25% rl | #1 · #12 · #12 · #35 | 75% | 100% | 3/4 75% | 5 calls<br>plan: locate<br>search: "validateMessage"<br>graph: validateMessage<br>details: sendMessage.ts<br>details: canSendMessage.ts | ok |
+| 30 | new-14-ee-license | loc | ✗ | 67% rl | #1 · #7 · #643 | 67% | 100% | 2/3 67% | 5 calls<br>plan: architecture<br>search: "LicenseManager" ·ee<br>graph: LicenseManager<br>details: license.ts<br>details: licenseImp.ts | ok |
+| 31 | new-13-room-creation | chain | ✓ | 67% mx | #1 · #7 · 1 miss | 67% | 100% | 2/3 67% | 8 calls ⛔<br>plan: call-chain<br>search: "createChannelMethod" ·server<br>graph↓: createChannelMethod<br>details: createChannel.ts<br>graph↓: createRoom<br>details: createRoom.ts ×2<br>search: "Rooms" ·server | ok |
+| 32 | new-23-omnichannel | chain | ✓ | 33% mx | #6 · 2 miss | 33% | 100% | 1/3 33% | 8 calls ⛔<br>plan: call-chain<br>search: "takeInquiry"<br>graph↓: takeInquiry<br>search: "assignAgent"<br>graph↓: assignAgent<br>search: "delegateInquiry"<br>graph↓: delegateInquiry<br>details: queue.ts | graph |
+| 33 | claude-06-livechat-routing | rout | ✓ | 0% rm | 6 miss | 0% | 100% | 0/6 0% | 8 calls ⛔<br>plan: routing<br>search: "takeInquiry"<br>graph: takeInquiry<br>graph↑: takeInquiry<br>details: inquiries.ts ×3<br>search: "addRoute" ·server | search |
+| 34 | new-26-team | loc | ✗ | 100% ok | #1 | 100% | 100% | 1/1 100% | 8 calls ⛔<br>plan: architecture<br>search: "Team"<br>graph: Team<br>details: Team.ts<br>details: teams.ts<br>graph↓: teams<br>search: "TeamService"<br>details: service.ts | ok |
 
 ## 4. Per-core-file probe rank — every core file, its rank or MISS
 
@@ -86,7 +86,7 @@ AGENT  written (answer)         40%  ████████████░░�
 - `#14` packages/message-parser/src/index.ts
 - `MISS` packages/gazzodown/src/Markup.tsx
 
-**claude-01-push-notifications** · arch · 1/6 ranked · surfaced 50%
+**claude-01-push-notifications** · arch · 1/6 ranked · surfaced 17%
 - `#2` apps/meteor/app/lib/server/lib/sendNotificationsOnMessage.ts
 - `MISS` apps/meteor/app/lib/server/functions/notifications/mobile.js
 - `MISS` apps/meteor/app/notification-queue/server/NotificationQueue.ts
@@ -94,7 +94,7 @@ AGENT  written (answer)         40%  ████████████░░�
 - `MISS` apps/meteor/app/push/server/apn.ts
 - `MISS` apps/meteor/app/push/server/fcm.ts
 
-**new-09-realtime-streamer** · arch · 1/5 ranked · surfaced 20%
+**new-09-realtime-streamer** · arch · 1/5 ranked · surfaced 80%
 - `#1` apps/meteor/app/lib/server/lib/notifyListener.ts
 - `MISS` apps/meteor/server/modules/listeners/listeners.module.ts
 - `MISS` apps/meteor/server/modules/notifications/notifications.module.ts
@@ -108,7 +108,7 @@ AGENT  written (answer)         40%  ████████████░░�
 - `MISS` apps/meteor/app/lib/server/functions/sendMessage.ts
 - `MISS` apps/meteor/app/lib/client/methods/sendMessage.ts
 
-**claude-05-call-chain** · chain · 6/8 ranked · surfaced 88%
+**claude-05-call-chain** · chain · 6/8 ranked · surfaced 75%
 - `#5` apps/meteor/app/lib/server/functions/sendMessage.ts
 - `#5` apps/meteor/app/lib/server/functions/sendMessage.ts
 - `#6` apps/meteor/app/lib/server/methods/sendMessage.ts
@@ -139,12 +139,12 @@ AGENT  written (answer)         40%  ████████████░░�
 - `MISS` ee/packages/federation-matrix/src/api/_matrix/transactions.ts
 - `MISS` ee/packages/federation-matrix/src/events/message.ts
 
-**new-18-webhook** · rout · 3/3 ranked · surfaced 67%
+**new-18-webhook** · rout · 3/3 ranked · surfaced 100%
 - `#1` apps/meteor/app/integrations/server/api/api.ts
 - `#12` apps/meteor/app/integrations/server/lib/triggerHandler.ts
 - `#59` apps/meteor/app/lib/server/functions/processWebhookMessage.ts
 
-**claude-07-api-endpoints** · loc · 4/7 ranked · surfaced 43%
+**claude-07-api-endpoints** · loc · 4/7 ranked · surfaced 57%
 - `#1` apps/meteor/app/api/server/api.ts
 - `#17` apps/meteor/app/api/server/ApiClass.ts
 - `#17` apps/meteor/app/api/server/ApiClass.ts
@@ -153,7 +153,7 @@ AGENT  written (answer)         40%  ████████████░░�
 - `MISS` apps/meteor/app/api/server/middlewares/authenticationHono.ts
 - `MISS` apps/meteor/app/api/server/middlewares/permissions.ts
 
-**new-25-search** · loc · 1/3 ranked · surfaced 0%
+**new-25-search** · loc · 1/3 ranked · surfaced 67%
 - `#2` apps/meteor/app/search/server/service/SearchProviderService.ts
 - `MISS` apps/meteor/app/search/server/model/SearchProvider.ts
 - `MISS` apps/meteor/app/search/server/provider/DefaultProvider.ts
@@ -161,7 +161,7 @@ AGENT  written (answer)         40%  ████████████░░�
 **new-27-video-conference** · loc · 1/1 ranked · surfaced 100%
 - `#1` apps/meteor/server/services/video-conference/service.ts
 
-**tour-06-endpoint** · patt · 1/2 ranked · surfaced 100%
+**tour-06-endpoint** · patt · 1/2 ranked · surfaced 50%
 - `#2` apps/meteor/app/api/server/api.ts
 - `MISS` apps/meteor/app/api/server/v1/chat.ts
 
@@ -171,7 +171,7 @@ AGENT  written (answer)         40%  ████████████░░�
 - `MISS` apps/meteor/client/lib/chats/flows/processSlashCommand.ts
 - `MISS` apps/meteor/app/slashcommands-invite/server/server.ts
 
-**new-11-settings** · arch · 2/3 ranked · surfaced 67%
+**new-11-settings** · arch · 2/3 ranked · surfaced 33%
 - `#1` apps/meteor/app/settings/server/SettingsRegistry.ts
 - `#15` apps/meteor/app/settings/server/CachedSettings.ts
 - `MISS` apps/meteor/server/publications/settings/index.ts
@@ -181,14 +181,14 @@ AGENT  written (answer)         40%  ████████████░░�
 - `#26` apps/meteor/app/file-upload/server/lib/FileUpload.ts
 - `MISS` apps/meteor/app/api/server/v1/rooms.ts
 
-**new-10-apps-engine** · arch · 4/5 ranked · surfaced 0%
+**new-10-apps-engine** · arch · 4/5 ranked · surfaced 60%
 - `#3` packages/apps-engine/src/server/AppManager.ts
 - `#8` packages/apps-engine/src/server/managers/AppListenerManager.ts
 - `#8` packages/apps-engine/src/server/managers/AppListenerManager.ts
 - `#392` apps/meteor/app/apps/server/bridges/listeners.ts
 - `MISS` packages/apps-engine/src/definition/metadata/AppInterface.ts
 
-**new-20-proxify** · loc · 1/3 ranked · surfaced 33%
+**new-20-proxify** · loc · 1/3 ranked · surfaced 67%
 - `#2` packages/core-services/src/lib/proxify.ts
 - `MISS` packages/core-services/src/LocalBroker.ts
 - `MISS` packages/core-services/src/types/ServiceClass.ts
@@ -201,10 +201,10 @@ AGENT  written (answer)         40%  ████████████░░�
 - `#2` apps/meteor/app/lib/server/functions/loadMessageHistory.ts
 - `#3` apps/meteor/server/methods/loadHistory.ts
 
-**tour-11-new-package** · patt · 1/1 ranked · surfaced 100%
+**tour-11-new-package** · patt · 1/1 ranked · surfaced 0%
 - `#2` packages/account-utils/src/index.ts
 
-**tour-10-new-service** · patt · 4/4 ranked · surfaced 100%
+**tour-10-new-service** · patt · 4/4 ranked · surfaced 0%
 - `#2` apps/meteor/server/services/room/service.ts
 - `#2` apps/meteor/server/services/room/service.ts
 - `#2` apps/meteor/server/services/room/service.ts
@@ -215,13 +215,13 @@ AGENT  written (answer)         40%  ████████████░░�
 - `#2` apps/meteor/app/settings/server/SettingsRegistry.ts
 - `MISS` apps/meteor/server/publications/settings/index.ts
 
-**new-22-2fa** · arch · 4/4 ranked · surfaced 25%
+**new-22-2fa** · arch · 4/4 ranked · surfaced 50%
 - `#1` apps/meteor/app/2fa/server/code/index.ts
 - `#4` apps/meteor/app/2fa/server/code/TOTPCheck.ts
 - `#6` apps/meteor/app/2fa/server/code/EmailCheck.ts
 - `#7` apps/meteor/app/2fa/server/twoFactorRequired.ts
 
-**claude-04-e2e-encryption** · arch · 4/5 ranked · surfaced 40%
+**claude-04-e2e-encryption** · arch · 4/5 ranked · surfaced 60%
 - `#1` apps/meteor/client/lib/e2ee/rocketchat.e2e.ts
 - `#2` apps/meteor/client/lib/e2ee/crypto/rsa.ts
 - `#8` apps/meteor/client/lib/e2ee/crypto/aes.ts
@@ -234,7 +234,7 @@ AGENT  written (answer)         40%  ████████████░░�
 - `MISS` apps/meteor/server/lib/ldap/Manager.ts
 - `MISS` apps/meteor/server/lib/ldap/Connection.ts
 
-**claude-02-msg-permissions** · loc · 4/4 ranked · surfaced 100%
+**claude-02-msg-permissions** · loc · 4/4 ranked · surfaced 75%
 - `#1` apps/meteor/app/lib/server/methods/sendMessage.ts
 - `#12` apps/meteor/app/authorization/server/functions/canSendMessage.ts
 - `#12` apps/meteor/app/authorization/server/functions/canSendMessage.ts
@@ -250,12 +250,12 @@ AGENT  written (answer)         40%  ████████████░░�
 - `#7` apps/meteor/app/lib/server/functions/createRoom.ts
 - `MISS` apps/meteor/server/services/room/service.ts
 
-**new-23-omnichannel** · chain · 1/3 ranked · surfaced 0%
+**new-23-omnichannel** · chain · 1/3 ranked · surfaced 33%
 - `#6` apps/meteor/server/services/omnichannel/service.ts
 - `MISS` apps/meteor/server/services/omnichannel/queue.ts
 - `MISS` apps/meteor/app/livechat/server/lib/closeRoom.ts
 
-**claude-06-livechat-routing** · rout · 0/6 ranked · surfaced 17%
+**claude-06-livechat-routing** · rout · 0/6 ranked · surfaced 0%
 - `MISS` packages/livechat/src/api.ts
 - `MISS` packages/livechat/src/widget.ts
 - `MISS` apps/meteor/app/livechat/server/api/v1/room.ts

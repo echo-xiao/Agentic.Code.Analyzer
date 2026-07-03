@@ -1,42 +1,57 @@
 # How does the auto-translate feature work for messages in Rocket.Chat?
 
+## Plan
+
+intent: architecture
+
 ## Gemini Answer
 
-The auto-translate feature in Rocket.Chat works by registering an `afterSaveMessage` callback with a medium priority. This means that after a message is saved, the auto-translate logic is triggered.
+The auto-translate feature in Rocket.Chat works by intercepting messages on the server-side after they are saved and then translating them using a configured translation provider. On the client-side, a hook is used to display these translated messages.
 
-Here's a breakdown of the process:
+Here's a breakdown of the flow:
 
-1.  **Event Trigger**: When a message is saved, the `afterSaveMessage` event is fired.
-2.  **Translation Provider Registry**: The `TranslationProviderRegistry` manages different translation services, such as `GoogleAutoTranslate`, `MSTranslate`, and `DeepLTranslate`.
-3.  **Conditional Translation**: If auto-translate is enabled for a specific room, the `afterSaveMessage` callback will invoke the `provider.translateMessage()` method of the configured translation provider.
-4.  **Translation Storage**: The translated message is then stored in the `message.translations` field.
-5.  **Provider Implementation**: Each translation provider (e.g., `GoogleAutoTranslate`, `MSTranslate`, `DeepLTranslate`) implements a base `AutoTranslate` class, which includes the `_translateMessage()` method responsible for the actual translation logic.
+**Server-Side Translation Flow:**
 
-Key files involved in this process include:
+1.  **`TranslationProviderRegistry` (apps/meteor/app/autotranslate/server/autotranslate.ts):** This class manages the different translation providers (Google, Microsoft, DeepL) and orchestrates the translation process.
+2.  **`TranslationProviderRegistry.registerCallbacks()` (apps/meteor/app/autotranslate/server/autotranslate.ts):** When auto-translate is enabled and an active provider is configured, this method registers an `afterSaveMessage` callback.
+3.  **`afterSaveMessage` Callback:** This callback is triggered every time a message is saved. It receives the `message` and `room` objects.
+4.  **`provider.translateMessage()`:** Inside the callback, the active translation provider's `translateMessage` method is called. This method handles the actual translation of the message content. The translated text is then stored within the message object, typically in a `message.translations` field.
 
-*   **`apps/meteor/app/autotranslate/server/autotranslate.ts`**: This file likely contains the core server-side logic for auto-translation, including the registration of the `afterSaveMessage` callback.
-*   **`apps/meteor/app/autotranslate/server/googleTranslate.ts`**: This file would contain the implementation for Google's auto-translation service.
-*   **`apps/meteor/app/autotranslate/server/msTranslate.ts`**: This file would contain the implementation for Microsoft's auto-translation service.
-*   **`apps/meteor/app/autotranslate/server/deeplTranslate.ts`**: This file would contain the implementation for DeepL's auto-translation service.
-*   **`apps/meteor/app/lib/server/lib/afterSaveMessage.ts`**: This file is where the `afterSaveMessage` event is defined and potentially where the auto-translate callback is added.
+**Translation Providers:**
 
-The flow can be summarized as:
+Rocket.Chat supports multiple translation providers, each implemented as a separate module:
 
-**Entry** (`afterSaveMessage` event in `apps/meteor/app/lib/server/lib/afterSaveMessage.ts`) → **Conditional Translation Check** (within `apps/meteor/app/autotranslate/server/autotranslate.ts`) → **Provider Selection** (via `TranslationProviderRegistry`) → **Message Translation** (e.g., `GoogleAutoTranslate` in `apps/meteor/app/autotranslate/server/googleTranslate.ts`) → **Translation Storage** (in `message.translations` field).
+*   **`GoogleAutoTranslate` (apps/meteor/app/autotranslate/server/googleTranslate.ts):** Handles translations using Google Translate.
+*   **`MsAutoTranslate` (apps/meteor/app/autotranslate/server/msTranslate.ts):** Handles translations using Microsoft Translator.
+*   **`DeeplAutoTranslate` (apps/meteor/app/autotranslate/server/deeplTranslate.ts):** Handles translations using DeepL.
 
-## Tool Calls (8 calls, 26,013 tokens)
+**Client-Side Display:**
 
-**Step 1:** `plan({"intent":"architecture","question":"How does the auto-translate feature work for messages in Rocket)` → 85 tokens
-**Step 2:** `search({"query":"autoTranslate"})` → 550 tokens
-**Step 3:** `graph({"move":"expand","query":"autoTranslate","depth":2})` → 481 tokens
-**Step 4:** `details({"filename":"apps/meteor/app/autotranslate/server/autotranslate.ts","symbolName":"autotranslate"})` → 135 tokens
-**Step 5:** `search({"query":"afterSaveMessage autoTranslate","layer":"server"})` → 30 tokens
-**Step 6:** `search({"layer":"server","query":"afterSaveMessage"})` → 270 tokens
-**Step 7:** `graph({"move":"down","query":"afterSaveMessage","depth":3,"layer":"server"})` → 499 tokens
-**Step 8:** `graph({"move":"down","depth":3,"query":"afterSaveMessage","edgeTypes":["event_listen"],"layer":"server"})` → 175 tokens
+*   **`useAutoTranslate` (apps/meteor/client/views/room/MessageList/hooks/useAutoTranslate.ts):** This React hook is responsible for consuming the translated messages from the server and displaying them in the message list. It likely checks for the presence of the `message.translations` field and renders the appropriate translated content to the user.
+*   **`createAutoTranslateMessageStreamHandler` (apps/meteor/app/autotranslate/client/lib/autotranslate.ts):** This client-side library likely handles real-time updates for translated messages, ensuring that new translations are reflected in the UI.
 
-## Files Seen In Tool Results (26)
+**Configuration and Settings:**
 
+*   **`Subscriptions.findByAutoTranslateAndUserId` (packages/models/src/models/Subscriptions.ts):** This model is used to retrieve and manage auto-translate settings on a per-user and per-subscription basis.
+*   **`saveAutoTranslateSettings` (apps/meteor/app/autotranslate/server/functions/saveSettings.ts):** This server-side function handles saving the auto-translate settings configured by the user.
+
+In summary, the auto-translate feature leverages server-side message hooks to perform translations using pluggable providers, and then client-side components display these translations to the user.
+
+## Tool Calls (7 calls, 18,872 tokens)
+
+**Step 1:** `plan({"question":"How does the auto-translate feature work for messages in Rocket.Chat?","intent":"architecture"})` → 205 tokens
+**Step 2:** `search({"query":"AutoTranslate"})` → 531 tokens
+**Step 3:** `graph({"file":"autotranslate.ts","query":"AutoTranslate","depth":2,"move":"expand"})` → 380 tokens
+**Step 4:** `details({"filename":"autotranslate.ts","symbolName":"autotranslate"})` → 146 tokens
+**Step 5:** `search({"query":"TranslationProviderRegistry","layer":"server"})` → 78 tokens
+**Step 6:** `details({"filename":"autotranslate.ts","symbolName":"TranslationProviderRegistry"})` → 326 tokens
+**Step 7:** `details({"filename":"autotranslate.ts","symbolName":"TranslationProviderRegistry.registerCallbacks"})` → 163 tokens
+
+## Files Seen In Tool Results (22)
+
+- `apps/meteor/client/views/room/contextualBar/AutoTranslate/AutoTranslate.tsx`
+- `apps/meteor/app/autotranslate/server/autotranslate.ts`
+- `apps/meteor/app/autotranslate/client/lib/autotranslate.ts`
 - `packages/rest-typings/src/v1/autoTranslate.ts`
 - `packages/rest-typings/src/v1/autotranslate/AutotranslateSaveSettingsParamsPOST.ts`
 - `packages/rest-typings/src/v1/autotranslate/AutotranslateGetSupportedLanguagesParamsGET.ts`
@@ -46,20 +61,13 @@ The flow can be summarized as:
 - `apps/meteor/client/views/room/contextualBar/AutoTranslate/index.ts`
 - `apps/meteor/client/views/room/contextualBar/AutoTranslate/AutoTranslateWithData.tsx`
 - `apps/meteor/client/views/room/contextualBar/AutoTranslate/AutoTranslate.stories.tsx`
-- `apps/meteor/client/views/room/contextualBar/AutoTranslate/AutoTranslate.tsx`
 - `apps/meteor/client/views/room/MessageList/lib/autoTranslate.ts`
 - `apps/meteor/client/views/room/MessageList/hooks/useAutoTranslate.ts`
 - `apps/meteor/client/startup/streamMessage/autotranslate.ts`
 - `apps/meteor/client/hooks/roomActions/useAutotranslateRoomAction.ts`
 - `apps/meteor/app/autotranslate/server/permissions.ts`
-- `apps/meteor/app/autotranslate/server/autotranslate.ts`
 - `apps/meteor/app/autotranslate/server/msTranslate.ts`
 - `apps/meteor/app/autotranslate/server/deeplTranslate.ts`
 - `apps/meteor/app/autotranslate/server/googleTranslate.ts`
-- `apps/meteor/app/autotranslate/client/lib/autotranslate.ts`
 - `packages/models/src/models/Subscriptions.ts`
 - `apps/meteor/app/autotranslate/server/functions/saveSettings.ts`
-- `apps/meteor/ee/app/message-read-receipt/server/hooks/afterSaveMessage.ts`
-- `apps/meteor/app/search/server/events/index.ts`
-- `apps/meteor/app/lib/server/lib/afterSaveMessage.ts`
-- `apps/meteor/app/threads/server/hooks/aftersavemessage.ts`

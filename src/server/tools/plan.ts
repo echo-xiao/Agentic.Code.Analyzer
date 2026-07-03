@@ -6,7 +6,7 @@
 import { SESSION } from '../session.js';
 import { classifyIntent, isIntent, RECIPES } from '../intent.js';
 import type { Intent } from '../intent.js';
-import { getArchitectureHint } from '../engine/common.js';
+import { routeSubsystem } from '../architecture/match.js';
 
 export function runPlan(args: { question?: string; intent?: string }): string {
     const question = args.question ?? '';
@@ -21,14 +21,18 @@ export function runPlan(args: { question?: string; intent?: string }): string {
 
     SESSION.intent = intent;
     const r = RECIPES[intent];
-    // Architecture routing: match the WHOLE question against the subsystem map, delivered up front.
-    const hint = getArchitectureHint(question);
+    // Architecture routing: match the WHOLE question against the subsystem map, delivered up front,
+    // with concrete index-validated seed symbols so the agent searches the right name from the start.
+    const arch = routeSubsystem(question);
+    const next = arch && arch.seedSymbols.length
+        ? `**Next:** search("${arch.seedSymbols[0]}")${arch.seedSymbols.length > 1 ? ` — also: ${arch.seedSymbols.slice(1).join(', ')}` : ''} → graph("<seed>")`
+        : `**Next:** search("<entry symbol or keyword>") → graph("<seed>")`;
 
     return [
         `🧭 intent: **${intent}**`,
-        hint ? `\n📐 architecture:\n${hint}\n` : '',
+        arch ? `\n📐 architecture:\n${arch.flow}\n` : '',
         `strategy: ${r.strategy}`,
         `defaults: graph(move="${r.move}", depth=${r.depth}) — override per call if the trail demands it.`,
-        `**Next:** search("<entry symbol or keyword>") → graph("<seed>")`,
+        next,
     ].filter(Boolean).join('\n');
 }

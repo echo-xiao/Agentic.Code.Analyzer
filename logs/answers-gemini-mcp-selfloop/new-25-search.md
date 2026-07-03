@@ -1,45 +1,45 @@
 # How does message search work in Rocket.Chat?
 
+## Plan
+
+intent: architecture
+
 ## Gemini Answer
 
-The message search functionality in Rocket.Chat follows a server-side processing flow, primarily handled by two key files:
+Rocket.Chat's message search functionality is managed by the `SearchProviderService`, which allows for pluggable search providers.
+
+Here's a breakdown of how it works:
+
+*   **`SearchProviderService`** (apps/meteor/app/search/server/service/SearchProviderService.ts): This class acts as the central hub for search. It maintains a record of registered search providers and an `activeProvider`. It has methods to `register` new providers, `use` a specific provider by its ID, and `start` the service.
+
+*   **`DefaultProvider`** (apps/meteor/app/search/server/provider/DefaultProvider.ts): This is the default search provider. It extends `SearchProvider` and implements the actual search logic. Its `search` method takes `userId`, `text`, `context` (including `rid` for the room ID), and `payload` as arguments to perform the message search. The `DefaultProvider` likely utilizes MongoDB's text search capabilities.
+
+*   **Registration** (apps/meteor/app/search/server/register.ts): The `DefaultProvider` is registered with the `searchProviderService` during the application's startup, making it available for use.
 
 **Flow:**
 
-1.  **Client-side Initiation (Implied):** A user initiates a message search from the client interface.
-2.  **Server-side Entry Point:** The request is routed to the `messageSearch` method located in `apps/meteor/server/methods/messageSearch.ts`. This method serves as the main server-side handler for message search queries.
-3.  **Access Control and Validation:** Within `messageSearch`, initial checks are performed to ensure the user has appropriate access to the room (if a specific room ID is provided) or if global search is enabled.
-4.  **Query Parsing:** The raw search text provided by the user is then passed to the `parseMessageSearchQuery` function, defined in `apps/meteor/server/lib/parseMessageSearchQuery.ts`. This function is responsible for interpreting the search string and converting it into a structured MongoDB query object and associated options.
-5.  **MongoDB Query Construction:** The `messageSearch` method further refines the parsed query by adding additional conditions, such as excluding removed messages (`t: { $ne: 'rm' }`) and hidden messages (`_hidden: { $ne: true }`). It also dynamically sets the `rid` (room ID) condition: if a specific room was targeted, that `rid` is used; otherwise, the search spans all rooms the user is subscribed to.
-6.  **Database Execution:** Finally, the fully constructed MongoDB query is executed against the `Messages` collection using `Messages.find(query, options).toArray()` to retrieve the relevant messages from the database.
-7.  **Result Return:** The `messageSearch` method returns the found messages to the client.
+1.  The client initiates a search request.
+2.  This request is routed to the `SearchProviderService` on the server.
+3.  The `SearchProviderService` delegates the search operation to its `activeProvider`.
+4.  If the `DefaultProvider` is active, its `search` method is invoked, which then performs the actual message search (likely using MongoDB's text search).
+5.  The search results are returned to the client.
 
-**Key Files:**
+This architecture allows for flexibility, enabling the integration of other search solutions (e.g., Elasticsearch) by simply registering them as new `SearchProvider` implementations.
 
-*   **`apps/meteor/server/methods/messageSearch.ts`**: This file contains the `messageSearch` method, which acts as the primary server-side orchestrator for message search. It handles user authentication, query refinement, and the ultimate execution of the database query.
-*   **`apps/meteor/server/lib/parseMessageSearchQuery.ts`**: This file provides the `parseMessageSearchQuery` function, which is crucial for translating the user's natural language search input into a structured and executable MongoDB query.
+## Tool Calls (8 calls, 16,485 tokens)
 
-## Tool Calls (5 calls, 8,767 tokens)
+**Step 1:** `plan({"question":"How does message search work in Rocket.Chat?"})` → 187 tokens
+**Step 2:** `search({"query":"searchProviderService"})` → 102 tokens
+**Step 3:** `graph({"move":"expand","query":"SearchProviderService","depth":2,"file":"SearchProviderService.ts"})` → 98 tokens
+**Step 4:** `details({"filename":"SearchProviderService.ts","symbolName":"SearchProviderService"})` → 171 tokens
+**Step 5:** `search({"query":"DefaultProvider"})` → 73 tokens
+**Step 6:** `details({"filename":"DefaultProvider.ts","symbolName":"DefaultProvider"})` → 188 tokens
+**Step 7:** `search({"query":"new DefaultProvider()"})` → 88 tokens
+**Step 8:** `search({"query":"SearchProviderService.search"})` → 29 tokens
 
-**Step 1:** `plan({"question":"How does message search work in Rocket.Chat?"})` → 85 tokens
-**Step 2:** `search({"query":"search messages"})` → 26 tokens
-**Step 3:** `search({"query":"message search"})` → 91 tokens
-**Step 4:** `graph({"file":"apps/meteor/server/lib/parseMessageSearchQuery.ts","query":"parseMessageSearchQuery","move")` → 454 tokens
-**Step 5:** `details({"symbolName":"messageSearch","filename":"apps/meteor/server/methods/messageSearch.ts"})` → 412 tokens
+## Files Seen In Tool Results (4)
 
-## Files Seen In Tool Results (14)
-
-- `apps/meteor/server/lib/parseMessageSearchQuery.ts`
-- `apps/meteor/server/methods/messageSearch.ts`
-- `apps/meteor/app/mentions/lib/MentionsParser.ts`
-- `apps/meteor/app/api/server/ApiClass.ts`
-- `apps/meteor/app/livechat/server/lib/Helper.ts`
-- `apps/meteor/app/api/server/helpers/isWidget.ts`
-- `packages/apps-engine/src/server/AppManager.ts`
-- `apps/meteor/client/lib/parseMessageTextToAstMarkdown.ts`
-- `apps/meteor/app/api/server/helpers/getUserInfo.ts`
-- `apps/meteor/app/push/server/push.ts`
-- `apps/meteor/server/services/messages/hooks/BeforeSaveMarkdownParser.ts`
-- `apps/meteor/ee/server/local-services/instance/service.ts`
-- `ee/packages/federation-matrix/src/FederationMatrix.ts`
-- `apps/meteor/ee/server/local-services/instance/getTransporter.ts`
+- `apps/meteor/app/search/server/service/index.ts`
+- `apps/meteor/app/search/server/service/SearchProviderService.ts`
+- `apps/meteor/app/search/server/provider/DefaultProvider.ts`
+- `apps/meteor/app/search/server/register.ts`

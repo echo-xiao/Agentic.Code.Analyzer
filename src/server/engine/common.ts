@@ -1,24 +1,7 @@
 // Shared graph-navigation helpers used by every engine module. Pure functions over GLOBAL_INDEX.
-import * as fs from 'fs';
-import * as path from 'path';
-import { fileURLToPath } from 'url';
+// (Architecture routing — routeSubsystem / concept map — moved to server/architecture/match.ts.)
 import { GLOBAL_INDEX } from '../../indexer/state.js';
 import type { EdgeType } from '../../indexer/state.js';
-
-const __dir = path.dirname(fileURLToPath(import.meta.url));
-const ARCHITECTURE: Array<{ keywords: string[]; hint: string }> = JSON.parse(
-    fs.readFileSync(path.resolve(__dir, '..', '..', 'architecture.json'), 'utf-8')
-);
-
-export function getArchitectureHint(query: string): string | null {
-    const q = query.toLowerCase();
-    for (const { keywords, hint } of ARCHITECTURE) {
-        if (keywords.some(k => q.includes(k.toLowerCase()) || k.toLowerCase().includes(q))) {
-            return hint;
-        }
-    }
-    return null;
-}
 
 export const LAYER_SEGMENTS: Record<string, string> = {
     client:   '/client/',
