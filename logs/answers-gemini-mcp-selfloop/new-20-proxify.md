@@ -1,37 +1,50 @@
 # How does the core-services proxify() pattern work for inter-service communication in Rocket.Chat?
 
+## Plan
+
+intent: architecture
+
 ## Gemini Answer
 
-The `proxify()` pattern in Rocket.Chat's `core-services` facilitates inter-service communication by abstracting direct service calls. Instead of services directly importing and calling methods from other services, they use a proxy mechanism.
+The `proxify()` pattern in Rocket.Chat's core-services enables inter-service communication without direct imports. It works as follows:
 
-Here's how it works:
+1.  **`proxify()` function:**
+    *   Located in `packages/core-services/src/lib/proxify.ts` and `packages/models/src/proxify.ts`.
+    *   It takes a `namespace` (which represents the service name) as an argument.
+    *   It returns a `Proxy` object. This proxy intercepts calls to methods on the "proxified" service.
 
-1.  **`proxify()` function**: Located in `packages/core-services/src/lib/proxify.ts`, the `proxify<T>(namespace: string)` function creates a JavaScript Proxy. This proxy intercepts calls to the methods of a service.
+2.  **`handler`:**
+    *   The `proxify()` function uses a `handler` (also defined within the `proxify.ts` files) to manage the proxy's behavior.
+    *   When a method is called on the proxified service (e.g., `api.call('namespace.method')`), the `handler` intercepts this call.
 
-2.  **Proxy `handler`**: The `proxify` function uses a `handler` (also defined in `packages/core-services/src/lib/proxify.ts`) to define the behavior of the proxy. When a method is accessed on the proxified object, the `get` trap of the handler is triggered.
+3.  **`LocalBroker`:**
+    *   The `LocalBroker` (found in `packages/core-services/src/LocalBroker.ts`) is the central component for routing these inter-service calls.
+    *   It maintains a `methods` map that stores method names as `'serviceName.methodName'` and their corresponding bound functions.
+    *   When the `handler` intercepts a call, it forwards it to the `LocalBroker.call()` method.
+    *   The `LocalBroker.call()` method then looks up the appropriate service method in its `methods` map and executes it.
 
-3.  **`api.call()`**: Inside the `handler`, the `get` trap returns a function that, when called, executes `api.call(`${namespace}.${prop}`, params)`. This means that any method call on the proxified service is transformed into a call to a generic `api.call` function, with the service's namespace and the method name concatenated (e.g., `IServiceName.methodName`) and the original parameters.
+4.  **Service Registration:**
+    *   Services extend `ServiceClassInternal` (for the monolith) or `ServiceClass`.
+    *   When a service is created, its methods are registered with the `LocalBroker` under their respective `serviceName.methodName` keys.
 
-4.  **LocalBroker**: Although `api.call` was not directly found in the search, the pattern description indicates that `api.call` then dispatches to `LocalBroker.call()`. The `LocalBroker` is responsible for storing and mapping method names (like `serviceName.methodName`) to the actual bound functions of the service classes. Services extend either `ServiceClassInternal` (for the monolith) or `ServiceClass`.
+**Flow:**
 
-In essence, the flow is:
+Entry → `proxify('IServiceName')` (packages/core-services/src/lib/proxify.ts or packages/models/src/proxify.ts) → `api.call('namespace.method')` → `LocalBroker.call()` (packages/core-services/src/LocalBroker.ts) → bound ServiceClass method.
 
-**Calling Service** → `proxify('IServiceName')` → `api.call('namespace.method')` → `LocalBroker.call()` → **Target Service's bound method**.
+In essence, `proxify()` creates a proxy that acts as an intermediary, routing all service calls through the `LocalBroker`, which then dispatches them to the correct service method. This decouples services, preventing direct dependencies and promoting a more modular architecture.
 
-This pattern ensures loose coupling between services, allowing them to communicate without direct dependencies, which is crucial for a microservices-oriented architecture.
+## Tool Calls (8 calls, 20,194 tokens)
 
-## Tool Calls (8 calls, 21,283 tokens)
+**Step 1:** `plan({"intent":"architecture","question":"How does the core-services proxify() pattern work for inter-service communication i)` → 205 tokens
+**Step 2:** `search({"query":"proxify"})` → 84 tokens
+**Step 3:** `graph({"file":"proxify.ts","move":"expand","query":"proxify","depth":2})` → 167 tokens
+**Step 4:** `details({"filename":"proxify.ts","symbolName":"proxify"})` → 73 tokens
+**Step 5:** `details({"symbolName":"proxify","filename":"proxify.ts"})` → 65 tokens
+**Step 6:** `search({"query":"handler","layer":"packages"})` → 491 tokens
+**Step 7:** `search({"query":"LocalBroker"})` → 67 tokens
+**Step 8:** `details({"filename":"LocalBroker.ts","symbolName":"LocalBroker"})` → 458 tokens
 
-**Step 1:** `plan({"question":"How does the core-services proxify() pattern work for inter-service communication in Ro)` → 85 tokens
-**Step 2:** `search({"query":"proxify"})` → 191 tokens
-**Step 3:** `graph({"depth":2,"file":"packages/core-services/src/lib/proxify.ts","query":"proxify","move":"expand"})` → 274 tokens
-**Step 4:** `details({"filename":"packages/core-services/src/lib/proxify.ts","symbolName":"proxify"})` → 73 tokens
-**Step 5:** `search({"layer":"packages/core-services","query":"handler"})` → 714 tokens
-**Step 6:** `details({"filename":"packages/core-services/src/lib/proxify.ts","symbolName":"handler"})` → 94 tokens
-**Step 7:** `search({"layer":"packages/core-services","query":"api.call"})` → 24 tokens
-**Step 8:** `details({"symbolName":"proxify","filename":"packages/core-services/src/lib/proxify.ts"})` → 73 tokens
-
-## Files Seen In Tool Results (22)
+## Files Seen In Tool Results (23)
 
 - `packages/models/src/proxify.ts`
 - `packages/core-services/src/lib/proxify.ts`
@@ -55,3 +68,4 @@ This pattern ensures loose coupling between services, allowing them to communica
 - `packages/apps-engine/deno-runtime/handlers/listener/handler.ts`
 - `packages/apps-engine/deno-runtime/handlers/lib/assertions.ts`
 - `packages/apps-engine/deno-runtime/handlers/app/handler.ts`
+- `packages/core-services/src/LocalBroker.ts`

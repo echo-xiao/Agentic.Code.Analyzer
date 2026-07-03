@@ -1,66 +1,59 @@
 # How do push notifications work in Rocket.Chat?
 
+## Plan
+
+intent: architecture
+
 ## Gemini Answer
 
-Push notifications in Rocket.Chat follow a structured flow, triggered by message events and routed based on user preferences and system configuration.
+Push notifications in Rocket.Chat follow a structured flow, starting from message saving and culminating in platform-specific push services.
 
-**Flow:**
+Here's the breakdown:
 
-1.  **Message Save Trigger:** The process begins when a message is saved, triggering the `afterSaveMessage` callback.
-2.  **Notification Dispatch:** The `sendNotificationsOnMessage` function in `apps/meteor/app/lib/server/lib/sendNotificationsOnMessage.ts` is responsible for orchestrating the notification process for all relevant users.
-3.  **User-Specific Notification Checks:** For each user, the system checks:
-    *   `shouldNotifyDesktop`: If true, `notifyDesktopUser()` is called, sending a desktop notification immediately without queuing.
-    *   `shouldNotifyMobile`: If true, `Notification.scheduleItem({type:'push'})` queues a mobile push notification. The delay is 120 seconds if the user is online and 0 seconds if offline.
-    *   `shouldNotifyEmail`: If true, `Notification.scheduleItem({type:'email'})` queues an email notification.
-4.  **Notification Queue Processing:** A `NotificationQueue` worker processes the queued items. For push notifications, it calls `PushNotification.send()`.
-5.  **Push Notification Routing (`PushClass`):** The `PushClass` determines how the push notification is sent:
-    *   **Gateway Mode:** If configured for gateway mode, an HTTP POST request is sent to the cloud gateway.
-    *   **Native Mode:** If in native mode, the notification is sent directly using:
-        *   `sendAPN()` for Apple Push Notification service.
-        *   `sendFCM()` for Google Firebase Cloud Messaging.
-6.  **Disabling Notifications:** The entire push notification system can be disabled via the `Troubleshoot_Disable_Notifications` setting.
+**1. Notification Trigger and Initial Processing:**
+   - When a message is saved, an `afterSaveMessage` callback (with low priority) triggers the notification process.
+   - This leads to `sendAllNotifications` (apps/meteor/app/lib/server/lib/sendNotificationsOnMessage.ts), which then calls `sendMessageNotifications` (apps/meteor/app/lib/server/lib/sendNotificationsOnMessage.ts).
+   - `sendMessageNotifications` checks for the `Troubleshoot_Disable_Notifications` setting and, if enabled, exits. Otherwise, it determines notification recipients based on mentions, room settings, and user preferences.
 
-**Key Files and Their Roles:**
+**2. Per-User Notification Handling:**
+   - For each eligible user, `sendMessageNotifications` calls `sendNotification` (apps/meteor/app/lib/server/lib/sendNotificationsOnMessage.ts).
+   - Inside `sendNotification`, several checks are performed:
+     - It ensures the sender is not notified.
+     - It handles group mention muting.
+     - It verifies user permissions to view direct messages.
+     - It parses the message text for the specific user.
+     - It determines if the message is highlighted for the user.
 
-*   **`apps/meteor/app/lib/server/lib/sendNotificationsOnMessage.ts`**: This file contains the `sendNotificationsOnMessage` function, which is the central orchestrator for determining and dispatching various types of notifications (desktop, mobile, email) after a message is saved.
-*   **`apps/meteor/app/push/server/fcm.ts`**: This file is responsible for sending push notifications specifically using Firebase Cloud Messaging (FCM), likely containing the `sendFCM()` implementation.
-*   **`apps/meteor/app/push/server/push.ts`**: This file likely contains the `PushClass` and the logic for routing push notifications to either the cloud gateway or native APN/FCM services, as well as the `PushNotification.send()` method.
+**3. Notification Type Determination and Queuing:**
+   - `sendNotification` then evaluates whether to send desktop, mobile (push), or email notifications based on user preferences and message characteristics:
+     - **Desktop Notifications:** If `shouldNotifyDesktop` returns true, `notifyDesktopUser` is called immediately (not queued).
+     - **Mobile Push Notifications:** If `shouldNotifyMobile` returns true, a `NotificationItem` of type 'push' is created with relevant data (using `getPushData`) and added to a queue.
+     - **Email Notifications:** If `shouldNotifyEmail` returns true and the user has a verified email, a `NotificationItem` of type 'email' is created (using `getEmailData`) and added to a queue.
+   - Finally, if there are any `queueItems`, `Notification.scheduleItem` (apps/meteor/app/lib/server/lib/sendNotificationsOnMessage.ts) is called to add them to the notification queue.
 
-## Tool Calls (6 calls, 15,867 tokens)
+**4. Notification Queue Processing (Conceptual):**
+   - The `NotificationQueue` worker (as described in the plan, though not directly surfaced in the code details) processes these queued items.
+   - For 'push' items, it calls `PushNotification.send()`, which then routes to `PushClass`.
+   - `PushClass` handles the actual sending:
+     - In gateway mode, it makes an HTTP POST request to the cloud gateway.
+     - In native mode, it calls `sendAPN()` for Apple Push Notification service or `sendFCM()` for Google Firebase Cloud Messaging.
 
-**Step 1:** `plan({"question":"How do push notifications work in Rocket.Chat?","intent":"architecture"})` → 85 tokens
-**Step 2:** `search({"layer":"server","query":"push notification"})` → 122 tokens
-**Step 3:** `graph({"move":"expand","query":"fcm.ts","depth":2,"file":"apps/meteor/app/push/server/fcm.ts"})` → 340 tokens
-**Step 4:** `graph({"query":"push.ts","depth":2,"file":"apps/meteor/app/push/server/push.ts","move":"expand"})` → 294 tokens
-**Step 5:** `search({"layer":"server","query":"send notification"})` → 129 tokens
-**Step 6:** `graph({"query":"sendNotificationsOnMessage","depth":4,"file":"apps/meteor/app/lib/server/lib/sendNotificat)` → 2562 tokens
+**Key Files:**
 
-## Files Seen In Tool Results (27)
+- **`apps/meteor/app/lib/server/lib/sendNotificationsOnMessage.ts`**: This file contains the core logic for initiating and processing notifications, including `sendAllNotifications`, `sendMessageNotifications`, and `sendNotification`. It also handles the queuing of push and email notifications via `Notification.scheduleItem`.
 
-- `apps/meteor/app/push/server/push.ts`
-- `apps/meteor/app/push/server/fcm.ts`
-- `apps/meteor/client/views/omnichannel/modals/ForwardChatModal.stories.tsx`
-- `apps/meteor/tests/unit/server/services/messages/hooks/BeforeSaveCheckMAC.tests.ts`
-- `apps/meteor/server/services/messages/hooks/BeforeSaveCheckMAC.ts`
-- `packages/core-services/src/lib/Api.ts`
-- `packages/apps-engine/src/server/bridges/LivechatBridge.ts`
-- `apps/meteor/app/lib/server/functions/createRoom.ts`
-- `apps/meteor/app/livechat/server/lib/departmentsLib.ts`
-- `apps/meteor/ee/server/lib/ldap/Manager.ts`
-- `apps/meteor/app/meteor-accounts-saml/server/lib/SAML.ts`
-- `apps/meteor/server/services/video-conference/service.ts`
-- `apps/meteor/app/apps/server/converters/visitors.js`
-- `packages/core-typings/src/IUser.ts`
-- `apps/meteor/app/utils/server/lib/getValidRoomName.ts`
-- `apps/meteor/tests/unit/server/services/calendar/statusEvents/cancelUpcomingStatusChanges.tests.ts`
-- `apps/meteor/server/services/calendar/service.ts`
-- `apps/meteor/client/lib/banners.ts`
-- `apps/meteor/app/settings/server/CachedSettings.ts`
-- `apps/meteor/app/lib/server/lib/notifyListener.ts`
-- `apps/meteor/app/api/server/ApiClass.ts`
-- `packages/apps-engine/src/server/accessors/RoomBuilder.ts`
-- `apps/meteor/app/importer/server/classes/converters/ConverterCache.ts`
-- `ee/apps/ddp-streamer/src/lib/Autoupdate.ts`
-- `apps/meteor/ee/app/settings/server/settings.ts`
-- `apps/meteor/server/services/calendar/statusEvents/generateCronJobId.ts`
+## Tool Calls (8 calls, 36,497 tokens)
+
+**Step 1:** `plan({"question":"How do push notifications work in Rocket.Chat?","intent":"architecture"})` → 292 tokens
+**Step 2:** `search({"query":"sendAllNotifications","layer":"server"})` → 76 tokens
+**Step 3:** `graph({"move":"down","query":"sendAllNotifications","file":"sendNotificationsOnMessage.ts","depth":4})` → 1140 tokens
+**Step 4:** `details({"filename":"messenger.ts","symbolName":"sendNotification"})` → 85 tokens
+**Step 5:** `search({"query":"Notification.scheduleItem","layer":"server"})` → 90 tokens
+**Step 6:** `details({"filename":"sendNotificationsOnMessage.ts","symbolName":"sendNotificationsOnMessage.ts"})` → 65 tokens
+**Step 7:** `details({"symbolName":"sendMessageNotifications","filename":"sendNotificationsOnMessage.ts"})` → 972 tokens
+**Step 8:** `details({"symbolName":"sendNotification","filename":"sendNotificationsOnMessage.ts"})` → 1235 tokens
+
+## Files Seen In Tool Results (2)
+
 - `apps/meteor/app/lib/server/lib/sendNotificationsOnMessage.ts`
+- `packages/apps-engine/deno-runtime/lib/messenger.ts`

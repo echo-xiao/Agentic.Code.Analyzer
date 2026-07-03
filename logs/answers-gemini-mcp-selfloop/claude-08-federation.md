@@ -1,52 +1,37 @@
 # How are federation messages sent across different servers in Rocket.Chat?
 
+## Plan
+
+intent: call-chain
+
 ## Gemini Answer
 
-Federation messages are sent across different servers in Rocket.Chat through the following flow:
+Federation messages in Rocket.Chat are sent across different servers through the `FederationMatrix` service, specifically via the `sendMessage` method.
 
-**Outgoing Messages:**
+Here's the call chain for sending a message:
 
-1.  **`FederationMatrix.sendMessage()`**: This is the initial call for sending a message. (File: `ee/packages/federation-matrix/src/FederationMatrix.ts`)
-2.  **`federationSDK.sendMessage()`**: The message is then passed to the federation SDK.
-3.  **Matrix protocol HTTP API**: Finally, the federation SDK uses the Matrix protocol HTTP API to send the message to the remote server.
+1.  **Entry Point:** `FederationMatrix.sendMessage` (ee/packages/federation-matrix/src/FederationMatrix.ts)
+    *   This method determines if the message contains files or is a plain text message.
+    *   It then calls either `handleFileMessage` or `handleTextMessage`.
+2.  **Message Handling:** `FederationMatrix.handleTextMessage` (ee/packages/federation-matrix/src/FederationMatrix.ts)
+    *   This method prepares the message for the Matrix protocol by converting it to an external message format using `toExternalMessageFormat`.
+    *   It also handles threaded messages and quoted messages by calling `handleThreadedMessage` and `handleQuoteMessage` respectively.
+    *   Finally, it uses `federationSDK.sendMessage` to send the message to the Matrix server.
 
-**Incoming Messages:**
+The `federationSDK.sendMessage` is the ultimate step in sending the message, which interacts with the Matrix protocol HTTP API to deliver the message to the remote server.
 
-1.  **`PUT /_matrix/federation/v1/send/:txnId`**: Incoming federation messages are received via this HTTP endpoint.
-2.  **`federationSDK.processIncomingTransaction()`**: The federation SDK processes the incoming transaction.
-3.  **Event Emitter**: The SDK dispatches events by type using an event emitter.
-4.  **Event Listeners**: Event listeners (e.g., `'homeserver.matrix.message'`) process the events and persist the data to the local database.
+## Tool Calls (8 calls, 22,403 tokens)
 
-The federation functionality is primarily located in the `ee/packages/federation-matrix/` directory and utilizes an event-driven architecture internally.
+**Step 1:** `plan({"question":"How are federation messages sent across different servers in Rocket.Chat?","intent":"call-chain"})` → 210 tokens
+**Step 2:** `search({"query":"FederationMatrix","layer":"ee"})` → 101 tokens
+**Step 3:** `graph({"query":"FederationMatrix.sendMessage","file":"FederationMatrix.ts","move":"down","depth":5})` → 17 tokens
+**Step 4:** `search({"layer":"ee","query":"federationSDK"})` → 25 tokens
+**Step 5:** `details({"filename":"FederationMatrix.ts","symbolName":"FederationMatrix"})` → 1193 tokens
+**Step 6:** `graph({"depth":5,"move":"down","file":"FederationMatrix.ts","query":"FederationMatrix.sendMessage"})` → 17 tokens
+**Step 7:** `details({"symbolName":"FederationMatrix.sendMessage","filename":"FederationMatrix.ts"})` → 270 tokens
+**Step 8:** `details({"symbolName":"FederationMatrix.handleTextMessage","filename":"FederationMatrix.ts"})` → 235 tokens
 
-## Tool Calls (8 calls, 15,459 tokens)
+## Files Seen In Tool Results (2)
 
-**Step 1:** `plan({"intent":"call-chain","question":"How are federation messages sent across different servers in Rock)` → 81 tokens
-**Step 2:** `search({"query":"sendFederationMessage"})` → 27 tokens
-**Step 3:** `search({"query":"federation message"})` → 27 tokens
-**Step 4:** `search({"query":"federation outbound"})` → 27 tokens
-**Step 5:** `search({"query":"Federation"})` → 564 tokens
-**Step 6:** `graph({"layer":"ee","move":"down","depth":5,"query":"FederationMatrix.sendMessage"})` → 17 tokens
-**Step 7:** `search({"layer":"ee","query":"FederationMatrix"})` → 221 tokens
-**Step 8:** `graph({"depth":5,"move":"down","query":"FederationMatrix.sendMessage","file":"/Users/echoooooo/Desktop/cod)` → 17 tokens
-
-## Files Seen In Tool Results (18)
-
-- `packages/core-services/src/index.ts`
-- `packages/rest-typings/src/v1/federation/rooms.ts`
-- `packages/rest-typings/src/v1/federation/index.ts`
-- `packages/rest-typings/src/v1/federation/FederationVerifyMatrixIdProps.ts`
-- `packages/rest-typings/src/v1/federation/FederationRemoveServerProps.ts`
-- `packages/rest-typings/src/v1/federation/FederationPublicRoomsProps.ts`
-- `packages/rest-typings/src/v1/federation/FederationJoinExternalPublicRoomProps.ts`
-- `packages/rest-typings/src/v1/federation/FederationAddServerProps.ts`
-- `packages/models/src/models/FederationRoomEvents.ts`
-- `packages/models/src/models/FederationKeys.ts`
-- `packages/models/src/models/FederationEvents.ts`
-- `packages/model-typings/src/models/IFederationRoomEventsModel.ts`
-- `packages/model-typings/src/models/IFederationKeysModel.ts`
-- `packages/core-typings/src/IMatrixFederationStatistics.ts`
-- `packages/core-typings/src/federation/index.ts`
-- `packages/core-typings/src/federation/v1/index.ts`
 - `ee/packages/federation-matrix/src/FederationMatrix.ts`
 - `packages/core-services/src/types/IFederationMatrixService.ts`
