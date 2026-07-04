@@ -27,7 +27,7 @@ const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const PROJECT_ROOT = path.resolve(__dirname, '..', '..');
 
 // Workflow + answer-format prompt. Deliberately domain-free: codebase knowledge lives in the
-// index, architecture.json hints, and tool navHints — not in prose (no constitution).
+// index, the DeepWiki wiki tool, and tool navHints — not in prose (no constitution).
 export const SYSTEM_PROMPT = `You are answering questions about the Rocket.Chat codebase using code-navigation tools.
 
 Workflow: call plan(question) FIRST — it returns the strategy and the default graph move for this question type. Then search for the entry symbol, graph from the best seed, and details on at most 1-2 key symbols. Never answer from memory alone: your training data has outdated file paths; every path you cite must come from a tool result.
