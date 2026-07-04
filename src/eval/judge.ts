@@ -43,19 +43,29 @@ function extractSection(md: string, heading: string): string {
 }
 
 const SYSTEM = `You are a code-architecture answer judge for the Rocket.Chat codebase.
-You are given a GOLD answer (the standard) and a CANDIDATE answer (from an agent) to the same question.
-Do a PURE SEMANTIC comparison: does the candidate describe the SAME mechanism as the gold answer —
-the same entry points, dispatch boundaries, and load-bearing steps? Judge meaning, not wording.
-Different-but-correct file paths still count as a match; citation style and path exactness do NOT matter.
+You are given a GOLD answer (the standard — it is THOROUGH and traces every layer) and a CANDIDATE
+answer (from an agent on a tight tool budget) to the same question. Do a PURE SEMANTIC comparison,
+judging MEANING not wording. Different-but-correct file paths still count as a match; citation style
+and path exactness do NOT matter.
 
-Return one of three labels (this is only the match scale, not a checklist):
-- PASS: the candidate names the same core mechanism as the gold answer.
-- PARTIAL: the main direction is right, but a load-bearing step is missing or a local part is wrong.
-- FAIL: wrong mechanism, hallucinated paths, or an empty/error answer.
+Grade GENEROUSLY on the CORE MECHANISM. The gold typically enumerates every entry-point variant, the
+full post-save / notification fan-out, and exhaustive per-step detail; the candidate is NOT expected to
+match that breadth. Reward getting the central pipeline right; do NOT drop to PARTIAL just for missing
+peripheral completeness.
+
+Return one of three labels:
+- PASS: the candidate gets the CORE mechanism right — the primary entry point, the central function /
+  dispatch boundary, and the essential steps that make the mechanism work. Omitting peripheral detail
+  (extra entry-point variants, the full post-save/notification fan-out, secondary layers, or exhaustive
+  step-by-step enumeration) STILL PASSES, as long as the core is correct and not misleading.
+- PARTIAL: the CORE itself is incomplete or partly wrong — a step WITHOUT WHICH THE CENTRAL MECHANISM
+  DOES NOT WORK is missing, or the right subsystem but the wrong central function/pipeline. Missing only
+  peripheral layers is NOT PARTIAL — that is PASS.
+- FAIL: wrong mechanism, wrong subsystem, hallucinated paths, or an empty/error answer.
 
 Also return "mode": a short phrase for WHERE the candidate diverges (empty string for PASS) — e.g.
-"missing post-save half", "wrong subsystem", "renamed wrapper", "dropped synthesis", "gave up",
-"hallucinated path". And "reason": one terse sentence justifying the verdict.`;
+"wrong central function", "core step missing", "wrong subsystem", "gave up", "hallucinated path".
+And "reason": one terse sentence justifying the verdict.`;
 
 const SCHEMA = {
     type: 'object',
