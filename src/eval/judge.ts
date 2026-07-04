@@ -1,0 +1,152 @@
+/**
+ * judge — SEMANTIC report → logs/reports/verdicts.md.
+ *
+ * Pure semantic comparison: for each testcase, compare the AGENT answer
+ * (logs/answers-gemini-mcp-selfloop/<id>.md → "## Gemini Answer") against the
+ * GOLD answer (logs/answers-claude/<id>.md → "## Answer"), and emit
+ * PASS / PARTIAL / FAIL + mode (where it diverges) + one-line reason.
+ *
+ * Gold standard = answers-claude (NOT testcases.json's core spine — the old
+ * manual basis — and NOT DeepWiki: DeepWiki is the agent's OWN wiki tool, so
+ * judging against it would be circular). No rubric, no frozen criteria; the
+ * three labels are only the semantic-match scale.
+ *
+ * Model: claude-sonnet-4-6 (cost-saving judge). Needs ANTHROPIC_API_KEY in .env.
+ * Run: npm run judge   (regenerates verdicts.md — overwrite is recoverable via git).
+ */
+import "./utils/load-env.js";
+import Anthropic from '@anthropic-ai/sdk';
+import * as fs from 'fs';
+import * as path from 'path';
+import { fileURLToPath, pathToFileURL } from 'url';
+import { loadTestcases } from './utils/load-testcases.js';
+
+const __dirname = path.dirname(fileURLToPath(import.meta.url));
+const PROJECT_ROOT = path.resolve(__dirname, '..', '..');
+const GOLD_DIR = path.join(PROJECT_ROOT, 'logs', 'answers-claude');
+const CAND_DIR = path.join(PROJECT_ROOT, 'logs', 'answers-gemini-mcp-selfloop');
+const OUT = path.join(PROJECT_ROOT, 'logs', 'reports', 'verdicts.md');
+const MODEL = 'claude-sonnet-4-6';
+const CONCURRENCY = 5;
+
+type Verdict = { verdict: 'PASS' | 'PARTIAL' | 'FAIL'; mode: string; reason: string };
+type Row = { id: string } & Verdict;
+
+/** Grab the body of one `## Heading` section, up to the next same-level heading or EOF. */
+function extractSection(md: string, heading: string): string {
+    const lines = md.split('\n');
+    const start = lines.findIndex(l => l.trim() === heading);
+    if (start === -1) return md.trim(); // heading absent → fall back to whole file
+    const rest = lines.slice(start + 1);
+    const end = rest.findIndex(l => /^##\s/.test(l));
+    return (end === -1 ? rest : rest.slice(0, end)).join('\n').trim();
+}
+
+const SYSTEM = `You are a code-architecture answer judge for the Rocket.Chat codebase.
+You are given a GOLD answer (the standard) and a CANDIDATE answer (from an agent) to the same question.
+Do a PURE SEMANTIC comparison: does the candidate describe the SAME mechanism as the gold answer —
+the same entry points, dispatch boundaries, and load-bearing steps? Judge meaning, not wording.
+Different-but-correct file paths still count as a match; citation style and path exactness do NOT matter.
+
+Return one of three labels (this is only the match scale, not a checklist):
+- PASS: the candidate names the same core mechanism as the gold answer.
+- PARTIAL: the main direction is right, but a load-bearing step is missing or a local part is wrong.
+- FAIL: wrong mechanism, hallucinated paths, or an empty/error answer.
+
+Also return "mode": a short phrase for WHERE the candidate diverges (empty string for PASS) — e.g.
+"missing post-save half", "wrong subsystem", "renamed wrapper", "dropped synthesis", "gave up",
+"hallucinated path". And "reason": one terse sentence justifying the verdict.`;
+
+const SCHEMA = {
+    type: 'object',
+    properties: {
+        verdict: { type: 'string', enum: ['PASS', 'PARTIAL', 'FAIL'] },
+        mode: { type: 'string' },
+        reason: { type: 'string' },
+    },
+    required: ['verdict', 'mode', 'reason'],
+    additionalProperties: false,
+} as const;
+
+async function judgeOne(client: Anthropic, question: string, gold: string, cand: string): Promise<Verdict> {
+    const resp = await client.messages.create({
+        model: MODEL,
+        max_tokens: 1024,
+        system: SYSTEM,
+        messages: [{
+            role: 'user',
+            content: `QUESTION:\n${question}\n\n===== GOLD ANSWER (standard) =====\n${gold}\n\n===== CANDIDATE ANSWER (agent) =====\n${cand}`,
+        }],
+        // effort medium = cost/quality balance for a bounded comparison; format = schema-locked JSON.
+        output_config: { effort: 'medium', format: { type: 'json_schema', schema: SCHEMA } },
+    } as any);
+    const block = (resp.content as any[]).find(b => b.type === 'text');
+    if (!block) throw new Error('no text block in response');
+    return JSON.parse(block.text) as Verdict;
+}
+
+/** Bounded-concurrency map — keeps us under rate limits without going fully sequential. */
+async function mapPool<T, R>(items: T[], n: number, fn: (item: T, i: number) => Promise<R>): Promise<R[]> {
+    const out: R[] = new Array(items.length);
+    let idx = 0;
+    const worker = async () => {
+        while (idx < items.length) {
+            const i = idx++;
+            out[i] = await fn(items[i], i);
+        }
+    };
+    await Promise.all(Array.from({ length: Math.min(n, items.length) }, worker));
+    return out;
+}
+
+async function main() {
+    const apiKey = process.env.ANTHROPIC_API_KEY || process.env.CLAUDE_API_KEY;
+    if (!apiKey) { console.error('ANTHROPIC_API_KEY (or CLAUDE_API_KEY) not set in .env. Add it and retry.'); process.exit(1); }
+    const client = new Anthropic({ apiKey });
+
+    const { flat: testcases } = loadTestcases(path.join(__dirname, 'utils', 'testcases.json'));
+
+    const jobs = testcases.filter(tc => {
+        const ok = fs.existsSync(path.join(GOLD_DIR, `${tc.id}.md`)) && fs.existsSync(path.join(CAND_DIR, `${tc.id}.md`));
+        if (!ok) console.error(`skip ${tc.id} (missing gold or candidate file)`);
+        return ok;
+    });
+
+    console.error(`Judging ${jobs.length} answers with ${MODEL} (semantic compare vs answers-claude)...`);
+    let done = 0;
+    const results = await mapPool<typeof jobs[number], Row | null>(jobs, CONCURRENCY, async (tc) => {
+        const gold = extractSection(fs.readFileSync(path.join(GOLD_DIR, `${tc.id}.md`), 'utf-8'), '## Answer');
+        const cand = extractSection(fs.readFileSync(path.join(CAND_DIR, `${tc.id}.md`), 'utf-8'), '## Gemini Answer');
+        try {
+            const v = await judgeOne(client, tc.question, gold, cand);
+            console.error(`  [${++done}/${jobs.length}] ${tc.id}: ${v.verdict}`);
+            return { id: tc.id, ...v };
+        } catch (e) {
+            console.error(`  [${++done}/${jobs.length}] ${tc.id}: ERROR — ${(e as Error).message}`);
+            return null; // excluded from the table + counts so tooling errors never pollute the score
+        }
+    });
+    const rows = results.filter((r): r is Row => r !== null);
+    const skipped = jobs.length - rows.length;
+
+    const n = { PASS: 0, PARTIAL: 0, FAIL: 0 };
+    for (const r of rows) n[r.verdict]++;
+
+    const esc = (s: string) => (s ?? '').replace(/\|/g, '\\|').replace(/\n+/g, ' ').trim();
+    const L: string[] = [];
+    L.push(`# agents — semantic verdicts (generated by judge.ts · model: ${MODEL})\n`);
+    L.push(`**Judged: ${new Date().toLocaleString('en-US')}** · pure semantic compare of \`logs/answers-gemini-mcp-selfloop/\` (agent) against \`logs/answers-claude/\` (**standard answer**). No rubric / no frozen criteria — the three labels are only the semantic-match scale. Regenerate with \`npm run judge\` after every \`gen:mcp\`.\n`);
+    L.push(`> **PASS** = same core mechanism as the gold answer (different-but-correct files still PASS). **PARTIAL** = main direction right, a load-bearing step missing or a local part wrong. **FAIL** = wrong mechanism, hallucinated paths, or empty/error answer.\n`);
+    L.push(`| id | verdict | mode | reason |`);
+    L.push(`|---|---|---|---|`);
+    for (const r of rows) L.push(`| ${r.id} | ${r.verdict} | ${esc(r.mode) || '—'} | ${esc(r.reason)} |`);
+    L.push(`\n> **Summary: PASS ${n.PASS} / PARTIAL ${n.PARTIAL} / FAIL ${n.FAIL}** (of ${rows.length}${skipped ? `; ${skipped} skipped/errored` : ''}).\n`);
+
+    fs.mkdirSync(path.dirname(OUT), { recursive: true });
+    fs.writeFileSync(OUT, L.join('\n'), 'utf-8');
+    console.error(`Wrote logs/reports/verdicts.md — PASS ${n.PASS} / PARTIAL ${n.PARTIAL} / FAIL ${n.FAIL}${skipped ? ` (${skipped} skipped)` : ''}`);
+}
+
+if (import.meta.url === pathToFileURL(process.argv[1] ?? '').href) {
+    main();
+}
