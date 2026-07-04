@@ -9,7 +9,7 @@ export interface TestCase {
     subsystem: string;
     difficulty: string;
     source?: string;
-    groundTruthFiles: string[];
+    groundTruthFiles?: string[];   // legacy: the answer spine is now supplied by attachTruth from claude-truth.json
     groundTruthPath?: PathStep[];
     keySymbols?: string[];
     // grouped-v1 enrichments
