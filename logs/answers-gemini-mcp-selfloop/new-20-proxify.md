@@ -2,70 +2,63 @@
 
 ## Plan
 
-intent: architecture
+intent: unknown
 
 ## Gemini Answer
 
-The `proxify()` pattern in Rocket.Chat's core-services enables inter-service communication without direct imports. It works as follows:
+The `proxify()` pattern in Rocket.Chat's `core-services` package enables inter-service communication by creating proxy objects that abstract the underlying message transport. This allows services to invoke methods on other services as if they were local objects.
 
-1.  **`proxify()` function:**
-    *   Located in `packages/core-services/src/lib/proxify.ts` and `packages/models/src/proxify.ts`.
-    *   It takes a `namespace` (which represents the service name) as an argument.
-    *   It returns a `Proxy` object. This proxy intercepts calls to methods on the "proxified" service.
-
-2.  **`handler`:**
-    *   The `proxify()` function uses a `handler` (also defined within the `proxify.ts` files) to manage the proxy's behavior.
-    *   When a method is called on the proxified service (e.g., `api.call('namespace.method')`), the `handler` intercepts this call.
-
-3.  **`LocalBroker`:**
-    *   The `LocalBroker` (found in `packages/core-services/src/LocalBroker.ts`) is the central component for routing these inter-service calls.
-    *   It maintains a `methods` map that stores method names as `'serviceName.methodName'` and their corresponding bound functions.
-    *   When the `handler` intercepts a call, it forwards it to the `LocalBroker.call()` method.
-    *   The `LocalBroker.call()` method then looks up the appropriate service method in its `methods` map and executes it.
-
-4.  **Service Registration:**
-    *   Services extend `ServiceClassInternal` (for the monolith) or `ServiceClass`.
-    *   When a service is created, its methods are registered with the `LocalBroker` under their respective `serviceName.methodName` keys.
+Here's a breakdown of how it works:
 
 **Flow:**
 
-Entry → `proxify('IServiceName')` (packages/core-services/src/lib/proxify.ts or packages/models/src/proxify.ts) → `api.call('namespace.method')` → `LocalBroker.call()` (packages/core-services/src/LocalBroker.ts) → bound ServiceClass method.
+1.  **Proxy Creation:** The `proxify()` function, located in `packages/core-services/src/lib/proxify.ts`, takes a service name (namespace) as input. It then returns a `Proxy` object.
+2.  **Method Interception:** When a method is called on this `Proxy` object, the `handler` function (also in `packages/core-services/src/lib/proxify.ts`) intercepts the call.
+3.  **API Call:** The `handler` then uses the `api.call()` method to route the request. The `api` object is an instance of the `Api` class, defined in `packages/core-services/src/lib/Api.ts`.
+4.  **Broker Delegation:** The `Api.call()` method, in turn, delegates the actual communication to a `broker` instance. This `broker` is set via `Api.setBroker()`.
+5.  **Message Transport:** The broker handles the message passing between services. In a monolithic deployment, an in-process `LocalBroker` is used, while in a distributed environment, NATS and the `@rocket.chat/network-broker` package are utilized.
 
-In essence, `proxify()` creates a proxy that acts as an intermediary, routing all service calls through the `LocalBroker`, which then dispatches them to the correct service method. This decouples services, preventing direct dependencies and promoting a more modular architecture.
+**Key Files and Their Roles:**
 
-## Tool Calls (8 calls, 20,194 tokens)
+*   **`packages/core-services/src/lib/proxify.ts`**: This file contains the `proxify()` function, which creates the proxy object, and the `handler` function, which intercepts method calls on the proxy.
+*   **`packages/core-services/src/lib/Api.ts`**: This file defines the `Api` class, which acts as a central point for inter-service communication. It includes the `call()` method, responsible for routing requests, and the `setBroker()` method, which configures the underlying message transport.
 
-**Step 1:** `plan({"intent":"architecture","question":"How does the core-services proxify() pattern work for inter-service communication i)` → 205 tokens
-**Step 2:** `search({"query":"proxify"})` → 84 tokens
-**Step 3:** `graph({"file":"proxify.ts","move":"expand","query":"proxify","depth":2})` → 167 tokens
-**Step 4:** `details({"filename":"proxify.ts","symbolName":"proxify"})` → 73 tokens
-**Step 5:** `details({"symbolName":"proxify","filename":"proxify.ts"})` → 65 tokens
-**Step 6:** `search({"query":"handler","layer":"packages"})` → 491 tokens
-**Step 7:** `search({"query":"LocalBroker"})` → 67 tokens
-**Step 8:** `details({"filename":"LocalBroker.ts","symbolName":"LocalBroker"})` → 458 tokens
+## Tool Calls (8 calls, 28,881 tokens)
 
-## Files Seen In Tool Results (23)
+**Step 1:** `wiki({"question":"How does the core-services proxify() pattern work for inter-service communication in Rocket.Chat?"})` → 1064 tokens
+**Step 2:** `search({"query":"proxify","layer":"packages"})` → 84 tokens
+**Step 3:** `details({"symbolName":"proxify","filename":"proxify.ts"})` → 73 tokens
+**Step 4:** `details({"filename":"proxify.ts","symbolName":"handler"})` → 94 tokens
+**Step 5:** `search({"query":"api.call","layer":"packages"})` → 85 tokens
+**Step 6:** `search({"file":"core-services","layer":"packages","query":"api"})` → 485 tokens
+**Step 7:** `details({"filename":"Api.ts","symbolName":"Api"})` → 315 tokens
+**Step 8:** `details({"symbolName":"Api.call","filename":"Api.ts"})` → 74 tokens
 
+## Files Seen In Tool Results (26)
+
+- `packages/core-services/src/index.ts`
+- `packages/models/src/index.ts`
+- `packages/apps-engine/deno-runtime/lib/accessors/mod.ts`
+- `packages/apps-engine/deno-runtime/lib/accessors/modify/ModifyCreator.ts`
 - `packages/models/src/proxify.ts`
 - `packages/core-services/src/lib/proxify.ts`
-- `packages/apps-engine/deno-runtime/lib/accessors/mod.ts`
-- `ee/apps/ddp-streamer/src/Client.ts`
-- `packages/apps-engine/deno-runtime/lib/wrapAppForRequest.ts`
-- `packages/apps-engine/src/server/accessors/ModifyUpdater.ts`
-- `packages/apps-engine/src/server/accessors/ModifyCreator.ts`
-- `packages/apps-engine/src/definition/uikit/IUIKitActionHandler.ts`
-- `packages/apps-engine/src/definition/uikit/livechat/IUIKitLivechatActionHandler.ts`
-- `packages/apps-engine/src/definition/livechat/ILivechatRoomClosedHandler.ts`
-- `packages/apps-engine/deno-runtime/error-handlers.ts`
-- `packages/apps-engine/deno-runtime/lib/accessors/formatResponseErrorHandler.ts`
-- `packages/apps-engine/deno-runtime/handlers/videoconference-handler.ts`
-- `packages/apps-engine/deno-runtime/handlers/slashcommand-handler.ts`
-- `packages/apps-engine/deno-runtime/handlers/scheduler-handler.ts`
-- `packages/apps-engine/deno-runtime/handlers/outboundcomms-handler.ts`
-- `packages/apps-engine/deno-runtime/handlers/api-handler.ts`
-- `packages/apps-engine/deno-runtime/handlers/uikit/handler.ts`
-- `packages/apps-engine/deno-runtime/handlers/tests/helpers/mod.ts`
-- `packages/apps-engine/deno-runtime/handlers/listener/handler.ts`
-- `packages/apps-engine/deno-runtime/handlers/lib/assertions.ts`
-- `packages/apps-engine/deno-runtime/handlers/app/handler.ts`
-- `packages/core-services/src/LocalBroker.ts`
+- `ee/packages/omnichannel-services/src/QueueWorker.ts`
+- `packages/livechat/src/api.ts`
+- `packages/core-services/src/api.ts`
+- `packages/core-services/src/types/ServiceClass.ts`
+- `packages/apps-engine/src/server/runtime/deno/AppsEngineDenoRuntime.ts`
+- `packages/ui-client/src/components/Wizard/mocks/createMockWizardApi.ts`
+- `packages/livechat/src/lib/api.ts`
+- `packages/desktop-api/src/index.ts`
+- `packages/core-services/src/types/IApiService.ts`
+- `packages/core-services/src/lib/Api.ts`
+- `packages/apps-engine/tests/test-data/bridges/apiBridge.ts`
+- `packages/apps-engine/src/server/managers/AppApiManager.ts`
+- `packages/apps-engine/src/server/managers/AppApi.ts`
+- `packages/apps-engine/src/server/errors/RequiredApiVersionError.ts`
+- `packages/apps-engine/src/server/bridges/ApiBridge.ts`
+- `packages/apps-engine/src/server/accessors/ApiExtend.ts`
+- `packages/apps-engine/src/definition/api/index.ts`
+- `packages/apps-engine/src/definition/api/IResponse.ts`
+- `packages/apps-engine/src/definition/api/IRequest.ts`
+- `packages/apps-engine/src/definition/api/IApiExample.ts`

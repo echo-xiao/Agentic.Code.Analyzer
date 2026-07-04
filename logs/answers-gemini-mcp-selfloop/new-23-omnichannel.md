@@ -2,62 +2,67 @@
 
 ## Plan
 
-intent: call-chain
+intent: unknown
 
 ## Gemini Answer
 
-The Omnichannel queue processes and closes a livechat conversation through a series of steps involving the `QueueManager`, `RoutingManager`, and the `OmnichannelQueue` worker.
+The Omnichannel queue processes and closes livechat conversations through a series of steps managed by the `OmnichannelQueue` service and the `closeRoom` function.
 
-**Processing a New Livechat Conversation:**
+**Omnichannel Queue Processing Flow:**
 
-1.  **`QueueManager.requestRoom()`**: When a new conversation is initiated, this function creates a room and an inquiry in a database transaction.
-2.  **`processNewInquiry()`**: This function checks the status of the inquiry.
-    *   If the inquiry is `READY`, it is immediately delegated for routing.
-    *   If the inquiry is `QUEUED`, it is saved to the queue.
-3.  **`RoutingManager.delegateInquiry()`**: This is a crucial step where the routing strategy (e.g., AutoSelection, Manual) is applied.
-4.  **`takeInquiry()`**: This function, located in `apps/meteor/app/livechat/server/lib/takeInquiry.ts`, is responsible for assigning an agent to the inquiry. It updates the room with the assigned agent's information.
+1.  **`OmnichannelQueue` Service Initialization and Execution:**
+    *   The `OmnichannelQueue` service, located at `apps/meteor/server/services/omnichannel/queue.ts`, starts if Livechat is enabled and the routing method supports auto-assignment.
+    *   It periodically calls its `execute` method.
+    *   **`OmnichannelQueue.execute`** (`apps/meteor/server/services/omnichannel/queue.ts`): This method fetches active queues and iterates through them. For each queue, it calls `checkQueue`.
+    *   **`OmnichannelQueue.checkQueue`** (`apps/meteor/server/services/omnichannel/queue.ts`): This method finds and locks the next available inquiry using `LivechatInquiry.findNextAndLock`. If an inquiry is found, it proceeds to `processWaitingQueue`. If the inquiry is not taken, it is unlocked and re-queued.
+    *   **`OmnichannelQueue.processWaitingQueue`** (`apps/meteor/server/services/omnichannel/queue.ts`): This method performs checks on the room associated with the inquiry.
+        *   It verifies if the room exists, is not already served, and is not closed. If any of these conditions are not met, it calls `reconciliation` to handle the discrepancy (e.g., `missing_room`, `room_taken`, `room_closed`).
+        *   If the room is valid, it attempts to delegate the inquiry to an agent using `RoutingManager.delegateInquiry`.
+        *   If delegation is successful, it dispatches an `agentDelegated` event and updates metrics.
 
-**Background Queue Processing:**
+**Closing Livechat Conversations Flow:**
 
-1.  **`OmnichannelService`**: This service starts the `OmnichannelQueue` worker.
-2.  **`OmnichannelQueue.execute()`**: This method, found in `apps/meteor/server/services/omnichannel/queue.ts`, runs in a loop, continuously processing queued inquiries. For each inquiry, it calls `RoutingManager.delegateInquiry()` to assign an agent.
+The `closeRoom` function is responsible for ending livechat conversations and can be triggered by agents, visitors, API calls, or an inactivity monitor.
 
-**Closing a Livechat Conversation:**
+1.  **`closeRoom` Function:**
+    *   The primary `closeRoom` function is located at `apps/meteor/app/livechat/server/lib/closeRoom.ts`.
+    *   It executes within a MongoDB transaction to ensure data consistency.
+    *   It calls `doCloseRoom` to update the room status and remove the inquiry.
+    *   After the transaction commits, it calls `afterRoomClosed` to handle post-closure actions.
 
-1.  **`closeRoom()`**: This function executes within a MongoDB transaction. It performs the following actions:
-    *   Closes the livechat room.
-    *   Removes the associated inquiry.
-    *   Removes any related subscriptions.
-2.  **`afterRoomClosed()`**: After the room is closed, this function saves a system message to the chat history and triggers relevant application events.
+2.  **`afterRoomClosed` Function:**
+    *   This function performs several actions outside the database transaction:
+        *   Sends a system message to the room indicating closure.
+        *   Optionally sends a transcript prompt.
+        *   Triggers Apps-Engine events (`ILivechatRoomClosedHandler` and `IPostLivechatRoomClosed`).
+        *   Runs `livechat.closeRoom` callbacks.
+        *   Notifies listeners about the room and inquiry changes.
 
 **Key Files:**
 
-*   `apps/meteor/app/livechat/server/lib/takeInquiry.ts`: Contains the `takeInquiry` function responsible for assigning agents.
-*   `apps/meteor/app/livechat/server/lib/RoutingManager.ts`: Manages the delegation of inquiries and applies routing strategies.
-*   `apps/meteor/app/livechat/server/lib/QueueManager.ts`: Handles the initial creation and queuing of livechat inquiries.
-*   `apps/meteor/server/services/omnichannel/queue.ts`: Defines the `OmnichannelQueue` worker, which processes queued inquiries in the background.
+*   **`apps/meteor/server/services/omnichannel/queue.ts`**: Contains the `OmnichannelQueue` class, which manages the processing of livechat inquiries in the queue.
+*   **`apps/meteor/app/livechat/server/lib/closeRoom.ts`**: Contains the core `closeRoom` function responsible for ending livechat conversations.
 
-## Tool Calls (8 calls, 44,341 tokens)
+## Tool Calls (8 calls, 32,887 tokens)
 
-**Step 1:** `plan({"intent":"call-chain","question":"How does the Omnichannel queue process and close a livechat conversation?"})` → 280 tokens
-**Step 2:** `search({"query":"takeInquiry"})` → 176 tokens
-**Step 3:** `graph({"move":"down","depth":5,"query":"takeInquiry","file":"takeInquiry.ts"})` → 2530 tokens
-**Step 4:** `search({"query":"assignAgent"})` → 142 tokens
-**Step 5:** `graph({"move":"down","query":"assignAgent","depth":5,"file":"RoutingManager.ts"})` → 13 tokens
-**Step 6:** `search({"query":"delegateInquiry"})` → 220 tokens
-**Step 7:** `graph({"depth":5,"query":"delegateInquiry","move":"down","file":"RoutingManager.ts"})` → 14 tokens
-**Step 8:** `details({"filename":"queue.ts","symbolName":"OmnichannelQueue"})` → 362 tokens
+**Step 1:** `wiki({"question":"Omnichannel queue process and close livechat conversation"})` → 953 tokens
+**Step 2:** `search({"query":"OmnichannelQueue","layer":"server"})` → 136 tokens
+**Step 3:** `graph({"file":"queue.ts","depth":3,"query":"OmnichannelQueue","move":"down"})` → 44 tokens
+**Step 4:** `details({"filename":"queue.ts","symbolName":"OmnichannelQueue"})` → 372 tokens
+**Step 5:** `details({"filename":"queue.ts","symbolName":"OmnichannelQueue.execute"})` → 286 tokens
+**Step 6:** `details({"filename":"queue.ts","symbolName":"OmnichannelQueue.checkQueue"})` → 337 tokens
+**Step 7:** `details({"filename":"queue.ts","symbolName":"OmnichannelQueue.processWaitingQueue"})` → 553 tokens
+**Step 8:** `search({"query":"closeRoom"})` → 224 tokens
 
-## Files Seen In Tool Results (11)
+## Files Seen In Tool Results (10)
 
-- `packages/models/src/models/LivechatInquiry.ts`
-- `apps/meteor/tests/data/livechat/rooms.ts`
-- `apps/meteor/app/livechat/server/lib/takeInquiry.ts`
-- `apps/meteor/ee/app/livechat-enterprise/server/hooks/checkAgentBeforeTakeInquiry.ts`
-- `apps/meteor/ee/app/livechat-enterprise/server/hooks/afterTakeInquiry.ts`
-- `apps/meteor/app/livechat/server/lib/RoutingManager.ts`
-- `apps/meteor/app/livechat/server/lib/Helper.ts`
-- `apps/meteor/app/livechat/server/lib/rooms.ts`
-- `apps/meteor/tests/unit/server/services/omnichannel/queue.tests.ts`
-- `apps/meteor/app/livechat/server/lib/QueueManager.ts`
 - `apps/meteor/server/services/omnichannel/queue.ts`
+- `apps/meteor/client/navbar/NavBarOmnichannelGroup/NavBarItemOmnichannelQueue.tsx`
+- `apps/meteor/client/navbar/NavBarOmnichannelGroup/hooks/useOmnichannelQueueAction.ts`
+- `packages/apps-engine/tests/test-data/bridges/livechatBridge.ts`
+- `packages/apps-engine/src/server/bridges/LivechatBridge.ts`
+- `packages/apps-engine/src/server/accessors/LivechatUpdater.ts`
+- `apps/meteor/tests/e2e/utils/omnichannel/rooms.ts`
+- `apps/meteor/ee/app/livechat-enterprise/server/lib/QueueInactivityMonitor.ts`
+- `apps/meteor/app/livechat/server/lib/closeRoom.ts`
+- `apps/meteor/app/apps/server/bridges/livechat.ts`

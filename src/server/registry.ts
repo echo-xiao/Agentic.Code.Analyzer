@@ -5,6 +5,7 @@ import { runPlan } from './tools/plan.js';
 import { runSearch } from './tools/search.js';
 import { runGraph } from './tools/graph.js';
 import { runDetails } from './tools/details.js';
+import { askWiki } from './tools/wiki.js';
 
 export const TOOL_DEFINITIONS = [
     {
@@ -62,21 +63,33 @@ export const TOOL_DEFINITIONS = [
             },
             required: ["symbolName", "filename"]
         }
+    },
+    {
+        name: "wiki",
+        description: "Architecture overview — ask the DeepWiki wiki how a subsystem works. Returns a grounded summary (prose + file paths; a footer flags any path NOT present in THIS codebase's index, so you trust only real ones). Best first step for architecture/how-does-X-work questions; then confirm exact symbols with search/graph/details.",
+        inputSchema: {
+            type: "object",
+            properties: {
+                question: { type: "string", description: "A natural-language architecture question" }
+            },
+            required: ["question"]
+        }
     }
 ];
 
-const HANDLERS: Record<string, (args: any) => string> = {
+const HANDLERS: Record<string, (args: any) => string | Promise<string>> = {
     plan: runPlan,
     search: runSearch,
     graph: runGraph,
     details: runDetails,
+    wiki: (args) => askWiki(String(args?.question ?? '')),
 };
 
 export async function handleToolCall(name: string, args: any): Promise<any> {
     const handler = HANDLERS[name];
     if (!handler) return err(`Unknown tool: ${name}`);
-    const text = handler(args ?? {});
-    trackCall(name, text, args?.query ?? args?.symbolName);
+    const text = await handler(args ?? {});
+    trackCall(name, text, args?.query ?? args?.symbolName ?? args?.question);
     if (text.startsWith('Missing parameter')) return err(text);
     return ok(text);
 }

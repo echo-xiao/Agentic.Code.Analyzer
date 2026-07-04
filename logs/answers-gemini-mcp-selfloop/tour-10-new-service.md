@@ -2,74 +2,43 @@
 
 ## Plan
 
-intent: pattern
+intent: unknown
 
 ## Gemini Answer
 
-Adding a new service in Rocket.Chat involves creating a class that extends `ServiceClassInternal` (for monolith services) or `ServiceClass` (for general services) and then registering it.
+To add a new service in Rocket.Chat, you generally follow these steps:
 
-Here's a breakdown of the process and key components:
+**1. Define the Service:**
+Create a new service as a class. This class will encapsulate the logic and functionalities of your service. These service files often include setup for database connections, tracing, and broker initialization.
 
-**1. Service Class Definition:**
+*   **Example File Structure:** A typical service file, such as `ee/apps/account-service/src/service.ts`, includes imports for core functionalities like `api`, `getConnection`, `getTrashCollection` from `@rocket.chat/core-services`, `registerServiceModels` from `@rocket.chat/models`, `startBroker` from `@rocket.chat/network-broker`, and `startTracing` from `@rocket.chat/tracing`. It also contains asynchronous initialization logic to establish database connections, register models, set up the network broker, and register the service itself, along with a health check endpoint.
 
-*   **`ServiceClass`** (packages/core-services/src/types/ServiceClass.ts): This is the base class for all services.
-*   **`ServiceClassInternal`** (packages/core-services/src/types/ServiceClass.ts): This extends `ServiceClass` and is used for internal services within the Rocket.Chat monolith. It sets an `internal` flag to `true`.
+**2. Register the Service:**
+Once defined, the service needs to be registered with the `api` object, which is part of `@rocket.chat/core-services`. This is done using the `api.registerService()` method.
 
-**Example:**
+*   **Core Registration File:** The `registerServices` function within `apps/meteor/server/services/startup.ts` is where many services are registered. You would add an instance of your new service class to this function using `api.registerService(new YourNewService());`.
 
-The `LDAPEEService` (apps/meteor/ee/server/local-services/ldap/service.ts) provides a concrete example of how to define a new service. It extends `ServiceClassInternal` and defines its methods:
+**3. Service Deployment and Configuration (Optional, for Microservices Mode):**
+Services can run in two main deployment modes:
 
+*   **Monolithic Mode (TCP/Local Transport):** All services run within the same Node.js process as the main Meteor application and communicate via the `LocalBroker`. This is configured by setting the `TRANSPORTER` environment variable to `TCP`.
+*   **Distributed Mode (NATS Transport):** Services operate as independent containers and communicate using NATS. This requires setting the `TRANSPORTER` environment variable to a NATS connection string (e.g., `nats://nats:4222`). For services running in distributed mode, their `package.json` also defines a `ms` script for running the service.
 
-```typescript
-class LDAPEEService extends ServiceClassInternal implements ILDAPEEService {
-  protected name = 'ldap-enterprise';
-  async sync(): Promise<void> { /* ... */ }
-  // ... other methods
-}
-```
+**Key Files and Flow:**
 
+*   **Entry Point for Registration:** `apps/meteor/server/services/startup.ts`
+*   **Core Service API:** `@rocket.chat/core-services` (where `api.registerService()` is defined)
+*   **Example Service Definition:** `ee/apps/account-service/src/service.ts` (for structure)
 
-**2. Service Registration:**
+**Flow:**
+Define Service (e.g., `YourNewService` class) → Instantiate Service (`new YourNewService()`) → Register Service (`api.registerService(new YourNewService())` in `apps/meteor/server/services/startup.ts`)
 
-Services are registered using the `registerService` function, which is found in `packages/core-services/src/lib/Api.ts`. This function is responsible for making the service's methods available through the `LocalBroker`.
+## Tool Calls (1 calls, 3,859 tokens)
 
-**Flow for adding a new service:**
+**Step 1:** `wiki({"question":"How do you add a new service in Rocket.Chat?"})` → 1244 tokens
 
-1.  **Define your service class:** Create a new class that extends either `ServiceClass` or `ServiceClassInternal`, depending on whether it's an internal monolith service or a more general service.
-2.  **Implement your service methods:** Add the desired functionality as methods within your service class.
-3.  **Register your service:** Use the `registerService` function to make your service available to the Rocket.Chat system.
+## Files Seen In Tool Results (3)
 
-**Key Files:**
-
-*   **`packages/core-services/src/types/ServiceClass.ts`**: Defines the base `ServiceClass` and `ServiceClassInternal`.
-*   **`packages/core-services/src/lib/Api.ts`**: Contains the `registerService` function, which is crucial for making services available.
-*   **`apps/meteor/ee/server/local-services/ldap/service.ts`**: A concrete example of a service implementation (`LDAPEEService`).
-
-## Tool Calls (8 calls, 18,309 tokens)
-
-**Step 1:** `plan({"intent":"pattern","question":"How do you add a new service in Rocket.Chat?"})` → 199 tokens
-**Step 2:** `search({"query":"ServiceClass"})` → 69 tokens
-**Step 3:** `graph({"file":"ServiceClass.ts","query":"ServiceClass","move":"expand","depth":1})` → 315 tokens
-**Step 4:** `details({"filename":"Api.ts","symbolName":"registerService"})` → 78 tokens
-**Step 5:** `details({"symbolName":"ExtendedServiceClass","filename":"LocalBroker.ts"})` → 68 tokens
-**Step 6:** `details({"filename":"service.ts","symbolName":"LDAPEEService"})` → 200 tokens
-**Step 7:** `details({"filename":"ServiceClass.ts","symbolName":"ServiceClassInternal"})` → 67 tokens
-**Step 8:** `search({"query":"registerService","layer":"packages"})` → 96 tokens
-
-## Files Seen In Tool Results (15)
-
-- `packages/core-services/src/types/ServiceClass.ts`
-- `packages/core-services/src/LocalBroker.ts`
-- `apps/meteor/client/lib/loginServices.ts`
-- `packages/core-services/src/lib/Api.ts`
-- `apps/meteor/ee/server/local-services/ldap/service.ts`
-- `apps/meteor/ee/app/settings/server/settings.internalService.ts`
-- `apps/meteor/ee/server/local-services/message-reads/service.ts`
-- `apps/meteor/ee/app/livechat-enterprise/server/services/omnichannel.internalService.ts`
-- `apps/meteor/ee/app/license/server/license.internalService.ts`
-- `packages/models/src/models/BaseRaw.ts`
-- `apps/meteor/ee/server/local-services/instance/service.ts`
-- `packages/ddp-client/src/types/Account.ts`
-- `ee/packages/abac/src/index.ts`
-- `apps/meteor/app/custom-oauth/server/custom_oauth_server.js`
-- `apps/meteor/app/apple/server/appleOauthRegisterService.ts`
+- `apps/meteor/server/services/startup.ts`
+- `ee/apps/account-service/src/service.ts`
+- `apps/meteor/app/integrations/server/methods/incoming/addIncomingIntegration.ts`

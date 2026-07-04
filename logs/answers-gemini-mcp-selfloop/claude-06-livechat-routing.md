@@ -6,47 +6,50 @@ intent: routing
 
 ## Gemini Answer
 
-Livechat requests are routed to the server-side in Rocket.Chat through a REST API endpoint.
+Livechat requests in Rocket.Chat are routed to the server-side primarily through REST API endpoints and a dedicated Livechat widget script. The core server-side logic for managing these requests resides within the `QueueManager` and `RoutingManager` classes.
 
-Here's the breakdown of the routing:
+Here's a breakdown of the routing process:
 
-1.  **Client-side dispatch:** The `handleTakeInquiry` function in `apps/meteor/client/views/room/composer/ComposerOmnichannel/ComposerOmnichannelInquiry.tsx` is responsible for initiating the request to take an inquiry.
-2.  **Server-side routing:** The `takeInquiry` function, located at `apps/meteor/app/livechat/server/lib/takeInquiry.ts`, is the core server-side logic for processing the request.
-3.  **API Endpoint:** The `takeInquiry` function is called by an API endpoint defined using `API.v1.addRoute`. This routing is handled by `apps/meteor/app/api/server/ApiClass.ts`, which provides the `addRoute` method for registering API routes. The specific API endpoint for Livechat inquiries is found in `apps/meteor/app/livechat/imports/server/rest/inquiries.ts`.
+**1. Entry Points:**
 
-Therefore, the flow is:
+*   **Livechat Widget:** The widget, embedded on a website, sends requests to the server. The widget script is served from the `/livechat` endpoint. Interactions with the widget typically call the `livechat/room` API endpoint to initiate or resume a chat.
+*   **REST API Endpoints:**
+    *   `/livechat/room` (GET): This is a primary entry point for visitors to start or resume a chat, handling the initial request to create a livechat room and an inquiry.
+    *   `/livechat/message` (POST): Used for sending messages within an ongoing livechat conversation.
+    *   `/livechat.sms.incoming` (POST): Handles incoming SMS messages, validating the provider, registering the visitor, and creating/retrieving a room before sending the message.
+    *   `/livechat/offline.message` (POST): Used for sending messages when agents are offline.
 
-Client (`handleTakeInquiry`) → REST API Endpoint (`API.v1.addRoute` in `apps/meteor/app/livechat/imports/server/rest/inquiries.ts`) → Server (`takeInquiry` in `apps/meteor/app/livechat/server/lib/takeInquiry.ts`).
+**2. Request Processing Flow (Orchestrated by `QueueManager` and `RoutingManager`):**
 
-## Tool Calls (8 calls, 21,025 tokens)
+*   **Guest Registration:** For new visitors, the `registerGuest()` function is called to create or update a visitor record. This is often triggered by the `GET /livechat/room` endpoint.
+*   **Room and Inquiry Creation:** The `QueueManager.requestRoom()` method is central to initiating a chat.
+    *   It calls `prepareLivechatRoom()` to construct the `IOmnichannelRoom` object.
+    *   Then, `startConversation()` is invoked to create both the `LivechatRoom` and `LivechatInquiry` records. The inquiry represents the conversation waiting for an agent.
+*   **Inquiry Status Determination:** The `QueueManager.getInquiryStatus()` function determines the initial status of the inquiry (e.g., `READY`, `QUEUED`, `VERIFYING`) based on factors like contact verification, maximum concurrent chats, and waiting queue settings.
+*   **Routing to Agents:** After the inquiry is created, `QueueManager.processNewInquiry()` is called.
+    *   If the inquiry status is `READY`, the `RoutingManager.delegateInquiry()` method is used to assign an agent.
+    *   The `RoutingManager` utilizes registered routing methods (e.g., `Load_Rotation`) to find the next available agent.
+    *   If no agent is immediately available and `Livechat_accept_chats_with_no_agents` is enabled, the chat might be accepted but not routed, or it might be queued. If this setting is false and no agents are online, the request will fail.
+    *   The `beforeRouteChat` hook can also influence routing, for example, by moving an inquiry to a fallback department if the original department has no online agents.
 
-**Step 1:** `plan({"question":"How are Livechat requests routed to the server-side in Rocket.Chat?","intent":"routing"})` → 287 tokens
-**Step 2:** `search({"query":"takeInquiry"})` → 176 tokens
-**Step 3:** `graph({"query":"takeInquiry","file":"takeInquiry.ts","move":"expand"})` → 349 tokens
-**Step 4:** `graph({"file":"takeInquiry.ts","query":"takeInquiry","move":"up"})` → 63 tokens
-**Step 5:** `details({"filename":"inquiries.ts","symbolName":"inquiries"})` → 98 tokens
-**Step 6:** `details({"filename":"inquiries.ts","symbolName":"API.v1.addRoute"})` → 73 tokens
-**Step 7:** `details({"filename":"inquiries.ts","symbolName":"API"})` → 112 tokens
-**Step 8:** `search({"layer":"server","query":"addRoute"})` → 65 tokens
+**Key Files:**
 
-## Files Seen In Tool Results (19)
+*   **`apps/meteor/app/livechat/server/lib/QueueManager.ts`**: This file contains the `QueueManager` class, which is responsible for managing the livechat queue, creating rooms and inquiries, and processing new inquiries.
+*   **`apps/meteor/app/livechat/server/lib/RoutingManager.ts`**: This file contains the `RoutingManager` class, which handles the assignment of agents to livechat inquiries based on various routing methods.
 
-- `packages/models/src/models/LivechatInquiry.ts`
+## Tool Calls (8 calls, 29,846 tokens)
+
+**Step 1:** `wiki({"question":"How are Livechat requests routed to the server-side in Rocket.Chat?"})` → 1095 tokens
+**Step 2:** `plan({"question":"How are Livechat requests routed to the server-side in Rocket.Chat?","intent":"routing"})` → 89 tokens
+**Step 3:** `search({"query":"/livechat/room"})` → 63 tokens
+**Step 4:** `search({"query":"QueueManager","layer":"server"})` → 98 tokens
+**Step 5:** `graph({"file":"QueueManager.ts","query":"QueueManager","move":"expand","depth":2})` → 67 tokens
+**Step 6:** `details({"filename":"QueueManager.ts","symbolName":"QueueManager"})` → 969 tokens
+**Step 7:** `graph({"depth":4,"move":"down","query":"QueueManager.requestRoom","file":"QueueManager.ts"})` → 16 tokens
+**Step 8:** `search({"layer":"server","query":"requestRoom"})` → 70 tokens
+
+## Files Seen In Tool Results (3)
+
 - `apps/meteor/tests/data/livechat/rooms.ts`
-- `apps/meteor/app/livechat/server/lib/takeInquiry.ts`
-- `apps/meteor/ee/app/livechat-enterprise/server/hooks/checkAgentBeforeTakeInquiry.ts`
-- `apps/meteor/ee/app/livechat-enterprise/server/hooks/afterTakeInquiry.ts`
-- `apps/meteor/client/views/room/composer/ComposerOmnichannel/ComposerOmnichannelInquiry.tsx`
-- `apps/meteor/app/livechat/server/lib/hooks.ts`
-- `apps/meteor/app/livechat/server/lib/contacts/isAgentAvailableToTakeContactInquiry.ts`
-- `apps/meteor/ee/server/patches/isAgentAvailableToTakeContactInquiry.ts`
-- `apps/meteor/app/settings/server/CachedSettings.ts`
-- `apps/meteor/app/api/server/ApiClass.ts`
-- `apps/meteor/app/mailer/server/api.ts`
-- `apps/meteor/client/lib/toast.ts`
-- `packages/apps-engine/deno-runtime/lib/logger.ts`
-- `apps/meteor/client/views/room/contexts/RoomContext.ts`
-- `apps/meteor/ee/app/livechat-enterprise/server/lib/QueueInactivityMonitor.ts`
-- `apps/meteor/app/livechat/imports/server/rest/inquiries.ts`
-- `apps/meteor/ee/app/livechat-enterprise/server/api/inquiries.ts`
-- `apps/meteor/tests/e2e/federation/utils/test.ts`
+- `apps/meteor/app/livechat/server/lib/QueueManager.ts`
+- `apps/meteor/app/livechat/client/lib/stream/queueManager.ts`

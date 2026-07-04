@@ -6,54 +6,61 @@ intent: impact
 
 ## Gemini Answer
 
-The `afterSaveMessage` callback system, rooted in `apps/meteor/app/lib/server/lib/afterSaveMessage.ts`, is a critical component of Rocket.Chat's message processing. Changing this system would have a widespread impact across various functionalities, affecting both server-side logic and client-side rendering.
+The `afterSaveMessage` callback system, defined in `apps/meteor/app/lib/server/lib/afterSaveMessage.ts`, is a critical component within Rocket.Chat, and any changes to it would have a widespread impact across various parts of the application.
 
 Here's a breakdown of the impacted areas:
 
-**Directly Impacted (1-hop dependents):**
+**Core Message Handling (Direct Callers):**
+The most immediate impact would be on the functions responsible for saving and updating messages.
+*   `updateMessage` in `apps/meteor/app/lib/server/functions/updateMessage.ts`
+*   `sendMessage` in `apps/meteor/app/lib/server/functions/sendMessage.ts`
 
-*   **Core Message Functions:**
-    *   `updateMessage` in `apps/meteor/app/lib/server/functions/updateMessage.ts`
-    *   `sendMessage` in `apps/meteor/app/lib/server/functions/sendMessage.ts`
-    These functions directly invoke the `afterSaveMessage` callback, meaning any changes to the callback system would directly alter how messages are updated and sent.
-*   **Event Listeners/Hooks (`→event`):** A large number of modules register as listeners for the `afterSaveMessage` event. These would cease to function correctly if the callback system is altered. Key areas include:
-    *   **Email Inbox:** `EmailInbox_Outgoing` in `apps/meteor/server/features/EmailInbox/EmailInbox_Outgoing.ts`
-    *   **Slack Bridge:** `registerForEvents` in `apps/meteor/app/slackbridge/server/RocketAdapter.ts`
-    *   **Integrations:** `triggers` in `apps/meteor/app/integrations/server/triggers.ts`
-    *   **Discussion Metadata:** `propagateDiscussionMetadata` in `apps/meteor/app/discussion/server/hooks/propagateDiscussionMetadata.ts`
-    *   **Engagement Dashboard (EE):** `attachCallbacks` in `apps/meteor/ee/server/lib/engagementDashboard/startup.ts`
-    *   **Federation (EE):** `index` in `apps/meteor/ee/server/hooks/federation/index.ts`
-    *   **Message Read Receipts (EE):** `afterSaveMessage` in `apps/meteor/ee/app/message-read-receipt/server/hooks/afterSaveMessage.ts`
-    *   **Threads:** `aftersavemessage` in `apps/meteor/app/threads/server/hooks/aftersavemessage.ts`
-    *   **Search:** `afterSaveMessage` in `apps/meteor/app/search/server/events/index.ts`
-    *   **Livechat:** `afterSaveOmnichannelMessage` in `apps/meteor/app/livechat/server/hooks/afterSaveOmnichannelMessage.ts`
-    *   **Notifications:** `mentionUserNotInChannel` in `apps/meteor/app/lib/server/startup/mentionUserNotInChannel.ts`, `sendNotificationsOnMessage` in `apps/meteor/app/lib/server/lib/sendNotificationsOnMessage.ts`, and `notifyUsersOnMessage` in `apps/meteor/app/lib/server/lib/notifyUsersOnMessage.ts`
-    *   **IRC Bridge:** `setupLocalHandlers` in `apps/meteor/app/irc/server/irc-bridge/index.js`
-    *   **AutoTranslate:** `registerCallbacks` in `apps/meteor/app/autotranslate/server/autotranslate.ts`
-*   **Asynchronous Processing:**
-    *   `afterSaveMessageAsync` in `apps/meteor/app/lib/server/lib/afterSaveMessage.ts` is an event listener for the asynchronous counterpart, indicating that any asynchronous message processing would also be impacted.
+**Event-Driven Features and Integrations (Direct Callers):**
+Numerous modules register for `afterSaveMessage` events to perform specific actions. These would be directly affected.
+*   **Message Read Receipts:** `afterSaveMessage` in `apps/meteor/ee/app/message-read-receipt/server/hooks/afterSaveMessage.ts`
+*   **Threads:** `aftersavemessage` in `apps/meteor/app/threads/server/hooks/aftersavemessage.ts`
+*   **Search Indexing:** `afterSaveMessage` in `apps/meteor/app/search/server/events/index.ts`
+*   **Livechat/Omnichannel:** `afterSaveOmnichannelMessage` in `apps/meteor/app/livechat/server/hooks/afterSaveOmnichannelMessage.ts`
+*   **Email Inbox:** `EmailInbox_Outgoing` in `apps/meteor/server/features/EmailInbox/EmailInbox_Outgoing.ts`
+*   **Slack Bridge:** `registerForEvents` in `apps/meteor/app/slackbridge/server/RocketAdapter.ts`
+*   **Integrations/Triggers:** `triggers` in `apps/meteor/app/integrations/server/triggers.ts`
+*   **Discussion Metadata:** `propagateDiscussionMetadata` in `apps/meteor/app/discussion/server/hooks/propagateDiscussionMetadata.ts`
+*   **Engagement Dashboard:** `attachCallbacks` in `apps/meteor/ee/server/lib/engagementDashboard/startup.ts`
+*   **Federation:** `index` in `apps/meteor/ee/server/hooks/federation/index.ts`
+*   **User Mentions:** `mentionUserNotInChannel` in `apps/meteor/app/lib/server/startup/mentionUserNotInChannel.ts`
+*   **Notifications:** `sendNotificationsOnMessage` and `notifyUsersOnMessage` in `apps/meteor/app/lib/server/lib/sendNotificationsOnMessage.ts` and `apps/meteor/app/lib/server/lib/notifyUsersOnMessage.ts` respectively.
+*   **IRC Bridge:** `setupLocalHandlers` in `apps/meteor/app/irc/server/irc-bridge/index.js`
+*   **Auto-translation:** `registerCallbacks` in `apps/meteor/app/autotranslate/server/autotranslate.ts`
+*   **Asynchronous Processing:** `afterSaveMessageAsync` in `apps/meteor/app/lib/server/lib/afterSaveMessage.ts`
 
-**Indirectly Impacted (2-hop and beyond dependents):**
+**Broader System Impact (Indirect Dependents):**
+Changes would ripple through various services, methods, and UI components that interact with the direct callers or rely on the outcomes of message saving.
 
-*   **Message Services:** Numerous message-related services would be affected, including those for uploads (`apps/meteor/server/services/upload/service.ts`), general message handling (`apps/meteor/server/services/messages/service.ts`), video conferencing (`apps/meteor/server/services/video-conference/service.ts`), and media calls (`apps/meteor/server/services/media-call/service.ts`).
-*   **Slack Bridge:** Extensive functionality within the `SlackAdapter` (`apps/meteor/app/slackbridge/server/SlackAdapter.ts`) for processing and posting messages would be impacted.
-*   **Discussion Creation:** The `createDiscussion` method in `apps/meteor/app/discussion/server/methods/createDiscussion.ts` relies on message saving.
-*   **Apps Engine:** The `update` method in `apps/meteor/app/apps/server/bridges/messages.ts` indicates that the Apps Engine, which allows for third-party application extensions, would be affected.
-*   **UI Components (JSX):** A vast array of client-side UI components across `packages/ui-video-conf/`, `packages/ui-client/`, `packages/livechat/`, `packages/gazzodown/`, `apps/meteor/client/`, and `packages/ui-voip/` are indirectly impacted. This includes components for displaying messages, reactions, video conference information, wizard flows, contextual bars, emoji pickers, and call history.
-*   **Client-side Logic:** Client-side providers and utilities such as `ModalStore` (`packages/ui-client/src/providers/ModalProvider/ModalStore.ts`), `Autoupdate` (`ee/apps/ddp-streamer/src/lib/Autoupdate.ts`), `banners` (`apps/meteor/client/lib/banners.ts`), `appLayout` (`apps/meteor/client/lib/appLayout.tsx`), and `chats/uploads` (`apps/meteor/client/lib/chats/uploads.ts`) would experience issues related to message updates and display.
-*   **Slash Commands:** Various slash commands, including `slashcommands-create` (`apps/meteor/app/slashcommands-create/server/server.ts`), `slashcommands-open` (`apps/meteor/app/slashcommands-open/client/client.ts`), `slashcommands-status` (`apps/meteor/app/slashcommands-status/server/status.ts`), and `slashcommands-topic` (`apps/meteor/app/slashcommands-topic/server/topic.ts`), which interact with messages, would be affected.
-*   **Real-time Communication:** Components within `packages/ddp-client/` and `ee/apps/ddp-streamer/` that handle real-time data synchronization would be impacted.
-*   **File Uploads:** Server-side file upload services and configurations, including `uploadFileFromStream` (`apps/meteor/server/services/upload/service.ts`), `ufs-server` (`apps/meteor/server/ufs/ufs-server.ts`), `ufs-gridfs` (`apps/meteor/server/ufs/ufs-gridfs.ts`), and various file storage adapters, would be affected.
-*   **AutoTranslate Providers:** Specific auto-translation providers like `MsAutoTranslate`, `GoogleAutoTranslate`, and `DeeplAutoTranslate` (`apps/meteor/app/autotranslate/server/msTranslate.ts`, `apps/meteor/app/autotranslate/server/googleTranslate.ts`, `apps/meteor/app/autotranslate/server/deeplTranslate.ts`) would be impacted.
-*   **Omnichannel Features:** Various omnichannel UI components and logic, such as `TriggersRow` (`apps/meteor/client/views/omnichannel/triggers/TriggersRow.tsx`), `RemoveSlaButton` (`apps/meteor/client/views/omnichannel/slaPolicies/RemoveSlaButton.tsx`), and `CannedResponseEditWithData` (`apps/meteor/client/views/omnichannel/cannedResponses/modals/CannedResponseEditWithData.tsx`), would be affected due to their reliance on message management.
+*   **Message Services:** `updateMessage` and `sendMessageWithValidation` in `apps/meteor/server/services/messages/service.ts`, `createMessage` in `apps/meteor/server/services/video-conference/service.ts`, `sendHistoryMessage` in `apps/meteor/server/services/media-call/service.ts`.
+*   **Uploads:** `updateMessageRemovingFiles` in `apps/meteor/server/services/upload/service.ts`, `uploadFileFromSlack` in `apps/meteor/app/slackbridge/server/SlackAdapter.ts`.
+*   **Discussions:** `create` in `apps/meteor/app/discussion/server/methods/createDiscussion.ts`.
+*   **API Endpoints:** Various API endpoints related to rooms and settings, e.g., `apps/meteor/app/api/server/v1/rooms.ts`.
+*   **Client-Side UI:** A significant number of React/JSX components would be impacted, as they are responsible for rendering messages or reacting to message-related events. Examples include:
+    *   `VideoConfMessageUserStack` in `packages/ui-video-conf/src/VideoConfMessage/VideoConfMessageUserStack.tsx`
+    *   `ComposerMessage` in `apps/meteor/client/views/room/composer/ComposerMessage.tsx`
+    *   Components related to `livechat` UI (`packages/livechat/src/components/uiKit/message/index.tsx`)
+    *   Emoji and reaction related components (`packages/gazzodown/src/emoji/EmojiRenderer.tsx`, `apps/meteor/client/views/composer/EmojiPicker/SearchingResult.tsx`, `apps/meteor/client/components/message/toolbar/items/actions/ReactionMessageAction.tsx`)
+    *   Call history and user info actions (`packages/ui-voip/src/views/CallHistoryContextualbar/CallHistoryContextualbar.tsx`, `apps/meteor/client/views/room/hooks/useUserInfoActions/actions/useVideoCallAction.tsx`)
+*   **Administrative and Enterprise Features:** Settings pages, marketplace app details, custom user statuses, and other admin-facing components.
 
-In conclusion, modifying the `afterSaveMessage` callback system would necessitate extensive changes and testing across almost all facets of Rocket.Chat, from core message handling and real-time updates to various integrations, enterprise features, and the user interface.
+**Flow of Impact:**
 
-## Tool Calls (3 calls, 14,496 tokens)
+1.  **Entry Point:** `afterSaveMessage` in `apps/meteor/app/lib/server/lib/afterSaveMessage.ts`
+2.  **Direct Callers/Event Subscribers:** Functions like `updateMessage` and `sendMessage`, along with numerous event handlers in modules such as `message-read-receipt`, `threads`, `search`, `livechat`, `slackbridge`, and `autotranslate`.
+3.  **Indirect Dependents:** Services that call the direct callers (e.g., `messages/service.ts`), and a wide array of client-side UI components and other server-side features that rely on the successful processing and storage of messages.
 
-**Step 1:** `plan({"question":"What would be impacted if the afterSaveMessage callback system were changed?","intent":"impact"})` → 199 tokens
+In conclusion, modifying the `afterSaveMessage` callback system would necessitate a thorough review and testing across almost all facets of Rocket.Chat, from core message functionality and integrations to the user interface and various administrative features.
+
+## Tool Calls (3 calls, 13,680 tokens)
+
+**Step 1:** `plan({"question":"What would be impacted if the afterSaveMessage callback system were changed?","intent":"impact"})` → 80 tokens
 **Step 2:** `search({"query":"afterSaveMessage"})` → 152 tokens
-**Step 3:** `graph({"file":"afterSaveMessage.ts","depth":5,"query":"afterSaveMessage","move":"up"})` → 4794 tokens
+**Step 3:** `graph({"query":"afterSaveMessage","depth":5,"move":"up","file":"afterSaveMessage.ts"})` → 4794 tokens
 
 ## Files Seen In Tool Results (139)
 

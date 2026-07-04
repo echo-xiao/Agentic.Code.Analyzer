@@ -2,56 +2,59 @@
 
 ## Plan
 
-intent: pattern
+intent: architecture
 
 ## Gemini Answer
 
-New endpoints are registered in the Rocket.Chat REST API by first creating an API instance using `createApi` from `apps/meteor/app/api/server/api.ts`. This `createApi` function returns an `APIClass` instance (defined in `apps/meteor/app/api/server/ApiClass.ts`).
+New endpoints in Rocket.Chat's REST API are registered using the `API.v1.addRoute` method or by chaining HTTP method calls (e.g., `.get`, `.post`, `.put`, `.delete`) to `API.v1`.
 
-The `APIClass` provides methods for registering routes, including:
+Here's a breakdown of the process:
 
-*   **`addRoute(subpaths, options, endpoints)`**: This is a legacy method for adding routes. It takes an array of subpaths, options, and an object of endpoints. Many existing API endpoints, such as those found in `apps/meteor/app/api/server/v1/channels.ts`, `apps/meteor/app/api/server/v1/users.ts`, and `apps/meteor/app/api/server/v1/groups.ts`, utilize this method.
-*   **Typed methods (`get`, `post`, `put`, `delete`)**: These methods provide a more modern and type-safe way to register routes for specific HTTP verbs. They take a subpath, options, and an action function as arguments.
+**1. `APIClass` and `API.v1` Initialization:**
+   - The core functionality for API route management resides in the `APIClass` defined in `apps/meteor/app/api/server/ApiClass.ts`.
+   - An instance of `APIClass` is created and exposed as `API.v1` in `apps/meteor/app/api/server/api.ts`. This `API.v1` object is then used throughout the codebase to register specific API endpoints.
 
-The general flow for registering a new endpoint is:
+**2. Endpoint Registration Methods:**
+   - **`API.v1.addRoute`**: This method is used to register a route with multiple HTTP methods or to define a route with a more complex structure. It takes an array of subpaths, an options object, and an optional `endpoints` object.
+   - **Chained HTTP Methods (`.get`, `.post`, `.put`, `.delete`)**: For simpler, single-method endpoints, developers can directly chain the HTTP method to `API.v1`. These methods take a subpath, an options object, and an `action` function.
 
-1.  **Create an API instance**: `API.v1 = createApi({ version: 'v1', useDefaultAuth: true });` (as seen in `apps/meteor/app/api/server/api.ts`).
-2.  **Register the route**: Using either `API.v1.addRoute()` for legacy routes or `API.v1.get()`, `API.v1.post()`, etc., for typed routes.
+**3. Route Definition Components:**
+   Each route definition typically includes:
+   - **HTTP Method and Path**: Specifies the HTTP verb (GET, POST, PUT, DELETE) and the URL path for the endpoint.
+   - **Options Object**: Configures the endpoint's behavior, including:
+     - `authRequired`: A boolean indicating if authentication is mandatory.
+     - `permissionsRequired`: An array of permissions a user needs to access the endpoint.
+     - `twoFactorRequired`: A boolean for two-factor authentication.
+     - `validateParams`: A function for validating incoming parameters.
+     - `query` or `body`: JSON schemas (using `ajv`) for validating query parameters or the request body.
+     - `response`: Defines expected response schemas for different HTTP status codes.
+   - **Action Function**: An asynchronous function that contains the business logic for the endpoint. It receives a `this` context with `queryParams`, `bodyParams`, `userId`, and `request`.
 
-For example, a typical `addRoute` call looks like this (from `apps/meteor/app/api/server/v1/channels.ts`):
+**Example:**
+Many API endpoints, such as those for channels, users, and groups, utilize `API.v1.addRoute` or the chained methods. For instance, you can find numerous examples in files like:
+- `apps/meteor/app/api/server/v1/channels.ts`
+- `apps/meteor/app/api/server/v1/users.ts`
+- `apps/meteor/app/api/server/v1/groups.ts`
 
+**Type Definitions:**
+After defining endpoints, their types are extended into the global `@rocket.chat/rest-typings` module's `Endpoints` interface. This ensures type safety and facilitates automatic OpenAPI documentation generation.
 
-```typescript
-API.v1.addRoute('channels.list', { authRequired: true }, {
-  get() {
-    // ... route handler logic ...
-  },
-});
-```
+**Flow:**
+Entry (`apps/meteor/app/api/server/api.ts`) → `APIClass` instantiation (`apps/meteor/app/api/server/ApiClass.ts`) → Endpoint registration using `API.v1.addRoute` or chained methods (e.g., `apps/meteor/app/api/server/v1/channels.ts`).
 
-## Tool Calls (8 calls, 32,167 tokens)
+## Tool Calls (8 calls, 36,531 tokens)
 
-**Step 1:** `plan({"question":"How are new endpoints registered in the REST API in Rocket.Chat?","intent":"pattern"})` → 257 tokens
-**Step 2:** `search({"query":"createApi"})` → 64 tokens
-**Step 3:** `graph({"query":"createApi","file":"api.ts","depth":1,"move":"expand"})` → 247 tokens
-**Step 4:** `details({"symbolName":"APIClass","filename":"ApiClass.ts"})` → 1575 tokens
-**Step 5:** `search({"query":"API.v1.addRoute"})` → 267 tokens
-**Step 6:** `details({"symbolName":"API.v1.addRoute","filename":"channels.ts"})` → 44 tokens
-**Step 7:** `details({"symbolName":"channels.ts","filename":"channels.ts"})` → 46 tokens
-**Step 8:** `search({"query":"API.v1.addRoute('/channels.list'"})` → 30 tokens
+**Step 1:** `wiki({"question":"How are new endpoints registered in the REST API in Rocket.Chat?"})` → 826 tokens
+**Step 2:** `plan({"intent":"architecture","question":"How are new endpoints registered in the REST API in Rocket.Chat?"})` → 85 tokens
+**Step 3:** `search({"query":"API.v1.addRoute"})` → 267 tokens
+**Step 4:** `search({"query":"APIClass"})` → 65 tokens
+**Step 5:** `details({"symbolName":"APIClass","filename":"ApiClass.ts"})` → 1575 tokens
+**Step 6:** `search({"query":"API.v1"})` → 296 tokens
+**Step 7:** `search({"query":"new APIClass"})` → 74 tokens
+**Step 8:** `details({"symbolName":"new APIClass","filename":"api.ts"})` → 16 tokens
 
-## Files Seen In Tool Results (20)
+## Files Seen In Tool Results (14)
 
-- `apps/meteor/app/api/server/api.ts`
-- `apps/meteor/server/settings/ldap.ts`
-- `apps/meteor/client/lib/chats/uploads.ts`
-- `packages/ui-client/src/components/Wizard/mocks/createMockWizardApi.ts`
-- `apps/meteor/client/lib/chats/data.ts`
-- `apps/meteor/app/ui-message/client/messageBox/createComposerAPI.ts`
-- `apps/meteor/tests/mocks/data/outbound-message.ts`
-- `apps/meteor/tests/e2e/federation/utils/channel.ts`
-- `apps/meteor/tests/mocks/data/marketplace.ts`
-- `apps/meteor/app/api/server/ApiClass.ts`
 - `apps/meteor/app/api/server/v1/channels.ts`
 - `apps/meteor/app/api/server/v1/users.ts`
 - `apps/meteor/app/api/server/v1/groups.ts`
@@ -62,3 +65,7 @@ API.v1.addRoute('channels.list', { authRequired: true }, {
 - `apps/meteor/app/livechat/server/api/v1/contact.ts`
 - `apps/meteor/app/livechat/imports/server/rest/departments.ts`
 - `apps/meteor/app/livechat/imports/server/rest/dashboards.ts`
+- `apps/meteor/app/api/server/ApiClass.ts`
+- `apps/meteor/ee/server/apps/communication/rest.ts`
+- `apps/meteor/app/api/server/v1/commands.ts`
+- `apps/meteor/app/api/server/api.ts`

@@ -46,10 +46,13 @@ export function graphDown(query: string, opts: DownOpts): string {
             })
             : entries;
 
-        // Rank children by relevance before truncating: real (non-test), higher-fan-in
-        // definitions first. The old arbitrary `.slice(0,6)` (index scan order) is a
-        // direct cause of thin, downstream-missing answers — it could drop the important
-        // callee and keep an incidental one.
+        // Rank children by relevance before truncating. For a call CHAIN the meaningful callee is the
+        // chain-SPECIFIC function, NOT the most-reused utility — so demote, in order: (a) test symbols,
+        // (b) `type` references (they are type deps, not call-chain steps), (c) high-fan-in generic glue
+        // (Date/findOneById/model accessors called everywhere) via a hub penalty. Ranking by centrality
+        // DESC (the old behavior) surfaced exactly this glue and buried the real next step
+        // (e.g. executeSendMessage→canSendMessageAsync was pushed out of the shown top-6). Lower fan-in
+        // ⇒ more specific ⇒ ranked first.
         const centralityOf = (sym: string): number => {
             const cp = GLOBAL_INDEX.symbols.get(sym);
             if (!cp) return 0;
@@ -59,9 +62,16 @@ export function graphDown(query: string, opts: DownOpts): string {
             const cp = GLOBAL_INDEX.symbols.get(sym);
             return cp ? Array.from(cp).every(p => isTestFile(p)) : false;
         };
+        const isRealSym = (sym: string): boolean => GLOBAL_INDEX.symbols.has(sym);   // RC symbol vs built-in/external
+        // Effective centrality: cap it so only EXTREME glue (findOneById/model accessors, fan-in ≫40)
+        // is flattened to 0 and demoted; ordinary chain callees keep their (moderate) centrality so a
+        // meaningful step (sendMessage, canSendMessageAsync) ranks above an obscure fan-in-1 collision.
+        const effCent = (sym: string): number => { const c = centralityOf(sym); return c > 40 ? 0 : c; };
         const ranked = [...filtered].sort((a, b) =>
-            (isTestSym(a.callee) ? 1 : 0) - (isTestSym(b.callee) ? 1 : 0) ||
-            centralityOf(b.callee) - centralityOf(a.callee));
+            (isTestSym(a.callee) ? 1 : 0) - (isTestSym(b.callee) ? 1 : 0) ||          // test last
+            (a.edgeType === 'type' ? 1 : 0) - (b.edgeType === 'type' ? 1 : 0) ||      // type refs last
+            (isRealSym(b.callee) ? 1 : 0) - (isRealSym(a.callee) ? 1 : 0) ||          // real RC symbols before built-ins (Date/Boolean/…)
+            effCent(b.callee) - effCent(a.callee));                                    // among real: moderate-centrality chain steps first, extreme glue demoted
         const shown = ranked.slice(0, 6);
         for (const { callee, edgeType } of shown) {
             const key = `${sym}→${callee}`;

@@ -6,51 +6,51 @@ intent: call-chain
 
 ## Gemini Answer
 
-The client-side message sending flow in Rocket.Chat begins in the `ComposerMessage` component, located at `apps/meteor/client/views/room/composer/ComposerMessage.tsx`.
+The client-side message sending process in Rocket.Chat begins with the `ComposerMessage` component in `apps/meteor/client/views/room/composer/ComposerMessage.tsx`. This component captures user input and triggers the `sendMessage` flow.
 
-Here's the detailed call chain:
+Here's a breakdown of the message sending flow:
 
-1.  **`ComposerMessage`** (`apps/meteor/client/views/room/composer/ComposerMessage.tsx`): This component handles the UI for composing messages. When a message is sent, its `onSend` prop is triggered.
-2.  **`onSend` prop within `ComposerMessage`**: This asynchronous function first stops the typing indicator by calling `chat?.action.stop('typing')`.
-3.  **`chat?.flows.sendMessage`**: This is the core function responsible for sending the message. It's called with the message `text`, `tshow`, `previewUrls`, `isSlashCommandAllowed`, and `tmid`. The `chat` object is obtained from the `ChatContext` (`apps/meteor/client/views/room/contexts/ChatContext.ts`).
-4.  **`sdk.call('sendMessage')`**: Although not directly visible in the provided `ComposerMessage` details, the `plan` output indicates that the flow ultimately ends with `sdk.call('sendMessage')` crossing the DDP boundary. This implies that `chat?.flows.sendMessage` internally makes a DDP call to the server-side `sendMessage` method.
+1.  **User Input and Preprocessing**:
+    *   The `ComposerMessage` component's `onSend` prop calls `chat?.flows.sendMessage`.
+    *   The `sendMessage` function, located in `apps/meteor/client/lib/chats/flows/sendMessage.ts`, is invoked.
+    *   The message text is trimmed and unclosed code blocks are handled by `closeUnclosedCodeBlock`.
+    *   Various processors are applied, including `processSetReaction`, `processTooLongMessage`, `processSlashCommand`, and `processMessageUploads`.
+    *   The `onClientBeforeSendMessage` callback is executed, allowing for modifications to the message before it's sent.
 
-In summary, the client-side message sending flow is:
+2.  **Optimistic UI Update**:
+    *   Although not directly shown in the `sendMessage` call chain, the `wiki` tool indicates that `runOptimisticSendMessage` (found in `apps/meteor/app/lib/client/methods/sendMessage.ts`) is called to immediately add the message to the local `Messages` store with a `temp: true` flag. This provides an optimistic update to the user interface.
 
-`ComposerMessage` (apps/meteor/client/views/room/composer/ComposerMessage.tsx) → `onSend` (within ComposerMessage) → `chat?.flows.sendMessage` → `sdk.call('sendMessage')` (crossing the DDP boundary to the server).
+3.  **Server Communication**:
+    *   The `process` function within `apps/meteor/client/lib/chats/flows/sendMessage.ts` ultimately makes the call to the server using `sdk.call('sendMessage', message, previewUrls)`. This sends the message to the server-side `sendMessage` Meteor method for persistence.
 
-## Tool Calls (8 calls, 53,441 tokens)
+4.  **Finalization**:
+    *   After the server responds, the `Messages.state.update` function is called to remove the `temp` flag from the local message record, indicating successful server processing.
 
-**Step 1:** `plan({"question":"How is a message sent on the client side in Rocket.Chat?","intent":"call-chain"})` → 248 tokens
-**Step 2:** `search({"query":"ComposerMessage","layer":"client"})` → 73 tokens
-**Step 3:** `graph({"depth":5,"file":"ComposerMessage.tsx","query":"ComposerMessage","move":"down"})` → 4577 tokens
-**Step 4:** `details({"filename":"ComposerMessage.tsx","symbolName":"ComposerMessage"})` → 519 tokens
-**Step 5:** `details({"filename":"LivechatClientImpl.ts","symbolName":"sendMessage"})` → 348 tokens
-**Step 6:** `details({"filename":"MinimalDDPClient.ts","symbolName":"call"})` → 435 tokens
-**Step 7:** `search({"layer":"client","query":"chat.flows.sendMessage"})` → 101 tokens
-**Step 8:** `search({"layer":"client","query":"ChatContext"})` → 70 tokens
+**Key Files:**
 
-## Files Seen In Tool Results (22)
+*   **`apps/meteor/client/views/room/composer/ComposerMessage.tsx`**: This React component is the entry point for user message input.
+*   **`apps/meteor/client/lib/chats/flows/sendMessage.ts`**: This file contains the core client-side logic for processing and sending messages, including preprocessing and calling the server.
+*   **`apps/meteor/app/lib/client/methods/sendMessage.ts`**: This file contains `runOptimisticSendMessage`, which handles the optimistic UI update.
 
+## Tool Calls (8 calls, 82,064 tokens)
+
+**Step 1:** `plan({"intent":"call-chain","question":"How is a message sent on the client side in Rocket.Chat?"})` → 81 tokens
+**Step 2:** `search({"query":"sendMessage","layer":"client"})` → 150 tokens
+**Step 3:** `graph({"file":"sendMessage.ts","query":"sendMessage","depth":5,"move":"down"})` → 2706 tokens
+**Step 4:** `graph({"query":"sendMessage","file":"sendMessage.ts","move":"down","depth":5})` → 2706 tokens
+**Step 5:** `wiki({"question":"client-side message sending architecture"})` → 1273 tokens
+**Step 6:** `details({"filename":"ComposerMessage.tsx","symbolName":"ComposerMessage"})` → 519 tokens
+**Step 7:** `details({"filename":"sendMessage.ts","symbolName":"sendMessage"})` → 621 tokens
+**Step 8:** `details({"filename":"sendMessage.ts","symbolName":"process"})` → 317 tokens
+
+## Files Seen In Tool Results (9)
+
+- `apps/meteor/client/lib/chats/flows/sendMessage.ts`
+- `apps/meteor/app/lib/client/methods/sendMessage.ts`
+- `apps/meteor/client/views/omnichannel/triggers/actions/SendMessageActionForm.tsx`
+- `apps/meteor/client/lib/onClientBeforeSendMessage.ts`
 - `apps/meteor/client/views/room/composer/ComposerMessage.tsx`
-- `apps/meteor/tests/data/messages.helper.ts`
-- `apps/meteor/client/lib/sdk/MinimalDDPClient.ts`
-- `packages/ddp-client/src/MinimalDDPClient.ts`
-- `packages/ddp-client/src/DDPSDK.ts`
-- `packages/ddp-client/src/ClientStream.ts`
-- `packages/core-services/src/LocalBroker.ts`
-- `packages/core-services/src/lib/ServiceStarter.ts`
-- `packages/core-services/src/lib/Api.ts`
-- `packages/apps-engine/tests/test-data/bridges/httpBridge.ts`
-- `packages/apps-engine/src/server/ProxiedApp.ts`
-- `packages/apps-engine/src/server/bridges/HttpBridge.ts`
-- `packages/apps-engine/src/server/accessors/VideoConferenceBuilder.ts`
-- `packages/apps-engine/src/client/AppsEngineUIClient.ts`
-- `packages/apps-engine/deno-runtime/lib/accessors/builders/VideoConferenceBuilder.ts`
-- `ee/packages/network-broker/src/NetworkBroker.ts`
-- `ee/apps/ddp-streamer/src/Server.ts`
-- `apps/meteor/tests/mocks/server/BrokerMocked.ts`
-- `apps/meteor/app/statistics/server/lib/telemetryEvents.ts`
-- `apps/meteor/app/apps/server/bridges/http.ts`
-- `apps/meteor/client/components/message/content/attachments/default/hooks/usePerformActionMutation.ts`
-- `apps/meteor/client/views/room/contexts/ChatContext.ts`
+- `apps/meteor/app/ui/client/lib/ChatMessages.ts`
+- `apps/meteor/app/lib/server/methods/sendMessage.ts`
+- `apps/meteor/app/api/server/v1/chat.ts`
+- `ee/apps/ddp-streamer/src/Streamer.ts`

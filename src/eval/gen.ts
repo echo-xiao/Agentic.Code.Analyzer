@@ -13,7 +13,7 @@
 import "./utils/load-env.js";
 import * as fs from 'fs';
 import * as path from 'path';
-import { fileURLToPath } from 'url';
+import { fileURLToPath, pathToFileURL } from 'url';
 import { GoogleGenerativeAI, type FunctionDeclaration, type Part, SchemaType } from '@google/generative-ai';
 import { ensureIndex } from '../indexer/index.js';
 import { handleToolCall } from '../server/registry.js';
@@ -28,11 +28,11 @@ const PROJECT_ROOT = path.resolve(__dirname, '..', '..');
 
 // Workflow + answer-format prompt. Deliberately domain-free: codebase knowledge lives in the
 // index, architecture.json hints, and tool navHints — not in prose (no constitution).
-const SYSTEM_PROMPT = `You are answering questions about the Rocket.Chat codebase using code-navigation tools.
+export const SYSTEM_PROMPT = `You are answering questions about the Rocket.Chat codebase using code-navigation tools.
 
 Workflow: call plan(question) FIRST — it returns the strategy and the default graph move for this question type. Then search for the entry symbol, graph from the best seed, and details on at most 1-2 key symbols. Never answer from memory alone: your training data has outdated file paths; every path you cite must come from a tool result.
 
-Answer format: include the specific file path for every key file (e.g. apps/meteor/app/lib/server/functions/sendMessage.ts) with its role. When the question involves a flow, list the chain explicitly: Entry → Step 1 → … → Final. Write every core file the tools surfaced that belongs to the answer — do not drop files you saw.`;
+Answer format: include the specific file path for every key file (e.g. path/to/relevant/file.ts) with its role. When the question involves a flow, list the chain explicitly: Entry → Step 1 → … → Final. Write every core file the tools surfaced that belongs to the answer — do not drop files you saw.`;
 
 const GEMINI_FUNCTIONS: FunctionDeclaration[] = [
     {
@@ -131,8 +131,7 @@ async function runMcpCase(model: any, tc: TestCase, oracle: boolean): Promise<An
         for (const part of fnCalls) {
             const fc = part.functionCall!;
             step++;
-            const toolResult = await handleToolCall(fc.name, fc.args ?? {});
-            const resultText = extractToolResultText(toolResult);
+            const resultText = extractToolResultText(await handleToolCall(fc.name, fc.args ?? {}));
             for (const f of extractCitedFiles(resultText)) seenFiles.add(f);
             toolCalls.push({ step, tool: fc.name, args: fc.args ?? {}, responseTokensEst: Math.ceil(resultText.length / 4) });
             fnResponses.push({ functionResponse: { name: fc.name, response: { content: resultText } } } as any);
@@ -182,8 +181,9 @@ async function main() {
 
     const { flat: testcases } = loadTestcases(path.join(__dirname, 'utils', 'testcases.json'));
     const filterVal = process.argv.find(a => a.startsWith('--filter='))?.split('=')[1]?.toLowerCase();
-    const selected = filterVal
-        ? testcases.filter(t => t.id.toLowerCase().includes(filterVal) || t.subsystem.toLowerCase().includes(filterVal))
+    const filterParts = filterVal ? filterVal.split(',').map(s => s.trim()).filter(Boolean) : [];
+    const selected = filterParts.length
+        ? testcases.filter(t => filterParts.some(fv => t.id.toLowerCase().includes(fv) || t.subsystem.toLowerCase().includes(fv)))
         : testcases;
 
     const isPro = modelName.includes('pro');
@@ -230,10 +230,17 @@ async function main() {
     await ensureIndex();
     console.error(`Index ready: ${GLOBAL_INDEX.symbols.size} symbols, ${GLOBAL_INDEX.allFiles.size} files.\n`);
 
+    const WIKI_FUNCTION: FunctionDeclaration = {
+        name: 'wiki',
+        description: "Ask the DeepWiki architecture wiki how a subsystem works. Returns a grounded architecture summary (prose + file paths verified against this codebase's index; a footer flags any stale/hallucinated paths). Call it early for a high-level map, then confirm exact symbols with search/graph/details.",
+        parameters: { type: SchemaType.OBJECT, properties: { question: { type: SchemaType.STRING, description: 'A natural-language architecture question' } }, required: ['question'] },
+    };
+    const functions = [...GEMINI_FUNCTIONS, WIKI_FUNCTION];
+    const sysText = SYSTEM_PROMPT + '\n\nYou also have wiki(question): a grounded architecture-overview tool. Call it first for a high-level map of the relevant subsystem, then verify exact symbols/files with search/graph/details. Trust only paths the grounding footer confirms are in the codebase.';
     const model = genAI.getGenerativeModel({
         model: modelName,
-        tools: [{ functionDeclarations: GEMINI_FUNCTIONS }],
-        systemInstruction: { role: 'user', parts: [{ text: SYSTEM_PROMPT }] },
+        tools: [{ functionDeclarations: functions }],
+        systemInstruction: { role: 'user', parts: [{ text: sysText }] },
         // Determinism: greedy decode (temperature 0, top-k 1, single candidate) so re-runs over an
         // unchanged index produce the same answers. Without this the agent samples at temp ~1.0 and
         // PASS counts drift ±3 between runs, making single-run before/after comparisons meaningless.
@@ -262,4 +269,8 @@ async function main() {
     console.log(`\n${records.length} answers | ${records.reduce((s, r) => s + r.tokens, 0).toLocaleString()} total tokens`);
 }
 
-main().catch(e => { console.error('Fatal:', e); process.exit(2); });
+if (import.meta.url === pathToFileURL(process.argv[1] ?? '').href) {
+    // Force exit after main resolves — the DeepWiki MCP client keeps an open connection that would
+    // otherwise prevent Node from exiting once all answers are saved.
+    main().then(() => process.exit(0)).catch(e => { console.error('Fatal:', e); process.exit(2); });
+}

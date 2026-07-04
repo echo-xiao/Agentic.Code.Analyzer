@@ -2,62 +2,115 @@
 
 ## Plan
 
-intent: pattern
+intent: unknown
 
 ## Gemini Answer
 
-To create a new REST API endpoint in Rocket.Chat, you follow these steps:
+To create a new REST API endpoint in Rocket.Chat, you primarily interact with the `API.v1` object, which is an instance of `APIClass`. The process involves defining the endpoint's HTTP method, path, authentication requirements, request body validation, and the asynchronous action function that handles the request.
 
-1.  **Create an API instance**: An API instance is created using the `createApi` function, typically found in `apps/meteor/app/api/server/api.ts`. This function returns an `APIClass` instance. For example, `API.v1` is an instance of `APIClass` with version 'v1' and default authentication.
+Here's a breakdown of the process and key files:
 
-    *   **File**: `apps/meteor/app/api/server/api.ts`
-    *   **Symbol**: `createApi`
+**Core Components and Files:**
 
-2.  **Define the endpoint using `APIClass` methods**: The `APIClass` (defined in `apps/meteor/app/api/server/ApiClass.ts`) provides methods like `get()`, `post()`, `put()`, and `delete()` to define different HTTP methods for your endpoint. You pass the subpath, options, and an action function to these methods.
+1.  **`APIClass` Definition:**
+    *   **File:** `apps/meteor/app/api/server/ApiClass.ts`
+    *   This file defines the `APIClass`, which is the base class for creating API versions and registering routes.
 
-    *   **File**: `apps/meteor/app/api/server/ApiClass.ts`
-    *   **Symbol**: `APIClass` (specifically, its `get`, `post`, `put`, `delete` methods)
+2.  **`API.v1` Instance:**
+    *   **File:** `apps/meteor/app/api/server/api.ts`
+    *   The `API.v1` object is a singleton instance of `APIClass` specifically configured for version `v1` and with default authentication enabled. This is where `API.v1` is instantiated.
 
-3.  **Implement the route handler**: The action function (the last argument to `get()`, `post()`, etc.) is the route handler. It receives an `APIActionContext` object, which contains `this.bodyParams`, `this.queryParams`, and `this.user`. The handler should return a success or failure response using `API.v1.success()` or `API.v1.failure()`.
+3.  **Endpoint Definitions:**
+    *   **Files:** `apps/meteor/app/api/server/v1/*.ts` (e.g., `apps/meteor/app/api/server/v1/users.ts`, `apps/meteor/app/api/server/v1/channels.ts`)
+    *   These files contain the actual definitions of various API endpoints using the `API.v1` object.
 
-**Example Flow (based on common usage patterns):**
+**Steps to Create a New REST API Endpoint:**
 
-*   **Entry**: `apps/meteor/app/api/server/api.ts` (where `API.v1` is initialized)
-*   **Step 1**: `apps/meteor/app/api/server/v1/moderation.ts` (or any other `v1` API file)
-*   **Step 2**: `API.v1.get('/your-new-endpoint', options, function() { /* your logic here */ });`
+1.  **Access `API.v1`:** You will use the `API.v1` object to define your endpoint.
 
-This structure allows for defining new API endpoints with proper routing, authentication, and response handling within the Rocket.Chat server.
+2.  **Choose an HTTP Method:** Use one of the following methods on `API.v1` corresponding to your desired HTTP method:
+    *   `.post()` for POST requests
+    *   `.get()` for GET requests
+    *   `.put()` for PUT requests
+    *   `.delete()` for DELETE requests
 
-## Tool Calls (8 calls, 28,051 tokens)
+3.  **Define the Endpoint Path and Options:**
+    Each method takes the endpoint path (e.g., `'/my-new-endpoint'`) and an options object as arguments. The options object typically includes:
+    *   `authRequired`: A boolean indicating if authentication is required.
+    *   `permissionsRequired`: An array of strings specifying the permissions needed to access the endpoint.
+    *   `body` or `query`: An AJV schema for validating the request body or query parameters.
+    *   `response`: An object defining the expected response schemas for different HTTP status codes.
 
-**Step 1:** `plan({"question":"How do you create a new REST API endpoint in Rocket.Chat?","intent":"pattern"})` → 257 tokens
-**Step 2:** `search({"query":"createApi"})` → 64 tokens
-**Step 3:** `graph({"query":"createApi","file":"api.ts","move":"expand"})` → 247 tokens
-**Step 4:** `details({"filename":"ApiClass.ts","symbolName":"APIClass"})` → 1575 tokens
-**Step 5:** `details({"filename":"api.ts","symbolName":"createApi"})` → 100 tokens
-**Step 6:** `search({"query":"API.v1.get"})` → 246 tokens
-**Step 7:** `details({"filename":"moderation.ts","symbolName":"API.v1.get"})` → 45 tokens
-**Step 8:** `details({"filename":"moderation.ts"})` → 8 tokens
+4.  **Implement the `action` Function:**
+    The `action` function is an asynchronous function that contains the core logic of your endpoint. Inside this function:
+    *   `this.bodyParams` and `this.queryParams` provide access to the validated request data.
+    *   The function should return `API.v1.success()` with the response data for successful operations, or `API.v1.failure()`/`API.v1.internalError()` for errors.
 
-## Files Seen In Tool Results (20)
+**Example Flow:**
 
-- `apps/meteor/app/api/server/api.ts`
-- `apps/meteor/server/settings/ldap.ts`
-- `apps/meteor/client/lib/chats/uploads.ts`
-- `packages/ui-client/src/components/Wizard/mocks/createMockWizardApi.ts`
-- `apps/meteor/client/lib/chats/data.ts`
-- `apps/meteor/app/ui-message/client/messageBox/createComposerAPI.ts`
-- `apps/meteor/tests/mocks/data/outbound-message.ts`
-- `apps/meteor/tests/e2e/federation/utils/channel.ts`
-- `apps/meteor/tests/mocks/data/marketplace.ts`
+Entry (`apps/meteor/app/api/server/api.ts`) → `API.v1` instance → Endpoint Definition (e.g., `API.v1.post('/custom-user-status.create', {...})` in a file like `apps/meteor/app/api/server/v1/customUserStatus.ts` if it existed) → `action` function execution.
+
+**Example Snippet (Conceptual):**
+
+
+```typescript
+// In a new file, e.g., apps/meteor/app/api/server/v1/myNewEndpoint.ts
+import { API } from '../../../../app/api/server/api'; // Assuming correct relative path
+
+API.v1.post(
+	'my-new-endpoint',
+	{
+		authRequired: true,
+		body: {
+			type: 'object',
+			properties: {
+				message: { type: 'string' },
+			},
+			required: ['message'],
+			additionalProperties: false,
+		},
+		response: {
+			200: {
+				type: 'object',
+				properties: {
+					status: { type: 'string' },
+					receivedMessage: { type: 'string' },
+				},
+				required: ['status', 'receivedMessage'],
+			},
+		},
+	},
+	async function action() {
+		const { message } = this.bodyParams;
+		// Perform some logic with the message
+		console.log('Received message:', message);
+
+		return API.v1.success({
+			status: 'success',
+			receivedMessage: message,
+		});
+	},
+);
+```
+
+## Tool Calls (4 calls, 9,742 tokens)
+
+**Step 1:** `wiki({"question":"How do you create a new REST API endpoint in Rocket.Chat?"})` → 961 tokens
+**Step 2:** `search({"query":"APIClass"})` → 65 tokens
+**Step 3:** `search({"query":"API.v1"})` → 296 tokens
+**Step 4:** `search({"query":"new APIClass"})` → 74 tokens
+
+## Files Seen In Tool Results (12)
+
 - `apps/meteor/app/api/server/ApiClass.ts`
-- `apps/meteor/app/api/server/v1/moderation.ts`
-- `apps/meteor/app/api/server/v1/import.ts`
-- `apps/meteor/app/api/server/v1/settings.ts`
-- `apps/meteor/app/api/server/v1/misc.ts`
-- `apps/meteor/app/api/server/v1/videoConference.ts`
-- `apps/meteor/app/api/server/v1/integrations.ts`
-- `apps/meteor/app/api/server/v1/email-inbox.ts`
-- `apps/meteor/app/api/server/v1/cloud.ts`
-- `apps/meteor/app/api/server/v1/calendar.ts`
-- `apps/meteor/app/api/server/v1/banners.ts`
+- `apps/meteor/app/api/server/v1/users.ts`
+- `apps/meteor/app/api/server/v1/channels.ts`
+- `apps/meteor/app/api/server/v1/groups.ts`
+- `apps/meteor/ee/server/apps/communication/rest.ts`
+- `apps/meteor/app/api/server/v1/rooms.ts`
+- `apps/meteor/app/api/server/v1/teams.ts`
+- `apps/meteor/app/api/server/v1/chat.ts`
+- `apps/meteor/app/livechat/imports/server/rest/dashboards.ts`
+- `apps/meteor/app/api/server/v1/im.ts`
+- `apps/meteor/app/api/server/v1/commands.ts`
+- `apps/meteor/app/api/server/api.ts`

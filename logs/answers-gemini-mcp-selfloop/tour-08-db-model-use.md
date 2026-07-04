@@ -2,70 +2,48 @@
 
 ## Plan
 
-intent: pattern
+intent: unknown
 
 ## Gemini Answer
 
-Rocket.Chat uses a database model pattern where specific models extend a `BaseRaw` class, which in turn provides methods for interacting with MongoDB collections.
+Rocket.Chat uses a structured approach to query data through database models, primarily defined in the `packages/models` package. These models extend a `BaseRaw` class, which implements the `IBaseModel` interface, providing a consistent API for database interactions.
 
-Here's the flow for querying data:
+Here's how you use a database model to query data:
 
-**Flow:** Identify Model → Access Model Instance → Call Query Method → Provide Criteria and Options
+**1. Model Definition:**
+   *   Database models are concrete implementations found in `packages/models`.
+   *   They extend the `BaseRaw` class (defined in `packages/models/src/BaseRaw.ts`), which in turn implements the `IBaseModel` interface (defined in `@rocket.chat/model-typings/src/IBaseModel.ts`).
+   *   This structure ensures type safety and provides a common set of CRUD (Create, Read, Update, Delete) operations.
 
-1.  **Identify the relevant model:** Determine which model corresponds to the data you want to query. For example, `MessagesRaw` for messages, `UsersRaw` for users, etc.
-2.  **Access the model instance:** Models are typically accessed via proxified imports.
-    *   **File:** `packages/models/src/index.ts` (This file handles the registration and export of models, making them accessible via `@rocket.chat/models`.)
-    *   **Example:** `import { Messages } from '@rocket.chat/models';`
-3.  **Call a query method:** Use one of the specialized query methods provided by the specific model (e.g., `Messages.findVisibleByRoomId`) or a generic method inherited from `BaseRaw` (e.g., `Messages.find`, `Messages.findOne`).
-    *   **File:** `packages/models/src/models/Messages.ts` (Example of a concrete model with specialized query methods like `findVisibleByRoomId`, `findOneByRoomIdAndMessageId`, etc.)
-    *   **File:** `packages/models/src/models/BaseRaw.ts` (Provides fundamental query methods such as `find`, `findOne`, `findPaginated`, and `countDocuments`.)
-4.  **Provide query criteria and options:** Pass a MongoDB-style `Filter` object for the query and `FindOptions` for specifying sorting, projection (which fields to return), limits, skips, etc.
+**2. Core Querying Mechanisms (via `IBaseModel`):**
+   All models inherit standard methods for finding documents:
+   *   `findOne(query, options)`: Retrieves a single document.
+   *   `findOneById(_id, options)`: Retrieves a single document by its `_id`.
+   *   `find(query, options)`: Retrieves multiple documents, returning a `FindCursor`.
+   *   `findPaginated(query, options)`: Returns paginated results with a cursor and total count.
 
-**Example of querying messages:**
+**3. Specialized Queries:**
+   Models often extend `IBaseModel` with domain-specific methods. For example, the `SubscriptionsRaw` model (found in `packages/models/src/models/Subscriptions.ts`) might have methods like:
+   *   `findConnectedUsersExcept`: Uses MongoDB aggregation pipelines for complex queries.
+   *   `incUnreadForRoomIdExcludingUserIds`: Updates unread counts for a room, excluding specific users.
 
-To find all visible messages in a specific room, sorted by timestamp in descending order and limited to 10 messages:
+**4. Aggregation Pipelines:**
+   For complex data retrieval and transformation, models can leverage MongoDB's aggregation framework. Methods within the models construct these pipelines to perform advanced queries.
 
+**5. Model Registration:**
+   In `apps/meteor/server/models.ts`, various `Raw` models (e.g., `SubscriptionsRaw`, `UsersRaw`) are instantiated with the database connection and registered. This makes them available throughout the application for data access.
 
-```typescript
-import { Messages } from '@rocket.chat/models';
-import type { IMessage, IRoom } from '@rocket.chat/core-typings';
-import type { FindOptions } from 'mongodb';
+**Example Flow for Querying Subscriptions:**
 
-const roomId: IRoom['_id'] = 'someRoomId';
-const options: FindOptions<IMessage> = { sort: { ts: -1 }, limit: 10 };
+1.  **Model Implementation:** `packages/models/src/models/Subscriptions.ts` defines the `SubscriptionsRaw` class.
+2.  **Inherited Methods:** `SubscriptionsRaw` inherits `find`, `findOne`, etc., from `BaseRaw`.
+3.  **Specialized Methods:** `SubscriptionsRaw` also implements methods like `findConnectedUsersExcept` for specific subscription-related queries.
+4.  **Usage:** When the application needs to query subscription data, it accesses the registered `Subscriptions` model and calls the appropriate method (e.g., `Subscriptions.findOne({ userId: 'someId' })` or `Subscriptions.findConnectedUsersExcept(...)`).
 
-const messagesCursor = Messages.findVisibleByRoomId(roomId, options);
+## Tool Calls (1 calls, 3,846 tokens)
 
-// You can then iterate through the cursor to process the messages
-// for await (const message of messagesCursor) {
-//   console.log(message.msg);
-// }
-```
+**Step 1:** `wiki({"question":"How does Rocket.Chat use database models to query data?"})` → 1171 tokens
 
+## Files Seen In Tool Results (1)
 
-**Core Files:**
-
-*   `packages/models/src/models/BaseRaw.ts`: This file defines the base class for all database models, providing the core methods for interacting with MongoDB collections (e.g., `find`, `findOne`, `update`, `insert`, `delete`).
-*   `packages/models/src/models/Messages.ts`: This file is an example of a concrete database model (`MessagesRaw`) that extends `BaseRaw`. It implements specific methods tailored for querying and manipulating message data.
-*   `packages/model-typings/src/models/IBaseModel.ts`: This file defines the TypeScript interface for the `BaseRaw` class, outlining the common methods available to all models.
-*   `packages/model-typings/src/models/IMessagesModel.ts`: This file defines the TypeScript interface for the `Messages` model, specifying the unique query and manipulation methods available for messages.
-
-## Tool Calls (5 calls, 20,036 tokens)
-
-**Step 1:** `plan({"question":"How do you use a database model to query data in Rocket.Chat?","intent":"pattern"})` → 253 tokens
-**Step 2:** `search({"query":"MessagesRaw"})` → 66 tokens
-**Step 3:** `graph({"query":"MessagesRaw","file":"Messages.ts","depth":1,"move":"expand"})` → 221 tokens
-**Step 4:** `details({"filename":"Messages.ts","symbolName":"MessagesRaw"})` → 4167 tokens
-**Step 5:** `details({"filename":"BaseRaw.ts","symbolName":"BaseRaw"})` → 1134 tokens
-
-## Files Seen In Tool Results (9)
-
-- `packages/models/src/models/Messages.ts`
-- `packages/models/src/models/MessageReads.ts`
-- `packages/models/src/models/EmailMessageHistory.ts`
 - `apps/meteor/server/models.ts`
-- `packages/models/src/index.ts`
-- `packages/models/src/models/BaseRaw.ts`
-- `packages/model-typings/src/models/IMessagesModel.ts`
-- `packages/model-typings/src/models/IMessageReadsModel.ts`
-- `packages/model-typings/src/models/IEmailMessageHistoryModel.ts`
