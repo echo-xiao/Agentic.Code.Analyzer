@@ -8,7 +8,7 @@ import { loadTestcases, type TestCase, type TestGroup } from './load-testcases.j
 
 export interface TruthStep { file: string; symbol: string; }
 export interface ClaudeTruth { core: string[]; supporting: string[]; chain: TruthStep[]; keySymbols: string[]; }
-export type ClaudeTruthMap = Record<string, ClaudeTruth>;
+export type ClaudeTruthMap = Record<string, ClaudeTruth | undefined>;
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 export const TESTCASES_PATH = path.join(__dirname, 'testcases.json');
@@ -54,7 +54,7 @@ export function loadTestcasesWithTruth(tcPath: string, truthPath: string): { gro
         console.error(`WARN: no claude-truth for ${tc.id} — excluded from the deterministic eval`);
         return false;
     });
-    const flatAttached = kept.map(tc => attachTruth(tc, truth[tc.id]));
+    const flatAttached = kept.map(tc => attachTruth(tc, truth[tc.id]!));
     const byId = new Map(flatAttached.map(tc => [tc.id, tc]));
     const groupsAttached = groups.map(g => ({ ...g, questions: g.questions.filter(q => byId.has(q.id)).map(q => byId.get(q.id)!) }));
     return { groups: groupsAttached, flat: flatAttached };

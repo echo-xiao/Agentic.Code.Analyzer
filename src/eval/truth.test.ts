@@ -1,6 +1,9 @@
 import { test } from 'node:test';
 import assert from 'node:assert/strict';
-import { attachTruth, extractAnswerSection, type ClaudeTruth } from './utils/truth-io.js';
+import * as fs from 'fs';
+import * as os from 'os';
+import * as path from 'path';
+import { attachTruth, extractAnswerSection, loadTestcasesWithTruth, type ClaudeTruth } from './utils/truth-io.js';
 import type { TestCase } from './utils/load-testcases.js';
 
 const baseTc: TestCase = {
@@ -33,4 +36,21 @@ test('attachTruth replaces the spine but preserves question metadata', () => {
 test('extractAnswerSection returns the ## Answer body up to the next heading', () => {
     const md = '# Q\n\n## Answer\n\nEntry is `a/send.ts`.\n\n## Metrics\n\n| x | y |';
     assert.equal(extractAnswerSection(md), 'Entry is `a/send.ts`.');
+});
+
+test('loadTestcasesWithTruth attaches truth by id and excludes questions that have none', () => {
+    const dir = fs.mkdtempSync(path.join(os.tmpdir(), 'truth-load-'));
+    const tcPath = path.join(dir, 'testcases.json');
+    const truthPath = path.join(dir, 'claude-truth.json');
+    fs.writeFileSync(tcPath, JSON.stringify({ groups: [{ id: 'g1', questions: [
+        { id: 'q1', question: 'a?', questionType: 'call-chain', subsystem: 'msg', difficulty: 'med', groundTruthFiles: [] },
+        { id: 'q2', question: 'b?', questionType: 'locate', subsystem: 'msg', difficulty: 'med', groundTruthFiles: [] },
+    ] }] }));
+    fs.writeFileSync(truthPath, JSON.stringify({
+        q1: { core: ['a/x.ts'], supporting: [], chain: [{ file: 'a/x.ts', symbol: 'x' }], keySymbols: ['x'] },
+    }));
+    const { flat, groups } = loadTestcasesWithTruth(tcPath, truthPath);
+    assert.deepEqual(flat.map(t => t.id), ['q1']);                    // q2 excluded (no truth)
+    assert.deepEqual(flat[0].core, ['a/x.ts']);                       // spine attached
+    assert.deepEqual(groups[0].questions.map(q => q.id), ['q1']);     // excluded from groups too
 });
