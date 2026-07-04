@@ -1,0 +1,2018 @@
+{
+  "claude-05-call-chain": {
+    "core": [
+      "apps/meteor/client/lib/chats/flows/sendMessage.ts",
+      "apps/meteor/app/lib/server/methods/sendMessage.ts",
+      "apps/meteor/app/lib/server/functions/sendMessage.ts",
+      "apps/meteor/app/authorization/server/functions/canSendMessage.ts",
+      "apps/meteor/app/lib/server/lib/afterSaveMessage.ts"
+    ],
+    "supporting": [
+      "apps/meteor/app/api/server/v1/chat.ts",
+      "apps/meteor/app/lib/server/lib/sendNotificationsOnMessage.ts",
+      "apps/meteor/app/lib/server/lib/notifyListener.ts",
+      "apps/meteor/app/notification-queue/server/NotificationQueue.ts"
+    ],
+    "chain": [
+      {
+        "file": "apps/meteor/client/lib/chats/flows/sendMessage.ts",
+        "symbol": "process"
+      },
+      {
+        "file": "apps/meteor/client/lib/chats/flows/sendMessage.ts",
+        "symbol": "sdk.call"
+      },
+      {
+        "file": "apps/meteor/app/lib/server/methods/sendMessage.ts",
+        "symbol": "executeSendMessage"
+      },
+      {
+        "file": "apps/meteor/app/authorization/server/functions/canSendMessage.ts",
+        "symbol": "canSendMessageAsync"
+      },
+      {
+        "file": "apps/meteor/app/authorization/server/functions/canSendMessage.ts",
+        "symbol": "validateRoomMessagePermissionsAsync"
+      },
+      {
+        "file": "apps/meteor/app/authorization/server/functions/canSendMessage.ts",
+        "symbol": "canAccessRoomAsync"
+      },
+      {
+        "file": "apps/meteor/app/lib/server/functions/sendMessage.ts",
+        "symbol": "sendMessage"
+      },
+      {
+        "file": "apps/meteor/app/lib/server/functions/sendMessage.ts",
+        "symbol": "validateMessage"
+      },
+      {
+        "file": "apps/meteor/app/lib/server/functions/sendMessage.ts",
+        "symbol": "Messages.insertOne"
+      },
+      {
+        "file": "apps/meteor/app/lib/server/lib/afterSaveMessage.ts",
+        "symbol": "afterSaveMessage"
+      },
+      {
+        "file": "apps/meteor/app/lib/server/lib/sendNotificationsOnMessage.ts",
+        "symbol": "sendAllNotifications"
+      },
+      {
+        "file": "apps/meteor/app/notification-queue/server/NotificationQueue.ts",
+        "symbol": "NotificationClass"
+      },
+      {
+        "file": "apps/meteor/app/lib/server/lib/notifyListener.ts",
+        "symbol": "notifyOnMessageChange"
+      }
+    ],
+    "keySymbols": [
+      "process",
+      "sdk.call",
+      "executeSendMessage",
+      "canSendMessageAsync",
+      "validateRoomMessagePermissionsAsync",
+      "canAccessRoomAsync",
+      "sendMessage",
+      "validateMessage",
+      "Messages.insertOne",
+      "afterSaveMessage",
+      "sendAllNotifications",
+      "shouldNotifyMobile",
+      "NotificationQueue",
+      "notifyOnMessageChange",
+      "api.broadcast",
+      "streamRoomMessage"
+    ]
+  },
+  "tour-04-msg-client": {
+    "core": [
+      "apps/meteor/client/views/room/body/RoomBody.tsx",
+      "apps/meteor/client/views/room/composer/ComposerContainer.tsx",
+      "apps/meteor/client/views/room/composer/ComposerMessage.tsx",
+      "apps/meteor/client/views/room/composer/messageBox/MessageBox.tsx",
+      "apps/meteor/client/lib/chats/flows/sendMessage.ts"
+    ],
+    "supporting": [
+      "apps/meteor/client/lib/chats/ChatAPI.ts",
+      "apps/meteor/client/lib/chats/flows/processSlashCommand.ts"
+    ],
+    "chain": [
+      {
+        "file": "apps/meteor/client/views/room/body/RoomBody.tsx",
+        "symbol": "RoomBody"
+      },
+      {
+        "file": "apps/meteor/client/views/room/composer/ComposerContainer.tsx",
+        "symbol": "ComposerContainer"
+      },
+      {
+        "file": "apps/meteor/client/views/room/composer/ComposerMessage.tsx",
+        "symbol": "ComposerMessage"
+      },
+      {
+        "file": "apps/meteor/client/views/room/composer/messageBox/MessageBox.tsx",
+        "symbol": "handleSendMessage"
+      },
+      {
+        "file": "apps/meteor/client/views/room/composer/ComposerMessage.tsx",
+        "symbol": "onSend"
+      },
+      {
+        "file": "apps/meteor/client/lib/chats/flows/sendMessage.ts",
+        "symbol": "sendMessage"
+      }
+    ],
+    "keySymbols": [
+      "RoomBody",
+      "ComposerContainer",
+      "ComposerMessage",
+      "MessageBox",
+      "handleSendMessage",
+      "onSend",
+      "ChatAPI",
+      "sendMessage",
+      "processSlashCommand"
+    ]
+  },
+  "new-19-message-rendering": {
+    "core": [
+      "packages/message-parser/src/index.ts",
+      "packages/message-parser/src/grammar.pegjs",
+      "packages/gazzodown/src/Markup.tsx"
+    ],
+    "supporting": [
+      "packages/message-parser/src/definitions.ts",
+      "packages/gazzodown/src/blocks/ParagraphBlock.tsx",
+      "packages/gazzodown/src/blocks/HeadingBlock.tsx",
+      "packages/gazzodown/src/blocks/QuoteBlock.tsx",
+      "packages/gazzodown/src/code/CodeBlock.tsx",
+      "packages/gazzodown/src/emoji/BigEmojiBlock.tsx",
+      "packages/gazzodown/src/elements/",
+      "apps/meteor/client/components/message/variants/room/RoomMessageContent.tsx",
+      "apps/meteor/client/components/message/variants/thread/ThreadMessageContent.tsx"
+    ],
+    "chain": [
+      {
+        "file": "packages/message-parser/src/index.ts",
+        "symbol": "parse"
+      },
+      {
+        "file": "packages/message-parser/src/grammar.pegjs",
+        "symbol": "grammar.parse"
+      },
+      {
+        "file": "packages/gazzodown/src/Markup.tsx",
+        "symbol": "Markup"
+      },
+      {
+        "file": "packages/gazzodown/src/blocks/ParagraphBlock.tsx",
+        "symbol": "ParagraphBlock"
+      },
+      {
+        "file": "packages/gazzodown/src/emoji/BigEmojiBlock.tsx",
+        "symbol": "BigEmojiBlock"
+      },
+      {
+        "file": "packages/gazzodown/src/code/CodeBlock.tsx",
+        "symbol": "CodeBlock"
+      }
+    ],
+    "keySymbols": [
+      "parse",
+      "Root",
+      "Markup",
+      "ParagraphBlock",
+      "HeadingBlock",
+      "QuoteBlock",
+      "CodeBlock",
+      "BigEmojiBlock",
+      "MarkupInteractionContext",
+      "message.md"
+    ]
+  },
+  "claude-01-push-notifications": {
+    "core": [
+      "apps/meteor/app/lib/server/lib/sendNotificationsOnMessage.ts",
+      "apps/meteor/app/lib/server/functions/notifications/mobile.js",
+      "apps/meteor/app/notification-queue/server/NotificationQueue.ts",
+      "apps/meteor/app/push/server/push.ts",
+      "apps/meteor/app/push/server/apn.ts",
+      "apps/meteor/app/push/server/fcm.ts"
+    ],
+    "supporting": [
+      "apps/meteor/app/lib/server/functions/sendMessage.ts",
+      "apps/meteor/app/push-notifications/server/index.ts"
+    ],
+    "chain": [
+      {
+        "file": "apps/meteor/app/lib/server/functions/sendMessage.ts",
+        "symbol": "sendMessage"
+      },
+      {
+        "file": "apps/meteor/app/lib/server/functions/sendMessage.ts",
+        "symbol": "afterSaveMessage"
+      },
+      {
+        "file": "apps/meteor/app/lib/server/lib/sendNotificationsOnMessage.ts",
+        "symbol": "sendAllNotifications"
+      },
+      {
+        "file": "apps/meteor/app/lib/server/functions/notifications/mobile.js",
+        "symbol": "shouldNotifyMobile"
+      },
+      {
+        "file": "apps/meteor/app/lib/server/functions/notifications/mobile.js",
+        "symbol": "getPushData"
+      },
+      {
+        "file": "apps/meteor/app/lib/server/lib/sendNotificationsOnMessage.ts",
+        "symbol": "sendNotification"
+      },
+      {
+        "file": "apps/meteor/app/notification-queue/server/NotificationQueue.ts",
+        "symbol": "queueNotification"
+      },
+      {
+        "file": "apps/meteor/app/notification-queue/server/NotificationQueue.ts",
+        "symbol": "NotificationClass"
+      },
+      {
+        "file": "apps/meteor/app/push-notifications/server/index.ts",
+        "symbol": "PushNotification.send"
+      },
+      {
+        "file": "apps/meteor/app/push/server/push.ts",
+        "symbol": "PushClass"
+      },
+      {
+        "file": "apps/meteor/app/push/server/push.ts",
+        "symbol": "sendNotificationGateway"
+      },
+      {
+        "file": "apps/meteor/app/push/server/push.ts",
+        "symbol": "sendNotificationNative"
+      },
+      {
+        "file": "apps/meteor/app/push/server/apn.ts",
+        "symbol": "sendAPN"
+      },
+      {
+        "file": "apps/meteor/app/push/server/fcm.ts",
+        "symbol": "sendFCM"
+      }
+    ],
+    "keySymbols": [
+      "sendAllNotifications",
+      "sendNotification",
+      "shouldNotifyMobile",
+      "getPushData",
+      "NotificationClass",
+      "queueNotification",
+      "PushClass",
+      "sendNotificationGateway",
+      "sendNotificationNative",
+      "sendAPN",
+      "sendFCM",
+      "initAPN",
+      "afterSaveMessage",
+      "PushNotification",
+      "NOTIFICATIONS_SCHEDULE_DELAY_ONLINE",
+      "NOTIFICATIONS_WORKER_TIMEOUT",
+      "NOTIFICATIONS_BATCH_SIZE"
+    ]
+  },
+  "new-09-realtime-streamer": {
+    "core": [
+      "apps/meteor/app/lib/server/lib/notifyListener.ts",
+      "apps/meteor/server/modules/listeners/listeners.module.ts",
+      "apps/meteor/server/modules/notifications/notifications.module.ts",
+      "apps/meteor/server/modules/streamer/streamer.module.ts",
+      "apps/meteor/client/lib/streamer/streamer.ts"
+    ],
+    "supporting": [],
+    "chain": [
+      {
+        "file": "apps/meteor/app/lib/server/lib/notifyListener.ts",
+        "symbol": "notifyOnMessageChange"
+      },
+      {
+        "file": "apps/meteor/server/modules/listeners/listeners.module.ts",
+        "symbol": "ListenersModule"
+      },
+      {
+        "file": "apps/meteor/server/modules/notifications/notifications.module.ts",
+        "symbol": "NotificationsModule"
+      },
+      {
+        "file": "apps/meteor/server/modules/streamer/streamer.module.ts",
+        "symbol": "Streamer"
+      },
+      {
+        "file": "apps/meteor/client/lib/streamer/streamer.ts",
+        "symbol": "parseDDPMessage"
+      }
+    ],
+    "keySymbols": [
+      "notifyOnMessageChange",
+      "api.broadcast",
+      "watch.messages",
+      "ListenersModule",
+      "NotificationsModule",
+      "Streamer",
+      "StreamerCentralClass",
+      "StreamerCentral",
+      "streamRoomMessage",
+      "streamRoom",
+      "streamUser",
+      "streamAll",
+      "streamLogged",
+      "_emit",
+      "emitWithoutBroadcast",
+      "parseDDPMessage",
+      "IStreamer"
+    ]
+  },
+  "tour-05-msg-server": {
+    "core": [
+      "apps/meteor/app/lib/server/methods/sendMessage.ts",
+      "apps/meteor/app/lib/server/functions/sendMessage.ts",
+      "apps/meteor/app/authorization/server/functions/canSendMessage.ts"
+    ],
+    "supporting": [
+      "apps/meteor/client/lib/chats/ChatAPI.ts",
+      "apps/meteor/app/ui/client/lib/ChatMessages.ts",
+      "apps/meteor/app/lib/client/methods/sendMessage.ts"
+    ],
+    "chain": [
+      {
+        "file": "apps/meteor/app/lib/server/methods/sendMessage.ts",
+        "symbol": "sendMessage (Meteor method)"
+      },
+      {
+        "file": "apps/meteor/app/lib/server/methods/sendMessage.ts",
+        "symbol": "executeSendMessage"
+      },
+      {
+        "file": "apps/meteor/app/authorization/server/functions/canSendMessage.ts",
+        "symbol": "canSendMessageAsync"
+      },
+      {
+        "file": "apps/meteor/app/authorization/server/functions/canSendMessage.ts",
+        "symbol": "validateRoomMessagePermissionsAsync"
+      },
+      {
+        "file": "apps/meteor/app/lib/server/functions/sendMessage.ts",
+        "symbol": "sendMessage"
+      },
+      {
+        "file": "apps/meteor/app/lib/server/functions/sendMessage.ts",
+        "symbol": "validateMessage"
+      },
+      {
+        "file": "apps/meteor/app/lib/server/functions/sendMessage.ts",
+        "symbol": "prepareMessageObject"
+      },
+      {
+        "file": "apps/meteor/app/lib/server/functions/sendMessage.ts",
+        "symbol": "afterSaveMessage"
+      }
+    ],
+    "keySymbols": [
+      "executeSendMessage",
+      "sendMessage",
+      "validateMessage",
+      "prepareMessageObject",
+      "canSendMessageAsync",
+      "validateRoomMessagePermissionsAsync",
+      "afterSaveMessage",
+      "ChatMessages",
+      "ChatAPI"
+    ]
+  },
+  "new-24-autotranslate": {
+    "core": [
+      "apps/meteor/app/autotranslate/server/autotranslate.ts",
+      "apps/meteor/app/autotranslate/server/googleTranslate.ts",
+      "apps/meteor/app/autotranslate/server/msTranslate.ts",
+      "apps/meteor/app/autotranslate/server/deeplTranslate.ts"
+    ],
+    "supporting": [
+      "apps/meteor/app/autotranslate/server/index.ts",
+      "apps/meteor/app/autotranslate/server/functions/translateMessage.ts",
+      "apps/meteor/app/autotranslate/server/functions/getSupportedLanguages.ts",
+      "apps/meteor/app/autotranslate/server/methods/getProviderUiMetadata.ts"
+    ],
+    "chain": [
+      {
+        "file": "apps/meteor/app/autotranslate/server/autotranslate.ts",
+        "symbol": "TranslationProviderRegistry.registerCallbacks"
+      },
+      {
+        "file": "apps/meteor/app/autotranslate/server/autotranslate.ts",
+        "symbol": "TranslationProviderRegistry.getActiveProvider"
+      },
+      {
+        "file": "apps/meteor/app/autotranslate/server/autotranslate.ts",
+        "symbol": "AutoTranslate.translateMessage"
+      },
+      {
+        "file": "apps/meteor/app/autotranslate/server/autotranslate.ts",
+        "symbol": "AutoTranslate.tokenize"
+      },
+      {
+        "file": "apps/meteor/app/autotranslate/server/googleTranslate.ts",
+        "symbol": "GoogleAutoTranslate.translateMessage"
+      },
+      {
+        "file": "apps/meteor/app/autotranslate/server/msTranslate.ts",
+        "symbol": "MsAutoTranslate.translateMessage"
+      },
+      {
+        "file": "apps/meteor/app/autotranslate/server/deeplTranslate.ts",
+        "symbol": "DeeplAutoTranslate.translateMessage"
+      }
+    ],
+    "keySymbols": [
+      "TranslationProviderRegistry",
+      "TranslationProviderRegistry.registerProvider",
+      "TranslationProviderRegistry.getActiveProvider",
+      "TranslationProviderRegistry.setCurrentProvider",
+      "TranslationProviderRegistry.registerCallbacks",
+      "TranslationProviderRegistry.translateMessage",
+      "AutoTranslate",
+      "AutoTranslate.tokenize",
+      "AutoTranslate.translateMessage",
+      "GoogleAutoTranslate",
+      "MsAutoTranslate",
+      "DeeplAutoTranslate"
+    ]
+  },
+  "new-15-impact-aftersave": {
+    "core": [
+      "apps/meteor/app/lib/server/lib/afterSaveMessage.ts",
+      "apps/meteor/app/lib/server/functions/sendMessage.ts",
+      "apps/meteor/app/lib/server/functions/updateMessage.ts",
+      "apps/meteor/app/lib/server/lib/sendNotificationsOnMessage.ts",
+      "apps/meteor/app/autotranslate/server/autotranslate.ts"
+    ],
+    "supporting": [
+      "apps/meteor/app/lib/server/lib/notifyUsersOnMessage.ts",
+      "apps/meteor/app/lib/server/startup/mentionUserNotInChannel.ts",
+      "apps/meteor/app/lib/server/lib/notifyListener.ts"
+    ],
+    "chain": [
+      {
+        "file": "apps/meteor/app/lib/server/functions/sendMessage.ts",
+        "symbol": "sendMessage"
+      },
+      {
+        "file": "apps/meteor/app/lib/server/lib/afterSaveMessage.ts",
+        "symbol": "afterSaveMessage"
+      },
+      {
+        "file": "apps/meteor/app/lib/server/lib/afterSaveMessage.ts",
+        "symbol": "callbacks.run"
+      },
+      {
+        "file": "apps/meteor/app/lib/server/lib/sendNotificationsOnMessage.ts",
+        "symbol": "sendNotificationsOnMessage"
+      },
+      {
+        "file": "apps/meteor/app/autotranslate/server/autotranslate.ts",
+        "symbol": "translateMessage"
+      },
+      {
+        "file": "apps/meteor/app/lib/server/lib/afterSaveMessage.ts",
+        "symbol": "Message.afterSave"
+      }
+    ],
+    "keySymbols": [
+      "afterSaveMessage",
+      "afterSaveMessageAsync",
+      "callbacks.run",
+      "Message.afterSave",
+      "sendNotificationsOnMessage",
+      "autotranslate"
+    ]
+  },
+  "new-16-impact-streamer": {
+    "core": [
+      "apps/meteor/server/modules/streamer/streamer.module.ts",
+      "apps/meteor/server/modules/notifications/notifications.module.ts",
+      "apps/meteor/server/modules/listeners/listeners.module.ts"
+    ],
+    "supporting": [
+      "apps/meteor/server/modules/streamer/types.ts",
+      "apps/meteor/app/notifications/server/lib/Presence.ts"
+    ],
+    "chain": [
+      {
+        "file": "apps/meteor/server/modules/streamer/streamer.module.ts",
+        "symbol": "Streamer"
+      },
+      {
+        "file": "apps/meteor/server/modules/streamer/streamer.module.ts",
+        "symbol": "StreamerCentral"
+      },
+      {
+        "file": "apps/meteor/server/modules/notifications/notifications.module.ts",
+        "symbol": "NotificationsModule"
+      },
+      {
+        "file": "apps/meteor/server/modules/listeners/listeners.module.ts",
+        "symbol": "ListenersModule"
+      }
+    ],
+    "keySymbols": [
+      "Streamer",
+      "StreamerCentral",
+      "NotificationsModule",
+      "ListenersModule",
+      "DDPSubscription",
+      "allowRead",
+      "allowWrite",
+      "allowEmit",
+      "retransmit"
+    ]
+  },
+  "claude-08-federation": {
+    "core": [
+      "ee/packages/federation-matrix/src/FederationMatrix.ts",
+      "ee/packages/federation-matrix/src/api/_matrix/transactions.ts",
+      "ee/packages/federation-matrix/src/events/message.ts",
+      "ee/packages/federation-matrix/src/helpers/message.parsers.ts"
+    ],
+    "supporting": [
+      "ee/packages/federation-matrix/src/events/reaction.ts",
+      "ee/packages/federation-matrix/src/api/_matrix/invite.ts",
+      "ee/packages/federation-matrix/src/services/MatrixMediaService.ts",
+      "ee/packages/federation-matrix/src/setup.ts",
+      "ee/packages/federation-matrix/src/index.ts",
+      "apps/meteor/server/services/room/service.ts",
+      "packages/core-services/src/types/IFederationMatrixService.ts"
+    ],
+    "chain": [
+      {
+        "file": "apps/meteor/server/services/room/service.ts",
+        "symbol": "FederationActions"
+      },
+      {
+        "file": "ee/packages/federation-matrix/src/FederationMatrix.ts",
+        "symbol": "FederationMatrix.sendMessage"
+      },
+      {
+        "file": "ee/packages/federation-matrix/src/helpers/message.parsers.ts",
+        "symbol": "toExternalMessageFormat"
+      },
+      {
+        "file": "ee/packages/federation-matrix/src/services/MatrixMediaService.ts",
+        "symbol": "MatrixMediaService"
+      },
+      {
+        "file": "ee/packages/federation-matrix/src/api/_matrix/transactions.ts",
+        "symbol": "processIncomingTransaction"
+      },
+      {
+        "file": "ee/packages/federation-matrix/src/events/message.ts",
+        "symbol": "saveMessageFromFederation"
+      },
+      {
+        "file": "ee/packages/federation-matrix/src/events/reaction.ts",
+        "symbol": "reaction"
+      },
+      {
+        "file": "ee/packages/federation-matrix/src/api/_matrix/invite.ts",
+        "symbol": "invite"
+      }
+    ],
+    "keySymbols": [
+      "FederationMatrix",
+      "IFederationMatrixService",
+      "sendMessage",
+      "processIncomingTransaction",
+      "saveMessageFromFederation",
+      "isAuthenticatedMiddleware",
+      "toExternalMessageFormat",
+      "toExternalQuoteMessageFormat",
+      "MatrixMediaService",
+      "FederationActions",
+      "isRoomNativeFederated",
+      "generateFederationKeys"
+    ]
+  },
+  "new-18-webhook": {
+    "core": [
+      "apps/meteor/app/integrations/server/api/api.ts",
+      "apps/meteor/app/lib/server/functions/processWebhookMessage.ts",
+      "apps/meteor/app/integrations/server/lib/isolated-vm/isolated-vm.ts",
+      "apps/meteor/app/integrations/server/lib/triggerHandler.ts"
+    ],
+    "supporting": [
+      "apps/meteor/app/integrations/server/lib/updateHistory.ts",
+      "apps/meteor/app/integrations/lib/outgoingEvents.ts",
+      "apps/meteor/app/integrations/server/methods/outgoing/addOutgoingIntegration.ts",
+      "apps/meteor/app/integrations/server/methods/outgoing/deleteOutgoingIntegration.ts"
+    ],
+    "chain": [
+      {
+        "file": "apps/meteor/app/integrations/server/api/api.ts",
+        "symbol": "executeIntegrationRest"
+      },
+      {
+        "file": "apps/meteor/app/integrations/server/api/api.ts",
+        "symbol": "getBodyParams"
+      },
+      {
+        "file": "apps/meteor/app/integrations/server/lib/isolated-vm/isolated-vm.ts",
+        "symbol": "IsolatedVMScriptEngine.processIncomingRequest"
+      },
+      {
+        "file": "apps/meteor/app/lib/server/functions/processWebhookMessage.ts",
+        "symbol": "processWebhookMessage"
+      }
+    ],
+    "keySymbols": [
+      "executeIntegrationRest",
+      "getBodyParams",
+      "processWebhookMessage",
+      "IsolatedVMScriptEngine",
+      "RocketChatIntegrationHandler",
+      "addIntegration",
+      "removeIntegration",
+      "executeTriggerUrl",
+      "outgoingEvents"
+    ]
+  },
+  "claude-07-api-endpoints": {
+    "core": [
+      "apps/meteor/app/api/server/api.ts",
+      "apps/meteor/app/api/server/ApiClass.ts",
+      "apps/meteor/app/api/server/router.ts",
+      "apps/meteor/app/api/server/index.ts",
+      "apps/meteor/app/api/server/middlewares/authenticationHono.ts",
+      "apps/meteor/app/api/server/middlewares/permissions.ts"
+    ],
+    "supporting": [
+      "apps/meteor/app/api/server/definition.ts",
+      "apps/meteor/app/api/server/v1/chat.ts",
+      "packages/rest-typings/src/index.ts",
+      "ee/app/api-enterprise/server/middlewares/license.ts"
+    ],
+    "chain": [
+      {
+        "file": "apps/meteor/app/api/server/index.ts",
+        "symbol": "imports"
+      },
+      {
+        "file": "apps/meteor/app/api/server/v1/chat.ts",
+        "symbol": "API.v1.addRoute"
+      },
+      {
+        "file": "apps/meteor/app/api/server/ApiClass.ts",
+        "symbol": "addRoute"
+      },
+      {
+        "file": "apps/meteor/app/api/server/ApiClass.ts",
+        "symbol": "_internalRouteActionHandler"
+      },
+      {
+        "file": "apps/meteor/app/api/server/middlewares/authenticationHono.ts",
+        "symbol": "authenticationMiddlewareForHono"
+      },
+      {
+        "file": "apps/meteor/app/api/server/middlewares/permissions.ts",
+        "symbol": "permissionsMiddleware"
+      },
+      {
+        "file": "ee/app/api-enterprise/server/middlewares/license.ts",
+        "symbol": "license middleware"
+      },
+      {
+        "file": "apps/meteor/app/api/server/router.ts",
+        "symbol": "RocketChatAPIRouter"
+      }
+    ],
+    "keySymbols": [
+      "createApi",
+      "APIClass",
+      "addRoute",
+      "_internalRouteActionHandler",
+      "RocketChatAPIRouter",
+      "authenticationMiddlewareForHono",
+      "permissionsMiddleware",
+      "APIActionHandler",
+      "APIActionContext",
+      "TypedThis",
+      "TypedAction",
+      "TypedOptions",
+      "SuccessResult",
+      "FailureResult",
+      "checkCodeForUser",
+      "validateParams",
+      "rateLimiterOptions"
+    ]
+  },
+  "new-25-search": {
+    "core": [
+      "apps/meteor/app/search/server/service/SearchProviderService.ts",
+      "apps/meteor/app/search/server/model/SearchProvider.ts",
+      "apps/meteor/app/search/server/provider/DefaultProvider.ts",
+      "apps/meteor/server/methods/messageSearch.ts"
+    ],
+    "supporting": [
+      "apps/meteor/app/search/server/model/ISearchResult.ts",
+      "apps/meteor/app/search/server/model/Settings.ts",
+      "apps/meteor/app/search/server/service/index.ts",
+      "apps/meteor/app/search/server/logger/logger.ts"
+    ],
+    "chain": [
+      {
+        "file": "apps/meteor/app/search/server/service/SearchProviderService.ts",
+        "symbol": "SearchProviderService.start"
+      },
+      {
+        "file": "apps/meteor/app/search/server/service/SearchProviderService.ts",
+        "symbol": "SearchProviderService.register"
+      },
+      {
+        "file": "apps/meteor/app/search/server/service/SearchProviderService.ts",
+        "symbol": "SearchProviderService.use"
+      },
+      {
+        "file": "apps/meteor/app/search/server/provider/DefaultProvider.ts",
+        "symbol": "DefaultProvider.search"
+      },
+      {
+        "file": "apps/meteor/server/methods/messageSearch.ts",
+        "symbol": "messageSearch"
+      }
+    ],
+    "keySymbols": [
+      "SearchProviderService",
+      "SearchProviderService.providers",
+      "SearchProviderService.activeProvider",
+      "SearchProviderService.use",
+      "SearchProviderService.start",
+      "SearchProviderService.register",
+      "SearchProvider",
+      "DefaultProvider",
+      "DefaultProvider.search",
+      "messageSearch",
+      "IRawSearchResult",
+      "Settings"
+    ]
+  },
+  "new-27-video-conference": {
+    "core": [
+      "apps/meteor/server/services/video-conference/service.ts",
+      "packages/core-services/src/types/IVideoConfService.ts",
+      "packages/core-typings/src/VideoConference.ts",
+      "apps/meteor/server/lib/videoConfProviders.ts",
+      "apps/meteor/server/lib/isRoomCompatibleWithVideoConfRinging.ts",
+      "packages/models/src/models/VideoConference.ts"
+    ],
+    "supporting": [
+      "apps/meteor/server/lib/videoConfTypes.ts",
+      "apps/meteor/app/push/server/push.ts",
+      "apps/meteor/app/push-notifications/server/lib/PushNotification.ts",
+      "apps/meteor/lib/videoConference/constants.ts",
+      "apps/meteor/app/statistics/server/functions/updateStatsCounter.ts"
+    ],
+    "chain": [
+      {
+        "file": "apps/meteor/server/services/video-conference/service.ts",
+        "symbol": "VideoConfService.create"
+      },
+      {
+        "file": "apps/meteor/server/services/video-conference/service.ts",
+        "symbol": "VideoConfService.startDirect"
+      },
+      {
+        "file": "apps/meteor/server/services/video-conference/service.ts",
+        "symbol": "VideoConfService.startLivechat"
+      },
+      {
+        "file": "apps/meteor/server/lib/isRoomCompatibleWithVideoConfRinging.ts",
+        "symbol": "isRoomCompatibleWithVideoConfRinging"
+      },
+      {
+        "file": "apps/meteor/server/lib/videoConfProviders.ts",
+        "symbol": "videoConfProviders"
+      }
+    ],
+    "keySymbols": [
+      "VideoConfService",
+      "VideoConfService.create",
+      "VideoConfService.startDirect",
+      "VideoConfService.startLivechat",
+      "VideoConferenceCreateData",
+      "VideoConferenceStatus",
+      "IDirectVideoConference",
+      "IGroupVideoConference",
+      "ILivechatVideoConference",
+      "VideoConferenceCapabilities",
+      "videoConfProviders",
+      "videoConfTypes",
+      "isRoomCompatibleWithVideoConfRinging"
+    ]
+  },
+  "tour-06-endpoint": {
+    "core": [
+      "apps/meteor/app/api/server/api.ts",
+      "apps/meteor/app/api/server/ApiClass.ts",
+      "apps/meteor/app/api/server/router.ts",
+      "apps/meteor/app/api/server/middlewares/authenticationHono.ts",
+      "apps/meteor/app/api/server/middlewares/permissions.ts"
+    ],
+    "supporting": [
+      "apps/meteor/app/api/server/v1/chat.ts",
+      "apps/meteor/app/api/server/index.ts",
+      "apps/meteor/app/api/server/definition.ts",
+      "packages/rest-typings/src/index.ts"
+    ],
+    "chain": [
+      {
+        "file": "apps/meteor/app/api/server/api.ts",
+        "symbol": "createApi"
+      },
+      {
+        "file": "apps/meteor/app/api/server/ApiClass.ts",
+        "symbol": "APIClass"
+      },
+      {
+        "file": "apps/meteor/app/api/server/v1/chat.ts",
+        "symbol": "API.v1.addRoute"
+      },
+      {
+        "file": "apps/meteor/app/api/server/ApiClass.ts",
+        "symbol": "addRoute"
+      },
+      {
+        "file": "apps/meteor/app/api/server/ApiClass.ts",
+        "symbol": "_internalRouteActionHandler"
+      },
+      {
+        "file": "apps/meteor/app/api/server/middlewares/authenticationHono.ts",
+        "symbol": "authenticationMiddlewareForHono"
+      },
+      {
+        "file": "apps/meteor/app/api/server/middlewares/permissions.ts",
+        "symbol": "permissionsMiddleware"
+      },
+      {
+        "file": "apps/meteor/app/api/server/router.ts",
+        "symbol": "RocketChatAPIRouter"
+      }
+    ],
+    "keySymbols": [
+      "createApi",
+      "APIClass",
+      "addRoute",
+      "_internalRouteActionHandler",
+      "RocketChatAPIRouter",
+      "authenticationMiddlewareForHono",
+      "permissionsMiddleware",
+      "API.v1",
+      "API.default",
+      "checkCodeForUser",
+      "isChatSendMessageProps",
+      "ajv"
+    ]
+  },
+  "new-17-slash-commands": {
+    "core": [
+      "apps/meteor/app/utils/server/slashCommand.ts",
+      "apps/meteor/client/lib/chats/flows/processSlashCommand.ts"
+    ],
+    "supporting": [
+      "apps/meteor/client/lib/chats/flows/sendMessage.ts",
+      "apps/meteor/app/slashcommands-invite/server/server.ts",
+      "apps/meteor/app/slashcommands-kick/server/server.ts",
+      "apps/meteor/app/slashcommands-join/server/server.ts"
+    ],
+    "chain": [
+      {
+        "file": "apps/meteor/client/lib/chats/flows/sendMessage.ts",
+        "symbol": "sendMessage"
+      },
+      {
+        "file": "apps/meteor/client/lib/chats/flows/processSlashCommand.ts",
+        "symbol": "processSlashCommand"
+      },
+      {
+        "file": "apps/meteor/client/lib/chats/flows/processSlashCommand.ts",
+        "symbol": "parse"
+      },
+      {
+        "file": "apps/meteor/client/lib/chats/flows/processSlashCommand.ts",
+        "symbol": "sdk.call"
+      },
+      {
+        "file": "apps/meteor/app/utils/server/slashCommand.ts",
+        "symbol": "slashCommand"
+      },
+      {
+        "file": "apps/meteor/app/utils/server/slashCommand.ts",
+        "symbol": "slashCommands.run"
+      }
+    ],
+    "keySymbols": [
+      "slashCommands",
+      "slashCommands.add",
+      "slashCommands.run",
+      "slashCommands.commands",
+      "processSlashCommand",
+      "parse",
+      "slashCommand",
+      "SlashCommand"
+    ]
+  },
+  "new-11-settings": {
+    "core": [
+      "apps/meteor/app/settings/server/SettingsRegistry.ts",
+      "apps/meteor/app/settings/server/CachedSettings.ts",
+      "apps/meteor/server/publications/settings/index.ts"
+    ],
+    "supporting": [
+      "apps/meteor/app/settings/server/functions/getSettingDefaults.ts",
+      "apps/meteor/app/settings/server/functions/overrideSetting.ts",
+      "apps/meteor/app/settings/server/functions/overwriteSetting.ts",
+      "apps/meteor/app/settings/server/functions/validateSetting.ts"
+    ],
+    "chain": [
+      {
+        "file": "apps/meteor/app/settings/server/SettingsRegistry.ts",
+        "symbol": "SettingsRegistry.add"
+      },
+      {
+        "file": "apps/meteor/app/settings/server/functions/getSettingDefaults.ts",
+        "symbol": "getSettingDefaults"
+      },
+      {
+        "file": "apps/meteor/app/settings/server/functions/overwriteSetting.ts",
+        "symbol": "overwriteSetting"
+      },
+      {
+        "file": "apps/meteor/app/settings/server/CachedSettings.ts",
+        "symbol": "CachedSettings.getSetting"
+      },
+      {
+        "file": "apps/meteor/app/settings/server/SettingsRegistry.ts",
+        "symbol": "compareSettings"
+      },
+      {
+        "file": "apps/meteor/app/settings/server/SettingsRegistry.ts",
+        "symbol": "SettingsRegistry.saveUpdatedSetting"
+      },
+      {
+        "file": "apps/meteor/app/settings/server/CachedSettings.ts",
+        "symbol": "CachedSettings.set"
+      },
+      {
+        "file": "apps/meteor/app/settings/server/CachedSettings.ts",
+        "symbol": "CachedSettings.watch"
+      },
+      {
+        "file": "apps/meteor/server/publications/settings/index.ts",
+        "symbol": "public-settings/get"
+      },
+      {
+        "file": "apps/meteor/server/publications/settings/index.ts",
+        "symbol": "private-settings/get"
+      }
+    ],
+    "keySymbols": [
+      "SettingsRegistry",
+      "CachedSettings",
+      "ICachedSettings",
+      "SettingsEvents",
+      "compareSettings",
+      "settings",
+      "getSettingDefaults",
+      "overwriteSetting"
+    ]
+  },
+  "claude-03-file-upload": {
+    "core": [
+      "apps/meteor/client/lib/chats/flows/uploadFiles.ts",
+      "apps/meteor/app/api/server/v1/rooms.ts",
+      "apps/meteor/app/file-upload/server/lib/FileUpload.ts",
+      "apps/meteor/server/services/upload/service.ts",
+      "apps/meteor/app/file-upload/server/methods/sendFileMessage.ts"
+    ],
+    "supporting": [
+      "apps/meteor/app/file-upload/server/config/GridFS.ts",
+      "apps/meteor/app/file-upload/server/config/AmazonS3/server.ts",
+      "apps/meteor/app/file-upload/server/config/Webdav.ts",
+      "apps/meteor/client/lib/e2ee/rocketchat.e2e.room.ts"
+    ],
+    "chain": [
+      {
+        "file": "apps/meteor/client/lib/chats/flows/uploadFiles.ts",
+        "symbol": "uploadFiles"
+      },
+      {
+        "file": "apps/meteor/client/lib/e2ee/rocketchat.e2e.room.ts",
+        "symbol": "encryptFile"
+      },
+      {
+        "file": "apps/meteor/client/lib/chats/flows/uploadFiles.ts",
+        "symbol": "uploadsStore.send"
+      },
+      {
+        "file": "apps/meteor/app/api/server/v1/rooms.ts",
+        "symbol": "rooms.media"
+      },
+      {
+        "file": "apps/meteor/app/file-upload/server/lib/FileUpload.ts",
+        "symbol": "FileUploadClass"
+      },
+      {
+        "file": "apps/meteor/app/api/server/v1/rooms.ts",
+        "symbol": "rooms.mediaConfirm"
+      },
+      {
+        "file": "apps/meteor/server/services/upload/service.ts",
+        "symbol": "parseFileIntoMessageAttachments"
+      },
+      {
+        "file": "apps/meteor/app/file-upload/server/methods/sendFileMessage.ts",
+        "symbol": "parseFileIntoMessageAttachments"
+      }
+    ],
+    "keySymbols": [
+      "uploadFiles",
+      "FileUploadClass",
+      "MultipartUploadHandler",
+      "parseFileIntoMessageAttachments",
+      "encryptFile",
+      "uploadsStore",
+      "MAX_MULTIPLE_UPLOADED_FILES",
+      "E2E_Enable_Encrypt_Files",
+      "GridFS",
+      "AmazonS3",
+      "WebDAV",
+      "rooms.media",
+      "rooms.mediaConfirm",
+      "sendFileMessage"
+    ]
+  },
+  "new-10-apps-engine": {
+    "core": [
+      "packages/apps-engine/src/server/managers/AppListenerManager.ts",
+      "packages/apps-engine/src/definition/metadata/AppInterface.ts",
+      "packages/apps-engine/src/server/AppManager.ts",
+      "apps/meteor/app/apps/server/bridges/listeners.ts"
+    ],
+    "supporting": [
+      "apps/meteor/app/apps/server/bridges/bridges.js",
+      "apps/meteor/ee/server/apps/orchestrator.js",
+      "packages/apps-engine/src/server/ProxiedApp.ts",
+      "packages/apps-engine/src/server/runtime/deno/AppsEngineDenoRuntime.ts",
+      "apps/meteor/app/apps/server/bridges/index.ts"
+    ],
+    "chain": [
+      {
+        "file": "apps/meteor/app/apps/server/bridges/listeners.ts",
+        "symbol": "AppListenerBridge"
+      },
+      {
+        "file": "packages/apps-engine/src/server/managers/AppListenerManager.ts",
+        "symbol": "executeListener"
+      },
+      {
+        "file": "packages/apps-engine/src/server/managers/AppListenerManager.ts",
+        "symbol": "registerListeners"
+      },
+      {
+        "file": "packages/apps-engine/src/server/AppManager.ts",
+        "symbol": "AppManager"
+      },
+      {
+        "file": "packages/apps-engine/src/server/ProxiedApp.ts",
+        "symbol": "ProxiedApp"
+      }
+    ],
+    "keySymbols": [
+      "AppManager",
+      "AppListenerManager",
+      "registerListeners",
+      "executeListener",
+      "AppInterface",
+      "IPreMessageSentPrevent",
+      "IPreMessageSentExtend",
+      "IPreMessageSentModify",
+      "IPostMessageSent",
+      "IPreMessageDeletePrevent",
+      "IPostMessageDeleted",
+      "getImplementationList",
+      "IListenerExecutor",
+      "ProxiedApp",
+      "RealAppBridges",
+      "AppListenerBridge",
+      "AppsEngineDenoRuntime",
+      "AppMethod"
+    ]
+  },
+  "new-20-proxify": {
+    "core": [
+      "packages/core-services/src/lib/proxify.ts",
+      "packages/core-services/src/LocalBroker.ts",
+      "packages/core-services/src/types/ServiceClass.ts"
+    ],
+    "supporting": [
+      "packages/core-services/src/index.ts",
+      "packages/core-services/src/types/IBroker.ts",
+      "packages/core-services/src/events/Events.ts",
+      "packages/core-services/src/lib/asyncLocalStorage.ts",
+      "apps/meteor/server/services/ldap/service.ts"
+    ],
+    "chain": [
+      {
+        "file": "packages/core-services/src/index.ts",
+        "symbol": "proxify"
+      },
+      {
+        "file": "packages/core-services/src/lib/proxify.ts",
+        "symbol": "proxify"
+      },
+      {
+        "file": "packages/core-services/src/lib/proxify.ts",
+        "symbol": "handler"
+      },
+      {
+        "file": "packages/core-services/src/lib/proxify.ts",
+        "symbol": "api.call"
+      },
+      {
+        "file": "packages/core-services/src/LocalBroker.ts",
+        "symbol": "LocalBroker.call"
+      },
+      {
+        "file": "packages/core-services/src/types/ServiceClass.ts",
+        "symbol": "ServiceClass"
+      }
+    ],
+    "keySymbols": [
+      "proxify",
+      "Promisify",
+      "handler",
+      "api.call",
+      "LocalBroker",
+      "LocalBroker.call",
+      "ServiceClass",
+      "ServiceClassInternal",
+      "IServiceClass"
+    ]
+  },
+  "tour-07-db-model-create": {
+    "core": [
+      "packages/models/src/models/BaseRaw.ts",
+      "packages/models/src/models/Messages.ts",
+      "apps/meteor/server/models.ts",
+      "packages/model-typings/src/models/IMessagesModel.ts",
+      "packages/core-typings/src/IMessage/IMessage.ts"
+    ],
+    "supporting": [
+      "packages/models/src/index.ts",
+      "packages/models/src/proxify.ts"
+    ],
+    "chain": [
+      {
+        "file": "packages/core-typings/src/IMessage/IMessage.ts",
+        "symbol": "IMessage"
+      },
+      {
+        "file": "packages/model-typings/src/models/IMessagesModel.ts",
+        "symbol": "IMessagesModel"
+      },
+      {
+        "file": "packages/models/src/models/BaseRaw.ts",
+        "symbol": "BaseRaw"
+      },
+      {
+        "file": "packages/models/src/models/Messages.ts",
+        "symbol": "MessagesRaw"
+      },
+      {
+        "file": "apps/meteor/server/models.ts",
+        "symbol": "registerModel"
+      },
+      {
+        "file": "packages/models/src/proxify.ts",
+        "symbol": "proxify"
+      },
+      {
+        "file": "packages/models/src/index.ts",
+        "symbol": "Messages"
+      }
+    ],
+    "keySymbols": [
+      "BaseRaw",
+      "MessagesRaw",
+      "IMessage",
+      "IMessagesModel",
+      "registerModel",
+      "proxify",
+      "findOne",
+      "find",
+      "insertOne",
+      "updateOne",
+      "deleteOne",
+      "findPaginated",
+      "modelIndexes",
+      "trashCollection",
+      "findVisibleByRoomIdBeforeTimestampNotContainingTypes"
+    ]
+  },
+  "tour-08-db-model-use": {
+    "core": [
+      "apps/meteor/server/methods/loadHistory.ts",
+      "apps/meteor/app/lib/server/functions/loadMessageHistory.ts",
+      "packages/models/src/models/Messages.ts"
+    ],
+    "supporting": [
+      "packages/models/src/models/BaseRaw.ts",
+      "apps/meteor/app/utils/server/lib/normalizeMessagesForUser.ts",
+      "apps/meteor/app/lib/server/lib/getHiddenSystemMessages.ts"
+    ],
+    "chain": [
+      {
+        "file": "apps/meteor/server/methods/loadHistory.ts",
+        "symbol": "loadHistory"
+      },
+      {
+        "file": "apps/meteor/app/lib/server/functions/loadMessageHistory.ts",
+        "symbol": "loadMessageHistory"
+      },
+      {
+        "file": "packages/models/src/models/Messages.ts",
+        "symbol": "findVisibleByRoomIdBeforeTimestampNotContainingTypes"
+      },
+      {
+        "file": "apps/meteor/app/utils/server/lib/normalizeMessagesForUser.ts",
+        "symbol": "normalizeMessagesForUser"
+      },
+      {
+        "file": "packages/models/src/models/Messages.ts",
+        "symbol": "findVisibleByRoomIdBetweenTimestampsNotContainingTypes"
+      },
+      {
+        "file": "packages/models/src/models/Messages.ts",
+        "symbol": "countVisibleByRoomIdBetweenTimestampsNotContainingTypes"
+      }
+    ],
+    "keySymbols": [
+      "loadMessageHistory",
+      "findVisibleByRoomIdBeforeTimestampNotContainingTypes",
+      "findVisibleByRoomIdBetweenTimestampsNotContainingTypes",
+      "countVisibleByRoomIdBetweenTimestampsNotContainingTypes",
+      "normalizeMessagesForUser",
+      "getHiddenSystemMessages",
+      "firstUnread",
+      "unreadNotLoaded",
+      "FindOptions",
+      "Messages",
+      "Rooms"
+    ]
+  },
+  "tour-11-new-package": {
+    "core": [
+      "packages/account-utils/src/index.ts",
+      "packages/account-utils/package.json",
+      "packages/account-utils/tsconfig.json"
+    ],
+    "supporting": [
+      "apps/meteor/app/api/server/middlewares/authentication.ts",
+      "apps/meteor/app/api/server/middlewares/authenticationHono.ts",
+      "packages/core-typings/src/index.ts",
+      "packages/models/src/index.ts",
+      "packages/core-services/src/index.ts"
+    ],
+    "chain": [
+      {
+        "file": "packages/account-utils/src/index.ts",
+        "symbol": "hashLoginToken"
+      },
+      {
+        "file": "apps/meteor/app/api/server/middlewares/authenticationHono.ts",
+        "symbol": "hashLoginToken"
+      }
+    ],
+    "keySymbols": [
+      "hashLoginToken",
+      "@rocket.chat/account-utils",
+      "@rocket.chat/core-typings",
+      "@rocket.chat/models",
+      "@rocket.chat/core-services",
+      "@rocket.chat/rest-typings",
+      "@rocket.chat/apps-engine"
+    ]
+  },
+  "tour-10-new-service": {
+    "core": [
+      "apps/meteor/server/services/room/service.ts",
+      "packages/core-services/src/types/IRoomService.ts",
+      "packages/core-services/src/index.ts",
+      "packages/core-services/src/lib/ServiceClassInternal.ts"
+    ],
+    "supporting": [
+      "apps/meteor/startRocketChat.ts",
+      "apps/meteor/app/lib/server/functions/createRoom.ts",
+      "apps/meteor/server/methods/createDirectMessage.ts",
+      "apps/meteor/app/lib/server/functions/addUserToRoom.ts"
+    ],
+    "chain": [
+      {
+        "file": "packages/core-services/src/types/IRoomService.ts",
+        "symbol": "IRoomService"
+      },
+      {
+        "file": "packages/core-services/src/index.ts",
+        "symbol": "proxify"
+      },
+      {
+        "file": "packages/core-services/src/lib/ServiceClassInternal.ts",
+        "symbol": "ServiceClassInternal"
+      },
+      {
+        "file": "apps/meteor/server/services/room/service.ts",
+        "symbol": "RoomService"
+      },
+      {
+        "file": "apps/meteor/startRocketChat.ts",
+        "symbol": "startRocketChat"
+      }
+    ],
+    "keySymbols": [
+      "ServiceClassInternal",
+      "ServiceClass",
+      "IRoomService",
+      "RoomService",
+      "proxify",
+      "Authorization",
+      "hasPermission",
+      "canAccessRoom",
+      "createRoom",
+      "createDirectMessage",
+      "addUserToRoom",
+      "removeUserFromRoom",
+      "performUserBan",
+      "onEvent",
+      "api.broadcast",
+      "onSettingChanged"
+    ]
+  },
+  "new-21-impact-settings": {
+    "core": [
+      "apps/meteor/app/settings/server/CachedSettings.ts",
+      "apps/meteor/app/settings/server/SettingsRegistry.ts",
+      "apps/meteor/app/settings/server/index.ts"
+    ],
+    "supporting": [
+      "apps/meteor/server/publications/settings/index.ts",
+      "apps/meteor/app/settings/server/cached.ts"
+    ],
+    "chain": [
+      {
+        "file": "apps/meteor/app/settings/server/CachedSettings.ts",
+        "symbol": "CachedSettings.initialized"
+      },
+      {
+        "file": "apps/meteor/app/settings/server/CachedSettings.ts",
+        "symbol": "CachedSettings.set"
+      },
+      {
+        "file": "apps/meteor/app/settings/server/SettingsRegistry.ts",
+        "symbol": "SettingsRegistry.add"
+      },
+      {
+        "file": "apps/meteor/app/settings/server/CachedSettings.ts",
+        "symbol": "CachedSettings.get"
+      },
+      {
+        "file": "apps/meteor/app/settings/server/CachedSettings.ts",
+        "symbol": "CachedSettings.watch"
+      },
+      {
+        "file": "apps/meteor/app/settings/server/CachedSettings.ts",
+        "symbol": "CachedSettings.watchMultiple"
+      },
+      {
+        "file": "apps/meteor/app/settings/server/CachedSettings.ts",
+        "symbol": "CachedSettings.change"
+      }
+    ],
+    "keySymbols": [
+      "CachedSettings",
+      "ICachedSettings",
+      "settings",
+      "store",
+      "get",
+      "has",
+      "getSetting",
+      "set",
+      "watch",
+      "watchMultiple",
+      "change",
+      "watchByRegex",
+      "onReady",
+      "initialized",
+      "Emitter"
+    ]
+  },
+  "new-22-2fa": {
+    "core": [
+      "apps/meteor/app/2fa/server/twoFactorRequired.ts",
+      "apps/meteor/app/2fa/server/code/index.ts",
+      "apps/meteor/app/2fa/server/code/ICodeCheck.ts",
+      "apps/meteor/app/2fa/server/code/TOTPCheck.ts",
+      "apps/meteor/app/2fa/server/code/EmailCheck.ts",
+      "apps/meteor/app/2fa/server/code/PasswordCheckFallback.ts"
+    ],
+    "supporting": [
+      "apps/meteor/app/2fa/server/lib/totp.ts",
+      "apps/meteor/app/2fa/server/loginHandler.ts"
+    ],
+    "chain": [
+      {
+        "file": "apps/meteor/app/2fa/server/twoFactorRequired.ts",
+        "symbol": "twoFactorRequired"
+      },
+      {
+        "file": "apps/meteor/app/2fa/server/code/index.ts",
+        "symbol": "checkCodeForUser"
+      },
+      {
+        "file": "apps/meteor/app/2fa/server/code/index.ts",
+        "symbol": "isAuthorizedForToken"
+      },
+      {
+        "file": "apps/meteor/app/2fa/server/code/index.ts",
+        "symbol": "getSecondFactorMethod"
+      },
+      {
+        "file": "apps/meteor/app/2fa/server/code/index.ts",
+        "symbol": "getMethodByNameOrFirstActiveForUser"
+      },
+      {
+        "file": "apps/meteor/app/2fa/server/code/TOTPCheck.ts",
+        "symbol": "TOTPCheck.verify"
+      },
+      {
+        "file": "apps/meteor/app/2fa/server/lib/totp.ts",
+        "symbol": "TOTP.verify"
+      },
+      {
+        "file": "apps/meteor/app/2fa/server/code/index.ts",
+        "symbol": "rememberAuthorization"
+      }
+    ],
+    "keySymbols": [
+      "twoFactorRequired",
+      "checkCodeForUser",
+      "ICodeCheck",
+      "TOTPCheck",
+      "EmailCheck",
+      "PasswordCheckFallback",
+      "isAuthorizedForToken",
+      "rememberAuthorization",
+      "getRememberDate",
+      "TOTP.verify",
+      "ITwoFactorOptions"
+    ]
+  },
+  "claude-04-e2e-encryption": {
+    "core": [
+      "apps/meteor/client/lib/e2ee/rocketchat.e2e.ts",
+      "apps/meteor/client/lib/e2ee/rocketchat.e2e.room.ts",
+      "apps/meteor/client/lib/e2ee/crypto/rsa.ts",
+      "apps/meteor/client/lib/e2ee/crypto/aes.ts",
+      "apps/meteor/client/lib/e2ee/crypto/pbkdf2.ts",
+      "apps/meteor/client/lib/e2ee/keychain.ts"
+    ],
+    "supporting": [
+      "apps/meteor/client/lib/e2ee/helper.ts"
+    ],
+    "chain": [
+      {
+        "file": "apps/meteor/client/lib/e2ee/rocketchat.e2e.ts",
+        "symbol": "E2E.createAndLoadKeys"
+      },
+      {
+        "file": "apps/meteor/client/lib/e2ee/crypto/rsa.ts",
+        "symbol": "Rsa.generate"
+      },
+      {
+        "file": "apps/meteor/client/lib/e2ee/crypto/pbkdf2.ts",
+        "symbol": "deriveKey"
+      },
+      {
+        "file": "apps/meteor/client/lib/e2ee/keychain.ts",
+        "symbol": "Keychain"
+      },
+      {
+        "file": "apps/meteor/client/lib/e2ee/rocketchat.e2e.room.ts",
+        "symbol": "E2ERoom.createGroupKey"
+      },
+      {
+        "file": "apps/meteor/client/lib/e2ee/crypto/aes.ts",
+        "symbol": "generateAESKey"
+      },
+      {
+        "file": "apps/meteor/client/lib/e2ee/rocketchat.e2e.room.ts",
+        "symbol": "E2ERoom.encrypt"
+      },
+      {
+        "file": "apps/meteor/client/lib/e2ee/rocketchat.e2e.room.ts",
+        "symbol": "E2ERoom.decrypt"
+      },
+      {
+        "file": "apps/meteor/client/lib/e2ee/rocketchat.e2e.ts",
+        "symbol": "E2E.initiateKeyDistribution"
+      }
+    ],
+    "keySymbols": [
+      "E2E",
+      "E2ERoom",
+      "Keychain",
+      "createAndLoadKeys",
+      "createGroupKey",
+      "generateRSAKey",
+      "generateAESKey",
+      "PBKDF2",
+      "initiateKeyDistribution",
+      "encrypt",
+      "decrypt",
+      "provideUsersSuggestedGroupKeys",
+      "resetRoomKey",
+      "resetUserE2EEncriptionKey",
+      "ROOM_KEY_EXCHANGE_SIZE",
+      "keyDistributionInterval",
+      "generatePassphrase"
+    ]
+  },
+  "new-12-ldap-auth": {
+    "core": [
+      "apps/meteor/server/configuration/ldap.ts",
+      "apps/meteor/server/services/ldap/service.ts",
+      "apps/meteor/server/lib/ldap/Manager.ts",
+      "apps/meteor/server/lib/ldap/Connection.ts",
+      "apps/meteor/server/lib/ldap/UserConverter.ts"
+    ],
+    "supporting": [
+      "apps/meteor/server/lib/ldap/Logger.ts"
+    ],
+    "chain": [
+      {
+        "file": "apps/meteor/server/configuration/ldap.ts",
+        "symbol": "configureLDAP"
+      },
+      {
+        "file": "apps/meteor/server/services/ldap/service.ts",
+        "symbol": "LDAPService.loginRequest"
+      },
+      {
+        "file": "apps/meteor/server/lib/ldap/Manager.ts",
+        "symbol": "LDAPManager.login"
+      },
+      {
+        "file": "apps/meteor/server/lib/ldap/Connection.ts",
+        "symbol": "LDAPConnection.connect"
+      },
+      {
+        "file": "apps/meteor/server/lib/ldap/Manager.ts",
+        "symbol": "LDAPManager.findUser"
+      },
+      {
+        "file": "apps/meteor/server/lib/ldap/Connection.ts",
+        "symbol": "LDAPConnection.searchByUsername"
+      },
+      {
+        "file": "apps/meteor/server/lib/ldap/Connection.ts",
+        "symbol": "LDAPConnection.authenticate"
+      },
+      {
+        "file": "apps/meteor/server/lib/ldap/Manager.ts",
+        "symbol": "LDAPManager.findExistingUser"
+      },
+      {
+        "file": "apps/meteor/server/lib/ldap/Connection.ts",
+        "symbol": "LDAPConnection.bindAuthenticationUser"
+      },
+      {
+        "file": "apps/meteor/server/lib/ldap/Manager.ts",
+        "symbol": "LDAPManager.loginExistingUser"
+      },
+      {
+        "file": "apps/meteor/server/lib/ldap/Manager.ts",
+        "symbol": "LDAPManager.loginNewUserFromLDAP"
+      },
+      {
+        "file": "apps/meteor/server/lib/ldap/UserConverter.ts",
+        "symbol": "LDAPUserConverter"
+      },
+      {
+        "file": "apps/meteor/server/lib/ldap/Connection.ts",
+        "symbol": "LDAPConnection.disconnect"
+      }
+    ],
+    "keySymbols": [
+      "configureLDAP",
+      "LDAPService",
+      "LDAPManager.login",
+      "LDAPManager.loginAuthenticatedUser",
+      "LDAPManager.findUser",
+      "LDAPManager.loginExistingUser",
+      "LDAPManager.loginNewUserFromLDAP",
+      "LDAPConnection",
+      "LDAPUserConverter",
+      "LDAP"
+    ]
+  },
+  "claude-02-msg-permissions": {
+    "core": [
+      "apps/meteor/app/authorization/server/functions/canSendMessage.ts",
+      "apps/meteor/app/lib/server/methods/sendMessage.ts",
+      "apps/meteor/app/lib/server/functions/sendMessage.ts",
+      "apps/meteor/app/authorization/server/functions/canAccessRoom.ts",
+      "apps/meteor/app/authorization/server/functions/hasPermission.ts"
+    ],
+    "supporting": [
+      "apps/meteor/app/api/server/v1/chat.ts",
+      "apps/meteor/app/lib/server/lib/validateCustomMessageFields.ts"
+    ],
+    "chain": [
+      {
+        "file": "apps/meteor/app/lib/server/methods/sendMessage.ts",
+        "symbol": "executeSendMessage"
+      },
+      {
+        "file": "apps/meteor/app/authorization/server/functions/canSendMessage.ts",
+        "symbol": "canSendMessageAsync"
+      },
+      {
+        "file": "apps/meteor/app/authorization/server/functions/canSendMessage.ts",
+        "symbol": "validateRoomMessagePermissionsAsync"
+      },
+      {
+        "file": "apps/meteor/app/authorization/server/functions/canAccessRoom.ts",
+        "symbol": "canAccessRoomAsync"
+      },
+      {
+        "file": "apps/meteor/app/authorization/server/functions/hasPermission.ts",
+        "symbol": "hasPermissionAsync"
+      },
+      {
+        "file": "apps/meteor/app/lib/server/functions/sendMessage.ts",
+        "symbol": "sendMessage"
+      },
+      {
+        "file": "apps/meteor/app/lib/server/functions/sendMessage.ts",
+        "symbol": "validateMessage"
+      },
+      {
+        "file": "apps/meteor/app/lib/server/lib/validateCustomMessageFields.ts",
+        "symbol": "validateCustomMessageFields"
+      }
+    ],
+    "keySymbols": [
+      "executeSendMessage",
+      "canSendMessageAsync",
+      "validateRoomMessagePermissionsAsync",
+      "canAccessRoomAsync",
+      "hasPermissionAsync",
+      "validateMessage",
+      "validateCustomMessageFields",
+      "RoomMemberActions.BLOCK"
+    ]
+  },
+  "new-14-ee-license": {
+    "core": [
+      "ee/packages/license/src/license.ts",
+      "ee/packages/license/src/licenseImp.ts",
+      "ee/packages/license/src/modules.ts",
+      "ee/packages/license/src/events/listeners.ts",
+      "ee/packages/license/src/events/emitter.ts",
+      "ee/packages/license/src/validation/runValidation.ts"
+    ],
+    "supporting": [
+      "ee/packages/license/src/validation/validateFormat.ts",
+      "ee/packages/license/src/token.ts",
+      "ee/packages/license/src/v2/convertToV3.ts"
+    ],
+    "chain": [
+      {
+        "file": "ee/packages/license/src/license.ts",
+        "symbol": "setLicense"
+      },
+      {
+        "file": "ee/packages/license/src/validation/validateFormat.ts",
+        "symbol": "validateFormat"
+      },
+      {
+        "file": "ee/packages/license/src/token.ts",
+        "symbol": "decrypt"
+      },
+      {
+        "file": "ee/packages/license/src/license.ts",
+        "symbol": "setLicenseV3"
+      },
+      {
+        "file": "ee/packages/license/src/license.ts",
+        "symbol": "validateLicense"
+      },
+      {
+        "file": "ee/packages/license/src/validation/runValidation.ts",
+        "symbol": "runValidation"
+      },
+      {
+        "file": "ee/packages/license/src/modules.ts",
+        "symbol": "replaceModules"
+      },
+      {
+        "file": "ee/packages/license/src/events/emitter.ts",
+        "symbol": "licenseValidated"
+      },
+      {
+        "file": "ee/packages/license/src/events/listeners.ts",
+        "symbol": "onValidateLicense"
+      }
+    ],
+    "keySymbols": [
+      "LicenseManager",
+      "LicenseImp",
+      "hasModule",
+      "onToggledFeature",
+      "onValidateLicense",
+      "onInvalidateLicense",
+      "shouldPreventAction",
+      "replaceModules",
+      "runValidation",
+      "validateLicense",
+      "setLicense",
+      "invalidateLicense"
+    ]
+  },
+  "new-13-room-creation": {
+    "core": [
+      "apps/meteor/app/lib/server/methods/createChannel.ts",
+      "apps/meteor/app/lib/server/functions/createRoom.ts"
+    ],
+    "supporting": [
+      "apps/meteor/app/lib/server/functions/createDirectRoom.ts",
+      "apps/meteor/server/services/room/service.ts",
+      "apps/meteor/server/lib/callbacks/beforeCreateRoomCallback.ts",
+      "apps/meteor/server/lib/callbacks/beforeAddUserToRoom.ts",
+      "apps/meteor/app/utils/server/lib/getValidRoomName.ts",
+      "apps/meteor/app/lib/server/lib/notifyListener.ts"
+    ],
+    "chain": [
+      {
+        "file": "apps/meteor/app/lib/server/methods/createChannel.ts",
+        "symbol": "createChannel"
+      },
+      {
+        "file": "apps/meteor/app/lib/server/methods/createChannel.ts",
+        "symbol": "createChannelMethod"
+      },
+      {
+        "file": "apps/meteor/app/lib/server/functions/createRoom.ts",
+        "symbol": "createRoom"
+      },
+      {
+        "file": "apps/meteor/app/utils/server/lib/getValidRoomName.ts",
+        "symbol": "getValidRoomName"
+      },
+      {
+        "file": "apps/meteor/app/lib/server/functions/createRoom.ts",
+        "symbol": "createUsersSubscriptions"
+      },
+      {
+        "file": "apps/meteor/app/lib/server/lib/notifyListener.ts",
+        "symbol": "notifyOnRoomChanged"
+      }
+    ],
+    "keySymbols": [
+      "createChannelMethod",
+      "createRoom",
+      "createUsersSubscriptions",
+      "RoomService.create",
+      "beforeCreateRoomCallback",
+      "prepareCreateRoomCallback",
+      "notifyOnRoomChanged",
+      "Rooms.createWithFullRoomData"
+    ]
+  },
+  "new-23-omnichannel": {
+    "core": [
+      "apps/meteor/server/services/omnichannel/service.ts",
+      "apps/meteor/server/services/omnichannel/queue.ts",
+      "apps/meteor/app/livechat/server/lib/closeRoom.ts",
+      "apps/meteor/app/livechat/server/lib/RoutingManager.ts"
+    ],
+    "supporting": [
+      "apps/meteor/app/livechat/server/lib/Helper.ts",
+      "apps/meteor/app/livechat/lib/inquiries.ts",
+      "apps/meteor/app/livechat/server/lib/settings.ts",
+      "apps/meteor/app/livechat/server/lib/omni-users.ts",
+      "apps/meteor/server/services/omnichannel/logger.ts"
+    ],
+    "chain": [
+      {
+        "file": "apps/meteor/server/services/omnichannel/service.ts",
+        "symbol": "OmnichannelService.started"
+      },
+      {
+        "file": "apps/meteor/server/services/omnichannel/queue.ts",
+        "symbol": "OmnichannelQueue.shouldStart"
+      },
+      {
+        "file": "apps/meteor/server/services/omnichannel/queue.ts",
+        "symbol": "OmnichannelQueue._start"
+      },
+      {
+        "file": "apps/meteor/server/services/omnichannel/queue.ts",
+        "symbol": "OmnichannelQueue.execute"
+      },
+      {
+        "file": "apps/meteor/server/services/omnichannel/queue.ts",
+        "symbol": "OmnichannelQueue.checkQueue"
+      },
+      {
+        "file": "apps/meteor/app/livechat/server/lib/RoutingManager.ts",
+        "symbol": "RoutingManager.transferRoom"
+      },
+      {
+        "file": "apps/meteor/app/livechat/server/lib/closeRoom.ts",
+        "symbol": "closeRoom"
+      },
+      {
+        "file": "apps/meteor/app/livechat/server/lib/closeRoom.ts",
+        "symbol": "doCloseRoom"
+      },
+      {
+        "file": "apps/meteor/app/livechat/server/lib/closeRoom.ts",
+        "symbol": "afterRoomClosed"
+      }
+    ],
+    "keySymbols": [
+      "OmnichannelService",
+      "OmnichannelQueue",
+      "OmnichannelQueue.execute",
+      "OmnichannelQueue.checkQueue",
+      "OmnichannelQueue.shouldStart",
+      "closeRoom",
+      "doCloseRoom",
+      "afterRoomClosed",
+      "RoutingManager",
+      "LivechatInquiry.findNextAndLock"
+    ]
+  },
+  "claude-06-livechat-routing": {
+    "core": [
+      "packages/livechat/src/widget.ts",
+      "packages/livechat/src/api.ts",
+      "apps/meteor/app/livechat/server/api/v1/room.ts",
+      "apps/meteor/app/livechat/server/lib/QueueManager.ts",
+      "apps/meteor/app/livechat/server/lib/RoutingManager.ts",
+      "apps/meteor/app/livechat/server/lib/routing/AutoSelection.ts",
+      "apps/meteor/app/livechat/server/lib/routing/ManualSelection.ts",
+      "apps/meteor/app/livechat/server/lib/routing/External.ts"
+    ],
+    "supporting": [
+      "apps/meteor/app/livechat/server/lib/Helper.ts",
+      "apps/meteor/app/livechat/server/lib/takeInquiry.ts",
+      "apps/meteor/app/livechat/server/lib/transfer.ts"
+    ],
+    "chain": [
+      {
+        "file": "packages/livechat/src/widget.ts",
+        "symbol": "widget"
+      },
+      {
+        "file": "packages/livechat/src/api.ts",
+        "symbol": "LivechatClientImpl"
+      },
+      {
+        "file": "apps/meteor/app/livechat/server/api/v1/room.ts",
+        "symbol": "room endpoint"
+      },
+      {
+        "file": "apps/meteor/app/livechat/server/lib/QueueManager.ts",
+        "symbol": "QueueManager.requestRoom"
+      },
+      {
+        "file": "apps/meteor/app/livechat/server/lib/RoutingManager.ts",
+        "symbol": "RoutingManager.delegateInquiry"
+      },
+      {
+        "file": "apps/meteor/app/livechat/server/lib/routing/AutoSelection.ts",
+        "symbol": "AutoSelection.delegateAgent"
+      },
+      {
+        "file": "apps/meteor/app/livechat/server/lib/routing/ManualSelection.ts",
+        "symbol": "ManualSelection.delegateAgent"
+      },
+      {
+        "file": "apps/meteor/app/livechat/server/lib/routing/External.ts",
+        "symbol": "External.delegateAgent"
+      },
+      {
+        "file": "apps/meteor/app/livechat/server/lib/RoutingManager.ts",
+        "symbol": "conditionalLockAgent"
+      },
+      {
+        "file": "apps/meteor/app/livechat/server/lib/takeInquiry.ts",
+        "symbol": "takeInquiry"
+      }
+    ],
+    "keySymbols": [
+      "QueueManager",
+      "requestRoom",
+      "RoutingManager",
+      "delegateInquiry",
+      "takeInquiry",
+      "AutoSelection",
+      "ManualSelection",
+      "External",
+      "LoadBalancing",
+      "LoadRotation",
+      "conditionalLockAgent",
+      "beforeRoutingChat",
+      "LivechatClientImpl",
+      "LivechatInquiry",
+      "Livechat_Routing_Method",
+      "delegateAgent"
+    ]
+  },
+  "new-26-team": {
+    "core": [
+      "apps/meteor/server/services/team/service.ts",
+      "packages/core-services/src/types/ITeamService.ts",
+      "packages/core-typings/src/ITeam.ts",
+      "packages/models/src/models/Team.ts",
+      "packages/models/src/models/TeamMember.ts"
+    ],
+    "supporting": [
+      "apps/meteor/app/channel-settings/server/",
+      "apps/meteor/app/lib/server/functions/addUserToRoom.ts",
+      "apps/meteor/app/lib/server/functions/removeUserFromRoom.ts"
+    ],
+    "chain": [
+      {
+        "file": "apps/meteor/server/services/team/service.ts",
+        "symbol": "TeamService.create"
+      },
+      {
+        "file": "apps/meteor/server/services/team/service.ts",
+        "symbol": "TeamService.addMembers"
+      },
+      {
+        "file": "apps/meteor/app/lib/server/functions/addUserToRoom.ts",
+        "symbol": "addUserToRoom"
+      },
+      {
+        "file": "apps/meteor/server/services/team/service.ts",
+        "symbol": "TeamService.removeMembers"
+      },
+      {
+        "file": "apps/meteor/app/lib/server/functions/removeUserFromRoom.ts",
+        "symbol": "removeUserFromRoom"
+      },
+      {
+        "file": "apps/meteor/server/services/team/service.ts",
+        "symbol": "TeamService.listRooms"
+      },
+      {
+        "file": "apps/meteor/server/services/team/service.ts",
+        "symbol": "TeamService.deleteTeam"
+      },
+      {
+        "file": "apps/meteor/server/services/team/service.ts",
+        "symbol": "TeamService.getTeamStats"
+      }
+    ],
+    "keySymbols": [
+      "TeamService",
+      "TeamService.create",
+      "TeamService.addMembers",
+      "TeamService.removeMembers",
+      "TeamService.listRooms",
+      "TeamService.deleteTeam",
+      "TeamService.updateTeam",
+      "TeamService.getTeamById",
+      "TeamService.getTeamByName",
+      "TeamService.getTeamStats",
+      "TeamService.autocomplete",
+      "ITeamService",
+      "ITeam",
+      "ITeamMember",
+      "ITeamCreateParams",
+      "ITeamMemberInfo",
+      "TeamType"
+    ]
+  }
+}
