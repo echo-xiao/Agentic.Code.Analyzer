@@ -16,7 +16,8 @@ import { handleToolCall } from '../server/registry.js';
 import { lexicalSeeds } from '../server/engine/seeds.js';
 import { expandNeighborhood } from '../server/engine/expand.js';
 import { GLOBAL_INDEX } from '../indexer/state.js';
-import { loadTestcases, type TestCase } from './utils/load-testcases.js';
+import { type TestCase } from './utils/load-testcases.js';
+import { loadTestcasesWithTruth, TESTCASES_PATH, CLAUDE_TRUTH_PATH } from './utils/truth-io.js';
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 
@@ -355,7 +356,7 @@ async function main() {
     await ensureIndex();
     console.error(`Index ready: ${GLOBAL_INDEX.symbols.size} symbols, ${GLOBAL_INDEX.allFiles.size} files.\n`);
 
-    const { flat: testcases } = loadTestcases(path.join(__dirname, 'utils', 'testcases.json'));
+    const { flat: testcases } = loadTestcasesWithTruth(TESTCASES_PATH, CLAUDE_TRUTH_PATH);
 
     const filter = process.argv.find(a => a.startsWith('--filter='));
     const filterVal = filter?.split('=')[1]?.toLowerCase();

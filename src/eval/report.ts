@@ -13,7 +13,7 @@ import * as path from 'path';
 import { fileURLToPath } from 'url';
 import { ensureIndex } from '../indexer/index.js';
 import { handleToolCall } from '../server/registry.js';
-import { loadTestcases } from './utils/load-testcases.js';
+import { loadTestcasesWithTruth, TESTCASES_PATH, CLAUDE_TRUTH_PATH } from './utils/truth-io.js';
 import { coverage, extractCitedFiles, fileMatches, readSection, tokensOf } from './utils/eval-util.js';
 import { classifyIntent, INTENTS, RECIPES } from '../server/intent.js';
 
@@ -125,7 +125,7 @@ async function main() {
     await ensureIndex();   // for the naive control (handleToolCall)
     const tools: any[] = load('tools-data.json');
     const byTools = new Map(tools.map(r => [r.id, r]));
-    const { flat: testcases } = loadTestcases(path.join(__dirname, 'utils', 'testcases.json'));
+    const { flat: testcases } = loadTestcasesWithTruth(TESTCASES_PATH, CLAUDE_TRUTH_PATH);
     const SEEN_MARKER = '## Files Seen In Tool Results';
 
     const rows: any[] = [];
