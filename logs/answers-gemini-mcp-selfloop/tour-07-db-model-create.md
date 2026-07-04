@@ -2,48 +2,48 @@
 
 ## Plan
 
-intent: pattern
+intent: unknown
 
 ## Gemini Answer
 
-To create a new database model in Rocket.Chat, follow this pattern:
+To create a new database model in Rocket.Chat, follow these steps:
 
-**Flow:** Define Document Interface → Define Model Interface → Implement Model Class → Register Model
+1.  **Define the Model Interface:**
+    *   Create a TypeScript interface for your model in the `@rocket.chat/model-typings` package.
+    *   This interface must extend `IBaseModel<T>`, where `T` is the type of your document.
+    *   Example file: `packages/model-typings/src/models/IBaseModel.ts`
 
-**Core Files and Their Roles:**
+2.  **Implement the Raw Model Class:**
+    *   Create a new class that extends `BaseRaw` in the `packages/models/src/models` directory (or an EE-specific `raw` directory like `apps/meteor/ee/server/models/raw`).
+    *   This class will handle direct MongoDB collection interactions.
+    *   The constructor typically takes the MongoDB `db` instance and optionally a `trashCollection` for soft deletes.
+    *   Example file: `packages/models/src/models/BaseRaw.ts`
 
-1.  **Document Interface:**
-    *   **File:** `packages/core-typings/src/IRocketChatRecord.ts` (or a similar path for your specific document)
-    *   **Role:** Define the structure of your MongoDB document. This interface should extend `IRocketChatRecord`.
+3.  **Register the Model:**
+    *   Register your new model using the `registerModel` function.
+    *   This is usually done in `apps/meteor/server/models.ts` for core models or in specific service startup files for microservices.
+    *   The `registerModel` function takes two arguments: the string name of your model interface (e.g., `'IAuditLogModel'`) and an instance of your `Raw` model class.
+    *   Example file: `packages/models/src/proxify.ts` (where `registerModel` is defined).
 
-2.  **Model Interface:**
-    *   **File:** `packages/model-typings/src/models/IBaseModel.ts` (or a similar path for your specific model)
-    *   **Role:** Define the interface for your model, extending `IBaseModel<T>`, where `T` is your document interface.
+This process ensures that your new model is properly integrated and available throughout the Rocket.Chat application.
 
-3.  **Model Implementation:**
-    *   **File:** `packages/models/src/models/BaseRaw.ts`
-    *   **Role:** Implement your model class by extending `BaseRaw`. This class provides methods for interacting with your MongoDB collection (e.g., `find`, `findOne`, `insertOne`, `updateOne`, `deleteOne`). You can override the `modelIndexes()` method to define MongoDB indexes for your collection.
+## Tool Calls (8 calls, 34,302 tokens)
 
-4.  **Model Registration:**
-    *   **File:** `packages/models/src/proxify.ts`
-    *   **Role:** Register your model using the `registerModel` function. This function takes the model's name and an instance (or a function returning an instance) of your model class. This registration typically occurs during server startup.
+**Step 1:** `wiki({"question":"How do you create a new database model in Rocket.Chat?"})` → 836 tokens
+**Step 2:** `search({"query":"IBaseModel","layer":"packages"})` → 68 tokens
+**Step 3:** `search({"layer":"packages","query":"BaseRaw"})` → 64 tokens
+**Step 4:** `search({"query":"registerModel"})` → 65 tokens
+**Step 5:** `details({"symbolName":"IBaseModel","filename":"IBaseModel.ts"})` → 1027 tokens
+**Step 6:** `details({"filename":"BaseRaw.ts","symbolName":"BaseRaw"})` → 1134 tokens
+**Step 7:** `details({"filename":"proxify.ts","symbolName":"registerModel"})` → 130 tokens
+**Step 8:** `search({"layer":"server","file":"models.ts","query":"registerModel"})` → 65 tokens
 
-## Tool Calls (5 calls, 11,117 tokens)
+## Files Seen In Tool Results (7)
 
-**Step 1:** `plan({"intent":"pattern","question":"How do you create a new database model in Rocket.Chat?"})` → 253 tokens
-**Step 2:** `search({"query":"IBaseModel"})` → 68 tokens
-**Step 3:** `graph({"file":"IBaseModel.ts","query":"IBaseModel","move":"expand"})` → 211 tokens
-**Step 4:** `details({"symbolName":"BaseRaw","filename":"BaseRaw.ts"})` → 1134 tokens
-**Step 5:** `details({"filename":"proxify.ts","symbolName":"registerModel"})` → 130 tokens
-
-## Files Seen In Tool Results (9)
-
+- `apps/meteor/ee/server/models/raw/AuditLog.ts`
+- `packages/models/src/modelClasses.ts`
+- `apps/meteor/server/models.ts`
+- `packages/models/src/index.ts`
 - `packages/model-typings/src/models/IBaseModel.ts`
-- `packages/model-typings/src/models/IBaseUploadsModel.ts`
-- `packages/models/src/models/BaseUploadModel.ts`
 - `packages/models/src/models/BaseRaw.ts`
-- `packages/models/src/dummy/BaseDummy.ts`
-- `packages/models/src/models/Integrations.ts`
-- `ee/packages/federation-matrix/src/FederationMatrix.ts`
 - `packages/models/src/proxify.ts`
-- `ee/apps/ddp-streamer/src/Client.ts`

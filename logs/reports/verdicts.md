@@ -1,12 +1,11 @@
 # agents — semantic verdicts (manual, judged by Claude)
 
-**Judged: 2026-07-02** · against the `gen:mcp` run of that date (post architecture-layer change: hint+seedSymbols now delivered by `plan`, concept-matching routing). Re-judge whenever answers regenerate. The quantitative counterpart is `logs/reports/metrics.md`.
+**Judged: 2026-07-03** · against the `gen:mcp` run using the **DeepWiki-integrated config**: no hand-authored subsystem map — the agent has `plan`(intent only) + `search`/`graph`/`details` + **`wiki`** (DeepWiki MCP `ask_question`, grounded: cited paths verified against THIS codebase's index). This is the honest, eval-blind config (DeepWiki never saw the eval questions). Re-judge whenever answers regenerate. Quantitative counterpart: `logs/reports/metrics.md`.
 
 > **What this is.** The semantic ground truth: did the agent get the MECHANISM right, regardless of
-> which files it cited? Automated file-overlap rubrics misjudge "right mechanism, different files"
-> as FAIL, so this table is judged by Claude reading each answer in
-> `logs/answers-gemini-mcp-selfloop/` against the core spine (`testcases.json` →
-> `groundTruthPath` / `core`), one verdict + one-sentence reason per question.
+> which files it cited? Judged by Claude reading each answer in `logs/answers-gemini-mcp-selfloop/`
+> against the core spine (`testcases.json` → `groundTruthPath` / `core`), one verdict + one-sentence
+> reason per question.
 >
 > **Frozen criteria (do not tune per run):**
 > - **PASS** — the answer names the actual mechanism (entry point, dispatch boundary, key steps)
@@ -15,66 +14,58 @@
 >   link is missing or wrong.
 > - **FAIL** — wrong mechanism, hallucinated paths, empty/ERROR answer.
 >
-> **`mode` column (agent failure mode; non-PASS only, PASS → `—`):**
-> `misrouted` / `weak-query` / `no-pivot` / `gave-up` / `wrong-subsystem` / `dropped-synth` /
-> `sloppy-source` (agent fault) · `engine-unrankable` (engine fault).
+> **`mode` column (non-PASS only):** `no-pivot` / `wrong-subsystem` / `renamed-wrapper` /
+> `dropped-synth` / `gave-up` / `wiki-gap` (DeepWiki has no page for this topic).
 >
-> **Refresh discipline: re-judge EVERY row whenever answers regenerate (`npm run gen:mcp`).**
-> Single-run PASS counts on the free Gemini tier are noisy even at temperature 0 — treat trends.
+> **Refresh discipline: re-judge EVERY row whenever answers regenerate.** Single free-tier run.
 
 | id | verdict | mode | reason |
 |---|---|---|---|
-| tour-04-msg-client | PASS | — | ▲ Now names the client send chain: `ComposerMessage`→`onSend`→`chat.flows.sendMessage`→`sdk.call('sendMessage')` DDP (via ChatContext); fixes pre-edit engine-unrankable (only had flows/sendMessage). Lighter on RoomBody/ComposerContainer conditional, but the load-bearing path is right. |
-| new-19-message-rendering | PASS | — | raw `message.msg`→message-parser `parse()`→AST→gazzodown `<Markup>` (switch on token type)→block components. Correct pipeline. |
-| claude-01-push-notifications | PASS | — | afterSaveMessage→`sendAllNotifications`→`sendMessageNotifications`→`sendNotification` (desktop/mobile/email); correct pipeline. |
-| new-09-realtime-streamer | PASS | — | ▲ RIGHT branch now: `notifyOnMessageChange`→`api.broadcast('watch.messages')`→ListenersModule→`streamRoomMessage`; fixes pre-edit watch.rooms wrong-branch. Still hedges on the client `Streamer.receive()` half. |
-| tour-05-msg-server | PARTIAL | no-pivot | Now includes `validateMessage`+`prepareMessageObject` (were missing), but still enters at function `sendMessage` and misses the `executeSendMessage` wrapper + `canSendMessageAsync` permission gate (renamed-wrapper/guard blind spot). |
-| claude-05-call-chain | PARTIAL | sloppy-source | ▲ Client entry now correct (`client/lib/chats/flows/sendMessage`, not a test helper) + DDP; still omits `executeSendMessage` + `canSendMessageAsync` on the server half (renamed-wrapper blind spot). |
-| new-24-autotranslate | PASS | — | `TranslationProviderRegistry.registerCallbacks` afterSaveMessage→`provider.translateMessage` (Google/MS/DeepL); mechanism matches. |
-| new-15-impact-aftersave | PASS | — | afterSaveMessage callback + triggers (updateMessage/sendMessage) + broad accurate blast radius (notifications, search, slackbridge, threads, federation, …). |
-| new-16-impact-streamer | PARTIAL | no-pivot | Names Streamer + real core dependents (ddp-streamer, Notifications) but blast radius still skews to UI/upload — up-traversal ranking unchanged (engine untouched). |
-| claude-08-federation | PASS | — | `FederationMatrix.sendMessage`→handleTextMessage→`federationSDK.sendMessage` (Matrix HTTP); outbound named (inbound processIncomingTransaction seed delivered). |
-| new-18-webhook | PASS | — | `POST /hooks/:id/:token`→`executeIntegrationRest`→isolated-vm script→`processWebhookMessage`→sendMessage. Exact. |
-| claude-07-api-endpoints | PASS | — | `createApi`→`APIClass.addRoute`/typed `.get/.post`; correct REST registration mechanism. |
-| new-25-search | PASS | — | ▲ Now nails the pluggable provider architecture: `SearchProviderService` (hub — register/use/start)→`DefaultProvider.search` (Mongo text); fixes pre-edit engine-unrankable miss. |
-| new-27-video-conference | PASS | — | ▲▲ Now names the core `VideoConfService` orchestrator (`server/services/video-conference/service.ts`) + client VideoConfManager + AppVideoConfProviderManager plugin layer; fixes pre-edit wrong-subsystem (had only the apps-engine plugin). |
-| tour-06-endpoint | PASS | — | `createApi`→`APIClass` `.get/.post` with options+handler+APIActionContext; correct how-to. |
-| new-17-slash-commands | PASS | — | server `slashCommands.add` + client `processSlashCommand`→`sdk.call('slashCommand')` DDP; both halves. |
-| new-11-settings | PASS | — | `SettingsRegistry.add`→Settings model→CachedSettings→client API; full chain. |
-| claude-03-file-upload | PASS | — | two-step REST: `MultipartUploadHandler`→`sendFileMessage`→`executeSendMessage` (attachment); names the storage workflow. |
-| new-10-apps-engine | PASS | — | ▲ Now names the actual dispatcher `AppListenerManager` (`packages/apps-engine/.../AppListenerManager.ts`) hooking afterSaveMessage via callbacks; fixes pre-edit no-pivot (had AppsEngineService/Runtime). |
-| new-20-proxify | PASS | — | `proxify(namespace)`→Proxy get trap→`api.call`→`LocalBroker.call` bound method; exact. |
-| tour-07-db-model-create | PASS | — | ▲▲ Now the correct pattern: document interface→`IBaseModel` interface→extend `BaseRaw`→`registerModel`; fixes pre-edit wrong-subsystem (answered zod schema). |
-| tour-08-db-model-use | PASS | — | ▲▲ Now correct: `import { Messages } from '@rocket.chat/models'` proxy→BaseRaw query methods (find/findVisibleByRoomId); fixes pre-edit gave-up. |
-| tour-11-new-package | PASS | — | create `packages/<name>/` + package.json (@rocket.chat/name) + src/index.ts + workspace; correct manual steps. |
-| tour-10-new-service | PARTIAL | dropped-synth | Correct base pattern (extend ServiceClassInternal + registerService + concrete example) but drops the `proxify()`/`LocalBroker` exposure half from the written answer. |
-| new-21-impact-settings | PARTIAL | no-pivot | Finds CachedSettings but blast radius stays narrow/skewed (metrics/cors/loadAPI); misses the "read by ~every subsystem" framing — up-traversal ranking unchanged. |
-| new-22-2fa | PASS | — | `twoFactorRequired` middleware→`checkCodeForUser`→TOTPCheck→EmailCheck→PasswordCheckFallback (ICodeCheck); full chain. |
-| claude-04-e2e-encryption | PASS | — | `E2E.createAndLoadKeys` (RSA) + `Keychain` encrypts the private key + per-room group key; mechanism matches. |
-| new-12-ldap-auth | PASS | — | `configureLDAP` registers `registerLoginHandler('ldap')`→`LDAPService.loginRequest`→`LDAPManager.login`→connect/search/authenticate; full chain. |
-| claude-02-msg-permissions | PASS | — | `canSendMessageAsync`→`validateRoomMessagePermissionsAsync` (room/access/mute) + `validateMessage`; correct validation entry + delegation. |
-| new-14-ee-license | PASS | — | `LicenseManager`/`LicenseImp` + `hasModule` gating + `onValidateLicense` events; correct. |
-| new-13-room-creation | PASS | — | `createChannelMethod`→`createRoom`→prepareCreateRoomCallback→Apps pre-hooks→beforeCreateRoomCallback→`Rooms.createWithFullRoomData`; core chain. |
-| new-23-omnichannel | PASS | — | queue (requestRoom→processNewInquiry→delegateInquiry→takeInquiry + OmnichannelQueue worker) + close; both halves. |
-| claude-06-livechat-routing | PASS | — | client `handleTakeInquiry`→REST `API.v1.addRoute` (inquiries.ts)→server `takeInquiry`; routing chain named. |
-| new-26-team | PASS | — | `TeamService` (extends ServiceClassInternal) + Team/TeamMember models; matches. |
+| tour-04-msg-client | PASS | — | ComposerMessage→onSend→`chat.flows.sendMessage`→flows/sendMessage.ts; client composer chain named. |
+| new-19-message-rendering | PASS | — | `parse`@message-parser + `Markup`@gazzodown; correct two-step pipeline (wiki fixed the pre-wiki MarkdownText miss). |
+| claude-01-push-notifications | PARTIAL | no-pivot | Names PushNotification + token registration/config, but misses the afterSaveMessage→sendAllNotifications trigger + native apn/fcm. |
+| new-09-realtime-streamer | PARTIAL | no-pivot | Send→persist→DDP-broadcast shape right, but misses the notifyOnMessageChange→streamRoomMessage spine. |
+| tour-05-msg-server | PARTIAL | renamed-wrapper | functions/sendMessage + insertMessage named; misses the executeSendMessage wrapper + canSendMessageAsync gate. |
+| claude-05-call-chain | PARTIAL | renamed-wrapper | method→function sendMessage + validateMessage + Apps hooks; misses executeSendMessage/canSendMessage/afterSaveMessage full spine. |
+| new-24-autotranslate | PASS | — | translateMessage + pluggable providers; mechanism matches. |
+| new-15-impact-aftersave | PASS | — | afterSaveMessage + accurate blast radius (updateMessage/sendMessage/read-receipts/threads/…). |
+| new-16-impact-streamer | PARTIAL | no-pivot | Streamer core + real deps, but blast radius skews to upload/api. |
+| claude-08-federation | PASS | — | `FederationMatrix.sendMessage`→handleText/File + federationSDK + inbound; core named. |
+| new-18-webhook | PASS | — | POST /hooks/:id/:token → `processWebhookMessage` + payload handling; mechanism named. |
+| claude-07-api-endpoints | PASS | — | `API.v1.addRoute`/`APIClass` + typed `.get/.post`; correct registration mechanism. |
+| new-25-search | PARTIAL | wrong-subsystem | `messageSearch`→Mongo (direct path) named, but misses the pluggable `SearchProviderService`/`DefaultProvider` architecture. |
+| new-27-video-conference | PASS | — | `VideoConfService` (server) + `VideoConfManager` (client) + provider layer; core named. |
+| tour-06-endpoint | PASS | — | createApi→`APIClass` `.get/.post`; correct how-to. |
+| new-17-slash-commands | PASS | — | `slashCommands.add` + client `processSlashCommand`; both halves. |
+| new-11-settings | PASS | — | `SettingsRegistry.add`→Settings model→change propagation→client access. |
+| claude-03-file-upload | PASS | — | uploadFiles→rooms.media→`MultipartUploadHandler`→`FileUpload.validateFileUpload`; storage workflow. |
+| new-10-apps-engine | PARTIAL | no-pivot | Names `IPostMessageSent`/`executePostMessageSent` hook mechanism, but the `AppListenerManager` dispatcher is unclear. |
+| new-20-proxify | PASS | — | `proxify`→Proxy get-trap→`api.call`→broker; mechanism named. |
+| tour-07-db-model-create | PASS | — | interface→`IBaseModel`→extend `BaseRaw`→`registerModel` (wiki fixed the pre-wiki zod miss). |
+| tour-08-db-model-use | PASS | — | `BaseRaw`/`IBaseModel` + find/findOne query methods. |
+| tour-11-new-package | FAIL | wiki-gap | "Unable to find a package-creation process" — DeepWiki has no page for this; agent gave up. |
+| tour-10-new-service | PARTIAL | dropped-synth | ServiceClass pattern + registerServiceModels, but drops the proxify()/broker exposure half. |
+| new-21-impact-settings | PARTIAL | no-pivot | CachedSettings + cors/metrics dependents; blast radius stays narrow. |
+| new-22-2fa | PASS | — | `checkCodeForUser` + TOTP + `EmailCheck`; both methods named. |
+| claude-04-e2e-encryption | PASS | — | `E2E.persistKeys`@rocketchat.e2e.ts + `Keychain` + per-room symmetric keys; key management. |
+| new-12-ldap-auth | PASS | — | `LDAPManager.login`→`LDAPConnection`→findUser→`syncUserForLogin`; full flow. |
+| claude-02-msg-permissions | PASS | — | `validateRoomMessagePermissionsAsync`@canSendMessage.ts; correct validation location. |
+| new-14-ee-license | PASS | — | License/`LicenseService` + `hasModule` gating + validation events. |
+| new-13-room-creation | PASS | — | createChannel endpoint→method→(createRoom) with permission checks; core chain. |
+| new-23-omnichannel | PASS | — | `OmnichannelQueue.execute`@queue.ts→checkQueue + `closeRoom`; queue + close (wiki fixed the pre-wiki give-up). |
+| claude-06-livechat-routing | PASS | — | widget/REST → `QueueManager`/`RoutingManager` agent assignment; routing chain named. |
+| new-26-team | PASS | — | `TeamService`@server/services/team/service.ts + create/Main-Room; core named. |
 
-> Re-judged 2026-07-02 against the post-architecture-change `gen:mcp` run.
-> **Summary: PASS 29 / PARTIAL 5 / FAIL 0** — was **22 / 9 / 3** pre-change. **+7 rows flipped up, 0 down:**
-> - PARTIAL→PASS: **tour-04** (client composer chain), **new-09** (right watch.messages branch), **new-25**
->   (SearchProviderService architecture), **new-10** (AppListenerManager dispatcher).
-> - FAIL→PASS: **new-27** (VideoConfService core), **tour-07** (BaseRaw model pattern), **tour-08** (@rocket.chat/models proxy).
+> **Summary: PASS 24 / PARTIAL 9 / FAIL 1** (conservative — several borderline PARTIALs could be PASS).
 >
-> **All 7 flips are the concept-shaped questions the architecture routing targeted** — the agent now
-> searches the right symbol from `plan`'s seedSymbols (e.g. tour-07 searched `IBaseModel` instead of "schema").
-> The **5 remaining PARTIALs are exactly the un-addressed buckets**, all engine/synthesis (this change was
-> plan-only): renamed-wrapper/guard `executeSendMessage`+`canSendMessageAsync` (tour-05, claude-05 — needs the
-> B2 edge fix), up-traversal blast-radius ranking (new-16, new-21 — needs B3), dropped-synth (tour-10).
+> **Context (2026-07-04):** this replaces the old hand-authored-map config (which scored 29/34 but was
+> confounded — the map was written knowing the eval, and PASS answers were near-verbatim readbacks of
+> its `flow` prose; honest floor with NO map was 11/34). The DeepWiki config is **eval-blind + grounded**:
+> DeepWiki (public, precomputed) supplies architecture semantics, and every cited path is verified
+> against this codebase's live index. 24/34 honestly re-earns ~13 of the map's +18 with no leakage.
 >
-> **Honest caveats:** (1) single free-tier run — but the flips are all on targeted questions, not random, so
-> consistent with the mechanism, not noise. (2) **Concept-authoring confound:** the `concepts` were hand-written
-> knowing the eval, so routing accuracy is partly authored (the delivered symbols are code-grounded / agent-verified;
-> the answer improvements are real given correct routing). To claim deployable: automate concept-gen + held-out
-> questions + multi-run trend. (3) Mechanical corroboration: `eval:tools` gate unchanged at **19/34** (engine
-> untouched) and `metrics.md` §1 MCP coverage **45%→49% (+4pt)**. (4) Token cost went **23k→27k** — the flow-prose
-> delivery cost more tokens; "accuracy up" realized, "token down" did NOT.
+> **Notable rescues (no-map floor FAIL → DeepWiki PASS):** new-19 (message-parser vs MarkdownText),
+> tour-07 (BaseRaw vs zod), new-23 (OmnichannelQueue), new-27 (VideoConfService).
+> **One regression:** tour-11 (DeepWiki has no package-creation page → gave up).
+> **Coverage boundary:** where DeepWiki lacks a page (search, some deep chains), verdicts fall back
+> toward the no-map floor — those need the agent's own graph navigation + grounding to fill.

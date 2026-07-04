@@ -2,45 +2,48 @@
 
 ## Plan
 
-intent: call-chain
+intent: unknown
 
 ## Gemini Answer
 
-LDAP authentication in Rocket.Chat follows this general flow:
+LDAP authentication in Rocket.Chat is handled by the `LDAPManager` class, located in `apps/meteor/server/lib/ldap/Manager.ts`. The process involves several steps:
 
-1.  **`configureLDAP`** (apps/meteor/server/configuration/ldap.ts): This function is responsible for setting up the LDAP integration. It registers a login handler with `Accounts.registerLoginHandler('ldap', fn)`. This handler is triggered when a login request includes an LDAP flag.
+**Authentication Flow:**
 
-2.  **`LDAPService.loginRequest`** (apps/meteor/server/services/ldap/service.ts): This service acts as a proxy, receiving the username and password from the login handler. It then calls `LDAPManager.login()` to handle the actual LDAP authentication.
+1.  **Login Attempt:** A user attempts to log in with their username and password.
+2.  **LDAP Enabled Check:** The `LDAPManager.login` method first checks if LDAP is enabled (`LDAP_Enable` setting). If not, it falls back to the default login mechanism.
+3.  **Establish Connection:** An `LDAPConnection` object (defined in `apps/meteor/server/lib/ldap/Connection.ts`) is created and attempts to connect to the LDAP server using `ldap.connect()`. This method initializes the connection, handles TLS if configured, and sets up error and timeout handling.
+4.  **User Search:** The `LDAPManager.findUser` method is called to search for the user in LDAP.
+    *   It escapes the username and then uses `ldap.searchByUsername` to find the user.
+    *   It verifies that exactly one user is found.
+    *   It checks if the user is accepted by any configured group filters using `ldap.isUserAcceptedByGroupFilter`.
+5.  **User Binding (Authentication):** The `LDAPManager.findUser` method then calls `ldap.authenticate(ldapUser.dn, password)`.
+    *   The `LDAPConnection.authenticate` method attempts to bind to the LDAP server using the user's distinguished name (DN) and the provided password via `this.bindDN(dn, password)`.
+    *   If the bind is successful, the user is authenticated.
+6.  **Post-Authentication Search (Optional):** If the `LDAP_Find_User_After_Login` setting is enabled, an additional search is performed as the authenticated user to ensure they can be found.
+7.  **Existing User Check:** The system checks if a Rocket.Chat user corresponding to the LDAP user already exists using `LDAPManager.findExistingUser`.
+8.  **Login Existing User:** If the user exists, `LDAPManager.loginExistingUser` is called to handle the login of an existing Rocket.Chat user, potentially updating their data from LDAP.
+9.  **Login New User:** If the user does not exist in Rocket.Chat, `LDAPManager.loginNewUserFromLDAP` is called to create a new Rocket.Chat account and synchronize data from LDAP.
+10. **Disconnect:** Finally, the LDAP connection is disconnected in the `finally` block of the `LDAPManager.login` method.
 
-3.  **`LDAPManager.login`** (apps/meteor/server/lib/ldap/Manager.ts): This is the core of the LDAP authentication process. It performs the following steps:
-    *   Creates an `LDAPConnection`.
-    *   Connects to the LDAP server using `ldap.connect()`.
-    *   Searches for the user by username using `ldap.searchByUsername()`.
-    *   Authenticates the user with the provided distinguished name (DN) and password using `ldap.authenticate(dn, password)`.
-    *   Checks for group filters if configured.
-    *   Finds or creates the user in the MongoDB database.
-    *   Syncs the user's avatar.
-    *   Returns the `userId` upon successful authentication.
+**Key Files:**
 
-4.  **Fallback Mechanism**: If LDAP authentication fails and the `LDAP_Login_Fallback` setting is enabled, Rocket.Chat will attempt to authenticate the user using other registered login handlers, such as the default password authentication.
+*   **`apps/meteor/server/lib/ldap/Manager.ts`**: Contains the core logic for LDAP login and user synchronization, including the `LDAPManager` class and its `login` method.
+*   **`apps/meteor/server/lib/ldap/Connection.ts`**: Defines the `LDAPConnection` class, responsible for establishing and managing the connection to the LDAP server, performing searches, and authenticating users.
 
-5.  **`beforeValidateLogin` Callback**: This callback prevents users who are configured for LDAP from logging in with a password unless the fallback mechanism is explicitly enabled.
+## Tool Calls (8 calls, 40,017 tokens)
 
-In summary, the LDAP authentication flow starts with `configureLDAP` registering a handler, which then dispatches to `LDAPService.loginRequest`. This service, in turn, calls `LDAPManager.login` to perform the actual LDAP server interaction, user creation/syncing, and ultimately returns the authenticated user's ID.
-
-## Tool Calls (8 calls, 26,048 tokens)
-
-**Step 1:** `plan({"question":"How does LDAP authentication work in Rocket.Chat?","intent":"call-chain"})` → 305 tokens
-**Step 2:** `search({"layer":"server","query":"LDAPManager.login"})` → 85 tokens
-**Step 3:** `graph({"query":"LDAPManager.login","file":"service.ts","depth":5,"move":"down"})` → 14 tokens
-**Step 4:** `search({"layer":"server","query":"LDAPManager"})` → 66 tokens
-**Step 5:** `graph({"move":"down","file":"Manager.ts","query":"LDAPManager.login","depth":5})` → 14 tokens
-**Step 6:** `search({"layer":"server","query":"LDAPService.loginRequest"})` → 28 tokens
-**Step 7:** `search({"layer":"server","query":"configureLDAP"})` → 68 tokens
-**Step 8:** `graph({"depth":5,"file":"ldap.ts","move":"down","query":"configureLDAP"})` → 3929 tokens
+**Step 1:** `wiki({"question":"How does LDAP authentication work in Rocket.Chat?"})` → 910 tokens
+**Step 2:** `details({"symbolName":"LDAPManager","filename":"Manager.ts"})` → 954 tokens
+**Step 3:** `details({"symbolName":"LDAPManager.login","filename":"Manager.ts"})` → 353 tokens
+**Step 4:** `search({"query":"LDAPConnection","layer":"server"})` → 69 tokens
+**Step 5:** `details({"filename":"Connection.ts","symbolName":"LDAPConnection.connect"})` → 101 tokens
+**Step 6:** `details({"filename":"Connection.ts","symbolName":"LDAPConnection.initializeConnection"})` → 534 tokens
+**Step 7:** `details({"filename":"Manager.ts","symbolName":"LDAPManager.findUser"})` → 351 tokens
+**Step 8:** `details({"symbolName":"LDAPConnection.authenticate","filename":"Connection.ts"})` → 142 tokens
 
 ## Files Seen In Tool Results (3)
 
-- `apps/meteor/server/services/ldap/service.ts`
 - `apps/meteor/server/lib/ldap/Manager.ts`
-- `apps/meteor/server/configuration/ldap.ts`
+- `apps/meteor/server/settings/ldap.ts`
+- `apps/meteor/server/lib/ldap/Connection.ts`

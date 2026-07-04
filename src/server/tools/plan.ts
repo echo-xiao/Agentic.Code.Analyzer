@@ -1,12 +1,9 @@
-// plan — the control-plane tool (the "architect"). The agent declares what KIND of question it is
-// answering; plan records the intent (so graph can pick default move/depth) AND — matching the WHOLE
-// question against the architecture map — hands back the relevant subsystem hint BEFORE the agent
-// searches. This is the one tool that sees the full question, so architecture routing lives here (not
-// injected into search/graph results after the fact). Never touches the index.
+// plan — declares the question's intent and returns the recipe (strategy + default graph move/depth
+// for that question type). Architecture context now comes from the `wiki` tool (DeepWiki, grounded),
+// not a hand-authored subsystem map. Never touches the index.
 import { SESSION } from '../session.js';
 import { classifyIntent, isIntent, RECIPES } from '../intent.js';
 import type { Intent } from '../intent.js';
-import { routeSubsystem } from '../architecture/match.js';
 
 export function runPlan(args: { question?: string; intent?: string }): string {
     const question = args.question ?? '';
@@ -21,18 +18,10 @@ export function runPlan(args: { question?: string; intent?: string }): string {
 
     SESSION.intent = intent;
     const r = RECIPES[intent];
-    // Architecture routing: match the WHOLE question against the subsystem map, delivered up front,
-    // with concrete index-validated seed symbols so the agent searches the right name from the start.
-    const arch = routeSubsystem(question);
-    const next = arch && arch.seedSymbols.length
-        ? `**Next:** search("${arch.seedSymbols[0]}")${arch.seedSymbols.length > 1 ? ` — also: ${arch.seedSymbols.slice(1).join(', ')}` : ''} → graph("<seed>")`
-        : `**Next:** search("<entry symbol or keyword>") → graph("<seed>")`;
-
     return [
         `🧭 intent: **${intent}**`,
-        arch ? `\n📐 architecture:\n${arch.flow}\n` : '',
         `strategy: ${r.strategy}`,
         `defaults: graph(move="${r.move}", depth=${r.depth}) — override per call if the trail demands it.`,
-        next,
-    ].filter(Boolean).join('\n');
+        `**Next:** call wiki("${question || '<your question>'}") for a grounded architecture overview, then search/graph/details to confirm exact symbols.`,
+    ].join('\n');
 }

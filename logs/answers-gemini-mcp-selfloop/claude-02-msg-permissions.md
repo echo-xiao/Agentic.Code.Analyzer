@@ -6,28 +6,29 @@ intent: locate
 
 ## Gemini Answer
 
-The logic for message permission validation is primarily located in two key files:
+The logic for message permission validation is primarily located in the `validateRoomMessagePermissionsAsync` function within the file `apps/meteor/app/authorization/server/functions/canSendMessage.ts`.
 
-1.  **`apps/meteor/app/authorization/server/functions/canSendMessage.ts`**: This file contains the `validateRoomMessagePermissionsAsync` function, which is responsible for validating a user's permissions to send messages within a specific room. It checks for conditions such as:
-    *   Room existence and archived status.
-    *   User's general access to the room.
-    *   Whether the user is blocked.
-    *   Read-only room status and `post-readonly` permission.
-    *   User's muted status within the room.
+This function performs several checks, including:
+*   Validating the room's existence and status (e.g., not archived).
+*   Verifying user access to the room via `canAccessRoomAsync`.
+*   Checking for blocked users.
+*   Enforcing read-only room restrictions using `hasPermissionAsync` for the 'post-readonly' permission.
+*   Identifying and handling muted users.
 
-2.  **`apps/meteor/app/lib/server/functions/sendMessage.ts`**: This file contains the `validateMessage` function, which performs validation on the message object itself. While it also includes some permission checks, such as `message-impersonate` for alias and avatar usage, its main role is to validate the structure and content of the message, including attachments and custom fields.
+A related function for general permission checks, `hasPermissionAsync`, is located in `apps/meteor/app/authorization/server/functions/hasPermission.ts`.
 
-The overall flow for message permission validation can be summarized as:
+**Core File:**
+*   `apps/meteor/app/authorization/server/functions/canSendMessage.ts`: Contains the `validateRoomMessagePermissionsAsync` function, which is the central point for message permission validation.
 
-Entry (`executeSendMessage`) → `canSendMessageAsync` → `validateRoomMessagePermissionsAsync` (for room-level permissions)
-Entry (`sendMessage`) → `validateMessage` (for message content-level permissions)
+**Related File:**
+*   `apps/meteor/app/authorization/server/functions/hasPermission.ts`: Contains the `hasPermissionAsync` function, used for general permission checks, including those related to message posting in read-only rooms.
 
-## Tool Calls (5 calls, 8,095 tokens)
+## Tool Calls (5 calls, 8,675 tokens)
 
-**Step 1:** `plan({"question":"Where is the logic for message permission validation located?","intent":"locate"})` → 292 tokens
-**Step 2:** `search({"query":"validateMessage"})` → 96 tokens
-**Step 3:** `graph({"depth":1,"move":"expand","query":"validateMessage","file":"sendMessage.ts"})` → 331 tokens
-**Step 4:** `details({"filename":"sendMessage.ts","symbolName":"validateMessage"})` → 298 tokens
+**Step 1:** `plan({"question":"Where is the logic for message permission validation located?","intent":"locate"})` → 75 tokens
+**Step 2:** `search({"query":"message permission validation"})` → 29 tokens
+**Step 3:** `search({"query":"validateMessage"})` → 96 tokens
+**Step 4:** `graph({"query":"validateMessage","move":"expand","file":"sendMessage.ts"})` → 331 tokens
 **Step 5:** `details({"symbolName":"validateRoomMessagePermissionsAsync","filename":"canSendMessage.ts"})` → 399 tokens
 
 ## Files Seen In Tool Results (13)

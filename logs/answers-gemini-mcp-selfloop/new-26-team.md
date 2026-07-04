@@ -2,89 +2,55 @@
 
 ## Plan
 
-intent: architecture
+intent: unknown
 
 ## Gemini Answer
 
-The Team feature in Rocket.Chat is implemented with a clear separation of concerns, involving client-side UI, server-side API endpoints, a central service layer for business logic, and data models for persistence.
+The Team feature in Rocket.Chat enables users to organize communication by grouping multiple channels into a single entity. This facilitates structured collaboration and management of related conversations.
 
-Here's a breakdown of how it works:
+The core of the Team feature is managed by the `TeamService`, primarily implemented in the file `apps/meteor/server/services/team/service.ts`.
 
-**1. Data Models:**
-*   **`TeamRaw`** (`packages/models/src/models/Team.ts`): This class defines the structure and provides methods for interacting with the `Team` data in the database. It handles operations like finding teams by name or ID, updating team information, and deleting teams.
-*   **`TeamMember`** (`packages/models/src/models/TeamMember.ts` - identified in initial search): This model, similar to `TeamRaw`, manages the data related to members within a team.
+Here's a breakdown of how the Team feature works:
 
-**2. Service Layer (Core Logic):**
-*   **`TeamService`** (`apps/meteor/server/services/team/service.ts`): This is the central component for all team-related business logic. It extends `ServiceClassInternal` and provides a comprehensive set of asynchronous methods for:
-    *   **Team Management:** `create`, `update`, `deleteById`, `deleteByName` (for creating, modifying, and removing teams).
-    *   **Membership Management:** `addMembers`, `removeMember`, `updateMember`, `members` (for managing users within teams).
-    *   **Room Management:** `addRooms`, `removeRoom`, `listRooms` (for associating and managing channels/rooms within a team).
-    *   **Retrieval:** `list`, `search`, `getOneById`, `getOneByName` (for fetching team information).
-    *   **Role Management:** `addRolesToMember`, `removeRolesFromMember` (for assigning and revoking roles to team members).
+**1. Core Component:**
+*   **`TeamService`** (`apps/meteor/server/services/team/service.ts`): This is the central service responsible for all team-related operations, including creation, updates, member management, and room associations.
 
-**3. Server-Side API:**
-*   **`teams` API Endpoints** (`apps/meteor/app/api/server/v1/teams.ts`): This file defines the REST API endpoints that clients use to interact with the Team feature. These endpoints receive requests from the client, perform necessary permission checks (e.g., using `hasPermission.ts`), and then delegate the actual work to the `TeamService` methods.
+**2. Key Operations:**
 
-**4. Client-Side UI:**
-*   **`TeamsTab`** (`apps/meteor/client/views/directory/tabs/teams/TeamsTab.tsx`): This component likely provides the main interface for users to browse and manage teams.
-*   **`TeamsInfo`** (`apps/meteor/client/views/teams/contextualBar/info/TeamsInfo.tsx`): This component displays detailed information about a specific team.
-*   **`useTeamActions`** (`apps/meteor/client/views/teams/contextualBar/info/useTeamActions.ts`): This hook likely provides the logic for various actions users can perform on teams (e.g., adding members, leaving a team).
-*   **`ParentTeam`** (`apps/meteor/client/views/room/Header/ParentRoom/ParentTeam.tsx`): This component might display information about the parent team of a particular room.
+*   **Team Creation:**
+    *   The `create` method within `TeamService` handles the creation of a new team. When a team is created, a "Main Room" (either a public channel or a private group) is also generated and associated with the team. This method validates the team name and sets up initial members and roles.
 
-**Flow of Operations:**
+*   **Team Management:**
+    *   **Updating:** The `update` method allows modifications to a team's name and type, which also updates the associated main room.
+    *   **Deletion:** Teams can be deleted using methods like `deleteById` or `deleteByName`, which also removes all associated chat content and configuration.
+    *   **Adding/Removing Rooms:** Channels can be added to a team using `addRooms`, which updates the `teamId` property on the `Room` document. Conversely, `removeRoom` detaches a channel from a team.
+    *   **Conversion:** A team can be converted back into a standard channel by unsetting the `teamId` on its associated rooms, handled by `unsetTeamIdOfRooms`.
 
-1.  **User Action (Client):** A user interacts with the Rocket.Chat client, for example, by clicking "Create Team" in the `TeamsTab`.
-2.  **API Request (Client to Server):** The client-side UI makes an API call to the server (e.g., a POST request to a `/v1/teams.create` endpoint defined in `apps/meteor/app/api/server/v1/teams.ts`).
-3.  **API Endpoint Processing (Server):** The API endpoint on the server receives the request. It validates the input and checks user permissions.
-4.  **Service Layer Execution (Server):** The API endpoint then calls the appropriate method in the `TeamService` (e.g., `TeamService.create`).
-5.  **Data Model Interaction (Server):** The `TeamService` method interacts with the `TeamRaw` and `TeamMember` models to perform database operations (e.g., inserting a new team record and its initial members into the database).
-6.  **Response (Server to Client):** The `TeamService` returns the result to the API endpoint, which then sends a response back to the client.
-7.  **UI Update (Client):** The client-side UI updates to reflect the changes (e.g., displaying the newly created team).
+*   **Member Management:**
+    *   **Adding Members:** The `addMembers` and `addMember` methods are used to add users to a team. This process involves adding the user to the team's main room and assigning roles if specified.
+    *   **Removing Members:** `removeMember` and `removeMembers` facilitate the removal of users from a team.
+    *   **Updating Members:** `updateMember` allows for changes to a team member's information.
+    *   **Listing Members:** The `members` method retrieves a list of users belonging to a specific team.
 
-In essence, the `TeamService` acts as the orchestrator, using the `Team` and `TeamMember` models for data management, and exposing its functionalities through the API endpoints, which are then consumed by the client-side user interface.
+**3. Permissions:**
+*   Permissions play a vital role in controlling access to team functionalities. For instance, specific permissions like `create-p` (for private teams) and `create-c` (for public teams) are required to create a team. Similarly, `move-room-to-team` is necessary to move a room into a team. These permissions are checked within the `TeamService` methods.
 
-## Tool Calls (8 calls, 26,543 tokens)
+**4. LDAP Integration (Enterprise Edition):**
+*   In the Enterprise Edition, teams can be synchronized with LDAP groups. The `syncUserTeams` method in `LDAPManager` handles this synchronization, automatically adding or removing users from teams based on their LDAP group memberships.
 
-**Step 1:** `plan({"intent":"architecture","question":"How does the Team feature work in Rocket.Chat?"})` → 168 tokens
-**Step 2:** `search({"query":"Team"})` → 456 tokens
-**Step 3:** `graph({"depth":2,"move":"expand","query":"Team","file":"index.ts"})` → 305 tokens
-**Step 4:** `details({"filename":"Team.ts","symbolName":"TeamRaw"})` → 632 tokens
-**Step 5:** `details({"filename":"teams.ts","symbolName":"teams"})` → 83 tokens
-**Step 6:** `graph({"depth":1,"file":"teams.ts","move":"down","query":"teams"})` → 83 tokens
-**Step 7:** `search({"query":"TeamService"})` → 93 tokens
-**Step 8:** `details({"filename":"service.ts","symbolName":"TeamService"})` → 1670 tokens
+**Example Flow for Team Creation:**
+1.  A user initiates the team creation process (e.g., through the Rocket.Chat UI).
+2.  A call is made to the `TeamService.create()` method in `apps/meteor/server/services/team/service.ts`.
+3.  The `create` method validates the provided team details, checks the user's permissions (e.g., `create-c` or `create-p`), creates a new team record in the database, and generates a corresponding main room (channel or private group) for the team.
+4.  Initial members and owners are associated with the newly created team and its main room.
 
-## Files Seen In Tool Results (32)
+## Tool Calls (3 calls, 10,917 tokens)
 
-- `packages/models/src/index.ts`
-- `packages/core-services/src/index.ts`
-- `packages/rest-typings/src/v1/users/UsersListTeamsParamsGET.ts`
-- `packages/rest-typings/src/v1/teams/index.ts`
-- `packages/rest-typings/src/v1/teams/TeamsUpdateProps.ts`
-- `packages/rest-typings/src/v1/teams/TeamsUpdateMemberProps.ts`
-- `packages/rest-typings/src/v1/teams/TeamsRemoveRoomProps.ts`
-- `packages/rest-typings/src/v1/teams/TeamsRemoveMemberProps.ts`
-- `packages/rest-typings/src/v1/teams/TeamsListChildren.ts`
-- `packages/rest-typings/src/v1/teams/TeamsLeaveProps.ts`
-- `packages/rest-typings/src/v1/teams/TeamsDeleteProps.ts`
-- `packages/rest-typings/src/v1/teams/TeamsConvertToChannelProps.ts`
-- `packages/rest-typings/src/v1/teams/TeamsAddMembersProps.ts`
-- `packages/rest-typings/src/v1/teams/ITeamMemberParams.ts`
-- `packages/rest-typings/src/v1/groups/GroupsConvertToTeamProps.ts`
-- `packages/rest-typings/src/v1/channels/ChannelsConvertToTeamProps.ts`
-- `packages/models/src/models/TeamMember.ts`
-- `apps/meteor/client/views/directory/tabs/teams/TeamsTab.tsx`
-- `packages/models/src/models/Team.ts`
-- `apps/meteor/server/methods/browseChannels.ts`
-- `packages/core-typings/src/ITeam.ts`
-- `apps/meteor/client/views/teams/contextualBar/info/TeamsInfo.tsx`
-- `apps/meteor/app/api/server/v1/teams.ts`
-- `apps/meteor/server/lib/spotlight.js`
-- `apps/meteor/tests/e2e/page-objects/home-team.ts`
-- `apps/meteor/app/api/server/lib/eraseTeam.ts`
-- `apps/meteor/client/views/directory/tabs/teams/TeamsTable/TeamsTable.tsx`
-- `apps/meteor/client/views/room/Header/ParentRoom/ParentTeam.tsx`
-- `apps/meteor/client/views/teams/contextualBar/info/useTeamActions.ts`
-- `apps/meteor/tests/end-to-end/api/teams.ts`
+**Step 1:** `wiki({"question":"How does the Team feature work in Rocket.Chat?"})` → 1024 tokens
+**Step 2:** `search({"query":"TeamService","layer":"server"})` → 93 tokens
+**Step 3:** `details({"symbolName":"TeamService","filename":"service.ts"})` → 1670 tokens
+
+## Files Seen In Tool Results (2)
+
 - `apps/meteor/server/services/team/service.ts`
 - `packages/core-services/src/types/ITeamService.ts`

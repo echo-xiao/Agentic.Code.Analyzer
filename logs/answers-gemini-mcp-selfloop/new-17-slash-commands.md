@@ -6,38 +6,62 @@ intent: call-chain
 
 ## Gemini Answer
 
-Slash commands in Rocket.Chat involve both client-side processing and server-side execution.
+Rocket.Chat's slash command system allows users to execute actions by typing commands like `/archive` or `/join`. These commands can be processed on either the client or server side, and some offer interactive previews.
 
-**Registration:**
+**1. Registration:**
 
-1.  **Server-side Registration:** Slash commands are registered on the server using the `slashCommands.add()` method, located in `apps/meteor/app/utils/server/slashCommand.ts`. This method takes parameters such as the command name, a callback function for execution, and optional settings like description, permissions, and whether it provides a preview.
+*   Slash commands are registered using the `slashCommands.add()` method. This method takes an object defining the command, its callback function, options, and whether it provides a preview.
+*   The `slashCommands` object is a singleton that stores all registered commands.
+*   **File:** `apps/meteor/app/utils/server/slashCommand.ts`
 
-**Execution Flow:**
+**2. Execution Flow:**
 
-1.  **Client-side Processing:** When a user types a message, the client-side `processSlashCommand()` function in `apps/meteor/client/lib/chats/flows/processSlashCommand.ts` is responsible for identifying if the message is a slash command. It parses the message using a regular expression (`/^\\/([^\\s]+)(.*)/`) to extract the command and its parameters.
-2.  **DDP Call to Server:** The client does not execute the command directly. Instead, it makes a DDP (Distributed Data Protocol) call to the server using `sdk.call('slashCommand', { cmd, params, msg, triggerId })`. This call is handled by the `call` method in `MinimalDDPClient.ts`.
-3.  **Server-side Execution:** On the server, the `slashCommands.run()` method in `apps/meteor/app/utils/server/slashCommand.ts` is responsible for executing the command. It retrieves the registered command based on the `command` parameter received from the client.
-4.  **Callback Execution:** If a valid command and its callback function are found, `slashCommands.run()` then invokes the associated `callback` function, passing the command, parameters, message details, and user ID. This callback function contains the actual logic for the slash command.
+*   **Client-side processing:** When a user types a slash command, the `processSlashCommand` function in `apps/meteor/client/lib/chats/flows/processSlashCommand.ts` parses the message.
+*   **Client-only commands:** If the command is marked as `clientOnly`, `processSlashCommand` directly executes the command's callback on the client. An example is the `/open` command, registered in `apps/meteor/app/slashcommands-open/client/client.ts`.
+*   **Server-side commands:** If the command is not `clientOnly`, `processSlashCommand` makes an `sdk.call('slashCommand', ...)` to the server.
+*   **Server-side execution:** On the server, the `Meteor.methods` for `slashCommand` in `apps/meteor/app/utils/server/slashCommand.ts` handles the execution. It retrieves the registered command and calls its `callback` function. This callback then performs the specific action, such as archiving a room for the `/archive` command (registered in `apps/meteor/app/slashcommands-archiveroom/server/server.ts`).
 
 **Key Files:**
 
-*   **`apps/meteor/app/utils/server/slashCommand.ts`**: This file defines the `slashCommands` object, which is central to both registering (`add`) and running (`run`) slash commands on the server. It also handles preview functionality (`getPreviews`, `executePreview`).
-*   **`apps/meteor/client/lib/chats/flows/processSlashCommand.ts`**: This client-side file is responsible for detecting slash commands in user messages and initiating the DDP call to the server for execution.
+*   `apps/meteor/app/utils/server/slashCommand.ts`: Defines the `slashCommands` object, which handles adding, running, getting previews, and executing previews of slash commands. It also contains the `Meteor.methods` for `slashCommand` that the client calls for server-side execution.
+*   `apps/meteor/client/lib/chats/flows/processSlashCommand.ts`: This client-side file is responsible for parsing user input, determining if a command is client-only or server-side, and initiating the appropriate execution path.
 
-## Tool Calls (8 calls, 36,662 tokens)
+**Call Chain for Server-Side Command Execution:**
 
-**Step 1:** `plan({"question":"How do slash commands work in Rocket.Chat — from registration to execution?","intent":"call-chain"})` → 202 tokens
-**Step 2:** `search({"query":"slashCommands","layer":"server"})` → 436 tokens
-**Step 3:** `graph({"move":"down","file":"slashCommand.ts","depth":3,"query":"slashCommands"})` → 422 tokens
-**Step 4:** `details({"filename":"slashCommand.ts","symbolName":"slashCommands"})` → 718 tokens
-**Step 5:** `search({"layer":"client","query":"processSlashCommand"})` → 75 tokens
-**Step 6:** `graph({"move":"down","file":"processSlashCommand.ts","query":"processSlashCommand","depth":3})` → 873 tokens
-**Step 7:** `search({"layer":"server","query":"slashCommand"})` → 443 tokens
-**Step 8:** `search({"layer":"server","query":"Meteor.methods({ slashCommand:"})` → 30 tokens
+1.  **Entry:** User types a slash command in the chat.
+2.  `processSlashCommand` (`apps/meteor/client/lib/chats/flows/processSlashCommand.ts`) parses the command.
+3.  `sdk.call('slashCommand', ...)` (client-side) is made to the server.
+4.  `slashCommand` (within `Meteor.methods` in `apps/meteor/app/utils/server/slashCommand.ts`) receives the call.
+5.  `slashCommands.run()` (`apps/meteor/app/utils/server/slashCommand.ts`) is invoked.
+6.  The `callback` function associated with the specific command is executed, performing the intended action.
 
-## Files Seen In Tool Results (19)
+## Tool Calls (8 calls, 48,076 tokens)
 
+**Step 1:** `wiki({"question":"How do slash commands work in Rocket.Chat?"})` → 960 tokens
+**Step 2:** `plan({"question":"How do slash commands work in Rocket.Chat — from registration to execution?","intent":"call-chain"})` → 81 tokens
+**Step 3:** `search({"query":"slashCommands.add"})` → 297 tokens
+**Step 4:** `graph({"move":"up","query":"slashCommands.add","depth":2})` → 14 tokens
+**Step 5:** `search({"query":"slashCommands","layer":"server"})` → 436 tokens
+**Step 6:** `details({"symbolName":"slashCommands","filename":"slashCommand.ts"})` → 718 tokens
+**Step 7:** `search({"query":"processSlashCommand","layer":"client"})` → 75 tokens
+**Step 8:** `graph({"file":"processSlashCommand.ts","move":"down","depth":5,"query":"processSlashCommand"})` → 5601 tokens
+
+## Files Seen In Tool Results (27)
+
+- `apps/meteor/app/slashcommands-archiveroom/server/server.ts`
+- `apps/meteor/client/lib/chats/flows/processSlashCommand.ts`
 - `apps/meteor/app/utils/server/slashCommand.ts`
+- `apps/meteor/app/slashcommands-open/client/client.ts`
+- `apps/meteor/client/hooks/useAppSlashCommands.ts`
+- `apps/meteor/app/slashcommands-inviteall/server/server.ts`
+- `apps/meteor/app/slashcommands-inviteall/client/client.ts`
+- `apps/meteor/app/slashcommands-leave/server/leave.ts`
+- `apps/meteor/app/slashcommands-ban/client/client.ts`
+- `apps/meteor/app/slashcommands-mute/server/unmute.ts`
+- `apps/meteor/app/slashcommands-mute/server/mute.ts`
+- `apps/meteor/app/slashcommands-create/server/server.ts`
+- `apps/meteor/app/slashcommands-create/client/client.ts`
+- `apps/meteor/app/slashcommands-kick/server/server.ts`
 - `packages/apps-engine/src/server/accessors/SlashCommandsModify.ts`
 - `packages/apps-engine/src/server/accessors/SlashCommandsExtend.ts`
 - `apps/meteor/app/statistics/server/functions/slashCommandsStats.ts`
@@ -47,12 +71,7 @@ Slash commands in Rocket.Chat involve both client-side processing and server-sid
 - `apps/meteor/app/slashcommands-topic/server/index.ts`
 - `apps/meteor/app/slashcommands-status/server/status.ts`
 - `apps/meteor/app/slashcommands-status/server/index.ts`
-- `apps/meteor/app/slashcommands-mute/server/unmute.ts`
-- `apps/meteor/app/slashcommands-mute/server/mute.ts`
 - `apps/meteor/app/slashcommands-mute/server/index.ts`
 - `apps/meteor/app/slashcommands-msg/server/server.ts`
 - `apps/meteor/app/slashcommands-msg/server/index.ts`
 - `apps/meteor/app/slashcommands-me/server/me.ts`
-- `apps/meteor/client/lib/chats/flows/processSlashCommand.ts`
-- `packages/apps-engine/src/server/managers/AppSlashCommandManager.ts`
-- `packages/apps-engine/src/server/managers/AppSlashCommand.ts`
