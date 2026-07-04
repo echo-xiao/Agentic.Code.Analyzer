@@ -182,6 +182,7 @@ function symbolMatchesInText(text: string, symbol: string): boolean {
 async function runTestCase(tc: TestCase): Promise<TestResult> {
     const allSearchText: string[] = [];
     const searched = new Set<string>();
+    const gtFiles = tc.groundTruthFiles ?? [];   // attachTruth always sets it; guard now that the field is optional
 
     // Seed surface = search (exact + grep) POOLED WITH graph(expand) — the ranked neighborhood
     // that pre-refactor lived inside search itself.
@@ -202,7 +203,7 @@ async function runTestCase(tc: TestCase): Promise<TestResult> {
         if (step.symbol) await doSearch(step.symbol);
     }
 
-    for (const f of tc.groundTruthFiles) {
+    for (const f of gtFiles) {
         const basename = path.basename(f).replace(/\.(tsx?|js)$/, '');
         if (basename !== 'index') {
             await doSearch(basename);
@@ -216,7 +217,7 @@ async function runTestCase(tc: TestCase): Promise<TestResult> {
 
     const searchFileFound: string[] = [];
     const searchFileMissed: string[] = [];
-    for (const gtFile of tc.groundTruthFiles) {
+    for (const gtFile of gtFiles) {
         if (fileMatchesInText(combinedSearch, gtFile)) {
             searchFileFound.push(gtFile);
         } else {
@@ -307,8 +308,8 @@ async function runTestCase(tc: TestCase): Promise<TestResult> {
         }
     }
 
-    const fileRate = tc.groundTruthFiles.length > 0
-        ? searchFileFound.length / tc.groundTruthFiles.length : 1;
+    const fileRate = gtFiles.length > 0
+        ? searchFileFound.length / gtFiles.length : 1;
     const symTotal = (tc.keySymbols ?? []).length;
     const symRate = symTotal > 0 ? searchSymFound.length / symTotal : 1;
     const graphRate = graphResult?.rate ?? 1;
