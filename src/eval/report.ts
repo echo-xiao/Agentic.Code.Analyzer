@@ -200,7 +200,6 @@ async function main() {
     const r5 = poolR(r => r.recallAt5), r10 = poolR(r => r.recallAt10), r20 = poolR(r => r.recallAt20), r50 = poolR(r => r.recallAt50);
     const cnt = (f: number) => Math.round(f * sumCore);
     const g0file = mean(rows.map(r => r.fileRecall)), g0sym = mean(rows.map(r => r.symRecall));
-    const g0graph = mean(rows.filter(r => r.graphReach != null).map(r => r.graphReach as number));
     const g15rows = rows.filter(r => r.orderApplicable);
     const g15 = mean(g15rows.map(r => r.orderScore));
 
@@ -231,7 +230,7 @@ async function main() {
     L.push('```');
     L.push(`\n**Two agent stages** (÷ ${sumCore}): not-surfaced ${pct(1 - fRetr)} (${cnt(1 - fRetr)} files) · surfaced-but-not-written ${pct(Math.max(0, fRetr - fWrit))} (${totalDropped} files).`);
     L.push(`> Single-query probe (tool capability, NOT the agent path): R@5/10/20/50 = ${pct(r5)}/${pct(r10)}/${pct(r20)}/${pct(r50)}. Of "never surfaced": ~${pct(1 - r50)} never rank in top-50 (engine) vs ~${pct(Math.max(0, r50 - fRetr))} rank-but-skipped (agent loop).`);
-    L.push(`> Floor: substring recall file ${pct(g0file)} / sym ${pct(g0sym)} · graph reachability ${pct(g0graph)} · chain-order LCS ${pct(g15)} (${g15rows.length} ordered Qs).\n`);
+    L.push(`> Floor: substring recall file ${pct(g0file)} / sym ${pct(g0sym)} · chain-order LCS ${pct(g15)} (${g15rows.length} ordered Qs). (graph-reachability dropped — it was tautological, see tools.ts.)\n`);
 
     // 3 — auto-triage
     L.push(`## 3. Auto-triage — mechanical "suspected stage" per testcase (no semantic judgment)\n`);
