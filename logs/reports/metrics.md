@@ -1,6 +1,6 @@
 # metrics — quantitative pipeline report (no semantic analysis)
 
-7/4/2026, 10:36:36 AM | 34 testcases | deterministic (index + answers + tools-data), NO verdicts. Semantic analysis lives in logs/reports/verdicts.md.
+7/5/2026, 9:53:00 AM | 34 testcases | deterministic (index + answers + tools-data), NO verdicts. Semantic analysis lives in logs/reports/verdicts.md.
 
 ## 1. Value — do the tools help?
 
@@ -23,7 +23,7 @@ AGENT  written (answer)         31%  █████████░░░░░�
 
 **Two agent stages** (÷ 150): not-surfaced 63% (95 files) · surfaced-but-not-written 6% (12 files).
 > Single-query probe (tool capability, NOT the agent path): R@5/10/20/50 = 15%/18%/21%/25%. Of "never surfaced": ~75% never rank in top-50 (engine) vs ~0% rank-but-skipped (agent loop).
-> Floor: substring recall file 98% / sym 97% · graph reachability 100% · chain-order LCS 72% (17 ordered Qs).
+> Floor: substring recall file 98% / sym 97% · chain-order LCS 72% (17 ordered Qs). (graph-reachability dropped — it was tautological, see tools.ts.)
 
 ## 3. Auto-triage — mechanical "suspected stage" per testcase (no semantic judgment)
 

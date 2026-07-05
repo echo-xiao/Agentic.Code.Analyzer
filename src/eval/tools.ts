@@ -318,7 +318,7 @@ async function runTestCase(tc: TestCase): Promise<TestResult> {
 
     // SANITY (substring): "if you already know every symbol name, can the index find the files?"
     // This is near-100% by construction and must NOT be the headline gate — it masks real quality.
-    const sanityPass = fileRate >= 0.95 && symRate >= 0.8 && graphRate >= 0.5;
+    const sanityPass = fileRate >= 0.95 && symRate >= 0.8;   // graphRate dropped: tautological (queries each chain symbol directly → ~always 100%), misled more than it measured
     // RETRIEVAL PROBE (diagnostic, NOT a gate): a SINGLE realistic query's recall@k. Structurally too
     // strict for Claude's full cross-layer core — the core files span ~5 communication layers with no
     // import edges between them, so ONE 2-hop neighbourhood expansion cannot reach them (98% ARE reachable
