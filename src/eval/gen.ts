@@ -167,8 +167,9 @@ function saveMcpAnswers(dir: string, records: AnswerRecord[]) {
 
 async function main() {
     const mode = process.argv.find(a => a.startsWith('--mode='))?.split('=')[1];
-    if (mode !== 'nomcp' && mode !== 'mcp') {
-        console.error('Usage: gen.ts --mode=nomcp|mcp [--oracle] [--model=...] [--filter=...]');
+    const MCP_MODES = ['mcp', 'nav-only', 'wiki-only'];
+    if (mode !== 'nomcp' && !MCP_MODES.includes(mode ?? '')) {
+        console.error('Usage: gen.ts --mode=nomcp|mcp|nav-only|wiki-only [--oracle] [--model=...] [--filter=...]');
         process.exit(1);
     }
     const oracle = process.argv.includes('--oracle');
@@ -225,7 +226,7 @@ async function main() {
         return;
     }
 
-    // mcp mode
+    // mcp-family modes (mcp=combined / nav-only / wiki-only): same self-loop, different toolset + dir.
     console.error('Loading index...');
     await ensureIndex();
     console.error(`Index ready: ${GLOBAL_INDEX.symbols.size} symbols, ${GLOBAL_INDEX.allFiles.size} files.\n`);
@@ -235,19 +236,28 @@ async function main() {
         description: "Ask the DeepWiki architecture wiki how a subsystem works. Returns a grounded architecture summary (prose + file paths verified against this codebase's index; a footer flags any stale/hallucinated paths). Call it early for a high-level map, then confirm exact symbols with search/graph/details.",
         parameters: { type: SchemaType.OBJECT, properties: { question: { type: SchemaType.STRING, description: 'A natural-language architecture question' } }, required: ['question'] },
     };
-    const functions = [...GEMINI_FUNCTIONS, WIKI_FUNCTION];
-    const sysText = SYSTEM_PROMPT + '\n\nYou also have wiki(question): a grounded architecture-overview tool. Call it first for a high-level map of the relevant subsystem, then verify exact symbols/files with search/graph/details. Trust only paths the grounding footer confirms are in the codebase.';
+    const WIKI_SYS = '\n\nYou also have wiki(question): a grounded architecture-overview tool. Call it first for a high-level map of the relevant subsystem, then verify exact symbols/files with search/graph/details. Trust only paths the grounding footer confirms are in the codebase.';
+    const WIKI_ONLY_SYS = `You are answering questions about the Rocket.Chat codebase using ONE tool: wiki(question), a grounded architecture wiki (DeepWiki) returning prose + file paths verified against the codebase index. Ask it what you need, then answer. Include the specific file path for every key file; when the question is a flow, list the chain Entry → … → Final. Trust only paths the grounding footer confirms.`;
+
+    // wiki-only / nav-only isolate one half of the toolset to measure DeepWiki vs navigation division of labour.
+    const modeConfig: Record<string, { functions: FunctionDeclaration[]; sysText: string; dir: string }> = {
+        'mcp':       { functions: [...GEMINI_FUNCTIONS, WIKI_FUNCTION], sysText: SYSTEM_PROMPT + WIKI_SYS, dir: 'answers-gemini-mcp-selfloop' },
+        'nav-only':  { functions: GEMINI_FUNCTIONS,                     sysText: SYSTEM_PROMPT,            dir: 'answers-gemini-nav-only' },
+        'wiki-only': { functions: [WIKI_FUNCTION],                      sysText: WIKI_ONLY_SYS,            dir: 'answers-gemini-wiki-only' },
+    };
+    const cfg = modeConfig[mode as string];
+
     const model = genAI.getGenerativeModel({
         model: modelName,
-        tools: [{ functionDeclarations: functions }],
-        systemInstruction: { role: 'user', parts: [{ text: sysText }] },
+        tools: [{ functionDeclarations: cfg.functions }],
+        systemInstruction: { role: 'user', parts: [{ text: cfg.sysText }] },
         // Determinism: greedy decode (temperature 0, top-k 1, single candidate) so re-runs over an
         // unchanged index produce the same answers. Without this the agent samples at temp ~1.0 and
         // PASS counts drift ±3 between runs, making single-run before/after comparisons meaningless.
         generationConfig: { temperature: 0, topK: 1, topP: 1, candidateCount: 1 },
     });
 
-    console.error(`Running ${selected.length} test cases with ${modelName}${oracle ? ' (ORACLE intent)' : ''}...\n`);
+    console.error(`Running ${selected.length} cases · mode=${mode}${oracle ? ' (ORACLE intent)' : ''} with ${modelName}...\n`);
     const records: AnswerRecord[] = [];
     for (let i = 0; i < selected.length; i++) {
         const tc = selected[i];
@@ -264,8 +274,8 @@ async function main() {
         }
     }
 
-    saveMcpAnswers(path.join(PROJECT_ROOT, 'logs', 'answers-gemini-mcp-selfloop'), records);
-    console.error(`Answers saved to logs/answers-gemini-mcp-selfloop/`);
+    saveMcpAnswers(path.join(PROJECT_ROOT, 'logs', cfg.dir), records);
+    console.error(`Answers saved to logs/${cfg.dir}/`);
     console.log(`\n${records.length} answers | ${records.reduce((s, r) => s + r.tokens, 0).toLocaleString()} total tokens`);
 }
 
