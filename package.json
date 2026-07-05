@@ -15,6 +15,7 @@
     "eval:tools": "NODE_OPTIONS=\"--max-old-space-size=8192\" npx tsx src/eval/tools.ts",
     "report": "NODE_OPTIONS=\"--max-old-space-size=8192\" npx tsx src/eval/report.ts",
     "judge": "npx tsx src/eval/judge.ts",
+    "division": "npx tsx src/eval/division.ts",
     "truth": "npx tsx src/eval/truth.ts",
     "refresh": "npm run prewarm && npm run gen:nomcp && npm run gen:mcp && npm run eval:tools && npm run report",
     "test": "tsx --test 'src/**/*.test.ts'"
