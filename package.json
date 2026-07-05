@@ -10,6 +10,8 @@
     "inspect": "npx @modelcontextprotocol/inspector npx tsx src/server/index.ts",
     "gen:nomcp": "npx tsx src/eval/gen.ts --mode=nomcp",
     "gen:mcp": "NODE_OPTIONS=\"--max-old-space-size=8192\" npx tsx src/eval/gen.ts --mode=mcp",
+    "gen:wiki-only": "NODE_OPTIONS=\"--max-old-space-size=8192\" npx tsx src/eval/gen.ts --mode=wiki-only",
+    "gen:nav-only": "NODE_OPTIONS=\"--max-old-space-size=8192\" npx tsx src/eval/gen.ts --mode=nav-only",
     "eval:tools": "NODE_OPTIONS=\"--max-old-space-size=8192\" npx tsx src/eval/tools.ts",
     "report": "NODE_OPTIONS=\"--max-old-space-size=8192\" npx tsx src/eval/report.ts",
     "judge": "npx tsx src/eval/judge.ts",
