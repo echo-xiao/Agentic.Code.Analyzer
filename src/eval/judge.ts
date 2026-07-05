@@ -30,10 +30,10 @@ const MODEL = 'claude-sonnet-4-6';
 const CONCURRENCY = 5;
 
 type Verdict = { verdict: 'PASS' | 'PARTIAL' | 'FAIL'; mode: string; reason: string };
-type Row = { id: string } & Verdict;
+export type Row = { id: string } & Verdict;
 
 /** Grab the body of one `## Heading` section, up to the next same-level heading or EOF. */
-function extractSection(md: string, heading: string): string {
+export function extractSection(md: string, heading: string): string {
     const lines = md.split('\n');
     const start = lines.findIndex(l => l.trim() === heading);
     if (start === -1) return md.trim(); // heading absent → fall back to whole file
@@ -78,7 +78,7 @@ const SCHEMA = {
     additionalProperties: false,
 } as const;
 
-async function judgeOne(client: Anthropic, question: string, gold: string, cand: string): Promise<Verdict> {
+export async function judgeOne(client: Anthropic, question: string, gold: string, cand: string): Promise<Verdict> {
     const resp = await client.messages.create({
         model: MODEL,
         max_tokens: 1024,
@@ -109,6 +109,26 @@ async function mapPool<T, R>(items: T[], n: number, fn: (item: T, i: number) => 
     return out;
 }
 
+/** Judge every testcase in `candDir` (section `candSection`) against the answers-claude gold. Reusable
+ * across candidate configs (combined / wiki-only / nav-only) — always gold = Claude, never DeepWiki. */
+export async function judgeAnswers(client: Anthropic, testcases: { id: string; question: string }[], candDir: string, candSection: string): Promise<Row[]> {
+    const jobs = testcases.filter(tc =>
+        fs.existsSync(path.join(GOLD_DIR, `${tc.id}.md`)) && fs.existsSync(path.join(candDir, `${tc.id}.md`)));
+    const results = await mapPool<typeof jobs[number], Row | null>(jobs, CONCURRENCY, async (tc) => {
+        const gold = extractSection(fs.readFileSync(path.join(GOLD_DIR, `${tc.id}.md`), 'utf-8'), '## Answer');
+        const cand = extractSection(fs.readFileSync(path.join(candDir, `${tc.id}.md`), 'utf-8'), candSection);
+        try {
+            const v = await judgeOne(client, tc.question, gold, cand);
+            console.error(`  ${tc.id}: ${v.verdict}`);
+            return { id: tc.id, ...v };
+        } catch (e) {
+            console.error(`  ${tc.id}: ERROR — ${(e as Error).message}`);
+            return null;
+        }
+    });
+    return results.filter((r): r is Row => r !== null);
+}
+
 async function main() {
     const apiKey = process.env.ANTHROPIC_API_KEY || process.env.CLAUDE_API_KEY;
     if (!apiKey) { console.error('ANTHROPIC_API_KEY (or CLAUDE_API_KEY) not set in .env. Add it and retry.'); process.exit(1); }
@@ -116,28 +136,9 @@ async function main() {
 
     const { flat: testcases } = loadTestcases(path.join(__dirname, 'utils', 'testcases.json'));
 
-    const jobs = testcases.filter(tc => {
-        const ok = fs.existsSync(path.join(GOLD_DIR, `${tc.id}.md`)) && fs.existsSync(path.join(CAND_DIR, `${tc.id}.md`));
-        if (!ok) console.error(`skip ${tc.id} (missing gold or candidate file)`);
-        return ok;
-    });
-
-    console.error(`Judging ${jobs.length} answers with ${MODEL} (semantic compare vs answers-claude)...`);
-    let done = 0;
-    const results = await mapPool<typeof jobs[number], Row | null>(jobs, CONCURRENCY, async (tc) => {
-        const gold = extractSection(fs.readFileSync(path.join(GOLD_DIR, `${tc.id}.md`), 'utf-8'), '## Answer');
-        const cand = extractSection(fs.readFileSync(path.join(CAND_DIR, `${tc.id}.md`), 'utf-8'), '## Gemini Answer');
-        try {
-            const v = await judgeOne(client, tc.question, gold, cand);
-            console.error(`  [${++done}/${jobs.length}] ${tc.id}: ${v.verdict}`);
-            return { id: tc.id, ...v };
-        } catch (e) {
-            console.error(`  [${++done}/${jobs.length}] ${tc.id}: ERROR — ${(e as Error).message}`);
-            return null; // excluded from the table + counts so tooling errors never pollute the score
-        }
-    });
-    const rows = results.filter((r): r is Row => r !== null);
-    const skipped = jobs.length - rows.length;
+    console.error(`Judging combined answers with ${MODEL} (semantic compare vs answers-claude)...`);
+    const rows = await judgeAnswers(client, testcases, CAND_DIR, '## Gemini Answer');
+    const skipped = testcases.length - rows.length;
 
     const n = { PASS: 0, PARTIAL: 0, FAIL: 0 };
     for (const r of rows) n[r.verdict]++;
