@@ -20,7 +20,14 @@ const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const LOGS = path.resolve(__dirname, '..', '..', 'logs');
 const D_MCP = path.join(LOGS, 'answers-gemini-mcp-selfloop');
 const TRACE_DIR = path.join(LOGS, 'data', 'retrieval-trace');
+const WIKI_MAP_PATH = path.resolve(__dirname, '..', '..', 'data', 'wiki-map.json');
 const OUT = path.join(LOGS, 'reports', 'metrics.md');
+
+// 路径宽松相等：真值 core 与 wiki-map 键/trace 文件都是仓库相对路径，允许后缀包含
+const pathEq = (a: string, b: string): boolean => {
+    const x = a.replace(/\\/g, '/'), y = b.replace(/\\/g, '/');
+    return x === y || x.endsWith('/' + y) || y.endsWith('/' + x);
+};
 
 // ── retrieval-trace loader: per-question decision log written by eval:retrieval ──
 function loadTraceFile(id: string): any | null {
@@ -108,6 +115,7 @@ function load(name: string): any {
 
 async function main() {
     const tools: any[] = load('tools-data.json');
+    const wikiMap: any = fs.existsSync(WIKI_MAP_PATH) ? JSON.parse(fs.readFileSync(WIKI_MAP_PATH, 'utf-8')) : null;
     const byTools = new Map(tools.map(r => [r.id, r]));
     const { flat: testcases } = loadTestcasesWithTruth(TESTCASES_PATH, CLAUDE_TRUTH_PATH);
     const SEEN_MARKER = '## Files Seen In Tool Results';
@@ -129,7 +137,7 @@ async function main() {
         const coreCov = core.length ? written.length / core.length : 0;
         const errored = !a2.trim() || /^ERROR\b/.test(a2.trim());
 
-        // trace（eval:retrieval 的决策日志）— 纯机械聚合，不含金文件指标
+        // trace（eval:retrieval 的决策日志）— trace 本体无金指标；金指标在这里(报告端)算
         const tr = loadTraceFile(tc.id);
         const trPages: string[] = tr?.pageStep?.chosen ?? [];
         // fallback 两种形态都算：页面无命中(pageStep 空) / 页面命中但全页出不了 seed(seedStep 里有 '(fallback)' 条目)
@@ -138,6 +146,23 @@ async function main() {
         const trMoves = trWalk.filter(w => w.chosen != null).length;
         const trStops = trWalk.filter(w => w.chosen == null).map(w => stopLabel(w.reason ?? ''));
         const trSeeds = new Set(trWalk.map(w => w.anchor)).size;
+        // 金指标①入口页命中：金文件按 file_to_pages 反查所在页，chosen 页是否命中其一。
+        //   金文件不在入口图里的题记 '—'（天花板：对的页不存在，打分再好也选不到）。
+        const goldPages = new Set<string>();
+        if (wikiMap) for (const c of core) {
+            for (const [wk, pages] of Object.entries(wikiMap.file_to_pages as Record<string, string[]>)) {
+                if (pathEq(wk, c)) for (const p of pages) goldPages.add(p);
+            }
+        }
+        const entryHit = goldPages.size > 0 ? trPages.some(p => goldPages.has(p)) : null;
+        // 金指标②邻域触金：游走累计到达的文件(全量 newFiles + seed 自身文件) ∩ core
+        const reachedFiles = new Set<string>();
+        for (const w of trWalk) for (const f of (w.result?.newFiles ?? [])) reachedFiles.add(f);
+        for (const s of (tr?.seedStep ?? [])) {
+            const opt = (s.options ?? []).find((o: any) => o.symbol === s.chosen);
+            if (opt?.file) reachedFiles.add(opt.file);
+        }
+        const reachGoldN = core.filter((c: string) => [...reachedFiles].some(f => pathEq(f, c))).length;
 
         const a = byTools.get(tc.id) ?? {};
         const type = tc.questionType ?? a.subsystem ?? '?';
@@ -163,6 +188,7 @@ async function main() {
             coreN: core.length, coreWritten: written.length, coreCov, retrievalRecall, synthRecall, dropped, errored,
             routeOk, stage, trace: parseTrace(mcpFile, resolved),
             trHas: !!tr, trPages, trFallback, trMoves, trStops, trSeeds,
+            goldPagesN: goldPages.size, entryHit, reachGoldN,
         });
     }
 
@@ -207,14 +233,21 @@ async function main() {
         const pageFreq = new Map<string, number>();
         for (const r of trRows) for (const p of r.trPages) pageFreq.set(p, (pageFreq.get(p) ?? 0) + 1);
         const topPages = [...pageFreq].sort((a, b) => b[1] - a[1]).slice(0, 6);
-        L.push(`> ${trRows.length}/${n} 题有 trace（\`logs/data/retrieval-trace/<id>.json\` 是全量决策日志：每步 options/chosen/reason/result；本节只是机械聚合，**无金文件指标**——这是 record-only 轨道 by design）。\n`);
+        L.push(`> ${trRows.length}/${n} 题有 trace（\`logs/data/retrieval-trace/<id>.json\` 是全量决策日志：每步 options/chosen/reason/result；trace 本体无金指标，**金页/触金两列是报告端从 trace × claude-truth 算的**）。\n`);
+        const withGold = trRows.filter(r => r.entryHit !== null);
+        const entryHits = withGold.filter(r => r.entryHit).length;
+        const reachRows = trRows.filter(r => r.coreN > 0);
+        const reachVals = reachRows.map(r => r.reachGoldN / r.coreN);
+        const reachZero = reachVals.filter(v => v === 0).length;
         L.push(`**入口**：fallback ${fbCount}/${trRows.length}（入口图无命中→lexicalSeeds）· 页槽占用 top：${topPages.map(([p, c]) => `${p}×${c}`).join(' · ')}`);
-        L.push(`**游走**：平均 ${mean(trRows.map(r => r.trMoves)).toFixed(1)} 步/题 · stop 分布：${[...stopDist].sort((a, b) => b[1] - a[1]).map(([s, c]) => `${s} ${c}`).join(' · ')}\n`);
-        L.push(`| # | id | 入口页 (top-3) | seeds | 步数 | stops |`);
-        L.push(`|---|---|---|---:|---:|---|`);
+        L.push(`**游走**：平均 ${mean(trRows.map(r => r.trMoves)).toFixed(1)} 步/题 · stop 分布：${[...stopDist].sort((a, b) => b[1] - a[1]).map(([s, c]) => `${s} ${c}`).join(' · ')}`);
+        L.push(`**金指标**：入口页命中 **${entryHits}/${withGold.length}**（分母=金文件所在页存在于入口图的题；另 ${trRows.length - withGold.length} 题金页不存在=天花板，记 —）· 邻域触金召回 均值 **${pct(mean(reachVals))}**（游走到达文件∩core÷core）· 触金=0 的题 ${reachZero}/${reachRows.length}\n`);
+        L.push(`| # | id | 入口页 (top-3) | 金页 | 触金 | seeds | 步数 | stops |`);
+        L.push(`|---|---|---|:-:|---:|---:|---:|---|`);
         trRows.forEach((r, i) => {
             const pages = r.trFallback ? '(fallback)' : r.trPages.join('<br>');
-            L.push(`| ${i + 1} | ${r.id} | ${pages} | ${r.trSeeds} | ${r.trMoves} | ${r.trStops.join('/')} |`);
+            const gold = r.entryHit === null ? '—' : r.entryHit ? '✓' : '✗';
+            L.push(`| ${i + 1} | ${r.id} | ${pages} | ${gold} | ${r.reachGoldN}/${r.coreN} | ${r.trSeeds} | ${r.trMoves} | ${r.trStops.join('/')} |`);
         });
         L.push('');
     }
