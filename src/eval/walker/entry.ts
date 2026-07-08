@@ -28,9 +28,9 @@ export function selectPages(tokens: string[], map: WikiMap, threshold = PAGE_THR
         const hitOn = parts.filter(x => x.score >= threshold).sort((a, b) => b.score - a.score).slice(0, 3).map(x => x.name);
         options.push({ page: p.page, score: Number(best.score.toFixed(3)), hitOn });
     }
-    options.sort((a, b) => b.score - a.score);
+    options.sort((a, b) => b.score - a.score || a.page.localeCompare(b.page));
     const top10 = options.slice(0, 10);
-    const chosen = top10.filter(o => o.score >= threshold).slice(0, 3);
+    const chosen = options.filter(o => o.score >= threshold).slice(0, 3);
     if (chosen.length === 0) return null;
     return {
         options: top10,
@@ -57,12 +57,13 @@ export function selectSeedForPage(
 ): SeedStep {
     const options: SeedOption[] = [];
     for (const [wikiPath, realPath] of resolved) {
+        // resolved 可能由调用方跨页共享，这里按本页 source_files 过滤
         if (!(wikiPath in page.source_files)) continue;
         if (isTestPath(realPath)) continue;   // 测试文件不出 seed（spec §2.3 优先非测试路径）
         const syms = symbolsOfFile(realPath).slice(0, 2); // 每文件 ≤2 个符号
         for (const s of syms) options.push({ symbol: s, file: wikiPath, score: Number(scoreString(tokens, s).toFixed(3)) });
     }
-    options.sort((a, b) => b.score - a.score);
+    options.sort((a, b) => b.score - a.score || a.symbol.localeCompare(b.symbol));
     const top = options[0] ?? null;
     return {
         page: page.page,
@@ -76,6 +77,6 @@ export function selectSeedForPage(
 
 export function fallbackSeeds(tokens: string[]): { chosen: string[]; reason: string } {
     const seed = lexicalSeeds(tokens.join(' '));
-    const chosen = [...seed.lexical.entries()].sort((a, b) => b[1] - a[1]).slice(0, 3).map(([s]) => s);
+    const chosen = [...seed.lexical.entries()].sort((a, b) => b[1] - a[1] || a[0].localeCompare(b[0])).slice(0, 3).map(([s]) => s);
     return { chosen, reason: 'fallback: 入口图无命中，lexicalSeeds top-3' };
 }

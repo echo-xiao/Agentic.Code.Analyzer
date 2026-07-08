@@ -58,3 +58,20 @@ test('selectSeedForPage：页面无可解析文件时 chosen=null', () => {
     const step = selectSeedForPage(['push'], PAGE_NOTIF, new Map(), () => []);
     assert.equal(step.chosen, null);
 });
+
+test('selectSeedForPage：相同分数时按符号字母序作为 tie-break', () => {
+    // zebraPush 和 alphaPush 对于 token 'push' 应该有相同的分数，
+    // tie-break 应该选择 alphaPush（字母序较早）
+    const tokens = ['push'];
+    const pageWithSymbols: WikiPage = {
+        page: 'TieBreakPage',
+        sections: [],
+        diagrams: [{ nodes: {}, edges: [], subgraphs: [] }],
+        source_files: { 'tie/symbols.ts': [] },
+    };
+    const { resolved } = resolveWikiFiles(Object.keys(pageWithSymbols.source_files), ['/abs/repo/tie/symbols.ts']);
+    const symbolsOfFile = (p: string) => p.endsWith('symbols.ts') ? ['zebraPush', 'alphaPush'] : [];
+    const step = selectSeedForPage(tokens, pageWithSymbols, resolved, symbolsOfFile);
+    // 如果分数相同，应该选择 alphaPush（字母序较早）
+    assert.equal(step.chosen, 'alphaPush');
+});
