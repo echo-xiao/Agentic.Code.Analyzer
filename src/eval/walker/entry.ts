@@ -25,7 +25,7 @@ export function selectPages(tokens: string[], map: WikiMap, threshold = PAGE_THR
         for (const f of Object.keys(p.source_files)) parts.push({ name: `file:${f}`, score: W_FILE * scoreString(tokens, f) });
 
         const best = parts.reduce((a, b) => (b.score > a.score ? b : a), { name: '', score: 0 });
-        const hitOn = parts.filter(x => x.score >= threshold).sort((a, b) => b.score - a.score).slice(0, 3).map(x => x.name);
+        const hitOn = parts.filter(x => x.score >= threshold).sort((a, b) => b.score - a.score || a.name.localeCompare(b.name)).slice(0, 3).map(x => x.name);
         options.push({ page: p.page, score: Number(best.score.toFixed(3)), hitOn });
     }
     options.sort((a, b) => b.score - a.score || a.page.localeCompare(b.page));
