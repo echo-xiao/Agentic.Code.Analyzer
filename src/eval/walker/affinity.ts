@@ -23,11 +23,26 @@ export function questionTokens(question: string): string[] {
     const seen = new Set<string>();
     const out: string[] = [];
     for (const w of raw) {
-        if (w.length < 3 || STOPWORDS.has(w) || seen.has(w)) continue;
-        seen.add(w);
-        out.push(w);
+        if (w.length < 3 || STOPWORDS.has(w)) continue;   // 原始词先过一遍停用词（works/happens 在表里）
+        const t = singularize(w);
+        if (t.length < 3 || STOPWORDS.has(t) || seen.has(t)) continue;   // 归一后再过（does→doe 这类漏网）
+        seen.add(t);
+        out.push(t);
     }
     return out;
+}
+
+// 复数轻量归一：fuzzysort 要求 query 每个字符按序出现，'notifications' 的尾 s 会让
+// sendPushNotification / "Push Notification Integration" 全部 NO MATCH（实测 2026-07-08，
+// claude-01 的双证人被一个字母拦住）。规则从宽到严：ies→y、sses→ss；ss/us/is/os 结尾不动
+// （process/status/analysis/photos 类）；其余去尾 s。
+function singularize(w: string): string {
+    if (w.length <= 3) return w;
+    if (w.endsWith('ies')) return w.slice(0, -3) + 'y';
+    if (w.endsWith('sses')) return w.slice(0, -2);
+    if (w.endsWith('ss') || w.endsWith('us') || w.endsWith('is') || w.endsWith('os')) return w;
+    if (w.endsWith('s')) return w.slice(0, -1);
+    return w;
 }
 
 export function scoreString(tokens: string[], target: string): number {

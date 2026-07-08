@@ -105,7 +105,7 @@ export function walkFromSeed(
             anchor: seed, round, options, chosen: best,
             reason: `affinity 最高 ${bo.affinity} (${best}) vs ${MOVE_ORDER.filter(m => m !== best).map(m => `${preview[m].opt.affinity} (${m})`).join(' / ')}`,
             result: {
-                newFiles: preview[best].files.slice(0, 20),
+                newFiles: preview[best].files,   // 全量记录（report 端要对金文件算邻域召回，截断会失准）
                 newFileCount: preview[best].files.length,
                 newSymbolCount: preview[best].syms.size,
                 cumulativeFiles: visitedFiles.size,
