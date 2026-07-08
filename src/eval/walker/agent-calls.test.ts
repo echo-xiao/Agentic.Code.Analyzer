@@ -47,7 +47,43 @@ test('解析调用序列 + verdict + hitBudget', () => {
     assert.equal(a.verdict, 'PASS');
     assert.deepEqual(a.sequence[0], { step: 1, tool: 'plan', args: '{"question":"Q?","intent":"call-chain"}' });
     assert.equal(a.sequence[1].tool, 'search');
-    assert.ok(a.source.includes('q-x.md'));
+    assert.match(a.source, /^[^/]+\/q-x\.md$/);
+});
+
+test('hitBudget=true 当 totalCalls >= 8', () => {
+    const { dir, vpath } = setup();
+    const mdBudget = `# Q?
+
+## Tool Calls (8 calls, 10,000 tokens)
+
+**Step 1:** \`plan({})\` → 1920 tokens
+**Step 2:** \`search({})\` → 728 tokens
+**Step 3:** \`tool({})\` → 100 tokens
+**Step 4:** \`tool({})\` → 100 tokens
+**Step 5:** \`tool({})\` → 100 tokens
+**Step 6:** \`tool({})\` → 100 tokens
+**Step 7:** \`tool({})\` → 100 tokens
+**Step 8:** \`tool({})\` → 100 tokens
+`;
+    fs.writeFileSync(path.join(dir, 'q-budget.md'), mdBudget);
+    const a = parseAgentCalls('q-budget', dir, vpath)!;
+    assert.equal(a.totalCalls, 8);
+    assert.equal(a.hitBudget, true);
+});
+
+test('0-call case: totalCalls=0, sequence=[], hitBudget=false', () => {
+    const { dir, vpath } = setup();
+    const md0Call = `# Q?
+
+## Tool Calls (0 calls, 0 tokens)
+
+## Files Seen In Tool Results (0)
+`;
+    fs.writeFileSync(path.join(dir, 'q-zero.md'), md0Call);
+    const a = parseAgentCalls('q-zero', dir, vpath)!;
+    assert.equal(a.totalCalls, 0);
+    assert.deepEqual(a.sequence, []);
+    assert.equal(a.hitBudget, false);
 });
 
 test('日志缺失返回 null；verdicts 无该题时 verdict=null', () => {
