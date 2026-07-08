@@ -43,6 +43,13 @@ function stopLabel(reason: string): string {
     return 'stop';
 }
 
+// 从答案 md 的 "## Files Seen In Tool Results" 段取 agent 实际在工具结果里见过的文件列表
+function seenFilesOf(mcpFile: string): string[] {
+    let txt = ''; try { txt = fs.readFileSync(mcpFile, 'utf-8'); } catch { return []; }
+    const sec = txt.split('## Files Seen In Tool Results')[1] ?? '';
+    return [...sec.matchAll(/^- `([^`]+)`/gm)].map(m => m[1]);
+}
+
 // Resolve the plan intent recorded in the answer md (## Plan line → truncated args → offline classifier).
 function resolveIntent(mcpFile: string, question: string): string | null {
     let txt = ''; try { txt = fs.readFileSync(mcpFile, 'utf-8'); } catch { /* */ }
@@ -123,19 +130,63 @@ async function main() {
             }
         }
         const entryHit = goldPages.size > 0 ? trPages.some(p => goldPages.has(p)) : null;
-        const reachedFiles = new Set<string>();
-        for (const w of trWalk) for (const f of (w.result?.newFiles ?? [])) reachedFiles.add(f);
+        // seed 自身文件（游走的第 0 步）与逐轮到达文件
+        const seedFiles = new Set<string>();
         for (const s of (tr?.seedStep ?? [])) {
             const opt = (s.options ?? []).find((o: any) => o.symbol === s.chosen);
-            if (opt?.file) reachedFiles.add(opt.file);
+            if (opt?.file) seedFiles.add(opt.file);
         }
-        const reachGoldN = core.filter((c: string) => [...reachedFiles].some(f => pathEq(f, c))).length;
+        const reachedFiles = new Set<string>(seedFiles);
+        for (const w of trWalk) for (const f of (w.result?.newFiles ?? [])) reachedFiles.add(f);
+        const walkerGold = core.filter((c: string) => [...reachedFiles].some(f => pathEq(f, c)));
+
+        // ① 第几步第一次找到答案文件：seed 自身算第 0 步，之后按游走的先后顺序数"走了几步"
+        let firstGoldStep: number | null = core.some((c: string) => [...seedFiles].some(f => pathEq(f, c))) ? 0 : null;
+        // ② 按轮次统计每轮新找到的答案文件数（轮次 = 每个 seed 自己的第 1..8 轮）
+        const goldByRound = new Map<number, number>();
+        {
+            const found = new Set<string>();
+            for (const c of core) if ([...seedFiles].some(f => pathEq(f, c))) found.add(c);
+            let stepNo = 0;
+            for (const w of trWalk) {
+                if (w.chosen == null) continue;
+                stepNo++;
+                for (const c of core) {
+                    if (found.has(c)) continue;
+                    if ((w.result?.newFiles ?? []).some((f: string) => pathEq(f, c))) {
+                        found.add(c);
+                        if (firstGoldStep === null) firstGoldStep = stepNo;
+                        goldByRound.set(w.round, (goldByRound.get(w.round) ?? 0) + 1);
+                    }
+                }
+            }
+        }
+        // ③ 停止评价：停的那一轮，三个方向的预览文件（各前 3 个）里是否还有没拿到的答案文件 → "停早了"
+        //    （预览只有每方向 3 个样本，这是近似判断）；预算用尽且最后两步都没新答案文件 → "停晚了"
+        let stopVerdict = '正常';
+        {
+            const stopRounds = trWalk.filter(w => w.chosen == null);
+            const previewFiles = stopRounds.flatMap(w => ['expand', 'down', 'up'].flatMap(m => w.options?.[m]?.topFiles ?? []));
+            const missed = core.filter((c: string) => !walkerGold.includes(c) && previewFiles.some(f => pathEq(f, c)));
+            if (missed.length > 0) stopVerdict = `停早了(预览里还有 ${missed.length} 个答案文件)`;
+            else if (trWalk.some(w => w.chosen == null && (w.reason ?? '').includes('预算'))) {
+                const moves = trWalk.filter(w => w.chosen != null);
+                const lastTwoGold = moves.slice(-2).some(w => core.some((c: string) => (w.result?.newFiles ?? []).some((f: string) => pathEq(f, c))));
+                if (!lastTwoGold) stopVerdict = '停晚了(最后两步已无新答案文件)';
+            }
+        }
+        // ④ 真 agent 在工具结果里见过的答案文件（对照：自动游走多找到了多少）
+        const seen = seenFilesOf(mcpFile);
+        const agentGold = core.filter((c: string) => seen.some(f => pathEq(f, c)));
+        const walkerOnly = walkerGold.filter((c: string) => !agentGold.includes(c));
 
         const resolved = resolveIntent(mcpFile, tc.question ?? '');
         rows.push({
             id: tc.id, type: tc.questionType ?? '?', coreN: core.length,
             trHas: !!tr, trPages, trFallback, trMoves, trStops, trSeeds,
-            goldPagesN: goldPages.size, entryHit, reachGoldN,
+            goldPagesN: goldPages.size, entryHit, reachGoldN: walkerGold.length,
+            firstGoldStep, goldByRound, stopVerdict,
+            agentGoldN: agentGold.length, walkerOnlyN: walkerOnly.length,
             agent: parseTrace(mcpFile, resolved),
         });
     }
@@ -166,22 +217,47 @@ async function main() {
         const reachRows = trRows.filter(r => r.coreN > 0);
         const reachVals = reachRows.map(r => r.reachGoldN / r.coreN);
         const reachZero = reachVals.filter(v => v === 0).length;
-        L.push(`> ${trRows.length}/${n} 题有 trace（\`logs/data/retrieval-trace/<id>.json\` 是全量决策日志：每步 options/chosen/reason/result；trace 本体无金指标，**金页/触金两列是报告端从 trace × claude-truth 算的**）。\n`);
-        L.push(`**入口**：fallback ${fbCount}/${trRows.length}（入口图无命中→lexicalSeeds）· 页槽占用 top：${topPages.map(([p, c]) => `${p}×${c}`).join(' · ')}`);
-        L.push(`**游走**：平均 ${mean(trRows.map(r => r.trMoves)).toFixed(1)} 步/题 · stop 分布：${[...stopDist].sort((a, b) => b[1] - a[1]).map(([s, c]) => `${s} ${c}`).join(' · ')}`);
-        L.push(`**金指标**：入口页命中 **${entryHits}/${withGold.length}**（分母=金文件所在页存在于入口图的题；另 ${trRows.length - withGold.length} 题金页不存在=天花板，记 —）· 邻域触金召回 均值 **${pct(mean(reachVals))}**（游走到达文件∩core÷core）· 触金=0 的题 ${reachZero}/${reachRows.length}\n`);
-        L.push(`| # | id | 入口页 (top-3) | 金页 | 触金 | seeds | 步数 | stops |`);
+        L.push(`> "答案文件" = Claude 标准答案里列出的关键文件（claude-truth.json 的 core），下同。trace 文件本身不含任何答案信息，本节的对照是报告生成时算的。\n`);
+        L.push(`**入口**：${fbCount}/${trRows.length} 题在入口图里找不到页面、退回了普通符号搜索 · 被选最多的页面：${topPages.map(([p, c]) => `${p}×${c}`).join(' · ')}`);
+        L.push(`**游走**：平均每题走 ${mean(trRows.map(r => r.trMoves)).toFixed(1)} 步 · 停下来的原因：${[...stopDist].sort((a, b) => b[1] - a[1]).map(([s, c]) => `${s} ${c}`).join(' · ')}`);
+        L.push(`**对照标准答案**：入口页选对 **${entryHits}/${withGold.length}** 题（只算答案文件所在页面存在于入口图的题；另 ${trRows.length - withGold.length} 题答案文件根本不在任何 wiki 页面里，怎么选都选不到，记 —）· 平均找到 **${pct(mean(reachVals))}** 的答案文件 · 一个答案文件都没找到的题 ${reachZero}/${reachRows.length}\n`);
+        L.push(`| # | id | 选中的入口页 (top-3) | 入口页对吗 | 找到答案文件 | seeds | 走了几步 | 停止原因 |`);
         L.push(`|---|---|---|:-:|---:|---:|---:|---|`);
         trRows.forEach((r, i) => {
-            const pages = r.trFallback ? '(fallback)' : r.trPages.join('<br>');
+            const pages = r.trFallback ? '(退回符号搜索)' : r.trPages.join('<br>');
             const gold = r.entryHit === null ? '—' : r.entryHit ? '✓' : '✗';
             L.push(`| ${i + 1} | ${r.id} | ${pages} | ${gold} | ${r.reachGoldN}/${r.coreN} | ${r.trSeeds} | ${r.trMoves} | ${r.trStops.join('/')} |`);
+        });
+        L.push('');
+
+        // 2 — 游走诊断（四个白话指标）
+        L.push(`## 2. 游走诊断 — 效率、停止时机、和真 agent 的对比\n`);
+        const stepDist = new Map<string, number>();
+        for (const r of trRows) {
+            const k = r.firstGoldStep === null ? '没找到' : r.firstGoldStep === 0 ? '第0步(seed自身就是)' : `第${r.firstGoldStep}步`;
+            stepDist.set(k, (stepDist.get(k) ?? 0) + 1);
+        }
+        L.push(`**多快找到第一个答案文件**：${[...stepDist].sort().map(([k, c]) => `${k}×${c}`).join(' · ')}`);
+        const roundGold = new Map<number, number>();
+        for (const r of trRows) for (const [rd, cnt] of r.goldByRound) roundGold.set(rd, (roundGold.get(rd) ?? 0) + cnt);
+        L.push(`**每一轮新找到几个答案文件**（全部题目加总；轮次按每个 seed 自己数）：${[...roundGold].sort((a, b) => a[0] - b[0]).map(([rd, c]) => `第${rd}轮 ${c}个`).join(' · ') || '（无）'}`);
+        const stopBad = trRows.filter(r => r.stopVerdict !== '正常');
+        L.push(`**停止时机**：${trRows.length - stopBad.length}/${trRows.length} 题正常${stopBad.length ? `；有问题的：${stopBad.map(r => `${r.id}(${r.stopVerdict})`).join('、')}` : ''}`);
+        const sumWalker = trRows.reduce((s, r) => s + r.reachGoldN, 0);
+        const sumAgent = trRows.reduce((s, r) => s + r.agentGoldN, 0);
+        const sumOnly = trRows.reduce((s, r) => s + r.walkerOnlyN, 0);
+        L.push(`**和真 agent 对比**（同一批答案文件，共 ${trRows.reduce((s, r) => s + r.coreN, 0)} 个）：自动游走找到 ${sumWalker} 个，真 agent 在工具结果里见过 ${sumAgent} 个，**其中 ${sumOnly} 个是自动游走找到、agent 没见过的**——这就是把游走结果喂给 agent 能带来的增量上限。\n`);
+        L.push(`| # | id | 游走找到 | agent 见过 | 游走多找 | 第几步首次找到 | 停止评价 |`);
+        L.push(`|---|---|---:|---:|---:|---:|---|`);
+        trRows.forEach((r, i) => {
+            const first = r.firstGoldStep === null ? '没找到' : r.firstGoldStep === 0 ? 'seed 即是' : `第${r.firstGoldStep}步`;
+            L.push(`| ${i + 1} | ${r.id} | ${r.reachGoldN}/${r.coreN} | ${r.agentGoldN}/${r.coreN} | +${r.walkerOnlyN} | ${first} | ${r.stopVerdict} |`);
         });
         L.push('');
     }
 
     // 2 — agent 实际调用
-    L.push(`## 2. Agent 实际调用 — 每题的真实工具调用序列\n`);
+    L.push(`## 3. Agent 实际调用 — 每题的真实工具调用序列\n`);
     L.push(`> 解析自 \`logs/answers-gemini-mcp-selfloop/<id>.md\` 的 ## Tool Calls 段。\`plan:\` intent · \`search:\` query(·layer) · \`graph:\`/\`graph↓\`(down)/\`graph↑\`(up) target · \`details:\` file · \`wiki\`。⛔ = 用满 8 次调用预算。\n`);
     L.push(`| # | id | type | calls | trace (agent 实际调用) |`);
     L.push(`|---|---|---|---:|---|`);
