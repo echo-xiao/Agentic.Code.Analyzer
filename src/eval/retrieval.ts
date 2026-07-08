@@ -57,7 +57,7 @@ async function main() {
 
     // 漂移率（spec §4.1）：wiki-map 文件对当前 checkout 的存在率
     const allFiles = [...GLOBAL_INDEX.allFiles];
-    const { resolved: allResolved, missing: allMissing } = resolveWikiFiles(Object.keys(wikiMap.file_to_pages), allFiles);
+    const { missing: allMissing } = resolveWikiFiles(Object.keys(wikiMap.file_to_pages), allFiles);
     console.error(`wiki-map 漂移率: ${allMissing.length}/${Object.keys(wikiMap.file_to_pages).length} 文件未命中 checkout`);
 
     const symbolsOfFile = buildSymbolsOfFile();
@@ -106,7 +106,7 @@ async function main() {
 
         // entryPages：seed 文件 → 架构页
         const entryPages: Record<string, string[]> = {};
-        for (const seed of seeds) {
+        for (const seed of new Set(seeds)) {
             for (const f of walkCtx.filesOf(seed)) {
                 const wikiKey = Object.keys(wikiMap.file_to_pages).find(w => f.endsWith(w) || f === w);
                 if (wikiKey) entryPages[f] = wikiMap.file_to_pages[wikiKey];
