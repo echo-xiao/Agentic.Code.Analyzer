@@ -1,7 +1,7 @@
 import { test } from 'node:test';
 import assert from 'node:assert/strict';
 import { questionTokens } from './affinity.js';
-import { selectPages, resolveWikiFiles, selectSeedForPage } from './entry.js';
+import { selectPages, resolveWikiFiles, selectSeedForPage, informativeTokens } from './entry.js';
 import type { WikiMap, WikiPage } from '../../wikimap/parse.js';
 
 const PAGE_NOTIF: WikiPage = {
@@ -74,4 +74,40 @@ test('selectSeedForPage：相同分数时按符号字母序作为 tie-break', ()
     const step = selectSeedForPage(tokens, pageWithSymbols, resolved, symbolsOfFile);
     // 如果分数相同，应该选择 alphaPush（字母序较早）
     assert.equal(step.chosen, 'alphaPush');
+});
+
+test('informativeTokens：匹配过半页面的泛词被剔除，特异词保留', () => {
+    const generic = (name: string): WikiPage => ({
+        page: name, sections: [],
+        diagrams: [{ nodes: { X: 'rocketchat deployment server' }, edges: [], subgraphs: [] }],
+        source_files: {},
+    });
+    const map3: WikiMap = {
+        repo: 'r', derived_from: 'd',
+        pages: [
+            { ...generic('CI/CD Pipeline') },
+            { ...generic('Development Workflow') },
+            { page: 'Notifications', sections: ['Push Pipeline'],
+              diagrams: [{ nodes: { P: 'sendPushNotification / rocketchat push' }, edges: [], subgraphs: [] }],
+              source_files: {} },
+        ],
+        file_to_pages: {},
+    };
+    const { kept, dropped } = informativeTokens(['rocketchat', 'push'], map3);
+    assert.deepEqual(kept, ['push']);                       // 只命中 1/3 页
+    assert.equal(dropped.length, 1);
+    assert.equal(dropped[0].token, 'rocketchat');           // 命中 3/3 页 → 泛词
+    assert.equal(dropped[0].df, 3);
+});
+
+test('informativeTokens：全是泛词时回退原 tokens，不剃光头', () => {
+    const map1: WikiMap = {
+        repo: 'r', derived_from: 'd',
+        pages: [{ page: 'Overview', sections: [],
+            diagrams: [{ nodes: { X: 'rocketchat core' }, edges: [], subgraphs: [] }], source_files: {} }],
+        file_to_pages: {},
+    };
+    const { kept, dropped } = informativeTokens(['rocketchat'], map1);
+    assert.deepEqual(kept, ['rocketchat']);
+    assert.deepEqual(dropped, []);
 });

@@ -14,6 +14,33 @@ const PAGE_THRESHOLD = 0.3;
 // 结构部位权重：标题最可信，章节/节点次之，文件路径 token 最弱。
 const W_TITLE = 1.0, W_SECTION = 0.9, W_NODE = 0.9, W_FILE = 0.7;
 
+// 语料级泛词过滤（IDF-lite，从 wiki-map 自身派生、零硬编码词表）：一个 token 若能匹配超过
+// 半数页面（如产品名 rocket/chat 命中几乎所有页的节点 label/路径），它对选页没有区分度，
+// 反而让 CI/CD Pipeline 这类泛 token 密集页霸榜。df/N > 0.5 即剔除；全剔光时回退原 tokens。
+export function informativeTokens(
+    tokens: string[], map: WikiMap, threshold = PAGE_THRESHOLD,
+): { kept: string[]; dropped: Array<{ token: string; df: number; pages: number }> } {
+    const n = map.pages.length;
+    if (n === 0) return { kept: tokens, dropped: [] };
+    const pageParts = map.pages.map(p => [
+        p.page, ...p.sections,
+        ...p.diagrams.flatMap(d => Object.values(d.nodes)),
+        ...Object.keys(p.source_files),
+    ]);
+    const kept: string[] = [];
+    const dropped: Array<{ token: string; df: number; pages: number }> = [];
+    for (const t of tokens) {
+        let df = 0;
+        for (const parts of pageParts) {
+            if (parts.some(s => scoreString([t], s) >= threshold)) df++;
+        }
+        // 0.4：'rocket' df 恰好 16/32=0.5 曾从 >0.5 边界漏网（trace 实证 2026-07-08），收紧到 0.4
+        if (df / n >= 0.4) dropped.push({ token: t, df, pages: n }); else kept.push(t);
+    }
+    if (kept.length === 0) return { kept: tokens, dropped: [] };   // 全是泛词→不过滤，别把问题剃光头
+    return { kept, dropped };
+}
+
 export function selectPages(tokens: string[], map: WikiMap, threshold = PAGE_THRESHOLD): PageStep | null {
     const options: PageOption[] = [];
     for (const p of map.pages) {

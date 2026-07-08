@@ -13,7 +13,7 @@ import { GLOBAL_INDEX } from '../indexer/state.js';
 import { relPath } from '../server/engine/common.js';
 import { loadTestcases } from './utils/load-testcases.js';
 import { questionTokens } from './walker/affinity.js';
-import { selectPages, resolveWikiFiles, selectSeedForPage, fallbackSeeds, type SeedStep } from './walker/entry.js';
+import { selectPages, resolveWikiFiles, selectSeedForPage, fallbackSeeds, informativeTokens, type SeedStep } from './walker/entry.js';
 import { buildDirectedAdjacency, walkFromSeed, type WalkCtx, type WalkRound } from './walker/walk.js';
 import { parseAgentCalls, type AgentCalls } from './walker/agent-calls.js';
 import type { WikiMap } from '../wikimap/parse.js';
@@ -28,6 +28,7 @@ const OUT_DIR = path.join(ROOT, 'logs', 'data', 'retrieval-trace');
 
 interface Trace {
     id: string; question: string;
+    tokens: { used: string[]; genericDropped: Array<{ token: string; df: number; pages: number }> };
     pageStep: ReturnType<typeof selectPages> | { options: never[]; chosen: never[]; reason: string };
     seedStep: SeedStep[];
     walk: WalkRound[];
@@ -80,7 +81,9 @@ async function main() {
 
     let fallbackCount = 0;
     for (const tc of selected) {
-        const tokens = questionTokens(tc.question);
+        // 语料级去泛词：df/N>0.5 的 token（rocket/chat 等）对选页无区分度，从 wiki-map 派生剔除。
+        // 过滤后的 tokens 全程共用（选页/选seed/游走亲和度），保持"一处定义处处一致"。
+        const { kept: tokens, dropped: genericDropped } = informativeTokens(questionTokens(tc.question), wikiMap);
         const pageStep = selectPages(tokens, wikiMap);
         const seedSteps: SeedStep[] = [];
         let seeds: string[] = [];
@@ -115,6 +118,7 @@ async function main() {
 
         const trace: Trace = {
             id: tc.id, question: tc.question,
+            tokens: { used: tokens, genericDropped },
             pageStep: pageStep ?? { options: [], chosen: [], reason: 'fallback: 入口图无命中（全页低于阈值）' },
             seedStep: seedSteps, walk, entryPages,
             agentCalls: parseAgentCalls(tc.id, ANSWERS_DIR, VERDICTS),
