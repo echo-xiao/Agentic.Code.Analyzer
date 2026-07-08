@@ -82,3 +82,11 @@ test('entity-wise affinity：符号与其文件的最高分为该实体的分数
         `down.affinity ${r1.options.down.affinity} 应等于 entity-wise max(${pushQueueScore.toFixed(3)}, ${pushQueueFileScore.toFixed(3)}) = ${expectedAfinityRounded}`
     );
 });
+
+test('孤立种子：round 1 三方向全空，立即 stop', () => {
+    const rounds = walkFromSeed('lonelySymbol', ctx, ['push'], { minNewFiles: 1 });
+    assert.equal(rounds.length, 1);
+    assert.equal(rounds[0].chosen, null);
+    assert.ok(rounds[0].reason.includes('stop'));
+    for (const m of ['expand', 'down', 'up'] as const) assert.equal(rounds[0].options[m].newFiles, 0);
+});
