@@ -43,17 +43,29 @@ export function informativeTokens(
 
 export function selectPages(tokens: string[], map: WikiMap, threshold = PAGE_THRESHOLD): PageStep | null {
     const options: PageOption[] = [];
+    // 多 token 佐证：页面分 = top-K 个不同 token 各自最佳命中的均值（K=min(2,token数)，÷K）。
+    // 单最佳部位打分是"单证人定罪"——同形异义孤证（git push 撞 'Push to develop'）能独占高分；
+    // 佐证制下孤证被摊薄一半，同时命中 push+notifications 的页面胜出（trace 实证 2026-07-08）。
+    const K = Math.min(2, Math.max(1, tokens.length));
     for (const p of map.pages) {
-        const parts: Array<{ name: string; score: number }> = [];
-        parts.push({ name: 'title', score: W_TITLE * scoreString(tokens, p.page) });
-        for (const s of p.sections) parts.push({ name: `section:${s}`, score: W_SECTION * scoreString(tokens, s) });
-        for (const d of p.diagrams) for (const label of Object.values(d.nodes))
-            parts.push({ name: `node:${label.slice(0, 40)}`, score: W_NODE * scoreString(tokens, label) });
-        for (const f of Object.keys(p.source_files)) parts.push({ name: `file:${f}`, score: W_FILE * scoreString(tokens, f) });
-
-        const best = parts.reduce((a, b) => (b.score > a.score ? b : a), { name: '', score: 0 });
-        const hitOn = parts.filter(x => x.score >= threshold).sort((a, b) => b.score - a.score || a.name.localeCompare(b.name)).slice(0, 3).map(x => x.name);
-        options.push({ page: p.page, score: Number(best.score.toFixed(3)), hitOn });
+        const parts: Array<{ name: string; w: number; text: string }> = [
+            { name: 'title', w: W_TITLE, text: p.page },
+            ...p.sections.map(s => ({ name: `section:${s}`, w: W_SECTION, text: s })),
+            ...p.diagrams.flatMap(d => Object.values(d.nodes).map(label => ({ name: `node:${label.slice(0, 40)}`, w: W_NODE, text: label }))),
+            ...Object.keys(p.source_files).map(f => ({ name: `file:${f}`, w: W_FILE, text: f })),
+        ];
+        const perToken = tokens.map(t => {
+            let best = { score: 0, name: '' };
+            for (const part of parts) {
+                const s = part.w * scoreString([t], part.text);
+                if (s > best.score) best = { score: s, name: part.name };
+            }
+            return { token: t, score: best.score, name: best.name };
+        }).sort((a, b) => b.score - a.score || a.token.localeCompare(b.token));
+        const topK = perToken.slice(0, K);
+        const score = topK.reduce((s, x) => s + x.score, 0) / K;
+        const hitOn = topK.filter(x => x.score >= threshold).map(x => `${x.token}→${x.name}`);
+        options.push({ page: p.page, score: Number(score.toFixed(3)), hitOn });
     }
     options.sort((a, b) => b.score - a.score || a.page.localeCompare(b.page));
     const top10 = options.slice(0, 10);

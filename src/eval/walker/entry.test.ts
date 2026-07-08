@@ -111,3 +111,20 @@ test('informativeTokens：全是泛词时回退原 tokens，不剃光头', () =>
     assert.deepEqual(kept, ['rocketchat']);
     assert.deepEqual(dropped, []);
 });
+
+test('selectPages：多 token 佐证——孤证页(仅 push 命中)被双证页压下去', () => {
+    const gitPage: WikiPage = {
+        page: 'CI Pipeline', sections: ['Push to develop'],
+        diagrams: [{ nodes: {}, edges: [], subgraphs: [] }], source_files: {},
+    };
+    const msgPage: WikiPage = {
+        page: 'Messaging', sections: ['Push Notifications'],
+        diagrams: [{ nodes: {}, edges: [], subgraphs: [] }], source_files: {},
+    };
+    const m: WikiMap = { repo: 'r', derived_from: 'd', pages: [gitPage, msgPage], file_to_pages: {} };
+    const step = selectPages(['push', 'notifications'], m)!;
+    assert.equal(step.chosen[0], 'Messaging');
+    const git = step.options.find(o => o.page === 'CI Pipeline')!;
+    const msg = step.options.find(o => o.page === 'Messaging')!;
+    assert.ok(msg.score > git.score, `双证 ${msg.score} 应 > 孤证 ${git.score}`);
+});
