@@ -1,6 +1,7 @@
 import { test } from 'node:test';
 import assert from 'node:assert/strict';
 import { buildDirectedAdjacency, walkFromSeed, type WalkCtx } from './walk.js';
+import { scoreString } from './affinity.js';
 
 // 合成图：pushSend --calls--> pushQueue --calls--> pushGateway；adminPage --calls--> pushSend
 // callGraph 形态 Map<callee, [{caller}]>
@@ -54,4 +55,30 @@ test('确定性：同输入两次结果深度相等', () => {
     const a = walkFromSeed('pushSend', ctx, ['push'], { minNewFiles: 1 });
     const b = walkFromSeed('pushSend', ctx, ['push'], { minNewFiles: 1 });
     assert.deepEqual(a, b);
+});
+
+test('entity-wise affinity：符号与其文件的最高分为该实体的分数，避免double-count', () => {
+    const rounds = walkFromSeed('pushSend', ctx, ['push'], { minNewFiles: 1 });
+    assert.ok(rounds.length > 0, '应至少有一轮');
+    const r1 = rounds[0];
+
+    // down 的选择应是最优的（对比 up 和 expand）
+    assert.equal(r1.chosen, 'down', 'down 应是选中方向');
+    assert.ok(
+        r1.options.down.affinity > r1.options.up.affinity,
+        `down.affinity ${r1.options.down.affinity} 应高于 up.affinity ${r1.options.up.affinity}`
+    );
+
+    // 验证 pushQueue 和其文件采用 entity-wise 最高分，而非混池
+    // pushQueue 符号分 = 0.895，server/pushQueue.ts 文件分 = 0.824，entity max = 0.895
+    const pushQueueScore = scoreString(['push'], 'pushQueue');
+    const pushQueueFileScore = scoreString(['push'], 'server/pushQueue.ts');
+    const expectedEntityScore = Math.max(pushQueueScore, pushQueueFileScore);
+    const expectedAfinityRounded = Number(expectedEntityScore.toFixed(3));
+
+    assert.equal(
+        r1.options.down.affinity,
+        expectedAfinityRounded,
+        `down.affinity ${r1.options.down.affinity} 应等于 entity-wise max(${pushQueueScore.toFixed(3)}, ${pushQueueFileScore.toFixed(3)}) = ${expectedAfinityRounded}`
+    );
 });
