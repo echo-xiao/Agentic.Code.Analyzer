@@ -11,6 +11,8 @@ const STOPWORDS = new Set([
     'after', 'before', 'about', 'between', 'through', 'during', 'via',
     'i', 'you', 'we', 'they', 'he', 'she', 'my', 'your', 'our', 'their',
     'there', 'here', 'then', 'than', 'so', 'if', 'else', 'each', 'all', 'any', 'some',
+    // 问句模式词：与内容无关但会 fuzzy 撞标题（'work' 0.82 命中 "Development Workflow"，trace 实证 2026-07-08）
+    'work', 'works', 'working', 'happen', 'happens', 'happened', 'complete', 'entire',
 ]);
 
 export function questionTokens(question: string): string[] {
