@@ -11,17 +11,6 @@ export function fileMatches(text: string, gtFile: string): boolean {
     return text.includes(`${dir}/${base.replace(/\.(tsx?|js)$/, '')}`);
 }
 
-function symMatch(text: string, sym: string): boolean {
-    return new RegExp(`\\b${sym.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')}\\b`).test(text);
-}
-
-// Lenient coverage: fraction of {core files ∪ key symbols} the answer mentions.
-export function coverage(text: string, core: string[], syms: string[]): number {
-    const total = core.length + syms.length;
-    if (!total) return 1;
-    return (core.filter(f => fileMatches(text, f)).length + syms.filter(s => symMatch(text, s)).length) / total;
-}
-
 // Read a markdown section between a start marker and the first of any end markers.
 export function readSection(file: string, start: string, ends: string[]): string {
     try {
@@ -30,10 +19,6 @@ export function readSection(file: string, start: string, ends: string[]): string
         for (const e of ends) if (s.includes(e)) s = s.split(e)[0];
         return s.trim();
     } catch { return ''; }
-}
-
-export function tokensOf(file: string, re: RegExp): number {
-    try { return Number((fs.readFileSync(file, 'utf-8').match(re)?.[1] ?? '0').replace(/,/g, '')); } catch { return 0; }
 }
 
 // Pull path-like file references out of answer prose.
