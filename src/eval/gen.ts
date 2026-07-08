@@ -1,11 +1,11 @@
 #!/usr/bin/env npx tsx
 /**
  * gen — generate agent answers over the testcases. GENERATOR ONLY; scoring lives in
- * tools.ts / token.ts / report.ts, semantic verdicts in verdicts.md.
+ * tools.ts / report.ts, semantic verdicts in verdicts.md (judge.ts).
+ * (nomcp / wiki-only / nav-only 对照模式已退役 2026-07-08 — 结论存 division.md 与 git 历史。)
  *
- *   --mode=nomcp   Gemini with no tools → logs/answers-gemini-nomcp/
- *   --mode=mcp     Gemini + plan/search/graph/details self-loop → logs/answers-gemini-mcp-selfloop/
- *   --oracle       (mcp only) force SESSION intent from the testcase's questionType — measures the
+ *   --mode=mcp     Gemini + plan/search/graph/details/wiki self-loop → logs/answers-gemini-mcp-selfloop/
+ *   --oracle       force SESSION intent from the testcase's questionType — measures the
  *                  routing ceiling; the gap vs a normal run = the cost of plan's misclassification.
  *   --model=...    default gemini-2.5-flash
  *   --filter=...   run a subset by id/subsystem substring
@@ -167,9 +167,8 @@ function saveMcpAnswers(dir: string, records: AnswerRecord[]) {
 
 async function main() {
     const mode = process.argv.find(a => a.startsWith('--mode='))?.split('=')[1];
-    const MCP_MODES = ['mcp', 'nav-only', 'wiki-only'];
-    if (mode !== 'nomcp' && !MCP_MODES.includes(mode ?? '')) {
-        console.error('Usage: gen.ts --mode=nomcp|mcp|nav-only|wiki-only [--oracle] [--model=...] [--filter=...]');
+    if (mode !== 'mcp') {
+        console.error('Usage: gen.ts --mode=mcp [--oracle] [--model=...] [--filter=...]');
         process.exit(1);
     }
     const oracle = process.argv.includes('--oracle');
@@ -190,43 +189,6 @@ async function main() {
     const isPro = modelName.includes('pro');
     const pause = (ms: number) => new Promise(r => setTimeout(r, ms));
 
-    if (mode === 'nomcp') {
-        const model = genAI.getGenerativeModel({
-            model: modelName,
-            systemInstruction: {
-                role: 'user',
-                parts: [{ text: 'You are a software architect expert on the Rocket.Chat open-source codebase (https://github.com/RocketChat/Rocket.Chat). Answer questions about its architecture, code structure, and implementation details. Always include specific file paths when possible.' }],
-            },
-            // Determinism: greedy decode so re-runs are reproducible (single-run comparisons need it).
-            generationConfig: { temperature: 0, topK: 1, topP: 1, candidateCount: 1 },
-        });
-        const dir = path.join(PROJECT_ROOT, 'logs', 'answers-gemini-nomcp');
-        fs.mkdirSync(dir, { recursive: true });
-        console.error(`Running ${selected.length} baseline questions with ${modelName} (NO tools)...\n`);
-        let totalTokens = 0;
-        for (let i = 0; i < selected.length; i++) {
-            const tc = selected[i];
-            process.stderr.write(`  [${i + 1}/${selected.length}] ${tc.id}... `);
-            try {
-                const result = await model.generateContent(tc.question);
-                const answer = result.response.text();
-                const tokens = result.response.usageMetadata?.totalTokenCount ?? 0;
-                totalTokens += tokens;
-                const md = `# ${tc.question}\n\n## Baseline Answer (no tools)\n\n${answer}\n\n## Metrics\n\n| Metric | Value |\n|--------|-------|\n| Tokens | ${tokens.toLocaleString()} |\n| Model | ${modelName} |\n| Tools | NONE |\n`;
-                fs.writeFileSync(path.join(dir, `${tc.id}.md`), md, 'utf-8');
-                console.error(`OK (${tokens} tokens)`);
-                if (i < selected.length - 1) await pause(isPro ? 13000 : 4500);
-            } catch (e: any) {
-                console.error(`ERROR: ${e?.message ?? e}`);
-                await pause(5000);
-            }
-        }
-        console.error(`Answers: logs/answers-gemini-nomcp/`);
-        console.log(`\n${selected.length} answers | ${totalTokens.toLocaleString()} total tokens`);
-        return;
-    }
-
-    // mcp-family modes (mcp=combined / nav-only / wiki-only): same self-loop, different toolset + dir.
     console.error('Loading index...');
     await ensureIndex();
     console.error(`Index ready: ${GLOBAL_INDEX.symbols.size} symbols, ${GLOBAL_INDEX.allFiles.size} files.\n`);
@@ -237,15 +199,8 @@ async function main() {
         parameters: { type: SchemaType.OBJECT, properties: { question: { type: SchemaType.STRING, description: 'A natural-language architecture question' } }, required: ['question'] },
     };
     const WIKI_SYS = '\n\nYou also have wiki(question): a grounded architecture-overview tool. Call it first for a high-level map of the relevant subsystem, then verify exact symbols/files with search/graph/details. Trust only paths the grounding footer confirms are in the codebase.';
-    const WIKI_ONLY_SYS = `You are answering questions about the Rocket.Chat codebase using ONE tool: wiki(question), a grounded architecture wiki (DeepWiki) returning prose + file paths verified against the codebase index. Ask it what you need, then answer. Include the specific file path for every key file; when the question is a flow, list the chain Entry → … → Final. Trust only paths the grounding footer confirms.`;
 
-    // wiki-only / nav-only isolate one half of the toolset to measure DeepWiki vs navigation division of labour.
-    const modeConfig: Record<string, { functions: FunctionDeclaration[]; sysText: string; dir: string }> = {
-        'mcp':       { functions: [...GEMINI_FUNCTIONS, WIKI_FUNCTION], sysText: SYSTEM_PROMPT + WIKI_SYS, dir: 'answers-gemini-mcp-selfloop' },
-        'nav-only':  { functions: GEMINI_FUNCTIONS,                     sysText: SYSTEM_PROMPT,            dir: 'answers-gemini-nav-only' },
-        'wiki-only': { functions: [WIKI_FUNCTION],                      sysText: WIKI_ONLY_SYS,            dir: 'answers-gemini-wiki-only' },
-    };
-    const cfg = modeConfig[mode as string];
+    const cfg = { functions: [...GEMINI_FUNCTIONS, WIKI_FUNCTION], sysText: SYSTEM_PROMPT + WIKI_SYS, dir: 'answers-gemini-mcp-selfloop' };
 
     const model = genAI.getGenerativeModel({
         model: modelName,
