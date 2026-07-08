@@ -8,7 +8,6 @@
     "prewarm": "NODE_OPTIONS=\"--max-old-space-size=8192\" npx tsx src/server/index.ts --prewarm",
     "start": "NODE_OPTIONS=\"--max-old-space-size=8192\" npx tsx src/server/index.ts",
     "inspect": "npx @modelcontextprotocol/inspector npx tsx src/server/index.ts",
-    "gen:nomcp": "npx tsx src/eval/gen.ts --mode=nomcp",
     "gen:mcp": "NODE_OPTIONS=\"--max-old-space-size=8192\" npx tsx src/eval/gen.ts --mode=mcp",
     "gen:wiki-only": "NODE_OPTIONS=\"--max-old-space-size=8192\" npx tsx src/eval/gen.ts --mode=wiki-only",
     "gen:nav-only": "NODE_OPTIONS=\"--max-old-space-size=8192\" npx tsx src/eval/gen.ts --mode=nav-only",
