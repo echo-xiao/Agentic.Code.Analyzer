@@ -62,8 +62,18 @@ export function walkFromSeed(
             const files = [...fileSet].sort((a, b) => scoreString(tokens, b) - scoreString(tokens, a) || a.localeCompare(b));
             // affinity = 候选分 top-5 均值（信号密度）。不能取 max：expand 的邻居集是 down∪up 的
             // 超集，max(expand) 恒 ≥ max(方向)，平分再优先 expand 会让方向选择退化成"永远 expand"。
-            const scores = [...nextSyms, ...files].map(c => scoreString(tokens, c)).sort((a, b) => b - a);
-            const topN = scores.slice(0, 5);
+            // 按实体计分：每个新符号取 max(符号名分, 其新增文件最高分)——符号和它的文件是同一实体，
+            // 混入同一池会重复计分、扭曲方向对比。
+            const entityScores = [...nextSyms].map(s => {
+                let best = scoreString(tokens, s);
+                for (const f of ctx.filesOf(s)) {
+                    if (!fileSet.has(f)) continue;
+                    const v = scoreString(tokens, f);
+                    if (v > best) best = v;
+                }
+                return best;
+            }).sort((a, b) => b - a);
+            const topN = entityScores.slice(0, 5);
             const affinity = topN.length ? topN.reduce((s, v) => s + v, 0) / topN.length : 0;
             preview[move] = {
                 syms: nextSyms, files,
