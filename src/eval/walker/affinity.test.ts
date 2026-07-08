@@ -33,3 +33,7 @@ test('bestAffinity 取候选里最高分', () => {
 test('bestAffinity 空候选 = 0', () => {
     assert.equal(bestAffinity(['push'], []), 0);
 });
+
+test('scoreString：空 tokens = 0', () => {
+    assert.equal(scoreString([], 'anything'), 0);
+});

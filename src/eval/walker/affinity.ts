@@ -18,9 +18,11 @@ export function questionTokens(question: string): string[] {
         .replace(/([a-z])([A-Z])/g, '$1 $2')   // 拆驼峰（问题里出现符号名时）
         .toLowerCase()
         .split(/[^a-z0-9]+/);
+    const seen = new Set<string>();
     const out: string[] = [];
     for (const w of raw) {
-        if (w.length < 3 || STOPWORDS.has(w) || out.includes(w)) continue;
+        if (w.length < 3 || STOPWORDS.has(w) || seen.has(w)) continue;
+        seen.add(w);
         out.push(w);
     }
     return out;
