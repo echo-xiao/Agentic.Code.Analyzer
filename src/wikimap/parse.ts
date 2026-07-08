@@ -6,7 +6,7 @@ export interface WikiPage { page: string; sections: string[]; diagrams: WikiDiag
 export interface WikiMap { repo: string; derived_from: string; pages: WikiPage[]; file_to_pages: Record<string, string[]> }
 
 const NODE_RE = /^\s*(\w+)\[["']?(.+?)["']?\]\s*$/gm;
-const EDGE_RE = /^\s*(\w+)\s*(?:-{1,3}\.?-*>?|={2}>)\s*(?:\|"?([^|"\n]*)"?\|\s*)?(\w+)\s*$/gm;
+const EDGE_RE = /^\s*(\w+)\s*(?:-{1,3}\.?-*>|={2}>)\s*(?:\|"?([^|"\n]*)"?\|\s*)?(\w+)\s*$/gm;
 const SUBGRAPH_RE = /subgraph\s+"?([^"\n]+?)"?\s*$/gm;
 const SRC_RE = /\[([\w./ @-]+?)(?::(\d+(?:-\d+)?))?\]\(\)/g;
 const MERMAID_RE = /```mermaid\n([\s\S]*?)```/g;

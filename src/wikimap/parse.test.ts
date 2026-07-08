@@ -28,6 +28,7 @@ graph TB
 
     PUSH --> QUEUE
     QUEUE -->|"delay"| GATEWAY
+    ALPHA --- BETA
 \`\`\`
 
 Sources: [apps/meteor/server/lib/push.ts:10-90](), [apps/meteor/server/lib/push.ts:2-6](), [not-a-file]()
@@ -51,6 +52,8 @@ test('mermaid 节点/边/子图解析，<br/> 换成 " / "', () => {
     assert.equal(d.nodes['QUEUE'], 'NotificationQueue');
     assert.deepEqual(d.subgraphs, ['Server Side']);
     assert.deepEqual(d.edges, [['PUSH', 'QUEUE'], ['QUEUE', 'GATEWAY', 'delay']]);
+    // Undirected edges (A --- B) must NOT produce edges
+    assert.ok(!d.edges.some(e => (e[0] === 'ALPHA' && e[1] === 'BETA')), 'Undirected edge ALPHA --- BETA should not be in edges');
 });
 
 test('source_files：行区间合并去重，非文件（无扩展名）丢弃', () => {
