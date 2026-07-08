@@ -1,0 +1,5632 @@
+{
+ "repo": "RocketChat/Rocket.Chat",
+ "derived_from": "deepwiki mcp read_wiki_contents",
+ "pages": [
+  {
+   "page": "Overview",
+   "sections": [
+    "Purpose",
+    "Repository Architecture",
+    "Core Application: apps/meteor",
+    "Microservices Architecture (Enterprise Edition)",
+    "Shared Packages Ecosystem",
+    "Technology Stack and Runtime Requirements",
+    "Build and Development Workflow",
+    "Release Management"
+   ],
+   "diagrams": [
+    {
+     "nodes": {
+      "Root": "package.json / v8.7.0-develop / Workspaces: apps/*, packages/*, / ee/apps/*, ee/packages/*",
+      "MeteorApp": "apps/meteor / @rocket.chat/meteor / v8.7.0-develop / Main Application",
+      "UIKitPG": "apps/uikit-playground / v0.7.5 / UI Kit Demos",
+      "CoreTypings": "packages/core-typings / v8.7.0-develop / Domain Types",
+      "RestTypings": "packages/rest-typings / v8.7.0-develop / API Contracts",
+      "CoreServices": "packages/core-services / Internal Service Layer",
+      "Models": "packages/models / Data Access Layer",
+      "Fuselage": "packages/fuselage / Base UI Components",
+      "FuselageUIKit": "packages/fuselage-ui-kit / UiKit Elements for Apps",
+      "UIContexts": "packages/ui-contexts / React Contexts",
+      "UIClient": "packages/ui-client / Client Utilities and Hooks",
+      "Gazzodown": "packages/gazzodown / Markdown Renderer",
+      "DDPStreamer": "ee/apps/ddp-streamer / WebSocket Handler",
+      "AccountSvc": "ee/apps/account-service / User Management & bcrypt",
+      "PresenceSvc": "ee/apps/presence-service / User Presence Tracking",
+      "AuthzSvc": "ee/apps/authorization-service / ABAC Permissions Service",
+      "OmniServices": "ee/packages/omnichannel-services",
+      "PresencePkg": "ee/packages/presence",
+      "PDFWorker": "ee/packages/pdf-worker"
+     },
+     "edges": [
+      [
+       "Root",
+       "MeteorApp"
+      ],
+      [
+       "Root",
+       "UIKitPG"
+      ],
+      [
+       "Root",
+       "CoreTypings"
+      ],
+      [
+       "Root",
+       "CoreServices"
+      ],
+      [
+       "MeteorApp",
+       "CoreTypings"
+      ],
+      [
+       "MeteorApp",
+       "RestTypings"
+      ],
+      [
+       "MeteorApp",
+       "CoreServices"
+      ],
+      [
+       "MeteorApp",
+       "Fuselage"
+      ],
+      [
+       "MeteorApp",
+       "FuselageUIKit"
+      ],
+      [
+       "DDPStreamer",
+       "CoreServices"
+      ],
+      [
+       "AccountSvc",
+       "CoreServices"
+      ],
+      [
+       "PresenceSvc",
+       "CoreServices"
+      ],
+      [
+       "AuthzSvc",
+       "CoreServices"
+      ],
+      [
+       "CoreServices",
+       "CoreTypings"
+      ],
+      [
+       "CoreServices",
+       "Models"
+      ]
+     ],
+     "subgraphs": [
+      "Community Edition",
+      "Shared Packages",
+      "UI Design System",
+      "Enterprise Edition",
+      "EE Microservices",
+      "EE Packages"
+     ]
+    },
+    {
+     "nodes": {
+      "WebClients": "Web & Mobile Clients",
+      "Meteor": "apps/meteor / Monolith / API / UI",
+      "DDPStreamer": "ee/apps/ddp-streamer / WebSocket Proxy",
+      "Authorization": "ee/apps/authorization-service / ABAC Permissions",
+      "Account": "ee/apps/account-service / User Management",
+      "Presence": "ee/apps/presence-service / Presence Tracking",
+      "NATS": "NATS Broker / Pub/Sub Transport",
+      "MongoDB": "MongoDB 6.10.0 Replica Set"
+     },
+     "edges": [
+      [
+       "WebClients",
+       "Meteor"
+      ],
+      [
+       "WebClients",
+       "DDPStreamer"
+      ],
+      [
+       "Meteor",
+       "NATS"
+      ],
+      [
+       "DDPStreamer",
+       "NATS"
+      ],
+      [
+       "Authorization",
+       "NATS"
+      ],
+      [
+       "Account",
+       "NATS"
+      ],
+      [
+       "Presence",
+       "NATS"
+      ],
+      [
+       "Meteor",
+       "MongoDB"
+      ],
+      [
+       "DDPStreamer",
+       "MongoDB"
+      ],
+      [
+       "Authorization",
+       "MongoDB"
+      ],
+      [
+       "Account",
+       "MongoDB"
+      ],
+      [
+       "Presence",
+       "MongoDB"
+      ]
+     ],
+     "subgraphs": [
+      "Clients",
+      "Application Layer",
+      "Microservices Layer",
+      "Message Bus",
+      "Data Layer"
+     ]
+    }
+   ],
+   "source_files": {
+    "package.json": [
+     "1-15",
+     "17-23",
+     "14-23",
+     "56",
+     "112-120",
+     "24-36",
+     "101",
+     "121-127"
+    ],
+    "README.md": [
+     "1-23"
+    ],
+    "apps/meteor/package.json": [
+     "2-3",
+     "1-19",
+     "2-109"
+    ],
+    "packages/fuselage-ui-kit/package.json": [
+     "2-3",
+     "1-5"
+    ],
+    "packages/gazzodown/package.json": [
+     "2-3",
+     "1-3"
+    ],
+    "ee/apps/account-service/package.json": [
+     "1-10"
+    ],
+    "ee/apps/ddp-streamer/package.json": [
+     "1-10"
+    ],
+    "ee/apps/presence-service/package.json": [
+     "1-10"
+    ],
+    "packages/ui-client/package.json": [
+     "1-3"
+    ],
+    "HISTORY.md": [
+     "5-9"
+    ],
+    "apps/meteor/app/utils/rocketchat.info": [
+     "1-3"
+    ]
+   }
+  },
+  {
+   "page": "System Architecture",
+   "sections": [
+    "High-Level System Overview",
+    "Monorepo Structure (Summary)",
+    "Core Application",
+    "Enterprise Microservices",
+    "UI Component System",
+    "Internationalization System",
+    "Database Migrations",
+    "Type System and API Contracts",
+    "Build System and Toolchain"
+   ],
+   "diagrams": [
+    {
+     "nodes": {
+      "Root": "package.json v8.7.0-develop / Node 22.16.0 | Yarn 4.12.0",
+      "MeteorApp": "apps/meteor / @rocket.chat/meteor / v8.7.0-develop",
+      "UIKitPlay": "apps/uikit-playground / v0.7.5",
+      "CoreTypings": "packages/core-typings / v8.7.0-develop",
+      "RestTypings": "packages/rest-typings / v8.7.0-develop",
+      "CoreServices": "packages/core-services",
+      "Models": "packages/models",
+      "Fuselage": "packages/fuselage / v0.81.0",
+      "FuselageUIKit": "packages/fuselage-ui-kit / v32.0.0",
+      "UIContexts": "packages/ui-contexts",
+      "UIClient": "packages/ui-client / v32.0.0",
+      "Gazzodown": "packages/gazzodown / v32.0.0",
+      "DDPStreamer": "ee/apps/ddp-streamer / WebSocket Handler",
+      "AccountSvc": "ee/apps/account-service / User Accounts",
+      "PresenceSvc": "ee/apps/presence-service / User Status",
+      "AuthzSvc": "ee/apps/authorization-service / Permissions",
+      "TranscriptSvc": "ee/apps/omnichannel-transcript / PDF Generation",
+      "QueueWorker": "ee/apps/queue-worker / Background Jobs",
+      "MongoDB": "(\"MongoDB 8.0 / Replica Set: rs0\")",
+      "NATS": "NATS Broker / nats:4222",
+      "Turbo": "Turbo 2.8.21 / Build Orchestrator"
+     },
+     "edges": [
+      [
+       "Root",
+       "MeteorApp"
+      ],
+      [
+       "Root",
+       "UIKitPlay"
+      ],
+      [
+       "Root",
+       "CoreTypings"
+      ],
+      [
+       "Root",
+       "RestTypings"
+      ],
+      [
+       "MeteorApp",
+       "CoreTypings"
+      ],
+      [
+       "MeteorApp",
+       "RestTypings"
+      ],
+      [
+       "MeteorApp",
+       "CoreServices"
+      ],
+      [
+       "MeteorApp",
+       "Models"
+      ],
+      [
+       "MeteorApp",
+       "Fuselage"
+      ],
+      [
+       "MeteorApp",
+       "FuselageUIKit"
+      ],
+      [
+       "MeteorApp",
+       "UIContexts"
+      ],
+      [
+       "MeteorApp",
+       "UIClient"
+      ],
+      [
+       "MeteorApp",
+       "Gazzodown"
+      ],
+      [
+       "DDPStreamer",
+       "CoreServices"
+      ],
+      [
+       "AccountSvc",
+       "CoreServices"
+      ],
+      [
+       "PresenceSvc",
+       "CoreServices"
+      ],
+      [
+       "AuthzSvc",
+       "CoreServices"
+      ],
+      [
+       "TranscriptSvc",
+       "CoreServices"
+      ],
+      [
+       "QueueWorker",
+       "CoreServices"
+      ],
+      [
+       "CoreServices",
+       "CoreTypings"
+      ],
+      [
+       "MeteorApp",
+       "MongoDB"
+      ],
+      [
+       "DDPStreamer",
+       "MongoDB"
+      ],
+      [
+       "DDPStreamer",
+       "NATS"
+      ],
+      [
+       "AccountSvc",
+       "NATS"
+      ],
+      [
+       "PresenceSvc",
+       "NATS"
+      ],
+      [
+       "AuthzSvc",
+       "NATS"
+      ],
+      [
+       "MeteorApp",
+       "NATS"
+      ],
+      [
+       "Turbo",
+       "MeteorApp"
+      ],
+      [
+       "Turbo",
+       "DDPStreamer"
+      ]
+     ],
+     "subgraphs": [
+      "Monorepo Root",
+      "Community Edition",
+      "Shared Packages",
+      "UI System",
+      "Enterprise Microservices",
+      "Infrastructure"
+     ]
+    },
+    {
+     "nodes": {
+      "Main": "@rocket.chat/meteor"
+     },
+     "edges": [],
+     "subgraphs": [
+      "apps/meteor"
+     ]
+    },
+    {
+     "nodes": {
+      "NATS": "(\"NATS Broker / Port 4222\")",
+      "DDP": "ddp-streamer (WebSocket Traffic)",
+      "Acc": "account-service (User Management)",
+      "Pres": "presence-service (User Status)",
+      "Auth": "authorization-service (Permissions)"
+     },
+     "edges": [],
+     "subgraphs": [
+      "Service Mesh",
+      "Services"
+     ]
+    },
+    {
+     "nodes": {
+      "Turbo": "Turbo Run Build"
+     },
+     "edges": [],
+     "subgraphs": []
+    }
+   ],
+   "source_files": {
+    "package.json": [
+     "114-120",
+     "17-23",
+     "109",
+     "110",
+     "56",
+     "1-128",
+     "24-36",
+     "22",
+     "114",
+     "25-36",
+     "100-111"
+    ],
+    "HISTORY.md": [
+     "7-8"
+    ],
+    "apps/meteor/package.json": [
+     "1-67",
+     "1-63",
+     "135-144",
+     "30"
+    ],
+    "packages/core-typings/package.json": [
+     "1-41"
+    ],
+    "packages/rest-typings/package.json": [
+     "1-33"
+    ],
+    "packages/fuselage-ui-kit/package.json": [
+     "1-113"
+    ],
+    "packages/ui-client/package.json": [
+     "1-81"
+    ],
+    "packages/gazzodown/package.json": [
+     "1-89"
+    ]
+   }
+  },
+  {
+   "page": "Monorepo Structure",
+   "sections": [
+    "Purpose and Scope",
+    "Workspace Configuration",
+    "Community Edition Structure",
+    "Enterprise Edition Structure",
+    "Dependency Management",
+    "Build Orchestration",
+    "Version Management"
+   ],
+   "diagrams": [
+    {
+     "nodes": {
+      "Root": "package.json (root) / name: rocket.chat / version: 8.7.0-develop",
+      "Apps": "apps/* / Main applications",
+      "Packages": "packages/* / Shared libraries",
+      "EEApps": "ee/apps/* / Enterprise services",
+      "EEPackages": "ee/packages/* / Enterprise libraries",
+      "EEServices": "apps/meteor/ee/server/services / Legacy EE services"
+     },
+     "edges": [
+      [
+       "Root",
+       "Apps"
+      ],
+      [
+       "Root",
+       "Packages"
+      ],
+      [
+       "Root",
+       "EEApps"
+      ],
+      [
+       "Root",
+       "EEPackages"
+      ],
+      [
+       "Root",
+       "EEServices"
+      ]
+     ],
+     "subgraphs": [
+      "Workspace Patterns"
+     ]
+    },
+    {
+     "nodes": {
+      "CoreTypings": "@rocket.chat/core-typings / Domain entities & interfaces / 8.7.0-develop",
+      "RestTypings": "@rocket.chat/rest-typings / REST API contracts / 8.7.0-develop",
+      "ModelTypings": "@rocket.chat/model-typings / Database model types / (workspace)"
+     },
+     "edges": [
+      [
+       "CoreTypings",
+       "RestTypings"
+      ],
+      [
+       "CoreTypings",
+       "ModelTypings"
+      ]
+     ],
+     "subgraphs": [
+      "Type Definition Packages"
+     ]
+    },
+    {
+     "nodes": {
+      "Fuselage": "@rocket.chat/fuselage / Base component library",
+      "FuselageUIKit": "@rocket.chat/fuselage-ui-kit / UiKit adapters / v32.0.0",
+      "UIContexts": "@rocket.chat/ui-contexts / React contexts / (workspace)",
+      "UIClient": "@rocket.chat/ui-client / Client utilities / v32.0.0",
+      "Gazzodown": "@rocket.chat/gazzodown / Markdown renderer / v32.0.0",
+      "UIAvatar": "@rocket.chat/ui-avatar / Avatar components / (workspace)",
+      "UIVideoConf": "@rocket.chat/ui-video-conf / Video conference UI / (workspace)",
+      "UIVoip": "@rocket.chat/ui-voip / VoIP UI components / (workspace)"
+     },
+     "edges": [
+      [
+       "Fuselage",
+       "FuselageUIKit"
+      ],
+      [
+       "Fuselage",
+       "UIClient"
+      ],
+      [
+       "Fuselage",
+       "Gazzodown"
+      ],
+      [
+       "UIContexts",
+       "UIClient"
+      ],
+      [
+       "UIContexts",
+       "UIAvatar"
+      ],
+      [
+       "UIContexts",
+       "UIVideoConf"
+      ],
+      [
+       "UIContexts",
+       "UIVoip"
+      ]
+     ],
+     "subgraphs": [
+      "Fuselage Design System"
+     ]
+    },
+    {
+     "nodes": {
+      "CoreServices": "@rocket.chat/core-services / Service interfaces & implementations / (workspace)",
+      "Models": "@rocket.chat/models / MongoDB models / (workspace)",
+      "MongoAdapter": "@rocket.chat/mongo-adapter / Database abstraction / (workspace)"
+     },
+     "edges": [
+      [
+       "CoreServices",
+       "Models"
+      ],
+      [
+       "Models",
+       "MongoAdapter"
+      ]
+     ],
+     "subgraphs": [
+      "Core Services & Models"
+     ]
+    },
+    {
+     "nodes": {
+      "DDPStreamer": "@rocket.chat/ddp-streamer / WebSocket/DDP handler / (workspace)",
+      "AccountService": "@rocket.chat/account-service / User authentication (bcrypt) / (workspace)",
+      "PresenceService": "@rocket.chat/presence-service / User presence tracking / (workspace)",
+      "AuthzService": "@rocket.chat/authorization-service / ABAC permissions / (workspace)",
+      "TranscriptService": "@rocket.chat/omnichannel-transcript / PDF transcript generation / (workspace)",
+      "QueueWorker": "@rocket.chat/queue-worker / Background job processing / (workspace)",
+      "CoreServices": "@rocket.chat/core-services",
+      "NetworkBroker": "@rocket.chat/network-broker",
+      "Models": "@rocket.chat/models"
+     },
+     "edges": [
+      [
+       "DDPStreamer",
+       "CoreServices"
+      ],
+      [
+       "AccountService",
+       "CoreServices"
+      ],
+      [
+       "PresenceService",
+       "CoreServices"
+      ],
+      [
+       "AuthzService",
+       "CoreServices"
+      ],
+      [
+       "TranscriptService",
+       "CoreServices"
+      ],
+      [
+       "QueueWorker",
+       "CoreServices"
+      ],
+      [
+       "DDPStreamer",
+       "NetworkBroker"
+      ],
+      [
+       "AccountService",
+       "NetworkBroker"
+      ],
+      [
+       "CoreServices",
+       "Models"
+      ]
+     ],
+     "subgraphs": [
+      "EE Microservices",
+      "Shared Dependencies"
+     ]
+    },
+    {
+     "nodes": {
+      "Presence": "@rocket.chat/presence / Presence logic / (workspace)",
+      "OmniServices": "@rocket.chat/omnichannel-services / Omnichannel business logic / (workspace)",
+      "PDFWorker": "@rocket.chat/pdf-worker / PDF rendering utilities / (workspace)"
+     },
+     "edges": [
+      [
+       "TranscriptService",
+       "PDFWorker"
+      ]
+     ],
+     "subgraphs": [
+      "EE Shared Libraries"
+     ]
+    },
+    {
+     "nodes": {
+      "TurboRoot": "turbo.json / Pipeline definition",
+      "Build": "turbo run build",
+      "Dev": "turbo run dev",
+      "Lint": "turbo run lint",
+      "Test": "turbo run testunit"
+     },
+     "edges": [],
+     "subgraphs": [
+      "Build Pipeline"
+     ]
+    }
+   ],
+   "source_files": {
+    "package.json": [
+     "2-3",
+     "17-23",
+     "37-177",
+     "25-35",
+     "22",
+     "113-120",
+     "109",
+     "101",
+     "121-127"
+    ],
+    "apps/meteor/package.json": [
+     "2-3",
+     "101-133",
+     "93-161",
+     "3"
+    ],
+    "packages/core-typings/package.json": [
+     "3-4",
+     "3",
+     "4"
+    ],
+    "packages/fuselage-ui-kit/package.json": [
+     "2-3",
+     "41-43",
+     "25-39",
+     "3"
+    ],
+    "apps/uikit-playground/package.json": [
+     "2-3"
+    ],
+    "packages/rest-typings/package.json": [
+     "2",
+     "17",
+     "17-19"
+    ],
+    "packages/ui-client/package.json": [
+     "2-3",
+     "42"
+    ],
+    "packages/gazzodown/package.json": [
+     "2-3",
+     "10-22"
+    ],
+    "packages/core-services/package.json": [
+     "2"
+    ],
+    "packages/livechat/package.json": [
+     "2-3",
+     "3"
+    ],
+    "ee/apps/ddp-streamer/package.json": [
+     "2",
+     "21-47"
+    ],
+    "ee/apps/account-service/package.json": [
+     "2",
+     "21-43"
+    ],
+    "ee/packages/presence/package.json": [
+     "2"
+    ],
+    "ee/apps/authorization-service/package.json": [
+     "2"
+    ],
+    "ee/apps/omnichannel-transcript/package.json": [
+     "2"
+    ],
+    "ee/apps/queue-worker/package.json": [
+     "2"
+    ],
+    "ee/packages/omnichannel-services/package.json": [
+     "2"
+    ],
+    "ee/packages/pdf-worker/package.json": [
+     "2"
+    ],
+    "apps/meteor/ee/server/services/package.json": [
+     "1-5"
+    ],
+    "apps/meteor/app/utils/rocketchat.info": [
+     "2"
+    ]
+   }
+  },
+  {
+   "page": "Core Application",
+   "sections": [
+    "Purpose and Scope",
+    "Application Overview",
+    "Core Application Architecture",
+    "Client-Side Lifecycle and Routing",
+    "Messaging Pipeline",
+    "Real-time Event System",
+    "Technical Stack and Dependencies",
+    "Summary Diagram: Natural Language to Code Entity Mapping",
+    "Summary Diagram: Code Path for Sending a Message"
+   ],
+   "diagrams": [
+    {
+     "nodes": {
+      "UI": "React UI Components / (AppLayout.tsx)",
+      "RQ": "React Query / (Server State Sync)",
+      "ZS": "Zustand Stores / (Messages, Rooms, Subscriptions)",
+      "MM": "Minimongo Cache / (Meteor Legacy)",
+      "RM": "RoomManager.ts (LegacyRoomManager)",
+      "SDK": "SDKClient.ts (REST & DDP Interface)",
+      "DDP": "DDP / WebSocket Protocol (Meteor)",
+      "REST": "REST API (HTTP)",
+      "LM": "ListenersModule.ts / (Event Dispatcher)",
+      "Methods": "Meteor.methods / (sendMessage, etc.)",
+      "Pubs": "Meteor.publish / (Subscriptions)",
+      "Settings": "Settings Watcher & Storage",
+      "Auth": "Accounts & Authentication"
+     },
+     "edges": [
+      [
+       "UI",
+       "RQ"
+      ],
+      [
+       "UI",
+       "ZS"
+      ],
+      [
+       "RQ",
+       "SDK"
+      ],
+      [
+       "SDK",
+       "REST"
+      ],
+      [
+       "SDK",
+       "DDP"
+      ],
+      [
+       "ZS",
+       "RM"
+      ],
+      [
+       "RM",
+       "DDP"
+      ],
+      [
+       "DDP",
+       "LM"
+      ],
+      [
+       "LM",
+       "Pubs"
+      ],
+      [
+       "LM",
+       "Methods"
+      ],
+      [
+       "LM",
+       "Settings"
+      ],
+      [
+       "REST",
+       "Methods"
+      ],
+      [
+       "Auth",
+       "Methods"
+      ]
+     ],
+     "subgraphs": [
+      "Client Space (Browser)",
+      "State Management",
+      "Managers",
+      "Network Layer",
+      "Server Space (Meteor Application)"
+     ]
+    },
+    {
+     "nodes": {
+      "UI": "User Input & Compose Box\"] --> Process[\"sendMessage.ts Processing"
+     },
+     "edges": [
+      [
+       "ServerCall",
+       "Store"
+      ]
+     ],
+     "subgraphs": []
+    },
+    {
+     "nodes": {
+      "BackendEvents": "Internal Service Bus Events\"] --> Listeners[ListenersModule"
+     },
+     "edges": [],
+     "subgraphs": []
+    },
+    {
+     "nodes": {
+      "Legend": "Legend:\\n- Boxes = Code Entities\\n- Arrows = Data Flow / Dependency"
+     },
+     "edges": [],
+     "subgraphs": []
+    },
+    {
+     "nodes": {
+      "UserInput": "User types message (Compose Box)"
+     },
+     "edges": [],
+     "subgraphs": []
+    }
+   ],
+   "source_files": {
+    "apps/meteor/client/views/root/AppLayout.tsx": [
+     "1-91",
+     "38-88",
+     "39-88"
+    ],
+    "apps/meteor/server/services/meteor/service.ts": [
+     "1-230"
+    ],
+    "apps/meteor/package.json": [
+     "1-484"
+    ],
+    "apps/meteor/client/providers/UserProvider/UserProvider.tsx": [
+     "13-27"
+    ],
+    "apps/meteor/client/views/room/hooks/useOpenRoom.ts": [
+     "16-124"
+    ],
+    "apps/meteor/app/ui-utils/client/lib/LegacyRoomManager.ts": [
+     "149-207",
+     "149-223"
+    ],
+    "apps/meteor/server/modules/listeners/listeners.module.ts": [
+     "30-223"
+    ],
+    "apps/meteor/client/lib/chats/flows/sendMessage.ts": [
+     "17-140"
+    ],
+    "apps/meteor/app/lib/client/methods/sendMessage.ts": [
+     "1-20"
+    ]
+   }
+  },
+  {
+   "page": "Microservices Architecture",
+   "sections": [
+    "Overview",
+    "Service Registry",
+    "Communication Architecture",
+    "Deployment Modes",
+    "Shared Dependencies and Data Access",
+    "Service Implementation Details",
+    "Summary Diagram: Microservices and Communication Summary"
+   ],
+   "diagrams": [
+    {
+     "nodes": {
+      "ACCOUNT": "account-service / ee/apps/account-service",
+      "AUTH": "authorization-service / ee/apps/authorization-service",
+      "PRESENCE": "presence-service / ee/apps/presence-service",
+      "DDP": "ddp-streamer / ee/apps/ddp-streamer",
+      "OMNI_LIB": "omnichannel-services / ee/packages/omnichannel-services",
+      "TRANSCRIPT": "omnichannel-transcript / ee/apps/omnichannel-transcript",
+      "QUEUE": "queue-worker / ee/apps/queue-worker"
+     },
+     "edges": [
+      [
+       "METEOR",
+       "AUTH"
+      ],
+      [
+       "METEOR",
+       "PRESENCE"
+      ],
+      [
+       "METEOR",
+       "DDP"
+      ],
+      [
+       "METEOR",
+       "TRANSCRIPT"
+      ],
+      [
+       "METEOR",
+       "QUEUE"
+      ],
+      [
+       "TRANSCRIPT",
+       "OMNI_LIB"
+      ],
+      [
+       "QUEUE",
+       "OMNI_LIB"
+      ]
+     ],
+     "subgraphs": [
+      "User Management Services",
+      "Real-time Services",
+      "Omnichannel Services"
+     ]
+    },
+    {
+     "nodes": {
+      "API_GATEWAY": "packages/core-services/src/api.ts",
+      "PROXIES": "proxify&lt;T&gt;() / Proxy Interfaces",
+      "BROKER": "@rocket.chat/network-broker",
+      "LOCAL_BROKER": "LocalBroker.ts / (In-process TCP)",
+      "NATS_BROKER": "NetworkBroker.ts / (Distributed NATS)",
+      "ACCOUNT_SVC": "AccountService.ts",
+      "PRESENCE_SVC": "PresenceService.ts",
+      "AUTH_SVC": "AuthorizationService.ts"
+     },
+     "edges": [
+      [
+       "API_GATEWAY",
+       "PROXIES"
+      ],
+      [
+       "PROXIES",
+       "BROKER"
+      ],
+      [
+       "BROKER",
+       "LOCAL_BROKER"
+      ],
+      [
+       "BROKER",
+       "NATS_BROKER"
+      ]
+     ],
+     "subgraphs": [
+      "apps/meteor",
+      "Network Broker Layer",
+      "Microservices"
+     ]
+    },
+    {
+     "nodes": {
+      "METEOR_CORE": "apps/meteor - Meteor app",
+      "METEOR_BROKER": "NetworkBroker.ts / (NATS Transport)",
+      "NATS_SERVER": "(\"NATS Server / (Port 4222)\")",
+      "DDP_STREAMER": "ddp-streamer",
+      "PRESENCE_SERVICE": "presence-service",
+      "AUTH_SERVICE": "authorization-service",
+      "ACCOUNT_SERVICE": "account-service",
+      "QUEUE_WORKER": "queue-worker",
+      "OMNI_TRANSCRIPT": "omnichannel-transcript"
+     },
+     "edges": [],
+     "subgraphs": [
+      "Meteor Container",
+      "Microservice Containers"
+     ]
+    },
+    {
+     "nodes": {
+      "ACCOUNT_SVC": "account-service",
+      "AUTH_SVC": "authorization-service",
+      "PRESENCE_SVC": "presence-service",
+      "USERS_MODEL": "Users Model / IUsersModel",
+      "SESSIONS_MODEL": "Sessions Model / ISessionsModel",
+      "USERS_COLL": "(\"users collection\")",
+      "SESSIONS_COLL": "(\"sessions collection\")"
+     },
+     "edges": [
+      [
+       "ACCOUNT_SVC",
+       "USERS_MODEL"
+      ],
+      [
+       "ACCOUNT_SVC",
+       "SESSIONS_MODEL"
+      ],
+      [
+       "AUTH_SVC",
+       "USERS_MODEL"
+      ],
+      [
+       "PRESENCE_SVC",
+       "USERS_MODEL"
+      ],
+      [
+       "USERS_MODEL",
+       "USERS_COLL"
+      ],
+      [
+       "SESSIONS_MODEL",
+       "SESSIONS_COLL"
+      ]
+     ],
+     "subgraphs": [
+      "Microservices",
+      "Models Layer",
+      "MongoDB Database"
+     ]
+    },
+    {
+     "nodes": {
+      "METEOR": "Meteor Application / apps/meteor",
+      "NOTIF_MOD": "notifications.module.ts / Event Stream + Notify",
+      "API_PROXY": "proxify<T>()",
+      "BROKER": "NetworkBroker & LocalBroker",
+      "NATS": "NATS Messaging Server",
+      "ACCOUNT": "account-service / ee/apps/account-service",
+      "AUTH": "authorization-service / ee/apps/authorization-service",
+      "PRESENCE": "presence-service / ee/apps/presence-service",
+      "DDP": "ddp-streamer / ee/apps/ddp-streamer",
+      "OMNI_TRANSCRIPT": "omnichannel-transcript",
+      "QUEUE": "queue-worker"
+     },
+     "edges": [
+      [
+       "METEOR",
+       "API_PROXY"
+      ],
+      [
+       "API_PROXY",
+       "BROKER"
+      ],
+      [
+       "NATS",
+       "ACCOUNT"
+      ],
+      [
+       "NATS",
+       "AUTH"
+      ],
+      [
+       "NATS",
+       "PRESENCE"
+      ],
+      [
+       "NATS",
+       "DDP"
+      ],
+      [
+       "NATS",
+       "OMNI_TRANSCRIPT"
+      ],
+      [
+       "NATS",
+       "QUEUE"
+      ]
+     ],
+     "subgraphs": [
+      "Main Meteor App (apps/meteor)",
+      "Network Broker Layer (@rocket.chat/network-broker)",
+      "Microservices"
+     ]
+    }
+   ],
+   "source_files": {
+    "ee/apps/account-service/package.json": [
+     "1-58",
+     "2-18",
+     "18-30"
+    ],
+    "ee/apps/presence-service/package.json": [
+     "1-54",
+     "2-20"
+    ],
+    "ee/apps/ddp-streamer/package.json": [
+     "1-67",
+     "2-20"
+    ],
+    "ee/apps/authorization-service/package.json": [
+     "2-20",
+     "1-54"
+    ],
+    "ee/packages/omnichannel-services/package.json": [
+     "2-30"
+    ],
+    "ee/apps/omnichannel-transcript/package.json": [
+     "2-55"
+    ],
+    "ee/apps/queue-worker/package.json": [
+     "2-50"
+    ],
+    "packages/core-services/src/api.ts": [
+     "1-110"
+    ],
+    "packages/core-services/src/lib/proxify.ts": [
+     "1-40"
+    ],
+    "packages/core-services/src/LocalBroker.ts": [
+     "1-50",
+     "1-25"
+    ],
+    "ee/packages/network-broker/src/NetworkBroker.ts": [
+     "1-120"
+    ],
+    "apps/meteor/server/modules/notifications/notifications.module.ts": [
+     "10-90",
+     "2-6",
+     "62-70"
+    ],
+    "apps/meteor/server/services/startup.ts": [
+     "1-45"
+    ],
+    "docker-compose-ci.yml": [
+     "15-85"
+    ],
+    "ee/apps/ddp-streamer/src/configureServer.ts": [
+     "1-50"
+    ],
+    "apps/meteor/ee/server/local-services/instance/getTransporter.ts": [
+     "1-35"
+    ],
+    "packages/core-services/src/index.ts": [
+     "55-90",
+     "1-185"
+    ],
+    "ee/apps/account-service/src/Account.ts": [
+     "1-50"
+    ],
+    "ee/apps/account-service/src/lib/loginViaResume.ts": [
+     "1-40"
+    ],
+    "ee/apps/ddp-streamer/src/Streamer.ts": [
+     "1-100"
+    ]
+   }
+  },
+  {
+   "page": "UI Component System",
+   "sections": [
+    "Purpose and Scope",
+    "Architecture Overview",
+    "Fuselage Design System",
+    "UI Contexts and Data Flow",
+    "Component Reusability and Message Rendering",
+    "Message Markdown Rendering Integration",
+    "Message Composer Popups",
+    "UI Context Mocking and Testing",
+    "Summary"
+   ],
+   "diagrams": [
+    {
+     "nodes": {
+      "TOKENS": "@rocket.chat/fuselage-tokens / ~0.33.2 / Design tokens",
+      "ICONS": "@rocket.chat/icons / ~0.47.0 / Icon library",
+      "FUSELAGE": "@rocket.chat/fuselage / ^0.77.0 / Component library",
+      "HOOKS": "@rocket.chat/fuselage-hooks / ^0.41.0 / React hooks",
+      "CSS": "@rocket.chat/css-in-js / workspace / Styling system",
+      "CONTEXTS": "@rocket.chat/ui-contexts / workspace / React contexts",
+      "EMITTER": "@rocket.chat/emitter / ^0.32.0 / Event system",
+      "CLIENT": "@rocket.chat/ui-client / workspace / Common components",
+      "AVATAR": "@rocket.chat/ui-avatar / workspace / Avatar rendering",
+      "GAZZODOWN": "@rocket.chat/gazzodown / workspace / Markdown renderer",
+      "VIDEOCONF": "@rocket.chat/ui-video-conf / workspace / Video conferencing",
+      "VOIP": "@rocket.chat/ui-voip / workspace / VoIP components",
+      "COMPOSER": "@rocket.chat/ui-composer / workspace / Message composer",
+      "UIKIT": "@rocket.chat/fuselage-ui-kit / workspace / Apps integration",
+      "METEOR": "apps/meteor / Main application"
+     },
+     "edges": [
+      [
+       "TOKENS",
+       "FUSELAGE"
+      ],
+      [
+       "ICONS",
+       "FUSELAGE"
+      ],
+      [
+       "FUSELAGE",
+       "HOOKS"
+      ],
+      [
+       "FUSELAGE",
+       "CONTEXTS"
+      ],
+      [
+       "HOOKS",
+       "CONTEXTS"
+      ],
+      [
+       "EMITTER",
+       "CONTEXTS"
+      ],
+      [
+       "FUSELAGE",
+       "CLIENT"
+      ],
+      [
+       "HOOKS",
+       "CLIENT"
+      ],
+      [
+       "CONTEXTS",
+       "CLIENT"
+      ],
+      [
+       "FUSELAGE",
+       "AVATAR"
+      ],
+      [
+       "CONTEXTS",
+       "AVATAR"
+      ],
+      [
+       "FUSELAGE",
+       "GAZZODOWN"
+      ],
+      [
+       "CLIENT",
+       "GAZZODOWN"
+      ],
+      [
+       "CONTEXTS",
+       "GAZZODOWN"
+      ],
+      [
+       "CLIENT",
+       "VIDEOCONF"
+      ],
+      [
+       "AVATAR",
+       "VIDEOCONF"
+      ],
+      [
+       "CONTEXTS",
+       "VIDEOCONF"
+      ],
+      [
+       "CLIENT",
+       "VOIP"
+      ],
+      [
+       "AVATAR",
+       "VOIP"
+      ],
+      [
+       "CONTEXTS",
+       "VOIP"
+      ],
+      [
+       "CONTEXTS",
+       "COMPOSER"
+      ],
+      [
+       "CLIENT",
+       "COMPOSER"
+      ],
+      [
+       "GAZZODOWN",
+       "UIKIT"
+      ],
+      [
+       "AVATAR",
+       "UIKIT"
+      ],
+      [
+       "CONTEXTS",
+       "UIKIT"
+      ],
+      [
+       "CLIENT",
+       "METEOR"
+      ],
+      [
+       "AVATAR",
+       "METEOR"
+      ],
+      [
+       "VIDEOCONF",
+       "METEOR"
+      ],
+      [
+       "VOIP",
+       "METEOR"
+      ],
+      [
+       "COMPOSER",
+       "METEOR"
+      ],
+      [
+       "UIKIT",
+       "METEOR"
+      ]
+     ],
+     "subgraphs": [
+      "Foundation Layer",
+      "Core Layer",
+      "Context Layer",
+      "Component Layer",
+      "Domain Layer",
+      "Application Layer"
+     ]
+    },
+    {
+     "nodes": {
+      "MP": "MeteorProvider",
+      "SP": "ServerProvider",
+      "RP": "RouterProvider",
+      "MP2": "ModalProvider",
+      "STP": "SettingsProvider",
+      "TP": "TranslationProvider",
+      "UPP": "UserProvider",
+      "AUTH": "AuthenticationProvider",
+      "AUTHZ": "AuthorizationProvider",
+      "VP": "VideoConfProvider",
+      "MCP": "MediaCallProvider"
+     },
+     "edges": [
+      [
+       "MP",
+       "SP"
+      ],
+      [
+       "SP",
+       "RP"
+      ],
+      [
+       "RP",
+       "MP2"
+      ],
+      [
+       "MP2",
+       "STP"
+      ],
+      [
+       "STP",
+       "TP"
+      ],
+      [
+       "TP",
+       "UPP"
+      ],
+      [
+       "UPP",
+       "AUTH"
+      ],
+      [
+       "AUTH",
+       "AUTHZ"
+      ],
+      [
+       "AUTHZ",
+       "VP"
+      ],
+      [
+       "VP",
+       "MCP"
+      ]
+     ],
+     "subgraphs": []
+    },
+    {
+     "nodes": {
+      "MsgComponent": "RoomMessageContent / ThreadMessageContent",
+      "Normalizer": "useNormalizedMessage",
+      "Subscriptions": "useSubscriptionFromMessageQuery",
+      "Presence": "useUserPresence",
+      "AttachmentsComp": "Attachments Component",
+      "ReactionsComp": "Reactions Component",
+      "UrlPreviewsComp": "UrlPreviews Component",
+      "MetricsComp": "ThreadMetrics / BroadcastMetrics / DiscussionMetrics",
+      "ReadReceipts": "ReadReceiptIndicator"
+     },
+     "edges": [
+      [
+       "MsgComponent",
+       "Normalizer"
+      ],
+      [
+       "MsgComponent",
+       "Subscriptions"
+      ],
+      [
+       "MsgComponent",
+       "Presence"
+      ],
+      [
+       "MsgComponent",
+       "AttachmentsComp"
+      ],
+      [
+       "MsgComponent",
+       "ReactionsComp"
+      ],
+      [
+       "MsgComponent",
+       "UrlPreviewsComp"
+      ],
+      [
+       "MsgComponent",
+       "MetricsComp"
+      ],
+      [
+       "MsgComponent",
+       "ReadReceipts"
+      ]
+     ],
+     "subgraphs": []
+    },
+    {
+     "nodes": {
+      "GazzodownText": "GazzodownText Component",
+      "MarkupInteractionCtx": "MarkupInteractionContext.Provider",
+      "UserMentionElem": "UserMentionElement",
+      "ChannelMentionElem": "ChannelMentionElement",
+      "UserCtx": "UserContext",
+      "UserCardCtx": "UserCardContext"
+     },
+     "edges": [
+      [
+       "GazzodownText",
+       "MarkupInteractionCtx"
+      ],
+      [
+       "MarkupInteractionCtx",
+       "UserMentionElem"
+      ],
+      [
+       "MarkupInteractionCtx",
+       "ChannelMentionElem"
+      ],
+      [
+       "UserMentionElem",
+       "UserCtx"
+      ],
+      [
+       "UserMentionElem",
+       "UserCardCtx"
+      ]
+     ],
+     "subgraphs": []
+    },
+    {
+     "nodes": {},
+     "edges": [],
+     "subgraphs": []
+    }
+   ],
+   "source_files": {
+    "packages/ui-composer/package.json": [
+     "23-31",
+     "25",
+     "27",
+     "28",
+     "2-6"
+    ],
+    "packages/ui-contexts/src/index.ts": [
+     "1-25",
+     "15",
+     "8",
+     "17",
+     "21",
+     "7",
+     "20"
+    ],
+    "packages/gazzodown/src/mentions/UserMentionElement.tsx": [
+     "1-7",
+     "16-57"
+    ],
+    "apps/meteor/client/views/room/providers/ComposerPopupProvider.tsx": [
+     "3",
+     "88-185"
+    ],
+    "apps/meteor/client/views/account/accessibility/AccessibilityPage.tsx": [
+     "4-15"
+    ],
+    "apps/meteor/app/theme/client/imports/general/base_old.css": [
+     "17-101"
+    ],
+    "apps/meteor/client/providers/UserProvider/UserProvider.tsx": [
+     "29-174"
+    ],
+    "apps/meteor/client/providers/MeteorProvider.tsx": [
+     "29-78"
+    ],
+    "apps/meteor/client/components/message/variants/room/RoomMessageContent.tsx": [
+     "1-139"
+    ],
+    "apps/meteor/client/components/message/variants/thread/ThreadMessageContent.tsx": [
+     "1-108"
+    ],
+    "apps/meteor/client/components/GazzodownText.tsx": [
+     "120-141"
+    ],
+    "packages/mock-providers/src/MockedAppRootBuilder.tsx": [
+     "96-166"
+    ]
+   }
+  },
+  {
+   "page": "Internationalization System",
+   "sections": [
+    "Purpose and Scope",
+    "Architecture Overview",
+    "Implementation Details",
+    "Locale File Structure",
+    "Translation Key Categories",
+    "Placeholder and Template Patterns",
+    "Language Display Names"
+   ],
+   "diagrams": [
+    {
+     "nodes": {
+      "EN_JSON": "en.i18n.json",
+      "PT_JSON": "pt-BR.i18n.json",
+      "DE_JSON": "de.i18n.json",
+      "LANG_FILES": "Other locale JSON files",
+      "EXTRACT_KEYS": "extractTranslationKeys()",
+      "EXTRACT_NS": "extractTranslationNamespaces()",
+      "APPLY_CUSTOM": "applyCustomTranslations()",
+      "TRANSLATION_PROVIDER": "TranslationProvider (TranslationProvider.tsx)",
+      "I18NEXT_INSTANCE": "i18next Instance",
+      "USE_TRANSLATION": "useTranslation() hook",
+      "USE_AUTO_LANG": "useAutoLanguage() hook",
+      "USE_CUSTOM_TRANSLATIONS": "useCustomTranslations() hook"
+     },
+     "edges": [
+      [
+       "LANG_FILES",
+       "EXTRACT_KEYS"
+      ],
+      [
+       "LANG_FILES",
+       "EXTRACT_NS"
+      ],
+      [
+       "EXTRACT_KEYS",
+       "TRANSLATION_PROVIDER"
+      ],
+      [
+       "EXTRACT_NS",
+       "TRANSLATION_PROVIDER"
+      ],
+      [
+       "APPLY_CUSTOM",
+       "I18NEXT_INSTANCE"
+      ],
+      [
+       "TRANSLATION_PROVIDER",
+       "I18NEXT_INSTANCE"
+      ],
+      [
+       "I18NEXT_INSTANCE",
+       "USE_TRANSLATION"
+      ],
+      [
+       "USE_AUTO_LANG",
+       "TRANSLATION_PROVIDER"
+      ],
+      [
+       "USE_CUSTOM_TRANSLATIONS",
+       "APPLY_CUSTOM"
+      ]
+     ],
+     "subgraphs": [
+      "Natural Language Space (Resources)",
+      "i18n Package (@rocket.chat/i18n)",
+      "Client Side (apps/meteor)"
+     ]
+    },
+    {
+     "nodes": {
+      "LANG_CODE": "Language Code (e.g., 'se')",
+      "INTL_DISPLAY": "Intl.DisplayNames",
+      "CUSTOM_SAMI": "getNorthernSamiDisplayName()",
+      "FINAL_NAME": "Final Localized Name"
+     },
+     "edges": [
+      [
+       "LANG_CODE",
+       "INTL_DISPLAY"
+      ],
+      [
+       "INTL_DISPLAY",
+       "SAMI_CHECK"
+      ],
+      [
+       "SAMI_CHECK",
+       "CUSTOM_SAMI",
+       "Yes"
+      ],
+      [
+       "SAMI_CHECK",
+       "FINAL_NAME",
+       "No"
+      ],
+      [
+       "CUSTOM_SAMI",
+       "FINAL_NAME"
+      ]
+     ],
+     "subgraphs": []
+    }
+   ],
+   "source_files": {
+    "apps/meteor/client/providers/TranslationProvider.tsx": [
+     "2-75",
+     "110-130",
+     "135-155",
+     "31-64",
+     "156-185",
+     "2-215"
+    ],
+    "packages/i18n/src/locales/en.i18n.json": [
+     "1-100",
+     "10-120",
+     "530000-530100",
+     "35-80"
+    ],
+    "packages/i18n/src/locales/pt-BR.i18n.json": [
+     "1-90"
+    ],
+    "packages/i18n/src/locales/sv.i18n.json": [
+     "1-90"
+    ]
+   }
+  },
+  {
+   "page": "Database Migrations",
+   "sections": [
+    "Purpose and Scope",
+    "Migration System Overview",
+    "Sequential Versioning Scheme",
+    "Migration Orchestration",
+    "Migration Implementation Pattern",
+    "Migration State and Statistics",
+    "Code Entity Map: Migration System Overview"
+   ],
+   "diagrams": [
+    {
+     "nodes": {
+      "v293": "v293\"] --> v294[\"v294"
+     },
+     "edges": [],
+     "subgraphs": []
+    },
+    {
+     "nodes": {
+      "Start": "startup()\"] --> Proc[\"performMigrationProcedure()"
+     },
+     "edges": [],
+     "subgraphs": [
+      "onServerVersionChange Hooks"
+     ]
+    },
+    {
+     "nodes": {},
+     "edges": [],
+     "subgraphs": []
+    }
+   ],
+   "source_files": {
+    "apps/meteor/server/startup/migrations/index.ts": [
+     "1-45",
+     "1-43"
+    ],
+    "apps/meteor/server/startup/migrations/xrun.ts": [
+     "93-102",
+     "9-12",
+     "13-56",
+     "58-101"
+    ],
+    "apps/meteor/server/startup/index.ts": [
+     "12-17",
+     "13-17"
+    ],
+    "apps/meteor/server/startup/migrations/v319.ts": [
+     "5-15"
+    ],
+    "packages/core-typings/src/IStats.ts": [
+     "103-109"
+    ],
+    "apps/meteor/app/statistics/server/lib/statistics.ts": [
+     "40-90",
+     "1-50"
+    ],
+    "apps/meteor/app/statistics/server/functions/sendUsageReport.ts": [
+     "13-38"
+    ]
+   }
+  },
+  {
+   "page": "Type System and API Contracts",
+   "sections": [
+    "Overview",
+    "Type Package Architecture",
+    "Core Domain Types Package",
+    "REST API Contracts Package",
+    "Model Typings and Data Access",
+    "Type Safety Flow: A Practical Example",
+    "Type Utility Packages"
+   ],
+   "diagrams": [
+    {
+     "nodes": {
+      "CoreTypings": "@rocket.chat/core-typings / Domain Types",
+      "RestTypings": "@rocket.chat/rest-typings / API Contracts",
+      "ModelTypings": "@rocket.chat/model-typings / Database Models",
+      "AJV": "ajv / JSON Schema Validator",
+      "MongoDB": "mongodb / Driver Types",
+      "MeteorApp": "apps/meteor / Main Application",
+      "Models": "packages/models / Data Access Layer"
+     },
+     "edges": [
+      [
+       "RestTypings",
+       "CoreTypings"
+      ],
+      [
+       "ModelTypings",
+       "CoreTypings"
+      ],
+      [
+       "ModelTypings",
+       "MongoDB"
+      ],
+      [
+       "MeteorApp",
+       "CoreTypings"
+      ],
+      [
+       "MeteorApp",
+       "RestTypings"
+      ],
+      [
+       "MeteorApp",
+       "ModelTypings"
+      ],
+      [
+       "Models",
+       "ModelTypings"
+      ],
+      [
+       "Models",
+       "CoreTypings"
+      ]
+     ],
+     "subgraphs": [
+      "Type Definition Packages",
+      "Foundation Libraries",
+      "Consuming Applications"
+     ]
+    },
+    {
+     "nodes": {
+      "IUser": "IUser / (Base Record)",
+      "IRegisterUser": "IRegisterUser / (Has name/username)",
+      "IUserNativeFederated": "IUserNativeFederated / (Matrix ID)",
+      "isRegisterUser": "isRegisterUser()",
+      "isUserNativeFederated": "isUserNativeFederated()"
+     },
+     "edges": [
+      [
+       "IUser",
+       "IRegisterUser"
+      ],
+      [
+       "IUser",
+       "IUserNativeFederated"
+      ]
+     ],
+     "subgraphs": [
+      "Type Guards"
+     ]
+    },
+    {
+     "nodes": {
+      "ChatEndpoints": "ChatEndpoints Interface",
+      "ChatSendMessage": "chat.sendMessage POST Params",
+      "APIv1": "API.v1.post('chat.sendMessage')",
+      "SchemaValidator": "isChatSendMessageProps (AJV)"
+     },
+     "edges": [
+      [
+       "ChatEndpoints",
+       "ChatSendMessage"
+      ],
+      [
+       "ChatSendMessage",
+       "SchemaValidator"
+      ],
+      [
+       "SchemaValidator",
+       "APIv1"
+      ]
+     ],
+     "subgraphs": [
+      "rest-typings",
+      "apps/meteor API Registration"
+     ]
+    },
+    {
+     "nodes": {
+      "ServiceCall": "MessageService.sendMessage() / (from apps/meteor/server/services/messages/service.ts)",
+      "ExecuteSendMessage": "executeSendMessage() / (from apps/meteor/app/lib/server/methods/sendMessage.ts)",
+      "MessagesCreate": "Messages.createWithTypeRoomIdMessageUserAndUnread() / (from packages/models/src/models/Messages.ts)",
+      "DB_Insert": "mongodb.InsertOneResult"
+     },
+     "edges": [],
+     "subgraphs": []
+    }
+   ],
+   "source_files": {
+    "packages/core-typings/src/index.ts": [
+     "1-137"
+    ],
+    "packages/rest-typings/src/index.ts": [
+     "48-93",
+     "1-45",
+     "53"
+    ],
+    "packages/model-typings/src/index.ts": [
+     "1-20"
+    ],
+    "packages/model-typings/src/models/IRoomsModel.ts": [
+     "1-21",
+     "40-202"
+    ],
+    "packages/models/src/index.ts": [
+     "1-83",
+     "127-180",
+     "110"
+    ],
+    "packages/core-typings/src/IUser.ts": [
+     "169-239",
+     "241-246",
+     "250-261"
+    ],
+    "packages/core-typings/src/IRoom.ts": [
+     "12-85",
+     "208-235"
+    ],
+    "packages/core-typings/src/IMessage/IMessage.ts": [
+     "145-245"
+    ],
+    "packages/core-typings/src/ISubscription.ts": [
+     "1-10"
+    ],
+    "packages/rest-typings/src/v1/chat.ts": [
+     "6-9",
+     "80",
+     "11-78"
+    ],
+    "apps/meteor/tests/end-to-end/api/chat.ts": [
+     "60-76",
+     "78-116"
+    ],
+    "packages/model-typings/src/models/IUsersModel.ts": [
+     "31-47",
+     "31-107"
+    ],
+    "packages/model-typings/src/models/ISubscriptionsModel.ts": [
+     "22-165"
+    ],
+    "apps/meteor/server/services/messages/service.ts": [
+     "89-91",
+     "188-196"
+    ],
+    "packages/core-typings/src/utils.ts": [],
+    "apps/meteor/client/views/admin/users/UsersTable/UsersTable.tsx": [
+     "28"
+    ],
+    "packages/model-typings/src/models/IBaseModel.ts": [
+     "10"
+    ]
+   }
+  },
+  {
+   "page": "Key Features",
+   "sections": [
+    "Purpose and Scope",
+    "Feature Categories",
+    "Core Feature Architecture",
+    "Omnichannel and Livechat",
+    "Authentication and Security",
+    "Room and Channel Management",
+    "Apps Engine and Marketplace",
+    "End-to-End Encryption (E2EE)",
+    "Federation and Matrix Integration",
+    "Video Conferencing and VoIP"
+   ],
+   "diagrams": [
+    {
+     "nodes": {
+      "QM": "QueueManager / apps/meteor/app/livechat/server/lib/QueueManager.ts",
+      "RM": "RoutingManager / apps/meteor/app/livechat/server/lib/RoutingManager.ts",
+      "SMS": "sendMessageBySMS / apps/meteor/app/livechat/server/sendMessageBySMS.ts",
+      "BH": "BusinessHourManager / apps/meteor/ee/app/livechat-enterprise/server/business-hour",
+      "LB": "LoadBalancing / apps/meteor/ee/app/livechat-enterprise/server/lib/routing/LoadBalancing.ts",
+      "E2E": "End-to-End Encryption / app/e2e/server/functions/resetRoomKey.ts",
+      "RBAC": "RBAC Permissions System",
+      "AUTH": "Authentication Providers / OAuth, SAML, LDAP, CAS",
+      "AE": "Apps Engine Framework / @rocket.chat/apps-engine",
+      "API": "REST API Layer / app/api",
+      "WEBHOOKS": "Webhooks"
+     },
+     "edges": [
+      [
+       "QM",
+       "RM"
+      ],
+      [
+       "RM",
+       "LB"
+      ],
+      [
+       "BH",
+       "QM"
+      ],
+      [
+       "AE",
+       "QM"
+      ],
+      [
+       "AUTH",
+       "RBAC"
+      ],
+      [
+       "RBAC",
+       "E2E"
+      ],
+      [
+       "API",
+       "AE"
+      ],
+      [
+       "WEBHOOKS",
+       "API"
+      ],
+      [
+       "SMS",
+       "QM"
+      ]
+     ],
+     "subgraphs": [
+      "Omnichannel Stack",
+      "Enterprise Omnichannel Enhancements",
+      "Security and Identity Management",
+      "Extensibility and Integration"
+     ]
+    }
+   ],
+   "source_files": {
+    "apps/meteor/app/livechat/server/index.ts": [
+     "1-27",
+     "26-27"
+    ],
+    "apps/meteor/ee/app/livechat-enterprise/server/index.ts": [
+     "1-39"
+    ],
+    "README.md": [
+     "18-36",
+     "30-30",
+     "89-91"
+    ],
+    "FEATURES.md": [
+     "1-67",
+     "17-18",
+     "6-11"
+    ],
+    "apps/meteor/tests/end-to-end/api/livechat/19-business-hours.ts": [
+     "61-61"
+    ],
+    "app/e2e/server/functions/resetRoomKey.ts": [
+     "1-30"
+    ],
+    "app.json": [
+     "1-22"
+    ],
+    ".houston/metadata.js": [
+     "58-73"
+    ]
+   }
+  },
+  {
+   "page": "Omnichannel and Livechat",
+   "sections": [
+    "Purpose and Scope",
+    "System Overview",
+    "Core Entities",
+    "Conversation Lifecycle",
+    "Queue and Routing System",
+    "Multi-Channel Support",
+    "Key Code Components",
+    "Testing and Data Flow"
+   ],
+   "diagrams": [
+    {
+     "nodes": {
+      "WIDGET": "Livechat Widget / isWidget() check",
+      "API_ROOM": "GET /livechat/room / apps/meteor/app/livechat/server/api/v1/room.ts",
+      "API_MSG": "POST /livechat/message / apps/meteor/app/livechat/server/api/v1/message.ts",
+      "SMS_ENDPOINT": "POST /api/v1/livechat.sms.incoming / apps/meteor/app/livechat/imports/server/rest/sms.ts",
+      "EMAIL_HANDLER": "EmailInbox_Incoming / server/features/EmailInbox/",
+      "REG_GUEST": "registerGuest() / @rocket.chat/omni-core",
+      "QUEUE_MGR": "QueueManager.requestRoom() / QueueManager.processNewInquiry() / apps/meteor/app/livechat/server/lib/QueueManager.ts",
+      "ROUTING_MGR": "RoutingManager.delegateInquiry() / RoutingManager.takeInquiry() / apps/meteor/app/livechat/server/lib/RoutingManager.ts",
+      "HELPER_PREPARE": "prepareLivechatRoom() / createLivechatRoom() / createLivechatInquiry() / apps/meteor/app/livechat/server/lib/Helper.ts",
+      "VISITORS": "LivechatVisitors / @rocket.chat/models",
+      "CONTACTS": "LivechatContacts / Contact ID associations",
+      "ROOMS": "LivechatRooms / type: 'l' (livechat)",
+      "INQUIRIES": "LivechatInquiry / Status: READY/QUEUED/VERIFYING/TAKEN",
+      "DEPARTMENTS": "LivechatDepartment / enabled, fallback departments"
+     },
+     "edges": [
+      [
+       "WIDGET",
+       "API_ROOM"
+      ],
+      [
+       "EMAIL_HANDLER",
+       "REG_GUEST"
+      ],
+      [
+       "SMS_ENDPOINT",
+       "REG_GUEST"
+      ],
+      [
+       "API_ROOM",
+       "REG_GUEST"
+      ],
+      [
+       "REG_GUEST",
+       "VISITORS"
+      ],
+      [
+       "REG_GUEST",
+       "CONTACTS"
+      ],
+      [
+       "API_ROOM",
+       "QUEUE_MGR"
+      ],
+      [
+       "QUEUE_MGR",
+       "HELPER_PREPARE"
+      ],
+      [
+       "HELPER_PREPARE",
+       "ROOMS"
+      ],
+      [
+       "HELPER_PREPARE",
+       "INQUIRIES"
+      ],
+      [
+       "QUEUE_MGR",
+       "ROUTING_MGR"
+      ],
+      [
+       "ROUTING_MGR",
+       "DEPARTMENTS"
+      ]
+     ],
+     "subgraphs": [
+      "Entry Points",
+      "Core Service Layer",
+      "MongoDB Collections"
+     ]
+    },
+    {
+     "nodes": {},
+     "edges": [],
+     "subgraphs": []
+    },
+    {
+     "nodes": {
+      "START": "QueueManager.getInquiryStatus()",
+      "VERIFYING": "Return VERIFYING status",
+      "QUEUED": "Return QUEUED status",
+      "READY": "Return READY status"
+     },
+     "edges": [
+      [
+       "START",
+       "CHECK_VERIFY"
+      ],
+      [
+       "CHECK_VERIFY",
+       "IS_VERIFIED",
+       "Yes"
+      ],
+      [
+       "CHECK_VERIFY",
+       "CHECK_MAC",
+       "No"
+      ],
+      [
+       "IS_VERIFIED",
+       "VERIFYING",
+       "No"
+      ],
+      [
+       "IS_VERIFIED",
+       "CHECK_MAC",
+       "Yes"
+      ],
+      [
+       "CHECK_MAC",
+       "QUEUED",
+       "No"
+      ],
+      [
+       "CHECK_MAC",
+       "CHECK_BOT",
+       "Yes"
+      ],
+      [
+       "CHECK_BOT",
+       "READY",
+       "Yes"
+      ],
+      [
+       "CHECK_BOT",
+       "CHECK_QUEUE",
+       "No"
+      ],
+      [
+       "CHECK_QUEUE",
+       "QUEUED",
+       "Enabled"
+      ],
+      [
+       "CHECK_QUEUE",
+       "CHECK_AUTO",
+       "Disabled"
+      ],
+      [
+       "CHECK_AUTO",
+       "READY",
+       "Enabled"
+      ],
+      [
+       "CHECK_AUTO",
+       "QUEUED",
+       "Disabled"
+      ]
+     ],
+     "subgraphs": []
+    },
+    {
+     "nodes": {
+      "Visitor": "Visitor (ILivechatVisitor)",
+      "Contact": "Contact (ILivechatContact)",
+      "Room": "LivechatRoom (IOmnichannelRoom)",
+      "Inquiry": "Inquiry (ILivechatInquiryRecord)",
+      "QueueMgr": "QueueManager (apps/meteor/app/livechat/server/lib/QueueManager.ts)",
+      "RoutingMgr": "RoutingManager (apps/meteor/app/livechat/server/lib/RoutingManager.ts)",
+      "Helper": "Helper functions (apps/meteor/app/livechat/server/lib/Helper.ts)",
+      "AppBridge": "AppLivechatBridge (apps/meteor/app/apps/server/bridges/livechat.ts)",
+      "SMSRest": "SMS Incoming API (apps/meteor/app/livechat/imports/server/rest/sms.ts)",
+      "ApiRoom": "API livechat/room (apps/meteor/app/livechat/server/api/v1/room.ts)",
+      "DBModels": "MongoDB Models (@rocket.chat/models)"
+     },
+     "edges": [
+      [
+       "Visitor",
+       "DBModels"
+      ],
+      [
+       "Contact",
+       "DBModels"
+      ],
+      [
+       "Room",
+       "DBModels"
+      ],
+      [
+       "Inquiry",
+       "DBModels"
+      ],
+      [
+       "ApiRoom",
+       "Visitor"
+      ],
+      [
+       "ApiRoom",
+       "QueueMgr"
+      ],
+      [
+       "QueueMgr",
+       "Helper"
+      ],
+      [
+       "QueueMgr",
+       "RoutingMgr"
+      ],
+      [
+       "RoutingMgr",
+       "Room"
+      ],
+      [
+       "RoutingMgr",
+       "Visitor"
+      ],
+      [
+       "SMSRest",
+       "Visitor"
+      ],
+      [
+       "SMSRest",
+       "QueueMgr"
+      ],
+      [
+       "AppBridge",
+       "Helper"
+      ],
+      [
+       "AppBridge",
+       "RoutingMgr"
+      ],
+      [
+       "Helper",
+       "Contact"
+      ],
+      [
+       "Helper",
+       "Room"
+      ]
+     ],
+     "subgraphs": []
+    },
+    {
+     "nodes": {},
+     "edges": [
+      [
+       "Helper",
+       "QueueManager"
+      ],
+      [
+       "QueueManager",
+       "RoutingManager"
+      ],
+      [
+       "RoutingManager",
+       "LivechatRoom"
+      ],
+      [
+       "AppLivechatBridge",
+       "Helper"
+      ],
+      [
+       "SMSHandler",
+       "QueueManager"
+      ]
+     ],
+     "subgraphs": []
+    }
+   ],
+   "source_files": {
+    "apps/meteor/app/livechat/server/api/v1/room.ts": [
+     "54-126",
+     "98-101",
+     "63-115",
+     "130-209"
+    ],
+    "apps/meteor/app/livechat/server/lib/QueueManager.ts": [
+     "92-510",
+     "135-139",
+     "130-167",
+     "248-269",
+     "271-377"
+    ],
+    "apps/meteor/app/livechat/server/lib/RoutingManager.ts": [
+     "74-377",
+     "74-174",
+     "230-269"
+    ],
+    "apps/meteor/app/livechat/server/lib/Helper.ts": [
+     "73-259",
+     "92-99",
+     "126-133",
+     "95-108",
+     "117-151",
+     "174-256",
+     "73-152",
+     "63-72",
+     "396-403"
+    ],
+    "apps/meteor/app/apps/server/bridges/livechat.ts": [
+     "76-80",
+     "44-300"
+    ],
+    "apps/meteor/app/livechat/server/api/v1/visitor.ts": [
+     "44-60",
+     "16-101"
+    ],
+    "apps/meteor/tests/data/livechat/rooms.ts": [
+     "75-104",
+     "146-154",
+     "21-55",
+     "106-140"
+    ],
+    "packages/rest-typings/src/v1/omnichannel.ts": [
+     "31-35",
+     "11-13"
+    ],
+    "apps/meteor/server/services/omnichannel/queue.ts": [
+     "204-207",
+     "18-226",
+     "120-152"
+    ],
+    "apps/meteor/app/livechat/imports/server/rest/sms.ts": [
+     "1-50"
+    ],
+    "apps/meteor/app/livechat/server/methods/sendMessageLivechat.ts": [],
+    "apps/meteor/tests/end-to-end/api/livechat/00-rooms.ts": [
+     "82-166"
+    ]
+   }
+  },
+  {
+   "page": "Authentication and Authorization",
+   "sections": [
+    "Purpose and Scope",
+    "Authentication Methods",
+    "Security Enforcement Layers",
+    "Authorization",
+    "Licensing and Enterprise Features"
+   ],
+   "diagrams": [
+    {
+     "nodes": {
+      "User": "User Login Attempt",
+      "FormLogin": "LoginForm.tsx / (Meteor.loginWithPassword)",
+      "OAuth": "CustomOAuth (apps/meteor/app/custom-oauth/server/custom_oauth_server.js)",
+      "SAML": "SAML (apps/meteor/app/meteor-accounts-saml/server/lib/SAML.ts)",
+      "LDAP": "LDAPManager (apps/meteor/server/lib/ldap/Manager.ts)",
+      "CAS": "CAS (similar to OAuth, custom service)",
+      "ExistingUser": "Users.findOneById",
+      "NewUser": "UserConverter.ts / (addObject)",
+      "MergeUser": "CustomOAuth.js / (mergeUsers)"
+     },
+     "edges": [
+      [
+       "User",
+       "FormLogin"
+      ],
+      [
+       "User",
+       "OAuth"
+      ],
+      [
+       "User",
+       "SAML"
+      ],
+      [
+       "User",
+       "LDAP"
+      ],
+      [
+       "User",
+       "CAS"
+      ],
+      [
+       "FormLogin",
+       "ExistingUser"
+      ],
+      [
+       "OAuth",
+       "ExistingUser"
+      ],
+      [
+       "OAuth",
+       "NewUser"
+      ],
+      [
+       "OAuth",
+       "MergeUser"
+      ],
+      [
+       "SAML",
+       "ExistingUser"
+      ],
+      [
+       "SAML",
+       "NewUser"
+      ],
+      [
+       "LDAP",
+       "ExistingUser"
+      ],
+      [
+       "LDAP",
+       "NewUser"
+      ]
+     ],
+     "subgraphs": [
+      "Authentication Methods",
+      "Account Creation/Linking"
+     ]
+    },
+    {
+     "nodes": {},
+     "edges": [],
+     "subgraphs": []
+    },
+    {
+     "nodes": {
+      "User": "User (IUser)",
+      "Roles": "Roles (IRole)",
+      "Permissions": "Permissions",
+      "Methods": "Server Methods (e.g., createDiscussion)"
+     },
+     "edges": [
+      [
+       "User",
+       "Roles",
+       "has roles"
+      ],
+      [
+       "Roles",
+       "Permissions",
+       "map to"
+      ],
+      [
+       "Methods",
+       "Permissions",
+       "check with"
+      ]
+     ],
+     "subgraphs": []
+    },
+    {
+     "nodes": {},
+     "edges": [],
+     "subgraphs": []
+    },
+    {
+     "nodes": {
+      "API": "/api/v1/abac/* endpoints",
+      "RBACPerms": "ABAC admin permissions: abac-management,\\nmanage-abac-admin-settings, \\nman-age-abac-admin-rooms,...",
+      "User": "API User"
+     },
+     "edges": [
+      [
+       "User",
+       "RBACPerms",
+       "has permission"
+      ],
+      [
+       "RBACPerms",
+       "API",
+       "grants access"
+      ],
+      [
+       "User",
+       "RBACPerms",
+       "lacks permission"
+      ],
+      [
+       "RBACPerms",
+       "API",
+       "denies access (403)"
+      ]
+     ],
+     "subgraphs": []
+    },
+    {
+     "nodes": {
+      "Startup": "EE Server Startup (startup.ts)",
+      "LicenseSvc": "LicenseManager (ee/packages/license/src/license.ts)",
+      "LimitCheck": "isLimitReached / shouldPreventAction",
+      "UsersSvc": "Users.getActiveLocalUserCount()",
+      "ContactsSvc": "LivechatContacts.countContactsOnPeriod()"
+     },
+     "edges": [
+      [
+       "Startup",
+       "LicenseSvc",
+       "set counters"
+      ],
+      [
+       "LicenseSvc",
+       "LimitCheck",
+       "validate limits"
+      ],
+      [
+       "LimitCheck",
+       "UsersSvc"
+      ],
+      [
+       "LimitCheck",
+       "ContactsSvc"
+      ]
+     ],
+     "subgraphs": []
+    },
+    {
+     "nodes": {
+      "UserLogin": "User Login Attempt",
+      "LoginForm": "packages/web-ui-registration/src/LoginForm.tsx",
+      "OAuthClass": "apps/meteor/app/custom-oauth/server/custom_oauth_server.js:CustomOAuth",
+      "LDAPMgr": "apps/meteor/server/lib/ldap/Manager.ts:LDAPManager",
+      "SAMLClass": "apps/meteor/app/meteor-accounts-saml/server/lib/SAML.ts:SAML"
+     },
+     "edges": [
+      [
+       "UserLogin",
+       "LoginForm"
+      ],
+      [
+       "UserLogin",
+       "OAuthClass"
+      ],
+      [
+       "UserLogin",
+       "LDAPMgr"
+      ],
+      [
+       "UserLogin",
+       "SAMLClass"
+      ]
+     ],
+     "subgraphs": []
+    },
+    {
+     "nodes": {
+      "LDAPServer": "External LDAP Server",
+      "LDAPConnection": "apps/meteor/ee/server/lib/ldap/Manager.ts:LDAPConnection",
+      "LDAPEEManager": "apps/meteor/ee/server/lib/ldap/Manager.ts:LDAPEEManager",
+      "MongoDBUsers": "Rocket.Chat Database: Users Collection",
+      "SettingsMapping": "Admin LDAP <-> ABAC Attribute Mapping JSON (settings)"
+     },
+     "edges": [
+      [
+       "LDAPServer",
+       "LDAPConnection"
+      ],
+      [
+       "LDAPConnection",
+       "LDAPEEManager"
+      ],
+      [
+       "SettingsMapping",
+       "LDAPEEManager"
+      ],
+      [
+       "LDAPEEManager",
+       "MongoDBUsers"
+      ]
+     ],
+     "subgraphs": []
+    }
+   ],
+   "source_files": {
+    "apps/meteor/app/custom-oauth/server/custom_oauth_server.js": [
+     "26-78",
+     "26-200"
+    ],
+    "apps/meteor/server/lib/ldap/Manager.ts": [
+     "24-65"
+    ],
+    "apps/meteor/app/meteor-accounts-saml/server/lib/SAML.ts": [
+     "55-185"
+    ],
+    "packages/web-ui-registration/src/LoginForm.tsx": [
+     "27-118",
+     "130-150"
+    ],
+    "apps/meteor/app/authentication/server/startup/index.js": [
+     "48-55",
+     "17-20"
+    ],
+    "apps/meteor/ee/server/lib/ldap/Manager.ts": [
+     "27-130",
+     "107-130"
+    ],
+    "apps/meteor/app/meteor-accounts-saml/server/lib/settings.ts": [
+     "110-124"
+    ],
+    "apps/meteor/app/discussion/server/methods/createDiscussion.ts": [
+     "220-230"
+    ],
+    "apps/meteor/ee/server/api/abac/index.ts": [],
+    "apps/meteor/tests/end-to-end/api/abac.ts": [],
+    "ee/packages/license/src/license.ts": [
+     "55-75"
+    ],
+    "apps/meteor/ee/app/license/server/startup.ts": [
+     "105-115"
+    ]
+   }
+  },
+  {
+   "page": "Room and Channel Management",
+   "sections": [
+    "Overview",
+    "Room Types and Implementation Directives",
+    "Room Management Operations",
+    "Retention Policies",
+    "The EditRoomInfo Interface",
+    "Team Management"
+   ],
+   "diagrams": [
+    {
+     "nodes": {
+      "Public": "Public Channels",
+      "Private": "Private Groups",
+      "DM": "Direct Messages",
+      "Live": "Omnichannel/Livechat",
+      "Disc": "Discussions",
+      "IRoom": "IRoom (Base Interface)",
+      "IDM": "IDirectMessageRoom (t: 'd')",
+      "ILive": "IOmnichannelGenericRoom (t: 'l')",
+      "ITeam": "ITeamRoom (teamMain: true)"
+     },
+     "edges": [
+      [
+       "Public",
+       "IRoom",
+       "type 'c'"
+      ],
+      [
+       "Private",
+       "IRoom",
+       "type 'p'"
+      ],
+      [
+       "DM",
+       "IDM"
+      ],
+      [
+       "Live",
+       "ILive"
+      ],
+      [
+       "Disc",
+       "IRoom",
+       "prid: string"
+      ]
+     ],
+     "subgraphs": [
+      "Natural Language Space",
+      "Code Entity Space (core-typings)"
+     ]
+    },
+    {
+     "nodes": {},
+     "edges": [],
+     "subgraphs": []
+    }
+   ],
+   "source_files": {
+    "packages/core-typings/src/IRoom.ts": [
+     "12-85",
+     "155",
+     "156",
+     "161-165",
+     "208-209",
+     "142-147",
+     "151",
+     "1-235",
+     "12-209",
+     "142-149"
+    ],
+    "apps/meteor/tests/end-to-end/api/rooms.ts": [
+     "44-58"
+    ],
+    "apps/meteor/client/lib/rooms/roomCoordinator.ts": [],
+    "apps/meteor/client/views/room/hooks/useOpenRoom.ts": [
+     "1-18",
+     "23",
+     "30-151"
+    ],
+    "apps/meteor/server/services/team/service.ts": [
+     "42",
+     "79-120",
+     "42-139",
+     "39",
+     "122-123",
+     "156-163",
+     "167-196",
+     "39-165"
+    ],
+    "packages/rest-typings/src/v1/rooms.ts": [
+     "132-140",
+     "384",
+     "386"
+    ],
+    "apps/meteor/client/views/room/contextualBar/Info/EditRoomInfo/EditRoomInfo.tsx": [
+     "175-177",
+     "89",
+     "155-187",
+     "80",
+     "137",
+     "132",
+     "133",
+     "135",
+     "144",
+     "80-200"
+    ],
+    "apps/meteor/client/views/room/hooks/useRetentionPolicy.ts": [],
+    "apps/meteor/client/views/admin/rooms/EditRoom.tsx": [
+     "67",
+     "57-59",
+     "52-65"
+    ],
+    "apps/meteor/client/views/room/contextualBar/Info/EditRoomInfo/useEditRoomPermissions.ts": [
+     "1-45"
+    ]
+   }
+  },
+  {
+   "page": "Apps Engine and Marketplace",
+   "sections": [
+    "Purpose and Scope",
+    "Apps-Engine Framework Architecture",
+    "Marketplace System",
+    "Extensibility APIs and Bridges",
+    "Event Pipeline",
+    "REST API Reference"
+   ],
+   "diagrams": [
+    {
+     "nodes": {
+      "ORCH": "AppServerOrchestrator",
+      "REST": "AppsRestApi",
+      "STORAGE": "AppRealStorage",
+      "MANAGER": "AppManager",
+      "BRIDGES": "RealAppBridges",
+      "DENO": "deno-runtime",
+      "NODE": "node-runtime"
+     },
+     "edges": [
+      [
+       "ORCH",
+       "MANAGER",
+       "initializes"
+      ],
+      [
+       "ORCH",
+       "REST",
+       "uses"
+      ],
+      [
+       "ORCH",
+       "STORAGE",
+       "provides"
+      ],
+      [
+       "MANAGER",
+       "BRIDGES",
+       "uses"
+      ],
+      [
+       "MANAGER",
+       "DENO",
+       "manages"
+      ],
+      [
+       "MANAGER",
+       "NODE",
+       "manages"
+      ]
+     ],
+     "subgraphs": [
+      "apps/meteor/ee/server/apps",
+      "packages/apps/src/server",
+      "Execution Layer"
+     ]
+    },
+    {
+     "nodes": {},
+     "edges": [],
+     "subgraphs": []
+    },
+    {
+     "nodes": {
+      "EV_PRESENCE": "presence.status",
+      "EV_ADDED": "apps.added",
+      "EV_UPDATED": "apps.updated",
+      "HANDLER": "Event Handlers",
+      "APP_EV": "AppEvents.IPostUserStatusChanged",
+      "MGR_ADD": "AppManager.addLocal"
+     },
+     "edges": [
+      [
+       "EV_PRESENCE",
+       "HANDLER"
+      ],
+      [
+       "EV_ADDED",
+       "HANDLER"
+      ],
+      [
+       "EV_UPDATED",
+       "HANDLER"
+      ],
+      [
+       "HANDLER",
+       "APP_EV"
+      ],
+      [
+       "HANDLER",
+       "MGR_ADD"
+      ]
+     ],
+     "subgraphs": [
+      "Core Events",
+      "AppsEngineService",
+      "Apps Engine"
+     ]
+    }
+   ],
+   "source_files": {
+    "packages/apps/package.json": [
+     "34",
+     "11",
+     "10",
+     "9",
+     "8-13",
+     "15-20"
+    ],
+    "apps/meteor/ee/server/apps/orchestrator.js": [
+     "88-94",
+     "36-102",
+     "40",
+     "203",
+     "188-223",
+     "66"
+    ],
+    "packages/apps/src/server/AppManager.ts": [
+     "1-50"
+    ],
+    "apps/meteor/ee/server/apps/communication/rest.ts": [
+     "143-169",
+     "50-169",
+     "127-141",
+     "32-35",
+     "119-171"
+    ],
+    "packages/rest-typings/src/apps/index.ts": [
+     "169-177",
+     "26-28",
+     "136-144",
+     "78-83",
+     "104-108",
+     "259-261",
+     "25-262"
+    ],
+    "apps/meteor/app/apps/server/bridges/rooms.ts": [
+     "57-77",
+     "57-180"
+    ],
+    "apps/meteor/app/apps/server/bridges/livechat.ts": [
+     "38-140",
+     "38-160"
+    ],
+    "apps/meteor/app/apps/server/bridges/users.ts": [
+     "1-20"
+    ],
+    "apps/meteor/app/apps/server/converters/rooms.js": [
+     "7-124",
+     "7-225"
+    ],
+    "apps/meteor/server/services/apps-engine/service.ts": [
+     "26-32",
+     "34-104",
+     "20-166"
+    ],
+    "packages/core-services/src/events/Events.ts": [
+     "160-163"
+    ]
+   }
+  },
+  {
+   "page": "End-to-End Encryption",
+   "sections": [
+    "Purpose and Scope",
+    "System Architecture",
+    "Key Management System",
+    "E2EE Lifecycle and Initialization",
+    "Reset Mechanisms",
+    "UI Components and Modals"
+   ],
+   "diagrams": [
+    {
+     "nodes": {
+      "UserKeys": "User E2E Keys / e2e.public_key / e2e.private_key",
+      "E2EClass": "E2E Class / client/lib/e2ee/rocketchat.e2e.ts",
+      "E2ERoomClass": "E2ERoom Class / client/lib/e2ee/rocketchat.e2e.room.ts",
+      "PasswordModals": "Password Modals / EnterE2EPasswordModal / SaveE2EPasswordModal",
+      "ResetRoomKey": "resetRoomKey() / app/e2e/server/functions/resetRoomKey.ts",
+      "ResetOwnKey": "resetUserE2EKey() / server/lib/resetUserE2EKey.ts",
+      "Users": "Users Collection / e2e: {public_key, private_key}",
+      "Rooms": "Rooms Collection / e2eKeyId / usersWaitingForE2EKeys",
+      "Subscriptions": "Subscriptions Collection / E2EKey / E2ESuggestedKey / oldRoomKeys[]"
+     },
+     "edges": [
+      [
+       "E2EClass",
+       "E2ERoomClass"
+      ],
+      [
+       "E2EClass",
+       "PasswordModals"
+      ],
+      [
+       "ResetRoomKey",
+       "Rooms"
+      ],
+      [
+       "ResetRoomKey",
+       "Subscriptions"
+      ],
+      [
+       "ResetOwnKey",
+       "Users"
+      ],
+      [
+       "UserKeys",
+       "Users",
+       "stored in"
+      ]
+     ],
+     "subgraphs": [
+      "Client Side",
+      "Server Side",
+      "Database Collections"
+     ]
+    },
+    {
+     "nodes": {},
+     "edges": [],
+     "subgraphs": []
+    }
+   ],
+   "source_files": {
+    "apps/meteor/client/lib/e2ee/rocketchat.e2e.ts": [
+     "46-64",
+     "13-15",
+     "88-102",
+     "112-133",
+     "112-159",
+     "197-228",
+     "125-133",
+     "104-110",
+     "163-183",
+     "44-46",
+     "25",
+     "26",
+     "25-26"
+    ],
+    "apps/meteor/client/lib/e2ee/rocketchat.e2e.room.ts": [
+     "1-50"
+    ],
+    "apps/meteor/server/lib/resetUserE2EKey.ts": [
+     "1-20",
+     "5-18"
+    ],
+    "apps/meteor/client/startup/startup.ts": [
+     "149-157"
+    ],
+    "apps/meteor/tests/e2e/account-forgetSessionOnWindowClose.spec.ts": [
+     "102-107"
+    ]
+   }
+  },
+  {
+   "page": "Federation and Matrix Integration",
+   "sections": [
+    "System Overview",
+    "Architecture and Data Flow",
+    "Room and User Synchronization",
+    "Event Pipeline (Inbound)",
+    "Room Creation and Management",
+    "Configuration and Settings"
+   ],
+   "diagrams": [
+    {
+     "nodes": {
+      "User": "User Interface\"] -->|SendMessage| Meteor[\"apps/meteor (executeSendMessage)"
+     },
+     "edges": [],
+     "subgraphs": [
+      "Rocket.Chat Internal"
+     ]
+    },
+    {
+     "nodes": {},
+     "edges": [],
+     "subgraphs": []
+    }
+   ],
+   "source_files": {
+    "ee/packages/federation-matrix/src/FederationMatrix.ts": [
+     "30-30",
+     "11-11",
+     "210-210",
+     "7-7",
+     "35-41",
+     "175-185",
+     "190-190",
+     "200-200",
+     "46-51",
+     "53-58",
+     "60-65",
+     "67-72",
+     "45-80"
+    ],
+    "ee/packages/federation-matrix/src/services/MatrixMediaService.ts": [],
+    "ee/packages/federation-matrix/src/events/index.ts": [],
+    "ee/packages/federation-matrix/package.json": [],
+    "ee/packages/federation-matrix/src/events/member.ts": [
+     "13-13",
+     "140-140",
+     "119-119",
+     "144-144",
+     "158-183"
+    ],
+    "ee/server/hooks/federation/index.ts": [
+     "56-77",
+     "153-153",
+     "68-68",
+     "110-110",
+     "103-105"
+    ],
+    "ee/packages/federation-matrix/src/helpers/message.parsers.ts": [
+     "19-19"
+    ],
+    "ee/packages/federation-matrix/src/helpers/createOrUpdateFederatedUser.ts": [],
+    "ee/packages/federation-matrix/src/helpers/extractDomainFromMatrixUserId.ts": [],
+    "ee/packages/federation-matrix/src/events/message.ts": [
+     "73-101"
+    ],
+    "ee/packages/federation-matrix/src/events/reaction.ts": [],
+    "ee/packages/federation-matrix/src/api/_matrix/invite.ts": [
+     "178-188"
+    ]
+   }
+  },
+  {
+   "page": "Video Conferencing and VoIP",
+   "sections": [
+    "1. Video Conferencing Service",
+    "2. VoIP and Media Calls",
+    "3. Push Notification Integration",
+    "4. Key Functions and Classes"
+   ],
+   "diagrams": [
+    {
+     "nodes": {},
+     "edges": [],
+     "subgraphs": []
+    },
+    {
+     "nodes": {},
+     "edges": [],
+     "subgraphs": []
+    }
+   ],
+   "source_files": {
+    "apps/meteor/server/services/video-conference/service.ts": [
+     "68-70",
+     "114-142"
+    ],
+    "apps/meteor/client/lib/VideoConfManager.ts": [
+     "69-70",
+     "140-174"
+    ],
+    "apps/meteor/client/providers/VideoConfProvider.tsx": [
+     "12-13",
+     "23-27"
+    ],
+    "apps/meteor/server/services/media-call/service.ts": [
+     "101-121",
+     "40-40",
+     "148-166",
+     "41-41",
+     "31-32",
+     "25-41"
+    ],
+    "packages/media-signaling/src/lib/Session.ts": [
+     "49-58",
+     "49-49"
+    ],
+    "packages/media-signaling/src/lib/Call.ts": [
+     "63-80",
+     "221-221",
+     "63-63"
+    ],
+    "packages/media-signaling/src/lib/services/webrtc/Processor.ts": [
+     "12-17",
+     "12-12"
+    ],
+    "ee/packages/media-calls/src/internal/SignalProcessor.ts": [
+     "28-35",
+     "108-119",
+     "28-28"
+    ],
+    "ee/packages/media-calls/src/sip/providers/OutgoingSipCall.ts": [
+     "25-45",
+     "139-186",
+     "25-25"
+    ],
+    "ee/packages/media-calls/src/sip/providers/IncomingSipCall.ts": [
+     "53-131"
+    ],
+    "ee/packages/media-calls/src/internal/agents/UserActorAgent.ts": [
+     "17-17"
+    ],
+    "packages/models/src/models/MediaCalls.ts": [
+     "1-1"
+    ],
+    "apps/meteor/app/push/server/push.ts": [
+     "190-191",
+     "132-137",
+     "223-252",
+     "190-192",
+     "212-217",
+     "181-221",
+     "132-132"
+    ],
+    "apps/meteor/app/push/server/apn.ts": [
+     "40-44",
+     "33-41",
+     "20-44"
+    ]
+   }
+  },
+  {
+   "page": "Development Workflow",
+   "sections": [
+    "Monorepo Management",
+    "Build System and Tooling",
+    "Release Management",
+    "CI/CD Pipeline",
+    "Testing Framework"
+   ],
+   "diagrams": [
+    {
+     "nodes": {
+      "PkgEngines": "package.json engines / {node: 22.16.0, yarn: 4.12.0}",
+      "ToolVersions": ".tool-versions / {node: 22.16.0, deno: 1.46.3}",
+      "Node": "Node.js 22.16.0",
+      "Yarn": "Yarn 4.12.0",
+      "Turbo": "Turbo Build System",
+      "TS": "TypeScript ~5.9.3"
+     },
+     "edges": [
+      [
+       "PkgEngines",
+       "Node"
+      ],
+      [
+       "PkgEngines",
+       "Yarn"
+      ],
+      [
+       "ToolVersions",
+       "Node"
+      ],
+      [
+       "Yarn",
+       "Turbo"
+      ],
+      [
+       "Yarn",
+       "TS"
+      ]
+     ],
+     "subgraphs": [
+      "Environment Definition",
+      "Build & Package Management"
+     ]
+    },
+    {
+     "nodes": {
+      "RootPkg": "package.json / version: 8.7.0-develop",
+      "MeteorInfo": "apps/meteor/app/utils/rocketchat.info / version: 8.7.0-develop",
+      "History": "HISTORY.md / Changelog entries",
+      "GitHistory": ".github/history.json / PR mapping",
+      "Changesets": "@changesets/cli",
+      "Houston": "Houston Release Tool"
+     },
+     "edges": [
+      [
+       "Changesets",
+       "RootPkg"
+      ],
+      [
+       "Houston",
+       "MeteorInfo"
+      ],
+      [
+       "Houston",
+       "History"
+      ]
+     ],
+     "subgraphs": [
+      "Metadata Files",
+      "Automation & Versioning"
+     ]
+    }
+   ],
+   "source_files": {
+    "package.json": [
+     "17-23",
+     "1071-1074",
+     "37-177",
+     "24-36",
+     "3-3",
+     "34-34"
+    ],
+    ".github/workflows/ci.yml": [
+     "97-103",
+     "166-180",
+     "30-153"
+    ],
+    "apps/meteor/package.json": [
+     "94-163",
+     "30-46",
+     "48-48",
+     "60-60",
+     "57-59",
+     "54-54",
+     "55-55",
+     "53-60"
+    ],
+    "packages/rest-typings/package.json": [
+     "17-19"
+    ],
+    "packages/core-typings/package.json": [
+     "10-15"
+    ],
+    "apps/meteor/app/utils/rocketchat.info": [
+     "1-3"
+    ],
+    "HISTORY.md": [
+     "1-10"
+    ],
+    ".github/history.json": [
+     "1-3"
+    ],
+    ".github/workflows/ci-test-e2e.yml": [
+     "74-96",
+     "181-201"
+    ],
+    "packages/fuselage-ui-kit/package.json": [
+     "36-38"
+    ],
+    "packages/gazzodown/package.json": [
+     "19-21"
+    ]
+   }
+  },
+  {
+   "page": "Monorepo Management",
+   "sections": [
+    "Workspace Configuration",
+    "Dependency Management",
+    "Package Manager Configuration",
+    "Build Script Standardization",
+    "Release Management Integration",
+    "Dependency Graph Examples"
+   ],
+   "diagrams": [
+    {
+     "nodes": {
+      "Root": "Root Workspace / package.json",
+      "AppsDir": "apps/*",
+      "PackagesDir": "packages/*",
+      "Meteor": "apps/meteor / @rocket.chat/meteor / v8.7.0-develop",
+      "UIKit": "apps/uikit-playground",
+      "CoreTypings": "packages/core-typings / @rocket.chat/core-typings / v8.7.0-develop",
+      "RestTypings": "packages/rest-typings / @rocket.chat/rest-typings / v8.7.0-develop",
+      "FuselageUIKit": "packages/fuselage-ui-kit / @rocket.chat/fuselage-ui-kit / v32.0.0",
+      "Gazzodown": "packages/gazzodown / @rocket.chat/gazzodown / v32.0.0",
+      "EEAppsDir": "ee/apps/*",
+      "EEPackagesDir": "ee/packages/*",
+      "DDPStreamer": "ee/apps/ddp-streamer",
+      "PresencePkg": "ee/packages/presence"
+     },
+     "edges": [
+      [
+       "Root",
+       "AppsDir"
+      ],
+      [
+       "Root",
+       "PackagesDir"
+      ],
+      [
+       "Root",
+       "EEAppsDir"
+      ],
+      [
+       "Root",
+       "EEPackagesDir"
+      ],
+      [
+       "AppsDir",
+       "Meteor"
+      ],
+      [
+       "AppsDir",
+       "UIKit"
+      ],
+      [
+       "PackagesDir",
+       "CoreTypings"
+      ],
+      [
+       "PackagesDir",
+       "RestTypings"
+      ],
+      [
+       "PackagesDir",
+       "FuselageUIKit"
+      ],
+      [
+       "PackagesDir",
+       "Gazzodown"
+      ],
+      [
+       "EEAppsDir",
+       "DDPStreamer"
+      ],
+      [
+       "EEPackagesDir",
+       "PresencePkg"
+      ]
+     ],
+     "subgraphs": []
+    },
+    {
+     "nodes": {
+      "Meteor": "@rocket.chat/meteor",
+      "CoreTypings": "@rocket.chat/core-typings",
+      "CoreServices": "@rocket.chat/core-services",
+      "Models": "@rocket.chat/models",
+      "RestTypings": "@rocket.chat/rest-typings",
+      "FuselageUIKit": "@rocket.chat/fuselage-ui-kit"
+     },
+     "edges": [
+      [
+       "Meteor",
+       "CoreTypings",
+       "workspace:^"
+      ],
+      [
+       "Meteor",
+       "CoreServices",
+       "workspace:^"
+      ],
+      [
+       "Meteor",
+       "Models",
+       "workspace:^"
+      ],
+      [
+       "Meteor",
+       "RestTypings",
+       "workspace:^"
+      ],
+      [
+       "Meteor",
+       "FuselageUIKit",
+       "workspace:^"
+      ],
+      [
+       "FuselageUIKit",
+       "CoreTypings",
+       "workspace:^"
+      ]
+     ],
+     "subgraphs": []
+    },
+    {
+     "nodes": {
+      "PackageJSON": "package.json / packageManager field",
+      "EnginesField": "package.json / engines field",
+      "Volta": "Volta Configuration / .volta section",
+      "YarnLock": "yarn.lock / version: 8 / cacheKey: 10"
+     },
+     "edges": [
+      [
+       "EnginesField",
+       "EnforcedVersion",
+       "yarn: 4.12.0"
+      ],
+      [
+       "Volta",
+       "EnforcedVersion",
+       "yarn: 4.12.0"
+      ],
+      [
+       "YarnLock",
+       "EnforcedVersion",
+       "Compatible with"
+      ]
+     ],
+     "subgraphs": []
+    },
+    {
+     "nodes": {
+      "Meteor": "@rocket.chat/meteor"
+     },
+     "edges": [
+      [
+       "FuselageUIKit",
+       "Gazzodown"
+      ],
+      [
+       "Gazzodown",
+       "CoreTypings"
+      ]
+     ],
+     "subgraphs": []
+    }
+   ],
+   "source_files": {
+    "package.json": [
+     "17-23",
+     "37-177",
+     "5",
+     "24-36",
+     "3-3"
+    ],
+    "apps/meteor/package.json": [
+     "2-3",
+     "3-3",
+     "94-160",
+     "116-159"
+    ],
+    "packages/core-typings/package.json": [
+     "3-4",
+     "4-4",
+     "38-40",
+     "10-14"
+    ],
+    "packages/fuselage-ui-kit/package.json": [
+     "2-3",
+     "3-3",
+     "41-43",
+     "102-104",
+     "40-44"
+    ],
+    "packages/rest-typings/package.json": [
+     "3-3"
+    ],
+    "packages/gazzodown/package.json": [
+     "3-3",
+     "81-83",
+     "31-44"
+    ],
+    "packages/ui-client/package.json": [
+     "3-3",
+     "20-22"
+    ],
+    "packages/livechat/package.json": [
+     "3-3"
+    ],
+    "yarn.lock": [
+     "5-6"
+    ],
+    "apps/meteor/app/utils/rocketchat.info": [
+     "2-2"
+    ],
+    "HISTORY.md": [
+     "1-10"
+    ],
+    ".github/history.json": [
+     "1-10"
+    ]
+   }
+  },
+  {
+   "page": "Build System and Tooling",
+   "sections": [
+    "Toolchain Components",
+    "Build Script Organization",
+    "Development and Monitoring Stack",
+    "Engineering Guides and Optimization"
+   ],
+   "diagrams": [
+    {
+     "nodes": {
+      "TR": "turbo.json",
+      "B": "turbo run build",
+      "D": "turbo run dev",
+      "L": "turbo run lint",
+      "M": "@rocket.chat/meteor",
+      "DS": "@rocket.chat/ddp-streamer",
+      "CS": "@rocket.chat/core-services",
+      "CT": "@rocket.chat/core-typings",
+      "RT": "@rocket.chat/rest-typings"
+     },
+     "edges": [
+      [
+       "TR",
+       "B"
+      ],
+      [
+       "B",
+       "CT"
+      ],
+      [
+       "CT",
+       "RT"
+      ],
+      [
+       "RT",
+       "CS"
+      ],
+      [
+       "CS",
+       "M"
+      ],
+      [
+       "CS",
+       "DS"
+      ]
+     ],
+     "subgraphs": [
+      "Turbo Orchestration",
+      "Code Entity Space"
+     ]
+    },
+    {
+     "nodes": {
+      "METEOR": "@rocket.chat/meteor",
+      "SERVICES": "@rocket.chat/core-services",
+      "MODELS": "@rocket.chat/models",
+      "OTEL_API": "@opentelemetry/api",
+      "OTEL_SDK": "@opentelemetry/sdk-node",
+      "TRACING": "@rocket.chat/tracing",
+      "GRPC": "@opentelemetry/exporter-trace-otlp-grpc",
+      "PROM": "Prometheus Exporter"
+     },
+     "edges": [
+      [
+       "METEOR",
+       "OTEL_API"
+      ],
+      [
+       "SERVICES",
+       "TRACING"
+      ],
+      [
+       "TRACING",
+       "OTEL_SDK"
+      ],
+      [
+       "OTEL_SDK",
+       "GRPC"
+      ],
+      [
+       "OTEL_SDK",
+       "PROM"
+      ]
+     ],
+     "subgraphs": [
+      "Application Layer",
+      "Instrumentation",
+      "Exporters"
+     ]
+    }
+   ],
+   "source_files": {
+    "package.json": [
+     "182",
+     "183",
+     "182-183",
+     "17-23",
+     "37-180",
+     "25",
+     "27",
+     "32",
+     "35",
+     "29",
+     "26",
+     "25-36",
+     "171-174"
+    ],
+    "apps/meteor/package.json": [
+     "62",
+     "34",
+     "30",
+     "30-34",
+     "88-90",
+     "155",
+     "65-67",
+     "44"
+    ],
+    "packages/core-typings/package.json": [
+     "24",
+     "13",
+     "12",
+     "11",
+     "10-19"
+    ],
+    "turbo.json": [
+     "1-49"
+    ],
+    "packages/rest-typings/package.json": [
+     "17"
+    ]
+   }
+  },
+  {
+   "page": "Release Management",
+   "sections": [
+    "System Overview",
+    "Core Components",
+    "Release Workflows",
+    "Release Action Implementation",
+    "Workspace Dependency Resolution",
+    "Engine Version Tracking",
+    "Utility Functions"
+   ],
+   "diagrams": [
+    {
+     "nodes": {
+      "ReleaseCandidate": "Release Candidate (RC)",
+      "StableRelease": "Stable Release",
+      "PatchFix": "Patch Fix",
+      "index": "packages/release-action/src/index.ts",
+      "bumpNext": "bumpNextVersion.ts",
+      "publishRel": "publishRelease.ts",
+      "startPatch": "startPatchRelease.ts",
+      "gitUtils": "gitUtils.ts",
+      "utils": "utils.ts"
+     },
+     "edges": [
+      [
+       "ReleaseCandidate",
+       "bumpNext"
+      ],
+      [
+       "StableRelease",
+       "publishRel"
+      ],
+      [
+       "PatchFix",
+       "startPatch"
+      ]
+     ],
+     "subgraphs": [
+      "Natural Language Space",
+      "Code Entity Space"
+     ]
+    },
+    {
+     "nodes": {
+      "ScheduledRC": "Scheduled Trigger / release-candidate.yml",
+      "ManualPatch": "Manual Trigger / action: patch",
+      "MergePR": "PR Merged to master / publish-release.yml"
+     },
+     "edges": [],
+     "subgraphs": [
+      "Monthly Release Cycle",
+      "Patch Release",
+      "Final Release"
+     ]
+    },
+    {
+     "nodes": {
+      "ListWS": "yarn workspaces list --json",
+      "ReadPkg": "readPackageJson",
+      "Resolve": "Resolve workspace:^ to concrete version",
+      "WritePkg": "fs.writeFile package.json"
+     },
+     "edges": [
+      [
+       "ListWS",
+       "ReadPkg"
+      ],
+      [
+       "ReadPkg",
+       "Resolve"
+      ],
+      [
+       "Resolve",
+       "WritePkg"
+      ]
+     ],
+     "subgraphs": [
+      "Resolution Process"
+     ]
+    }
+   ],
+   "source_files": {
+    "package.json": [
+     "71-81"
+    ],
+    "packages/release-action/src/utils.ts": [
+     "69-81",
+     "83-95",
+     "69-95",
+     "110-124",
+     "19-62",
+     "97-108",
+     "19-108"
+    ],
+    "packages/release-action/src/index.ts": [
+     "39-51",
+     "41-51"
+    ],
+    "packages/release-action/src/gitUtils.ts": [
+     "3-6"
+    ],
+    "packages/release-action/src/publishRelease.ts": [
+     "15-127",
+     "41-44",
+     "60-68",
+     "96-107",
+     "110",
+     "119-126"
+    ],
+    "packages/release-action/src/bumpNextVersion.ts": [
+     "14-99",
+     "34",
+     "37",
+     "60",
+     "68",
+     "70",
+     "72-98"
+    ],
+    "packages/release-action/src/startPatchRelease.ts": [
+     "9-60",
+     "27",
+     "39",
+     "46-56"
+    ],
+    "packages/release-action/src/fixWorkspaceVersionsBeforePublish.ts": [
+     "1-20"
+    ],
+    ".houston/metadata.js": [
+     "19-39",
+     "3-17",
+     "41-56",
+     "1-73"
+    ]
+   }
+  },
+  {
+   "page": "CI/CD Pipeline",
+   "sections": [
+    "Pipeline Overview",
+    "Build System Integration",
+    "Testing Matrix",
+    "Docker Multi-Arch Pipeline",
+    "Release and Deployment Automation"
+   ],
+   "diagrams": [
+    {
+     "nodes": {
+      "PR": "Pull Request",
+      "Push": "Push to develop",
+      "Release": "Release Published",
+      "Variables": "release-versions / Variable Setup",
+      "Notify": "notify-draft-services / Cloud Registration",
+      "PackagesBuild": "packages-build / Turbo Build",
+      "MeteorBuild": "meteor-build / Meteor Build",
+      "CodeChecks": "checks / Code Quality",
+      "UnitTests": "test-unit / Unit Tests",
+      "APITests": "test-api / API Tests CE",
+      "UITests": "test-ui / UI Tests CE",
+      "APITestsEE": "test-api-ee / API Tests EE",
+      "UITestsEE": "test-ui-ee / UI Tests EE",
+      "DockerTest": "build-gh-docker-coverage / Test Docker Images",
+      "DockerProd": "build-gh-docker / Production Docker Images",
+      "Deploy": "deploy / Publish Assets",
+      "DockerPublish": "docker-image-publish / Publish Main Images",
+      "ServicesPublish": "services-docker-image-publish / Publish Service Images"
+     },
+     "edges": [
+      [
+       "PR",
+       "Variables"
+      ],
+      [
+       "Push",
+       "Variables"
+      ],
+      [
+       "Release",
+       "Variables"
+      ],
+      [
+       "Variables",
+       "Notify"
+      ],
+      [
+       "Notify",
+       "PackagesBuild"
+      ],
+      [
+       "PackagesBuild",
+       "MeteorBuild"
+      ],
+      [
+       "PackagesBuild",
+       "CodeChecks"
+      ],
+      [
+       "MeteorBuild",
+       "DockerTest"
+      ],
+      [
+       "DockerTest",
+       "APITests"
+      ],
+      [
+       "DockerTest",
+       "UITests"
+      ],
+      [
+       "DockerTest",
+       "APITestsEE"
+      ],
+      [
+       "DockerTest",
+       "UITestsEE"
+      ],
+      [
+       "CodeChecks",
+       "DockerProd"
+      ],
+      [
+       "UnitTests",
+       "DockerProd"
+      ],
+      [
+       "DockerProd",
+       "Deploy"
+      ],
+      [
+       "Deploy",
+       "DockerPublish"
+      ],
+      [
+       "Deploy",
+       "ServicesPublish"
+      ]
+     ],
+     "subgraphs": [
+      "Pipeline Triggers",
+      "Setup Phase",
+      "Build Phase",
+      "Test Phase",
+      "Docker Phase",
+      "Deploy Phase"
+     ]
+    },
+    {
+     "nodes": {
+      "RC_IMG": "rocket.chat",
+      "DDP_IMG": "ddp-streamer-service",
+      "ACC_IMG": "account-service",
+      "AUTH_IMG": "authorization-service",
+      "RC_DF": "apps/meteor/.docker/Dockerfile.alpine",
+      "EE_DF": "ee/apps/Dockerfile"
+     },
+     "edges": [],
+     "subgraphs": [
+      "Docker Entities (Image Names)",
+      "Code Definitions (Dockerfiles)"
+     ]
+    },
+    {
+     "nodes": {
+      "RA": "release-action (packages/release-action)",
+      "HOUSTON": "Houston (via release-action)",
+      "NPM": "NPM Registry",
+      "GH_REL": "GitHub Releases",
+      "D360": "Document360 (D360_TOKEN)"
+     },
+     "edges": [],
+     "subgraphs": [
+      "Release Logic",
+      "Publication Targets"
+     ]
+    }
+   ],
+   "source_files": {
+    ".github/workflows/ci.yml": [
+     "6-10",
+     "12-16",
+     "3-5",
+     "11-11",
+     "1-153"
+    ],
+    ".github/actions/setup-node/action.yml": [
+     "44-50",
+     "59-68",
+     "81-87",
+     "1-121"
+    ],
+    ".github/workflows/ci-code-check.yml": [
+     "48-48",
+     "39-50",
+     "90-92",
+     "119-121",
+     "1-129"
+    ],
+    ".github/actions/build-docker/action.yml": [
+     "117-130",
+     "76-96",
+     "73-130",
+     "141-154",
+     "148-148",
+     "149-150",
+     "132-154"
+    ],
+    ".github/workflows/ci-test-unit.yml": [
+     "52-53",
+     "1-60"
+    ],
+    ".github/workflows/ci-test-e2e.yml": [
+     "88-94",
+     "92-94",
+     "169-172",
+     "189-189",
+     "197-197",
+     "201-201",
+     "1-201"
+    ],
+    ".docker-compose-ci.yml": [
+     "6-50"
+    ],
+    "docker-compose-ci.yml": [
+     "1-118"
+    ],
+    ".github/workflows/publish-release.yml": [
+     "3-6",
+     "40-43",
+     "1-47"
+    ],
+    ".github/workflows/new-release.yml": [
+     "4-14",
+     "50-54",
+     "1-58"
+    ],
+    ".github/workflows/release-candidate.yml": [
+     "3-4",
+     "1-40"
+    ],
+    ".github/workflows/update-version-durability.yml": [
+     "1-48"
+    ]
+   }
+  },
+  {
+   "page": "Testing Framework",
+   "sections": [
+    "Purpose and Scope",
+    "Testing Architecture Overview",
+    "Unit Testing",
+    "API Testing with Mocha",
+    "End-to-End Testing with Playwright",
+    "Infrastructure and Data Flow",
+    "Summary of Testing Tools"
+   ],
+   "diagrams": [
+    {
+     "nodes": {
+      "UnitTests": "Unit Tests / Jest & Mocha",
+      "APITests": "API Tests / Mocha & Chai",
+      "E2ETests": "E2E Tests / Playwright",
+      "StorybookTests": "Storybook Tests / Visual regression",
+      "JestRunner": "jest / displayName: client/server",
+      "MochaRunner": "mocha / --config .mocharc.js",
+      "PlaywrightRunner": "playwright test / --shard N/M",
+      "SBRunner": "test-storybook",
+      "V8": "v8 coverage provider",
+      "NYC": "nyc / Istanbul coverage",
+      "Codecov": "Codecov / Upload & reporting",
+      "Docker": "Docker Compose / docker-compose-ci.yml",
+      "MongoDB": "MongoDB 8.0 / Replica Set rs0",
+      "Services": "Microservices / EE services"
+     },
+     "edges": [
+      [
+       "UnitTests",
+       "JestRunner"
+      ],
+      [
+       "APITests",
+       "MochaRunner"
+      ],
+      [
+       "E2ETests",
+       "PlaywrightRunner"
+      ],
+      [
+       "StorybookTests",
+       "SBRunner"
+      ],
+      [
+       "JestRunner",
+       "V8"
+      ],
+      [
+       "MochaRunner",
+       "NYC"
+      ],
+      [
+       "PlaywrightRunner",
+       "NYC"
+      ],
+      [
+       "V8",
+       "Codecov"
+      ],
+      [
+       "NYC",
+       "Codecov"
+      ],
+      [
+       "APITests",
+       "Docker"
+      ],
+      [
+       "E2ETests",
+       "Docker"
+      ],
+      [
+       "Docker",
+       "MongoDB"
+      ],
+      [
+       "Docker",
+       "Services"
+      ]
+     ],
+     "subgraphs": [
+      "Test Types",
+      "Test Runners",
+      "Coverage Tools",
+      "Test Infrastructure"
+     ]
+    },
+    {
+     "nodes": {},
+     "edges": [],
+     "subgraphs": []
+    }
+   ],
+   "source_files": {
+    "apps/meteor/jest.config.ts": [
+     "5-64",
+     "62",
+     "13-28",
+     "34-58"
+    ],
+    "apps/meteor/.mocharc.js": [
+     "1-36",
+     "13-35"
+    ],
+    "apps/meteor/tests/end-to-end/api/livechat/00-rooms.ts": [
+     "154-185",
+     "82-190"
+    ],
+    "apps/meteor/tests/end-to-end/api/livechat/09-visitors.ts": [
+     "50-106",
+     "36-170"
+    ],
+    "apps/meteor/tests/data/livechat/rooms.ts": [
+     "21-33",
+     "106-140",
+     "1-202"
+    ],
+    "apps/meteor/tests/e2e/page-objects/home-channel.ts": [
+     "27-89",
+     "27-93",
+     "1-25"
+    ],
+    "apps/meteor/tests/e2e/page-objects/fragments/home-content.ts": [
+     "16-112",
+     "25",
+     "16-151"
+    ],
+    "apps/meteor/tests/e2e/channel-management.spec.ts": [
+     "54-160",
+     "12-160"
+    ],
+    "apps/meteor/tests/e2e/message-actions.spec.ts": [
+     "25-145",
+     "10-150"
+    ],
+    "apps/meteor/tests/e2e/team-management.spec.ts": [
+     "100-162",
+     "11-188"
+    ],
+    "apps/meteor/tests/e2e/feature-preview.spec.ts": [
+     "20-106",
+     "20-200"
+    ],
+    "apps/meteor/app/file-upload/server/lib/FileUpload.ts": [
+     "141-192",
+     "55-76",
+     "78-91",
+     "93-112",
+     "52-192"
+    ],
+    "packages/rest-typings/src/v1/omnichannel.ts": [
+     "49-60",
+     "45-116"
+    ]
+   }
+  },
+  {
+   "page": "Deployment",
+   "sections": [
+    "Overview",
+    "System Requirements",
+    "Deployment Architectures",
+    "Runtime Configuration",
+    "Deployment Methods Overview",
+    "Conclusion"
+   ],
+   "diagrams": [
+    {
+     "nodes": {},
+     "edges": [],
+     "subgraphs": [
+      "Deployment Methods",
+      "Runtime Requirements",
+      "Application Components"
+     ]
+    },
+    {
+     "nodes": {},
+     "edges": [],
+     "subgraphs": [
+      "Client Space",
+      "Code Entity Space (apps/meteor)",
+      "Infrastructure Space"
+     ]
+    },
+    {
+     "nodes": {},
+     "edges": [],
+     "subgraphs": [
+      "Entrypoints",
+      "Message Bus",
+      "Specialized Services (ee/apps/)"
+     ]
+    }
+   ],
+   "source_files": {
+    "README.md": [
+     "38-49",
+     "28",
+     "42-43",
+     "24-34",
+     "30",
+     "34",
+     "48"
+    ],
+    "app.json": [
+     "1-21"
+    ],
+    "apps/meteor/.docker/Dockerfile.alpine": [
+     "1-1",
+     "1",
+     "1-23",
+     "55",
+     "49-55",
+     "53",
+     "52"
+    ],
+    ".github/workflows/ci.yml": [
+     "97-99"
+    ],
+    ".github/workflows/ci-test-e2e.yml": [
+     "22-23",
+     "198",
+     "66-66",
+     "194-201",
+     "66",
+     "197"
+    ],
+    ".github/actions/setup-node/action.yml": [
+     "51-56",
+     "41-57"
+    ],
+    ".github/workflows/ci-test-unit.yml": [
+     "22"
+    ],
+    ".github/actions/build-docker/action.yml": [
+     "86-87"
+    ]
+   }
+  },
+  {
+   "page": "Deployment Options",
+   "sections": [
+    "Overview of Deployment Strategies",
+    "Containerized and Orchestrated Deployment",
+    "Enterprise Microservices Architecture",
+    "Platform-Specific Options",
+    "Federation Setup (Matrix)",
+    "Version Metadata and Runtime Requirements"
+   ],
+   "diagrams": [
+    {
+     "nodes": {},
+     "edges": [],
+     "subgraphs": []
+    },
+    {
+     "nodes": {},
+     "edges": [],
+     "subgraphs": [
+      "EE_Apps"
+     ]
+    },
+    {
+     "nodes": {},
+     "edges": [],
+     "subgraphs": []
+    }
+   ],
+   "source_files": {
+    "README.md": [
+     "18-22",
+     "28-30",
+     "38-49",
+     "42-43",
+     "42",
+     "59",
+     "44-45",
+     "48-49",
+     "32",
+     "32-49"
+    ],
+    "app.json": [
+     "1-21",
+     "9-10",
+     "15",
+     "17-20"
+    ],
+    "FEATURES.md": [
+     "3-5",
+     "4"
+    ],
+    "/.houston/metadata.js": [
+     "19-33",
+     "3-12",
+     "41-56"
+    ],
+    ".houston/metadata.js": [
+     "1-73"
+    ],
+    ".houston/templates/versions.hbs": [
+     "1-17"
+    ]
+   }
+  },
+  {
+   "page": "Docker Configuration",
+   "sections": [
+    "Docker Build System",
+    "Multi-Architecture Support",
+    "Docker Compose Configurations",
+    "Image Optimization Techniques",
+    "Runtime Configuration"
+   ],
+   "diagrams": [
+    {
+     "nodes": {
+      "A": "release-versions job\"] -- \"Computes hashes\" --> B[\"meteor-build action",
+      "C": "packages-build job\"] -- \"yarn build\" --> D[\"RocketChat-packages-build.tar.gz"
+     },
+     "edges": [],
+     "subgraphs": [
+      "CI Pipeline [ci.yml]",
+      "Artifact Processing",
+      "Image Generation [build-docker action]"
+     ]
+    },
+    {
+     "nodes": {},
+     "edges": [],
+     "subgraphs": [
+      "Pruning Logic [build-docker/action.yml]"
+     ]
+    },
+    {
+     "nodes": {
+      "A": "mongo container\"] --> B[\"mongod --replSet rs0"
+     },
+     "edges": [],
+     "subgraphs": []
+    }
+   ],
+   "source_files": {
+    ".github/workflows/ci.yml": [
+     "30-45",
+     "32-41"
+    ],
+    ".github/actions/build-docker/action.yml": [
+     "46-60",
+     "141-154",
+     "117-130",
+     "148",
+     "76-98"
+    ],
+    "apps/meteor/.docker/Dockerfile.alpine": [
+     "1-67",
+     "1",
+     "5-12",
+     "14-21",
+     "23",
+     "45-46",
+     "41",
+     "43-44",
+     "20-21",
+     "51",
+     "54",
+     "53",
+     "49",
+     "49-55"
+    ],
+    "docker-compose-ci.yml": [
+     "8-11",
+     "2-177",
+     "188-199",
+     "178-199",
+     "16",
+     "15-31"
+    ]
+   }
+  },
+  {
+   "page": "Runtime Requirements",
+   "sections": [
+    "Purpose and Scope",
+    "Node.js Requirements",
+    "Package Manager Requirements",
+    "Database Requirements",
+    "Enterprise Edition Infrastructure",
+    "Runtime Validation Checklist"
+   ],
+   "diagrams": [
+    {
+     "nodes": {
+      "MongoDB": "MongoDB_Server (4.4 - 8.0)",
+      "MeteorApp": "@rocket.chat/meteor (apps/meteor)",
+      "MongoAdapter": "@rocket.chat/mongo-adapter",
+      "Models": "@rocket.chat/models"
+     },
+     "edges": [
+      [
+       "MeteorApp",
+       "Models"
+      ],
+      [
+       "Models",
+       "MongoAdapter"
+      ],
+      [
+       "MongoAdapter",
+       "MongoDB"
+      ]
+     ],
+     "subgraphs": [
+      "Database_Tier",
+      "Application_Tier"
+     ]
+    },
+    {
+     "nodes": {
+      "DDP": "ddp-streamer (ee/apps/ddp-streamer)",
+      "Presence": "presence-service (ee/packages/presence)",
+      "CoreSvc": "core-services (packages/core-services)",
+      "NATS": "NATS_Server"
+     },
+     "edges": [],
+     "subgraphs": [
+      "EE_Microservices",
+      "Message_Broker"
+     ]
+    }
+   ],
+   "source_files": {
+    "package.json": [
+     "1-177",
+     "17-23",
+     "77-77",
+     "20-22"
+    ],
+    "apps/meteor/package.json": [
+     "1-164",
+     "134-135",
+     "102-102",
+     "137-137",
+     "99-99"
+    ],
+    "yarn.lock": [
+     "1-5"
+    ],
+    "HISTORY.md": [
+     "8-8",
+     "5-9"
+    ],
+    "ee/apps/ddp-streamer/package.json": [
+     "1-10"
+    ]
+   }
+  },
+  {
+   "page": "REST API Reference",
+   "sections": [
+    "API Architecture Overview",
+    "API Framework and Patterns",
+    "Messaging and Room APIs",
+    "User and Account APIs",
+    "Apps and Marketplace APIs"
+   ],
+   "diagrams": [
+    {
+     "nodes": {
+      "A": "HTTP Request (POST /api/v1/chat.postMessage)",
+      "H": "HTTP Request (GET /api/apps/marketplace)",
+      "B": "APIClass",
+      "C": "AJV Validation (isChatSendMessageProps)",
+      "I": "AppsRestApi",
+      "D": "MessageService",
+      "E": "executeSendMessage",
+      "F": "Messages Model",
+      "G": "fetchMarketplaceApps"
+     },
+     "edges": [
+      [
+       "A",
+       "B"
+      ],
+      [
+       "B",
+       "C"
+      ],
+      [
+       "C",
+       "D"
+      ],
+      [
+       "D",
+       "E"
+      ],
+      [
+       "E",
+       "F"
+      ],
+      [
+       "H",
+       "I"
+      ],
+      [
+       "I",
+       "G"
+      ]
+     ],
+     "subgraphs": [
+      "Network Space",
+      "Framework Space",
+      "Service & Logic Space"
+     ]
+    },
+    {
+     "nodes": {},
+     "edges": [],
+     "subgraphs": []
+    }
+   ],
+   "source_files": {
+    "apps/meteor/ee/server/apps/communication/rest.ts": [
+     "24-24",
+     "23-23",
+     "144-169",
+     "74-87",
+     "98-117",
+     "143-178",
+     "122-125",
+     "50-92"
+    ],
+    "packages/core-typings/src/IMessage/IMessage.ts": [
+     "145-245",
+     "145-156",
+     "86-86"
+    ],
+    "packages/rest-typings/src/apps/index.ts": [
+     "25-262"
+    ],
+    "apps/meteor/server/services/messages/service.ts": [
+     "89-91",
+     "34-57",
+     "141-151"
+    ],
+    "packages/rest-typings/src/v1/chat.ts": [
+     "80-80",
+     "11-80",
+     "221-253",
+     "6-9"
+    ],
+    "apps/meteor/ee/server/apps/marketplace/fetchMarketplaceApps.ts": [
+     "142-142",
+     "144-147",
+     "142-189"
+    ],
+    "apps/meteor/tests/end-to-end/api/chat.ts": [
+     "59-60"
+    ],
+    "apps/meteor/server/methods/messageSearch.ts": [
+     "109-121"
+    ],
+    "apps/meteor/app/version-check/server/functions/buildVersionUpdateMessage.ts": [
+     "85-108"
+    ]
+   }
+  },
+  {
+   "page": "API Framework and Patterns",
+   "sections": [
+    "Core Architecture",
+    "Data Flow and Execution Context",
+    "Validation and Schemas",
+    "Middleware Pipeline",
+    "Rate Limiting",
+    "OpenAPI and Documentation"
+   ],
+   "diagrams": [
+    {
+     "nodes": {},
+     "edges": [],
+     "subgraphs": []
+    },
+    {
+     "nodes": {},
+     "edges": [],
+     "subgraphs": []
+    }
+   ],
+   "source_files": {
+    "apps/meteor/ee/server/apps/communication/rest.ts": [
+     "24-24",
+     "143-169",
+     "74-91",
+     "147-167",
+     "149-149",
+     "134-134",
+     "50-70",
+     "160-164",
+     "76-85",
+     "86-86",
+     "87-87",
+     "98-117"
+    ],
+    "packages/rest-typings/src/apps/index.ts": [
+     "25-262",
+     "50-50"
+    ],
+    "packages/rest-typings/src/v1/Ajv.ts": [
+     "4-17",
+     "4-9",
+     "12-17",
+     "66-66",
+     "89-89",
+     "128-128"
+    ],
+    "apps/meteor/app/lib/server/startup/rateLimiter.js": [
+     "174-179",
+     "181-186",
+     "188-193",
+     "195-212",
+     "139-142"
+    ]
+   }
+  },
+  {
+   "page": "Messaging and Room APIs",
+   "sections": [
+    "Message API Implementation",
+    "Room Management APIs",
+    "Integrations and Webhooks",
+    "REST Typings and Validation"
+   ],
+   "diagrams": [
+    {
+     "nodes": {},
+     "edges": [],
+     "subgraphs": []
+    },
+    {
+     "nodes": {},
+     "edges": [],
+     "subgraphs": []
+    }
+   ],
+   "source_files": {
+    "apps/meteor/server/services/messages/service.ts": [
+     "89-91",
+     "149-151",
+     "145-147",
+     "153-155",
+     "51-74",
+     "188-196",
+     "188-198"
+    ],
+    "apps/meteor/tests/end-to-end/api/chat.ts": [
+     "19-27"
+    ],
+    "packages/rest-typings/src/v1/chat.ts": [
+     "80",
+     "1-253"
+    ],
+    "apps/meteor/tests/end-to-end/api/channels.ts": [
+     "33-60"
+    ],
+    "apps/meteor/server/services/team/service.ts": [
+     "39-139",
+     "42-91",
+     "34-36",
+     "122-123"
+    ],
+    "apps/meteor/tests/end-to-end/api/direct-message.ts": [
+     "1"
+    ],
+    "apps/meteor/tests/end-to-end/api/rooms.ts": [
+     "76-106"
+    ],
+    "packages/core-typings/src/IMessage/IMessage.ts": [
+     "145-245"
+    ],
+    "apps/meteor/app/integrations/server/methods/incoming/addIncomingIntegration.ts": [
+     "24-118",
+     "43-51",
+     "93-101",
+     "1-41"
+    ],
+    "apps/meteor/app/integrations/server/api/api.ts": [
+     "22",
+     "4"
+    ],
+    "packages/rest-typings/src/v1/rooms.ts": [
+     "130",
+     "16",
+     "17",
+     "1-180"
+    ]
+   }
+  },
+  {
+   "page": "User and Account APIs",
+   "sections": [
+    "Overview",
+    "Key Code Entities",
+    "User Data Model (IUser)",
+    "Core API Endpoints",
+    "Presence and Status Management",
+    "Security and Validation"
+   ],
+   "diagrams": [
+    {
+     "nodes": {
+      "UI": "AccountProfileForm.tsx\"] -- \"calls\" --> API_EP[\"users.updateOwnBasicInfo"
+     },
+     "edges": [],
+     "subgraphs": [
+      "Identity Propagation"
+     ]
+    },
+    {
+     "nodes": {
+      "PR_SVC": "Presence.ts",
+      "PR_REAP": "PresenceReaper.ts",
+      "PR_ENG": "presenceEngine.ts",
+      "INST_STAT": "watch.instanceStatus\"] -- \"on removed\" --> REM_CONN[\"removeLostConnections()"
+     },
+     "edges": [],
+     "subgraphs": [
+      "Presence Service",
+      "Expiration Job",
+      "Connection Monitoring"
+     ]
+    }
+   ],
+   "source_files": {
+    "apps/meteor/client/views/account/profile/AccountProfileForm.tsx": [
+     "123-182",
+     "41-185",
+     "157-167",
+     "168-174",
+     "104-121"
+    ],
+    "packages/model-typings/src/models/IUsersModel.ts": [
+     "32-40",
+     "31-200"
+    ],
+    "packages/models/src/models/Users.ts": [
+     "218-225",
+     "38-105",
+     "59-62",
+     "93-99",
+     "81-87"
+    ],
+    "packages/core-typings/src/IUser.ts": [
+     "169-248",
+     "67-120",
+     "179-192",
+     "163-167",
+     "171",
+     "7-11"
+    ],
+    "ee/packages/presence/src/Presence.ts": [
+     "35-58",
+     "131-138",
+     "67-83"
+    ],
+    "packages/rest-typings/src/v1/users.ts": [
+     "157-161",
+     "11-37",
+     "151-155",
+     "252-256",
+     "240-244"
+    ],
+    "apps/meteor/client/views/account/accessibility/AccessibilityPage.tsx": [
+     "63-78"
+    ],
+    "apps/meteor/client/views/account/profile/AccountProfilePage.tsx": [
+     "50-114",
+     "49-64"
+    ]
+   }
+  },
+  {
+   "page": "Glossary",
+   "sections": [
+    "Architectural Terms",
+    "Domain Concepts",
+    "Technical Jargon & Abbreviations",
+    "System Mapping Diagrams"
+   ],
+   "diagrams": [
+    {
+     "nodes": {
+      "A": "Messaging & UI",
+      "B": "Enterprise Features",
+      "C": "External Extensions"
+     },
+     "edges": [],
+     "subgraphs": [
+      "Natural Language Space",
+      "Code Entity Space"
+     ]
+    },
+    {
+     "nodes": {},
+     "edges": [],
+     "subgraphs": []
+    }
+   ],
+   "source_files": {
+    "package.json": [
+     "17-23",
+     "30-30",
+     "25-29",
+     "25-30"
+    ],
+    "apps/meteor/package.json": [
+     "2-3",
+     "49",
+     "111-111",
+     "99-99",
+     "94-94",
+     "109-109",
+     "2-161",
+     "148-148"
+    ],
+    "ee/apps/account-service/package.json": [
+     "2"
+    ],
+    "ee/apps/presence-service/package.json": [
+     "2"
+    ],
+    "HISTORY.md": [
+     "104-104"
+    ],
+    "packages/livechat/package.json": [
+     "2",
+     "121-125"
+    ],
+    "packages/i18n/src/locales/en.i18n.json": [
+     "14-25"
+    ],
+    "ee/apps/ddp-streamer/package.json": [
+     "2"
+    ],
+    "packages/fuselage-ui-kit/package.json": [
+     "5"
+    ],
+    "packages/gazzodown/package.json": [
+     "2"
+    ],
+    "packages/rest-typings/package.json": [
+     "2"
+    ],
+    "packages/core-typings/package.json": [
+     "3"
+    ]
+   }
+  }
+ ],
+ "file_to_pages": {
+  ".docker-compose-ci.yml": [
+   "CI/CD Pipeline"
+  ],
+  ".github/actions/build-docker/action.yml": [
+   "CI/CD Pipeline",
+   "Deployment",
+   "Docker Configuration"
+  ],
+  ".github/actions/setup-node/action.yml": [
+   "CI/CD Pipeline",
+   "Deployment"
+  ],
+  ".github/history.json": [
+   "Development Workflow",
+   "Monorepo Management"
+  ],
+  ".github/workflows/ci-code-check.yml": [
+   "CI/CD Pipeline"
+  ],
+  ".github/workflows/ci-test-e2e.yml": [
+   "CI/CD Pipeline",
+   "Deployment",
+   "Development Workflow"
+  ],
+  ".github/workflows/ci-test-unit.yml": [
+   "CI/CD Pipeline",
+   "Deployment"
+  ],
+  ".github/workflows/ci.yml": [
+   "CI/CD Pipeline",
+   "Deployment",
+   "Development Workflow",
+   "Docker Configuration"
+  ],
+  ".github/workflows/new-release.yml": [
+   "CI/CD Pipeline"
+  ],
+  ".github/workflows/publish-release.yml": [
+   "CI/CD Pipeline"
+  ],
+  ".github/workflows/release-candidate.yml": [
+   "CI/CD Pipeline"
+  ],
+  ".github/workflows/update-version-durability.yml": [
+   "CI/CD Pipeline"
+  ],
+  ".houston/metadata.js": [
+   "Deployment Options",
+   "Key Features",
+   "Release Management"
+  ],
+  ".houston/templates/versions.hbs": [
+   "Deployment Options"
+  ],
+  "/.houston/metadata.js": [
+   "Deployment Options"
+  ],
+  "app.json": [
+   "Deployment",
+   "Deployment Options",
+   "Key Features"
+  ],
+  "app/e2e/server/functions/resetRoomKey.ts": [
+   "Key Features"
+  ],
+  "apps/meteor/.docker/Dockerfile.alpine": [
+   "Deployment",
+   "Docker Configuration"
+  ],
+  "apps/meteor/.mocharc.js": [
+   "Testing Framework"
+  ],
+  "apps/meteor/app/apps/server/bridges/livechat.ts": [
+   "Apps Engine and Marketplace",
+   "Omnichannel and Livechat"
+  ],
+  "apps/meteor/app/apps/server/bridges/rooms.ts": [
+   "Apps Engine and Marketplace"
+  ],
+  "apps/meteor/app/apps/server/bridges/users.ts": [
+   "Apps Engine and Marketplace"
+  ],
+  "apps/meteor/app/apps/server/converters/rooms.js": [
+   "Apps Engine and Marketplace"
+  ],
+  "apps/meteor/app/authentication/server/startup/index.js": [
+   "Authentication and Authorization"
+  ],
+  "apps/meteor/app/custom-oauth/server/custom_oauth_server.js": [
+   "Authentication and Authorization"
+  ],
+  "apps/meteor/app/discussion/server/methods/createDiscussion.ts": [
+   "Authentication and Authorization"
+  ],
+  "apps/meteor/app/file-upload/server/lib/FileUpload.ts": [
+   "Testing Framework"
+  ],
+  "apps/meteor/app/integrations/server/api/api.ts": [
+   "Messaging and Room APIs"
+  ],
+  "apps/meteor/app/integrations/server/methods/incoming/addIncomingIntegration.ts": [
+   "Messaging and Room APIs"
+  ],
+  "apps/meteor/app/lib/client/methods/sendMessage.ts": [
+   "Core Application"
+  ],
+  "apps/meteor/app/lib/server/startup/rateLimiter.js": [
+   "API Framework and Patterns"
+  ],
+  "apps/meteor/app/livechat/imports/server/rest/sms.ts": [
+   "Omnichannel and Livechat"
+  ],
+  "apps/meteor/app/livechat/server/api/v1/room.ts": [
+   "Omnichannel and Livechat"
+  ],
+  "apps/meteor/app/livechat/server/api/v1/visitor.ts": [
+   "Omnichannel and Livechat"
+  ],
+  "apps/meteor/app/livechat/server/index.ts": [
+   "Key Features"
+  ],
+  "apps/meteor/app/livechat/server/lib/Helper.ts": [
+   "Omnichannel and Livechat"
+  ],
+  "apps/meteor/app/livechat/server/lib/QueueManager.ts": [
+   "Omnichannel and Livechat"
+  ],
+  "apps/meteor/app/livechat/server/lib/RoutingManager.ts": [
+   "Omnichannel and Livechat"
+  ],
+  "apps/meteor/app/livechat/server/methods/sendMessageLivechat.ts": [
+   "Omnichannel and Livechat"
+  ],
+  "apps/meteor/app/meteor-accounts-saml/server/lib/SAML.ts": [
+   "Authentication and Authorization"
+  ],
+  "apps/meteor/app/meteor-accounts-saml/server/lib/settings.ts": [
+   "Authentication and Authorization"
+  ],
+  "apps/meteor/app/push/server/apn.ts": [
+   "Video Conferencing and VoIP"
+  ],
+  "apps/meteor/app/push/server/push.ts": [
+   "Video Conferencing and VoIP"
+  ],
+  "apps/meteor/app/statistics/server/functions/sendUsageReport.ts": [
+   "Database Migrations"
+  ],
+  "apps/meteor/app/statistics/server/lib/statistics.ts": [
+   "Database Migrations"
+  ],
+  "apps/meteor/app/theme/client/imports/general/base_old.css": [
+   "UI Component System"
+  ],
+  "apps/meteor/app/ui-utils/client/lib/LegacyRoomManager.ts": [
+   "Core Application"
+  ],
+  "apps/meteor/app/utils/rocketchat.info": [
+   "Development Workflow",
+   "Monorepo Management",
+   "Monorepo Structure",
+   "Overview"
+  ],
+  "apps/meteor/app/version-check/server/functions/buildVersionUpdateMessage.ts": [
+   "REST API Reference"
+  ],
+  "apps/meteor/client/components/GazzodownText.tsx": [
+   "UI Component System"
+  ],
+  "apps/meteor/client/components/message/variants/room/RoomMessageContent.tsx": [
+   "UI Component System"
+  ],
+  "apps/meteor/client/components/message/variants/thread/ThreadMessageContent.tsx": [
+   "UI Component System"
+  ],
+  "apps/meteor/client/lib/chats/flows/sendMessage.ts": [
+   "Core Application"
+  ],
+  "apps/meteor/client/lib/e2ee/rocketchat.e2e.room.ts": [
+   "End-to-End Encryption"
+  ],
+  "apps/meteor/client/lib/e2ee/rocketchat.e2e.ts": [
+   "End-to-End Encryption"
+  ],
+  "apps/meteor/client/lib/rooms/roomCoordinator.ts": [
+   "Room and Channel Management"
+  ],
+  "apps/meteor/client/lib/VideoConfManager.ts": [
+   "Video Conferencing and VoIP"
+  ],
+  "apps/meteor/client/providers/MeteorProvider.tsx": [
+   "UI Component System"
+  ],
+  "apps/meteor/client/providers/TranslationProvider.tsx": [
+   "Internationalization System"
+  ],
+  "apps/meteor/client/providers/UserProvider/UserProvider.tsx": [
+   "Core Application",
+   "UI Component System"
+  ],
+  "apps/meteor/client/providers/VideoConfProvider.tsx": [
+   "Video Conferencing and VoIP"
+  ],
+  "apps/meteor/client/startup/startup.ts": [
+   "End-to-End Encryption"
+  ],
+  "apps/meteor/client/views/account/accessibility/AccessibilityPage.tsx": [
+   "UI Component System",
+   "User and Account APIs"
+  ],
+  "apps/meteor/client/views/account/profile/AccountProfileForm.tsx": [
+   "User and Account APIs"
+  ],
+  "apps/meteor/client/views/account/profile/AccountProfilePage.tsx": [
+   "User and Account APIs"
+  ],
+  "apps/meteor/client/views/admin/rooms/EditRoom.tsx": [
+   "Room and Channel Management"
+  ],
+  "apps/meteor/client/views/admin/users/UsersTable/UsersTable.tsx": [
+   "Type System and API Contracts"
+  ],
+  "apps/meteor/client/views/room/contextualBar/Info/EditRoomInfo/EditRoomInfo.tsx": [
+   "Room and Channel Management"
+  ],
+  "apps/meteor/client/views/room/contextualBar/Info/EditRoomInfo/useEditRoomPermissions.ts": [
+   "Room and Channel Management"
+  ],
+  "apps/meteor/client/views/room/hooks/useOpenRoom.ts": [
+   "Core Application",
+   "Room and Channel Management"
+  ],
+  "apps/meteor/client/views/room/hooks/useRetentionPolicy.ts": [
+   "Room and Channel Management"
+  ],
+  "apps/meteor/client/views/room/providers/ComposerPopupProvider.tsx": [
+   "UI Component System"
+  ],
+  "apps/meteor/client/views/root/AppLayout.tsx": [
+   "Core Application"
+  ],
+  "apps/meteor/ee/app/license/server/startup.ts": [
+   "Authentication and Authorization"
+  ],
+  "apps/meteor/ee/app/livechat-enterprise/server/index.ts": [
+   "Key Features"
+  ],
+  "apps/meteor/ee/server/api/abac/index.ts": [
+   "Authentication and Authorization"
+  ],
+  "apps/meteor/ee/server/apps/communication/rest.ts": [
+   "API Framework and Patterns",
+   "Apps Engine and Marketplace",
+   "REST API Reference"
+  ],
+  "apps/meteor/ee/server/apps/marketplace/fetchMarketplaceApps.ts": [
+   "REST API Reference"
+  ],
+  "apps/meteor/ee/server/apps/orchestrator.js": [
+   "Apps Engine and Marketplace"
+  ],
+  "apps/meteor/ee/server/lib/ldap/Manager.ts": [
+   "Authentication and Authorization"
+  ],
+  "apps/meteor/ee/server/local-services/instance/getTransporter.ts": [
+   "Microservices Architecture"
+  ],
+  "apps/meteor/ee/server/services/package.json": [
+   "Monorepo Structure"
+  ],
+  "apps/meteor/jest.config.ts": [
+   "Testing Framework"
+  ],
+  "apps/meteor/package.json": [
+   "Build System and Tooling",
+   "Core Application",
+   "Development Workflow",
+   "Glossary",
+   "Monorepo Management",
+   "Monorepo Structure",
+   "Overview",
+   "Runtime Requirements",
+   "System Architecture"
+  ],
+  "apps/meteor/server/lib/ldap/Manager.ts": [
+   "Authentication and Authorization"
+  ],
+  "apps/meteor/server/lib/resetUserE2EKey.ts": [
+   "End-to-End Encryption"
+  ],
+  "apps/meteor/server/methods/messageSearch.ts": [
+   "REST API Reference"
+  ],
+  "apps/meteor/server/modules/listeners/listeners.module.ts": [
+   "Core Application"
+  ],
+  "apps/meteor/server/modules/notifications/notifications.module.ts": [
+   "Microservices Architecture"
+  ],
+  "apps/meteor/server/services/apps-engine/service.ts": [
+   "Apps Engine and Marketplace"
+  ],
+  "apps/meteor/server/services/media-call/service.ts": [
+   "Video Conferencing and VoIP"
+  ],
+  "apps/meteor/server/services/messages/service.ts": [
+   "Messaging and Room APIs",
+   "REST API Reference",
+   "Type System and API Contracts"
+  ],
+  "apps/meteor/server/services/meteor/service.ts": [
+   "Core Application"
+  ],
+  "apps/meteor/server/services/omnichannel/queue.ts": [
+   "Omnichannel and Livechat"
+  ],
+  "apps/meteor/server/services/startup.ts": [
+   "Microservices Architecture"
+  ],
+  "apps/meteor/server/services/team/service.ts": [
+   "Messaging and Room APIs",
+   "Room and Channel Management"
+  ],
+  "apps/meteor/server/services/video-conference/service.ts": [
+   "Video Conferencing and VoIP"
+  ],
+  "apps/meteor/server/startup/index.ts": [
+   "Database Migrations"
+  ],
+  "apps/meteor/server/startup/migrations/index.ts": [
+   "Database Migrations"
+  ],
+  "apps/meteor/server/startup/migrations/v319.ts": [
+   "Database Migrations"
+  ],
+  "apps/meteor/server/startup/migrations/xrun.ts": [
+   "Database Migrations"
+  ],
+  "apps/meteor/tests/data/livechat/rooms.ts": [
+   "Omnichannel and Livechat",
+   "Testing Framework"
+  ],
+  "apps/meteor/tests/e2e/account-forgetSessionOnWindowClose.spec.ts": [
+   "End-to-End Encryption"
+  ],
+  "apps/meteor/tests/e2e/channel-management.spec.ts": [
+   "Testing Framework"
+  ],
+  "apps/meteor/tests/e2e/feature-preview.spec.ts": [
+   "Testing Framework"
+  ],
+  "apps/meteor/tests/e2e/message-actions.spec.ts": [
+   "Testing Framework"
+  ],
+  "apps/meteor/tests/e2e/page-objects/fragments/home-content.ts": [
+   "Testing Framework"
+  ],
+  "apps/meteor/tests/e2e/page-objects/home-channel.ts": [
+   "Testing Framework"
+  ],
+  "apps/meteor/tests/e2e/team-management.spec.ts": [
+   "Testing Framework"
+  ],
+  "apps/meteor/tests/end-to-end/api/abac.ts": [
+   "Authentication and Authorization"
+  ],
+  "apps/meteor/tests/end-to-end/api/channels.ts": [
+   "Messaging and Room APIs"
+  ],
+  "apps/meteor/tests/end-to-end/api/chat.ts": [
+   "Messaging and Room APIs",
+   "REST API Reference",
+   "Type System and API Contracts"
+  ],
+  "apps/meteor/tests/end-to-end/api/direct-message.ts": [
+   "Messaging and Room APIs"
+  ],
+  "apps/meteor/tests/end-to-end/api/livechat/00-rooms.ts": [
+   "Omnichannel and Livechat",
+   "Testing Framework"
+  ],
+  "apps/meteor/tests/end-to-end/api/livechat/09-visitors.ts": [
+   "Testing Framework"
+  ],
+  "apps/meteor/tests/end-to-end/api/livechat/19-business-hours.ts": [
+   "Key Features"
+  ],
+  "apps/meteor/tests/end-to-end/api/rooms.ts": [
+   "Messaging and Room APIs",
+   "Room and Channel Management"
+  ],
+  "apps/uikit-playground/package.json": [
+   "Monorepo Structure"
+  ],
+  "docker-compose-ci.yml": [
+   "CI/CD Pipeline",
+   "Docker Configuration",
+   "Microservices Architecture"
+  ],
+  "ee/apps/account-service/package.json": [
+   "Glossary",
+   "Microservices Architecture",
+   "Monorepo Structure",
+   "Overview"
+  ],
+  "ee/apps/account-service/src/Account.ts": [
+   "Microservices Architecture"
+  ],
+  "ee/apps/account-service/src/lib/loginViaResume.ts": [
+   "Microservices Architecture"
+  ],
+  "ee/apps/authorization-service/package.json": [
+   "Microservices Architecture",
+   "Monorepo Structure"
+  ],
+  "ee/apps/ddp-streamer/package.json": [
+   "Glossary",
+   "Microservices Architecture",
+   "Monorepo Structure",
+   "Overview",
+   "Runtime Requirements"
+  ],
+  "ee/apps/ddp-streamer/src/configureServer.ts": [
+   "Microservices Architecture"
+  ],
+  "ee/apps/ddp-streamer/src/Streamer.ts": [
+   "Microservices Architecture"
+  ],
+  "ee/apps/omnichannel-transcript/package.json": [
+   "Microservices Architecture",
+   "Monorepo Structure"
+  ],
+  "ee/apps/presence-service/package.json": [
+   "Glossary",
+   "Microservices Architecture",
+   "Overview"
+  ],
+  "ee/apps/queue-worker/package.json": [
+   "Microservices Architecture",
+   "Monorepo Structure"
+  ],
+  "ee/packages/federation-matrix/package.json": [
+   "Federation and Matrix Integration"
+  ],
+  "ee/packages/federation-matrix/src/api/_matrix/invite.ts": [
+   "Federation and Matrix Integration"
+  ],
+  "ee/packages/federation-matrix/src/events/index.ts": [
+   "Federation and Matrix Integration"
+  ],
+  "ee/packages/federation-matrix/src/events/member.ts": [
+   "Federation and Matrix Integration"
+  ],
+  "ee/packages/federation-matrix/src/events/message.ts": [
+   "Federation and Matrix Integration"
+  ],
+  "ee/packages/federation-matrix/src/events/reaction.ts": [
+   "Federation and Matrix Integration"
+  ],
+  "ee/packages/federation-matrix/src/FederationMatrix.ts": [
+   "Federation and Matrix Integration"
+  ],
+  "ee/packages/federation-matrix/src/helpers/createOrUpdateFederatedUser.ts": [
+   "Federation and Matrix Integration"
+  ],
+  "ee/packages/federation-matrix/src/helpers/extractDomainFromMatrixUserId.ts": [
+   "Federation and Matrix Integration"
+  ],
+  "ee/packages/federation-matrix/src/helpers/message.parsers.ts": [
+   "Federation and Matrix Integration"
+  ],
+  "ee/packages/federation-matrix/src/services/MatrixMediaService.ts": [
+   "Federation and Matrix Integration"
+  ],
+  "ee/packages/license/src/license.ts": [
+   "Authentication and Authorization"
+  ],
+  "ee/packages/media-calls/src/internal/agents/UserActorAgent.ts": [
+   "Video Conferencing and VoIP"
+  ],
+  "ee/packages/media-calls/src/internal/SignalProcessor.ts": [
+   "Video Conferencing and VoIP"
+  ],
+  "ee/packages/media-calls/src/sip/providers/IncomingSipCall.ts": [
+   "Video Conferencing and VoIP"
+  ],
+  "ee/packages/media-calls/src/sip/providers/OutgoingSipCall.ts": [
+   "Video Conferencing and VoIP"
+  ],
+  "ee/packages/network-broker/src/NetworkBroker.ts": [
+   "Microservices Architecture"
+  ],
+  "ee/packages/omnichannel-services/package.json": [
+   "Microservices Architecture",
+   "Monorepo Structure"
+  ],
+  "ee/packages/pdf-worker/package.json": [
+   "Monorepo Structure"
+  ],
+  "ee/packages/presence/package.json": [
+   "Monorepo Structure"
+  ],
+  "ee/packages/presence/src/Presence.ts": [
+   "User and Account APIs"
+  ],
+  "ee/server/hooks/federation/index.ts": [
+   "Federation and Matrix Integration"
+  ],
+  "FEATURES.md": [
+   "Deployment Options",
+   "Key Features"
+  ],
+  "HISTORY.md": [
+   "Development Workflow",
+   "Glossary",
+   "Monorepo Management",
+   "Overview",
+   "Runtime Requirements",
+   "System Architecture"
+  ],
+  "package.json": [
+   "Build System and Tooling",
+   "Development Workflow",
+   "Glossary",
+   "Monorepo Management",
+   "Monorepo Structure",
+   "Overview",
+   "Release Management",
+   "Runtime Requirements",
+   "System Architecture"
+  ],
+  "packages/apps/package.json": [
+   "Apps Engine and Marketplace"
+  ],
+  "packages/apps/src/server/AppManager.ts": [
+   "Apps Engine and Marketplace"
+  ],
+  "packages/core-services/package.json": [
+   "Monorepo Structure"
+  ],
+  "packages/core-services/src/api.ts": [
+   "Microservices Architecture"
+  ],
+  "packages/core-services/src/events/Events.ts": [
+   "Apps Engine and Marketplace"
+  ],
+  "packages/core-services/src/index.ts": [
+   "Microservices Architecture"
+  ],
+  "packages/core-services/src/lib/proxify.ts": [
+   "Microservices Architecture"
+  ],
+  "packages/core-services/src/LocalBroker.ts": [
+   "Microservices Architecture"
+  ],
+  "packages/core-typings/package.json": [
+   "Build System and Tooling",
+   "Development Workflow",
+   "Glossary",
+   "Monorepo Management",
+   "Monorepo Structure",
+   "System Architecture"
+  ],
+  "packages/core-typings/src/IMessage/IMessage.ts": [
+   "Messaging and Room APIs",
+   "REST API Reference",
+   "Type System and API Contracts"
+  ],
+  "packages/core-typings/src/index.ts": [
+   "Type System and API Contracts"
+  ],
+  "packages/core-typings/src/IRoom.ts": [
+   "Room and Channel Management",
+   "Type System and API Contracts"
+  ],
+  "packages/core-typings/src/IStats.ts": [
+   "Database Migrations"
+  ],
+  "packages/core-typings/src/ISubscription.ts": [
+   "Type System and API Contracts"
+  ],
+  "packages/core-typings/src/IUser.ts": [
+   "Type System and API Contracts",
+   "User and Account APIs"
+  ],
+  "packages/core-typings/src/utils.ts": [
+   "Type System and API Contracts"
+  ],
+  "packages/fuselage-ui-kit/package.json": [
+   "Development Workflow",
+   "Glossary",
+   "Monorepo Management",
+   "Monorepo Structure",
+   "Overview",
+   "System Architecture"
+  ],
+  "packages/gazzodown/package.json": [
+   "Development Workflow",
+   "Glossary",
+   "Monorepo Management",
+   "Monorepo Structure",
+   "Overview",
+   "System Architecture"
+  ],
+  "packages/gazzodown/src/mentions/UserMentionElement.tsx": [
+   "UI Component System"
+  ],
+  "packages/i18n/src/locales/en.i18n.json": [
+   "Glossary",
+   "Internationalization System"
+  ],
+  "packages/i18n/src/locales/pt-BR.i18n.json": [
+   "Internationalization System"
+  ],
+  "packages/i18n/src/locales/sv.i18n.json": [
+   "Internationalization System"
+  ],
+  "packages/livechat/package.json": [
+   "Glossary",
+   "Monorepo Management",
+   "Monorepo Structure"
+  ],
+  "packages/media-signaling/src/lib/Call.ts": [
+   "Video Conferencing and VoIP"
+  ],
+  "packages/media-signaling/src/lib/services/webrtc/Processor.ts": [
+   "Video Conferencing and VoIP"
+  ],
+  "packages/media-signaling/src/lib/Session.ts": [
+   "Video Conferencing and VoIP"
+  ],
+  "packages/mock-providers/src/MockedAppRootBuilder.tsx": [
+   "UI Component System"
+  ],
+  "packages/model-typings/src/index.ts": [
+   "Type System and API Contracts"
+  ],
+  "packages/model-typings/src/models/IBaseModel.ts": [
+   "Type System and API Contracts"
+  ],
+  "packages/model-typings/src/models/IRoomsModel.ts": [
+   "Type System and API Contracts"
+  ],
+  "packages/model-typings/src/models/ISubscriptionsModel.ts": [
+   "Type System and API Contracts"
+  ],
+  "packages/model-typings/src/models/IUsersModel.ts": [
+   "Type System and API Contracts",
+   "User and Account APIs"
+  ],
+  "packages/models/src/index.ts": [
+   "Type System and API Contracts"
+  ],
+  "packages/models/src/models/MediaCalls.ts": [
+   "Video Conferencing and VoIP"
+  ],
+  "packages/models/src/models/Users.ts": [
+   "User and Account APIs"
+  ],
+  "packages/release-action/src/bumpNextVersion.ts": [
+   "Release Management"
+  ],
+  "packages/release-action/src/fixWorkspaceVersionsBeforePublish.ts": [
+   "Release Management"
+  ],
+  "packages/release-action/src/gitUtils.ts": [
+   "Release Management"
+  ],
+  "packages/release-action/src/index.ts": [
+   "Release Management"
+  ],
+  "packages/release-action/src/publishRelease.ts": [
+   "Release Management"
+  ],
+  "packages/release-action/src/startPatchRelease.ts": [
+   "Release Management"
+  ],
+  "packages/release-action/src/utils.ts": [
+   "Release Management"
+  ],
+  "packages/rest-typings/package.json": [
+   "Build System and Tooling",
+   "Development Workflow",
+   "Glossary",
+   "Monorepo Management",
+   "Monorepo Structure",
+   "System Architecture"
+  ],
+  "packages/rest-typings/src/apps/index.ts": [
+   "API Framework and Patterns",
+   "Apps Engine and Marketplace",
+   "REST API Reference"
+  ],
+  "packages/rest-typings/src/index.ts": [
+   "Type System and API Contracts"
+  ],
+  "packages/rest-typings/src/v1/Ajv.ts": [
+   "API Framework and Patterns"
+  ],
+  "packages/rest-typings/src/v1/chat.ts": [
+   "Messaging and Room APIs",
+   "REST API Reference",
+   "Type System and API Contracts"
+  ],
+  "packages/rest-typings/src/v1/omnichannel.ts": [
+   "Omnichannel and Livechat",
+   "Testing Framework"
+  ],
+  "packages/rest-typings/src/v1/rooms.ts": [
+   "Messaging and Room APIs",
+   "Room and Channel Management"
+  ],
+  "packages/rest-typings/src/v1/users.ts": [
+   "User and Account APIs"
+  ],
+  "packages/ui-client/package.json": [
+   "Monorepo Management",
+   "Monorepo Structure",
+   "Overview",
+   "System Architecture"
+  ],
+  "packages/ui-composer/package.json": [
+   "UI Component System"
+  ],
+  "packages/ui-contexts/src/index.ts": [
+   "UI Component System"
+  ],
+  "packages/web-ui-registration/src/LoginForm.tsx": [
+   "Authentication and Authorization"
+  ],
+  "README.md": [
+   "Deployment",
+   "Deployment Options",
+   "Key Features",
+   "Overview"
+  ],
+  "turbo.json": [
+   "Build System and Tooling"
+  ],
+  "yarn.lock": [
+   "Monorepo Management",
+   "Runtime Requirements"
+  ]
+ }
+}
