@@ -1,56 +1,41 @@
 #!/usr/bin/env npx tsx
 /**
  * report — the QUANTITATIVE report → logs/reports/metrics.md. Deterministic, NO semantic info.
- *   1. Value       — coverage no-MCP / naive / MCP + lift + token cost (naive control folded in from the old token eval)
- *   2. Funnel      — index → agent-surfaced → written (pooled per core file) + single-query R@k / reachability / chain-order probes
+ *   1. Trace       — 确定性游走器逐题决策概览 (aggregated from logs/data/retrieval-trace/)
+ *   2. Funnel      — index → agent-surfaced → written (pooled per core file) + single-query R@k / chain-order probes
  *   3. Auto-triage — per-testcase mechanical "suspected stage" (route→search→graph→synth), NO verdicts / reason / mode
- * Semantic analysis lives SEPARATELY in logs/reports/verdicts.md (hand-judged). This file never reads it.
- * Inputs: logs/data/tools-data.json (eval:tools) · logs/answers-gemini-{mcp-selfloop,nomcp}/ · the code index (naive control).
- * Run: npm run report   (after gen:mcp / gen:nomcp / eval:tools)
+ * Semantic analysis lives SEPARATELY in logs/reports/verdicts.md. This file never reads it.
+ * Inputs: logs/data/tools-data.json (eval:tools) · logs/answers-gemini-mcp-selfloop/ · logs/data/retrieval-trace/ (eval:retrieval).
+ * (no-MCP / naive comparison arms retired 2026-07-08 — answer dirs deleted, index no longer loaded, report runs in seconds.)
+ * Run: npm run report   (after gen:mcp / eval:tools / eval:retrieval)
  */
 import * as fs from 'fs';
 import * as path from 'path';
 import { fileURLToPath } from 'url';
-import { ensureIndex } from '../indexer/index.js';
-import { handleToolCall } from '../server/registry.js';
 import { loadTestcasesWithTruth, TESTCASES_PATH, CLAUDE_TRUTH_PATH } from './utils/truth-io.js';
-import { coverage, extractCitedFiles, fileMatches, readSection, tokensOf } from './utils/eval-util.js';
+import { extractCitedFiles, fileMatches, readSection } from './utils/eval-util.js';
 import { classifyIntent, INTENTS, RECIPES } from '../server/intent.js';
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const LOGS = path.resolve(__dirname, '..', '..', 'logs');
 const D_MCP = path.join(LOGS, 'answers-gemini-mcp-selfloop');
-const D_NOMCP = path.join(LOGS, 'answers-gemini-nomcp');
+const TRACE_DIR = path.join(LOGS, 'data', 'retrieval-trace');
 const OUT = path.join(LOGS, 'reports', 'metrics.md');
 
-// ── naive baseline: dumb keyword retrieval capped to MCP's answer length (folded in from token.ts) ──
-// The control: if MCP beats naive at the SAME answer size, the lift comes from the AGENT choosing moves,
-// not from spending more tokens. Deterministic (no LLM); needs the code index.
-const STOP = new Set(['the', 'a', 'an', 'is', 'are', 'how', 'what', 'where', 'does', 'do', 'in', 'on', 'of', 'to', 'and', 'from', 'for', 'with', 'rocket', 'chat', 'rocketchat', 'side', 'work', 'works', 'new', 'get', 'use', 'used', 'using']);
-function queryTerms(question: string): string[] {
-    const camel = question.match(/\b[a-z]+[A-Z][A-Za-z]+\b|\b[A-Z][a-z]+[A-Z][A-Za-z]+\b/g) ?? [];
-    const words = (question.toLowerCase().match(/[a-z][a-z0-9]{3,}/g) ?? []).filter(w => !STOP.has(w));
-    return Array.from(new Set([...camel, ...words.sort((a, b) => b.length - a.length)])).slice(0, 12);
+// ── retrieval-trace loader: per-question decision log written by eval:retrieval ──
+function loadTraceFile(id: string): any | null {
+    const p = path.join(TRACE_DIR, `${id}.json`);
+    if (!fs.existsSync(p)) return null;
+    try { return JSON.parse(fs.readFileSync(p, 'utf-8')); } catch { return null; }
 }
-async function naiveCoverage(question: string, answerChars: number, core: string[], syms: string[]): Promise<number> {
-    const charBudget = Math.max(1, answerChars);
-    const parts: string[] = [];
-    let chars = 0;
-    for (const q of queryTerms(question)) {
-        if (chars >= charBudget) break;
-        for (const call of [
-            () => handleToolCall('search', { query: q }),
-            () => handleToolCall('graph', { query: q, move: 'expand', depth: 2 }),
-        ]) {
-            if (chars >= charBudget) break;
-            const res = await call();
-            const txt = res?.content?.[0]?.text ?? '';
-            if (!txt) continue;
-            parts.push(txt);
-            chars += txt.length;
-        }
-    }
-    return coverage(parts.join('\n').slice(0, charBudget), core, syms);
+// stop reason → 短标签（与 walk.ts 的 reason 文案对应）
+function stopLabel(reason: string): string {
+    if (reason.includes('边际枯竭')) return '枯竭';
+    if (reason.includes('相关性衰减')) return '衰减';
+    if (reason.includes('预算')) return '预算';
+    if (reason.includes('节点阀')) return '节点';
+    if (reason.includes('无可继续')) return '无继续';
+    return 'stop';
 }
 
 // Resolve each testcase's plan intent for the routing triage (mechanical): ## Plan line → truncated
@@ -122,7 +107,6 @@ function load(name: string): any {
 }
 
 async function main() {
-    await ensureIndex();   // for the naive control (handleToolCall)
     const tools: any[] = load('tools-data.json');
     const byTools = new Map(tools.map(r => [r.id, r]));
     const { flat: testcases } = loadTestcasesWithTruth(TESTCASES_PATH, CLAUDE_TRUTH_PATH);
@@ -131,11 +115,8 @@ async function main() {
     const rows: any[] = [];
     for (const tc of testcases) {
         const mcpFile = path.join(D_MCP, `${tc.id}.md`);
-        const nomcpFile = path.join(D_NOMCP, `${tc.id}.md`);
         const core = (tc.core && tc.core.length ? tc.core : tc.groundTruthFiles) ?? [];
-        const syms = tc.keySymbols ?? [];
         const a2 = readSection(mcpFile, '## Gemini Answer', ['## Tool Calls']);
-        const a0 = readSection(nomcpFile, '## Baseline Answer (no tools)', ['## Metrics']);
         const hasSeen = (() => { try { return fs.readFileSync(mcpFile, 'utf-8').includes(SEEN_MARKER); } catch { return false; } })();
         const seenText = hasSeen ? readSection(mcpFile, SEEN_MARKER, []) : '';
         const seenFiles = extractCitedFiles(seenText);
@@ -148,10 +129,15 @@ async function main() {
         const coreCov = core.length ? written.length / core.length : 0;
         const errored = !a2.trim() || /^ERROR\b/.test(a2.trim());
 
-        const cov0 = coverage(a0, core, syms), cov2 = coverage(a2, core, syms);
-        const covN = await naiveCoverage(tc.question, a2.length, core, syms);
-        const tok0 = tokensOf(nomcpFile, /\| Tokens \| ([\d,]+) \|/);
-        const tok2 = tokensOf(mcpFile, /## Tool Calls \(\d+ calls, ([\d,]+) tokens\)/);
+        // trace（eval:retrieval 的决策日志）— 纯机械聚合，不含金文件指标
+        const tr = loadTraceFile(tc.id);
+        const trPages: string[] = tr?.pageStep?.chosen ?? [];
+        // fallback 两种形态都算：页面无命中(pageStep 空) / 页面命中但全页出不了 seed(seedStep 里有 '(fallback)' 条目)
+        const trFallback = tr ? (trPages.length === 0 || (tr.seedStep ?? []).some((s: any) => s.page === '(fallback)')) : false;
+        const trWalk: any[] = tr?.walk ?? [];
+        const trMoves = trWalk.filter(w => w.chosen != null).length;
+        const trStops = trWalk.filter(w => w.chosen == null).map(w => stopLabel(w.reason ?? ''));
+        const trSeeds = new Set(trWalk.map(w => w.anchor)).size;
 
         const a = byTools.get(tc.id) ?? {};
         const type = tc.questionType ?? a.subsystem ?? '?';
@@ -175,7 +161,8 @@ async function main() {
             diagnosis: a.diagnosis ?? 'n/a', orderApplicable: !!a.orderApplicable, orderScore: a.orderScore ?? 1,
             fileRecall: a.fileRecall ?? 0, symRecall: a.symRecall ?? 0, graphReach: a.graphReach ?? null,
             coreN: core.length, coreWritten: written.length, coreCov, retrievalRecall, synthRecall, dropped, errored,
-            cov0, covN, cov2, tok0, tok2, routeOk, stage, trace: parseTrace(mcpFile, resolved),
+            routeOk, stage, trace: parseTrace(mcpFile, resolved),
+            trHas: !!tr, trPages, trFallback, trMoves, trStops, trSeeds,
         });
     }
 
@@ -185,9 +172,6 @@ async function main() {
     const pct = (x: number) => `${(x * 100).toFixed(0)}%`;
     const live = rows.filter(r => !r.errored);
     const erroredIds = rows.filter(r => r.errored).map(r => r.id);
-
-    const avgCov0 = mean(rows.map(r => r.cov0)), avgCovN = mean(rows.map(r => r.covN)), avgCov2 = mean(rows.map(r => r.cov2));
-    const avgTok0 = mean(rows.map(r => r.tok0)), avgTok2 = mean(rows.map(r => r.tok2));
 
     const liveCore = live.filter(r => r.coreN > 0);
     const sumCore = sum(liveCore.map(r => r.coreN));
@@ -211,14 +195,29 @@ async function main() {
     L.push(`${new Date().toLocaleString('en-US')} | ${n} testcases | deterministic (index + answers + tools-data), NO verdicts. Semantic analysis lives in logs/reports/verdicts.md.\n`);
     if (erroredIds.length) L.push(`> ⚠ ${erroredIds.length} infra failure(s) excluded from averages: ${erroredIds.join(', ')} (empty / 503).\n`);
 
-    // 1 — value
-    L.push(`## 1. Value — do the tools help?\n`);
-    L.push(`| | no-MCP | naive @ same answer size | with MCP |`);
-    L.push(`|---|---:|---:|---:|`);
-    L.push(`| Avg coverage | ${pct(avgCov0)} | ${pct(avgCovN)} | ${pct(avgCov2)} |`);
-    L.push(`| Avg tokens / question | ${Math.round(avgTok0).toLocaleString()} | ~${Math.round(avgTok2).toLocaleString()} | ${Math.round(avgTok2).toLocaleString()} |`);
-    L.push('');
-    L.push(`**The agent's navigation adds +${((avgCov2 - avgCov0) * 100).toFixed(0)} pts over pure LLM, +${((avgCov2 - avgCovN) * 100).toFixed(0)} over same-budget keyword dump** — the lift is choosing moves, not just spending tokens.\n`);
+    // 1 — trace（确定性游走器决策概览，来自 eval:retrieval 的 record-only 决策日志）
+    const trRows = rows.filter(r => r.trHas);
+    L.push(`## 1. Trace — 确定性游走器逐题决策概览\n`);
+    if (trRows.length === 0) {
+        L.push(`> 无 trace 数据 — 先跑 \`npm run eval:retrieval\`（产物在 logs/data/retrieval-trace/）。\n`);
+    } else {
+        const fbCount = trRows.filter(r => r.trFallback).length;
+        const stopDist = new Map<string, number>();
+        for (const r of trRows) for (const s of r.trStops) stopDist.set(s, (stopDist.get(s) ?? 0) + 1);
+        const pageFreq = new Map<string, number>();
+        for (const r of trRows) for (const p of r.trPages) pageFreq.set(p, (pageFreq.get(p) ?? 0) + 1);
+        const topPages = [...pageFreq].sort((a, b) => b[1] - a[1]).slice(0, 6);
+        L.push(`> ${trRows.length}/${n} 题有 trace（\`logs/data/retrieval-trace/<id>.json\` 是全量决策日志：每步 options/chosen/reason/result；本节只是机械聚合，**无金文件指标**——这是 record-only 轨道 by design）。\n`);
+        L.push(`**入口**：fallback ${fbCount}/${trRows.length}（入口图无命中→lexicalSeeds）· 页槽占用 top：${topPages.map(([p, c]) => `${p}×${c}`).join(' · ')}`);
+        L.push(`**游走**：平均 ${mean(trRows.map(r => r.trMoves)).toFixed(1)} 步/题 · stop 分布：${[...stopDist].sort((a, b) => b[1] - a[1]).map(([s, c]) => `${s} ${c}`).join(' · ')}\n`);
+        L.push(`| # | id | 入口页 (top-3) | seeds | 步数 | stops |`);
+        L.push(`|---|---|---|---:|---:|---|`);
+        trRows.forEach((r, i) => {
+            const pages = r.trFallback ? '(fallback)' : r.trPages.join('<br>');
+            L.push(`| ${i + 1} | ${r.id} | ${pages} | ${r.trSeeds} | ${r.trMoves} | ${r.trStops.join('/')} |`);
+        });
+        L.push('');
+    }
 
     // 2 — funnel
     L.push(`## 2. The agent funnel — of the same ${sumCore} core files, how many the agent surfaces then writes\n`);
@@ -276,7 +275,9 @@ async function main() {
     fs.mkdirSync(path.join(LOGS, 'reports'), { recursive: true });
     fs.writeFileSync(OUT, L.join('\n'), 'utf-8');
     console.error(`Wrote logs/reports/metrics.md`);
-    console.log(`metrics: coverage no-MCP ${pct(avgCov0)} / naive ${pct(avgCovN)} / MCP ${pct(avgCov2)} | funnel surfaced ${pct(fRetr)} → written ${pct(fWrit)} | triage ${[...dist].sort((a, b) => b[1] - a[1]).map(([t, c]) => `${t}:${c}`).join(' ')}`);
+    const trN = rows.filter(r => r.trHas).length;
+    const trFb = rows.filter(r => r.trFallback).length;
+    console.log(`metrics: trace ${trN}/${n} (fallback ${trFb}) | funnel surfaced ${pct(fRetr)} → written ${pct(fWrit)} | triage ${[...dist].sort((a, b) => b[1] - a[1]).map(([t, c]) => `${t}:${c}`).join(' ')}`);
 }
 
 main().catch(e => { console.error('Fatal:', e); process.exit(2); });
