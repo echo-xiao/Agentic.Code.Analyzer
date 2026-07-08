@@ -1,19 +1,17 @@
 #!/usr/bin/env npx tsx
 /**
- * report — the QUANTITATIVE report → logs/reports/metrics.md. Deterministic, NO semantic info.
- *   1. Trace       — 确定性游走器逐题决策概览 (aggregated from logs/data/retrieval-trace/)
- *   2. Funnel      — index → agent-surfaced → written (pooled per core file) + single-query R@k / chain-order probes
- *   3. Auto-triage — per-testcase mechanical "suspected stage" (route→search→graph→synth), NO verdicts / reason / mode
+ * report — trace 报告 → logs/reports/metrics.md。Deterministic, NO semantic info.
+ *   1. Trace       — 确定性游走器逐题决策概览（聚合自 logs/data/retrieval-trace/，金页/触金两列由报告端 × claude-truth 算）
+ *   2. Agent 调用   — 真 agent 每题的实际工具调用序列（解析自 answers md 的 ## Tool Calls）
  * Semantic analysis lives SEPARATELY in logs/reports/verdicts.md. This file never reads it.
- * Inputs: logs/data/tools-data.json (eval:tools) · logs/answers-gemini-mcp-selfloop/ · logs/data/retrieval-trace/ (eval:retrieval).
- * (no-MCP / naive comparison arms retired 2026-07-08 — answer dirs deleted, index no longer loaded, report runs in seconds.)
- * Run: npm run report   (after gen:mcp / eval:tools / eval:retrieval)
+ * Inputs: logs/data/retrieval-trace/ (eval:retrieval) · logs/answers-gemini-mcp-selfloop/ · data/wiki-map.json。
+ * （funnel/auto-triage/probe-rank 各节按用户要求退役 2026-07-08 — 只留 trace；report 不再读 tools-data.json。）
+ * Run: npm run report   (after eval:retrieval / gen:mcp)
  */
 import * as fs from 'fs';
 import * as path from 'path';
 import { fileURLToPath } from 'url';
 import { loadTestcasesWithTruth, TESTCASES_PATH, CLAUDE_TRUTH_PATH } from './utils/truth-io.js';
-import { extractCitedFiles, fileMatches, readSection } from './utils/eval-util.js';
 import { classifyIntent, INTENTS, RECIPES } from '../server/intent.js';
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
@@ -45,8 +43,7 @@ function stopLabel(reason: string): string {
     return 'stop';
 }
 
-// Resolve each testcase's plan intent for the routing triage (mechanical): ## Plan line → truncated
-// plan({..."intent":"arc}) args prefix → offline classifier fallback.
+// Resolve the plan intent recorded in the answer md (## Plan line → truncated args → offline classifier).
 function resolveIntent(mcpFile: string, question: string): string | null {
     let txt = ''; try { txt = fs.readFileSync(mcpFile, 'utf-8'); } catch { /* */ }
     const planLine = txt.match(/##\s*Plan[\s\S]*?intent:\s*([\w-]+)/i);
@@ -57,24 +54,18 @@ function resolveIntent(mcpFile: string, question: string): string | null {
 }
 
 // Parse the saved answer's "## Tool Calls" trace into a HUMAN-READABLE summary: one line per call,
-// in order, showing WHAT each call did — plan's intent, search's query(·layer), graph's target + move
-// (↓=down chain / ↑=up impact / default expand), details' file. Adjacent identical lines collapse ×N.
-// Args are recorded truncated (~100 chars), so a graph/details file path is often clipped mid-basename;
-// we UN-TRUNCATE it by prefix-matching the clipped path against the full paths in the same answer's
-// "## Files Seen In Tool Results" list. Fields are regexed out (the JSON is truncated, can't parse).
+// in order — plan's intent, search's query(·layer), graph's target + move (↓ down / ↑ up / expand),
+// details' file. Adjacent identical lines collapse ×N. Clipped file args are un-truncated via the
+// answer's "## Files Seen In Tool Results" list.
 function parseTrace(mcpFile: string, resolvedIntent: string | null): { calls: number; summary: string; hitBudget: boolean } {
     let txt = ''; try { txt = fs.readFileSync(mcpFile, 'utf-8'); } catch { /* */ }
     const header = txt.match(/## Tool Calls \((\d+) calls/);
     const calls = header ? +header[1] : 0;
     const seen = [...txt.matchAll(/^- `([^`]+)`/gm)].map(m => m[1]);   // full relative paths (seen-log)
-    // Resolved intent (same value the route column uses: ## Plan line → plan() args prefix → offline
-    // classifier). It also determines the default graph move (impact→up / call-chain→down / else expand)
-    // that the tool applies when a graph call OMITS `move` — so a clipped/omitted move still shows right.
     const planIntent = resolvedIntent ?? '';
     const recipeMove = (RECIPES as Record<string, { move: string }>)[planIntent]?.move ?? 'expand';
     const arg = (raw: string, re: RegExp) => { const m = raw.match(re); return m ? m[1] : ''; };
     const relOf = (p: string) => { const m = p.match(/(?:^|\/)((?:apps|packages|ee)\/.+)$/); return m ? m[1] : (p.split('/').pop() || p); };
-    // resolve a (possibly clipped, possibly absolute) file arg → full basename via the seen-log
     const resolveFile = (rawPath: string): string => {
         if (!rawPath) return '?';
         const rel = relOf(rawPath);
@@ -104,50 +95,27 @@ function parseTrace(mcpFile: string, resolvedIntent: string | null): { calls: nu
     }
     const ordered = seq.map(s => s.n > 1 ? `${s.base} ×${s.n}` : s.base).join('<br>') || '(nothing)';
     const hitBudget = calls >= 8;
-    return { calls, summary: `${calls} calls${hitBudget ? ' ⛔' : ''}<br>${ordered}`, hitBudget };
-}
-
-function load(name: string): any {
-    const p = path.join(LOGS, 'data', name);
-    if (!fs.existsSync(p)) { console.error(`Missing ${name} — run \`npm run eval:tools\` first.`); process.exit(1); }
-    return JSON.parse(fs.readFileSync(p, 'utf-8'));
+    return { calls, summary: ordered, hitBudget };
 }
 
 async function main() {
-    const tools: any[] = load('tools-data.json');
     const wikiMap: any = fs.existsSync(WIKI_MAP_PATH) ? JSON.parse(fs.readFileSync(WIKI_MAP_PATH, 'utf-8')) : null;
-    const byTools = new Map(tools.map(r => [r.id, r]));
     const { flat: testcases } = loadTestcasesWithTruth(TESTCASES_PATH, CLAUDE_TRUTH_PATH);
-    const SEEN_MARKER = '## Files Seen In Tool Results';
 
     const rows: any[] = [];
     for (const tc of testcases) {
         const mcpFile = path.join(D_MCP, `${tc.id}.md`);
         const core = (tc.core && tc.core.length ? tc.core : tc.groundTruthFiles) ?? [];
-        const a2 = readSection(mcpFile, '## Gemini Answer', ['## Tool Calls']);
-        const hasSeen = (() => { try { return fs.readFileSync(mcpFile, 'utf-8').includes(SEEN_MARKER); } catch { return false; } })();
-        const seenText = hasSeen ? readSection(mcpFile, SEEN_MARKER, []) : '';
-        const seenFiles = extractCitedFiles(seenText);
-
-        const retrieved = core.filter((f: string) => seenFiles.some((s: string) => fileMatches(s, f)) || fileMatches(seenText, f));
-        const written = core.filter((f: string) => fileMatches(a2, f));
-        const retrievalRecall = core.length ? retrieved.length / core.length : 1;   // surfaced
-        const synthRecall = retrieved.length ? retrieved.filter((f: string) => fileMatches(a2, f)).length / retrieved.length : 1;
-        const dropped = retrieved.filter((f: string) => !fileMatches(a2, f)).length;
-        const coreCov = core.length ? written.length / core.length : 0;
-        const errored = !a2.trim() || /^ERROR\b/.test(a2.trim());
 
         // trace（eval:retrieval 的决策日志）— trace 本体无金指标；金指标在这里(报告端)算
         const tr = loadTraceFile(tc.id);
         const trPages: string[] = tr?.pageStep?.chosen ?? [];
-        // fallback 两种形态都算：页面无命中(pageStep 空) / 页面命中但全页出不了 seed(seedStep 里有 '(fallback)' 条目)
         const trFallback = tr ? (trPages.length === 0 || (tr.seedStep ?? []).some((s: any) => s.page === '(fallback)')) : false;
         const trWalk: any[] = tr?.walk ?? [];
         const trMoves = trWalk.filter(w => w.chosen != null).length;
         const trStops = trWalk.filter(w => w.chosen == null).map(w => stopLabel(w.reason ?? ''));
         const trSeeds = new Set(trWalk.map(w => w.anchor)).size;
-        // 金指标①入口页命中：金文件按 file_to_pages 反查所在页，chosen 页是否命中其一。
-        //   金文件不在入口图里的题记 '—'（天花板：对的页不存在，打分再好也选不到）。
+        // 金指标①入口页命中（金文件不在入口图 → '—' 天花板）②邻域触金
         const goldPages = new Set<string>();
         if (wikiMap) for (const c of core) {
             for (const [wk, pages] of Object.entries(wikiMap.file_to_pages as Record<string, string[]>)) {
@@ -155,7 +123,6 @@ async function main() {
             }
         }
         const entryHit = goldPages.size > 0 ? trPages.some(p => goldPages.has(p)) : null;
-        // 金指标②邻域触金：游走累计到达的文件(全量 newFiles + seed 自身文件) ∩ core
         const reachedFiles = new Set<string>();
         for (const w of trWalk) for (const f of (w.result?.newFiles ?? [])) reachedFiles.add(f);
         for (const s of (tr?.seedStep ?? [])) {
@@ -164,64 +131,25 @@ async function main() {
         }
         const reachGoldN = core.filter((c: string) => [...reachedFiles].some(f => pathEq(f, c))).length;
 
-        const a = byTools.get(tc.id) ?? {};
-        const type = tc.questionType ?? a.subsystem ?? '?';
-        const r50 = a.recallAt50 ?? a.recallAt20 ?? 0;
         const resolved = resolveIntent(mcpFile, tc.question ?? '');
-        const routeOk = resolved === type;
-        // Auto-triage: mechanical, front→back, first trip wins. NO semantic judgment.
-        // route is DELIBERATELY not a gate: intent≠type is a labeling disagreement (~0 precision as a
-        // failure cause — 0/12 semantic failures are misrouted), it only sets a default move the agent
-        // can override. The route✓/✗ column stays as a fact; it just no longer drives the stage.
-        const stage = errored ? 'err'
-            : coreCov >= 0.5 ? 'ok'
-                : r50 < 0.3 ? 'search'
-                    : retrievalRecall < 0.5 ? 'graph'
-                        : synthRecall < 0.7 ? 'synth' : 'ok';
-
         rows.push({
-            id: tc.id, type,
-            recallAt5: a.recallAt5 ?? 0, recallAt10: a.recallAt10 ?? 0, recallAt20: a.recallAt20 ?? 0, recallAt50: r50,
-            coreRanks: a.coreRanks ?? null,
-            diagnosis: a.diagnosis ?? 'n/a', orderApplicable: !!a.orderApplicable, orderScore: a.orderScore ?? 1,
-            fileRecall: a.fileRecall ?? 0, symRecall: a.symRecall ?? 0, graphReach: a.graphReach ?? null,
-            coreN: core.length, coreWritten: written.length, coreCov, retrievalRecall, synthRecall, dropped, errored,
-            routeOk, stage, trace: parseTrace(mcpFile, resolved),
+            id: tc.id, type: tc.questionType ?? '?', coreN: core.length,
             trHas: !!tr, trPages, trFallback, trMoves, trStops, trSeeds,
             goldPagesN: goldPages.size, entryHit, reachGoldN,
+            agent: parseTrace(mcpFile, resolved),
         });
     }
 
     const n = rows.length;
     const mean = (xs: number[]) => xs.length ? xs.reduce((s, v) => s + v, 0) / xs.length : 0;
-    const sum = (xs: number[]) => xs.reduce((s, v) => s + v, 0);
     const pct = (x: number) => `${(x * 100).toFixed(0)}%`;
-    const live = rows.filter(r => !r.errored);
-    const erroredIds = rows.filter(r => r.errored).map(r => r.id);
-
-    const liveCore = live.filter(r => r.coreN > 0);
-    const sumCore = sum(liveCore.map(r => r.coreN));
-    const sumRetr = sum(liveCore.map(r => Math.min(r.coreN, Math.round(r.retrievalRecall * r.coreN))));
-    const sumWrit = sum(liveCore.map(r => r.coreWritten));
-    const fRetr = sumCore ? sumRetr / sumCore : 0, fWrit = sumCore ? sumWrit / sumCore : 0;
-    const synthRate = sumRetr ? Math.min(1, sumWrit / sumRetr) : 0;
-    const totalDropped = rows.reduce((s, r) => s + r.dropped, 0);
-    const poolR = (get: (r: any) => number) => sumCore ? sum(liveCore.map(r => get(r) * r.coreN)) / sumCore : 0;
-    const r5 = poolR(r => r.recallAt5), r10 = poolR(r => r.recallAt10), r20 = poolR(r => r.recallAt20), r50 = poolR(r => r.recallAt50);
-    const cnt = (f: number) => Math.round(f * sumCore);
-    const g0file = mean(rows.map(r => r.fileRecall)), g0sym = mean(rows.map(r => r.symRecall));
-    const g15rows = rows.filter(r => r.orderApplicable);
-    const g15 = mean(g15rows.map(r => r.orderScore));
-
     const short: Record<string, string> = { architecture: 'arch', 'call-chain': 'chain', locate: 'loc', pattern: 'patt', routing: 'rout', impact: 'imp' };
-    const bar = (x: number) => '█'.repeat(Math.round(x * 30)).padEnd(30, '░');
-    const rowbar = (label: string, f: number, tail = '') => `${label.padEnd(30)} ${pct(f).padStart(4)}  ${bar(f)} ${tail}`;
-    const L: string[] = [];
-    L.push(`# metrics — quantitative pipeline report (no semantic analysis)\n`);
-    L.push(`${new Date().toLocaleString('en-US')} | ${n} testcases | deterministic (index + answers + tools-data), NO verdicts. Semantic analysis lives in logs/reports/verdicts.md.\n`);
-    if (erroredIds.length) L.push(`> ⚠ ${erroredIds.length} infra failure(s) excluded from averages: ${erroredIds.join(', ')} (empty / 503).\n`);
 
-    // 1 — trace（确定性游走器决策概览，来自 eval:retrieval 的 record-only 决策日志）
+    const L: string[] = [];
+    L.push(`# metrics — trace 报告（游走器决策 + agent 实际调用；无语义判定，语义在 verdicts.md）\n`);
+    L.push(`${new Date().toLocaleString('en-US')} | ${n} testcases | deterministic (retrieval-trace + answers + wiki-map + claude-truth)\n`);
+
+    // 1 — 游走器决策概览
     const trRows = rows.filter(r => r.trHas);
     L.push(`## 1. Trace — 确定性游走器逐题决策概览\n`);
     if (trRows.length === 0) {
@@ -233,12 +161,12 @@ async function main() {
         const pageFreq = new Map<string, number>();
         for (const r of trRows) for (const p of r.trPages) pageFreq.set(p, (pageFreq.get(p) ?? 0) + 1);
         const topPages = [...pageFreq].sort((a, b) => b[1] - a[1]).slice(0, 6);
-        L.push(`> ${trRows.length}/${n} 题有 trace（\`logs/data/retrieval-trace/<id>.json\` 是全量决策日志：每步 options/chosen/reason/result；trace 本体无金指标，**金页/触金两列是报告端从 trace × claude-truth 算的**）。\n`);
         const withGold = trRows.filter(r => r.entryHit !== null);
         const entryHits = withGold.filter(r => r.entryHit).length;
         const reachRows = trRows.filter(r => r.coreN > 0);
         const reachVals = reachRows.map(r => r.reachGoldN / r.coreN);
         const reachZero = reachVals.filter(v => v === 0).length;
+        L.push(`> ${trRows.length}/${n} 题有 trace（\`logs/data/retrieval-trace/<id>.json\` 是全量决策日志：每步 options/chosen/reason/result；trace 本体无金指标，**金页/触金两列是报告端从 trace × claude-truth 算的**）。\n`);
         L.push(`**入口**：fallback ${fbCount}/${trRows.length}（入口图无命中→lexicalSeeds）· 页槽占用 top：${topPages.map(([p, c]) => `${p}×${c}`).join(' · ')}`);
         L.push(`**游走**：平均 ${mean(trRows.map(r => r.trMoves)).toFixed(1)} 步/题 · stop 分布：${[...stopDist].sort((a, b) => b[1] - a[1]).map(([s, c]) => `${s} ${c}`).join(' · ')}`);
         L.push(`**金指标**：入口页命中 **${entryHits}/${withGold.length}**（分母=金文件所在页存在于入口图的题；另 ${trRows.length - withGold.length} 题金页不存在=天花板，记 —）· 邻域触金召回 均值 **${pct(mean(reachVals))}**（游走到达文件∩core÷core）· 触金=0 的题 ${reachZero}/${reachRows.length}\n`);
@@ -252,65 +180,22 @@ async function main() {
         L.push('');
     }
 
-    // 2 — funnel
-    L.push(`## 2. The agent funnel — of the same ${sumCore} core files, how many the agent surfaces then writes\n`);
-    L.push(`> Pooled per-file fractions from the ACTUAL multi-turn run (seen-log → written). R@k below is a single-query PROBE (tool ceiling), NOT a stage the agent flows through.\n`);
-    L.push('```');
-    L.push(rowbar('INDEX  indexed & reachable', 1));
-    L.push(rowbar('AGENT  surfaced (seen-log)', fRetr, `<- ${pct(1 - fRetr)} never surfaced`));
-    L.push(rowbar('AGENT  written (answer)', fWrit, `<- synth ${pct(synthRate)} of surfaced, drops ${totalDropped}`));
-    L.push('```');
-    L.push(`\n**Two agent stages** (÷ ${sumCore}): not-surfaced ${pct(1 - fRetr)} (${cnt(1 - fRetr)} files) · surfaced-but-not-written ${pct(Math.max(0, fRetr - fWrit))} (${totalDropped} files).`);
-    L.push(`> Single-query probe (tool capability, NOT the agent path): R@5/10/20/50 = ${pct(r5)}/${pct(r10)}/${pct(r20)}/${pct(r50)}. Of "never surfaced": ~${pct(1 - r50)} never rank in top-50 (engine) vs ~${pct(Math.max(0, r50 - fRetr))} rank-but-skipped (agent loop).`);
-    L.push(`> Floor: substring recall file ${pct(g0file)} / sym ${pct(g0sym)} · chain-order LCS ${pct(g15)} (${g15rows.length} ordered Qs). (graph-reachability dropped — it was tautological, see tools.ts.)\n`);
-
-    // 3 — auto-triage
-    L.push(`## 3. Auto-triage — mechanical "suspected stage" per testcase (no semantic judgment)\n`);
-    L.push(`> Front→back, first trip wins, numbers only: search (R@50<30%) → graph (surfaced<50%) → synth (synth<70%); ok if end coverage ≥50%. Flags WHICH question + stage to inspect — the WHY is in verdicts.md. **route (intent≠type) is shown as a column but is NOT a gate** — it's a labeling disagreement with ~0 precision as a failure cause (0/12 semantic failures are misrouted), so it no longer drives the stage.\n`);
-    const dist = new Map<string, number>();
-    for (const r of rows) dist.set(r.stage, (dist.get(r.stage) ?? 0) + 1);
-    L.push(`**Suspected-stage distribution:** ${[...dist].sort((a, b) => b[1] - a[1]).map(([t, c]) => `${t} ${c}`).join(' · ')}.\n`);
-    L.push(`> Column key: **R@10·diag** = single-query probe recall@10 + diagnosis (rm=recall-miss / rl=ranked-low / mx=mixed / ok). **core ranks** = each core file's rank in that probe; \`#2 · 5 miss\` = one file ranks #2, the other five never appear at all (engine can't reach them by ranking). Full per-file breakdown in §4. **trace** = the agent's ACTUAL calls in order, one per line, showing what each did: \`plan:\` intent · \`search:\` query(·layer) · \`graph:\`/\`graph↓\`(down chain)/\`graph↑\`(up impact) target · \`details:\` file. **surfaced/synth** = the agent's actual run, not the probe.\n`);
-    L.push(`| # | id | type | route | R@10·diag | core ranks | surfaced | synth | end cov | trace (agent 实际调用) | suspected stage |`);
-    L.push(`|---|---|---|:-:|---|---|---:|---:|---:|---|---|`);
-    const diagAbbr: Record<string, string> = { 'recall-miss': 'rm', 'ranked-low': 'rl', 'mixed': 'mx', 'ok': 'ok', 'n/a': '—' };
-    const coreRankStr = (cr: { file: string; rank: number | null }[] | null): string => {
-        if (!cr || !cr.length) return '—';
-        const ranked = cr.filter(c => c.rank != null).map(c => c.rank as number).sort((a, b) => a - b);
-        const missed = cr.length - ranked.length;
-        const parts = ranked.map(r => `#${r}`);
-        if (missed) parts.push(`${missed} miss`);
-        return parts.join(' · ');
-    };
+    // 2 — agent 实际调用
+    L.push(`## 2. Agent 实际调用 — 每题的真实工具调用序列\n`);
+    L.push(`> 解析自 \`logs/answers-gemini-mcp-selfloop/<id>.md\` 的 ## Tool Calls 段。\`plan:\` intent · \`search:\` query(·layer) · \`graph:\`/\`graph↓\`(down)/\`graph↑\`(up) target · \`details:\` file · \`wiki\`。⛔ = 用满 8 次调用预算。\n`);
+    L.push(`| # | id | type | calls | trace (agent 实际调用) |`);
+    L.push(`|---|---|---|---:|---|`);
     rows.forEach((r, i) => {
-        const routec = r.routeOk == null ? '—' : r.routeOk ? '✓' : '✗';
-        const rkc = `${pct(r.recallAt10)} ${diagAbbr[r.diagnosis] ?? r.diagnosis}`;
-        const ranksc = coreRankStr(r.coreRanks);
-        const surf = r.errored ? '—' : pct(r.retrievalRecall);
-        const syn = r.errored ? '—' : pct(r.synthRecall);
-        const endc = r.errored ? '—' : `${r.coreWritten}/${r.coreN} ${pct(r.coreCov)}`;
-        L.push(`| ${i + 1} | ${r.id} | ${short[r.type] ?? r.type} | ${routec} | ${rkc} | ${ranksc} | ${surf} | ${syn} | ${endc} | ${r.trace.summary} | ${r.stage} |`);
+        L.push(`| ${i + 1} | ${r.id} | ${short[r.type] ?? r.type} | ${r.agent.calls}${r.agent.hitBudget ? ' ⛔' : ''} | ${r.agent.summary} |`);
     });
     L.push('');
-
-    // 4 — per-core-file probe rank (every core file listed, MISS marked). §3's core@probe expanded.
-    L.push(`## 4. Per-core-file probe rank — every core file, its rank or MISS\n`);
-    L.push(`> §3's \`core@probe\` expanded: the single-query graph(expand) rank of EACH core file, best-rank first. \`MISS\` = never appears in the ranked neighborhood at all (engine can't reach it by ranking). A deep rank (#100+) is effectively unreachable — the agent won't page that far.\n`);
-    rows.forEach(r => {
-        const cr: { file: string; rank: number | null }[] = r.coreRanks ?? [];
-        const ranked = cr.filter(c => c.rank != null).length;
-        L.push(`**${r.id}** · ${short[r.type] ?? r.type} · ${ranked}/${cr.length} ranked · surfaced ${r.errored ? '—' : pct(r.retrievalRecall)}`);
-        [...cr].sort((a, b) => (a.rank ?? Infinity) - (b.rank ?? Infinity))
-            .forEach(c => L.push(`- \`${c.rank == null ? 'MISS' : '#' + c.rank}\` ${c.file}`));
-        L.push('');
-    });
 
     fs.mkdirSync(path.join(LOGS, 'reports'), { recursive: true });
     fs.writeFileSync(OUT, L.join('\n'), 'utf-8');
     console.error(`Wrote logs/reports/metrics.md`);
     const trN = rows.filter(r => r.trHas).length;
-    const trFb = rows.filter(r => r.trFallback).length;
-    console.log(`metrics: trace ${trN}/${n} (fallback ${trFb}) | funnel surfaced ${pct(fRetr)} → written ${pct(fWrit)} | triage ${[...dist].sort((a, b) => b[1] - a[1]).map(([t, c]) => `${t}:${c}`).join(' ')}`);
+    const budget = rows.filter(r => r.agent.hitBudget).length;
+    console.log(`metrics: trace ${trN}/${n} | agent avg ${mean(rows.map(r => r.agent.calls)).toFixed(1)} calls/题, 用满预算 ${budget}/${n}`);
 }
 
 main().catch(e => { console.error('Fatal:', e); process.exit(2); });
