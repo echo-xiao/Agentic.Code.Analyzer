@@ -1,46 +1,11 @@
-// wiki — runtime bridge to DeepWiki's MCP (public repos, free). Gives the agent an on-demand
-// architecture oracle: ask_question over the repo's auto-generated wiki. The answer is prose +
-// real file paths; the agent must still ground/verify cited paths via search/details.
-import { Client } from '@modelcontextprotocol/sdk/client/index.js';
-import { StreamableHTTPClientTransport } from '@modelcontextprotocol/sdk/client/streamableHttp.js';
-import { GLOBAL_INDEX } from '../../indexer/state.js';
-
-const REPO = process.env.WIKI_REPO ?? 'RocketChat/Rocket.Chat';
-
-// The product's value-add: DeepWiki gives prose; WE verify every cited path against the live index.
-// Appends a grounding footer so the agent trusts real paths and ignores stale/hallucinated ones.
-function ground(text: string): string {
-    const paths = [...new Set([...text.matchAll(/(?:apps|packages|ee)\/[\w./-]+\.(?:tsx?|js)/g)].map(m => m[0]))];
-    if (!paths.length) return text;
-    const files = [...GLOBAL_INDEX.allFiles].map(f => f.replace(/\\/g, '/'));
-    const real: string[] = [], fake: string[] = [];
-    for (const p of paths) (files.some(f => f.endsWith('/' + p) || f.endsWith(p)) ? real : fake).push(p);
-    let footer = `\n\n---\n[grounding] ${real.length}/${paths.length} cited paths verified in this codebase's index.`;
-    if (fake.length) footer += `\n⚠️ NOT in this codebase (stale/hallucinated — do NOT cite): ${fake.join(', ')}`;
-    return text + footer;
-}
-
-let clientP: Promise<Client> | null = null;
-function getClient(): Promise<Client> {
-    if (!clientP) {
-        clientP = (async () => {
-            const transport = new StreamableHTTPClientTransport(new URL('https://mcp.deepwiki.com/mcp'));
-            const c = new Client({ name: 'aca', version: '0.1.0' });
-            await c.connect(transport);
-            return c;
-        })();
-    }
-    return clientP;
-}
+// wiki — 离线架构地图（只走入口图逻辑，运行期零 DeepWiki/零网络）。
+// 内容全部派生自 data/wiki-map.json（构建期一次性压缩自 DeepWiki）+ 代码索引上的确定性游走：
+// 入口页结构（章节 + mermaid 关系边）+ 按相关度排序的候选文件。纯结构无散文，路径全部经索引校验。
+// （旧的运行期 DeepWiki MCP 客户端已删除 2026-07-08 — 用户决定只走入口图；活 MCP 版本在 git 历史。）
+import { offlineWikiAnswer } from '../engine/entry-map.js';
 
 export async function askWiki(question: string): Promise<string> {
     if (!question) return 'Missing parameter: question';
-    try {
-        const c = await getClient();
-        const res = await c.callTool({ name: 'ask_question', arguments: { repoName: REPO, question } });
-        const text = ((res as any).content ?? []).map((x: any) => x.text).filter(Boolean).join('\n');
-        return text ? ground(text) : '(no wiki answer)';
-    } catch (e: any) {
-        return `wiki error: ${e?.message ?? e}`;
-    }
+    return offlineWikiAnswer(question)
+        ?? 'No architecture-map hit for this question — the wiki map has no matching page. Use search/graph/details directly.';
 }

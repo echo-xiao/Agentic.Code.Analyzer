@@ -195,10 +195,10 @@ async function main() {
 
     const WIKI_FUNCTION: FunctionDeclaration = {
         name: 'wiki',
-        description: "Ask the DeepWiki architecture wiki how a subsystem works. Returns a grounded architecture summary (prose + file paths verified against this codebase's index; a footer flags any stale/hallucinated paths). Call it early for a high-level map, then confirm exact symbols with search/graph/details.",
+        description: "Ask the offline architecture map how a subsystem is structured. Returns the matching wiki pages' structure (sections + component relations) plus candidate files ranked by relevance — all paths verified against this codebase's index. Call it early for a map, then confirm exact symbols with search/graph/details.",
         parameters: { type: SchemaType.OBJECT, properties: { question: { type: SchemaType.STRING, description: 'A natural-language architecture question' } }, required: ['question'] },
     };
-    const WIKI_SYS = '\n\nYou also have wiki(question): a grounded architecture-overview tool. Call it first for a high-level map of the relevant subsystem, then verify exact symbols/files with search/graph/details. Trust only paths the grounding footer confirms are in the codebase.';
+    const WIKI_SYS = '\n\nYou also have wiki(question): an offline architecture map (page structure + component relations + ranked candidate files, all index-verified). Call it early for a map of the relevant subsystem, then verify exact symbols/files with search/graph/details before citing them.';
 
     const cfg = { functions: [...GEMINI_FUNCTIONS, WIKI_FUNCTION], sysText: SYSTEM_PROMPT + WIKI_SYS, dir: 'answers-gemini-mcp-selfloop' };
 
@@ -235,7 +235,7 @@ async function main() {
 }
 
 if (import.meta.url === pathToFileURL(process.argv[1] ?? '').href) {
-    // Force exit after main resolves — the DeepWiki MCP client keeps an open connection that would
+    // Force exit after main resolves — legacy guard (原 DeepWiki MCP 客户端的连接问题, 客户端已删仍保留无害)
     // otherwise prevent Node from exiting once all answers are saved.
     main().then(() => process.exit(0)).catch(e => { console.error('Fatal:', e); process.exit(2); });
 }
