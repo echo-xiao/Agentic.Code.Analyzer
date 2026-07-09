@@ -13,7 +13,7 @@ import * as path from 'path';
 import { fileURLToPath } from 'url';
 import { loadTestcasesWithTruth, TESTCASES_PATH, CLAUDE_TRUTH_PATH } from './utils/truth-io.js';
 import { classifyIntent, INTENTS, RECIPES } from '../server/intent.js';
-import { scoreString } from '../server/engine/walker/affinity.js';
+import { rankCandidates } from '../server/engine/entry-map.js';
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const LOGS = path.resolve(__dirname, '..', '..', 'logs');
@@ -183,10 +183,16 @@ async function main() {
         // ⑤ 候选精度：按 entry-map 同样的排序规则(到达文件按问题相关度排)重构候选列表，
         //    看前 10 个里有几个是答案相关文件(core∪supporting——命中辅助文件不算噪声)
         const tokensUsed: string[] = tr?.tokens?.used ?? [];
-        const rankedCand = [...reachedFiles]
-            .map(f => ({ f, s: scoreString(tokensUsed, f) }))
-            .sort((x, y) => y.s - x.s || x.f.localeCompare(y.f))
-            .map(x => x.f);
+        // 与生产同一个排序函数(rankCandidates)——量的就是 agent 真拿到的列表
+        const frMap = new Map<string, number>();
+        for (const f of seedFiles) frMap.set(f, 0);
+        for (const w of trWalk) {
+            if (w.chosen == null) continue;
+            for (const f of (w.result?.newFiles ?? [])) {
+                if (!frMap.has(f) || (frMap.get(f) as number) > w.round) frMap.set(f, w.round);
+            }
+        }
+        const rankedCand = rankCandidates([...frMap].map(([f, round]) => ({ f, round })), tokensUsed);
         const relevant = [...core, ...((tc.supporting ?? []) as string[])];
         const candHit10 = rankedCand.slice(0, 10).filter(f => relevant.some(c => pathEq(f, c))).length;
         const candHit25 = rankedCand.slice(0, 25).filter(f => relevant.some(c => pathEq(f, c))).length;
