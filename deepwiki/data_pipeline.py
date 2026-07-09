@@ -240,6 +240,22 @@ def read_all_documents(path: str, embedder_type: str = None, is_ollama_embedder:
 
     logger.info(f"Reading documents from {path}")
 
+    def _dir_parts_match(clean_included: str, file_path_parts: list) -> bool:
+        """
+        Return True if the components of clean_included appear as a contiguous
+        subsequence anywhere in file_path_parts.
+
+        Examples:
+            "src"              vs ["repo", "src", "a.ts"]         → True
+            "packages/apps-engine" vs ["repo", "packages", "apps-engine", "src", "a.ts"] → True
+            "packages/apps-engine" vs ["repo", "packages", "other", "b.ts"]              → False
+        """
+        inc = [p for p in clean_included.split("/") if p]
+        if not inc:
+            return False
+        n = len(inc)
+        return any(file_path_parts[i:i + n] == inc for i in range(len(file_path_parts) - n + 1))
+
     def should_process_file(file_path: str, use_inclusion: bool, included_dirs: List[str], included_files: List[str],
                            excluded_dirs: List[str], excluded_files: List[str]) -> bool:
         """
@@ -267,7 +283,7 @@ def read_all_documents(path: str, embedder_type: str = None, is_ollama_embedder:
             if included_dirs:
                 for included in included_dirs:
                     clean_included = included.strip("./").rstrip("/")
-                    if clean_included in file_path_parts:
+                    if _dir_parts_match(clean_included, file_path_parts):
                         is_included = True
                         break
 
