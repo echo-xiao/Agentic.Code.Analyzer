@@ -20,7 +20,7 @@ import * as crypto from 'crypto';
 import * as fs from 'fs';
 import * as path from 'path';
 import { fileURLToPath, pathToFileURL } from 'url';
-import { TARGET_SRC_DIR } from '../config.js';
+import { TARGET_SRC_DIR, getOutputPaths } from '../config.js';
 import { rankCandidates } from '../server/engine/entry-map.js';
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
@@ -81,9 +81,18 @@ async function main() {
         const abs = path.join(TARGET_SRC_DIR, rel);
         if (!fs.existsSync(abs)) { missing++; continue; }
         const content = fs.readFileSync(abs, 'utf-8');
-        const hash = sha1(content);
+        const hash = sha1(content);   // 哈希按源文件算（skeleton 随索引重建，缓存失效跟源码走）
         if (store[rel]?.hash === hash) continue;   // 缓存命中
-        pending.push({ rel, hash, head: content.split('\n').slice(0, HEAD_LINES).join('\n') });
+        // 摘要输入优先用索引器的 skeleton（imports+导出签名，浓缩全文件、与行位置无关）——
+        // 只看源文件前 N 行会漏"import 一长串、肉在中间"的文件；skeleton 缺失时回退原文件头。
+        let head: string;
+        try {
+            const sk = fs.readFileSync(getOutputPaths(abs).skeletonPath, 'utf-8');
+            head = sk.split('\n').slice(0, 35).join('\n');
+        } catch {
+            head = content.split('\n').slice(0, HEAD_LINES).join('\n');
+        }
+        pending.push({ rel, hash, head });
     }
     console.error(`缓存命中 ${targets.length - missing - pending.length} · 待生成 ${pending.length} · 磁盘缺失 ${missing}`);
     if (process.argv.includes('--dry')) {
