@@ -2,9 +2,9 @@
 
 > **For agentic workers:** REQUIRED SUB-SKILL: Use superpowers:subagent-driven-development (recommended) or superpowers:executing-plans to implement this plan task-by-task. Steps use checkbox (`- [ ]`) syntax for tracking.
 
-**Goal:** Stand up an end-to-end free-tier pipeline that indexes a subset of the Rocket.Chat monorepo with Gemini embeddings, answers a code question over MCP with file-cited output, and prints a baseline eval score over the 27 testcases.
+**Goal:** Stand up an end-to-end free-tier pipeline that indexes a subset of the Rocket.Chat monorepo with Gemini embeddings, answers a code question over MCP with file-cited output, and records a simple trace report (query → retrieved files → answer → citations) — no automated scoring yet.
 
-**Architecture:** Vendor deepwiki-open's Python `api/` package as `deepwiki/` and reuse its `DatabaseManager` (index → FAISS-backed `LocalDB`) with `embedder_type="google"`. Build our own thin modules on top: an indexer wrapper (full-scan a package subset), an `ask` core (Gemini-embed the query → cosine top-k over indexed vectors → Gemini-Flash generation with enforced file citations), an MCP server exposing one `ask` tool, and an eval harness that grades answers against machine-verifiable fact-points and emits `metrics.md` + `verdicts.md`.
+**Architecture:** Vendor deepwiki-open's Python `api/` package as `deepwiki/` and reuse its `DatabaseManager` (index → FAISS-backed `LocalDB`) with `embedder_type="google"`. Build our own thin modules on top: an indexer wrapper (full-scan a package subset), an `ask` core (Gemini-embed the query → cosine top-k over indexed vectors → Gemini-Flash generation with enforced file citations), an MCP server exposing one `ask` tool, and a trace runner that records each run to a JSONL trace plus the simplest markdown report. Automated scoring (fact-point recall, citation verification) is deferred to M2, when the symbol graph provides machine-checkable ground truth.
 
 **Tech Stack:** Python 3.11, `uv`, adalflow + faiss-cpu (from deepwiki-open), `google-generativeai` (Gemini embed + Flash), `mcp` (MCP server), numpy, pytest.
 
@@ -13,9 +13,9 @@
 - Python floor: **3.11** (deepwiki-open requires `^3.11`).
 - Embedding provider: **Gemini `gemini-embedding-001`** via `embedder_type="google"` — never OpenAI. Set `DEEPWIKI_EMBEDDER_TYPE=google` and `GOOGLE_API_KEY` in `.env`.
 - Generation model string: **`gemini-2.5-flash`** (exact string, free tier).
-- Query-time LLM budget: **≤ 2 Gemini generation calls per question** (Flash free tier ~250–1500 RPD). Retrieval and grading use **zero** LLM calls.
-- Eval grading granularity is **file + symbol**, never exact line number (GT line numbers drift ~2 lines).
-- Never write hand-authored answers into any measured path; GT comes only from `logs/answers-claude` + the RC checkout.
+- Query-time LLM budget: **≤ 2 Gemini generation calls per question** (Flash free tier ~250–1500 RPD). Retrieval and the trace runner use **zero** LLM calls.
+- M1 does **not** score answers — it only **records traces**. Automated file+symbol scoring and GT verification land in M2 (they need the symbol graph for machine-checkable ground truth). GT (`logs/answers-claude`) is for **manual eyeballing** against the trace only.
+- Never write hand-authored answers into any measured path; when scoring arrives, GT comes only from `logs/answers-claude` + the RC checkout.
 - `.env` is git-ignored and must never be staged (already enforced by `.gitignore`).
 - Index scope for M1: RC packages subset only (defined in `M1_INCLUDED_DIRS`), not the full 8.9k-file scan.
 - Commit after every green task; do not push.
@@ -23,7 +23,7 @@
 **Reference material already on disk:**
 - RC monorepo (blobless clone): `/tmp/analysis/rocketchat`
 - deepwiki-open source: `/tmp/analysis/deepwiki-open`
-- Eval targets (in project): `src/eval/utils/testcases.json` (27 Q), `logs/answers-claude/*.md` (GT)
+- Eval targets (in project): `src/eval/utils/testcases.json` (27 Q), `logs/answers-claude/*.md` (GT, manual reference)
 
 ---
 
@@ -38,24 +38,23 @@ Agentic.Code.Analyzer/
 ├── src/
 │   ├── config.py                  # M1 constants: paths, model strings, included dirs (Task 2)
 │   ├── indexer/
-│   │   └── index_repo.py          # full-scan a package subset → LocalDB (Task 4)
+│   │   └── index_repo.py          # full-scan a package subset → LocalDB (Task 5)
 │   ├── qa/
-│   │   ├── retriever.py           # load indexed docs + Gemini-embed query + cosine top-k (Task 5)
-│   │   └── ask.py                 # retrieve → Gemini-Flash generate w/ citations (Task 6)
+│   │   ├── retriever.py           # load indexed docs + Gemini-embed query + cosine top-k (Task 6)
+│   │   └── ask.py                 # retrieve → Gemini-Flash generate w/ citations (Task 7)
 │   ├── mcp_server/
-│   │   └── server.py              # FastMCP server exposing `ask` (Task 7)
+│   │   └── server.py              # FastMCP server exposing `ask` (Task 8)
 │   └── eval/
 │       ├── utils/testcases.json   # EXISTS (do not modify)
-│       ├── verify_gt.py           # parse+verify answers-claude cites vs RC (Task 8)
-│       └── run_eval.py            # grade ask() over testcases → metrics.md + verdicts.md (Task 9)
-├── logs/answers-claude/*.md       # EXISTS (GT)
+│       └── trace_run.py           # run ask() over testcases → trace.jsonl + trace-report.md (Task 9)
+├── logs/answers-claude/*.md       # EXISTS (GT, manual reference only in M1)
 ├── tests/
 │   ├── fixtures/mini_repo/        # tiny TS repo for fast index/retrieve tests (Task 3)
 │   ├── test_embedder_google.py  test_indexer.py  test_retriever.py
-│   ├── test_ask.py  test_mcp_server.py  test_verify_gt.py  test_run_eval.py
+│   ├── test_ask.py  test_mcp_server.py  test_trace_run.py
 ├── pyproject.toml                 # our deps (Task 1)
 ├── .env                           # EXISTS (has keys); git-ignored
-└── logs/eval/{metrics.md,verdicts.md}   # eval outputs (Task 9)
+└── logs/eval/{trace.jsonl,trace-report.md}   # trace outputs (Task 9)
 ```
 
 ---
@@ -166,7 +165,7 @@ Run: `uv run pytest tests/test_config.py -v` — Expected: FAIL (`ModuleNotFound
 # src/config.py
 import os
 
-# Local RC checkout used for indexing + GT verification.
+# Local RC checkout used for indexing + (later) GT verification.
 RC_REPO_PATH = os.environ.get("RC_REPO_PATH", "/tmp/analysis/rocketchat")
 
 EMBEDDER_TYPE = "google"          # -> configs["embedder_google"] -> gemini-embedding-001
@@ -307,7 +306,7 @@ git commit -m "test: smoke-test Gemini free-tier embedding path"
 
 **Interfaces:**
 - Consumes: `deepwiki.data_pipeline.DatabaseManager` (verified: `prepare_database(repo_url_or_path, repo_type=None, embedder_type="google", included_dirs=[...]) -> list[Document]`; each Document has `.text`, `.vector`, `.meta_data["file_path"]`).
-- Produces: `index_repo(repo_path: str, included_dirs: list[str], embedder_type: str = "google") -> IndexResult` where `IndexResult` is a dataclass `{docs: list, files_indexed: int, chunks: int, empty_vectors: int}`. Also `load_indexed_docs(repo_path: str) -> list` returning the persisted transformed docs (via a fresh `DatabaseManager.prepare_database`, which loads the existing `.pkl` when present).
+- Produces: `index_repo(repo_path: str, included_dirs: list[str], embedder_type: str = "google") -> IndexResult` where `IndexResult` is a dataclass `{docs: list, files_indexed: int, chunks: int, empty_vectors: int}`. Also `load_indexed_docs(repo_path: str, embedder_type="google", included_dirs=None) -> list` returning the persisted transformed docs (via a fresh `DatabaseManager.prepare_database`, which loads the existing `.pkl` when present).
 
 - [ ] **Step 1: Write the failing test (uses the mini fixture, real Gemini embed)**
 
@@ -513,7 +512,6 @@ git commit -m "feat: Gemini-embed query + cosine top-k retriever with file-path 
 
 ```python
 # tests/test_ask.py
-import os, pytest
 from dataclasses import dataclass
 
 @dataclass
@@ -682,154 +680,62 @@ git commit -m "feat: FastMCP server exposing ask tool over the indexed RC subset
 
 ---
 
-## Task 9: GT verification utility
+## Task 9: Trace runner + simple trace report
 
 **Files:**
-- Create: `src/eval/__init__.py`, `src/eval/verify_gt.py`
-- Test: `tests/test_verify_gt.py`
+- Create: `src/eval/__init__.py`, `src/eval/trace_run.py`
+- Test: `tests/test_trace_run.py`
 
 **Interfaces:**
-- Consumes: `logs/answers-claude/*.md`, `src.config.RC_REPO_PATH`.
-- Produces: `parse_citations(md_text: str) -> list[Cite]` (`Cite = {file: str, line: int|None, symbol: str|None}`), and `verify_citation(cite, repo_path, line_tolerance=8) -> bool` — file exists AND (if a symbol was named) the symbol string appears within `line_tolerance` of the claimed line (or anywhere in the file if no line). Line numbers are advisory only.
+- Consumes: `src/eval/utils/testcases.json`, `src.qa.ask.ask`, `src.indexer.index_repo.load_indexed_docs`, `src.config`.
+- Produces: `build_trace(question: dict, answer) -> dict` (`{id, questionType, question, retrieved:[{file,score}], answer, citations}`); `write_report(traces, out_dir) -> None` (writes `trace.jsonl` + `trace-report.md`); `run_trace(question_ids=None) -> list[dict]` (indexes-loaded `ask()` per question, then writes the report). **No scoring, no GT parsing** — just records what happened.
 
-- [ ] **Step 1: Write the failing test**
-
-```python
-# tests/test_verify_gt.py
-import os
-from src.eval.verify_gt import parse_citations, verify_citation, Cite
-
-FIXTURE = os.path.join(os.path.dirname(__file__), "fixtures", "mini_repo")
-
-def test_parse_citations_extracts_file_and_line():
-    md = "See **`src/commands.ts`, line 3:**\n```ts\nadd(command) {}\n```"
-    cites = parse_citations(md)
-    assert any(c.file == "src/commands.ts" and c.line == 3 for c in cites)
-
-def test_verify_citation_file_and_symbol_present():
-    c = Cite(file="src/commands.ts", line=99, symbol="slashCommands")  # wrong line on purpose
-    assert verify_citation(c, FIXTURE) is True    # file + symbol exist despite bad line
-
-def test_verify_citation_missing_file_is_false():
-    c = Cite(file="src/nope.ts", line=1, symbol=None)
-    assert verify_citation(c, FIXTURE) is False
-```
-
-- [ ] **Step 2: Run to verify it fails**
-
-Run: `uv run pytest tests/test_verify_gt.py -v` — Expected: FAIL (`ModuleNotFoundError`).
-
-- [ ] **Step 3: Implement**
+- [ ] **Step 1: Write the failing test (pure, no network)**
 
 ```python
-# src/eval/verify_gt.py
-import os, re
+# tests/test_trace_run.py
+import json
 from dataclasses import dataclass
 
-# Matches "`path/to/file.ext`, line 25" and bare "`path/to/file.ext`"
-_CITE_RE = re.compile(r"`([\w./-]+\.\w+)`(?:\s*,?\s*line\s+(\d+))?", re.IGNORECASE)
-
-
 @dataclass
-class Cite:
-    file: str
-    line: int | None
-    symbol: str | None = None
+class _Hit: text: str; file_path: str; score: float
+@dataclass
+class _Ans: text: str; citations: list; contexts: list
 
+def test_build_trace_shape():
+    from src.eval.trace_run import build_trace
+    q = {"id": "x1", "questionType": "locate", "question": "where is X?"}
+    ans = _Ans("X is in a.ts", ["a.ts"], [_Hit("code", "a.ts", 0.9123)])
+    t = build_trace(q, ans)
+    assert t["id"] == "x1" and t["citations"] == ["a.ts"]
+    assert t["retrieved"][0]["file"] == "a.ts"
 
-def parse_citations(md_text: str) -> list[Cite]:
-    cites = []
-    for m in _CITE_RE.finditer(md_text):
-        path, line = m.group(1), m.group(2)
-        cites.append(Cite(file=path, line=int(line) if line else None, symbol=None))
-    return cites
-
-
-def verify_citation(cite: Cite, repo_path: str, line_tolerance: int = 8) -> bool:
-    full = os.path.join(repo_path, cite.file)
-    if not os.path.isfile(full):
-        return False
-    if not cite.symbol:
-        return True
-    with open(full, encoding="utf-8", errors="ignore") as fh:
-        lines = fh.readlines()
-    if cite.line is None:
-        return any(cite.symbol in ln for ln in lines)
-    lo = max(0, cite.line - 1 - line_tolerance)
-    hi = min(len(lines), cite.line - 1 + line_tolerance + 1)
-    return any(cite.symbol in ln for ln in lines[lo:hi])
-```
-
-Touch `src/eval/__init__.py`.
-
-- [ ] **Step 4: Run to verify it passes**
-
-Run: `uv run pytest tests/test_verify_gt.py -v` — Expected: PASS.
-
-- [ ] **Step 5: Commit**
-
-```bash
-git add src/eval/__init__.py src/eval/verify_gt.py tests/test_verify_gt.py
-git commit -m "feat: GT citation parser + file/symbol verifier (line-tolerant)"
-```
-
----
-
-## Task 10: Eval harness — baseline metrics.md + verdicts.md
-
-**Files:**
-- Create: `src/eval/run_eval.py`
-- Test: `tests/test_run_eval.py`
-
-**Interfaces:**
-- Consumes: `src/eval/utils/testcases.json`, `logs/answers-claude/*.md`, `src.qa.ask.ask`, `src.eval.verify_gt` (`parse_citations`, `verify_citation`), `src.config`.
-- Produces: `grade_one(question_id, answer_text, answer_citations, gt_md, repo_path) -> Verdict` (`Verdict = {id, fact_point_recall: float, citation_hit_rate: float, matched: list, missed: list}`), and `run_eval(question_ids: list[str]|None) -> dict` that writes `logs/eval/metrics.md` and `logs/eval/verdicts.md` and returns the aggregate dict. Fact-points = the set of file basenames named in the GT; recall = fraction of those basenames that appear in the system answer text. Citation-hit = fraction of the answer's citations whose file exists in the RC checkout. No LLM calls in grading.
-
-- [ ] **Step 1: Write the failing test (pure grading, no network)**
-
-```python
-# tests/test_run_eval.py
-from src.eval.run_eval import grade_one
-
-def test_grade_one_scores_fact_points_and_citations(tmp_path):
-    gt = "Registration is in **`apps/meteor/app/utils/server/slashCommand.ts`, line 25**."
-    ans_text = "Commands register via slashCommand.ts and run via a Meteor method."
-    ans_cites = ["apps/meteor/app/utils/server/slashCommand.ts"]
-    # point the verifier at a repo where the cited file exists
-    repo = tmp_path
-    (repo / "apps/meteor/app/utils/server").mkdir(parents=True)
-    (repo / "apps/meteor/app/utils/server/slashCommand.ts").write_text("export const slashCommands = {}")
-    v = grade_one("new-17-slash-commands", ans_text, ans_cites, gt, str(repo))
-    assert v.fact_point_recall == 1.0        # "slashCommand.ts" basename present in answer
-    assert v.citation_hit_rate == 1.0        # cited file exists
+def test_write_report_creates_files(tmp_path):
+    from src.eval.trace_run import write_report
+    traces = [{"id": "x1", "questionType": "locate", "question": "where is X?",
+               "retrieved": [{"file": "a.ts", "score": 0.9}], "answer": "in a.ts",
+               "citations": ["a.ts"]}]
+    write_report(traces, str(tmp_path))
+    md = (tmp_path / "trace-report.md").read_text()
+    assert "where is X?" in md and "a.ts" in md
+    first = (tmp_path / "trace.jsonl").read_text().splitlines()[0]
+    assert json.loads(first)["id"] == "x1"
 ```
 
 - [ ] **Step 2: Run to verify it fails**
 
-Run: `uv run pytest tests/test_run_eval.py -v` — Expected: FAIL (`ModuleNotFoundError`).
+Run: `uv run pytest tests/test_trace_run.py -v` — Expected: FAIL (`ModuleNotFoundError`).
 
 - [ ] **Step 3: Implement**
 
 ```python
-# src/eval/run_eval.py
+# src/eval/trace_run.py
 import os, json
-from dataclasses import dataclass, field
-from src.eval.verify_gt import parse_citations, verify_citation, Cite
 from src import config
 
 _HERE = os.path.dirname(__file__)
 _TESTCASES = os.path.join(_HERE, "utils", "testcases.json")
-_GT_DIR = os.path.join(os.path.dirname(os.path.dirname(_HERE)), "logs", "answers-claude")
 _OUT_DIR = os.path.join(os.path.dirname(os.path.dirname(_HERE)), "logs", "eval")
-
-
-@dataclass
-class Verdict:
-    id: str
-    fact_point_recall: float
-    citation_hit_rate: float
-    matched: list = field(default_factory=list)
-    missed: list = field(default_factory=list)
 
 
 def _load_questions(ids):
@@ -839,79 +745,72 @@ def _load_questions(ids):
     return [q for q in qs if ids is None or q["id"] in ids]
 
 
-def grade_one(question_id, answer_text, answer_citations, gt_md, repo_path) -> Verdict:
-    gt_files = {os.path.basename(c.file) for c in parse_citations(gt_md)}
-    matched = sorted(f for f in gt_files if f in answer_text)
-    missed = sorted(gt_files - set(matched))
-    recall = len(matched) / len(gt_files) if gt_files else 0.0
-    hits = sum(1 for cf in answer_citations
-               if verify_citation(Cite(file=cf, line=None, symbol=None), repo_path))
-    cite_rate = hits / len(answer_citations) if answer_citations else 0.0
-    return Verdict(question_id, recall, cite_rate, matched, missed)
+def build_trace(question: dict, answer) -> dict:
+    return {
+        "id": question["id"],
+        "questionType": question.get("questionType"),
+        "question": question["question"],
+        "retrieved": [{"file": h.file_path, "score": round(h.score, 4)} for h in answer.contexts],
+        "answer": answer.text,
+        "citations": answer.citations,
+    }
 
 
-def run_eval(question_ids=None) -> dict:
+def write_report(traces: list, out_dir: str = _OUT_DIR) -> None:
+    os.makedirs(out_dir, exist_ok=True)
+    with open(os.path.join(out_dir, "trace.jsonl"), "w", encoding="utf-8") as fh:
+        for t in traces:
+            fh.write(json.dumps(t, ensure_ascii=False) + "\n")
+    with open(os.path.join(out_dir, "trace-report.md"), "w", encoding="utf-8") as fh:
+        fh.write("# Trace report (M1)\n\n")
+        for t in traces:
+            top = ", ".join(f"{r['file']} ({r['score']})" for r in t["retrieved"][:5])
+            fh.write(f"## {t['id']} ({t['questionType']})\n")
+            fh.write(f"**Q:** {t['question']}\n\n")
+            fh.write(f"**Top retrieved:** {top}\n\n")
+            fh.write(f"**Citations:** {', '.join(t['citations'])}\n\n")
+            fh.write(f"**Answer:**\n\n{t['answer']}\n\n---\n\n")
+
+
+def run_trace(question_ids=None) -> list:
     from src.qa.ask import ask
     from src.indexer.index_repo import load_indexed_docs
     docs = load_indexed_docs(config.RC_REPO_PATH, embedder_type=config.EMBEDDER_TYPE,
                              included_dirs=config.M1_INCLUDED_DIRS)
-    verdicts = []
-    for q in _load_questions(question_ids):
-        gt_path = os.path.join(_GT_DIR, f"{q['id']}.md")
-        if not os.path.isfile(gt_path):
-            continue
-        gt_md = open(gt_path, encoding="utf-8").read()
-        ans = ask(q["question"], docs=docs, top_k=config.TOP_K)
-        verdicts.append((q, ans, grade_one(q["id"], ans.text, ans.citations, gt_md, config.RC_REPO_PATH)))
-
-    os.makedirs(_OUT_DIR, exist_ok=True)
-    n = len(verdicts) or 1
-    agg = {
-        "n": len(verdicts),
-        "fact_point_recall": sum(v.fact_point_recall for _, _, v in verdicts) / n,
-        "citation_hit_rate": sum(v.citation_hit_rate for _, _, v in verdicts) / n,
-    }
-    with open(os.path.join(_OUT_DIR, "metrics.md"), "w") as fh:
-        fh.write("# Eval metrics (M1 baseline)\n\n")
-        fh.write(f"- questions graded: {agg['n']}\n")
-        fh.write(f"- fact-point recall: {agg['fact_point_recall']:.3f}\n")
-        fh.write(f"- citation hit rate: {agg['citation_hit_rate']:.3f}\n")
-    with open(os.path.join(_OUT_DIR, "verdicts.md"), "w") as fh:
-        fh.write("# Per-question verdicts (M1 baseline)\n\n")
-        for q, ans, v in verdicts:
-            fh.write(f"## {v.id} ({q['questionType']})\n")
-            fh.write(f"- fact-point recall: {v.fact_point_recall:.3f} "
-                     f"(matched {v.matched}; missed {v.missed})\n")
-            fh.write(f"- citation hit rate: {v.citation_hit_rate:.3f} (cited {ans.citations})\n\n")
-    return agg
+    traces = [build_trace(q, ask(q["question"], docs=docs, top_k=config.TOP_K))
+              for q in _load_questions(question_ids)]
+    write_report(traces)
+    return traces
 
 
 if __name__ == "__main__":
-    print(run_eval())
+    run_trace(["new-17-slash-commands", "new-16-impact-streamer", "new-10-apps-engine"])
 ```
+
+Touch `src/eval/__init__.py`.
 
 - [ ] **Step 4: Run to verify the unit test passes**
 
-Run: `uv run pytest tests/test_run_eval.py -v` — Expected: PASS.
+Run: `uv run pytest tests/test_trace_run.py -v` — Expected: PASS.
 
-- [ ] **Step 5: Produce the live baseline (needs index + Gemini)**
+- [ ] **Step 5: Produce the live trace (needs the M1 index + Gemini)**
 
 ```bash
 # one-time: build the M1 index over the RC subset (Gemini embeddings; may take minutes + backoff)
 uv run python -c "from src.indexer.index_repo import index_repo; from src import config; \
 r=index_repo(config.RC_REPO_PATH, config.M1_INCLUDED_DIRS); \
 print('files', r.files_indexed, 'chunks', r.chunks, 'empty', r.empty_vectors)"
-# then run eval over a small, in-scope slice first to respect Flash RPD
-uv run python -c "from src.eval.run_eval import run_eval; \
-print(run_eval(['new-17-slash-commands','new-16-impact-streamer','new-10-apps-engine']))"
+# then trace a small, in-scope slice first (respects Flash RPD)
+uv run python -c "from src.eval.trace_run import run_trace; \
+run_trace(['new-17-slash-commands','new-16-impact-streamer','new-10-apps-engine'])"
 ```
-Expected: `logs/eval/metrics.md` and `logs/eval/verdicts.md` written with real numbers. This is the M1 baseline — record the numbers; do not tune anything yet.
+Expected: `logs/eval/trace.jsonl` and `logs/eval/trace-report.md` written. Open `trace-report.md` and eyeball each answer/citation against `logs/answers-claude/<id>.md`. That manual read is the M1 "evaluation" — no scores computed.
 
 - [ ] **Step 6: Commit**
 
 ```bash
-git add src/eval/run_eval.py tests/test_run_eval.py logs/eval/metrics.md logs/eval/verdicts.md
-git commit -m "feat: eval harness — fact-point recall + citation hit rate; M1 baseline (metrics.md + verdicts.md)"
+git add src/eval/__init__.py src/eval/trace_run.py tests/test_trace_run.py logs/eval/trace.jsonl logs/eval/trace-report.md
+git commit -m "feat: trace runner — record query/retrieval/answer/citations to trace.jsonl + trace-report.md"
 ```
 
 ---
@@ -919,16 +818,15 @@ git commit -m "feat: eval harness — fact-point recall + citation hit rate; M1 
 ## Self-Review
 
 **Spec coverage (M1-relevant sections):**
-- §1 free-tier + eval-driven → Tasks 4,7,10 (Gemini embed/generate, eval harness). ✓
-- §4 index-time pipeline (subset) → Tasks 5. Query-time (retrieve→generate→citations) → Tasks 6,7. ✓
+- §1 free-tier + eval-driven → Tasks 4,7 (Gemini embed/generate), Task 9 (trace). ✓
+- §4 index-time pipeline (subset) → Task 5. Query-time (retrieve→generate→citations) → Tasks 6,7. ✓
 - §5.0 reuse public libs → Task 1 vendors deepwiki-open/adalflow/faiss; Task 8 uses `mcp`. ✓
 - §5.4 Gemini embedding (subset scope for M1) → Tasks 2,5. ✓
-- §7 eval harness, machine-checkable fact-points, two outputs metrics.md+verdicts.md → Tasks 9,10. ✓
-- §7.1 GT verified against RC before trusting → Task 9. ✓
+- §7 eval harness → M1 records **traces only** (Task 9: `trace.jsonl` + `trace-report.md`). Automated fact-point/citation scoring and GT verification are **deferred to M2** (they need the symbol graph for machine-checkable GT) — intentional, per the "M1 = 落 trace + 最简单报告" directive. ✓ (scoped down)
 - §8 MCP surface = `ask` only → Task 8. ✓
-- §9 ≤2 LLM calls/question; retrieval/grading zero-LLM → enforced in Tasks 7 (1 call) & 10 (no LLM grading). ✓
-- Deferred by design (NOT in M1, per spec milestones): scip-typescript symbol graph (M2), Claude preprocessing + citation verifier (M3), full-scan + incremental follow (M4), wiki UI + Mermaid (M5). Called out so the gap is intentional, not missed.
+- §9 ≤2 LLM calls/question; retrieval + trace runner add no extra LLM calls → Task 7 (1 call). ✓
+- Deferred by design (NOT in M1, per spec milestones): scip-typescript symbol graph + automated scoring (M2), Claude preprocessing + citation verifier (M3), full-scan + incremental follow (M4), wiki UI + Mermaid (M5). Called out so the gap is intentional, not missed.
 
 **Placeholder scan:** no "TBD"/"add error handling"/"similar to Task N" — each code step is complete. The one upstream-uncertainty note (Task 8 `mcp.tool` registration form) ships with a concrete verification command and a test that fails if wrong.
 
-**Type consistency:** `IndexResult.docs` (Task 5) → `Retriever(docs)` (Task 6) → `ask(docs=...)` (Task 7) → `_DOCS` (Task 8) / `run_eval` (Task 10): same `docs` list of adalflow Documents throughout. `Hit` fields (`text/file_path/score`) consistent between Tasks 6 and 7. `Cite` (`file/line/symbol`) consistent between Tasks 9 and 10. `Answer` (`text/citations/contexts`) consistent between Tasks 7, 8, 10.
+**Type consistency:** `IndexResult.docs` (Task 5) → `Retriever(docs)` (Task 6) → `ask(docs=...)` (Task 7) → `_DOCS` (Task 8) / `run_trace` (Task 9): same `docs` list of adalflow Documents throughout. `Hit` fields (`text/file_path/score`) consistent between Tasks 6 and 7. `Answer` (`text/citations/contexts`) consistent between Tasks 7, 8, and 9 (the trace runner reads `answer.contexts`/`.citations`).
