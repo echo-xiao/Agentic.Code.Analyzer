@@ -20,6 +20,7 @@ import * as fs from 'fs';
 import * as path from 'path';
 import { fileURLToPath, pathToFileURL } from 'url';
 import { loadTestcases } from './utils/load-testcases.js';
+import { makeBar, fmtSec } from './utils/progress.js';
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const PROJECT_ROOT = path.resolve(__dirname, '..', '..');
@@ -114,18 +115,28 @@ async function mapPool<T, R>(items: T[], n: number, fn: (item: T, i: number) => 
 export async function judgeAnswers(client: Anthropic, testcases: { id: string; question: string }[], candDir: string, candSection: string): Promise<Row[]> {
     const jobs = testcases.filter(tc =>
         fs.existsSync(path.join(GOLD_DIR, `${tc.id}.md`)) && fs.existsSync(path.join(candDir, `${tc.id}.md`)));
+    const bar = makeBar('judge 判定');
+    const t0 = Date.now();
+    let n = 0;
+    bar.start(jobs.length, 0, { elapsed: '0秒', eta_fmt: '?', status: '' });
     const results = await mapPool<typeof jobs[number], Row | null>(jobs, CONCURRENCY, async (tc) => {
         const gold = extractSection(fs.readFileSync(path.join(GOLD_DIR, `${tc.id}.md`), 'utf-8'), '## Answer');
         const cand = extractSection(fs.readFileSync(path.join(candDir, `${tc.id}.md`), 'utf-8'), candSection);
+        const tick = (status: string) => {
+            n++;
+            const elapsed = (Date.now() - t0) / 1000;
+            bar.update(n, { elapsed: fmtSec(elapsed), eta_fmt: fmtSec(n > 0 ? (elapsed / n) * (jobs.length - n) : 0), status });
+        };
         try {
             const v = await judgeOne(client, tc.question, gold, cand);
-            console.error(`  ${tc.id}: ${v.verdict}`);
+            tick(`${tc.id}: ${v.verdict}`);
             return { id: tc.id, ...v };
         } catch (e) {
-            console.error(`  ${tc.id}: ERROR — ${(e as Error).message}`);
+            tick(`${tc.id}: ERROR`);
             return null;
         }
     });
+    bar.stop();
     return results.filter((r): r is Row => r !== null);
 }
 
