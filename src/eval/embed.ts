@@ -40,7 +40,7 @@ async function main() {
         try {
             const v = await embedText(s.summary);
             store[rel] = { hash: sha1(s.summary), vec: b64(v) };
-        } catch (e: any) { /* 跳过单条失败，下轮补 */ }
+        } catch (e: any) { bar.stop(); console.error(`[embed] 跳过 ${rel}: ${e?.message?.slice(0, 80)}`); bar.start(jobs.length, i + 1); }  // 打日志防"全批静默失败变0"(summaries 已咬过一次)
         if ((i + 1) % 50 === 0 || i === jobs.length - 1) {   // 每 50 条落盘（断点）
             const sorted: typeof store = {};
             for (const k of Object.keys(store).sort()) sorted[k] = store[k];
