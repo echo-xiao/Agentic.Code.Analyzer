@@ -6,42 +6,57 @@ intent: unknown
 
 ## Gemini Answer
 
-The `proxify()` pattern in Rocket.Chat's `core-services` package enables inter-service communication by creating proxy objects that abstract the underlying message transport. This allows services to invoke methods on other services as if they were local objects.
+The `proxify()` pattern in Rocket.Chat's `core-services` package enables inter-service communication by creating typed proxy interfaces. These proxies abstract the underlying communication mechanism, allowing services to interact without needing to know if the target service is local or remote.
 
 Here's a breakdown of how it works:
 
-**Flow:**
+1.  **Proxy Creation**: The `proxify()` function, located in `packages/core-services/src/lib/proxify.ts`, takes a service name (namespace) and returns a `Proxy` object. This proxy acts as an intermediary for the actual service.
 
-1.  **Proxy Creation:** The `proxify()` function, located in `packages/core-services/src/lib/proxify.ts`, takes a service name (namespace) as input. It then returns a `Proxy` object.
-2.  **Method Interception:** When a method is called on this `Proxy` object, the `handler` function (also in `packages/core-services/src/lib/proxify.ts`) intercepts the call.
-3.  **API Call:** The `handler` then uses the `api.call()` method to route the request. The `api` object is an instance of the `Api` class, defined in `packages/core-services/src/lib/Api.ts`.
-4.  **Broker Delegation:** The `Api.call()` method, in turn, delegates the actual communication to a `broker` instance. This `broker` is set via `Api.setBroker()`.
-5.  **Message Transport:** The broker handles the message passing between services. In a monolithic deployment, an in-process `LocalBroker` is used, while in a distributed environment, NATS and the `@rocket.chat/network-broker` package are utilized.
+2.  **Method Invocation**: When a method is called on the proxified object, the call is intercepted by a `handler` function, also defined in `packages/core-services/src/lib/proxify.ts`. This `handler` constructs a string representing the method to be called (e.g., `namespace.methodName`) and then uses `api.call()` to dispatch the invocation.
 
-**Key Files and Their Roles:**
+3.  **API Dispatch**: The `api` object, a singleton instance of the `Api` class (defined in `packages/core-services/src/api.ts` and `packages/core-services/src/lib/Api.ts`), is responsible for routing the service call. It determines whether to route the call locally (via an in-process TCP transport in monolithic deployments) or remotely (via NATS messaging in distributed deployments).
 
-*   **`packages/core-services/src/lib/proxify.ts`**: This file contains the `proxify()` function, which creates the proxy object, and the `handler` function, which intercepts method calls on the proxy.
-*   **`packages/core-services/src/lib/Api.ts`**: This file defines the `Api` class, which acts as a central point for inter-service communication. It includes the `call()` method, responsible for routing requests, and the `setBroker()` method, which configures the underlying message transport.
+4.  **Service Registration**: Services register themselves with the `api` object (which internally uses a broker) on startup. This registration makes their methods and events available for invocation through the `proxify()` mechanism.
 
-## Tool Calls (8 calls, 28,881 tokens)
+In essence, the flow is:
+`proxify()` (packages/core-services/src/lib/proxify.ts) → `handler` (packages/core-services/src/lib/proxify.ts) → `api.call()` (packages/core-services/src/lib/Api.ts) → Broker (Local or NATS) → Target Service.
 
-**Step 1:** `wiki({"question":"How does the core-services proxify() pattern work for inter-service communication in Rocket.Chat?"})` → 1064 tokens
+## Tool Calls (8 calls, 32,223 tokens)
+
+**Step 1:** `wiki({"question":"How does the core-services proxify() pattern work for inter-service communication in Rocket.Chat?"})` → 1300 tokens
 **Step 2:** `search({"query":"proxify","layer":"packages"})` → 84 tokens
 **Step 3:** `details({"symbolName":"proxify","filename":"proxify.ts"})` → 73 tokens
-**Step 4:** `details({"filename":"proxify.ts","symbolName":"handler"})` → 94 tokens
-**Step 5:** `search({"query":"api.call","layer":"packages"})` → 85 tokens
-**Step 6:** `search({"file":"core-services","layer":"packages","query":"api"})` → 485 tokens
-**Step 7:** `details({"filename":"Api.ts","symbolName":"Api"})` → 315 tokens
-**Step 8:** `details({"symbolName":"Api.call","filename":"Api.ts"})` → 74 tokens
+**Step 4:** `search({"query":"handler","file":"proxify.ts"})` → 511 tokens
+**Step 5:** `details({"filename":"proxify.ts","symbolName":"handler"})` → 94 tokens
+**Step 6:** `search({"query":"api.call","layer":"packages"})` → 85 tokens
+**Step 7:** `search({"layer":"packages","query":"api"})` → 485 tokens
+**Step 8:** `details({"filename":"Api.ts","symbolName":"api"})` → 54 tokens
 
-## Files Seen In Tool Results (26)
+## Files Seen In Tool Results (43)
 
+- `apps/meteor/server/services/startup.ts`
 - `packages/core-services/src/index.ts`
+- `ee/packages/abac/src/service.spec.ts`
+- `packages/apps/base-runtime/src/lib/accessors/mod.ts`
 - `packages/models/src/index.ts`
-- `packages/apps-engine/deno-runtime/lib/accessors/mod.ts`
-- `packages/apps-engine/deno-runtime/lib/accessors/modify/ModifyCreator.ts`
 - `packages/models/src/proxify.ts`
 - `packages/core-services/src/lib/proxify.ts`
+- `ee/apps/ddp-streamer/src/Client.ts`
+- `packages/apps-engine/src/definition/uikit/IUIKitActionHandler.ts`
+- `packages/apps-engine/src/definition/uikit/livechat/IUIKitLivechatActionHandler.ts`
+- `packages/apps-engine/src/definition/livechat/ILivechatRoomClosedHandler.ts`
+- `packages/apps-engine/deno-runtime/error-handlers.ts`
+- `packages/apps-engine/deno-runtime/lib/accessors/formatResponseErrorHandler.ts`
+- `packages/apps-engine/deno-runtime/handlers/videoconference-handler.ts`
+- `packages/apps-engine/deno-runtime/handlers/slashcommand-handler.ts`
+- `packages/apps-engine/deno-runtime/handlers/scheduler-handler.ts`
+- `packages/apps-engine/deno-runtime/handlers/outboundcomms-handler.ts`
+- `packages/apps-engine/deno-runtime/handlers/api-handler.ts`
+- `packages/apps-engine/deno-runtime/handlers/uikit/handler.ts`
+- `packages/apps-engine/deno-runtime/handlers/tests/helpers/mod.ts`
+- `packages/apps-engine/deno-runtime/handlers/listener/handler.ts`
+- `packages/apps-engine/deno-runtime/handlers/lib/assertions.ts`
+- `packages/apps-engine/deno-runtime/handlers/app/handler.ts`
 - `ee/packages/omnichannel-services/src/QueueWorker.ts`
 - `packages/livechat/src/api.ts`
 - `packages/core-services/src/api.ts`

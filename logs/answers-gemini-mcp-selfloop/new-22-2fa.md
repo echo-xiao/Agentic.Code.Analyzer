@@ -6,60 +6,50 @@ intent: unknown
 
 ## Gemini Answer
 
-Rocket.Chat implements two-factor authentication (2FA) to enhance user account security, supporting both Time-based One-Time Password (TOTP) and email-based authentication methods.
+Rocket.Chat implements two-factor authentication (2FA) through two primary methods: Time-based One-Time Password (TOTP) and email-based codes.
 
-Here's a breakdown of how 2FA works:
+**General Flow:**
+When 2FA is enabled, it integrates into the login process. The `overrideLoginMethod` function intercepts login attempts and checks if 2FA is required. If so, the `process2faReturn` function handles the 2FA challenge, determining the required method (TOTP, email, or password fallback) and displaying the appropriate modal to the user. Server-side, the `checkCodeForUser` function verifies the provided 2FA code.
 
-**1. 2FA Methods:**
+**2FA Methods:**
 
-*   **TOTP (Time-based One-Time Password):**
-    *   Users initiate TOTP setup via the client, which calls the `2fa:enable` method. This generates a secret and a QR code URL.
-    *   The client then validates a temporary token using the `2fa:validateTempToken` method, which verifies the code, enables TOTP, and generates backup codes.
-    *   During login or sensitive actions, the system verifies the TOTP code using the `checkCodeForUser` function.
-*   **Email-based 2FA:**
-    *   When email 2FA is required, the system sends a code to the user's verified email via the `users.2fa.sendEmailCode` API endpoint.
-    *   The `EmailCheck` class handles the generation and sending of these codes.
-    *   The user enters the code, which is then verified by the `EmailCheck.verify` method.
+1.  **TOTP (Time-based One-Time Password):**
+    *   **Enabling:** Users enable TOTP using authenticator apps. The `2fa:enable` method generates a secret key and QR code.
+    *   **Validating:** To finalize setup, users provide a code from their app. The `2fa:validateTempToken` method verifies this code, promoting the temporary secret to permanent and generating backup codes.
+    *   **Disabling:** Users disable TOTP by providing a valid TOTP code, which the `2fa:disable` method verifies.
 
-**2. 2FA Enforcement and Flow:**
+2.  **Email-based 2FA:**
+    *   **Enabling:** The `users.2fa.enableEmail` API endpoint allows users to enable email 2FA, requiring a verified email address.
+    *   **Disabling:** The `users.2fa.disableEmail` API endpoint is used to disable email 2FA.
+    *   **Sending Code:** The `users.2fa.sendEmailCode` API endpoint sends a 2FA code to the user's email, with the `EmailCheck` class handling the sending logic.
 
-*   The `checkCodeForUser` function, located in `apps/meteor/app/2fa/server/code/index.ts`, is central to the 2FA process. It determines which 2FA method is active for a user and validates the provided code.
-    *   **File:** `apps/meteor/app/2fa/server/code/index.ts` (for `checkCodeForUser`)
-*   If no code is provided when 2FA is required, a `totp-required` error is thrown, prompting the user for the code.
-*   For API calls, the `ApiClass.processTwoFactor` method intercepts requests and checks for 2FA headers (`x-2fa-code`, `x-2fa-method`). If 2FA is required for a route, it calls `checkCodeForUser` to validate the provided code.
-*   During the login process, the `overrideLoginMethod` function intercepts the standard login flow. If a `totp-required` error is encountered, it triggers a modal to prompt the user for their 2FA code. The `process2faAsyncReturn` function handles the display of the 2FA modal and the validation of the entered code.
+**UI Components:**
+On the client-side, the `AccountSecurityPage.tsx` component manages 2FA settings, rendering `TwoFactorTOTP` and `TwoFactorEmail` components. Modals like `TwoFactorEmailModal` and `TwoFactorTotpModal` prompt users for codes during login or setup.
 
-**3. Key Components and Files:**
+**Key Files and Components:**
 
-*   **`checkCodeForUser` function:**
-    *   **Role:** Central function for validating 2FA codes (both TOTP and email). It determines the active 2FA method and calls the appropriate verification logic.
-    *   **File:** `apps/meteor/app/2fa/server/code/index.ts`
-*   **`EmailCheck` class:**
-    *   **Role:** Handles the specifics of email-based 2FA, including sending email codes and verifying them.
-    *   **File:** `apps/meteor/app/2fa/server/code/EmailCheck.ts`
-    *   **Methods:** `isEnabled`, `sendEmailCode`, `verify`, `processInvalidCode`, `maxFaildedAttemtpsReached`.
+*   **Server-side logic:**
+    *   `overrideLoginMethod` (function for login interception)
+    *   `process2faReturn` (function for handling 2FA challenge)
+    *   `checkCodeForUser` (function for verifying 2FA codes)
+    *   `2fa:enable` (method for enabling TOTP)
+    *   `2fa:validateTempToken` (method for validating temporary TOTP token)
+    *   `2fa:disable` (method for disabling TOTP)
+    *   `users.2fa.enableEmail` (API endpoint for enabling email 2FA)
+    *   `users.2fa.disableEmail` (API endpoint for disabling email 2FA)
+    *   `users.2fa.sendEmailCode` (API endpoint for sending email 2FA code)
+    *   `EmailCheck` (class handling email sending logic)
+*   **Client-side UI:**
+    *   `client/views/account/security/AccountSecurityPage.tsx` (User interface for managing 2FA settings)
+    *   `TwoFactorTOTP` (Component for TOTP settings)
+    *   `TwoFactorEmail` (Component for email 2FA settings)
+    *   `TwoFactorEmailModal` (Modal for email 2FA code input)
+    *   `TwoFactorTotpModal` (Modal for TOTP code input)
 
-**4. Configuration:**
+## Tool Calls (1 calls, 3,970 tokens)
 
-Administrators can configure various 2FA settings, including:
+**Step 1:** `wiki({"question":"How does two-factor authentication (2FA) work in Rocket.Chat?"})` → 1195 tokens
 
-*   `Accounts_TwoFactorAuthentication_Enabled`: Global toggle for 2FA.
-*   `Accounts_TwoFactorAuthentication_By_TOTP_Enabled`: Enables/disables TOTP.
-*   `Accounts_TwoFactorAuthentication_By_Email_Enabled`: Enables/disables email 2FA.
-*   `Accounts_TwoFactorAuthentication_By_Email_Auto_Opt_In`: Automatically enables email 2FA for new users.
-*   `Accounts_TwoFactorAuthentication_By_Email_Code_Expiration`: Sets the expiration time for email codes.
-*   `Accounts_TwoFactorAuthentication_Max_Invalid_Email_Code_Attempts`: Defines the maximum invalid email OTP attempts before a new code is generated.
-*   `Accounts_TwoFactorAuthentication_RememberFor`: Specifies how long 2FA authorization is remembered.
+## Files Seen In Tool Results (0)
 
-## Tool Calls (5 calls, 19,493 tokens)
-
-**Step 1:** `wiki({"question":"How does two-factor authentication (2FA) work in Rocket.Chat?"})` → 1113 tokens
-**Step 2:** `search({"query":"checkCodeForUser"})` → 69 tokens
-**Step 3:** `details({"symbolName":"checkCodeForUser","filename":"index.ts"})` → 541 tokens
-**Step 4:** `search({"query":"EmailCheck"})` → 68 tokens
-**Step 5:** `details({"filename":"EmailCheck.ts","symbolName":"EmailCheck"})` → 262 tokens
-
-## Files Seen In Tool Results (2)
-
-- `apps/meteor/app/2fa/server/code/index.ts`
-- `apps/meteor/app/2fa/server/code/EmailCheck.ts`
+_(none)_
