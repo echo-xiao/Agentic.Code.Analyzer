@@ -1,9 +1,9 @@
 // 决策点 1（选入口页面）+ 决策点 2（每页选 seed）+ lexical fallback。
 // 全部依赖注入（allFiles/symbolsOfFile 由编排器传入），不直接碰 GLOBAL_INDEX——可单测。
 import { scoreString } from './affinity.js';
-import { lexicalSeeds } from '../../server/engine/seeds.js';
-import { isTestPath } from '../../server/engine/common.js';
-import type { WikiMap, WikiPage } from '../../wikimap/parse.js';
+import { lexicalSeeds } from '../seeds.js';
+import { isTestPath } from '../common.js';
+import type { WikiMap, WikiPage } from '../../../wikimap/parse.js';
 
 export interface PageOption { page: string; score: number; hitOn: string[] }
 export interface PageStep { options: PageOption[]; chosen: string[]; reason: string }
