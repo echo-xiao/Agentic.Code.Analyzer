@@ -9,6 +9,8 @@ export const SESSION = {
     hasCalledSearchOrGraph: false,
     // Set by the plan tool; graph reads it for default move/depth when the agent omits them.
     intent: null as Intent | null,
+    // Set by plan; graph(expand) reads it to embed for semantic-RRF ranking of the neighbourhood.
+    question: null as string | null,
     // Oracle override (eval harnesses set this per-testcase to measure the routing ceiling).
     forceIntent: null as Intent | null,
 };

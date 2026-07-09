@@ -15,6 +15,8 @@ import { ensureIndex } from '../indexer/index.js';
 import { handleToolCall } from '../server/registry.js';
 import { lexicalSeeds } from '../server/engine/seeds.js';
 import { expandNeighborhood } from '../server/engine/expand.js';
+import { loadVectors } from '../server/engine/entry-map.js';
+import { embedText } from '../server/engine/embeddings.js';
 import { GLOBAL_INDEX } from '../indexer/state.js';
 import { type TestCase } from './utils/load-testcases.js';
 import { loadTestcasesWithTruth, TESTCASES_PATH, CLAUDE_TRUTH_PATH } from './utils/truth-io.js';
@@ -99,7 +101,8 @@ function firstSymbolIndex(text: string, symbol: string): number {
 }
 
 // Run the *primary* query through the ranking engine and measure how well it ranks the core GT files.
-function computeRetrievalMetrics(tc: TestCase): RetrievalMetrics {
+// 语义 RRF 已进 expandNeighborhood：seed 从金符号，但语义 query 用问题原文（同生产 SESSION.question）。
+async function computeRetrievalMetrics(tc: TestCase): Promise<RetrievalMetrics> {
     const core = (tc.core && tc.core.length ? tc.core : tc.groundTruthFiles) ?? [];
     const supporting = tc.supporting ?? [];
     const gtAll = Array.from(new Set([...core, ...supporting]));
@@ -115,8 +118,10 @@ function computeRetrievalMetrics(tc: TestCase): RetrievalMetrics {
     };
     if (!primaryQuery || core.length === 0) return empty;
 
-    // Same call the old CodeRetriever.search(query, 50) made: seeds → expand(maxHop 2) → rank.
-    const results = expandNeighborhood(lexicalSeeds(primaryQuery), { maxHop: 2, limit: 50 });
+    const vecs = loadVectors();
+    const sem = vecs && tc.question ? { queryVec: await embedText(tc.question), vecOf: (f: string) => vecs.get(f) ?? null } : null;
+    // Same call the old CodeRetriever.search(query, 50) made: seeds → expand(maxHop 2) → rank（现含语义 RRF）。
+    const results = expandNeighborhood(lexicalSeeds(primaryQuery), { maxHop: 2, limit: 50 }, sem);
     const rankedFiles: string[] = [];
     const seen = new Set<string>();
     for (const r of results) {
@@ -315,7 +320,7 @@ async function runTestCase(tc: TestCase): Promise<TestResult> {
     const symRate = symTotal > 0 ? searchSymFound.length / symTotal : 1;
     const graphRate = graphResult?.rate ?? 1;
 
-    const retrieval = computeRetrievalMetrics(tc);
+    const retrieval = await computeRetrievalMetrics(tc);
 
     // SANITY (substring): "if you already know every symbol name, can the index find the files?"
     // This is near-100% by construction and must NOT be the headline gate — it masks real quality.

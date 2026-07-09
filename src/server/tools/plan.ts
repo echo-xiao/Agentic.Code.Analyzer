@@ -24,6 +24,7 @@ export async function runPlan(args: { question?: string; intent?: string }): Pro
     else intent = classifyIntent(question);
 
     SESSION.intent = intent;
+    SESSION.question = question || null;   // graph(expand) 用它做语义 RRF 排序的 query 向量
     const r = RECIPES[intent];
     const lines = [
         `🧭 intent: **${intent}**`,
