@@ -24,11 +24,14 @@
 3. **free tier 内可跑**:索引与查询全程只用免费/受限的 Gemini(embedding + Flash)+ 一次性 Claude 预处理,不依赖任何付费 tier。
 4. **动态题不塌**:对 `locate/call-chain/impact`(动态注册扩散类)题,召回不显著低于 `architecture` 类。
 
+**范围与优先级**:
+- **只针对 Rocket.Chat**,不做多仓库/私有仓通用化。
+- **增量跟随 upstream —— 在范围内**(用户要求):除离线全量外,需支持定期跟随 RC main 的增量更新(见 §5.10、M4)。
+- **wiki 网页 UI —— 保留口子,置于最后**(可选 M5):deepwiki-open 前端可复用。**若做 UI,则连带做 Mermaid 图生成 + 渲染前校验**(补 deepwiki-open「无预渲染校验」的空白)。非 UI 阶段不做图。
+
 **非目标(YAGNI)**:
-- 不做 wiki 网页 UI 的重设计(deepwiki-open 的前端可留可弃,MVP 只要 MCP + eval)。
-- 不做多仓库/私有仓通用化(只针对 RC)。
-- 不做 Mermaid 图生成/校验(deepwiki-open 已知短板,与 accuracy 主线无关)。
-- 不追求实时增量跟随 RC upstream;索引是**离线批处理、可重跑**即可。
+- 非 UI(M5 之前)阶段不生成 Mermaid 图。
+- 不做 RC 之外的语言/框架泛化。
 
 ---
 
@@ -157,6 +160,11 @@ deepwiki-open 现状关键参数(已读源码核验):
 ### 5.9 Eval Harness —— accuracy 机制
 - 见 §7。
 
+### 5.10 Incremental Follow(增量跟随 upstream)—— 在范围内
+- **职责**:定期 `git fetch` RC main,`git diff <last_indexed>..<HEAD>` 取变更文件集,只对变更集重跑「解析 → Claude 摘要 → embedding」(hash 增量已支撑),更新符号图谱与向量库,记录已索引 commit。
+- **依赖**:5.1/5.2/5.3/5.4;git。
+- **注**:受 free-tier 限额,增量频率可调(如每日一次);首次仍需全量。
+
 ---
 
 ## 6. 数据流
@@ -189,20 +197,24 @@ deepwiki-open 现状关键参数(已读源码核验):
 ### 7.4 指标
 覆盖率 / 事实点召回率 / 引用命中率(cite 真实且相关)/ 分 questionType 的 P·R。这些是驱动 retrieval 迭代的信号,而非"文本相似度"。
 
+### 7.5 输出物(两套)
+每轮 eval 产出两个文件:
+- **`metrics.md`** —— 聚合量化:覆盖率、事实点召回率、引用命中率、分 questionType 的 P·R、总分;附与上一轮的 diff(看趋势、驱动迭代)。
+- **`verdicts.md`** —— 逐题明细:每道 testcase 的 question、系统答案摘要、命中/漏掉的 fact-points、每个 cite 的校验结果(ok/unverified)、该题 pass/fail 与理由(定位每道题为什么错)。
+
 ---
 
-## 8. MCP Tool 面
+## 8. MCP Tool 面(刻意精简 —— 对齐 DeepWiki)
 
-| tool | 入参 | 出参 | 用途 |
-|---|---|---|---|
-| `ask` | question | {answer, citations[], key_files[], key_symbols[]} | 主问答(编排检索+生成+校验) |
-| `search_code` | query, top_k | chunk[] {file, lines, text, score} | 语义检索 |
-| `find_symbol` | name | def[] {file, line, kind} | 结构:定义定位(locate 类) |
-| `find_references` | symbol | ref[] {file, line} | 结构:调用点(call-chain 类) |
-| `impacted_by` | symbol | dep[] {file, symbol} | 结构:反向依赖(impact 类) |
-| `get_file` | path, range? | text | 取源码 |
+官方 DeepWiki MCP 只有 3 个 tool(`read_wiki_structure` / `read_wiki_contents` / `ask_question`)。我们**同样保持精简**,默认只暴露:
 
-`ask` 是主交付;其余是把混合检索的能力显式暴露,便于外部 agent 组合、也便于 eval 直接命中结构工具。
+| tool | 入参 | 出参 | 用途 | 何时有 |
+|---|---|---|---|---|
+| `ask` | question | {answer, citations[], key_files[], key_symbols[]} | 主问答(内部编排 混合检索+生成+校验) | MVP 起 |
+| `read_wiki_structure` | — | 章节树 | 读生成的 wiki 目录 | M5(有 wiki 才有) |
+| `read_wiki_contents` | page | markdown | 读某 wiki 页 | M5 |
+
+**结构能力(`find_symbol` / `find_references` / `impacted_by` / `search_code` / `get_file`)默认不作为 MCP tool 暴露**,而是 `ask` 内部的检索接口 + eval 判分接口。仅当确有外部 agent 组合需求时,再以可选 flag 暴露少数几个。→ 直接回应「tools 是不是太多」:是,已收敛到以 `ask` 为主(+ M5 才有的两个 wiki 读取 tool)。
 
 ---
 
@@ -234,4 +246,5 @@ deepwiki-open 现状关键参数(已读源码核验):
 1. **M1 管道打通**:fork deepwiki-open,切 Gemini embedding,全量索引 `packages/` 子集,MCP `ask` 跑通,eval 哈尼出首个基线分。
 2. **M2 结构层**:symbol index + reference graph;`find_symbol/find_references/impacted_by`;locate/call-chain/impact 机器判分。
 3. **M3 动态接线 + 引用校验**:Claude 预处理接线文档;强制引用 prompt;Citation Verifier;全量铺满。
-4. **M4 迭代到达标**:按 eval 指标调 retrieval(RRF 权重、chunk、top_k),达成 §1 成功标准;文档 + demo 交付。
+4. **M4 迭代到达标 + 增量跟随**:按 eval 指标调 retrieval(RRF 权重、chunk、top_k)达成 §1 成功标准;加**增量跟随 upstream**(§5.10:git diff 变更集 → 只重解析/重嵌入);`metrics.md` + `verdicts.md` + demo 交付。
+5. **M5(可选,最后)wiki 网页 UI**:复用 deepwiki-open 前端;**Mermaid 图生成 + 渲染前校验**(补其空白);上线 `read_wiki_structure` / `read_wiki_contents` 两个 MCP tool。
