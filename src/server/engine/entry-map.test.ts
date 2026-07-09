@@ -34,3 +34,17 @@ test('rankCandidates：测试文件被剔除', () => {
     ], ['push']);
     assert.deepEqual(r, ['server/push.ts']);
 });
+
+test('rankCandidates：文件名无信号但摘要命中时，靠摘要排上来（方案2语义项）', () => {
+    const summaries = { 'server/apn.ts': { hash: 'x', summary: 'Apple push notification delivery via APN tokens' } };
+    const without = rankCandidates([
+        { f: 'server/apn.ts', round: 2 },
+        { f: 'server/zzz.ts', round: 1 },
+    ], ['push', 'notification']);
+    const withSum = rankCandidates([
+        { f: 'server/apn.ts', round: 2 },
+        { f: 'server/zzz.ts', round: 1 },
+    ], ['push', 'notification'], summaries as any);
+    assert.equal(without[0], 'server/zzz.ts');   // 无摘要: 轮次早者胜(词面都是0)
+    assert.equal(withSum[0], 'server/apn.ts');   // 有摘要: 0.67+0.87 > 1.0+0
+});

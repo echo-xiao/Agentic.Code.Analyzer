@@ -14,7 +14,17 @@ import type { WikiMap } from '../../wikimap/parse.js';
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const WIKI_MAP_PATH = path.resolve(__dirname, '..', '..', '..', 'data', 'wiki-map.json');
+const SUMMARIES_PATH = path.resolve(__dirname, '..', '..', '..', 'data', 'file-summaries.json');
 const MAX_CANDIDATES = 25;
+
+// 文件一句话摘要（summaries:gen 生成，哈希缓存）——排序语义项 + 候选地图标注。缺文件时为 null（照旧跑）。
+let summariesCache: Record<string, { hash: string; summary: string }> | null | undefined;
+export function loadSummaries(): Record<string, { hash: string; summary: string }> | null {
+    if (summariesCache !== undefined) return summariesCache;
+    try { summariesCache = JSON.parse(fs.readFileSync(SUMMARIES_PATH, 'utf-8')); }
+    catch { summariesCache = null; }
+    return summariesCache;
+}
 
 // 惰性单例：wiki-map + 有向邻接 + 文件→符号反查表都只建一次（索引每进程不可变）。
 let cached: {
@@ -64,10 +74,19 @@ interface Analysis {
  * 0.9 个答案相关文件）。发现轮次越早 = 离 seed 越近：主项 2/(1+轮次)（seed 自身文件=2.0，
  * 第1轮=1.0，第2轮=0.67…），词面分（0..~0.9）作辅助项。测试文件不进候选。
  */
-export function rankCandidates(items: Array<{ f: string; round: number }>, tokens: string[]): string[] {
+export function rankCandidates(
+    items: Array<{ f: string; round: number }>, tokens: string[],
+    summaries?: Record<string, { summary: string }> | null,
+): string[] {
     return items
         .filter(x => !isTestPath(x.f))
-        .map(x => ({ f: x.f, s: 2 / (1 + x.round) + scoreString(tokens, x.f) }))
+        .map(x => {
+            // 词面项取 max(文件名, 摘要)：apn.ts 文件名对 "push notification" 零分，
+            // 但摘要 "Apple push notification delivery" 能命中（方案2 的语义排序项）
+            const nameFace = scoreString(tokens, x.f);
+            const sumFace = summaries?.[x.f] ? scoreString(tokens, summaries[x.f].summary) : 0;
+            return { f: x.f, s: 2 / (1 + x.round) + Math.max(nameFace, sumFace) };
+        })
         .sort((a, b) => b.s - a.s || a.f.localeCompare(b.f))
         .map(x => x.f);
 }
@@ -103,7 +122,7 @@ function analyze(question: string): Analysis | null {
             }
         }
     }
-    const ranked = rankCandidates([...firstRound].map(([f, round]) => ({ f, round })), tokens)
+    const ranked = rankCandidates([...firstRound].map(([f, round]) => ({ f, round })), tokens, loadSummaries())
         .slice(0, MAX_CANDIDATES);
     if (ranked.length === 0) return null;
 
@@ -119,7 +138,10 @@ function candidateLines(a: Analysis): string[] {
         `Entry pages: ${a.chosenPages.map(p => p.page).join(' / ')}`,
         `Suggested seed symbols: ${[...new Set(a.seeds)].join(', ')}`,
         `Candidate files, ranked by graph proximity to the seeds + relevance (top ${a.ranked.length}):`,
-        ...a.ranked.map(f => `- ${f}${a.pageOf(f)}`),
+        ...a.ranked.map(f => {
+            const sum = loadSummaries()?.[f]?.summary;
+            return `- ${f}${a.pageOf(f)}${sum ? ` — ${sum}` : ''}`;
+        }),
         `⚠️ These are CANDIDATES, not the answer: you MUST confirm every file you cite via search/graph/details — citing unverified paths is an error. Files not listed here may still matter.`,
     ];
 }
