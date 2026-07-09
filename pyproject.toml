@@ -1,0 +1,21 @@
+[project]
+name = "rc-code-qa-mcp"
+version = "0.1.0"
+requires-python = ">=3.11"
+dependencies = [
+  "adalflow>=0.1.0",
+  "faiss-cpu>=1.7.4",
+  "google-generativeai>=0.3.0",
+  "numpy>=1.24.0",
+  "tiktoken>=0.5.0",
+  "jinja2>=3.1.2",
+  "python-dotenv>=1.0.0",
+  "mcp>=1.2.0",
+  "openai>=1.76.2",
+  "aiohttp>=3.8.4",
+  "azure-identity>=1.12.0",
+  "azure-core>=1.24.0",
+]
+
+[dependency-groups]
+dev = ["pytest>=7.0.0"]
