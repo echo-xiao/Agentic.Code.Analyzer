@@ -5,10 +5,23 @@ import { SESSION } from '../session.js';
 import { RECIPES } from '../intent.js';
 import type { Move } from '../intent.js';
 import { lexicalSeeds } from '../engine/seeds.js';
-import { expandNeighborhood } from '../engine/expand.js';
+import { expandNeighborhood, type SemInput } from '../engine/expand.js';
 import { graphDown } from '../engine/down.js';
 import { graphUp } from '../engine/up.js';
 import { relPath } from '../engine/common.js';
+import { loadVectors } from '../engine/entry-map.js';
+import { embedText } from '../engine/embeddings.js';
+
+// 用 SESSION.question(plan 写入)嵌 query 向量 + 摘要向量表 → 语义 RRF 信号。缺问题/缺向量→null(纯结构)。
+const qvCache = new Map<string, Float32Array>();
+async function buildSem(): Promise<SemInput | null> {
+    const q = SESSION.question;
+    const vecs = loadVectors();
+    if (!q || !vecs) return null;
+    let qv = qvCache.get(q);
+    if (!qv) { qv = await embedText(q); qvCache.set(q, qv); }
+    return { queryVec: qv, vecOf: (rel) => vecs.get(rel) ?? null };
+}
 
 const MOVES: Move[] = ['expand', 'down', 'up'];
 const DEFAULT_DEPTH: Record<Move, number> = { expand: 2, down: 4, up: 4 };
@@ -17,7 +30,7 @@ export interface GraphArgs {
     query?: string; move?: string; depth?: number; layer?: string; edgeTypes?: string[]; file?: string;
 }
 
-export function runGraph(args: GraphArgs): string {
+export async function runGraph(args: GraphArgs): Promise<string> {
     const { query, layer, edgeTypes, file } = args;
     if (!query) return 'Missing parameter: query';
     SESSION.hasCalledSearchOrGraph = true;
@@ -34,8 +47,8 @@ export function runGraph(args: GraphArgs): string {
     if (move === 'down') return graphDown(query, { depth, layer, edgeTypes, file });
     if (move === 'up') return graphUp(query, { depth, layer, edgeTypes, file });
 
-    // expand — ranked subsystem neighborhood around the lexical seeds.
-    const ranked = expandNeighborhood(lexicalSeeds(query, layer), { maxHop: depth, limit: 15 });
+    // expand — ranked subsystem neighborhood around the lexical seeds. 语义 RRF 融合（有向量+问题时）。
+    const ranked = expandNeighborhood(lexicalSeeds(query, layer), { maxHop: depth, limit: 15 }, await buildSem());
     if (ranked.length === 0) {
         return `No neighborhood found for "${query}". Use search to find a seed symbol first.`;
     }

@@ -5,8 +5,14 @@
 // (recall ceiling ≈ 1/N). We instead treat search as navigation: seed lexically (seeds.ts), EXPAND
 // along the call graph to gather the neighborhood, then RANK that neighborhood by a graph-aware score.
 import { GLOBAL_INDEX } from '../../indexer/state.js';
-import { isTestPath } from './common.js';
+import { isTestPath, relPath } from './common.js';
+import { cosine } from './embeddings.js';
 import type { SeedResult } from './seeds.js';
+
+// 语义 RRF 融合常数（离线 A/B: expandNeighborhood R@50 38→51, K=60；与候选地图同值）。
+const RRF_K = 60;
+// 调用方（graph 工具/eval）嵌好 query 向量 + 提供文件→向量查表，注入语义信号。缺省则纯结构排序。
+export interface SemInput { queryVec: Float32Array; vecOf: (relPath: string) => Float32Array | null }
 
 // Undirected symbol adjacency, derived once from callGraph (callee↔caller). Cached because it is a
 // pure function of the (immutable-per-process) index; rebuilding per query would be wasteful.
@@ -60,7 +66,7 @@ function centralityOf(filePath: string): number {
 
 export interface RankedSymbol { symbolName: string; paths: string[]; score: number; finalScore: number; hop: number; }
 
-export function expandNeighborhood(seed: SeedResult, opts: { maxHop?: number; limit?: number } = {}): RankedSymbol[] {
+export function expandNeighborhood(seed: SeedResult, opts: { maxHop?: number; limit?: number } = {}, sem?: SemInput | null): RankedSymbol[] {
     const { seeds, lexical, layerSegment, inferredSegments } = seed;
     const maxHop = opts.maxHop ?? 2;
     const limit = opts.limit ?? 15;
@@ -144,5 +150,19 @@ export function expandNeighborhood(seed: SeedResult, opts: { maxHop?: number; li
         scored.push({ symbolName: sym, paths, score: lex, finalScore, hop: h });
     }
 
-    return scored.sort((a, b) => b.finalScore - a.finalScore).slice(0, limit);
+    // 信号1: 结构加权和（现有 finalScore）
+    const byFuzzy = [...scored].sort((a, b) => b.finalScore - a.finalScore || a.symbolName.localeCompare(b.symbolName));
+    if (!sem) return byFuzzy.slice(0, limit);   // 无语义 → 纯结构（逐位向后兼容）
+
+    // 信号2: 语义 cosine（符号主文件的摘要向量 vs query；无向量排最后）
+    const semOf = (s: RankedSymbol) => { const v = sem.vecOf(relPath(s.paths[0] ?? '')); return v ? cosine(sem.queryVec, v) : -Infinity; };
+    const bySem = [...scored].sort((a, b) => semOf(b) - semOf(a) || a.symbolName.localeCompare(b.symbolName));
+    // RRF 融合两个名次
+    const fr = new Map<string, number>(); byFuzzy.forEach((x, i) => fr.set(x.symbolName, i + 1));
+    const sr = new Map<string, number>(); bySem.forEach((x, i) => sr.set(x.symbolName, i + 1));
+    return [...scored]
+        .map(x => ({ x, rrf: 1 / (RRF_K + fr.get(x.symbolName)!) + 1 / (RRF_K + sr.get(x.symbolName)!) }))
+        .sort((a, b) => b.rrf - a.rrf || a.x.symbolName.localeCompare(b.x.symbolName))
+        .map(o => o.x)
+        .slice(0, limit);
 }
