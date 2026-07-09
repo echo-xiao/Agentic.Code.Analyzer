@@ -1,6 +1,6 @@
 import { test } from 'node:test';
 import assert from 'node:assert/strict';
-import { parseWikiMarkdown } from './parse.js';
+import { parseWikiMarkdown, parseWikiProse } from './parse.js';
 
 const FIXTURE = `# Page: Overview
 
@@ -71,4 +71,14 @@ test('file_to_pages 反向索引', () => {
 test('散文不进产物：任何字段里都不出现 prose 句子', () => {
     const m = parseWikiMarkdown(FIXTURE, 'RocketChat/Rocket.Chat');
     assert.ok(!JSON.stringify(m).includes('must NOT survive'));
+});
+
+test('parseWikiProse：按页/章节切散文，剥 mermaid，保留 Sources 行', () => {
+    const p = parseWikiProse(FIXTURE);
+    assert.ok(p['Overview'].some(s => s.section === '(intro)' && s.text.includes('Some prose')));
+    const push = p['Notifications'].find(s => s.section === 'Push Pipeline');
+    assert.ok(push && push.text.includes('Sources:'));
+    for (const secs of Object.values(p)) for (const s of secs) {
+        assert.ok(!s.text.includes('graph TB') && !s.text.includes('-->'));
+    }
 });
