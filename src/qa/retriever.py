@@ -19,6 +19,8 @@ def _cosine(a: np.ndarray, b: np.ndarray) -> np.ndarray:
 class Retriever:
     def __init__(self, docs: list, embedder_type: str = "google"):
         self.docs = [d for d in docs if getattr(d, "vector", None) is not None and len(d.vector) > 0]
+        if not self.docs:
+            raise ValueError("Retriever: no embeddable docs (all vectors empty/None)")
         self.matrix = np.array([np.asarray(d.vector, dtype="float32") for d in self.docs])
         self.embedder = get_embedder(embedder_type=embedder_type)
 
