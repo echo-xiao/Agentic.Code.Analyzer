@@ -41,8 +41,8 @@ function ground(text: string): string {
 
 export async function askWiki(question: string): Promise<string> {
     if (!question) return 'Missing parameter: question';
-    const structure = offlineWikiAnswer(question);
-    const m = matchPages(question);
+    const structure = await offlineWikiAnswer(question);
+    const m = await matchPages(question);
     const prose = loadProse();
     let proseBlock = '';
     if (m && prose) {

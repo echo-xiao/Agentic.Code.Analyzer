@@ -34,7 +34,7 @@ export async function runPlan(args: { question?: string; intent?: string }): Pro
     // 实测只有游走器的一半（46 vs 85 / 144 个答案文件），把候选喂进来让预算花在验证上。
     // WIKI_INTENTS 分支下面会附 askWiki（离线版，已含候选），此处只给其余意图附，避免重复。
     if (question && !WIKI_INTENTS.has(intent)) {
-        const cm = candidateMap(question);
+        const cm = await candidateMap(question);
         if (cm) lines.push(cm);
     }
     if (question && WIKI_INTENTS.has(intent)) {
