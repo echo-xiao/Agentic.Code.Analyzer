@@ -11,10 +11,12 @@ import { questionTokens, scoreString } from './walker/affinity.js';
 import { informativeTokens, selectPages, resolveWikiFiles, selectSeedForPage } from './walker/entry.js';
 import { buildDirectedAdjacency, walkFromSeed, type WalkCtx } from './walker/walk.js';
 import type { WikiMap } from '../../wikimap/parse.js';
+import { cosine } from './embeddings.js';
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const WIKI_MAP_PATH = path.resolve(__dirname, '..', '..', '..', 'data', 'wiki-map.json');
 const SUMMARIES_PATH = path.resolve(__dirname, '..', '..', '..', 'data', 'file-summaries.json');
+const VECTORS_PATH = path.resolve(__dirname, '..', '..', '..', 'data', 'summary-vectors.json');
 const MAX_CANDIDATES = 25;
 
 // 文件一句话摘要（summaries:gen 生成，哈希缓存）——排序语义项 + 候选地图标注。缺文件时为 null（照旧跑）。
@@ -66,6 +68,8 @@ interface Analysis {
     pageOf: (f: string) => string;
 }
 
+const RRF_K = 60;
+
 /**
  * 候选混合排序（生产与测量共用的唯一实现）：图邻近度加倍主导 + 词面辅助。
  * 权重 2:1 的依据（用户判断，与 expand.ts 的 2.0×proximity+1.5×lex 同哲学）：答案文件是
@@ -73,22 +77,53 @@ interface Analysis {
  * "名字无信号、只有结构信号"的核心文件埋进大网深处（2026-07-08 精度实测：前 25 平均只剩
  * 0.9 个答案相关文件）。发现轮次越早 = 离 seed 越近：主项 2/(1+轮次)（seed 自身文件=2.0，
  * 第1轮=1.0，第2轮=0.67…），词面分（0..~0.9）作辅助项。测试文件不进候选。
+ * 当提供 sem 时，用 RRF 融合 fuzzy 排名与语义余弦排名（K=60）。
  */
 export function rankCandidates(
     items: Array<{ f: string; round: number }>, tokens: string[],
     summaries?: Record<string, { summary: string }> | null,
+    sem?: { queryVec: Float32Array; vecOf: (rel: string) => Float32Array | null } | null,
 ): string[] {
-    return items
-        .filter(x => !isTestPath(x.f))
-        .map(x => {
-            // 词面项取 max(文件名, 摘要)：apn.ts 文件名对 "push notification" 零分，
-            // 但摘要 "Apple push notification delivery" 能命中（方案2 的语义排序项）
-            const nameFace = scoreString(tokens, x.f);
-            const sumFace = summaries?.[x.f] ? scoreString(tokens, summaries[x.f].summary) : 0;
-            return { f: x.f, s: 2 / (1 + x.round) + Math.max(nameFace, sumFace) };
-        })
+    const live = items.filter(x => !isTestPath(x.f));
+    // 信号1: fuzzy（现有打分，图邻近 + 字面）
+    const fuzzyScore = (x: { f: string; round: number }) => {
+        const nameFace = scoreString(tokens, x.f);
+        const sumFace = summaries?.[x.f] ? scoreString(tokens, summaries[x.f].summary) : 0;
+        return 2 / (1 + x.round) + Math.max(nameFace, sumFace);
+    };
+    const fuzzyRanked = [...live].sort((a, b) => fuzzyScore(b) - fuzzyScore(a) || a.f.localeCompare(b.f));
+    // 无语义输入 → 退回 fuzzy-only（向后兼容）
+    if (!sem) return fuzzyRanked.map(x => x.f);
+    // 信号2: 语义 cosine（无向量的文件排最后）
+    const semRanked = [...live].sort((a, b) => {
+        const va = sem.vecOf(a.f), vb = sem.vecOf(b.f);
+        const sa = va ? cosine(sem.queryVec, va) : -Infinity;
+        const sb = vb ? cosine(sem.queryVec, vb) : -Infinity;
+        return sb - sa || a.f.localeCompare(b.f);
+    });
+    // RRF 融合
+    const fr = new Map<string, number>(); fuzzyRanked.forEach((x, i) => fr.set(x.f, i + 1));
+    const sr = new Map<string, number>(); semRanked.forEach((x, i) => sr.set(x.f, i + 1));
+    return [...live]
+        .map(x => ({ f: x.f, s: 1 / (RRF_K + fr.get(x.f)!) + 1 / (RRF_K + sr.get(x.f)!) }))
         .sort((a, b) => b.s - a.s || a.f.localeCompare(b.f))
         .map(x => x.f);
+}
+
+// 懒加载向量表
+let vecCache: Map<string, Float32Array> | null | undefined;
+export function loadVectors(): Map<string, Float32Array> | null {
+    if (vecCache !== undefined) return vecCache;
+    try {
+        const raw: Record<string, { vec: string }> = JSON.parse(fs.readFileSync(VECTORS_PATH, 'utf-8'));
+        const m = new Map<string, Float32Array>();
+        for (const [rel, e] of Object.entries(raw)) {
+            const buf = Buffer.from(e.vec, 'base64');
+            m.set(rel, new Float32Array(buf.buffer, buf.byteOffset, buf.byteLength / 4));
+        }
+        vecCache = m;
+    } catch { vecCache = null; }
+    return vecCache;
 }
 
 // 共享分析核：选页 → 每页选 seed → 游走 → 候选排序。candidateMap 与 offlineWikiAnswer 共用。
