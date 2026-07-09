@@ -48,3 +48,26 @@ test('rankCandidates：文件名无信号但摘要命中时，靠摘要排上来
     assert.equal(without[0], 'server/zzz.ts');   // 无摘要: 轮次早者胜(词面都是0)
     assert.equal(withSum[0], 'server/apn.ts');   // 有摘要: 0.67+0.87 > 1.0+0
 });
+
+test('rankCandidates RRF: 语义强的文件靠语义上榜, 字面强的靠字面上榜', () => {
+    // A: 字面命中(round近), 语义弱; B: 字面弱(round远), 语义强
+    const items = [{ f: 'server/manualSelection.ts', round: 1 }, { f: 'server/RoutingManager.ts', round: 4 }, { f: 'server/noise.ts', round: 0 }];
+    const q = Float32Array.from([1, 0]);
+    const vecs: Record<string, Float32Array> = {
+        'server/manualSelection.ts': Float32Array.from([0, 1]),  // 语义远
+        'server/RoutingManager.ts': Float32Array.from([1, 0]),   // 语义近(=query)
+        'server/noise.ts': Float32Array.from([0, 1]),
+    };
+    const sem = { queryVec: q, vecOf: (f: string) => vecs[f] ?? null };
+    const ranked = rankCandidates(items.map(x => ({ ...x })), ['routing'], null,
+        sem);
+    // RoutingManager 靠语义 #1；不应被 round-0 的 noise 完全压死
+    assert.ok(ranked.indexOf('server/RoutingManager.ts') < ranked.indexOf('server/noise.ts'),
+        `RRF 应让语义强的 RoutingManager 排在 noise 前: ${ranked.join(',')}`);
+});
+
+test('rankCandidates: 无 sem 时退回当前 fuzzy 行为(向后兼容)', () => {
+    const items = [{ f: 'a/x.ts', round: 2 }, { f: 'a/y.ts', round: 0 }];
+    const ranked = rankCandidates(items, ['x'], null);
+    assert.equal(ranked[0], 'a/y.ts');   // round0 邻近主导, 与改动前一致
+});
