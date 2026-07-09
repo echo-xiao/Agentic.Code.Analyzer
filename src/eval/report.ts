@@ -13,7 +13,8 @@ import * as path from 'path';
 import { fileURLToPath } from 'url';
 import { loadTestcasesWithTruth, TESTCASES_PATH, CLAUDE_TRUTH_PATH } from './utils/truth-io.js';
 import { classifyIntent, INTENTS, RECIPES } from '../server/intent.js';
-import { rankCandidates, loadSummaries } from '../server/engine/entry-map.js';
+import { rankCandidates, loadSummaries, loadVectors } from '../server/engine/entry-map.js';
+import { embedText } from '../server/engine/embeddings.js';
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const LOGS = path.resolve(__dirname, '..', '..', 'logs');
@@ -192,7 +193,15 @@ async function main() {
                 if (!frMap.has(f) || (frMap.get(f) as number) > w.round) frMap.set(f, w.round);
             }
         }
-        const rankedCand = rankCandidates([...frMap].map(([f, round]) => ({ f, round })), tokensUsed, loadSummaries());
+        // 与生产同路径：向量表存在时组装 sem 喂 RRF，否则 null → 退回 fuzzy（与 analyze() 行为一致）
+        const vecs = loadVectors();
+        const reportSem = vecs && (tc.question ?? '')
+            ? await (async () => {
+                const qv = await embedText(tc.question ?? '');
+                return { queryVec: qv, vecOf: (f: string) => vecs.get(f) ?? null };
+            })()
+            : null;
+        const rankedCand = rankCandidates([...frMap].map(([f, round]) => ({ f, round })), tokensUsed, loadSummaries(), reportSem);
         const relevant = [...core, ...((tc.supporting ?? []) as string[])];
         const candHit10 = rankedCand.slice(0, 10).filter(f => relevant.some(c => pathEq(f, c))).length;
         const candHit25 = rankedCand.slice(0, 25).filter(f => relevant.some(c => pathEq(f, c))).length;

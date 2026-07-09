@@ -11,7 +11,7 @@ import { questionTokens, scoreString } from './walker/affinity.js';
 import { informativeTokens, selectPages, resolveWikiFiles, selectSeedForPage } from './walker/entry.js';
 import { buildDirectedAdjacency, walkFromSeed, type WalkCtx } from './walker/walk.js';
 import type { WikiMap } from '../../wikimap/parse.js';
-import { cosine } from './embeddings.js';
+import { cosine, embedText } from './embeddings.js';
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const WIKI_MAP_PATH = path.resolve(__dirname, '..', '..', '..', 'data', 'wiki-map.json');
@@ -126,8 +126,22 @@ export function loadVectors(): Map<string, Float32Array> | null {
     return vecCache;
 }
 
+// query 向量缓存（每问题串只嵌一次）
+const qvecCache = new Map<string, Float32Array>();
+async function cachedQueryVec(question: string): Promise<Float32Array> {
+    let v = qvecCache.get(question);
+    if (!v) { v = await embedText(question); qvecCache.set(question, v); }
+    return v;
+}
+/** 组装 RRF 语义参数；向量表缺失时返回 null（rankCandidates 自动退回 fuzzy）。 */
+async function semFor(question: string): Promise<{ queryVec: Float32Array; vecOf: (f: string) => Float32Array | null } | null> {
+    const vecs = loadVectors();
+    if (!vecs) return null;
+    return { queryVec: await cachedQueryVec(question), vecOf: (f) => vecs.get(f) ?? null };
+}
+
 // 共享分析核：选页 → 每页选 seed → 游走 → 候选排序。candidateMap 与 offlineWikiAnswer 共用。
-function analyze(question: string): Analysis | null {
+async function analyze(question: string): Promise<Analysis | null> {
     if (process.env.ACA_ENTRY_MAP === '0' || !question) return null;
     const { wikiMap, ctx, allFiles, symbolsOfFile } = deps();
     if (!wikiMap || GLOBAL_INDEX.symbols.size === 0) return null;
@@ -157,7 +171,7 @@ function analyze(question: string): Analysis | null {
             }
         }
     }
-    const ranked = rankCandidates([...firstRound].map(([f, round]) => ({ f, round })), tokens, loadSummaries())
+    const ranked = rankCandidates([...firstRound].map(([f, round]) => ({ f, round })), tokens, loadSummaries(), await semFor(question))
         .slice(0, MAX_CANDIDATES);
     if (ranked.length === 0) return null;
 
@@ -182,14 +196,14 @@ function candidateLines(a: Analysis): string[] {
 }
 
 /** 只做"问题→命中页面"的轻量匹配（wiki 工具的散文检索用）；不触散文、不游走结果。 */
-export function matchPages(question: string): { pages: string[]; tokens: string[] } | null {
-    const a = analyze(question);
+export async function matchPages(question: string): Promise<{ pages: string[]; tokens: string[] } | null> {
+    const a = await analyze(question);
     return a ? { pages: a.chosenPages.map(p => p.page), tokens: a.tokens } : null;
 }
 
 /** 对问题跑离线游走，返回附给 agent 的候选地图文本；关闭/无入口图/无命中时返回 null（plan 照旧）。 */
-export function candidateMap(question: string): string | null {
-    const a = analyze(question);
+export async function candidateMap(question: string): Promise<string | null> {
+    const a = await analyze(question);
     if (!a) return null;
     return [
         `\n## 📍 Candidate map (derived offline from the architecture wiki-map + a graph walk — NOT LLM-generated)`,
@@ -201,8 +215,8 @@ export function candidateMap(question: string): string | null {
 const trimLabel = (s: string) => (s.length > 48 ? s.slice(0, 45) + '…' : s);
 
 /** 离线版 wiki 回答（替代运行期 DeepWiki MCP）：入口页结构（章节 + 关系边）+ 候选文件。纯结构，无散文。 */
-export function offlineWikiAnswer(question: string): string | null {
-    const a = analyze(question);
+export async function offlineWikiAnswer(question: string): Promise<string | null> {
+    const a = await analyze(question);
     if (!a) return null;
     const L: string[] = [
         `## 🗺 Architecture map (offline, derived from the DeepWiki wiki-map — structure only, no prose)`,
