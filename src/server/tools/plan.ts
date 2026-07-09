@@ -1,11 +1,18 @@
-// plan — declares the question's intent and returns the recipe (strategy + default graph move/depth
-// for that question type). Architecture context now comes from the `wiki` tool (DeepWiki, grounded),
-// not a hand-authored subsystem map. Never touches the index.
+// plan — declares the question's intent and returns the recipe. For mechanism/flow intents it ALSO
+// fetches the grounded DeepWiki architecture map up front — agents don't reliably call wiki on their own
+// (wiki-called questions PASS ~65% vs ~38% when skipped), so plan hands them the map and steers them to
+// CONFIRM the named symbols via search/graph rather than answer from the overview. Never touches the index.
 import { SESSION } from '../session.js';
 import { classifyIntent, isIntent, RECIPES } from '../intent.js';
 import type { Intent } from '../intent.js';
+import { askWiki } from './wiki.js';
+import { candidateMap } from '../engine/entry-map.js';
 
-export function runPlan(args: { question?: string; intent?: string }): string {
+// Intents whose answer is a cross-layer mechanism/flow — the DeepWiki map pays off most here.
+// locate/pattern (find-a-thing / how-to) are left to the agent; pattern especially is wiki-gap-prone.
+const WIKI_INTENTS: ReadonlySet<string> = new Set(['architecture', 'call-chain', 'routing', 'impact']);
+
+export async function runPlan(args: { question?: string; intent?: string }): Promise<string> {
     const question = args.question ?? '';
     if (!question && !args.intent) return 'Missing parameter: question';
 
@@ -18,10 +25,28 @@ export function runPlan(args: { question?: string; intent?: string }): string {
 
     SESSION.intent = intent;
     const r = RECIPES[intent];
-    return [
+    const lines = [
         `🧭 intent: **${intent}**`,
         `strategy: ${r.strategy}`,
         `defaults: graph(move="${r.move}", depth=${r.depth}) — override per call if the trail demands it.`,
-        `**Next:** call wiki("${question || '<your question>'}") for a grounded architecture overview, then search/graph/details to confirm exact symbols.`,
-    ].join('\n');
+    ];
+    // 候选地图（entrySeeds 通道）：离线游走的候选文件面直接进开局上下文——agent 的检索面
+    // 实测只有游走器的一半（46 vs 85 / 144 个答案文件），把候选喂进来让预算花在验证上。
+    if (question) {
+        const cm = candidateMap(question);
+        if (cm) lines.push(cm);
+    }
+    if (question && WIKI_INTENTS.has(intent)) {
+        // Force-fetch the architecture map so the agent always has it (it under-calls wiki on its own).
+        const map = await askWiki(question);
+        lines.push(
+            `\n## 📐 Architecture map (DeepWiki, grounded)\n${map}`,
+            `\n**Next:** the map above is an OVERVIEW — do NOT answer from it alone. For each symbol/file it names, confirm in THIS codebase via search/graph/details (trust only paths the grounding footer verified), then write the full chain including entry points and post-save/downstream steps.`,
+        );
+    } else {
+        lines.push(
+            `**Next:** search("<entry symbol or keyword>") → graph("<seed>") → details on 1-2 key symbols. Call wiki("${question || '<your question>'}") if you need a high-level architecture overview.`,
+        );
+    }
+    return lines.join('\n');
 }
