@@ -32,7 +32,8 @@ export async function runPlan(args: { question?: string; intent?: string }): Pro
     ];
     // 候选地图（entrySeeds 通道）：离线游走的候选文件面直接进开局上下文——agent 的检索面
     // 实测只有游走器的一半（46 vs 85 / 144 个答案文件），把候选喂进来让预算花在验证上。
-    if (question) {
+    // WIKI_INTENTS 分支下面会附 askWiki（离线版，已含候选），此处只给其余意图附，避免重复。
+    if (question && !WIKI_INTENTS.has(intent)) {
         const cm = candidateMap(question);
         if (cm) lines.push(cm);
     }
@@ -40,8 +41,8 @@ export async function runPlan(args: { question?: string; intent?: string }): Pro
         // Force-fetch the architecture map so the agent always has it (it under-calls wiki on its own).
         const map = await askWiki(question);
         lines.push(
-            `\n## 📐 Architecture map (DeepWiki, grounded)\n${map}`,
-            `\n**Next:** the map above is an OVERVIEW — do NOT answer from it alone. For each symbol/file it names, confirm in THIS codebase via search/graph/details (trust only paths the grounding footer verified), then write the full chain including entry points and post-save/downstream steps.`,
+            `\n## 📐 Architecture map (offline wiki-map)\n${map}`,
+            `\n**Next:** the map above is an OVERVIEW — do NOT answer from it alone. For each symbol/file it names, confirm in THIS codebase via search/graph/details (all listed paths are index-verified, but still confirm the symbols), then write the full chain including entry points and post-save/downstream steps.`,
         );
     } else {
         lines.push(
