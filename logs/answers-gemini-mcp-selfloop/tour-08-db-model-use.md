@@ -6,44 +6,48 @@ intent: unknown
 
 ## Gemini Answer
 
-Rocket.Chat uses a structured approach to query data through database models, primarily defined in the `packages/models` package. These models extend a `BaseRaw` class, which implements the `IBaseModel` interface, providing a consistent API for database interactions.
+Rocket.Chat uses a structured approach to query data through database models, primarily defined within the `@rocket.chat/models` package. These models extend a `BaseRaw` class, providing methods for common database operations and leveraging MongoDB's query language.
 
-Here's how you use a database model to query data:
+The architecture for database models is organized into three primary packages:
+*   `@rocket.chat/core-typings`: Defines domain model types for entities like users, rooms, and messages.
+*   `@rocket.chat/model-typings`: Provides interfaces for database models and query types, ensuring a strictly typed boundary for data access.
+*   `@rocket.chat/models`: Contains the concrete implementations of these database models, extending `BaseRaw` and interacting directly with MongoDB.
 
-**1. Model Definition:**
-   *   Database models are concrete implementations found in `packages/models`.
-   *   They extend the `BaseRaw` class (defined in `packages/models/src/BaseRaw.ts`), which in turn implements the `IBaseModel` interface (defined in `@rocket.chat/model-typings/src/IBaseModel.ts`).
-   *   This structure ensures type safety and provides a common set of CRUD (Create, Read, Update, Delete) operations.
+All models are registered using the `registerModel` function, associating an interface name with its concrete implementation. The `BaseRaw` class provides fundamental CRUD operations such as `find`, `findOne`, `insertOne`, `updateOne`, and `deleteOne`. Specific models then implement custom methods to fulfill application requirements, often building upon these base operations.
 
-**2. Core Querying Mechanisms (via `IBaseModel`):**
-   All models inherit standard methods for finding documents:
-   *   `findOne(query, options)`: Retrieves a single document.
-   *   `findOneById(_id, options)`: Retrieves a single document by its `_id`.
-   *   `find(query, options)`: Retrieves multiple documents, returning a `FindCursor`.
-   *   `findPaginated(query, options)`: Returns paginated results with a cursor and total count.
+**Example of Data Querying: `SubscriptionsRaw.findByRoomIdAndRoles`**
 
-**3. Specialized Queries:**
-   Models often extend `IBaseModel` with domain-specific methods. For example, the `SubscriptionsRaw` model (found in `packages/models/src/models/Subscriptions.ts`) might have methods like:
-   *   `findConnectedUsersExcept`: Uses MongoDB aggregation pipelines for complex queries.
-   *   `incUnreadForRoomIdExcludingUserIds`: Updates unread counts for a room, excluding specific users.
+A clear example of how a database model is used to query data can be seen in the `findByRoomIdAndRoles` method of the `SubscriptionsRaw` model.
 
-**4. Aggregation Pipelines:**
-   For complex data retrieval and transformation, models can leverage MongoDB's aggregation framework. Methods within the models construct these pipelines to perform advanced queries.
+**File:** `packages/models/src/models/Subscriptions.ts`
 
-**5. Model Registration:**
-   In `apps/meteor/server/models.ts`, various `Raw` models (e.g., `SubscriptionsRaw`, `UsersRaw`) are instantiated with the database connection and registered. This makes them available throughout the application for data access.
+**Flow:**
+1.  **Method Call:** The `findByRoomIdAndRoles` method is invoked with a `roomId`, an array of `roles`, and optional `FindOptions`.
+2.  **Query Construction:** Inside the method, a MongoDB query object is constructed. It specifies that the `rid` (room ID) field must match the provided `roomId`, and the `roles` field must contain any of the roles in the `rolesArray` using the `$in` operator.
+    
+```typescript
+    const query = {
+        rid: roomId,
+        roles: { $in: rolesArray },
+    };
+    ```
 
-**Example Flow for Querying Subscriptions:**
+3.  **Execution:** The constructed `query` and `options` are then passed to the `this.find()` method. This `find` method is inherited from the `BaseRaw` class, which handles the actual interaction with the MongoDB collection to retrieve the matching subscriptions.
+    
+```typescript
+    return this.find(query, options);
+    ```
 
-1.  **Model Implementation:** `packages/models/src/models/Subscriptions.ts` defines the `SubscriptionsRaw` class.
-2.  **Inherited Methods:** `SubscriptionsRaw` inherits `find`, `findOne`, etc., from `BaseRaw`.
-3.  **Specialized Methods:** `SubscriptionsRaw` also implements methods like `findConnectedUsersExcept` for specific subscription-related queries.
-4.  **Usage:** When the application needs to query subscription data, it accesses the registered `Subscriptions` model and calls the appropriate method (e.g., `Subscriptions.findOne({ userId: 'someId' })` or `Subscriptions.findConnectedUsersExcept(...)`).
 
-## Tool Calls (1 calls, 3,846 tokens)
+This demonstrates a common pattern: domain-specific models encapsulate the logic for constructing MongoDB queries based on application needs, and then delegate the execution of these queries to the underlying `BaseRaw` methods, which directly interact with the database.
 
-**Step 1:** `wiki({"question":"How does Rocket.Chat use database models to query data?"})` → 1171 tokens
+## Tool Calls (4 calls, 16,319 tokens)
+
+**Step 1:** `wiki({"question":"How does Rocket.Chat use database models to query data?"})` → 1016 tokens
+**Step 2:** `search({"layer":"packages","query":"SubscriptionsRaw"})` → 70 tokens
+**Step 3:** `details({"symbolName":"SubscriptionsRaw.findUsersInQueue","filename":"Subscriptions.ts"})` → 55 tokens
+**Step 4:** `details({"symbolName":"SubscriptionsRaw","filename":"Subscriptions.ts"})` → 5618 tokens
 
 ## Files Seen In Tool Results (1)
 
-- `apps/meteor/server/models.ts`
+- `packages/models/src/models/Subscriptions.ts`

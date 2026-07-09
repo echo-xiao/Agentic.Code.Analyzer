@@ -6,39 +6,94 @@ intent: unknown
 
 ## Gemini Answer
 
-To add a new service in Rocket.Chat, you generally follow these steps:
+To add a new service in Rocket.Chat, you generally follow these steps: define a service class that adheres to the `IServiceClass` interface, and then register an instance of this class using the `api.registerService()` method.
 
-**1. Define the Service:**
-Create a new service as a class. This class will encapsulate the logic and functionalities of your service. These service files often include setup for database connections, tracing, and broker initialization.
+Here's a detailed breakdown of the process:
 
-*   **Example File Structure:** A typical service file, such as `ee/apps/account-service/src/service.ts`, includes imports for core functionalities like `api`, `getConnection`, `getTrashCollection` from `@rocket.chat/core-services`, `registerServiceModels` from `@rocket.chat/models`, `startBroker` from `@rocket.chat/network-broker`, and `startTracing` from `@rocket.chat/tracing`. It also contains asynchronous initialization logic to establish database connections, register models, set up the network broker, and register the service itself, along with a health check endpoint.
+**1. Define the Service Class**
 
-**2. Register the Service:**
-Once defined, the service needs to be registered with the `api` object, which is part of `@rocket.chat/core-services`. This is done using the `api.registerService()` method.
+Create a new class that implements the `IServiceClass` interface. This interface, defined in `packages/core-services/src/types/ServiceClass.ts`, outlines the essential methods your service must provide.
 
-*   **Core Registration File:** The `registerServices` function within `apps/meteor/server/services/startup.ts` is where many services are registered. You would add an instance of your new service class to this function using `api.registerService(new YourNewService());`.
+*   **`getName(): string`**: This method should return a unique name for your service.
+*   **`setApi(api: IApiService): void`**: This method is crucial as it provides your service with an instance of the `IApiService`. Through this `api` object, your service can interact with other services, emit events, and access system settings.
+*   **`created(): Promise<void>`**: A lifecycle hook that is called when the service is created. Use this for initial setup.
+*   **`started(): Promise<void>`**: Another lifecycle hook, called when the service is started. This is where your service should begin its main operations.
+*   **`stopped(): Promise<void>`**: A lifecycle hook called when the service is stopped, allowing for cleanup.
 
-**3. Service Deployment and Configuration (Optional, for Microservices Mode):**
-Services can run in two main deployment modes:
+Your service class will contain the core logic and functionality of your new service.
 
-*   **Monolithic Mode (TCP/Local Transport):** All services run within the same Node.js process as the main Meteor application and communicate via the `LocalBroker`. This is configured by setting the `TRANSPORTER` environment variable to `TCP`.
-*   **Distributed Mode (NATS Transport):** Services operate as independent containers and communicate using NATS. This requires setting the `TRANSPORTER` environment variable to a NATS connection string (e.g., `nats://nats:4222`). For services running in distributed mode, their `package.json` also defines a `ms` script for running the service.
+**2. Register the Service Instance**
 
-**Key Files and Flow:**
+Once your service class is defined, you need to create an instance of it and register it with the Rocket.Chat system. The registration is handled by the `api.registerService()` method, which is part of the `Api` class defined in `packages/core-services/src/lib/Api.ts`.
 
-*   **Entry Point for Registration:** `apps/meteor/server/services/startup.ts`
-*   **Core Service API:** `@rocket.chat/core-services` (where `api.registerService()` is defined)
-*   **Example Service Definition:** `ee/apps/account-service/src/service.ts` (for structure)
+The `registerService` method has the following signature:
+`registerService(instance: IServiceClass, serviceDependencies?: string[]): void`
 
-**Flow:**
-Define Service (e.g., `YourNewService` class) → Instantiate Service (`new YourNewService()`) → Register Service (`api.registerService(new YourNewService())` in `apps/meteor/server/services/startup.ts`)
+*   **`instance: IServiceClass`**: This is the instance of your service class that you want to register.
+*   **`serviceDependencies?: string[]`**: An optional array of strings representing other services that your service depends on. This is particularly relevant in a microservices architecture.
 
-## Tool Calls (1 calls, 3,859 tokens)
+**Registration Flow:**
 
-**Step 1:** `wiki({"question":"How do you add a new service in Rocket.Chat?"})` → 1244 tokens
+*   The `api.registerService()` method adds your service instance to an internal collection of services.
+*   It then calls `instance.setApi(this)` on your service instance, injecting the `IApiService` object.
+*   If Rocket.Chat is running in a microservices environment (e.g., Enterprise Edition with Moleculer), the method will also call `this.broker.createService(instance, serviceDependencies)` to integrate your service with the Moleculer broker.
 
-## Files Seen In Tool Results (3)
+**3. Choose the Registration Location**
+
+The location where you register your service depends on whether you are adding a service to the monolithic Meteor application or as a standalone microservice (typically for Enterprise Edition features).
+
+*   **For Monolithic Deployments:**
+    *   **File:** `apps/meteor/server/services/startup.ts`
+    *   **Action:** Import your new service class into this file and add a line to register it:
+        
+```typescript
+        import { MyNewService } from './path/to/myNewService'; // Adjust path as needed
+        // ... other service registrations
+        api.registerService(new MyNewService());
+        ```
+
+
+*   **For Microservices Deployments (Enterprise Edition):**
+    *   **File:** You would typically create a new `service.ts` file within your dedicated microservice application (e.g., `ee/apps/my-new-service/src/service.ts`).
+    *   **Action:** In this file, you would set up the Moleculer broker (if not already configured) and then register your service:
+        
+```typescript
+        import { api } from '@rocket.chat/core-services';
+        import { startBroker } from './broker'; // Assuming you have a broker setup
+        import { MyNewService } from './myNewService'; // Adjust path as needed
+
+        api.setBroker(startBroker());
+        api.registerService(new MyNewService());
+        ```
+
+
+By following these steps, you can successfully add a new service to the Rocket.Chat ecosystem.
+
+## Tool Calls (8 calls, 23,588 tokens)
+
+**Step 1:** `wiki({"question":"How do you add a new service in Rocket.Chat?"})` → 860 tokens
+**Step 2:** `search({"query":"api.registerService"})` → 328 tokens
+**Step 3:** `graph({"file":"startup.ts","move":"down","depth":2,"query":"api.registerService"})` → 15 tokens
+**Step 4:** `search({"layer":"server","query":"registerService"})` → 101 tokens
+**Step 5:** `details({"symbolName":"api","filename":"startup.ts"})` → 54 tokens
+**Step 6:** `details({"filename":"api.ts","symbolName":"Api.registerService"})` → 102 tokens
+**Step 7:** `search({"query":"IServiceClass"})` → 70 tokens
+**Step 8:** `details({"filename":"ServiceClass.ts","symbolName":"IServiceClass"})` → 276 tokens
+
+## Files Seen In Tool Results (15)
 
 - `apps/meteor/server/services/startup.ts`
+- `apps/meteor/ee/server/startup/services.ts`
+- `ee/apps/authorization-service/src/service.ts`
+- `ee/apps/omnichannel-transcript/src/service.ts`
 - `ee/apps/account-service/src/service.ts`
-- `apps/meteor/app/integrations/server/methods/incoming/addIncomingIntegration.ts`
+- `ee/apps/ddp-streamer/src/service.ts`
+- `ee/apps/presence-service/src/service.ts`
+- `ee/apps/queue-worker/src/service.ts`
+- `apps/meteor/app/search/server/search.internalService.ts`
+- `apps/meteor/ee/server/startup/federation.ts`
+- `apps/meteor/app/custom-oauth/server/custom_oauth_server.js`
+- `apps/meteor/app/apple/server/appleOauthRegisterService.ts`
+- `packages/core-services/src/api.ts`
+- `packages/core-services/src/lib/Api.ts`
+- `packages/core-services/src/types/ServiceClass.ts`

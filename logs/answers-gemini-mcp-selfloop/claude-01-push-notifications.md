@@ -6,44 +6,57 @@ intent: unknown
 
 ## Gemini Answer
 
-The push notification system in Rocket.Chat follows this flow:
+Rocket.Chat's push notification system involves several server-side components for registering devices, configuring notifications, and dispatching them.
 
-**Entry → Token Registration → Notification Configuration → Sending Notification**
+Here's a breakdown of how it works:
 
-Here's a breakdown of the process and key components:
+**1. Push Token Registration:**
+When a mobile device needs to receive push notifications, it registers a unique push token with the Rocket.Chat server.
+*   **Entry Point**: Mobile clients interact with the `push.token` API endpoint.
+*   **Core Method**: The `registerPushToken` function handles the actual registration logic.
+    *   **File**: `apps/meteor/server/services/push/tokenManagement/registerPushToken.ts`
+    *   This function receives the device's token, type (e.g., APN or GCM), app name, and an authentication token. It then either inserts a new token into the database or updates an existing one.
 
-1.  **Token Registration**:
-    *   Mobile devices register a push token with the Rocket.Chat server via the `push.token` API endpoint.
-    *   The server uses the `authToken` for user authentication.
-    *   The `Push.registerPushToken` method stores the device ID, token type (e.g., APN, GCM), token value, and application name. This method is also used by the `raix:push-update` Meteor method.
+**2. Sending Push Notifications:**
+When a message or event triggers a push notification, the server uses the `PushNotification` class to construct and dispatch it.
+*   **Core Class**: `PushNotification`
+    *   **File**: `apps/meteor/app/push-notifications/server/lib/PushNotification.ts`
+    *   This class contains the following key methods:
+        *   `getNotificationConfig`: Prepares the notification payload, including the title, text, badge count, and other data. It can also redact message content based on server settings.
+        *   `getNotificationForMessageId`: Retrieves sender information and processes the message text, applying callbacks and real name replacements before generating the push data for messages.
+        *   `send`: Dispatches the configured notification through the push gateway and increments notification metrics.
 
-2.  **Notification Configuration**:
-    *   The `PushNotification` class, located at `apps/meteor/app/push-notifications/server/lib/PushNotification.ts`, is responsible for constructing the notification payload.
-    *   It gathers information such as the room ID, user ID, message ID, room name, username, and message content.
-    *   It also determines whether only the message ID should be sent (to hide message content from Apple/Google) based on the `Push_request_content_from_server` setting.
+**Flow for Sending a Push Notification:**
 
-3.  **Sending Notifications**:
-    *   The `PushNotification.send` method increments a metric for mobile notifications sent.
-    *   It then calls `Push.send` with the prepared notification configuration.
+1.  A message is sent or an event occurs that requires a push notification.
+2.  The server determines if a push notification is needed for the relevant users.
+3.  An instance of the `PushNotification` class is used.
+4.  `PushNotification.getNotificationForMessageId` (if it's a message) is called to retrieve and process the message content.
+5.  `PushNotification.getNotificationConfig` is called to prepare the final notification payload.
+6.  `PushNotification.send` is called to dispatch the notification to the appropriate push gateway (e.g., APN for iOS, FCM for Android), which then delivers it to the user's device.
 
-**User Settings and Testing**:
+**3. Notification Settings and Testing:**
+*   Users can configure their push notification preferences (e.g., `mobilePushNotifications`) via the `saveNotificationSettings` method.
+*   Administrators can test push notifications using the `push_test` Meteor method, which sends a test message to a user's registered devices, checking for permissions and global push notification settings.
 
-*   **User Notification Settings**: Users can configure their push notification preferences using the `saveNotificationSettings` Meteor method. These settings are stored in the `Subscriptions` collection.
-*   **Testing Push Notifications**: The `push_test` Meteor method allows users with the `test-push-notifications` permission to send a test push notification. This method checks the `Push_enable` setting and, if enabled, calls `executePushTest` to retrieve user push tokens and send a test message via `Push.send`.
+## Tool Calls (8 calls, 19,221 tokens)
 
-**Gateway and Legacy Support**:
+**Step 1:** `wiki({"question":"How do push notifications work in Rocket.Chat?"})` → 737 tokens
+**Step 2:** `search({"query":"Push.registerPushToken"})` → 108 tokens
+**Step 3:** `search({"query":"PushNotification"})` → 154 tokens
+**Step 4:** `details({"symbolName":"Push.registerPushToken","filename":"methods.ts"})` → 47 tokens
+**Step 5:** `search({"query":"Push.registerPushToken definition"})` → 30 tokens
+**Step 6:** `search({"query":"registerPushToken","layer":"server"})` → 99 tokens
+**Step 7:** `details({"filename":"registerPushToken.ts","symbolName":"registerPushToken"})` → 113 tokens
+**Step 8:** `details({"filename":"PushNotification.ts","symbolName":"PushNotification"})` → 266 tokens
 
-*   **Push Gateway**: Rocket.Chat can use a push gateway, which acts as a proxy for mobile push notifications and requires server registration.
-*   **Legacy Provider Deprecation**: A warning indicates that the legacy notification provider will be deprecated after June 20, 2024.
+## Files Seen In Tool Results (8)
 
-**Key Files**:
-
-*   `apps/meteor/app/push-notifications/server/lib/PushNotification.ts`: This file contains the `PushNotification` class, which is central to configuring and sending push notifications.
-
-## Tool Calls (1 calls, 3,327 tokens)
-
-**Step 1:** `wiki({"question":"How do push notifications work in Rocket.Chat?"})` → 923 tokens
-
-## Files Seen In Tool Results (1)
-
+- `apps/meteor/app/push/server/methods.ts`
+- `apps/meteor/app/api/server/v1/push.ts`
 - `apps/meteor/app/push-notifications/server/lib/PushNotification.ts`
+- `packages/core-typings/src/IPushNotificationConfig.ts`
+- `apps/meteor/server/configuration/pushNotification.ts`
+- `apps/meteor/client/hooks/roomActions/usePushNotificationsRoomAction.ts`
+- `apps/meteor/server/services/push/service.ts`
+- `apps/meteor/server/services/push/tokenManagement/registerPushToken.ts`

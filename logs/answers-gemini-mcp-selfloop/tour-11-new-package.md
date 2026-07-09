@@ -6,54 +6,87 @@ intent: pattern
 
 ## Gemini Answer
 
-I was unable to find a definitive guide or tool for creating new packages within the Rocket.Chat monorepo. My search for keywords like "create-package", "lerna.json", and "yarn.lock" did not yield relevant results. While I found many `package.js` files within the `apps/meteor/packages` directory and `package.json` files in various `packages` subdirectories, I could not extract a clear process for package creation from these files alone.
+To create a new package in the Rocket.Chat monorepo, you'll follow a pattern consistent with existing packages, leveraging Yarn workspaces and Turbo for build orchestration. The process involves creating a new directory, defining the package's metadata and scripts, and setting up its development environment.
 
-To understand how to create a new package, I would need to:
+Here's a step-by-step guide:
 
-1.  **Examine existing `package.json` files:** Look for common patterns in scripts, dependencies, and other configurations that might indicate a standard package structure.
-2.  **Investigate the build system:** Determine how packages are built and integrated into the larger monorepo. This might involve looking at `webpack` configurations, `tsconfig.json` files, or other build-related scripts.
-3.  **Search for internal documentation:** There might be internal documentation or a "contributing" guide that outlines the process for creating new packages.
+**1. Choose a Location:**
+   *   For Community Edition packages, create a new directory under `packages/`.
+   *   For Enterprise Edition packages, create a new directory under `ee/packages/`.
+   *   **Example:** `packages/my-new-package`
 
-Without further information from the tools, I cannot provide a step-by-step guide on how to create a new package in the Rocket.Chat monorepo.
+**2. Create `package.json`:**
+   *   Inside your new package directory, create a `package.json` file. This file defines your package's identity, dependencies, and scripts.
 
-## Tool Calls (8 calls, 23,518 tokens)
+**3. Define Package Metadata:**
+   *   **`name`**: Follow the `@rocket.chat/` naming convention.
+      *   **Example:** `"name": "@rocket.chat/my-new-package"`
+   *   **`version`**: Start with an initial version (e.g., `"1.0.0"`). Versioning is independently managed for each package using Changesets.
+   *   **`main`**: Specify the entry point for your package (e.g., `"src/index.ts"` or `"dist/index.js"` if compiled).
+   *   **`types`**: If it's a TypeScript package, specify the main TypeScript declaration file (e.g., `"src/index.ts"`).
+   *   **`private`**: Set to `true` if the package is not intended for public npm publication.
 
-**Step 1:** `plan({"question":"How do you create a new package in the Rocket.Chat monorepo?"})` → 80 tokens
-**Step 2:** `search({"query":"package","layer":"packages"})` → 667 tokens
-**Step 3:** `details({"symbolName":"package","filename":"package.js"})` → 306 tokens
-**Step 4:** `search({"query":"lerna.json"})` → 25 tokens
-**Step 5:** `search({"query":"yarn.lock"})` → 24 tokens
-**Step 6:** `search({"query":"create-package"})` → 26 tokens
-**Step 7:** `search({"query":"package.json","layer":"packages"})` → 86 tokens
-**Step 8:** `details({"filename":"package.json","symbolName":"package.json"})` → 67 tokens
+**4. Add Scripts:**
+   *   Include standard npm scripts for common tasks, consistent with other packages in the monorepo. These scripts will be orchestrated by Turbo.
+   *   **Common scripts:** `build`, `dev`, `lint`, `testunit`.
+   *   **Example (within `package.json`):**
+     
+```json
+     "scripts": {
+       "build": "tsup src --out-dir dist",
+       "dev": "tsup src --out-dir dist --watch",
+       "lint": "eslint src",
+       "testunit": "vitest"
+     }
+     ```
 
-## Files Seen In Tool Results (28)
 
-- `apps/meteor/packages/rocketchat-version/package.js`
-- `apps/meteor/packages/rocketchat-postcss/package.js`
-- `apps/meteor/packages/rocketchat-mongo-config/package.js`
-- `apps/meteor/packages/rocketchat-livechat/package.js`
-- `apps/meteor/packages/rocketchat-i18n/package.js`
-- `apps/meteor/packages/rocketchat-coverage/package.js`
-- `apps/meteor/packages/meteor-run-as-user/package.js`
-- `apps/meteor/packages/meteor-inject-initial/package.js`
-- `apps/meteor/packages/meteor-cookies/package.js`
-- `apps/meteor/packages/linkedin-oauth/package.js`
-- `apps/meteor/packages/autoupdate/package.js`
-- `packages/web-ui-registration/src/index.ts`
-- `packages/web-ui-registration/src/SecretRegisterInvalidForm.tsx`
-- `packages/web-ui-registration/src/SecretRegisterForm.tsx`
-- `packages/web-ui-registration/src/ResetPasswordForm.tsx`
-- `packages/web-ui-registration/src/RegistrationPageRouter.tsx`
-- `packages/web-ui-registration/src/RegisterTemplate.tsx`
-- `packages/web-ui-registration/src/RegisterSecretPageRouter.tsx`
-- `packages/web-ui-registration/src/RegisterFormDisabled.tsx`
-- `packages/web-ui-registration/src/RegisterForm.tsx`
-- `packages/web-ui-registration/src/LoginServicesButton.tsx`
-- `packages/web-ui-registration/src/LoginServices.tsx`
-- `packages/web-ui-registration/src/LoginForm.tsx`
-- `packages/web-ui-registration/src/GuestForm.tsx`
-- `packages/web-ui-registration/src/EmailConfirmationForm.tsx`
-- `packages/web-ui-registration/src/CMSPage.tsx`
+**5. Manage Dependencies:**
+   *   **Internal Dependencies:** For dependencies on other packages within the Rocket.Chat monorepo, use the `workspace:` protocol.
+      *   **Example:** `"@rocket.chat/core-typings": "workspace:^"`
+   *   **External Dependencies:** Add external npm packages as usual under `dependencies` or `devDependencies`.
+
+**6. Add `tsconfig.json` (for TypeScript packages):**
+   *   If your package uses TypeScript, create a `tsconfig.json` file in the package root. It should typically extend a base `tsconfig.json` from the monorepo to ensure consistent configuration.
+   *   **Example:**
+     
+```json
+     {
+       "extends": "../../tsconfig.json",
+       "compilerOptions": {
+         "outDir": "./dist",
+         "rootDir": "./src"
+       },
+       "include": ["src/**/*.ts"],
+       "exclude": ["node_modules", "dist"]
+     }
+     ```
+
+
+**7. Create Source Code:**
+   *   Create a `src/` directory within your package and start writing your TypeScript or JavaScript code (e.g., `src/index.ts`).
+
+**Key Files Involved:**
+
+*   `packages/<your-package-name>/package.json`: Defines the package's metadata, scripts, and dependencies.
+*   `packages/<your-package-name>/src/index.ts`: The main entry point for your package's source code.
+*   `packages/<your-package-name>/tsconfig.json`: (Optional, for TypeScript packages) Configures the TypeScript compiler for the package.
+*   `package.json` (root of the monorepo): Defines the Yarn workspaces, which implicitly includes your new package.
+
+By following these steps, you can successfully integrate a new package into the Rocket.Chat monorepo, leveraging its established build and dependency management systems.
+
+## Tool Calls (7 calls, 18,113 tokens)
+
+**Step 1:** `plan({"question":"How do you create a new package in the Rocket.Chat monorepo?"})` → 118 tokens
+**Step 2:** `wiki({"question":"Rocket.Chat monorepo package structure"})` → 941 tokens
+**Step 3:** `search({"query":"package.json","layer":"packages"})` → 86 tokens
+**Step 4:** `details({"filename":"package.json","symbolName":"package.json"})` → 43 tokens
+**Step 5:** `graph({"query":"packages/core-typings","move":"expand","depth":1})` → 23 tokens
+**Step 6:** `details({"filename":"package.json","symbolName":"name"})` → 71 tokens
+**Step 7:** `search({"layer":"packages","query":"\"name\": \"@rocket.chat/"})` → 28 tokens
+
+## Files Seen In Tool Results (3)
+
 - `ee/packages/pdf-worker/.storybook/main.ts`
-- `packages/web-ui-registration/package.js`
+- `packages/core-typings/package.js`
+- `apps/meteor/app/lib/server/functions/getUsernameSuggestion.ts`

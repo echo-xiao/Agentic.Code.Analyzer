@@ -6,84 +6,40 @@ intent: unknown
 
 ## Gemini Answer
 
-Rocket.Chat implements enterprise feature gating through a licensing system that verifies valid licenses and specific modules to enable or disable features.
+Rocket.Chat implements enterprise feature gating through a licensing system that verifies a valid license and specific modules to enable or disable features.
 
-Here's a breakdown of how it works:
+**Core Components:**
 
-**1. Core Licensing System:**
+*   **`LicenseService`** (`app/license/server/lib/LicenseService.ts`): This server-side service is responsible for verifying the license status using `License.hasValidLicense()`. It also handles resetting enterprise permissions if no valid license is found.
+*   **`License`** (`app/license/server/lib/License.ts`): This utility provides methods like `hasValidLicense()` to check the overall license validity and `hasModule(feature)` to check for specific feature modules.
+*   **`useIsEnterprise`** (`client/hooks/useIsEnterprise.ts`): This client-side hook determines if the current instance has an active enterprise license by checking `data?.license.hasValidLicense`. It's used to conditionally render UI elements or enable functionalities.
 
-*   The central component is the `License` class within the `@rocket.chat/license` package. This package is responsible for managing license validation and module availability.
-*   The `LicenseService` (located at `apps/meteor/ee/app/license/server/license.internalService.ts`) is an internal service that handles license-related operations. It listens for license validation events and module changes.
-*   When a license is validated, `LicenseService` broadcasts `authorization.guestPermissions` and resets enterprise permissions. Similarly, when a module changes, it broadcasts a `license.module` event.
-*   The `LicenseService` provides key methods:
-    *   `hasModule(feature: LicenseModule)`: Checks for the existence of a specific module.
-    *   `hasValidLicense()`: Determines if there is a valid license.
+**Flow of Enterprise Feature Gating:**
 
-**2. Feature Activation:**
+1.  **License Verification (Server-side):**
+    *   The `LicenseService` (app/license/server/lib/LicenseService.ts) uses `License.hasValidLicense()` (app/license/server/lib/License.ts) to verify the license status.
+    *   If no valid license is found, certain enterprise permissions are reset.
 
-*   Enterprise features are often dynamically imported and activated based on the active license. For example, various Livechat enterprise models (like `CannedResponse`, `LivechatTag`, and `LivechatDepartment`) are only imported when the `livechat-enterprise` license is active.
-*   Features like the "engagement-dashboard" have `up` and `down` callbacks that are triggered when the feature is enabled or disabled, respectively.
+2.  **Feature Module Checks (Server-side and Client-side):**
+    *   Individual enterprise features are often tied to specific license modules.
+    *   The `License.hasModule(feature)` method (app/license/server/lib/License.ts) is used to check if a particular module is active.
+    *   **Example:** The `request-transcript` API endpoint explicitly requires the `livechat-enterprise` license module to be active. If the module is not present, the action is not allowed.
+    *   **Client-side:** The `useIsEnterprise` hook (client/hooks/useIsEnterprise.ts) checks `data?.license.hasValidLicense` to enable or disable UI elements and functionalities. Components like `FeaturesCard` (client/views/admin/info/FeaturesCard.tsx) dynamically display features based on `isEnterprise` and `activeModules`.
 
-**3. UI Representation:**
-
-*   The user interface reflects the availability of enterprise features. The `FeaturesCard` component displays a list of features, indicating whether each is active based on `activeModules` and `isEnterprise` props.
-*   Features that are part of the enterprise plan or specific modules are marked with a "check" icon, while unavailable features show a "lock" icon.
-*   The `useIsEnterprise` hook (found in `packages/ui-client/src/hooks/useLicense.ts`) determines if the current instance has a valid enterprise license by checking `data?.license.hasValidLicense`.
-
-**4. Feature Limitations and Downgrades:**
-
-*   Rocket.Chat also enforces limitations on features, especially during license downgrades. For instance, if a license is downgraded, premium marketplace apps might be disabled, and the number of marketplace apps could be limited. This also applies to private apps, which may be disabled unless grandfathered based on historical statistics.
+3.  **Conditional Loading/Enabling:**
+    *   Certain models and functionalities are conditionally imported or enabled based on license modules. For instance, `CannedResponse`, `LivechatTag`, and `LivechatUnit` models are only imported when the `livechat-enterprise` license is active.
 
 **Key Files:**
 
-*   `apps/meteor/ee/app/license/server/license.internalService.ts`: Contains the `LicenseService` class, which is central to server-side license management.
-*   `ee/packages/license/src/license.ts`: Defines the core `License` object and its interface.
-*   `ee/packages/license/src/modules.ts`: Likely contains the implementation for `hasModule` and related module management logic.
-*   `packages/ui-client/src/hooks/useLicense.ts`: Provides the `useIsEnterprise` hook for client-side license checks.
+*   `app/license/server/lib/LicenseService.ts`: Server-side license verification and management.
+*   `app/license/server/lib/License.ts`: Utility for license validation and module checks.
+*   `client/hooks/useIsEnterprise.ts`: Client-side hook for checking enterprise license status.
+*   `client/views/admin/info/FeaturesCard.tsx`: Example of client-side feature display based on license.
 
-## Tool Calls (8 calls, 26,973 tokens)
+## Tool Calls (1 calls, 3,213 tokens)
 
-**Step 1:** `wiki({"question":"How does enterprise feature gating work in Rocket.Chat?"})` → 791 tokens
-**Step 2:** `search({"query":"LicenseService","layer":"ee"})` → 73 tokens
-**Step 3:** `details({"symbolName":"LicenseService","filename":"license.internalService.ts"})` → 196 tokens
-**Step 4:** `search({"layer":"packages","query":"License"})` → 409 tokens
-**Step 5:** `search({"query":"License","layer":"ee"})` → 367 tokens
-**Step 6:** `details({"filename":"license.ts","symbolName":"License"})` → 51 tokens
-**Step 7:** `search({"query":"engagement-dashboard"})` → 69 tokens
-**Step 8:** `search({"layer":"ee","query":"hasModule"})` → 91 tokens
+**Step 1:** `wiki({"question":"How does enterprise feature gating work in Rocket.Chat?"})` → 795 tokens
 
-## Files Seen In Tool Results (33)
+## Files Seen In Tool Results (0)
 
-- `apps/meteor/ee/app/license/server/license.internalService.ts`
-- `packages/core-services/src/index.ts`
-- `packages/ui-client/src/hooks/useLicense.ts`
-- `packages/rest-typings/src/v1/licenses.ts`
-- `packages/core-typings/src/license/index.ts`
-- `packages/core-typings/src/license/events.ts`
-- `packages/core-typings/src/license/LimitContext.ts`
-- `packages/core-typings/src/license/LicenseValidationOptions.ts`
-- `packages/core-typings/src/license/LicensePeriod.ts`
-- `packages/core-typings/src/license/LicenseModule.ts`
-- `packages/core-typings/src/license/LicenseLimit.ts`
-- `packages/core-typings/src/license/LicenseInfo.ts`
-- `packages/core-typings/src/license/LicenseBehavior.ts`
-- `packages/core-typings/src/license/ILicenseV3.ts`
-- `packages/core-typings/src/license/ILicenseV2.ts`
-- `packages/core-typings/src/license/ILicenseTag.ts`
-- `packages/core-typings/src/cloud/WorkspaceLicensePayload.ts`
-- `ee/packages/license/jest.config.ts`
-- `ee/packages/license/src/token.ts`
-- `ee/packages/license/src/tags.ts`
-- `ee/packages/license/src/showLicense.ts`
-- `ee/packages/license/src/pendingLicense.ts`
-- `ee/packages/license/src/modules.ts`
-- `ee/packages/license/src/logger.ts`
-- `ee/packages/license/src/licenseImp.ts`
-- `ee/packages/license/src/license.ts`
-- `ee/packages/license/src/isItemAllowed.ts`
-- `ee/packages/license/src/index.ts`
-- `ee/packages/license/src/deprecated.ts`
-- `ee/packages/license/src/applyLicense.ts`
-- `ee/packages/license/src/MockedLicenseBuilder.ts`
-- `ee/packages/license/src/AirGappedRestriction.ts`
-- `apps/meteor/tests/end-to-end/api/34-engagement-dashboard.ts`
+_(none)_
