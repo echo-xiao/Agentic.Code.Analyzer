@@ -14,14 +14,16 @@
     "report": "NODE_OPTIONS=\"--max-old-space-size=8192\" npx tsx src/eval/report.ts",
     "judge": "npx tsx src/eval/judge.ts",
     "summaries:gen": "npx tsx src/eval/summarize.ts",
+    "embed:gen": "npx tsx src/eval/embed.ts",
     "truth": "npx tsx src/eval/truth.ts",
     "wiki:map": "npx tsx src/wikimap/build.ts",
-    "refresh": "npm run prewarm && npm run wiki:map && npm run summaries:gen && npm run gen:mcp && npm run judge && npm run eval:tools && npm run eval:retrieval && npm run report",
+    "refresh": "npm run prewarm && npm run wiki:map && npm run summaries:gen && npm run embed:gen && npm run gen:mcp && npm run judge && npm run eval:tools && npm run eval:retrieval && npm run report",
     "test": "tsx --test 'src/**/*.test.ts'"
   },
   "dependencies": {
     "@anthropic-ai/sdk": "^0.110.0",
     "@modelcontextprotocol/sdk": "^1.27.1",
+    "@xenova/transformers": "^2.17.2",
     "cli-progress": "^3.12.0",
     "fuzzysort": "^3.1.0",
     "glob": "^13.0.6",
