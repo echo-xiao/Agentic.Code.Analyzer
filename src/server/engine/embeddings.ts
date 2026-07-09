@@ -16,6 +16,7 @@ export async function embedText(text: string): Promise<Float32Array> {
     return Float32Array.from(out.data as Float32Array);
 }
 
+/** 两个向量都必须已 L2 归一化（embedText 保证）；对归一化向量，点积 == cosine 相似度。 */
 export function cosine(a: Float32Array, b: Float32Array): number {
     let s = 0;
     for (let i = 0; i < a.length; i++) s += a[i] * b[i];
