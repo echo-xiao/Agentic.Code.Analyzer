@@ -12,9 +12,9 @@ import { ensureIndex } from '../indexer/index.js';
 import { GLOBAL_INDEX } from '../indexer/state.js';
 import { relPath } from '../server/engine/common.js';
 import { loadTestcases } from './utils/load-testcases.js';
-import { questionTokens } from './walker/affinity.js';
-import { selectPages, resolveWikiFiles, selectSeedForPage, fallbackSeeds, informativeTokens, type SeedStep } from './walker/entry.js';
-import { buildDirectedAdjacency, walkFromSeed, type WalkCtx, type WalkRound } from './walker/walk.js';
+import { questionTokens } from '../server/engine/walker/affinity.js';
+import { selectPages, resolveWikiFiles, selectSeedForPage, fallbackSeeds, informativeTokens, type SeedStep } from '../server/engine/walker/entry.js';
+import { buildDirectedAdjacency, walkFromSeed, type WalkCtx, type WalkRound } from '../server/engine/walker/walk.js';
 import { parseAgentCalls, type AgentCalls } from './walker/agent-calls.js';
 import type { WikiMap } from '../wikimap/parse.js';
 

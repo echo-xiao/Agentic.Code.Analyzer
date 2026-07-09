@@ -2,7 +2,7 @@ import { test } from 'node:test';
 import assert from 'node:assert/strict';
 import { questionTokens } from './affinity.js';
 import { selectPages, resolveWikiFiles, selectSeedForPage, informativeTokens } from './entry.js';
-import type { WikiMap, WikiPage } from '../../wikimap/parse.js';
+import type { WikiMap, WikiPage } from '../../../wikimap/parse.js';
 
 const PAGE_NOTIF: WikiPage = {
     page: 'Notifications',
