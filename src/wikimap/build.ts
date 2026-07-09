@@ -6,7 +6,7 @@ import * as path from 'path';
 import { fileURLToPath } from 'url';
 import { Client } from '@modelcontextprotocol/sdk/client/index.js';
 import { StreamableHTTPClientTransport } from '@modelcontextprotocol/sdk/client/streamableHttp.js';
-import { parseWikiMarkdown } from './parse.js';
+import { parseWikiMarkdown, parseWikiProse } from './parse.js';
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const REPO = process.env.WIKI_REPO ?? 'RocketChat/Rocket.Chat';
@@ -25,6 +25,12 @@ async function main() {
     const map = parseWikiMarkdown(text, REPO);
     fs.mkdirSync(path.dirname(OUT), { recursive: true });
     fs.writeFileSync(OUT, JSON.stringify(map, null, 1), 'utf-8');
+
+    const prose = parseWikiProse(text);
+    const sortedProse: typeof prose = {};
+    for (const k of Object.keys(prose).sort()) sortedProse[k] = prose[k];
+    fs.writeFileSync(path.join(__dirname, '..', '..', 'data', 'wiki-prose.json'), JSON.stringify(sortedProse, null, 1), 'utf-8');
+    console.error(`wiki-prose: ${Object.keys(prose).length} pages -> data/wiki-prose.json`);
 
     const nFiles = Object.keys(map.file_to_pages).length;
     const nDiagrams = map.pages.reduce((s, p) => s + p.diagrams.length, 0);

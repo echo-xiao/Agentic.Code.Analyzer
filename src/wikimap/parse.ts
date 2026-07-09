@@ -1,5 +1,29 @@
 // 把 DeepWiki read_wiki_contents 的 markdown 全文压缩成结构化入口图。
-// 红线：只保留结构（标题/路径/节点/边），散文一律丢弃。
+// 红线：wiki-map 只保留结构（标题/路径/节点/边）；散文由 parseWikiProse 另存独立产物
+// （data/wiki-prose.json），只被 wiki 工具消费，walker/eval 永不 import（方案1，2026-07-08）。
+
+export interface ProseSection { section: string; text: string }
+
+// 每页的散文，按 ## 章节切分；mermaid 块剥除（结构已在 parseWikiMarkdown 里）；
+// 保留 Sources 行（路径引用对 agent 有用）。
+export function parseWikiProse(text: string): Record<string, ProseSection[]> {
+    const parts = text.split(/^# Page: (.+)$/m);
+    const out: Record<string, ProseSection[]> = {};
+    for (let i = 1; i < parts.length; i += 2) {
+        const title = parts[i].trim();
+        const body = (parts[i + 1] ?? '').replace(/```mermaid\n[\s\S]*?```/g, '');
+        const secParts = body.split(/^## (.+)$/m);
+        const sections: ProseSection[] = [];
+        const intro = secParts[0].replace(/^# .*$/gm, '').trim();
+        if (intro) sections.push({ section: '(intro)', text: intro });
+        for (let j = 1; j < secParts.length; j += 2) {
+            const t = (secParts[j + 1] ?? '').trim();
+            if (t) sections.push({ section: secParts[j].trim(), text: t });
+        }
+        if (sections.length) out[title] = sections;
+    }
+    return out;
+}
 
 export interface WikiDiagram { nodes: Record<string, string>; edges: string[][]; subgraphs: string[] }
 export interface WikiPage { page: string; sections: string[]; diagrams: WikiDiagram[]; source_files: Record<string, string[]> }

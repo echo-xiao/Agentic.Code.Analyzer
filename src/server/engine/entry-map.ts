@@ -146,6 +146,12 @@ function candidateLines(a: Analysis): string[] {
     ];
 }
 
+/** 只做"问题→命中页面"的轻量匹配（wiki 工具的散文检索用）；不触散文、不游走结果。 */
+export function matchPages(question: string): { pages: string[]; tokens: string[] } | null {
+    const a = analyze(question);
+    return a ? { pages: a.chosenPages.map(p => p.page), tokens: a.tokens } : null;
+}
+
 /** 对问题跑离线游走，返回附给 agent 的候选地图文本；关闭/无入口图/无命中时返回 null（plan 照旧）。 */
 export function candidateMap(question: string): string | null {
     const a = analyze(question);
