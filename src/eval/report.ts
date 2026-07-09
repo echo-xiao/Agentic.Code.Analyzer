@@ -13,7 +13,7 @@ import * as path from 'path';
 import { fileURLToPath } from 'url';
 import { loadTestcasesWithTruth, TESTCASES_PATH, CLAUDE_TRUTH_PATH } from './utils/truth-io.js';
 import { classifyIntent, INTENTS, RECIPES } from '../server/intent.js';
-import { rankCandidates } from '../server/engine/entry-map.js';
+import { rankCandidates, loadSummaries } from '../server/engine/entry-map.js';
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const LOGS = path.resolve(__dirname, '..', '..', 'logs');
@@ -192,7 +192,7 @@ async function main() {
                 if (!frMap.has(f) || (frMap.get(f) as number) > w.round) frMap.set(f, w.round);
             }
         }
-        const rankedCand = rankCandidates([...frMap].map(([f, round]) => ({ f, round })), tokensUsed);
+        const rankedCand = rankCandidates([...frMap].map(([f, round]) => ({ f, round })), tokensUsed, loadSummaries());
         const relevant = [...core, ...((tc.supporting ?? []) as string[])];
         const candHit10 = rankedCand.slice(0, 10).filter(f => relevant.some(c => pathEq(f, c))).length;
         const candHit25 = rankedCand.slice(0, 25).filter(f => relevant.some(c => pathEq(f, c))).length;
