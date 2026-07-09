@@ -16,6 +16,7 @@ import { questionTokens } from '../server/engine/walker/affinity.js';
 import { selectPages, resolveWikiFiles, selectSeedForPage, fallbackSeeds, informativeTokens, type SeedStep } from '../server/engine/walker/entry.js';
 import { buildDirectedAdjacency, walkFromSeed, type WalkCtx, type WalkRound } from '../server/engine/walker/walk.js';
 import { parseAgentCalls, type AgentCalls } from './walker/agent-calls.js';
+import { withBar } from './utils/progress.js';
 import type { WikiMap } from '../wikimap/parse.js';
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
@@ -80,7 +81,7 @@ async function main() {
     fs.mkdirSync(OUT_DIR, { recursive: true });
 
     let fallbackCount = 0;
-    for (const tc of selected) {
+    await withBar('eval:retrieval', selected, async (tc) => {
         // 语料级去泛词：df/N>0.5 的 token（rocket/chat 等）对选页无区分度，从 wiki-map 派生剔除。
         // 过滤后的 tokens 全程共用（选页/选seed/游走亲和度），保持"一处定义处处一致"。
         const { kept: tokens, dropped: genericDropped } = informativeTokens(questionTokens(tc.question), wikiMap);
@@ -124,10 +125,9 @@ async function main() {
             agentCalls: parseAgentCalls(tc.id, ANSWERS_DIR, VERDICTS),
         };
         fs.writeFileSync(path.join(OUT_DIR, `${tc.id}.json`), JSON.stringify(trace, null, 2), 'utf-8');
-        const stops = walk.filter(r => r.chosen === null).map(r => r.reason.replace(/^stop：/, '').split('，')[0]);
-        console.error(`  ${tc.id}: pages=[${pageStep?.chosen.join(', ') ?? 'fallback'}] seeds=${seeds.length} rounds=${walk.length} stop=[${stops.join('|')}]`);
-    }
-    console.error(`\nDone. traces -> ${OUT_DIR} · fallback 触发 ${fallbackCount}/${selected.length}`);
+        return `${tc.id}: ${pageStep?.chosen.length ?? 0}页 ${seeds.length}seed ${walk.length}步`;
+    });
+    console.error(`Done. traces -> ${OUT_DIR} · fallback 触发 ${fallbackCount}/${selected.length}`);
 }
 
 main().catch(e => { console.error('Fatal:', e); process.exit(1); });

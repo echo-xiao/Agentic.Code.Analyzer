@@ -18,6 +18,7 @@ import { expandNeighborhood } from '../server/engine/expand.js';
 import { GLOBAL_INDEX } from '../indexer/state.js';
 import { type TestCase } from './utils/load-testcases.js';
 import { loadTestcasesWithTruth, TESTCASES_PATH, CLAUDE_TRUTH_PATH } from './utils/truth-io.js';
+import { withBar } from './utils/progress.js';
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 
@@ -374,15 +375,14 @@ async function main() {
         ? testcases.filter(t => t.id.toLowerCase().includes(filterVal) || t.subsystem.toLowerCase().includes(filterVal))
         : testcases;
 
-    console.error(`Running ${selected.length} test cases...\n`);
+    console.error(`Running ${selected.length} test cases...`);
 
     const results: TestResult[] = [];
-    for (const tc of selected) {
-        process.stderr.write(`  ${tc.id}... `);
+    await withBar('eval:tools', selected, async (tc) => {
         const result = await runTestCase(tc);
-        console.error(result.pass ? 'PASS' : 'FAIL');
         results.push(result);
-    }
+        return `${tc.id}: ${result.pass ? 'PASS' : 'FAIL'}`;
+    });
 
     const logsDir = path.join(__dirname, '..', '..', 'logs');
     fs.mkdirSync(path.join(logsDir, 'data'), { recursive: true });

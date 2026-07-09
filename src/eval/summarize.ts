@@ -16,6 +16,7 @@
  */
 import "./utils/load-env.js";
 import Anthropic from '@anthropic-ai/sdk';
+import cliProgress from 'cli-progress';
 import * as crypto from 'crypto';
 import * as fs from 'fs';
 import * as path from 'path';
@@ -67,7 +68,8 @@ const sha1 = (s: string) => crypto.createHash('sha1').update(s).digest('hex');
 
 async function main() {
     const apiKey = process.env.ANTHROPIC_API_KEY || process.env.CLAUDE_API_KEY;
-    if (!apiKey) { console.error('ANTHROPIC_API_KEY (或 CLAUDE_API_KEY) 未设置。'); process.exit(1); }
+    // 无 key → 优雅跳过（exit 0）：摘要是增量可选层，不该拖垮整条 refresh 流水线
+    if (!apiKey) { console.error('[summaries] ANTHROPIC_API_KEY 未设置 — 跳过摘要生成（不影响其余步骤）。'); return; }
     const client = new Anthropic({ apiKey });
 
     const store: Store = fs.existsSync(OUT) ? JSON.parse(fs.readFileSync(OUT, 'utf-8')) : {};
@@ -122,10 +124,16 @@ async function main() {
         required: ['summaries'], additionalProperties: false,
     } as const;
 
-    let done = 0;
+    let done = 0, failed = 0;
     const t0 = Date.now();
     const fmt = (sec: number) => sec >= 60 ? `${Math.floor(sec / 60)}分${Math.round(sec % 60)}秒` : `${Math.round(sec)}秒`;
-    const totalBatches = Math.ceil(pending.length / BATCH);
+    // 进度条：交互终端里是实时刷新条；管到 nohup 日志时（非 TTY）每 5 秒打一行（noTTYOutput）
+    const bar = new cliProgress.SingleBar({
+        format: '  摘要生成 [{bar}] {percentage}% | {value}/{total} 文件 | 已用 {elapsed} | 剩余 {eta_fmt} | 落盘 {saved} 失败 {failed}',
+        noTTYOutput: true, notTTYSchedule: 5000, hideCursor: true, etaBuffer: 5,
+    }, cliProgress.Presets.shades_classic);
+    bar.start(pending.length, 0, { elapsed: '0秒', eta_fmt: '?', saved: Object.keys(store).length, failed: 0 });
+
     for (let i = 0; i < pending.length; i += BATCH) {
         const batch = pending.slice(i, i + BATCH);
         const filesBlock = batch.map(b => `=== ${b.rel} ===\n${b.head}`).join('\n\n');
@@ -144,18 +152,22 @@ async function main() {
                 const p = batch.find(b => b.rel === s.path || b.rel.endsWith(s.path));
                 if (p) { store[p.rel] = { hash: p.hash, summary: s.summary.trim() }; done++; }
             }
-            // 断点保存：每批次立即落盘——中断/崩溃不丢已完成的；重跑时哈希缓存自动跳过已有条目（断点续传）
-            write(store);
-            const batchNo = Math.floor(i / BATCH) + 1;
-            const elapsed = (Date.now() - t0) / 1000;
-            const eta = (elapsed / batchNo) * (totalBatches - batchNo);
-            console.error(`  ${Math.min(i + BATCH, pending.length)}/${pending.length} (已落盘 ${Object.keys(store).length} 条 · 已用 ${fmt(elapsed)} · 预计剩余 ${fmt(eta)})`);
         } catch (e: any) {
+            failed += batch.length;
+            bar.stop();
             console.error(`  批次 ${i} 失败: ${e?.message?.slice(0, 120)}`);
+            bar.start(pending.length, Math.min(i + BATCH, pending.length));
         }
+        // 断点保存：每批次立即落盘——中断/崩溃不丢已完成的；重跑时哈希缓存自动跳过已有条目（断点续传）
+        write(store);
+        const elapsed = (Date.now() - t0) / 1000;
+        const batchNo = Math.floor(i / BATCH) + 1;
+        const eta = (elapsed / batchNo) * (Math.ceil(pending.length / BATCH) - batchNo);
+        bar.update(Math.min(i + BATCH, pending.length), { elapsed: fmt(elapsed), eta_fmt: fmt(eta), saved: Object.keys(store).length, failed });
     }
+    bar.stop();
     write(store);
-    console.error(`完成：新增/更新 ${done} 条，库存 ${Object.keys(store).length} 条 → data/file-summaries.json · 总耗时 ${fmt((Date.now() - t0) / 1000)}`);
+    console.error(`完成：新增/更新 ${done} 条，失败 ${failed} 个，库存 ${Object.keys(store).length} 条 → data/file-summaries.json · 总耗时 ${fmt((Date.now() - t0) / 1000)}`);
 }
 
 function write(store: Store) {

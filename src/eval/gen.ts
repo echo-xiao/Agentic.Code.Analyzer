@@ -22,6 +22,7 @@ import { isIntent } from '../server/intent.js';
 import { GLOBAL_INDEX } from '../indexer/state.js';
 import { loadTestcases, type TestCase } from './utils/load-testcases.js';
 import { extractCitedFiles } from './utils/eval-util.js';
+import { makeBar, fmtSec } from './utils/progress.js';
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const PROJECT_ROOT = path.resolve(__dirname, '..', '..');
@@ -212,22 +213,27 @@ async function main() {
         generationConfig: { temperature: 0, topK: 1, topP: 1, candidateCount: 1 },
     });
 
-    console.error(`Running ${selected.length} cases · mode=${mode}${oracle ? ' (ORACLE intent)' : ''} with ${modelName}...\n`);
+    console.error(`Running ${selected.length} cases · mode=${mode}${oracle ? ' (ORACLE intent)' : ''} with ${modelName}...`);
     const records: AnswerRecord[] = [];
+    const bar = makeBar('gen:mcp 答题');
+    const t0 = Date.now();
+    bar.start(selected.length, 0, { elapsed: '0秒', eta_fmt: '?', status: '' });
     for (let i = 0; i < selected.length; i++) {
         const tc = selected[i];
-        process.stderr.write(`  [${i + 1}/${selected.length}] ${tc.id}... `);
         try {
             const rec = await runMcpCase(model, tc, oracle);
-            console.error(`${rec.toolCalls.length} calls, ${rec.tokens} tokens`);
             records.push(rec);
+            bar.update(i + 1, { status: `${tc.id}: ${rec.toolCalls.length} calls` });
             if (i < selected.length - 1) await pause(isPro ? 13000 : 4500);
         } catch (e: any) {
-            console.error(`ERROR: ${e?.message?.slice(0, 100)}`);
             records.push({ id: tc.id, question: tc.question, questionType: tc.questionType, subsystem: tc.subsystem, llmAnswer: `ERROR: ${e?.message}`, toolCalls: [], tokens: 0, seenFiles: [], resolvedIntent: null });
+            bar.update(i + 1, { status: `${tc.id}: ERROR` });
             await pause(5000);
         }
+        const elapsed = (Date.now() - t0) / 1000;
+        bar.update(i + 1, { elapsed: fmtSec(elapsed), eta_fmt: fmtSec(i > 0 ? (elapsed / (i + 1)) * (selected.length - i - 1) : 0) });
     }
+    bar.stop();
 
     saveMcpAnswers(path.join(PROJECT_ROOT, 'logs', cfg.dir), records);
     console.error(`Answers saved to logs/${cfg.dir}/`);

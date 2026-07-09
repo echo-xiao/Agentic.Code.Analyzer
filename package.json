@@ -16,7 +16,7 @@
     "summaries:gen": "npx tsx src/eval/summarize.ts",
     "truth": "npx tsx src/eval/truth.ts",
     "wiki:map": "npx tsx src/wikimap/build.ts",
-    "refresh": "npm run prewarm && npm run gen:mcp && npm run judge && npm run eval:tools && npm run eval:retrieval && npm run report",
+    "refresh": "npm run prewarm && npm run wiki:map && npm run summaries:gen && npm run gen:mcp && npm run judge && npm run eval:tools && npm run eval:retrieval && npm run report",
     "test": "tsx --test 'src/**/*.test.ts'"
   },
   "dependencies": {
