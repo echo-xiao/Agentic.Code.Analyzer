@@ -189,13 +189,14 @@ async function main() {
             .map(x => x.f);
         const relevant = [...core, ...((tc.supporting ?? []) as string[])];
         const candHit10 = rankedCand.slice(0, 10).filter(f => relevant.some(c => pathEq(f, c))).length;
+        const candHit25 = rankedCand.slice(0, 25).filter(f => relevant.some(c => pathEq(f, c))).length;
 
         const resolved = resolveIntent(mcpFile, tc.question ?? '');
         rows.push({
             id: tc.id, type: tc.questionType ?? '?', coreN: core.length,
             trHas: !!tr, trPages, trFallback, trMoves, trStops, trSeeds,
             goldPagesN: goldPages.size, entryHit, reachGoldN: walkerGold.length,
-            firstGoldStep, goldByRound, stopVerdict, candHit10,
+            firstGoldStep, goldByRound, stopVerdict, candHit10, candHit25,
             agentGoldN: agentGold.length, walkerOnlyN: walkerOnly.length,
             agent: parseTrace(mcpFile, resolved),
         });
@@ -253,16 +254,16 @@ async function main() {
         L.push(`**每一轮新找到几个答案文件**（全部题目加总；轮次按每个 seed 自己数）：${[...roundGold].sort((a, b) => a[0] - b[0]).map(([rd, c]) => `第${rd}轮 ${c}个`).join(' · ') || '（无）'}`);
         const stopBad = trRows.filter(r => r.stopVerdict !== '正常');
         L.push(`**停止时机**：${trRows.length - stopBad.length}/${trRows.length} 题正常${stopBad.length ? `；有问题的：${stopBad.map(r => `${r.id}(${r.stopVerdict})`).join('、')}` : ''}`);
-        L.push(`**候选精度**：给 agent 的前 10 个候选文件里，平均 **${mean(trRows.map(r => r.candHit10)).toFixed(1)} 个**是答案相关文件（答案文件+辅助文件都算命中）——这个数低说明候选列表噪声大、把 agent 带偏的风险高`);
+        L.push(`**候选精度**：给 agent 的前 10 个候选文件里，平均 **${mean(trRows.map(r => r.candHit10)).toFixed(1)} 个**是答案相关文件；前 25 个（agent 实际拿到的全列表）里平均 **${mean(trRows.map(r => r.candHit25)).toFixed(1)} 个**。答案文件+辅助文件都算命中；这个数低=候选排序把对的文件埋在了大网深处`);
         const sumWalker = trRows.reduce((s, r) => s + r.reachGoldN, 0);
         const sumAgent = trRows.reduce((s, r) => s + r.agentGoldN, 0);
         const sumOnly = trRows.reduce((s, r) => s + r.walkerOnlyN, 0);
         L.push(`**和真 agent 对比**（同一批答案文件，共 ${trRows.reduce((s, r) => s + r.coreN, 0)} 个）：自动游走找到 ${sumWalker} 个，真 agent 在工具结果里见过 ${sumAgent} 个，**其中 ${sumOnly} 个是自动游走找到、agent 没见过的**——这就是把游走结果喂给 agent 能带来的增量上限。\n`);
-        L.push(`| # | id | 游走找到 | agent 见过 | 游走多找 | 前10候选命中 | 第几步首次找到 | 停止评价 |`);
+        L.push(`| # | id | 游走找到 | agent 见过 | 游走多找 | 候选命中(前10·前25) | 第几步首次找到 | 停止评价 |`);
         L.push(`|---|---|---:|---:|---:|---:|---:|---|`);
         trRows.forEach((r, i) => {
             const first = r.firstGoldStep === null ? '没找到' : r.firstGoldStep === 0 ? 'seed 即是' : `第${r.firstGoldStep}步`;
-            L.push(`| ${i + 1} | ${r.id} | ${r.reachGoldN}/${r.coreN} | ${r.agentGoldN}/${r.coreN} | +${r.walkerOnlyN} | ${r.candHit10}/10 | ${first} | ${r.stopVerdict} |`);
+            L.push(`| ${i + 1} | ${r.id} | ${r.reachGoldN}/${r.coreN} | ${r.agentGoldN}/${r.coreN} | +${r.walkerOnlyN} | ${r.candHit10}/10·${r.candHit25}/25 | ${first} | ${r.stopVerdict} |`);
         });
         L.push('');
     }
