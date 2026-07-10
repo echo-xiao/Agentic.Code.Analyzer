@@ -41,13 +41,15 @@ def _build_prompt(question: str, hits: list[Hit]) -> str:
     return f"{SYSTEM}\n\n<CONTEXT>\n{ctx}\n</CONTEXT>\n\nQuestion: {question}\nAnswer:"
 
 
+_NO_CONTENT_STUB = "[no answerable content returned by the model]"
+
+
 def _gemini_generate(prompt: str, model: str) -> str:
     """Call Gemini generation with retry logic honoring 429 retry_delay."""
     last_exc: Exception | None = None
     for attempt in range(1, _MAX_GENERATION_RETRIES + 1):
         try:
             resp = genai.GenerativeModel(model).generate_content(prompt)
-            return resp.text
         except ResourceExhausted as exc:
             last_exc = exc
             delay = max(_parse_retry_seconds(exc), 30)
@@ -57,8 +59,16 @@ def _gemini_generate(prompt: str, model: str) -> str:
             )
             if attempt < _MAX_GENERATION_RETRIES:
                 time.sleep(delay)
+            continue
         except Exception:
             raise
+        # Access .text separately: raises ValueError when response is blocked/empty.
+        # That is not a retriable condition — return a clear stub instead of aborting.
+        try:
+            return resp.text
+        except ValueError:
+            log.warning("Gemini response has no answerable content (blocked/empty); returning stub.")
+            return _NO_CONTENT_STUB
     raise last_exc  # type: ignore[misc]
 
 

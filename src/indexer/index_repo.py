@@ -1,5 +1,6 @@
 from dataclasses import dataclass
 from deepwiki.data_pipeline import DatabaseManager
+from src import config
 
 
 @dataclass
@@ -48,5 +49,5 @@ def load_indexed_docs(repo_path: str, embedder_type: str = "google", included_di
         repo_url_or_path=repo_path,
         repo_type=None,
         embedder_type=embedder_type,
-        included_dirs=included_dirs or [],
+        included_dirs=included_dirs or config.M1_INCLUDED_DIRS,
     )
