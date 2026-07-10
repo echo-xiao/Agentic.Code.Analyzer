@@ -10,6 +10,14 @@ sys.path.insert(0, PROJ)
 from dotenv import load_dotenv
 load_dotenv(os.path.join(PROJ, ".env"))
 
+# Quiet the noisy indexing logs so the user sees stage banners + progress bars.
+# Keep `backoff` at WARNING so 429 back-off waits ("sleeping ~30s") stay visible.
+import logging, warnings
+warnings.filterwarnings("ignore")
+for _n in ("adalflow", "deepwiki.config", "deepwiki.data_pipeline",
+           "deepwiki.google_embedder_client", "httpx", "google", "urllib3"):
+    logging.getLogger(_n).setLevel(logging.WARNING)
+
 
 def banner(msg):
     print(f"\n{'=' * 66}\n  {msg}\n{'=' * 66}", flush=True)
