@@ -38,3 +38,16 @@ test('skeleton: 类方法带 containerClass', () => {
         }
     );
 });
+
+test('skeleton: 解构/对象参数的签名不被截断', () => {
+    withTempFile(
+        `export function route({ path, method }: { path: string; method: string }): number {\n  return path.length;\n}\n`,
+        (p) => {
+            const { mapping } = SkeletonGenerator.generate(p);
+            const fn = mapping.symbols.find((s: any) => s.name === 'route');
+            assert.ok(fn.signature.includes('path'), `signature 应含参数: ${fn.signature}`);
+            assert.ok(fn.signature.includes(': number'), `signature 应含返回类型: ${fn.signature}`);
+            assert.ok(!fn.signature.includes('return path.length'), 'signature 不含实现体');
+        }
+    );
+});
