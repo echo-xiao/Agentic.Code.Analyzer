@@ -19,3 +19,9 @@ M1_INCLUDED_DIRS = [
 
 # LocalDB is keyed by the repo dir basename; RC checkout basename is "rocketchat".
 ADALFLOW_DB_NAME = os.path.basename(RC_REPO_PATH.rstrip("/"))
+
+# M2+ config: graph building, full-scan mode, and judge/Claude models
+JUDGE_MODEL = "gemini-2.5-flash"
+CLAUDE_MODEL = "claude-opus-4-8"          # Claude for offline preprocessing (has CLAUDE_API_KEY)
+FULL_SCAN = os.environ.get("RC_FULL_SCAN", "") == "1"   # off by default; M1 subset unless set
+GRAPH_PATH = os.path.join(os.path.dirname(os.path.dirname(__file__)), "data", "graph.json")
