@@ -341,6 +341,9 @@ export class SkeletonGenerator {
                 exported: false,
                 qualifiedName: `${outerName}.${name}`,
                 line,
+                endLine: this.endLineOf(fnBody),
+                signature: this.signatureOf(fnBody),
+                containerClass: outerName.split('.')[0],
                 calls,
             });
         };
@@ -398,6 +401,8 @@ export class SkeletonGenerator {
                 name: moduleName,
                 exported: false,
                 line: 1,
+                endLine: this.endLineOf(sourceFile),
+                signature: moduleName,
                 calls: Array.from(calls.values()),
             });
         }
@@ -432,7 +437,7 @@ export class SkeletonGenerator {
             if (!className) return;
 
             const classExported = cls.isExported();
-            mapping.symbols.push({ type: 'class', name: className, exported: classExported, line: cls.getStartLineNumber(), calls: this.extractHeritage(cls) });
+            mapping.symbols.push({ type: 'class', name: className, exported: classExported, line: cls.getStartLineNumber(), endLine: this.endLineOf(cls), signature: this.signatureOf(cls), calls: this.extractHeritage(cls) });
 
             cls.getMethods().forEach(method => {
                 const methodName = method.getName();
@@ -444,6 +449,9 @@ export class SkeletonGenerator {
                     exported: classExported,
                     qualifiedName: `${className}.${methodName}`,
                     line: method.getStartLineNumber(),
+                    endLine: this.endLineOf(method),
+                    signature: this.signatureOf(method),
+                    containerClass: className,
                     calls
                 });
                 if (method.getBody()) {
@@ -459,6 +467,9 @@ export class SkeletonGenerator {
                     exported: classExported,
                     qualifiedName: `${className}.constructor`,
                     line: ctor.getStartLineNumber(),
+                    endLine: this.endLineOf(ctor),
+                    signature: this.signatureOf(ctor),
+                    containerClass: className,
                     calls
                 });
                 if (ctor.getBody()) {
@@ -475,6 +486,9 @@ export class SkeletonGenerator {
                         exported: classExported,
                         qualifiedName: `${className}.${prop.getName()}`,
                         line: prop.getStartLineNumber(),
+                        endLine: this.endLineOf(prop),
+                        signature: this.signatureOf(prop),
+                        containerClass: className,
                         calls
                     });
                 }
@@ -488,7 +502,7 @@ export class SkeletonGenerator {
             if (name && fn.getBody()) {
                 this.extractInnerFunctions(fn, name, mapping);
                 const calls = this.extractCalls(fn);
-                mapping.symbols.push({ type: 'function', name, exported: fn.isExported(), line: fn.getStartLineNumber(), calls });
+                mapping.symbols.push({ type: 'function', name, exported: fn.isExported(), line: fn.getStartLineNumber(), endLine: this.endLineOf(fn), signature: this.signatureOf(fn), calls });
                 fn.setBodyText('/* Implementation Hidden */');
             }
         });
@@ -505,6 +519,8 @@ export class SkeletonGenerator {
                     name,
                     exported,
                     line: v.getStartLineNumber(),
+                    endLine: this.endLineOf(initializer),
+                    signature: this.signatureOf(initializer),
                     calls
                 });
                 try {
@@ -518,6 +534,8 @@ export class SkeletonGenerator {
                     name,
                     exported,
                     line: v.getStartLineNumber(),
+                    endLine: this.endLineOf(v),
+                    signature: this.signatureOf(v),
                     calls
                 });
             }
@@ -526,17 +544,33 @@ export class SkeletonGenerator {
 
     private static processInterfacesAndTypes(sourceFile: SourceFile, mapping: any) {
         sourceFile.getInterfaces().forEach(i => {
-            mapping.symbols.push({ type: 'interface', name: i.getName(), line: i.getStartLineNumber() });
+            mapping.symbols.push({ type: 'interface', name: i.getName(), line: i.getStartLineNumber(), endLine: this.endLineOf(i), signature: this.signatureOf(i) });
         });
         sourceFile.getTypeAliases().forEach(t => {
-            mapping.symbols.push({ type: 'type', name: t.getName(), line: t.getStartLineNumber() });
+            mapping.symbols.push({ type: 'type', name: t.getName(), line: t.getStartLineNumber(), endLine: this.endLineOf(t), signature: this.signatureOf(t) });
         });
     }
 
     private static processEnums(sourceFile: SourceFile, mapping: any) {
         sourceFile.getEnums().forEach(e => {
-            mapping.symbols.push({ type: 'enum', name: e.getName(), line: e.getStartLineNumber() });
+            mapping.symbols.push({ type: 'enum', name: e.getName(), line: e.getStartLineNumber(), endLine: this.endLineOf(e), signature: this.signatureOf(e) });
         });
+    }
+
+    // Returns the declaration line(s) without the body.
+    // For nodes with a body, takes text up to the opening brace.
+    // For body-less nodes (interface/type/enum), takes the first line.
+    private static signatureOf(node: any): string {
+        try {
+            const txt: string = node.getText();
+            const brace = txt.indexOf('{');
+            const head = brace >= 0 ? txt.slice(0, brace) : txt.split('\n')[0];
+            return head.replace(/\s+/g, ' ').trim().slice(0, 400);
+        } catch { return ''; }
+    }
+
+    private static endLineOf(node: any): number {
+        try { return node.getEndLineNumber(); } catch { return node.getStartLineNumber?.() ?? 0; }
     }
 
     private static convertToMarkdown(sourceFile: SourceFile, filePath: string): string {
