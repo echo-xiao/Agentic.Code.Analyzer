@@ -1,3 +1,4 @@
+import subprocess
 from dataclasses import dataclass
 from deepwiki.data_pipeline import DatabaseManager
 from src import config
@@ -18,6 +19,21 @@ def _empty_vec_count(docs) -> int:
         if v is None or (hasattr(v, "__len__") and len(v) == 0):
             n += 1
     return n
+
+
+def index_scope() -> list[str] | None:
+    """Return None for a full-scan (all dirs) or the M1 subset dir list."""
+    return None if config.FULL_SCAN else config.M1_INCLUDED_DIRS
+
+
+def changed_files_since(repo_path: str, since_commit: str) -> list[str]:
+    """Return files changed between since_commit and HEAD (git diff --name-only)."""
+    out = subprocess.run(
+        ["git", "-C", repo_path, "diff", "--name-only", f"{since_commit}..HEAD"],
+        capture_output=True,
+        text=True,
+    )
+    return [l for l in out.stdout.splitlines() if l.strip()]
 
 
 def index_repo(repo_path: str, included_dirs: list[str], embedder_type: str = "google") -> IndexResult:
