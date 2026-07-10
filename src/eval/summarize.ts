@@ -16,8 +16,10 @@ import * as crypto from 'crypto';
 import * as fs from 'fs';
 import * as path from 'path';
 import { fileURLToPath, pathToFileURL } from 'url';
-import { OUTPUT_DIR, DATA_DIR } from '../config.js';
+import { OUTPUT_DIR } from '../config.js';
 import { computeFacts } from '../indexer/structural-facts.js';
+import { ensureIndex, LocalDatabase } from '../indexer/index.js';
+import { GLOBAL_INDEX } from '../indexer/state.js';
 import { assembleSummary, FILE_SUMMARY_LLM_SCHEMA, type FileSummary, type LLMFields } from './file-summary.js';
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
@@ -91,6 +93,9 @@ export async function summarizeOne(rel: string, model: string): Promise<FileSumm
         symbols = mapping.symbols ?? [];
     }
 
+    // Lazy-load index if empty (supports standalone use from Task 8 AB without main() running)
+    if (GLOBAL_INDEX.allFiles.size === 0) new LocalDatabase(OUTPUT_DIR).loadIndex(GLOBAL_INDEX);
+
     const facts = computeFacts(rel, symbols);
     // Cast facts to FileSummary shape for prompt (placeholder hash/llm fields)
     const factsForPrompt = { ...facts, hash: '', role: '', responsibilities: [], characteristics: [], subsystem_hint: '', ranking_line: '' } as FileSummary;
@@ -113,6 +118,9 @@ async function main() {
     // 无 key → 优雅跳过（exit 0）：摘要是增量可选层，不该拖垮整条 refresh 流水线
     if (!apiKey) { console.error('[summaries] ANTHROPIC_API_KEY 未设置 — 跳过摘要生成（不影响其余步骤）。'); return; }
     if (!fs.existsSync(OUTPUT_DIR)) { console.error('[summaries] output.nosync 不存在 — 先 npm run prewarm。'); return; }
+
+    // 加载全局索引（确保 GLOBAL_INDEX.fileDependents/allFiles 填充，downstream/fanIn 才有数据）
+    await ensureIndex();
 
     // 建输出目录
     fs.mkdirSync(SUMMARIES_DIR, { recursive: true });
