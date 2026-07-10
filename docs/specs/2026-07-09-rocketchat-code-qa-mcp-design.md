@@ -20,7 +20,7 @@
 
 **成功标准(可量化)**:
 1. **覆盖率**:索引覆盖 RC 全部源码文件(≈ 8,883 个 ts/tsx/js/jsx,总 10,009 文件),而非 deepwiki-open 那种因超时被迫截断的子集。指标 = 已索引文件 / 应索引文件 → 目标 ~100%。
-2. **eval 分数**:对 `src/eval/utils/testcases.json` 的 27 题,用 `logs/answers-claude` 作 GT,按**文件+符号粒度**判分。核心指标:**事实点召回率(fact-point recall)**、**引用命中率(cited file:line 真实且相关)**。
+2. **eval 分数**:对 `src/eval/utils/testcases.json` 的 34 题,用 `logs/answers-claude` 作 GT,按**文件+符号粒度**判分。核心指标:**事实点召回率(fact-point recall)**、**引用命中率(cited file:line 真实且相关)**。
 3. **free tier 内可跑**:索引与查询全程只用免费/受限的 Gemini(embedding + Flash)+ 一次性 Claude 预处理,不依赖任何付费 tier。
 4. **动态题不塌**:对 `locate/call-chain/impact`(动态注册扩散类)题,召回不显著低于 `architecture` 类。
 
@@ -221,7 +221,7 @@ deepwiki-open 现状关键参数(已读源码核验):
 ## 9. Free-tier 预算与节流
 
 - **索引侧**:embedding 10M TPM 宽裕;按 `batch_size` 打包、内容 hash 缓存(改动才重算)、429 指数退避、可断点续跑。全量首次可能跨多段时间,接受**渐进完成**。
-- **查询侧(硬约束)**:Flash ~250–1500 RPD。规则:**每问 LLM 调用 ≤2 次**(1 次生成 + 最多 1 次补检索);检索(语义/结构/词法)与校验**不耗 LLM**;eval 27 题一轮 ≤ ~54 次调用,远在 RPD 内。多把 key / 分组 session(testcases 里已有的 "one free-tier session per group" 约定)作为退路。
+- **查询侧(硬约束)**:Flash ~250–1500 RPD。规则:**每问 LLM 调用 ≤2 次**(1 次生成 + 最多 1 次补检索);检索(语义/结构/词法)与校验**不耗 LLM**;eval 34 题一轮 ≤ ~68 次调用,远在 RPD 内。多把 key / 分组 session(testcases 里已有的 "one free-tier session per group" 约定)作为退路。
 
 ## 10. 错误处理
 - Embedding 维度不一致 → 沿用 deepwiki `_validate_and_filter_embeddings`。
@@ -231,7 +231,7 @@ deepwiki-open 现状关键参数(已读源码核验):
 
 ## 11. 测试
 - **单元**:parser(符号/引用抽取正确性,拿手写小样)、chunker(不切断符号)、RRF 融合、citation verifier(给定假引用能否判否)。
-- **集成**:eval 哈尼端到端跑 27 题,产指标报告。
+- **集成**:eval 哈尼端到端跑 34 题,产指标报告。
 - **回归**:每次 retrieval 改动都重跑 eval,指标 MATCH 才算改进(呼应"每个改动先对 GT 验证")。
 
 ## 12. 风险与开放问题
