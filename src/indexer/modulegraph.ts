@@ -162,13 +162,23 @@ export function buildModuleGraph(): ModuleGraph {
     // 4 & 5. Build modules: subdivide large groups; assign anchor/label/entryFiles
     const modules: ModuleGraph['modules'] = [];
     const file_to_module: Record<string, string> = {};
+    const usedIds = new Set<string>();
 
     for (const [subsystemId, groupFiles] of subsystemGroups) {
         // Tests subsystem: one flat module, no recursion
         if (subsystemId === 'tests' || groupFiles.length <= SUBDIVIDE_THRESHOLD) {
             const anchor = assignAnchor(groupFiles, fanIn);
             const anchorBase = path.basename(anchor).replace(/\.(tsx?|js)$/, '');
-            const moduleId = subsystemId;
+            let moduleId = subsystemId;
+
+            // Deduplicate id if already used
+            if (usedIds.has(moduleId)) {
+                let k = 2;
+                while (usedIds.has(`${moduleId}-${k}`)) k++;
+                moduleId = `${moduleId}-${k}`;
+            }
+            usedIds.add(moduleId);
+
             const entryFiles = [...groupFiles]
                 .sort((a, b) => (fanIn.get(b) ?? 0) - (fanIn.get(a) ?? 0))
                 .slice(0, 5);
@@ -189,9 +199,18 @@ export function buildModuleGraph(): ModuleGraph {
                 if (leafFiles.length === 0) continue;
                 const anchor = assignAnchor(leafFiles, fanIn);
                 const anchorBase = path.basename(anchor).replace(/\.(tsx?|js)$/, '');
-                const moduleId = leafClusters.length === 1
+                let moduleId = leafClusters.length === 1
                     ? subsystemId
                     : `${subsystemId}/${anchorBase}`;
+
+                // Deduplicate id if already used
+                if (usedIds.has(moduleId)) {
+                    let k = 2;
+                    while (usedIds.has(`${moduleId}-${k}`)) k++;
+                    moduleId = `${moduleId}-${k}`;
+                }
+                usedIds.add(moduleId);
+
                 const entryFiles = [...leafFiles]
                     .sort((a, b) => (fanIn.get(b) ?? 0) - (fanIn.get(a) ?? 0))
                     .slice(0, 5);
