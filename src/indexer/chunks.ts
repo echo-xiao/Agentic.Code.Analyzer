@@ -54,3 +54,19 @@ export function loadChunks(): Record<string, Chunk> | null {
     try { cache = JSON.parse(fs.readFileSync(CHUNKS_PATH, 'utf-8')); } catch { cache = null; }
     return cache;
 }
+
+export function chunksBySymbol(chunks: Record<string, Chunk>): Map<string, Chunk[]> {
+    const m = new Map<string, Chunk[]>();
+    for (const c of Object.values(chunks)) {
+        (m.get(c.name) ?? m.set(c.name, []).get(c.name)!).push(c);
+    }
+    return m;
+}
+
+export function chunksByFile(chunks: Record<string, Chunk>): Map<string, Chunk[]> {
+    const m = new Map<string, Chunk[]>();
+    for (const c of Object.values(chunks)) {
+        (m.get(c.file) ?? m.set(c.file, []).get(c.file)!).push(c);
+    }
+    return m;
+}
