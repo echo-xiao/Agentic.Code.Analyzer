@@ -1,5 +1,6 @@
 from dataclasses import dataclass
 import re
+import subprocess
 import numpy as np
 from deepwiki.tools.embedder import get_embedder
 
@@ -34,6 +35,39 @@ def _candidate_identifiers(query: str) -> list[str]:
         and (len(t) > 3)
         and (any(c.isupper() for c in t[1:]) or (t.islower() and t.lower() not in _STOP))
     ]
+
+
+class LexicalRetriever:
+    def __init__(self, repo_path, docs):
+        self.repo_path = repo_path
+        self.by_file = {d.meta_data.get("file_path", ""): d.text for d in docs}
+
+    def retrieve(self, query, top_k):
+        hits, seen = [], set()
+        for ident in _candidate_identifiers(query):
+            try:
+                out = subprocess.run(["rg", "-l", "--type", "ts", "-e", rf"\b{ident}\b"],
+                                     cwd=self.repo_path, capture_output=True, text=True, timeout=20)
+            except Exception:
+                continue
+            for f in out.stdout.splitlines():
+                if f in seen:
+                    continue
+                seen.add(f)
+                hits.append(Hit(self.by_file.get(f) or f"`{ident}` in {f}", f, 1.0 / (len(hits) + 1)))
+                if len(hits) >= top_k:
+                    return hits
+        return hits
+
+
+def reciprocal_rank_fusion(rankings, k=60, top_k=20):
+    scores, best_text = {}, {}
+    for ranking in rankings:
+        for rank, h in enumerate(ranking):
+            scores[h.file_path] = scores.get(h.file_path, 0.0) + 1.0 / (k + rank + 1)
+            best_text.setdefault(h.file_path, h.text)
+    ordered = sorted(scores, key=lambda f: scores[f], reverse=True)[:top_k]
+    return [Hit(text=best_text[f], file_path=f, score=scores[f]) for f in ordered]
 
 
 class StructuralRetriever:
