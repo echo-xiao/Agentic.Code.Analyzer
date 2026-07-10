@@ -1,7 +1,7 @@
 """Scorer: dispatch machine_check (locate/call-chain/impact) or judge_open for other types.
 
 Public API:
-  score_question(question, answer, gt_md, graph) -> dict
+  score_question(question, answer, gt_md) -> dict
   run_scored_eval(question_ids=None) -> list[dict]
 """
 import os
@@ -28,23 +28,22 @@ def _load_questions(ids):
     return [q for q in qs if ids is None or q["id"] in ids]
 
 
-def score_question(question, answer, gt_md, graph):
+def score_question(question, answer, gt_md):
     """Score one question.
 
     Args:
         question:  dict with 'id', 'questionType', 'question'.
         answer:    Answer dataclass (has .text and .citations).
         gt_md:     raw ground-truth markdown string.
-        graph:     loaded symbol graph (may be None for judge path).
 
     Returns:
         dict with keys: id, questionType, verdict, score, detail.
     """
     facts = extract_gt_facts(gt_md)
 
-    if question["questionType"] in _MACHINE and graph is not None:
+    if question["questionType"] in _MACHINE:
         mc = machine_check(
-            question, answer.text, answer.citations, facts, graph
+            question, answer.text, answer.citations, facts, config.RC_REPO_PATH
         )
         verdict = "pass" if mc["score"] >= 0.5 else "fail"
         detail = {
@@ -115,7 +114,7 @@ def run_scored_eval(question_ids=None):
             repo_path=config.RC_REPO_PATH,
             top_k=config.TOP_K,
         )
-        results.append(score_question(q, ans, gt_md, graph))
+        results.append(score_question(q, ans, gt_md))
 
     out_dir = os.path.join(
         os.path.dirname(os.path.dirname(_HERE)), "logs", "eval"
