@@ -113,3 +113,20 @@ class Retriever:
             )
             for i in order
         ]
+
+
+class HybridRetriever:
+    """RRF fusion of semantic (M1), structural, and lexical retrievers."""
+
+    def __init__(self, docs: list, graph, repo_path: str, embedder_type: str = "google"):
+        self.semantic = Retriever(docs, embedder_type) if docs else None
+        self.structural = StructuralRetriever(graph, docs)
+        self.lexical = LexicalRetriever(repo_path, docs)
+
+    def retrieve(self, query: str, top_k: int) -> list[Hit]:
+        rankings = []
+        if self.semantic:
+            rankings.append(self.semantic.retrieve(query, top_k))
+        rankings.append(self.structural.retrieve(query, top_k))
+        rankings.append(self.lexical.retrieve(query, top_k))
+        return reciprocal_rank_fusion(rankings, top_k=top_k)

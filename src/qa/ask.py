@@ -3,7 +3,7 @@ import time
 import logging
 from dataclasses import dataclass
 import google.generativeai as genai
-from src.qa.retriever import Retriever, Hit
+from src.qa.retriever import Retriever, Hit, HybridRetriever
 
 try:
     from google.api_core.exceptions import ResourceExhausted
@@ -72,8 +72,18 @@ def _gemini_generate(prompt: str, model: str) -> str:
     raise last_exc  # type: ignore[misc]
 
 
-def ask(question: str, docs: list, top_k: int = 20, model: str = "gemini-2.5-flash") -> Answer:
-    retriever = Retriever(docs)
+def ask(
+    question: str,
+    docs: list,
+    graph=None,
+    repo_path: str | None = None,
+    top_k: int = 20,
+    model: str = "gemini-2.5-flash",
+) -> Answer:
+    if graph is not None and repo_path is not None:
+        retriever = HybridRetriever(docs, graph, repo_path)
+    else:
+        retriever = Retriever(docs)
     hits = retriever.retrieve(question, top_k=top_k)
     prompt = _build_prompt(question, hits)
     text = _gemini_generate(prompt, model)          # 1 LLM call — within the ≤2 budget
