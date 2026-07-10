@@ -9,8 +9,9 @@ import * as crypto from 'crypto';
 import * as fs from 'fs';
 import * as path from 'path';
 import { fileURLToPath, pathToFileURL } from 'url';
-import { embedText } from '../server/engine/embeddings.js';
+import { embedText, EMBED_MODEL } from '../server/engine/embeddings.js';
 import { makeBar, fmtSec } from './utils/progress.js';
+import { guardModel, stampModel } from './utils/vec-model-guard.js';
 
 const ROOT = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..', '..');
 const SUMS = path.join(ROOT, 'data', 'file-summaries.json');
@@ -20,6 +21,7 @@ const b64 = (v: Float32Array) => Buffer.from(v.buffer, v.byteOffset, v.byteLengt
 
 async function main() {
     if (!fs.existsSync(SUMS)) { console.error('[embed] data/file-summaries.json 不存在 — 先 summaries:gen。'); return; }
+    guardModel(OUT, EMBED_MODEL); stampModel(OUT, EMBED_MODEL);   // 换 embedding 模型 → 清空旧向量强制重嵌
     const sums: Record<string, { hash: string; summary: string }> = JSON.parse(fs.readFileSync(SUMS, 'utf-8'));
     const store: Record<string, { hash: string; vec: string }> = fs.existsSync(OUT) ? JSON.parse(fs.readFileSync(OUT, 'utf-8')) : {};
     const pending = Object.entries(sums).filter(([rel, s]) => {
