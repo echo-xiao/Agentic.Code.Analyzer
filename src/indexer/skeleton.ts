@@ -343,7 +343,7 @@ export class SkeletonGenerator {
                 line,
                 endLine: this.endLineOf(fnBody),
                 signature: this.signatureOf(fnBody),
-                containerClass: outerName.split('.')[0],
+                containerClass: outerName.includes('.') ? outerName.split('.')[0] : undefined,
                 calls,
             });
         };
@@ -558,13 +558,18 @@ export class SkeletonGenerator {
     }
 
     // Returns the declaration line(s) without the body.
-    // For nodes with a body, takes text up to the opening brace.
-    // For body-less nodes (interface/type/enum), takes the first line.
+    // Prefers the node's body start when a body exists, so object-typed return types,
+    // destructured params, and object defaults are not truncated at the first `{`.
     private static signatureOf(node: any): string {
         try {
+            const start: number = node.getStart();
+            // Prefer the body's opening brace: everything before it is the true signature
+            // (avoids truncating on object return types `(): {x}` / destructured params `({a})` / default `= {}`).
+            const body = typeof node.getBody === 'function' ? node.getBody() : undefined;
+            const cut = body ? body.getStart() - start : -1;
             const txt: string = node.getText();
-            const brace = txt.indexOf('{');
-            const head = brace >= 0 ? txt.slice(0, brace) : txt.split('\n')[0];
+            const head = cut >= 0 ? txt.slice(0, cut)
+                                  : (txt.includes('{') ? txt.slice(0, txt.indexOf('{')) : txt.split('\n')[0]);
             return head.replace(/\s+/g, ' ').trim().slice(0, 400);
         } catch { return ''; }
     }
