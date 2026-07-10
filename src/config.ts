@@ -13,7 +13,7 @@ export const TARGET_SRC_DIR = process.env.ROCKET_CHAT_SRC
 // upload storm throttles the thousands of small-file reads during an index rebuild.
 export const OUTPUT_DIR = path.join(PROJECT_ROOT, 'output.nosync');
 export const CACHE_FILE = path.join(OUTPUT_DIR, '.hash_cache.json');
-export const GENERATOR_VERSION = '10';
+export const GENERATOR_VERSION = '11';   // was '10' — P1 给 mapping 加 chunk 字段,需全库重生成
 
 export function getOutputPaths(sourceFile: string): { skeletonPath: string; mappingPath: string } {
     const rel = path.relative(TARGET_SRC_DIR, sourceFile).replace(/\.(tsx?|js)$/, '');
@@ -22,3 +22,9 @@ export function getOutputPaths(sourceFile: string): { skeletonPath: string; mapp
         mappingPath: path.join(OUTPUT_DIR, rel + '.mapping.json'),
     };
 }
+
+export const DATA_DIR = path.join(PROJECT_ROOT, 'data');
+export const INDEX_DIR = path.join(DATA_DIR, 'index');
+export const CHUNKS_PATH = path.join(INDEX_DIR, 'chunks.json');
+export const CHUNK_VECTORS_PATH = path.join(INDEX_DIR, 'chunk-vectors.json');
+export const MODULE_GRAPH_PATH = path.join(INDEX_DIR, 'module-graph.json');
