@@ -23,3 +23,10 @@ test('embedText: query 模式与 passage 模式都产出同维向量,且语义�
     assert.equal(q.length, p.length);
     assert.ok(cosine(q, p) > cosine(q, far), '相关 passage 余弦应高于无关');
 });
+
+test('embedText: 同一文本 query 与 passage 模式产出不同向量(证明前缀被应用)', async () => {
+    const q = await embedText('test sentence', 'query');
+    const p = await embedText('test sentence', 'passage');
+    assert.equal(q.length, p.length);
+    assert.ok(cosine(q, p) < 0.9999, `query/passage 同文本向量应不同(前缀改变输入),cosine=${cosine(q, p)}`);
+});
