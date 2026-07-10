@@ -19,6 +19,7 @@
     "wiki:map": "npx tsx src/wikimap/build.ts",
     "module:build": "NODE_OPTIONS=\"--max-old-space-size=8192\" npx tsx src/indexer/build-modulegraph.ts",
     "embed:chunks": "npx tsx src/eval/embed-chunks.ts",
+    "module:summarize": "npx tsx src/eval/summarize-modules.ts",
     "refresh": "npm run prewarm && npm run module:build && npm run embed:chunks && npm run wiki:map && npm run summaries:gen && npm run embed:gen && npm run gen:mcp && npm run judge && npm run eval:tools && npm run eval:retrieval && npm run report",
     "test": "tsx --test 'src/**/*.test.ts'"
   },
