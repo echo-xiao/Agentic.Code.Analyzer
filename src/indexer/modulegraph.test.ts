@@ -1,7 +1,7 @@
 // src/indexer/modulegraph.test.ts
 import { test } from 'node:test';
 import assert from 'node:assert/strict';
-import { clusterModules, assignAnchor, stableId } from './modulegraph.js';
+import { clusterModules, assignAnchor, featureKey, isTestFile } from './modulegraph.js';
 
 test('clusterModules: 两个稠密团被分成两个社区', () => {
     // 团A: a1-a2-a3 互连; 团B: b1-b2-b3 互连; 团间仅一条弱边
@@ -22,13 +22,48 @@ test('assignAnchor: 取 fan-in 最高的文件', () => {
     assert.equal(anchor, 'y.ts');
 });
 
-test('stableId: 成员大幅重叠 → 继承旧 id', () => {
-    const prev = [{ id: 'mod:livechat', files: ['a.ts', 'b.ts', 'c.ts'] }];
-    const id = stableId(['a.ts', 'b.ts', 'd.ts'], prev as any, 'a.ts'); // 2/4 交并=0.5
-    assert.equal(id, 'mod:livechat');
+// featureKey tests
+test('featureKey: app/livechat/server/x.ts → livechat', () => {
+    assert.equal(featureKey('apps/meteor/app/livechat/server/x.ts'), 'livechat');
 });
-test('stableId: 无重叠 → 用 anchor 派生新 id', () => {
-    const prev = [{ id: 'mod:livechat', files: ['a.ts'] }];
-    const id = stableId(['x.ts', 'y.ts'], prev as any, 'apps/z/PushService.ts');
-    assert.equal(id, 'mod:PushService');
+
+test('featureKey: packages/apps-engine/src/x.ts → pkg:apps-engine', () => {
+    assert.equal(featureKey('packages/apps-engine/src/x.ts'), 'pkg:apps-engine');
+});
+
+test('featureKey: client/views/room/x.tsx → room', () => {
+    assert.equal(featureKey('apps/meteor/client/views/room/x.tsx'), 'room');
+});
+
+test('featureKey: ee/apps/meteor/app/livechat-enterprise/x.ts → ee:livechat-enterprise', () => {
+    assert.equal(featureKey('ee/apps/meteor/app/livechat-enterprise/x.ts'), 'ee:livechat-enterprise');
+});
+
+// isTestFile tests
+test('isTestFile: tests/e2e/.. path → true', () => {
+    assert.equal(isTestFile('apps/meteor/tests/e2e/livechat.spec.ts'), true);
+});
+
+test('isTestFile: normal app/x.ts → false', () => {
+    assert.equal(isTestFile('apps/meteor/app/livechat/server/x.ts'), false);
+});
+
+test('isTestFile: .test. in filename → true', () => {
+    assert.equal(isTestFile('apps/meteor/app/livechat/server/x.test.ts'), true);
+});
+
+test('isTestFile: .spec. in filename → true', () => {
+    assert.equal(isTestFile('apps/meteor/app/livechat/server/x.spec.ts'), true);
+});
+
+test('isTestFile: e2e in path → true', () => {
+    assert.equal(isTestFile('apps/meteor/e2e/livechat.ts'), true);
+});
+
+test('isTestFile: page-objects in path → true', () => {
+    assert.equal(isTestFile('apps/meteor/page-objects/livechat.ts'), true);
+});
+
+test('isTestFile: .stories. in filename → true', () => {
+    assert.equal(isTestFile('apps/meteor/app/livechat/ui/x.stories.tsx'), true);
 });
