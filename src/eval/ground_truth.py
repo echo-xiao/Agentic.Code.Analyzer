@@ -35,3 +35,29 @@ def extract_gt_facts(gt_md: str) -> GTFacts:
 def verified_gt_files(facts: GTFacts, repo_path: str, graph) -> set:
     """Return the subset of GT files that actually exist on disk under repo_path."""
     return {f for f in facts.files if os.path.isfile(os.path.join(repo_path, f))}
+
+
+import os as _os
+
+
+def _authoritative_files(qtype, symbols, graph):
+    files = set()
+    for s in symbols:
+        if qtype == "locate":
+            files |= {d["file"] for d in graph.find_symbol(s)}
+        elif qtype == "call-chain":
+            files |= {d["file"] for d in graph.find_symbol(s)} | {r["file"] for r in graph.find_references(s)}
+        elif qtype == "impact":
+            files |= {x["file"] for x in graph.impacted_by(s)}
+    return files
+
+
+def machine_check(question, answer_text, answer_citations, gt_facts, graph):
+    files = _authoritative_files(question["questionType"], gt_facts.symbols, graph)
+    if not files:
+        return {"score": 0.0, "matched": [], "missed": [], "note": "no authoritative files from graph"}
+    hay = answer_text + " " + " ".join(answer_citations)
+    bases = {(_os.path.basename(f), f) for f in files}
+    matched = sorted(f for b, f in bases if b in hay)
+    missed = sorted(f for b, f in bases if b not in hay)
+    return {"score": len(matched) / len(files), "matched": matched, "missed": missed}
