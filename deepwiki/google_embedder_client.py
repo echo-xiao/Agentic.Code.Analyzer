@@ -1,7 +1,10 @@
 """Google AI Embeddings ModelClient integration."""
 
 import os
+import re
+import time
 import logging
+import random
 import backoff
 from typing import Dict, Any, Optional, List, Sequence
 
@@ -14,7 +17,34 @@ try:
 except ImportError:
     raise ImportError("google-generativeai is required. Install it with 'pip install google-generativeai'")
 
+try:
+    from google.api_core.exceptions import ResourceExhausted, ServiceUnavailable
+except ImportError:
+    ResourceExhausted = Exception  # type: ignore
+    ServiceUnavailable = Exception  # type: ignore
+
 log = logging.getLogger(__name__)
+
+
+def _parse_retry_seconds(exc: Exception) -> int:
+    """Extract the server-advertised retry delay in seconds from a ResourceExhausted exception.
+
+    The Gemini API embeds the delay as ``seconds: N`` in the error message.
+    Falls back to 30 if not found.
+    """
+    m = re.search(r"seconds:\s*(\d+)", str(exc))
+    return int(m.group(1)) if m else 30
+
+
+def _resource_exhausted_wait(exc: Exception) -> float:
+    """Return the sleep duration for a ResourceExhausted error: server delay + small jitter."""
+    base = max(_parse_retry_seconds(exc), 30)
+    return base + random.uniform(0, 5)
+
+
+def _giveup_non_429(exc: Exception) -> bool:
+    """Give up immediately on anything that is NOT a rate-limit / transient error."""
+    return not isinstance(exc, (ResourceExhausted, ServiceUnavailable))
 
 
 class GoogleEmbedderClient(ModelClient):
@@ -204,9 +234,21 @@ class GoogleEmbedderClient(ModelClient):
         return final_model_kwargs
 
     @backoff.on_exception(
-        backoff.expo,
-        (Exception,),  # Google AI may raise various exceptions
-        max_time=5,
+        backoff.runtime,
+        (ResourceExhausted, ServiceUnavailable),
+        value=_resource_exhausted_wait,  # sleep = server delay + jitter, read from exception
+        max_tries=8,
+        max_time=300,
+        jitter=None,  # jitter already applied inside _resource_exhausted_wait
+        giveup=_giveup_non_429,
+        on_backoff=lambda details: log.warning(
+            "Embedding 429 back-off #%s, sleeping ~%.0fs",
+            details["tries"],
+            details["wait"],
+        ),
+        on_giveup=lambda details: log.error(
+            "Embedding giving up after %s tries: %s", details["tries"], details["exception"]
+        ),
     )
     def call(self, api_kwargs: Dict = {}, model_type: ModelType = ModelType.UNDEFINED):
         """Call Google AI embedding API.

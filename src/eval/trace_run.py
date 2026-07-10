@@ -1,4 +1,4 @@
-import os, json
+import os, json, time
 from src import config
 
 _HERE = os.path.dirname(__file__)
@@ -45,8 +45,12 @@ def run_trace(question_ids=None) -> list:
     from src.indexer.index_repo import load_indexed_docs
     docs = load_indexed_docs(config.RC_REPO_PATH, embedder_type=config.EMBEDDER_TYPE,
                              included_dirs=config.M1_INCLUDED_DIRS)
-    traces = [build_trace(q, ask(q["question"], docs=docs, top_k=config.TOP_K))
-              for q in _load_questions(question_ids)]
+    questions = _load_questions(question_ids)
+    traces = []
+    for i, q in enumerate(questions):
+        traces.append(build_trace(q, ask(q["question"], docs=docs, top_k=config.TOP_K)))
+        if i < len(questions) - 1:
+            time.sleep(2)  # light pacing between questions to avoid bursting the generation window
     write_report(traces)
     return traces
 
