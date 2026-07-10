@@ -15,3 +15,11 @@ test('cosine: 语义相近 > 语义无关', async () => {
     const far = await embedText('Apple push notification delivery via APN tokens');
     assert.ok(cosine(q, near) > cosine(q, far), `near ${cosine(q,near).toFixed(3)} 应 > far ${cosine(q,far).toFixed(3)}`);
 });
+
+test('embedText: query 模式与 passage 模式都产出同维向量,且语义相近文本余弦高', async () => {
+    const q = await embedText('how are push notifications delivered', 'query');
+    const p = await embedText('Apple push notification delivery via APN tokens', 'passage');
+    const far = await embedText('billing invoice PDF export', 'passage');
+    assert.equal(q.length, p.length);
+    assert.ok(cosine(q, p) > cosine(q, far), '相关 passage 余弦应高于无关');
+});

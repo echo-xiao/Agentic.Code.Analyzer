@@ -1,8 +1,10 @@
-// embeddings.ts — 本地句向量（xenova all-MiniLM）。gen 与运行时共用一个懒加载单例。
+// embeddings.ts — 本地句向量（xenova bge-small）。gen 与运行时共用一个懒加载单例。
 import { pipeline } from '@xenova/transformers';
 
-export const EMBED_MODEL = 'Xenova/all-MiniLM-L6-v2';
+export const EMBED_MODEL = 'Xenova/bge-small-en-v1.5';
 export const EMBED_DIM = 384;
+
+const BGE_QUERY_PREFIX = 'Represent this sentence for searching relevant passages: ';
 
 let extractorP: Promise<any> | null = null;
 function extractor() {
@@ -10,9 +12,10 @@ function extractor() {
     return extractorP;
 }
 
-export async function embedText(text: string): Promise<Float32Array> {
+export async function embedText(text: string, mode: 'query' | 'passage' = 'passage'): Promise<Float32Array> {
+    const input = mode === 'query' ? BGE_QUERY_PREFIX + text : text;
     const ex = await extractor();
-    const out = await ex(text, { pooling: 'mean', normalize: true });
+    const out = await ex(input, { pooling: 'mean', normalize: true });
     return Float32Array.from(out.data as Float32Array);
 }
 
