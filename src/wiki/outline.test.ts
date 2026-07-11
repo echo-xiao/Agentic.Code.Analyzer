@@ -4,7 +4,7 @@
  */
 import { test } from 'node:test';
 import assert from 'node:assert/strict';
-import { validateOutline, assembleWikiMap, type LLMPage, type ModuleGraphLike } from './outline.js';
+import { validateOutline, assembleWikiMap, deterministicFallback, type LLMPage, type ModuleGraphLike } from './outline.js';
 
 // ── Fixture graph ─────────────────────────────────────────────────────────────
 
@@ -193,4 +193,60 @@ test('assembleWikiMap: unknown module ids in LLM pages are silently dropped from
   assert.ok(!authPage.modules.includes('BOGUS_ID'),
     'BOGUS_ID should be dropped from page.modules');
   assert.ok(authPage.modules.includes('auth/core'));
+});
+
+// ── deterministicFallback tests ───────────────────────────────────────────────
+
+test('deterministicFallback: post-fallback output passes validateOutline', () => {
+  // llmPages with an unknown module id AND a real module left uncovered
+  const badPages: LLMPage[] = [
+    {
+      id: 'auth-page',
+      title: 'Auth',
+      category: 'Core',
+      scope: 'Auth modules.',
+      // auth/oauth is intentionally omitted (uncovered), GHOST is unknown
+      modules: ['auth/core', 'GHOST_MODULE'],
+    },
+    // messaging/send is also omitted (uncovered)
+  ];
+  const result = deterministicFallback(badPages, FIXTURE_GRAPH);
+  const validation = validateOutline(result, FIXTURE_GRAPH);
+  assert.equal(validation.ok, true,
+    `post-fallback pages should be valid; got: ${JSON.stringify(validation)}`);
+});
+
+test('assembleWikiMap: multi-page file_to_pages — file covered by two pages contains both ids', () => {
+  // auth/core belongs to BOTH pages
+  const overlapPages: LLMPage[] = [
+    {
+      id: 'auth-overview',
+      title: 'Auth Overview',
+      category: 'Core',
+      scope: 'Overview of auth.',
+      modules: ['auth/core'],
+    },
+    {
+      id: 'auth-oauth',
+      title: 'OAuth',
+      category: 'Core',
+      scope: 'OAuth details.',
+      modules: ['auth/core', 'auth/oauth'],
+    },
+    {
+      id: 'messaging',
+      title: 'Messaging',
+      category: 'Core',
+      scope: 'Messaging.',
+      modules: ['messaging/send'],
+    },
+  ];
+  const wikiMap = assembleWikiMap(overlapPages, FIXTURE_GRAPH);
+  // packages/auth/src/index.ts belongs to auth/core, which is in BOTH auth-overview and auth-oauth
+  const pageIds = wikiMap.file_to_pages['packages/auth/src/index.ts'];
+  assert.ok(Array.isArray(pageIds), 'file_to_pages entry should be an array');
+  assert.ok(pageIds.includes('auth-overview'),
+    'should include auth-overview page id');
+  assert.ok(pageIds.includes('auth-oauth'),
+    'should include auth-oauth page id');
 });

@@ -22,7 +22,7 @@ import { fileURLToPath } from 'url';
 
 import { DATA_DIR, MODEL_TIERS, MODULE_GRAPH_PATH } from '../config.js';
 import type { WikiMap, WikiPage } from '../wikimap/schema.js';
-import { buildPrebrief, buildPrebriefFromGraph, type ModuleGraph, type Prebrief } from './prebrief.js';
+import { buildPrebriefFromGraph, type ModuleGraph, type Prebrief } from './prebrief.js';
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const WIKI_MAP_PATH = path.join(DATA_DIR, 'wiki-map.json');
@@ -218,7 +218,7 @@ function buildPrompt(prebrief: Prebrief, feedback?: { unknownModules: string[]; 
 
 // ── Deterministic fallback ────────────────────────────────────────────────────
 
-function deterministicFallback(llmPages: LLMPage[], graph: ModuleGraphLike): LLMPage[] {
+export function deterministicFallback(llmPages: LLMPage[], graph: ModuleGraphLike): LLMPage[] {
   const moduleById = new Map(graph.modules.map(m => [m.id, m as typeof graph.modules[0] & { subsystem?: string }]));
 
   // Remove unknown module ids from pages
@@ -322,6 +322,10 @@ export async function generateOutline(model: string = MODEL_TIERS.outline): Prom
   if (!validation.ok) {
     console.error(`[wiki:outline] Validation still failed after retry — applying deterministic fallback.`);
     llmPages = deterministicFallback(llmPages, graph);
+    const postFallback = validateOutline(llmPages, graph);
+    if (!postFallback.ok) {
+      throw new Error(`[wiki:outline] deterministic fallback 仍不合法: ${JSON.stringify(postFallback)}`);
+    }
   }
 
   const wikiMap = assembleWikiMap(llmPages, graph);
