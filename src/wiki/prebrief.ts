@@ -15,7 +15,7 @@
 import * as fs from 'fs';
 import * as path from 'path';
 import { fileURLToPath } from 'url';
-import { MODULE_GRAPH_PATH, TARGET_SRC_DIR } from '../config.js';
+import { MODULE_GRAPH_PATH } from '../config.js';
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const REPO_ROOT = path.resolve(__dirname, '..', '..', '..', 'Rocket.Chat');
