@@ -3,18 +3,17 @@
 (() => {
   const $ = (id) => document.getElementById(id);
   const escapeHtml = (s) => String(s).replace(/[&<>"]/g, (c) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c]));
+  const slug = (s) => String(s).toLowerCase().replace(/[^a-z0-9一-龥]+/g, '-').replace(/^-|-$/g, '') || 'sec';
 
-  // ── UI 双语(仅站点 chrome;正文保持生成的英文)──
   const I18N = {
-    en: { chapters: 'Chapters', filter: 'filter chapters…', toggle: '中文', select: 'Select a chapter from the left.', modules: 'Modules', empty: '(no prose yet — run wiki:gen)' },
-    zh: { chapters: '章节', filter: '筛选章节…', toggle: 'EN', select: '从左侧选择一个章节。', modules: '模块', empty: '(还没有正文 — 先跑 wiki:gen)' },
+    en: { filter: 'Search…', toggle: '中文', select: 'Select a chapter from the left.', srcfiles: 'Relevant source files', onpage: 'On this page', empty: '(no prose yet — run wiki:gen)' },
+    zh: { filter: '搜索…', toggle: 'EN', select: '从左侧选择一个章节。', srcfiles: '相关源文件', onpage: '本页目录', empty: '(还没有正文 — 先跑 wiki:gen)' },
   };
   let lang = localStorage.getItem('wiki-lang') || 'en';
   const t = (k) => I18N[lang][k];
 
   let wikiMap = null, wikiProse = null, current = null;
 
-  // ── {nodes,edges,subgraphs} → mermaid flowchart 文本(数据里存的是解析后结构,还原成图)──
   function diagramToMermaid(d) {
     const nodes = d.nodes || {};
     const lines = ['flowchart TD'];
@@ -33,21 +32,15 @@
     let i = 0;
     for (const d of (diagrams || [])) {
       if (!d || (!Object.keys(d.nodes || {}).length && !(d.edges || []).length)) continue;
-      const wrap = document.createElement('div');
-      wrap.className = 'diagram-block';
-      const cap = document.createElement('div'); cap.className = 'dia-cap'; cap.textContent = `diagram ${++i}`;
-      wrap.appendChild(cap);
+      const wrap = document.createElement('div'); wrap.className = 'diagram-block';
+      const cap = document.createElement('div'); cap.className = 'dia-cap'; cap.textContent = `Diagram ${++i}`;
       const host = document.createElement('div');
-      wrap.appendChild(host);
-      container.appendChild(wrap);
-      try {
-        const { svg } = await window.mermaid.render(`m-${Date.now()}-${i}`, diagramToMermaid(d));
-        host.innerHTML = svg;
-      } catch (e) { host.innerHTML = `<pre>${escapeHtml(diagramToMermaid(d))}</pre>`; }
+      wrap.appendChild(cap); wrap.appendChild(host); container.appendChild(wrap);
+      try { const { svg } = await window.mermaid.render(`m-${Date.now()}-${i}`, diagramToMermaid(d)); host.innerHTML = svg; }
+      catch (e) { host.innerHTML = `<pre>${escapeHtml(diagramToMermaid(d))}</pre>`; }
     }
   }
 
-  // Sources: 行单独样式;其余走 marked
   function renderText(text) {
     const out = []; let buf = [];
     const flush = () => { if (buf.length) { out.push(window.marked.parse(buf.join('\n'))); buf = []; } };
@@ -61,51 +54,83 @@
 
   function renderChapter(page) {
     current = page.page;
+    $('crumb').textContent = page.title || page.page;
     document.querySelectorAll('#nav-list li.page').forEach((li) => li.classList.toggle('active', li.dataset.page === page.page));
     const c = $('content'); c.innerHTML = '';
+
     const h = document.createElement('h1'); h.className = 'chapter-title'; h.textContent = page.title || page.page; c.appendChild(h);
     if (page.scope || (page.modules && page.modules.length)) {
-      const meta = document.createElement('div'); meta.className = 'chapter-meta';
+      const sub = document.createElement('div'); sub.className = 'chapter-sub';
       const bits = [];
       if (page.scope) bits.push(escapeHtml(page.scope));
-      if (page.modules && page.modules.length) bits.push(`${t('modules')}: ` + page.modules.slice(0, 8).map((m) => `<code>${escapeHtml(m)}</code>`).join(' '));
-      meta.innerHTML = bits.join(' · '); c.appendChild(meta);
+      if (page.modules && page.modules.length) bits.push(page.modules.slice(0, 6).map((m) => `<code>${escapeHtml(m)}</code>`).join(' '));
+      sub.innerHTML = bits.join(' &nbsp;·&nbsp; '); c.appendChild(sub);
     }
+
+    // Relevant source files 盒子(DeepWiki 招牌)
+    const srcFiles = Object.keys(page.source_files || {});
+    if (srcFiles.length) {
+      const box = document.createElement('details'); box.className = 'srcbox'; box.open = true;
+      const sum = document.createElement('summary'); sum.textContent = `${t('srcfiles')} (${srcFiles.length})`;
+      const files = document.createElement('div'); files.className = 'files';
+      files.innerHTML = srcFiles.slice(0, 60).map((f) => `<span class="f">${escapeHtml(f)}</span>`).join('');
+      box.appendChild(sum); box.appendChild(files); c.appendChild(box);
+    }
+
     renderDiagrams(c, page.diagrams);
+
+    // 正文 + 收集右侧 TOC
+    const toc = [];
     const sections = (wikiProse && wikiProse[page.page]) || [];
-    if (!sections.length) { const p = document.createElement('p'); p.style.color = '#6b7280'; p.textContent = t('empty'); c.appendChild(p); }
+    if (!sections.length) { const p = document.createElement('p'); p.style.color = '#656d76'; p.textContent = t('empty'); c.appendChild(p); }
     for (const sec of sections) {
       if (sec.section && sec.section !== '(intro)' && sec.section !== 'Overview') {
-        const hh = document.createElement('h2'); hh.textContent = sec.section; c.appendChild(hh);
+        const id = slug(sec.section);
+        const hh = document.createElement('h2'); hh.id = id; hh.textContent = sec.section; c.appendChild(hh);
+        toc.push({ id, label: sec.section });
       }
       const div = document.createElement('div'); div.innerHTML = renderText(sec.text || ''); c.appendChild(div);
     }
+    buildToc(toc);
     c.scrollTop = 0;
     location.hash = encodeURIComponent(page.id || page.page);
+  }
+
+  function buildToc(items) {
+    const list = $('toc-list'); list.innerHTML = '';
+    $('toc-title').textContent = t('onpage');
+    for (const it of items) {
+      const li = document.createElement('li'); li.textContent = it.label;
+      li.onclick = () => document.getElementById(it.id)?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      list.appendChild(li);
+    }
+    $('toc').style.visibility = items.length ? 'visible' : 'hidden';
   }
 
   function buildNav() {
     const list = $('nav-list'); list.innerHTML = '';
     const pages = wikiMap.pages || [];
-    // 按 category 分组(有就分,没有就平铺)
     const groups = new Map();
     for (const p of pages) { const cat = p.category || ''; if (!groups.has(cat)) groups.set(cat, []); groups.get(cat).push(p); }
+    let n = 0;
     for (const [cat, ps] of groups) {
       if (cat) { const c = document.createElement('li'); c.className = 'cat'; c.textContent = cat; list.appendChild(c); }
       for (const p of ps) {
+        n++;
         const li = document.createElement('li'); li.className = 'page'; li.dataset.page = p.page;
-        li.textContent = p.title || p.page;
+        li.innerHTML = `<span class="num">${n}</span><span>${escapeHtml(p.title || p.page)}</span>`;
         li.onclick = () => renderChapter(p);
         list.appendChild(li);
       }
     }
+    $('side-foot').textContent = `${pages.length} chapters`;
   }
 
   function applyLang() {
-    $('side-title').textContent = t('chapters');
     $('search').placeholder = t('filter');
     $('lang-toggle').textContent = t('toggle');
-    if (!current) $('placeholder') && ($('placeholder').textContent = t('select'));
+    $('toc-title').textContent = t('onpage');
+    if (!current && $('placeholder')) $('placeholder').textContent = t('select');
     document.documentElement.lang = lang === 'zh' ? 'zh' : 'en';
   }
 
@@ -126,13 +151,11 @@
       ]);
       wikiMap = m; wikiProse = p;
     } catch (e) {
-      $('content').innerHTML = `<div class="placeholder">无法加载 /data/wiki-map.json —— 确认用 <code>npm run wiki:serve</code> 启动(不是直接双击 html)。<br>${escapeHtml(e.message)}</div>`;
+      $('content').innerHTML = `<div class="placeholder">无法加载 /data/wiki-map.json —— 用 <code>npm run wiki:serve</code> 启动(别直接双击 html)。<br>${escapeHtml(e.message)}</div>`;
       return;
     }
     $('repo-name').textContent = wikiMap.repo || 'Code Wiki';
-    $('derived').textContent = wikiMap.derived_from || '';
     buildNav();
-    // 深链或默认首章
     const wanted = decodeURIComponent((location.hash || '').replace(/^#/, ''));
     const pages = wikiMap.pages || [];
     const target = pages.find((p) => (p.id || p.page) === wanted) || pages[0];
