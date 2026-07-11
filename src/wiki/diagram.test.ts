@@ -16,9 +16,12 @@ import {
   componentDiagram,
   chainSequence,
   generateDiagrams,
+  safeParse,
   type DiagramGraph,
   type CallGraphMap,
 } from './diagram.js';
+
+import { GLOBAL_INDEX } from '../indexer/state.js';
 
 // ── Fixture: DiagramGraph ─────────────────────────────────────────────────────
 //
@@ -457,4 +460,189 @@ test('systemCommunityDiagram: graph with no edges still produces nodes-only diag
   assert.ok(diag !== null, 'should return diagram even with no edges');
   assert.ok(Object.keys(diag!.nodes).length >= 3, 'all 3 modules should appear as nodes');
   assert.equal(diag!.edges.length, 0, 'edges should be empty');
+});
+
+// ── [Important 1] componentDiagram PRODUCTION path via GLOBAL_INDEX.symbols ───
+
+test('componentDiagram: PRODUCTION symbol-path — edge resolved via GLOBAL_INDEX.symbols', () => {
+  // Seed GLOBAL_INDEX.symbols with a unique symbol key to test production branch (b):
+  //   symbol 'indexFn' → file 'auth/core/index.ts'
+  // The callGraph key is the symbol NAME (not a file path), matching production convention.
+  // CallerRef.file is 'auth/core/session.ts' (internal to auth/core).
+  const SYM_KEY = '__test_indexFn__';
+  GLOBAL_INDEX.symbols.set(SYM_KEY, new Set(['auth/core/index.ts']));
+
+  const prodCallGraph: CallGraphMap = new Map([
+    [SYM_KEY, [{ caller: 'session', file: 'auth/core/session.ts', edgeType: 'call' }]],
+  ]);
+
+  const page = { modules: ['auth/core'] };
+  let diag: ReturnType<typeof componentDiagram>;
+  try {
+    diag = componentDiagram(page, FIXTURE_GRAPH, prodCallGraph);
+  } finally {
+    GLOBAL_INDEX.symbols.delete(SYM_KEY);
+  }
+
+  assert.ok(diag !== null, 'production symbol-path should yield a non-null diagram');
+  // session.ts calls indexFn → resolved to auth/core/index.ts → internal edge session→index
+  const hasSessionToIndex = diag!.edges.some(
+    e => e[0].includes('session') && e[1].includes('index'),
+  );
+  assert.ok(hasSessionToIndex, 'session→index edge must appear when callee resolved via GLOBAL_INDEX.symbols');
+});
+
+// ── [Important 2] safeParse — direct tests of drop-on-failure ─────────────────
+
+test('safeParse: malformed/empty flowchart returns null (dropped)', () => {
+  // A flowchart that parseMermaid will parse but produce zero nodes and zero edges
+  // (garbage content after the header line).
+  const garbage = 'flowchart TD\n   >>>garbage<<<';
+  const result = safeParse(garbage, 'test-malformed');
+  assert.equal(result, null, 'safeParse should return null for a diagram with empty nodes+edges');
+});
+
+test('safeParse: valid flowchart returns non-null WikiDiagram', () => {
+  // renderFlowchart emits each node on its own line then edges on separate lines,
+  // matching the NODE_RE / EDGE_RE patterns that parseMermaid uses.
+  const valid = 'flowchart TD\n  A["alpha"]\n  B["beta"]\n  A --> B';
+  const result = safeParse(valid, 'test-valid');
+  assert.ok(result !== null, 'safeParse should return a WikiDiagram for a valid flowchart');
+  assert.ok(Object.keys(result!.nodes).length >= 2, 'should have at least 2 nodes');
+  assert.ok(result!.edges.length >= 1, 'should have at least 1 edge');
+});
+
+test('safeParse drop: failed diagram does NOT appear in page.diagrams (integration)', () => {
+  // Verify the filter: generateDiagrams must not include dropped diagrams.
+  // Use a page with no modules AND no overview match → no diagrams at all.
+  // Also, the global diagram (valid) would only appear on overview pages.
+  const pages = [
+    {
+      id: 'plain',
+      title: 'Plain Chapter',
+      category: 'Core Features',
+      scope: 'No modules, no overview.',
+      modules: [],
+      seedFiles: [],
+      page: 'Plain Chapter',
+      sections: [],
+      diagrams: [],
+      source_files: {},
+    },
+  ];
+
+  const { wikiMapPath, graphPath, cleanup } = makeTempWikiMap(pages);
+  try {
+    generateDiagrams(wikiMapPath, graphPath, FIXTURE_CALL_GRAPH);
+    const result = JSON.parse(fs.readFileSync(wikiMapPath, 'utf-8'));
+    const pg = result.pages[0];
+    // No overview match → no global diagram; no modules → no slice/component/seq diagrams
+    assert.ok(Array.isArray(pg.diagrams), 'diagrams must be an array');
+    assert.equal(pg.diagrams.length, 0, 'page with no modules and no overview match should have 0 diagrams');
+  } finally {
+    cleanup();
+  }
+});
+
+// ── [Minor] generateDiagrams: no-overview page set → no page gets global diagram ─
+
+test('generateDiagrams: no overview/architecture page → no page gets global community diagram', () => {
+  // Use a graph with two ISOLATED modules (no inter-module edges) so moduleSliceDiagram
+  // for each module only includes that module's own nodes — if the global diagram
+  // (which has all modules) were placed on any page, total diagram node count would be higher.
+  //
+  // Graph: two isolated modules with no edges between them
+  const isolatedGraph: DiagramGraph = {
+    subsystems: [
+      { id: 'alpha', label: 'Alpha', moduleIds: ['alpha'], fileCount: 1 },
+      { id: 'beta', label: 'Beta', moduleIds: ['beta'], fileCount: 1 },
+    ],
+    modules: [
+      {
+        id: 'alpha',
+        subsystem: 'alpha',
+        anchor: 'alpha/index.ts',
+        label: 'alpha',
+        files: ['alpha/index.ts'],
+        entryFiles: ['alpha/index.ts'],
+        edges: [], // no inter-module edges
+      },
+      {
+        id: 'beta',
+        subsystem: 'beta',
+        anchor: 'beta/index.ts',
+        label: 'beta',
+        files: ['beta/index.ts'],
+        entryFiles: ['beta/index.ts'],
+        edges: [], // no inter-module edges
+      },
+    ],
+    file_to_module: { 'alpha/index.ts': 'alpha', 'beta/index.ts': 'beta' },
+  };
+
+  // tmpDir gets FIXTURE_GRAPH normally via makeTempWikiMap; we need a custom setup
+  const tmpDir = fs.mkdtempSync(path.join(os.tmpdir(), 'wiki-diagram-test-nooverview-'));
+  const wikiMapPath2 = path.join(tmpDir, 'wiki-map.json');
+  const graphPath2 = path.join(tmpDir, 'module-graph.json');
+
+  const pages = [
+    {
+      id: 'alpha-chapter',
+      title: 'Alpha Module',
+      category: 'Core Features',
+      scope: 'Alpha.',
+      modules: ['alpha'],
+      seedFiles: [],
+      page: 'Alpha Module',
+      sections: [],
+      diagrams: [],
+      source_files: {},
+    },
+    {
+      id: 'beta-chapter',
+      title: 'Beta Module',
+      category: 'Core Features',
+      scope: 'Beta.',
+      modules: ['beta'],
+      seedFiles: [],
+      page: 'Beta Module',
+      sections: [],
+      diagrams: [],
+      source_files: {},
+    },
+  ];
+
+  fs.writeFileSync(wikiMapPath2, JSON.stringify({
+    repo: 'test', generated_at: new Date().toISOString(), derived_from: 'test',
+    pages, file_to_pages: {},
+  }, null, 2));
+  fs.writeFileSync(graphPath2, JSON.stringify(isolatedGraph, null, 2));
+
+  try {
+    generateDiagrams(wikiMapPath2, graphPath2, new Map());
+    const result = JSON.parse(fs.readFileSync(wikiMapPath2, 'utf-8'));
+
+    // The global community diagram has BOTH alpha and beta modules.
+    // Without overview/architecture page, no page should receive the global diagram.
+    // Each page's slice/component should only reference ITS OWN module (isolated, no inter-module edges).
+    const alphaPg = result.pages.find((p: any) => p.id === 'alpha-chapter');
+    const betaPg = result.pages.find((p: any) => p.id === 'beta-chapter');
+
+    for (const diag of alphaPg.diagrams) {
+      const keys = Object.keys(diag.nodes);
+      assert.ok(
+        !keys.some((k: string) => k.includes('beta')),
+        `alpha-chapter diagram should NOT include beta nodes (global diagram not placed without overview page): keys=${keys}`,
+      );
+    }
+    for (const diag of betaPg.diagrams) {
+      const keys = Object.keys(diag.nodes);
+      assert.ok(
+        !keys.some((k: string) => k.includes('alpha')),
+        `beta-chapter diagram should NOT include alpha nodes (global diagram not placed without overview page): keys=${keys}`,
+      );
+    }
+  } finally {
+    fs.rmSync(tmpDir, { recursive: true, force: true });
+  }
 });
