@@ -4,6 +4,7 @@
 
 import type { WikiDiagram, WikiMap, WikiPage, ProseSection } from './schema.js';
 export type { WikiDiagram, WikiMap, WikiPage, ProseSection } from './schema.js';
+import { parseMermaid } from './mermaid.js';
 
 // 每页的散文，按 ## 章节切分；mermaid 块剥除（结构已在 parseWikiMarkdown 里）；
 // 保留 Sources 行（路径引用对 agent 有用）。
@@ -26,31 +27,9 @@ export function parseWikiProse(text: string): Record<string, ProseSection[]> {
     return out;
 }
 
-const NODE_RE = /^\s*(\w+)\[["']?(.+?)["']?\]\s*$/gm;
-const EDGE_RE = /^\s*(\w+)\s*(?:-{1,3}\.?-*>|={2}>)\s*(?:\|"?([^|"\n]*)"?\|\s*)?(\w+)\s*$/gm;
-const SUBGRAPH_RE = /subgraph\s+"?([^"\n]+?)"?\s*$/gm;
 const SRC_RE = /\[([\w./ @-]+?)(?::(\d+(?:-\d+)?))?\]\(\)/g;
 const MERMAID_RE = /```mermaid\n([\s\S]*?)```/g;
 const SECTION_RE = /^## (.+)$/gm;
-
-function cleanLabel(s: string): string {
-    return s.replace(/<br\s*\/?>/g, ' / ').trim();
-}
-
-function parseMermaid(block: string): WikiDiagram {
-    const nodes: Record<string, string> = {};
-    for (const m of block.matchAll(NODE_RE)) nodes[m[1]] = cleanLabel(m[2]);
-    const edges: string[][] = [];
-    for (const m of block.matchAll(EDGE_RE)) {
-        // 跳过误匹配节点定义的行（EDGE_RE 只该命中 A --> B 形态）
-        if (!m[3]) continue;
-        const e = [m[1], m[3]];
-        if (m[2]) e.push(m[2].trim());
-        edges.push(e);
-    }
-    const subgraphs = [...block.matchAll(SUBGRAPH_RE)].map(m => m[1].trim());
-    return { nodes, edges, subgraphs };
-}
 
 /** title → slug: lowercase, non-alnum → '-' */
 function slugify(title: string): string {
