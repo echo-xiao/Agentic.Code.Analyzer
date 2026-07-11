@@ -32,7 +32,7 @@ export async function summarizeModules(): Promise<number> {
     if (store[mod.id]?.hash === memberHash) continue;
     try {
       const resp = await client.messages.create({
-        model: MODEL_MODULE, max_tokens: 1024,
+        model: MODEL_MODULE, max_tokens: 2048,
         messages: [{ role: 'user', content: buildModulePrompt(input) }],
         output_config: { format: { type: 'json_schema', schema: MODULE_SUMMARY_SCHEMA } },
       } as any);

@@ -32,7 +32,7 @@ export function computeFacts(relFile: string, mappingSymbols: any[]): Structural
   // relFile 是相对路径;fileDependents key 是绝对路径 → 用 relPathOf 比对。
   let downstream: string[] = [];
   for (const [target, importers] of GLOBAL_INDEX.fileDependents) {
-    if (relPathOf(target) === relFile) { downstream = [...importers]; break; }
+    if (relPathOf(target) === relFile) { downstream = [...importers].map(imp => relPathOf(imp)); break; }
   }
   const fanIn = downstream.length;
   return {
