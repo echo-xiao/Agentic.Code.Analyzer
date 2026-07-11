@@ -288,17 +288,23 @@ export async function generateOutline(
 
   const client = new Anthropic({ apiKey });
 
+  // 截断/无法解析的响应按"空 pages"处理 → 触发重试/确定性兜底,别让 JSON.parse 抛 Fatal 杀掉 wiki:gen。
+  const parsePages = (text: string): LLMPage[] => {
+    try { return JSON.parse(text)?.pages ?? []; }
+    catch (e: any) { console.error(`[wiki:outline] 响应 JSON 截断/解析失败(${e?.message?.slice(0, 60)}) → 按空处理,走重试/兜底`); return []; }
+  };
+
   // First attempt
   const prompt1 = buildPrompt(prebrief);
   const resp1 = await client.messages.create({
     model,
-    max_tokens: 8192,
+    max_tokens: 16384,
     messages: [{ role: 'user', content: prompt1 }],
     output_config: { format: { type: 'json_schema', schema: OUTLINE_SCHEMA } },
   } as any);
 
   const block1 = (resp1.content as any[]).find((b: any) => b.type === 'text');
-  let llmPages: LLMPage[] = JSON.parse(block1.text).pages;
+  let llmPages: LLMPage[] = parsePages(block1.text);
 
   let validation = validateOutline(llmPages, graph);
 
@@ -308,7 +314,7 @@ export async function generateOutline(
     const prompt2 = buildPrompt(prebrief, validation);
     const resp2 = await client.messages.create({
       model,
-      max_tokens: 8192,
+      max_tokens: 16384,
       messages: [
         { role: 'user', content: prompt1 },
         { role: 'assistant', content: block1.text },
@@ -318,7 +324,7 @@ export async function generateOutline(
     } as any);
 
     const block2 = (resp2.content as any[]).find((b: any) => b.type === 'text');
-    llmPages = JSON.parse(block2.text).pages;
+    llmPages = parsePages(block2.text);
     validation = validateOutline(llmPages, graph);
   }
 
