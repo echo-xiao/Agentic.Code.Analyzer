@@ -3,7 +3,7 @@
 import { scoreString } from './affinity.js';
 import { lexicalSeeds } from '../seeds.js';
 import { isTestPath } from '../common.js';
-import type { WikiMap, WikiPage } from '../../../wikimap/parse.js';
+import type { WikiMap, WikiPage } from '../../../wikimap/schema.js';
 
 export interface PageOption { page: string; score: number; hitOn: string[] }
 export interface PageStep { options: PageOption[]; chosen: string[]; reason: string }

@@ -17,7 +17,7 @@ import { selectPages, resolveWikiFiles, selectSeedForPage, fallbackSeeds, inform
 import { buildDirectedAdjacency, walkFromSeed, type WalkCtx, type WalkRound } from '../server/engine/walker/walk.js';
 import { parseAgentCalls, type AgentCalls } from './walker/agent-calls.js';
 import { withBar } from './utils/progress.js';
-import type { WikiMap } from '../wikimap/parse.js';
+import type { WikiMap } from '../wikimap/schema.js';
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const ROOT = path.join(__dirname, '..', '..');
