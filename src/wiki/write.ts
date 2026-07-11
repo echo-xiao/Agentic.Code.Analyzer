@@ -33,7 +33,6 @@ import {
 } from './retrieval-context.js';
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
-const ROOT = path.resolve(__dirname, '..', '..');
 const WIKI_MAP_PATH = path.join(DATA_DIR, 'wiki-map.json');
 const WIKI_PROSE_PATH = path.join(DATA_DIR, 'wiki-prose.json');
 const SUMMARIES_DIR = path.join(DATA_DIR, 'summaries');
@@ -43,8 +42,13 @@ const MODULE_SUMMARIES_PATH = path.join(SUMMARIES_DIR, 'module-summaries.json');
 // ── Index-like shape used by enforceCitations ─────────────────────────────────
 export interface IndexLike {
   allFiles: Set<string> | ReadonlySet<string>;
-  /** optional: relPath → lineCount; used for line-range bounds check. */
-  lineCountOf?: (relPath: string) => number | null;
+  /**
+   * optional: relOrAbsPath → line count.
+   * Return undefined (or null) when the count cannot be determined
+   * (file unresolvable / unreadable) → fail-open (keep citation).
+   * Return a number when count is known → DROP if range exceeds it.
+   */
+  lineCountOf?: (relOrAbsPath: string) => number | undefined | null;
 }
 
 // ── enforceCitations ──────────────────────────────────────────────────────────
@@ -88,9 +92,11 @@ export function enforceCitations(text: string, index: IndexLike): CitationResult
   }
 
   const SOURCES_LINE_RE = /^Sources:\s*(.+)$/im;
-  // Matches: path:L<start>  OR  path:L<start>-<end>  OR  path:L<start>-L<end>
-  // [^:] stops at first colon (the one before L); path must not contain a bare colon.
-  const SINGLE_REF_RE = /^([^:]+):L(\d+)(?:-L?(\d+))?$/;
+  // Matches all four LLM-emitted forms:
+  //   path:L<start>           path:<start>
+  //   path:L<start>-L<end>    path:<start>-<end>   path:L<start>-<end>
+  // [^:] stops at first colon (the one before the optional L); path must not contain a bare colon.
+  const SINGLE_REF_RE = /^([^:]+):L?(\d+)(?:-L?(\d+))?$/;
 
   const lines = text.split('\n');
   const dropped: DroppedCitation[] = [];
@@ -193,6 +199,65 @@ export function assembleProse(_page: WikiPage, rawText: string): ProseSection[] 
   return sections;
 }
 
+// ── lineCountOf factory ───────────────────────────────────────────────────────
+
+/**
+ * Build a lineCountOf function that counts physical lines in a source file,
+ * resolving citation paths using the same normalization that enforceCitations
+ * uses for the allFiles membership check (so a path that passes the path check
+ * will also resolve here).
+ *
+ * Returns undefined when the file can't be resolved or read → enforceCitations
+ * treats that as "unknown" and keeps the citation (fail-open on unknown only).
+ *
+ * Results are cached in a Map to avoid repeated fs reads for the same file.
+ */
+function buildLineCountOf(
+  allFiles: Set<string> | ReadonlySet<string>,
+): (relOrAbsPath: string) => number | undefined {
+  const cache = new Map<string, number | undefined>();
+
+  // Build a lookup: normalized-rel-path → absolute path from allFiles
+  const relToAbs = new Map<string, string>();
+  for (const f of allFiles) {
+    const rel = f.includes('Rocket.Chat/') ? f.split('Rocket.Chat/')[1] : f;
+    if (rel) relToAbs.set(rel, f);
+    // also allow the as-is key (for already-relative paths)
+    relToAbs.set(f, f);
+  }
+
+  return function lineCountOf(relOrAbsPath: string): number | undefined {
+    if (cache.has(relOrAbsPath)) return cache.get(relOrAbsPath);
+
+    // Resolve: try citation path directly, then via relToAbs table
+    const candidates: string[] = [];
+    if (relOrAbsPath in Object.fromEntries(relToAbs)) {
+      const abs = relToAbs.get(relOrAbsPath);
+      if (abs) candidates.push(abs);
+    } else {
+      // citation path may be a sub-path that matches the tail of allFiles entries
+      const abs = relToAbs.get(relOrAbsPath);
+      if (abs) candidates.push(abs);
+    }
+    // also push the citation path itself in case it's already absolute
+    candidates.push(relOrAbsPath);
+
+    for (const candidate of candidates) {
+      try {
+        const content = fs.readFileSync(candidate, 'utf-8');
+        const count = content.split('\n').length;
+        cache.set(relOrAbsPath, count);
+        return count;
+      } catch {
+        // try next
+      }
+    }
+
+    cache.set(relOrAbsPath, undefined);
+    return undefined;
+  };
+}
+
 // ── writeChapter ──────────────────────────────────────────────────────────────
 
 export interface ChapterResult {
@@ -253,9 +318,11 @@ export async function writeChapter(
   const block = (resp.content as any[]).find((b: any) => b.type === 'text');
   const rawText: string = block?.text ?? '';
 
-  // Enforce citations against GLOBAL_INDEX
+  // Enforce citations against GLOBAL_INDEX — including real line-count bounds check
+  const lineCountOf = buildLineCountOf(GLOBAL_INDEX.allFiles);
   const { kept, dropped } = enforceCitations(rawText, {
     allFiles: GLOBAL_INDEX.allFiles,
+    lineCountOf,
   });
 
   const prose = assembleProse(page, kept);
@@ -266,7 +333,8 @@ export async function writeChapter(
   let sm: RegExpExecArray | null;
   while ((sm = SOURCES_RE.exec(kept)) !== null) {
     for (const ref of sm[1].split(',').map(s => s.trim())) {
-      const rm = /^([^:]+):L(\d+)(?:-(\d+))?$/.exec(ref.trim());
+      // Mirror enforcement regex: accept path:L?start[-L?end] in all four forms
+      const rm = /^([^:]+):L?(\d+)(?:-L?(\d+))?$/.exec(ref.trim());
       if (!rm) continue;
       const [, refPath, start, end] = rm;
       const range = end ? `L${start}-${end}` : `L${start}`;

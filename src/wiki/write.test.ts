@@ -111,6 +111,80 @@ test('enforceCitations: drops Sources line when any ref is bad', () => {
   assert.ok(dropped.length > 0, 'should drop when any ref is bad');
 });
 
+// ── Important 1: path:10-50 (no-L) form is accepted, not dropped ─────────────
+
+test('enforceCitations: keeps path:start-end citation (no L prefix on start)', () => {
+  const idx = makeIndex(['server/auth/AuthService.ts']);
+  const text = [
+    'AuthService handles authentication.',
+    'Sources: server/auth/AuthService.ts:10-50',
+  ].join('\n');
+
+  const { kept, dropped } = enforceCitations(text, idx);
+  assert.ok(kept.includes('AuthService handles authentication.'), 'should keep the assertion');
+  assert.ok(kept.includes('Sources: server/auth/AuthService.ts:10-50'), 'should keep no-L citation');
+  assert.equal(dropped.length, 0, 'should drop nothing for valid no-L citation');
+});
+
+// ── Important 2: production-shaped call drops out-of-bounds citation ──────────
+
+test('enforceCitations: production lineCountOf wired — drops out-of-bounds L1-L9999 on 200-line file', () => {
+  // Simulate the production-shaped call: lineCountOf returns a real count
+  const lineCountOf = (p: string) => p === 'server/big.ts' ? 200 : undefined;
+  const idx = makeIndex(['server/big.ts'], lineCountOf);
+  const text = [
+    'BigModule does something important.',
+    'Sources: server/big.ts:L1-L9999',
+  ].join('\n');
+
+  const { kept, dropped } = enforceCitations(text, idx);
+  assert.ok(dropped.length > 0, 'should drop out-of-bounds citation when lineCountOf is provided');
+  assert.ok(dropped.some(d => d.reason.includes('out of bounds')),
+    `should mention out of bounds, got: ${JSON.stringify(dropped)}`);
+  assert.ok(!kept.includes('Sources: server/big.ts:L1-L9999'), 'should not keep the Sources line');
+});
+
+// ── Important 3: path:L10-L50 (L-prefixed end) lands in source_files ─────────
+// We test this via enforceCitations keeping the line, then manually verify
+// that the same regex used in writeChapter's source_files extraction accepts it.
+
+test('enforceCitations: path:L10-L50 (L-end form) is kept and extractable for source_files', () => {
+  const idx = makeIndex(['server/auth/AuthService.ts']);
+  const text = [
+    'AuthService manages sessions.',
+    'Sources: server/auth/AuthService.ts:L10-L50',
+  ].join('\n');
+
+  const { kept, dropped } = enforceCitations(text, idx);
+  assert.equal(dropped.length, 0, 'should keep L10-L50 citation');
+  assert.ok(kept.includes('Sources: server/auth/AuthService.ts:L10-L50'), 'citation must survive enforcement');
+
+  // Verify the source_files extraction regex (mirrored from writeChapter) accepts the L-end form
+  const SOURCES_RE = /^Sources:\s*(.+)$/gim;
+  const REF_RE = /^([^:]+):L?(\d+)(?:-L?(\d+))?$/;
+  const source_files: Record<string, string[]> = {};
+  let sm: RegExpExecArray | null;
+  while ((sm = SOURCES_RE.exec(kept)) !== null) {
+    for (const ref of sm[1].split(',').map(s => s.trim())) {
+      const rm = REF_RE.exec(ref.trim());
+      if (!rm) continue;
+      const [, refPath, start, end] = rm;
+      const range = end ? `L${start}-${end}` : `L${start}`;
+      if (!source_files[refPath]) source_files[refPath] = [];
+      if (!source_files[refPath].includes(range)) source_files[refPath].push(range);
+    }
+  }
+
+  assert.ok(
+    'server/auth/AuthService.ts' in source_files,
+    `AuthService.ts should be in source_files; got keys: ${JSON.stringify(Object.keys(source_files))}`,
+  );
+  assert.ok(
+    source_files['server/auth/AuthService.ts'].some(r => r.includes('10')),
+    `source_files range should include line 10; got: ${JSON.stringify(source_files['server/auth/AuthService.ts'])}`,
+  );
+});
+
 // ── assembleProse: splits by ## headers ──────────────────────────────────────
 
 test('assembleProse: splits LLM output by ## headers', () => {
