@@ -49,9 +49,9 @@ function buildFixturePage(overrides: Partial<WikiPage> = {}): WikiPage {
 function buildDeps(overrides: Partial<RetrievalDeps> = {}): RetrievalDeps {
   return {
     fileSummaries: {
-      'server/auth/AuthService.ts': { summary: 'Handles authentication lifecycle' },
-      'server/auth/TokenManager.ts': { summary: 'Issues and validates JWT tokens' },
-      'server/users/UserService.ts': { summary: 'User CRUD and profile management' },
+      'server/auth/AuthService.ts': { ranking_line: 'Handles authentication lifecycle' },
+      'server/auth/TokenManager.ts': { ranking_line: 'Issues and validates JWT tokens' },
+      'server/users/UserService.ts': { ranking_line: 'User CRUD and profile management' },
     },
     moduleSummaries: {
       auth: 'Authentication and session management',

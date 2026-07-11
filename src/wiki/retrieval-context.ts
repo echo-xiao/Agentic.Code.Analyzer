@@ -43,10 +43,10 @@ export interface ChapterContext {
 
 export interface RetrievalDeps {
   /**
-   * file-summaries: rel path → { summary, ... }.
+   * file-summaries: rel path → { ranking_line, ... }（新 P2 产物字段 ranking_line,非旧 summary）。
    * CLI wrapper passes real file-summaries.json; tests pass fixtures.
    */
-  fileSummaries: Record<string, { summary: string }> | null;
+  fileSummaries: Record<string, { ranking_line: string }> | null;
 
   /**
    * module-summaries: moduleId → summary text.
@@ -189,7 +189,7 @@ export function buildChapterContext(page: WikiPage, deps: RetrievalDeps): Chapte
 
   // ── Step 4: Build candidates with path:lines + role ───────────────────────────
   const candidates: CandidateEntry[] = rankedFiles.map(f => {
-    const summary = deps.fileSummaries?.[f]?.summary ?? '';
+    const summary = deps.fileSummaries?.[f]?.ranking_line ?? '';
     return {
       path: f,
       lines: 'L1',  // default; CLI can enrich from chunks if needed

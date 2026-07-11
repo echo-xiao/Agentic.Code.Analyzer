@@ -36,7 +36,7 @@ test('rankCandidates：测试文件被剔除', () => {
 });
 
 test('rankCandidates：文件名无信号但摘要命中时，靠摘要排上来（方案2语义项）', () => {
-    const summaries = { 'server/apn.ts': { hash: 'x', summary: 'Apple push notification delivery via APN tokens' } };
+    const summaries = { 'server/apn.ts': { hash: 'x', ranking_line: 'Apple push notification delivery via APN tokens' } };
     const without = rankCandidates([
         { f: 'server/apn.ts', round: 2 },
         { f: 'server/zzz.ts', round: 1 },

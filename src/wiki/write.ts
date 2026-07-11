@@ -386,7 +386,7 @@ function pageHash(page: WikiPage, moduleSummaries: Record<string, string> | null
 
 // ── Load summaries helpers ────────────────────────────────────────────────────
 
-function loadFileSummaries(): Record<string, { summary: string }> | null {
+function loadFileSummaries(): Record<string, { ranking_line: string }> | null {
   try {
     return JSON.parse(fs.readFileSync(FILE_SUMMARIES_PATH, 'utf-8'));
   } catch {
@@ -448,7 +448,7 @@ async function main() {
   // Wire up lineOf — for production we use a simple fallback (line 1)
   // A future task can enrich this from chunks.json
   const deps: RetrievalDeps = {
-    fileSummaries: fileSummaries as Record<string, { summary: string }> | null,
+    fileSummaries: fileSummaries as Record<string, { ranking_line: string }> | null,
     moduleSummaries,
     lineOf: (_sym: string) => 1,
   };

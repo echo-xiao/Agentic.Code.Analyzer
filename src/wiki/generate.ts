@@ -29,6 +29,7 @@ import { fileURLToPath, pathToFileURL } from 'url';
 import { DATA_DIR } from '../config.js';
 import { generateOutline } from './outline.js';
 import { generateDiagrams } from './diagram.js';
+import { ensureIndex } from '../indexer/index.js';
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const DEFAULT_WIKI_MAP_PATH = path.join(DATA_DIR, 'wiki-map.json');
@@ -70,7 +71,7 @@ function runStep(tsFile: string): Promise<void> {
 export async function generateWiki(deps?: Partial<GenerateDeps>): Promise<void> {
   const outline     = deps?.outline     ?? (() => generateOutline());
   const write       = deps?.write       ?? (() => runStep(path.join(__dirname, 'write.ts')));
-  const diagram     = deps?.diagram     ?? (() => generateDiagrams());
+  const diagram     = deps?.diagram     ?? (async () => { await ensureIndex(); return generateDiagrams(); });   // 真跑先加载 GLOBAL_INDEX(diagram 用 callGraph);注入测试不受影响
   const verify      = deps?.verify      ?? (() => runStep(path.join(__dirname, 'verify.ts')));
   const wikiMapPath = deps?.wikiMapPath ?? DEFAULT_WIKI_MAP_PATH;
 
