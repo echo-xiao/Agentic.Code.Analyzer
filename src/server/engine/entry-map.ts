@@ -214,12 +214,12 @@ export async function candidateMap(question: string): Promise<string | null> {
 // mermaid 边渲染：node id → label（截断），只渲染两端 label 都存在的边
 const trimLabel = (s: string) => (s.length > 48 ? s.slice(0, 45) + '…' : s);
 
-/** 离线版 wiki 回答（替代运行期 DeepWiki MCP）：入口页结构（章节 + 关系边）+ 候选文件。纯结构，无散文。 */
+/** 离线版 wiki 回答（基于自生成 architecture wiki）：入口页结构（章节 + 关系边）+ 候选文件。纯结构，无散文。 */
 export async function offlineWikiAnswer(question: string): Promise<string | null> {
     const a = await analyze(question);
     if (!a) return null;
     const L: string[] = [
-        `## 🗺 Architecture map (offline, derived from the DeepWiki wiki-map — structure only, no prose)`,
+        `## 🗺 Architecture map (offline, derived from the self-generated architecture wiki — structure only, no prose)`,
     ];
     for (const p of a.chosenPages) {
         L.push(`\n### ${p.page}`);

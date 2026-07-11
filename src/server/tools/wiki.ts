@@ -1,5 +1,5 @@
-// wiki — 离线架构回答：章节级散文（DeepWiki 散文的离线缓存，方案1）+ 结构地图 + 路径验真脚注。
-// 运行期零 DeepWiki/零网络。散文只在本文件消费（红线：walker/eval 永不 import wiki-prose）。
+// wiki — 离线架构回答：章节级散文（自生成 wiki 的离线缓存，方案1）+ 结构地图 + 路径验真脚注。
+// 运行期零网络（自生成 wiki）。散文只在本文件消费（红线：walker/eval 永不 import wiki-prose）。
 // C 轮实证：散文的价值 = 把机制链符号名喂给 agent 当查询词——本文件负责把这个价值离线留住。
 import * as fs from 'fs';
 import * as path from 'path';
@@ -61,7 +61,7 @@ export async function askWiki(question: string): Promise<string> {
             parts.push(`### ${sec.page} › ${sec.section}\n${t}`);
             budget -= t.length;
         }
-        if (parts.length) proseBlock = `## 📖 Architecture notes (offline cache of DeepWiki prose, matched to your question)\n\n${parts.join('\n\n')}\n\n`;
+        if (parts.length) proseBlock = `## 📖 Architecture notes (offline cache of self-generated architecture wiki, matched to your question)\n\n${parts.join('\n\n')}\n\n`;
     }
     const out = proseBlock + (structure ?? '');
     if (!out.trim()) return 'No architecture-map hit for this question — use search/graph/details directly.';

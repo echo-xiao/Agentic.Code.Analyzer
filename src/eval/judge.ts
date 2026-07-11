@@ -7,7 +7,7 @@
  * PASS / PARTIAL / FAIL + mode (where it diverges) + one-line reason.
  *
  * Gold standard = answers-claude (NOT testcases.json's core spine — the old
- * manual basis — and NOT DeepWiki: DeepWiki is the agent's OWN wiki tool, so
+ * manual basis — and NOT the self-generated wiki: that is the agent's OWN wiki tool, so
  * judging against it would be circular). No rubric, no frozen criteria; the
  * three labels are only the semantic-match scale.
  *
@@ -111,7 +111,7 @@ async function mapPool<T, R>(items: T[], n: number, fn: (item: T, i: number) => 
 }
 
 /** Judge every testcase in `candDir` (section `candSection`) against the answers-claude gold. Reusable
- * across candidate configs (combined / wiki-only / nav-only) — always gold = Claude, never DeepWiki. */
+ * across candidate configs (combined / wiki-only / nav-only) — always gold = Claude, never the self-generated wiki. */
 export async function judgeAnswers(client: Anthropic, testcases: { id: string; question: string }[], candDir: string, candSection: string): Promise<Row[]> {
     const jobs = testcases.filter(tc =>
         fs.existsSync(path.join(GOLD_DIR, `${tc.id}.md`)) && fs.existsSync(path.join(candDir, `${tc.id}.md`)));
