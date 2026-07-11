@@ -4,7 +4,7 @@
  */
 import { test } from 'node:test';
 import assert from 'node:assert/strict';
-import { validateOutline, assembleWikiMap, deterministicFallback, type LLMPage, type ModuleGraphLike } from './outline.js';
+import { validateOutline, assembleWikiMap, deterministicFallback, generateOutline, type LLMPage, type ModuleGraphLike } from './outline.js';
 
 // ── Fixture graph ─────────────────────────────────────────────────────────────
 
@@ -249,4 +249,30 @@ test('assembleWikiMap: multi-page file_to_pages — file covered by two pages co
     'should include auth-overview page id');
   assert.ok(pageIds.includes('auth-oauth'),
     'should include auth-oauth page id');
+});
+
+// ── generateOutline dry mode ──────────────────────────────────────────────────
+
+test('generateOutline({dry:true}) returns null without calling process.exit', async () => {
+  // Capture whether process.exit was called
+  const originalExit = process.exit;
+  let exitCalled = false;
+  (process as any).exit = (code?: number) => {
+    exitCalled = true;
+    throw new Error(`process.exit(${code}) was called — generateOutline must not exit`);
+  };
+
+  let result: unknown;
+  let threw = false;
+  try {
+    result = await generateOutline(undefined, { dry: true });
+  } catch (e) {
+    threw = true;
+  } finally {
+    (process as any).exit = originalExit;
+  }
+
+  assert.equal(threw, false, 'generateOutline({dry:true}) must not throw or call process.exit');
+  assert.equal(exitCalled, false, 'process.exit must not be called by generateOutline');
+  assert.equal(result, null, 'generateOutline({dry:true}) must return null');
 });

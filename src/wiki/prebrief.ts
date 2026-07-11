@@ -14,7 +14,7 @@
 
 import * as fs from 'fs';
 import * as path from 'path';
-import { fileURLToPath } from 'url';
+import { fileURLToPath, pathToFileURL } from 'url';
 import { MODULE_GRAPH_PATH } from '../config.js';
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
@@ -171,9 +171,4 @@ export function buildPrebrief(graph?: ModuleGraph): Prebrief {
 if (import.meta.url === pathToFileURL(process.argv[1] ?? '').href) {
   const prebrief = buildPrebrief();
   console.log(JSON.stringify(prebrief, null, 2));
-}
-
-function pathToFileURL(p: string) {
-  // mini shim — only used in entry guard
-  return new URL('file://' + p);
 }

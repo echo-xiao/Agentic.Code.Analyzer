@@ -371,3 +371,29 @@ test('verifyCitations: empty prose returns rate 1.0', () => {
   assert.equal(result.perChapter.length, 0, 'no chapters');
   assert.equal(result.citation_validity_rate, 1.0, 'empty prose → rate 1.0 (divide-by-zero guard)');
 });
+
+// ── Test 11: Sources: line with good + bad ref → entire line dropped → valid=0 ─
+
+test('verifyCitations: Sources: line with one valid + one bad ref → valid=0 (whole line dropped)', () => {
+  // enforceCitations drops the ENTIRE Sources: line when any ref on it is bad,
+  // so the good ref does NOT survive into the kept text.
+  // valid must be computed from countCitationRefs(kept), not total - dropped.length.
+  const index = makeIndex(['server/auth/AuthService.ts']);
+  const prose = makeProse({
+    'Mixed Line Chapter': [
+      'AuthService and Ghost are related.',
+      'Sources: server/auth/AuthService.ts:L10-L50, server/ghost/Ghost.ts:L1-L5',
+    ].join('\n'),
+  });
+
+  const result = verifyCitations(prose, index);
+
+  const ch = result.perChapter[0];
+  assert.equal(ch.chapter, 'Mixed Line Chapter');
+  // Both refs are on one Sources: line; the whole line is dropped because Ghost.ts is bad.
+  // valid = 0 (the AuthService ref did NOT survive into kept text).
+  assert.equal(ch.valid, 0, 'valid should be 0 — entire Sources: line was dropped including the good ref');
+  // citations: both refs were counted in the original text
+  assert.equal(ch.citations, 2, 'citations should count both refs on the Sources: line');
+  assert.ok(ch.invalid.length > 0, 'should have at least 1 invalid entry');
+});

@@ -18,7 +18,7 @@ import '../eval/utils/load-env.js';
 import Anthropic from '@anthropic-ai/sdk';
 import * as fs from 'fs';
 import * as path from 'path';
-import { fileURLToPath } from 'url';
+import { fileURLToPath, pathToFileURL } from 'url';
 
 import { DATA_DIR, MODEL_TIERS, MODULE_GRAPH_PATH } from '../config.js';
 import type { WikiMap, WikiPage } from '../wikimap/schema.js';
@@ -259,11 +259,14 @@ export function deterministicFallback(llmPages: LLMPage[], graph: ModuleGraphLik
 
 // ── generateOutline ───────────────────────────────────────────────────────────
 
-export async function generateOutline(model: string = MODEL_TIERS.outline): Promise<WikiMap> {
+export async function generateOutline(
+  model: string = MODEL_TIERS.outline,
+  opts: { dry?: boolean } = {},
+): Promise<WikiMap | null> {
   const graph: ModuleGraph = JSON.parse(fs.readFileSync(MODULE_GRAPH_PATH, 'utf-8'));
   const prebrief = buildPrebriefFromGraph(graph);
 
-  const isDry = process.argv.includes('--dry');
+  const isDry = opts.dry ?? false;
 
   if (isDry) {
     console.log('=== PREBRIEF ===');
@@ -274,13 +277,13 @@ export async function generateOutline(model: string = MODEL_TIERS.outline): Prom
     console.log(`Subsystems: ${graph.subsystems.length}`);
     console.log(`Intended API calls: 1 (+ up to 1 retry if validation fails)`);
     console.log(`[dry] No API request made.`);
-    process.exit(0);
+    return null;
   }
 
   const apiKey = process.env.ANTHROPIC_API_KEY || process.env.CLAUDE_API_KEY;
   if (!apiKey) {
     console.error('[wiki:outline] ANTHROPIC_API_KEY not set — skipping outline generation.');
-    process.exit(0);
+    return null;
   }
 
   const client = new Anthropic({ apiKey });
@@ -340,12 +343,13 @@ export async function generateOutline(model: string = MODEL_TIERS.outline): Prom
 // ── Entry point ───────────────────────────────────────────────────────────────
 
 if (import.meta.url === pathToFileURL(process.argv[1] ?? '').href) {
-  generateOutline().catch(err => {
-    console.error('[wiki:outline] Fatal:', err);
-    process.exit(1);
-  });
-}
-
-function pathToFileURL(p: string) {
-  return new URL('file://' + p);
+  const isDryCli = process.argv.includes('--dry');
+  generateOutline(undefined, { dry: isDryCli })
+    .then(result => {
+      if (isDryCli || result === null) process.exit(0);
+    })
+    .catch(err => {
+      console.error('[wiki:outline] Fatal:', err);
+      process.exit(1);
+    });
 }
