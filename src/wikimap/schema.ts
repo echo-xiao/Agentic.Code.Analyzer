@@ -1,4 +1,4 @@
-// wiki 结构 schema —— 自生成沿用（原 DeepWiki 解析器的接口，去解析器后集中于此）。
+// wiki 结构 schema —— 自生成 wiki 接口（去解析器后集中于此）。
 // WikiPage 同时承载"消费字段"(page/sections/diagrams/source_files，entry-map/wiki 在读，P4 才迁 id)
 // 与 §7.1 "计划字段"(id/title/category/scope/modules/seedFiles，outline 步填)。约定 page===title。
 export interface WikiDiagram { nodes: Record<string, string>; edges: string[][]; subgraphs: string[] }

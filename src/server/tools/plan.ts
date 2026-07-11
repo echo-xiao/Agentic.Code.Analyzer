@@ -1,5 +1,5 @@
 // plan — declares the question's intent and returns the recipe. For mechanism/flow intents it ALSO
-// fetches the grounded DeepWiki architecture map up front — agents don't reliably call wiki on their own
+// fetches the grounded architecture wiki map up front — agents don't reliably call wiki on their own
 // (wiki-called questions PASS ~65% vs ~38% when skipped), so plan hands them the map and steers them to
 // CONFIRM the named symbols via search/graph rather than answer from the overview. Never touches the index.
 import { SESSION } from '../session.js';
@@ -8,7 +8,7 @@ import type { Intent } from '../intent.js';
 import { askWiki } from './wiki.js';
 import { candidateMap } from '../engine/entry-map.js';
 
-// Intents whose answer is a cross-layer mechanism/flow — the DeepWiki map pays off most here.
+// Intents whose answer is a cross-layer mechanism/flow — the self-generated architecture wiki map pays off most here.
 // locate/pattern (find-a-thing / how-to) are left to the agent; pattern especially is wiki-gap-prone.
 const WIKI_INTENTS: ReadonlySet<string> = new Set(['architecture', 'call-chain', 'routing', 'impact']);
 

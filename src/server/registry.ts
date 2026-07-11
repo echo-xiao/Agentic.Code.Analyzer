@@ -66,7 +66,7 @@ export const TOOL_DEFINITIONS = [
     },
     {
         name: "wiki",
-        description: "Architecture overview — ask the DeepWiki wiki how a subsystem works. Returns a grounded summary (prose + file paths; a footer flags any path NOT present in THIS codebase's index, so you trust only real ones). Best first step for architecture/how-does-X-work questions; then confirm exact symbols with search/graph/details.",
+        description: "Architecture overview — ask the self-generated architecture wiki how a subsystem works. Returns a grounded summary (prose + file paths; a footer flags any path NOT present in THIS codebase's index, so you trust only real ones). Best first step for architecture/how-does-X-work questions; then confirm exact symbols with search/graph/details.",
         inputSchema: {
             type: "object",
             properties: {

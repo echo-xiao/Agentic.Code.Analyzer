@@ -5,7 +5,7 @@ const EDGE_RE = /^\s*(\w+)\s*(?:-{1,3}\.?-*>|={2}>)\s*(?:\|"?([^|"\n]*)"?\|\s*)?
 const SUBGRAPH_RE = /subgraph\s+"?([^"\n]+?)"?\s*$/gm;
 function cleanLabel(s: string): string { return s.replace(/<br\s*\/?>/g, ' / ').trim(); }
 
-/** mermaid flowchart 块 → 结构（§7.4 生成后回填 diagrams；DeepWiki 解析器唯一保留件）。 */
+/** mermaid flowchart 块 → 结构（§7.4 生成后回填 diagrams；wiki 解析器保留件）。 */
 export function parseMermaid(block: string): WikiDiagram {
   const nodes: Record<string, string> = {};
   for (const m of block.matchAll(NODE_RE)) nodes[m[1]] = cleanLabel(m[2]);

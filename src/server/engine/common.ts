@@ -1,5 +1,5 @@
 // Shared graph-navigation helpers used by every engine module. Pure functions over GLOBAL_INDEX.
-// (Architecture routing was retired; the DeepWiki `wiki` tool provides subsystem overviews now.)
+// (Architecture routing was retired; the `wiki` tool provides self-generated architecture wiki overviews now.)
 import { GLOBAL_INDEX } from '../../indexer/state.js';
 import type { EdgeType } from '../../indexer/state.js';
 
