@@ -110,9 +110,6 @@ export function buildChapterContext(page: WikiPage, deps: RetrievalDeps): Chapte
   const seedSymbolSet = new Set<string>();
   const seedSymbolList: SeedSymbolEntry[] = [];
 
-  // allFiles as a set of rel paths
-  const allRelFiles = new Set([...GLOBAL_INDEX.allFiles].map(relPath));
-
   for (const seedFile of page.seedFiles) {
     // seedFile may be absolute or relative
     const relSeedFile = seedFile.includes('Rocket.Chat/') ? relPath(seedFile) : seedFile;
