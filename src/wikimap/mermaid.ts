@@ -11,6 +11,7 @@ export function parseMermaid(block: string): WikiDiagram {
   for (const m of block.matchAll(NODE_RE)) nodes[m[1]] = cleanLabel(m[2]);
   const edges: string[][] = [];
   for (const m of block.matchAll(EDGE_RE)) {
+    // 跳过误匹配节点定义的行（EDGE_RE 只该命中 A --> B 形态）
     if (!m[3]) continue;
     const e = [m[1], m[3]];
     if (m[2]) e.push(m[2].trim());
@@ -42,7 +43,7 @@ export function renderFlowchart(
   } else for (const id of Object.keys(nodes)) emitNode(id);
   for (const [a, b, label] of edges) {
     emitNode(a); emitNode(b);
-    lines.push(label ? `  ${nodeId(a)} -->|${label}| ${nodeId(b)}` : `  ${nodeId(a)} --> ${nodeId(b)}`);
+    lines.push(label ? `  ${nodeId(a)} -->|${label.replace(/"/g, "'").replace(/\|/g, '/')}| ${nodeId(b)}` : `  ${nodeId(a)} --> ${nodeId(b)}`);
   }
   return lines.join('\n');
 }

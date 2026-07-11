@@ -7,7 +7,7 @@ test('renderFlowchart → parseMermaid round-trip 保节点与边', () => {
   const mm = renderFlowchart(nodes, [['room', 'msg', 'sends']]);
   const d = parseMermaid(mm);
   assert.equal(d.nodes['room'], 'Room Service');
-  assert.ok(d.edges.some(e => e[0] === 'room' && e[1] === 'msg'));
+  assert.ok(d.edges.some(e => e[0] === 'room' && e[1] === 'msg' && e[2] === 'sends'));
 });
 
 test('renderFlowchart 支持 subgraph', () => {
@@ -21,4 +21,10 @@ test('renderSequence 出 sequenceDiagram + 步骤', () => {
   const mm = renderSequence('login', [['client', 'auth', 'POST /login']]);
   assert.match(mm, /sequenceDiagram/);
   assert.match(mm, /client->>auth: POST \/login/);
+});
+
+test('renderFlowchart 边标签含 | 和 " 不破坏 round-trip', () => {
+  const mm = renderFlowchart({ a: 'A', b: 'B' }, [['a', 'b', 'reads|writes "x"']]);
+  const d = parseMermaid(mm);
+  assert.ok(d.edges.some(e => e[0] === 'a' && e[1] === 'b'), '边 a→b 应仍可解析');
 });
