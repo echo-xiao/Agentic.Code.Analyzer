@@ -30,8 +30,8 @@ test('computeFacts: key_exports/fanIn/downstream/crossLayer 确定性抽取', ()
   const f = computeFacts(relFile, symbols);
   assert.deepEqual(f.key_exports, ['foo']);          // 只导出的
   assert.equal(f.fanIn, 2);                           // b.ts, c.ts
-  assert.ok(f.downstream.includes(B));
-  assert.ok(f.downstream.includes(C));
+  assert.ok(f.downstream.includes(relPathOf(B)));
+  assert.ok(f.downstream.includes(relPathOf(C)));
   assert.ok(f.crossLayerEdges.some(e => e.includes('notify-user'))); // pubsub 跨层
   assert.ok(f.fanOut >= 1);                            // 调了 bar
 });
