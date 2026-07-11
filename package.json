@@ -23,6 +23,7 @@
     "wiki:outline": "npx tsx src/wiki/outline.ts",
     "wiki:write": "npx tsx src/wiki/write.ts",
     "wiki:diagram": "npx tsx src/wiki/diagram.ts",
+    "wiki:verify": "npx tsx src/wiki/verify.ts",
     "refresh": "npm run prewarm && npm run module:build && npm run summaries:gen && npm run embed:gen && npm run embed:chunks && npm run module:summarize && npm run wiki:map && npm run gen:mcp && npm run judge && npm run eval:tools && npm run eval:retrieval && npm run report",
     "test": "tsx --test 'src/**/*.test.ts'"
   },
