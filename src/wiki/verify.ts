@@ -18,7 +18,6 @@
 import '../eval/utils/load-env.js';
 import * as fs from 'fs';
 import * as path from 'path';
-import * as os from 'os';
 import { fileURLToPath, pathToFileURL } from 'url';
 
 import { DATA_DIR, MODEL_TIERS } from '../config.js';
@@ -26,11 +25,9 @@ import { GLOBAL_INDEX } from '../indexer/state.js';
 import { ensureIndex } from '../indexer/index.js';
 import type { ProseSection } from '../wikimap/schema.js';
 
-// ─── Re-export the IndexLike interface for callers ───────────────────────────
+// ─── Import shared citation validation and helpers from write.ts ─────────────
+import { enforceCitations, countCitationRefs, buildLineCountOf, type IndexLike } from './write.js';
 export type { IndexLike } from './write.js';
-
-// ─── Import shared citation validation from write.ts ─────────────────────────
-import { enforceCitations, type IndexLike } from './write.js';
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const WIKI_PROSE_PATH = path.join(DATA_DIR, 'wiki-prose.json');
@@ -55,88 +52,28 @@ export interface ChapterVerifyResult {
 export interface VerifyResult {
   perChapter: ChapterVerifyResult[];
   citation_validity_rate: number;
+  /**
+   * Number of chapters with zero citations.
+   * These are excluded from citation_validity_rate to avoid inflation.
+   * A high value here signals a "no sourcing" quality gap — tracked separately.
+   */
+  uncited_chapters: number;
 }
 
 // ── Prose shape accepted by verifyCitations ───────────────────────────────────
 // Matches data/wiki-prose.json: Record<chapterTitle, Array<{section, text}>>
 export type ProseRecord = Record<string, ProseSection[]>;
 
-// ── lineCountOf builder (in-memory, no real fs read in tests) ─────────────────
-/**
- * Build a lineCountOf function from allFiles.
- * When files in allFiles are real fs paths, counts their lines.
- * Returns undefined when unresolvable → enforceCitations keeps the citation (fail-open).
- */
-function buildInMemoryLineCountOf(
-  allFiles: Set<string> | ReadonlySet<string>,
-): (relOrAbsPath: string) => number | undefined {
-  const cache = new Map<string, number | undefined>();
-
-  const relToAbs = new Map<string, string>();
-  for (const f of allFiles) {
-    const rel = f.includes('Rocket.Chat/') ? f.split('Rocket.Chat/')[1] : f;
-    if (rel) relToAbs.set(rel, f);
-    relToAbs.set(f, f);
-  }
-
-  return function lineCountOf(relOrAbsPath: string): number | undefined {
-    if (cache.has(relOrAbsPath)) return cache.get(relOrAbsPath);
-
-    const abs = relToAbs.get(relOrAbsPath);
-    const candidates = abs && abs !== relOrAbsPath ? [abs, relOrAbsPath] : [relOrAbsPath];
-
-    for (const candidate of candidates) {
-      try {
-        const content = fs.readFileSync(candidate, 'utf-8');
-        const count = content.split('\n').length;
-        cache.set(relOrAbsPath, count);
-        return count;
-      } catch {
-        // try next
-      }
-    }
-
-    cache.set(relOrAbsPath, undefined);
-    return undefined;
-  };
-}
-
-// ── SOURCES_LINE_RE ───────────────────────────────────────────────────────────
-// Count all Sources: references in a block of text (for total-citation tally).
-// Must match the same lines that enforceCitations sees.
-const SOURCES_REF_RE = /^Sources:\s*(.+)$/gim;
-const SINGLE_REF_RE = /^([^:]+):L?(\d+)(?:-L?(\d+))?$/;
-
-function countCitationsInText(text: string): number {
-  let total = 0;
-  let m: RegExpExecArray | null;
-  // Reset lastIndex before use (global regex)
-  SOURCES_REF_RE.lastIndex = 0;
-  while ((m = SOURCES_REF_RE.exec(text)) !== null) {
-    const refs = m[1].split(',').map(s => s.trim()).filter(Boolean);
-    // Only count refs that are at least syntactically plausible
-    for (const ref of refs) {
-      if (SINGLE_REF_RE.test(ref.trim())) {
-        total++;
-      }
-      // Malformed refs: still count as a citation attempt (will land in invalid)
-      else if (ref.length > 0) {
-        total++;
-      }
-    }
-  }
-  return total;
-}
-
 // ── verifyCitations ───────────────────────────────────────────────────────────
 
 /**
  * Validate all Sources: citations across the wiki prose using enforceCitations.
  *
- * Zero-citation guard: when a chapter has no citations at all,
- * we treat it as fully valid (rate contribution = 1 valid / 1 total) so that
- * chapters without any sourcing don't penalise the rate — they are just
- * un-cited, which is a different quality concern. (Documented choice.)
+ * citation_validity_rate: "of the citations that EXIST, how many are valid?"
+ *   - Only chapters with totalCitations > 0 contribute to the rate.
+ *   - Chapters with zero citations are counted in `uncited_chapters` instead.
+ *   - If NO chapter has any citation (denominator = 0), rate = 1.0 (no invalid
+ *     citations exist) and uncited_chapters = total chapters.
  *
  * @param prose  Record<chapterTitle, ProseSection[]> — same shape as wiki-prose.json
  * @param index  IndexLike — allFiles + optional lineCountOf
@@ -145,13 +82,14 @@ export function verifyCitations(prose: ProseRecord, index: IndexLike): VerifyRes
   const perChapter: ChapterVerifyResult[] = [];
   let sumValid = 0;
   let sumCitations = 0;
+  let uncited_chapters = 0;
 
   for (const [chapter, sections] of Object.entries(prose)) {
     // Reconstruct full text for this chapter (join all sections)
     const fullText = sections.map(s => s.text).join('\n');
 
-    // Count total citation refs in this chapter
-    const totalCitations = countCitationsInText(fullText);
+    // Count total citation refs in this chapter (using shared helper from write.ts)
+    const totalCitations = countCitationRefs(fullText);
 
     // Run enforceCitations to find which refs are invalid
     // The dropped array contains one entry per invalid ref
@@ -168,12 +106,13 @@ export function verifyCitations(prose: ProseRecord, index: IndexLike): VerifyRes
     const invalidCount = invalidCitations.length;
     const validCount = Math.max(0, totalCitations - invalidCount);
 
-    // Zero-citation guard: treat as fully valid (rate contribution 1/1)
-    const effectiveCitations = totalCitations === 0 ? 1 : totalCitations;
-    const effectiveValid = totalCitations === 0 ? 1 : validCount;
-
-    sumValid += effectiveValid;
-    sumCitations += effectiveCitations;
+    if (totalCitations === 0) {
+      // Zero-citation chapter: excluded from rate; tracked separately
+      uncited_chapters++;
+    } else {
+      sumValid += validCount;
+      sumCitations += totalCitations;
+    }
 
     perChapter.push({
       chapter,
@@ -183,10 +122,11 @@ export function verifyCitations(prose: ProseRecord, index: IndexLike): VerifyRes
     });
   }
 
-  // citation_validity_rate: guard divide-by-zero (no chapters → 1.0)
+  // citation_validity_rate: guard divide-by-zero (no cited chapters → 1.0,
+  // because there are no invalid citations in a world with no citations at all)
   const citation_validity_rate = sumCitations > 0 ? sumValid / sumCitations : 1.0;
 
-  return { perChapter, citation_validity_rate };
+  return { perChapter, citation_validity_rate, uncited_chapters };
 }
 
 // ── writeVerifyReport ─────────────────────────────────────────────────────────
@@ -200,6 +140,7 @@ export function writeVerifyReport(result: VerifyResult, outPath: string = DEFAUL
     `# wiki:verify Report`,
     ``,
     `**citation_validity_rate:** ${(result.citation_validity_rate * 100).toFixed(1)}%`,
+    `**uncited_chapters:** ${result.uncited_chapters} (chapters with zero citations; excluded from rate)`,
     ``,
     `| Chapter | Citations | Valid | Invalid |`,
     `|---------|-----------|-------|---------|`,
@@ -261,7 +202,7 @@ async function main() {
   // Build index for citation validation
   await ensureIndex();
 
-  const lineCountOf = buildInMemoryLineCountOf(GLOBAL_INDEX.allFiles);
+  const lineCountOf = buildLineCountOf(GLOBAL_INDEX.allFiles);
   const index: IndexLike = {
     allFiles: GLOBAL_INDEX.allFiles,
     lineCountOf,

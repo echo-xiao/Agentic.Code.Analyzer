@@ -199,6 +199,36 @@ export function assembleProse(_page: WikiPage, rawText: string): ProseSection[] 
   return sections;
 }
 
+// ── countCitationRefs ─────────────────────────────────────────────────────────
+
+/**
+ * Count every well-formed citation ref on Sources: lines in `text`.
+ * "Well-formed" means matching the same SOURCES_LINE_RE + SINGLE_REF_RE that
+ * enforceCitations validates — so this counts exactly the refs that
+ * enforceCitations will accept or reject, nothing more.
+ *
+ * Both valid AND invalid refs are counted; the caller can subtract
+ * `dropped.length` to get the valid count.
+ */
+export function countCitationRefs(text: string): number {
+  const SOURCES_LINE_RE_LOCAL = /^Sources:\s*(.+)$/gim;
+  const SINGLE_REF_RE_LOCAL = /^([^:]+):L?(\d+)(?:-L?(\d+))?$/;
+  let total = 0;
+  let m: RegExpExecArray | null;
+  SOURCES_LINE_RE_LOCAL.lastIndex = 0;
+  while ((m = SOURCES_LINE_RE_LOCAL.exec(text)) !== null) {
+    const refs = m[1].split(',').map(s => s.trim()).filter(Boolean);
+    for (const ref of refs) {
+      // Count refs that match the well-formed pattern OR malformed (they still
+      // land in dropped, but they ARE citation attempts).
+      if (SINGLE_REF_RE_LOCAL.test(ref.trim()) || ref.length > 0) {
+        total++;
+      }
+    }
+  }
+  return total;
+}
+
 // ── lineCountOf factory ───────────────────────────────────────────────────────
 
 /**
@@ -212,7 +242,7 @@ export function assembleProse(_page: WikiPage, rawText: string): ProseSection[] 
  *
  * Results are cached in a Map to avoid repeated fs reads for the same file.
  */
-function buildLineCountOf(
+export function buildLineCountOf(
   allFiles: Set<string> | ReadonlySet<string>,
 ): (relOrAbsPath: string) => number | undefined {
   const cache = new Map<string, number | undefined>();

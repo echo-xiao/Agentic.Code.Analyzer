@@ -157,9 +157,9 @@ test('verifyCitations: citation_validity_rate numeric value correct', () => {
   );
 });
 
-// ── Test 5: zero-citation chapter handled gracefully ─────────────────────────
+// ── Test 5: zero-citation chapter counted in uncited_chapters, excluded from rate
 
-test('verifyCitations: zero-citation chapter does not crash', () => {
+test('verifyCitations: zero-citation chapter counted in uncited_chapters, not in rate', () => {
   const index = makeIndex(['server/auth/AuthService.ts']);
   const prose = makeProse({
     'Empty Chapter': 'This chapter has no source citations at all.',
@@ -173,15 +173,19 @@ test('verifyCitations: zero-citation chapter does not crash', () => {
   assert.equal(ch.valid, 0, 'valid should be 0');
   assert.equal(ch.invalid.length, 0, 'invalid should be empty array');
 
+  // Zero-citation chapter is tracked in uncited_chapters
+  assert.equal(result.uncited_chapters, 1, 'uncited_chapters should be 1');
+
   // Rate should be defined and valid (not NaN, not Infinity)
   assert.ok(Number.isFinite(result.citation_validity_rate), 'rate should be finite');
-  // Zero-citation chapters contribute 1/1 to rate (documented choice)
-  assert.equal(result.citation_validity_rate, 1.0, 'rate should be 1.0 when no citations');
+  // No cited chapters → denominator = 0 → rate = 1.0 (divide-by-zero guard:
+  // no invalid citations exist when no citations exist at all)
+  assert.equal(result.citation_validity_rate, 1.0, 'rate should be 1.0 (divide-by-zero guard)');
 });
 
 // ── Test 6: zero-citation chapter mixed with valid chapter ────────────────────
 
-test('verifyCitations: zero-citation chapter mixed with valid chapter', () => {
+test('verifyCitations: zero-citation chapter mixed with valid chapter — rate from cited chapters only', () => {
   const index = makeIndex(['server/auth/AuthService.ts']);
   const prose: ProseRecord = {
     'No Citations': [{ section: 'Overview', text: 'No citations here.' }],
@@ -198,9 +202,52 @@ test('verifyCitations: zero-citation chapter mixed with valid chapter', () => {
 
   const result = verifyCitations(prose, index);
 
-  // Both chapters: each contributes 1 effective valid / 1 effective total
-  // rate = 2/2 = 1.0
-  assert.equal(result.citation_validity_rate, 1.0, 'rate should be 1.0');
+  // "No Citations" chapter is in uncited_chapters, NOT in the rate denominator.
+  assert.equal(result.uncited_chapters, 1, 'uncited_chapters should be 1');
+  // Rate = 1 valid / 1 total (only "Has Citations" contributes) = 1.0.
+  // NOT because zero-citation was substituted as 1/1 — it is simply excluded.
+  assert.equal(result.citation_validity_rate, 1.0, 'rate should be 1.0 (only cited chapter in denominator)');
+});
+
+// ── Test 6b: inflation regression — 2 uncited + 1 chapter with 1 valid + 1 invalid
+
+test('verifyCitations: uncited chapters do not inflate rate (regression)', () => {
+  // 2 uncited chapters + 1 chapter with 1 valid + 1 invalid ref
+  // Correct rate = 1 / 2 = 0.5 (only the cited chapter counts)
+  // Inflated rate (old bug) = 3 valid / 4 total = 0.75 (uncited added as 1/1)
+  const index = makeIndex(['server/auth/AuthService.ts']);
+  const prose: ProseRecord = {
+    'Uncited A': [{ section: 'Overview', text: 'No citations.' }],
+    'Uncited B': [{ section: 'Overview', text: 'Also no citations.' }],
+    'Mixed Chapter': [
+      {
+        section: 'Overview',
+        text: [
+          'AuthService handles auth.',
+          'Sources: server/auth/AuthService.ts:L10-L50',
+          'Ghost does nothing.',
+          'Sources: server/nonexistent/Ghost.ts:L1-L10',
+        ].join('\n'),
+      },
+    ],
+  };
+
+  const result = verifyCitations(prose, index);
+
+  assert.equal(result.uncited_chapters, 2, 'uncited_chapters should be 2');
+  assert.equal(result.perChapter.length, 3, 'should have 3 chapters');
+
+  const mixed = result.perChapter.find(c => c.chapter === 'Mixed Chapter')!;
+  assert.ok(mixed, 'Mixed Chapter should be present');
+  assert.equal(mixed.citations, 2, 'Mixed Chapter should have 2 citations');
+  assert.equal(mixed.valid, 1, 'Mixed Chapter should have 1 valid');
+  assert.equal(mixed.invalid.length, 1, 'Mixed Chapter should have 1 invalid');
+
+  // Only Mixed Chapter contributes: 1 valid / 2 total = 0.5
+  assert.ok(
+    Math.abs(result.citation_validity_rate - 0.5) < 0.001,
+    `rate should be 0.5 (inflation-free), got ${result.citation_validity_rate}`,
+  );
 });
 
 // ── Test 7: multiple valid citations in one chapter ───────────────────────────
@@ -294,6 +341,7 @@ test('writeVerifyReport: writes markdown report to a tmp path', () => {
       },
     ],
     citation_validity_rate: 0.667,
+    uncited_chapters: 0,
   };
 
   writeVerifyReport(fakeResult, outPath);
@@ -302,6 +350,7 @@ test('writeVerifyReport: writes markdown report to a tmp path', () => {
 
   assert.ok(content.includes('citation_validity_rate'), 'report should contain citation_validity_rate');
   assert.ok(content.includes('66.7%'), 'report should show rate as percentage');
+  assert.ok(content.includes('uncited_chapters'), 'report should include uncited_chapters');
   assert.ok(content.includes('Auth Chapter'), 'report should include Auth Chapter');
   assert.ok(content.includes('Broken Chapter'), 'report should include Broken Chapter');
   assert.ok(content.includes('path not in index'), 'report should include the invalid reason');
