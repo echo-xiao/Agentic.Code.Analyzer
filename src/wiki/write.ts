@@ -51,6 +51,14 @@ export interface IndexLike {
   lineCountOf?: (relOrAbsPath: string) => number | undefined | null;
 }
 
+// ── Citation regex (shared across enforceCitations, countCitationRefs, writeChapter) ────────────
+
+// Matches all four LLM-emitted forms:
+//   path:L<start>           path:<start>
+//   path:L<start>-L<end>    path:<start>-<end>   path:L<start>-<end>
+// [^:] stops at first colon (the one before the optional L); path must not contain a bare colon.
+const SINGLE_REF_RE = /^([^:]+):L?(\d+)(?:-L?(\d+))?$/;
+
 // ── enforceCitations ──────────────────────────────────────────────────────────
 
 export interface DroppedCitation {
@@ -92,11 +100,6 @@ export function enforceCitations(text: string, index: IndexLike): CitationResult
   }
 
   const SOURCES_LINE_RE = /^Sources:\s*(.+)$/im;
-  // Matches all four LLM-emitted forms:
-  //   path:L<start>           path:<start>
-  //   path:L<start>-L<end>    path:<start>-<end>   path:L<start>-<end>
-  // [^:] stops at first colon (the one before the optional L); path must not contain a bare colon.
-  const SINGLE_REF_RE = /^([^:]+):L?(\d+)(?:-L?(\d+))?$/;
 
   const lines = text.split('\n');
   const dropped: DroppedCitation[] = [];
@@ -212,16 +215,15 @@ export function assembleProse(_page: WikiPage, rawText: string): ProseSection[] 
  */
 export function countCitationRefs(text: string): number {
   const SOURCES_LINE_RE_LOCAL = /^Sources:\s*(.+)$/gim;
-  const SINGLE_REF_RE_LOCAL = /^([^:]+):L?(\d+)(?:-L?(\d+))?$/;
   let total = 0;
   let m: RegExpExecArray | null;
   SOURCES_LINE_RE_LOCAL.lastIndex = 0;
   while ((m = SOURCES_LINE_RE_LOCAL.exec(text)) !== null) {
     const refs = m[1].split(',').map(s => s.trim()).filter(Boolean);
     for (const ref of refs) {
-      // Count refs that match the well-formed pattern OR malformed (they still
-      // land in dropped, but they ARE citation attempts).
-      if (SINGLE_REF_RE_LOCAL.test(ref.trim()) || ref.length > 0) {
+      // Count any non-empty ref — both valid and malformed ones are citation
+      // attempts and land in dropped when invalid.
+      if (ref.trim().length > 0) {
         total++;
       }
     }
@@ -259,13 +261,9 @@ export function buildLineCountOf(
   return function lineCountOf(relOrAbsPath: string): number | undefined {
     if (cache.has(relOrAbsPath)) return cache.get(relOrAbsPath);
 
-    // Resolve: try citation path directly, then via relToAbs table
+    // Resolve: try citation path via relToAbs table, then as-is
     const candidates: string[] = [];
-    if (relOrAbsPath in Object.fromEntries(relToAbs)) {
-      const abs = relToAbs.get(relOrAbsPath);
-      if (abs) candidates.push(abs);
-    } else {
-      // citation path may be a sub-path that matches the tail of allFiles entries
+    if (relToAbs.has(relOrAbsPath)) {
       const abs = relToAbs.get(relOrAbsPath);
       if (abs) candidates.push(abs);
     }
@@ -363,8 +361,7 @@ export async function writeChapter(
   let sm: RegExpExecArray | null;
   while ((sm = SOURCES_RE.exec(kept)) !== null) {
     for (const ref of sm[1].split(',').map(s => s.trim())) {
-      // Mirror enforcement regex: accept path:L?start[-L?end] in all four forms
-      const rm = /^([^:]+):L?(\d+)(?:-L?(\d+))?$/.exec(ref.trim());
+      const rm = SINGLE_REF_RE.exec(ref.trim());
       if (!rm) continue;
       const [, refPath, start, end] = rm;
       const range = end ? `L${start}-${end}` : `L${start}`;

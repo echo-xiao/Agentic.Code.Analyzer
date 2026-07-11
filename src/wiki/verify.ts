@@ -93,7 +93,7 @@ export function verifyCitations(prose: ProseRecord, index: IndexLike): VerifyRes
 
     // Run enforceCitations to find which refs are invalid
     // The dropped array contains one entry per invalid ref
-    const { dropped } = enforceCitations(fullText, index);
+    const { kept, dropped } = enforceCitations(fullText, index);
 
     // dropped entries: each is one invalid citation (one ref that failed)
     const invalidCitations: InvalidCitation[] = dropped.map(d => ({
@@ -102,9 +102,10 @@ export function verifyCitations(prose: ProseRecord, index: IndexLike): VerifyRes
       reason: d.reason,
     }));
 
-    // valid = total - invalid count (clamped to [0, total])
-    const invalidCount = invalidCitations.length;
-    const validCount = Math.max(0, totalCitations - invalidCount);
+    // valid = count of refs that ACTUALLY SURVIVED into `kept`
+    // This is accurate even when a Sources: line has one good + one bad ref
+    // (the entire line is dropped by enforceCitations, so the good ref does NOT survive).
+    const validCount = countCitationRefs(kept);
 
     if (totalCitations === 0) {
       // Zero-citation chapter: excluded from rate; tracked separately
