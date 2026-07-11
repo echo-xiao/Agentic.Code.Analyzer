@@ -15,13 +15,13 @@ import { cosine, embedText } from './embeddings.js';
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const WIKI_MAP_PATH = path.resolve(__dirname, '..', '..', '..', 'data', 'wiki-map.json');
-const SUMMARIES_PATH = path.resolve(__dirname, '..', '..', '..', 'data', 'file-summaries.json');
-const VECTORS_PATH = path.resolve(__dirname, '..', '..', '..', 'data', 'summary-vectors.json');
+const SUMMARIES_PATH = path.resolve(__dirname, '..', '..', '..', 'data', 'summaries', 'file-summaries.json');
+const VECTORS_PATH = path.resolve(__dirname, '..', '..', '..', 'data', 'summaries', 'summary-vectors.json');
 const MAX_CANDIDATES = 25;
 
 // 文件一句话摘要（summaries:gen 生成，哈希缓存）——排序语义项 + 候选地图标注。缺文件时为 null（照旧跑）。
-let summariesCache: Record<string, { hash: string; summary: string }> | null | undefined;
-export function loadSummaries(): Record<string, { hash: string; summary: string }> | null {
+let summariesCache: Record<string, { hash: string; ranking_line: string }> | null | undefined;
+export function loadSummaries(): Record<string, { hash: string; ranking_line: string }> | null {
     if (summariesCache !== undefined) return summariesCache;
     try { summariesCache = JSON.parse(fs.readFileSync(SUMMARIES_PATH, 'utf-8')); }
     catch { summariesCache = null; }
@@ -81,14 +81,14 @@ const RRF_K = 60;
  */
 export function rankCandidates(
     items: Array<{ f: string; round: number }>, tokens: string[],
-    summaries?: Record<string, { summary: string }> | null,
+    summaries?: Record<string, { ranking_line: string }> | null,
     sem?: { queryVec: Float32Array; vecOf: (rel: string) => Float32Array | null } | null,
 ): string[] {
     const live = items.filter(x => !isTestPath(x.f));
     // 信号1: fuzzy（现有打分，图邻近 + 字面）
     const fuzzyScore = (x: { f: string; round: number }) => {
         const nameFace = scoreString(tokens, x.f);
-        const sumFace = summaries?.[x.f] ? scoreString(tokens, summaries[x.f].summary) : 0;
+        const sumFace = summaries?.[x.f] ? scoreString(tokens, summaries[x.f].ranking_line) : 0;
         return 2 / (1 + x.round) + Math.max(nameFace, sumFace);
     };
     const fuzzyRanked = [...live].sort((a, b) => fuzzyScore(b) - fuzzyScore(a) || a.f.localeCompare(b.f));
@@ -188,7 +188,7 @@ function candidateLines(a: Analysis): string[] {
         `Suggested seed symbols: ${[...new Set(a.seeds)].join(', ')}`,
         `Candidate files, ranked by graph proximity to the seeds + relevance (top ${a.ranked.length}):`,
         ...a.ranked.map(f => {
-            const sum = loadSummaries()?.[f]?.summary;
+            const sum = loadSummaries()?.[f]?.ranking_line;
             return `- ${f}${a.pageOf(f)}${sum ? ` — ${sum}` : ''}`;
         }),
         `⚠️ These are CANDIDATES, not the answer: you MUST confirm every file you cite via search/graph/details — citing unverified paths is an error. Files not listed here may still matter.`,
