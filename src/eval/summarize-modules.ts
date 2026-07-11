@@ -32,7 +32,7 @@ export async function summarizeModules(): Promise<number> {
     if (store[mod.id]?.hash === memberHash) continue;
     try {
       const resp = await client.messages.create({
-        model: MODEL_MODULE, max_tokens: 2048,
+        model: MODEL_MODULE, max_tokens: 4096,
         messages: [{ role: 'user', content: buildModulePrompt(input) }],
         output_config: { format: { type: 'json_schema', schema: MODULE_SUMMARY_SCHEMA } },
       } as any);
@@ -40,8 +40,9 @@ export async function summarizeModules(): Promise<number> {
       const out = JSON.parse(block.text);
       store[mod.id] = { hash: memberHash, ...out };
       done++;
+      fs.mkdirSync(OUT_DIR, { recursive: true });
+      fs.writeFileSync(OUT, JSON.stringify(sortKeys(store), null, 1), 'utf-8');   // 每成功即落盘 → 中断可断点续(hash 增量跳过已完成)
     } catch (e: any) { console.error(`[module:summarize] ${mod.id} 失败: ${e?.message?.slice(0,100)}`); }
-    if (done % 20 === 0) { fs.mkdirSync(OUT_DIR, { recursive: true }); fs.writeFileSync(OUT, JSON.stringify(sortKeys(store), null, 1), 'utf-8'); }
   }
   fs.mkdirSync(OUT_DIR, { recursive: true }); fs.writeFileSync(OUT, JSON.stringify(sortKeys(store), null, 1), 'utf-8');
   console.error(`[module:summarize] 新增/更新 ${done} · 库存 ${Object.keys(store).length} → ${OUT}`);
