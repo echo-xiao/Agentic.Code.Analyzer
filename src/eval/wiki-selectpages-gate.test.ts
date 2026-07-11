@@ -181,55 +181,157 @@ test('runGate: perQuestion only contains entries with claude-truth', () => {
     assert.equal(ids.length, 2);
 });
 
-test('runGate: hit=true when selectPages chosen intersects expected pages', () => {
-    // 'tc-send-message' question contains 'sendMessage' + 'server' → selectPages on the fixture
-    // map should rank 'Messaging Core' (sections: 'Send Message', 'Message Validation') highly.
-    // We verify the PerQuestion record has expected==['Messaging Core'] and correct goldCore.
-    const result = runGate({
-        map: FIXTURE_MAP,
-        fileToModule: FIXTURE_FILE_TO_MODULE,
-        testcases: FIXTURE_TESTCASES,
-        claudeTruth: FIXTURE_CLAUDE_TRUTH,
-    });
-    const sendMsgRow = result.perQuestion.find(r => r.id === 'tc-send-message');
-    assert.ok(sendMsgRow, 'tc-send-message row must exist');
-    assert.deepEqual(sendMsgRow!.expected, ['Messaging Core']);
-    assert.deepEqual(sendMsgRow!.goldCore, FIXTURE_CLAUDE_TRUTH['tc-send-message']!.core);
-    // If chosen intersects ['Messaging Core'], hit=true; otherwise hit=false.
-    // Either outcome is valid for a fixture test — but the hit field must be consistent:
-    if (sendMsgRow!.chosen.includes('Messaging Core')) {
-        assert.equal(sendMsgRow!.hit, true);
-    } else {
-        assert.equal(sendMsgRow!.hit, false);
-    }
-});
-
-test('runGate: hitRate is correct fraction of hits over scored', () => {
-    // Force hit=true for all scored questions by using a map where all pages score high for any query.
-    // We do this by giving each page a section that matches the question tokens exactly.
-    const forcedHitMap: WikiMap = {
-        ...FIXTURE_MAP,
+test('runGate: hit=true — deterministic fixture forces selectPages to choose the expected page', () => {
+    // questionTokens('How does sendMessage work on the server?') produces:
+    //   ["send", "message", "server"]
+    //   ("how", "does", "work" are stopwords; camelCase split fires on sendMessage)
+    // K = min(2, 3) = 2.  Top-2 token average must exceed PAGE_THRESHOLD (0.3).
+    //
+    // We craft a map with exactly ONE page whose title is "Send Message Server"
+    // (exact token strings embedded → fuzzysort scores approach 1.0 per token)
+    // and all other pages have unrelated text that cannot score ≥ 0.3 for these tokens.
+    //
+    // The gold core for tc-send-message maps to module 'meteor/lib/server' which
+    // corresponds to page 'Send Message Server' in this fixture map.
+    const deterministicMap: WikiMap = {
+        repo: 'test/repo',
+        generated_at: '2026-01-01T00:00:00Z',
+        derived_from: 'deterministic test',
         pages: [
-            mkPage('Messaging Core', ['meteor/lib/server'], ['sendmessage server push notification queue']),
-            mkPage('Push Notifications', ['meteor/push'], ['push notification queue message']),
-            mkPage('UI Components', ['meteor/client/ui'], ['video conference component']),
+            // Target page: title embeds all three informative tokens → near-perfect score
+            mkPage('Send Message Server', ['meteor/lib/server'], ['send message server handler']),
+            // Decoy pages: completely unrelated vocabulary → cannot score ≥ 0.3 for ["send","message","server"]
+            mkPage('Database Migration', ['meteor/db'], ['schema upgrade rollback']),
+            mkPage('OAuth Login', ['meteor/auth'], ['token refresh credential']),
         ],
+        file_to_pages: {},
     };
 
+    const deterministicFileToModule: Record<string, string> = {
+        'apps/meteor/app/lib/server/functions/sendMessage.ts': 'meteor/lib/server',
+        'apps/meteor/app/lib/server/methods/sendMessage.ts': 'meteor/lib/server',
+    };
+
+    const deterministicTruth: ClaudeTruthMap = {
+        'tc-send-message': {
+            core: [
+                'apps/meteor/app/lib/server/functions/sendMessage.ts',
+                'apps/meteor/app/lib/server/methods/sendMessage.ts',
+            ],
+            supporting: [],
+            chain: [],
+            keySymbols: ['sendMessage'],
+        },
+    };
+
+    const deterministicTestcases: TestCase[] = [
+        {
+            id: 'tc-send-message',
+            question: 'How does sendMessage work on the server?',
+            questionType: 'call-chain',
+            subsystem: 'messaging',
+            difficulty: 'medium',
+        },
+    ];
+
     const result = runGate({
-        map: forcedHitMap,
-        fileToModule: FIXTURE_FILE_TO_MODULE,
-        testcases: FIXTURE_TESTCASES,
-        claudeTruth: FIXTURE_CLAUDE_TRUTH,
+        map: deterministicMap,
+        fileToModule: deterministicFileToModule,
+        testcases: deterministicTestcases,
+        claudeTruth: deterministicTruth,
     });
 
-    const scored = result.perQuestion.length;
-    const hitCount = result.perQuestion.filter(r => r.hit).length;
-    // hitRate must equal hitCount / scored
-    const expectedRate = scored > 0 ? hitCount / scored : 0;
-    assert.equal(result.hitRate, expectedRate);
-    // hitRate must be in [0, 1]
-    assert.ok(result.hitRate >= 0 && result.hitRate <= 1, `hitRate ${result.hitRate} out of [0,1]`);
+    const row = result.perQuestion.find(r => r.id === 'tc-send-message');
+    assert.ok(row, 'tc-send-message row must exist');
+    assert.deepEqual(row!.expected, ['Send Message Server'], 'expected page must be "Send Message Server"');
+    // selectPages MUST have chosen "Send Message Server" — its title embeds the exact tokens,
+    // so its score is guaranteed > PAGE_THRESHOLD (0.3). Assert unconditionally (no if/else).
+    assert.ok(
+        row!.chosen.includes('Send Message Server'),
+        `selectPages must select "Send Message Server" for tokens ["send","message","server"]; chosen=${JSON.stringify(row!.chosen)}`,
+    );
+    assert.equal(row!.hit, true, 'hit must be true when the expected page was chosen');
+});
+
+test('runGate: hitRate=0.5 — 2-question fixture with exactly 1 hit and 1 miss designed a priori', () => {
+    // Design:
+    //   tc-hit:  question "send message server" → tokens ["send","message","server"] (K=2)
+    //            gold core → module 'mod/hit' → page "Send Message Server" (title embeds tokens)
+    //            selectPages will score "Send Message Server" above PAGE_THRESHOLD → HIT
+    //
+    //   tc-miss: question "database query optimize" → tokens ["databas","queri","optim"] (singularized)
+    //            gold core → module 'mod/miss' → page "Push Notification Queue"
+    //            The only page that can score for ["databas","queri","optim"] is "Database Query Optimize",
+    //            but that page belongs to module 'mod/other' (not 'mod/miss') →
+    //            expected = ["Push Notification Queue"], chosen ∩ expected = ∅ → MISS
+    //
+    // Expected hitRate = 1/2 = 0.5, known purely from fixture design.
+
+    const splitMap: WikiMap = {
+        repo: 'test/repo',
+        generated_at: '2026-01-01T00:00:00Z',
+        derived_from: 'hitrate split test',
+        pages: [
+            // Scores high for tc-hit's tokens; belongs to mod/hit → tc-hit HIT
+            mkPage('Send Message Server', ['mod/hit'], ['send message server handler']),
+            // Scores high for tc-miss's tokens; belongs to mod/other (NOT mod/miss) → tc-miss MISS
+            mkPage('Database Query Optimize', ['mod/other'], ['database query optimize index']),
+            // The page tc-miss EXPECTS; belongs to mod/miss but unrelated text → won't be chosen
+            mkPage('Push Notification Queue', ['mod/miss'], ['push notification queue async']),
+        ],
+        file_to_pages: {},
+    };
+
+    const splitFileToModule: Record<string, string> = {
+        'src/hit/handler.ts': 'mod/hit',
+        'src/miss/queue.ts': 'mod/miss',
+    };
+
+    const splitTruth: ClaudeTruthMap = {
+        'tc-hit': {
+            core: ['src/hit/handler.ts'],    // mod/hit → expected = ["Send Message Server"]
+            supporting: [], chain: [], keySymbols: [],
+        },
+        'tc-miss': {
+            core: ['src/miss/queue.ts'],     // mod/miss → expected = ["Push Notification Queue"]
+            supporting: [], chain: [], keySymbols: [],
+        },
+    };
+
+    const splitTestcases: TestCase[] = [
+        {
+            id: 'tc-hit',
+            // tokens after questionTokens: ["send","message","server"] — matches "Send Message Server"
+            question: 'send message server',
+            questionType: 'call-chain', subsystem: 'msg', difficulty: 'easy',
+        },
+        {
+            id: 'tc-miss',
+            // tokens after questionTokens: ["databas","queri","optim"] (singularized)
+            // → matches "Database Query Optimize" (mod/other), but expected is "Push Notification Queue" (mod/miss)
+            question: 'databases queries optimize',
+            questionType: 'architecture', subsystem: 'db', difficulty: 'easy',
+        },
+    ];
+
+    const result = runGate({
+        map: splitMap,
+        fileToModule: splitFileToModule,
+        testcases: splitTestcases,
+        claudeTruth: splitTruth,
+    });
+
+    assert.equal(result.perQuestion.length, 2, '2 scored questions');
+    // Assert specific per-question outcomes derived from fixture design:
+    const hitRow = result.perQuestion.find(r => r.id === 'tc-hit');
+    const missRow = result.perQuestion.find(r => r.id === 'tc-miss');
+    assert.ok(hitRow, 'tc-hit row must exist');
+    assert.ok(missRow, 'tc-miss row must exist');
+    assert.equal(hitRow!.hit, true, 'tc-hit must be HIT (fixture designed so "Send Message Server" is chosen)');
+    assert.equal(missRow!.hit, false, 'tc-miss must be MISS ("Push Notification Queue" cannot be chosen for db/query tokens)');
+    // hitRate must equal exactly 0.5 — derived from fixture design, not from result counting
+    assert.equal(result.hitRate, 0.5, `hitRate must be 0.5; got ${result.hitRate}`);
+    assert.equal(result.perQuestion.filter(r => r.hit).length, 1, 'exactly 1 of 2 questions hit');
 });
 
 test('runGate: hitRate=0 when no testcases scored (empty claude-truth)', () => {
@@ -262,4 +364,44 @@ test('readCitationRate: parses percentage from wiki-verify.md', () => {
 test('readCitationRate: returns null when file does not exist', () => {
     const rate = readCitationRate('/tmp/this-file-does-not-exist-wiki-gate.md');
     assert.equal(rate, null);
+});
+
+test('runGate: verifyPath injection — citationRate equals rate parsed from injected temp file', () => {
+    // Inject a temp wiki-verify.md with a known rate (75.0%) via GateOpts.verifyPath.
+    // runGate must read from verifyPath instead of the hardcoded WIKI_VERIFY_PATH,
+    // so result.citationRate must equal 0.75 regardless of what lives on real disk.
+    const tmpDir = fs.mkdtempSync(path.join(os.tmpdir(), 'wiki-gate-verifypath-'));
+    const tmpFile = path.join(tmpDir, 'wiki-verify.md');
+    fs.writeFileSync(tmpFile, [
+        '# wiki:verify Report',
+        '',
+        '**citation_validity_rate:** 75.0%',
+    ].join('\n'));
+    try {
+        const result = runGate({
+            map: FIXTURE_MAP,
+            fileToModule: FIXTURE_FILE_TO_MODULE,
+            testcases: FIXTURE_TESTCASES,
+            claudeTruth: FIXTURE_CLAUDE_TRUTH,
+            verifyPath: tmpFile,
+        });
+        assert.ok(result.citationRate !== null, 'citationRate must not be null when verifyPath file exists');
+        assert.ok(
+            Math.abs(result.citationRate! - 0.75) < 1e-9,
+            `citationRate must be 0.75 from injected file; got ${result.citationRate}`,
+        );
+    } finally {
+        fs.rmSync(tmpDir, { recursive: true });
+    }
+});
+
+test('runGate: verifyPath pointing at nonexistent file → citationRate === null', () => {
+    const result = runGate({
+        map: FIXTURE_MAP,
+        fileToModule: FIXTURE_FILE_TO_MODULE,
+        testcases: FIXTURE_TESTCASES,
+        claudeTruth: FIXTURE_CLAUDE_TRUTH,
+        verifyPath: '/tmp/nonexistent-wiki-verify-gate-test.md',
+    });
+    assert.equal(result.citationRate, null, 'citationRate must be null when verifyPath does not exist');
 });

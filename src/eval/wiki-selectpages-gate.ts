@@ -52,6 +52,8 @@ export interface GateOpts {
     fileToModule: Record<string, string>;
     testcases: TestCase[];
     claudeTruth: ClaudeTruthMap;
+    /** Override the path to wiki-verify.md (for testing). Defaults to WIKI_VERIFY_PATH. */
+    verifyPath?: string;
 }
 
 // ── Core logic ────────────────────────────────────────────────────────────────
@@ -116,7 +118,7 @@ export function readCitationRate(verifyPath: string): number | null {
  * 无 claude-truth 条目的题放入 skipped（不编造 gold）。
  */
 export function runGate(opts?: GateOpts): GateResult {
-    const { map, fileToModule, testcases, claudeTruth } = opts ?? loadReal();
+    const { map, fileToModule, testcases, claudeTruth, verifyPath } = opts ?? loadReal();
 
     const perQuestion: PerQuestion[] = [];
     const skipped: string[] = [];
@@ -150,7 +152,7 @@ export function runGate(opts?: GateOpts): GateResult {
     const hitCount = perQuestion.filter(r => r.hit).length;
     const hitRate = scored > 0 ? hitCount / scored : 0;
 
-    const citationRate = readCitationRate(WIKI_VERIFY_PATH);
+    const citationRate = readCitationRate(verifyPath ?? WIKI_VERIFY_PATH);
 
     return { hitRate, perQuestion, skipped, citationRate };
 }
@@ -168,6 +170,9 @@ function loadReal(): GateOpts {
     }
     const moduleGraph = JSON.parse(fs.readFileSync(MODULE_GRAPH_PATH, 'utf-8'));
     const fileToModule: Record<string, string> = moduleGraph.file_to_module ?? {};
+    if (Object.keys(fileToModule).length === 0) {
+        console.error('[wiki:gate] WARNING: module-graph.json has no file_to_module entries — all expectedPages will be empty and hitRate will be 0. Run module:build to regenerate.');
+    }
 
     const { flat: testcases } = loadTestcases(TESTCASES_PATH);
     const claudeTruth: ClaudeTruthMap = JSON.parse(fs.readFileSync(CLAUDE_TRUTH_PATH, 'utf-8'));
