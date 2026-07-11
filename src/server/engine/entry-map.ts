@@ -10,7 +10,7 @@ import { relPath, isTestPath } from './common.js';
 import { questionTokens, scoreString } from './walker/affinity.js';
 import { informativeTokens, selectPages, resolveWikiFiles, selectSeedForPage } from './walker/entry.js';
 import { buildDirectedAdjacency, walkFromSeed, type WalkCtx } from './walker/walk.js';
-import type { WikiMap } from '../../wikimap/parse.js';
+import type { WikiMap } from '../../wikimap/schema.js';
 import { cosine, embedText } from './embeddings.js';
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
@@ -62,7 +62,7 @@ function deps() {
 
 interface Analysis {
     tokens: string[];
-    chosenPages: import('../../wikimap/parse.js').WikiPage[];
+    chosenPages: import('../../wikimap/schema.js').WikiPage[];
     seeds: string[];
     ranked: string[];
     pageOf: (f: string) => string;

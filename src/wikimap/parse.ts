@@ -2,7 +2,8 @@
 // 红线：wiki-map 只保留结构（标题/路径/节点/边）；散文由 parseWikiProse 另存独立产物
 // （data/wiki-prose.json），只被 wiki 工具消费，walker/eval 永不 import（方案1，2026-07-08）。
 
-export interface ProseSection { section: string; text: string }
+import type { WikiDiagram, WikiMap, WikiPage, ProseSection } from './schema.js';
+export type { WikiDiagram, WikiMap, WikiPage, ProseSection } from './schema.js';
 
 // 每页的散文，按 ## 章节切分；mermaid 块剥除（结构已在 parseWikiMarkdown 里）；
 // 保留 Sources 行（路径引用对 agent 有用）。
@@ -24,10 +25,6 @@ export function parseWikiProse(text: string): Record<string, ProseSection[]> {
     }
     return out;
 }
-
-export interface WikiDiagram { nodes: Record<string, string>; edges: string[][]; subgraphs: string[] }
-export interface WikiPage { page: string; sections: string[]; diagrams: WikiDiagram[]; source_files: Record<string, string[]> }
-export interface WikiMap { repo: string; derived_from: string; pages: WikiPage[]; file_to_pages: Record<string, string[]> }
 
 const NODE_RE = /^\s*(\w+)\[["']?(.+?)["']?\]\s*$/gm;
 const EDGE_RE = /^\s*(\w+)\s*(?:-{1,3}\.?-*>|={2}>)\s*(?:\|"?([^|"\n]*)"?\|\s*)?(\w+)\s*$/gm;
@@ -55,6 +52,11 @@ function parseMermaid(block: string): WikiDiagram {
     return { nodes, edges, subgraphs };
 }
 
+/** title → slug: lowercase, non-alnum → '-' */
+function slugify(title: string): string {
+    return title.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-+|-+$/g, '');
+}
+
 export function parseWikiMarkdown(text: string, repo: string): WikiMap {
     const parts = text.split(/^# Page: (.+)$/m);
     const pages: WikiPage[] = [];
@@ -78,12 +80,16 @@ export function parseWikiMarkdown(text: string, repo: string): WikiMap {
             if (!s) { s = new Set(); fileToPages.set(file, s); }
             s.add(title);
         }
-        pages.push({ page: title, sections, diagrams, source_files: sourceFiles });
+        // 计划字段填默认值（§7.1；parse.ts 在 Task 3 删除，这里只为 tsc --noEmit 通过）
+        pages.push({
+            id: slugify(title), title, category: '', scope: '', modules: [], seedFiles: [],
+            page: title, sections, diagrams, source_files: sourceFiles,
+        });
     }
 
     const file_to_pages: Record<string, string[]> = {};
     for (const [f, ps] of [...fileToPages.entries()].sort((a, b) => a[0].localeCompare(b[0]))) {
         file_to_pages[f] = [...ps].sort();
     }
-    return { repo, derived_from: 'deepwiki mcp read_wiki_contents', pages, file_to_pages };
+    return { repo, generated_at: new Date().toISOString(), derived_from: 'deepwiki mcp read_wiki_contents', pages, file_to_pages };
 }

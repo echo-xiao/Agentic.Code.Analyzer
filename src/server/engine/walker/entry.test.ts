@@ -2,22 +2,24 @@ import { test } from 'node:test';
 import assert from 'node:assert/strict';
 import { questionTokens } from './affinity.js';
 import { selectPages, resolveWikiFiles, selectSeedForPage, informativeTokens } from './entry.js';
-import type { WikiMap, WikiPage } from '../../../wikimap/parse.js';
+import type { WikiMap, WikiPage } from '../../../wikimap/schema.js';
 
 const PAGE_NOTIF: WikiPage = {
+    id: 'notifications', title: 'Notifications', category: '', scope: '', modules: [], seedFiles: [],
     page: 'Notifications',
     sections: ['Push Pipeline', 'Email Notifications'],
     diagrams: [{ nodes: { PUSH: 'sendPushNotification / push.ts' }, edges: [], subgraphs: [] }],
     source_files: { 'apps/meteor/server/lib/push.ts': ['1-10'], 'apps/meteor/gone.ts': [] },
 };
 const PAGE_AUTH: WikiPage = {
+    id: 'authentication-and-authorization', title: 'Authentication and Authorization', category: '', scope: '', modules: [], seedFiles: [],
     page: 'Authentication and Authorization',
     sections: ['LDAP', 'OAuth'],
     diagrams: [{ nodes: {}, edges: [], subgraphs: [] }],
     source_files: { 'apps/meteor/server/auth.ts': [] },
 };
 const MAP: WikiMap = {
-    repo: 'r', derived_from: 'd',
+    repo: 'r', generated_at: '2026-01-01T00:00:00.000Z', derived_from: 'd',
     pages: [PAGE_NOTIF, PAGE_AUTH],
     file_to_pages: { 'apps/meteor/server/lib/push.ts': ['Notifications'] },
 };
@@ -64,6 +66,7 @@ test('selectSeedForPage：相同分数时按符号字母序作为 tie-break', ()
     // tie-break 应该选择 alphaPush（字母序较早）
     const tokens = ['push'];
     const pageWithSymbols: WikiPage = {
+        id: 'tiebreakpage', title: 'TieBreakPage', category: '', scope: '', modules: [], seedFiles: [],
         page: 'TieBreakPage',
         sections: [],
         diagrams: [{ nodes: {}, edges: [], subgraphs: [] }],
@@ -78,16 +81,18 @@ test('selectSeedForPage：相同分数时按符号字母序作为 tie-break', ()
 
 test('informativeTokens：匹配过半页面的泛词被剔除，特异词保留', () => {
     const generic = (name: string): WikiPage => ({
+        id: name.toLowerCase().replace(/[^a-z0-9]+/g, '-'), title: name, category: '', scope: '', modules: [], seedFiles: [],
         page: name, sections: [],
         diagrams: [{ nodes: { X: 'rocketchat deployment server' }, edges: [], subgraphs: [] }],
         source_files: {},
     });
     const map3: WikiMap = {
-        repo: 'r', derived_from: 'd',
+        repo: 'r', generated_at: '2026-01-01T00:00:00.000Z', derived_from: 'd',
         pages: [
             { ...generic('CI/CD Pipeline') },
             { ...generic('Development Workflow') },
-            { page: 'Notifications', sections: ['Push Pipeline'],
+            { id: 'notifications', title: 'Notifications', category: '', scope: '', modules: [], seedFiles: [],
+              page: 'Notifications', sections: ['Push Pipeline'],
               diagrams: [{ nodes: { P: 'sendPushNotification / rocketchat push' }, edges: [], subgraphs: [] }],
               source_files: {} },
         ],
@@ -102,8 +107,9 @@ test('informativeTokens：匹配过半页面的泛词被剔除，特异词保留
 
 test('informativeTokens：全是泛词时回退原 tokens，不剃光头', () => {
     const map1: WikiMap = {
-        repo: 'r', derived_from: 'd',
-        pages: [{ page: 'Overview', sections: [],
+        repo: 'r', generated_at: '2026-01-01T00:00:00.000Z', derived_from: 'd',
+        pages: [{ id: 'overview', title: 'Overview', category: '', scope: '', modules: [], seedFiles: [],
+            page: 'Overview', sections: [],
             diagrams: [{ nodes: { X: 'rocketchat core' }, edges: [], subgraphs: [] }], source_files: {} }],
         file_to_pages: {},
     };
@@ -114,14 +120,16 @@ test('informativeTokens：全是泛词时回退原 tokens，不剃光头', () =>
 
 test('selectPages：多 token 佐证——孤证页(仅 push 命中)被双证页压下去', () => {
     const gitPage: WikiPage = {
+        id: 'ci-pipeline', title: 'CI Pipeline', category: '', scope: '', modules: [], seedFiles: [],
         page: 'CI Pipeline', sections: ['Push to develop'],
         diagrams: [{ nodes: {}, edges: [], subgraphs: [] }], source_files: {},
     };
     const msgPage: WikiPage = {
+        id: 'messaging', title: 'Messaging', category: '', scope: '', modules: [], seedFiles: [],
         page: 'Messaging', sections: ['Push Notifications'],
         diagrams: [{ nodes: {}, edges: [], subgraphs: [] }], source_files: {},
     };
-    const m: WikiMap = { repo: 'r', derived_from: 'd', pages: [gitPage, msgPage], file_to_pages: {} };
+    const m: WikiMap = { repo: 'r', generated_at: '2026-01-01T00:00:00.000Z', derived_from: 'd', pages: [gitPage, msgPage], file_to_pages: {} };
     const step = selectPages(['push', 'notifications'], m)!;
     assert.equal(step.chosen[0], 'Messaging');
     const git = step.options.find(o => o.page === 'CI Pipeline')!;
