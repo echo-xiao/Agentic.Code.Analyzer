@@ -28,3 +28,12 @@ export const INDEX_DIR = path.join(DATA_DIR, 'index');
 export const CHUNKS_PATH = path.join(INDEX_DIR, 'chunks.json');
 export const CHUNK_VECTORS_PATH = path.join(INDEX_DIR, 'chunk-vectors.json');
 export const MODULE_GRAPH_PATH = path.join(INDEX_DIR, 'module-graph.json');
+
+export const MODEL_TIERS = {
+  leaf:    'claude-haiku-4-5-20251001',
+  module:  'claude-sonnet-4-6',
+  outline: 'claude-sonnet-4-6',
+  chapter: 'claude-sonnet-4-6',
+  verify:  'claude-haiku-4-5-20251001',
+  embed:   'Xenova/bge-small-en-v1.5',
+} as const;
