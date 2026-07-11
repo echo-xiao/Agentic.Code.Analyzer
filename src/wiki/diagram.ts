@@ -54,7 +54,7 @@ export type CallGraphMap = Map<string, Array<{ caller: string; file: string; edg
 // Sequence edge pattern: "A->>B: message" (mermaid sequence syntax)
 const SEQ_EDGE_RE = /^\s*(\w+)[-=]{1,2}>+\s*(\w+)\s*:/gm;
 
-function safeParse(block: string, label: string): WikiDiagram | null {
+export function safeParse(block: string, label: string): WikiDiagram | null {
   try {
     const d = parseMermaid(block);
     const isEmpty = Object.keys(d.nodes).length === 0 && d.edges.length === 0;
@@ -214,9 +214,6 @@ export function componentDiagram(
     }
   }
 
-  // Need at least nodes to render a meaningful diagram
-  if (internalFiles.size === 0) return null;
-
   const block = renderFlowchart(nodes, edges);
   return safeParse(block, `componentDiagram(${page.modules.join(',')})`);
 }
@@ -290,12 +287,13 @@ export function generateDiagrams(
   // Build global community diagram (once)
   const globalDiagram = systemCommunityDiagram(graph);
 
-  // Find the Overview/architecture page (first match, or first page as fallback)
+  // Find the Overview/architecture page (first match, no fallback — global diagram
+  // is only placed when an actual overview/architecture chapter exists)
   const overviewPage =
     wikiMap.pages.find(p =>
       /overview|architecture/i.test(p.category ?? '') ||
       /overview|architecture/i.test(p.title ?? ''),
-    ) ?? wikiMap.pages[0];
+    ) ?? null;
 
   for (const page of wikiMap.pages) {
     const diagrams: WikiDiagram[] = [];
