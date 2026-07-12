@@ -2,7 +2,7 @@
 // WikiPage 同时承载"消费字段"(page/sections/diagrams/source_files，entry-map/wiki 在读，P4 才迁 id)
 // 与 §7.1 "计划字段"(id/title/category/scope/modules/seedFiles，outline 步填)。约定 page===title。
 export interface WikiDiagram { nodes: Record<string, string>; edges: string[][]; subgraphs: string[] }
-export interface ProseSection { section: string; text: string }
+export interface ProseSection { section: string; text: string; narrative?: string }
 
 export interface WikiPage {
   // —— 计划字段（§7.1 outline 填）——
@@ -12,6 +12,7 @@ export interface WikiPage {
   scope: string;              // 这章讲什么（写作 agent 的 brief）
   modules: string[];          // 负责的 moduleId（来自 module-graph，硬锚）
   seedFiles: string[];        // 起点文件（入口）
+  summary?: string;           // §4 prose 层新增：Purpose and Scope 总述（叠加，不进结构字段）
   // —— 消费字段（保留；page===title）——
   page: string;               // 消费方 key，== title
   sections: string[];         // §7.3 写作产出的小节名
