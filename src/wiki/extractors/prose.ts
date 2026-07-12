@@ -9,6 +9,10 @@
  * checked against the chapter's real facts + GLOBAL_INDEX.allFiles; drifting
  * sentences are dropped, never shipped.
  */
+import '../../eval/utils/load-env.js';
+import Anthropic from '@anthropic-ai/sdk';
+import { MODEL_TIERS } from '../../config.js';
+import { GLOBAL_INDEX } from '../../indexer/state.js';
 import type { MetaChapter } from './types.js';
 
 // ── Facts the prose is allowed to reference ────────────────────────────────
@@ -80,4 +84,90 @@ export function groundText(
     else kept.push(sent);
   }
   return { clean: kept.join(' ').replace(/\s+/g, ' ').trim(), dropped };
+}
+
+// ── addProse orchestration ─────────────────────────────────────────────────
+export interface AddProseDeps {
+  /** injectable model call (system,user) → raw text; defaults to Claude. Lets tests run offline. */
+  generate?: (system: string, user: string) => Promise<string>;
+  /** allowed file set for path grounding; defaults to GLOBAL_INDEX.allFiles. */
+  allFiles?: ReadonlySet<string> | Set<string>;
+  /** model id; defaults to MODEL_TIERS.leaf (Haiku). */
+  model?: string;
+}
+
+const PROSE_SYSTEM = [
+  'You are a technical writer. You receive the EXACT structural facts of ONE wiki page',
+  '(its scope, its section tables/lists). Write short narrative prose that explains what',
+  'those facts mean to a new engineer.',
+  'HARD RULES:',
+  '- Explain ONLY the facts given. Do NOT introduce any number, file path, or package name',
+  '  that is not already present in the given facts.',
+  '- Do NOT add citations or "Sources:" lines — the tables already carry them.',
+  '- Be concise and concrete. 2-4 sentences each. No marketing language.',
+].join('\n');
+
+function buildProsePrompt(chapter: MetaChapter): string {
+  const p = chapter.page;
+  const lines = [`# Page: ${p.title}`, `Scope: ${p.scope}`, '', '## Sections (verbatim facts):'];
+  for (const s of chapter.prose ?? []) lines.push(`### ${s.section}`, s.text, '');
+  lines.push(
+    '',
+    'Return ONLY a JSON object of this exact shape:',
+    '{"summary": "<one Purpose-and-Scope paragraph, 2-4 sentences>",',
+    ' "narratives": {"<section name>": "<2-4 sentence narrative>", ...}}',
+    'Cover every section above by its EXACT name. Output ONLY the JSON, no prose around it.',
+  );
+  return lines.join('\n');
+}
+
+function parseProseJson(raw: string): { summary?: string; narratives?: Record<string, string> } | null {
+  const start = raw.indexOf('{');
+  const end = raw.lastIndexOf('}');
+  if (start < 0 || end <= start) return null;
+  try { return JSON.parse(raw.slice(start, end + 1)); } catch { return null; }
+}
+
+function defaultGenerate(model: string) {
+  return async (system: string, user: string): Promise<string> => {
+    const apiKey = process.env.ANTHROPIC_API_KEY || process.env.CLAUDE_API_KEY;
+    if (!apiKey) throw new Error('[prose] No ANTHROPIC_API_KEY / CLAUDE_API_KEY');
+    const client = new Anthropic({ apiKey });
+    const resp = await client.messages.create({
+      model, max_tokens: 2048, system,
+      messages: [{ role: 'user', content: user }],
+    });
+    const block = (resp.content as any[]).find((b: any) => b.type === 'text');
+    return block?.text ?? '';
+  };
+}
+
+export async function addProse(chapter: MetaChapter, deps: AddProseDeps = {}): Promise<MetaChapter> {
+  const model = deps.model ?? MODEL_TIERS.leaf;
+  const allFiles = deps.allFiles ?? GLOBAL_INDEX.allFiles;
+  const generate = deps.generate ?? defaultGenerate(model);
+
+  // copy structural fields; only summary/narrative get added
+  const out: MetaChapter = {
+    page: { ...chapter.page },
+    prose: (chapter.prose ?? []).map(s => ({ ...s })),
+  };
+
+  const raw = await generate(PROSE_SYSTEM, buildProsePrompt(chapter));
+  const parsed = parseProseJson(raw);
+  if (!parsed) return out;   // degrade: structural-only, no crash
+
+  const facts = collectFacts(chapter);
+
+  if (parsed.summary) {
+    const g = groundText(parsed.summary, facts, allFiles);
+    if (g.clean) out.page.summary = g.clean;
+  }
+  for (const s of out.prose) {
+    const n = parsed.narratives?.[s.section];
+    if (!n) continue;
+    const g = groundText(n, facts, allFiles);
+    if (g.clean) s.narrative = g.clean;
+  }
+  return out;
 }
