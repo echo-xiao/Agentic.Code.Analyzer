@@ -1,0 +1,345 @@
+{
+  "page": {
+    "id": "monorepo-structure",
+    "title": "Monorepo Structure",
+    "category": "System Architecture",
+    "scope": "72 internal packages · 218 real dep edges · workspaces + build + versions",
+    "modules": [],
+    "seedFiles": [
+      "package.json",
+      "turbo.json"
+    ],
+    "page": "Monorepo Structure",
+    "sections": [],
+    "diagrams": [
+      {
+        "nodes": {
+          "meteor": "meteor",
+          "ui_contexts": "ui-contexts",
+          "models": "models",
+          "ui_client": "ui-client",
+          "core_typings": "core-typings",
+          "core_services": "core-services",
+          "rest_typings": "rest-typings",
+          "tools": "tools",
+          "i18n": "i18n",
+          "logger": "logger",
+          "random": "random",
+          "apps_engine": "apps-engine",
+          "ui_avatar": "ui-avatar",
+          "license": "license",
+          "server_fetch": "server-fetch",
+          "apps": "apps",
+          "cron": "cron",
+          "ui_composer": "ui-composer",
+          "fuselage_ui_kit": "fuselage-ui-kit",
+          "ui_kit": "ui-kit",
+          "web_ui_registration": "web-ui-registration",
+          "message_types": "message-types",
+          "ui_voip": "ui-voip",
+          "ui_video_conf": "ui-video-conf",
+          "patch_injection": "patch-injection",
+          "omni_core": "omni-core",
+          "mongo_adapter": "mongo-adapter",
+          "federation_matrix": "federation-matrix",
+          "http_router": "http-router",
+          "media_calls": "media-calls",
+          "mock_providers": "mock-providers",
+          "sha256": "sha256",
+          "tracing": "tracing",
+          "base64": "base64",
+          "message_parser": "message-parser",
+          "omni_core_ee": "omni-core-ee",
+          "instance_status": "instance-status"
+        },
+        "edges": [
+          [
+            "meteor",
+            "ui_contexts"
+          ],
+          [
+            "meteor",
+            "models"
+          ],
+          [
+            "meteor",
+            "ui_client"
+          ],
+          [
+            "meteor",
+            "core_typings"
+          ],
+          [
+            "meteor",
+            "core_services"
+          ],
+          [
+            "meteor",
+            "rest_typings"
+          ],
+          [
+            "meteor",
+            "tools"
+          ],
+          [
+            "meteor",
+            "i18n"
+          ],
+          [
+            "meteor",
+            "logger"
+          ],
+          [
+            "meteor",
+            "random"
+          ],
+          [
+            "meteor",
+            "apps_engine"
+          ],
+          [
+            "meteor",
+            "ui_avatar"
+          ],
+          [
+            "meteor",
+            "license"
+          ],
+          [
+            "meteor",
+            "server_fetch"
+          ],
+          [
+            "meteor",
+            "apps"
+          ],
+          [
+            "ui_client",
+            "ui_contexts"
+          ],
+          [
+            "meteor",
+            "cron"
+          ],
+          [
+            "meteor",
+            "ui_composer"
+          ],
+          [
+            "fuselage_ui_kit",
+            "ui_kit"
+          ],
+          [
+            "web_ui_registration",
+            "ui_contexts"
+          ],
+          [
+            "meteor",
+            "message_types"
+          ],
+          [
+            "meteor",
+            "ui_voip"
+          ],
+          [
+            "ui_voip",
+            "ui_contexts"
+          ],
+          [
+            "meteor",
+            "ui_video_conf"
+          ],
+          [
+            "models",
+            "core_typings"
+          ],
+          [
+            "meteor",
+            "patch_injection"
+          ],
+          [
+            "meteor",
+            "omni_core"
+          ],
+          [
+            "meteor",
+            "mongo_adapter"
+          ],
+          [
+            "federation_matrix",
+            "core_services"
+          ],
+          [
+            "federation_matrix",
+            "http_router"
+          ],
+          [
+            "federation_matrix",
+            "logger"
+          ],
+          [
+            "federation_matrix",
+            "rest_typings"
+          ],
+          [
+            "media_calls",
+            "models"
+          ],
+          [
+            "ui_voip",
+            "ui_client"
+          ],
+          [
+            "federation_matrix",
+            "models"
+          ],
+          [
+            "meteor",
+            "fuselage_ui_kit"
+          ],
+          [
+            "mock_providers",
+            "ui_contexts"
+          ],
+          [
+            "meteor",
+            "sha256"
+          ],
+          [
+            "meteor",
+            "tracing"
+          ],
+          [
+            "meteor",
+            "base64"
+          ],
+          [
+            "meteor",
+            "message_parser"
+          ],
+          [
+            "meteor",
+            "web_ui_registration"
+          ],
+          [
+            "meteor",
+            "omni_core_ee"
+          ],
+          [
+            "meteor",
+            "instance_status"
+          ]
+        ],
+        "subgraphs": []
+      }
+    ],
+    "source_files": {
+      "package.json": [],
+      "apps/meteor/package.json": [],
+      "apps/uikit-playground/package.json": [],
+      "packages/account-utils/package.json": [],
+      "packages/agenda/package.json": [],
+      "packages/api-client/package.json": [],
+      "packages/apps/package.json": [],
+      "packages/apps-engine/package.json": [],
+      "packages/base64/package.json": [],
+      "packages/cas-validate/package.json": [],
+      "packages/core-services/package.json": [],
+      "packages/core-typings/package.json": [],
+      "packages/cron/package.json": [],
+      "packages/ddp-client/package.json": [],
+      "packages/desktop-api/package.json": [],
+      "packages/eslint-config/package.json": [],
+      "packages/favicon/package.json": [],
+      "packages/fuselage-ui-kit/package.json": [],
+      "packages/gazzodown/package.json": [],
+      "packages/http-router/package.json": [],
+      "packages/i18n/package.json": [],
+      "packages/instance-status/package.json": [],
+      "packages/jest-presets/package.json": [],
+      "packages/jwt/package.json": [],
+      "packages/livechat/package.json": [],
+      "packages/log-format/package.json": [],
+      "packages/logger/package.json": [],
+      "packages/media-signaling/package.json": [],
+      "packages/message-parser/package.json": [],
+      "packages/message-types/package.json": [],
+      "packages/mock-providers/package.json": [],
+      "packages/model-typings/package.json": [],
+      "packages/models/package.json": [],
+      "packages/mongo-adapter/package.json": [],
+      "packages/node-poplib/package.json": [],
+      "packages/omni-core/package.json": [],
+      "packages/password-policies/package.json": [],
+      "packages/patch-injection/package.json": [],
+      "packages/peggy-loader/package.json": [],
+      "packages/random/package.json": [],
+      "packages/release-action/package.json": [],
+      "packages/release-changelog/package.json": [],
+      "packages/rest-typings/package.json": [],
+      "packages/server-cloud-communication/package.json": [],
+      "packages/server-fetch/package.json": [],
+      "packages/sha256/package.json": [],
+      "packages/storybook-config/package.json": [],
+      "packages/tools/package.json": [],
+      "packages/tracing/package.json": [],
+      "packages/tsconfig/package.json": [],
+      "packages/ui-avatar/package.json": [],
+      "packages/ui-client/package.json": [],
+      "packages/ui-composer/package.json": [],
+      "packages/ui-contexts/package.json": [],
+      "packages/ui-kit/package.json": [],
+      "packages/ui-video-conf/package.json": [],
+      "packages/ui-voip/package.json": [],
+      "packages/web-ui-registration/package.json": [],
+      "ee/apps/account-service/package.json": [],
+      "ee/apps/authorization-service/package.json": [],
+      "ee/apps/ddp-streamer/package.json": [],
+      "ee/apps/omnichannel-transcript/package.json": [],
+      "ee/apps/presence-service/package.json": [],
+      "ee/apps/queue-worker/package.json": [],
+      "ee/packages/abac/package.json": [],
+      "ee/packages/federation-matrix/package.json": [],
+      "ee/packages/license/package.json": [],
+      "ee/packages/media-calls/package.json": [],
+      "ee/packages/network-broker/package.json": [],
+      "ee/packages/omni-core-ee/package.json": [],
+      "ee/packages/omnichannel-services/package.json": [],
+      "ee/packages/pdf-worker/package.json": [],
+      "ee/packages/presence/package.json": []
+    },
+    "summary": "This monorepo organizes 72 internal packages across public and enterprise (ee) workspaces, coordinated by Turbo with 10 pipeline tasks. The dependency graph contains 218 runtime import edges and 121 type-only edges, with 35 declared dependencies not yet confirmed in code scans and 21 undeclared runtime couplings that should be added to package manifests. Version management groups packages into release cohorts, while feature mappings tie packages to subsystems like omnichannel, account services, and UI components."
+  },
+  "prose": [
+    {
+      "section": "Workspace Configuration",
+      "text": "Root `package.json` declares 5 workspace glob(s):\n\n- `apps/*`\n- `packages/*`\n- `ee/apps/*`\n- `ee/packages/*`\n- `apps/meteor/ee/server/services`\n\nBuild is orchestrated by **turbo** (10 pipeline tasks: `build-preview`, `.:build-preview-move`, `build`, `test-storybook`, `testunit`, `lint`, `typecheck`, `dev`, `dsv`, `ms`).\n\nSources: package.json:1",
+      "narrative": "The root `package.json` declares five workspace globs that organize apps and packages into public and enterprise directories. Turbo orchestrates builds across these workspaces using a 10-task pipeline including build, test, lint, typecheck, and development targets."
+    },
+    {
+      "section": "Packages Inventory",
+      "text": "#### Apps (2)\n\n| Package | Version | Purpose | Source |\n|---|---|---|---|\n| `meteor` | 8.4.0-develop | The Ultimate Open Source WebChat Platform | apps/meteor/package.json:2 |\n| `uikit-playground` | 0.7.9-rc.1 | — | apps/uikit-playground/package.json:2 |\n\n#### Packages (55)\n\n| Package | Version | Purpose | Source |\n|---|---|---|---|\n| `account-utils` | 0.0.3-rc.0 | — | packages/account-utils/package.json:2 |\n| `agenda` | 0.1.1-rc.0 | Fork of https://github.com/agenda/agenda | packages/agenda/package.json:2 |\n| `api-client` | 0.2.53-rc.1 | — | packages/api-client/package.json:2 |\n| `apps` | 0.6.6-rc.1 | — | packages/apps/package.json:2 |\n| `apps-engine` | 1.61.0-rc.0 | The engine code for the Rocket.Chat Apps which manages, runs, translates, coordi | packages/apps-engine/package.json:2 |\n| `base64` | 1.0.14-rc.0 | Base64 encoding and decoding; Fork of Meteor's Base64 package | packages/base64/package.json:2 |\n| `cas-validate` | 0.0.4-rc.0 | Fork of https://github.com/kcbanner/node-cas | packages/cas-validate/package.json:2 |\n| `core-services` | 0.13.2-rc.1 | — | packages/core-services/package.json:2 |\n| `core-typings` | 8.4.0-develop | — | packages/core-typings/package.json:3 |\n| `cron` | 0.1.53-rc.1 | — | packages/cron/package.json:2 |\n| `ddp-client` | 1.0.6-rc.1 | — | packages/ddp-client/package.json:2 |\n| `desktop-api` | 1.1.1-rc.0 | — | packages/desktop-api/package.json:3 |\n| `eslint-config` | 0.8.0-rc.0 | Rocket.Chat's JS/TS ESLint config | packages/eslint-config/package.json:2 |\n| `favicon` | 0.0.5-rc.0 | — | packages/favicon/package.json:2 |\n| `fuselage-ui-kit` | 29.0.0-rc.1 | UiKit elements for Rocket.Chat Apps built under Fuselage design system | packages/fuselage-ui-kit/package.json:2 |\n| `gazzodown` | 29.0.0-rc.1 | — | packages/gazzodown/package.json:2 |\n| `http-router` | 7.9.20-rc.1 | — | packages/http-router/package.json:2 |\n| `i18n` | 2.2.0-rc.0 | — | packages/i18n/package.json:2 |\n| `instance-status` | 0.1.53-rc.1 | — | packages/instance-status/package.json:2 |\n| `jest-presets` | 0.0.2-rc.0 | — | packages/jest-presets/package.json:2 |\n| `jwt` | 0.2.1-rc.0 | — | packages/jwt/package.json:2 |\n| `livechat` | 2.1.0-rc.1 | — | packages/livechat/package.json:2 |\n| `log-format` | 0.0.3-rc.0 | — | packages/log-format/package.json:2 |\n| `logger` | 1.0.1-rc.0 | — | packages/logger/package.json:2 |\n| `media-signaling` | 0.2.0-rc.0 | — | packages/media-signaling/package.json:2 |\n| `message-parser` | 0.31.35-rc.0 | Rocket.Chat parser for messages | packages/message-parser/package.json:2 |\n| `message-types` | 0.1.1-rc.0 | — | packages/message-types/package.json:2 |\n| `mock-providers` | 0.4.13-rc.1 | — | packages/mock-providers/package.json:2 |\n| `model-typings` | 2.1.2-rc.1 | — | packages/model-typings/package.json:2 |\n| `models` | 2.1.2-rc.1 | — | packages/models/package.json:2 |\n| `mongo-adapter` | 0.0.3-rc.0 | — | packages/mongo-adapter/package.json:2 |\n| `omni-core` | 0.0.18-rc.1 | — | packages/omni-core/package.json:2 |\n| `password-policies` | 0.1.1-rc.0 | — | packages/password-policies/package.json:2 |\n| `patch-injection` | 0.0.2-rc.0 | — | packages/patch-injection/package.json:2 |\n| `peggy-loader` | 0.31.28-rc.0 | Peggy loader for webpack | packages/peggy-loader/package.json:2 |\n| `poplib` | 0.0.3-rc.0 | — | packages/node-poplib/package.json:2 |\n| `random` | 1.2.3-rc.0 | Random number generator and utilities; Fork of Meteor's Random package | packages/random/package.json:2 |\n| `release-action` | 2.2.4-rc.0 | — | packages/release-action/package.json:2 |\n| `release-changelog` | 0.1.1-rc.0 | — | packages/release-changelog/package.json:2 |\n| `rest-typings` | 8.4.0-develop | — | packages/rest-typings/package.json:2 |\n| `server-cloud-communication` | 0.0.3-rc.0 | — | packages/server-cloud-communication/package.json:2 |\n| `server-fetch` | 0.1.2-rc.1 | — | packages/server-fetch/package.json:2 |\n| `sha256` | 1.0.13-rc.0 | SHA256 implementation; Fork of Meteor's SHA256 package | packages/sha256/package.json:2 |\n| `storybook-config` | 0.0.3-rc.0 | — | packages/storybook-config/package.json:2 |\n| `tools` | 0.2.5-rc.0 | — | packages/tools/package.json:2 |\n| `tracing` | 0.0.2-rc.0 | — | packages/tracing/package.json:2 |\n| `tsconfig` | 0.0.0 | — | packages/tsconfig/package.json:2 |\n| `ui-avatar` | 25.0.0-rc.1 | — | packages/ui-avatar/package.json:2 |\n| `ui-client` | 29.0.0-rc.1 | — | packages/ui-client/package.json:2 |\n| `ui-composer` | 0.6.0-rc.0 | — | packages/ui-composer/package.json:2 |\n| `ui-contexts` | 29.0.0-rc.1 | — | packages/ui-contexts/package.json:2 |\n| `ui-kit` | 1.0.0-rc.0 | Interactive UI elements for Rocket.Chat Apps | packages/ui-kit/package.json:2 |\n| `ui-video-conf` | 29.0.0-rc.1 | — | packages/ui-video-conf/package.json:2 |\n| `ui-voip` | 19.0.0-rc.1 | — | packages/ui-voip/package.json:2 |\n| `web-ui-registration` | 29.0.0-rc.1 | — | packages/web-ui-registration/package.json:2 |\n\n#### Enterprise (ee) (15)\n\n| Package | Version | Purpose | Source |\n|---|---|---|---|\n| `abac` | 0.1.6-rc.1 | Rocket.Chat - Attribute Based Access Control (ABAC) support utilities | ee/packages/abac/package.json:2 |\n| `account-service` | 0.4.53-rc.1 | Rocket.Chat Account service | ee/apps/account-service/package.json:2 |\n| `authorization-service` | 0.5.6-rc.1 | Rocket.Chat Authorization service | ee/apps/authorization-service/package.json:2 |\n| `ddp-streamer` | 0.3.53-rc.1 | Rocket.Chat DDP-Streamer service | ee/apps/ddp-streamer/package.json:2 |\n| `federation-matrix` | 0.1.0-rc.1 | — | ee/packages/federation-matrix/package.json:2 |\n| `license` | 1.1.13-rc.1 | — | ee/packages/license/package.json:2 |\n| `media-calls` | 0.3.0-rc.1 | — | ee/packages/media-calls/package.json:2 |\n| `network-broker` | 0.2.32-rc.1 | — | ee/packages/network-broker/package.json:2 |\n| `omni-core-ee` | 0.0.18-rc.1 | — | ee/packages/omni-core-ee/package.json:2 |\n| `omnichannel-services` | 0.3.50-rc.1 | — | ee/packages/omnichannel-services/package.json:2 |\n| `omnichannel-transcript` | 0.4.53-rc.1 | Rocket.Chat service | ee/apps/omnichannel-transcript/package.json:2 |\n| `pdf-worker` | 0.3.32-rc.1 | — | ee/packages/pdf-worker/package.json:2 |\n| `presence` | 0.2.53-rc.1 | — | ee/packages/presence/package.json:2 |\n| `presence-service` | 0.4.53-rc.1 | Rocket.Chat Presence service | ee/apps/presence-service/package.json:2 |\n| `queue-worker` | 0.4.53-rc.1 | Rocket.Chat service | ee/apps/queue-worker/package.json:2 |",
+      "narrative": "The monorepo contains 2 main apps (meteor and uikit-playground), 55 general-purpose packages covering utilities, UI components, and core services, and 15 enterprise packages providing account, authorization, DDP streaming, omnichannel, and licensing functionality. Notable packages include apps-engine (app runtime), fuselage-ui-kit (design system components), and core-typings (shared TypeScript definitions)."
+    },
+    {
+      "section": "Internal Dependency Graph",
+      "text": "Real import coupling between internal packages, scanned from source (`import`/`export … from`/dynamic `import()`), not just declared `dependencies`. **218** value-import edges + **121** type-only (`import type`) edges.\n\nOf 203 declared runtime deps, **168** (83%) are confirmed in the import scan.\n\n**Declared but not seen in imports** (35) — candidates only; may be used dynamically, as a spawned worker, or via a string path, so not necessarily removable:\n- @rocket.chat/account-service → @rocket.chat/logger\n- @rocket.chat/account-service → @rocket.chat/model-typings\n- @rocket.chat/account-service → @rocket.chat/rest-typings\n- @rocket.chat/authorization-service → @rocket.chat/core-typings\n- @rocket.chat/authorization-service → @rocket.chat/logger\n- @rocket.chat/authorization-service → @rocket.chat/model-typings\n- @rocket.chat/authorization-service → @rocket.chat/rest-typings\n- @rocket.chat/core-services → @rocket.chat/http-router\n- @rocket.chat/core-services → @rocket.chat/message-parser\n- @rocket.chat/cron → @rocket.chat/core-typings\n- @rocket.chat/ddp-streamer → @rocket.chat/model-typings\n- @rocket.chat/ddp-streamer → @rocket.chat/rest-typings\n- @rocket.chat/federation-matrix → @rocket.chat/license\n- @rocket.chat/federation-matrix → @rocket.chat/network-broker\n- @rocket.chat/instance-status → @rocket.chat/tracing\n- @rocket.chat/meteor → @rocket.chat/jwt\n- @rocket.chat/meteor → @rocket.chat/log-format\n- @rocket.chat/meteor → @rocket.chat/pdf-worker\n- @rocket.chat/omnichannel-services → @rocket.chat/i18n\n- @rocket.chat/omnichannel-services → @rocket.chat/model-typings\n- @rocket.chat/omnichannel-services → @rocket.chat/rest-typings\n- @rocket.chat/omnichannel-transcript → @rocket.chat/core-typings\n- @rocket.chat/omnichannel-transcript → @rocket.chat/model-typings\n- @rocket.chat/omnichannel-transcript → @rocket.chat/pdf-worker\n- @rocket.chat/omnichannel-transcript → @rocket.chat/tools\n- @rocket.chat/presence-service → @rocket.chat/core-typings\n- @rocket.chat/presence-service → @rocket.chat/logger\n- @rocket.chat/presence-service → @rocket.chat/model-typings\n- @rocket.chat/queue-worker → @rocket.chat/core-typings\n- @rocket.chat/queue-worker → @rocket.chat/model-typings\n- @rocket.chat/rest-typings → @rocket.chat/message-parser\n- @rocket.chat/server-fetch → @rocket.chat/models\n- @rocket.chat/uikit-playground → @rocket.chat/core-typings\n- @rocket.chat/uikit-playground → @rocket.chat/ui-avatar\n- @rocket.chat/uikit-playground → @rocket.chat/ui-contexts\n\n**Imported but not declared** (21) — undeclared runtime coupling (should appear in `package.json`), top by weight:\n- `models` → `core-typings`  (13 imports)\n- `federation-matrix` → `logger`  (10 imports)\n- `federation-matrix` → `jest-presets`  (2 imports)\n- `omni-core-ee` → `license`  (2 imports)\n- `cas-validate` → `jest-presets`  (1 imports)\n- `core-services` → `logger`  (1 imports)\n- `fuselage-ui-kit` → `message-parser`  (1 imports)\n- `message-types` → `jest-presets`  (1 imports)\n- `mock-providers` → `jest-presets`  (1 imports)\n- `omni-core` → `core-typings`  (1 imports)\n- `omni-core` → `logger`  (1 imports)\n- `server-fetch` → `jest-presets`  (1 imports)\n- `ui-client` → `random`  (1 imports)\n- `ui-client` → `tools`  (1 imports)\n- `ui-video-conf` → `core-typings`  (1 imports)\n- `abac` → `jest-presets`  (1 imports)\n- `media-calls` → `random`  (1 imports)\n- `network-broker` → `jest-presets`  (1 imports)\n- `network-broker` → `tracing`  (1 imports)\n- `omnichannel-services` → `message-parser`  (1 imports)\n- `presence` → `jest-presets`  (1 imports)\n\n_Note: type-only (`import type`) dependencies are tracked separately and shown above as type edges; the diagram shows value imports only._",
+      "narrative": "Of 203 declared runtime dependencies, 168 (83%) are confirmed through source code import scans. The 35 declared but undetected dependencies may be loaded dynamically or via string paths, while 21 undeclared couplings—led by models importing core-typings and federation-matrix importing logger—represent missing declarations that should be added to package.json files."
+    },
+    {
+      "section": "Build Orchestration",
+      "text": "| Script | Command |\n|---|---|\n| `build` | `turbo run build` |\n| `build:services` | `turbo run build --filter=rocketchat-services...` |\n| `dev` | `turbo run dev --env-mode=loose --parallel --filter=@rocket.chat/meteor...` |\n| `dsv` | `turbo run dsv --env-mode=loose --filter=@rocket.chat/meteor...` |\n| `ms` | `turbo run ms --env-mode=loose` |\n| `fossify` | `TS_NODE_COMPILER_OPTIONS='{\"module\": \"commonjs\"}' ts-node scripts/fossify.ts` |\n| `fuselage` | `./fuselage.sh` |\n| `lint` | `turbo run lint` |\n| `storybook` | `yarn workspace @rocket.chat/meteor run storybook` |\n| `test-storybook` | `turbo run test-storybook` |\n| `testunit` | `turbo run testunit` |\n\nSources: package.json:1",
+      "narrative": "Build scripts leverage Turbo to parallelize compilation, testing, and linting across the monorepo. Specialized commands like `build:services` filter to backend services, while `dev` and `dsv` run development and live-reload modes restricted to the meteor app and its dependencies."
+    },
+    {
+      "section": "Version Management",
+      "text": "- **0.0.3-rc.0** — 6 packages: `account-utils`, `log-format`, `mongo-adapter`, `poplib`, `server-cloud-communication`, `storybook-config`\n- **29.0.0-rc.1** — 6 packages: `fuselage-ui-kit`, `gazzodown`, `ui-client`, `ui-contexts`, `ui-video-conf`, `web-ui-registration`\n- **0.1.1-rc.0** — 4 packages: `agenda`, `message-types`, `password-policies`, `release-changelog`\n- **0.4.53-rc.1** — 4 packages: `account-service`, `omnichannel-transcript`, `presence-service`, `queue-worker`\n- **8.4.0-develop** — 3 packages: `core-typings`, `meteor`, `rest-typings`\n- **0.0.2-rc.0** — 3 packages: `jest-presets`, `patch-injection`, `tracing`\n- **0.2.53-rc.1** — 2 packages: `api-client`, `presence`\n- **0.1.53-rc.1** — 2 packages: `cron`, `instance-status`\n- **2.1.2-rc.1** — 2 packages: `model-typings`, `models`\n- **0.0.18-rc.1** — 2 packages: `omni-core`, `omni-core-ee`",
+      "narrative": "Packages cluster into release cohorts by semantic version. The majority follow a release-candidate (rc) versioning scheme, with the largest cohorts at 29.0.0-rc.1 (UI components) and 0.4.53-rc.1 (enterprise services), while meteor and core-typings track the development version 8.4.0-develop."
+    },
+    {
+      "section": "Package ↔ Feature Mapping",
+      "text": "| Package | Feature subsystem(s) |\n|---|---|\n| `abac` | `pkg:abac` |\n| `account-service` | `account-service` |\n| `account-utils` | `pkg:account-utils` |\n| `agenda` | `pkg:agenda` |\n| `api-client` | `pkg:api-client` |\n| `apps` | `pkg:apps` |\n| `apps-engine` | `pkg:apps-engine` |\n| `authorization-service` | `authorization-service` |\n| `base64` | `pkg:base64` |\n| `cas-validate` | `pkg:cas-validate` |\n| `core-services` | `pkg:core-services` |\n| `core-typings` | `pkg:core-typings` |\n| `cron` | `pkg:cron` |\n| `ddp-client` | `pkg:ddp-client` |\n| `ddp-streamer` | `ddp-streamer` |\n| `desktop-api` | `pkg:desktop-api` |\n| `eslint-config` | `pkg:eslint-config` |\n| `favicon` | `pkg:favicon` |\n| `federation-matrix` | `pkg:federation-matrix` |\n| `fuselage-ui-kit` | `pkg:fuselage-ui-kit` |\n| `gazzodown` | `pkg:gazzodown` |\n| `http-router` | `pkg:http-router` |\n| `i18n` | `pkg:i18n` |\n| `instance-status` | `pkg:instance-status` |\n| `jest-presets` | `pkg:jest-presets` |\n| `jwt` | `pkg:jwt` |\n| `license` | `pkg:license` |\n| `livechat` | `pkg:livechat` |\n| `log-format` | `pkg:log-format` |\n| `logger` | `pkg:logger` |\n| `media-calls` | `pkg:media-calls` |\n| `media-signaling` | `pkg:media-signaling` |\n| `message-parser` | `pkg:message-parser` |\n| `message-types` | `pkg:message-types` |\n| `meteor` | `omnichannel`, `room`, `admin` |\n| `mock-providers` | `pkg:mock-providers` |\n| `model-typings` | `pkg:model-typings` |\n| `models` | `pkg:models` |\n| `mongo-adapter` | `pkg:mongo-adapter` |\n| `network-broker` | `pkg:network-broker` |\n| `omni-core` | `pkg:omni-core` |\n| `omni-core-ee` | `pkg:omni-core-ee` |\n| `omnichannel-services` | `pkg:omnichannel-services` |\n| `omnichannel-transcript` | `omnichannel-transcript` |\n| `password-policies` | `pkg:password-policies` |\n| `patch-injection` | `pkg:patch-injection` |\n| `pdf-worker` | `pkg:pdf-worker` |\n| `peggy-loader` | `pkg:peggy-loader` |\n| `poplib` | `pkg:node-poplib` |\n| `presence` | `pkg:presence` |\n| `presence-service` | `presence-service` |\n| `queue-worker` | `queue-worker` |\n| `random` | `pkg:random` |\n| `release-action` | `pkg:release-action` |\n| `release-changelog` | `pkg:release-changelog` |\n| `rest-typings` | `pkg:rest-typings` |\n| `server-cloud-communication` | `pkg:server-cloud-communication` |\n| `server-fetch` | `pkg:server-fetch` |\n| `sha256` | `pkg:sha256` |\n| `storybook-config` | `pkg:storybook-config` |\n| `tools` | `pkg:tools` |\n| `tracing` | `pkg:tracing` |\n| `ui-avatar` | `pkg:ui-avatar` |\n| `ui-client` | `pkg:ui-client` |\n| `ui-composer` | `pkg:ui-composer` |\n| `ui-contexts` | `pkg:ui-contexts` |\n| `ui-kit` | `pkg:ui-kit` |\n| `ui-video-conf` | `pkg:ui-video-conf` |\n| `ui-voip` | `pkg:ui-voip` |\n| `uikit-playground` | `uikit-playground` |\n| `web-ui-registration` | `pkg:web-ui-registration` |",
+      "narrative": "Each package maps to one or more feature subsystems or service identifiers, enabling tracing of functionality ownership. The meteor app spans omnichannel, room, and admin features; other packages map to single subsystems like `pkg:logger`, `account-service`, or `authorization-service`."
+    }
+  ]
+}

@@ -1,0 +1,87 @@
+{
+  "page": {
+    "id": "microservices-architecture",
+    "title": "Microservices Architecture",
+    "category": "System Architecture",
+    "scope": "6 standalone services · broker-mediated · monolith or split deployment",
+    "modules": [],
+    "seedFiles": [
+      "packages/core-services/src/index.ts",
+      "packages/core-services/src/LocalBroker.ts"
+    ],
+    "page": "Microservices Architecture",
+    "sections": [],
+    "diagrams": [
+      {
+        "nodes": {
+          "broker": "core-services broker",
+          "_rocket_chat_account_service": "@rocket.chat/account-service",
+          "_rocket_chat_authorization_service": "@rocket.chat/authorization-service",
+          "_rocket_chat_ddp_streamer": "@rocket.chat/ddp-streamer",
+          "_rocket_chat_omnichannel_transcript": "@rocket.chat/omnichannel-transcript",
+          "_rocket_chat_presence_service": "@rocket.chat/presence-service",
+          "_rocket_chat_queue_worker": "@rocket.chat/queue-worker"
+        },
+        "edges": [
+          [
+            "_rocket_chat_account_service",
+            "broker"
+          ],
+          [
+            "_rocket_chat_authorization_service",
+            "broker"
+          ],
+          [
+            "_rocket_chat_ddp_streamer",
+            "broker"
+          ],
+          [
+            "_rocket_chat_omnichannel_transcript",
+            "broker"
+          ],
+          [
+            "_rocket_chat_presence_service",
+            "broker"
+          ],
+          [
+            "_rocket_chat_queue_worker",
+            "broker"
+          ]
+        ],
+        "subgraphs": []
+      }
+    ],
+    "source_files": {
+      "ee/apps/account-service/package.json": [],
+      "ee/apps/authorization-service/package.json": [],
+      "ee/apps/ddp-streamer/package.json": [],
+      "ee/apps/omnichannel-transcript/package.json": [],
+      "ee/apps/presence-service/package.json": [],
+      "ee/apps/queue-worker/package.json": [],
+      "packages/core-services/src/LocalBroker.ts": [],
+      "packages/core-services/src/index.ts": []
+    },
+    "summary": "Rocket.Chat's backend uses a service-oriented monolith architecture where business logic is divided into 6 services that can either run in a single process via an in-memory broker or be deployed as separate microservices for scaling. Services communicate through a broker abstraction rather than importing each other directly, making the deployment model flexible: you can run everything in one container or split services into standalone deployments."
+  },
+  "prose": [
+    {
+      "section": "(intro)",
+      "text": "Rocket.Chat's backend is a **service-oriented monolith**: business logic is grouped into services that can run **in-process** (single deployment, via the in-memory broker) or be **split out** into standalone microservices for horizontal scaling. 6 services are packaged for standalone deployment under `ee/apps/`."
+    },
+    {
+      "section": "Standalone Services",
+      "text": "| Service | Purpose | Source |\n|---|---|---|\n| `@rocket.chat/account-service` | Rocket.Chat Account service | ee/apps/account-service/package.json:1 |\n| `@rocket.chat/authorization-service` | Rocket.Chat Authorization service | ee/apps/authorization-service/package.json:1 |\n| `@rocket.chat/ddp-streamer` | Rocket.Chat DDP-Streamer service | ee/apps/ddp-streamer/package.json:1 |\n| `@rocket.chat/omnichannel-transcript` | Rocket.Chat service | ee/apps/omnichannel-transcript/package.json:1 |\n| `@rocket.chat/presence-service` | Rocket.Chat Presence service | ee/apps/presence-service/package.json:1 |\n| `@rocket.chat/queue-worker` | Rocket.Chat service | ee/apps/queue-worker/package.json:1 |",
+      "narrative": "Six services are packaged for independent deployment under `ee/apps/`: account-service handles authentication, authorization-service manages permissions, ddp-streamer handles real-time subscriptions, omnichannel-transcript manages conversation archives, presence-service tracks user status, and queue-worker processes asynchronous jobs."
+    },
+    {
+      "section": "Service Layer & Broker",
+      "text": "Services never import each other directly — they talk through the broker abstraction:\n\n- **`@rocket.chat/core-services`** — service interfaces + registry. Services register here and call each other through it, transport-agnostic.\n  - In-process (monolith) transport: `packages/core-services/src/LocalBroker.ts` — routes calls in memory, no network.\n\nSources: packages/core-services/src/index.ts:1, packages/core-services/src/LocalBroker.ts:1",
+      "narrative": "Services never directly import each other—instead they register with and call through `@rocket.chat/core-services`, which provides transport-agnostic service interfaces. In monolith mode, `LocalBroker` routes all calls in memory without network overhead; in microservices mode, a network broker connects services across containers."
+    },
+    {
+      "section": "Deployment Modes",
+      "text": "| Mode | Transport | When |\n|---|---|---|\n| Monolith | in-memory broker (`LocalBroker`) | single container; services run in one process |\n| Microservices | network broker | services in `ee/apps/` run as separate containers, scaled independently |",
+      "narrative": "The monolith mode uses an in-memory broker to run all services in one process within a single container, ideal for simple deployments. Microservices mode uses a network broker so services in `ee/apps/` run as separate containers that can be scaled independently based on load."
+    }
+  ]
+}
