@@ -1,6 +1,6 @@
 import { test } from 'node:test';
 import assert from 'node:assert/strict';
-import { collectFacts, groundText } from './prose.js';
+import { collectFacts, groundText, addProse } from './prose.js';
 import type { MetaChapter } from './types.js';
 
 const CHAPTER: MetaChapter = {
@@ -44,4 +44,36 @@ test('groundText drops a sentence with a hallucinated number', () => {
   const g = groundText('There are 999 secret packages.', f, ALL_FILES);
   assert.equal(g.dropped.length, 1);
   assert.equal(g.clean, '');
+});
+
+test('addProse adds summary + per-section narrative from a fake model and strips drift', async () => {
+  const fakeModel = async (_s: string, _u: string) => JSON.stringify({
+    summary: 'This page maps 72 packages and 218 edges.',
+    narratives: {
+      'Workspace Config': 'The root package.json declares all workspaces.',
+      'Build Orchestration': 'Turbo orchestrates builds. It also reads fake/ghost.ts for config.',
+    },
+  });
+  const out = await addProse(CHAPTER, { generate: fakeModel, allFiles: ALL_FILES });
+
+  // summary grounded + non-empty
+  assert.match(out.page.summary ?? '', /72 packages/);
+  // clean narrative kept
+  const wc = out.prose.find(s => s.section === 'Workspace Config')!;
+  assert.match(wc.narrative ?? '', /workspaces/);
+  // drift sentence stripped, but the clean sentence survives (still non-empty)
+  const bo = out.prose.find(s => s.section === 'Build Orchestration')!;
+  assert.ok(bo.narrative && bo.narrative.length > 0);
+  assert.doesNotMatch(bo.narrative, /ghost\.ts/);
+  // structural fields untouched
+  assert.equal(out.prose.length, 2);
+  assert.match(wc.text, /workspaces/);
+});
+
+test('addProse degrades to structural-only when the model returns non-JSON', async () => {
+  const junkModel = async () => 'I could not produce JSON, sorry.';
+  const out = await addProse(CHAPTER, { generate: junkModel, allFiles: ALL_FILES });
+  assert.equal(out.page.summary, undefined);
+  assert.equal(out.prose.every(s => s.narrative === undefined), true);
+  assert.equal(out.prose.length, 2);   // structure intact
 });
