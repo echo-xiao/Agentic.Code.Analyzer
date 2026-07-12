@@ -7,6 +7,7 @@ import * as path from 'path';
 import { fileURLToPath, pathToFileURL } from 'url';
 import { assembleModuleInput, buildModulePrompt, MODULE_SUMMARY_SCHEMA } from './module-summary.js';
 import { DATA_DIR, MODULE_GRAPH_PATH } from '../config.js';
+import { runPool, callWithRetry } from './utils/pool.js';
 
 export const MODEL_MODULE = 'claude-sonnet-4-6';
 const OUT_DIR = path.join(DATA_DIR, 'summaries');
@@ -25,25 +26,30 @@ export async function summarizeModules(): Promise<number> {
   const limit = process.argv.find(a => a.startsWith('--limit='))?.split('=')[1];
   let mods = graph.modules as any[];
   if (limit) mods = mods.slice(0, Number(limit));
-  let done = 0;
-  for (const mod of mods) {
+  const CONCURRENCY = Number(process.env.MODULE_CONCURRENCY || 6);
+  const pending = mods.map(mod => {
     const input = assembleModuleInput(mod, fileSummaries, graph);
-    const memberHash = sha1(input.fileSummaries.map(f => (fileSummaries[f.file]?.hash ?? '')).join('|'));
-    if (store[mod.id]?.hash === memberHash) continue;
+    const memberHash = sha1(input.fileSummaries.map((f: any) => (fileSummaries[f.file]?.hash ?? '')).join('|'));
+    return { mod, input, memberHash };
+  }).filter(x => store[x.mod.id]?.hash !== x.memberHash);
+  console.error(`[module:summarize] 待生成 ${pending.length} / ${mods.length}(并发 ${CONCURRENCY})`);
+  let done = 0;
+  await runPool(pending, CONCURRENCY, async ({ mod, input, memberHash }) => {
     try {
-      const resp = await client.messages.create({
+      const resp = await callWithRetry(() => client.messages.create({
         model: MODEL_MODULE, max_tokens: 4096,
         messages: [{ role: 'user', content: buildModulePrompt(input) }],
         output_config: { format: { type: 'json_schema', schema: MODULE_SUMMARY_SCHEMA } },
-      } as any);
+      } as any));
       const block = (resp.content as any[]).find(b => b.type === 'text');
       const out = JSON.parse(block.text);
       store[mod.id] = { hash: memberHash, ...out };
       done++;
       fs.mkdirSync(OUT_DIR, { recursive: true });
-      fs.writeFileSync(OUT, JSON.stringify(sortKeys(store), null, 1), 'utf-8');   // 每成功即落盘 → 中断可断点续(hash 增量跳过已完成)
+      fs.writeFileSync(OUT, JSON.stringify(sortKeys(store), null, 1), 'utf-8');   // 每成功即落盘 → 断点续(hash 跳过已完成)
+      if (done % 10 === 0) console.error(`[module:summarize] ${done}/${pending.length}...`);
     } catch (e: any) { console.error(`[module:summarize] ${mod.id} 失败: ${e?.message?.slice(0,100)}`); }
-  }
+  });
   fs.mkdirSync(OUT_DIR, { recursive: true }); fs.writeFileSync(OUT, JSON.stringify(sortKeys(store), null, 1), 'utf-8');
   console.error(`[module:summarize] 新增/更新 ${done} · 库存 ${Object.keys(store).length} → ${OUT}`);
   return done;
