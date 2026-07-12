@@ -21,6 +21,7 @@ import { computeFacts } from '../indexer/structural-facts.js';
 import { ensureIndex, LocalDatabase } from '../indexer/index.js';
 import { GLOBAL_INDEX } from '../indexer/state.js';
 import { assembleSummary, FILE_SUMMARY_LLM_SCHEMA, type FileSummary, type LLMFields } from './file-summary.js';
+import { runPool, callWithRetry } from './utils/pool.js';
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const ROOT = path.resolve(__dirname, '..', '..');
@@ -168,9 +169,10 @@ async function main() {
     }, cliProgress.Presets.shades_classic);
     bar.start(pending.length, 0, { elapsed: '0秒', eta_fmt: '?', saved: Object.keys(store).length, failed: 0 });
 
-    for (let i = 0; i < pending.length; i++) {
-        const { rel, hash, skeletonText, skeletonPath } = pending[i];
-
+    const CONCURRENCY = Number(process.env.SUMMARIES_CONCURRENCY || 8);
+    console.error(`并发 ${CONCURRENCY}`);
+    let processed = 0;
+    await runPool(pending, CONCURRENCY, async ({ rel, hash, skeletonText, skeletonPath }) => {
         // 读 mapping.json 取 symbols
         const mappingPath = skeletonPath.replace('.skeleton.ts', '.mapping.json');
         let symbols: any[] = [];
@@ -186,12 +188,12 @@ async function main() {
         const prompt = buildPrompt(rel, skeletonText, factsForPrompt);
 
         try {
-            const resp = await client.messages.create({
+            const resp = await callWithRetry(() => client.messages.create({
                 model: MODEL_LEAF,
                 max_tokens: 1024,
                 messages: [{ role: 'user', content: prompt }],
                 output_config: { format: { type: 'json_schema', schema: FILE_SUMMARY_LLM_SCHEMA } },
-            } as any);
+            } as any));
 
             const block = (resp.content as any[]).find((b: any) => b.type === 'text');
             const llm = JSON.parse(block.text) as LLMFields;
@@ -199,18 +201,16 @@ async function main() {
             done++;
         } catch (e: any) {
             failed++;
-            bar.stop();
             console.error(`  文件 ${rel} 失败: ${e?.message?.slice(0, 120)}`);
-            bar.start(pending.length, i + 1, { elapsed: fmt((Date.now() - t0) / 1000), eta_fmt: '?', saved: Object.keys(store).length, failed });
         }
 
-        // 断点保存：每个文件立即落盘——中断/崩溃不丢已完成的；重跑时哈希缓存自动跳过已有条目
+        // 断点保存：每完成一个立即落盘（writeFileSync 同步，单线程续；崩溃不丢已完成的，重跑哈希跳过）
         write(store);
+        processed++;
         const elapsed = (Date.now() - t0) / 1000;
-        const filesProcessed = i + 1;
-        const eta = (elapsed / filesProcessed) * (pending.length - filesProcessed);
-        bar.update(filesProcessed, { elapsed: fmt(elapsed), eta_fmt: fmt(eta), saved: Object.keys(store).length, failed });
-    }
+        const eta = (elapsed / processed) * (pending.length - processed);
+        bar.update(processed, { elapsed: fmt(elapsed), eta_fmt: fmt(eta), saved: Object.keys(store).length, failed });
+    });
 
     bar.stop();
     write(store);
