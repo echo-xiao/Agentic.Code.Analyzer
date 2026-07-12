@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Code Wiki</title>
+  <title>Agentic Code Analyzer</title>
   <link rel="stylesheet" href="./style.css" />
   <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
   <script type="module">
@@ -14,21 +14,16 @@
 </head>
 <body>
   <header id="topbar">
-    <div class="brand">
-      <span class="logo">📘</span>
-      <span id="repo-name">Code Wiki</span>
-      <span class="crumb" id="crumb"></span>
-    </div>
+    <div class="brand"><span class="logo">Agentic Code Analyzer</span><span id="repo-name" class="crumb"></span></div>
     <div class="topbar-right">
       <input id="search" type="search" placeholder="Search…" />
       <button id="lang-toggle" title="中 / EN">中文</button>
+      <button id="theme-toggle" title="Light / Dark">🌙</button>
     </div>
   </header>
   <div id="layout">
-    <nav id="sidebar"><ul id="nav-list"></ul>
-      <div class="side-foot" id="side-foot"></div>
-    </nav>
-    <main id="content"><div class="placeholder" id="placeholder">Loading…</div></main>
+    <nav id="sidebar"><div class="side-head" id="side-head"></div><ul id="nav-list"></ul></nav>
+    <main id="content"><div id="content-inner"><div class="placeholder" id="placeholder">Loading…</div></div></main>
     <aside id="toc"><div class="toc-title" id="toc-title">On this page</div><ul id="toc-list"></ul></aside>
   </div>
   <script src="./app.js"></script>
