@@ -27,6 +27,7 @@
     "wiki:gate": "npx tsx src/eval/wiki-selectpages-gate.ts",
     "wiki:serve": "node scripts/wiki-serve.mjs",
     "wiki:gen": "NODE_OPTIONS=\"--max-old-space-size=8192\" npx tsx src/wiki/generate.ts",
+    "wiki:guide": "npx tsx src/wiki/guide.ts",
     "wiki:meta-prose": "NODE_OPTIONS=\"--max-old-space-size=8192\" npx tsx scripts/gen-meta-prose.ts",
     "refresh": "npm run prewarm && npm run module:build && npm run summaries:gen && npm run embed:gen && npm run embed:chunks && npm run module:summarize && npm run wiki:map && npm run gen:mcp && npm run judge && npm run eval:tools && npm run eval:retrieval && npm run report",
     "test": "tsx --test 'src/**/*.test.ts'"
