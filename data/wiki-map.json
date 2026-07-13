@@ -58,7 +58,83 @@
         "Developer Tooling",
         "Architectural Patterns"
       ],
-      "diagrams": [],
+      "diagrams": [
+        {
+          "nodes": {
+            "scripts": "scripts",
+            "pkg_release_changelog": "release-changelog",
+            "pkg_release_action": "release-action",
+            "pkg_storybook_config": "storybook-config",
+            "pkg_eslint_config": "eslint-config",
+            "pkg_peggy_loader": "peggy-loader",
+            "root_meteor": "meteor",
+            "reporters": "reporters",
+            "utils": "utils",
+            "storage": "storage",
+            "router": "router",
+            "settings": "settings"
+          },
+          "edges": [
+            [
+              "root_meteor",
+              "scripts"
+            ],
+            [
+              "scripts",
+              "utils"
+            ],
+            [
+              "scripts",
+              "storage"
+            ],
+            [
+              "scripts",
+              "settings"
+            ],
+            [
+              "pkg_release_changelog",
+              "utils"
+            ],
+            [
+              "pkg_release_changelog",
+              "router"
+            ],
+            [
+              "pkg_release_action",
+              "utils"
+            ],
+            [
+              "pkg_release_action",
+              "storage"
+            ],
+            [
+              "pkg_release_action",
+              "settings"
+            ],
+            [
+              "pkg_release_action",
+              "router"
+            ],
+            [
+              "reporters",
+              "utils"
+            ],
+            [
+              "reporters",
+              "storage"
+            ],
+            [
+              "reporters",
+              "router"
+            ],
+            [
+              "storage",
+              "utils"
+            ]
+          ],
+          "subgraphs": []
+        }
+      ],
       "source_files": {
         "scripts/auto-close-duplicates.ts": [
           "L1"
@@ -137,7 +213,95 @@
         "Read-Preference Utilities",
         "MongoDB Adapter Primitives"
       ],
-      "diagrams": [],
+      "diagrams": [
+        {
+          "nodes": {
+            "pkg_core_typings": "core-typings",
+            "pkg_models": "models",
+            "pkg_model_typings": "model-typings",
+            "pkg_mongo_adapter": "mongo-adapter",
+            "models": "models",
+            "utils": "utils",
+            "server_lib": "lib",
+            "storage": "storage",
+            "settings": "settings",
+            "server_methods": "methods",
+            "statistics": "statistics",
+            "rooms": "rooms"
+          },
+          "edges": [
+            [
+              "pkg_core_typings",
+              "pkg_models"
+            ],
+            [
+              "pkg_model_typings",
+              "pkg_models"
+            ],
+            [
+              "pkg_mongo_adapter",
+              "utils"
+            ],
+            [
+              "pkg_mongo_adapter",
+              "settings"
+            ],
+            [
+              "models",
+              "pkg_models"
+            ],
+            [
+              "models",
+              "pkg_core_typings"
+            ],
+            [
+              "models",
+              "pkg_model_typings"
+            ],
+            [
+              "models",
+              "storage"
+            ],
+            [
+              "models",
+              "settings"
+            ],
+            [
+              "models",
+              "utils"
+            ],
+            [
+              "models",
+              "server_lib"
+            ],
+            [
+              "models",
+              "statistics"
+            ],
+            [
+              "models",
+              "rooms"
+            ],
+            [
+              "models",
+              "server_methods"
+            ],
+            [
+              "server_methods",
+              "utils"
+            ],
+            [
+              "server_methods",
+              "settings"
+            ],
+            [
+              "server_methods",
+              "statistics"
+            ]
+          ],
+          "subgraphs": []
+        }
+      ],
       "source_files": {
         "packages/core-typings/src/IRocketChatRecord.ts": [
           "L1"
@@ -228,7 +392,115 @@
         "Patch Injection Mechanism",
         "Data Flow Summary"
       ],
-      "diagrams": [],
+      "diagrams": [
+        {
+          "nodes": {
+            "settings": "settings",
+            "configuration": "configuration",
+            "pkg_patch_injection": "patch-injection",
+            "pkg_apps_engine_ISetting": "apps-engine/ISetting",
+            "pkg_apps_engine_AppManager": "apps-engine/AppManager",
+            "storage": "storage",
+            "utils": "utils",
+            "statistics": "statistics",
+            "pkg_ui_client": "ui-client",
+            "ui_utils": "ui-utils",
+            "minimongo": "minimongo",
+            "pkg_models": "models"
+          },
+          "edges": [
+            [
+              "settings",
+              "statistics"
+            ],
+            [
+              "settings",
+              "storage"
+            ],
+            [
+              "settings",
+              "utils"
+            ],
+            [
+              "settings",
+              "ui_utils"
+            ],
+            [
+              "configuration",
+              "settings"
+            ],
+            [
+              "configuration",
+              "pkg_apps_engine_ISetting"
+            ],
+            [
+              "configuration",
+              "pkg_apps_engine_AppManager"
+            ],
+            [
+              "configuration",
+              "storage"
+            ],
+            [
+              "configuration",
+              "utils"
+            ],
+            [
+              "configuration",
+              "pkg_ui_client"
+            ],
+            [
+              "configuration",
+              "minimongo"
+            ],
+            [
+              "configuration",
+              "pkg_models"
+            ],
+            [
+              "pkg_patch_injection",
+              "settings"
+            ],
+            [
+              "pkg_patch_injection",
+              "pkg_ui_client"
+            ],
+            [
+              "pkg_patch_injection",
+              "ui_utils"
+            ],
+            [
+              "pkg_apps_engine_AppManager",
+              "pkg_apps_engine_ISetting"
+            ],
+            [
+              "pkg_apps_engine_AppManager",
+              "settings"
+            ],
+            [
+              "pkg_apps_engine_AppManager",
+              "storage"
+            ],
+            [
+              "pkg_apps_engine_AppManager",
+              "statistics"
+            ],
+            [
+              "pkg_models",
+              "storage"
+            ],
+            [
+              "pkg_models",
+              "settings"
+            ],
+            [
+              "pkg_models",
+              "utils"
+            ]
+          ],
+          "subgraphs": []
+        }
+      ],
       "source_files": {
         "apps/meteor/app/settings/server/index.ts": [
           "L1"
@@ -349,7 +621,107 @@
         "Bridge Layer",
         "Database Model and Client Orchestration"
       ],
-      "diagrams": [],
+      "diagrams": [
+        {
+          "nodes": {
+            "pkg_apps_engine_AppManager": "apps-engine/AppManager",
+            "pkg_apps_engine_AppObjectRegistry": "apps-engine/AppObjectRegistry",
+            "pkg_apps_engine_require": "apps-engine/require",
+            "pkg_apps_engine_BaseBridge": "apps-engine/BaseBridge",
+            "pkg_apps_engine_ISetting": "apps-engine/ISetting",
+            "pkg_apps_engine_IVideoConference": "apps-engine/IVideoConference",
+            "pkg_apps_engine_IUIController": "apps-engine/IUIController",
+            "pkg_apps_engine_IExternalComponent": "apps-engine/IExternalComponent",
+            "pkg_apps_engine_Objects": "apps-engine/Objects",
+            "pkg_apps_engine_AppsEngineException": "apps-engine/AppsEngineException",
+            "storage": "storage",
+            "pkg_core_services": "core-services"
+          },
+          "edges": [
+            [
+              "pkg_apps_engine_AppManager",
+              "pkg_apps_engine_AppObjectRegistry"
+            ],
+            [
+              "pkg_apps_engine_AppManager",
+              "pkg_apps_engine_require"
+            ],
+            [
+              "pkg_apps_engine_AppManager",
+              "pkg_apps_engine_BaseBridge"
+            ],
+            [
+              "pkg_apps_engine_AppManager",
+              "pkg_apps_engine_AppsEngineException"
+            ],
+            [
+              "pkg_apps_engine_AppManager",
+              "storage"
+            ],
+            [
+              "pkg_apps_engine_AppManager",
+              "pkg_core_services"
+            ],
+            [
+              "pkg_apps_engine_AppObjectRegistry",
+              "pkg_apps_engine_require"
+            ],
+            [
+              "pkg_apps_engine_AppObjectRegistry",
+              "pkg_apps_engine_BaseBridge"
+            ],
+            [
+              "pkg_apps_engine_AppObjectRegistry",
+              "pkg_apps_engine_ISetting"
+            ],
+            [
+              "pkg_apps_engine_AppObjectRegistry",
+              "pkg_apps_engine_IVideoConference"
+            ],
+            [
+              "pkg_apps_engine_AppObjectRegistry",
+              "pkg_apps_engine_IUIController"
+            ],
+            [
+              "pkg_apps_engine_AppObjectRegistry",
+              "pkg_apps_engine_IExternalComponent"
+            ],
+            [
+              "pkg_apps_engine_AppObjectRegistry",
+              "pkg_apps_engine_Objects"
+            ],
+            [
+              "pkg_apps_engine_AppObjectRegistry",
+              "pkg_apps_engine_AppsEngineException"
+            ],
+            [
+              "pkg_apps_engine_AppObjectRegistry",
+              "storage"
+            ],
+            [
+              "pkg_apps_engine_BaseBridge",
+              "pkg_apps_engine_ISetting"
+            ],
+            [
+              "pkg_apps_engine_BaseBridge",
+              "pkg_apps_engine_IVideoConference"
+            ],
+            [
+              "pkg_apps_engine_BaseBridge",
+              "pkg_apps_engine_IUIController"
+            ],
+            [
+              "pkg_apps_engine_BaseBridge",
+              "pkg_apps_engine_IExternalComponent"
+            ],
+            [
+              "pkg_apps_engine_BaseBridge",
+              "pkg_apps_engine_Objects"
+            ]
+          ],
+          "subgraphs": []
+        }
+      ],
       "source_files": {
         "packages/apps-engine/src/server/AppManager.ts": [
           "L1"
@@ -457,7 +829,119 @@
         "Communication Endpoints",
         "Cron Infrastructure"
       ],
-      "diagrams": [],
+      "diagrams": [
+        {
+          "nodes": {
+            "root_apps": "apps",
+            "apps_engine": "apps-engine",
+            "ee_apps": "ee:apps",
+            "bridges": "bridges",
+            "converters": "converters",
+            "communication": "communication",
+            "storage": "storage",
+            "pkg_apps_engine_AppManager": "apps-engine/AppManager",
+            "pkg_apps_engine_BaseBridge": "apps-engine/BaseBridge",
+            "settings": "settings",
+            "file_upload": "file-upload",
+            "pkg_models": "models"
+          },
+          "edges": [
+            [
+              "root_apps",
+              "storage"
+            ],
+            [
+              "root_apps",
+              "settings"
+            ],
+            [
+              "apps_engine",
+              "communication"
+            ],
+            [
+              "apps_engine",
+              "pkg_apps_engine_AppManager"
+            ],
+            [
+              "apps_engine",
+              "storage"
+            ],
+            [
+              "apps_engine",
+              "bridges"
+            ],
+            [
+              "apps_engine",
+              "ee_apps"
+            ],
+            [
+              "apps_engine",
+              "pkg_apps_engine_BaseBridge"
+            ],
+            [
+              "ee_apps",
+              "storage"
+            ],
+            [
+              "ee_apps",
+              "settings"
+            ],
+            [
+              "ee_apps",
+              "pkg_apps_engine_AppManager"
+            ],
+            [
+              "bridges",
+              "converters"
+            ],
+            [
+              "bridges",
+              "communication"
+            ],
+            [
+              "bridges",
+              "ee_apps"
+            ],
+            [
+              "bridges",
+              "storage"
+            ],
+            [
+              "bridges",
+              "pkg_apps_engine_AppManager"
+            ],
+            [
+              "bridges",
+              "pkg_apps_engine_BaseBridge"
+            ],
+            [
+              "converters",
+              "ee_apps"
+            ],
+            [
+              "converters",
+              "storage"
+            ],
+            [
+              "converters",
+              "pkg_models"
+            ],
+            [
+              "communication",
+              "settings"
+            ],
+            [
+              "communication",
+              "storage"
+            ],
+            [
+              "communication",
+              "ee_apps"
+            ]
+          ],
+          "subgraphs": []
+        }
+      ],
       "source_files": {
         "apps/meteor/lib/apps/getInstallationSourceFromAppStorageItem.ts": [
           "L1"
@@ -530,7 +1014,119 @@
         "Game Center",
         "Data Flow Summary"
       ],
-      "diagrams": [],
+      "diagrams": [
+        {
+          "nodes": {
+            "marketplace": "marketplace",
+            "client_apps": "apps",
+            "gameCenter": "gameCenter",
+            "_types": "@types",
+            "contexts": "contexts",
+            "pkg_apps_engine_AppManager": "apps-engine/AppManager",
+            "pkg_ui_contexts": "ui-contexts",
+            "pkg_ui_client": "ui-client",
+            "providers": "providers",
+            "pkg_livechat_api": "livechat/api",
+            "storage": "storage",
+            "router": "router"
+          },
+          "edges": [
+            [
+              "_types",
+              "marketplace"
+            ],
+            [
+              "_types",
+              "client_apps"
+            ],
+            [
+              "contexts",
+              "marketplace"
+            ],
+            [
+              "contexts",
+              "providers"
+            ],
+            [
+              "marketplace",
+              "pkg_apps_engine_AppManager"
+            ],
+            [
+              "marketplace",
+              "storage"
+            ],
+            [
+              "marketplace",
+              "providers"
+            ],
+            [
+              "marketplace",
+              "router"
+            ],
+            [
+              "marketplace",
+              "pkg_livechat_api"
+            ],
+            [
+              "client_apps",
+              "marketplace"
+            ],
+            [
+              "client_apps",
+              "pkg_apps_engine_AppManager"
+            ],
+            [
+              "client_apps",
+              "providers"
+            ],
+            [
+              "client_apps",
+              "router"
+            ],
+            [
+              "gameCenter",
+              "marketplace"
+            ],
+            [
+              "gameCenter",
+              "pkg_apps_engine_AppManager"
+            ],
+            [
+              "gameCenter",
+              "router"
+            ],
+            [
+              "gameCenter",
+              "providers"
+            ],
+            [
+              "pkg_apps_engine_AppManager",
+              "storage"
+            ],
+            [
+              "pkg_apps_engine_AppManager",
+              "providers"
+            ],
+            [
+              "pkg_apps_engine_AppManager",
+              "pkg_livechat_api"
+            ],
+            [
+              "pkg_ui_client",
+              "pkg_ui_contexts"
+            ],
+            [
+              "pkg_ui_client",
+              "providers"
+            ],
+            [
+              "pkg_ui_client",
+              "router"
+            ]
+          ],
+          "subgraphs": []
+        }
+      ],
       "source_files": {
         "apps/meteor/client/views/marketplace/definitions/CategoryDropdownDefinitions.ts": [
           "L1"
@@ -644,7 +1240,110 @@
         "SetupWizardContext",
         "Supporting UI Components and Stores"
       ],
-      "diagrams": [],
+      "diagrams": [
+        {
+          "nodes": {
+            "pkg_ui_contexts": "ui-contexts",
+            "pkg_ui_client": "ui-client",
+            "providers": "providers",
+            "hooks": "hooks",
+            "stores": "stores",
+            "room_RoomContext": "room/RoomContext",
+            "room_ChatContext": "room/ChatContext",
+            "settings": "settings",
+            "utils": "utils",
+            "root": "root",
+            "server_methods": "methods"
+          },
+          "edges": [
+            [
+              "pkg_ui_contexts",
+              "providers"
+            ],
+            [
+              "pkg_ui_contexts",
+              "stores"
+            ],
+            [
+              "pkg_ui_contexts",
+              "settings"
+            ],
+            [
+              "pkg_ui_contexts",
+              "room_RoomContext"
+            ],
+            [
+              "pkg_ui_contexts",
+              "room_ChatContext"
+            ],
+            [
+              "pkg_ui_client",
+              "pkg_ui_contexts"
+            ],
+            [
+              "pkg_ui_client",
+              "providers"
+            ],
+            [
+              "pkg_ui_client",
+              "room_RoomContext"
+            ],
+            [
+              "pkg_ui_client",
+              "room_ChatContext"
+            ],
+            [
+              "pkg_ui_client",
+              "settings"
+            ],
+            [
+              "providers",
+              "stores"
+            ],
+            [
+              "providers",
+              "settings"
+            ],
+            [
+              "providers",
+              "room_RoomContext"
+            ],
+            [
+              "providers",
+              "room_ChatContext"
+            ],
+            [
+              "providers",
+              "server_methods"
+            ],
+            [
+              "hooks",
+              "providers"
+            ],
+            [
+              "hooks",
+              "room_RoomContext"
+            ],
+            [
+              "hooks",
+              "room_ChatContext"
+            ],
+            [
+              "hooks",
+              "settings"
+            ],
+            [
+              "hooks",
+              "pkg_ui_contexts"
+            ],
+            [
+              "stores",
+              "utils"
+            ]
+          ],
+          "subgraphs": []
+        }
+      ],
       "source_files": {
         "packages/ui-contexts/src/UserContext.ts": [
           "L1"
@@ -734,7 +1433,95 @@
         "UI Kit Trigger Error Handling",
         "Livechat Composer"
       ],
-      "diagrams": [],
+      "diagrams": [
+        {
+          "nodes": {
+            "pkg_ui_composer": "ui-composer",
+            "composer": "composer",
+            "ui_message": "ui-message",
+            "room_ChatContext": "room/ChatContext",
+            "room_RoomContext": "room/RoomContext",
+            "pkg_ui_contexts": "ui-contexts",
+            "emoji": "emoji",
+            "ui_utils": "ui-utils",
+            "room_RoomMembers": "room/RoomMembers",
+            "pkg_ui_voip": "ui-voip",
+            "utils": "utils",
+            "pkg_apps_engine_AppManager": "apps-engine/AppManager"
+          },
+          "edges": [
+            [
+              "pkg_ui_composer",
+              "pkg_ui_contexts"
+            ],
+            [
+              "pkg_ui_composer",
+              "room_ChatContext"
+            ],
+            [
+              "pkg_ui_composer",
+              "room_RoomContext"
+            ],
+            [
+              "pkg_ui_composer",
+              "room_RoomMembers"
+            ],
+            [
+              "pkg_ui_composer",
+              "pkg_ui_voip"
+            ],
+            [
+              "composer",
+              "pkg_ui_composer"
+            ],
+            [
+              "composer",
+              "room_ChatContext"
+            ],
+            [
+              "composer",
+              "room_RoomContext"
+            ],
+            [
+              "composer",
+              "emoji"
+            ],
+            [
+              "composer",
+              "ui_utils"
+            ],
+            [
+              "composer",
+              "pkg_ui_voip"
+            ],
+            [
+              "composer",
+              "pkg_apps_engine_AppManager"
+            ],
+            [
+              "composer",
+              "pkg_ui_contexts"
+            ],
+            [
+              "room_ChatContext",
+              "room_RoomContext"
+            ],
+            [
+              "room_ChatContext",
+              "room_RoomMembers"
+            ],
+            [
+              "room_RoomContext",
+              "room_RoomMembers"
+            ],
+            [
+              "ui_message",
+              "ui_utils"
+            ]
+          ],
+          "subgraphs": []
+        }
+      ],
       "source_files": {
         "packages/ui-composer/src/MessageComposer/MessageComposer.tsx": [
           "L1"
@@ -819,7 +1606,102 @@
         "Server-Side Markdown Processing",
         "Data Flow Summary"
       ],
-      "diagrams": [],
+      "diagrams": [
+        {
+          "nodes": {
+            "pkg_message_parser": "message-parser",
+            "pkg_gazzodown": "gazzodown",
+            "markdown": "markdown",
+            "mentions": "mentions",
+            "highlight_words": "highlight-words",
+            "pkg_models": "models",
+            "settings": "settings",
+            "room_ChatContext": "room/ChatContext",
+            "pkg_ui_contexts": "ui-contexts",
+            "router": "router",
+            "search": "search"
+          },
+          "edges": [
+            [
+              "markdown",
+              "pkg_message_parser"
+            ],
+            [
+              "markdown",
+              "pkg_gazzodown"
+            ],
+            [
+              "markdown",
+              "mentions"
+            ],
+            [
+              "pkg_message_parser",
+              "pkg_models"
+            ],
+            [
+              "pkg_message_parser",
+              "settings"
+            ],
+            [
+              "pkg_message_parser",
+              "room_ChatContext"
+            ],
+            [
+              "pkg_gazzodown",
+              "pkg_message_parser"
+            ],
+            [
+              "pkg_gazzodown",
+              "pkg_models"
+            ],
+            [
+              "pkg_gazzodown",
+              "settings"
+            ],
+            [
+              "pkg_gazzodown",
+              "room_ChatContext"
+            ],
+            [
+              "pkg_gazzodown",
+              "router"
+            ],
+            [
+              "mentions",
+              "pkg_message_parser"
+            ],
+            [
+              "mentions",
+              "pkg_gazzodown"
+            ],
+            [
+              "mentions",
+              "settings"
+            ],
+            [
+              "mentions",
+              "room_ChatContext"
+            ],
+            [
+              "mentions",
+              "router"
+            ],
+            [
+              "highlight_words",
+              "room_ChatContext"
+            ],
+            [
+              "highlight_words",
+              "router"
+            ],
+            [
+              "highlight_words",
+              "search"
+            ]
+          ],
+          "subgraphs": []
+        }
+      ],
       "source_files": {
         "packages/message-parser/src/index.ts": [
           "L1"
@@ -893,7 +1775,99 @@
         "System Message Visibility Control",
         "Architectural Notes"
       ],
-      "diagrams": [],
+      "diagrams": [
+        {
+          "nodes": {
+            "pkg_message_types": "message-types",
+            "threads": "threads",
+            "systemMessage": "systemMessage",
+            "discussion": "discussion",
+            "pkg_models": "models",
+            "room_ChatContext": "room/ChatContext",
+            "ui_utils": "ui-utils",
+            "settings": "settings",
+            "storage": "storage",
+            "pkg_apps_engine_AppManager": "apps-engine/AppManager",
+            "file_upload": "file-upload",
+            "search": "search"
+          },
+          "edges": [
+            [
+              "pkg_message_types",
+              "pkg_models"
+            ],
+            [
+              "pkg_message_types",
+              "ui_utils"
+            ],
+            [
+              "pkg_message_types",
+              "settings"
+            ],
+            [
+              "pkg_message_types",
+              "search"
+            ],
+            [
+              "threads",
+              "ui_utils"
+            ],
+            [
+              "discussion",
+              "pkg_models"
+            ],
+            [
+              "discussion",
+              "settings"
+            ],
+            [
+              "discussion",
+              "storage"
+            ],
+            [
+              "discussion",
+              "pkg_apps_engine_AppManager"
+            ],
+            [
+              "discussion",
+              "file_upload"
+            ],
+            [
+              "discussion",
+              "search"
+            ],
+            [
+              "discussion",
+              "room_ChatContext"
+            ],
+            [
+              "pkg_models",
+              "threads"
+            ],
+            [
+              "pkg_models",
+              "settings"
+            ],
+            [
+              "pkg_models",
+              "search"
+            ],
+            [
+              "room_ChatContext",
+              "threads"
+            ],
+            [
+              "room_ChatContext",
+              "settings"
+            ],
+            [
+              "room_ChatContext",
+              "search"
+            ]
+          ],
+          "subgraphs": []
+        }
+      ],
       "source_files": {
         "packages/message-types/src/MessageTypes.ts": [
           "L1"
@@ -1054,7 +2028,128 @@
         "Contextual Bar: Room Info and Threads",
         "Instance Lifecycle Utility"
       ],
-      "diagrams": [],
+      "diagrams": [
+        {
+          "nodes": {
+            "room_ChatContext": "room/ChatContext",
+            "room_RoomContext": "room/RoomContext",
+            "room_RoomLayout": "room/RoomLayout",
+            "room_RoomMembers": "room/RoomMembers",
+            "room_quickActions": "room/quickActions",
+            "room_useUserInfoActions": "room/useUserInfoActions",
+            "room_useRetentionPolicy": "room/useRetentionPolicy",
+            "room_useCanEditRoom": "room/useCanEditRoom",
+            "room_useE2EERoomState": "room/useE2EERoomState",
+            "ui_utils": "ui-utils",
+            "ui": "ui",
+            "utils": "utils",
+            "rooms": "rooms"
+          },
+          "edges": [
+            [
+              "room_ChatContext",
+              "room_RoomContext"
+            ],
+            [
+              "room_ChatContext",
+              "room_RoomLayout"
+            ],
+            [
+              "room_ChatContext",
+              "room_RoomMembers"
+            ],
+            [
+              "room_ChatContext",
+              "room_quickActions"
+            ],
+            [
+              "room_ChatContext",
+              "room_useUserInfoActions"
+            ],
+            [
+              "room_ChatContext",
+              "room_useRetentionPolicy"
+            ],
+            [
+              "room_ChatContext",
+              "room_useCanEditRoom"
+            ],
+            [
+              "room_ChatContext",
+              "room_useE2EERoomState"
+            ],
+            [
+              "room_RoomContext",
+              "room_RoomLayout"
+            ],
+            [
+              "room_RoomContext",
+              "room_RoomMembers"
+            ],
+            [
+              "room_RoomContext",
+              "room_quickActions"
+            ],
+            [
+              "room_RoomContext",
+              "room_useUserInfoActions"
+            ],
+            [
+              "room_RoomLayout",
+              "room_RoomMembers"
+            ],
+            [
+              "room_RoomLayout",
+              "room_useE2EERoomState"
+            ],
+            [
+              "room_RoomLayout",
+              "ui_utils"
+            ],
+            [
+              "room_RoomMembers",
+              "room_useUserInfoActions"
+            ],
+            [
+              "room_RoomMembers",
+              "room_quickActions"
+            ],
+            [
+              "room_RoomMembers",
+              "room_useCanEditRoom"
+            ],
+            [
+              "room_quickActions",
+              "room_useUserInfoActions"
+            ],
+            [
+              "room_quickActions",
+              "room_useCanEditRoom"
+            ],
+            [
+              "room_quickActions",
+              "room_useRetentionPolicy"
+            ],
+            [
+              "room_useUserInfoActions",
+              "ui_utils"
+            ],
+            [
+              "room_useRetentionPolicy",
+              "ui_utils"
+            ],
+            [
+              "room_ChatContext",
+              "utils"
+            ],
+            [
+              "room_ChatContext",
+              "rooms"
+            ]
+          ],
+          "subgraphs": []
+        }
+      ],
       "source_files": {
         "apps/meteor/client/views/room/index.ts": [
           "L1"
@@ -1212,7 +2307,88 @@
         "Notification Banners",
         "Skeleton & Loading States"
       ],
-      "diagrams": [],
+      "diagrams": [
+        {
+          "nodes": {
+            "components_periods": "components/periods",
+            "components_MarkdownText": "components/MarkdownText",
+            "components_SidebarItemsAssembler": "components/SidebarItemsAssembler",
+            "components_MessageListContext": "components/MessageListContext",
+            "components_useMarkAsUnreadMutation": "components/useMarkAsUnreadMutation",
+            "components_UserCardInfo": "components/UserCardInfo",
+            "components_OEmbedPreviewMetadata": "components/OEmbedPreviewMetadata",
+            "components_CounterSet": "components/CounterSet",
+            "components_MapView": "components/MapView",
+            "components_MessageNotification": "components/MessageNotification",
+            "room_ChatContext": "room/ChatContext",
+            "utils": "utils",
+            "pkg_ui_contexts": "ui-contexts"
+          },
+          "edges": [
+            [
+              "components_MarkdownText",
+              "components_OEmbedPreviewMetadata"
+            ],
+            [
+              "components_MarkdownText",
+              "components_UserCardInfo"
+            ],
+            [
+              "components_MarkdownText",
+              "components_periods"
+            ],
+            [
+              "components_MessageListContext",
+              "components_useMarkAsUnreadMutation"
+            ],
+            [
+              "components_MessageListContext",
+              "components_periods"
+            ],
+            [
+              "components_MessageListContext",
+              "components_SidebarItemsAssembler"
+            ],
+            [
+              "components_MessageListContext",
+              "components_OEmbedPreviewMetadata"
+            ],
+            [
+              "components_SidebarItemsAssembler",
+              "components_periods"
+            ],
+            [
+              "components_periods",
+              "components_useMarkAsUnreadMutation"
+            ],
+            [
+              "components_MarkdownText",
+              "room_ChatContext"
+            ],
+            [
+              "components_MessageListContext",
+              "room_ChatContext"
+            ],
+            [
+              "components_SidebarItemsAssembler",
+              "room_ChatContext"
+            ],
+            [
+              "components_periods",
+              "utils"
+            ],
+            [
+              "components_MarkdownText",
+              "utils"
+            ],
+            [
+              "components_MessageListContext",
+              "utils"
+            ]
+          ],
+          "subgraphs": []
+        }
+      ],
       "source_files": {
         "apps/meteor/client/components/dashboards/periods.ts": [
           "L1"
@@ -1343,7 +2519,123 @@
         "Client-Side Router",
         "Banners & Sidebar Sections"
       ],
-      "diagrams": [],
+      "diagrams": [
+        {
+          "nodes": {
+            "sidebar": "sidebar",
+            "navigation": "navigation",
+            "navbar": "navbar",
+            "router": "router",
+            "root": "root",
+            "rooms": "rooms",
+            "directory": "directory",
+            "utils": "utils",
+            "storage": "storage",
+            "settings": "settings",
+            "pkg_ui_contexts": "ui-contexts",
+            "room_ChatContext": "room/ChatContext"
+          },
+          "edges": [
+            [
+              "navbar",
+              "navigation"
+            ],
+            [
+              "navbar",
+              "router"
+            ],
+            [
+              "navbar",
+              "sidebar"
+            ],
+            [
+              "navbar",
+              "rooms"
+            ],
+            [
+              "navigation",
+              "router"
+            ],
+            [
+              "navigation",
+              "rooms"
+            ],
+            [
+              "navigation",
+              "sidebar"
+            ],
+            [
+              "navigation",
+              "root"
+            ],
+            [
+              "navigation",
+              "utils"
+            ],
+            [
+              "navigation",
+              "pkg_ui_contexts"
+            ],
+            [
+              "navigation",
+              "room_ChatContext"
+            ],
+            [
+              "directory",
+              "navigation"
+            ],
+            [
+              "directory",
+              "navbar"
+            ],
+            [
+              "directory",
+              "rooms"
+            ],
+            [
+              "directory",
+              "router"
+            ],
+            [
+              "sidebar",
+              "utils"
+            ],
+            [
+              "sidebar",
+              "storage"
+            ],
+            [
+              "root",
+              "router"
+            ],
+            [
+              "root",
+              "sidebar"
+            ],
+            [
+              "root",
+              "settings"
+            ],
+            [
+              "rooms",
+              "router"
+            ],
+            [
+              "rooms",
+              "sidebar"
+            ],
+            [
+              "router",
+              "utils"
+            ],
+            [
+              "router",
+              "settings"
+            ]
+          ],
+          "subgraphs": []
+        }
+      ],
       "source_files": {
         "apps/meteor/client/sidebar/Item/Extended.tsx": [
           "L1"
@@ -1518,7 +2810,115 @@
         "Moderation",
         "Shared UI Primitives"
       ],
-      "diagrams": [],
+      "diagrams": [
+        {
+          "nodes": {
+            "admin_types": "admin/types",
+            "admin_AdminUserForm": "admin/AdminUserForm",
+            "admin_useDeactivateUserAction": "admin/useDeactivateUserAction",
+            "admin_useCheckoutUrl": "admin/useCheckoutUrl",
+            "admin_RegisterWorkspaceModal": "admin/RegisterWorkspaceModal",
+            "admin_EditableSettingsContext": "admin/EditableSettingsContext",
+            "admin_useAdminUserInfoActions": "admin/useAdminUserInfoActions",
+            "admin_WorkspaceCardSection": "admin/WorkspaceCardSection",
+            "admin_EditIncomingWebhook": "admin/EditIncomingWebhook",
+            "hooks": "hooks",
+            "pkg_ui_contexts": "ui-contexts",
+            "marketplace": "marketplace"
+          },
+          "edges": [
+            [
+              "admin_types",
+              "admin_useDeactivateUserAction"
+            ],
+            [
+              "admin_types",
+              "admin_useCheckoutUrl"
+            ],
+            [
+              "admin_types",
+              "admin_useAdminUserInfoActions"
+            ],
+            [
+              "admin_types",
+              "marketplace"
+            ],
+            [
+              "admin_types",
+              "hooks"
+            ],
+            [
+              "admin_types",
+              "pkg_ui_contexts"
+            ],
+            [
+              "admin_AdminUserForm",
+              "admin_types"
+            ],
+            [
+              "admin_AdminUserForm",
+              "admin_EditableSettingsContext"
+            ],
+            [
+              "admin_AdminUserForm",
+              "admin_useDeactivateUserAction"
+            ],
+            [
+              "admin_AdminUserForm",
+              "admin_useCheckoutUrl"
+            ],
+            [
+              "admin_AdminUserForm",
+              "admin_useAdminUserInfoActions"
+            ],
+            [
+              "admin_AdminUserForm",
+              "admin_RegisterWorkspaceModal"
+            ],
+            [
+              "admin_AdminUserForm",
+              "admin_EditIncomingWebhook"
+            ],
+            [
+              "admin_AdminUserForm",
+              "hooks"
+            ],
+            [
+              "admin_RegisterWorkspaceModal",
+              "admin_types"
+            ],
+            [
+              "admin_RegisterWorkspaceModal",
+              "admin_WorkspaceCardSection"
+            ],
+            [
+              "admin_RegisterWorkspaceModal",
+              "admin_useDeactivateUserAction"
+            ],
+            [
+              "admin_RegisterWorkspaceModal",
+              "admin_useCheckoutUrl"
+            ],
+            [
+              "admin_RegisterWorkspaceModal",
+              "admin_useAdminUserInfoActions"
+            ],
+            [
+              "admin_useCheckoutUrl",
+              "marketplace"
+            ],
+            [
+              "admin_useCheckoutUrl",
+              "hooks"
+            ],
+            [
+              "admin_useDeactivateUserAction",
+              "hooks"
+            ]
+          ],
+          "subgraphs": []
+        }
+      ],
       "source_files": {
         "apps/meteor/client/views/admin/AdministrationLayout.tsx": [
           "L1"
@@ -1688,7 +3088,116 @@
         "Monitors and Real-Time Reporting",
         "Outbound Messaging Wizard"
       ],
-      "diagrams": [],
+      "diagrams": [
+        {
+          "nodes": {
+            "omnichannel_useOmnichannelDirectoryRouter": "omnichannel/useOmnichannelDirectoryRouter",
+            "omnichannel_AutoCompleteDepartment": "omnichannel/AutoCompleteDepartment",
+            "omnichannel_useOmnichannelSource": "omnichannel/useOmnichannelSource",
+            "omnichannel_Label": "omnichannel/Label",
+            "omnichannel_EditCustomFields": "omnichannel/EditCustomFields",
+            "omnichannel_AutoCompleteAgent": "omnichannel/AutoCompleteAgent",
+            "omnichannel_useOmnichannelPriorities": "omnichannel/useOmnichannelPriorities",
+            "omnichannel_CannedResponseEdit": "omnichannel/CannedResponseEdit",
+            "omnichannel_Chart": "omnichannel/Chart",
+            "omnichannel_constants": "omnichannel/constants",
+            "pkg_ui_contexts": "ui-contexts",
+            "pkg_livechat_api": "livechat/api",
+            "utils": "utils"
+          },
+          "edges": [
+            [
+              "omnichannel_useOmnichannelDirectoryRouter",
+              "omnichannel_useOmnichannelSource"
+            ],
+            [
+              "omnichannel_useOmnichannelDirectoryRouter",
+              "omnichannel_useOmnichannelPriorities"
+            ],
+            [
+              "omnichannel_useOmnichannelDirectoryRouter",
+              "pkg_livechat_api"
+            ],
+            [
+              "omnichannel_useOmnichannelDirectoryRouter",
+              "utils"
+            ],
+            [
+              "omnichannel_useOmnichannelDirectoryRouter",
+              "pkg_ui_contexts"
+            ],
+            [
+              "omnichannel_AutoCompleteDepartment",
+              "omnichannel_useOmnichannelDirectoryRouter"
+            ],
+            [
+              "omnichannel_AutoCompleteDepartment",
+              "omnichannel_useOmnichannelSource"
+            ],
+            [
+              "omnichannel_AutoCompleteDepartment",
+              "omnichannel_Label"
+            ],
+            [
+              "omnichannel_AutoCompleteDepartment",
+              "omnichannel_EditCustomFields"
+            ],
+            [
+              "omnichannel_AutoCompleteDepartment",
+              "omnichannel_Chart"
+            ],
+            [
+              "omnichannel_AutoCompleteDepartment",
+              "omnichannel_CannedResponseEdit"
+            ],
+            [
+              "omnichannel_AutoCompleteDepartment",
+              "omnichannel_useOmnichannelPriorities"
+            ],
+            [
+              "omnichannel_AutoCompleteDepartment",
+              "omnichannel_constants"
+            ],
+            [
+              "omnichannel_useOmnichannelSource",
+              "pkg_ui_contexts"
+            ],
+            [
+              "omnichannel_useOmnichannelSource",
+              "pkg_livechat_api"
+            ],
+            [
+              "omnichannel_useOmnichannelSource",
+              "utils"
+            ],
+            [
+              "omnichannel_Label",
+              "omnichannel_useOmnichannelPriorities"
+            ],
+            [
+              "omnichannel_Label",
+              "omnichannel_useOmnichannelSource"
+            ],
+            [
+              "omnichannel_Label",
+              "omnichannel_constants"
+            ],
+            [
+              "omnichannel_EditCustomFields",
+              "omnichannel_Label"
+            ],
+            [
+              "omnichannel_EditCustomFields",
+              "omnichannel_useOmnichannelPriorities"
+            ],
+            [
+              "omnichannel_EditCustomFields",
+              "omnichannel_constants"
+            ]
+          ],
+          "subgraphs": []
+        }
+      ],
       "source_files": {
         "apps/meteor/client/views/omnichannel/directory/hooks/useOmnichannelDirectoryRouter.ts": [
           "L1"
@@ -1787,7 +3296,98 @@
         "Action Manager Integration",
         "UIKit Playground Application"
       ],
-      "diagrams": [],
+      "diagrams": [
+        {
+          "nodes": {
+            "pkg_ui_kit": "ui-kit",
+            "pkg_fuselage_ui_kit": "fuselage-ui-kit",
+            "uikit": "uikit",
+            "modal": "modal",
+            "uikit_playground": "uikit-playground",
+            "uikit_core_app": "uikit-core-app",
+            "pkg_livechat_Block": "livechat/Block",
+            "pkg_ui_client": "ui-client",
+            "room_ChatContext": "room/ChatContext",
+            "settings": "settings",
+            "utils": "utils"
+          },
+          "edges": [
+            [
+              "pkg_ui_kit",
+              "uikit_playground"
+            ],
+            [
+              "pkg_fuselage_ui_kit",
+              "pkg_ui_kit"
+            ],
+            [
+              "pkg_fuselage_ui_kit",
+              "uikit_playground"
+            ],
+            [
+              "pkg_fuselage_ui_kit",
+              "room_ChatContext"
+            ],
+            [
+              "pkg_fuselage_ui_kit",
+              "settings"
+            ],
+            [
+              "modal",
+              "uikit"
+            ],
+            [
+              "modal",
+              "pkg_fuselage_ui_kit"
+            ],
+            [
+              "modal",
+              "pkg_ui_kit"
+            ],
+            [
+              "modal",
+              "pkg_livechat_Block"
+            ],
+            [
+              "modal",
+              "settings"
+            ],
+            [
+              "pkg_livechat_Block",
+              "pkg_ui_kit"
+            ],
+            [
+              "pkg_livechat_Block",
+              "uikit_playground"
+            ],
+            [
+              "pkg_livechat_Block",
+              "room_ChatContext"
+            ],
+            [
+              "pkg_ui_client",
+              "uikit_core_app"
+            ],
+            [
+              "pkg_ui_client",
+              "pkg_ui_kit"
+            ],
+            [
+              "pkg_ui_client",
+              "uikit_playground"
+            ],
+            [
+              "settings",
+              "uikit_core_app"
+            ],
+            [
+              "settings",
+              "uikit_playground"
+            ]
+          ],
+          "subgraphs": []
+        }
+      ],
       "source_files": {
         "packages/ui-kit/src/blocks/TextObject.ts": [
           "L1"
@@ -1898,7 +3498,118 @@
         "Server-Side Asset Settings",
         "Design Principles"
       ],
-      "diagrams": [],
+      "diagrams": [
+        {
+          "nodes": {
+            "pkg_ui_avatar": "ui-avatar",
+            "pkg_favicon": "favicon",
+            "assets": "assets",
+            "theme": "theme",
+            "ui_master": "ui-master",
+            "pkg_ui_contexts": "ui-contexts",
+            "pkg_ui_client": "ui-client",
+            "utils": "utils",
+            "settings": "settings",
+            "room_RoomContext": "room/RoomContext",
+            "sidebar": "sidebar"
+          },
+          "edges": [
+            [
+              "pkg_ui_avatar",
+              "pkg_ui_contexts"
+            ],
+            [
+              "pkg_ui_avatar",
+              "pkg_ui_client"
+            ],
+            [
+              "pkg_ui_avatar",
+              "room_RoomContext"
+            ],
+            [
+              "pkg_ui_avatar",
+              "sidebar"
+            ],
+            [
+              "pkg_ui_avatar",
+              "utils"
+            ],
+            [
+              "pkg_favicon",
+              "pkg_ui_client"
+            ],
+            [
+              "pkg_favicon",
+              "utils"
+            ],
+            [
+              "pkg_favicon",
+              "sidebar"
+            ],
+            [
+              "pkg_favicon",
+              "settings"
+            ],
+            [
+              "assets",
+              "ui_master"
+            ],
+            [
+              "assets",
+              "utils"
+            ],
+            [
+              "assets",
+              "settings"
+            ],
+            [
+              "assets",
+              "pkg_ui_client"
+            ],
+            [
+              "theme",
+              "ui_master"
+            ],
+            [
+              "theme",
+              "utils"
+            ],
+            [
+              "ui_master",
+              "utils"
+            ],
+            [
+              "pkg_ui_client",
+              "pkg_ui_contexts"
+            ],
+            [
+              "pkg_ui_client",
+              "room_RoomContext"
+            ],
+            [
+              "pkg_ui_client",
+              "utils"
+            ],
+            [
+              "pkg_ui_client",
+              "ui_master"
+            ],
+            [
+              "pkg_ui_client",
+              "theme"
+            ],
+            [
+              "settings",
+              "ui_master"
+            ],
+            [
+              "settings",
+              "theme"
+            ]
+          ],
+          "subgraphs": []
+        }
+      ],
       "source_files": {
         "packages/ui-avatar/src/components/BaseAvatar.tsx": [
           "L1"
@@ -1971,7 +3682,111 @@
         "Enterprise Media Calls Service (`ee/media-calls`)",
         "Call History Contextual Bar"
       ],
-      "diagrams": [],
+      "diagrams": [
+        {
+          "nodes": {
+            "pkg_ui_voip": "ui-voip",
+            "pkg_media_signaling": "media-signaling",
+            "pkg_media_calls": "media-calls",
+            "media_call": "media-call",
+            "mediaCallHistory": "mediaCallHistory",
+            "video_conference": "video-conference",
+            "room_ChatContext": "room/ChatContext",
+            "room_RoomContext": "room/RoomContext",
+            "settings": "settings",
+            "pkg_models": "models",
+            "utils": "utils",
+            "ui_utils": "ui-utils"
+          },
+          "edges": [
+            [
+              "pkg_ui_voip",
+              "video_conference"
+            ],
+            [
+              "pkg_ui_voip",
+              "room_ChatContext"
+            ],
+            [
+              "pkg_ui_voip",
+              "settings"
+            ],
+            [
+              "pkg_media_signaling",
+              "pkg_ui_voip"
+            ],
+            [
+              "pkg_media_signaling",
+              "video_conference"
+            ],
+            [
+              "pkg_media_signaling",
+              "room_ChatContext"
+            ],
+            [
+              "pkg_media_signaling",
+              "settings"
+            ],
+            [
+              "pkg_media_calls",
+              "pkg_ui_voip"
+            ],
+            [
+              "pkg_media_calls",
+              "pkg_media_signaling"
+            ],
+            [
+              "pkg_media_calls",
+              "video_conference"
+            ],
+            [
+              "pkg_media_calls",
+              "room_ChatContext"
+            ],
+            [
+              "media_call",
+              "pkg_media_calls"
+            ],
+            [
+              "media_call",
+              "pkg_media_signaling"
+            ],
+            [
+              "media_call",
+              "video_conference"
+            ],
+            [
+              "media_call",
+              "settings"
+            ],
+            [
+              "mediaCallHistory",
+              "pkg_ui_voip"
+            ],
+            [
+              "mediaCallHistory",
+              "room_RoomContext"
+            ],
+            [
+              "mediaCallHistory",
+              "room_ChatContext"
+            ],
+            [
+              "mediaCallHistory",
+              "settings"
+            ],
+            [
+              "pkg_models",
+              "settings"
+            ],
+            [
+              "pkg_models",
+              "video_conference"
+            ]
+          ],
+          "subgraphs": []
+        }
+      ],
       "source_files": {
         "packages/ui-voip/src/context/MediaCallViewContext.ts": [
           "L1"
@@ -2049,7 +3864,95 @@
         "Constants & Provider Availability",
         "Model Layer"
       ],
-      "diagrams": [],
+      "diagrams": [
+        {
+          "nodes": {
+            "pkg_ui_video_conf": "ui-video-conf",
+            "video_conference": "video-conference",
+            "videoConference": "videoConference",
+            "conference": "conference",
+            "pkg_ui_voip": "ui-voip",
+            "room_ChatContext": "room/ChatContext",
+            "room_RoomLayout": "room/RoomLayout",
+            "room_useCanEditRoom": "room/useCanEditRoom",
+            "ui_utils": "ui-utils",
+            "settings": "settings",
+            "publications": "publications",
+            "root": "root"
+          },
+          "edges": [
+            [
+              "pkg_ui_video_conf",
+              "room_ChatContext"
+            ],
+            [
+              "pkg_ui_video_conf",
+              "room_RoomLayout"
+            ],
+            [
+              "pkg_ui_video_conf",
+              "room_useCanEditRoom"
+            ],
+            [
+              "pkg_ui_video_conf",
+              "pkg_ui_voip"
+            ],
+            [
+              "pkg_ui_video_conf",
+              "ui_utils"
+            ],
+            [
+              "pkg_ui_video_conf",
+              "settings"
+            ],
+            [
+              "pkg_ui_video_conf",
+              "publications"
+            ],
+            [
+              "video_conference",
+              "videoConference"
+            ],
+            [
+              "conference",
+              "video_conference"
+            ],
+            [
+              "conference",
+              "root"
+            ],
+            [
+              "conference",
+              "settings"
+            ],
+            [
+              "conference",
+              "ui_utils"
+            ],
+            [
+              "room_useCanEditRoom",
+              "video_conference"
+            ],
+            [
+              "room_useCanEditRoom",
+              "ui_utils"
+            ],
+            [
+              "pkg_ui_voip",
+              "video_conference"
+            ],
+            [
+              "pkg_ui_voip",
+              "room_ChatContext"
+            ],
+            [
+              "pkg_ui_voip",
+              "room_RoomLayout"
+            ]
+          ],
+          "subgraphs": []
+        }
+      ],
       "source_files": {
         "packages/ui-video-conf/src/VideoConfPopup/VideoConfPopup.tsx": [
           "L1"
@@ -2136,7 +4039,119 @@
         "Client-Side Streamer & React Integration",
         "Spotlight Publication"
       ],
-      "diagrams": [],
+      "diagrams": [
+        {
+          "nodes": {
+            "pkg_ddp_client": "ddp-client",
+            "ddp_streamer": "ddp-streamer",
+            "modules": "modules",
+            "streamer": "streamer",
+            "publications": "publications",
+            "notifications": "notifications",
+            "pkg_models": "models",
+            "utils": "utils",
+            "settings": "settings",
+            "server_lib": "lib",
+            "pkg_core_services": "core-services",
+            "room_ChatContext": "room/ChatContext"
+          },
+          "edges": [
+            [
+              "pkg_ddp_client",
+              "streamer"
+            ],
+            [
+              "pkg_ddp_client",
+              "publications"
+            ],
+            [
+              "pkg_ddp_client",
+              "utils"
+            ],
+            [
+              "pkg_ddp_client",
+              "pkg_models"
+            ],
+            [
+              "ddp_streamer",
+              "modules"
+            ],
+            [
+              "ddp_streamer",
+              "pkg_ddp_client"
+            ],
+            [
+              "ddp_streamer",
+              "streamer"
+            ],
+            [
+              "ddp_streamer",
+              "publications"
+            ],
+            [
+              "ddp_streamer",
+              "notifications"
+            ],
+            [
+              "ddp_streamer",
+              "pkg_core_services"
+            ],
+            [
+              "ddp_streamer",
+              "pkg_models"
+            ],
+            [
+              "modules",
+              "notifications"
+            ],
+            [
+              "modules",
+              "streamer"
+            ],
+            [
+              "modules",
+              "pkg_ddp_client"
+            ],
+            [
+              "streamer",
+              "utils"
+            ],
+            [
+              "publications",
+              "settings"
+            ],
+            [
+              "publications",
+              "server_lib"
+            ],
+            [
+              "publications",
+              "room_ChatContext"
+            ],
+            [
+              "notifications",
+              "streamer"
+            ],
+            [
+              "notifications",
+              "pkg_ddp_client"
+            ],
+            [
+              "notifications",
+              "settings"
+            ],
+            [
+              "notifications",
+              "pkg_models"
+            ],
+            [
+              "notifications",
+              "room_ChatContext"
+            ]
+          ],
+          "subgraphs": []
+        }
+      ],
       "source_files": {
         "packages/ddp-client/src/DDPSDK.ts": [
           "L1"
@@ -2216,7 +4231,131 @@
         "Notification Queue",
         "Data Flow Summary"
       ],
-      "diagrams": [],
+      "diagrams": [
+        {
+          "nodes": {
+            "push": "push",
+            "push_notifications": "push-notifications",
+            "notification_queue": "notification-queue",
+            "settings": "settings",
+            "server_lib": "lib",
+            "utils": "utils",
+            "pkg_models": "models",
+            "server_methods": "methods",
+            "statistics": "statistics",
+            "root_lib": "lib",
+            "ui_utils": "ui-utils",
+            "saveUser": "saveUser"
+          },
+          "edges": [
+            [
+              "push",
+              "push_notifications"
+            ],
+            [
+              "push",
+              "settings"
+            ],
+            [
+              "push",
+              "server_lib"
+            ],
+            [
+              "push",
+              "utils"
+            ],
+            [
+              "push",
+              "statistics"
+            ],
+            [
+              "push_notifications",
+              "settings"
+            ],
+            [
+              "push_notifications",
+              "server_lib"
+            ],
+            [
+              "push_notifications",
+              "utils"
+            ],
+            [
+              "push_notifications",
+              "ui_utils"
+            ],
+            [
+              "push_notifications",
+              "saveUser"
+            ],
+            [
+              "notification_queue",
+              "push_notifications"
+            ],
+            [
+              "notification_queue",
+              "pkg_models"
+            ],
+            [
+              "notification_queue",
+              "server_lib"
+            ],
+            [
+              "notification_queue",
+              "root_lib"
+            ],
+            [
+              "notification_queue",
+              "server_methods"
+            ],
+            [
+              "notification_queue",
+              "utils"
+            ],
+            [
+              "notification_queue",
+              "statistics"
+            ],
+            [
+              "notification_queue",
+              "settings"
+            ],
+            [
+              "pkg_models",
+              "push"
+            ],
+            [
+              "pkg_models",
+              "utils"
+            ],
+            [
+              "pkg_models",
+              "settings"
+            ],
+            [
+              "server_lib",
+              "utils"
+            ],
+            [
+              "server_lib",
+              "settings"
+            ],
+            [
+              "server_lib",
+              "statistics"
+            ],
+            [
+              "server_methods",
+              "utils"
+            ],
+            [
+              "server_methods",
+              "settings"
+            ]
+          ],
+          "subgraphs": []
+        }
+      ],
       "source_files": {
         "apps/meteor/app/push/server/push.ts": [
           "L1"
@@ -2320,7 +4459,95 @@
         "Transcript Service Interface",
         "Data Flow Summary"
       ],
-      "diagrams": [],
+      "diagrams": [
+        {
+          "nodes": {
+            "livechat": "livechat",
+            "livechat_enterprise": "livechat-enterprise",
+            "omnichannel_integrations": "omnichannel-integrations",
+            "omnichannel_analytics": "omnichannel-analytics",
+            "pkg_omnichannel_services": "omnichannel-services",
+            "omnichannel_transcript": "omnichannel-transcript",
+            "canned_responses": "canned-responses",
+            "pkg_omni_core_ee": "omni-core-ee",
+            "pkg_omni_core": "omni-core",
+            "settings": "settings",
+            "server_lib": "lib",
+            "pkg_logger": "logger"
+          },
+          "edges": [
+            [
+              "livechat",
+              "livechat_enterprise"
+            ],
+            [
+              "livechat",
+              "omnichannel_integrations"
+            ],
+            [
+              "livechat",
+              "omnichannel_analytics"
+            ],
+            [
+              "livechat",
+              "omnichannel_transcript"
+            ],
+            [
+              "livechat",
+              "pkg_omnichannel_services"
+            ],
+            [
+              "livechat",
+              "pkg_omni_core"
+            ],
+            [
+              "livechat",
+              "settings"
+            ],
+            [
+              "livechat",
+              "server_lib"
+            ],
+            [
+              "livechat",
+              "pkg_logger"
+            ],
+            [
+              "livechat_enterprise",
+              "pkg_omni_core_ee"
+            ],
+            [
+              "livechat_enterprise",
+              "omnichannel_integrations"
+            ],
+            [
+              "omnichannel_integrations",
+              "pkg_omnichannel_services"
+            ],
+            [
+              "omnichannel_integrations",
+              "omnichannel_transcript"
+            ],
+            [
+              "omnichannel_analytics",
+              "omnichannel_integrations"
+            ],
+            [
+              "omnichannel_analytics",
+              "pkg_omnichannel_services"
+            ],
+            [
+              "pkg_omnichannel_services",
+              "settings"
+            ],
+            [
+              "pkg_omnichannel_services",
+              "server_lib"
+            ]
+          ],
+          "subgraphs": []
+        }
+      ],
       "source_files": {
         "apps/meteor/app/livechat/server/lib/RoutingManager.ts": [
           "L1"
@@ -2413,7 +4640,107 @@
         "Text and Markdown Rendering",
         "Message List Components"
       ],
-      "diagrams": [],
+      "diagrams": [
+        {
+          "nodes": {
+            "pkg_livechat_api": "livechat/api",
+            "pkg_livechat_Block": "livechat/Block",
+            "pkg_livechat_Screen": "livechat/Screen",
+            "pkg_livechat_helpers": "livechat/helpers",
+            "pkg_livechat_createClassName": "livechat/createClassName",
+            "pkg_ui_kit": "ui-kit",
+            "pkg_ui_contexts": "ui-contexts",
+            "utils": "utils",
+            "router": "router",
+            "room_ChatContext": "room/ChatContext",
+            "settings": "settings",
+            "pkg_models": "models"
+          },
+          "edges": [
+            [
+              "pkg_livechat_api",
+              "pkg_livechat_helpers"
+            ],
+            [
+              "pkg_livechat_api",
+              "pkg_livechat_createClassName"
+            ],
+            [
+              "pkg_livechat_api",
+              "utils"
+            ],
+            [
+              "pkg_livechat_api",
+              "router"
+            ],
+            [
+              "pkg_livechat_api",
+              "room_ChatContext"
+            ],
+            [
+              "pkg_livechat_api",
+              "settings"
+            ],
+            [
+              "pkg_livechat_api",
+              "pkg_models"
+            ],
+            [
+              "pkg_livechat_Block",
+              "pkg_livechat_api"
+            ],
+            [
+              "pkg_livechat_Block",
+              "pkg_livechat_helpers"
+            ],
+            [
+              "pkg_livechat_Block",
+              "pkg_livechat_createClassName"
+            ],
+            [
+              "pkg_livechat_Block",
+              "pkg_livechat_Screen"
+            ],
+            [
+              "pkg_livechat_Block",
+              "pkg_ui_kit"
+            ],
+            [
+              "pkg_livechat_Screen",
+              "pkg_livechat_api"
+            ],
+            [
+              "pkg_livechat_Screen",
+              "pkg_livechat_helpers"
+            ],
+            [
+              "pkg_livechat_Screen",
+              "pkg_livechat_createClassName"
+            ],
+            [
+              "pkg_livechat_Screen",
+              "utils"
+            ],
+            [
+              "pkg_livechat_Screen",
+              "router"
+            ],
+            [
+              "pkg_livechat_helpers",
+              "utils"
+            ],
+            [
+              "pkg_livechat_helpers",
+              "settings"
+            ],
+            [
+              "pkg_livechat_createClassName",
+              "pkg_ui_kit"
+            ]
+          ],
+          "subgraphs": []
+        }
+      ],
       "source_files": {
         "packages/livechat/src/api.ts": [
           "L1"
@@ -2496,7 +4823,111 @@
         "Server-Side Federation Route Registration",
         "Server Utility Helpers"
       ],
-      "diagrams": [],
+      "diagrams": [
+        {
+          "nodes": {
+            "federation": "federation",
+            "pkg_federation_matrix": "federation-matrix",
+            "ee_startup": "ee:startup",
+            "pkg_models": "models",
+            "settings": "settings",
+            "utils": "utils",
+            "pkg_ui_client": "ui-client",
+            "storage": "storage",
+            "pkg_http_router": "http-router",
+            "pkg_apps_engine_AppManager": "apps-engine/AppManager",
+            "room_ChatContext": "room/ChatContext",
+            "video_conference": "video-conference"
+          },
+          "edges": [
+            [
+              "federation",
+              "pkg_federation_matrix"
+            ],
+            [
+              "federation",
+              "pkg_models"
+            ],
+            [
+              "federation",
+              "settings"
+            ],
+            [
+              "federation",
+              "storage"
+            ],
+            [
+              "federation",
+              "pkg_http_router"
+            ],
+            [
+              "federation",
+              "pkg_apps_engine_AppManager"
+            ],
+            [
+              "federation",
+              "room_ChatContext"
+            ],
+            [
+              "federation",
+              "pkg_ui_client"
+            ],
+            [
+              "federation",
+              "utils"
+            ],
+            [
+              "pkg_federation_matrix",
+              "pkg_models"
+            ],
+            [
+              "pkg_federation_matrix",
+              "settings"
+            ],
+            [
+              "pkg_federation_matrix",
+              "pkg_http_router"
+            ],
+            [
+              "pkg_federation_matrix",
+              "storage"
+            ],
+            [
+              "pkg_federation_matrix",
+              "pkg_ui_client"
+            ],
+            [
+              "pkg_federation_matrix",
+              "utils"
+            ],
+            [
+              "ee_startup",
+              "pkg_federation_matrix"
+            ],
+            [
+              "ee_startup",
+              "settings"
+            ],
+            [
+              "pkg_ui_client",
+              "utils"
+            ],
+            [
+              "pkg_ui_client",
+              "room_ChatContext"
+            ],
+            [
+              "pkg_models",
+              "storage"
+            ],
+            [
+              "settings",
+              "utils"
+            ]
+          ],
+          "subgraphs": []
+        }
+      ],
       "source_files": {
         "apps/meteor/client/lib/federation/Federation.ts": [
           "L1"
@@ -2581,7 +5012,152 @@
         "Client-Side Authentication",
         "Login Flow Summary"
       ],
-      "diagrams": [],
+      "diagrams": [
+        {
+          "nodes": {
+            "authentication": "authentication",
+            "2fa": "2fa",
+            "token_login": "token-login",
+            "iframe_login": "iframe-login",
+            "login": "login",
+            "client_startup": "startup",
+            "overrides": "overrides",
+            "app_client": "client",
+            "settings": "settings",
+            "pkg_api_client": "api-client",
+            "pkg_apps_engine_AppManager": "apps-engine/AppManager",
+            "router": "router",
+            "utils": "utils"
+          },
+          "edges": [
+            [
+              "authentication",
+              "settings"
+            ],
+            [
+              "authentication",
+              "pkg_apps_engine_AppManager"
+            ],
+            [
+              "authentication",
+              "pkg_api_client"
+            ],
+            [
+              "authentication",
+              "router"
+            ],
+            [
+              "authentication",
+              "utils"
+            ],
+            [
+              "authentication",
+              "client_startup"
+            ],
+            [
+              "2fa",
+              "authentication"
+            ],
+            [
+              "2fa",
+              "settings"
+            ],
+            [
+              "2fa",
+              "overrides"
+            ],
+            [
+              "2fa",
+              "login"
+            ],
+            [
+              "2fa",
+              "pkg_api_client"
+            ],
+            [
+              "2fa",
+              "pkg_apps_engine_AppManager"
+            ],
+            [
+              "2fa",
+              "router"
+            ],
+            [
+              "2fa",
+              "utils"
+            ],
+            [
+              "token_login",
+              "utils"
+            ],
+            [
+              "iframe_login",
+              "settings"
+            ],
+            [
+              "iframe_login",
+              "utils"
+            ],
+            [
+              "login",
+              "settings"
+            ],
+            [
+              "login",
+              "router"
+            ],
+            [
+              "login",
+              "utils"
+            ],
+            [
+              "login",
+              "pkg_apps_engine_AppManager"
+            ],
+            [
+              "client_startup",
+              "settings"
+            ],
+            [
+              "client_startup",
+              "router"
+            ],
+            [
+              "client_startup",
+              "pkg_apps_engine_AppManager"
+            ],
+            [
+              "client_startup",
+              "utils"
+            ],
+            [
+              "overrides",
+              "settings"
+            ],
+            [
+              "overrides",
+              "router"
+            ],
+            [
+              "overrides",
+              "utils"
+            ],
+            [
+              "app_client",
+              "settings"
+            ],
+            [
+              "app_client",
+              "router"
+            ],
+            [
+              "app_client",
+              "utils"
+            ]
+          ],
+          "subgraphs": []
+        }
+      ],
       "source_files": {
         "apps/meteor/app/authentication/server/ILoginAttempt.ts": [
           "L1"
@@ -2725,7 +5301,141 @@
         "Client-Side OAuth Error Handling",
         "Crowd SSO"
       ],
-      "diagrams": [],
+      "diagrams": [
+        {
+          "nodes": {
+            "oauth": "oauth",
+            "oauth2_server": "oauth2-server",
+            "oauth2_server_config": "oauth2-server-config",
+            "custom_oauth": "custom-oauth",
+            "customOAuth": "customOAuth",
+            "meteor_accounts_saml": "meteor-accounts-saml",
+            "cas": "cas",
+            "google_oauth": "google-oauth",
+            "github": "github",
+            "gitlab": "gitlab",
+            "apple": "apple",
+            "pkg_linkedin_oauth": "linkedin-oauth",
+            "settings": "settings",
+            "pkg_models": "models"
+          },
+          "edges": [
+            [
+              "oauth",
+              "settings"
+            ],
+            [
+              "oauth",
+              "pkg_models"
+            ],
+            [
+              "oauth2_server",
+              "oauth2_server_config"
+            ],
+            [
+              "oauth2_server",
+              "settings"
+            ],
+            [
+              "oauth2_server",
+              "pkg_models"
+            ],
+            [
+              "oauth2_server_config",
+              "settings"
+            ],
+            [
+              "oauth2_server_config",
+              "pkg_models"
+            ],
+            [
+              "custom_oauth",
+              "oauth"
+            ],
+            [
+              "custom_oauth",
+              "oauth2_server"
+            ],
+            [
+              "custom_oauth",
+              "customOAuth"
+            ],
+            [
+              "custom_oauth",
+              "meteor_accounts_saml"
+            ],
+            [
+              "custom_oauth",
+              "github"
+            ],
+            [
+              "custom_oauth",
+              "gitlab"
+            ],
+            [
+              "custom_oauth",
+              "pkg_linkedin_oauth"
+            ],
+            [
+              "custom_oauth",
+              "settings"
+            ],
+            [
+              "custom_oauth",
+              "pkg_models"
+            ],
+            [
+              "customOAuth",
+              "oauth"
+            ],
+            [
+              "customOAuth",
+              "meteor_accounts_saml"
+            ],
+            [
+              "customOAuth",
+              "gitlab"
+            ],
+            [
+              "customOAuth",
+              "settings"
+            ],
+            [
+              "customOAuth",
+              "pkg_models"
+            ],
+            [
+              "meteor_accounts_saml",
+              "oauth"
+            ],
+            [
+              "meteor_accounts_saml",
+              "oauth2_server"
+            ],
+            [
+              "meteor_accounts_saml",
+              "settings"
+            ],
+            [
+              "meteor_accounts_saml",
+              "pkg_models"
+            ],
+            [
+              "cas",
+              "meteor_accounts_saml"
+            ],
+            [
+              "cas",
+              "settings"
+            ],
+            [
+              "cas",
+              "pkg_models"
+            ]
+          ],
+          "subgraphs": []
+        }
+      ],
       "source_files": {
         "apps/meteor/app/oauth2-server-config/server/admin/functions/addOAuthApp.ts": [
           "L1"
@@ -2812,7 +5522,90 @@
         "Role Synchronization",
         "Data Flow Summary"
       ],
-      "diagrams": [],
+      "diagrams": [
+        {
+          "nodes": {
+            "ldap": "ldap",
+            "local_services": "local-services",
+            "ee_lib": "ee:lib",
+            "settings": "settings",
+            "server_lib": "lib",
+            "pkg_core_services": "core-services",
+            "pkg_models": "models",
+            "utils": "utils",
+            "pkg_logger": "logger",
+            "root_lib": "lib",
+            "pkg_core_typings": "core-typings"
+          },
+          "edges": [
+            [
+              "ldap",
+              "local_services"
+            ],
+            [
+              "ldap",
+              "settings"
+            ],
+            [
+              "ldap",
+              "server_lib"
+            ],
+            [
+              "ldap",
+              "utils"
+            ],
+            [
+              "ldap",
+              "pkg_logger"
+            ],
+            [
+              "ldap",
+              "pkg_models"
+            ],
+            [
+              "ldap",
+              "pkg_core_typings"
+            ],
+            [
+              "ee_lib",
+              "ldap"
+            ],
+            [
+              "ee_lib",
+              "local_services"
+            ],
+            [
+              "ee_lib",
+              "settings"
+            ],
+            [
+              "local_services",
+              "settings"
+            ],
+            [
+              "local_services",
+              "server_lib"
+            ],
+            [
+              "local_services",
+              "pkg_core_services"
+            ],
+            [
+              "local_services",
+              "pkg_models"
+            ],
+            [
+              "local_services",
+              "utils"
+            ],
+            [
+              "ldap",
+              "root_lib"
+            ]
+          ],
+          "subgraphs": []
+        }
+      ],
       "source_files": {
         "apps/meteor/server/lib/ldap/Logger.ts": [
           "L1"
@@ -2891,7 +5684,127 @@
         "ABAC Upsell Modal",
         "Summary"
       ],
-      "diagrams": [],
+      "diagrams": [
+        {
+          "nodes": {
+            "authorization": "authorization",
+            "roles": "roles",
+            "pkg_abac": "abac",
+            "abac": "abac",
+            "components_ABACUpsellModal": "components/ABACUpsellModal",
+            "settings": "settings",
+            "pkg_models": "models",
+            "storage": "storage",
+            "pkg_apps_engine_AppManager": "apps-engine/AppManager",
+            "video_conference": "video-conference",
+            "server_methods": "methods",
+            "pkg_core_typings": "core-typings"
+          },
+          "edges": [
+            [
+              "authorization",
+              "roles"
+            ],
+            [
+              "authorization",
+              "pkg_abac"
+            ],
+            [
+              "authorization",
+              "settings"
+            ],
+            [
+              "authorization",
+              "pkg_models"
+            ],
+            [
+              "authorization",
+              "storage"
+            ],
+            [
+              "authorization",
+              "video_conference"
+            ],
+            [
+              "authorization",
+              "server_methods"
+            ],
+            [
+              "authorization",
+              "pkg_apps_engine_AppManager"
+            ],
+            [
+              "authorization",
+              "pkg_core_typings"
+            ],
+            [
+              "roles",
+              "settings"
+            ],
+            [
+              "roles",
+              "video_conference"
+            ],
+            [
+              "roles",
+              "server_methods"
+            ],
+            [
+              "pkg_abac",
+              "pkg_models"
+            ],
+            [
+              "pkg_abac",
+              "storage"
+            ],
+            [
+              "pkg_abac",
+              "settings"
+            ],
+            [
+              "pkg_abac",
+              "pkg_apps_engine_AppManager"
+            ],
+            [
+              "pkg_abac",
+              "video_conference"
+            ],
+            [
+              "abac",
+              "pkg_models"
+            ],
+            [
+              "abac",
+              "storage"
+            ],
+            [
+              "abac",
+              "pkg_apps_engine_AppManager"
+            ],
+            [
+              "abac",
+              "video_conference"
+            ],
+            [
+              "pkg_models",
+              "storage"
+            ],
+            [
+              "pkg_models",
+              "settings"
+            ],
+            [
+              "pkg_models",
+              "roles"
+            ],
+            [
+              "pkg_models",
+              "video_conference"
+            ]
+          ],
+          "subgraphs": []
+        }
+      ],
       "source_files": {
         "apps/meteor/app/authorization/server/functions/hasPermission.ts": [
           "L1"
@@ -2977,7 +5890,99 @@
         "Chat Provider Integration",
         "Data Flow Summary"
       ],
-      "diagrams": [],
+      "diagrams": [
+        {
+          "nodes": {
+            "e2ee": "e2ee",
+            "room_useE2EERoomState": "room/useE2EERoomState",
+            "EnterE2EPasswordModal": "EnterE2EPasswordModal",
+            "client_e2e": "e2e",
+            "settings": "settings",
+            "utils": "utils",
+            "pkg_ui_client": "ui-client",
+            "pkg_models": "models",
+            "server_lib": "lib",
+            "room_RoomMembers": "room/RoomMembers",
+            "pkg_license": "license",
+            "hooks": "hooks"
+          },
+          "edges": [
+            [
+              "e2ee",
+              "room_useE2EERoomState"
+            ],
+            [
+              "e2ee",
+              "settings"
+            ],
+            [
+              "e2ee",
+              "utils"
+            ],
+            [
+              "e2ee",
+              "pkg_ui_client"
+            ],
+            [
+              "e2ee",
+              "pkg_models"
+            ],
+            [
+              "e2ee",
+              "server_lib"
+            ],
+            [
+              "e2ee",
+              "pkg_license"
+            ],
+            [
+              "e2ee",
+              "hooks"
+            ],
+            [
+              "e2ee",
+              "room_RoomMembers"
+            ],
+            [
+              "room_useE2EERoomState",
+              "settings"
+            ],
+            [
+              "room_useE2EERoomState",
+              "utils"
+            ],
+            [
+              "EnterE2EPasswordModal",
+              "e2ee"
+            ],
+            [
+              "EnterE2EPasswordModal",
+              "hooks"
+            ],
+            [
+              "EnterE2EPasswordModal",
+              "pkg_ui_client"
+            ],
+            [
+              "EnterE2EPasswordModal",
+              "room_RoomMembers"
+            ],
+            [
+              "client_e2e",
+              "e2ee"
+            ],
+            [
+              "client_e2e",
+              "pkg_ui_client"
+            ],
+            [
+              "client_e2e",
+              "room_RoomMembers"
+            ]
+          ],
+          "subgraphs": []
+        }
+      ],
       "source_files": {
         "apps/meteor/client/lib/e2ee/codec.ts": [
           "L1"
@@ -3068,7 +6073,119 @@
         "Enterprise SDK and Network Broker",
         "Testing Infrastructure"
       ],
-      "diagrams": [],
+      "diagrams": [
+        {
+          "nodes": {
+            "pkg_license": "license",
+            "license": "license",
+            "ee_server": "ee:server",
+            "pkg_network_broker": "network-broker",
+            "patches": "patches",
+            "sdk": "sdk",
+            "settings": "settings",
+            "server_lib": "lib",
+            "pkg_ui_client": "ui-client",
+            "storage": "storage",
+            "pkg_models": "models",
+            "root_lib": "lib"
+          },
+          "edges": [
+            [
+              "pkg_license",
+              "pkg_network_broker"
+            ],
+            [
+              "pkg_license",
+              "settings"
+            ],
+            [
+              "pkg_license",
+              "storage"
+            ],
+            [
+              "pkg_license",
+              "pkg_models"
+            ],
+            [
+              "license",
+              "pkg_license"
+            ],
+            [
+              "license",
+              "settings"
+            ],
+            [
+              "license",
+              "patches"
+            ],
+            [
+              "license",
+              "server_lib"
+            ],
+            [
+              "license",
+              "pkg_ui_client"
+            ],
+            [
+              "license",
+              "storage"
+            ],
+            [
+              "ee_server",
+              "license"
+            ],
+            [
+              "ee_server",
+              "settings"
+            ],
+            [
+              "ee_server",
+              "patches"
+            ],
+            [
+              "ee_server",
+              "pkg_ui_client"
+            ],
+            [
+              "pkg_network_broker",
+              "settings"
+            ],
+            [
+              "pkg_network_broker",
+              "storage"
+            ],
+            [
+              "pkg_network_broker",
+              "server_lib"
+            ],
+            [
+              "pkg_network_broker",
+              "root_lib"
+            ],
+            [
+              "patches",
+              "settings"
+            ],
+            [
+              "patches",
+              "sdk"
+            ],
+            [
+              "patches",
+              "pkg_ui_client"
+            ],
+            [
+              "patches",
+              "pkg_license"
+            ],
+            [
+              "sdk",
+              "server_lib"
+            ]
+          ],
+          "subgraphs": []
+        }
+      ],
       "source_files": {
         "ee/packages/license/src/license.ts": [
           "L1"
@@ -3162,7 +6279,116 @@
         "Message Content Preprocessing — Spotify Hook",
         "Cross-Cutting Concerns"
       ],
-      "diagrams": [],
+      "diagrams": [
+        {
+          "nodes": {
+            "message_pin": "message-pin",
+            "message_star": "message-star",
+            "reactions": "reactions",
+            "message_mark_as_unread": "message-mark-as-unread",
+            "message_read_receipt": "message-read-receipt",
+            "moderation": "moderation",
+            "messages": "messages",
+            "retention_policy": "retention-policy",
+            "ee_methods": "ee:methods",
+            "settings": "settings",
+            "pkg_models": "models",
+            "pkg_core_services": "core-services",
+            "ui_utils": "ui-utils"
+          },
+          "edges": [
+            [
+              "message_pin",
+              "settings"
+            ],
+            [
+              "message_pin",
+              "messages"
+            ],
+            [
+              "message_pin",
+              "pkg_models"
+            ],
+            [
+              "message_star",
+              "settings"
+            ],
+            [
+              "message_star",
+              "pkg_models"
+            ],
+            [
+              "reactions",
+              "settings"
+            ],
+            [
+              "reactions",
+              "ui_utils"
+            ],
+            [
+              "message_mark_as_unread",
+              "pkg_models"
+            ],
+            [
+              "message_mark_as_unread",
+              "pkg_core_services"
+            ],
+            [
+              "message_read_receipt",
+              "settings"
+            ],
+            [
+              "message_read_receipt",
+              "messages"
+            ],
+            [
+              "message_read_receipt",
+              "pkg_models"
+            ],
+            [
+              "message_read_receipt",
+              "pkg_core_services"
+            ],
+            [
+              "moderation",
+              "settings"
+            ],
+            [
+              "moderation",
+              "pkg_models"
+            ],
+            [
+              "moderation",
+              "ui_utils"
+            ],
+            [
+              "messages",
+              "settings"
+            ],
+            [
+              "messages",
+              "reactions"
+            ],
+            [
+              "messages",
+              "pkg_models"
+            ],
+            [
+              "messages",
+              "pkg_core_services"
+            ],
+            [
+              "retention_policy",
+              "settings"
+            ],
+            [
+              "ee_methods",
+              "message_read_receipt"
+            ]
+          ],
+          "subgraphs": []
+        }
+      ],
       "source_files": {
         "apps/meteor/app/message-pin/server/pinMessage.ts": [
           "L1"
@@ -3322,7 +6548,144 @@
         "Distributed Tracing",
         "Database Utilities"
       ],
-      "diagrams": [],
+      "diagrams": [
+        {
+          "nodes": {
+            "pkg_core_services": "core-services",
+            "server_services": "services",
+            "server_startup": "startup",
+            "server_server": "server",
+            "server_meteor": "meteor",
+            "server_lib": "lib",
+            "server_methods": "methods",
+            "app_functions": "functions",
+            "app_methods": "methods",
+            "user": "user",
+            "team": "team",
+            "settings": "settings",
+            "pkg_models": "models"
+          },
+          "edges": [
+            [
+              "pkg_core_services",
+              "server_services"
+            ],
+            [
+              "pkg_core_services",
+              "server_startup"
+            ],
+            [
+              "pkg_core_services",
+              "server_server"
+            ],
+            [
+              "pkg_core_services",
+              "server_meteor"
+            ],
+            [
+              "pkg_core_services",
+              "user"
+            ],
+            [
+              "pkg_core_services",
+              "team"
+            ],
+            [
+              "pkg_core_services",
+              "settings"
+            ],
+            [
+              "pkg_core_services",
+              "pkg_models"
+            ],
+            [
+              "server_services",
+              "user"
+            ],
+            [
+              "server_services",
+              "team"
+            ],
+            [
+              "server_services",
+              "settings"
+            ],
+            [
+              "server_startup",
+              "settings"
+            ],
+            [
+              "server_server",
+              "server_services"
+            ],
+            [
+              "server_server",
+              "server_startup"
+            ],
+            [
+              "server_meteor",
+              "server_services"
+            ],
+            [
+              "server_meteor",
+              "server_server"
+            ],
+            [
+              "server_lib",
+              "server_services"
+            ],
+            [
+              "server_lib",
+              "server_methods"
+            ],
+            [
+              "server_lib",
+              "user"
+            ],
+            [
+              "server_lib",
+              "team"
+            ],
+            [
+              "app_functions",
+              "pkg_core_services"
+            ],
+            [
+              "app_functions",
+              "server_lib"
+            ],
+            [
+              "app_functions",
+              "server_methods"
+            ],
+            [
+              "app_functions",
+              "team"
+            ],
+            [
+              "app_methods",
+              "pkg_core_services"
+            ],
+            [
+              "app_methods",
+              "server_lib"
+            ],
+            [
+              "app_methods",
+              "server_methods"
+            ],
+            [
+              "app_methods",
+              "user"
+            ],
+            [
+              "app_methods",
+              "team"
+            ]
+          ],
+          "subgraphs": []
+        }
+      ],
       "source_files": {
         "packages/core-services/src/types/IBroker.ts": [
           "L1"
@@ -3448,7 +6811,123 @@
         "Outgoing Email Processing (SMTP)",
         "Data Flow Summary"
       ],
-      "diagrams": [],
+      "diagrams": [
+        {
+          "nodes": {
+            "mailer": "mailer",
+            "email": "email",
+            "features": "features",
+            "mail_messages": "mail-messages",
+            "pkg_node_poplib": "node-poplib",
+            "pkg_models": "models",
+            "settings": "settings",
+            "server_lib": "lib",
+            "notifications": "notifications",
+            "storage": "storage",
+            "pkg_apps_engine_AppManager": "apps-engine/AppManager",
+            "utils": "utils"
+          },
+          "edges": [
+            [
+              "email",
+              "mailer"
+            ],
+            [
+              "email",
+              "features"
+            ],
+            [
+              "email",
+              "notifications"
+            ],
+            [
+              "email",
+              "storage"
+            ],
+            [
+              "mailer",
+              "settings"
+            ],
+            [
+              "mailer",
+              "server_lib"
+            ],
+            [
+              "mailer",
+              "notifications"
+            ],
+            [
+              "mailer",
+              "pkg_node_poplib"
+            ],
+            [
+              "mailer",
+              "pkg_models"
+            ],
+            [
+              "mailer",
+              "utils"
+            ],
+            [
+              "mailer",
+              "pkg_apps_engine_AppManager"
+            ],
+            [
+              "features",
+              "mail_messages"
+            ],
+            [
+              "features",
+              "mailer"
+            ],
+            [
+              "features",
+              "settings"
+            ],
+            [
+              "features",
+              "storage"
+            ],
+            [
+              "features",
+              "pkg_apps_engine_AppManager"
+            ],
+            [
+              "mail_messages",
+              "mailer"
+            ],
+            [
+              "mail_messages",
+              "pkg_models"
+            ],
+            [
+              "mail_messages",
+              "settings"
+            ],
+            [
+              "mail_messages",
+              "storage"
+            ],
+            [
+              "mail_messages",
+              "server_lib"
+            ],
+            [
+              "pkg_node_poplib",
+              "storage"
+            ],
+            [
+              "pkg_node_poplib",
+              "settings"
+            ],
+            [
+              "pkg_node_poplib",
+              "utils"
+            ]
+          ],
+          "subgraphs": []
+        }
+      ],
       "source_files": {
         "apps/meteor/app/mailer/server/api.ts": [
           "L1"
@@ -3530,7 +7009,143 @@
         "Version Update Checks",
         "Cron-Driven Reporting"
       ],
-      "diagrams": [],
+      "diagrams": [
+        {
+          "nodes": {
+            "statistics": "statistics",
+            "metrics": "metrics",
+            "version_check": "version-check",
+            "cron": "cron",
+            "settings": "settings",
+            "video_conference": "video-conference",
+            "utils": "utils",
+            "ui": "ui",
+            "pkg_apps_engine_AppManager": "apps-engine/AppManager",
+            "storage": "storage",
+            "pkg_models": "models",
+            "server_startup": "startup"
+          },
+          "edges": [
+            [
+              "statistics",
+              "utils"
+            ],
+            [
+              "statistics",
+              "video_conference"
+            ],
+            [
+              "statistics",
+              "storage"
+            ],
+            [
+              "statistics",
+              "ui"
+            ],
+            [
+              "metrics",
+              "statistics"
+            ],
+            [
+              "metrics",
+              "settings"
+            ],
+            [
+              "metrics",
+              "server_startup"
+            ],
+            [
+              "metrics",
+              "video_conference"
+            ],
+            [
+              "metrics",
+              "utils"
+            ],
+            [
+              "metrics",
+              "ui"
+            ],
+            [
+              "metrics",
+              "pkg_models"
+            ],
+            [
+              "metrics",
+              "pkg_apps_engine_AppManager"
+            ],
+            [
+              "metrics",
+              "storage"
+            ],
+            [
+              "version_check",
+              "video_conference"
+            ],
+            [
+              "cron",
+              "statistics"
+            ],
+            [
+              "cron",
+              "settings"
+            ],
+            [
+              "cron",
+              "server_startup"
+            ],
+            [
+              "cron",
+              "video_conference"
+            ],
+            [
+              "cron",
+              "pkg_models"
+            ],
+            [
+              "cron",
+              "storage"
+            ],
+            [
+              "cron",
+              "ui"
+            ],
+            [
+              "cron",
+              "pkg_apps_engine_AppManager"
+            ],
+            [
+              "settings",
+              "statistics"
+            ],
+            [
+              "settings",
+              "version_check"
+            ],
+            [
+              "pkg_models",
+              "statistics"
+            ],
+            [
+              "pkg_models",
+              "settings"
+            ],
+            [
+              "pkg_models",
+              "video_conference"
+            ],
+            [
+              "utils",
+              "version_check"
+            ],
+            [
+              "utils",
+              "video_conference"
+            ]
+          ],
+          "subgraphs": []
+        }
+      ],
       "source_files": {
         "apps/meteor/app/metrics/server/lib/metrics.ts": [
           "L1"
@@ -3610,7 +7225,89 @@
         "OpenTelemetry Tracing",
         "Logging Settings & Configuration"
       ],
-      "diagrams": [],
+      "diagrams": [
+        {
+          "nodes": {
+            "pkg_logger": "logger",
+            "pkg_tracing": "tracing",
+            "pkg_log_format": "log-format",
+            "logger": "logger",
+            "database": "database",
+            "auditServerEvents": "auditServerEvents",
+            "statistics": "statistics",
+            "server_server": "server",
+            "pkg_models": "models",
+            "search": "search"
+          },
+          "edges": [
+            [
+              "pkg_logger",
+              "pkg_tracing"
+            ],
+            [
+              "pkg_logger",
+              "statistics"
+            ],
+            [
+              "pkg_logger",
+              "server_server"
+            ],
+            [
+              "pkg_logger",
+              "search"
+            ],
+            [
+              "pkg_tracing",
+              "server_server"
+            ],
+            [
+              "pkg_tracing",
+              "statistics"
+            ],
+            [
+              "pkg_log_format",
+              "pkg_models"
+            ],
+            [
+              "pkg_log_format",
+              "statistics"
+            ],
+            [
+              "logger",
+              "pkg_logger"
+            ],
+            [
+              "logger",
+              "statistics"
+            ],
+            [
+              "database",
+              "logger"
+            ],
+            [
+              "database",
+              "pkg_logger"
+            ],
+            [
+              "database",
+              "server_server"
+            ],
+            [
+              "database",
+              "statistics"
+            ],
+            [
+              "auditServerEvents",
+              "pkg_models"
+            ],
+            [
+              "auditServerEvents",
+              "search"
+            ]
+          ],
+          "subgraphs": []
+        }
+      ],
       "source_files": {
         "packages/logger/src/getPino.ts": [
           "L1"
@@ -3762,7 +7459,103 @@
         "Personal Data Export",
         "Database Migrations"
       ],
-      "diagrams": [],
+      "diagrams": [
+        {
+          "nodes": {
+            "importer": "importer",
+            "importer_slack": "importer-slack",
+            "importer_csv": "importer-csv",
+            "importer_pending_files": "importer-pending-files",
+            "importer_pending_avatars": "importer-pending-avatars",
+            "dataExport": "dataExport",
+            "migrations": "migrations",
+            "pkg_logger": "logger",
+            "settings": "settings",
+            "pkg_models": "models",
+            "utils": "utils",
+            "server_lib": "lib"
+          },
+          "edges": [
+            [
+              "importer",
+              "importer_slack"
+            ],
+            [
+              "importer",
+              "importer_csv"
+            ],
+            [
+              "importer",
+              "importer_pending_files"
+            ],
+            [
+              "importer",
+              "importer_pending_avatars"
+            ],
+            [
+              "importer",
+              "migrations"
+            ],
+            [
+              "importer",
+              "settings"
+            ],
+            [
+              "importer",
+              "pkg_logger"
+            ],
+            [
+              "importer",
+              "pkg_models"
+            ],
+            [
+              "importer",
+              "utils"
+            ],
+            [
+              "importer",
+              "server_lib"
+            ],
+            [
+              "importer_slack",
+              "settings"
+            ],
+            [
+              "importer_slack",
+              "pkg_logger"
+            ],
+            [
+              "importer_csv",
+              "settings"
+            ],
+            [
+              "importer_csv",
+              "pkg_logger"
+            ],
+            [
+              "importer_pending_avatars",
+              "settings"
+            ],
+            [
+              "dataExport",
+              "importer"
+            ],
+            [
+              "dataExport",
+              "settings"
+            ],
+            [
+              "dataExport",
+              "utils"
+            ],
+            [
+              "dataExport",
+              "server_lib"
+            ]
+          ],
+          "subgraphs": []
+        }
+      ],
       "source_files": {
         "apps/meteor/app/importer/server/index.ts": [
           "L1"
@@ -3874,7 +7667,103 @@
         "CORS and Inline Script Configuration",
         "HTTP Utility Layer"
       ],
-      "diagrams": [],
+      "diagrams": [
+        {
+          "nodes": {
+            "cloud": "cloud",
+            "deviceManagement": "deviceManagement",
+            "device_management": "device-management",
+            "ee_server": "ee:server",
+            "cors": "cors",
+            "http": "http",
+            "error_handler": "error-handler",
+            "settings": "settings",
+            "pkg_http_router": "http-router",
+            "pkg_api_client": "api-client",
+            "pkg_logger": "logger",
+            "utils": "utils"
+          },
+          "edges": [
+            [
+              "device_management",
+              "deviceManagement"
+            ],
+            [
+              "cloud",
+              "ee_server"
+            ],
+            [
+              "cloud",
+              "settings"
+            ],
+            [
+              "cloud",
+              "utils"
+            ],
+            [
+              "cloud",
+              "pkg_logger"
+            ],
+            [
+              "deviceManagement",
+              "settings"
+            ],
+            [
+              "deviceManagement",
+              "utils"
+            ],
+            [
+              "deviceManagement",
+              "pkg_http_router"
+            ],
+            [
+              "deviceManagement",
+              "pkg_api_client"
+            ],
+            [
+              "ee_server",
+              "settings"
+            ],
+            [
+              "ee_server",
+              "pkg_http_router"
+            ],
+            [
+              "ee_server",
+              "pkg_api_client"
+            ],
+            [
+              "cors",
+              "settings"
+            ],
+            [
+              "cors",
+              "utils"
+            ],
+            [
+              "cors",
+              "pkg_http_router"
+            ],
+            [
+              "http",
+              "utils"
+            ],
+            [
+              "error_handler",
+              "settings"
+            ],
+            [
+              "error_handler",
+              "utils"
+            ],
+            [
+              "error_handler",
+              "pkg_logger"
+            ]
+          ],
+          "subgraphs": []
+        }
+      ],
       "source_files": {
         "apps/meteor/app/cloud/server/index.ts": [
           "L1"
@@ -4050,7 +7939,126 @@
         "IRC Bridge",
         "Auto-Translate Support"
       ],
-      "diagrams": [],
+      "diagrams": [
+        {
+          "nodes": {
+            "integrations": "integrations",
+            "slashCommands": "slashCommands",
+            "bot_helpers": "bot-helpers",
+            "autotranslate": "autotranslate",
+            "irc": "irc",
+            "utils": "utils",
+            "pkg_apps_engine_AppManager": "apps-engine/AppManager",
+            "settings": "settings",
+            "pkg_models": "models",
+            "minimongo": "minimongo",
+            "slashcommand_asciiarts": "slashcommand-asciiarts"
+          },
+          "edges": [
+            [
+              "integrations",
+              "utils"
+            ],
+            [
+              "integrations",
+              "settings"
+            ],
+            [
+              "integrations",
+              "pkg_apps_engine_AppManager"
+            ],
+            [
+              "integrations",
+              "pkg_models"
+            ],
+            [
+              "integrations",
+              "minimongo"
+            ],
+            [
+              "integrations",
+              "slashcommand_asciiarts"
+            ],
+            [
+              "integrations",
+              "irc"
+            ],
+            [
+              "slashCommands",
+              "utils"
+            ],
+            [
+              "bot_helpers",
+              "utils"
+            ],
+            [
+              "bot_helpers",
+              "settings"
+            ],
+            [
+              "bot_helpers",
+              "pkg_models"
+            ],
+            [
+              "bot_helpers",
+              "pkg_apps_engine_AppManager"
+            ],
+            [
+              "bot_helpers",
+              "irc"
+            ],
+            [
+              "autotranslate",
+              "integrations"
+            ],
+            [
+              "autotranslate",
+              "utils"
+            ],
+            [
+              "autotranslate",
+              "settings"
+            ],
+            [
+              "autotranslate",
+              "pkg_apps_engine_AppManager"
+            ],
+            [
+              "irc",
+              "utils"
+            ],
+            [
+              "irc",
+              "settings"
+            ],
+            [
+              "irc",
+              "pkg_apps_engine_AppManager"
+            ],
+            [
+              "pkg_apps_engine_AppManager",
+              "pkg_models"
+            ],
+            [
+              "pkg_apps_engine_AppManager",
+              "settings"
+            ],
+            [
+              "pkg_apps_engine_AppManager",
+              "utils"
+            ],
+            [
+              "minimongo",
+              "utils"
+            ],
+            [
+              "minimongo",
+              "pkg_models"
+            ]
+          ],
+          "subgraphs": []
+        }
+      ],
       "source_files": {
         "apps/meteor/app/integrations/lib/outgoingEvents.ts": [
           "L1"
@@ -4167,7 +8175,103 @@
         "Smarsh Email Archiving Connector",
         "Cross-Cutting Concerns"
       ],
-      "diagrams": [],
+      "diagrams": [
+        {
+          "nodes": {
+            "webdav": "webdav",
+            "nextcloud": "nextcloud",
+            "smarsh_connector": "smarsh-connector",
+            "storage": "storage",
+            "settings": "settings",
+            "pkg_apps_engine_AppManager": "apps-engine/AppManager",
+            "pkg_models": "models",
+            "server_lib": "lib",
+            "ufs": "ufs",
+            "utils": "utils",
+            "root_lib": "lib",
+            "pkg_license": "license"
+          },
+          "edges": [
+            [
+              "nextcloud",
+              "webdav"
+            ],
+            [
+              "nextcloud",
+              "settings"
+            ],
+            [
+              "nextcloud",
+              "smarsh_connector"
+            ],
+            [
+              "nextcloud",
+              "storage"
+            ],
+            [
+              "nextcloud",
+              "server_lib"
+            ],
+            [
+              "nextcloud",
+              "root_lib"
+            ],
+            [
+              "nextcloud",
+              "pkg_models"
+            ],
+            [
+              "nextcloud",
+              "pkg_apps_engine_AppManager"
+            ],
+            [
+              "nextcloud",
+              "pkg_license"
+            ],
+            [
+              "smarsh_connector",
+              "storage"
+            ],
+            [
+              "smarsh_connector",
+              "ufs"
+            ],
+            [
+              "smarsh_connector",
+              "utils"
+            ],
+            [
+              "storage",
+              "ufs"
+            ],
+            [
+              "storage",
+              "utils"
+            ],
+            [
+              "settings",
+              "webdav"
+            ],
+            [
+              "pkg_apps_engine_AppManager",
+              "webdav"
+            ],
+            [
+              "pkg_apps_engine_AppManager",
+              "storage"
+            ],
+            [
+              "pkg_models",
+              "storage"
+            ],
+            [
+              "pkg_models",
+              "utils"
+            ]
+          ],
+          "subgraphs": []
+        }
+      ],
       "source_files": {
         "apps/meteor/app/webdav/server/lib/webdavClientAdapter.ts": [
           "L1"
@@ -4231,7 +8335,98 @@
         "Broker Integration",
         "Summary"
       ],
-      "diagrams": [],
+      "diagrams": [
+        {
+          "nodes": {
+            "pkg_presence": "presence",
+            "presence_service": "presence-service",
+            "user_status": "user-status",
+            "settings": "settings",
+            "search": "search",
+            "ui": "ui",
+            "video_conference": "video-conference",
+            "statistics": "statistics",
+            "queue_worker": "queue-worker",
+            "streamer": "streamer",
+            "storage": "storage"
+          },
+          "edges": [
+            [
+              "pkg_presence",
+              "presence_service"
+            ],
+            [
+              "pkg_presence",
+              "user_status"
+            ],
+            [
+              "pkg_presence",
+              "settings"
+            ],
+            [
+              "pkg_presence",
+              "search"
+            ],
+            [
+              "pkg_presence",
+              "queue_worker"
+            ],
+            [
+              "pkg_presence",
+              "statistics"
+            ],
+            [
+              "pkg_presence",
+              "storage"
+            ],
+            [
+              "pkg_presence",
+              "streamer"
+            ],
+            [
+              "pkg_presence",
+              "ui"
+            ],
+            [
+              "presence_service",
+              "settings"
+            ],
+            [
+              "presence_service",
+              "search"
+            ],
+            [
+              "presence_service",
+              "statistics"
+            ],
+            [
+              "presence_service",
+              "ui"
+            ],
+            [
+              "user_status",
+              "video_conference"
+            ],
+            [
+              "settings",
+              "statistics"
+            ],
+            [
+              "settings",
+              "user_status"
+            ],
+            [
+              "search",
+              "settings"
+            ],
+            [
+              "search",
+              "statistics"
+            ]
+          ],
+          "subgraphs": []
+        }
+      ],
       "source_files": {
         "ee/packages/presence/src/lib/processConnectionStatus.ts": [
           "L1"
@@ -4354,7 +8549,126 @@
         "Server-Side User Persistence (`saveUser`)",
         "Email Notifications"
       ],
-      "diagrams": [],
+      "diagrams": [
+        {
+          "nodes": {
+            "pkg_web_ui_registration": "web-ui-registration",
+            "pkg_password_policies": "password-policies",
+            "saveUser": "saveUser",
+            "account": "account",
+            "pkg_ui_contexts": "ui-contexts",
+            "pkg_ui_client": "ui-client",
+            "settings": "settings",
+            "utils": "utils",
+            "statistics": "statistics",
+            "root": "root",
+            "ufs": "ufs"
+          },
+          "edges": [
+            [
+              "pkg_web_ui_registration",
+              "settings"
+            ],
+            [
+              "pkg_web_ui_registration",
+              "utils"
+            ],
+            [
+              "pkg_web_ui_registration",
+              "root"
+            ],
+            [
+              "pkg_password_policies",
+              "pkg_ui_contexts"
+            ],
+            [
+              "pkg_password_policies",
+              "pkg_ui_client"
+            ],
+            [
+              "pkg_password_policies",
+              "saveUser"
+            ],
+            [
+              "pkg_password_policies",
+              "settings"
+            ],
+            [
+              "pkg_password_policies",
+              "utils"
+            ],
+            [
+              "pkg_password_policies",
+              "statistics"
+            ],
+            [
+              "saveUser",
+              "settings"
+            ],
+            [
+              "saveUser",
+              "utils"
+            ],
+            [
+              "saveUser",
+              "ufs"
+            ],
+            [
+              "account",
+              "pkg_password_policies"
+            ],
+            [
+              "account",
+              "settings"
+            ],
+            [
+              "account",
+              "utils"
+            ],
+            [
+              "account",
+              "statistics"
+            ],
+            [
+              "account",
+              "root"
+            ],
+            [
+              "pkg_ui_contexts",
+              "pkg_web_ui_registration"
+            ],
+            [
+              "pkg_ui_contexts",
+              "settings"
+            ],
+            [
+              "pkg_ui_contexts",
+              "utils"
+            ],
+            [
+              "pkg_ui_client",
+              "pkg_ui_contexts"
+            ],
+            [
+              "pkg_ui_client",
+              "pkg_web_ui_registration"
+            ],
+            [
+              "pkg_ui_client",
+              "saveUser"
+            ],
+            [
+              "pkg_ui_client",
+              "settings"
+            ],
+            [
+              "pkg_ui_client",
+              "utils"
+            ]
+          ],
+          "subgraphs": []
+        }
+      ],
       "source_files": {
         "packages/web-ui-registration/src/hooks/useLoginRouter.ts": [
           "L1"
@@ -4446,7 +8760,139 @@
         "Invites",
         "Channel Settings Persistence"
       ],
-      "diagrams": [],
+      "diagrams": [
+        {
+          "nodes": {
+            "teams": "teams",
+            "team": "team",
+            "rooms": "rooms",
+            "channel_settings": "channel-settings",
+            "invites": "invites",
+            "root_definition": "definition",
+            "settings": "settings",
+            "utils": "utils",
+            "server_lib": "lib",
+            "server_methods": "methods",
+            "pkg_apps_engine_AppManager": "apps-engine/AppManager",
+            "storage": "storage"
+          },
+          "edges": [
+            [
+              "teams",
+              "utils"
+            ],
+            [
+              "team",
+              "teams"
+            ],
+            [
+              "team",
+              "utils"
+            ],
+            [
+              "rooms",
+              "teams"
+            ],
+            [
+              "rooms",
+              "team"
+            ],
+            [
+              "rooms",
+              "root_definition"
+            ],
+            [
+              "rooms",
+              "settings"
+            ],
+            [
+              "rooms",
+              "server_lib"
+            ],
+            [
+              "rooms",
+              "utils"
+            ],
+            [
+              "channel_settings",
+              "rooms"
+            ],
+            [
+              "channel_settings",
+              "team"
+            ],
+            [
+              "channel_settings",
+              "root_definition"
+            ],
+            [
+              "channel_settings",
+              "settings"
+            ],
+            [
+              "channel_settings",
+              "server_lib"
+            ],
+            [
+              "channel_settings",
+              "utils"
+            ],
+            [
+              "channel_settings",
+              "pkg_apps_engine_AppManager"
+            ],
+            [
+              "channel_settings",
+              "server_methods"
+            ],
+            [
+              "invites",
+              "rooms"
+            ],
+            [
+              "invites",
+              "root_definition"
+            ],
+            [
+              "invites",
+              "settings"
+            ],
+            [
+              "invites",
+              "utils"
+            ],
+            [
+              "invites",
+              "server_methods"
+            ],
+            [
+              "invites",
+              "pkg_apps_engine_AppManager"
+            ],
+            [
+              "invites",
+              "storage"
+            ],
+            [
+              "root_definition",
+              "server_lib"
+            ],
+            [
+              "root_definition",
+              "server_methods"
+            ],
+            [
+              "settings",
+              "utils"
+            ],
+            [
+              "settings",
+              "storage"
+            ]
+          ],
+          "subgraphs": []
+        }
+      ],
       "source_files": {
         "apps/meteor/lib/rooms/coordinator.ts": [
           "L1"
@@ -4573,7 +9019,122 @@
         "Enterprise API Middleware",
         "Summary"
       ],
-      "diagrams": [],
+      "diagrams": [
+        {
+          "nodes": {
+            "pkg_http_router": "http-router",
+            "pkg_rest_typings": "rest-typings",
+            "api": "api",
+            "api_enterprise": "api-enterprise",
+            "routes": "routes",
+            "pkg_models": "models",
+            "utils": "utils",
+            "settings": "settings",
+            "server_lib": "lib",
+            "pkg_livechat_api": "livechat/api",
+            "file_upload": "file-upload"
+          },
+          "edges": [
+            [
+              "pkg_http_router",
+              "pkg_rest_typings"
+            ],
+            [
+              "pkg_http_router",
+              "routes"
+            ],
+            [
+              "pkg_http_router",
+              "settings"
+            ],
+            [
+              "pkg_http_router",
+              "utils"
+            ],
+            [
+              "pkg_http_router",
+              "server_lib"
+            ],
+            [
+              "pkg_http_router",
+              "pkg_models"
+            ],
+            [
+              "pkg_http_router",
+              "pkg_livechat_api"
+            ],
+            [
+              "pkg_rest_typings",
+              "utils"
+            ],
+            [
+              "pkg_rest_typings",
+              "server_lib"
+            ],
+            [
+              "api",
+              "pkg_http_router"
+            ],
+            [
+              "api",
+              "pkg_rest_typings"
+            ],
+            [
+              "api",
+              "routes"
+            ],
+            [
+              "api",
+              "settings"
+            ],
+            [
+              "api",
+              "utils"
+            ],
+            [
+              "api",
+              "api_enterprise"
+            ],
+            [
+              "api",
+              "file_upload"
+            ],
+            [
+              "api_enterprise",
+              "pkg_http_router"
+            ],
+            [
+              "api_enterprise",
+              "settings"
+            ],
+            [
+              "api_enterprise",
+              "utils"
+            ],
+            [
+              "routes",
+              "settings"
+            ],
+            [
+              "routes",
+              "utils"
+            ],
+            [
+              "file_upload",
+              "routes"
+            ],
+            [
+              "file_upload",
+              "settings"
+            ],
+            [
+              "file_upload",
+              "server_lib"
+            ]
+          ],
+          "subgraphs": []
+        }
+      ],
       "source_files": {
         "packages/http-router/src/definition.ts": [
           "L1"
@@ -4653,7 +9214,111 @@
         "Enterprise Queue Worker Microservice (`queue-worker`)",
         "Presence Reaping as a Representative Consumer"
       ],
-      "diagrams": [],
+      "diagrams": [
+        {
+          "nodes": {
+            "pkg_agenda": "agenda",
+            "pkg_cron": "cron",
+            "queue_worker": "queue-worker",
+            "pkg_models": "models",
+            "pkg_apps_engine_AppManager": "apps-engine/AppManager",
+            "server_lib": "lib",
+            "settings": "settings",
+            "statistics": "statistics",
+            "pkg_core_services": "core-services",
+            "pkg_license": "license",
+            "utils": "utils",
+            "router": "router"
+          },
+          "edges": [
+            [
+              "pkg_agenda",
+              "pkg_cron"
+            ],
+            [
+              "pkg_agenda",
+              "queue_worker"
+            ],
+            [
+              "pkg_agenda",
+              "pkg_models"
+            ],
+            [
+              "pkg_agenda",
+              "pkg_apps_engine_AppManager"
+            ],
+            [
+              "pkg_agenda",
+              "server_lib"
+            ],
+            [
+              "pkg_agenda",
+              "settings"
+            ],
+            [
+              "pkg_agenda",
+              "statistics"
+            ],
+            [
+              "pkg_cron",
+              "pkg_models"
+            ],
+            [
+              "pkg_cron",
+              "queue_worker"
+            ],
+            [
+              "pkg_cron",
+              "settings"
+            ],
+            [
+              "pkg_cron",
+              "statistics"
+            ],
+            [
+              "pkg_cron",
+              "server_lib"
+            ],
+            [
+              "queue_worker",
+              "settings"
+            ],
+            [
+              "queue_worker",
+              "statistics"
+            ],
+            [
+              "pkg_apps_engine_AppManager",
+              "pkg_cron"
+            ],
+            [
+              "pkg_apps_engine_AppManager",
+              "queue_worker"
+            ],
+            [
+              "pkg_apps_engine_AppManager",
+              "pkg_models"
+            ],
+            [
+              "pkg_models",
+              "server_lib"
+            ],
+            [
+              "pkg_models",
+              "settings"
+            ],
+            [
+              "pkg_models",
+              "statistics"
+            ],
+            [
+              "pkg_models",
+              "queue_worker"
+            ]
+          ],
+          "subgraphs": []
+        }
+      ],
       "source_files": {
         "packages/agenda/src/Agenda.ts": [
           "L1"
@@ -4796,7 +9461,119 @@
         "Common Error Classes",
         "Utility Functions"
       ],
-      "diagrams": [],
+      "diagrams": [
+        {
+          "nodes": {
+            "pkg_api_client": "api-client",
+            "utils": "utils",
+            "client_lib": "lib",
+            "root_lib": "lib",
+            "errors": "errors",
+            "callbacks": "callbacks",
+            "pkg_core_typings": "core-typings",
+            "pkg_models": "models",
+            "settings": "settings",
+            "storage": "storage",
+            "video_conference": "video-conference",
+            "server_methods": "methods"
+          },
+          "edges": [
+            [
+              "pkg_api_client",
+              "utils"
+            ],
+            [
+              "pkg_api_client",
+              "pkg_models"
+            ],
+            [
+              "pkg_api_client",
+              "storage"
+            ],
+            [
+              "pkg_api_client",
+              "settings"
+            ],
+            [
+              "pkg_api_client",
+              "root_lib"
+            ],
+            [
+              "client_lib",
+              "pkg_api_client"
+            ],
+            [
+              "client_lib",
+              "utils"
+            ],
+            [
+              "client_lib",
+              "errors"
+            ],
+            [
+              "client_lib",
+              "root_lib"
+            ],
+            [
+              "client_lib",
+              "pkg_models"
+            ],
+            [
+              "client_lib",
+              "storage"
+            ],
+            [
+              "client_lib",
+              "settings"
+            ],
+            [
+              "root_lib",
+              "utils"
+            ],
+            [
+              "root_lib",
+              "storage"
+            ],
+            [
+              "root_lib",
+              "settings"
+            ],
+            [
+              "root_lib",
+              "server_methods"
+            ],
+            [
+              "errors",
+              "utils"
+            ],
+            [
+              "errors",
+              "root_lib"
+            ],
+            [
+              "callbacks",
+              "utils"
+            ],
+            [
+              "callbacks",
+              "pkg_api_client"
+            ],
+            [
+              "callbacks",
+              "client_lib"
+            ],
+            [
+              "callbacks",
+              "root_lib"
+            ],
+            [
+              "callbacks",
+              "settings"
+            ]
+          ],
+          "subgraphs": []
+        }
+      ],
       "source_files": {
         "packages/api-client/src/RestClientInterface.ts": [
           "L1"
@@ -4899,7 +9676,136 @@
         "JWT, CAS Validation & Server Fetch (`pkg:jwt`, `pkg:cas-validate`, `pkg:server-fetch`)",
         "Server-Cloud Communication & Desktop API (`pkg:server-cloud-communication`, `pkg:desktop-api`)"
       ],
-      "diagrams": [],
+      "diagrams": [
+        {
+          "nodes": {
+            "pkg_random": "random",
+            "pkg_tools": "tools",
+            "pkg_sha256": "sha256",
+            "pkg_base64": "base64",
+            "pkg_jwt": "jwt",
+            "pkg_cas_validate": "cas-validate",
+            "pkg_server_fetch": "server-fetch",
+            "pkg_server_cloud_communication": "server-cloud-communication",
+            "pkg_ui_client": "ui-client",
+            "settings": "settings",
+            "storage": "storage",
+            "utils": "utils",
+            "scripts": "scripts"
+          },
+          "edges": [
+            [
+              "pkg_random",
+              "settings"
+            ],
+            [
+              "pkg_random",
+              "storage"
+            ],
+            [
+              "pkg_random",
+              "pkg_ui_client"
+            ],
+            [
+              "pkg_tools",
+              "utils"
+            ],
+            [
+              "pkg_tools",
+              "settings"
+            ],
+            [
+              "pkg_tools",
+              "storage"
+            ],
+            [
+              "pkg_tools",
+              "pkg_ui_client"
+            ],
+            [
+              "pkg_sha256",
+              "scripts"
+            ],
+            [
+              "pkg_base64",
+              "pkg_ui_client"
+            ],
+            [
+              "pkg_base64",
+              "scripts"
+            ],
+            [
+              "pkg_jwt",
+              "utils"
+            ],
+            [
+              "pkg_jwt",
+              "scripts"
+            ],
+            [
+              "pkg_cas_validate",
+              "utils"
+            ],
+            [
+              "pkg_cas_validate",
+              "settings"
+            ],
+            [
+              "pkg_cas_validate",
+              "storage"
+            ],
+            [
+              "pkg_cas_validate",
+              "pkg_ui_client"
+            ],
+            [
+              "pkg_server_fetch",
+              "utils"
+            ],
+            [
+              "pkg_server_fetch",
+              "settings"
+            ],
+            [
+              "pkg_server_fetch",
+              "storage"
+            ],
+            [
+              "pkg_server_fetch",
+              "pkg_ui_client"
+            ],
+            [
+              "pkg_server_cloud_communication",
+              "settings"
+            ],
+            [
+              "pkg_ui_client",
+              "utils"
+            ],
+            [
+              "pkg_ui_client",
+              "settings"
+            ],
+            [
+              "pkg_ui_client",
+              "storage"
+            ],
+            [
+              "settings",
+              "storage"
+            ],
+            [
+              "settings",
+              "utils"
+            ],
+            [
+              "storage",
+              "utils"
+            ]
+          ],
+          "subgraphs": []
+        }
+      ],
       "source_files": {
         "packages/random/jest.config.ts": [
           "L1"
@@ -4993,7 +9899,116 @@
         "rocketchat-postcss: CSS Build Pipeline",
         "Supporting Models & Update Infrastructure"
       ],
-      "diagrams": [],
+      "diagrams": [
+        {
+          "nodes": {
+            "pkg_autoupdate": "autoupdate",
+            "pkg_meteor_cookies": "meteor-cookies",
+            "pkg_rocketchat_mongo_config": "rocketchat-mongo-config",
+            "pkg_rocketchat_version": "rocketchat-version",
+            "pkg_rocketchat_livechat": "rocketchat-livechat",
+            "pkg_instance_status": "instance-status",
+            "pkg_meteor_run_as_user": "meteor-run-as-user",
+            "pkg_meteor_inject_initial": "meteor-inject-initial",
+            "pkg_rocketchat_postcss": "rocketchat-postcss",
+            "settings": "settings",
+            "pkg_ui_client": "ui-client",
+            "server_lib": "lib",
+            "router": "router"
+          },
+          "edges": [
+            [
+              "pkg_autoupdate",
+              "pkg_meteor_cookies"
+            ],
+            [
+              "pkg_autoupdate",
+              "pkg_rocketchat_version"
+            ],
+            [
+              "pkg_autoupdate",
+              "pkg_meteor_run_as_user"
+            ],
+            [
+              "pkg_autoupdate",
+              "pkg_instance_status"
+            ],
+            [
+              "pkg_autoupdate",
+              "settings"
+            ],
+            [
+              "pkg_meteor_cookies",
+              "pkg_rocketchat_mongo_config"
+            ],
+            [
+              "pkg_meteor_cookies",
+              "pkg_rocketchat_livechat"
+            ],
+            [
+              "pkg_meteor_cookies",
+              "settings"
+            ],
+            [
+              "pkg_meteor_cookies",
+              "pkg_ui_client"
+            ],
+            [
+              "pkg_rocketchat_mongo_config",
+              "settings"
+            ],
+            [
+              "pkg_rocketchat_version",
+              "pkg_ui_client"
+            ],
+            [
+              "pkg_rocketchat_version",
+              "router"
+            ],
+            [
+              "pkg_rocketchat_version",
+              "server_lib"
+            ],
+            [
+              "pkg_rocketchat_livechat",
+              "pkg_ui_client"
+            ],
+            [
+              "pkg_rocketchat_livechat",
+              "router"
+            ],
+            [
+              "pkg_instance_status",
+              "router"
+            ],
+            [
+              "pkg_instance_status",
+              "pkg_ui_client"
+            ],
+            [
+              "pkg_meteor_inject_initial",
+              "settings"
+            ],
+            [
+              "pkg_meteor_inject_initial",
+              "pkg_ui_client"
+            ],
+            [
+              "pkg_rocketchat_postcss",
+              "settings"
+            ],
+            [
+              "pkg_meteor_run_as_user",
+              "settings"
+            ],
+            [
+              "pkg_meteor_run_as_user",
+              "pkg_ui_client"
+            ]
+          ],
+          "subgraphs": []
+        }
+      ],
       "source_files": {
         "apps/meteor/packages/autoupdate/autoupdate_server.js": [
           "L1"
@@ -5064,7 +10079,115 @@
         "HTTP Range Support and Content Delivery",
         "Client-Side Upload Coordination"
       ],
-      "diagrams": [],
+      "diagrams": [
+        {
+          "nodes": {
+            "file_upload": "file-upload",
+            "ufs": "ufs",
+            "file": "file",
+            "upload": "upload",
+            "image": "image",
+            "pkg_models": "models",
+            "settings": "settings",
+            "webdav": "webdav",
+            "utils": "utils",
+            "server_lib": "lib",
+            "rooms": "rooms",
+            "search": "search"
+          },
+          "edges": [
+            [
+              "file_upload",
+              "ufs"
+            ],
+            [
+              "file_upload",
+              "upload"
+            ],
+            [
+              "file_upload",
+              "settings"
+            ],
+            [
+              "file_upload",
+              "utils"
+            ],
+            [
+              "file_upload",
+              "server_lib"
+            ],
+            [
+              "file_upload",
+              "rooms"
+            ],
+            [
+              "file_upload",
+              "webdav"
+            ],
+            [
+              "file_upload",
+              "search"
+            ],
+            [
+              "ufs",
+              "upload"
+            ],
+            [
+              "ufs",
+              "webdav"
+            ],
+            [
+              "ufs",
+              "utils"
+            ],
+            [
+              "file",
+              "ufs"
+            ],
+            [
+              "file",
+              "upload"
+            ],
+            [
+              "file",
+              "settings"
+            ],
+            [
+              "file",
+              "webdav"
+            ],
+            [
+              "file",
+              "pkg_models"
+            ],
+            [
+              "upload",
+              "webdav"
+            ],
+            [
+              "image",
+              "settings"
+            ],
+            [
+              "pkg_models",
+              "ufs"
+            ],
+            [
+              "pkg_models",
+              "upload"
+            ],
+            [
+              "pkg_models",
+              "settings"
+            ],
+            [
+              "pkg_models",
+              "webdav"
+            ]
+          ],
+          "subgraphs": []
+        }
+      ],
       "source_files": {
         "apps/meteor/server/ufs/ufs.ts": [
           "L1"
@@ -5203,7 +10326,127 @@
         "API Routing Layer",
         "Data Flow Summary"
       ],
-      "diagrams": [],
+      "diagrams": [
+        {
+          "nodes": {
+            "oauth2_server": "oauth2-server",
+            "oauth2_server_config": "oauth2-server-config",
+            "imports": "imports",
+            "pkg_models": "models",
+            "pkg_apps_engine_AppManager": "apps-engine/AppManager",
+            "settings": "settings",
+            "pkg_api_client": "api-client",
+            "pkg_core_services": "core-services",
+            "pkg_http_router": "http-router",
+            "search": "search",
+            "pkg_meteor_cookies": "meteor-cookies",
+            "utils": "utils"
+          },
+          "edges": [
+            [
+              "oauth2_server",
+              "oauth2_server_config"
+            ],
+            [
+              "oauth2_server",
+              "pkg_models"
+            ],
+            [
+              "oauth2_server",
+              "pkg_apps_engine_AppManager"
+            ],
+            [
+              "oauth2_server",
+              "pkg_api_client"
+            ],
+            [
+              "oauth2_server",
+              "settings"
+            ],
+            [
+              "oauth2_server",
+              "pkg_http_router"
+            ],
+            [
+              "oauth2_server",
+              "utils"
+            ],
+            [
+              "oauth2_server",
+              "search"
+            ],
+            [
+              "oauth2_server",
+              "pkg_meteor_cookies"
+            ],
+            [
+              "oauth2_server",
+              "pkg_core_services"
+            ],
+            [
+              "oauth2_server_config",
+              "pkg_models"
+            ],
+            [
+              "oauth2_server_config",
+              "settings"
+            ],
+            [
+              "oauth2_server_config",
+              "pkg_api_client"
+            ],
+            [
+              "oauth2_server_config",
+              "pkg_http_router"
+            ],
+            [
+              "oauth2_server_config",
+              "pkg_apps_engine_AppManager"
+            ],
+            [
+              "oauth2_server_config",
+              "utils"
+            ],
+            [
+              "imports",
+              "pkg_models"
+            ],
+            [
+              "imports",
+              "settings"
+            ],
+            [
+              "imports",
+              "pkg_core_services"
+            ],
+            [
+              "imports",
+              "search"
+            ],
+            [
+              "pkg_models",
+              "settings"
+            ],
+            [
+              "pkg_models",
+              "utils"
+            ],
+            [
+              "pkg_apps_engine_AppManager",
+              "pkg_core_services"
+            ],
+            [
+              "search",
+              "settings"
+            ],
+            [
+              "search",
+              "utils"
+            ]
+          ],
+          "subgraphs": []
+        }
+      ],
       "source_files": {
         "apps/meteor/server/oauth2-server/model.ts": [
           "L1"
@@ -5357,7 +10600,95 @@
         "Custom Sounds",
         "Custom User Status"
       ],
-      "diagrams": [],
+      "diagrams": [
+        {
+          "nodes": {
+            "emoji": "emoji",
+            "emoji_emojione": "emoji-emojione",
+            "emoji_custom": "emoji-custom",
+            "custom_sounds": "custom-sounds",
+            "user_status": "user-status",
+            "server_server": "server",
+            "settings": "settings",
+            "pkg_models": "models",
+            "utils": "utils",
+            "file_upload": "file-upload",
+            "pkg_apps_engine_AppManager": "apps-engine/AppManager",
+            "minimongo": "minimongo"
+          },
+          "edges": [
+            [
+              "emoji",
+              "emoji_emojione"
+            ],
+            [
+              "emoji",
+              "server_server"
+            ],
+            [
+              "emoji",
+              "utils"
+            ],
+            [
+              "emoji_emojione",
+              "server_server"
+            ],
+            [
+              "emoji_custom",
+              "settings"
+            ],
+            [
+              "emoji_custom",
+              "server_server"
+            ],
+            [
+              "emoji_custom",
+              "file_upload"
+            ],
+            [
+              "emoji_custom",
+              "pkg_models"
+            ],
+            [
+              "emoji_custom",
+              "utils"
+            ],
+            [
+              "emoji_custom",
+              "pkg_apps_engine_AppManager"
+            ],
+            [
+              "custom_sounds",
+              "settings"
+            ],
+            [
+              "custom_sounds",
+              "server_server"
+            ],
+            [
+              "custom_sounds",
+              "file_upload"
+            ],
+            [
+              "custom_sounds",
+              "pkg_models"
+            ],
+            [
+              "custom_sounds",
+              "utils"
+            ],
+            [
+              "user_status",
+              "utils"
+            ],
+            [
+              "pkg_models",
+              "settings"
+            ]
+          ],
+          "subgraphs": []
+        }
+      ],
       "source_files": {
         "apps/meteor/app/emoji/lib/rocketchat.ts": [
           "L1"
@@ -5502,7 +10833,127 @@
         "Error Pages",
         "Cross-Cutting Concerns"
       ],
-      "diagrams": [],
+      "diagrams": [
+        {
+          "nodes": {
+            "invite": "invite",
+            "conference": "conference",
+            "notFound": "notFound",
+            "notAuthorized": "notAuthorized",
+            "root": "root",
+            "pkg_ui_contexts": "ui-contexts",
+            "router": "router",
+            "providers": "providers",
+            "video_conference": "video-conference",
+            "pkg_ui_client": "ui-client",
+            "room_useCanEditRoom": "room/useCanEditRoom",
+            "omnichannel_useOmnichannelDirectoryRouter": "omnichannel/useOmnichannelDirectoryRouter"
+          },
+          "edges": [
+            [
+              "invite",
+              "root"
+            ],
+            [
+              "invite",
+              "providers"
+            ],
+            [
+              "invite",
+              "pkg_ui_contexts"
+            ],
+            [
+              "invite",
+              "router"
+            ],
+            [
+              "conference",
+              "root"
+            ],
+            [
+              "conference",
+              "room_useCanEditRoom"
+            ],
+            [
+              "conference",
+              "pkg_ui_client"
+            ],
+            [
+              "conference",
+              "video_conference"
+            ],
+            [
+              "conference",
+              "pkg_ui_contexts"
+            ],
+            [
+              "conference",
+              "router"
+            ],
+            [
+              "notFound",
+              "pkg_ui_contexts"
+            ],
+            [
+              "notAuthorized",
+              "pkg_ui_contexts"
+            ],
+            [
+              "notAuthorized",
+              "omnichannel_useOmnichannelDirectoryRouter"
+            ],
+            [
+              "notAuthorized",
+              "router"
+            ],
+            [
+              "pkg_ui_contexts",
+              "video_conference"
+            ],
+            [
+              "pkg_ui_contexts",
+              "router"
+            ],
+            [
+              "pkg_ui_contexts",
+              "providers"
+            ],
+            [
+              "pkg_ui_client",
+              "pkg_ui_contexts"
+            ],
+            [
+              "pkg_ui_client",
+              "router"
+            ],
+            [
+              "pkg_ui_client",
+              "video_conference"
+            ],
+            [
+              "root",
+              "router"
+            ],
+            [
+              "root",
+              "video_conference"
+            ],
+            [
+              "omnichannel_useOmnichannelDirectoryRouter",
+              "pkg_ui_contexts"
+            ],
+            [
+              "omnichannel_useOmnichannelDirectoryRouter",
+              "video_conference"
+            ],
+            [
+              "omnichannel_useOmnichannelDirectoryRouter",
+              "router"
+            ]
+          ],
+          "subgraphs": []
+        }
+      ],
       "source_files": {
         "apps/meteor/client/views/invite/hooks/useSamlInviteToken.ts": [
           "L1"
@@ -5549,7 +11000,119 @@
         "Banner System Architecture",
         "Data Flow Summary"
       ],
-      "diagrams": [],
+      "diagrams": [
+        {
+          "nodes": {
+            "home": "home",
+            "banners": "banners",
+            "banner": "banner",
+            "navbar": "navbar",
+            "pkg_ui_contexts": "ui-contexts",
+            "pkg_ui_client": "ui-client",
+            "router": "router",
+            "hooks": "hooks",
+            "pkg_core_services": "core-services",
+            "bridges": "bridges",
+            "pkg_apps_engine_AppObjectRegistry": "apps-engine/AppObjectRegistry",
+            "server_lib": "lib"
+          },
+          "edges": [
+            [
+              "home",
+              "navbar"
+            ],
+            [
+              "home",
+              "hooks"
+            ],
+            [
+              "home",
+              "pkg_ui_client"
+            ],
+            [
+              "home",
+              "pkg_ui_contexts"
+            ],
+            [
+              "home",
+              "router"
+            ],
+            [
+              "banners",
+              "pkg_ui_client"
+            ],
+            [
+              "banners",
+              "pkg_ui_contexts"
+            ],
+            [
+              "banners",
+              "router"
+            ],
+            [
+              "banners",
+              "pkg_core_services"
+            ],
+            [
+              "banners",
+              "bridges"
+            ],
+            [
+              "banners",
+              "navbar"
+            ],
+            [
+              "banners",
+              "pkg_apps_engine_AppObjectRegistry"
+            ],
+            [
+              "banner",
+              "router"
+            ],
+            [
+              "banner",
+              "pkg_ui_contexts"
+            ],
+            [
+              "banner",
+              "pkg_ui_client"
+            ],
+            [
+              "banner",
+              "bridges"
+            ],
+            [
+              "banner",
+              "pkg_apps_engine_AppObjectRegistry"
+            ],
+            [
+              "banner",
+              "server_lib"
+            ],
+            [
+              "banner",
+              "hooks"
+            ],
+            [
+              "banner",
+              "pkg_core_services"
+            ],
+            [
+              "pkg_ui_contexts",
+              "router"
+            ],
+            [
+              "pkg_ui_contexts",
+              "server_lib"
+            ],
+            [
+              "bridges",
+              "server_lib"
+            ]
+          ],
+          "subgraphs": []
+        }
+      ],
       "source_files": {
         "apps/meteor/client/views/home/HomePageHeader.tsx": [
           "L1"
@@ -5703,7 +11266,127 @@
         "Server-Side Callback Pipeline",
         "Data Flow Summary"
       ],
-      "diagrams": [],
+      "diagrams": [
+        {
+          "nodes": {
+            "rooms": "rooms",
+            "publications": "publications",
+            "callbacks": "callbacks",
+            "server_lib": "lib",
+            "settings": "settings",
+            "server_methods": "methods",
+            "root_definition": "definition",
+            "video_conference": "video-conference",
+            "room_RoomMembers": "room/RoomMembers",
+            "utils": "utils",
+            "storage": "storage",
+            "search": "search"
+          },
+          "edges": [
+            [
+              "rooms",
+              "settings"
+            ],
+            [
+              "rooms",
+              "server_lib"
+            ],
+            [
+              "rooms",
+              "server_methods"
+            ],
+            [
+              "rooms",
+              "root_definition"
+            ],
+            [
+              "rooms",
+              "video_conference"
+            ],
+            [
+              "rooms",
+              "storage"
+            ],
+            [
+              "rooms",
+              "utils"
+            ],
+            [
+              "publications",
+              "rooms"
+            ],
+            [
+              "publications",
+              "server_lib"
+            ],
+            [
+              "publications",
+              "settings"
+            ],
+            [
+              "publications",
+              "video_conference"
+            ],
+            [
+              "publications",
+              "room_RoomMembers"
+            ],
+            [
+              "publications",
+              "utils"
+            ],
+            [
+              "callbacks",
+              "server_lib"
+            ],
+            [
+              "callbacks",
+              "server_methods"
+            ],
+            [
+              "callbacks",
+              "settings"
+            ],
+            [
+              "callbacks",
+              "video_conference"
+            ],
+            [
+              "callbacks",
+              "storage"
+            ],
+            [
+              "callbacks",
+              "utils"
+            ],
+            [
+              "callbacks",
+              "search"
+            ],
+            [
+              "settings",
+              "storage"
+            ],
+            [
+              "settings",
+              "video_conference"
+            ],
+            [
+              "settings",
+              "utils"
+            ],
+            [
+              "root_definition",
+              "server_lib"
+            ],
+            [
+              "root_definition",
+              "server_methods"
+            ]
+          ],
+          "subgraphs": []
+        }
+      ],
       "source_files": {
         "apps/meteor/lib/rooms/coordinator.ts": [
           "L1"
@@ -5826,7 +11509,119 @@
         "Page Objects and Fixtures",
         "End-to-End API Integration Data"
       ],
-      "diagrams": [],
+      "diagrams": [
+        {
+          "nodes": {
+            "data": "data",
+            "root_page_objects": "page-objects",
+            "root_fixtures": "fixtures",
+            "root_mocks": "mocks",
+            "root_e2e": "e2e",
+            "fragments": "fragments",
+            "responses": "responses",
+            "config": "config",
+            "utils": "utils",
+            "pkg_models": "models",
+            "pkg_ui_client": "ui-client",
+            "pkg_apps_engine_AppManager": "apps-engine/AppManager"
+          },
+          "edges": [
+            [
+              "data",
+              "root_mocks"
+            ],
+            [
+              "data",
+              "root_fixtures"
+            ],
+            [
+              "data",
+              "root_page_objects"
+            ],
+            [
+              "data",
+              "root_e2e"
+            ],
+            [
+              "data",
+              "fragments"
+            ],
+            [
+              "data",
+              "responses"
+            ],
+            [
+              "data",
+              "utils"
+            ],
+            [
+              "data",
+              "pkg_models"
+            ],
+            [
+              "config",
+              "data"
+            ],
+            [
+              "config",
+              "root_fixtures"
+            ],
+            [
+              "config",
+              "root_page_objects"
+            ],
+            [
+              "root_fixtures",
+              "root_page_objects"
+            ],
+            [
+              "root_fixtures",
+              "utils"
+            ],
+            [
+              "root_e2e",
+              "root_fixtures"
+            ],
+            [
+              "root_e2e",
+              "root_page_objects"
+            ],
+            [
+              "fragments",
+              "root_fixtures"
+            ],
+            [
+              "fragments",
+              "root_page_objects"
+            ],
+            [
+              "fragments",
+              "responses"
+            ],
+            [
+              "fragments",
+              "utils"
+            ],
+            [
+              "fragments",
+              "pkg_ui_client"
+            ],
+            [
+              "fragments",
+              "pkg_models"
+            ],
+            [
+              "root_page_objects",
+              "utils"
+            ],
+            [
+              "responses",
+              "utils"
+            ]
+          ],
+          "subgraphs": []
+        }
+      ],
       "source_files": {
         "apps/meteor/jest.config.ts": [
           "L1"
@@ -5937,7 +11732,103 @@
         "Jest Presets",
         "Summary"
       ],
-      "diagrams": [],
+      "diagrams": [
+        {
+          "nodes": {
+            "pkg_storybook_config": "storybook-config",
+            "pkg_jest_presets": "jest-presets",
+            "stories": "stories",
+            "pkg_mock_providers": "mock-providers",
+            "pkg_ui_client": "ui-client",
+            "pkg_ui_contexts": "ui-contexts",
+            "room_ChatContext": "room/ChatContext",
+            "room_RoomLayout": "room/RoomLayout",
+            "video_conference": "video-conference",
+            "ui_utils": "ui-utils",
+            "utils": "utils",
+            "scripts": "scripts"
+          },
+          "edges": [
+            [
+              "pkg_storybook_config",
+              "room_ChatContext"
+            ],
+            [
+              "pkg_storybook_config",
+              "room_RoomLayout"
+            ],
+            [
+              "pkg_storybook_config",
+              "video_conference"
+            ],
+            [
+              "pkg_jest_presets",
+              "pkg_ui_client"
+            ],
+            [
+              "pkg_jest_presets",
+              "scripts"
+            ],
+            [
+              "pkg_jest_presets",
+              "ui_utils"
+            ],
+            [
+              "pkg_jest_presets",
+              "room_ChatContext"
+            ],
+            [
+              "stories",
+              "utils"
+            ],
+            [
+              "pkg_mock_providers",
+              "pkg_ui_client"
+            ],
+            [
+              "pkg_mock_providers",
+              "pkg_ui_contexts"
+            ],
+            [
+              "pkg_mock_providers",
+              "room_ChatContext"
+            ],
+            [
+              "pkg_mock_providers",
+              "room_RoomLayout"
+            ],
+            [
+              "pkg_mock_providers",
+              "utils"
+            ],
+            [
+              "pkg_mock_providers",
+              "scripts"
+            ],
+            [
+              "pkg_ui_client",
+              "room_ChatContext"
+            ],
+            [
+              "pkg_ui_client",
+              "room_RoomLayout"
+            ],
+            [
+              "pkg_ui_client",
+              "ui_utils"
+            ],
+            [
+              "pkg_ui_client",
+              "video_conference"
+            ],
+            [
+              "pkg_ui_client",
+              "stories"
+            ]
+          ],
+          "subgraphs": []
+        }
+      ],
       "source_files": {
         "packages/storybook-config/src/main.ts": [
           "L1"
