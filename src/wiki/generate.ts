@@ -81,16 +81,16 @@ export async function generateWiki(deps?: Partial<GenerateDeps>): Promise<void> 
   console.log('[wiki:gen] Step 1/5 — outline');
   await outline();
 
-  console.log('[wiki:gen] Step — guide (4 级向导树)');
+  console.log('[wiki:gen] Step 2/5 — guide (4 级向导树)');
   await guide();
 
-  console.log('[wiki:gen] Step 2/5 — write');
+  console.log('[wiki:gen] Step 3/5 — write');
   await write();
 
-  console.log('[wiki:gen] Step 3/5 — diagram');
+  console.log('[wiki:gen] Step 4/5 — diagram');
   await diagram();
 
-  console.log('[wiki:gen] Step 4/5 — verify');
+  console.log('[wiki:gen] Step 5/5 — verify');
   await verify();
 
   // Stamp derived_from + generated_at
