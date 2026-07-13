@@ -45,7 +45,14 @@
     const m = ref.match(/^(.+?):L?(\d+)(?:-L?(\d+))?$/);
     if (!m) return `<span class="cite"><span class="path">${escapeHtml(ref)}</span></span>`;
     const ln = m[3] ? `${m[2]}-${m[3]}` : m[2];
-    return `<span class="cite"><span class="gh">◆</span><span class="path">${escapeHtml(m[1])}</span><span class="ln">${ln}</span></span>`;
+    const inner = `<span class="gh">◆</span><span class="path">${escapeHtml(m[1])}</span><span class="ln">${ln}</span>`;
+    // 链到被索引的那个 commit 的源码行(data-driven;缺 repo 信息则退化成纯药丸)
+    if (wikiMap && wikiMap.repo_url && wikiMap.repo_sha) {
+      const anchor = m[3] ? `#L${m[2]}-L${m[3]}` : `#L${m[2]}`;
+      const href = `${wikiMap.repo_url}/blob/${wikiMap.repo_sha}/${m[1]}${anchor}`;
+      return `<a class="cite" href="${escapeHtml(href)}" target="_blank" rel="noopener" title="${escapeHtml(m[1])}${anchor}">${inner}</a>`;
+    }
+    return `<span class="cite">${inner}</span>`;
   };
   function renderText(text) {
     const out = []; let buf = [];
