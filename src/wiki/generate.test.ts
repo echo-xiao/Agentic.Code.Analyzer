@@ -40,7 +40,7 @@ test('generateWiki — steps run in correct order (outline→write→diagram→v
   try {
     await generateWiki({
       outline:     async () => { callOrder.push('outline'); },
-      guide:       async () => {},
+      guide:       async () => { callOrder.push('guide'); },
       write:       async () => { callOrder.push('write'); },
       diagram:     async () => { callOrder.push('diagram'); },
       verify:      async () => { callOrder.push('verify'); },
@@ -53,8 +53,8 @@ test('generateWiki — steps run in correct order (outline→write→diagram→v
   // (a) Correct order
   assert.deepEqual(
     callOrder,
-    ['outline', 'write', 'diagram', 'verify'],
-    `Expected steps in order outline→write→diagram→verify, got: ${JSON.stringify(callOrder)}`,
+    ['outline', 'guide', 'write', 'diagram', 'verify'],
+    `Expected steps in order outline→guide→write→diagram→verify, got: ${JSON.stringify(callOrder)}`,
   );
 });
 
