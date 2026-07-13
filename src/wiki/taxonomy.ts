@@ -2,9 +2,9 @@
 export type IntentL1 = 'Understand Internals' | 'Build & Integrate' | 'Reference';
 
 export const TAXONOMY: { l1: IntentL1; label: string; areas: string[] }[] = [
-  { l1: 'Understand Internals', label: '理解内部', areas: ['全局架构', '子系统深潜', '开发与贡献'] },
-  { l1: 'Build & Integrate',    label: '构建与集成', areas: ['集成接口', '嵌入与桥接', '数据与本地化'] },
-  { l1: 'Reference',            label: '参考速查', areas: ['API 与契约', '配置与清单', '包目录'] },
+  { l1: 'Understand Internals', label: 'Understand Internals', areas: ['Architecture', 'Subsystem Deep-Dives', 'Dev & Contributing'] },
+  { l1: 'Build & Integrate',    label: 'Build & Integrate',    areas: ['Integration Interfaces', 'Embed & Bridge', 'Data & i18n'] },
+  { l1: 'Reference',            label: 'Reference',            areas: ['API & Contracts', 'Config & Catalogs', 'Package Index'] },
 ];
 
 const BY_L1 = new Map(TAXONOMY.map(t => [t.l1, t]));

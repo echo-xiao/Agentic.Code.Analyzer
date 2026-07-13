@@ -46,7 +46,7 @@ export async function clusterFamilies(
     const named = await nameClusters(bucket, clusters, byId);
     const seen = new Set<string>();
     for (const g of named) for (const id of g.ids) if (byId[id]) { fam[id] = g.name; seen.add(id); }
-    for (const id of ids) if (!seen.has(id)) fam[id] = '其他';   // 兜底 MECE
+    for (const id of ids) if (!seen.has(id)) fam[id] = 'Other';   // 兜底 MECE
   }
   return fam;
 }
