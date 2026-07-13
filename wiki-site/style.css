@@ -97,6 +97,10 @@ a { color: var(--link); text-decoration: none; }
 .cite .gh { padding: 1px 5px 1px 7px; color: var(--muted); }
 .cite .path { padding: 2px 6px; color: var(--muted); }
 .cite .ln { padding: 2px 7px; background: #e0ded7; color: #55534d; }
+a.cite { text-decoration: none; cursor: pointer; transition: filter .12s; }
+#content a.cite { text-decoration: none; }
+a.cite:hover { filter: brightness(0.94); }
+a.cite:hover .ln { background: var(--blue); color: #fff; }
 .sources-line { display: block; font-size: 12.5px; color: var(--muted); margin: 10px 0; }
 .sources-line .lbl { font-weight: 600; margin-right: 6px; }
 
