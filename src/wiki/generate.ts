@@ -30,6 +30,7 @@ import { DATA_DIR } from '../config.js';
 import { generateOutline } from './outline.js';
 import { generateDiagrams } from './diagram.js';
 import { ensureIndex } from '../indexer/index.js';
+import { runGuide } from './guide.js';
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const DEFAULT_WIKI_MAP_PATH = path.join(DATA_DIR, 'wiki-map.json');
@@ -38,6 +39,7 @@ const DEFAULT_WIKI_MAP_PATH = path.join(DATA_DIR, 'wiki-map.json');
 
 export interface GenerateDeps {
   outline:     () => Promise<unknown>;
+  guide:       () => Promise<unknown>;
   write:       () => Promise<unknown>;
   diagram:     () => Promise<unknown> | unknown;
   verify:      () => Promise<unknown>;
@@ -70,21 +72,25 @@ function runStep(tsFile: string): Promise<void> {
 
 export async function generateWiki(deps?: Partial<GenerateDeps>): Promise<void> {
   const outline     = deps?.outline     ?? (() => generateOutline());
+  const guide       = deps?.guide       ?? (() => runGuide());
   const write       = deps?.write       ?? (() => runStep(path.join(__dirname, 'write.ts')));
   const diagram     = deps?.diagram     ?? (async () => { await ensureIndex(); return generateDiagrams(); });   // 真跑先加载 GLOBAL_INDEX(diagram 用 callGraph);注入测试不受影响
   const verify      = deps?.verify      ?? (() => runStep(path.join(__dirname, 'verify.ts')));
   const wikiMapPath = deps?.wikiMapPath ?? DEFAULT_WIKI_MAP_PATH;
 
-  console.log('[wiki:gen] Step 1/4 — outline');
+  console.log('[wiki:gen] Step 1/5 — outline');
   await outline();
 
-  console.log('[wiki:gen] Step 2/4 — write');
+  console.log('[wiki:gen] Step — guide (4 级向导树)');
+  await guide();
+
+  console.log('[wiki:gen] Step 2/5 — write');
   await write();
 
-  console.log('[wiki:gen] Step 3/4 — diagram');
+  console.log('[wiki:gen] Step 3/5 — diagram');
   await diagram();
 
-  console.log('[wiki:gen] Step 4/4 — verify');
+  console.log('[wiki:gen] Step 4/5 — verify');
   await verify();
 
   // Stamp derived_from + generated_at
