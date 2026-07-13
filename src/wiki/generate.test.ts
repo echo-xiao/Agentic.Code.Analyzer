@@ -40,6 +40,7 @@ test('generateWiki — steps run in correct order (outline→write→diagram→v
   try {
     await generateWiki({
       outline:     async () => { callOrder.push('outline'); },
+      guide:       async () => {},
       write:       async () => { callOrder.push('write'); },
       diagram:     async () => { callOrder.push('diagram'); },
       verify:      async () => { callOrder.push('verify'); },
@@ -63,6 +64,7 @@ test('generateWiki — derived_from starts with "self-generated "', async () => 
   try {
     await generateWiki({
       outline:     async () => {},
+      guide:       async () => {},
       write:       async () => {},
       diagram:     async () => {},
       verify:      async () => {},
