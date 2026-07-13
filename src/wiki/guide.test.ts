@@ -15,8 +15,8 @@ test('runGuide 端到端(注入)：写回 nav 且 MECE 通过', async () => {
   ] }));
   fs.writeFileSync(vecPath, JSON.stringify({ a: [1, 0], b: [0, 1] }));
   const classify = async () => [
-    { id: 'a', l1: 'Understand Internals' as const, l2: '子系统深潜' },
-    { id: 'b', l1: 'Reference' as const, l2: 'API 与契约' },
+    { id: 'a', l1: 'Understand Internals' as const, l2: 'Subsystem Deep-Dives' },
+    { id: 'b', l1: 'Reference' as const, l2: 'API & Contracts' },
   ];
   const nameClusters = async (_b: string, cl: string[][]) => cl.map((ids, i) => ({ name: `族${i}`, ids }));
   const { tree, mece } = await runGuide({ classify, nameClusters, wikiMapPath: mapPath, vectorsPath: vecPath });
@@ -37,4 +37,14 @@ test('aggregatePageVectors: 页向量=其 source_files 文件向量均值', () =
   assert.deepEqual(pv['p1'], [2, 2]);          // 均值 ([1,0]+[3,4])/2
   assert.deepEqual(pv['p2'], [0, 2]);
   assert.equal(pv['p3'], undefined);           // 无向量的页不出现
+});
+
+test('aggregatePageVectors: 解码 base64 Float32 的 {vec} 条目(真实 summary-vectors 格式)', () => {
+  const b64 = Buffer.from(new Float32Array([1, 0]).buffer).toString('base64');
+  const pv = aggregatePageVectors(
+    [{ id: 'p', source_files: { 'x.ts': ['L1'] } }],
+    { 'x.ts': { hash: 'h', vec: b64 } },
+  );
+  assert.equal(pv['p'].length, 2);
+  assert.ok(Math.abs(pv['p'][0] - 1) < 1e-6 && Math.abs(pv['p'][1]) < 1e-6);
 });

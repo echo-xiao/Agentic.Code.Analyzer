@@ -18,11 +18,11 @@ function parse<T>(s: string, fallback: T): T {
   return fallback;
 }
 
-const TAX_TEXT = TAXONOMY.map(t => `- "${t.l1}": 区 ∈ [${t.areas.join(', ')}]`).join('\n');
+const TAX_TEXT = TAXONOMY.map(t => `- "${t.l1}": L2 ∈ [${t.areas.join(', ')}]`).join('\n');
 
 export function makeClassify(client: AnthropicLike = real()): Classify {
   return async (pages: RouteInput[]): Promise<Routed[]> => {
-    const prompt = `把每页路由到开发者意图。L1 严格三选一、L2 从对应集合选：\n${TAX_TEXT}\n判断依据 title+scope。只输出 JSON 数组 [{id,l1,l2}]。\n页面：${JSON.stringify(pages.map(p => ({ id: p.id, title: p.title, scope: p.scope })))}`;
+    const prompt = `Route each page to a developer intent. Pick exactly one L1 and one L2 from its allowed set:\n${TAX_TEXT}\nDecide by title + scope. Output only a JSON array [{id,l1,l2}].\npages: ${JSON.stringify(pages.map(p => ({ id: p.id, title: p.title, scope: p.scope })))}`;
     const res = await client.messages.create({ model: MODEL_TIERS.leaf, max_tokens: 8192, temperature: 0, messages: [{ role: 'user', content: prompt }] });
     return parse<Routed[]>(textOf(res), []);
   };
@@ -31,9 +31,9 @@ export function makeClassify(client: AnthropicLike = real()): Classify {
 export function makeNameClusters(client: AnthropicLike = real()): NameClusters {
   return async (bucket: string, clusters: string[][], pages: Record<string, FamilyInput>) => {
     const view = clusters.map((ids, i) => ({ cluster: i, titles: ids.map(id => pages[id]?.title) }));
-    const prompt = `给 "${bucket}" 下每个簇起简短中文家族名(≤6字)。只输出 JSON {families:[{name,ids}]}，ids 用原簇成员 id。\n簇：${JSON.stringify(view)}\nid 映射：${JSON.stringify(clusters)}`;
+    const prompt = `Name each cluster below with a short English family label (2-4 words, e.g. "Auth & Permissions", "Messaging & Rooms"). Output only JSON {families:[{name,ids}]}; use the original member ids.\nclusters: ${JSON.stringify(view)}\nid map: ${JSON.stringify(clusters)}`;
     const res = await client.messages.create({ model: MODEL_TIERS.leaf, max_tokens: 4096, temperature: 0, messages: [{ role: 'user', content: prompt }] });
-    const out = parse<{ families: { name: string; ids: string[] }[] }>(textOf(res), { families: clusters.map((ids, i) => ({ name: `族${i}`, ids })) });
+    const out = parse<{ families: { name: string; ids: string[] }[] }>(textOf(res), { families: clusters.map((ids, i) => ({ name: `Group ${i + 1}`, ids })) });
     return out.families;
   };
 }
