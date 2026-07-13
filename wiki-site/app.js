@@ -190,15 +190,9 @@
     // 保序按 category 分连续段(pages 已按 taxonomy 排)
     const groups = [];
     for (const p of pages) { const cat = p.category || 'Pages'; const last = groups[groups.length - 1]; if (last && last.cat === cat) last.pages.push(p); else groups.push({ cat, pages: [p] }); }
-    for (const { cat, pages: ps } of groups) {
-      if (META_GROUPS.has(cat)) {                         // System Architecture:分组标题 + 缩进页
-        const head = document.createElement('li'); head.className = 'top'; head.textContent = cat; list.appendChild(head);
-        for (const p of ps) { navPageItem(p, 'page'); }
-      } else if (cat === 'Overview') {                    // Overview:顶层可点
-        for (const p of ps) navPageItem(p, 'top clickable');
-      } else {                                            // 领域:顶层加粗可点 + 子系统锚点
-        for (const p of ps) { navPageItem(p, 'top clickable domain'); navAnchors(p); }
-      }
+    for (const { cat, pages: ps } of groups) {            // 全部类 2 级:大类标题(粗、不可点)+ 缩进子页(可点)
+      const head = document.createElement('li'); head.className = 'top'; head.textContent = cat; list.appendChild(head);
+      for (const p of ps) navPageItem(p, 'page');
     }
   }
   function scrollToHeading(label) {
