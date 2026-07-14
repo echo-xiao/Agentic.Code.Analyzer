@@ -156,8 +156,8 @@ test('expectedPages: deduplicates pages when multiple core files share the same 
     assert.equal(pages[0], 'Messaging Core');
 });
 
-test('runGate: testcase without claude-truth entry goes into skipped', () => {
-    const result = runGate({
+test('runGate: testcase without claude-truth entry goes into skipped', async () => {
+    const result = await runGate({
         map: FIXTURE_MAP,
         fileToModule: FIXTURE_FILE_TO_MODULE,
         testcases: FIXTURE_TESTCASES,
@@ -167,8 +167,8 @@ test('runGate: testcase without claude-truth entry goes into skipped', () => {
     assert.equal(result.skipped.length, 1);
 });
 
-test('runGate: perQuestion only contains entries with claude-truth', () => {
-    const result = runGate({
+test('runGate: perQuestion only contains entries with claude-truth', async () => {
+    const result = await runGate({
         map: FIXTURE_MAP,
         fileToModule: FIXTURE_FILE_TO_MODULE,
         testcases: FIXTURE_TESTCASES,
@@ -181,7 +181,7 @@ test('runGate: perQuestion only contains entries with claude-truth', () => {
     assert.equal(ids.length, 2);
 });
 
-test('runGate: hit=true — deterministic fixture forces selectPages to choose the expected page', () => {
+test('runGate: hit=true — deterministic fixture forces selectPages to choose the expected page', async () => {
     // questionTokens('How does sendMessage work on the server?') produces:
     //   ["send", "message", "server"]
     //   ("how", "does", "work" are stopwords; camelCase split fires on sendMessage)
@@ -234,7 +234,7 @@ test('runGate: hit=true — deterministic fixture forces selectPages to choose t
         },
     ];
 
-    const result = runGate({
+    const result = await runGate({
         map: deterministicMap,
         fileToModule: deterministicFileToModule,
         testcases: deterministicTestcases,
@@ -253,7 +253,7 @@ test('runGate: hit=true — deterministic fixture forces selectPages to choose t
     assert.equal(row!.hit, true, 'hit must be true when the expected page was chosen');
 });
 
-test('runGate: hitRate=0.5 — 2-question fixture with exactly 1 hit and 1 miss designed a priori', () => {
+test('runGate: hitRate=0.5 — 2-question fixture with exactly 1 hit and 1 miss designed a priori', async () => {
     // Design:
     //   tc-hit:  question "send message server" → tokens ["send","message","server"] (K=2)
     //            gold core → module 'mod/hit' → page "Send Message Server" (title embeds tokens)
@@ -314,7 +314,7 @@ test('runGate: hitRate=0.5 — 2-question fixture with exactly 1 hit and 1 miss 
         },
     ];
 
-    const result = runGate({
+    const result = await runGate({
         map: splitMap,
         fileToModule: splitFileToModule,
         testcases: splitTestcases,
@@ -334,8 +334,8 @@ test('runGate: hitRate=0.5 — 2-question fixture with exactly 1 hit and 1 miss 
     assert.equal(result.perQuestion.filter(r => r.hit).length, 1, 'exactly 1 of 2 questions hit');
 });
 
-test('runGate: hitRate=0 when no testcases scored (empty claude-truth)', () => {
-    const result = runGate({
+test('runGate: hitRate=0 when no testcases scored (empty claude-truth)', async () => {
+    const result = await runGate({
         map: FIXTURE_MAP,
         fileToModule: FIXTURE_FILE_TO_MODULE,
         testcases: FIXTURE_TESTCASES,
@@ -366,7 +366,7 @@ test('readCitationRate: returns null when file does not exist', () => {
     assert.equal(rate, null);
 });
 
-test('runGate: verifyPath injection — citationRate equals rate parsed from injected temp file', () => {
+test('runGate: verifyPath injection — citationRate equals rate parsed from injected temp file', async () => {
     // Inject a temp wiki-verify.md with a known rate (75.0%) via GateOpts.verifyPath.
     // runGate must read from verifyPath instead of the hardcoded WIKI_VERIFY_PATH,
     // so result.citationRate must equal 0.75 regardless of what lives on real disk.
@@ -378,7 +378,7 @@ test('runGate: verifyPath injection — citationRate equals rate parsed from inj
         '**citation_validity_rate:** 75.0%',
     ].join('\n'));
     try {
-        const result = runGate({
+        const result = await runGate({
             map: FIXTURE_MAP,
             fileToModule: FIXTURE_FILE_TO_MODULE,
             testcases: FIXTURE_TESTCASES,
@@ -395,8 +395,8 @@ test('runGate: verifyPath injection — citationRate equals rate parsed from inj
     }
 });
 
-test('runGate: verifyPath pointing at nonexistent file → citationRate === null', () => {
-    const result = runGate({
+test('runGate: verifyPath pointing at nonexistent file → citationRate === null', async () => {
+    const result = await runGate({
         map: FIXTURE_MAP,
         fileToModule: FIXTURE_FILE_TO_MODULE,
         testcases: FIXTURE_TESTCASES,

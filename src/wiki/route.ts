@@ -7,7 +7,7 @@ export type Routing = Record<string, { l1: IntentL1; l2: string }>;
 
 const VALID_L1 = new Set(TAXONOMY.map(t => t.l1));
 const DEFAULT_L1: IntentL1 = 'Understand Internals';
-const DEFAULT_L2 = '子系统深潜';
+const DEFAULT_L2 = 'Subsystem Deep-Dives';
 
 export async function routeLeaves(pages: RouteInput[], classify: Classify): Promise<Routing> {
   const raw = await classify(pages);
