@@ -1,42 +1,37 @@
 #!/usr/bin/env npx tsx
 /**
- * report — trace 报告 → logs/reports/metrics.md。Deterministic, NO semantic info.
- *   1. Trace       — 确定性游走器逐题决策概览（聚合自 logs/data/retrieval-trace/，金页/触金两列由报告端 × claude-truth 算）
- *   2. Agent 调用   — 真 agent 每题的实际工具调用序列（解析自 answers md 的 ## Tool Calls）
- * Semantic analysis lives SEPARATELY in logs/reports/verdicts.md. This file never reads it.
- * Inputs: logs/data/retrieval-trace/ (eval:retrieval) · logs/answers-gemini-mcp-selfloop/ · data/wiki-map.json。
- * （funnel/auto-triage/probe-rank 各节按用户要求退役 2026-07-08 — 只留 trace；report 不再读 tools-data.json。）
- * Run: npm run report   (after eval:retrieval / gen:mcp)
+ * report — 逐题 trace + 对不对 → logs/reports/report.md
+ *
+ * 两层，都零-API：
+ *   ① trace（纯观察）：scope / seed / walk / agent 实调，读 logs/data/retrieval-trace/<id>.json。
+ *   ② 对不对（gold 对照，零-API）：trace × claude-truth.json × wiki-map.json —— 每题
+ *      scope 选对没（答案文件所在页是否进入口 scope）+ 召回几个答案文件（seed∪walk 是否触达 core）。
+ *   ⛔ 本轮仍不做：R@k top-K 细分 / chain-LCS、citation true/false 门、语义段（judge，付费）。—— Phase 2+。
+ *
+ * 红线：不 import wiki-prose（散文不进测量门）；report.md 为人读产物，不喂 agent；gold 只读 claude-truth（本地）。
+ * Run: npm run report   （先 `npm run trace` 产 retrieval-trace/）
  */
 import * as fs from 'fs';
 import * as path from 'path';
 import { fileURLToPath } from 'url';
+
 import { loadTestcasesWithTruth, TESTCASES_PATH, CLAUDE_TRUTH_PATH } from './utils/truth-io.js';
-import { classifyIntent, INTENTS, RECIPES } from '../server/intent.js';
-import { rankCandidates, loadSummaries, loadVectors } from '../server/engine/entry-map.js';
-import { embedText } from '../server/engine/embeddings.js';
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const LOGS = path.resolve(__dirname, '..', '..', 'logs');
-const D_MCP = path.join(LOGS, 'answers-gemini-mcp-selfloop');
 const TRACE_DIR = path.join(LOGS, 'data', 'retrieval-trace');
 const WIKI_MAP_PATH = path.resolve(__dirname, '..', '..', 'data', 'wiki-map.json');
-const OUT = path.join(LOGS, 'reports', 'metrics.md');
+const OUT = path.join(LOGS, 'reports', 'report.md');
 
-// 路径宽松相等：真值 core 与 wiki-map 键/trace 文件都是仓库相对路径，允许后缀包含
-const pathEq = (a: string, b: string): boolean => {
-    const x = a.replace(/\\/g, '/'), y = b.replace(/\\/g, '/');
-    return x === y || x.endsWith('/' + y) || y.endsWith('/' + x);
-};
-
-// ── retrieval-trace loader: per-question decision log written by eval:retrieval ──
+// ── retrieval-trace loader: per-question decision log written by `npm run trace` ──
 function loadTraceFile(id: string): any | null {
     const p = path.join(TRACE_DIR, `${id}.json`);
     if (!fs.existsSync(p)) return null;
     try { return JSON.parse(fs.readFileSync(p, 'utf-8')); } catch { return null; }
 }
+
 // stop reason → 短标签（与 walk.ts 的 reason 文案对应）
-function stopLabel(reason: string): string {
+export function stopLabel(reason: string): string {
     if (reason.includes('边际枯竭')) return '枯竭';
     if (reason.includes('相关性衰减')) return '衰减';
     if (reason.includes('预算')) return '预算';
@@ -45,260 +40,162 @@ function stopLabel(reason: string): string {
     return 'stop';
 }
 
-// 从答案 md 的 "## Files Seen In Tool Results" 段取 agent 实际在工具结果里见过的文件列表
-function seenFilesOf(mcpFile: string): string[] {
-    let txt = ''; try { txt = fs.readFileSync(mcpFile, 'utf-8'); } catch { return []; }
-    const sec = txt.split('## Files Seen In Tool Results')[1] ?? '';
-    return [...sec.matchAll(/^- `([^`]+)`/gm)].map(m => m[1]);
+const base = (p: string): string => (p || '').split('/').pop() || p;
+
+// 路径宽松相等：gold core 与 wiki-map 键 / trace 文件都是仓库相对路径，允许后缀包含。
+export function pathEq(a: string, b: string): boolean {
+    const x = (a || '').replace(/\\/g, '/'), y = (b || '').replace(/\\/g, '/');
+    return x === y || x.endsWith('/' + y) || y.endsWith('/' + x);
 }
 
-// Resolve the plan intent recorded in the answer md (## Plan line → truncated args → offline classifier).
-function resolveIntent(mcpFile: string, question: string): string | null {
-    let txt = ''; try { txt = fs.readFileSync(mcpFile, 'utf-8'); } catch { /* */ }
-    const planLine = txt.match(/##\s*Plan[\s\S]*?intent:\s*([\w-]+)/i);
-    if (planLine && (INTENTS as string[]).includes(planLine[1])) return planLine[1];
-    const prefix = txt.match(/"intent"\s*:\s*"([a-z-]+)/i);
-    if (prefix && prefix[1]) { const hit = (INTENTS as string[]).find(i => i.startsWith(prefix[1])); if (hit) return hit; }
-    return classifyIntent(question);
+// 对不对（零-API gold 对照）：trace × claude-truth core × wiki-map。
+//   entryHit  = 答案文件所在页是否进了入口 scope（pageStep.chosen）；核心不属任何页 → null（—，天花板）。
+//   reachGoldN = seed 自身文件 ∪ walk 各轮 newFiles 里，命中了几个 core 答案文件。
+export function computeGold(
+    tr: any,
+    core: string[],
+    wikiMap: any,
+): { entryHit: boolean | null; reachGoldN: number; coreN: number } {
+    const trPages: string[] = tr?.pageStep?.chosen ?? [];
+
+    // pageStep.chosen 用页名(page.page/title)；file_to_pages 值是页 id —— 先把 id 归一到页名再比,否则永不命中。
+    const idToName = new Map<string, string>();
+    if (wikiMap) for (const p of (wikiMap.pages ?? [])) idToName.set(p.id, p.page ?? p.title ?? p.id);
+
+    const goldPages = new Set<string>();
+    if (wikiMap) for (const c of core) {
+        for (const [wk, ids] of Object.entries((wikiMap.file_to_pages ?? {}) as Record<string, string[]>)) {
+            if (pathEq(wk, c)) for (const id of ids) goldPages.add(idToName.get(id) ?? id);
+        }
+    }
+    const entryHit = goldPages.size > 0 ? trPages.some(p => goldPages.has(p)) : null;
+
+    const seedFiles = new Set<string>();
+    for (const s of (tr?.seedStep ?? [])) {
+        const opt = (s.options ?? []).find((o: any) => o.symbol === s.chosen);
+        if (opt?.file) seedFiles.add(opt.file);
+    }
+    const reached = new Set<string>(seedFiles);
+    for (const w of (tr?.walk ?? [])) for (const f of (w.result?.newFiles ?? [])) reached.add(f);
+    const reachGoldN = core.filter(c => [...reached].some(f => pathEq(f, c))).length;
+
+    return { entryHit, reachGoldN, coreN: core.length };
 }
 
-// Parse the saved answer's "## Tool Calls" trace into a HUMAN-READABLE summary: one line per call,
-// in order — plan's intent, search's query(·layer), graph's target + move (↓ down / ↑ up / expand),
-// details' file. Adjacent identical lines collapse ×N. Clipped file args are un-truncated via the
-// answer's "## Files Seen In Tool Results" list.
-function parseTrace(mcpFile: string, resolvedIntent: string | null): { calls: number; summary: string; hitBudget: boolean } {
-    let txt = ''; try { txt = fs.readFileSync(mcpFile, 'utf-8'); } catch { /* */ }
-    const header = txt.match(/## Tool Calls \((\d+) calls/);
-    const calls = header ? +header[1] : 0;
-    const seen = [...txt.matchAll(/^- `([^`]+)`/gm)].map(m => m[1]);   // full relative paths (seen-log)
-    const planIntent = resolvedIntent ?? '';
-    const recipeMove = (RECIPES as Record<string, { move: string }>)[planIntent]?.move ?? 'expand';
-    const arg = (raw: string, re: RegExp) => { const m = raw.match(re); return m ? m[1] : ''; };
-    const relOf = (p: string) => { const m = p.match(/(?:^|\/)((?:apps|packages|ee)\/.+)$/); return m ? m[1] : (p.split('/').pop() || p); };
-    const resolveFile = (rawPath: string): string => {
-        if (!rawPath) return '?';
-        const rel = relOf(rawPath);
-        const full = seen.find(s => s.startsWith(rel)) ?? seen.find(s => s.includes(rel)) ?? rel;
-        return full.split('/').pop() || full;
-    };
-    const lines: string[] = [];
-    for (const m of txt.matchAll(/\*\*Step \d+:\*\*\s*`(\w+)\((.*?)\)`/g)) {
-        const tool = m[1], raw = m[2];
-        if (tool === 'plan') lines.push(`plan: ${planIntent || arg(raw, /"intent"\s*:\s*"([^"]+)"/) || '?'}`);
-        else if (tool === 'search') {
-            const q = arg(raw, /"query"\s*:\s*"([^"]+)"/), layer = arg(raw, /"layer"\s*:\s*"([^"]+)"/);
-            lines.push(`search: "${q}"${layer ? ' ·' + layer : ''}`);
-        } else if (tool === 'graph') {
-            const move = arg(raw, /"move"\s*:\s*"([^"]+)"/) || recipeMove;   // omitted move → intent's default
-            const q = arg(raw, /"query"\s*:\s*"([^"]+)"/), f = arg(raw, /"file"\s*:\s*"([^"]*)"?/);
-            const mv = ({ expand: '', down: '↓', up: '↑' } as Record<string, string>)[move] ?? move;
-            lines.push(`graph${mv}: ${q || resolveFile(f)}`);
-        } else if (tool === 'details') {
-            lines.push(`details: ${resolveFile(arg(raw, /"filename"\s*:\s*"([^"]*)"?/))}`);
-        } else lines.push(tool);
-    }
-    const seq: { base: string; n: number }[] = [];   // collapse ADJACENT identical lines
-    for (const ln of lines) {
-        const last = seq[seq.length - 1];
-        if (last && last.base === ln) last.n++; else seq.push({ base: ln, n: 1 });
-    }
-    const ordered = seq.map(s => s.n > 1 ? `${s.base} ×${s.n}` : s.base).join('<br>') || '(nothing)';
-    const hitBudget = calls >= 8;
-    return { calls, summary: ordered, hitBudget };
+// agent 实调：直接渲染 trace 里已捕获的 agentCalls.sequence（结构化，无 gold）。
+export function fmtAgentCalls(ac: any): { calls: number; sequence: string; hitBudget: boolean } {
+    const seq: any[] = Array.isArray(ac?.sequence) ? ac.sequence : [];
+    const parse = (s: string) => { try { return JSON.parse(s); } catch { return {}; } };
+    const lines = seq.map((c: any) => {
+        const a = parse(c.args ?? '{}');
+        switch (c.tool) {
+            case 'plan': return `plan:${a.intent ?? '?'}`;
+            case 'search': return `search:"${a.query ?? ''}"${a.layer ? '·' + a.layer : ''}`;
+            case 'graph': {
+                const mv = ({ expand: '', down: '↓', up: '↑' } as Record<string, string>)[a.move] ?? (a.move ?? '');
+                return `graph${mv}:${a.query || base(a.file || '') || '?'}`;
+            }
+            case 'details': return `details:${base(a.filename || a.file || '')}`;
+            default: return String(c.tool ?? '?');
+        }
+    });
+    const out: { b: string; n: number }[] = [];   // collapse ADJACENT identical entries
+    for (const ln of lines) { const last = out[out.length - 1]; if (last && last.b === ln) last.n++; else out.push({ b: ln, n: 1 }); }
+    const sequence = out.map(s => s.n > 1 ? `${s.b} ×${s.n}` : s.b).join('  →  ') || '(nothing)';
+    return { calls: ac?.totalCalls ?? seq.length, sequence, hitBudget: !!ac?.hitBudget };
+}
+
+// 漂移守卫：trace 是对某个 wiki-map 跑的；若 pageStep.chosen 页名大面积对不上当前 wiki-map，
+// 说明 trace 过时（对旧 wiki-map 跑的），此时"对不对"会失真 —— 报警提示重跑 trace。
+export function traceDrift(
+    traces: Array<{ pageStep?: { chosen?: string[] } } | null>,
+    wikiMap: any,
+): { total: number; matched: number; stale: boolean } {
+    const names = new Set<string>((wikiMap?.pages ?? []).map((p: any) => p.page ?? p.title));
+    let total = 0, matched = 0;
+    for (const tr of traces) for (const p of (tr?.pageStep?.chosen ?? [])) { total++; if (names.has(p)) matched++; }
+    return { total, matched, stale: total > 0 && matched / total < 0.5 };
 }
 
 async function main() {
-    const wikiMap: any = fs.existsSync(WIKI_MAP_PATH) ? JSON.parse(fs.readFileSync(WIKI_MAP_PATH, 'utf-8')) : null;
     const { flat: testcases } = loadTestcasesWithTruth(TESTCASES_PATH, CLAUDE_TRUTH_PATH);
+    const wikiMap: any = fs.existsSync(WIKI_MAP_PATH) ? JSON.parse(fs.readFileSync(WIKI_MAP_PATH, 'utf-8')) : null;
 
-    const rows: any[] = [];
-    for (const tc of testcases) {
-        const mcpFile = path.join(D_MCP, `${tc.id}.md`);
-        const core = (tc.core && tc.core.length ? tc.core : tc.groundTruthFiles) ?? [];
-
-        // trace（eval:retrieval 的决策日志）— trace 本体无金指标；金指标在这里(报告端)算
+    // pass 1: load trace + compute gold verdict per question
+    const items = testcases.map((tc: any) => {
         const tr = loadTraceFile(tc.id);
-        const trPages: string[] = tr?.pageStep?.chosen ?? [];
-        const trFallback = tr ? (trPages.length === 0 || (tr.seedStep ?? []).some((s: any) => s.page === '(fallback)')) : false;
-        const trWalk: any[] = tr?.walk ?? [];
-        const trMoves = trWalk.filter(w => w.chosen != null).length;
-        const trStops = trWalk.filter(w => w.chosen == null).map(w => stopLabel(w.reason ?? ''));
-        const trSeeds = new Set(trWalk.map(w => w.anchor)).size;
-        // 金指标①入口页命中（金文件不在入口图 → '—' 天花板）②邻域触金
-        const goldPages = new Set<string>();
-        if (wikiMap) for (const c of core) {
-            for (const [wk, pages] of Object.entries(wikiMap.file_to_pages as Record<string, string[]>)) {
-                if (pathEq(wk, c)) for (const p of pages) goldPages.add(p);
-            }
-        }
-        const entryHit = goldPages.size > 0 ? trPages.some(p => goldPages.has(p)) : null;
-        // seed 自身文件（游走的第 0 步）与逐轮到达文件
-        const seedFiles = new Set<string>();
-        for (const s of (tr?.seedStep ?? [])) {
-            const opt = (s.options ?? []).find((o: any) => o.symbol === s.chosen);
-            if (opt?.file) seedFiles.add(opt.file);
-        }
-        const reachedFiles = new Set<string>(seedFiles);
-        for (const w of trWalk) for (const f of (w.result?.newFiles ?? [])) reachedFiles.add(f);
-        const walkerGold = core.filter((c: string) => [...reachedFiles].some(f => pathEq(f, c)));
+        const core: string[] = ((tc.core && tc.core.length ? tc.core : tc.groundTruthFiles) ?? []) as string[];
+        return { tc, tr, gold: tr ? computeGold(tr, core, wikiMap) : null };
+    });
 
-        // ① 第几步第一次找到答案文件：seed 自身算第 0 步，之后按游走的先后顺序数"走了几步"
-        let firstGoldStep: number | null = core.some((c: string) => [...seedFiles].some(f => pathEq(f, c))) ? 0 : null;
-        // ② 按轮次统计每轮新找到的答案文件数（轮次 = 每个 seed 自己的第 1..8 轮）
-        const goldByRound = new Map<number, number>();
-        {
-            const found = new Set<string>();
-            for (const c of core) if ([...seedFiles].some(f => pathEq(f, c))) found.add(c);
-            let stepNo = 0;
-            for (const w of trWalk) {
-                if (w.chosen == null) continue;
-                stepNo++;
-                for (const c of core) {
-                    if (found.has(c)) continue;
-                    if ((w.result?.newFiles ?? []).some((f: string) => pathEq(f, c))) {
-                        found.add(c);
-                        if (firstGoldStep === null) firstGoldStep = stepNo;
-                        goldByRound.set(w.round, (goldByRound.get(w.round) ?? 0) + 1);
-                    }
-                }
-            }
-        }
-        // ③ 停止评价：停的那一轮，三个方向的预览文件（各前 3 个）里是否还有没拿到的答案文件 → "停早了"
-        //    （预览只有每方向 3 个样本，这是近似判断）；预算用尽且最后两步都没新答案文件 → "停晚了"
-        let stopVerdict = '正常';
-        {
-            const stopRounds = trWalk.filter(w => w.chosen == null);
-            const previewFiles = stopRounds.flatMap(w => ['expand', 'down', 'up'].flatMap(m => w.options?.[m]?.topFiles ?? []));
-            const missed = core.filter((c: string) => !walkerGold.includes(c) && previewFiles.some(f => pathEq(f, c)));
-            if (missed.length > 0) stopVerdict = `停早了(预览里还有 ${missed.length} 个答案文件)`;
-            else if (trWalk.some(w => w.chosen == null && (w.reason ?? '').includes('预算'))) {
-                const moves = trWalk.filter(w => w.chosen != null);
-                const lastTwoGold = moves.slice(-2).some(w => core.some((c: string) => (w.result?.newFiles ?? []).some((f: string) => pathEq(f, c))));
-                if (!lastTwoGold) stopVerdict = '停晚了(最后两步已无新答案文件)';
-            }
-        }
-        // ④ 真 agent 在工具结果里见过的答案文件（对照：自动游走多找到了多少）
-        const seen = seenFilesOf(mcpFile);
-        const agentGold = core.filter((c: string) => seen.some(f => pathEq(f, c)));
-        const walkerOnly = walkerGold.filter((c: string) => !agentGold.includes(c));
-        // ⑤ 候选精度：按 entry-map 同样的排序规则(到达文件按问题相关度排)重构候选列表，
-        //    看前 10 个里有几个是答案相关文件(core∪supporting——命中辅助文件不算噪声)
-        const tokensUsed: string[] = tr?.tokens?.used ?? [];
-        // 与生产同一个排序函数(rankCandidates)——量的就是 agent 真拿到的列表
-        const frMap = new Map<string, number>();
-        for (const f of seedFiles) frMap.set(f, 0);
-        for (const w of trWalk) {
-            if (w.chosen == null) continue;
-            for (const f of (w.result?.newFiles ?? [])) {
-                if (!frMap.has(f) || (frMap.get(f) as number) > w.round) frMap.set(f, w.round);
-            }
-        }
-        // 与生产同路径：向量表存在时组装 sem 喂 RRF，否则 null → 退回 fuzzy（与 analyze() 行为一致）
-        const vecs = loadVectors();
-        const reportSem = vecs && (tc.question ?? '')
-            ? await (async () => {
-                const qv = await embedText(tc.question ?? '');
-                return { queryVec: qv, vecOf: (f: string) => vecs.get(f) ?? null };
-            })()
-            : null;
-        const rankedCand = rankCandidates([...frMap].map(([f, round]) => ({ f, round })), tokensUsed, loadSummaries(), reportSem);
-        const relevant = [...core, ...((tc.supporting ?? []) as string[])];
-        const candHit10 = rankedCand.slice(0, 10).filter(f => relevant.some(c => pathEq(f, c))).length;
-        const candHit25 = rankedCand.slice(0, 25).filter(f => relevant.some(c => pathEq(f, c))).length;
+    // aggregate（对不对汇总）
+    const traced = items.filter(x => x.tr).length;
+    const withGold = items.filter(x => x.gold && x.gold.entryHit !== null);
+    const scopeHit = withGold.filter(x => x.gold!.entryHit).length;
+    const recallRows = items.filter(x => x.gold && x.gold.coreN > 0);
+    const meanRecall = recallRows.length ? recallRows.reduce((s, x) => s + x.gold!.reachGoldN / x.gold!.coreN, 0) / recallRows.length : 0;
+    const zeroRecall = recallRows.filter(x => x.gold!.reachGoldN === 0).length;
 
-        const resolved = resolveIntent(mcpFile, tc.question ?? '');
-        rows.push({
-            id: tc.id, type: tc.questionType ?? '?', coreN: core.length,
-            trHas: !!tr, trPages, trFallback, trMoves, trStops, trSeeds,
-            goldPagesN: goldPages.size, entryHit, reachGoldN: walkerGold.length,
-            firstGoldStep, goldByRound, stopVerdict, candHit10, candHit25,
-            agentGoldN: agentGold.length, walkerOnlyN: walkerOnly.length,
-            agent: parseTrace(mcpFile, resolved),
-        });
-    }
-
-    const n = rows.length;
-    const mean = (xs: number[]) => xs.length ? xs.reduce((s, v) => s + v, 0) / xs.length : 0;
-    const pct = (x: number) => `${(x * 100).toFixed(0)}%`;
-    const short: Record<string, string> = { architecture: 'arch', 'call-chain': 'chain', locate: 'loc', pattern: 'patt', routing: 'rout', impact: 'imp' };
+    const drift = traceDrift(items.map(x => x.tr), wikiMap);
 
     const L: string[] = [];
-    L.push(`# metrics — trace 报告（游走器决策 + agent 实际调用；无语义判定，语义在 verdicts.md）\n`);
-    L.push(`${new Date().toLocaleString('en-US')} | ${n} testcases | deterministic (retrieval-trace + answers + wiki-map + claude-truth)\n`);
-
-    // 1 — 游走器决策概览
-    const trRows = rows.filter(r => r.trHas);
-    L.push(`## 1. Trace — 确定性游走器逐题决策概览\n`);
-    if (trRows.length === 0) {
-        L.push(`> 无 trace 数据 — 先跑 \`npm run eval:retrieval\`（产物在 logs/data/retrieval-trace/）。\n`);
-    } else {
-        const fbCount = trRows.filter(r => r.trFallback).length;
-        const stopDist = new Map<string, number>();
-        for (const r of trRows) for (const s of r.trStops) stopDist.set(s, (stopDist.get(s) ?? 0) + 1);
-        const pageFreq = new Map<string, number>();
-        for (const r of trRows) for (const p of r.trPages) pageFreq.set(p, (pageFreq.get(p) ?? 0) + 1);
-        const topPages = [...pageFreq].sort((a, b) => b[1] - a[1]).slice(0, 6);
-        const withGold = trRows.filter(r => r.entryHit !== null);
-        const entryHits = withGold.filter(r => r.entryHit).length;
-        const reachRows = trRows.filter(r => r.coreN > 0);
-        const reachVals = reachRows.map(r => r.reachGoldN / r.coreN);
-        const reachZero = reachVals.filter(v => v === 0).length;
-        L.push(`> "答案文件" = Claude 标准答案里列出的关键文件（claude-truth.json 的 core），下同。trace 文件本身不含任何答案信息，本节的对照是报告生成时算的。\n`);
-        L.push(`**入口**：${fbCount}/${trRows.length} 题在入口图里找不到页面、退回了普通符号搜索 · 被选最多的页面：${topPages.map(([p, c]) => `${p}×${c}`).join(' · ')}`);
-        L.push(`**游走**：平均每题走 ${mean(trRows.map(r => r.trMoves)).toFixed(1)} 步 · 停下来的原因：${[...stopDist].sort((a, b) => b[1] - a[1]).map(([s, c]) => `${s} ${c}`).join(' · ')}`);
-        L.push(`**对照标准答案**：入口页选对 **${entryHits}/${withGold.length}** 题（只算答案文件所在页面存在于入口图的题；另 ${trRows.length - withGold.length} 题答案文件根本不在任何 wiki 页面里，怎么选都选不到，记 —）· 平均找到 **${pct(mean(reachVals))}** 的答案文件 · 一个答案文件都没找到的题 ${reachZero}/${reachRows.length}\n`);
-        L.push(`| # | id | 选中的入口页 (top-3) | 入口页对吗 | 找到答案文件 | seeds | 走了几步 | 停止原因 |`);
-        L.push(`|---|---|---|:-:|---:|---:|---:|---|`);
-        trRows.forEach((r, i) => {
-            const pages = r.trFallback ? '(退回符号搜索)' : r.trPages.join('<br>');
-            const gold = r.entryHit === null ? '—' : r.entryHit ? '✓' : '✗';
-            L.push(`| ${i + 1} | ${r.id} | ${pages} | ${gold} | ${r.reachGoldN}/${r.coreN} | ${r.trSeeds} | ${r.trMoves} | ${r.trStops.join('/')} |`);
-        });
-        L.push('');
-
-        // 2 — 游走诊断（四个白话指标）
-        L.push(`## 2. 游走诊断 — 效率、停止时机、和真 agent 的对比\n`);
-        const stepDist = new Map<string, number>();
-        for (const r of trRows) {
-            const k = r.firstGoldStep === null ? '没找到' : r.firstGoldStep === 0 ? '第0步(seed自身就是)' : `第${r.firstGoldStep}步`;
-            stepDist.set(k, (stepDist.get(k) ?? 0) + 1);
-        }
-        L.push(`**多快找到第一个答案文件**：${[...stepDist].sort().map(([k, c]) => `${k}×${c}`).join(' · ')}`);
-        const roundGold = new Map<number, number>();
-        for (const r of trRows) for (const [rd, cnt] of r.goldByRound) roundGold.set(rd, (roundGold.get(rd) ?? 0) + cnt);
-        L.push(`**每一轮新找到几个答案文件**（全部题目加总；轮次按每个 seed 自己数）：${[...roundGold].sort((a, b) => a[0] - b[0]).map(([rd, c]) => `第${rd}轮 ${c}个`).join(' · ') || '（无）'}`);
-        const stopBad = trRows.filter(r => r.stopVerdict !== '正常');
-        L.push(`**停止时机**：${trRows.length - stopBad.length}/${trRows.length} 题正常${stopBad.length ? `；有问题的：${stopBad.map(r => `${r.id}(${r.stopVerdict})`).join('、')}` : ''}`);
-        L.push(`**候选精度**：给 agent 的前 10 个候选文件里，平均 **${mean(trRows.map(r => r.candHit10)).toFixed(1)} 个**是答案相关文件；前 25 个（agent 实际拿到的全列表）里平均 **${mean(trRows.map(r => r.candHit25)).toFixed(1)} 个**。答案文件+辅助文件都算命中；这个数低=候选排序把对的文件埋在了大网深处`);
-        const sumWalker = trRows.reduce((s, r) => s + r.reachGoldN, 0);
-        const sumAgent = trRows.reduce((s, r) => s + r.agentGoldN, 0);
-        const sumOnly = trRows.reduce((s, r) => s + r.walkerOnlyN, 0);
-        L.push(`**和真 agent 对比**（同一批答案文件，共 ${trRows.reduce((s, r) => s + r.coreN, 0)} 个）：自动游走找到 ${sumWalker} 个，真 agent 在工具结果里见过 ${sumAgent} 个，**其中 ${sumOnly} 个是自动游走找到、agent 没见过的**——这就是把游走结果喂给 agent 能带来的增量上限。\n`);
-        L.push(`| # | id | 游走找到 | agent 见过 | 游走多找 | 候选命中(前10·前25) | 第几步首次找到 | 停止评价 |`);
-        L.push(`|---|---|---:|---:|---:|---:|---:|---|`);
-        trRows.forEach((r, i) => {
-            const first = r.firstGoldStep === null ? '没找到' : r.firstGoldStep === 0 ? 'seed 即是' : `第${r.firstGoldStep}步`;
-            L.push(`| ${i + 1} | ${r.id} | ${r.reachGoldN}/${r.coreN} | ${r.agentGoldN}/${r.coreN} | +${r.walkerOnlyN} | ${r.candHit10}/10·${r.candHit25}/25 | ${first} | ${r.stopVerdict} |`);
-        });
-        L.push('');
+    L.push(`# report — 逐题 trace + 对不对\n`);
+    L.push(`${new Date().toLocaleString('en-US')} | ${testcases.length} testcases | deterministic (retrieval-trace × claude-truth × wiki-map)\n`);
+    if (drift.stale) {
+        L.push(`> ⚠️ **trace 疑似过时**：pageStep.chosen 仅 ${drift.matched}/${drift.total} 命中当前 wiki-map 页名 —— 下面"对不对"多半失真，请先 \`npm run trace\` 重生成 trace 再跑 report。\n`);
+        console.error(`[report] ⚠️ trace 漂移：${drift.matched}/${drift.total} 页名命中当前 wiki-map —— 建议重跑 npm run trace`);
     }
+    L.push(`## 对不对汇总（零-API gold 对照）`);
+    L.push(`- **scope 选对**：${scopeHit}/${withGold.length} 题（答案文件所在页进了入口 scope；另 ${traced - withGold.length} 题答案文件不在任何 wiki 页，记 —）`);
+    L.push(`- **召回**：平均找到 **${(meanRecall * 100).toFixed(0)}%** 答案文件 · 一个都没找到的题 ${zeroRecall}/${recallRows.length}`);
+    L.push(`> "答案文件" = claude-truth.json 的 core（Claude 金答案关键文件）。trace 本体不含 gold；本节是报告端拿 trace × gold 算的对照，零-API。\n`);
 
-    // 2 — agent 实际调用
-    L.push(`## 3. Agent 实际调用 — 每题的真实工具调用序列\n`);
-    L.push(`> 解析自 \`logs/answers-gemini-mcp-selfloop/<id>.md\` 的 ## Tool Calls 段。\`plan:\` intent · \`search:\` query(·layer) · \`graph:\`/\`graph↓\`(down)/\`graph↑\`(up) target · \`details:\` file · \`wiki\`。⛔ = 用满 8 次调用预算。\n`);
-    L.push(`| # | id | type | calls | trace (agent 实际调用) |`);
-    L.push(`|---|---|---|---:|---|`);
-    rows.forEach((r, i) => {
-        L.push(`| ${i + 1} | ${r.id} | ${short[r.type] ?? r.type} | ${r.agent.calls}${r.agent.hitBudget ? ' ⛔' : ''} | ${r.agent.summary} |`);
-    });
-    L.push('');
+    // pass 2: per question — 对不对 + trace（scope/seed/walk/agent 实调）
+    for (const { tc, tr, gold } of items) {
+        L.push(`## ${tc.id} — ${tc.question ?? ''}  _[${tc.questionType ?? '?'}]_\n`);
+        if (!tr) { L.push(`> 无 trace（先跑 \`npm run trace\`）。\n`); continue; }
+
+        // ── 对不对 ──
+        const sc = gold!.entryHit === null ? '—（答案文件不在任何 wiki 页）' : gold!.entryHit ? '✓ 选对' : '✗ 选错';
+        L.push(`**对不对**：scope ${sc} · 召回 ${gold!.reachGoldN}/${gold!.coreN} 答案文件`);
+
+        // ── scope：入口页路由（selectPages） ──
+        const pages: string[] = tr.pageStep?.chosen ?? [];
+        const pageReason: string = tr.pageStep?.reason ?? '';
+        const pageOptN = (tr.pageStep?.options ?? []).length;
+        L.push(`**scope 入口页**（${pageOptN} 页打分 → 选 ${pages.length}）：${pages.length ? pages.join(' · ') : '（退回符号搜索）'}${pageReason ? `\n> ${pageReason}` : ''}`);
+
+        // ── seed：逐页种子挑选 ──
+        const seedSteps: any[] = tr.seedStep ?? [];
+        if (seedSteps.length) {
+            L.push(`**seed 逐页种子**：`);
+            for (const s of seedSteps) {
+                const optN = (s.options ?? []).length;
+                L.push(`- \`${s.page}\`：${s.chosen ? `→ \`${s.chosen}\`` : '（无）'} · ${optN} 候选${s.reason ? ` — ${s.reason}` : ''}`);
+            }
+        }
+
+        // ── walk：游走步 ──
+        const walk: any[] = tr.walk ?? [];
+        const moves = walk.filter(w => w.chosen != null).length;
+        const stops = walk.filter(w => w.chosen == null).map(w => stopLabel(w.reason ?? ''));
+        const seedsN = new Set(walk.map(w => w.anchor)).size;
+        L.push(`**walk 游走**：${seedsN} seed · ${moves} 步${stops.length ? ` · 停因 ${stops.join('/')}` : ''}`);
+        for (const w of walk) {
+            const head = `R${w.round} @${base(w.anchor)}`;
+            if (w.chosen != null) L.push(`  - ${head} → \`${w.chosen}\`${w.reason ? ` — ${w.reason}` : ''}`);
+            else L.push(`  - ${head} ⏹ STOP（${stopLabel(w.reason ?? '')}）`);
+        }
+
+        // ── agent 实际调用序列（取自 trace.agentCalls） ──
+        const agent = fmtAgentCalls(tr.agentCalls);
+        L.push(`**agent 实调**：${agent.calls} calls${agent.hitBudget ? ' ⛔预算满' : ''} — ${agent.sequence}\n`);
+    }
 
     fs.mkdirSync(path.join(LOGS, 'reports'), { recursive: true });
     fs.writeFileSync(OUT, L.join('\n'), 'utf-8');
-    console.error(`Wrote logs/reports/metrics.md`);
-    const trN = rows.filter(r => r.trHas).length;
-    const budget = rows.filter(r => r.agent.hitBudget).length;
-    console.log(`metrics: trace ${trN}/${n} | agent avg ${mean(rows.map(r => r.agent.calls)).toFixed(1)} calls/题, 用满预算 ${budget}/${n}`);
+    console.error(`Wrote logs/reports/report.md`);
+    console.log(`report: ${traced}/${testcases.length} traced · scope 选对 ${scopeHit}/${withGold.length} · 平均召回 ${(meanRecall * 100).toFixed(0)}% → logs/reports/report.md`);
 }
 
-main().catch(e => { console.error('Fatal:', e); process.exit(2); });
+main().catch(e => { console.error('Fatal:', e); process.exit(1); });
