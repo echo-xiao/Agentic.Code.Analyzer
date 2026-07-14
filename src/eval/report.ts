@@ -204,12 +204,16 @@ export function renderWalk(tr: any, core: string[]): string[] {
         const stopTxt = stopRound ? ` · ⏹ ${stopLabel(stopRound.reason ?? '')}` : '';
         out.push(`- **${base(g.anchor)}** · ${moveRounds.length} 步${stopTxt}`);
         for (const w of moveRounds) {
+            // R 行：move + affinity 明细
+            out.push(`    - R${w.round} → \`${w.chosen}\`${w.reason ? ` · ${w.reason}` : ''}`);
+            // ↳ 子条：触达 + core 命中（含 0，保留之前的细节程度）；core 文件带短路径区分同名
             const { reached, coreHits } = roundCoreHits(w, core);
-            const hit = coreHits.length
-                ? ` · **core 命中 ${coreHits.length}⭐**: ${coreHits.map(c => '`' + shortPath(c) + '`').join(' ')}`
-                : '';
-            const aff = w.reason ? ` · ${w.reason}` : '';   // affinity 明细（保留细节）
-            out.push(`    - R${w.round} → \`${w.chosen}\` · 触达 ${reached}${hit}${aff}`);
+            if (reached > 0) {
+                const hit = coreHits.length
+                    ? ` · **core 命中 ${coreHits.length}⭐**: ${coreHits.map(c => '`' + shortPath(c) + '`').join(' ')}`
+                    : ' · core 命中 0';
+                out.push(`        - ↳ 触达 ${reached} 文件${hit}`);
+            }
         }
     }
     return out;
