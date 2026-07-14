@@ -15,12 +15,17 @@ import * as fs from 'fs';
 import * as path from 'path';
 import { fileURLToPath } from 'url';
 
+import Anthropic from '@anthropic-ai/sdk';
+
 import { loadTestcasesWithTruth, TESTCASES_PATH, CLAUDE_TRUTH_PATH } from './utils/truth-io.js';
+import { judgeAnswers, type Row } from './judge.js';
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const LOGS = path.resolve(__dirname, '..', '..', 'logs');
 const TRACE_DIR = path.join(LOGS, 'data', 'retrieval-trace');
 const WIKI_MAP_PATH = path.resolve(__dirname, '..', '..', 'data', 'wiki-map.json');
+const CAND_DIR = path.join(LOGS, 'answers-gemini-mcp-selfloop');
+const VERDICTS_CACHE = path.join(LOGS, 'reports', 'verdicts-latest.json');
 const OUT = path.join(LOGS, 'reports', 'report.md');
 
 // ── retrieval-trace loader: per-question decision log written by `npm run trace` ──
@@ -107,6 +112,14 @@ export function firstCoreStep(tr: any, core: string[]): { seedHit: boolean; firs
     return { seedHit: false, firstStep: null };
 }
 
+// 语义段渲染（Phase 2）：judge 的 Row → 一行。缺→未跑。纯函数，零-API 可测。
+export function semanticLabel(row?: { verdict?: string; mode?: string; reason?: string }): string {
+    if (!row?.verdict) return `**语义**：未跑`;
+    const icon = row.verdict === 'PASS' ? '✓' : row.verdict === 'PARTIAL' ? '◐' : '✗';
+    const tail = [row.mode, row.reason].filter(Boolean).join(' — ');
+    return `**语义**：${icon} ${row.verdict}${tail ? ` — ${tail}` : ''}`;
+}
+
 // agent 实调：直接渲染 trace 里已捕获的 agentCalls.sequence（结构化，无 gold）。
 export function fmtAgentCalls(ac: any): { calls: number; sequence: string; hitBudget: boolean } {
     const seq: any[] = Array.isArray(ac?.sequence) ? ac.sequence : [];
@@ -166,6 +179,23 @@ async function main() {
 
     const drift = traceDrift(items.map(x => x.tr), wikiMap);
 
+    // 语义段（Phase 2）：--semantic 付费真跑 judge（agent 答案 vs claude gold）；否则读缓存（零-API，标 stale）。
+    const wantSemantic = process.argv.includes('--semantic');
+    let semRows: Row[] = [];
+    let semCached = false;
+    if (wantSemantic) {
+        const apiKey = process.env.ANTHROPIC_API_KEY || process.env.CLAUDE_API_KEY;
+        if (!apiKey) { console.error('[report] --semantic 需要 ANTHROPIC_API_KEY'); process.exit(1); }
+        console.error('[report] --semantic：付费跑 judge（agent 答案 vs claude gold）…');
+        semRows = await judgeAnswers(new Anthropic({ apiKey }), testcases.map((tc: any) => ({ id: tc.id, question: tc.question ?? '' })), CAND_DIR, '## Gemini Answer');
+        fs.writeFileSync(VERDICTS_CACHE, JSON.stringify(semRows, null, 2), 'utf-8');
+    } else if (fs.existsSync(VERDICTS_CACHE)) {
+        try { semRows = JSON.parse(fs.readFileSync(VERDICTS_CACHE, 'utf-8')); semCached = true; } catch { /* 空/坏缓存→当未跑 */ }
+    }
+    const semMap = new Map(semRows.map(r => [r.id, r]));
+    const semN: Record<string, number> = { PASS: 0, PARTIAL: 0, FAIL: 0 };
+    for (const r of semRows) if (r.verdict in semN) semN[r.verdict]++;
+
     const L: string[] = [];
     L.push(`# report — 逐题 trace + 对不对\n`);
     L.push(`${new Date().toLocaleString('en-US')} | ${testcases.length} testcases | deterministic (retrieval-trace × claude-truth × wiki-map)\n`);
@@ -177,6 +207,8 @@ async function main() {
     L.push(`- **scope 选对**：${scopeHit}/${withGold.length} 题（答案文件所在页进了入口 scope；另 ${traced - withGold.length} 题答案文件不在任何 wiki 页，记 —）`);
     L.push(`- **召回**：平均找到 **${(meanRecall * 100).toFixed(0)}%** 答案文件 · 一个都没找到的题 ${zeroRecall}/${recallRows.length}`);
     L.push(`- **seed 命中 core**：seed 即命中 **${seedHitN}** 题 · walk 才捞到 ${lateN} · 全程没命中 ${missN} —— seed 即命中 = 路由+种子都对；walk 才捞到 = 靠游走硬捞（scope/seed 没够到）`);
+    if (semRows.length) L.push(`- **语义**（agent 答案 vs claude gold${semCached ? '，缓存 verdicts-latest.json' : '，本次 --semantic 付费'}）：PASS ${semN.PASS} / PARTIAL ${semN.PARTIAL} / FAIL ${semN.FAIL}`);
+    else L.push(`- **语义**：未跑 —— \`npm run report -- --semantic\` 付费开启（agent 答案 vs claude gold）`);
     L.push(`> "答案文件" = claude-truth.json 的 core（Claude 金答案关键文件）。trace 本体不含 gold；本节是报告端拿 trace × gold 算的对照，零-API。\n`);
 
     // pass 2: per question — 对不对 + trace（scope/seed/walk/agent 实调）
@@ -191,6 +223,7 @@ async function main() {
             : fcs!.firstStep != null ? ` · 首次命中 core 第 ${fcs!.firstStep} 步（seed 没够到，靠 walk）`
             : ' · ✗ core 全程没命中';
         L.push(`**对不对**：scope ${sc} · 召回 ${gold!.reachGoldN}/${gold!.coreN} 答案文件${fcsLabel}`);
+        if (semMap.size) L.push(semanticLabel(semMap.get(tc.id)));
 
         // ── scope：入口页路由（selectPages） ──
         const pages: string[] = tr.pageStep?.chosen ?? [];
