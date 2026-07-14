@@ -9,7 +9,7 @@ export interface PageOption { page: string; score: number; hitOn: string[] }
 export interface PageStep { options: PageOption[]; chosen: string[]; reason: string }
 export interface SeedOption { symbol: string; file: string; score: number }
 export interface SeedStep { page: string; options: SeedOption[]; chosen: string | null; reason: string }
-export interface SelectOpts { semScores?: Map<string, number>; }
+export interface SelectOpts { semScores?: Map<string, number>; expandedTokens?: string[]; candidateModules?: string[]; }
 
 const PAGE_THRESHOLD = 0.3;
 const SEM_THRESHOLD = 0.35;
@@ -45,11 +45,18 @@ export function informativeTokens(
 }
 
 export function selectPages(tokens: string[], map: WikiMap, threshold = PAGE_THRESHOLD, opts: SelectOpts = {}): PageStep | null {
+    // 扩词并入：expandedTokens 去重合并到 tokens 再用于打分。
+    const allTokens = opts.expandedTokens?.length ? [...new Set([...tokens, ...opts.expandedTokens])] : tokens;
+    // 候选模块集：命中 page.modules 中任一模块 id 的页面视为候选。
+    const modSet = new Set(opts.candidateModules ?? []);
+    const isCand = (p: any) => Array.isArray(p.modules) && p.modules.some((m: string) => modSet.has(m));
+    const isCandByPage = new Map(map.pages.map(p => [p.page, isCand(p)]));
+
     const options: PageOption[] = [];
     // 多 token 佐证：页面分 = top-K 个不同 token 各自最佳命中的均值（K=min(2,token数)，÷K）。
     // 单最佳部位打分是"单证人定罪"——同形异义孤证（git push 撞 'Push to develop'）能独占高分；
     // 佐证制下孤证被摊薄一半，同时命中 push+notifications 的页面胜出（trace 实证 2026-07-08）。
-    const K = Math.min(2, Math.max(1, tokens.length));
+    const K = Math.min(2, Math.max(1, allTokens.length));
     for (const p of map.pages) {
         const parts: Array<{ name: string; w: number; text: string }> = [
             { name: 'title', w: W_TITLE, text: p.page },
@@ -57,7 +64,7 @@ export function selectPages(tokens: string[], map: WikiMap, threshold = PAGE_THR
             ...p.diagrams.flatMap(d => Object.values(d.nodes).map(label => ({ name: `node:${label.slice(0, 40)}`, w: W_NODE, text: label }))),
             ...Object.keys(p.source_files).map(f => ({ name: `file:${f}`, w: W_FILE, text: f })),
         ];
-        const perToken = tokens.map(t => {
+        const perToken = allTokens.map(t => {
             let best = { score: 0, name: '' };
             for (const part of parts) {
                 const s = part.w * scoreString([t], part.text);
@@ -75,18 +82,26 @@ export function selectPages(tokens: string[], map: WikiMap, threshold = PAGE_THR
     const sem = opts.semScores;
     if (!sem || sem.size === 0) {                        // 无语义 → 现状路径，逐位一致
         const top10 = options.slice(0, 10);
-        const chosen = options.filter(o => o.score >= threshold).slice(0, 3);
-        if (chosen.length === 0) return null;
-        return { options: top10, chosen: chosen.map(c => c.page), reason: `top-${chosen.length} by 结构匹配分 ${chosen.map(c => `${c.page}:${c.score}`).join('/')}，阈值 ${threshold}` };
+        const lexChosen = options.filter(o => o.score >= threshold).slice(0, 3);
+        // 候选模块 boost（纯词面分支）：把候选模块页前置到 chosen，不足 3 时补足，上限 3。
+        if (modSet.size > 0) {
+            const lexChosenSet = new Set(lexChosen.map(c => c.page));
+            const modPages = options.filter(o => isCandByPage.get(o.page) && !lexChosenSet.has(o.page));
+            const chosen = [...modPages, ...lexChosen].slice(0, 3);
+            if (chosen.length === 0) return null;
+            return { options: top10, chosen: chosen.map(c => c.page), reason: `top-${chosen.length} by 结构匹配分 ${chosen.map(c => `${c.page}:${c.score}`).join('/')}，阈值 ${threshold}` };
+        }
+        if (lexChosen.length === 0) return null;
+        return { options: top10, chosen: lexChosen.map(c => c.page), reason: `top-${lexChosen.length} by 结构匹配分 ${lexChosen.map(c => `${c.page}:${c.score}`).join('/')}，阈值 ${threshold}` };
     }
 
-    // RRF 融合:候选 = 词面达阈 ∨ 语义达阈;按 lexRank+semRank 名次倒数和重排。
+    // RRF 融合:候选 = 词面达阈 ∨ 语义达阈 ∨ 候选模块命中;按 lexRank+semRank 名次倒数和重排。
     const semRankArr = [...options].sort((a, b) => (sem.get(b.page) ?? -Infinity) - (sem.get(a.page) ?? -Infinity));
     const lexRank = new Map(options.map((o, i) => [o.page, i]));
     const semRank = new Map(semRankArr.map((o, i) => [o.page, i]));
-    const cand = options.filter(o => o.score >= threshold || (sem.get(o.page) ?? -Infinity) >= SEM_THRESHOLD);
+    const cand = options.filter(o => o.score >= threshold || (sem.get(o.page) ?? -Infinity) >= SEM_THRESHOLD || isCandByPage.get(o.page));
     if (cand.length === 0) return null;
-    const rrf = (p: string) => 1 / (RRF_K + (lexRank.get(p) ?? 1e6)) + 1 / (RRF_K + (semRank.get(p) ?? 1e6));
+    const rrf = (p: string) => 1 / (RRF_K + (lexRank.get(p) ?? 1e6)) + 1 / (RRF_K + (semRank.get(p) ?? 1e6)) + (isCandByPage.get(p) ? 1 / RRF_K : 0);
     cand.sort((a, b) => rrf(b.page) - rrf(a.page) || a.page.localeCompare(b.page));
     const chosen = cand.slice(0, 3);
     return {

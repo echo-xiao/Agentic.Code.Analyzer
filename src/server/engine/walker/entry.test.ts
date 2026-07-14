@@ -142,6 +142,23 @@ test('selectPages: 不传 semScores 与现状一致(纯词面)', () => {
   assert.equal(r!.chosen[0], 'Room Views');
 });
 
+test('扩词并入 tokens 后能词面命中', () => {
+  // 原问题 'slash' 命中不到;扩词补 'commands' → 命中 Slash 页
+  const r = selectPages(['zzz'], mapSem, 0.3, { expandedTokens: ['commands'] });
+  assert.ok(r);
+  assert.equal(r!.chosen[0], 'Integrations, Webhooks & Slash Commands');
+});
+
+test('候选模块把对应页顶入候选', () => {
+  const m = { pages: [
+    { page: 'LDAP Directory', sections: [], diagrams: [], source_files: { 'l.ts': ['L1'] }, modules: ['ldap'] },
+    { page: 'Room Views', sections: [], diagrams: [], source_files: { 'r.ts': ['L1'] }, modules: ['ui'] },
+  ] } as any;
+  const r = selectPages(['zzz'], m, 0.3, { candidateModules: ['ldap'], semScores: new Map([['LDAP Directory', 0.9]]) });
+  assert.ok(r);
+  assert.equal(r!.chosen[0], 'LDAP Directory');
+});
+
 test('selectPages：多 token 佐证——孤证页(仅 push 命中)被双证页压下去', () => {
     const gitPage: WikiPage = {
         id: 'ci-pipeline', title: 'CI Pipeline', category: '', scope: '', modules: [], seedFiles: [],
