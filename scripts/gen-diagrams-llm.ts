@@ -15,6 +15,9 @@ import * as fs from 'fs';
 import * as path from 'path';
 import { DATA_DIR, MODEL_TIERS, MODULE_GRAPH_PATH } from '../src/config.js';
 import { runPool, callWithRetry } from '../src/eval/utils/pool.js';
+import { ensureIndex } from '../src/indexer/index.js';
+import { GLOBAL_INDEX } from '../src/indexer/state.js';
+import { chainSequence, pickChainSeed } from '../src/wiki/diagram.js';
 
 const WIKI_MAP_PATH = path.join(DATA_DIR, 'wiki-map.json');
 const MIN_MODULES = 3;                 // 碎页跳过
@@ -117,6 +120,8 @@ async function main() {
   if (!apiKey && !isDry) { console.error('[diagram-llm] 无 ANTHROPIC_API_KEY'); process.exit(1); }
   const client = apiKey ? new Anthropic({ apiKey }) : null;
 
+  if (!isDry) await ensureIndex();
+
   let done = 0, skipped = 0;
   await runPool(pages, isDry ? 1 : CONCURRENCY, async (page: any) => {
     const { coreIds, candIds, candSet, edges } = buildCandidates(page.modules, byId);
@@ -134,7 +139,9 @@ async function main() {
       if (!sel) { skipped++; return; }
       const dia = ground(sel, candSet, edges, byId);
       if (Object.keys(dia.nodes).length >= 2) {
-        page.diagrams = [dia];
+        const seed = pickChainSeed(page, GLOBAL_INDEX.callGraph as any);
+        const flow = seed ? chainSequence(seed, graph as any, GLOBAL_INDEX.callGraph as any) : null;
+        page.diagrams = [flow, dia].filter(Boolean) as any;
         done++;
         fs.writeFileSync(WIKI_MAP_PATH, JSON.stringify(wm, null, 2), 'utf-8');   // checkpoint
         if (done % 10 === 0) console.error(`[diagram-llm] ${done} 页出图...`);
