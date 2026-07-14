@@ -273,6 +273,31 @@ test('chainSequence: returns null when no forward edges from seed', () => {
   assert.equal(diag, null, 'should return null when no forward edges');
 });
 
+test('chainSequence: PRODUCTION symbol-keyed callGraph traverses multi-hop via GLOBAL_INDEX.symbols', () => {
+  // Production convention: callGraph key = callee SYMBOL name (not a file); ref.file = caller file.
+  // Chain: fileA --calls symB--> (symB defined in fileB) --calls symC--> (symC defined in fileC).
+  const SYM_B = '___chainseq_symB';
+  const SYM_C = '___chainseq_symC';
+  const cg: CallGraphMap = new Map([
+    [SYM_B, [{ caller: 'a', file: 'x/fileA.ts', edgeType: 'rest_call' }]],   // fileA calls symB
+    [SYM_C, [{ caller: 'b', file: 'x/fileB.ts', edgeType: 'event_emit' }]],  // fileB calls symC
+  ]);
+  const prevB = GLOBAL_INDEX.symbols.get(SYM_B);
+  const prevC = GLOBAL_INDEX.symbols.get(SYM_C);
+  GLOBAL_INDEX.symbols.set(SYM_B, new Set(['x/fileB.ts']));   // symB is defined in fileB
+  GLOBAL_INDEX.symbols.set(SYM_C, new Set(['x/fileC.ts']));   // symC is defined in fileC
+  try {
+    const diag = chainSequence('x/fileA.ts', FIXTURE_GRAPH, cg);
+    assert.ok(diag !== null, 'should produce a chain');
+    // OLD buggy code: current=symB (a symbol) → forwardMap.get(symB)=∅ → breaks after 1 step (1 edge).
+    // FIXED code: resolves symB→fileB via GLOBAL_INDEX.symbols, continues fileB--symC--> → 2 steps.
+    assert.ok(diag!.edges.length >= 2, `production chain must be multi-hop, got ${diag!.edges.length}`);
+  } finally {
+    if (prevB) GLOBAL_INDEX.symbols.set(SYM_B, prevB); else GLOBAL_INDEX.symbols.delete(SYM_B);
+    if (prevC) GLOBAL_INDEX.symbols.set(SYM_C, prevC); else GLOBAL_INDEX.symbols.delete(SYM_C);
+  }
+});
+
 // ── pickChainSeed tests ───────────────────────────────────────────────────────
 
 test('pickChainSeed: 挑跨层出边最多(且非跨层的 call 不算)', () => {
