@@ -34,7 +34,8 @@ test('renderWalk: 按种子分组;顶行不堆停因;每组头带步数+停因',
     assert.ok(!lines[0].includes('停因'), '顶行不再堆停因');
     assert.ok(lines.some(l => l === '- **seedA** · 0 步 · ⏹ 枯竭'), 'seedA 组头 bullet');
     assert.ok(lines.some(l => l === '- **seedB** · 1 步 · ⏹ 预算'), 'seedB 组头 bullet');
-    assert.ok(lines.some(l => l.includes('R1 → `x` · 触达 1') && l.includes('core 命中 1⭐')), '轮次折成一条 + 命中 core⭐');
+    assert.ok(lines.some(l => l.includes('R1 → `x`') && l.includes('aff')), 'R 行带 affinity 明细');
+    assert.ok(lines.some(l => l.includes('↳ 触达 1 文件') && l.includes('core 命中 1⭐')), '↳ 子条:触达+命中 core⭐');
 });
 
 test('renderWalk: core 命中带短路径区分同名文件 + 保留 affinity 明细', () => {
@@ -43,9 +44,10 @@ test('renderWalk: core 命中带短路径区分同名文件 + 保留 affinity �
           result: { newFiles: ['x/functions/sendMessage.ts', 'x/methods/sendMessage.ts'] } },
     ] };
     const lines = renderWalk(tr, ['x/functions/sendMessage.ts', 'x/methods/sendMessage.ts']);
-    const round = lines.find(l => l.includes('R1'))!;
-    assert.ok(round.includes('functions/sendMessage.ts') && round.includes('methods/sendMessage.ts'), '短路径区分同名文件');
-    assert.ok(round.includes('affinity 最高 0.9 (expand)'), '保留 affinity 明细');
+    const rline = lines.find(l => l.includes('R1'))!;
+    assert.ok(rline.includes('affinity 最高 0.9 (expand)'), 'affinity 在 R 行');
+    const coreLine = lines.find(l => l.includes('↳') && l.includes('core 命中'))!;
+    assert.ok(coreLine.includes('functions/sendMessage.ts') && coreLine.includes('methods/sendMessage.ts'), '↳ 子条:短路径区分同名文件');
 });
 
 // ── stopLabel ──────────────────────────────────────────────────────────────────
