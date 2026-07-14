@@ -29,6 +29,7 @@
     "wiki:gen": "NODE_OPTIONS=\"--max-old-space-size=8192\" npx tsx src/wiki/generate.ts",
     "wiki:guide": "npx tsx src/wiki/guide.ts",
     "wiki:meta-prose": "NODE_OPTIONS=\"--max-old-space-size=8192\" npx tsx scripts/gen-meta-prose.ts",
+    "wiki:diagrams-llm": "NODE_OPTIONS=\"--max-old-space-size=8192\" npx tsx scripts/gen-diagrams-llm.ts",
     "refresh": "npm run prewarm && npm run module:build && npm run summaries:gen && npm run embed:gen && npm run embed:chunks && npm run module:summarize && npm run wiki:map && npm run gen:mcp && npm run judge && npm run eval:tools && npm run eval:retrieval && npm run report",
     "p5:expand": "npx tsx src/eval/p5-expand.ts",
     "test": "tsx --test 'src/**/*.test.ts'"
