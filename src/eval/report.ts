@@ -46,6 +46,8 @@ export function stopLabel(reason: string): string {
 }
 
 const base = (p: string): string => (p || '').split('/').pop() || p;
+// 短路径：末两段，区分同名文件（functions/sendMessage.ts vs methods/sendMessage.ts）。
+const shortPath = (p: string): string => (p || '').split('/').slice(-2).join('/') || p;
 
 // 路径宽松相等：gold core 与 wiki-map 键 / trace 文件都是仓库相对路径，允许后缀包含。
 export function pathEq(a: string, b: string): boolean {
@@ -204,9 +206,10 @@ export function renderWalk(tr: any, core: string[]): string[] {
         for (const w of moveRounds) {
             const { reached, coreHits } = roundCoreHits(w, core);
             const hit = coreHits.length
-                ? ` · **core 命中 ${coreHits.length}⭐**: ${coreHits.map(c => '`' + base(c) + '`').join(' ')}`
+                ? ` · **core 命中 ${coreHits.length}⭐**: ${coreHits.map(c => '`' + shortPath(c) + '`').join(' ')}`
                 : '';
-            out.push(`    - R${w.round} → \`${w.chosen}\` · 触达 ${reached}${hit}`);
+            const aff = w.reason ? ` · ${w.reason}` : '';   // affinity 明细（保留细节）
+            out.push(`    - R${w.round} → \`${w.chosen}\` · 触达 ${reached}${hit}${aff}`);
         }
     }
     return out;
