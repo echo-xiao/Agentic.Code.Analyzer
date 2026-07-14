@@ -10,13 +10,13 @@ const PAGES: RouteInput[] = [
 
 test('合法路由原样保留；非法 l2 修复；漏页兜底', async () => {
   const classify = async (): Promise<Routed[]> => [
-    { id: 'a', l1: 'Understand Internals', l2: '子系统深潜' },
+    { id: 'a', l1: 'Understand Internals', l2: 'Subsystem Deep-Dives' },
     { id: 'b', l1: 'Reference', l2: '瞎写的区' },   // 非法 l2
     // c 漏掉
   ];
   const r = await routeLeaves(PAGES, classify);
-  assert.deepEqual(r['a'], { l1: 'Understand Internals', l2: '子系统深潜' });
+  assert.deepEqual(r['a'], { l1: 'Understand Internals', l2: 'Subsystem Deep-Dives' });
   assert.equal(r['b'].l1, 'Reference');
-  assert.equal(r['b'].l2, 'API 与契约');            // 修复到该 l1 第一个区
-  assert.deepEqual(r['c'], { l1: 'Understand Internals', l2: '子系统深潜' }); // 兜底
+  assert.equal(r['b'].l2, 'API & Contracts');       // 修复到该 l1 第一个区
+  assert.deepEqual(r['c'], { l1: 'Understand Internals', l2: 'Subsystem Deep-Dives' }); // 兜底
 });
