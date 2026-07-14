@@ -9,8 +9,11 @@ export interface PageOption { page: string; score: number; hitOn: string[] }
 export interface PageStep { options: PageOption[]; chosen: string[]; reason: string }
 export interface SeedOption { symbol: string; file: string; score: number }
 export interface SeedStep { page: string; options: SeedOption[]; chosen: string | null; reason: string }
+export interface SelectOpts { semScores?: Map<string, number>; }
 
 const PAGE_THRESHOLD = 0.3;
+const SEM_THRESHOLD = 0.35;
+const RRF_K = 60;
 // 结构部位权重：标题最可信，章节/节点次之，文件路径 token 最弱。
 const W_TITLE = 1.0, W_SECTION = 0.9, W_NODE = 0.9, W_FILE = 0.7;
 
@@ -41,7 +44,7 @@ export function informativeTokens(
     return { kept, dropped };
 }
 
-export function selectPages(tokens: string[], map: WikiMap, threshold = PAGE_THRESHOLD): PageStep | null {
+export function selectPages(tokens: string[], map: WikiMap, threshold = PAGE_THRESHOLD, opts: SelectOpts = {}): PageStep | null {
     const options: PageOption[] = [];
     // 多 token 佐证：页面分 = top-K 个不同 token 各自最佳命中的均值（K=min(2,token数)，÷K）。
     // 单最佳部位打分是"单证人定罪"——同形异义孤证（git push 撞 'Push to develop'）能独占高分；
@@ -68,13 +71,28 @@ export function selectPages(tokens: string[], map: WikiMap, threshold = PAGE_THR
         options.push({ page: p.page, score: Number(score.toFixed(3)), hitOn });
     }
     options.sort((a, b) => b.score - a.score || a.page.localeCompare(b.page));
-    const top10 = options.slice(0, 10);
-    const chosen = options.filter(o => o.score >= threshold).slice(0, 3);
-    if (chosen.length === 0) return null;
+
+    const sem = opts.semScores;
+    if (!sem || sem.size === 0) {                        // 无语义 → 现状路径，逐位一致
+        const top10 = options.slice(0, 10);
+        const chosen = options.filter(o => o.score >= threshold).slice(0, 3);
+        if (chosen.length === 0) return null;
+        return { options: top10, chosen: chosen.map(c => c.page), reason: `top-${chosen.length} by 结构匹配分 ${chosen.map(c => `${c.page}:${c.score}`).join('/')}，阈值 ${threshold}` };
+    }
+
+    // RRF 融合:候选 = 词面达阈 ∨ 语义达阈;按 lexRank+semRank 名次倒数和重排。
+    const semRankArr = [...options].sort((a, b) => (sem.get(b.page) ?? -Infinity) - (sem.get(a.page) ?? -Infinity));
+    const lexRank = new Map(options.map((o, i) => [o.page, i]));
+    const semRank = new Map(semRankArr.map((o, i) => [o.page, i]));
+    const cand = options.filter(o => o.score >= threshold || (sem.get(o.page) ?? -Infinity) >= SEM_THRESHOLD);
+    if (cand.length === 0) return null;
+    const rrf = (p: string) => 1 / (RRF_K + (lexRank.get(p) ?? 1e6)) + 1 / (RRF_K + (semRank.get(p) ?? 1e6));
+    cand.sort((a, b) => rrf(b.page) - rrf(a.page) || a.page.localeCompare(b.page));
+    const chosen = cand.slice(0, 3);
     return {
-        options: top10,
+        options: cand.slice(0, 10),
         chosen: chosen.map(c => c.page),
-        reason: `top-${chosen.length} by 结构匹配分 ${chosen.map(c => `${c.page}:${c.score}`).join('/')}，阈值 ${threshold}`,
+        reason: `top-${chosen.length} by RRF(词面+语义) ${chosen.map(c => `${c.page}:${(sem.get(c.page) ?? 0).toFixed(2)}`).join('/')}`,
     };
 }
 
