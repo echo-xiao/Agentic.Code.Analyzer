@@ -9,7 +9,7 @@
  * Flags:
  *   --dry     read prose + build index, print summary, NO API call
  *
- * Reuse strategy: imports enforceCitations from ./write.js (same validation predicate).
+ * Reuse strategy: imports enforceCitations from ./citations.js (same validation predicate write.ts uses).
  * This ensures the reported rate matches what write.ts actually enforced.
  */
 
@@ -24,8 +24,8 @@ import { ensureIndex } from '../indexer/index.js';
 import type { ProseSection } from '../wikimap/schema.js';
 
 // ─── Import shared citation validation and helpers from write.ts ─────────────
-import { enforceCitations, countCitationRefs, buildLineCountOf, type IndexLike } from './write.js';
-export type { IndexLike } from './write.js';
+import { enforceCitations, countCitationRefs, buildLineCountOf, type IndexLike } from './citations.js';
+export type { IndexLike } from './citations.js';
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const WIKI_PROSE_PATH = path.join(DATA_DIR, 'wiki-prose.json');

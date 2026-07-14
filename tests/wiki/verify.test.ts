@@ -12,7 +12,7 @@ import * as os from 'os';
 import * as path from 'path';
 
 import { verifyCitations, writeVerifyReport } from '../../src/wiki/verify.js';
-import type { IndexLike } from '../../src/wiki/write.js';
+import type { IndexLike } from '../../src/wiki/citations.js';
 import type { ProseSection } from '../../src/wikimap/schema.js';
 
 // ── Fixture helpers ───────────────────────────────────────────────────────────
