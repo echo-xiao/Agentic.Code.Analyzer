@@ -51,6 +51,7 @@ export function selectPages(tokens: string[], map: WikiMap, threshold = PAGE_THR
     const modSet = new Set(opts.candidateModules ?? []);
     const isCand = (p: any) => Array.isArray(p.modules) && p.modules.some((m: string) => modSet.has(m));
     const isCandByPage = new Map(map.pages.map(p => [p.page, isCand(p)]));
+    const SEM_TOPK = 5;
 
     const options: PageOption[] = [];
     // 多 token 佐证：页面分 = top-K 个不同 token 各自最佳命中的均值（K=min(2,token数)，÷K）。
@@ -79,36 +80,27 @@ export function selectPages(tokens: string[], map: WikiMap, threshold = PAGE_THR
     }
     options.sort((a, b) => b.score - a.score || a.page.localeCompare(b.page));
 
-    const sem = opts.semScores;
-    if (!sem || sem.size === 0) {                        // 无语义 → 现状路径，逐位一致
-        const top10 = options.slice(0, 10);
-        const lexChosen = options.filter(o => o.score >= threshold).slice(0, 3);
-        // 候选模块 boost（纯词面分支）：把候选模块页前置到 chosen，不足 3 时补足，上限 3。
-        if (modSet.size > 0) {
-            const lexChosenSet = new Set(lexChosen.map(c => c.page));
-            const modPages = options.filter(o => isCandByPage.get(o.page) && !lexChosenSet.has(o.page));
-            const chosen = [...modPages, ...lexChosen].slice(0, 3);
-            if (chosen.length === 0) return null;
-            return { options: top10, chosen: chosen.map(c => c.page), reason: `top-${chosen.length} by 结构匹配分 ${chosen.map(c => `${c.page}:${c.score}`).join('/')}，阈值 ${threshold}` };
-        }
-        if (lexChosen.length === 0) return null;
-        return { options: top10, chosen: lexChosen.map(c => c.page), reason: `top-${lexChosen.length} by 结构匹配分 ${lexChosen.map(c => `${c.page}:${c.score}`).join('/')}，阈值 ${threshold}` };
+    const lexChosen = options.filter(o => o.score >= threshold);
+    const modPages = options.filter(o => isCandByPage.get(o.page));   // candidate-module pages
+
+    if (lexChosen.length > 0) {
+        // 词面有信号 → 词面排序为主(现状),仅把候选模块页并入前排;语义不介入(避免噪声回退)
+        const seen = new Set<string>();
+        const merged = [...modPages, ...lexChosen].filter(o => (seen.has(o.page) ? false : (seen.add(o.page), true))).slice(0, 3);
+        return { options: options.slice(0, 10), chosen: merged.map(c => c.page),
+            reason: `top-${merged.length} 词面 ${merged.map(c => `${c.page}:${c.score}`).join('/')}` };
     }
 
-    // RRF 融合:候选 = 词面达阈 ∨ 语义达阈 ∨ 候选模块命中;按 lexRank+semRank 名次倒数和重排。
-    const semRankArr = [...options].sort((a, b) => (sem.get(b.page) ?? -Infinity) - (sem.get(a.page) ?? -Infinity));
-    const lexRank = new Map(options.map((o, i) => [o.page, i]));
-    const semRank = new Map(semRankArr.map((o, i) => [o.page, i]));
-    const cand = options.filter(o => o.score >= threshold || (sem.get(o.page) ?? -Infinity) >= SEM_THRESHOLD || isCandByPage.get(o.page));
-    if (cand.length === 0) return null;
-    const rrf = (p: string) => 1 / (RRF_K + (lexRank.get(p) ?? 1e6)) + 1 / (RRF_K + (semRank.get(p) ?? 1e6)) + (isCandByPage.get(p) ? 1 / RRF_K : 0);
-    cand.sort((a, b) => rrf(b.page) - rrf(a.page) || a.page.localeCompare(b.page));
-    const chosen = cand.slice(0, 3);
-    return {
-        options: cand.slice(0, 10),
-        chosen: chosen.map(c => c.page),
-        reason: `top-${chosen.length} by RRF(词面+语义) ${chosen.map(c => `${c.page}:${(sem.get(c.page) ?? 0).toFixed(2)}`).join('/')}`,
-    };
+    // 词面空 → 救场:候选模块 + 语义 top-K,按 semScore 排
+    const sem = opts.semScores;
+    const semTop = sem && sem.size
+        ? [...options].sort((a, b) => (sem.get(b.page) ?? -Infinity) - (sem.get(a.page) ?? -Infinity)).slice(0, SEM_TOPK)
+        : [];
+    const seen = new Set<string>();
+    const rescue = [...modPages, ...semTop].filter(o => (seen.has(o.page) ? false : (seen.add(o.page), true))).slice(0, 3);
+    if (rescue.length === 0) return null;
+    return { options: rescue.slice(0, 10), chosen: rescue.map(c => c.page),
+        reason: `救场 top-${rescue.length}(词面空→语义/候选模块) ${rescue.map(c => `${c.page}:${(sem?.get(c.page) ?? 0).toFixed(2)}`).join('/')}` };
 }
 
 export function resolveWikiFiles(wikiFiles: string[], allFiles: readonly string[]): { resolved: Map<string, string>; missing: string[] } {

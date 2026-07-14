@@ -154,15 +154,19 @@ const mMod = { pages: [
   { page: 'Room Views', sections: [], diagrams: [], source_files: { 'r.ts': ['L1'] }, modules: ['ui'] },
 ] } as any;
 
-test('候选模块 OR-gate(sem 分支): sub-阈值语义时,靠候选模块才进候选', () => {
+test('候选模块 OR-gate(救场分支): 词面空时语义/候选模块才进候选', () => {
   const tok = ['qzxvwq'];                                   // 词面对两页均 < 0.3
-  const semLow = new Map([['LDAP Directory', 0.2], ['Room Views', 0.1]]);  // 均 < SEM_THRESHOLD 0.35
-  // 触发 RRF 分支但都 sub-阈值、无候选模块 → cand 空 → null（证明不是 sem 在选）
-  assert.equal(selectPages(tok, mMod, 0.3, { semScores: semLow }), null);
-  // 加候选模块 ldap → LDAP 经 isCandByPage OR-gate 进 cand → 胜
-  const r = selectPages(tok, mMod, 0.3, { semScores: semLow, candidateModules: ['ldap'] });
+  const semLow = new Map([['LDAP Directory', 0.2], ['Room Views', 0.1]]);
+  // 无 semScores、无候选模块 → 词面空、无救场 → null（证明不是词面在选）
+  assert.equal(selectPages(tok, mMod, 0.3), null);
+  // 给语义分 → 词面空走救场路径 → semScore 最高的 LDAP Directory 胜（证明救场分支在选）
+  const r = selectPages(tok, mMod, 0.3, { semScores: semLow });
   assert.ok(r);
   assert.equal(r!.chosen[0], 'LDAP Directory');
+  // 候选模块在救场路径中前置 → 效果等同（模块 ldap 对应 LDAP Directory 仍居首）
+  const r2 = selectPages(tok, mMod, 0.3, { semScores: semLow, candidateModules: ['ldap'] });
+  assert.ok(r2);
+  assert.equal(r2!.chosen[0], 'LDAP Directory');
 });
 
 test('候选模块 no-sem 分支: 词面 null 时候选模块页仍进 chosen', () => {
