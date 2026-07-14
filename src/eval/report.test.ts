@@ -1,7 +1,7 @@
 import { test } from 'node:test';
 import assert from 'node:assert/strict';
 
-import { fmtAgentCalls, stopLabel, pathEq, computeGold, traceDrift, roundCoreHits } from './report.js';
+import { fmtAgentCalls, stopLabel, pathEq, computeGold, traceDrift, roundCoreHits, firstCoreStep } from './report.js';
 
 // ── stopLabel ──────────────────────────────────────────────────────────────────
 test('stopLabel: 已知 reason 子串映射；未知→stop', () => {
@@ -114,6 +114,28 @@ test('roundCoreHits: 无 result → reached 0、无命中', () => {
     const r = roundCoreHits({ chosen: 'x' }, ['apps/x/a.ts']);
     assert.equal(r.reached, 0);
     assert.deepEqual(r.coreHits, []);
+});
+
+// ── firstCoreStep ────────────────────────────────────────────────────────────
+test('firstCoreStep: seed 即命中 → 第0步', () => {
+    const tr = { seedStep: [{ chosen: 'x', options: [{ symbol: 'x', file: 'apps/x/createRoom.ts' }] }], walk: [] };
+    assert.deepEqual(firstCoreStep(tr, ['apps/x/createRoom.ts']), { seedHit: true, firstStep: 0 });
+});
+
+test('firstCoreStep: seed 没中、walk 第2个 move 命中', () => {
+    const tr = {
+        seedStep: [{ chosen: 's', options: [{ symbol: 's', file: 'apps/x/seed.ts' }] }],
+        walk: [
+            { chosen: 'a', result: { newFiles: ['apps/x/nope.ts'] } },
+            { chosen: 'b', result: { newFiles: ['apps/x/createRoom.ts'] } },
+        ],
+    };
+    assert.deepEqual(firstCoreStep(tr, ['apps/x/createRoom.ts']), { seedHit: false, firstStep: 2 });
+});
+
+test('firstCoreStep: STOP 轮不计步；全程没命中 → null', () => {
+    const tr = { seedStep: [], walk: [{ chosen: null, reason: '预算' }, { chosen: 'a', result: { newFiles: ['x.ts'] } }] };
+    assert.deepEqual(firstCoreStep(tr, ['apps/x/createRoom.ts']), { seedHit: false, firstStep: null });
 });
 
 // ── traceDrift ─────────────────────────────────────────────────────────────────
