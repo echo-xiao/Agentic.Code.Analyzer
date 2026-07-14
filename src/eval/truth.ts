@@ -17,6 +17,7 @@ import * as fs from 'fs';
 import * as path from 'path';
 import { fileURLToPath, pathToFileURL } from 'url';
 import { loadTestcases } from './utils/load-testcases.js';
+import { mapPool } from './utils/pool.js';
 import {
     writeClaudeTruth, CLAUDE_TRUTH_PATH, TESTCASES_PATH, extractAnswerSection,
     type ClaudeTruth, type ClaudeTruthMap,
@@ -68,13 +69,6 @@ async function extractOne(client: Anthropic, question: string, answer: string): 
     return JSON.parse(block.text) as ClaudeTruth;
 }
 
-async function mapPool<T, R>(items: T[], n: number, fn: (item: T, i: number) => Promise<R>): Promise<R[]> {
-    const out: R[] = new Array(items.length);
-    let idx = 0;
-    const worker = async () => { while (idx < items.length) { const i = idx++; out[i] = await fn(items[i], i); } };
-    await Promise.all(Array.from({ length: Math.min(n, items.length) }, worker));
-    return out;
-}
 
 async function main() {
     const apiKey = process.env.ANTHROPIC_API_KEY || process.env.CLAUDE_API_KEY;
