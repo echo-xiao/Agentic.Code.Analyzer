@@ -1,7 +1,25 @@
 import { test } from 'node:test';
 import assert from 'node:assert/strict';
 
-import { fmtAgentCalls, stopLabel, pathEq, computeGold, traceDrift, roundCoreHits, firstCoreStep, semanticLabel } from '../../src/eval/report.js';
+import { fmtAgentCalls, stopLabel, pathEq, computeGold, traceDrift, roundCoreHits, firstCoreStep, semanticLabel, renderScope } from '../../src/eval/report.js';
+
+// ── renderScope ──────────────────────────────────────────────────────────────
+test('renderScope: 选中页带分数(取自 options),不再单列重复的 reason 串', () => {
+    const tr = { pageStep: {
+        options: [{ page: 'A', score: 0.78 }, { page: 'B', score: 0.6 }, { page: 'C', score: 0.5 }],
+        chosen: ['A', 'B'],
+        reason: 'top-3 词面 A:0.78/B:0.6',   // 旧版会把这串重复贴出来
+    } };
+    const lines = renderScope(tr);
+    assert.equal(lines.length, 1);
+    assert.equal(lines[0], '**scope 入口页**（3 页打分 → 选 2）：A (0.78) · B (0.6)');
+    assert.ok(!lines[0].includes('top-3 词面'), '不该再出现重复的 reason 串');
+});
+
+test('renderScope: 无 chosen → 退回符号搜索', () => {
+    const tr = { pageStep: { options: [{ page: 'A', score: 0.1 }], chosen: [] } };
+    assert.equal(renderScope(tr)[0], '**scope 入口页**（1 页打分 → 选 0）：（退回符号搜索）');
+});
 
 // ── stopLabel ──────────────────────────────────────────────────────────────────
 test('stopLabel: 已知 reason 子串映射；未知→stop', () => {

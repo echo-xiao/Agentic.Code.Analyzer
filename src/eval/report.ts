@@ -155,6 +155,55 @@ export function traceDrift(
     return { total, matched, stale: total > 0 && matched / total < 0.5 };
 }
 
+// ── section renderers（每题一段：scope / seed / walk / agent，各返回若干行）──────
+// scope：选中页 + 各自打分（分数取自 pageStep.options，不再单列重复的 reason 串）。
+export function renderScope(tr: any): string[] {
+    const opts: any[] = tr.pageStep?.options ?? [];
+    const chosen: string[] = tr.pageStep?.chosen ?? [];
+    if (!chosen.length) return [`**scope 入口页**（${opts.length} 页打分 → 选 0）：（退回符号搜索）`];
+    const scoreOf = new Map<string, number>(opts.map((o: any) => [o.page, o.score]));
+    const withScores = chosen.map(p => scoreOf.has(p) ? `${p} (${scoreOf.get(p)})` : p).join(' · ');
+    return [`**scope 入口页**（${opts.length} 页打分 → 选 ${chosen.length}）：${withScores}`];
+}
+
+export function renderSeed(tr: any): string[] {
+    const seedSteps: any[] = tr.seedStep ?? [];
+    if (!seedSteps.length) return [];
+    const out = [`**seed 逐页种子**：`];
+    for (const s of seedSteps) {
+        const optN = (s.options ?? []).length;
+        out.push(`- \`${s.page}\`：${s.chosen ? `→ \`${s.chosen}\`` : '（无）'} · ${optN} 候选${s.reason ? ` — ${s.reason}` : ''}`);
+    }
+    return out;
+}
+
+export function renderWalk(tr: any, core: string[]): string[] {
+    const walk: any[] = tr.walk ?? [];
+    const moves = walk.filter(w => w.chosen != null).length;
+    const stops = walk.filter(w => w.chosen == null).map(w => stopLabel(w.reason ?? ''));
+    const seedsN = new Set(walk.map(w => w.anchor)).size;
+    const out = [`**walk 游走**：${seedsN} seed · ${moves} 步${stops.length ? ` · 停因 ${stops.join('/')}` : ''}`];
+    for (const w of walk) {
+        const head = `R${w.round} @${base(w.anchor)}`;
+        if (w.chosen != null) {
+            out.push(`  - ${head} → \`${w.chosen}\`${w.reason ? ` — ${w.reason}` : ''}`);
+            const { reached, coreHits } = roundCoreHits(w, core);
+            if (reached > 0) {
+                const hit = coreHits.length
+                    ? ` · **core 命中 ${coreHits.length}⭐**: ${coreHits.map(c => '`' + base(c) + '`').join(' ')}`
+                    : ' · core 命中 0';
+                out.push(`    ↳ 触达 ${reached} 文件${hit}`);
+            }
+        } else out.push(`  - ${head} ⏹ STOP（${stopLabel(w.reason ?? '')}）`);
+    }
+    return out;
+}
+
+export function renderAgent(tr: any): string {
+    const a = fmtAgentCalls(tr.agentCalls);
+    return `**agent 实调**：${a.calls} calls${a.hitBudget ? ' ⛔预算满' : ''} — ${a.sequence}\n`;
+}
+
 async function main() {
     const { flat: testcases } = loadTestcasesWithTruth(TESTCASES_PATH, CLAUDE_TRUTH_PATH);
     const wikiMap: any = fs.existsSync(WIKI_MAP_PATH) ? JSON.parse(fs.readFileSync(WIKI_MAP_PATH, 'utf-8')) : null;
@@ -225,45 +274,11 @@ async function main() {
         L.push(`**对不对**：scope ${sc} · 召回 ${gold!.reachGoldN}/${gold!.coreN} 答案文件${fcsLabel}`);
         if (semMap.size) L.push(semanticLabel(semMap.get(tc.id)));
 
-        // ── scope：入口页路由（selectPages） ──
-        const pages: string[] = tr.pageStep?.chosen ?? [];
-        const pageReason: string = tr.pageStep?.reason ?? '';
-        const pageOptN = (tr.pageStep?.options ?? []).length;
-        L.push(`**scope 入口页**（${pageOptN} 页打分 → 选 ${pages.length}）：${pages.length ? pages.join(' · ') : '（退回符号搜索）'}${pageReason ? `\n> ${pageReason}` : ''}`);
-
-        // ── seed：逐页种子挑选 ──
-        const seedSteps: any[] = tr.seedStep ?? [];
-        if (seedSteps.length) {
-            L.push(`**seed 逐页种子**：`);
-            for (const s of seedSteps) {
-                const optN = (s.options ?? []).length;
-                L.push(`- \`${s.page}\`：${s.chosen ? `→ \`${s.chosen}\`` : '（无）'} · ${optN} 候选${s.reason ? ` — ${s.reason}` : ''}`);
-            }
-        }
-
-        // ── walk：游走步 ──
-        const walk: any[] = tr.walk ?? [];
-        const moves = walk.filter(w => w.chosen != null).length;
-        const stops = walk.filter(w => w.chosen == null).map(w => stopLabel(w.reason ?? ''));
-        const seedsN = new Set(walk.map(w => w.anchor)).size;
-        L.push(`**walk 游走**：${seedsN} seed · ${moves} 步${stops.length ? ` · 停因 ${stops.join('/')}` : ''}`);
-        for (const w of walk) {
-            const head = `R${w.round} @${base(w.anchor)}`;
-            if (w.chosen != null) {
-                L.push(`  - ${head} → \`${w.chosen}\`${w.reason ? ` — ${w.reason}` : ''}`);
-                const { reached, coreHits } = roundCoreHits(w, core);
-                if (reached > 0) {
-                    const hit = coreHits.length
-                        ? ` · **core 命中 ${coreHits.length}⭐**: ${coreHits.map(c => '`' + base(c) + '`').join(' ')}`
-                        : ' · core 命中 0';
-                    L.push(`    ↳ 触达 ${reached} 文件${hit}`);
-                }
-            } else L.push(`  - ${head} ⏹ STOP（${stopLabel(w.reason ?? '')}）`);
-        }
-
-        // ── agent 实际调用序列（取自 trace.agentCalls） ──
-        const agent = fmtAgentCalls(tr.agentCalls);
-        L.push(`**agent 实调**：${agent.calls} calls${agent.hitBudget ? ' ⛔预算满' : ''} — ${agent.sequence}\n`);
+        // ── scope / seed / walk / agent —— 各段渲染器 ──
+        L.push(...renderScope(tr));
+        L.push(...renderSeed(tr));
+        L.push(...renderWalk(tr, core));
+        L.push(renderAgent(tr));
     }
 
     fs.mkdirSync(path.join(LOGS, 'reports'), { recursive: true });
