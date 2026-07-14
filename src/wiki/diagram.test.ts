@@ -275,20 +275,23 @@ test('chainSequence: returns null when no forward edges from seed', () => {
 
 // ── pickChainSeed tests ───────────────────────────────────────────────────────
 
-test('pickChainSeed: 挑跨层出边最多的页文件', () => {
-  // callGraph: callee → [{caller,file,edgeType}]
+test('pickChainSeed: 挑跨层出边最多(且非跨层的 call 不算)', () => {
   const cg: CallGraphMap = new Map([
-    ['methodX', [{ caller: 'f', file: 'a.ts', edgeType: 'rest_call' }, { caller: 'g', file: 'a.ts', edgeType: 'stream_def' }]],
-    ['methodY', [{ caller: 'h', file: 'b.ts', edgeType: 'call' }]],   // 'call' 非跨层
+    ['m1', [{ caller: 'f', file: 'a.ts', edgeType: 'rest_call' }]],                                   // a.ts: 1 跨层
+    ['m2', [{ caller: 'g', file: 'b.ts', edgeType: 'call' },
+            { caller: 'h', file: 'b.ts', edgeType: 'call' },
+            { caller: 'i', file: 'b.ts', edgeType: 'call' }]],                                         // b.ts: 3 个 'call'(非跨层)
   ]);
   const page = { source_files: { 'a.ts': ['L1'], 'b.ts': ['L1'] }, seedFiles: ['b.ts'] };
-  assert.equal(pickChainSeed(page, cg), 'a.ts');   // a.ts 2 条跨层 > b.ts 0
+  // 只数跨层: a(1) > b(0) → 'a.ts'。若误把 'call' 也当跨层: b(3) > a(1) → 会错挑 'b.ts'。断言 'a.ts' 即鉴别 'call' 被排除。
+  assert.equal(pickChainSeed(page, cg), 'a.ts');
 });
 
-test('pickChainSeed: 无跨层信号 → 回退 seedFiles[0]', () => {
-  const cg: CallGraphMap = new Map([['m', [{ caller: 'h', file: 'b.ts', edgeType: 'call' }]]]);
-  const page = { source_files: { 'b.ts': ['L1'] }, seedFiles: ['b.ts'] };
-  assert.equal(pickChainSeed(page, cg), 'b.ts');
+test('pickChainSeed: 无跨层 → 回退 seedFiles[0](须区别于页首文件)', () => {
+  const cg: CallGraphMap = new Map([['m', [{ caller: 'h', file: 'a.ts', edgeType: 'call' }]]]);        // 无跨层出边
+  const page = { source_files: { 'a.ts': ['L1'] }, seedFiles: ['c.ts'] };                             // seedFiles[0]='c.ts' ≠ pageFiles[0]='a.ts'
+  // 若误用 pageFiles[0] 会得 'a.ts';正确回退 seedFiles[0] 得 'c.ts'。
+  assert.equal(pickChainSeed(page, cg), 'c.ts');
 });
 
 // ── generateDiagrams tests ────────────────────────────────────────────────────
