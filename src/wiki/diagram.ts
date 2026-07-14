@@ -268,6 +268,33 @@ export function chainSequence(
   return safeParse(block, `chainSequence(${seedFile})`);
 }
 
+// ── pickChainSeed ─────────────────────────────────────────────────────────────
+
+const CROSS_LAYER: ReadonlySet<string> = new Set([
+  'event_emit', 'event_listen', 'pubsub_publish', 'pubsub_subscribe',
+  'rest_call', 'rest_route', 'stream_def', 'stream_sub',
+]);
+
+/** 页里跨层出边最多的文件当链起点;无跨层→seedFiles[0];仍无→页首文件/null。 */
+export function pickChainSeed(
+  page: { source_files?: Record<string, string[]>; seedFiles?: string[] },
+  callGraph: CallGraphMap,
+): string | null {
+  const pageFiles = Object.keys(page.source_files ?? {});
+  const outCount = new Map<string, number>();
+  for (const [, refs] of callGraph) {
+    for (const r of refs) {
+      if (CROSS_LAYER.has(r.edgeType)) outCount.set(r.file, (outCount.get(r.file) ?? 0) + 1);
+    }
+  }
+  let best: string | null = null, bestN = 0;
+  for (const f of pageFiles) {
+    const n = outCount.get(f) ?? 0;
+    if (n > bestN) { bestN = n; best = f; }
+  }
+  return best ?? (page.seedFiles ?? [])[0] ?? pageFiles[0] ?? null;
+}
+
 // ── generateDiagrams ──────────────────────────────────────────────────────────
 
 /**
