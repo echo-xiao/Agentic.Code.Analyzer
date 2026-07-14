@@ -11,9 +11,10 @@ test('renderScope: 选中页带分数(取自 options),不再单列重复的 reas
         reason: 'top-3 词面 A:0.78/B:0.6',   // 旧版会把这串重复贴出来
     } };
     const lines = renderScope(tr);
-    assert.equal(lines.length, 1);
-    assert.equal(lines[0], '**scope 入口页**（3 页打分 → 选 2）：A (0.78) · B (0.6)');
-    assert.ok(!lines[0].includes('top-3 词面'), '不该再出现重复的 reason 串');
+    assert.equal(lines[0], '**scope 入口页**（3 页打分 → 选 2）');
+    assert.equal(lines[1], '- A `0.78`');
+    assert.equal(lines[2], '- B `0.6`');
+    assert.ok(!lines.join('\n').includes('top-3 词面'), '不该再出现重复的 reason 串');
 });
 
 test('renderScope: 无 chosen → 退回符号搜索', () => {
@@ -29,12 +30,11 @@ test('renderWalk: 按种子分组;顶行不堆停因;每组头带步数+停因',
         { anchor: 'seedB', round: 2, chosen: null, reason: '预算用尽' },                                      // seedB → 预算
     ] };
     const lines = renderWalk(tr, ['a/core.ts']);
-    assert.equal(lines[0], '**walk 游走**：2 seed · 1 步');   // 顶行只 seed/步数
+    assert.equal(lines[0], '**walk 游走**（2 seed · 1 步）');   // 顶行只 seed/步数
     assert.ok(!lines[0].includes('停因'), '顶行不再堆停因');
-    assert.equal(lines[1], '  ▸ seedA — 0 步 · ⏹ 枯竭');
-    assert.equal(lines[2], '  ▸ seedB — 1 步 · ⏹ 预算');
-    assert.ok(lines[3].includes('R1 → `x`'), 'seedB 的轮次挂它下面');
-    assert.ok(lines[4].includes('core 命中 1⭐'), '触达命中 core⭐');
+    assert.ok(lines.some(l => l === '- **seedA** · 0 步 · ⏹ 枯竭'), 'seedA 组头 bullet');
+    assert.ok(lines.some(l => l === '- **seedB** · 1 步 · ⏹ 预算'), 'seedB 组头 bullet');
+    assert.ok(lines.some(l => l.includes('R1 → `x` · 触达 1') && l.includes('core 命中 1⭐')), '轮次折成一条 + 命中 core⭐');
 });
 
 // ── stopLabel ──────────────────────────────────────────────────────────────────
