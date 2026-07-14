@@ -1,9 +1,9 @@
 #!/usr/bin/env npx tsx
 /**
- * retrieval — 逐题自主游走 trace 跑器（record-only，无金文件指标）。
+ * trace — 逐题自主游走 trace 跑器（record-only，无金文件指标）。
  * 每题产一份决策日志：pageStep/seedStep/walk（options+chosen+reason+result）/entryPages/agentCalls。
  * 诚实约束：本文件及 walker/* 不 import truth-io、不读 claude-truth.json。
- * 用法: npm run eval:retrieval [-- --filter=<id子串>]
+ * 用法: npm run trace [-- --filter=<id子串>]
  */
 import * as fs from 'fs';
 import * as path from 'path';
@@ -81,7 +81,7 @@ async function main() {
     fs.mkdirSync(OUT_DIR, { recursive: true });
 
     let fallbackCount = 0;
-    await withBar('eval:retrieval', selected, async (tc) => {
+    await withBar('trace', selected, async (tc) => {
         // 语料级去泛词：df/N>0.5 的 token（rocket/chat 等）对选页无区分度，从 wiki-map 派生剔除。
         // 过滤后的 tokens 全程共用（选页/选seed/游走亲和度），保持"一处定义处处一致"。
         const { kept: tokens, dropped: genericDropped } = informativeTokens(questionTokens(tc.question), wikiMap);
