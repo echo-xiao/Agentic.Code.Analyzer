@@ -18,6 +18,20 @@ export async function runPool<T>(
   await Promise.all(Array.from({ length: n }, runner));
 }
 
+/** Like runPool but collects results — bounded-concurrency map. Used by judge.ts / truth.ts. */
+export async function mapPool<T, R>(items: T[], n: number, fn: (item: T, i: number) => Promise<R>): Promise<R[]> {
+  const out: R[] = new Array(items.length);
+  let idx = 0;
+  const worker = async () => {
+    while (idx < items.length) {
+      const i = idx++;
+      out[i] = await fn(items[i], i);
+    }
+  };
+  await Promise.all(Array.from({ length: Math.min(n, items.length) }, worker));
+  return out;
+}
+
 // Anthropic transient statuses: 429 rate-limit, 529 overloaded, 5xx, timeouts.
 const RETRYABLE = new Set([408, 409, 425, 429, 500, 502, 503, 504, 529]);
 
