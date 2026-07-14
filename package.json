@@ -11,7 +11,6 @@
     "gen:mcp": "NODE_OPTIONS=\"--max-old-space-size=8192\" npx tsx src/eval/gen.ts --mode=mcp",
     "trace": "NODE_OPTIONS=\"--max-old-space-size=8192\" npx tsx src/eval/trace.ts",
     "report": "NODE_OPTIONS=\"--max-old-space-size=8192\" npx tsx src/eval/report.ts",
-    "judge": "npx tsx src/eval/judge.ts",
     "summaries:gen": "npx tsx src/eval/summarize.ts",
     "embed:gen": "npx tsx src/eval/embed.ts",
     "truth": "npx tsx src/eval/truth.ts",
@@ -29,9 +28,9 @@
     "wiki:guide": "npx tsx src/wiki/guide.ts",
     "wiki:meta-prose": "NODE_OPTIONS=\"--max-old-space-size=8192\" npx tsx scripts/gen-meta-prose.ts",
     "wiki:diagrams-llm": "NODE_OPTIONS=\"--max-old-space-size=8192\" npx tsx scripts/gen-diagrams-llm.ts",
-    "refresh": "npm run prewarm && npm run module:build && npm run summaries:gen && npm run embed:gen && npm run embed:chunks && npm run module:summarize && npm run wiki:map && npm run gen:mcp && npm run judge && npm run trace && npm run report",
+    "refresh": "npm run prewarm && npm run module:build && npm run summaries:gen && npm run embed:gen && npm run embed:chunks && npm run module:summarize && npm run wiki:map && npm run gen:mcp && npm run trace && npm run report",
     "p5:expand": "npx tsx src/eval/p5-expand.ts",
-    "test": "tsx --test 'src/**/*.test.ts'"
+    "test": "tsx --test 'tests/**/*.test.ts'"
   },
   "dependencies": {
     "@anthropic-ai/sdk": "^0.110.0",
