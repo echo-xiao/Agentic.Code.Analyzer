@@ -37,6 +37,17 @@ test('renderWalk: 按种子分组;顶行不堆停因;每组头带步数+停因',
     assert.ok(lines.some(l => l.includes('R1 → `x` · 触达 1') && l.includes('core 命中 1⭐')), '轮次折成一条 + 命中 core⭐');
 });
 
+test('renderWalk: core 命中带短路径区分同名文件 + 保留 affinity 明细', () => {
+    const tr = { walk: [
+        { anchor: 's', round: 1, chosen: 'm', reason: 'affinity 最高 0.9 (expand)',
+          result: { newFiles: ['x/functions/sendMessage.ts', 'x/methods/sendMessage.ts'] } },
+    ] };
+    const lines = renderWalk(tr, ['x/functions/sendMessage.ts', 'x/methods/sendMessage.ts']);
+    const round = lines.find(l => l.includes('R1'))!;
+    assert.ok(round.includes('functions/sendMessage.ts') && round.includes('methods/sendMessage.ts'), '短路径区分同名文件');
+    assert.ok(round.includes('affinity 最高 0.9 (expand)'), '保留 affinity 明细');
+});
+
 // ── stopLabel ──────────────────────────────────────────────────────────────────
 test('stopLabel: 已知 reason 子串映射；未知→stop', () => {
     assert.equal(stopLabel('边际枯竭（相关性 0.1）'), '枯竭');
