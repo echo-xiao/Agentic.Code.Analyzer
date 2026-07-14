@@ -89,6 +89,24 @@ export function roundCoreHits(w: any, core: string[]): { reached: number; coreHi
     return { reached: nf.length, coreHits };
 }
 
+// 首次命中 core 在哪一步：seed 即命中(第0步)=路由+种子都对；第R步=seed 没够到、靠 walk 硬捞；null=全程没命中。
+export function firstCoreStep(tr: any, core: string[]): { seedHit: boolean; firstStep: number | null } {
+    const seedFiles = new Set<string>();
+    for (const s of (tr?.seedStep ?? [])) {
+        const opt = (s.options ?? []).find((o: any) => o.symbol === s.chosen);
+        if (opt?.file) seedFiles.add(opt.file);
+    }
+    if (core.some(c => [...seedFiles].some(f => pathEq(f, c)))) return { seedHit: true, firstStep: 0 };
+    let step = 0;
+    for (const w of (tr?.walk ?? [])) {
+        if (w.chosen == null) continue;
+        step++;
+        const nf: string[] = w.result?.newFiles ?? [];
+        if (core.some(c => nf.some(f => pathEq(f, c)))) return { seedHit: false, firstStep: step };
+    }
+    return { seedHit: false, firstStep: null };
+}
+
 // agent 实调：直接渲染 trace 里已捕获的 agentCalls.sequence（结构化，无 gold）。
 export function fmtAgentCalls(ac: any): { calls: number; sequence: string; hitBudget: boolean } {
     const seq: any[] = Array.isArray(ac?.sequence) ? ac.sequence : [];
@@ -132,7 +150,7 @@ async function main() {
     const items = testcases.map((tc: any) => {
         const tr = loadTraceFile(tc.id);
         const core: string[] = ((tc.core && tc.core.length ? tc.core : tc.groundTruthFiles) ?? []) as string[];
-        return { tc, tr, core, gold: tr ? computeGold(tr, core, wikiMap) : null };
+        return { tc, tr, core, gold: tr ? computeGold(tr, core, wikiMap) : null, fcs: tr ? firstCoreStep(tr, core) : null };
     });
 
     // aggregate（对不对汇总）
@@ -142,6 +160,9 @@ async function main() {
     const recallRows = items.filter(x => x.gold && x.gold.coreN > 0);
     const meanRecall = recallRows.length ? recallRows.reduce((s, x) => s + x.gold!.reachGoldN / x.gold!.coreN, 0) / recallRows.length : 0;
     const zeroRecall = recallRows.filter(x => x.gold!.reachGoldN === 0).length;
+    const seedHitN = items.filter(x => x.fcs?.seedHit).length;
+    const lateN = items.filter(x => x.fcs && !x.fcs.seedHit && x.fcs.firstStep != null).length;
+    const missN = items.filter(x => x.fcs && x.fcs.firstStep == null && x.gold && x.gold.coreN > 0).length;
 
     const drift = traceDrift(items.map(x => x.tr), wikiMap);
 
@@ -155,16 +176,21 @@ async function main() {
     L.push(`## 对不对汇总（零-API gold 对照）`);
     L.push(`- **scope 选对**：${scopeHit}/${withGold.length} 题（答案文件所在页进了入口 scope；另 ${traced - withGold.length} 题答案文件不在任何 wiki 页，记 —）`);
     L.push(`- **召回**：平均找到 **${(meanRecall * 100).toFixed(0)}%** 答案文件 · 一个都没找到的题 ${zeroRecall}/${recallRows.length}`);
+    L.push(`- **seed 命中 core**：seed 即命中 **${seedHitN}** 题 · walk 才捞到 ${lateN} · 全程没命中 ${missN} —— seed 即命中 = 路由+种子都对；walk 才捞到 = 靠游走硬捞（scope/seed 没够到）`);
     L.push(`> "答案文件" = claude-truth.json 的 core（Claude 金答案关键文件）。trace 本体不含 gold；本节是报告端拿 trace × gold 算的对照，零-API。\n`);
 
     // pass 2: per question — 对不对 + trace（scope/seed/walk/agent 实调）
-    for (const { tc, tr, core, gold } of items) {
+    for (const { tc, tr, core, gold, fcs } of items) {
         L.push(`## ${tc.id} — ${tc.question ?? ''}  _[${tc.questionType ?? '?'}]_\n`);
         if (!tr) { L.push(`> 无 trace（先跑 \`npm run trace\`）。\n`); continue; }
 
         // ── 对不对 ──
         const sc = gold!.entryHit === null ? '—（答案文件不在任何 wiki 页）' : gold!.entryHit ? '✓ 选对' : '✗ 选错';
-        L.push(`**对不对**：scope ${sc} · 召回 ${gold!.reachGoldN}/${gold!.coreN} 答案文件`);
+        const fcsLabel = !gold!.coreN ? ''
+            : fcs!.seedHit ? ' · **seed 即命中 core⭐**'
+            : fcs!.firstStep != null ? ` · 首次命中 core 第 ${fcs!.firstStep} 步（seed 没够到，靠 walk）`
+            : ' · ✗ core 全程没命中';
+        L.push(`**对不对**：scope ${sc} · 召回 ${gold!.reachGoldN}/${gold!.coreN} 答案文件${fcsLabel}`);
 
         // ── scope：入口页路由（selectPages） ──
         const pages: string[] = tr.pageStep?.chosen ?? [];
