@@ -5,7 +5,8 @@
 
 import { test } from 'node:test';
 import assert from 'node:assert/strict';
-import { enforceCitations, assembleProse, type IndexLike } from '../../src/wiki/write.js';
+import { assembleProse } from '../../src/wiki/write.js';
+import { enforceCitations, type IndexLike } from '../../src/wiki/citations.js';
 import type { WikiPage } from '../../src/wikimap/schema.js';
 
 // ── Helpers ───────────────────────────────────────────────────────────────────
