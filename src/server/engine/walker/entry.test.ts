@@ -149,12 +149,26 @@ test('扩词并入 tokens 后能词面命中', () => {
   assert.equal(r!.chosen[0], 'Integrations, Webhooks & Slash Commands');
 });
 
-test('候选模块把对应页顶入候选', () => {
-  const m = { pages: [
-    { page: 'LDAP Directory', sections: [], diagrams: [], source_files: { 'l.ts': ['L1'] }, modules: ['ldap'] },
-    { page: 'Room Views', sections: [], diagrams: [], source_files: { 'r.ts': ['L1'] }, modules: ['ui'] },
-  ] } as any;
-  const r = selectPages(['zzz'], m, 0.3, { candidateModules: ['ldap'], semScores: new Map([['LDAP Directory', 0.9]]) });
+const mMod = { pages: [
+  { page: 'LDAP Directory', sections: [], diagrams: [], source_files: { 'l.ts': ['L1'] }, modules: ['ldap'] },
+  { page: 'Room Views', sections: [], diagrams: [], source_files: { 'r.ts': ['L1'] }, modules: ['ui'] },
+] } as any;
+
+test('候选模块 OR-gate(sem 分支): sub-阈值语义时,靠候选模块才进候选', () => {
+  const tok = ['qzxvwq'];                                   // 词面对两页均 < 0.3
+  const semLow = new Map([['LDAP Directory', 0.2], ['Room Views', 0.1]]);  // 均 < SEM_THRESHOLD 0.35
+  // 触发 RRF 分支但都 sub-阈值、无候选模块 → cand 空 → null（证明不是 sem 在选）
+  assert.equal(selectPages(tok, mMod, 0.3, { semScores: semLow }), null);
+  // 加候选模块 ldap → LDAP 经 isCandByPage OR-gate 进 cand → 胜
+  const r = selectPages(tok, mMod, 0.3, { semScores: semLow, candidateModules: ['ldap'] });
+  assert.ok(r);
+  assert.equal(r!.chosen[0], 'LDAP Directory');
+});
+
+test('候选模块 no-sem 分支: 词面 null 时候选模块页仍进 chosen', () => {
+  const tok = ['qzxvwq'];                                   // 词面 null
+  assert.equal(selectPages(tok, mMod, 0.3), null);          // 无候选 → null
+  const r = selectPages(tok, mMod, 0.3, { candidateModules: ['ldap'] });
   assert.ok(r);
   assert.equal(r!.chosen[0], 'LDAP Directory');
 });
