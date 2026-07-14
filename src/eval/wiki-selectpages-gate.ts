@@ -20,6 +20,9 @@ import { questionTokens } from '../server/engine/walker/affinity.js';
 import { loadTestcases, type TestCase } from './utils/load-testcases.js';
 import type { WikiMap } from '../wikimap/schema.js';
 import type { ClaudeTruthMap } from './utils/truth-io.js';
+import { embedText } from '../server/engine/embeddings.js';
+import { semanticPageScores } from '../server/engine/walker/semantic-page.js';
+import { loadVectors } from '../server/engine/entry-map.js';
 
 // ── Paths (used only by CLI main) ─────────────────────────────────────────────
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
@@ -29,6 +32,11 @@ const MODULE_GRAPH_PATH = path.join(ROOT, 'data', 'index', 'module-graph.json');
 const TESTCASES_PATH = path.join(__dirname, 'utils', 'testcases.json');
 const CLAUDE_TRUTH_PATH = path.join(__dirname, 'utils', 'claude-truth.json');
 const WIKI_VERIFY_PATH = path.join(ROOT, 'logs', 'reports', 'wiki-verify.md');
+const QUERY_EXPANSIONS_PATH = path.join(__dirname, 'utils', 'query-expansions.json');
+
+// ── Expansion type ─────────────────────────────────────────────────────────────
+interface Expansion { expandedSymbols: string[]; candidateModules: string[]; }
+type ExpansionsMap = Record<string, Expansion>;
 
 // ── Types ─────────────────────────────────────────────────────────────────────
 
@@ -110,15 +118,26 @@ export function readCitationRate(verifyPath: string): number | null {
  * 运行 wiki:gate。
  *
  * 对每个有 claude-truth 条目的题：
- *   - 用 questionTokens + selectPages 选入口页（chosen）
+ *   - 用 questionTokens + selectPages 选入口页（chosen），并传入语义分 + 扩词缓存
  *   - 用 expectedPages 从 core 文件推算应选页（expected）
  *   - hit = chosen ∩ expected 非空
  *   - hitRate = Σhit / #scored
  *
  * 无 claude-truth 条目的题放入 skipped（不编造 gold）。
  */
-export function runGate(opts?: GateOpts): GateResult {
+export async function runGate(opts?: GateOpts): Promise<GateResult> {
     const { map, fileToModule, testcases, claudeTruth, verifyPath } = opts ?? loadReal();
+
+    // 加载扩词缓存（缺失时优雅退化）
+    let expansions: ExpansionsMap = {};
+    try {
+        expansions = JSON.parse(fs.readFileSync(QUERY_EXPANSIONS_PATH, 'utf-8'));
+    } catch {
+        // 文件不存在时退化为无扩词
+    }
+
+    // 预加载向量表（懒加载，返回 null 时语义分退化为惰性 map）
+    const vectors = loadVectors() ?? new Map<string, Float32Array>();
 
     const perQuestion: PerQuestion[] = [];
     const skipped: string[] = [];
@@ -131,7 +150,19 @@ export function runGate(opts?: GateOpts): GateResult {
         }
 
         const tokens = questionTokens(tc.question);
-        const pageStep: PageStep | null = selectPages(tokens, map);
+
+        // 计算语义页面分（embedText 本地 bge，零 API）
+        const qVec = await embedText(tc.question, 'query');
+        const sem = semanticPageScores(qVec, map, vectors);
+
+        // 读取扩词缓存（缺失键时退化为空）
+        const exp: Expansion = expansions[tc.id] ?? { expandedSymbols: [], candidateModules: [] };
+
+        const pageStep: PageStep | null = selectPages(tokens, map, undefined, {
+            semScores: sem,
+            expandedTokens: exp.expandedSymbols,
+            candidateModules: exp.candidateModules,
+        });
         const chosen: string[] = pageStep?.chosen ?? [];
 
         const expected = expectedPages(truth.core, map, fileToModule);
@@ -182,9 +213,9 @@ function loadReal(): GateOpts {
 
 // ── CLI main ──────────────────────────────────────────────────────────────────
 
-function main() {
+async function main() {
     console.log('[wiki:gate] 加载文件...');
-    const result = runGate();
+    const result = await runGate();
 
     const { hitRate, perQuestion, skipped, citationRate } = result;
     const scored = perQuestion.length;
@@ -228,5 +259,5 @@ function main() {
 }
 
 if (import.meta.url === pathToFileURL(process.argv[1] ?? '').href) {
-    main();
+    main().catch(err => { console.error('[wiki:gate] 错误:', err); process.exit(1); });
 }
