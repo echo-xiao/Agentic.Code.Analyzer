@@ -1,7 +1,7 @@
 import { test } from 'node:test';
 import assert from 'node:assert/strict';
 
-import { fmtAgentCalls, stopLabel, pathEq, computeGold, traceDrift, roundCoreHits, firstCoreStep, semanticLabel, renderScope } from '../../src/eval/report.js';
+import { fmtAgentCalls, stopLabel, pathEq, computeGold, traceDrift, roundCoreHits, firstCoreStep, semanticLabel, renderScope, renderWalk } from '../../src/eval/report.js';
 
 // ── renderScope ──────────────────────────────────────────────────────────────
 test('renderScope: 选中页带分数(取自 options),不再单列重复的 reason 串', () => {
@@ -19,6 +19,22 @@ test('renderScope: 选中页带分数(取自 options),不再单列重复的 reas
 test('renderScope: 无 chosen → 退回符号搜索', () => {
     const tr = { pageStep: { options: [{ page: 'A', score: 0.1 }], chosen: [] } };
     assert.equal(renderScope(tr)[0], '**scope 入口页**（1 页打分 → 选 0）：（退回符号搜索）');
+});
+
+// ── renderWalk ─────────────────────────────────────────────────────────────────
+test('renderWalk: 按种子分组;顶行不堆停因;每组头带步数+停因', () => {
+    const tr = { walk: [
+        { anchor: 'seedA', round: 1, chosen: null, reason: '边际枯竭' },                                    // seedA: 0 步 → 枯竭
+        { anchor: 'seedB', round: 1, chosen: 'x', reason: 'aff', result: { newFiles: ['a/core.ts'] } },      // seedB: 1 步(命中 core)
+        { anchor: 'seedB', round: 2, chosen: null, reason: '预算用尽' },                                      // seedB → 预算
+    ] };
+    const lines = renderWalk(tr, ['a/core.ts']);
+    assert.equal(lines[0], '**walk 游走**：2 seed · 1 步');   // 顶行只 seed/步数
+    assert.ok(!lines[0].includes('停因'), '顶行不再堆停因');
+    assert.equal(lines[1], '  ▸ seedA — 0 步 · ⏹ 枯竭');
+    assert.equal(lines[2], '  ▸ seedB — 1 步 · ⏹ 预算');
+    assert.ok(lines[3].includes('R1 → `x`'), 'seedB 的轮次挂它下面');
+    assert.ok(lines[4].includes('core 命中 1⭐'), '触达命中 core⭐');
 });
 
 // ── stopLabel ──────────────────────────────────────────────────────────────────
