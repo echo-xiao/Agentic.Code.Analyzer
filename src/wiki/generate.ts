@@ -6,7 +6,7 @@
  *   Runs the four pipeline steps in order:
  *     1. outline  → generateOutline() from ./outline.ts
  *     2. write    → runs write.ts as subprocess (main() not exported)
- *     3. diagram  → generateDiagrams() from ./diagram.ts
+ *     3. diagram  → runs gen-diagrams-llm.ts as subprocess (ensureIndex called internally)
  *     4. verify   → runs verify.ts as subprocess (main() not exported)
  *   Then stamps wiki-map.json:
  *     derived_from = "self-generated <shortSha> <date>"
@@ -28,8 +28,6 @@ import { fileURLToPath, pathToFileURL } from 'url';
 
 import { DATA_DIR } from '../config.js';
 import { generateOutline } from './outline.js';
-import { generateDiagrams } from './diagram.js';
-import { ensureIndex } from '../indexer/index.js';
 import { runGuide } from './guide.js';
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
@@ -74,7 +72,7 @@ export async function generateWiki(deps?: Partial<GenerateDeps>): Promise<void> 
   const outline     = deps?.outline     ?? (() => generateOutline());
   const guide       = deps?.guide       ?? (() => runGuide());
   const write       = deps?.write       ?? (() => runStep(path.join(__dirname, 'write.ts')));
-  const diagram     = deps?.diagram     ?? (async () => { await ensureIndex(); return generateDiagrams(); });   // 真跑先加载 GLOBAL_INDEX(diagram 用 callGraph);注入测试不受影响
+  const diagram     = deps?.diagram     ?? (() => runStep(path.join(__dirname, '..', '..', 'scripts', 'gen-diagrams-llm.ts')));
   const verify      = deps?.verify      ?? (() => runStep(path.join(__dirname, 'verify.ts')));
   const wikiMapPath = deps?.wikiMapPath ?? DEFAULT_WIKI_MAP_PATH;
 
