@@ -306,8 +306,9 @@ const CITATION_SYSTEM_PROMPT = `You are a technical writer generating one chapte
 ## Output Format
 - Use ## (h2) headers for each major section.
 - Do NOT include mermaid blocks (those are generated separately).
-- Keep prose focused on architecture, component roles, and data flows.
-- Target 300–600 words per chapter.`;
+- Write a SYNTHESIZED NARRATIVE (DeepWiki-style): explain how this subsystem actually works — trace the flow of one representative operation end-to-end across layers — rather than listing components. Prefer a how-it-works story over a file inventory.
+- Whenever you name a specific file or symbol in the narrative, immediately follow that claim with its \`Sources:\` line (see Citation Red-Lines). Grounding is NON-NEGOTIABLE even in narrative prose.
+- Target 400–800 words per chapter.`;
 
 export async function writeChapter(
   page: WikiPage,
@@ -324,8 +325,8 @@ export async function writeChapter(
     ``,
     contextStr,
     ``,
-    `Please write the architecture wiki chapter for "${page.title}". Structure it with ## section headers.`,
-    `Every specific claim about a file or component MUST be followed by \`Sources: path:Lstart-Lend\`.`,
+    `Write a narrative wiki chapter for "${page.title}" — trace how it works end-to-end, don't just list components. Structure it with ## section headers.`,
+    `Every specific claim about a file or component MUST be followed by \`Sources: path:Lstart-Lend\` (from the candidate list only).`,
   ].join('\n');
 
   const apiKey = process.env.ANTHROPIC_API_KEY || process.env.CLAUDE_API_KEY;
