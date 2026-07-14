@@ -125,10 +125,13 @@ const mapSem = {
   ],
 } as any;
 
-test('selectPages: 词面平手时语义把正确页顶上来', () => {
-  // 概念 token 词面都命中不到(分≈0) → 无 semScores 时选不出;给语义分则 Slash 页胜
+test('selectPages: 纯语义把词面选不出的页顶上来', () => {
+  const tok = ['qzxvwq'];   // 蓄意乱码 token：对 mapSem 两页词面都 < 阈值 0.3
+  // 无 semScores → 词面选不出 → null（证明不是词面在选）
+  assert.equal(selectPages(tok, mapSem, 0.3), null);
+  // 给语义分 → 只靠语义进候选 → Slash 页胜
   const sem = new Map([['Integrations, Webhooks & Slash Commands', 0.8], ['Room Views', 0.2]]);
-  const r = selectPages(['slashcommand'], mapSem, 0.3, { semScores: sem });
+  const r = selectPages(tok, mapSem, 0.3, { semScores: sem });
   assert.ok(r);
   assert.equal(r!.chosen[0], 'Integrations, Webhooks & Slash Commands');
 });
