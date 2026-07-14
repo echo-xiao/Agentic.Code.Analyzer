@@ -82,6 +82,13 @@ export function computeGold(
     return { entryHit, reachGoldN, coreN: core.length };
 }
 
+// 单轮游走触达的文件 + 命中的 core（答案文件）—— 把"对不对"下沉到 walk 每一步。
+export function roundCoreHits(w: any, core: string[]): { reached: number; coreHits: string[] } {
+    const nf: string[] = w?.result?.newFiles ?? [];
+    const coreHits = core.filter(c => nf.some(f => pathEq(f, c)));
+    return { reached: nf.length, coreHits };
+}
+
 // agent 实调：直接渲染 trace 里已捕获的 agentCalls.sequence（结构化，无 gold）。
 export function fmtAgentCalls(ac: any): { calls: number; sequence: string; hitBudget: boolean } {
     const seq: any[] = Array.isArray(ac?.sequence) ? ac.sequence : [];
@@ -125,7 +132,7 @@ async function main() {
     const items = testcases.map((tc: any) => {
         const tr = loadTraceFile(tc.id);
         const core: string[] = ((tc.core && tc.core.length ? tc.core : tc.groundTruthFiles) ?? []) as string[];
-        return { tc, tr, gold: tr ? computeGold(tr, core, wikiMap) : null };
+        return { tc, tr, core, gold: tr ? computeGold(tr, core, wikiMap) : null };
     });
 
     // aggregate（对不对汇总）
@@ -151,7 +158,7 @@ async function main() {
     L.push(`> "答案文件" = claude-truth.json 的 core（Claude 金答案关键文件）。trace 本体不含 gold；本节是报告端拿 trace × gold 算的对照，零-API。\n`);
 
     // pass 2: per question — 对不对 + trace（scope/seed/walk/agent 实调）
-    for (const { tc, tr, gold } of items) {
+    for (const { tc, tr, core, gold } of items) {
         L.push(`## ${tc.id} — ${tc.question ?? ''}  _[${tc.questionType ?? '?'}]_\n`);
         if (!tr) { L.push(`> 无 trace（先跑 \`npm run trace\`）。\n`); continue; }
 
@@ -183,8 +190,16 @@ async function main() {
         L.push(`**walk 游走**：${seedsN} seed · ${moves} 步${stops.length ? ` · 停因 ${stops.join('/')}` : ''}`);
         for (const w of walk) {
             const head = `R${w.round} @${base(w.anchor)}`;
-            if (w.chosen != null) L.push(`  - ${head} → \`${w.chosen}\`${w.reason ? ` — ${w.reason}` : ''}`);
-            else L.push(`  - ${head} ⏹ STOP（${stopLabel(w.reason ?? '')}）`);
+            if (w.chosen != null) {
+                L.push(`  - ${head} → \`${w.chosen}\`${w.reason ? ` — ${w.reason}` : ''}`);
+                const { reached, coreHits } = roundCoreHits(w, core);
+                if (reached > 0) {
+                    const hit = coreHits.length
+                        ? ` · **core 命中 ${coreHits.length}⭐**: ${coreHits.map(c => '`' + base(c) + '`').join(' ')}`
+                        : ' · core 命中 0';
+                    L.push(`    ↳ 触达 ${reached} 文件${hit}`);
+                }
+            } else L.push(`  - ${head} ⏹ STOP（${stopLabel(w.reason ?? '')}）`);
         }
 
         // ── agent 实际调用序列（取自 trace.agentCalls） ──

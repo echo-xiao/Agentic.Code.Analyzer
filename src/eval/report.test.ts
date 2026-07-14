@@ -1,7 +1,7 @@
 import { test } from 'node:test';
 import assert from 'node:assert/strict';
 
-import { fmtAgentCalls, stopLabel, pathEq, computeGold, traceDrift } from './report.js';
+import { fmtAgentCalls, stopLabel, pathEq, computeGold, traceDrift, roundCoreHits } from './report.js';
 
 // ── stopLabel ──────────────────────────────────────────────────────────────────
 test('stopLabel: 已知 reason 子串映射；未知→stop', () => {
@@ -100,6 +100,20 @@ test('computeGold: reachGoldN 数 seed∪walk.newFiles 里命中的 core', () =>
     const g = computeGold(tr, ['apps/x/sendMessage.ts', 'apps/x/missing.ts'], WIKI_MAP);
     assert.equal(g.reachGoldN, 1);   // sendMessage 经 walk 命中；missing 没到
     assert.equal(g.coreN, 2);
+});
+
+// ── roundCoreHits ────────────────────────────────────────────────────────────
+test('roundCoreHits: 数触达文件 + 命中的 core（pathEq 后缀匹配）', () => {
+    const w = { result: { newFiles: ['apps/x/a.ts', 'repo/apps/x/sendMessage.ts', 'apps/x/b.ts'] } };
+    const r = roundCoreHits(w, ['apps/x/sendMessage.ts', 'apps/x/missing.ts']);
+    assert.equal(r.reached, 3);
+    assert.deepEqual(r.coreHits, ['apps/x/sendMessage.ts']);   // 后缀匹配到 repo/.../sendMessage.ts
+});
+
+test('roundCoreHits: 无 result → reached 0、无命中', () => {
+    const r = roundCoreHits({ chosen: 'x' }, ['apps/x/a.ts']);
+    assert.equal(r.reached, 0);
+    assert.deepEqual(r.coreHits, []);
 });
 
 // ── traceDrift ─────────────────────────────────────────────────────────────────
