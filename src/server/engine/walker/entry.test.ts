@@ -118,6 +118,27 @@ test('informativeTokens：全是泛词时回退原 tokens，不剃光头', () =>
     assert.deepEqual(dropped, []);
 });
 
+const mapSem = {
+  pages: [
+    { page: 'Integrations, Webhooks & Slash Commands', sections: [], diagrams: [], source_files: { 'a.ts': ['L1'] } },
+    { page: 'Room Views', sections: [], diagrams: [], source_files: { 'b.ts': ['L1'] } },
+  ],
+} as any;
+
+test('selectPages: 词面平手时语义把正确页顶上来', () => {
+  // 概念 token 词面都命中不到(分≈0) → 无 semScores 时选不出;给语义分则 Slash 页胜
+  const sem = new Map([['Integrations, Webhooks & Slash Commands', 0.8], ['Room Views', 0.2]]);
+  const r = selectPages(['slashcommand'], mapSem, 0.3, { semScores: sem });
+  assert.ok(r);
+  assert.equal(r!.chosen[0], 'Integrations, Webhooks & Slash Commands');
+});
+
+test('selectPages: 不传 semScores 与现状一致(纯词面)', () => {
+  const r = selectPages(['room'], mapSem, 0.3);
+  assert.ok(r);   // 'room' 词面命中 Room Views
+  assert.equal(r!.chosen[0], 'Room Views');
+});
+
 test('selectPages：多 token 佐证——孤证页(仅 push 命中)被双证页压下去', () => {
     const gitPage: WikiPage = {
         id: 'ci-pipeline', title: 'CI Pipeline', category: '', scope: '', modules: [], seedFiles: [],
