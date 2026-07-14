@@ -8,8 +8,6 @@
  *
  * Flags:
  *   --dry     read prose + build index, print summary, NO API call
- *   --rewrite for chapters with many invalid citations, expose a Haiku rewrite hook
- *   --rewrite --dry  logs "would rewrite N chapters" but makes NO API call
  *
  * Reuse strategy: imports enforceCitations from ./write.js (same validation predicate).
  * This ensures the reported rate matches what write.ts actually enforced.
@@ -20,7 +18,7 @@ import * as fs from 'fs';
 import * as path from 'path';
 import { fileURLToPath, pathToFileURL } from 'url';
 
-import { DATA_DIR, MODEL_TIERS } from '../config.js';
+import { DATA_DIR } from '../config.js';
 import { GLOBAL_INDEX } from '../indexer/state.js';
 import { ensureIndex } from '../indexer/index.js';
 import type { ProseSection } from '../wikimap/schema.js';
@@ -182,7 +180,6 @@ export function writeVerifyReport(result: VerifyResult, outPath: string = DEFAUL
 
 async function main() {
   const isDry = process.argv.includes('--dry');
-  const doRewrite = process.argv.includes('--rewrite');
 
   // Load wiki-prose
   let prose: ProseRecord;
@@ -193,7 +190,7 @@ async function main() {
     process.exit(1);
   }
 
-  if (isDry && !doRewrite) {
+  if (isDry) {
     const chapterCount = Object.keys(prose).length;
     console.log(`[wiki:verify --dry] ${chapterCount} chapter(s) in prose — would verify (no index load).`);
     console.log('[wiki:verify --dry] Done — no API request made.');
@@ -215,24 +212,6 @@ async function main() {
   for (const ch of result.perChapter) {
     const icon = ch.invalid.length === 0 ? '✓' : '✗';
     console.log(`  ${icon} ${ch.chapter}: ${ch.valid}/${ch.citations} valid`);
-  }
-
-  // Rewrite hook (gated behind --rewrite flag)
-  if (doRewrite) {
-    const model = MODEL_TIERS.verify;
-    const chaptersNeedingRewrite = result.perChapter.filter(ch => ch.invalid.length > 0);
-
-    if (isDry) {
-      console.log(`[wiki:verify --rewrite --dry] would rewrite ${chaptersNeedingRewrite.length} chapters using model ${model}`);
-    } else {
-      const apiKey = process.env.ANTHROPIC_API_KEY || process.env.CLAUDE_API_KEY;
-      if (!apiKey) {
-        console.warn('[wiki:verify --rewrite] No API key — skipping rewrite (set ANTHROPIC_API_KEY).');
-      } else {
-        // Real rewrite deferred — stub only
-        console.log(`[wiki:verify --rewrite] would rewrite ${chaptersNeedingRewrite.length} chapters (real rewrite deferred to a future task)`);
-      }
-    }
   }
 
   writeVerifyReport(result);

@@ -13,10 +13,6 @@ export const SESSION = {
     question: null as string | null,
     // Oracle override (eval harnesses set this per-testcase to measure the routing ceiling).
     forceIntent: null as Intent | null,
-    // 扩词（由 plan 工具填充，供 selectPages expandedTokens 取用）。
-    expandedSymbols: [] as string[],
-    // 候选模块 id 列表（由 plan 工具填充，供 selectPages candidateModules 取用）。
-    candidateModules: [] as string[],
 };
 
 export function trackCall(tool: string, response: string, symbol?: string) {

@@ -71,49 +71,6 @@ export function buildPrompt(rel: string, skeletonText: string, facts: FileSummar
     ].join('\n');
 }
 
-/**
- * summarizeOne — 单文件摘要器，供 Task 8 AB 脚本复用。
- * 读取 rel 对应的 skeleton + mapping，计算结构事实，调用 LLM，返回 FileSummary。
- */
-export async function summarizeOne(rel: string, model: string): Promise<FileSummary> {
-    const apiKey = process.env.ANTHROPIC_API_KEY || process.env.CLAUDE_API_KEY;
-    if (!apiKey) throw new Error('ANTHROPIC_API_KEY not set');
-
-    const client = new Anthropic({ apiKey });
-
-    // 找 skeleton 文件
-    const skeletonPath = path.join(OUTPUT_DIR, rel.replace(/\.(tsx?|js)$/, '') + '.skeleton.ts');
-    const skeletonText = fs.readFileSync(skeletonPath, 'utf-8');
-    const hash = sha1(skeletonText);
-
-    // 读 mapping.json 取 symbols
-    const mappingPath = skeletonPath.replace('.skeleton.ts', '.mapping.json');
-    let symbols: any[] = [];
-    if (fs.existsSync(mappingPath)) {
-        const mapping = JSON.parse(fs.readFileSync(mappingPath, 'utf-8'));
-        symbols = mapping.symbols ?? [];
-    }
-
-    // Lazy-load index if empty (supports standalone use from Task 8 AB without main() running)
-    if (GLOBAL_INDEX.allFiles.size === 0) new LocalDatabase(OUTPUT_DIR).loadIndex(GLOBAL_INDEX);
-
-    const facts = computeFacts(rel, symbols);
-    // Cast facts to FileSummary shape for prompt (placeholder hash/llm fields)
-    const factsForPrompt = { ...facts, hash: '', role: '', responsibilities: [], characteristics: [], subsystem_hint: '', ranking_line: '' } as FileSummary;
-    const prompt = buildPrompt(rel, skeletonText, factsForPrompt);
-
-    const resp = await client.messages.create({
-        model,
-        max_tokens: 1024,
-        messages: [{ role: 'user', content: prompt }],
-        output_config: { format: { type: 'json_schema', schema: FILE_SUMMARY_LLM_SCHEMA } },
-    } as any);
-
-    const block = (resp.content as any[]).find((b: any) => b.type === 'text');
-    const llm = JSON.parse(block.text) as LLMFields;
-    return assembleSummary(hash, llm, facts);
-}
-
 async function main() {
     const apiKey = process.env.ANTHROPIC_API_KEY || process.env.CLAUDE_API_KEY;
     // 无 key → 优雅跳过（exit 0）：摘要是增量可选层，不该拖垮整条 refresh 流水线
