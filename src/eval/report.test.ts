@@ -1,7 +1,7 @@
 import { test } from 'node:test';
 import assert from 'node:assert/strict';
 
-import { fmtAgentCalls, stopLabel, pathEq, computeGold, traceDrift, roundCoreHits, firstCoreStep } from './report.js';
+import { fmtAgentCalls, stopLabel, pathEq, computeGold, traceDrift, roundCoreHits, firstCoreStep, semanticLabel } from './report.js';
 
 // ── stopLabel ──────────────────────────────────────────────────────────────────
 test('stopLabel: 已知 reason 子串映射；未知→stop', () => {
@@ -136,6 +136,15 @@ test('firstCoreStep: seed 没中、walk 第2个 move 命中', () => {
 test('firstCoreStep: STOP 轮不计步；全程没命中 → null', () => {
     const tr = { seedStep: [], walk: [{ chosen: null, reason: '预算' }, { chosen: 'a', result: { newFiles: ['x.ts'] } }] };
     assert.deepEqual(firstCoreStep(tr, ['apps/x/createRoom.ts']), { seedHit: false, firstStep: null });
+});
+
+// ── semanticLabel（Phase 2）──────────────────────────────────────────────────
+test('semanticLabel: PASS/PARTIAL/FAIL 图标 + mode/reason；缺→未跑', () => {
+    assert.match(semanticLabel({ verdict: 'PASS' }), /✓ PASS/);
+    assert.equal(semanticLabel({ verdict: 'PARTIAL', mode: 'missing step', reason: 'x' }), '**语义**：◐ PARTIAL — missing step — x');
+    assert.match(semanticLabel({ verdict: 'FAIL' }), /✗ FAIL/);
+    assert.equal(semanticLabel(undefined), '**语义**：未跑');
+    assert.equal(semanticLabel({}), '**语义**：未跑');
 });
 
 // ── traceDrift ─────────────────────────────────────────────────────────────────
