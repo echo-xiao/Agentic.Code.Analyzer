@@ -177,24 +177,37 @@ export function renderSeed(tr: any): string[] {
     return out;
 }
 
+// walk：按种子分组——每个种子一块（名字 · 步数 · 停因），轮次挂其下。
+// 顶行只 seed/步数（不再堆重复的"停因 X/X/X"）；per-seed 的 STOP 并进该组头。
 export function renderWalk(tr: any, core: string[]): string[] {
     const walk: any[] = tr.walk ?? [];
-    const moves = walk.filter(w => w.chosen != null).length;
-    const stops = walk.filter(w => w.chosen == null).map(w => stopLabel(w.reason ?? ''));
     const seedsN = new Set(walk.map(w => w.anchor)).size;
-    const out = [`**walk 游走**：${seedsN} seed · ${moves} 步${stops.length ? ` · 停因 ${stops.join('/')}` : ''}`];
+    const moves = walk.filter(w => w.chosen != null).length;
+    const out = [`**walk 游走**：${seedsN} seed · ${moves} 步`];
+
+    // 把连续同 anchor 的轮次归为一组（walk 本就按种子顺序排）
+    const groups: { anchor: string; rounds: any[] }[] = [];
     for (const w of walk) {
-        const head = `R${w.round} @${base(w.anchor)}`;
-        if (w.chosen != null) {
-            out.push(`  - ${head} → \`${w.chosen}\`${w.reason ? ` — ${w.reason}` : ''}`);
+        const last = groups[groups.length - 1];
+        if (last && last.anchor === w.anchor) last.rounds.push(w);
+        else groups.push({ anchor: w.anchor, rounds: [w] });
+    }
+
+    for (const g of groups) {
+        const moveRounds = g.rounds.filter(w => w.chosen != null);
+        const stopRound = g.rounds.find(w => w.chosen == null);
+        const stopTxt = stopRound ? ` · ⏹ ${stopLabel(stopRound.reason ?? '')}` : '';
+        out.push(`  ▸ ${base(g.anchor)} — ${moveRounds.length} 步${stopTxt}`);
+        for (const w of moveRounds) {
+            out.push(`      R${w.round} → \`${w.chosen}\`${w.reason ? ` — ${w.reason}` : ''}`);
             const { reached, coreHits } = roundCoreHits(w, core);
             if (reached > 0) {
                 const hit = coreHits.length
                     ? ` · **core 命中 ${coreHits.length}⭐**: ${coreHits.map(c => '`' + base(c) + '`').join(' ')}`
                     : ' · core 命中 0';
-                out.push(`    ↳ 触达 ${reached} 文件${hit}`);
+                out.push(`        ↳ 触达 ${reached} 文件${hit}`);
             }
-        } else out.push(`  - ${head} ⏹ STOP（${stopLabel(w.reason ?? '')}）`);
+        }
     }
     return out;
 }
