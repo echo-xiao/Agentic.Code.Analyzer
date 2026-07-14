@@ -258,7 +258,21 @@ export function chainSequence(
     const toLabel = path.basename(next).replace(/\.(tsx?|js)$/, '');
     steps.push([fromLabel, toLabel, 'calls']);
     visited.add(next);
-    current = next;
+
+    // Advance `current` to the next CALLER FILE so the DFS keeps traversing.
+    // callGraph keys are callee FILE paths in test fixtures, but callee SYMBOL names
+    // in production; a symbol has no forwardMap entry, so resolve it to its defining
+    // file via GLOBAL_INDEX.symbols (like componentDiagram) and continue from there.
+    // Without this, production chains break after one hop (current=symbol → no edges).
+    if (forwardMap.has(next)) {
+      current = next;                                   // callee key is itself a caller file
+    } else {
+      const symFiles = (GLOBAL_INDEX as { symbols?: Map<string, Set<string>> }).symbols?.get?.(next);
+      const nextFile = symFiles && [...symFiles].find(f => !visited.has(f) && forwardMap.has(f));
+      if (!nextFile) break;
+      visited.add(nextFile);
+      current = nextFile;
+    }
   }
 
   if (steps.length === 0) return null;
