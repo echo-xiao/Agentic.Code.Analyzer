@@ -162,8 +162,10 @@ export function renderScope(tr: any): string[] {
     const chosen: string[] = tr.pageStep?.chosen ?? [];
     if (!chosen.length) return [`**scope 入口页**（${opts.length} 页打分 → 选 0）：（退回符号搜索）`];
     const scoreOf = new Map<string, number>(opts.map((o: any) => [o.page, o.score]));
-    const withScores = chosen.map(p => scoreOf.has(p) ? `${p} (${scoreOf.get(p)})` : p).join(' · ');
-    return [`**scope 入口页**（${opts.length} 页打分 → 选 ${chosen.length}）：${withScores}`];
+    return [
+        `**scope 入口页**（${opts.length} 页打分 → 选 ${chosen.length}）`,
+        ...chosen.map(p => `- ${p}${scoreOf.has(p) ? ` \`${scoreOf.get(p)}\`` : ''}`),
+    ];
 }
 
 export function renderSeed(tr: any): string[] {
@@ -183,7 +185,7 @@ export function renderWalk(tr: any, core: string[]): string[] {
     const walk: any[] = tr.walk ?? [];
     const seedsN = new Set(walk.map(w => w.anchor)).size;
     const moves = walk.filter(w => w.chosen != null).length;
-    const out = [`**walk 游走**：${seedsN} seed · ${moves} 步`];
+    const out = [`**walk 游走**（${seedsN} seed · ${moves} 步）`];
 
     // 把连续同 anchor 的轮次归为一组（walk 本就按种子顺序排）
     const groups: { anchor: string; rounds: any[] }[] = [];
@@ -193,20 +195,18 @@ export function renderWalk(tr: any, core: string[]): string[] {
         else groups.push({ anchor: w.anchor, rounds: [w] });
     }
 
+    // 嵌套 bullet：种子一层，轮次一层（R+触达+命中 折成一条；只在真命中时显 core⭐）
     for (const g of groups) {
         const moveRounds = g.rounds.filter(w => w.chosen != null);
         const stopRound = g.rounds.find(w => w.chosen == null);
         const stopTxt = stopRound ? ` · ⏹ ${stopLabel(stopRound.reason ?? '')}` : '';
-        out.push(`  ▸ ${base(g.anchor)} — ${moveRounds.length} 步${stopTxt}`);
+        out.push(`- **${base(g.anchor)}** · ${moveRounds.length} 步${stopTxt}`);
         for (const w of moveRounds) {
-            out.push(`      R${w.round} → \`${w.chosen}\`${w.reason ? ` — ${w.reason}` : ''}`);
             const { reached, coreHits } = roundCoreHits(w, core);
-            if (reached > 0) {
-                const hit = coreHits.length
-                    ? ` · **core 命中 ${coreHits.length}⭐**: ${coreHits.map(c => '`' + base(c) + '`').join(' ')}`
-                    : ' · core 命中 0';
-                out.push(`        ↳ 触达 ${reached} 文件${hit}`);
-            }
+            const hit = coreHits.length
+                ? ` · **core 命中 ${coreHits.length}⭐**: ${coreHits.map(c => '`' + base(c) + '`').join(' ')}`
+                : '';
+            out.push(`    - R${w.round} → \`${w.chosen}\` · 触达 ${reached}${hit}`);
         }
     }
     return out;
@@ -214,7 +214,7 @@ export function renderWalk(tr: any, core: string[]): string[] {
 
 export function renderAgent(tr: any): string {
     const a = fmtAgentCalls(tr.agentCalls);
-    return `**agent 实调**：${a.calls} calls${a.hitBudget ? ' ⛔预算满' : ''} — ${a.sequence}\n`;
+    return `**agent 实调**：${a.calls} calls${a.hitBudget ? ' ⛔预算满' : ''} — ${a.sequence}`;
 }
 
 async function main() {
@@ -275,8 +275,8 @@ async function main() {
 
     // pass 2: per question — 对不对 + trace（scope/seed/walk/agent 实调）
     for (const { tc, tr, core, gold, fcs } of items) {
-        L.push(`## ${tc.id} — ${tc.question ?? ''}  _[${tc.questionType ?? '?'}]_\n`);
-        if (!tr) { L.push(`> 无 trace（先跑 \`npm run trace\`）。\n`); continue; }
+        L.push(`## ${tc.id} — ${tc.question ?? ''}  _[${tc.questionType ?? '?'}]_`, '');
+        if (!tr) { L.push(`> 无 trace（先跑 \`npm run trace\`）。`, ''); continue; }
 
         // ── 对不对 ──
         const sc = gold!.entryHit === null ? '—（答案文件不在任何 wiki 页）' : gold!.entryHit ? '✓ 选对' : '✗ 选错';
@@ -284,14 +284,14 @@ async function main() {
             : fcs!.seedHit ? ' · **seed 即命中 core⭐**'
             : fcs!.firstStep != null ? ` · 首次命中 core 第 ${fcs!.firstStep} 步（seed 没够到，靠 walk）`
             : ' · ✗ core 全程没命中';
-        L.push(`**对不对**：scope ${sc} · 召回 ${gold!.reachGoldN}/${gold!.coreN} 答案文件${fcsLabel}`);
-        if (semMap.size) L.push(semanticLabel(semMap.get(tc.id)));
+        L.push(`**对不对**：scope ${sc} · 召回 ${gold!.reachGoldN}/${gold!.coreN} 答案文件${fcsLabel}`, '');
+        if (semMap.size) L.push(semanticLabel(semMap.get(tc.id)), '');
 
-        // ── scope / seed / walk / agent —— 各段渲染器 ──
-        L.push(...renderScope(tr));
-        L.push(...renderSeed(tr));
-        L.push(...renderWalk(tr, core));
-        L.push(renderAgent(tr));
+        // ── scope / seed / walk / agent —— 各段之间空行分隔（渲染成独立块）──
+        L.push(...renderScope(tr), '');
+        L.push(...renderSeed(tr), '');
+        L.push(...renderWalk(tr, core), '');
+        L.push(renderAgent(tr), '');
     }
 
     fs.mkdirSync(path.join(LOGS, 'reports'), { recursive: true });
