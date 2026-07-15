@@ -1,0 +1,206 @@
+[
+  {
+    "id": "tour-04-msg-client",
+    "verdict": "PARTIAL",
+    "mode": "core step missing",
+    "reason": "The candidate correctly identifies sendMessage flow and ChatAPI but omits the critical React component chain (RoomBody → ComposerContainer → ComposerMessage → MessageBox → handleSendMessage) and the final DDP transport step (sdk.call('sendMessage')), which are central to how a message is actually sent on the client side."
+  },
+  {
+    "id": "new-19-message-rendering",
+    "verdict": "PASS",
+    "mode": "",
+    "reason": "The candidate correctly identifies the core pipeline: raw text → parse() → AST tokens → Markup component → block/inline React components (ParagraphBlock, HeadingBlock, SpoilerBlock, inline elements), which matches the gold answer's central mechanism. The entry point via normalizeThreadMessage is a valid (if narrow) entry-point variant, and the parse function attribution to gazzodown is slightly imprecise but the overall flow is correct and not misleading."
+  },
+  {
+    "id": "claude-01-push-notifications",
+    "verdict": "PARTIAL",
+    "mode": "core step missing",
+    "reason": "The candidate omits the critical upstream pipeline: afterSaveMessage → sendAllNotifications → shouldNotifyMobile/getPushData → queueNotification with delay-based scheduling and the background worker polling the queue. It starts the story mid-pipeline at PushNotification/PushClass, missing how notifications are triggered, evaluated per-user, and queued with scheduling delays — steps without which the central mechanism is incomplete."
+  },
+  {
+    "id": "new-09-realtime-streamer",
+    "verdict": "PARTIAL",
+    "mode": "core step missing",
+    "reason": "The candidate correctly identifies notifyOnMessageChange and api.broadcast('watch.messages') but misses the critical intermediate layer — the ListenersModule that catches the broadcast and routes it through the Streamer (streamRoomMessage) to clients via DDP — which is the central mechanism connecting server broadcast to client delivery."
+  },
+  {
+    "id": "tour-05-msg-server",
+    "verdict": "PARTIAL",
+    "mode": "core step missing",
+    "reason": "The candidate correctly describes the core sendMessage pipeline (validate, prepare, Apps Engine hooks, persist, afterSave) but omits the DDP entry point (Meteor method executeSendMessage) and permission validation (canSendMessageAsync/validateRoomMessagePermissionsAsync), which are essential steps that gate whether sendMessage is ever called."
+  },
+  {
+    "id": "claude-05-call-chain",
+    "verdict": "PARTIAL",
+    "mode": "core step missing",
+    "reason": "The candidate omits the critical server-side entry points (the Meteor method in methods/sendMessage.ts calling executeSendMessage, and the REST API path in v1/chat.ts) and the permission validation step (canSendMessageAsync/validateRoomMessagePermissionsAsync) — both of which are essential steps in the central mechanism without which the pipeline does not work. The candidate jumps directly to the core sendMessage function, skipping the dispatch and authorization layers entirely."
+  },
+  {
+    "id": "new-24-autotranslate",
+    "verdict": "PARTIAL",
+    "mode": "core step missing",
+    "reason": "The candidate correctly describes the AutoTranslate base class, provider implementations, tokenization/detokenization, and client-side display, but omits the critical integration point: TranslationProviderRegistry and the afterSaveMessage callback hook that actually triggers translation automatically for every saved message. Without this, the core mechanism of how auto-translation is wired into the message pipeline is missing."
+  },
+  {
+    "id": "new-15-impact-aftersave",
+    "verdict": "PASS",
+    "mode": "",
+    "reason": "The candidate correctly identifies the core mechanism (afterSaveMessage in the right file, called from sendMessage/updateMessage, with callbacks for notifications, auto-translation, mentions, threads, read receipts, federation, etc.) and accurately describes the blast radius across integrations and enterprise features, matching the gold answer's essential content."
+  },
+  {
+    "id": "new-16-impact-streamer",
+    "verdict": "PARTIAL",
+    "mode": "wrong central function",
+    "reason": "The candidate focuses on 'ee/apps/ddp-streamer/src/Streamer.ts' rather than the core 'apps/meteor/server/modules/streamer/streamer.module.ts' Streamer abstract base class, and misses the central NotificationsModule with its 17 stream instances and the ListenersModule event bridge — the two components that define the actual blast radius of the Streamer module."
+  },
+  {
+    "id": "claude-08-federation",
+    "verdict": "PARTIAL",
+    "mode": "core step missing",
+    "reason": "The candidate only covers the inbound path (remote server sending to Rocket.Chat) and omits the outbound path entirely — FederationMatrix.sendMessage(), toExternalMessageFormat(), FederationActions hooks, and how a local user's message gets forwarded to a remote homeserver — which is the other half of the core mechanism."
+  },
+  {
+    "id": "new-18-webhook",
+    "verdict": "PASS",
+    "mode": "",
+    "reason": "The candidate correctly identifies the core mechanism: executeIntegrationRest as the entry point, script engine execution via processIncomingRequest, and processWebhookMessage for message delivery, matching the gold answer's central pipeline."
+  },
+  {
+    "id": "claude-07-api-endpoints",
+    "verdict": "PASS",
+    "mode": "",
+    "reason": "The candidate correctly identifies the core mechanism: APIClass, createApi, the API singleton with v1/default instances, and addRoute() as the primary registration method, with correct file paths and examples — the omission of middleware chain details and Hono router internals is peripheral."
+  },
+  {
+    "id": "new-25-search",
+    "verdict": "PARTIAL",
+    "mode": "core step missing",
+    "reason": "The candidate correctly describes the messageSearch method and MongoDB query layer but entirely misses the pluggable SearchProviderService/SearchProvider/DefaultProvider architecture that is the core mechanism of message search in Rocket.Chat — the abstraction layer that coordinates providers, the DefaultProvider that delegates to messageSearch, and the extensibility for external engines like Elasticsearch."
+  },
+  {
+    "id": "new-27-video-conference",
+    "verdict": "PARTIAL",
+    "mode": "core step missing",
+    "reason": "The candidate describes only the client-side URL-opening flow (ConferencePage, useVideoConfOpenCall) and completely omits the core server-side mechanism: VideoConfService, conference creation/type routing, provider integration via Apps Engine, participant management, and call status tracking — without which the central mechanism does not work."
+  },
+  {
+    "id": "tour-06-endpoint",
+    "verdict": "PASS",
+    "mode": "",
+    "reason": "The candidate correctly identifies the core mechanism: using API.v1/API.default instances from api.ts, calling addRoute() on an APIClass instance with path/options/handlers, and the key handler context methods (this.success, this.bodyParams, etc.). Minor omissions like the internal middleware chain details and index.ts bootstrap are peripheral."
+  },
+  {
+    "id": "new-17-slash-commands",
+    "verdict": "PARTIAL",
+    "mode": "wrong central function",
+    "reason": "The candidate focuses primarily on the Apps-Engine slash command manager (AppSlashCommandManager/CommandBridge) as the core registration and execution mechanism, missing the central `slashCommands` object with `add()`/`run()` in `app/utils/server/slashCommand.ts` and the Meteor method `slashCommand` that bridges client to server — these are the core mechanisms for built-in slash commands."
+  },
+  {
+    "id": "new-11-settings",
+    "verdict": "PARTIAL",
+    "mode": "core step missing",
+    "reason": "The candidate covers registration, caching, and client-side React hooks but completely omits the critical propagation mechanism — the Meteor methods `public-settings/get` and `private-settings/get` — that actually transfer settings from server to client, which is a core step without which the end-to-end pipeline doesn't work."
+  },
+  {
+    "id": "claude-03-file-upload",
+    "verdict": "PARTIAL",
+    "mode": "core step missing",
+    "reason": "The candidate describes the UFS-based server-side storage pipeline well but omits the critical two-step client-server flow (POST /v1/rooms.media then POST /v1/rooms.mediaConfirm), the client-side entry point (uploadFiles()), and the confirm step that calls parseFileIntoMessageAttachments() to create message attachments — without which the central mechanism for attaching files to messages is absent."
+  },
+  {
+    "id": "new-10-apps-engine",
+    "verdict": "FAIL",
+    "mode": "wrong subsystem",
+    "reason": "The candidate describes the Rocket.Chat callback system (callbacks.run) as the integration point rather than the correct AppListenerManager/AppListenerBridge/executeListener pipeline, misses AppInterface enum, registerListeners, and the bridge layer entirely, and provides a largely speculative and incorrect account of how Apps Engine hooks work."
+  },
+  {
+    "id": "new-20-proxify",
+    "verdict": "PASS",
+    "mode": "",
+    "reason": "The candidate correctly identifies the core mechanism: proxify() creates a Proxy with a get handler that intercepts method calls and routes them to api.call('namespace.methodName', params), which is the essential pipeline. Missing peripheral details like LocalBroker internals, ServiceClass lifecycle hooks, and Promisify type do not affect the core correctness."
+  },
+  {
+    "id": "tour-07-db-model-create",
+    "verdict": "PASS",
+    "mode": "",
+    "reason": "The candidate correctly identifies the three-layer pattern (document interface, model class extending BaseRaw, registration/export), the BaseRaw base class, constructor requirements (Db instance, collection name, optional trash), modelIndexes override, and the proxify/export mechanism — matching the core mechanism even if it omits the model-typings interface layer and registerModel details."
+  },
+  {
+    "id": "tour-08-db-model-use",
+    "verdict": "PARTIAL",
+    "mode": "core step missing",
+    "reason": "The candidate correctly explains the BaseRaw layer and domain-specific model methods, but uses VideoConference as its example rather than tracing any complete end-to-end query pipeline (entry point → service function → model method → result processing), missing the essential dispatch and post-processing steps that constitute the core mechanism as illustrated by the loadHistory example in the gold answer."
+  },
+  {
+    "id": "tour-11-new-package",
+    "verdict": "PASS",
+    "mode": "",
+    "reason": "The candidate correctly identifies the core mechanism: creating a directory under packages/, adding a package.json with the @rocket.chat namespace, and running yarn install to link the workspace. The extra step about manually adding to root package.json workspaces array is slightly inaccurate (the glob pattern 'packages/*' typically covers all packages automatically), but the overall pipeline is correct and not misleading. Missing peripheral detail like tsconfig.json setup and consuming package wiring does not warrant a PARTIAL."
+  },
+  {
+    "id": "tour-10-new-service",
+    "verdict": "PASS",
+    "mode": "",
+    "reason": "The candidate correctly identifies the core mechanism: extending ServiceClassInternal, setting the protected name, implementing a service interface, creating the file in apps/meteor/server/services/, and registering during startup. It also correctly mentions proxify-style registration and the core-services package structure, matching the gold answer's central pipeline even if less exhaustive."
+  },
+  {
+    "id": "new-21-impact-settings",
+    "verdict": "FAIL",
+    "mode": "wrong subsystem",
+    "reason": "The candidate focuses on API middleware, CORS, and Wizard UI components as the primary dependents, missing the core truth that CachedSettings is the universal in-memory settings store used by virtually every server module (auth, messaging, omnichannel, notifications, etc.) via settings.get()/watch()/change(); the listed dependents are peripheral or unrelated to CachedSettings itself."
+  },
+  {
+    "id": "new-22-2fa",
+    "verdict": "PASS",
+    "mode": "",
+    "reason": "The candidate correctly identifies the core mechanism: twoFactorRequired decorator, checkCodeForUser orchestration, pluggable check methods (TOTP/Email/Password), remember-me via isAuthorizedForToken/rememberAuthorization, HTTP header support, and the totp-required error flow. The client-side retry loop is also correctly described. Missing only peripheral detail like the ICodeCheck interface definition and exhaustive per-step enumeration."
+  },
+  {
+    "id": "claude-04-e2e-encryption",
+    "verdict": "PARTIAL",
+    "mode": "core step missing",
+    "reason": "The candidate correctly describes PBKDF2-based private key encryption/decryption and the Keychain class, but omits the RSA key pair generation, the per-room AES group key system, and key distribution — all central mechanisms of E2E key management without which the system doesn't work end-to-end."
+  },
+  {
+    "id": "new-12-ldap-auth",
+    "verdict": "PARTIAL",
+    "mode": "core step missing",
+    "reason": "The candidate correctly identifies the login handler registration in ldap.ts but omits the critical middle layers — LDAPService.loginRequest(), LDAPManager.login(), LDAPConnection, and LDAPUserConverter — which are the actual mechanisms that make LDAP authentication work. The candidate vaguely says the handler 'uses configured settings to connect, authenticate, and synchronize' without identifying the central dispatch chain (LDAPManager.login) that orchestrates those steps."
+  },
+  {
+    "id": "claude-02-msg-permissions",
+    "verdict": "PARTIAL",
+    "mode": "core step missing",
+    "reason": "The candidate identifies canSendMessage.ts and some related files but focuses heavily on delete/update paths rather than the core send-message permission pipeline; it omits validateRoomMessagePermissionsAsync, the key checks inside it (archived, blocked, read-only, muted), and the validateMessage content-level validation in sendMessage.ts, leaving the central mechanism only partially described."
+  },
+  {
+    "id": "new-14-ee-license",
+    "verdict": "PASS",
+    "mode": "",
+    "reason": "The candidate correctly identifies LicenseManager as the central gatekeeper, describes setLicense/validation/hasModule/isLimitReached flow, module-based gating, and event emission — matching the core mechanism even though it omits exhaustive detail on LicenseImp, replaceModules, runValidation internals, and the full event listener API."
+  },
+  {
+    "id": "new-13-room-creation",
+    "verdict": "PASS",
+    "mode": "",
+    "reason": "The candidate correctly identifies the core mechanism: createChannelMethod entry point, permission checks, createRoom core function, DB insertion via Rooms.createWithFullRoomData, subscriptions via createUsersSubscriptions, callbacks, and Apps Engine events — all matching the gold answer's central pipeline."
+  },
+  {
+    "id": "new-23-omnichannel",
+    "verdict": "PARTIAL",
+    "mode": "core step missing",
+    "reason": "The candidate correctly describes the queue processing pipeline (OmnichannelQueue, execute, checkQueue, processWaitingQueue) but completely omits the closeRoom() transactional mechanism which is the central piece for how a livechat conversation is actually closed — missing doCloseRoom, afterRoomClosed, MongoDB transactions, and the retry logic that constitute the closure mechanism."
+  },
+  {
+    "id": "claude-06-livechat-routing",
+    "verdict": "PARTIAL",
+    "mode": "core step missing",
+    "reason": "The candidate correctly identifies RoutingManager and its role but omits the critical QueueManager.requestRoom() step that creates the inquiry record and triggers delegateInquiry — a central pipeline step without which routing cannot work — and also omits the pluggable routing strategies (AutoSelection, ManualSelection, External) that are the core of the routing mechanism."
+  },
+  {
+    "id": "new-26-team",
+    "verdict": "PASS",
+    "mode": "",
+    "reason": "The candidate correctly identifies the core mechanism: TeamService in the right file, extending ServiceClassInternal, covering team creation, room association, membership management, and statistics — matching the essential pipeline described in the gold answer."
+  }
+]
