@@ -49,12 +49,19 @@ src/
       source.ts                ts-morph source extraction
       common.ts                shared helpers (layers, test filters, root picking, arch hints)
   eval/                        measurement layer
-    gen.ts                     generate answers: --mode=nomcp|mcp [--oracle] [--model] [--filter]
+    gen.ts                     generate agent answers: --mode=mcp [--oracle] [--model] [--filter] (nomcp/wiki-only retired 2026-07-08)
     trace.ts                   per-question retrieval trace (record-only) → logs/data/retrieval-trace/
     report.ts                  single report → logs/reports/report.md (对不对 gold: scope/召回/walk-core/seed + trace; semantic via --semantic)
     judge.ts                   semantic-compare LIBRARY (judgeAnswers; used by report --semantic; gold = answers-claude, never the wiki)
     truth.ts                   extract Claude-derived ground truth → utils/claude-truth.json (core/supporting/chain, one-time)
     utils/                     testcases.json + shared scoring helpers
+  wiki/                        knowledge product: self-generated architecture wiki (feeds the `wiki` tool + wiki-site)
+    generate.ts                5-step pipeline: outline → guide → write → diagram → verify (→ data/wiki-map.json, git-sha stamped)
+    outline.ts guide.ts write.ts diagram.ts citations.ts verify.ts   taxonomy.ts tree.ts route.ts families.ts
+data/
+  wiki-map.json                generated wiki (page structure + component relations + index-ranked files) — read by the `wiki` tool & wiki-site
+  index/                       chunks.json · chunk-vectors.json · module-graph.json
+wiki-site/                     static wiki viewer (index.html · app.js · style.css) over data/*.json — `npm run wiki:serve`
 logs/reports/
   report.md                    single report — 对不对(gold, zero-API) + trace + optional semantic; by report.ts
   wiki-verify.md               self-generated wiki citation validity (by wiki:verify)
@@ -83,21 +90,27 @@ npm run prewarm     # build/load the graph index (run first)
 npm run start       # MCP server on stdio
 npm run inspect     # MCP inspector against the server
 
-# --- eval pipeline (GEMINI_API_KEY in .env for gen:*) ---
-npm run gen:nomcp   # baseline answers, Gemini with no tools               → logs/answers-gemini-nomcp/
-npm run gen:mcp     # agent answers: Gemini + plan/search/graph/details + DeepWiki `wiki` self-loop
+# --- eval pipeline (GEMINI_API_KEY in .env for gen:mcp; CLAUDE_API_KEY for --semantic/truth) ---
+npm run gen:mcp     # agent answers: Gemini + plan/search/graph/details + self-generated `wiki` self-loop
                     #   → logs/answers-gemini-mcp-selfloop/  (add --oracle to force intent from testcase type)
+                    #   Gemini free-tier throws ~10% transient 404/429/5xx — gen.ts retries w/ backoff (retries don't affect determinism)
 npm run trace       # deterministic per-question retrieval trace, no API → logs/data/retrieval-trace/
 npm run report      # single report → logs/reports/report.md  (对不对 gold: scope/召回/walk-core/seed + trace; zero-API)
                     #   add `-- --semantic` for the paid Claude semantic segment (agent answers vs answers-claude gold)
 npm run truth       # (re)build Claude-derived ground truth from answers-claude → src/eval/utils/claude-truth.json (paid API; rerun only when answers-claude changes)
-npm run refresh     # one-shot: prewarm → gen:nomcp → gen:mcp → trace → report  (all zero-API; --semantic is separate/paid)
+
+# --- self-generated architecture wiki (paid LLM: outline/guide/write/diagram/verify) ---
+npm run wiki:gen    # 5-step pipeline → data/wiki-map.json (stamped with the indexed git sha)
+npm run wiki:serve  # static viewer at http://localhost:8080 (whitelist: only wiki-site/ + data/*.json)
+
+npm run refresh     # one-shot chain: prewarm → module:build → summaries → embeds → module:summarize → wiki:map → gen:mcp → trace → report
+                    #   (retrieval/report are deterministic; gen:mcp + summaries call LLM APIs; --semantic is separate/paid)
 
 # --- unit guards ---
 npm test            # SYSTEM_PROMPT has no ground-truth path leak + gen.ts is import-side-effect-safe
 ```
 
-Semantic scoring is opt-in and paid: run `npm run report -- --semantic` (uses the `judge` library) on demand; `refresh` stays zero-API.
+Semantic scoring is opt-in and paid: run `npm run report -- --semantic` (uses the `judge` library) on demand — it's the only Claude-judged segment; `refresh` skips it.
 
 ## Evaluation discipline
 
@@ -111,6 +124,7 @@ Semantic scoring is opt-in and paid: run `npm run report -- --semantic` (uses th
 - **Semantic is opt-in and paid**: `npm run report -- --semantic` runs the `judge` library (Claude
   sonnet-4-6, agent answers vs `answers-claude/` gold) → per-question PASS/PARTIAL/FAIL folded into
   `report.md` + cached to `verdicts-latest.json`. Never judged against the self-generated wiki (circular).
+  Latest run (Gemini + MCP, 34 cases): **PASS 13 / PARTIAL 19 / FAIL 2** · scope 17/34 · mean recall 56%.
 - **Retired** (superseded by the single `report`): the `eval:tools` R@k/reachability/chain-LCS gate, the
   `metrics.md`/`verdicts.md`/`tools-data.json` triple, and the mechanical auto-triage.
 
@@ -128,3 +142,10 @@ symbol names) matches nothing and only grep saves it. The lever is a
 concept → symbol/edge seed map (feed `architecture.json`-style anchors into `seeds.ts`) so these get
 a structured entry when the name-fuzzy seed misses. Gate is the `report` 对不对/召回 — the other questions must not
 regress.
+
+**Phase 3 — self-generated architecture wiki (shipped).** The `wiki` tool is fully offline — it calls
+no external service. An in-repo pipeline (`wiki:gen` — outline → guide → write → diagram → verify) builds an index-grounded
+feature wiki into `data/wiki-map.json` — every citation verified against the indexed git sha, page
+structure + component relations ranked by the same graph the retrieval tools use. It's served as a
+static wiki site (`wiki-site/`, `npm run wiki:serve`), and it's the same map the agent's
+`wiki` self-loop reads during `gen:mcp`. Both the viewer and the agent consume one grounded artifact.

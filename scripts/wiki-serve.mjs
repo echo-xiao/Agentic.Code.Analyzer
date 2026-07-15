@@ -14,7 +14,9 @@ function resolveSafe(urlPath) {
   const clean = decodeURIComponent(urlPath.split('?')[0]);
   if (clean === '/' || clean === '') return path.join(ROOT, 'wiki-site', 'index.html');
   const rel = clean.replace(/^\/+/, '');
-  const abs = path.resolve(ROOT, rel);
+  // data/*.json 从 data/ 取;其余(style.css/app.js/…)从 wiki-site/ 取 —— 对齐 index.html 的根相对引用
+  const base = rel.startsWith('data/') ? ROOT : path.join(ROOT, 'wiki-site');
+  const abs = path.resolve(base, rel);
   const okDir = abs.startsWith(path.join(ROOT, 'wiki-site') + path.sep) || abs.startsWith(path.join(ROOT, 'data') + path.sep);
   if (!okDir) return null;                                   // 目录白名单
   const ext = path.extname(abs);
@@ -30,8 +32,8 @@ http.createServer((req, res) => {
     res.end('404 — 只提供 wiki-site/* 和 data/*.json');
     return;
   }
-  res.writeHead(200, { 'content-type': TYPES[path.extname(file)] || 'application/octet-stream' });
+  res.writeHead(200, { 'content-type': TYPES[path.extname(file)] || 'application/octet-stream', 'cache-control': 'no-store' });
   fs.createReadStream(file).pipe(res);
 }).listen(PORT, () => {
-  console.log(`\n  📖 Code Wiki 站点: http://localhost:${PORT}\n  (只暴露 wiki-site/ 和 data/*.json;Ctrl+C 停)\n`);
+  console.log(`\n  📖 Code Wiki 站点: http://localhost:${PORT}\n  (只暴露 wiki-site/ 和 data/*.json;no-cache;Ctrl+C 停)\n`);
 });

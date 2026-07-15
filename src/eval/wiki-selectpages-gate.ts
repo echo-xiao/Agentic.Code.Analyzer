@@ -1,6 +1,6 @@
 #!/usr/bin/env npx tsx
 /**
- * wiki-selectpages-gate.ts — P3 门：selectPages 命中率（绝对 gold，零 DeepWiki，零 API）。
+ * wiki-selectpages-gate.ts — P3 门：selectPages 命中率（绝对 gold，零外部依赖，零 API）。
  *
  * 评测：对每个有 claude-truth 条目的题，检查 selectPages 选出的页面（top-k）是否覆盖
  * Claude 金答案 core 文件所属模块对应的页面（expectedPages）。

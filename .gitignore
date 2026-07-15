@@ -2,6 +2,7 @@ node_modules/
 output/
 output.nosync/
 .env
+.envrc
 .DS_Store
 .idea/
 .antigravitycli/
@@ -15,6 +16,9 @@ logs/data/
 
 # 运行日志(瞬态、可再生)—— 不跟踪,防 `git add -A` 误卷
 logs/*.log
+
+# 评估报告快照(report.md/verdicts-latest.json/wiki-verify.md —— 每次 run 重生,本地保留)
+logs/reports/
 
 # Design docs / specs — kept local, not pushed
 docs/
@@ -32,6 +36,9 @@ data/index/module-graph.json
 
 # embedding 模型戳(vec-model-guard,随向量库再生)
 data/**/*.model
+
+# wiki prose 增量 hash 缓存(随 wiki:gen 再生)
+data/.wiki-prose-hashes.json
 
 # 临时召回探针(本地实验用,不进 git)
 /_*-probe.ts

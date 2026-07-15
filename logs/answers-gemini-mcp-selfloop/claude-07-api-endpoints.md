@@ -6,47 +6,69 @@ intent: architecture
 
 ## Gemini Answer
 
-New endpoints in the Rocket.Chat REST API are registered using the `API.v1.addRoute` method or by chaining HTTP method calls on `API.v1`. The `API.v1` object is an instance of `APIClass`, defined in `apps/meteor/app/api/server/ApiClass.ts`.
+New endpoints are registered in the Rocket.Chat REST API primarily through the `APIClass` in `apps/meteor/app/api/server/ApiClass.ts`.
 
-Here's a breakdown of the process:
+Here's the flow:
 
-**1. `APIClass` Definition:**
-   - The core functionality for API route management resides in the `APIClass` class, located at `apps/meteor/app/api/server/ApiClass.ts`.
-   - This class provides methods like `addRoute`, `get`, `post`, `put`, and `delete` for defining API endpoints.
+1.  **`APIClass` Definition**: The `APIClass` (defined in `apps/meteor/app/api/server/ApiClass.ts`) serves as the core framework for defining and managing REST API routes. It provides methods like `get`, `post`, `put`, `delete`, and `addRoute` for registering different HTTP methods and paths.
 
-**2. Endpoint Registration Methods:**
+2.  **`createApi` Function**: The `createApi` function (in `apps/meteor/app/api/server/api.ts`) is responsible for instantiating `APIClass` objects. It allows for configuration such as API versioning and default authentication settings.
 
-   *   **`API.v1.addRoute`**: This is a primary method for registering endpoints. It takes:
-        *   `subpaths`: An array of strings representing the URL paths for the endpoint.
-        *   `options`: An object containing configurations such as `authRequired` (boolean for authentication), `permissionsRequired` (array of permissions), and `validateParams` (a function for parameter validation).
-        *   `endpoints`: An object containing asynchronous functions for different HTTP methods (e.g., `get`, `post`, `delete`). These functions receive `this.urlParams`, `this.queryParams`, and `this.bodyParams` to access request data.
-        *   Examples of its usage can be found in numerous files, including:
-            *   `apps/meteor/app/api/server/v1/channels.ts`
-            *   `apps/meteor/app/api/server/v1/users.ts`
-            *   `apps/meteor/app/api/server/v1/groups.ts`
+3.  **`API` Object**: The `API` object (also in `apps/meteor/app/api/server/api.ts`) is the central point for accessing different API versions. It exposes `v1` (an instance of `APIClass` configured for version 1 of the API with default authentication) and `default` (another `APIClass` instance with default settings).
 
-   *   **Chaining HTTP Method Calls**: Endpoints can also be registered by chaining HTTP method calls directly on `API.v1`, such as `API.v1.post` or `API.v1.get`. This approach is often used when multiple HTTP methods share the same base path but have different request/response schemas or permissions.
-        *   The `APIClass` provides methods like `get`, `post`, `put`, and `delete` that allow for this chained registration. These methods take the `subpath`, `options`, and an `action` function (the handler for the request).
-        *   Examples of this pattern can be seen in files like `apps/meteor/app/api/server/v1/commands.ts`, where `API.v1.get` is used.
+4.  **Endpoint Registration**: Developers register new endpoints by calling methods like `API.v1.addRoute()` or `API.v1.get()`, `API.v1.post()`, etc., on the `v1` (or `default`) instance of the `API` object. This is evident in numerous files, such as `apps/meteor/app/api/server/v1/channels.ts`, `apps/meteor/app/api/server/v1/users.ts`, and `apps/meteor/app/api/server/v1/groups.ts`, where `API.v1.addRoute()` is frequently used to define specific API endpoints for various functionalities.
 
-**3. Type Definition and OpenAPI Support:**
-   - After registration, the types for these endpoints are typically defined using `ExtractRoutesFromAPI<typeof endpointsObject>` and then extended into the global `Endpoints` interface within the `@rocket.chat/rest-typings` module. This ensures type safety and provides a centralized definition for all REST API endpoints.
+In summary, the process is:
+`APIClass` (framework) → `createApi` (instantiation) → `API` object (central access) → `API.v1.addRoute()` (endpoint definition).
 
-In summary, the `APIClass` in `apps/meteor/app/api/server/ApiClass.ts` is the central component for registering new REST API endpoints in Rocket.Chat, primarily through the `addRoute` method or by chaining HTTP method calls.
+## Tool Calls (8 calls, 64,324 tokens)
 
-## Tool Calls (8 calls, 41,544 tokens)
+**Step 1:** `plan({"intent":"architecture","question":"How are new endpoints registered in the REST API in Rocket.Chat?"})` → 3247 tokens
+**Step 2:** `search({"query":"APIClass"})` → 65 tokens
+**Step 3:** `details({"filename":"ApiClass.ts","symbolName":"APIClass"})` → 1575 tokens
+**Step 4:** `graph({"move":"up","file":"ApiClass.ts","depth":2,"query":"APIClass"})` → 568 tokens
+**Step 5:** `details({"filename":"api.ts","symbolName":"createApi"})` → 100 tokens
+**Step 6:** `details({"filename":"api.ts","symbolName":"API"})` → 257 tokens
+**Step 7:** `search({"layer":"server","query":"API.v1.addRoute"})` → 267 tokens
+**Step 8:** `details({"symbolName":"API.v1.addRoute","filename":"channels.ts"})` → 44 tokens
 
-**Step 1:** `wiki({"question":"How are new endpoints registered in the REST API in Rocket.Chat?"})` → 815 tokens
-**Step 2:** `plan({"intent":"architecture","question":"How are new endpoints registered in the REST API in Rocket.Chat?"})` → 890 tokens
-**Step 3:** `search({"query":"API.v1.addRoute","layer":"server"})` → 267 tokens
-**Step 4:** `search({"query":"API.v1","layer":"server"})` → 296 tokens
-**Step 5:** `search({"layer":"server","query":"class API"})` → 99 tokens
-**Step 6:** `details({"symbolName":"APIClass","filename":"ApiClass.ts"})` → 1575 tokens
-**Step 7:** `search({"layer":"server","query":"API.v1 = new APIClass"})` → 27 tokens
-**Step 8:** `search({"query":"API.v1 =","layer":"server"})` → 24 tokens
+## Files Seen In Tool Results (45)
 
-## Files Seen In Tool Results (13)
-
+- `packages/core-services/src/index.ts`
+- `packages/rest-typings/src/v1/auth.ts`
+- `packages/apps-engine/src/definition/api/ApiEndpoint.ts`
+- `packages/apps-engine/src/server/managers/AppApiManager.ts`
+- `apps/meteor/app/apps/server/bridges/api.ts`
+- `packages/apps-engine/src/server/managers/AppApi.ts`
+- `apps/meteor/app/api/server/ApiClass.ts`
+- `packages/apps-engine/src/server/managers/AppExternalComponentManager.ts`
+- `packages/apps-engine/src/server/accessors/ApiExtend.ts`
+- `apps/meteor/ee/server/apps/communication/rest.ts`
+- `packages/apps-engine/src/server/accessors/MessageExtender.ts`
+- `apps/meteor/app/apps/server/converters/uploads.js`
+- `ee/packages/network-broker/src/NetworkBroker.ts`
+- `apps/meteor/app/apps/server/converters/messages.js`
+- `apps/meteor/ee/server/apps/communication/uikit.ts`
+- `apps/meteor/app/apps/server/converters/users.js`
+- `packages/apps-engine/src/server/managers/AppSlashCommand.ts`
+- `apps/meteor/app/apps/server/bridges/commands.ts`
+- `packages/apps-engine/deno-runtime/lib/accessors/extenders/MessageExtender.ts`
+- `packages/apps-engine/src/server/accessors/AppAccessors.ts`
+- `packages/api-client/src/index.ts`
+- `packages/apps-engine/src/server/errors/VideoConfProviderNotRegisteredError.ts`
+- `packages/apps-engine/src/server/accessors/Http.ts`
+- `apps/meteor/app/apps/server/bridges/cloud.ts`
+- `apps/meteor/app/cloud/server/functions/getWorkspaceAccessToken.ts`
+- `packages/apps-engine/src/server/runtime/deno/AppsEngineDenoRuntime.ts`
+- `apps/meteor/ee/server/apps/communication/endpoints/appLogsExportHandler.ts`
+- `apps/meteor/app/integrations/server/api/api.ts`
+- `apps/meteor/app/api/server/middlewares/metrics.ts`
+- `apps/meteor/app/api/server/middlewares/authenticationHono.ts`
+- `apps/meteor/app/api/server/api.ts`
+- `packages/ui-client/src/components/Wizard/Wizard.tsx`
+- `apps/meteor/app/livechat/server/api/v1/room.ts`
+- `apps/meteor/app/livechat/server/api/v1/config.ts`
+- `packages/ddp-client/src/livechat/LivechatClientImpl.ts`
 - `apps/meteor/app/api/server/v1/channels.ts`
 - `apps/meteor/app/api/server/v1/users.ts`
 - `apps/meteor/app/api/server/v1/groups.ts`
@@ -57,6 +79,3 @@ In summary, the `APIClass` in `apps/meteor/app/api/server/ApiClass.ts` is the ce
 - `apps/meteor/app/livechat/server/api/v1/contact.ts`
 - `apps/meteor/app/livechat/imports/server/rest/departments.ts`
 - `apps/meteor/app/livechat/imports/server/rest/dashboards.ts`
-- `apps/meteor/ee/server/apps/communication/rest.ts`
-- `apps/meteor/app/api/server/v1/commands.ts`
-- `apps/meteor/app/api/server/ApiClass.ts`

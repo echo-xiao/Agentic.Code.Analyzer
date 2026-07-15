@@ -6,53 +6,86 @@ intent: unknown
 
 ## Gemini Answer
 
-The Team feature in Rocket.Chat enables users to collaborate and organize multiple channels under a single entity. Teams can be public or private and support various management operations.
+The Team feature in Rocket.Chat is primarily managed by the `TeamService` located at `apps/meteor/server/services/team/service.ts`. This service provides a comprehensive set of functionalities for team management, including:
 
-**Core Functionality:**
+*   **Team Creation and Management:**
+    *   `create`: Creates a new team, optionally associating it with a room.
+    *   `update`: Modifies existing team data.
+    *   `deleteById`, `deleteByName`: Removes teams.
+    *   `list`, `listAll`, `listByNames`, `listByIds`, `getOneById`, `getOneByName`, `getInfoByName`, `getInfoById`, `getAllPublicTeams`: Various methods for retrieving team information.
+    *   `search`, `autocomplete`: Facilitates searching and auto-completing team names.
 
-*   **Team Creation and Properties:** Teams are created using the `TeamService.create` method, located in `apps/meteor/server/services/team/service.ts`. When creating a team, its name, type (public or private), and initial members can be specified. Each team is associated with a main room, which can be a public channel (`c`) or a private group (`p`), linked by a `teamId` property.
-*   **Team Management Operations:** The `TeamService` class (in `apps/meteor/server/services/team/service.ts`) handles various team-related operations:
-    *   **Creation:** The `create` method atomically creates a `Team` record and its corresponding `Room` record.
-    *   **Updating:** The `update` method allows modification of a team's name and type.
-    *   **Membership:** Members are stored in the `TeamMember` collection. The `ITeamMemberModel` interface, defined in `packages/model-typings/src/models/ITeamMemberModel.ts`, outlines methods for managing team members, such as `findByUserId`, `findOneByUserIdAndTeamId`, `findByTeamId`, `addMembers`, `removeMember`, and `updateMember`. The `ITeamMember` interface, found in `packages/core-typings/src/ITeam.ts`, defines the structure of a team member.
-    *   **Channel Management:** Channels can be added to or removed from a team, or converted into teams.
-    *   **Deletion:** Teams can be deleted, which also removes associated chat content and configuration.
+*   **Room Association:**
+    *   `addRooms`: Associates existing rooms with a team.
+    *   `removeRoom`: Removes a room from a team.
+    *   `unsetTeamIdOfRooms`: Disassociates rooms from a team.
+    *   `updateRoom`: Updates room settings within a team (e.g., setting a default room).
+    *   `listRooms`, `listRoomsOfUser`, `getMatchingTeamRooms`, `getOneByMainRoomId`, `getOneByRoomId`, `getRoomInfo`, `listChildren`: Methods for managing and retrieving information about rooms associated with teams.
 
-**Key Files:**
+*   **Membership Management:**
+    *   `addMembers`, `addMember`: Adds members to a team.
+    *   `updateMember`: Updates a team member's information.
+    *   `removeMember`, `removeMembers`, `removeAllMembersFromTeam`: Removes members from a team.
+    *   `insertMemberOnTeams`, `removeMemberFromTeams`: Manages a user's membership across multiple teams.
+    *   `findBySubscribedUserIds`, `members`, `getMembersByTeamIds`, `listTeamsBySubscriberUserId`: Retrieves information about team members.
+    *   `addRolesToMember`, `removeRolesFromMember`, `addRolesToSubscription`: Manages roles for team members.
+    *   `addMembersToDefaultRooms`: Adds new team members to default rooms.
 
-*   `apps/meteor/server/services/team/service.ts`: Contains the `TeamService` class, which is the central point for team creation, updates, and membership management.
-*   `packages/model-typings/src/models/ITeamMemberModel.ts`: Defines the `ITeamMemberModel` interface, detailing the methods for interacting with team member data.
-*   `packages/core-typings/src/ITeam.ts`: Defines the `ITeamMember` interface, which describes the structure of a team member.
+*   **Statistics:**
+    *   `getStatistics`: Provides team-related statistics.
 
-## Tool Calls (8 calls, 41,541 tokens)
+The `TeamService` extends `ServiceClassInternal`, indicating it's a core server-side service. While the wiki results mentioned `apps/meteor/app/api/server/v1/teams.ts` as a REST API endpoint handler for team management, the specific symbol `teams` was not found within that file. However, it's highly probable that this file exposes the `TeamService` functionalities through a RESTful API.
 
-**Step 1:** `wiki({"question":"How does the Team feature work in Rocket.Chat?"})` → 854 tokens
-**Step 2:** `search({"query":"TeamService"})` → 93 tokens
-**Step 3:** `graph({"depth":2,"file":"service.ts","query":"TeamService","move":"expand"})` → 300 tokens
-**Step 4:** `details({"filename":"service.ts","symbolName":"TeamService"})` → 1670 tokens
-**Step 5:** `search({"query":"TeamMember"})` → 161 tokens
-**Step 6:** `details({"filename":"TeamMember.ts","symbolName":"TeamMember"})` → 55 tokens
-**Step 7:** `details({"filename":"ITeamMemberModel.ts","symbolName":"ITeamMemberModel"})` → 947 tokens
-**Step 8:** `search({"query":"ITeamMember"})` → 117 tokens
+In summary, the Team feature's core logic resides within the `TeamService` at `apps/meteor/server/services/team/service.ts`, which handles all aspects of team, room, and member management. This service is likely exposed to the client-side through a REST API, enabling users to interact with the Team feature.
 
-## Files Seen In Tool Results (19)
+## Tool Calls (8 calls, 64,767 tokens)
 
-- `apps/meteor/server/api/v1/teams.ts`
-- `apps/meteor/server/services/team/service.ts`
-- `packages/core-services/src/types/ITeamService.ts`
-- `packages/rest-typings/src/v1/omnichannel.ts`
-- `apps/meteor/server/services/startup.ts`
-- `packages/core-services/src/types/ServiceClass.ts`
-- `apps/meteor/app/livechat/server/roomAccessValidator.internalService.ts`
-- `apps/meteor/server/services/uikit-core-app/service.ts`
-- `apps/meteor/server/services/apps-engine/service.ts`
-- `apps/meteor/server/services/analytics/service.ts`
-- `apps/meteor/server/services/ldap/service.ts`
-- `apps/meteor/server/services/image/service.ts`
-- `packages/core-services/src/index.ts`
-- `packages/models/src/index.ts`
-- `packages/rest-typings/src/v1/teams/ITeamMemberParams.ts`
-- `packages/models/src/models/TeamMember.ts`
-- `packages/model-typings/src/models/ITeamMemberModel.ts`
-- `apps/meteor/app/mentions/server/getMentionedTeamMembers.ts`
+**Step 1:** `wiki({"question":"How does the Team feature work in Rocket.Chat?"})` → 3831 tokens
+**Step 2:** `details({"symbolName":"TeamService","filename":"service.ts"})` → 1660 tokens
+**Step 3:** `details({"filename":"teams.ts","symbolName":"teams"})` → 72 tokens
+**Step 4:** `graph({"depth":2,"move":"down","file":"teams.ts"})` → 6 tokens
+**Step 5:** `graph({"query":"API.v1.addRoute","file":"teams.ts","move":"down","depth":2})` → 14 tokens
+**Step 6:** `details({"filename":"teams.ts"})` → 8 tokens
+**Step 7:** `search({"query":"TeamService","layer":"server"})` → 93 tokens
+**Step 8:** `graph({"file":"teams.ts","depth":1,"move":"expand"})` → 6 tokens
+
+## Files Seen In Tool Results (38)
+
+- `apps/meteor/server/features/EmailInbox/EmailInbox.ts`
+- `packages/core-typings/src/IEmailInbox.ts`
+- `packages/models/src/models/EmailInbox.ts`
+- `apps/meteor/server/features/EmailInbox/logger.ts`
+- `apps/meteor/app/livechat/server/lib/logger.ts`
+- `apps/meteor/ee/app/livechat-enterprise/server/lib/logger.ts`
+- `apps/meteor/app/livechat/server/lib/RoutingManager.ts`
+- `packages/omni-core/src/hooks/applyDepartmentRestrictions.ts`
+- `packages/omni-core/src/isDepartmentCreationAvailable.ts`
+- `ee/packages/omni-core-ee/src/isDepartmentCreationAvailable.ts`
+- `apps/meteor/ee/app/livechat-enterprise/server/lib/LivechatEnterprise.ts`
+- `apps/meteor/ee/app/livechat-enterprise/server/hooks/beforeNewRoom.ts`
+- `apps/meteor/ee/server/apps/communication/rest.ts`
+- `apps/meteor/app/message-star/server/starMessage.ts`
+- `apps/meteor/app/apps/server/bridges/api.ts`
+- `apps/meteor/app/api/server/api.ts`
+- `packages/apps-engine/src/client/AppsEngineUIClient.ts`
+- `apps/meteor/app/discussion/server/permissions.ts`
+- `apps/meteor/app/apps/server/bridges/messages.ts`
+- `apps/meteor/app/api/server/v1/teams.ts`
+- `apps/meteor/app/cloud/server/methods.ts`
+- `apps/meteor/client/views/teams/contextualBar/info/TeamsInfo.stories.tsx`
+- `apps/meteor/client/views/teams/contextualBar/channels/TeamsChannels.tsx`
 - `packages/core-typings/src/ITeam.ts`
+- `apps/meteor/app/apps/server/bridges/rooms.ts`
+- `apps/meteor/app/livechat/server/api/lib/inquiries.ts`
+- `apps/meteor/ee/app/livechat-enterprise/server/startup.ts`
+- `packages/apps-engine/src/server/managers/AppApiManager.ts`
+- `apps/meteor/client/views/directory/tabs/teams/TeamsTable/TeamsTable.tsx`
+- `apps/meteor/app/lib/server/functions/sendMessage.ts`
+- `apps/meteor/server/services/team/service.ts`
+- `packages/livechat/src/api.ts`
+- `apps/meteor/app/ui-utils/client/lib/LegacyRoomManager.ts`
+- `packages/core-services/src/types/ServiceClass.ts`
+- `packages/tools/src/stream.ts`
+- `packages/apps-engine/src/server/bridges/LivechatBridge.ts`
+- `apps/meteor/tests/end-to-end/api/teams.ts`
+- `packages/core-services/src/types/ITeamService.ts`

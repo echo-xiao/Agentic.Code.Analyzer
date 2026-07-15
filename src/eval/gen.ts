@@ -28,7 +28,7 @@ const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const PROJECT_ROOT = path.resolve(__dirname, '..', '..');
 
 // Workflow + answer-format prompt. Deliberately domain-free: codebase knowledge lives in the
-// index, the DeepWiki wiki tool, and tool navHints — not in prose (no constitution).
+// index, the self-generated architecture wiki tool, and tool navHints — not in prose (no constitution).
 export const SYSTEM_PROMPT = `You are answering questions about the Rocket.Chat codebase using code-navigation tools.
 
 Workflow: call plan(question) FIRST — it returns the strategy and the default graph move for this question type. Then search for the entry symbol, graph from the best seed, and details on at most 1-2 key symbols. Never answer from memory alone: your training data has outdated file paths; every path you cite must come from a tool result.
@@ -102,6 +102,43 @@ interface AnswerRecord {
 
 function extractToolResultText(result: any): string { return result?.content?.[0]?.text ?? ''; }
 
+// The free-tier Gemini API returns spurious transient errors (~10% of calls): 404 "model no longer
+// available", 401, 429, 5xx — the SAME request succeeds on retry. Without this, a single flaky call
+// anywhere in a case's multi-turn loop throws and marks the whole case ERROR (observed: 34/34 wiped
+// in one bad-token window). Retry does NOT touch determinism — a retried greedy call returns the
+// same result. Genuine auth death (persistent 401/403) still fails after the retries are exhausted.
+const RETRYABLE_STATUS = new Set([401, 404, 408, 409, 429, 500, 502, 503, 504]);
+function transientStatus(e: any): number | null {
+    if (typeof e?.status === 'number') return e.status;              // GoogleGenerativeAIFetchError.status
+    const m = /\[(\d{3})\s/.exec(String(e?.message ?? ''));          // fallback: parse "[404 Not Found]"
+    return m ? Number(m[1]) : null;
+}
+function isTransient(e: any): boolean {
+    const status = transientStatus(e);
+    if (status !== null) return RETRYABLE_STATUS.has(status);
+    // No HTTP status parsed — retry SDK fetch/network blips, but let real bugs (TypeError, etc.) fail fast.
+    return /GoogleGenerativeAI|fetch failed|network|ECONN|ETIMEDOUT|socket hang|timeout/i.test(String(e?.message ?? ''));
+}
+// Hard quota exhaustion (free-tier daily cap: ~20 req/day/model). Retrying within a run is futile —
+// the budget won't refill for hours — so fail FAST with a clear signal instead of burning ~31s of
+// backoff per case. This is a KEY/PLAN limit, not a code fault: a 34-case run needs ~136 requests.
+function isHardQuota(e: any): boolean {
+    return /RESOURCE_EXHAUSTED|exceeded your current quota|free_tier_requests/i.test(String(e?.message ?? ''));
+}
+async function sendWithRetry(chat: any, message: any, label: string): Promise<any> {
+    const MAX_RETRIES = 5;
+    for (let attempt = 0; ; attempt++) {
+        try {
+            return await chat.sendMessage(message);
+        } catch (e: any) {
+            if (isHardQuota(e) || attempt >= MAX_RETRIES || !isTransient(e)) throw e;
+            const delay = Math.min(1000 * 2 ** attempt, 16000);     // 1s,2s,4s,8s,16s
+            console.error(`[RETRY] ${label} attempt ${attempt + 1}/${MAX_RETRIES} after ${transientStatus(e) ?? 'network'} — waiting ${delay}ms`);
+            await new Promise(r => setTimeout(r, delay));
+        }
+    }
+}
+
 async function runMcpCase(model: any, tc: TestCase, oracle: boolean): Promise<AnswerRecord> {
     // Reset per-testcase control state (one process runs all cases).
     SESSION.intent = null;
@@ -113,7 +150,7 @@ async function runMcpCase(model: any, tc: TestCase, oracle: boolean): Promise<An
     let step = 0;
     const chat = model.startChat({ history: [] });
 
-    let response = await chat.sendMessage(tc.question);
+    let response = await sendWithRetry(chat, tc.question, `${tc.id}:initial`);
     if (response.response.usageMetadata) totalTokens += response.response.usageMetadata.totalTokenCount ?? 0;
 
     const MAX_TURNS = 12, MAX_TOOL_CALLS = 8;
@@ -124,7 +161,7 @@ async function runMcpCase(model: any, tc: TestCase, oracle: boolean): Promise<An
         const fnCalls = candidate.content?.parts?.filter((p: any) => p.functionCall) ?? [];
         if (fnCalls.length === 0) break;
         if (step >= MAX_TOOL_CALLS) {
-            response = await chat.sendMessage('You have used all available tool calls. Please provide your final answer now based on the information you have gathered.');
+            response = await sendWithRetry(chat, 'You have used all available tool calls. Please provide your final answer now based on the information you have gathered.', `${tc.id}:final`);
             if (response.response.usageMetadata) totalTokens += response.response.usageMetadata.totalTokenCount ?? 0;
             break;
         }
@@ -137,7 +174,7 @@ async function runMcpCase(model: any, tc: TestCase, oracle: boolean): Promise<An
             toolCalls.push({ step, tool: fc.name, args: fc.args ?? {}, responseTokensEst: Math.ceil(resultText.length / 4) });
             fnResponses.push({ functionResponse: { name: fc.name, response: { content: resultText } } } as any);
         }
-        response = await chat.sendMessage(fnResponses);
+        response = await sendWithRetry(chat, fnResponses, `${tc.id}:turn${turns + 1}`);
         if (response.response.usageMetadata) totalTokens += response.response.usageMetadata.totalTokenCount ?? 0;
         turns++;
     }
@@ -241,7 +278,7 @@ async function main() {
 }
 
 if (import.meta.url === pathToFileURL(process.argv[1] ?? '').href) {
-    // Force exit after main resolves — legacy guard (原 DeepWiki MCP 客户端的连接问题, 客户端已删仍保留无害)
+    // Force exit after main resolves — legacy guard (历史遗留: 原 MCP 客户端连接问题, 客户端已删仍保留无害)
     // otherwise prevent Node from exiting once all answers are saved.
     main().then(() => process.exit(0)).catch(e => { console.error('Fatal:', e); process.exit(2); });
 }

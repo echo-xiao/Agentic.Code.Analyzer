@@ -105,7 +105,7 @@ const CITATION_SYSTEM_PROMPT = `You are a technical writer generating one chapte
 ## Output Format
 - Use ## (h2) headers for each major section.
 - Do NOT include mermaid blocks (those are generated separately).
-- Write a SYNTHESIZED NARRATIVE (DeepWiki-style): explain how this subsystem actually works — trace the flow of one representative operation end-to-end across layers — rather than listing components. Prefer a how-it-works story over a file inventory.
+- Write a SYNTHESIZED NARRATIVE (how-it-works documentation style): explain how this subsystem actually works — trace the flow of one representative operation end-to-end across layers — rather than listing components. Prefer a how-it-works story over a file inventory.
 - Whenever you name a specific file or symbol in the narrative, immediately follow that claim with its \`Sources:\` line (see Citation Red-Lines). Grounding is NON-NEGOTIABLE even in narrative prose.
 - Target 400–800 words per chapter.`;
 

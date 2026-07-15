@@ -2,59 +2,105 @@
 
 ## Plan
 
-intent: call-chain
+intent: architecture
 
 ## Gemini Answer
 
-Rocket.Chat renders messages from raw text to React components through a two-step process: parsing the raw text into an Abstract Syntax Tree (AST) and then rendering that AST into React components.
+The process of rendering a message from raw text to React components in Rocket.Chat involves the following steps:
 
-Here's the detailed flow:
+**Entry Point:**
 
-**Entry Point:** `useNormalizedMessage` hook
-*   **File:** `apps/meteor/client/components/message/hooks/useNormalizedMessage.ts`
-*   This hook is responsible for taking an `IMessage` object and initiating the processing of its text content.
+*   **`normalizeThreadMessage`** (apps/meteor/client/lib/normalizeThreadMessage.tsx): This function is responsible for taking a raw message object and preparing it for rendering.
 
-**Step 1: Parsing the Message Text to AST**
-*   `useNormalizedMessage` calls `parseMessageTextToAstMarkdown`.
-    *   **File:** `apps/meteor/client/components/message/lib/parseMessageTextToAstMarkdown.ts`
-    *   This function takes the raw message text and parsing options.
-    *   It then calls `textToMessageToken` to perform the actual parsing.
-        *   `textToMessageToken` utilizes the `@rocket.chat/message-parser` package (specifically, its `parse` function, likely from `packages/message-parser/lib/index.ts`) to convert the raw text into an AST.
-        *   The resulting AST is stored in the `md` property of the message object.
+**Flow:**
 
-**Step 2: Rendering the AST to React Components**
-*   The message object, now containing the AST in its `md` property, is passed to the `MessageContentBody` component.
-    *   **File:** `apps/meteor/client/components/message/MessageContentBody.tsx`
-    *   `MessageContentBody` is responsible for orchestrating the rendering of the message content.
-    *   It renders the `GazzodownText` component.
-        *   **File:** `apps/meteor/client/components/GazzodownText/GazzodownText.tsx`
-        *   `GazzodownText` acts as an intermediary, taking the AST and passing it to the `Markup` component.
-        *   The `Markup` component (from `@rocket.chat/gazzodown`, likely `packages/gazzodown/src/Markup.tsx` or similar, as indicated by the wiki) iterates through the AST tokens. For each token (e.g., paragraph, heading, list, mention, emoji), it renders the appropriate React component (e.g., `ParagraphBlock`, `HeadingBlock`, `BigEmojiBlock`, `PreviewUserMentionElement`).
+1.  **Filtering Markdown:**
+    *   Inside `normalizeThreadMessage`, the raw message text (`message.msg`) is first processed by `filterMarkdown`.
+    *   **`filterMarkdown`** (apps/meteor/app/markdown/lib/markdown.js) is a utility that delegates to `Markdown.filterMarkdownFromMessage(message)`.
+    *   **`Markdown`** (apps/meteor/app/markdown/lib/markdown.js) is an instance of `MarkdownClass`. This suggests that `MarkdownClass` contains the core logic for filtering and processing markdown.
 
-**Chain of Events:**
-`useNormalizedMessage` (apps/meteor/client/components/message/hooks/useNormalizedMessage.ts)
-  → `parseMessageTextToAstMarkdown` (apps/meteor/client/components/message/lib/parseMessageTextToAstMarkdown.ts)
-    → `textToMessageToken` (apps/meteor/client/components/message/lib/parseMessageTextToAstMarkdown.ts)
-      → `parse` (packages/message-parser/lib/index.ts - inferred from wiki and graph)
-        → AST generated and attached to message.md
-  → `MessageContentBody` (apps/meteor/client/components/message/MessageContentBody.tsx)
-    → `GazzodownText` (apps/meteor/client/components/GazzodownText/GazzodownText.tsx)
-      → `Markup` (packages/gazzodown/src/Markup.tsx - inferred from wiki and graph)
-        → Renders React components based on AST tokens.
+2.  **Parsing Markdown:**
+    *   After filtering, `normalizeThreadMessage` uses `parse(message.msg, { emoticons: true })` to convert the markdown string into a structured array of tokens. This `parse` function is likely part of the `gazzodown` package, which is Rocket.Chat's markdown parser.
 
-## Tool Calls (6 calls, 33,623 tokens)
+3.  **Rendering to React Components:**
+    *   The parsed tokens are then passed to the **`Markup`** component (packages/gazzodown/src/Markup.tsx).
+    *   The `Markup` component, wrapped within a `<GazzodownText>` component, takes these tokens and recursively renders them into a hierarchy of React components.
+    *   The `Markup` component utilizes various sub-components to render different types of markdown elements:
+        *   **`ParagraphBlock`** (packages/gazzodown/src/blocks/ParagraphBlock.tsx): Renders paragraph-level content.
+        *   **`InlineElements`** (packages/gazzodown/src/elements/InlineElements.tsx): Handles inline elements within a paragraph, such as:
+            *   `PlainSpan` (packages/gazzodown/src/elements/PlainSpan.tsx) for plain text.
+            *   `ItalicSpan` (packages/gazzodown/src/elements/ItalicSpan.tsx) for italicized text.
+            *   `BoldSpan` (packages/gazzodown/src/elements/BoldSpan.tsx) for bold text.
+            *   `StrikeSpan` (packages/gazzodown/src/elements/StrikeSpan.tsx) for strikethrough text.
+            *   `EmojiElement` (packages/gazzodown/src/elements/EmojiElement.tsx) for emojis.
+            *   `KatexErrorBoundary` (packages/gazzodown/src/katex/KatexErrorBoundary.tsx) for rendering mathematical expressions using KaTeX, with error handling.
+        *   **`SpoilerBlock`** (packages/gazzodown/src/blocks/SpoilerBlock.tsx): Renders spoiler content.
+        *   **`HeadingBlock`** (packages/gazzodown/src/blocks/HeadingBlock.tsx): Renders headings.
 
-**Step 1:** `plan({"intent":"call-chain","question":"How is a message rendered from raw text to React components in Rocket.Chat?"})` → 1075 tokens
-**Step 2:** `search({"query":"useNormalizedMessage","layer":"client"})` → 78 tokens
-**Step 3:** `graph({"file":"useNormalizedMessage.ts","query":"useNormalizedMessage","move":"down","depth":5})` → 2687 tokens
-**Step 4:** `details({"filename":"parseMessageTextToAstMarkdown.ts","symbolName":"parseMessageTextToAstMarkdown"})` → 429 tokens
-**Step 5:** `search({"layer":"client","query":"MessageContentBody"})` → 75 tokens
-**Step 6:** `graph({"depth":3,"move":"down","query":"MessageContentBody","file":"MessageContentBody.tsx"})` → 1426 tokens
+**Core Files:**
 
-## Files Seen In Tool Results (5)
+*   **apps/meteor/client/lib/normalizeThreadMessage.tsx**: The initial entry point for message normalization and rendering.
+*   **apps/meteor/app/markdown/lib/markdown.js**: Contains the `filterMarkdown` utility and the `MarkdownClass` for markdown processing.
+*   **packages/gazzodown/src/Markup.tsx**: The main React component responsible for rendering parsed markdown tokens into React elements.
+*   **packages/gazzodown/src/blocks/ParagraphBlock.tsx**: Renders paragraph blocks.
+*   **packages/gazzodown/src/elements/InlineElements.tsx**: Orchestrates the rendering of various inline markdown elements.
+*   **packages/gazzodown/src/katex/KatexErrorBoundary.tsx**: Handles rendering of KaTeX expressions.
 
-- `apps/meteor/client/components/message/hooks/useNormalizedMessage.ts`
-- `apps/meteor/client/components/message/MessageContentBody.tsx`
-- `apps/meteor/client/components/message/variants/room/RoomMessageContent.tsx`
-- `apps/meteor/client/components/MarkdownText.tsx`
-- `apps/meteor/client/lib/parseMessageTextToAstMarkdown.ts`
+## Tool Calls (8 calls, 49,433 tokens)
+
+**Step 1:** `plan({"question":"How is a message rendered from raw text to React components in Rocket.Chat?","intent":"architecture"})` → 3352 tokens
+**Step 2:** `search({"query":"gazzodown"})` → 379 tokens
+**Step 3:** `graph({"move":"down","file":"Markup.tsx","query":"Markup","depth":3})` → 706 tokens
+**Step 4:** `details({"filename":"normalizeThreadMessage.tsx","symbolName":"normalizeThreadMessage"})` → 232 tokens
+**Step 5:** `search({"layer":"packages","query":"parse markdown"})` → 26 tokens
+**Step 6:** `search({"query":"filterMarkdown"})` → 68 tokens
+**Step 7:** `details({"filename":"markdown.js","symbolName":"filterMarkdown"})` → 71 tokens
+**Step 8:** `details({"filename":"markdown.js","symbolName":"Markdown"})` → 51 tokens
+
+## Files Seen In Tool Results (45)
+
+- `apps/meteor/client/views/room/providers/DateListProvider.tsx`
+- `apps/meteor/client/views/room/MessageList/lib/isMessageNewDay.ts`
+- `apps/meteor/client/views/room/index.ts`
+- `apps/meteor/client/views/room/MessageList/providers/MessageListProvider.tsx`
+- `apps/meteor/client/views/room/MessageList/MessageListErrorBoundary.tsx`
+- `apps/meteor/app/apps/server/converters/messages.js`
+- `packages/livechat/src/routes/TriggerMessage/component.tsx`
+- `apps/meteor/app/apps/server/bridges/messages.ts`
+- `apps/meteor/client/views/room/MessageList/MessageListItem.tsx`
+- `apps/meteor/client/components/message/variants/RoomMessage.tsx`
+- `packages/livechat/src/components/Composer/index.tsx`
+- `ee/packages/pdf-worker/src/templates/ChatTranscript/components/MessageList.tsx`
+- `apps/meteor/client/views/room/contextualBar/Threads/components/ThreadMessageItem.tsx`
+- `packages/livechat/src/components/Messages/Message/index.js`
+- `packages/apps-engine/src/server/accessors/MessageRead.ts`
+- `ee/packages/pdf-worker/src/templates/ChatTranscript/components/Message.tsx`
+- `packages/models/src/models/Messages.ts`
+- `packages/gazzodown/src/elements/PreviewInlineElements.tsx`
+- `apps/meteor/client/lib/normalizeThreadMessage.tsx`
+- `apps/meteor/client/lib/userData.ts`
+- `packages/models/src/models/MessageReads.ts`
+- `packages/models/src/models/BaseRaw.ts`
+- `apps/meteor/app/ui/client/lib/ChatMessages.ts`
+- `packages/livechat/src/components/uiKit/message/PlainText/index.tsx`
+- `ee/packages/pdf-worker/src/templates/ChatTranscript/markup/elements/StrikeSpan.tsx`
+- `packages/gazzodown/src/blocks/QuoteBlock.tsx`
+- `apps/meteor/app/ui-message/client/ActionManager.ts`
+- `apps/meteor/client/views/room/contextualBar/Threads/components/ThreadMessageList.tsx`
+- `ee/packages/federation-matrix/src/helpers/message.parsers.ts`
+- `packages/gazzodown/jest.config.ts`
+- `packages/gazzodown/src/index.ts`
+- `packages/gazzodown/src/PreviewMarkup.tsx`
+- `packages/gazzodown/src/MarkupInteractionContext.ts`
+- `packages/gazzodown/src/Markup.stories.tsx`
+- `packages/gazzodown/src/Markup.tsx`
+- `packages/gazzodown/src/mentions/UserMentionElement.tsx`
+- `packages/gazzodown/src/mentions/PreviewUserMentionElement.tsx`
+- `packages/gazzodown/src/mentions/PreviewChannelMentionElement.tsx`
+- `packages/gazzodown/src/mentions/ChannelMentionElement.tsx`
+- `packages/gazzodown/src/katex/PreviewKatexElement.tsx`
+- `packages/gazzodown/src/katex/PreviewKatexBlock.tsx`
+- `packages/gazzodown/src/katex/KatexErrorBoundary.tsx`
+- `packages/gazzodown/src/katex/KatexElement.tsx`
+- `packages/gazzodown/src/katex/KatexBlock.tsx`
+- `apps/meteor/app/markdown/lib/markdown.js`

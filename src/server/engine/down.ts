@@ -7,20 +7,51 @@ import { edgeLabel, filterByLayer, isTestFile, pickRootFile, relPath, resolveEdg
 
 export interface DownOpts { depth: number; layer?: string; edgeTypes?: string[]; file?: string; }
 
-export function graphDown(query: string, opts: DownOpts): string {
-    const { depth: maxDepth, layer, edgeTypes, file: preferredFile } = opts;
-    const edgeAllowed = resolveEdgeFilter(edgeTypes);
+export type Callee = { callee: string; edgeType: EdgeType };
 
-    // Reverse the caller→callee index once per call: callGraph stores "who references X".
-    const calleesOf = new Map<string, Array<{ callee: string; edgeType: EdgeType }>>();
+// Ranking helpers — hoisted + exported so a diagnostic can compute the EXACT rank the engine uses
+// (never reproduce this ranking in a side script; call rankCallees).
+const centralityOf = (sym: string): number => {
+    const cp = GLOBAL_INDEX.symbols.get(sym);
+    if (!cp) return 0;
+    return Math.max(0, ...Array.from(cp).map(p => GLOBAL_INDEX.fileDependents.get(p)?.size ?? 0));
+};
+const isTestSym = (sym: string): boolean => {
+    const cp = GLOBAL_INDEX.symbols.get(sym);
+    return cp ? Array.from(cp).every(p => isTestFile(p)) : false;
+};
+const isRealSym = (sym: string): boolean => GLOBAL_INDEX.symbols.has(sym);   // RC symbol vs built-in/external
+const effCent = (sym: string): number => { const c = centralityOf(sym); return c > 40 ? 0 : c; };
+
+// Build the caller→callee index once (same as graphDown uses internally).
+export function buildCalleesOf(edgeTypes?: string[]): Map<string, Callee[]> {
+    const edgeAllowed = resolveEdgeFilter(edgeTypes);
+    const calleesOf = new Map<string, Callee[]>();
     for (const [callee, callersList] of GLOBAL_INDEX.callGraph.entries()) {
-        for (const { caller, edgeType } of callersList) {
+        for (const { caller, edgeType } of callersList as Array<{ caller: string; edgeType: string }>) {
             if (!edgeAllowed(edgeType as EdgeType)) continue;
             if (!calleesOf.has(caller)) calleesOf.set(caller, []);
             const arr = calleesOf.get(caller)!;
             if (!arr.some(x => x.callee === callee)) arr.push({ callee, edgeType: edgeType as EdgeType });
         }
     }
+    return calleesOf;
+}
+
+// Rank a symbol's callees exactly the way graphDown does before it truncates to the shown top-6:
+// test last · type-refs last · real RC symbols before built-ins · then effective-centrality DESC
+// (extreme glue, fan-in>40, flattened to 0 and demoted; the chain-SPECIFIC low-fan-in step ranks above it).
+export function rankCallees(entries: Callee[]): Callee[] {
+    return [...entries].sort((a, b) =>
+        (isTestSym(a.callee) ? 1 : 0) - (isTestSym(b.callee) ? 1 : 0) ||
+        (a.edgeType === 'type' ? 1 : 0) - (b.edgeType === 'type' ? 1 : 0) ||
+        (isRealSym(b.callee) ? 1 : 0) - (isRealSym(a.callee) ? 1 : 0) ||
+        effCent(b.callee) - effCent(a.callee));
+}
+
+export function graphDown(query: string, opts: DownOpts): string {
+    const { depth: maxDepth, layer, edgeTypes, file: preferredFile } = opts;
+    const calleesOf = buildCalleesOf(edgeTypes);
 
     const symbolFiles = GLOBAL_INDEX.symbols.get(query);
     if (!symbolFiles || symbolFiles.size === 0) {
@@ -46,32 +77,9 @@ export function graphDown(query: string, opts: DownOpts): string {
             })
             : entries;
 
-        // Rank children by relevance before truncating. For a call CHAIN the meaningful callee is the
-        // chain-SPECIFIC function, NOT the most-reused utility — so demote, in order: (a) test symbols,
-        // (b) `type` references (they are type deps, not call-chain steps), (c) high-fan-in generic glue
-        // (Date/findOneById/model accessors called everywhere) via a hub penalty. Ranking by centrality
-        // DESC (the old behavior) surfaced exactly this glue and buried the real next step
-        // (e.g. executeSendMessage→canSendMessageAsync was pushed out of the shown top-6). Lower fan-in
-        // ⇒ more specific ⇒ ranked first.
-        const centralityOf = (sym: string): number => {
-            const cp = GLOBAL_INDEX.symbols.get(sym);
-            if (!cp) return 0;
-            return Math.max(0, ...Array.from(cp).map(p => GLOBAL_INDEX.fileDependents.get(p)?.size ?? 0));
-        };
-        const isTestSym = (sym: string): boolean => {
-            const cp = GLOBAL_INDEX.symbols.get(sym);
-            return cp ? Array.from(cp).every(p => isTestFile(p)) : false;
-        };
-        const isRealSym = (sym: string): boolean => GLOBAL_INDEX.symbols.has(sym);   // RC symbol vs built-in/external
-        // Effective centrality: cap it so only EXTREME glue (findOneById/model accessors, fan-in ≫40)
-        // is flattened to 0 and demoted; ordinary chain callees keep their (moderate) centrality so a
-        // meaningful step (sendMessage, canSendMessageAsync) ranks above an obscure fan-in-1 collision.
-        const effCent = (sym: string): number => { const c = centralityOf(sym); return c > 40 ? 0 : c; };
-        const ranked = [...filtered].sort((a, b) =>
-            (isTestSym(a.callee) ? 1 : 0) - (isTestSym(b.callee) ? 1 : 0) ||          // test last
-            (a.edgeType === 'type' ? 1 : 0) - (b.edgeType === 'type' ? 1 : 0) ||      // type refs last
-            (isRealSym(b.callee) ? 1 : 0) - (isRealSym(a.callee) ? 1 : 0) ||          // real RC symbols before built-ins (Date/Boolean/…)
-            effCent(b.callee) - effCent(a.callee));                                    // among real: moderate-centrality chain steps first, extreme glue demoted
+        // Rank children exactly as rankCallees (extracted to module scope so a diagnostic reproduces the
+        // EXACT engine ranking): test last · type-refs last · real before built-ins · effective-centrality DESC.
+        const ranked = rankCallees(filtered);
         const shown = ranked.slice(0, 6);
         for (const { callee, edgeType } of shown) {
             const key = `${sym}→${callee}`;

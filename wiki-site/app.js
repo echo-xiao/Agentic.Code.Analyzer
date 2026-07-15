@@ -1,26 +1,53 @@
-// 只读渲染层:读 /data/wiki-map.json + /data/wiki-prose.json,渲成 DeepWiki 式页面。不改数据管线。
+// 只读渲染层:读 /data/wiki-map.json + /data/wiki-prose.json,渲成文档式页面。不改数据管线。
+// B 结构(读者问题驱动):左栏 = wikiMap.nav 轴带编号树(section→subsection→page,N/N.M/N.M.K),
+// 每页独立路由。点叶子只渲该页,右侧 On this page = 该页各节(h2/h3)。旧数据无 nav 时回退 category 分组。
 (() => {
   const $ = (id) => document.getElementById(id);
   const escapeHtml = (s) => String(s).replace(/[&<>"]/g, (c) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c]));
   const slug = (s) => String(s).toLowerCase().replace(/[^a-z0-9一-龥]+/g, '-').replace(/^-|-$/g, '') || 'sec';
 
   const I18N = {
-    en: { filter: 'Search…', toggle: '中文', select: 'Select a page from the left.', srcfiles: 'Relevant source files', onpage: 'On this page', empty: '(no prose yet)' },
-    zh: { filter: '搜索…', toggle: 'EN', select: '从左侧选择一页。', srcfiles: '相关源文件', onpage: '本页目录', empty: '(暂无正文)' },
+    en: { filter: 'Search…', toggle: '中文', select: 'Select a page from the left.', srcfiles: 'Relevant source files', onpage: 'On this page', empty: '(no prose yet)', files: 'source files' },
+    zh: { filter: '搜索…', toggle: 'EN', select: '从左侧选择一页。', srcfiles: '相关源文件', onpage: '本页目录', empty: '(暂无正文)', files: '相关文件' },
   };
   let lang = localStorage.getItem('wiki-lang') || 'en';
   const t = (k) => I18N[lang][k];
-  let wikiMap = null, wikiProse = null, current = null;
 
-  // 4 System Architecture pages get the rich meta-chapter (summary + narrative). Map id → file.
-  const META_FILE = {
-    'monorepo-structure': 'monorepo',
-    'core-application': 'core-application',
-    'microservices-architecture': 'microservices',
-    'data-flow': 'data-flow',
-  };
-  let metaById = {};
+  let wikiMap = null, wikiProse = null;
+  let pageById = new Map();      // id → WikiPage
+  let numbers = new Map();       // nav 节点 id → "N"/"N.M"/"N.M.K"
+  let currentId = null;          // 当前页 id
+  const collapsed = new Set();   // 折叠的 section id
 
+  // ── nav 编号(与 src/wiki/nav.ts 同逻辑)──────────────────────────────────────
+  const BAND = ['overview', 'architecture', 'feature', 'operations', 'reference'];
+  const bandRank = (n) => { const i = n.axis ? BAND.indexOf(n.axis) : -1; return i < 0 ? BAND.length : i; };
+  const bandSort = (nodes) => nodes.map((n, i) => ({ n, i })).sort((a, b) => bandRank(a.n) - bandRank(b.n) || a.i - b.i).map((x) => x.n);
+  function assignNumbers(nav) {
+    const out = new Map();
+    const walk = (nodes, prefix) => {
+      (prefix === '' ? bandSort(nodes) : nodes).forEach((node, idx) => {
+        const num = prefix === '' ? `${idx + 1}` : `${prefix}.${idx + 1}`;
+        out.set(node.id, num);
+        if (node.children && node.children.length) walk(node.children, num);
+      });
+    };
+    walk(nav, '');
+    return out;
+  }
+  // 回退:无 nav 时按 category 分组(== 旧行为)
+  function navFromCategories() {
+    const order = [], byCat = new Map();
+    for (const p of (wikiMap.pages || [])) {
+      const cat = p.category || 'Pages';
+      if (!byCat.has(cat)) { byCat.set(cat, []); order.push(cat); }
+      byCat.get(cat).push({ kind: 'page', id: p.id, title: p.title });
+    }
+    return order.map((cat) => ({ kind: 'section', id: 'cat-' + slug(cat), title: cat, children: byCat.get(cat) }));
+  }
+  const getNav = () => (wikiMap.nav && wikiMap.nav.length) ? wikiMap.nav : navFromCategories();
+
+  // ── 图 / 引用 / 文本(沿用)──────────────────────────────────────────────────
   function diagramToMermaid(d) {
     const nodes = d.nodes || {}, lines = ['flowchart TD'], seen = new Set();
     const emit = (id) => { if (seen.has(id)) return; seen.add(id); lines.push(`  ${id}["${String(nodes[id] ?? id).replace(/"/g, "'")}"]`); };
@@ -39,14 +66,11 @@
       catch { host.innerHTML = `<pre>${escapeHtml(diagramToMermaid(d))}</pre>`; }
     }
   }
-
-  // 引用药丸 [icon] path [17-23]
   const citeChip = (ref) => {
     const m = ref.match(/^(.+?):L?(\d+)(?:-L?(\d+))?$/);
     if (!m) return `<span class="cite"><span class="path">${escapeHtml(ref)}</span></span>`;
     const ln = m[3] ? `${m[2]}-${m[3]}` : m[2];
     const inner = `<span class="gh">◆</span><span class="path">${escapeHtml(m[1])}</span><span class="ln">${ln}</span>`;
-    // 链到被索引的那个 commit 的源码行(data-driven;缺 repo 信息则退化成纯药丸)
     if (wikiMap && wikiMap.repo_url && wikiMap.repo_sha) {
       const anchor = m[3] ? `#L${m[2]}-L${m[3]}` : `#L${m[2]}`;
       const href = `${wikiMap.repo_url}/blob/${wikiMap.repo_sha}/${m[1]}${anchor}`;
@@ -60,7 +84,7 @@
     for (const line of String(text).split('\n')) {
       if (/^\s*Sources:/i.test(line)) {
         flush();
-        const refs = line.replace(/^\s*Sources:\s*/i, '').split(/[,;]/).map(s => s.trim()).filter(Boolean);
+        const refs = line.replace(/^\s*Sources:\s*/i, '').split(/[,;]/).map((s) => s.trim()).filter(Boolean);
         out.push(`<div class="sources-line"><span class="lbl">Sources</span>${refs.map(citeChip).join(' ')}</div>`);
       } else buf.push(line);
     }
@@ -68,85 +92,108 @@
     return out.join('\n');
   }
 
-  // Prose-first render for the 4 System Architecture meta chapters:
-  // scope → Purpose and Scope (summary) → source files → [h2 + narrative + table] → diagrams last.
-  function renderMetaChapter(mp, prose, anchorLabel) {
-    current = mp.page;
-    document.querySelectorAll('#nav-list li').forEach((li) => li.classList.toggle('active', li.dataset.page === mp.page));
+  // ── 索引 ─────────────────────────────────────────────────────────────────────
+  function buildIndex() {
+    pageById = new Map();
+    for (const p of (wikiMap.pages || [])) pageById.set(p.id, p);
+    numbers = assignNumbers(getNav());
+  }
+  function firstPageId() {
+    let found = null;
+    const walk = (nodes) => { for (const n of bandSort(nodes)) { if (found) return; if (n.kind === 'page') { found = n.id; return; } if (n.children) walk(n.children); } };
+    walk(getNav());
+    return found;
+  }
+  // 展开某页的所有祖先 section
+  function expandAncestors(id) {
+    const path = [];
+    const dfs = (nodes, trail) => {
+      for (const n of nodes) {
+        if (n.kind === 'page') { if (n.id === id) { path.push(...trail); return true; } }
+        else if (n.children && dfs(n.children, [...trail, n.id])) return true;
+      }
+      return false;
+    };
+    dfs(getNav(), []);
+    for (const sid of path) collapsed.delete(sid);
+  }
+
+  // ── 左栏:轴带编号树(flat <li> + padding 缩进)────────────────────────────────
+  function buildNav() {
+    const list = $('nav-list'); list.innerHTML = '';
+    const render = (nodes, depth) => {
+      for (const node of (depth === 0 ? bandSort(nodes) : nodes)) {
+        const li = document.createElement('li');
+        const num = numbers.get(node.id) || '';
+        li.style.paddingLeft = (10 + depth * 14) + 'px';
+        if (node.kind === 'page') {
+          li.className = 'page' + (node.id === currentId ? ' active' : '');
+          li.innerHTML = `<span class="cx"></span><span class="num">${num}</span>${escapeHtml(node.title)}`;
+          li.onclick = () => navigate(node.id);
+          list.appendChild(li);
+        } else {
+          const hasKids = node.children && node.children.length;
+          const isColl = collapsed.has(node.id);
+          li.className = 'top clickable';
+          li.innerHTML = `<span class="cx">${hasKids ? (isColl ? '▸' : '▾') : ''}</span><span class="num">${num}</span>${escapeHtml(node.title)}`;
+          li.onclick = () => { if (collapsed.has(node.id)) collapsed.delete(node.id); else collapsed.add(node.id); buildNav(); };
+          list.appendChild(li);
+          if (hasKids && !isColl) render(node.children, depth + 1);
+        }
+      }
+    };
+    render(getNav(), 0);
+    applyFilter();
+  }
+
+  // ── 渲单页 ───────────────────────────────────────────────────────────────────
+  function renderPage(p) {
     const c = $('content-inner'); c.innerHTML = '';
+    const h = document.createElement('h1'); h.className = 'chapter-title'; h.textContent = p.title; c.appendChild(h);
+    const nFiles = Object.keys(p.source_files || {}).length;
+    const sub = document.createElement('div'); sub.className = 'chapter-sub';
+    sub.textContent = `${numbers.get(p.id) || ''} · ${p.category} · ${nFiles} ${t('files')}`; c.appendChild(sub);
 
-    const h = document.createElement('h1'); h.className = 'chapter-title'; h.textContent = mp.title || mp.page; c.appendChild(h);
-    if (mp.scope) { const sub = document.createElement('div'); sub.className = 'chapter-sub'; sub.textContent = mp.scope; c.appendChild(sub); }
-
-    if (mp.summary) {
-      const hh = document.createElement('h2'); hh.textContent = 'Purpose and Scope'; c.appendChild(hh);
-      const div = document.createElement('div'); div.className = 'page-summary'; div.innerHTML = renderText(mp.summary); c.appendChild(div);
-    }
-
-    const srcFiles = Object.keys(mp.source_files || {});
+    const srcFiles = Object.keys(p.source_files || {});
     if (srcFiles.length) {
       const box = document.createElement('details'); box.className = 'srcbox';
-      const sum = document.createElement('summary'); sum.textContent = `${t('srcfiles')}`;
+      const s = document.createElement('summary'); s.textContent = t('srcfiles');
       const files = document.createElement('div'); files.className = 'files';
-      files.innerHTML = srcFiles.slice(0, 80).map((f) => `<span class="f">${escapeHtml(f)}</span>`).join('');
-      box.appendChild(sum); box.appendChild(files); c.appendChild(box);
+      files.innerHTML = srcFiles.slice(0, 60).map((f) => `<span class="f">${escapeHtml(f)}</span>`).join('');
+      box.appendChild(s); box.appendChild(files); c.appendChild(box);
     }
 
-    for (const sec of (prose || [])) {
-      if (sec.section && sec.section !== '(intro)' && sec.section !== 'Overview') {
-        const hh = document.createElement('h2'); hh.textContent = sec.section; c.appendChild(hh);
+    const sections = (wikiProse && wikiProse[p.page]) || [];
+    if (!sections.length) { const d = document.createElement('div'); d.className = 'placeholder'; d.textContent = t('empty'); c.appendChild(d); }
+    for (const sec of sections) {
+      const name = sec.section;
+      if (name && name !== '(intro)' && name !== 'Overview' && name !== p.title) {
+        const h2 = document.createElement('h2'); h2.textContent = name; c.appendChild(h2);
       }
       if (sec.narrative) { const nd = document.createElement('div'); nd.className = 'section-narrative'; nd.innerHTML = renderText(sec.narrative); c.appendChild(nd); }
       const div = document.createElement('div'); div.innerHTML = renderText(sec.text || ''); c.appendChild(div);
     }
-
-    renderDiagrams(c, mp.diagrams);   // visual evidence, after the prose
+    renderDiagrams(c, p.diagrams);
 
     const toc = [];
     c.querySelectorAll('h2, h3').forEach((el) => { const id = slug(el.textContent) + '-' + toc.length; el.id = id; toc.push({ id, label: el.textContent, lvl: el.tagName }); });
-    buildToc(toc, mp.title || mp.page);
-    if (anchorLabel) { requestAnimationFrame(() => scrollToHeading(anchorLabel)); } else { $('content').scrollTop = 0; }
-    location.hash = encodeURIComponent(mp.id || mp.page);
+    buildToc(toc, p.title);
   }
 
-  function renderChapter(page, anchorLabel) {
-    const meta = metaById[page.id];
-    if (meta) return renderMetaChapter(meta.page, meta.prose, anchorLabel);
-    current = page.page;
-    document.querySelectorAll('#nav-list li').forEach((li) => li.classList.toggle('active', li.dataset.page === page.page));
-    const c = $('content-inner'); c.innerHTML = '';
-    const h = document.createElement('h1'); h.className = 'chapter-title'; h.textContent = page.title || page.page; c.appendChild(h);
-    if (page.scope) { const sub = document.createElement('div'); sub.className = 'chapter-sub'; sub.textContent = page.scope; c.appendChild(sub); }
-
-    const srcFiles = Object.keys(page.source_files || {});
-    if (srcFiles.length) {
-      const box = document.createElement('details'); box.className = 'srcbox';   // 默认折叠(对齐 DeepWiki)
-      const sum = document.createElement('summary'); sum.textContent = `${t('srcfiles')}`;
-      const files = document.createElement('div'); files.className = 'files';
-      files.innerHTML = srcFiles.slice(0, 80).map((f) => `<span class="f">${escapeHtml(f)}</span>`).join('');
-      box.appendChild(sum); box.appendChild(files); c.appendChild(box);
-    }
-    renderDiagrams(c, page.diagrams);
-
-    const sections = (wikiProse && wikiProse[page.page]) || [];
-    if (!sections.length) { const p = document.createElement('p'); p.style.color = '#8a8a86'; p.textContent = t('empty'); c.appendChild(p); }
-    for (const sec of sections) {
-      if (sec.section && sec.section !== '(intro)' && sec.section !== 'Overview') {
-        const hh = document.createElement('h2'); hh.textContent = sec.section; c.appendChild(hh);
-      }
-      const div = document.createElement('div'); div.innerHTML = renderText(sec.text || ''); c.appendChild(div);
-    }
-    // TOC = 扫渲染后的 h2/h3
-    const toc = [];
-    c.querySelectorAll('h2, h3').forEach((el) => { const id = slug(el.textContent) + '-' + toc.length; el.id = id; toc.push({ id, label: el.textContent, lvl: el.tagName }); });
-    buildToc(toc, page.title || page.page);
-    if (anchorLabel) { requestAnimationFrame(() => scrollToHeading(anchorLabel)); } else { $('content').scrollTop = 0; }
-    location.hash = encodeURIComponent(page.id || page.page);
+  function navigate(id) {
+    const p = pageById.get(id); if (!p) return;
+    currentId = id;
+    expandAncestors(id);
+    renderPage(p);
+    buildNav();
+    location.hash = encodeURIComponent(id);
+    $('content').scrollTop = 0;
   }
 
+  // ── 右栏 On this page ────────────────────────────────────────────────────────
   function buildToc(items, pageTitle) {
     const list = $('toc-list'); list.innerHTML = ''; $('toc-title').textContent = t('onpage');
-    if (pageTitle) {                                     // 顶部页标题(粗,点击回顶) —— 对齐 DeepWiki
+    if (pageTitle) {
       const li = document.createElement('li'); li.className = 'page-title'; li.textContent = pageTitle;
       li.onclick = () => $('content').scrollTo({ top: 0, behavior: 'smooth' });
       list.appendChild(li);
@@ -156,11 +203,9 @@
       li.onclick = () => document.getElementById(it.id)?.scrollIntoView({ behavior: 'smooth', block: 'start' });
       list.appendChild(li);
     }
-    $('toc').style.visibility = 'visible';
+    $('toc').style.visibility = items.length ? 'visible' : 'hidden';
     setupScrollSpy();
   }
-
-  // 右侧 On this page 随滚动高亮当前小节(scrollspy) —— 对齐 DeepWiki
   let spyObserver = null;
   function setupScrollSpy() {
     if (spyObserver) spyObserver.disconnect();
@@ -170,46 +215,22 @@
     const visible = new Set();
     spyObserver = new IntersectionObserver((entries) => {
       for (const e of entries) { if (e.isIntersecting) visible.add(e.target.id); else visible.delete(e.target.id); }
-      let current = null;
-      for (const h of heads) if (visible.has(h.id)) { current = h.id; break; }
-      if (!current) { for (const h of heads) { if (h.getBoundingClientRect().top < 120) current = h.id; else break; } }
-      for (const li of lis) li.classList.toggle('active', li.dataset.target === current);
+      let cur = null;
+      for (const hh of heads) if (visible.has(hh.id)) { cur = hh.id; break; }
+      if (!cur) { for (const hh of heads) { if (hh.getBoundingClientRect().top < 120) cur = hh.id; else break; } }
+      for (const li of lis) li.classList.toggle('active', li.dataset.target === cur);
     }, { root: $('content'), rootMargin: '-74px 0px -68% 0px', threshold: 0 });
-    heads.forEach(h => spyObserver.observe(h));
+    heads.forEach((hh) => spyObserver.observe(hh));
   }
 
-  const META_GROUPS = new Set(['System Architecture']);   // 渲成分组标题 + 缩进页
-  function navPageItem(p, cls) {
-    const li = document.createElement('li'); li.className = cls; li.dataset.page = p.page;
-    li.textContent = p.title || p.page; li.onclick = () => renderChapter(p);
-    $('nav-list').appendChild(li);
+  // ── UI ───────────────────────────────────────────────────────────────────────
+  let searchQ = '';
+  function applyFilter() {
+    document.querySelectorAll('#nav-list li').forEach((li) => li.classList.toggle('hidden', !!searchQ && !li.textContent.toLowerCase().includes(searchQ)));
   }
-  function navAnchors(p) {                                // 子系统 → 缩进锚点(点击滚到该 h2)
-    for (const label of (p.navSections || [])) {
-      const li = document.createElement('li'); li.className = 'subanchor'; li.textContent = label;
-      li.onclick = () => { if (current !== p.page) { renderChapter(p, label); } else scrollToHeading(label); };
-      $('nav-list').appendChild(li);
-    }
-  }
-  function buildNav() {
-    const list = $('nav-list'); list.innerHTML = '';
-    const pages = wikiMap.pages || [];
-    // 保序按 category 分连续段(pages 已按 taxonomy 排)
-    const groups = [];
-    for (const p of pages) { const cat = p.category || 'Pages'; const last = groups[groups.length - 1]; if (last && last.cat === cat) last.pages.push(p); else groups.push({ cat, pages: [p] }); }
-    for (const { cat, pages: ps } of groups) {            // 全部类 2 级:大类标题(粗、不可点)+ 缩进子页(可点)
-      const head = document.createElement('li'); head.className = 'top'; head.textContent = cat; list.appendChild(head);
-      for (const p of ps) navPageItem(p, 'page');
-    }
-  }
-  function scrollToHeading(label) {
-    const els = $('content-inner').querySelectorAll('h2');
-    for (const el of els) if (el.textContent === label) { el.scrollIntoView({ behavior: 'smooth', block: 'start' }); return; }
-  }
-
   function applyLang() {
     $('search').placeholder = t('filter'); $('lang-toggle').textContent = t('toggle'); $('toc-title').textContent = t('onpage');
-    if (!current && $('placeholder')) $('placeholder').textContent = t('select');
+    if (!currentId && $('placeholder')) $('placeholder').textContent = t('select');
     document.documentElement.lang = lang === 'zh' ? 'zh' : 'en';
   }
   function applyTheme() {
@@ -218,9 +239,17 @@
     if ($('theme-toggle')) $('theme-toggle').textContent = dark ? '☀️' : '🌙';
   }
   function wireUI() {
-    $('lang-toggle').onclick = () => { lang = lang === 'en' ? 'zh' : 'en'; localStorage.setItem('wiki-lang', lang); applyLang(); };
+    $('lang-toggle').onclick = () => { lang = lang === 'en' ? 'zh' : 'en'; localStorage.setItem('wiki-lang', lang); applyLang(); if (currentId) navigate(currentId); };
     if ($('theme-toggle')) $('theme-toggle').onclick = () => { localStorage.setItem('wiki-theme', localStorage.getItem('wiki-theme') === 'dark' ? 'light' : 'dark'); applyTheme(); };
-    $('search').oninput = (e) => { const q = e.target.value.trim().toLowerCase(); document.querySelectorAll('#nav-list li.page, #nav-list li.top.clickable, #nav-list li.subanchor').forEach((li) => li.classList.toggle('hidden', q && !li.textContent.toLowerCase().includes(q))); };
+    $('search').oninput = (e) => {
+      searchQ = e.target.value.trim().toLowerCase();
+      if (searchQ) collapsed.clear();   // 搜索时全展开
+      buildNav();
+    };
+    window.addEventListener('hashchange', () => {
+      const w = decodeURIComponent((location.hash || '').replace(/^#/, ''));
+      if (w && w !== currentId && pageById.has(w)) navigate(w);
+    });
   }
 
   async function main() {
@@ -231,18 +260,13 @@
         fetch('/data/wiki-prose.json').then((r) => r.json()).catch(() => ({})),
       ]);
       wikiMap = m; wikiProse = p;
-      // Load the 4 System Architecture meta chapters (prose-first content). Missing → falls through.
-      const metaEntries = await Promise.all(Object.entries(META_FILE).map(([id, f]) =>
-        fetch(`/data/wiki-meta/${f}.json`).then((r) => (r.ok ? r.json() : null)).catch(() => null).then((ch) => [id, ch])));
-      metaById = Object.fromEntries(metaEntries.filter(([, ch]) => ch && ch.page));
     } catch (e) { $('content-inner').innerHTML = `<div class="placeholder">无法加载数据:${escapeHtml(e.message)}<br>用 <code>npm run wiki:serve</code> 启动。</div>`; return; }
     $('repo-name').textContent = wikiMap.repo || 'Code Wiki';
     $('side-head').textContent = wikiMap.derived_from || wikiMap.generated_at || '';
-    buildNav();
+    buildIndex();
     const wanted = decodeURIComponent((location.hash || '').replace(/^#/, ''));
-    const pages = wikiMap.pages || [];
-    const target = pages.find((p) => (p.id || p.page) === wanted) || pages[0];
-    if (target) renderChapter(target); else $('content-inner').innerHTML = `<div class="placeholder">${escapeHtml(t('empty'))}</div>`;
+    const target = pageById.has(wanted) ? wanted : (pageById.has('overview') ? 'overview' : firstPageId());
+    if (target) navigate(target); else { buildNav(); $('content-inner').innerHTML = `<div class="placeholder">${escapeHtml(t('empty'))}</div>`; }
   }
   main();
 })();
