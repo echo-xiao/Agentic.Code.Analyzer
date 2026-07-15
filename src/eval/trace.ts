@@ -120,7 +120,7 @@ async function main() {
         const trace: Trace = {
             id: tc.id, question: tc.question,
             tokens: { used: tokens, genericDropped },
-            pageStep: pageStep ?? { options: [], chosen: [], reason: 'fallback: 入口图无命中（全页低于阈值）' },
+            pageStep: pageStep ?? { options: [], chosen: [], reason: 'fallback: no entry-graph hit (all pages below threshold)' },
             seedStep: seedSteps, walk, entryPages,
             agentCalls: parseAgentCalls(tc.id, ANSWERS_DIR, VERDICTS),
         };

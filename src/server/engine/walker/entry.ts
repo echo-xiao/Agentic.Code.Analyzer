@@ -88,7 +88,7 @@ export function selectPages(tokens: string[], map: WikiMap, threshold = PAGE_THR
         const seen = new Set<string>();
         const merged = [...modPages, ...lexChosen].filter(o => (seen.has(o.page) ? false : (seen.add(o.page), true))).slice(0, 3);
         return { options: options.slice(0, 10), chosen: merged.map(c => c.page),
-            reason: `top-${merged.length} 词面 ${merged.map(c => `${c.page}:${c.score}`).join('/')}` };
+            reason: `top-${merged.length} lexical ${merged.map(c => `${c.page}:${c.score}`).join('/')}` };
     }
 
     // 词面空 → 救场:候选模块 + 语义 top-K,按 semScore 排
@@ -100,7 +100,7 @@ export function selectPages(tokens: string[], map: WikiMap, threshold = PAGE_THR
     const rescue = [...modPages, ...semTop].filter(o => (seen.has(o.page) ? false : (seen.add(o.page), true))).slice(0, 3);
     if (rescue.length === 0) return null;
     return { options: rescue.slice(0, 10), chosen: rescue.map(c => c.page),
-        reason: `救场 top-${rescue.length}(词面空→语义/候选模块) ${rescue.map(c => `${c.page}:${(sem?.get(c.page) ?? 0).toFixed(2)}`).join('/')}` };
+        reason: `rescue top-${rescue.length}(lexical empty→semantic/candidate-module) ${rescue.map(c => `${c.page}:${(sem?.get(c.page) ?? 0).toFixed(2)}`).join('/')}` };
 }
 
 export function resolveWikiFiles(wikiFiles: string[], allFiles: readonly string[]): { resolved: Map<string, string>; missing: string[] } {
@@ -134,13 +134,13 @@ export function selectSeedForPage(
         options: options.slice(0, 10),
         chosen: top?.symbol ?? null,
         reason: top
-            ? `页内 ${resolved.size} 文件 ${options.length} 候选符号中词面分最高 (${top.score})`
-            : '页内无可解析文件/符号',
+            ? `top lexical score among ${options.length} candidate symbols in ${resolved.size} files (${top.score})`
+            : 'no resolvable files/symbols in page',
     };
 }
 
 export function fallbackSeeds(tokens: string[]): { chosen: string[]; reason: string } {
     const seed = lexicalSeeds(tokens.join(' '));
     const chosen = [...seed.lexical.entries()].sort((a, b) => b[1] - a[1] || a[0].localeCompare(b[0])).slice(0, 3).map(([s]) => s);
-    return { chosen, reason: 'fallback: 入口图无命中，lexicalSeeds top-3' };
+    return { chosen, reason: 'fallback: no entry-graph hit, lexicalSeeds top-3' };
 }
