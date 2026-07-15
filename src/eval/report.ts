@@ -37,11 +37,11 @@ function loadTraceFile(id: string): any | null {
 
 // stop reason → 短标签（与 walk.ts 的 reason 文案对应）
 export function stopLabel(reason: string): string {
-    if (reason.includes('边际枯竭')) return '枯竭';
-    if (reason.includes('相关性衰减')) return '衰减';
-    if (reason.includes('预算')) return '预算';
-    if (reason.includes('节点阀')) return '节点';
-    if (reason.includes('无可继续')) return '无继续';
+    if (reason.includes('marginal exhaustion')) return 'exhausted';
+    if (reason.includes('relevance decay')) return 'decayed';
+    if (reason.includes('budget')) return 'budget';
+    if (reason.includes('node cap')) return 'node-cap';
+    if (reason.includes('no more')) return 'no-more';
     return 'stop';
 }
 
@@ -116,10 +116,10 @@ export function firstCoreStep(tr: any, core: string[]): { seedHit: boolean; firs
 
 // 语义段渲染（Phase 2）：judge 的 Row → 一行。缺→未跑。纯函数，零-API 可测。
 export function semanticLabel(row?: { verdict?: string; mode?: string; reason?: string }): string {
-    if (!row?.verdict) return `**语义**：未跑`;
+    if (!row?.verdict) return `**Semantic**: not run`;
     const icon = row.verdict === 'PASS' ? '✓' : row.verdict === 'PARTIAL' ? '◐' : '✗';
     const tail = [row.mode, row.reason].filter(Boolean).join(' — ');
-    return `**语义**：${icon} ${row.verdict}${tail ? ` — ${tail}` : ''}`;
+    return `**Semantic**: ${icon} ${row.verdict}${tail ? ` — ${tail}` : ''}`;
 }
 
 // agent 实调：直接渲染 trace 里已捕获的 agentCalls.sequence（结构化，无 gold）。
@@ -162,10 +162,10 @@ export function traceDrift(
 export function renderScope(tr: any): string[] {
     const opts: any[] = tr.pageStep?.options ?? [];
     const chosen: string[] = tr.pageStep?.chosen ?? [];
-    if (!chosen.length) return [`**scope 入口页**（${opts.length} 页打分 → 选 0）：（退回符号搜索）`];
+    if (!chosen.length) return [`**scope entry pages** (${opts.length} scored → 0 chosen): (fell back to symbol search)`];
     const scoreOf = new Map<string, number>(opts.map((o: any) => [o.page, o.score]));
     return [
-        `**scope 入口页**（${opts.length} 页打分 → 选 ${chosen.length}）`,
+        `**scope entry pages** (${opts.length} scored → ${chosen.length} chosen)`,
         ...chosen.map(p => `- ${p}${scoreOf.has(p) ? ` \`${scoreOf.get(p)}\`` : ''}`),
     ];
 }
@@ -173,10 +173,10 @@ export function renderScope(tr: any): string[] {
 export function renderSeed(tr: any): string[] {
     const seedSteps: any[] = tr.seedStep ?? [];
     if (!seedSteps.length) return [];
-    const out = [`**seed 逐页种子**：`];
+    const out = [`**per-page seeds**:`];
     for (const s of seedSteps) {
         const optN = (s.options ?? []).length;
-        out.push(`- \`${s.page}\`：${s.chosen ? `→ \`${s.chosen}\`` : '（无）'} · ${optN} 候选${s.reason ? ` — ${s.reason}` : ''}`);
+        out.push(`- \`${s.page}\`: ${s.chosen ? `→ \`${s.chosen}\`` : '(none)'} · ${optN} candidates${s.reason ? ` — ${s.reason}` : ''}`);
     }
     return out;
 }
@@ -187,7 +187,7 @@ export function renderWalk(tr: any, core: string[]): string[] {
     const walk: any[] = tr.walk ?? [];
     const seedsN = new Set(walk.map(w => w.anchor)).size;
     const moves = walk.filter(w => w.chosen != null).length;
-    const out = [`**walk 游走**（${seedsN} seed · ${moves} 步）`];
+    const out = [`**walk** (${seedsN} seeds · ${moves} steps)`];
 
     // 把连续同 anchor 的轮次归为一组（walk 本就按种子顺序排）
     const groups: { anchor: string; rounds: any[] }[] = [];
@@ -202,7 +202,7 @@ export function renderWalk(tr: any, core: string[]): string[] {
         const moveRounds = g.rounds.filter(w => w.chosen != null);
         const stopRound = g.rounds.find(w => w.chosen == null);
         const stopTxt = stopRound ? ` · ⏹ ${stopLabel(stopRound.reason ?? '')}` : '';
-        out.push(`- **${base(g.anchor)}** · ${moveRounds.length} 步${stopTxt}`);
+        out.push(`- **${base(g.anchor)}** · ${moveRounds.length} steps${stopTxt}`);
         for (const w of moveRounds) {
             // R 行：move + affinity 明细
             out.push(`    - R${w.round} → \`${w.chosen}\`${w.reason ? ` · ${w.reason}` : ''}`);
@@ -210,9 +210,9 @@ export function renderWalk(tr: any, core: string[]): string[] {
             const { reached, coreHits } = roundCoreHits(w, core);
             if (reached > 0) {
                 const hit = coreHits.length
-                    ? ` · **core 命中 ${coreHits.length}⭐**: ${coreHits.map(c => '`' + shortPath(c) + '`').join(' ')}`
-                    : ' · core 命中 0';
-                out.push(`        - ↳ 触达 ${reached} 文件${hit}`);
+                    ? ` · **core hit ${coreHits.length}⭐**: ${coreHits.map(c => '`' + shortPath(c) + '`').join(' ')}`
+                    : ' · core hit 0';
+                out.push(`        - ↳ reached ${reached} files${hit}`);
             }
         }
     }
@@ -221,7 +221,7 @@ export function renderWalk(tr: any, core: string[]): string[] {
 
 export function renderAgent(tr: any): string {
     const a = fmtAgentCalls(tr.agentCalls);
-    return `**agent 实调**：${a.calls} calls${a.hitBudget ? ' ⛔预算满' : ''} — ${a.sequence}`;
+    return `**agent calls**: ${a.calls} calls${a.hitBudget ? ' ⛔budget full' : ''} — ${a.sequence}`;
 }
 
 async function main() {
@@ -254,8 +254,8 @@ async function main() {
     let semCached = false;
     if (wantSemantic) {
         const apiKey = process.env.ANTHROPIC_API_KEY || process.env.CLAUDE_API_KEY;
-        if (!apiKey) { console.error('[report] --semantic 需要 ANTHROPIC_API_KEY'); process.exit(1); }
-        console.error('[report] --semantic：付费跑 judge（agent 答案 vs claude gold）…');
+        if (!apiKey) { console.error('[report] --semantic needs ANTHROPIC_API_KEY'); process.exit(1); }
+        console.error('[report] --semantic: running paid judge (agent answers vs claude gold)…');
         semRows = await judgeAnswers(new Anthropic({ apiKey }), testcases.map((tc: any) => ({ id: tc.id, question: tc.question ?? '' })), CAND_DIR, '## Gemini Answer');
         fs.writeFileSync(VERDICTS_CACHE, JSON.stringify(semRows, null, 2), 'utf-8');
     } else if (fs.existsSync(VERDICTS_CACHE)) {
@@ -266,32 +266,32 @@ async function main() {
     for (const r of semRows) if (r.verdict in semN) semN[r.verdict]++;
 
     const L: string[] = [];
-    L.push(`# report — 逐题 trace + 对不对\n`);
+    L.push(`# report — per-question trace + gold check\n`);
     L.push(`${new Date().toLocaleString('en-US')} | ${testcases.length} testcases | deterministic (retrieval-trace × claude-truth × wiki-map)\n`);
     if (drift.stale) {
-        L.push(`> ⚠️ **trace 疑似过时**：pageStep.chosen 仅 ${drift.matched}/${drift.total} 命中当前 wiki-map 页名 —— 下面"对不对"多半失真，请先 \`npm run trace\` 重生成 trace 再跑 report。\n`);
-        console.error(`[report] ⚠️ trace 漂移：${drift.matched}/${drift.total} 页名命中当前 wiki-map —— 建议重跑 npm run trace`);
+        L.push(`> ⚠️ **trace looks stale**: only ${drift.matched}/${drift.total} of pageStep.chosen match current wiki-map page names — the gold check below is likely off; re-run \`npm run trace\` first.\n`);
+        console.error(`[report] ⚠️ trace drift: ${drift.matched}/${drift.total} page names match current wiki-map — consider re-running npm run trace`);
     }
-    L.push(`## 对不对汇总（零-API gold 对照）`);
-    L.push(`- **scope 选对**：${scopeHit}/${withGold.length} 题（答案文件所在页进了入口 scope；另 ${traced - withGold.length} 题答案文件不在任何 wiki 页，记 —）`);
-    L.push(`- **召回**：平均找到 **${(meanRecall * 100).toFixed(0)}%** 答案文件 · 一个都没找到的题 ${zeroRecall}/${recallRows.length}`);
-    L.push(`- **seed 命中 core**：seed 即命中 **${seedHitN}** 题 · walk 才捞到 ${lateN} · 全程没命中 ${missN} —— seed 即命中 = 路由+种子都对；walk 才捞到 = 靠游走硬捞（scope/seed 没够到）`);
-    if (semRows.length) L.push(`- **语义**（agent 答案 vs claude gold${semCached ? '，缓存 verdicts-latest.json' : '，本次 --semantic 付费'}）：PASS ${semN.PASS} / PARTIAL ${semN.PARTIAL} / FAIL ${semN.FAIL}`);
-    else L.push(`- **语义**：未跑 —— \`npm run report -- --semantic\` 付费开启（agent 答案 vs claude gold）`);
-    L.push(`> "答案文件" = claude-truth.json 的 core（Claude 金答案关键文件）。trace 本体不含 gold；本节是报告端拿 trace × gold 算的对照，零-API。\n`);
+    L.push(`## Gold-check summary (zero-API)`);
+    L.push(`- **scope correct**: ${scopeHit}/${withGold.length} (the answer file's page entered the entry scope; another ${traced - withGold.length} have answer files on no wiki page, marked —)`);
+    L.push(`- **recall**: found **${(meanRecall * 100).toFixed(0)}%** of answer files on average · none-found ${zeroRecall}/${recallRows.length}`);
+    L.push(`- **seed hits core**: seed-hit **${seedHitN}** · walk-caught ${lateN} · never ${missN} — seed-hit = routing + seed both right; walk-caught = dredged up by the walk (scope/seed fell short)`);
+    if (semRows.length) L.push(`- **Semantic** (agent answers vs claude gold${semCached ? ', cached verdicts-latest.json' : ', this --semantic run, paid'}): PASS ${semN.PASS} / PARTIAL ${semN.PARTIAL} / FAIL ${semN.FAIL}`);
+    else L.push(`- **Semantic**: not run — \`npm run report -- --semantic\` enables it (paid; agent answers vs claude gold)`);
+    L.push(`> "answer file" = the core of claude-truth.json (Claude's gold key files). The trace carries no gold itself; this section is the report-side trace × gold check, zero-API.\n`);
 
     // pass 2: per question — 对不对 + trace（scope/seed/walk/agent 实调）
     for (const { tc, tr, core, gold, fcs } of items) {
         L.push(`## ${tc.id} — ${tc.question ?? ''}  _[${tc.questionType ?? '?'}]_`, '');
-        if (!tr) { L.push(`> 无 trace（先跑 \`npm run trace\`）。`, ''); continue; }
+        if (!tr) { L.push(`> no trace (run \`npm run trace\` first).`, ''); continue; }
 
         // ── 对不对 ──
-        const sc = gold!.entryHit === null ? '—（答案文件不在任何 wiki 页）' : gold!.entryHit ? '✓ 选对' : '✗ 选错';
+        const sc = gold!.entryHit === null ? '—(answer file on no wiki page)' : gold!.entryHit ? '✓ correct' : '✗ wrong';
         const fcsLabel = !gold!.coreN ? ''
-            : fcs!.seedHit ? ' · **seed 即命中 core⭐**'
-            : fcs!.firstStep != null ? ` · 首次命中 core 第 ${fcs!.firstStep} 步（seed 没够到，靠 walk）`
-            : ' · ✗ core 全程没命中';
-        L.push(`**对不对**：scope ${sc} · 召回 ${gold!.reachGoldN}/${gold!.coreN} 答案文件${fcsLabel}`, '');
+            : fcs!.seedHit ? ' · **seed hits core⭐**'
+            : fcs!.firstStep != null ? ` · first core hit at step ${fcs!.firstStep} (seed fell short, walk caught it)`
+            : ' · ✗ core never hit';
+        L.push(`**Gold check**: scope ${sc} · recall ${gold!.reachGoldN}/${gold!.coreN} answer files${fcsLabel}`, '');
         if (semMap.size) L.push(semanticLabel(semMap.get(tc.id)), '');
 
         // ── scope / seed / walk / agent —— 各段之间空行分隔（渲染成独立块）──
@@ -304,7 +304,7 @@ async function main() {
     fs.mkdirSync(path.join(LOGS, 'reports'), { recursive: true });
     fs.writeFileSync(OUT, L.join('\n'), 'utf-8');
     console.error(`Wrote logs/reports/report.md`);
-    console.log(`report: ${traced}/${testcases.length} traced · scope 选对 ${scopeHit}/${withGold.length} · 平均召回 ${(meanRecall * 100).toFixed(0)}% → logs/reports/report.md`);
+    console.log(`report: ${traced}/${testcases.length} traced · scope ${scopeHit}/${withGold.length} · mean recall ${(meanRecall * 100).toFixed(0)}% → logs/reports/report.md`);
 }
 
 main().catch(e => { console.error('Fatal:', e); process.exit(1); });

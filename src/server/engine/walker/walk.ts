@@ -89,9 +89,9 @@ export function walkFromSeed(
 
         // 3) 自评停止（任一触发即停，reason 记触发项）
         let stopReason: string | null = null;
-        if (bo.newFiles < opts.minNewFiles) stopReason = `stop：边际枯竭，最优方向新增 ${bo.newFiles} < ${opts.minNewFiles}`;
-        else if (bo.affinity < opts.minAffinity) stopReason = `stop：相关性衰减，最优方向 affinity ${bo.affinity} < ${opts.minAffinity}`;
-        else if (visitedSyms.size + preview[best].syms.size > opts.nodeCap) stopReason = `stop：节点阀，${visitedSyms.size}+${preview[best].syms.size} > ${opts.nodeCap}`;
+        if (bo.newFiles < opts.minNewFiles) stopReason = `stop: marginal exhaustion, best dir adds ${bo.newFiles} < ${opts.minNewFiles}`;
+        else if (bo.affinity < opts.minAffinity) stopReason = `stop: relevance decay, best dir affinity ${bo.affinity} < ${opts.minAffinity}`;
+        else if (visitedSyms.size + preview[best].syms.size > opts.nodeCap) stopReason = `stop: node cap, ${visitedSyms.size}+${preview[best].syms.size} > ${opts.nodeCap}`;
 
         if (stopReason) {
             rounds.push({ anchor: seed, round, options, chosen: null, reason: stopReason });
@@ -103,7 +103,7 @@ export function walkFromSeed(
         for (const f of preview[best].files) visitedFiles.add(f);
         rounds.push({
             anchor: seed, round, options, chosen: best,
-            reason: `affinity 最高 ${bo.affinity} (${best}) vs ${MOVE_ORDER.filter(m => m !== best).map(m => `${preview[m].opt.affinity} (${m})`).join(' / ')}`,
+            reason: `affinity top ${bo.affinity} (${best}) vs ${MOVE_ORDER.filter(m => m !== best).map(m => `${preview[m].opt.affinity} (${m})`).join(' / ')}`,
             result: {
                 newFiles: preview[best].files,   // 全量记录（report 端要对金文件算邻域召回，截断会失准）
                 newFileCount: preview[best].files.length,
@@ -119,12 +119,12 @@ export function walkFromSeed(
                 if (visitedSyms.has(s) || preview[best].syms.has(s)) next.add(s);
         frontier = next.size > 0 ? next : preview[best].syms;
         if (frontier.size === 0) {
-            rounds.push({ anchor: seed, round: round + 1, options, chosen: null, reason: 'stop：无可继续符号' });
+            rounds.push({ anchor: seed, round: round + 1, options, chosen: null, reason: 'stop: no more symbols' });
             return rounds;
         }
     }
     // 预算耗尽：补一条 stop 记录（options 沿用最后一轮的）
     const last = rounds[rounds.length - 1];
-    rounds.push({ anchor: seed, round: opts.maxRounds + 1, options: last.options, chosen: null, reason: `stop：${opts.maxRounds} 轮预算用尽` });
+    rounds.push({ anchor: seed, round: opts.maxRounds + 1, options: last.options, chosen: null, reason: `stop: ${opts.maxRounds}-round budget exhausted` });
     return rounds;
 }
