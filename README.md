@@ -20,7 +20,59 @@ offline indexer makes those hops traversable by extracting string-dispatch sites
 | `new Streamer('notify-user')` ↔ `sdk.stream('notify-user')` | `stream_def` / `stream_sub` |
 
 12 edge types total (also `call`/`jsx`/`new`/`type` static edges). Symbol collisions are resolved
-import-aware (`pickRootFile` + import distances). No embeddings — ranking is pure graph arithmetic.
+import-aware (`pickRootFile` + import distances). Ranking is graph-first, with a semantic cosine
+(query × file-summary vectors) fused in by RRF — see **How it works** below.
+
+## How it works
+
+Two phases, one **north star: zero runtime external dependency** — every expensive step (parsing,
+summarizing, embedding, wiki generation) is amortized **offline** into local indexes; at query time
+the retriever only reads them (no external wiki service, no runtime fetch). An **offline indexer** turns the Rocket.Chat
+checkout into a graph plus a summary layer, and the self-generated wiki (`wiki:gen`) doubles as a
+**routing layer**; the **online retriever** walks all of it to answer one question at a time, through
+four agent tools.
+
+### Offline — build the index (`prewarm`, chained by `refresh`)
+
+1. **scan + incremental hash** — walk the source tree; `hasher` fingerprints each file so a rebuild
+   only re-processes what changed.
+2. **dehydrate (ts-morph)** — `skeleton.ts` parses each file into a skeleton (symbols + signatures);
+   `extract-edges.ts` pulls the **12 edge types** — 4 static (`call`/`jsx`/`new`/`type`) and 8
+   string-dispatch ones (`event_*`, `pubsub_*`, `rest_*`, `stream_*`) captured as virtual nodes, so
+   the no-import cross-layer hops become traversable.
+3. **build `GLOBAL_INDEX`** — the in-memory graph: `symbols` (name → files) · `callGraph` (reverse
+   edges: `caller → {file, edgeType}`) · `fileDependents` · `allFiles`.
+4. **summarize + embed** — `summarize.ts` writes one paragraph per file; `embed.ts` turns each summary
+   into a vector. This is the semantic layer the ranker blends in below — no source is re-read at
+   query time except the final `details` step.
+
+### Online — answer one question (the four tools)
+
+5. **`plan(question)` → intent** — `classifyIntent` keyword-matches the question to one of six intents
+   (architecture / routing / locate / pattern / call-chain / impact), each mapped to a default graph
+   move + depth by `RECIPES`. In parallel, `entry-map` reads the self-generated wiki (the routing
+   layer) and runs one zero-LLM offline walk (entry graph → pick page → pick seed → affinity walk),
+   handing the agent a candidate-file map to start from — in-memory, no LLM, no network.
+6. **`search(query)` → seeds** — three deterministic lookups, no ranking: exact symbol hit (🎯),
+   file-path fragment (📁), and a content `grep` fallback (🔍) for call-patterns and index misses.
+7. **`graph(query, move, depth)` → traverse + rank** — the heart of retrieval:
+   - **`expand`** — `lexicalSeeds` (fuzzysort over symbol names) seeds a BFS neighborhood, then ranks
+     by **fusing two signals with RRF**: (1) a **structural score**
+     `2·proximity + 1.5·lexical + 0.6·cohesion + 0.2·centrality + prior − 0.6·hubPenalty − testPenalty`
+     (close to the seed, densely wired into the neighborhood, a real definition — minus the
+     everything-touches utilities), and (2) **semantic cosine** (query vector × the symbol's
+     file-summary vector). The two are **complementary** — semantic catches on-topic summaries, fuzzy
+     catches path-literal matches — so RRF takes whichever ranks a file higher rather than a weighted
+     sum that pleases neither (litmus: 7→14 top-25 hits). No vectors present → pure structure,
+     bit-identical to the old behavior.
+   - **`down`** — ordered callee tree (call chains); **`up`** — layered dependents including dynamic
+     edges (blast radius).
+8. **`details(symbol, file)` → read** — `source.ts` re-opens the one located file with ts-morph and
+   returns the symbol's real source, so every citation is grounded, never recalled from training data.
+
+Net: fuzzysort seeds + graph arithmetic find the subsystem; the file-summary cosine re-weights what the
+walk already surfaced; ts-morph reads ground truth only at the two ends — the index build, and the
+final `details`.
 
 ## Layout
 
@@ -114,38 +166,22 @@ Semantic scoring is opt-in and paid: run `npm run report -- --semantic` (uses th
 
 ## Evaluation discipline
 
-- **`report.md` is the single eval artifact** — deterministic and zero-API by default. Per question it lands
-  **对不对** (trace × `claude-truth.json`: is the answer file's page in scope? how many answer files recalled?
-  does each walk step hit a core file? did the *seed itself* hit core, or only the wide walk?) plus the raw
-  **trace** (scope/seed/walk/agent 实调). A **traceDrift** guard warns when the trace was run against a stale
-  wiki-map (its `pageStep.chosen` page names no longer match the current one) — so stale traces can't emit fake numbers.
-- **Gold** = `src/eval/utils/claude-truth.json` (extracted from `answers-claude/` by `truth.ts`).
-  `testcases.json` supplies question metadata (question/type/subsystem/difficulty/ordered).
-- **Semantic is opt-in and paid**: `npm run report -- --semantic` runs the `judge` library (Claude
-  sonnet-4-6, agent answers vs `answers-claude/` gold) → per-question PASS/PARTIAL/FAIL folded into
-  `report.md` + cached to `verdicts-latest.json`. Never judged against the self-generated wiki (circular).
-  Latest run (Gemini + MCP, 34 cases): **PASS 13 / PARTIAL 19 / FAIL 2** · scope 17/34 · mean recall 56%.
-- **Retired** (superseded by the single `report`): the `eval:tools` R@k/reachability/chain-LCS gate, the
-  `metrics.md`/`verdicts.md`/`tools-data.json` triple, and the mechanical auto-triage.
+Two questions, never conflated: **did the answer come out right?** and **where did retrieval go wrong?**
+The semantic judge gives the verdict; the trace localizes the failure. `report.md` is the single
+artifact holding both.
 
-## Roadmap
-
-The control/data refactor was **phase 1** — structural cleanup that froze the ranking formula, so
-it moved zero accuracy by design (tools 24/34 at the time, bit-identical to the baseline; the honest
-engine-only floor is now 19/34 after architecture hints moved to `plan` — see Evaluation discipline).
-The seams it created (`seeds.ts` / `expand.ts` / `intent.ts` as standalone units) make phase 2 tractable.
-
-**Phase 2 — lift seed recall on concept queries.** A stubborn failure bucket is retrieval-recall
-= 0: core files never surfaced (the `search`-stage / `engine-unrankable` cases in the reports) —
-concept-shaped queries (“API endpoints”, “slash commands”) where `lexicalSeeds` (fuzzysort over
-symbol names) matches nothing and only grep saves it. The lever is a
-concept → symbol/edge seed map (feed `architecture.json`-style anchors into `seeds.ts`) so these get
-a structured entry when the name-fuzzy seed misses. Gate is the `report` 对不对/召回 — the other questions must not
-regress.
-
-**Phase 3 — self-generated architecture wiki (shipped).** The `wiki` tool is fully offline — it calls
-no external service. An in-repo pipeline (`wiki:gen` — outline → guide → write → diagram → verify) builds an index-grounded
-feature wiki into `data/wiki-map.json` — every citation verified against the indexed git sha, page
-structure + component relations ranked by the same graph the retrieval tools use. It's served as a
-static wiki site (`wiki-site/`, `npm run wiki:serve`), and it's the same map the agent's
-`wiki` self-loop reads during `gen:mcp`. Both the viewer and the agent consume one grounded artifact.
+- **Verdict — semantic judge (opt-in, paid).** `npm run report -- --semantic` runs the `judge` library
+  (Claude sonnet-4-6, agent answers vs `answers-claude/` gold) → per-question **PASS / PARTIAL / FAIL**,
+  folded into `report.md` + cached to `verdicts-latest.json`. This is the *only* judge of final answer
+  quality, and it's never run against the self-generated wiki (that would be circular).
+  Latest run (Gemini + MCP, 34 cases): **PASS 13 / PARTIAL 19 / FAIL 2**.
+- **Diagnosis — trace + 对不对 (default, zero-API).** A FAIL alone doesn't say *why*; the trace does.
+  `report.md` lands the raw **trace** (scope → seed → walk → agent 实调 — each step's options / chosen /
+  reason / result) next to **对不对** (trace × `claude-truth.json`): is the answer file's page in scope?
+  how many answer files were recalled? did each walk step hit a core file? did the *seed itself* hit core,
+  or only the wide walk? So every failure pins to a stage — **scope missed the page / seed anchored wrong /
+  walk never reached it** — not just a number. A **traceDrift** guard voids a trace run against a stale
+  wiki-map (its `pageStep.chosen` no longer matches), so stale traces can't emit fake numbers.
+  Latest: scope 17/34 · mean recall 56%.
+- **Gold** = `src/eval/utils/claude-truth.json` (extracted from `answers-claude/` by `truth.ts`);
+  `testcases.json` supplies question metadata (type/subsystem/difficulty/ordered).
