@@ -1,4 +1,4 @@
-/* DeepWiki 式排版:标题衬线、正文无衬线、暖白底、中性灰激活、两侧虚线导引、右侧嵌套 TOC。 */
+/* 杂志式排版:标题衬线、正文无衬线、暖白底、中性灰激活、两侧虚线导引、右侧嵌套 TOC。 */
 :root {
   --bg: #fdfdfc;
   --fg: #1c1c1c;
@@ -6,7 +6,7 @@
   --faint: #8a8a86;
   --line: #e7e6e2;
   --line-dash: #dcdbd6;
-  --active-bg: #ececeb;          /* 中性灰,非暖 —— 对齐 DeepWiki 选中态 */
+  --active-bg: #ececeb;          /* 中性灰,非暖选中态 */
   --hover-bg: #f3f2ef;
   --code-bg: #f0efeb;
   --code-fg: #37363270;
@@ -60,6 +60,8 @@ a { color: var(--link); text-decoration: none; }
 #nav-list li.page:hover, #nav-list li.subanchor:hover { color: var(--fg); background: var(--hover-bg); }
 #nav-list li.page.active, #nav-list li.top.active { color: var(--fg); font-weight: 500; background: var(--active-bg); }
 #nav-list li.hidden { display: none; }
+#nav-list li .cx { display: inline-block; width: 12px; color: var(--faint); font-size: 10px; }
+#nav-list li .num { color: var(--faint); font-variant-numeric: tabular-nums; margin-right: 6px; font-size: 12px; }
 
 /* ── 内容 ── */
 .placeholder { color: var(--muted); padding-top: 40px; }

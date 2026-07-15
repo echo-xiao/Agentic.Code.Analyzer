@@ -2,52 +2,56 @@
 
 ## Plan
 
-intent: unknown
+intent: architecture
 
 ## Gemini Answer
 
-The Rocket.Chat video conference system is divided into two main categories: **Video Conferencing** for multi-party meetings and **VoIP/Media Calls** for direct 1-to-1 audio/video calls.
+The video conference system in Rocket.Chat works as follows:
 
-### Multi-Party Video Conferencing Flow
+**Flow:**
 
-The multi-party video conferencing system leverages a `VideoConfService` on the server-side and a `VideoConfManager` on the client-side.
+1.  **Entry Point**: The `ConferenceRoute` component (as indicated by the wiki) serves as the initial entry point, ensuring user authentication before rendering the conference page.
+2.  **Conference Page Rendering**: The `ConferencePage` component (`apps/meteor/client/views/conference/ConferencePage.tsx`) is rendered.
+3.  **URL Parameter Extraction**: `ConferencePage` extracts the `callUrlParam` from the browser's query parameters.
+4.  **User Context**: It then appends the current user's display name to the `callUrlParam` to form the complete `callUrl`.
+5.  **Call Initiation**: `ConferencePage` invokes the `handleOpenCall` function, which is returned by the `useVideoConfOpenCall` hook.
+6.  **Call Handling (Desktop Application)**: The `handleOpenCall` function (defined within `apps/meteor/client/views/room/contextualBar/VideoConference/hooks/useVideoConfOpenCall.tsx`) first checks if a desktop application integration is available (`window.RocketChatDesktop.openInternalVideoChatWindow`). If it exists, the call is opened using `desktopApp.openInternalVideoChatWindow(callUrl, { providerName })`.
+7.  **Call Handling (Browser)**: If no desktop application integration is detected, `handleOpenCall` attempts to open the `callUrl` in a new browser window using `window.open(callUrl)`. If the popup is blocked by the browser, a `VideoConfBlockModal` is displayed to the user.
+8.  **Redirection**: After the call is initiated (either in the desktop app or a new browser window), `ConferencePage` redirects the user to the 'home' route.
+9.  **Error Handling**: If no `callUrl` is found in the query parameters, `ConferencePage` renders the `ConferencePageError` component (`apps/meteor/client/views/conference/ConferencePageError.tsx`) to inform the user that the call was not found.
 
-**Entry Point:** A user initiates a video conference from the client.
-**Step 1: Client Request:** The client-side `VideoConfManager` sends a request to the REST API endpoint `/v1/video-conference.start`.
-**Step 2: Server-side Handling:** This request is handled by the `VideoConfService`'s `start` method on the server.
-**Step 3: Provider Selection and URL Generation:** The `start` method determines the conference type (direct, livechat, or group) and the appropriate external provider (e.g., Jitsi or Meet). It then calls the `create` method, which validates the room and user, and delegates to specific `startDirect`, `startLivechat`, or `startGroup` methods.
-**Step 4: External Provider Interaction:** The `VideoConfService` interacts with `AppVideoConfProvider` instances, which are registered by Apps-Engine providers. These providers implement the `IVideoConfProvider` interface, defining methods like `generateUrl` and `customizeUrl` to create the conference URL.
-**Step 5: Conference Join:** Once a conference is created, a message is generated in the room, and users can join using the `/v1/video-conference.join` endpoint. The `join` method in `VideoConfService` retrieves the call details and then calls `joinCall` to get the customized URL for the user.
+**Key Files:**
 
-**Key Server-side Files:**
-*   `app/videoconference/server/VideoConf.ts`: Contains the `VideoConfService` which orchestrates multi-party video conferences.
-*   `app/videoconference/server/apps/AppVideoConfProvider.ts`: Manages the registration and execution of video conference provider apps.
-*   `app/videoconference/server/IVideoConfProvider.ts`: Defines the interface for video conference providers, specifying how they generate and customize URLs.
+*   `apps/meteor/client/views/conference/ConferencePage.tsx`: This React component is responsible for processing the video conference URL, initiating the call, and handling redirection or errors.
+*   `apps/meteor/client/views/room/contextualBar/VideoConference/hooks/useVideoConfOpenCall.tsx`: This hook provides the `handleOpenCall` function, which contains the logic for opening the video call either in a desktop application or a new browser window.
+*   `apps/meteor/client/views/conference/ConferencePageError.tsx`: This component is displayed when a video conference URL is not found.
 
-### VoIP and Media Calls Flow (1-to-1)
+## Tool Calls (6 calls, 21,192 tokens)
 
-The `MediaCallService` handles 1-to-1 audio/video calls, supporting both internal WebRTC signaling and external SIP integration.
+**Step 1:** `plan({"question":"How does the video conference system work in Rocket.Chat?","intent":"architecture"})` → 2280 tokens
+**Step 2:** `search({"query":"ConferencePage"})` → 100 tokens
+**Step 3:** `graph({"query":"ConferencePage","file":"ConferencePage.tsx","move":"expand","depth":2})` → 357 tokens
+**Step 4:** `details({"symbolName":"ConferencePage","filename":"ConferencePage.tsx"})` → 220 tokens
+**Step 5:** `details({"filename":"useVideoConfOpenCall.tsx","symbolName":"handleOpenCall"})` → 89 tokens
+**Step 6:** `details({"filename":"useVideoConfOpenCall.tsx","symbolName":"useVideoConfOpenCall"})` → 211 tokens
 
-**Key Components:**
-*   **`MediaCallService`**: This service is responsible for signaling relay for 1-to-1 WebRTC/VoIP calls and persisting call history. It also integrates with push notifications for incoming calls.
-*   **`packages/media-signaling`**: This package defines the protocol and state management for media sessions, including `MediaSignalingSession` for local sessions and `ClientMediaCall` for handling WebRTC peer connections and call states.
-*   **Enterprise VoIP (EE)**: For Enterprise Edition, the `ee/packages/media-calls` package extends media capabilities with SIP support using `drachtio`. `GlobalSignalProcessor` routes signals, and `OutgoingSipCall` and `IncomingSipCall` manage the conversion between WebRTC signals and SIP messages.
+## Files Seen In Tool Results (18)
 
-**Push Notification Integration:**
-Rocket.Chat integrates with push notification systems (APN for Apple, FCM for Google) for timely alerts for VoIP calls. The system uses separate `voipToken` fields for users and configures `note.pushType = 'voip'` for iOS devices to trigger native call UI. The `MediaCallService` triggers `sendVoipPushNotification`, which then uses the `Push` service to dispatch high-priority notifications.
-
-**Key Server-side Files:**
-*   `app/media-enterprise/server/MediaCallService.ts`: Handles 1-to-1 audio/video calls, signaling, and history persistence.
-*   `packages/media-signaling/lib/MediaSignalingSession.ts`: Manages local media signaling sessions.
-*   `packages/media-signaling/lib/ClientMediaCall.ts`: Handles WebRTC peer connections and call states.
-*   `ee/packages/media-calls/server/GlobalSignalProcessor.ts`: Routes signals between local users and SIP endpoints (Enterprise Edition).
-*   `ee/packages/media-calls/server/OutgoingSipCall.ts`: Manages outbound SIP calls (Enterprise Edition).
-*   `ee/packages/media-calls/server/IncomingSipCall.ts`: Manages inbound SIP calls (Enterprise Edition).
-
-## Tool Calls (1 calls, 4,058 tokens)
-
-**Step 1:** `wiki({"question":"How does the video conference system work in Rocket.Chat?"})` → 1203 tokens
-
-## Files Seen In Tool Results (0)
-
-_(none)_
+- `apps/meteor/client/views/conference/ConferenceRoute.tsx`
+- `apps/meteor/client/views/conference/ConferencePage.tsx`
+- `apps/meteor/client/views/conference/ConferencePageError.tsx`
+- `packages/ui-video-conf/src/VideoConfPopup/VideoConfPopup.tsx`
+- `packages/ui-video-conf/src/VideoConfPopup/VideoConfPopupContent.tsx`
+- `packages/ui-video-conf/src/VideoConfPopup/VideoConfPopupSkeleton.tsx`
+- `packages/ui-video-conf/src/VideoConfMessage/VideoConfMessageRow.tsx`
+- `packages/message-types/src/registrations/videoconf.ts`
+- `apps/meteor/client/views/room/contextualBar/VideoConference/hooks/useVideoConfOpenCall.tsx`
+- `apps/meteor/app/cloud/server/functions/syncWorkspace/index.ts`
+- `packages/apps-engine/src/client/AppsEngineUIHost.ts`
+- `apps/meteor/app/importer/server/classes/converters/RoomConverter.ts`
+- `apps/meteor/ee/server/local-services/instance/service.ts`
+- `apps/meteor/client/views/account/preferences/AccountPreferencesPage.tsx`
+- `apps/meteor/client/views/root/PageLoading.tsx`
+- `apps/meteor/app/ui-utils/client/lib/LegacyRoomManager.ts`
+- `apps/meteor/client/views/room/contextualBar/VideoConference/VideoConfPopups/VideoConfPopup/StartCallPopup.tsx`
+- `apps/meteor/client/views/account/preferences/useAccountPreferencesValues.ts`

@@ -2,82 +2,75 @@
 
 ## Plan
 
-intent: architecture
+intent: call-chain
 
 ## Gemini Answer
 
-When a new message is saved to the database, it appears in real-time on the client through the following flow:
+A new message appearing in real-time on the client after being saved to the database follows this flow:
 
-**Entry Point (Client-side optimistic update):**
-1.  When a user sends a message, the client first performs an optimistic update by immediately inserting the message into the client-side `Messages` Zustand store, marking it as temporary. This provides immediate feedback to the user.
-2.  Concurrently, the message is sent to the server via an `sdk.call('sendMessage')` API call. The `sendMessage` function is found in `/apps/meteor/app/lib/client/methods/sendMessage.ts` and `/apps/meteor/server/services/messages/service.ts`.
+**Server-side:**
 
-**Server-Side Processing and Broadcasting:**
-1.  On the server, after the message is saved to the MongoDB `Messages` collection, the `Message.afterSave` hook is triggered. This hook is located in `/apps/meteor/server/services/messages/service.ts`.
-2.  The `afterSave` hook then calls `notifyOnMessageChange`, which is responsible for broadcasting the new message.
-3.  `notifyOnMessageChange` (located in `/apps/meteor/app/lib/server/lib/notifyListener.ts`) uses `api.broadcast('watch.messages', { message })` to send the new message to all connected clients.
+1.  **`afterSaveMessage` hook:** After a message is saved to the database, the `afterSaveMessage` hook in `apps/meteor/app/lib/server/lib/afterSaveMessage.ts` is triggered. This hook is a central point for post-message persistence actions.
+2.  **`notifyOnMessageChange`:** Within `afterSaveMessage`, the `notifyOnMessageChange` function (defined in `apps/meteor/app/lib/server/lib/notifyListener.ts`) is called.
+3.  **`api.broadcast('watch.messages', { message })`:** The `notifyOnMessageChange` function retrieves the message data and then broadcasts an event named `'watch.messages'` with the new message object to all connected clients. This is the mechanism for real-time updates.
 
-**Client-Side Real-time Update:**
-1.  Clients that are subscribed to the `room-messages` stream for a specific room will receive this broadcasted message via the `watch.messages` stream.
-2.  Upon receiving a new message from the stream, the `upsertMessage` function is called. This function is located in `/apps/meteor/app/ui-utils/client/lib/RoomHistoryManager.ts`.
-3.  The `upsertMessage` function processes the message and stores it in the client's `Messages.state`. This update to the client-side store causes the UI to re-render and display the new message.
-4.  Additionally, the `streamNewMessage` client callback is run, which is used by components like `useHasNewMessages` to determine if a "new messages" indicator should be shown.
+**Client-side:**
 
-## Tool Calls (8 calls, 34,000 tokens)
+While the exact client-side subscription to `'watch.messages'` was not directly found in the provided tool outputs, the typical Rocket.Chat architecture for real-time updates involves:
 
-**Step 1:** `plan({"question":"How does a new message appear in real-time on the client after being saved to the database?","intent":"arch)` → 864 tokens
-**Step 2:** `search({"query":"sendMessage","layer":"server"})` → 318 tokens
-**Step 3:** `details({"symbolName":"sendMessage","filename":"sendMessage.ts"})` → 520 tokens
-**Step 4:** `search({"query":"notifyOnMessageChange","layer":"server"})` → 74 tokens
-**Step 5:** `details({"filename":"notifyListener.ts","symbolName":"notifyOnMessageChange"})` → 111 tokens
-**Step 6:** `graph({"query":"notifyOnMessageChange","file":"notifyListener.ts","move":"up","depth":2})` → 682 tokens
-**Step 7:** `search({"query":"upsertMessage","layer":"client"})` → 72 tokens
-**Step 8:** `details({"filename":"RoomHistoryManager.ts","symbolName":"upsertMessage"})` → 96 tokens
+1.  **Client-side subscription:** The client-side code (likely within `apps/meteor/client/startup/incomingMessages.ts` or a similar file responsible for initializing real-time streams) subscribes to the `'watch.messages'` event broadcast by the server. This is usually done using a Meteor stream or a similar real-time communication mechanism.
+2.  **Message processing:** Upon receiving a `'watch.messages'` event, the client-side handler processes the incoming message. This involves:
+    *   Updating the local message store (e.g., `apps/meteor/client/stores/Messages.ts`).
+    *   Triggering UI re-renders to display the new message in the chat interface (e.g., components like `apps/meteor/client/views/room/MessageList/MessageListItem.tsx`).
+    *   Potentially updating other related UI elements, such as unread indicators or last message previews.
 
-## Files Seen In Tool Results (45)
+**Key Files:**
 
-- `apps/meteor/app/lib/server/lib/notifyListener.ts`
-- `packages/livechat/src/lib/room.js`
-- `apps/meteor/client/startup/incomingMessages.ts`
-- `apps/meteor/server/services/messages/service.ts`
-- `apps/meteor/ee/app/livechat-enterprise/server/api/lib/outbound.ts`
-- `apps/meteor/app/slackbridge/server/SlackAPI.ts`
-- `apps/meteor/app/livechat/server/lib/messages.ts`
-- `apps/meteor/app/lib/server/methods/sendMessage.ts`
-- `apps/meteor/app/lib/server/functions/sendMessage.ts`
-- `apps/meteor/app/integrations/server/lib/triggerHandler.ts`
-- `apps/meteor/server/lib/sendMessagesToAdmins.ts`
-- `apps/meteor/app/livechat/server/sendMessageBySMS.ts`
-- `apps/meteor/app/livechat/server/methods/sendMessageLivechat.ts`
-- `apps/meteor/app/authorization/server/functions/canSendMessage.ts`
-- `packages/ddp-client/src/livechat/LivechatClientImpl.ts`
-- `packages/ddp-client/src/legacy/RocketchatSDKLegacy.ts`
-- `ee/packages/federation-matrix/src/FederationMatrix.ts`
-- `apps/meteor/tests/e2e/page-objects/omnichannel/omnichannel-livechat.ts`
-- `apps/meteor/tests/e2e/page-objects/omnichannel/omnichannel-livechat-embedded.ts`
-- `apps/meteor/tests/e2e/page-objects/fragments/home-content.ts`
-- `apps/meteor/tests/e2e/federation/page-objects/fragments/home-content.ts`
-- `apps/meteor/tests/data/messages.helper.ts`
-- `apps/meteor/tests/data/chat.helper.ts`
-- `apps/meteor/tests/data/livechat/rooms.ts`
-- `apps/meteor/client/lib/chats/flows/sendMessage.ts`
+*   **`apps/meteor/app/lib/server/lib/afterSaveMessage.ts`**: Contains the `afterSaveMessage` hook, the entry point for post-save message processing on the server.
+*   **`apps/meteor/app/lib/server/lib/notifyListener.ts`**: Defines `notifyOnMessageChange`, which broadcasts the real-time message update to clients.
+
+## Tool Calls (8 calls, 48,459 tokens)
+
+**Step 1:** `plan({"question":"How does a new message appear in real-time on the client after being saved to the database?","intent":"call)` → 3159 tokens
+**Step 2:** `search({"query":"afterSaveMessage","layer":"server"})` → 152 tokens
+**Step 3:** `graph({"file":"afterSaveMessage.ts","depth":3,"query":"afterSaveMessage","move":"down"})` → 573 tokens
+**Step 4:** `details({"filename":"notifyListener.ts","symbolName":"notifyOnMessageChange"})` → 111 tokens
+**Step 5:** `search({"query":"watch.messages","layer":"client"})` → 26 tokens
+**Step 6:** `details({"filename":"incomingMessages.ts","symbolName":"incomingMessages"})` → 57 tokens
+**Step 7:** `details({"filename":"incomingMessages.ts","symbolName":"default"})` → 15 tokens
+**Step 8:** `search({"layer":"client","query":"api.onStream"})` → 25 tokens
+
+## Files Seen In Tool Results (32)
+
+- `packages/ui-composer/src/MessageComposer/MessageComposer.tsx`
+- `packages/ui-composer/src/MessageComposer/MessageComposerIcon.tsx`
+- `packages/ui-composer/src/MessageFooterCallout/MessageFooterCalloutContent.tsx`
+- `apps/meteor/app/ui/client/lib/ChatMessages.ts`
+- `apps/meteor/client/views/room/MessageList/lib/isMessageNewDay.ts`
 - `apps/meteor/app/lib/client/methods/sendMessage.ts`
-- `apps/meteor/server/services/video-conference/service.ts`
-- `apps/meteor/server/features/EmailInbox/EmailInbox_Outgoing.ts`
-- `apps/meteor/server/features/EmailInbox/EmailInbox_Incoming.ts`
-- `apps/meteor/ee/server/lib/message-read-receipt/ReadReceipt.ts`
-- `apps/meteor/app/threads/server/methods/unfollowMessage.ts`
-- `apps/meteor/app/threads/server/methods/followMessage.ts`
-- `apps/meteor/app/threads/server/hooks/aftersavemessage.ts`
-- `apps/meteor/app/reactions/server/setReaction.ts`
-- `apps/meteor/app/message-star/server/starMessage.ts`
-- `apps/meteor/app/message-pin/server/pinMessage.ts`
-- `apps/meteor/app/lib/server/functions/deleteMessage.ts`
-- `apps/meteor/app/discussion/server/hooks/propagateDiscussionMetadata.ts`
-- `apps/meteor/app/autotranslate/server/autotranslate.ts`
-- `apps/meteor/server/features/EmailInbox/EmailInbox.ts`
-- `apps/meteor/ee/app/message-read-receipt/server/hooks/afterSaveMessage.ts`
-- `apps/meteor/app/slackbridge/server/SlackAdapter.ts`
-- `apps/meteor/app/apps/server/bridges/messages.ts`
+- `apps/meteor/client/startup/incomingMessages.ts`
+- `apps/meteor/client/lib/onClientBeforeSendMessage.ts`
+- `apps/meteor/app/lib/server/functions/updateMessage.ts`
+- `apps/meteor/app/lib/server/functions/insertMessage.ts`
+- `apps/meteor/client/lib/onClientMessageReceived.ts`
+- `apps/meteor/server/publications/messages.ts`
+- `packages/models/src/models/MessageReads.ts`
+- `apps/meteor/client/stores/Messages.ts`
 - `apps/meteor/app/lib/server/lib/afterSaveMessage.ts`
-- `apps/meteor/app/ui-utils/client/lib/RoomHistoryManager.ts`
+- `packages/livechat/src/hooks/useRoomMessagesSubscription.ts`
+- `apps/meteor/server/services/messages/service.ts`
+- `apps/meteor/client/views/room/contextualBar/Threads/components/ThreadMessageItem.tsx`
+- `packages/livechat/src/hooks/useDeleteMessageSubscription.ts`
+- `apps/meteor/ee/app/message-read-receipt/server/hooks/afterSaveMessage.ts`
+- `apps/meteor/app/lib/server/functions/isTheLastMessage.ts`
+- `apps/meteor/ee/app/message-read-receipt/server/index.ts`
+- `apps/meteor/client/hooks/useInfiniteMessageQueryUpdates.ts`
+- `apps/meteor/client/views/room/contextualBar/Threads/hooks/useThreadMainMessageQuery.ts`
+- `apps/meteor/ee/app/message-read-receipt/server/hooks/afterReadMessages.ts`
+- `apps/meteor/server/lib/dataExport/exportRoomMessagesToFile.ts`
+- `apps/meteor/client/views/room/MessageList/MessageListItem.tsx`
+- `apps/meteor/app/apps/server/bridges/messages.ts`
+- `packages/livechat/src/routes/TriggerMessage/component.tsx`
+- `apps/meteor/app/search/server/events/index.ts`
+- `apps/meteor/app/threads/server/hooks/aftersavemessage.ts`
+- `apps/meteor/app/lib/server/lib/notifyListener.ts`

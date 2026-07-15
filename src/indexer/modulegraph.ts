@@ -52,20 +52,26 @@ export function isTestFile(f: string): boolean {
     return /(^|\/)tests?\//.test(f) || /\.(test|spec)\./.test(f) || /e2e/.test(f) || /page-objects/.test(f) || /\.stories\./.test(f);
 }
 
-/** Extract the conceptual feature/subsystem key from a rel path. */
+/** 层/结构目录(不是功能)——找 feature 时跳过,避免 lib/server/client 变成垃圾桶。 */
+const LAYER = new Set([
+    'apps', 'meteor', 'app', 'client', 'server', 'ee', 'src', 'source',
+    'lib', 'libs', 'tests', 'test', '__tests__', '__mocks__', 'unit', 'integration',
+    'e2e', 'end-to-end', 'functions', 'methods', 'startup', 'services',
+    'views', 'definition', 'definitions', 'index', 'dist', 'build',
+    'page-objects', 'fixtures', 'mocks', 'stubs',
+]);
+
+// 从路径抽"功能/子系统键":跳过层目录取第一个真功能段;功能跨 client/server/app/tests 自动合并。
+// 例 app/livechat/server -> livechat; server/services/omnichannel -> omnichannel;
+// tests/unit/server/services/omnichannel-analytics -> omnichannel-analytics(测试归位)。
 export function featureKey(f0: string): string {
-    const ee = f0.startsWith('ee/') ? 'ee:' : '';
-    const f = f0.replace(/^ee\//, '');
-    const s = f.split('/');
-    const at = (i: number) => s[i] && !/\.(tsx?|js)$/.test(s[i]);
-    let i;
-    if ((i = s.indexOf('packages')) >= 0 && at(i + 1)) return ee + 'pkg:' + s[i + 1];
-    if ((i = s.indexOf('app')) >= 0 && at(i + 1)) return ee + s[i + 1];
-    if ((i = s.indexOf('views')) >= 0 && at(i + 1)) return ee + s[i + 1];
-    if ((i = s.indexOf('components')) >= 0 && at(i + 1)) return ee + 'ui:' + s[i + 1];
-    if ((i = s.indexOf('server')) >= 0 && at(i + 1)) return ee + s[i + 1];
-    if ((i = s.indexOf('client')) >= 0 && at(i + 1)) return ee + s[i + 1];
-    return ee + s.slice(0, Math.min(3, s.length - 1)).join('/');
+    const segs = f0.split('/').filter(s => s && !/\.[mc]?[jt]sx?$/.test(s));   // 去掉文件名段
+    const pi = segs.indexOf('packages');
+    if (pi >= 0 && segs[pi + 1]) return 'pkg:' + segs[pi + 1];                  // 包 = 单元
+    const feature = segs.find(s => !LAYER.has(s) && s !== 'packages');          // 第一个非层目录 = 功能
+    if (feature) return feature;
+    const area = segs.find(s => s === 'app' || s === 'client' || s === 'server' || s === 'ee') ?? 'root';
+    return `${area}:${segs[segs.length - 1] ?? 'misc'}`;                        // 纯通用:按区命名,别全并一坨
 }
 
 // Cross-layer edge types get higher base weight
@@ -155,7 +161,7 @@ export function buildModuleGraph(): ModuleGraph {
     // 3. Assign every rel file to a subsystem key
     const subsystemGroups = new Map<string, string[]>();
     for (const f of nodeSet) {
-        const key = isTestFile(f) ? 'tests' : featureKey(f);
+        const key = featureKey(f);   // 测试也走 featureKey → 归到对应功能(featureKey 跳过 tests/unit 等层目录)
         (subsystemGroups.get(key) ?? subsystemGroups.set(key, []).get(key)!).push(f);
     }
 
@@ -227,6 +233,29 @@ export function buildModuleGraph(): ModuleGraph {
             }
         }
     }
+
+    // 5.5 合并过碎尾巴:每个子系统内 ≤MERGE_MAX 文件的小模块并进本子系统最大模块(减模块数;去掉 47% 数量/5% 代码的琐碎尾巴)。
+    //      单模块子系统天然不动(无可并);全是小模块的子系统 → 并成一个。合并在建边前做,边按合并后的 file_to_module 聚合。
+    const MERGE_MAX = 3;
+    const subMods = new Map<string, ModuleGraph['modules']>();
+    for (const m of modules) (subMods.get(m.subsystem) ?? subMods.set(m.subsystem, []).get(m.subsystem)!).push(m);
+    const reEntry = (m: ModuleGraph['modules'][number]) => { m.entryFiles = [...m.files].sort((a, b) => (fanIn.get(b) ?? 0) - (fanIn.get(a) ?? 0)).slice(0, 5); };
+    const kept: ModuleGraph['modules'] = [];
+    for (const [, mods] of subMods) {
+        if (mods.length === 1) { kept.push(mods[0]); continue; }
+        const big = mods.filter(m => m.files.length > MERGE_MAX);
+        const small = mods.filter(m => m.files.length <= MERGE_MAX);
+        if (big.length === 0) {                                                   // 全小 → 并成一个(最大的当宿主)
+            const host = mods.slice().sort((a, b) => b.files.length - a.files.length)[0];
+            for (const s of mods) if (s !== host) for (const f of s.files) { host.files.push(f); file_to_module[f] = host.id; }
+            reEntry(host); kept.push(host); continue;
+        }
+        const host = big.slice().sort((a, b) => b.files.length - a.files.length)[0];
+        for (const s of small) for (const f of s.files) { host.files.push(f); file_to_module[f] = host.id; }
+        for (const b of big) reEntry(b);
+        kept.push(...big);
+    }
+    modules.length = 0; modules.push(...kept);
 
     // 6. Module→module edges (cross-module ref counts from allEdges)
     const modOf = (f: string) => file_to_module[f];

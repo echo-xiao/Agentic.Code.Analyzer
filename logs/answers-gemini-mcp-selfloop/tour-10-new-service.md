@@ -2,98 +2,70 @@
 
 ## Plan
 
-intent: unknown
+intent: architecture
 
 ## Gemini Answer
 
-To add a new service in Rocket.Chat, you generally follow these steps: define a service class that adheres to the `IServiceClass` interface, and then register an instance of this class using the `api.registerService()` method.
+To add a new service in Rocket.Chat, you generally follow a pattern of defining a service class that extends `ServiceClassInternal`, implementing its functionality, and integrating it with other Rocket.Chat components like settings, data models, and cron jobs.
 
-Here's a detailed breakdown of the process:
+Here's a step-by-step guide:
 
-**1. Define the Service Class**
+1.  **Define the Service Interface (Optional but Recommended):**
+    *   Create an interface for your service in `packages/core-services/src/types/INewService.ts` (replace `INewService` with your service's name). This interface should define the public methods your service will expose.
+    *   *Example:* `packages/core-services/src/types/INPSService.ts` defines the interface for the NPS service.
 
-Create a new class that implements the `IServiceClass` interface. This interface, defined in `packages/core-services/src/types/ServiceClass.ts`, outlines the essential methods your service must provide.
-
-*   **`getName(): string`**: This method should return a unique name for your service.
-*   **`setApi(api: IApiService): void`**: This method is crucial as it provides your service with an instance of the `IApiService`. Through this `api` object, your service can interact with other services, emit events, and access system settings.
-*   **`created(): Promise<void>`**: A lifecycle hook that is called when the service is created. Use this for initial setup.
-*   **`started(): Promise<void>`**: Another lifecycle hook, called when the service is started. This is where your service should begin its main operations.
-*   **`stopped(): Promise<void>`**: A lifecycle hook called when the service is stopped, allowing for cleanup.
-
-Your service class will contain the core logic and functionality of your new service.
-
-**2. Register the Service Instance**
-
-Once your service class is defined, you need to create an instance of it and register it with the Rocket.Chat system. The registration is handled by the `api.registerService()` method, which is part of the `Api` class defined in `packages/core-services/src/lib/Api.ts`.
-
-The `registerService` method has the following signature:
-`registerService(instance: IServiceClass, serviceDependencies?: string[]): void`
-
-*   **`instance: IServiceClass`**: This is the instance of your service class that you want to register.
-*   **`serviceDependencies?: string[]`**: An optional array of strings representing other services that your service depends on. This is particularly relevant in a microservices architecture.
-
-**Registration Flow:**
-
-*   The `api.registerService()` method adds your service instance to an internal collection of services.
-*   It then calls `instance.setApi(this)` on your service instance, injecting the `IApiService` object.
-*   If Rocket.Chat is running in a microservices environment (e.g., Enterprise Edition with Moleculer), the method will also call `this.broker.createService(instance, serviceDependencies)` to integrate your service with the Moleculer broker.
-
-**3. Choose the Registration Location**
-
-The location where you register your service depends on whether you are adding a service to the monolithic Meteor application or as a standalone microservice (typically for Enterprise Edition features).
-
-*   **For Monolithic Deployments:**
-    *   **File:** `apps/meteor/server/services/startup.ts`
-    *   **Action:** Import your new service class into this file and add a line to register it:
+2.  **Create the Service Class:**
+    *   Create a new directory and file for your service: `apps/meteor/server/services/<your-service-name>/service.ts`.
+    *   Define a class that extends `ServiceClassInternal` and implements your service interface (if you created one).
+    *   Set the `protected name` property to a unique identifier for your service.
+    *   *Example:* The `NPSService` is defined in `apps/meteor/server/services/nps/service.ts` as:
         
 ```typescript
-        import { MyNewService } from './path/to/myNewService'; // Adjust path as needed
-        // ... other service registrations
-        api.registerService(new MyNewService());
+        class NPSService extends ServiceClassInternal implements INPSService {
+          protected name = 'nps';
+          // ... service methods
+        }
         ```
 
+    *   The base class for internal services is `ServiceClassInternal`, located at `packages/core-services/src/types/ServiceClass.ts`.
 
-*   **For Microservices Deployments (Enterprise Edition):**
-    *   **File:** You would typically create a new `service.ts` file within your dedicated microservice application (e.g., `ee/apps/my-new-service/src/service.ts`).
-    *   **Action:** In this file, you would set up the Moleculer broker (if not already configured) and then register your service:
-        
-```typescript
-        import { api } from '@rocket.chat/core-services';
-        import { startBroker } from './broker'; // Assuming you have a broker setup
-        import { MyNewService } from './myNewService'; // Adjust path as needed
+3.  **Implement Service Methods:**
+    *   Implement the methods defined in your service interface within your service class. These methods will contain the core business logic of your service.
+    *   Common interactions within service methods include:
+        *   **Settings:** Accessing Rocket.Chat settings to enable/disable features or configure behavior.
+        *   **Data Models:** Interacting with MongoDB collections through Rocket.Chat's data models (e.g., `packages/models/src/models/Nps.ts`, `packages/models/src/models/NpsVote.ts`) to persist and retrieve data. You may need to define new models for your service.
+        *   **Cron Jobs:** If your service requires scheduled tasks, define cron jobs (e.g., `apps/meteor/server/cron/nps.ts` for the NPS service) that call methods on your service class.
+        *   **Notifications/Banners:** Sending notifications or creating administrative banners to inform users or administrators about service-related events.
 
-        api.setBroker(startBroker());
-        api.registerService(new MyNewService());
-        ```
+4.  **Register the Service:**
+    *   While the explicit registration mechanism isn't directly visible in the `NPSService` file, services extending `ServiceClassInternal` are typically instantiated and registered within the Rocket.Chat application's startup process, making them available for use throughout the server.
 
+## Tool Calls (5 calls, 19,636 tokens)
 
-By following these steps, you can successfully add a new service to the Rocket.Chat ecosystem.
+**Step 1:** `plan({"question":"How do you add a new service in Rocket.Chat?","intent":"architecture"})` → 2250 tokens
+**Step 2:** `search({"query":"NPSService","layer":"server"})` → 92 tokens
+**Step 3:** `details({"filename":"service.ts","symbolName":"NPSService"})` → 178 tokens
+**Step 4:** `search({"query":"ServiceClassInternal"})` → 73 tokens
+**Step 5:** `details({"filename":"ServiceClass.ts","symbolName":"ServiceClassInternal"})` → 67 tokens
 
-## Tool Calls (8 calls, 23,588 tokens)
+## Files Seen In Tool Results (19)
 
-**Step 1:** `wiki({"question":"How do you add a new service in Rocket.Chat?"})` → 860 tokens
-**Step 2:** `search({"query":"api.registerService"})` → 328 tokens
-**Step 3:** `graph({"file":"startup.ts","move":"down","depth":2,"query":"api.registerService"})` → 15 tokens
-**Step 4:** `search({"layer":"server","query":"registerService"})` → 101 tokens
-**Step 5:** `details({"symbolName":"api","filename":"startup.ts"})` → 54 tokens
-**Step 6:** `details({"filename":"api.ts","symbolName":"Api.registerService"})` → 102 tokens
-**Step 7:** `search({"query":"IServiceClass"})` → 70 tokens
-**Step 8:** `details({"filename":"ServiceClass.ts","symbolName":"IServiceClass"})` → 276 tokens
-
-## Files Seen In Tool Results (15)
-
-- `apps/meteor/server/services/startup.ts`
-- `apps/meteor/ee/server/startup/services.ts`
-- `ee/apps/authorization-service/src/service.ts`
-- `ee/apps/omnichannel-transcript/src/service.ts`
-- `ee/apps/account-service/src/service.ts`
-- `ee/apps/ddp-streamer/src/service.ts`
-- `ee/apps/presence-service/src/service.ts`
-- `ee/apps/queue-worker/src/service.ts`
-- `apps/meteor/app/search/server/search.internalService.ts`
-- `apps/meteor/ee/server/startup/federation.ts`
-- `apps/meteor/app/custom-oauth/server/custom_oauth_server.js`
-- `apps/meteor/app/apple/server/appleOauthRegisterService.ts`
-- `packages/core-services/src/api.ts`
-- `packages/core-services/src/lib/Api.ts`
+- `apps/meteor/server/services/nps/service.ts`
+- `packages/models/src/models/Nps.ts`
+- `apps/meteor/server/services/nps/notification.ts`
+- `apps/meteor/server/services/nps/getAndCreateNpsSurvey.ts`
+- `packages/models/src/models/NpsVote.ts`
+- `apps/meteor/server/cron/nps.ts`
+- `apps/meteor/app/livechat/server/lib/logger.ts`
+- `apps/meteor/ee/app/livechat-enterprise/server/lib/logger.ts`
+- `apps/meteor/app/livechat/server/lib/RoutingManager.ts`
+- `apps/meteor/app/version-check/server/functions/checkVersionUpdate.ts`
+- `apps/meteor/app/version-check/server/index.ts`
+- `apps/meteor/app/version-check/server/functions/getNewUpdates.ts`
+- `apps/meteor/app/version-check/server/functions/buildVersionUpdateMessage.ts`
+- `apps/meteor/client/views/room/index.ts`
+- `apps/meteor/app/livechat/server/lib/hooks.ts`
+- `apps/meteor/client/views/room/MessageList/lib/isMessageNewDay.ts`
+- `apps/meteor/ee/app/livechat-enterprise/server/hooks/beforeNewRoom.ts`
+- `packages/core-services/src/types/INPSService.ts`
 - `packages/core-services/src/types/ServiceClass.ts`
