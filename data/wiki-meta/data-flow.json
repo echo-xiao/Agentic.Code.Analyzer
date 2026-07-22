@@ -1,0 +1,144 @@
+{
+  "page": {
+    "id": "data-flow",
+    "title": "Data Flow",
+    "category": "System Architecture",
+    "scope": "request lifecycle · 5 stages · measured cross-stage flow",
+    "modules": [],
+    "seedFiles": [],
+    "page": "Data Flow",
+    "sections": [],
+    "diagrams": [
+      {
+        "nodes": {
+          "entry": "Entry — REST & DDP",
+          "service": "Business & Services",
+          "persist": "Persistence — MongoDB",
+          "realtime": "Real-time Push",
+          "client": "Client Sync"
+        },
+        "edges": [
+          [
+            "entry",
+            "persist",
+            "639"
+          ],
+          [
+            "entry",
+            "client",
+            "626"
+          ],
+          [
+            "entry",
+            "service",
+            "461"
+          ],
+          [
+            "entry",
+            "realtime",
+            "395"
+          ],
+          [
+            "persist",
+            "service",
+            "155"
+          ],
+          [
+            "client",
+            "entry",
+            "130"
+          ],
+          [
+            "persist",
+            "realtime",
+            "113"
+          ],
+          [
+            "service",
+            "entry",
+            "106"
+          ],
+          [
+            "service",
+            "client",
+            "96"
+          ],
+          [
+            "realtime",
+            "entry",
+            "93"
+          ],
+          [
+            "persist",
+            "entry",
+            "93"
+          ],
+          [
+            "client",
+            "realtime",
+            "88"
+          ],
+          [
+            "persist",
+            "client",
+            "85"
+          ],
+          [
+            "realtime",
+            "service",
+            "81"
+          ],
+          [
+            "client",
+            "service",
+            "75"
+          ],
+          [
+            "realtime",
+            "client",
+            "63"
+          ],
+          [
+            "client",
+            "persist",
+            "47"
+          ],
+          [
+            "service",
+            "realtime",
+            "46"
+          ],
+          [
+            "service",
+            "persist",
+            "27"
+          ],
+          [
+            "realtime",
+            "persist",
+            "11"
+          ]
+        ],
+        "subgraphs": []
+      }
+    ],
+    "source_files": {},
+    "summary": "This page documents how requests move through a real-time messaging system across five distinct stages, measured by tracking actual code imports between subsystems. The pipeline flows from client entry points through business logic and data persistence, then back out to connected clients via real-time notifications and synchronization. Import weights quantify the strength of each stage-to-stage dependency, confirming the pipeline's actual structure in the codebase."
+  },
+  "prose": [
+    {
+      "section": "(intro)",
+      "text": "A request flows through five stages — from the client, into the server, down to MongoDB, then back out to every connected client in real time. Stage membership below is real subsystems; the arrows are **measured** from the code's actual import edges."
+    },
+    {
+      "section": "Pipeline Stages",
+      "text": "| Stage | Subsystems | Files |\n|---|---|---:|\n| **Entry — REST & DDP** | `api`, `server:methods`, `app:methods`, `routes`, `ee:methods` | 274 |\n| **Business & Services** | `hooks`, `pkg:core-services`, `server:lib`, `callbacks`, `pkg:network-broker` | 227 |\n| **Persistence — MongoDB** | `migrations`, `data`, `models`, `pkg:mongo-adapter`, `pkg:rocketchat-mongo-config` | 130 |\n| **Real-time Push** | `notifications`, `ddp-streamer`, `push`, `pkg:presence`, `streamer`, `push-notifications`, `streamMessage`, `notification-queue`, `presence-service` | 51 |\n| **Client Sync** | `pkg:ddp-client`, `cachedStores`, `minimongo`, `stores` | 62 |",
+      "narrative": "Requests enter via REST and DDP APIs, pass through a Business & Services layer that coordinates hooks and callbacks, hit MongoDB for persistence, then fan out through Real-time Push subsystems to notify connected clients while Client Sync stores maintain consistency. Each stage is composed of specific subsystems; the Entry stage alone spans 274 files across five subsystems."
+    },
+    {
+      "section": "Measured Cross-stage Flow",
+      "text": "Directed import weight between stages (aggregated from real module edges — evidence the pipeline exists):\n\n| Flow | Import weight |\n|---|---:|\n| Entry — REST & DDP → Persistence — MongoDB | 639 |\n| Entry — REST & DDP → Client Sync | 626 |\n| Entry — REST & DDP → Business & Services | 461 |\n| Entry — REST & DDP → Real-time Push | 395 |\n| Business & Services → Entry — REST & DDP | 106 |\n| Business & Services → Client Sync | 96 |\n| Business & Services → Real-time Push | 46 |\n| Business & Services → Persistence — MongoDB | 27 |\n| Persistence — MongoDB → Business & Services | 155 |\n| Persistence — MongoDB → Real-time Push | 113 |\n| Persistence — MongoDB → Entry — REST & DDP | 93 |\n| Persistence — MongoDB → Client Sync | 85 |\n| Real-time Push → Entry — REST & DDP | 93 |\n| Real-time Push → Business & Services | 81 |\n| Real-time Push → Client Sync | 63 |\n| Real-time Push → Persistence — MongoDB | 11 |\n| Client Sync → Entry — REST & DDP | 130 |\n| Client Sync → Real-time Push | 88 |\n| Client Sync → Business & Services | 75 |\n| Client Sync → Persistence — MongoDB | 47 |",
+      "narrative": "The heaviest flows originate from Entry, with 639 imports flowing directly to Persistence and 626 to Client Sync, showing that incoming requests immediately need both database access and client notifications. Persistence acts as a secondary hub, feeding results back to Real-time Push (113 weight) and Client Sync (85 weight), while weaker reverse flows from Business & Services back to Entry (106 weight) and Client Sync (96 weight) indicate callback and hook patterns. Real-time Push and Client Sync also talk to each other (88 weight), confirming they coordinate to keep all connected clients in sync."
+    }
+  ]
+}

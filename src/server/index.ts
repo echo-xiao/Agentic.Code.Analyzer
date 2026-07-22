@@ -3,24 +3,17 @@ import { Server } from '@modelcontextprotocol/sdk/server/index.js';
 import { StdioServerTransport } from '@modelcontextprotocol/sdk/server/stdio.js';
 import { ListToolsRequestSchema, CallToolRequestSchema } from '@modelcontextprotocol/sdk/types.js';
 import { OUTPUT_DIR } from '../config.js';
-import { preWarmCache, initializeGlobalIndex, LocalDatabase } from '../indexer/index.js';
+import { ensureIndex, LocalDatabase } from '../indexer/index.js';
 import { TOOL_DEFINITIONS, handleToolCall } from './registry.js';
 import { GLOBAL_INDEX } from '../indexer/state.js';
 
 if (!fs.existsSync(OUTPUT_DIR)) fs.mkdirSync(OUTPUT_DIR, { recursive: true });
 
-const { updatedCount } = preWarmCache();
-
-const db = new LocalDatabase(OUTPUT_DIR);
-if (updatedCount > 0 || !db.loadIndex(GLOBAL_INDEX)) {
-    initializeGlobalIndex();
-    db.saveIndex(GLOBAL_INDEX);
-} else {
-    console.error('⚡ Index loaded from cache (no source changes detected).');
-}
+await ensureIndex();
 
 if (process.argv.includes('--prewarm')) process.exit(0);
 
+const db = new LocalDatabase(OUTPUT_DIR);
 db.watchAndReload(GLOBAL_INDEX);
 
 const server = new Server(

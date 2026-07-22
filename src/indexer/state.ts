@@ -6,6 +6,10 @@ export type EdgeType =
     | 'event_listen'
     | 'pubsub_publish'
     | 'pubsub_subscribe'
+    | 'rest_call'
+    | 'rest_route'
+    | 'stream_def'
+    | 'stream_sub'
     | 'type';
 
 export interface CallEdge {

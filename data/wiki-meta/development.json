@@ -1,0 +1,55 @@
+{
+  "page": {
+    "id": "development",
+    "title": "Development",
+    "category": "Development",
+    "scope": "11 scripts · 10 turbo tasks · 16 CI workflows",
+    "modules": [],
+    "seedFiles": [
+      "package.json",
+      "turbo.json"
+    ],
+    "page": "Development",
+    "sections": [],
+    "diagrams": [],
+    "source_files": {
+      "package.json": [],
+      "turbo.json": [],
+      ".github/workflows/auto-close-duplicates.yml": [],
+      ".github/workflows/ci-code-check.yml": [],
+      ".github/workflows/ci-deploy-gh-pages.yml": [],
+      ".github/workflows/ci-test-e2e.yml": [],
+      ".github/workflows/ci-test-storybook.yml": [],
+      ".github/workflows/ci-test-unit.yml": [],
+      ".github/workflows/ci.yml": [],
+      ".github/workflows/codeql-analysis.yml": [],
+      ".github/workflows/dedupe-issues.yml": [],
+      ".github/workflows/new-release.yml": [],
+      ".github/workflows/pr-update-description.yml": [],
+      ".github/workflows/publish-release.yml": [],
+      ".github/workflows/release-candidate.yml": [],
+      ".github/workflows/stale.yml": [],
+      ".github/workflows/todo.yml": [],
+      ".github/workflows/update-version-durability.yml": [],
+      ".github/CONTRIBUTING.md": []
+    }
+  },
+  "prose": [
+    {
+      "section": "Scripts",
+      "text": "Common tasks run from the repo root (`package.json`):\n\n| Script | Command |\n|---|---|\n| `yarn build` | `turbo run build` |\n| `yarn build:services` | `turbo run build --filter=rocketchat-services...` |\n| `yarn dev` | `turbo run dev --env-mode=loose --parallel --filter=@rocket.chat/meteor...` |\n| `yarn dsv` | `turbo run dsv --env-mode=loose --filter=@rocket.chat/meteor...` |\n| `yarn ms` | `turbo run ms --env-mode=loose` |\n| `yarn fossify` | `TS_NODE_COMPILER_OPTIONS='{\"module\": \"commonjs\"}' ts-node scripts/fossify.ts` |\n| `yarn fuselage` | `./fuselage.sh` |\n| `yarn lint` | `turbo run lint` |\n| `yarn storybook` | `yarn workspace @rocket.chat/meteor run storybook` |\n| `yarn test-storybook` | `turbo run test-storybook` |\n| `yarn testunit` | `turbo run testunit` |\n\nSources: package.json:1"
+    },
+    {
+      "section": "Build Pipeline (turbo)",
+      "text": "Builds are orchestrated by **turbo** (`turbo.json`); tasks and their upstream dependencies:\n\n| Task | Depends on |\n|---|---|\n| `build-preview` | `^build` |\n| `.:build-preview-move` | `^build-preview` |\n| `build` | `^build` |\n| `test-storybook` | — |\n| `testunit` | — |\n| `lint` | — |\n| `typecheck` | — |\n| `dev` | `^dev` |\n| `dsv` | `build` |\n| `ms` | `^build` |\n\nSources: turbo.json:1"
+    },
+    {
+      "section": "Continuous Integration",
+      "text": "GitHub Actions runs 16 workflows on push/PR:\n\n| Workflow | Triggers | File |\n|---|---|---|\n| Auto-close duplicate issues | `schedule`, `workflow_dispatch` | `.github/workflows/auto-close-duplicates.yml` |\n| Code Checks | `workflow_call` | `.github/workflows/ci-code-check.yml` |\n| Deploy GitHub Pages | `push` | `.github/workflows/ci-deploy-gh-pages.yml` |\n| Tests E2E | `release`, `workflow_call` | `.github/workflows/ci-test-e2e.yml` |\n| Test Storybook | `workflow_call` | `.github/workflows/ci-test-storybook.yml` |\n| Tests Unit | `workflow_call` | `.github/workflows/ci-test-unit.yml` |\n| CI | `push`, `pull_request`, `release` | `.github/workflows/ci.yml` |\n| Code scanning - action | `push`, `pull_request`, `schedule` | `.github/workflows/codeql-analysis.yml` |\n| Rocket.Chat Issue Dedupe | `workflow_dispatch` | `.github/workflows/dedupe-issues.yml` |\n| Start new release | `workflow_dispatch` | `.github/workflows/new-release.yml` |\n| Release PR Description | `pull_request` | `.github/workflows/pr-update-description.yml` |\n| Publish Final Release | `push` | `.github/workflows/publish-release.yml` |\n| Release candidate cut | `schedule` | `.github/workflows/release-candidate.yml` |\n| Close inactive issues | `schedule` | `.github/workflows/stale.yml` |\n| Create issues from TODOs | `push`, `workflow_dispatch` | `.github/workflows/todo.yml` |\n| Update Version Durability | `workflow_dispatch`, `workflow_call` | `.github/workflows/update-version-durability.yml` |"
+    },
+    {
+      "section": "Contributing",
+      "text": "Contribution guidelines: `.github/CONTRIBUTING.md`.\n\nSources: .github/CONTRIBUTING.md:1"
+    }
+  ]
+}

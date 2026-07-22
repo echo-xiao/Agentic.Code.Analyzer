@@ -28,7 +28,9 @@ export class LocalDatabase {
             callGraph: Object.fromEntries(globalIndex.callGraph.entries()),
         };
 
-        fs.writeFileSync(this.indexPath, JSON.stringify(data, null, 2));
+        // Compact (no pretty-print): the index is machine-read only. `null, 2` indentation
+        // roughly doubles the size (~24M→~13M) and is markedly slower to stringify+write.
+        fs.writeFileSync(this.indexPath, JSON.stringify(data));
         console.error("✅ Index persisted successfully.");
     }
 
@@ -68,12 +70,5 @@ export class LocalDatabase {
             }
         });
         console.error('👀 Watching index for changes...');
-    }
-
-    clear(outputDir: string) {
-        if (fs.existsSync(outputDir)) {
-            fs.rmSync(outputDir, { recursive: true, force: true });
-            console.error("🧹 Local database cleared.");
-        }
     }
 }

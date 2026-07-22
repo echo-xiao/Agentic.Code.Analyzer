@@ -1,0 +1,374 @@
+{
+  "schema": "grouped-v1",
+  "note": "layer1/layer2 flatten groups and run questions individually; agy runs each group in order as one free-tier session",
+  "groups": [
+    {
+      "id": "messaging",
+      "subsystems": [
+        "autotranslate",
+        "message chat",
+        "message rendering",
+        "push notifications",
+        "streamer"
+      ],
+      "questions": [
+        {
+          "id": "tour-04-msg-client",
+          "question": "How is a message sent on the client side in Rocket.Chat?",
+          "questionType": "architecture",
+          "subsystem": "message chat",
+          "difficulty": "medium",
+          "source": "RC.Guided.Tours",
+          "ordered": true
+        },
+        {
+          "id": "new-19-message-rendering",
+          "question": "How is a message rendered from raw text to React components in Rocket.Chat?",
+          "questionType": "architecture",
+          "subsystem": "message rendering",
+          "difficulty": "medium",
+          "source": "claude",
+          "ordered": true
+        },
+        {
+          "id": "claude-01-push-notifications",
+          "question": "How do push notifications work in Rocket.Chat?",
+          "questionType": "architecture",
+          "subsystem": "push notifications",
+          "difficulty": "hard",
+          "source": "claude",
+          "ordered": true
+        },
+        {
+          "id": "new-09-realtime-streamer",
+          "question": "How does a new message appear in real-time on the client after being saved to the database?",
+          "questionType": "architecture",
+          "subsystem": "streamer",
+          "difficulty": "hard",
+          "source": "claude",
+          "ordered": true
+        },
+        {
+          "id": "tour-05-msg-server",
+          "question": "How is a message sent on the server side in Rocket.Chat?",
+          "questionType": "call-chain",
+          "subsystem": "message chat",
+          "difficulty": "hard",
+          "source": "RC.Guided.Tours",
+          "ordered": true
+        },
+        {
+          "id": "claude-05-call-chain",
+          "question": "What is the complete call chain for sendMessage?",
+          "questionType": "call-chain",
+          "subsystem": "message chat",
+          "difficulty": "hard",
+          "source": "claude",
+          "ordered": true
+        },
+        {
+          "id": "new-24-autotranslate",
+          "question": "How does the auto-translate feature work for messages in Rocket.Chat?",
+          "questionType": "locate",
+          "subsystem": "autotranslate",
+          "difficulty": "medium",
+          "source": "claude",
+          "ordered": false
+        },
+        {
+          "id": "new-15-impact-aftersave",
+          "question": "What would be impacted if the afterSaveMessage callback system were changed?",
+          "questionType": "impact",
+          "subsystem": "message chat",
+          "difficulty": "hard",
+          "source": "claude",
+          "ordered": false
+        },
+        {
+          "id": "new-16-impact-streamer",
+          "question": "What is the blast radius of changing the Streamer module in Rocket.Chat?",
+          "questionType": "impact",
+          "subsystem": "streamer",
+          "difficulty": "hard",
+          "source": "claude",
+          "ordered": false
+        }
+      ]
+    },
+    {
+      "id": "api-integrations",
+      "subsystems": [
+        "api",
+        "federation",
+        "integrations",
+        "search",
+        "slash commands",
+        "video conference"
+      ],
+      "questions": [
+        {
+          "id": "claude-08-federation",
+          "question": "How are federation messages sent across different servers in Rocket.Chat?",
+          "questionType": "routing",
+          "subsystem": "federation",
+          "difficulty": "hard",
+          "source": "claude",
+          "ordered": true
+        },
+        {
+          "id": "new-18-webhook",
+          "question": "How does an incoming webhook get processed in Rocket.Chat?",
+          "questionType": "routing",
+          "subsystem": "integrations",
+          "difficulty": "hard",
+          "source": "claude",
+          "ordered": true
+        },
+        {
+          "id": "claude-07-api-endpoints",
+          "question": "How are new endpoints registered in the REST API in Rocket.Chat?",
+          "questionType": "locate",
+          "subsystem": "api",
+          "difficulty": "medium",
+          "source": "claude",
+          "ordered": false
+        },
+        {
+          "id": "new-25-search",
+          "question": "How does message search work in Rocket.Chat?",
+          "questionType": "locate",
+          "subsystem": "search",
+          "difficulty": "medium",
+          "source": "claude",
+          "ordered": false
+        },
+        {
+          "id": "new-27-video-conference",
+          "question": "How does the video conference system work in Rocket.Chat?",
+          "questionType": "locate",
+          "subsystem": "video conference",
+          "difficulty": "medium",
+          "source": "claude",
+          "ordered": false
+        },
+        {
+          "id": "tour-06-endpoint",
+          "question": "How do you create a new REST API endpoint in Rocket.Chat?",
+          "questionType": "pattern",
+          "subsystem": "api",
+          "difficulty": "medium",
+          "source": "RC.Guided.Tours",
+          "ordered": false
+        },
+        {
+          "id": "new-17-slash-commands",
+          "question": "How do slash commands work in Rocket.Chat — from registration to execution?",
+          "questionType": "pattern",
+          "subsystem": "slash commands",
+          "difficulty": "medium",
+          "source": "claude",
+          "ordered": false
+        }
+      ]
+    },
+    {
+      "id": "platform",
+      "subsystems": [
+        "apps engine",
+        "core-services",
+        "database",
+        "file upload",
+        "services",
+        "settings",
+        "tooling"
+      ],
+      "questions": [
+        {
+          "id": "new-11-settings",
+          "question": "How does the Settings system work in Rocket.Chat — from registration to client-side access?",
+          "questionType": "architecture",
+          "subsystem": "settings",
+          "difficulty": "medium",
+          "source": "claude",
+          "ordered": true
+        },
+        {
+          "id": "claude-03-file-upload",
+          "question": "What is the storage workflow for file uploads in Rocket.Chat?",
+          "questionType": "architecture",
+          "subsystem": "file upload",
+          "difficulty": "hard",
+          "source": "claude",
+          "ordered": true
+        },
+        {
+          "id": "new-10-apps-engine",
+          "question": "How does a Rocket.Chat App hook into events like afterSaveMessage via the Apps Engine?",
+          "questionType": "architecture",
+          "subsystem": "apps engine",
+          "difficulty": "hard",
+          "source": "claude",
+          "ordered": true
+        },
+        {
+          "id": "new-20-proxify",
+          "question": "How does the core-services proxify() pattern work for inter-service communication in Rocket.Chat?",
+          "questionType": "locate",
+          "subsystem": "core-services",
+          "difficulty": "hard",
+          "source": "claude",
+          "ordered": false
+        },
+        {
+          "id": "tour-07-db-model-create",
+          "question": "How do you create a new database model in Rocket.Chat?",
+          "questionType": "pattern",
+          "subsystem": "database",
+          "difficulty": "medium",
+          "source": "RC.Guided.Tours",
+          "ordered": false
+        },
+        {
+          "id": "tour-08-db-model-use",
+          "question": "How do you use a database model to query data in Rocket.Chat?",
+          "questionType": "pattern",
+          "subsystem": "database",
+          "difficulty": "medium",
+          "source": "RC.Guided.Tours",
+          "ordered": false
+        },
+        {
+          "id": "tour-11-new-package",
+          "question": "How do you create a new package in the Rocket.Chat monorepo?",
+          "questionType": "pattern",
+          "subsystem": "tooling",
+          "difficulty": "medium",
+          "source": "RC.Guided.Tours",
+          "ordered": false
+        },
+        {
+          "id": "tour-10-new-service",
+          "question": "How do you add a new service in Rocket.Chat?",
+          "questionType": "pattern",
+          "subsystem": "services",
+          "difficulty": "hard",
+          "source": "RC.Guided.Tours",
+          "ordered": false
+        },
+        {
+          "id": "new-21-impact-settings",
+          "question": "What would be affected if the CachedSettings system were changed?",
+          "questionType": "impact",
+          "subsystem": "settings",
+          "difficulty": "medium",
+          "source": "claude",
+          "ordered": false
+        }
+      ]
+    },
+    {
+      "id": "auth-security",
+      "subsystems": [
+        "2fa",
+        "authentication",
+        "authorization",
+        "e2e encryption",
+        "ee licensing"
+      ],
+      "questions": [
+        {
+          "id": "new-22-2fa",
+          "question": "How does two-factor authentication (2FA) work in Rocket.Chat?",
+          "questionType": "architecture",
+          "subsystem": "2fa",
+          "difficulty": "medium",
+          "source": "claude",
+          "ordered": true
+        },
+        {
+          "id": "claude-04-e2e-encryption",
+          "question": "How are the keys managed for end-to-end (E2E) encryption in Rocket.Chat?",
+          "questionType": "architecture",
+          "subsystem": "e2e encryption",
+          "difficulty": "hard",
+          "source": "claude",
+          "ordered": true
+        },
+        {
+          "id": "new-12-ldap-auth",
+          "question": "How does LDAP authentication work in Rocket.Chat?",
+          "questionType": "routing",
+          "subsystem": "authentication",
+          "difficulty": "hard",
+          "source": "claude",
+          "ordered": true
+        },
+        {
+          "id": "claude-02-msg-permissions",
+          "question": "Where is the logic for message permission validation located?",
+          "questionType": "locate",
+          "subsystem": "authorization",
+          "difficulty": "medium",
+          "source": "claude",
+          "ordered": false
+        },
+        {
+          "id": "new-14-ee-license",
+          "question": "How does enterprise feature gating work in Rocket.Chat?",
+          "questionType": "locate",
+          "subsystem": "ee licensing",
+          "difficulty": "hard",
+          "source": "claude",
+          "ordered": false
+        }
+      ]
+    },
+    {
+      "id": "rooms-livechat",
+      "subsystems": [
+        "livechat",
+        "omnichannel",
+        "rooms",
+        "team"
+      ],
+      "questions": [
+        {
+          "id": "new-13-room-creation",
+          "question": "What happens when a user creates a new channel in Rocket.Chat?",
+          "questionType": "call-chain",
+          "subsystem": "rooms",
+          "difficulty": "medium",
+          "source": "claude",
+          "ordered": true
+        },
+        {
+          "id": "new-23-omnichannel",
+          "question": "How does the Omnichannel queue process and close a livechat conversation?",
+          "questionType": "call-chain",
+          "subsystem": "omnichannel",
+          "difficulty": "hard",
+          "source": "claude",
+          "ordered": true
+        },
+        {
+          "id": "claude-06-livechat-routing",
+          "question": "How are Livechat requests routed to the server-side in Rocket.Chat?",
+          "questionType": "routing",
+          "subsystem": "livechat",
+          "difficulty": "hard",
+          "source": "claude",
+          "ordered": true
+        },
+        {
+          "id": "new-26-team",
+          "question": "How does the Team feature work in Rocket.Chat?",
+          "questionType": "locate",
+          "subsystem": "team",
+          "difficulty": "medium",
+          "source": "claude",
+          "ordered": false
+        }
+      ]
+    }
+  ]
+}

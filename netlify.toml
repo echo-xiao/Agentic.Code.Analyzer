@@ -1,0 +1,8 @@
+# Netlify deploy config for the static wiki site (alternative to vercel.json).
+# build-site.mjs assembles wiki-site/ + data/*.json into dist/.
+[build]
+  command = "node scripts/build-site.mjs"
+  publish = "dist"
+
+[build.environment]
+  NPM_FLAGS = "--no-install"
