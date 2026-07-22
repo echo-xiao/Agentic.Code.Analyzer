@@ -14,7 +14,7 @@
     "summaries:gen": "npx tsx src/eval/summarize.ts",
     "embed:gen": "npx tsx src/eval/embed.ts",
     "truth": "npx tsx src/eval/truth.ts",
-    "wiki:map": "echo '[wiki:map] skipped — 不抓外部 wiki;P3 自生成流水线接管(src/wiki/generate.ts);当前 refresh 用现有 data/wiki-map.json'",
+    "wiki:map": "echo '[wiki:map] skipped — does not fetch external wiki; the P3 self-generated pipeline takes over (src/wiki/generate.ts); refresh currently uses the existing data/wiki-map.json'",
     "module:build": "NODE_OPTIONS=\"--max-old-space-size=8192\" npx tsx src/indexer/build-modulegraph.ts",
     "embed:chunks": "npx tsx src/eval/embed-chunks.ts",
     "module:summarize": "npx tsx src/eval/summarize-modules.ts",

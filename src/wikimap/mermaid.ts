@@ -5,13 +5,13 @@ const EDGE_RE = /^\s*(\w+)\s*(?:-{1,3}\.?-*>|={2}>)\s*(?:\|"?([^|"\n]*)"?\|\s*)?
 const SUBGRAPH_RE = /subgraph\s+"?([^"\n]+?)"?\s*$/gm;
 function cleanLabel(s: string): string { return s.replace(/<br\s*\/?>/g, ' / ').trim(); }
 
-/** mermaid flowchart 块 → 结构（§7.4 生成后回填 diagrams；wiki 解析器保留件）。 */
+/** mermaid flowchart block → structure (§7.4: backfill diagrams after generation; retained piece of the wiki parser). */
 export function parseMermaid(block: string): WikiDiagram {
   const nodes: Record<string, string> = {};
   for (const m of block.matchAll(NODE_RE)) nodes[m[1]] = cleanLabel(m[2]);
   const edges: string[][] = [];
   for (const m of block.matchAll(EDGE_RE)) {
-    // 跳过误匹配节点定义的行（EDGE_RE 只该命中 A --> B 形态）
+    // Skip lines that mis-match node definitions (EDGE_RE should only hit the A --> B form)
     if (!m[3]) continue;
     const e = [m[1], m[3]];
     if (m[2]) e.push(m[2].trim());
@@ -23,7 +23,7 @@ export function parseMermaid(block: string): WikiDiagram {
 
 const nodeId = (s: string) => s.replace(/[^A-Za-z0-9_]/g, '_').slice(0, 60);
 
-/** 真实边集 → mermaid flowchart 串（§7.4：节点/边来自真实数据，LLM 不臆想）。 */
+/** Real edge set → mermaid flowchart string (§7.4: nodes/edges come from real data, not LLM hallucination). */
 export function renderFlowchart(
   nodes: Record<string, string>,
   edges: Array<[string, string, string?]>,
@@ -48,7 +48,7 @@ export function renderFlowchart(
   return lines.join('\n');
 }
 
-/** call-chain 一条主链 → mermaid sequence（§7.4 端到端流）。 */
+/** One main call-chain → mermaid sequence (§7.4 end-to-end flow). */
 export function renderSequence(title: string, steps: Array<[string, string, string]>): string {
   const lines: string[] = [`sequenceDiagram`, `  title ${title}`];
   for (const [from, to, msg] of steps) lines.push(`  ${nodeId(from)}->>${nodeId(to)}: ${msg}`);

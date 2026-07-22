@@ -23,7 +23,7 @@ export function assembleModuleInput(mod: any, fileSummaries: Record<string, any>
     const fs = fileSummaries[f];
     return fs ? { file: f, role: fs.role ?? '', fanIn: fs.fanIn ?? 0, key_exports: fs.key_exports ?? [] } : { file: f, role: '', fanIn: 0, key_exports: [] };
   }).sort((a: any, b: any) => b.fanIn - a.fanIn);
-  // 内部边:成员文件间的 downstream 关系(近似:某文件 downstream 命中同模块另一文件)
+  // Internal edges: downstream relations between member files (approximation: a file's downstream hits another file in the same module)
   const memberSet = new Set(mod.files ?? []);
   const internalEdges: string[] = [];
   for (const f of (mod.files ?? [])) {
@@ -35,12 +35,12 @@ export function assembleModuleInput(mod: any, fileSummaries: Record<string, any>
 
 export function buildModulePrompt(input: ModuleSummaryInput): string {
   return [
-    `把下面这些文件当**一个子系统**描述:入口 → 内部如何流转 → 对外接口。用给定的边描述连接,**不要逐个列文件**,禁止发明边。`,
-    `模块: ${input.moduleId}(子系统 ${input.subsystem})`,
-    `核心文件(按 fanIn):`,
+    `Describe the files below as **one subsystem**: entry point → how data flows internally → public interface. Describe the connections using the given edges, **do not list files individually**, and do not invent edges.`,
+    `Module: ${input.moduleId} (subsystem ${input.subsystem})`,
+    `Core files (by fanIn):`,
     ...input.fileSummaries.slice(0, 20).map(f => `  - ${f.file} [fanIn ${f.fanIn}] ${f.role}`),
-    `内部数据流边: ${input.internalEdges.join('; ') || '(少)'}`,
-    `模块间边界边: ${input.boundaryEdges.map(e => `${e[0]}→${e[1]}(${e[2]})`).join(', ') || '(无)'}`,
-    `输出 schema 的 6 个字段。`,
+    `Internal data-flow edges: ${input.internalEdges.join('; ') || '(few)'}`,
+    `Inter-module boundary edges: ${input.boundaryEdges.map(e => `${e[0]}→${e[1]}(${e[2]})`).join(', ') || '(none)'}`,
+    `Output the 6 schema fields.`,
   ].join('\n');
 }

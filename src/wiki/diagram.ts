@@ -1,6 +1,6 @@
 #!/usr/bin/env npx tsx
 /**
- * diagram.ts — P3 wiki:diagram (§7.4 三尺度 Mermaid).
+ * diagram.ts — P3 wiki:diagram (§7.4 three-scale Mermaid).
  *
  * Exports (pure, graph-injectable for tests):
  *   systemCommunityDiagram(graph)             — GLOBAL: all modules + module→module edges
@@ -113,7 +113,7 @@ export function systemCommunityDiagram(graph: DiagramGraph): WikiDiagram | null 
 /**
  * MODULE SLICE: the page's modules + their 1-hop neighbor modules only.
  * Filters module.edges to those touching any of the page's module ids.
- * "我连谁."
+ * "Who do I connect to."
  */
 export function moduleSliceDiagram(
   page: { modules: string[] },
@@ -149,7 +149,7 @@ export function moduleSliceDiagram(
 /**
  * COMPONENT: internal structure of the page's modules.
  * Uses callGraph edges among the modules' member files (cross-layer sub-graph).
- * "模块内部."
+ * "Inside the module."
  *
  * callGraph key convention:
  *   - In production: keys are symbol names; CallerRef.file is the calling file.
@@ -223,7 +223,7 @@ export function componentDiagram(
 /**
  * SEQUENCE: one end-to-end call chain via callGraph down-style traversal from a seed file.
  * callGraph maps callee → callerRefs; we invert to get caller → callees, then DFS forward.
- * "一条链."
+ * "One chain."
  */
 export function chainSequence(
   seedFile: string,
@@ -289,7 +289,7 @@ const CROSS_LAYER: ReadonlySet<string> = new Set([
   'rest_call', 'rest_route', 'stream_def', 'stream_sub',
 ]);
 
-/** 页里跨层出边最多的文件当链起点;无跨层→seedFiles[0];仍无→页首文件/null。 */
+/** Use the file with the most cross-layer out-edges in the page as the chain seed; if no cross-layer edges → seedFiles[0]; still none → first page file / null. */
 export function pickChainSeed(
   page: { source_files?: Record<string, string[]>; seedFiles?: string[] },
   callGraph: CallGraphMap,

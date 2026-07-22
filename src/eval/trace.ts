@@ -1,9 +1,9 @@
 #!/usr/bin/env npx tsx
 /**
- * trace — 逐题自主游走 trace 跑器（record-only，无金文件指标）。
- * 每题产一份决策日志：pageStep/seedStep/walk（options+chosen+reason+result）/entryPages/agentCalls。
- * 诚实约束：本文件及 walker/* 不 import truth-io、不读 claude-truth.json。
- * 用法: npm run trace [-- --filter=<id子串>]
+ * trace — per-question autonomous-walk trace runner (record-only, no gold-file metrics).
+ * Each question produces a decision log: pageStep/seedStep/walk (options+chosen+reason+result)/entryPages/agentCalls.
+ * Honesty constraint: this file and walker/* do not import truth-io and do not read claude-truth.json.
+ * Usage: npm run trace [-- --filter=<id substring>]
  */
 import * as fs from 'fs';
 import * as path from 'path';
@@ -38,7 +38,7 @@ interface Trace {
 }
 
 function buildSymbolsOfFile(): (f: string) => string[] {
-    // GLOBAL_INDEX.symbols 是 symbol -> Set<paths>；建一次反向索引 file -> symbols（字母序，保确定性）
+    // GLOBAL_INDEX.symbols is symbol -> Set<paths>; build a reverse index once, file -> symbols (alphabetical, for determinism)
     const byFile = new Map<string, string[]>();
     for (const [sym, paths] of GLOBAL_INDEX.symbols) {
         for (const p of paths) {
@@ -57,14 +57,14 @@ async function main() {
     if (!fs.existsSync(WIKI_MAP)) { console.error(`Missing ${WIKI_MAP} — run \`npm run wiki:map\` first.`); process.exit(2); }
     const wikiMap = JSON.parse(fs.readFileSync(WIKI_MAP, 'utf-8')) as WikiMap;
 
-    // 漂移率（spec §4.1）：wiki-map 文件对当前 checkout 的存在率
+    // Drift rate (spec §4.1): the existence rate of wiki-map files against the current checkout
     const allFiles = [...GLOBAL_INDEX.allFiles];
     const { missing: allMissing } = resolveWikiFiles(Object.keys(wikiMap.file_to_pages), allFiles);
-    console.error(`wiki-map 漂移率: ${allMissing.length}/${Object.keys(wikiMap.file_to_pages).length} 文件未命中 checkout`);
+    console.error(`wiki-map drift rate: ${allMissing.length}/${Object.keys(wikiMap.file_to_pages).length} files not found in checkout`);
 
     const symbolsOfFile = buildSymbolsOfFile();
     const adj = buildDirectedAdjacency(GLOBAL_INDEX.callGraph);
-    const realByRel = new Map(allFiles.map(f => [relPath(f), f]));   // 一次建表，walk 内 O(1) 反查
+    const realByRel = new Map(allFiles.map(f => [relPath(f), f]));   // build the table once, O(1) reverse lookup inside walk
     const walkCtx: WalkCtx = {
         adj,
         filesOf: (sym) => [...(GLOBAL_INDEX.symbols.get(sym) ?? [])].sort().map(relPath),
@@ -82,8 +82,8 @@ async function main() {
 
     let fallbackCount = 0;
     await withBar('trace', selected, async (tc) => {
-        // 语料级去泛词：df/N>0.5 的 token（rocket/chat 等）对选页无区分度，从 wiki-map 派生剔除。
-        // 过滤后的 tokens 全程共用（选页/选seed/游走亲和度），保持"一处定义处处一致"。
+        // Corpus-level generic-term removal: tokens with df/N>0.5 (rocket/chat, etc.) have no discriminative power for page selection; derived from wiki-map and dropped.
+        // The filtered tokens are shared throughout (page selection / seed selection / walk affinity), keeping "define once, consistent everywhere".
         const { kept: tokens, dropped: genericDropped } = informativeTokens(questionTokens(tc.question), wikiMap);
         const pageStep = selectPages(tokens, wikiMap);
         const seedSteps: SeedStep[] = [];
@@ -108,7 +108,7 @@ async function main() {
         const walk: WalkRound[] = [];
         for (const seed of [...new Set(seeds)]) walk.push(...walkFromSeed(seed, walkCtx, tokens));
 
-        // entryPages：seed 文件 → 架构页
+        // entryPages: seed file → architecture page
         const entryPages: Record<string, string[]> = {};
         for (const seed of new Set(seeds)) {
             for (const f of walkCtx.filesOf(seed)) {
@@ -125,9 +125,9 @@ async function main() {
             agentCalls: parseAgentCalls(tc.id, ANSWERS_DIR, VERDICTS),
         };
         fs.writeFileSync(path.join(OUT_DIR, `${tc.id}.json`), JSON.stringify(trace, null, 2), 'utf-8');
-        return `${tc.id}: ${pageStep?.chosen.length ?? 0}页 ${seeds.length}seed ${walk.length}步`;
+        return `${tc.id}: ${pageStep?.chosen.length ?? 0} pages ${seeds.length} seed ${walk.length} steps`;
     });
-    console.error(`Done. traces -> ${OUT_DIR} · fallback 触发 ${fallbackCount}/${selected.length}`);
+    console.error(`Done. traces -> ${OUT_DIR} · fallback triggered ${fallbackCount}/${selected.length}`);
 }
 
 main().catch(e => { console.error('Fatal:', e); process.exit(1); });

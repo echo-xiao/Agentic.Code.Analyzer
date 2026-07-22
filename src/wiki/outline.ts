@@ -288,10 +288,11 @@ export async function generateOutline(
 
   const client = new Anthropic({ apiKey });
 
-  // 截断/无法解析的响应按"空 pages"处理 → 触发重试/确定性兜底,别让 JSON.parse 抛 Fatal 杀掉 wiki:gen。
+  // Treat truncated/unparseable responses as "empty pages" → trigger retry/deterministic fallback,
+  // instead of letting JSON.parse throw a Fatal that kills wiki:gen.
   const parsePages = (text: string): LLMPage[] => {
     try { return JSON.parse(text)?.pages ?? []; }
-    catch (e: any) { console.error(`[wiki:outline] 响应 JSON 截断/解析失败(${e?.message?.slice(0, 60)}) → 按空处理,走重试/兜底`); return []; }
+    catch (e: any) { console.error(`[wiki:outline] Response JSON truncated/parse failed (${e?.message?.slice(0, 60)}) → treating as empty, falling back to retry/fallback`); return []; }
   };
 
   // First attempt
@@ -333,7 +334,7 @@ export async function generateOutline(
     llmPages = deterministicFallback(llmPages, graph);
     const postFallback = validateOutline(llmPages, graph);
     if (!postFallback.ok) {
-      throw new Error(`[wiki:outline] deterministic fallback 仍不合法: ${JSON.stringify(postFallback)}`);
+      throw new Error(`[wiki:outline] deterministic fallback still invalid: ${JSON.stringify(postFallback)}`);
     }
   }
 

@@ -10,18 +10,18 @@ const routing: Routing = {
   b: { l1: 'Understand Internals', l2: 'Subsystem Deep-Dives' },
   c: { l1: 'Reference', l2: 'API & Contracts' },
 };
-const families: Families = { a: '认证', b: '认证' }; // a,b 同族；c 无族
+const families: Families = { a: 'Authentication', b: 'Authentication' }; // a,b same family; c has none
 
-test('4 级：L1>L2>L3家族>页；无族页折叠到 L2', () => {
+test('4 levels: L1 > L2 > L3 family > page; family-less page collapses to L2', () => {
   const tree = buildGuideTree(pages, routing, families);
   assert.equal(tree[0].title, 'Understand Internals');            // L1 label
   const l2 = tree[0].children![0];
   assert.equal(l2.title, 'Subsystem Deep-Dives');
   const fam = l2.children![0];
   assert.equal(fam.kind, 'section');
-  assert.equal(fam.title, '认证');
+  assert.equal(fam.title, 'Authentication');
   assert.deepEqual(fam.children!.map(n => n.id).sort(), ['a', 'b']);
-  // Reference/c：无族 → 页直接挂 L2
+  // Reference/c: no family -> page attaches directly to L2
   const ref = tree.find(n => n.title === 'Reference')!;
   assert.equal(ref.children![0].children![0].id, 'c');
   assert.equal(ref.children![0].children![0].kind, 'page');

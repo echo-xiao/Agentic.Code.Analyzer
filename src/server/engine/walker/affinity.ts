@@ -1,5 +1,5 @@
-// question token 集 + 词面亲和度。全流程（页面匹配/seed 选择/游走方向/停止）共用这一个信号源。
-// fuzzysort v3：score ∈ 0..1，无匹配返回 undefined（2026-07-08 实测）。
+// question token set + lexical affinity. The whole pipeline (page matching / seed selection / walk direction / stopping) shares this single signal source.
+// fuzzysort v3: score ∈ 0..1, returns undefined on no match (measured 2026-07-08).
 import fuzzysort from 'fuzzysort';
 
 const STOPWORDS = new Set([
@@ -11,31 +11,31 @@ const STOPWORDS = new Set([
     'after', 'before', 'about', 'between', 'through', 'during', 'via',
     'i', 'you', 'we', 'they', 'he', 'she', 'my', 'your', 'our', 'their',
     'there', 'here', 'then', 'than', 'so', 'if', 'else', 'each', 'all', 'any', 'some',
-    // 问句模式词：与内容无关但会 fuzzy 撞标题（'work' 0.82 命中 "Development Workflow"，trace 实证 2026-07-08）
+    // Question-pattern words: content-irrelevant but fuzzy-collide with titles ('work' scores 0.82 against "Development Workflow", trace evidence 2026-07-08)
     'work', 'works', 'working', 'happen', 'happens', 'happened', 'complete', 'entire',
 ]);
 
 export function questionTokens(question: string): string[] {
     const raw = question
-        .replace(/([a-z])([A-Z])/g, '$1 $2')   // 拆驼峰（问题里出现符号名时）
+        .replace(/([a-z])([A-Z])/g, '$1 $2')   // split camelCase (when a symbol name appears in the question)
         .toLowerCase()
         .split(/[^a-z0-9]+/);
     const seen = new Set<string>();
     const out: string[] = [];
     for (const w of raw) {
-        if (w.length < 3 || STOPWORDS.has(w)) continue;   // 原始词先过一遍停用词（works/happens 在表里）
+        if (w.length < 3 || STOPWORDS.has(w)) continue;   // filter the raw word against stopwords first (works/happens are in the set)
         const t = singularize(w);
-        if (t.length < 3 || STOPWORDS.has(t) || seen.has(t)) continue;   // 归一后再过（does→doe 这类漏网）
+        if (t.length < 3 || STOPWORDS.has(t) || seen.has(t)) continue;   // filter again after normalization (catches leaks like does→doe)
         seen.add(t);
         out.push(t);
     }
     return out;
 }
 
-// 复数轻量归一：fuzzysort 要求 query 每个字符按序出现，'notifications' 的尾 s 会让
-// sendPushNotification / "Push Notification Integration" 全部 NO MATCH（实测 2026-07-08，
-// claude-01 的双证人被一个字母拦住）。规则从宽到严：ies→y、sses→ss；ss/us/is/os 结尾不动
-// （process/status/analysis/photos 类）；其余去尾 s。
+// Lightweight plural normalization: fuzzysort requires every query character to appear in order, so the
+// trailing s of 'notifications' makes sendPushNotification / "Push Notification Integration" all NO MATCH
+// (measured 2026-07-08, claude-01's two witnesses blocked by a single letter). Rules from loose to strict:
+// ies→y, sses→ss; leave ss/us/is/os endings untouched (process/status/analysis/photos family); otherwise drop the trailing s.
 function singularize(w: string): string {
     if (w.length <= 3) return w;
     if (w.endsWith('ies')) return w.slice(0, -3) + 'y';

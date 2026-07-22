@@ -11,7 +11,7 @@ import { buildGuideTree } from './tree.js';
 import { checkMECE } from '../eval/wiki-tree-gate.js';
 import { makeClassify, makeNameClusters } from './guide-llm.js';
 
-/** summary-vectors 的值是 { hash, vec: <base64 Float32> }(也兼容裸 number[])。解成向量。 */
+/** summary-vectors values are { hash, vec: <base64 Float32> } (also accepts a bare number[]). Decode into a vector. */
 function decodeVec(e: unknown): number[] | null {
   if (Array.isArray(e)) return e as number[];
   if (e && typeof (e as { vec?: unknown }).vec === 'string') {
@@ -21,7 +21,7 @@ function decodeVec(e: unknown): number[] | null {
   return null;
 }
 
-/** 从页的 source_files 文件向量取均值，得到页级向量（summary-vectors 是文件键，需聚到页）。 */
+/** Average the file vectors of a page's source_files to get a page-level vector (summary-vectors is keyed by file, so it must be aggregated to the page). */
 export function aggregatePageVectors(
   pages: { id: string; source_files?: Record<string, string[]> }[],
   fileVectors: Record<string, unknown>,
@@ -55,7 +55,7 @@ export async function runGuide(deps: {
   const families = await clusterFamilies(inputs, routing, pageVectors, nameClusters);
   const tree = buildGuideTree(map.pages.map(p => ({ id: p.id, title: p.title })), routing, families);
   const mece = checkMECE(map.pages.map(p => p.id), tree);
-  if (!mece.ok) throw new Error(`MECE 失败 orphans=${mece.orphans} dups=${mece.dups}`);
+  if (!mece.ok) throw new Error(`MECE failed orphans=${mece.orphans} dups=${mece.dups}`);
 
   map.nav = tree;
   fs.writeFileSync(mapPath, JSON.stringify(map, null, 2));

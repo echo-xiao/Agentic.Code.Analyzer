@@ -1,13 +1,14 @@
 #!/usr/bin/env npx tsx
 /**
- * summarize — P2: 给全库每个索引文件生成多字段结构化摘要（Claude API，每文件独立调用注入结构事实）。
+ * summarize — P2: generate a multi-field structured summary for every indexed file in the repo (Claude API,
+ * one independent call per file that injects structural facts).
  *
- * 目标集 = 全部 skeleton（output.nosync/**​/*.skeleton.ts）。
- * 产物：data/summaries/file-summaries.json { relPath: FileSummary }（进仓，排序键确定性输出）。
- * 缓存：按 skeleton 内容 sha1 哈希——skeleton 变→哈希变→重生成（断点续传）。
+ * Target set = all skeletons (output.nosync/**​/*.skeleton.ts).
+ * Output: data/summaries/file-summaries.json { relPath: FileSummary } (committed, deterministic sorted-key output).
+ * Cache: sha1 hash of skeleton content — skeleton changes → hash changes → regenerate (resumable).
  * Run: npm run summaries:gen [-- --dry] [-- --limit=N]
- *   --dry      只报目标集统计与样例，不调 API（零成本预检）
- *   --limit=N  只跑前 N 个文件（先花几分钱验证输出质量，再放全量）
+ *   --dry      only report target-set stats and samples, no API calls (zero-cost preflight)
+ *   --limit=N  only run the first N files (spend a few cents to validate output quality first, then go full)
  */
 import "./utils/load-env.js";
 import Anthropic from '@anthropic-ai/sdk';
@@ -34,7 +35,7 @@ type Store = Record<string, FileSummary>;
 
 const sha1 = (s: string) => crypto.createHash('sha1').update(s).digest('hex');
 
-// 递归 glob 全部 skeleton 文件（纯文件系统遍历）
+// Recursively glob all skeleton files (pure filesystem traversal)
 function allSkeletons(dir: string, out: string[] = []): string[] {
     for (const e of fs.readdirSync(dir, { withFileTypes: true })) {
         const p = path.join(dir, e.name);
@@ -45,8 +46,8 @@ function allSkeletons(dir: string, out: string[] = []): string[] {
 }
 
 /**
- * buildPrompt — 纯函数，把 skeleton + 结构事实合成提示字符串。
- * 导出供 Task 8 AB 脚本和单测使用。
+ * buildPrompt — pure function that assembles the prompt string from skeleton + structural facts.
+ * Exported for use by the Task 8 A/B script and unit tests.
  */
 export function buildPrompt(rel: string, skeletonText: string, facts: FileSummary): string {
     const lines = skeletonText.split('\n');
@@ -73,37 +74,37 @@ export function buildPrompt(rel: string, skeletonText: string, facts: FileSummar
 
 async function main() {
     const apiKey = process.env.ANTHROPIC_API_KEY || process.env.CLAUDE_API_KEY;
-    // 无 key → 优雅跳过（exit 0）：摘要是增量可选层，不该拖垮整条 refresh 流水线
-    if (!apiKey) { console.error('[summaries] ANTHROPIC_API_KEY 未设置 — 跳过摘要生成（不影响其余步骤）。'); return; }
-    if (!fs.existsSync(OUTPUT_DIR)) { console.error('[summaries] output.nosync 不存在 — 先 npm run prewarm。'); return; }
+    // no key → graceful skip (exit 0): summaries are an incremental optional layer and shouldn't drag down the whole refresh pipeline
+    if (!apiKey) { console.error('[summaries] ANTHROPIC_API_KEY not set — skipping summary generation (does not affect the other steps).'); return; }
+    if (!fs.existsSync(OUTPUT_DIR)) { console.error('[summaries] output.nosync does not exist — run npm run prewarm first.'); return; }
 
-    // 加载全局索引（确保 GLOBAL_INDEX.fileDependents/allFiles 填充，downstream/fanIn 才有数据）
+    // Load the global index (ensures GLOBAL_INDEX.fileDependents/allFiles are populated so downstream/fanIn have data)
     await ensureIndex();
 
-    // 建输出目录
+    // Create the output directory
     fs.mkdirSync(SUMMARIES_DIR, { recursive: true });
 
     const client = new Anthropic({ apiKey });
     const store: Store = fs.existsSync(OUT) ? JSON.parse(fs.readFileSync(OUT, 'utf-8')) : {};
     const skeletons = allSkeletons(OUTPUT_DIR).sort();
-    console.error(`全库 skeleton ${skeletons.length} 个`);
+    console.error(`${skeletons.length} skeletons in the repo`);
 
-    // 读 skeleton + 哈希，挑出需要（新增或内容变更）的。
+    // Read skeleton + hash, pick the ones that need work (new or content changed).
     const pending: Array<{ rel: string; hash: string; skeletonText: string; skeletonPath: string }> = [];
     let missing = 0;
     for (const sk of skeletons) {
         const content = fs.readFileSync(sk, 'utf-8');
         const m = content.match(/^## File:\s*(.+)$/m);
-        if (!m) { missing++; continue; }         // 无 File 头（异常 skeleton）跳过
+        if (!m) { missing++; continue; }         // no File header (malformed skeleton) → skip
         const rel = m[1].trim();
-        const hash = sha1(content);              // 哈希按 skeleton 算（源码变→skeleton 变→哈希变）
-        if (store[rel]?.hash === hash) continue; // 缓存命中
+        const hash = sha1(content);              // hash computed over the skeleton (source changes → skeleton changes → hash changes)
+        if (store[rel]?.hash === hash) continue; // cache hit
         pending.push({ rel, hash, skeletonText: content, skeletonPath: sk });
     }
-    console.error(`缓存命中 ${skeletons.length - missing - pending.length} · 待生成 ${pending.length} · 异常跳过 ${missing}`);
+    console.error(`cache hits ${skeletons.length - missing - pending.length} · to generate ${pending.length} · malformed skipped ${missing}`);
 
     if (process.argv.includes('--dry')) {
-        console.error(`[dry] 预计 ${pending.length} 次 API 调用（每文件一次，${MODEL_LEAF}）。待生成样例：`);
+        console.error(`[dry] estimated ${pending.length} API calls (one per file, ${MODEL_LEAF}). Samples to generate:`);
         for (const p of pending.slice(0, 8)) console.error(`  - ${p.rel}`);
         return;
     }
@@ -111,33 +112,33 @@ async function main() {
     const limitArg = process.argv.find(a => a.startsWith('--limit='))?.split('=')[1];
     if (limitArg) {
         pending.splice(Number(limitArg));
-        console.error(`[limit] 本次只跑前 ${pending.length} 个`);
+        console.error(`[limit] only running the first ${pending.length} this time`);
     }
-    if (pending.length === 0) { console.error('无需生成。'); write(store); return; }
+    if (pending.length === 0) { console.error('nothing to generate.'); write(store); return; }
 
     let done = 0, failed = 0;
     const t0 = Date.now();
-    const fmt = (sec: number) => sec >= 60 ? `${Math.floor(sec / 60)}分${Math.round(sec % 60)}秒` : `${Math.round(sec)}秒`;
+    const fmt = (sec: number) => sec >= 60 ? `${Math.floor(sec / 60)}m${Math.round(sec % 60)}s` : `${Math.round(sec)}s`;
 
-    // 进度条：交互终端里是实时刷新条；管到 nohup 日志时（非 TTY）每 5 秒打一行
+    // Progress bar: a live-refresh bar in an interactive terminal; when piped to a nohup log (non-TTY) it prints one line every 5s
     const bar = new cliProgress.SingleBar({
-        format: '  摘要生成 [{bar}] {percentage}% | {value}/{total} 文件 | 已用 {elapsed} | 剩余 {eta_fmt} | 落盘 {saved} 失败 {failed}',
+        format: '  summary generation [{bar}] {percentage}% | {value}/{total} files | elapsed {elapsed} | eta {eta_fmt} | saved {saved} failed {failed}',
         noTTYOutput: true, notTTYSchedule: 5000, hideCursor: true, etaBuffer: 5,
     }, cliProgress.Presets.shades_classic);
-    bar.start(pending.length, 0, { elapsed: '0秒', eta_fmt: '?', saved: Object.keys(store).length, failed: 0 });
+    bar.start(pending.length, 0, { elapsed: '0s', eta_fmt: '?', saved: Object.keys(store).length, failed: 0 });
 
     const CONCURRENCY = Number(process.env.SUMMARIES_CONCURRENCY || 8);
-    console.error(`并发 ${CONCURRENCY}`);
+    console.error(`concurrency ${CONCURRENCY}`);
     let processed = 0;
     await runPool(pending, CONCURRENCY, async ({ rel, hash, skeletonText, skeletonPath }) => {
-        // 读 mapping.json 取 symbols
+        // Read mapping.json to get symbols
         const mappingPath = skeletonPath.replace('.skeleton.ts', '.mapping.json');
         let symbols: any[] = [];
         if (fs.existsSync(mappingPath)) {
             try {
                 const mapping = JSON.parse(fs.readFileSync(mappingPath, 'utf-8'));
                 symbols = mapping.symbols ?? [];
-            } catch { /* mapping 读取失败，空 symbols */ }
+            } catch { /* mapping read failed, empty symbols */ }
         }
 
         const facts = computeFacts(rel, symbols);
@@ -158,10 +159,10 @@ async function main() {
             done++;
         } catch (e: any) {
             failed++;
-            console.error(`  文件 ${rel} 失败: ${e?.message?.slice(0, 120)}`);
+            console.error(`  file ${rel} failed: ${e?.message?.slice(0, 120)}`);
         }
 
-        // 断点保存：每完成一个立即落盘（writeFileSync 同步，单线程续；崩溃不丢已完成的，重跑哈希跳过）
+        // Checkpoint save: flush immediately after each completion (writeFileSync is synchronous, single-threaded; a crash loses nothing completed, and a rerun skips via hash)
         write(store);
         processed++;
         const elapsed = (Date.now() - t0) / 1000;
@@ -171,7 +172,7 @@ async function main() {
 
     bar.stop();
     write(store);
-    console.error(`完成：新增/更新 ${done} 条，失败 ${failed} 个，库存 ${Object.keys(store).length} 条 → data/summaries/file-summaries.json · 总耗时 ${fmt((Date.now() - t0) / 1000)}`);
+    console.error(`done: added/updated ${done}, failed ${failed}, stored ${Object.keys(store).length} → data/summaries/file-summaries.json · total time ${fmt((Date.now() - t0) / 1000)}`);
 }
 
 function write(store: Store) {

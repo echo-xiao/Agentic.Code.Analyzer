@@ -43,7 +43,7 @@ export interface ChapterContext {
 
 export interface RetrievalDeps {
   /**
-   * file-summaries: rel path → { ranking_line, ... }（新 P2 产物字段 ranking_line,非旧 summary）。
+   * file-summaries: rel path → { ranking_line, ... } (new P2 output field ranking_line, not the old summary).
    * CLI wrapper passes real file-summaries.json; tests pass fixtures.
    */
   fileSummaries: Record<string, { ranking_line: string }> | null;

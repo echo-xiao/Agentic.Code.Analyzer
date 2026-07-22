@@ -21,7 +21,7 @@ export function cosineCluster(ids: string[], vectors: Record<string, number[]>, 
     return n ? s / n : -1;
   };
   while (true) {
-    let best = 0, bi = -1, bj = -1;                     // 阈值 0：只并正相关
+    let best = 0, bi = -1, bj = -1;                     // threshold 0: merge only positively-correlated pairs
     for (let i = 0; i < cl.length; i++) for (let j = i + 1; j < cl.length; j++) {
       if (cl[i].length + cl[j].length > maxSize) continue;
       const s = sim(cl[i], cl[j]); if (s > best) { best = s; bi = i; bj = j; }
@@ -41,12 +41,12 @@ export async function clusterFamilies(
   for (const p of pages) { const r = routing[p.id]; if (!r) continue; (buckets[`${r.l1} ||| ${r.l2}`] ??= []).push(p.id); }
   const fam: Families = {};
   for (const [bucket, ids] of Object.entries(buckets)) {
-    if (ids.length < minBucket) continue;               // 小桶不产 L3
+    if (ids.length < minBucket) continue;               // small buckets do not produce L3
     const clusters = cosineCluster(ids, vectors, maxSize);
     const named = await nameClusters(bucket, clusters, byId);
     const seen = new Set<string>();
     for (const g of named) for (const id of g.ids) if (byId[id]) { fam[id] = g.name; seen.add(id); }
-    for (const id of ids) if (!seen.has(id)) fam[id] = 'Other';   // 兜底 MECE
+    for (const id of ids) if (!seen.has(id)) fam[id] = 'Other';   // MECE fallback
   }
   return fam;
 }

@@ -15,7 +15,7 @@ export interface ModuleGraph {
     file_to_module: Record<string, string>;
 }
 
-// hub 惩罚:fan-in 超阈值的通用文件,其边权压低,避免全图连成一坨(spec §5.4)。
+// Hub penalty: for common files whose fan-in exceeds the threshold, downweight their edges to avoid the whole graph collapsing into one blob (spec §5.4).
 const HUB_FANIN = 60;
 
 export function clusterModules(fg: FileGraph, resolution = 1.0): Array<{ files: string[] }> {
@@ -41,7 +41,7 @@ export function assignAnchor(files: string[], fanIn: Map<string, number>): strin
     return [...candidates].sort((a, b) => (fanIn.get(b) ?? 0) - (fanIn.get(a) ?? 0) || a.localeCompare(b))[0];
 }
 
-// 供 build 用:hub 降权后的边权
+// Used by build: edge weight after the hub downweighting
 export function hubPenalizedWeight(w: number, fanInA: number, fanInB: number): number {
     const hub = fanInA >= HUB_FANIN || fanInB >= HUB_FANIN;
     return hub ? w * 0.1 : w;
@@ -52,7 +52,7 @@ export function isTestFile(f: string): boolean {
     return /(^|\/)tests?\//.test(f) || /\.(test|spec)\./.test(f) || /e2e/.test(f) || /page-objects/.test(f) || /\.stories\./.test(f);
 }
 
-/** 层/结构目录(不是功能)——找 feature 时跳过,避免 lib/server/client 变成垃圾桶。 */
+/** Layer/structural directories (not features) — skipped when finding a feature, so lib/server/client don't become dumping grounds. */
 const LAYER = new Set([
     'apps', 'meteor', 'app', 'client', 'server', 'ee', 'src', 'source',
     'lib', 'libs', 'tests', 'test', '__tests__', '__mocks__', 'unit', 'integration',
@@ -61,17 +61,17 @@ const LAYER = new Set([
     'page-objects', 'fixtures', 'mocks', 'stubs',
 ]);
 
-// 从路径抽"功能/子系统键":跳过层目录取第一个真功能段;功能跨 client/server/app/tests 自动合并。
-// 例 app/livechat/server -> livechat; server/services/omnichannel -> omnichannel;
-// tests/unit/server/services/omnichannel-analytics -> omnichannel-analytics(测试归位)。
+// Derive a "feature/subsystem key" from a path: skip layer directories and take the first real feature segment; a feature spanning client/server/app/tests is merged automatically.
+// e.g. app/livechat/server -> livechat; server/services/omnichannel -> omnichannel;
+// tests/unit/server/services/omnichannel-analytics -> omnichannel-analytics (tests routed back to their feature).
 export function featureKey(f0: string): string {
-    const segs = f0.split('/').filter(s => s && !/\.[mc]?[jt]sx?$/.test(s));   // 去掉文件名段
+    const segs = f0.split('/').filter(s => s && !/\.[mc]?[jt]sx?$/.test(s));   // drop the filename segment
     const pi = segs.indexOf('packages');
-    if (pi >= 0 && segs[pi + 1]) return 'pkg:' + segs[pi + 1];                  // 包 = 单元
-    const feature = segs.find(s => !LAYER.has(s) && s !== 'packages');          // 第一个非层目录 = 功能
+    if (pi >= 0 && segs[pi + 1]) return 'pkg:' + segs[pi + 1];                  // a package = a unit
+    const feature = segs.find(s => !LAYER.has(s) && s !== 'packages');          // first non-layer directory = feature
     if (feature) return feature;
     const area = segs.find(s => s === 'app' || s === 'client' || s === 'server' || s === 'ee') ?? 'root';
-    return `${area}:${segs[segs.length - 1] ?? 'misc'}`;                        // 纯通用:按区命名,别全并一坨
+    return `${area}:${segs[segs.length - 1] ?? 'misc'}`;                        // purely generic: name by area, don't merge everything into one blob
 }
 
 // Cross-layer edge types get higher base weight
@@ -161,7 +161,7 @@ export function buildModuleGraph(): ModuleGraph {
     // 3. Assign every rel file to a subsystem key
     const subsystemGroups = new Map<string, string[]>();
     for (const f of nodeSet) {
-        const key = featureKey(f);   // 测试也走 featureKey → 归到对应功能(featureKey 跳过 tests/unit 等层目录)
+        const key = featureKey(f);   // tests also go through featureKey → routed to their feature (featureKey skips layer dirs like tests/unit)
         (subsystemGroups.get(key) ?? subsystemGroups.set(key, []).get(key)!).push(f);
     }
 
@@ -234,8 +234,8 @@ export function buildModuleGraph(): ModuleGraph {
         }
     }
 
-    // 5.5 合并过碎尾巴:每个子系统内 ≤MERGE_MAX 文件的小模块并进本子系统最大模块(减模块数;去掉 47% 数量/5% 代码的琐碎尾巴)。
-    //      单模块子系统天然不动(无可并);全是小模块的子系统 → 并成一个。合并在建边前做,边按合并后的 file_to_module 聚合。
+    // 5.5 Merge tiny tails: within each subsystem, small modules of ≤MERGE_MAX files are merged into the subsystem's largest module (cuts module count; removes trivial tails that are 47% of the count but only 5% of the code).
+    //      Single-module subsystems are naturally left untouched (nothing to merge); a subsystem that is all small modules → merged into one. Merging happens before edge building; edges are aggregated by the post-merge file_to_module.
     const MERGE_MAX = 3;
     const subMods = new Map<string, ModuleGraph['modules']>();
     for (const m of modules) (subMods.get(m.subsystem) ?? subMods.set(m.subsystem, []).get(m.subsystem)!).push(m);
@@ -245,7 +245,7 @@ export function buildModuleGraph(): ModuleGraph {
         if (mods.length === 1) { kept.push(mods[0]); continue; }
         const big = mods.filter(m => m.files.length > MERGE_MAX);
         const small = mods.filter(m => m.files.length <= MERGE_MAX);
-        if (big.length === 0) {                                                   // 全小 → 并成一个(最大的当宿主)
+        if (big.length === 0) {                                                   // all small → merge into one (largest becomes the host)
             const host = mods.slice().sort((a, b) => b.files.length - a.files.length)[0];
             for (const s of mods) if (s !== host) for (const f of s.files) { host.files.push(f); file_to_module[f] = host.id; }
             reEntry(host); kept.push(host); continue;

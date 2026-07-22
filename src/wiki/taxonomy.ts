@@ -1,4 +1,4 @@
-// 注入的通用开发者意图 taxonomy —— 本文件是全流程唯一"非从代码派生"的知识落点。
+// Injected generic developer-intent taxonomy — this file is the only "not derived from code" knowledge anchor in the whole pipeline.
 export type IntentL1 = 'Understand Internals' | 'Build & Integrate' | 'Reference';
 
 export const TAXONOMY: { l1: IntentL1; label: string; areas: string[] }[] = [

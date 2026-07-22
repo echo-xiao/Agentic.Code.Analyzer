@@ -79,7 +79,7 @@ export async function generateWiki(deps?: Partial<GenerateDeps>): Promise<void> 
   console.log('[wiki:gen] Step 1/5 — outline');
   await outline();
 
-  console.log('[wiki:gen] Step 2/5 — guide (4 级向导树)');
+  console.log('[wiki:gen] Step 2/5 — guide (4-level guide tree)');
   await guide();
 
   console.log('[wiki:gen] Step 3/5 — write');

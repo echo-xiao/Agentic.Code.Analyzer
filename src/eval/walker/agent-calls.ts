@@ -1,5 +1,5 @@
-// 从 gen:mcp 的答案 md 里解析真 agent 的实际调用序列（trace 的对照物，不参与游走逻辑）。
-// 行格式由 src/eval/gen.ts:160-163 写出；hitBudget 判定与 report.ts:114 一致（calls >= 8）。
+// Parse the real agent's actual call sequence from gen:mcp answer md files (a comparison point for the trace; not part of the walk logic).
+// The line format is written by src/eval/gen.ts:160-163; the hitBudget check matches report.ts:114 (calls >= 8).
 import * as fs from 'fs';
 import * as path from 'path';
 

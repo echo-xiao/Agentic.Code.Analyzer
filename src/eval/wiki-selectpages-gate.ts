@@ -1,15 +1,15 @@
 #!/usr/bin/env npx tsx
 /**
- * wiki-selectpages-gate.ts — P3 门：selectPages 命中率（绝对 gold，零外部依赖，零 API）。
+ * wiki-selectpages-gate.ts — P3 gate: selectPages hit rate (absolute gold, zero external dependencies, zero API).
  *
- * 评测：对每个有 claude-truth 条目的题，检查 selectPages 选出的页面（top-k）是否覆盖
- * Claude 金答案 core 文件所属模块对应的页面（expectedPages）。
+ * Evaluation: for each question with a claude-truth entry, check whether the pages selectPages picks (top-k)
+ * cover the pages corresponding to the modules that the Claude gold-answer core files belong to (expectedPages).
  *
- * 导出:
+ * Exports:
  *   expectedPages(coreFiles, map, fileToModule) → string[]
  *   runGate(opts?) → GateResult
  *
- * CLI（`import.meta.url` guard）: 加载真实文件，打印汇总 + 逐题表格。
+ * CLI (`import.meta.url` guard): loads real files, prints the summary + a per-question table.
  */
 import * as fs from 'fs';
 import * as path from 'path';
@@ -67,19 +67,20 @@ export interface GateOpts {
 // ── Core logic ────────────────────────────────────────────────────────────────
 
 /**
- * 给定 Claude 金答案的 core 文件列表，返回 wiki-map 中应该被路由到的页面标识符（p.page）。
+ * Given the list of core files from the Claude gold answer, return the page identifiers (p.page) in the
+ * wiki-map that should be routed to.
  *
- * 步骤：
- *   1. core 文件 → fileToModule → 收集模块 ID 集合
- *   2. 遍历 map.pages，取 page.modules 与模块集合有交集的所有页
- *   3. 返回去重后的 page.page（页面标识符）列表
+ * Steps:
+ *   1. core files → fileToModule → collect the set of module IDs
+ *   2. iterate map.pages, take every page whose page.modules intersects the module set
+ *   3. return the deduplicated list of page.page (page identifiers)
  */
 export function expectedPages(
     coreFiles: string[],
     map: WikiMap,
     fileToModule: Record<string, string>,
 ): string[] {
-    // 步骤 1：core 文件 → 模块集合
+    // Step 1: core files → module set
     const moduleSet = new Set<string>();
     for (const f of coreFiles) {
         const mod = fileToModule[f];
@@ -87,7 +88,7 @@ export function expectedPages(
     }
     if (moduleSet.size === 0) return [];
 
-    // 步骤 2-3：找出 modules 与 moduleSet 有交集的页
+    // Steps 2-3: find the pages whose modules intersect moduleSet
     const result: string[] = [];
     const seen = new Set<string>();
     for (const p of map.pages) {
@@ -102,9 +103,9 @@ export function expectedPages(
 }
 
 /**
- * 读取 logs/reports/wiki-verify.md 中的 citation_validity_rate。
- * 格式: `**citation_validity_rate:** 92.5%`
- * 若文件不存在或无匹配，返回 null。
+ * Read citation_validity_rate from logs/reports/wiki-verify.md.
+ * Format: `**citation_validity_rate:** 92.5%`
+ * Returns null if the file does not exist or there is no match.
  */
 export function readCitationRate(verifyPath: string): number | null {
     if (!fs.existsSync(verifyPath)) return null;
@@ -115,28 +116,28 @@ export function readCitationRate(verifyPath: string): number | null {
 }
 
 /**
- * 运行 wiki:gate。
+ * Run wiki:gate.
  *
- * 对每个有 claude-truth 条目的题：
- *   - 用 questionTokens + selectPages 选入口页（chosen），并传入语义分 + 扩词缓存
- *   - 用 expectedPages 从 core 文件推算应选页（expected）
- *   - hit = chosen ∩ expected 非空
+ * For each question with a claude-truth entry:
+ *   - use questionTokens + selectPages to pick entry pages (chosen), passing in semantic scores + the query-expansion cache
+ *   - use expectedPages to derive the pages that should be selected from the core files (expected)
+ *   - hit = chosen ∩ expected is non-empty
  *   - hitRate = Σhit / #scored
  *
- * 无 claude-truth 条目的题放入 skipped（不编造 gold）。
+ * Questions without a claude-truth entry go into skipped (do not fabricate gold).
  */
 export async function runGate(opts?: GateOpts): Promise<GateResult> {
     const { map, fileToModule, testcases, claudeTruth, verifyPath } = opts ?? loadReal();
 
-    // 加载扩词缓存（缺失时优雅退化）
+    // Load the query-expansion cache (degrade gracefully when missing)
     let expansions: ExpansionsMap = {};
     try {
         expansions = JSON.parse(fs.readFileSync(QUERY_EXPANSIONS_PATH, 'utf-8'));
     } catch {
-        // 文件不存在时退化为无扩词
+        // when the file does not exist, degrade to no query expansion
     }
 
-    // 预加载向量表（懒加载，返回 null 时语义分退化为惰性 map）
+    // Preload the vector table (lazy load; when it returns null the semantic score degrades to a lazy map)
     const vectors = loadVectors() ?? new Map<string, Float32Array>();
 
     const perQuestion: PerQuestion[] = [];
@@ -151,11 +152,11 @@ export async function runGate(opts?: GateOpts): Promise<GateResult> {
 
         const tokens = questionTokens(tc.question);
 
-        // 计算语义页面分（embedText 本地 bge，零 API）
+        // Compute semantic page scores (embedText is local bge, zero API)
         const qVec = await embedText(tc.question, 'query');
         const sem = semanticPageScores(qVec, map, vectors);
 
-        // 读取扩词缓存（缺失键时退化为空）
+        // Read the query-expansion cache (degrade to empty when the key is missing)
         const exp: Expansion = expansions[tc.id] ?? { expandedSymbols: [], candidateModules: [] };
 
         const pageStep: PageStep | null = selectPages(tokens, map, undefined, {
@@ -214,7 +215,7 @@ function loadReal(): GateOpts {
 // ── CLI main ──────────────────────────────────────────────────────────────────
 
 async function main() {
-    console.log('[wiki:gate] 加载文件...');
+    console.log('[wiki:gate] loading files...');
     const result = await runGate();
 
     const { hitRate, perQuestion, skipped, citationRate } = result;
@@ -222,18 +223,18 @@ async function main() {
     const hitCount = perQuestion.filter(r => r.hit).length;
 
     console.log('');
-    console.log('=== wiki:gate 结果 ===');
-    console.log(`hitRate:      ${(hitRate * 100).toFixed(1)}%  (${hitCount}/${scored} 题命中)`);
-    console.log(`skipped:      ${skipped.length} 题（无 claude-truth 条目）`);
-    if (skipped.length > 0) console.log(`  跳过: ${skipped.join(', ')}`);
+    console.log('=== wiki:gate results ===');
+    console.log(`hitRate:      ${(hitRate * 100).toFixed(1)}%  (${hitCount}/${scored} questions hit)`);
+    console.log(`skipped:      ${skipped.length} questions (no claude-truth entry)`);
+    if (skipped.length > 0) console.log(`  skipped: ${skipped.join(', ')}`);
     if (citationRate !== null) {
-        console.log(`citationRate: ${(citationRate * 100).toFixed(1)}%  (来自 logs/reports/wiki-verify.md)`);
+        console.log(`citationRate: ${(citationRate * 100).toFixed(1)}%  (from logs/reports/wiki-verify.md)`);
     } else {
-        console.log(`citationRate: N/A  (logs/reports/wiki-verify.md 不存在或无数据，需先运行 wiki:verify)`);
+        console.log(`citationRate: N/A  (logs/reports/wiki-verify.md does not exist or has no data; run wiki:verify first)`);
     }
 
     console.log('');
-    console.log('=== 逐题明细 ===');
+    console.log('=== per-question detail ===');
     const colId = 32, colHit = 5, colChosen = 40, colExpected = 40;
     const header =
         'id'.padEnd(colId) + ' | ' +
@@ -255,9 +256,9 @@ async function main() {
     }
 
     console.log('');
-    console.log('[wiki:gate] 完成。');
+    console.log('[wiki:gate] done.');
 }
 
 if (import.meta.url === pathToFileURL(process.argv[1] ?? '').href) {
-    main().catch(err => { console.error('[wiki:gate] 错误:', err); process.exit(1); });
+    main().catch(err => { console.error('[wiki:gate] error:', err); process.exit(1); });
 }

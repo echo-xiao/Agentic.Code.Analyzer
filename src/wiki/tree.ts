@@ -11,7 +11,7 @@ export function buildGuideTree(
   pages: { id: string; title: string }[], routing: Routing, families: Families,
 ): NavNode[] {
   const title = new Map(pages.map(p => [p.id, p.title]));
-  // (l1,l2) -> family -> ids ; 无族用 '' 桶
+  // (l1,l2) -> family -> ids ; use '' bucket when there is no family
   const grouped: Record<string, Record<string, Record<string, string[]>>> = {};
   for (const p of pages) {
     const r = routing[p.id]; if (!r) continue;
@@ -27,7 +27,7 @@ export function buildGuideTree(
       const l2: NavNode = { kind: 'section', id: `l2:${t.l1}:${area}`, title: area, children: [] };
       for (const [fam, ids] of Object.entries(fams)) {
         const leaves = ids.map(id => ({ kind: 'page', id, title: title.get(id) ?? id } as NavNode));
-        if (fam === '' || ids.length === 1) l2.children!.push(...leaves);   // 自适应折叠
+        if (fam === '' || ids.length === 1) l2.children!.push(...leaves);   // adaptive collapse
         else l2.children!.push({ kind: 'section', id: `l3:${t.l1}:${area}:${fam}`, title: fam, children: leaves });
       }
       l1.children!.push(l2);

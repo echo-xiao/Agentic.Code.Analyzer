@@ -1,25 +1,27 @@
-// 共享进度条：refresh 各步骤统一 UX。交互终端是实时刷新条；管到 nohup 日志（非 TTY）时
-// 每 5 秒打一行（noTTYOutput），所以后台挂起也能 tail -f 看进度。
+// Shared progress bar: uniform UX across refresh steps. In an interactive terminal it's a live-refresh
+// bar; when piped to a nohup log (non-TTY) it prints one line every 5s (noTTYOutput), so a backgrounded
+// run can still be watched with tail -f.
 import cliProgress from 'cli-progress';
 
 export function makeBar(label: string): cliProgress.SingleBar {
     return new cliProgress.SingleBar({
-        format: `  ${label} [{bar}] {percentage}% | {value}/{total} | 已用 {elapsed} | 剩余 {eta_fmt} | {status}`,
+        format: `  ${label} [{bar}] {percentage}% | {value}/{total} | elapsed {elapsed} | eta {eta_fmt} | {status}`,
         noTTYOutput: true, notTTYSchedule: 5000, hideCursor: true, etaBuffer: 8, clearOnComplete: false,
     }, cliProgress.Presets.shades_classic);
 }
 
 export function fmtSec(sec: number): string {
-    return sec >= 60 ? `${Math.floor(sec / 60)}分${Math.round(sec % 60)}秒` : `${Math.round(sec)}秒`;
+    return sec >= 60 ? `${Math.floor(sec / 60)}m${Math.round(sec % 60)}s` : `${Math.round(sec)}s`;
 }
 
-// 便捷封装：给一个已知总数的循环包进度条。fn 处理第 i 项，返回可选的 status 片段。
+// Convenience wrapper: wrap a loop of known length in a progress bar. fn processes item i and returns
+// an optional status fragment.
 export async function withBar<T>(
     label: string, items: T[], fn: (item: T, i: number) => Promise<string | void>,
 ): Promise<void> {
     const bar = makeBar(label);
     const t0 = Date.now();
-    bar.start(items.length, 0, { elapsed: '0秒', eta_fmt: '?', status: '' });
+    bar.start(items.length, 0, { elapsed: '0s', eta_fmt: '?', status: '' });
     for (let i = 0; i < items.length; i++) {
         let status = '';
         try { status = (await fn(items[i], i)) || ''; }

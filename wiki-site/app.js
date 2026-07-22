@@ -1,25 +1,24 @@
-// 只读渲染层:读 /data/wiki-map.json + /data/wiki-prose.json,渲成文档式页面。不改数据管线。
-// B 结构(读者问题驱动):左栏 = wikiMap.nav 轴带编号树(section→subsection→page,N/N.M/N.M.K),
-// 每页独立路由。点叶子只渲该页,右侧 On this page = 该页各节(h2/h3)。旧数据无 nav 时回退 category 分组。
+// Read-only render layer: loads /data/wiki-map.json + /data/wiki-prose.json and renders them as
+// documentation-style pages. Does not touch the data pipeline.
+// Structure B (reader-question driven): left column = wikiMap.nav axis-band numbered tree
+// (section→subsection→page, N/N.M/N.M.K), with a dedicated route per page. Clicking a leaf renders
+// only that page; the right "On this page" lists that page's sections (h2/h3). When old data has no
+// nav, fall back to grouping by category.
 (() => {
   const $ = (id) => document.getElementById(id);
   const escapeHtml = (s) => String(s).replace(/[&<>"]/g, (c) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c]));
-  const slug = (s) => String(s).toLowerCase().replace(/[^a-z0-9一-龥]+/g, '-').replace(/^-|-$/g, '') || 'sec';
+  const slug = (s) => String(s).toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, '') || 'sec';
 
-  const I18N = {
-    en: { filter: 'Search…', toggle: '中文', select: 'Select a page from the left.', srcfiles: 'Relevant source files', onpage: 'On this page', empty: '(no prose yet)', files: 'source files' },
-    zh: { filter: '搜索…', toggle: 'EN', select: '从左侧选择一页。', srcfiles: '相关源文件', onpage: '本页目录', empty: '(暂无正文)', files: '相关文件' },
-  };
-  let lang = localStorage.getItem('wiki-lang') || 'en';
-  const t = (k) => I18N[lang][k];
+  const T = { filter: 'Search…', select: 'Select a page from the left.', srcfiles: 'Relevant source files', onpage: 'On this page', empty: '(no prose yet)', files: 'source files' };
+  const t = (k) => T[k];
 
   let wikiMap = null, wikiProse = null;
   let pageById = new Map();      // id → WikiPage
-  let numbers = new Map();       // nav 节点 id → "N"/"N.M"/"N.M.K"
-  let currentId = null;          // 当前页 id
-  const collapsed = new Set();   // 折叠的 section id
+  let numbers = new Map();       // nav node id → "N"/"N.M"/"N.M.K"
+  let currentId = null;          // current page id
+  const collapsed = new Set();   // collapsed section ids
 
-  // ── nav 编号(与 src/wiki/nav.ts 同逻辑)──────────────────────────────────────
+  // ── nav numbering (same logic as src/wiki/nav.ts) ────────────────────────────────────────────
   const BAND = ['overview', 'architecture', 'feature', 'operations', 'reference'];
   const bandRank = (n) => { const i = n.axis ? BAND.indexOf(n.axis) : -1; return i < 0 ? BAND.length : i; };
   const bandSort = (nodes) => nodes.map((n, i) => ({ n, i })).sort((a, b) => bandRank(a.n) - bandRank(b.n) || a.i - b.i).map((x) => x.n);
@@ -35,7 +34,7 @@
     walk(nav, '');
     return out;
   }
-  // 回退:无 nav 时按 category 分组(== 旧行为)
+  // Fallback: when there is no nav, group by category (== old behavior)
   function navFromCategories() {
     const order = [], byCat = new Map();
     for (const p of (wikiMap.pages || [])) {
@@ -47,7 +46,7 @@
   }
   const getNav = () => (wikiMap.nav && wikiMap.nav.length) ? wikiMap.nav : navFromCategories();
 
-  // ── 图 / 引用 / 文本(沿用)──────────────────────────────────────────────────
+  // ── Diagrams / citations / text (unchanged) ─────────────────────────────────────────────────
   function diagramToMermaid(d) {
     const nodes = d.nodes || {}, lines = ['flowchart TD'], seen = new Set();
     const emit = (id) => { if (seen.has(id)) return; seen.add(id); lines.push(`  ${id}["${String(nodes[id] ?? id).replace(/"/g, "'")}"]`); };
@@ -92,7 +91,7 @@
     return out.join('\n');
   }
 
-  // ── 索引 ─────────────────────────────────────────────────────────────────────
+  // ── Index ────────────────────────────────────────────────────────────────────────────────────
   function buildIndex() {
     pageById = new Map();
     for (const p of (wikiMap.pages || [])) pageById.set(p.id, p);
@@ -104,7 +103,7 @@
     walk(getNav());
     return found;
   }
-  // 展开某页的所有祖先 section
+  // Expand all ancestor sections of a page
   function expandAncestors(id) {
     const path = [];
     const dfs = (nodes, trail) => {
@@ -118,7 +117,7 @@
     for (const sid of path) collapsed.delete(sid);
   }
 
-  // ── 左栏:轴带编号树(flat <li> + padding 缩进)────────────────────────────────
+  // ── Left column: axis-band numbered tree (flat <li> + padding indentation) ───────────────────
   function buildNav() {
     const list = $('nav-list'); list.innerHTML = '';
     const render = (nodes, depth) => {
@@ -146,7 +145,7 @@
     applyFilter();
   }
 
-  // ── 渲单页 ───────────────────────────────────────────────────────────────────
+  // ── Render a single page ─────────────────────────────────────────────────────────────────────
   function renderPage(p) {
     const c = $('content-inner'); c.innerHTML = '';
     const h = document.createElement('h1'); h.className = 'chapter-title'; h.textContent = p.title; c.appendChild(h);
@@ -190,7 +189,7 @@
     $('content').scrollTop = 0;
   }
 
-  // ── 右栏 On this page ────────────────────────────────────────────────────────
+  // ── Right column: On this page ───────────────────────────────────────────────────────────────
   function buildToc(items, pageTitle) {
     const list = $('toc-list'); list.innerHTML = ''; $('toc-title').textContent = t('onpage');
     if (pageTitle) {
@@ -229,9 +228,9 @@
     document.querySelectorAll('#nav-list li').forEach((li) => li.classList.toggle('hidden', !!searchQ && !li.textContent.toLowerCase().includes(searchQ)));
   }
   function applyLang() {
-    $('search').placeholder = t('filter'); $('lang-toggle').textContent = t('toggle'); $('toc-title').textContent = t('onpage');
+    $('search').placeholder = t('filter'); $('toc-title').textContent = t('onpage');
     if (!currentId && $('placeholder')) $('placeholder').textContent = t('select');
-    document.documentElement.lang = lang === 'zh' ? 'zh' : 'en';
+    document.documentElement.lang = 'en';
   }
   function applyTheme() {
     const dark = localStorage.getItem('wiki-theme') === 'dark';
@@ -239,11 +238,10 @@
     if ($('theme-toggle')) $('theme-toggle').textContent = dark ? '☀️' : '🌙';
   }
   function wireUI() {
-    $('lang-toggle').onclick = () => { lang = lang === 'en' ? 'zh' : 'en'; localStorage.setItem('wiki-lang', lang); applyLang(); if (currentId) navigate(currentId); };
     if ($('theme-toggle')) $('theme-toggle').onclick = () => { localStorage.setItem('wiki-theme', localStorage.getItem('wiki-theme') === 'dark' ? 'light' : 'dark'); applyTheme(); };
     $('search').oninput = (e) => {
       searchQ = e.target.value.trim().toLowerCase();
-      if (searchQ) collapsed.clear();   // 搜索时全展开
+      if (searchQ) collapsed.clear();   // expand everything while searching
       buildNav();
     };
     window.addEventListener('hashchange', () => {
@@ -260,7 +258,7 @@
         fetch('/data/wiki-prose.json').then((r) => r.json()).catch(() => ({})),
       ]);
       wikiMap = m; wikiProse = p;
-    } catch (e) { $('content-inner').innerHTML = `<div class="placeholder">无法加载数据:${escapeHtml(e.message)}<br>用 <code>npm run wiki:serve</code> 启动。</div>`; return; }
+    } catch (e) { $('content-inner').innerHTML = `<div class="placeholder">Failed to load data: ${escapeHtml(e.message)}<br>Start it with <code>npm run wiki:serve</code>.</div>`; return; }
     $('repo-name').textContent = wikiMap.repo || 'Code Wiki';
     $('side-head').textContent = wikiMap.derived_from || wikiMap.generated_at || '';
     buildIndex();

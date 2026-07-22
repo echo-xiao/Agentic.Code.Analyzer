@@ -1,4 +1,4 @@
-// embeddings.ts — 本地句向量（xenova bge-small）。gen 与运行时共用一个懒加载单例。
+// embeddings.ts — local sentence embeddings (xenova bge-small). gen and runtime share one lazily-loaded singleton.
 import { pipeline } from '@xenova/transformers';
 
 export const EMBED_MODEL = 'Xenova/bge-small-en-v1.5';
@@ -19,7 +19,7 @@ export async function embedText(text: string, mode: 'query' | 'passage' = 'passa
     return Float32Array.from(out.data as Float32Array);
 }
 
-/** 两个向量都必须已 L2 归一化（embedText 保证）；对归一化向量，点积 == cosine 相似度。 */
+/** Both vectors must be L2-normalized (embedText guarantees this); for normalized vectors, dot product == cosine similarity. */
 export function cosine(a: Float32Array, b: Float32Array): number {
     let s = 0;
     for (let i = 0; i < a.length; i++) s += a[i] * b[i];

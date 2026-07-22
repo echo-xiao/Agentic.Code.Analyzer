@@ -1,25 +1,26 @@
-// vec-model-guard — 向量库的 embedding 模型戳。换模型时自动清空旧向量强制重嵌,
-// 防止"旧模型向量 vs 新模型 query 向量"静默混空间(whole-branch review 的 Important）。
-// 戳存在 <storePath>.model 旁文件;向量库本身 schema 不变(消费方零改)。
+// vec-model-guard — embedding-model stamp for a vector store. On a model switch, automatically wipe the
+// old vectors to force a re-embed, preventing a silent "old-model vectors vs new-model query vectors"
+// space mismatch (flagged Important in the whole-branch review).
+// The stamp lives in a sibling file <storePath>.model; the vector store's own schema is unchanged (zero consumer changes).
 import * as fs from 'fs';
 
-/** 纯判断:有旧戳且与当前模型不同 → 该清空重嵌。首次(无戳)不清。 */
+/** Pure check: an old stamp exists and differs from the current model → should wipe and re-embed. First run (no stamp) does not wipe. */
 export function shouldReset(prevModel: string | null, currentModel: string): boolean {
     return prevModel !== null && prevModel !== currentModel;
 }
 
-/** 加载向量库前调用:若模型变了,删掉旧向量库(下游 existsSync 读到空 → 全量重嵌)。 */
+/** Call before loading the vector store: if the model changed, delete the old store (downstream existsSync reads empty → full re-embed). */
 export function guardModel(storePath: string, currentModel: string): void {
     const marker = storePath + '.model';
     let prev: string | null = null;
-    try { prev = fs.readFileSync(marker, 'utf-8').trim(); } catch { /* 无戳 = 首次 */ }
+    try { prev = fs.readFileSync(marker, 'utf-8').trim(); } catch { /* no stamp = first run */ }
     if (shouldReset(prev, currentModel)) {
-        console.error(`[embed] embedding 模型变了 (${prev} → ${currentModel}),清空 ${storePath} 强制重嵌。`);
+        console.error(`[embed] embedding model changed (${prev} → ${currentModel}), wiping ${storePath} to force re-embed.`);
         try { fs.rmSync(storePath, { force: true }); } catch { /* ignore */ }
     }
 }
 
-/** 落盘向量库后调用:写当前模型戳。 */
+/** Call after flushing the vector store: write the current model stamp. */
 export function stampModel(storePath: string, currentModel: string): void {
     try { fs.writeFileSync(storePath + '.model', currentModel, 'utf-8'); } catch { /* best-effort */ }
 }

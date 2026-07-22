@@ -39,7 +39,7 @@ function setup(): { dir: string; vpath: string } {
     return { dir, vpath };
 }
 
-test('解析调用序列 + verdict + hitBudget', () => {
+test('parses the call sequence + verdict + hitBudget', () => {
     const { dir, vpath } = setup();
     const a = parseAgentCalls('q-x', dir, vpath)!;
     assert.equal(a.totalCalls, 2);
@@ -50,7 +50,7 @@ test('解析调用序列 + verdict + hitBudget', () => {
     assert.match(a.source, /^[^/]+\/q-x\.md$/);
 });
 
-test('hitBudget=true 当 totalCalls >= 8', () => {
+test('hitBudget=true when totalCalls >= 8', () => {
     const { dir, vpath } = setup();
     const mdBudget = `# Q?
 
@@ -86,7 +86,7 @@ test('0-call case: totalCalls=0, sequence=[], hitBudget=false', () => {
     assert.equal(a.hitBudget, false);
 });
 
-test('日志缺失返回 null；verdicts 无该题时 verdict=null', () => {
+test('returns null when the log is missing; verdict=null when the question is absent from verdicts', () => {
     const { dir, vpath } = setup();
     assert.equal(parseAgentCalls('nope', dir, vpath), null);
     fs.writeFileSync(vpath, '# empty');

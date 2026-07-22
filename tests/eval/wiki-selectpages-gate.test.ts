@@ -1,8 +1,8 @@
 /**
- * wiki-selectpages-gate.test.ts — fixture 单测（零 API，零真实 data/ 读取）。
+ * wiki-selectpages-gate.test.ts — fixture unit tests (zero API, zero real data/ reads).
  *
- * 不调 ensureIndex()，不读 data/wiki-map.json / module-graph.json。
- * 全部用 fixture map + fixture claude-truth + fixture testcases 验证逻辑正确性。
+ * Does not call ensureIndex(), does not read data/wiki-map.json / module-graph.json.
+ * Verifies logic correctness entirely with a fixture map + fixture claude-truth + fixture testcases.
  */
 import { test } from 'node:test';
 import assert from 'node:assert/strict';

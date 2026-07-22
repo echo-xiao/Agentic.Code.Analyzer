@@ -10,7 +10,7 @@ const textOf = (res: any): string => (res?.content ?? []).filter((b: any) => b.t
 function parse<T>(s: string, fallback: T): T {
   const t = s.trim().replace(/^```(?:json)?\s*/i, '').replace(/\s*```$/, '').trim();
   try { return JSON.parse(t); } catch { /* fall through */ }
-  // 容忍 LLM 前后夹带散文/围栏:提取第一个完整 JSON 值
+  // Tolerate prose/fences the LLM wraps around the output: extract the first complete JSON value
   for (const [open, close] of [['[', ']'], ['{', '}']] as const) {
     const i = t.indexOf(open), j = t.lastIndexOf(close);
     if (i >= 0 && j > i) { try { return JSON.parse(t.slice(i, j + 1)); } catch { /* try next */ } }

@@ -8,15 +8,15 @@ const PAGES: RouteInput[] = [
   { id: 'c', title: 'Missing', scope: '' },
 ];
 
-test('合法路由原样保留；非法 l2 修复；漏页兜底', async () => {
+test('valid routing kept as-is; invalid l2 repaired; missing page falls back', async () => {
   const classify = async (): Promise<Routed[]> => [
     { id: 'a', l1: 'Understand Internals', l2: 'Subsystem Deep-Dives' },
-    { id: 'b', l1: 'Reference', l2: '瞎写的区' },   // 非法 l2
-    // c 漏掉
+    { id: 'b', l1: 'Reference', l2: 'Made-up Area' },   // invalid l2
+    // c omitted
   ];
   const r = await routeLeaves(PAGES, classify);
   assert.deepEqual(r['a'], { l1: 'Understand Internals', l2: 'Subsystem Deep-Dives' });
   assert.equal(r['b'].l1, 'Reference');
-  assert.equal(r['b'].l2, 'API & Contracts');       // 修复到该 l1 第一个区
-  assert.deepEqual(r['c'], { l1: 'Understand Internals', l2: 'Subsystem Deep-Dives' }); // 兜底
+  assert.equal(r['b'].l2, 'API & Contracts');       // repaired to the first area of that l1
+  assert.deepEqual(r['c'], { l1: 'Understand Internals', l2: 'Subsystem Deep-Dives' }); // fallback
 });

@@ -12,10 +12,10 @@ export interface StructuralFacts {
   fanIn: number; fanOut: number; crossLayerEdges: string[];
 }
 
-// relFile: 相对路径(与 mapping/chunks 一致);mappingSymbols: 该文件 mapping.json 的 symbols[]。
+// relFile: relative path (consistent with mapping/chunks); mappingSymbols: the symbols[] from this file's mapping.json.
 export function computeFacts(relFile: string, mappingSymbols: any[]): StructuralFacts {
   const key_exports = mappingSymbols.filter(s => s.exported && s.name).map(s => s.name).slice(0, TOPK);
-  // 上游 = 本文件调用的外部符号(calls 里非本文件定义的名字);顺带 crossLayer
+  // upstream = external symbols this file calls (names in calls not defined in this file); also collect crossLayer
   const upstreamSet = new Set<string>(); const crossLayer = new Set<string>();
   let fanOut = 0;
   for (const s of mappingSymbols) {
@@ -28,8 +28,8 @@ export function computeFacts(relFile: string, mappingSymbols: any[]): Structural
       if (CROSS_LAYER_EDGE_TYPES.has(edgeType)) crossLayer.add(`${edgeType}:${name}`);
     }
   }
-  // 下游 = 谁 import 本文件(fileDependents 的 key 是被依赖文件的真实路径)。
-  // relFile 是相对路径;fileDependents key 是绝对路径 → 用 relPathOf 比对。
+  // downstream = who imports this file (fileDependents keys are the real paths of the depended-on files).
+  // relFile is a relative path; fileDependents keys are absolute paths → compare via relPathOf.
   let downstream: string[] = [];
   for (const [target, importers] of GLOBAL_INDEX.fileDependents) {
     if (relPathOf(target) === relFile) { downstream = [...importers].map(imp => relPathOf(imp)); break; }

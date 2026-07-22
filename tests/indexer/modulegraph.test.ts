@@ -3,8 +3,8 @@ import { test } from 'node:test';
 import assert from 'node:assert/strict';
 import { clusterModules, assignAnchor, featureKey, isTestFile } from '../../src/indexer/modulegraph.js';
 
-test('clusterModules: 两个稠密团被分成两个社区', () => {
-    // 团A: a1-a2-a3 互连; 团B: b1-b2-b3 互连; 团间仅一条弱边
+test('clusterModules: two dense clusters are split into two communities', () => {
+    // cluster A: a1-a2-a3 fully connected; cluster B: b1-b2-b3 fully connected; only one weak edge between clusters
     const edges: Array<[string, string, number]> = [
         ['a1', 'a2', 5], ['a2', 'a3', 5], ['a1', 'a3', 5],
         ['b1', 'b2', 5], ['b2', 'b3', 5], ['b1', 'b3', 5],
@@ -12,12 +12,12 @@ test('clusterModules: 两个稠密团被分成两个社区', () => {
     ];
     const nodes = ['a1', 'a2', 'a3', 'b1', 'b2', 'b3'];
     const comms = clusterModules({ nodes, edges });
-    assert.equal(comms.length, 2, `应 2 个社区,实际 ${comms.length}`);
+    assert.equal(comms.length, 2, `expected 2 communities, got ${comms.length}`);
     const sizes = comms.map(c => c.files.length).sort();
     assert.deepEqual(sizes, [3, 3]);
 });
 
-test('assignAnchor: 取 fan-in 最高的文件', () => {
+test('assignAnchor: picks the file with the highest fan-in', () => {
     const anchor = assignAnchor(['x.ts', 'y.ts', 'z.ts'], new Map([['x.ts', 2], ['y.ts', 9], ['z.ts', 1]]));
     assert.equal(anchor, 'y.ts');
 });

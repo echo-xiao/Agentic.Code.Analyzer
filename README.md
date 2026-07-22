@@ -103,7 +103,7 @@ src/
   eval/                        measurement layer
     gen.ts                     generate agent answers: --mode=mcp [--oracle] [--model] [--filter] (nomcp/wiki-only retired 2026-07-08)
     trace.ts                   per-question retrieval trace (record-only) → logs/data/retrieval-trace/
-    report.ts                  single report → logs/reports/report.md (对不对 gold: scope/召回/walk-core/seed + trace; semantic via --semantic)
+    report.ts                  single report → logs/reports/report.md (correctness vs gold: scope/recall/walk-core/seed + trace; semantic via --semantic)
     judge.ts                   semantic-compare LIBRARY (judgeAnswers; used by report --semantic; gold = answers-claude, never the wiki)
     truth.ts                   extract Claude-derived ground truth → utils/claude-truth.json (core/supporting/chain, one-time)
     utils/                     testcases.json + shared scoring helpers
@@ -115,7 +115,7 @@ data/
   index/                       chunks.json · chunk-vectors.json · module-graph.json
 wiki-site/                     static wiki viewer (index.html · app.js · style.css) over data/*.json — `npm run wiki:serve`
 logs/reports/
-  report.md                    single report — 对不对(gold, zero-API) + trace + optional semantic; by report.ts
+  report.md                    single report — correctness (vs gold, zero-API) + trace + optional semantic; by report.ts
   wiki-verify.md               self-generated wiki citation validity (by wiki:verify)
 ```
 
@@ -147,7 +147,7 @@ npm run gen:mcp     # agent answers: Gemini + plan/search/graph/details + self-g
                     #   → logs/answers-gemini-mcp-selfloop/  (add --oracle to force intent from testcase type)
                     #   Gemini free-tier throws ~10% transient 404/429/5xx — gen.ts retries w/ backoff (retries don't affect determinism)
 npm run trace       # deterministic per-question retrieval trace, no API → logs/data/retrieval-trace/
-npm run report      # single report → logs/reports/report.md  (对不对 gold: scope/召回/walk-core/seed + trace; zero-API)
+npm run report      # single report → logs/reports/report.md  (correctness vs gold: scope/recall/walk-core/seed + trace; zero-API)
                     #   add `-- --semantic` for the paid Claude semantic segment (agent answers vs answers-claude gold)
 npm run truth       # (re)build Claude-derived ground truth from answers-claude → src/eval/utils/claude-truth.json (paid API; rerun only when answers-claude changes)
 
@@ -175,9 +175,9 @@ artifact holding both.
   folded into `report.md` + cached to `verdicts-latest.json`. This is the *only* judge of final answer
   quality, and it's never run against the self-generated wiki (that would be circular).
   Latest run (Gemini + MCP, 34 cases): **PASS 13 / PARTIAL 19 / FAIL 2**.
-- **Diagnosis — trace + 对不对 (default, zero-API).** A FAIL alone doesn't say *why*; the trace does.
-  `report.md` lands the raw **trace** (scope → seed → walk → agent 实调 — each step's options / chosen /
-  reason / result) next to **对不对** (trace × `claude-truth.json`): is the answer file's page in scope?
+- **Diagnosis — trace + correctness check (default, zero-API).** A FAIL alone doesn't say *why*; the trace does.
+  `report.md` lands the raw **trace** (scope → seed → walk → agent's actual calls — each step's options / chosen /
+  reason / result) next to the **correctness check** (trace × `claude-truth.json`): is the answer file's page in scope?
   how many answer files were recalled? did each walk step hit a core file? did the *seed itself* hit core,
   or only the wide walk? So every failure pins to a stage — **scope missed the page / seed anchored wrong /
   walk never reached it** — not just a number. A **traceDrift** guard voids a trace run against a stale

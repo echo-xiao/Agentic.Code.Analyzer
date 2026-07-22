@@ -1,7 +1,7 @@
 import { cosine } from '../embeddings.js';
 import type { WikiMap } from '../../../wikimap/schema.js';
 
-/** 每页语义分 = 该页 source_files 里任一文件向量与 queryVec 的最大 cosine。无向量文件的页不入 map。 */
+/** Per-page semantic score = the max cosine between queryVec and any file vector in that page's source_files. Pages with no file vectors are omitted from the map. */
 export function semanticPageScores(
   queryVec: Float32Array, map: WikiMap, vectors: Map<string, Float32Array>,
 ): Map<string, number> {

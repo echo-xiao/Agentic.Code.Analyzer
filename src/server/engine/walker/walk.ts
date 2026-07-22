@@ -1,5 +1,5 @@
-// 自主游走：亲和度引导方向 + 自评停止。方向与停止共用同一信号（frontier 对 question tokens 的词面亲和度）。
-// stop 决不看金文件。全部依赖注入（WalkCtx），可用合成图单测。
+// Autonomous walk: affinity-guided direction + self-assessed stopping. Direction and stopping share one signal (the frontier's lexical affinity to the question tokens).
+// The stop decision never looks at gold files. Everything is dependency-injected (WalkCtx), unit-testable with a synthetic graph.
 import { scoreString } from './affinity.js';
 
 export type Move = 'expand' | 'down' | 'up';
@@ -14,8 +14,8 @@ export function buildDirectedAdjacency(callGraph: ReadonlyMap<string, ReadonlyAr
     for (const [callee, refs] of callGraph) {
         for (const { caller } of refs) {
             if (caller === callee) continue;
-            add(down, caller, callee);   // caller 往下调 callee
-            add(up, callee, caller);     // callee 往上被 caller 调
+            add(down, caller, callee);   // caller calls down into callee
+            add(up, callee, caller);     // callee is called up by caller
         }
     }
     return { down, up };
@@ -31,7 +31,7 @@ export interface WalkRound {
 export interface WalkCtx { adj: DirAdj; filesOf: (sym: string) => string[]; symbolsOfFile: (f: string) => string[] }
 
 export const DEFAULT_OPTS = { maxRounds: 8, minNewFiles: 3, minAffinity: 0.3, nodeCap: 6000 };
-const MOVE_ORDER: Move[] = ['expand', 'down', 'up'];   // 平分时的优先序
+const MOVE_ORDER: Move[] = ['expand', 'down', 'up'];   // tie-break priority order
 
 function neighborsOf(frontier: Set<string>, adj: DirAdj, move: Move): Set<string> {
     const out = new Set<string>();
@@ -53,17 +53,17 @@ export function walkFromSeed(
     const rounds: WalkRound[] = [];
 
     for (let round = 1; round <= opts.maxRounds; round++) {
-        // 1) 三方向预览
+        // 1) Preview all three directions
         const preview = {} as Record<Move, { syms: Set<string>; files: string[]; opt: MoveOption }>;
         for (const move of MOVE_ORDER) {
             const nextSyms = new Set([...neighborsOf(frontier, ctx.adj, move)].filter(s => !visitedSyms.has(s)));
             const fileSet = new Set<string>();
             for (const s of nextSyms) for (const f of ctx.filesOf(s)) if (!visitedFiles.has(f)) fileSet.add(f);
             const files = [...fileSet].sort((a, b) => scoreString(tokens, b) - scoreString(tokens, a) || a.localeCompare(b));
-            // affinity = 候选分 top-5 均值（信号密度）。不能取 max：expand 的邻居集是 down∪up 的
-            // 超集，max(expand) 恒 ≥ max(方向)，平分再优先 expand 会让方向选择退化成"永远 expand"。
-            // 按实体计分：每个新符号取 max(符号名分, 其新增文件最高分)——符号和它的文件是同一实体，
-            // 混入同一池会重复计分、扭曲方向对比。
+            // affinity = mean of the top-5 candidate scores (signal density). Can't take max: expand's neighbor set is a
+            // superset of down∪up, so max(expand) is always ≥ max(any direction), and tie-breaking toward expand would degrade
+            // direction selection into "always expand". Score per entity: each new symbol takes max(symbol-name score, its
+            // highest new-file score) — a symbol and its files are the same entity, and mixing them into one pool double-counts and distorts the direction comparison.
             const entityScores = [...nextSyms].map(s => {
                 let best = scoreString(tokens, s);
                 for (const f of ctx.filesOf(s)) {
@@ -82,12 +82,12 @@ export function walkFromSeed(
         }
         const options = { expand: preview.expand.opt, down: preview.down.opt, up: preview.up.opt };
 
-        // 2) 选方向：affinity 最高，平分按 MOVE_ORDER
+        // 2) Choose direction: highest affinity, ties broken by MOVE_ORDER
         let best: Move = 'expand';
         for (const m of MOVE_ORDER) if (preview[m].opt.affinity > preview[best].opt.affinity) best = m;
         const bo = preview[best].opt;
 
-        // 3) 自评停止（任一触发即停，reason 记触发项）
+        // 3) Self-assessed stopping (stop when any triggers, reason records the trigger)
         let stopReason: string | null = null;
         if (bo.newFiles < opts.minNewFiles) stopReason = `stop: marginal exhaustion, best dir adds ${bo.newFiles} < ${opts.minNewFiles}`;
         else if (bo.affinity < opts.minAffinity) stopReason = `stop: relevance decay, best dir affinity ${bo.affinity} < ${opts.minAffinity}`;
@@ -98,21 +98,21 @@ export function walkFromSeed(
             return rounds;
         }
 
-        // 4) 走：采纳该方向，记 result
+        // 4) Walk: commit to this direction, record result
         for (const s of preview[best].syms) visitedSyms.add(s);
         for (const f of preview[best].files) visitedFiles.add(f);
         rounds.push({
             anchor: seed, round, options, chosen: best,
             reason: `affinity top ${bo.affinity} (${best}) vs ${MOVE_ORDER.filter(m => m !== best).map(m => `${preview[m].opt.affinity} (${m})`).join(' / ')}`,
             result: {
-                newFiles: preview[best].files,   // 全量记录（report 端要对金文件算邻域召回，截断会失准）
+                newFiles: preview[best].files,   // record in full (the report side computes neighborhood recall against gold files; truncation would skew it)
                 newFileCount: preview[best].files.length,
                 newSymbolCount: preview[best].syms.size,
                 cumulativeFiles: visitedFiles.size,
             },
         });
 
-        // 5) 下一轮 frontier：本轮新增 top-3 文件 × 每文件 ≤2 符号（spec §2.4）
+        // 5) Next-round frontier: this round's top-3 new files × ≤2 symbols per file (spec §2.4)
         const next = new Set<string>();
         for (const f of preview[best].files.slice(0, 3))
             for (const s of ctx.symbolsOfFile(f).slice(0, 2))
@@ -123,7 +123,7 @@ export function walkFromSeed(
             return rounds;
         }
     }
-    // 预算耗尽：补一条 stop 记录（options 沿用最后一轮的）
+    // Budget exhausted: append a stop record (options reuse the last round's)
     const last = rounds[rounds.length - 1];
     rounds.push({ anchor: seed, round: opts.maxRounds + 1, options: last.options, chosen: null, reason: `stop: ${opts.maxRounds}-round budget exhausted` });
     return rounds;

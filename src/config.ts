@@ -13,7 +13,7 @@ export const TARGET_SRC_DIR = process.env.ROCKET_CHAT_SRC
 // upload storm throttles the thousands of small-file reads during an index rebuild.
 export const OUTPUT_DIR = path.join(PROJECT_ROOT, 'output.nosync');
 export const CACHE_FILE = path.join(OUTPUT_DIR, '.hash_cache.json');
-export const GENERATOR_VERSION = '11';   // was '10' — P1 给 mapping 加 chunk 字段,需全库重生成
+export const GENERATOR_VERSION = '11';   // was '10' — P1 adds a chunk field to mapping, requires a full-repo regeneration
 
 export function getOutputPaths(sourceFile: string): { skeletonPath: string; mappingPath: string } {
     const rel = path.relative(TARGET_SRC_DIR, sourceFile).replace(/\.(tsx?|js)$/, '');

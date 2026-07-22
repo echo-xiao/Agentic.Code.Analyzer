@@ -24,7 +24,7 @@ const MAP: WikiMap = {
     file_to_pages: { 'apps/meteor/server/lib/push.ts': ['Notifications'] },
 };
 
-test('selectPages：push 问题命中 Notifications 页，带 hitOn 与分数', () => {
+test('selectPages: a push question hits the Notifications page, with hitOn and score', () => {
     const tokens = questionTokens('How are push notifications triggered?');
     const step = selectPages(tokens, MAP)!;
     assert.equal(step.chosen[0], 'Notifications');
@@ -33,19 +33,19 @@ test('selectPages：push 问题命中 Notifications 页，带 hitOn 与分数', 
     assert.ok(step.reason.includes('Notifications'));
 });
 
-test('selectPages：全部低于阈值返回 null（触发 fallback）', () => {
+test('selectPages: all below threshold returns null (triggers fallback)', () => {
     const step = selectPages(['zzzzqq'], MAP);
     assert.equal(step, null);
 });
 
-test('resolveWikiFiles：endsWith 匹配真实路径，缺失文件进 missing', () => {
+test('resolveWikiFiles: endsWith matches real paths, missing files go into missing', () => {
     const all = ['/abs/repo/apps/meteor/server/lib/push.ts', '/abs/repo/other.ts'];
     const { resolved, missing } = resolveWikiFiles(Object.keys(PAGE_NOTIF.source_files), all);
     assert.equal(resolved.get('apps/meteor/server/lib/push.ts'), '/abs/repo/apps/meteor/server/lib/push.ts');
     assert.deepEqual(missing, ['apps/meteor/gone.ts']);
 });
 
-test('selectSeedForPage：按词面分选每页最优符号，带 options 和 reason', () => {
+test('selectSeedForPage: picks the best symbol per page by lexical score, with options and reason', () => {
     const tokens = questionTokens('How are push notifications triggered?');
     const { resolved } = resolveWikiFiles(Object.keys(PAGE_NOTIF.source_files), ['/abs/repo/apps/meteor/server/lib/push.ts']);
     const symbolsOfFile = (p: string) => p.endsWith('push.ts') ? ['sendPushNotification', 'initPush'] : [];
@@ -56,14 +56,14 @@ test('selectSeedForPage：按词面分选每页最优符号，带 options 和 re
     assert.ok(step.reason.length > 0);
 });
 
-test('selectSeedForPage：页面无可解析文件时 chosen=null', () => {
+test('selectSeedForPage: chosen = null when the page has no resolvable files', () => {
     const step = selectSeedForPage(['push'], PAGE_NOTIF, new Map(), () => []);
     assert.equal(step.chosen, null);
 });
 
-test('selectSeedForPage：相同分数时按符号字母序作为 tie-break', () => {
-    // zebraPush 和 alphaPush 对于 token 'push' 应该有相同的分数，
-    // tie-break 应该选择 alphaPush（字母序较早）
+test('selectSeedForPage: ties are broken by symbol alphabetical order', () => {
+    // zebraPush and alphaPush should have the same score for the token 'push',
+    // and the tie-break should pick alphaPush (earlier alphabetically)
     const tokens = ['push'];
     const pageWithSymbols: WikiPage = {
         id: 'tiebreakpage', title: 'TieBreakPage', category: '', scope: '', modules: [], seedFiles: [],
@@ -75,11 +75,11 @@ test('selectSeedForPage：相同分数时按符号字母序作为 tie-break', ()
     const { resolved } = resolveWikiFiles(Object.keys(pageWithSymbols.source_files), ['/abs/repo/tie/symbols.ts']);
     const symbolsOfFile = (p: string) => p.endsWith('symbols.ts') ? ['zebraPush', 'alphaPush'] : [];
     const step = selectSeedForPage(tokens, pageWithSymbols, resolved, symbolsOfFile);
-    // 如果分数相同，应该选择 alphaPush（字母序较早）
+    // if the scores are equal, it should pick alphaPush (earlier alphabetically)
     assert.equal(step.chosen, 'alphaPush');
 });
 
-test('informativeTokens：匹配过半页面的泛词被剔除，特异词保留', () => {
+test('informativeTokens: generic words matching more than half the pages are dropped, specific words are kept', () => {
     const generic = (name: string): WikiPage => ({
         id: name.toLowerCase().replace(/[^a-z0-9]+/g, '-'), title: name, category: '', scope: '', modules: [], seedFiles: [],
         page: name, sections: [],
@@ -99,13 +99,13 @@ test('informativeTokens：匹配过半页面的泛词被剔除，特异词保留
         file_to_pages: {},
     };
     const { kept, dropped } = informativeTokens(['rocketchat', 'push'], map3);
-    assert.deepEqual(kept, ['push']);                       // 只命中 1/3 页
+    assert.deepEqual(kept, ['push']);                       // hits only 1/3 pages
     assert.equal(dropped.length, 1);
-    assert.equal(dropped[0].token, 'rocketchat');           // 命中 3/3 页 → 泛词
+    assert.equal(dropped[0].token, 'rocketchat');           // hits 3/3 pages → generic word
     assert.equal(dropped[0].df, 3);
 });
 
-test('informativeTokens：全是泛词时回退原 tokens，不剃光头', () => {
+test('informativeTokens: when everything is a generic word, fall back to the original tokens rather than dropping them all', () => {
     const map1: WikiMap = {
         repo: 'r', generated_at: '2026-01-01T00:00:00.000Z', derived_from: 'd',
         pages: [{ id: 'overview', title: 'Overview', category: '', scope: '', modules: [], seedFiles: [],
@@ -125,25 +125,25 @@ const mapSem = {
   ],
 } as any;
 
-test('selectPages: 纯语义把词面选不出的页顶上来', () => {
-  const tok = ['qzxvwq'];   // 蓄意乱码 token：对 mapSem 两页词面都 < 阈值 0.3
-  // 无 semScores → 词面选不出 → null（证明不是词面在选）
+test('selectPages: pure semantics lifts up a page that lexical selection could not pick', () => {
+  const tok = ['qzxvwq'];   // deliberate gibberish token: below the 0.3 threshold on both mapSem pages lexically
+  // no semScores → lexical picks nothing → null (proves it is not lexical doing the selecting)
   assert.equal(selectPages(tok, mapSem, 0.3), null);
-  // 给语义分 → 只靠语义进候选 → Slash 页胜
+  // give semantic scores → only semantics puts it in the candidates → Slash page wins
   const sem = new Map([['Integrations, Webhooks & Slash Commands', 0.8], ['Room Views', 0.2]]);
   const r = selectPages(tok, mapSem, 0.3, { semScores: sem });
   assert.ok(r);
   assert.equal(r!.chosen[0], 'Integrations, Webhooks & Slash Commands');
 });
 
-test('selectPages: 不传 semScores 与现状一致(纯词面)', () => {
+test('selectPages: not passing semScores is consistent with the status quo (pure lexical)', () => {
   const r = selectPages(['room'], mapSem, 0.3);
-  assert.ok(r);   // 'room' 词面命中 Room Views
+  assert.ok(r);   // 'room' hits Room Views lexically
   assert.equal(r!.chosen[0], 'Room Views');
 });
 
-test('扩词并入 tokens 后能词面命中', () => {
-  // 原问题 'slash' 命中不到;扩词补 'commands' → 命中 Slash 页
+test('after merging expanded terms into tokens, lexical matching succeeds', () => {
+  // the original question 'slash' does not match; the expanded term 'commands' → hits the Slash page
   const r = selectPages(['zzz'], mapSem, 0.3, { expandedTokens: ['commands'] });
   assert.ok(r);
   assert.equal(r!.chosen[0], 'Integrations, Webhooks & Slash Commands');
@@ -154,30 +154,30 @@ const mMod = { pages: [
   { page: 'Room Views', sections: [], diagrams: [], source_files: { 'r.ts': ['L1'] }, modules: ['ui'] },
 ] } as any;
 
-test('候选模块 OR-gate(救场分支): 词面空时语义/候选模块才进候选', () => {
-  const tok = ['qzxvwq'];                                   // 词面对两页均 < 0.3
+test('candidate modules OR-gate (rescue branch): only when lexical is empty do semantics/candidate modules enter the candidates', () => {
+  const tok = ['qzxvwq'];                                   // lexical is < 0.3 on both pages
   const semLow = new Map([['LDAP Directory', 0.2], ['Room Views', 0.1]]);
-  // 无 semScores、无候选模块 → 词面空、无救场 → null（证明不是词面在选）
+  // no semScores, no candidate modules → lexical empty, no rescue → null (proves it is not lexical doing the selecting)
   assert.equal(selectPages(tok, mMod, 0.3), null);
-  // 给语义分 → 词面空走救场路径 → semScore 最高的 LDAP Directory 胜（证明救场分支在选）
+  // give semantic scores → lexical empty takes the rescue path → the highest semScore, LDAP Directory, wins (proves the rescue branch is doing the selecting)
   const r = selectPages(tok, mMod, 0.3, { semScores: semLow });
   assert.ok(r);
   assert.equal(r!.chosen[0], 'LDAP Directory');
-  // 候选模块在救场路径中前置 → 效果等同（模块 ldap 对应 LDAP Directory 仍居首）
+  // candidate modules are prioritized on the rescue path → same effect (module ldap → LDAP Directory still ranks first)
   const r2 = selectPages(tok, mMod, 0.3, { semScores: semLow, candidateModules: ['ldap'] });
   assert.ok(r2);
   assert.equal(r2!.chosen[0], 'LDAP Directory');
 });
 
-test('候选模块 no-sem 分支: 词面 null 时候选模块页仍进 chosen', () => {
-  const tok = ['qzxvwq'];                                   // 词面 null
-  assert.equal(selectPages(tok, mMod, 0.3), null);          // 无候选 → null
+test('candidate modules no-sem branch: when lexical is null, candidate-module pages still enter chosen', () => {
+  const tok = ['qzxvwq'];                                   // lexical is null
+  assert.equal(selectPages(tok, mMod, 0.3), null);          // no candidates → null
   const r = selectPages(tok, mMod, 0.3, { candidateModules: ['ldap'] });
   assert.ok(r);
   assert.equal(r!.chosen[0], 'LDAP Directory');
 });
 
-test('selectPages：多 token 佐证——孤证页(仅 push 命中)被双证页压下去', () => {
+test('selectPages: multi-token corroboration — a single-evidence page (only push hits) is pushed down by a double-evidence page', () => {
     const gitPage: WikiPage = {
         id: 'ci-pipeline', title: 'CI Pipeline', category: '', scope: '', modules: [], seedFiles: [],
         page: 'CI Pipeline', sections: ['Push to develop'],
@@ -193,5 +193,5 @@ test('selectPages：多 token 佐证——孤证页(仅 push 命中)被双证页
     assert.equal(step.chosen[0], 'Messaging');
     const git = step.options.find(o => o.page === 'CI Pipeline')!;
     const msg = step.options.find(o => o.page === 'Messaging')!;
-    assert.ok(msg.score > git.score, `双证 ${msg.score} 应 > 孤证 ${git.score}`);
+    assert.ok(msg.score > git.score, `double evidence ${msg.score} should be > single evidence ${git.score}`);
 });

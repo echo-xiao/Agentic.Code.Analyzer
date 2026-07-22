@@ -5,11 +5,11 @@ import { buildChunks } from './chunks.js';
 import { buildModuleGraph } from './modulegraph.js';
 
 export async function main(): Promise<void> {
-    await ensureIndex();                       // 保证 GLOBAL_INDEX + mapping 就绪
+    await ensureIndex();                       // ensure GLOBAL_INDEX + mapping are ready
     const n = await buildChunks();
-    console.error(`chunks: ${n} 条 → data/index/chunks.json`);
+    console.error(`chunks: ${n} entries → data/index/chunks.json`);
     const mg = buildModuleGraph();
-    console.error(`module-graph: ${mg.modules.length} 模块 → data/index/module-graph.json`);
+    console.error(`module-graph: ${mg.modules.length} modules → data/index/module-graph.json`);
 }
 
 if (import.meta.url === pathToFileURL(process.argv[1] ?? '').href) {

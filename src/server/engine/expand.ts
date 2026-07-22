@@ -9,9 +9,9 @@ import { isTestPath, relPath } from './common.js';
 import { cosine } from './embeddings.js';
 import type { SeedResult } from './seeds.js';
 
-// 语义 RRF 融合常数（离线 A/B: expandNeighborhood R@50 38→51, K=60；与候选地图同值）。
+// Semantic RRF fusion constant (offline A/B: expandNeighborhood R@50 38→51, K=60; same value as the candidate map).
 const RRF_K = 60;
-// 调用方（graph 工具/eval）嵌好 query 向量 + 提供文件→向量查表，注入语义信号。缺省则纯结构排序。
+// The caller (graph tool/eval) embeds the query vector + provides a file→vector lookup, injecting the semantic signal. Defaults to structure-only ranking.
 export interface SemInput { queryVec: Float32Array; vecOf: (relPath: string) => Float32Array | null }
 
 // Undirected symbol adjacency, derived once from callGraph (callee↔caller). Cached because it is a
@@ -150,14 +150,14 @@ export function expandNeighborhood(seed: SeedResult, opts: { maxHop?: number; li
         scored.push({ symbolName: sym, paths, score: lex, finalScore, hop: h });
     }
 
-    // 信号1: 结构加权和（现有 finalScore）
+    // Signal 1: structural weighted sum (existing finalScore)
     const byFuzzy = [...scored].sort((a, b) => b.finalScore - a.finalScore || a.symbolName.localeCompare(b.symbolName));
-    if (!sem) return byFuzzy.slice(0, limit);   // 无语义 → 纯结构（逐位向后兼容）
+    if (!sem) return byFuzzy.slice(0, limit);   // No semantics → structure-only (bit-for-bit backward compatible)
 
-    // 信号2: 语义 cosine（符号主文件的摘要向量 vs query；无向量排最后）
+    // Signal 2: semantic cosine (the symbol's primary-file summary vector vs query; no vector ranks last)
     const semOf = (s: RankedSymbol) => { const v = sem.vecOf(relPath(s.paths[0] ?? '')); return v ? cosine(sem.queryVec, v) : -Infinity; };
     const bySem = [...scored].sort((a, b) => semOf(b) - semOf(a) || a.symbolName.localeCompare(b.symbolName));
-    // RRF 融合两个名次
+    // RRF-fuse the two rankings
     const fr = new Map<string, number>(); byFuzzy.forEach((x, i) => fr.set(x.symbolName, i + 1));
     const sr = new Map<string, number>(); bySem.forEach((x, i) => sr.set(x.symbolName, i + 1));
     return [...scored]

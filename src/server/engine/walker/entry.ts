@@ -1,5 +1,5 @@
-// 决策点 1（选入口页面）+ 决策点 2（每页选 seed）+ lexical fallback。
-// 全部依赖注入（allFiles/symbolsOfFile 由编排器传入），不直接碰 GLOBAL_INDEX——可单测。
+// Decision point 1 (select entry pages) + decision point 2 (select a seed per page) + lexical fallback.
+// Everything is dependency-injected (allFiles/symbolsOfFile passed in by the orchestrator), never touching GLOBAL_INDEX directly — unit-testable.
 import { scoreString } from './affinity.js';
 import { lexicalSeeds } from '../seeds.js';
 import { isTestPath } from '../common.js';
@@ -14,12 +14,12 @@ export interface SelectOpts { semScores?: Map<string, number>; expandedTokens?: 
 const PAGE_THRESHOLD = 0.3;
 const SEM_THRESHOLD = 0.35;
 const RRF_K = 60;
-// 结构部位权重：标题最可信，章节/节点次之，文件路径 token 最弱。
+// Structural-part weights: the title is most trustworthy, sections/nodes next, file-path tokens weakest.
 const W_TITLE = 1.0, W_SECTION = 0.9, W_NODE = 0.9, W_FILE = 0.7;
 
-// 语料级泛词过滤（IDF-lite，从 wiki-map 自身派生、零硬编码词表）：一个 token 若能匹配超过
-// 半数页面（如产品名 rocket/chat 命中几乎所有页的节点 label/路径），它对选页没有区分度，
-// 反而让 CI/CD Pipeline 这类泛 token 密集页霸榜。df/N > 0.5 即剔除；全剔光时回退原 tokens。
+// Corpus-level generic-word filtering (IDF-lite, derived from the wiki-map itself, zero hardcoded word list): if a token matches
+// more than half the pages (e.g. the product name rocket/chat hits node labels/paths on almost every page), it has no discriminating
+// power for page selection and instead lets generic-token-dense pages like CI/CD Pipeline dominate. Drop when df/N > 0.5; fall back to the original tokens if all are dropped.
 export function informativeTokens(
     tokens: string[], map: WikiMap, threshold = PAGE_THRESHOLD,
 ): { kept: string[]; dropped: Array<{ token: string; df: number; pages: number }> } {
@@ -37,26 +37,26 @@ export function informativeTokens(
         for (const parts of pageParts) {
             if (parts.some(s => scoreString([t], s) >= threshold)) df++;
         }
-        // 0.4：'rocket' df 恰好 16/32=0.5 曾从 >0.5 边界漏网（trace 实证 2026-07-08），收紧到 0.4
+        // 0.4: 'rocket' with df exactly 16/32=0.5 once leaked through the >0.5 boundary (trace evidence 2026-07-08), tightened to 0.4
         if (df / n >= 0.4) dropped.push({ token: t, df, pages: n }); else kept.push(t);
     }
-    if (kept.length === 0) return { kept: tokens, dropped: [] };   // 全是泛词→不过滤，别把问题剃光头
+    if (kept.length === 0) return { kept: tokens, dropped: [] };   // all generic words → don't filter, don't shave the question bald
     return { kept, dropped };
 }
 
 export function selectPages(tokens: string[], map: WikiMap, threshold = PAGE_THRESHOLD, opts: SelectOpts = {}): PageStep | null {
-    // 扩词并入：expandedTokens 去重合并到 tokens 再用于打分。
+    // Merge in query expansion: dedupe expandedTokens into tokens before scoring.
     const allTokens = opts.expandedTokens?.length ? [...new Set([...tokens, ...opts.expandedTokens])] : tokens;
-    // 候选模块集：命中 page.modules 中任一模块 id 的页面视为候选。
+    // Candidate module set: a page that hits any module id in page.modules is treated as a candidate.
     const modSet = new Set(opts.candidateModules ?? []);
     const isCand = (p: any) => Array.isArray(p.modules) && p.modules.some((m: string) => modSet.has(m));
     const isCandByPage = new Map(map.pages.map(p => [p.page, isCand(p)]));
     const SEM_TOPK = 5;
 
     const options: PageOption[] = [];
-    // 多 token 佐证：页面分 = top-K 个不同 token 各自最佳命中的均值（K=min(2,token数)，÷K）。
-    // 单最佳部位打分是"单证人定罪"——同形异义孤证（git push 撞 'Push to develop'）能独占高分；
-    // 佐证制下孤证被摊薄一半，同时命中 push+notifications 的页面胜出（trace 实证 2026-07-08）。
+    // Multi-token corroboration: page score = mean of the top-K distinct tokens' individual best hits (K=min(2, token count), ÷K).
+    // Single-best-part scoring is "conviction on one witness" — a homograph lone hit (git push colliding with 'Push to develop') can
+    // monopolize a high score; under corroboration a lone hit is halved, and a page hitting both push+notifications wins (trace evidence 2026-07-08).
     const K = Math.min(2, Math.max(1, allTokens.length));
     for (const p of map.pages) {
         const parts: Array<{ name: string; w: number; text: string }> = [
@@ -84,14 +84,14 @@ export function selectPages(tokens: string[], map: WikiMap, threshold = PAGE_THR
     const modPages = options.filter(o => isCandByPage.get(o.page));   // candidate-module pages
 
     if (lexChosen.length > 0) {
-        // 词面有信号 → 词面排序为主(现状),仅把候选模块页并入前排;语义不介入(避免噪声回退)
+        // Lexical has signal → lexical ranking leads (status quo), merging only the candidate-module pages into the front rows; semantics stays out (avoids noisy fallback)
         const seen = new Set<string>();
         const merged = [...modPages, ...lexChosen].filter(o => (seen.has(o.page) ? false : (seen.add(o.page), true))).slice(0, 3);
         return { options: options.slice(0, 10), chosen: merged.map(c => c.page),
             reason: `top-${merged.length} lexical ${merged.map(c => `${c.page}:${c.score}`).join('/')}` };
     }
 
-    // 词面空 → 救场:候选模块 + 语义 top-K,按 semScore 排
+    // Lexical empty → rescue: candidate modules + semantic top-K, ranked by semScore
     const sem = opts.semScores;
     const semTop = sem && sem.size
         ? [...options].sort((a, b) => (sem.get(b.page) ?? -Infinity) - (sem.get(a.page) ?? -Infinity)).slice(0, SEM_TOPK)
@@ -121,10 +121,10 @@ export function selectSeedForPage(
 ): SeedStep {
     const options: SeedOption[] = [];
     for (const [wikiPath, realPath] of resolved) {
-        // resolved 可能由调用方跨页共享，这里按本页 source_files 过滤
+        // resolved may be shared by the caller across pages, so filter by this page's source_files here
         if (!(wikiPath in page.source_files)) continue;
-        if (isTestPath(realPath)) continue;   // 测试文件不出 seed（spec §2.3 优先非测试路径）
-        const syms = symbolsOfFile(realPath).slice(0, 2); // 每文件 ≤2 个符号
+        if (isTestPath(realPath)) continue;   // test files never become seeds (spec §2.3 prefers non-test paths)
+        const syms = symbolsOfFile(realPath).slice(0, 2); // ≤2 symbols per file
         for (const s of syms) options.push({ symbol: s, file: wikiPath, score: Number(scoreString(tokens, s).toFixed(3)) });
     }
     options.sort((a, b) => b.score - a.score || a.symbol.localeCompare(b.symbol));

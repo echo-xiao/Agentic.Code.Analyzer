@@ -12,7 +12,7 @@ import { relPath } from '../engine/common.js';
 import { loadVectors } from '../engine/entry-map.js';
 import { embedText } from '../engine/embeddings.js';
 
-// 用 SESSION.question(plan 写入)嵌 query 向量 + 摘要向量表 → 语义 RRF 信号。缺问题/缺向量→null(纯结构)。
+// Use SESSION.question (written by plan) to embed the query vector + summary vector table → semantic RRF signal. No question / no vectors → null (structure-only).
 const qvCache = new Map<string, Float32Array>();
 async function buildSem(): Promise<SemInput | null> {
     const q = SESSION.question;
@@ -47,7 +47,7 @@ export async function runGraph(args: GraphArgs): Promise<string> {
     if (move === 'down') return graphDown(query, { depth, layer, edgeTypes, file });
     if (move === 'up') return graphUp(query, { depth, layer, edgeTypes, file });
 
-    // expand — ranked subsystem neighborhood around the lexical seeds. 语义 RRF 融合（有向量+问题时）。
+    // expand — ranked subsystem neighborhood around the lexical seeds. Semantic RRF fusion (when vectors + question are present).
     const ranked = expandNeighborhood(lexicalSeeds(query, layer), { maxHop: depth, limit: 15 }, await buildSem());
     if (ranked.length === 0) {
         return `No neighborhood found for "${query}". Use search to find a seed symbol first.`;

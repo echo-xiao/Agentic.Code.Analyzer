@@ -17,7 +17,7 @@ export function chunkId(relFile: string, sym: { qualifiedName?: string; name: st
     return `${relFile}#${sym.qualifiedName ?? sym.name}`;
 }
 
-// kind 里没有 endLine/signature 的记录(旧 mapping 或异常)跳过,不入 chunk。
+// Records without endLine/signature (stale mapping or malformed) are skipped and not turned into a chunk.
 export async function buildChunks(): Promise<number> {
     const mappingFiles = globSync('**/*.mapping.json', { cwd: OUTPUT_DIR, absolute: true });
     const store: Record<string, Chunk> = {};

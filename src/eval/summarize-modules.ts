@@ -17,10 +17,10 @@ const sha1 = (s: string) => crypto.createHash('sha1').update(s).digest('hex');
 
 export async function summarizeModules(): Promise<number> {
   const apiKey = process.env.ANTHROPIC_API_KEY || process.env.CLAUDE_API_KEY;
-  if (!apiKey) { console.error('[module:summarize] 无 ANTHROPIC_API_KEY — 跳过。'); return 0; }
+  if (!apiKey) { console.error('[module:summarize] no ANTHROPIC_API_KEY — skipping.'); return 0; }
   let graph, fileSummaries;
   try { graph = JSON.parse(fs.readFileSync(MODULE_GRAPH_PATH, 'utf-8')); fileSummaries = JSON.parse(fs.readFileSync(FS_PATH, 'utf-8')); }
-  catch { console.error('[module:summarize] 缺 module-graph 或 file-summaries — 先 module:build / summaries:gen。'); return 0; }
+  catch { console.error('[module:summarize] missing module-graph or file-summaries — run module:build / summaries:gen first.'); return 0; }
   const client = new Anthropic({ apiKey });
   const store: Record<string, any> = fs.existsSync(OUT) ? JSON.parse(fs.readFileSync(OUT, 'utf-8')) : {};
   const limit = process.argv.find(a => a.startsWith('--limit='))?.split('=')[1];
@@ -32,7 +32,7 @@ export async function summarizeModules(): Promise<number> {
     const memberHash = sha1(input.fileSummaries.map((f: any) => (fileSummaries[f.file]?.hash ?? '')).join('|'));
     return { mod, input, memberHash };
   }).filter(x => store[x.mod.id]?.hash !== x.memberHash);
-  console.error(`[module:summarize] 待生成 ${pending.length} / ${mods.length}(并发 ${CONCURRENCY})`);
+  console.error(`[module:summarize] to generate ${pending.length} / ${mods.length} (concurrency ${CONCURRENCY})`);
   let done = 0;
   await runPool(pending, CONCURRENCY, async ({ mod, input, memberHash }) => {
     try {
@@ -46,12 +46,12 @@ export async function summarizeModules(): Promise<number> {
       store[mod.id] = { hash: memberHash, ...out };
       done++;
       fs.mkdirSync(OUT_DIR, { recursive: true });
-      fs.writeFileSync(OUT, JSON.stringify(sortKeys(store), null, 1), 'utf-8');   // 每成功即落盘 → 断点续(hash 跳过已完成)
+      fs.writeFileSync(OUT, JSON.stringify(sortKeys(store), null, 1), 'utf-8');   // flush on each success → resumable (hash skips completed ones)
       if (done % 10 === 0) console.error(`[module:summarize] ${done}/${pending.length}...`);
-    } catch (e: any) { console.error(`[module:summarize] ${mod.id} 失败: ${e?.message?.slice(0,100)}`); }
+    } catch (e: any) { console.error(`[module:summarize] ${mod.id} failed: ${e?.message?.slice(0,100)}`); }
   });
   fs.mkdirSync(OUT_DIR, { recursive: true }); fs.writeFileSync(OUT, JSON.stringify(sortKeys(store), null, 1), 'utf-8');
-  console.error(`[module:summarize] 新增/更新 ${done} · 库存 ${Object.keys(store).length} → ${OUT}`);
+  console.error(`[module:summarize] added/updated ${done} · stored ${Object.keys(store).length} → ${OUT}`);
   return done;
 }
 function sortKeys(o: Record<string, any>) { const r: Record<string, any> = {}; for (const k of Object.keys(o).sort()) r[k] = o[k]; return r; }

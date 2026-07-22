@@ -1,6 +1,6 @@
 #!/usr/bin/env npx tsx
 /**
- * p5-expand.ts — P5 Task 4: 离线扩词/候选缓存
+ * p5-expand.ts — P5 Task 4: offline query expansion / candidate cache
  *
  * For each testcase, calls a real LLM (Claude Haiku) to expand the question into
  * implementation symbols + candidate module ids, then grounds them against the

@@ -1,6 +1,6 @@
-// wiki — 离线架构回答：章节级散文（自生成 wiki 的离线缓存，方案1）+ 结构地图 + 路径验真脚注。
-// 运行期零网络（自生成 wiki）。散文只在本文件消费（红线：walker/eval 永不 import wiki-prose）。
-// C 轮实证：散文的价值 = 把机制链符号名喂给 agent 当查询词——本文件负责把这个价值离线留住。
+// wiki — offline architecture answer: section-level prose (offline cache of the self-generated wiki, option 1) + structure map + path-grounding footnote.
+// Zero network at runtime (self-generated wiki). Prose is consumed only in this file (invariant: walker/eval never import wiki-prose).
+// Round-C evidence: the value of prose = feeding mechanism-chain symbol names to the agent as query terms — this file is responsible for preserving that value offline.
 import * as fs from 'fs';
 import * as path from 'path';
 import { fileURLToPath } from 'url';
@@ -19,14 +19,14 @@ function loadProse() {
     return proseCache;
 }
 
-// 章节打分：标题分×1.2 + 正文逐行取最大（整段长文直接 fuzzysort 会饱和失真）
+// Section scoring: title score ×1.2 + body max over lines (running fuzzysort on a whole long block saturates and distorts)
 function scoreSection(tokens: string[], section: string, text: string): number {
     let body = 0;
     for (const line of text.split('\n')) { const s = scoreString(tokens, line); if (s > body) body = s; }
     return 1.2 * scoreString(tokens, section) + body;
 }
 
-// 路径验真脚注（恢复自旧在线版）：散文里的路径对索引验存在，漂移路径明示勿引
+// Path-grounding footnote (restored from the old online version): verify the paths in the prose exist in the index, and explicitly flag drifted paths as not-to-cite
 function ground(text: string): string {
     const paths = [...new Set([...text.matchAll(/(?:apps|packages|ee)\/[\w./-]+\.(?:tsx?|js)/g)].map(m => m[0]))];
     if (!paths.length) return text;

@@ -300,22 +300,22 @@ test('chainSequence: PRODUCTION symbol-keyed callGraph traverses multi-hop via G
 
 // ── pickChainSeed tests ───────────────────────────────────────────────────────
 
-test('pickChainSeed: 挑跨层出边最多(且非跨层的 call 不算)', () => {
+test('pickChainSeed: picks the file with the most cross-layer out-edges (plain non-cross-layer call does not count)', () => {
   const cg: CallGraphMap = new Map([
-    ['m1', [{ caller: 'f', file: 'a.ts', edgeType: 'rest_call' }]],                                   // a.ts: 1 跨层
+    ['m1', [{ caller: 'f', file: 'a.ts', edgeType: 'rest_call' }]],                                   // a.ts: 1 cross-layer
     ['m2', [{ caller: 'g', file: 'b.ts', edgeType: 'call' },
             { caller: 'h', file: 'b.ts', edgeType: 'call' },
-            { caller: 'i', file: 'b.ts', edgeType: 'call' }]],                                         // b.ts: 3 个 'call'(非跨层)
+            { caller: 'i', file: 'b.ts', edgeType: 'call' }]],                                         // b.ts: 3 'call' (not cross-layer)
   ]);
   const page = { source_files: { 'a.ts': ['L1'], 'b.ts': ['L1'] }, seedFiles: ['b.ts'] };
-  // 只数跨层: a(1) > b(0) → 'a.ts'。若误把 'call' 也当跨层: b(3) > a(1) → 会错挑 'b.ts'。断言 'a.ts' 即鉴别 'call' 被排除。
+  // Count cross-layer only: a(1) > b(0) -> 'a.ts'. If 'call' were wrongly treated as cross-layer: b(3) > a(1) -> would wrongly pick 'b.ts'. Asserting 'a.ts' confirms 'call' is excluded.
   assert.equal(pickChainSeed(page, cg), 'a.ts');
 });
 
-test('pickChainSeed: 无跨层 → 回退 seedFiles[0](须区别于页首文件)', () => {
-  const cg: CallGraphMap = new Map([['m', [{ caller: 'h', file: 'a.ts', edgeType: 'call' }]]]);        // 无跨层出边
-  const page = { source_files: { 'a.ts': ['L1'] }, seedFiles: ['c.ts'] };                             // seedFiles[0]='c.ts' ≠ pageFiles[0]='a.ts'
-  // 若误用 pageFiles[0] 会得 'a.ts';正确回退 seedFiles[0] 得 'c.ts'。
+test('pickChainSeed: no cross-layer -> falls back to seedFiles[0] (must differ from the first page file)', () => {
+  const cg: CallGraphMap = new Map([['m', [{ caller: 'h', file: 'a.ts', edgeType: 'call' }]]]);        // no cross-layer out-edge
+  const page = { source_files: { 'a.ts': ['L1'] }, seedFiles: ['c.ts'] };                             // seedFiles[0]='c.ts' != pageFiles[0]='a.ts'
+  // Wrongly using pageFiles[0] would give 'a.ts'; the correct fallback to seedFiles[0] gives 'c.ts'.
   assert.equal(pickChainSeed(page, cg), 'c.ts');
 });
 

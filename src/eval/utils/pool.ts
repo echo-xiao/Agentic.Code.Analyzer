@@ -1,5 +1,5 @@
 // Bounded-concurrency worker pool + retry — shared by summarize.ts / summarize-modules.ts
-// so P2 摘要重生成 can run N API calls in flight instead of one-at-a-time.
+// so P2 summary regeneration can run N API calls in flight instead of one-at-a-time.
 
 /** Run `worker` over `items` with at most `concurrency` in flight. Order-independent. */
 export async function runPool<T>(

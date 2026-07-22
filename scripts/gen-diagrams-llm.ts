@@ -20,9 +20,9 @@ import { GLOBAL_INDEX } from '../src/indexer/state.js';
 import { chainSequence, pickChainSeed } from '../src/wiki/diagram.js';
 
 const WIKI_MAP_PATH = path.join(DATA_DIR, 'wiki-map.json');
-const MIN_MODULES = 3;                 // 碎页跳过
-const MAX_CANDIDATES = 35;             // 喂给 LLM 的候选上限
-const MAX_NODES = 15;                  // 最终图节点硬上限(安全)
+const MIN_MODULES = 3;                 // skip fragment pages
+const MAX_CANDIDATES = 35;             // max candidates fed to the LLM
+const MAX_NODES = 15;                  // hard cap on final diagram nodes (safety)
 const CONCURRENCY = Number(process.env.DIAGRAM_CONCURRENCY || 8);
 
 const sanitize = (id: string) => id.replace(/[^a-zA-Z0-9_]/g, '_');
@@ -114,10 +114,10 @@ async function main() {
 
   let pages = wm.pages.filter((p: any) => (p.modules ?? []).length >= MIN_MODULES);
   if (limit !== undefined) pages = pages.slice(0, limit);
-  console.error(`[diagram-llm] ${pages.length} 页有 >=${MIN_MODULES} modules(其余跳过);并发 ${CONCURRENCY}${isDry ? ' [dry]' : ''}`);
+  console.error(`[diagram-llm] ${pages.length} pages have >=${MIN_MODULES} modules (rest skipped); concurrency ${CONCURRENCY}${isDry ? ' [dry]' : ''}`);
 
   const apiKey = process.env.ANTHROPIC_API_KEY || process.env.CLAUDE_API_KEY;
-  if (!apiKey && !isDry) { console.error('[diagram-llm] 无 ANTHROPIC_API_KEY'); process.exit(1); }
+  if (!apiKey && !isDry) { console.error('[diagram-llm] missing ANTHROPIC_API_KEY'); process.exit(1); }
   const client = apiKey ? new Anthropic({ apiKey }) : null;
 
   if (!isDry) await ensureIndex();
@@ -144,13 +144,13 @@ async function main() {
         page.diagrams = [flow, dia].filter(Boolean) as any;
         done++;
         fs.writeFileSync(WIKI_MAP_PATH, JSON.stringify(wm, null, 2), 'utf-8');   // checkpoint
-        if (done % 10 === 0) console.error(`[diagram-llm] ${done} 页出图...`);
+        if (done % 10 === 0) console.error(`[diagram-llm] ${done} pages diagrammed...`);
       } else { skipped++; }
-    } catch (e: any) { console.error(`[diagram-llm] ${page.title} 失败: ${e?.message?.slice(0, 80)}`); skipped++; }
+    } catch (e: any) { console.error(`[diagram-llm] ${page.title} failed: ${e?.message?.slice(0, 80)}`); skipped++; }
   });
 
   if (!isDry) fs.writeFileSync(WIKI_MAP_PATH, JSON.stringify(wm, null, 2), 'utf-8');
-  console.error(`[diagram-llm] 完成:出图 ${done} 页,跳过 ${skipped} 页 → ${WIKI_MAP_PATH}`);
+  console.error(`[diagram-llm] done: ${done} pages diagrammed, ${skipped} pages skipped → ${WIKI_MAP_PATH}`);
 }
 
 main().catch(e => { console.error('Fatal:', e); process.exit(1); });

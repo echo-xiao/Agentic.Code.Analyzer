@@ -24,16 +24,16 @@ export async function runPlan(args: { question?: string; intent?: string }): Pro
     else intent = classifyIntent(question);
 
     SESSION.intent = intent;
-    SESSION.question = question || null;   // graph(expand) 用它做语义 RRF 排序的 query 向量
+    SESSION.question = question || null;   // graph(expand) uses it as the query vector for semantic RRF ranking
     const r = RECIPES[intent];
     const lines = [
         `🧭 intent: **${intent}**`,
         `strategy: ${r.strategy}`,
         `defaults: graph(move="${r.move}", depth=${r.depth}) — override per call if the trail demands it.`,
     ];
-    // 候选地图（entrySeeds 通道）：离线游走的候选文件面直接进开局上下文——agent 的检索面
-    // 实测只有游走器的一半（46 vs 85 / 144 个答案文件），把候选喂进来让预算花在验证上。
-    // WIKI_INTENTS 分支下面会附 askWiki（离线版，已含候选），此处只给其余意图附，避免重复。
+    // Candidate map (entrySeeds channel): the offline walk's candidate file set goes straight into the opening context — the agent's
+    // retrieval reach is measured at only half the walker's (46 vs 85 / 144 answer files), so feeding the candidates in lets the budget go to verification.
+    // The WIKI_INTENTS branch below attaches askWiki (offline version, already includes candidates), so attach here only for the other intents to avoid duplication.
     if (question && !WIKI_INTENTS.has(intent)) {
         const cm = await candidateMap(question);
         if (cm) lines.push(cm);

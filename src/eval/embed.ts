@@ -1,9 +1,10 @@
 #!/usr/bin/env npx tsx
 /**
- * embed — 预计算全库摘要向量（本地 xenova，零 API）。方案2 语义排序的向量层。
- * 输入 data/summaries/file-summaries.json（每条 {hash, ranking_line}），输出 data/summaries/summary-vectors.json
- * （{relPath:{hash, vec:base64}}）。按摘要文本 hash 缓存：摘要没变永不重嵌（增量）。
- * Run: npm run embed:gen [-- --dry] [-- --limit=N]  · 断点续传：每批落盘。
+ * embed — precompute summary vectors for the whole repo (local xenova, zero API). The vector layer of
+ * Approach 2 semantic ranking.
+ * Input data/summaries/file-summaries.json (each entry {hash, ranking_line}), output data/summaries/summary-vectors.json
+ * ({relPath:{hash, vec:base64}}). Cached by summary-text hash: unchanged summaries are never re-embedded (incremental).
+ * Run: npm run embed:gen [-- --dry] [-- --limit=N]  · resumable: flushes to disk each batch.
  */
 import * as crypto from 'crypto';
 import * as fs from 'fs';
@@ -24,34 +25,34 @@ export function textForSummary(fs: any): string {
 }
 
 async function main() {
-    if (!fs.existsSync(SUMS)) { console.error('[embed] data/summaries/file-summaries.json 不存在 — 先 summaries:gen。'); return; }
-    guardModel(OUT, EMBED_MODEL); stampModel(OUT, EMBED_MODEL);   // 换 embedding 模型 → 清空旧向量强制重嵌
+    if (!fs.existsSync(SUMS)) { console.error('[embed] data/summaries/file-summaries.json does not exist — run summaries:gen first.'); return; }
+    guardModel(OUT, EMBED_MODEL); stampModel(OUT, EMBED_MODEL);   // switching embedding model → wipe old vectors and force re-embed
     const sums: Record<string, { hash: string; ranking_line: string }> = JSON.parse(fs.readFileSync(SUMS, 'utf-8'));
     const store: Record<string, { hash: string; vec: string }> = fs.existsSync(OUT) ? JSON.parse(fs.readFileSync(OUT, 'utf-8')) : {};
     const pending = Object.entries(sums).filter(([rel, s]) => {
         const text = textForSummary(s);
-        if (!text) return false;  // 跳过 ranking_line 为空的条目
+        if (!text) return false;  // skip entries with an empty ranking_line
         const h = sha1(text);
         return store[rel]?.hash !== h;
     });
-    console.error(`摘要 ${Object.keys(sums).length} 条 · 待嵌入 ${pending.length}（其余缓存命中）`);
-    if (process.argv.includes('--dry')) { console.error('[dry] 不嵌入。'); return; }
+    console.error(`summaries ${Object.keys(sums).length} · to embed ${pending.length} (rest are cache hits)`);
+    if (process.argv.includes('--dry')) { console.error('[dry] not embedding.'); return; }
     const lim = process.argv.find(a => a.startsWith('--limit='))?.split('=')[1];
     const jobs = lim ? pending.slice(0, Number(lim)) : pending;
-    if (!jobs.length) { console.error('无需嵌入。'); return; }
+    if (!jobs.length) { console.error('nothing to embed.'); return; }
 
     fs.mkdirSync(path.dirname(OUT), { recursive: true });
-    const bar = makeBar('embed:gen 嵌入');
+    const bar = makeBar('embed:gen embedding');
     const t0 = Date.now();
-    bar.start(jobs.length, 0, { elapsed: '0秒', eta_fmt: '?', status: '' });
+    bar.start(jobs.length, 0, { elapsed: '0s', eta_fmt: '?', status: '' });
     for (let i = 0; i < jobs.length; i++) {
         const [rel, s] = jobs[i];
         try {
             const text = textForSummary(s);
             const v = await embedText(text);
             store[rel] = { hash: sha1(text), vec: b64(v) };
-        } catch (e: any) { bar.stop(); console.error(`[embed] 跳过 ${rel}: ${e?.message?.slice(0, 80)}`); bar.start(jobs.length, i + 1); }  // 打日志防"全批静默失败变0"(summaries 已咬过一次)
-        if ((i + 1) % 50 === 0 || i === jobs.length - 1) {   // 每 50 条落盘（断点）
+        } catch (e: any) { bar.stop(); console.error(`[embed] skipped ${rel}: ${e?.message?.slice(0, 80)}`); bar.start(jobs.length, i + 1); }  // log it to avoid "whole batch fails silently → 0" (summaries got bitten by this once)
+        if ((i + 1) % 50 === 0 || i === jobs.length - 1) {   // flush every 50 entries (checkpoint)
             const sorted: typeof store = {};
             for (const k of Object.keys(store).sort()) sorted[k] = store[k];
             fs.writeFileSync(OUT, JSON.stringify(sorted), 'utf-8');
@@ -63,7 +64,7 @@ async function main() {
     const sorted: typeof store = {};
     for (const k of Object.keys(store).sort()) sorted[k] = store[k];
     fs.writeFileSync(OUT, JSON.stringify(sorted), 'utf-8');
-    console.error(`完成：库存 ${Object.keys(store).length} 向量 → data/summaries/summary-vectors.json · ${fmtSec((Date.now() - t0) / 1000)}`);
+    console.error(`done: stored ${Object.keys(store).length} vectors → data/summaries/summary-vectors.json · ${fmtSec((Date.now() - t0) / 1000)}`);
 }
 
 if (import.meta.url === pathToFileURL(process.argv[1] ?? '').href) main().catch(e => { console.error('Fatal:', e); process.exit(2); });

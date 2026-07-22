@@ -2,7 +2,7 @@
 /**
  * gen — generate agent answers over the testcases. GENERATOR ONLY; scoring lives in
  * tools.ts / report.ts, semantic verdicts in verdicts.md (judge.ts).
- * (nomcp / wiki-only / nav-only 对照模式已退役 2026-07-08 — 结论存 division.md 与 git 历史。)
+ * (the nomcp / wiki-only / nav-only comparison modes were retired 2026-07-08 — conclusions live in division.md and git history.)
  *
  *   --mode=mcp     Gemini + plan/search/graph/details/wiki self-loop → logs/answers-gemini-mcp-selfloop/
  *   --oracle       force SESSION intent from the testcase's questionType — measures the
@@ -252,9 +252,9 @@ async function main() {
 
     console.error(`Running ${selected.length} cases · mode=${mode}${oracle ? ' (ORACLE intent)' : ''} with ${modelName}...`);
     const records: AnswerRecord[] = [];
-    const bar = makeBar('gen:mcp 答题');
+    const bar = makeBar('gen:mcp answering');
     const t0 = Date.now();
-    bar.start(selected.length, 0, { elapsed: '0秒', eta_fmt: '?', status: '' });
+    bar.start(selected.length, 0, { elapsed: '0s', eta_fmt: '?', status: '' });
     for (let i = 0; i < selected.length; i++) {
         const tc = selected[i];
         try {
@@ -278,7 +278,7 @@ async function main() {
 }
 
 if (import.meta.url === pathToFileURL(process.argv[1] ?? '').href) {
-    // Force exit after main resolves — legacy guard (历史遗留: 原 MCP 客户端连接问题, 客户端已删仍保留无害)
+    // Force exit after main resolves — legacy guard (leftover from an old MCP client connection issue; the client is gone but this is harmless to keep)
     // otherwise prevent Node from exiting once all answers are saved.
     main().then(() => process.exit(0)).catch(e => { console.error('Fatal:', e); process.exit(2); });
 }

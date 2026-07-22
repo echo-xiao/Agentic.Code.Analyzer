@@ -1,11 +1,11 @@
-// wiki 结构 schema —— 自生成 wiki 接口（去解析器后集中于此）。
-// WikiPage 同时承载"消费字段"(page/sections/diagrams/source_files，entry-map/wiki 在读，P4 才迁 id)
-// 与 §7.1 "计划字段"(id/title/category/scope/modules/seedFiles，outline 步填)。约定 page===title。
+// wiki structure schema — self-generated wiki interfaces (centralized here after removing the parser).
+// WikiPage carries both the "consumer fields" (page/sections/diagrams/source_files, read by entry-map/wiki; id migration deferred to P4)
+// and the §7.1 "planning fields" (id/title/category/scope/modules/seedFiles, filled by the outline step). Convention: page === title.
 export interface WikiDiagram { nodes: Record<string, string>; edges: string[][]; subgraphs: string[] }
 export interface ProseSection { section: string; text: string; narrative?: string }
 
-// nav 树结构(读者问题驱动的顶层导航;编号 1/1.1/1.1.1 由 assignNumbers 现算,不落库)。
-// section = 可折叠分组(axis 定阅读带序);page = 叶子,id == WikiPage.id。深度 ≤ 4（L1 意图 / L2 区 / L3 家族 / L4 页）。
+// nav tree structure (reader-question-driven top-level navigation; numbering 1/1.1/1.1.1 is computed on the fly by assignNumbers, not persisted).
+// section = collapsible group (axis fixes the reading-band order); page = leaf, id == WikiPage.id. Depth <= 4 (L1 intent / L2 area / L3 family / L4 page).
 export interface NavNode {
   kind: 'section' | 'page';
   id: string;
@@ -15,21 +15,21 @@ export interface NavNode {
 }
 
 export interface WikiPage {
-  // —— 计划字段（§7.1 outline 填）——
+  // —— planning fields (§7.1, filled by outline) ——
   id: string;                 // 'system-architecture'
-  title: string;              // 人读标题（== page）
-  category: string;           // 'Overview' | 'System Architecture' | ...（自派生）
-  scope: string;              // 这章讲什么（写作 agent 的 brief）
-  modules: string[];          // 负责的 moduleId（来自 module-graph，硬锚）
-  seedFiles: string[];        // 起点文件（入口）
-  summary?: string;           // §4 prose 层新增：Purpose and Scope 总述（叠加，不进结构字段）
-  synthetic?: boolean;        // 合成页（非模块锚定；modules:[] → gate 中性）
-  readerQuestions?: string[]; // 合成页/章回答的读者问题（可选，做锚）
-  // —— 消费字段（保留；page===title）——
-  page: string;               // 消费方 key，== title
-  sections: string[];         // §7.3 写作产出的小节名
-  diagrams: WikiDiagram[];    // §7.4 真实边渲染
-  source_files: Record<string, string[]>; // 引用回填 file→行范围
+  title: string;              // human-readable title (== page)
+  category: string;           // 'Overview' | 'System Architecture' | ... (self-derived)
+  scope: string;              // what this chapter covers (brief for the writing agent)
+  modules: string[];          // owned moduleIds (from module-graph, hard anchor)
+  seedFiles: string[];        // starting files (entry points)
+  summary?: string;           // §4 prose-layer addition: Purpose and Scope overview (overlay, not a structural field)
+  synthetic?: boolean;        // synthetic page (not module-anchored; modules:[] → neutral in the gate)
+  readerQuestions?: string[]; // reader questions answered by a synthetic page/chapter (optional, used as anchor)
+  // —— consumer fields (preserved; page===title) ——
+  page: string;               // consumer key, == title
+  sections: string[];         // §7.3 section names produced by writing
+  diagrams: WikiDiagram[];    // §7.4 real-edge rendering
+  source_files: Record<string, string[]>; // citation backfill: file → line ranges
 }
 
 export interface WikiMap {
@@ -37,6 +37,6 @@ export interface WikiMap {
   generated_at: string;
   derived_from: string;       // "self-generated <sha> <date>"
   pages: WikiPage[];
-  file_to_pages: Record<string, string[]>; // §8 路由用
-  nav?: NavNode[];            // 读者问题驱动的顶层导航树（可选；旧数据无 nav 时前端回退 category 分组）
+  file_to_pages: Record<string, string[]>; // used by §8 routing
+  nav?: NavNode[];            // reader-question-driven top-level navigation tree (optional; when old data has no nav, the frontend falls back to category grouping)
 }

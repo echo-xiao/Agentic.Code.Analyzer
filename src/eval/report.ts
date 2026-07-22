@@ -1,15 +1,15 @@
 #!/usr/bin/env npx tsx
 /**
- * report — 逐题 trace + 对不对 → logs/reports/report.md
+ * report — per-question trace + gold check → logs/reports/report.md
  *
- * 两层，都零-API：
- *   ① trace（纯观察）：scope / seed / walk / agent 实调，读 logs/data/retrieval-trace/<id>.json。
- *   ② 对不对（gold 对照，零-API）：trace × claude-truth.json × wiki-map.json —— 每题
- *      scope 选对没（答案文件所在页是否进入口 scope）+ 召回几个答案文件（seed∪walk 是否触达 core）。
- *   ⛔ 本轮仍不做：R@k top-K 细分 / chain-LCS、citation true/false 门、语义段（judge，付费）。—— Phase 2+。
+ * Two layers, both zero-API:
+ *   1) trace (pure observation): scope / seed / walk / agent actual calls, read from logs/data/retrieval-trace/<id>.json.
+ *   2) gold check (gold comparison, zero-API): trace × claude-truth.json × wiki-map.json —— per question,
+ *      whether scope was picked correctly (did the answer file's page enter the entry scope) + how many answer files were recalled (did seed∪walk reach core).
+ *   Not done this round: R@k top-K breakdown / chain-LCS, the citation true/false gate, the semantic section (judge, paid). —— Phase 2+.
  *
- * 红线：不 import wiki-prose（散文不进测量门）；report.md 为人读产物，不喂 agent；gold 只读 claude-truth（本地）。
- * Run: npm run report   （先 `npm run trace` 产 retrieval-trace/）
+ * Invariant: do not import wiki-prose (prose stays out of the measurement gate); report.md is a human-read artifact, never fed to the agent; gold reads only claude-truth (local).
+ * Run: npm run report   (first run `npm run trace` to produce retrieval-trace/)
  */
 import * as fs from 'fs';
 import * as path from 'path';
@@ -35,7 +35,7 @@ function loadTraceFile(id: string): any | null {
     try { return JSON.parse(fs.readFileSync(p, 'utf-8')); } catch { return null; }
 }
 
-// stop reason → 短标签（与 walk.ts 的 reason 文案对应）
+// stop reason → short label (corresponds to walk.ts's reason wording)
 export function stopLabel(reason: string): string {
     if (reason.includes('marginal exhaustion')) return 'exhausted';
     if (reason.includes('relevance decay')) return 'decayed';
@@ -46,18 +46,18 @@ export function stopLabel(reason: string): string {
 }
 
 const base = (p: string): string => (p || '').split('/').pop() || p;
-// 短路径：末两段，区分同名文件（functions/sendMessage.ts vs methods/sendMessage.ts）。
+// Short path: the last two segments, to distinguish same-named files (functions/sendMessage.ts vs methods/sendMessage.ts).
 const shortPath = (p: string): string => (p || '').split('/').slice(-2).join('/') || p;
 
-// 路径宽松相等：gold core 与 wiki-map 键 / trace 文件都是仓库相对路径，允许后缀包含。
+// Loose path equality: gold core, wiki-map keys, and trace files are all repo-relative paths, so allow suffix containment.
 export function pathEq(a: string, b: string): boolean {
     const x = (a || '').replace(/\\/g, '/'), y = (b || '').replace(/\\/g, '/');
     return x === y || x.endsWith('/' + y) || y.endsWith('/' + x);
 }
 
-// 对不对（零-API gold 对照）：trace × claude-truth core × wiki-map。
-//   entryHit  = 答案文件所在页是否进了入口 scope（pageStep.chosen）；核心不属任何页 → null（—，天花板）。
-//   reachGoldN = seed 自身文件 ∪ walk 各轮 newFiles 里，命中了几个 core 答案文件。
+// gold check (zero-API gold comparison): trace × claude-truth core × wiki-map.
+//   entryHit  = did the answer file's page enter the entry scope (pageStep.chosen); if core belongs to no page → null (—, ceiling).
+//   reachGoldN = how many core answer files were hit across seed's own files ∪ each walk round's newFiles.
 export function computeGold(
     tr: any,
     core: string[],
@@ -65,7 +65,7 @@ export function computeGold(
 ): { entryHit: boolean | null; reachGoldN: number; coreN: number } {
     const trPages: string[] = tr?.pageStep?.chosen ?? [];
 
-    // pageStep.chosen 用页名(page.page/title)；file_to_pages 值是页 id —— 先把 id 归一到页名再比,否则永不命中。
+    // pageStep.chosen uses page names (page.page/title); file_to_pages values are page ids —— normalize id to page name before comparing, otherwise it never hits.
     const idToName = new Map<string, string>();
     if (wikiMap) for (const p of (wikiMap.pages ?? [])) idToName.set(p.id, p.page ?? p.title ?? p.id);
 
@@ -89,14 +89,14 @@ export function computeGold(
     return { entryHit, reachGoldN, coreN: core.length };
 }
 
-// 单轮游走触达的文件 + 命中的 core（答案文件）—— 把"对不对"下沉到 walk 每一步。
+// Files reached in a single walk round + the core (answer files) hit —— push the gold check down to each walk step.
 export function roundCoreHits(w: any, core: string[]): { reached: number; coreHits: string[] } {
     const nf: string[] = w?.result?.newFiles ?? [];
     const coreHits = core.filter(c => nf.some(f => pathEq(f, c)));
     return { reached: nf.length, coreHits };
 }
 
-// 首次命中 core 在哪一步：seed 即命中(第0步)=路由+种子都对；第R步=seed 没够到、靠 walk 硬捞；null=全程没命中。
+// At which step core is first hit: hit at seed (step 0) = routing + seed both right; step R = seed fell short, dredged up by walk; null = never hit.
 export function firstCoreStep(tr: any, core: string[]): { seedHit: boolean; firstStep: number | null } {
     const seedFiles = new Set<string>();
     for (const s of (tr?.seedStep ?? [])) {
@@ -114,7 +114,7 @@ export function firstCoreStep(tr: any, core: string[]): { seedHit: boolean; firs
     return { seedHit: false, firstStep: null };
 }
 
-// 语义段渲染（Phase 2）：judge 的 Row → 一行。缺→未跑。纯函数，零-API 可测。
+// Semantic section rendering (Phase 2): a judge Row → one line. Missing → not run. Pure function, zero-API testable.
 export function semanticLabel(row?: { verdict?: string; mode?: string; reason?: string }): string {
     if (!row?.verdict) return `**Semantic**: not run`;
     const icon = row.verdict === 'PASS' ? '✓' : row.verdict === 'PARTIAL' ? '◐' : '✗';
@@ -122,7 +122,7 @@ export function semanticLabel(row?: { verdict?: string; mode?: string; reason?: 
     return `**Semantic**: ${icon} ${row.verdict}${tail ? ` — ${tail}` : ''}`;
 }
 
-// agent 实调：直接渲染 trace 里已捕获的 agentCalls.sequence（结构化，无 gold）。
+// agent actual calls: directly render the agentCalls.sequence already captured in the trace (structured, no gold).
 export function fmtAgentCalls(ac: any): { calls: number; sequence: string; hitBudget: boolean } {
     const seq: any[] = Array.isArray(ac?.sequence) ? ac.sequence : [];
     const parse = (s: string) => { try { return JSON.parse(s); } catch { return {}; } };
@@ -145,8 +145,8 @@ export function fmtAgentCalls(ac: any): { calls: number; sequence: string; hitBu
     return { calls: ac?.totalCalls ?? seq.length, sequence, hitBudget: !!ac?.hitBudget };
 }
 
-// 漂移守卫：trace 是对某个 wiki-map 跑的；若 pageStep.chosen 页名大面积对不上当前 wiki-map，
-// 说明 trace 过时（对旧 wiki-map 跑的），此时"对不对"会失真 —— 报警提示重跑 trace。
+// Drift guard: a trace was run against some wiki-map; if pageStep.chosen page names largely fail to match
+// the current wiki-map, the trace is stale (run against an old wiki-map), which distorts the gold check —— warn to re-run trace.
 export function traceDrift(
     traces: Array<{ pageStep?: { chosen?: string[] } } | null>,
     wikiMap: any,
@@ -157,8 +157,8 @@ export function traceDrift(
     return { total, matched, stale: total > 0 && matched / total < 0.5 };
 }
 
-// ── section renderers（每题一段：scope / seed / walk / agent，各返回若干行）──────
-// scope：选中页 + 各自打分（分数取自 pageStep.options，不再单列重复的 reason 串）。
+// ── section renderers (one block per question: scope / seed / walk / agent, each returns several lines) ──────
+// scope: chosen pages + each one's score (score taken from pageStep.options; no longer lists the duplicated reason string separately).
 export function renderScope(tr: any): string[] {
     const opts: any[] = tr.pageStep?.options ?? [];
     const chosen: string[] = tr.pageStep?.chosen ?? [];
@@ -181,15 +181,15 @@ export function renderSeed(tr: any): string[] {
     return out;
 }
 
-// walk：按种子分组——每个种子一块（名字 · 步数 · 停因），轮次挂其下。
-// 顶行只 seed/步数（不再堆重复的"停因 X/X/X"）；per-seed 的 STOP 并进该组头。
+// walk: grouped by seed — one block per seed (name · steps · stop reason), rounds nested under it.
+// The top line has only seed/steps (no longer piling up the duplicated "stop X/X/X"); each seed's STOP is folded into that group's header.
 export function renderWalk(tr: any, core: string[]): string[] {
     const walk: any[] = tr.walk ?? [];
     const seedsN = new Set(walk.map(w => w.anchor)).size;
     const moves = walk.filter(w => w.chosen != null).length;
     const out = [`**walk** (${seedsN} seeds · ${moves} steps)`];
 
-    // 把连续同 anchor 的轮次归为一组（walk 本就按种子顺序排）
+    // Group consecutive rounds with the same anchor (walk is already ordered by seed)
     const groups: { anchor: string; rounds: any[] }[] = [];
     for (const w of walk) {
         const last = groups[groups.length - 1];
@@ -197,16 +197,16 @@ export function renderWalk(tr: any, core: string[]): string[] {
         else groups.push({ anchor: w.anchor, rounds: [w] });
     }
 
-    // 嵌套 bullet：种子一层，轮次一层（R+触达+命中 折成一条；只在真命中时显 core⭐）
+    // Nested bullets: seed one level, rounds another (R + reached + hits folded into one line; show core⭐ only on a real hit)
     for (const g of groups) {
         const moveRounds = g.rounds.filter(w => w.chosen != null);
         const stopRound = g.rounds.find(w => w.chosen == null);
         const stopTxt = stopRound ? ` · ⏹ ${stopLabel(stopRound.reason ?? '')}` : '';
         out.push(`- **${base(g.anchor)}** · ${moveRounds.length} steps${stopTxt}`);
         for (const w of moveRounds) {
-            // R 行：move + affinity 明细
+            // R line: move + affinity detail
             out.push(`    - R${w.round} → \`${w.chosen}\`${w.reason ? ` · ${w.reason}` : ''}`);
-            // ↳ 子条：触达 + core 命中（含 0，保留之前的细节程度）；core 文件带短路径区分同名
+            // ↳ sub-item: reached + core hits (including 0, keeping the previous level of detail); core files carry a short path to distinguish same-named ones
             const { reached, coreHits } = roundCoreHits(w, core);
             if (reached > 0) {
                 const hit = coreHits.length
@@ -235,7 +235,7 @@ async function main() {
         return { tc, tr, core, gold: tr ? computeGold(tr, core, wikiMap) : null, fcs: tr ? firstCoreStep(tr, core) : null };
     });
 
-    // aggregate（对不对汇总）
+    // aggregate (gold-check summary)
     const traced = items.filter(x => x.tr).length;
     const withGold = items.filter(x => x.gold && x.gold.entryHit !== null);
     const scopeHit = withGold.filter(x => x.gold!.entryHit).length;
@@ -248,7 +248,7 @@ async function main() {
 
     const drift = traceDrift(items.map(x => x.tr), wikiMap);
 
-    // 语义段（Phase 2）：--semantic 付费真跑 judge（agent 答案 vs claude gold）；否则读缓存（零-API，标 stale）。
+    // Semantic section (Phase 2): --semantic actually runs the paid judge (agent answers vs claude gold); otherwise read the cache (zero-API, marked stale).
     const wantSemantic = process.argv.includes('--semantic');
     let semRows: Row[] = [];
     let semCached = false;
@@ -259,7 +259,7 @@ async function main() {
         semRows = await judgeAnswers(new Anthropic({ apiKey }), testcases.map((tc: any) => ({ id: tc.id, question: tc.question ?? '' })), CAND_DIR, '## Gemini Answer');
         fs.writeFileSync(VERDICTS_CACHE, JSON.stringify(semRows, null, 2), 'utf-8');
     } else if (fs.existsSync(VERDICTS_CACHE)) {
-        try { semRows = JSON.parse(fs.readFileSync(VERDICTS_CACHE, 'utf-8')); semCached = true; } catch { /* 空/坏缓存→当未跑 */ }
+        try { semRows = JSON.parse(fs.readFileSync(VERDICTS_CACHE, 'utf-8')); semCached = true; } catch { /* empty/corrupt cache → treat as not run */ }
     }
     const semMap = new Map(semRows.map(r => [r.id, r]));
     const semN: Record<string, number> = { PASS: 0, PARTIAL: 0, FAIL: 0 };
@@ -280,12 +280,12 @@ async function main() {
     else L.push(`- **Semantic**: not run — \`npm run report -- --semantic\` enables it (paid; agent answers vs claude gold)`);
     L.push(`> "answer file" = the core of claude-truth.json (Claude's gold key files). The trace carries no gold itself; this section is the report-side trace × gold check, zero-API.\n`);
 
-    // pass 2: per question — 对不对 + trace（scope/seed/walk/agent 实调）
+    // pass 2: per question — gold check + trace (scope/seed/walk/agent actual calls)
     for (const { tc, tr, core, gold, fcs } of items) {
         L.push(`## ${tc.id} — ${tc.question ?? ''}  _[${tc.questionType ?? '?'}]_`, '');
         if (!tr) { L.push(`> no trace (run \`npm run trace\` first).`, ''); continue; }
 
-        // ── 对不对 ──
+        // ── gold check ──
         const sc = gold!.entryHit === null ? '—(answer file on no wiki page)' : gold!.entryHit ? '✓ correct' : '✗ wrong';
         const fcsLabel = !gold!.coreN ? ''
             : fcs!.seedHit ? ' · **seed hits core⭐**'
@@ -294,7 +294,7 @@ async function main() {
         L.push(`**Gold check**: scope ${sc} · recall ${gold!.reachGoldN}/${gold!.coreN} answer files${fcsLabel}`, '');
         if (semMap.size) L.push(semanticLabel(semMap.get(tc.id)), '');
 
-        // ── scope / seed / walk / agent —— 各段之间空行分隔（渲染成独立块）──
+        // ── scope / seed / walk / agent —— blank line between sections (rendered as separate blocks) ──
         L.push(...renderScope(tr), '');
         L.push(...renderSeed(tr), '');
         L.push(...renderWalk(tr, core), '');

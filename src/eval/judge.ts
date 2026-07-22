@@ -5,8 +5,8 @@
  * vs the GOLD answer (logs/answers-claude/<id>.md → "## Answer") → PASS / PARTIAL / FAIL + mode + reason.
  * Gold standard = answers-claude (never the self-generated wiki — that would be circular).
  *
- * Consumed by `report.ts --semantic`（付费）via `judgeAnswers`. The old standalone CLI that wrote
- * logs/reports/verdicts.md is retired — report 收编了语义段，verdicts 不再单独产。
+ * Consumed by `report.ts --semantic` (paid) via `judgeAnswers`. The old standalone CLI that wrote
+ * logs/reports/verdicts.md is retired — report absorbed the semantic section, so verdicts is no longer produced separately.
  * Model: claude-sonnet-4-6 (cost-saving judge). Needs ANTHROPIC_API_KEY in .env.
  */
 import "./utils/load-env.js";
@@ -94,10 +94,10 @@ export async function judgeOne(client: Anthropic, question: string, gold: string
 export async function judgeAnswers(client: Anthropic, testcases: { id: string; question: string }[], candDir: string, candSection: string): Promise<Row[]> {
     const jobs = testcases.filter(tc =>
         fs.existsSync(path.join(GOLD_DIR, `${tc.id}.md`)) && fs.existsSync(path.join(candDir, `${tc.id}.md`)));
-    const bar = makeBar('judge 判定');
+    const bar = makeBar('judge verdicts');
     const t0 = Date.now();
     let n = 0;
-    bar.start(jobs.length, 0, { elapsed: '0秒', eta_fmt: '?', status: '' });
+    bar.start(jobs.length, 0, { elapsed: '0s', eta_fmt: '?', status: '' });
     const results = await mapPool<typeof jobs[number], Row | null>(jobs, CONCURRENCY, async (tc) => {
         const gold = extractSection(fs.readFileSync(path.join(GOLD_DIR, `${tc.id}.md`), 'utf-8'), '## Answer');
         const cand = extractSection(fs.readFileSync(path.join(candDir, `${tc.id}.md`), 'utf-8'), candSection);
