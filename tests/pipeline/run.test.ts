@@ -59,3 +59,18 @@ test('runQuestion records routing.promptTokens from llm.promptTokensEst after ro
     // Must reflect only the routing call, not the final total after all 3 calls.
     assert.ok(row.trace.routing.promptTokens < row.trace.llm.promptTokensEst);
 });
+
+test('runQuestion: a deepwikiFn that throws still resolves with the run row, not a rejection', async () => {
+    GLOBAL_INDEX.symbols.set('sendMessage', new Set(['/abs/Rocket.Chat/apps/meteor/app/lib/server/sendMessage.ts']));
+    GLOBAL_INDEX.callGraph.set('sendMessage', [{ caller: 'x', file: 'f', edgeType: 'call' }]);
+    const outline: WikiOutline = { repo: 'r', commit: 'c', sections: [
+        { id: 'msg', title: 'Messaging', blurb: 'messages', sources: [{ file: 'apps/meteor/app/lib/server/sendMessage.ts', startLine: 1, endLine: 9 }] }] };
+    const llm = new FakeLlm(['msg', '1a', '答案：apps/meteor/app/lib/server/sendMessage.ts:1']);
+    const row = await runQuestion('q4', 'how is a message sent (sendMessage)?', {
+        llm, outline, truthCore: [],
+        deepwikiFn: async () => { throw new Error('MCP tool ask_question returned no text content'); },
+        readFn: () => ({ text: 'const x = 1;', startLine: 1, endLine: 1 }),
+    });
+    assert.ok(row.deepwiki.includes('获取失败'));
+    assert.ok(row.answer.includes('答案'));
+});

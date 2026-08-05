@@ -16,7 +16,11 @@ export async function askDeepWiki(qid: string, question: string, opts: { postFn?
     fs.mkdirSync(CACHE_DIR, { recursive: true });
     const cachePath = path.join(CACHE_DIR, `${qid}.md`);
     if (fs.existsSync(cachePath)) return fs.readFileSync(cachePath, 'utf8');
+    // A thrown error (network/parse failure) never reaches here, so nothing gets cached
+    // for it. Also guard the case of a postFn that resolves with empty text instead of
+    // throwing — an empty answer must not be written to the cache either, so a later
+    // rerun still retries instead of permanently serving a blank baseline.
     const answer = await (opts.postFn ?? mcpPost)(question);
-    fs.writeFileSync(cachePath, answer);
+    if (answer) fs.writeFileSync(cachePath, answer);
     return answer;
 }

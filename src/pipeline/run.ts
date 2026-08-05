@@ -57,7 +57,16 @@ export async function runQuestion(qid: string, question: string, deps: Deps): Pr
         reading: { materials: materials.map(m => ({ nodeId: m.nodeId, file: m.file, startLine: m.startLine, endLine: m.endLine, tokens: m.tokens })), evicted, evictedFiles },
         llm: { calls: llm.calls, promptTokensEst: llm.promptTokensEst },
     };
-    const deepwiki = await deps.deepwikiFn(qid, question);
+    let deepwiki: string;
+    try {
+        deepwiki = await deps.deepwikiFn(qid, question);
+    } catch (e) {
+        // The DeepWiki baseline is a comparison column, not load-bearing: a transport/parse
+        // failure there must never sink the whole question (and its own 3 LLM calls' worth
+        // of work already done above).
+        const message = e instanceof Error ? e.message : String(e);
+        deepwiki = `(DeepWiki 对照获取失败：${message})`;
+    }
     return { trace, answer, fabricated, deepwiki, loss: attribute(trace, deps.truthCore) };
 }
 

@@ -1,9 +1,55 @@
 // Shared transport for DeepWiki's official MCP endpoint (JSON-RPC 2.0 over HTTP).
-// The endpoint may reply with a plain JSON body or a single SSE "data:" line
-// (content-type: text/event-stream) — both are handled here.
+// The endpoint may reply with a plain JSON body or Server-Sent Events (multiple
+// "data:" lines, e.g. progress/notification frames followed by the actual
+// tools/call result) — both are handled here.
 export const MCP_ENDPOINT = 'https://mcp.deepwiki.com/mcp';
 
-// Call an MCP tool via JSON-RPC 2.0 tools/call and return its text content.
+// Parse an MCP HTTP response body into the joined text of its result content.
+// Exported as a pure function so response-shape edge cases can be unit tested
+// without a live network call.
+//
+// SSE bodies can carry several "data:" lines (e.g. a notification frame before
+// the actual JSON-RPC result), so every line is parsed and the first one that
+// looks like a JSON-RPC response (has `result` or `error`) is used — not just
+// the first "data:" line. A `result.content` array can hold several text
+// items; all of them are joined, not just the first.
+export function parseMcpResponse(bodyText: string, toolName: string): string {
+    const dataLines = bodyText.split('\n').filter(line => line.startsWith('data:'));
+    const candidateTexts = dataLines.length > 0
+        ? dataLines.map(line => line.slice('data:'.length).trim())
+        : [bodyText.trim()];
+
+    let payload: any;
+    for (const candidateText of candidateTexts) {
+        if (!candidateText) continue;
+        let parsed: any;
+        try { parsed = JSON.parse(candidateText); } catch { continue; }
+        if (parsed && (parsed.result !== undefined || parsed.error !== undefined)) {
+            payload = parsed;
+            break;
+        }
+    }
+    if (payload === undefined) {
+        throw new Error(`MCP tool ${toolName} returned an unparseable response: ${bodyText.slice(0, 300)}`);
+    }
+    if (payload.error) {
+        throw new Error(`MCP tool ${toolName} returned an error: ${JSON.stringify(payload.error)}`);
+    }
+
+    const content = payload.result?.content;
+    const text = Array.isArray(content)
+        ? content
+            .filter((c: any) => c && (c.type === 'text' || typeof c.text === 'string'))
+            .map((c: any) => c.text)
+            .join('\n')
+        : '';
+    if (!text) {
+        throw new Error(`MCP tool ${toolName} returned no text content: ${JSON.stringify(payload).slice(0, 300)}`);
+    }
+    return text;
+}
+
+// Call an MCP tool via JSON-RPC 2.0 tools/call and return its joined text content.
 export async function callMcpTool(name: string, args: Record<string, unknown>): Promise<string> {
     const res = await fetch(MCP_ENDPOINT, {
         method: 'POST',
@@ -20,11 +66,5 @@ export async function callMcpTool(name: string, args: Record<string, unknown>): 
     });
     if (!res.ok) throw new Error(`MCP request for ${name} failed: HTTP ${res.status}`);
     const raw = await res.text();
-    const dataLine = raw.split('\n').find(line => line.startsWith('data:'));
-    const jsonText = dataLine ? dataLine.slice('data:'.length).trim() : raw.trim();
-    const payload = JSON.parse(jsonText);
-    if (payload.error) throw new Error(`MCP tool ${name} returned an error: ${JSON.stringify(payload.error)}`);
-    const text = payload.result?.content?.[0]?.text;
-    if (typeof text !== 'string') throw new Error(`MCP tool ${name} returned no text content`);
-    return text;
+    return parseMcpResponse(raw, name);
 }
