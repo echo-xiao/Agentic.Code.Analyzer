@@ -13,14 +13,40 @@ const fanIn = (sym: string) => GLOBAL_INDEX.callGraph.get(sym)?.length ?? 0;
 const fileOf = (sym: string): string => relPath([...(GLOBAL_INDEX.symbols.get(sym) ?? [])][0] ?? '');
 
 // Top-level subsystem anchor segment for a file path — 'lib' from 'apps/meteor/app/lib/server/a.ts',
-// 'core' from 'packages/core/x.ts'. Deliberately non-anchored (`(?:^|\/)` instead of `^`) so it still
-// works after an absolute or synthetic prefix (e.g. test paths like '/rc/apps/meteor/...') that
-// relPath() doesn't strip — relPath only strips the literal 'Rocket.Chat/' substring.
+// 'rest-typings' from 'packages/rest-typings/src/x.ts'. Segment-array approach (not regex scanning):
+// regex scanning latches onto the FIRST embedded 'apps/meteor/<layer>/<seg>' anywhere in the string,
+// which misfires on paths that legitimately contain a second copy further in (e.g. a fixture path
+// 'apps/meteor/tests/apps/meteor/app/lib/server/x.ts' should anchor on 'tests', not on the nested
+// 'lib'). Instead: normalize once (strip down to the repo-relative part, without re-scanning for
+// nested anchors), then read fixed segment positions.
 export function anchorSeg(file: string): string {
-    const stripped = file.split('Rocket.Chat/')[1] ?? file;
-    const m = stripped.match(/(?:^|\/)apps\/meteor\/(?:app|client|server|ee)\/([^/]+)/)
-        || stripped.match(/(?:^|\/)(?:packages|ee\/packages|apps)\/([^/]+)/);
-    return m?.[1] ?? stripped.split('/').filter(Boolean)[0] ?? '';
+    // Normalize to a repo-relative path. Only ONE anchor lookup happens here (never re-scanned deeper):
+    // - path containing 'Rocket.Chat/' → keep the part after it (relPath's own convention).
+    // - absolute/synthetic prefix (e.g. '/rc/...') → find the FIRST 'apps'/'packages'/'ee' segment and
+    //   keep from there; this is a single lookup on the raw prefix, not a recursive scan into the tail.
+    // - already relative → use as-is, no searching at all (so a relative path with a nested
+    //   'apps/meteor/...' further in is read positionally, not by locating that nested copy).
+    let normalized = file;
+    if (file.includes('Rocket.Chat/')) {
+        normalized = file.split('Rocket.Chat/')[1];
+    } else if (file.startsWith('/')) {
+        const segs = file.split('/');
+        const idx = segs.findIndex(s => s === 'apps' || s === 'packages' || s === 'ee');
+        if (idx >= 0) normalized = segs.slice(idx).join('/');
+    }
+
+    const seg = normalized.split('/').filter(Boolean);
+    if (seg[0] === 'apps' && seg[1] === 'meteor') {
+        const layer = seg[2];
+        // Known layout layers are structural, not subsystem names — the subsystem is one level deeper.
+        if (layer === 'app' || layer === 'client' || layer === 'server' || layer === 'ee') return seg[3] ?? '';
+        // Anything else directly under apps/meteor (e.g. 'tests') IS the anchor itself.
+        return layer ?? '';
+    }
+    if (seg[0] === 'packages') return seg[1] ?? '';
+    if (seg[0] === 'ee' && seg[1] === 'packages') return seg[2] ?? '';
+    if (seg[0] === 'apps') return seg[1] ?? '';        // apps/<seg> that isn't apps/meteor
+    return seg[0] ?? '';
 }
 
 const firstLine = (sym: string): { line: number; snippet: string } => {

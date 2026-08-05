@@ -1,7 +1,7 @@
 import { test, beforeEach } from 'node:test';
 import assert from 'node:assert/strict';
 import { GLOBAL_INDEX } from '../../src/indexer/state.js';
-import { buildChainSkeleton, renderSkeletons } from '../../src/pipeline/skeleton.js';
+import { anchorSeg, buildChainSkeleton, renderSkeletons } from '../../src/pipeline/skeleton.js';
 import type { Chain } from '../../src/pipeline/types.js';
 
 // Graph: seedFn -> wrap -> core -> hot(fanIn 30) ; core -> farAway (different anchor segment)
@@ -43,4 +43,13 @@ test('renderSkeletons: ids are chainNumber+letter and the lookup table matches',
     assert.ok(nodeById.has('1a'));
     assert.ok(text.includes('[1a]') && text.includes('Chain 1'));
     for (const [id, n] of nodeById) assert.equal(n.kind, 'major', id);   // only major nodes are selectable
+});
+
+test('anchorSeg: segment-array reads fixed positions, never latches onto a nested anchor', () => {
+    assert.equal(anchorSeg('apps/meteor/app/lib/server/x.ts'), 'lib');
+    assert.equal(anchorSeg('packages/rest-typings/src/x.ts'), 'rest-typings');
+    // A nested 'apps/meteor/app/lib' further in the path must NOT hijack the anchor — the real
+    // anchor is the first segment after apps/meteor here ('tests'), read positionally.
+    assert.equal(anchorSeg('apps/meteor/tests/apps/meteor/app/lib/server/x.ts'), 'tests');
+    assert.equal(anchorSeg('/x/Rocket.Chat/apps/meteor/app/federation/y.ts'), 'federation');
 });
