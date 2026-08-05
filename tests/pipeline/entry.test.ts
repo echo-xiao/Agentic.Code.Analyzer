@@ -75,6 +75,15 @@ test('lexical scoring (via retrieveSeeds): keyword-overlap ranks the more specif
     assert.ok(!seeds.some(s => s.symbol === 'close'));   // 'close' has zero token overlap -> absent everywhere
 });
 
+test('lexical scoring: irregular verb (sent -> send) lets sendMessage outrank single-token junk', () => {
+    GLOBAL_INDEX.symbols.set('sendMessage', new Set(['/abs/Rocket.Chat/apps/meteor/app/lib/server/sendMessage.ts']));
+    GLOBAL_INDEX.symbols.set('message', new Set(['/abs/Rocket.Chat/apps/meteor/app/models/message.ts']));
+    GLOBAL_INDEX.symbols.set('IMessage', new Set(['/abs/Rocket.Chat/packages/core-typings/src/IMessage.ts']));
+    const seeds = retrieveSeeds('How is a message sent on the client side in Rocket.Chat?', [], outline, 10);
+    assert.equal(seeds[0].symbol, 'sendMessage');
+    assert.equal(seeds[0].signals.lexicalRank, 1);
+});
+
 test('groupChains: same section -> one chain; lone weak seed chain is pruned', () => {
     const mk = (s: string, sec: string | null, rrf: number): RankedSeed =>
         ({ symbol: s, file: 'f/' + s, rrf, signals: { lexicalRank: 1, provenanceRank: null, graphRank: null }, sectionId: sec });

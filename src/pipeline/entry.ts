@@ -51,12 +51,31 @@ export function symbolTokens(name: string): string[] {
     return [...new Set(parts)];
 }
 
-// Trivial suffix stemming for the (common) regular case — sends/sent-family irregular verbs are
-// not handled; that's an accepted gap, not every symbol name needs to match every phrasing.
+// Trivial suffix stemming for the (common) regular case — irregular verbs (sent/built/ran/...)
+// don't reduce to their base form this way, so they're covered separately below.
 const stemToken = (t: string): string => t.replace(/(ing|ed|s)$/, '');
 
+// Small closed set of irregular verbs that show up in "how is X done" style questions and would
+// otherwise never match their symbol's regular-form token (e.g. 'sent' never reduces to 'send'
+// via suffix stripping). Each question token contributes both itself and its irregular base form
+// (if any) to the token set used for matching — see tokenizeQuestion's caller below.
+const IRREGULAR_VERBS: Record<string, string> = {
+    sent: 'send', built: 'build', ran: 'run', made: 'make', wrote: 'write',
+    read: 'read', kept: 'keep', found: 'find', got: 'get', held: 'hold', handled: 'handle',
+};
+
+function expandIrregulars(tokens: string[]): string[] {
+    const out: string[] = [];
+    for (const t of tokens) {
+        out.push(t);
+        const base = IRREGULAR_VERBS[t];
+        if (base) out.push(base);
+    }
+    return out;
+}
+
 function lexicalScores(question: string): Map<string, number> {
-    const qTokens = tokenizeQuestion(question);
+    const qTokens = expandIrregulars(tokenizeQuestion(question));
     const scores = new Map<string, number>();
     for (const sym of GLOBAL_INDEX.symbols.keys()) {
         const symTokens = new Set(symbolTokens(sym));
