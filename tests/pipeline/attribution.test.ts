@@ -8,7 +8,7 @@ const base: QuestionTrace = {
     routing: { sections: [], promptTokens: 0 },
     seeds: [{ symbol: 's', file: 'core.ts', rrf: 1, signals: { lexicalRank: 1, provenanceRank: null, graphRank: null }, sectionId: null }],
     chains: [], skeleton: [], pathsRaw: '', selectedIds: ['1a'], droppedIds: [],
-    reading: { materials: [{ nodeId: '1a', file: 'core.ts', startLine: 1, endLine: 9, tokens: 1 }], evicted: [] },
+    reading: { materials: [{ nodeId: '1a', file: 'core.ts', startLine: 1, endLine: 9, tokens: 1 }], evicted: [], evictedFiles: [] },
     llm: { calls: 3, promptTokensEst: 0 },
 };
 
@@ -27,7 +27,7 @@ test('attribute: graph loss when core file is a seed but skeleton never covers i
         ...base,
         seeds: [{ symbol: 's', file: 'core.ts', rrf: 1, signals: { lexicalRank: 1, provenanceRank: null, graphRank: null }, sectionId: null }],
         skeleton: [{ chainId: 1, majorCount: 1, nodeCount: 1, files: ['other.ts'] }],
-        reading: { materials: [], evicted: [] },
+        reading: { materials: [], evicted: [], evictedFiles: [] },
     };
     const r = attribute(trace, ['core.ts']);
     assert.equal(r.stage, 'graph');
@@ -38,20 +38,31 @@ test('attribute: paths loss when core file is in skeleton but not selected/mater
     const trace: QuestionTrace = {
         ...base,
         skeleton: [{ chainId: 1, majorCount: 1, nodeCount: 1, files: ['core.ts'] }],
-        reading: { materials: [], evicted: [] },
+        reading: { materials: [], evicted: [], evictedFiles: [] },
     };
     const r = attribute(trace, ['core.ts']);
     assert.equal(r.stage, 'paths');
     assert.deepEqual(r.missing, ['core.ts']);
 });
 
-test('attribute: budget loss when core file is in skeleton but not selected/materials, with eviction', () => {
+test('attribute: budget loss when core file is in skeleton but not selected/materials, and its file was evicted', () => {
     const trace: QuestionTrace = {
         ...base,
         skeleton: [{ chainId: 1, majorCount: 1, nodeCount: 1, files: ['core.ts'] }],
-        reading: { materials: [], evicted: ['core.ts'] },
+        reading: { materials: [], evicted: ['1a'], evictedFiles: ['core.ts'] },
     };
     const r = attribute(trace, ['core.ts']);
     assert.equal(r.stage, 'budget');
+    assert.deepEqual(r.missing, ['core.ts']);
+});
+
+test('attribute: paths (not budget) when core file was not selected and an unrelated node was evicted', () => {
+    const trace: QuestionTrace = {
+        ...base,
+        skeleton: [{ chainId: 1, majorCount: 1, nodeCount: 1, files: ['core.ts'] }],
+        reading: { materials: [], evicted: ['2b'], evictedFiles: ['unrelated.ts'] },
+    };
+    const r = attribute(trace, ['core.ts']);
+    assert.equal(r.stage, 'paths');
     assert.deepEqual(r.missing, ['core.ts']);
 });

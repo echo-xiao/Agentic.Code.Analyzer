@@ -14,7 +14,7 @@ export function attribute(trace: QuestionTrace, coreFiles: string[]): { stage: L
         if (materialFiles.has(f)) return 'hit';
         if (!seedFiles.has(f) && !skeletonFiles.has(f)) return 'routing';
         if (!skeletonFiles.has(f)) return 'graph';
-        if (!selectedFiles.has(f)) return trace.reading.evicted.length ? 'budget' : 'paths';
+        if (!selectedFiles.has(f)) return trace.reading.evictedFiles.includes(f) ? 'budget' : 'paths';
         return 'hit';
     };
     const per = coreFiles.map(f => ({ f, stage: stageOf(f) }));
