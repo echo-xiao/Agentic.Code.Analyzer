@@ -7,13 +7,11 @@
 // earlier HTML-scraping transport; the MCP endpoint is now the only transport, with no
 // HTML fallback.
 //
-// Note on data shape: unlike the deepwiki.com HTML pages (which embed literal
-// github.com/.../blob/<commit>/<file>#L<start>-L<end> links, see parse-outline.ts),
-// the MCP read_wiki_contents tool returns markdown with "Sources: [file:start-end]()"
-// style references (no github blob URLs, no commit hash) — confirmed by probing the
-// live endpoint before writing this. parseSectionHtml (and its test) therefore does not
-// apply to MCP content and is left untouched; the MCP-specific extraction below is a
-// separate, dedicated parser for this markdown shape.
+// Note on data shape: unlike the old HTML pages (which embedded literal
+// github.com/.../blob/<commit>/<file>#L<start>-L<end> links), the MCP read_wiki_contents
+// tool returns markdown with "Sources: [file:start-end]()" style references (no github
+// blob URLs, no commit hash) — confirmed by probing the live endpoint before writing this.
+// The extraction below is a dedicated parser for this markdown shape.
 import * as fs from 'fs';
 import * as path from 'path';
 import type { SourceRef, WikiOutline, WikiSection } from './types.js';
