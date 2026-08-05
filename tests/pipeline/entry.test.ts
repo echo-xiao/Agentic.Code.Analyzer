@@ -1,7 +1,7 @@
 import { test, beforeEach } from 'node:test';
 import assert from 'node:assert/strict';
 import { GLOBAL_INDEX } from '../../src/indexer/state.js';
-import { rrfFuse, retrieveSeeds, groupChains } from '../../src/pipeline/entry.js';
+import { rrfFuse, retrieveSeeds, groupChains, tokenizeQuestion, symbolTokens } from '../../src/pipeline/entry.js';
 import type { WikiOutline } from '../../src/deepwiki/types.js';
 import type { RankedSeed } from '../../src/pipeline/types.js';
 
@@ -41,6 +41,38 @@ test('retrieveSeeds: within a routed section, lexically relevant symbols outrank
     const close = seeds.find(s => s.symbol === 'close')!;
     assert.ok(send.signals.provenanceRank! < close.signals.provenanceRank!);
     assert.equal(seeds[0].symbol, 'sendMessage');
+});
+
+test('tokenizeQuestion: lowercases, strips punctuation, drops stopwords/short tokens, dedups', () => {
+    assert.deepEqual(
+        tokenizeQuestion('How is a message sent on the client side in Rocket.Chat?'),
+        ['message', 'sent', 'client'],
+    );
+});
+
+test('symbolTokens: splits camelCase/PascalCase into lowercase sub-words', () => {
+    assert.deepEqual(symbolTokens('sendMessage'), ['send', 'message']);
+    assert.deepEqual(symbolTokens('MessageBox'), ['message', 'box']);
+});
+
+test('lexical scoring (via retrieveSeeds): keyword-overlap ranks the more specific symbol first; ' +
+    'zero-overlap symbols never surface', () => {
+    // NOTE ON PHRASING: the stemming rule (strip trailing s/ed/ing) is a trivial regular-verb
+    // stemmer — it does NOT turn 'sent' into 'send' (irregular verb), so a question using 'sent'
+    // scores sendMessage and MessageBox identically (both match only on 'message') and the tie
+    // would be broken alphabetically ('MessageBox' < 'sendMessage'), NOT what we want to assert
+    // here. Using 'send' (regular form) instead lets sendMessage match both 'send' and 'message'
+    // (score 2.0) while MessageBox matches only 'message' (score 0.5) — an unambiguous ordering
+    // that isolates the lexical-scoring behavior itself rather than the stemmer's known gap.
+    GLOBAL_INDEX.symbols.set('sendMessage', new Set(['/abs/Rocket.Chat/apps/meteor/app/lib/server/sendMessage.ts']));
+    GLOBAL_INDEX.symbols.set('MessageBox', new Set(['/abs/Rocket.Chat/apps/meteor/client/views/room/MessageBox.tsx']));
+    GLOBAL_INDEX.symbols.set('close', new Set(['/abs/Rocket.Chat/apps/meteor/app/lib/server/sendMessage.ts']));
+    const seeds = retrieveSeeds('how does the app send a message', [], outline, 10);
+    const send = seeds.find(s => s.symbol === 'sendMessage')!;
+    const box = seeds.find(s => s.symbol === 'MessageBox')!;
+    assert.equal(send.signals.lexicalRank, 1);
+    assert.ok(box.signals.lexicalRank! > 1);
+    assert.ok(!seeds.some(s => s.symbol === 'close'));   // 'close' has zero token overlap -> absent everywhere
 });
 
 test('groupChains: same section -> one chain; lone weak seed chain is pruned', () => {

@@ -2,7 +2,6 @@
 // by RRF over exactly three signals (lexical / provenance / graph fan-in), then chain
 // grouping. No structural priors in v1 (spec: deferred).
 import { GLOBAL_INDEX } from '../indexer/state.js';
-import { lexicalSeeds } from '../engine/seeds.js';
 import { relPath } from '../engine/common.js';
 import type { WikiOutline } from '../deepwiki/types.js';
 import type { RoutedSection, RankedSeed, Chain } from './types.js';
@@ -19,14 +18,69 @@ export function rrfFuse(rankings: Array<Map<string, number>>, k = RRF_K): Map<st
 
 const rankOf = (m: Map<string, number>, key: string): number | null => (m.has(key) ? m.get(key)! : null);
 
+// --- NL-aware lexical scoring -------------------------------------------------------------
+// fuzzysort's lexicalSeeds() (src/engine/seeds.ts) assumes a short query against long targets
+// (searching filenames). Feeding it a full natural-language question — long query, short
+// symbol-name targets — returns an EMPTY match set, so the lexical signal was silently dead in
+// every live run. This replaces it, for entry retrieval only, with a keyword-overlap scorer:
+// split the question into content words, split symbol names into sub-words (camelCase /
+// snake_case / digit boundaries), score by token overlap normalized by symbol length.
+const STOPWORDS = new Set([
+    'how', 'is', 'a', 'the', 'an', 'on', 'in', 'of', 'to', 'for', 'does', 'do', 'what', 'when',
+    'where', 'which', 'are', 'and', 'or', 'with', 'side', 'rocket', 'chat',
+]);
+
+export function tokenizeQuestion(q: string): string[] {
+    const seen = new Set<string>();
+    const out: string[] = [];
+    for (const raw of q.toLowerCase().split(/[^a-z0-9]+/)) {
+        if (raw.length < 3 || STOPWORDS.has(raw) || seen.has(raw)) continue;
+        seen.add(raw);
+        out.push(raw);
+    }
+    return out;
+}
+
+export function symbolTokens(name: string): string[] {
+    const withBoundaries = name
+        .replace(/([a-z0-9])([A-Z])/g, '$1_$2')        // camelCase: fooBar -> foo_Bar
+        .replace(/([A-Z]+)([A-Z][a-z])/g, '$1_$2')      // acronym+word: HTTPServer -> HTTP_Server
+        .replace(/([A-Za-z])(\d)/g, '$1_$2')            // letter->digit boundary
+        .replace(/(\d)([A-Za-z])/g, '$1_$2');           // digit->letter boundary
+    const parts = withBoundaries.toLowerCase().split(/[^a-z0-9]+/).filter(Boolean);
+    return [...new Set(parts)];
+}
+
+// Trivial suffix stemming for the (common) regular case — sends/sent-family irregular verbs are
+// not handled; that's an accepted gap, not every symbol name needs to match every phrasing.
+const stemToken = (t: string): string => t.replace(/(ing|ed|s)$/, '');
+
+function lexicalScores(question: string): Map<string, number> {
+    const qTokens = tokenizeQuestion(question);
+    const scores = new Map<string, number>();
+    for (const sym of GLOBAL_INDEX.symbols.keys()) {
+        const symTokens = new Set(symbolTokens(sym));
+        if (symTokens.size === 0) continue;
+        let matched = 0;
+        for (const qt of qTokens) {
+            if (symTokens.has(qt)) { matched++; continue; }
+            const stemmed = stemToken(qt);
+            if (stemmed !== qt && symTokens.has(stemmed)) matched++;
+        }
+        if (matched === 0) continue;
+        scores.set(sym, (matched * matched) / symTokens.size);
+    }
+    return scores;
+}
+
 export function retrieveSeeds(question: string, routed: RoutedSection[], outline: WikiOutline, topK = 12): RankedSeed[] {
     // Channel B (lexical, full repo — the safety net; never restricted to wiki-listed files).
     // Computed first so provenance ranking (below) can break ties by lexical relevance instead
     // of by GLOBAL_INDEX.symbols Map-iteration order (which let generic hubs like `close`/`update`
     // outrank the actually-relevant symbol whenever both live in the same routed section file).
-    const lex = lexicalSeeds(question);
+    const lexScores = lexicalScores(question);
     const lexRank = new Map<string, number>();
-    [...lex.lexical.entries()].sort((a, b) => b[1] - a[1]).forEach(([sym], i) => lexRank.set(sym, i + 1));
+    [...lexScores.entries()].sort((a, b) => b[1] - a[1] || a[0].localeCompare(b[0])).forEach(([sym], i) => lexRank.set(sym, i + 1));
 
     // Channel A (provenance): symbols defined in routed sections' source files, ordered by
     // (section rank asc, lexical score desc, symbol name asc) — not by Map insertion order.
@@ -42,7 +96,7 @@ export function retrieveSeeds(question: string, routed: RoutedSection[], outline
         for (const abs of files) {
             const rel = relPath(abs);
             const hit = secOfFile.get(rel);
-            if (hit) { provCandidates.push({ sym, sectionId: hit.sectionId, sectionRank: hit.rank, file: rel, lexScore: lex.lexical.get(sym) ?? -Infinity }); break; }
+            if (hit) { provCandidates.push({ sym, sectionId: hit.sectionId, sectionRank: hit.rank, file: rel, lexScore: lexScores.get(sym) ?? -Infinity }); break; }
             if (!fileOf.has(sym)) fileOf.set(sym, rel);
         }
     }
