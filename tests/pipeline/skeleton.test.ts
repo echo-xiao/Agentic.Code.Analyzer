@@ -45,6 +45,25 @@ test('renderSkeletons: ids are chainNumber+letter and the lookup table matches',
     for (const [id, n] of nodeById) assert.equal(n.kind, 'major', id);   // only major nodes are selectable
 });
 
+test('skeleton: maxChildrenPerNode caps fan-out (default 8; 12 callees -> <=8 children)', () => {
+    GLOBAL_INDEX.symbols.clear(); GLOBAL_INDEX.callGraph.clear(); GLOBAL_INDEX.allFiles.clear();
+    const put = (sym: string, file: string) => GLOBAL_INDEX.symbols.set(sym, new Set([file]));
+    put('wide', '/rc/apps/meteor/app/lib/server/wide.ts');
+    const callees = Array.from({ length: 12 }, (_, i) => `callee${i}`);
+    for (const c of callees) {
+        put(c, '/rc/apps/meteor/app/lib/server/wide.ts');
+        GLOBAL_INDEX.callGraph.set(c, [{ caller: 'wide', file: 'wide', edgeType: 'call' }]);
+    }
+    const wideChain: Chain = { id: 1, label: 'wide', rrfMass: 1, seeds: [
+        { symbol: 'wide', file: 'apps/meteor/app/lib/server/wide.ts', rrf: 1, signals: { lexicalRank: 1, provenanceRank: 1, graphRank: 1 }, sectionId: 'wide' },
+    ]};
+    const skDefault = buildChainSkeleton(wideChain, { hotFanIn: 25 });
+    assert.ok(skDefault.roots[0].children.length <= 8);
+
+    const skExplicit = buildChainSkeleton(wideChain, { hotFanIn: 25, maxChildrenPerNode: 8 });
+    assert.equal(skExplicit.roots[0].children.length, 8);
+});
+
 test('anchorSeg: segment-array reads fixed positions, never latches onto a nested anchor', () => {
     assert.equal(anchorSeg('apps/meteor/app/lib/server/x.ts'), 'lib');
     assert.equal(anchorSeg('packages/rest-typings/src/x.ts'), 'rest-typings');

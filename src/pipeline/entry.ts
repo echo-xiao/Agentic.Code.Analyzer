@@ -20,29 +20,40 @@ export function rrfFuse(rankings: Array<Map<string, number>>, k = RRF_K): Map<st
 const rankOf = (m: Map<string, number>, key: string): number | null => (m.has(key) ? m.get(key)! : null);
 
 export function retrieveSeeds(question: string, routed: RoutedSection[], outline: WikiOutline, topK = 12): RankedSeed[] {
-    // Channel A (provenance): symbols defined in routed sections' source files, ordered by section rank.
+    // Channel B (lexical, full repo — the safety net; never restricted to wiki-listed files).
+    // Computed first so provenance ranking (below) can break ties by lexical relevance instead
+    // of by GLOBAL_INDEX.symbols Map-iteration order (which let generic hubs like `close`/`update`
+    // outrank the actually-relevant symbol whenever both live in the same routed section file).
+    const lex = lexicalSeeds(question);
+    const lexRank = new Map<string, number>();
+    [...lex.lexical.entries()].sort((a, b) => b[1] - a[1]).forEach(([sym], i) => lexRank.set(sym, i + 1));
+
+    // Channel A (provenance): symbols defined in routed sections' source files, ordered by
+    // (section rank asc, lexical score desc, symbol name asc) — not by Map insertion order.
     const secOfFile = new Map<string, { sectionId: string; rank: number }>();
     for (const r of routed) {
         const sec = outline.sections.find(s => s.id === r.sectionId);
         for (const src of sec?.sources ?? [])
             if (!secOfFile.has(src.file)) secOfFile.set(src.file, { sectionId: r.sectionId, rank: r.rank });
     }
-    const provRank = new Map<string, number>();
-    const sectionOf = new Map<string, string>();
     const fileOf = new Map<string, string>();
-    let p = 0;
+    const provCandidates: Array<{ sym: string; sectionId: string; sectionRank: number; file: string; lexScore: number }> = [];
     for (const [sym, files] of GLOBAL_INDEX.symbols) {
         for (const abs of files) {
             const rel = relPath(abs);
             const hit = secOfFile.get(rel);
-            if (hit) { provRank.set(sym, ++p); sectionOf.set(sym, hit.sectionId); fileOf.set(sym, rel); break; }
+            if (hit) { provCandidates.push({ sym, sectionId: hit.sectionId, sectionRank: hit.rank, file: rel, lexScore: lex.lexical.get(sym) ?? -Infinity }); break; }
             if (!fileOf.has(sym)) fileOf.set(sym, rel);
         }
     }
-    // Channel B (lexical, full repo — the safety net; never restricted to wiki-listed files).
-    const lex = lexicalSeeds(question);
-    const lexRank = new Map<string, number>();
-    [...lex.lexical.entries()].sort((a, b) => b[1] - a[1]).forEach(([sym], i) => lexRank.set(sym, i + 1));
+    provCandidates.sort((a, b) => a.sectionRank - b.sectionRank || b.lexScore - a.lexScore || a.sym.localeCompare(b.sym));
+    const provRank = new Map<string, number>();
+    const sectionOf = new Map<string, string>();
+    provCandidates.forEach((c, i) => {
+        provRank.set(c.sym, i + 1);
+        sectionOf.set(c.sym, c.sectionId);
+        fileOf.set(c.sym, c.file);
+    });
     // Signal C (graph fan-in) over the union of candidates.
     const candidates = new Set([...provRank.keys(), ...lexRank.keys()]);
     const graphRank = new Map<string, number>();

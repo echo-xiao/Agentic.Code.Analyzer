@@ -30,6 +30,19 @@ test('retrieveSeeds: provenance + lexical + graph signals fuse; section-file sym
     assert.ok(seeds[0].signals.provenanceRank !== null && seeds[0].signals.graphRank !== null);
 });
 
+test('retrieveSeeds: within a routed section, lexically relevant symbols outrank generic ones in provenance', () => {
+    const f = '/abs/Rocket.Chat/apps/meteor/app/lib/server/sendMessage.ts';
+    // `close` is a generic hub defined in the SAME section file as `sendMessage` — Map-iteration
+    // order used to let it win provRank regardless of relevance. It must not outrank sendMessage.
+    GLOBAL_INDEX.symbols.set('close', new Set([f]));
+    GLOBAL_INDEX.symbols.set('sendMessage', new Set([f]));
+    const seeds = retrieveSeeds('send a message', [{ sectionId: 'msg', rank: 1 }], outline, 5);
+    const send = seeds.find(s => s.symbol === 'sendMessage')!;
+    const close = seeds.find(s => s.symbol === 'close')!;
+    assert.ok(send.signals.provenanceRank! < close.signals.provenanceRank!);
+    assert.equal(seeds[0].symbol, 'sendMessage');
+});
+
 test('groupChains: same section -> one chain; lone weak seed chain is pruned', () => {
     const mk = (s: string, sec: string | null, rrf: number): RankedSeed =>
         ({ symbol: s, file: 'f/' + s, rrf, signals: { lexicalRank: 1, provenanceRank: null, graphRank: null }, sectionId: sec });

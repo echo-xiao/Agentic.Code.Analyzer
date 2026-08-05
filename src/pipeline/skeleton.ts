@@ -7,7 +7,7 @@ import { buildCalleesOf } from '../engine/down.js';
 import { relPath } from '../engine/common.js';
 import type { Chain, ChainSkeleton, SkeletonNode } from './types.js';
 
-export interface SkeletonOpts { maxDepth?: number; maxMajorPerChain?: number; hotFanIn?: number }
+export interface SkeletonOpts { maxDepth?: number; maxMajorPerChain?: number; hotFanIn?: number; maxChildrenPerNode?: number }
 
 const fanIn = (sym: string) => GLOBAL_INDEX.callGraph.get(sym)?.length ?? 0;
 const fileOf = (sym: string): string => relPath([...(GLOBAL_INDEX.symbols.get(sym) ?? [])][0] ?? '');
@@ -58,7 +58,7 @@ const firstLine = (sym: string): { line: number; snippet: string } => {
 };
 
 export function buildChainSkeleton(chain: Chain, opts: SkeletonOpts = {}): ChainSkeleton {
-    const { maxDepth = 3, maxMajorPerChain = 10, hotFanIn = 25 } = opts;
+    const { maxDepth = 3, maxMajorPerChain = 10, hotFanIn = 25, maxChildrenPerNode = 8 } = opts;
     const calleesOf = buildCalleesOf();
     let majorCount = 0;
     const visited = new Set<string>();
@@ -72,7 +72,10 @@ export function buildChainSkeleton(chain: Chain, opts: SkeletonOpts = {}): Chain
         const base = { symbol: sym, file, line, snippet, edgeType: null, children: [] as SkeletonNode[] };
         if (anchorSeg(file) !== homeSeg && depth > 0) return { ...base, id: '', kind: 'boundary' };
         if (fanIn(sym) > hotFanIn && depth > 0)      return { ...base, id: '', kind: 'hotleaf' };
-        const callees = (calleesOf.get(sym) ?? []).filter(c => GLOBAL_INDEX.symbols.has(c.callee));
+        // Cap fan-out per node — an unbounded callee list is how one chain reached 888 nodes and
+        // drowned the rendered prompt in noise. Order comes from buildCalleesOf (source order);
+        // no attempt to prefer "future majors" — a plain width cap is enough.
+        const callees = (calleesOf.get(sym) ?? []).filter(c => GLOBAL_INDEX.symbols.has(c.callee)).slice(0, maxChildrenPerNode);
         const isPass = depth > 0 && callees.length === 1 && fanIn(sym) <= 2;
         const kind: SkeletonNode['kind'] = isPass ? 'passthrough' : 'major';
         if (kind === 'major') {
