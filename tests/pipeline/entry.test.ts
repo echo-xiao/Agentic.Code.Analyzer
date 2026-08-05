@@ -84,6 +84,20 @@ test('lexical scoring: irregular verb (sent -> send) lets sendMessage outrank si
     assert.equal(seeds[0].signals.lexicalRank, 1);
 });
 
+test('retrieveSeeds: multi-file symbol picks the file matching the question (client vs server), no routed section', () => {
+    const clientFile = '/x/Rocket.Chat/apps/meteor/client/lib/chats/flows/sendMessage.ts';
+    const serverFile = '/x/Rocket.Chat/apps/meteor/app/lib/server/functions/sendMessage.ts';
+    GLOBAL_INDEX.symbols.set('sendMessage', new Set([clientFile, serverFile]));
+
+    const clientSeeds = retrieveSeeds('How is a message sent on the client side?', [], outline, 5);
+    assert.equal(clientSeeds[0].symbol, 'sendMessage');
+    assert.equal(clientSeeds[0].file, 'apps/meteor/client/lib/chats/flows/sendMessage.ts');
+
+    const serverSeeds = retrieveSeeds('How is a message sent on the server side?', [], outline, 5);
+    assert.equal(serverSeeds[0].symbol, 'sendMessage');
+    assert.equal(serverSeeds[0].file, 'apps/meteor/app/lib/server/functions/sendMessage.ts');
+});
+
 test('groupChains: same section -> one chain; lone weak seed chain is pruned', () => {
     const mk = (s: string, sec: string | null, rrf: number): RankedSeed =>
         ({ symbol: s, file: 'f/' + s, rrf, signals: { lexicalRank: 1, provenanceRank: null, graphRank: null }, sectionId: sec });

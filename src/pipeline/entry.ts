@@ -92,6 +92,9 @@ function lexicalScores(question: string): Map<string, number> {
     return scores;
 }
 
+// Path-token split for file disambiguation: lowercase, split on '/', '.', '-'.
+const pathTokens = (p: string): string[] => p.toLowerCase().split(/[/.-]+/).filter(Boolean);
+
 export function retrieveSeeds(question: string, routed: RoutedSection[], outline: WikiOutline, topK = 12): RankedSeed[] {
     // Channel B (lexical, full repo — the safety net; never restricted to wiki-listed files).
     // Computed first so provenance ranking (below) can break ties by lexical relevance instead
@@ -100,6 +103,27 @@ export function retrieveSeeds(question: string, routed: RoutedSection[], outline
     const lexScores = lexicalScores(question);
     const lexRank = new Map<string, number>();
     [...lexScores.entries()].sort((a, b) => b[1] - a[1] || a[0].localeCompare(b[0])).forEach(([sym], i) => lexRank.set(sym, i + 1));
+    // Same expanded token set drives file disambiguation below — a symbol with multiple defining
+    // files (e.g. sendMessage exists both client- and server-side) picks the one whose path best
+    // matches the question, instead of whichever the Set happened to iterate first.
+    const qTokensForFile = new Set(expandIrregulars(tokenizeQuestion(question)));
+
+    // Chooses one file among a symbol's multiple defining files: prefer files that are one of a
+    // routed section's sources (then rank by path-token overlap, then section rank, then name);
+    // otherwise rank all candidates by path-token overlap, then name.
+    const chooseFile = (files: string[], secOfFile: Map<string, { sectionId: string; rank: number }>) => {
+        const scored = files.map(abs => {
+            const rel = relPath(abs);
+            const pTokens = new Set(pathTokens(rel));
+            let overlap = 0;
+            for (const t of qTokensForFile) if (pTokens.has(t)) overlap++;
+            return { rel, overlap, hit: secOfFile.get(rel) ?? null };
+        });
+        const pick = (list: typeof scored) => list.slice().sort((a, b) =>
+            b.overlap - a.overlap || (a.hit && b.hit ? a.hit.rank - b.hit.rank : 0) || a.rel.localeCompare(b.rel))[0];
+        const inSection = scored.filter(s => s.hit);
+        return inSection.length > 0 ? pick(inSection) : pick(scored);
+    };
 
     // Channel A (provenance): symbols defined in routed sections' source files, ordered by
     // (section rank asc, lexical score desc, symbol name asc) — not by Map insertion order.
@@ -112,6 +136,12 @@ export function retrieveSeeds(question: string, routed: RoutedSection[], outline
     const fileOf = new Map<string, string>();
     const provCandidates: Array<{ sym: string; sectionId: string; sectionRank: number; file: string; lexScore: number }> = [];
     for (const [sym, files] of GLOBAL_INDEX.symbols) {
+        if (files.size > 1) {
+            const chosen = chooseFile([...files], secOfFile);
+            if (chosen.hit) provCandidates.push({ sym, sectionId: chosen.hit.sectionId, sectionRank: chosen.hit.rank, file: chosen.rel, lexScore: lexScores.get(sym) ?? -Infinity });
+            else fileOf.set(sym, chosen.rel);
+            continue;
+        }
         for (const abs of files) {
             const rel = relPath(abs);
             const hit = secOfFile.get(rel);
