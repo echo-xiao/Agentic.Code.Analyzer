@@ -5,23 +5,51 @@ import type { RoutedSection } from './types.js';
 import type { LlmClient } from './llm.js';
 
 export function buildRoutingPrompt(question: string, outline: WikiOutline): string {
-    const lines = outline.sections.map(s => `- ${s.id}: ${s.title} — ${s.blurb.slice(0, 120)}`);
+    const lines = outline.sections.map(s => `- \`${s.id}\`: ${s.title} — ${s.blurb.slice(0, 120)}`);
     return [
         'You are routing a question about the Rocket.Chat codebase to wiki sections.',
         'Sections (id: title — description):', ...lines, '',
         `Question: ${question}`, '',
-        'Reply with the ids of ALL relevant sections (1-4 of them), one id per line, most relevant first.',
-        'If the question spans multiple subsystems, include one section per subsystem. Reply with ids only.',
+        'Reply with the EXACT section ids (e.g. `2.4-ui-component-system`), one per line, most relevant first, 1-4 lines, nothing else.',
     ].join('\n');
 }
 
 export function parseRoutingReply(reply: string, outline: WikiOutline): RoutedSection[] {
-    const known = new Set(outline.sections.map(s => s.id));
+    const knownIds = outline.sections.map(s => s.id);
     const out: RoutedSection[] = [];
+
     for (const raw of reply.split('\n')) {
-        const id = raw.trim().replace(/^[-*\d.\s]+/, '').trim();
-        if (known.has(id) && !out.some(r => r.sectionId === id)) out.push({ sectionId: id, rank: out.length + 1 });
+        const line = raw.trim();
+        if (!line) continue;
+
+        let matchedId: string | undefined;
+
+        // Try exact match: line contains a known id verbatim
+        for (const id of knownIds) {
+            if (line.includes(id)) {
+                matchedId = id;
+                break;
+            }
+        }
+
+        // Try numeric-prefix match: extract numeric prefix and match against section ids
+        if (!matchedId) {
+            const prefixMatch = line.match(/^[`"'\s]*(\d+(?:\.\d+)?)[`"'\s]*$/);
+            if (prefixMatch) {
+                const prefix = prefixMatch[1];
+                const candidates = knownIds.filter(id => id.startsWith(`${prefix}-`));
+                if (candidates.length === 1) {
+                    matchedId = candidates[0];
+                }
+            }
+        }
+
+        // Add if matched and not already present
+        if (matchedId && !out.some(r => r.sectionId === matchedId)) {
+            out.push({ sectionId: matchedId, rank: out.length + 1 });
+        }
     }
+
     return out;
 }
 
