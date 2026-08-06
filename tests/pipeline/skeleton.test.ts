@@ -104,6 +104,95 @@ test('buildChainSkeleton: a callee prefers the definition in the same file as it
     assert.equal(helperNode!.file, 'apps/meteor/app/lib/server/root.ts');
 });
 
+test('skeleton: default maxDepth is 6 (a deep linear passthrough chain reaches depth 6, not 7)', () => {
+    GLOBAL_INDEX.symbols.clear(); GLOBAL_INDEX.callGraph.clear(); GLOBAL_INDEX.allFiles.clear();
+    const put = (sym: string, file: string) => GLOBAL_INDEX.symbols.set(sym, new Set([file]));
+    const FILE = '/rc/apps/meteor/app/lib/server/chain.ts';
+    for (let i = 0; i <= 7; i++) put(`s${i}`, FILE);
+    // Linear chain s0 -> s1 -> ... -> s7, each single-caller so every non-root node is passthrough
+    // and keeps recursing until the depth cap stops it.
+    for (let i = 1; i <= 7; i++) GLOBAL_INDEX.callGraph.set(`s${i}`, [{ caller: `s${i - 1}`, file: 'chain', edgeType: 'call' }]);
+
+    const deepChain: Chain = { id: 1, label: 'deep', rrfMass: 1, seeds: [
+        { symbol: 's0', file: 'apps/meteor/app/lib/server/chain.ts', rrf: 1, signals: { lexicalRank: 1, provenanceRank: 1, graphRank: 1 }, sectionId: 'deep' },
+    ]};
+    const sk = buildChainSkeleton(deepChain, { hotFanIn: 25 });          // no maxDepth override -> default
+
+    const byDepth: string[][] = [];
+    const walk = (n: any, d: number) => {
+        (byDepth[d] ??= []).push(n.symbol);
+        n.children.forEach((c: any) => walk(c, d + 1));
+    };
+    sk.roots.forEach((r: any) => walk(r, 0));
+
+    assert.ok(byDepth[6]?.includes('s6'), 'depth 6 (s6) should exist under the default maxDepth=6');
+    assert.equal(byDepth[7], undefined, 'depth 7 should not exist under the default maxDepth=6');
+});
+
+test('skeleton: ranked callee selection lets a question-matching callee at source position 10 survive the cutoff', () => {
+    GLOBAL_INDEX.symbols.clear(); GLOBAL_INDEX.callGraph.clear(); GLOBAL_INDEX.allFiles.clear();
+    const put = (sym: string, file: string) => GLOBAL_INDEX.symbols.set(sym, new Set([file]));
+    const FILE = '/rc/apps/meteor/app/lib/server/hub.ts';
+    put('hub', FILE);
+    // 9 plain, question-irrelevant callees (source positions 1-9), then a 10th that matches the
+    // question strongly (source position 10, i.e. last — past the old raw slice(0, 8) cutoff).
+    for (let i = 1; i <= 9; i++) {
+        put(`plain${i}`, FILE);
+        GLOBAL_INDEX.callGraph.set(`plain${i}`, [{ caller: 'hub', file: 'hub', edgeType: 'call' }]);
+    }
+    put('sendMessage', FILE);
+    GLOBAL_INDEX.callGraph.set('sendMessage', [{ caller: 'hub', file: 'hub', edgeType: 'call' }]);
+
+    const hubChain: Chain = { id: 1, label: 'hub', rrfMass: 1, seeds: [
+        { symbol: 'hub', file: 'apps/meteor/app/lib/server/hub.ts', rrf: 1, signals: { lexicalRank: 1, provenanceRank: 1, graphRank: 1 }, sectionId: 'hub' },
+    ]};
+    // symbolTokens('sendMessage') splits into ['send','message'] on camelCase boundaries, so the
+    // question spells them out as separate words to get a full-coverage lexical match.
+    const sk = buildChainSkeleton(hubChain, { hotFanIn: 25 }, 'how does send message work');
+    const childSymbols = sk.roots[0].children.map(c => c.symbol);
+    assert.ok(childSymbols.length <= 8);
+    assert.ok(childSymbols.includes('sendMessage'), 'question-matching callee at source position 10 must survive the top-8 cut');
+});
+
+test('skeleton: ranked callee selection prefers a string-dispatch edge over a type edge, source order notwithstanding', () => {
+    GLOBAL_INDEX.symbols.clear(); GLOBAL_INDEX.callGraph.clear(); GLOBAL_INDEX.allFiles.clear();
+    const put = (sym: string, file: string) => GLOBAL_INDEX.symbols.set(sym, new Set([file]));
+    const FILE = '/rc/apps/meteor/app/lib/server/hub.ts';
+    put('hub', FILE); put('typeCallee', FILE); put('stringCallee', FILE);
+    // typeCallee is declared FIRST (source order), stringCallee SECOND — ranking must still put
+    // stringCallee first in the resulting children order.
+    GLOBAL_INDEX.callGraph.set('typeCallee', [{ caller: 'hub', file: 'hub', edgeType: 'type' }]);
+    GLOBAL_INDEX.callGraph.set('stringCallee', [{ caller: 'hub', file: 'hub', edgeType: 'event_emit' }]);
+
+    const hubChain: Chain = { id: 1, label: 'hub', rrfMass: 1, seeds: [
+        { symbol: 'hub', file: 'apps/meteor/app/lib/server/hub.ts', rrf: 1, signals: { lexicalRank: 1, provenanceRank: 1, graphRank: 1 }, sectionId: 'hub' },
+    ]};
+    // No question passed — this also covers "without question param, mixed edge types still
+    // prefer string edges" (lexicalNorm is 0 for every candidate either way).
+    const sk = buildChainSkeleton(hubChain, { hotFanIn: 25 });
+    const childSymbols = sk.roots[0].children.map(c => c.symbol);
+    assert.deepEqual(childSymbols, ['stringCallee', 'typeCallee']);
+});
+
+test('skeleton: ranked callee selection keeps source order among equal-score ties (stable sort)', () => {
+    GLOBAL_INDEX.symbols.clear(); GLOBAL_INDEX.callGraph.clear(); GLOBAL_INDEX.allFiles.clear();
+    const put = (sym: string, file: string) => GLOBAL_INDEX.symbols.set(sym, new Set([file]));
+    const FILE = '/rc/apps/meteor/app/lib/server/hub.ts';
+    put('hub', FILE);
+    // 10 identical plain-call callees, no question -> every candidate scores identically; the
+    // top-8 selection (and its order) must fall back to source (insertion) order.
+    for (let i = 0; i < 10; i++) {
+        put(`c${i}`, FILE);
+        GLOBAL_INDEX.callGraph.set(`c${i}`, [{ caller: 'hub', file: 'hub', edgeType: 'call' }]);
+    }
+    const hubChain: Chain = { id: 1, label: 'hub', rrfMass: 1, seeds: [
+        { symbol: 'hub', file: 'apps/meteor/app/lib/server/hub.ts', rrf: 1, signals: { lexicalRank: 1, provenanceRank: 1, graphRank: 1 }, sectionId: 'hub' },
+    ]};
+    const sk = buildChainSkeleton(hubChain, { hotFanIn: 25 });
+    const childSymbols = sk.roots[0].children.map(c => c.symbol);
+    assert.deepEqual(childSymbols, ['c0', 'c1', 'c2', 'c3', 'c4', 'c5', 'c6', 'c7']);
+});
+
 test('anchorSeg: segment-array reads fixed positions, never latches onto a nested anchor', () => {
     assert.equal(anchorSeg('apps/meteor/app/lib/server/x.ts'), 'lib');
     assert.equal(anchorSeg('packages/rest-typings/src/x.ts'), 'rest-typings');

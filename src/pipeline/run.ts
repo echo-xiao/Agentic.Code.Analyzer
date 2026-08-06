@@ -65,7 +65,7 @@ export async function runQuestion(qid: string, question: string, deps: Deps): Pr
         if (sec) sectionContent.set(r.sectionId, loadSectionContent(sec));
     }
     const chains = groupChains(seeds, routed, outline, question, sectionContent);
-    const skeletons = chains.map(c => buildChainSkeleton(c));
+    const skeletons = chains.map(c => buildChainSkeleton(c, {}, question));
     const { text: skeletonText, nodeById } = renderSkeletons(skeletons);
     // Chain label == sectionId for section-born chains (the fallback chain, if any, has a
     // file-path label that never matches a sectionId, so it naturally gets no prose entry).

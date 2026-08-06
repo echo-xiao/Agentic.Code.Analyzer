@@ -5,11 +5,42 @@ import * as fs from 'fs';
 import { GLOBAL_INDEX } from '../indexer/state.js';
 import { buildCalleesOf } from '../engine/down.js';
 import { relPath } from '../engine/common.js';
+import { tokenizeQuestion, symbolTokens } from './entry.js';
 import type { Chain, ChainSkeleton, SkeletonNode } from './types.js';
 
 export interface SkeletonOpts { maxDepth?: number; maxMajorPerChain?: number; hotFanIn?: number; maxChildrenPerNode?: number }
 
 const fanIn = (sym: string) => GLOBAL_INDEX.callGraph.get(sym)?.length ?? 0;
+
+// String-dispatch edges carry a real mechanism (event bus, pub/sub, REST, stream) — the chain
+// keeps making sense across them. Plain call/new/jsx are the default. `type` edges are the
+// weakest signal (a type reference, not a real runtime call).
+const STRING_EDGE_TYPES = new Set(['event_emit', 'event_listen', 'pubsub_publish', 'pubsub_subscribe', 'rest_call', 'rest_route', 'stream_def', 'stream_sub']);
+const edgeWeight = (edgeType: string): number => STRING_EDGE_TYPES.has(edgeType) ? 1.0 : edgeType === 'type' ? 0.1 : 0.6;
+
+// Rank a caller's candidate callees before expansion, instead of taking them in raw source
+// (buildCalleesOf) order — the old slice(0, maxChildrenPerNode) silently dropped
+// question-relevant callees that happened to sit past position 8. Score formula, per candidate:
+//   (0.5 * lexicalNorm + edgeWeight) * viabilityMultiplier
+// - lexicalNorm: fraction of the callee's own sub-word tokens that also appear in the question's
+//   tokens (0 when no `question` was supplied — old callers keep their old, source-order-only
+//   behavior on ties since every candidate then scores purely on edgeWeight*viability).
+// - edgeWeight: 1.0 string-dispatch edges, 0.6 plain call/new/jsx, 0.1 type refs (mechanism
+//   chains live on string edges — see STRING_EDGE_TYPES above).
+// - viabilityMultiplier: 0.5 if the callee would be classified hotleaf (fan-in > hotFanIn) or
+//   boundary (its anchor segment differs from the chain's home segment) — cheap pre-check using
+//   only the callee's own first indexed file, not the full resolveFile/parent-preference walk
+//   build() does later; those candidates can't grow a subtree so they're worth less real estate.
+// Ties (equal score) keep source order — Array.prototype.sort is stable (Node/V8, ES2019+), so a
+// single descending sort by score alone preserves the original candidate order among ties without
+// needing an explicit index tiebreaker.
+const scoreCallee = (callee: string, edgeType: string, qTokens: Set<string>, homeSeg: string, hotFanIn: number): number => {
+    const symToks = symbolTokens(callee);
+    const lexicalNorm = symToks.length === 0 || qTokens.size === 0 ? 0 : symToks.filter(t => qTokens.has(t)).length / symToks.length;
+    const calleeFile = relPath([...(GLOBAL_INDEX.symbols.get(callee) ?? [])][0] ?? '');
+    const notViable = fanIn(callee) > hotFanIn || anchorSeg(calleeFile) !== homeSeg;
+    return (0.5 * lexicalNorm + edgeWeight(edgeType)) * (notViable ? 0.5 : 1);
+};
 
 // Resolve which of a (possibly multi-file) symbol's definitions to anchor a node on.
 // Preference order: an entry whose repo-relative path equals `preferredRel` (the seed's own file,
@@ -75,12 +106,16 @@ const firstLine = (sym: string, abs: string): { line: number; snippet: string } 
     return { line: idx + 1, snippet: (src[idx] ?? sym).trim().slice(0, 140) };
 };
 
-export function buildChainSkeleton(chain: Chain, opts: SkeletonOpts = {}): ChainSkeleton {
-    const { maxDepth = 3, maxMajorPerChain = 10, hotFanIn = 25, maxChildrenPerNode = 8 } = opts;
+export function buildChainSkeleton(chain: Chain, opts: SkeletonOpts = {}, question?: string): ChainSkeleton {
+    // maxDepth was 3; real message chains run 6-7 hops through wrapper layers before reaching a
+    // major node. Fan-out is already bounded by maxChildrenPerNode(8), passthrough compression,
+    // and maxMajorPerChain(10) — depth now only controls REACH through those wrappers, not size.
+    const { maxDepth = 6, maxMajorPerChain = 10, hotFanIn = 25, maxChildrenPerNode = 8 } = opts;
     const calleesOf = buildCalleesOf();
     let majorCount = 0;
     const visited = new Set<string>();
     const homeSeg = anchorSeg(chain.seeds[0]?.file ?? '');
+    const qTokens = new Set(tokenizeQuestion(question ?? ''));
 
     const build = (sym: string, depth: number, parentAbs?: string, preferredFile?: string): SkeletonNode | null => {
         if (visited.has(sym)) return null;
@@ -94,9 +129,15 @@ export function buildChainSkeleton(chain: Chain, opts: SkeletonOpts = {}): Chain
         if (anchorSeg(file) !== homeSeg && depth > 0) return { ...base, id: '', kind: 'boundary' };
         if (fanIn(sym) > hotFanIn && depth > 0)      return { ...base, id: '', kind: 'hotleaf' };
         // Cap fan-out per node — an unbounded callee list is how one chain reached 888 nodes and
-        // drowned the rendered prompt in noise. Order comes from buildCalleesOf (source order);
-        // no attempt to prefer "future majors" — a plain width cap is enough.
-        const callees = (calleesOf.get(sym) ?? []).filter(c => GLOBAL_INDEX.symbols.has(c.callee)).slice(0, maxChildrenPerNode);
+        // drowned the rendered prompt in noise. Candidates are RANKED (see scoreCallee) before the
+        // cut, not taken in raw source order, so a question-relevant callee past position 8 still
+        // survives instead of being silently dropped.
+        const candidates = (calleesOf.get(sym) ?? []).filter(c => GLOBAL_INDEX.symbols.has(c.callee));
+        const callees = candidates
+            .map(c => ({ c, score: scoreCallee(c.callee, c.edgeType, qTokens, homeSeg, hotFanIn) }))
+            .sort((a, b) => b.score - a.score)                 // stable sort: ties keep source order
+            .slice(0, maxChildrenPerNode)
+            .map(x => x.c);
         const isPass = depth > 0 && callees.length === 1 && fanIn(sym) <= 2;
         const kind: SkeletonNode['kind'] = isPass ? 'passthrough' : 'major';
         if (kind === 'major') {
