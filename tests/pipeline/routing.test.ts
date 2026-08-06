@@ -9,9 +9,15 @@ const outline: WikiOutline = { repo: 'r', commit: 'c', sections: [
     { id: '6.2-message-sending', title: 'Message Sending', blurb: 'message delivery flows', sources: [] },
 ]};
 
-test('buildRoutingPrompt lists every section id and the question', () => {
+test('buildRoutingPrompt lists every section id and the question, with proper instructions', () => {
     const p = buildRoutingPrompt('How does login work?', outline);
-    assert.ok(p.includes('2.4-ui-component-system') && p.includes('6.2-message-sending') && p.includes('How does login work?'));
+    assert.ok(
+        p.includes('2.4-ui-component-system') &&
+        p.includes('6.2-message-sending') &&
+        p.includes('How does login work?') &&
+        p.includes('EVERY section') &&
+        p.includes('type-definition')
+    );
 });
 
 test('parseRoutingReply keeps valid ids in order, drops unknown ids', () => {

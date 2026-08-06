@@ -32,7 +32,7 @@ export class GeminiClient implements LlmClient {
     constructor(modelName = process.env.GEMINI_MODEL || 'gemini-2.5-flash') {
         const key = process.env.GEMINI_API_KEY;
         if (!key) throw new Error('GEMINI_API_KEY missing (put it in .env)');
-        this.model = new GoogleGenerativeAI(key).getGenerativeModel({ model: modelName });
+        this.model = new GoogleGenerativeAI(key).getGenerativeModel({ model: modelName, generationConfig: { temperature: 0 } });
     }
     async generate(prompt: string): Promise<string> {
         this.calls++;

@@ -10,7 +10,7 @@ export function buildRoutingPrompt(question: string, outline: WikiOutline): stri
         'You are routing a question about the Rocket.Chat codebase to wiki sections.',
         'Sections (id: title — description):', ...lines, '',
         `Question: ${question}`, '',
-        'Reply with the EXACT section ids (e.g. `2.4-ui-component-system`), one per line, most relevant first, 1-4 lines, nothing else.',
+        'Name EVERY section whose source files could contain the code that answers the question — do not omit a section that lists concrete implementation files for the asked behavior. Do NOT name sections that merely relate topically: type-definition/API-contract/glossary sections only qualify if the question itself asks about types or contracts. Most relevant first, one id per line, ids only (e.g. `2.4-ui-component-system`).',
     ].join('\n');
 }
 
