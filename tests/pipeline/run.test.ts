@@ -23,6 +23,25 @@ test('runQuestion wires all six stages with exactly 3 LLM calls', async () => {
     assert.ok(row.trace.selectedIds.length >= 0 && row.answer.includes('答案'));
 });
 
+// runQuestion now always computes wikiReachable from the outline and passes it into attribute(),
+// but the truth-core file here is cited as a source under the 'msg' section -- so it's reachable
+// by construction, and the wiki-gap axis must stay a no-op: same stage set as before, never
+// 'wiki-gap'. This is the "identical to before" guarantee for the common case where the wiki
+// does cover the core file.
+test('runQuestion: a truth-core file cited as a section source is never attributed as wiki-gap', async () => {
+    GLOBAL_INDEX.symbols.set('sendMessage', new Set(['/rc/apps/meteor/app/lib/server/sendMessage.ts']));
+    GLOBAL_INDEX.callGraph.set('sendMessage', [{ caller: 'x', file: 'f', edgeType: 'call' }]);
+    const outline: WikiOutline = { repo: 'r', commit: 'c', sections: [
+        { id: 'msg', title: 'Messaging', blurb: 'messages', sources: [{ file: 'apps/meteor/app/lib/server/sendMessage.ts', startLine: 1, endLine: 9 }] }] };
+    const llm = new FakeLlm(['msg', '1a', '答案：apps/meteor/app/lib/server/sendMessage.ts:1']);
+    const row = await runQuestion('q5', 'how is a message sent (sendMessage)?', {
+        llm, outline, truthCore: ['apps/meteor/app/lib/server/sendMessage.ts'],
+        deepwikiFn: async () => 'baseline', readFn: () => ({ text: 'const x = 1;', startLine: 1, endLine: 1 }),
+    });
+    assert.notEqual(row.loss.stage, 'wiki-gap');
+    assert.ok(row.loss.perFile.every(f => f.stage !== 'wiki-gap'));
+});
+
 // Unlike the Step-1 fixture (which uses a '/rc/...' prefix that relPath does not strip, so
 // retrieveSeeds legitimately comes back empty), these two tests need a real seed -> chain ->
 // skeleton -> selection chain to exercise evictedFiles/promptTokens, so they use the

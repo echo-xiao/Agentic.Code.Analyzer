@@ -28,6 +28,27 @@ interface Deps {
     budgetTokens?: number;
 }
 
+// A core-truth file is "wiki-reachable" if the DeepWiki wiki could plausibly have led a reader
+// to it at all: either it's cited as a source under some section, or some section's full prose
+// mentions its basename. Files that clear neither bar are structurally unreachable by the wiki
+// -- not a pipeline defect, so attribute() must not blame routing/graph/paths/budget for them.
+function computeWikiReachable(outline: WikiOutline, truthCore: string[]): Set<string> {
+    const reachable = new Set<string>();
+    for (const sec of outline.sections) {
+        for (const src of sec.sources) reachable.add(src.file);
+    }
+    for (const sec of outline.sections) {
+        const content = loadSectionContent(sec);
+        if (!content) continue;
+        for (const f of truthCore) {
+            if (reachable.has(f)) continue;
+            const basename = f.split('/').pop() ?? f;
+            if (content.includes(basename)) reachable.add(f);
+        }
+    }
+    return reachable;
+}
+
 export async function runQuestion(qid: string, question: string, deps: Deps): Promise<RunRow> {
     const { llm, outline } = deps;
     const routed = await route(question, outline, llm);                           // call 1
@@ -85,7 +106,8 @@ export async function runQuestion(qid: string, question: string, deps: Deps): Pr
         const message = e instanceof Error ? e.message : String(e);
         deepwiki = `(DeepWiki 对照获取失败：${message})`;
     }
-    return { trace, answer, fabricated, deepwiki, loss: attribute(trace, deps.truthCore) };
+    const wikiReachable = computeWikiReachable(outline, deps.truthCore);
+    return { trace, answer, fabricated, deepwiki, loss: attribute(trace, deps.truthCore, { wikiReachable }) };
 }
 
 const isMain = process.argv[1]?.endsWith('run.ts');
