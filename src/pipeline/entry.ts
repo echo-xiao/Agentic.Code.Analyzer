@@ -220,29 +220,86 @@ function withinHops(start: string, adj: Map<string, Set<string>>, maxHops: numbe
     return visited;
 }
 
-const MAX_CHAINS = 4;
+const MAX_SECTION_CHAINS = 4;
+const DEFAULT_SEEDS_PER_SECTION = 4;
+// Dwarfs any lexical score (bounded, small — matched^2/tokenCount) so a symbol the wiki's own
+// prose names verbatim outranks everything else in its section regardless of question overlap.
+const PROSE_MENTION_BONUS = 1000;
 
-export function groupChains(seeds: RankedSeed[]): Chain[] {
-    const sectionSeeds = seeds.filter(s => s.sectionId !== null);
-    const fallbackSeeds = seeds.filter(s => s.sectionId === null);
+// A symbol name (>=4 chars) counts as "mentioned in the prose" if it appears verbatim,
+// case-sensitively (camelCase/PascalCase names like RoomBody are distinctive enough that a
+// case-sensitive substring match is reliable), or — case-insensitively — inside markdown
+// backticks (an explicit "this is code" marker, safe even for names that read as plain English).
+function proseMentioned(sym: string, content: string): boolean {
+    if (sym.length < 4) return false;
+    if (content.includes(sym)) return true;
+    const escaped = sym.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+    return new RegExp('`' + escaped + '`', 'i').test(content);
+}
 
-    // Section chains: one per routed section, same grouping as before.
-    let nextId = 1;
-    const bySection = new Map<string, RankedSeed[]>();
-    for (const s of sectionSeeds) {
-        const key = s.sectionId!;
-        (bySection.get(key) ?? bySection.set(key, []).get(key)!).push(s);
+// Symbols defined in one of `files` (repo-relative paths), paired with which file they're in.
+function symbolsInFiles(files: Set<string>): Array<{ symbol: string; file: string }> {
+    const out: Array<{ symbol: string; file: string }> = [];
+    for (const [sym, absFiles] of GLOBAL_INDEX.symbols) {
+        for (const abs of absFiles) {
+            const rel = relPath(abs);
+            if (files.has(rel)) { out.push({ symbol: sym, file: rel }); break; }
+        }
     }
-    const sectionChains: Chain[] = [...bySection.entries()].map(([label, group]) =>
-        ({ id: nextId++, label, seeds: group, rrfMass: group.reduce((a, s) => a + s.rrf, 0) }));
+    return out;
+}
 
-    // Fallback (grep-safety-net) seeds never form their own path-keyed chains anymore — a seed
-    // that made it this far only survived because it looked like a near-exact lexical hit, but it
-    // still isn't backed by section provenance. If it's graph-adjacent (<=2 hops, undirected) to a
-    // section chain's seed, it's almost certainly part of that subsystem: fold it in. Only when
-    // nothing reachable exists does it get to stand on its own — that's the genuine wiki-gap case.
+// Chains are BORN from routed sections, not aggregated from seeds after the fact: each routed
+// section (in rank order, capped at MAX_SECTION_CHAINS) becomes one chain, whose candidate seeds
+// are the symbols actually defined in that section's own source files — ranked by lexical
+// relevance to the question plus the prose-mention bonus above. The lexical/grep channel (the
+// `seeds` RRF list from retrieveSeeds) stays a pure safety net: a surviving fallback seed merges
+// into a graph-adjacent section chain if one exists within 2 hops, and everything left over
+// collapses into at most ONE extra chain (never one chain per leftover seed) — total chains are
+// therefore capped at MAX_SECTION_CHAINS + 1.
+export function groupChains(
+    seeds: RankedSeed[],
+    routed: RoutedSection[],
+    outline: WikiOutline,
+    question: string,
+    sectionContent: Map<string, string | null> = new Map(),
+    seedsPerSection = DEFAULT_SEEDS_PER_SECTION,
+): Chain[] {
+    const lexScores = lexicalScores(question);
+    const byExistingSeed = new Map(seeds.map(s => [s.symbol, s]));
+
+    const sectionChains: Chain[] = [];
+    for (const r of routed.slice(0, MAX_SECTION_CHAINS)) {
+        const sec = outline.sections.find(s => s.id === r.sectionId);
+        if (!sec) continue;
+        const files = new Set(sec.sources.map(s => s.file));
+        const content = sectionContent.get(r.sectionId) ?? null;
+        const scored = symbolsInFiles(files).map(({ symbol, file }) => {
+            const lex = lexScores.get(symbol) ?? 0;
+            const bonus = content && proseMentioned(symbol, content) ? PROSE_MENTION_BONUS : 0;
+            return { symbol, file, score: lex + bonus };
+        });
+        scored.sort((a, b) => b.score - a.score || a.symbol.localeCompare(b.symbol));
+        const top = scored.slice(0, seedsPerSection);
+        if (top.length === 0) continue;
+        // Reuse the real RRF-computed seed (with its real signals) when this symbol also made the
+        // overall `seeds` list; otherwise synthesize one carrying just the section-chain score.
+        const chainSeeds: RankedSeed[] = top.map(t => byExistingSeed.get(t.symbol) ?? {
+            symbol: t.symbol, file: t.file, rrf: t.score,
+            signals: { lexicalRank: null, provenanceRank: 1, graphRank: null },
+            sectionId: r.sectionId,
+        });
+        sectionChains.push({
+            id: sectionChains.length + 1, label: r.sectionId, seeds: chainSeeds,
+            rrfMass: top.reduce((a, t) => a + t.score, 0),
+        });
+    }
+
+    // Fallback (grep-safety-net) seeds: merge graph-adjacent survivors into their nearest section
+    // chain; everything unreachable collapses into at most one extra chain.
+    const fallbackSeeds = seeds.filter(s => s.sectionId === null);
     const adj = buildUndirectedAdjacency();
-    const standaloneChains: Chain[] = [];
+    const unreached: RankedSeed[] = [];
     for (const s of fallbackSeeds) {
         const reached = withinHops(s.symbol, adj, 2);
         const candidates = sectionChains.filter(c => c.seeds.some(cs => reached.has(cs.symbol)));
@@ -252,18 +309,22 @@ export function groupChains(seeds: RankedSeed[]): Chain[] {
             target.seeds.push(s);
             target.rrfMass += s.rrf;
         } else {
-            const label = s.file.split('/').slice(0, 4).join('/');
-            standaloneChains.push({ id: nextId++, label, seeds: [s], rrfMass: s.rrf });
+            unreached.push(s);
         }
     }
+    const chains = [...sectionChains];
+    if (unreached.length > 0) {
+        const label = unreached[0].file.split('/').slice(0, 4).join('/');
+        chains.push({ id: chains.length + 1, label, seeds: unreached, rrfMass: unreached.reduce((a, s) => a + s.rrf, 0) });
+    }
 
-    const rrfs = seeds.map(s => s.rrf).sort((a, b) => a - b);
-    const median = rrfs[Math.floor(rrfs.length / 2)] ?? 0;
-    const chains = [...sectionChains, ...standaloneChains]
-        .filter(c => !(c.seeds.length === 1 && c.seeds[0].rrf < median / 2));   // lone weak seed = retrieval noise (spec)
+    // Lone-weak-seed prune stays: a single-seed chain far below the median score of everything
+    // considered (section-chain seed scores + fallback seed rrfs) is retrieval noise, not signal.
+    const allScores = [...sectionChains.flatMap(c => c.seeds.map(s => s.rrf)), ...fallbackSeeds.map(s => s.rrf)].sort((a, b) => a - b);
+    const median = allScores[Math.floor(allScores.length / 2)] ?? 0;
+    const pruned = chains.filter(c => !(c.seeds.length === 1 && c.seeds[0].rrf < median / 2));
 
-    chains.sort((a, b) => b.rrfMass - a.rrfMass);
-    const capped = chains.slice(0, MAX_CHAINS);   // hard cap: excess chains are noise by construction
-    capped.forEach((c, i) => (c.id = i + 1));
-    return capped;
+    pruned.sort((a, b) => b.rrfMass - a.rrfMass);
+    pruned.forEach((c, i) => (c.id = i + 1));
+    return pruned;
 }

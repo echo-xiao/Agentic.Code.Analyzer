@@ -16,6 +16,7 @@ import * as fs from 'fs';
 import * as path from 'path';
 import type { SourceRef, WikiOutline, WikiSection } from './types.js';
 import { callMcpTool } from './mcp.js';
+import { SECTIONS_DIR, sectionContentPath } from './content.js';
 
 const REPO = 'RocketChat/Rocket.Chat';
 // The MCP API does not return a pinned commit hash (unlike the old HTML pages, which
@@ -109,6 +110,8 @@ await sleep(1000);
 const contentsText = await callMcpTool('read_wiki_contents', { repoName: REPO });
 const pages = splitPages(contentsText);
 
+fs.mkdirSync(SECTIONS_DIR, { recursive: true });
+
 const sections: WikiSection[] = [];
 for (const entry of structure) {
     const body = pages.get(entry.title.toLowerCase());
@@ -119,7 +122,12 @@ for (const entry of structure) {
     }
     const sources = extractSources(body);
     const blurb = extractBlurb(body);
-    sections.push({ id: entry.id, title: entry.title, blurb, sources });
+    // Full markdown persisted separately from outline.json (which stays small — just the blurb +
+    // source refs the router prompt needs) so downstream stages (entry retrieval's prose-mention
+    // bonus, path/answer prompt background) can load the whole section on demand.
+    const contentPath = sectionContentPath(entry.id);
+    fs.writeFileSync(path.resolve(contentPath), body);
+    sections.push({ id: entry.id, title: entry.title, blurb, sources, contentPath });
     console.error(`  ${entry.id}: ${sources.length} sources`);
 }
 

@@ -3,11 +3,25 @@
 import type { SkeletonNode, Chain } from './types.js';
 import type { LlmClient } from './llm.js';
 
-export function buildPathPrompt(question: string, skeletonText: string): string {
+// Inserts each chain's wiki-prose excerpt directly above that chain's "Chain N (...):" header
+// line in the rendered skeleton text (renderSkeletons emits that exact line prefix per chain).
+function annotateWithProse(skeletonText: string, chainProse: Map<number, string>): string {
+    const out: string[] = [];
+    for (const line of skeletonText.split('\n')) {
+        const m = line.match(/^Chain (\d+) \(/);
+        const prose = m ? chainProse.get(Number(m[1])) : undefined;
+        if (prose) out.push(`Section notes (wiki): ${prose.slice(0, 1200)}`, '');
+        out.push(line);
+    }
+    return out.join('\n');
+}
+
+export function buildPathPrompt(question: string, skeletonText: string, chainProse?: Map<number, string>): string {
+    const annotated = chainProse && chainProse.size > 0 ? annotateWithProse(skeletonText, chainProse) : skeletonText;
     return [
         'You are choosing which code locations must be READ to answer a question about Rocket.Chat.',
         'Below are call-chain skeletons. Only lines tagged like [1a] are selectable.',
-        '', skeletonText, '',
+        '', annotated, '',
         `Question: ${question}`, '',
         'Reply with ONLY the ids of nodes whose source must be read, comma or newline separated.',
         'Cover every chain that is relevant to the question; skip nodes that are plumbing.',
@@ -46,8 +60,9 @@ export async function selectPaths(
     nodeById: Map<string, SkeletonNode>,
     chains: Chain[],
     llm: LlmClient,
+    chainProse?: Map<number, string>,
 ): Promise<{ selected: string[]; dropped: string[]; raw: string }> {
-    const raw = await llm.generate(buildPathPrompt(question, skeletonText));
+    const raw = await llm.generate(buildPathPrompt(question, skeletonText, chainProse));
     const { selected, dropped } = parsePathReply(raw, nodeById);
     return { selected: capSelection(selected, nodeById, chains), dropped, raw };
 }

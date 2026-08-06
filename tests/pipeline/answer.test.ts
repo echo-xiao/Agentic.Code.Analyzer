@@ -13,6 +13,21 @@ test('buildAnswerPrompt groups materials by chain and demands Chinese + citation
     assert.ok(p.includes('中文'));
 });
 
+test('buildAnswerPrompt: chainProse renders as background notes with an explicit do-not-cite instruction', () => {
+    const prose = new Map([[1, 'Messaging flows through sendMessage, which validates and dispatches.']]);
+    const p = buildAnswerPrompt('q', chains, mats, prose);
+    assert.ok(p.includes('Wiki background notes (Chain 1'));
+    assert.ok(p.includes('Messaging flows through sendMessage'));
+    assert.ok(p.includes('BACKGROUND ONLY'));
+    assert.ok(/never (come |cite )?from the (wiki )?notes/i.test(p) || p.includes('never from the wiki notes'));
+});
+
+test('buildAnswerPrompt: without chainProse, output is unchanged from before (no background section)', () => {
+    const p = buildAnswerPrompt('q', chains, mats);
+    assert.ok(!p.includes('Wiki background notes'));
+    assert.ok(!p.includes('BACKGROUND ONLY'));
+});
+
 test('validateCitations flags citations outside the materials', () => {
     const { valid, fabricated } = validateCitations(
         '入口在 apps/meteor/app/lib/server/a.ts:52，另见 apps/meteor/fake.ts:10 和 apps/meteor/app/lib/server/a.ts:300', mats);

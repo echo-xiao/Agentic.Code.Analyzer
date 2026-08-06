@@ -111,44 +111,90 @@ test('retrieveSeeds: fallback seed named verbatim in the question survives even 
     assert.ok(seeds.some(s => s.symbol === 'executeSendMessage'));
 });
 
-test('groupChains: graph-adjacent (1 hop) surviving fallback seed merges into the section chain, no new chain', () => {
-    GLOBAL_INDEX.callGraph.set('sectionSym', [{ caller: 'fallbackSym', file: 'f', edgeType: 'call' }]);
-    const sectionSeed: RankedSeed = { symbol: 'sectionSym', file: 'apps/meteor/app/lib/server/sectionSym.ts', rrf: 0.05, signals: { lexicalRank: null, provenanceRank: 1, graphRank: null }, sectionId: 'msg' };
-    const fallbackSeed: RankedSeed = { symbol: 'fallbackSym', file: 'apps/meteor/app/other/fallbackSym.ts', rrf: 0.02, signals: { lexicalRank: 1, provenanceRank: null, graphRank: null }, sectionId: null };
-    const chains = groupChains([sectionSeed, fallbackSeed]);
+// ADJUSTMENT NOTE (section-centric restructure): the four groupChains tests that used to live
+// here all assumed the OLD model — chains aggregated by grouping pre-labelled RankedSeeds after
+// the fact (including "same sectionId -> one chain" built purely from seeds, and "5 candidate
+// chains -> keep top 4 by rrfMass" where every fallback seed could form its own standalone
+// chain). Under the new architecture chains are born directly from `routed` + `outline` +
+// GLOBAL_INDEX (a seed's `sectionId` in the `seeds` array is no longer consulted for chain
+// membership at all — only its rrf, for the fallback merge/prune math); and fallback seeds now
+// collapse into AT MOST ONE extra chain, never one per seed, so "5 fallback-only candidates
+// capped to 4" can no longer happen by construction (max is always MAX_SECTION_CHAINS + 1 = 5).
+// All four are replaced below with tests against the new `groupChains(seeds, routed, outline,
+// question, sectionContent)` signature and semantics.
+
+test('groupChains: routed section with 2 source files -> one chain, seeds drawn from those files', () => {
+    const sec = { id: 'msg', title: 'Messaging', blurb: '', sources: [
+        { file: 'apps/meteor/app/lib/server/a.ts', startLine: 1, endLine: 10 },
+        { file: 'apps/meteor/app/lib/server/b.ts', startLine: 1, endLine: 10 },
+    ] };
+    const localOutline: WikiOutline = { repo: 'r', commit: 'c', sections: [sec] };
+    GLOBAL_INDEX.symbols.set('fnA', new Set(['/abs/Rocket.Chat/apps/meteor/app/lib/server/a.ts']));
+    GLOBAL_INDEX.symbols.set('fnB', new Set(['/abs/Rocket.Chat/apps/meteor/app/lib/server/b.ts']));
+    GLOBAL_INDEX.symbols.set('unrelated', new Set(['/abs/Rocket.Chat/apps/other/x.ts']));
+    const chains = groupChains([], [{ sectionId: 'msg', rank: 1 }], localOutline, 'irrelevant question', new Map());
     assert.equal(chains.length, 1);
     assert.equal(chains[0].label, 'msg');
-    assert.equal(chains[0].seeds.length, 2);
-    assert.ok(Math.abs(chains[0].rrfMass - 0.07) < 1e-9);
+    assert.deepEqual(chains[0].seeds.map(s => s.file).sort(), ['apps/meteor/app/lib/server/a.ts', 'apps/meteor/app/lib/server/b.ts']);
+    assert.ok(!chains[0].seeds.some(s => s.symbol === 'unrelated'));   // not in either section source file
+});
+
+test('groupChains: prose-mention bonus includes a wiki-named symbol even with zero question overlap', () => {
+    const sec = { id: 'ui', title: 'UI', blurb: '', sources: [
+        { file: 'apps/meteor/client/views/room/RoomBody.tsx', startLine: 1, endLine: 10 },
+    ] };
+    const localOutline: WikiOutline = { repo: 'r', commit: 'c', sections: [sec] };
+    GLOBAL_INDEX.symbols.set('RoomBody', new Set(['/abs/Rocket.Chat/apps/meteor/client/views/room/RoomBody.tsx']));
+    const content = new Map([['ui', 'The room renders via `RoomBody`, the main container component.']]);
+    // Question shares zero tokens with RoomBody ('room'/'body') — only the prose-mention bonus
+    // can get it in.
+    const chains = groupChains([], [{ sectionId: 'ui', rank: 1 }], localOutline, 'how does formatting work', content);
+    assert.equal(chains.length, 1);
+    assert.ok(chains[0].seeds.some(s => s.symbol === 'RoomBody'));
+});
+
+test('groupChains: graph-adjacent (within 2 hops) surviving fallback seed merges into the section chain, no new chain', () => {
+    const sec = { id: 'msg', title: 'Messaging', blurb: '', sources: [{ file: 'apps/meteor/app/lib/server/sectionSym.ts', startLine: 1, endLine: 10 }] };
+    const localOutline: WikiOutline = { repo: 'r', commit: 'c', sections: [sec] };
+    GLOBAL_INDEX.symbols.set('sectionSym', new Set(['/abs/Rocket.Chat/apps/meteor/app/lib/server/sectionSym.ts']));
+    GLOBAL_INDEX.callGraph.set('sectionSym', [{ caller: 'fallbackSym', file: 'f', edgeType: 'call' }]);
+    const fallbackSeed: RankedSeed = { symbol: 'fallbackSym', file: 'apps/meteor/app/other/fallbackSym.ts', rrf: 0.02, signals: { lexicalRank: 1, provenanceRank: null, graphRank: null }, sectionId: null };
+    const chains = groupChains([fallbackSeed], [{ sectionId: 'msg', rank: 1 }], localOutline, 'irrelevant', new Map());
+    assert.equal(chains.length, 1);
+    assert.equal(chains[0].label, 'msg');
+    assert.ok(chains[0].seeds.some(s => s.symbol === 'sectionSym') && chains[0].seeds.some(s => s.symbol === 'fallbackSym'));
 });
 
 test('groupChains: unreachable surviving fallback seed forms its own chain (not merged, not dropped)', () => {
-    const sectionSeed: RankedSeed = { symbol: 'sectionSym', file: 'apps/meteor/app/lib/server/sectionSym.ts', rrf: 0.05, signals: { lexicalRank: null, provenanceRank: 1, graphRank: null }, sectionId: 'msg' };
-    const fallbackSeed: RankedSeed = { symbol: 'unreachableSym', file: 'apps/meteor/app/misc/unreachableSym.ts', rrf: 0.04, signals: { lexicalRank: 1, provenanceRank: null, graphRank: null }, sectionId: null };
+    const sec = { id: 'msg', title: 'Messaging', blurb: '', sources: [{ file: 'apps/meteor/app/lib/server/sectionSym.ts', startLine: 1, endLine: 10 }] };
+    const localOutline: WikiOutline = { repo: 'r', commit: 'c', sections: [sec] };
+    GLOBAL_INDEX.symbols.set('sectionSym', new Set(['/abs/Rocket.Chat/apps/meteor/app/lib/server/sectionSym.ts']));
     // No callGraph edges set up (beforeEach cleared it) -> unreachable from sectionSym.
-    const chains = groupChains([sectionSeed, fallbackSeed]);
+    // Question lexically matches sectionSym so its chain score isn't near-zero (keeps the
+    // weak-seed median-based prune, below, from being tripped by an unrelated tiny value).
+    const fallbackSeed: RankedSeed = { symbol: 'unreachableSym', file: 'apps/meteor/app/misc/unreachableSym.ts', rrf: 1.5, signals: { lexicalRank: 1, provenanceRank: null, graphRank: null }, sectionId: null };
+    const chains = groupChains([fallbackSeed], [{ sectionId: 'msg', rank: 1 }], localOutline, 'section sym', new Map());
     assert.equal(chains.length, 2);
     assert.ok(chains.some(c => c.seeds.length === 1 && c.seeds[0].symbol === 'unreachableSym'));
 });
 
-test('groupChains: hard cap keeps only the top 4 chains by rrfMass, dropping the rest entirely', () => {
-    const mkSection = (id: string, rrf: number): RankedSeed =>
-        ({ symbol: 'sec_' + id, file: `apps/meteor/app/${id}/x.ts`, rrf, signals: { lexicalRank: null, provenanceRank: 1, graphRank: null }, sectionId: id });
-    const fallback: RankedSeed = { symbol: 'unreachableSym', file: 'apps/meteor/app/misc/unreachableSym.ts', rrf: 0.06, signals: { lexicalRank: 1, provenanceRank: null, graphRank: null }, sectionId: null };
-    // 4 section chains + 1 unreachable fallback chain = 5 candidate chains; cap must drop the
-    // weakest (the 0.06 fallback chain), keeping the 4 heavier section chains.
-    const seeds = [mkSection('a', 0.10), mkSection('b', 0.09), mkSection('c', 0.08), mkSection('d', 0.07), fallback];
-    const chains = groupChains(seeds);
-    assert.equal(chains.length, 4);
-    assert.ok(!chains.some(c => c.seeds.some(s => s.symbol === 'unreachableSym')));
-    assert.ok(chains.every(c => c.rrfMass >= 0.07));
+test('groupChains: lone weak unreachable fallback chain is pruned when its score is far below the median', () => {
+    const sec = { id: 'msg', title: 'Messaging', blurb: '', sources: [{ file: 'apps/meteor/app/lib/server/sectionSym.ts', startLine: 1, endLine: 10 }] };
+    const localOutline: WikiOutline = { repo: 'r', commit: 'c', sections: [sec] };
+    GLOBAL_INDEX.symbols.set('sectionSym', new Set(['/abs/Rocket.Chat/apps/meteor/app/lib/server/sectionSym.ts']));
+    const fallbackSeed: RankedSeed = { symbol: 'weakUnreachable', file: 'apps/meteor/app/misc/weakUnreachable.ts', rrf: 0.001, signals: { lexicalRank: 1, provenanceRank: null, graphRank: null }, sectionId: null };
+    const chains = groupChains([fallbackSeed], [{ sectionId: 'msg', rank: 1 }], localOutline, 'section sym', new Map());
+    assert.equal(chains.length, 1);
+    assert.equal(chains[0].label, 'msg');   // the weak fallback chain was pruned entirely
 });
 
-test('groupChains: same section -> one chain; lone weak seed chain is pruned', () => {
-    const mk = (s: string, sec: string | null, rrf: number): RankedSeed =>
-        ({ symbol: s, file: 'f/' + s, rrf, signals: { lexicalRank: 1, provenanceRank: null, graphRank: null }, sectionId: sec });
-    const chains = groupChains([mk('a', 'msg', 0.10), mk('b', 'msg', 0.09), mk('c', 'auth', 0.08), mk('d', 'auth', 0.07), mk('noise', null, 0.001)]);
-    assert.equal(chains.length, 2);
-    assert.deepEqual(chains.map(c => c.seeds.length), [2, 2]);
-    assert.ok(Math.abs(chains[0].rrfMass - 0.19) < 1e-9);
+test('groupChains: more than MAX_SECTION_CHAINS routed sections -> only the top 4 (by rank) become chains', () => {
+    const mkSec = (id: string) => ({ id, title: id, blurb: '', sources: [{ file: `apps/meteor/app/${id}/x.ts`, startLine: 1, endLine: 5 }] });
+    const ids = ['a', 'b', 'c', 'd', 'e'];
+    const localOutline: WikiOutline = { repo: 'r', commit: 'c', sections: ids.map(mkSec) };
+    for (const id of ids) GLOBAL_INDEX.symbols.set('fn_' + id, new Set([`/abs/Rocket.Chat/apps/meteor/app/${id}/x.ts`]));
+    const routed = ids.map((id, i) => ({ sectionId: id, rank: i + 1 }));
+    const chains = groupChains([], routed, localOutline, 'irrelevant', new Map());
+    assert.equal(chains.length, 4);
+    assert.ok(!chains.some(c => c.label === 'e'));   // 5th-ranked section never got a chain
 });

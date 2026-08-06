@@ -7,6 +7,7 @@ import * as path from 'path';
 import { ensureIndex } from '../indexer/index.js';
 import { route } from './routing.js';
 import { retrieveSeeds, groupChains } from './entry.js';
+import { loadSectionContent } from '../deepwiki/content.js';
 import { buildChainSkeleton, renderSkeletons } from './skeleton.js';
 import { selectPaths } from './paths.js';
 import { packMaterials } from './reading.js';
@@ -32,12 +33,29 @@ export async function runQuestion(qid: string, question: string, deps: Deps): Pr
     const routed = await route(question, outline, llm);                           // call 1
     const routingPromptTokens = llm.promptTokensEst;                               // snapshot right after call 1
     const seeds = retrieveSeeds(question, routed, outline);
-    const chains = groupChains(seeds);
+
+    // Full wiki prose for each routed section — feeds the entry-retrieval prose-mention bonus
+    // (via groupChains) and the path/answer prompt background below. null when a section has no
+    // contentPath (older outline snapshot) or its markdown file is missing; both are harmless,
+    // just no bonus/background for that section.
+    const sectionContent = new Map<string, string | null>();
+    for (const r of routed) {
+        const sec = outline.sections.find(s => s.id === r.sectionId);
+        if (sec) sectionContent.set(r.sectionId, loadSectionContent(sec));
+    }
+    const chains = groupChains(seeds, routed, outline, question, sectionContent);
     const skeletons = chains.map(c => buildChainSkeleton(c));
     const { text: skeletonText, nodeById } = renderSkeletons(skeletons);
-    const sel = await selectPaths(question, skeletonText, nodeById, chains, llm); // call 2
+    // Chain label == sectionId for section-born chains (the fallback chain, if any, has a
+    // file-path label that never matches a sectionId, so it naturally gets no prose entry).
+    const chainProse = new Map<number, string>();
+    for (const c of chains) {
+        const content = sectionContent.get(c.label);
+        if (content) chainProse.set(c.id, content);
+    }
+    const sel = await selectPaths(question, skeletonText, nodeById, chains, llm, chainProse); // call 2
     const { materials, evicted } = packMaterials(sel.selected, nodeById, chains, deps.budgetTokens ?? 24000, { readFn: deps.readFn });
-    const { answer, fabricated } = await generateAnswer(question, chains, materials, llm); // call 3
+    const { answer, fabricated } = await generateAnswer(question, chains, materials, llm, chainProse); // call 3
 
     const totalMass = chains.reduce((a, c) => a + c.rrfMass, 0) || 1;
     const filesOf = (roots: SkeletonNode[]): string[] => {

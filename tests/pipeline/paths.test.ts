@@ -1,6 +1,6 @@
 import { test } from 'node:test';
 import assert from 'node:assert/strict';
-import { parsePathReply, capSelection, selectPaths } from '../../src/pipeline/paths.js';
+import { parsePathReply, capSelection, selectPaths, buildPathPrompt } from '../../src/pipeline/paths.js';
 import { FakeLlm } from '../../src/pipeline/llm.js';
 import type { SkeletonNode } from '../../src/pipeline/types.js';
 import type { Chain } from '../../src/pipeline/types.js';
@@ -28,4 +28,22 @@ test('selectPaths wires prompt->parse->cap through the llm', async () => {
     const r = await selectPaths('q', 'SKELETON', table, chains, new FakeLlm(['1a\n2a']));
     assert.deepEqual(r.selected, ['1a', '2a']);
     assert.equal(r.raw, '1a\n2a');
+});
+
+test('buildPathPrompt: chainProse renders above the right chain, not the others', () => {
+    const skeletonText = 'Chain 1 (x):\n  [1a] sym1  f:1  code\n\nChain 2 (y):\n  [2a] sym2  f:2  code\n';
+    const prose = new Map([[2, 'Y is the notification subsystem that fans out to the client.']]);
+    const p = buildPathPrompt('q', skeletonText, prose);
+    const noteIdx = p.indexOf('Section notes (wiki): Y is the notification subsystem');
+    const chain1Idx = p.indexOf('Chain 1 (x):');
+    const chain2Idx = p.indexOf('Chain 2 (y):');
+    assert.ok(noteIdx > -1);
+    assert.ok(noteIdx > chain1Idx && noteIdx < chain2Idx);   // note sits right above Chain 2, not Chain 1
+});
+
+test('buildPathPrompt: without chainProse, output is unchanged from before', () => {
+    const skeletonText = 'Chain 1 (x):\n  [1a] sym1  f:1  code\n';
+    const p = buildPathPrompt('q', skeletonText);
+    assert.ok(!p.includes('Section notes (wiki)'));
+    assert.ok(p.includes(skeletonText.trim()));
 });
