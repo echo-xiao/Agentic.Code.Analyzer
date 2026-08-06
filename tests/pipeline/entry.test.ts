@@ -55,24 +55,23 @@ test('symbolTokens: splits camelCase/PascalCase into lowercase sub-words', () =>
     assert.deepEqual(symbolTokens('MessageBox'), ['message', 'box']);
 });
 
-test('lexical scoring (via retrieveSeeds): keyword-overlap ranks the more specific symbol first; ' +
-    'zero-overlap symbols never surface', () => {
-    // NOTE ON PHRASING: the stemming rule (strip trailing s/ed/ing) is a trivial regular-verb
-    // stemmer — it does NOT turn 'sent' into 'send' (irregular verb), so a question using 'sent'
-    // scores sendMessage and MessageBox identically (both match only on 'message') and the tie
-    // would be broken alphabetically ('MessageBox' < 'sendMessage'), NOT what we want to assert
-    // here. Using 'send' (regular form) instead lets sendMessage match both 'send' and 'message'
-    // (score 2.0) while MessageBox matches only 'message' (score 0.5) — an unambiguous ordering
-    // that isolates the lexical-scoring behavior itself rather than the stemmer's known gap.
+test('lexical scoring (via retrieveSeeds): full-coverage fallback symbol ranks/survives; ' +
+    'partial-overlap and zero-overlap symbols never surface (grep channel is a safety net, not a peer)', () => {
+    // ADJUSTED (safety-net fix): this test previously asserted that a partial-overlap symbol
+    // (MessageBox, matching only 'message' of its 2 tokens) still surfaced at a lower rank than
+    // the full-match symbol. Under the safety-net design, a seed with no section provenance now
+    // only survives if EVERY symbol token is covered by the question (or the name appears
+    // verbatim) — a 1-of-2-token partial match like MessageBox no longer clears that bar and is
+    // dropped entirely, not merely ranked lower. sendMessage still survives: both its tokens
+    // ('send','message') are covered by the question 'how does the app send a message'.
     GLOBAL_INDEX.symbols.set('sendMessage', new Set(['/abs/Rocket.Chat/apps/meteor/app/lib/server/sendMessage.ts']));
     GLOBAL_INDEX.symbols.set('MessageBox', new Set(['/abs/Rocket.Chat/apps/meteor/client/views/room/MessageBox.tsx']));
     GLOBAL_INDEX.symbols.set('close', new Set(['/abs/Rocket.Chat/apps/meteor/app/lib/server/sendMessage.ts']));
     const seeds = retrieveSeeds('how does the app send a message', [], outline, 10);
     const send = seeds.find(s => s.symbol === 'sendMessage')!;
-    const box = seeds.find(s => s.symbol === 'MessageBox')!;
     assert.equal(send.signals.lexicalRank, 1);
-    assert.ok(box.signals.lexicalRank! > 1);
-    assert.ok(!seeds.some(s => s.symbol === 'close'));   // 'close' has zero token overlap -> absent everywhere
+    assert.ok(!seeds.some(s => s.symbol === 'MessageBox'));   // partial (1/2 token) match -> dropped
+    assert.ok(!seeds.some(s => s.symbol === 'close'));        // zero overlap -> dropped
 });
 
 test('lexical scoring: irregular verb (sent -> send) lets sendMessage outrank single-token junk', () => {
@@ -96,6 +95,53 @@ test('retrieveSeeds: multi-file symbol picks the file matching the question (cli
     const serverSeeds = retrieveSeeds('How is a message sent on the server side?', [], outline, 5);
     assert.equal(serverSeeds[0].symbol, 'sendMessage');
     assert.equal(serverSeeds[0].file, 'apps/meteor/app/lib/server/functions/sendMessage.ts');
+});
+
+test('retrieveSeeds: fallback seed with only partial token overlap (not full coverage, not verbatim) is dropped', () => {
+    GLOBAL_INDEX.symbols.set('randomHelper', new Set(['/abs/Rocket.Chat/apps/meteor/app/utils/randomHelper.ts']));
+    // Matches only 'random' of randomHelper's two tokens ('random','helper') -> partial, non-zero
+    // lexical score, but not full coverage and not a verbatim mention -> must be dropped.
+    const seeds = retrieveSeeds('how is a random error logged', [], outline, 10);
+    assert.ok(!seeds.some(s => s.symbol === 'randomHelper'));
+});
+
+test('retrieveSeeds: fallback seed named verbatim in the question survives even without section provenance', () => {
+    GLOBAL_INDEX.symbols.set('executeSendMessage', new Set(['/abs/Rocket.Chat/apps/meteor/app/lib/server/executeSendMessage.ts']));
+    const seeds = retrieveSeeds('How does executeSendMessage work in Rocket.Chat?', [], outline, 10);
+    assert.ok(seeds.some(s => s.symbol === 'executeSendMessage'));
+});
+
+test('groupChains: graph-adjacent (1 hop) surviving fallback seed merges into the section chain, no new chain', () => {
+    GLOBAL_INDEX.callGraph.set('sectionSym', [{ caller: 'fallbackSym', file: 'f', edgeType: 'call' }]);
+    const sectionSeed: RankedSeed = { symbol: 'sectionSym', file: 'apps/meteor/app/lib/server/sectionSym.ts', rrf: 0.05, signals: { lexicalRank: null, provenanceRank: 1, graphRank: null }, sectionId: 'msg' };
+    const fallbackSeed: RankedSeed = { symbol: 'fallbackSym', file: 'apps/meteor/app/other/fallbackSym.ts', rrf: 0.02, signals: { lexicalRank: 1, provenanceRank: null, graphRank: null }, sectionId: null };
+    const chains = groupChains([sectionSeed, fallbackSeed]);
+    assert.equal(chains.length, 1);
+    assert.equal(chains[0].label, 'msg');
+    assert.equal(chains[0].seeds.length, 2);
+    assert.ok(Math.abs(chains[0].rrfMass - 0.07) < 1e-9);
+});
+
+test('groupChains: unreachable surviving fallback seed forms its own chain (not merged, not dropped)', () => {
+    const sectionSeed: RankedSeed = { symbol: 'sectionSym', file: 'apps/meteor/app/lib/server/sectionSym.ts', rrf: 0.05, signals: { lexicalRank: null, provenanceRank: 1, graphRank: null }, sectionId: 'msg' };
+    const fallbackSeed: RankedSeed = { symbol: 'unreachableSym', file: 'apps/meteor/app/misc/unreachableSym.ts', rrf: 0.04, signals: { lexicalRank: 1, provenanceRank: null, graphRank: null }, sectionId: null };
+    // No callGraph edges set up (beforeEach cleared it) -> unreachable from sectionSym.
+    const chains = groupChains([sectionSeed, fallbackSeed]);
+    assert.equal(chains.length, 2);
+    assert.ok(chains.some(c => c.seeds.length === 1 && c.seeds[0].symbol === 'unreachableSym'));
+});
+
+test('groupChains: hard cap keeps only the top 4 chains by rrfMass, dropping the rest entirely', () => {
+    const mkSection = (id: string, rrf: number): RankedSeed =>
+        ({ symbol: 'sec_' + id, file: `apps/meteor/app/${id}/x.ts`, rrf, signals: { lexicalRank: null, provenanceRank: 1, graphRank: null }, sectionId: id });
+    const fallback: RankedSeed = { symbol: 'unreachableSym', file: 'apps/meteor/app/misc/unreachableSym.ts', rrf: 0.06, signals: { lexicalRank: 1, provenanceRank: null, graphRank: null }, sectionId: null };
+    // 4 section chains + 1 unreachable fallback chain = 5 candidate chains; cap must drop the
+    // weakest (the 0.06 fallback chain), keeping the 4 heavier section chains.
+    const seeds = [mkSection('a', 0.10), mkSection('b', 0.09), mkSection('c', 0.08), mkSection('d', 0.07), fallback];
+    const chains = groupChains(seeds);
+    assert.equal(chains.length, 4);
+    assert.ok(!chains.some(c => c.seeds.some(s => s.symbol === 'unreachableSym')));
+    assert.ok(chains.every(c => c.rrfMass >= 0.07));
 });
 
 test('groupChains: same section -> one chain; lone weak seed chain is pruned', () => {

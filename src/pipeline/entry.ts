@@ -76,6 +76,7 @@ function expandIrregulars(tokens: string[]): string[] {
 
 function lexicalScores(question: string): Map<string, number> {
     const qTokens = expandIrregulars(tokenizeQuestion(question));
+    const qLower = question.toLowerCase();
     const scores = new Map<string, number>();
     for (const sym of GLOBAL_INDEX.symbols.keys()) {
         const symTokens = new Set(symbolTokens(sym));
@@ -86,6 +87,12 @@ function lexicalScores(question: string): Map<string, number> {
             const stemmed = stemToken(qt);
             if (stemmed !== qt && symTokens.has(stemmed)) matched++;
         }
+        // A symbol spelled out verbatim in the question (e.g. a camelCase identifier written as
+        // one un-split word in a natural sentence, like "...executeSendMessage work...") never
+        // token-matches its own sub-words individually, but it's the strongest lexical signal
+        // there is — treat it as a full match so it actually enters the candidate set below
+        // (this mirrors the verbatim exception applied again at the fallback-survival gate).
+        if (matched < symTokens.size && sym.length >= 6 && qLower.includes(sym.toLowerCase())) matched = symTokens.size;
         if (matched === 0) continue;
         scores.set(sym, (matched * matched) / symTokens.size);
     }
@@ -164,27 +171,99 @@ export function retrieveSeeds(question: string, routed: RoutedSection[], outline
         .sort((a, b) => b[1] - a[1]).forEach(([sym], i) => graphRank.set(sym, i + 1));
 
     const fused = rrfFuse([lexRank, provRank, graphRank]);
-    return [...fused.entries()].sort((a, b) => b[1] - a[1]).slice(0, topK).map(([symbol, rrf]) => ({
+    const ranked: RankedSeed[] = [...fused.entries()].sort((a, b) => b[1] - a[1]).slice(0, topK).map(([symbol, rrf]) => ({
         symbol, rrf,
         file: fileOf.get(symbol) ?? relPath([...(GLOBAL_INDEX.symbols.get(symbol) ?? [])][0] ?? ''),
         signals: { lexicalRank: rankOf(lexRank, symbol), provenanceRank: rankOf(provRank, symbol), graphRank: rankOf(graphRank, symbol) },
         sectionId: sectionOf.get(symbol) ?? null,
     }));
+
+    // The lexical/grep channel is a SAFETY NET, not a peer signal: a seed with no section
+    // provenance only earns its place if the lexical match is near-exact (full symbol-token
+    // coverage by the question, or the symbol name spelled out verbatim in the question) —
+    // otherwise it's noise from the full-repo scan and gets dropped before chain grouping ever
+    // sees it (chain grouping decides what a *surviving* fallback seed attaches to).
+    const survivesAsFallback = (symbol: string): boolean => {
+        const symToks = symbolTokens(symbol);
+        const fullyCovered = symToks.length >= 2 && symToks.every(st => qTokensForFile.has(st));
+        const verbatim = symbol.length >= 6 && question.toLowerCase().includes(symbol.toLowerCase());
+        return fullyCovered || verbatim;
+    };
+    return ranked.filter(s => s.signals.provenanceRank !== null || survivesAsFallback(s.symbol));
 }
 
-export function groupChains(seeds: RankedSeed[]): Chain[] {
-    const byKey = new Map<string, RankedSeed[]>();
-    for (const s of seeds) {
-        const key = s.sectionId ?? s.file.split('/').slice(0, 4).join('/');
-        (byKey.get(key) ?? byKey.set(key, []).get(key)!).push(s);
+// Undirected neighbor lookup over the (directed, callee->callers) call graph — used to test
+// whether a surviving fallback seed sits near an existing section chain before letting it form
+// a chain of its own.
+function buildUndirectedAdjacency(): Map<string, Set<string>> {
+    const adj = new Map<string, Set<string>>();
+    const link = (a: string, b: string) => {
+        if (!adj.has(a)) adj.set(a, new Set());
+        adj.get(a)!.add(b);
+    };
+    for (const [callee, callers] of GLOBAL_INDEX.callGraph)
+        for (const { caller } of callers) { link(callee, caller); link(caller, callee); }
+    return adj;
+}
+
+// Symbols reachable from `start` within `maxHops` hops (start itself excluded).
+function withinHops(start: string, adj: Map<string, Set<string>>, maxHops: number): Set<string> {
+    const visited = new Set<string>([start]);
+    let frontier = new Set<string>([start]);
+    for (let hop = 0; hop < maxHops; hop++) {
+        const next = new Set<string>();
+        for (const node of frontier)
+            for (const nb of adj.get(node) ?? []) if (!visited.has(nb)) { visited.add(nb); next.add(nb); }
+        frontier = next;
     }
+    visited.delete(start);
+    return visited;
+}
+
+const MAX_CHAINS = 4;
+
+export function groupChains(seeds: RankedSeed[]): Chain[] {
+    const sectionSeeds = seeds.filter(s => s.sectionId !== null);
+    const fallbackSeeds = seeds.filter(s => s.sectionId === null);
+
+    // Section chains: one per routed section, same grouping as before.
+    let nextId = 1;
+    const bySection = new Map<string, RankedSeed[]>();
+    for (const s of sectionSeeds) {
+        const key = s.sectionId!;
+        (bySection.get(key) ?? bySection.set(key, []).get(key)!).push(s);
+    }
+    const sectionChains: Chain[] = [...bySection.entries()].map(([label, group]) =>
+        ({ id: nextId++, label, seeds: group, rrfMass: group.reduce((a, s) => a + s.rrf, 0) }));
+
+    // Fallback (grep-safety-net) seeds never form their own path-keyed chains anymore — a seed
+    // that made it this far only survived because it looked like a near-exact lexical hit, but it
+    // still isn't backed by section provenance. If it's graph-adjacent (<=2 hops, undirected) to a
+    // section chain's seed, it's almost certainly part of that subsystem: fold it in. Only when
+    // nothing reachable exists does it get to stand on its own — that's the genuine wiki-gap case.
+    const adj = buildUndirectedAdjacency();
+    const standaloneChains: Chain[] = [];
+    for (const s of fallbackSeeds) {
+        const reached = withinHops(s.symbol, adj, 2);
+        const candidates = sectionChains.filter(c => c.seeds.some(cs => reached.has(cs.symbol)));
+        if (candidates.length > 0) {
+            candidates.sort((a, b) => b.rrfMass - a.rrfMass);          // highest-mass match wins ties
+            const target = candidates[0];
+            target.seeds.push(s);
+            target.rrfMass += s.rrf;
+        } else {
+            const label = s.file.split('/').slice(0, 4).join('/');
+            standaloneChains.push({ id: nextId++, label, seeds: [s], rrfMass: s.rrf });
+        }
+    }
+
     const rrfs = seeds.map(s => s.rrf).sort((a, b) => a - b);
     const median = rrfs[Math.floor(rrfs.length / 2)] ?? 0;
-    const chains: Chain[] = [];
-    for (const [label, group] of byKey) {
-        if (group.length === 1 && group[0].rrf < median / 2) continue;   // lone weak seed = retrieval noise (spec)
-        chains.push({ id: chains.length + 1, label, seeds: group, rrfMass: group.reduce((a, s) => a + s.rrf, 0) });
-    }
-    chains.sort((a, b) => b.rrfMass - a.rrfMass).forEach((c, i) => (c.id = i + 1));
-    return chains;
+    const chains = [...sectionChains, ...standaloneChains]
+        .filter(c => !(c.seeds.length === 1 && c.seeds[0].rrf < median / 2));   // lone weak seed = retrieval noise (spec)
+
+    chains.sort((a, b) => b.rrfMass - a.rrfMass);
+    const capped = chains.slice(0, MAX_CHAINS);   // hard cap: excess chains are noise by construction
+    capped.forEach((c, i) => (c.id = i + 1));
+    return capped;
 }
