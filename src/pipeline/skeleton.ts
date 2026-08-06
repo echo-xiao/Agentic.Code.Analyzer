@@ -10,7 +10,26 @@ import type { Chain, ChainSkeleton, SkeletonNode } from './types.js';
 export interface SkeletonOpts { maxDepth?: number; maxMajorPerChain?: number; hotFanIn?: number; maxChildrenPerNode?: number }
 
 const fanIn = (sym: string) => GLOBAL_INDEX.callGraph.get(sym)?.length ?? 0;
-const fileOf = (sym: string): string => relPath([...(GLOBAL_INDEX.symbols.get(sym) ?? [])][0] ?? '');
+
+// Resolve which of a (possibly multi-file) symbol's definitions to anchor a node on.
+// Preference order: an entry whose repo-relative path equals `preferredRel` (the seed's own file,
+// carefully chosen upstream by question-token affinity + section sources — do not discard it by
+// blindly taking the index's first entry) > an entry in the SAME file as the parent node (a callee
+// defined in the parent's own file is almost always the right instance for that call site) > the
+// first entry, as before.
+const resolveFile = (sym: string, preferredRel?: string, preferredParentAbs?: string): { abs: string; rel: string } => {
+    const files = [...(GLOBAL_INDEX.symbols.get(sym) ?? [])];
+    if (files.length === 0) return { abs: '', rel: '' };
+    if (preferredRel) {
+        const match = files.find(f => relPath(f) === preferredRel);
+        if (match) return { abs: match, rel: relPath(match) };
+    }
+    if (preferredParentAbs) {
+        const match = files.find(f => f === preferredParentAbs);
+        if (match) return { abs: match, rel: relPath(match) };
+    }
+    return { abs: files[0], rel: relPath(files[0]) };
+};
 
 // Top-level subsystem anchor segment for a file path — 'lib' from 'apps/meteor/app/lib/server/a.ts',
 // 'rest-typings' from 'packages/rest-typings/src/x.ts'. Segment-array approach (not regex scanning):
@@ -49,8 +68,7 @@ export function anchorSeg(file: string): string {
     return seg[0] ?? '';
 }
 
-const firstLine = (sym: string): { line: number; snippet: string } => {
-    const abs = [...(GLOBAL_INDEX.symbols.get(sym) ?? [])][0];
+const firstLine = (sym: string, abs: string): { line: number; snippet: string } => {
     if (!abs || !fs.existsSync(abs)) return { line: 0, snippet: sym };
     const src = fs.readFileSync(abs, 'utf8').split('\n');
     const idx = src.findIndex(l => l.includes(sym));
@@ -64,11 +82,14 @@ export function buildChainSkeleton(chain: Chain, opts: SkeletonOpts = {}): Chain
     const visited = new Set<string>();
     const homeSeg = anchorSeg(chain.seeds[0]?.file ?? '');
 
-    const build = (sym: string, depth: number): SkeletonNode | null => {
+    const build = (sym: string, depth: number, parentAbs?: string, preferredFile?: string): SkeletonNode | null => {
         if (visited.has(sym)) return null;
         visited.add(sym);
-        const file = fileOf(sym);
-        const { line, snippet } = firstLine(sym);
+        // Root nodes (depth 0) honor the seed's own file — the entry stage picked it deliberately via
+        // question-token affinity + section sources, and must not be overridden by index insertion order.
+        // Non-root nodes prefer a same-file definition as their parent when one exists.
+        const { abs, rel: file } = resolveFile(sym, depth === 0 ? preferredFile : undefined, parentAbs);
+        const { line, snippet } = firstLine(sym, abs);
         const base = { symbol: sym, file, line, snippet, edgeType: null, children: [] as SkeletonNode[] };
         if (anchorSeg(file) !== homeSeg && depth > 0) return { ...base, id: '', kind: 'boundary' };
         if (fanIn(sym) > hotFanIn && depth > 0)      return { ...base, id: '', kind: 'hotleaf' };
@@ -85,13 +106,13 @@ export function buildChainSkeleton(chain: Chain, opts: SkeletonOpts = {}): Chain
         const node: SkeletonNode = { ...base, id: '', kind };
         if (depth < maxDepth)
             for (const c of callees) {
-                const child = build(c.callee, depth + 1);
+                const child = build(c.callee, depth + 1, abs);
                 if (child) { child.edgeType = c.edgeType as any; node.children.push(child); }
             }
         return node;
     };
 
-    const roots = chain.seeds.map(s => build(s.symbol, 0)).filter((n): n is SkeletonNode => !!n);
+    const roots = chain.seeds.map(s => build(s.symbol, 0, undefined, s.file)).filter((n): n is SkeletonNode => !!n);
     return { chain, roots, majorCount };
 }
 

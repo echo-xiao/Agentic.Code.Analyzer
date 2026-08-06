@@ -64,6 +64,46 @@ test('skeleton: maxChildrenPerNode caps fan-out (default 8; 12 callees -> <=8 ch
     assert.equal(skExplicit.roots[0].children.length, 8);
 });
 
+test('buildChainSkeleton: root node file honors the seed\'s own file for multi-file symbols', () => {
+    GLOBAL_INDEX.symbols.clear(); GLOBAL_INDEX.callGraph.clear(); GLOBAL_INDEX.allFiles.clear();
+    // 'dual' is defined in two files (e.g. a client flow vs a server function) — the root must
+    // anchor on whichever one the entry stage picked (seed.file), not the index's first entry.
+    GLOBAL_INDEX.symbols.set('dual', new Set([
+        '/x/Rocket.Chat/apps/meteor/client/a.ts',
+        '/x/Rocket.Chat/apps/meteor/server/b.ts',
+    ]));
+
+    const clientChain: Chain = { id: 1, label: 'dual', rrfMass: 1, seeds: [
+        { symbol: 'dual', file: 'apps/meteor/client/a.ts', rrf: 1, signals: { lexicalRank: 1, provenanceRank: 1, graphRank: 1 }, sectionId: 'dual' },
+    ]};
+    assert.equal(buildChainSkeleton(clientChain, { hotFanIn: 25 }).roots[0].file, 'apps/meteor/client/a.ts');
+
+    const serverChain: Chain = { id: 2, label: 'dual', rrfMass: 1, seeds: [
+        { symbol: 'dual', file: 'apps/meteor/server/b.ts', rrf: 1, signals: { lexicalRank: 1, provenanceRank: 1, graphRank: 1 }, sectionId: 'dual' },
+    ]};
+    assert.equal(buildChainSkeleton(serverChain, { hotFanIn: 25 }).roots[0].file, 'apps/meteor/server/b.ts');
+});
+
+test('buildChainSkeleton: a callee prefers the definition in the same file as its parent', () => {
+    GLOBAL_INDEX.symbols.clear(); GLOBAL_INDEX.callGraph.clear(); GLOBAL_INDEX.allFiles.clear();
+    GLOBAL_INDEX.symbols.set('root', new Set(['/x/Rocket.Chat/apps/meteor/app/lib/server/root.ts']));
+    // 'helper' is defined in two files; the same-file-as-parent one is listed SECOND, so a naive
+    // "first entry" resolution would pick the wrong one.
+    GLOBAL_INDEX.symbols.set('helper', new Set([
+        '/x/Rocket.Chat/apps/meteor/app/lib/server/other.ts',
+        '/x/Rocket.Chat/apps/meteor/app/lib/server/root.ts',
+    ]));
+    GLOBAL_INDEX.callGraph.set('helper', [{ caller: 'root', file: 'root', edgeType: 'call' }]);
+
+    const chain2: Chain = { id: 1, label: 'root', rrfMass: 1, seeds: [
+        { symbol: 'root', file: 'apps/meteor/app/lib/server/root.ts', rrf: 1, signals: { lexicalRank: 1, provenanceRank: 1, graphRank: 1 }, sectionId: 'root' },
+    ]};
+    const sk = buildChainSkeleton(chain2, { hotFanIn: 25 });
+    const helperNode = sk.roots[0].children.find(c => c.symbol === 'helper');
+    assert.ok(helperNode);
+    assert.equal(helperNode!.file, 'apps/meteor/app/lib/server/root.ts');
+});
+
 test('anchorSeg: segment-array reads fixed positions, never latches onto a nested anchor', () => {
     assert.equal(anchorSeg('apps/meteor/app/lib/server/x.ts'), 'lib');
     assert.equal(anchorSeg('packages/rest-typings/src/x.ts'), 'rest-typings');
