@@ -40,3 +40,42 @@ test('packMaterials splits budget by chain rrf mass and evicts what does not fit
     assert.ok(big.tokens <= 900);
     assert.deepEqual(evicted, ['1b']);                // nothing left in chain 1 after big
 });
+
+// Backfill fixture: a single chain, budget 1000, fillTo 0.6 -> watermark 600. The selected id
+// consumes exactly 200 tokens (800 chars -> ceil(800/4)); each backfill candidate is a 600-char
+// ('y') item that costs 150 tokens. Greedy packing against the global watermark should fit two
+// full backfill items (200 -> 350 -> 500), truncate a third down to the last 100 tokens of room
+// (500 -> 600), and skip whatever comes after once the watermark is exhausted.
+const backfillNode = (id: string): SkeletonNode => ({ id, symbol: 'fill', file: 'f/fill.ts', line: 10, snippet: '', kind: 'major', edgeType: null, children: [] });
+const backfillTable = new Map([
+    ['1a', node('1a', 'big')],
+    ['1b', backfillNode('1b')], ['1c', backfillNode('1c')], ['1d', backfillNode('1d')], ['1e', backfillNode('1e')],
+]);
+const oneChain: Chain[] = [{ id: 1, label: 'x', seeds: [], rrfMass: 1 }];
+const backfillReadFn = (n: SkeletonNode) => ({ text: n.symbol === 'big' ? 'x'.repeat(800) : 'y'.repeat(600), startLine: 10, endLine: 20 });
+
+test('packMaterials: backfill tops up the global watermark after selected ids are packed', () => {
+    const { materials, evicted } = packMaterials(['1a'], backfillTable, oneChain, 1000, {
+        readFn: backfillReadFn, backfillIds: ['1b', '1c', '1d', '1e'], fillTo: 0.6,
+    });
+    const ids = materials.map(m => m.nodeId);
+    assert.deepEqual(ids, ['1a', '1b', '1c', '1d']);              // '1e' never fits once the watermark is spent
+    const total = materials.reduce((a, m) => a + m.tokens, 0);
+    assert.ok(total <= 600);                                      // stays within fillTo * budgetTokens
+    assert.ok(total > 500);                                       // the truncated third item still contributes
+    assert.deepEqual(evicted, []);                                // selected-evicted semantics unchanged: nothing evicted here
+});
+
+test('packMaterials: backfill never double-packs an id already selected/evicted', () => {
+    const { materials, evicted } = packMaterials(['1a'], backfillTable, oneChain, 1000, {
+        readFn: backfillReadFn, backfillIds: ['1a', '1b'], fillTo: 0.6,
+    });
+    assert.deepEqual(materials.map(m => m.nodeId), ['1a', '1b']); // '1a' appears once, not re-packed by the backfill pass
+    assert.deepEqual(evicted, []);
+});
+
+test('packMaterials: no backfillIds leaves behavior identical to before (no backfilled extras)', () => {
+    const { materials, evicted } = packMaterials(['1a', '1b', '2a'], table, chains, 1200, { readFn });
+    assert.deepEqual(materials.map(m => m.nodeId), ['1a', '2a']);
+    assert.deepEqual(evicted, ['1b']);
+});

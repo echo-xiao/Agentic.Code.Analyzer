@@ -79,6 +79,32 @@ test('runQuestion records routing.promptTokens from llm.promptTokensEst after ro
     assert.ok(row.trace.routing.promptTokens < row.trace.llm.promptTokensEst);
 });
 
+// A generous budget and an unselective FakeLlm reply (only '1a' checked) should leave plenty of
+// room under the fillTo watermark, so run.ts's backfill wiring should pull in extra major nodes
+// (chain root ids first) beyond what call 2 selected, and report those ids in trace.reading.backfilled.
+test('runQuestion populates trace.reading.backfilled with ids added beyond the LLM selection', async () => {
+    GLOBAL_INDEX.symbols.set('sendMessage', new Set(['/abs/Rocket.Chat/apps/meteor/app/lib/server/sendMessage.ts']));
+    GLOBAL_INDEX.symbols.set('helper', new Set(['/abs/Rocket.Chat/apps/meteor/app/lib/server/helper.ts']));
+    GLOBAL_INDEX.callGraph.set('sendMessage', [{ caller: 'x', file: 'f', edgeType: 'call' }]);
+    GLOBAL_INDEX.callGraph.set('helper', [{ caller: 'sendMessage', file: 'apps/meteor/app/lib/server/sendMessage.ts', edgeType: 'call' }]);
+    GLOBAL_INDEX.fileDependents.set('apps/meteor/app/lib/server/helper.ts', new Set(['apps/meteor/app/lib/server/sendMessage.ts']));
+    const outline: WikiOutline = { repo: 'r', commit: 'c', sections: [
+        { id: 'msg', title: 'Messaging', blurb: 'messages', sources: [{ file: 'apps/meteor/app/lib/server/sendMessage.ts', startLine: 1, endLine: 9 }] }] };
+    const llm = new FakeLlm(['msg', '1a', '答案：apps/meteor/app/lib/server/sendMessage.ts:1']);
+    const row = await runQuestion('q6', 'how is a message sent (sendMessage)?', {
+        llm, outline, truthCore: ['apps/meteor/app/lib/server/sendMessage.ts'],
+        deepwikiFn: async () => 'baseline',
+        budgetTokens: 24000,                        // generous budget -> selected consumes almost none of it
+        readFn: () => ({ text: 'const x = 1;', startLine: 1, endLine: 1 }),
+    });
+    assert.ok(row.trace.reading.backfilled.length > 0);  // the generous budget actually pulled in extras
+    // Every backfilled id must be a materials id that was NOT in the LLM's own selection.
+    for (const id of row.trace.reading.backfilled) {
+        assert.ok(row.trace.reading.materials.some(m => m.nodeId === id));
+        assert.ok(!row.trace.selectedIds.includes(id));
+    }
+});
+
 test('runQuestion: a deepwikiFn that throws still resolves with the run row, not a rejection', async () => {
     GLOBAL_INDEX.symbols.set('sendMessage', new Set(['/abs/Rocket.Chat/apps/meteor/app/lib/server/sendMessage.ts']));
     GLOBAL_INDEX.callGraph.set('sendMessage', [{ caller: 'x', file: 'f', edgeType: 'call' }]);

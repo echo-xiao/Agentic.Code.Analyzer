@@ -25,6 +25,7 @@ export function buildPathPrompt(question: string, skeletonText: string, chainPro
         `Question: ${question}`, '',
         'Reply with ONLY the ids of nodes whose source must be read, comma or newline separated.',
         'Cover every chain that is relevant to the question; skip nodes that are plumbing.',
+        'The reading budget is generous — when unsure whether a node matters, INCLUDE it: omitting a relevant node hurts far more than including a marginal one. Always include each chain\'s entry (root) nodes.',
     ].join('\n');
 }
 

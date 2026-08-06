@@ -26,7 +26,7 @@ export function renderReport(rows: RunRow[]): string {
         L.push(`- 分链：${r.trace.chains.map(c => `链${c.id} ${c.label}(预算${(c.budgetShare * 100).toFixed(0)}%)`).join('、')}`);
         L.push(`- 骨架：${r.trace.skeleton.map(s => `链${s.chainId} ${s.majorCount}正/${s.nodeCount}总`).join('、')}`);
         L.push(`- 选路：勾了 ${r.trace.selectedIds.join('、') || '无'}${r.trace.droppedIds.length ? `；幻觉丢弃 ${r.trace.droppedIds.join('、')}` : ''}`);
-        L.push(`- 读取：${r.trace.reading.materials.length} 件材料，${r.trace.reading.materials.reduce((a, m) => a + m.tokens, 0)} token${r.trace.reading.evicted.length ? `；挤掉 ${r.trace.reading.evicted.join('、')}` : ''}`);
+        L.push(`- 读取：${r.trace.reading.materials.length} 件材料，${r.trace.reading.materials.reduce((a, m) => a + m.tokens, 0)} token${r.trace.reading.evicted.length ? `；挤掉 ${r.trace.reading.evicted.join('、')}` : ''}${r.trace.reading.backfilled.length ? `；回填 ${r.trace.reading.backfilled.length} 件` : ''}`);
         L.push(`- 归因：${STAGE_CN[r.loss.stage]}`);
         for (const f of r.loss.perFile) {
             if (f.stage === 'hit') continue;

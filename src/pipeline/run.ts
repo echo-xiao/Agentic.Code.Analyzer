@@ -82,7 +82,31 @@ export async function runQuestion(qid: string, question: string, deps: Deps): Pr
         if (content) chainProse.set(c.id, content);
     }
     const sel = await selectPaths(question, skeletonText, nodeById, chains, llm, chainProse); // call 2
-    const { materials, evicted } = packMaterials(sel.selected, nodeById, chains, deps.budgetTokens ?? 24000, { readFn: deps.readFn });
+
+    // Deterministic backfill candidates: every chain's root (entry) nodes first -- these are
+    // the nodes a reader should almost always see -- then the remaining unselected major nodes,
+    // ordered by chain weight (heavier chain first) and skeleton render order within a chain.
+    // packMaterials spends these against a single global watermark once the selected-path
+    // budget is packed, so a lightly-selected question still fills a useful share of the
+    // 24k-token allowance instead of leaving it mostly unused.
+    const rootIds: string[] = [];
+    for (const sk of skeletons) for (const r of sk.roots) if (r.id) rootIds.push(r.id);
+    const renderOrder = [...nodeById.keys()];
+    const renderIndex = new Map(renderOrder.map((id, i) => [id, i]));
+    const massById = new Map(chains.map(c => [String(c.id), c.rrfMass]));
+    const rootSet = new Set(rootIds);
+    const selectedSet = new Set(sel.selected);
+    const remainingMajors = renderOrder
+        .filter(id => !rootSet.has(id) && !selectedSet.has(id))
+        .sort((a, b) => {
+            const massDiff = (massById.get(b.slice(0, -1)) ?? 0) - (massById.get(a.slice(0, -1)) ?? 0);
+            if (massDiff !== 0) return massDiff;
+            return (renderIndex.get(a) ?? 0) - (renderIndex.get(b) ?? 0);
+        });
+    const backfillIds = [...rootIds, ...remainingMajors];
+
+    const { materials, evicted } = packMaterials(sel.selected, nodeById, chains, deps.budgetTokens ?? 24000, { readFn: deps.readFn, backfillIds });
+    const backfilled = materials.map(m => m.nodeId).filter(id => !selectedSet.has(id));
     const { answer, fabricated } = await generateAnswer(question, chains, materials, llm, chainProse); // call 3
 
     const totalMass = chains.reduce((a, c) => a + c.rrfMass, 0) || 1;
@@ -100,7 +124,7 @@ export async function runQuestion(qid: string, question: string, deps: Deps): Pr
         chains: chains.map(c => ({ id: c.id, label: c.label, budgetShare: c.rrfMass / totalMass })),
         skeleton: skeletons.map(s => ({ chainId: s.chain.id, majorCount: s.majorCount, nodeCount: filesOf(s.roots).length, files: filesOf(s.roots) })),
         pathsRaw: sel.raw, selectedIds: sel.selected, droppedIds: sel.dropped,
-        reading: { materials: materials.map(m => ({ nodeId: m.nodeId, file: m.file, startLine: m.startLine, endLine: m.endLine, tokens: m.tokens })), evicted, evictedFiles },
+        reading: { materials: materials.map(m => ({ nodeId: m.nodeId, file: m.file, startLine: m.startLine, endLine: m.endLine, tokens: m.tokens })), evicted, evictedFiles, backfilled },
         llm: { calls: llm.calls, promptTokensEst: llm.promptTokensEst },
     };
     let deepwiki: string;

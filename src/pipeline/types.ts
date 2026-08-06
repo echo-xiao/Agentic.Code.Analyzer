@@ -36,6 +36,6 @@ export interface QuestionTrace {
     chains: Array<{ id: number; label: string; budgetShare: number }>;
     skeleton: Array<{ chainId: number; majorCount: number; nodeCount: number; files: string[] }>;
     pathsRaw: string; selectedIds: string[]; droppedIds: string[];
-    reading: { materials: Array<{ nodeId: string; file: string; startLine: number; endLine: number; tokens: number }>; evicted: string[]; evictedFiles: string[] };
+    reading: { materials: Array<{ nodeId: string; file: string; startLine: number; endLine: number; tokens: number }>; evicted: string[]; evictedFiles: string[]; backfilled: string[] };
     llm: { calls: number; promptTokensEst: number };
 }

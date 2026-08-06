@@ -38,7 +38,7 @@ const defaultRead: ReadFn = (n) => {
 
 export function packMaterials(
     selectedIds: string[], nodeById: Map<string, SkeletonNode>, chains: Chain[],
-    budgetTokens = 24000, opts: { readFn?: ReadFn } = {},
+    budgetTokens = 24000, opts: { readFn?: ReadFn; backfillIds?: string[]; fillTo?: number } = {},
 ): { materials: Material[]; evicted: string[] } {
     const readFn = opts.readFn ?? defaultRead;
     const totalMass = chains.reduce((a, c) => a + c.rrfMass, 0) || 1;
@@ -62,5 +62,38 @@ export function packMaterials(
         spent.set(chainId, used + tokens);
         materials.push({ nodeId: id, symbol: n.symbol, file: n.file, startLine: r.startLine, endLine: r.endLine, text, tokens });
     }
+
+    // Deterministic backfill: the selected-path budget above is often only lightly used (LLM
+    // call 2 tends to select 3-10 nodes out of a much larger 24k-token allowance), so top up
+    // with additional candidates (chain roots first, then remaining majors ordered by chain
+    // weight -- see run.ts) charged against a single GLOBAL watermark rather than per-chain
+    // caps, so one chain's unused budget can be spent on any chain's backfill candidates.
+    // Backfilled items append to `materials`; ids that don't fit go nowhere -- `evicted` stays
+    // reserved for selected-but-dropped ids only.
+    const backfillIds = opts.backfillIds ?? [];
+    if (backfillIds.length > 0) {
+        const watermark = budgetTokens * (opts.fillTo ?? 0.6);
+        const handled = new Set([...materials.map(m => m.nodeId), ...evicted]);
+        let globalSpent = materials.reduce((a, m) => a + m.tokens, 0);
+        for (const id of backfillIds) {
+            if (handled.has(id)) continue;
+            handled.add(id);
+            if (globalSpent >= watermark) continue;                     // no room left at all
+            const n = nodeById.get(id); if (!n) continue;
+            const r = readFn(n);
+            if (!r) continue;
+            let text = r.text; let tokens = estimateTokens(text);
+            const room = watermark - globalSpent;
+            if (tokens > room) {
+                if (room < 50) continue;                                 // not worth a fragment; a
+                                                                           // smaller later candidate may
+                                                                           // still fit, so keep scanning
+                text = text.slice(0, room * 4); tokens = estimateTokens(text);
+            }
+            globalSpent += tokens;
+            materials.push({ nodeId: id, symbol: n.symbol, file: n.file, startLine: r.startLine, endLine: r.endLine, text, tokens });
+        }
+    }
+
     return { materials, evicted };
 }
