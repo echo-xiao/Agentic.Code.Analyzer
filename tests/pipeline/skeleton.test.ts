@@ -104,6 +104,27 @@ test('buildChainSkeleton: a callee prefers the definition in the same file as it
     assert.equal(helperNode!.file, 'apps/meteor/app/lib/server/root.ts');
 });
 
+test("buildChainSkeleton: callee resolution falls back to the chain's own files when the parent's file doesn't match", () => {
+    GLOBAL_INDEX.symbols.clear(); GLOBAL_INDEX.callGraph.clear(); GLOBAL_INDEX.allFiles.clear();
+    GLOBAL_INDEX.symbols.set('root', new Set(['/x/Rocket.Chat/apps/meteor/app/lib/server/root.ts']));
+    // 'multi' is defined in three files; the parent's own file (root.ts) is NOT among them, so the
+    // same-file-as-parent preference can't apply. One of the three is in `chainFiles`.
+    GLOBAL_INDEX.symbols.set('multi', new Set([
+        '/x/Rocket.Chat/apps/meteor/app/lib/other1.ts',   // outside chainFiles
+        '/x/Rocket.Chat/apps/meteor/client/x.ts',         // in chainFiles
+        '/x/Rocket.Chat/apps/meteor/app/lib/other2.ts',   // outside chainFiles
+    ]));
+    GLOBAL_INDEX.callGraph.set('multi', [{ caller: 'root', file: 'root', edgeType: 'call' }]);
+
+    const chain3: Chain = { id: 1, label: 'root', rrfMass: 1, seeds: [
+        { symbol: 'root', file: 'apps/meteor/app/lib/server/root.ts', rrf: 1, signals: { lexicalRank: 1, provenanceRank: 1, graphRank: 1 }, sectionId: 'root' },
+    ]};
+    const sk = buildChainSkeleton(chain3, { hotFanIn: 25, chainFiles: new Set(['apps/meteor/client/x.ts']) });
+    const multiNode = sk.roots[0].children.find(c => c.symbol === 'multi');
+    assert.ok(multiNode);
+    assert.equal(multiNode!.file, 'apps/meteor/client/x.ts');
+});
+
 test('skeleton: default maxDepth is 6 (a deep linear passthrough chain reaches depth 6, not 7)', () => {
     GLOBAL_INDEX.symbols.clear(); GLOBAL_INDEX.callGraph.clear(); GLOBAL_INDEX.allFiles.clear();
     const put = (sym: string, file: string) => GLOBAL_INDEX.symbols.set(sym, new Set([file]));

@@ -65,7 +65,14 @@ export async function runQuestion(qid: string, question: string, deps: Deps): Pr
         if (sec) sectionContent.set(r.sectionId, loadSectionContent(sec));
     }
     const chains = groupChains(seeds, routed, outline, question, sectionContent);
-    const skeletons = chains.map(c => buildChainSkeleton(c, {}, question));
+    // Chain label == sectionId for section-born chains (see the chainProse comment below); the
+    // fallback chain's label is a file-path prefix that never matches a sectionId, so it gets no
+    // section sources here and buildChainSkeleton falls back to just its own seeds' files.
+    const chainFilesFor = (c: (typeof chains)[number]): Set<string> => {
+        const sec = outline.sections.find(s => s.id === c.label);
+        return new Set(sec ? sec.sources.map(s => s.file) : []);
+    };
+    const skeletons = chains.map(c => buildChainSkeleton(c, { chainFiles: chainFilesFor(c) }, question));
     const { text: skeletonText, nodeById } = renderSkeletons(skeletons);
     // Chain label == sectionId for section-born chains (the fallback chain, if any, has a
     // file-path label that never matches a sectionId, so it naturally gets no prose entry).

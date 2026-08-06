@@ -8,7 +8,14 @@ import { relPath } from '../engine/common.js';
 import { tokenizeQuestion, symbolTokens } from './entry.js';
 import type { Chain, ChainSkeleton, SkeletonNode } from './types.js';
 
-export interface SkeletonOpts { maxDepth?: number; maxMajorPerChain?: number; hotFanIn?: number; maxChildrenPerNode?: number }
+export interface SkeletonOpts {
+    maxDepth?: number; maxMajorPerChain?: number; hotFanIn?: number; maxChildrenPerNode?: number;
+    // Repo-relative files belonging to this chain's own section (its routed section's sources —
+    // populated by run.ts from the outline; chain.seeds[].file is unioned in automatically below).
+    // Used as a resolution preference for multi-file callees, below the parent's own file but
+    // above an arbitrary first index entry.
+    chainFiles?: Set<string>;
+}
 
 const fanIn = (sym: string) => GLOBAL_INDEX.callGraph.get(sym)?.length ?? 0;
 
@@ -43,12 +50,17 @@ const scoreCallee = (callee: string, edgeType: string, qTokens: Set<string>, hom
 };
 
 // Resolve which of a (possibly multi-file) symbol's definitions to anchor a node on.
-// Preference order: an entry whose repo-relative path equals `preferredRel` (the seed's own file,
-// carefully chosen upstream by question-token affinity + section sources — do not discard it by
-// blindly taking the index's first entry) > an entry in the SAME file as the parent node (a callee
-// defined in the parent's own file is almost always the right instance for that call site) > the
-// first entry, as before.
-const resolveFile = (sym: string, preferredRel?: string, preferredParentAbs?: string): { abs: string; rel: string } => {
+// Preference order:
+//   1. an entry whose repo-relative path equals `preferredRel` (root nodes only — the seed's own
+//      file, carefully chosen upstream by question-token affinity + section sources; do not
+//      discard it by blindly taking the index's first entry).
+//   2. an entry in the SAME file as the parent node (a callee defined in the parent's own file is
+//      almost always the right instance for that call site).
+//   3. an entry whose repo-relative path is one of this chain's own files (`chainFiles` — the
+//      chain's routed-section sources plus its seeds' files): still likely the intended instance
+//      even when it isn't literally the parent's file (e.g. a sibling file in the same section).
+//   4. the first entry, as before — last resort when nothing else narrows it down.
+const resolveFile = (sym: string, preferredRel?: string, preferredParentAbs?: string, chainFiles?: Set<string>): { abs: string; rel: string } => {
     const files = [...(GLOBAL_INDEX.symbols.get(sym) ?? [])];
     if (files.length === 0) return { abs: '', rel: '' };
     if (preferredRel) {
@@ -57,6 +69,10 @@ const resolveFile = (sym: string, preferredRel?: string, preferredParentAbs?: st
     }
     if (preferredParentAbs) {
         const match = files.find(f => f === preferredParentAbs);
+        if (match) return { abs: match, rel: relPath(match) };
+    }
+    if (chainFiles && chainFiles.size > 0) {
+        const match = files.find(f => chainFiles.has(relPath(f)));
         if (match) return { abs: match, rel: relPath(match) };
     }
     return { abs: files[0], rel: relPath(files[0]) };
@@ -116,14 +132,19 @@ export function buildChainSkeleton(chain: Chain, opts: SkeletonOpts = {}, questi
     const visited = new Set<string>();
     const homeSeg = anchorSeg(chain.seeds[0]?.file ?? '');
     const qTokens = new Set(tokenizeQuestion(question ?? ''));
+    // This chain's own files: its routed section's sources (opts.chainFiles, populated by run.ts)
+    // unioned with its seeds' own files — a resolution preference for multi-file callees that sits
+    // below the parent's own file but above an arbitrary first index entry (see resolveFile).
+    const chainFiles = new Set<string>([...(opts.chainFiles ?? []), ...chain.seeds.map(s => s.file)]);
 
     const build = (sym: string, depth: number, parentAbs?: string, preferredFile?: string): SkeletonNode | null => {
         if (visited.has(sym)) return null;
         visited.add(sym);
         // Root nodes (depth 0) honor the seed's own file — the entry stage picked it deliberately via
         // question-token affinity + section sources, and must not be overridden by index insertion order.
-        // Non-root nodes prefer a same-file definition as their parent when one exists.
-        const { abs, rel: file } = resolveFile(sym, depth === 0 ? preferredFile : undefined, parentAbs);
+        // Non-root nodes prefer a same-file definition as their parent, then a definition living
+        // anywhere else in the chain's own files, before falling back to the first index entry.
+        const { abs, rel: file } = resolveFile(sym, depth === 0 ? preferredFile : undefined, parentAbs, chainFiles);
         const { line, snippet } = firstLine(sym, abs);
         const base = { symbol: sym, file, line, snippet, edgeType: null, children: [] as SkeletonNode[] };
         if (anchorSeg(file) !== homeSeg && depth > 0) return { ...base, id: '', kind: 'boundary' };
