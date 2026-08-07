@@ -12,7 +12,13 @@ import type { RoutedSection, Chain } from './types.js';
 // the rule cannot tell them apart, and cutting by name would be arbitrary.
 export const SEEDS_PER_POOL = 3;
 export const MAX_SEEDS_PER_POOL = 9;
-export const MAX_CHAINS = 12;
+
+// Spent AFTER deduplication (see candidates.ts), so it bounds real chains rather than including
+// the duplicates and subset chains that used to fill it. Measured: net candidates peak at 26
+// (new-25, new-13) over 34 questions, so 30 is effectively "no quota" today -- and raising it from
+// 12 costs almost nothing in prompt size, because everything past the twelfth is a 1-2 node chain
+// (the select call's skeleton grew 20145 -> 20326 tokens on its largest question).
+export const MAX_CHAINS = 30;
 
 const STOPWORDS = new Set([
     'how', 'is', 'a', 'the', 'an', 'on', 'in', 'of', 'to', 'for', 'does', 'do', 'what', 'when',
@@ -161,25 +167,52 @@ export function pickSeeds(pool: Pool, question: string, n = SEEDS_PER_POOL, cap 
     return picked.map(s => ({ ...s, tied: (counts.get(s.score) ?? 0) > 1 }));
 }
 
+// Every seed of every pool, with no quota: the quota is spent in candidates.ts, AFTER the
+// redundant chains are known. Deciding it here is what let duplicates and subset chains eat the
+// slots -- measured over 34 questions, 87 of 385 candidates (23%) were one or the other.
+//
+// A pool is per page, but a cited file is not: 50 of the 204 files the wiki cites appear on more
+// than one page (core-typings/src/IRoom.ts is cited 12 times under 3.3-room-and-channel-management
+// and twice under 2.7-type-system-and-api-contracts). Both pages then pool the same symbols, and
+// since lexicalScore reads only the symbol name and the question, they score identically and are
+// both picked -- 61 of those 385 candidates were exact (symbol, file) duplicates.
+//
+// The later pool is merged rather than dropped: its prose feeds candidate scoring during expansion
+// and rides along as background notes, so discarding it would lose wiki context the surviving
+// chain has no other way to see.
 export function buildChains(
     routed: RoutedSection[],
     sections: WikiSubsection[],
     question: string,
-    maxChains = MAX_CHAINS,
 ): Chain[] {
     const chains: Chain[] = [];
+    const bySeed = new Map<string, Chain>();
     for (const pool of buildPools(routed, sections)) {
         for (const seed of pickSeeds(pool, question)) {
-            if (chains.length >= maxChains) return chains;          // runaway backstop only
-            chains.push({
+            const key = `${seed.symbol} ${seed.file}`;
+            const already = bySeed.get(key);
+            if (already) {
+                // The first pool keeps the label and page -- pools come out in routing order, so
+                // it is the better-ranked hit. Only its context grows.
+                for (const path of pool.sections.map(s => s.path)) {
+                    if (!already.sections.includes(path)) already.sections.push(path);
+                }
+                already.prose = [already.prose, ...pool.sections.map(s => s.prose)].join('\n\n');
+                already.tied ||= seed.tied;
+                continue;
+            }
+            const chain: Chain = {
                 id: chains.length + 1,
                 pageId: pool.pageId,
                 sections: pool.sections.map(s => s.path),
                 label: `${pool.sections[0].path} · ${seed.symbol}`,
                 seed: { symbol: seed.symbol, file: seed.file },
+                score: seed.score,
                 tied: seed.tied,
                 prose: pool.sections.map(s => s.prose).join('\n\n'),
-            });
+            };
+            bySeed.set(key, chain);
+            chains.push(chain);
         }
     }
     return chains;

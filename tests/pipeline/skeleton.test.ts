@@ -28,7 +28,7 @@ const edge = (callee: string, caller: string, file: string, edgeType: any = 'cal
     GLOBAL_INDEX.callGraph.get(callee)!.push({ caller, file, edgeType });
 };
 const chainOf = (symbol: string, file: string): Chain =>
-    ({ id: 1, pageId: 'p', sections: ['p › S'], label: 'p › S · ' + symbol, seed: { symbol, file }, tied: false, prose: '' });
+    ({ id: 1, pageId: 'p', sections: ['p › S'], label: 'p › S · ' + symbol, seed: { symbol, file }, score: 1, tied: false, prose: '' });
 
 beforeEach(() => {
     GLOBAL_INDEX.symbols.clear(); GLOBAL_INDEX.callGraph.clear(); GLOBAL_INDEX.fileDependents.clear();

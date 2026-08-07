@@ -5,7 +5,7 @@ import { FakeLlm } from '../../src/pipeline/llm.js';
 import type { Material, Chain } from '../../src/pipeline/types.js';
 
 const mats: Material[] = [{ nodeId: '1a', symbol: 's', file: 'apps/meteor/app/lib/server/a.ts', startLine: 40, endLine: 90, text: 'code', tokens: 1 }];
-const chains: Chain[] = [{ id: 1, pageId: 'msg', sections: ['msg › S'], label: 'msg › S · e1', seed: { symbol: 'e1', file: 'f/e1.ts' }, tied: false, prose: '' }];
+const chains: Chain[] = [{ id: 1, pageId: 'msg', sections: ['msg › S'], label: 'msg › S · e1', seed: { symbol: 'e1', file: 'f/e1.ts' }, score: 1, tied: false, prose: '' }];
 
 test('buildAnswerPrompt groups materials by chain and states their line ranges', () => {
     const p = buildAnswerPrompt('q', chains, mats);

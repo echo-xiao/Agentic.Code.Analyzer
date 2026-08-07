@@ -12,6 +12,7 @@ export interface Chain {
     sections: string[];              // the hit subsection paths this chain was built from
     label: string;                   // "page › subsection · seed" for display
     seed: ChainSeed;
+    score: number;                   // the seed's lexical score; comparable ACROSS pools
     tied: boolean;                   // this seed shared the top lexical score with others
     prose: string;                   // hit subsections' prose, concatenated
 }
@@ -67,6 +68,9 @@ export interface QuestionTrace {
     qid: string; question: string;
     routing: { sections: RoutedSection[]; promptTokens: number };
     pools: PoolStat[];
+    // Chains are built for every seed, then the redundant ones are dropped before the quota is
+    // spent: expanded = built, droppedRedundant = duplicate or subset, kept = what reached step 4.
+    candidates: { expanded: number; droppedRedundant: number; kept: number };
     chains: Array<{
         id: number; label: string; mode: ChainMode;
         seed: ChainSeed; tied: boolean;

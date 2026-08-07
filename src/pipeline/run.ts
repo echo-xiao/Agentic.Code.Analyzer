@@ -14,7 +14,8 @@ import { ensureIndex } from '../indexer/index.js';
 import { route } from './routing.js';
 import { buildChains, buildPools, pickSeeds } from './entry.js';
 import { loadAllSections, type WikiSubsection } from '../deepwiki/sections.js';
-import { buildChainSkeleton, renderSkeletons, resetSkeletonCaches } from './skeleton.js';
+import { renderSkeletons, resetSkeletonCaches } from './skeleton.js';
+import { buildCandidates } from './candidates.js';
 import { selectChains } from './select.js';
 import { packMaterials } from './reading.js';
 import { generateAnswer } from './answer.js';
@@ -39,7 +40,6 @@ export async function runQuestion(qid: string, question: string, deps: Deps): Pr
     const routingPromptTokens = llm.promptTokensEst;                               // snapshot right after call 1
 
     const pools = buildPools(routed, sections);
-    const chains = buildChains(routed, sections, question);
     const poolStats: PoolStat[] = pools.map(p => ({
         pageId: p.pageId,
         sections: p.sections.map(s => s.path),
@@ -48,11 +48,13 @@ export async function runQuestion(qid: string, question: string, deps: Deps): Pr
         seeds: pickSeeds(p, question).map(s => s.symbol),
     }));
 
+    // Every seed becomes a candidate; the quota is spent after expansion, once the redundant
+    // chains are visible. Expansion is in-memory graph work -- 3s for all 34 questions.
     resetSkeletonCaches();
-    const skeletons = chains.map(c => buildChainSkeleton(c, {
-        chainFiles: new Set(pools.find(p => p.pageId === c.pageId)?.files ?? []),
-        prose: c.prose || undefined,
-    }, question));
+    const { kept: candidates, expanded, droppedRedundant } =
+        buildCandidates(buildChains(routed, sections, question), pools, question);
+    const chains = candidates.map(c => c.chain);
+    const skeletons = candidates.map(c => c.skeleton);
     const { text: skeletonText, nodeById, blocks } = renderSkeletons(skeletons);
 
     const selection = chains.length > 0
@@ -99,6 +101,7 @@ export async function runQuestion(qid: string, question: string, deps: Deps): Pr
         qid, question,
         routing: { sections: routed, promptTokens: routingPromptTokens },
         pools: poolStats,
+        candidates: { expanded, droppedRedundant, kept: chains.length },
         chains: chains.map(c => {
             const sk = skeletons.find(s => s.chain.id === c.id);
             return { id: c.id, label: c.label, mode: sk?.mode ?? 'flow', seed: c.seed, tied: c.tied, rerooted: sk?.rerooted };

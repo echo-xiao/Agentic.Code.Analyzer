@@ -5,7 +5,7 @@ import { FakeLlm } from '../../src/pipeline/llm.js';
 import type { Chain } from '../../src/pipeline/types.js';
 
 const chain = (id: number, label: string, tied = false): Chain =>
-    ({ id, pageId: 'p', sections: ['p › S'], label, seed: { symbol: 's' + id, file: 'f.ts' }, tied, prose: '' });
+    ({ id, pageId: 'p', sections: ['p › S'], label, seed: { symbol: 's' + id, file: 'f.ts' }, score: 1, tied, prose: '' });
 const chains = [
     chain(1, '2.2 › Message Sending Workflow · sendMessage'),
     chain(2, '2.4 › Message Composer Popups · RoomMessageContent', true),

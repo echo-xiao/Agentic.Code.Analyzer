@@ -143,10 +143,48 @@ test('buildChains: a page whose pool scores zero contributes no chain', () => {
     assert.deepEqual(chains.map(c => c.pageId), ['P']);
 });
 
-test('buildChains honours the runaway chain cap', () => {
+// The quota moved to candidates.ts, so buildChains now returns every seed's chain: a chain's
+// redundancy is invisible from its seed, and cutting here is what let 87 of 385 candidates
+// (duplicates and subsets) occupy the slots.
+test('buildChains builds every seed, leaving the quota to the candidate stage', () => {
     ['aMessage', 'bMessage', 'cMessage'].forEach(s => def(s, 'p/x.ts'));
-    const chains = buildChains(routed('P › One'), [sec('P', 'One', ['p/x.ts'])], 'How is a message sent?', 2);
-    assert.equal(chains.length, 2);
+    const chains = buildChains(routed('P › One'), [sec('P', 'One', ['p/x.ts'])], 'How is a message sent?');
+    assert.equal(chains.length, 3);
+    assert.deepEqual(chains.map(c => c.id), [1, 2, 3]);
+});
+
+// A pool is per page, but a cited file is not: 50 of the 204 files the wiki cites appear on more
+// than one page, and lexicalScore reads only the symbol name and the question, so both pools score
+// the symbol identically and both pick it. Measured: 61 of 385 candidates were exact duplicates.
+test('buildChains never builds the same (symbol, file) twice across pools', () => {
+    def('sendMessage', 'shared/send.ts');
+    const sections = [
+        sec('P', 'Message Sending Workflow', ['shared/send.ts'], 'prose from P'),
+        sec('Q', 'Common Room Operations', ['shared/send.ts'], 'prose from Q'),
+    ];
+    const chains = buildChains(routed('P › Message Sending Workflow', 'Q › Common Room Operations'),
+        sections, 'How is a message sent?');
+    assert.equal(chains.length, 1);
+    assert.equal(chains[0].pageId, 'P');                                  // first routed pool keeps the label
+    assert.equal(chains[0].label, 'P › Message Sending Workflow · sendMessage');
+});
+
+test('buildChains merges the duplicate pool\'s subsections and prose into the survivor', () => {
+    def('sendMessage', 'shared/send.ts');
+    const sections = [
+        sec('P', 'Message Sending Workflow', ['shared/send.ts'], 'prose from P'),
+        sec('Q', 'Common Room Operations', ['shared/send.ts'], 'prose from Q'),
+    ];
+    const [chain] = buildChains(routed('P › Message Sending Workflow', 'Q › Common Room Operations'),
+        sections, 'How is a message sent?');
+    assert.deepEqual(chain.sections, ['P › Message Sending Workflow', 'Q › Common Room Operations']);
+    assert.ok(chain.prose.includes('prose from P') && chain.prose.includes('prose from Q'));
+});
+
+test('buildChains carries the seed score, which is comparable across pools', () => {
+    def('sendMessage', 'p/send.ts');
+    const [chain] = buildChains(routed('P › One'), [sec('P', 'One', ['p/send.ts'])], 'How is a message sent?');
+    assert.equal(chain.score, 2);                                         // 2 hits / 2 sub-words
 });
 
 // The wiki cites test files as well as production ones. A symbol defined only in a test file has

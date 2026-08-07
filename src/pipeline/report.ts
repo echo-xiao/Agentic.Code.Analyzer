@@ -41,6 +41,9 @@ function renderRecap(t: QuestionTrace): string[] {
 
     L.push(`- 分链：${t.chains.map(c => `链${c.id} ${c.label}(${MODE_CN[c.mode]})`).join('、') || '（无）'}`);
 
+    const cd = t.candidates;
+    L.push(`- 去冗余：候选 ${cd.expanded}，去掉重复/子集 ${cd.droppedRedundant}，净 ${cd.expanded - cd.droppedRedundant}，取 ${cd.kept}`);
+
     L.push(`- 骨架：${t.skeleton.map(s =>
         `链${s.chainId} ${s.majorCount}正/${s.nodeCount}总/深${s.maxDepthReached}`).join('、') || '（无）'}`);
 
@@ -56,9 +59,7 @@ export function renderReport(rows: RunRow[]): string {
     const L: string[] = ['# Benchmark Run Report', '', '| 题号 | 链数 | 正节点 | 材料 | token | LLM 请求 | 人工判分 |', '|---|---|---|---|---|---|---|'];
     for (const r of rows) {
         const t = r.trace;
-        L.push(`- 选链：留 ${t.selection.kept.join('、') || '（无）'}${t.selection.dropped.length ? `；丢 ${t.selection.dropped.join('、')}` : ''}`);
-
-    const tokens = t.reading.materials.reduce((a, m) => a + m.tokens, 0);
+        const tokens = t.reading.materials.reduce((a, m) => a + m.tokens, 0);
         L.push(`| ${t.qid} | ${t.chains.length} | ${t.readIds.length} | ${t.reading.materials.length} | ${tokens} | ${t.llm.calls} |  |`);
     }
     const total = rows.reduce((a, r) => a + r.trace.llm.calls, 0);
