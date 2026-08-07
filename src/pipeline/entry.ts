@@ -7,9 +7,11 @@ import { relPath } from '../engine/common.js';
 import type { WikiSubsection } from '../deepwiki/sections.js';
 import type { RoutedSection, Chain } from './types.js';
 
-// Ties are built rather than broken, so this only bounds the blast radius of a pool where many
-// symbols share the top score.
-export const MAX_TIED = 3;
+// A page often carries several sides of the same question, so the pool contributes its top few
+// symbols rather than only its champion. Ties at the cut-off are never sliced -- equal scores mean
+// the rule cannot tell them apart, and cutting by name would be arbitrary.
+export const SEEDS_PER_POOL = 3;
+export const MAX_SEEDS_PER_POOL = 9;
 export const MAX_CHAINS = 12;
 
 const STOPWORDS = new Set([
@@ -112,7 +114,11 @@ export function buildPools(routed: RoutedSection[], sections: WikiSubsection[]):
 
     const pools: Pool[] = [];
     for (const [pageId, secs] of byPage) {
-        const files = [...new Set(secs.flatMap(s => s.sources))];
+        // The wiki cites test files too (3.1-omnichannel points a subsection at
+        // tests/data/livechat/rooms.ts), and a symbol defined ONLY there passes chooseFile's test
+        // filter because it has no rival definition. Measured: closeOmnichannelRoom then became a
+        // seed from a test utility, and the answer had to note the real handler was missing.
+        const files = [...new Set(secs.flatMap(s => s.sources))].filter(f => !isTestPath(f));
         const fileSet = new Set(files);
         const symbols: Array<{ symbol: string; files: string[] }> = [];
         for (const [symbol, absFiles] of GLOBAL_INDEX.symbols) {
@@ -131,19 +137,28 @@ export function buildPools(routed: RoutedSection[], sections: WikiSubsection[]):
 export interface Seed { symbol: string; file: string; score: number; tied: boolean }
 
 // Seed selection is zero-tolerance: expansion is a one-way walk from the seed, so a wrong seed
-// wastes the whole chain (measured: seeding at decryptMessage vs encryptMessage produces two
-// trees that cannot reach each other). Ties are therefore built, not broken.
-export function pickSeeds(pool: Pool, question: string, maxTied = MAX_TIED): Seed[] {
+// wastes the whole chain (measured: seeding at decryptMessage vs encryptMessage produces two trees
+// that cannot reach each other). Hence a few seeds per pool, and ties are never cut mid-group.
+//
+// Taking only the champion measurably loses answers: for "how does the Omnichannel queue process
+// AND close a conversation", closeOmnichannelRoom sat second at 1.33 and never became a chain, so
+// the answer covered process only.
+export function pickSeeds(pool: Pool, question: string, n = SEEDS_PER_POOL, cap = MAX_SEEDS_PER_POOL): Seed[] {
     const qTokens = questionTokens(question);
     const qLower = question.toLowerCase();
     const scored = pool.symbols
         .map(s => ({ symbol: s.symbol, file: chooseFile(s.files), score: lexicalScore(s.symbol, qTokens, qLower) }))
-        .filter(s => s.score > 0);                    // a zero score is not a candidate
+        .filter(s => s.score > 0)                     // a zero score is not a candidate
+        .sort((a, b) => b.score - a.score || a.symbol.localeCompare(b.symbol));
     if (scored.length === 0) return [];               // whole pool scores zero -> no chain for this page
 
-    const best = Math.max(...scored.map(s => s.score));
-    const top = scored.filter(s => s.score === best).sort((a, b) => a.symbol.localeCompare(b.symbol));
-    return top.slice(0, maxTied).map(s => ({ ...s, tied: top.length > 1 }));
+    // Take every symbol whose score is one of the top N scores -- a tie is a statement that the
+    // rule cannot separate those candidates, so no tie group is ever split.
+    const topScores = [...new Set(scored.map(s => s.score))].slice(0, n);
+    const picked = scored.filter(s => topScores.includes(s.score)).slice(0, cap);
+    const counts = new Map<number, number>();
+    for (const s of picked) counts.set(s.score, (counts.get(s.score) ?? 0) + 1);
+    return picked.map(s => ({ ...s, tied: (counts.get(s.score) ?? 0) > 1 }));
 }
 
 export function buildChains(

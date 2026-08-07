@@ -3,7 +3,7 @@ import assert from 'node:assert/strict';
 import { GLOBAL_INDEX } from '../../src/indexer/state.js';
 import {
     lexicalScore, questionTokens, symbolTokens, tokenizeQuestion,
-    chooseFile, buildPools, pickSeeds, buildChains, MAX_TIED,
+    chooseFile, buildPools, pickSeeds, buildChains, SEEDS_PER_POOL, MAX_SEEDS_PER_POOL,
 } from '../../src/pipeline/entry.js';
 import type { WikiSubsection } from '../../src/deepwiki/sections.js';
 
@@ -59,12 +59,26 @@ test('buildPools ignores routed paths that match no known subsection', () => {
     assert.equal(pools.length, 1);
 });
 
-test('pickSeeds takes the lexical winner when it is unique', () => {
-    def('sendMessage', 'p/send.ts'); def('helper', 'p/send.ts');
+test('pickSeeds takes the top scorers, not only the champion', () => {
+    def('sendMessage', 'p/send.ts');          // 2 hits / 2 sub-words = 2.00
+    def('sendText', 'p/send.ts');             // 1 hit  / 2 sub-words = 0.50
+    def('helper', 'p/send.ts');               // 0 -> not a candidate
     const pools = buildPools(routed('P › One'), [sec('P', 'One', ['p/send.ts'])]);
     const seeds = pickSeeds(pools[0], 'How is a message sent?');
-    assert.deepEqual(seeds.map(s => s.symbol), ['sendMessage']);
-    assert.equal(seeds[0].tied, false);
+    assert.deepEqual(seeds.map(s => s.symbol), ['sendMessage', 'sendText']);
+    assert.ok(seeds.every(s => !s.tied));
+});
+
+// Measured driver: for "how does the Omnichannel queue process AND close a conversation",
+// closeOmnichannelRoom scored 1.33 behind OmnichannelQueue's 2.00. Taking only the champion left
+// the answer covering process and never close.
+test('pickSeeds reaches the runner-up so a second facet of the question survives', () => {
+    def('OmnichannelQueue', 'p/q.ts');        // queue -> 1 hit / 2 = 0.50... plus below
+    def('closeOmnichannelRoom', 'p/q.ts');
+    def('processWaitingQueue', 'p/q.ts');
+    const pools = buildPools(routed('P › One'), [sec('P', 'One', ['p/q.ts'])]);
+    const seeds = pickSeeds(pools[0], 'How does the Omnichannel queue process and close a conversation?');
+    assert.ok(seeds.some(s => s.symbol === 'closeOmnichannelRoom'), seeds.map(s => s.symbol).join(','));
 });
 
 // Seed choice is zero-tolerance: expansion is a one-way walk, so a wrong seed wastes the chain.
@@ -77,14 +91,34 @@ test('pickSeeds builds every tied candidate rather than breaking the tie', () =>
     assert.ok(seeds.every(s => s.tied));
 });
 
-test('pickSeeds caps a large tie group at MAX_TIED', () => {
+// Equal scores mean the rule cannot tell the candidates apart, so cutting at exactly N would be
+// an arbitrary alphabetical choice -- the group is kept whole, bounded only by the hard cap.
+test('pickSeeds never splits a tie group, and honours the hard cap', () => {
     ['aMessage', 'bMessage', 'cMessage', 'dMessage'].forEach(s => def(s, 'p/x.ts'));
     const pools = buildPools(routed('P › One'), [sec('P', 'One', ['p/x.ts'])]);
-    assert.equal(pickSeeds(pools[0], 'How is a message sent?').length, MAX_TIED);
+    const seeds = pickSeeds(pools[0], 'How is a message sent?');
+    assert.equal(seeds.length, 4);                          // all four tie at 0.50 -> none dropped
+    assert.ok(seeds.every(s => s.tied));
+
+    'efghijkl'.split('').forEach(x => def(x + 'Message', 'p/x.ts'));
+    const big = buildPools(routed('P › One'), [sec('P', 'One', ['p/x.ts'])]);
+    assert.equal(pickSeeds(big[0], 'How is a message sent?').length, MAX_SEEDS_PER_POOL);
+});
+
+// Three distinct scores are taken, and every symbol sharing one of them comes along -- the cut is
+// on the score, not on the position.
+test('pickSeeds takes every symbol sharing one of the top three scores', () => {
+    def('sendMessage', 'p/x.ts');        // 2.00
+    def('sendText', 'p/x.ts');           // 0.50
+    def('sendFile', 'p/x.ts');           // 0.50  same score as sendText -> must come along
+    def('messageBus', 'p/x.ts');         // 0.50
+    const pools = buildPools(routed('P › One'), [sec('P', 'One', ['p/x.ts'])]);
+    const seeds = pickSeeds(pools[0], 'How is a message sent?');
+    assert.deepEqual(seeds.map(s => s.symbol).sort(), ['messageBus', 'sendFile', 'sendMessage', 'sendText']);
 });
 
 // Not relevance filtering (v2 does no deterministic culling) -- with no match at all there is no
-// starting point, and "build every tie" would otherwise pick MAX_TIED unrelated symbols at random.
+// starting point, and taking the top N would otherwise pick unrelated symbols at random.
 test('pickSeeds returns nothing when the whole pool scores zero', () => {
     def('rateLimiter', 'p/api.ts'); def('loadAPI', 'p/api.ts');
     const pools = buildPools(routed('P › One'), [sec('P', 'One', ['p/api.ts'])]);
@@ -113,4 +147,23 @@ test('buildChains honours the runaway chain cap', () => {
     ['aMessage', 'bMessage', 'cMessage'].forEach(s => def(s, 'p/x.ts'));
     const chains = buildChains(routed('P › One'), [sec('P', 'One', ['p/x.ts'])], 'How is a message sent?', 2);
     assert.equal(chains.length, 2);
+});
+
+// The wiki cites test files as well as production ones. A symbol defined only in a test file has
+// no rival definition, so chooseFile's test filter never fires and it can become a seed --
+// measured: closeOmnichannelRoom seeded a chain from tests/data/livechat/rooms.ts, and the answer
+// had to note that the real handler was absent from the materials.
+test('buildPools excludes test files cited by the wiki', () => {
+    def('realHandler', 'server/livechat/rooms.ts');
+    def('closeOmnichannelRoom', 'apps/meteor/tests/data/livechat/rooms.ts');
+    const sections = [sec('P', 'API Endpoints', ['server/livechat/rooms.ts', 'apps/meteor/tests/data/livechat/rooms.ts'])];
+    const pools = buildPools(routed('P › API Endpoints'), sections);
+    assert.deepEqual(pools[0].files, ['server/livechat/rooms.ts']);
+    assert.deepEqual(pools[0].symbols.map(s => s.symbol), ['realHandler']);
+});
+
+test('buildPools drops a page whose subsections cite only test files', () => {
+    def('helper', 'apps/meteor/tests/e2e/helper.ts');
+    const pools = buildPools(routed('P › Testing'), [sec('P', 'Testing', ['apps/meteor/tests/e2e/helper.ts'])]);
+    assert.deepEqual(pools[0].symbols, []);
 });
