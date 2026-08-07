@@ -4,7 +4,7 @@ import * as fs from 'fs';
 import { getImplementation } from '../engine/source.js';
 import { GLOBAL_INDEX } from '../indexer/state.js';
 import { estimateTokens } from './llm.js';
-import type { SkeletonNode, Chain, Material } from './types.js';
+import type { SkeletonNode, Material } from './types.js';
 
 type ReadFn = (n: SkeletonNode) => { text: string; startLine: number; endLine: number } | null;
 
@@ -36,64 +36,38 @@ const defaultRead: ReadFn = (n) => {
     return { text: impl.text, startLine: n.line || 1, endLine: (n.line || 1) + lines - 1 };
 };
 
+// `readIds` is the full read order decided upstream (run.ts): every chain's root nodes first,
+// then the remaining major nodes by chain weight. There is no LLM selection step any more, so
+// this single pass IS the reading stage -- per-chain budgets keep one heavy chain from eating
+// the whole allowance, and anything that doesn't fit lands in `evicted` where attribution can
+// see it as a budget loss.
+// Single global ceiling, no per-chain quota. Quotas produced two wastes at once: a chain with one
+// major node sat on 41% of the budget (9600 tokens idle) while another with ten majors lost five
+// nodes to its 7% share. Measured usage is 5690 of 24000 -- the ceiling is a fuse, not a resource
+// to allocate.
 export function packMaterials(
-    selectedIds: string[], nodeById: Map<string, SkeletonNode>, chains: Chain[],
-    budgetTokens = 24000, opts: { readFn?: ReadFn; backfillIds?: string[]; fillTo?: number } = {},
-): { materials: Material[]; evicted: string[] } {
+    readIds: string[], nodeById: Map<string, SkeletonNode>,
+    budgetTokens = 24000, opts: { readFn?: ReadFn } = {},
+): { materials: Material[]; unread: string[]; cappedOut: boolean } {
     const readFn = opts.readFn ?? defaultRead;
-    const totalMass = chains.reduce((a, c) => a + c.rrfMass, 0) || 1;
-    const chainBudget = new Map(chains.map(c => [String(c.id), Math.floor(budgetTokens * c.rrfMass / totalMass)]));
-    const spent = new Map<string, number>();
-    const materials: Material[] = []; const evicted: string[] = [];
+    const materials: Material[] = [];
+    const unread: string[] = [];
+    const seen = new Set<string>();
+    let spent = 0;
+    let cappedOut = false;
 
-    for (const id of selectedIds) {
-        const n = nodeById.get(id); if (!n) continue;
-        const chainId = id.slice(0, -1);
-        const budget = chainBudget.get(chainId) ?? 0;
-        const used = spent.get(chainId) ?? 0;
+    for (const id of readIds) {
+        if (seen.has(id)) continue;
+        seen.add(id);
+        const n = nodeById.get(id);
+        if (!n) continue;
+        if (cappedOut) { unread.push(id); continue; }
         const r = readFn(n);
-        if (!r) { evicted.push(id); continue; }
-        let text = r.text; let tokens = estimateTokens(text);
-        if (used + tokens > budget) {
-            const room = budget - used;
-            if (room < 50) { evicted.push(id); continue; }               // not worth a fragment
-            text = text.slice(0, room * 4); tokens = estimateTokens(text);
-        }
-        spent.set(chainId, used + tokens);
-        materials.push({ nodeId: id, symbol: n.symbol, file: n.file, startLine: r.startLine, endLine: r.endLine, text, tokens });
+        if (!r) { unread.push(id); continue; }
+        const tokens = estimateTokens(r.text);
+        if (spent + tokens > budgetTokens) { cappedOut = true; unread.push(id); continue; }
+        spent += tokens;
+        materials.push({ nodeId: id, symbol: n.symbol, file: n.file, startLine: r.startLine, endLine: r.endLine, text: r.text, tokens });
     }
-
-    // Deterministic backfill: the selected-path budget above is often only lightly used (LLM
-    // call 2 tends to select 3-10 nodes out of a much larger 24k-token allowance), so top up
-    // with additional candidates (chain roots first, then remaining majors ordered by chain
-    // weight -- see run.ts) charged against a single GLOBAL watermark rather than per-chain
-    // caps, so one chain's unused budget can be spent on any chain's backfill candidates.
-    // Backfilled items append to `materials`; ids that don't fit go nowhere -- `evicted` stays
-    // reserved for selected-but-dropped ids only.
-    const backfillIds = opts.backfillIds ?? [];
-    if (backfillIds.length > 0) {
-        const watermark = budgetTokens * (opts.fillTo ?? 0.6);
-        const handled = new Set([...materials.map(m => m.nodeId), ...evicted]);
-        let globalSpent = materials.reduce((a, m) => a + m.tokens, 0);
-        for (const id of backfillIds) {
-            if (handled.has(id)) continue;
-            handled.add(id);
-            if (globalSpent >= watermark) continue;                     // no room left at all
-            const n = nodeById.get(id); if (!n) continue;
-            const r = readFn(n);
-            if (!r) continue;
-            let text = r.text; let tokens = estimateTokens(text);
-            const room = watermark - globalSpent;
-            if (tokens > room) {
-                if (room < 50) continue;                                 // not worth a fragment; a
-                                                                           // smaller later candidate may
-                                                                           // still fit, so keep scanning
-                text = text.slice(0, room * 4); tokens = estimateTokens(text);
-            }
-            globalSpent += tokens;
-            materials.push({ nodeId: id, symbol: n.symbol, file: n.file, startLine: r.startLine, endLine: r.endLine, text, tokens });
-        }
-    }
-
-    return { materials, evicted };
+    return { materials, unread, cappedOut };
 }

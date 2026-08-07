@@ -3,119 +3,95 @@ import assert from 'node:assert/strict';
 import { GLOBAL_INDEX } from '../../src/indexer/state.js';
 import { runQuestion } from '../../src/pipeline/run.js';
 import { FakeLlm } from '../../src/pipeline/llm.js';
-import type { WikiOutline } from '../../src/deepwiki/types.js';
+import type { WikiSubsection } from '../../src/deepwiki/sections.js';
 
-beforeEach(() => { GLOBAL_INDEX.symbols.clear(); GLOBAL_INDEX.callGraph.clear(); GLOBAL_INDEX.fileDependents.clear(); });
+const ABS = '/abs/Rocket.Chat/apps/meteor/app/lib/server/sendMessage.ts';
+const REL = 'apps/meteor/app/lib/server/sendMessage.ts';
+const HELPER_ABS = '/abs/Rocket.Chat/apps/meteor/app/lib/server/helper.ts';
 
-test('runQuestion wires all six stages with exactly 3 LLM calls', async () => {
-    GLOBAL_INDEX.symbols.set('sendMessage', new Set(['/rc/apps/meteor/app/lib/server/sendMessage.ts']));
-    GLOBAL_INDEX.callGraph.set('sendMessage', [{ caller: 'x', file: 'f', edgeType: 'call' }]);
-    const outline: WikiOutline = { repo: 'r', commit: 'c', sections: [
-        { id: 'msg', title: 'Messaging', blurb: 'messages', sources: [{ file: 'apps/meteor/app/lib/server/sendMessage.ts', startLine: 1, endLine: 9 }] }] };
-    const llm = new FakeLlm(['msg', '1a', '答案：apps/meteor/app/lib/server/sendMessage.ts:1']);
-    const row = await runQuestion('q1', 'how is a message sent (sendMessage)?', {
-        llm, outline, truthCore: ['apps/meteor/app/lib/server/sendMessage.ts'],
-        deepwikiFn: async () => 'baseline', readFn: () => ({ text: 'const x = 1;', startLine: 1, endLine: 1 }),
+const sections: WikiSubsection[] = [
+    { pageId: 'msg-page', heading: 'Message Sending Workflow', path: 'msg-page › Message Sending Workflow', sources: [REL], prose: 'the send flow' },
+];
+const readFn = () => ({ text: 'const x = 1;', startLine: 1, endLine: 1 });
+
+beforeEach(() => {
+    GLOBAL_INDEX.symbols.clear(); GLOBAL_INDEX.callGraph.clear(); GLOBAL_INDEX.fileDependents.clear();
+    GLOBAL_INDEX.symbols.set('sendMessage', new Set([ABS]));
+});
+
+test('runQuestion wires every stage with exactly 3 LLM calls', async () => {
+    const llm = new FakeLlm(['msg-page › Message Sending Workflow', '1', '答案：sendMessage 做了这些事']);
+    const row = await runQuestion('q1', 'how is a message sent?', {
+        llm, sections, deepwikiFn: async () => 'baseline', readFn,
     });
     assert.equal(row.trace.llm.calls, 3);
     assert.equal(row.deepwiki, 'baseline');
-    assert.ok(['hit', 'paths', 'graph', 'budget', 'routing'].includes(row.loss.stage));
-    assert.ok(row.trace.selectedIds.length >= 0 && row.answer.includes('答案'));
+    assert.equal(row.trace.chains.length, 1);
+    assert.equal(row.trace.chains[0].seed.symbol, 'sendMessage');
+    assert.ok(row.trace.readIds.length > 0 && row.answer.includes('答案'));
 });
 
-// runQuestion now always computes wikiReachable from the outline and passes it into attribute(),
-// but the truth-core file here is cited as a source under the 'msg' section -- so it's reachable
-// by construction, and the wiki-gap axis must stay a no-op: same stage set as before, never
-// 'wiki-gap'. This is the "identical to before" guarantee for the common case where the wiki
-// does cover the core file.
-test('runQuestion: a truth-core file cited as a section source is never attributed as wiki-gap', async () => {
-    GLOBAL_INDEX.symbols.set('sendMessage', new Set(['/rc/apps/meteor/app/lib/server/sendMessage.ts']));
-    GLOBAL_INDEX.callGraph.set('sendMessage', [{ caller: 'x', file: 'f', edgeType: 'call' }]);
-    const outline: WikiOutline = { repo: 'r', commit: 'c', sections: [
-        { id: 'msg', title: 'Messaging', blurb: 'messages', sources: [{ file: 'apps/meteor/app/lib/server/sendMessage.ts', startLine: 1, endLine: 9 }] }] };
-    const llm = new FakeLlm(['msg', '1a', '答案：apps/meteor/app/lib/server/sendMessage.ts:1']);
-    const row = await runQuestion('q5', 'how is a message sent (sendMessage)?', {
-        llm, outline, truthCore: ['apps/meteor/app/lib/server/sendMessage.ts'],
-        deepwikiFn: async () => 'baseline', readFn: () => ({ text: 'const x = 1;', startLine: 1, endLine: 1 }),
+test('runQuestion records pool stats, including pages whose pool scored zero', async () => {
+    GLOBAL_INDEX.symbols.set('rateLimiter', new Set(['/abs/Rocket.Chat/apps/meteor/api/rest.ts']));
+    const twoSections: WikiSubsection[] = [
+        sections[0],
+        { pageId: 'api-page', heading: 'Rate Limiting', path: 'api-page › Rate Limiting', sources: ['apps/meteor/api/rest.ts'], prose: '' },
+    ];
+    const llm = new FakeLlm(['msg-page › Message Sending Workflow\napi-page › Rate Limiting', '1', '答案']);
+    const row = await runQuestion('q2', 'how is a message sent?', {
+        llm, sections: twoSections, deepwikiFn: async () => 'b', readFn,
     });
-    assert.notEqual(row.loss.stage, 'wiki-gap');
-    assert.ok(row.loss.perFile.every(f => f.stage !== 'wiki-gap'));
+    const api = row.trace.pools.find(p => p.pageId === 'api-page')!;
+    assert.deepEqual(api.seeds, []);                         // nothing in the pool matches the question
+    assert.deepEqual(row.trace.chains.map(c => c.seed.symbol), ['sendMessage']);
 });
 
-// Unlike the Step-1 fixture (which uses a '/rc/...' prefix that relPath does not strip, so
-// retrieveSeeds legitimately comes back empty), these two tests need a real seed -> chain ->
-// skeleton -> selection chain to exercise evictedFiles/promptTokens, so they use the
-// '/abs/Rocket.Chat/...' prefix convention from entry.test.ts, which relPath does strip.
-test('runQuestion populates evictedFiles by mapping evicted node ids through nodeById', async () => {
-    GLOBAL_INDEX.symbols.set('sendMessage', new Set(['/abs/Rocket.Chat/apps/meteor/app/lib/server/sendMessage.ts']));
-    GLOBAL_INDEX.callGraph.set('sendMessage', [{ caller: 'x', file: 'f', edgeType: 'call' }]);
-    const outline: WikiOutline = { repo: 'r', commit: 'c', sections: [
-        { id: 'msg', title: 'Messaging', blurb: 'messages', sources: [{ file: 'apps/meteor/app/lib/server/sendMessage.ts', startLine: 1, endLine: 9 }] }] };
-    const llm = new FakeLlm(['msg', '1a', '答案：apps/meteor/app/lib/server/sendMessage.ts:1']);
-    const row = await runQuestion('q2', 'how is a message sent (sendMessage)?', {
-        llm, outline, truthCore: ['apps/meteor/app/lib/server/sendMessage.ts'],
-        deepwikiFn: async () => 'baseline',
-        // budgetTokens=0 forces every selected node to be evicted, exercising evictedFiles mapping
-        budgetTokens: 0,
-        readFn: () => ({ text: 'const x = 1;', startLine: 1, endLine: 1 }),
+test('runQuestion carries the rendered skeleton in the trace for the report to show', async () => {
+    const llm = new FakeLlm(['msg-page › Message Sending Workflow', '1', '答案']);
+    const row = await runQuestion('q3', 'how is a message sent?', {
+        llm, sections, deepwikiFn: async () => 'b', readFn,
     });
-    assert.deepEqual(row.trace.selectedIds, ['1a']);
-    assert.deepEqual(row.trace.reading.evicted, ['1a']);
-    assert.deepEqual(row.trace.reading.evictedFiles, ['apps/meteor/app/lib/server/sendMessage.ts']);
+    assert.ok(row.trace.skeletonText.includes('sendMessage'));
+    assert.ok(row.trace.skeletonText.includes('[1a]'));
 });
 
-test('runQuestion records routing.promptTokens from llm.promptTokensEst after route()', async () => {
-    GLOBAL_INDEX.symbols.set('sendMessage', new Set(['/abs/Rocket.Chat/apps/meteor/app/lib/server/sendMessage.ts']));
-    GLOBAL_INDEX.callGraph.set('sendMessage', [{ caller: 'x', file: 'f', edgeType: 'call' }]);
-    const outline: WikiOutline = { repo: 'r', commit: 'c', sections: [
-        { id: 'msg', title: 'Messaging', blurb: 'messages', sources: [{ file: 'apps/meteor/app/lib/server/sendMessage.ts', startLine: 1, endLine: 9 }] }] };
-    const llm = new FakeLlm(['msg', '1a', '答案：apps/meteor/app/lib/server/sendMessage.ts:1']);
-    const row = await runQuestion('q3', 'how is a message sent (sendMessage)?', {
-        llm, outline, truthCore: [],
-        deepwikiFn: async () => 'baseline', readFn: () => ({ text: 'const x = 1;', startLine: 1, endLine: 1 }),
+test('runQuestion records routing.promptTokens from the first call only', async () => {
+    const llm = new FakeLlm(['msg-page › Message Sending Workflow', '1', '答案']);
+    const row = await runQuestion('q4', 'how is a message sent?', {
+        llm, sections, deepwikiFn: async () => 'b', readFn,
     });
     assert.ok(row.trace.routing.promptTokens > 0);
-    // Must reflect only the routing call, not the final total after all 3 calls.
     assert.ok(row.trace.routing.promptTokens < row.trace.llm.promptTokensEst);
+    assert.deepEqual(row.trace.selection.kept, [1]);
 });
 
-// A generous budget and an unselective FakeLlm reply (only '1a' checked) should leave plenty of
-// room under the fillTo watermark, so run.ts's backfill wiring should pull in extra major nodes
-// (chain root ids first) beyond what call 2 selected, and report those ids in trace.reading.backfilled.
-test('runQuestion populates trace.reading.backfilled with ids added beyond the LLM selection', async () => {
-    GLOBAL_INDEX.symbols.set('sendMessage', new Set(['/abs/Rocket.Chat/apps/meteor/app/lib/server/sendMessage.ts']));
-    GLOBAL_INDEX.symbols.set('helper', new Set(['/abs/Rocket.Chat/apps/meteor/app/lib/server/helper.ts']));
-    GLOBAL_INDEX.callGraph.set('sendMessage', [{ caller: 'x', file: 'f', edgeType: 'call' }]);
-    GLOBAL_INDEX.callGraph.set('helper', [{ caller: 'sendMessage', file: 'apps/meteor/app/lib/server/sendMessage.ts', edgeType: 'call' }]);
-    GLOBAL_INDEX.fileDependents.set('apps/meteor/app/lib/server/helper.ts', new Set(['apps/meteor/app/lib/server/sendMessage.ts']));
-    const outline: WikiOutline = { repo: 'r', commit: 'c', sections: [
-        { id: 'msg', title: 'Messaging', blurb: 'messages', sources: [{ file: 'apps/meteor/app/lib/server/sendMessage.ts', startLine: 1, endLine: 9 }] }] };
-    const llm = new FakeLlm(['msg', '1a', '答案：apps/meteor/app/lib/server/sendMessage.ts:1']);
-    const row = await runQuestion('q6', 'how is a message sent (sendMessage)?', {
-        llm, outline, truthCore: ['apps/meteor/app/lib/server/sendMessage.ts'],
-        deepwikiFn: async () => 'baseline',
-        budgetTokens: 24000,                        // generous budget -> selected consumes almost none of it
-        readFn: () => ({ text: 'const x = 1;', startLine: 1, endLine: 1 }),
+test('runQuestion reads every major node, chain root first', async () => {
+    GLOBAL_INDEX.symbols.set('helper', new Set([HELPER_ABS]));
+    GLOBAL_INDEX.callGraph.set('helper', [{ caller: 'sendMessage', file: ABS, edgeType: 'call' }]);
+    const llm = new FakeLlm(['msg-page › Message Sending Workflow', '1', '答案']);
+    const row = await runQuestion('q5', 'how is a message sent?', {
+        llm, sections, deepwikiFn: async () => 'b', budgetTokens: 24000, readFn,
     });
-    assert.ok(row.trace.reading.backfilled.length > 0);  // the generous budget actually pulled in extras
-    // Every backfilled id must be a materials id that was NOT in the LLM's own selection.
-    for (const id of row.trace.reading.backfilled) {
-        assert.ok(row.trace.reading.materials.some(m => m.nodeId === id));
-        assert.ok(!row.trace.selectedIds.includes(id));
-    }
+    assert.ok(row.trace.readIds.length > 1);
+    assert.equal(row.trace.readIds[0], '1a');
+    assert.deepEqual(row.trace.reading.materials.map(m => m.nodeId), row.trace.readIds);
+    assert.deepEqual(row.trace.reading.unread, []);
 });
 
-test('runQuestion: a deepwikiFn that throws still resolves with the run row, not a rejection', async () => {
-    GLOBAL_INDEX.symbols.set('sendMessage', new Set(['/abs/Rocket.Chat/apps/meteor/app/lib/server/sendMessage.ts']));
-    GLOBAL_INDEX.callGraph.set('sendMessage', [{ caller: 'x', file: 'f', edgeType: 'call' }]);
-    const outline: WikiOutline = { repo: 'r', commit: 'c', sections: [
-        { id: 'msg', title: 'Messaging', blurb: 'messages', sources: [{ file: 'apps/meteor/app/lib/server/sendMessage.ts', startLine: 1, endLine: 9 }] }] };
-    const llm = new FakeLlm(['msg', '1a', '答案：apps/meteor/app/lib/server/sendMessage.ts:1']);
-    const row = await runQuestion('q4', 'how is a message sent (sendMessage)?', {
-        llm, outline, truthCore: [],
-        deepwikiFn: async () => { throw new Error('MCP tool ask_question returned no text content'); },
-        readFn: () => ({ text: 'const x = 1;', startLine: 1, endLine: 1 }),
+test('runQuestion: a zero ceiling reads nothing and records it', async () => {
+    const llm = new FakeLlm(['msg-page › Message Sending Workflow', '1', '答案']);
+    const row = await runQuestion('q6', 'how is a message sent?', {
+        llm, sections, deepwikiFn: async () => 'b', budgetTokens: 0, readFn,
     });
-    assert.ok(row.deepwiki.includes('获取失败'));
+    assert.deepEqual(row.trace.reading.unread, ['1a']);
+    assert.equal(row.trace.reading.cappedOut, true);
+});
+
+test('runQuestion: a deepwikiFn that throws still resolves with the run row', async () => {
+    const llm = new FakeLlm(['msg-page › Message Sending Workflow', '1', '答案']);
+    const row = await runQuestion('q7', 'how is a message sent?', {
+        llm, sections, deepwikiFn: async () => { throw new Error('mcp down'); }, readFn,
+    });
+    assert.ok(row.deepwiki.includes('mcp down'));
     assert.ok(row.answer.includes('答案'));
 });

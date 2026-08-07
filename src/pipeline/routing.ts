@@ -1,58 +1,49 @@
-// LLM call 1: name the relevant wiki sections. The whole outline fits in one prompt,
-// so the LLM reads titles+blurbs and picks — no embeddings in v1 (see spec, deferred).
-import type { WikiOutline } from '../deepwiki/types.js';
+// LLM call 1: name the wiki subsections whose source files could hold the answer.
+//
+// The menu is subsection titles ("2.2-core-application › Message Sending Workflow"), not page
+// blurbs. Measured, a page blurb is literally the first 200 characters of the page's prose --
+// question-word coverage on it is 0~1 of 4, while a subsection title often matches directly.
+//
+// This step cannot be replaced by lexical or similarity matching (measured): title-only matching
+// has good precision but collapses on recall (1 of 294 hits for "how do push notifications work",
+// and that hit was a video-call notification), while title+prose matching lifts recall but
+// squeezes every score into a 0.09~0.155 band where noise outranks signal. Blast-radius questions
+// need "understand that this asks about dependents", which similarity cannot express.
+import type { WikiSubsection } from '../deepwiki/sections.js';
 import type { RoutedSection } from './types.js';
 import type { LlmClient } from './llm.js';
 
-export function buildRoutingPrompt(question: string, outline: WikiOutline): string {
-    const lines = outline.sections.map(s => `- \`${s.id}\`: ${s.title} — ${s.blurb.slice(0, 120)}`);
+export function buildRoutingPrompt(question: string, sections: WikiSubsection[]): string {
+    const lines = sections.map(s => `- \`${s.path}\``);
     return [
-        'You are routing a question about the Rocket.Chat codebase to wiki sections.',
-        'Sections (id: title — description):', ...lines, '',
+        'You are routing a question about the Rocket.Chat codebase to wiki subsections.',
+        'Each subsection below is backed by a small set of source files.',
+        'Subsections:', ...lines, '',
         `Question: ${question}`, '',
-        'Name EVERY section whose source files could contain the code that answers the question — do not omit a section that lists concrete implementation files for the asked behavior. Do NOT name sections that merely relate topically: type-definition/API-contract/glossary sections only qualify if the question itself asks about types or contracts. Most relevant first, one id per line, ids only (e.g. `2.4-ui-component-system`).',
+        'Name every subsection whose source files could contain the code that answers the question. Prefer precision: a subsection whose title is only topically adjacent is not a hit. Most relevant first, one path per line, paths only (e.g. `2.2-core-application › Message Sending Workflow`).',
     ].join('\n');
 }
 
-export function parseRoutingReply(reply: string, outline: WikiOutline): RoutedSection[] {
-    const knownIds = outline.sections.map(s => s.id);
+// Matching is by the full `page › heading` path. Headings repeat across pages ("Overview",
+// "Core Components"), so a bare heading is ambiguous and is never matched on its own.
+export function parseRoutingReply(reply: string, sections: WikiSubsection[]): RoutedSection[] {
     const out: RoutedSection[] = [];
-
+    const seen = new Set<string>();
     for (const raw of reply.split('\n')) {
         const line = raw.trim();
         if (!line) continue;
-
-        let matchedId: string | undefined;
-
-        // Try exact match: line contains a known id verbatim
-        for (const id of knownIds) {
-            if (line.includes(id)) {
-                matchedId = id;
-                break;
-            }
-        }
-
-        // Try numeric-prefix match: extract numeric prefix and match against section ids
-        if (!matchedId) {
-            const prefixMatch = line.match(/^[`"'\s]*(\d+(?:\.\d+)?)[`"'\s]*$/);
-            if (prefixMatch) {
-                const prefix = prefixMatch[1];
-                const candidates = knownIds.filter(id => id.startsWith(`${prefix}-`));
-                if (candidates.length === 1) {
-                    matchedId = candidates[0];
-                }
-            }
-        }
-
-        // Add if matched and not already present
-        if (matchedId && !out.some(r => r.sectionId === matchedId)) {
-            out.push({ sectionId: matchedId, rank: out.length + 1 });
+        // Longest path first so that a page whose id prefixes another can't steal the match.
+        const hit = [...sections]
+            .sort((a, b) => b.path.length - a.path.length)
+            .find(s => line.includes(s.path));
+        if (hit && !seen.has(hit.path)) {
+            seen.add(hit.path);
+            out.push({ path: hit.path, rank: out.length + 1 });
         }
     }
-
     return out;
 }
 
-export async function route(question: string, outline: WikiOutline, llm: LlmClient): Promise<RoutedSection[]> {
-    return parseRoutingReply(await llm.generate(buildRoutingPrompt(question, outline)), outline);
+export async function route(question: string, sections: WikiSubsection[], llm: LlmClient): Promise<RoutedSection[]> {
+    return parseRoutingReply(await llm.generate(buildRoutingPrompt(question, sections)), sections);
 }

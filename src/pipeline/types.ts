@@ -1,41 +1,81 @@
-// Shared pipeline types. Data flows: RoutedSection[] -> RankedSeed[] -> Chain[] ->
-// ChainSkeleton[] -> selected node ids -> Material[] -> answer + QuestionTrace.
+// Shared pipeline types. Data flows: RoutedSection[] -> Chain[] (one per admitted section)
+// -> ChainSkeleton[] -> read order (all major node ids) -> Material[] -> answer + QuestionTrace.
 import type { EdgeType } from '../indexer/state.js';
 
-export interface RoutedSection { sectionId: string; rank: number }
+export interface RoutedSection { path: string; rank: number }
 
-export interface RankedSeed {
-    symbol: string;
-    file: string;                    // repo-relative path
-    rrf: number;
-    signals: { lexicalRank: number | null; provenanceRank: number | null; graphRank: number | null };
-    sectionId: string | null;        // provenance section, if any
+export interface ChainSeed { symbol: string; file: string }
+
+export interface Chain {
+    id: number;
+    pageId: string;
+    sections: string[];              // the hit subsection paths this chain was built from
+    label: string;                   // "page › subsection · seed" for display
+    seed: ChainSeed;
+    tied: boolean;                   // this seed shared the top lexical score with others
+    prose: string;                   // hit subsections' prose, concatenated
 }
 
-export interface Chain { id: number; label: string; seeds: RankedSeed[]; rrfMass: number }
+// A chain walks in exactly one direction, decided at its entry. Mixing directions inside one
+// chain would make indentation mean both "then" and "alongside" at once.
+export type ChainMode = 'flow' | 'impact';
+
+// 'dispatch' is a pseudo-node: a string-dispatch KEY (event name / normalized route / pubsub /
+// streamer), not a real symbol. It has no definition site and no body -- it exists to carry the
+// sibling group of everything wired to that key.
+export type NodeKind = 'major' | 'passthrough' | 'hotleaf' | 'boundary' | 'type' | 'dispatch';
+
+export type Direction = 'down' | 'up';
+
+export interface SiblingRef { symbol: string; file: string; edgeType: EdgeType }
+export interface SiblingGroup { key: string; refs: SiblingRef[]; total: number }
 
 export interface SkeletonNode {
-    id: string;                      // "1a", "2c" — chain number + letter
+    id: string;                      // "1a", "2c" — chain number + letter; '' for non-major
     symbol: string;
-    file: string;
-    line: number;                    // call-site or definition line
-    snippet: string;                 // the literal source line, trimmed
-    kind: 'major' | 'passthrough' | 'hotleaf' | 'boundary';
+    file: string;                    // '' for dispatch pseudo-nodes
+    line: number;
+    snippet: string;
+    kind: NodeKind;
+    direction: Direction;            // how this node was reached from its parent
     edgeType: EdgeType | null;
+    siblings?: SiblingGroup;         // dispatch nodes only
     children: SkeletonNode[];
 }
 
-export interface ChainSkeleton { chain: Chain; roots: SkeletonNode[]; majorCount: number }
+export interface ChainSkeleton {
+    chain: Chain;
+    mode: ChainMode;
+    roots: SkeletonNode[];
+    majorCount: number;
+    nodeCount: number;
+    maxDepthReached: number;
+    rerooted?: { from: string; to: string };   // flow chains only: entry moved one hop upstream
+}
 
 export interface Material { nodeId: string; symbol: string; file: string; startLine: number; endLine: number; text: string; tokens: number }
+
+export interface PoolStat {
+    pageId: string;
+    sections: string[];
+    fileCount: number;
+    symbolCount: number;
+    seeds: string[];                 // empty => whole pool scored zero, no chain built
+}
 
 export interface QuestionTrace {
     qid: string; question: string;
     routing: { sections: RoutedSection[]; promptTokens: number };
-    seeds: RankedSeed[];
-    chains: Array<{ id: number; label: string; budgetShare: number }>;
-    skeleton: Array<{ chainId: number; majorCount: number; nodeCount: number; files: string[] }>;
-    pathsRaw: string; selectedIds: string[]; droppedIds: string[];
-    reading: { materials: Array<{ nodeId: string; file: string; startLine: number; endLine: number; tokens: number }>; evicted: string[]; evictedFiles: string[]; backfilled: string[] };
+    pools: PoolStat[];
+    chains: Array<{
+        id: number; label: string; mode: ChainMode;
+        seed: ChainSeed; tied: boolean;
+        rerooted?: { from: string; to: string };
+    }>;
+    skeleton: Array<{ chainId: number; majorCount: number; nodeCount: number; maxDepthReached: number; files: string[] }>;
+    skeletonText: string;
+    selection: { kept: number[]; dropped: number[] };
+    readIds: string[];
+    reading: { materials: Array<{ nodeId: string; file: string; startLine: number; endLine: number; tokens: number }>; unread: string[]; cappedOut: boolean };
     llm: { calls: number; promptTokensEst: number };
 }

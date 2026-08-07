@@ -1,162 +1,148 @@
 #!/usr/bin/env npx tsx
-// Orchestrator: route -> retrieve -> skeleton -> select -> read -> answer, then
-// attribution + report. Fixed 3 LLM calls per question; 6s pause between questions
-// keeps a 3-call question inside Gemini free-tier RPM.
+// Orchestrator: route -> pools/entries -> skeleton -> read -> answer. Fixed 2 LLM calls per
+// question; a 6s pause between questions keeps a 2-call question inside Gemini free-tier RPM.
+//
+// No path-selection call (removed 2026-08-06): it was measurably inert -- the deterministic
+// backfill re-added every major node the model had skipped, so a question where it checked 1 of
+// 40 nodes and one where it checked 14 produced an identical answer prompt. The skeleton text
+// goes into the answer prompt instead, so the model can narrate the whole path including the
+// pass-through, boundary and dispatch nodes that have no body at all.
+import '../eval/utils/load-env.js';   // side effect: .env -> process.env, before GeminiClient reads the key
 import * as fs from 'fs';
 import * as path from 'path';
 import { ensureIndex } from '../indexer/index.js';
 import { route } from './routing.js';
-import { retrieveSeeds, groupChains } from './entry.js';
-import { loadSectionContent } from '../deepwiki/content.js';
-import { buildChainSkeleton, renderSkeletons } from './skeleton.js';
-import { selectPaths } from './paths.js';
+import { buildChains, buildPools, pickSeeds } from './entry.js';
+import { loadAllSections, type WikiSubsection } from '../deepwiki/sections.js';
+import { buildChainSkeleton, renderSkeletons, resetSkeletonCaches } from './skeleton.js';
+import { selectChains } from './select.js';
 import { packMaterials } from './reading.js';
 import { generateAnswer } from './answer.js';
-import { attribute } from './attribution.js';
 import { renderReport, type RunRow } from './report.js';
 import { GeminiClient, type LlmClient } from './llm.js';
 import { askDeepWiki } from '../deepwiki/ask.js';
 import { loadTestcases } from '../eval/utils/load-testcases.js';
-import { loadTestcasesWithTruth, TESTCASES_PATH, CLAUDE_TRUTH_PATH } from '../eval/utils/truth-io.js';
-import type { WikiOutline } from '../deepwiki/types.js';
-import type { QuestionTrace, SkeletonNode } from './types.js';
+import { TESTCASES_PATH } from '../eval/utils/truth-io.js';
+import type { QuestionTrace, SkeletonNode, PoolStat } from './types.js';
 
 interface Deps {
-    llm: LlmClient; outline: WikiOutline; truthCore: string[];
+    llm: LlmClient;
+    sections: WikiSubsection[];
     deepwikiFn: (qid: string, q: string) => Promise<string>;
     readFn?: (n: SkeletonNode) => { text: string; startLine: number; endLine: number } | null;
     budgetTokens?: number;
 }
 
-// A core-truth file is "wiki-reachable" if the DeepWiki wiki could plausibly have led a reader
-// to it at all: either it's cited as a source under some section, or some section's full prose
-// mentions its basename. Files that clear neither bar are structurally unreachable by the wiki
-// -- not a pipeline defect, so attribute() must not blame routing/graph/paths/budget for them.
-function computeWikiReachable(outline: WikiOutline, truthCore: string[]): Set<string> {
-    const reachable = new Set<string>();
-    for (const sec of outline.sections) {
-        for (const src of sec.sources) reachable.add(src.file);
-    }
-    for (const sec of outline.sections) {
-        const content = loadSectionContent(sec);
-        if (!content) continue;
-        for (const f of truthCore) {
-            if (reachable.has(f)) continue;
-            const basename = f.split('/').pop() ?? f;
-            if (content.includes(basename)) reachable.add(f);
-        }
-    }
-    return reachable;
-}
-
 export async function runQuestion(qid: string, question: string, deps: Deps): Promise<RunRow> {
-    const { llm, outline } = deps;
-    const routed = await route(question, outline, llm);                           // call 1
+    const { llm, sections } = deps;
+    const routed = await route(question, sections, llm);                           // call 1
     const routingPromptTokens = llm.promptTokensEst;                               // snapshot right after call 1
-    const seeds = retrieveSeeds(question, routed, outline);
 
-    // Full wiki prose for each routed section — feeds the entry-retrieval prose-mention bonus
-    // (via groupChains) and the path/answer prompt background below. null when a section has no
-    // contentPath (older outline snapshot) or its markdown file is missing; both are harmless,
-    // just no bonus/background for that section.
-    const sectionContent = new Map<string, string | null>();
-    for (const r of routed) {
-        const sec = outline.sections.find(s => s.id === r.sectionId);
-        if (sec) sectionContent.set(r.sectionId, loadSectionContent(sec));
-    }
-    const chains = groupChains(seeds, routed, outline, question, sectionContent);
-    // Chain label == sectionId for section-born chains (see the chainProse comment below); the
-    // fallback chain's label is a file-path prefix that never matches a sectionId, so it gets no
-    // section sources here and buildChainSkeleton falls back to just its own seeds' files.
-    const chainFilesFor = (c: (typeof chains)[number]): Set<string> => {
-        const sec = outline.sections.find(s => s.id === c.label);
-        return new Set(sec ? sec.sources.map(s => s.file) : []);
-    };
-    const skeletons = chains.map(c => buildChainSkeleton(c, { chainFiles: chainFilesFor(c) }, question));
-    const { text: skeletonText, nodeById } = renderSkeletons(skeletons);
-    // Chain label == sectionId for section-born chains (the fallback chain, if any, has a
-    // file-path label that never matches a sectionId, so it naturally gets no prose entry).
+    const pools = buildPools(routed, sections);
+    const chains = buildChains(routed, sections, question);
+    const poolStats: PoolStat[] = pools.map(p => ({
+        pageId: p.pageId,
+        sections: p.sections.map(s => s.path),
+        fileCount: p.files.length,
+        symbolCount: p.symbols.length,
+        seeds: pickSeeds(p, question).map(s => s.symbol),
+    }));
+
+    resetSkeletonCaches();
+    const skeletons = chains.map(c => buildChainSkeleton(c, {
+        chainFiles: new Set(pools.find(p => p.pageId === c.pageId)?.files ?? []),
+        prose: c.prose || undefined,
+    }, question));
+    const { text: skeletonText, nodeById, blocks } = renderSkeletons(skeletons);
+
+    const selection = chains.length > 0
+        ? await selectChains(question, skeletonText, chains, llm)                   // call 2
+        : { kept: [] as number[], dropped: [] as number[], raw: '' };
+    const keptSet = new Set(selection.kept);
+    const keptChains = chains.filter(c => keptSet.has(c.id));
+
     const chainProse = new Map<number, string>();
-    for (const c of chains) {
-        const content = sectionContent.get(c.label);
-        if (content) chainProse.set(c.id, content);
+    for (const c of keptChains) if (c.prose) chainProse.set(c.id, c.prose);
+
+    // Round-robin across the surviving chains, roots first. Chain sizes are wildly uneven
+    // (measured 35 / 81 / 81 / 4 / 6 / 7 / 30 / 13 majors), so reading in render order lets the
+    // first big chain eat the ceiling -- that run left six chains with only their root read,
+    // including a 7-node chain that would have fitted whole.
+    const perChain = new Map<number, string[]>();
+    for (const id of nodeById.keys()) {
+        const chainId = Number(id.match(/^\d+/)![0]);
+        if (!keptSet.has(chainId)) continue;
+        if (!perChain.has(chainId)) perChain.set(chainId, []);
+        perChain.get(chainId)!.push(id);
     }
-    const sel = await selectPaths(question, skeletonText, nodeById, chains, llm, chainProse); // call 2
+    const readIds: string[] = [];
+    for (let round = 0; ; round++) {
+        let added = false;
+        for (const ids of perChain.values()) {
+            if (round < ids.length) { readIds.push(ids[round]); added = true; }
+        }
+        if (!added) break;
+    }
 
-    // Deterministic backfill candidates: every chain's root (entry) nodes first -- these are
-    // the nodes a reader should almost always see -- then the remaining unselected major nodes,
-    // ordered by chain weight (heavier chain first) and skeleton render order within a chain.
-    // packMaterials spends these against a single global watermark once the selected-path
-    // budget is packed, so a lightly-selected question still fills a useful share of the
-    // 24k-token allowance instead of leaving it mostly unused.
-    const rootIds: string[] = [];
-    for (const sk of skeletons) for (const r of sk.roots) if (r.id) rootIds.push(r.id);
-    const renderOrder = [...nodeById.keys()];
-    const renderIndex = new Map(renderOrder.map((id, i) => [id, i]));
-    const massById = new Map(chains.map(c => [String(c.id), c.rrfMass]));
-    const rootSet = new Set(rootIds);
-    const selectedSet = new Set(sel.selected);
-    const remainingMajors = renderOrder
-        .filter(id => !rootSet.has(id) && !selectedSet.has(id))
-        .sort((a, b) => {
-            const massDiff = (massById.get(b.slice(0, -1)) ?? 0) - (massById.get(a.slice(0, -1)) ?? 0);
-            if (massDiff !== 0) return massDiff;
-            return (renderIndex.get(a) ?? 0) - (renderIndex.get(b) ?? 0);
-        });
-    const backfillIds = [...rootIds, ...remainingMajors];
+    const { materials, unread, cappedOut } = packMaterials(readIds, nodeById, deps.budgetTokens ?? 24000, { readFn: deps.readFn });
+    // Only the surviving chains reach the answer -- a dropped chain leaves no trace in the prompt.
+    const keptSkeleton = keptChains.map(c => blocks.get(c.id) ?? '').filter(Boolean).join('\n\n');
+    const { answer, citations } = await generateAnswer(question, keptChains, materials, llm, chainProse, keptSkeleton); // call 3
 
-    const { materials, evicted } = packMaterials(sel.selected, nodeById, chains, deps.budgetTokens ?? 24000, { readFn: deps.readFn, backfillIds });
-    const backfilled = materials.map(m => m.nodeId).filter(id => !selectedSet.has(id));
-    const { answer, fabricated } = await generateAnswer(question, chains, materials, llm, chainProse); // call 3
-
-    const totalMass = chains.reduce((a, c) => a + c.rrfMass, 0) || 1;
     const filesOf = (roots: SkeletonNode[]): string[] => {
-        const acc: string[] = []; const walk = (n: SkeletonNode) => { acc.push(n.file); n.children.forEach(walk); };
-        roots.forEach(walk); return acc;
+        const acc: string[] = [];
+        const walk = (n: SkeletonNode) => { if (n.file) acc.push(n.file); n.children.forEach(walk); };
+        roots.forEach(walk);
+        return acc;
     };
-    const evictedFiles = evicted
-        .map(id => nodeById.get(id)?.file)
-        .filter((f): f is string => f !== undefined);
     const trace: QuestionTrace = {
         qid, question,
         routing: { sections: routed, promptTokens: routingPromptTokens },
-        seeds,
-        chains: chains.map(c => ({ id: c.id, label: c.label, budgetShare: c.rrfMass / totalMass })),
-        skeleton: skeletons.map(s => ({ chainId: s.chain.id, majorCount: s.majorCount, nodeCount: filesOf(s.roots).length, files: filesOf(s.roots) })),
-        pathsRaw: sel.raw, selectedIds: sel.selected, droppedIds: sel.dropped,
-        reading: { materials: materials.map(m => ({ nodeId: m.nodeId, file: m.file, startLine: m.startLine, endLine: m.endLine, tokens: m.tokens })), evicted, evictedFiles, backfilled },
+        pools: poolStats,
+        chains: chains.map(c => {
+            const sk = skeletons.find(s => s.chain.id === c.id);
+            return { id: c.id, label: c.label, mode: sk?.mode ?? 'flow', seed: c.seed, tied: c.tied, rerooted: sk?.rerooted };
+        }),
+        skeleton: skeletons.map(s => ({
+            chainId: s.chain.id, majorCount: s.majorCount,
+            nodeCount: s.nodeCount, maxDepthReached: s.maxDepthReached,
+            files: filesOf(s.roots),
+        })),
+        skeletonText, readIds,
+        selection: { kept: selection.kept, dropped: selection.dropped },
+        reading: {
+            materials: materials.map(m => ({ nodeId: m.nodeId, file: m.file, startLine: m.startLine, endLine: m.endLine, tokens: m.tokens })),
+            unread, cappedOut,
+        },
         llm: { calls: llm.calls, promptTokensEst: llm.promptTokensEst },
     };
+
     let deepwiki: string;
     try {
         deepwiki = await deps.deepwikiFn(qid, question);
     } catch (e) {
         // The DeepWiki baseline is a comparison column, not load-bearing: a transport/parse
-        // failure there must never sink the whole question (and its own 3 LLM calls' worth
-        // of work already done above).
-        const message = e instanceof Error ? e.message : String(e);
-        deepwiki = `(DeepWiki 对照获取失败：${message})`;
+        // failure there must never sink the whole question and the LLM calls already spent on it.
+        deepwiki = `(DeepWiki baseline unavailable: ${e instanceof Error ? e.message : String(e)})`;
     }
-    const wikiReachable = computeWikiReachable(outline, deps.truthCore);
-    return { trace, answer, fabricated, deepwiki, loss: attribute(trace, deps.truthCore, { wikiReachable }) };
+    return { trace, answer, citations, deepwiki };
 }
 
 const isMain = process.argv[1]?.endsWith('run.ts');
 if (isMain) {
     const arg = (name: string) => process.argv.find(a => a.startsWith(`--${name}=`))?.split('=')[1];
-    const filter = arg('filter') ?? ''; const limit = Number(arg('limit') ?? Infinity);
+    const filter = arg('filter') ?? '';
+    const limit = Number(arg('limit') ?? Infinity);
     const budget = arg('budget') !== undefined ? Number(arg('budget')) : undefined;
     await ensureIndex();
-    const outline: WikiOutline = JSON.parse(fs.readFileSync('data/deepwiki/outline.json', 'utf8'));
-    const { flat: truthFlat } = loadTestcasesWithTruth(TESTCASES_PATH, CLAUDE_TRUTH_PATH);
+    const sections = loadAllSections();
     const cases = loadTestcases(TESTCASES_PATH).flat.filter(c => c.id.includes(filter)).slice(0, limit);
     const rows: RunRow[] = [];
     for (const c of cases) {
         const llm = new GeminiClient();                                           // fresh counter per question
-        const core: string[] = truthFlat.find(t => t.id === c.id)?.core ?? [];
         console.error(`[${c.id}] ...`);
         try {
-            rows.push(await runQuestion(c.id, c.question, { llm, outline, truthCore: core, deepwikiFn: askDeepWiki, budgetTokens: budget }));
+            rows.push(await runQuestion(c.id, c.question, { llm, sections, deepwikiFn: askDeepWiki, budgetTokens: budget }));
         } catch (e) { console.error(`[${c.id}] FAILED: ${e}`); }
         await new Promise(r => setTimeout(r, 6000));
     }

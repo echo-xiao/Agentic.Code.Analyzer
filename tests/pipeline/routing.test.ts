@@ -2,54 +2,51 @@ import { test } from 'node:test';
 import assert from 'node:assert/strict';
 import { buildRoutingPrompt, parseRoutingReply, route } from '../../src/pipeline/routing.js';
 import { FakeLlm } from '../../src/pipeline/llm.js';
-import type { WikiOutline } from '../../src/deepwiki/types.js';
+import type { WikiSubsection } from '../../src/deepwiki/sections.js';
 
-const outline: WikiOutline = { repo: 'r', commit: 'c', sections: [
-    { id: '2.4-ui-component-system', title: 'UI Component System', blurb: 'component library and rendering', sources: [] },
-    { id: '6.2-message-sending', title: 'Message Sending', blurb: 'message delivery flows', sources: [] },
-]};
+const sec = (pageId: string, heading: string): WikiSubsection =>
+    ({ pageId, heading, path: `${pageId} › ${heading}`, sources: ['x.ts'], prose: '' });
 
-test('buildRoutingPrompt lists every section id and the question, with proper instructions', () => {
-    const p = buildRoutingPrompt('How does login work?', outline);
-    assert.ok(
-        p.includes('2.4-ui-component-system') &&
-        p.includes('6.2-message-sending') &&
-        p.includes('How does login work?') &&
-        p.includes('EVERY section') &&
-        p.includes('type-definition')
-    );
+const sections = [
+    sec('2.2-core-application', 'Message Sending Workflow'),
+    sec('2.2-core-application', 'Room Navigation and Opening Flow'),
+    sec('6.2-messaging-and-room-apis', 'Data Flow: Sending a Message'),
+    sec('2.4-ui-component-system', 'Overview'),
+    sec('3.5-end-to-end-encryption', 'Overview'),
+];
+
+test('buildRoutingPrompt lists subsection paths and the question, never page blurbs', () => {
+    const p = buildRoutingPrompt('how is a message sent?', sections);
+    assert.ok(p.includes('2.2-core-application › Message Sending Workflow'));
+    assert.ok(p.includes('6.2-messaging-and-room-apis › Data Flow: Sending a Message'));
+    assert.ok(p.includes('how is a message sent?'));
+    assert.ok(!/blurb/i.test(p));
 });
 
-test('parseRoutingReply keeps valid ids in order, drops unknown ids', () => {
-    const r = parseRoutingReply('2.4-ui-component-system\nnot-a-section\n6.2-message-sending', outline);
-    assert.deepEqual(r, [{ sectionId: '2.4-ui-component-system', rank: 1 }, { sectionId: '6.2-message-sending', rank: 2 }]);
+test('parseRoutingReply matches full paths in order, ignoring duplicates and unknowns', () => {
+    const r = parseRoutingReply(
+        '2.2-core-application › Message Sending Workflow\nnope › nothing\n6.2-messaging-and-room-apis › Data Flow: Sending a Message\n2.2-core-application › Message Sending Workflow',
+        sections);
+    assert.deepEqual(r.map(x => x.path), [
+        '2.2-core-application › Message Sending Workflow',
+        '6.2-messaging-and-room-apis › Data Flow: Sending a Message',
+    ]);
+    assert.deepEqual(r.map(x => x.rank), [1, 2]);
+});
+
+// Headings repeat across pages ("Overview" appears in both 2.4 and 3.5), so a bare heading is
+// ambiguous and must never match on its own.
+test('parseRoutingReply requires the page-qualified path, not a bare heading', () => {
+    assert.deepEqual(parseRoutingReply('Overview', sections), []);
+    assert.deepEqual(parseRoutingReply('3.5-end-to-end-encryption › Overview', sections).map(x => x.path),
+        ['3.5-end-to-end-encryption › Overview']);
+});
+
+test('parseRoutingReply tolerates decoration around the path', () => {
+    const r = parseRoutingReply('1. `2.2-core-application › Message Sending Workflow` — most relevant', sections);
+    assert.deepEqual(r.map(x => x.path), ['2.2-core-application › Message Sending Workflow']);
 });
 
 test('route returns [] when the model names nothing valid', async () => {
-    const r = await route('q', outline, new FakeLlm(['nothing relevant']));
-    assert.deepEqual(r, []);
-});
-
-test('parseRoutingReply resolves bare numeric prefixes to matching section ids', () => {
-    const r = parseRoutingReply('2.4\n6.2', outline);
-    assert.deepEqual(r, [{ sectionId: '2.4-ui-component-system', rank: 1 }, { sectionId: '6.2-message-sending', rank: 2 }]);
-});
-
-test('parseRoutingReply matches exact full section ids', () => {
-    const r = parseRoutingReply('2.4-ui-component-system\n6.2-message-sending', outline);
-    assert.deepEqual(r, [{ sectionId: '2.4-ui-component-system', rank: 1 }, { sectionId: '6.2-message-sending', rank: 2 }]);
-});
-
-test('parseRoutingReply resolves prefix to unique section id when sub-versions exist', () => {
-    const outlineWithSubversions: WikiOutline = { repo: 'r', commit: 'c', sections: [
-        { id: '5-security', title: 'Security', blurb: 'auth and encryption', sources: [] },
-        { id: '5.1-permissions', title: 'Permissions', blurb: 'access control', sources: [] },
-    ]};
-    const r = parseRoutingReply('5', outlineWithSubversions);
-    assert.deepEqual(r, [{ sectionId: '5-security', rank: 1 }]);
-});
-
-test('parseRoutingReply skips prefix when it matches no section', () => {
-    const r = parseRoutingReply('9\n2.4\n99', outline);
-    assert.deepEqual(r, [{ sectionId: '2.4-ui-component-system', rank: 1 }]);
+    assert.deepEqual(await route('q', sections, new FakeLlm(['I am not sure.'])), []);
 });

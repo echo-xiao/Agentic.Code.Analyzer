@@ -1,224 +1,289 @@
 import { test, beforeEach } from 'node:test';
 import assert from 'node:assert/strict';
+import * as fs from 'fs';
+import * as os from 'os';
+import * as path from 'path';
 import { GLOBAL_INDEX } from '../../src/indexer/state.js';
-import { anchorSeg, buildChainSkeleton, renderSkeletons } from '../../src/pipeline/skeleton.js';
-import type { Chain } from '../../src/pipeline/types.js';
+import {
+    buildChainSkeleton, renderSkeletons, anchorSeg, anchorOf, isDispatchKey,
+    isTestPath, downstreamCandidates, upstreamCandidates, buildFileAwareCalleesOf,
+    resetSkeletonCaches, looksLikeDispatchKey, letterId,
+} from '../../src/pipeline/skeleton.js';
+import type { Chain, SkeletonNode } from '../../src/pipeline/types.js';
 
-// Graph: seedFn -> wrap -> core -> hot(fanIn 30) ; core -> farAway (different anchor segment)
+// Real files on disk: anchorOf reads them, so the fixtures must exist.
+const tmp = fs.mkdtempSync(path.join(os.tmpdir(), 'skel-'));
+const write = (rel: string, body: string): string => {
+    const abs = path.join(tmp, 'Rocket.Chat', rel);
+    fs.mkdirSync(path.dirname(abs), { recursive: true });
+    fs.writeFileSync(abs, body);
+    return abs;
+};
+const def = (sym: string, abs: string) => {
+    if (!GLOBAL_INDEX.symbols.has(sym)) GLOBAL_INDEX.symbols.set(sym, new Set());
+    GLOBAL_INDEX.symbols.get(sym)!.add(abs);
+};
+const edge = (callee: string, caller: string, file: string, edgeType: any = 'call') => {
+    if (!GLOBAL_INDEX.callGraph.has(callee)) GLOBAL_INDEX.callGraph.set(callee, []);
+    GLOBAL_INDEX.callGraph.get(callee)!.push({ caller, file, edgeType });
+};
+const chainOf = (symbol: string, file: string): Chain =>
+    ({ id: 1, pageId: 'p', sections: ['p › S'], label: 'p › S · ' + symbol, seed: { symbol, file }, tied: false, prose: '' });
+
 beforeEach(() => {
-    GLOBAL_INDEX.symbols.clear(); GLOBAL_INDEX.callGraph.clear(); GLOBAL_INDEX.allFiles.clear();
-    const put = (sym: string, file: string) => GLOBAL_INDEX.symbols.set(sym, new Set([file]));
-    put('seedFn', '/rc/apps/meteor/app/lib/server/a.ts');
-    put('wrap',   '/rc/apps/meteor/app/lib/server/a.ts');
-    put('core',   '/rc/apps/meteor/app/lib/server/b.ts');
-    put('hot',    '/rc/apps/meteor/app/lib/server/hot.ts');
-    put('farAway','/rc/apps/meteor/app/federation/x.ts');
-    // callGraph is reverse (callee -> callers); fan-in for hot = 30
-    GLOBAL_INDEX.callGraph.set('wrap', [{ caller: 'seedFn', file: 'a', edgeType: 'call' }]);
-    GLOBAL_INDEX.callGraph.set('core', [{ caller: 'wrap', file: 'a', edgeType: 'call' }]);
-    GLOBAL_INDEX.callGraph.set('hot', Array.from({ length: 30 }, (_, i) => ({ caller: 'c' + i, file: 'f', edgeType: 'call' as const })));
-    GLOBAL_INDEX.callGraph.get('hot')!.push({ caller: 'core', file: 'b', edgeType: 'call' });
-    GLOBAL_INDEX.callGraph.set('farAway', [{ caller: 'core', file: 'b', edgeType: 'call' }]);
+    GLOBAL_INDEX.symbols.clear(); GLOBAL_INDEX.callGraph.clear(); GLOBAL_INDEX.fileDependents.clear();
+    resetSkeletonCaches();
 });
 
-const chain: Chain = { id: 1, label: 'msg', rrfMass: 1, seeds: [
-    { symbol: 'seedFn', file: 'apps/meteor/app/lib/server/a.ts', rrf: 1, signals: { lexicalRank: 1, provenanceRank: 1, graphRank: 1 }, sectionId: 'msg' },
-]};
+const walk = (n: SkeletonNode, out: SkeletonNode[] = []): SkeletonNode[] => {
+    out.push(n); n.children.forEach(c => walk(c, out)); return out;
+};
 
-test('skeleton: passthrough wrap has no id; hot is a leaf; cross-segment call becomes boundary', () => {
-    const sk = buildChainSkeleton(chain, { hotFanIn: 25 });
-    const flat: any[] = [];
-    const walk = (ns: any[]) => ns.forEach(n => { flat.push(n); walk(n.children); });
-    walk(sk.roots);
-    const byKind = (k: string) => flat.filter(n => n.kind === k).map(n => n.symbol);
-    assert.deepEqual(byKind('passthrough'), ['wrap']);
-    assert.deepEqual(byKind('hotleaf'), ['hot']);
-    assert.deepEqual(byKind('boundary'), ['farAway']);
-    assert.ok(byKind('major').includes('seedFn') && byKind('major').includes('core'));
-    assert.ok(flat.find(n => n.symbol === 'wrap').id === '');            // passthrough: no id
+// Package granularity, not directory-segment: two server-side files inside apps/meteor are the
+// same subsystem even when they sit under different top-level folders.
+test('anchorSeg identifies the package, so intra-package hops are not boundaries', () => {
+    assert.equal(anchorSeg('apps/meteor/app/lib/server/a.ts'), 'apps/meteor');
+    assert.equal(anchorSeg('apps/meteor/server/services/messages/service.ts'), 'apps/meteor');
+    assert.equal(anchorSeg('packages/rest-typings/src/x.ts'), 'packages/rest-typings');
+    assert.equal(anchorSeg('ee/packages/federation-matrix/src/x.ts'), 'ee/packages/federation-matrix');
+    // still distinct from each other
+    assert.notEqual(anchorSeg('apps/meteor/x.ts'), anchorSeg('packages/models/x.ts'));
 });
 
-test('renderSkeletons: ids are chainNumber+letter and the lookup table matches', () => {
-    const { text, nodeById } = renderSkeletons([buildChainSkeleton(chain, { hotFanIn: 25 })]);
-    assert.ok(nodeById.has('1a'));
-    assert.ok(text.includes('[1a]') && text.includes('Chain 1'));
-    for (const [id, n] of nodeById) assert.equal(n.kind, 'major', id);   // only major nodes are selectable
+test('isTestPath catches every test-shaped location the skeleton must skip', () => {
+    ['a/x.test.ts', 'a/x.spec.tsx', 'apps/meteor/tests/unit/x.ts', 'a/__tests__/x.ts', 'a/x.mocks.ts']
+        .forEach(p => assert.ok(isTestPath(p), p));
+    assert.ok(!isTestPath('apps/meteor/client/lib/latest.ts'));
 });
 
-test('skeleton: maxChildrenPerNode caps fan-out (default 8; 12 callees -> <=8 children)', () => {
-    GLOBAL_INDEX.symbols.clear(); GLOBAL_INDEX.callGraph.clear(); GLOBAL_INDEX.allFiles.clear();
-    const put = (sym: string, file: string) => GLOBAL_INDEX.symbols.set(sym, new Set([file]));
-    put('wide', '/rc/apps/meteor/app/lib/server/wide.ts');
-    const callees = Array.from({ length: 12 }, (_, i) => `callee${i}`);
-    for (const c of callees) {
-        put(c, '/rc/apps/meteor/app/lib/server/wide.ts');
-        GLOBAL_INDEX.callGraph.set(c, [{ caller: 'wide', file: 'wide', edgeType: 'call' }]);
-    }
-    const wideChain: Chain = { id: 1, label: 'wide', rrfMass: 1, seeds: [
-        { symbol: 'wide', file: 'apps/meteor/app/lib/server/wide.ts', rrf: 1, signals: { lexicalRank: 1, provenanceRank: 1, graphRank: 1 }, sectionId: 'wide' },
-    ]};
-    const skDefault = buildChainSkeleton(wideChain, { hotFanIn: 25 });
-    assert.ok(skDefault.roots[0].children.length <= 8);
-
-    const skExplicit = buildChainSkeleton(wideChain, { hotFanIn: 25, maxChildrenPerNode: 8 });
-    assert.equal(skExplicit.roots[0].children.length, 8);
+// Substring matching anchors on imports, and makes `MessageAction` land on the line that
+// declares `MessageActionProps` -- two nodes pointing at one location, read twice.
+test('anchorOf prefers a definition line over any earlier mention of the name', () => {
+    const abs = write('a/def.ts', [
+        "import { sendMessage } from './other';",
+        'const unrelated = 1;',
+        'export const sendMessage = async () => {};',
+    ].join('\n'));
+    const a = anchorOf('sendMessage', abs);
+    assert.equal(a.line, 3);
+    assert.ok(a.snippet.startsWith('export const sendMessage'));
+    assert.equal(a.isType, false);
 });
 
-test('buildChainSkeleton: root node file honors the seed\'s own file for multi-file symbols', () => {
-    GLOBAL_INDEX.symbols.clear(); GLOBAL_INDEX.callGraph.clear(); GLOBAL_INDEX.allFiles.clear();
-    // 'dual' is defined in two files (e.g. a client flow vs a server function) — the root must
-    // anchor on whichever one the entry stage picked (seed.file), not the index's first entry.
-    GLOBAL_INDEX.symbols.set('dual', new Set([
-        '/x/Rocket.Chat/apps/meteor/client/a.ts',
-        '/x/Rocket.Chat/apps/meteor/server/b.ts',
-    ]));
-
-    const clientChain: Chain = { id: 1, label: 'dual', rrfMass: 1, seeds: [
-        { symbol: 'dual', file: 'apps/meteor/client/a.ts', rrf: 1, signals: { lexicalRank: 1, provenanceRank: 1, graphRank: 1 }, sectionId: 'dual' },
-    ]};
-    assert.equal(buildChainSkeleton(clientChain, { hotFanIn: 25 }).roots[0].file, 'apps/meteor/client/a.ts');
-
-    const serverChain: Chain = { id: 2, label: 'dual', rrfMass: 1, seeds: [
-        { symbol: 'dual', file: 'apps/meteor/server/b.ts', rrf: 1, signals: { lexicalRank: 1, provenanceRank: 1, graphRank: 1 }, sectionId: 'dual' },
-    ]};
-    assert.equal(buildChainSkeleton(serverChain, { hotFanIn: 25 }).roots[0].file, 'apps/meteor/server/b.ts');
+test('anchorOf: `MessageAction` does not steal the line declaring `MessageActionProps`', () => {
+    const abs = write('a/props.tsx', [
+        'export type MessageActionProps = {',
+        '  id: string;',
+        '};',
+        'export const MessageAction = () => null;',
+    ].join('\n'));
+    assert.equal(anchorOf('MessageActionProps', abs).line, 1);
+    assert.equal(anchorOf('MessageAction', abs).line, 4);
 });
 
-test('buildChainSkeleton: a callee prefers the definition in the same file as its parent', () => {
-    GLOBAL_INDEX.symbols.clear(); GLOBAL_INDEX.callGraph.clear(); GLOBAL_INDEX.allFiles.clear();
-    GLOBAL_INDEX.symbols.set('root', new Set(['/x/Rocket.Chat/apps/meteor/app/lib/server/root.ts']));
-    // 'helper' is defined in two files; the same-file-as-parent one is listed SECOND, so a naive
-    // "first entry" resolution would pick the wrong one.
-    GLOBAL_INDEX.symbols.set('helper', new Set([
-        '/x/Rocket.Chat/apps/meteor/app/lib/server/other.ts',
-        '/x/Rocket.Chat/apps/meteor/app/lib/server/root.ts',
-    ]));
-    GLOBAL_INDEX.callGraph.set('helper', [{ caller: 'root', file: 'root', edgeType: 'call' }]);
-
-    const chain2: Chain = { id: 1, label: 'root', rrfMass: 1, seeds: [
-        { symbol: 'root', file: 'apps/meteor/app/lib/server/root.ts', rrf: 1, signals: { lexicalRank: 1, provenanceRank: 1, graphRank: 1 }, sectionId: 'root' },
-    ]};
-    const sk = buildChainSkeleton(chain2, { hotFanIn: 25 });
-    const helperNode = sk.roots[0].children.find(c => c.symbol === 'helper');
-    assert.ok(helperNode);
-    assert.equal(helperNode!.file, 'apps/meteor/app/lib/server/root.ts');
+test('anchorOf flags type declarations so they can be demoted to leaves', () => {
+    const abs = write('a/t.ts', 'export type Foo = { a: 1 };');
+    assert.equal(anchorOf('Foo', abs).isType, true);
 });
 
-test("buildChainSkeleton: callee resolution falls back to the chain's own files when the parent's file doesn't match", () => {
-    GLOBAL_INDEX.symbols.clear(); GLOBAL_INDEX.callGraph.clear(); GLOBAL_INDEX.allFiles.clear();
-    GLOBAL_INDEX.symbols.set('root', new Set(['/x/Rocket.Chat/apps/meteor/app/lib/server/root.ts']));
-    // 'multi' is defined in three files; the parent's own file (root.ts) is NOT among them, so the
-    // same-file-as-parent preference can't apply. One of the three is in `chainFiles`.
-    GLOBAL_INDEX.symbols.set('multi', new Set([
-        '/x/Rocket.Chat/apps/meteor/app/lib/other1.ts',   // outside chainFiles
-        '/x/Rocket.Chat/apps/meteor/client/x.ts',         // in chainFiles
-        '/x/Rocket.Chat/apps/meteor/app/lib/other2.ts',   // outside chainFiles
-    ]));
-    GLOBAL_INDEX.callGraph.set('multi', [{ caller: 'root', file: 'root', edgeType: 'call' }]);
+test('downstreamCandidates keeps only edges whose call site is this node\'s own file', () => {
+    const clientAbs = write('client/send.ts', 'export const sendMessage = () => {};');
+    const serverAbs = write('server/send.ts', 'export const sendMessage = () => {};');
+    def('sendMessage', clientAbs); def('sendMessage', serverAbs);
+    def('composeMessage', clientAbs); def('validateMessage', serverAbs);
+    edge('composeMessage', 'sendMessage', clientAbs);
+    edge('validateMessage', 'sendMessage', serverAbs);
 
-    const chain3: Chain = { id: 1, label: 'root', rrfMass: 1, seeds: [
-        { symbol: 'root', file: 'apps/meteor/app/lib/server/root.ts', rrf: 1, signals: { lexicalRank: 1, provenanceRank: 1, graphRank: 1 }, sectionId: 'root' },
-    ]};
-    const sk = buildChainSkeleton(chain3, { hotFanIn: 25, chainFiles: new Set(['apps/meteor/client/x.ts']) });
-    const multiNode = sk.roots[0].children.find(c => c.symbol === 'multi');
-    assert.ok(multiNode);
-    assert.equal(multiNode!.file, 'apps/meteor/client/x.ts');
+    const cands = downstreamCandidates('sendMessage', clientAbs, buildFileAwareCalleesOf());
+    assert.deepEqual(cands.map(c => c.symbol), ['composeMessage']);
+    assert.equal(cands[0].direction, 'down');
 });
 
-test('skeleton: default maxDepth is 6 (a deep linear passthrough chain reaches depth 6, not 7)', () => {
-    GLOBAL_INDEX.symbols.clear(); GLOBAL_INDEX.callGraph.clear(); GLOBAL_INDEX.allFiles.clear();
-    const put = (sym: string, file: string) => GLOBAL_INDEX.symbols.set(sym, new Set([file]));
-    const FILE = '/rc/apps/meteor/app/lib/server/chain.ts';
-    for (let i = 0; i <= 7; i++) put(`s${i}`, FILE);
-    // Linear chain s0 -> s1 -> ... -> s7, each single-caller so every non-root node is passthrough
-    // and keeps recursing until the depth cap stops it.
-    for (let i = 1; i <= 7; i++) GLOBAL_INDEX.callGraph.set(`s${i}`, [{ caller: `s${i - 1}`, file: 'chain', edgeType: 'call' }]);
+test('upstreamCandidates prunes static edges to callers that import the definition file', () => {
+    const defAbs = write('lib/target.ts', 'export const target = () => {};');
+    const importerAbs = write('lib/importer.ts', 'export const importer = () => {};');
+    const strangerAbs = write('lib/stranger.ts', 'export const stranger = () => {};');
+    def('target', defAbs); def('importer', importerAbs); def('stranger', strangerAbs);
+    edge('target', 'importer', importerAbs, 'call');
+    edge('target', 'stranger', strangerAbs, 'call');
+    GLOBAL_INDEX.fileDependents.set(defAbs, new Set([importerAbs]));
 
-    const deepChain: Chain = { id: 1, label: 'deep', rrfMass: 1, seeds: [
-        { symbol: 's0', file: 'apps/meteor/app/lib/server/chain.ts', rrf: 1, signals: { lexicalRank: 1, provenanceRank: 1, graphRank: 1 }, sectionId: 'deep' },
-    ]};
-    const sk = buildChainSkeleton(deepChain, { hotFanIn: 25 });          // no maxDepth override -> default
+    assert.deepEqual(upstreamCandidates('target').map(c => c.symbol), ['importer']);
+});
 
-    const byDepth: string[][] = [];
-    const walk = (n: any, d: number) => {
-        (byDepth[d] ??= []).push(n.symbol);
-        n.children.forEach((c: any) => walk(c, d + 1));
+test('upstreamCandidates keeps string-dispatch edges unpruned — they carry no import relation', () => {
+    const defAbs = write('lib/handler.ts', 'export const handler = () => {};');
+    const emitAbs = write('other/emit.ts', 'export const emitter = () => {};');
+    def('handler', defAbs); def('emitter', emitAbs);
+    edge('handler', 'emitter', emitAbs, 'event_emit');
+    assert.deepEqual(upstreamCandidates('handler').map(c => c.symbol), ['emitter']);
+});
+
+// The indexer stores dispatch keys as ordinary callGraph keys that are not real symbols; the old
+// `symbols.has(callee)` guard therefore discarded 77.7% of all string-dispatch edges.
+test('a dispatch key survives as a pseudo-node carrying its sibling group', () => {
+    const emitAbs = write('lib/save.ts', 'export const saveMessage = () => {};');
+    const otrAbs = write('otr/hooks.ts', 'export const otrHook = () => {};');
+    const transAbs = write('trans/hooks.ts', 'export const transHook = () => {};');
+    def('saveMessage', emitAbs); def('otrHook', otrAbs); def('transHook', transAbs);
+    edge('afterSaveMessage', 'saveMessage', emitAbs, 'event_emit');
+    edge('afterSaveMessage', 'otrHook', otrAbs, 'event_listen');
+    edge('afterSaveMessage', 'transHook', transAbs, 'event_listen');
+
+    assert.ok(isDispatchKey('afterSaveMessage'));
+    assert.ok(!isDispatchKey('saveMessage'));
+
+    const sk = buildChainSkeleton(chainOf('saveMessage', 'lib/save.ts'), {}, 'how is a message saved');
+    const dispatch = walk(sk.roots[0]).find(n => n.kind === 'dispatch');
+    assert.ok(dispatch, 'dispatch pseudo-node reached');
+    assert.equal(dispatch!.symbol, 'afterSaveMessage');
+    assert.equal(dispatch!.file, '');                                  // no definition site
+    assert.equal(dispatch!.children.length, 0);                        // never recursed
+    assert.ok(dispatch!.siblings!.total >= 2);
+    assert.ok(dispatch!.siblings!.refs.some(r => r.symbol === 'otrHook'));
+});
+
+test('dispatch pseudo-nodes are not counted as major nodes', () => {
+    const abs = write('lib/emit.ts', 'export const emitter = () => {};');
+    def('emitter', abs);
+    edge('someEvent', 'emitter', abs, 'event_emit');
+    const sk = buildChainSkeleton(chainOf('emitter', 'lib/emit.ts'), {}, 'q');
+    assert.equal(sk.majorCount, 1);                                    // just the root
+});
+
+test('a cross-subsystem callee becomes a boundary leaf and keeps its file:line', () => {
+    const homeAbs = write('apps/meteor/app/lib/server/home.ts', 'export const home = () => {};');
+    const farAbs = write('packages/models/src/models/Far.ts', 'export const far = () => {};');   // different package
+    def('home', homeAbs); def('far', farAbs);
+    edge('far', 'home', homeAbs);
+    const sk = buildChainSkeleton(chainOf('home', 'apps/meteor/app/lib/server/home.ts'), {}, 'q');
+    const b = walk(sk.roots[0]).find(n => n.kind === 'boundary');
+    assert.ok(b && b.file.includes('packages/models') && b.line > 0);
+});
+
+test('a type declaration becomes a type leaf instead of a major node', () => {
+    const abs = write('apps/meteor/app/lib/server/mix.ts', [
+        'export const holder = () => {};',
+        'export type Payload = { a: 1 };',
+    ].join('\n'));
+    def('holder', abs); def('Payload', abs);
+    edge('Payload', 'holder', abs, 'type');
+    const sk = buildChainSkeleton(chainOf('holder', 'apps/meteor/app/lib/server/mix.ts'), {}, 'q');
+    const t = walk(sk.roots[0]).find(n => n.symbol === 'Payload');
+    assert.equal(t?.kind, 'type');
+    assert.equal(sk.majorCount, 1);
+});
+
+test('test-file callees never enter the skeleton', () => {
+    const abs = write('apps/meteor/app/lib/server/real.ts', 'export const real = () => {};');
+    const testAbs = write('apps/meteor/tests/unit/helper.ts', 'export const helper = () => {};');
+    def('real', abs); def('helper', testAbs);
+    edge('helper', 'real', abs);
+    const sk = buildChainSkeleton(chainOf('real', 'apps/meteor/app/lib/server/real.ts'), {}, 'q');
+    assert.ok(!walk(sk.roots[0]).some(n => n.symbol === 'helper'));
+});
+
+// Blast-radius entries have little or nothing downstream and plenty upstream, so the direction
+// falls out of the data without reading intent from the question text.
+test('a symbol with only callers becomes an impact chain; one with callees stays a flow chain', () => {
+    const hubAbs = write('apps/meteor/app/lib/server/hub.ts', 'export const hub = () => {};');
+    const userAbs = write('apps/meteor/app/lib/server/user.ts', 'export const user = () => {};');
+    def('hub', hubAbs); def('user', userAbs);
+    edge('hub', 'user', userAbs, 'call');
+    GLOBAL_INDEX.fileDependents.set(hubAbs, new Set([userAbs]));
+    assert.equal(buildChainSkeleton(chainOf('hub', 'apps/meteor/app/lib/server/hub.ts'), {}, 'q').mode, 'impact');
+
+    resetSkeletonCaches();
+    const leafAbs = write('apps/meteor/app/lib/server/leaf.ts', 'export const leaf = () => {};');
+    def('leaf', leafAbs);
+    edge('leaf', 'hub', hubAbs, 'call');
+    assert.equal(buildChainSkeleton(chainOf('hub', 'apps/meteor/app/lib/server/hub.ts'), {}, 'q').mode, 'flow');
+});
+
+test('renderSkeletons labels the chain mode, marks edge direction, and ids majors in reading order', () => {
+    const abs = write('apps/meteor/app/lib/server/r.ts', [
+        'export const root = () => {};',
+        'export const childFn = () => {};',
+    ].join('\n'));
+    def('root', abs); def('childFn', abs);
+    edge('childFn', 'root', abs);
+    const sk = buildChainSkeleton(chainOf('root', 'apps/meteor/app/lib/server/r.ts'), {}, 'q');
+    const { text, nodeById } = renderSkeletons([sk]);
+    assert.ok(text.includes('flow ↓ 1 (p › S · root)'));
+    assert.ok(text.includes('[1a] ↓ root'));
+    assert.deepEqual([...nodeById.keys()], ['1a', '1b']);
+});
+
+test('maxDepthReached is recorded so maxDepth can be judged against real data', () => {
+    const abs = write('apps/meteor/app/lib/server/chain.ts',
+        ['a', 'b', 'c'].map(n => `export const ${n} = () => {};`).join('\n'));
+    def('a', abs); def('b', abs); def('c', abs);
+    edge('b', 'a', abs); edge('c', 'b', abs);
+    const sk = buildChainSkeleton(chainOf('a', 'apps/meteor/app/lib/server/chain.ts'), {}, 'q');
+    assert.equal(sk.maxDepthReached, 2);
+});
+
+// The extractor cannot tell `callbacks.add('afterSaveMessage', …)` from `new Promise(resolve => …)`:
+// both look like a string-keyed call. Measured noise: `resolve` carried three unrelated members
+// (ready@agenda, finish@processDataDownloads, PAUSED@e2e.room.ts) and `cb` appeared 36 times.
+test('looksLikeDispatchKey keeps event/route shaped names and drops callback parameter names', () => {
+    ['afterSaveMessage', 'notify.ephemeralMessage', 'unread-state-change', 'user.roleUpdate', 'error:database']
+        .forEach(k => assert.ok(looksLikeDispatchKey(k), k));
+    ['resolve', 'cb', 'done', 'PAUSED'].forEach(k => assert.ok(!looksLikeDispatchKey(k), k));
+});
+
+test('a callback-shaped key never becomes a dispatch pseudo-node', () => {
+    const abs = write('apps/meteor/app/lib/server/p.ts', 'export const producer = () => {};');
+    def('producer', abs);
+    edge('resolve', 'producer', abs, 'event_emit');
+    const sk = buildChainSkeleton(chainOf('producer', 'apps/meteor/app/lib/server/p.ts'), {}, 'q');
+    assert.ok(!walk(sk.roots[0]).some(n => n.kind === 'dispatch'));
+});
+
+// The candidate-level filter only drops symbols defined EXCLUSIVELY under test paths, so a symbol
+// with both a production and a test definition survives it -- and then must not be anchored on
+// the fixture. Measured: `updateMessage @ packages/apps-engine/tests/.../livechatBridge.ts:0`.
+test('a symbol defined in both production and test files anchors on the production one', () => {
+    const home = write('apps/meteor/app/lib/server/home2.ts', 'export const home2 = () => {};');
+    const testDef = write('apps/meteor/tests/data/dual.ts', 'export const dual = () => {};');
+    const prodDef = write('apps/meteor/app/lib/server/dual.ts', 'export const dual = () => {};');
+    def('home2', home); def('dual', testDef); def('dual', prodDef);
+    edge('dual', 'home2', home);
+    const sk = buildChainSkeleton(chainOf('home2', 'apps/meteor/app/lib/server/home2.ts'), {}, 'q');
+    const dual = walk(sk.roots[0]).find(n => n.symbol === 'dual');
+    assert.ok(dual, 'symbol reached');
+    assert.ok(!isTestPath(dual!.file), `anchored on ${dual!.file}`);
+    assert.ok(dual!.line > 0);
+});
+
+// The section prose describes the flow in words, so a candidate it names is likelier to sit on
+// the intended path. Same-shaped candidates must therefore order differently under different prose.
+test('wiki prose lifts a candidate it names above an equally-scored one', () => {
+    const abs = write('apps/meteor/app/lib/server/fork.ts', [
+        'export const forkRoot = () => {};',
+        'export const alpha = () => {};',
+        'export const beta = () => {};',
+    ].join('\n'));
+    def('forkRoot', abs); def('alpha', abs); def('beta', abs);
+    edge('alpha', 'forkRoot', abs); edge('beta', 'forkRoot', abs);
+
+    const order = (prose?: string) => {
+        resetSkeletonCaches();
+        const sk = buildChainSkeleton(chainOf('forkRoot', 'apps/meteor/app/lib/server/fork.ts'), { maxChildrenPerNode: 2, prose }, 'q');
+        return sk.roots[0].children.map(c => c.symbol);
     };
-    sk.roots.forEach((r: any) => walk(r, 0));
-
-    assert.ok(byDepth[6]?.includes('s6'), 'depth 6 (s6) should exist under the default maxDepth=6');
-    assert.equal(byDepth[7], undefined, 'depth 7 should not exist under the default maxDepth=6');
+    assert.deepEqual(order(), ['alpha', 'beta']);                       // tie -> source order
+    assert.deepEqual(order('the flow goes through `beta` first.'), ['beta', 'alpha']);
 });
 
-test('skeleton: ranked callee selection lets a question-matching callee at source position 10 survive the cutoff', () => {
-    GLOBAL_INDEX.symbols.clear(); GLOBAL_INDEX.callGraph.clear(); GLOBAL_INDEX.allFiles.clear();
-    const put = (sym: string, file: string) => GLOBAL_INDEX.symbols.set(sym, new Set([file]));
-    const FILE = '/rc/apps/meteor/app/lib/server/hub.ts';
-    put('hub', FILE);
-    // 9 plain, question-irrelevant callees (source positions 1-9), then a 10th that matches the
-    // question strongly (source position 10, i.e. last — past the old raw slice(0, 8) cutoff).
-    for (let i = 1; i <= 9; i++) {
-        put(`plain${i}`, FILE);
-        GLOBAL_INDEX.callGraph.set(`plain${i}`, [{ caller: 'hub', file: 'hub', edgeType: 'call' }]);
-    }
-    put('sendMessage', FILE);
-    GLOBAL_INDEX.callGraph.set('sendMessage', [{ caller: 'hub', file: 'hub', edgeType: 'call' }]);
-
-    const hubChain: Chain = { id: 1, label: 'hub', rrfMass: 1, seeds: [
-        { symbol: 'hub', file: 'apps/meteor/app/lib/server/hub.ts', rrf: 1, signals: { lexicalRank: 1, provenanceRank: 1, graphRank: 1 }, sectionId: 'hub' },
-    ]};
-    // symbolTokens('sendMessage') splits into ['send','message'] on camelCase boundaries, so the
-    // question spells them out as separate words to get a full-coverage lexical match.
-    const sk = buildChainSkeleton(hubChain, { hotFanIn: 25 }, 'how does send message work');
-    const childSymbols = sk.roots[0].children.map(c => c.symbol);
-    assert.ok(childSymbols.length <= 8);
-    assert.ok(childSymbols.includes('sendMessage'), 'question-matching callee at source position 10 must survive the top-8 cut');
-});
-
-test('skeleton: ranked callee selection prefers a string-dispatch edge over a type edge, source order notwithstanding', () => {
-    GLOBAL_INDEX.symbols.clear(); GLOBAL_INDEX.callGraph.clear(); GLOBAL_INDEX.allFiles.clear();
-    const put = (sym: string, file: string) => GLOBAL_INDEX.symbols.set(sym, new Set([file]));
-    const FILE = '/rc/apps/meteor/app/lib/server/hub.ts';
-    put('hub', FILE); put('typeCallee', FILE); put('stringCallee', FILE);
-    // typeCallee is declared FIRST (source order), stringCallee SECOND — ranking must still put
-    // stringCallee first in the resulting children order.
-    GLOBAL_INDEX.callGraph.set('typeCallee', [{ caller: 'hub', file: 'hub', edgeType: 'type' }]);
-    GLOBAL_INDEX.callGraph.set('stringCallee', [{ caller: 'hub', file: 'hub', edgeType: 'event_emit' }]);
-
-    const hubChain: Chain = { id: 1, label: 'hub', rrfMass: 1, seeds: [
-        { symbol: 'hub', file: 'apps/meteor/app/lib/server/hub.ts', rrf: 1, signals: { lexicalRank: 1, provenanceRank: 1, graphRank: 1 }, sectionId: 'hub' },
-    ]};
-    // No question passed — this also covers "without question param, mixed edge types still
-    // prefer string edges" (lexicalNorm is 0 for every candidate either way).
-    const sk = buildChainSkeleton(hubChain, { hotFanIn: 25 });
-    const childSymbols = sk.roots[0].children.map(c => c.symbol);
-    assert.deepEqual(childSymbols, ['stringCallee', 'typeCallee']);
-});
-
-test('skeleton: ranked callee selection keeps source order among equal-score ties (stable sort)', () => {
-    GLOBAL_INDEX.symbols.clear(); GLOBAL_INDEX.callGraph.clear(); GLOBAL_INDEX.allFiles.clear();
-    const put = (sym: string, file: string) => GLOBAL_INDEX.symbols.set(sym, new Set([file]));
-    const FILE = '/rc/apps/meteor/app/lib/server/hub.ts';
-    put('hub', FILE);
-    // 10 identical plain-call callees, no question -> every candidate scores identically; the
-    // top-8 selection (and its order) must fall back to source (insertion) order.
-    for (let i = 0; i < 10; i++) {
-        put(`c${i}`, FILE);
-        GLOBAL_INDEX.callGraph.set(`c${i}`, [{ caller: 'hub', file: 'hub', edgeType: 'call' }]);
-    }
-    const hubChain: Chain = { id: 1, label: 'hub', rrfMass: 1, seeds: [
-        { symbol: 'hub', file: 'apps/meteor/app/lib/server/hub.ts', rrf: 1, signals: { lexicalRank: 1, provenanceRank: 1, graphRank: 1 }, sectionId: 'hub' },
-    ]};
-    const sk = buildChainSkeleton(hubChain, { hotFanIn: 25 });
-    const childSymbols = sk.roots[0].children.map(c => c.symbol);
-    assert.deepEqual(childSymbols, ['c0', 'c1', 'c2', 'c3', 'c4', 'c5', 'c6', 'c7']);
-});
-
-test('anchorSeg: segment-array reads fixed positions, never latches onto a nested anchor', () => {
-    assert.equal(anchorSeg('apps/meteor/app/lib/server/x.ts'), 'lib');
-    assert.equal(anchorSeg('packages/rest-typings/src/x.ts'), 'rest-typings');
-    // A nested 'apps/meteor/app/lib' further in the path must NOT hijack the anchor — the real
-    // anchor is the first segment after apps/meteor here ('tests'), read positionally.
-    assert.equal(anchorSeg('apps/meteor/tests/apps/meteor/app/lib/server/x.ts'), 'tests');
-    assert.equal(anchorSeg('/x/Rocket.Chat/apps/meteor/app/federation/y.ts'), 'federation');
+// With no major-node cap a single chain reached 81 majors; single-character ids run past 'z' into
+// `{` / `|` / `€`, which the model then cites incorrectly.
+test('letterId keeps node ids alphabetic past the 26th major', () => {
+    assert.equal(letterId(0), 'a');
+    assert.equal(letterId(25), 'z');
+    assert.equal(letterId(26), 'aa');
+    assert.equal(letterId(27), 'ab');
+    assert.equal(letterId(51), 'az');
+    assert.equal(letterId(52), 'ba');
+    for (let i = 0; i < 300; i++) assert.match(letterId(i), /^[a-z]+$/);
 });
