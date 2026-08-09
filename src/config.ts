@@ -13,6 +13,9 @@ export const TARGET_SRC_DIR = process.env.ROCKET_CHAT_SRC
 // upload storm throttles the thousands of small-file reads during an index rebuild.
 export const OUTPUT_DIR = path.join(PROJECT_ROOT, 'output.nosync');
 export const CACHE_FILE = path.join(OUTPUT_DIR, '.hash_cache.json');
+// The index has no other record of which revision it describes. Without it, a deleted file is
+// invisible to incremental update and its symbols survive forever (measured: 714 orphans, 8.3%).
+export const INDEX_META_FILE = path.join(OUTPUT_DIR, '.index-meta.json');
 export const GENERATOR_VERSION = '11';   // was '10' — P1 adds a chunk field to mapping, requires a full-repo regeneration
 
 export function getOutputPaths(sourceFile: string): { skeletonPath: string; mappingPath: string } {
