@@ -5,14 +5,14 @@ import cliProgress from 'cli-progress';
 import { CodebaseHasher } from './hasher.js';
 import { SkeletonGenerator } from './skeleton.js';
 import { LocalDatabase } from './local-db.js';
-import { TARGET_SRC_DIR, OUTPUT_DIR, CACHE_FILE, getOutputPaths } from '../config.js';
+import { TARGET_SRC_DIR, OUTPUT_DIR, CACHE_FILE, getOutputPaths, SOURCE_GLOB, SOURCE_IGNORE } from '../config.js';
 import { GLOBAL_INDEX } from './state.js';
 
 export function scanDirectory(dir: string): string[] {
-    return globSync('**/*.{ts,tsx,js}', {
+    return globSync(SOURCE_GLOB, {
         cwd: dir,
         absolute: true,
-        ignore: ['**/node_modules/**', '**/*.d.ts', '**/*.test.ts', '**/*.spec.ts', '**/*.test.tsx', '**/*.spec.tsx', '**/dist/**', '**/*.min.js']
+        ignore: SOURCE_IGNORE
     });
 }
 

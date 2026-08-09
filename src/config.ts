@@ -1,5 +1,6 @@
 import * as path from 'path';
 import { fileURLToPath } from 'url';
+import { minimatch } from 'minimatch';
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
@@ -27,3 +28,30 @@ export function getOutputPaths(sourceFile: string): { skeletonPath: string; mapp
 }
 
 export const DATA_DIR = path.join(PROJECT_ROOT, 'data');
+
+// Single source of truth for "is this file part of the index". Two consumers:
+// - scanDirectory() (src/indexer/index.ts) globs the target repo with this exact pattern/ignore
+//   pair to build the file list it hashes and skeletonizes.
+// - isIndexedSourceFile() (below) answers the same question for repo-relative paths coming out of
+//   `git diff --name-status` (src/indexer/changeset.ts), which never touches disk and can't glob.
+// They used to be two separately-maintained regexes that drifted: the changeset filter matched
+// bare `.ts`/`.tsx`/`.js` and let .d.ts / .test.ts / .spec.ts / .min.js / dist / node_modules
+// through. Measured against Rocket.Chat's tracked tree: 861 test/spec files and 76 .d.ts files
+// were never indexed by scanDirectory() but were still reported as index-relevant changes.
+export const SOURCE_GLOB = '**/*.{ts,tsx,js}';
+export const SOURCE_IGNORE = [
+    '**/node_modules/**',
+    '**/*.d.ts',
+    '**/*.test.ts',
+    '**/*.spec.ts',
+    '**/*.test.tsx',
+    '**/*.spec.tsx',
+    '**/dist/**',
+    '**/*.min.js',
+];
+
+// `p` is a repo-relative path in the form git prints (no leading slash, forward slashes).
+export function isIndexedSourceFile(p: string): boolean {
+    if (!minimatch(p, SOURCE_GLOB)) return false;
+    return !SOURCE_IGNORE.some((pattern) => minimatch(p, pattern));
+}

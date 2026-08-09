@@ -1,5 +1,5 @@
 import { execFileSync } from 'child_process';
-import { TARGET_SRC_DIR } from '../config.js';
+import { TARGET_SRC_DIR, isIndexedSourceFile } from '../config.js';
 
 export interface ChangeSet {
     /** All paths are repository-relative, exactly as git prints them. */
@@ -8,9 +8,6 @@ export interface ChangeSet {
     deleted: string[];
     renamed: Array<{ from: string; to: string }>;
 }
-
-// Same extension set scanDirectory() globs. A change to anything else cannot affect the index.
-const SOURCE_EXT = /\.(tsx?|js)$/;
 
 // Parsing is separated from the git call so it can be tested against fixture strings -- driving
 // real renames through a real repository just to check a tab-separated parser is not worth it.
@@ -26,8 +23,8 @@ export function parseNameStatus(raw: string): ChangeSet {
             const from = parts[1];
             const to = parts[2];
             if (!from || !to) continue;
-            const fromIsSource = SOURCE_EXT.test(from);
-            const toIsSource = SOURCE_EXT.test(to);
+            const fromIsSource = isIndexedSourceFile(from);
+            const toIsSource = isIndexedSourceFile(to);
             // A rename that crosses the source boundary is, for the index, a plain removal or
             // addition -- there is no mapping to carry across.
             if (fromIsSource && toIsSource) out.renamed.push({ from, to });
@@ -37,7 +34,7 @@ export function parseNameStatus(raw: string): ChangeSet {
         }
 
         const file = parts[1];
-        if (!file || !SOURCE_EXT.test(file)) continue;
+        if (!file || !isIndexedSourceFile(file)) continue;
         if (status === 'A') out.added.push(file);
         else if (status === 'M') out.modified.push(file);
         else if (status === 'D') out.deleted.push(file);

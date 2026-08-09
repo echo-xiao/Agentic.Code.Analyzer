@@ -55,6 +55,19 @@ test('changeset: 空输入产出空变更集', () => {
     assert.deepEqual(cs, { added: [], modified: [], deleted: [], renamed: [] });
 });
 
+test('changeset: 与 scanDirectory() 一致 -- .test.ts 和 .d.ts 这类改动会被滤掉，不当成索引变更', () => {
+    const raw = [
+        'M\tapps/meteor/server/foo.test.ts',
+        'A\tapps/meteor/server/types.d.ts',
+        'M\tapps/meteor/client/Bar.spec.tsx',
+        'A\tapps/meteor/server/real.ts',
+    ].join('\n');
+    const cs = parseNameStatus(raw);
+    assert.deepEqual(cs.added, ['apps/meteor/server/real.ts']);
+    assert.deepEqual(cs.modified, []);
+    assert.deepEqual(cs.deleted, []);
+});
+
 test('changeset: 目标不是 git 仓库时 currentCommit 返回 null', () => {
     assert.equal(currentCommit('/tmp'), null);
 });
