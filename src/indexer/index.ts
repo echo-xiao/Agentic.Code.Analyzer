@@ -7,6 +7,9 @@ import { SkeletonGenerator } from './skeleton.js';
 import { LocalDatabase } from './local-db.js';
 import { TARGET_SRC_DIR, OUTPUT_DIR, CACHE_FILE, getOutputPaths, SOURCE_GLOB, SOURCE_IGNORE } from '../config.js';
 import { GLOBAL_INDEX } from './state.js';
+import { readIndexMeta, writeIndexMeta } from './meta.js';
+import { currentCommit, isCleanWorktree, changeSetSince } from './changeset.js';
+import { findOrphanMappings, sourcePathOf, stripFromIndex, deleteArtifacts } from './prune.js';
 
 export function scanDirectory(dir: string): string[] {
     return globSync(SOURCE_GLOB, {
@@ -131,6 +134,48 @@ export function incrementalUpdate(changedFiles: string[]) {
     console.error(`🔧 Incremental update: patched ${added}/${changedFiles.length} changed mappings.`);
 }
 
+// Which files vanished since the index was built.
+//
+// Two detection paths. The git one is exact and cheap but needs a recorded starting commit and a
+// clean tree, so it only works from the second run onward. The scan is the cold-start path and the
+// correctness backstop, and it is what actually does the work the first time this ships.
+function findVanishedFiles(scannedFiles: string[]): { victims: string[]; via: 'git' | 'scan' } {
+    const meta = readIndexMeta();
+    const head = currentCommit();
+
+    if (meta?.targetCommit && head && meta.targetCommit !== head && isCleanWorktree()) {
+        const cs = changeSetSince(meta.targetCommit, head);
+        if (cs) {
+            const rel = [...cs.deleted, ...cs.renamed.map(r => r.from)];
+            return { victims: rel.map(r => path.join(TARGET_SRC_DIR, r)), via: 'git' };
+        }
+    }
+
+    const mappingFiles = globSync('**/*.mapping.json', { cwd: OUTPUT_DIR, absolute: true });
+    const orphanMappings = findOrphanMappings(scannedFiles, mappingFiles);
+    const victims = orphanMappings.map(sourcePathOf).filter((s): s is string => s !== null);
+    return { victims, via: 'scan' };
+}
+
+// Remove every trace of files that no longer exist: memory index, mapping, skeleton.
+//
+// Must run before loadIndex -- the on-disk cache still holds the stale symbols, and loading it
+// after the strip would put them straight back. Deletion is automatic because mappings are derived
+// from source: a wrong removal costs a prewarm run, not data.
+function pruneVanished(scannedFiles: string[]): number {
+    const { victims, via } = findVanishedFiles(scannedFiles);
+    if (victims.length === 0) return 0;
+
+    console.error(`🧹 ${victims.length} source files no longer exist (detected via ${via}); removing their index entries and artifacts:`);
+    for (const v of victims.slice(0, 5)) console.error(`     ${path.relative(TARGET_SRC_DIR, v)}`);
+    if (victims.length > 5) console.error(`     … +${victims.length - 5} more`);
+
+    stripFromIndex(victims);
+    const removed = deleteArtifacts(victims.map(v => getOutputPaths(v).mappingPath));
+    console.error(`   removed ${removed} artifact files.`);
+    return victims.length;
+}
+
 // Single entry point: regenerate stale skeletons, then bring the in-memory index up to date the
 // cheapest correct way — load cache + incremental patch when few files changed, full rebuild only
 // on a cold start or a large change set (e.g. GENERATOR_VERSION bump).
@@ -138,19 +183,34 @@ export async function ensureIndex(): Promise<void> {
     if (!fs.existsSync(OUTPUT_DIR)) fs.mkdirSync(OUTPUT_DIR, { recursive: true });
     const db = new LocalDatabase(OUTPUT_DIR);
     const { changedFiles } = preWarmCache();
+
+    // Before loading anything: get the orphaned artifacts off disk, so neither the cache load
+    // below nor any later full rebuild (which globs *.mapping.json) can resurrect them.
+    const scanned = scanDirectory(TARGET_SRC_DIR);
+    const prunedCount = pruneVanished(scanned);
+
     const loaded = db.loadIndex(GLOBAL_INDEX);
+    // The load just refilled the maps from a cache written before the prune, so redo the strip.
+    // Cheap (a few hundred paths) and it keeps the disk deletion above as the single source of truth.
+    if (loaded && prunedCount > 0) {
+        const stale = [...GLOBAL_INDEX.allFiles].filter(f => !fs.existsSync(f));
+        stripFromIndex(stale);
+    }
+
     const total = GLOBAL_INDEX.allFiles.size;
     const bigChange = changedFiles.length > Math.max(1500, total * 0.3);
 
     if (!loaded || bigChange) {
         await initializeGlobalIndex();
         db.saveIndex(GLOBAL_INDEX);
-    } else if (changedFiles.length > 0) {
-        incrementalUpdate(changedFiles);
+    } else if (changedFiles.length > 0 || prunedCount > 0) {
+        if (changedFiles.length > 0) incrementalUpdate(changedFiles);
         db.saveIndex(GLOBAL_INDEX);
     } else {
         console.error('⚡ Index loaded from cache (no source changes detected).');
     }
+
+    writeIndexMeta(currentCommit(), new Date().toISOString());
 }
 
 export async function initializeGlobalIndex() {
