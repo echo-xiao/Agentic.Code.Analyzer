@@ -19,7 +19,7 @@ import { buildCandidates } from './candidates.js';
 import { selectChains } from './select.js';
 import { packMaterials } from './reading.js';
 import { generateAnswer } from './answer.js';
-import { renderReport, type RunRow } from './report.js';
+import { renderReport, nextReportPath, type RunRow } from './report.js';
 import { GeminiClient, type LlmClient } from './llm.js';
 import { askDeepWiki } from '../deepwiki/ask.js';
 import { loadTestcases } from '../eval/utils/load-testcases.js';
@@ -149,8 +149,9 @@ if (isMain) {
         } catch (e) { console.error(`[${c.id}] FAILED: ${e}`); }
         await new Promise(r => setTimeout(r, 6000));
     }
-    const dir = path.join('runs', new Date().toISOString().replace(/[:.]/g, '-'));
-    fs.mkdirSync(dir, { recursive: true });
-    fs.writeFileSync(path.join(dir, 'report.md'), renderReport(rows));
-    console.error(`Wrote ${dir}/report.md (${rows.length} questions)`);
+    const runsDir = 'runs';
+    fs.mkdirSync(runsDir, { recursive: true });
+    const file = nextReportPath(runsDir);
+    fs.writeFileSync(file, renderReport(rows));
+    console.error(`Wrote ${file} (${rows.length} questions)`);
 }

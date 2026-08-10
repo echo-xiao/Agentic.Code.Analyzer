@@ -1,7 +1,24 @@
 // One Chinese report per benchmark run. The answer no longer carries the trace (its output
 // format is unconstrained now), so everything diagnostic lives here: the skeleton the model
 // actually saw, plus a one-line-per-stage recap.
+import * as fs from 'fs';
+import * as path from 'path';
 import type { QuestionTrace } from './types.js';
+
+const REPORT_RE = /^(\d{4}-\d{2}-\d{2})-report-v(\d+)\.md$/;
+
+// Reports are flat files named `<date>-report-v<n>.md`. The version is a single global counter,
+// not per-day, so the filenames sort into run order even when several runs land on one date --
+// that ordering is the whole point: a report only means something next to the one before it.
+export function nextReportPath(runsDir: string, now = new Date()): string {
+    const existing = fs.existsSync(runsDir) ? fs.readdirSync(runsDir) : [];
+    const maxVersion = existing.reduce((max, name) => {
+        const m = name.match(REPORT_RE);
+        return m ? Math.max(max, Number(m[2])) : max;
+    }, 0);
+    const date = now.toISOString().slice(0, 10);
+    return path.join(runsDir, `${date}-report-v${maxVersion + 1}.md`);
+}
 
 export interface RunRow {
     trace: QuestionTrace;
