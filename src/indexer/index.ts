@@ -9,7 +9,7 @@ import { TARGET_SRC_DIR, OUTPUT_DIR, CACHE_FILE, getOutputPaths, SOURCE_GLOB, SO
 import { GLOBAL_INDEX } from './state.js';
 import { readIndexMeta, writeIndexMeta } from './meta.js';
 import { currentCommit, isCleanWorktree, changeSetSince } from './changeset.js';
-import { findOrphanMappings, sourcePathOf, stripFromIndex, deleteArtifacts } from './prune.js';
+import { findOrphanMappings, sourcePathOf, stripFromIndex, deleteArtifacts, filterGitVictims } from './prune.js';
 
 export function scanDirectory(dir: string): string[] {
     return globSync(SOURCE_GLOB, {
@@ -139,7 +139,12 @@ export function incrementalUpdate(changedFiles: string[]) {
 // Two detection paths. The git one is exact and cheap but needs a recorded starting commit and a
 // clean tree, so it only works from the second run onward. The scan is the cold-start path and the
 // correctness backstop, and it is what actually does the work the first time this ships.
-function findVanishedFiles(scannedFiles: string[]): { victims: string[]; via: 'git' | 'scan' } {
+//
+// `artifacts` is the list of mapping paths to erase. The scan path reports the orphan mappings it
+// actually found rather than re-deriving them from the victims: a mapping that is corrupt or has no
+// sourcePath yields no victim at all, and deriving the delete list from victims would leave exactly
+// those unreadable files on disk for the next full rebuild to choke on again.
+export function findVanishedFiles(scannedFiles: string[]): { victims: string[]; artifacts: string[]; via: 'git' | 'scan' } {
     const meta = readIndexMeta();
     const head = currentCommit();
 
@@ -147,31 +152,36 @@ function findVanishedFiles(scannedFiles: string[]): { victims: string[]; via: 'g
         const cs = changeSetSince(meta.targetCommit, head);
         if (cs) {
             const rel = [...cs.deleted, ...cs.renamed.map(r => r.from)];
-            return { victims: rel.map(r => path.join(TARGET_SRC_DIR, r)), via: 'git' };
+            const victims = filterGitVictims(rel.map(r => path.join(TARGET_SRC_DIR, r)), scannedFiles);
+            return { victims, artifacts: victims.map(v => getOutputPaths(v).mappingPath), via: 'git' };
         }
     }
 
     const mappingFiles = globSync('**/*.mapping.json', { cwd: OUTPUT_DIR, absolute: true });
     const orphanMappings = findOrphanMappings(scannedFiles, mappingFiles);
     const victims = orphanMappings.map(sourcePathOf).filter((s): s is string => s !== null);
-    return { victims, via: 'scan' };
+    return { victims, artifacts: orphanMappings, via: 'scan' };
 }
 
-// Remove every trace of files that no longer exist: memory index, mapping, skeleton.
+// Remove every trace of files that no longer exist: mapping, skeleton, and whatever is already in
+// the in-memory index.
 //
-// Must run before loadIndex -- the on-disk cache still holds the stale symbols, and loading it
-// after the strip would put them straight back. Deletion is automatic because mappings are derived
-// from source: a wrong removal costs a prewarm run, not data.
+// The *disk* deletion must happen before loadIndex, and before any later full rebuild: both read
+// the mapping files, so an orphan left on disk is resurrected. The in-memory strip here is close to
+// a no-op at this point (GLOBAL_INDEX is still empty on the normal path); the strip that matters
+// runs after loadIndex, because loadIndex merges into the maps without clearing them.
+// Deletion is safe to automate because mappings are derived from source: a wrong removal costs a
+// prewarm run, not data.
 function pruneVanished(scannedFiles: string[]): number {
-    const { victims, via } = findVanishedFiles(scannedFiles);
-    if (victims.length === 0) return 0;
+    const { victims, artifacts, via } = findVanishedFiles(scannedFiles);
+    if (victims.length === 0 && artifacts.length === 0) return 0;
 
     console.error(`🧹 ${victims.length} source files no longer exist (detected via ${via}); removing their index entries and artifacts:`);
     for (const v of victims.slice(0, 5)) console.error(`     ${path.relative(TARGET_SRC_DIR, v)}`);
     if (victims.length > 5) console.error(`     … +${victims.length - 5} more`);
 
     stripFromIndex(victims);
-    const removed = deleteArtifacts(victims.map(v => getOutputPaths(v).mappingPath));
+    const removed = deleteArtifacts(artifacts);
     console.error(`   removed ${removed} artifact files.`);
     return victims.length;
 }
@@ -190,11 +200,15 @@ export async function ensureIndex(): Promise<void> {
     const prunedCount = pruneVanished(scanned);
 
     const loaded = db.loadIndex(GLOBAL_INDEX);
-    // The load just refilled the maps from a cache written before the prune, so redo the strip.
-    // Cheap (a few hundred paths) and it keeps the disk deletion above as the single source of truth.
-    if (loaded && prunedCount > 0) {
+    // This is where stale entries actually die: the cache was written before the prune, and
+    // loadIndex merges rather than replaces. Run it on every load, not only when this run pruned
+    // something — a cache can carry residue from an interrupted or older run that today's detection
+    // (either path) has no way to notice. Costs ~7851 stats, well under a second.
+    let strippedCount = 0;
+    if (loaded) {
         const stale = [...GLOBAL_INDEX.allFiles].filter(f => !fs.existsSync(f));
         stripFromIndex(stale);
+        strippedCount = stale.length;
     }
 
     const total = GLOBAL_INDEX.allFiles.size;
@@ -203,7 +217,7 @@ export async function ensureIndex(): Promise<void> {
     if (!loaded || bigChange) {
         await initializeGlobalIndex();
         db.saveIndex(GLOBAL_INDEX);
-    } else if (changedFiles.length > 0 || prunedCount > 0) {
+    } else if (changedFiles.length > 0 || prunedCount > 0 || strippedCount > 0) {
         if (changedFiles.length > 0) incrementalUpdate(changedFiles);
         db.saveIndex(GLOBAL_INDEX);
     } else {

@@ -5,8 +5,9 @@ import * as os from 'os';
 import * as path from 'path';
 import {
     findOrphanMappings, sourcePathOf, skeletonPathOf, stripFromIndex, deleteArtifacts,
+    filterGitVictims,
 } from '../../src/indexer/prune.js';
-import { getOutputPaths } from '../../src/config.js';
+import { getOutputPaths, TARGET_SRC_DIR } from '../../src/config.js';
 import { GLOBAL_INDEX } from '../../src/indexer/state.js';
 
 function tmpDir(): string {
@@ -100,6 +101,48 @@ test('prune: stripFromIndex 摘掉四张表里的痕迹', () => {
     assert.equal(GLOBAL_INDEX.callGraph.has('onlyFromGone'), false, 'callee with no caller left must go');
     assert.deepEqual([...GLOBAL_INDEX.fileDependents.get(kept)!], [kept]);
     assert.equal(GLOBAL_INDEX.fileDependents.has(gone), false, 'dependents keyed on a gone file must go');
+});
+
+// A directory that does not exist in the target repo, so every path built under it is guaranteed
+// absent from disk and filterGitVictims' existsSync check is exercised for real.
+const FIXT = path.join(TARGET_SRC_DIR, '__prune_fixture__', 'server');
+
+test('prune: git victims — a .js -> .ts refactor must not make the .js a victim', () => {
+    // The real failure this guards: git reports `rooms.js` deleted and `rooms.ts` added, both
+    // collapse to rooms.mapping.json, so deleting the "victim" would erase the live file's artifacts.
+    const deletedJs = path.join(FIXT, 'rooms.js');
+    const liveTs = path.join(FIXT, 'rooms.ts');
+    assert.equal(getOutputPaths(deletedJs).mappingPath, getOutputPaths(liveTs).mappingPath);
+
+    assert.deepEqual(filterGitVictims([deletedJs], [liveTs]), []);
+});
+
+test('prune: git victims — a genuine deletion survives the filter', () => {
+    const gone = path.join(FIXT, 'gone.ts');
+    const live = path.join(FIXT, 'rooms.ts');
+    assert.deepEqual(filterGitVictims([gone], [live]), [gone]);
+});
+
+test('prune: git victims — mixed batch keeps only the genuinely vanished ones', () => {
+    const goneA = path.join(FIXT, 'goneA.ts');
+    const goneB = path.join(FIXT, 'sub', 'goneB.tsx');
+    const swappedJs = path.join(FIXT, 'converters', 'rooms.js');
+    const swappedTs = path.join(FIXT, 'converters', 'rooms.ts');
+    const movedFrom = path.join(FIXT, 'old', 'api.ts');
+    const movedTo = path.join(FIXT, 'new', 'api.ts');
+
+    const scanned = [swappedTs, movedTo, path.join(FIXT, 'untouched.ts')];
+    const kept = filterGitVictims([goneA, goneB, swappedJs, movedFrom], scanned);
+
+    // A move to a different directory yields a different mapping path, so it is still a real victim.
+    assert.deepEqual(kept, [goneA, goneB, movedFrom]);
+});
+
+test('prune: git victims — a path that still exists on disk is never a victim', () => {
+    // git can report a path as deleted while a later commit in the same range brings it back.
+    const stillThere = path.join(TARGET_SRC_DIR, 'package.json');
+    assert.equal(fs.existsSync(stillThere), true, 'fixture assumes the target repo is checked out');
+    assert.deepEqual(filterGitVictims([stillThere], []), []);
 });
 
 test('prune: deleteArtifacts 删掉 mapping 与 skeleton，缺失的不报错', () => {

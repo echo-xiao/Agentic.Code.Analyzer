@@ -10,6 +10,23 @@ export function findOrphanMappings(scannedFiles: string[], mappingFiles: string[
     return mappingFiles.filter(m => !expected.has(m));
 }
 
+// The git path names victims by their *source* path, which does not survive the trip through
+// getOutputPaths: the extension is stripped, so rooms.js and rooms.ts share one rooms.mapping.json.
+// A .js -> .ts refactor therefore hands us `rooms.js` as a deletion while the very artifact we would
+// delete belongs to the freshly added, live `rooms.ts`. Measured on the real
+// e75965c0 -> origin/develop range: 20 of 845 git victims collided this way, every one of them a
+// same-directory extension swap. Dropping such a victim only loses a cleanup that the scan-based
+// fallback would catch anyway; keeping it silently deletes a live file's artifacts, and the hash
+// cache then reports that file as fresh forever, so it never comes back.
+export function filterGitVictims(candidates: string[], scannedFiles: string[]): string[] {
+    const liveMappings = new Set(scannedFiles.map(f => getOutputPaths(f).mappingPath));
+    const live = new Set(scannedFiles);
+    return candidates.filter(c =>
+        !live.has(c) &&
+        !fs.existsSync(c) &&
+        !liveMappings.has(getOutputPaths(c).mappingPath));
+}
+
 export function skeletonPathOf(mappingPath: string): string {
     return mappingPath.replace(/\.mapping\.json$/, '.skeleton.ts');
 }
