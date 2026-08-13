@@ -113,6 +113,36 @@ test('an unresolvable reference is unbound with a reason, never guessed', () => 
     assert.ok((w!.bind as any).reason.length > 0);
 });
 
+test('a reference to a destructured binding is unbound and names the kind, not external', () => {
+    const { project, root } = mkProject({
+        'src/i18n.ts': 'export function useTranslation() { return { t: (k: string) => k }; }\n',
+        'src/label.tsx': 'import { useTranslation } from "./i18n.js";\n' +
+                         'export function Label() { const { t } = useTranslation(); return t("hi"); }\n',
+    });
+    const binds = bindsIn(root, project, 'src/label.tsx');
+    const call = binds.filter(b => b.edgeKind === 'call').pop();
+
+    // The declaration is in the repo but is not a def kind, so it can never be an edge target.
+    // It must stay VISIBLE as unbound rather than be filed under external: the spec's unbound
+    // table lists this category (13,721 references, 77% of all unbound) as the one place where
+    // recall could still be won back, and folding it into external erases that line item.
+    assert.equal(call!.bind.kind, 'unbound');
+    assert.match((call!.bind as any).reason, /BindingElement/);
+});
+
+test('a reference to a type parameter is unbound, not a dangling def', () => {
+    const { project, root } = mkProject({
+        'src/generic.ts': 'export function id<T>(x: T): T { return x; }\n' +
+                          'export interface Box<T> { value: T }\n',
+    });
+    const binds = bindsIn(root, project, 'src/generic.ts');
+    const typeRefs = binds.filter(b => b.edgeKind === 'type');
+
+    assert.ok(typeRefs.length > 0);
+    assert.ok(typeRefs.every(b => b.bind.kind === 'unbound'), JSON.stringify(typeRefs));
+    assert.ok(typeRefs.every(b => /TypeParameter/.test((b.bind as any).reason)));
+});
+
 test('an ambient declaration in a repo .d.ts is external, not a dangling def', () => {
     const { project, root } = mkProject({
         // buildShard excludes .d.ts when collecting defs, so a binding that pointed here would

@@ -43,10 +43,21 @@ export function bindReference(node: Node, repoRoot: string): Bind {
 
     // Overloads and declaration merging give several declarations; the first one inside the repo
     // is the project's own, and anything else is ambient or third-party.
+    let inRepoWithoutDef: Node | null = null;
     for (const decl of decls) {
         if (!isInsideRepo(decl.getSourceFile().getFilePath(), repoRoot)) continue;
         const defId = defIdOfDeclaration(decl, repoRoot);
         if (defId !== null) return { kind: 'def', defId };
+        if (inRepoWithoutDef === null) inRepoWithoutDef = decl;
+    }
+
+    // The declaration is ours but is not a node kind that can be an edge target: a destructured
+    // binding, a parameter, a type parameter. Reported as unbound with the kind named, never as
+    // external — this is the largest unbound category (13,721 references, 77% of the total) and
+    // the only one where recall could still be won back, by following the type instead of the
+    // declaration. Filing it under external would erase it from the accounting entirely.
+    if (inRepoWithoutDef !== null) {
+        return { kind: 'unbound', reason: `in-repo ${inRepoWithoutDef.getKindName()} is not a def kind` };
     }
     return { kind: 'external' };
 }

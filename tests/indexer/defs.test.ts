@@ -82,6 +82,48 @@ test('enclosingDefId returns the innermost range containing a position', () => {
     assert.equal(enclosingDefId(call.getStart(), ranges), 'src/c.ts#K.m');
 });
 
+test('defIdOfDeclaration returns null for anything collectDefs would not collect', () => {
+    // The two must share one predicate. When they did not, a reference to a destructured binding
+    // or a type parameter got an id (`x.ts#{ t }.t`, `x.ts#Props.T`) that appeared in no shard's
+    // def list: the edge bound, looked healthy, and pointed at nothing. Measured across three real
+    // packages before this rule: 488 of 5675 same-package edges dangled, 8.6%.
+    const sf = load('src/dangle.ts', [
+        'export function useTranslation() { return { t: (k: string) => k }; }',
+        'const { t } = useTranslation();',
+        'export function Label<T>(x: T) { return t(String(x)); }',
+    ].join('\n'));
+
+    const { defs } = collectDefs(sf, root);
+    const collected = new Set(defs.map(d => d.id));
+
+    for (const kindName of ['BindingElement', 'TypeParameter', 'Parameter']) {
+        for (const decl of sf.getDescendants().filter(d => d.getKindName() === kindName)) {
+            assert.equal(defIdOfDeclaration(decl, root), null,
+                `${kindName} must not produce a defId`);
+        }
+    }
+
+    // And no def id may be built out of a destructuring pattern's source text.
+    assert.ok(![...collected].some(id => id.includes('{')), [...collected].join(','));
+});
+
+test('every id defIdOfDeclaration produces is present in collectDefs', () => {
+    const sf = load('src/agree.ts', [
+        'export class K { m<T>(p: T) { return p; } }',
+        'export const { a, b } = { a: 1, b: 2 };',
+        'export function f<U>(u: U) { return u; }',
+    ].join('\n'));
+
+    const { defs } = collectDefs(sf, root);
+    const collected = new Set(defs.map(d => d.id));
+
+    for (const decl of sf.getDescendants()) {
+        const id = defIdOfDeclaration(decl, root);
+        if (id === null) continue;
+        assert.ok(collected.has(id), `${decl.getKindName()} produced ${id}, absent from collectDefs`);
+    }
+});
+
 test('relFileOf is repo-relative with forward slashes and no leading slash', () => {
     assert.equal(relFileOf(path.join(root, 'src/x/y.ts'), root), 'src/x/y.ts');
 });

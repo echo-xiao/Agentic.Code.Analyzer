@@ -48,7 +48,12 @@ function kindOf(decl: Node): DefKind | null {
 function ownName(decl: Node): string | null {
     if (decl.getKind() === SyntaxKind.Constructor) return 'constructor';
     const name = (decl as any).getName?.();
-    return typeof name === 'string' && name.length > 0 ? name : null;
+    if (typeof name !== 'string' || name.length === 0) return null;
+    // A destructuring VariableDeclaration answers getName() with its pattern text, so
+    // `const { t } = useTranslation()` would be named `{ t }`. That is not an identity anything
+    // can be looked up by, and it leaks source text into ids.
+    if (/[{}[\]]/.test(name)) return null;
+    return name;
 }
 
 // Walk up through named ancestors so a method reads `Room.save` and a nested function reads
@@ -82,7 +87,13 @@ function idFor(relFile: string, qualifiedName: string, ordinal: number): string 
     return ordinal === 0 ? `${relFile}#${qualifiedName}` : `${relFile}#${qualifiedName}~${ordinal}`;
 }
 
+// Returns null for every declaration collectDefs would not collect. The two MUST agree: when they
+// did not, a reference to a destructured binding or a type parameter bound to an id that appeared
+// in no shard's def list — the edge looked healthy and pointed at nothing. Measured across three
+// real packages before this guard: 488 of 5675 same-package edges dangled (8.6%). Those references
+// are unbound by design (spec: dropped and counted), not silently-broken bindings.
 export function defIdOfDeclaration(decl: Node, repoRoot: string): string | null {
+    if (!isDeclarationNode(decl)) return null;
     const qualifiedName = qualifiedNameOf(decl);
     if (qualifiedName === null) return null;
     const sf = decl.getSourceFile();
