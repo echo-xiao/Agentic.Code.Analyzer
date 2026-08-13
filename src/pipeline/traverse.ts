@@ -25,7 +25,8 @@ export interface DefCandidate {
     direction: Direction;
 }
 
-const TEST_MARKERS = ['.test.', '.spec.', '/tests/', '/test/', '/__tests__/', '.mocks.'];
+const TEST_FILE_MARKERS = ['.test.', '.spec.', '.mocks.'];
+const TEST_DIRS = new Set(['tests', 'test', '__tests__', 'mocks', '__mocks__']);
 
 export const isDispatchNode = (defId: string): boolean => defId.startsWith('#dispatch/');
 
@@ -33,9 +34,12 @@ export const isDispatchNode = (defId: string): boolean => defId.startsWith('#dis
 // built, so it is never a test path.
 export function isTestDef(defId: string): boolean {
     if (isDispatchNode(defId)) return false;
-    const file = GLOBAL_INDEX.defs.get(defId)?.file ?? defId.split('#')[0];
-    const s = file.toLowerCase();
-    return TEST_MARKERS.some(m => s.includes(m));
+    const file = (GLOBAL_INDEX.defs.get(defId)?.file ?? defId.split('#')[0]).toLowerCase();
+    if (TEST_FILE_MARKERS.some(m => file.includes(m))) return true;
+    // By path SEGMENT, not substring. The substring form used '/tests/' with a leading slash and
+    // therefore missed a repo-relative `tests/data/...` at a package root — while still matching
+    // any directory whose name merely contained the word.
+    return file.split('/').some(seg => TEST_DIRS.has(seg));
 }
 
 export function fanIn(defId: string): number {
