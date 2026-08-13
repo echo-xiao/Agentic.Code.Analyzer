@@ -44,3 +44,16 @@ data/.wiki-prose-hashes.json
 
 data/deepwiki/
 runs/
+
+# `output.nosync/` alone did not cover output.nosync.bak, and a `git add -A` committed 15,706
+# backup artefacts. Match the prefix, not the exact directory.
+output.nosync*
+
+# Python virtualenv — present in the tree, previously neither tracked nor ignored
+.venv/
+
+# Scratch measurement scripts and their logs. Named so they cannot be committed by a `git add -A`
+# again: three benchmark logs and a comparison script reached the history that way.
+_*.ts
+_*.sh
+.*.log

@@ -1,9 +1,0 @@
-## File: packages/gazzodown/src/index.ts
-
-```typescript
-export type { UserMention, ChannelMention } from './MarkupInteractionContext';
-export { MarkupInteractionContext } from './MarkupInteractionContext';
-export { default as Markup } from './Markup';
-export { default as PreviewMarkup } from './PreviewMarkup';
-
-```
