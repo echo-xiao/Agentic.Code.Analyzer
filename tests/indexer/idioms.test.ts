@@ -268,6 +268,38 @@ test('streamer: the channel name comes from the constructor argument', () => {
     assert.equal(slots[0].form, '1c');
 });
 
+test('streamer: a channel registered through an injected constructor is still a registration', () => {
+    const p = project({
+        // The shape the fixture above does not have and the real repo does. `Streamer` is abstract;
+        // nobody writes `new Streamer(...)`. NotificationsModule takes the concrete class as a
+        // constructor parameter and writes `new this.Streamer('notify-room')`, so the callee
+        // resolves to a Parameter — not a def kind, and therefore invisible to declaration
+        // matching. Measured on apps/meteor before this rule: 0 streamer registrations against a
+        // baseline of 10 both-sides keys. Type identity is what survives dependency injection.
+        'types.ts': `
+            export interface IStreamer { name: string }
+            export interface IStreamerConstructor { new (name: string, options?: unknown): IStreamer }
+        `,
+        'notifications.module.ts': `
+            import type { IStreamer, IStreamerConstructor } from './types';
+            export class NotificationsModule {
+                public readonly streamRoom: IStreamer;
+                public readonly streamAll: IStreamer;
+                constructor(private Streamer: IStreamerConstructor) {
+                    this.streamRoom = new this.Streamer('notify-room');
+                    this.streamAll = new this.Streamer('notify-all', { retransmit: false });
+                }
+            }
+        `,
+    });
+
+    const slots = slotsIn(p, 'notifications.module.ts').filter((s) => s.space === 'streamer');
+
+    assert.deepEqual(slots.map((s) => s.key).sort(), ['notify-all', 'notify-room']);
+    assert.deepEqual([...new Set(slots.map((s) => s.role))], ['register']);
+    assert.deepEqual([...new Set(slots.map((s) => s.form))], ['1c']);
+});
+
 test('api.call: reflection over the registered instance produces ns.method keys', () => {
     const p = project({
         'ServiceClass.ts': `
