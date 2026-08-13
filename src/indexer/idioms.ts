@@ -322,7 +322,33 @@ export function extractSlots(sf: SourceFile, opts: ExtractOpts): { slots: Slot[]
             }
             return;
         }
-        if (i.form === '1d') return;          // reflection over the instance: its own task
+        // Form 1d: `api.registerService(new AuthorizationService())` carries no key at all.
+        // LocalBroker reflects over the instance prototype at runtime and stores one entry per
+        // method as `${ns}.${method}`; the keys exist only if that reflection is replayed here.
+        //
+        // This is the one trunk with nothing to check the result against — no type union, no
+        // independent source. Its counts are reported on their own and never folded into a figure
+        // shared with the other five.
+        if (i.form === '1d') {
+            const instance = args[0];
+            if (!instance || !Node.isNewExpression(instance)) return;
+            const cls = canonicalDecl(instance.getExpression(), repoRoot);
+            if (!cls || !Node.isClassDeclaration(cls.decl)) return;
+
+            // The namespace is the class's own `name` initializer. Inherited or computed names are
+            // not guessed: no literal, no keys.
+            const nameProp = cls.decl.getProperty('name');
+            const ns = literalOf(nameProp?.getInitializer());
+            if (ns === null) return;
+
+            for (const m of cls.decl.getMethods()) {
+                if (m.hasModifier(SyntaxKind.PrivateKeyword) || m.hasModifier(SyntaxKind.ProtectedKeyword)) continue;
+                const method = m.getName();
+                if (!method || method === 'constructor') continue;
+                emit(i, `${ns}.${method}`, at, cls.defId, defIdOfDeclaration(m, repoRoot) ?? at);
+            }
+            return;
+        }
 
         const key = literalOf(arg);
         if (key === null) {
