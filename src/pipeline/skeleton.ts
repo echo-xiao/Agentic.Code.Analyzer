@@ -397,7 +397,12 @@ export function renderSkeletons(skeletons: ChainSkeleton[]): { text: string; nod
             if (n.kind === 'major') {
                 n.id = `${sk.chain.id}${letterId(letter++)}`;
                 nodeById.set(n.id, n);
-                lines.push(`${pad}[${n.id}] ${arrow} ${n.symbol}  ${n.file}:${n.line}  ${n.snippet}`);
+                // A fork must be visible. An interface member with several implementations that
+                // renders like any other node reads as one destination, which is the same failure
+                // as coverage mode silently picking one.
+                const fork = n.implCount && n.implCount > 1 ? `  [${n.implCount} implementations]` : '';
+                const swapped = n.overrides?.length ? `  [overridden: ${n.overrides.map(o => o.condition?.module ?? o.source).join(', ')}]` : '';
+                lines.push(`${pad}[${n.id}] ${arrow} ${n.symbol}  ${n.file}:${n.line}  ${n.snippet}${fork}${swapped}`);
             } else if (n.kind === 'dispatch') {
                 lines.push(`${pad}◆ ${n.symbol}  [dispatch key]`);
                 if (n.siblings) {

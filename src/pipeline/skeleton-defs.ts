@@ -118,6 +118,14 @@ export function buildChainSkeletonByDef(
         if (depth > 0 && fanIn(defId) > o.hotFanIn) return { ...base, kind: 'hotleaf' };
         if (depth > 0 && (d?.kind === 'interface' || d?.kind === 'type')) return { ...base, kind: 'type' };
 
+        // How many implementations this member has, taken from the edges themselves. A node that
+        // shows one destination while several exist is the same failure as coverage mode picking
+        // an implementation silently.
+        const implCount = Math.max(
+            0, ...(GLOBAL_INDEX.out.get(defId) ?? [])
+                .filter(e => e.kind === 'implements')
+                .map(e => e.implCount ?? 1));
+
         const cands = (mode === 'flow' ? downstreamOf(defId) : upstreamOf(defId))
             .map(c => ({ c, s: score(c) }))
             .sort((a, b) => b.s - a.s)
@@ -129,7 +137,10 @@ export function buildChainSkeletonByDef(
         const isPass = mode === 'flow' && depth > 0 && cands.length === 1 && fanIn(defId) <= 2;
         if (!isPass) majorCount++;
 
-        const node: SkeletonNode = { ...base, kind: isPass ? 'passthrough' : 'major' };
+        const node: SkeletonNode = {
+            ...base, kind: isPass ? 'passthrough' : 'major',
+            ...(implCount > 1 ? { implCount } : {}),
+        };
         if (depth < maxDepth) {
             for (const c of cands) {
                 const child = build(c.defId, depth + 1, c.direction, c.edgeType);

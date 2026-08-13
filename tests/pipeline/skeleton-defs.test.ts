@@ -2,6 +2,7 @@ import { test, beforeEach } from 'node:test';
 import assert from 'node:assert/strict';
 import { GLOBAL_INDEX, resetGlobalIndex } from '../../src/indexer/state.js';
 import { buildChainSkeletonByDef } from '../../src/pipeline/skeleton-defs.js';
+import { fanIn as fanInOf } from '../../src/pipeline/traverse.js';
 import type { Def } from '../../src/indexer/defs.js';
 import type { Edge } from '../../src/indexer/graph-build.js';
 import type { Chain } from '../../src/pipeline/types.js';
@@ -135,4 +136,53 @@ test('a node carries the override annotation when its key has a second implement
     // An edge into the CE class looks complete on its own; under a licence the EE class runs.
     // A reader who is not told that draws the wrong conclusion from a healthy-looking graph.
     assert.equal(sk.roots[0].children[0].overrides?.[0].by, 'ee/Users.ts#UsersEE');
+});
+
+test('a chain steps from an interface method to its implementation', () => {
+    load(['a.ts#caller', 'core/IAuth.ts#IAuth.check', 'svc/Auth.ts#Auth.check', 'svc/Auth.ts#deep'], [
+        { from: 'a.ts#caller', to: 'core/IAuth.ts#IAuth.check', kind: 'call' },
+        { from: 'core/IAuth.ts#IAuth.check', to: 'svc/Auth.ts#Auth.check', kind: 'implements', implCount: 1 },
+        { from: 'svc/Auth.ts#Auth.check', to: 'svc/Auth.ts#deep', kind: 'call' },
+    ]);
+
+    const sk = buildChainSkeletonByDef(chain('a.ts#caller'), 'a.ts#caller');
+    const iface = sk.roots[0].children[0];
+
+    // A call on a proxified service binds to the signature, which has no body. Without this hop
+    // the chain ends there and the real logic is never read.
+    assert.equal(iface.defId, 'core/IAuth.ts#IAuth.check');
+    assert.equal(iface.children[0].defId, 'svc/Auth.ts#Auth.check');
+    assert.equal(iface.children[0].children[0].defId, 'svc/Auth.ts#deep');
+});
+
+test('a member with several implementations shows every one, and says how many', () => {
+    load(['a.ts#caller', 'core/IStore.ts#IStore.save', 'x/Mem.ts#Mem.save', 'y/Disk.ts#Disk.save'], [
+        { from: 'a.ts#caller', to: 'core/IStore.ts#IStore.save', kind: 'call' },
+        { from: 'core/IStore.ts#IStore.save', to: 'x/Mem.ts#Mem.save', kind: 'implements', implCount: 2 },
+        { from: 'core/IStore.ts#IStore.save', to: 'y/Disk.ts#Disk.save', kind: 'implements', implCount: 2 },
+    ]);
+
+    const iface = buildChainSkeletonByDef(chain('a.ts#caller'), 'a.ts#caller').roots[0].children[0];
+
+    // Showing one and staying silent about the other is the same failure as coverage mode picking
+    // an implementation: the graph looks complete and the reader never learns there is a fork.
+    assert.deepEqual(iface.children.map(c => c.defId).sort(), ['x/Mem.ts#Mem.save', 'y/Disk.ts#Disk.save']);
+    assert.equal(iface.implCount, 2);
+});
+
+test('an implementation is not judged hot because its interface is widely used', () => {
+    const callers = Array.from({ length: 30 }, (_, i) => `c${i}.ts#f${i}`);
+    load(['core/IAuth.ts#IAuth.check', 'svc/Auth.ts#Auth.check', 'a.ts#caller', ...callers], [
+        { from: 'a.ts#caller', to: 'core/IAuth.ts#IAuth.check', kind: 'call' },
+        { from: 'core/IAuth.ts#IAuth.check', to: 'svc/Auth.ts#Auth.check', kind: 'implements', implCount: 1 },
+        ...callers.map(c => ({ from: c, to: 'core/IAuth.ts#IAuth.check', kind: 'call' as const })),
+    ]);
+
+    const iface = buildChainSkeletonByDef(chain('a.ts#caller'), 'a.ts#caller', { hotFanIn: 25 }).roots[0].children[0];
+
+    // The interface absorbs the fan-in, as it should — it really is a hot node. Its single
+    // implementation has one in-edge and must stay expandable, or the hop just added is wasted.
+    assert.equal(iface.kind, 'hotleaf');
+    assert.equal(iface.children.length, 0);
+    assert.equal(fanInOf('svc/Auth.ts#Auth.check'), 1);
 });

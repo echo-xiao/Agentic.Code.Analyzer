@@ -43,6 +43,9 @@ export interface SkeletonNode {
     // Set when this definition's registry key has a second implementation. An edge into the CE
     // class looks complete on its own, and under a licence the EE class is what runs.
     overrides?: import('../indexer/overrides.js').Override[];
+    // How many classes implement this interface member. Present on interface nodes with more than
+    // one implementation, so a fork is visible rather than reading as a single destination.
+    implCount?: number;
     symbol: string;
     file: string;                    // '' for dispatch pseudo-nodes
     line: number;
