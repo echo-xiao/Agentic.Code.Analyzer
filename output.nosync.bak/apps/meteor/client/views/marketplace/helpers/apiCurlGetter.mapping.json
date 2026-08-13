@@ -1,0 +1,41 @@
+{
+  "sourcePath": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/client/views/marketplace/helpers/apiCurlGetter.ts",
+  "symbols": [
+    {
+      "type": "variable_function",
+      "name": "apiCurlGetter",
+      "exported": true,
+      "line": 5,
+      "endLine": 18,
+      "signature": "(absoluteUrl: (path: string) => string) =>",
+      "calls": [
+        {
+          "name": "split",
+          "edgeType": "call"
+        },
+        {
+          "name": "curl",
+          "edgeType": "call"
+        },
+        {
+          "name": "absoluteUrl",
+          "edgeType": "call"
+        },
+        {
+          "name": "IApiEndpointMetadata",
+          "edgeType": "type"
+        }
+      ]
+    }
+  ],
+  "imports": [
+    {
+      "module": "@rocket.chat/apps-engine/definition/api",
+      "resolved": "external"
+    },
+    {
+      "module": "../../../../ee/lib/misc/Utilities",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/ee/lib/misc/Utilities.ts"
+    }
+  ]
+}

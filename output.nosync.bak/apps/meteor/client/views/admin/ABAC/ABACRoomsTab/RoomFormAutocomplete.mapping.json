@@ -1,0 +1,147 @@
+{
+  "sourcePath": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/client/views/admin/ABAC/ABACRoomsTab/RoomFormAutocomplete.tsx",
+  "symbols": [
+    {
+      "type": "module",
+      "name": "RoomFormAutocomplete",
+      "exported": false,
+      "line": 1,
+      "endLine": 59,
+      "signature": "RoomFormAutocomplete",
+      "calls": [
+        {
+          "name": "memo",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "variable_function",
+      "name": "generateQuery",
+      "exported": false,
+      "line": 10,
+      "endLine": 14,
+      "signature": "( term = '', ): { filter: string; } =>",
+      "calls": []
+    },
+    {
+      "type": "variable_function",
+      "name": "RoomFormAutocomplete",
+      "exported": false,
+      "line": 20,
+      "endLine": 56,
+      "signature": "({ value, onSelectedRoom, ...props }: RoomFormAutocompleteProps) =>",
+      "calls": [
+        {
+          "name": "useState",
+          "edgeType": "call"
+        },
+        {
+          "name": "useDebouncedValue",
+          "edgeType": "call"
+        },
+        {
+          "name": "useEndpoint",
+          "edgeType": "call"
+        },
+        {
+          "name": "useQuery",
+          "edgeType": "call"
+        },
+        {
+          "name": "autocomplete",
+          "edgeType": "call"
+        },
+        {
+          "name": "generateQuery",
+          "edgeType": "call"
+        },
+        {
+          "name": "roomsAutoCompleteEndpoint",
+          "edgeType": "call"
+        },
+        {
+          "name": "map",
+          "edgeType": "call"
+        },
+        {
+          "name": "filter",
+          "edgeType": "call"
+        },
+        {
+          "name": "onSelectedRoom",
+          "edgeType": "call"
+        },
+        {
+          "name": "find",
+          "edgeType": "call"
+        },
+        {
+          "name": "Box",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "AutoComplete",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "Option",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "value",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "filter",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "setFilter",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "RoomFormAutocompleteProps",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "type",
+      "name": "RoomFormAutocompleteProps",
+      "line": 16,
+      "endLine": 18,
+      "signature": "export type RoomFormAutocompleteProps = Omit<ComponentProps<typeof AutoComplete>, 'filter' | 'onChange'> &"
+    }
+  ],
+  "imports": [
+    {
+      "module": "@rocket.chat/fuselage",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/fuselage-hooks",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/ui-contexts",
+      "resolved": "external"
+    },
+    {
+      "module": "@tanstack/react-query",
+      "resolved": "external"
+    },
+    {
+      "module": "react",
+      "resolved": "external"
+    },
+    {
+      "module": "react",
+      "resolved": "external"
+    },
+    {
+      "module": "../../../../lib/queryKeys",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/client/lib/queryKeys.ts"
+    }
+  ]
+}

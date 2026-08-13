@@ -1,0 +1,81 @@
+{
+  "sourcePath": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/client/views/admin/users/hooks/useChangeAdminStatusAction.ts",
+  "symbols": [
+    {
+      "type": "variable_function",
+      "name": "useChangeAdminStatusAction",
+      "exported": true,
+      "line": 8,
+      "endLine": 43,
+      "signature": "( username: IUser['username'] = '', isAdmin: boolean, onChange: () => void, ): AdminUserAction | undefined =>",
+      "calls": [
+        {
+          "name": "useTranslation",
+          "edgeType": "call"
+        },
+        {
+          "name": "useToastMessageDispatch",
+          "edgeType": "call"
+        },
+        {
+          "name": "useEndpoint",
+          "edgeType": "call"
+        },
+        {
+          "name": "usePermission",
+          "edgeType": "call"
+        },
+        {
+          "name": "useCallback",
+          "edgeType": "call"
+        },
+        {
+          "name": "removeUserFromRoleEndpoint",
+          "edgeType": "call"
+        },
+        {
+          "name": "dispatchToastMessage",
+          "edgeType": "call"
+        },
+        {
+          "name": "onChange",
+          "edgeType": "call"
+        },
+        {
+          "name": "addUserToRoleEndpoint",
+          "edgeType": "call"
+        },
+        {
+          "name": "IUser",
+          "edgeType": "type"
+        },
+        {
+          "name": "AdminUserAction",
+          "edgeType": "type"
+        }
+      ]
+    }
+  ],
+  "imports": [
+    {
+      "module": "@rocket.chat/core-typings",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/ui-contexts",
+      "resolved": "external"
+    },
+    {
+      "module": "react",
+      "resolved": "external"
+    },
+    {
+      "module": "react-i18next",
+      "resolved": "external"
+    },
+    {
+      "module": "./useAdminUserInfoActions",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/client/views/admin/users/hooks/useAdminUserInfoActions.ts"
+    }
+  ]
+}

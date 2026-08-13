@@ -1,0 +1,97 @@
+{
+  "sourcePath": "/Users/echoooooo/Desktop/code/Rocket.Chat/packages/apps/src/server/accessors/OutboundCommunicationProviderExtend.ts",
+  "symbols": [
+    {
+      "type": "class",
+      "name": "OutboundMessageProviderExtend",
+      "exported": true,
+      "line": 9,
+      "endLine": 22,
+      "signature": "export class OutboundMessageProviderExtend implements IOutboundCommunicationProviderExtend",
+      "calls": [
+        {
+          "name": "IOutboundCommunicationProviderExtend",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "registerPhoneProvider",
+      "exported": true,
+      "qualifiedName": "OutboundMessageProviderExtend.registerPhoneProvider",
+      "line": 15,
+      "endLine": 17,
+      "signature": "public registerPhoneProvider(provider: IOutboundPhoneMessageProvider): Promise<void>",
+      "containerClass": "OutboundMessageProviderExtend",
+      "calls": [
+        {
+          "name": "resolve",
+          "edgeType": "call"
+        },
+        {
+          "name": "addProvider",
+          "edgeType": "call"
+        },
+        {
+          "name": "IOutboundPhoneMessageProvider",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "registerEmailProvider",
+      "exported": true,
+      "qualifiedName": "OutboundMessageProviderExtend.registerEmailProvider",
+      "line": 19,
+      "endLine": 21,
+      "signature": "public registerEmailProvider(provider: IOutboundEmailMessageProvider): Promise<void>",
+      "containerClass": "OutboundMessageProviderExtend",
+      "calls": [
+        {
+          "name": "resolve",
+          "edgeType": "call"
+        },
+        {
+          "name": "addProvider",
+          "edgeType": "call"
+        },
+        {
+          "name": "IOutboundEmailMessageProvider",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "constructor",
+      "exported": true,
+      "qualifiedName": "OutboundMessageProviderExtend.constructor",
+      "line": 10,
+      "endLine": 13,
+      "signature": "constructor( private readonly manager: AppOutboundCommunicationProviderManager, private readonly appId: string, )",
+      "containerClass": "OutboundMessageProviderExtend",
+      "calls": [
+        {
+          "name": "AppOutboundCommunicationProviderManager",
+          "edgeType": "type"
+        }
+      ]
+    }
+  ],
+  "imports": [
+    {
+      "module": "@rocket.chat/apps-engine/definition/accessors/IOutboundCommunicationProviderExtend",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/apps-engine/definition/outboundCommunication",
+      "resolved": "external"
+    },
+    {
+      "module": "../managers/AppOutboundCommunicationProviderManager",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/packages/apps/src/server/managers/AppOutboundCommunicationProviderManager.ts"
+    }
+  ]
+}

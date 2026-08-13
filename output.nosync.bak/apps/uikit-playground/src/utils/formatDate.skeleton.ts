@@ -1,0 +1,23 @@
+## File: apps/uikit-playground/src/utils/formatDate.ts
+
+```typescript
+import { format } from 'date-fns';
+
+const momentToDateFns: Record<string, string> = {
+	L: 'PP',
+	l: 'P',
+	LL: 'PPP',
+	ll: 'PP',
+	LLL: 'PPP p',
+	lll: 'PP p',
+	LLLL: 'EEEE, PPP p',
+	llll: 'EEE, PP p',
+	LT: 'p',
+	LTS: 'pp',
+};
+
+export const formatDate = (date: string, type = 'll') => {
+    /* Implementation Hidden */
+};
+
+```

@@ -1,0 +1,117 @@
+{
+  "sourcePath": "/Users/echoooooo/Desktop/code/Rocket.Chat/packages/rest-typings/src/v1/roles.ts",
+  "symbols": [
+    {
+      "type": "variable",
+      "name": "isRoleDeleteProps",
+      "exported": true,
+      "line": 19,
+      "endLine": 19,
+      "signature": "isRoleDeleteProps = ajv.compile<RoleDeleteProps>(roleDeletePropsSchema)",
+      "calls": [
+        {
+          "name": "RoleDeleteProps",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "variable",
+      "name": "isRoleAddUserToRoleProps",
+      "exported": true,
+      "line": 45,
+      "endLine": 45,
+      "signature": "isRoleAddUserToRoleProps = ajv.compile<RoleAddUserToRoleProps>(roleAddUserToRolePropsSchema)",
+      "calls": [
+        {
+          "name": "RoleAddUserToRoleProps",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "variable",
+      "name": "isRoleRemoveUserFromRoleProps",
+      "exported": true,
+      "line": 76,
+      "endLine": 76,
+      "signature": "isRoleRemoveUserFromRoleProps = ajv.compile<RoleRemoveUserFromRoleProps>(roleRemoveUserFromRolePropsSchema)",
+      "calls": [
+        {
+          "name": "RoleRemoveUserFromRoleProps",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "variable",
+      "name": "isRolesGetUsersInRoleProps",
+      "exported": true,
+      "line": 114,
+      "endLine": 114,
+      "signature": "isRolesGetUsersInRoleProps = ajvQuery.compile<RolesGetUsersInRoleProps>(RolesGetUsersInRolePropsSchema)",
+      "calls": [
+        {
+          "name": "RolesGetUsersInRoleProps",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "type",
+      "name": "RoleDeleteProps",
+      "line": 6,
+      "endLine": 6,
+      "signature": "type RoleDeleteProps ="
+    },
+    {
+      "type": "type",
+      "name": "RoleAddUserToRoleProps",
+      "line": 21,
+      "endLine": 25,
+      "signature": "type RoleAddUserToRoleProps ="
+    },
+    {
+      "type": "type",
+      "name": "RoleRemoveUserFromRoleProps",
+      "line": 47,
+      "endLine": 52,
+      "signature": "type RoleRemoveUserFromRoleProps ="
+    },
+    {
+      "type": "type",
+      "name": "RolesGetUsersInRoleProps",
+      "line": 78,
+      "endLine": 81,
+      "signature": "type RolesGetUsersInRoleProps = PaginatedRequest<"
+    },
+    {
+      "type": "type",
+      "name": "RoleSyncProps",
+      "line": 116,
+      "endLine": 118,
+      "signature": "type RoleSyncProps ="
+    },
+    {
+      "type": "type",
+      "name": "RolesEndpoints",
+      "line": 120,
+      "endLine": 157,
+      "signature": "export type RolesEndpoints ="
+    }
+  ],
+  "imports": [
+    {
+      "module": "@rocket.chat/core-typings",
+      "resolved": "external"
+    },
+    {
+      "module": "./Ajv",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/packages/rest-typings/src/v1/Ajv.ts"
+    },
+    {
+      "module": "../helpers/PaginatedRequest",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/packages/rest-typings/src/helpers/PaginatedRequest.ts"
+    }
+  ]
+}

@@ -1,0 +1,146 @@
+{
+  "sourcePath": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/client/views/mediaCallHistory/CallHistoryRowExternalUser.tsx",
+  "symbols": [
+    {
+      "type": "inner_function",
+      "name": "handleClick",
+      "exported": false,
+      "qualifiedName": "CallHistoryRowExternalUser.handleClick",
+      "line": 17,
+      "endLine": 19,
+      "signature": "() =>",
+      "calls": [
+        {
+          "name": "onClick",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "inner_function",
+      "name": "onClick",
+      "exported": false,
+      "qualifiedName": "CallHistoryRowExternalUser.onClick",
+      "line": 33,
+      "endLine": 33,
+      "signature": "() =>",
+      "calls": [
+        {
+          "name": "toggleWidget",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "variable_function",
+      "name": "CallHistoryRowExternalUser",
+      "exported": false,
+      "line": 11,
+      "endLine": 50,
+      "signature": "({ _id, contact, type, status, duration, timestamp, onClick }: CallHistoryRowExternalUserProps) =>",
+      "calls": [
+        {
+          "name": "useTranslation",
+          "edgeType": "call"
+        },
+        {
+          "name": "usePeekMediaSessionState",
+          "edgeType": "call"
+        },
+        {
+          "name": "useWidgetExternalControls",
+          "edgeType": "call"
+        },
+        {
+          "name": "useCallback",
+          "edgeType": "call"
+        },
+        {
+          "name": "onClick",
+          "edgeType": "call"
+        },
+        {
+          "name": "useMemo",
+          "edgeType": "call"
+        },
+        {
+          "name": "toggleWidget",
+          "edgeType": "call"
+        },
+        {
+          "name": "CallHistoryTableRow",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "GenericMenu",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "_id",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "contact",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "type",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "status",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "duration",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "timestamp",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "handleClick",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "actions",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "CallHistoryRowExternalUserProps",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "type",
+      "name": "CallHistoryRowExternalUserProps",
+      "line": 7,
+      "endLine": 9,
+      "signature": "export type CallHistoryRowExternalUserProps = Omit<CallHistoryTableRowProps<CallHistoryExternalContact>, 'onClick' | 'menu'> &"
+    }
+  ],
+  "imports": [
+    {
+      "module": "@rocket.chat/ui-client",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/ui-voip",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/ui-voip",
+      "resolved": "external"
+    },
+    {
+      "module": "react",
+      "resolved": "external"
+    },
+    {
+      "module": "react-i18next",
+      "resolved": "external"
+    }
+  ]
+}

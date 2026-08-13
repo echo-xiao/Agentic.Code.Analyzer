@@ -1,0 +1,96 @@
+{
+  "sourcePath": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/app/meteor-accounts-saml/server/lib/generators/LogoutRequest.ts",
+  "symbols": [
+    {
+      "type": "class",
+      "name": "LogoutRequest",
+      "exported": true,
+      "line": 10,
+      "endLine": 45,
+      "signature": "export class LogoutRequest",
+      "calls": []
+    },
+    {
+      "type": "method",
+      "name": "generate",
+      "exported": true,
+      "qualifiedName": "LogoutRequest.generate",
+      "line": 11,
+      "endLine": 21,
+      "signature": "static generate(serviceProviderOptions: IServiceProviderOptions, nameID: string, sessionIndex: string): ISAMLRequest",
+      "containerClass": "LogoutRequest",
+      "calls": [
+        {
+          "name": "getDataForNewRequest",
+          "edgeType": "call"
+        },
+        {
+          "name": "fillTemplateData",
+          "edgeType": "call"
+        },
+        {
+          "name": "log",
+          "edgeType": "call"
+        },
+        {
+          "name": "IServiceProviderOptions",
+          "edgeType": "type"
+        },
+        {
+          "name": "ISAMLRequest",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "getDataForNewRequest",
+      "exported": true,
+      "qualifiedName": "LogoutRequest.getDataForNewRequest",
+      "line": 15,
+      "endLine": 36,
+      "signature": "static getDataForNewRequest( serviceProviderOptions: IServiceProviderOptions, nameID: string, sessionIndex: string, ): ILogoutRequestVariables",
+      "containerClass": "LogoutRequest",
+      "calls": [
+        {
+          "name": "generateUniqueID",
+          "edgeType": "call"
+        },
+        {
+          "name": "generateInstant",
+          "edgeType": "call"
+        },
+        {
+          "name": "IServiceProviderOptions",
+          "edgeType": "type"
+        },
+        {
+          "name": "ILogoutRequestVariables",
+          "edgeType": "type"
+        }
+      ]
+    }
+  ],
+  "imports": [
+    {
+      "module": "../../definition/ILogoutRequestVariables",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/app/meteor-accounts-saml/server/definition/ILogoutRequestVariables.ts"
+    },
+    {
+      "module": "../../definition/ISAMLRequest",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/app/meteor-accounts-saml/server/definition/ISAMLRequest.ts"
+    },
+    {
+      "module": "../../definition/IServiceProviderOptions",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/app/meteor-accounts-saml/server/definition/IServiceProviderOptions.ts"
+    },
+    {
+      "module": "../Utils",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/app/meteor-accounts-saml/server/lib/Utils.ts"
+    },
+    {
+      "module": "../constants",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/app/meteor-accounts-saml/server/lib/constants.ts"
+    }
+  ]
+}

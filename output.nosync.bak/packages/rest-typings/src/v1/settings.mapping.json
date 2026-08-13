@@ -1,0 +1,175 @@
+{
+  "sourcePath": "/Users/echoooooo/Desktop/code/Rocket.Chat/packages/rest-typings/src/v1/settings.ts",
+  "symbols": [
+    {
+      "type": "variable_function",
+      "name": "isSettingsUpdatePropsActions",
+      "exported": true,
+      "line": 13,
+      "endLine": 14,
+      "signature": "(props: Partial<SettingsUpdateProps>): props is SettingsUpdatePropsActions =>",
+      "calls": [
+        {
+          "name": "SettingsUpdateProps",
+          "edgeType": "type"
+        },
+        {
+          "name": "SettingsUpdatePropsActions",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "variable_function",
+      "name": "isSettingsUpdatePropsColor",
+      "exported": true,
+      "line": 21,
+      "endLine": 22,
+      "signature": "(props: Partial<SettingsUpdateProps>): props is SettingsUpdatePropsColor =>",
+      "calls": [
+        {
+          "name": "SettingsUpdateProps",
+          "edgeType": "type"
+        },
+        {
+          "name": "SettingsUpdatePropsColor",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "variable_function",
+      "name": "isSettingsUpdatePropDefault",
+      "exported": true,
+      "line": 28,
+      "endLine": 28,
+      "signature": "(props: Partial<SettingsUpdateProps>): props is SettingsUpdatePropDefault =>",
+      "calls": [
+        {
+          "name": "SettingsUpdateProps",
+          "edgeType": "type"
+        },
+        {
+          "name": "SettingsUpdatePropDefault",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "variable",
+      "name": "isSettingsPublicWithPaginationProps",
+      "exported": true,
+      "line": 58,
+      "endLine": 58,
+      "signature": "isSettingsPublicWithPaginationProps = ajvQuery.compile<SettingsPublicWithPaginationProps>(SettingsPublicWithPaginationSchema)",
+      "calls": [
+        {
+          "name": "SettingsPublicWithPaginationProps",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "variable",
+      "name": "isSettingsGetParams",
+      "exported": true,
+      "line": 88,
+      "endLine": 88,
+      "signature": "isSettingsGetParams = ajvQuery.compile<SettingsGetParams>(SettingsGetSchema)",
+      "calls": [
+        {
+          "name": "SettingsGetParams",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "variable",
+      "name": "isSettingsBulkProps",
+      "exported": true,
+      "line": 116,
+      "endLine": 116,
+      "signature": "isSettingsBulkProps = ajv.compile<SettingsBulkProps>(SettingsBulkSchema)",
+      "calls": [
+        {
+          "name": "SettingsBulkProps",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "type",
+      "name": "SettingsUpdateProps",
+      "line": 7,
+      "endLine": 7,
+      "signature": "type SettingsUpdateProps = SettingsUpdatePropDefault | SettingsUpdatePropsActions | SettingsUpdatePropsColor;"
+    },
+    {
+      "type": "type",
+      "name": "SettingsUpdatePropsActions",
+      "line": 9,
+      "endLine": 11,
+      "signature": "type SettingsUpdatePropsActions ="
+    },
+    {
+      "type": "type",
+      "name": "SettingsUpdatePropsColor",
+      "line": 16,
+      "endLine": 19,
+      "signature": "type SettingsUpdatePropsColor ="
+    },
+    {
+      "type": "type",
+      "name": "SettingsUpdatePropDefault",
+      "line": 24,
+      "endLine": 26,
+      "signature": "type SettingsUpdatePropDefault ="
+    },
+    {
+      "type": "type",
+      "name": "SettingsPublicWithPaginationProps",
+      "line": 30,
+      "endLine": 30,
+      "signature": "type SettingsPublicWithPaginationProps = PaginatedRequest<"
+    },
+    {
+      "type": "type",
+      "name": "SettingsGetParams",
+      "line": 60,
+      "endLine": 60,
+      "signature": "type SettingsGetParams = PaginatedRequest<"
+    },
+    {
+      "type": "type",
+      "name": "SettingsBulkProps",
+      "line": 90,
+      "endLine": 92,
+      "signature": "export type SettingsBulkProps ="
+    },
+    {
+      "type": "type",
+      "name": "SettingsEndpoints",
+      "line": 118,
+      "endLine": 152,
+      "signature": "export type SettingsEndpoints ="
+    }
+  ],
+  "imports": [
+    {
+      "module": "@rocket.chat/core-typings",
+      "resolved": "external"
+    },
+    {
+      "module": "./Ajv",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/packages/rest-typings/src/v1/Ajv.ts"
+    },
+    {
+      "module": "../helpers/PaginatedRequest",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/packages/rest-typings/src/helpers/PaginatedRequest.ts"
+    },
+    {
+      "module": "../helpers/PaginatedResult",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/packages/rest-typings/src/helpers/PaginatedResult.ts"
+    }
+  ]
+}

@@ -1,0 +1,164 @@
+{
+  "sourcePath": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/ee/server/lib/oauth/Manager.ts",
+  "symbols": [
+    {
+      "type": "class",
+      "name": "OAuthEEManager",
+      "exported": true,
+      "line": 12,
+      "endLine": 97,
+      "signature": "export class OAuthEEManager",
+      "calls": []
+    },
+    {
+      "type": "method",
+      "name": "mapSSOGroupsToChannels",
+      "exported": true,
+      "qualifiedName": "OAuthEEManager.mapSSOGroupsToChannels",
+      "line": 13,
+      "endLine": 55,
+      "signature": "static async mapSSOGroupsToChannels( user: IUser, identity: Record<string, any>, groupClaimName: string, channelsMap: Record<string, any> | undefined, channelsAdmin: string, ): Promise<void>",
+      "containerClass": "OAuthEEManager",
+      "calls": [
+        {
+          "name": "findOneByUsernameIgnoringCase",
+          "edgeType": "call"
+        },
+        {
+          "name": "error",
+          "edgeType": "call"
+        },
+        {
+          "name": "keys",
+          "edgeType": "call"
+        },
+        {
+          "name": "isArray",
+          "edgeType": "call"
+        },
+        {
+          "name": "getValidRoomName",
+          "edgeType": "call"
+        },
+        {
+          "name": "trim",
+          "edgeType": "call"
+        },
+        {
+          "name": "findOneByNonValidatedName",
+          "edgeType": "call"
+        },
+        {
+          "name": "createRoom",
+          "edgeType": "call"
+        },
+        {
+          "name": "includes",
+          "edgeType": "call"
+        },
+        {
+          "name": "addUserToRoom",
+          "edgeType": "call"
+        },
+        {
+          "name": "IUser",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "updateRolesFromSSO",
+      "exported": true,
+      "qualifiedName": "OAuthEEManager.updateRolesFromSSO",
+      "line": 23,
+      "endLine": 43,
+      "signature": "static async updateRolesFromSSO( user: Record<string, any>, identity: Record<string, any>, roleClaimName: string, rolesToSync: string[], ): Promise<void>",
+      "containerClass": "OAuthEEManager",
+      "calls": [
+        {
+          "name": "mapRolesFromSSO",
+          "edgeType": "call"
+        },
+        {
+          "name": "isArray",
+          "edgeType": "call"
+        },
+        {
+          "name": "map",
+          "edgeType": "call"
+        },
+        {
+          "name": "toArray",
+          "edgeType": "call"
+        },
+        {
+          "name": "findInIdsOrNames",
+          "edgeType": "call"
+        },
+        {
+          "name": "syncUserRoles",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "mapRolesFromSSO",
+      "exported": true,
+      "qualifiedName": "OAuthEEManager.mapRolesFromSSO",
+      "line": 33,
+      "endLine": 49,
+      "signature": "static async mapRolesFromSSO(identity: Record<string, any>, roleClaimName: string): Promise<string[]>",
+      "containerClass": "OAuthEEManager",
+      "calls": [
+        {
+          "name": "isArray",
+          "edgeType": "call"
+        },
+        {
+          "name": "filter",
+          "edgeType": "call"
+        },
+        {
+          "name": "findOneByIdOrName",
+          "edgeType": "call"
+        },
+        {
+          "name": "push",
+          "edgeType": "call"
+        }
+      ]
+    }
+  ],
+  "imports": [
+    {
+      "module": "@rocket.chat/core-typings",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/logger",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/models",
+      "resolved": "external"
+    },
+    {
+      "module": "../../../../app/utils/server/lib/getValidRoomName",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/app/utils/server/lib/getValidRoomName.ts"
+    },
+    {
+      "module": "../../../../server/lib/rooms/addUserToRoom",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/server/lib/rooms/addUserToRoom.ts"
+    },
+    {
+      "module": "../../../../server/lib/rooms/createRoom",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/server/lib/rooms/createRoom.ts"
+    },
+    {
+      "module": "../syncUserRoles",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/ee/server/lib/syncUserRoles.ts"
+    }
+  ]
+}

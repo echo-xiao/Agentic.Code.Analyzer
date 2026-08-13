@@ -1,0 +1,53 @@
+{
+  "sourcePath": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/server/lib/dataExport/sendEmail.ts",
+  "symbols": [
+    {
+      "type": "variable_function",
+      "name": "sendEmail",
+      "exported": true,
+      "line": 7,
+      "endLine": 27,
+      "signature": "async (userData: Pick<IUser, 'name' | 'emails'>, subject: string, body: string): Promise<void> =>",
+      "calls": [
+        {
+          "name": "getUserEmailAddress",
+          "edgeType": "call"
+        },
+        {
+          "name": "get",
+          "edgeType": "call"
+        },
+        {
+          "name": "checkAddressFormat",
+          "edgeType": "call"
+        },
+        {
+          "name": "send",
+          "edgeType": "call"
+        },
+        {
+          "name": "IUser",
+          "edgeType": "type"
+        }
+      ]
+    }
+  ],
+  "imports": [
+    {
+      "module": "@rocket.chat/core-typings",
+      "resolved": "external"
+    },
+    {
+      "module": "../../../app/mailer/server/api",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/app/mailer/server/api.ts"
+    },
+    {
+      "module": "../../../app/settings/server",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/app/settings/server/index.ts"
+    },
+    {
+      "module": "../../../lib/getUserEmailAddress",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/lib/getUserEmailAddress.ts"
+    }
+  ]
+}

@@ -1,0 +1,185 @@
+{
+  "sourcePath": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/client/views/admin/settings/Setting/inputs/CodeMirror/CodeMirror.tsx",
+  "symbols": [
+    {
+      "type": "inner_function",
+      "name": "handleEditorChange",
+      "exported": false,
+      "qualifiedName": "CodeMirror.handleEditorChange",
+      "line": 109,
+      "endLine": 111,
+      "signature": "(doc: Editor) =>",
+      "calls": [
+        {
+          "name": "handleChange",
+          "edgeType": "call"
+        },
+        {
+          "name": "getValue",
+          "edgeType": "call"
+        },
+        {
+          "name": "Editor",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "function",
+      "name": "CodeMirror",
+      "exported": true,
+      "line": 48,
+      "endLine": 159,
+      "signature": "function CodeMirror({ lineNumbers = true, lineWrapping = true, mode = 'javascript', gutters = defaultGutters, foldGutter = true, matchBrackets = true, autoCloseBrackets = true, matchTags = true, showTrailingSpace = true, highlightSelectionMatches = true, readOnly, value, defaultValue, onChange, ...props }: CodeMirrorProps)",
+      "calls": [
+        {
+          "name": "useStableCallback",
+          "edgeType": "call"
+        },
+        {
+          "name": "useState",
+          "edgeType": "call"
+        },
+        {
+          "name": "useRef",
+          "edgeType": "call"
+        },
+        {
+          "name": "useEffect",
+          "edgeType": "call"
+        },
+        {
+          "name": "catch",
+          "edgeType": "call"
+        },
+        {
+          "name": "then",
+          "edgeType": "call"
+        },
+        {
+          "name": "loadCodeMirror",
+          "edgeType": "call"
+        },
+        {
+          "name": "setCodeMirror",
+          "edgeType": "call"
+        },
+        {
+          "name": "error",
+          "edgeType": "call"
+        },
+        {
+          "name": "fromTextArea",
+          "edgeType": "call"
+        },
+        {
+          "name": "setValue",
+          "edgeType": "call"
+        },
+        {
+          "name": "handleChange",
+          "edgeType": "call"
+        },
+        {
+          "name": "getValue",
+          "edgeType": "call"
+        },
+        {
+          "name": "handleEditorChange",
+          "edgeType": "event_listen",
+          "event": "change"
+        },
+        {
+          "name": "off",
+          "edgeType": "call"
+        },
+        {
+          "name": "toTextArea",
+          "edgeType": "call"
+        },
+        {
+          "name": "setOption",
+          "edgeType": "call"
+        },
+        {
+          "name": "setTextArea",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "CodeMirrorProps",
+          "edgeType": "type"
+        },
+        {
+          "name": "HTMLTextAreaElement",
+          "edgeType": "type"
+        },
+        {
+          "name": "CodeMirrorModule",
+          "edgeType": "type"
+        },
+        {
+          "name": "EditorFromTextArea",
+          "edgeType": "type"
+        },
+        {
+          "name": "EditorConfiguration",
+          "edgeType": "type"
+        },
+        {
+          "name": "Editor",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "variable_function",
+      "name": "loadCodeMirror",
+      "exported": false,
+      "line": 11,
+      "endLine": 25,
+      "signature": "(): Promise<CodeMirrorModule> =>",
+      "calls": [
+        {
+          "name": "then",
+          "edgeType": "call"
+        },
+        {
+          "name": "all",
+          "edgeType": "call"
+        },
+        {
+          "name": "CodeMirrorModule",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "type",
+      "name": "CodeMirrorModule",
+      "line": 7,
+      "endLine": 7,
+      "signature": "type CodeMirrorModule = typeof import('codemirror');"
+    },
+    {
+      "type": "type",
+      "name": "CodeMirrorProps",
+      "line": 15,
+      "endLine": 34,
+      "signature": "export type CodeMirrorProps ="
+    }
+  ],
+  "imports": [
+    {
+      "module": "@rocket.chat/fuselage-hooks",
+      "resolved": "external"
+    },
+    {
+      "module": "codemirror",
+      "resolved": "external"
+    },
+    {
+      "module": "react",
+      "resolved": "external"
+    }
+  ]
+}

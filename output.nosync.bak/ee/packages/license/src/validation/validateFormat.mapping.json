@@ -1,0 +1,37 @@
+{
+  "sourcePath": "/Users/echoooooo/Desktop/code/Rocket.Chat/ee/packages/license/src/validation/validateFormat.ts",
+  "symbols": [
+    {
+      "type": "variable_function",
+      "name": "validateFormat",
+      "exported": true,
+      "line": 4,
+      "endLine": 16,
+      "signature": "async (encryptedLicense: string): Promise<boolean> =>",
+      "calls": [
+        {
+          "name": "trim",
+          "edgeType": "call"
+        },
+        {
+          "name": "decrypt",
+          "edgeType": "call"
+        },
+        {
+          "name": "InvalidLicenseError",
+          "edgeType": "new"
+        }
+      ]
+    }
+  ],
+  "imports": [
+    {
+      "module": "../errors/InvalidLicenseError",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/ee/packages/license/src/errors/InvalidLicenseError.ts"
+    },
+    {
+      "module": "../token",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/ee/packages/license/src/token.ts"
+    }
+  ]
+}

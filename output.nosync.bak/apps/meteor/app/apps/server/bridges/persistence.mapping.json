@@ -1,0 +1,329 @@
+{
+  "sourcePath": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/app/apps/server/bridges/persistence.ts",
+  "symbols": [
+    {
+      "type": "class",
+      "name": "AppPersistenceBridge",
+      "exported": true,
+      "line": 6,
+      "endLine": 138,
+      "signature": "export class AppPersistenceBridge extends PersistenceBridge",
+      "calls": [
+        {
+          "name": "PersistenceBridge",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "purge",
+      "exported": true,
+      "qualifiedName": "AppPersistenceBridge.purge",
+      "line": 11,
+      "endLine": 15,
+      "signature": "protected async purge(appId: string): Promise<void>",
+      "containerClass": "AppPersistenceBridge",
+      "calls": [
+        {
+          "name": "debugLog",
+          "edgeType": "call"
+        },
+        {
+          "name": "remove",
+          "edgeType": "call"
+        },
+        {
+          "name": "getPersistenceModel",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "create",
+      "exported": true,
+      "qualifiedName": "AppPersistenceBridge.create",
+      "line": 15,
+      "endLine": 26,
+      "signature": "protected async create(data: object, appId: string): Promise<string>",
+      "containerClass": "AppPersistenceBridge",
+      "calls": [
+        {
+          "name": "debugLog",
+          "edgeType": "call"
+        },
+        {
+          "name": "then",
+          "edgeType": "call"
+        },
+        {
+          "name": "insertOne",
+          "edgeType": "call"
+        },
+        {
+          "name": "getPersistenceModel",
+          "edgeType": "call"
+        },
+        {
+          "name": "InsertOneResult",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "createWithAssociations",
+      "exported": true,
+      "qualifiedName": "AppPersistenceBridge.createWithAssociations",
+      "line": 19,
+      "endLine": 33,
+      "signature": "protected async createWithAssociations(data: object, associations: Array<RocketChatAssociationRecord>, appId: string): Promise<string>",
+      "containerClass": "AppPersistenceBridge",
+      "calls": [
+        {
+          "name": "debugLog",
+          "edgeType": "call"
+        },
+        {
+          "name": "then",
+          "edgeType": "call"
+        },
+        {
+          "name": "insertOne",
+          "edgeType": "call"
+        },
+        {
+          "name": "getPersistenceModel",
+          "edgeType": "call"
+        },
+        {
+          "name": "RocketChatAssociationRecord",
+          "edgeType": "type"
+        },
+        {
+          "name": "InsertOneResult",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "readById",
+      "exported": true,
+      "qualifiedName": "AppPersistenceBridge.readById",
+      "line": 23,
+      "endLine": 29,
+      "signature": "protected async readById(id: string, appId: string): Promise<object>",
+      "containerClass": "AppPersistenceBridge",
+      "calls": [
+        {
+          "name": "debugLog",
+          "edgeType": "call"
+        },
+        {
+          "name": "findOneById",
+          "edgeType": "call"
+        },
+        {
+          "name": "getPersistenceModel",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "readByAssociations",
+      "exported": true,
+      "qualifiedName": "AppPersistenceBridge.readByAssociations",
+      "line": 27,
+      "endLine": 39,
+      "signature": "protected async readByAssociations(associations: Array<RocketChatAssociationRecord>, appId: string): Promise<Array<object>>",
+      "containerClass": "AppPersistenceBridge",
+      "calls": [
+        {
+          "name": "debugLog",
+          "edgeType": "call"
+        },
+        {
+          "name": "toArray",
+          "edgeType": "call"
+        },
+        {
+          "name": "find",
+          "edgeType": "call"
+        },
+        {
+          "name": "getPersistenceModel",
+          "edgeType": "call"
+        },
+        {
+          "name": "isArray",
+          "edgeType": "call"
+        },
+        {
+          "name": "map",
+          "edgeType": "call"
+        },
+        {
+          "name": "RocketChatAssociationRecord",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "remove",
+      "exported": true,
+      "qualifiedName": "AppPersistenceBridge.remove",
+      "line": 31,
+      "endLine": 43,
+      "signature": "protected async remove(id: string, appId: string): Promise<object | undefined>",
+      "containerClass": "AppPersistenceBridge",
+      "calls": [
+        {
+          "name": "debugLog",
+          "edgeType": "call"
+        },
+        {
+          "name": "findOne",
+          "edgeType": "call"
+        },
+        {
+          "name": "getPersistenceModel",
+          "edgeType": "call"
+        },
+        {
+          "name": "remove",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "removeByAssociations",
+      "exported": true,
+      "qualifiedName": "AppPersistenceBridge.removeByAssociations",
+      "line": 35,
+      "endLine": 57,
+      "signature": "protected async removeByAssociations( associations: Array<RocketChatAssociationRecord>, appId: string, ): Promise<Array<object> | undefined>",
+      "containerClass": "AppPersistenceBridge",
+      "calls": [
+        {
+          "name": "debugLog",
+          "edgeType": "call"
+        },
+        {
+          "name": "toArray",
+          "edgeType": "call"
+        },
+        {
+          "name": "find",
+          "edgeType": "call"
+        },
+        {
+          "name": "getPersistenceModel",
+          "edgeType": "call"
+        },
+        {
+          "name": "remove",
+          "edgeType": "call"
+        },
+        {
+          "name": "isArray",
+          "edgeType": "call"
+        },
+        {
+          "name": "map",
+          "edgeType": "call"
+        },
+        {
+          "name": "RocketChatAssociationRecord",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "update",
+      "exported": true,
+      "qualifiedName": "AppPersistenceBridge.update",
+      "line": 42,
+      "endLine": 50,
+      "signature": "protected async update(id: string, data: object, _upsert: boolean, appId: string): Promise<string>",
+      "containerClass": "AppPersistenceBridge",
+      "calls": [
+        {
+          "name": "debugLog",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "updateByAssociations",
+      "exported": true,
+      "qualifiedName": "AppPersistenceBridge.updateByAssociations",
+      "line": 46,
+      "endLine": 67,
+      "signature": "protected async updateByAssociations( associations: Array<RocketChatAssociationRecord>, data: object, upsert = true, appId: string, ): Promise<string>",
+      "containerClass": "AppPersistenceBridge",
+      "calls": [
+        {
+          "name": "debugLog",
+          "edgeType": "call"
+        },
+        {
+          "name": "then",
+          "edgeType": "call"
+        },
+        {
+          "name": "update",
+          "edgeType": "call"
+        },
+        {
+          "name": "getPersistenceModel",
+          "edgeType": "call"
+        },
+        {
+          "name": "RocketChatAssociationRecord",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "constructor",
+      "exported": true,
+      "qualifiedName": "AppPersistenceBridge.constructor",
+      "line": 7,
+      "endLine": 9,
+      "signature": "constructor(private readonly orch: IAppServerOrchestrator)",
+      "containerClass": "AppPersistenceBridge",
+      "calls": [
+        {
+          "name": "IAppServerOrchestrator",
+          "edgeType": "type"
+        }
+      ]
+    }
+  ],
+  "imports": [
+    {
+      "module": "@rocket.chat/apps",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/apps/dist/server/bridges/PersistenceBridge",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/apps-engine/definition/metadata",
+      "resolved": "external"
+    },
+    {
+      "module": "mongodb",
+      "resolved": "external"
+    }
+  ]
+}

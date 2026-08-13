@@ -1,0 +1,55 @@
+{
+  "sourcePath": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/app/livechat/server/lib/resolveVisitor.ts",
+  "symbols": [
+    {
+      "type": "function",
+      "name": "resolveVisitor",
+      "exported": true,
+      "line": 12,
+      "endLine": 23,
+      "signature": "export async function resolveVisitor({ appId, externalId, contactData }: ResolveVisitorParams): Promise<ILivechatVisitor | null>",
+      "calls": [
+        {
+          "name": "findOneByExternalId",
+          "edgeType": "call"
+        },
+        {
+          "name": "findOneVisitorByPhoneOrEmailAndAddExternalId",
+          "edgeType": "call"
+        },
+        {
+          "name": "ResolveVisitorParams",
+          "edgeType": "type"
+        },
+        {
+          "name": "ILivechatVisitor",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "type",
+      "name": "ResolveVisitorContactData",
+      "line": 4,
+      "endLine": 4,
+      "signature": "type ResolveVisitorContactData ="
+    },
+    {
+      "type": "type",
+      "name": "ResolveVisitorParams",
+      "line": 6,
+      "endLine": 10,
+      "signature": "type ResolveVisitorParams ="
+    }
+  ],
+  "imports": [
+    {
+      "module": "@rocket.chat/core-typings",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/models",
+      "resolved": "external"
+    }
+  ]
+}

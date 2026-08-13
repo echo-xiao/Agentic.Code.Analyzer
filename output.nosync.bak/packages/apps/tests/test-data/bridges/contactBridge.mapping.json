@@ -1,0 +1,72 @@
+{
+  "sourcePath": "/Users/echoooooo/Desktop/code/Rocket.Chat/packages/apps/tests/test-data/bridges/contactBridge.ts",
+  "symbols": [
+    {
+      "type": "class",
+      "name": "TestContactBridge",
+      "exported": true,
+      "line": 5,
+      "endLine": 23,
+      "signature": "export class TestContactBridge extends ContactBridge",
+      "calls": [
+        {
+          "name": "ContactBridge",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "addContactEmail",
+      "exported": true,
+      "qualifiedName": "TestContactBridge.addContactEmail",
+      "line": 6,
+      "endLine": 8,
+      "signature": "protected addContactEmail(contactId: ILivechatContact['_id'], email: string, appId: string): Promise<ILivechatContact>",
+      "containerClass": "TestContactBridge",
+      "calls": [
+        {
+          "name": "ILivechatContact",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "getById",
+      "exported": true,
+      "qualifiedName": "TestContactBridge.getById",
+      "line": 10,
+      "endLine": 12,
+      "signature": "protected getById(id: ILivechatContact['_id']): Promise<ILivechatContact>",
+      "containerClass": "TestContactBridge",
+      "calls": [
+        {
+          "name": "ILivechatContact",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "verifyContact",
+      "exported": true,
+      "qualifiedName": "TestContactBridge.verifyContact",
+      "line": 14,
+      "endLine": 22,
+      "signature": "protected verifyContact(verifyContactChannelParams: { contactId: string; field: string; value: string; visitorId: string; roomId: string; }): Promise<void>",
+      "containerClass": "TestContactBridge",
+      "calls": []
+    }
+  ],
+  "imports": [
+    {
+      "module": "@rocket.chat/apps-engine/definition/livechat",
+      "resolved": "external"
+    },
+    {
+      "module": "../../../src/server/bridges",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/packages/apps/src/server/bridges/index.ts"
+    }
+  ]
+}

@@ -1,0 +1,125 @@
+{
+  "sourcePath": "/Users/echoooooo/Desktop/code/Rocket.Chat/packages/sha256/src/core.ts",
+  "symbols": [
+    {
+      "type": "function",
+      "name": "safeAdd",
+      "exported": false,
+      "line": 1,
+      "endLine": 5,
+      "signature": "function safeAdd(x: number, y: number)",
+      "calls": []
+    },
+    {
+      "type": "function",
+      "name": "s",
+      "exported": false,
+      "line": 5,
+      "endLine": 7,
+      "signature": "function s(x: number, n: number)",
+      "calls": []
+    },
+    {
+      "type": "function",
+      "name": "r",
+      "exported": false,
+      "line": 9,
+      "endLine": 11,
+      "signature": "function r(x: number, n: number)",
+      "calls": []
+    },
+    {
+      "type": "function",
+      "name": "ch",
+      "exported": false,
+      "line": 13,
+      "endLine": 15,
+      "signature": "function ch(x: number, y: number, z: number)",
+      "calls": []
+    },
+    {
+      "type": "function",
+      "name": "maj",
+      "exported": false,
+      "line": 17,
+      "endLine": 19,
+      "signature": "function maj(x: number, y: number, z: number)",
+      "calls": []
+    },
+    {
+      "type": "function",
+      "name": "sigma0256",
+      "exported": false,
+      "line": 21,
+      "endLine": 23,
+      "signature": "function sigma0256(x: number)",
+      "calls": []
+    },
+    {
+      "type": "function",
+      "name": "sigma1256",
+      "exported": false,
+      "line": 25,
+      "endLine": 27,
+      "signature": "function sigma1256(x: number)",
+      "calls": []
+    },
+    {
+      "type": "function",
+      "name": "gamma0256",
+      "exported": false,
+      "line": 29,
+      "endLine": 31,
+      "signature": "function gamma0256(x: number)",
+      "calls": []
+    },
+    {
+      "type": "function",
+      "name": "gamma1256",
+      "exported": false,
+      "line": 33,
+      "endLine": 35,
+      "signature": "function gamma1256(x: number)",
+      "calls": []
+    },
+    {
+      "type": "function",
+      "name": "core",
+      "exported": true,
+      "line": 37,
+      "endLine": 101,
+      "signature": "export function core(m: number[], l: number)",
+      "calls": [
+        {
+          "name": "safeAdd",
+          "edgeType": "call"
+        },
+        {
+          "name": "gamma1256",
+          "edgeType": "call"
+        },
+        {
+          "name": "gamma0256",
+          "edgeType": "call"
+        },
+        {
+          "name": "sigma1256",
+          "edgeType": "call"
+        },
+        {
+          "name": "ch",
+          "edgeType": "call"
+        },
+        {
+          "name": "sigma0256",
+          "edgeType": "call"
+        },
+        {
+          "name": "maj",
+          "edgeType": "call"
+        }
+      ]
+    }
+  ],
+  "imports": []
+}

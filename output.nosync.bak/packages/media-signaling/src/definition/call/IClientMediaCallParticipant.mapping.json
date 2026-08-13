@@ -1,0 +1,43 @@
+{
+  "sourcePath": "/Users/echoooooo/Desktop/code/Rocket.Chat/packages/media-signaling/src/definition/call/IClientMediaCallParticipant.ts",
+  "symbols": [
+    {
+      "type": "interface",
+      "name": "IClientMediaCallParticipant",
+      "line": 4,
+      "endLine": 22,
+      "signature": "export interface IClientMediaCallParticipant"
+    },
+    {
+      "type": "interface",
+      "name": "IClientMediaCallLocalParticipant",
+      "line": 24,
+      "endLine": 29,
+      "signature": "export interface IClientMediaCallLocalParticipant extends IClientMediaCallParticipant"
+    },
+    {
+      "type": "interface",
+      "name": "IClientMediaCallRemoteParticipant",
+      "line": 31,
+      "endLine": 33,
+      "signature": "export interface IClientMediaCallRemoteParticipant extends IClientMediaCallParticipant"
+    },
+    {
+      "type": "type",
+      "name": "AnyClientMediaCallParticipant",
+      "line": 35,
+      "endLine": 35,
+      "signature": "export type AnyClientMediaCallParticipant = IClientMediaCallLocalParticipant | IClientMediaCallRemoteParticipant;"
+    }
+  ],
+  "imports": [
+    {
+      "module": "../media",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/packages/media-signaling/src/definition/media/index.ts"
+    },
+    {
+      "module": "./common",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/packages/media-signaling/src/definition/call/common.ts"
+    }
+  ]
+}

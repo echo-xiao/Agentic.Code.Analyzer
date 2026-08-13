@@ -1,0 +1,294 @@
+{
+  "sourcePath": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/server/api/definition.ts",
+  "symbols": [
+    {
+      "type": "type",
+      "name": "SuccessStatusCodes",
+      "line": 11,
+      "endLine": 11,
+      "signature": "export type SuccessStatusCodes = Exclude<Range<208>, Range<200>>;"
+    },
+    {
+      "type": "type",
+      "name": "RedirectStatusCodes",
+      "line": 13,
+      "endLine": 13,
+      "signature": "export type RedirectStatusCodes = Exclude<Range<308>, Range<300>>;"
+    },
+    {
+      "type": "type",
+      "name": "AuthorizationStatusCodes",
+      "line": 15,
+      "endLine": 15,
+      "signature": "export type AuthorizationStatusCodes = Exclude<Range<451>, Range<400>>;"
+    },
+    {
+      "type": "type",
+      "name": "ErrorStatusCodes",
+      "line": 17,
+      "endLine": 17,
+      "signature": "export type ErrorStatusCodes = Exclude<Exclude<Range<511>, Range<500>>, 509>;"
+    },
+    {
+      "type": "type",
+      "name": "SuccessResult",
+      "line": 19,
+      "endLine": 22,
+      "signature": "export type SuccessResult<T, TStatusCode extends SuccessStatusCodes = 200> ="
+    },
+    {
+      "type": "type",
+      "name": "FailureResult",
+      "line": 24,
+      "endLine": 37,
+      "signature": "export type FailureResult<T, TStack = undefined, TErrorType = undefined, TErrorDetails = undefined> ="
+    },
+    {
+      "type": "type",
+      "name": "RedirectResult",
+      "line": 39,
+      "endLine": 42,
+      "signature": "export type RedirectResult<T, TStatusCode extends RedirectStatusCodes = 300> ="
+    },
+    {
+      "type": "type",
+      "name": "UnauthorizedResult",
+      "line": 44,
+      "endLine": 50,
+      "signature": "export type UnauthorizedResult<T> ="
+    },
+    {
+      "type": "type",
+      "name": "ForbiddenResult",
+      "line": 52,
+      "endLine": 59,
+      "signature": "export type ForbiddenResult<T> ="
+    },
+    {
+      "type": "type",
+      "name": "TooManyRequestsResult",
+      "line": 61,
+      "endLine": 67,
+      "signature": "export type TooManyRequestsResult<T> ="
+    },
+    {
+      "type": "type",
+      "name": "InternalError",
+      "line": 69,
+      "endLine": 75,
+      "signature": "export type InternalError<T, StatusCode extends ErrorStatusCodes = 500, D = 'Internal server error'> ="
+    },
+    {
+      "type": "type",
+      "name": "UnavailableResult",
+      "line": 77,
+      "endLine": 83,
+      "signature": "export type UnavailableResult<T, StatusCode = 503> ="
+    },
+    {
+      "type": "type",
+      "name": "NotFoundResult",
+      "line": 85,
+      "endLine": 91,
+      "signature": "export type NotFoundResult<T = string> ="
+    },
+    {
+      "type": "type",
+      "name": "TOperation",
+      "line": 93,
+      "endLine": 93,
+      "signature": "export type TOperation = 'hasAll' | 'hasAny';"
+    },
+    {
+      "type": "type",
+      "name": "NonEnterpriseTwoFactorOptions",
+      "line": 94,
+      "endLine": 100,
+      "signature": "export type NonEnterpriseTwoFactorOptions ="
+    },
+    {
+      "type": "type",
+      "name": "Options",
+      "line": 102,
+      "endLine": 102,
+      "signature": "export type Options = SharedOptions<'GET' | 'POST' | 'PUT' | 'DELETE' | 'PATCH'>;"
+    },
+    {
+      "type": "type",
+      "name": "SharedOptions",
+      "line": 104,
+      "endLine": 156,
+      "signature": "export type SharedOptions<TMethod extends string> = ( |"
+    },
+    {
+      "type": "type",
+      "name": "GenericRouteExecutionContext",
+      "line": 158,
+      "endLine": 158,
+      "signature": "export type GenericRouteExecutionContext = ActionThis<any, any, any>;"
+    },
+    {
+      "type": "type",
+      "name": "RouteExecutionContext",
+      "line": 160,
+      "endLine": 164,
+      "signature": "export type RouteExecutionContext<TMethod extends Method, TPathPattern extends PathPattern, TOptions> = ActionThis<"
+    },
+    {
+      "type": "type",
+      "name": "ActionThis",
+      "line": 166,
+      "endLine": 234,
+      "signature": "export type ActionThis<TMethod extends Method, TPathPattern extends PathPattern, TOptions> ="
+    },
+    {
+      "type": "type",
+      "name": "ResultFor",
+      "line": 236,
+      "endLine": 247,
+      "signature": "export type ResultFor<TMethod extends Method, TPathPattern extends PathPattern> = ( | SuccessResult<OperationResult<TMethod, TPathPattern>> | FailureResult<unknown, unknown, unknown, unknown> | UnauthorizedResult<unknown> | NotFoundResult |"
+    },
+    {
+      "type": "type",
+      "name": "Action",
+      "line": 249,
+      "endLine": 251,
+      "signature": "export type Action<TMethod extends Method, TPathPattern extends PathPattern, TOptions> ="
+    },
+    {
+      "type": "type",
+      "name": "InnerAction",
+      "line": 253,
+      "endLine": 258,
+      "signature": "export type InnerAction<TMethod extends Method, TPathPattern extends PathPattern, TOptions> ="
+    },
+    {
+      "type": "type",
+      "name": "Mutable",
+      "line": 260,
+      "endLine": 262,
+      "signature": "type Mutable<Immutable> ="
+    },
+    {
+      "type": "type",
+      "name": "Operation",
+      "line": 264,
+      "endLine": 268,
+      "signature": "type Operation<TMethod extends Method, TPathPattern extends PathPattern, TEndpointOptions> = | Action<TMethod, TPathPattern, TEndpointOptions> | ("
+    },
+    {
+      "type": "type",
+      "name": "ActionOperation",
+      "line": 270,
+      "endLine": 272,
+      "signature": "type ActionOperation<TMethod extends Method, TPathPattern extends PathPattern, TEndpointOptions extends Options = object> ="
+    },
+    {
+      "type": "type",
+      "name": "Operations",
+      "line": 274,
+      "endLine": 276,
+      "signature": "export type Operations<TPathPattern extends PathPattern, TOptions extends Options = object> ="
+    },
+    {
+      "type": "type",
+      "name": "ActionOperations",
+      "line": 278,
+      "endLine": 280,
+      "signature": "export type ActionOperations<TPathPattern extends PathPattern, TOptions extends Options = object> ="
+    },
+    {
+      "type": "type",
+      "name": "Range",
+      "line": 282,
+      "endLine": 284,
+      "signature": "type Range<N extends number, Result extends number[] = []> = Result['length'] extends N"
+    },
+    {
+      "type": "type",
+      "name": "HTTPStatusCodes",
+      "line": 286,
+      "endLine": 286,
+      "signature": "type HTTPStatusCodes = SuccessStatusCodes | RedirectStatusCodes | AuthorizationStatusCodes | ErrorStatusCodes;"
+    },
+    {
+      "type": "type",
+      "name": "TypedOptions",
+      "line": 288,
+      "endLine": 297,
+      "signature": "export type TypedOptions ="
+    },
+    {
+      "type": "type",
+      "name": "TypedThis",
+      "line": 299,
+      "endLine": 337,
+      "signature": "export type TypedThis<TOptions extends TypedOptions, TPath extends string = ''> ="
+    },
+    {
+      "type": "type",
+      "name": "PromiseOrValue",
+      "line": 339,
+      "endLine": 339,
+      "signature": "type PromiseOrValue<T> = T | Promise<T>;"
+    },
+    {
+      "type": "type",
+      "name": "InferResult",
+      "line": 341,
+      "endLine": 341,
+      "signature": "type InferResult<TResult> = TResult extends ValidateFunction<infer T> ? T : TResult;"
+    },
+    {
+      "type": "type",
+      "name": "InferNon200Result",
+      "line": 343,
+      "endLine": 349,
+      "signature": "type InferNon200Result<T> = InferResult<T> extends"
+    },
+    {
+      "type": "type",
+      "name": "Results",
+      "line": 351,
+      "endLine": 369,
+      "signature": "type Results<TResponse extends TypedOptions['response']> ="
+    },
+    {
+      "type": "type",
+      "name": "TypedAction",
+      "line": 371,
+      "endLine": 375,
+      "signature": "export type TypedAction<"
+    }
+  ],
+  "imports": [
+    {
+      "module": "node:http",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/core-typings",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/logger",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/rest-typings",
+      "resolved": "external"
+    },
+    {
+      "module": "ajv",
+      "resolved": "external"
+    },
+    {
+      "module": "../../app/2fa/server/code",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/app/2fa/server/code/index.ts"
+    },
+    {
+      "module": "../../app/lib/server/lib/deprecationWarningLogger",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/app/lib/server/lib/deprecationWarningLogger.ts"
+    }
+  ]
+}

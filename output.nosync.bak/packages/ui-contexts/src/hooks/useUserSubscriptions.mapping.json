@@ -1,0 +1,61 @@
+{
+  "sourcePath": "/Users/echoooooo/Desktop/code/Rocket.Chat/packages/ui-contexts/src/hooks/useUserSubscriptions.ts",
+  "symbols": [
+    {
+      "type": "variable_function",
+      "name": "useUserSubscriptions",
+      "exported": true,
+      "line": 7,
+      "endLine": 11,
+      "signature": "(query: SubscriptionQuery, options?: FindOptions): SubscriptionWithRoom[] =>",
+      "calls": [
+        {
+          "name": "useContext",
+          "edgeType": "call"
+        },
+        {
+          "name": "useMemo",
+          "edgeType": "call"
+        },
+        {
+          "name": "querySubscriptions",
+          "edgeType": "call"
+        },
+        {
+          "name": "useSyncExternalStore",
+          "edgeType": "call"
+        },
+        {
+          "name": "SubscriptionQuery",
+          "edgeType": "type"
+        },
+        {
+          "name": "FindOptions",
+          "edgeType": "type"
+        },
+        {
+          "name": "SubscriptionWithRoom",
+          "edgeType": "type"
+        }
+      ]
+    }
+  ],
+  "imports": [
+    {
+      "module": "react",
+      "resolved": "external"
+    },
+    {
+      "module": "../UserContext",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/packages/ui-contexts/src/UserContext.ts"
+    },
+    {
+      "module": "../UserContext",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/packages/ui-contexts/src/UserContext.ts"
+    },
+    {
+      "module": "../types/SubscriptionWithRoom",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/packages/ui-contexts/src/types/SubscriptionWithRoom.ts"
+    }
+  ]
+}

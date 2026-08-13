@@ -1,0 +1,249 @@
+{
+  "sourcePath": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/app/mentions/lib/MentionsParser.ts",
+  "symbols": [
+    {
+      "type": "class",
+      "name": "MentionsParser",
+      "exported": true,
+      "line": 31,
+      "endLine": 146,
+      "signature": "export class MentionsParser",
+      "calls": []
+    },
+    {
+      "type": "method",
+      "name": "getUserMentions",
+      "exported": true,
+      "qualifiedName": "MentionsParser.getUserMentions",
+      "line": 122,
+      "endLine": 127,
+      "signature": "getUserMentions(msg: string)",
+      "containerClass": "MentionsParser",
+      "calls": [
+        {
+          "name": "replace",
+          "edgeType": "call"
+        },
+        {
+          "name": "map",
+          "edgeType": "call"
+        },
+        {
+          "name": "match",
+          "edgeType": "call"
+        },
+        {
+          "name": "trim",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "getChannelMentions",
+      "exported": true,
+      "qualifiedName": "MentionsParser.getChannelMentions",
+      "line": 126,
+      "endLine": 131,
+      "signature": "getChannelMentions(msg: string)",
+      "containerClass": "MentionsParser",
+      "calls": [
+        {
+          "name": "replace",
+          "edgeType": "call"
+        },
+        {
+          "name": "map",
+          "edgeType": "call"
+        },
+        {
+          "name": "match",
+          "edgeType": "call"
+        },
+        {
+          "name": "trim",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "parse",
+      "exported": true,
+      "qualifiedName": "MentionsParser.parse",
+      "line": 130,
+      "endLine": 139,
+      "signature": "parse(message: IMessage)",
+      "containerClass": "MentionsParser",
+      "calls": [
+        {
+          "name": "trim",
+          "edgeType": "call"
+        },
+        {
+          "name": "replaceUsers",
+          "edgeType": "call"
+        },
+        {
+          "name": "me",
+          "edgeType": "call"
+        },
+        {
+          "name": "replaceChannels",
+          "edgeType": "call"
+        },
+        {
+          "name": "IMessage",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "constructor",
+      "exported": true,
+      "qualifiedName": "MentionsParser.constructor",
+      "line": 42,
+      "endLine": 48,
+      "signature": "constructor({ pattern, useRealName, me, roomTemplate = roomTemplateDefault, userTemplate = userTemplateDefault }: MentionsParserArgs)",
+      "containerClass": "MentionsParser",
+      "calls": [
+        {
+          "name": "MentionsParserArgs",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "class_property",
+      "name": "pattern",
+      "exported": true,
+      "qualifiedName": "MentionsParser.pattern",
+      "line": 34,
+      "endLine": 34,
+      "signature": "pattern: MentionsParserArgs['pattern'];",
+      "containerClass": "MentionsParser",
+      "calls": [
+        {
+          "name": "MentionsParserArgs",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "class_property",
+      "name": "replaceUsers",
+      "exported": true,
+      "qualifiedName": "MentionsParser.replaceUsers",
+      "line": 54,
+      "endLine": 98,
+      "signature": "replaceUsers = (msg: string,",
+      "containerClass": "MentionsParser",
+      "calls": [
+        {
+          "name": "replace",
+          "edgeType": "call"
+        },
+        {
+          "name": "push",
+          "edgeType": "call"
+        },
+        {
+          "name": "join",
+          "edgeType": "call"
+        },
+        {
+          "name": "userTemplate",
+          "edgeType": "call"
+        },
+        {
+          "name": "filter",
+          "edgeType": "call"
+        },
+        {
+          "name": "filterUser",
+          "edgeType": "call"
+        },
+        {
+          "name": "filterTeam",
+          "edgeType": "call"
+        },
+        {
+          "name": "escapeHTML",
+          "edgeType": "call"
+        },
+        {
+          "name": "useRealName",
+          "edgeType": "call"
+        },
+        {
+          "name": "IMessage",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "class_property",
+      "name": "replaceChannels",
+      "exported": true,
+      "qualifiedName": "MentionsParser.replaceChannels",
+      "line": 100,
+      "endLine": 116,
+      "signature": "replaceChannels = (msg: string,",
+      "containerClass": "MentionsParser",
+      "calls": [
+        {
+          "name": "replace",
+          "edgeType": "call"
+        },
+        {
+          "name": "find",
+          "edgeType": "call"
+        },
+        {
+          "name": "roomTemplate",
+          "edgeType": "call"
+        },
+        {
+          "name": "IMessage",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "variable_function",
+      "name": "userTemplateDefault",
+      "exported": false,
+      "line": 12,
+      "endLine": 26,
+      "signature": "({ prefix, className, mention, title = '', label, type = 'username', }: { prefix: string; className: string; mention: string; title?: string; label?: string; type?: string; }) =>",
+      "calls": []
+    },
+    {
+      "type": "variable_function",
+      "name": "roomTemplateDefault",
+      "exported": false,
+      "line": 28,
+      "endLine": 29,
+      "signature": "({ prefix, reference, mention }: { prefix: string; reference: string; mention: string }) =>",
+      "calls": []
+    },
+    {
+      "type": "type",
+      "name": "MentionsParserArgs",
+      "line": 4,
+      "endLine": 10,
+      "signature": "export type MentionsParserArgs ="
+    }
+  ],
+  "imports": [
+    {
+      "module": "@rocket.chat/core-typings",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/string-helpers",
+      "resolved": "external"
+    }
+  ]
+}

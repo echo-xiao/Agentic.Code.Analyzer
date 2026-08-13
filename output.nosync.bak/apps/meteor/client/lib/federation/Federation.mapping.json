@@ -1,0 +1,191 @@
+{
+  "sourcePath": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/client/lib/federation/Federation.ts",
+  "symbols": [
+    {
+      "type": "variable_function",
+      "name": "actionAllowed",
+      "exported": true,
+      "line": 18,
+      "endLine": 85,
+      "signature": "( room: Partial<IRoom>, action: ValueOf<typeof RoomMemberActions>, displayingUserId: IUser['_id'], userSubscription?: ISubscription, ): boolean =>",
+      "calls": [
+        {
+          "name": "isRoomFederated",
+          "edgeType": "call"
+        },
+        {
+          "name": "isDirectMessageRoom",
+          "edgeType": "call"
+        },
+        {
+          "name": "Boolean",
+          "edgeType": "call"
+        },
+        {
+          "name": "find",
+          "edgeType": "call"
+        },
+        {
+          "name": "getQueryData",
+          "edgeType": "call"
+        },
+        {
+          "name": "roles",
+          "edgeType": "call"
+        },
+        {
+          "name": "includes",
+          "edgeType": "call"
+        },
+        {
+          "name": "IRoom",
+          "edgeType": "type"
+        },
+        {
+          "name": "ValueOf",
+          "edgeType": "type"
+        },
+        {
+          "name": "IUser",
+          "edgeType": "type"
+        },
+        {
+          "name": "ISubscription",
+          "edgeType": "type"
+        },
+        {
+          "name": "RoomRoles",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "variable_function",
+      "name": "isEditableByTheUser",
+      "exported": true,
+      "line": 27,
+      "endLine": 32,
+      "signature": "(user?: IUser, room?: IRoom, subscription?: ISubscription): boolean =>",
+      "calls": [
+        {
+          "name": "isRoomFederated",
+          "edgeType": "call"
+        },
+        {
+          "name": "Boolean",
+          "edgeType": "call"
+        },
+        {
+          "name": "includes",
+          "edgeType": "call"
+        },
+        {
+          "name": "IUser",
+          "edgeType": "type"
+        },
+        {
+          "name": "IRoom",
+          "edgeType": "type"
+        },
+        {
+          "name": "ISubscription",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "variable_function",
+      "name": "canCreateInviteLinks",
+      "exported": true,
+      "line": 31,
+      "endLine": 40,
+      "signature": "(user?: IUser, room?: IRoom, subscription?: ISubscription): boolean =>",
+      "calls": [
+        {
+          "name": "isRoomFederated",
+          "edgeType": "call"
+        },
+        {
+          "name": "isPublicRoom",
+          "edgeType": "call"
+        },
+        {
+          "name": "Boolean",
+          "edgeType": "call"
+        },
+        {
+          "name": "includes",
+          "edgeType": "call"
+        },
+        {
+          "name": "IUser",
+          "edgeType": "type"
+        },
+        {
+          "name": "IRoom",
+          "edgeType": "type"
+        },
+        {
+          "name": "ISubscription",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "variable_function",
+      "name": "isRoomSettingAllowed",
+      "exported": true,
+      "line": 35,
+      "endLine": 44,
+      "signature": "(room: Partial<IRoom>, setting: ValueOf<typeof RoomSettingsEnum>): boolean =>",
+      "calls": [
+        {
+          "name": "isRoomFederated",
+          "edgeType": "call"
+        },
+        {
+          "name": "isDirectMessageRoom",
+          "edgeType": "call"
+        },
+        {
+          "name": "includes",
+          "edgeType": "call"
+        },
+        {
+          "name": "IRoom",
+          "edgeType": "type"
+        },
+        {
+          "name": "ValueOf",
+          "edgeType": "type"
+        }
+      ]
+    }
+  ],
+  "imports": [
+    {
+      "module": "@rocket.chat/core-typings",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/core-typings",
+      "resolved": "external"
+    },
+    {
+      "module": "../../../definition/IRoomTypeConfig",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/definition/IRoomTypeConfig.ts"
+    },
+    {
+      "module": "../../hooks/useRoomRolesQuery",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/client/hooks/useRoomRolesQuery.ts"
+    },
+    {
+      "module": "../queryClient",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/client/lib/queryClient.ts"
+    },
+    {
+      "module": "../queryKeys",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/client/lib/queryKeys.ts"
+    }
+  ]
+}

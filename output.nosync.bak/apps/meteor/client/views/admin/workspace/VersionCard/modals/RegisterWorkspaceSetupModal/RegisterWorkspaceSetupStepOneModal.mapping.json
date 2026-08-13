@@ -1,0 +1,277 @@
+{
+  "sourcePath": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/client/views/admin/workspace/VersionCard/modals/RegisterWorkspaceSetupModal/RegisterWorkspaceSetupStepOneModal.tsx",
+  "symbols": [
+    {
+      "type": "inner_function",
+      "name": "handleBack",
+      "exported": false,
+      "qualifiedName": "RegisterWorkspaceSetupStepOneModal.handleBack",
+      "line": 57,
+      "endLine": 60,
+      "signature": "(): void =>",
+      "calls": [
+        {
+          "name": "setModal",
+          "edgeType": "call"
+        },
+        {
+          "name": "WorkspaceRegistrationModal",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "handleModalClose",
+          "edgeType": "jsx"
+        }
+      ]
+    },
+    {
+      "type": "inner_function",
+      "name": "handleModalClose",
+      "exported": false,
+      "qualifiedName": "RegisterWorkspaceSetupStepOneModal.handleModalClose",
+      "line": 58,
+      "endLine": 58,
+      "signature": "(): void =>",
+      "calls": [
+        {
+          "name": "setModal",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "inner_function",
+      "name": "handleRegisterWorkspace",
+      "exported": false,
+      "qualifiedName": "RegisterWorkspaceSetupStepOneModal.handleRegisterWorkspace",
+      "line": 62,
+      "endLine": 70,
+      "signature": "async () =>",
+      "calls": [
+        {
+          "name": "createRegistrationIntent",
+          "edgeType": "call"
+        },
+        {
+          "name": "setIntentData",
+          "edgeType": "call"
+        },
+        {
+          "name": "setStep",
+          "edgeType": "call"
+        },
+        {
+          "name": "dispatchToastMessage",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "variable_function",
+      "name": "RegisterWorkspaceSetupStepOneModal",
+      "exported": false,
+      "line": 39,
+      "endLine": 133,
+      "signature": "({ email, setEmail, step, setStep, terms, setTerms, onClose, validInfo, setIntentData, ...props }: Props) =>",
+      "calls": [
+        {
+          "name": "useSetModal",
+          "edgeType": "call"
+        },
+        {
+          "name": "useTranslation",
+          "edgeType": "call"
+        },
+        {
+          "name": "useToastMessageDispatch",
+          "edgeType": "call"
+        },
+        {
+          "name": "useEndpoint",
+          "edgeType": "call"
+        },
+        {
+          "name": "setModal",
+          "edgeType": "call"
+        },
+        {
+          "name": "createRegistrationIntent",
+          "edgeType": "call"
+        },
+        {
+          "name": "setIntentData",
+          "edgeType": "call"
+        },
+        {
+          "name": "setStep",
+          "edgeType": "call"
+        },
+        {
+          "name": "dispatchToastMessage",
+          "edgeType": "call"
+        },
+        {
+          "name": "useId",
+          "edgeType": "call"
+        },
+        {
+          "name": "setEmail",
+          "edgeType": "call"
+        },
+        {
+          "name": "setTerms",
+          "edgeType": "call"
+        },
+        {
+          "name": "Modal",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "ModalHeader",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "ModalHeaderText",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "ModalTagline",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "ModalTitle",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "ModalContent",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "Box",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "Field",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "FieldLabel",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "FieldRow",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "Trans",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "ExternalLink",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "ModalFooter",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "ButtonGroup",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "Button",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "WorkspaceRegistrationModal",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "ModalClose",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "TextInput",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "CheckBox",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "handleModalClose",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "onClose",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "emailField",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "termsField",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "terms",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "handleBack",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "handleRegisterWorkspace",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "Props",
+          "edgeType": "type"
+        },
+        {
+          "name": "HTMLInputElement",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "type",
+      "name": "Props",
+      "line": 27,
+      "endLine": 37,
+      "signature": "type Props ="
+    }
+  ],
+  "imports": [
+    {
+      "module": "@rocket.chat/fuselage",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/ui-client",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/ui-contexts",
+      "resolved": "external"
+    },
+    {
+      "module": "react",
+      "resolved": "external"
+    },
+    {
+      "module": "react-i18next",
+      "resolved": "external"
+    },
+    {
+      "module": "../../../../../../lib/links",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/client/lib/links.ts"
+    },
+    {
+      "module": "../RegisterWorkspaceModal",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/client/views/admin/workspace/VersionCard/modals/RegisterWorkspaceModal.tsx"
+    }
+  ]
+}

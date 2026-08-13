@@ -1,0 +1,85 @@
+{
+  "sourcePath": "/Users/echoooooo/Desktop/code/Rocket.Chat/packages/release-action/src/startPatchRelease.ts",
+  "symbols": [
+    {
+      "type": "function",
+      "name": "startPatchRelease",
+      "exported": true,
+      "line": 9,
+      "endLine": 60,
+      "signature": "export async function startPatchRelease({ githubToken, baseRef, mainPackagePath, cwd = process.cwd(), }: { baseRef: string; mainPackagePath: string; githubToken: string; cwd?: string; })",
+      "calls": [
+        {
+          "name": "cwd",
+          "edgeType": "call"
+        },
+        {
+          "name": "setupOctokit",
+          "edgeType": "call"
+        },
+        {
+          "name": "checkoutBranch",
+          "edgeType": "call"
+        },
+        {
+          "name": "readPackageJson",
+          "edgeType": "call"
+        },
+        {
+          "name": "inc",
+          "edgeType": "call"
+        },
+        {
+          "name": "createBranch",
+          "edgeType": "call"
+        },
+        {
+          "name": "info",
+          "edgeType": "call"
+        },
+        {
+          "name": "createBumpFile",
+          "edgeType": "call"
+        },
+        {
+          "name": "commitChanges",
+          "edgeType": "call"
+        },
+        {
+          "name": "pushNewBranch",
+          "edgeType": "call"
+        },
+        {
+          "name": "create",
+          "edgeType": "call"
+        }
+      ]
+    }
+  ],
+  "imports": [
+    {
+      "module": "@actions/core",
+      "resolved": "external"
+    },
+    {
+      "module": "@actions/github",
+      "resolved": "external"
+    },
+    {
+      "module": "semver",
+      "resolved": "external"
+    },
+    {
+      "module": "./gitUtils",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/packages/release-action/src/gitUtils.ts"
+    },
+    {
+      "module": "./setupOctokit",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/packages/release-action/src/setupOctokit.ts"
+    },
+    {
+      "module": "./utils",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/packages/release-action/src/utils.ts"
+    }
+  ]
+}

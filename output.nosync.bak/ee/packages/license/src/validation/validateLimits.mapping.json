@@ -1,0 +1,121 @@
+{
+  "sourcePath": "/Users/echoooooo/Desktop/code/Rocket.Chat/ee/packages/license/src/validation/validateLimits.ts",
+  "symbols": [
+    {
+      "type": "function",
+      "name": "validateLimits",
+      "exported": true,
+      "line": 11,
+      "endLine": 55,
+      "signature": "export async function validateLimits( this: LicenseManager, limits: ILicenseV3['limits'], options: LicenseValidationOptions, ): Promise<BehaviorWithContext[]>",
+      "calls": [
+        {
+          "name": "filter",
+          "edgeType": "call"
+        },
+        {
+          "name": "keys",
+          "edgeType": "call"
+        },
+        {
+          "name": "isLimitAllowed",
+          "edgeType": "call"
+        },
+        {
+          "name": "flat",
+          "edgeType": "call"
+        },
+        {
+          "name": "all",
+          "edgeType": "call"
+        },
+        {
+          "name": "map",
+          "edgeType": "call"
+        },
+        {
+          "name": "isBehaviorAllowed",
+          "edgeType": "call"
+        },
+        {
+          "name": "call",
+          "edgeType": "call"
+        },
+        {
+          "name": "validateLimit",
+          "edgeType": "call"
+        },
+        {
+          "name": "logKind",
+          "edgeType": "call"
+        },
+        {
+          "name": "error",
+          "edgeType": "call"
+        },
+        {
+          "name": "info",
+          "edgeType": "call"
+        },
+        {
+          "name": "getResultingBehavior",
+          "edgeType": "call"
+        },
+        {
+          "name": "LicenseManager",
+          "edgeType": "type"
+        },
+        {
+          "name": "ILicenseV3",
+          "edgeType": "type"
+        },
+        {
+          "name": "LicenseValidationOptions",
+          "edgeType": "type"
+        },
+        {
+          "name": "BehaviorWithContext",
+          "edgeType": "type"
+        },
+        {
+          "name": "LicenseLimitKind",
+          "edgeType": "type"
+        }
+      ]
+    }
+  ],
+  "imports": [
+    {
+      "module": "@rocket.chat/core-typings",
+      "resolved": "external"
+    },
+    {
+      "module": "../isItemAllowed",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/ee/packages/license/src/isItemAllowed.ts"
+    },
+    {
+      "module": "../license",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/ee/packages/license/src/license.ts"
+    },
+    {
+      "module": "../logger",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/ee/packages/license/src/logger.ts"
+    },
+    {
+      "module": "./getCurrentValueForLicenseLimit",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/ee/packages/license/src/validation/getCurrentValueForLicenseLimit.ts"
+    },
+    {
+      "module": "./getResultingBehavior",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/ee/packages/license/src/validation/getResultingBehavior.ts"
+    },
+    {
+      "module": "./logKind",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/ee/packages/license/src/validation/logKind.ts"
+    },
+    {
+      "module": "./validateLimit",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/ee/packages/license/src/validation/validateLimit.ts"
+    }
+  ]
+}

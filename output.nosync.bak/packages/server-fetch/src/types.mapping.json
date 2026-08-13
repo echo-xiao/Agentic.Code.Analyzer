@@ -1,0 +1,60 @@
+{
+  "sourcePath": "/Users/echoooooo/Desktop/code/Rocket.Chat/packages/server-fetch/src/types.ts",
+  "symbols": [
+    {
+      "type": "type",
+      "name": "OriginalFetchOptions",
+      "line": 3,
+      "endLine": 3,
+      "signature": "export type OriginalFetchOptions = Parameters<typeof fetch>[1];"
+    },
+    {
+      "type": "type",
+      "name": "FetchOptions",
+      "line": 4,
+      "endLine": 4,
+      "signature": "export type FetchOptions = NonNullable<Parameters<typeof fetch>[1]>;"
+    },
+    {
+      "type": "type",
+      "name": "FetchOptionsWithoutBody",
+      "line": 5,
+      "endLine": 5,
+      "signature": "export type FetchOptionsWithoutBody = Omit<FetchOptions, 'body'>;"
+    },
+    {
+      "type": "type",
+      "name": "BaseExtendedOptions",
+      "line": 7,
+      "endLine": 14,
+      "signature": "type BaseExtendedOptions = FetchOptionsWithoutBody &"
+    },
+    {
+      "type": "type",
+      "name": "SsrfValidationIgnored",
+      "line": 16,
+      "endLine": 19,
+      "signature": "type SsrfValidationIgnored ="
+    },
+    {
+      "type": "type",
+      "name": "SsrfValidationEnforced",
+      "line": 21,
+      "endLine": 24,
+      "signature": "type SsrfValidationEnforced ="
+    },
+    {
+      "type": "type",
+      "name": "ExtendedFetchOptions",
+      "line": 26,
+      "endLine": 26,
+      "signature": "export type ExtendedFetchOptions = BaseExtendedOptions & (SsrfValidationIgnored | SsrfValidationEnforced);"
+    }
+  ],
+  "imports": [
+    {
+      "module": "node-fetch",
+      "resolved": "external"
+    }
+  ]
+}

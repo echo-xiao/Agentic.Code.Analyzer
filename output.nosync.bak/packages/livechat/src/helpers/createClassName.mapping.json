@@ -1,0 +1,58 @@
+{
+  "sourcePath": "/Users/echoooooo/Desktop/code/Rocket.Chat/packages/livechat/src/helpers/createClassName.ts",
+  "symbols": [
+    {
+      "type": "variable_function",
+      "name": "flatMap",
+      "exported": false,
+      "line": 1,
+      "endLine": 13,
+      "signature": "<T, U>(arr: T[], mapFunc: (elem: T, index: number, arr: T[]) => U | U[]) =>",
+      "calls": [
+        {
+          "name": "entries",
+          "edgeType": "call"
+        },
+        {
+          "name": "mapFunc",
+          "edgeType": "call"
+        },
+        {
+          "name": "isArray",
+          "edgeType": "call"
+        },
+        {
+          "name": "push",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "variable_function",
+      "name": "createClassName",
+      "exported": true,
+      "line": 5,
+      "endLine": 19,
+      "signature": "( styles: Record<string, string>, elementName: string, modifiers = {}, classes: (string | undefined)[] = [], ) =>",
+      "calls": [
+        {
+          "name": "join",
+          "edgeType": "call"
+        },
+        {
+          "name": "filter",
+          "edgeType": "call"
+        },
+        {
+          "name": "flatMap",
+          "edgeType": "call"
+        },
+        {
+          "name": "entries",
+          "edgeType": "call"
+        }
+      ]
+    }
+  ],
+  "imports": []
+}

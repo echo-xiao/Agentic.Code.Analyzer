@@ -1,0 +1,65 @@
+{
+  "sourcePath": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/ee/app/message-read-receipt/server/hooks/afterReadMessages.ts",
+  "symbols": [
+    {
+      "type": "module",
+      "name": "afterReadMessages",
+      "exported": false,
+      "line": 1,
+      "endLine": 26,
+      "signature": "afterReadMessages",
+      "calls": [
+        {
+          "name": "afterReadMessages",
+          "edgeType": "event_listen"
+        },
+        {
+          "name": "get",
+          "edgeType": "call"
+        },
+        {
+          "name": "readThread",
+          "edgeType": "call"
+        },
+        {
+          "name": "markMessagesAsRead",
+          "edgeType": "call"
+        },
+        {
+          "name": "IRoom",
+          "edgeType": "type"
+        },
+        {
+          "name": "IUser",
+          "edgeType": "type"
+        },
+        {
+          "name": "IMessage",
+          "edgeType": "type"
+        }
+      ]
+    }
+  ],
+  "imports": [
+    {
+      "module": "@rocket.chat/core-services",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/core-typings",
+      "resolved": "external"
+    },
+    {
+      "module": "../../../../../app/settings/server",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/app/settings/server/index.ts"
+    },
+    {
+      "module": "../../../../../server/lib/callbacks",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/server/lib/callbacks.ts"
+    },
+    {
+      "module": "../../../../server/lib/message-read-receipt/ReadReceipt",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/ee/server/lib/message-read-receipt/ReadReceipt.ts"
+    }
+  ]
+}

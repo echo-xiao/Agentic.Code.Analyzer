@@ -1,0 +1,41 @@
+{
+  "sourcePath": "/Users/echoooooo/Desktop/code/Rocket.Chat/packages/ui-contexts/src/hooks/useDeviceConstraints.ts",
+  "symbols": [
+    {
+      "type": "variable_function",
+      "name": "useDeviceConstraints",
+      "exported": true,
+      "line": 5,
+      "endLine": 17,
+      "signature": "(): MediaStreamConstraints | null =>",
+      "calls": [
+        {
+          "name": "useContext",
+          "edgeType": "call"
+        },
+        {
+          "name": "isDeviceContextEnabled",
+          "edgeType": "call"
+        },
+        {
+          "name": "warn",
+          "edgeType": "call"
+        },
+        {
+          "name": "MediaStreamConstraints",
+          "edgeType": "type"
+        }
+      ]
+    }
+  ],
+  "imports": [
+    {
+      "module": "react",
+      "resolved": "external"
+    },
+    {
+      "module": "../DeviceContext",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/packages/ui-contexts/src/DeviceContext.ts"
+    }
+  ]
+}

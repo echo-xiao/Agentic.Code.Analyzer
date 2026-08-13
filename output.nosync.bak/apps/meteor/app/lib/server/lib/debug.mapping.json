@@ -1,0 +1,193 @@
+{
+  "sourcePath": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/app/lib/server/lib/debug.js",
+  "symbols": [
+    {
+      "type": "module",
+      "name": "debug",
+      "exported": false,
+      "line": 1,
+      "endLine": 139,
+      "signature": "debug",
+      "calls": [
+        {
+          "name": "watch",
+          "edgeType": "call"
+        },
+        {
+          "name": "RegExp",
+          "edgeType": "new"
+        },
+        {
+          "name": "each",
+          "edgeType": "call"
+        },
+        {
+          "name": "wrapMethods",
+          "edgeType": "call"
+        },
+        {
+          "name": "originalMeteorMethods",
+          "edgeType": "call"
+        },
+        {
+          "name": "originalMeteorPublish",
+          "edgeType": "call"
+        },
+        {
+          "name": "traceConnection",
+          "edgeType": "call"
+        },
+        {
+          "name": "subscription",
+          "edgeType": "call"
+        },
+        {
+          "name": "id",
+          "edgeType": "call"
+        },
+        {
+          "name": "startTimer",
+          "edgeType": "call"
+        },
+        {
+          "name": "end",
+          "edgeType": "call"
+        },
+        {
+          "name": "endHistogram",
+          "edgeType": "call"
+        },
+        {
+          "name": "apply",
+          "edgeType": "call"
+        },
+        {
+          "name": "use",
+          "edgeType": "call"
+        },
+        {
+          "name": "setHeader",
+          "edgeType": "call"
+        },
+        {
+          "name": "next",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "variable_function",
+      "name": "traceConnection",
+      "exported": false,
+      "line": 33,
+      "endLine": 52,
+      "signature": "(enable, filter, prefix, name, connection, userId) =>",
+      "calls": [
+        {
+          "name": "test",
+          "edgeType": "call"
+        },
+        {
+          "name": "log",
+          "edgeType": "call"
+        },
+        {
+          "name": "getModifiedHttpHeaders",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "variable_function",
+      "name": "wrapMethods",
+      "exported": false,
+      "line": 37,
+      "endLine": 78,
+      "signature": "function (name, originalHandler, methodsMap)",
+      "calls": [
+        {
+          "name": "traceConnection",
+          "edgeType": "call"
+        },
+        {
+          "name": "startTimer",
+          "edgeType": "call"
+        },
+        {
+          "name": "method",
+          "edgeType": "call"
+        },
+        {
+          "name": "userId",
+          "edgeType": "call"
+        },
+        {
+          "name": "id",
+          "edgeType": "call"
+        },
+        {
+          "name": "getMethodArgs",
+          "edgeType": "call"
+        },
+        {
+          "name": "tracerActiveSpan",
+          "edgeType": "call"
+        },
+        {
+          "name": "apply",
+          "edgeType": "call"
+        },
+        {
+          "name": "end",
+          "edgeType": "call"
+        },
+        {
+          "name": "endHistogram",
+          "edgeType": "call"
+        }
+      ]
+    }
+  ],
+  "imports": [
+    {
+      "module": "@rocket.chat/instance-status",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/logger",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/tracing",
+      "resolved": "external"
+    },
+    {
+      "module": "meteor/meteor",
+      "resolved": "external"
+    },
+    {
+      "module": "meteor/webapp",
+      "resolved": "external"
+    },
+    {
+      "module": "underscore",
+      "resolved": "external"
+    },
+    {
+      "module": "../../../../server/lib/logger/logPayloads",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/server/lib/logger/logPayloads.ts"
+    },
+    {
+      "module": "../../../../server/lib/shared/getModifiedHttpHeaders",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/server/lib/shared/getModifiedHttpHeaders.ts"
+    },
+    {
+      "module": "../../../metrics/server",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/app/metrics/server/index.ts"
+    },
+    {
+      "module": "../../../settings/server",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/app/settings/server/index.ts"
+    }
+  ]
+}

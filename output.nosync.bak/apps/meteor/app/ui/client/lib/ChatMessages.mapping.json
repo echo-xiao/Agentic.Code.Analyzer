@@ -1,0 +1,393 @@
+{
+  "sourcePath": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/app/ui/client/lib/ChatMessages.ts",
+  "symbols": [
+    {
+      "type": "class",
+      "name": "ChatMessages",
+      "exported": true,
+      "line": 21,
+      "endLine": 191,
+      "signature": "export class ChatMessages implements ChatAPI",
+      "calls": [
+        {
+          "name": "ChatAPI",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "release",
+      "exported": true,
+      "qualifiedName": "ChatMessages.release",
+      "line": 182,
+      "endLine": 190,
+      "signature": "public async release()",
+      "containerClass": "ChatMessages",
+      "calls": [
+        {
+          "name": "getMID",
+          "edgeType": "call"
+        },
+        {
+          "name": "cancel",
+          "edgeType": "call"
+        },
+        {
+          "name": "stop",
+          "edgeType": "call"
+        },
+        {
+          "name": "clear",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "constructor",
+      "exported": true,
+      "qualifiedName": "ChatMessages.constructor",
+      "line": 138,
+      "endLine": 180,
+      "signature": "public constructor(params: { rid: IRoom['_id']; tmid?: IMessage['_id']; uid: IUser['_id'] | undefined; actionManager: IActionManager })",
+      "containerClass": "ChatMessages",
+      "calls": [
+        {
+          "name": "createDataAPI",
+          "edgeType": "call"
+        },
+        {
+          "name": "start",
+          "edgeType": "call"
+        },
+        {
+          "name": "performContinuously",
+          "edgeType": "call"
+        },
+        {
+          "name": "stop",
+          "edgeType": "call"
+        },
+        {
+          "name": "bind",
+          "edgeType": "call"
+        },
+        {
+          "name": "CurrentEditingMessage",
+          "edgeType": "new"
+        },
+        {
+          "name": "ReadStateManager",
+          "edgeType": "new"
+        },
+        {
+          "name": "IRoom",
+          "edgeType": "type"
+        },
+        {
+          "name": "IMessage",
+          "edgeType": "type"
+        },
+        {
+          "name": "IUser",
+          "edgeType": "type"
+        },
+        {
+          "name": "IActionManager",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "class_property",
+      "name": "tmid",
+      "exported": true,
+      "qualifiedName": "ChatMessages.tmid",
+      "line": 24,
+      "endLine": 24,
+      "signature": "public tmid?: IMessage['_id'];",
+      "containerClass": "ChatMessages",
+      "calls": [
+        {
+          "name": "IMessage",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "class_property",
+      "name": "composer",
+      "exported": true,
+      "qualifiedName": "ChatMessages.composer",
+      "line": 26,
+      "endLine": 26,
+      "signature": "public composer: ComposerAPI | undefined;",
+      "containerClass": "ChatMessages",
+      "calls": [
+        {
+          "name": "ComposerAPI",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "class_property",
+      "name": "setComposerAPI",
+      "exported": true,
+      "qualifiedName": "ChatMessages.setComposerAPI",
+      "line": 28,
+      "endLine": 31,
+      "signature": "public setComposerAPI = (composer?: ComposerAPI): void =>",
+      "containerClass": "ChatMessages",
+      "calls": [
+        {
+          "name": "release",
+          "edgeType": "call"
+        },
+        {
+          "name": "ComposerAPI",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "class_property",
+      "name": "data",
+      "exported": true,
+      "qualifiedName": "ChatMessages.data",
+      "line": 33,
+      "endLine": 33,
+      "signature": "public data: DataAPI;",
+      "containerClass": "ChatMessages",
+      "calls": [
+        {
+          "name": "DataAPI",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "class_property",
+      "name": "currentEditingMessage",
+      "exported": true,
+      "qualifiedName": "ChatMessages.currentEditingMessage",
+      "line": 35,
+      "endLine": 35,
+      "signature": "public currentEditingMessage: CurrentEditingMessage;",
+      "containerClass": "ChatMessages",
+      "calls": [
+        {
+          "name": "CurrentEditingMessage",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "class_property",
+      "name": "readStateManager",
+      "exported": true,
+      "qualifiedName": "ChatMessages.readStateManager",
+      "line": 37,
+      "endLine": 37,
+      "signature": "public readStateManager: ReadStateManager;",
+      "containerClass": "ChatMessages",
+      "calls": [
+        {
+          "name": "ReadStateManager",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "class_property",
+      "name": "messageEditing",
+      "exported": true,
+      "qualifiedName": "ChatMessages.messageEditing",
+      "line": 52,
+      "endLine": 134,
+      "signature": "public messageEditing: ChatAPI['messageEditing'] =",
+      "containerClass": "ChatMessages",
+      "calls": [
+        {
+          "name": "getMID",
+          "edgeType": "call"
+        },
+        {
+          "name": "findPreviousOwnMessage",
+          "edgeType": "call"
+        },
+        {
+          "name": "isVideoConfMessage",
+          "edgeType": "call"
+        },
+        {
+          "name": "saveDraft",
+          "edgeType": "call"
+        },
+        {
+          "name": "editMessage",
+          "edgeType": "call"
+        },
+        {
+          "name": "findMessageByID",
+          "edgeType": "call"
+        },
+        {
+          "name": "cancel",
+          "edgeType": "call"
+        },
+        {
+          "name": "stop",
+          "edgeType": "call"
+        },
+        {
+          "name": "findNextOwnMessage",
+          "edgeType": "call"
+        },
+        {
+          "name": "clear",
+          "edgeType": "call"
+        },
+        {
+          "name": "getDraft",
+          "edgeType": "call"
+        },
+        {
+          "name": "canUpdateMessage",
+          "edgeType": "call"
+        },
+        {
+          "name": "setMID",
+          "edgeType": "call"
+        },
+        {
+          "name": "setHighlightMessage",
+          "edgeType": "call"
+        },
+        {
+          "name": "setEditingMode",
+          "edgeType": "call"
+        },
+        {
+          "name": "setText",
+          "edgeType": "call"
+        },
+        {
+          "name": "setCursorToStart",
+          "edgeType": "call"
+        },
+        {
+          "name": "setCursorToEnd",
+          "edgeType": "call"
+        },
+        {
+          "name": "focus",
+          "edgeType": "call"
+        },
+        {
+          "name": "ChatAPI",
+          "edgeType": "type"
+        },
+        {
+          "name": "IMessage",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "class_property",
+      "name": "flows",
+      "exported": true,
+      "qualifiedName": "ChatMessages.flows",
+      "line": 136,
+      "endLine": 136,
+      "signature": "public flows: DeepWritable<ChatAPI['flows']>;",
+      "containerClass": "ChatMessages",
+      "calls": [
+        {
+          "name": "DeepWritable",
+          "edgeType": "type"
+        },
+        {
+          "name": "ChatAPI",
+          "edgeType": "type"
+        }
+      ]
+    }
+  ],
+  "imports": [
+    {
+      "module": "@rocket.chat/core-typings",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/core-typings",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/ui-contexts",
+      "resolved": "external"
+    },
+    {
+      "module": "./CurrentEditingMessage",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/app/ui/client/lib/CurrentEditingMessage.ts"
+    },
+    {
+      "module": "./UserAction",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/app/ui/client/lib/UserAction.ts"
+    },
+    {
+      "module": "../../../../client/lib/chats/ChatAPI",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/client/lib/chats/ChatAPI.ts"
+    },
+    {
+      "module": "../../../../client/lib/chats/data",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/client/lib/chats/data.ts"
+    },
+    {
+      "module": "../../../../client/lib/chats/flows/processMessageEditing",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/client/lib/chats/flows/processMessageEditing.ts"
+    },
+    {
+      "module": "../../../../client/lib/chats/flows/processMessageUploads",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/client/lib/chats/flows/processMessageUploads.ts"
+    },
+    {
+      "module": "../../../../client/lib/chats/flows/processSetReaction",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/client/lib/chats/flows/processSetReaction.ts"
+    },
+    {
+      "module": "../../../../client/lib/chats/flows/processSlashCommand",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/client/lib/chats/flows/processSlashCommand.ts"
+    },
+    {
+      "module": "../../../../client/lib/chats/flows/processTooLongMessage",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/client/lib/chats/flows/processTooLongMessage.ts"
+    },
+    {
+      "module": "../../../../client/lib/chats/flows/replyBroadcast",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/client/lib/chats/flows/replyBroadcast.ts"
+    },
+    {
+      "module": "../../../../client/lib/chats/flows/requestMessageDeletion",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/client/lib/chats/flows/requestMessageDeletion.ts"
+    },
+    {
+      "module": "../../../../client/lib/chats/flows/sendMessage",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/client/lib/chats/flows/sendMessage.ts"
+    },
+    {
+      "module": "../../../../client/lib/chats/flows/uploadFiles",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/client/lib/chats/flows/uploadFiles.ts"
+    },
+    {
+      "module": "../../../../client/lib/chats/readStateManager",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/client/lib/chats/readStateManager.ts"
+    },
+    {
+      "module": "../../../../client/views/room/MessageList/providers/messageHighlightSubscription",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/client/views/room/MessageList/providers/messageHighlightSubscription.ts"
+    }
+  ]
+}

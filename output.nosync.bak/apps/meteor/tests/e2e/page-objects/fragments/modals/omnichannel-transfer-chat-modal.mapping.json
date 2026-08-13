@@ -1,0 +1,121 @@
+{
+  "sourcePath": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/tests/e2e/page-objects/fragments/modals/omnichannel-transfer-chat-modal.ts",
+  "symbols": [
+    {
+      "type": "class",
+      "name": "OmnichannelTransferChatModal",
+      "exported": true,
+      "line": 6,
+      "endLine": 41,
+      "signature": "export class OmnichannelTransferChatModal extends Modal",
+      "calls": [
+        {
+          "name": "Modal",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "selectDepartment",
+      "exported": true,
+      "qualifiedName": "OmnichannelTransferChatModal.selectDepartment",
+      "line": 30,
+      "endLine": 34,
+      "signature": "async selectDepartment(name: string)",
+      "containerClass": "OmnichannelTransferChatModal",
+      "calls": [
+        {
+          "name": "click",
+          "edgeType": "call"
+        },
+        {
+          "name": "fill",
+          "edgeType": "call"
+        },
+        {
+          "name": "selectOption",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "selectUser",
+      "exported": true,
+      "qualifiedName": "OmnichannelTransferChatModal.selectUser",
+      "line": 34,
+      "endLine": 38,
+      "signature": "async selectUser(name: string, id?: string)",
+      "containerClass": "OmnichannelTransferChatModal",
+      "calls": [
+        {
+          "name": "click",
+          "edgeType": "call"
+        },
+        {
+          "name": "fill",
+          "edgeType": "call"
+        },
+        {
+          "name": "selectOption",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "constructor",
+      "exported": true,
+      "qualifiedName": "OmnichannelTransferChatModal.constructor",
+      "line": 9,
+      "endLine": 12,
+      "signature": "constructor(page: Page)",
+      "containerClass": "OmnichannelTransferChatModal",
+      "calls": [
+        {
+          "name": "getByRole",
+          "edgeType": "call"
+        },
+        {
+          "name": "Listbox",
+          "edgeType": "new"
+        },
+        {
+          "name": "Page",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "class_property",
+      "name": "listbox",
+      "exported": true,
+      "qualifiedName": "OmnichannelTransferChatModal.listbox",
+      "line": 7,
+      "endLine": 7,
+      "signature": "private readonly listbox: Listbox;",
+      "containerClass": "OmnichannelTransferChatModal",
+      "calls": [
+        {
+          "name": "Listbox",
+          "edgeType": "type"
+        }
+      ]
+    }
+  ],
+  "imports": [
+    {
+      "module": "@playwright/test",
+      "resolved": "external"
+    },
+    {
+      "module": "./modal",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/tests/e2e/page-objects/fragments/modals/modal.ts"
+    },
+    {
+      "module": "../listbox",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/tests/e2e/page-objects/fragments/listbox.ts"
+    }
+  ]
+}

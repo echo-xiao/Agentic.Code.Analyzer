@@ -1,0 +1,513 @@
+{
+  "sourcePath": "/Users/echoooooo/Desktop/code/Rocket.Chat/packages/apps/base-runtime/src/lib/messenger.ts",
+  "symbols": [
+    {
+      "type": "class",
+      "name": "MessageQueue",
+      "exported": false,
+      "line": 35,
+      "endLine": 66,
+      "signature": "class MessageQueue",
+      "calls": []
+    },
+    {
+      "type": "method",
+      "name": "processQueue",
+      "exported": false,
+      "qualifiedName": "MessageQueue.processQueue",
+      "line": 40,
+      "endLine": 56,
+      "signature": "private async processQueue()",
+      "containerClass": "MessageQueue",
+      "calls": [
+        {
+          "name": "shift",
+          "edgeType": "call"
+        },
+        {
+          "name": "send",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "enqueue",
+      "exported": false,
+      "qualifiedName": "MessageQueue.enqueue",
+      "line": 44,
+      "endLine": 47,
+      "signature": "public enqueue(message: jsonrpc.JsonRpc | typeof COMMAND_PONG)",
+      "containerClass": "MessageQueue",
+      "calls": [
+        {
+          "name": "push",
+          "edgeType": "call"
+        },
+        {
+          "name": "encode",
+          "edgeType": "call"
+        },
+        {
+          "name": "processQueue",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "getCurrentSize",
+      "exported": false,
+      "qualifiedName": "MessageQueue.getCurrentSize",
+      "line": 48,
+      "endLine": 50,
+      "signature": "public getCurrentSize()",
+      "containerClass": "MessageQueue",
+      "calls": []
+    },
+    {
+      "type": "class_property",
+      "name": "queue",
+      "exported": false,
+      "qualifiedName": "MessageQueue.queue",
+      "line": 36,
+      "endLine": 36,
+      "signature": "private queue: Uint8Array[] = [];",
+      "containerClass": "MessageQueue",
+      "calls": [
+        {
+          "name": "Uint8Array",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "function",
+      "name": "isRequest",
+      "exported": true,
+      "line": 19,
+      "endLine": 21,
+      "signature": "export function isRequest(message: jsonrpc.IParsedObject): message is JsonRpcRequest",
+      "calls": [
+        {
+          "name": "JsonRpcRequest",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "function",
+      "name": "isResponse",
+      "exported": true,
+      "line": 23,
+      "endLine": 25,
+      "signature": "export function isResponse(message: jsonrpc.IParsedObject): message is JsonRpcResponse",
+      "calls": [
+        {
+          "name": "JsonRpcResponse",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "function",
+      "name": "isErrorResponse",
+      "exported": true,
+      "line": 27,
+      "endLine": 29,
+      "signature": "export function isErrorResponse(message: jsonrpc.JsonRpc): message is jsonrpc.ErrorObject",
+      "calls": []
+    },
+    {
+      "type": "function",
+      "name": "setTransport",
+      "exported": true,
+      "line": 82,
+      "endLine": 84,
+      "signature": "export function setTransport(newTransport: Transport): void",
+      "calls": [
+        {
+          "name": "Transport",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "function",
+      "name": "parseMessage",
+      "exported": true,
+      "line": 86,
+      "endLine": 104,
+      "signature": "export function parseMessage(message: string | Record<string, unknown>)",
+      "calls": [
+        {
+          "name": "parse",
+          "edgeType": "call"
+        },
+        {
+          "name": "parseObject",
+          "edgeType": "call"
+        },
+        {
+          "name": "isArray",
+          "edgeType": "call"
+        },
+        {
+          "name": "error",
+          "edgeType": "call"
+        },
+        {
+          "name": "invalidRequest",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "function",
+      "name": "sendInvalidRequestError",
+      "exported": true,
+      "line": 90,
+      "endLine": 94,
+      "signature": "export async function sendInvalidRequestError(): Promise<void>",
+      "calls": [
+        {
+          "name": "error",
+          "edgeType": "call"
+        },
+        {
+          "name": "invalidRequest",
+          "edgeType": "call"
+        },
+        {
+          "name": "enqueue",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "function",
+      "name": "sendInvalidParamsError",
+      "exported": true,
+      "line": 94,
+      "endLine": 98,
+      "signature": "export async function sendInvalidParamsError(id: jsonrpc.ID): Promise<void>",
+      "calls": [
+        {
+          "name": "error",
+          "edgeType": "call"
+        },
+        {
+          "name": "invalidParams",
+          "edgeType": "call"
+        },
+        {
+          "name": "enqueue",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "function",
+      "name": "sendParseError",
+      "exported": true,
+      "line": 98,
+      "endLine": 102,
+      "signature": "export async function sendParseError(): Promise<void>",
+      "calls": [
+        {
+          "name": "error",
+          "edgeType": "call"
+        },
+        {
+          "name": "parseError",
+          "edgeType": "call"
+        },
+        {
+          "name": "enqueue",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "function",
+      "name": "sendMethodNotFound",
+      "exported": true,
+      "line": 102,
+      "endLine": 106,
+      "signature": "export async function sendMethodNotFound(id: jsonrpc.ID): Promise<void>",
+      "calls": [
+        {
+          "name": "error",
+          "edgeType": "call"
+        },
+        {
+          "name": "methodNotFound",
+          "edgeType": "call"
+        },
+        {
+          "name": "enqueue",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "function",
+      "name": "errorResponse",
+      "exported": true,
+      "line": 106,
+      "endLine": 119,
+      "signature": "export async function errorResponse( { error: { message, code = -32000, data = {} }, id }: ErrorResponseDescriptor, req?: RequestContext, ): Promise<void>",
+      "calls": [
+        {
+          "name": "hasEntries",
+          "edgeType": "call"
+        },
+        {
+          "name": "getLogs",
+          "edgeType": "call"
+        },
+        {
+          "name": "error",
+          "edgeType": "call"
+        },
+        {
+          "name": "enqueue",
+          "edgeType": "call"
+        },
+        {
+          "name": "ErrorResponseDescriptor",
+          "edgeType": "type"
+        },
+        {
+          "name": "RequestContext",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "function",
+      "name": "successResponse",
+      "exported": true,
+      "line": 113,
+      "endLine": 124,
+      "signature": "export async function successResponse({ id, result }: SuccessResponseDescriptor, req: RequestContext): Promise<void>",
+      "calls": [
+        {
+          "name": "hasEntries",
+          "edgeType": "call"
+        },
+        {
+          "name": "getLogs",
+          "edgeType": "call"
+        },
+        {
+          "name": "success",
+          "edgeType": "call"
+        },
+        {
+          "name": "enqueue",
+          "edgeType": "call"
+        },
+        {
+          "name": "SuccessResponseDescriptor",
+          "edgeType": "type"
+        },
+        {
+          "name": "RequestContext",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "function",
+      "name": "pongResponse",
+      "exported": true,
+      "line": 117,
+      "endLine": 119,
+      "signature": "export function pongResponse(): Promise<void>",
+      "calls": [
+        {
+          "name": "resolve",
+          "edgeType": "call"
+        },
+        {
+          "name": "enqueue",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "function",
+      "name": "sendRequest",
+      "exported": true,
+      "line": 121,
+      "endLine": 140,
+      "signature": "export async function sendRequest(requestDescriptor: RequestDescriptor): Promise<jsonrpc.SuccessObject>",
+      "calls": [
+        {
+          "name": "request",
+          "edgeType": "call"
+        },
+        {
+          "name": "slice",
+          "edgeType": "call"
+        },
+        {
+          "name": "random",
+          "edgeType": "call"
+        },
+        {
+          "name": "reject",
+          "edgeType": "call"
+        },
+        {
+          "name": "resolve",
+          "edgeType": "call"
+        },
+        {
+          "name": "enqueue",
+          "edgeType": "call"
+        },
+        {
+          "name": "RequestDescriptor",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "function",
+      "name": "sendNotification",
+      "exported": true,
+      "line": 125,
+      "endLine": 129,
+      "signature": "export function sendNotification({ method, params }: NotificationDescriptor)",
+      "calls": [
+        {
+          "name": "notification",
+          "edgeType": "call"
+        },
+        {
+          "name": "enqueue",
+          "edgeType": "call"
+        },
+        {
+          "name": "NotificationDescriptor",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "function",
+      "name": "log",
+      "exported": true,
+      "line": 129,
+      "endLine": 131,
+      "signature": "export function log(params: jsonrpc.RpcParams)",
+      "calls": [
+        {
+          "name": "sendNotification",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "variable",
+      "name": "RPCResponseObserver",
+      "exported": true,
+      "line": 33,
+      "endLine": 33,
+      "signature": "RPCResponseObserver = new EventEmitter()",
+      "calls": []
+    },
+    {
+      "type": "variable",
+      "name": "Queue",
+      "exported": true,
+      "line": 53,
+      "endLine": 53,
+      "signature": "Queue = new MessageQueue()",
+      "calls": []
+    },
+    {
+      "type": "variable",
+      "name": "noopTransport",
+      "exported": true,
+      "line": 70,
+      "endLine": 72,
+      "signature": "noopTransport: Transport =",
+      "calls": [
+        {
+          "name": "resolve",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "type",
+      "name": "RequestDescriptor",
+      "line": 8,
+      "endLine": 8,
+      "signature": "export type RequestDescriptor = Pick<jsonrpc.RequestObject, 'method' | 'params'>;"
+    },
+    {
+      "type": "type",
+      "name": "NotificationDescriptor",
+      "line": 10,
+      "endLine": 10,
+      "signature": "export type NotificationDescriptor = Pick<jsonrpc.NotificationObject, 'method' | 'params'>;"
+    },
+    {
+      "type": "type",
+      "name": "SuccessResponseDescriptor",
+      "line": 12,
+      "endLine": 12,
+      "signature": "export type SuccessResponseDescriptor = Pick<jsonrpc.SuccessObject, 'id' | 'result'>;"
+    },
+    {
+      "type": "type",
+      "name": "ErrorResponseDescriptor",
+      "line": 14,
+      "endLine": 14,
+      "signature": "export type ErrorResponseDescriptor = Pick<jsonrpc.ErrorObject, 'id' | 'error'>;"
+    },
+    {
+      "type": "type",
+      "name": "JsonRpcRequest",
+      "line": 16,
+      "endLine": 16,
+      "signature": "export type JsonRpcRequest = jsonrpc.IParsedObjectRequest | jsonrpc.IParsedObjectNotification;"
+    },
+    {
+      "type": "type",
+      "name": "JsonRpcResponse",
+      "line": 17,
+      "endLine": 17,
+      "signature": "export type JsonRpcResponse = jsonrpc.IParsedObjectSuccess | jsonrpc.IParsedObjectError;"
+    },
+    {
+      "type": "type",
+      "name": "Transport",
+      "line": 62,
+      "endLine": 64,
+      "signature": "export type Transport ="
+    }
+  ],
+  "imports": [
+    {
+      "module": "node:events",
+      "resolved": "external"
+    },
+    {
+      "module": "jsonrpc-lite",
+      "resolved": "external"
+    },
+    {
+      "module": "./codec",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/packages/apps/base-runtime/src/lib/codec.ts"
+    },
+    {
+      "module": "./requestContext",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/packages/apps/base-runtime/src/lib/requestContext.ts"
+    }
+  ]
+}

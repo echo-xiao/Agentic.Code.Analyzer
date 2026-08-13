@@ -1,0 +1,100 @@
+{
+  "sourcePath": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/client/components/message/MessageContentBody.tsx",
+  "symbols": [
+    {
+      "type": "variable_function",
+      "name": "MessageContentBody",
+      "exported": false,
+      "line": 16,
+      "endLine": 28,
+      "signature": "({ mentions, channels, md, msg, searchText, ...props }: MessageContentBodyProps) =>",
+      "calls": [
+        {
+          "name": "useTranslation",
+          "edgeType": "call"
+        },
+        {
+          "name": "MessageBody",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "Suspense",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "GazzodownText",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "Skeleton",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "Markup",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "channels",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "mentions",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "searchText",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "md",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "msg",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "MessageContentBodyProps",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "type",
+      "name": "MessageContentBodyProps",
+      "line": 10,
+      "endLine": 14,
+      "signature": "export type MessageContentBodyProps = Pick<MessageWithMdEnforced, 'mentions' | 'channels' | 'md'> &"
+    }
+  ],
+  "imports": [
+    {
+      "module": "@rocket.chat/fuselage",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/gazzodown",
+      "resolved": "external"
+    },
+    {
+      "module": "react",
+      "resolved": "external"
+    },
+    {
+      "module": "react",
+      "resolved": "external"
+    },
+    {
+      "module": "react-i18next",
+      "resolved": "external"
+    },
+    {
+      "module": "../../lib/parseMessageTextToAstMarkdown",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/client/lib/parseMessageTextToAstMarkdown.ts"
+    },
+    {
+      "module": "../GazzodownText",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/client/components/GazzodownText.tsx"
+    }
+  ]
+}

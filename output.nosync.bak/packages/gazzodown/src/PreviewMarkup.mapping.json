@@ -1,0 +1,123 @@
+{
+  "sourcePath": "/Users/echoooooo/Desktop/code/Rocket.Chat/packages/gazzodown/src/PreviewMarkup.tsx",
+  "symbols": [
+    {
+      "type": "module",
+      "name": "PreviewMarkup",
+      "exported": false,
+      "line": 1,
+      "endLine": 115,
+      "signature": "PreviewMarkup",
+      "calls": [
+        {
+          "name": "memo",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "variable_function",
+      "name": "isOnlyBigEmojiBlock",
+      "exported": false,
+      "line": 10,
+      "endLine": 11,
+      "signature": "(tokens: MessageParser.Root): tokens is [MessageParser.BigEmoji] =>",
+      "calls": []
+    },
+    {
+      "type": "variable_function",
+      "name": "PreviewMarkup",
+      "exported": false,
+      "line": 19,
+      "endLine": 112,
+      "signature": "({ tokens, source }: PreviewMarkupProps) =>",
+      "calls": [
+        {
+          "name": "isOnlyBigEmojiBlock",
+          "edgeType": "call"
+        },
+        {
+          "name": "find",
+          "edgeType": "call"
+        },
+        {
+          "name": "map",
+          "edgeType": "call"
+        },
+        {
+          "name": "isArray",
+          "edgeType": "call"
+        },
+        {
+          "name": "slice",
+          "edgeType": "call"
+        },
+        {
+          "name": "PreviewInlineElements",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "KatexErrorBoundary",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "PreviewBigEmojiBlock",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "PreviewCodeBlock",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "PreviewKatexBlock",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "index",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "PreviewMarkupProps",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "type",
+      "name": "PreviewMarkupProps",
+      "line": 13,
+      "endLine": 17,
+      "signature": "export type PreviewMarkupProps ="
+    }
+  ],
+  "imports": [
+    {
+      "module": "@rocket.chat/message-parser",
+      "resolved": "external"
+    },
+    {
+      "module": "react",
+      "resolved": "external"
+    },
+    {
+      "module": "./code/PreviewCodeBlock",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/packages/gazzodown/src/code/PreviewCodeBlock.tsx"
+    },
+    {
+      "module": "./elements/PreviewInlineElements",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/packages/gazzodown/src/elements/PreviewInlineElements.tsx"
+    },
+    {
+      "module": "./emoji/PreviewBigEmojiBlock",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/packages/gazzodown/src/emoji/PreviewBigEmojiBlock.tsx"
+    },
+    {
+      "module": "./katex/KatexErrorBoundary",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/packages/gazzodown/src/katex/KatexErrorBoundary.tsx"
+    },
+    {
+      "module": "./katex/PreviewKatexBlock",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/packages/gazzodown/src/katex/PreviewKatexBlock.tsx"
+    }
+  ]
+}

@@ -1,0 +1,353 @@
+{
+  "sourcePath": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/client/lib/chats/flows/processMessageUploads.ts",
+  "symbols": [
+    {
+      "type": "function",
+      "name": "continueSendingMessage",
+      "exported": false,
+      "line": 94,
+      "endLine": 161,
+      "signature": "async function continueSendingMessage(store: UploadsAPI, message: IMessage)",
+      "calls": [
+        {
+          "name": "getInstanceByRoomId",
+          "edgeType": "call"
+        },
+        {
+          "name": "shouldConvertSentMessages",
+          "edgeType": "call"
+        },
+        {
+          "name": "get",
+          "edgeType": "call"
+        },
+        {
+          "name": "filter",
+          "edgeType": "call"
+        },
+        {
+          "name": "isEncryptedUpload",
+          "edgeType": "call"
+        },
+        {
+          "name": "push",
+          "edgeType": "call"
+        },
+        {
+          "name": "encryptMessageContent",
+          "edgeType": "call"
+        },
+        {
+          "name": "getEncryptedContent",
+          "edgeType": "call"
+        },
+        {
+          "name": "setProcessingUploads",
+          "edgeType": "call"
+        },
+        {
+          "name": "post",
+          "edgeType": "call"
+        },
+        {
+          "name": "removeUpload",
+          "edgeType": "call"
+        },
+        {
+          "name": "dispatchToastMessage",
+          "edgeType": "call"
+        },
+        {
+          "name": "UploadsAPI",
+          "edgeType": "type"
+        },
+        {
+          "name": "IMessage",
+          "edgeType": "type"
+        },
+        {
+          "name": "IUploadToConfirm",
+          "edgeType": "type"
+        },
+        {
+          "name": "AtLeast",
+          "edgeType": "type"
+        },
+        {
+          "name": "IE2EEMessage",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "variable_function",
+      "name": "getHeightAndWidthFromDataUrl",
+      "exported": false,
+      "line": 13,
+      "endLine": 27,
+      "signature": "(dataURL: string): Promise<{ height: number; width: number }> =>",
+      "calls": [
+        {
+          "name": "resolve",
+          "edgeType": "call"
+        },
+        {
+          "name": "reject",
+          "edgeType": "call"
+        },
+        {
+          "name": "Image",
+          "edgeType": "new"
+        }
+      ]
+    },
+    {
+      "type": "variable_function",
+      "name": "getAttachmentForFile",
+      "exported": false,
+      "line": 17,
+      "endLine": 53,
+      "signature": "async (fileToUpload: EncryptedUpload): Promise<FileAttachmentProps> =>",
+      "calls": [
+        {
+          "name": "match",
+          "edgeType": "call"
+        },
+        {
+          "name": "getFileExtension",
+          "edgeType": "call"
+        },
+        {
+          "name": "getHeightAndWidthFromDataUrl",
+          "edgeType": "call"
+        },
+        {
+          "name": "createObjectURL",
+          "edgeType": "call"
+        },
+        {
+          "name": "EncryptedUpload",
+          "edgeType": "type"
+        },
+        {
+          "name": "FileAttachmentProps",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "variable_function",
+      "name": "getEncryptedContent",
+      "exported": false,
+      "line": 21,
+      "endLine": 46,
+      "signature": "async (filesToUpload: readonly EncryptedUpload[], e2eRoom: E2ERoom, msg: string) =>",
+      "calls": [
+        {
+          "name": "all",
+          "edgeType": "call"
+        },
+        {
+          "name": "map",
+          "edgeType": "call"
+        },
+        {
+          "name": "push",
+          "edgeType": "call"
+        },
+        {
+          "name": "getAttachmentForFile",
+          "edgeType": "call"
+        },
+        {
+          "name": "getFileExtension",
+          "edgeType": "call"
+        },
+        {
+          "name": "encryptMessageContent",
+          "edgeType": "call"
+        },
+        {
+          "name": "EncryptedUpload",
+          "edgeType": "type"
+        },
+        {
+          "name": "E2ERoom",
+          "edgeType": "type"
+        },
+        {
+          "name": "FileAttachmentProps",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "inner_function",
+      "name": "onConfirm",
+      "exported": false,
+      "qualifiedName": "processMessageUploads.onConfirm",
+      "line": 62,
+      "endLine": 64,
+      "signature": "() =>",
+      "calls": [
+        {
+          "name": "close",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "inner_function",
+      "name": "onConfirm",
+      "exported": false,
+      "qualifiedName": "processMessageUploads.onConfirm",
+      "line": 70,
+      "endLine": 74,
+      "signature": "() =>",
+      "calls": [
+        {
+          "name": "close",
+          "edgeType": "call"
+        },
+        {
+          "name": "forEach",
+          "edgeType": "call"
+        },
+        {
+          "name": "removeUpload",
+          "edgeType": "call"
+        },
+        {
+          "name": "resolve",
+          "edgeType": "call"
+        },
+        {
+          "name": "continueSendingMessage",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "inner_function",
+      "name": "onCancel",
+      "exported": false,
+      "qualifiedName": "processMessageUploads.onCancel",
+      "line": 75,
+      "endLine": 77,
+      "signature": "() =>",
+      "calls": [
+        {
+          "name": "close",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "inner_function",
+      "name": "onClose",
+      "exported": false,
+      "qualifiedName": "processMessageUploads.onClose",
+      "line": 79,
+      "endLine": 81,
+      "signature": "() =>",
+      "calls": [
+        {
+          "name": "close",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "variable_function",
+      "name": "processMessageUploads",
+      "exported": true,
+      "line": 29,
+      "endLine": 85,
+      "signature": "async (chat: ChatAPI, message: IMessage): Promise<boolean> =>",
+      "calls": [
+        {
+          "name": "get",
+          "edgeType": "call"
+        },
+        {
+          "name": "filter",
+          "edgeType": "call"
+        },
+        {
+          "name": "continueSendingMessage",
+          "edgeType": "call"
+        },
+        {
+          "name": "open",
+          "edgeType": "call"
+        },
+        {
+          "name": "close",
+          "edgeType": "call"
+        },
+        {
+          "name": "forEach",
+          "edgeType": "call"
+        },
+        {
+          "name": "removeUpload",
+          "edgeType": "call"
+        },
+        {
+          "name": "resolve",
+          "edgeType": "call"
+        },
+        {
+          "name": "ChatAPI",
+          "edgeType": "type"
+        },
+        {
+          "name": "IMessage",
+          "edgeType": "type"
+        }
+      ]
+    }
+  ],
+  "imports": [
+    {
+      "module": "@rocket.chat/core-typings",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/ui-client",
+      "resolved": "external"
+    },
+    {
+      "module": "../../../../app/utils/client/lib/SDKClient",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/app/utils/client/lib/SDKClient.ts"
+    },
+    {
+      "module": "../../../../app/utils/lib/i18n",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/app/utils/lib/i18n.ts"
+    },
+    {
+      "module": "../../../../lib/utils/getFileExtension",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/lib/utils/getFileExtension.ts"
+    },
+    {
+      "module": "../../e2ee/rocketchat.e2e",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/client/lib/e2ee/rocketchat.e2e.ts"
+    },
+    {
+      "module": "../../e2ee/rocketchat.e2e.room",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/client/lib/e2ee/rocketchat.e2e.room.ts"
+    },
+    {
+      "module": "../../toast",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/client/lib/toast.ts"
+    },
+    {
+      "module": "../ChatAPI",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/client/lib/chats/ChatAPI.ts"
+    },
+    {
+      "module": "../Upload",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/client/lib/chats/Upload.ts"
+    }
+  ]
+}

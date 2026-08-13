@@ -1,0 +1,317 @@
+{
+  "sourcePath": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/app/apps/server/bridges/settings.ts",
+  "symbols": [
+    {
+      "type": "class",
+      "name": "AppSettingBridge",
+      "exported": true,
+      "line": 10,
+      "endLine": 127,
+      "signature": "export class AppSettingBridge extends ServerSettingBridge",
+      "calls": [
+        {
+          "name": "ServerSettingBridge",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "getAll",
+      "exported": true,
+      "qualifiedName": "AppSettingBridge.getAll",
+      "line": 15,
+      "endLine": 20,
+      "signature": "protected async getAll(appId: string): Promise<Array<ISetting>>",
+      "containerClass": "AppSettingBridge",
+      "calls": [
+        {
+          "name": "debugLog",
+          "edgeType": "call"
+        },
+        {
+          "name": "toArray",
+          "edgeType": "call"
+        },
+        {
+          "name": "find",
+          "edgeType": "call"
+        },
+        {
+          "name": "map",
+          "edgeType": "call"
+        },
+        {
+          "name": "convertToApp",
+          "edgeType": "call"
+        },
+        {
+          "name": "get",
+          "edgeType": "call"
+        },
+        {
+          "name": "getConverters",
+          "edgeType": "call"
+        },
+        {
+          "name": "ISetting",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "getOneById",
+      "exported": true,
+      "qualifiedName": "AppSettingBridge.getOneById",
+      "line": 19,
+      "endLine": 28,
+      "signature": "protected async getOneById(id: string, appId: string): Promise<ISetting>",
+      "containerClass": "AppSettingBridge",
+      "calls": [
+        {
+          "name": "debugLog",
+          "edgeType": "call"
+        },
+        {
+          "name": "getReadableSettingById",
+          "edgeType": "call"
+        },
+        {
+          "name": "ISetting",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "hideGroup",
+      "exported": true,
+      "qualifiedName": "AppSettingBridge.hideGroup",
+      "line": 23,
+      "endLine": 27,
+      "signature": "protected async hideGroup(name: string, appId: string): Promise<void>",
+      "containerClass": "AppSettingBridge",
+      "calls": [
+        {
+          "name": "debugLog",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "hideSetting",
+      "exported": true,
+      "qualifiedName": "AppSettingBridge.hideSetting",
+      "line": 27,
+      "endLine": 35,
+      "signature": "protected async hideSetting(id: string, appId: string): Promise<void>",
+      "containerClass": "AppSettingBridge",
+      "calls": [
+        {
+          "name": "debugLog",
+          "edgeType": "call"
+        },
+        {
+          "name": "isReadableById",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "isReadableById",
+      "exported": true,
+      "qualifiedName": "AppSettingBridge.isReadableById",
+      "line": 31,
+      "endLine": 35,
+      "signature": "protected async isReadableById(id: string, appId: string): Promise<boolean>",
+      "containerClass": "AppSettingBridge",
+      "calls": [
+        {
+          "name": "debugLog",
+          "edgeType": "call"
+        },
+        {
+          "name": "findOneById",
+          "edgeType": "call"
+        },
+        {
+          "name": "Boolean",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "getReadableSettingById",
+      "exported": true,
+      "qualifiedName": "AppSettingBridge.getReadableSettingById",
+      "line": 35,
+      "endLine": 75,
+      "signature": "protected async getReadableSettingById(id: string, appId: string): Promise<ISetting | null>",
+      "containerClass": "AppSettingBridge",
+      "calls": [
+        {
+          "name": "debugLog",
+          "edgeType": "call"
+        },
+        {
+          "name": "getOneById",
+          "edgeType": "call"
+        },
+        {
+          "name": "getManager",
+          "edgeType": "call"
+        },
+        {
+          "name": "getInfo",
+          "edgeType": "call"
+        },
+        {
+          "name": "findOneNotHiddenById",
+          "edgeType": "call"
+        },
+        {
+          "name": "convertToApp",
+          "edgeType": "call"
+        },
+        {
+          "name": "get",
+          "edgeType": "call"
+        },
+        {
+          "name": "getConverters",
+          "edgeType": "call"
+        },
+        {
+          "name": "find",
+          "edgeType": "call"
+        },
+        {
+          "name": "includes",
+          "edgeType": "call"
+        },
+        {
+          "name": "findOneById",
+          "edgeType": "call"
+        },
+        {
+          "name": "ISetting",
+          "edgeType": "type"
+        },
+        {
+          "name": "IReadSettingPermission",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "updateOne",
+      "exported": true,
+      "qualifiedName": "AppSettingBridge.updateOne",
+      "line": 39,
+      "endLine": 55,
+      "signature": "protected async updateOne(setting: ISetting & { id: string }, appId: string): Promise<void>",
+      "containerClass": "AppSettingBridge",
+      "calls": [
+        {
+          "name": "debugLog",
+          "edgeType": "call"
+        },
+        {
+          "name": "isReadableById",
+          "edgeType": "call"
+        },
+        {
+          "name": "updateAuditedByApp",
+          "edgeType": "call"
+        },
+        {
+          "name": "notifyOnSettingChangedById",
+          "edgeType": "call"
+        },
+        {
+          "name": "ISetting",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "incrementValue",
+      "exported": true,
+      "qualifiedName": "AppSettingBridge.incrementValue",
+      "line": 43,
+      "endLine": 54,
+      "signature": "protected async incrementValue(id: string, value: number, appId: string): Promise<void>",
+      "containerClass": "AppSettingBridge",
+      "calls": [
+        {
+          "name": "debugLog",
+          "edgeType": "call"
+        },
+        {
+          "name": "isReadableById",
+          "edgeType": "call"
+        },
+        {
+          "name": "incrementValueById",
+          "edgeType": "call"
+        },
+        {
+          "name": "notifyOnSettingChanged",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "constructor",
+      "exported": true,
+      "qualifiedName": "AppSettingBridge.constructor",
+      "line": 11,
+      "endLine": 13,
+      "signature": "constructor(private readonly orch: IAppServerOrchestrator)",
+      "containerClass": "AppSettingBridge",
+      "calls": [
+        {
+          "name": "IAppServerOrchestrator",
+          "edgeType": "type"
+        }
+      ]
+    }
+  ],
+  "imports": [
+    {
+      "module": "@rocket.chat/apps",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/apps/dist/server/bridges/ServerSettingBridge",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/apps-engine/definition/permissions/IPermission",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/apps-engine/definition/settings",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/models",
+      "resolved": "external"
+    },
+    {
+      "module": "../../../../server/settings/lib/auditedSettingUpdates",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/server/settings/lib/auditedSettingUpdates.ts"
+    },
+    {
+      "module": "../../../lib/server/lib/notifyListener",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/app/lib/server/lib/notifyListener.ts"
+    }
+  ]
+}

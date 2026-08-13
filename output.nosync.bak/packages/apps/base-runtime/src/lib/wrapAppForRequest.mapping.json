@@ -1,0 +1,113 @@
+{
+  "sourcePath": "/Users/echoooooo/Desktop/code/Rocket.Chat/packages/apps/base-runtime/src/lib/wrapAppForRequest.ts",
+  "symbols": [
+    {
+      "type": "function",
+      "name": "wrapAppForRequest",
+      "exported": true,
+      "line": 6,
+      "endLine": 16,
+      "signature": "export function wrapAppForRequest(app: App, req: RequestContext): App",
+      "calls": [
+        {
+          "name": "get",
+          "edgeType": "call"
+        },
+        {
+          "name": "Proxy",
+          "edgeType": "new"
+        },
+        {
+          "name": "App",
+          "edgeType": "type"
+        },
+        {
+          "name": "RequestContext",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "function",
+      "name": "findAppProperty",
+      "exported": false,
+      "line": 14,
+      "endLine": 32,
+      "signature": "function findAppProperty(v: NonNullable<unknown>): [string, App] | undefined",
+      "calls": [
+        {
+          "name": "get",
+          "edgeType": "call"
+        },
+        {
+          "name": "isRecord",
+          "edgeType": "call"
+        },
+        {
+          "name": "set",
+          "edgeType": "call"
+        },
+        {
+          "name": "find",
+          "edgeType": "call"
+        },
+        {
+          "name": "entries",
+          "edgeType": "call"
+        },
+        {
+          "name": "isApp",
+          "edgeType": "call"
+        },
+        {
+          "name": "App",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "function",
+      "name": "wrapComposedApp",
+      "exported": true,
+      "line": 18,
+      "endLine": 36,
+      "signature": "export function wrapComposedApp<T extends NonNullable<unknown>>(composed: T, req: RequestContext): T",
+      "calls": [
+        {
+          "name": "findAppProperty",
+          "edgeType": "call"
+        },
+        {
+          "name": "wrapAppForRequest",
+          "edgeType": "call"
+        },
+        {
+          "name": "get",
+          "edgeType": "call"
+        },
+        {
+          "name": "Proxy",
+          "edgeType": "new"
+        },
+        {
+          "name": "RequestContext",
+          "edgeType": "type"
+        }
+      ]
+    }
+  ],
+  "imports": [
+    {
+      "module": "@rocket.chat/apps-engine/definition/App",
+      "resolved": "external"
+    },
+    {
+      "module": "./requestContext",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/packages/apps/base-runtime/src/lib/requestContext.ts"
+    },
+    {
+      "module": "../handlers/lib/assertions",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/packages/apps/base-runtime/src/handlers/lib/assertions.ts"
+    }
+  ]
+}

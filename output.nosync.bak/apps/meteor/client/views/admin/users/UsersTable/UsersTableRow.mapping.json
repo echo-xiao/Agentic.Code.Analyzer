@@ -1,0 +1,235 @@
+{
+  "sourcePath": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/client/views/admin/users/UsersTable/UsersTableRow.tsx",
+  "symbols": [
+    {
+      "type": "inner_function",
+      "name": "handleResendWelcomeEmail",
+      "exported": false,
+      "qualifiedName": "UsersTableRow.handleResendWelcomeEmail",
+      "line": 128,
+      "endLine": 128,
+      "signature": "() =>",
+      "calls": [
+        {
+          "name": "mutateAsync",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "variable_function",
+      "name": "UsersTableRow",
+      "exported": false,
+      "line": 32,
+      "endLine": 200,
+      "signature": "({ user, tab, isMobile, isLaptop, isSeatsCapExceeded, showVoipExtension, onClick, onReload }: UsersTableRowProps) =>",
+      "calls": [
+        {
+          "name": "useTranslation",
+          "edgeType": "call"
+        },
+        {
+          "name": "useMemo",
+          "edgeType": "call"
+        },
+        {
+          "name": "includes",
+          "edgeType": "call"
+        },
+        {
+          "name": "use",
+          "edgeType": "call"
+        },
+        {
+          "name": "join",
+          "edgeType": "call"
+        },
+        {
+          "name": "filter",
+          "edgeType": "call"
+        },
+        {
+          "name": "map",
+          "edgeType": "call"
+        },
+        {
+          "name": "get",
+          "edgeType": "call"
+        },
+        {
+          "name": "useChangeAdminStatusAction",
+          "edgeType": "call"
+        },
+        {
+          "name": "useChangeUserStatusAction",
+          "edgeType": "call"
+        },
+        {
+          "name": "useDeleteUserAction",
+          "edgeType": "call"
+        },
+        {
+          "name": "useResetTOTPAction",
+          "edgeType": "call"
+        },
+        {
+          "name": "useResetE2EEKeyAction",
+          "edgeType": "call"
+        },
+        {
+          "name": "useSendWelcomeEmailMutation",
+          "edgeType": "call"
+        },
+        {
+          "name": "entries",
+          "edgeType": "call"
+        },
+        {
+          "name": "mutateAsync",
+          "edgeType": "call"
+        },
+        {
+          "name": "onClick",
+          "edgeType": "call"
+        },
+        {
+          "name": "stopPropagation",
+          "edgeType": "call"
+        },
+        {
+          "name": "GenericTableRow",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "GenericTableCell",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "Box",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "Button",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "UserAvatar",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "UserStatus",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "GenericMenu",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "_id",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "username",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "avatarETag",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "handleResendWelcomeEmail",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "isSeatsCapExceeded",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "UsersTableRowProps",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "type",
+      "name": "UsersTableRowProps",
+      "line": 21,
+      "endLine": 30,
+      "signature": "export type UsersTableRowProps ="
+    }
+  ],
+  "imports": [
+    {
+      "module": "@rocket.chat/core-typings",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/core-typings",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/fuselage",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/rest-typings",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/ui-avatar",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/ui-client",
+      "resolved": "external"
+    },
+    {
+      "module": "react",
+      "resolved": "external"
+    },
+    {
+      "module": "react",
+      "resolved": "external"
+    },
+    {
+      "module": "react-i18next",
+      "resolved": "external"
+    },
+    {
+      "module": "../../../../components/UserStatus",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/client/components/UserStatus/index.ts"
+    },
+    {
+      "module": "../../../../stores",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/client/stores/index.ts"
+    },
+    {
+      "module": "../AdminUsersPage",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/client/views/admin/users/AdminUsersPage.tsx"
+    },
+    {
+      "module": "../hooks/useChangeAdminStatusAction",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/client/views/admin/users/hooks/useChangeAdminStatusAction.ts"
+    },
+    {
+      "module": "../hooks/useChangeUserStatusAction",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/client/views/admin/users/hooks/useChangeUserStatusAction.ts"
+    },
+    {
+      "module": "../hooks/useDeleteUserAction",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/client/views/admin/users/hooks/useDeleteUserAction.tsx"
+    },
+    {
+      "module": "../hooks/useResetE2EEKeyAction",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/client/views/admin/users/hooks/useResetE2EEKeyAction.tsx"
+    },
+    {
+      "module": "../hooks/useResetTOTPAction",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/client/views/admin/users/hooks/useResetTOTPAction.tsx"
+    },
+    {
+      "module": "../hooks/useSendWelcomeEmailMutation",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/client/views/admin/users/hooks/useSendWelcomeEmailMutation.ts"
+    }
+  ]
+}

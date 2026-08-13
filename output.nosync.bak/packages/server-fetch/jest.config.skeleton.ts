@@ -1,0 +1,12 @@
+## File: packages/server-fetch/jest.config.ts
+
+```typescript
+import server from '@rocket.chat/jest-presets/server';
+import type { Config } from 'jest';
+
+export default {
+	preset: server.preset,
+	testMatch: ['<rootDir>/tests/**/*.spec.(ts|js|mjs)'],
+} satisfies Config;
+
+```

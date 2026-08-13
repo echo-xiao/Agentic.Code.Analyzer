@@ -1,0 +1,143 @@
+{
+  "sourcePath": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/client/views/outlookCalendar/hooks/useOutlookCalendarList.ts",
+  "symbols": [
+    {
+      "type": "variable_function",
+      "name": "useOutlookCalendarListForToday",
+      "exported": true,
+      "line": 7,
+      "endLine": 9,
+      "signature": "() =>",
+      "calls": [
+        {
+          "name": "useOutlookCalendarList",
+          "edgeType": "call"
+        },
+        {
+          "name": "Date",
+          "edgeType": "new"
+        }
+      ]
+    },
+    {
+      "type": "variable_function",
+      "name": "useOutlookCalendarList",
+      "exported": true,
+      "line": 11,
+      "endLine": 22,
+      "signature": "(date: Date) =>",
+      "calls": [
+        {
+          "name": "useEndpoint",
+          "edgeType": "call"
+        },
+        {
+          "name": "useQuery",
+          "edgeType": "call"
+        },
+        {
+          "name": "calendarData",
+          "edgeType": "call"
+        },
+        {
+          "name": "toISOString",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "inner_function",
+      "name": "onSuccess",
+      "exported": false,
+      "qualifiedName": "useMutationOutlookCalendarSync.onSuccess",
+      "line": 33,
+      "endLine": 35,
+      "signature": "() =>",
+      "calls": [
+        {
+          "name": "dispatchToastMessage",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "inner_function",
+      "name": "onError",
+      "exported": false,
+      "qualifiedName": "useMutationOutlookCalendarSync.onError",
+      "line": 36,
+      "endLine": 41,
+      "signature": "(error) =>",
+      "calls": [
+        {
+          "name": "dispatchToastMessage",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "variable_function",
+      "name": "useMutationOutlookCalendarSync",
+      "exported": true,
+      "line": 15,
+      "endLine": 44,
+      "signature": "() =>",
+      "calls": [
+        {
+          "name": "useTranslation",
+          "edgeType": "call"
+        },
+        {
+          "name": "useQueryClient",
+          "edgeType": "call"
+        },
+        {
+          "name": "useOutlookAuthenticationMutation",
+          "edgeType": "call"
+        },
+        {
+          "name": "useToastMessageDispatch",
+          "edgeType": "call"
+        },
+        {
+          "name": "useMutation",
+          "edgeType": "call"
+        },
+        {
+          "name": "syncOutlookEvents",
+          "edgeType": "call"
+        },
+        {
+          "name": "invalidateQueries",
+          "edgeType": "call"
+        },
+        {
+          "name": "mutateAsync",
+          "edgeType": "call"
+        },
+        {
+          "name": "dispatchToastMessage",
+          "edgeType": "call"
+        }
+      ]
+    }
+  ],
+  "imports": [
+    {
+      "module": "@rocket.chat/ui-contexts",
+      "resolved": "external"
+    },
+    {
+      "module": "@tanstack/react-query",
+      "resolved": "external"
+    },
+    {
+      "module": "./useOutlookAuthentication",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/client/views/outlookCalendar/hooks/useOutlookAuthentication.ts"
+    },
+    {
+      "module": "../lib/syncOutlookEvents",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/client/views/outlookCalendar/lib/syncOutlookEvents.ts"
+    }
+  ]
+}

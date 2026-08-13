@@ -1,0 +1,107 @@
+{
+  "sourcePath": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/app/apps/server/converters/visitors.js",
+  "symbols": [
+    {
+      "type": "class",
+      "name": "AppVisitorsConverter",
+      "exported": true,
+      "line": 6,
+      "endLine": 66,
+      "signature": "export class AppVisitorsConverter",
+      "calls": []
+    },
+    {
+      "type": "method",
+      "name": "convertById",
+      "exported": true,
+      "qualifiedName": "AppVisitorsConverter.convertById",
+      "line": 11,
+      "endLine": 15,
+      "signature": "async convertById(id)",
+      "containerClass": "AppVisitorsConverter",
+      "calls": [
+        {
+          "name": "findOneEnabledById",
+          "edgeType": "call"
+        },
+        {
+          "name": "convertVisitor",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "convertByToken",
+      "exported": true,
+      "qualifiedName": "AppVisitorsConverter.convertByToken",
+      "line": 15,
+      "endLine": 19,
+      "signature": "async convertByToken(token)",
+      "containerClass": "AppVisitorsConverter",
+      "calls": [
+        {
+          "name": "getVisitorByToken",
+          "edgeType": "call"
+        },
+        {
+          "name": "convertVisitor",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "convertVisitor",
+      "exported": true,
+      "qualifiedName": "AppVisitorsConverter.convertVisitor",
+      "line": 19,
+      "endLine": 40,
+      "signature": "async convertVisitor(visitor)",
+      "containerClass": "AppVisitorsConverter",
+      "calls": [
+        {
+          "name": "transformMappedData",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "convertAppVisitor",
+      "exported": true,
+      "qualifiedName": "AppVisitorsConverter.convertAppVisitor",
+      "line": 23,
+      "endLine": 42,
+      "signature": "convertAppVisitor(visitor)",
+      "containerClass": "AppVisitorsConverter",
+      "calls": [
+        {
+          "name": "assign",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "constructor",
+      "exported": true,
+      "qualifiedName": "AppVisitorsConverter.constructor",
+      "line": 7,
+      "endLine": 9,
+      "signature": "constructor(orch)",
+      "containerClass": "AppVisitorsConverter",
+      "calls": []
+    }
+  ],
+  "imports": [
+    {
+      "module": "@rocket.chat/models",
+      "resolved": "external"
+    },
+    {
+      "module": "./transformMappedData",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/app/apps/server/converters/transformMappedData.ts"
+    }
+  ]
+}

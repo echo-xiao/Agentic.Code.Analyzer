@@ -1,0 +1,65 @@
+{
+  "sourcePath": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/server/bridges/slack/removeChannelLinks.ts",
+  "symbols": [
+    {
+      "type": "module",
+      "name": "removeChannelLinks",
+      "exported": false,
+      "line": 1,
+      "endLine": 42,
+      "signature": "removeChannelLinks",
+      "calls": [
+        {
+          "name": "removeSlackBridgeChannelLinks",
+          "edgeType": "call"
+        },
+        {
+          "name": "methods",
+          "edgeType": "call"
+        },
+        {
+          "name": "userAsync",
+          "edgeType": "call"
+        },
+        {
+          "name": "hasPermissionAsync",
+          "edgeType": "call"
+        },
+        {
+          "name": "get",
+          "edgeType": "call"
+        },
+        {
+          "name": "unsetAllImportIds",
+          "edgeType": "call"
+        },
+        {
+          "name": "ServerMethods",
+          "edgeType": "type"
+        }
+      ]
+    }
+  ],
+  "imports": [
+    {
+      "module": "@rocket.chat/ddp-client",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/models",
+      "resolved": "external"
+    },
+    {
+      "module": "meteor/meteor",
+      "resolved": "external"
+    },
+    {
+      "module": "../../../app/settings/server",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/app/settings/server/index.ts"
+    },
+    {
+      "module": "../../lib/authorization/hasPermission",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/server/lib/authorization/hasPermission.ts"
+    }
+  ]
+}

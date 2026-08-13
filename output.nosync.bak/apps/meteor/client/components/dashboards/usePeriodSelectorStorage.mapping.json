@@ -1,0 +1,56 @@
+{
+  "sourcePath": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/client/components/dashboards/usePeriodSelectorStorage.ts",
+  "symbols": [
+    {
+      "type": "inner_function",
+      "name": "onChange",
+      "exported": false,
+      "qualifiedName": "usePeriodSelectorStorage.onChange",
+      "line": 23,
+      "endLine": 23,
+      "signature": "(value): void =>",
+      "calls": [
+        {
+          "name": "setPeriod",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "variable_function",
+      "name": "usePeriodSelectorStorage",
+      "exported": true,
+      "line": 5,
+      "endLine": 26,
+      "signature": "<TPeriod extends Period['key']>( storageKey: string, periods: TPeriod[], ): [ period: TPeriod, periodSelectorProps: { periods: TPeriod[]; value: TPeriod; onChange: (value: TPeriod) => void; }, ] =>",
+      "calls": [
+        {
+          "name": "useLocalStorage",
+          "edgeType": "call"
+        },
+        {
+          "name": "setPeriod",
+          "edgeType": "call"
+        },
+        {
+          "name": "Period",
+          "edgeType": "type"
+        },
+        {
+          "name": "TPeriod",
+          "edgeType": "type"
+        }
+      ]
+    }
+  ],
+  "imports": [
+    {
+      "module": "@rocket.chat/fuselage-hooks",
+      "resolved": "external"
+    },
+    {
+      "module": "./periods",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/client/components/dashboards/periods.ts"
+    }
+  ]
+}

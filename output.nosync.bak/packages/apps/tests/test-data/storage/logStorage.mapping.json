@@ -1,0 +1,124 @@
+{
+  "sourcePath": "/Users/echoooooo/Desktop/code/Rocket.Chat/packages/apps/tests/test-data/storage/logStorage.ts",
+  "symbols": [
+    {
+      "type": "class",
+      "name": "TestsAppLogStorage",
+      "exported": true,
+      "line": 5,
+      "endLine": 28,
+      "signature": "export class TestsAppLogStorage extends AppLogStorage",
+      "calls": [
+        {
+          "name": "AppLogStorage",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "findPaginated",
+      "exported": true,
+      "qualifiedName": "TestsAppLogStorage.findPaginated",
+      "line": 10,
+      "endLine": 15,
+      "signature": "public findPaginated( query: { [field: string]: any }, options?: IAppLogStorageFindOptions, ): Promise<{ logs: ILoggerStorageEntry[]; total: number }>",
+      "containerClass": "TestsAppLogStorage",
+      "calls": [
+        {
+          "name": "resolve",
+          "edgeType": "call"
+        },
+        {
+          "name": "IAppLogStorageFindOptions",
+          "edgeType": "type"
+        },
+        {
+          "name": "ILoggerStorageEntry",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "storeEntries",
+      "exported": true,
+      "qualifiedName": "TestsAppLogStorage.storeEntries",
+      "line": 17,
+      "endLine": 19,
+      "signature": "public storeEntries(logEntry: ILoggerStorageEntry): Promise<ILoggerStorageEntry>",
+      "containerClass": "TestsAppLogStorage",
+      "calls": [
+        {
+          "name": "resolve",
+          "edgeType": "call"
+        },
+        {
+          "name": "ILoggerStorageEntry",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "getEntriesFor",
+      "exported": true,
+      "qualifiedName": "TestsAppLogStorage.getEntriesFor",
+      "line": 21,
+      "endLine": 23,
+      "signature": "public getEntriesFor(appId: string): Promise<Array<ILoggerStorageEntry>>",
+      "containerClass": "TestsAppLogStorage",
+      "calls": [
+        {
+          "name": "resolve",
+          "edgeType": "call"
+        },
+        {
+          "name": "ILoggerStorageEntry",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "removeEntriesFor",
+      "exported": true,
+      "qualifiedName": "TestsAppLogStorage.removeEntriesFor",
+      "line": 25,
+      "endLine": 27,
+      "signature": "public removeEntriesFor(appId: string): Promise<void>",
+      "containerClass": "TestsAppLogStorage",
+      "calls": [
+        {
+          "name": "resolve",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "constructor",
+      "exported": true,
+      "qualifiedName": "TestsAppLogStorage.constructor",
+      "line": 6,
+      "endLine": 8,
+      "signature": "constructor()",
+      "containerClass": "TestsAppLogStorage",
+      "calls": []
+    }
+  ],
+  "imports": [
+    {
+      "module": "../../../src/server/logging",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/packages/apps/src/server/logging/index.ts"
+    },
+    {
+      "module": "../../../src/server/storage",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/packages/apps/src/server/storage/index.ts"
+    },
+    {
+      "module": "../../../src/server/storage",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/packages/apps/src/server/storage/index.ts"
+    }
+  ]
+}

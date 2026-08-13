@@ -1,0 +1,143 @@
+{
+  "sourcePath": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/app/message-star/server/starMessage.ts",
+  "symbols": [
+    {
+      "type": "module",
+      "name": "starMessage",
+      "exported": false,
+      "line": 1,
+      "endLine": 78,
+      "signature": "starMessage",
+      "calls": [
+        {
+          "name": "starMessage",
+          "edgeType": "call"
+        },
+        {
+          "name": "methods",
+          "edgeType": "call"
+        },
+        {
+          "name": "method",
+          "edgeType": "call"
+        },
+        {
+          "name": "userAsync",
+          "edgeType": "call"
+        },
+        {
+          "name": "ServerMethods",
+          "edgeType": "type"
+        },
+        {
+          "name": "IUser",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "variable_function",
+      "name": "starMessage",
+      "exported": true,
+      "line": 20,
+      "endLine": 62,
+      "signature": "async (user: IUser, message: Pick<IMessage, 'rid' | '_id'> & { starred: boolean }): Promise<boolean> =>",
+      "calls": [
+        {
+          "name": "get",
+          "edgeType": "call"
+        },
+        {
+          "name": "findOneByRoomIdAndUserId",
+          "edgeType": "call"
+        },
+        {
+          "name": "findOneByRoomIdAndMessageId",
+          "edgeType": "call"
+        },
+        {
+          "name": "findOneById",
+          "edgeType": "call"
+        },
+        {
+          "name": "canAccessRoomAsync",
+          "edgeType": "call"
+        },
+        {
+          "name": "isTheLastMessage",
+          "edgeType": "call"
+        },
+        {
+          "name": "updateLastMessageStar",
+          "edgeType": "call"
+        },
+        {
+          "name": "notifyOnRoomChangedById",
+          "edgeType": "call"
+        },
+        {
+          "name": "triggerEvent",
+          "edgeType": "call"
+        },
+        {
+          "name": "updateUserStarById",
+          "edgeType": "call"
+        },
+        {
+          "name": "notifyOnMessageChange",
+          "edgeType": "call"
+        },
+        {
+          "name": "IUser",
+          "edgeType": "type"
+        },
+        {
+          "name": "IMessage",
+          "edgeType": "type"
+        }
+      ]
+    }
+  ],
+  "imports": [
+    {
+      "module": "@rocket.chat/apps",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/core-typings",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/ddp-client",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/models",
+      "resolved": "external"
+    },
+    {
+      "module": "meteor/meteor",
+      "resolved": "external"
+    },
+    {
+      "module": "../../../server/lib/messages/isTheLastMessage",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/server/lib/messages/isTheLastMessage.ts"
+    },
+    {
+      "module": "../../authorization/server",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/app/authorization/server/index.ts"
+    },
+    {
+      "module": "../../lib/server/lib/deprecationWarningLogger",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/app/lib/server/lib/deprecationWarningLogger.ts"
+    },
+    {
+      "module": "../../lib/server/lib/notifyListener",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/app/lib/server/lib/notifyListener.ts"
+    },
+    {
+      "module": "../../settings/server",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/app/settings/server/index.ts"
+    }
+  ]
+}

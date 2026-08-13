@@ -1,0 +1,69 @@
+{
+  "sourcePath": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/client/views/admin/subscription/components/cards/PlanCard/ManageLicenseModal/LicenseFilePreview.tsx",
+  "symbols": [
+    {
+      "type": "variable_function",
+      "name": "LicenseFilePreview",
+      "exported": false,
+      "line": 8,
+      "endLine": 25,
+      "signature": "({ selectedFile, handleRemoveFile }: { selectedFile: File; handleRemoveFile: () => void }) =>",
+      "calls": [
+        {
+          "name": "useTranslation",
+          "edgeType": "call"
+        },
+        {
+          "name": "getFileExtension",
+          "edgeType": "call"
+        },
+        {
+          "name": "formatBytes",
+          "edgeType": "call"
+        },
+        {
+          "name": "Box",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "FilePreviewIcon",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "IconButton",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "handleRemoveFile",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "File",
+          "edgeType": "type"
+        }
+      ]
+    }
+  ],
+  "imports": [
+    {
+      "module": "@rocket.chat/fuselage",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/ui-client",
+      "resolved": "external"
+    },
+    {
+      "module": "react-i18next",
+      "resolved": "external"
+    },
+    {
+      "module": "../../../../../../../../lib/utils/getFileExtension",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/lib/utils/getFileExtension.ts"
+    },
+    {
+      "module": "../../../../../../../lib/utils/formatBytes",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/client/lib/utils/formatBytes.ts"
+    }
+  ]
+}

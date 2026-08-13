@@ -1,0 +1,312 @@
+{
+  "sourcePath": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/ee/server/apps/storage/AppRealStorage.ts",
+  "symbols": [
+    {
+      "type": "class",
+      "name": "AppRealStorage",
+      "exported": true,
+      "line": 11,
+      "endLine": 100,
+      "signature": "export class AppRealStorage extends AppMetadataStorage",
+      "calls": [
+        {
+          "name": "AppMetadataStorage",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "create",
+      "exported": true,
+      "qualifiedName": "AppRealStorage.create",
+      "line": 16,
+      "endLine": 31,
+      "signature": "public async create(item: IAppStorageItem): Promise<IAppStorageItem>",
+      "containerClass": "AppRealStorage",
+      "calls": [
+        {
+          "name": "findOne",
+          "edgeType": "call"
+        },
+        {
+          "name": "removeEmpty",
+          "edgeType": "call"
+        },
+        {
+          "name": "insertOne",
+          "edgeType": "call"
+        },
+        {
+          "name": "Date",
+          "edgeType": "new"
+        },
+        {
+          "name": "IAppStorageItem",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "retrieveOne",
+      "exported": true,
+      "qualifiedName": "AppRealStorage.retrieveOne",
+      "line": 20,
+      "endLine": 22,
+      "signature": "public async retrieveOne(id: string): Promise<IAppStorageItem>",
+      "containerClass": "AppRealStorage",
+      "calls": [
+        {
+          "name": "findOne",
+          "edgeType": "call"
+        },
+        {
+          "name": "IAppStorageItem",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "retrieveAll",
+      "exported": true,
+      "qualifiedName": "AppRealStorage.retrieveAll",
+      "line": 24,
+      "endLine": 31,
+      "signature": "public async retrieveAll(): Promise<Map<string, IAppStorageItem>>",
+      "containerClass": "AppRealStorage",
+      "calls": [
+        {
+          "name": "toArray",
+          "edgeType": "call"
+        },
+        {
+          "name": "find",
+          "edgeType": "call"
+        },
+        {
+          "name": "forEach",
+          "edgeType": "call"
+        },
+        {
+          "name": "set",
+          "edgeType": "call"
+        },
+        {
+          "name": "Map",
+          "edgeType": "new"
+        },
+        {
+          "name": "IAppStorageItem",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "retrieveAllPrivate",
+      "exported": true,
+      "qualifiedName": "AppRealStorage.retrieveAllPrivate",
+      "line": 28,
+      "endLine": 35,
+      "signature": "public async retrieveAllPrivate(): Promise<Map<string, IAppStorageItem>>",
+      "containerClass": "AppRealStorage",
+      "calls": [
+        {
+          "name": "toArray",
+          "edgeType": "call"
+        },
+        {
+          "name": "find",
+          "edgeType": "call"
+        },
+        {
+          "name": "forEach",
+          "edgeType": "call"
+        },
+        {
+          "name": "set",
+          "edgeType": "call"
+        },
+        {
+          "name": "Map",
+          "edgeType": "new"
+        },
+        {
+          "name": "IAppStorageItem",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "remove",
+      "exported": true,
+      "qualifiedName": "AppRealStorage.remove",
+      "line": 32,
+      "endLine": 35,
+      "signature": "public async remove(id: string): Promise<{ success: boolean }>",
+      "containerClass": "AppRealStorage",
+      "calls": [
+        {
+          "name": "deleteOne",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "updatePartialAndReturnDocument",
+      "exported": true,
+      "qualifiedName": "AppRealStorage.updatePartialAndReturnDocument",
+      "line": 36,
+      "endLine": 54,
+      "signature": "public async updatePartialAndReturnDocument( { _id, ...item }: IAppStorageItem, { unsetPermissionsGranted = false } = {}, ): Promise<IAppStorageItem>",
+      "containerClass": "AppRealStorage",
+      "calls": [
+        {
+          "name": "findOneAndUpdate",
+          "edgeType": "call"
+        },
+        {
+          "name": "IAppStorageItem",
+          "edgeType": "type"
+        },
+        {
+          "name": "UpdateFilter",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "updateStatus",
+      "exported": true,
+      "qualifiedName": "AppRealStorage.updateStatus",
+      "line": 43,
+      "endLine": 46,
+      "signature": "public async updateStatus(_id: string, status: AppStatus): Promise<boolean>",
+      "containerClass": "AppRealStorage",
+      "calls": [
+        {
+          "name": "updateOne",
+          "edgeType": "call"
+        },
+        {
+          "name": "AppStatus",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "updateSetting",
+      "exported": true,
+      "qualifiedName": "AppRealStorage.updateSetting",
+      "line": 47,
+      "endLine": 51,
+      "signature": "public async updateSetting(_id: string, setting: ISetting): Promise<boolean>",
+      "containerClass": "AppRealStorage",
+      "calls": [
+        {
+          "name": "updateOne",
+          "edgeType": "call"
+        },
+        {
+          "name": "ISetting",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "updateAppInfo",
+      "exported": true,
+      "qualifiedName": "AppRealStorage.updateAppInfo",
+      "line": 51,
+      "endLine": 54,
+      "signature": "public async updateAppInfo(_id: string, info: IAppInfo): Promise<boolean>",
+      "containerClass": "AppRealStorage",
+      "calls": [
+        {
+          "name": "updateOne",
+          "edgeType": "call"
+        },
+        {
+          "name": "IAppInfo",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "updateMarketplaceInfo",
+      "exported": true,
+      "qualifiedName": "AppRealStorage.updateMarketplaceInfo",
+      "line": 55,
+      "endLine": 58,
+      "signature": "public async updateMarketplaceInfo(_id: string, marketplaceInfo: IMarketplaceInfo[]): Promise<boolean>",
+      "containerClass": "AppRealStorage",
+      "calls": [
+        {
+          "name": "updateOne",
+          "edgeType": "call"
+        },
+        {
+          "name": "IMarketplaceInfo",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "constructor",
+      "exported": true,
+      "qualifiedName": "AppRealStorage.constructor",
+      "line": 12,
+      "endLine": 14,
+      "signature": "constructor(private db: typeof Apps)",
+      "containerClass": "AppRealStorage",
+      "calls": []
+    }
+  ],
+  "imports": [
+    {
+      "module": "@rocket.chat/apps/dist/server/marketplace/IMarketplaceInfo",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/apps/dist/server/storage/AppMetadataStorage",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/apps/dist/server/storage/IAppStorageItem",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/apps-engine/definition/AppStatus",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/apps-engine/definition/metadata",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/apps-engine/definition/settings",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/models",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/tools",
+      "resolved": "external"
+    },
+    {
+      "module": "mongodb",
+      "resolved": "external"
+    }
+  ]
+}

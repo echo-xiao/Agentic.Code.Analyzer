@@ -1,0 +1,622 @@
+{
+  "sourcePath": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/app/push/server/push.ts",
+  "symbols": [
+    {
+      "type": "class",
+      "name": "PushClass",
+      "exported": false,
+      "line": 132,
+      "endLine": 512,
+      "signature": "class PushClass",
+      "calls": []
+    },
+    {
+      "type": "method",
+      "name": "configure",
+      "exported": false,
+      "qualifiedName": "PushClass.configure",
+      "line": 139,
+      "endLine": 169,
+      "signature": "public configure(options: PushOptions): void",
+      "containerClass": "PushClass",
+      "calls": [
+        {
+          "name": "debug",
+          "edgeType": "call"
+        },
+        {
+          "name": "initAPN",
+          "edgeType": "call"
+        },
+        {
+          "name": "absoluteUrl",
+          "edgeType": "call"
+        },
+        {
+          "name": "PushOptions",
+          "edgeType": "type"
+        },
+        {
+          "name": "RequiredField",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "removeToken",
+      "exported": false,
+      "qualifiedName": "PushClass.removeToken",
+      "line": 143,
+      "endLine": 147,
+      "signature": "private removeToken(token: string): void",
+      "containerClass": "PushClass",
+      "calls": [
+        {
+          "name": "catch",
+          "edgeType": "call"
+        },
+        {
+          "name": "removeOrUnsetByTokenString",
+          "edgeType": "call"
+        },
+        {
+          "name": "error",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "shouldUseGateway",
+      "exported": false,
+      "qualifiedName": "PushClass.shouldUseGateway",
+      "line": 147,
+      "endLine": 149,
+      "signature": "private shouldUseGateway(): boolean",
+      "containerClass": "PushClass",
+      "calls": [
+        {
+          "name": "Boolean",
+          "edgeType": "call"
+        },
+        {
+          "name": "get",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "sendNotificationNative",
+      "exported": false,
+      "qualifiedName": "PushClass.sendNotificationNative",
+      "line": 151,
+      "endLine": 191,
+      "signature": "private async sendNotificationNative( app: IPushToken, notification: PendingPushNotification, countApn: string[], countGcm: string[], ): Promise<void>",
+      "containerClass": "PushClass",
+      "calls": [
+        {
+          "name": "debug",
+          "edgeType": "call"
+        },
+        {
+          "name": "push",
+          "edgeType": "call"
+        },
+        {
+          "name": "sendAPN",
+          "edgeType": "call"
+        },
+        {
+          "name": "getNativeNotificationAuthorizationCredentials",
+          "edgeType": "call"
+        },
+        {
+          "name": "sendFCM",
+          "edgeType": "call"
+        },
+        {
+          "name": "IPushToken",
+          "edgeType": "type"
+        },
+        {
+          "name": "PendingPushNotification",
+          "edgeType": "type"
+        },
+        {
+          "name": "RequiredField",
+          "edgeType": "type"
+        },
+        {
+          "name": "PushOptions",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "getNativeNotificationAuthorizationCredentials",
+      "exported": false,
+      "qualifiedName": "PushClass.getNativeNotificationAuthorizationCredentials",
+      "line": 160,
+      "endLine": 189,
+      "signature": "private async getNativeNotificationAuthorizationCredentials(): Promise<{ token: string; projectId: string }>",
+      "containerClass": "PushClass",
+      "calls": [
+        {
+          "name": "get",
+          "edgeType": "call"
+        },
+        {
+          "name": "trim",
+          "edgeType": "call"
+        },
+        {
+          "name": "parse",
+          "edgeType": "call"
+        },
+        {
+          "name": "isFCMCredentials",
+          "edgeType": "call"
+        },
+        {
+          "name": "authorize",
+          "edgeType": "call"
+        },
+        {
+          "name": "error",
+          "edgeType": "call"
+        },
+        {
+          "name": "JWT",
+          "edgeType": "new"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "sendGatewayPush",
+      "exported": false,
+      "qualifiedName": "PushClass.sendGatewayPush",
+      "line": 164,
+      "endLine": 219,
+      "signature": "private async sendGatewayPush( gateway: string, service: 'apn' | 'gcm', token: string, notification: Optional<GatewayNotification, 'uniqueId'>, retryOptions: { tries: number; maxRetries: number } = { tries: 0, maxRetries: PUSH_GATEWAY_MAX_RETRIES }, ): Promise<void>",
+      "containerClass": "PushClass",
+      "calls": [
+        {
+          "name": "getAuthorization",
+          "edgeType": "call"
+        },
+        {
+          "name": "fetch",
+          "edgeType": "call"
+        },
+        {
+          "name": "text",
+          "edgeType": "call"
+        },
+        {
+          "name": "info",
+          "edgeType": "call"
+        },
+        {
+          "name": "removeToken",
+          "edgeType": "call"
+        },
+        {
+          "name": "warn",
+          "edgeType": "call"
+        },
+        {
+          "name": "error",
+          "edgeType": "call"
+        },
+        {
+          "name": "pow",
+          "edgeType": "call"
+        },
+        {
+          "name": "log",
+          "edgeType": "call"
+        },
+        {
+          "name": "sendGatewayPush",
+          "edgeType": "call"
+        },
+        {
+          "name": "Optional",
+          "edgeType": "type"
+        },
+        {
+          "name": "GatewayNotification",
+          "edgeType": "type"
+        },
+        {
+          "name": "ExtendedFetchOptions",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "getGatewayNotificationData",
+      "exported": false,
+      "qualifiedName": "PushClass.getGatewayNotificationData",
+      "line": 174,
+      "endLine": 182,
+      "signature": "private getGatewayNotificationData(notification: PendingPushNotification): Omit<GatewayNotification, 'uniqueId'>",
+      "containerClass": "PushClass",
+      "calls": [
+        {
+          "name": "PendingPushNotification",
+          "edgeType": "type"
+        },
+        {
+          "name": "GatewayNotification",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "sendNotificationGateway",
+      "exported": false,
+      "qualifiedName": "PushClass.sendNotificationGateway",
+      "line": 178,
+      "endLine": 212,
+      "signature": "private async sendNotificationGateway( app: IPushToken, notification: PendingPushNotification, countApn: string[], countGcm: string[], ): Promise<void>",
+      "containerClass": "PushClass",
+      "calls": [
+        {
+          "name": "getGatewayNotificationData",
+          "edgeType": "call"
+        },
+        {
+          "name": "debug",
+          "edgeType": "call"
+        },
+        {
+          "name": "push",
+          "edgeType": "call"
+        },
+        {
+          "name": "sendGatewayPush",
+          "edgeType": "call"
+        },
+        {
+          "name": "IPushToken",
+          "edgeType": "type"
+        },
+        {
+          "name": "PendingPushNotification",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "sendNotification",
+      "exported": false,
+      "qualifiedName": "PushClass.sendNotification",
+      "line": 187,
+      "endLine": 256,
+      "signature": "private async sendNotification( notification: PendingPushNotification, options: { skipTokenId?: IPushToken['_id'] } = {}, ): Promise<{ apn: string[]; gcm: string[] }>",
+      "containerClass": "PushClass",
+      "calls": [
+        {
+          "name": "debug",
+          "edgeType": "call"
+        },
+        {
+          "name": "findTokensByUserIdExceptId",
+          "edgeType": "call"
+        },
+        {
+          "name": "findAllTokensByUserId",
+          "edgeType": "call"
+        },
+        {
+          "name": "shouldUseGateway",
+          "edgeType": "call"
+        },
+        {
+          "name": "sendNotificationGateway",
+          "edgeType": "call"
+        },
+        {
+          "name": "sendNotificationNative",
+          "edgeType": "call"
+        },
+        {
+          "name": "get",
+          "edgeType": "call"
+        },
+        {
+          "name": "estimatedDocumentCount",
+          "edgeType": "call"
+        },
+        {
+          "name": "countApnTokens",
+          "edgeType": "call"
+        },
+        {
+          "name": "countGcmTokens",
+          "edgeType": "call"
+        },
+        {
+          "name": "PendingPushNotification",
+          "edgeType": "type"
+        },
+        {
+          "name": "IPushToken",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "_validateDocument",
+      "exported": false,
+      "qualifiedName": "PushClass._validateDocument",
+      "line": 196,
+      "endLine": 227,
+      "signature": "private _validateDocument(notification: PendingPushNotification): void",
+      "containerClass": "PushClass",
+      "calls": [
+        {
+          "name": "check",
+          "edgeType": "call"
+        },
+        {
+          "name": "Optional",
+          "edgeType": "call"
+        },
+        {
+          "name": "OneOf",
+          "edgeType": "call"
+        },
+        {
+          "name": "PendingPushNotification",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "hasApnOptions",
+      "exported": false,
+      "qualifiedName": "PushClass.hasApnOptions",
+      "line": 200,
+      "endLine": 202,
+      "signature": "private hasApnOptions(options: IPushNotificationConfig): options is RequiredField<IPushNotificationConfig, 'apn'>",
+      "containerClass": "PushClass",
+      "calls": [
+        {
+          "name": "test",
+          "edgeType": "call"
+        },
+        {
+          "name": "IPushNotificationConfig",
+          "edgeType": "type"
+        },
+        {
+          "name": "RequiredField",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "hasGcmOptions",
+      "exported": false,
+      "qualifiedName": "PushClass.hasGcmOptions",
+      "line": 204,
+      "endLine": 206,
+      "signature": "private hasGcmOptions(options: IPushNotificationConfig): options is RequiredField<IPushNotificationConfig, 'gcm'>",
+      "containerClass": "PushClass",
+      "calls": [
+        {
+          "name": "test",
+          "edgeType": "call"
+        },
+        {
+          "name": "IPushNotificationConfig",
+          "edgeType": "type"
+        },
+        {
+          "name": "RequiredField",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "send",
+      "exported": false,
+      "qualifiedName": "PushClass.send",
+      "line": 208,
+      "endLine": 248,
+      "signature": "public async send(options: IPushNotificationConfig)",
+      "containerClass": "PushClass",
+      "calls": [
+        {
+          "name": "truncateString",
+          "edgeType": "call"
+        },
+        {
+          "name": "pick",
+          "edgeType": "call"
+        },
+        {
+          "name": "hasApnOptions",
+          "edgeType": "call"
+        },
+        {
+          "name": "hasGcmOptions",
+          "edgeType": "call"
+        },
+        {
+          "name": "_validateDocument",
+          "edgeType": "call"
+        },
+        {
+          "name": "sendNotification",
+          "edgeType": "call"
+        },
+        {
+          "name": "debug",
+          "edgeType": "call"
+        },
+        {
+          "name": "Date",
+          "edgeType": "new"
+        },
+        {
+          "name": "IPushNotificationConfig",
+          "edgeType": "type"
+        },
+        {
+          "name": "PendingPushNotification",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "class_property",
+      "name": "options",
+      "exported": false,
+      "qualifiedName": "PushClass.options",
+      "line": 133,
+      "endLine": 135,
+      "signature": "options: PushOptions =",
+      "containerClass": "PushClass",
+      "calls": [
+        {
+          "name": "PushOptions",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "variable",
+      "name": "_matchToken",
+      "exported": true,
+      "line": 17,
+      "endLine": 17,
+      "signature": "_matchToken = Match.OneOf(",
+      "calls": []
+    },
+    {
+      "type": "variable",
+      "name": "FCMCredentialsValidationSchema",
+      "exported": true,
+      "line": 37,
+      "endLine": 75,
+      "signature": "FCMCredentialsValidationSchema =",
+      "calls": []
+    },
+    {
+      "type": "variable",
+      "name": "isFCMCredentials",
+      "exported": true,
+      "line": 77,
+      "endLine": 77,
+      "signature": "isFCMCredentials = ajv.compile<FCMCredentials>(FCMCredentialsValidationSchema)",
+      "calls": [
+        {
+          "name": "FCMCredentials",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "variable",
+      "name": "Push",
+      "exported": true,
+      "line": 213,
+      "endLine": 213,
+      "signature": "Push = new PushClass()",
+      "calls": []
+    },
+    {
+      "type": "type",
+      "name": "FCMCredentials",
+      "line": 23,
+      "endLine": 35,
+      "signature": "type FCMCredentials ="
+    },
+    {
+      "type": "type",
+      "name": "GatewayNotification",
+      "line": 80,
+      "endLine": 123,
+      "signature": "type GatewayNotification ="
+    },
+    {
+      "type": "type",
+      "name": "NativeNotificationParameters",
+      "line": 125,
+      "endLine": 130,
+      "signature": "export type NativeNotificationParameters ="
+    }
+  ],
+  "imports": [
+    {
+      "module": "@rocket.chat/core-typings",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/models",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/rest-typings",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/server-fetch",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/server-fetch",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/tools",
+      "resolved": "external"
+    },
+    {
+      "module": "google-auth-library",
+      "resolved": "external"
+    },
+    {
+      "module": "meteor/check",
+      "resolved": "external"
+    },
+    {
+      "module": "meteor/meteor",
+      "resolved": "external"
+    },
+    {
+      "module": "./apn",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/app/push/server/apn.ts"
+    },
+    {
+      "module": "./definition",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/app/push/server/definition.ts"
+    },
+    {
+      "module": "./fcm",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/app/push/server/fcm.ts"
+    },
+    {
+      "module": "./logger",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/app/push/server/logger.ts"
+    },
+    {
+      "module": "../../settings/server",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/app/settings/server/index.ts"
+    }
+  ]
+}

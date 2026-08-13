@@ -1,0 +1,54 @@
+{
+  "sourcePath": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/ee/app/livechat-enterprise/server/permissions.ts",
+  "symbols": [
+    {
+      "type": "variable",
+      "name": "omnichannelEEPermissions",
+      "exported": true,
+      "line": 10,
+      "endLine": 25,
+      "signature": "omnichannelEEPermissions = [",
+      "calls": []
+    },
+    {
+      "type": "variable_function",
+      "name": "createPermissions",
+      "exported": true,
+      "line": 27,
+      "endLine": 36,
+      "signature": "async (): Promise<void> =>",
+      "calls": [
+        {
+          "name": "findOneById",
+          "edgeType": "call"
+        },
+        {
+          "name": "createOrUpdateProtectedRoleAsync",
+          "edgeType": "call"
+        },
+        {
+          "name": "all",
+          "edgeType": "call"
+        },
+        {
+          "name": "map",
+          "edgeType": "call"
+        },
+        {
+          "name": "create",
+          "edgeType": "call"
+        }
+      ]
+    }
+  ],
+  "imports": [
+    {
+      "module": "@rocket.chat/models",
+      "resolved": "external"
+    },
+    {
+      "module": "../../../../server/lib/roles/createOrUpdateProtectedRole",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/server/lib/roles/createOrUpdateProtectedRole.ts"
+    }
+  ]
+}

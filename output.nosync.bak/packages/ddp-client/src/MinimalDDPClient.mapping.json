@@ -1,0 +1,494 @@
+{
+  "sourcePath": "/Users/echoooooo/Desktop/code/Rocket.Chat/packages/ddp-client/src/MinimalDDPClient.ts",
+  "symbols": [
+    {
+      "type": "class",
+      "name": "MinimalDDPClient",
+      "exported": true,
+      "line": 67,
+      "endLine": 241,
+      "signature": "export class MinimalDDPClient extends Emitter<MinimalDDPClientEvents> implements DDPClient",
+      "calls": [
+        {
+          "name": "Emitter",
+          "edgeType": "type"
+        },
+        {
+          "name": "DDPClient",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "handleMessage",
+      "exported": true,
+      "qualifiedName": "MinimalDDPClient.handleMessage",
+      "line": 87,
+      "endLine": 139,
+      "signature": "handleMessage(payload: string): void",
+      "containerClass": "MinimalDDPClient",
+      "calls": [
+        {
+          "name": "decode",
+          "edgeType": "call"
+        },
+        {
+          "name": "freeze",
+          "edgeType": "call"
+        },
+        {
+          "name": "pong",
+          "edgeType": "call"
+        },
+        {
+          "name": "pong",
+          "edgeType": "event_emit"
+        },
+        {
+          "name": "forEach",
+          "edgeType": "call"
+        },
+        {
+          "name": "connection",
+          "edgeType": "event_emit"
+        },
+        {
+          "name": "message",
+          "edgeType": "event_emit"
+        },
+        {
+          "name": "IncomingPayload",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "onDispatchMessage",
+      "exported": true,
+      "qualifiedName": "MinimalDDPClient.onDispatchMessage",
+      "line": 91,
+      "endLine": 95,
+      "signature": "onDispatchMessage(callback: (msg: string) => void): RemoveListener",
+      "containerClass": "MinimalDDPClient",
+      "calls": [
+        {
+          "name": "send",
+          "edgeType": "event_listen"
+        },
+        {
+          "name": "callback",
+          "edgeType": "call"
+        },
+        {
+          "name": "encode",
+          "edgeType": "call"
+        },
+        {
+          "name": "RemoveListener",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "dispatch",
+      "exported": true,
+      "qualifiedName": "MinimalDDPClient.dispatch",
+      "line": 95,
+      "endLine": 97,
+      "signature": "protected dispatch(payload: OutgoingPayload): void",
+      "containerClass": "MinimalDDPClient",
+      "calls": [
+        {
+          "name": "send",
+          "edgeType": "event_emit"
+        },
+        {
+          "name": "OutgoingPayload",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "call",
+      "exported": true,
+      "qualifiedName": "MinimalDDPClient.call",
+      "line": 99,
+      "endLine": 108,
+      "signature": "call(method: string, params: any[] = [])",
+      "containerClass": "MinimalDDPClient",
+      "calls": [
+        {
+          "name": "getUniqueId",
+          "edgeType": "call"
+        },
+        {
+          "name": "MethodPayload",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "subscribe",
+      "exported": true,
+      "qualifiedName": "MinimalDDPClient.subscribe",
+      "line": 103,
+      "endLine": 107,
+      "signature": "subscribe(name: string, params?: any[]): string",
+      "containerClass": "MinimalDDPClient",
+      "calls": [
+        {
+          "name": "getUniqueId",
+          "edgeType": "call"
+        },
+        {
+          "name": "subscribeWithId",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "subscribeWithId",
+      "exported": true,
+      "qualifiedName": "MinimalDDPClient.subscribeWithId",
+      "line": 107,
+      "endLine": 116,
+      "signature": "subscribeWithId(id: string, name: string, params?: any[]): string",
+      "containerClass": "MinimalDDPClient",
+      "calls": [
+        {
+          "name": "dispatch",
+          "edgeType": "call"
+        },
+        {
+          "name": "SubscribePayload",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "unsubscribe",
+      "exported": true,
+      "qualifiedName": "MinimalDDPClient.unsubscribe",
+      "line": 111,
+      "endLine": 117,
+      "signature": "unsubscribe(id: string): void",
+      "containerClass": "MinimalDDPClient",
+      "calls": [
+        {
+          "name": "dispatch",
+          "edgeType": "call"
+        },
+        {
+          "name": "UnsubscribePayload",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "connect",
+      "exported": true,
+      "qualifiedName": "MinimalDDPClient.connect",
+      "line": 115,
+      "endLine": 122,
+      "signature": "connect(): void",
+      "containerClass": "MinimalDDPClient",
+      "calls": [
+        {
+          "name": "dispatch",
+          "edgeType": "call"
+        },
+        {
+          "name": "ConnectPayload",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "onPublish",
+      "exported": true,
+      "qualifiedName": "MinimalDDPClient.onPublish",
+      "line": 119,
+      "endLine": 121,
+      "signature": "onPublish(name: string, callback: (payload: ServerPublicationPayloads) => void): RemoveListener",
+      "containerClass": "MinimalDDPClient",
+      "calls": [
+        {
+          "name": "ServerPublicationPayloads",
+          "edgeType": "type"
+        },
+        {
+          "name": "RemoveListener",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "onResult",
+      "exported": true,
+      "qualifiedName": "MinimalDDPClient.onResult",
+      "line": 123,
+      "endLine": 125,
+      "signature": "onResult(id: string, callback: (payload: ResultPayload) => void): RemoveListener",
+      "containerClass": "MinimalDDPClient",
+      "calls": [
+        {
+          "name": "ResultPayload",
+          "edgeType": "type"
+        },
+        {
+          "name": "RemoveListener",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "onUpdate",
+      "exported": true,
+      "qualifiedName": "MinimalDDPClient.onUpdate",
+      "line": 127,
+      "endLine": 129,
+      "signature": "onUpdate(id: string, callback: (payload: UpdatedPayload) => void): RemoveListener",
+      "containerClass": "MinimalDDPClient",
+      "calls": [
+        {
+          "name": "UpdatedPayload",
+          "edgeType": "type"
+        },
+        {
+          "name": "RemoveListener",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "onNoSub",
+      "exported": true,
+      "qualifiedName": "MinimalDDPClient.onNoSub",
+      "line": 131,
+      "endLine": 133,
+      "signature": "onNoSub(id: string, callback: (payload: NosubPayload) => void): RemoveListener",
+      "containerClass": "MinimalDDPClient",
+      "calls": [
+        {
+          "name": "NosubPayload",
+          "edgeType": "type"
+        },
+        {
+          "name": "RemoveListener",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "onCollection",
+      "exported": true,
+      "qualifiedName": "MinimalDDPClient.onCollection",
+      "line": 135,
+      "endLine": 137,
+      "signature": "onCollection(name: string, callback: (payload: PublicationPayloads) => void): RemoveListener",
+      "containerClass": "MinimalDDPClient",
+      "calls": [
+        {
+          "name": "PublicationPayloads",
+          "edgeType": "type"
+        },
+        {
+          "name": "RemoveListener",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "onConnection",
+      "exported": true,
+      "qualifiedName": "MinimalDDPClient.onConnection",
+      "line": 139,
+      "endLine": 141,
+      "signature": "onConnection(callback: (payload: ConnectedPayload | FailedPayload) => void): RemoveListener",
+      "containerClass": "MinimalDDPClient",
+      "calls": [
+        {
+          "name": "callback",
+          "edgeType": "event_listen",
+          "event": "connection"
+        },
+        {
+          "name": "ConnectedPayload",
+          "edgeType": "type"
+        },
+        {
+          "name": "FailedPayload",
+          "edgeType": "type"
+        },
+        {
+          "name": "RemoveListener",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "onceMessage",
+      "exported": true,
+      "qualifiedName": "MinimalDDPClient.onceMessage",
+      "line": 143,
+      "endLine": 145,
+      "signature": "onceMessage(callback: (payload: IncomingPayload) => void): RemoveListener",
+      "containerClass": "MinimalDDPClient",
+      "calls": [
+        {
+          "name": "callback",
+          "edgeType": "event_listen",
+          "event": "message"
+        },
+        {
+          "name": "IncomingPayload",
+          "edgeType": "type"
+        },
+        {
+          "name": "RemoveListener",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "onMessage",
+      "exported": true,
+      "qualifiedName": "MinimalDDPClient.onMessage",
+      "line": 147,
+      "endLine": 149,
+      "signature": "onMessage(callback: (payload: IncomingPayload) => void): RemoveListener",
+      "containerClass": "MinimalDDPClient",
+      "calls": [
+        {
+          "name": "callback",
+          "edgeType": "event_listen",
+          "event": "message"
+        },
+        {
+          "name": "IncomingPayload",
+          "edgeType": "type"
+        },
+        {
+          "name": "RemoveListener",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "ping",
+      "exported": true,
+      "qualifiedName": "MinimalDDPClient.ping",
+      "line": 151,
+      "endLine": 156,
+      "signature": "ping(id?: string): void",
+      "containerClass": "MinimalDDPClient",
+      "calls": [
+        {
+          "name": "dispatch",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "pong",
+      "exported": true,
+      "qualifiedName": "MinimalDDPClient.pong",
+      "line": 155,
+      "endLine": 160,
+      "signature": "private pong(id?: string): void",
+      "containerClass": "MinimalDDPClient",
+      "calls": [
+        {
+          "name": "dispatch",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "constructor",
+      "exported": true,
+      "qualifiedName": "MinimalDDPClient.constructor",
+      "line": 68,
+      "endLine": 77,
+      "signature": "constructor( send?: (params: string) => void, readonly encode = JSON.stringify, readonly decode = JSON.parse, )",
+      "containerClass": "MinimalDDPClient",
+      "calls": [
+        {
+          "name": "onDispatchMessage",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "interface",
+      "name": "DDPDispatchOptions",
+      "line": 33,
+      "endLine": 35,
+      "signature": "export interface DDPDispatchOptions"
+    },
+    {
+      "type": "interface",
+      "name": "MinimalDDPClientEvents",
+      "line": 37,
+      "endLine": 47,
+      "signature": "interface MinimalDDPClientEvents"
+    }
+  ],
+  "imports": [
+    {
+      "module": "@rocket.chat/emitter",
+      "resolved": "external"
+    },
+    {
+      "module": "./types/DDPClient",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/packages/ddp-client/src/types/DDPClient.ts"
+    },
+    {
+      "module": "./types/IncomingPayload",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/packages/ddp-client/src/types/IncomingPayload.ts"
+    },
+    {
+      "module": "./types/OutgoingPayload",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/packages/ddp-client/src/types/OutgoingPayload.ts"
+    },
+    {
+      "module": "./types/RemoveListener",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/packages/ddp-client/src/types/RemoveListener.ts"
+    },
+    {
+      "module": "./types/connectionPayloads",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/packages/ddp-client/src/types/connectionPayloads.ts"
+    },
+    {
+      "module": "./types/heartbeatsPayloads",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/packages/ddp-client/src/types/heartbeatsPayloads.ts"
+    },
+    {
+      "module": "./types/methodsPayloads",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/packages/ddp-client/src/types/methodsPayloads.ts"
+    },
+    {
+      "module": "./types/publicationPayloads",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/packages/ddp-client/src/types/publicationPayloads.ts"
+    }
+  ]
+}

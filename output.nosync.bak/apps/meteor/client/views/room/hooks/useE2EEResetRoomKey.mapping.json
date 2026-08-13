@@ -1,0 +1,72 @@
+{
+  "sourcePath": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/client/views/room/hooks/useE2EEResetRoomKey.ts",
+  "symbols": [
+    {
+      "type": "variable_function",
+      "name": "useE2EEResetRoomKey",
+      "exported": true,
+      "line": 12,
+      "endLine": 39,
+      "signature": "( options?: Omit<UseMutationOptions<void, Error, UseE2EEResetRoomKeyVariables>, 'mutationFn'>, ): UseMutationResult<void, Error, UseE2EEResetRoomKeyVariables> =>",
+      "calls": [
+        {
+          "name": "useEndpoint",
+          "edgeType": "call"
+        },
+        {
+          "name": "useMutation",
+          "edgeType": "call"
+        },
+        {
+          "name": "getInstanceByRoomId",
+          "edgeType": "call"
+        },
+        {
+          "name": "resetRoomKey",
+          "edgeType": "call"
+        },
+        {
+          "name": "UseMutationOptions",
+          "edgeType": "type"
+        },
+        {
+          "name": "UseE2EEResetRoomKeyVariables",
+          "edgeType": "type"
+        },
+        {
+          "name": "UseMutationResult",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "type",
+      "name": "UseE2EEResetRoomKeyVariables",
+      "line": 8,
+      "endLine": 10,
+      "signature": "type UseE2EEResetRoomKeyVariables ="
+    }
+  ],
+  "imports": [
+    {
+      "module": "@rocket.chat/core-typings",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/ui-contexts",
+      "resolved": "external"
+    },
+    {
+      "module": "@tanstack/react-query",
+      "resolved": "external"
+    },
+    {
+      "module": "@tanstack/react-query",
+      "resolved": "external"
+    },
+    {
+      "module": "../../../lib/e2ee",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/client/lib/e2ee/index.ts"
+    }
+  ]
+}

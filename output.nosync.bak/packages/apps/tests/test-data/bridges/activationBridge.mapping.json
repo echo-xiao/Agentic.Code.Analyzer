@@ -1,0 +1,165 @@
+{
+  "sourcePath": "/Users/echoooooo/Desktop/code/Rocket.Chat/packages/apps/tests/test-data/bridges/activationBridge.ts",
+  "symbols": [
+    {
+      "type": "class",
+      "name": "TestsActivationBridge",
+      "exported": true,
+      "line": 6,
+      "endLine": 26,
+      "signature": "export class TestsActivationBridge extends AppActivationBridge",
+      "calls": [
+        {
+          "name": "AppActivationBridge",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "appAdded",
+      "exported": true,
+      "qualifiedName": "TestsActivationBridge.appAdded",
+      "line": 7,
+      "endLine": 9,
+      "signature": "public async appAdded(app: ProxiedApp): Promise<void>",
+      "containerClass": "TestsActivationBridge",
+      "calls": [
+        {
+          "name": "log",
+          "edgeType": "call"
+        },
+        {
+          "name": "getName",
+          "edgeType": "call"
+        },
+        {
+          "name": "getID",
+          "edgeType": "call"
+        },
+        {
+          "name": "ProxiedApp",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "appUpdated",
+      "exported": true,
+      "qualifiedName": "TestsActivationBridge.appUpdated",
+      "line": 11,
+      "endLine": 13,
+      "signature": "public async appUpdated(app: ProxiedApp): Promise<void>",
+      "containerClass": "TestsActivationBridge",
+      "calls": [
+        {
+          "name": "log",
+          "edgeType": "call"
+        },
+        {
+          "name": "getName",
+          "edgeType": "call"
+        },
+        {
+          "name": "getID",
+          "edgeType": "call"
+        },
+        {
+          "name": "ProxiedApp",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "appRemoved",
+      "exported": true,
+      "qualifiedName": "TestsActivationBridge.appRemoved",
+      "line": 15,
+      "endLine": 17,
+      "signature": "public async appRemoved(app: ProxiedApp): Promise<void>",
+      "containerClass": "TestsActivationBridge",
+      "calls": [
+        {
+          "name": "log",
+          "edgeType": "call"
+        },
+        {
+          "name": "getName",
+          "edgeType": "call"
+        },
+        {
+          "name": "getID",
+          "edgeType": "call"
+        },
+        {
+          "name": "ProxiedApp",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "appStatusChanged",
+      "exported": true,
+      "qualifiedName": "TestsActivationBridge.appStatusChanged",
+      "line": 19,
+      "endLine": 21,
+      "signature": "public async appStatusChanged(app: ProxiedApp, status: AppStatus): Promise<void>",
+      "containerClass": "TestsActivationBridge",
+      "calls": [
+        {
+          "name": "log",
+          "edgeType": "call"
+        },
+        {
+          "name": "getName",
+          "edgeType": "call"
+        },
+        {
+          "name": "getID",
+          "edgeType": "call"
+        },
+        {
+          "name": "ProxiedApp",
+          "edgeType": "type"
+        },
+        {
+          "name": "AppStatus",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "actionsChanged",
+      "exported": true,
+      "qualifiedName": "TestsActivationBridge.actionsChanged",
+      "line": 23,
+      "endLine": 25,
+      "signature": "protected async actionsChanged(): Promise<void>",
+      "containerClass": "TestsActivationBridge",
+      "calls": [
+        {
+          "name": "log",
+          "edgeType": "call"
+        }
+      ]
+    }
+  ],
+  "imports": [
+    {
+      "module": "@rocket.chat/apps-engine/definition/AppStatus",
+      "resolved": "external"
+    },
+    {
+      "module": "../../../src/server/ProxiedApp",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/packages/apps/src/server/ProxiedApp.ts"
+    },
+    {
+      "module": "../../../src/server/bridges",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/packages/apps/src/server/bridges/index.ts"
+    }
+  ]
+}

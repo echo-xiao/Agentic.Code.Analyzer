@@ -1,0 +1,564 @@
+{
+  "sourcePath": "/Users/echoooooo/Desktop/code/Rocket.Chat/packages/livechat/src/lib/room.js",
+  "symbols": [
+    {
+      "type": "module",
+      "name": "room",
+      "exported": false,
+      "line": 1,
+      "endLine": 321,
+      "signature": "room",
+      "calls": [
+        {
+          "name": "change",
+          "edgeType": "event_listen"
+        },
+        {
+          "name": "route",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "variable_function",
+      "name": "closeChat",
+      "exported": true,
+      "line": 20,
+      "endLine": 42,
+      "signature": "async ({ transcriptRequested } = {}) =>",
+      "calls": [
+        {
+          "name": "handleTranscript",
+          "edgeType": "call"
+        },
+        {
+          "name": "setState",
+          "edgeType": "call"
+        },
+        {
+          "name": "initialState",
+          "edgeType": "call"
+        },
+        {
+          "name": "processTrigger",
+          "edgeType": "call"
+        },
+        {
+          "name": "loadConfig",
+          "edgeType": "call"
+        },
+        {
+          "name": "parentCall",
+          "edgeType": "call"
+        },
+        {
+          "name": "route",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "variable_function",
+      "name": "getVideoConfMessageData",
+      "exported": false,
+      "line": 24,
+      "endLine": 27,
+      "signature": "(message) =>",
+      "calls": [
+        {
+          "name": "find",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "variable_function",
+      "name": "isVideoCallMessage",
+      "exported": false,
+      "line": 29,
+      "endLine": 35,
+      "signature": "(message) =>",
+      "calls": [
+        {
+          "name": "getVideoConfMessageData",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "variable_function",
+      "name": "findCallData",
+      "exported": false,
+      "line": 33,
+      "endLine": 44,
+      "signature": "(message) =>",
+      "calls": [
+        {
+          "name": "getVideoConfMessageData",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "variable_function",
+      "name": "processIncomingCallMessage",
+      "exported": true,
+      "line": 38,
+      "endLine": 59,
+      "signature": "async (message) =>",
+      "calls": [
+        {
+          "name": "findCallData",
+          "edgeType": "call"
+        },
+        {
+          "name": "setState",
+          "edgeType": "call"
+        },
+        {
+          "name": "error",
+          "edgeType": "call"
+        },
+        {
+          "name": "createToken",
+          "edgeType": "call"
+        },
+        {
+          "name": "push",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "variable_function",
+      "name": "processMessage",
+      "exported": false,
+      "line": 42,
+      "endLine": 50,
+      "signature": "async (message) =>",
+      "calls": [
+        {
+          "name": "closeChat",
+          "edgeType": "call"
+        },
+        {
+          "name": "isVideoCallMessage",
+          "edgeType": "call"
+        },
+        {
+          "name": "processIncomingCallMessage",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "variable_function",
+      "name": "doPlaySound",
+      "exported": false,
+      "line": 46,
+      "endLine": 54,
+      "signature": "async (message) =>",
+      "calls": [
+        {
+          "name": "setState",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "variable_function",
+      "name": "onAgentChange",
+      "exported": true,
+      "line": 50,
+      "endLine": 53,
+      "signature": "async (agent) =>",
+      "calls": [
+        {
+          "name": "setState",
+          "edgeType": "call"
+        },
+        {
+          "name": "parentCall",
+          "edgeType": "call"
+        },
+        {
+          "name": "normalizeAgent",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "variable_function",
+      "name": "onAgentStatusChange",
+      "exported": true,
+      "line": 54,
+      "endLine": 58,
+      "signature": "(status) =>",
+      "calls": [
+        {
+          "name": "setState",
+          "edgeType": "call"
+        },
+        {
+          "name": "parentCall",
+          "edgeType": "call"
+        },
+        {
+          "name": "normalizeAgent",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "variable_function",
+      "name": "onQueuePositionChange",
+      "exported": true,
+      "line": 58,
+      "endLine": 61,
+      "signature": "async (queueInfo) =>",
+      "calls": [
+        {
+          "name": "setState",
+          "edgeType": "call"
+        },
+        {
+          "name": "parentCall",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "variable_function",
+      "name": "initRoom",
+      "exported": true,
+      "line": 62,
+      "endLine": 91,
+      "signature": "async () =>",
+      "calls": [
+        {
+          "name": "agent",
+          "edgeType": "call"
+        },
+        {
+          "name": "setState",
+          "edgeType": "call"
+        },
+        {
+          "name": "parentCall",
+          "edgeType": "call"
+        },
+        {
+          "name": "normalizeAgent",
+          "edgeType": "call"
+        },
+        {
+          "name": "setCookies",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "variable_function",
+      "name": "isAgentHidden",
+      "exported": false,
+      "line": 66,
+      "endLine": 70,
+      "signature": "() =>",
+      "calls": []
+    },
+    {
+      "type": "variable_function",
+      "name": "transformAgentInformationOnMessage",
+      "exported": false,
+      "line": 70,
+      "endLine": 77,
+      "signature": "(message) =>",
+      "calls": [
+        {
+          "name": "isAgentHidden",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "variable_function",
+      "name": "onUserActivity",
+      "exported": true,
+      "line": 74,
+      "endLine": 94,
+      "signature": "(username, activities) =>",
+      "calls": [
+        {
+          "name": "includes",
+          "edgeType": "call"
+        },
+        {
+          "name": "indexOf",
+          "edgeType": "call"
+        },
+        {
+          "name": "push",
+          "edgeType": "call"
+        },
+        {
+          "name": "setState",
+          "edgeType": "call"
+        },
+        {
+          "name": "filter",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "variable_function",
+      "name": "onMessage",
+      "exported": true,
+      "line": 78,
+      "endLine": 115,
+      "signature": "async (originalMessage) =>",
+      "calls": [
+        {
+          "name": "parse",
+          "edgeType": "call"
+        },
+        {
+          "name": "stringify",
+          "edgeType": "call"
+        },
+        {
+          "name": "toISOString",
+          "edgeType": "call"
+        },
+        {
+          "name": "normalizeMessage",
+          "edgeType": "call"
+        },
+        {
+          "name": "transformAgentInformationOnMessage",
+          "edgeType": "call"
+        },
+        {
+          "name": "setState",
+          "edgeType": "call"
+        },
+        {
+          "name": "upsert",
+          "edgeType": "call"
+        },
+        {
+          "name": "processMessage",
+          "edgeType": "call"
+        },
+        {
+          "name": "canRenderMessage",
+          "edgeType": "call"
+        },
+        {
+          "name": "processUnread",
+          "edgeType": "call"
+        },
+        {
+          "name": "doPlaySound",
+          "edgeType": "call"
+        },
+        {
+          "name": "Date",
+          "edgeType": "new"
+        }
+      ]
+    },
+    {
+      "type": "variable_function",
+      "name": "getGreetingMessages",
+      "exported": true,
+      "line": 82,
+      "endLine": 82,
+      "signature": "(messages) =>",
+      "calls": [
+        {
+          "name": "filter",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "variable_function",
+      "name": "getLatestCallMessage",
+      "exported": true,
+      "line": 83,
+      "endLine": 83,
+      "signature": "(messages) =>",
+      "calls": [
+        {
+          "name": "pop",
+          "edgeType": "call"
+        },
+        {
+          "name": "filter",
+          "edgeType": "call"
+        },
+        {
+          "name": "isVideoCallMessage",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "variable_function",
+      "name": "loadMessages",
+      "exported": true,
+      "line": 85,
+      "endLine": 122,
+      "signature": "async () =>",
+      "calls": [
+        {
+          "name": "getGreetingMessages",
+          "edgeType": "call"
+        },
+        {
+          "name": "setState",
+          "edgeType": "call"
+        },
+        {
+          "name": "loadMessages",
+          "edgeType": "call"
+        },
+        {
+          "name": "push",
+          "edgeType": "call"
+        },
+        {
+          "name": "reverse",
+          "edgeType": "call"
+        },
+        {
+          "name": "map",
+          "edgeType": "call"
+        },
+        {
+          "name": "normalizeMessages",
+          "edgeType": "call"
+        },
+        {
+          "name": "initRoom",
+          "edgeType": "call"
+        },
+        {
+          "name": "getLatestCallMessage",
+          "edgeType": "call"
+        },
+        {
+          "name": "getVideoConfMessageData",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "variable_function",
+      "name": "loadMoreMessages",
+      "exported": true,
+      "line": 89,
+      "endLine": 111,
+      "signature": "async () =>",
+      "calls": [
+        {
+          "name": "setState",
+          "edgeType": "call"
+        },
+        {
+          "name": "loadMessages",
+          "edgeType": "call"
+        },
+        {
+          "name": "map",
+          "edgeType": "call"
+        },
+        {
+          "name": "normalizeMessages",
+          "edgeType": "call"
+        },
+        {
+          "name": "reverse",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "variable_function",
+      "name": "defaultRoomParams",
+      "exported": true,
+      "line": 93,
+      "endLine": 102,
+      "signature": "() =>",
+      "calls": [
+        {
+          "name": "assign",
+          "edgeType": "call"
+        }
+      ]
+    }
+  ],
+  "imports": [
+    {
+      "module": "i18next",
+      "resolved": "external"
+    },
+    {
+      "module": "preact-router",
+      "resolved": "external"
+    },
+    {
+      "module": "../api",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/packages/livechat/src/api.ts"
+    },
+    {
+      "module": "../helpers/canRenderMessage",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/packages/livechat/src/helpers/canRenderMessage.ts"
+    },
+    {
+      "module": "../helpers/cookies",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/packages/livechat/src/helpers/cookies.ts"
+    },
+    {
+      "module": "../helpers/upsert",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/packages/livechat/src/helpers/upsert.ts"
+    },
+    {
+      "module": "../store",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/packages/livechat/src/store/index.tsx"
+    },
+    {
+      "module": "./api",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/packages/livechat/src/lib/api.ts"
+    },
+    {
+      "module": "./commands",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/packages/livechat/src/lib/commands.ts"
+    },
+    {
+      "module": "./main",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/packages/livechat/src/lib/main.ts"
+    },
+    {
+      "module": "./parentCall",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/packages/livechat/src/lib/parentCall.ts"
+    },
+    {
+      "module": "./random",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/packages/livechat/src/lib/random.ts"
+    },
+    {
+      "module": "./threads",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/packages/livechat/src/lib/threads.ts"
+    },
+    {
+      "module": "./transcript",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/packages/livechat/src/lib/transcript.ts"
+    },
+    {
+      "module": "./triggers",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/packages/livechat/src/lib/triggers.ts"
+    }
+  ]
+}

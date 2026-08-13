@@ -1,0 +1,275 @@
+{
+  "sourcePath": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/client/components/message/content/attachments/file/GenericFileAttachment.tsx",
+  "symbols": [
+    {
+      "type": "inner_function",
+      "name": "handleTitleClick",
+      "exported": false,
+      "qualifiedName": "GenericFileAttachment.handleTitleClick",
+      "line": 42,
+      "endLine": 72,
+      "signature": "async (event: UIEvent): Promise<void> =>",
+      "calls": [
+        {
+          "name": "includes",
+          "edgeType": "call"
+        },
+        {
+          "name": "preventDefault",
+          "edgeType": "call"
+        },
+        {
+          "name": "openEncryptedPdf",
+          "edgeType": "call"
+        },
+        {
+          "name": "getURL",
+          "edgeType": "call"
+        },
+        {
+          "name": "set",
+          "edgeType": "call"
+        },
+        {
+          "name": "openDocumentViewer",
+          "edgeType": "call"
+        },
+        {
+          "name": "registerDownloadForUid",
+          "edgeType": "call"
+        },
+        {
+          "name": "forAttachmentDownload",
+          "edgeType": "call"
+        },
+        {
+          "name": "dispatchToastMessage",
+          "edgeType": "call"
+        },
+        {
+          "name": "URL",
+          "edgeType": "new"
+        },
+        {
+          "name": "UIEvent",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "variable_function",
+      "name": "GenericFileAttachment",
+      "exported": false,
+      "line": 26,
+      "endLine": 107,
+      "signature": "({ title, description, descriptionMd, title_link: link, title_link_download: hasDownload, size, format, collapsed, }: GenericFileAttachmentProps) =>",
+      "calls": [
+        {
+          "name": "useMediaUrl",
+          "edgeType": "call"
+        },
+        {
+          "name": "useId",
+          "edgeType": "call"
+        },
+        {
+          "name": "useTranslation",
+          "edgeType": "call"
+        },
+        {
+          "name": "useOpenEncryptedPdf",
+          "edgeType": "call"
+        },
+        {
+          "name": "useToastMessageDispatch",
+          "edgeType": "call"
+        },
+        {
+          "name": "includes",
+          "edgeType": "call"
+        },
+        {
+          "name": "preventDefault",
+          "edgeType": "call"
+        },
+        {
+          "name": "openEncryptedPdf",
+          "edgeType": "call"
+        },
+        {
+          "name": "getURL",
+          "edgeType": "call"
+        },
+        {
+          "name": "set",
+          "edgeType": "call"
+        },
+        {
+          "name": "openDocumentViewer",
+          "edgeType": "call"
+        },
+        {
+          "name": "registerDownloadForUid",
+          "edgeType": "call"
+        },
+        {
+          "name": "forAttachmentDownload",
+          "edgeType": "call"
+        },
+        {
+          "name": "dispatchToastMessage",
+          "edgeType": "call"
+        },
+        {
+          "name": "getFileExtension",
+          "edgeType": "call"
+        },
+        {
+          "name": "getExternalUrl",
+          "edgeType": "call"
+        },
+        {
+          "name": "MessageCollapsible",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "MessageGenericPreview",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "MessageGenericPreviewContent",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "MessageGenericPreviewTitle",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "MessageGenericPreviewDescription",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "MessageContentBody",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "MarkdownText",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "MessageGenericPreviewIcon",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "AttachmentSize",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "descriptionMd",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "description",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "title",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "hasDownload",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "link",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "collapsed",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "handleTitleClick",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "size",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "URL",
+          "edgeType": "new"
+        },
+        {
+          "name": "GenericFileAttachmentProps",
+          "edgeType": "type"
+        },
+        {
+          "name": "UIEvent",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "type",
+      "name": "GenericFileAttachmentProps",
+      "line": 24,
+      "endLine": 24,
+      "signature": "export type GenericFileAttachmentProps = MessageAttachmentBase;"
+    }
+  ],
+  "imports": [
+    {
+      "module": "@rocket.chat/core-typings",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/fuselage",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/ui-contexts",
+      "resolved": "external"
+    },
+    {
+      "module": "react",
+      "resolved": "external"
+    },
+    {
+      "module": "react",
+      "resolved": "external"
+    },
+    {
+      "module": "react-i18next",
+      "resolved": "external"
+    },
+    {
+      "module": "./hooks/useOpenEncryptedPdf",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/client/components/message/content/attachments/file/hooks/useOpenEncryptedPdf.ts"
+    },
+    {
+      "module": "../../../../../../lib/utils/getFileExtension",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/lib/utils/getFileExtension.ts"
+    },
+    {
+      "module": "../../../../../hooks/useDownloadFromServiceWorker",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/client/hooks/useDownloadFromServiceWorker.ts"
+    },
+    {
+      "module": "../../../../MarkdownText",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/client/components/MarkdownText.tsx"
+    },
+    {
+      "module": "../../../MessageCollapsible",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/client/components/message/MessageCollapsible.tsx"
+    },
+    {
+      "module": "../../../MessageContentBody",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/client/components/message/MessageContentBody.tsx"
+    },
+    {
+      "module": "../structure/AttachmentSize",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/client/components/message/content/attachments/structure/AttachmentSize.tsx"
+    }
+  ]
+}

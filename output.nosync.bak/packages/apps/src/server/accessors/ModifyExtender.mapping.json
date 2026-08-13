@@ -1,0 +1,225 @@
+{
+  "sourcePath": "/Users/echoooooo/Desktop/code/Rocket.Chat/packages/apps/src/server/accessors/ModifyExtender.ts",
+  "symbols": [
+    {
+      "type": "class",
+      "name": "ModifyExtender",
+      "exported": true,
+      "line": 15,
+      "endLine": 55,
+      "signature": "export class ModifyExtender implements IModifyExtender",
+      "calls": [
+        {
+          "name": "IModifyExtender",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "extendMessage",
+      "exported": true,
+      "qualifiedName": "ModifyExtender.extendMessage",
+      "line": 21,
+      "endLine": 27,
+      "signature": "public async extendMessage(messageId: string, updater: IUser): Promise<IMessageExtender>",
+      "containerClass": "ModifyExtender",
+      "calls": [
+        {
+          "name": "doGetById",
+          "edgeType": "call"
+        },
+        {
+          "name": "getMessageBridge",
+          "edgeType": "call"
+        },
+        {
+          "name": "Date",
+          "edgeType": "new"
+        },
+        {
+          "name": "MessageExtender",
+          "edgeType": "new"
+        },
+        {
+          "name": "IUser",
+          "edgeType": "type"
+        },
+        {
+          "name": "IMessageExtender",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "extendRoom",
+      "exported": true,
+      "qualifiedName": "ModifyExtender.extendRoom",
+      "line": 25,
+      "endLine": 30,
+      "signature": "public async extendRoom(roomId: string, _updater: IUser): Promise<IRoomExtender>",
+      "containerClass": "ModifyExtender",
+      "calls": [
+        {
+          "name": "doGetById",
+          "edgeType": "call"
+        },
+        {
+          "name": "getRoomBridge",
+          "edgeType": "call"
+        },
+        {
+          "name": "Date",
+          "edgeType": "new"
+        },
+        {
+          "name": "RoomExtender",
+          "edgeType": "new"
+        },
+        {
+          "name": "IUser",
+          "edgeType": "type"
+        },
+        {
+          "name": "IRoomExtender",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "extendVideoConference",
+      "exported": true,
+      "qualifiedName": "ModifyExtender.extendVideoConference",
+      "line": 29,
+      "endLine": 34,
+      "signature": "public async extendVideoConference(id: string): Promise<IVideoConferenceExtender>",
+      "containerClass": "ModifyExtender",
+      "calls": [
+        {
+          "name": "doGetById",
+          "edgeType": "call"
+        },
+        {
+          "name": "getVideoConferenceBridge",
+          "edgeType": "call"
+        },
+        {
+          "name": "Date",
+          "edgeType": "new"
+        },
+        {
+          "name": "VideoConferenceExtender",
+          "edgeType": "new"
+        },
+        {
+          "name": "IVideoConferenceExtender",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "finish",
+      "exported": true,
+      "qualifiedName": "ModifyExtender.finish",
+      "line": 33,
+      "endLine": 44,
+      "signature": "public finish(extender: IMessageExtender | IRoomExtender | IVideoConferenceExtender): Promise<void>",
+      "containerClass": "ModifyExtender",
+      "calls": [
+        {
+          "name": "doUpdate",
+          "edgeType": "call"
+        },
+        {
+          "name": "getMessageBridge",
+          "edgeType": "call"
+        },
+        {
+          "name": "getMessage",
+          "edgeType": "call"
+        },
+        {
+          "name": "getRoomBridge",
+          "edgeType": "call"
+        },
+        {
+          "name": "getRoom",
+          "edgeType": "call"
+        },
+        {
+          "name": "getUsernamesOfMembersBeingAdded",
+          "edgeType": "call"
+        },
+        {
+          "name": "getVideoConferenceBridge",
+          "edgeType": "call"
+        },
+        {
+          "name": "getVideoConference",
+          "edgeType": "call"
+        },
+        {
+          "name": "IMessageExtender",
+          "edgeType": "type"
+        },
+        {
+          "name": "IRoomExtender",
+          "edgeType": "type"
+        },
+        {
+          "name": "IVideoConferenceExtender",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "constructor",
+      "exported": true,
+      "qualifiedName": "ModifyExtender.constructor",
+      "line": 16,
+      "endLine": 19,
+      "signature": "constructor( private readonly bridges: AppBridges, private readonly appId: string, )",
+      "containerClass": "ModifyExtender",
+      "calls": [
+        {
+          "name": "AppBridges",
+          "edgeType": "type"
+        }
+      ]
+    }
+  ],
+  "imports": [
+    {
+      "module": "@rocket.chat/apps-engine/definition/accessors",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/apps-engine/definition/metadata",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/apps-engine/definition/users",
+      "resolved": "external"
+    },
+    {
+      "module": "./MessageExtender",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/packages/apps/src/server/accessors/MessageExtender.ts"
+    },
+    {
+      "module": "./RoomExtender",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/packages/apps/src/server/accessors/RoomExtender.ts"
+    },
+    {
+      "module": "./VideoConferenceExtend",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/packages/apps/src/server/accessors/VideoConferenceExtend.ts"
+    },
+    {
+      "module": "../bridges/AppBridges",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/packages/apps/src/server/bridges/AppBridges.ts"
+    }
+  ]
+}

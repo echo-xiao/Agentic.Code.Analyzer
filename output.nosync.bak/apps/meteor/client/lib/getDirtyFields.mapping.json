@@ -1,0 +1,41 @@
+{
+  "sourcePath": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/client/lib/getDirtyFields.ts",
+  "symbols": [
+    {
+      "type": "variable_function",
+      "name": "getDirtyFields",
+      "exported": true,
+      "line": 9,
+      "endLine": 27,
+      "signature": "<T extends FieldValues>( allFields: T, dirtyFields: Partial<Record<keyof T, boolean | boolean[]>>, ): Partial<T> =>",
+      "calls": [
+        {
+          "name": "reduce",
+          "edgeType": "call"
+        },
+        {
+          "name": "keys",
+          "edgeType": "call"
+        },
+        {
+          "name": "isArray",
+          "edgeType": "call"
+        },
+        {
+          "name": "some",
+          "edgeType": "call"
+        },
+        {
+          "name": "FieldValues",
+          "edgeType": "type"
+        }
+      ]
+    }
+  ],
+  "imports": [
+    {
+      "module": "react-hook-form",
+      "resolved": "external"
+    }
+  ]
+}

@@ -1,0 +1,59 @@
+{
+  "sourcePath": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/tests/e2e/utils/omnichannel/monitors.ts",
+  "symbols": [
+    {
+      "type": "variable_function",
+      "name": "deleteMonitor",
+      "exported": false,
+      "line": 3,
+      "endLine": 3,
+      "signature": "async (api: BaseTest['api'], username: string) =>",
+      "calls": [
+        {
+          "name": "post",
+          "edgeType": "call"
+        },
+        {
+          "name": "BaseTest",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "variable_function",
+      "name": "createMonitor",
+      "exported": true,
+      "line": 5,
+      "endLine": 19,
+      "signature": "async (api: BaseTest['api'], username: string) =>",
+      "calls": [
+        {
+          "name": "post",
+          "edgeType": "call"
+        },
+        {
+          "name": "status",
+          "edgeType": "call"
+        },
+        {
+          "name": "json",
+          "edgeType": "call"
+        },
+        {
+          "name": "deleteMonitor",
+          "edgeType": "call"
+        },
+        {
+          "name": "BaseTest",
+          "edgeType": "type"
+        }
+      ]
+    }
+  ],
+  "imports": [
+    {
+      "module": "../test",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/tests/e2e/utils/test.ts"
+    }
+  ]
+}

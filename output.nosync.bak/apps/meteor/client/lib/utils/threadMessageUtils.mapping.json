@@ -1,0 +1,174 @@
+{
+  "sourcePath": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/client/lib/utils/threadMessageUtils.ts",
+  "symbols": [
+    {
+      "type": "variable_function",
+      "name": "createDeleteCriteria",
+      "exported": true,
+      "line": 27,
+      "endLine": 48,
+      "signature": "(params: NotifyRoomRidDeleteBulkEvent): ((message: IMessage) => boolean) =>",
+      "calls": [
+        {
+          "name": "createPredicateFromFilter",
+          "edgeType": "call"
+        },
+        {
+          "name": "NotifyRoomRidDeleteBulkEvent",
+          "edgeType": "type"
+        },
+        {
+          "name": "IMessage",
+          "edgeType": "type"
+        },
+        {
+          "name": "Filter",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "variable_function",
+      "name": "upsertThreadMessageInCache",
+      "exported": true,
+      "line": 31,
+      "endLine": 50,
+      "signature": "( message: IMessage, rid: IMessage['rid'], tmid: IMessage['_id'], client: QueryClient = defaultQueryClient, ): void =>",
+      "calls": [
+        {
+          "name": "threadMessages",
+          "edgeType": "call"
+        },
+        {
+          "name": "setQueryData",
+          "edgeType": "call"
+        },
+        {
+          "name": "findIndex",
+          "edgeType": "call"
+        },
+        {
+          "name": "sort",
+          "edgeType": "call"
+        },
+        {
+          "name": "getTime",
+          "edgeType": "call"
+        },
+        {
+          "name": "Date",
+          "edgeType": "new"
+        },
+        {
+          "name": "IMessage",
+          "edgeType": "type"
+        },
+        {
+          "name": "QueryClient",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "variable_function",
+      "name": "markThreadMessagesAsRead",
+      "exported": true,
+      "line": 40,
+      "endLine": 51,
+      "signature": "(messages: IThreadMessage[], until?: Date): IThreadMessage[] =>",
+      "calls": [
+        {
+          "name": "map",
+          "edgeType": "call"
+        },
+        {
+          "name": "Date",
+          "edgeType": "new"
+        },
+        {
+          "name": "IThreadMessage",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "variable_function",
+      "name": "mergeThreadMessages",
+      "exported": true,
+      "line": 44,
+      "endLine": 65,
+      "signature": "(cachedMessages: IThreadMessage[], fetchedMessages: IThreadMessage[]): IThreadMessage[] =>",
+      "calls": [
+        {
+          "name": "set",
+          "edgeType": "call"
+        },
+        {
+          "name": "get",
+          "edgeType": "call"
+        },
+        {
+          "name": "getTime",
+          "edgeType": "call"
+        },
+        {
+          "name": "sort",
+          "edgeType": "call"
+        },
+        {
+          "name": "from",
+          "edgeType": "call"
+        },
+        {
+          "name": "values",
+          "edgeType": "call"
+        },
+        {
+          "name": "Map",
+          "edgeType": "new"
+        },
+        {
+          "name": "Date",
+          "edgeType": "new"
+        },
+        {
+          "name": "IThreadMessage",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "type",
+      "name": "NotifyRoomRidDeleteBulkEvent",
+      "line": 9,
+      "endLine": 25,
+      "signature": "export type NotifyRoomRidDeleteBulkEvent ="
+    }
+  ],
+  "imports": [
+    {
+      "module": "@rocket.chat/core-typings",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/mongo-adapter",
+      "resolved": "external"
+    },
+    {
+      "module": "@tanstack/react-query",
+      "resolved": "external"
+    },
+    {
+      "module": "mongodb",
+      "resolved": "external"
+    },
+    {
+      "module": "../queryClient",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/client/lib/queryClient.ts"
+    },
+    {
+      "module": "../queryKeys",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/client/lib/queryKeys.ts"
+    }
+  ]
+}

@@ -1,0 +1,531 @@
+{
+  "sourcePath": "/Users/echoooooo/Desktop/code/Rocket.Chat/ee/packages/federation-matrix/src/events/member.ts",
+  "symbols": [
+    {
+      "type": "function",
+      "name": "downloadAndSetAvatar",
+      "exported": false,
+      "line": 17,
+      "endLine": 74,
+      "signature": "async function downloadAndSetAvatar(user: IUser, avatarUrl: string | null): Promise<void>",
+      "calls": [
+        {
+          "name": "resetUserAvatar",
+          "edgeType": "call"
+        },
+        {
+          "name": "startsWith",
+          "edgeType": "call"
+        },
+        {
+          "name": "debug",
+          "edgeType": "call"
+        },
+        {
+          "name": "parseMXCUri",
+          "edgeType": "call"
+        },
+        {
+          "name": "warn",
+          "edgeType": "call"
+        },
+        {
+          "name": "downloadFromRemoteServer",
+          "edgeType": "call"
+        },
+        {
+          "name": "setUserAvatar",
+          "edgeType": "call"
+        },
+        {
+          "name": "error",
+          "edgeType": "call"
+        },
+        {
+          "name": "IUser",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "function",
+      "name": "getOrCreateFederatedUser",
+      "exported": false,
+      "line": 21,
+      "endLine": 44,
+      "signature": "async function getOrCreateFederatedUser(userId: string): Promise<IUser>",
+      "calls": [
+        {
+          "name": "getConfig",
+          "edgeType": "call"
+        },
+        {
+          "name": "getUsernameServername",
+          "edgeType": "call"
+        },
+        {
+          "name": "findOneByUsername",
+          "edgeType": "call"
+        },
+        {
+          "name": "createOrUpdateFederatedUser",
+          "edgeType": "call"
+        },
+        {
+          "name": "error",
+          "edgeType": "call"
+        },
+        {
+          "name": "IUser",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "function",
+      "name": "getOrCreateFederatedRoom",
+      "exported": false,
+      "line": 25,
+      "endLine": 77,
+      "signature": "async function getOrCreateFederatedRoom({ matrixRoomId, roomName, roomFName, roomType, inviterUserId, inviterUsername, inviteeUsername, }: { matrixRoomId: string; roomName: string; roomFName: string; roomType: RoomType; inviterUserId: string; inviterUsername: string; inviteeUsername?: string; }): Promise<IRoom>",
+      "calls": [
+        {
+          "name": "findOne",
+          "edgeType": "call"
+        },
+        {
+          "name": "pop",
+          "edgeType": "call"
+        },
+        {
+          "name": "split",
+          "edgeType": "call"
+        },
+        {
+          "name": "create",
+          "edgeType": "call"
+        },
+        {
+          "name": "error",
+          "edgeType": "call"
+        },
+        {
+          "name": "RoomType",
+          "edgeType": "type"
+        },
+        {
+          "name": "IRoom",
+          "edgeType": "type"
+        },
+        {
+          "name": "IRoomNativeFederated",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "function",
+      "name": "getJoinRuleType",
+      "exported": false,
+      "line": 48,
+      "endLine": 73,
+      "signature": "function getJoinRuleType(strippedState: PduForType<'m.room.join_rules'>[]): 'p' | 'c' | 'd'",
+      "calls": [
+        {
+          "name": "find",
+          "edgeType": "call"
+        },
+        {
+          "name": "PduForType",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "function",
+      "name": "handleInvite",
+      "exported": false,
+      "line": 52,
+      "endLine": 136,
+      "signature": "async function handleInvite({ sender: senderId, state_key: userId, room_id: roomId, content, unsigned, }: HomeserverEventSignatures['homeserver.matrix.membership']['event']): Promise<void>",
+      "calls": [
+        {
+          "name": "getOrCreateFederatedUser",
+          "edgeType": "call"
+        },
+        {
+          "name": "isRegisterUser",
+          "edgeType": "call"
+        },
+        {
+          "name": "getJoinRuleType",
+          "edgeType": "call"
+        },
+        {
+          "name": "pop",
+          "edgeType": "call"
+        },
+        {
+          "name": "split",
+          "edgeType": "call"
+        },
+        {
+          "name": "find",
+          "edgeType": "call"
+        },
+        {
+          "name": "replace",
+          "edgeType": "call"
+        },
+        {
+          "name": "getOrCreateFederatedRoom",
+          "edgeType": "call"
+        },
+        {
+          "name": "findOneByRoomIdAndUserId",
+          "edgeType": "call"
+        },
+        {
+          "name": "isBannedSubscription",
+          "edgeType": "call"
+        },
+        {
+          "name": "unbanAndInviteUser",
+          "edgeType": "call"
+        },
+        {
+          "name": "createUserSubscription",
+          "edgeType": "call"
+        },
+        {
+          "name": "updateDirectMessageRoomName",
+          "edgeType": "call"
+        },
+        {
+          "name": "Date",
+          "edgeType": "new"
+        },
+        {
+          "name": "HomeserverEventSignatures",
+          "edgeType": "type"
+        },
+        {
+          "name": "PduForType",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "function",
+      "name": "updateUserNameDebounced",
+      "exported": false,
+      "line": 64,
+      "endLine": 66,
+      "signature": "function updateUserNameDebounced(userId: string, newName: string): void",
+      "calls": [
+        {
+          "name": "getUpdateUserNameDebounced",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "function",
+      "name": "downloadAndSetAvatarDebounced",
+      "exported": false,
+      "line": 72,
+      "endLine": 74,
+      "signature": "function downloadAndSetAvatarDebounced(userId: string, user: IUser, newAvatarUrl: string | null): void",
+      "calls": [
+        {
+          "name": "getDownloadAndSetAvatarDebounced",
+          "edgeType": "call"
+        },
+        {
+          "name": "IUser",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "function",
+      "name": "handleJoin",
+      "exported": false,
+      "line": 76,
+      "endLine": 130,
+      "signature": "async function handleJoin({ room_id: roomId, state_key: userId, content, }: HomeserverEventSignatures['homeserver.matrix.membership']['event']): Promise<void>",
+      "calls": [
+        {
+          "name": "getOrCreateFederatedUser",
+          "edgeType": "call"
+        },
+        {
+          "name": "findOneFederatedByMrid",
+          "edgeType": "call"
+        },
+        {
+          "name": "findOneByRoomIdAndUserId",
+          "edgeType": "call"
+        },
+        {
+          "name": "extractDomainFromMatrixUserId",
+          "edgeType": "call"
+        },
+        {
+          "name": "getConfig",
+          "edgeType": "call"
+        },
+        {
+          "name": "downloadAndSetAvatarDebounced",
+          "edgeType": "call"
+        },
+        {
+          "name": "updateUserNameDebounced",
+          "edgeType": "call"
+        },
+        {
+          "name": "updateDirectMessageRoomName",
+          "edgeType": "call"
+        },
+        {
+          "name": "info",
+          "edgeType": "call"
+        },
+        {
+          "name": "performAcceptRoomInvite",
+          "edgeType": "call"
+        },
+        {
+          "name": "HomeserverEventSignatures",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "function",
+      "name": "handleLeave",
+      "exported": false,
+      "line": 84,
+      "endLine": 132,
+      "signature": "async function handleLeave({ room_id: roomId, state_key: userId, sender, unsigned: { prev_content: prevContent }, }: HomeserverEventSignatures['homeserver.matrix.membership']['event']): Promise<void>",
+      "calls": [
+        {
+          "name": "getConfig",
+          "edgeType": "call"
+        },
+        {
+          "name": "getUsernameServername",
+          "edgeType": "call"
+        },
+        {
+          "name": "findOneByUsername",
+          "edgeType": "call"
+        },
+        {
+          "name": "findOneFederatedByMrid",
+          "edgeType": "call"
+        },
+        {
+          "name": "findOneByRoomIdAndUserId",
+          "edgeType": "call"
+        },
+        {
+          "name": "isBannedSubscription",
+          "edgeType": "call"
+        },
+        {
+          "name": "performUserUnban",
+          "edgeType": "call"
+        },
+        {
+          "name": "info",
+          "edgeType": "call"
+        },
+        {
+          "name": "performUserRemoval",
+          "edgeType": "call"
+        },
+        {
+          "name": "updateDirectMessageRoomName",
+          "edgeType": "call"
+        },
+        {
+          "name": "HomeserverEventSignatures",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "function",
+      "name": "handleBan",
+      "exported": false,
+      "line": 93,
+      "endLine": 118,
+      "signature": "async function handleBan({ room_id: roomId, state_key: userId, sender: senderId, }: HomeserverEventSignatures['homeserver.matrix.membership']['event']): Promise<void>",
+      "calls": [
+        {
+          "name": "getConfig",
+          "edgeType": "call"
+        },
+        {
+          "name": "getUsernameServername",
+          "edgeType": "call"
+        },
+        {
+          "name": "findOneByUsername",
+          "edgeType": "call"
+        },
+        {
+          "name": "findOneFederatedByMrid",
+          "edgeType": "call"
+        },
+        {
+          "name": "performUserBan",
+          "edgeType": "call"
+        },
+        {
+          "name": "HomeserverEventSignatures",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "function",
+      "name": "handleMembershipRejected",
+      "exported": false,
+      "line": 101,
+      "endLine": 129,
+      "signature": "async function handleMembershipRejected({ event, reason, }: HomeserverEventSignatures['homeserver.matrix.membership.rejected']): Promise<void>",
+      "calls": [
+        {
+          "name": "findOne",
+          "edgeType": "call"
+        },
+        {
+          "name": "debug",
+          "edgeType": "call"
+        },
+        {
+          "name": "getConfig",
+          "edgeType": "call"
+        },
+        {
+          "name": "getUsernameServername",
+          "edgeType": "call"
+        },
+        {
+          "name": "findOneByUsername",
+          "edgeType": "call"
+        },
+        {
+          "name": "revokeInvite",
+          "edgeType": "call"
+        },
+        {
+          "name": "info",
+          "edgeType": "call"
+        },
+        {
+          "name": "HomeserverEventSignatures",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "function",
+      "name": "member",
+      "exported": true,
+      "line": 108,
+      "endLine": 143,
+      "signature": "export function member()",
+      "calls": [
+        {
+          "name": "homeserver.matrix.membership",
+          "edgeType": "event_listen"
+        },
+        {
+          "name": "handleInvite",
+          "edgeType": "call"
+        },
+        {
+          "name": "handleJoin",
+          "edgeType": "call"
+        },
+        {
+          "name": "handleLeave",
+          "edgeType": "call"
+        },
+        {
+          "name": "handleBan",
+          "edgeType": "call"
+        },
+        {
+          "name": "warn",
+          "edgeType": "call"
+        },
+        {
+          "name": "error",
+          "edgeType": "call"
+        },
+        {
+          "name": "homeserver.matrix.membership.rejected",
+          "edgeType": "event_listen"
+        },
+        {
+          "name": "handleMembershipRejected",
+          "edgeType": "call"
+        }
+      ]
+    }
+  ],
+  "imports": [
+    {
+      "module": "@rocket.chat/core-services",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/core-typings",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/core-typings",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/federation-sdk",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/logger",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/models",
+      "resolved": "external"
+    },
+    {
+      "module": "lodash.debounce",
+      "resolved": "external"
+    },
+    {
+      "module": "mem",
+      "resolved": "external"
+    },
+    {
+      "module": "../helpers/createOrUpdateFederatedUser",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/ee/packages/federation-matrix/src/helpers/createOrUpdateFederatedUser.ts"
+    },
+    {
+      "module": "../helpers/extractDomainFromMatrixUserId",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/ee/packages/federation-matrix/src/helpers/extractDomainFromMatrixUserId.ts"
+    },
+    {
+      "module": "../helpers/getUsernameServername",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/ee/packages/federation-matrix/src/helpers/getUsernameServername.ts"
+    },
+    {
+      "module": "../services/MatrixMediaService",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/ee/packages/federation-matrix/src/services/MatrixMediaService.ts"
+    }
+  ]
+}

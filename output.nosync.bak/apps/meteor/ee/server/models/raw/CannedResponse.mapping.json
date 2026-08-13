@@ -1,0 +1,297 @@
+{
+  "sourcePath": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/ee/server/models/raw/CannedResponse.ts",
+  "symbols": [
+    {
+      "type": "class",
+      "name": "CannedResponseRaw",
+      "exported": true,
+      "line": 7,
+      "endLine": 118,
+      "signature": "export class CannedResponseRaw extends BaseRaw<IOmnichannelCannedResponse> implements ICannedResponseModel",
+      "calls": [
+        {
+          "name": "BaseRaw",
+          "edgeType": "type"
+        },
+        {
+          "name": "ICannedResponseModel",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "modelIndexes",
+      "exported": true,
+      "qualifiedName": "CannedResponseRaw.modelIndexes",
+      "line": 12,
+      "endLine": 21,
+      "signature": "protected override modelIndexes(): IndexDescription[]",
+      "containerClass": "CannedResponseRaw",
+      "calls": [
+        {
+          "name": "IndexDescription",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "updateCannedResponse",
+      "exported": true,
+      "qualifiedName": "CannedResponseRaw.updateCannedResponse",
+      "line": 16,
+      "endLine": 33,
+      "signature": "async updateCannedResponse( _id: string, { shortcut, text, tags, scope, userId, departmentId, createdBy }: Omit<IOmnichannelCannedResponse, '_id' | '_updatedAt' | '_createdAt'>, ): Promise<Omit<IOmnichannelCannedResponse, '_updatedAt' | '_createdAt'>>",
+      "containerClass": "CannedResponseRaw",
+      "calls": [
+        {
+          "name": "updateOne",
+          "edgeType": "call"
+        },
+        {
+          "name": "assign",
+          "edgeType": "call"
+        },
+        {
+          "name": "IOmnichannelCannedResponse",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "createCannedResponse",
+      "exported": true,
+      "qualifiedName": "CannedResponseRaw.createCannedResponse",
+      "line": 23,
+      "endLine": 46,
+      "signature": "async createCannedResponse({ shortcut, text, tags, scope, userId, departmentId, createdBy, _createdAt, }: Omit<IOmnichannelCannedResponse, '_id' | '_updatedAt'>): Promise<Omit<IOmnichannelCannedResponse, '_updatedAt'>>",
+      "containerClass": "CannedResponseRaw",
+      "calls": [
+        {
+          "name": "insertOne",
+          "edgeType": "call"
+        },
+        {
+          "name": "assign",
+          "edgeType": "call"
+        },
+        {
+          "name": "IOmnichannelCannedResponse",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "findOneById",
+      "exported": true,
+      "qualifiedName": "CannedResponseRaw.findOneById",
+      "line": 36,
+      "endLine": 40,
+      "signature": "override findOneById(_id: string, options?: FindOptions<IOmnichannelCannedResponse>): Promise<IOmnichannelCannedResponse | null>",
+      "containerClass": "CannedResponseRaw",
+      "calls": [
+        {
+          "name": "findOne",
+          "edgeType": "call"
+        },
+        {
+          "name": "FindOptions",
+          "edgeType": "type"
+        },
+        {
+          "name": "IOmnichannelCannedResponse",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "findOneByShortcut",
+      "exported": true,
+      "qualifiedName": "CannedResponseRaw.findOneByShortcut",
+      "line": 40,
+      "endLine": 46,
+      "signature": "findOneByShortcut(shortcut: string, options?: FindOptions<IOmnichannelCannedResponse>): Promise<IOmnichannelCannedResponse | null>",
+      "containerClass": "CannedResponseRaw",
+      "calls": [
+        {
+          "name": "findOne",
+          "edgeType": "call"
+        },
+        {
+          "name": "FindOptions",
+          "edgeType": "type"
+        },
+        {
+          "name": "IOmnichannelCannedResponse",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "findByCannedResponseId",
+      "exported": true,
+      "qualifiedName": "CannedResponseRaw.findByCannedResponseId",
+      "line": 44,
+      "endLine": 48,
+      "signature": "findByCannedResponseId(_id: string, options?: FindOptions<IOmnichannelCannedResponse>): FindCursor<IOmnichannelCannedResponse>",
+      "containerClass": "CannedResponseRaw",
+      "calls": [
+        {
+          "name": "find",
+          "edgeType": "call"
+        },
+        {
+          "name": "FindOptions",
+          "edgeType": "type"
+        },
+        {
+          "name": "IOmnichannelCannedResponse",
+          "edgeType": "type"
+        },
+        {
+          "name": "FindCursor",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "findByDepartmentId",
+      "exported": true,
+      "qualifiedName": "CannedResponseRaw.findByDepartmentId",
+      "line": 48,
+      "endLine": 55,
+      "signature": "findByDepartmentId(departmentId: string, options?: FindOptions<IOmnichannelCannedResponse>): FindCursor<IOmnichannelCannedResponse>",
+      "containerClass": "CannedResponseRaw",
+      "calls": [
+        {
+          "name": "find",
+          "edgeType": "call"
+        },
+        {
+          "name": "FindOptions",
+          "edgeType": "type"
+        },
+        {
+          "name": "IOmnichannelCannedResponse",
+          "edgeType": "type"
+        },
+        {
+          "name": "FindCursor",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "findByShortcut",
+      "exported": true,
+      "qualifiedName": "CannedResponseRaw.findByShortcut",
+      "line": 52,
+      "endLine": 56,
+      "signature": "findByShortcut(shortcut: string, options?: FindOptions<IOmnichannelCannedResponse>): FindCursor<IOmnichannelCannedResponse>",
+      "containerClass": "CannedResponseRaw",
+      "calls": [
+        {
+          "name": "find",
+          "edgeType": "call"
+        },
+        {
+          "name": "FindOptions",
+          "edgeType": "type"
+        },
+        {
+          "name": "IOmnichannelCannedResponse",
+          "edgeType": "type"
+        },
+        {
+          "name": "FindCursor",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "removeById",
+      "exported": true,
+      "qualifiedName": "CannedResponseRaw.removeById",
+      "line": 57,
+      "endLine": 61,
+      "signature": "override removeById(_id: string): Promise<DeleteResult>",
+      "containerClass": "CannedResponseRaw",
+      "calls": [
+        {
+          "name": "deleteOne",
+          "edgeType": "call"
+        },
+        {
+          "name": "DeleteResult",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "removeTagFromCannedResponses",
+      "exported": true,
+      "qualifiedName": "CannedResponseRaw.removeTagFromCannedResponses",
+      "line": 61,
+      "endLine": 69,
+      "signature": "removeTagFromCannedResponses(tagId: string)",
+      "containerClass": "CannedResponseRaw",
+      "calls": [
+        {
+          "name": "updateMany",
+          "edgeType": "call"
+        },
+        {
+          "name": "UpdateFilter",
+          "edgeType": "type"
+        },
+        {
+          "name": "IOmnichannelCannedResponse",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "constructor",
+      "exported": true,
+      "qualifiedName": "CannedResponseRaw.constructor",
+      "line": 8,
+      "endLine": 10,
+      "signature": "constructor(db: Db)",
+      "containerClass": "CannedResponseRaw",
+      "calls": [
+        {
+          "name": "Db",
+          "edgeType": "type"
+        }
+      ]
+    }
+  ],
+  "imports": [
+    {
+      "module": "@rocket.chat/core-typings",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/model-typings",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/models",
+      "resolved": "external"
+    },
+    {
+      "module": "mongodb",
+      "resolved": "external"
+    }
+  ]
+}

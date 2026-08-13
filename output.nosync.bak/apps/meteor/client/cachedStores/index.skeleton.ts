@@ -1,0 +1,10 @@
+## File: apps/meteor/client/cachedStores/index.ts
+
+```typescript
+export { PermissionsCachedStore } from './PermissionsCachedStore';
+export { PrivateSettingsCachedStore } from './PrivateSettingsCachedStore';
+export { PublicSettingsCachedStore } from './PublicSettingsCachedStore';
+export { RoomsCachedStore } from './RoomsCachedStore';
+export { SubscriptionsCachedStore } from './SubscriptionsCachedStore';
+
+```

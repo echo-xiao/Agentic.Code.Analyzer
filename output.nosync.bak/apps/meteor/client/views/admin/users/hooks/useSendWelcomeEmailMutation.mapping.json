@@ -1,0 +1,98 @@
+{
+  "sourcePath": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/client/views/admin/users/hooks/useSendWelcomeEmailMutation.ts",
+  "symbols": [
+    {
+      "type": "inner_function",
+      "name": "onSuccess",
+      "exported": false,
+      "qualifiedName": "useSendWelcomeEmailMutation.onSuccess",
+      "line": 26,
+      "endLine": 26,
+      "signature": "() =>",
+      "calls": [
+        {
+          "name": "dispatchToastMessage",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "inner_function",
+      "name": "onError",
+      "exported": false,
+      "qualifiedName": "useSendWelcomeEmailMutation.onError",
+      "line": 27,
+      "endLine": 27,
+      "signature": "(error) =>",
+      "calls": [
+        {
+          "name": "dispatchToastMessage",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "variable_function",
+      "name": "useSendWelcomeEmailMutation",
+      "exported": true,
+      "line": 10,
+      "endLine": 29,
+      "signature": "(): UseMutationResult<null, Error, useSendWelcomeEmailMutationProps> =>",
+      "calls": [
+        {
+          "name": "useTranslation",
+          "edgeType": "call"
+        },
+        {
+          "name": "useToastMessageDispatch",
+          "edgeType": "call"
+        },
+        {
+          "name": "useEndpoint",
+          "edgeType": "call"
+        },
+        {
+          "name": "useMutation",
+          "edgeType": "call"
+        },
+        {
+          "name": "dispatchToastMessage",
+          "edgeType": "call"
+        },
+        {
+          "name": "sendWelcomeEmail",
+          "edgeType": "call"
+        },
+        {
+          "name": "UseMutationResult",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "type",
+      "name": "useSendWelcomeEmailMutationProps",
+      "line": 6,
+      "endLine": 8,
+      "signature": "type useSendWelcomeEmailMutationProps ="
+    }
+  ],
+  "imports": [
+    {
+      "module": "@rocket.chat/ui-contexts",
+      "resolved": "external"
+    },
+    {
+      "module": "@tanstack/react-query",
+      "resolved": "external"
+    },
+    {
+      "module": "@tanstack/react-query",
+      "resolved": "external"
+    },
+    {
+      "module": "react-i18next",
+      "resolved": "external"
+    }
+  ]
+}

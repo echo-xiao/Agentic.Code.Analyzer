@@ -1,0 +1,105 @@
+{
+  "sourcePath": "/Users/echoooooo/Desktop/code/Rocket.Chat/packages/apps/src/server/accessors/PersistenceRead.ts",
+  "symbols": [
+    {
+      "type": "class",
+      "name": "PersistenceRead",
+      "exported": true,
+      "line": 6,
+      "endLine": 23,
+      "signature": "export class PersistenceRead implements IPersistenceRead",
+      "calls": [
+        {
+          "name": "IPersistenceRead",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "read",
+      "exported": true,
+      "qualifiedName": "PersistenceRead.read",
+      "line": 12,
+      "endLine": 14,
+      "signature": "public read(id: string): Promise<object>",
+      "containerClass": "PersistenceRead",
+      "calls": [
+        {
+          "name": "doReadById",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "readByAssociation",
+      "exported": true,
+      "qualifiedName": "PersistenceRead.readByAssociation",
+      "line": 16,
+      "endLine": 18,
+      "signature": "public readByAssociation(association: RocketChatAssociationRecord): Promise<Array<object>>",
+      "containerClass": "PersistenceRead",
+      "calls": [
+        {
+          "name": "doReadByAssociations",
+          "edgeType": "call"
+        },
+        {
+          "name": "RocketChatAssociationRecord",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "readByAssociations",
+      "exported": true,
+      "qualifiedName": "PersistenceRead.readByAssociations",
+      "line": 20,
+      "endLine": 22,
+      "signature": "public readByAssociations(associations: Array<RocketChatAssociationRecord>): Promise<Array<object>>",
+      "containerClass": "PersistenceRead",
+      "calls": [
+        {
+          "name": "doReadByAssociations",
+          "edgeType": "call"
+        },
+        {
+          "name": "RocketChatAssociationRecord",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "constructor",
+      "exported": true,
+      "qualifiedName": "PersistenceRead.constructor",
+      "line": 7,
+      "endLine": 10,
+      "signature": "constructor( private persistBridge: PersistenceBridge, private appId: string, )",
+      "containerClass": "PersistenceRead",
+      "calls": [
+        {
+          "name": "PersistenceBridge",
+          "edgeType": "type"
+        }
+      ]
+    }
+  ],
+  "imports": [
+    {
+      "module": "@rocket.chat/apps-engine/definition/accessors",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/apps-engine/definition/metadata",
+      "resolved": "external"
+    },
+    {
+      "module": "../bridges",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/packages/apps/src/server/bridges/index.ts"
+    }
+  ]
+}

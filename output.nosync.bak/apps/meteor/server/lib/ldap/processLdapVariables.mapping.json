@@ -1,0 +1,75 @@
+{
+  "sourcePath": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/server/lib/ldap/processLdapVariables.ts",
+  "symbols": [
+    {
+      "type": "function",
+      "name": "processLdapVariables",
+      "exported": true,
+      "line": 13,
+      "endLine": 38,
+      "signature": "export function processLdapVariables(entry: ILDAPEntry, variableMap: LDAPVariableMap): ILDAPEntry",
+      "calls": [
+        {
+          "name": "keys",
+          "edgeType": "call"
+        },
+        {
+          "name": "debug",
+          "edgeType": "call"
+        },
+        {
+          "name": "hasOwnProperty",
+          "edgeType": "call"
+        },
+        {
+          "name": "getLdapDynamicValue",
+          "edgeType": "call"
+        },
+        {
+          "name": "executeOperation",
+          "edgeType": "call"
+        },
+        {
+          "name": "ILDAPEntry",
+          "edgeType": "type"
+        },
+        {
+          "name": "LDAPVariableMap",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "type",
+      "name": "LDAPVariableConfiguration",
+      "line": 7,
+      "endLine": 10,
+      "signature": "export type LDAPVariableConfiguration ="
+    },
+    {
+      "type": "type",
+      "name": "LDAPVariableMap",
+      "line": 11,
+      "endLine": 11,
+      "signature": "export type LDAPVariableMap = Record<string, LDAPVariableConfiguration>;"
+    }
+  ],
+  "imports": [
+    {
+      "module": "@rocket.chat/core-typings",
+      "resolved": "external"
+    },
+    {
+      "module": "./Logger",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/server/lib/ldap/Logger.ts"
+    },
+    {
+      "module": "./getLdapDynamicValue",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/server/lib/ldap/getLdapDynamicValue.ts"
+    },
+    {
+      "module": "./operations/executeOperation",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/server/lib/ldap/operations/executeOperation.ts"
+    }
+  ]
+}

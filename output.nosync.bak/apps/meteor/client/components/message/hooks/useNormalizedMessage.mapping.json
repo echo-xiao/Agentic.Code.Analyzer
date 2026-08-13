@@ -1,0 +1,163 @@
+{
+  "sourcePath": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/client/components/message/hooks/useNormalizedMessage.ts",
+  "symbols": [
+    {
+      "type": "variable_function",
+      "name": "normalizeAttachments",
+      "exported": false,
+      "line": 18,
+      "endLine": 58,
+      "signature": "(attachments: MessageAttachment[], name?: string, type?: string): MessageAttachment[] =>",
+      "calls": [
+        {
+          "name": "fromCharCode",
+          "edgeType": "call"
+        },
+        {
+          "name": "encode",
+          "edgeType": "call"
+        },
+        {
+          "name": "map",
+          "edgeType": "call"
+        },
+        {
+          "name": "isQuoteAttachment",
+          "edgeType": "call"
+        },
+        {
+          "name": "normalizeAttachments",
+          "edgeType": "call"
+        },
+        {
+          "name": "stringify",
+          "edgeType": "call"
+        },
+        {
+          "name": "isFileAttachment",
+          "edgeType": "call"
+        },
+        {
+          "name": "startsWith",
+          "edgeType": "call"
+        },
+        {
+          "name": "encodeURIComponent",
+          "edgeType": "call"
+        },
+        {
+          "name": "isFileImageAttachment",
+          "edgeType": "call"
+        },
+        {
+          "name": "isFileAudioAttachment",
+          "edgeType": "call"
+        },
+        {
+          "name": "isFileVideoAttachment",
+          "edgeType": "call"
+        },
+        {
+          "name": "TextEncoder",
+          "edgeType": "new"
+        },
+        {
+          "name": "MessageAttachment",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "variable_function",
+      "name": "useNormalizedMessage",
+      "exported": true,
+      "line": 22,
+      "endLine": 54,
+      "signature": "<TMessage extends IMessage>(message: TMessage): MessageWithMdEnforced =>",
+      "calls": [
+        {
+          "name": "useMessageListKatex",
+          "edgeType": "call"
+        },
+        {
+          "name": "useAutoLinkDomains",
+          "edgeType": "call"
+        },
+        {
+          "name": "useMessageListAutoTranslate",
+          "edgeType": "call"
+        },
+        {
+          "name": "useMessageListShowColors",
+          "edgeType": "call"
+        },
+        {
+          "name": "useMemo",
+          "edgeType": "call"
+        },
+        {
+          "name": "parseMessageTextToAstMarkdown",
+          "edgeType": "call"
+        },
+        {
+          "name": "normalizeAttachments",
+          "edgeType": "call"
+        },
+        {
+          "name": "IMessage",
+          "edgeType": "type"
+        },
+        {
+          "name": "TMessage",
+          "edgeType": "type"
+        },
+        {
+          "name": "MessageWithMdEnforced",
+          "edgeType": "type"
+        },
+        {
+          "name": "Options",
+          "edgeType": "type"
+        }
+      ]
+    }
+  ],
+  "imports": [
+    {
+      "module": "@rocket.chat/base64",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/core-typings",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/core-typings",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/message-parser",
+      "resolved": "external"
+    },
+    {
+      "module": "react",
+      "resolved": "external"
+    },
+    {
+      "module": "../../../lib/parseMessageTextToAstMarkdown",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/client/lib/parseMessageTextToAstMarkdown.ts"
+    },
+    {
+      "module": "../../../lib/parseMessageTextToAstMarkdown",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/client/lib/parseMessageTextToAstMarkdown.ts"
+    },
+    {
+      "module": "../../../views/room/MessageList/hooks/useAutoLinkDomains",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/client/views/room/MessageList/hooks/useAutoLinkDomains.ts"
+    },
+    {
+      "module": "../list/MessageListContext",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/client/components/message/list/MessageListContext.tsx"
+    }
+  ]
+}

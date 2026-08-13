@@ -1,0 +1,525 @@
+{
+  "sourcePath": "/Users/echoooooo/Desktop/code/Rocket.Chat/packages/media-signaling/src/lib/NegotiationManager.ts",
+  "symbols": [
+    {
+      "type": "class",
+      "name": "NegotiationManager",
+      "exported": true,
+      "line": 6,
+      "endLine": 300,
+      "signature": "export class NegotiationManager",
+      "calls": []
+    },
+    {
+      "type": "method",
+      "name": "addNegotiation",
+      "exported": true,
+      "qualifiedName": "NegotiationManager.addNegotiation",
+      "line": 56,
+      "endLine": 95,
+      "signature": "public async addNegotiation( negotiationId: string, remoteOffer: RTCSessionDescriptionInit | null = null, negotiationSequence: number | null = null, ): Promise<void>",
+      "containerClass": "NegotiationManager",
+      "calls": [
+        {
+          "name": "has",
+          "edgeType": "call"
+        },
+        {
+          "name": "Boolean",
+          "edgeType": "call"
+        },
+        {
+          "name": "debug",
+          "edgeType": "call"
+        },
+        {
+          "name": "isPoliteClient",
+          "edgeType": "call"
+        },
+        {
+          "name": "end",
+          "edgeType": "call"
+        },
+        {
+          "name": "addToQueue",
+          "edgeType": "call"
+        },
+        {
+          "name": "processNegotiations",
+          "edgeType": "call"
+        },
+        {
+          "name": "Negotiation",
+          "edgeType": "new"
+        },
+        {
+          "name": "RTCSessionDescriptionInit",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "setRemoteDescription",
+      "exported": true,
+      "qualifiedName": "NegotiationManager.setRemoteDescription",
+      "line": 64,
+      "endLine": 85,
+      "signature": "public async setRemoteDescription( negotiationId: string, remoteDescription: RTCSessionDescriptionInit, negotiationSequence: number | null = null, ): Promise<void>",
+      "containerClass": "NegotiationManager",
+      "calls": [
+        {
+          "name": "addNegotiation",
+          "edgeType": "call"
+        },
+        {
+          "name": "debug",
+          "edgeType": "call"
+        },
+        {
+          "name": "warn",
+          "edgeType": "call"
+        },
+        {
+          "name": "error",
+          "edgeType": "event_emit"
+        },
+        {
+          "name": "catch",
+          "edgeType": "call"
+        },
+        {
+          "name": "setRemoteAnswer",
+          "edgeType": "call"
+        },
+        {
+          "name": "RTCSessionDescriptionInit",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "setWebRTCProcessor",
+      "exported": true,
+      "qualifiedName": "NegotiationManager.setWebRTCProcessor",
+      "line": 72,
+      "endLine": 78,
+      "signature": "public setWebRTCProcessor(webrtcProcessor: IWebRTCProcessor)",
+      "containerClass": "NegotiationManager",
+      "calls": [
+        {
+          "name": "debug",
+          "edgeType": "call"
+        },
+        {
+          "name": "internalError",
+          "edgeType": "event_listen"
+        },
+        {
+          "name": "onWebRTCInternalError",
+          "edgeType": "call"
+        },
+        {
+          "name": "negotiationNeeded",
+          "edgeType": "event_listen"
+        },
+        {
+          "name": "onWebRTCNegotiationNeeded",
+          "edgeType": "call"
+        },
+        {
+          "name": "IWebRTCProcessor",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "processNegotiations",
+      "exported": true,
+      "qualifiedName": "NegotiationManager.processNegotiations",
+      "line": 76,
+      "endLine": 92,
+      "signature": "public async processNegotiations(): Promise<void>",
+      "containerClass": "NegotiationManager",
+      "calls": [
+        {
+          "name": "debug",
+          "edgeType": "call"
+        },
+        {
+          "name": "isConfigured",
+          "edgeType": "call"
+        },
+        {
+          "name": "getNextInQueue",
+          "edgeType": "call"
+        },
+        {
+          "name": "processNegotiation",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "isPoliteClient",
+      "exported": true,
+      "qualifiedName": "NegotiationManager.isPoliteClient",
+      "line": 80,
+      "endLine": 82,
+      "signature": "protected isPoliteClient(): boolean",
+      "containerClass": "NegotiationManager",
+      "calls": []
+    },
+    {
+      "type": "method",
+      "name": "addToQueue",
+      "exported": true,
+      "qualifiedName": "NegotiationManager.addToQueue",
+      "line": 84,
+      "endLine": 105,
+      "signature": "protected addToQueue(negotiation: Negotiation): void",
+      "containerClass": "NegotiationManager",
+      "calls": [
+        {
+          "name": "debug",
+          "edgeType": "call"
+        },
+        {
+          "name": "set",
+          "edgeType": "call"
+        },
+        {
+          "name": "end",
+          "edgeType": "call"
+        },
+        {
+          "name": "Negotiation",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "getNextInQueue",
+      "exported": true,
+      "qualifiedName": "NegotiationManager.getNextInQueue",
+      "line": 88,
+      "endLine": 111,
+      "signature": "protected getNextInQueue(): Negotiation | null",
+      "containerClass": "NegotiationManager",
+      "calls": [
+        {
+          "name": "values",
+          "edgeType": "call"
+        },
+        {
+          "name": "end",
+          "edgeType": "call"
+        },
+        {
+          "name": "Negotiation",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "processNegotiation",
+      "exported": true,
+      "qualifiedName": "NegotiationManager.processNegotiation",
+      "line": 92,
+      "endLine": 132,
+      "signature": "protected async processNegotiation(this: WebRTCNegotiationManager, negotiation: Negotiation): Promise<void>",
+      "containerClass": "NegotiationManager",
+      "calls": [
+        {
+          "name": "debug",
+          "edgeType": "call"
+        },
+        {
+          "name": "ended",
+          "edgeType": "event_listen"
+        },
+        {
+          "name": "processNegotiations",
+          "edgeType": "call"
+        },
+        {
+          "name": "error",
+          "edgeType": "event_listen"
+        },
+        {
+          "name": "error",
+          "edgeType": "call"
+        },
+        {
+          "name": "error",
+          "edgeType": "event_emit"
+        },
+        {
+          "name": "end",
+          "edgeType": "call"
+        },
+        {
+          "name": "local-sdp",
+          "edgeType": "event_listen"
+        },
+        {
+          "name": "local-sdp",
+          "edgeType": "event_emit"
+        },
+        {
+          "name": "catch",
+          "edgeType": "call"
+        },
+        {
+          "name": "process",
+          "edgeType": "call"
+        },
+        {
+          "name": "negotiation-started",
+          "edgeType": "event_emit"
+        },
+        {
+          "name": "WebRTCNegotiationManager",
+          "edgeType": "type"
+        },
+        {
+          "name": "Negotiation",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "isConfigured",
+      "exported": true,
+      "qualifiedName": "NegotiationManager.isConfigured",
+      "line": 96,
+      "endLine": 114,
+      "signature": "public isConfigured(): this is WebRTCNegotiationManager",
+      "containerClass": "NegotiationManager",
+      "calls": [
+        {
+          "name": "debug",
+          "edgeType": "call"
+        },
+        {
+          "name": "hasAllRequiredTracks",
+          "edgeType": "call"
+        },
+        {
+          "name": "WebRTCNegotiationManager",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "isFulfillingNegotiationQueued",
+      "exported": true,
+      "qualifiedName": "NegotiationManager.isFulfillingNegotiationQueued",
+      "line": 100,
+      "endLine": 108,
+      "signature": "protected isFulfillingNegotiationQueued(): boolean",
+      "containerClass": "NegotiationManager",
+      "calls": [
+        {
+          "name": "isPoliteClient",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "onWebRTCNegotiationNeeded",
+      "exported": true,
+      "qualifiedName": "NegotiationManager.onWebRTCNegotiationNeeded",
+      "line": 104,
+      "endLine": 122,
+      "signature": "protected onWebRTCNegotiationNeeded(): void",
+      "containerClass": "NegotiationManager",
+      "calls": [
+        {
+          "name": "debug",
+          "edgeType": "call"
+        },
+        {
+          "name": "isConfigured",
+          "edgeType": "call"
+        },
+        {
+          "name": "isFulfillingNegotiationQueued",
+          "edgeType": "call"
+        },
+        {
+          "name": "negotiation-needed",
+          "edgeType": "event_emit"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "onWebRTCInternalError",
+      "exported": true,
+      "qualifiedName": "NegotiationManager.onWebRTCInternalError",
+      "line": 108,
+      "endLine": 117,
+      "signature": "protected onWebRTCInternalError({ critical, error }: { critical: boolean; error: string | Error; errorDetails?: string }): void",
+      "containerClass": "NegotiationManager",
+      "calls": [
+        {
+          "name": "debug",
+          "edgeType": "call"
+        },
+        {
+          "name": "error",
+          "edgeType": "event_emit"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "constructor",
+      "exported": true,
+      "qualifiedName": "NegotiationManager.constructor",
+      "line": 39,
+      "endLine": 54,
+      "signature": "constructor( protected readonly call: IClientMediaCall, protected readonly config: NegotiationManagerConfig, )",
+      "containerClass": "NegotiationManager",
+      "calls": [
+        {
+          "name": "Map",
+          "edgeType": "new"
+        },
+        {
+          "name": "Emitter",
+          "edgeType": "new"
+        },
+        {
+          "name": "IClientMediaCall",
+          "edgeType": "type"
+        },
+        {
+          "name": "NegotiationManagerConfig",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "class_property",
+      "name": "emitter",
+      "exported": true,
+      "qualifiedName": "NegotiationManager.emitter",
+      "line": 7,
+      "endLine": 7,
+      "signature": "public readonly emitter: Emitter<NegotiationManagerEvents>;",
+      "containerClass": "NegotiationManager",
+      "calls": [
+        {
+          "name": "Emitter",
+          "edgeType": "type"
+        },
+        {
+          "name": "NegotiationManagerEvents",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "class_property",
+      "name": "negotiations",
+      "exported": true,
+      "qualifiedName": "NegotiationManager.negotiations",
+      "line": 17,
+      "endLine": 17,
+      "signature": "protected negotiations: Map<string, Negotiation>;",
+      "containerClass": "NegotiationManager",
+      "calls": [
+        {
+          "name": "Negotiation",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "class_property",
+      "name": "currentNegotiation",
+      "exported": true,
+      "qualifiedName": "NegotiationManager.currentNegotiation",
+      "line": 20,
+      "endLine": 20,
+      "signature": "protected currentNegotiation: Negotiation | null;",
+      "containerClass": "NegotiationManager",
+      "calls": [
+        {
+          "name": "Negotiation",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "class_property",
+      "name": "webrtcProcessor",
+      "exported": true,
+      "qualifiedName": "NegotiationManager.webrtcProcessor",
+      "line": 28,
+      "endLine": 28,
+      "signature": "protected webrtcProcessor: IWebRTCProcessor | null;",
+      "containerClass": "NegotiationManager",
+      "calls": [
+        {
+          "name": "IWebRTCProcessor",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "class",
+      "name": "WebRTCNegotiationManager",
+      "exported": false,
+      "line": 103,
+      "endLine": 105,
+      "signature": "abstract class WebRTCNegotiationManager extends NegotiationManager",
+      "calls": [
+        {
+          "name": "NegotiationManager",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "class_property",
+      "name": "webrtcProcessor",
+      "exported": false,
+      "qualifiedName": "WebRTCNegotiationManager.webrtcProcessor",
+      "line": 104,
+      "endLine": 104,
+      "signature": "protected abstract override webrtcProcessor: IWebRTCProcessor;",
+      "containerClass": "WebRTCNegotiationManager",
+      "calls": [
+        {
+          "name": "IWebRTCProcessor",
+          "edgeType": "type"
+        }
+      ]
+    }
+  ],
+  "imports": [
+    {
+      "module": "@rocket.chat/emitter",
+      "resolved": "external"
+    },
+    {
+      "module": "../definition",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/packages/media-signaling/src/definition/index.ts"
+    },
+    {
+      "module": "./services/webrtc/Negotiation",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/packages/media-signaling/src/lib/services/webrtc/Negotiation.ts"
+    }
+  ]
+}

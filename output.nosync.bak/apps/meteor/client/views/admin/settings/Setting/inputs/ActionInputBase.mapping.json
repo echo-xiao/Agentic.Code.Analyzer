@@ -1,0 +1,99 @@
+{
+  "sourcePath": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/client/views/admin/settings/Setting/inputs/ActionInputBase.tsx",
+  "symbols": [
+    {
+      "type": "inner_function",
+      "name": "handleClick",
+      "exported": false,
+      "qualifiedName": "ActionInputBase.handleClick",
+      "line": 18,
+      "endLine": 26,
+      "signature": "async (): Promise<void> =>",
+      "calls": [
+        {
+          "name": "onAction",
+          "edgeType": "call"
+        },
+        {
+          "name": "dispatchToastMessage",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "function",
+      "name": "ActionInputBase",
+      "exported": true,
+      "line": 14,
+      "endLine": 39,
+      "signature": "function ActionInputBase({ actionText, hint, disabled, sectionChanged, onAction }: ActionInputBaseProps)",
+      "calls": [
+        {
+          "name": "useTranslation",
+          "edgeType": "call"
+        },
+        {
+          "name": "useToastMessageDispatch",
+          "edgeType": "call"
+        },
+        {
+          "name": "onAction",
+          "edgeType": "call"
+        },
+        {
+          "name": "dispatchToastMessage",
+          "edgeType": "call"
+        },
+        {
+          "name": "FieldRow",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "Button",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "FieldHint",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "handleClick",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "ActionInputBaseProps",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "type",
+      "name": "ActionInputBaseProps",
+      "line": 8,
+      "endLine": 12,
+      "signature": "export type ActionInputBaseProps = SettingInputProps &"
+    }
+  ],
+  "imports": [
+    {
+      "module": "@rocket.chat/fuselage",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/ui-contexts",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/ui-contexts",
+      "resolved": "external"
+    },
+    {
+      "module": "react-i18next",
+      "resolved": "external"
+    },
+    {
+      "module": "./types",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/client/views/admin/settings/Setting/inputs/types.ts"
+    }
+  ]
+}

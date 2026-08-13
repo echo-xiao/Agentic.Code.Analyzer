@@ -1,0 +1,50 @@
+{
+  "sourcePath": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/app/emoji/client/lib.ts",
+  "symbols": [
+    {
+      "type": "variable",
+      "name": "emojiEmitter",
+      "exported": true,
+      "line": 6,
+      "endLine": 6,
+      "signature": "emojiEmitter = new Emitter<",
+      "calls": []
+    },
+    {
+      "type": "variable",
+      "name": "emoji",
+      "exported": true,
+      "line": 8,
+      "endLine": 34,
+      "signature": "emoji: EmojiPackages &",
+      "calls": [
+        {
+          "name": "renderPicker",
+          "edgeType": "call"
+        },
+        {
+          "name": "queueMicrotask",
+          "edgeType": "call"
+        },
+        {
+          "name": "updated",
+          "edgeType": "event_emit"
+        }
+      ]
+    }
+  ],
+  "imports": [
+    {
+      "module": "@rocket.chat/emitter",
+      "resolved": "external"
+    },
+    {
+      "module": "emojione",
+      "resolved": "external"
+    },
+    {
+      "module": "../lib/rocketchat",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/app/emoji/lib/rocketchat.ts"
+    }
+  ]
+}

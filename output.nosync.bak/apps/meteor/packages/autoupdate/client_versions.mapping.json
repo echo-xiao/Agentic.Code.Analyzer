@@ -1,0 +1,187 @@
+{
+  "sourcePath": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/packages/autoupdate/client_versions.js",
+  "symbols": [
+    {
+      "type": "class",
+      "name": "ClientVersions",
+      "exported": true,
+      "line": 3,
+      "endLine": 101,
+      "signature": "export class ClientVersions",
+      "calls": []
+    },
+    {
+      "type": "method",
+      "name": "createStore",
+      "exported": true,
+      "qualifiedName": "ClientVersions.createStore",
+      "line": 12,
+      "endLine": 20,
+      "signature": "createStore()",
+      "containerClass": "ClientVersions",
+      "calls": [
+        {
+          "name": "set",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "hasVersions",
+      "exported": true,
+      "qualifiedName": "ClientVersions.hasVersions",
+      "line": 16,
+      "endLine": 18,
+      "signature": "hasVersions()",
+      "containerClass": "ClientVersions",
+      "calls": []
+    },
+    {
+      "type": "method",
+      "name": "get",
+      "exported": true,
+      "qualifiedName": "ClientVersions.get",
+      "line": 20,
+      "endLine": 22,
+      "signature": "get(id)",
+      "containerClass": "ClientVersions",
+      "calls": [
+        {
+          "name": "get",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "set",
+      "exported": true,
+      "qualifiedName": "ClientVersions.set",
+      "line": 27,
+      "endLine": 48,
+      "signature": "set(id, fields)",
+      "containerClass": "ClientVersions",
+      "calls": [
+        {
+          "name": "get",
+          "edgeType": "call"
+        },
+        {
+          "name": "assign",
+          "edgeType": "call"
+        },
+        {
+          "name": "set",
+          "edgeType": "call"
+        },
+        {
+          "name": "forEach",
+          "edgeType": "call"
+        },
+        {
+          "name": "fn",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "watch",
+      "exported": true,
+      "qualifiedName": "ClientVersions.watch",
+      "line": 36,
+      "endLine": 51,
+      "signature": "watch(fn, { skipInitial, filter } = {})",
+      "containerClass": "ClientVersions",
+      "calls": [
+        {
+          "name": "resolve",
+          "edgeType": "call"
+        },
+        {
+          "name": "forEach",
+          "edgeType": "call"
+        },
+        {
+          "name": "then",
+          "edgeType": "call"
+        },
+        {
+          "name": "fn",
+          "edgeType": "call"
+        },
+        {
+          "name": "delete",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "newClientAvailable",
+      "exported": true,
+      "qualifiedName": "ClientVersions.newClientAvailable",
+      "line": 41,
+      "endLine": 62,
+      "signature": "newClientAvailable(id, fields, currentVersion)",
+      "containerClass": "ClientVersions",
+      "calls": [
+        {
+          "name": "some",
+          "edgeType": "call"
+        },
+        {
+          "name": "get",
+          "edgeType": "call"
+        },
+        {
+          "name": "depend",
+          "edgeType": "call"
+        },
+        {
+          "name": "watch",
+          "edgeType": "call"
+        },
+        {
+          "name": "isNewVersion",
+          "edgeType": "call"
+        },
+        {
+          "name": "changed",
+          "edgeType": "call"
+        },
+        {
+          "name": "stop",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "constructor",
+      "exported": true,
+      "qualifiedName": "ClientVersions.constructor",
+      "line": 4,
+      "endLine": 7,
+      "signature": "constructor()",
+      "containerClass": "ClientVersions",
+      "calls": [
+        {
+          "name": "Map",
+          "edgeType": "new"
+        },
+        {
+          "name": "Set",
+          "edgeType": "new"
+        }
+      ]
+    }
+  ],
+  "imports": [
+    {
+      "module": "meteor/tracker",
+      "resolved": "external"
+    }
+  ]
+}

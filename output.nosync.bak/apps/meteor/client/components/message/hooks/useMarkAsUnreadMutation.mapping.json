@@ -1,0 +1,80 @@
+{
+  "sourcePath": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/client/components/message/hooks/useMarkAsUnreadMutation.ts",
+  "symbols": [
+    {
+      "type": "inner_function",
+      "name": "onError",
+      "exported": false,
+      "qualifiedName": "useMarkAsUnreadMutation.onError",
+      "line": 29,
+      "endLine": 31,
+      "signature": "(error) =>",
+      "calls": [
+        {
+          "name": "dispatchToastMessage",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "variable_function",
+      "name": "useMarkAsUnreadMutation",
+      "exported": true,
+      "line": 7,
+      "endLine": 33,
+      "signature": "() =>",
+      "calls": [
+        {
+          "name": "useToastMessageDispatch",
+          "edgeType": "call"
+        },
+        {
+          "name": "useEndpoint",
+          "edgeType": "call"
+        },
+        {
+          "name": "useMutation",
+          "edgeType": "call"
+        },
+        {
+          "name": "close",
+          "edgeType": "call"
+        },
+        {
+          "name": "unreadMessages",
+          "edgeType": "call"
+        },
+        {
+          "name": "dispatchToastMessage",
+          "edgeType": "call"
+        },
+        {
+          "name": "IMessage",
+          "edgeType": "type"
+        },
+        {
+          "name": "ISubscription",
+          "edgeType": "type"
+        }
+      ]
+    }
+  ],
+  "imports": [
+    {
+      "module": "@rocket.chat/core-typings",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/ui-contexts",
+      "resolved": "external"
+    },
+    {
+      "module": "@tanstack/react-query",
+      "resolved": "external"
+    },
+    {
+      "module": "../../../../app/ui-utils/client",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/app/ui-utils/client/index.ts"
+    }
+  ]
+}

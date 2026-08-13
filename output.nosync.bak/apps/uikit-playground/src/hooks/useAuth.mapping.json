@@ -1,0 +1,83 @@
+{
+  "sourcePath": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/uikit-playground/src/hooks/useAuth.tsx",
+  "symbols": [
+    {
+      "type": "variable_function",
+      "name": "AuthProvider",
+      "exported": true,
+      "line": 14,
+      "endLine": 39,
+      "signature": "({ children }: { children: ReactNode }) =>",
+      "calls": [
+        {
+          "name": "useLocalStorage",
+          "edgeType": "call"
+        },
+        {
+          "name": "useNavigate",
+          "edgeType": "call"
+        },
+        {
+          "name": "setUser",
+          "edgeType": "call"
+        },
+        {
+          "name": "navigate",
+          "edgeType": "call"
+        },
+        {
+          "name": "useMemo",
+          "edgeType": "call"
+        },
+        {
+          "name": "AuthContext.Provider",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "value",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "ReactNode",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "variable_function",
+      "name": "useAuth",
+      "exported": true,
+      "line": 18,
+      "endLine": 18,
+      "signature": "() =>",
+      "calls": [
+        {
+          "name": "useContext",
+          "edgeType": "call"
+        }
+      ]
+    }
+  ],
+  "imports": [
+    {
+      "module": "@rocket.chat/fuselage-hooks",
+      "resolved": "external"
+    },
+    {
+      "module": "react",
+      "resolved": "external"
+    },
+    {
+      "module": "react",
+      "resolved": "external"
+    },
+    {
+      "module": "react-router-dom",
+      "resolved": "external"
+    },
+    {
+      "module": "../Context/initialState",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/uikit-playground/src/Context/initialState.ts"
+    }
+  ]
+}

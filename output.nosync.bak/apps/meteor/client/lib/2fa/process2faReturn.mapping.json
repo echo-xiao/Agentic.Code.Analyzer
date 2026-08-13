@@ -1,0 +1,306 @@
+{
+  "sourcePath": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/client/lib/2fa/process2faReturn.ts",
+  "symbols": [
+    {
+      "type": "function",
+      "name": "assertModalProps",
+      "exported": false,
+      "line": 31,
+      "endLine": 38,
+      "signature": "function assertModalProps(props: { method: TwoFactorMethod; emailOrUsername?: string; }): asserts props is { method: 'totp' } | { method: 'password' } | { method: 'email'; emailOrUsername: string }",
+      "calls": [
+        {
+          "name": "TwoFactorMethod",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "function",
+      "name": "process2faReturn",
+      "exported": true,
+      "line": 55,
+      "endLine": 82,
+      "signature": "export async function process2faReturn({ error, result, originalCallback, onCode, emailOrUsername, }: { error: MeteorErrorLike | undefined; result: unknown; originalCallback: LoginCallback | undefined; onCode: (code: string, method: string) => void | Promise<void>; emailOrUsername: { username: string } | { email: string } | { id: string } | string | null | undefined; }): Promise<void>",
+      "calls": [
+        {
+          "name": "isTotpRequiredError",
+          "edgeType": "call"
+        },
+        {
+          "name": "isTotpInvalidError",
+          "edgeType": "call"
+        },
+        {
+          "name": "hasRequiredTwoFactorMethod",
+          "edgeType": "call"
+        },
+        {
+          "name": "originalCallback",
+          "edgeType": "call"
+        },
+        {
+          "name": "getProps",
+          "edgeType": "call"
+        },
+        {
+          "name": "onCode",
+          "edgeType": "call"
+        },
+        {
+          "name": "invokeTwoFactorModal",
+          "edgeType": "call"
+        },
+        {
+          "name": "MeteorErrorLike",
+          "edgeType": "type"
+        },
+        {
+          "name": "LoginCallback",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "function",
+      "name": "process2faAsyncReturn",
+      "exported": true,
+      "line": 71,
+      "endLine": 106,
+      "signature": "export async function process2faAsyncReturn<TResult>({ error, onCode, emailOrUsername, }: { error: unknown; onCode: (code: string, method: string) => TResult | Promise<TResult>; emailOrUsername: string | null | undefined; }): Promise<TResult>",
+      "calls": [
+        {
+          "name": "isTotpRequiredError",
+          "edgeType": "call"
+        },
+        {
+          "name": "isTotpInvalidError",
+          "edgeType": "call"
+        },
+        {
+          "name": "hasRequiredTwoFactorMethod",
+          "edgeType": "call"
+        },
+        {
+          "name": "getUser",
+          "edgeType": "call"
+        },
+        {
+          "name": "assertModalProps",
+          "edgeType": "call"
+        },
+        {
+          "name": "onCode",
+          "edgeType": "call"
+        },
+        {
+          "name": "invokeTwoFactorModal",
+          "edgeType": "call"
+        },
+        {
+          "name": "TResult",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "variable_function",
+      "name": "isTwoFactorMethod",
+      "exported": false,
+      "line": 16,
+      "endLine": 16,
+      "signature": "(method: string): method is TwoFactorMethod =>",
+      "calls": [
+        {
+          "name": "includes",
+          "edgeType": "call"
+        },
+        {
+          "name": "TwoFactorMethod",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "variable_function",
+      "name": "hasRequiredTwoFactorMethod",
+      "exported": false,
+      "line": 18,
+      "endLine": 29,
+      "signature": "( error: MeteorErrorLike, ): error is MeteorErrorLike & { details: { method: TwoFactorMethod; emailOrUsername?: string } } =>",
+      "calls": [
+        {
+          "name": "isTwoFactorMethod",
+          "edgeType": "call"
+        },
+        {
+          "name": "MeteorErrorLike",
+          "edgeType": "type"
+        },
+        {
+          "name": "TwoFactorMethod",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "variable_function",
+      "name": "getProps",
+      "exported": false,
+      "line": 31,
+      "endLine": 46,
+      "signature": "( method: 'totp' | 'email' | 'password', emailOrUsername?: { username: string } | { email: string } | { id: string } | string, ) =>",
+      "calls": [
+        {
+          "name": "getUser",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "inner_function",
+      "name": "onConfirm",
+      "exported": false,
+      "qualifiedName": "invokeTwoFactorModal.onConfirm",
+      "line": 85,
+      "endLine": 93,
+      "signature": "async (code: string, method: string): Promise<void> =>",
+      "calls": [
+        {
+          "name": "SHA256",
+          "edgeType": "call"
+        },
+        {
+          "name": "validateCode",
+          "edgeType": "call"
+        },
+        {
+          "name": "close",
+          "edgeType": "call"
+        },
+        {
+          "name": "resolve",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "inner_function",
+      "name": "onClose",
+      "exported": false,
+      "qualifiedName": "invokeTwoFactorModal.onClose",
+      "line": 94,
+      "endLine": 109,
+      "signature": "(): void =>",
+      "calls": [
+        {
+          "name": "close",
+          "edgeType": "call"
+        },
+        {
+          "name": "then",
+          "edgeType": "call"
+        },
+        {
+          "name": "all",
+          "edgeType": "call"
+        },
+        {
+          "name": "dispatchToastMessage",
+          "edgeType": "call"
+        },
+        {
+          "name": "reject",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "variable_function",
+      "name": "invokeTwoFactorModal",
+      "exported": true,
+      "line": 66,
+      "endLine": 114,
+      "signature": "async ( props: { method: 'totp' | 'email' | 'password'; emailOrUsername?: string | undefined; invalidAttempt?: boolean; }, validateCode?: (code: string, method: string) => Promise<void>, ) =>",
+      "calls": [
+        {
+          "name": "assertModalProps",
+          "edgeType": "call"
+        },
+        {
+          "name": "open",
+          "edgeType": "call"
+        },
+        {
+          "name": "SHA256",
+          "edgeType": "call"
+        },
+        {
+          "name": "validateCode",
+          "edgeType": "call"
+        },
+        {
+          "name": "close",
+          "edgeType": "call"
+        },
+        {
+          "name": "resolve",
+          "edgeType": "call"
+        },
+        {
+          "name": "then",
+          "edgeType": "call"
+        },
+        {
+          "name": "all",
+          "edgeType": "call"
+        },
+        {
+          "name": "dispatchToastMessage",
+          "edgeType": "call"
+        },
+        {
+          "name": "reject",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "type",
+      "name": "TwoFactorMethod",
+      "line": 14,
+      "endLine": 14,
+      "signature": "type TwoFactorMethod = (typeof twoFactorMethods)[number];"
+    }
+  ],
+  "imports": [
+    {
+      "module": "@rocket.chat/sha256",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/ui-client",
+      "resolved": "external"
+    },
+    {
+      "module": "react",
+      "resolved": "external"
+    },
+    {
+      "module": "./overrideLoginMethod",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/client/lib/2fa/overrideLoginMethod.ts"
+    },
+    {
+      "module": "./types",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/client/lib/2fa/types.ts"
+    },
+    {
+      "module": "./utils",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/client/lib/2fa/utils.ts"
+    },
+    {
+      "module": "../user",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/client/lib/user.ts"
+    }
+  ]
+}

@@ -1,0 +1,302 @@
+{
+  "sourcePath": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/server/lib/migrations.ts",
+  "symbols": [
+    {
+      "type": "function",
+      "name": "setControl",
+      "exported": false,
+      "line": 21,
+      "endLine": 38,
+      "signature": "async function setControl(control: Pick<IControl, 'version' | 'locked'>): Promise<Pick<IControl, 'version' | 'locked'>>",
+      "calls": [
+        {
+          "name": "updateOne",
+          "edgeType": "call"
+        },
+        {
+          "name": "IControl",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "function",
+      "name": "getControl",
+      "exported": true,
+      "line": 26,
+      "endLine": 38,
+      "signature": "export async function getControl(): Promise<IControl>",
+      "calls": [
+        {
+          "name": "findOne",
+          "edgeType": "call"
+        },
+        {
+          "name": "setControl",
+          "edgeType": "call"
+        },
+        {
+          "name": "IControl",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "function",
+      "name": "lock",
+      "exported": false,
+      "line": 31,
+      "endLine": 72,
+      "signature": "async function lock(): Promise<boolean>",
+      "calls": [
+        {
+          "name": "setMinutes",
+          "edgeType": "call"
+        },
+        {
+          "name": "getMinutes",
+          "edgeType": "call"
+        },
+        {
+          "name": "updateMany",
+          "edgeType": "call"
+        },
+        {
+          "name": "Date",
+          "edgeType": "new"
+        }
+      ]
+    },
+    {
+      "type": "function",
+      "name": "addMigration",
+      "exported": true,
+      "line": 35,
+      "endLine": 43,
+      "signature": "export function addMigration(migration: IMigration): void",
+      "calls": [
+        {
+          "name": "IMigration",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "function",
+      "name": "unlock",
+      "exported": false,
+      "line": 40,
+      "endLine": 45,
+      "signature": "async function unlock(version: number): Promise<void>",
+      "calls": [
+        {
+          "name": "setControl",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "function",
+      "name": "getOrderedMigrations",
+      "exported": false,
+      "line": 44,
+      "endLine": 46,
+      "signature": "function getOrderedMigrations(): IMigration[]",
+      "calls": [
+        {
+          "name": "sort",
+          "edgeType": "call"
+        },
+        {
+          "name": "from",
+          "edgeType": "call"
+        },
+        {
+          "name": "IMigration",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "function",
+      "name": "showError",
+      "exported": false,
+      "line": 48,
+      "endLine": 68,
+      "signature": "function showError(version: number, control: IControl, e: any): void",
+      "calls": [
+        {
+          "name": "showErrorBox",
+          "edgeType": "call"
+        },
+        {
+          "name": "join",
+          "edgeType": "call"
+        },
+        {
+          "name": "IControl",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "function",
+      "name": "migrate",
+      "exported": false,
+      "line": 53,
+      "endLine": 66,
+      "signature": "async function migrate(direction: 'up' | 'down', migration: IMigration): Promise<void>",
+      "calls": [
+        {
+          "name": "startup",
+          "edgeType": "call"
+        },
+        {
+          "name": "IMigration",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "function",
+      "name": "migrateDatabase",
+      "exported": true,
+      "line": 61,
+      "endLine": 210,
+      "signature": "export async function migrateDatabase(targetVersion: 'latest' | number, subcommands?: string[]): Promise<boolean>",
+      "calls": [
+        {
+          "name": "getControl",
+          "edgeType": "call"
+        },
+        {
+          "name": "getOrderedMigrations",
+          "edgeType": "call"
+        },
+        {
+          "name": "startup",
+          "edgeType": "call"
+        },
+        {
+          "name": "setControl",
+          "edgeType": "call"
+        },
+        {
+          "name": "lock",
+          "edgeType": "call"
+        },
+        {
+          "name": "warn",
+          "edgeType": "call"
+        },
+        {
+          "name": "sleep",
+          "edgeType": "call"
+        },
+        {
+          "name": "migrateDatabase",
+          "edgeType": "call"
+        },
+        {
+          "name": "showErrorBox",
+          "edgeType": "call"
+        },
+        {
+          "name": "join",
+          "edgeType": "call"
+        },
+        {
+          "name": "exit",
+          "edgeType": "call"
+        },
+        {
+          "name": "includes",
+          "edgeType": "call"
+        },
+        {
+          "name": "find",
+          "edgeType": "call"
+        },
+        {
+          "name": "migrate",
+          "edgeType": "call"
+        },
+        {
+          "name": "showError",
+          "edgeType": "call"
+        },
+        {
+          "name": "error",
+          "edgeType": "call"
+        },
+        {
+          "name": "unlock",
+          "edgeType": "call"
+        },
+        {
+          "name": "findIndex",
+          "edgeType": "call"
+        },
+        {
+          "name": "push",
+          "edgeType": "call"
+        },
+        {
+          "name": "migration",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "function",
+      "name": "onServerVersionChange",
+      "exported": true,
+      "line": 65,
+      "endLine": 85,
+      "signature": "export async function onServerVersionChange(cb: () => Promise<void>): Promise<void>",
+      "calls": [
+        {
+          "name": "findOneAndUpdate",
+          "edgeType": "call"
+        },
+        {
+          "name": "cb",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "type",
+      "name": "IMigration",
+      "line": 9,
+      "endLine": 14,
+      "signature": "type IMigration ="
+    }
+  ],
+  "imports": [
+    {
+      "module": "@rocket.chat/core-typings",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/logger",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/models",
+      "resolved": "external"
+    },
+    {
+      "module": "./logger/showBox",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/server/lib/logger/showBox.ts"
+    },
+    {
+      "module": "../../app/utils/rocketchat.info",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/app/utils/rocketchat.info"
+    },
+    {
+      "module": "../../lib/utils/sleep",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/lib/utils/sleep.ts"
+    }
+  ]
+}

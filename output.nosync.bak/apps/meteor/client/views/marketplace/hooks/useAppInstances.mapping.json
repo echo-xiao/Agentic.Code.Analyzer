@@ -1,0 +1,61 @@
+{
+  "sourcePath": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/client/views/marketplace/hooks/useAppInstances.ts",
+  "symbols": [
+    {
+      "type": "variable_function",
+      "name": "useAppInstances",
+      "exported": true,
+      "line": 8,
+      "endLine": 15,
+      "signature": "({ appId }: { appId: string }): UseQueryResult<OperationResult<'GET', '/apps/:id/status'>> =>",
+      "calls": [
+        {
+          "name": "useEndpoint",
+          "edgeType": "call"
+        },
+        {
+          "name": "useQuery",
+          "edgeType": "call"
+        },
+        {
+          "name": "appStatus",
+          "edgeType": "call"
+        },
+        {
+          "name": "status",
+          "edgeType": "call"
+        },
+        {
+          "name": "UseQueryResult",
+          "edgeType": "type"
+        },
+        {
+          "name": "OperationResult",
+          "edgeType": "type"
+        }
+      ]
+    }
+  ],
+  "imports": [
+    {
+      "module": "@rocket.chat/rest-typings",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/ui-contexts",
+      "resolved": "external"
+    },
+    {
+      "module": "@tanstack/react-query",
+      "resolved": "external"
+    },
+    {
+      "module": "@tanstack/react-query",
+      "resolved": "external"
+    },
+    {
+      "module": "../../../lib/queryKeys",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/client/lib/queryKeys.ts"
+    }
+  ]
+}

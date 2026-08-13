@@ -1,0 +1,266 @@
+{
+  "sourcePath": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/app/lib/server/lib/interceptDirectReplyEmails.js",
+  "symbols": [
+    {
+      "type": "class",
+      "name": "DirectReplyIMAPInterceptor",
+      "exported": true,
+      "line": 8,
+      "endLine": 26,
+      "signature": "export class DirectReplyIMAPInterceptor extends IMAPInterceptor",
+      "calls": [
+        {
+          "name": "IMAPInterceptor",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "constructor",
+      "exported": true,
+      "qualifiedName": "DirectReplyIMAPInterceptor.constructor",
+      "line": 9,
+      "endLine": 25,
+      "signature": "constructor(imapConfig, options = {})",
+      "containerClass": "DirectReplyIMAPInterceptor",
+      "calls": [
+        {
+          "name": "get",
+          "edgeType": "call"
+        },
+        {
+          "name": "email",
+          "edgeType": "event_listen"
+        },
+        {
+          "name": "processDirectEmail",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "class",
+      "name": "POP3Intercepter",
+      "exported": false,
+      "line": 14,
+      "endLine": 100,
+      "signature": "class POP3Intercepter",
+      "calls": []
+    },
+    {
+      "type": "method",
+      "name": "constructor",
+      "exported": false,
+      "qualifiedName": "POP3Intercepter.constructor",
+      "line": 15,
+      "endLine": 99,
+      "signature": "constructor()",
+      "containerClass": "POP3Intercepter",
+      "calls": [
+        {
+          "name": "get",
+          "edgeType": "call"
+        },
+        {
+          "name": "connect",
+          "edgeType": "event_listen"
+        },
+        {
+          "name": "log",
+          "edgeType": "call"
+        },
+        {
+          "name": "login",
+          "edgeType": "call"
+        },
+        {
+          "name": "login",
+          "edgeType": "event_listen"
+        },
+        {
+          "name": "list",
+          "edgeType": "call"
+        },
+        {
+          "name": "list",
+          "edgeType": "event_listen"
+        },
+        {
+          "name": "quit",
+          "edgeType": "call"
+        },
+        {
+          "name": "retr",
+          "edgeType": "call"
+        },
+        {
+          "name": "retr",
+          "edgeType": "event_listen"
+        },
+        {
+          "name": "simpleParser",
+          "edgeType": "call"
+        },
+        {
+          "name": "processDirectEmail",
+          "edgeType": "call"
+        },
+        {
+          "name": "dele",
+          "edgeType": "call"
+        },
+        {
+          "name": "dele",
+          "edgeType": "event_listen"
+        },
+        {
+          "name": "invalid-state",
+          "edgeType": "event_listen"
+        },
+        {
+          "name": "error",
+          "edgeType": "event_listen"
+        },
+        {
+          "name": "locked",
+          "edgeType": "event_listen"
+        },
+        {
+          "name": "POP3Lib",
+          "edgeType": "new"
+        }
+      ]
+    },
+    {
+      "type": "class",
+      "name": "POP3Helper",
+      "exported": true,
+      "line": 20,
+      "endLine": 55,
+      "signature": "export class POP3Helper",
+      "calls": []
+    },
+    {
+      "type": "method",
+      "name": "isActive",
+      "exported": true,
+      "qualifiedName": "POP3Helper.isActive",
+      "line": 28,
+      "endLine": 30,
+      "signature": "isActive()",
+      "containerClass": "POP3Helper",
+      "calls": []
+    },
+    {
+      "type": "method",
+      "name": "start",
+      "exported": true,
+      "qualifiedName": "POP3Helper.start",
+      "line": 32,
+      "endLine": 41,
+      "signature": "start()",
+      "containerClass": "POP3Helper",
+      "calls": [
+        {
+          "name": "log",
+          "edgeType": "call"
+        },
+        {
+          "name": "max",
+          "edgeType": "call"
+        },
+        {
+          "name": "POP3Intercepter",
+          "edgeType": "new"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "log",
+      "exported": true,
+      "qualifiedName": "POP3Helper.log",
+      "line": 36,
+      "endLine": 38,
+      "signature": "log(...args)",
+      "containerClass": "POP3Helper",
+      "calls": [
+        {
+          "name": "log",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "stop",
+      "exported": true,
+      "qualifiedName": "POP3Helper.stop",
+      "line": 40,
+      "endLine": 47,
+      "signature": "stop(callback = new Function())",
+      "containerClass": "POP3Helper",
+      "calls": [
+        {
+          "name": "log",
+          "edgeType": "call"
+        },
+        {
+          "name": "isActive",
+          "edgeType": "call"
+        },
+        {
+          "name": "clearInterval",
+          "edgeType": "call"
+        },
+        {
+          "name": "callback",
+          "edgeType": "call"
+        },
+        {
+          "name": "Function",
+          "edgeType": "new"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "constructor",
+      "exported": true,
+      "qualifiedName": "POP3Helper.constructor",
+      "line": 21,
+      "endLine": 26,
+      "signature": "constructor(frequency)",
+      "containerClass": "POP3Helper",
+      "calls": [
+        {
+          "name": "POP3Intercepter",
+          "edgeType": "new"
+        }
+      ]
+    }
+  ],
+  "imports": [
+    {
+      "module": "@rocket.chat/poplib",
+      "resolved": "external"
+    },
+    {
+      "module": "mailparser",
+      "resolved": "external"
+    },
+    {
+      "module": "./processDirectEmail",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/app/lib/server/lib/processDirectEmail.ts"
+    },
+    {
+      "module": "../../../../server/email/IMAPInterceptor",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/server/email/IMAPInterceptor.ts"
+    },
+    {
+      "module": "../../../settings/server",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/app/settings/server/index.ts"
+    }
+  ]
+}

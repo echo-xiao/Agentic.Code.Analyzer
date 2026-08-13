@@ -1,0 +1,61 @@
+{
+  "sourcePath": "/Users/echoooooo/Desktop/code/Rocket.Chat/scripts/todo-issue/src/matcher.ts",
+  "symbols": [
+    {
+      "type": "function",
+      "name": "matchTodos",
+      "exported": true,
+      "line": 4,
+      "endLine": 70,
+      "signature": "export function matchTodos(found: TodoItem[], existing: GitHubIssue[]): MatchResult",
+      "calls": [
+        {
+          "name": "filter",
+          "edgeType": "call"
+        },
+        {
+          "name": "find",
+          "edgeType": "call"
+        },
+        {
+          "name": "isSimilar",
+          "edgeType": "call"
+        },
+        {
+          "name": "has",
+          "edgeType": "call"
+        },
+        {
+          "name": "push",
+          "edgeType": "call"
+        },
+        {
+          "name": "Set",
+          "edgeType": "new"
+        },
+        {
+          "name": "TodoItem",
+          "edgeType": "type"
+        },
+        {
+          "name": "GitHubIssue",
+          "edgeType": "type"
+        },
+        {
+          "name": "MatchResult",
+          "edgeType": "type"
+        }
+      ]
+    }
+  ],
+  "imports": [
+    {
+      "module": "./types",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/scripts/todo-issue/src/types.ts"
+    },
+    {
+      "module": "./similarity",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/scripts/todo-issue/src/similarity.ts"
+    }
+  ]
+}

@@ -1,0 +1,45 @@
+{
+  "sourcePath": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/client/views/marketplace/helpers/warnAppInstall.ts",
+  "symbols": [
+    {
+      "type": "variable_function",
+      "name": "warnAppInstall",
+      "exported": true,
+      "line": 7,
+      "endLine": 14,
+      "signature": "(appName: string, status: AppStatus): void =>",
+      "calls": [
+        {
+          "name": "includes",
+          "edgeType": "call"
+        },
+        {
+          "name": "dispatchToastMessage",
+          "edgeType": "call"
+        },
+        {
+          "name": "AppStatus",
+          "edgeType": "type"
+        }
+      ]
+    }
+  ],
+  "imports": [
+    {
+      "module": "@rocket.chat/apps-engine/definition/AppStatus",
+      "resolved": "external"
+    },
+    {
+      "module": "./appErroredStatuses",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/client/views/marketplace/helpers/appErroredStatuses.ts"
+    },
+    {
+      "module": "../../../../app/utils/lib/i18n",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/app/utils/lib/i18n.ts"
+    },
+    {
+      "module": "../../../lib/toast",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/client/lib/toast.ts"
+    }
+  ]
+}

@@ -1,0 +1,183 @@
+{
+  "sourcePath": "/Users/echoooooo/Desktop/code/Rocket.Chat/packages/livechat/src/components/uiKit/message/ButtonElement/index.tsx",
+  "symbols": [
+    {
+      "type": "module",
+      "name": "index",
+      "exported": false,
+      "line": 1,
+      "endLine": 61,
+      "signature": "index",
+      "calls": [
+        {
+          "name": "memo",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "variable_function",
+      "name": "handleMouseUp",
+      "exported": false,
+      "line": 10,
+      "endLine": 10,
+      "signature": "({ currentTarget }: TargetedEvent<HTMLElement, MouseEvent>) =>",
+      "calls": [
+        {
+          "name": "blur",
+          "edgeType": "call"
+        },
+        {
+          "name": "TargetedEvent",
+          "edgeType": "type"
+        },
+        {
+          "name": "HTMLElement",
+          "edgeType": "type"
+        },
+        {
+          "name": "MouseEvent",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "inner_function",
+      "name": "handleClick",
+      "exported": false,
+      "qualifiedName": "ButtonElement.handleClick",
+      "line": 20,
+      "endLine": 39,
+      "signature": "async (event: TargetedEvent<HTMLElement, MouseEvent>) =>",
+      "calls": [
+        {
+          "name": "preventDefault",
+          "edgeType": "call"
+        },
+        {
+          "name": "open",
+          "edgeType": "call"
+        },
+        {
+          "name": "performAction",
+          "edgeType": "call"
+        },
+        {
+          "name": "TargetedEvent",
+          "edgeType": "type"
+        },
+        {
+          "name": "HTMLElement",
+          "edgeType": "type"
+        },
+        {
+          "name": "MouseEvent",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "variable_function",
+      "name": "ButtonElement",
+      "exported": false,
+      "line": 17,
+      "endLine": 58,
+      "signature": "({ text, actionId, url, value, style, context, confirm, parser }: ButtonElementProps) =>",
+      "calls": [
+        {
+          "name": "usePerformAction",
+          "edgeType": "call"
+        },
+        {
+          "name": "useCallback",
+          "edgeType": "call"
+        },
+        {
+          "name": "preventDefault",
+          "edgeType": "call"
+        },
+        {
+          "name": "open",
+          "edgeType": "call"
+        },
+        {
+          "name": "performAction",
+          "edgeType": "call"
+        },
+        {
+          "name": "createClassName",
+          "edgeType": "call"
+        },
+        {
+          "name": "renderTextObject",
+          "edgeType": "call"
+        },
+        {
+          "name": "performingAction",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "handleClick",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "handleMouseUp",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "ButtonElementProps",
+          "edgeType": "type"
+        },
+        {
+          "name": "TargetedEvent",
+          "edgeType": "type"
+        },
+        {
+          "name": "HTMLElement",
+          "edgeType": "type"
+        },
+        {
+          "name": "MouseEvent",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "type",
+      "name": "ButtonElementProps",
+      "line": 12,
+      "endLine": 15,
+      "signature": "type ButtonElementProps = uikit.ButtonElement &"
+    }
+  ],
+  "imports": [
+    {
+      "module": "@rocket.chat/ui-kit",
+      "resolved": "external"
+    },
+    {
+      "module": "preact",
+      "resolved": "external"
+    },
+    {
+      "module": "preact/compat",
+      "resolved": "external"
+    },
+    {
+      "module": "preact/compat",
+      "resolved": "external"
+    },
+    {
+      "module": "../../../../helpers/createClassName",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/packages/livechat/src/helpers/createClassName.ts"
+    },
+    {
+      "module": "../Block",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/packages/livechat/src/components/uiKit/message/Block.tsx"
+    },
+    {
+      "module": "./styles.scss",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/packages/livechat/src/components/uiKit/message/ButtonElement/styles.scss"
+    }
+  ]
+}

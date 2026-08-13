@@ -1,0 +1,61 @@
+{
+  "sourcePath": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/server/lib/cloud/startRegisterWorkspaceSetupWizard.ts",
+  "symbols": [
+    {
+      "type": "function",
+      "name": "startRegisterWorkspaceSetupWizard",
+      "exported": true,
+      "line": 8,
+      "endLine": 43,
+      "signature": "export async function startRegisterWorkspaceSetupWizard(resend = false, email: string): Promise<CloudRegistrationIntentData>",
+      "calls": [
+        {
+          "name": "buildWorkspaceRegistrationData",
+          "edgeType": "call"
+        },
+        {
+          "name": "get",
+          "edgeType": "call"
+        },
+        {
+          "name": "fetch",
+          "edgeType": "call"
+        },
+        {
+          "name": "json",
+          "edgeType": "call"
+        },
+        {
+          "name": "error",
+          "edgeType": "call"
+        },
+        {
+          "name": "CloudRegistrationIntentData",
+          "edgeType": "type"
+        }
+      ]
+    }
+  ],
+  "imports": [
+    {
+      "module": "@rocket.chat/core-typings",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/server-fetch",
+      "resolved": "external"
+    },
+    {
+      "module": "./buildRegistrationData",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/server/lib/cloud/buildRegistrationData.ts"
+    },
+    {
+      "module": "../../../app/settings/server",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/app/settings/server/index.ts"
+    },
+    {
+      "module": "../logger/system",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/server/lib/logger/system.ts"
+    }
+  ]
+}

@@ -1,0 +1,115 @@
+{
+  "sourcePath": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/app/importer/server/methods/startImport.ts",
+  "symbols": [
+    {
+      "type": "module",
+      "name": "startImport",
+      "exported": false,
+      "line": 1,
+      "endLine": 55,
+      "signature": "startImport",
+      "calls": [
+        {
+          "name": "startImport",
+          "edgeType": "call"
+        },
+        {
+          "name": "methods",
+          "edgeType": "call"
+        },
+        {
+          "name": "method",
+          "edgeType": "call"
+        },
+        {
+          "name": "isStartImportParamsPOST",
+          "edgeType": "call"
+        },
+        {
+          "name": "userId",
+          "edgeType": "call"
+        },
+        {
+          "name": "hasPermissionAsync",
+          "edgeType": "call"
+        },
+        {
+          "name": "executeStartImport",
+          "edgeType": "call"
+        },
+        {
+          "name": "ServerMethods",
+          "edgeType": "type"
+        },
+        {
+          "name": "StartImportParamsPOST",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "variable_function",
+      "name": "executeStartImport",
+      "exported": true,
+      "line": 11,
+      "endLine": 26,
+      "signature": "async ({ input }: StartImportParamsPOST, startedByUserId: IUser['_id']) =>",
+      "calls": [
+        {
+          "name": "findLastImport",
+          "edgeType": "call"
+        },
+        {
+          "name": "get",
+          "edgeType": "call"
+        },
+        {
+          "name": "startImport",
+          "edgeType": "call"
+        },
+        {
+          "name": "StartImportParamsPOST",
+          "edgeType": "type"
+        },
+        {
+          "name": "IUser",
+          "edgeType": "type"
+        }
+      ]
+    }
+  ],
+  "imports": [
+    {
+      "module": "@rocket.chat/core-typings",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/ddp-client",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/models",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/rest-typings",
+      "resolved": "external"
+    },
+    {
+      "module": "meteor/meteor",
+      "resolved": "external"
+    },
+    {
+      "module": "..",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/app/importer/server/index.ts"
+    },
+    {
+      "module": "../../../../server/lib/authorization/hasPermission",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/server/lib/authorization/hasPermission.ts"
+    },
+    {
+      "module": "../../../lib/server/lib/deprecationWarningLogger",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/app/lib/server/lib/deprecationWarningLogger.ts"
+    }
+  ]
+}

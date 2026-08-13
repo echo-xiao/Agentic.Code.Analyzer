@@ -1,0 +1,86 @@
+{
+  "sourcePath": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/client/views/room/composer/messageBox/MessageBoxHint.tsx",
+  "symbols": [
+    {
+      "type": "module",
+      "name": "MessageBoxHint",
+      "exported": false,
+      "line": 1,
+      "endLine": 59,
+      "signature": "MessageBoxHint",
+      "calls": [
+        {
+          "name": "memo",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "variable_function",
+      "name": "MessageBoxHint",
+      "exported": false,
+      "line": 15,
+      "endLine": 56,
+      "signature": "({ isEditing, e2eEnabled, unencryptedMessagesAllowed, isMobile }: MessageBoxHintProps) =>",
+      "calls": [
+        {
+          "name": "useRoom",
+          "edgeType": "call"
+        },
+        {
+          "name": "useTranslation",
+          "edgeType": "call"
+        },
+        {
+          "name": "useE2EERoomState",
+          "edgeType": "call"
+        },
+        {
+          "name": "renderHintText",
+          "edgeType": "call"
+        },
+        {
+          "name": "MessageComposerHint",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "Trans",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "MessageBoxHintProps",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "type",
+      "name": "MessageBoxHintProps",
+      "line": 8,
+      "endLine": 13,
+      "signature": "type MessageBoxHintProps ="
+    }
+  ],
+  "imports": [
+    {
+      "module": "@rocket.chat/ui-composer",
+      "resolved": "external"
+    },
+    {
+      "module": "react",
+      "resolved": "external"
+    },
+    {
+      "module": "react-i18next",
+      "resolved": "external"
+    },
+    {
+      "module": "../../contexts/RoomContext",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/client/views/room/contexts/RoomContext.ts"
+    },
+    {
+      "module": "../../hooks/useE2EERoomState",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/client/views/room/hooks/useE2EERoomState.ts"
+    }
+  ]
+}

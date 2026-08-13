@@ -1,0 +1,113 @@
+{
+  "sourcePath": "/Users/echoooooo/Desktop/code/Rocket.Chat/packages/models/src/models/AppLogsModel.ts",
+  "symbols": [
+    {
+      "type": "class",
+      "name": "AppsLogsModel",
+      "exported": true,
+      "line": 6,
+      "endLine": 62,
+      "signature": "export class AppsLogsModel extends BaseRaw<any> implements IAppLogsModel",
+      "calls": [
+        {
+          "name": "BaseRaw",
+          "edgeType": "type"
+        },
+        {
+          "name": "IAppLogsModel",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "modelIndexes",
+      "exported": true,
+      "qualifiedName": "AppsLogsModel.modelIndexes",
+      "line": 11,
+      "endLine": 42,
+      "signature": "protected override modelIndexes(): IndexDescription[]",
+      "containerClass": "AppsLogsModel",
+      "calls": [
+        {
+          "name": "IndexDescription",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "getDistinctFieldsForFilters",
+      "exported": true,
+      "qualifiedName": "AppsLogsModel.getDistinctFieldsForFilters",
+      "line": 15,
+      "endLine": 28,
+      "signature": "async getDistinctFieldsForFilters(appId: string): Promise<{ instanceIds: string[]; methods: string[] }>",
+      "containerClass": "AppsLogsModel",
+      "calls": [
+        {
+          "name": "toArray",
+          "edgeType": "call"
+        },
+        {
+          "name": "aggregate",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "remove",
+      "exported": true,
+      "qualifiedName": "AppsLogsModel.remove",
+      "line": 19,
+      "endLine": 21,
+      "signature": "remove(query: Filter<any>): Promise<DeleteResult>",
+      "containerClass": "AppsLogsModel",
+      "calls": [
+        {
+          "name": "deleteMany",
+          "edgeType": "call"
+        },
+        {
+          "name": "Filter",
+          "edgeType": "type"
+        },
+        {
+          "name": "DeleteResult",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "constructor",
+      "exported": true,
+      "qualifiedName": "AppsLogsModel.constructor",
+      "line": 7,
+      "endLine": 9,
+      "signature": "constructor(db: Db)",
+      "containerClass": "AppsLogsModel",
+      "calls": [
+        {
+          "name": "Db",
+          "edgeType": "type"
+        }
+      ]
+    }
+  ],
+  "imports": [
+    {
+      "module": "@rocket.chat/model-typings",
+      "resolved": "external"
+    },
+    {
+      "module": "mongodb",
+      "resolved": "external"
+    },
+    {
+      "module": "./BaseRaw",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/packages/models/src/models/BaseRaw.ts"
+    }
+  ]
+}

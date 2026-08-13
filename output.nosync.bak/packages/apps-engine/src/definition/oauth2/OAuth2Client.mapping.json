@@ -1,0 +1,544 @@
+{
+  "sourcePath": "/Users/echoooooo/Desktop/code/Rocket.Chat/packages/apps-engine/src/definition/oauth2/OAuth2Client.ts",
+  "symbols": [
+    {
+      "type": "class",
+      "name": "OAuth2Client",
+      "exported": true,
+      "line": 18,
+      "endLine": 337,
+      "signature": "export class OAuth2Client implements IOAuth2Client",
+      "calls": [
+        {
+          "name": "IOAuth2Client",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "setup",
+      "exported": true,
+      "qualifiedName": "OAuth2Client.setup",
+      "line": 38,
+      "endLine": 69,
+      "signature": "public async setup(configuration: IConfigurationExtend): Promise<void>",
+      "containerClass": "OAuth2Client",
+      "calls": [
+        {
+          "name": "provideApi",
+          "edgeType": "call"
+        },
+        {
+          "name": "bind",
+          "edgeType": "call"
+        },
+        {
+          "name": "all",
+          "edgeType": "call"
+        },
+        {
+          "name": "provideSetting",
+          "edgeType": "call"
+        },
+        {
+          "name": "IConfigurationExtend",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "getUserAuthorizationUrl",
+      "exported": true,
+      "qualifiedName": "OAuth2Client.getUserAuthorizationUrl",
+      "line": 42,
+      "endLine": 70,
+      "signature": "public async getUserAuthorizationUrl(user: IUser, scopes?: Array<string>): Promise<URL>",
+      "containerClass": "OAuth2Client",
+      "calls": [
+        {
+          "name": "substring",
+          "edgeType": "call"
+        },
+        {
+          "name": "getAccessors",
+          "edgeType": "call"
+        },
+        {
+          "name": "getBaseURLWithoutTrailingSlash",
+          "edgeType": "call"
+        },
+        {
+          "name": "concat",
+          "edgeType": "call"
+        },
+        {
+          "name": "getValueById",
+          "edgeType": "call"
+        },
+        {
+          "name": "getSettings",
+          "edgeType": "call"
+        },
+        {
+          "name": "getEnvironmentReader",
+          "edgeType": "call"
+        },
+        {
+          "name": "set",
+          "edgeType": "call"
+        },
+        {
+          "name": "join",
+          "edgeType": "call"
+        },
+        {
+          "name": "URL",
+          "edgeType": "new"
+        },
+        {
+          "name": "IUser",
+          "edgeType": "type"
+        },
+        {
+          "name": "URL",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "getAccessTokenForUser",
+      "exported": true,
+      "qualifiedName": "OAuth2Client.getAccessTokenForUser",
+      "line": 46,
+      "endLine": 57,
+      "signature": "public async getAccessTokenForUser(user: IUser): Promise<IAuthData | undefined>",
+      "containerClass": "OAuth2Client",
+      "calls": [
+        {
+          "name": "readByAssociations",
+          "edgeType": "call"
+        },
+        {
+          "name": "getPersistenceReader",
+          "edgeType": "call"
+        },
+        {
+          "name": "getAccessors",
+          "edgeType": "call"
+        },
+        {
+          "name": "RocketChatAssociationRecord",
+          "edgeType": "new"
+        },
+        {
+          "name": "IUser",
+          "edgeType": "type"
+        },
+        {
+          "name": "IAuthData",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "refreshUserAccessToken",
+      "exported": true,
+      "qualifiedName": "OAuth2Client.refreshUserAccessToken",
+      "line": 50,
+      "endLine": 116,
+      "signature": "public async refreshUserAccessToken(user: IUser, persis: IPersistence): Promise<IAuthData | undefined>",
+      "containerClass": "OAuth2Client",
+      "calls": [
+        {
+          "name": "getAccessTokenForUser",
+          "edgeType": "call"
+        },
+        {
+          "name": "getValueById",
+          "edgeType": "call"
+        },
+        {
+          "name": "getSettings",
+          "edgeType": "call"
+        },
+        {
+          "name": "getEnvironmentReader",
+          "edgeType": "call"
+        },
+        {
+          "name": "getAccessors",
+          "edgeType": "call"
+        },
+        {
+          "name": "getBaseURLWithoutTrailingSlash",
+          "edgeType": "call"
+        },
+        {
+          "name": "substring",
+          "edgeType": "call"
+        },
+        {
+          "name": "set",
+          "edgeType": "call"
+        },
+        {
+          "name": "post",
+          "edgeType": "call"
+        },
+        {
+          "name": "parse",
+          "edgeType": "call"
+        },
+        {
+          "name": "saveToken",
+          "edgeType": "call"
+        },
+        {
+          "name": "error",
+          "edgeType": "call"
+        },
+        {
+          "name": "getLogger",
+          "edgeType": "call"
+        },
+        {
+          "name": "URL",
+          "edgeType": "new"
+        },
+        {
+          "name": "IUser",
+          "edgeType": "type"
+        },
+        {
+          "name": "IPersistence",
+          "edgeType": "type"
+        },
+        {
+          "name": "IAuthData",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "revokeUserAccessToken",
+      "exported": true,
+      "qualifiedName": "OAuth2Client.revokeUserAccessToken",
+      "line": 54,
+      "endLine": 79,
+      "signature": "public async revokeUserAccessToken(user: IUser, persis: IPersistence): Promise<boolean>",
+      "containerClass": "OAuth2Client",
+      "calls": [
+        {
+          "name": "getAccessTokenForUser",
+          "edgeType": "call"
+        },
+        {
+          "name": "set",
+          "edgeType": "call"
+        },
+        {
+          "name": "post",
+          "edgeType": "call"
+        },
+        {
+          "name": "getAccessors",
+          "edgeType": "call"
+        },
+        {
+          "name": "removeToken",
+          "edgeType": "call"
+        },
+        {
+          "name": "error",
+          "edgeType": "call"
+        },
+        {
+          "name": "getLogger",
+          "edgeType": "call"
+        },
+        {
+          "name": "URL",
+          "edgeType": "new"
+        },
+        {
+          "name": "IUser",
+          "edgeType": "type"
+        },
+        {
+          "name": "IPersistence",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "getBaseURLWithoutTrailingSlash",
+      "exported": true,
+      "qualifiedName": "OAuth2Client.getBaseURLWithoutTrailingSlash",
+      "line": 58,
+      "endLine": 66,
+      "signature": "private async getBaseURLWithoutTrailingSlash(): Promise<string>",
+      "containerClass": "OAuth2Client",
+      "calls": [
+        {
+          "name": "getValueById",
+          "edgeType": "call"
+        },
+        {
+          "name": "getServerSettings",
+          "edgeType": "call"
+        },
+        {
+          "name": "getAccessors",
+          "edgeType": "call"
+        },
+        {
+          "name": "endsWith",
+          "edgeType": "call"
+        },
+        {
+          "name": "substr",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "handleOAuthCallback",
+      "exported": true,
+      "qualifiedName": "OAuth2Client.handleOAuthCallback",
+      "line": 62,
+      "endLine": 152,
+      "signature": "private async handleOAuthCallback( request: IApiRequest, endpoint: IApiEndpointInfo, read: IRead, modify: IModify, http: IHttp, persis: IPersistence, ): Promise<IApiResponse>",
+      "containerClass": "OAuth2Client",
+      "calls": [
+        {
+          "name": "getById",
+          "edgeType": "call"
+        },
+        {
+          "name": "getUserReader",
+          "edgeType": "call"
+        },
+        {
+          "name": "getAccessors",
+          "edgeType": "call"
+        },
+        {
+          "name": "authorizationCallback",
+          "edgeType": "call"
+        },
+        {
+          "name": "getBaseURLWithoutTrailingSlash",
+          "edgeType": "call"
+        },
+        {
+          "name": "substring",
+          "edgeType": "call"
+        },
+        {
+          "name": "getValueById",
+          "edgeType": "call"
+        },
+        {
+          "name": "getSettings",
+          "edgeType": "call"
+        },
+        {
+          "name": "getEnvironmentReader",
+          "edgeType": "call"
+        },
+        {
+          "name": "set",
+          "edgeType": "call"
+        },
+        {
+          "name": "post",
+          "edgeType": "call"
+        },
+        {
+          "name": "parse",
+          "edgeType": "call"
+        },
+        {
+          "name": "saveToken",
+          "edgeType": "call"
+        },
+        {
+          "name": "error",
+          "edgeType": "call"
+        },
+        {
+          "name": "getLogger",
+          "edgeType": "call"
+        },
+        {
+          "name": "URL",
+          "edgeType": "new"
+        },
+        {
+          "name": "IApiRequest",
+          "edgeType": "type"
+        },
+        {
+          "name": "IApiEndpointInfo",
+          "edgeType": "type"
+        },
+        {
+          "name": "IRead",
+          "edgeType": "type"
+        },
+        {
+          "name": "IModify",
+          "edgeType": "type"
+        },
+        {
+          "name": "IHttp",
+          "edgeType": "type"
+        },
+        {
+          "name": "IPersistence",
+          "edgeType": "type"
+        },
+        {
+          "name": "IApiResponse",
+          "edgeType": "type"
+        },
+        {
+          "name": "IAuthData",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "saveToken",
+      "exported": true,
+      "qualifiedName": "OAuth2Client.saveToken",
+      "line": 73,
+      "endLine": 89,
+      "signature": "private async saveToken(authData: IAuthData, userId: string, persis: IPersistence): Promise<string>",
+      "containerClass": "OAuth2Client",
+      "calls": [
+        {
+          "name": "updateByAssociations",
+          "edgeType": "call"
+        },
+        {
+          "name": "RocketChatAssociationRecord",
+          "edgeType": "new"
+        },
+        {
+          "name": "IAuthData",
+          "edgeType": "type"
+        },
+        {
+          "name": "IPersistence",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "removeToken",
+      "exported": true,
+      "qualifiedName": "OAuth2Client.removeToken",
+      "line": 77,
+      "endLine": 84,
+      "signature": "private async removeToken({ userId, persis }: { userId: string; persis: IPersistence }): Promise<IAuthData>",
+      "containerClass": "OAuth2Client",
+      "calls": [
+        {
+          "name": "removeByAssociations",
+          "edgeType": "call"
+        },
+        {
+          "name": "RocketChatAssociationRecord",
+          "edgeType": "new"
+        },
+        {
+          "name": "IPersistence",
+          "edgeType": "type"
+        },
+        {
+          "name": "IAuthData",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "constructor",
+      "exported": true,
+      "qualifiedName": "OAuth2Client.constructor",
+      "line": 33,
+      "endLine": 36,
+      "signature": "constructor( private readonly app: App, private readonly config: IOAuth2ClientOptions, )",
+      "containerClass": "OAuth2Client",
+      "calls": [
+        {
+          "name": "App",
+          "edgeType": "type"
+        },
+        {
+          "name": "IOAuth2ClientOptions",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "enum",
+      "name": "GrantType",
+      "line": 13,
+      "endLine": 16,
+      "signature": "export enum GrantType"
+    }
+  ],
+  "imports": [
+    {
+      "module": "node:url",
+      "resolved": "external"
+    },
+    {
+      "module": "../App",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/packages/apps-engine/src/definition/App.ts"
+    },
+    {
+      "module": "../accessors",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/packages/apps-engine/src/definition/accessors/index.ts"
+    },
+    {
+      "module": "../accessors",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/packages/apps-engine/src/definition/accessors/index.ts"
+    },
+    {
+      "module": "../api",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/packages/apps-engine/src/definition/api/index.ts"
+    },
+    {
+      "module": "../api",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/packages/apps-engine/src/definition/api/index.ts"
+    },
+    {
+      "module": "../metadata",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/packages/apps-engine/src/definition/metadata/index.ts"
+    },
+    {
+      "module": "./IOAuth2",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/packages/apps-engine/src/definition/oauth2/IOAuth2.ts"
+    },
+    {
+      "module": "../settings",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/packages/apps-engine/src/definition/settings/index.ts"
+    },
+    {
+      "module": "../users",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/packages/apps-engine/src/definition/users/index.ts"
+    }
+  ]
+}

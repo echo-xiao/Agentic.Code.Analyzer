@@ -1,0 +1,270 @@
+{
+  "sourcePath": "/Users/echoooooo/Desktop/code/Rocket.Chat/packages/core-typings/src/ISetting.ts",
+  "symbols": [
+    {
+      "type": "variable_function",
+      "name": "isSetting",
+      "exported": true,
+      "line": 150,
+      "endLine": 158,
+      "signature": "(setting: any): setting is ISetting =>",
+      "calls": [
+        {
+          "name": "ISetting",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "variable_function",
+      "name": "isSettingEnterprise",
+      "exported": true,
+      "line": 160,
+      "endLine": 160,
+      "signature": "(setting: ISettingBase): setting is ISettingEnterprise =>",
+      "calls": [
+        {
+          "name": "ISettingBase",
+          "edgeType": "type"
+        },
+        {
+          "name": "ISettingEnterprise",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "variable_function",
+      "name": "isSettingColor",
+      "exported": true,
+      "line": 162,
+      "endLine": 162,
+      "signature": "(setting: ISettingBase): setting is ISettingColor =>",
+      "calls": [
+        {
+          "name": "ISettingBase",
+          "edgeType": "type"
+        },
+        {
+          "name": "ISettingColor",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "variable_function",
+      "name": "isSettingCode",
+      "exported": true,
+      "line": 164,
+      "endLine": 164,
+      "signature": "(setting: ISettingBase): setting is ISettingCode =>",
+      "calls": [
+        {
+          "name": "ISettingBase",
+          "edgeType": "type"
+        },
+        {
+          "name": "ISettingCode",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "variable_function",
+      "name": "isSettingAction",
+      "exported": true,
+      "line": 166,
+      "endLine": 166,
+      "signature": "(setting: ISettingBase): setting is ISettingAction =>",
+      "calls": [
+        {
+          "name": "ISettingBase",
+          "edgeType": "type"
+        },
+        {
+          "name": "ISettingAction",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "variable_function",
+      "name": "isActionSettingWithEndpoint",
+      "exported": true,
+      "line": 168,
+      "endLine": 169,
+      "signature": "(value: ISettingAction['value']): value is SettingActionEndpoint =>",
+      "calls": [
+        {
+          "name": "ISettingAction",
+          "edgeType": "type"
+        },
+        {
+          "name": "SettingActionEndpoint",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "variable_function",
+      "name": "isSettingRange",
+      "exported": true,
+      "line": 171,
+      "endLine": 171,
+      "signature": "(setting: ISettingBase): setting is ISettingRange =>",
+      "calls": [
+        {
+          "name": "ISettingBase",
+          "edgeType": "type"
+        },
+        {
+          "name": "ISettingRange",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "interface",
+      "name": "ISettingSelectOption",
+      "line": 25,
+      "endLine": 28,
+      "signature": "export interface ISettingSelectOption"
+    },
+    {
+      "type": "interface",
+      "name": "ISettingBase",
+      "line": 34,
+      "endLine": 95,
+      "signature": "export interface ISettingBase extends IRocketChatRecord"
+    },
+    {
+      "type": "interface",
+      "name": "ISettingGroup",
+      "line": 97,
+      "endLine": 110,
+      "signature": "export interface ISettingGroup"
+    },
+    {
+      "type": "interface",
+      "name": "ISettingEnterprise",
+      "line": 112,
+      "endLine": 115,
+      "signature": "interface ISettingEnterprise extends ISettingBase"
+    },
+    {
+      "type": "interface",
+      "name": "ISettingColor",
+      "line": 117,
+      "endLine": 121,
+      "signature": "export interface ISettingColor extends ISettingBase"
+    },
+    {
+      "type": "interface",
+      "name": "ISettingCode",
+      "line": 123,
+      "endLine": 126,
+      "signature": "interface ISettingCode extends ISettingBase"
+    },
+    {
+      "type": "interface",
+      "name": "ISettingAction",
+      "line": 130,
+      "endLine": 134,
+      "signature": "interface ISettingAction extends ISettingBase"
+    },
+    {
+      "type": "interface",
+      "name": "ISettingAsset",
+      "line": 136,
+      "endLine": 141,
+      "signature": "export interface ISettingAsset extends ISettingBase"
+    },
+    {
+      "type": "interface",
+      "name": "ISettingRange",
+      "line": 143,
+      "endLine": 147,
+      "signature": "interface ISettingRange extends ISettingBase"
+    },
+    {
+      "type": "interface",
+      "name": "ISettingStatistics",
+      "line": 173,
+      "endLine": 201,
+      "signature": "export interface ISettingStatistics"
+    },
+    {
+      "type": "interface",
+      "name": "ISettingStatisticsObject",
+      "line": 203,
+      "endLine": 269,
+      "signature": "export interface ISettingStatisticsObject"
+    },
+    {
+      "type": "type",
+      "name": "SettingValueMultiSelect",
+      "line": 9,
+      "endLine": 9,
+      "signature": "export type SettingValueMultiSelect = (string | number)[];"
+    },
+    {
+      "type": "type",
+      "name": "SettingValueRoomPick",
+      "line": 10,
+      "endLine": 10,
+      "signature": "export type SettingValueRoomPick ="
+    },
+    {
+      "type": "type",
+      "name": "SettingValueAction",
+      "line": 11,
+      "endLine": 11,
+      "signature": "export type SettingValueAction ="
+    },
+    {
+      "type": "type",
+      "name": "SettingValue",
+      "line": 12,
+      "endLine": 23,
+      "signature": "export type SettingValue = | string | boolean | number | SettingValueMultiSelect | SettingValueRoomPick | SettingValueAction | Date |"
+    },
+    {
+      "type": "type",
+      "name": "ISetting",
+      "line": 30,
+      "endLine": 30,
+      "signature": "export type ISetting = ISettingBase | ISettingEnterprise | ISettingColor | ISettingCode | ISettingAction | ISettingAsset | ISettingRange;"
+    },
+    {
+      "type": "type",
+      "name": "EnableQuery",
+      "line": 32,
+      "endLine": 32,
+      "signature": "type EnableQuery = string |"
+    },
+    {
+      "type": "type",
+      "name": "SettingActionEndpoint",
+      "line": 128,
+      "endLine": 128,
+      "signature": "type SettingActionEndpoint ="
+    },
+    {
+      "type": "enum",
+      "name": "SettingEditor",
+      "line": 4,
+      "endLine": 7,
+      "signature": "export enum SettingEditor"
+    }
+  ],
+  "imports": [
+    {
+      "module": "./IRocketChatAssets",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/packages/core-typings/src/IRocketChatAssets.ts"
+    },
+    {
+      "module": "./IRocketChatRecord",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/packages/core-typings/src/IRocketChatRecord.ts"
+    }
+  ]
+}

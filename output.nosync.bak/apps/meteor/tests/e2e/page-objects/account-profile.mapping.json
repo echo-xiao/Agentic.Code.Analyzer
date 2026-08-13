@@ -1,0 +1,181 @@
+{
+  "sourcePath": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/tests/e2e/page-objects/account-profile.ts",
+  "symbols": [
+    {
+      "type": "class",
+      "name": "AccountProfile",
+      "exported": true,
+      "line": 6,
+      "endLine": 143,
+      "signature": "export class AccountProfile extends Account",
+      "calls": [
+        {
+          "name": "Account",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "chooseClearStatusAfter",
+      "exported": true,
+      "qualifiedName": "AccountProfile.chooseClearStatusAfter",
+      "line": 55,
+      "endLine": 58,
+      "signature": "async chooseClearStatusAfter(option: string): Promise<void>",
+      "containerClass": "AccountProfile",
+      "calls": [
+        {
+          "name": "click",
+          "edgeType": "call"
+        },
+        {
+          "name": "getByRole",
+          "edgeType": "call"
+        },
+        {
+          "name": "RegExp",
+          "edgeType": "new"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "tokenInTable",
+      "exported": true,
+      "qualifiedName": "AccountProfile.tokenInTable",
+      "line": 95,
+      "endLine": 97,
+      "signature": "tokenInTable(name: string): Locator",
+      "containerClass": "AccountProfile",
+      "calls": [
+        {
+          "name": "locator",
+          "edgeType": "call"
+        },
+        {
+          "name": "Locator",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "getAccordionItemByName",
+      "exported": true,
+      "qualifiedName": "AccountProfile.getAccordionItemByName",
+      "line": 115,
+      "endLine": 117,
+      "signature": "getAccordionItemByName(name: string): Locator",
+      "containerClass": "AccountProfile",
+      "calls": [
+        {
+          "name": "getByRole",
+          "edgeType": "call"
+        },
+        {
+          "name": "Locator",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "getCheckboxByLabelText",
+      "exported": true,
+      "qualifiedName": "AccountProfile.getCheckboxByLabelText",
+      "line": 119,
+      "endLine": 121,
+      "signature": "getCheckboxByLabelText(name: string): Locator",
+      "containerClass": "AccountProfile",
+      "calls": [
+        {
+          "name": "locator",
+          "edgeType": "call"
+        },
+        {
+          "name": "getByRole",
+          "edgeType": "call"
+        },
+        {
+          "name": "Locator",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "getErrorAlertByText",
+      "exported": true,
+      "qualifiedName": "AccountProfile.getErrorAlertByText",
+      "line": 135,
+      "endLine": 137,
+      "signature": "private getErrorAlertByText(text: string): Locator",
+      "containerClass": "AccountProfile",
+      "calls": [
+        {
+          "name": "filter",
+          "edgeType": "call"
+        },
+        {
+          "name": "getByRole",
+          "edgeType": "call"
+        },
+        {
+          "name": "Locator",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "constructor",
+      "exported": true,
+      "qualifiedName": "AccountProfile.constructor",
+      "line": 9,
+      "endLine": 12,
+      "signature": "constructor(page: Page)",
+      "containerClass": "AccountProfile",
+      "calls": [
+        {
+          "name": "DeleteAccountModal",
+          "edgeType": "new"
+        },
+        {
+          "name": "Page",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "class_property",
+      "name": "deleteAccountModal",
+      "exported": true,
+      "qualifiedName": "AccountProfile.deleteAccountModal",
+      "line": 7,
+      "endLine": 7,
+      "signature": "readonly deleteAccountModal: DeleteAccountModal;",
+      "containerClass": "AccountProfile",
+      "calls": [
+        {
+          "name": "DeleteAccountModal",
+          "edgeType": "type"
+        }
+      ]
+    }
+  ],
+  "imports": [
+    {
+      "module": "@playwright/test",
+      "resolved": "external"
+    },
+    {
+      "module": "./account",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/tests/e2e/page-objects/account.ts"
+    },
+    {
+      "module": "./fragments",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/tests/e2e/page-objects/fragments/index.ts"
+    }
+  ]
+}

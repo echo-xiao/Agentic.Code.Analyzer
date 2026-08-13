@@ -1,0 +1,258 @@
+{
+  "sourcePath": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/tests/e2e/page-objects/fragments/composer.ts",
+  "symbols": [
+    {
+      "type": "class",
+      "name": "VideoRecorderPopup",
+      "exported": false,
+      "line": 5,
+      "endLine": 28,
+      "signature": "class VideoRecorderPopup extends Popup",
+      "calls": [
+        {
+          "name": "Popup",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "record",
+      "exported": false,
+      "qualifiedName": "VideoRecorderPopup.record",
+      "line": 22,
+      "endLine": 27,
+      "signature": "async record()",
+      "containerClass": "VideoRecorderPopup",
+      "calls": [
+        {
+          "name": "click",
+          "edgeType": "call"
+        },
+        {
+          "name": "then",
+          "edgeType": "call"
+        },
+        {
+          "name": "waitFor",
+          "edgeType": "call"
+        },
+        {
+          "name": "waitForDismissal",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "constructor",
+      "exported": false,
+      "qualifiedName": "VideoRecorderPopup.constructor",
+      "line": 6,
+      "endLine": 8,
+      "signature": "constructor(root: Locator)",
+      "containerClass": "VideoRecorderPopup",
+      "calls": [
+        {
+          "name": "Locator",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "class",
+      "name": "Composer",
+      "exported": true,
+      "line": 27,
+      "endLine": 122,
+      "signature": "export abstract class Composer",
+      "calls": []
+    },
+    {
+      "type": "method",
+      "name": "getFileByName",
+      "exported": true,
+      "qualifiedName": "Composer.getFileByName",
+      "line": 59,
+      "endLine": 61,
+      "signature": "getFileByName(fileName: string): Locator",
+      "containerClass": "Composer",
+      "calls": [
+        {
+          "name": "getByRole",
+          "edgeType": "call"
+        },
+        {
+          "name": "Locator",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "getFilesInComposer",
+      "exported": true,
+      "qualifiedName": "Composer.getFilesInComposer",
+      "line": 67,
+      "endLine": 69,
+      "signature": "getFilesInComposer(): Locator",
+      "containerClass": "Composer",
+      "calls": [
+        {
+          "name": "getByRole",
+          "edgeType": "call"
+        },
+        {
+          "name": "Locator",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "removeFileByName",
+      "exported": true,
+      "qualifiedName": "Composer.removeFileByName",
+      "line": 71,
+      "endLine": 73,
+      "signature": "async removeFileByName(fileName: string): Promise<void>",
+      "containerClass": "Composer",
+      "calls": [
+        {
+          "name": "click",
+          "edgeType": "call"
+        },
+        {
+          "name": "getByRole",
+          "edgeType": "call"
+        },
+        {
+          "name": "getFileByName",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "constructor",
+      "exported": true,
+      "qualifiedName": "Composer.constructor",
+      "line": 30,
+      "endLine": 33,
+      "signature": "constructor(protected root: Locator)",
+      "containerClass": "Composer",
+      "calls": [
+        {
+          "name": "getByRole",
+          "edgeType": "call"
+        },
+        {
+          "name": "page",
+          "edgeType": "call"
+        },
+        {
+          "name": "VideoRecorderPopup",
+          "edgeType": "new"
+        },
+        {
+          "name": "Locator",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "class_property",
+      "name": "videoRecorderPopup",
+      "exported": true,
+      "qualifiedName": "Composer.videoRecorderPopup",
+      "line": 28,
+      "endLine": 28,
+      "signature": "readonly videoRecorderPopup: VideoRecorderPopup;",
+      "containerClass": "Composer",
+      "calls": [
+        {
+          "name": "VideoRecorderPopup",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "class",
+      "name": "RoomComposer",
+      "exported": true,
+      "line": 123,
+      "endLine": 127,
+      "signature": "export class RoomComposer extends Composer",
+      "calls": [
+        {
+          "name": "Composer",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "constructor",
+      "exported": true,
+      "qualifiedName": "RoomComposer.constructor",
+      "line": 124,
+      "endLine": 126,
+      "signature": "constructor(page: Page)",
+      "containerClass": "RoomComposer",
+      "calls": [
+        {
+          "name": "locator",
+          "edgeType": "call"
+        },
+        {
+          "name": "Page",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "class",
+      "name": "ThreadComposer",
+      "exported": true,
+      "line": 129,
+      "endLine": 133,
+      "signature": "export class ThreadComposer extends Composer",
+      "calls": [
+        {
+          "name": "Composer",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "constructor",
+      "exported": true,
+      "qualifiedName": "ThreadComposer.constructor",
+      "line": 130,
+      "endLine": 132,
+      "signature": "constructor(page: Page)",
+      "containerClass": "ThreadComposer",
+      "calls": [
+        {
+          "name": "locator",
+          "edgeType": "call"
+        },
+        {
+          "name": "Page",
+          "edgeType": "type"
+        }
+      ]
+    }
+  ],
+  "imports": [
+    {
+      "module": "playwright-core",
+      "resolved": "external"
+    },
+    {
+      "module": "./popup",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/tests/e2e/page-objects/fragments/popup.ts"
+    }
+  ]
+}

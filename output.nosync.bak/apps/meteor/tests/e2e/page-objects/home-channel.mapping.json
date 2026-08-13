@@ -1,0 +1,516 @@
+{
+  "sourcePath": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/tests/e2e/page-objects/home-channel.ts",
+  "symbols": [
+    {
+      "type": "class",
+      "name": "HomeChannel",
+      "exported": true,
+      "line": 27,
+      "endLine": 198,
+      "signature": "export class HomeChannel",
+      "calls": []
+    },
+    {
+      "type": "method",
+      "name": "goto",
+      "exported": true,
+      "qualifiedName": "HomeChannel.goto",
+      "line": 95,
+      "endLine": 97,
+      "signature": "goto()",
+      "containerClass": "HomeChannel",
+      "calls": [
+        {
+          "name": "goto",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "gotoChannel",
+      "exported": true,
+      "qualifiedName": "HomeChannel.gotoChannel",
+      "line": 99,
+      "endLine": 102,
+      "signature": "async gotoChannel(name: string)",
+      "containerClass": "HomeChannel",
+      "calls": [
+        {
+          "name": "goto",
+          "edgeType": "call"
+        },
+        {
+          "name": "waitForChannel",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "gotoGroup",
+      "exported": true,
+      "qualifiedName": "HomeChannel.gotoGroup",
+      "line": 103,
+      "endLine": 106,
+      "signature": "async gotoGroup(name: string)",
+      "containerClass": "HomeChannel",
+      "calls": [
+        {
+          "name": "goto",
+          "edgeType": "call"
+        },
+        {
+          "name": "waitForChannel",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "getEmojiPickerTabByName",
+      "exported": true,
+      "qualifiedName": "HomeChannel.getEmojiPickerTabByName",
+      "line": 175,
+      "endLine": 177,
+      "signature": "getEmojiPickerTabByName(name: string)",
+      "containerClass": "HomeChannel",
+      "calls": [
+        {
+          "name": "locator",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "getEmojiByName",
+      "exported": true,
+      "qualifiedName": "HomeChannel.getEmojiByName",
+      "line": 179,
+      "endLine": 181,
+      "signature": "getEmojiByName(name: string)",
+      "containerClass": "HomeChannel",
+      "calls": [
+        {
+          "name": "locator",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "pickEmoji",
+      "exported": true,
+      "qualifiedName": "HomeChannel.pickEmoji",
+      "line": 183,
+      "endLine": 187,
+      "signature": "async pickEmoji(emoji: string, section = 'Smileys & People')",
+      "containerClass": "HomeChannel",
+      "calls": [
+        {
+          "name": "click",
+          "edgeType": "call"
+        },
+        {
+          "name": "getEmojiPickerTabByName",
+          "edgeType": "call"
+        },
+        {
+          "name": "getEmojiByName",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "waitForHome",
+      "exported": true,
+      "qualifiedName": "HomeChannel.waitForHome",
+      "line": 187,
+      "endLine": 189,
+      "signature": "async waitForHome(): Promise<void>",
+      "containerClass": "HomeChannel",
+      "calls": [
+        {
+          "name": "waitFor",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "waitForRoomLoad",
+      "exported": true,
+      "qualifiedName": "HomeChannel.waitForRoomLoad",
+      "line": 191,
+      "endLine": 193,
+      "signature": "async waitForRoomLoad(): Promise<void>",
+      "containerClass": "HomeChannel",
+      "calls": [
+        {
+          "name": "waitFor",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "constructor",
+      "exported": true,
+      "qualifiedName": "HomeChannel.constructor",
+      "line": 64,
+      "endLine": 89,
+      "signature": "constructor(page: Page)",
+      "containerClass": "HomeChannel",
+      "calls": [
+        {
+          "name": "getByRole",
+          "edgeType": "call"
+        },
+        {
+          "name": "HomeContent",
+          "edgeType": "new"
+        },
+        {
+          "name": "RoomSidebar",
+          "edgeType": "new"
+        },
+        {
+          "name": "Sidepanel",
+          "edgeType": "new"
+        },
+        {
+          "name": "Navbar",
+          "edgeType": "new"
+        },
+        {
+          "name": "UserCard",
+          "edgeType": "new"
+        },
+        {
+          "name": "MembersFlexTab",
+          "edgeType": "new"
+        },
+        {
+          "name": "UserInfoFlexTab",
+          "edgeType": "new"
+        },
+        {
+          "name": "RoomInfoFlexTab",
+          "edgeType": "new"
+        },
+        {
+          "name": "EditRoomFlexTab",
+          "edgeType": "new"
+        },
+        {
+          "name": "ChannelsFlexTab",
+          "edgeType": "new"
+        },
+        {
+          "name": "NotificationPreferencesFlexTab",
+          "edgeType": "new"
+        },
+        {
+          "name": "ExportMessagesFlexTab",
+          "edgeType": "new"
+        },
+        {
+          "name": "PruneMessagesFlexTab",
+          "edgeType": "new"
+        },
+        {
+          "name": "SearchMessagesFlexTab",
+          "edgeType": "new"
+        },
+        {
+          "name": "ThreadsFlexTab",
+          "edgeType": "new"
+        },
+        {
+          "name": "FilesFlexTab",
+          "edgeType": "new"
+        },
+        {
+          "name": "RoomToolbar",
+          "edgeType": "new"
+        },
+        {
+          "name": "VoiceCalls",
+          "edgeType": "new"
+        },
+        {
+          "name": "ToastMessages",
+          "edgeType": "new"
+        },
+        {
+          "name": "RoomComposer",
+          "edgeType": "new"
+        },
+        {
+          "name": "ThreadComposer",
+          "edgeType": "new"
+        },
+        {
+          "name": "Page",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "class_property",
+      "name": "page",
+      "exported": true,
+      "qualifiedName": "HomeChannel.page",
+      "line": 28,
+      "endLine": 28,
+      "signature": "public readonly page: Page;",
+      "containerClass": "HomeChannel",
+      "calls": [
+        {
+          "name": "Page",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "class_property",
+      "name": "content",
+      "exported": true,
+      "qualifiedName": "HomeChannel.content",
+      "line": 30,
+      "endLine": 30,
+      "signature": "readonly content: HomeContent;",
+      "containerClass": "HomeChannel",
+      "calls": [
+        {
+          "name": "HomeContent",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "class_property",
+      "name": "sidebar",
+      "exported": true,
+      "qualifiedName": "HomeChannel.sidebar",
+      "line": 32,
+      "endLine": 32,
+      "signature": "readonly sidebar: RoomSidebar;",
+      "containerClass": "HomeChannel",
+      "calls": [
+        {
+          "name": "RoomSidebar",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "class_property",
+      "name": "sidepanel",
+      "exported": true,
+      "qualifiedName": "HomeChannel.sidepanel",
+      "line": 34,
+      "endLine": 34,
+      "signature": "readonly sidepanel: Sidepanel;",
+      "containerClass": "HomeChannel",
+      "calls": [
+        {
+          "name": "Sidepanel",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "class_property",
+      "name": "navbar",
+      "exported": true,
+      "qualifiedName": "HomeChannel.navbar",
+      "line": 36,
+      "endLine": 36,
+      "signature": "readonly navbar: Navbar;",
+      "containerClass": "HomeChannel",
+      "calls": [
+        {
+          "name": "Navbar",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "class_property",
+      "name": "userCard",
+      "exported": true,
+      "qualifiedName": "HomeChannel.userCard",
+      "line": 38,
+      "endLine": 38,
+      "signature": "readonly userCard: UserCard;",
+      "containerClass": "HomeChannel",
+      "calls": [
+        {
+          "name": "UserCard",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "class_property",
+      "name": "_tabs",
+      "exported": true,
+      "qualifiedName": "HomeChannel._tabs",
+      "line": 40,
+      "endLine": 52,
+      "signature": "private _tabs:",
+      "containerClass": "HomeChannel",
+      "calls": [
+        {
+          "name": "MembersFlexTab",
+          "edgeType": "type"
+        },
+        {
+          "name": "UserInfoFlexTab",
+          "edgeType": "type"
+        },
+        {
+          "name": "RoomInfoFlexTab",
+          "edgeType": "type"
+        },
+        {
+          "name": "EditRoomFlexTab",
+          "edgeType": "type"
+        },
+        {
+          "name": "ChannelsFlexTab",
+          "edgeType": "type"
+        },
+        {
+          "name": "NotificationPreferencesFlexTab",
+          "edgeType": "type"
+        },
+        {
+          "name": "ExportMessagesFlexTab",
+          "edgeType": "type"
+        },
+        {
+          "name": "PruneMessagesFlexTab",
+          "edgeType": "type"
+        },
+        {
+          "name": "SearchMessagesFlexTab",
+          "edgeType": "type"
+        },
+        {
+          "name": "ThreadsFlexTab",
+          "edgeType": "type"
+        },
+        {
+          "name": "FilesFlexTab",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "class_property",
+      "name": "roomToolbar",
+      "exported": true,
+      "qualifiedName": "HomeChannel.roomToolbar",
+      "line": 54,
+      "endLine": 54,
+      "signature": "readonly roomToolbar: RoomToolbar;",
+      "containerClass": "HomeChannel",
+      "calls": [
+        {
+          "name": "RoomToolbar",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "class_property",
+      "name": "voiceCalls",
+      "exported": true,
+      "qualifiedName": "HomeChannel.voiceCalls",
+      "line": 56,
+      "endLine": 56,
+      "signature": "readonly voiceCalls: VoiceCalls;",
+      "containerClass": "HomeChannel",
+      "calls": [
+        {
+          "name": "VoiceCalls",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "class_property",
+      "name": "toastMessage",
+      "exported": true,
+      "qualifiedName": "HomeChannel.toastMessage",
+      "line": 58,
+      "endLine": 58,
+      "signature": "readonly toastMessage: ToastMessages;",
+      "containerClass": "HomeChannel",
+      "calls": [
+        {
+          "name": "ToastMessages",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "class_property",
+      "name": "composer",
+      "exported": true,
+      "qualifiedName": "HomeChannel.composer",
+      "line": 60,
+      "endLine": 60,
+      "signature": "readonly composer: RoomComposer;",
+      "containerClass": "HomeChannel",
+      "calls": [
+        {
+          "name": "RoomComposer",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "class_property",
+      "name": "threadComposer",
+      "exported": true,
+      "qualifiedName": "HomeChannel.threadComposer",
+      "line": 62,
+      "endLine": 62,
+      "signature": "readonly threadComposer: ThreadComposer;",
+      "containerClass": "HomeChannel",
+      "calls": [
+        {
+          "name": "ThreadComposer",
+          "edgeType": "type"
+        }
+      ]
+    }
+  ],
+  "imports": [
+    {
+      "module": "@playwright/test",
+      "resolved": "external"
+    },
+    {
+      "module": "./fragments",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/tests/e2e/page-objects/fragments/index.ts"
+    },
+    {
+      "module": "./fragments/toolbar",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/tests/e2e/page-objects/fragments/toolbar.ts"
+    },
+    {
+      "module": "./fragments/user-card",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/tests/e2e/page-objects/fragments/user-card.ts"
+    },
+    {
+      "module": "./fragments/voice-calls",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/tests/e2e/page-objects/fragments/voice-calls.ts"
+    }
+  ]
+}

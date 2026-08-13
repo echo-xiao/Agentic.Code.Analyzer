@@ -1,0 +1,213 @@
+{
+  "sourcePath": "/Users/echoooooo/Desktop/code/Rocket.Chat/ee/packages/media-calls/src/server/BroadcastAgent.ts",
+  "symbols": [
+    {
+      "type": "class",
+      "name": "BroadcastActorAgent",
+      "exported": true,
+      "line": 14,
+      "endLine": 58,
+      "signature": "export class BroadcastActorAgent extends BaseMediaCallAgent",
+      "calls": [
+        {
+          "name": "BaseMediaCallAgent",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "onCallAccepted",
+      "exported": true,
+      "qualifiedName": "BroadcastActorAgent.onCallAccepted",
+      "line": 17,
+      "endLine": 19,
+      "signature": "public async onCallAccepted(call: IMediaCall): Promise<void>",
+      "containerClass": "BroadcastActorAgent",
+      "calls": [
+        {
+          "name": "reportCallUpdated",
+          "edgeType": "call"
+        },
+        {
+          "name": "IMediaCall",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "onCallEnded",
+      "exported": true,
+      "qualifiedName": "BroadcastActorAgent.onCallEnded",
+      "line": 21,
+      "endLine": 23,
+      "signature": "public async onCallEnded(callId: string): Promise<void>",
+      "containerClass": "BroadcastActorAgent",
+      "calls": [
+        {
+          "name": "reportCallUpdated",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "onCallActive",
+      "exported": true,
+      "qualifiedName": "BroadcastActorAgent.onCallActive",
+      "line": 25,
+      "endLine": 27,
+      "signature": "public async onCallActive(callId: string): Promise<void>",
+      "containerClass": "BroadcastActorAgent",
+      "calls": [
+        {
+          "name": "reportCallUpdated",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "onCallCreated",
+      "exported": true,
+      "qualifiedName": "BroadcastActorAgent.onCallCreated",
+      "line": 29,
+      "endLine": 32,
+      "signature": "public async onCallCreated(call: IMediaCall): Promise<void>",
+      "containerClass": "BroadcastActorAgent",
+      "calls": [
+        {
+          "name": "debug",
+          "edgeType": "call"
+        },
+        {
+          "name": "IMediaCall",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "onRemoteDescriptionChanged",
+      "exported": true,
+      "qualifiedName": "BroadcastActorAgent.onRemoteDescriptionChanged",
+      "line": 33,
+      "endLine": 35,
+      "signature": "public async onRemoteDescriptionChanged(callId: string, _negotiationId: string): Promise<void>",
+      "containerClass": "BroadcastActorAgent",
+      "calls": [
+        {
+          "name": "reportCallUpdated",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "onCallTransferred",
+      "exported": true,
+      "qualifiedName": "BroadcastActorAgent.onCallTransferred",
+      "line": 37,
+      "endLine": 39,
+      "signature": "public async onCallTransferred(callId: string): Promise<void>",
+      "containerClass": "BroadcastActorAgent",
+      "calls": [
+        {
+          "name": "reportCallUpdated",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "onDTMF",
+      "exported": true,
+      "qualifiedName": "BroadcastActorAgent.onDTMF",
+      "line": 41,
+      "endLine": 43,
+      "signature": "public async onDTMF(callId: string, dtmf: string, duration: number): Promise<void>",
+      "containerClass": "BroadcastActorAgent",
+      "calls": [
+        {
+          "name": "reportCallUpdated",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "reportCallUpdated",
+      "exported": true,
+      "qualifiedName": "BroadcastActorAgent.reportCallUpdated",
+      "line": 45,
+      "endLine": 56,
+      "signature": "protected reportCallUpdated(params: { callId: string; dtmf?: ClientMediaSignalBody<'dtmf'> }): void",
+      "containerClass": "BroadcastActorAgent",
+      "calls": [
+        {
+          "name": "catch",
+          "edgeType": "call"
+        },
+        {
+          "name": "reactToCallChanges",
+          "edgeType": "call"
+        },
+        {
+          "name": "reportCallUpdate",
+          "edgeType": "call"
+        },
+        {
+          "name": "getMediaCallServer",
+          "edgeType": "call"
+        },
+        {
+          "name": "ClientMediaSignalBody",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "class_property",
+      "name": "provider",
+      "exported": true,
+      "qualifiedName": "BroadcastActorAgent.provider",
+      "line": 15,
+      "endLine": 15,
+      "signature": "public provider: BaseCallProvider | null = null;",
+      "containerClass": "BroadcastActorAgent",
+      "calls": [
+        {
+          "name": "BaseCallProvider",
+          "edgeType": "type"
+        }
+      ]
+    }
+  ],
+  "imports": [
+    {
+      "module": "@rocket.chat/core-typings",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/media-signaling",
+      "resolved": "external"
+    },
+    {
+      "module": "../base/BaseAgent",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/ee/packages/media-calls/src/base/BaseAgent.ts"
+    },
+    {
+      "module": "../logger",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/ee/packages/media-calls/src/logger.ts"
+    },
+    {
+      "module": "./injection",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/ee/packages/media-calls/src/server/injection.ts"
+    },
+    {
+      "module": "../base/BaseCallProvider",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/ee/packages/media-calls/src/base/BaseCallProvider.ts"
+    }
+  ]
+}

@@ -1,0 +1,41 @@
+{
+  "sourcePath": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/server/bridges/irc/irc-bridge/peerHandlers/nickChanged.js",
+  "symbols": [
+    {
+      "type": "function",
+      "name": "handleNickChanged",
+      "exported": true,
+      "line": 5,
+      "endLine": 28,
+      "signature": "export default async function handleNickChanged(args)",
+      "calls": [
+        {
+          "name": "findOne",
+          "edgeType": "call"
+        },
+        {
+          "name": "log",
+          "edgeType": "call"
+        },
+        {
+          "name": "updateOne",
+          "edgeType": "call"
+        },
+        {
+          "name": "notifyOnUserChange",
+          "edgeType": "call"
+        }
+      ]
+    }
+  ],
+  "imports": [
+    {
+      "module": "@rocket.chat/models",
+      "resolved": "external"
+    },
+    {
+      "module": "../../../../../app/lib/server/lib/notifyListener",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/app/lib/server/lib/notifyListener.ts"
+    }
+  ]
+}

@@ -153,10 +153,24 @@ export const IDIOMS: Idiom[] = [
         realm: 'server', form: '1b', keyResolution: 'literal-union',
         file: /(^|\/)meteor\.d\.ts$/, names: ['methods'],
     }),
+    // The dispatch side is NOT `Meteor.call`: measured on the real repo, that spelling appears
+    // zero times. Business code goes through `useMethod` (32), `sdk.call` (11) and
+    // `Meteor.callAsync` (1). The inventory said as much; the first implementation here only
+    // took `Meteor.call` and produced 0 dispatch sites against 190 registrations.
+    idiom({
+        id: 'meteor-methods-usemethod', space: 'meteor-methods', role: 'dispatch', argIndex: 0,
+        realm: 'client', form: '1a', keyResolution: 'literal-union',
+        file: /(^|\/)useMethod\.ts$/, names: ['useMethod'],
+    }),
+    idiom({
+        id: 'meteor-methods-sdk-call', space: 'meteor-methods', role: 'dispatch', argIndex: 0,
+        realm: 'client', form: '1a', keyResolution: 'literal-union',
+        file: /(^|\/)(ClientStream|DDPSDK|MeteorSDK)\.ts$/, names: ['call', 'callAsync'],
+    }),
     idiom({
         id: 'meteor-methods-call', space: 'meteor-methods', role: 'dispatch', argIndex: 0,
         realm: 'client', form: '1a', keyResolution: 'literal-union',
-        file: /(^|\/)meteor\.d\.ts$/, names: ['call'],
+        file: /(^|\/)meteor\.d\.ts$/, names: ['call', 'callAsync'],
     }),
 
     // Out of scope (spec §2.2): kept because it already works and costs nothing, never counted.

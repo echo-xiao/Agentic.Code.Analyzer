@@ -1,0 +1,215 @@
+{
+  "sourcePath": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/server/lib/users/saveUserIdentity.ts",
+  "symbols": [
+    {
+      "type": "function",
+      "name": "saveUserIdentity",
+      "exported": true,
+      "line": 24,
+      "endLine": 103,
+      "signature": "export async function saveUserIdentity({ _id, name: rawName, username: rawUsername, updateUsernameInBackground = false, updater, session, }: { _id: string; name?: string; username?: string; updateUsernameInBackground?: boolean; // TODO: remove this updater?: Updater<IUser>; session?: ClientSession; })",
+      "calls": [
+        {
+          "name": "trim",
+          "edgeType": "call"
+        },
+        {
+          "name": "findOneById",
+          "edgeType": "call"
+        },
+        {
+          "name": "validateName",
+          "edgeType": "call"
+        },
+        {
+          "name": "_setUsername",
+          "edgeType": "call"
+        },
+        {
+          "name": "setRealName",
+          "edgeType": "call"
+        },
+        {
+          "name": "setImmediate",
+          "edgeType": "call"
+        },
+        {
+          "name": "updateUsernameReferences",
+          "edgeType": "call"
+        },
+        {
+          "name": "error",
+          "edgeType": "call"
+        },
+        {
+          "name": "onceTransactionCommitedSuccessfully",
+          "edgeType": "call"
+        },
+        {
+          "name": "Updater",
+          "edgeType": "type"
+        },
+        {
+          "name": "IUser",
+          "edgeType": "type"
+        },
+        {
+          "name": "ClientSession",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "function",
+      "name": "updateUsernameReferences",
+      "exported": false,
+      "line": 42,
+      "endLine": 125,
+      "signature": "async function updateUsernameReferences({ username, previousUsername, rawUsername, usernameChanged, user, name, previousName, rawName, nameChanged, }: { username: string; previousUsername: string; rawUsername?: string; usernameChanged: boolean; user: IUser; name: string; previousName: string | undefined; rawName?: string; nameChanged: boolean; }): Promise<void>",
+      "calls": [
+        {
+          "name": "getStore",
+          "edgeType": "call"
+        },
+        {
+          "name": "findOneByName",
+          "edgeType": "call"
+        },
+        {
+          "name": "deleteFile",
+          "edgeType": "call"
+        },
+        {
+          "name": "updateFileNameById",
+          "edgeType": "call"
+        },
+        {
+          "name": "updateAllUsernamesByUserId",
+          "edgeType": "call"
+        },
+        {
+          "name": "updateUsernameOfEditByUserId",
+          "edgeType": "call"
+        },
+        {
+          "name": "findByMention",
+          "edgeType": "call"
+        },
+        {
+          "name": "replace",
+          "edgeType": "call"
+        },
+        {
+          "name": "updateUsernameAndMessageOfMentionByIdAndOldUsername",
+          "edgeType": "call"
+        },
+        {
+          "name": "all",
+          "edgeType": "call"
+        },
+        {
+          "name": "replaceUsername",
+          "edgeType": "call"
+        },
+        {
+          "name": "replaceMutedUsername",
+          "edgeType": "call"
+        },
+        {
+          "name": "replaceUsernameOfUserByUserId",
+          "edgeType": "call"
+        },
+        {
+          "name": "setUserUsernameByUserId",
+          "edgeType": "call"
+        },
+        {
+          "name": "replaceUsernameOfAgentByUserId",
+          "edgeType": "call"
+        },
+        {
+          "name": "notifyOnSubscriptionChangedByUserId",
+          "edgeType": "call"
+        },
+        {
+          "name": "notifyOnRoomChangedByUsernamesOrUids",
+          "edgeType": "call"
+        },
+        {
+          "name": "updateDirectNameAndFnameByName",
+          "edgeType": "call"
+        },
+        {
+          "name": "notifyOnSubscriptionChangedByNameAndRoomType",
+          "edgeType": "call"
+        },
+        {
+          "name": "updateGroupDMsName",
+          "edgeType": "call"
+        },
+        {
+          "name": "updateUserReferences",
+          "edgeType": "call"
+        },
+        {
+          "name": "RegExp",
+          "edgeType": "new"
+        },
+        {
+          "name": "IUser",
+          "edgeType": "type"
+        }
+      ]
+    }
+  ],
+  "imports": [
+    {
+      "module": "@rocket.chat/core-typings",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/models",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/models",
+      "resolved": "external"
+    },
+    {
+      "module": "mongodb",
+      "resolved": "external"
+    },
+    {
+      "module": "./setRealName",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/server/lib/users/setRealName.ts"
+    },
+    {
+      "module": "./setUsername",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/server/lib/users/setUsername.ts"
+    },
+    {
+      "module": "../../../app/file-upload/server",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/app/file-upload/server/index.ts"
+    },
+    {
+      "module": "../../../app/lib/server/lib/notifyListener",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/app/lib/server/lib/notifyListener.ts"
+    },
+    {
+      "module": "../../database/utils",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/server/database/utils.ts"
+    },
+    {
+      "module": "../logger/system",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/server/lib/logger/system.ts"
+    },
+    {
+      "module": "../rooms/updateGroupDMsName",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/server/lib/rooms/updateGroupDMsName.ts"
+    },
+    {
+      "module": "../shared/validateName",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/server/lib/shared/validateName.ts"
+    }
+  ]
+}

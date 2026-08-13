@@ -1,0 +1,63 @@
+{
+  "sourcePath": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/app/livechat/server/lib/settings.ts",
+  "symbols": [
+    {
+      "type": "function",
+      "name": "getInitSettings",
+      "exported": true,
+      "line": 9,
+      "endLine": 60,
+      "signature": "export async function getInitSettings()",
+      "calls": [
+        {
+          "name": "reduce",
+          "edgeType": "call"
+        },
+        {
+          "name": "get",
+          "edgeType": "call"
+        },
+        {
+          "name": "showConnecting",
+          "edgeType": "call"
+        },
+        {
+          "name": "SettingTypes",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "variable_function",
+      "name": "getInquirySortMechanismSetting",
+      "exported": true,
+      "line": 6,
+      "endLine": 7,
+      "signature": "(): OmnichannelSortingMechanismSettingType =>",
+      "calls": [
+        {
+          "name": "get",
+          "edgeType": "call"
+        },
+        {
+          "name": "OmnichannelSortingMechanismSettingType",
+          "edgeType": "type"
+        }
+      ]
+    }
+  ],
+  "imports": [
+    {
+      "module": "@rocket.chat/core-typings",
+      "resolved": "external"
+    },
+    {
+      "module": "./utils",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/app/livechat/server/lib/utils.ts"
+    },
+    {
+      "module": "../../../settings/server",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/app/settings/server/index.ts"
+    }
+  ]
+}

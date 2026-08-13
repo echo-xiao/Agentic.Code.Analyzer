@@ -1,0 +1,184 @@
+{
+  "sourcePath": "/Users/echoooooo/Desktop/code/Rocket.Chat/ee/packages/presence/src/lib/presenceEngine.ts",
+  "symbols": [
+    {
+      "type": "function",
+      "name": "isExpired",
+      "exported": false,
+      "line": 19,
+      "endLine": 21,
+      "signature": "function isExpired(expiresAt?: Date): boolean",
+      "calls": [
+        {
+          "name": "getTime",
+          "edgeType": "call"
+        },
+        {
+          "name": "now",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "function",
+      "name": "fieldsToUnset",
+      "exported": false,
+      "line": 23,
+      "endLine": 29,
+      "signature": "function fieldsToUnset(state: Pick<IUser, 'statusExpiresAt'>, extra?: string[]): string[]",
+      "calls": [
+        {
+          "name": "Set",
+          "edgeType": "new"
+        },
+        {
+          "name": "IUser",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "function",
+      "name": "reduceConnections",
+      "exported": false,
+      "line": 29,
+      "endLine": 37,
+      "signature": "function reduceConnections(current: UserStatus, status: UserStatus): UserStatus",
+      "calls": [
+        {
+          "name": "UserStatus",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "function",
+      "name": "computeStatus",
+      "exported": false,
+      "line": 37,
+      "endLine": 45,
+      "signature": "function computeStatus(statusConnection: UserStatus, statusDefault: UserStatus): UserStatus",
+      "calls": [
+        {
+          "name": "UserStatus",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "function",
+      "name": "disconnectedStatus",
+      "exported": false,
+      "line": 41,
+      "endLine": 50,
+      "signature": "function disconnectedStatus(claimType: ClaimUpdate['type'], isServiceUser: boolean, statusDefault: UserStatus): UserStatus",
+      "calls": [
+        {
+          "name": "ClaimUpdate",
+          "edgeType": "type"
+        },
+        {
+          "name": "UserStatus",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "function",
+      "name": "resolveIntent",
+      "exported": false,
+      "line": 49,
+      "endLine": 163,
+      "signature": "function resolveIntent( user: Pick<IUser, 'statusDefault' | 'statusSource' | 'statusText' | 'statusExpiresAt' | 'statusId' | 'previousState'>, claimUpdate: ClaimUpdate, ): { set: Record<string, unknown> & { statusDefault?: UserStatus }; unset: string[] } | null",
+      "calls": [
+        {
+          "name": "isExpired",
+          "edgeType": "call"
+        },
+        {
+          "name": "fieldsToUnset",
+          "edgeType": "call"
+        },
+        {
+          "name": "Boolean",
+          "edgeType": "call"
+        },
+        {
+          "name": "IUser",
+          "edgeType": "type"
+        },
+        {
+          "name": "ClaimUpdate",
+          "edgeType": "type"
+        },
+        {
+          "name": "UserStatus",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "function",
+      "name": "processPresence",
+      "exported": true,
+      "line": 60,
+      "endLine": 94,
+      "signature": "export function processPresence( user: Pick<IUser, 'type' | 'roles' | 'statusDefault' | 'statusSource' | 'statusText' | 'statusExpiresAt' | 'statusId' | 'previousState'>, sessions: IUserSessionConnection[], claimUpdate?: ClaimUpdate, ): { values: Record<string, unknown>; clear?: string[] }",
+      "calls": [
+        {
+          "name": "reduce",
+          "edgeType": "call"
+        },
+        {
+          "name": "map",
+          "edgeType": "call"
+        },
+        {
+          "name": "computeStatus",
+          "edgeType": "call"
+        },
+        {
+          "name": "resolveIntent",
+          "edgeType": "call"
+        },
+        {
+          "name": "includes",
+          "edgeType": "call"
+        },
+        {
+          "name": "disconnectedStatus",
+          "edgeType": "call"
+        },
+        {
+          "name": "IUser",
+          "edgeType": "type"
+        },
+        {
+          "name": "IUserSessionConnection",
+          "edgeType": "type"
+        },
+        {
+          "name": "ClaimUpdate",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "type",
+      "name": "ClaimUpdate",
+      "line": 4,
+      "endLine": 7,
+      "signature": "export type ClaimUpdate = |"
+    }
+  ],
+  "imports": [
+    {
+      "module": "@rocket.chat/core-typings",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/core-typings",
+      "resolved": "external"
+    }
+  ]
+}

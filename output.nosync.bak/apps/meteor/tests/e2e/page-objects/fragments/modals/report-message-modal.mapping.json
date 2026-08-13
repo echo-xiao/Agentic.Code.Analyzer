@@ -1,0 +1,133 @@
+{
+  "sourcePath": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/tests/e2e/page-objects/fragments/modals/report-message-modal.ts",
+  "symbols": [
+    {
+      "type": "class",
+      "name": "ReportMessageModal",
+      "exported": true,
+      "line": 7,
+      "endLine": 48,
+      "signature": "export class ReportMessageModal extends Modal",
+      "calls": [
+        {
+          "name": "Modal",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "cancelReport",
+      "exported": true,
+      "qualifiedName": "ReportMessageModal.cancelReport",
+      "line": 31,
+      "endLine": 34,
+      "signature": "async cancelReport(): Promise<void>",
+      "containerClass": "ReportMessageModal",
+      "calls": [
+        {
+          "name": "click",
+          "edgeType": "call"
+        },
+        {
+          "name": "waitForDismissal",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "submitReport",
+      "exported": true,
+      "qualifiedName": "ReportMessageModal.submitReport",
+      "line": 35,
+      "endLine": 46,
+      "signature": "async submitReport(description?: string): Promise<void>",
+      "containerClass": "ReportMessageModal",
+      "calls": [
+        {
+          "name": "click",
+          "edgeType": "call"
+        },
+        {
+          "name": "toBeVisible",
+          "edgeType": "call"
+        },
+        {
+          "name": "expect",
+          "edgeType": "call"
+        },
+        {
+          "name": "fill",
+          "edgeType": "call"
+        },
+        {
+          "name": "waitForDismissal",
+          "edgeType": "call"
+        },
+        {
+          "name": "waitForDisplay",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "constructor",
+      "exported": true,
+      "qualifiedName": "ReportMessageModal.constructor",
+      "line": 10,
+      "endLine": 13,
+      "signature": "constructor(page: Page)",
+      "containerClass": "ReportMessageModal",
+      "calls": [
+        {
+          "name": "getByRole",
+          "edgeType": "call"
+        },
+        {
+          "name": "ToastMessages",
+          "edgeType": "new"
+        },
+        {
+          "name": "Page",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "class_property",
+      "name": "toastMessage",
+      "exported": true,
+      "qualifiedName": "ReportMessageModal.toastMessage",
+      "line": 8,
+      "endLine": 8,
+      "signature": "readonly toastMessage: ToastMessages;",
+      "containerClass": "ReportMessageModal",
+      "calls": [
+        {
+          "name": "ToastMessages",
+          "edgeType": "type"
+        }
+      ]
+    }
+  ],
+  "imports": [
+    {
+      "module": "@playwright/test",
+      "resolved": "external"
+    },
+    {
+      "module": "./modal",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/tests/e2e/page-objects/fragments/modals/modal.ts"
+    },
+    {
+      "module": "../../../utils/test",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/tests/e2e/utils/test.ts"
+    },
+    {
+      "module": "../toast-messages",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/tests/e2e/page-objects/fragments/toast-messages.ts"
+    }
+  ]
+}

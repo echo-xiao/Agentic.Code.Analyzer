@@ -1,0 +1,61 @@
+{
+  "sourcePath": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/app/livechat/server/lib/parseTranscriptRequest.ts",
+  "symbols": [
+    {
+      "type": "variable_function",
+      "name": "parseTranscriptRequest",
+      "exported": true,
+      "line": 7,
+      "endLine": 61,
+      "signature": "async ( room: IOmnichannelRoom, options: CloseRoomParams['options'], visitor?: ILivechatVisitor, user?: IUser, ): Promise<CloseRoomParams['options']> =>",
+      "calls": [
+        {
+          "name": "get",
+          "edgeType": "call"
+        },
+        {
+          "name": "findOneById",
+          "edgeType": "call"
+        },
+        {
+          "name": "Date",
+          "edgeType": "new"
+        },
+        {
+          "name": "IOmnichannelRoom",
+          "edgeType": "type"
+        },
+        {
+          "name": "CloseRoomParams",
+          "edgeType": "type"
+        },
+        {
+          "name": "ILivechatVisitor",
+          "edgeType": "type"
+        },
+        {
+          "name": "IUser",
+          "edgeType": "type"
+        }
+      ]
+    }
+  ],
+  "imports": [
+    {
+      "module": "@rocket.chat/core-typings",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/models",
+      "resolved": "external"
+    },
+    {
+      "module": "./localTypes",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/app/livechat/server/lib/localTypes.ts"
+    },
+    {
+      "module": "../../../settings/server",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/app/settings/server/index.ts"
+    }
+  ]
+}

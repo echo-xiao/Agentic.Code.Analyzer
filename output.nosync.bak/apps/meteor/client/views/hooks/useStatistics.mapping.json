@@ -1,0 +1,48 @@
+{
+  "sourcePath": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/client/views/hooks/useStatistics.ts",
+  "symbols": [
+    {
+      "type": "variable_function",
+      "name": "useStatistics",
+      "exported": true,
+      "line": 8,
+      "endLine": 16,
+      "signature": "({ refresh }: UseStatisticsOptions = { refresh: 'false' }) =>",
+      "calls": [
+        {
+          "name": "useEndpoint",
+          "edgeType": "call"
+        },
+        {
+          "name": "useQuery",
+          "edgeType": "call"
+        },
+        {
+          "name": "getStatistics",
+          "edgeType": "call"
+        },
+        {
+          "name": "UseStatisticsOptions",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "type",
+      "name": "UseStatisticsOptions",
+      "line": 4,
+      "endLine": 6,
+      "signature": "type UseStatisticsOptions ="
+    }
+  ],
+  "imports": [
+    {
+      "module": "@rocket.chat/ui-contexts",
+      "resolved": "external"
+    },
+    {
+      "module": "@tanstack/react-query",
+      "resolved": "external"
+    }
+  ]
+}

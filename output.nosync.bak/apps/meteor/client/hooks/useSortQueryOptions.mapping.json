@@ -1,0 +1,37 @@
+{
+  "sourcePath": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/client/hooks/useSortQueryOptions.ts",
+  "symbols": [
+    {
+      "type": "variable_function",
+      "name": "useSortQueryOptions",
+      "exported": true,
+      "line": 4,
+      "endLine": 32,
+      "signature": "(): { sort: | { lm?: -1 | 1 | undefined; } | { lowerCaseFName: -1 | 1; lm?: -1 | 1 | undefined; } | { lowerCaseName: -1 | 1; lm?: -1 | 1 | undefined; }; } =>",
+      "calls": [
+        {
+          "name": "useUserPreference",
+          "edgeType": "call"
+        },
+        {
+          "name": "useSetting",
+          "edgeType": "call"
+        },
+        {
+          "name": "useMemo",
+          "edgeType": "call"
+        }
+      ]
+    }
+  ],
+  "imports": [
+    {
+      "module": "@rocket.chat/ui-contexts",
+      "resolved": "external"
+    },
+    {
+      "module": "react",
+      "resolved": "external"
+    }
+  ]
+}

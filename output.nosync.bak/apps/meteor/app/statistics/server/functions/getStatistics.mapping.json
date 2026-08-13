@@ -1,0 +1,71 @@
+{
+  "sourcePath": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/app/statistics/server/functions/getStatistics.ts",
+  "symbols": [
+    {
+      "type": "function",
+      "name": "getStatistics",
+      "exported": true,
+      "line": 20,
+      "endLine": 44,
+      "signature": "export async function getStatistics({ userId, query = {}, pagination: { offset, count, sort, fields }, }: GetStatisticsParams): Promise<GetStatisticsReturn>",
+      "calls": [
+        {
+          "name": "hasPermissionAsync",
+          "edgeType": "call"
+        },
+        {
+          "name": "findPaginated",
+          "edgeType": "call"
+        },
+        {
+          "name": "all",
+          "edgeType": "call"
+        },
+        {
+          "name": "toArray",
+          "edgeType": "call"
+        },
+        {
+          "name": "GetStatisticsParams",
+          "edgeType": "type"
+        },
+        {
+          "name": "GetStatisticsReturn",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "type",
+      "name": "GetStatisticsParams",
+      "line": 7,
+      "endLine": 16,
+      "signature": "type GetStatisticsParams ="
+    },
+    {
+      "type": "type",
+      "name": "GetStatisticsReturn",
+      "line": 18,
+      "endLine": 18,
+      "signature": "type GetStatisticsReturn ="
+    }
+  ],
+  "imports": [
+    {
+      "module": "@rocket.chat/core-typings",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/models",
+      "resolved": "external"
+    },
+    {
+      "module": "mongodb",
+      "resolved": "external"
+    },
+    {
+      "module": "../../../../server/lib/authorization/hasPermission",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/server/lib/authorization/hasPermission.ts"
+    }
+  ]
+}

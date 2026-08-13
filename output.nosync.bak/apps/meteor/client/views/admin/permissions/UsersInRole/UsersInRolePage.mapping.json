@@ -1,0 +1,287 @@
+{
+  "sourcePath": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/client/views/admin/permissions/UsersInRole/UsersInRolePage.tsx",
+  "symbols": [
+    {
+      "type": "variable_function",
+      "name": "UsersInRolePage",
+      "exported": false,
+      "line": 23,
+      "endLine": 173,
+      "signature": "({ role }: UsersInRolePageProps) =>",
+      "calls": [
+        {
+          "name": "useTranslation",
+          "edgeType": "call"
+        },
+        {
+          "name": "useToastMessageDispatch",
+          "edgeType": "call"
+        },
+        {
+          "name": "useQueryClient",
+          "edgeType": "call"
+        },
+        {
+          "name": "useForm",
+          "edgeType": "call"
+        },
+        {
+          "name": "useRouter",
+          "edgeType": "call"
+        },
+        {
+          "name": "useEndpoint",
+          "edgeType": "call"
+        },
+        {
+          "name": "watch",
+          "edgeType": "call"
+        },
+        {
+          "name": "useId",
+          "edgeType": "call"
+        },
+        {
+          "name": "useStableCallback",
+          "edgeType": "call"
+        },
+        {
+          "name": "all",
+          "edgeType": "call"
+        },
+        {
+          "name": "map",
+          "edgeType": "call"
+        },
+        {
+          "name": "addUserToRoleEndpoint",
+          "edgeType": "call"
+        },
+        {
+          "name": "dispatchToastMessage",
+          "edgeType": "call"
+        },
+        {
+          "name": "invalidateQueries",
+          "edgeType": "call"
+        },
+        {
+          "name": "usePagination",
+          "edgeType": "call"
+        },
+        {
+          "name": "useMemo",
+          "edgeType": "call"
+        },
+        {
+          "name": "useQuery",
+          "edgeType": "call"
+        },
+        {
+          "name": "getUsersInRoleEndpoint",
+          "edgeType": "call"
+        },
+        {
+          "name": "useRemoveUserFromRole",
+          "edgeType": "call"
+        },
+        {
+          "name": "navigate",
+          "edgeType": "call"
+        },
+        {
+          "name": "Boolean",
+          "edgeType": "call"
+        },
+        {
+          "name": "handleSubmit",
+          "edgeType": "call"
+        },
+        {
+          "name": "Page",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "PageHeader",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "ButtonGroup",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "Button",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "PageContent",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "Box",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "Margins",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "Field",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "FieldLabel",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "FieldRow",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "FieldError",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "Callout",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "Controller",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "RoomAutoComplete",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "UserAutoCompleteMultiple",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "UsersInRoleTable",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "roomFieldId",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "control",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "value",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "onChange",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "usersFieldId",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "isLoading",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "isError",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "isSuccess",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "handleRemove",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "refetch",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "paginationData",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "UsersInRolePageProps",
+          "edgeType": "type"
+        },
+        {
+          "name": "UsersInRolePayload",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "type",
+      "name": "UsersInRolePayload",
+      "line": 16,
+      "endLine": 19,
+      "signature": "type UsersInRolePayload ="
+    },
+    {
+      "type": "type",
+      "name": "UsersInRolePageProps",
+      "line": 21,
+      "endLine": 21,
+      "signature": "export type UsersInRolePageProps ="
+    }
+  ],
+  "imports": [
+    {
+      "module": "@rocket.chat/core-typings",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/fuselage",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/fuselage-hooks",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/ui-client",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/ui-contexts",
+      "resolved": "external"
+    },
+    {
+      "module": "@tanstack/react-query",
+      "resolved": "external"
+    },
+    {
+      "module": "react",
+      "resolved": "external"
+    },
+    {
+      "module": "react-hook-form",
+      "resolved": "external"
+    },
+    {
+      "module": "react-i18next",
+      "resolved": "external"
+    },
+    {
+      "module": "./UsersInRoleTable",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/client/views/admin/permissions/UsersInRole/UsersInRoleTable/index.ts"
+    },
+    {
+      "module": "./hooks/useRemoveUserFromRole",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/client/views/admin/permissions/UsersInRole/hooks/useRemoveUserFromRole.tsx"
+    },
+    {
+      "module": "../../../../components/RoomAutoComplete",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/client/components/RoomAutoComplete/index.ts"
+    },
+    {
+      "module": "../../../../components/UserAutoCompleteMultiple",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/client/components/UserAutoCompleteMultiple/index.ts"
+    }
+  ]
+}

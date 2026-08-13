@@ -1,0 +1,184 @@
+{
+  "sourcePath": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/server/lib/cas/middleware.ts",
+  "symbols": [
+    {
+      "type": "variable_function",
+      "name": "closePopup",
+      "exported": false,
+      "line": 13,
+      "endLine": 17,
+      "signature": "function (res: ServerResponse): void",
+      "calls": [
+        {
+          "name": "writeHead",
+          "edgeType": "call"
+        },
+        {
+          "name": "end",
+          "edgeType": "call"
+        },
+        {
+          "name": "ServerResponse",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "variable_function",
+      "name": "casTicket",
+      "exported": false,
+      "line": 19,
+      "endLine": 61,
+      "signature": "function (req: IncomingMessageWithUrl, token: string, callback: () => void): void",
+      "calls": [
+        {
+          "name": "get",
+          "edgeType": "call"
+        },
+        {
+          "name": "error",
+          "edgeType": "call"
+        },
+        {
+          "name": "callback",
+          "edgeType": "call"
+        },
+        {
+          "name": "parse",
+          "edgeType": "call"
+        },
+        {
+          "name": "replace",
+          "edgeType": "call"
+        },
+        {
+          "name": "absoluteUrl",
+          "edgeType": "call"
+        },
+        {
+          "name": "debug",
+          "edgeType": "call"
+        },
+        {
+          "name": "validate",
+          "edgeType": "call"
+        },
+        {
+          "name": "info",
+          "edgeType": "call"
+        },
+        {
+          "name": "extend",
+          "edgeType": "call"
+        },
+        {
+          "name": "create",
+          "edgeType": "call"
+        },
+        {
+          "name": "IncomingMessageWithUrl",
+          "edgeType": "type"
+        },
+        {
+          "name": "ICredentialToken",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "variable_function",
+      "name": "middlewareCAS",
+      "exported": true,
+      "line": 23,
+      "endLine": 56,
+      "signature": "function (req: IncomingMessage, res: ServerResponse, next: (err?: any) => void)",
+      "calls": [
+        {
+          "name": "substring",
+          "edgeType": "call"
+        },
+        {
+          "name": "indexOf",
+          "edgeType": "call"
+        },
+        {
+          "name": "split",
+          "edgeType": "call"
+        },
+        {
+          "name": "next",
+          "edgeType": "call"
+        },
+        {
+          "name": "closePopup",
+          "edgeType": "call"
+        },
+        {
+          "name": "casTicket",
+          "edgeType": "call"
+        },
+        {
+          "name": "error",
+          "edgeType": "call"
+        },
+        {
+          "name": "IncomingMessage",
+          "edgeType": "type"
+        },
+        {
+          "name": "ServerResponse",
+          "edgeType": "type"
+        },
+        {
+          "name": "IncomingMessageWithUrl",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "type",
+      "name": "IncomingMessageWithUrl",
+      "line": 17,
+      "endLine": 17,
+      "signature": "type IncomingMessageWithUrl = RequiredField<IncomingMessage, 'url'>;"
+    }
+  ],
+  "imports": [
+    {
+      "module": "node:http",
+      "resolved": "external"
+    },
+    {
+      "module": "node:url",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/cas-validate",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/core-typings",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/models",
+      "resolved": "external"
+    },
+    {
+      "module": "meteor/meteor",
+      "resolved": "external"
+    },
+    {
+      "module": "underscore",
+      "resolved": "external"
+    },
+    {
+      "module": "./logger",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/server/lib/cas/logger.ts"
+    },
+    {
+      "module": "../../../app/settings/server",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/app/settings/server/index.ts"
+    }
+  ]
+}

@@ -1,0 +1,45 @@
+{
+  "sourcePath": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/server/services/authorization/canAccessRoomLivechat.ts",
+  "symbols": [
+    {
+      "type": "variable_function",
+      "name": "canAccessRoomLivechat",
+      "exported": true,
+      "line": 8,
+      "endLine": 31,
+      "signature": "async (room, user, extraData): Promise<boolean> =>",
+      "calls": [
+        {
+          "name": "findOneById",
+          "edgeType": "call"
+        },
+        {
+          "name": "canAccessRoom",
+          "edgeType": "call"
+        },
+        {
+          "name": "IOmnichannelRoom",
+          "edgeType": "type"
+        }
+      ]
+    }
+  ],
+  "imports": [
+    {
+      "module": "@rocket.chat/core-services",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/core-services",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/core-typings",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/models",
+      "resolved": "external"
+    }
+  ]
+}

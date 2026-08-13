@@ -1,0 +1,61 @@
+{
+  "sourcePath": "/Users/echoooooo/Desktop/code/Rocket.Chat/packages/patch-injection/src/makeFunction.ts",
+  "symbols": [
+    {
+      "type": "variable_function",
+      "name": "makeFunction",
+      "exported": true,
+      "line": 4,
+      "endLine": 26,
+      "signature": "<T extends BaseFunction>(fn: T): PatchedFunction<T> =>",
+      "calls": [
+        {
+          "name": "withMiddleware",
+          "edgeType": "call"
+        },
+        {
+          "name": "use",
+          "edgeType": "call"
+        },
+        {
+          "name": "condition",
+          "edgeType": "call"
+        },
+        {
+          "name": "fn",
+          "edgeType": "call"
+        },
+        {
+          "name": "next",
+          "edgeType": "call"
+        },
+        {
+          "name": "assign",
+          "edgeType": "call"
+        },
+        {
+          "name": "BaseFunction",
+          "edgeType": "type"
+        },
+        {
+          "name": "PatchedFunction",
+          "edgeType": "type"
+        },
+        {
+          "name": "PatchFunction",
+          "edgeType": "type"
+        }
+      ]
+    }
+  ],
+  "imports": [
+    {
+      "module": "./definition",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/packages/patch-injection/src/definition.ts"
+    },
+    {
+      "module": "./midleware",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/packages/patch-injection/src/midleware.ts"
+    }
+  ]
+}

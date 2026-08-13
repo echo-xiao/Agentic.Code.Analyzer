@@ -1,0 +1,100 @@
+{
+  "sourcePath": "/Users/echoooooo/Desktop/code/Rocket.Chat/packages/ui-voip/src/definitions/callHistoryContacts.ts",
+  "symbols": [
+    {
+      "type": "variable_function",
+      "name": "isCallHistoryUnknownContact",
+      "exported": true,
+      "line": 20,
+      "endLine": 22,
+      "signature": "(contact: CallHistoryContact): contact is CallHistoryUnknownContact =>",
+      "calls": [
+        {
+          "name": "CallHistoryContact",
+          "edgeType": "type"
+        },
+        {
+          "name": "CallHistoryUnknownContact",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "variable_function",
+      "name": "isCallHistoryInternalContact",
+      "exported": true,
+      "line": 24,
+      "endLine": 26,
+      "signature": "(contact: CallHistoryContact): contact is CallHistoryInternalContact =>",
+      "calls": [
+        {
+          "name": "Boolean",
+          "edgeType": "call"
+        },
+        {
+          "name": "CallHistoryContact",
+          "edgeType": "type"
+        },
+        {
+          "name": "CallHistoryInternalContact",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "variable_function",
+      "name": "isCallHistoryExternalContact",
+      "exported": true,
+      "line": 28,
+      "endLine": 30,
+      "signature": "(contact: CallHistoryContact): contact is CallHistoryExternalContact =>",
+      "calls": [
+        {
+          "name": "isCallHistoryUnknownContact",
+          "edgeType": "call"
+        },
+        {
+          "name": "isCallHistoryInternalContact",
+          "edgeType": "call"
+        },
+        {
+          "name": "CallHistoryContact",
+          "edgeType": "type"
+        },
+        {
+          "name": "CallHistoryExternalContact",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "type",
+      "name": "CallHistoryExternalContact",
+      "line": 1,
+      "endLine": 3,
+      "signature": "export type CallHistoryExternalContact ="
+    },
+    {
+      "type": "type",
+      "name": "CallHistoryInternalContact",
+      "line": 5,
+      "endLine": 12,
+      "signature": "export type CallHistoryInternalContact ="
+    },
+    {
+      "type": "type",
+      "name": "CallHistoryUnknownContact",
+      "line": 14,
+      "endLine": 16,
+      "signature": "export type CallHistoryUnknownContact ="
+    },
+    {
+      "type": "type",
+      "name": "CallHistoryContact",
+      "line": 18,
+      "endLine": 18,
+      "signature": "export type CallHistoryContact = CallHistoryInternalContact | CallHistoryExternalContact | CallHistoryUnknownContact;"
+    }
+  ],
+  "imports": []
+}

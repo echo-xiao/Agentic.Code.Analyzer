@@ -1,0 +1,37 @@
+{
+  "sourcePath": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/app/livechat/server/lib/isMessageFromBot.ts",
+  "symbols": [
+    {
+      "type": "function",
+      "name": "isMessageFromBot",
+      "exported": true,
+      "line": 4,
+      "endLine": 6,
+      "signature": "export async function isMessageFromBot(message: IMessage): Promise<Pick<IUser, '_id' | 'roles'> | null>",
+      "calls": [
+        {
+          "name": "isUserInRole",
+          "edgeType": "call"
+        },
+        {
+          "name": "IMessage",
+          "edgeType": "type"
+        },
+        {
+          "name": "IUser",
+          "edgeType": "type"
+        }
+      ]
+    }
+  ],
+  "imports": [
+    {
+      "module": "@rocket.chat/core-typings",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/models",
+      "resolved": "external"
+    }
+  ]
+}

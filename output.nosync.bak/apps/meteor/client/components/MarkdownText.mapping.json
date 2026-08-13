@@ -1,0 +1,310 @@
+{
+  "sourcePath": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/client/components/MarkdownText.tsx",
+  "symbols": [
+    {
+      "type": "module",
+      "name": "MarkdownText",
+      "exported": false,
+      "line": 1,
+      "endLine": 213,
+      "signature": "MarkdownText",
+      "calls": [
+        {
+          "name": "use",
+          "edgeType": "call"
+        },
+        {
+          "name": "addHook",
+          "edgeType": "call"
+        },
+        {
+          "name": "isLinkElement",
+          "edgeType": "call"
+        },
+        {
+          "name": "getAttribute",
+          "edgeType": "call"
+        },
+        {
+          "name": "isExternal",
+          "edgeType": "call"
+        },
+        {
+          "name": "startsWith",
+          "edgeType": "call"
+        },
+        {
+          "name": "setAttribute",
+          "edgeType": "call"
+        },
+        {
+          "name": "replace",
+          "edgeType": "call"
+        },
+        {
+          "name": "getBaseURI",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "variable_function",
+      "name": "walkTokens",
+      "exported": false,
+      "line": 23,
+      "endLine": 31,
+      "signature": "(token: marked.Token) =>",
+      "calls": [
+        {
+          "name": "test",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "variable_function",
+      "name": "linkMarked",
+      "exported": false,
+      "line": 29,
+      "endLine": 31,
+      "signature": "(href: string | null, _title: string | null, text: string): string =>",
+      "calls": []
+    },
+    {
+      "type": "variable_function",
+      "name": "paragraphMarked",
+      "exported": false,
+      "line": 32,
+      "endLine": 32,
+      "signature": "(text: string): string =>",
+      "calls": []
+    },
+    {
+      "type": "variable_function",
+      "name": "brMarked",
+      "exported": false,
+      "line": 33,
+      "endLine": 33,
+      "signature": "(): string =>",
+      "calls": []
+    },
+    {
+      "type": "variable_function",
+      "name": "listItemMarked",
+      "exported": false,
+      "line": 34,
+      "endLine": 37,
+      "signature": "(text: string): string =>",
+      "calls": [
+        {
+          "name": "replace",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "variable_function",
+      "name": "horizontalRuleMarked",
+      "exported": false,
+      "line": 37,
+      "endLine": 37,
+      "signature": "(): string =>",
+      "calls": []
+    },
+    {
+      "type": "variable_function",
+      "name": "codeMarked",
+      "exported": false,
+      "line": 38,
+      "endLine": 43,
+      "signature": "(code: string, language: string | undefined, _isEscaped: boolean): string =>",
+      "calls": []
+    },
+    {
+      "type": "variable_function",
+      "name": "codespanMarked",
+      "exported": false,
+      "line": 41,
+      "endLine": 43,
+      "signature": "(code: string): string =>",
+      "calls": [
+        {
+          "name": "replace",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "variable_function",
+      "name": "getRegexp",
+      "exported": false,
+      "line": 85,
+      "endLine": 89,
+      "signature": "(supportedURISchemes: string[]): RegExp =>",
+      "calls": [
+        {
+          "name": "join",
+          "edgeType": "call"
+        },
+        {
+          "name": "RegExp",
+          "edgeType": "new"
+        }
+      ]
+    },
+    {
+      "type": "variable",
+      "name": "supportedURISchemes",
+      "exported": true,
+      "line": 91,
+      "endLine": 91,
+      "signature": "supportedURISchemes = ['http', 'https', 'notes', 'ftp', 'ftps', 'tel', 'mailto', 'sms', 'cid']",
+      "calls": []
+    },
+    {
+      "type": "variable_function",
+      "name": "isElement",
+      "exported": false,
+      "line": 93,
+      "endLine": 93,
+      "signature": "(node: Node): node is Element =>",
+      "calls": []
+    },
+    {
+      "type": "variable_function",
+      "name": "isLinkElement",
+      "exported": false,
+      "line": 94,
+      "endLine": 94,
+      "signature": "(node: Node): node is HTMLAnchorElement =>",
+      "calls": [
+        {
+          "name": "isElement",
+          "edgeType": "call"
+        },
+        {
+          "name": "toLowerCase",
+          "edgeType": "call"
+        },
+        {
+          "name": "HTMLAnchorElement",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "variable_function",
+      "name": "MarkdownText",
+      "exported": false,
+      "line": 136,
+      "endLine": 198,
+      "signature": "({ content, variant = 'document', withTruncatedText = false, preserveHtml = false, parseEmoji = false, ...props }: MarkdownTextProps) =>",
+      "calls": [
+        {
+          "name": "useTranslation",
+          "edgeType": "call"
+        },
+        {
+          "name": "useMemo",
+          "edgeType": "call"
+        },
+        {
+          "name": "test",
+          "edgeType": "call"
+        },
+        {
+          "name": "parseInline",
+          "edgeType": "call"
+        },
+        {
+          "name": "parse",
+          "edgeType": "call"
+        },
+        {
+          "name": "renderMessageEmoji",
+          "edgeType": "call"
+        },
+        {
+          "name": "sanitizer",
+          "edgeType": "call"
+        },
+        {
+          "name": "getRegexp",
+          "edgeType": "call"
+        },
+        {
+          "name": "replace",
+          "edgeType": "call"
+        },
+        {
+          "name": "Box",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "withTruncatedText",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "Option",
+          "edgeType": "new"
+        },
+        {
+          "name": "RegExp",
+          "edgeType": "new"
+        },
+        {
+          "name": "MarkdownTextProps",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "type",
+      "name": "MarkdownTextParams",
+      "line": 11,
+      "endLine": 17,
+      "signature": "type MarkdownTextParams ="
+    },
+    {
+      "type": "type",
+      "name": "MarkdownTextProps",
+      "line": 89,
+      "endLine": 89,
+      "signature": "export type MarkdownTextProps = Partial<MarkdownTextParams>;"
+    }
+  ],
+  "imports": [
+    {
+      "module": "@rocket.chat/fuselage",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/ui-client",
+      "resolved": "external"
+    },
+    {
+      "module": "dompurify",
+      "resolved": "external"
+    },
+    {
+      "module": "marked",
+      "resolved": "external"
+    },
+    {
+      "module": "react",
+      "resolved": "external"
+    },
+    {
+      "module": "react",
+      "resolved": "external"
+    },
+    {
+      "module": "react-i18next",
+      "resolved": "external"
+    },
+    {
+      "module": "../lib/utils/renderMessageEmoji",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/client/lib/utils/renderMessageEmoji.ts"
+    }
+  ]
+}

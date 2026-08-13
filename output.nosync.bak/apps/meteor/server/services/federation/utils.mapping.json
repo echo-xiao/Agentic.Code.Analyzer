@@ -1,0 +1,68 @@
+{
+  "sourcePath": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/server/services/federation/utils.ts",
+  "symbols": [
+    {
+      "type": "class",
+      "name": "FederationMatrixInvalidConfigurationError",
+      "exported": true,
+      "line": 13,
+      "endLine": 22,
+      "signature": "export class FederationMatrixInvalidConfigurationError extends Error",
+      "calls": []
+    },
+    {
+      "type": "method",
+      "name": "constructor",
+      "exported": true,
+      "qualifiedName": "FederationMatrixInvalidConfigurationError.constructor",
+      "line": 14,
+      "endLine": 21,
+      "signature": "constructor(cause?: string)",
+      "containerClass": "FederationMatrixInvalidConfigurationError",
+      "calls": [
+        {
+          "name": "toLowerCase",
+          "edgeType": "call"
+        },
+        {
+          "name": "slice",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "function",
+      "name": "isFederationEnabled",
+      "exported": true,
+      "line": 3,
+      "endLine": 5,
+      "signature": "export function isFederationEnabled(): boolean",
+      "calls": [
+        {
+          "name": "get",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "function",
+      "name": "throwIfFederationNotEnabled",
+      "exported": true,
+      "line": 7,
+      "endLine": 11,
+      "signature": "export function throwIfFederationNotEnabled(): void",
+      "calls": [
+        {
+          "name": "isFederationEnabled",
+          "edgeType": "call"
+        }
+      ]
+    }
+  ],
+  "imports": [
+    {
+      "module": "../../../app/settings/server",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/app/settings/server/index.ts"
+    }
+  ]
+}

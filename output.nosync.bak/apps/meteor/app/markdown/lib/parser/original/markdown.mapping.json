@@ -1,0 +1,179 @@
+{
+  "sourcePath": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/app/markdown/lib/parser/original/markdown.js",
+  "symbols": [
+    {
+      "type": "variable_function",
+      "name": "validateUrl",
+      "exported": false,
+      "line": 3,
+      "endLine": 20,
+      "signature": "(url, message) =>",
+      "calls": [
+        {
+          "name": "some",
+          "edgeType": "call"
+        },
+        {
+          "name": "includes",
+          "edgeType": "call"
+        },
+        {
+          "name": "test",
+          "edgeType": "call"
+        },
+        {
+          "name": "trim",
+          "edgeType": "call"
+        },
+        {
+          "name": "URL",
+          "edgeType": "new"
+        }
+      ]
+    },
+    {
+      "type": "variable_function",
+      "name": "endsWithWhitespace",
+      "exported": false,
+      "line": 7,
+      "endLine": 7,
+      "signature": "(text) =>",
+      "calls": [
+        {
+          "name": "match",
+          "edgeType": "call"
+        },
+        {
+          "name": "substring",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "variable_function",
+      "name": "getParseableMarkersCount",
+      "exported": false,
+      "line": 9,
+      "endLine": 12,
+      "signature": "(start, end) =>",
+      "calls": []
+    },
+    {
+      "type": "variable_function",
+      "name": "getTextWrapper",
+      "exported": false,
+      "line": 13,
+      "endLine": 14,
+      "signature": "(marker, tagName) =>",
+      "calls": []
+    },
+    {
+      "type": "variable_function",
+      "name": "getRegexReplacer",
+      "exported": false,
+      "line": 16,
+      "endLine": 19,
+      "signature": "(replaceFunction, getRegex) =>",
+      "calls": [
+        {
+          "name": "getTextWrapper",
+          "edgeType": "call"
+        },
+        {
+          "name": "replace",
+          "edgeType": "call"
+        },
+        {
+          "name": "getRegex",
+          "edgeType": "call"
+        },
+        {
+          "name": "replaceFunction",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "variable_function",
+      "name": "parseNotEscaped",
+      "exported": false,
+      "line": 48,
+      "endLine": 167,
+      "signature": "(message, { supportSchemesForLink, headers, rootUrl }) =>",
+      "calls": [
+        {
+          "name": "join",
+          "edgeType": "call"
+        },
+        {
+          "name": "split",
+          "edgeType": "call"
+        },
+        {
+          "name": "replace",
+          "edgeType": "call"
+        },
+        {
+          "name": "parseBold",
+          "edgeType": "call"
+        },
+        {
+          "name": "parseItalic",
+          "edgeType": "call"
+        },
+        {
+          "name": "parseStrike",
+          "edgeType": "call"
+        },
+        {
+          "name": "validateUrl",
+          "edgeType": "call"
+        },
+        {
+          "name": "isToken",
+          "edgeType": "call"
+        },
+        {
+          "name": "validateAllowedTokens",
+          "edgeType": "call"
+        },
+        {
+          "name": "encodeURI",
+          "edgeType": "call"
+        },
+        {
+          "name": "indexOf",
+          "edgeType": "call"
+        },
+        {
+          "name": "addAsToken",
+          "edgeType": "call"
+        },
+        {
+          "name": "RegExp",
+          "edgeType": "new"
+        }
+      ]
+    },
+    {
+      "type": "variable_function",
+      "name": "markdown",
+      "exported": true,
+      "line": 52,
+      "endLine": 55,
+      "signature": "(message, options) =>",
+      "calls": [
+        {
+          "name": "parseNotEscaped",
+          "edgeType": "call"
+        }
+      ]
+    }
+  ],
+  "imports": [
+    {
+      "module": "./token",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/app/markdown/lib/parser/original/token.ts"
+    }
+  ]
+}

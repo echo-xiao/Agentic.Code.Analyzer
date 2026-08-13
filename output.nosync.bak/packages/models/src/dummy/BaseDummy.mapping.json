@@ -1,0 +1,696 @@
+{
+  "sourcePath": "/Users/echoooooo/Desktop/code/Rocket.Chat/packages/models/src/dummy/BaseDummy.ts",
+  "symbols": [
+    {
+      "type": "class",
+      "name": "BaseDummy",
+      "exported": true,
+      "line": 25,
+      "endLine": 217,
+      "signature": "export class BaseDummy< T extends",
+      "calls": [
+        {
+          "name": "IBaseModel",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "createIndexes",
+      "exported": true,
+      "qualifiedName": "BaseDummy.createIndexes",
+      "line": 40,
+      "endLine": 42,
+      "signature": "public async createIndexes(): Promise<string[] | void>",
+      "containerClass": "BaseDummy",
+      "calls": []
+    },
+    {
+      "type": "method",
+      "name": "getUpdater",
+      "exported": true,
+      "qualifiedName": "BaseDummy.getUpdater",
+      "line": 44,
+      "endLine": 46,
+      "signature": "public getUpdater(): Updater<T>",
+      "containerClass": "BaseDummy",
+      "calls": [
+        {
+          "name": "UpdaterImpl",
+          "edgeType": "new"
+        },
+        {
+          "name": "Updater",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "updateFromUpdater",
+      "exported": true,
+      "qualifiedName": "BaseDummy.updateFromUpdater",
+      "line": 48,
+      "endLine": 50,
+      "signature": "public updateFromUpdater(query: Filter<T>, updater: Updater<T>): Promise<UpdateResult>",
+      "containerClass": "BaseDummy",
+      "calls": [
+        {
+          "name": "updateOne",
+          "edgeType": "call"
+        },
+        {
+          "name": "Filter",
+          "edgeType": "type"
+        },
+        {
+          "name": "Updater",
+          "edgeType": "type"
+        },
+        {
+          "name": "UpdateResult",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "getCollectionName",
+      "exported": true,
+      "qualifiedName": "BaseDummy.getCollectionName",
+      "line": 52,
+      "endLine": 54,
+      "signature": "getCollectionName(): string",
+      "containerClass": "BaseDummy",
+      "calls": []
+    },
+    {
+      "type": "method",
+      "name": "findOneAndDelete",
+      "exported": true,
+      "qualifiedName": "BaseDummy.findOneAndDelete",
+      "line": 56,
+      "endLine": 58,
+      "signature": "async findOneAndDelete(): Promise<WithId<T> | null>",
+      "containerClass": "BaseDummy",
+      "calls": [
+        {
+          "name": "WithId",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "findOneAndDeleteById",
+      "exported": true,
+      "qualifiedName": "BaseDummy.findOneAndDeleteById",
+      "line": 60,
+      "endLine": 62,
+      "signature": "async findOneAndDeleteById(_id: T['_id']): Promise<WithId<T> | null>",
+      "containerClass": "BaseDummy",
+      "calls": [
+        {
+          "name": "WithId",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "findOneAndUpdate",
+      "exported": true,
+      "qualifiedName": "BaseDummy.findOneAndUpdate",
+      "line": 64,
+      "endLine": 66,
+      "signature": "async findOneAndUpdate(): Promise<WithId<T> | null>",
+      "containerClass": "BaseDummy",
+      "calls": [
+        {
+          "name": "WithId",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "findOneById",
+      "exported": true,
+      "qualifiedName": "BaseDummy.findOneById",
+      "line": 72,
+      "endLine": 74,
+      "signature": "async findOneById(_id: T['_id'], _options?: any): Promise<T | null>",
+      "containerClass": "BaseDummy",
+      "calls": []
+    },
+    {
+      "type": "method",
+      "name": "findOne",
+      "exported": true,
+      "qualifiedName": "BaseDummy.findOne",
+      "line": 80,
+      "endLine": 82,
+      "signature": "async findOne<P>(_query: Filter<T> | T['_id'], _options?: any): Promise<WithId<T> | WithId<P> | null>",
+      "containerClass": "BaseDummy",
+      "calls": [
+        {
+          "name": "Filter",
+          "edgeType": "type"
+        },
+        {
+          "name": "WithId",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "find",
+      "exported": true,
+      "qualifiedName": "BaseDummy.find",
+      "line": 88,
+      "endLine": 93,
+      "signature": "find<P extends Document>( _query: Filter<T> | undefined, _options?: FindOptions<P extends T ? T : P>, ): FindCursor<WithId<P>> | FindCursor<WithId<T>>",
+      "containerClass": "BaseDummy",
+      "calls": [
+        {
+          "name": "Document",
+          "edgeType": "type"
+        },
+        {
+          "name": "Filter",
+          "edgeType": "type"
+        },
+        {
+          "name": "FindOptions",
+          "edgeType": "type"
+        },
+        {
+          "name": "FindCursor",
+          "edgeType": "type"
+        },
+        {
+          "name": "WithId",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "findPaginated",
+      "exported": true,
+      "qualifiedName": "BaseDummy.findPaginated",
+      "line": 97,
+      "endLine": 102,
+      "signature": "findPaginated(_query: Filter<T>, _options?: any): FindPaginated<FindCursor<WithId<T>>>",
+      "containerClass": "BaseDummy",
+      "calls": [
+        {
+          "name": "resolve",
+          "edgeType": "call"
+        },
+        {
+          "name": "Filter",
+          "edgeType": "type"
+        },
+        {
+          "name": "FindPaginated",
+          "edgeType": "type"
+        },
+        {
+          "name": "FindCursor",
+          "edgeType": "type"
+        },
+        {
+          "name": "WithId",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "update",
+      "exported": true,
+      "qualifiedName": "BaseDummy.update",
+      "line": 101,
+      "endLine": 107,
+      "signature": "async update( filter: Filter<T>, update: UpdateFilter<T> | Partial<T>, options?: UpdateOptions & { multi?: true }, ): Promise<UpdateResult | Document>",
+      "containerClass": "BaseDummy",
+      "calls": [
+        {
+          "name": "updateOne",
+          "edgeType": "call"
+        },
+        {
+          "name": "Filter",
+          "edgeType": "type"
+        },
+        {
+          "name": "UpdateFilter",
+          "edgeType": "type"
+        },
+        {
+          "name": "UpdateOptions",
+          "edgeType": "type"
+        },
+        {
+          "name": "UpdateResult",
+          "edgeType": "type"
+        },
+        {
+          "name": "Document",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "updateOne",
+      "exported": true,
+      "qualifiedName": "BaseDummy.updateOne",
+      "line": 109,
+      "endLine": 117,
+      "signature": "async updateOne(_filter: Filter<T>, _update: UpdateFilter<T> | Partial<T>, _options?: UpdateOptions): Promise<UpdateResult>",
+      "containerClass": "BaseDummy",
+      "calls": [
+        {
+          "name": "Filter",
+          "edgeType": "type"
+        },
+        {
+          "name": "UpdateFilter",
+          "edgeType": "type"
+        },
+        {
+          "name": "UpdateOptions",
+          "edgeType": "type"
+        },
+        {
+          "name": "UpdateResult",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "updateMany",
+      "exported": true,
+      "qualifiedName": "BaseDummy.updateMany",
+      "line": 113,
+      "endLine": 115,
+      "signature": "async updateMany(filter: Filter<T>, update: UpdateFilter<T> | Partial<T>, options?: UpdateOptions): Promise<Document | UpdateResult>",
+      "containerClass": "BaseDummy",
+      "calls": [
+        {
+          "name": "updateOne",
+          "edgeType": "call"
+        },
+        {
+          "name": "Filter",
+          "edgeType": "type"
+        },
+        {
+          "name": "UpdateFilter",
+          "edgeType": "type"
+        },
+        {
+          "name": "UpdateOptions",
+          "edgeType": "type"
+        },
+        {
+          "name": "Document",
+          "edgeType": "type"
+        },
+        {
+          "name": "UpdateResult",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "insertMany",
+      "exported": true,
+      "qualifiedName": "BaseDummy.insertMany",
+      "line": 117,
+      "endLine": 123,
+      "signature": "async insertMany(_docs: InsertionModel<T>[], _options?: BulkWriteOptions): Promise<InsertManyResult<T>>",
+      "containerClass": "BaseDummy",
+      "calls": [
+        {
+          "name": "InsertionModel",
+          "edgeType": "type"
+        },
+        {
+          "name": "BulkWriteOptions",
+          "edgeType": "type"
+        },
+        {
+          "name": "InsertManyResult",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "insertOne",
+      "exported": true,
+      "qualifiedName": "BaseDummy.insertOne",
+      "line": 121,
+      "endLine": 126,
+      "signature": "async insertOne(_doc: InsertionModel<T>, _options?: InsertOneOptions): Promise<InsertOneResult<T>>",
+      "containerClass": "BaseDummy",
+      "calls": [
+        {
+          "name": "InsertionModel",
+          "edgeType": "type"
+        },
+        {
+          "name": "InsertOneOptions",
+          "edgeType": "type"
+        },
+        {
+          "name": "InsertOneResult",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "removeById",
+      "exported": true,
+      "qualifiedName": "BaseDummy.removeById",
+      "line": 125,
+      "endLine": 130,
+      "signature": "async removeById(_id: T['_id']): Promise<DeleteResult>",
+      "containerClass": "BaseDummy",
+      "calls": [
+        {
+          "name": "DeleteResult",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "removeByIds",
+      "exported": true,
+      "qualifiedName": "BaseDummy.removeByIds",
+      "line": 129,
+      "endLine": 134,
+      "signature": "async removeByIds(_ids: T['_id'][]): Promise<DeleteResult>",
+      "containerClass": "BaseDummy",
+      "calls": [
+        {
+          "name": "DeleteResult",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "deleteOne",
+      "exported": true,
+      "qualifiedName": "BaseDummy.deleteOne",
+      "line": 133,
+      "endLine": 135,
+      "signature": "async deleteOne(filter: Filter<T>, options?: DeleteOptions & { bypassDocumentValidation?: boolean }): Promise<DeleteResult>",
+      "containerClass": "BaseDummy",
+      "calls": [
+        {
+          "name": "deleteMany",
+          "edgeType": "call"
+        },
+        {
+          "name": "Filter",
+          "edgeType": "type"
+        },
+        {
+          "name": "DeleteOptions",
+          "edgeType": "type"
+        },
+        {
+          "name": "DeleteResult",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "deleteMany",
+      "exported": true,
+      "qualifiedName": "BaseDummy.deleteMany",
+      "line": 137,
+      "endLine": 142,
+      "signature": "async deleteMany(_filter: Filter<T>, _options?: DeleteOptions): Promise<DeleteResult>",
+      "containerClass": "BaseDummy",
+      "calls": [
+        {
+          "name": "Filter",
+          "edgeType": "type"
+        },
+        {
+          "name": "DeleteOptions",
+          "edgeType": "type"
+        },
+        {
+          "name": "DeleteResult",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "trashFind",
+      "exported": true,
+      "qualifiedName": "BaseDummy.trashFind",
+      "line": 142,
+      "endLine": 147,
+      "signature": "trashFind<P extends TDeleted>( _query: Filter<TDeleted>, _options?: FindOptions<P extends TDeleted ? TDeleted : P>, ): FindCursor<WithId<TDeleted>> | undefined",
+      "containerClass": "BaseDummy",
+      "calls": [
+        {
+          "name": "TDeleted",
+          "edgeType": "type"
+        },
+        {
+          "name": "Filter",
+          "edgeType": "type"
+        },
+        {
+          "name": "FindOptions",
+          "edgeType": "type"
+        },
+        {
+          "name": "FindCursor",
+          "edgeType": "type"
+        },
+        {
+          "name": "WithId",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "trashFindOneById",
+      "exported": true,
+      "qualifiedName": "BaseDummy.trashFindOneById",
+      "line": 153,
+      "endLine": 158,
+      "signature": "async trashFindOneById<P extends TDeleted>( _id: TDeleted['_id'], _options?: FindOptions<P extends TDeleted ? TDeleted : P>, ): Promise<WithId<RocketChatRecordDeleted<P> | TDeleted> | null>",
+      "containerClass": "BaseDummy",
+      "calls": [
+        {
+          "name": "TDeleted",
+          "edgeType": "type"
+        },
+        {
+          "name": "FindOptions",
+          "edgeType": "type"
+        },
+        {
+          "name": "WithId",
+          "edgeType": "type"
+        },
+        {
+          "name": "RocketChatRecordDeleted",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "trashFindDeletedAfter",
+      "exported": true,
+      "qualifiedName": "BaseDummy.trashFindDeletedAfter",
+      "line": 162,
+      "endLine": 168,
+      "signature": "trashFindDeletedAfter<P extends Document = TDeleted>( _deletedAt: Date, _query?: Filter<TDeleted>, _options?: FindOptions<P extends TDeleted ? TDeleted : P>, ): FindCursor<WithId<TDeleted>>",
+      "containerClass": "BaseDummy",
+      "calls": [
+        {
+          "name": "Document",
+          "edgeType": "type"
+        },
+        {
+          "name": "TDeleted",
+          "edgeType": "type"
+        },
+        {
+          "name": "Filter",
+          "edgeType": "type"
+        },
+        {
+          "name": "FindOptions",
+          "edgeType": "type"
+        },
+        {
+          "name": "FindCursor",
+          "edgeType": "type"
+        },
+        {
+          "name": "WithId",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "trashFindPaginatedDeletedAfter",
+      "exported": true,
+      "qualifiedName": "BaseDummy.trashFindPaginatedDeletedAfter",
+      "line": 170,
+      "endLine": 179,
+      "signature": "trashFindPaginatedDeletedAfter<P extends Document = TDeleted>( _deletedAt: Date, _query?: Filter<TDeleted>, _options?: FindOptions<P extends TDeleted ? TDeleted : P>, ): FindPaginated<FindCursor<WithId<TDeleted>>>",
+      "containerClass": "BaseDummy",
+      "calls": [
+        {
+          "name": "resolve",
+          "edgeType": "call"
+        },
+        {
+          "name": "Document",
+          "edgeType": "type"
+        },
+        {
+          "name": "TDeleted",
+          "edgeType": "type"
+        },
+        {
+          "name": "Filter",
+          "edgeType": "type"
+        },
+        {
+          "name": "FindOptions",
+          "edgeType": "type"
+        },
+        {
+          "name": "FindPaginated",
+          "edgeType": "type"
+        },
+        {
+          "name": "FindCursor",
+          "edgeType": "type"
+        },
+        {
+          "name": "WithId",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "watch",
+      "exported": true,
+      "qualifiedName": "BaseDummy.watch",
+      "line": 178,
+      "endLine": 180,
+      "signature": "watch(_pipeline?: object[]): ChangeStream<T>",
+      "containerClass": "BaseDummy",
+      "calls": [
+        {
+          "name": "ChangeStream",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "countDocuments",
+      "exported": true,
+      "qualifiedName": "BaseDummy.countDocuments",
+      "line": 182,
+      "endLine": 184,
+      "signature": "async countDocuments(): Promise<number>",
+      "containerClass": "BaseDummy",
+      "calls": []
+    },
+    {
+      "type": "method",
+      "name": "estimatedDocumentCount",
+      "exported": true,
+      "qualifiedName": "BaseDummy.estimatedDocumentCount",
+      "line": 186,
+      "endLine": 188,
+      "signature": "async estimatedDocumentCount(): Promise<number>",
+      "containerClass": "BaseDummy",
+      "calls": []
+    },
+    {
+      "type": "method",
+      "name": "constructor",
+      "exported": true,
+      "qualifiedName": "BaseDummy.constructor",
+      "line": 35,
+      "endLine": 38,
+      "signature": "constructor(protected name: string)",
+      "containerClass": "BaseDummy",
+      "calls": [
+        {
+          "name": "getCollectionName",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "class_property",
+      "name": "col",
+      "exported": true,
+      "qualifiedName": "BaseDummy.col",
+      "line": 31,
+      "endLine": 31,
+      "signature": "public readonly col: Collection<T>;",
+      "containerClass": "BaseDummy",
+      "calls": [
+        {
+          "name": "Collection",
+          "edgeType": "type"
+        }
+      ]
+    }
+  ],
+  "imports": [
+    {
+      "module": "@rocket.chat/core-typings",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/model-typings",
+      "resolved": "external"
+    },
+    {
+      "module": "mongodb",
+      "resolved": "external"
+    },
+    {
+      "module": "../index",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/packages/models/src/index.ts"
+    },
+    {
+      "module": "../updater",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/packages/models/src/updater.ts"
+    }
+  ]
+}

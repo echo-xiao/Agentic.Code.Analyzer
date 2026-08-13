@@ -1,0 +1,83 @@
+{
+  "sourcePath": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/imports/personal-access-tokens/server/api/methods/removeToken.ts",
+  "symbols": [
+    {
+      "type": "module",
+      "name": "removeToken",
+      "exported": false,
+      "line": 1,
+      "endLine": 50,
+      "signature": "removeToken",
+      "calls": [
+        {
+          "name": "personalAccessTokens:removeToken",
+          "edgeType": "call"
+        },
+        {
+          "name": "methods",
+          "edgeType": "call"
+        },
+        {
+          "name": "twoFactorRequired",
+          "edgeType": "call"
+        },
+        {
+          "name": "userId",
+          "edgeType": "call"
+        },
+        {
+          "name": "removePersonalAccessTokenOfUser",
+          "edgeType": "call"
+        },
+        {
+          "name": "ServerMethods",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "variable_function",
+      "name": "removePersonalAccessTokenOfUser",
+      "exported": true,
+      "line": 14,
+      "endLine": 36,
+      "signature": "async (tokenName: string, userId: string): Promise<void> =>",
+      "calls": [
+        {
+          "name": "hasPermissionAsync",
+          "edgeType": "call"
+        },
+        {
+          "name": "findPersonalAccessTokenByTokenNameAndUserId",
+          "edgeType": "call"
+        },
+        {
+          "name": "removePersonalAccessTokenOfUser",
+          "edgeType": "call"
+        }
+      ]
+    }
+  ],
+  "imports": [
+    {
+      "module": "meteor/meteor",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/ddp-client",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/models",
+      "resolved": "external"
+    },
+    {
+      "module": "../../../../../server/lib/authorization/hasPermission",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/server/lib/authorization/hasPermission.ts"
+    },
+    {
+      "module": "../../../../../app/2fa/server/twoFactorRequired",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/app/2fa/server/twoFactorRequired.ts"
+    }
+  ]
+}

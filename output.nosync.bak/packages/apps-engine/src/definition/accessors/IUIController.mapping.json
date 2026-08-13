@@ -1,0 +1,47 @@
+{
+  "sourcePath": "/Users/echoooooo/Desktop/code/Rocket.Chat/packages/apps-engine/src/definition/accessors/IUIController.ts",
+  "symbols": [
+    {
+      "type": "interface",
+      "name": "IUIController",
+      "line": 10,
+      "endLine": 30,
+      "signature": "export interface IUIController"
+    },
+    {
+      "type": "type",
+      "name": "IUIKitInteractionParam",
+      "line": 5,
+      "endLine": 5,
+      "signature": "export type IUIKitInteractionParam = Omit<IUIKitInteraction, 'appId' | 'type'>;"
+    },
+    {
+      "type": "type",
+      "name": "IUIKitErrorInteractionParam",
+      "line": 6,
+      "endLine": 6,
+      "signature": "export type IUIKitErrorInteractionParam = Omit<IUIKitErrorInteraction, 'type' | 'appId' | 'triggerId'>;"
+    },
+    {
+      "type": "type",
+      "name": "IUIKitSurfaceViewParam",
+      "line": 8,
+      "endLine": 8,
+      "signature": "export type IUIKitSurfaceViewParam = Omit<IUIKitSurface, 'appId' | 'id'> & Partial<Pick<IUIKitSurface, 'id'>>;"
+    }
+  ],
+  "imports": [
+    {
+      "module": "../uikit",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/packages/apps-engine/src/definition/uikit/index.ts"
+    },
+    {
+      "module": "../uikit/UIKitInteractionResponder",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/packages/apps-engine/src/definition/uikit/UIKitInteractionResponder.ts"
+    },
+    {
+      "module": "../users",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/packages/apps-engine/src/definition/users/index.ts"
+    }
+  ]
+}

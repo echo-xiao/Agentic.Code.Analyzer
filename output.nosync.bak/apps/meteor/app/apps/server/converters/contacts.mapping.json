@@ -1,0 +1,113 @@
+{
+  "sourcePath": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/app/apps/server/converters/contacts.ts",
+  "symbols": [
+    {
+      "type": "class",
+      "name": "AppContactsConverter",
+      "exported": true,
+      "line": 7,
+      "endLine": 125,
+      "signature": "export class AppContactsConverter implements IAppContactsConverter",
+      "calls": [
+        {
+          "name": "IAppContactsConverter",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "convertById",
+      "exported": true,
+      "qualifiedName": "AppContactsConverter.convertById",
+      "line": 8,
+      "endLine": 15,
+      "signature": "async convertById(contactId: ILivechatContact['_id']): Promise<IAppsLivechatContact | undefined>",
+      "containerClass": "AppContactsConverter",
+      "calls": [
+        {
+          "name": "findOneEnabledById",
+          "edgeType": "call"
+        },
+        {
+          "name": "convertContact",
+          "edgeType": "call"
+        },
+        {
+          "name": "ILivechatContact",
+          "edgeType": "type"
+        },
+        {
+          "name": "IAppsLivechatContact",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "convertContact",
+      "exported": true,
+      "qualifiedName": "AppContactsConverter.convertContact",
+      "line": 16,
+      "endLine": 22,
+      "signature": "async convertContact(contact: ILivechatContact | undefined | null): Promise<IAppsLivechatContact | undefined>",
+      "containerClass": "AppContactsConverter",
+      "calls": [
+        {
+          "name": "structuredClone",
+          "edgeType": "call"
+        },
+        {
+          "name": "ILivechatContact",
+          "edgeType": "type"
+        },
+        {
+          "name": "IAppsLivechatContact",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "convertAppContact",
+      "exported": true,
+      "qualifiedName": "AppContactsConverter.convertAppContact",
+      "line": 24,
+      "endLine": 115,
+      "signature": "async convertAppContact(contact: IAppsLivechatContact | undefined | null): Promise<ILivechatContact | undefined>",
+      "containerClass": "AppContactsConverter",
+      "calls": [
+        {
+          "name": "transformMappedData",
+          "edgeType": "call"
+        },
+        {
+          "name": "IAppsLivechatContact",
+          "edgeType": "type"
+        },
+        {
+          "name": "ILivechatContact",
+          "edgeType": "type"
+        }
+      ]
+    }
+  ],
+  "imports": [
+    {
+      "module": "@rocket.chat/apps",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/core-typings",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/models",
+      "resolved": "external"
+    },
+    {
+      "module": "./transformMappedData",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/app/apps/server/converters/transformMappedData.ts"
+    }
+  ]
+}

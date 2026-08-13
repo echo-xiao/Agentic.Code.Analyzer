@@ -1,0 +1,253 @@
+{
+  "sourcePath": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/client/views/room/MessageList/contexts/SelectedMessagesContext.tsx",
+  "symbols": [
+    {
+      "type": "variable",
+      "name": "SelectedMessageContext",
+      "exported": true,
+      "line": 10,
+      "endLine": 12,
+      "signature": "SelectedMessageContext = createContext(",
+      "calls": [
+        {
+          "name": "SelectMessageContextValue",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "variable_function",
+      "name": "useIsSelectedMessage",
+      "exported": true,
+      "line": 14,
+      "endLine": 37,
+      "signature": "(mid: string, omit?: boolean): boolean =>",
+      "calls": [
+        {
+          "name": "useContext",
+          "edgeType": "call"
+        },
+        {
+          "name": "useCallback",
+          "edgeType": "call"
+        },
+        {
+          "name": "isSelected",
+          "edgeType": "call"
+        },
+        {
+          "name": "useSyncExternalStore",
+          "edgeType": "call"
+        },
+        {
+          "name": "useEffect",
+          "edgeType": "call"
+        },
+        {
+          "name": "addAvailableMessage",
+          "edgeType": "call"
+        },
+        {
+          "name": "removeAvailableMessage",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "variable_function",
+      "name": "useIsSelecting",
+      "exported": true,
+      "line": 18,
+      "endLine": 29,
+      "signature": "(): boolean =>",
+      "calls": [
+        {
+          "name": "useContext",
+          "edgeType": "call"
+        },
+        {
+          "name": "useCallback",
+          "edgeType": "call"
+        },
+        {
+          "name": "callback",
+          "edgeType": "event_listen",
+          "event": "toggleIsSelecting"
+        },
+        {
+          "name": "getIsSelecting",
+          "edgeType": "call"
+        },
+        {
+          "name": "useSyncExternalStore",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "variable_function",
+      "name": "useToggleSelect",
+      "exported": true,
+      "line": 22,
+      "endLine": 32,
+      "signature": "(mid: string): ((event?: SyntheticEvent<HTMLElement>) => void) =>",
+      "calls": [
+        {
+          "name": "useContext",
+          "edgeType": "call"
+        },
+        {
+          "name": "useCallback",
+          "edgeType": "call"
+        },
+        {
+          "name": "stopPropagation",
+          "edgeType": "call"
+        },
+        {
+          "name": "toggle",
+          "edgeType": "call"
+        },
+        {
+          "name": "SyntheticEvent",
+          "edgeType": "type"
+        },
+        {
+          "name": "HTMLElement",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "variable_function",
+      "name": "useToggleSelectAll",
+      "exported": true,
+      "line": 26,
+      "endLine": 31,
+      "signature": "(): (() => void) =>",
+      "calls": [
+        {
+          "name": "useContext",
+          "edgeType": "call"
+        },
+        {
+          "name": "useCallback",
+          "edgeType": "call"
+        },
+        {
+          "name": "toggleAll",
+          "edgeType": "call"
+        },
+        {
+          "name": "from",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "variable_function",
+      "name": "useClearSelection",
+      "exported": true,
+      "line": 30,
+      "endLine": 35,
+      "signature": "(): (() => void) =>",
+      "calls": [
+        {
+          "name": "useContext",
+          "edgeType": "call"
+        },
+        {
+          "name": "useCallback",
+          "edgeType": "call"
+        },
+        {
+          "name": "clearStore",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "variable_function",
+      "name": "useCountSelected",
+      "exported": true,
+      "line": 34,
+      "endLine": 45,
+      "signature": "(): number =>",
+      "calls": [
+        {
+          "name": "useContext",
+          "edgeType": "call"
+        },
+        {
+          "name": "useCallback",
+          "edgeType": "call"
+        },
+        {
+          "name": "callback",
+          "edgeType": "event_listen",
+          "event": "change"
+        },
+        {
+          "name": "count",
+          "edgeType": "call"
+        },
+        {
+          "name": "useSyncExternalStore",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "variable_function",
+      "name": "useAvailableMessagesCount",
+      "exported": true,
+      "line": 38,
+      "endLine": 49,
+      "signature": "() =>",
+      "calls": [
+        {
+          "name": "useContext",
+          "edgeType": "call"
+        },
+        {
+          "name": "useCallback",
+          "edgeType": "call"
+        },
+        {
+          "name": "callback",
+          "edgeType": "event_listen",
+          "event": "change"
+        },
+        {
+          "name": "availableMessagesCount",
+          "edgeType": "call"
+        },
+        {
+          "name": "useSyncExternalStore",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "type",
+      "name": "SelectMessageContextValue",
+      "line": 6,
+      "endLine": 8,
+      "signature": "type SelectMessageContextValue ="
+    }
+  ],
+  "imports": [
+    {
+      "module": "react",
+      "resolved": "external"
+    },
+    {
+      "module": "react",
+      "resolved": "external"
+    },
+    {
+      "module": "../../providers/SelectedMessagesProvider",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/client/views/room/providers/SelectedMessagesProvider.tsx"
+    }
+  ]
+}

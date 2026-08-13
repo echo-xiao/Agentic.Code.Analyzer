@@ -1,0 +1,302 @@
+{
+  "sourcePath": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/client/views/omnichannel/customFields/EditCustomFields.tsx",
+  "symbols": [
+    {
+      "type": "variable_function",
+      "name": "getInitialValues",
+      "exported": false,
+      "line": 47,
+      "endLine": 60,
+      "signature": "(customFieldData: Serialized<ILivechatCustomField> | undefined) =>",
+      "calls": [
+        {
+          "name": "Serialized",
+          "edgeType": "type"
+        },
+        {
+          "name": "ILivechatCustomField",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "variable_function",
+      "name": "EditCustomFields",
+      "exported": false,
+      "line": 62,
+      "endLine": 245,
+      "signature": "({ customFieldData, onClose }: { customFieldData?: Serialized<ILivechatCustomField>; onClose: () => void }) =>",
+      "calls": [
+        {
+          "name": "useTranslation",
+          "edgeType": "call"
+        },
+        {
+          "name": "useQueryClient",
+          "edgeType": "call"
+        },
+        {
+          "name": "useToastMessageDispatch",
+          "edgeType": "call"
+        },
+        {
+          "name": "useRemoveCustomField",
+          "edgeType": "call"
+        },
+        {
+          "name": "useForm",
+          "edgeType": "call"
+        },
+        {
+          "name": "getInitialValues",
+          "edgeType": "call"
+        },
+        {
+          "name": "useEndpoint",
+          "edgeType": "call"
+        },
+        {
+          "name": "useFormSubmitWithDirtyCheck",
+          "edgeType": "call"
+        },
+        {
+          "name": "saveCustomField",
+          "edgeType": "call"
+        },
+        {
+          "name": "dispatchToastMessage",
+          "edgeType": "call"
+        },
+        {
+          "name": "invalidateQueries",
+          "edgeType": "call"
+        },
+        {
+          "name": "customFields",
+          "edgeType": "call"
+        },
+        {
+          "name": "onClose",
+          "edgeType": "call"
+        },
+        {
+          "name": "useMemo",
+          "edgeType": "call"
+        },
+        {
+          "name": "useId",
+          "edgeType": "call"
+        },
+        {
+          "name": "handleSubmit",
+          "edgeType": "call"
+        },
+        {
+          "name": "test",
+          "edgeType": "call"
+        },
+        {
+          "name": "Boolean",
+          "edgeType": "call"
+        },
+        {
+          "name": "handleDelete",
+          "edgeType": "call"
+        },
+        {
+          "name": "ContextualbarHeader",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "ContextualbarTitle",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "ContextualbarScrollableContent",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "FormProvider",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "FieldGroup",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "Field",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "FieldLabel",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "FieldRow",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "FieldError",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "ContextualbarFooter",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "ButtonGroup",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "Button",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "Box",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "ContextualbarClose",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "Controller",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "TextInput",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "Select",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "ToggleSwitch",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "CustomFieldsAdditionalForm",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "onClose",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "formId",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "fieldField",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "control",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "labelField",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "scopeField",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "scopeOptions",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "visibilityField",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "value",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "searchableField",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "regexpField",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "Serialized",
+          "edgeType": "type"
+        },
+        {
+          "name": "ILivechatCustomField",
+          "edgeType": "type"
+        },
+        {
+          "name": "EditCustomFieldsFormData",
+          "edgeType": "type"
+        },
+        {
+          "name": "SelectOption",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "type",
+      "name": "EditCustomFieldsFormData",
+      "line": 33,
+      "endLine": 45,
+      "signature": "export type EditCustomFieldsFormData ="
+    }
+  ],
+  "imports": [
+    {
+      "module": "@rocket.chat/core-typings",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/fuselage",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/fuselage",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/ui-client",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/ui-contexts",
+      "resolved": "external"
+    },
+    {
+      "module": "@tanstack/react-query",
+      "resolved": "external"
+    },
+    {
+      "module": "react",
+      "resolved": "external"
+    },
+    {
+      "module": "react-hook-form",
+      "resolved": "external"
+    },
+    {
+      "module": "../additionalForms",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/client/views/omnichannel/additionalForms.tsx"
+    },
+    {
+      "module": "./useRemoveCustomField",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/client/views/omnichannel/customFields/useRemoveCustomField.tsx"
+    },
+    {
+      "module": "../../../hooks/useFormSubmitWithDirtyCheck",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/client/hooks/useFormSubmitWithDirtyCheck.ts"
+    },
+    {
+      "module": "../../../lib/queryKeys",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/client/lib/queryKeys.ts"
+    }
+  ]
+}

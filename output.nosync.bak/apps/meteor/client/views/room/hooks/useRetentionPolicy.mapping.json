@@ -1,0 +1,241 @@
+{
+  "sourcePath": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/client/views/room/hooks/useRetentionPolicy.ts",
+  "symbols": [
+    {
+      "type": "variable_function",
+      "name": "hasRetentionPolicy",
+      "exported": false,
+      "line": 6,
+      "endLine": 7,
+      "signature": "(room: IRoom & { retention?: any }): room is IRoomWithRetentionPolicy =>",
+      "calls": [
+        {
+          "name": "IRoom",
+          "edgeType": "type"
+        },
+        {
+          "name": "IRoomWithRetentionPolicy",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "variable_function",
+      "name": "isRetentionOverridden",
+      "exported": false,
+      "line": 9,
+      "endLine": 9,
+      "signature": "(room: IRoom & { retention?: any }) =>",
+      "calls": [
+        {
+          "name": "IRoom",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "variable_function",
+      "name": "isActive",
+      "exported": false,
+      "line": 24,
+      "endLine": 43,
+      "signature": "(room: IRoom, { enabled, appliesToChannels, appliesToGroups, appliesToDMs }: RetentionPolicySettings): boolean =>",
+      "calls": [
+        {
+          "name": "hasRetentionPolicy",
+          "edgeType": "call"
+        },
+        {
+          "name": "IRoom",
+          "edgeType": "type"
+        },
+        {
+          "name": "RetentionPolicySettings",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "variable_function",
+      "name": "extractFilesOnly",
+      "exported": false,
+      "line": 28,
+      "endLine": 34,
+      "signature": "(room: IRoom, { filesOnly }: RetentionPolicySettings): boolean =>",
+      "calls": [
+        {
+          "name": "hasRetentionPolicy",
+          "edgeType": "call"
+        },
+        {
+          "name": "isRetentionOverridden",
+          "edgeType": "call"
+        },
+        {
+          "name": "IRoom",
+          "edgeType": "type"
+        },
+        {
+          "name": "RetentionPolicySettings",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "variable_function",
+      "name": "extractExcludePinned",
+      "exported": false,
+      "line": 32,
+      "endLine": 38,
+      "signature": "(room: IRoom, { doNotPrunePinned }: RetentionPolicySettings): boolean =>",
+      "calls": [
+        {
+          "name": "hasRetentionPolicy",
+          "edgeType": "call"
+        },
+        {
+          "name": "isRetentionOverridden",
+          "edgeType": "call"
+        },
+        {
+          "name": "IRoom",
+          "edgeType": "type"
+        },
+        {
+          "name": "RetentionPolicySettings",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "variable_function",
+      "name": "extractIgnoreThreads",
+      "exported": false,
+      "line": 36,
+      "endLine": 42,
+      "signature": "(room: IRoom, { ignoreThreads }: RetentionPolicySettings): boolean =>",
+      "calls": [
+        {
+          "name": "hasRetentionPolicy",
+          "edgeType": "call"
+        },
+        {
+          "name": "isRetentionOverridden",
+          "edgeType": "call"
+        },
+        {
+          "name": "IRoom",
+          "edgeType": "type"
+        },
+        {
+          "name": "RetentionPolicySettings",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "variable_function",
+      "name": "getMaxAge",
+      "exported": false,
+      "line": 40,
+      "endLine": 56,
+      "signature": "(room: IRoom, { maxAgeChannels, maxAgeGroups, maxAgeDMs }: RetentionPolicySettings): number =>",
+      "calls": [
+        {
+          "name": "hasRetentionPolicy",
+          "edgeType": "call"
+        },
+        {
+          "name": "isRetentionOverridden",
+          "edgeType": "call"
+        },
+        {
+          "name": "isValidTimespan",
+          "edgeType": "call"
+        },
+        {
+          "name": "timeUnitToMs",
+          "edgeType": "call"
+        },
+        {
+          "name": "IRoom",
+          "edgeType": "type"
+        },
+        {
+          "name": "RetentionPolicySettings",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "variable_function",
+      "name": "useRetentionPolicy",
+      "exported": true,
+      "line": 53,
+      "endLine": 79,
+      "signature": "(room: IRoom | undefined): RetentionPolicy | undefined =>",
+      "calls": [
+        {
+          "name": "useSetting",
+          "edgeType": "call"
+        },
+        {
+          "name": "isActive",
+          "edgeType": "call"
+        },
+        {
+          "name": "extractFilesOnly",
+          "edgeType": "call"
+        },
+        {
+          "name": "extractExcludePinned",
+          "edgeType": "call"
+        },
+        {
+          "name": "extractIgnoreThreads",
+          "edgeType": "call"
+        },
+        {
+          "name": "getMaxAge",
+          "edgeType": "call"
+        },
+        {
+          "name": "IRoom",
+          "edgeType": "type"
+        },
+        {
+          "name": "RetentionPolicy",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "type",
+      "name": "RetentionPolicySettings",
+      "line": 11,
+      "endLine": 22,
+      "signature": "type RetentionPolicySettings ="
+    },
+    {
+      "type": "type",
+      "name": "RetentionPolicy",
+      "line": 44,
+      "endLine": 51,
+      "signature": "export type RetentionPolicy ="
+    }
+  ],
+  "imports": [
+    {
+      "module": "@rocket.chat/core-typings",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/ui-contexts",
+      "resolved": "external"
+    },
+    {
+      "module": "../../../lib/convertTimeUnit",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/client/lib/convertTimeUnit.ts"
+    }
+  ]
+}

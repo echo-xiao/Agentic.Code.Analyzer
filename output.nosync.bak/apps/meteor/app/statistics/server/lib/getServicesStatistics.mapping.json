@@ -1,0 +1,103 @@
+{
+  "sourcePath": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/app/statistics/server/lib/getServicesStatistics.ts",
+  "symbols": [
+    {
+      "type": "function",
+      "name": "getCustomOAuthServices",
+      "exported": false,
+      "line": 9,
+      "endLine": 39,
+      "signature": "async function getCustomOAuthServices(): Promise< Record< string, { enabled: boolean; mergeRoles: boolean; users: number; } > >",
+      "calls": [
+        {
+          "name": "readSecondaryPreferred",
+          "edgeType": "call"
+        },
+        {
+          "name": "getByRegexp",
+          "edgeType": "call"
+        },
+        {
+          "name": "fromEntries",
+          "edgeType": "call"
+        },
+        {
+          "name": "all",
+          "edgeType": "call"
+        },
+        {
+          "name": "map",
+          "edgeType": "call"
+        },
+        {
+          "name": "entries",
+          "edgeType": "call"
+        },
+        {
+          "name": "replace",
+          "edgeType": "call"
+        },
+        {
+          "name": "Boolean",
+          "edgeType": "call"
+        },
+        {
+          "name": "get",
+          "edgeType": "call"
+        },
+        {
+          "name": "countActiveUsersByService",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "function",
+      "name": "getServicesStatistics",
+      "exported": true,
+      "line": 22,
+      "endLine": 124,
+      "signature": "export async function getServicesStatistics(): Promise<Record<string, unknown>>",
+      "calls": [
+        {
+          "name": "readSecondaryPreferred",
+          "edgeType": "call"
+        },
+        {
+          "name": "countActiveUsersByService",
+          "edgeType": "call"
+        },
+        {
+          "name": "get",
+          "edgeType": "call"
+        },
+        {
+          "name": "getSetting",
+          "edgeType": "call"
+        },
+        {
+          "name": "getCustomOAuthServices",
+          "edgeType": "call"
+        }
+      ]
+    }
+  ],
+  "imports": [
+    {
+      "module": "@rocket.chat/models",
+      "resolved": "external"
+    },
+    {
+      "module": "meteor/mongo",
+      "resolved": "external"
+    },
+    {
+      "module": "../../../../server/database/readSecondaryPreferred",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/server/database/readSecondaryPreferred.ts"
+    },
+    {
+      "module": "../../../settings/server",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/app/settings/server/index.ts"
+    }
+  ]
+}

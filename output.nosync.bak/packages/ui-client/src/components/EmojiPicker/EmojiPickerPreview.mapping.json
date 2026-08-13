@@ -1,0 +1,53 @@
+{
+  "sourcePath": "/Users/echoooooo/Desktop/code/Rocket.Chat/packages/ui-client/src/components/EmojiPicker/EmojiPickerPreview.tsx",
+  "symbols": [
+    {
+      "type": "variable_function",
+      "name": "EmojiPickerPreview",
+      "exported": false,
+      "line": 6,
+      "endLine": 25,
+      "signature": "({ emoji, name, ...props }: { emoji: string; name: string } & Omit<AllHTMLAttributes<HTMLDivElement>, 'is'>) =>",
+      "calls": [
+        {
+          "name": "sanitize",
+          "edgeType": "call"
+        },
+        {
+          "name": "Box",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "previewEmojiClass",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "AllHTMLAttributes",
+          "edgeType": "type"
+        },
+        {
+          "name": "HTMLDivElement",
+          "edgeType": "type"
+        }
+      ]
+    }
+  ],
+  "imports": [
+    {
+      "module": "@rocket.chat/css-in-js",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/fuselage",
+      "resolved": "external"
+    },
+    {
+      "module": "dompurify",
+      "resolved": "external"
+    },
+    {
+      "module": "react",
+      "resolved": "external"
+    }
+  ]
+}

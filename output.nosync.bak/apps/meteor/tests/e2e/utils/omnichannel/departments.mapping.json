@@ -1,0 +1,108 @@
+{
+  "sourcePath": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/tests/e2e/utils/omnichannel/departments.ts",
+  "symbols": [
+    {
+      "type": "variable_function",
+      "name": "createDepartment",
+      "exported": true,
+      "line": 24,
+      "endLine": 75,
+      "signature": "async ( api: BaseTest['api'], { name = '', enabled = true, description = '', showOnRegistration = false, showOnOfflineForm = false, requestTagBeforeClosingChat = false, email = '', chatClosingTags = [], offlineMessageChannelName = '', abandonedRoomsCloseCustomMessage = '', waitingQueueMessage = '', departmentsAllowedToForward = [], fallbackForwardDepartment = '', maxNumberSimultaneousChat, allowRe",
+      "calls": [
+        {
+          "name": "post",
+          "edgeType": "call"
+        },
+        {
+          "name": "uuid",
+          "edgeType": "call"
+        },
+        {
+          "name": "email",
+          "edgeType": "call"
+        },
+        {
+          "name": "status",
+          "edgeType": "call"
+        },
+        {
+          "name": "json",
+          "edgeType": "call"
+        },
+        {
+          "name": "delete",
+          "edgeType": "call"
+        },
+        {
+          "name": "BaseTest",
+          "edgeType": "type"
+        },
+        {
+          "name": "CreateDepartmentParams",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "variable_function",
+      "name": "addAgentToDepartment",
+      "exported": true,
+      "line": 47,
+      "endLine": 61,
+      "signature": "async ( api: BaseTest['api'], { department, agentId, username }: { department: ILivechatDepartment; agentId: string; username?: string }, ) =>",
+      "calls": [
+        {
+          "name": "post",
+          "edgeType": "call"
+        },
+        {
+          "name": "BaseTest",
+          "edgeType": "type"
+        },
+        {
+          "name": "ILivechatDepartment",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "variable_function",
+      "name": "deleteDepartment",
+      "exported": true,
+      "line": 63,
+      "endLine": 63,
+      "signature": "async (api: BaseTest['api'], { id }: { id: string }) =>",
+      "calls": [
+        {
+          "name": "delete",
+          "edgeType": "call"
+        },
+        {
+          "name": "BaseTest",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "type",
+      "name": "CreateDepartmentParams",
+      "line": 6,
+      "endLine": 22,
+      "signature": "type CreateDepartmentParams ="
+    }
+  ],
+  "imports": [
+    {
+      "module": "@faker-js/faker",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/core-typings",
+      "resolved": "external"
+    },
+    {
+      "module": "../test",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/tests/e2e/utils/test.ts"
+    }
+  ]
+}

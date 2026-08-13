@@ -1,0 +1,172 @@
+{
+  "sourcePath": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/app/file-upload/ufs/Webdav/server.ts",
+  "symbols": [
+    {
+      "type": "class",
+      "name": "WebdavStore",
+      "exported": false,
+      "line": 24,
+      "endLine": 151,
+      "signature": "class WebdavStore extends UploadFS.Store",
+      "calls": []
+    },
+    {
+      "type": "method",
+      "name": "constructor",
+      "exported": false,
+      "qualifiedName": "WebdavStore.constructor",
+      "line": 27,
+      "endLine": 150,
+      "signature": "constructor(options: WebdavOptions)",
+      "containerClass": "WebdavStore",
+      "calls": [
+        {
+          "name": "catch",
+          "edgeType": "call"
+        },
+        {
+          "name": "stat",
+          "edgeType": "call"
+        },
+        {
+          "name": "toLowerCase",
+          "edgeType": "call"
+        },
+        {
+          "name": "createDirectory",
+          "edgeType": "call"
+        },
+        {
+          "name": "warn",
+          "edgeType": "call"
+        },
+        {
+          "name": "check",
+          "edgeType": "call"
+        },
+        {
+          "name": "id",
+          "edgeType": "call"
+        },
+        {
+          "name": "getPath",
+          "edgeType": "call"
+        },
+        {
+          "name": "insertOne",
+          "edgeType": "call"
+        },
+        {
+          "name": "getCollection",
+          "edgeType": "call"
+        },
+        {
+          "name": "findOne",
+          "edgeType": "call"
+        },
+        {
+          "name": "deleteFile",
+          "edgeType": "call"
+        },
+        {
+          "name": "error",
+          "edgeType": "call"
+        },
+        {
+          "name": "createReadStream",
+          "edgeType": "call"
+        },
+        {
+          "name": "createWriteStream",
+          "edgeType": "call"
+        },
+        {
+          "name": "nextTick",
+          "edgeType": "call"
+        },
+        {
+          "name": "removeListener",
+          "edgeType": "call"
+        },
+        {
+          "name": "newListenerCallback",
+          "edgeType": "event_listen",
+          "event": "newListener"
+        },
+        {
+          "name": "pipe",
+          "edgeType": "call"
+        },
+        {
+          "name": "WebdavClientAdapter",
+          "edgeType": "new"
+        },
+        {
+          "name": "WebdavOptions",
+          "edgeType": "type"
+        },
+        {
+          "name": "IUpload",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "class_property",
+      "name": "getPath",
+      "exported": false,
+      "qualifiedName": "WebdavStore.getPath",
+      "line": 25,
+      "endLine": 25,
+      "signature": "protected getPath: (file: Omit<IUpload, '_updatedAt'>) => string;",
+      "containerClass": "WebdavStore",
+      "calls": [
+        {
+          "name": "IUpload",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "type",
+      "name": "WebdavOptions",
+      "line": 12,
+      "endLine": 22,
+      "signature": "type WebdavOptions = StoreOptions &"
+    }
+  ],
+  "imports": [
+    {
+      "module": "node:stream",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/core-typings",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/random",
+      "resolved": "external"
+    },
+    {
+      "module": "meteor/check",
+      "resolved": "external"
+    },
+    {
+      "module": "../../../../server/bridges/webdav/lib/webdavClientAdapter",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/server/bridges/webdav/lib/webdavClientAdapter.ts"
+    },
+    {
+      "module": "../../../../server/lib/logger/system",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/server/lib/logger/system.ts"
+    },
+    {
+      "module": "../../../../server/ufs",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/server/ufs/index.ts"
+    },
+    {
+      "module": "../../../../server/ufs/ufs-store",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/server/ufs/ufs-store.ts"
+    }
+  ]
+}

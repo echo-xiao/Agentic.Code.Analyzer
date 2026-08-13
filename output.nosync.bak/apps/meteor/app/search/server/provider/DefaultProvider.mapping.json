@@ -1,0 +1,84 @@
+{
+  "sourcePath": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/app/search/server/provider/DefaultProvider.ts",
+  "symbols": [
+    {
+      "type": "class",
+      "name": "DefaultProvider",
+      "exported": true,
+      "line": 10,
+      "endLine": 52,
+      "signature": "export class DefaultProvider extends SearchProvider<",
+      "calls": [
+        {
+          "name": "SearchProvider",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "search",
+      "exported": true,
+      "qualifiedName": "DefaultProvider.search",
+      "line": 36,
+      "endLine": 51,
+      "signature": "async search( userId: string, text: string, context: { uid?: IUser['_id']; rid: IRoom['_id'] }, payload: { searchAll?: boolean; limit?: number } = {}, callback?: (error: Error | null, result: IRawSearchResult) => void, ): Promise<void>",
+      "containerClass": "DefaultProvider",
+      "calls": [
+        {
+          "name": "get",
+          "edgeType": "call"
+        },
+        {
+          "name": "messageSearch",
+          "edgeType": "call"
+        },
+        {
+          "name": "callback",
+          "edgeType": "call"
+        },
+        {
+          "name": "IUser",
+          "edgeType": "type"
+        },
+        {
+          "name": "IRoom",
+          "edgeType": "type"
+        },
+        {
+          "name": "IRawSearchResult",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "constructor",
+      "exported": true,
+      "qualifiedName": "DefaultProvider.constructor",
+      "line": 14,
+      "endLine": 23,
+      "signature": "constructor()",
+      "containerClass": "DefaultProvider",
+      "calls": []
+    }
+  ],
+  "imports": [
+    {
+      "module": "@rocket.chat/core-typings",
+      "resolved": "external"
+    },
+    {
+      "module": "../../../../server/methods/messageSearch",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/server/methods/messageSearch.ts"
+    },
+    {
+      "module": "../model/ISearchResult",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/app/search/server/model/ISearchResult.ts"
+    },
+    {
+      "module": "../model/SearchProvider",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/app/search/server/model/SearchProvider.ts"
+    }
+  ]
+}

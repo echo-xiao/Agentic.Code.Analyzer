@@ -1,0 +1,101 @@
+{
+  "sourcePath": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/tests/e2e/page-objects/fragments/modals/omnichannel-close-chat-modal.ts",
+  "symbols": [
+    {
+      "type": "class",
+      "name": "OmnichannelCloseChatModal",
+      "exported": true,
+      "line": 6,
+      "endLine": 35,
+      "signature": "export class OmnichannelCloseChatModal extends Modal",
+      "calls": [
+        {
+          "name": "Modal",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "confirm",
+      "exported": true,
+      "qualifiedName": "OmnichannelCloseChatModal.confirm",
+      "line": 26,
+      "endLine": 34,
+      "signature": "async confirm(comment: string, downloadPDF: boolean): Promise<void>",
+      "containerClass": "OmnichannelCloseChatModal",
+      "calls": [
+        {
+          "name": "fill",
+          "edgeType": "call"
+        },
+        {
+          "name": "click",
+          "edgeType": "call"
+        },
+        {
+          "name": "waitForDismissal",
+          "edgeType": "call"
+        },
+        {
+          "name": "dismissToast",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "constructor",
+      "exported": true,
+      "qualifiedName": "OmnichannelCloseChatModal.constructor",
+      "line": 9,
+      "endLine": 12,
+      "signature": "constructor(page: Page)",
+      "containerClass": "OmnichannelCloseChatModal",
+      "calls": [
+        {
+          "name": "getByRole",
+          "edgeType": "call"
+        },
+        {
+          "name": "ToastMessages",
+          "edgeType": "new"
+        },
+        {
+          "name": "Page",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "class_property",
+      "name": "toastMessages",
+      "exported": true,
+      "qualifiedName": "OmnichannelCloseChatModal.toastMessages",
+      "line": 7,
+      "endLine": 7,
+      "signature": "private readonly toastMessages: ToastMessages;",
+      "containerClass": "OmnichannelCloseChatModal",
+      "calls": [
+        {
+          "name": "ToastMessages",
+          "edgeType": "type"
+        }
+      ]
+    }
+  ],
+  "imports": [
+    {
+      "module": "@playwright/test",
+      "resolved": "external"
+    },
+    {
+      "module": "./modal",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/tests/e2e/page-objects/fragments/modals/modal.ts"
+    },
+    {
+      "module": "../toast-messages",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/tests/e2e/page-objects/fragments/toast-messages.ts"
+    }
+  ]
+}

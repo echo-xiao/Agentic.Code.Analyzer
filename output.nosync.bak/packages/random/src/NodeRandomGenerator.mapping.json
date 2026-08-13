@@ -1,0 +1,137 @@
+{
+  "sourcePath": "/Users/echoooooo/Desktop/code/Rocket.Chat/packages/random/src/NodeRandomGenerator.ts",
+  "symbols": [
+    {
+      "type": "class",
+      "name": "NodeRandomGenerator",
+      "exported": true,
+      "line": 7,
+      "endLine": 56,
+      "signature": "export class NodeRandomGenerator extends RandomGenerator",
+      "calls": [
+        {
+          "name": "RandomGenerator",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "fraction",
+      "exported": true,
+      "qualifiedName": "NodeRandomGenerator.fraction",
+      "line": 13,
+      "endLine": 16,
+      "signature": "fraction()",
+      "containerClass": "NodeRandomGenerator",
+      "calls": [
+        {
+          "name": "hexString",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "hexString",
+      "exported": true,
+      "qualifiedName": "NodeRandomGenerator.hexString",
+      "line": 23,
+      "endLine": 38,
+      "signature": "override hexString(digits: number)",
+      "containerClass": "NodeRandomGenerator",
+      "calls": [
+        {
+          "name": "ceil",
+          "edgeType": "call"
+        },
+        {
+          "name": "randomBytes",
+          "edgeType": "call"
+        },
+        {
+          "name": "pseudoRandomBytes",
+          "edgeType": "call"
+        },
+        {
+          "name": "substring",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "between",
+      "exported": true,
+      "qualifiedName": "NodeRandomGenerator.between",
+      "line": 33,
+      "endLine": 35,
+      "signature": "between(min: number, max: number)",
+      "containerClass": "NodeRandomGenerator",
+      "calls": [
+        {
+          "name": "floor",
+          "edgeType": "call"
+        },
+        {
+          "name": "fraction",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "safelyCreateWithSeeds",
+      "exported": true,
+      "qualifiedName": "NodeRandomGenerator.safelyCreateWithSeeds",
+      "line": 37,
+      "endLine": 39,
+      "signature": "protected safelyCreateWithSeeds(...seeds: readonly unknown[])",
+      "containerClass": "NodeRandomGenerator",
+      "calls": [
+        {
+          "name": "AleaRandomGenerator",
+          "edgeType": "new"
+        }
+      ]
+    },
+    {
+      "type": "class_property",
+      "name": "insecure",
+      "exported": true,
+      "qualifiedName": "NodeRandomGenerator.insecure",
+      "line": 41,
+      "endLine": 41,
+      "signature": "insecure: RandomGenerator = createAleaGeneratorWithGeneratedSeed();",
+      "containerClass": "NodeRandomGenerator",
+      "calls": [
+        {
+          "name": "createAleaGeneratorWithGeneratedSeed",
+          "edgeType": "call"
+        },
+        {
+          "name": "RandomGenerator",
+          "edgeType": "type"
+        }
+      ]
+    }
+  ],
+  "imports": [
+    {
+      "module": "node:crypto",
+      "resolved": "external"
+    },
+    {
+      "module": "./AleaRandomGenerator",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/packages/random/src/AleaRandomGenerator.ts"
+    },
+    {
+      "module": "./RandomGenerator",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/packages/random/src/RandomGenerator.ts"
+    },
+    {
+      "module": "./createAleaGenerator",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/packages/random/src/createAleaGenerator.ts"
+    }
+  ]
+}

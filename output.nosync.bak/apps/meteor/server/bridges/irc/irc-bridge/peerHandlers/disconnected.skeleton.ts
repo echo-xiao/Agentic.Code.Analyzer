@@ -1,0 +1,12 @@
+## File: apps/meteor/server/bridges/irc/irc-bridge/peerHandlers/disconnected.js
+
+```typescript
+import { Users } from '@rocket.chat/models';
+
+import { notifyOnUserChange } from '../../../../../app/lib/server/lib/notifyListener';
+
+export default async function handleQUIT(args) {
+    /* Implementation Hidden */
+}
+
+```

@@ -1,0 +1,64 @@
+{
+  "sourcePath": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/app/emoji-emojione/lib/getEmojiConfig.ts",
+  "symbols": [
+    {
+      "type": "module",
+      "name": "getEmojiConfig",
+      "exported": false,
+      "line": 1,
+      "endLine": 282,
+      "signature": "getEmojiConfig",
+      "calls": [
+        {
+          "name": "RegExp",
+          "edgeType": "new"
+        },
+        {
+          "name": "mem",
+          "edgeType": "call"
+        },
+        {
+          "name": "replace",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "variable_function",
+      "name": "isEmojiSupported",
+      "exported": false,
+      "line": 259,
+      "endLine": 270,
+      "signature": "(str: string) =>",
+      "calls": [
+        {
+          "name": "replace",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "variable_function",
+      "name": "getEmojiConfig",
+      "exported": true,
+      "line": 263,
+      "endLine": 272,
+      "signature": "() =>",
+      "calls": []
+    }
+  ],
+  "imports": [
+    {
+      "module": "emojione",
+      "resolved": "external"
+    },
+    {
+      "module": "mem",
+      "resolved": "external"
+    },
+    {
+      "module": "./emojiPicker",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/app/emoji-emojione/lib/emojiPicker.ts"
+    }
+  ]
+}

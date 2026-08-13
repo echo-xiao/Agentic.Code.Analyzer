@@ -1,0 +1,807 @@
+{
+  "sourcePath": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/app/livechat/server/business-hour/BusinessHourManager.ts",
+  "symbols": [
+    {
+      "type": "class",
+      "name": "BusinessHourManager",
+      "exported": true,
+      "line": 17,
+      "endLine": 306,
+      "signature": "export class BusinessHourManager",
+      "calls": []
+    },
+    {
+      "type": "method",
+      "name": "startManager",
+      "exported": true,
+      "qualifiedName": "BusinessHourManager.startManager",
+      "line": 32,
+      "endLine": 39,
+      "signature": "async startManager(): Promise<void>",
+      "containerClass": "BusinessHourManager",
+      "calls": [
+        {
+          "name": "createCronJobsForWorkHours",
+          "edgeType": "call"
+        },
+        {
+          "name": "setupCallbacks",
+          "edgeType": "call"
+        },
+        {
+          "name": "cleanupDisabledDepartmentReferences",
+          "edgeType": "call"
+        },
+        {
+          "name": "onStartBusinessHours",
+          "edgeType": "call"
+        },
+        {
+          "name": "startDaylightSavingTimeVerifier",
+          "edgeType": "call"
+        },
+        {
+          "name": "registerDaylightSavingTimeCronJob",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "stopManager",
+      "exported": true,
+      "qualifiedName": "BusinessHourManager.stopManager",
+      "line": 36,
+      "endLine": 42,
+      "signature": "async stopManager(): Promise<void>",
+      "containerClass": "BusinessHourManager",
+      "calls": [
+        {
+          "name": "removeCronJobs",
+          "edgeType": "call"
+        },
+        {
+          "name": "clearCronJobsCache",
+          "edgeType": "call"
+        },
+        {
+          "name": "removeCallbacks",
+          "edgeType": "call"
+        },
+        {
+          "name": "onDisableBusinessHours",
+          "edgeType": "call"
+        },
+        {
+          "name": "remove",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "restartManager",
+      "exported": true,
+      "qualifiedName": "BusinessHourManager.restartManager",
+      "line": 40,
+      "endLine": 43,
+      "signature": "async restartManager(): Promise<void>",
+      "containerClass": "BusinessHourManager",
+      "calls": [
+        {
+          "name": "stopManager",
+          "edgeType": "call"
+        },
+        {
+          "name": "startManager",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "cleanupDisabledDepartmentReferences",
+      "exported": true,
+      "qualifiedName": "BusinessHourManager.cleanupDisabledDepartmentReferences",
+      "line": 44,
+      "endLine": 71,
+      "signature": "async cleanupDisabledDepartmentReferences(): Promise<void>",
+      "containerClass": "BusinessHourManager",
+      "calls": [
+        {
+          "name": "getBusinessHoursWithDepartmentStatuses",
+          "edgeType": "call"
+        },
+        {
+          "name": "getBusinessHour",
+          "edgeType": "call"
+        },
+        {
+          "name": "closeBusinessHour",
+          "edgeType": "call"
+        },
+        {
+          "name": "removeBusinessHourFromDepartmentsByIdsAndBusinessHourId",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "allowAgentChangeServiceStatus",
+      "exported": true,
+      "qualifiedName": "BusinessHourManager.allowAgentChangeServiceStatus",
+      "line": 48,
+      "endLine": 53,
+      "signature": "async allowAgentChangeServiceStatus(agentId: string): Promise<boolean>",
+      "containerClass": "BusinessHourManager",
+      "calls": [
+        {
+          "name": "get",
+          "edgeType": "call"
+        },
+        {
+          "name": "allowAgentChangeServiceStatus",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "registerBusinessHourType",
+      "exported": true,
+      "qualifiedName": "BusinessHourManager.registerBusinessHourType",
+      "line": 52,
+      "endLine": 54,
+      "signature": "registerBusinessHourType(businessHourType: IBusinessHourType): void",
+      "containerClass": "BusinessHourManager",
+      "calls": [
+        {
+          "name": "set",
+          "edgeType": "call"
+        },
+        {
+          "name": "IBusinessHourType",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "registerBusinessHourBehavior",
+      "exported": true,
+      "qualifiedName": "BusinessHourManager.registerBusinessHourBehavior",
+      "line": 56,
+      "endLine": 58,
+      "signature": "registerBusinessHourBehavior(behavior: IBusinessHourBehavior): void",
+      "containerClass": "BusinessHourManager",
+      "calls": [
+        {
+          "name": "IBusinessHourBehavior",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "getBusinessHour",
+      "exported": true,
+      "qualifiedName": "BusinessHourManager.getBusinessHour",
+      "line": 60,
+      "endLine": 66,
+      "signature": "async getBusinessHour(id?: string, type?: string): Promise<ILivechatBusinessHour | null>",
+      "containerClass": "BusinessHourManager",
+      "calls": [
+        {
+          "name": "getBusinessHourType",
+          "edgeType": "call"
+        },
+        {
+          "name": "getBusinessHour",
+          "edgeType": "call"
+        },
+        {
+          "name": "ILivechatBusinessHour",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "saveBusinessHour",
+      "exported": true,
+      "qualifiedName": "BusinessHourManager.saveBusinessHour",
+      "line": 64,
+      "endLine": 72,
+      "signature": "async saveBusinessHour(businessHourData: ILivechatBusinessHour): Promise<void>",
+      "containerClass": "BusinessHourManager",
+      "calls": [
+        {
+          "name": "getBusinessHourType",
+          "edgeType": "call"
+        },
+        {
+          "name": "saveBusinessHour",
+          "edgeType": "call"
+        },
+        {
+          "name": "get",
+          "edgeType": "call"
+        },
+        {
+          "name": "afterSaveBusinessHours",
+          "edgeType": "call"
+        },
+        {
+          "name": "createCronJobsForWorkHours",
+          "edgeType": "call"
+        },
+        {
+          "name": "ILivechatBusinessHour",
+          "edgeType": "type"
+        },
+        {
+          "name": "IBusinessHourType",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "removeBusinessHourByIdAndType",
+      "exported": true,
+      "qualifiedName": "BusinessHourManager.removeBusinessHourByIdAndType",
+      "line": 68,
+      "endLine": 75,
+      "signature": "async removeBusinessHourByIdAndType(id: string, type: string): Promise<void>",
+      "containerClass": "BusinessHourManager",
+      "calls": [
+        {
+          "name": "getBusinessHourType",
+          "edgeType": "call"
+        },
+        {
+          "name": "removeBusinessHourById",
+          "edgeType": "call"
+        },
+        {
+          "name": "get",
+          "edgeType": "call"
+        },
+        {
+          "name": "createCronJobsForWorkHours",
+          "edgeType": "call"
+        },
+        {
+          "name": "IBusinessHourType",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "onLogin",
+      "exported": true,
+      "qualifiedName": "BusinessHourManager.onLogin",
+      "line": 72,
+      "endLine": 83,
+      "signature": "async onLogin(agentId: string): Promise<any>",
+      "containerClass": "BusinessHourManager",
+      "calls": [
+        {
+          "name": "get",
+          "edgeType": "call"
+        },
+        {
+          "name": "changeAgentActiveStatus",
+          "edgeType": "call"
+        },
+        {
+          "name": "setLivechatStatusActiveBasedOnBusinessHours",
+          "edgeType": "call"
+        },
+        {
+          "name": "notifyOnUserChange",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "restartCronJobsIfNecessary",
+      "exported": true,
+      "qualifiedName": "BusinessHourManager.restartCronJobsIfNecessary",
+      "line": 76,
+      "endLine": 82,
+      "signature": "async restartCronJobsIfNecessary(): Promise<void>",
+      "containerClass": "BusinessHourManager",
+      "calls": [
+        {
+          "name": "get",
+          "edgeType": "call"
+        },
+        {
+          "name": "createCronJobsForWorkHours",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "setupCallbacks",
+      "exported": true,
+      "qualifiedName": "BusinessHourManager.setupCallbacks",
+      "line": 80,
+      "endLine": 117,
+      "signature": "private setupCallbacks(): void",
+      "containerClass": "BusinessHourManager",
+      "calls": [
+        {
+          "name": "livechat.removeAgentDepartment",
+          "edgeType": "event_listen"
+        },
+        {
+          "name": "bind",
+          "edgeType": "call"
+        },
+        {
+          "name": "livechat.afterRemoveDepartment",
+          "edgeType": "event_listen"
+        },
+        {
+          "name": "livechat.saveAgentDepartment",
+          "edgeType": "event_listen"
+        },
+        {
+          "name": "livechat.afterDepartmentDisabled",
+          "edgeType": "event_listen"
+        },
+        {
+          "name": "livechat.afterDepartmentArchived",
+          "edgeType": "event_listen"
+        },
+        {
+          "name": "livechat.onNewAgentCreated",
+          "edgeType": "event_listen"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "removeCallbacks",
+      "exported": true,
+      "qualifiedName": "BusinessHourManager.removeCallbacks",
+      "line": 84,
+      "endLine": 91,
+      "signature": "private removeCallbacks(): void",
+      "containerClass": "BusinessHourManager",
+      "calls": [
+        {
+          "name": "remove",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "createCronJobsForWorkHours",
+      "exported": true,
+      "qualifiedName": "BusinessHourManager.createCronJobsForWorkHours",
+      "line": 88,
+      "endLine": 100,
+      "signature": "private async createCronJobsForWorkHours(): Promise<void>",
+      "containerClass": "BusinessHourManager",
+      "calls": [
+        {
+          "name": "removeCronJobs",
+          "edgeType": "call"
+        },
+        {
+          "name": "clearCronJobsCache",
+          "edgeType": "call"
+        },
+        {
+          "name": "findHoursToCreateJobs",
+          "edgeType": "call"
+        },
+        {
+          "name": "all",
+          "edgeType": "call"
+        },
+        {
+          "name": "map",
+          "edgeType": "call"
+        },
+        {
+          "name": "scheduleCronJob",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "scheduleCronJob",
+      "exported": true,
+      "qualifiedName": "BusinessHourManager.scheduleCronJob",
+      "line": 92,
+      "endLine": 107,
+      "signature": "private async scheduleCronJob( items: string[], day: string, type: 'open' | 'close', job: (day: string, hour: string) => void, ): Promise<void>",
+      "containerClass": "BusinessHourManager",
+      "calls": [
+        {
+          "name": "all",
+          "edgeType": "call"
+        },
+        {
+          "name": "map",
+          "edgeType": "call"
+        },
+        {
+          "name": "day",
+          "edgeType": "call"
+        },
+        {
+          "name": "moment",
+          "edgeType": "call"
+        },
+        {
+          "name": "format",
+          "edgeType": "call"
+        },
+        {
+          "name": "minutes",
+          "edgeType": "call"
+        },
+        {
+          "name": "hours",
+          "edgeType": "call"
+        },
+        {
+          "name": "addToCache",
+          "edgeType": "call"
+        },
+        {
+          "name": "job",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "openWorkHoursCallback",
+      "exported": true,
+      "qualifiedName": "BusinessHourManager.openWorkHoursCallback",
+      "line": 101,
+      "endLine": 108,
+      "signature": "private async openWorkHoursCallback(day: string, hour: string): Promise<void>",
+      "containerClass": "BusinessHourManager",
+      "calls": [
+        {
+          "name": "openBusinessHoursByDayAndHour",
+          "edgeType": "call"
+        },
+        {
+          "name": "error",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "closeWorkHoursCallback",
+      "exported": true,
+      "qualifiedName": "BusinessHourManager.closeWorkHoursCallback",
+      "line": 105,
+      "endLine": 112,
+      "signature": "private async closeWorkHoursCallback(day: string, hour: string): Promise<void>",
+      "containerClass": "BusinessHourManager",
+      "calls": [
+        {
+          "name": "closeBusinessHoursByDayAndHour",
+          "edgeType": "call"
+        },
+        {
+          "name": "error",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "getBusinessHourType",
+      "exported": true,
+      "qualifiedName": "BusinessHourManager.getBusinessHourType",
+      "line": 109,
+      "endLine": 111,
+      "signature": "private getBusinessHourType(type: string): IBusinessHourType | undefined",
+      "containerClass": "BusinessHourManager",
+      "calls": [
+        {
+          "name": "get",
+          "edgeType": "call"
+        },
+        {
+          "name": "IBusinessHourType",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "removeCronJobs",
+      "exported": true,
+      "qualifiedName": "BusinessHourManager.removeCronJobs",
+      "line": 113,
+      "endLine": 115,
+      "signature": "private async removeCronJobs(): Promise<void>",
+      "containerClass": "BusinessHourManager",
+      "calls": [
+        {
+          "name": "all",
+          "edgeType": "call"
+        },
+        {
+          "name": "map",
+          "edgeType": "call"
+        },
+        {
+          "name": "remove",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "addToCache",
+      "exported": true,
+      "qualifiedName": "BusinessHourManager.addToCache",
+      "line": 117,
+      "endLine": 119,
+      "signature": "private addToCache(jobName: string): void",
+      "containerClass": "BusinessHourManager",
+      "calls": [
+        {
+          "name": "push",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "clearCronJobsCache",
+      "exported": true,
+      "qualifiedName": "BusinessHourManager.clearCronJobsCache",
+      "line": 121,
+      "endLine": 123,
+      "signature": "private clearCronJobsCache(): void",
+      "containerClass": "BusinessHourManager",
+      "calls": []
+    },
+    {
+      "type": "method",
+      "name": "hasDaylightSavingTimeChanged",
+      "exported": true,
+      "qualifiedName": "BusinessHourManager.hasDaylightSavingTimeChanged",
+      "line": 125,
+      "endLine": 132,
+      "signature": "hasDaylightSavingTimeChanged(timezone: IBusinessHourTimezone): boolean",
+      "containerClass": "BusinessHourManager",
+      "calls": [
+        {
+          "name": "tz",
+          "edgeType": "call"
+        },
+        {
+          "name": "utc",
+          "edgeType": "call"
+        },
+        {
+          "name": "moment",
+          "edgeType": "call"
+        },
+        {
+          "name": "format",
+          "edgeType": "call"
+        },
+        {
+          "name": "isSame",
+          "edgeType": "call"
+        },
+        {
+          "name": "IBusinessHourTimezone",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "registerDaylightSavingTimeCronJob",
+      "exported": true,
+      "qualifiedName": "BusinessHourManager.registerDaylightSavingTimeCronJob",
+      "line": 129,
+      "endLine": 131,
+      "signature": "async registerDaylightSavingTimeCronJob(): Promise<void>",
+      "containerClass": "BusinessHourManager",
+      "calls": [
+        {
+          "name": "bind",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "startDaylightSavingTimeVerifier",
+      "exported": true,
+      "qualifiedName": "BusinessHourManager.startDaylightSavingTimeVerifier",
+      "line": 133,
+      "endLine": 166,
+      "signature": "async startDaylightSavingTimeVerifier(): Promise<void>",
+      "containerClass": "BusinessHourManager",
+      "calls": [
+        {
+          "name": "findActiveBusinessHours",
+          "edgeType": "call"
+        },
+        {
+          "name": "filter",
+          "edgeType": "call"
+        },
+        {
+          "name": "hasDaylightSavingTimeChanged",
+          "edgeType": "call"
+        },
+        {
+          "name": "allSettled",
+          "edgeType": "call"
+        },
+        {
+          "name": "map",
+          "edgeType": "call"
+        },
+        {
+          "name": "getBusinessHourType",
+          "edgeType": "call"
+        },
+        {
+          "name": "saveBusinessHour",
+          "edgeType": "call"
+        },
+        {
+          "name": "forEach",
+          "edgeType": "call"
+        },
+        {
+          "name": "error",
+          "edgeType": "call"
+        },
+        {
+          "name": "createCronJobsForWorkHours",
+          "edgeType": "call"
+        },
+        {
+          "name": "ILivechatBusinessHour",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "constructor",
+      "exported": true,
+      "qualifiedName": "BusinessHourManager.constructor",
+      "line": 26,
+      "endLine": 30,
+      "signature": "constructor(cronJobs: AgendaCronJobs)",
+      "containerClass": "BusinessHourManager",
+      "calls": [
+        {
+          "name": "bind",
+          "edgeType": "call"
+        },
+        {
+          "name": "AgendaCronJobs",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "class_property",
+      "name": "types",
+      "exported": true,
+      "qualifiedName": "BusinessHourManager.types",
+      "line": 18,
+      "endLine": 18,
+      "signature": "private types: Map<string, IBusinessHourType> = new Map();",
+      "containerClass": "BusinessHourManager",
+      "calls": [
+        {
+          "name": "Map",
+          "edgeType": "new"
+        },
+        {
+          "name": "IBusinessHourType",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "class_property",
+      "name": "behavior",
+      "exported": true,
+      "qualifiedName": "BusinessHourManager.behavior",
+      "line": 20,
+      "endLine": 20,
+      "signature": "private behavior: IBusinessHourBehavior;",
+      "containerClass": "BusinessHourManager",
+      "calls": [
+        {
+          "name": "IBusinessHourBehavior",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "class_property",
+      "name": "cronJobs",
+      "exported": true,
+      "qualifiedName": "BusinessHourManager.cronJobs",
+      "line": 22,
+      "endLine": 22,
+      "signature": "private cronJobs: AgendaCronJobs;",
+      "containerClass": "BusinessHourManager",
+      "calls": [
+        {
+          "name": "AgendaCronJobs",
+          "edgeType": "type"
+        }
+      ]
+    }
+  ],
+  "imports": [
+    {
+      "module": "@rocket.chat/core-typings",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/core-typings",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/cron",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/models",
+      "resolved": "external"
+    },
+    {
+      "module": "moment-timezone",
+      "resolved": "external"
+    },
+    {
+      "module": "./AbstractBusinessHour",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/app/livechat/server/business-hour/AbstractBusinessHour.ts"
+    },
+    {
+      "module": "./closeBusinessHour",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/app/livechat/server/business-hour/closeBusinessHour.ts"
+    },
+    {
+      "module": "../../../../server/lib/callbacks",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/server/lib/callbacks.ts"
+    },
+    {
+      "module": "../../../lib/server/lib/notifyListener",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/app/lib/server/lib/notifyListener.ts"
+    },
+    {
+      "module": "../../../settings/server",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/app/settings/server/index.ts"
+    },
+    {
+      "module": "../lib/logger",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/app/livechat/server/lib/logger.ts"
+    }
+  ]
+}

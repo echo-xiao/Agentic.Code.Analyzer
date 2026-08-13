@@ -1,0 +1,297 @@
+{
+  "sourcePath": "/Users/echoooooo/Desktop/code/Rocket.Chat/packages/models/src/models/LivechatAgentActivity.ts",
+  "symbols": [
+    {
+      "type": "class",
+      "name": "LivechatAgentActivityRaw",
+      "exported": true,
+      "line": 9,
+      "endLine": 238,
+      "signature": "export class LivechatAgentActivityRaw extends BaseRaw<ILivechatAgentActivity> implements ILivechatAgentActivityModel",
+      "calls": [
+        {
+          "name": "BaseRaw",
+          "edgeType": "type"
+        },
+        {
+          "name": "ILivechatAgentActivityModel",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "modelIndexes",
+      "exported": true,
+      "qualifiedName": "LivechatAgentActivityRaw.modelIndexes",
+      "line": 14,
+      "endLine": 16,
+      "signature": "override modelIndexes(): IndexDescription[]",
+      "containerClass": "LivechatAgentActivityRaw",
+      "calls": [
+        {
+          "name": "IndexDescription",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "findOneByAgendIdAndDate",
+      "exported": true,
+      "qualifiedName": "LivechatAgentActivityRaw.findOneByAgendIdAndDate",
+      "line": 18,
+      "endLine": 20,
+      "signature": "findOneByAgendIdAndDate(agentId: string, date: ILivechatAgentActivity['date']): Promise<ILivechatAgentActivity | null>",
+      "containerClass": "LivechatAgentActivityRaw",
+      "calls": [
+        {
+          "name": "findOne",
+          "edgeType": "call"
+        },
+        {
+          "name": "ILivechatAgentActivity",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "createOrUpdate",
+      "exported": true,
+      "qualifiedName": "LivechatAgentActivityRaw.createOrUpdate",
+      "line": 22,
+      "endLine": 47,
+      "signature": "async createOrUpdate( data: Partial<Pick<ILivechatAgentActivity, 'date' | 'agentId' | 'lastStartedAt'>> = {}, ): Promise<null | WithId<ILivechatAgentActivity>>",
+      "containerClass": "LivechatAgentActivityRaw",
+      "calls": [
+        {
+          "name": "findOneAndUpdate",
+          "edgeType": "call"
+        },
+        {
+          "name": "Date",
+          "edgeType": "new"
+        },
+        {
+          "name": "ILivechatAgentActivity",
+          "edgeType": "type"
+        },
+        {
+          "name": "WithId",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "updateLastStoppedAt",
+      "exported": true,
+      "qualifiedName": "LivechatAgentActivityRaw.updateLastStoppedAt",
+      "line": 28,
+      "endLine": 45,
+      "signature": "updateLastStoppedAt({ agentId, date, lastStoppedAt, availableTime, }: Pick<ILivechatAgentActivity, 'date' | 'agentId' | 'lastStoppedAt' | 'availableTime'>): Promise<UpdateResult | Document>",
+      "containerClass": "LivechatAgentActivityRaw",
+      "calls": [
+        {
+          "name": "updateMany",
+          "edgeType": "call"
+        },
+        {
+          "name": "ILivechatAgentActivity",
+          "edgeType": "type"
+        },
+        {
+          "name": "UpdateResult",
+          "edgeType": "type"
+        },
+        {
+          "name": "Document",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "updateServiceHistory",
+      "exported": true,
+      "qualifiedName": "LivechatAgentActivityRaw.updateServiceHistory",
+      "line": 37,
+      "endLine": 52,
+      "signature": "updateServiceHistory({ agentId, date, serviceHistory, }: Pick<ILivechatAgentActivity, 'date' | 'agentId'> & { serviceHistory: IServiceHistory }): Promise<UpdateResult | Document>",
+      "containerClass": "LivechatAgentActivityRaw",
+      "calls": [
+        {
+          "name": "updateMany",
+          "edgeType": "call"
+        },
+        {
+          "name": "ILivechatAgentActivity",
+          "edgeType": "type"
+        },
+        {
+          "name": "IServiceHistory",
+          "edgeType": "type"
+        },
+        {
+          "name": "UpdateResult",
+          "edgeType": "type"
+        },
+        {
+          "name": "Document",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "findOpenSessions",
+      "exported": true,
+      "qualifiedName": "LivechatAgentActivityRaw.findOpenSessions",
+      "line": 45,
+      "endLine": 51,
+      "signature": "findOpenSessions(): FindCursor<ILivechatAgentActivity>",
+      "containerClass": "LivechatAgentActivityRaw",
+      "calls": [
+        {
+          "name": "find",
+          "edgeType": "call"
+        },
+        {
+          "name": "FindCursor",
+          "edgeType": "type"
+        },
+        {
+          "name": "ILivechatAgentActivity",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "findAllAverageAvailableServiceTime",
+      "exported": true,
+      "qualifiedName": "LivechatAgentActivityRaw.findAllAverageAvailableServiceTime",
+      "line": 49,
+      "endLine": 112,
+      "signature": "findAllAverageAvailableServiceTime({ date, departmentId }: { date: Date; departmentId?: string }): Promise< { averageAvailableServiceTimeInSeconds: number; }[] >",
+      "containerClass": "LivechatAgentActivityRaw",
+      "calls": [
+        {
+          "name": "push",
+          "edgeType": "call"
+        },
+        {
+          "name": "toArray",
+          "edgeType": "call"
+        },
+        {
+          "name": "aggregate",
+          "edgeType": "call"
+        },
+        {
+          "name": "readSecondaryPreferred",
+          "edgeType": "call"
+        },
+        {
+          "name": "Date",
+          "edgeType": "new"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "findAvailableServiceTimeHistory",
+      "exported": true,
+      "qualifiedName": "LivechatAgentActivityRaw.findAvailableServiceTimeHistory",
+      "line": 73,
+      "endLine": 136,
+      "signature": "findAvailableServiceTimeHistory({ start, end, fullReport, onlyCount = false, options = {}, }: { start: string; end: string; fullReport: boolean; onlyCount?: boolean; options?: { sort?: Record<string, number>; offset?: number; count?: number }; }): AggregationCursor<ILivechatAgentActivity> | AggregationCursor<{ total: number }>",
+      "containerClass": "LivechatAgentActivityRaw",
+      "calls": [
+        {
+          "name": "format",
+          "edgeType": "call"
+        },
+        {
+          "name": "parseISO",
+          "edgeType": "call"
+        },
+        {
+          "name": "push",
+          "edgeType": "call"
+        },
+        {
+          "name": "aggregate",
+          "edgeType": "call"
+        },
+        {
+          "name": "readSecondaryPreferred",
+          "edgeType": "call"
+        },
+        {
+          "name": "AggregationCursor",
+          "edgeType": "type"
+        },
+        {
+          "name": "ILivechatAgentActivity",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "constructor",
+      "exported": true,
+      "qualifiedName": "LivechatAgentActivityRaw.constructor",
+      "line": 10,
+      "endLine": 12,
+      "signature": "constructor(db: Db, trash?: Collection<RocketChatRecordDeleted<ILivechatAgentActivity>>)",
+      "containerClass": "LivechatAgentActivityRaw",
+      "calls": [
+        {
+          "name": "Db",
+          "edgeType": "type"
+        },
+        {
+          "name": "Collection",
+          "edgeType": "type"
+        },
+        {
+          "name": "RocketChatRecordDeleted",
+          "edgeType": "type"
+        },
+        {
+          "name": "ILivechatAgentActivity",
+          "edgeType": "type"
+        }
+      ]
+    }
+  ],
+  "imports": [
+    {
+      "module": "@rocket.chat/core-typings",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/model-typings",
+      "resolved": "external"
+    },
+    {
+      "module": "date-fns",
+      "resolved": "external"
+    },
+    {
+      "module": "mongodb",
+      "resolved": "external"
+    },
+    {
+      "module": "./BaseRaw",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/packages/models/src/models/BaseRaw.ts"
+    },
+    {
+      "module": "../readSecondaryPreferred",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/packages/models/src/readSecondaryPreferred.ts"
+    }
+  ]
+}

@@ -1,0 +1,290 @@
+{
+  "sourcePath": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/client/views/room/contextualBar/RoomMembers/RoomMembersWithData.tsx",
+  "symbols": [
+    {
+      "type": "inner_function",
+      "name": "handleTextChange",
+      "exported": false,
+      "qualifiedName": "RoomMembersWithData.handleTextChange",
+      "line": 72,
+      "endLine": 74,
+      "signature": "(event: ChangeEvent<HTMLInputElement>) =>",
+      "calls": [
+        {
+          "name": "setText",
+          "edgeType": "call"
+        },
+        {
+          "name": "ChangeEvent",
+          "edgeType": "type"
+        },
+        {
+          "name": "HTMLInputElement",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "variable_function",
+      "name": "RoomMembersWithData",
+      "exported": false,
+      "line": 31,
+      "endLine": 138,
+      "signature": "({ rid }: { rid: IRoom['_id'] }) =>",
+      "calls": [
+        {
+          "name": "useUser",
+          "edgeType": "call"
+        },
+        {
+          "name": "useUserRoom",
+          "edgeType": "call"
+        },
+        {
+          "name": "useRoomToolbox",
+          "edgeType": "call"
+        },
+        {
+          "name": "useLocalStorage",
+          "edgeType": "call"
+        },
+        {
+          "name": "useState",
+          "edgeType": "call"
+        },
+        {
+          "name": "useUserSubscription",
+          "edgeType": "call"
+        },
+        {
+          "name": "isTeamRoom",
+          "edgeType": "call"
+        },
+        {
+          "name": "isDirectMessageRoom",
+          "edgeType": "call"
+        },
+        {
+          "name": "usePermission",
+          "edgeType": "call"
+        },
+        {
+          "name": "isRoomFederated",
+          "edgeType": "call"
+        },
+        {
+          "name": "isRoomNativeFederated",
+          "edgeType": "call"
+        },
+        {
+          "name": "canCreateInviteLinks",
+          "edgeType": "call"
+        },
+        {
+          "name": "useDebouncedValue",
+          "edgeType": "call"
+        },
+        {
+          "name": "useMembersList",
+          "edgeType": "call"
+        },
+        {
+          "name": "useMemo",
+          "edgeType": "call"
+        },
+        {
+          "name": "useAtLeastOnePermission",
+          "edgeType": "call"
+        },
+        {
+          "name": "isEditableByTheUser",
+          "edgeType": "call"
+        },
+        {
+          "name": "useCallback",
+          "edgeType": "call"
+        },
+        {
+          "name": "setText",
+          "edgeType": "call"
+        },
+        {
+          "name": "useStableCallback",
+          "edgeType": "call"
+        },
+        {
+          "name": "setState",
+          "edgeType": "call"
+        },
+        {
+          "name": "flatMap",
+          "edgeType": "call"
+        },
+        {
+          "name": "Boolean",
+          "edgeType": "call"
+        },
+        {
+          "name": "UserInfoWithData",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "InviteUsers",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "AddUsers",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "RoomMembers",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "rid",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "closeTab",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "handleBack",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "refetch",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "isTeam",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "isDirect",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "isPending",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "isSuccess",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "type",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "text",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "handleTextChange",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "setType",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "openUserInfo",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "IRoom",
+          "edgeType": "type"
+        },
+        {
+          "name": "ROOM_MEMBERS_TABS",
+          "edgeType": "type"
+        },
+        {
+          "name": "IUser",
+          "edgeType": "type"
+        },
+        {
+          "name": "ChangeEvent",
+          "edgeType": "type"
+        },
+        {
+          "name": "HTMLInputElement",
+          "edgeType": "type"
+        },
+        {
+          "name": "MouseEvent",
+          "edgeType": "type"
+        },
+        {
+          "name": "HTMLElement",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "type",
+      "name": "validRoomType",
+      "line": 29,
+      "endLine": 29,
+      "signature": "type validRoomType = 'd' | 'p' | 'c';"
+    },
+    {
+      "type": "enum",
+      "name": "ROOM_MEMBERS_TABS",
+      "line": 22,
+      "endLine": 27,
+      "signature": "enum ROOM_MEMBERS_TABS"
+    }
+  ],
+  "imports": [
+    {
+      "module": "@rocket.chat/core-typings",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/core-typings",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/fuselage-hooks",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/ui-contexts",
+      "resolved": "external"
+    },
+    {
+      "module": "react",
+      "resolved": "external"
+    },
+    {
+      "module": "react",
+      "resolved": "external"
+    },
+    {
+      "module": "./AddUsers",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/client/views/room/contextualBar/RoomMembers/AddUsers/index.ts"
+    },
+    {
+      "module": "./InviteUsers",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/client/views/room/contextualBar/RoomMembers/InviteUsers/index.ts"
+    },
+    {
+      "module": "./RoomMembers",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/client/views/room/contextualBar/RoomMembers/RoomMembers.tsx"
+    },
+    {
+      "module": "../../../../lib/federation/Federation",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/client/lib/federation/Federation.ts"
+    },
+    {
+      "module": "../../../hooks/useMembersList",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/client/views/hooks/useMembersList.ts"
+    },
+    {
+      "module": "../UserInfo",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/client/views/room/contextualBar/UserInfo/index.ts"
+    }
+  ]
+}

@@ -1,0 +1,581 @@
+{
+  "sourcePath": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/client/views/admin/users/AdminUserForm.tsx",
+  "symbols": [
+    {
+      "type": "variable_function",
+      "name": "getInitialValue",
+      "exported": false,
+      "line": 62,
+      "endLine": 92,
+      "signature": "({ data, defaultUserRoles, isSmtpEnabled, isVerificationNeeded, isNewUserPage, }: { data?: Serialized<IUser>; defaultUserRoles?: IUser['roles']; isSmtpEnabled?: boolean; isVerificationNeeded?: boolean; isNewUserPage?: boolean; }): UserFormProps =>",
+      "calls": [
+        {
+          "name": "Serialized",
+          "edgeType": "type"
+        },
+        {
+          "name": "IUser",
+          "edgeType": "type"
+        },
+        {
+          "name": "UserFormProps",
+          "edgeType": "type"
+        },
+        {
+          "name": "AvatarObject",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "inner_function",
+      "name": "onSuccess",
+      "exported": false,
+      "qualifiedName": "AdminUserForm.onSuccess",
+      "line": 142,
+      "endLine": 148,
+      "signature": "async ({ user: { _id } }) =>",
+      "calls": [
+        {
+          "name": "dispatchToastMessage",
+          "edgeType": "call"
+        },
+        {
+          "name": "updateAvatar",
+          "edgeType": "call"
+        },
+        {
+          "name": "navigate",
+          "edgeType": "call"
+        },
+        {
+          "name": "onReload",
+          "edgeType": "call"
+        },
+        {
+          "name": "refetchUserFormData",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "inner_function",
+      "name": "onError",
+      "exported": false,
+      "qualifiedName": "AdminUserForm.onError",
+      "line": 149,
+      "endLine": 151,
+      "signature": "(error) =>",
+      "calls": [
+        {
+          "name": "dispatchToastMessage",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "inner_function",
+      "name": "onSuccess",
+      "exported": false,
+      "qualifiedName": "AdminUserForm.onSuccess",
+      "line": 156,
+      "endLine": 167,
+      "signature": "async ({ user: { _id } }) =>",
+      "calls": [
+        {
+          "name": "dispatchToastMessage",
+          "edgeType": "call"
+        },
+        {
+          "name": "eventStats",
+          "edgeType": "call"
+        },
+        {
+          "name": "invalidateQueries",
+          "edgeType": "call"
+        },
+        {
+          "name": "navigate",
+          "edgeType": "call"
+        },
+        {
+          "name": "onReload",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "inner_function",
+      "name": "onError",
+      "exported": false,
+      "qualifiedName": "AdminUserForm.onError",
+      "line": 168,
+      "endLine": 170,
+      "signature": "(error) =>",
+      "calls": [
+        {
+          "name": "dispatchToastMessage",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "variable_function",
+      "name": "AdminUserForm",
+      "exported": false,
+      "line": 94,
+      "endLine": 554,
+      "signature": "({ userData, onReload, context, refetchUserFormData, roleData, roleError, ...props }: AdminUserFormProps) =>",
+      "calls": [
+        {
+          "name": "useTranslation",
+          "edgeType": "call"
+        },
+        {
+          "name": "useRouter",
+          "edgeType": "call"
+        },
+        {
+          "name": "useToastMessageDispatch",
+          "edgeType": "call"
+        },
+        {
+          "name": "useQueryClient",
+          "edgeType": "call"
+        },
+        {
+          "name": "useAccountsCustomFields",
+          "edgeType": "call"
+        },
+        {
+          "name": "useSetting",
+          "edgeType": "call"
+        },
+        {
+          "name": "parseCSV",
+          "edgeType": "call"
+        },
+        {
+          "name": "useSmtpQuery",
+          "edgeType": "call"
+        },
+        {
+          "name": "useForm",
+          "edgeType": "call"
+        },
+        {
+          "name": "getInitialValue",
+          "edgeType": "call"
+        },
+        {
+          "name": "useShowVoipExtension",
+          "edgeType": "call"
+        },
+        {
+          "name": "watch",
+          "edgeType": "call"
+        },
+        {
+          "name": "useEndpointMutation",
+          "edgeType": "call"
+        },
+        {
+          "name": "useEndpoint",
+          "edgeType": "call"
+        },
+        {
+          "name": "useMemo",
+          "edgeType": "call"
+        },
+        {
+          "name": "map",
+          "edgeType": "call"
+        },
+        {
+          "name": "useUpdateAvatar",
+          "edgeType": "call"
+        },
+        {
+          "name": "useMutation",
+          "edgeType": "call"
+        },
+        {
+          "name": "dispatchToastMessage",
+          "edgeType": "call"
+        },
+        {
+          "name": "updateAvatar",
+          "edgeType": "call"
+        },
+        {
+          "name": "navigate",
+          "edgeType": "call"
+        },
+        {
+          "name": "onReload",
+          "edgeType": "call"
+        },
+        {
+          "name": "refetchUserFormData",
+          "edgeType": "call"
+        },
+        {
+          "name": "eventStats",
+          "edgeType": "call"
+        },
+        {
+          "name": "invalidateQueries",
+          "edgeType": "call"
+        },
+        {
+          "name": "useStableCallback",
+          "edgeType": "call"
+        },
+        {
+          "name": "mutateAsync",
+          "edgeType": "call"
+        },
+        {
+          "name": "useId",
+          "edgeType": "call"
+        },
+        {
+          "name": "useState",
+          "edgeType": "call"
+        },
+        {
+          "name": "validateEmail",
+          "edgeType": "call"
+        },
+        {
+          "name": "setShowCustomFields",
+          "edgeType": "call"
+        },
+        {
+          "name": "handleSubmit",
+          "edgeType": "call"
+        },
+        {
+          "name": "ContextualbarScrollableContent",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "FieldGroup",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "Field",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "Box",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "FieldLabel",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "FieldRow",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "FieldError",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "FieldHint",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "Callout",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "Button",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "ContextualbarFooter",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "Controller",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "UserAvatarEditor",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "TextInput",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "Skeleton",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "Icon",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "ToggleSwitch",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "Trans",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "PasswordFieldSkeleton",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "AdminUserSetRandomPasswordRadios",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "AdminUserSetRandomPasswordContent",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "MultiSelectFiltered",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "TextAreaInput",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "CustomFieldsForm",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "control",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "username",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "onChange",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "userFullName",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "emailId",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "verifiedId",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "value",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "nameId",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "usernameId",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "voiceExtensionId",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "passwordId",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "isNewUserPage",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "setRandomPasswordId",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "isSmtpEnabled",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "setValue",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "setRandomPassword",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "errors",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "password",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "rolesId",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "availableRoles",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "joinDefaultChannelsId",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "ref",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "sendWelcomeEmailId",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "statusTextId",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "bioId",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "nicknameId",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "customFieldsMetadata",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "AdminUserFormProps",
+          "edgeType": "type"
+        },
+        {
+          "name": "SelectOption",
+          "edgeType": "type"
+        },
+        {
+          "name": "UserFormProps",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "type",
+      "name": "AdminUserFormProps",
+      "line": 48,
+      "endLine": 55,
+      "signature": "export type AdminUserFormProps ="
+    },
+    {
+      "type": "type",
+      "name": "UserFormProps",
+      "line": 57,
+      "endLine": 60,
+      "signature": "export type UserFormProps = Omit< UserCreateParamsPOST &"
+    }
+  ],
+  "imports": [
+    {
+      "module": "@rocket.chat/core-typings",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/fuselage",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/fuselage",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/fuselage-hooks",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/rest-typings",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/tools",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/ui-client",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/ui-contexts",
+      "resolved": "external"
+    },
+    {
+      "module": "@tanstack/react-query",
+      "resolved": "external"
+    },
+    {
+      "module": "react",
+      "resolved": "external"
+    },
+    {
+      "module": "react-hook-form",
+      "resolved": "external"
+    },
+    {
+      "module": "react-i18next",
+      "resolved": "external"
+    },
+    {
+      "module": "./AdminUserSetRandomPasswordContent",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/client/views/admin/users/AdminUserSetRandomPasswordContent.tsx"
+    },
+    {
+      "module": "./AdminUserSetRandomPasswordRadios",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/client/views/admin/users/AdminUserSetRandomPasswordRadios.tsx"
+    },
+    {
+      "module": "./PasswordFieldSkeleton",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/client/views/admin/users/PasswordFieldSkeleton.tsx"
+    },
+    {
+      "module": "./hooks/useSmtpQuery",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/client/views/admin/users/hooks/useSmtpQuery.ts"
+    },
+    {
+      "module": "./useShowVoipExtension",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/client/views/admin/users/useShowVoipExtension.ts"
+    },
+    {
+      "module": "../../../../lib/utils/parseCSV",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/lib/utils/parseCSV.ts"
+    },
+    {
+      "module": "../../../components/avatar/UserAvatarEditor",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/client/components/avatar/UserAvatarEditor/index.ts"
+    },
+    {
+      "module": "../../../hooks/useEndpointMutation",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/client/hooks/useEndpointMutation.ts"
+    },
+    {
+      "module": "../../../hooks/useUpdateAvatar",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/client/hooks/useUpdateAvatar.ts"
+    },
+    {
+      "module": "../../../lib/constants",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/client/lib/constants.ts"
+    }
+  ]
+}

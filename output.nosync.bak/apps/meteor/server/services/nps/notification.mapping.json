@@ -1,0 +1,91 @@
+{
+  "sourcePath": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/server/services/nps/notification.ts",
+  "symbols": [
+    {
+      "type": "variable_function",
+      "name": "getBannerForAdmins",
+      "exported": true,
+      "line": 10,
+      "endLine": 44,
+      "signature": "(expireAt: Date): Omit<IBanner, '_id'> =>",
+      "calls": [
+        {
+          "name": "get",
+          "edgeType": "call"
+        },
+        {
+          "name": "id",
+          "edgeType": "call"
+        },
+        {
+          "name": "format",
+          "edgeType": "call"
+        },
+        {
+          "name": "moment",
+          "edgeType": "call"
+        },
+        {
+          "name": "Date",
+          "edgeType": "new"
+        },
+        {
+          "name": "IBanner",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "variable_function",
+      "name": "notifyAdmins",
+      "exported": true,
+      "line": 14,
+      "endLine": 22,
+      "signature": "(expireAt: Date) =>",
+      "calls": [
+        {
+          "name": "sendMessagesToAdmins",
+          "edgeType": "call"
+        },
+        {
+          "name": "format",
+          "edgeType": "call"
+        },
+        {
+          "name": "moment",
+          "edgeType": "call"
+        }
+      ]
+    }
+  ],
+  "imports": [
+    {
+      "module": "@rocket.chat/core-typings",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/core-typings",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/random",
+      "resolved": "external"
+    },
+    {
+      "module": "moment",
+      "resolved": "external"
+    },
+    {
+      "module": "../../../app/settings/server",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/app/settings/server/index.ts"
+    },
+    {
+      "module": "../../lib/i18n",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/server/lib/i18n.ts"
+    },
+    {
+      "module": "../../lib/sendMessagesToAdmins",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/server/lib/sendMessagesToAdmins.ts"
+    }
+  ]
+}

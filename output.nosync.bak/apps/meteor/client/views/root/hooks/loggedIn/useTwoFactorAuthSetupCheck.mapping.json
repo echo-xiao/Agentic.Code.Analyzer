@@ -1,0 +1,53 @@
+{
+  "sourcePath": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/client/views/root/hooks/loggedIn/useTwoFactorAuthSetupCheck.tsx",
+  "symbols": [
+    {
+      "type": "variable_function",
+      "name": "useTwoFactorAuthSetupCheck",
+      "exported": true,
+      "line": 7,
+      "endLine": 16,
+      "signature": "() =>",
+      "calls": [
+        {
+          "name": "useSetModal",
+          "edgeType": "call"
+        },
+        {
+          "name": "useRequire2faSetup",
+          "edgeType": "call"
+        },
+        {
+          "name": "useEffect",
+          "edgeType": "call"
+        },
+        {
+          "name": "setModal",
+          "edgeType": "call"
+        },
+        {
+          "name": "TwoFactorRequiredModal",
+          "edgeType": "jsx"
+        }
+      ]
+    }
+  ],
+  "imports": [
+    {
+      "module": "@rocket.chat/ui-contexts",
+      "resolved": "external"
+    },
+    {
+      "module": "react",
+      "resolved": "external"
+    },
+    {
+      "module": "../../../hooks/useRequire2faSetup",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/client/views/hooks/useRequire2faSetup.ts"
+    },
+    {
+      "module": "../../MainLayout/TwoFactorRequiredModal",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/client/views/root/MainLayout/TwoFactorRequiredModal.tsx"
+    }
+  ]
+}

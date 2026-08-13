@@ -1,0 +1,103 @@
+{
+  "sourcePath": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/client/views/omnichannel/components/outboundMessage/hooks/useOutboundProvidersList.ts",
+  "symbols": [
+    {
+      "type": "variable_function",
+      "name": "useOutboundProvidersList",
+      "exported": false,
+      "line": 17,
+      "endLine": 33,
+      "signature": "<TData = OutboundProvidersResponse>(options?: UseOutboundProvidersListProps<TData>) =>",
+      "calls": [
+        {
+          "name": "useEndpoint",
+          "edgeType": "call"
+        },
+        {
+          "name": "useOmnichannelEnterpriseEnabled",
+          "edgeType": "call"
+        },
+        {
+          "name": "useHasLicenseModule",
+          "edgeType": "call"
+        },
+        {
+          "name": "usePermission",
+          "edgeType": "call"
+        },
+        {
+          "name": "useQuery",
+          "edgeType": "call"
+        },
+        {
+          "name": "outboundProviders",
+          "edgeType": "call"
+        },
+        {
+          "name": "getProviders",
+          "edgeType": "call"
+        },
+        {
+          "name": "OutboundProvidersResponse",
+          "edgeType": "type"
+        },
+        {
+          "name": "UseOutboundProvidersListProps",
+          "edgeType": "type"
+        },
+        {
+          "name": "TData",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "type",
+      "name": "OutboundProvidersResponse",
+      "line": 11,
+      "endLine": 11,
+      "signature": "type OutboundProvidersResponse = Serialized<OperationResult<'GET', '/v1/omnichannel/outbound/providers'>>;"
+    },
+    {
+      "type": "type",
+      "name": "UseOutboundProvidersListProps",
+      "line": 13,
+      "endLine": 15,
+      "signature": "type UseOutboundProvidersListProps<TData> = Omit<UseQueryOptions<OutboundProvidersResponse, Error, TData>, 'queryKey' | 'queryFn'> &"
+    }
+  ],
+  "imports": [
+    {
+      "module": "@rocket.chat/core-typings",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/rest-typings",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/ui-contexts",
+      "resolved": "external"
+    },
+    {
+      "module": "@tanstack/react-query",
+      "resolved": "external"
+    },
+    {
+      "module": "@tanstack/react-query",
+      "resolved": "external"
+    },
+    {
+      "module": "../../../../../hooks/useHasLicenseModule",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/client/hooks/useHasLicenseModule.ts"
+    },
+    {
+      "module": "../../../../../lib/queryKeys",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/client/lib/queryKeys.ts"
+    },
+    {
+      "module": "../../../hooks/useOmnichannelEnterpriseEnabled",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/client/views/omnichannel/hooks/useOmnichannelEnterpriseEnabled.ts"
+    }
+  ]
+}

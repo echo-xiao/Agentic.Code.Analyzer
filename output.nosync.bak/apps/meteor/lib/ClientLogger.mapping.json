@@ -1,0 +1,202 @@
+{
+  "sourcePath": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/lib/ClientLogger.ts",
+  "symbols": [
+    {
+      "type": "class",
+      "name": "ClientLogger",
+      "exported": true,
+      "line": 14,
+      "endLine": 70,
+      "signature": "export class ClientLogger",
+      "calls": []
+    },
+    {
+      "type": "method",
+      "name": "writeLog",
+      "exported": true,
+      "qualifiedName": "ClientLogger.writeLog",
+      "line": 24,
+      "endLine": 41,
+      "signature": "private writeLog(level: LogLevel, log: any): void",
+      "containerClass": "ClientLogger",
+      "calls": [
+        {
+          "name": "toISOString",
+          "edgeType": "call"
+        },
+        {
+          "name": "warn",
+          "edgeType": "call"
+        },
+        {
+          "name": "error",
+          "edgeType": "call"
+        },
+        {
+          "name": "log",
+          "edgeType": "call"
+        },
+        {
+          "name": "Date",
+          "edgeType": "new"
+        },
+        {
+          "name": "LogLevel",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "verbose",
+      "exported": true,
+      "qualifiedName": "ClientLogger.verbose",
+      "line": 28,
+      "endLine": 30,
+      "signature": "verbose(...args: any[]): void",
+      "containerClass": "ClientLogger",
+      "calls": [
+        {
+          "name": "writeLog",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "debug",
+      "exported": true,
+      "qualifiedName": "ClientLogger.debug",
+      "line": 32,
+      "endLine": 34,
+      "signature": "debug(...args: any[]): void",
+      "containerClass": "ClientLogger",
+      "calls": [
+        {
+          "name": "writeLog",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "info",
+      "exported": true,
+      "qualifiedName": "ClientLogger.info",
+      "line": 36,
+      "endLine": 38,
+      "signature": "info(...args: any[]): void",
+      "containerClass": "ClientLogger",
+      "calls": [
+        {
+          "name": "writeLog",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "warn",
+      "exported": true,
+      "qualifiedName": "ClientLogger.warn",
+      "line": 40,
+      "endLine": 42,
+      "signature": "warn(...args: any[]): void",
+      "containerClass": "ClientLogger",
+      "calls": [
+        {
+          "name": "writeLog",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "error",
+      "exported": true,
+      "qualifiedName": "ClientLogger.error",
+      "line": 44,
+      "endLine": 46,
+      "signature": "error(...args: any[]): void",
+      "containerClass": "ClientLogger",
+      "calls": [
+        {
+          "name": "writeLog",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "fatal",
+      "exported": true,
+      "qualifiedName": "ClientLogger.fatal",
+      "line": 48,
+      "endLine": 50,
+      "signature": "fatal(...args: any[]): void",
+      "containerClass": "ClientLogger",
+      "calls": [
+        {
+          "name": "writeLog",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "setLogLevel",
+      "exported": true,
+      "qualifiedName": "ClientLogger.setLogLevel",
+      "line": 52,
+      "endLine": 54,
+      "signature": "setLogLevel(level: LogLevel): void",
+      "containerClass": "ClientLogger",
+      "calls": [
+        {
+          "name": "LogLevel",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "constructor",
+      "exported": true,
+      "qualifiedName": "ClientLogger.constructor",
+      "line": 19,
+      "endLine": 22,
+      "signature": "constructor(module: string, _level: LogLevel = LogLevel.info)",
+      "containerClass": "ClientLogger",
+      "calls": [
+        {
+          "name": "LogLevel",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "class_property",
+      "name": "logLevel",
+      "exported": true,
+      "qualifiedName": "ClientLogger.logLevel",
+      "line": 17,
+      "endLine": 17,
+      "signature": "logLevel: LogLevel | undefined;",
+      "containerClass": "ClientLogger",
+      "calls": [
+        {
+          "name": "LogLevel",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "enum",
+      "name": "LogLevel",
+      "line": 5,
+      "endLine": 12,
+      "signature": "enum LogLevel"
+    }
+  ],
+  "imports": []
+}

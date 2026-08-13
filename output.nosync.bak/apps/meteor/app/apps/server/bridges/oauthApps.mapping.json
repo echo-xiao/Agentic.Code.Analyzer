@@ -1,0 +1,233 @@
+{
+  "sourcePath": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/app/apps/server/bridges/oauthApps.ts",
+  "symbols": [
+    {
+      "type": "class",
+      "name": "AppOAuthAppsBridge",
+      "exported": true,
+      "line": 10,
+      "endLine": 81,
+      "signature": "export class AppOAuthAppsBridge extends OAuthAppsBridge",
+      "calls": [
+        {
+          "name": "OAuthAppsBridge",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "create",
+      "exported": true,
+      "qualifiedName": "AppOAuthAppsBridge.create",
+      "line": 15,
+      "endLine": 40,
+      "signature": "protected async create(oAuthApp: IOAuthAppParams, appId: string): Promise<string | null>",
+      "containerClass": "AppOAuthAppsBridge",
+      "calls": [
+        {
+          "name": "debugLog",
+          "edgeType": "call"
+        },
+        {
+          "name": "findOne",
+          "edgeType": "call"
+        },
+        {
+          "name": "insertOne",
+          "edgeType": "call"
+        },
+        {
+          "name": "randomUUID",
+          "edgeType": "call"
+        },
+        {
+          "name": "id",
+          "edgeType": "call"
+        },
+        {
+          "name": "secret",
+          "edgeType": "call"
+        },
+        {
+          "name": "Date",
+          "edgeType": "new"
+        },
+        {
+          "name": "IOAuthAppParams",
+          "edgeType": "type"
+        },
+        {
+          "name": "IOAuthApps",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "getById",
+      "exported": true,
+      "qualifiedName": "AppOAuthAppsBridge.getById",
+      "line": 19,
+      "endLine": 37,
+      "signature": "protected async getById(id: string, appId: string): Promise<IOAuthApp | null>",
+      "containerClass": "AppOAuthAppsBridge",
+      "calls": [
+        {
+          "name": "debugLog",
+          "edgeType": "call"
+        },
+        {
+          "name": "findOne",
+          "edgeType": "call"
+        },
+        {
+          "name": "toDateString",
+          "edgeType": "call"
+        },
+        {
+          "name": "IOAuthApp",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "getByName",
+      "exported": true,
+      "qualifiedName": "AppOAuthAppsBridge.getByName",
+      "line": 23,
+      "endLine": 26,
+      "signature": "protected async getByName(name: string, appId: string): Promise<Array<IOAuthApp>>",
+      "containerClass": "AppOAuthAppsBridge",
+      "calls": [
+        {
+          "name": "debugLog",
+          "edgeType": "call"
+        },
+        {
+          "name": "toArray",
+          "edgeType": "call"
+        },
+        {
+          "name": "find",
+          "edgeType": "call"
+        },
+        {
+          "name": "IOAuthApp",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "update",
+      "exported": true,
+      "qualifiedName": "AppOAuthAppsBridge.update",
+      "line": 27,
+      "endLine": 30,
+      "signature": "protected async update(oAuthApp: IOAuthAppParams, id: string, appId: string): Promise<void>",
+      "containerClass": "AppOAuthAppsBridge",
+      "calls": [
+        {
+          "name": "debugLog",
+          "edgeType": "call"
+        },
+        {
+          "name": "updateOne",
+          "edgeType": "call"
+        },
+        {
+          "name": "IOAuthAppParams",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "delete",
+      "exported": true,
+      "qualifiedName": "AppOAuthAppsBridge.delete",
+      "line": 31,
+      "endLine": 34,
+      "signature": "protected async delete(id: string, appId: string): Promise<void>",
+      "containerClass": "AppOAuthAppsBridge",
+      "calls": [
+        {
+          "name": "debugLog",
+          "edgeType": "call"
+        },
+        {
+          "name": "deleteOne",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "purge",
+      "exported": true,
+      "qualifiedName": "AppOAuthAppsBridge.purge",
+      "line": 35,
+      "endLine": 38,
+      "signature": "protected async purge(appId: string): Promise<void>",
+      "containerClass": "AppOAuthAppsBridge",
+      "calls": [
+        {
+          "name": "debugLog",
+          "edgeType": "call"
+        },
+        {
+          "name": "deleteMany",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "constructor",
+      "exported": true,
+      "qualifiedName": "AppOAuthAppsBridge.constructor",
+      "line": 11,
+      "endLine": 13,
+      "signature": "constructor(private readonly orch: IAppServerOrchestrator)",
+      "containerClass": "AppOAuthAppsBridge",
+      "calls": [
+        {
+          "name": "IAppServerOrchestrator",
+          "edgeType": "type"
+        }
+      ]
+    }
+  ],
+  "imports": [
+    {
+      "module": "node:crypto",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/apps",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/apps/dist/server/bridges/OAuthAppsBridge",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/apps-engine/definition/accessors/IOAuthApp",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/core-typings",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/models",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/random",
+      "resolved": "external"
+    }
+  ]
+}

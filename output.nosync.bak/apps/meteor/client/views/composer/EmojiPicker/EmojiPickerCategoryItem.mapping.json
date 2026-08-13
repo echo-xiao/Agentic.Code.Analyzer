@@ -1,0 +1,77 @@
+{
+  "sourcePath": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/client/views/composer/EmojiPicker/EmojiPickerCategoryItem.tsx",
+  "symbols": [
+    {
+      "type": "variable_function",
+      "name": "mapCategoryIcon",
+      "exported": false,
+      "line": 13,
+      "endLine": 45,
+      "signature": "(category: string) =>",
+      "calls": []
+    },
+    {
+      "type": "variable_function",
+      "name": "EmojiPickerCategoryItem",
+      "exported": false,
+      "line": 17,
+      "endLine": 35,
+      "signature": "({ category, active, handleGoToCategory, ...props }: EmojiPickerCategoryItemProps) =>",
+      "calls": [
+        {
+          "name": "useTranslation",
+          "edgeType": "call"
+        },
+        {
+          "name": "mapCategoryIcon",
+          "edgeType": "call"
+        },
+        {
+          "name": "IconButton",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "active",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "handleGoToCategory",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "icon",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "EmojiPickerCategoryItemProps",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "type",
+      "name": "EmojiPickerCategoryItemProps",
+      "line": 7,
+      "endLine": 11,
+      "signature": "export type EmojiPickerCategoryItemProps ="
+    }
+  ],
+  "imports": [
+    {
+      "module": "@rocket.chat/fuselage",
+      "resolved": "external"
+    },
+    {
+      "module": "react",
+      "resolved": "external"
+    },
+    {
+      "module": "react-i18next",
+      "resolved": "external"
+    },
+    {
+      "module": "../../../../app/emoji/client",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/app/emoji/client/index.ts"
+    }
+  ]
+}

@@ -1,0 +1,106 @@
+{
+  "sourcePath": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/server/api/lib/isValidQuery.ts",
+  "symbols": [
+    {
+      "type": "variable",
+      "name": "isValidQuery",
+      "exported": true,
+      "line": 7,
+      "endLine": 24,
+      "signature": "isValidQuery:",
+      "calls": [
+        {
+          "name": "isRecord",
+          "edgeType": "call"
+        },
+        {
+          "name": "verifyQuery",
+          "edgeType": "call"
+        },
+        {
+          "name": "Query",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "variable_function",
+      "name": "verifyQuery",
+      "exported": false,
+      "line": 26,
+      "endLine": 67,
+      "signature": "(query: Query, allowedAttributes: string[], allowedOperations: string[], parent = ''): boolean =>",
+      "calls": [
+        {
+          "name": "every",
+          "edgeType": "call"
+        },
+        {
+          "name": "entries",
+          "edgeType": "call"
+        },
+        {
+          "name": "removeDangerousProps",
+          "edgeType": "call"
+        },
+        {
+          "name": "startsWith",
+          "edgeType": "call"
+        },
+        {
+          "name": "includes",
+          "edgeType": "call"
+        },
+        {
+          "name": "push",
+          "edgeType": "call"
+        },
+        {
+          "name": "isArray",
+          "edgeType": "call"
+        },
+        {
+          "name": "verifyQuery",
+          "edgeType": "call"
+        },
+        {
+          "name": "isRecord",
+          "edgeType": "call"
+        },
+        {
+          "name": "some",
+          "edgeType": "call"
+        },
+        {
+          "name": "endsWith",
+          "edgeType": "call"
+        },
+        {
+          "name": "replace",
+          "edgeType": "call"
+        },
+        {
+          "name": "Query",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "type",
+      "name": "Query",
+      "line": 5,
+      "endLine": 5,
+      "signature": "type Query ="
+    }
+  ],
+  "imports": [
+    {
+      "module": "@rocket.chat/tools",
+      "resolved": "external"
+    },
+    {
+      "module": "./cleanQuery",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/server/api/lib/cleanQuery.ts"
+    }
+  ]
+}

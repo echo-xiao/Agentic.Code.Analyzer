@@ -1,0 +1,175 @@
+{
+  "sourcePath": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/client/views/marketplace/lib/getManifestFromZippedApp.ts",
+  "symbols": [
+    {
+      "type": "function",
+      "name": "fileToUint8Array",
+      "exported": false,
+      "line": 7,
+      "endLine": 14,
+      "signature": "async function fileToUint8Array(file: File): Promise<Uint8Array>",
+      "calls": [
+        {
+          "name": "resolve",
+          "edgeType": "call"
+        },
+        {
+          "name": "reject",
+          "edgeType": "call"
+        },
+        {
+          "name": "readAsArrayBuffer",
+          "edgeType": "call"
+        },
+        {
+          "name": "FileReader",
+          "edgeType": "new"
+        },
+        {
+          "name": "Uint8Array",
+          "edgeType": "new"
+        },
+        {
+          "name": "File",
+          "edgeType": "type"
+        },
+        {
+          "name": "Uint8Array",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "function",
+      "name": "unzipAppBuffer",
+      "exported": false,
+      "line": 11,
+      "endLine": 13,
+      "signature": "function unzipAppBuffer(zippedAppBuffer: Uint8Array): Uint8ArrayObject",
+      "calls": [
+        {
+          "name": "unzipSync",
+          "edgeType": "call"
+        },
+        {
+          "name": "Uint8Array",
+          "edgeType": "type"
+        },
+        {
+          "name": "Uint8ArrayObject",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "function",
+      "name": "getAppManifest",
+      "exported": false,
+      "line": 15,
+      "endLine": 25,
+      "signature": "function getAppManifest(unzippedAppBuffer: Uint8ArrayObject): AppManifestSchema",
+      "calls": [
+        {
+          "name": "parse",
+          "edgeType": "call"
+        },
+        {
+          "name": "strFromU8",
+          "edgeType": "call"
+        },
+        {
+          "name": "Uint8ArrayObject",
+          "edgeType": "type"
+        },
+        {
+          "name": "AppManifestSchema",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "function",
+      "name": "unzipZippedApp",
+      "exported": false,
+      "line": 19,
+      "endLine": 30,
+      "signature": "async function unzipZippedApp(zippedApp: File | Uint8Array): Promise<Uint8ArrayObject>",
+      "calls": [
+        {
+          "name": "fileToUint8Array",
+          "edgeType": "call"
+        },
+        {
+          "name": "unzipAppBuffer",
+          "edgeType": "call"
+        },
+        {
+          "name": "error",
+          "edgeType": "call"
+        },
+        {
+          "name": "File",
+          "edgeType": "type"
+        },
+        {
+          "name": "Uint8Array",
+          "edgeType": "type"
+        },
+        {
+          "name": "Uint8ArrayObject",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "function",
+      "name": "getManifestFromZippedApp",
+      "exported": true,
+      "line": 23,
+      "endLine": 26,
+      "signature": "export async function getManifestFromZippedApp(zippedApp: File): Promise<AppManifestSchema>",
+      "calls": [
+        {
+          "name": "unzipZippedApp",
+          "edgeType": "call"
+        },
+        {
+          "name": "getAppManifest",
+          "edgeType": "call"
+        },
+        {
+          "name": "File",
+          "edgeType": "type"
+        },
+        {
+          "name": "AppManifestSchema",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "type",
+      "name": "Uint8ArrayObject",
+      "line": 4,
+      "endLine": 4,
+      "signature": "type Uint8ArrayObject ="
+    },
+    {
+      "type": "type",
+      "name": "AppManifestSchema",
+      "line": 5,
+      "endLine": 5,
+      "signature": "type AppManifestSchema ="
+    }
+  ],
+  "imports": [
+    {
+      "module": "@rocket.chat/core-typings",
+      "resolved": "external"
+    },
+    {
+      "module": "fflate",
+      "resolved": "external"
+    }
+  ]
+}

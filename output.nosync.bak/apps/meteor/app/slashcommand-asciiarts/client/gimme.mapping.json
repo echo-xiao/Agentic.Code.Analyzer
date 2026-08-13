@@ -1,0 +1,55 @@
+{
+  "sourcePath": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/app/slashcommand-asciiarts/client/gimme.ts",
+  "symbols": [
+    {
+      "type": "module",
+      "name": "gimme",
+      "exported": false,
+      "line": 1,
+      "endLine": 23,
+      "signature": "gimme",
+      "calls": [
+        {
+          "name": "gimme",
+          "edgeType": "event_listen"
+        }
+      ]
+    },
+    {
+      "type": "function",
+      "name": "Gimme",
+      "exported": false,
+      "line": 9,
+      "endLine": 12,
+      "signature": "async function Gimme({ message, params }: SlashCommandCallbackParams<'gimme'>): Promise<void>",
+      "calls": [
+        {
+          "name": "sendMessage",
+          "edgeType": "call"
+        },
+        {
+          "name": "call",
+          "edgeType": "call"
+        },
+        {
+          "name": "SlashCommandCallbackParams",
+          "edgeType": "type"
+        }
+      ]
+    }
+  ],
+  "imports": [
+    {
+      "module": "@rocket.chat/core-typings",
+      "resolved": "external"
+    },
+    {
+      "module": "../../utils/client/lib/SDKClient",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/app/utils/client/lib/SDKClient.ts"
+    },
+    {
+      "module": "../../utils/client/slashCommand",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/app/utils/client/slashCommand.ts"
+    }
+  ]
+}

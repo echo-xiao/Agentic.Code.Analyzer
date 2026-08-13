@@ -1,0 +1,133 @@
+{
+  "sourcePath": "/Users/echoooooo/Desktop/code/Rocket.Chat/packages/fuselage-ui-kit/src/hooks/useUiKitState.ts",
+  "symbols": [
+    {
+      "type": "variable_function",
+      "name": "getElementValueFromState",
+      "exported": false,
+      "line": 8,
+      "endLine": 18,
+      "signature": "( actionId: string, values: Record< string, | { value: unknown; } | undefined >, initialValue: string | number | string[] | undefined, ) =>",
+      "calls": []
+    },
+    {
+      "type": "variable_function",
+      "name": "useUiKitState",
+      "exported": true,
+      "line": 27,
+      "endLine": 150,
+      "signature": "<TElement extends UiKit.ActionableElement>( element: TElement, context: UiKit.BlockContext, ): [ state: UiKitState<TElement>, action: (pseudoEvent?: Event | { target: EventTarget } | { target: { value: UiKit.ActionOf<TElement> } }) => Promise<void>, ] =>",
+      "calls": [
+        {
+          "name": "useContext",
+          "edgeType": "call"
+        },
+        {
+          "name": "getInitialValue",
+          "edgeType": "call"
+        },
+        {
+          "name": "getElementValueFromState",
+          "edgeType": "call"
+        },
+        {
+          "name": "isArray",
+          "edgeType": "call"
+        },
+        {
+          "name": "find",
+          "edgeType": "call"
+        },
+        {
+          "name": "keys",
+          "edgeType": "call"
+        },
+        {
+          "name": "useSafely",
+          "edgeType": "call"
+        },
+        {
+          "name": "useState",
+          "edgeType": "call"
+        },
+        {
+          "name": "useStableCallback",
+          "edgeType": "call"
+        },
+        {
+          "name": "setLoading",
+          "edgeType": "call"
+        },
+        {
+          "name": "setValue",
+          "edgeType": "call"
+        },
+        {
+          "name": "findIndex",
+          "edgeType": "call"
+        },
+        {
+          "name": "filter",
+          "edgeType": "call"
+        },
+        {
+          "name": "updateState",
+          "edgeType": "call"
+        },
+        {
+          "name": "action",
+          "edgeType": "call"
+        },
+        {
+          "name": "useMemo",
+          "edgeType": "call"
+        },
+        {
+          "name": "includes",
+          "edgeType": "call"
+        },
+        {
+          "name": "TElement",
+          "edgeType": "type"
+        },
+        {
+          "name": "UiKitState",
+          "edgeType": "type"
+        },
+        {
+          "name": "EventTarget",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "type",
+      "name": "UiKitState",
+      "line": 20,
+      "endLine": 25,
+      "signature": "type UiKitState<TElement extends UiKit.ActionableElement = UiKit.ActionableElement> ="
+    }
+  ],
+  "imports": [
+    {
+      "module": "@rocket.chat/fuselage-hooks",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/ui-kit",
+      "resolved": "external"
+    },
+    {
+      "module": "react",
+      "resolved": "external"
+    },
+    {
+      "module": "../contexts/UiKitContext",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/packages/fuselage-ui-kit/src/contexts/UiKitContext.ts"
+    },
+    {
+      "module": "../utils/getInitialValue",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/packages/fuselage-ui-kit/src/utils/getInitialValue.ts"
+    }
+  ]
+}

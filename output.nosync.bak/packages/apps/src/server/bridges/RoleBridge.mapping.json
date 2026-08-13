@@ -1,0 +1,145 @@
+{
+  "sourcePath": "/Users/echoooooo/Desktop/code/Rocket.Chat/packages/apps/src/server/bridges/RoleBridge.ts",
+  "symbols": [
+    {
+      "type": "class",
+      "name": "RoleBridge",
+      "exported": true,
+      "line": 8,
+      "endLine": 39,
+      "signature": "export abstract class RoleBridge extends BaseBridge",
+      "calls": [
+        {
+          "name": "BaseBridge",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "doGetOneByIdOrName",
+      "exported": true,
+      "qualifiedName": "RoleBridge.doGetOneByIdOrName",
+      "line": 9,
+      "endLine": 13,
+      "signature": "public async doGetOneByIdOrName(idOrName: string, appId: string): Promise<IRole | null>",
+      "containerClass": "RoleBridge",
+      "calls": [
+        {
+          "name": "hasReadPermission",
+          "edgeType": "call"
+        },
+        {
+          "name": "getOneByIdOrName",
+          "edgeType": "call"
+        },
+        {
+          "name": "IRole",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "doGetCustomRoles",
+      "exported": true,
+      "qualifiedName": "RoleBridge.doGetCustomRoles",
+      "line": 13,
+      "endLine": 17,
+      "signature": "public async doGetCustomRoles(appId: string): Promise<Array<IRole>>",
+      "containerClass": "RoleBridge",
+      "calls": [
+        {
+          "name": "hasReadPermission",
+          "edgeType": "call"
+        },
+        {
+          "name": "getCustomRoles",
+          "edgeType": "call"
+        },
+        {
+          "name": "IRole",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "getOneByIdOrName",
+      "exported": true,
+      "qualifiedName": "RoleBridge.getOneByIdOrName",
+      "line": 17,
+      "endLine": 17,
+      "signature": "protected abstract getOneByIdOrName(idOrName: string, appId: string): Promise<IRole | null>;",
+      "containerClass": "RoleBridge",
+      "calls": [
+        {
+          "name": "IRole",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "getCustomRoles",
+      "exported": true,
+      "qualifiedName": "RoleBridge.getCustomRoles",
+      "line": 19,
+      "endLine": 19,
+      "signature": "protected abstract getCustomRoles(appId: string): Promise<Array<IRole>>;",
+      "containerClass": "RoleBridge",
+      "calls": [
+        {
+          "name": "IRole",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "hasReadPermission",
+      "exported": true,
+      "qualifiedName": "RoleBridge.hasReadPermission",
+      "line": 21,
+      "endLine": 34,
+      "signature": "private hasReadPermission(appId: string): boolean",
+      "containerClass": "RoleBridge",
+      "calls": [
+        {
+          "name": "hasPermission",
+          "edgeType": "call"
+        },
+        {
+          "name": "notifyAboutError",
+          "edgeType": "call"
+        },
+        {
+          "name": "PermissionDeniedError",
+          "edgeType": "new"
+        }
+      ]
+    }
+  ],
+  "imports": [
+    {
+      "module": "@rocket.chat/apps-engine/definition/roles",
+      "resolved": "external"
+    },
+    {
+      "module": "./BaseBridge",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/packages/apps/src/server/bridges/BaseBridge.ts"
+    },
+    {
+      "module": "../errors/PermissionDeniedError",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/packages/apps/src/server/errors/PermissionDeniedError.ts"
+    },
+    {
+      "module": "../managers/AppPermissionManager",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/packages/apps/src/server/managers/AppPermissionManager.ts"
+    },
+    {
+      "module": "../permissions/AppPermissions",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/packages/apps/src/server/permissions/AppPermissions.ts"
+    }
+  ]
+}

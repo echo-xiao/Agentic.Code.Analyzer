@@ -1,0 +1,99 @@
+{
+  "sourcePath": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/client/views/room/contextualBar/Info/EditRoomInfo/useEditRoomPermissions.ts",
+  "symbols": [
+    {
+      "type": "variable_function",
+      "name": "getCanChangeType",
+      "exported": false,
+      "line": 9,
+      "endLine": 10,
+      "signature": "(room: IRoom | IRoomWithRetentionPolicy, canCreateChannel: boolean, canCreateGroup: boolean, isAdmin: boolean) =>",
+      "calls": [
+        {
+          "name": "IRoom",
+          "edgeType": "type"
+        },
+        {
+          "name": "IRoomWithRetentionPolicy",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "variable_function",
+      "name": "useEditRoomPermissions",
+      "exported": true,
+      "line": 12,
+      "endLine": 86,
+      "signature": "(room: IRoom | IRoomWithRetentionPolicy) =>",
+      "calls": [
+        {
+          "name": "useRole",
+          "edgeType": "call"
+        },
+        {
+          "name": "usePermission",
+          "edgeType": "call"
+        },
+        {
+          "name": "useTeamInfoQuery",
+          "edgeType": "call"
+        },
+        {
+          "name": "getCanChangeType",
+          "edgeType": "call"
+        },
+        {
+          "name": "useAtLeastOnePermission",
+          "edgeType": "call"
+        },
+        {
+          "name": "useMemo",
+          "edgeType": "call"
+        },
+        {
+          "name": "getRoomDirectives",
+          "edgeType": "call"
+        },
+        {
+          "name": "isAllowed",
+          "edgeType": "call"
+        },
+        {
+          "name": "IRoom",
+          "edgeType": "type"
+        },
+        {
+          "name": "IRoomWithRetentionPolicy",
+          "edgeType": "type"
+        }
+      ]
+    }
+  ],
+  "imports": [
+    {
+      "module": "@rocket.chat/core-typings",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/ui-contexts",
+      "resolved": "external"
+    },
+    {
+      "module": "react",
+      "resolved": "external"
+    },
+    {
+      "module": "../../../../../../definition/IRoomTypeConfig",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/definition/IRoomTypeConfig.ts"
+    },
+    {
+      "module": "../../../../../hooks/useTeamInfoQuery",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/client/hooks/useTeamInfoQuery.ts"
+    },
+    {
+      "module": "../../../../../lib/rooms/roomCoordinator",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/client/lib/rooms/roomCoordinator.tsx"
+    }
+  ]
+}

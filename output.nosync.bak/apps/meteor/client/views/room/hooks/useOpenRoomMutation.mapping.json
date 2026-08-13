@@ -1,0 +1,86 @@
+{
+  "sourcePath": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/client/views/room/hooks/useOpenRoomMutation.ts",
+  "symbols": [
+    {
+      "type": "inner_function",
+      "name": "onMutate",
+      "exported": false,
+      "qualifiedName": "useOpenRoomMutation.onMutate",
+      "line": 20,
+      "endLine": 22,
+      "signature": "async ({ roomId, userId }) =>",
+      "calls": [
+        {
+          "name": "updateSubscription",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "inner_function",
+      "name": "onError",
+      "exported": false,
+      "qualifiedName": "useOpenRoomMutation.onError",
+      "line": 23,
+      "endLine": 30,
+      "signature": "async (_, { roomId, userId }, rollbackDocument) =>",
+      "calls": [
+        {
+          "name": "updateSubscription",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "variable_function",
+      "name": "useOpenRoomMutation",
+      "exported": true,
+      "line": 11,
+      "endLine": 32,
+      "signature": "() =>",
+      "calls": [
+        {
+          "name": "useEndpoint",
+          "edgeType": "call"
+        },
+        {
+          "name": "useMutation",
+          "edgeType": "call"
+        },
+        {
+          "name": "openRoom",
+          "edgeType": "call"
+        },
+        {
+          "name": "updateSubscription",
+          "edgeType": "call"
+        },
+        {
+          "name": "OpenRoomParams",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "type",
+      "name": "OpenRoomParams",
+      "line": 6,
+      "endLine": 9,
+      "signature": "type OpenRoomParams ="
+    }
+  ],
+  "imports": [
+    {
+      "module": "@rocket.chat/ui-contexts",
+      "resolved": "external"
+    },
+    {
+      "module": "@tanstack/react-query",
+      "resolved": "external"
+    },
+    {
+      "module": "../../../lib/mutationEffects/updateSubscription",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/client/lib/mutationEffects/updateSubscription.ts"
+    }
+  ]
+}

@@ -1,0 +1,73 @@
+{
+  "sourcePath": "/Users/echoooooo/Desktop/code/Rocket.Chat/packages/apps/src/server/accessors/VideoConfProviderExtend.ts",
+  "symbols": [
+    {
+      "type": "class",
+      "name": "VideoConfProviderExtend",
+      "exported": true,
+      "line": 6,
+      "endLine": 15,
+      "signature": "export class VideoConfProviderExtend implements IVideoConfProvidersExtend",
+      "calls": [
+        {
+          "name": "IVideoConfProvidersExtend",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "provideVideoConfProvider",
+      "exported": true,
+      "qualifiedName": "VideoConfProviderExtend.provideVideoConfProvider",
+      "line": 12,
+      "endLine": 14,
+      "signature": "public provideVideoConfProvider(provider: IVideoConfProvider): Promise<void>",
+      "containerClass": "VideoConfProviderExtend",
+      "calls": [
+        {
+          "name": "resolve",
+          "edgeType": "call"
+        },
+        {
+          "name": "addProvider",
+          "edgeType": "call"
+        },
+        {
+          "name": "IVideoConfProvider",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "constructor",
+      "exported": true,
+      "qualifiedName": "VideoConfProviderExtend.constructor",
+      "line": 7,
+      "endLine": 10,
+      "signature": "constructor( private readonly manager: AppVideoConfProviderManager, private readonly appId: string, )",
+      "containerClass": "VideoConfProviderExtend",
+      "calls": [
+        {
+          "name": "AppVideoConfProviderManager",
+          "edgeType": "type"
+        }
+      ]
+    }
+  ],
+  "imports": [
+    {
+      "module": "@rocket.chat/apps-engine/definition/accessors",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/apps-engine/definition/videoConfProviders",
+      "resolved": "external"
+    },
+    {
+      "module": "../managers/AppVideoConfProviderManager",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/packages/apps/src/server/managers/AppVideoConfProviderManager.ts"
+    }
+  ]
+}

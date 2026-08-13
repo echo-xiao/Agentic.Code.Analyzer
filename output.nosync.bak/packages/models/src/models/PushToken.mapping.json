@@ -1,0 +1,401 @@
+{
+  "sourcePath": "/Users/echoooooo/Desktop/code/Rocket.Chat/packages/models/src/models/PushToken.ts",
+  "symbols": [
+    {
+      "type": "class",
+      "name": "PushTokenRaw",
+      "exported": true,
+      "line": 7,
+      "endLine": 176,
+      "signature": "export class PushTokenRaw extends BaseRaw<IPushToken> implements IPushTokenModel",
+      "calls": [
+        {
+          "name": "BaseRaw",
+          "edgeType": "type"
+        },
+        {
+          "name": "IPushTokenModel",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "modelIndexes",
+      "exported": true,
+      "qualifiedName": "PushTokenRaw.modelIndexes",
+      "line": 16,
+      "endLine": 18,
+      "signature": "override modelIndexes(): IndexDescription[]",
+      "containerClass": "PushTokenRaw",
+      "calls": [
+        {
+          "name": "IndexDescription",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "countApnTokens",
+      "exported": true,
+      "qualifiedName": "PushTokenRaw.countApnTokens",
+      "line": 20,
+      "endLine": 26,
+      "signature": "countApnTokens()",
+      "containerClass": "PushTokenRaw",
+      "calls": [
+        {
+          "name": "countDocuments",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "countGcmTokens",
+      "exported": true,
+      "qualifiedName": "PushTokenRaw.countGcmTokens",
+      "line": 24,
+      "endLine": 30,
+      "signature": "countGcmTokens()",
+      "containerClass": "PushTokenRaw",
+      "calls": [
+        {
+          "name": "countDocuments",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "countTokensByUserId",
+      "exported": true,
+      "qualifiedName": "PushTokenRaw.countTokensByUserId",
+      "line": 28,
+      "endLine": 35,
+      "signature": "countTokensByUserId(userId: IUser['_id'])",
+      "containerClass": "PushTokenRaw",
+      "calls": [
+        {
+          "name": "countDocuments",
+          "edgeType": "call"
+        },
+        {
+          "name": "IUser",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "findFirstByUserId",
+      "exported": true,
+      "qualifiedName": "PushTokenRaw.findFirstByUserId",
+      "line": 32,
+      "endLine": 34,
+      "signature": "async findFirstByUserId<T extends IPushToken>(userId: IUser['_id'], options: FindOptions<IPushToken> = {}): Promise<T | null>",
+      "containerClass": "PushTokenRaw",
+      "calls": [
+        {
+          "name": "findOne",
+          "edgeType": "call"
+        },
+        {
+          "name": "IPushToken",
+          "edgeType": "type"
+        },
+        {
+          "name": "IUser",
+          "edgeType": "type"
+        },
+        {
+          "name": "FindOptions",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "findAllTokensByUserId",
+      "exported": true,
+      "qualifiedName": "PushTokenRaw.findAllTokensByUserId",
+      "line": 36,
+      "endLine": 44,
+      "signature": "findAllTokensByUserId<T extends IPushToken>(userId: IUser['_id'], options?: FindOptions<IPushToken>): FindCursor<T>",
+      "containerClass": "PushTokenRaw",
+      "calls": [
+        {
+          "name": "find",
+          "edgeType": "call"
+        },
+        {
+          "name": "IPushToken",
+          "edgeType": "type"
+        },
+        {
+          "name": "IUser",
+          "edgeType": "type"
+        },
+        {
+          "name": "FindOptions",
+          "edgeType": "type"
+        },
+        {
+          "name": "FindCursor",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "findTokensByUserIdExceptId",
+      "exported": true,
+      "qualifiedName": "PushTokenRaw.findTokensByUserIdExceptId",
+      "line": 40,
+      "endLine": 53,
+      "signature": "findTokensByUserIdExceptId<T extends IPushToken>( userId: IUser['_id'], idToIgnore: IPushToken['_id'], options?: FindOptions<IPushToken>, ): FindCursor<T>",
+      "containerClass": "PushTokenRaw",
+      "calls": [
+        {
+          "name": "find",
+          "edgeType": "call"
+        },
+        {
+          "name": "IPushToken",
+          "edgeType": "type"
+        },
+        {
+          "name": "IUser",
+          "edgeType": "type"
+        },
+        {
+          "name": "FindOptions",
+          "edgeType": "type"
+        },
+        {
+          "name": "FindCursor",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "insertToken",
+      "exported": true,
+      "qualifiedName": "PushTokenRaw.insertToken",
+      "line": 48,
+      "endLine": 54,
+      "signature": "async insertToken(data: AtLeast<IPushToken, 'token' | 'authToken' | 'appName' | 'userId'>): Promise<InsertOneResult<IPushToken>>",
+      "containerClass": "PushTokenRaw",
+      "calls": [
+        {
+          "name": "insertOne",
+          "edgeType": "call"
+        },
+        {
+          "name": "Date",
+          "edgeType": "new"
+        },
+        {
+          "name": "AtLeast",
+          "edgeType": "type"
+        },
+        {
+          "name": "IPushToken",
+          "edgeType": "type"
+        },
+        {
+          "name": "InsertOneResult",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "refreshTokenById",
+      "exported": true,
+      "qualifiedName": "PushTokenRaw.refreshTokenById",
+      "line": 52,
+      "endLine": 69,
+      "signature": "async refreshTokenById( id: IPushToken['_id'], data: Pick<IPushToken, 'token' | 'appName' | 'authToken' | 'userId' | 'voipToken'>, ): Promise<UpdateResult<IPushToken>>",
+      "containerClass": "PushTokenRaw",
+      "calls": [
+        {
+          "name": "updateOne",
+          "edgeType": "call"
+        },
+        {
+          "name": "IPushToken",
+          "edgeType": "type"
+        },
+        {
+          "name": "UpdateResult",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "findOneByTokenAndAppName",
+      "exported": true,
+      "qualifiedName": "PushTokenRaw.findOneByTokenAndAppName",
+      "line": 59,
+      "endLine": 64,
+      "signature": "findOneByTokenAndAppName(token: IPushToken['token'], appName: IPushToken['appName']): Promise<IPushToken | null>",
+      "containerClass": "PushTokenRaw",
+      "calls": [
+        {
+          "name": "findOne",
+          "edgeType": "call"
+        },
+        {
+          "name": "IPushToken",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "removeByUserIdExceptTokens",
+      "exported": true,
+      "qualifiedName": "PushTokenRaw.removeByUserIdExceptTokens",
+      "line": 63,
+      "endLine": 68,
+      "signature": "removeByUserIdExceptTokens(userId: string, tokens: IPushToken['authToken'][]): Promise<DeleteResult>",
+      "containerClass": "PushTokenRaw",
+      "calls": [
+        {
+          "name": "deleteMany",
+          "edgeType": "call"
+        },
+        {
+          "name": "IPushToken",
+          "edgeType": "type"
+        },
+        {
+          "name": "DeleteResult",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "removeDuplicateTokens",
+      "exported": true,
+      "qualifiedName": "PushTokenRaw.removeDuplicateTokens",
+      "line": 67,
+      "endLine": 80,
+      "signature": "removeDuplicateTokens(tokenData: Pick<IPushToken, '_id' | 'token' | 'appName' | 'authToken'>): Promise<DeleteResult>",
+      "containerClass": "PushTokenRaw",
+      "calls": [
+        {
+          "name": "deleteMany",
+          "edgeType": "call"
+        },
+        {
+          "name": "IPushToken",
+          "edgeType": "type"
+        },
+        {
+          "name": "DeleteResult",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "removeAllByUserId",
+      "exported": true,
+      "qualifiedName": "PushTokenRaw.removeAllByUserId",
+      "line": 71,
+      "endLine": 75,
+      "signature": "removeAllByUserId(userId: string): Promise<DeleteResult>",
+      "containerClass": "PushTokenRaw",
+      "calls": [
+        {
+          "name": "deleteMany",
+          "edgeType": "call"
+        },
+        {
+          "name": "DeleteResult",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "removeAllByTokenStringAndUserId",
+      "exported": true,
+      "qualifiedName": "PushTokenRaw.removeAllByTokenStringAndUserId",
+      "line": 75,
+      "endLine": 90,
+      "signature": "removeAllByTokenStringAndUserId(token: string, userId: string): Promise<DeleteResult>",
+      "containerClass": "PushTokenRaw",
+      "calls": [
+        {
+          "name": "deleteMany",
+          "edgeType": "call"
+        },
+        {
+          "name": "DeleteResult",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "removeOrUnsetByTokenString",
+      "exported": true,
+      "qualifiedName": "PushTokenRaw.removeOrUnsetByTokenString",
+      "line": 79,
+      "endLine": 101,
+      "signature": "async removeOrUnsetByTokenString(token: string): Promise<void>",
+      "containerClass": "PushTokenRaw",
+      "calls": [
+        {
+          "name": "deleteMany",
+          "edgeType": "call"
+        },
+        {
+          "name": "updateMany",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "constructor",
+      "exported": true,
+      "qualifiedName": "PushTokenRaw.constructor",
+      "line": 8,
+      "endLine": 14,
+      "signature": "constructor(db: Db)",
+      "containerClass": "PushTokenRaw",
+      "calls": [
+        {
+          "name": "Db",
+          "edgeType": "type"
+        }
+      ]
+    }
+  ],
+  "imports": [
+    {
+      "module": "@rocket.chat/core-typings",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/model-typings",
+      "resolved": "external"
+    },
+    {
+      "module": "mongodb",
+      "resolved": "external"
+    },
+    {
+      "module": "./BaseRaw",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/packages/models/src/models/BaseRaw.ts"
+    }
+  ]
+}

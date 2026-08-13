@@ -1,0 +1,171 @@
+{
+  "sourcePath": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/client/lib/appLayout.tsx",
+  "symbols": [
+    {
+      "type": "class",
+      "name": "AppLayoutSubscription",
+      "exported": false,
+      "line": 12,
+      "endLine": 40,
+      "signature": "class AppLayoutSubscription extends Emitter<",
+      "calls": [
+        {
+          "name": "Emitter",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "setCurrentValue",
+      "exported": false,
+      "qualifiedName": "AppLayoutSubscription.setCurrentValue",
+      "line": 19,
+      "endLine": 22,
+      "signature": "setCurrentValue(descriptor: ReactNode): void",
+      "containerClass": "AppLayoutSubscription",
+      "calls": [
+        {
+          "name": "update",
+          "edgeType": "event_emit"
+        },
+        {
+          "name": "ReactNode",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "render",
+      "exported": false,
+      "qualifiedName": "AppLayoutSubscription.render",
+      "line": 23,
+      "endLine": 25,
+      "signature": "render(element: ReactNode): void",
+      "containerClass": "AppLayoutSubscription",
+      "calls": [
+        {
+          "name": "setCurrentValue",
+          "edgeType": "call"
+        },
+        {
+          "name": "ReactNode",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "wrap",
+      "exported": false,
+      "qualifiedName": "AppLayoutSubscription.wrap",
+      "line": 27,
+      "endLine": 38,
+      "signature": "wrap(element: ReactNode): ReactNode",
+      "containerClass": "AppLayoutSubscription",
+      "calls": [
+        {
+          "name": "AppLayoutThemeWrapper",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "ConnectionStatusBar",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "ActionManagerBusyState",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "CloudAnnouncementsRegion",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "BannerRegion",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "ModalRegion",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "ReactNode",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "class_property",
+      "name": "descriptor",
+      "exported": false,
+      "qualifiedName": "AppLayoutSubscription.descriptor",
+      "line": 13,
+      "endLine": 13,
+      "signature": "private descriptor: ReactNode = null;",
+      "containerClass": "AppLayoutSubscription",
+      "calls": [
+        {
+          "name": "ReactNode",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "class_property",
+      "name": "getSnapshot",
+      "exported": false,
+      "qualifiedName": "AppLayoutSubscription.getSnapshot",
+      "line": 15,
+      "endLine": 15,
+      "signature": "getSnapshot = (): ReactNode => this.descriptor;",
+      "containerClass": "AppLayoutSubscription",
+      "calls": [
+        {
+          "name": "ReactNode",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "class_property",
+      "name": "subscribe",
+      "exported": false,
+      "qualifiedName": "AppLayoutSubscription.subscribe",
+      "line": 17,
+      "endLine": 17,
+      "signature": "subscribe = (onStoreChange: () => void): (() => void) => this.on('update', onStoreChange);",
+      "containerClass": "AppLayoutSubscription",
+      "calls": [
+        {
+          "name": "onStoreChange",
+          "edgeType": "event_listen",
+          "event": "update"
+        }
+      ]
+    },
+    {
+      "type": "variable",
+      "name": "appLayout",
+      "exported": true,
+      "line": 32,
+      "endLine": 32,
+      "signature": "appLayout = new AppLayoutSubscription()",
+      "calls": []
+    }
+  ],
+  "imports": [
+    {
+      "module": "@rocket.chat/emitter",
+      "resolved": "external"
+    },
+    {
+      "module": "react",
+      "resolved": "external"
+    },
+    {
+      "module": "react",
+      "resolved": "external"
+    }
+  ]
+}

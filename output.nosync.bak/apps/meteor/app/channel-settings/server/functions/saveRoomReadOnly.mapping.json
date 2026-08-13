@@ -1,0 +1,53 @@
+{
+  "sourcePath": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/app/channel-settings/server/functions/saveRoomReadOnly.ts",
+  "symbols": [
+    {
+      "type": "function",
+      "name": "saveRoomReadOnly",
+      "exported": true,
+      "line": 7,
+      "endLine": 29,
+      "signature": "export async function saveRoomReadOnly( rid: string, readOnly: boolean, user: Required<Pick<IUser, '_id' | 'username' | 'name'>>, sendMessage = true, )",
+      "calls": [
+        {
+          "name": "test",
+          "edgeType": "call"
+        },
+        {
+          "name": "setReadOnlyById",
+          "edgeType": "call"
+        },
+        {
+          "name": "saveSystemMessage",
+          "edgeType": "call"
+        },
+        {
+          "name": "IUser",
+          "edgeType": "type"
+        }
+      ]
+    }
+  ],
+  "imports": [
+    {
+      "module": "@rocket.chat/core-services",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/core-typings",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/models",
+      "resolved": "external"
+    },
+    {
+      "module": "meteor/check",
+      "resolved": "external"
+    },
+    {
+      "module": "meteor/meteor",
+      "resolved": "external"
+    }
+  ]
+}

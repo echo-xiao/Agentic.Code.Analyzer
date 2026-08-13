@@ -1,0 +1,124 @@
+{
+  "sourcePath": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/client/views/omnichannel/components/outboundMessage/components/AutoCompleteOutboundProvider.tsx",
+  "symbols": [
+    {
+      "type": "variable_function",
+      "name": "AutoCompleteOutboundProvider",
+      "exported": false,
+      "line": 20,
+      "endLine": 60,
+      "signature": "({ contact, disabled, value, placeholder, onChange, ...props }: AutoCompleteOutboundProviderProps) =>",
+      "calls": [
+        {
+          "name": "useState",
+          "edgeType": "call"
+        },
+        {
+          "name": "useTranslation",
+          "edgeType": "call"
+        },
+        {
+          "name": "useTimeFromNow",
+          "edgeType": "call"
+        },
+        {
+          "name": "useOutboundProvidersList",
+          "edgeType": "call"
+        },
+        {
+          "name": "map",
+          "edgeType": "call"
+        },
+        {
+          "name": "findLastChatFromChannel",
+          "edgeType": "call"
+        },
+        {
+          "name": "getTimeFromNow",
+          "edgeType": "call"
+        },
+        {
+          "name": "Option",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "OptionDescription",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "PaginatedSelectFiltered",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "isPending",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "value",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "channelsFilter",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "options",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "onChange",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "label",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "AutoCompleteOutboundProviderProps",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "type",
+      "name": "AutoCompleteOutboundProviderProps",
+      "line": 11,
+      "endLine": 18,
+      "signature": "type AutoCompleteOutboundProviderProps = Omit< ComponentProps<typeof PaginatedSelectFiltered>, 'filter' | 'setFilter' | 'options' | 'endReached' | 'renderItem' > &"
+    }
+  ],
+  "imports": [
+    {
+      "module": "@rocket.chat/core-typings",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/fuselage",
+      "resolved": "external"
+    },
+    {
+      "module": "react",
+      "resolved": "external"
+    },
+    {
+      "module": "react",
+      "resolved": "external"
+    },
+    {
+      "module": "react-i18next",
+      "resolved": "external"
+    },
+    {
+      "module": "../../../../../hooks/useTimeFromNow",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/client/hooks/useTimeFromNow.ts"
+    },
+    {
+      "module": "../hooks/useOutboundProvidersList",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/client/views/omnichannel/components/outboundMessage/hooks/useOutboundProvidersList.ts"
+    },
+    {
+      "module": "../utils/findLastChatFromChannel",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/client/views/omnichannel/components/outboundMessage/utils/findLastChatFromChannel.ts"
+    }
+  ]
+}

@@ -1,0 +1,169 @@
+{
+  "sourcePath": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/server/api/v1/omnichannel/appearance.ts",
+  "symbols": [
+    {
+      "type": "module",
+      "name": "appearance",
+      "exported": false,
+      "line": 1,
+      "endLine": 141,
+      "signature": "appearance",
+      "calls": [
+        {
+          "name": "livechat/appearance",
+          "edgeType": "rest_route"
+        },
+        {
+          "name": "addRoute",
+          "edgeType": "call"
+        },
+        {
+          "name": "findAppearance",
+          "edgeType": "call"
+        },
+        {
+          "name": "success",
+          "edgeType": "call"
+        },
+        {
+          "name": "every",
+          "edgeType": "call"
+        },
+        {
+          "name": "includes",
+          "edgeType": "call"
+        },
+        {
+          "name": "toArray",
+          "edgeType": "call"
+        },
+        {
+          "name": "map",
+          "edgeType": "call"
+        },
+        {
+          "name": "findByIds",
+          "edgeType": "call"
+        },
+        {
+          "name": "find",
+          "edgeType": "call"
+        },
+        {
+          "name": "isArray",
+          "edgeType": "call"
+        },
+        {
+          "name": "validateValues",
+          "edgeType": "call"
+        },
+        {
+          "name": "coerceInt",
+          "edgeType": "call"
+        },
+        {
+          "name": "filter",
+          "edgeType": "call"
+        },
+        {
+          "name": "updateAuditedByUser",
+          "edgeType": "call"
+        },
+        {
+          "name": "get",
+          "edgeType": "call"
+        },
+        {
+          "name": "auditSettingOperation",
+          "edgeType": "call"
+        },
+        {
+          "name": "forEach",
+          "edgeType": "call"
+        },
+        {
+          "name": "all",
+          "edgeType": "call"
+        },
+        {
+          "name": "notifyOnSettingChangedById",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "function",
+      "name": "validateValues",
+      "exported": false,
+      "line": 117,
+      "endLine": 119,
+      "signature": "function validateValues(values: string[], allowedValues: ISettingSelectOption[] = []): boolean",
+      "calls": [
+        {
+          "name": "every",
+          "edgeType": "call"
+        },
+        {
+          "name": "some",
+          "edgeType": "call"
+        },
+        {
+          "name": "ISettingSelectOption",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "function",
+      "name": "coerceInt",
+      "exported": false,
+      "line": 121,
+      "endLine": 140,
+      "signature": "function coerceInt(value: string | number | boolean | string[]): number",
+      "calls": [
+        {
+          "name": "isArray",
+          "edgeType": "call"
+        },
+        {
+          "name": "isNaN",
+          "edgeType": "call"
+        }
+      ]
+    }
+  ],
+  "imports": [
+    {
+      "module": "@rocket.chat/core-typings",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/models",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/rest-typings",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/tools",
+      "resolved": "external"
+    },
+    {
+      "module": "../..",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/server/api/index.ts"
+    },
+    {
+      "module": "./lib/appearance",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/server/api/v1/omnichannel/lib/appearance.ts"
+    },
+    {
+      "module": "../../../../app/lib/server/lib/notifyListener",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/app/lib/server/lib/notifyListener.ts"
+    },
+    {
+      "module": "../../../settings/lib/auditedSettingUpdates",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/server/settings/lib/auditedSettingUpdates.ts"
+    }
+  ]
+}

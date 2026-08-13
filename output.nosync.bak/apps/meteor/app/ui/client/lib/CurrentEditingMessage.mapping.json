@@ -1,0 +1,254 @@
+{
+  "sourcePath": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/app/ui/client/lib/CurrentEditingMessage.ts",
+  "symbols": [
+    {
+      "type": "class",
+      "name": "CurrentEditingMessage",
+      "exported": true,
+      "line": 4,
+      "endLine": 114,
+      "signature": "export class CurrentEditingMessage",
+      "calls": []
+    },
+    {
+      "type": "method",
+      "name": "dispatch",
+      "exported": true,
+      "qualifiedName": "CurrentEditingMessage.dispatch",
+      "line": 75,
+      "endLine": 88,
+      "signature": "private dispatch()",
+      "containerClass": "CurrentEditingMessage",
+      "calls": [
+        {
+          "name": "shift",
+          "edgeType": "call"
+        },
+        {
+          "name": "resolve",
+          "edgeType": "call"
+        },
+        {
+          "name": "buildRelease",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "getMID",
+      "exported": true,
+      "qualifiedName": "CurrentEditingMessage.getMID",
+      "line": 86,
+      "endLine": 88,
+      "signature": "public getMID()",
+      "containerClass": "CurrentEditingMessage",
+      "calls": []
+    },
+    {
+      "type": "method",
+      "name": "setMID",
+      "exported": true,
+      "qualifiedName": "CurrentEditingMessage.setMID",
+      "line": 90,
+      "endLine": 92,
+      "signature": "public setMID(mid: string)",
+      "containerClass": "CurrentEditingMessage",
+      "calls": []
+    },
+    {
+      "type": "method",
+      "name": "runExclusive",
+      "exported": true,
+      "qualifiedName": "CurrentEditingMessage.runExclusive",
+      "line": 94,
+      "endLine": 102,
+      "signature": "private async runExclusive<T>(callback: () => Promise<T>)",
+      "containerClass": "CurrentEditingMessage",
+      "calls": [
+        {
+          "name": "acquire",
+          "edgeType": "call"
+        },
+        {
+          "name": "callback",
+          "edgeType": "call"
+        },
+        {
+          "name": "release",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "constructor",
+      "exported": true,
+      "qualifiedName": "CurrentEditingMessage.constructor",
+      "line": 15,
+      "endLine": 17,
+      "signature": "constructor(chat: ChatAPI)",
+      "containerClass": "CurrentEditingMessage",
+      "calls": [
+        {
+          "name": "ChatAPI",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "class_property",
+      "name": "chat",
+      "exported": true,
+      "qualifiedName": "CurrentEditingMessage.chat",
+      "line": 13,
+      "endLine": 13,
+      "signature": "private chat: ChatAPI;",
+      "containerClass": "CurrentEditingMessage",
+      "calls": [
+        {
+          "name": "ChatAPI",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "class_property",
+      "name": "reset",
+      "exported": true,
+      "qualifiedName": "CurrentEditingMessage.reset",
+      "line": 19,
+      "endLine": 34,
+      "signature": "public reset = async () =>",
+      "containerClass": "CurrentEditingMessage",
+      "calls": [
+        {
+          "name": "runExclusive",
+          "edgeType": "call"
+        },
+        {
+          "name": "findMessageByID",
+          "edgeType": "call"
+        },
+        {
+          "name": "setText",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "class_property",
+      "name": "stop",
+      "exported": true,
+      "qualifiedName": "CurrentEditingMessage.stop",
+      "line": 36,
+      "endLine": 55,
+      "signature": "public stop = async () =>",
+      "containerClass": "CurrentEditingMessage",
+      "calls": [
+        {
+          "name": "runExclusive",
+          "edgeType": "call"
+        },
+        {
+          "name": "findMessageByID",
+          "edgeType": "call"
+        },
+        {
+          "name": "discardDraft",
+          "edgeType": "call"
+        },
+        {
+          "name": "saveDraft",
+          "edgeType": "call"
+        },
+        {
+          "name": "getDraft",
+          "edgeType": "call"
+        },
+        {
+          "name": "setEditingMode",
+          "edgeType": "call"
+        },
+        {
+          "name": "clearHighlightMessage",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "class_property",
+      "name": "cancel",
+      "exported": true,
+      "qualifiedName": "CurrentEditingMessage.cancel",
+      "line": 57,
+      "endLine": 66,
+      "signature": "public cancel = async () =>",
+      "containerClass": "CurrentEditingMessage",
+      "calls": [
+        {
+          "name": "runExclusive",
+          "edgeType": "call"
+        },
+        {
+          "name": "discardDraft",
+          "edgeType": "call"
+        },
+        {
+          "name": "setText",
+          "edgeType": "call"
+        },
+        {
+          "name": "getDraft",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "class_property",
+      "name": "acquire",
+      "exported": true,
+      "qualifiedName": "CurrentEditingMessage.acquire",
+      "line": 68,
+      "endLine": 73,
+      "signature": "private acquire = async () =>",
+      "containerClass": "CurrentEditingMessage",
+      "calls": [
+        {
+          "name": "push",
+          "edgeType": "call"
+        },
+        {
+          "name": "dispatch",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "class_property",
+      "name": "buildRelease",
+      "exported": true,
+      "qualifiedName": "CurrentEditingMessage.buildRelease",
+      "line": 79,
+      "endLine": 84,
+      "signature": "private buildRelease = () =>",
+      "containerClass": "CurrentEditingMessage",
+      "calls": [
+        {
+          "name": "dispatch",
+          "edgeType": "call"
+        }
+      ]
+    }
+  ],
+  "imports": [
+    {
+      "module": "../../../../client/lib/chats/ChatAPI",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/client/lib/chats/ChatAPI.ts"
+    },
+    {
+      "module": "../../../../client/views/room/MessageList/providers/messageHighlightSubscription",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/client/views/room/MessageList/providers/messageHighlightSubscription.ts"
+    }
+  ]
+}

@@ -1,0 +1,721 @@
+{
+  "sourcePath": "/Users/echoooooo/Desktop/code/Rocket.Chat/packages/core-services/src/index.ts",
+  "symbols": [
+    {
+      "type": "variable",
+      "name": "Authorization",
+      "exported": true,
+      "line": 164,
+      "endLine": 164,
+      "signature": "Authorization = proxify<IAuthorization>('authorization')",
+      "calls": [
+        {
+          "name": "IAuthorization",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "variable",
+      "name": "Apps",
+      "exported": true,
+      "line": 165,
+      "endLine": 165,
+      "signature": "Apps = proxify<IAppsEngineService>('apps-engine')",
+      "calls": [
+        {
+          "name": "IAppsEngineService",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "variable",
+      "name": "Presence",
+      "exported": true,
+      "line": 166,
+      "endLine": 166,
+      "signature": "Presence = proxify<IPresence>('presence')",
+      "calls": [
+        {
+          "name": "IPresence",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "variable",
+      "name": "Account",
+      "exported": true,
+      "line": 167,
+      "endLine": 167,
+      "signature": "Account = proxify<IAccount>('accounts')",
+      "calls": [
+        {
+          "name": "IAccount",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "variable",
+      "name": "License",
+      "exported": true,
+      "line": 168,
+      "endLine": 168,
+      "signature": "License = proxify<ILicense>('license')",
+      "calls": [
+        {
+          "name": "ILicense",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "variable",
+      "name": "MeteorService",
+      "exported": true,
+      "line": 169,
+      "endLine": 169,
+      "signature": "MeteorService = proxify<IMeteor>('meteor')",
+      "calls": [
+        {
+          "name": "IMeteor",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "variable",
+      "name": "Banner",
+      "exported": true,
+      "line": 170,
+      "endLine": 170,
+      "signature": "Banner = proxify<IBannerService>('banner')",
+      "calls": [
+        {
+          "name": "IBannerService",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "variable",
+      "name": "UiKitCoreApp",
+      "exported": true,
+      "line": 171,
+      "endLine": 171,
+      "signature": "UiKitCoreApp = proxify<IUiKitCoreAppService>('uikit-core-app')",
+      "calls": [
+        {
+          "name": "IUiKitCoreAppService",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "variable",
+      "name": "NPS",
+      "exported": true,
+      "line": 172,
+      "endLine": 172,
+      "signature": "NPS = proxify<INPSService>('nps')",
+      "calls": [
+        {
+          "name": "INPSService",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "variable",
+      "name": "Team",
+      "exported": true,
+      "line": 173,
+      "endLine": 173,
+      "signature": "Team = proxify<ITeamService>('team')",
+      "calls": [
+        {
+          "name": "ITeamService",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "variable",
+      "name": "MessageReads",
+      "exported": true,
+      "line": 174,
+      "endLine": 174,
+      "signature": "MessageReads = proxify<IMessageReadsService>('message-reads')",
+      "calls": [
+        {
+          "name": "IMessageReadsService",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "variable",
+      "name": "Room",
+      "exported": true,
+      "line": 175,
+      "endLine": 175,
+      "signature": "Room = proxify<IRoomService>('room')",
+      "calls": [
+        {
+          "name": "IRoomService",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "variable",
+      "name": "Media",
+      "exported": true,
+      "line": 176,
+      "endLine": 176,
+      "signature": "Media = proxify<IMediaService>('media')",
+      "calls": [
+        {
+          "name": "IMediaService",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "variable",
+      "name": "MediaCall",
+      "exported": true,
+      "line": 177,
+      "endLine": 177,
+      "signature": "MediaCall = proxify<IMediaCallService>('media-call')",
+      "calls": [
+        {
+          "name": "IMediaCallService",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "variable",
+      "name": "Analytics",
+      "exported": true,
+      "line": 178,
+      "endLine": 178,
+      "signature": "Analytics = proxify<IAnalyticsService>('analytics')",
+      "calls": [
+        {
+          "name": "IAnalyticsService",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "variable",
+      "name": "LDAP",
+      "exported": true,
+      "line": 179,
+      "endLine": 179,
+      "signature": "LDAP = proxify<ILDAPService>('ldap')",
+      "calls": [
+        {
+          "name": "ILDAPService",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "variable",
+      "name": "LDAPEnterprise",
+      "exported": true,
+      "line": 180,
+      "endLine": 180,
+      "signature": "LDAPEnterprise = proxify<ILDAPEEService>('ldap-enterprise')",
+      "calls": [
+        {
+          "name": "ILDAPEEService",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "variable",
+      "name": "SAUMonitor",
+      "exported": true,
+      "line": 181,
+      "endLine": 181,
+      "signature": "SAUMonitor = proxify<ISAUMonitorService>('sau-monitor')",
+      "calls": [
+        {
+          "name": "ISAUMonitorService",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "variable",
+      "name": "DeviceManagement",
+      "exported": true,
+      "line": 182,
+      "endLine": 182,
+      "signature": "DeviceManagement = proxify<IDeviceManagementService>('device-management')",
+      "calls": [
+        {
+          "name": "IDeviceManagementService",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "variable",
+      "name": "VideoConf",
+      "exported": true,
+      "line": 183,
+      "endLine": 183,
+      "signature": "VideoConf = proxify<IVideoConfService>('video-conference')",
+      "calls": [
+        {
+          "name": "IVideoConfService",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "variable",
+      "name": "Upload",
+      "exported": true,
+      "line": 184,
+      "endLine": 184,
+      "signature": "Upload = proxify<IUploadService>('upload')",
+      "calls": [
+        {
+          "name": "IUploadService",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "variable",
+      "name": "Calendar",
+      "exported": true,
+      "line": 185,
+      "endLine": 185,
+      "signature": "Calendar = proxify<ICalendarService>('calendar')",
+      "calls": [
+        {
+          "name": "ICalendarService",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "variable",
+      "name": "CallHistory",
+      "exported": true,
+      "line": 186,
+      "endLine": 186,
+      "signature": "CallHistory = proxify<ICallHistoryService>('call-history')",
+      "calls": [
+        {
+          "name": "ICallHistoryService",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "variable",
+      "name": "QueueWorker",
+      "exported": true,
+      "line": 187,
+      "endLine": 187,
+      "signature": "QueueWorker = proxify<IQueueWorkerService>('queue-worker')",
+      "calls": [
+        {
+          "name": "IQueueWorkerService",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "variable",
+      "name": "OmnichannelTranscript",
+      "exported": true,
+      "line": 188,
+      "endLine": 188,
+      "signature": "OmnichannelTranscript = proxify<IOmnichannelTranscriptService>('omnichannel-transcript')",
+      "calls": [
+        {
+          "name": "IOmnichannelTranscriptService",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "variable",
+      "name": "Message",
+      "exported": true,
+      "line": 189,
+      "endLine": 189,
+      "signature": "Message = proxify<IMessageService>('message')",
+      "calls": [
+        {
+          "name": "IMessageService",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "variable",
+      "name": "Settings",
+      "exported": true,
+      "line": 190,
+      "endLine": 190,
+      "signature": "Settings = proxify<ISettingsService>('settings')",
+      "calls": [
+        {
+          "name": "ISettingsService",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "variable",
+      "name": "OmnichannelIntegration",
+      "exported": true,
+      "line": 191,
+      "endLine": 191,
+      "signature": "OmnichannelIntegration = proxify<IOmnichannelIntegrationService>('omnichannel-integration')",
+      "calls": [
+        {
+          "name": "IOmnichannelIntegrationService",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "variable",
+      "name": "Federation",
+      "exported": true,
+      "line": 192,
+      "endLine": 192,
+      "signature": "Federation = proxify<IFederationService>('federation')",
+      "calls": [
+        {
+          "name": "IFederationService",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "variable",
+      "name": "FederationEE",
+      "exported": true,
+      "line": 193,
+      "endLine": 193,
+      "signature": "FederationEE = proxify<IFederationServiceEE>('federation-enterprise')",
+      "calls": [
+        {
+          "name": "IFederationServiceEE",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "variable",
+      "name": "Omnichannel",
+      "exported": true,
+      "line": 194,
+      "endLine": 194,
+      "signature": "Omnichannel = proxify<IOmnichannelService>('omnichannel')",
+      "calls": [
+        {
+          "name": "IOmnichannelService",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "variable",
+      "name": "OmnichannelEEService",
+      "exported": true,
+      "line": 195,
+      "endLine": 195,
+      "signature": "OmnichannelEEService = proxify<IOmnichannelEEService>('omnichannel-ee')",
+      "calls": [
+        {
+          "name": "IOmnichannelEEService",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "variable",
+      "name": "Import",
+      "exported": true,
+      "line": 196,
+      "endLine": 196,
+      "signature": "Import = proxify<IImportService>('import')",
+      "calls": [
+        {
+          "name": "IImportService",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "variable",
+      "name": "OmnichannelAnalytics",
+      "exported": true,
+      "line": 197,
+      "endLine": 197,
+      "signature": "OmnichannelAnalytics = proxify<IOmnichannelAnalyticsService>('omnichannel-analytics')",
+      "calls": [
+        {
+          "name": "IOmnichannelAnalyticsService",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "variable",
+      "name": "User",
+      "exported": true,
+      "line": 198,
+      "endLine": 198,
+      "signature": "User = proxify<IUserService>('user')",
+      "calls": [
+        {
+          "name": "IUserService",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "variable",
+      "name": "Push",
+      "exported": true,
+      "line": 199,
+      "endLine": 199,
+      "signature": "Push = proxify<IPushService>('push')",
+      "calls": [
+        {
+          "name": "IPushService",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "variable",
+      "name": "EnterpriseSettings",
+      "exported": true,
+      "line": 203,
+      "endLine": 203,
+      "signature": "EnterpriseSettings = proxify<IEnterpriseSettings>('ee-settings')",
+      "calls": [
+        {
+          "name": "IEnterpriseSettings",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "variable",
+      "name": "FederationMatrix",
+      "exported": true,
+      "line": 205,
+      "endLine": 205,
+      "signature": "FederationMatrix = proxify<IFederationMatrixService>('federation-matrix')",
+      "calls": [
+        {
+          "name": "IFederationMatrixService",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "variable",
+      "name": "Abac",
+      "exported": true,
+      "line": 206,
+      "endLine": 206,
+      "signature": "Abac = proxify<IAbacService>('abac')",
+      "calls": [
+        {
+          "name": "IAbacService",
+          "edgeType": "type"
+        }
+      ]
+    }
+  ],
+  "imports": [
+    {
+      "module": "./lib/proxify",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/packages/core-services/src/lib/proxify.ts"
+    },
+    {
+      "module": "./types/IAbacService",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/packages/core-services/src/types/IAbacService.ts"
+    },
+    {
+      "module": "./types/IAccount",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/packages/core-services/src/types/IAccount.ts"
+    },
+    {
+      "module": "./types/IAnalyticsService",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/packages/core-services/src/types/IAnalyticsService.ts"
+    },
+    {
+      "module": "./types/IApiService",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/packages/core-services/src/types/IApiService.ts"
+    },
+    {
+      "module": "./types/IAppsEngineService",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/packages/core-services/src/types/IAppsEngineService.ts"
+    },
+    {
+      "module": "./types/IAuthorization",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/packages/core-services/src/types/IAuthorization.ts"
+    },
+    {
+      "module": "./types/IAuthorizationLivechat",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/packages/core-services/src/types/IAuthorizationLivechat.ts"
+    },
+    {
+      "module": "./types/IBannerService",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/packages/core-services/src/types/IBannerService.ts"
+    },
+    {
+      "module": "./types/ICalendarService",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/packages/core-services/src/types/ICalendarService.ts"
+    },
+    {
+      "module": "./types/ICallHistoryService",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/packages/core-services/src/types/ICallHistoryService.ts"
+    },
+    {
+      "module": "./types/IDeviceManagementService",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/packages/core-services/src/types/IDeviceManagementService.ts"
+    },
+    {
+      "module": "./types/IEnterpriseSettings",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/packages/core-services/src/types/IEnterpriseSettings.ts"
+    },
+    {
+      "module": "./types/IFederationMatrixService",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/packages/core-services/src/types/IFederationMatrixService.ts"
+    },
+    {
+      "module": "./types/IFederationService",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/packages/core-services/src/types/IFederationService.ts"
+    },
+    {
+      "module": "./types/IImportService",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/packages/core-services/src/types/IImportService.ts"
+    },
+    {
+      "module": "./types/ILDAPEEService",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/packages/core-services/src/types/ILDAPEEService.ts"
+    },
+    {
+      "module": "./types/ILDAPService",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/packages/core-services/src/types/ILDAPService.ts"
+    },
+    {
+      "module": "./types/ILicense",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/packages/core-services/src/types/ILicense.ts"
+    },
+    {
+      "module": "./types/IMediaCallService",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/packages/core-services/src/types/IMediaCallService.ts"
+    },
+    {
+      "module": "./types/IMediaService",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/packages/core-services/src/types/IMediaService.ts"
+    },
+    {
+      "module": "./types/IMessageReadsService",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/packages/core-services/src/types/IMessageReadsService.ts"
+    },
+    {
+      "module": "./types/IMessageService",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/packages/core-services/src/types/IMessageService.ts"
+    },
+    {
+      "module": "./types/IMeteor",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/packages/core-services/src/types/IMeteor.ts"
+    },
+    {
+      "module": "./types/INPSService",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/packages/core-services/src/types/INPSService.ts"
+    },
+    {
+      "module": "./types/IOmnichannelAnalyticsService",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/packages/core-services/src/types/IOmnichannelAnalyticsService.ts"
+    },
+    {
+      "module": "./types/IOmnichannelEEService",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/packages/core-services/src/types/IOmnichannelEEService.ts"
+    },
+    {
+      "module": "./types/IOmnichannelIntegrationService",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/packages/core-services/src/types/IOmnichannelIntegrationService.ts"
+    },
+    {
+      "module": "./types/IOmnichannelService",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/packages/core-services/src/types/IOmnichannelService.ts"
+    },
+    {
+      "module": "./types/IOmnichannelTranscriptService",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/packages/core-services/src/types/IOmnichannelTranscriptService.ts"
+    },
+    {
+      "module": "./types/IPresence",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/packages/core-services/src/types/IPresence.ts"
+    },
+    {
+      "module": "./types/IPushService",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/packages/core-services/src/types/IPushService.ts"
+    },
+    {
+      "module": "./types/IQueueWorkerService",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/packages/core-services/src/types/IQueueWorkerService.ts"
+    },
+    {
+      "module": "./types/IRoomService",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/packages/core-services/src/types/IRoomService.ts"
+    },
+    {
+      "module": "./types/ISAUMonitorService",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/packages/core-services/src/types/ISAUMonitorService.ts"
+    },
+    {
+      "module": "./types/ISettingsService",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/packages/core-services/src/types/ISettingsService.ts"
+    },
+    {
+      "module": "./types/ITeamService",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/packages/core-services/src/types/ITeamService.ts"
+    },
+    {
+      "module": "./types/ITelemetryEvent",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/packages/core-services/src/types/ITelemetryEvent.ts"
+    },
+    {
+      "module": "./types/IUiKitCoreApp",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/packages/core-services/src/types/IUiKitCoreApp.ts"
+    },
+    {
+      "module": "./types/IUploadService",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/packages/core-services/src/types/IUploadService.ts"
+    },
+    {
+      "module": "./types/IUserService",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/packages/core-services/src/types/IUserService.ts"
+    },
+    {
+      "module": "./types/IVideoConfService",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/packages/core-services/src/types/IVideoConfService.ts"
+    }
+  ]
+}

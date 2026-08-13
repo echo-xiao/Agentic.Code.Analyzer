@@ -1,0 +1,1128 @@
+{
+  "sourcePath": "/Users/echoooooo/Desktop/code/Rocket.Chat/packages/models/src/models/LivechatDepartment.ts",
+  "symbols": [
+    {
+      "type": "class",
+      "name": "LivechatDepartmentRaw",
+      "exported": true,
+      "line": 21,
+      "endLine": 460,
+      "signature": "export class LivechatDepartmentRaw extends BaseRaw<ILivechatDepartment> implements ILivechatDepartmentModel",
+      "calls": [
+        {
+          "name": "BaseRaw",
+          "edgeType": "type"
+        },
+        {
+          "name": "ILivechatDepartmentModel",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "unfilteredFind",
+      "exported": true,
+      "qualifiedName": "LivechatDepartmentRaw.unfilteredFind",
+      "line": 26,
+      "endLine": 28,
+      "signature": "unfilteredFind(_query: Filter<ILivechatDepartment>, _options: FindOptions<ILivechatDepartment>): FindCursor<ILivechatDepartment>",
+      "containerClass": "LivechatDepartmentRaw",
+      "calls": [
+        {
+          "name": "Filter",
+          "edgeType": "type"
+        },
+        {
+          "name": "ILivechatDepartment",
+          "edgeType": "type"
+        },
+        {
+          "name": "FindOptions",
+          "edgeType": "type"
+        },
+        {
+          "name": "FindCursor",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "unfilteredFindOne",
+      "exported": true,
+      "qualifiedName": "LivechatDepartmentRaw.unfilteredFindOne",
+      "line": 30,
+      "endLine": 32,
+      "signature": "unfilteredFindOne(_query: Filter<ILivechatDepartment>, _options: FindOptions<ILivechatDepartment>): Promise<ILivechatDepartment | null>",
+      "containerClass": "LivechatDepartmentRaw",
+      "calls": [
+        {
+          "name": "Filter",
+          "edgeType": "type"
+        },
+        {
+          "name": "ILivechatDepartment",
+          "edgeType": "type"
+        },
+        {
+          "name": "FindOptions",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "unfilteredUpdate",
+      "exported": true,
+      "qualifiedName": "LivechatDepartmentRaw.unfilteredUpdate",
+      "line": 34,
+      "endLine": 40,
+      "signature": "unfilteredUpdate( _query: Filter<ILivechatDepartment>, _update: UpdateFilter<ILivechatDepartment>, _options: FindOptions<ILivechatDepartment>, ): Promise<UpdateResult>",
+      "containerClass": "LivechatDepartmentRaw",
+      "calls": [
+        {
+          "name": "Filter",
+          "edgeType": "type"
+        },
+        {
+          "name": "ILivechatDepartment",
+          "edgeType": "type"
+        },
+        {
+          "name": "UpdateFilter",
+          "edgeType": "type"
+        },
+        {
+          "name": "FindOptions",
+          "edgeType": "type"
+        },
+        {
+          "name": "UpdateResult",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "unfilteredRemove",
+      "exported": true,
+      "qualifiedName": "LivechatDepartmentRaw.unfilteredRemove",
+      "line": 42,
+      "endLine": 44,
+      "signature": "unfilteredRemove(_query: Filter<ILivechatDepartment>): Promise<DeleteResult>",
+      "containerClass": "LivechatDepartmentRaw",
+      "calls": [
+        {
+          "name": "Filter",
+          "edgeType": "type"
+        },
+        {
+          "name": "ILivechatDepartment",
+          "edgeType": "type"
+        },
+        {
+          "name": "DeleteResult",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "removeParentAndAncestorById",
+      "exported": true,
+      "qualifiedName": "LivechatDepartmentRaw.removeParentAndAncestorById",
+      "line": 46,
+      "endLine": 48,
+      "signature": "removeParentAndAncestorById(_id: string): Promise<Document | UpdateResult>",
+      "containerClass": "LivechatDepartmentRaw",
+      "calls": [
+        {
+          "name": "Document",
+          "edgeType": "type"
+        },
+        {
+          "name": "UpdateResult",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "modelIndexes",
+      "exported": true,
+      "qualifiedName": "LivechatDepartmentRaw.modelIndexes",
+      "line": 50,
+      "endLine": 94,
+      "signature": "protected override modelIndexes(): Array<IndexDescription>",
+      "containerClass": "LivechatDepartmentRaw",
+      "calls": [
+        {
+          "name": "IndexDescription",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "countTotal",
+      "exported": true,
+      "qualifiedName": "LivechatDepartmentRaw.countTotal",
+      "line": 54,
+      "endLine": 56,
+      "signature": "countTotal(): Promise<number>",
+      "containerClass": "LivechatDepartmentRaw",
+      "calls": [
+        {
+          "name": "estimatedDocumentCount",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "findInIds",
+      "exported": true,
+      "qualifiedName": "LivechatDepartmentRaw.findInIds",
+      "line": 58,
+      "endLine": 61,
+      "signature": "findInIds(departmentsIds: string[], options: FindOptions<ILivechatDepartment>): FindCursor<ILivechatDepartment>",
+      "containerClass": "LivechatDepartmentRaw",
+      "calls": [
+        {
+          "name": "find",
+          "edgeType": "call"
+        },
+        {
+          "name": "FindOptions",
+          "edgeType": "type"
+        },
+        {
+          "name": "ILivechatDepartment",
+          "edgeType": "type"
+        },
+        {
+          "name": "FindCursor",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "findByNameRegexWithExceptionsAndConditions",
+      "exported": true,
+      "qualifiedName": "LivechatDepartmentRaw.findByNameRegexWithExceptionsAndConditions",
+      "line": 62,
+      "endLine": 83,
+      "signature": "findByNameRegexWithExceptionsAndConditions( searchTerm: string, exceptions: string[] = [], conditions: Filter<ILivechatDepartment> = {}, options: FindOptions<ILivechatDepartment> = {}, ): FindCursor<ILivechatDepartment>",
+      "containerClass": "LivechatDepartmentRaw",
+      "calls": [
+        {
+          "name": "isArray",
+          "edgeType": "call"
+        },
+        {
+          "name": "trim",
+          "edgeType": "call"
+        },
+        {
+          "name": "escapeRegExp",
+          "edgeType": "call"
+        },
+        {
+          "name": "find",
+          "edgeType": "call"
+        },
+        {
+          "name": "RegExp",
+          "edgeType": "new"
+        },
+        {
+          "name": "Filter",
+          "edgeType": "type"
+        },
+        {
+          "name": "ILivechatDepartment",
+          "edgeType": "type"
+        },
+        {
+          "name": "FindOptions",
+          "edgeType": "type"
+        },
+        {
+          "name": "FindCursor",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "findByBusinessHourId",
+      "exported": true,
+      "qualifiedName": "LivechatDepartmentRaw.findByBusinessHourId",
+      "line": 71,
+      "endLine": 74,
+      "signature": "findByBusinessHourId(businessHourId: string, options: FindOptions<ILivechatDepartment>): FindCursor<ILivechatDepartment>",
+      "containerClass": "LivechatDepartmentRaw",
+      "calls": [
+        {
+          "name": "find",
+          "edgeType": "call"
+        },
+        {
+          "name": "FindOptions",
+          "edgeType": "type"
+        },
+        {
+          "name": "ILivechatDepartment",
+          "edgeType": "type"
+        },
+        {
+          "name": "FindCursor",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "countByBusinessHourIdExcludingDepartmentId",
+      "exported": true,
+      "qualifiedName": "LivechatDepartmentRaw.countByBusinessHourIdExcludingDepartmentId",
+      "line": 75,
+      "endLine": 78,
+      "signature": "countByBusinessHourIdExcludingDepartmentId(businessHourId: string, departmentId: string): Promise<number>",
+      "containerClass": "LivechatDepartmentRaw",
+      "calls": [
+        {
+          "name": "countDocuments",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "findEnabledByBusinessHourId",
+      "exported": true,
+      "qualifiedName": "LivechatDepartmentRaw.findEnabledByBusinessHourId",
+      "line": 79,
+      "endLine": 82,
+      "signature": "findEnabledByBusinessHourId(businessHourId: string, options: FindOptions<ILivechatDepartment>): FindCursor<ILivechatDepartment>",
+      "containerClass": "LivechatDepartmentRaw",
+      "calls": [
+        {
+          "name": "find",
+          "edgeType": "call"
+        },
+        {
+          "name": "FindOptions",
+          "edgeType": "type"
+        },
+        {
+          "name": "ILivechatDepartment",
+          "edgeType": "type"
+        },
+        {
+          "name": "FindCursor",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "findActiveDepartmentsWithoutBusinessHour",
+      "exported": true,
+      "qualifiedName": "LivechatDepartmentRaw.findActiveDepartmentsWithoutBusinessHour",
+      "line": 83,
+      "endLine": 89,
+      "signature": "findActiveDepartmentsWithoutBusinessHour(options: FindOptions<ILivechatDepartment>): FindCursor<ILivechatDepartment>",
+      "containerClass": "LivechatDepartmentRaw",
+      "calls": [
+        {
+          "name": "find",
+          "edgeType": "call"
+        },
+        {
+          "name": "FindOptions",
+          "edgeType": "type"
+        },
+        {
+          "name": "ILivechatDepartment",
+          "edgeType": "type"
+        },
+        {
+          "name": "FindCursor",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "findEnabledByListOfBusinessHourIdsAndDepartmentIds",
+      "exported": true,
+      "qualifiedName": "LivechatDepartmentRaw.findEnabledByListOfBusinessHourIdsAndDepartmentIds",
+      "line": 87,
+      "endLine": 102,
+      "signature": "findEnabledByListOfBusinessHourIdsAndDepartmentIds( businessHourIds: string[], departmentIds: string[], options: FindOptions<ILivechatDepartment>, ): FindCursor<ILivechatDepartment>",
+      "containerClass": "LivechatDepartmentRaw",
+      "calls": [
+        {
+          "name": "find",
+          "edgeType": "call"
+        },
+        {
+          "name": "FindOptions",
+          "edgeType": "type"
+        },
+        {
+          "name": "ILivechatDepartment",
+          "edgeType": "type"
+        },
+        {
+          "name": "FindCursor",
+          "edgeType": "type"
+        },
+        {
+          "name": "Filter",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "findEnabledInIds",
+      "exported": true,
+      "qualifiedName": "LivechatDepartmentRaw.findEnabledInIds",
+      "line": 95,
+      "endLine": 98,
+      "signature": "findEnabledInIds(departmentsIds: string[], options?: FindOptions<ILivechatDepartment>): FindCursor<ILivechatDepartment>",
+      "containerClass": "LivechatDepartmentRaw",
+      "calls": [
+        {
+          "name": "find",
+          "edgeType": "call"
+        },
+        {
+          "name": "FindOptions",
+          "edgeType": "type"
+        },
+        {
+          "name": "ILivechatDepartment",
+          "edgeType": "type"
+        },
+        {
+          "name": "FindCursor",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "addBusinessHourToDepartmentsByIds",
+      "exported": true,
+      "qualifiedName": "LivechatDepartmentRaw.addBusinessHourToDepartmentsByIds",
+      "line": 99,
+      "endLine": 111,
+      "signature": "addBusinessHourToDepartmentsByIds(ids: string[] = [], businessHourId: string): Promise<Document | UpdateResult>",
+      "containerClass": "LivechatDepartmentRaw",
+      "calls": [
+        {
+          "name": "updateMany",
+          "edgeType": "call"
+        },
+        {
+          "name": "Document",
+          "edgeType": "type"
+        },
+        {
+          "name": "UpdateResult",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "removeBusinessHourFromDepartmentsByIdsAndBusinessHourId",
+      "exported": true,
+      "qualifiedName": "LivechatDepartmentRaw.removeBusinessHourFromDepartmentsByIdsAndBusinessHourId",
+      "line": 103,
+      "endLine": 116,
+      "signature": "removeBusinessHourFromDepartmentsByIdsAndBusinessHourId(ids: string[] = [], businessHourId: string): Promise<Document | UpdateResult>",
+      "containerClass": "LivechatDepartmentRaw",
+      "calls": [
+        {
+          "name": "updateMany",
+          "edgeType": "call"
+        },
+        {
+          "name": "Document",
+          "edgeType": "type"
+        },
+        {
+          "name": "UpdateResult",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "removeBusinessHourFromDepartmentsByBusinessHourId",
+      "exported": true,
+      "qualifiedName": "LivechatDepartmentRaw.removeBusinessHourFromDepartmentsByBusinessHourId",
+      "line": 107,
+      "endLine": 119,
+      "signature": "removeBusinessHourFromDepartmentsByBusinessHourId(businessHourId: string): Promise<Document | UpdateResult>",
+      "containerClass": "LivechatDepartmentRaw",
+      "calls": [
+        {
+          "name": "updateMany",
+          "edgeType": "call"
+        },
+        {
+          "name": "Document",
+          "edgeType": "type"
+        },
+        {
+          "name": "UpdateResult",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "unarchiveDepartment",
+      "exported": true,
+      "qualifiedName": "LivechatDepartmentRaw.unarchiveDepartment",
+      "line": 111,
+      "endLine": 113,
+      "signature": "unarchiveDepartment(_id: string): Promise<UpdateResult>",
+      "containerClass": "LivechatDepartmentRaw",
+      "calls": [
+        {
+          "name": "updateOne",
+          "edgeType": "call"
+        },
+        {
+          "name": "UpdateResult",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "archiveDepartment",
+      "exported": true,
+      "qualifiedName": "LivechatDepartmentRaw.archiveDepartment",
+      "line": 115,
+      "endLine": 117,
+      "signature": "archiveDepartment(_id: string): Promise<UpdateResult>",
+      "containerClass": "LivechatDepartmentRaw",
+      "calls": [
+        {
+          "name": "updateOne",
+          "edgeType": "call"
+        },
+        {
+          "name": "UpdateResult",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "addDepartmentToUnit",
+      "exported": true,
+      "qualifiedName": "LivechatDepartmentRaw.addDepartmentToUnit",
+      "line": 119,
+      "endLine": 121,
+      "signature": "addDepartmentToUnit(_id: string, unitId: string, ancestors: string[]): Promise<Document | UpdateResult>",
+      "containerClass": "LivechatDepartmentRaw",
+      "calls": [
+        {
+          "name": "updateOne",
+          "edgeType": "call"
+        },
+        {
+          "name": "Document",
+          "edgeType": "type"
+        },
+        {
+          "name": "UpdateResult",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "removeDepartmentFromUnit",
+      "exported": true,
+      "qualifiedName": "LivechatDepartmentRaw.removeDepartmentFromUnit",
+      "line": 123,
+      "endLine": 125,
+      "signature": "removeDepartmentFromUnit(_id: string): Promise<Document | UpdateResult>",
+      "containerClass": "LivechatDepartmentRaw",
+      "calls": [
+        {
+          "name": "updateOne",
+          "edgeType": "call"
+        },
+        {
+          "name": "Document",
+          "edgeType": "type"
+        },
+        {
+          "name": "UpdateResult",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "createOrUpdateDepartment",
+      "exported": true,
+      "qualifiedName": "LivechatDepartmentRaw.createOrUpdateDepartment",
+      "line": 127,
+      "endLine": 150,
+      "signature": "async createOrUpdateDepartment(_id: string | null, data: LivechatDepartmentDTO & { type?: string }): Promise<ILivechatDepartment>",
+      "containerClass": "LivechatDepartmentRaw",
+      "calls": [
+        {
+          "name": "findOneById",
+          "edgeType": "call"
+        },
+        {
+          "name": "updateOne",
+          "edgeType": "call"
+        },
+        {
+          "name": "insertOne",
+          "edgeType": "call"
+        },
+        {
+          "name": "setDepartmentEnabledByDepartmentId",
+          "edgeType": "call"
+        },
+        {
+          "name": "LivechatDepartmentDTO",
+          "edgeType": "type"
+        },
+        {
+          "name": "ILivechatDepartment",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "unsetFallbackDepartmentByDepartmentId",
+      "exported": true,
+      "qualifiedName": "LivechatDepartmentRaw.unsetFallbackDepartmentByDepartmentId",
+      "line": 131,
+      "endLine": 133,
+      "signature": "unsetFallbackDepartmentByDepartmentId(departmentId: string): Promise<Document | UpdateResult>",
+      "containerClass": "LivechatDepartmentRaw",
+      "calls": [
+        {
+          "name": "updateMany",
+          "edgeType": "call"
+        },
+        {
+          "name": "Document",
+          "edgeType": "type"
+        },
+        {
+          "name": "UpdateResult",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "removeDepartmentFromForwardListById",
+      "exported": true,
+      "qualifiedName": "LivechatDepartmentRaw.removeDepartmentFromForwardListById",
+      "line": 135,
+      "endLine": 137,
+      "signature": "removeDepartmentFromForwardListById(_departmentId: string): Promise<void>",
+      "containerClass": "LivechatDepartmentRaw",
+      "calls": []
+    },
+    {
+      "type": "method",
+      "name": "updateById",
+      "exported": true,
+      "qualifiedName": "LivechatDepartmentRaw.updateById",
+      "line": 139,
+      "endLine": 141,
+      "signature": "updateById(_id: string, update: Partial<ILivechatDepartment>): Promise<Document | UpdateResult>",
+      "containerClass": "LivechatDepartmentRaw",
+      "calls": [
+        {
+          "name": "updateOne",
+          "edgeType": "call"
+        },
+        {
+          "name": "ILivechatDepartment",
+          "edgeType": "type"
+        },
+        {
+          "name": "Document",
+          "edgeType": "type"
+        },
+        {
+          "name": "UpdateResult",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "updateNumAgentsById",
+      "exported": true,
+      "qualifiedName": "LivechatDepartmentRaw.updateNumAgentsById",
+      "line": 143,
+      "endLine": 145,
+      "signature": "updateNumAgentsById(_id: string, numAgents: number): Promise<Document | UpdateResult>",
+      "containerClass": "LivechatDepartmentRaw",
+      "calls": [
+        {
+          "name": "updateOne",
+          "edgeType": "call"
+        },
+        {
+          "name": "Document",
+          "edgeType": "type"
+        },
+        {
+          "name": "UpdateResult",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "decreaseNumberOfAgentsByIds",
+      "exported": true,
+      "qualifiedName": "LivechatDepartmentRaw.decreaseNumberOfAgentsByIds",
+      "line": 147,
+      "endLine": 149,
+      "signature": "decreaseNumberOfAgentsByIds(_ids: string[]): Promise<Document | UpdateResult>",
+      "containerClass": "LivechatDepartmentRaw",
+      "calls": [
+        {
+          "name": "updateMany",
+          "edgeType": "call"
+        },
+        {
+          "name": "Document",
+          "edgeType": "type"
+        },
+        {
+          "name": "UpdateResult",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "findEnabledWithAgents",
+      "exported": true,
+      "qualifiedName": "LivechatDepartmentRaw.findEnabledWithAgents",
+      "line": 151,
+      "endLine": 157,
+      "signature": "findEnabledWithAgents<T extends Document = ILivechatDepartment>(projection: FindOptions<T>['projection'] = {}): FindCursor<T>",
+      "containerClass": "LivechatDepartmentRaw",
+      "calls": [
+        {
+          "name": "find",
+          "edgeType": "call"
+        },
+        {
+          "name": "Document",
+          "edgeType": "type"
+        },
+        {
+          "name": "ILivechatDepartment",
+          "edgeType": "type"
+        },
+        {
+          "name": "FindOptions",
+          "edgeType": "type"
+        },
+        {
+          "name": "FindCursor",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "findEnabledWithAgentsAndRegistration",
+      "exported": true,
+      "qualifiedName": "LivechatDepartmentRaw.findEnabledWithAgentsAndRegistration",
+      "line": 155,
+      "endLine": 164,
+      "signature": "findEnabledWithAgentsAndRegistration<T extends Document = ILivechatDepartment>( projection: FindOptions<T>['projection'] = {}, ): FindCursor<T>",
+      "containerClass": "LivechatDepartmentRaw",
+      "calls": [
+        {
+          "name": "find",
+          "edgeType": "call"
+        },
+        {
+          "name": "Document",
+          "edgeType": "type"
+        },
+        {
+          "name": "ILivechatDepartment",
+          "edgeType": "type"
+        },
+        {
+          "name": "FindOptions",
+          "edgeType": "type"
+        },
+        {
+          "name": "FindCursor",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "findOneEnabledWithAgentsAndRegistration",
+      "exported": true,
+      "qualifiedName": "LivechatDepartmentRaw.findOneEnabledWithAgentsAndRegistration",
+      "line": 161,
+      "endLine": 170,
+      "signature": "findOneEnabledWithAgentsAndRegistration<T extends Document = ILivechatDepartment>( projection: FindOptions<T>['projection'] = {}, ): Promise<T | null>",
+      "containerClass": "LivechatDepartmentRaw",
+      "calls": [
+        {
+          "name": "findOne",
+          "edgeType": "call"
+        },
+        {
+          "name": "Document",
+          "edgeType": "type"
+        },
+        {
+          "name": "ILivechatDepartment",
+          "edgeType": "type"
+        },
+        {
+          "name": "FindOptions",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "findEnabledWithAgentsAndBusinessUnit",
+      "exported": true,
+      "qualifiedName": "LivechatDepartmentRaw.findEnabledWithAgentsAndBusinessUnit",
+      "line": 167,
+      "endLine": 172,
+      "signature": "findEnabledWithAgentsAndBusinessUnit<T extends Document = ILivechatDepartment>( _: any, projection?: FindOptions<T>['projection'], ): FindCursor<T>",
+      "containerClass": "LivechatDepartmentRaw",
+      "calls": [
+        {
+          "name": "findEnabledWithAgents",
+          "edgeType": "call"
+        },
+        {
+          "name": "Document",
+          "edgeType": "type"
+        },
+        {
+          "name": "ILivechatDepartment",
+          "edgeType": "type"
+        },
+        {
+          "name": "FindOptions",
+          "edgeType": "type"
+        },
+        {
+          "name": "FindCursor",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "findOneByIdOrName",
+      "exported": true,
+      "qualifiedName": "LivechatDepartmentRaw.findOneByIdOrName",
+      "line": 174,
+      "endLine": 187,
+      "signature": "findOneByIdOrName(_idOrName: string, options: FindOptions<ILivechatDepartment> = {}): Promise<ILivechatDepartment | null>",
+      "containerClass": "LivechatDepartmentRaw",
+      "calls": [
+        {
+          "name": "findOne",
+          "edgeType": "call"
+        },
+        {
+          "name": "FindOptions",
+          "edgeType": "type"
+        },
+        {
+          "name": "ILivechatDepartment",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "findByUnitIds",
+      "exported": true,
+      "qualifiedName": "LivechatDepartmentRaw.findByUnitIds",
+      "line": 178,
+      "endLine": 187,
+      "signature": "findByUnitIds(unitIds: string[], options: FindOptions<ILivechatDepartment> = {}): FindCursor<ILivechatDepartment>",
+      "containerClass": "LivechatDepartmentRaw",
+      "calls": [
+        {
+          "name": "find",
+          "edgeType": "call"
+        },
+        {
+          "name": "FindOptions",
+          "edgeType": "type"
+        },
+        {
+          "name": "ILivechatDepartment",
+          "edgeType": "type"
+        },
+        {
+          "name": "FindCursor",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "countDepartmentsInUnit",
+      "exported": true,
+      "qualifiedName": "LivechatDepartmentRaw.countDepartmentsInUnit",
+      "line": 182,
+      "endLine": 184,
+      "signature": "countDepartmentsInUnit(unitId: string): Promise<number>",
+      "containerClass": "LivechatDepartmentRaw",
+      "calls": [
+        {
+          "name": "countDocuments",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "findActiveByUnitIds",
+      "exported": true,
+      "qualifiedName": "LivechatDepartmentRaw.findActiveByUnitIds",
+      "line": 186,
+      "endLine": 188,
+      "signature": "findActiveByUnitIds<T extends Document = ILivechatDepartment>(_unitIds: string[], _options: FindOptions<T> = {}): FindCursor<T>",
+      "containerClass": "LivechatDepartmentRaw",
+      "calls": [
+        {
+          "name": "Document",
+          "edgeType": "type"
+        },
+        {
+          "name": "ILivechatDepartment",
+          "edgeType": "type"
+        },
+        {
+          "name": "FindOptions",
+          "edgeType": "type"
+        },
+        {
+          "name": "FindCursor",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "findNotArchived",
+      "exported": true,
+      "qualifiedName": "LivechatDepartmentRaw.findNotArchived",
+      "line": 190,
+      "endLine": 194,
+      "signature": "findNotArchived(options: FindOptions<ILivechatDepartment> = {}): FindCursor<ILivechatDepartment>",
+      "containerClass": "LivechatDepartmentRaw",
+      "calls": [
+        {
+          "name": "find",
+          "edgeType": "call"
+        },
+        {
+          "name": "FindOptions",
+          "edgeType": "type"
+        },
+        {
+          "name": "ILivechatDepartment",
+          "edgeType": "type"
+        },
+        {
+          "name": "FindCursor",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "getBusinessHoursWithDepartmentStatuses",
+      "exported": true,
+      "qualifiedName": "LivechatDepartmentRaw.getBusinessHoursWithDepartmentStatuses",
+      "line": 194,
+      "endLine": 246,
+      "signature": "getBusinessHoursWithDepartmentStatuses(): Promise< { _id: string; validDepartments: string[]; invalidDepartments: string[]; }[] >",
+      "containerClass": "LivechatDepartmentRaw",
+      "calls": [
+        {
+          "name": "toArray",
+          "edgeType": "call"
+        },
+        {
+          "name": "aggregate",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "checkIfMonitorIsMonitoringDepartmentById",
+      "exported": true,
+      "qualifiedName": "LivechatDepartmentRaw.checkIfMonitorIsMonitoringDepartmentById",
+      "line": 204,
+      "endLine": 243,
+      "signature": "checkIfMonitorIsMonitoringDepartmentById(monitorId: string, departmentId: string): Promise<boolean>",
+      "containerClass": "LivechatDepartmentRaw",
+      "calls": [
+        {
+          "name": "getCollectionName",
+          "edgeType": "call"
+        },
+        {
+          "name": "hasNext",
+          "edgeType": "call"
+        },
+        {
+          "name": "aggregate",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "countArchived",
+      "exported": true,
+      "qualifiedName": "LivechatDepartmentRaw.countArchived",
+      "line": 208,
+      "endLine": 210,
+      "signature": "countArchived(): Promise<number>",
+      "containerClass": "LivechatDepartmentRaw",
+      "calls": [
+        {
+          "name": "countDocuments",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "findByParentId",
+      "exported": true,
+      "qualifiedName": "LivechatDepartmentRaw.findByParentId",
+      "line": 212,
+      "endLine": 214,
+      "signature": "findByParentId(_parentId: string, _options?: FindOptions<ILivechatDepartment> | undefined): FindCursor<ILivechatDepartment>",
+      "containerClass": "LivechatDepartmentRaw",
+      "calls": [
+        {
+          "name": "FindOptions",
+          "edgeType": "type"
+        },
+        {
+          "name": "ILivechatDepartment",
+          "edgeType": "type"
+        },
+        {
+          "name": "FindCursor",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "findAgentsByBusinessHourId",
+      "exported": true,
+      "qualifiedName": "LivechatDepartmentRaw.findAgentsByBusinessHourId",
+      "line": 216,
+      "endLine": 218,
+      "signature": "findAgentsByBusinessHourId(_businessHourId: string): AggregationCursor<{ agentIds: string[] }>",
+      "containerClass": "LivechatDepartmentRaw",
+      "calls": [
+        {
+          "name": "AggregationCursor",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "constructor",
+      "exported": true,
+      "qualifiedName": "LivechatDepartmentRaw.constructor",
+      "line": 22,
+      "endLine": 24,
+      "signature": "constructor(db: Db, trash?: Collection<RocketChatRecordDeleted<ILivechatDepartment>>)",
+      "containerClass": "LivechatDepartmentRaw",
+      "calls": [
+        {
+          "name": "Db",
+          "edgeType": "type"
+        },
+        {
+          "name": "Collection",
+          "edgeType": "type"
+        },
+        {
+          "name": "RocketChatRecordDeleted",
+          "edgeType": "type"
+        },
+        {
+          "name": "ILivechatDepartment",
+          "edgeType": "type"
+        }
+      ]
+    }
+  ],
+  "imports": [
+    {
+      "module": "@rocket.chat/core-typings",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/model-typings",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/string-helpers",
+      "resolved": "external"
+    },
+    {
+      "module": "mongodb",
+      "resolved": "external"
+    },
+    {
+      "module": "../index",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/packages/models/src/index.ts"
+    },
+    {
+      "module": "./BaseRaw",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/packages/models/src/models/BaseRaw.ts"
+    }
+  ]
+}

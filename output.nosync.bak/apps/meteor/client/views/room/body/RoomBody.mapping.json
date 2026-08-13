@@ -1,0 +1,564 @@
+{
+  "sourcePath": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/client/views/room/body/RoomBody.tsx",
+  "symbols": [
+    {
+      "type": "module",
+      "name": "RoomBody",
+      "exported": false,
+      "line": 1,
+      "endLine": 254,
+      "signature": "RoomBody",
+      "calls": [
+        {
+          "name": "memo",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "inner_function",
+      "name": "handleNavigateToPreviousMessage",
+      "exported": false,
+      "qualifiedName": "RoomBody.handleNavigateToPreviousMessage",
+      "line": 117,
+      "endLine": 119,
+      "signature": "(): void =>",
+      "calls": [
+        {
+          "name": "toPreviousMessage",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "inner_function",
+      "name": "handleNavigateToNextMessage",
+      "exported": false,
+      "qualifiedName": "RoomBody.handleNavigateToNextMessage",
+      "line": 121,
+      "endLine": 123,
+      "signature": "(): void =>",
+      "calls": [
+        {
+          "name": "toNextMessage",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "inner_function",
+      "name": "handleCloseFlexTab",
+      "exported": false,
+      "qualifiedName": "RoomBody.handleCloseFlexTab",
+      "line": 125,
+      "endLine": 153,
+      "signature": "(e: MouseEvent<HTMLElement>): void =>",
+      "calls": [
+        {
+          "name": "getAttribute",
+          "edgeType": "call"
+        },
+        {
+          "name": "checkElement",
+          "edgeType": "call"
+        },
+        {
+          "name": "closeTab",
+          "edgeType": "call"
+        },
+        {
+          "name": "MouseEvent",
+          "edgeType": "type"
+        },
+        {
+          "name": "HTMLElement",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "variable_function",
+      "name": "RoomBody",
+      "exported": false,
+      "line": 36,
+      "endLine": 251,
+      "signature": "() =>",
+      "calls": [
+        {
+          "name": "useChat",
+          "edgeType": "call"
+        },
+        {
+          "name": "useTranslation",
+          "edgeType": "call"
+        },
+        {
+          "name": "useEmbeddedLayout",
+          "edgeType": "call"
+        },
+        {
+          "name": "useRoom",
+          "edgeType": "call"
+        },
+        {
+          "name": "useUser",
+          "edgeType": "call"
+        },
+        {
+          "name": "useRoomToolbox",
+          "edgeType": "call"
+        },
+        {
+          "name": "useRole",
+          "edgeType": "call"
+        },
+        {
+          "name": "useRoomSubscription",
+          "edgeType": "call"
+        },
+        {
+          "name": "useState",
+          "edgeType": "call"
+        },
+        {
+          "name": "useRef",
+          "edgeType": "call"
+        },
+        {
+          "name": "useRetentionPolicy",
+          "edgeType": "call"
+        },
+        {
+          "name": "useTryToJumpToThreadMessage",
+          "edgeType": "call"
+        },
+        {
+          "name": "useUserPreference",
+          "edgeType": "call"
+        },
+        {
+          "name": "useRoomMessages",
+          "edgeType": "call"
+        },
+        {
+          "name": "useSetting",
+          "edgeType": "call"
+        },
+        {
+          "name": "usePermission",
+          "edgeType": "call"
+        },
+        {
+          "name": "useMemo",
+          "edgeType": "call"
+        },
+        {
+          "name": "useHandleUnread",
+          "edgeType": "call"
+        },
+        {
+          "name": "useDateScroll",
+          "edgeType": "call"
+        },
+        {
+          "name": "useGetMore",
+          "edgeType": "call"
+        },
+        {
+          "name": "useFileUploadDropTarget",
+          "edgeType": "call"
+        },
+        {
+          "name": "useFileUpload",
+          "edgeType": "call"
+        },
+        {
+          "name": "useMessageListNavigation",
+          "edgeType": "call"
+        },
+        {
+          "name": "useSelectAllAndScrollToTop",
+          "edgeType": "call"
+        },
+        {
+          "name": "useHasNewMessages",
+          "edgeType": "call"
+        },
+        {
+          "name": "useKeepAtBottom",
+          "edgeType": "call"
+        },
+        {
+          "name": "useMergedRefsV2",
+          "edgeType": "call"
+        },
+        {
+          "name": "useCallback",
+          "edgeType": "call"
+        },
+        {
+          "name": "toPreviousMessage",
+          "edgeType": "call"
+        },
+        {
+          "name": "toNextMessage",
+          "edgeType": "call"
+        },
+        {
+          "name": "getAttribute",
+          "edgeType": "call"
+        },
+        {
+          "name": "checkElement",
+          "edgeType": "call"
+        },
+        {
+          "name": "closeTab",
+          "edgeType": "call"
+        },
+        {
+          "name": "useGoToHomeOnRemoved",
+          "edgeType": "call"
+        },
+        {
+          "name": "useReadMessageWindowEvents",
+          "edgeType": "call"
+        },
+        {
+          "name": "useQuoteMessageByUrl",
+          "edgeType": "call"
+        },
+        {
+          "name": "Boolean",
+          "edgeType": "call"
+        },
+        {
+          "name": "join",
+          "edgeType": "call"
+        },
+        {
+          "name": "filter",
+          "edgeType": "call"
+        },
+        {
+          "name": "Box",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "MessageListErrorBoundary",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "CustomVirtuaScrollbars",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "RoomComposer",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "RoomAnnouncement",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "DropTargetOverlay",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "UploadProgressIndicator",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "UnreadMessagesIndicator",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "BubbleDate",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "JumpToRecentMessageButton",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "MessageList",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "ComposerContainer",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "uploads",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "unread",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "handleUnreadBarJumpToButtonClick",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "handleMarkAsReadButtonClick",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "bubbleRef",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "hasNewMessages",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "handleNewMessageButtonClick",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "hasMoreNextMessages",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "handleJumpToRecentButtonClick",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "innerRef",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "shouldJumpToBottom",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "setShouldJumpToBottom",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "isAtBottom",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "isJumpingToMessage",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "setIsJumpingToMessage",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "canPreview",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "hasMorePreviousMessages",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "isLoadingMoreMessages",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "user",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "room",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "retentionPolicy",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "setUnreadCount",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "setLastMessageDate",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "debouncedClearNewMessagesOnScroll",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "handleDateScroll",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "debouncedMessageRead",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "setKeepAtBottom",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "subscription",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "handleComposerResize",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "handleNavigateToPreviousMessage",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "handleNavigateToNextMessage",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "selectAllAndScrollToTop",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "MouseEvent",
+          "edgeType": "type"
+        },
+        {
+          "name": "HTMLElement",
+          "edgeType": "type"
+        }
+      ]
+    }
+  ],
+  "imports": [
+    {
+      "module": "@rocket.chat/fuselage",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/tools",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/ui-client",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/ui-contexts",
+      "resolved": "external"
+    },
+    {
+      "module": "react",
+      "resolved": "external"
+    },
+    {
+      "module": "react",
+      "resolved": "external"
+    },
+    {
+      "module": "../../../hooks/useMergedRefsV2",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/client/hooks/useMergedRefsV2.ts"
+    },
+    {
+      "module": "../BubbleDate",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/client/views/room/BubbleDate/index.tsx"
+    },
+    {
+      "module": "../MessageList",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/client/views/room/MessageList/index.ts"
+    },
+    {
+      "module": "./DropTargetOverlay",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/client/views/room/body/DropTargetOverlay.tsx"
+    },
+    {
+      "module": "./JumpToRecentMessageButton",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/client/views/room/body/JumpToRecentMessageButton.tsx"
+    },
+    {
+      "module": "./UnreadMessagesIndicator",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/client/views/room/body/UnreadMessagesIndicator.tsx"
+    },
+    {
+      "module": "../MessageList/MessageListErrorBoundary",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/client/views/room/MessageList/MessageListErrorBoundary.tsx"
+    },
+    {
+      "module": "../RoomAnnouncement",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/client/views/room/RoomAnnouncement/index.tsx"
+    },
+    {
+      "module": "./UploadProgress",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/client/views/room/body/UploadProgress/index.ts"
+    },
+    {
+      "module": "../composer/ComposerContainer",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/client/views/room/composer/ComposerContainer.tsx"
+    },
+    {
+      "module": "./hooks/useFileUpload",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/client/views/room/body/hooks/useFileUpload.ts"
+    },
+    {
+      "module": "./hooks/useGoToHomeOnRemoved",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/client/views/room/body/hooks/useGoToHomeOnRemoved.ts"
+    },
+    {
+      "module": "./hooks/useQuoteMessageByUrl",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/client/views/room/body/hooks/useQuoteMessageByUrl.ts"
+    },
+    {
+      "module": "./hooks/useReadMessageWindowEvents",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/client/views/room/body/hooks/useReadMessageWindowEvents.ts"
+    },
+    {
+      "module": "../composer/RoomComposer/RoomComposer",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/client/views/room/composer/RoomComposer/RoomComposer.tsx"
+    },
+    {
+      "module": "../contexts/ChatContext",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/client/views/room/contexts/ChatContext.ts"
+    },
+    {
+      "module": "../contexts/RoomContext",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/client/views/room/contexts/RoomContext.ts"
+    },
+    {
+      "module": "../hooks/useDateScroll",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/client/views/room/hooks/useDateScroll.ts"
+    },
+    {
+      "module": "../hooks/useMessageListNavigation",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/client/views/room/hooks/useMessageListNavigation.ts"
+    },
+    {
+      "module": "../hooks/useRetentionPolicy",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/client/views/room/hooks/useRetentionPolicy.ts"
+    },
+    {
+      "module": "./hooks/useFileUploadDropTarget",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/client/views/room/body/hooks/useFileUploadDropTarget.ts"
+    },
+    {
+      "module": "./hooks/useGetMore",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/client/views/room/body/hooks/useGetMore.ts"
+    },
+    {
+      "module": "./hooks/useHasNewMessages",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/client/views/room/body/hooks/useHasNewMessages.ts"
+    },
+    {
+      "module": "./hooks/useSelectAllAndScrollToTop",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/client/views/room/body/hooks/useSelectAllAndScrollToTop.ts"
+    },
+    {
+      "module": "./hooks/useUnreadMessages",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/client/views/room/body/hooks/useUnreadMessages.ts"
+    },
+    {
+      "module": "../MessageList/hooks/useKeepAtBottom",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/client/views/room/MessageList/hooks/useKeepAtBottom.ts"
+    },
+    {
+      "module": "../MessageList/hooks/useTryToJumpToThreadMessage",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/client/views/room/MessageList/hooks/useTryToJumpToThreadMessage.ts"
+    }
+  ]
+}

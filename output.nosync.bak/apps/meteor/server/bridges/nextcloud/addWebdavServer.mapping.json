@@ -1,0 +1,61 @@
+{
+  "sourcePath": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/server/bridges/nextcloud/addWebdavServer.ts",
+  "symbols": [
+    {
+      "type": "module",
+      "name": "addWebdavServer",
+      "exported": false,
+      "line": 1,
+      "endLine": 42,
+      "signature": "addWebdavServer",
+      "calls": [
+        {
+          "name": "startup",
+          "edgeType": "call"
+        },
+        {
+          "name": "watch",
+          "edgeType": "call"
+        },
+        {
+          "name": "afterValidateLogin",
+          "edgeType": "event_listen"
+        },
+        {
+          "name": "addWebdavAccountByToken",
+          "edgeType": "call"
+        },
+        {
+          "name": "error",
+          "edgeType": "call"
+        },
+        {
+          "name": "remove",
+          "edgeType": "call"
+        }
+      ]
+    }
+  ],
+  "imports": [
+    {
+      "module": "meteor/meteor",
+      "resolved": "external"
+    },
+    {
+      "module": "../../../app/settings/server",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/app/settings/server/index.ts"
+    },
+    {
+      "module": "../../lib/callbacks",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/server/lib/callbacks.ts"
+    },
+    {
+      "module": "../../lib/logger/system",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/server/lib/logger/system.ts"
+    },
+    {
+      "module": "../webdav/methods/addWebdavAccount",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/server/bridges/webdav/methods/addWebdavAccount.ts"
+    }
+  ]
+}

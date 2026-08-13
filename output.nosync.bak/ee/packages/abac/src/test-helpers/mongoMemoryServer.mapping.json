@@ -1,0 +1,170 @@
+{
+  "sourcePath": "/Users/echoooooo/Desktop/code/Rocket.Chat/ee/packages/abac/src/test-helpers/mongoMemoryServer.ts",
+  "symbols": [
+    {
+      "type": "variable",
+      "name": "SHARED_ABAC_TEST_DB",
+      "exported": true,
+      "line": 6,
+      "endLine": 6,
+      "signature": "SHARED_ABAC_TEST_DB = 'abac_test'",
+      "calls": []
+    },
+    {
+      "type": "variable_function",
+      "name": "ensureState",
+      "exported": false,
+      "line": 17,
+      "endLine": 37,
+      "signature": "async (): Promise<SharedState> =>",
+      "calls": [
+        {
+          "name": "create",
+          "edgeType": "call"
+        },
+        {
+          "name": "connect",
+          "edgeType": "call"
+        },
+        {
+          "name": "getUri",
+          "edgeType": "call"
+        },
+        {
+          "name": "SharedState",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "variable_function",
+      "name": "dropDatabase",
+      "exported": false,
+      "line": 21,
+      "endLine": 29,
+      "signature": "async (db: Db) =>",
+      "calls": [
+        {
+          "name": "dropDatabase",
+          "edgeType": "call"
+        },
+        {
+          "name": "test",
+          "edgeType": "call"
+        },
+        {
+          "name": "Db",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "variable_function",
+      "name": "registerAbacTestModels",
+      "exported": false,
+      "line": 33,
+      "endLine": 39,
+      "signature": "(db: Db) =>",
+      "calls": [
+        {
+          "name": "registerModel",
+          "edgeType": "call"
+        },
+        {
+          "name": "UsersRaw",
+          "edgeType": "new"
+        },
+        {
+          "name": "RoomsRaw",
+          "edgeType": "new"
+        },
+        {
+          "name": "AbacAttributesRaw",
+          "edgeType": "new"
+        },
+        {
+          "name": "ServerEventsRaw",
+          "edgeType": "new"
+        },
+        {
+          "name": "SubscriptionsRaw",
+          "edgeType": "new"
+        },
+        {
+          "name": "Db",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "variable_function",
+      "name": "acquireSharedInMemoryMongo",
+      "exported": true,
+      "line": 37,
+      "endLine": 66,
+      "signature": "async (dbName: string): Promise<SharedMongoConnection> =>",
+      "calls": [
+        {
+          "name": "ensureState",
+          "edgeType": "call"
+        },
+        {
+          "name": "db",
+          "edgeType": "call"
+        },
+        {
+          "name": "registerAbacTestModels",
+          "edgeType": "call"
+        },
+        {
+          "name": "dropDatabase",
+          "edgeType": "call"
+        },
+        {
+          "name": "close",
+          "edgeType": "call"
+        },
+        {
+          "name": "stop",
+          "edgeType": "call"
+        },
+        {
+          "name": "SharedMongoConnection",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "type",
+      "name": "SharedState",
+      "line": 8,
+      "endLine": 12,
+      "signature": "type SharedState ="
+    },
+    {
+      "type": "type",
+      "name": "SharedMongoConnection",
+      "line": 25,
+      "endLine": 31,
+      "signature": "export type SharedMongoConnection ="
+    }
+  ],
+  "imports": [
+    {
+      "module": "@rocket.chat/models",
+      "resolved": "external"
+    },
+    {
+      "module": "mongodb",
+      "resolved": "external"
+    },
+    {
+      "module": "mongodb",
+      "resolved": "external"
+    },
+    {
+      "module": "mongodb-memory-server",
+      "resolved": "external"
+    }
+  ]
+}

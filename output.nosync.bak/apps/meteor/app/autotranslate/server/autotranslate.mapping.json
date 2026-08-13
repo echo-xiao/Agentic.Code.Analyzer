@@ -1,0 +1,654 @@
+{
+  "sourcePath": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/app/autotranslate/server/autotranslate.ts",
+  "symbols": [
+    {
+      "type": "module",
+      "name": "autotranslate",
+      "exported": false,
+      "line": 1,
+      "endLine": 401,
+      "signature": "autotranslate",
+      "calls": [
+        {
+          "name": "startup",
+          "edgeType": "call"
+        },
+        {
+          "name": "watch",
+          "edgeType": "call"
+        },
+        {
+          "name": "setCurrentProvider",
+          "edgeType": "call"
+        },
+        {
+          "name": "setEnable",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "class",
+      "name": "TranslationProviderRegistry",
+      "exported": true,
+      "line": 30,
+      "endLine": 122,
+      "signature": "export class TranslationProviderRegistry",
+      "calls": []
+    },
+    {
+      "type": "method",
+      "name": "registerProvider",
+      "exported": true,
+      "qualifiedName": "TranslationProviderRegistry.registerProvider",
+      "line": 41,
+      "endLine": 50,
+      "signature": "static registerProvider(provider: AutoTranslate): void",
+      "containerClass": "TranslationProviderRegistry",
+      "calls": [
+        {
+          "name": "_getProviderMetadata",
+          "edgeType": "call"
+        },
+        {
+          "name": "error",
+          "edgeType": "call"
+        },
+        {
+          "name": "AutoTranslate",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "getActiveProvider",
+      "exported": true,
+      "qualifiedName": "TranslationProviderRegistry.getActiveProvider",
+      "line": 48,
+      "endLine": 58,
+      "signature": "static getActiveProvider(): AutoTranslate | null",
+      "containerClass": "TranslationProviderRegistry",
+      "calls": [
+        {
+          "name": "AutoTranslate",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "getSupportedLanguages",
+      "exported": true,
+      "qualifiedName": "TranslationProviderRegistry.getSupportedLanguages",
+      "line": 52,
+      "endLine": 54,
+      "signature": "static async getSupportedLanguages(target: string): Promise<ISupportedLanguage[] | undefined>",
+      "containerClass": "TranslationProviderRegistry",
+      "calls": [
+        {
+          "name": "getSupportedLanguages",
+          "edgeType": "call"
+        },
+        {
+          "name": "getActiveProvider",
+          "edgeType": "call"
+        },
+        {
+          "name": "ISupportedLanguage",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "translateMessage",
+      "exported": true,
+      "qualifiedName": "TranslationProviderRegistry.translateMessage",
+      "line": 56,
+      "endLine": 67,
+      "signature": "static async translateMessage(message: IMessage, room: IRoom, targetLanguage?: string): Promise<IMessage | null>",
+      "containerClass": "TranslationProviderRegistry",
+      "calls": [
+        {
+          "name": "getActiveProvider",
+          "edgeType": "call"
+        },
+        {
+          "name": "translateMessage",
+          "edgeType": "call"
+        },
+        {
+          "name": "IMessage",
+          "edgeType": "type"
+        },
+        {
+          "name": "IRoom",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "getProviders",
+      "exported": true,
+      "qualifiedName": "TranslationProviderRegistry.getProviders",
+      "line": 60,
+      "endLine": 62,
+      "signature": "static getProviders(): AutoTranslate[]",
+      "containerClass": "TranslationProviderRegistry",
+      "calls": [
+        {
+          "name": "values",
+          "edgeType": "call"
+        },
+        {
+          "name": "AutoTranslate",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "setCurrentProvider",
+      "exported": true,
+      "qualifiedName": "TranslationProviderRegistry.setCurrentProvider",
+      "line": 64,
+      "endLine": 72,
+      "signature": "static setCurrentProvider(provider: string): void",
+      "containerClass": "TranslationProviderRegistry",
+      "calls": [
+        {
+          "name": "registerCallbacks",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "setEnable",
+      "exported": true,
+      "qualifiedName": "TranslationProviderRegistry.setEnable",
+      "line": 68,
+      "endLine": 72,
+      "signature": "static setEnable(enabled: boolean): void",
+      "containerClass": "TranslationProviderRegistry",
+      "calls": [
+        {
+          "name": "registerCallbacks",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "registerCallbacks",
+      "exported": true,
+      "qualifiedName": "TranslationProviderRegistry.registerCallbacks",
+      "line": 72,
+      "endLine": 89,
+      "signature": "static registerCallbacks(): void",
+      "containerClass": "TranslationProviderRegistry",
+      "calls": [
+        {
+          "name": "remove",
+          "edgeType": "call"
+        },
+        {
+          "name": "getActiveProvider",
+          "edgeType": "call"
+        },
+        {
+          "name": "afterSaveMessage",
+          "edgeType": "event_listen"
+        },
+        {
+          "name": "translateMessage",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "class_property",
+      "name": "[Providers]",
+      "exported": true,
+      "qualifiedName": "TranslationProviderRegistry.[Providers]",
+      "line": 31,
+      "endLine": 31,
+      "signature": "static [Providers]:",
+      "containerClass": "TranslationProviderRegistry",
+      "calls": [
+        {
+          "name": "AutoTranslate",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "class",
+      "name": "AutoTranslate",
+      "exported": true,
+      "line": 84,
+      "endLine": 338,
+      "signature": "export abstract class AutoTranslate",
+      "calls": []
+    },
+    {
+      "type": "method",
+      "name": "tokenize",
+      "exported": true,
+      "qualifiedName": "AutoTranslate.tokenize",
+      "line": 108,
+      "endLine": 117,
+      "signature": "tokenize(message: IMessage): IMessage",
+      "containerClass": "AutoTranslate",
+      "calls": [
+        {
+          "name": "isArray",
+          "edgeType": "call"
+        },
+        {
+          "name": "tokenizeEmojis",
+          "edgeType": "call"
+        },
+        {
+          "name": "tokenizeCode",
+          "edgeType": "call"
+        },
+        {
+          "name": "tokenizeURLs",
+          "edgeType": "call"
+        },
+        {
+          "name": "tokenizeMentions",
+          "edgeType": "call"
+        },
+        {
+          "name": "IMessage",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "tokenizeEmojis",
+      "exported": true,
+      "qualifiedName": "AutoTranslate.tokenizeEmojis",
+      "line": 112,
+      "endLine": 124,
+      "signature": "tokenizeEmojis(message: IMessage): IMessage",
+      "containerClass": "AutoTranslate",
+      "calls": [
+        {
+          "name": "replace",
+          "edgeType": "call"
+        },
+        {
+          "name": "push",
+          "edgeType": "call"
+        },
+        {
+          "name": "IMessage",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "tokenizeURLs",
+      "exported": true,
+      "qualifiedName": "AutoTranslate.tokenizeURLs",
+      "line": 116,
+      "endLine": 162,
+      "signature": "tokenizeURLs(message: IMessage): IMessage",
+      "containerClass": "AutoTranslate",
+      "calls": [
+        {
+          "name": "replace",
+          "edgeType": "call"
+        },
+        {
+          "name": "push",
+          "edgeType": "call"
+        },
+        {
+          "name": "RegExp",
+          "edgeType": "new"
+        },
+        {
+          "name": "IMessage",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "tokenizeCode",
+      "exported": true,
+      "qualifiedName": "AutoTranslate.tokenizeCode",
+      "line": 120,
+      "endLine": 139,
+      "signature": "tokenizeCode(message: IMessage): IMessage",
+      "containerClass": "AutoTranslate",
+      "calls": [
+        {
+          "name": "parseMessageNotEscaped",
+          "edgeType": "call"
+        },
+        {
+          "name": "replace",
+          "edgeType": "call"
+        },
+        {
+          "name": "entries",
+          "edgeType": "call"
+        },
+        {
+          "name": "indexOf",
+          "edgeType": "call"
+        },
+        {
+          "name": "RegExp",
+          "edgeType": "new"
+        },
+        {
+          "name": "IMessage",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "tokenizeMentions",
+      "exported": true,
+      "qualifiedName": "AutoTranslate.tokenizeMentions",
+      "line": 124,
+      "endLine": 154,
+      "signature": "tokenizeMentions(message: IMessage): IMessage",
+      "containerClass": "AutoTranslate",
+      "calls": [
+        {
+          "name": "forEach",
+          "edgeType": "call"
+        },
+        {
+          "name": "replace",
+          "edgeType": "call"
+        },
+        {
+          "name": "push",
+          "edgeType": "call"
+        },
+        {
+          "name": "RegExp",
+          "edgeType": "new"
+        },
+        {
+          "name": "IMessage",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "deTokenize",
+      "exported": true,
+      "qualifiedName": "AutoTranslate.deTokenize",
+      "line": 128,
+      "endLine": 135,
+      "signature": "deTokenize(message: IMessage): string",
+      "containerClass": "AutoTranslate",
+      "calls": [
+        {
+          "name": "replace",
+          "edgeType": "call"
+        },
+        {
+          "name": "IMessage",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "translateMessage",
+      "exported": true,
+      "qualifiedName": "AutoTranslate.translateMessage",
+      "line": 141,
+      "endLine": 180,
+      "signature": "async translateMessage(message: IMessage, { room, targetLanguage }: { room: IRoom; targetLanguage?: string }): Promise<IMessage | null>",
+      "containerClass": "AutoTranslate",
+      "calls": [
+        {
+          "name": "filter",
+          "edgeType": "call"
+        },
+        {
+          "name": "getAutoTranslateLanguagesByRoomAndNotUser",
+          "edgeType": "call"
+        },
+        {
+          "name": "setImmediate",
+          "edgeType": "call"
+        },
+        {
+          "name": "assign",
+          "edgeType": "call"
+        },
+        {
+          "name": "escapeHTML",
+          "edgeType": "call"
+        },
+        {
+          "name": "tokenize",
+          "edgeType": "call"
+        },
+        {
+          "name": "_translateMessage",
+          "edgeType": "call"
+        },
+        {
+          "name": "isEmpty",
+          "edgeType": "call"
+        },
+        {
+          "name": "addTranslations",
+          "edgeType": "call"
+        },
+        {
+          "name": "notifyTranslatedMessage",
+          "edgeType": "call"
+        },
+        {
+          "name": "entries",
+          "edgeType": "call"
+        },
+        {
+          "name": "replace",
+          "edgeType": "call"
+        },
+        {
+          "name": "_translateAttachmentDescriptions",
+          "edgeType": "call"
+        },
+        {
+          "name": "addAttachmentTranslations",
+          "edgeType": "call"
+        },
+        {
+          "name": "findOneById",
+          "edgeType": "call"
+        },
+        {
+          "name": "IMessage",
+          "edgeType": "type"
+        },
+        {
+          "name": "IRoom",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "notifyTranslatedMessage",
+      "exported": true,
+      "qualifiedName": "AutoTranslate.notifyTranslatedMessage",
+      "line": 145,
+      "endLine": 149,
+      "signature": "private notifyTranslatedMessage(messageId: string): void",
+      "containerClass": "AutoTranslate",
+      "calls": [
+        {
+          "name": "notifyOnMessageChange",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "_getProviderMetadata",
+      "exported": true,
+      "qualifiedName": "AutoTranslate._getProviderMetadata",
+      "line": 157,
+      "endLine": 157,
+      "signature": "abstract _getProviderMetadata(): IProviderMetadata;",
+      "containerClass": "AutoTranslate",
+      "calls": [
+        {
+          "name": "IProviderMetadata",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "getSupportedLanguages",
+      "exported": true,
+      "qualifiedName": "AutoTranslate.getSupportedLanguages",
+      "line": 166,
+      "endLine": 166,
+      "signature": "abstract getSupportedLanguages(target: string): Promise<ISupportedLanguage[]>;",
+      "containerClass": "AutoTranslate",
+      "calls": [
+        {
+          "name": "ISupportedLanguage",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "_translateMessage",
+      "exported": true,
+      "qualifiedName": "AutoTranslate._translateMessage",
+      "line": 177,
+      "endLine": 177,
+      "signature": "abstract _translateMessage(message: IMessage, targetLanguages: string[]): Promise<ITranslationResult>;",
+      "containerClass": "AutoTranslate",
+      "calls": [
+        {
+          "name": "IMessage",
+          "edgeType": "type"
+        },
+        {
+          "name": "ITranslationResult",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "_translateAttachmentDescriptions",
+      "exported": true,
+      "qualifiedName": "AutoTranslate._translateAttachmentDescriptions",
+      "line": 187,
+      "endLine": 187,
+      "signature": "abstract _translateAttachmentDescriptions(attachment: MessageAttachment, targetLanguages: string[]): Promise<ITranslationResult>;",
+      "containerClass": "AutoTranslate",
+      "calls": [
+        {
+          "name": "MessageAttachment",
+          "edgeType": "type"
+        },
+        {
+          "name": "ITranslationResult",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "constructor",
+      "exported": true,
+      "qualifiedName": "AutoTranslate.constructor",
+      "line": 97,
+      "endLine": 101,
+      "signature": "constructor()",
+      "containerClass": "AutoTranslate",
+      "calls": []
+    },
+    {
+      "type": "class_property",
+      "name": "supportedLanguages",
+      "exported": true,
+      "qualifiedName": "AutoTranslate.supportedLanguages",
+      "line": 89,
+      "endLine": 91,
+      "signature": "supportedLanguages:",
+      "containerClass": "AutoTranslate",
+      "calls": [
+        {
+          "name": "ISupportedLanguage",
+          "edgeType": "type"
+        }
+      ]
+    }
+  ],
+  "imports": [
+    {
+      "module": "@rocket.chat/core-typings",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/logger",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/models",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/string-helpers",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/tools",
+      "resolved": "external"
+    },
+    {
+      "module": "meteor/meteor",
+      "resolved": "external"
+    },
+    {
+      "module": "underscore",
+      "resolved": "external"
+    },
+    {
+      "module": "../../../server/lib/callbacks",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/server/lib/callbacks.ts"
+    },
+    {
+      "module": "../../lib/server/lib/notifyListener",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/app/lib/server/lib/notifyListener.ts"
+    },
+    {
+      "module": "../../markdown/server",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/app/markdown/server/index.ts"
+    },
+    {
+      "module": "../../settings/server",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/app/settings/server/index.ts"
+    }
+  ]
+}

@@ -1,0 +1,69 @@
+{
+  "sourcePath": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/client/hooks/useRoomIcon.tsx",
+  "symbols": [
+    {
+      "type": "variable_function",
+      "name": "useRoomIcon",
+      "exported": true,
+      "line": 8,
+      "endLine": 56,
+      "signature": "( room: Pick<IRoom, 't' | 'prid' | 'teamMain' | 'uids' | 'u' | 'abacAttributes'>, ): ComponentProps<typeof Icon> | ReactElement<any> | null =>",
+      "calls": [
+        {
+          "name": "isRoomFederated",
+          "edgeType": "call"
+        },
+        {
+          "name": "isDirectMessageRoom",
+          "edgeType": "call"
+        },
+        {
+          "name": "find",
+          "edgeType": "call"
+        },
+        {
+          "name": "ReactiveUserStatus",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "uid",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "IRoom",
+          "edgeType": "type"
+        },
+        {
+          "name": "ComponentProps",
+          "edgeType": "type"
+        },
+        {
+          "name": "ReactElement",
+          "edgeType": "type"
+        }
+      ]
+    }
+  ],
+  "imports": [
+    {
+      "module": "@rocket.chat/core-typings",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/core-typings",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/fuselage",
+      "resolved": "external"
+    },
+    {
+      "module": "react",
+      "resolved": "external"
+    },
+    {
+      "module": "../components/UserStatus",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/client/components/UserStatus/index.ts"
+    }
+  ]
+}

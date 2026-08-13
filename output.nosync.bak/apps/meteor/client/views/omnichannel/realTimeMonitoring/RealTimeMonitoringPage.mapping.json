@@ -1,0 +1,253 @@
+{
+  "sourcePath": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/client/views/omnichannel/realTimeMonitoring/RealTimeMonitoringPage.tsx",
+  "symbols": [
+    {
+      "type": "variable_function",
+      "name": "RealTimeMonitoringPage",
+      "exported": false,
+      "line": 27,
+      "endLine": 114,
+      "signature": "() =>",
+      "calls": [
+        {
+          "name": "useTranslation",
+          "edgeType": "call"
+        },
+        {
+          "name": "useState",
+          "edgeType": "call"
+        },
+        {
+          "name": "useQueryClient",
+          "edgeType": "call"
+        },
+        {
+          "name": "useStableCallback",
+          "edgeType": "call"
+        },
+        {
+          "name": "invalidateQueries",
+          "edgeType": "call"
+        },
+        {
+          "name": "all",
+          "edgeType": "call"
+        },
+        {
+          "name": "useEffect",
+          "edgeType": "call"
+        },
+        {
+          "name": "clearInterval",
+          "edgeType": "call"
+        },
+        {
+          "name": "useMemo",
+          "edgeType": "call"
+        },
+        {
+          "name": "setReloadFrequency",
+          "edgeType": "call"
+        },
+        {
+          "name": "Fragment",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "Page",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "PageScrollableContentWithShadow",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "Margins",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "Box",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "Label",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "PageHeader",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "AutoCompleteDepartment",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "Option",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "Select",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "ConversationOverview",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "ChatsChart",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "ChatsPerAgentChart",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "ChatsOverview",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "AgentStatusChart",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "ChatsPerDepartmentChart",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "AgentsOverview",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "ChatDurationChart",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "ProductivityOverview",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "ResponseTimesChart",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "departmentId",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "setDepartment",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "reloadOptions",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "reloadFrequency",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "dateRange",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "SelectOption",
+          "edgeType": "type"
+        },
+        {
+          "name": "Key",
+          "edgeType": "type"
+        }
+      ]
+    }
+  ],
+  "imports": [
+    {
+      "module": "@rocket.chat/fuselage",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/fuselage",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/fuselage-hooks",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/ui-client",
+      "resolved": "external"
+    },
+    {
+      "module": "@tanstack/react-query",
+      "resolved": "external"
+    },
+    {
+      "module": "react",
+      "resolved": "external"
+    },
+    {
+      "module": "react",
+      "resolved": "external"
+    },
+    {
+      "module": "react-i18next",
+      "resolved": "external"
+    },
+    {
+      "module": "../../../lib/utils/getDateRange",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/client/lib/utils/getDateRange.ts"
+    },
+    {
+      "module": "../components/AutoCompleteDepartment",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/client/views/omnichannel/components/AutoCompleteDepartment.tsx"
+    },
+    {
+      "module": "../components/Label",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/client/views/omnichannel/components/Label.tsx"
+    },
+    {
+      "module": "./charts/AgentStatusChart",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/client/views/omnichannel/realTimeMonitoring/charts/AgentStatusChart.tsx"
+    },
+    {
+      "module": "./charts/ChatDurationChart",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/client/views/omnichannel/realTimeMonitoring/charts/ChatDurationChart.tsx"
+    },
+    {
+      "module": "./charts/ChatsChart",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/client/views/omnichannel/realTimeMonitoring/charts/ChatsChart.tsx"
+    },
+    {
+      "module": "./charts/ChatsPerAgentChart",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/client/views/omnichannel/realTimeMonitoring/charts/ChatsPerAgentChart.tsx"
+    },
+    {
+      "module": "./charts/ChatsPerDepartmentChart",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/client/views/omnichannel/realTimeMonitoring/charts/ChatsPerDepartmentChart.tsx"
+    },
+    {
+      "module": "./charts/ResponseTimesChart",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/client/views/omnichannel/realTimeMonitoring/charts/ResponseTimesChart.tsx"
+    },
+    {
+      "module": "./overviews/AgentsOverview",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/client/views/omnichannel/realTimeMonitoring/overviews/AgentsOverview.tsx"
+    },
+    {
+      "module": "./overviews/ChatsOverview",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/client/views/omnichannel/realTimeMonitoring/overviews/ChatsOverview.tsx"
+    },
+    {
+      "module": "./overviews/ConversationOverview",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/client/views/omnichannel/realTimeMonitoring/overviews/ConversationOverview.tsx"
+    },
+    {
+      "module": "./overviews/ProductivityOverview",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/client/views/omnichannel/realTimeMonitoring/overviews/ProductivityOverview.tsx"
+    },
+    {
+      "module": "../../../lib/queryKeys",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/client/lib/queryKeys.ts"
+    }
+  ]
+}

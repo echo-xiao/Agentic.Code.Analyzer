@@ -1,0 +1,104 @@
+## File: apps/meteor/client/meteor/login/google.ts
+
+```typescript
+import { Random } from '@rocket.chat/random';
+import { Accounts } from 'meteor/accounts-base';
+// eslint-disable-next-line import/no-duplicates
+import { Google } from 'meteor/google-oauth';
+import { Meteor } from 'meteor/meteor';
+// eslint-disable-next-line import/no-duplicates
+import { OAuth } from 'meteor/oauth';
+
+import { createOAuthTotpLoginMethod } from './oauth';
+import { overrideLoginMethod, type LoginCallback } from '../../lib/2fa/overrideLoginMethod';
+import { wrapRequestCredentialFn } from '../../lib/wrapRequestCredentialFn';
+
+declare module 'meteor/meteor' {
+	// eslint-disable-next-line @typescript-eslint/no-namespace
+	namespace Meteor {
+		function loginWithGoogle(
+			options?: Meteor.LoginWithExternalServiceOptions & {
+				loginUrlParameters?: {
+					include_granted_scopes?: boolean;
+					hd?: string;
+				};
+			},
+			callback?: LoginCallback,
+		): void;
+	}
+}
+
+const { loginWithGoogle } = Meteor;
+
+const innerLoginWithGoogleAndTOTP = createOAuthTotpLoginMethod(Google);
+
+const loginWithGoogleAndTOTP = (
+	options:
+		| (Meteor.LoginWithExternalServiceOptions & {
+				loginUrlParameters?: {
+					include_granted_scopes?: boolean;
+					hd?: string;
+				};
+		  })
+		| undefined,
+	code: string,
+	callback?: LoginCallback,
+) => {
+    /* Implementation Hidden */
+};
+
+Meteor.loginWithGoogle = (options, callback) => {
+	overrideLoginMethod(loginWithGoogle, [options], callback, loginWithGoogleAndTOTP);
+};
+
+Google.requestCredential = wrapRequestCredentialFn(
+	'google',
+	({ config, loginStyle, options: requestOptions, credentialRequestCompleteCallback }) => {
+		const credentialToken = Random.secret();
+		const options = requestOptions as Meteor.LoginWithExternalServiceOptions & {
+			loginUrlParameters?: {
+				include_granted_scopes?: boolean;
+				hd?: string;
+			};
+			prompt?: string;
+		};
+
+		const scope = ['email', ...(options.requestPermissions || ['profile'])].join(' ');
+
+		const loginUrlParameters: Record<string, any> = {
+			...options.loginUrlParameters,
+			...(options.requestOfflineToken !== undefined && {
+				access_type: options.requestOfflineToken ? 'offline' : 'online',
+			}),
+			...((options.prompt || options.forceApprovalPrompt) && { prompt: options.prompt || 'consent' }),
+			...(options.loginHint && { login_hint: options.loginHint }),
+			response_type: 'code',
+			client_id: config.clientId,
+			scope,
+			redirect_uri: OAuth._redirectUri('google', config),
+			state: OAuth._stateParam(loginStyle, credentialToken, options.redirectUrl),
+		};
+
+		Object.assign(loginUrlParameters, {
+			response_type: 'code',
+			client_id: config.clientId,
+			scope,
+			redirect_uri: OAuth._redirectUri('google', config),
+			state: OAuth._stateParam(loginStyle, credentialToken, options.redirectUrl),
+		});
+		const loginUrl = `https://accounts.google.com/o/oauth2/auth?${Object.keys(loginUrlParameters)
+			.map((param) => `${encodeURIComponent(param)}=${encodeURIComponent(loginUrlParameters[param])}`)
+			.join('&')}`;
+
+		OAuth.launchLogin({
+			loginService: 'google',
+			loginStyle,
+			loginUrl,
+			credentialRequestCompleteCallback,
+			credentialToken,
+			popupOptions: { height: 600 },
+		});
+	},
+);
+
+```

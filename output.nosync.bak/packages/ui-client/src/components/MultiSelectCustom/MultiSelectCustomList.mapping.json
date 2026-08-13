@@ -1,0 +1,173 @@
+{
+  "sourcePath": "/Users/echoooooo/Desktop/code/Rocket.Chat/packages/ui-client/src/components/MultiSelectCustom/MultiSelectCustomList.tsx",
+  "symbols": [
+    {
+      "type": "variable_function",
+      "name": "getIconColor",
+      "exported": false,
+      "line": 10,
+      "endLine": 20,
+      "signature": "(color: 'default' | 'danger' | 'warning' | undefined) =>",
+      "calls": []
+    },
+    {
+      "type": "inner_function",
+      "name": "handleChange",
+      "exported": false,
+      "qualifiedName": "MultiSelectCustomList.handleChange",
+      "line": 27,
+      "endLine": 27,
+      "signature": "(event: ChangeEvent<HTMLInputElement>) =>",
+      "calls": [
+        {
+          "name": "setText",
+          "edgeType": "call"
+        },
+        {
+          "name": "ChangeEvent",
+          "edgeType": "type"
+        },
+        {
+          "name": "HTMLInputElement",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "variable_function",
+      "name": "MultiSelectCustomList",
+      "exported": false,
+      "line": 14,
+      "endLine": 65,
+      "signature": "({ options, onSelected, searchBarText, }: { options: OptionProp[]; onSelected: (item: OptionProp, e?: ChangeEvent<HTMLElement>) => void; searchBarText?: string; }) =>",
+      "calls": [
+        {
+          "name": "useTranslation",
+          "edgeType": "call"
+        },
+        {
+          "name": "useState",
+          "edgeType": "call"
+        },
+        {
+          "name": "useCallback",
+          "edgeType": "call"
+        },
+        {
+          "name": "setText",
+          "edgeType": "call"
+        },
+        {
+          "name": "useFilteredOptions",
+          "edgeType": "call"
+        },
+        {
+          "name": "map",
+          "edgeType": "call"
+        },
+        {
+          "name": "hasOwnProperty",
+          "edgeType": "call"
+        },
+        {
+          "name": "getIconColor",
+          "edgeType": "call"
+        },
+        {
+          "name": "onSelected",
+          "edgeType": "call"
+        },
+        {
+          "name": "Tile",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "Box",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "Fragment",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "Option",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "SearchInput",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "Icon",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "OptionIcon",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "CheckBox",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "handleChange",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "text",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "OptionProp",
+          "edgeType": "type"
+        },
+        {
+          "name": "ChangeEvent",
+          "edgeType": "type"
+        },
+        {
+          "name": "HTMLElement",
+          "edgeType": "type"
+        },
+        {
+          "name": "HTMLInputElement",
+          "edgeType": "type"
+        },
+        {
+          "name": "TranslationKey",
+          "edgeType": "type"
+        }
+      ]
+    }
+  ],
+  "imports": [
+    {
+      "module": "@rocket.chat/fuselage",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/ui-contexts",
+      "resolved": "external"
+    },
+    {
+      "module": "react",
+      "resolved": "external"
+    },
+    {
+      "module": "react",
+      "resolved": "external"
+    },
+    {
+      "module": "react-i18next",
+      "resolved": "external"
+    },
+    {
+      "module": "./MultiSelectCustom",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/packages/ui-client/src/components/MultiSelectCustom/MultiSelectCustom.tsx"
+    },
+    {
+      "module": "./useFilteredOptions",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/packages/ui-client/src/components/MultiSelectCustom/useFilteredOptions.ts"
+    }
+  ]
+}

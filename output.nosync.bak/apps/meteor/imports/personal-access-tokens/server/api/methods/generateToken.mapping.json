@@ -1,0 +1,107 @@
+{
+  "sourcePath": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/imports/personal-access-tokens/server/api/methods/generateToken.ts",
+  "symbols": [
+    {
+      "type": "module",
+      "name": "generateToken",
+      "exported": false,
+      "line": 1,
+      "endLine": 74,
+      "signature": "generateToken",
+      "calls": [
+        {
+          "name": "personalAccessTokens:generateToken",
+          "edgeType": "call"
+        },
+        {
+          "name": "methods",
+          "edgeType": "call"
+        },
+        {
+          "name": "twoFactorRequired",
+          "edgeType": "call"
+        },
+        {
+          "name": "userId",
+          "edgeType": "call"
+        },
+        {
+          "name": "generatePersonalAccessTokenOfUser",
+          "edgeType": "call"
+        },
+        {
+          "name": "ServerMethods",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "variable_function",
+      "name": "generatePersonalAccessTokenOfUser",
+      "exported": true,
+      "line": 16,
+      "endLine": 54,
+      "signature": "async ({ bypassTwoFactor, tokenName, userId, }: { tokenName: string; userId: string; bypassTwoFactor: boolean; }): Promise<string> =>",
+      "calls": [
+        {
+          "name": "hasPermissionAsync",
+          "edgeType": "call"
+        },
+        {
+          "name": "secret",
+          "edgeType": "call"
+        },
+        {
+          "name": "findPersonalAccessTokenByTokenNameAndUserId",
+          "edgeType": "call"
+        },
+        {
+          "name": "addPersonalAccessTokenToUser",
+          "edgeType": "call"
+        },
+        {
+          "name": "_hashLoginToken",
+          "edgeType": "call"
+        },
+        {
+          "name": "slice",
+          "edgeType": "call"
+        },
+        {
+          "name": "Date",
+          "edgeType": "new"
+        }
+      ]
+    }
+  ],
+  "imports": [
+    {
+      "module": "meteor/meteor",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/random",
+      "resolved": "external"
+    },
+    {
+      "module": "meteor/accounts-base",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/ddp-client",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/models",
+      "resolved": "external"
+    },
+    {
+      "module": "../../../../../server/lib/authorization/hasPermission",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/server/lib/authorization/hasPermission.ts"
+    },
+    {
+      "module": "../../../../../app/2fa/server/twoFactorRequired",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/app/2fa/server/twoFactorRequired.ts"
+    }
+  ]
+}

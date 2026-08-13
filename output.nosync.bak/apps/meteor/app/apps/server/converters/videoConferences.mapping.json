@@ -1,0 +1,97 @@
+{
+  "sourcePath": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/app/apps/server/converters/videoConferences.ts",
+  "symbols": [
+    {
+      "type": "class",
+      "name": "AppVideoConferencesConverter",
+      "exported": true,
+      "line": 5,
+      "endLine": 33,
+      "signature": "export class AppVideoConferencesConverter implements IAppVideoConferencesConverter",
+      "calls": [
+        {
+          "name": "IAppVideoConferencesConverter",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "convertById",
+      "exported": true,
+      "qualifiedName": "AppVideoConferencesConverter.convertById",
+      "line": 6,
+      "endLine": 10,
+      "signature": "async convertById(callId: string): Promise<AppsVideoConference | undefined>",
+      "containerClass": "AppVideoConferencesConverter",
+      "calls": [
+        {
+          "name": "getUnfiltered",
+          "edgeType": "call"
+        },
+        {
+          "name": "convertVideoConference",
+          "edgeType": "call"
+        },
+        {
+          "name": "AppsVideoConference",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "convertVideoConference",
+      "exported": true,
+      "qualifiedName": "AppVideoConferencesConverter.convertVideoConference",
+      "line": 16,
+      "endLine": 24,
+      "signature": "convertVideoConference(call: VideoConference | undefined | null): AppsVideoConference | undefined",
+      "containerClass": "AppVideoConferencesConverter",
+      "calls": [
+        {
+          "name": "VideoConference",
+          "edgeType": "type"
+        },
+        {
+          "name": "AppsVideoConference",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "convertAppVideoConference",
+      "exported": true,
+      "qualifiedName": "AppVideoConferencesConverter.convertAppVideoConference",
+      "line": 20,
+      "endLine": 24,
+      "signature": "convertAppVideoConference(call: AppsVideoConference): VideoConference",
+      "containerClass": "AppVideoConferencesConverter",
+      "calls": [
+        {
+          "name": "AppsVideoConference",
+          "edgeType": "type"
+        },
+        {
+          "name": "VideoConference",
+          "edgeType": "type"
+        }
+      ]
+    }
+  ],
+  "imports": [
+    {
+      "module": "@rocket.chat/apps",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/core-services",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/core-typings",
+      "resolved": "external"
+    }
+  ]
+}

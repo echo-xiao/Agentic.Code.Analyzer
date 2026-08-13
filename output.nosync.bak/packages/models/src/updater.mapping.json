@@ -1,0 +1,319 @@
+{
+  "sourcePath": "/Users/echoooooo/Desktop/code/Rocket.Chat/packages/models/src/updater.ts",
+  "symbols": [
+    {
+      "type": "class",
+      "name": "UpdaterImpl",
+      "exported": true,
+      "line": 8,
+      "endLine": 76,
+      "signature": "export class UpdaterImpl<T extends",
+      "calls": [
+        {
+          "name": "Updater",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "set",
+      "exported": true,
+      "qualifiedName": "UpdaterImpl.set",
+      "line": 19,
+      "endLine": 23,
+      "signature": "set<K extends keyof SetProps<T>>(key: K, value: SetProps<T>[K])",
+      "containerClass": "UpdaterImpl",
+      "calls": [
+        {
+          "name": "set",
+          "edgeType": "call"
+        },
+        {
+          "name": "Map",
+          "edgeType": "new"
+        },
+        {
+          "name": "SetProps",
+          "edgeType": "type"
+        },
+        {
+          "name": "Keys",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "unset",
+      "exported": true,
+      "qualifiedName": "UpdaterImpl.unset",
+      "line": 23,
+      "endLine": 27,
+      "signature": "unset<K extends keyof UnsetProps<T>>(key: K): Updater<T>",
+      "containerClass": "UpdaterImpl",
+      "calls": [
+        {
+          "name": "Set",
+          "edgeType": "new"
+        },
+        {
+          "name": "UnsetProps",
+          "edgeType": "type"
+        },
+        {
+          "name": "Updater",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "inc",
+      "exported": true,
+      "qualifiedName": "UpdaterImpl.inc",
+      "line": 27,
+      "endLine": 33,
+      "signature": "inc<K extends keyof IncProps<T>>(key: K, value: number): Updater<T>",
+      "containerClass": "UpdaterImpl",
+      "calls": [
+        {
+          "name": "get",
+          "edgeType": "call"
+        },
+        {
+          "name": "set",
+          "edgeType": "call"
+        },
+        {
+          "name": "Map",
+          "edgeType": "new"
+        },
+        {
+          "name": "IncProps",
+          "edgeType": "type"
+        },
+        {
+          "name": "Updater",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "addToSet",
+      "exported": true,
+      "qualifiedName": "UpdaterImpl.addToSet",
+      "line": 31,
+      "endLine": 37,
+      "signature": "addToSet<K extends keyof AddToSetProps<T>>(key: K, value: ArrayElementType<AddToSetProps<T>[K]>): Updater<T>",
+      "containerClass": "UpdaterImpl",
+      "calls": [
+        {
+          "name": "get",
+          "edgeType": "call"
+        },
+        {
+          "name": "set",
+          "edgeType": "call"
+        },
+        {
+          "name": "Map",
+          "edgeType": "new"
+        },
+        {
+          "name": "AddToSetProps",
+          "edgeType": "type"
+        },
+        {
+          "name": "ArrayElementType",
+          "edgeType": "type"
+        },
+        {
+          "name": "Updater",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "hasChanges",
+      "exported": true,
+      "qualifiedName": "UpdaterImpl.hasChanges",
+      "line": 35,
+      "endLine": 38,
+      "signature": "hasChanges()",
+      "containerClass": "UpdaterImpl",
+      "calls": [
+        {
+          "name": "getRawUpdateFilter",
+          "edgeType": "call"
+        },
+        {
+          "name": "_hasChanges",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "_hasChanges",
+      "exported": true,
+      "qualifiedName": "UpdaterImpl._hasChanges",
+      "line": 39,
+      "endLine": 41,
+      "signature": "private _hasChanges(filter: UpdateFilter<T>)",
+      "containerClass": "UpdaterImpl",
+      "calls": [
+        {
+          "name": "keys",
+          "edgeType": "call"
+        },
+        {
+          "name": "UpdateFilter",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "getRawUpdateFilter",
+      "exported": true,
+      "qualifiedName": "UpdaterImpl.getRawUpdateFilter",
+      "line": 43,
+      "endLine": 50,
+      "signature": "public getRawUpdateFilter()",
+      "containerClass": "UpdaterImpl",
+      "calls": [
+        {
+          "name": "fromEntries",
+          "edgeType": "call"
+        },
+        {
+          "name": "map",
+          "edgeType": "call"
+        },
+        {
+          "name": "values",
+          "edgeType": "call"
+        },
+        {
+          "name": "entries",
+          "edgeType": "call"
+        },
+        {
+          "name": "UpdateFilter",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "getUpdateFilter",
+      "exported": true,
+      "qualifiedName": "UpdaterImpl.getUpdateFilter",
+      "line": 47,
+      "endLine": 57,
+      "signature": "getUpdateFilter()",
+      "containerClass": "UpdaterImpl",
+      "calls": [
+        {
+          "name": "getRawUpdateFilter",
+          "edgeType": "call"
+        },
+        {
+          "name": "_hasChanges",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "class_property",
+      "name": "_set",
+      "exported": true,
+      "qualifiedName": "UpdaterImpl._set",
+      "line": 9,
+      "endLine": 9,
+      "signature": "private _set: Map<Keys<T>, any> | undefined;",
+      "containerClass": "UpdaterImpl",
+      "calls": [
+        {
+          "name": "Keys",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "class_property",
+      "name": "_unset",
+      "exported": true,
+      "qualifiedName": "UpdaterImpl._unset",
+      "line": 11,
+      "endLine": 11,
+      "signature": "private _unset: Set<keyof UnsetProps<T>> | undefined;",
+      "containerClass": "UpdaterImpl",
+      "calls": [
+        {
+          "name": "UnsetProps",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "class_property",
+      "name": "_inc",
+      "exported": true,
+      "qualifiedName": "UpdaterImpl._inc",
+      "line": 13,
+      "endLine": 13,
+      "signature": "private _inc: Map<keyof IncProps<T>, number> | undefined;",
+      "containerClass": "UpdaterImpl",
+      "calls": [
+        {
+          "name": "IncProps",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "class_property",
+      "name": "_addToSet",
+      "exported": true,
+      "qualifiedName": "UpdaterImpl._addToSet",
+      "line": 15,
+      "endLine": 15,
+      "signature": "private _addToSet: Map<keyof AddToSetProps<T>, any[]> | undefined;",
+      "containerClass": "UpdaterImpl",
+      "calls": [
+        {
+          "name": "AddToSetProps",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "type",
+      "name": "ArrayElementType",
+      "line": 4,
+      "endLine": 4,
+      "signature": "type ArrayElementType<T> = T extends (infer E)[] ? E : T;"
+    },
+    {
+      "type": "type",
+      "name": "Keys",
+      "line": 6,
+      "endLine": 6,
+      "signature": "type Keys<T extends"
+    }
+  ],
+  "imports": [
+    {
+      "module": "@rocket.chat/model-typings",
+      "resolved": "external"
+    },
+    {
+      "module": "mongodb",
+      "resolved": "external"
+    }
+  ]
+}

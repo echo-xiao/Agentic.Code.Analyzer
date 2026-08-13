@@ -1,0 +1,226 @@
+{
+  "sourcePath": "/Users/echoooooo/Desktop/code/Rocket.Chat/packages/apps/src/server/messages/Message.ts",
+  "symbols": [
+    {
+      "type": "class",
+      "name": "Message",
+      "exported": true,
+      "line": 8,
+      "endLine": 109,
+      "signature": "export class Message implements IMessage",
+      "calls": [
+        {
+          "name": "IMessage",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "toJSON",
+      "exported": true,
+      "qualifiedName": "Message.toJSON",
+      "line": 98,
+      "endLine": 100,
+      "signature": "public toJSON()",
+      "containerClass": "Message",
+      "calls": []
+    },
+    {
+      "type": "method",
+      "name": "toString",
+      "exported": true,
+      "qualifiedName": "Message.toString",
+      "line": 102,
+      "endLine": 104,
+      "signature": "public toString()",
+      "containerClass": "Message",
+      "calls": []
+    },
+    {
+      "type": "method",
+      "name": "valueOf",
+      "exported": true,
+      "qualifiedName": "Message.valueOf",
+      "line": 106,
+      "endLine": 108,
+      "signature": "public valueOf()",
+      "containerClass": "Message",
+      "calls": []
+    },
+    {
+      "type": "method",
+      "name": "constructor",
+      "exported": true,
+      "qualifiedName": "Message.constructor",
+      "line": 63,
+      "endLine": 68,
+      "signature": "public constructor( message: IMessage, private manager: AppManager, )",
+      "containerClass": "Message",
+      "calls": [
+        {
+          "name": "assign",
+          "edgeType": "call"
+        },
+        {
+          "name": "IMessage",
+          "edgeType": "type"
+        },
+        {
+          "name": "AppManager",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "class_property",
+      "name": "sender",
+      "exported": true,
+      "qualifiedName": "Message.sender",
+      "line": 11,
+      "endLine": 11,
+      "signature": "public sender: IUser;",
+      "containerClass": "Message",
+      "calls": [
+        {
+          "name": "IUser",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "class_property",
+      "name": "editor",
+      "exported": true,
+      "qualifiedName": "Message.editor",
+      "line": 19,
+      "endLine": 19,
+      "signature": "public editor?: IUser;",
+      "containerClass": "Message",
+      "calls": [
+        {
+          "name": "IUser",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "class_property",
+      "name": "attachments",
+      "exported": true,
+      "qualifiedName": "Message.attachments",
+      "line": 29,
+      "endLine": 29,
+      "signature": "public attachments?: Array<IMessageAttachment>;",
+      "containerClass": "Message",
+      "calls": [
+        {
+          "name": "IMessageAttachment",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "class_property",
+      "name": "reactions",
+      "exported": true,
+      "qualifiedName": "Message.reactions",
+      "line": 31,
+      "endLine": 31,
+      "signature": "public reactions?: IMessageReactions;",
+      "containerClass": "Message",
+      "calls": [
+        {
+          "name": "IMessageReactions",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "class_property",
+      "name": "file",
+      "exported": true,
+      "qualifiedName": "Message.file",
+      "line": 41,
+      "endLine": 41,
+      "signature": "public file?: IMessageFile;",
+      "containerClass": "Message",
+      "calls": [
+        {
+          "name": "IMessageFile",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "class_property",
+      "name": "blocks",
+      "exported": true,
+      "qualifiedName": "Message.blocks",
+      "line": 43,
+      "endLine": 43,
+      "signature": "public blocks?: Array<LayoutBlock>;",
+      "containerClass": "Message",
+      "calls": [
+        {
+          "name": "LayoutBlock",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "class_property",
+      "name": "pinnedBy",
+      "exported": true,
+      "qualifiedName": "Message.pinnedBy",
+      "line": 51,
+      "endLine": 51,
+      "signature": "public pinnedBy?: IUserLookup;",
+      "containerClass": "Message",
+      "calls": [
+        {
+          "name": "IUserLookup",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "class_property",
+      "name": "_ROOM",
+      "exported": true,
+      "qualifiedName": "Message._ROOM",
+      "line": 53,
+      "endLine": 53,
+      "signature": "private _ROOM: Room;",
+      "containerClass": "Message",
+      "calls": [
+        {
+          "name": "Room",
+          "edgeType": "type"
+        }
+      ]
+    }
+  ],
+  "imports": [
+    {
+      "module": "@rocket.chat/apps-engine/definition/messages",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/apps-engine/definition/users",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/ui-kit",
+      "resolved": "external"
+    },
+    {
+      "module": "../AppManager",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/packages/apps/src/server/AppManager.ts"
+    },
+    {
+      "module": "../rooms/Room",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/packages/apps/src/server/rooms/Room.ts"
+    }
+  ]
+}

@@ -1,0 +1,59 @@
+{
+  "sourcePath": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/app/utils/server/lib/JWTHelper.ts",
+  "symbols": [
+    {
+      "type": "variable_function",
+      "name": "generateJWT",
+      "exported": true,
+      "line": 8,
+      "endLine": 20,
+      "signature": "(payload: Record<string, any>, secret: string, options?: { aud?: string }): string =>",
+      "calls": [
+        {
+          "name": "get",
+          "edgeType": "call"
+        },
+        {
+          "name": "stringify",
+          "edgeType": "call"
+        },
+        {
+          "name": "sign",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "variable_function",
+      "name": "validateAndDecodeJWT",
+      "exported": true,
+      "line": 12,
+      "endLine": 46,
+      "signature": "(jwt: string, secret: string, options?: { aud?: string }): Record<string, any> | null =>",
+      "calls": [
+        {
+          "name": "verify",
+          "edgeType": "call"
+        },
+        {
+          "name": "parse",
+          "edgeType": "call"
+        },
+        {
+          "name": "floor",
+          "edgeType": "call"
+        },
+        {
+          "name": "now",
+          "edgeType": "call"
+        }
+      ]
+    }
+  ],
+  "imports": [
+    {
+      "module": "jsrsasign",
+      "resolved": "external"
+    }
+  ]
+}

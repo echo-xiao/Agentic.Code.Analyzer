@@ -1,0 +1,97 @@
+{
+  "sourcePath": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/client/lib/loggedIn.ts",
+  "symbols": [
+    {
+      "type": "variable_function",
+      "name": "isLoggedIn",
+      "exported": false,
+      "line": 4,
+      "endLine": 7,
+      "signature": "() =>",
+      "calls": [
+        {
+          "name": "getUserId",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "variable_function",
+      "name": "whenLoggedIn",
+      "exported": true,
+      "line": 8,
+      "endLine": 19,
+      "signature": "() =>",
+      "calls": [
+        {
+          "name": "isLoggedIn",
+          "edgeType": "call"
+        },
+        {
+          "name": "resolve",
+          "edgeType": "call"
+        },
+        {
+          "name": "onLogin",
+          "edgeType": "call"
+        },
+        {
+          "name": "getDdpSdk",
+          "edgeType": "call"
+        },
+        {
+          "name": "stop",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "variable_function",
+      "name": "onLoggedIn",
+      "exported": true,
+      "line": 12,
+      "endLine": 29,
+      "signature": "(cb: (() => () => void) | (() => Promise<() => void>) | (() => void)) =>",
+      "calls": [
+        {
+          "name": "cleanup",
+          "edgeType": "call"
+        },
+        {
+          "name": "cb",
+          "edgeType": "call"
+        },
+        {
+          "name": "onLogin",
+          "edgeType": "call"
+        },
+        {
+          "name": "getDdpSdk",
+          "edgeType": "call"
+        },
+        {
+          "name": "isLoggedIn",
+          "edgeType": "call"
+        },
+        {
+          "name": "handler",
+          "edgeType": "call"
+        },
+        {
+          "name": "stop",
+          "edgeType": "call"
+        }
+      ]
+    }
+  ],
+  "imports": [
+    {
+      "module": "./sdk/ddpSdk",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/client/lib/sdk/ddpSdk.ts"
+    },
+    {
+      "module": "./user",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/client/lib/user.ts"
+    }
+  ]
+}

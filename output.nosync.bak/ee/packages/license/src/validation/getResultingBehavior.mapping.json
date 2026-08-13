@@ -1,0 +1,37 @@
+{
+  "sourcePath": "/Users/echoooooo/Desktop/code/Rocket.Chat/ee/packages/license/src/validation/getResultingBehavior.ts",
+  "symbols": [
+    {
+      "type": "variable_function",
+      "name": "getResultingBehavior",
+      "exported": true,
+      "line": 3,
+      "endLine": 25,
+      "signature": "( data: LicenseLimit | LicensePeriod | Partial<Omit<BehaviorWithContext, 'reason'>>, { reason, limit }: { reason: BehaviorWithContext['reason']; limit?: LicenseLimitKind }, ): BehaviorWithContext =>",
+      "calls": [
+        {
+          "name": "LicenseLimit",
+          "edgeType": "type"
+        },
+        {
+          "name": "LicensePeriod",
+          "edgeType": "type"
+        },
+        {
+          "name": "BehaviorWithContext",
+          "edgeType": "type"
+        },
+        {
+          "name": "LicenseLimitKind",
+          "edgeType": "type"
+        }
+      ]
+    }
+  ],
+  "imports": [
+    {
+      "module": "@rocket.chat/core-typings",
+      "resolved": "external"
+    }
+  ]
+}

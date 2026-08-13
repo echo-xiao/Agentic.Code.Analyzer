@@ -1,0 +1,229 @@
+{
+  "sourcePath": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/client/views/marketplace/hooks/useApps.ts",
+  "symbols": [
+    {
+      "type": "variable_function",
+      "name": "sortByName",
+      "exported": false,
+      "line": 14,
+      "endLine": 14,
+      "signature": "(apps: App[]): App[] =>",
+      "calls": [
+        {
+          "name": "toSorted",
+          "edgeType": "call"
+        },
+        {
+          "name": "toLowerCase",
+          "edgeType": "call"
+        },
+        {
+          "name": "App",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "variable_function",
+      "name": "storeQueryFunction",
+      "exported": true,
+      "line": 21,
+      "endLine": 75,
+      "signature": "( marketplace: UseQueryResult<App[], unknown>, instance: UseQueryResult<App[], unknown>, ): [App[], App[], App[]] =>",
+      "calls": [
+        {
+          "name": "forEach",
+          "edgeType": "call"
+        },
+        {
+          "name": "sortByName",
+          "edgeType": "call"
+        },
+        {
+          "name": "findIndex",
+          "edgeType": "call"
+        },
+        {
+          "name": "splice",
+          "edgeType": "call"
+        },
+        {
+          "name": "push",
+          "edgeType": "call"
+        },
+        {
+          "name": "UseQueryResult",
+          "edgeType": "type"
+        },
+        {
+          "name": "App",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "variable_function",
+      "name": "useApps",
+      "exported": true,
+      "line": 28,
+      "endLine": 131,
+      "signature": "< TData = { installedApps: App[]; marketplaceApps: App[]; privateApps: App[]; }, >( options?: Omit< UseQueryOptions< { installedApps: App[]; marketplaceApps: App[]; privateApps: App[]; }, Error, TData, ReturnType<typeof marketplaceQueryKeys.appsStored> >, 'queryKey' | 'queryFn' | 'enabled' | 'placeholderData' >, ) =>",
+      "calls": [
+        {
+          "name": "useContext",
+          "edgeType": "call"
+        },
+        {
+          "name": "usePermission",
+          "edgeType": "call"
+        },
+        {
+          "name": "useQueryClient",
+          "edgeType": "call"
+        },
+        {
+          "name": "useIsEnterprise",
+          "edgeType": "call"
+        },
+        {
+          "name": "useInvalidateAppsCountQueryCallback",
+          "edgeType": "call"
+        },
+        {
+          "name": "useInvalidateLicense",
+          "edgeType": "call"
+        },
+        {
+          "name": "useStream",
+          "edgeType": "call"
+        },
+        {
+          "name": "useDebouncedCallback",
+          "edgeType": "call"
+        },
+        {
+          "name": "invalidateQueries",
+          "edgeType": "call"
+        },
+        {
+          "name": "appsInstance",
+          "edgeType": "call"
+        },
+        {
+          "name": "invalidateAppsCountQuery",
+          "edgeType": "call"
+        },
+        {
+          "name": "useEffect",
+          "edgeType": "call"
+        },
+        {
+          "name": "stream",
+          "edgeType": "call"
+        },
+        {
+          "name": "includes",
+          "edgeType": "call"
+        },
+        {
+          "name": "invalidate",
+          "edgeType": "call"
+        },
+        {
+          "name": "invalidateLicenseQuery",
+          "edgeType": "call"
+        },
+        {
+          "name": "useQuery",
+          "edgeType": "call"
+        },
+        {
+          "name": "appsMarketplace",
+          "edgeType": "call"
+        },
+        {
+          "name": "getAppsFromMarketplace",
+          "edgeType": "call"
+        },
+        {
+          "name": "then",
+          "edgeType": "call"
+        },
+        {
+          "name": "getInstalledApps",
+          "edgeType": "call"
+        },
+        {
+          "name": "map",
+          "edgeType": "call"
+        },
+        {
+          "name": "appsStored",
+          "edgeType": "call"
+        },
+        {
+          "name": "storeQueryFunction",
+          "edgeType": "call"
+        },
+        {
+          "name": "App",
+          "edgeType": "type"
+        },
+        {
+          "name": "UseQueryOptions",
+          "edgeType": "type"
+        },
+        {
+          "name": "TData",
+          "edgeType": "type"
+        }
+      ]
+    }
+  ],
+  "imports": [
+    {
+      "module": "@rocket.chat/fuselage-hooks",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/ui-client",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/ui-contexts",
+      "resolved": "external"
+    },
+    {
+      "module": "@tanstack/react-query",
+      "resolved": "external"
+    },
+    {
+      "module": "@tanstack/react-query",
+      "resolved": "external"
+    },
+    {
+      "module": "react",
+      "resolved": "external"
+    },
+    {
+      "module": "./useAppsCountQuery",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/client/views/marketplace/hooks/useAppsCountQuery.ts"
+    },
+    {
+      "module": "../../../contexts/AppsContext",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/client/contexts/AppsContext.tsx"
+    },
+    {
+      "module": "../../../hooks/useIsEnterprise",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/client/hooks/useIsEnterprise.ts"
+    },
+    {
+      "module": "../../../lib/queryKeys",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/client/lib/queryKeys.ts"
+    },
+    {
+      "module": "../types",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/client/views/marketplace/types.ts"
+    }
+  ]
+}

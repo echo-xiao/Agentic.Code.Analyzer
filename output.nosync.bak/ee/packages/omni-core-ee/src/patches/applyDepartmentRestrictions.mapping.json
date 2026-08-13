@@ -1,0 +1,69 @@
+{
+  "sourcePath": "/Users/echoooooo/Desktop/code/Rocket.Chat/ee/packages/omni-core-ee/src/patches/applyDepartmentRestrictions.ts",
+  "symbols": [
+    {
+      "type": "variable_function",
+      "name": "applyDepartmentRestrictionsPatch",
+      "exported": true,
+      "line": 9,
+      "endLine": 24,
+      "signature": "() =>",
+      "calls": [
+        {
+          "name": "patch",
+          "edgeType": "call"
+        },
+        {
+          "name": "hasModule",
+          "edgeType": "call"
+        },
+        {
+          "name": "prev",
+          "edgeType": "call"
+        },
+        {
+          "name": "debug",
+          "edgeType": "call"
+        },
+        {
+          "name": "addQueryRestrictionsToDepartmentsModel",
+          "edgeType": "call"
+        },
+        {
+          "name": "FilterOperators",
+          "edgeType": "type"
+        },
+        {
+          "name": "ILivechatDepartment",
+          "edgeType": "type"
+        }
+      ]
+    }
+  ],
+  "imports": [
+    {
+      "module": "@rocket.chat/core-typings",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/license",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/omni-core",
+      "resolved": "external"
+    },
+    {
+      "module": "mongodb",
+      "resolved": "external"
+    },
+    {
+      "module": "../units/addRoleBasedRestrictionsToDepartment",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/ee/packages/omni-core-ee/src/units/addRoleBasedRestrictionsToDepartment.ts"
+    },
+    {
+      "module": "../utils/logger",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/ee/packages/omni-core-ee/src/utils/logger.ts"
+    }
+  ]
+}

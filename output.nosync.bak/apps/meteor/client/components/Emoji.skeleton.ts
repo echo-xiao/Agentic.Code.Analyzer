@@ -1,0 +1,31 @@
+## File: apps/meteor/client/components/Emoji.tsx
+
+```typescript
+import styled from '@rocket.chat/styled';
+
+import { getEmojiClassNameAndDataTitle } from '../lib/utils/renderEmoji';
+
+export type EmojiProps = {
+	emojiHandle: string; // :emoji:
+	className?: string;
+	fillContainer?: boolean;
+};
+
+const EmojiComponent = styled('span', ({ fillContainer: _fillContainer, ...props }: { fillContainer?: boolean }) => props)`
+	${({ fillContainer }) =>
+		fillContainer
+			? `
+				display: inline-block;
+				width: 100%;
+				height: 100%;
+				margin: 0;`
+			: ''}
+`;
+
+function Emoji({ emojiHandle, className = undefined, fillContainer }: EmojiProps) {
+    /* Implementation Hidden */
+}
+
+export default Emoji;
+
+```

@@ -1,0 +1,175 @@
+{
+  "sourcePath": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/ee/server/lib/engagementDashboard/date.ts",
+  "symbols": [
+    {
+      "type": "function",
+      "name": "transformDatesForAPI",
+      "exported": true,
+      "line": 35,
+      "endLine": 40,
+      "signature": "export function transformDatesForAPI(start: string, end?: string): { start: Date; end: Date | undefined }",
+      "calls": [
+        {
+          "name": "mapDateForAPI",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "variable",
+      "name": "isDateISOString",
+      "exported": true,
+      "line": 4,
+      "endLine": 10,
+      "signature": "isDateISOString = mem( (input: string): input is string =>",
+      "calls": [
+        {
+          "name": "parse",
+          "edgeType": "call"
+        },
+        {
+          "name": "isNaN",
+          "edgeType": "call"
+        },
+        {
+          "name": "toISOString",
+          "edgeType": "call"
+        },
+        {
+          "name": "Date",
+          "edgeType": "new"
+        }
+      ]
+    },
+    {
+      "type": "variable_function",
+      "name": "mapDateForAPI",
+      "exported": true,
+      "line": 12,
+      "endLine": 18,
+      "signature": "(input: string): Date =>",
+      "calls": [
+        {
+          "name": "isDateISOString",
+          "edgeType": "call"
+        },
+        {
+          "name": "parse",
+          "edgeType": "call"
+        },
+        {
+          "name": "Date",
+          "edgeType": "new"
+        }
+      ]
+    },
+    {
+      "type": "variable_function",
+      "name": "convertDateToInt",
+      "exported": true,
+      "line": 16,
+      "endLine": 16,
+      "signature": "(date: Date): number =>",
+      "calls": [
+        {
+          "name": "format",
+          "edgeType": "call"
+        },
+        {
+          "name": "clone",
+          "edgeType": "call"
+        },
+        {
+          "name": "moment",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "variable_function",
+      "name": "convertIntToDate",
+      "exported": true,
+      "line": 17,
+      "endLine": 17,
+      "signature": "(intValue: number): Date =>",
+      "calls": [
+        {
+          "name": "toDate",
+          "edgeType": "call"
+        },
+        {
+          "name": "clone",
+          "edgeType": "call"
+        },
+        {
+          "name": "moment",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "variable_function",
+      "name": "diffBetweenDays",
+      "exported": false,
+      "line": 18,
+      "endLine": 19,
+      "signature": "(start: string | number | Date, end: string | number | Date): number =>",
+      "calls": [
+        {
+          "name": "diff",
+          "edgeType": "call"
+        },
+        {
+          "name": "clone",
+          "edgeType": "call"
+        },
+        {
+          "name": "moment",
+          "edgeType": "call"
+        },
+        {
+          "name": "Date",
+          "edgeType": "new"
+        }
+      ]
+    },
+    {
+      "type": "variable_function",
+      "name": "diffBetweenDaysInclusive",
+      "exported": true,
+      "line": 20,
+      "endLine": 21,
+      "signature": "(start: string | number | Date, end: string | number | Date): number =>",
+      "calls": [
+        {
+          "name": "diffBetweenDays",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "variable_function",
+      "name": "getTotalOfWeekItems",
+      "exported": true,
+      "line": 23,
+      "endLine": 27,
+      "signature": "<T extends Record<string, number>>(weekItems: T[], property: keyof T): number =>",
+      "calls": [
+        {
+          "name": "reduce",
+          "edgeType": "call"
+        }
+      ]
+    }
+  ],
+  "imports": [
+    {
+      "module": "mem",
+      "resolved": "external"
+    },
+    {
+      "module": "moment",
+      "resolved": "external"
+    }
+  ]
+}

@@ -1,0 +1,200 @@
+{
+  "sourcePath": "/Users/echoooooo/Desktop/code/Rocket.Chat/packages/ui-client/src/helpers/imperativeModal.tsx",
+  "symbols": [
+    {
+      "type": "class",
+      "name": "ImperativeModalEmmiter",
+      "exported": false,
+      "line": 34,
+      "endLine": 51,
+      "signature": "class ImperativeModalEmmiter extends Emitter<",
+      "calls": [
+        {
+          "name": "Emitter",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "constructor",
+      "exported": false,
+      "qualifiedName": "ImperativeModalEmmiter.constructor",
+      "line": 37,
+      "endLine": 40,
+      "signature": "constructor(store: typeof modalStore)",
+      "containerClass": "ImperativeModalEmmiter",
+      "calls": []
+    },
+    {
+      "type": "class_property",
+      "name": "open",
+      "exported": false,
+      "qualifiedName": "ImperativeModalEmmiter.open",
+      "line": 41,
+      "endLine": 42,
+      "signature": "open = <TComponent extends ComponentType<any>>(descriptor: ReactModalDescriptor<TComponent>): ModalInstance =>",
+      "containerClass": "ImperativeModalEmmiter",
+      "calls": [
+        {
+          "name": "open",
+          "edgeType": "call"
+        },
+        {
+          "name": "mapCurrentModal",
+          "edgeType": "call"
+        },
+        {
+          "name": "ComponentType",
+          "edgeType": "type"
+        },
+        {
+          "name": "ReactModalDescriptor",
+          "edgeType": "type"
+        },
+        {
+          "name": "TComponent",
+          "edgeType": "type"
+        },
+        {
+          "name": "ModalInstance",
+          "edgeType": "type"
+        },
+        {
+          "name": "ModalDescriptor",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "class_property",
+      "name": "push",
+      "exported": false,
+      "qualifiedName": "ImperativeModalEmmiter.push",
+      "line": 44,
+      "endLine": 45,
+      "signature": "push = <TComponent extends ComponentType<any>>(descriptor: ReactModalDescriptor<TComponent>): ModalInstance =>",
+      "containerClass": "ImperativeModalEmmiter",
+      "calls": [
+        {
+          "name": "push",
+          "edgeType": "call"
+        },
+        {
+          "name": "mapCurrentModal",
+          "edgeType": "call"
+        },
+        {
+          "name": "ComponentType",
+          "edgeType": "type"
+        },
+        {
+          "name": "ReactModalDescriptor",
+          "edgeType": "type"
+        },
+        {
+          "name": "TComponent",
+          "edgeType": "type"
+        },
+        {
+          "name": "ModalInstance",
+          "edgeType": "type"
+        },
+        {
+          "name": "ModalDescriptor",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "class_property",
+      "name": "close",
+      "exported": false,
+      "qualifiedName": "ImperativeModalEmmiter.close",
+      "line": 47,
+      "endLine": 49,
+      "signature": "close = () =>",
+      "containerClass": "ImperativeModalEmmiter",
+      "calls": [
+        {
+          "name": "close",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "variable_function",
+      "name": "mapCurrentModal",
+      "exported": false,
+      "line": 19,
+      "endLine": 32,
+      "signature": "(descriptor: ModalDescriptor): ReactNode =>",
+      "calls": [
+        {
+          "name": "createElement",
+          "edgeType": "call"
+        },
+        {
+          "name": "random",
+          "edgeType": "call"
+        },
+        {
+          "name": "ModalDescriptor",
+          "edgeType": "type"
+        },
+        {
+          "name": "ReactNode",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "variable",
+      "name": "imperativeModal",
+      "exported": true,
+      "line": 41,
+      "endLine": 41,
+      "signature": "imperativeModal = new ImperativeModalEmmiter(modalStore)",
+      "calls": []
+    },
+    {
+      "type": "type",
+      "name": "ReactModalDescriptor",
+      "line": 7,
+      "endLine": 10,
+      "signature": "type ReactModalDescriptor<TComponent extends ComponentType<any> = ComponentType<any>> ="
+    },
+    {
+      "type": "type",
+      "name": "ModalDescriptor",
+      "line": 12,
+      "endLine": 12,
+      "signature": "type ModalDescriptor = ReactModalDescriptor | null;"
+    },
+    {
+      "type": "type",
+      "name": "ModalInstance",
+      "line": 14,
+      "endLine": 17,
+      "signature": "type ModalInstance ="
+    }
+  ],
+  "imports": [
+    {
+      "module": "@rocket.chat/emitter",
+      "resolved": "external"
+    },
+    {
+      "module": "react",
+      "resolved": "external"
+    },
+    {
+      "module": "react",
+      "resolved": "external"
+    },
+    {
+      "module": "../providers/ModalProvider/ModalStore",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/packages/ui-client/src/providers/ModalProvider/ModalStore.ts"
+    }
+  ]
+}

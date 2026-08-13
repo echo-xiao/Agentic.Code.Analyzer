@@ -1,0 +1,319 @@
+{
+  "sourcePath": "/Users/echoooooo/Desktop/code/Rocket.Chat/packages/livechat/src/routes/LeaveMessage/index.tsx",
+  "symbols": [
+    {
+      "type": "inner_function",
+      "name": "onSubmit",
+      "exported": false,
+      "qualifiedName": "LeaveMessage.onSubmit",
+      "line": 56,
+      "endLine": 84,
+      "signature": "async ({ name, email, department, message }: FormValues) =>",
+      "calls": [
+        {
+          "name": "dispatch",
+          "edgeType": "call"
+        },
+        {
+          "name": "parseOfflineMessage",
+          "edgeType": "call"
+        },
+        {
+          "name": "sendOfflineMessage",
+          "edgeType": "call"
+        },
+        {
+          "name": "alert",
+          "edgeType": "call"
+        },
+        {
+          "name": "parentCall",
+          "edgeType": "call"
+        },
+        {
+          "name": "error",
+          "edgeType": "call"
+        },
+        {
+          "name": "createToken",
+          "edgeType": "call"
+        },
+        {
+          "name": "push",
+          "edgeType": "call"
+        },
+        {
+          "name": "FormValues",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "variable_function",
+      "name": "LeaveMessage",
+      "exported": false,
+      "line": 28,
+      "endLine": 182,
+      "signature": "(_: LeaveMessageProps) =>",
+      "calls": [
+        {
+          "name": "useContext",
+          "edgeType": "call"
+        },
+        {
+          "name": "useTranslation",
+          "edgeType": "call"
+        },
+        {
+          "name": "useRef",
+          "edgeType": "call"
+        },
+        {
+          "name": "useForm",
+          "edgeType": "call"
+        },
+        {
+          "name": "dispatch",
+          "edgeType": "call"
+        },
+        {
+          "name": "parseOfflineMessage",
+          "edgeType": "call"
+        },
+        {
+          "name": "sendOfflineMessage",
+          "edgeType": "call"
+        },
+        {
+          "name": "alert",
+          "edgeType": "call"
+        },
+        {
+          "name": "parentCall",
+          "edgeType": "call"
+        },
+        {
+          "name": "error",
+          "edgeType": "call"
+        },
+        {
+          "name": "createToken",
+          "edgeType": "call"
+        },
+        {
+          "name": "push",
+          "edgeType": "call"
+        },
+        {
+          "name": "createClassName",
+          "edgeType": "call"
+        },
+        {
+          "name": "handleSubmit",
+          "edgeType": "call"
+        },
+        {
+          "name": "validateEmail",
+          "edgeType": "call"
+        },
+        {
+          "name": "some",
+          "edgeType": "call"
+        },
+        {
+          "name": "map",
+          "edgeType": "call"
+        },
+        {
+          "name": "sortArrayByColumn",
+          "edgeType": "call"
+        },
+        {
+          "name": "Screen",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "FormScrollShadow",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "ScreenContent",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "Form",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "FormField",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "ScreenFooter",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "Button",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "MarkdownBlock",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "Controller",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "TextInput",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "SelectInput",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "MultilineTextInput",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "offlineColor",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "topRef",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "bottomRef",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "control",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "loading",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "LeaveMessageProps",
+          "edgeType": "type"
+        },
+        {
+          "name": "HTMLDivElement",
+          "edgeType": "type"
+        },
+        {
+          "name": "FormValues",
+          "edgeType": "type"
+        },
+        {
+          "name": "SubmitHandler",
+          "edgeType": "type"
+        },
+        {
+          "name": "FieldValues",
+          "edgeType": "type"
+        },
+        {
+          "name": "HTMLFormElement",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "type",
+      "name": "LeaveMessageProps",
+      "line": 24,
+      "endLine": 26,
+      "signature": "type LeaveMessageProps ="
+    }
+  ],
+  "imports": [
+    {
+      "module": "preact/hooks",
+      "resolved": "external"
+    },
+    {
+      "module": "preact/src/jsx",
+      "resolved": "external"
+    },
+    {
+      "module": "react-hook-form",
+      "resolved": "external"
+    },
+    {
+      "module": "react-hook-form",
+      "resolved": "external"
+    },
+    {
+      "module": "react-i18next",
+      "resolved": "external"
+    },
+    {
+      "module": "./styles.scss",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/packages/livechat/src/routes/LeaveMessage/styles.scss"
+    },
+    {
+      "module": "../../api",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/packages/livechat/src/api.ts"
+    },
+    {
+      "module": "../../components/Button",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/packages/livechat/src/components/Button/index.tsx"
+    },
+    {
+      "module": "../../components/Form",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/packages/livechat/src/components/Form/index.tsx"
+    },
+    {
+      "module": "../../components/Form/FormScrollShadow",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/packages/livechat/src/components/Form/FormScrollShadow/index.tsx"
+    },
+    {
+      "module": "../../components/Form/MultilineTextInput",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/packages/livechat/src/components/Form/MultilineTextInput/index.tsx"
+    },
+    {
+      "module": "../../components/MarkdownBlock",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/packages/livechat/src/components/MarkdownBlock/index.tsx"
+    },
+    {
+      "module": "../../components/Modal",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/packages/livechat/src/components/Modal/index.ts"
+    },
+    {
+      "module": "../../components/Screen",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/packages/livechat/src/components/Screen/index.ts"
+    },
+    {
+      "module": "../../helpers/createClassName",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/packages/livechat/src/helpers/createClassName.ts"
+    },
+    {
+      "module": "../../helpers/parseOfflineMessage",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/packages/livechat/src/helpers/parseOfflineMessage.ts"
+    },
+    {
+      "module": "../../helpers/sortArrayByColumn",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/packages/livechat/src/helpers/sortArrayByColumn.ts"
+    },
+    {
+      "module": "../../lib/email",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/packages/livechat/src/lib/email.ts"
+    },
+    {
+      "module": "../../lib/parentCall",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/packages/livechat/src/lib/parentCall.ts"
+    },
+    {
+      "module": "../../lib/random",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/packages/livechat/src/lib/random.ts"
+    },
+    {
+      "module": "../../store",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/packages/livechat/src/store/index.tsx"
+    }
+  ]
+}

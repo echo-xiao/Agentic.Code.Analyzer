@@ -1,0 +1,73 @@
+{
+  "sourcePath": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/app/authentication/server/hooks/login.ts",
+  "symbols": [
+    {
+      "type": "module",
+      "name": "login",
+      "exported": false,
+      "line": 1,
+      "endLine": 31,
+      "signature": "login",
+      "calls": [
+        {
+          "name": "onLoginFailure",
+          "edgeType": "call"
+        },
+        {
+          "name": "get",
+          "edgeType": "call"
+        },
+        {
+          "name": "includes",
+          "edgeType": "call"
+        },
+        {
+          "name": "saveFailedLoginAttempts",
+          "edgeType": "call"
+        },
+        {
+          "name": "logFailedLoginAttempts",
+          "edgeType": "call"
+        },
+        {
+          "name": "ILoginAttempt",
+          "edgeType": "type"
+        },
+        {
+          "name": "afterValidateLogin",
+          "edgeType": "event_listen"
+        },
+        {
+          "name": "saveSuccessfulLogin",
+          "edgeType": "call"
+        }
+      ]
+    }
+  ],
+  "imports": [
+    {
+      "module": "meteor/accounts-base",
+      "resolved": "external"
+    },
+    {
+      "module": "../../../../server/lib/callbacks",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/server/lib/callbacks.ts"
+    },
+    {
+      "module": "../../../settings/server",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/app/settings/server/index.ts"
+    },
+    {
+      "module": "../ILoginAttempt",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/app/authentication/server/ILoginAttempt.ts"
+    },
+    {
+      "module": "../lib/logLoginAttempts",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/app/authentication/server/lib/logLoginAttempts.ts"
+    },
+    {
+      "module": "../lib/restrictLoginAttempts",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/app/authentication/server/lib/restrictLoginAttempts.ts"
+    }
+  ]
+}

@@ -1,0 +1,214 @@
+{
+  "sourcePath": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/client/views/hooks/useMembersList.ts",
+  "symbols": [
+    {
+      "type": "variable_function",
+      "name": "getSortedMembers",
+      "exported": false,
+      "line": 37,
+      "endLine": 66,
+      "signature": "(members: RoomMember[], useRealName = false) =>",
+      "calls": [
+        {
+          "name": "map",
+          "edgeType": "call"
+        },
+        {
+          "name": "calculateRoomRolePriorityFromRoles",
+          "edgeType": "call"
+        },
+        {
+          "name": "sort",
+          "edgeType": "call"
+        },
+        {
+          "name": "localeCompare",
+          "edgeType": "call"
+        },
+        {
+          "name": "RoomMember",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "variable_function",
+      "name": "updateMemberInCache",
+      "exported": false,
+      "line": 41,
+      "endLine": 89,
+      "signature": "( options: MembersListOptions, queryClient: QueryClient, memberId: string, role: AtLeast<IRole, '_id'>, type: 'removed' | 'changed' | 'added', useRealName = false, ) =>",
+      "calls": [
+        {
+          "name": "setQueryData",
+          "edgeType": "call"
+        },
+        {
+          "name": "members",
+          "edgeType": "call"
+        },
+        {
+          "name": "flatMap",
+          "edgeType": "call"
+        },
+        {
+          "name": "map",
+          "edgeType": "call"
+        },
+        {
+          "name": "includes",
+          "edgeType": "call"
+        },
+        {
+          "name": "push",
+          "edgeType": "call"
+        },
+        {
+          "name": "filter",
+          "edgeType": "call"
+        },
+        {
+          "name": "getSortedMembers",
+          "edgeType": "call"
+        },
+        {
+          "name": "slice",
+          "edgeType": "call"
+        },
+        {
+          "name": "MembersListOptions",
+          "edgeType": "type"
+        },
+        {
+          "name": "QueryClient",
+          "edgeType": "type"
+        },
+        {
+          "name": "AtLeast",
+          "edgeType": "type"
+        },
+        {
+          "name": "IRole",
+          "edgeType": "type"
+        },
+        {
+          "name": "InfiniteData",
+          "edgeType": "type"
+        },
+        {
+          "name": "MembersListPage",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "variable_function",
+      "name": "useMembersList",
+      "exported": true,
+      "line": 52,
+      "endLine": 93,
+      "signature": "(options: MembersListOptions) =>",
+      "calls": [
+        {
+          "name": "useEndpoint",
+          "edgeType": "call"
+        },
+        {
+          "name": "useSetting",
+          "edgeType": "call"
+        },
+        {
+          "name": "useQueryClient",
+          "edgeType": "call"
+        },
+        {
+          "name": "useStream",
+          "edgeType": "call"
+        },
+        {
+          "name": "useEffect",
+          "edgeType": "call"
+        },
+        {
+          "name": "subscribeToNotifyLoggedIn",
+          "edgeType": "call"
+        },
+        {
+          "name": "updateMemberInCache",
+          "edgeType": "call"
+        },
+        {
+          "name": "useInfiniteQuery",
+          "edgeType": "call"
+        },
+        {
+          "name": "members",
+          "edgeType": "call"
+        },
+        {
+          "name": "getMembers",
+          "edgeType": "call"
+        },
+        {
+          "name": "MembersListOptions",
+          "edgeType": "type"
+        },
+        {
+          "name": "IRole",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "type",
+      "name": "MembersListOptions",
+      "line": 10,
+      "endLine": 16,
+      "signature": "type MembersListOptions ="
+    },
+    {
+      "type": "type",
+      "name": "RoomMember",
+      "line": 24,
+      "endLine": 28,
+      "signature": "export type RoomMember = Serialized< Pick<IUser, 'username' | '_id' | 'name' | 'status' | 'federated' | 'freeSwitchExtension'> &"
+    },
+    {
+      "type": "type",
+      "name": "MembersListPage",
+      "line": 30,
+      "endLine": 35,
+      "signature": "type MembersListPage ="
+    }
+  ],
+  "imports": [
+    {
+      "module": "@rocket.chat/core-typings",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/ui-contexts",
+      "resolved": "external"
+    },
+    {
+      "module": "@tanstack/react-query",
+      "resolved": "external"
+    },
+    {
+      "module": "@tanstack/react-query",
+      "resolved": "external"
+    },
+    {
+      "module": "react",
+      "resolved": "external"
+    },
+    {
+      "module": "../../../lib/roles/calculateRoomRolePriorityFromRoles",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/lib/roles/calculateRoomRolePriorityFromRoles.ts"
+    },
+    {
+      "module": "../../lib/queryKeys",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/client/lib/queryKeys.ts"
+    }
+  ]
+}

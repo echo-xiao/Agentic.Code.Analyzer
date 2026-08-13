@@ -1,0 +1,291 @@
+{
+  "sourcePath": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/client/views/marketplace/AppDetailsPage/tabs/AppLogs/AppLogs.tsx",
+  "symbols": [
+    {
+      "type": "function",
+      "name": "expandedReducer",
+      "exported": false,
+      "line": 17,
+      "endLine": 41,
+      "signature": "function expandedReducer( expandedStates: { id: string; expanded: boolean }[], action: | { type: 'update'; id: string; expanded: boolean } | { type: 'expand-all' } | { type: 'reset-all' } | { type: 'reset'; logs: ILogItem[] }, )",
+      "calls": [
+        {
+          "name": "map",
+          "edgeType": "call"
+        },
+        {
+          "name": "ILogItem",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "inner_function",
+      "name": "handleExpand",
+      "exported": false,
+      "qualifiedName": "AppLogs.handleExpand",
+      "line": 51,
+      "endLine": 51,
+      "signature": "({ id, expanded }: { id: string; expanded: boolean }) =>",
+      "calls": [
+        {
+          "name": "dispatch",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "inner_function",
+      "name": "handleExpandAll",
+      "exported": false,
+      "qualifiedName": "AppLogs.handleExpandAll",
+      "line": 53,
+      "endLine": 53,
+      "signature": "() =>",
+      "calls": [
+        {
+          "name": "dispatch",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "inner_function",
+      "name": "handleCollapseAll",
+      "exported": false,
+      "qualifiedName": "AppLogs.handleCollapseAll",
+      "line": 55,
+      "endLine": 55,
+      "signature": "() =>",
+      "calls": [
+        {
+          "name": "dispatch",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "variable_function",
+      "name": "AppLogs",
+      "exported": false,
+      "line": 30,
+      "endLine": 126,
+      "signature": "({ id }: AppLogsProps) =>",
+      "calls": [
+        {
+          "name": "useTranslation",
+          "edgeType": "call"
+        },
+        {
+          "name": "useRouter",
+          "edgeType": "call"
+        },
+        {
+          "name": "getSearchParameters",
+          "edgeType": "call"
+        },
+        {
+          "name": "useAppLogsFilterFormContext",
+          "edgeType": "call"
+        },
+        {
+          "name": "useEffect",
+          "edgeType": "call"
+        },
+        {
+          "name": "setValue",
+          "edgeType": "call"
+        },
+        {
+          "name": "watch",
+          "edgeType": "call"
+        },
+        {
+          "name": "usePagination",
+          "edgeType": "call"
+        },
+        {
+          "name": "useReducer",
+          "edgeType": "call"
+        },
+        {
+          "name": "dispatch",
+          "edgeType": "call"
+        },
+        {
+          "name": "useLogs",
+          "edgeType": "call"
+        },
+        {
+          "name": "toISOString",
+          "edgeType": "call"
+        },
+        {
+          "name": "useMemo",
+          "edgeType": "call"
+        },
+        {
+          "name": "handleExpandAll",
+          "edgeType": "call"
+        },
+        {
+          "name": "handleCollapseAll",
+          "edgeType": "call"
+        },
+        {
+          "name": "refetch",
+          "edgeType": "call"
+        },
+        {
+          "name": "map",
+          "edgeType": "call"
+        },
+        {
+          "name": "find",
+          "edgeType": "call"
+        },
+        {
+          "name": "Box",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "CustomScrollbars",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "CollapsiblePanel",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "AppLogsFilter",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "AccordionLoading",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "GenericError",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "GenericNoResults",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "AppLogsItem",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "Pagination",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "id",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "isFetching",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "parsedError",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "handleExpand",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "current",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "itemsPerPage",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "onSetItemsPerPage",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "onSetCurrent",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "Date",
+          "edgeType": "new"
+        },
+        {
+          "name": "AppLogsProps",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "type",
+      "name": "AppLogsProps",
+      "line": 28,
+      "endLine": 28,
+      "signature": "export type AppLogsProps ="
+    }
+  ],
+  "imports": [
+    {
+      "module": "@rocket.chat/core-typings",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/fuselage",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/ui-client",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/ui-contexts",
+      "resolved": "external"
+    },
+    {
+      "module": "react",
+      "resolved": "external"
+    },
+    {
+      "module": "react-i18next",
+      "resolved": "external"
+    },
+    {
+      "module": "./AppLogsItem",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/client/views/marketplace/AppDetailsPage/tabs/AppLogs/AppLogsItem.tsx"
+    },
+    {
+      "module": "./Components/CollapsiblePanel",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/client/views/marketplace/AppDetailsPage/tabs/AppLogs/Components/CollapsiblePanel.tsx"
+    },
+    {
+      "module": "./Filters/AppLogsFilter",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/client/views/marketplace/AppDetailsPage/tabs/AppLogs/Filters/AppLogsFilter.tsx"
+    },
+    {
+      "module": "./useAppLogsFilterForm",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/client/views/marketplace/AppDetailsPage/tabs/AppLogs/useAppLogsFilterForm.ts"
+    },
+    {
+      "module": "../../../../../components/GenericError",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/client/components/GenericError/index.ts"
+    },
+    {
+      "module": "../../../../../components/GenericNoResults",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/client/components/GenericNoResults/index.ts"
+    },
+    {
+      "module": "../../../components/AccordionLoading",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/client/views/marketplace/components/AccordionLoading.tsx"
+    },
+    {
+      "module": "../../../hooks/useLogs",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/client/views/marketplace/hooks/useLogs.ts"
+    }
+  ]
+}

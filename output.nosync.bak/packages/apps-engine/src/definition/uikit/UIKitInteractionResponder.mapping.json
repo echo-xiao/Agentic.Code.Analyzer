@@ -1,0 +1,218 @@
+{
+  "sourcePath": "/Users/echoooooo/Desktop/code/Rocket.Chat/packages/apps-engine/src/definition/uikit/UIKitInteractionResponder.ts",
+  "symbols": [
+    {
+      "type": "class",
+      "name": "UIKitInteractionResponder",
+      "exported": true,
+      "line": 11,
+      "endLine": 74,
+      "signature": "export class UIKitInteractionResponder",
+      "calls": []
+    },
+    {
+      "type": "method",
+      "name": "successResponse",
+      "exported": true,
+      "qualifiedName": "UIKitInteractionResponder.successResponse",
+      "line": 14,
+      "endLine": 18,
+      "signature": "public successResponse(): IUIKitResponse",
+      "containerClass": "UIKitInteractionResponder",
+      "calls": [
+        {
+          "name": "IUIKitResponse",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "errorResponse",
+      "exported": true,
+      "qualifiedName": "UIKitInteractionResponder.errorResponse",
+      "line": 18,
+      "endLine": 22,
+      "signature": "public errorResponse(): IUIKitResponse",
+      "containerClass": "UIKitInteractionResponder",
+      "calls": [
+        {
+          "name": "IUIKitResponse",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "openModalViewResponse",
+      "exported": true,
+      "qualifiedName": "UIKitInteractionResponder.openModalViewResponse",
+      "line": 22,
+      "endLine": 29,
+      "signature": "public openModalViewResponse(viewData: IUIKitModalViewParam): IUIKitModalResponse",
+      "containerClass": "UIKitInteractionResponder",
+      "calls": [
+        {
+          "name": "formatModalInteraction",
+          "edgeType": "call"
+        },
+        {
+          "name": "IUIKitModalViewParam",
+          "edgeType": "type"
+        },
+        {
+          "name": "IUIKitModalResponse",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "updateModalViewResponse",
+      "exported": true,
+      "qualifiedName": "UIKitInteractionResponder.updateModalViewResponse",
+      "line": 26,
+      "endLine": 33,
+      "signature": "public updateModalViewResponse(viewData: IUIKitModalViewParam): IUIKitModalResponse",
+      "containerClass": "UIKitInteractionResponder",
+      "calls": [
+        {
+          "name": "formatModalInteraction",
+          "edgeType": "call"
+        },
+        {
+          "name": "IUIKitModalViewParam",
+          "edgeType": "type"
+        },
+        {
+          "name": "IUIKitModalResponse",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "openContextualBarViewResponse",
+      "exported": true,
+      "qualifiedName": "UIKitInteractionResponder.openContextualBarViewResponse",
+      "line": 30,
+      "endLine": 37,
+      "signature": "public openContextualBarViewResponse(viewData: IUIKitContextualBarViewParam): IUIKitContextualBarResponse",
+      "containerClass": "UIKitInteractionResponder",
+      "calls": [
+        {
+          "name": "formatContextualBarInteraction",
+          "edgeType": "call"
+        },
+        {
+          "name": "IUIKitContextualBarViewParam",
+          "edgeType": "type"
+        },
+        {
+          "name": "IUIKitContextualBarResponse",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "updateContextualBarViewResponse",
+      "exported": true,
+      "qualifiedName": "UIKitInteractionResponder.updateContextualBarViewResponse",
+      "line": 34,
+      "endLine": 41,
+      "signature": "public updateContextualBarViewResponse(viewData: IUIKitContextualBarViewParam): IUIKitContextualBarResponse",
+      "containerClass": "UIKitInteractionResponder",
+      "calls": [
+        {
+          "name": "formatContextualBarInteraction",
+          "edgeType": "call"
+        },
+        {
+          "name": "IUIKitContextualBarViewParam",
+          "edgeType": "type"
+        },
+        {
+          "name": "IUIKitContextualBarResponse",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "viewErrorResponse",
+      "exported": true,
+      "qualifiedName": "UIKitInteractionResponder.viewErrorResponse",
+      "line": 38,
+      "endLine": 49,
+      "signature": "public viewErrorResponse(errorInteraction: IUIKitErrorInteractionParam): IUIKitErrorResponse",
+      "containerClass": "UIKitInteractionResponder",
+      "calls": [
+        {
+          "name": "IUIKitErrorInteractionParam",
+          "edgeType": "type"
+        },
+        {
+          "name": "IUIKitErrorResponse",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "constructor",
+      "exported": true,
+      "qualifiedName": "UIKitInteractionResponder.constructor",
+      "line": 12,
+      "endLine": 12,
+      "signature": "constructor(private readonly baseContext: IUIKitBaseIncomingInteraction)",
+      "containerClass": "UIKitInteractionResponder",
+      "calls": [
+        {
+          "name": "IUIKitBaseIncomingInteraction",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "type",
+      "name": "IUIKitModalViewParam",
+      "line": 8,
+      "endLine": 8,
+      "signature": "export type IUIKitModalViewParam = Omit<IUIKitSurface, 'appId' | 'id' | 'type'> & Partial<Pick<IUIKitSurface, 'id'>>;"
+    },
+    {
+      "type": "type",
+      "name": "IUIKitContextualBarViewParam",
+      "line": 9,
+      "endLine": 9,
+      "signature": "export type IUIKitContextualBarViewParam = Omit<IUIKitSurface, 'appId' | 'id' | 'type'> & Partial<Pick<IUIKitSurface, 'id'>>;"
+    }
+  ],
+  "imports": [
+    {
+      "module": "./IUIKitInteractionType",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/packages/apps-engine/src/definition/uikit/IUIKitInteractionType.ts"
+    },
+    {
+      "module": "./IUIKitInteractionType",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/packages/apps-engine/src/definition/uikit/IUIKitInteractionType.ts"
+    },
+    {
+      "module": "./IUIKitSurface",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/packages/apps-engine/src/definition/uikit/IUIKitSurface.ts"
+    },
+    {
+      "module": "./UIKitIncomingInteractionTypes",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/packages/apps-engine/src/definition/uikit/UIKitIncomingInteractionTypes.ts"
+    },
+    {
+      "module": "./UIKitInteractionPayloadFormatter",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/packages/apps-engine/src/definition/uikit/UIKitInteractionPayloadFormatter.ts"
+    },
+    {
+      "module": "../accessors/IUIController",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/packages/apps-engine/src/definition/accessors/IUIController.ts"
+    }
+  ]
+}

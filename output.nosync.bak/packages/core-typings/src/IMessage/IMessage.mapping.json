@@ -1,0 +1,504 @@
+{
+  "sourcePath": "/Users/echoooooo/Desktop/code/Rocket.Chat/packages/core-typings/src/IMessage/IMessage.ts",
+  "symbols": [
+    {
+      "type": "function",
+      "name": "isEncryptedMessageContent",
+      "exported": true,
+      "line": 249,
+      "endLine": 267,
+      "signature": "export function isEncryptedMessageContent(value: unknown): value is EncryptedMessageContent",
+      "calls": [
+        {
+          "name": "EncryptedMessageContent",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "variable_function",
+      "name": "isEditedMessage",
+      "exported": true,
+      "line": 261,
+      "endLine": 268,
+      "signature": "(message: IMessage): message is IEditedMessage =>",
+      "calls": [
+        {
+          "name": "IMessage",
+          "edgeType": "type"
+        },
+        {
+          "name": "IEditedMessage",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "variable_function",
+      "name": "isSystemMessage",
+      "exported": true,
+      "line": 270,
+      "endLine": 271,
+      "signature": "(message: IMessage): message is ISystemMessage =>",
+      "calls": [
+        {
+          "name": "includes",
+          "edgeType": "call"
+        },
+        {
+          "name": "IMessage",
+          "edgeType": "type"
+        },
+        {
+          "name": "ISystemMessage",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "variable_function",
+      "name": "isDeletedMessage",
+      "exported": true,
+      "line": 273,
+      "endLine": 273,
+      "signature": "(message: IMessage): message is IEditedMessage =>",
+      "calls": [
+        {
+          "name": "isEditedMessage",
+          "edgeType": "call"
+        },
+        {
+          "name": "IMessage",
+          "edgeType": "type"
+        },
+        {
+          "name": "IEditedMessage",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "variable_function",
+      "name": "isMessageFromMatrixFederation",
+      "exported": true,
+      "line": 281,
+      "endLine": 282,
+      "signature": "(message: IMessage): message is IFederatedMessage =>",
+      "calls": [
+        {
+          "name": "Boolean",
+          "edgeType": "call"
+        },
+        {
+          "name": "IMessage",
+          "edgeType": "type"
+        },
+        {
+          "name": "IFederatedMessage",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "variable_function",
+      "name": "isTranslatedMessage",
+      "exported": true,
+      "line": 291,
+      "endLine": 291,
+      "signature": "(message: IMessage): message is ITranslatedMessage =>",
+      "calls": [
+        {
+          "name": "IMessage",
+          "edgeType": "type"
+        },
+        {
+          "name": "ITranslatedMessage",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "variable_function",
+      "name": "isThreadMainMessage",
+      "exported": true,
+      "line": 302,
+      "endLine": 302,
+      "signature": "(message: IMessage): message is IThreadMainMessage =>",
+      "calls": [
+        {
+          "name": "IMessage",
+          "edgeType": "type"
+        },
+        {
+          "name": "IThreadMainMessage",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "variable_function",
+      "name": "isThreadMessage",
+      "exported": true,
+      "line": 304,
+      "endLine": 304,
+      "signature": "(message: IMessage): message is IThreadMessage =>",
+      "calls": [
+        {
+          "name": "IMessage",
+          "edgeType": "type"
+        },
+        {
+          "name": "IThreadMessage",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "variable_function",
+      "name": "isDiscussionMessage",
+      "exported": true,
+      "line": 312,
+      "endLine": 312,
+      "signature": "(message: IMessage): message is IDiscussionMessage =>",
+      "calls": [
+        {
+          "name": "IMessage",
+          "edgeType": "type"
+        },
+        {
+          "name": "IDiscussionMessage",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "variable_function",
+      "name": "isIMessageInbox",
+      "exported": true,
+      "line": 358,
+      "endLine": 358,
+      "signature": "(message: IMessage): message is IMessageInbox =>",
+      "calls": [
+        {
+          "name": "IMessage",
+          "edgeType": "type"
+        },
+        {
+          "name": "IMessageInbox",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "variable_function",
+      "name": "isE2EEMessage",
+      "exported": true,
+      "line": 375,
+      "endLine": 375,
+      "signature": "(message: IMessage): message is IE2EEMessage =>",
+      "calls": [
+        {
+          "name": "IMessage",
+          "edgeType": "type"
+        },
+        {
+          "name": "IE2EEMessage",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "variable_function",
+      "name": "isE2EEPinnedMessage",
+      "exported": true,
+      "line": 376,
+      "endLine": 376,
+      "signature": "(message: IMessage): message is IE2EEPinnedMessage =>",
+      "calls": [
+        {
+          "name": "IMessage",
+          "edgeType": "type"
+        },
+        {
+          "name": "IE2EEPinnedMessage",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "variable_function",
+      "name": "isVideoConfMessage",
+      "exported": true,
+      "line": 377,
+      "endLine": 377,
+      "signature": "(message: IMessage): message is IVideoConfMessage =>",
+      "calls": [
+        {
+          "name": "IMessage",
+          "edgeType": "type"
+        },
+        {
+          "name": "IVideoConfMessage",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "variable_function",
+      "name": "isMessageFromVisitor",
+      "exported": true,
+      "line": 397,
+      "endLine": 397,
+      "signature": "(message: IMessage): message is IMessageFromVisitor =>",
+      "calls": [
+        {
+          "name": "IMessage",
+          "edgeType": "type"
+        },
+        {
+          "name": "IMessageFromVisitor",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "interface",
+      "name": "IEncryptedContent",
+      "line": 121,
+      "endLine": 124,
+      "signature": "interface IEncryptedContent"
+    },
+    {
+      "type": "interface",
+      "name": "IEncryptedContentV1",
+      "line": 126,
+      "endLine": 129,
+      "signature": "interface IEncryptedContentV1 extends IEncryptedContent"
+    },
+    {
+      "type": "interface",
+      "name": "IEncryptedContentV2",
+      "line": 131,
+      "endLine": 136,
+      "signature": "interface IEncryptedContentV2 extends IEncryptedContent"
+    },
+    {
+      "type": "interface",
+      "name": "IEncryptedContentFederation",
+      "line": 138,
+      "endLine": 141,
+      "signature": "interface IEncryptedContentFederation extends IEncryptedContent"
+    },
+    {
+      "type": "interface",
+      "name": "IMessage",
+      "line": 145,
+      "endLine": 245,
+      "signature": "export interface IMessage extends IRocketChatRecord"
+    },
+    {
+      "type": "interface",
+      "name": "ISystemMessage",
+      "line": 252,
+      "endLine": 254,
+      "signature": "interface ISystemMessage extends IMessage"
+    },
+    {
+      "type": "interface",
+      "name": "IEditedMessage",
+      "line": 256,
+      "endLine": 259,
+      "signature": "export interface IEditedMessage extends IMessage"
+    },
+    {
+      "type": "interface",
+      "name": "IFederatedMessage",
+      "line": 275,
+      "endLine": 279,
+      "signature": "interface IFederatedMessage extends IMessage"
+    },
+    {
+      "type": "interface",
+      "name": "ITranslatedMessage",
+      "line": 284,
+      "endLine": 289,
+      "signature": "export interface ITranslatedMessage extends IMessage"
+    },
+    {
+      "type": "interface",
+      "name": "IThreadMainMessage",
+      "line": 293,
+      "endLine": 297,
+      "signature": "export interface IThreadMainMessage extends IMessage"
+    },
+    {
+      "type": "interface",
+      "name": "IThreadMessage",
+      "line": 298,
+      "endLine": 300,
+      "signature": "export interface IThreadMessage extends IMessage"
+    },
+    {
+      "type": "interface",
+      "name": "IDiscussionMessage",
+      "line": 306,
+      "endLine": 310,
+      "signature": "export interface IDiscussionMessage extends IMessage"
+    },
+    {
+      "type": "interface",
+      "name": "IOmnichannelSystemMessage",
+      "line": 314,
+      "endLine": 347,
+      "signature": "export interface IOmnichannelSystemMessage extends IMessage"
+    },
+    {
+      "type": "interface",
+      "name": "IMessageInbox",
+      "line": 349,
+      "endLine": 356,
+      "signature": "export interface IMessageInbox extends IMessage"
+    },
+    {
+      "type": "interface",
+      "name": "IE2EEMessage",
+      "line": 360,
+      "endLine": 364,
+      "signature": "export interface IE2EEMessage extends IMessage"
+    },
+    {
+      "type": "interface",
+      "name": "IE2EEPinnedMessage",
+      "line": 366,
+      "endLine": 369,
+      "signature": "export interface IE2EEPinnedMessage extends IMessage"
+    },
+    {
+      "type": "interface",
+      "name": "IVideoConfMessage",
+      "line": 371,
+      "endLine": 373,
+      "signature": "interface IVideoConfMessage extends IMessage"
+    },
+    {
+      "type": "interface",
+      "name": "IMessageFromVisitor",
+      "line": 393,
+      "endLine": 395,
+      "signature": "interface IMessageFromVisitor extends IMessage"
+    },
+    {
+      "type": "type",
+      "name": "MessageUrl",
+      "line": 16,
+      "endLine": 23,
+      "signature": "export type MessageUrl ="
+    },
+    {
+      "type": "type",
+      "name": "MessageTypesValues",
+      "line": 98,
+      "endLine": 98,
+      "signature": "export type MessageTypesValues = (typeof MessageTypes)[number];"
+    },
+    {
+      "type": "type",
+      "name": "TokenType",
+      "line": 100,
+      "endLine": 100,
+      "signature": "export type TokenType = 'code' | 'inlinecode' | 'bold' | 'italic' | 'strike' | 'link';"
+    },
+    {
+      "type": "type",
+      "name": "Token",
+      "line": 101,
+      "endLine": 106,
+      "signature": "export type Token ="
+    },
+    {
+      "type": "type",
+      "name": "TokenExtra",
+      "line": 108,
+      "endLine": 111,
+      "signature": "export type TokenExtra ="
+    },
+    {
+      "type": "type",
+      "name": "MessageMention",
+      "line": 113,
+      "endLine": 119,
+      "signature": "export type MessageMention ="
+    },
+    {
+      "type": "type",
+      "name": "EncryptedContent",
+      "line": 143,
+      "endLine": 143,
+      "signature": "export type EncryptedContent = IEncryptedContentV1 | IEncryptedContentV2 | IEncryptedContentFederation;"
+    },
+    {
+      "type": "type",
+      "name": "EncryptedMessageContent",
+      "line": 247,
+      "endLine": 247,
+      "signature": "export type EncryptedMessageContent = Required<Pick<IMessage, 'content'>>;"
+    },
+    {
+      "type": "type",
+      "name": "IMessageWithPendingFileImport",
+      "line": 379,
+      "endLine": 391,
+      "signature": "export type IMessageWithPendingFileImport = IMessage &"
+    }
+  ],
+  "imports": [
+    {
+      "module": "node:url",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/icons",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/message-parser",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/ui-kit",
+      "resolved": "external"
+    },
+    {
+      "module": "../ILivechatPriority",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/packages/core-typings/src/ILivechatPriority.ts"
+    },
+    {
+      "module": "../ILivechatVisitor",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/packages/core-typings/src/ILivechatVisitor.ts"
+    },
+    {
+      "module": "../IOmnichannelServiceLevelAgreements",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/packages/core-typings/src/IOmnichannelServiceLevelAgreements.ts"
+    },
+    {
+      "module": "../IRocketChatRecord",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/packages/core-typings/src/IRocketChatRecord.ts"
+    },
+    {
+      "module": "../IRoom",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/packages/core-typings/src/IRoom.ts"
+    },
+    {
+      "module": "../IUser",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/packages/core-typings/src/IUser.ts"
+    },
+    {
+      "module": "./MessageAttachment/Files/FileProp",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/packages/core-typings/src/IMessage/MessageAttachment/Files/FileProp.ts"
+    },
+    {
+      "module": "./MessageAttachment/MessageAttachment",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/packages/core-typings/src/IMessage/MessageAttachment/MessageAttachment.ts"
+    }
+  ]
+}

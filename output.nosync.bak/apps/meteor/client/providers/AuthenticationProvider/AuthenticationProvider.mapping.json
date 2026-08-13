@@ -1,0 +1,256 @@
+{
+  "sourcePath": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/client/providers/AuthenticationProvider/AuthenticationProvider.tsx",
+  "symbols": [
+    {
+      "type": "variable_function",
+      "name": "callLoginMethod",
+      "exported": false,
+      "line": 21,
+      "endLine": 29,
+      "signature": "( options: { loginToken?: string; token?: string; iframe?: boolean }, userCallback: ((err?: any) => void) | undefined, ) =>",
+      "calls": [
+        {
+          "name": "callLoginMethod",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "variable_function",
+      "name": "installLoggingInBridge",
+      "exported": false,
+      "line": 35,
+      "endLine": 45,
+      "signature": "(): void =>",
+      "calls": [
+        {
+          "name": "call",
+          "edgeType": "call"
+        },
+        {
+          "name": "forEach",
+          "edgeType": "call"
+        },
+        {
+          "name": "cb",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "variable_function",
+      "name": "subscribeLoggingIn",
+      "exported": false,
+      "line": 39,
+      "endLine": 45,
+      "signature": "(cb: () => void): (() => void) =>",
+      "calls": [
+        {
+          "name": "installLoggingInBridge",
+          "edgeType": "call"
+        },
+        {
+          "name": "delete",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "variable_function",
+      "name": "getLoggingInSnapshot",
+      "exported": false,
+      "line": 43,
+      "endLine": 43,
+      "signature": "(): boolean =>",
+      "calls": [
+        {
+          "name": "loggingIn",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "variable_function",
+      "name": "AuthenticationProvider",
+      "exported": false,
+      "line": 45,
+      "endLine": 160,
+      "signature": "({ children }: AuthenticationProviderProps) =>",
+      "calls": [
+        {
+          "name": "useSetting",
+          "edgeType": "call"
+        },
+        {
+          "name": "useLDAPAndCrowdCollisionWarning",
+          "edgeType": "call"
+        },
+        {
+          "name": "useSyncExternalStore",
+          "edgeType": "call"
+        },
+        {
+          "name": "useMemo",
+          "edgeType": "call"
+        },
+        {
+          "name": "loginWithToken",
+          "edgeType": "call"
+        },
+        {
+          "name": "error",
+          "edgeType": "call"
+        },
+        {
+          "name": "callback",
+          "edgeType": "call"
+        },
+        {
+          "name": "reject",
+          "edgeType": "call"
+        },
+        {
+          "name": "resolve",
+          "edgeType": "call"
+        },
+        {
+          "name": "capitalize",
+          "edgeType": "call"
+        },
+        {
+          "name": "method",
+          "edgeType": "call"
+        },
+        {
+          "name": "capitalizeService",
+          "edgeType": "call"
+        },
+        {
+          "name": "call",
+          "edgeType": "call"
+        },
+        {
+          "name": "callLoginMethod",
+          "edgeType": "call"
+        },
+        {
+          "name": "getStoredItem",
+          "edgeType": "call"
+        },
+        {
+          "name": "removeStoredItem",
+          "edgeType": "call"
+        },
+        {
+          "name": "setUserId",
+          "edgeType": "call"
+        },
+        {
+          "name": "onLogout",
+          "edgeType": "call"
+        },
+        {
+          "name": "getDdpSdk",
+          "edgeType": "call"
+        },
+        {
+          "name": "getLoginServiceButtons",
+          "edgeType": "call"
+        },
+        {
+          "name": "onStoreChange",
+          "edgeType": "event_listen",
+          "event": "changed"
+        },
+        {
+          "name": "AuthenticationContext.Provider",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "contextValue",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "AuthenticationProviderProps",
+          "edgeType": "type"
+        },
+        {
+          "name": "LoginMethods",
+          "edgeType": "type"
+        },
+        {
+          "name": "ContextType",
+          "edgeType": "type"
+        },
+        {
+          "name": "LoginServiceConfiguration",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "type",
+      "name": "LoginMethods",
+      "line": 15,
+      "endLine": 15,
+      "signature": "export type LoginMethods = keyof typeof Meteor extends infer T ? (T extends `loginWith$"
+    },
+    {
+      "type": "type",
+      "name": "AuthenticationProviderProps",
+      "line": 17,
+      "endLine": 19,
+      "signature": "export type AuthenticationProviderProps ="
+    }
+  ],
+  "imports": [
+    {
+      "module": "@rocket.chat/core-typings",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/string-helpers",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/ui-contexts",
+      "resolved": "external"
+    },
+    {
+      "module": "meteor/accounts-base",
+      "resolved": "external"
+    },
+    {
+      "module": "meteor/meteor",
+      "resolved": "external"
+    },
+    {
+      "module": "react",
+      "resolved": "external"
+    },
+    {
+      "module": "react",
+      "resolved": "external"
+    },
+    {
+      "module": "./hooks/useLDAPAndCrowdCollisionWarning",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/client/providers/AuthenticationProvider/hooks/useLDAPAndCrowdCollisionWarning.ts"
+    },
+    {
+      "module": "../../../lib/utils/stringUtils",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/lib/utils/stringUtils.ts"
+    },
+    {
+      "module": "../../lib/loginServices",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/client/lib/loginServices.ts"
+    },
+    {
+      "module": "../../lib/sdk/ddpSdk",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/client/lib/sdk/ddpSdk.ts"
+    },
+    {
+      "module": "../../lib/sdk/storage",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/client/lib/sdk/storage.ts"
+    }
+  ]
+}

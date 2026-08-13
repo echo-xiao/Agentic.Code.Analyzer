@@ -1,0 +1,620 @@
+{
+  "sourcePath": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/client/views/admin/import/NewImportPage.tsx",
+  "symbols": [
+    {
+      "type": "inner_function",
+      "name": "handleImporterKeyChange",
+      "exported": false,
+      "qualifiedName": "NewImportPage.handleImporterKeyChange",
+      "line": 65,
+      "endLine": 77,
+      "signature": "(importerKey: Key) =>",
+      "calls": [
+        {
+          "name": "navigate",
+          "edgeType": "call"
+        },
+        {
+          "name": "Key",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "inner_function",
+      "name": "handleFileTypeChange",
+      "exported": false,
+      "qualifiedName": "NewImportPage.handleFileTypeChange",
+      "line": 79,
+      "endLine": 85,
+      "signature": "(fileType: Key) =>",
+      "calls": [
+        {
+          "name": "setFileType",
+          "edgeType": "call"
+        },
+        {
+          "name": "Key",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "inner_function",
+      "name": "handleImportFileChange",
+      "exported": false,
+      "qualifiedName": "NewImportPage.handleImportFileChange",
+      "line": 92,
+      "endLine": 101,
+      "signature": "async (event: ChangeEvent<HTMLInputElement>) =>",
+      "calls": [
+        {
+          "name": "isDataTransferEvent",
+          "edgeType": "call"
+        },
+        {
+          "name": "setFiles",
+          "edgeType": "call"
+        },
+        {
+          "name": "from",
+          "edgeType": "call"
+        },
+        {
+          "name": "ChangeEvent",
+          "edgeType": "type"
+        },
+        {
+          "name": "HTMLInputElement",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "inner_function",
+      "name": "handleFileUploadChipClick",
+      "exported": false,
+      "qualifiedName": "NewImportPage.handleFileUploadChipClick",
+      "line": 103,
+      "endLine": 105,
+      "signature": "(file: File) =>",
+      "calls": [
+        {
+          "name": "setFiles",
+          "edgeType": "call"
+        },
+        {
+          "name": "filter",
+          "edgeType": "call"
+        },
+        {
+          "name": "File",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "inner_function",
+      "name": "handleFileUploadImportButtonClick",
+      "exported": false,
+      "qualifiedName": "NewImportPage.handleFileUploadImportButtonClick",
+      "line": 107,
+      "endLine": 145,
+      "signature": "async () =>",
+      "calls": [
+        {
+          "name": "setLoading",
+          "edgeType": "call"
+        },
+        {
+          "name": "all",
+          "edgeType": "call"
+        },
+        {
+          "name": "from",
+          "edgeType": "call"
+        },
+        {
+          "name": "readAsDataURL",
+          "edgeType": "call"
+        },
+        {
+          "name": "uploadImportFile",
+          "edgeType": "call"
+        },
+        {
+          "name": "split",
+          "edgeType": "call"
+        },
+        {
+          "name": "handleError",
+          "edgeType": "call"
+        },
+        {
+          "name": "resolve",
+          "edgeType": "call"
+        },
+        {
+          "name": "navigate",
+          "edgeType": "call"
+        },
+        {
+          "name": "FileReader",
+          "edgeType": "new"
+        }
+      ]
+    },
+    {
+      "type": "inner_function",
+      "name": "handleFileUrlChange",
+      "exported": false,
+      "qualifiedName": "NewImportPage.handleFileUrlChange",
+      "line": 149,
+      "endLine": 151,
+      "signature": "(event: ChangeEvent<HTMLInputElement>) =>",
+      "calls": [
+        {
+          "name": "setFileUrl",
+          "edgeType": "call"
+        },
+        {
+          "name": "ChangeEvent",
+          "edgeType": "type"
+        },
+        {
+          "name": "HTMLInputElement",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "inner_function",
+      "name": "handleFileUrlImportButtonClick",
+      "exported": false,
+      "qualifiedName": "NewImportPage.handleFileUrlImportButtonClick",
+      "line": 153,
+      "endLine": 169,
+      "signature": "async () =>",
+      "calls": [
+        {
+          "name": "setLoading",
+          "edgeType": "call"
+        },
+        {
+          "name": "downloadPublicImportFile",
+          "edgeType": "call"
+        },
+        {
+          "name": "dispatchToastMessage",
+          "edgeType": "call"
+        },
+        {
+          "name": "navigate",
+          "edgeType": "call"
+        },
+        {
+          "name": "handleError",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "inner_function",
+      "name": "handleFilePathChange",
+      "exported": false,
+      "qualifiedName": "NewImportPage.handleFilePathChange",
+      "line": 173,
+      "endLine": 175,
+      "signature": "(event: ChangeEvent<HTMLInputElement>) =>",
+      "calls": [
+        {
+          "name": "setFilePath",
+          "edgeType": "call"
+        },
+        {
+          "name": "ChangeEvent",
+          "edgeType": "type"
+        },
+        {
+          "name": "HTMLInputElement",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "inner_function",
+      "name": "handleFilePathImportButtonClick",
+      "exported": false,
+      "qualifiedName": "NewImportPage.handleFilePathImportButtonClick",
+      "line": 177,
+      "endLine": 193,
+      "signature": "async () =>",
+      "calls": [
+        {
+          "name": "setLoading",
+          "edgeType": "call"
+        },
+        {
+          "name": "downloadPublicImportFile",
+          "edgeType": "call"
+        },
+        {
+          "name": "dispatchToastMessage",
+          "edgeType": "call"
+        },
+        {
+          "name": "navigate",
+          "edgeType": "call"
+        },
+        {
+          "name": "handleError",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "function",
+      "name": "NewImportPage",
+      "exported": true,
+      "line": 30,
+      "endLine": 328,
+      "signature": "function NewImportPage()",
+      "calls": [
+        {
+          "name": "useTranslation",
+          "edgeType": "call"
+        },
+        {
+          "name": "useToastMessageDispatch",
+          "edgeType": "call"
+        },
+        {
+          "name": "useErrorHandler",
+          "edgeType": "call"
+        },
+        {
+          "name": "useSafely",
+          "edgeType": "call"
+        },
+        {
+          "name": "useState",
+          "edgeType": "call"
+        },
+        {
+          "name": "useEndpoint",
+          "edgeType": "call"
+        },
+        {
+          "name": "useQuery",
+          "edgeType": "call"
+        },
+        {
+          "name": "listImportersEndpoint",
+          "edgeType": "call"
+        },
+        {
+          "name": "useMemo",
+          "edgeType": "call"
+        },
+        {
+          "name": "map",
+          "edgeType": "call"
+        },
+        {
+          "name": "useRouteParameter",
+          "edgeType": "call"
+        },
+        {
+          "name": "find",
+          "edgeType": "call"
+        },
+        {
+          "name": "useSetting",
+          "edgeType": "call"
+        },
+        {
+          "name": "useRouter",
+          "edgeType": "call"
+        },
+        {
+          "name": "useEffect",
+          "edgeType": "call"
+        },
+        {
+          "name": "navigate",
+          "edgeType": "call"
+        },
+        {
+          "name": "useFormatMemorySize",
+          "edgeType": "call"
+        },
+        {
+          "name": "setFileType",
+          "edgeType": "call"
+        },
+        {
+          "name": "Boolean",
+          "edgeType": "call"
+        },
+        {
+          "name": "isDataTransferEvent",
+          "edgeType": "call"
+        },
+        {
+          "name": "setFiles",
+          "edgeType": "call"
+        },
+        {
+          "name": "from",
+          "edgeType": "call"
+        },
+        {
+          "name": "filter",
+          "edgeType": "call"
+        },
+        {
+          "name": "setLoading",
+          "edgeType": "call"
+        },
+        {
+          "name": "all",
+          "edgeType": "call"
+        },
+        {
+          "name": "readAsDataURL",
+          "edgeType": "call"
+        },
+        {
+          "name": "uploadImportFile",
+          "edgeType": "call"
+        },
+        {
+          "name": "split",
+          "edgeType": "call"
+        },
+        {
+          "name": "handleError",
+          "edgeType": "call"
+        },
+        {
+          "name": "resolve",
+          "edgeType": "call"
+        },
+        {
+          "name": "setFileUrl",
+          "edgeType": "call"
+        },
+        {
+          "name": "downloadPublicImportFile",
+          "edgeType": "call"
+        },
+        {
+          "name": "dispatchToastMessage",
+          "edgeType": "call"
+        },
+        {
+          "name": "setFilePath",
+          "edgeType": "call"
+        },
+        {
+          "name": "useId",
+          "edgeType": "call"
+        },
+        {
+          "name": "formatMemorySize",
+          "edgeType": "call"
+        },
+        {
+          "name": "handleFileUploadChipClick",
+          "edgeType": "call"
+        },
+        {
+          "name": "Page",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "PageHeader",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "ButtonGroup",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "Button",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "PageScrollableContentWithShadow",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "Box",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "Margins",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "Field",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "FieldLabel",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "FieldRow",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "FieldHint",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "Callout",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "Chip",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "Select",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "InputBox",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "UrlInput",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "TextInput",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "isLoading",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "handleImportButtonClick",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "importerKeySelectId",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "importerKey",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "handleImporterKeyChange",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "options",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "fileTypeSelectId",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "fileType",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "handleFileTypeChange",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "fileSourceInputId",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "handleImportFileChange",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "fileUrl",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "handleFileUrlChange",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "filePath",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "handleFilePathChange",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "FileReader",
+          "edgeType": "new"
+        },
+        {
+          "name": "TranslationKey",
+          "edgeType": "type"
+        },
+        {
+          "name": "Key",
+          "edgeType": "type"
+        },
+        {
+          "name": "File",
+          "edgeType": "type"
+        },
+        {
+          "name": "SyntheticEvent",
+          "edgeType": "type"
+        },
+        {
+          "name": "DragEvent",
+          "edgeType": "type"
+        },
+        {
+          "name": "HTMLInputElement",
+          "edgeType": "type"
+        },
+        {
+          "name": "ChangeEvent",
+          "edgeType": "type"
+        }
+      ]
+    }
+  ],
+  "imports": [
+    {
+      "module": "@rocket.chat/fuselage",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/fuselage-hooks",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/ui-client",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/ui-contexts",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/ui-contexts",
+      "resolved": "external"
+    },
+    {
+      "module": "@tanstack/react-query",
+      "resolved": "external"
+    },
+    {
+      "module": "react",
+      "resolved": "external"
+    },
+    {
+      "module": "react",
+      "resolved": "external"
+    },
+    {
+      "module": "react-i18next",
+      "resolved": "external"
+    },
+    {
+      "module": "./useErrorHandler",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/client/views/admin/import/useErrorHandler.ts"
+    },
+    {
+      "module": "../../../hooks/useFormatMemorySize",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/client/hooks/useFormatMemorySize.ts"
+    }
+  ]
+}

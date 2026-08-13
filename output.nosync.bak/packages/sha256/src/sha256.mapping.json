@@ -1,0 +1,49 @@
+{
+  "sourcePath": "/Users/echoooooo/Desktop/code/Rocket.Chat/packages/sha256/src/sha256.ts",
+  "symbols": [
+    {
+      "type": "function",
+      "name": "SHA256",
+      "exported": true,
+      "line": 6,
+      "endLine": 10,
+      "signature": "export function SHA256(input: string)",
+      "calls": [
+        {
+          "name": "utf8Encode",
+          "edgeType": "call"
+        },
+        {
+          "name": "binb2hex",
+          "edgeType": "call"
+        },
+        {
+          "name": "core",
+          "edgeType": "call"
+        },
+        {
+          "name": "str2binb",
+          "edgeType": "call"
+        }
+      ]
+    }
+  ],
+  "imports": [
+    {
+      "module": "./binb2hex",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/packages/sha256/src/binb2hex.ts"
+    },
+    {
+      "module": "./core",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/packages/sha256/src/core.ts"
+    },
+    {
+      "module": "./str2binb",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/packages/sha256/src/str2binb.ts"
+    },
+    {
+      "module": "./utf8Encode",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/packages/sha256/src/utf8Encode.ts"
+    }
+  ]
+}

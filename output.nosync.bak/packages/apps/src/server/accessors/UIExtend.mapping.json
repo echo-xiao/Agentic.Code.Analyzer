@@ -1,0 +1,69 @@
+{
+  "sourcePath": "/Users/echoooooo/Desktop/code/Rocket.Chat/packages/apps/src/server/accessors/UIExtend.ts",
+  "symbols": [
+    {
+      "type": "class",
+      "name": "UIExtend",
+      "exported": true,
+      "line": 6,
+      "endLine": 15,
+      "signature": "export class UIExtend implements IUIExtend",
+      "calls": [
+        {
+          "name": "IUIExtend",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "registerButton",
+      "exported": true,
+      "qualifiedName": "UIExtend.registerButton",
+      "line": 12,
+      "endLine": 14,
+      "signature": "public registerButton(button: IUIActionButtonDescriptor): void",
+      "containerClass": "UIExtend",
+      "calls": [
+        {
+          "name": "registerActionButton",
+          "edgeType": "call"
+        },
+        {
+          "name": "IUIActionButtonDescriptor",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "constructor",
+      "exported": true,
+      "qualifiedName": "UIExtend.constructor",
+      "line": 7,
+      "endLine": 10,
+      "signature": "constructor( private readonly manager: UIActionButtonManager, private readonly appId: string, )",
+      "containerClass": "UIExtend",
+      "calls": [
+        {
+          "name": "UIActionButtonManager",
+          "edgeType": "type"
+        }
+      ]
+    }
+  ],
+  "imports": [
+    {
+      "module": "@rocket.chat/apps-engine/definition/accessors",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/apps-engine/definition/ui",
+      "resolved": "external"
+    },
+    {
+      "module": "../managers/UIActionButtonManager",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/packages/apps/src/server/managers/UIActionButtonManager.ts"
+    }
+  ]
+}

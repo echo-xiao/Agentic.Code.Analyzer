@@ -1,0 +1,63 @@
+{
+  "sourcePath": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/client/views/omnichannel/reports/utils/formatPeriodRange.ts",
+  "symbols": [
+    {
+      "type": "variable_function",
+      "name": "formatDate",
+      "exported": false,
+      "line": 4,
+      "endLine": 10,
+      "signature": "(date: Date): string =>",
+      "calls": [
+        {
+          "name": "padStart",
+          "edgeType": "call"
+        },
+        {
+          "name": "getDate",
+          "edgeType": "call"
+        },
+        {
+          "name": "getMonth",
+          "edgeType": "call"
+        },
+        {
+          "name": "getFullYear",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "variable_function",
+      "name": "formatPeriodRange",
+      "exported": true,
+      "line": 8,
+      "endLine": 14,
+      "signature": "(period: Period['key']): { start: string; end: string } =>",
+      "calls": [
+        {
+          "name": "getPeriodRange",
+          "edgeType": "call"
+        },
+        {
+          "name": "formatDate",
+          "edgeType": "call"
+        },
+        {
+          "name": "Period",
+          "edgeType": "type"
+        }
+      ]
+    }
+  ],
+  "imports": [
+    {
+      "module": "../../../../components/dashboards/periods",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/client/components/dashboards/periods.ts"
+    },
+    {
+      "module": "../../../../components/dashboards/periods",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/client/components/dashboards/periods.ts"
+    }
+  ]
+}

@@ -1,0 +1,81 @@
+{
+  "sourcePath": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/client/components/RoomIcon/RoomIcon.tsx",
+  "symbols": [
+    {
+      "type": "variable_function",
+      "name": "RoomIcon",
+      "exported": true,
+      "line": 10,
+      "endLine": 40,
+      "signature": "({ room, size = 'x16', isIncomingCall, placement = 'default', }: { room: Pick<IRoom, 't' | 'prid' | 'teamMain' | 'uids' | 'u'>; size?: ComponentProps<typeof Icon>['size']; isIncomingCall?: boolean; placement?: 'sidebar' | 'default'; }) =>",
+      "calls": [
+        {
+          "name": "useRoomIcon",
+          "edgeType": "call"
+        },
+        {
+          "name": "isOmnichannelRoom",
+          "edgeType": "call"
+        },
+        {
+          "name": "isValidElement",
+          "edgeType": "call"
+        },
+        {
+          "name": "Icon",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "OmnichannelRoomIcon",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "size",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "placement",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "IRoom",
+          "edgeType": "type"
+        },
+        {
+          "name": "ComponentProps",
+          "edgeType": "type"
+        }
+      ]
+    }
+  ],
+  "imports": [
+    {
+      "module": "@rocket.chat/core-typings",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/core-typings",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/fuselage",
+      "resolved": "external"
+    },
+    {
+      "module": "react",
+      "resolved": "external"
+    },
+    {
+      "module": "react",
+      "resolved": "external"
+    },
+    {
+      "module": "./OmnichannelRoomIcon",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/client/components/RoomIcon/OmnichannelRoomIcon/index.tsx"
+    },
+    {
+      "module": "../../hooks/useRoomIcon",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/client/hooks/useRoomIcon.tsx"
+    }
+  ]
+}

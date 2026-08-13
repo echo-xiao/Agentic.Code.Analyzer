@@ -1,0 +1,53 @@
+{
+  "sourcePath": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/tests/e2e/page-objects/admin-imports.ts",
+  "symbols": [
+    {
+      "type": "class",
+      "name": "AdminImports",
+      "exported": true,
+      "line": 5,
+      "endLine": 30,
+      "signature": "export class AdminImports extends Admin",
+      "calls": [
+        {
+          "name": "Admin",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "getOptionFileType",
+      "exported": true,
+      "qualifiedName": "AdminImports.getOptionFileType",
+      "line": 10,
+      "endLine": 13,
+      "signature": "async getOptionFileType(option: string): Promise<Locator>",
+      "containerClass": "AdminImports",
+      "calls": [
+        {
+          "name": "click",
+          "edgeType": "call"
+        },
+        {
+          "name": "locator",
+          "edgeType": "call"
+        },
+        {
+          "name": "Locator",
+          "edgeType": "type"
+        }
+      ]
+    }
+  ],
+  "imports": [
+    {
+      "module": "@playwright/test",
+      "resolved": "external"
+    },
+    {
+      "module": "./admin",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/tests/e2e/page-objects/admin.ts"
+    }
+  ]
+}

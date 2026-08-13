@@ -1,0 +1,861 @@
+{
+  "sourcePath": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/server/services/room/service.ts",
+  "symbols": [
+    {
+      "type": "class",
+      "name": "RoomService",
+      "exported": true,
+      "line": 45,
+      "endLine": 393,
+      "signature": "export class RoomService extends ServiceClassInternal implements IRoomService",
+      "calls": [
+        {
+          "name": "ServiceClassInternal",
+          "edgeType": "type"
+        },
+        {
+          "name": "IRoomService",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "updateDirectMessageRoomName",
+      "exported": true,
+      "qualifiedName": "RoomService.updateDirectMessageRoomName",
+      "line": 48,
+      "endLine": 75,
+      "signature": "async updateDirectMessageRoomName( room: IRoom, ignoreStatusFromSubs?: string[], updatedNames?: AtLeast<IUser, '_id' | 'name' | 'username'>[], ): Promise<boolean>",
+      "containerClass": "RoomService",
+      "calls": [
+        {
+          "name": "toArray",
+          "edgeType": "call"
+        },
+        {
+          "name": "findByRoomId",
+          "edgeType": "call"
+        },
+        {
+          "name": "filter",
+          "edgeType": "call"
+        },
+        {
+          "name": "map",
+          "edgeType": "call"
+        },
+        {
+          "name": "some",
+          "edgeType": "call"
+        },
+        {
+          "name": "findUsersByIds",
+          "edgeType": "call"
+        },
+        {
+          "name": "getNameForDMs",
+          "edgeType": "call"
+        },
+        {
+          "name": "includes",
+          "edgeType": "call"
+        },
+        {
+          "name": "updateOne",
+          "edgeType": "call"
+        },
+        {
+          "name": "notifyOnSubscriptionChangedByRoomIdAndUserId",
+          "edgeType": "call"
+        },
+        {
+          "name": "IRoom",
+          "edgeType": "type"
+        },
+        {
+          "name": "AtLeast",
+          "edgeType": "type"
+        },
+        {
+          "name": "IUser",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "create",
+      "exported": true,
+      "qualifiedName": "RoomService.create",
+      "line": 56,
+      "endLine": 71,
+      "signature": "async create(uid: string, params: ICreateRoomParams): Promise<IRoom>",
+      "containerClass": "RoomService",
+      "calls": [
+        {
+          "name": "hasPermission",
+          "edgeType": "call"
+        },
+        {
+          "name": "findOneById",
+          "edgeType": "call"
+        },
+        {
+          "name": "createRoom",
+          "edgeType": "call"
+        },
+        {
+          "name": "ICreateRoomParams",
+          "edgeType": "type"
+        },
+        {
+          "name": "IRoom",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "createDirectMessage",
+      "exported": true,
+      "qualifiedName": "RoomService.createDirectMessage",
+      "line": 60,
+      "endLine": 70,
+      "signature": "async createDirectMessage({ to, from }: { to: string; from: string }): Promise<{ rid: string }>",
+      "containerClass": "RoomService",
+      "calls": [
+        {
+          "name": "all",
+          "edgeType": "call"
+        },
+        {
+          "name": "findOneById",
+          "edgeType": "call"
+        },
+        {
+          "name": "createDirectMessageWithMultipleUsers",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "createDirectMessageWithMultipleUsers",
+      "exported": true,
+      "qualifiedName": "RoomService.createDirectMessageWithMultipleUsers",
+      "line": 64,
+      "endLine": 66,
+      "signature": "async createDirectMessageWithMultipleUsers(members: string[], creatorId: string): Promise<{ rid: string }>",
+      "containerClass": "RoomService",
+      "calls": [
+        {
+          "name": "createDirectMessage",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "addMember",
+      "exported": true,
+      "qualifiedName": "RoomService.addMember",
+      "line": 68,
+      "endLine": 75,
+      "signature": "async addMember(uid: string, rid: string): Promise<boolean>",
+      "containerClass": "RoomService",
+      "calls": [
+        {
+          "name": "hasPermission",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "addUserToRoom",
+      "exported": true,
+      "qualifiedName": "RoomService.addUserToRoom",
+      "line": 72,
+      "endLine": 82,
+      "signature": "async addUserToRoom( roomId: string, user: Pick<IUser, '_id'>, inviter?: Pick<IUser, '_id' | 'username'>, options?: { skipSystemMessage?: boolean; skipAlertSound?: boolean; }, ): Promise<boolean | undefined>",
+      "containerClass": "RoomService",
+      "calls": [
+        {
+          "name": "addUserToRoom",
+          "edgeType": "call"
+        },
+        {
+          "name": "IUser",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "removeUserFromRoom",
+      "exported": true,
+      "qualifiedName": "RoomService.removeUserFromRoom",
+      "line": 84,
+      "endLine": 90,
+      "signature": "async removeUserFromRoom( roomId: string, user: IUser, options?: { byUser?: IUser; skipAppPreEvents?: boolean; customSystemMessage?: MessageTypesValues }, ): Promise<void>",
+      "containerClass": "RoomService",
+      "calls": [
+        {
+          "name": "removeUserFromRoom",
+          "edgeType": "call"
+        },
+        {
+          "name": "IUser",
+          "edgeType": "type"
+        },
+        {
+          "name": "MessageTypesValues",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "performUserRemoval",
+      "exported": true,
+      "qualifiedName": "RoomService.performUserRemoval",
+      "line": 92,
+      "endLine": 94,
+      "signature": "async performUserRemoval(room: IRoom, user: IUser, options?: { byUser?: IUser }): Promise<void>",
+      "containerClass": "RoomService",
+      "calls": [
+        {
+          "name": "performUserRemoval",
+          "edgeType": "call"
+        },
+        {
+          "name": "IRoom",
+          "edgeType": "type"
+        },
+        {
+          "name": "IUser",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "performUserBan",
+      "exported": true,
+      "qualifiedName": "RoomService.performUserBan",
+      "line": 96,
+      "endLine": 98,
+      "signature": "async performUserBan(room: IRoom, user: IUser, byUser: IUser): Promise<void>",
+      "containerClass": "RoomService",
+      "calls": [
+        {
+          "name": "performUserBan",
+          "edgeType": "call"
+        },
+        {
+          "name": "IRoom",
+          "edgeType": "type"
+        },
+        {
+          "name": "IUser",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "performUserUnban",
+      "exported": true,
+      "qualifiedName": "RoomService.performUserUnban",
+      "line": 100,
+      "endLine": 102,
+      "signature": "async performUserUnban(room: IRoom, user: IUser, byUser: IUser): Promise<void>",
+      "containerClass": "RoomService",
+      "calls": [
+        {
+          "name": "executeUnbanUserFromRoom",
+          "edgeType": "call"
+        },
+        {
+          "name": "IRoom",
+          "edgeType": "type"
+        },
+        {
+          "name": "IUser",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "performAcceptRoomInvite",
+      "exported": true,
+      "qualifiedName": "RoomService.performAcceptRoomInvite",
+      "line": 104,
+      "endLine": 106,
+      "signature": "async performAcceptRoomInvite(room: IRoom, subscription: ISubscription, user: IUser & { username: string }): Promise<void>",
+      "containerClass": "RoomService",
+      "calls": [
+        {
+          "name": "performAcceptRoomInvite",
+          "edgeType": "call"
+        },
+        {
+          "name": "IRoom",
+          "edgeType": "type"
+        },
+        {
+          "name": "ISubscription",
+          "edgeType": "type"
+        },
+        {
+          "name": "IUser",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "revokeInvite",
+      "exported": true,
+      "qualifiedName": "RoomService.revokeInvite",
+      "line": 108,
+      "endLine": 115,
+      "signature": "async revokeInvite(room: IRoom, user: IUser): Promise<void>",
+      "containerClass": "RoomService",
+      "calls": [
+        {
+          "name": "removeInvitedByRoomIdAndUserId",
+          "edgeType": "call"
+        },
+        {
+          "name": "notifyOnSubscriptionChanged",
+          "edgeType": "call"
+        },
+        {
+          "name": "IRoom",
+          "edgeType": "type"
+        },
+        {
+          "name": "IUser",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "getValidRoomName",
+      "exported": true,
+      "qualifiedName": "RoomService.getValidRoomName",
+      "line": 112,
+      "endLine": 114,
+      "signature": "async getValidRoomName(displayName: string, roomId = '', options: { allowDuplicates?: boolean } = {}): Promise<string>",
+      "containerClass": "RoomService",
+      "calls": [
+        {
+          "name": "getValidRoomName",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "saveRoomTopic",
+      "exported": true,
+      "qualifiedName": "RoomService.saveRoomTopic",
+      "line": 116,
+      "endLine": 123,
+      "signature": "async saveRoomTopic( roomId: string, roomTopic: string | undefined, user: Pick<IUser, 'username' | '_id' | 'federation' | 'federated'>, sendMessage = true, ): Promise<void>",
+      "containerClass": "RoomService",
+      "calls": [
+        {
+          "name": "saveRoomTopic",
+          "edgeType": "call"
+        },
+        {
+          "name": "IUser",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "getRouteLink",
+      "exported": true,
+      "qualifiedName": "RoomService.getRouteLink",
+      "line": 125,
+      "endLine": 127,
+      "signature": "async getRouteLink(room: AtLeast<IRoom, '_id' | 't' | 'name'>): Promise<string | boolean>",
+      "containerClass": "RoomService",
+      "calls": [
+        {
+          "name": "getRouteLink",
+          "edgeType": "call"
+        },
+        {
+          "name": "AtLeast",
+          "edgeType": "type"
+        },
+        {
+          "name": "IRoom",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "join",
+      "exported": true,
+      "qualifiedName": "RoomService.join",
+      "line": 132,
+      "endLine": 168,
+      "signature": "async join({ room, user, joinCode }: { room: IRoom; user: IUser; joinCode?: string })",
+      "containerClass": "RoomService",
+      "calls": [
+        {
+          "name": "allowMemberAction",
+          "edgeType": "call"
+        },
+        {
+          "name": "getRoomDirectives",
+          "edgeType": "call"
+        },
+        {
+          "name": "isOmnichannelRoom",
+          "edgeType": "call"
+        },
+        {
+          "name": "canAccessRoom",
+          "edgeType": "call"
+        },
+        {
+          "name": "shouldPerformFederationAction",
+          "edgeType": "call"
+        },
+        {
+          "name": "isUserNativeFederated",
+          "edgeType": "call"
+        },
+        {
+          "name": "canUserAccessFederation",
+          "edgeType": "call"
+        },
+        {
+          "name": "isRoomWithJoinCode",
+          "edgeType": "call"
+        },
+        {
+          "name": "hasPermission",
+          "edgeType": "call"
+        },
+        {
+          "name": "findOneByJoinCodeAndId",
+          "edgeType": "call"
+        },
+        {
+          "name": "addUserToRoom",
+          "edgeType": "call"
+        },
+        {
+          "name": "MeteorError",
+          "edgeType": "new"
+        },
+        {
+          "name": "IRoom",
+          "edgeType": "type"
+        },
+        {
+          "name": "IUser",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "beforeLeave",
+      "exported": true,
+      "qualifiedName": "RoomService.beforeLeave",
+      "line": 136,
+      "endLine": 138,
+      "signature": "async beforeLeave(room: IRoom): Promise<void>",
+      "containerClass": "RoomService",
+      "calls": [
+        {
+          "name": "blockIfRoomFederatedButServiceNotReady",
+          "edgeType": "call"
+        },
+        {
+          "name": "IRoom",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "beforeUserRemoved",
+      "exported": true,
+      "qualifiedName": "RoomService.beforeUserRemoved",
+      "line": 140,
+      "endLine": 142,
+      "signature": "async beforeUserRemoved(room: IRoom): Promise<void>",
+      "containerClass": "RoomService",
+      "calls": [
+        {
+          "name": "blockIfRoomFederatedButServiceNotReady",
+          "edgeType": "call"
+        },
+        {
+          "name": "IRoom",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "beforeNameChange",
+      "exported": true,
+      "qualifiedName": "RoomService.beforeNameChange",
+      "line": 144,
+      "endLine": 146,
+      "signature": "async beforeNameChange(room: IRoom): Promise<void>",
+      "containerClass": "RoomService",
+      "calls": [
+        {
+          "name": "blockIfRoomFederatedButServiceNotReady",
+          "edgeType": "call"
+        },
+        {
+          "name": "IRoom",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "beforeTopicChange",
+      "exported": true,
+      "qualifiedName": "RoomService.beforeTopicChange",
+      "line": 148,
+      "endLine": 150,
+      "signature": "async beforeTopicChange(room: IRoom): Promise<void>",
+      "containerClass": "RoomService",
+      "calls": [
+        {
+          "name": "blockIfRoomFederatedButServiceNotReady",
+          "edgeType": "call"
+        },
+        {
+          "name": "IRoom",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "saveRoomName",
+      "exported": true,
+      "qualifiedName": "RoomService.saveRoomName",
+      "line": 152,
+      "endLine": 158,
+      "signature": "async saveRoomName(roomId: string, userId: string, name: string)",
+      "containerClass": "RoomService",
+      "calls": [
+        {
+          "name": "findOneById",
+          "edgeType": "call"
+        },
+        {
+          "name": "saveRoomName",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "addUserRoleRoomScoped",
+      "exported": true,
+      "qualifiedName": "RoomService.addUserRoleRoomScoped",
+      "line": 156,
+      "endLine": 202,
+      "signature": "public async addUserRoleRoomScoped( fromUserId: string, userId: string, roomId: string, role: 'moderator' | 'owner' | 'leader' | 'user', ): Promise<void>",
+      "containerClass": "RoomService",
+      "calls": [
+        {
+          "name": "addRoomModerator",
+          "edgeType": "call"
+        },
+        {
+          "name": "addRoomOwner",
+          "edgeType": "call"
+        },
+        {
+          "name": "addRoomLeader",
+          "edgeType": "call"
+        },
+        {
+          "name": "next",
+          "edgeType": "call"
+        },
+        {
+          "name": "findByUserIdAndRoomIds",
+          "edgeType": "call"
+        },
+        {
+          "name": "removeRoomOwner",
+          "edgeType": "call"
+        },
+        {
+          "name": "removeRoomLeader",
+          "edgeType": "call"
+        },
+        {
+          "name": "removeRoomModerator",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "createUserSubscription",
+      "exported": true,
+      "qualifiedName": "RoomService.createUserSubscription",
+      "line": 165,
+      "endLine": 235,
+      "signature": "async createUserSubscription({ room, ts, userToBeAdded, inviter, createAsHidden = false, skipAlertSound = false, skipSystemMessage = false, status, roles, }: { room: IRoom; ts: Date; userToBeAdded: IUser; inviter?: Pick<IUser, '_id' | 'username' | 'name'>; createAsHidden?: boolean; skipAlertSound?: boolean; skipSystemMessage?: boolean; status?: 'INVITED'; roles?: ISubscription['roles']; }): Promis",
+      "containerClass": "RoomService",
+      "calls": [
+        {
+          "name": "getSubscriptionAutotranslateDefaultConfig",
+          "edgeType": "call"
+        },
+        {
+          "name": "createWithRoomAndUser",
+          "edgeType": "call"
+        },
+        {
+          "name": "getDefaultSubscriptionPref",
+          "edgeType": "call"
+        },
+        {
+          "name": "notifyOnSubscriptionChangedById",
+          "edgeType": "call"
+        },
+        {
+          "name": "saveSystemMessage",
+          "edgeType": "call"
+        },
+        {
+          "name": "IRoom",
+          "edgeType": "type"
+        },
+        {
+          "name": "IUser",
+          "edgeType": "type"
+        },
+        {
+          "name": "ISubscription",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "markAsRead",
+      "exported": true,
+      "qualifiedName": "RoomService.markAsRead",
+      "line": 189,
+      "endLine": 191,
+      "signature": "async markAsRead(room: IRoom, userId: string, readThreads = false): Promise<void>",
+      "containerClass": "RoomService",
+      "calls": [
+        {
+          "name": "readMessages",
+          "edgeType": "call"
+        },
+        {
+          "name": "IRoom",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "readThread",
+      "exported": true,
+      "qualifiedName": "RoomService.readThread",
+      "line": 193,
+      "endLine": 199,
+      "signature": "async readThread({ user, room, tmid }: { user: IUser; room: IRoom; tmid: string }): Promise<void>",
+      "containerClass": "RoomService",
+      "calls": [
+        {
+          "name": "readThread",
+          "edgeType": "call"
+        },
+        {
+          "name": "IUser",
+          "edgeType": "type"
+        },
+        {
+          "name": "IRoom",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "unbanAndInviteUser",
+      "exported": true,
+      "qualifiedName": "RoomService.unbanAndInviteUser",
+      "line": 197,
+      "endLine": 211,
+      "signature": "async unbanAndInviteUser( subscription: ISubscription, inviteeUser: Pick<IUser, '_id' | 'username' | 'name'>, inviterUser: Required<Pick<IUser, '_id' | 'username'>> & Pick<IUser, 'name'>, ): Promise<void>",
+      "containerClass": "RoomService",
+      "calls": [
+        {
+          "name": "unbanToInvitedById",
+          "edgeType": "call"
+        },
+        {
+          "name": "notifyOnSubscriptionChangedById",
+          "edgeType": "call"
+        },
+        {
+          "name": "saveSystemMessage",
+          "edgeType": "call"
+        },
+        {
+          "name": "ISubscription",
+          "edgeType": "type"
+        },
+        {
+          "name": "IUser",
+          "edgeType": "type"
+        }
+      ]
+    }
+  ],
+  "imports": [
+    {
+      "module": "@rocket.chat/core-services",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/core-services",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/core-typings",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/core-typings",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/models",
+      "resolved": "external"
+    },
+    {
+      "module": "./getNameForDMs",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/server/services/room/getNameForDMs.ts"
+    },
+    {
+      "module": "./hooks/BeforeFederationActions",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/server/services/room/hooks/BeforeFederationActions.ts"
+    },
+    {
+      "module": "../../../app/channel-settings/server",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/app/channel-settings/server/index.ts"
+    },
+    {
+      "module": "../../../app/channel-settings/server/functions/saveRoomTopic",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/app/channel-settings/server/functions/saveRoomTopic.ts"
+    },
+    {
+      "module": "../../../app/lib/server/lib/notifyListener",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/app/lib/server/lib/notifyListener.ts"
+    },
+    {
+      "module": "../../../app/threads/server/functions",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/app/threads/server/functions.ts"
+    },
+    {
+      "module": "../../../app/utils/lib/getDefaultSubscriptionPref",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/app/utils/lib/getDefaultSubscriptionPref.ts"
+    },
+    {
+      "module": "../../../app/utils/server/lib/getValidRoomName",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/app/utils/server/lib/getValidRoomName.ts"
+    },
+    {
+      "module": "../../../definition/IRoomTypeConfig",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/definition/IRoomTypeConfig.ts"
+    },
+    {
+      "module": "../../lib/getSubscriptionAutotranslateDefaultConfig",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/server/lib/getSubscriptionAutotranslateDefaultConfig.ts"
+    },
+    {
+      "module": "../../lib/readMessages",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/server/lib/readMessages.ts"
+    },
+    {
+      "module": "../../lib/rooms/acceptRoomInvite",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/server/lib/rooms/acceptRoomInvite.ts"
+    },
+    {
+      "module": "../../lib/rooms/addUserToRoom",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/server/lib/rooms/addUserToRoom.ts"
+    },
+    {
+      "module": "../../lib/rooms/banUserFromRoom",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/server/lib/rooms/banUserFromRoom.ts"
+    },
+    {
+      "module": "../../lib/rooms/createRoom",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/server/lib/rooms/createRoom.ts"
+    },
+    {
+      "module": "../../lib/rooms/executeUnbanUserFromRoom",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/server/lib/rooms/executeUnbanUserFromRoom.ts"
+    },
+    {
+      "module": "../../lib/rooms/removeUserFromRoom",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/server/lib/rooms/removeUserFromRoom.ts"
+    },
+    {
+      "module": "../../lib/rooms/roomCoordinator",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/server/lib/rooms/roomCoordinator.ts"
+    },
+    {
+      "module": "../../methods/addRoomLeader",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/server/methods/addRoomLeader.ts"
+    },
+    {
+      "module": "../../methods/addRoomModerator",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/server/methods/addRoomModerator.ts"
+    },
+    {
+      "module": "../../methods/addRoomOwner",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/server/methods/addRoomOwner.ts"
+    },
+    {
+      "module": "../../methods/createDirectMessage",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/server/methods/createDirectMessage.ts"
+    },
+    {
+      "module": "../../methods/removeRoomLeader",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/server/methods/removeRoomLeader.ts"
+    },
+    {
+      "module": "../../methods/removeRoomModerator",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/server/methods/removeRoomModerator.ts"
+    },
+    {
+      "module": "../../methods/removeRoomOwner",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/server/methods/removeRoomOwner.ts"
+    }
+  ]
+}

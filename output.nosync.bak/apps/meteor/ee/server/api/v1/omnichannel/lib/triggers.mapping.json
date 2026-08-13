@@ -1,0 +1,41 @@
+{
+  "sourcePath": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/ee/server/api/v1/omnichannel/lib/triggers.ts",
+  "symbols": [
+    {
+      "type": "function",
+      "name": "callTriggerExternalService",
+      "exported": true,
+      "line": 3,
+      "endLine": 57,
+      "signature": "export async function callTriggerExternalService({ url, timeout, fallbackMessage, body, headers, }: { url: string; timeout: number; fallbackMessage: string; body: Record<string, any>; headers: Record<string, string>; })",
+      "calls": [
+        {
+          "name": "fetch",
+          "edgeType": "call"
+        },
+        {
+          "name": "text",
+          "edgeType": "call"
+        },
+        {
+          "name": "json",
+          "edgeType": "call"
+        },
+        {
+          "name": "isArray",
+          "edgeType": "call"
+        },
+        {
+          "name": "every",
+          "edgeType": "call"
+        }
+      ]
+    }
+  ],
+  "imports": [
+    {
+      "module": "@rocket.chat/server-fetch",
+      "resolved": "external"
+    }
+  ]
+}

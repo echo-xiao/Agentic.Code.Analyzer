@@ -1,0 +1,65 @@
+{
+  "sourcePath": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/app/livechat/server/roomAccessValidator.internalService.ts",
+  "symbols": [
+    {
+      "type": "class",
+      "name": "AuthorizationLivechat",
+      "exported": true,
+      "line": 7,
+      "endLine": 21,
+      "signature": "export class AuthorizationLivechat extends ServiceClassInternal implements IAuthorizationLivechat",
+      "calls": [
+        {
+          "name": "ServiceClassInternal",
+          "edgeType": "type"
+        },
+        {
+          "name": "IAuthorizationLivechat",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "canAccessRoom",
+      "exported": true,
+      "qualifiedName": "AuthorizationLivechat.canAccessRoom",
+      "line": 12,
+      "endLine": 20,
+      "signature": "async canAccessRoom(room: IOmnichannelRoom, user?: Pick<IUser, '_id'>, extraData?: object): Promise<boolean>",
+      "containerClass": "AuthorizationLivechat",
+      "calls": [
+        {
+          "name": "validator",
+          "edgeType": "call"
+        },
+        {
+          "name": "IOmnichannelRoom",
+          "edgeType": "type"
+        },
+        {
+          "name": "IUser",
+          "edgeType": "type"
+        }
+      ]
+    }
+  ],
+  "imports": [
+    {
+      "module": "@rocket.chat/core-services",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/core-services",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/core-typings",
+      "resolved": "external"
+    },
+    {
+      "module": "./roomAccessValidator.compatibility",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/app/livechat/server/roomAccessValidator.compatibility.ts"
+    }
+  ]
+}

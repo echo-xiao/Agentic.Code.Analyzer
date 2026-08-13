@@ -1,0 +1,60 @@
+{
+  "sourcePath": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/app/livechat/server/lib/conditionalLockAgent.ts",
+  "symbols": [
+    {
+      "type": "function",
+      "name": "conditionalLockAgent",
+      "exported": true,
+      "line": 12,
+      "endLine": 36,
+      "signature": "export async function conditionalLockAgent(agentId: string): Promise<LockResult>",
+      "calls": [
+        {
+          "name": "get",
+          "edgeType": "call"
+        },
+        {
+          "name": "hasRoleAsync",
+          "edgeType": "call"
+        },
+        {
+          "name": "acquireAgentLock",
+          "edgeType": "call"
+        },
+        {
+          "name": "releaseAgentLock",
+          "edgeType": "call"
+        },
+        {
+          "name": "Date",
+          "edgeType": "new"
+        },
+        {
+          "name": "LockResult",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "type",
+      "name": "LockResult",
+      "line": 6,
+      "endLine": 10,
+      "signature": "type LockResult ="
+    }
+  ],
+  "imports": [
+    {
+      "module": "@rocket.chat/models",
+      "resolved": "external"
+    },
+    {
+      "module": "../../../../server/lib/authorization/hasRole",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/server/lib/authorization/hasRole.ts"
+    },
+    {
+      "module": "../../../settings/server",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/app/settings/server/index.ts"
+    }
+  ]
+}

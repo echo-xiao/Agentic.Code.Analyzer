@@ -1,0 +1,737 @@
+{
+  "sourcePath": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/ee/server/apps/communication/websockets.ts",
+  "symbols": [
+    {
+      "type": "class",
+      "name": "AppServerListener",
+      "exported": true,
+      "line": 14,
+      "endLine": 136,
+      "signature": "export class AppServerListener",
+      "calls": []
+    },
+    {
+      "type": "method",
+      "name": "onAppAdded",
+      "exported": true,
+      "qualifiedName": "AppServerListener.onAppAdded",
+      "line": 47,
+      "endLine": 50,
+      "signature": "async onAppAdded(appId: string): Promise<void>",
+      "containerClass": "AppServerListener",
+      "calls": [
+        {
+          "name": "addLocal",
+          "edgeType": "call"
+        },
+        {
+          "name": "getManager",
+          "edgeType": "call"
+        },
+        {
+          "name": "emitWithoutBroadcast",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "onAppStatusUpdated",
+      "exported": true,
+      "qualifiedName": "AppServerListener.onAppStatusUpdated",
+      "line": 51,
+      "endLine": 71,
+      "signature": "async onAppStatusUpdated({ appId, status }: { appId: string; status: AppStatus }): Promise<void>",
+      "containerClass": "AppServerListener",
+      "calls": [
+        {
+          "name": "getOneById",
+          "edgeType": "call"
+        },
+        {
+          "name": "getManager",
+          "edgeType": "call"
+        },
+        {
+          "name": "getStatus",
+          "edgeType": "call"
+        },
+        {
+          "name": "set",
+          "edgeType": "call"
+        },
+        {
+          "name": "isEnabled",
+          "edgeType": "call"
+        },
+        {
+          "name": "catch",
+          "edgeType": "call"
+        },
+        {
+          "name": "enable",
+          "edgeType": "call"
+        },
+        {
+          "name": "emitWithoutBroadcast",
+          "edgeType": "call"
+        },
+        {
+          "name": "isDisabled",
+          "edgeType": "call"
+        },
+        {
+          "name": "disable",
+          "edgeType": "call"
+        },
+        {
+          "name": "Date",
+          "edgeType": "new"
+        },
+        {
+          "name": "AppStatus",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "onAppSettingUpdated",
+      "exported": true,
+      "qualifiedName": "AppServerListener.onAppSettingUpdated",
+      "line": 55,
+      "endLine": 68,
+      "signature": "async onAppSettingUpdated({ appId, setting }: { appId: string; setting: AppsSetting }): Promise<void>",
+      "containerClass": "AppServerListener",
+      "calls": [
+        {
+          "name": "set",
+          "edgeType": "call"
+        },
+        {
+          "name": "updateAppSetting",
+          "edgeType": "call"
+        },
+        {
+          "name": "getSettingsManager",
+          "edgeType": "call"
+        },
+        {
+          "name": "getManager",
+          "edgeType": "call"
+        },
+        {
+          "name": "emitWithoutBroadcast",
+          "edgeType": "call"
+        },
+        {
+          "name": "Date",
+          "edgeType": "new"
+        },
+        {
+          "name": "AppsSetting",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "onAppUpdated",
+      "exported": true,
+      "qualifiedName": "AppServerListener.onAppUpdated",
+      "line": 59,
+      "endLine": 74,
+      "signature": "async onAppUpdated(appId: string): Promise<void>",
+      "containerClass": "AppServerListener",
+      "calls": [
+        {
+          "name": "set",
+          "edgeType": "call"
+        },
+        {
+          "name": "retrieveOne",
+          "edgeType": "call"
+        },
+        {
+          "name": "getStorage",
+          "edgeType": "call"
+        },
+        {
+          "name": "fetch",
+          "edgeType": "call"
+        },
+        {
+          "name": "getAppSourceStorage",
+          "edgeType": "call"
+        },
+        {
+          "name": "isEnabled",
+          "edgeType": "call"
+        },
+        {
+          "name": "updateAndStartupLocal",
+          "edgeType": "call"
+        },
+        {
+          "name": "getManager",
+          "edgeType": "call"
+        },
+        {
+          "name": "updateAndInitializeLocal",
+          "edgeType": "call"
+        },
+        {
+          "name": "emitWithoutBroadcast",
+          "edgeType": "call"
+        },
+        {
+          "name": "Date",
+          "edgeType": "new"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "onAppRemoved",
+      "exported": true,
+      "qualifiedName": "AppServerListener.onAppRemoved",
+      "line": 63,
+      "endLine": 72,
+      "signature": "async onAppRemoved(appId: string): Promise<void>",
+      "containerClass": "AppServerListener",
+      "calls": [
+        {
+          "name": "getOneById",
+          "edgeType": "call"
+        },
+        {
+          "name": "getManager",
+          "edgeType": "call"
+        },
+        {
+          "name": "removeLocal",
+          "edgeType": "call"
+        },
+        {
+          "name": "emitWithoutBroadcast",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "onCommandAdded",
+      "exported": true,
+      "qualifiedName": "AppServerListener.onCommandAdded",
+      "line": 67,
+      "endLine": 69,
+      "signature": "async onCommandAdded(command: string): Promise<void>",
+      "containerClass": "AppServerListener",
+      "calls": [
+        {
+          "name": "emitWithoutBroadcast",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "onCommandDisabled",
+      "exported": true,
+      "qualifiedName": "AppServerListener.onCommandDisabled",
+      "line": 71,
+      "endLine": 73,
+      "signature": "async onCommandDisabled(command: string): Promise<void>",
+      "containerClass": "AppServerListener",
+      "calls": [
+        {
+          "name": "emitWithoutBroadcast",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "onCommandUpdated",
+      "exported": true,
+      "qualifiedName": "AppServerListener.onCommandUpdated",
+      "line": 75,
+      "endLine": 77,
+      "signature": "async onCommandUpdated(command: string): Promise<void>",
+      "containerClass": "AppServerListener",
+      "calls": [
+        {
+          "name": "emitWithoutBroadcast",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "onCommandRemoved",
+      "exported": true,
+      "qualifiedName": "AppServerListener.onCommandRemoved",
+      "line": 79,
+      "endLine": 81,
+      "signature": "async onCommandRemoved(command: string): Promise<void>",
+      "containerClass": "AppServerListener",
+      "calls": [
+        {
+          "name": "emitWithoutBroadcast",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "onActionsChanged",
+      "exported": true,
+      "qualifiedName": "AppServerListener.onActionsChanged",
+      "line": 83,
+      "endLine": 85,
+      "signature": "async onActionsChanged(): Promise<void>",
+      "containerClass": "AppServerListener",
+      "calls": [
+        {
+          "name": "emitWithoutBroadcast",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "constructor",
+      "exported": true,
+      "qualifiedName": "AppServerListener.constructor",
+      "line": 23,
+      "endLine": 45,
+      "signature": "constructor( orch: AppServerOrchestrator, engineStreamer: IStreamer<'apps-engine'>, clientStreamer: IStreamer<'apps'>, received: Map<any, any>, )",
+      "containerClass": "AppServerListener",
+      "calls": [
+        {
+          "name": "AppEvents.APP_STATUS_CHANGE",
+          "edgeType": "event_listen"
+        },
+        {
+          "name": "bind",
+          "edgeType": "call"
+        },
+        {
+          "name": "AppEvents.APP_REMOVED",
+          "edgeType": "event_listen"
+        },
+        {
+          "name": "AppEvents.APP_UPDATED",
+          "edgeType": "event_listen"
+        },
+        {
+          "name": "AppEvents.APP_ADDED",
+          "edgeType": "event_listen"
+        },
+        {
+          "name": "AppEvents.ACTIONS_CHANGED",
+          "edgeType": "event_listen"
+        },
+        {
+          "name": "AppEvents.APP_SETTING_UPDATED",
+          "edgeType": "event_listen"
+        },
+        {
+          "name": "AppEvents.COMMAND_ADDED",
+          "edgeType": "event_listen"
+        },
+        {
+          "name": "AppEvents.COMMAND_DISABLED",
+          "edgeType": "event_listen"
+        },
+        {
+          "name": "AppEvents.COMMAND_UPDATED",
+          "edgeType": "event_listen"
+        },
+        {
+          "name": "AppEvents.COMMAND_REMOVED",
+          "edgeType": "event_listen"
+        },
+        {
+          "name": "AppServerOrchestrator",
+          "edgeType": "type"
+        },
+        {
+          "name": "IStreamer",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "class_property",
+      "name": "orch",
+      "exported": true,
+      "qualifiedName": "AppServerListener.orch",
+      "line": 15,
+      "endLine": 15,
+      "signature": "private orch: AppServerOrchestrator;",
+      "containerClass": "AppServerListener",
+      "calls": [
+        {
+          "name": "AppServerOrchestrator",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "class_property",
+      "name": "engineStreamer",
+      "exported": true,
+      "qualifiedName": "AppServerListener.engineStreamer",
+      "line": 17,
+      "endLine": 17,
+      "signature": "engineStreamer: IStreamer<'apps-engine'>;",
+      "containerClass": "AppServerListener",
+      "calls": [
+        {
+          "name": "IStreamer",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "class_property",
+      "name": "clientStreamer",
+      "exported": true,
+      "qualifiedName": "AppServerListener.clientStreamer",
+      "line": 19,
+      "endLine": 19,
+      "signature": "clientStreamer: IStreamer<'apps'>;",
+      "containerClass": "AppServerListener",
+      "calls": [
+        {
+          "name": "IStreamer",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "class",
+      "name": "AppServerNotifier",
+      "exported": true,
+      "line": 73,
+      "endLine": 149,
+      "signature": "export class AppServerNotifier",
+      "calls": []
+    },
+    {
+      "type": "method",
+      "name": "appAdded",
+      "exported": true,
+      "qualifiedName": "AppServerNotifier.appAdded",
+      "line": 92,
+      "endLine": 94,
+      "signature": "async appAdded(appId: string): Promise<void>",
+      "containerClass": "AppServerNotifier",
+      "calls": [
+        {
+          "name": "apps.added",
+          "edgeType": "event_emit"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "appRemoved",
+      "exported": true,
+      "qualifiedName": "AppServerNotifier.appRemoved",
+      "line": 96,
+      "endLine": 98,
+      "signature": "async appRemoved(appId: string): Promise<void>",
+      "containerClass": "AppServerNotifier",
+      "calls": [
+        {
+          "name": "apps.removed",
+          "edgeType": "event_emit"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "appUpdated",
+      "exported": true,
+      "qualifiedName": "AppServerNotifier.appUpdated",
+      "line": 100,
+      "endLine": 107,
+      "signature": "async appUpdated(appId: string): Promise<void>",
+      "containerClass": "AppServerNotifier",
+      "calls": [
+        {
+          "name": "has",
+          "edgeType": "call"
+        },
+        {
+          "name": "delete",
+          "edgeType": "call"
+        },
+        {
+          "name": "apps.updated",
+          "edgeType": "event_emit"
+        },
+        {
+          "name": "id",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "appStatusUpdated",
+      "exported": true,
+      "qualifiedName": "AppServerNotifier.appStatusUpdated",
+      "line": 104,
+      "endLine": 114,
+      "signature": "async appStatusUpdated(appId: string, status: AppStatus): Promise<void>",
+      "containerClass": "AppServerNotifier",
+      "calls": [
+        {
+          "name": "has",
+          "edgeType": "call"
+        },
+        {
+          "name": "get",
+          "edgeType": "call"
+        },
+        {
+          "name": "delete",
+          "edgeType": "call"
+        },
+        {
+          "name": "apps.statusUpdate",
+          "edgeType": "event_emit"
+        },
+        {
+          "name": "AppStatus",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "appSettingsChange",
+      "exported": true,
+      "qualifiedName": "AppServerNotifier.appSettingsChange",
+      "line": 108,
+      "endLine": 115,
+      "signature": "async appSettingsChange(appId: string, setting: AppsSetting): Promise<void>",
+      "containerClass": "AppServerNotifier",
+      "calls": [
+        {
+          "name": "has",
+          "edgeType": "call"
+        },
+        {
+          "name": "delete",
+          "edgeType": "call"
+        },
+        {
+          "name": "apps.settingUpdated",
+          "edgeType": "event_emit"
+        },
+        {
+          "name": "AppsSetting",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "commandAdded",
+      "exported": true,
+      "qualifiedName": "AppServerNotifier.commandAdded",
+      "line": 112,
+      "endLine": 114,
+      "signature": "async commandAdded(command: string): Promise<void>",
+      "containerClass": "AppServerNotifier",
+      "calls": [
+        {
+          "name": "command.added",
+          "edgeType": "event_emit"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "commandDisabled",
+      "exported": true,
+      "qualifiedName": "AppServerNotifier.commandDisabled",
+      "line": 116,
+      "endLine": 118,
+      "signature": "async commandDisabled(command: string): Promise<void>",
+      "containerClass": "AppServerNotifier",
+      "calls": [
+        {
+          "name": "command.disabled",
+          "edgeType": "event_emit"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "commandUpdated",
+      "exported": true,
+      "qualifiedName": "AppServerNotifier.commandUpdated",
+      "line": 120,
+      "endLine": 122,
+      "signature": "async commandUpdated(command: string): Promise<void>",
+      "containerClass": "AppServerNotifier",
+      "calls": [
+        {
+          "name": "command.updated",
+          "edgeType": "event_emit"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "commandRemoved",
+      "exported": true,
+      "qualifiedName": "AppServerNotifier.commandRemoved",
+      "line": 124,
+      "endLine": 126,
+      "signature": "async commandRemoved(command: string): Promise<void>",
+      "containerClass": "AppServerNotifier",
+      "calls": [
+        {
+          "name": "command.removed",
+          "edgeType": "event_emit"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "actionsChanged",
+      "exported": true,
+      "qualifiedName": "AppServerNotifier.actionsChanged",
+      "line": 128,
+      "endLine": 130,
+      "signature": "async actionsChanged(): Promise<void>",
+      "containerClass": "AppServerNotifier",
+      "calls": [
+        {
+          "name": "actions.changed",
+          "edgeType": "event_emit"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "constructor",
+      "exported": true,
+      "qualifiedName": "AppServerNotifier.constructor",
+      "line": 82,
+      "endLine": 90,
+      "signature": "constructor(orch: AppServerOrchestrator)",
+      "containerClass": "AppServerNotifier",
+      "calls": [
+        {
+          "name": "Map",
+          "edgeType": "new"
+        },
+        {
+          "name": "AppServerListener",
+          "edgeType": "new"
+        },
+        {
+          "name": "AppServerOrchestrator",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "class_property",
+      "name": "engineStreamer",
+      "exported": true,
+      "qualifiedName": "AppServerNotifier.engineStreamer",
+      "line": 74,
+      "endLine": 74,
+      "signature": "engineStreamer: IStreamer<'apps-engine'>;",
+      "containerClass": "AppServerNotifier",
+      "calls": [
+        {
+          "name": "IStreamer",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "class_property",
+      "name": "clientStreamer",
+      "exported": true,
+      "qualifiedName": "AppServerNotifier.clientStreamer",
+      "line": 76,
+      "endLine": 76,
+      "signature": "clientStreamer: IStreamer<'apps'>;",
+      "containerClass": "AppServerNotifier",
+      "calls": [
+        {
+          "name": "IStreamer",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "class_property",
+      "name": "listener",
+      "exported": true,
+      "qualifiedName": "AppServerNotifier.listener",
+      "line": 80,
+      "endLine": 80,
+      "signature": "listener: AppServerListener;",
+      "containerClass": "AppServerNotifier",
+      "calls": [
+        {
+          "name": "AppServerListener",
+          "edgeType": "type"
+        }
+      ]
+    }
+  ],
+  "imports": [
+    {
+      "module": "@rocket.chat/apps-engine/definition/AppStatus",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/apps-engine/definition/AppStatus",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/apps-engine/definition/settings",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/core-services",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/instance-status",
+      "resolved": "external"
+    },
+    {
+      "module": "./events",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/ee/server/apps/communication/events.ts"
+    },
+    {
+      "module": "../../../../app/notifications/server/lib/Notifications",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/app/notifications/server/lib/Notifications.ts"
+    },
+    {
+      "module": "../../../../server/lib/logger/system",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/server/lib/logger/system.ts"
+    },
+    {
+      "module": "../../../../server/modules/streamer/types",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/server/modules/streamer/types.ts"
+    },
+    {
+      "module": "../orchestrator",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/ee/server/apps/orchestrator.ts"
+    }
+  ]
+}

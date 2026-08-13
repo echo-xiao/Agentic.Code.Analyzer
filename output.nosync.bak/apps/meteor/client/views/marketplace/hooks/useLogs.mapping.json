@@ -1,0 +1,69 @@
+{
+  "sourcePath": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/client/views/marketplace/hooks/useLogs.ts",
+  "symbols": [
+    {
+      "type": "variable_function",
+      "name": "useLogs",
+      "exported": true,
+      "line": 9,
+      "endLine": 46,
+      "signature": "({ appId, current, itemsPerPage, logLevel, method, startDate, endDate, instanceId, }: { appId: string; current: number; itemsPerPage: number; logLevel?: '0' | '1' | '2'; method?: string; startDate?: string; endDate?: string; instanceId?: string; }): UseQueryResult<OperationResult<'GET', '/apps/:id/logs'>> =>",
+      "calls": [
+        {
+          "name": "useMemo",
+          "edgeType": "call"
+        },
+        {
+          "name": "useEndpoint",
+          "edgeType": "call"
+        },
+        {
+          "name": "useQuery",
+          "edgeType": "call"
+        },
+        {
+          "name": "appLogs",
+          "edgeType": "call"
+        },
+        {
+          "name": "logs",
+          "edgeType": "call"
+        },
+        {
+          "name": "UseQueryResult",
+          "edgeType": "type"
+        },
+        {
+          "name": "OperationResult",
+          "edgeType": "type"
+        }
+      ]
+    }
+  ],
+  "imports": [
+    {
+      "module": "@rocket.chat/rest-typings",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/ui-contexts",
+      "resolved": "external"
+    },
+    {
+      "module": "@tanstack/react-query",
+      "resolved": "external"
+    },
+    {
+      "module": "@tanstack/react-query",
+      "resolved": "external"
+    },
+    {
+      "module": "react",
+      "resolved": "external"
+    },
+    {
+      "module": "../../../lib/queryKeys",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/client/lib/queryKeys.ts"
+    }
+  ]
+}

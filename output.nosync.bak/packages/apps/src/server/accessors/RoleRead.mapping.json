@@ -1,0 +1,89 @@
+{
+  "sourcePath": "/Users/echoooooo/Desktop/code/Rocket.Chat/packages/apps/src/server/accessors/RoleRead.ts",
+  "symbols": [
+    {
+      "type": "class",
+      "name": "RoleRead",
+      "exported": true,
+      "line": 6,
+      "endLine": 19,
+      "signature": "export class RoleRead implements IRoleRead",
+      "calls": [
+        {
+          "name": "IRoleRead",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "getOneByIdOrName",
+      "exported": true,
+      "qualifiedName": "RoleRead.getOneByIdOrName",
+      "line": 12,
+      "endLine": 14,
+      "signature": "public getOneByIdOrName(idOrName: string): Promise<IRole | null>",
+      "containerClass": "RoleRead",
+      "calls": [
+        {
+          "name": "doGetOneByIdOrName",
+          "edgeType": "call"
+        },
+        {
+          "name": "IRole",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "getCustomRoles",
+      "exported": true,
+      "qualifiedName": "RoleRead.getCustomRoles",
+      "line": 16,
+      "endLine": 18,
+      "signature": "public getCustomRoles(): Promise<Array<IRole>>",
+      "containerClass": "RoleRead",
+      "calls": [
+        {
+          "name": "doGetCustomRoles",
+          "edgeType": "call"
+        },
+        {
+          "name": "IRole",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "constructor",
+      "exported": true,
+      "qualifiedName": "RoleRead.constructor",
+      "line": 7,
+      "endLine": 10,
+      "signature": "constructor( private roleBridge: RoleBridge, private appId: string, )",
+      "containerClass": "RoleRead",
+      "calls": [
+        {
+          "name": "RoleBridge",
+          "edgeType": "type"
+        }
+      ]
+    }
+  ],
+  "imports": [
+    {
+      "module": "@rocket.chat/apps-engine/definition/accessors/IRoleRead",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/apps-engine/definition/roles",
+      "resolved": "external"
+    },
+    {
+      "module": "../bridges",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/packages/apps/src/server/bridges/index.ts"
+    }
+  ]
+}

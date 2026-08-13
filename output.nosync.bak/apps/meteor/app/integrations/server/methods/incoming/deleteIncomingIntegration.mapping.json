@@ -1,0 +1,83 @@
+{
+  "sourcePath": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/app/integrations/server/methods/incoming/deleteIncomingIntegration.ts",
+  "symbols": [
+    {
+      "type": "module",
+      "name": "deleteIncomingIntegration",
+      "exported": false,
+      "line": 1,
+      "endLine": 56,
+      "signature": "deleteIncomingIntegration",
+      "calls": [
+        {
+          "name": "deleteIncomingIntegration",
+          "edgeType": "call"
+        },
+        {
+          "name": "methods",
+          "edgeType": "call"
+        },
+        {
+          "name": "method",
+          "edgeType": "call"
+        },
+        {
+          "name": "userId",
+          "edgeType": "call"
+        },
+        {
+          "name": "ServerMethods",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "variable_function",
+      "name": "deleteIncomingIntegration",
+      "exported": true,
+      "line": 16,
+      "endLine": 39,
+      "signature": "async (integrationId: string, userId: string): Promise<void> =>",
+      "calls": [
+        {
+          "name": "hasPermissionAsync",
+          "edgeType": "call"
+        },
+        {
+          "name": "removeByIdAndCreatedByIfExists",
+          "edgeType": "call"
+        },
+        {
+          "name": "notifyOnIntegrationChanged",
+          "edgeType": "call"
+        }
+      ]
+    }
+  ],
+  "imports": [
+    {
+      "module": "@rocket.chat/ddp-client",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/models",
+      "resolved": "external"
+    },
+    {
+      "module": "meteor/meteor",
+      "resolved": "external"
+    },
+    {
+      "module": "../../../../../server/lib/authorization/hasPermission",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/server/lib/authorization/hasPermission.ts"
+    },
+    {
+      "module": "../../../../lib/server/lib/deprecationWarningLogger",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/app/lib/server/lib/deprecationWarningLogger.ts"
+    },
+    {
+      "module": "../../../../lib/server/lib/notifyListener",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/app/lib/server/lib/notifyListener.ts"
+    }
+  ]
+}

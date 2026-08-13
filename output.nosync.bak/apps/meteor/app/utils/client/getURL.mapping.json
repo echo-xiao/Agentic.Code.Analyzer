@@ -1,0 +1,41 @@
+{
+  "sourcePath": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/app/utils/client/getURL.ts",
+  "symbols": [
+    {
+      "type": "variable_function",
+      "name": "getURL",
+      "exported": true,
+      "line": 5,
+      "endLine": 25,
+      "signature": "function ( path: string, // eslint-disable-next-line @typescript-eslint/naming-convention params: { cdn?: boolean; full?: boolean; cloud?: boolean; cloud_route?: string; cloud_params?: Record<string, string>; } = {}, cloudDeepLinkUrl?: string, cacheKey?: boolean, ): string",
+      "calls": [
+        {
+          "name": "peek",
+          "edgeType": "call"
+        },
+        {
+          "name": "includes",
+          "edgeType": "call"
+        },
+        {
+          "name": "getURLWithoutSettings",
+          "edgeType": "call"
+        }
+      ]
+    }
+  ],
+  "imports": [
+    {
+      "module": "../../../client/lib/settings",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/client/lib/settings/index.ts"
+    },
+    {
+      "module": "../lib/getURL",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/app/utils/lib/getURL.ts"
+    },
+    {
+      "module": "../rocketchat.info",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/app/utils/rocketchat.info"
+    }
+  ]
+}

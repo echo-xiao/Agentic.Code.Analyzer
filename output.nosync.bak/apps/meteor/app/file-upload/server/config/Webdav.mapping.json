@@ -1,0 +1,121 @@
+{
+  "sourcePath": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/app/file-upload/server/config/Webdav.ts",
+  "symbols": [
+    {
+      "type": "module",
+      "name": "Webdav",
+      "exported": false,
+      "line": 1,
+      "endLine": 75,
+      "signature": "Webdav",
+      "calls": [
+        {
+          "name": "watchByRegex",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "variable_function",
+      "name": "get",
+      "exported": false,
+      "line": 8,
+      "endLine": 19,
+      "signature": "async function (this: FileUploadClass, file, _req, res)",
+      "calls": [
+        {
+          "name": "end",
+          "edgeType": "event_listen"
+        },
+        {
+          "name": "data",
+          "edgeType": "event_listen"
+        },
+        {
+          "name": "error",
+          "edgeType": "event_listen"
+        },
+        {
+          "name": "getReadStream",
+          "edgeType": "call"
+        },
+        {
+          "name": "error",
+          "edgeType": "call"
+        },
+        {
+          "name": "writeHead",
+          "edgeType": "call"
+        },
+        {
+          "name": "end",
+          "edgeType": "call"
+        },
+        {
+          "name": "write",
+          "edgeType": "call"
+        },
+        {
+          "name": "bind",
+          "edgeType": "call"
+        },
+        {
+          "name": "FileUploadClass",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "variable_function",
+      "name": "copy",
+      "exported": false,
+      "line": 12,
+      "endLine": 16,
+      "signature": "async function (this: FileUploadClass, file, out)",
+      "calls": [
+        {
+          "name": "finish",
+          "edgeType": "event_listen"
+        },
+        {
+          "name": "pipe",
+          "edgeType": "call"
+        },
+        {
+          "name": "getReadStream",
+          "edgeType": "call"
+        },
+        {
+          "name": "resolve",
+          "edgeType": "call"
+        },
+        {
+          "name": "FileUploadClass",
+          "edgeType": "type"
+        }
+      ]
+    }
+  ],
+  "imports": [
+    {
+      "module": "underscore",
+      "resolved": "external"
+    },
+    {
+      "module": "../../../../server/lib/logger/system",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/server/lib/logger/system.ts"
+    },
+    {
+      "module": "../../../settings/server",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/app/settings/server/index.ts"
+    },
+    {
+      "module": "../lib/FileUpload",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/app/file-upload/server/lib/FileUpload.ts"
+    },
+    {
+      "module": "../../ufs/Webdav/server",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/app/file-upload/ufs/Webdav/server.ts"
+    }
+  ]
+}

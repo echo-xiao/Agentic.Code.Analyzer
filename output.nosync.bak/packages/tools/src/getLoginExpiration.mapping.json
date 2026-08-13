@@ -1,0 +1,43 @@
+{
+  "sourcePath": "/Users/echoooooo/Desktop/code/Rocket.Chat/packages/tools/src/getLoginExpiration.ts",
+  "symbols": [
+    {
+      "type": "variable_function",
+      "name": "getLoginExpirationInDays",
+      "exported": true,
+      "line": 7,
+      "endLine": 12,
+      "signature": "(expiry?: number) =>",
+      "calls": [
+        {
+          "name": "isNaN",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "variable_function",
+      "name": "getLoginExpirationInMs",
+      "exported": true,
+      "line": 11,
+      "endLine": 13,
+      "signature": "(expiry?: number) =>",
+      "calls": [
+        {
+          "name": "convertFromDaysToMilliseconds",
+          "edgeType": "call"
+        },
+        {
+          "name": "getLoginExpirationInDays",
+          "edgeType": "call"
+        }
+      ]
+    }
+  ],
+  "imports": [
+    {
+      "module": "./converter",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/packages/tools/src/converter.ts"
+    }
+  ]
+}

@@ -1,0 +1,224 @@
+{
+  "sourcePath": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/ee/server/api/v1/omnichannel/lib/priorities.ts",
+  "symbols": [
+    {
+      "type": "function",
+      "name": "findPriority",
+      "exported": true,
+      "line": 20,
+      "endLine": 42,
+      "signature": "export async function findPriority({ text, pagination: { offset, count, sort }, }: FindPriorityParams): Promise<PaginatedResult<{ priorities: ILivechatPriority[] }>>",
+      "calls": [
+        {
+          "name": "escapeRegExp",
+          "edgeType": "call"
+        },
+        {
+          "name": "findPaginated",
+          "edgeType": "call"
+        },
+        {
+          "name": "all",
+          "edgeType": "call"
+        },
+        {
+          "name": "toArray",
+          "edgeType": "call"
+        },
+        {
+          "name": "RegExp",
+          "edgeType": "new"
+        },
+        {
+          "name": "FindPriorityParams",
+          "edgeType": "type"
+        },
+        {
+          "name": "PaginatedResult",
+          "edgeType": "type"
+        },
+        {
+          "name": "ILivechatPriority",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "function",
+      "name": "updatePriority",
+      "exported": true,
+      "line": 27,
+      "endLine": 44,
+      "signature": "export async function updatePriority(_id: string, data: Pick<ILivechatPriority, 'name'> & { reset?: boolean }): Promise<ILivechatPriority>",
+      "calls": [
+        {
+          "name": "findOneNameUsingRegex",
+          "edgeType": "call"
+        },
+        {
+          "name": "updatePriority",
+          "edgeType": "call"
+        },
+        {
+          "name": "error",
+          "edgeType": "call"
+        },
+        {
+          "name": "ILivechatPriority",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "variable_function",
+      "name": "updateRoomPriority",
+      "exported": true,
+      "line": 31,
+      "endLine": 54,
+      "signature": "async ( rid: string, user: Required<Pick<IUser, '_id' | 'username' | 'name'>>, priorityId: string, ): Promise<void> =>",
+      "calls": [
+        {
+          "name": "findOneById",
+          "edgeType": "call"
+        },
+        {
+          "name": "all",
+          "edgeType": "call"
+        },
+        {
+          "name": "setPriorityByRoomId",
+          "edgeType": "call"
+        },
+        {
+          "name": "setPriorityForRoom",
+          "edgeType": "call"
+        },
+        {
+          "name": "addPriorityChangeHistoryToRoom",
+          "edgeType": "call"
+        },
+        {
+          "name": "notifyOnRoomChanged",
+          "edgeType": "call"
+        },
+        {
+          "name": "notifyOnLivechatInquiryChangedByRoom",
+          "edgeType": "call"
+        },
+        {
+          "name": "IUser",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "variable_function",
+      "name": "removePriorityFromRoom",
+      "exported": true,
+      "line": 39,
+      "endLine": 55,
+      "signature": "async (rid: string, user: Required<Pick<IUser, '_id' | 'username' | 'name'>>): Promise<void> =>",
+      "calls": [
+        {
+          "name": "findOneById",
+          "edgeType": "call"
+        },
+        {
+          "name": "all",
+          "edgeType": "call"
+        },
+        {
+          "name": "unsetPriorityByRoomId",
+          "edgeType": "call"
+        },
+        {
+          "name": "unsetPriorityForRoom",
+          "edgeType": "call"
+        },
+        {
+          "name": "addPriorityChangeHistoryToRoom",
+          "edgeType": "call"
+        },
+        {
+          "name": "notifyOnRoomChanged",
+          "edgeType": "call"
+        },
+        {
+          "name": "notifyOnLivechatInquiryChangedByRoom",
+          "edgeType": "call"
+        },
+        {
+          "name": "IUser",
+          "edgeType": "type"
+        },
+        {
+          "name": "IOmnichannelRoom",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "variable_function",
+      "name": "addPriorityChangeHistoryToRoom",
+      "exported": false,
+      "line": 43,
+      "endLine": 57,
+      "signature": "async ( roomId: string, user: Required<Pick<IUser, '_id' | 'username' | 'name'>>, priority?: Pick<ILivechatPriority, 'name' | 'i18n'>, ) =>",
+      "calls": [
+        {
+          "name": "saveSystemMessage",
+          "edgeType": "call"
+        },
+        {
+          "name": "IUser",
+          "edgeType": "type"
+        },
+        {
+          "name": "ILivechatPriority",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "type",
+      "name": "FindPriorityParams",
+      "line": 11,
+      "endLine": 18,
+      "signature": "type FindPriorityParams ="
+    }
+  ],
+  "imports": [
+    {
+      "module": "@rocket.chat/core-services",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/core-typings",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/models",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/rest-typings",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/string-helpers",
+      "resolved": "external"
+    },
+    {
+      "module": "mongodb",
+      "resolved": "external"
+    },
+    {
+      "module": "../../../../../../app/lib/server/lib/notifyListener",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/app/lib/server/lib/notifyListener.ts"
+    },
+    {
+      "module": "../../../../../app/livechat-enterprise/server/lib/logger",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/ee/app/livechat-enterprise/server/lib/logger.ts"
+    }
+  ]
+}

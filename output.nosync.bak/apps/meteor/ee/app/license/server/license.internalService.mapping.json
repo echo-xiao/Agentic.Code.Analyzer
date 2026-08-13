@@ -1,0 +1,184 @@
+{
+  "sourcePath": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/ee/app/license/server/license.internalService.ts",
+  "symbols": [
+    {
+      "type": "class",
+      "name": "LicenseService",
+      "exported": true,
+      "line": 9,
+      "endLine": 57,
+      "signature": "export class LicenseService extends ServiceClassInternal implements ILicense",
+      "calls": [
+        {
+          "name": "ServiceClassInternal",
+          "edgeType": "type"
+        },
+        {
+          "name": "ILicense",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "started",
+      "exported": true,
+      "qualifiedName": "LicenseService.started",
+      "line": 33,
+      "endLine": 40,
+      "signature": "override async started(): Promise<void>",
+      "containerClass": "LicenseService",
+      "calls": [
+        {
+          "name": "hasValidLicense",
+          "edgeType": "call"
+        },
+        {
+          "name": "authorization.guestPermissions",
+          "edgeType": "event_emit"
+        },
+        {
+          "name": "resetEnterprisePermissions",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "hasModule",
+      "exported": true,
+      "qualifiedName": "LicenseService.hasModule",
+      "line": 37,
+      "endLine": 39,
+      "signature": "hasModule(feature: LicenseModule): boolean",
+      "containerClass": "LicenseService",
+      "calls": [
+        {
+          "name": "hasModule",
+          "edgeType": "call"
+        },
+        {
+          "name": "LicenseModule",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "hasValidLicense",
+      "exported": true,
+      "qualifiedName": "LicenseService.hasValidLicense",
+      "line": 41,
+      "endLine": 43,
+      "signature": "hasValidLicense(): boolean",
+      "containerClass": "LicenseService",
+      "calls": [
+        {
+          "name": "hasValidLicense",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "getModules",
+      "exported": true,
+      "qualifiedName": "LicenseService.getModules",
+      "line": 45,
+      "endLine": 47,
+      "signature": "getModules(): string[]",
+      "containerClass": "LicenseService",
+      "calls": [
+        {
+          "name": "getModules",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "getGuestPermissions",
+      "exported": true,
+      "qualifiedName": "LicenseService.getGuestPermissions",
+      "line": 49,
+      "endLine": 51,
+      "signature": "getGuestPermissions(): string[]",
+      "containerClass": "LicenseService",
+      "calls": []
+    },
+    {
+      "type": "method",
+      "name": "constructor",
+      "exported": true,
+      "qualifiedName": "LicenseService.constructor",
+      "line": 12,
+      "endLine": 31,
+      "signature": "constructor()",
+      "containerClass": "LicenseService",
+      "calls": [
+        {
+          "name": "onValidateLicense",
+          "edgeType": "call"
+        },
+        {
+          "name": "hasValidLicense",
+          "edgeType": "call"
+        },
+        {
+          "name": "authorization.guestPermissions",
+          "edgeType": "event_emit"
+        },
+        {
+          "name": "resetEnterprisePermissions",
+          "edgeType": "call"
+        },
+        {
+          "name": "onModule",
+          "edgeType": "call"
+        },
+        {
+          "name": "license.module",
+          "edgeType": "event_emit"
+        },
+        {
+          "name": "onEvent",
+          "edgeType": "call"
+        },
+        {
+          "name": "syncShouldPreventActionResults",
+          "edgeType": "call"
+        },
+        {
+          "name": "sync",
+          "edgeType": "call"
+        }
+      ]
+    }
+  ],
+  "imports": [
+    {
+      "module": "@rocket.chat/core-services",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/core-services",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/core-typings",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/license",
+      "resolved": "external"
+    },
+    {
+      "module": "../../../server/lib/authorization/resetEnterprisePermissions",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/ee/server/lib/authorization/resetEnterprisePermissions.ts"
+    },
+    {
+      "module": "../../authorization/lib/guestPermissions",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/ee/app/authorization/lib/guestPermissions.ts"
+    }
+  ]
+}

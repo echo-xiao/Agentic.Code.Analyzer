@@ -1,0 +1,141 @@
+{
+  "sourcePath": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/ee/server/models/raw/ServiceLevelAgreements.ts",
+  "symbols": [
+    {
+      "type": "class",
+      "name": "ServiceLevelAgreements",
+      "exported": true,
+      "line": 6,
+      "endLine": 59,
+      "signature": "export class ServiceLevelAgreements extends BaseRaw<IOmnichannelServiceLevelAgreements> implements IOmnichannelServiceLevelAgreementsModel",
+      "calls": [
+        {
+          "name": "BaseRaw",
+          "edgeType": "type"
+        },
+        {
+          "name": "IOmnichannelServiceLevelAgreementsModel",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "modelIndexes",
+      "exported": true,
+      "qualifiedName": "ServiceLevelAgreements.modelIndexes",
+      "line": 11,
+      "endLine": 16,
+      "signature": "protected override modelIndexes(): IndexDescription[]",
+      "containerClass": "ServiceLevelAgreements",
+      "calls": [
+        {
+          "name": "IndexDescription",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "findDuplicate",
+      "exported": true,
+      "qualifiedName": "ServiceLevelAgreements.findDuplicate",
+      "line": 15,
+      "endLine": 21,
+      "signature": "findDuplicate( _id: string | null, name: string, dueTimeInMinutes: number, ): Promise<Pick<IOmnichannelServiceLevelAgreements, '_id'> | null>",
+      "containerClass": "ServiceLevelAgreements",
+      "calls": [
+        {
+          "name": "findOne",
+          "edgeType": "call"
+        },
+        {
+          "name": "IOmnichannelServiceLevelAgreements",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "findOneByIdOrName",
+      "exported": true,
+      "qualifiedName": "ServiceLevelAgreements.findOneByIdOrName",
+      "line": 23,
+      "endLine": 36,
+      "signature": "findOneByIdOrName(_idOrName: string, options = {}): Promise<IOmnichannelServiceLevelAgreements | null>",
+      "containerClass": "ServiceLevelAgreements",
+      "calls": [
+        {
+          "name": "findOne",
+          "edgeType": "call"
+        },
+        {
+          "name": "IOmnichannelServiceLevelAgreements",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "createOrUpdatePriority",
+      "exported": true,
+      "qualifiedName": "ServiceLevelAgreements.createOrUpdatePriority",
+      "line": 27,
+      "endLine": 44,
+      "signature": "async createOrUpdatePriority( { name, description, dueTimeInMinutes }: Pick<IOmnichannelServiceLevelAgreements, 'name' | 'description' | 'dueTimeInMinutes'>, _id: string | null, ): Promise<Omit<IOmnichannelServiceLevelAgreements, '_updatedAt'>>",
+      "containerClass": "ServiceLevelAgreements",
+      "calls": [
+        {
+          "name": "updateOne",
+          "edgeType": "call"
+        },
+        {
+          "name": "insertOne",
+          "edgeType": "call"
+        },
+        {
+          "name": "assign",
+          "edgeType": "call"
+        },
+        {
+          "name": "IOmnichannelServiceLevelAgreements",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "constructor",
+      "exported": true,
+      "qualifiedName": "ServiceLevelAgreements.constructor",
+      "line": 7,
+      "endLine": 9,
+      "signature": "constructor(db: Db)",
+      "containerClass": "ServiceLevelAgreements",
+      "calls": [
+        {
+          "name": "Db",
+          "edgeType": "type"
+        }
+      ]
+    }
+  ],
+  "imports": [
+    {
+      "module": "@rocket.chat/core-typings",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/model-typings/src",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/models",
+      "resolved": "external"
+    },
+    {
+      "module": "mongodb",
+      "resolved": "external"
+    }
+  ]
+}

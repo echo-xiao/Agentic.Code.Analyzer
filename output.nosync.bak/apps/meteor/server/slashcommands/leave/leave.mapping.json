@@ -1,0 +1,87 @@
+{
+  "sourcePath": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/server/slashcommands/leave/leave.ts",
+  "symbols": [
+    {
+      "type": "module",
+      "name": "leave",
+      "exported": false,
+      "line": 1,
+      "endLine": 50,
+      "signature": "leave",
+      "calls": [
+        {
+          "name": "leave",
+          "edgeType": "event_listen"
+        },
+        {
+          "name": "part",
+          "edgeType": "event_listen"
+        }
+      ]
+    },
+    {
+      "type": "variable_function",
+      "name": "Leave",
+      "exported": false,
+      "line": 15,
+      "endLine": 32,
+      "signature": "async function Leave({ message, userId }: SlashCommandCallbackParams<'leave'>): Promise<void>",
+      "calls": [
+        {
+          "name": "findOneById",
+          "edgeType": "call"
+        },
+        {
+          "name": "leaveRoomMethod",
+          "edgeType": "call"
+        },
+        {
+          "name": "notify.ephemeralMessage",
+          "edgeType": "event_emit"
+        },
+        {
+          "name": "get",
+          "edgeType": "call"
+        },
+        {
+          "name": "SlashCommandCallbackParams",
+          "edgeType": "type"
+        }
+      ]
+    }
+  ],
+  "imports": [
+    {
+      "module": "@rocket.chat/core-services",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/core-typings",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/models",
+      "resolved": "external"
+    },
+    {
+      "module": "meteor/meteor",
+      "resolved": "external"
+    },
+    {
+      "module": "../../../app/lib/server/methods/leaveRoom",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/app/lib/server/methods/leaveRoom.ts"
+    },
+    {
+      "module": "../../../app/settings/server",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/app/settings/server/index.ts"
+    },
+    {
+      "module": "../../../app/utils/server/slashCommand",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/app/utils/server/slashCommand.ts"
+    },
+    {
+      "module": "../../lib/i18n",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/server/lib/i18n.ts"
+    }
+  ]
+}

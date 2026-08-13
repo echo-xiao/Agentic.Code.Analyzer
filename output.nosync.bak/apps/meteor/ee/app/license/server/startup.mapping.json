@@ -1,0 +1,269 @@
+{
+  "sourcePath": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/ee/app/license/server/startup.ts",
+  "symbols": [
+    {
+      "type": "variable_function",
+      "name": "startLicense",
+      "exported": true,
+      "line": 14,
+      "endLine": 167,
+      "signature": "async () =>",
+      "calls": [
+        {
+          "name": "watch",
+          "edgeType": "call"
+        },
+        {
+          "name": "setWorkspaceUrl",
+          "edgeType": "call"
+        },
+        {
+          "name": "onValidateLicense",
+          "edgeType": "call"
+        },
+        {
+          "name": "updateValueById",
+          "edgeType": "call"
+        },
+        {
+          "name": "notifyOnSettingChangedById",
+          "edgeType": "call"
+        },
+        {
+          "name": "onInvalidateLicense",
+          "edgeType": "call"
+        },
+        {
+          "name": "onRemoveLicense",
+          "edgeType": "call"
+        },
+        {
+          "name": "syncByTrigger",
+          "edgeType": "call"
+        },
+        {
+          "name": "clear",
+          "edgeType": "call"
+        },
+        {
+          "name": "catch",
+          "edgeType": "call"
+        },
+        {
+          "name": "wrapExceptions",
+          "edgeType": "call"
+        },
+        {
+          "name": "parse",
+          "edgeType": "call"
+        },
+        {
+          "name": "get",
+          "edgeType": "call"
+        },
+        {
+          "name": "getDate",
+          "edgeType": "call"
+        },
+        {
+          "name": "getMonth",
+          "edgeType": "call"
+        },
+        {
+          "name": "getFullYear",
+          "edgeType": "call"
+        },
+        {
+          "name": "split",
+          "edgeType": "call"
+        },
+        {
+          "name": "every",
+          "edgeType": "call"
+        },
+        {
+          "name": "values",
+          "edgeType": "call"
+        },
+        {
+          "name": "fromEntries",
+          "edgeType": "call"
+        },
+        {
+          "name": "map",
+          "edgeType": "call"
+        },
+        {
+          "name": "stringify",
+          "edgeType": "call"
+        },
+        {
+          "name": "syncWorkspace",
+          "edgeType": "call"
+        },
+        {
+          "name": "error",
+          "edgeType": "call"
+        },
+        {
+          "name": "setLicenseLimitCounter",
+          "edgeType": "call"
+        },
+        {
+          "name": "getActiveLocalUserCount",
+          "edgeType": "call"
+        },
+        {
+          "name": "getActiveLocalGuestCount",
+          "edgeType": "call"
+        },
+        {
+          "name": "countByUserIdExceptType",
+          "edgeType": "call"
+        },
+        {
+          "name": "getAppCount",
+          "edgeType": "call"
+        },
+        {
+          "name": "countContactsOnPeriod",
+          "edgeType": "call"
+        },
+        {
+          "name": "format",
+          "edgeType": "call"
+        },
+        {
+          "name": "utc",
+          "edgeType": "call"
+        },
+        {
+          "name": "onReady",
+          "edgeType": "call"
+        },
+        {
+          "name": "applyLicense",
+          "edgeType": "call"
+        },
+        {
+          "name": "hasValidLicense",
+          "edgeType": "call"
+        },
+        {
+          "name": "change",
+          "edgeType": "call"
+        },
+        {
+          "name": "applyLicenseOrRemove",
+          "edgeType": "call"
+        },
+        {
+          "name": "workspaceLicenseRemoved",
+          "edgeType": "event_listen"
+        },
+        {
+          "name": "remove",
+          "edgeType": "call"
+        },
+        {
+          "name": "workspaceLicenseChanged",
+          "edgeType": "event_listen"
+        },
+        {
+          "name": "onInstall",
+          "edgeType": "call"
+        },
+        {
+          "name": "license.actions",
+          "edgeType": "event_emit"
+        },
+        {
+          "name": "onInvalidate",
+          "edgeType": "call"
+        },
+        {
+          "name": "onBehaviorTriggered",
+          "edgeType": "call"
+        },
+        {
+          "name": "syncByTriggerDebounced",
+          "edgeType": "call"
+        },
+        {
+          "name": "onChange",
+          "edgeType": "call"
+        },
+        {
+          "name": "license.sync",
+          "edgeType": "event_emit"
+        },
+        {
+          "name": "onBehaviorToggled",
+          "edgeType": "call"
+        },
+        {
+          "name": "resolve",
+          "edgeType": "call"
+        },
+        {
+          "name": "Set",
+          "edgeType": "new"
+        },
+        {
+          "name": "Date",
+          "edgeType": "new"
+        },
+        {
+          "name": "LicenseLimitKind",
+          "edgeType": "type"
+        }
+      ]
+    }
+  ],
+  "imports": [
+    {
+      "module": "@rocket.chat/core-services",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/core-typings",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/license",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/models",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/tools",
+      "resolved": "external"
+    },
+    {
+      "module": "moment",
+      "resolved": "external"
+    },
+    {
+      "module": "./lib/getAppCount",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/ee/app/license/server/lib/getAppCount.ts"
+    },
+    {
+      "module": "../../../../app/lib/server/lib/notifyListener",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/app/lib/server/lib/notifyListener.ts"
+    },
+    {
+      "module": "../../../../app/settings/server",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/app/settings/server/index.ts"
+    },
+    {
+      "module": "../../../../server/lib/callbacks",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/server/lib/callbacks.ts"
+    },
+    {
+      "module": "../../../../server/lib/cloud/syncWorkspace",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/server/lib/cloud/syncWorkspace/index.ts"
+    }
+  ]
+}

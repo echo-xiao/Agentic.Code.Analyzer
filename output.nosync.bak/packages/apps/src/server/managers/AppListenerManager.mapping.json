@@ -1,0 +1,2223 @@
+{
+  "sourcePath": "/Users/echoooooo/Desktop/code/Rocket.Chat/packages/apps/src/server/managers/AppListenerManager.ts",
+  "symbols": [
+    {
+      "type": "class",
+      "name": "AppListenerManager",
+      "exported": true,
+      "line": 250,
+      "endLine": 1288,
+      "signature": "export class AppListenerManager",
+      "calls": []
+    },
+    {
+      "type": "method",
+      "name": "registerListeners",
+      "exported": true,
+      "qualifiedName": "AppListenerManager.registerListeners",
+      "line": 278,
+      "endLine": 288,
+      "signature": "public registerListeners(app: ProxiedApp): void",
+      "containerClass": "AppListenerManager",
+      "calls": [
+        {
+          "name": "unregisterListeners",
+          "edgeType": "call"
+        },
+        {
+          "name": "forEach",
+          "edgeType": "call"
+        },
+        {
+          "name": "entries",
+          "edgeType": "call"
+        },
+        {
+          "name": "getImplementationList",
+          "edgeType": "call"
+        },
+        {
+          "name": "push",
+          "edgeType": "call"
+        },
+        {
+          "name": "get",
+          "edgeType": "call"
+        },
+        {
+          "name": "getID",
+          "edgeType": "call"
+        },
+        {
+          "name": "ProxiedApp",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "unregisterListeners",
+      "exported": true,
+      "qualifiedName": "AppListenerManager.unregisterListeners",
+      "line": 282,
+      "endLine": 289,
+      "signature": "public unregisterListeners(app: ProxiedApp): void",
+      "containerClass": "AppListenerManager",
+      "calls": [
+        {
+          "name": "forEach",
+          "edgeType": "call"
+        },
+        {
+          "name": "includes",
+          "edgeType": "call"
+        },
+        {
+          "name": "getID",
+          "edgeType": "call"
+        },
+        {
+          "name": "indexOf",
+          "edgeType": "call"
+        },
+        {
+          "name": "splice",
+          "edgeType": "call"
+        },
+        {
+          "name": "get",
+          "edgeType": "call"
+        },
+        {
+          "name": "ProxiedApp",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "releaseEssentialEvents",
+      "exported": true,
+      "qualifiedName": "AppListenerManager.releaseEssentialEvents",
+      "line": 286,
+      "endLine": 300,
+      "signature": "public releaseEssentialEvents(app: ProxiedApp): void",
+      "containerClass": "AppListenerManager",
+      "calls": [
+        {
+          "name": "getEssentials",
+          "edgeType": "call"
+        },
+        {
+          "name": "forEach",
+          "edgeType": "call"
+        },
+        {
+          "name": "get",
+          "edgeType": "call"
+        },
+        {
+          "name": "delete",
+          "edgeType": "call"
+        },
+        {
+          "name": "getID",
+          "edgeType": "call"
+        },
+        {
+          "name": "ProxiedApp",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "lockEssentialEvents",
+      "exported": true,
+      "qualifiedName": "AppListenerManager.lockEssentialEvents",
+      "line": 290,
+      "endLine": 304,
+      "signature": "public lockEssentialEvents(app: ProxiedApp): void",
+      "containerClass": "AppListenerManager",
+      "calls": [
+        {
+          "name": "getEssentials",
+          "edgeType": "call"
+        },
+        {
+          "name": "forEach",
+          "edgeType": "call"
+        },
+        {
+          "name": "get",
+          "edgeType": "call"
+        },
+        {
+          "name": "getID",
+          "edgeType": "call"
+        },
+        {
+          "name": "ProxiedApp",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "getListeners",
+      "exported": true,
+      "qualifiedName": "AppListenerManager.getListeners",
+      "line": 294,
+      "endLine": 302,
+      "signature": "public getListeners(int: AppInterface): Array<ProxiedApp>",
+      "containerClass": "AppListenerManager",
+      "calls": [
+        {
+          "name": "get",
+          "edgeType": "call"
+        },
+        {
+          "name": "push",
+          "edgeType": "call"
+        },
+        {
+          "name": "getOneById",
+          "edgeType": "call"
+        },
+        {
+          "name": "AppInterface",
+          "edgeType": "type"
+        },
+        {
+          "name": "ProxiedApp",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "isEventBlocked",
+      "exported": true,
+      "qualifiedName": "AppListenerManager.isEventBlocked",
+      "line": 298,
+      "endLine": 302,
+      "signature": "public isEventBlocked(event: AppInterface): boolean",
+      "containerClass": "AppListenerManager",
+      "calls": [
+        {
+          "name": "get",
+          "edgeType": "call"
+        },
+        {
+          "name": "AppInterface",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "executeListener",
+      "exported": true,
+      "qualifiedName": "AppListenerManager.executeListener",
+      "line": 303,
+      "endLine": 431,
+      "signature": "public async executeListener<I extends keyof IListenerExecutor>( int: I, data: IListenerExecutor[I]['args'][0], ): Promise<IListenerExecutor[I]['result']>",
+      "containerClass": "AppListenerManager",
+      "calls": [
+        {
+          "name": "isEventBlocked",
+          "edgeType": "call"
+        },
+        {
+          "name": "executePreMessageSentPrevent",
+          "edgeType": "call"
+        },
+        {
+          "name": "executePreMessageSentExtend",
+          "edgeType": "call"
+        },
+        {
+          "name": "executePreMessageSentModify",
+          "edgeType": "call"
+        },
+        {
+          "name": "executePostMessageSent",
+          "edgeType": "call"
+        },
+        {
+          "name": "executePostSystemMessageSent",
+          "edgeType": "call"
+        },
+        {
+          "name": "executePreMessageDeletePrevent",
+          "edgeType": "call"
+        },
+        {
+          "name": "executePostMessageDelete",
+          "edgeType": "call"
+        },
+        {
+          "name": "executePreMessageUpdatedPrevent",
+          "edgeType": "call"
+        },
+        {
+          "name": "executePreMessageUpdatedExtend",
+          "edgeType": "call"
+        },
+        {
+          "name": "executePreMessageUpdatedModify",
+          "edgeType": "call"
+        },
+        {
+          "name": "executePostMessageUpdated",
+          "edgeType": "call"
+        },
+        {
+          "name": "executePostMessageReacted",
+          "edgeType": "call"
+        },
+        {
+          "name": "executePostMessageFollowed",
+          "edgeType": "call"
+        },
+        {
+          "name": "executePostMessagePinned",
+          "edgeType": "call"
+        },
+        {
+          "name": "executePostMessageStarred",
+          "edgeType": "call"
+        },
+        {
+          "name": "executePostMessageReported",
+          "edgeType": "call"
+        },
+        {
+          "name": "executePreRoomCreatePrevent",
+          "edgeType": "call"
+        },
+        {
+          "name": "executePreRoomCreateExtend",
+          "edgeType": "call"
+        },
+        {
+          "name": "executePreRoomCreateModify",
+          "edgeType": "call"
+        },
+        {
+          "name": "executePostRoomCreate",
+          "edgeType": "call"
+        },
+        {
+          "name": "executePreRoomDeletePrevent",
+          "edgeType": "call"
+        },
+        {
+          "name": "executePostRoomDeleted",
+          "edgeType": "call"
+        },
+        {
+          "name": "executePreRoomUserJoined",
+          "edgeType": "call"
+        },
+        {
+          "name": "executePostRoomUserJoined",
+          "edgeType": "call"
+        },
+        {
+          "name": "executePreRoomUserLeave",
+          "edgeType": "call"
+        },
+        {
+          "name": "executePostRoomUserLeave",
+          "edgeType": "call"
+        },
+        {
+          "name": "executePostExternalComponentOpened",
+          "edgeType": "call"
+        },
+        {
+          "name": "executePostExternalComponentClosed",
+          "edgeType": "call"
+        },
+        {
+          "name": "executeUIKitInteraction",
+          "edgeType": "call"
+        },
+        {
+          "name": "executeUIKitLivechatInteraction",
+          "edgeType": "call"
+        },
+        {
+          "name": "executePostLivechatRoomStarted",
+          "edgeType": "call"
+        },
+        {
+          "name": "executeLivechatRoomClosedHandler",
+          "edgeType": "call"
+        },
+        {
+          "name": "executePreLivechatRoomCreatePrevent",
+          "edgeType": "call"
+        },
+        {
+          "name": "executePostLivechatRoomClosed",
+          "edgeType": "call"
+        },
+        {
+          "name": "executePostLivechatRoomSaved",
+          "edgeType": "call"
+        },
+        {
+          "name": "executePostLivechatAgentAssigned",
+          "edgeType": "call"
+        },
+        {
+          "name": "executePostLivechatAgentUnassigned",
+          "edgeType": "call"
+        },
+        {
+          "name": "executePostLivechatRoomTransferred",
+          "edgeType": "call"
+        },
+        {
+          "name": "executePostLivechatDepartmentRemoved",
+          "edgeType": "call"
+        },
+        {
+          "name": "executePostLivechatDepartmentDisabled",
+          "edgeType": "call"
+        },
+        {
+          "name": "executePostLivechatGuestSaved",
+          "edgeType": "call"
+        },
+        {
+          "name": "executePreFileUpload",
+          "edgeType": "call"
+        },
+        {
+          "name": "executePreEmailSent",
+          "edgeType": "call"
+        },
+        {
+          "name": "executePostUserCreated",
+          "edgeType": "call"
+        },
+        {
+          "name": "executePostUserUpdated",
+          "edgeType": "call"
+        },
+        {
+          "name": "executePostUserDeleted",
+          "edgeType": "call"
+        },
+        {
+          "name": "executePostUserLoggedIn",
+          "edgeType": "call"
+        },
+        {
+          "name": "executePostUserLoggedOut",
+          "edgeType": "call"
+        },
+        {
+          "name": "executePostUserStatusChanged",
+          "edgeType": "call"
+        },
+        {
+          "name": "warn",
+          "edgeType": "call"
+        },
+        {
+          "name": "EssentialAppDisabledException",
+          "edgeType": "new"
+        },
+        {
+          "name": "IListenerExecutor",
+          "edgeType": "type"
+        },
+        {
+          "name": "IMessage",
+          "edgeType": "type"
+        },
+        {
+          "name": "IMessageDeleteContext",
+          "edgeType": "type"
+        },
+        {
+          "name": "IMessageReactionContext",
+          "edgeType": "type"
+        },
+        {
+          "name": "IMessageFollowContext",
+          "edgeType": "type"
+        },
+        {
+          "name": "IMessagePinContext",
+          "edgeType": "type"
+        },
+        {
+          "name": "IMessageStarContext",
+          "edgeType": "type"
+        },
+        {
+          "name": "IMessageReportContext",
+          "edgeType": "type"
+        },
+        {
+          "name": "IRoom",
+          "edgeType": "type"
+        },
+        {
+          "name": "IRoomUserJoinedContext",
+          "edgeType": "type"
+        },
+        {
+          "name": "IRoomUserLeaveContext",
+          "edgeType": "type"
+        },
+        {
+          "name": "IExternalComponent",
+          "edgeType": "type"
+        },
+        {
+          "name": "UIKitIncomingInteraction",
+          "edgeType": "type"
+        },
+        {
+          "name": "IUIKitLivechatIncomingInteraction",
+          "edgeType": "type"
+        },
+        {
+          "name": "ILivechatRoom",
+          "edgeType": "type"
+        },
+        {
+          "name": "ILivechatEventContext",
+          "edgeType": "type"
+        },
+        {
+          "name": "ILivechatTransferEventContext",
+          "edgeType": "type"
+        },
+        {
+          "name": "ILivechatDepartmentEventContext",
+          "edgeType": "type"
+        },
+        {
+          "name": "IVisitor",
+          "edgeType": "type"
+        },
+        {
+          "name": "IFileUploadInternalContext",
+          "edgeType": "type"
+        },
+        {
+          "name": "IPreEmailSentContext",
+          "edgeType": "type"
+        },
+        {
+          "name": "IUserContext",
+          "edgeType": "type"
+        },
+        {
+          "name": "IUser",
+          "edgeType": "type"
+        },
+        {
+          "name": "IUserStatusContext",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "executePreMessageSentPrevent",
+      "exported": true,
+      "qualifiedName": "AppListenerManager.executePreMessageSentPrevent",
+      "line": 311,
+      "endLine": 338,
+      "signature": "private async executePreMessageSentPrevent(data: IMessage): Promise<boolean>",
+      "containerClass": "AppListenerManager",
+      "calls": [
+        {
+          "name": "get",
+          "edgeType": "call"
+        },
+        {
+          "name": "getOneById",
+          "edgeType": "call"
+        },
+        {
+          "name": "catch",
+          "edgeType": "call"
+        },
+        {
+          "name": "call",
+          "edgeType": "call"
+        },
+        {
+          "name": "IMessage",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "executePreMessageSentExtend",
+      "exported": true,
+      "qualifiedName": "AppListenerManager.executePreMessageSentExtend",
+      "line": 315,
+      "endLine": 336,
+      "signature": "private async executePreMessageSentExtend(data: IMessage): Promise<IMessage>",
+      "containerClass": "AppListenerManager",
+      "calls": [
+        {
+          "name": "get",
+          "edgeType": "call"
+        },
+        {
+          "name": "getOneById",
+          "edgeType": "call"
+        },
+        {
+          "name": "catch",
+          "edgeType": "call"
+        },
+        {
+          "name": "call",
+          "edgeType": "call"
+        },
+        {
+          "name": "IMessage",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "executePreMessageSentModify",
+      "exported": true,
+      "qualifiedName": "AppListenerManager.executePreMessageSentModify",
+      "line": 319,
+      "endLine": 340,
+      "signature": "private async executePreMessageSentModify(data: IMessage): Promise<IMessage>",
+      "containerClass": "AppListenerManager",
+      "calls": [
+        {
+          "name": "get",
+          "edgeType": "call"
+        },
+        {
+          "name": "getOneById",
+          "edgeType": "call"
+        },
+        {
+          "name": "catch",
+          "edgeType": "call"
+        },
+        {
+          "name": "call",
+          "edgeType": "call"
+        },
+        {
+          "name": "IMessage",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "executePostMessageSent",
+      "exported": true,
+      "qualifiedName": "AppListenerManager.executePostMessageSent",
+      "line": 323,
+      "endLine": 365,
+      "signature": "private async executePostMessageSent(data: IMessage): Promise<void>",
+      "containerClass": "AppListenerManager",
+      "calls": [
+        {
+          "name": "get",
+          "edgeType": "call"
+        },
+        {
+          "name": "getOneById",
+          "edgeType": "call"
+        },
+        {
+          "name": "getReader",
+          "edgeType": "call"
+        },
+        {
+          "name": "getAppUser",
+          "edgeType": "call"
+        },
+        {
+          "name": "getUserReader",
+          "edgeType": "call"
+        },
+        {
+          "name": "includes",
+          "edgeType": "call"
+        },
+        {
+          "name": "call",
+          "edgeType": "call"
+        },
+        {
+          "name": "catch",
+          "edgeType": "call"
+        },
+        {
+          "name": "IMessage",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "executePostSystemMessageSent",
+      "exported": true,
+      "qualifiedName": "AppListenerManager.executePostSystemMessageSent",
+      "line": 327,
+      "endLine": 332,
+      "signature": "private async executePostSystemMessageSent(data: IMessage): Promise<void>",
+      "containerClass": "AppListenerManager",
+      "calls": [
+        {
+          "name": "get",
+          "edgeType": "call"
+        },
+        {
+          "name": "getOneById",
+          "edgeType": "call"
+        },
+        {
+          "name": "call",
+          "edgeType": "call"
+        },
+        {
+          "name": "IMessage",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "executePreMessageDeletePrevent",
+      "exported": true,
+      "qualifiedName": "AppListenerManager.executePreMessageDeletePrevent",
+      "line": 331,
+      "endLine": 356,
+      "signature": "private async executePreMessageDeletePrevent(data: IMessage): Promise<boolean>",
+      "containerClass": "AppListenerManager",
+      "calls": [
+        {
+          "name": "get",
+          "edgeType": "call"
+        },
+        {
+          "name": "getOneById",
+          "edgeType": "call"
+        },
+        {
+          "name": "catch",
+          "edgeType": "call"
+        },
+        {
+          "name": "call",
+          "edgeType": "call"
+        },
+        {
+          "name": "IMessage",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "executePostMessageDelete",
+      "exported": true,
+      "qualifiedName": "AppListenerManager.executePostMessageDelete",
+      "line": 335,
+      "endLine": 363,
+      "signature": "private async executePostMessageDelete(data: IMessageDeleteContext): Promise<void>",
+      "containerClass": "AppListenerManager",
+      "calls": [
+        {
+          "name": "deepCloneAndFreeze",
+          "edgeType": "call"
+        },
+        {
+          "name": "get",
+          "edgeType": "call"
+        },
+        {
+          "name": "getOneById",
+          "edgeType": "call"
+        },
+        {
+          "name": "catch",
+          "edgeType": "call"
+        },
+        {
+          "name": "call",
+          "edgeType": "call"
+        },
+        {
+          "name": "IMessageDeleteContext",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "executePreMessageUpdatedPrevent",
+      "exported": true,
+      "qualifiedName": "AppListenerManager.executePreMessageUpdatedPrevent",
+      "line": 339,
+      "endLine": 364,
+      "signature": "private async executePreMessageUpdatedPrevent(data: IMessage): Promise<boolean>",
+      "containerClass": "AppListenerManager",
+      "calls": [
+        {
+          "name": "get",
+          "edgeType": "call"
+        },
+        {
+          "name": "getOneById",
+          "edgeType": "call"
+        },
+        {
+          "name": "catch",
+          "edgeType": "call"
+        },
+        {
+          "name": "call",
+          "edgeType": "call"
+        },
+        {
+          "name": "IMessage",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "executePreMessageUpdatedExtend",
+      "exported": true,
+      "qualifiedName": "AppListenerManager.executePreMessageUpdatedExtend",
+      "line": 343,
+      "endLine": 364,
+      "signature": "private async executePreMessageUpdatedExtend(data: IMessage): Promise<IMessage>",
+      "containerClass": "AppListenerManager",
+      "calls": [
+        {
+          "name": "get",
+          "edgeType": "call"
+        },
+        {
+          "name": "getOneById",
+          "edgeType": "call"
+        },
+        {
+          "name": "catch",
+          "edgeType": "call"
+        },
+        {
+          "name": "call",
+          "edgeType": "call"
+        },
+        {
+          "name": "IMessage",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "executePreMessageUpdatedModify",
+      "exported": true,
+      "qualifiedName": "AppListenerManager.executePreMessageUpdatedModify",
+      "line": 347,
+      "endLine": 368,
+      "signature": "private async executePreMessageUpdatedModify(data: IMessage): Promise<IMessage>",
+      "containerClass": "AppListenerManager",
+      "calls": [
+        {
+          "name": "get",
+          "edgeType": "call"
+        },
+        {
+          "name": "getOneById",
+          "edgeType": "call"
+        },
+        {
+          "name": "catch",
+          "edgeType": "call"
+        },
+        {
+          "name": "call",
+          "edgeType": "call"
+        },
+        {
+          "name": "IMessage",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "executePostMessageUpdated",
+      "exported": true,
+      "qualifiedName": "AppListenerManager.executePostMessageUpdated",
+      "line": 351,
+      "endLine": 368,
+      "signature": "private async executePostMessageUpdated(data: IMessage): Promise<void>",
+      "containerClass": "AppListenerManager",
+      "calls": [
+        {
+          "name": "get",
+          "edgeType": "call"
+        },
+        {
+          "name": "getOneById",
+          "edgeType": "call"
+        },
+        {
+          "name": "catch",
+          "edgeType": "call"
+        },
+        {
+          "name": "call",
+          "edgeType": "call"
+        },
+        {
+          "name": "IMessage",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "executePreRoomCreatePrevent",
+      "exported": true,
+      "qualifiedName": "AppListenerManager.executePreRoomCreatePrevent",
+      "line": 356,
+      "endLine": 381,
+      "signature": "private async executePreRoomCreatePrevent(data: IRoom): Promise<boolean>",
+      "containerClass": "AppListenerManager",
+      "calls": [
+        {
+          "name": "get",
+          "edgeType": "call"
+        },
+        {
+          "name": "getOneById",
+          "edgeType": "call"
+        },
+        {
+          "name": "catch",
+          "edgeType": "call"
+        },
+        {
+          "name": "call",
+          "edgeType": "call"
+        },
+        {
+          "name": "IRoom",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "executePreRoomCreateExtend",
+      "exported": true,
+      "qualifiedName": "AppListenerManager.executePreRoomCreateExtend",
+      "line": 360,
+      "endLine": 381,
+      "signature": "private async executePreRoomCreateExtend(data: IRoom): Promise<IRoom>",
+      "containerClass": "AppListenerManager",
+      "calls": [
+        {
+          "name": "get",
+          "edgeType": "call"
+        },
+        {
+          "name": "getOneById",
+          "edgeType": "call"
+        },
+        {
+          "name": "catch",
+          "edgeType": "call"
+        },
+        {
+          "name": "call",
+          "edgeType": "call"
+        },
+        {
+          "name": "IRoom",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "executePreRoomCreateModify",
+      "exported": true,
+      "qualifiedName": "AppListenerManager.executePreRoomCreateModify",
+      "line": 364,
+      "endLine": 385,
+      "signature": "private async executePreRoomCreateModify(data: IRoom): Promise<IRoom>",
+      "containerClass": "AppListenerManager",
+      "calls": [
+        {
+          "name": "get",
+          "edgeType": "call"
+        },
+        {
+          "name": "getOneById",
+          "edgeType": "call"
+        },
+        {
+          "name": "catch",
+          "edgeType": "call"
+        },
+        {
+          "name": "call",
+          "edgeType": "call"
+        },
+        {
+          "name": "IRoom",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "executePostRoomCreate",
+      "exported": true,
+      "qualifiedName": "AppListenerManager.executePostRoomCreate",
+      "line": 368,
+      "endLine": 385,
+      "signature": "private async executePostRoomCreate(data: IRoom): Promise<void>",
+      "containerClass": "AppListenerManager",
+      "calls": [
+        {
+          "name": "get",
+          "edgeType": "call"
+        },
+        {
+          "name": "getOneById",
+          "edgeType": "call"
+        },
+        {
+          "name": "catch",
+          "edgeType": "call"
+        },
+        {
+          "name": "call",
+          "edgeType": "call"
+        },
+        {
+          "name": "IRoom",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "executePreRoomDeletePrevent",
+      "exported": true,
+      "qualifiedName": "AppListenerManager.executePreRoomDeletePrevent",
+      "line": 372,
+      "endLine": 397,
+      "signature": "private async executePreRoomDeletePrevent(data: IRoom): Promise<boolean>",
+      "containerClass": "AppListenerManager",
+      "calls": [
+        {
+          "name": "get",
+          "edgeType": "call"
+        },
+        {
+          "name": "getOneById",
+          "edgeType": "call"
+        },
+        {
+          "name": "catch",
+          "edgeType": "call"
+        },
+        {
+          "name": "call",
+          "edgeType": "call"
+        },
+        {
+          "name": "IRoom",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "executePostRoomDeleted",
+      "exported": true,
+      "qualifiedName": "AppListenerManager.executePostRoomDeleted",
+      "line": 376,
+      "endLine": 393,
+      "signature": "private async executePostRoomDeleted(data: IRoom): Promise<void>",
+      "containerClass": "AppListenerManager",
+      "calls": [
+        {
+          "name": "get",
+          "edgeType": "call"
+        },
+        {
+          "name": "getOneById",
+          "edgeType": "call"
+        },
+        {
+          "name": "catch",
+          "edgeType": "call"
+        },
+        {
+          "name": "call",
+          "edgeType": "call"
+        },
+        {
+          "name": "IRoom",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "executePreRoomUserJoined",
+      "exported": true,
+      "qualifiedName": "AppListenerManager.executePreRoomUserJoined",
+      "line": 380,
+      "endLine": 386,
+      "signature": "private async executePreRoomUserJoined(externalData: IRoomUserJoinedContext): Promise<void>",
+      "containerClass": "AppListenerManager",
+      "calls": [
+        {
+          "name": "get",
+          "edgeType": "call"
+        },
+        {
+          "name": "getOneById",
+          "edgeType": "call"
+        },
+        {
+          "name": "call",
+          "edgeType": "call"
+        },
+        {
+          "name": "IRoomUserJoinedContext",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "executePostRoomUserJoined",
+      "exported": true,
+      "qualifiedName": "AppListenerManager.executePostRoomUserJoined",
+      "line": 384,
+      "endLine": 390,
+      "signature": "private async executePostRoomUserJoined(externalData: IRoomUserJoinedContext): Promise<void>",
+      "containerClass": "AppListenerManager",
+      "calls": [
+        {
+          "name": "get",
+          "edgeType": "call"
+        },
+        {
+          "name": "getOneById",
+          "edgeType": "call"
+        },
+        {
+          "name": "call",
+          "edgeType": "call"
+        },
+        {
+          "name": "IRoomUserJoinedContext",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "executePreRoomUserLeave",
+      "exported": true,
+      "qualifiedName": "AppListenerManager.executePreRoomUserLeave",
+      "line": 388,
+      "endLine": 394,
+      "signature": "private async executePreRoomUserLeave(externalData: IRoomUserLeaveContext): Promise<void>",
+      "containerClass": "AppListenerManager",
+      "calls": [
+        {
+          "name": "get",
+          "edgeType": "call"
+        },
+        {
+          "name": "getOneById",
+          "edgeType": "call"
+        },
+        {
+          "name": "call",
+          "edgeType": "call"
+        },
+        {
+          "name": "IRoomUserLeaveContext",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "executePostRoomUserLeave",
+      "exported": true,
+      "qualifiedName": "AppListenerManager.executePostRoomUserLeave",
+      "line": 392,
+      "endLine": 398,
+      "signature": "private async executePostRoomUserLeave(externalData: IRoomUserLeaveContext): Promise<void>",
+      "containerClass": "AppListenerManager",
+      "calls": [
+        {
+          "name": "get",
+          "edgeType": "call"
+        },
+        {
+          "name": "getOneById",
+          "edgeType": "call"
+        },
+        {
+          "name": "call",
+          "edgeType": "call"
+        },
+        {
+          "name": "IRoomUserLeaveContext",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "executePostExternalComponentOpened",
+      "exported": true,
+      "qualifiedName": "AppListenerManager.executePostExternalComponentOpened",
+      "line": 397,
+      "endLine": 403,
+      "signature": "private async executePostExternalComponentOpened(data: IExternalComponent): Promise<void>",
+      "containerClass": "AppListenerManager",
+      "calls": [
+        {
+          "name": "get",
+          "edgeType": "call"
+        },
+        {
+          "name": "getOneById",
+          "edgeType": "call"
+        },
+        {
+          "name": "call",
+          "edgeType": "call"
+        },
+        {
+          "name": "IExternalComponent",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "executePostExternalComponentClosed",
+      "exported": true,
+      "qualifiedName": "AppListenerManager.executePostExternalComponentClosed",
+      "line": 401,
+      "endLine": 407,
+      "signature": "private async executePostExternalComponentClosed(data: IExternalComponent): Promise<void>",
+      "containerClass": "AppListenerManager",
+      "calls": [
+        {
+          "name": "get",
+          "edgeType": "call"
+        },
+        {
+          "name": "getOneById",
+          "edgeType": "call"
+        },
+        {
+          "name": "call",
+          "edgeType": "call"
+        },
+        {
+          "name": "IExternalComponent",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "inner_function",
+      "name": "handleError",
+      "exported": false,
+      "qualifiedName": "AppListenerManager.executeUIKitInteraction.handleError",
+      "line": 409,
+      "endLine": 425,
+      "signature": "(method: string) =>",
+      "containerClass": "AppListenerManager",
+      "calls": [
+        {
+          "name": "has",
+          "edgeType": "call"
+        },
+        {
+          "name": "warn",
+          "edgeType": "call"
+        },
+        {
+          "name": "get",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "executeUIKitInteraction",
+      "exported": true,
+      "qualifiedName": "AppListenerManager.executeUIKitInteraction",
+      "line": 405,
+      "endLine": 509,
+      "signature": "private async executeUIKitInteraction(data: UIKitIncomingInteraction): Promise<IUIKitResponse>",
+      "containerClass": "AppListenerManager",
+      "calls": [
+        {
+          "name": "getOneById",
+          "edgeType": "call"
+        },
+        {
+          "name": "has",
+          "edgeType": "call"
+        },
+        {
+          "name": "warn",
+          "edgeType": "call"
+        },
+        {
+          "name": "get",
+          "edgeType": "call"
+        },
+        {
+          "name": "catch",
+          "edgeType": "call"
+        },
+        {
+          "name": "call",
+          "edgeType": "call"
+        },
+        {
+          "name": "handleError",
+          "edgeType": "call"
+        },
+        {
+          "name": "isUIKitIncomingInteractionActionButtonMessageBox",
+          "edgeType": "call"
+        },
+        {
+          "name": "UIKitIncomingInteraction",
+          "edgeType": "type"
+        },
+        {
+          "name": "IUIKitResponse",
+          "edgeType": "type"
+        },
+        {
+          "name": "IUIKitSurface",
+          "edgeType": "type"
+        },
+        {
+          "name": "UIActionButtonContext",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "executeUIKitLivechatInteraction",
+      "exported": true,
+      "qualifiedName": "AppListenerManager.executeUIKitLivechatInteraction",
+      "line": 409,
+      "endLine": 447,
+      "signature": "private async executeUIKitLivechatInteraction(data: IUIKitLivechatIncomingInteraction): Promise<IUIKitResponse>",
+      "containerClass": "AppListenerManager",
+      "calls": [
+        {
+          "name": "getOneById",
+          "edgeType": "call"
+        },
+        {
+          "name": "call",
+          "edgeType": "call"
+        },
+        {
+          "name": "IUIKitLivechatIncomingInteraction",
+          "edgeType": "type"
+        },
+        {
+          "name": "IUIKitResponse",
+          "edgeType": "type"
+        },
+        {
+          "name": "UIKitIncomingInteractionType",
+          "edgeType": "type"
+        },
+        {
+          "name": "IUIKitLivechatBlockIncomingInteraction",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "executePreLivechatRoomCreatePrevent",
+      "exported": true,
+      "qualifiedName": "AppListenerManager.executePreLivechatRoomCreatePrevent",
+      "line": 414,
+      "endLine": 420,
+      "signature": "private async executePreLivechatRoomCreatePrevent(data: ILivechatRoom): Promise<void>",
+      "containerClass": "AppListenerManager",
+      "calls": [
+        {
+          "name": "get",
+          "edgeType": "call"
+        },
+        {
+          "name": "getOneById",
+          "edgeType": "call"
+        },
+        {
+          "name": "call",
+          "edgeType": "call"
+        },
+        {
+          "name": "ILivechatRoom",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "executePostLivechatRoomStarted",
+      "exported": true,
+      "qualifiedName": "AppListenerManager.executePostLivechatRoomStarted",
+      "line": 418,
+      "endLine": 424,
+      "signature": "private async executePostLivechatRoomStarted(data: ILivechatRoom): Promise<void>",
+      "containerClass": "AppListenerManager",
+      "calls": [
+        {
+          "name": "get",
+          "edgeType": "call"
+        },
+        {
+          "name": "getOneById",
+          "edgeType": "call"
+        },
+        {
+          "name": "call",
+          "edgeType": "call"
+        },
+        {
+          "name": "ILivechatRoom",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "executeLivechatRoomClosedHandler",
+      "exported": true,
+      "qualifiedName": "AppListenerManager.executeLivechatRoomClosedHandler",
+      "line": 422,
+      "endLine": 428,
+      "signature": "private async executeLivechatRoomClosedHandler(data: ILivechatRoom): Promise<void>",
+      "containerClass": "AppListenerManager",
+      "calls": [
+        {
+          "name": "get",
+          "edgeType": "call"
+        },
+        {
+          "name": "getOneById",
+          "edgeType": "call"
+        },
+        {
+          "name": "call",
+          "edgeType": "call"
+        },
+        {
+          "name": "ILivechatRoom",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "executePostLivechatRoomClosed",
+      "exported": true,
+      "qualifiedName": "AppListenerManager.executePostLivechatRoomClosed",
+      "line": 426,
+      "endLine": 432,
+      "signature": "private async executePostLivechatRoomClosed(data: ILivechatRoom): Promise<void>",
+      "containerClass": "AppListenerManager",
+      "calls": [
+        {
+          "name": "get",
+          "edgeType": "call"
+        },
+        {
+          "name": "getOneById",
+          "edgeType": "call"
+        },
+        {
+          "name": "call",
+          "edgeType": "call"
+        },
+        {
+          "name": "ILivechatRoom",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "executePostLivechatAgentAssigned",
+      "exported": true,
+      "qualifiedName": "AppListenerManager.executePostLivechatAgentAssigned",
+      "line": 430,
+      "endLine": 436,
+      "signature": "private async executePostLivechatAgentAssigned(data: ILivechatEventContext): Promise<void>",
+      "containerClass": "AppListenerManager",
+      "calls": [
+        {
+          "name": "get",
+          "edgeType": "call"
+        },
+        {
+          "name": "getOneById",
+          "edgeType": "call"
+        },
+        {
+          "name": "call",
+          "edgeType": "call"
+        },
+        {
+          "name": "ILivechatEventContext",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "executePostLivechatAgentUnassigned",
+      "exported": true,
+      "qualifiedName": "AppListenerManager.executePostLivechatAgentUnassigned",
+      "line": 434,
+      "endLine": 440,
+      "signature": "private async executePostLivechatAgentUnassigned(data: ILivechatEventContext): Promise<void>",
+      "containerClass": "AppListenerManager",
+      "calls": [
+        {
+          "name": "get",
+          "edgeType": "call"
+        },
+        {
+          "name": "getOneById",
+          "edgeType": "call"
+        },
+        {
+          "name": "call",
+          "edgeType": "call"
+        },
+        {
+          "name": "ILivechatEventContext",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "executePostLivechatRoomTransferred",
+      "exported": true,
+      "qualifiedName": "AppListenerManager.executePostLivechatRoomTransferred",
+      "line": 438,
+      "endLine": 444,
+      "signature": "private async executePostLivechatRoomTransferred(data: ILivechatTransferEventContext): Promise<void>",
+      "containerClass": "AppListenerManager",
+      "calls": [
+        {
+          "name": "get",
+          "edgeType": "call"
+        },
+        {
+          "name": "getOneById",
+          "edgeType": "call"
+        },
+        {
+          "name": "call",
+          "edgeType": "call"
+        },
+        {
+          "name": "ILivechatTransferEventContext",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "executePostLivechatGuestSaved",
+      "exported": true,
+      "qualifiedName": "AppListenerManager.executePostLivechatGuestSaved",
+      "line": 442,
+      "endLine": 448,
+      "signature": "private async executePostLivechatGuestSaved(data: IVisitor): Promise<void>",
+      "containerClass": "AppListenerManager",
+      "calls": [
+        {
+          "name": "get",
+          "edgeType": "call"
+        },
+        {
+          "name": "getOneById",
+          "edgeType": "call"
+        },
+        {
+          "name": "call",
+          "edgeType": "call"
+        },
+        {
+          "name": "IVisitor",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "executePostLivechatRoomSaved",
+      "exported": true,
+      "qualifiedName": "AppListenerManager.executePostLivechatRoomSaved",
+      "line": 446,
+      "endLine": 452,
+      "signature": "private async executePostLivechatRoomSaved(data: ILivechatRoom): Promise<void>",
+      "containerClass": "AppListenerManager",
+      "calls": [
+        {
+          "name": "get",
+          "edgeType": "call"
+        },
+        {
+          "name": "getOneById",
+          "edgeType": "call"
+        },
+        {
+          "name": "call",
+          "edgeType": "call"
+        },
+        {
+          "name": "ILivechatRoom",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "executePostLivechatDepartmentRemoved",
+      "exported": true,
+      "qualifiedName": "AppListenerManager.executePostLivechatDepartmentRemoved",
+      "line": 450,
+      "endLine": 456,
+      "signature": "private async executePostLivechatDepartmentRemoved(data: ILivechatDepartmentEventContext): Promise<void>",
+      "containerClass": "AppListenerManager",
+      "calls": [
+        {
+          "name": "get",
+          "edgeType": "call"
+        },
+        {
+          "name": "getOneById",
+          "edgeType": "call"
+        },
+        {
+          "name": "call",
+          "edgeType": "call"
+        },
+        {
+          "name": "ILivechatDepartmentEventContext",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "executePostLivechatDepartmentDisabled",
+      "exported": true,
+      "qualifiedName": "AppListenerManager.executePostLivechatDepartmentDisabled",
+      "line": 454,
+      "endLine": 460,
+      "signature": "private async executePostLivechatDepartmentDisabled(data: ILivechatDepartmentEventContext): Promise<void>",
+      "containerClass": "AppListenerManager",
+      "calls": [
+        {
+          "name": "get",
+          "edgeType": "call"
+        },
+        {
+          "name": "getOneById",
+          "edgeType": "call"
+        },
+        {
+          "name": "call",
+          "edgeType": "call"
+        },
+        {
+          "name": "ILivechatDepartmentEventContext",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "executePreFileUpload",
+      "exported": true,
+      "qualifiedName": "AppListenerManager.executePreFileUpload",
+      "line": 459,
+      "endLine": 465,
+      "signature": "private async executePreFileUpload(data: IFileUploadInternalContext): Promise<void>",
+      "containerClass": "AppListenerManager",
+      "calls": [
+        {
+          "name": "get",
+          "edgeType": "call"
+        },
+        {
+          "name": "getOneById",
+          "edgeType": "call"
+        },
+        {
+          "name": "call",
+          "edgeType": "call"
+        },
+        {
+          "name": "IFileUploadInternalContext",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "executePreEmailSent",
+      "exported": true,
+      "qualifiedName": "AppListenerManager.executePreEmailSent",
+      "line": 463,
+      "endLine": 476,
+      "signature": "private async executePreEmailSent(data: IPreEmailSentContext): Promise<IEmailDescriptor>",
+      "containerClass": "AppListenerManager",
+      "calls": [
+        {
+          "name": "get",
+          "edgeType": "call"
+        },
+        {
+          "name": "getOneById",
+          "edgeType": "call"
+        },
+        {
+          "name": "call",
+          "edgeType": "call"
+        },
+        {
+          "name": "IPreEmailSentContext",
+          "edgeType": "type"
+        },
+        {
+          "name": "IEmailDescriptor",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "executePostMessageReacted",
+      "exported": true,
+      "qualifiedName": "AppListenerManager.executePostMessageReacted",
+      "line": 467,
+      "endLine": 473,
+      "signature": "private async executePostMessageReacted(data: IMessageReactionContext): Promise<void>",
+      "containerClass": "AppListenerManager",
+      "calls": [
+        {
+          "name": "get",
+          "edgeType": "call"
+        },
+        {
+          "name": "getOneById",
+          "edgeType": "call"
+        },
+        {
+          "name": "call",
+          "edgeType": "call"
+        },
+        {
+          "name": "IMessageReactionContext",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "executePostMessageFollowed",
+      "exported": true,
+      "qualifiedName": "AppListenerManager.executePostMessageFollowed",
+      "line": 471,
+      "endLine": 477,
+      "signature": "private async executePostMessageFollowed(data: IMessageFollowContext): Promise<void>",
+      "containerClass": "AppListenerManager",
+      "calls": [
+        {
+          "name": "get",
+          "edgeType": "call"
+        },
+        {
+          "name": "getOneById",
+          "edgeType": "call"
+        },
+        {
+          "name": "call",
+          "edgeType": "call"
+        },
+        {
+          "name": "IMessageFollowContext",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "executePostMessagePinned",
+      "exported": true,
+      "qualifiedName": "AppListenerManager.executePostMessagePinned",
+      "line": 475,
+      "endLine": 481,
+      "signature": "private async executePostMessagePinned(data: IMessagePinContext): Promise<void>",
+      "containerClass": "AppListenerManager",
+      "calls": [
+        {
+          "name": "get",
+          "edgeType": "call"
+        },
+        {
+          "name": "getOneById",
+          "edgeType": "call"
+        },
+        {
+          "name": "call",
+          "edgeType": "call"
+        },
+        {
+          "name": "IMessagePinContext",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "executePostMessageStarred",
+      "exported": true,
+      "qualifiedName": "AppListenerManager.executePostMessageStarred",
+      "line": 479,
+      "endLine": 485,
+      "signature": "private async executePostMessageStarred(data: IMessageStarContext): Promise<void>",
+      "containerClass": "AppListenerManager",
+      "calls": [
+        {
+          "name": "get",
+          "edgeType": "call"
+        },
+        {
+          "name": "getOneById",
+          "edgeType": "call"
+        },
+        {
+          "name": "call",
+          "edgeType": "call"
+        },
+        {
+          "name": "IMessageStarContext",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "executePostMessageReported",
+      "exported": true,
+      "qualifiedName": "AppListenerManager.executePostMessageReported",
+      "line": 483,
+      "endLine": 489,
+      "signature": "private async executePostMessageReported(data: IMessageReportContext): Promise<void>",
+      "containerClass": "AppListenerManager",
+      "calls": [
+        {
+          "name": "get",
+          "edgeType": "call"
+        },
+        {
+          "name": "getOneById",
+          "edgeType": "call"
+        },
+        {
+          "name": "call",
+          "edgeType": "call"
+        },
+        {
+          "name": "IMessageReportContext",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "executePostUserCreated",
+      "exported": true,
+      "qualifiedName": "AppListenerManager.executePostUserCreated",
+      "line": 487,
+      "endLine": 493,
+      "signature": "private async executePostUserCreated(data: IUserContext): Promise<void>",
+      "containerClass": "AppListenerManager",
+      "calls": [
+        {
+          "name": "get",
+          "edgeType": "call"
+        },
+        {
+          "name": "getOneById",
+          "edgeType": "call"
+        },
+        {
+          "name": "call",
+          "edgeType": "call"
+        },
+        {
+          "name": "IUserContext",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "executePostUserUpdated",
+      "exported": true,
+      "qualifiedName": "AppListenerManager.executePostUserUpdated",
+      "line": 491,
+      "endLine": 497,
+      "signature": "private async executePostUserUpdated(data: IUserUpdateContext): Promise<void>",
+      "containerClass": "AppListenerManager",
+      "calls": [
+        {
+          "name": "get",
+          "edgeType": "call"
+        },
+        {
+          "name": "getOneById",
+          "edgeType": "call"
+        },
+        {
+          "name": "call",
+          "edgeType": "call"
+        },
+        {
+          "name": "IUserUpdateContext",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "executePostUserDeleted",
+      "exported": true,
+      "qualifiedName": "AppListenerManager.executePostUserDeleted",
+      "line": 495,
+      "endLine": 501,
+      "signature": "private async executePostUserDeleted(data: IUserContext): Promise<void>",
+      "containerClass": "AppListenerManager",
+      "calls": [
+        {
+          "name": "get",
+          "edgeType": "call"
+        },
+        {
+          "name": "getOneById",
+          "edgeType": "call"
+        },
+        {
+          "name": "call",
+          "edgeType": "call"
+        },
+        {
+          "name": "IUserContext",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "executePostUserLoggedIn",
+      "exported": true,
+      "qualifiedName": "AppListenerManager.executePostUserLoggedIn",
+      "line": 499,
+      "endLine": 505,
+      "signature": "private async executePostUserLoggedIn(data: IUser): Promise<void>",
+      "containerClass": "AppListenerManager",
+      "calls": [
+        {
+          "name": "get",
+          "edgeType": "call"
+        },
+        {
+          "name": "getOneById",
+          "edgeType": "call"
+        },
+        {
+          "name": "call",
+          "edgeType": "call"
+        },
+        {
+          "name": "IUser",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "executePostUserLoggedOut",
+      "exported": true,
+      "qualifiedName": "AppListenerManager.executePostUserLoggedOut",
+      "line": 503,
+      "endLine": 509,
+      "signature": "private async executePostUserLoggedOut(data: IUser): Promise<void>",
+      "containerClass": "AppListenerManager",
+      "calls": [
+        {
+          "name": "get",
+          "edgeType": "call"
+        },
+        {
+          "name": "getOneById",
+          "edgeType": "call"
+        },
+        {
+          "name": "call",
+          "edgeType": "call"
+        },
+        {
+          "name": "IUser",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "executePostUserStatusChanged",
+      "exported": true,
+      "qualifiedName": "AppListenerManager.executePostUserStatusChanged",
+      "line": 507,
+      "endLine": 513,
+      "signature": "private async executePostUserStatusChanged(data: IUserStatusContext): Promise<void>",
+      "containerClass": "AppListenerManager",
+      "calls": [
+        {
+          "name": "get",
+          "edgeType": "call"
+        },
+        {
+          "name": "getOneById",
+          "edgeType": "call"
+        },
+        {
+          "name": "call",
+          "edgeType": "call"
+        },
+        {
+          "name": "IUserStatusContext",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "constructor",
+      "exported": true,
+      "qualifiedName": "AppListenerManager.constructor",
+      "line": 265,
+      "endLine": 276,
+      "signature": "constructor(private readonly manager: AppManager)",
+      "containerClass": "AppListenerManager",
+      "calls": [
+        {
+          "name": "getAccessorManager",
+          "edgeType": "call"
+        },
+        {
+          "name": "forEach",
+          "edgeType": "call"
+        },
+        {
+          "name": "keys",
+          "edgeType": "call"
+        },
+        {
+          "name": "set",
+          "edgeType": "call"
+        },
+        {
+          "name": "Map",
+          "edgeType": "new"
+        },
+        {
+          "name": "Set",
+          "edgeType": "new"
+        },
+        {
+          "name": "AppManager",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "class_property",
+      "name": "am",
+      "exported": true,
+      "qualifiedName": "AppListenerManager.am",
+      "line": 251,
+      "endLine": 251,
+      "signature": "private am: AppAccessorManager;",
+      "containerClass": "AppListenerManager",
+      "calls": [
+        {
+          "name": "AppAccessorManager",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "class_property",
+      "name": "defaultHandlers",
+      "exported": true,
+      "qualifiedName": "AppListenerManager.defaultHandlers",
+      "line": 255,
+      "endLine": 255,
+      "signature": "private defaultHandlers = new Map<string, any>();",
+      "containerClass": "AppListenerManager",
+      "calls": [
+        {
+          "name": "Map",
+          "edgeType": "new"
+        }
+      ]
+    },
+    {
+      "type": "interface",
+      "name": "IListenerExecutor",
+      "line": 40,
+      "endLine": 246,
+      "signature": "export interface IListenerExecutor"
+    }
+  ],
+  "imports": [
+    {
+      "module": "@rocket.chat/apps-engine/definition/email",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/apps-engine/definition/exceptions",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/apps-engine/definition/externalComponent",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/apps-engine/definition/livechat",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/apps-engine/definition/livechat/ILivechatEventContext",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/apps-engine/definition/messages",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/apps-engine/definition/metadata",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/apps-engine/definition/rooms",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/apps-engine/definition/rooms",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/apps-engine/definition/ui",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/apps-engine/definition/uikit",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/apps-engine/definition/uikit",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/apps-engine/definition/uikit/IUIKitIncomingInteractionActionButton",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/apps-engine/definition/uikit/livechat",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/apps-engine/definition/uploads/IFileUploadContext",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/apps-engine/definition/users",
+      "resolved": "external"
+    },
+    {
+      "module": "./AppAccessorManager",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/packages/apps/src/server/managers/AppAccessorManager.ts"
+    },
+    {
+      "module": "../AppManager",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/packages/apps/src/server/AppManager.ts"
+    },
+    {
+      "module": "../ProxiedApp",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/packages/apps/src/server/ProxiedApp.ts"
+    },
+    {
+      "module": "../misc/Utilities",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/packages/apps/src/server/misc/Utilities.ts"
+    },
+    {
+      "module": "../runtime/base/BaseRuntimeSubprocessController",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/packages/apps/src/server/runtime/base/BaseRuntimeSubprocessController.ts"
+    }
+  ]
+}

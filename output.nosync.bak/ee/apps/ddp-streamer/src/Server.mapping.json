@@ -1,0 +1,584 @@
+{
+  "sourcePath": "/Users/echoooooo/Desktop/code/Rocket.Chat/ee/apps/ddp-streamer/src/Server.ts",
+  "symbols": [
+    {
+      "type": "class",
+      "name": "Server",
+      "exported": true,
+      "line": 37,
+      "endLine": 199,
+      "signature": "export class Server extends EventEmitter",
+      "calls": []
+    },
+    {
+      "type": "method",
+      "name": "setMetrics",
+      "exported": true,
+      "qualifiedName": "Server.setMetrics",
+      "line": 58,
+      "endLine": 60,
+      "signature": "setMetrics(metrics: IServiceMetrics): void",
+      "containerClass": "Server",
+      "calls": [
+        {
+          "name": "IServiceMetrics",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "call",
+      "exported": true,
+      "qualifiedName": "Server.call",
+      "line": 62,
+      "endLine": 84,
+      "signature": "async call(client: Client, packet: IPacket): Promise<void>",
+      "containerClass": "Server",
+      "calls": [
+        {
+          "name": "has",
+          "edgeType": "call"
+        },
+        {
+          "name": "callMethodWithToken",
+          "edgeType": "call"
+        },
+        {
+          "name": "result",
+          "edgeType": "call"
+        },
+        {
+          "name": "get",
+          "edgeType": "call"
+        },
+        {
+          "name": "apply",
+          "edgeType": "call"
+        },
+        {
+          "name": "handleInternalException",
+          "edgeType": "call"
+        },
+        {
+          "name": "MeteorError",
+          "edgeType": "new"
+        },
+        {
+          "name": "Client",
+          "edgeType": "type"
+        },
+        {
+          "name": "IPacket",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "methods",
+      "exported": true,
+      "qualifiedName": "Server.methods",
+      "line": 66,
+      "endLine": 73,
+      "signature": "methods(obj: Methods): void",
+      "containerClass": "Server",
+      "calls": [
+        {
+          "name": "forEach",
+          "edgeType": "call"
+        },
+        {
+          "name": "entries",
+          "edgeType": "call"
+        },
+        {
+          "name": "has",
+          "edgeType": "call"
+        },
+        {
+          "name": "set",
+          "edgeType": "call"
+        },
+        {
+          "name": "Methods",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "subscribe",
+      "exported": true,
+      "qualifiedName": "Server.subscribe",
+      "line": 70,
+      "endLine": 94,
+      "signature": "async subscribe(client: Client, packet: IPacket): Promise<void>",
+      "containerClass": "Server",
+      "calls": [
+        {
+          "name": "has",
+          "edgeType": "call"
+        },
+        {
+          "name": "get",
+          "edgeType": "call"
+        },
+        {
+          "name": "timer",
+          "edgeType": "call"
+        },
+        {
+          "name": "call",
+          "edgeType": "call"
+        },
+        {
+          "name": "end",
+          "edgeType": "call"
+        },
+        {
+          "name": "nosub",
+          "edgeType": "call"
+        },
+        {
+          "name": "handleInternalException",
+          "edgeType": "call"
+        },
+        {
+          "name": "MeteorError",
+          "edgeType": "new"
+        },
+        {
+          "name": "Publication",
+          "edgeType": "new"
+        },
+        {
+          "name": "Client",
+          "edgeType": "type"
+        },
+        {
+          "name": "IPacket",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "publish",
+      "exported": true,
+      "qualifiedName": "Server.publish",
+      "line": 74,
+      "endLine": 79,
+      "signature": "publish(name: string, fn: SubscriptionFn): void",
+      "containerClass": "Server",
+      "calls": [
+        {
+          "name": "has",
+          "edgeType": "call"
+        },
+        {
+          "name": "set",
+          "edgeType": "call"
+        },
+        {
+          "name": "SubscriptionFn",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "stream",
+      "exported": true,
+      "qualifiedName": "Server.stream",
+      "line": 78,
+      "endLine": 80,
+      "signature": "stream(stream: string, fn: SubscriptionFn): void",
+      "containerClass": "Server",
+      "calls": [
+        {
+          "name": "SubscriptionFn",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "result",
+      "exported": true,
+      "qualifiedName": "Server.result",
+      "line": 82,
+      "endLine": 97,
+      "signature": "result(client: Client, { id }: IPacket, result?: any, error?: Error | MeteorError): void",
+      "containerClass": "Server",
+      "calls": [
+        {
+          "name": "send",
+          "edgeType": "call"
+        },
+        {
+          "name": "serialize",
+          "edgeType": "call"
+        },
+        {
+          "name": "isMeteorError",
+          "edgeType": "call"
+        },
+        {
+          "name": "toJSON",
+          "edgeType": "call"
+        },
+        {
+          "name": "Client",
+          "edgeType": "type"
+        },
+        {
+          "name": "IPacket",
+          "edgeType": "type"
+        },
+        {
+          "name": "MeteorError",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "nosub",
+      "exported": true,
+      "qualifiedName": "Server.nosub",
+      "line": 86,
+      "endLine": 94,
+      "signature": "nosub(client: Client, { id }: IPacket, error?: Error | MeteorError): void",
+      "containerClass": "Server",
+      "calls": [
+        {
+          "name": "send",
+          "edgeType": "call"
+        },
+        {
+          "name": "serialize",
+          "edgeType": "call"
+        },
+        {
+          "name": "isMeteorError",
+          "edgeType": "call"
+        },
+        {
+          "name": "toJSON",
+          "edgeType": "call"
+        },
+        {
+          "name": "Client",
+          "edgeType": "type"
+        },
+        {
+          "name": "IPacket",
+          "edgeType": "type"
+        },
+        {
+          "name": "MeteorError",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "ready",
+      "exported": true,
+      "qualifiedName": "Server.ready",
+      "line": 90,
+      "endLine": 97,
+      "signature": "ready(client: Client, packet: IPacket): void",
+      "containerClass": "Server",
+      "calls": [
+        {
+          "name": "send",
+          "edgeType": "call"
+        },
+        {
+          "name": "serialize",
+          "edgeType": "call"
+        },
+        {
+          "name": "Client",
+          "edgeType": "type"
+        },
+        {
+          "name": "IPacket",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "added",
+      "exported": true,
+      "qualifiedName": "Server.added",
+      "line": 94,
+      "endLine": 103,
+      "signature": "added(client: Client, collection: string, id: string, fields: any): void",
+      "containerClass": "Server",
+      "calls": [
+        {
+          "name": "send",
+          "edgeType": "call"
+        },
+        {
+          "name": "serialize",
+          "edgeType": "call"
+        },
+        {
+          "name": "Client",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "changed",
+      "exported": true,
+      "qualifiedName": "Server.changed",
+      "line": 98,
+      "endLine": 107,
+      "signature": "changed(client: Client, collection: string, id: string, fields: any): void",
+      "containerClass": "Server",
+      "calls": [
+        {
+          "name": "send",
+          "edgeType": "call"
+        },
+        {
+          "name": "serialize",
+          "edgeType": "call"
+        },
+        {
+          "name": "Client",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "removed",
+      "exported": true,
+      "qualifiedName": "Server.removed",
+      "line": 102,
+      "endLine": 110,
+      "signature": "removed(client: Client, collection: string, id: string): void",
+      "containerClass": "Server",
+      "calls": [
+        {
+          "name": "send",
+          "edgeType": "call"
+        },
+        {
+          "name": "serialize",
+          "edgeType": "call"
+        },
+        {
+          "name": "Client",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "class_property",
+      "name": "_subscriptions",
+      "exported": true,
+      "qualifiedName": "Server._subscriptions",
+      "line": 38,
+      "endLine": 38,
+      "signature": "private _subscriptions = new Map<string, SubscriptionFn>();",
+      "containerClass": "Server",
+      "calls": [
+        {
+          "name": "Map",
+          "edgeType": "new"
+        },
+        {
+          "name": "SubscriptionFn",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "class_property",
+      "name": "_methods",
+      "exported": true,
+      "qualifiedName": "Server._methods",
+      "line": 40,
+      "endLine": 40,
+      "signature": "private _methods = new Map<string, MethodFn>();",
+      "containerClass": "Server",
+      "calls": [
+        {
+          "name": "Map",
+          "edgeType": "new"
+        },
+        {
+          "name": "MethodFn",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "class_property",
+      "name": "metrics",
+      "exported": true,
+      "qualifiedName": "Server.metrics",
+      "line": 42,
+      "endLine": 42,
+      "signature": "private metrics?: IServiceMetrics;",
+      "containerClass": "Server",
+      "calls": [
+        {
+          "name": "IServiceMetrics",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "class_property",
+      "name": "id",
+      "exported": true,
+      "qualifiedName": "Server.id",
+      "line": 44,
+      "endLine": 44,
+      "signature": "public readonly id = uuidv1();",
+      "containerClass": "Server",
+      "calls": [
+        {
+          "name": "uuidv1",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "class_property",
+      "name": "parse",
+      "exported": true,
+      "qualifiedName": "Server.parse",
+      "line": 48,
+      "endLine": 56,
+      "signature": "parse = (data: WebSocket.Data, isBinary: boolean): IPacket =>",
+      "containerClass": "Server",
+      "calls": [
+        {
+          "name": "startsWith",
+          "edgeType": "call"
+        },
+        {
+          "name": "parse",
+          "edgeType": "call"
+        },
+        {
+          "name": "MeteorError",
+          "edgeType": "new"
+        },
+        {
+          "name": "IPacket",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "variable_function",
+      "name": "handleInternalException",
+      "exported": false,
+      "line": 23,
+      "endLine": 33,
+      "signature": "(err: unknown, msg: string): MeteorError =>",
+      "calls": [
+        {
+          "name": "error",
+          "edgeType": "call"
+        },
+        {
+          "name": "MeteorError",
+          "edgeType": "new"
+        },
+        {
+          "name": "MeteorError",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "variable",
+      "name": "SERVER_ID",
+      "exported": true,
+      "line": 27,
+      "endLine": 27,
+      "signature": "SERVER_ID = ejson.stringify(",
+      "calls": []
+    },
+    {
+      "type": "type",
+      "name": "SubscriptionFn",
+      "line": 17,
+      "endLine": 17,
+      "signature": "type SubscriptionFn = (this: Publication, eventName: string, options: object) => void;"
+    },
+    {
+      "type": "type",
+      "name": "MethodFn",
+      "line": 18,
+      "endLine": 18,
+      "signature": "type MethodFn = (this: Client, ...args: any[]) => any;"
+    },
+    {
+      "type": "type",
+      "name": "Methods",
+      "line": 19,
+      "endLine": 21,
+      "signature": "type Methods ="
+    }
+  ],
+  "imports": [
+    {
+      "module": "events",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/core-services",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/core-services",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/logger",
+      "resolved": "external"
+    },
+    {
+      "module": "ejson",
+      "resolved": "external"
+    },
+    {
+      "module": "uuid",
+      "resolved": "external"
+    },
+    {
+      "module": "ws",
+      "resolved": "external"
+    },
+    {
+      "module": "./Client",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/ee/apps/ddp-streamer/src/Client.ts"
+    },
+    {
+      "module": "./Publication",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/ee/apps/ddp-streamer/src/Publication.ts"
+    },
+    {
+      "module": "./constants",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/ee/apps/ddp-streamer/src/constants.ts"
+    },
+    {
+      "module": "./types/IPacket",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/ee/apps/ddp-streamer/src/types/IPacket.ts"
+    }
+  ]
+}

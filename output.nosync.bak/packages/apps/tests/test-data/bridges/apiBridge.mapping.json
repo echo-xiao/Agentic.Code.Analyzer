@@ -1,0 +1,141 @@
+{
+  "sourcePath": "/Users/echoooooo/Desktop/code/Rocket.Chat/packages/apps/tests/test-data/bridges/apiBridge.ts",
+  "symbols": [
+    {
+      "type": "class",
+      "name": "TestsApiBridge",
+      "exported": true,
+      "line": 7,
+      "endLine": 38,
+      "signature": "export class TestsApiBridge extends ApiBridge",
+      "calls": [
+        {
+          "name": "ApiBridge",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "registerApi",
+      "exported": true,
+      "qualifiedName": "TestsApiBridge.registerApi",
+      "line": 17,
+      "endLine": 33,
+      "signature": "public async registerApi(api: AppApi, appId: string): Promise<void>",
+      "containerClass": "TestsApiBridge",
+      "calls": [
+        {
+          "name": "has",
+          "edgeType": "call"
+        },
+        {
+          "name": "set",
+          "edgeType": "call"
+        },
+        {
+          "name": "get",
+          "edgeType": "call"
+        },
+        {
+          "name": "forEach",
+          "edgeType": "call"
+        },
+        {
+          "name": "Map",
+          "edgeType": "new"
+        },
+        {
+          "name": "AppApi",
+          "edgeType": "type"
+        },
+        {
+          "name": "IApi",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "unregisterApis",
+      "exported": true,
+      "qualifiedName": "TestsApiBridge.unregisterApis",
+      "line": 21,
+      "endLine": 23,
+      "signature": "public async unregisterApis(appId: string): Promise<void>",
+      "containerClass": "TestsApiBridge",
+      "calls": [
+        {
+          "name": "delete",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "constructor",
+      "exported": true,
+      "qualifiedName": "TestsApiBridge.constructor",
+      "line": 10,
+      "endLine": 15,
+      "signature": "constructor()",
+      "containerClass": "TestsApiBridge",
+      "calls": [
+        {
+          "name": "set",
+          "edgeType": "call"
+        },
+        {
+          "name": "get",
+          "edgeType": "call"
+        },
+        {
+          "name": "getApi",
+          "edgeType": "call"
+        },
+        {
+          "name": "Map",
+          "edgeType": "new"
+        },
+        {
+          "name": "IApi",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "class_property",
+      "name": "apis",
+      "exported": true,
+      "qualifiedName": "TestsApiBridge.apis",
+      "line": 8,
+      "endLine": 8,
+      "signature": "public apis: Map<string, Map<string, IApi>>;",
+      "containerClass": "TestsApiBridge",
+      "calls": [
+        {
+          "name": "IApi",
+          "edgeType": "type"
+        }
+      ]
+    }
+  ],
+  "imports": [
+    {
+      "module": "@rocket.chat/apps-engine/definition/api",
+      "resolved": "external"
+    },
+    {
+      "module": "../../../src/server/bridges",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/packages/apps/src/server/bridges/index.ts"
+    },
+    {
+      "module": "../../../src/server/managers/AppApi",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/packages/apps/src/server/managers/AppApi.ts"
+    },
+    {
+      "module": "../utilities",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/packages/apps/tests/test-data/utilities.ts"
+    }
+  ]
+}

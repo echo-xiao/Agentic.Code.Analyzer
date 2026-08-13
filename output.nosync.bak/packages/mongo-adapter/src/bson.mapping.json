@@ -1,0 +1,100 @@
+{
+  "sourcePath": "/Users/echoooooo/Desktop/code/Rocket.Chat/packages/mongo-adapter/src/bson.ts",
+  "symbols": [
+    {
+      "type": "variable_function",
+      "name": "getBSONType",
+      "exported": true,
+      "line": 3,
+      "endLine": 41,
+      "signature": "<T>(v: T): BSONType =>",
+      "calls": [
+        {
+          "name": "isArray",
+          "edgeType": "call"
+        },
+        {
+          "name": "BSONType",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "variable_function",
+      "name": "getBSONTypeOrder",
+      "exported": false,
+      "line": 7,
+      "endLine": 50,
+      "signature": "(type: BSONType): number =>",
+      "calls": [
+        {
+          "name": "BSONType",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "variable_function",
+      "name": "compareBSONValues",
+      "exported": true,
+      "line": 16,
+      "endLine": 107,
+      "signature": "(a: unknown, b: unknown): number =>",
+      "calls": [
+        {
+          "name": "getBSONType",
+          "edgeType": "call"
+        },
+        {
+          "name": "getBSONTypeOrder",
+          "edgeType": "call"
+        },
+        {
+          "name": "localeCompare",
+          "edgeType": "call"
+        },
+        {
+          "name": "compareBSONValues",
+          "edgeType": "call"
+        },
+        {
+          "name": "call",
+          "edgeType": "call"
+        },
+        {
+          "name": "entries",
+          "edgeType": "call"
+        },
+        {
+          "name": "toHexString",
+          "edgeType": "call"
+        },
+        {
+          "name": "getTime",
+          "edgeType": "call"
+        },
+        {
+          "name": "Uint8Array",
+          "edgeType": "type"
+        },
+        {
+          "name": "ObjectID",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "type",
+      "name": "ObjectID",
+      "line": 11,
+      "endLine": 14,
+      "signature": "type ObjectID ="
+    }
+  ],
+  "imports": [
+    {
+      "module": "./types",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/packages/mongo-adapter/src/types.ts"
+    }
+  ]
+}

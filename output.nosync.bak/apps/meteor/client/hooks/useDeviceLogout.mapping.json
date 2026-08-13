@@ -1,0 +1,182 @@
+{
+  "sourcePath": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/client/hooks/useDeviceLogout.tsx",
+  "symbols": [
+    {
+      "type": "inner_function",
+      "name": "handleCloseContextualBar",
+      "exported": false,
+      "qualifiedName": "useDeviceLogout.handleCloseContextualBar",
+      "line": 24,
+      "endLine": 24,
+      "signature": "() =>",
+      "calls": [
+        {
+          "name": "push",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "inner_function",
+      "name": "handleLogoutDevice",
+      "exported": false,
+      "qualifiedName": "useDeviceLogout.handleLogoutDevice",
+      "line": 48,
+      "endLine": 50,
+      "signature": "() =>",
+      "calls": [
+        {
+          "name": "logoutDevice",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "inner_function",
+      "name": "onSettled",
+      "exported": false,
+      "qualifiedName": "useDeviceLogout.onSettled",
+      "line": 29,
+      "endLine": 41,
+      "signature": "() =>",
+      "calls": [
+        {
+          "name": "setModal",
+          "edgeType": "call"
+        },
+        {
+          "name": "logout",
+          "edgeType": "call"
+        },
+        {
+          "name": "invalidateQueries",
+          "edgeType": "call"
+        },
+        {
+          "name": "handleCloseContextualBar",
+          "edgeType": "call"
+        },
+        {
+          "name": "dispatchToastMessage",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "variable_function",
+      "name": "useDeviceLogout",
+      "exported": true,
+      "line": 9,
+      "endLine": 66,
+      "signature": "( sessionId: string, endpoint: '/v1/sessions/logout' | '/v1/sessions/logout.me', isCurrentSession?: boolean, ): (() => void) =>",
+      "calls": [
+        {
+          "name": "useTranslation",
+          "edgeType": "call"
+        },
+        {
+          "name": "useSetModal",
+          "edgeType": "call"
+        },
+        {
+          "name": "useToastMessageDispatch",
+          "edgeType": "call"
+        },
+        {
+          "name": "useRoute",
+          "edgeType": "call"
+        },
+        {
+          "name": "useRouteParameter",
+          "edgeType": "call"
+        },
+        {
+          "name": "useContext",
+          "edgeType": "call"
+        },
+        {
+          "name": "useQueryClient",
+          "edgeType": "call"
+        },
+        {
+          "name": "useEndpoint",
+          "edgeType": "call"
+        },
+        {
+          "name": "useCallback",
+          "edgeType": "call"
+        },
+        {
+          "name": "push",
+          "edgeType": "call"
+        },
+        {
+          "name": "useMutation",
+          "edgeType": "call"
+        },
+        {
+          "name": "setModal",
+          "edgeType": "call"
+        },
+        {
+          "name": "logout",
+          "edgeType": "call"
+        },
+        {
+          "name": "invalidateQueries",
+          "edgeType": "call"
+        },
+        {
+          "name": "handleCloseContextualBar",
+          "edgeType": "call"
+        },
+        {
+          "name": "dispatchToastMessage",
+          "edgeType": "call"
+        },
+        {
+          "name": "logoutDevice",
+          "edgeType": "call"
+        },
+        {
+          "name": "GenericModal",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "handleLogoutDevice",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "closeModal",
+          "edgeType": "jsx"
+        }
+      ]
+    }
+  ],
+  "imports": [
+    {
+      "module": "@rocket.chat/ui-client",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/ui-contexts",
+      "resolved": "external"
+    },
+    {
+      "module": "@tanstack/react-query",
+      "resolved": "external"
+    },
+    {
+      "module": "react",
+      "resolved": "external"
+    },
+    {
+      "module": "react-i18next",
+      "resolved": "external"
+    },
+    {
+      "module": "../lib/queryKeys",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/client/lib/queryKeys.ts"
+    }
+  ]
+}

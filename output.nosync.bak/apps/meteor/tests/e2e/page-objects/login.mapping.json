@@ -1,0 +1,164 @@
+{
+  "sourcePath": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/tests/e2e/page-objects/login.ts",
+  "symbols": [
+    {
+      "type": "class",
+      "name": "LoginPage",
+      "exported": true,
+      "line": 9,
+      "endLine": 55,
+      "signature": "export class LoginPage",
+      "calls": []
+    },
+    {
+      "type": "method",
+      "name": "waitForIt",
+      "exported": true,
+      "qualifiedName": "LoginPage.waitForIt",
+      "line": 19,
+      "endLine": 21,
+      "signature": "async waitForIt()",
+      "containerClass": "LoginPage",
+      "calls": [
+        {
+          "name": "waitFor",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "waitForLogin",
+      "exported": true,
+      "qualifiedName": "LoginPage.waitForLogin",
+      "line": 23,
+      "endLine": 26,
+      "signature": "protected async waitForLogin()",
+      "containerClass": "LoginPage",
+      "calls": [
+        {
+          "name": "toBeVisible",
+          "edgeType": "call"
+        },
+        {
+          "name": "expect",
+          "edgeType": "call"
+        },
+        {
+          "name": "getByRole",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "loginByUserState",
+      "exported": true,
+      "qualifiedName": "LoginPage.loginByUserState",
+      "line": 27,
+      "endLine": 53,
+      "signature": "async loginByUserState(userState: IUserState, options: { except: string[] } = { except: [] })",
+      "containerClass": "LoginPage",
+      "calls": [
+        {
+          "name": "connect",
+          "edgeType": "call"
+        },
+        {
+          "name": "updateOne",
+          "edgeType": "call"
+        },
+        {
+          "name": "collection",
+          "edgeType": "call"
+        },
+        {
+          "name": "db",
+          "edgeType": "call"
+        },
+        {
+          "name": "close",
+          "edgeType": "call"
+        },
+        {
+          "name": "filter",
+          "edgeType": "call"
+        },
+        {
+          "name": "indexOf",
+          "edgeType": "call"
+        },
+        {
+          "name": "evaluate",
+          "edgeType": "call"
+        },
+        {
+          "name": "forEach",
+          "edgeType": "call"
+        },
+        {
+          "name": "setItem",
+          "edgeType": "call"
+        },
+        {
+          "name": "_pollStoredLoginToken",
+          "edgeType": "call"
+        },
+        {
+          "name": "waitForLogin",
+          "edgeType": "call"
+        },
+        {
+          "name": "IUserState",
+          "edgeType": "type"
+        },
+        {
+          "name": "IUser",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "constructor",
+      "exported": true,
+      "qualifiedName": "LoginPage.constructor",
+      "line": 10,
+      "endLine": 10,
+      "signature": "constructor(protected readonly page: Page)",
+      "containerClass": "LoginPage",
+      "calls": [
+        {
+          "name": "Page",
+          "edgeType": "type"
+        }
+      ]
+    }
+  ],
+  "imports": [
+    {
+      "module": "@playwright/test",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/core-typings",
+      "resolved": "external"
+    },
+    {
+      "module": "mongodb",
+      "resolved": "external"
+    },
+    {
+      "module": "../config/constants",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/tests/e2e/config/constants.ts"
+    },
+    {
+      "module": "../fixtures/userStates",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/tests/e2e/fixtures/userStates.ts"
+    },
+    {
+      "module": "../utils/test",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/tests/e2e/utils/test.ts"
+    }
+  ]
+}

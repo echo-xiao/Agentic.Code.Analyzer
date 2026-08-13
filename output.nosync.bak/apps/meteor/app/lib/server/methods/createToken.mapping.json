@@ -1,0 +1,41 @@
+{
+  "sourcePath": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/app/lib/server/methods/createToken.ts",
+  "symbols": [
+    {
+      "type": "function",
+      "name": "generateAccessToken",
+      "exported": true,
+      "line": 13,
+      "endLine": 27,
+      "signature": "export async function generateAccessToken(userId: string, secret: string)",
+      "calls": [
+        {
+          "name": "_generateStampedLoginToken",
+          "edgeType": "call"
+        },
+        {
+          "name": "_insertLoginToken",
+          "edgeType": "call"
+        },
+        {
+          "name": "ensureLoginTokensLimit",
+          "edgeType": "call"
+        },
+        {
+          "name": "MeteorError",
+          "edgeType": "new"
+        }
+      ]
+    }
+  ],
+  "imports": [
+    {
+      "module": "@rocket.chat/core-services",
+      "resolved": "external"
+    },
+    {
+      "module": "meteor/accounts-base",
+      "resolved": "external"
+    }
+  ]
+}

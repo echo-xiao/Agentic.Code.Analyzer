@@ -1,0 +1,200 @@
+{
+  "sourcePath": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/server/api/lib/getUploadFormData.ts",
+  "symbols": [
+    {
+      "type": "function",
+      "name": "getUploadFormData",
+      "exported": true,
+      "line": 56,
+      "endLine": 175,
+      "signature": "export async function getUploadFormData< T extends string, K extends Record<string, string> = Record<string, string>, V extends ValidateFunction<K> = ValidateFunction<K>, >( { request }: { request: Request }, options: { field?: T; validate?: V; sizeLimit?: number; fileOptional?: boolean; } = {}, ): Promise<UploadResultWithOptionalFile<K>>",
+      "calls": [
+        {
+          "name": "reject",
+          "edgeType": "call"
+        },
+        {
+          "name": "busboy",
+          "edgeType": "call"
+        },
+        {
+          "name": "fromEntries",
+          "edgeType": "call"
+        },
+        {
+          "name": "entries",
+          "edgeType": "call"
+        },
+        {
+          "name": "create",
+          "edgeType": "call"
+        },
+        {
+          "name": "withResolvers",
+          "edgeType": "call"
+        },
+        {
+          "name": "validate",
+          "edgeType": "call"
+        },
+        {
+          "name": "join",
+          "edgeType": "call"
+        },
+        {
+          "name": "map",
+          "edgeType": "call"
+        },
+        {
+          "name": "resolve",
+          "edgeType": "call"
+        },
+        {
+          "name": "resume",
+          "edgeType": "call"
+        },
+        {
+          "name": "data",
+          "edgeType": "event_listen"
+        },
+        {
+          "name": "push",
+          "edgeType": "call"
+        },
+        {
+          "name": "end",
+          "edgeType": "event_listen"
+        },
+        {
+          "name": "getMimeType",
+          "edgeType": "call"
+        },
+        {
+          "name": "concat",
+          "edgeType": "call"
+        },
+        {
+          "name": "removeAllListeners",
+          "edgeType": "call"
+        },
+        {
+          "name": "onField",
+          "edgeType": "event_listen",
+          "event": "field"
+        },
+        {
+          "name": "onFile",
+          "edgeType": "event_listen",
+          "event": "file"
+        },
+        {
+          "name": "cleanup",
+          "edgeType": "event_listen",
+          "event": "close"
+        },
+        {
+          "name": "onEnd",
+          "edgeType": "event_listen",
+          "event": "end"
+        },
+        {
+          "name": "onEnd",
+          "edgeType": "event_listen",
+          "event": "finish"
+        },
+        {
+          "name": "error",
+          "edgeType": "event_listen"
+        },
+        {
+          "name": "partsLimit",
+          "edgeType": "event_listen"
+        },
+        {
+          "name": "filesLimit",
+          "edgeType": "event_listen"
+        },
+        {
+          "name": "fieldsLimit",
+          "edgeType": "event_listen"
+        },
+        {
+          "name": "pipe",
+          "edgeType": "call"
+        },
+        {
+          "name": "fromWeb",
+          "edgeType": "call"
+        },
+        {
+          "name": "MeteorError",
+          "edgeType": "new"
+        },
+        {
+          "name": "ValidateFunction",
+          "edgeType": "type"
+        },
+        {
+          "name": "Request",
+          "edgeType": "type"
+        },
+        {
+          "name": "UploadResultWithOptionalFile",
+          "edgeType": "type"
+        },
+        {
+          "name": "Readable",
+          "edgeType": "type"
+        },
+        {
+          "name": "Uint8Array",
+          "edgeType": "type"
+        },
+        {
+          "name": "ReadableStream",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "type",
+      "name": "UploadResult",
+      "line": 10,
+      "endLine": 18,
+      "signature": "type UploadResult<K> ="
+    },
+    {
+      "type": "type",
+      "name": "UploadResultWithOptionalFile",
+      "line": 20,
+      "endLine": 26,
+      "signature": "type UploadResultWithOptionalFile<K> = | UploadResult<K> | ("
+    }
+  ],
+  "imports": [
+    {
+      "module": "node:stream",
+      "resolved": "external"
+    },
+    {
+      "module": "node:stream/web",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/core-services",
+      "resolved": "external"
+    },
+    {
+      "module": "ajv",
+      "resolved": "external"
+    },
+    {
+      "module": "busboy",
+      "resolved": "external"
+    },
+    {
+      "module": "../../../app/utils/lib/mimeTypes",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/app/utils/lib/mimeTypes.ts"
+    }
+  ]
+}

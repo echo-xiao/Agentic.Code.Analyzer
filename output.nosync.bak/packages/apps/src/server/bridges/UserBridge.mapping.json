@@ -1,0 +1,597 @@
+{
+  "sourcePath": "/Users/echoooooo/Desktop/code/Rocket.Chat/packages/apps/src/server/bridges/UserBridge.ts",
+  "symbols": [
+    {
+      "type": "class",
+      "name": "UserBridge",
+      "exported": true,
+      "line": 8,
+      "endLine": 190,
+      "signature": "export abstract class UserBridge extends BaseBridge",
+      "calls": [
+        {
+          "name": "BaseBridge",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "doGetById",
+      "exported": true,
+      "qualifiedName": "UserBridge.doGetById",
+      "line": 9,
+      "endLine": 13,
+      "signature": "public async doGetById(id: string, appId: string): Promise<IUser>",
+      "containerClass": "UserBridge",
+      "calls": [
+        {
+          "name": "hasReadPermission",
+          "edgeType": "call"
+        },
+        {
+          "name": "getById",
+          "edgeType": "call"
+        },
+        {
+          "name": "IUser",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "doGetByUsername",
+      "exported": true,
+      "qualifiedName": "UserBridge.doGetByUsername",
+      "line": 13,
+      "endLine": 17,
+      "signature": "public async doGetByUsername(username: string, appId: string): Promise<IUser>",
+      "containerClass": "UserBridge",
+      "calls": [
+        {
+          "name": "hasReadPermission",
+          "edgeType": "call"
+        },
+        {
+          "name": "getByUsername",
+          "edgeType": "call"
+        },
+        {
+          "name": "IUser",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "doGetBySipExtension",
+      "exported": true,
+      "qualifiedName": "UserBridge.doGetBySipExtension",
+      "line": 17,
+      "endLine": 21,
+      "signature": "public async doGetBySipExtension(extension: string, appId: string): Promise<IUser | undefined>",
+      "containerClass": "UserBridge",
+      "calls": [
+        {
+          "name": "hasReadPermission",
+          "edgeType": "call"
+        },
+        {
+          "name": "getBySipExtension",
+          "edgeType": "call"
+        },
+        {
+          "name": "IUser",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "doGetAppUser",
+      "exported": true,
+      "qualifiedName": "UserBridge.doGetAppUser",
+      "line": 21,
+      "endLine": 23,
+      "signature": "public async doGetAppUser(appId?: string): Promise<IUser | undefined>",
+      "containerClass": "UserBridge",
+      "calls": [
+        {
+          "name": "getAppUser",
+          "edgeType": "call"
+        },
+        {
+          "name": "IUser",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "doCreate",
+      "exported": true,
+      "qualifiedName": "UserBridge.doCreate",
+      "line": 25,
+      "endLine": 29,
+      "signature": "public async doCreate(data: Partial<IUser>, appId: string, options?: IUserCreationOptions): Promise<string>",
+      "containerClass": "UserBridge",
+      "calls": [
+        {
+          "name": "hasWritePermission",
+          "edgeType": "call"
+        },
+        {
+          "name": "create",
+          "edgeType": "call"
+        },
+        {
+          "name": "IUser",
+          "edgeType": "type"
+        },
+        {
+          "name": "IUserCreationOptions",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "doRemove",
+      "exported": true,
+      "qualifiedName": "UserBridge.doRemove",
+      "line": 29,
+      "endLine": 33,
+      "signature": "public async doRemove(user: IUser, appId: string): Promise<boolean>",
+      "containerClass": "UserBridge",
+      "calls": [
+        {
+          "name": "hasWritePermission",
+          "edgeType": "call"
+        },
+        {
+          "name": "remove",
+          "edgeType": "call"
+        },
+        {
+          "name": "IUser",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "doUpdate",
+      "exported": true,
+      "qualifiedName": "UserBridge.doUpdate",
+      "line": 33,
+      "endLine": 37,
+      "signature": "public async doUpdate(user: IUser, updates: Partial<IUser>, appId: string): Promise<boolean>",
+      "containerClass": "UserBridge",
+      "calls": [
+        {
+          "name": "hasWritePermission",
+          "edgeType": "call"
+        },
+        {
+          "name": "update",
+          "edgeType": "call"
+        },
+        {
+          "name": "IUser",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "doGetUserUnreadMessageCount",
+      "exported": true,
+      "qualifiedName": "UserBridge.doGetUserUnreadMessageCount",
+      "line": 37,
+      "endLine": 41,
+      "signature": "public async doGetUserUnreadMessageCount(uid: string, appId: string): Promise<number>",
+      "containerClass": "UserBridge",
+      "calls": [
+        {
+          "name": "hasReadPermission",
+          "edgeType": "call"
+        },
+        {
+          "name": "getUserUnreadMessageCount",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "doGetUserRoomIds",
+      "exported": true,
+      "qualifiedName": "UserBridge.doGetUserRoomIds",
+      "line": 41,
+      "endLine": 45,
+      "signature": "public async doGetUserRoomIds(userId: string, appId: string): Promise<string[]>",
+      "containerClass": "UserBridge",
+      "calls": [
+        {
+          "name": "hasReadPermission",
+          "edgeType": "call"
+        },
+        {
+          "name": "getUserRoomIds",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "doDeleteUsersCreatedByApp",
+      "exported": true,
+      "qualifiedName": "UserBridge.doDeleteUsersCreatedByApp",
+      "line": 45,
+      "endLine": 49,
+      "signature": "public async doDeleteUsersCreatedByApp(appId: string, type: UserType.BOT | UserType.APP): Promise<boolean>",
+      "containerClass": "UserBridge",
+      "calls": [
+        {
+          "name": "hasWritePermission",
+          "edgeType": "call"
+        },
+        {
+          "name": "deleteUsersCreatedByApp",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "doDeactivate",
+      "exported": true,
+      "qualifiedName": "UserBridge.doDeactivate",
+      "line": 49,
+      "endLine": 53,
+      "signature": "public async doDeactivate(userId: IUser['id'], confirmRelinquish: boolean, appId: string): Promise<boolean>",
+      "containerClass": "UserBridge",
+      "calls": [
+        {
+          "name": "hasWritePermission",
+          "edgeType": "call"
+        },
+        {
+          "name": "deactivate",
+          "edgeType": "call"
+        },
+        {
+          "name": "IUser",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "doSetActiveState",
+      "exported": true,
+      "qualifiedName": "UserBridge.doSetActiveState",
+      "line": 53,
+      "endLine": 61,
+      "signature": "public async doSetActiveState( userId: IUser['id'], state: Pick<IUser, 'statusDefault' | 'statusSource' | 'statusText' | 'statusExpiresAt' | 'statusId'>, appId: string, ): Promise<void>",
+      "containerClass": "UserBridge",
+      "calls": [
+        {
+          "name": "hasWritePermission",
+          "edgeType": "call"
+        },
+        {
+          "name": "setActiveState",
+          "edgeType": "call"
+        },
+        {
+          "name": "IUser",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "doEndActiveState",
+      "exported": true,
+      "qualifiedName": "UserBridge.doEndActiveState",
+      "line": 61,
+      "endLine": 65,
+      "signature": "public async doEndActiveState(userId: IUser['id'], appId: string, statusId?: string): Promise<void>",
+      "containerClass": "UserBridge",
+      "calls": [
+        {
+          "name": "hasWritePermission",
+          "edgeType": "call"
+        },
+        {
+          "name": "endActiveState",
+          "edgeType": "call"
+        },
+        {
+          "name": "IUser",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "getById",
+      "exported": true,
+      "qualifiedName": "UserBridge.getById",
+      "line": 65,
+      "endLine": 65,
+      "signature": "protected abstract getById(id: string, appId: string): Promise<IUser>;",
+      "containerClass": "UserBridge",
+      "calls": [
+        {
+          "name": "IUser",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "getByUsername",
+      "exported": true,
+      "qualifiedName": "UserBridge.getByUsername",
+      "line": 67,
+      "endLine": 67,
+      "signature": "protected abstract getByUsername(username: string, appId: string): Promise<IUser>;",
+      "containerClass": "UserBridge",
+      "calls": [
+        {
+          "name": "IUser",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "getBySipExtension",
+      "exported": true,
+      "qualifiedName": "UserBridge.getBySipExtension",
+      "line": 69,
+      "endLine": 69,
+      "signature": "protected abstract getBySipExtension(extension: string, appId: string): Promise<IUser | undefined>;",
+      "containerClass": "UserBridge",
+      "calls": [
+        {
+          "name": "IUser",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "getAppUser",
+      "exported": true,
+      "qualifiedName": "UserBridge.getAppUser",
+      "line": 71,
+      "endLine": 71,
+      "signature": "protected abstract getAppUser(appId?: string): Promise<IUser | undefined>;",
+      "containerClass": "UserBridge",
+      "calls": [
+        {
+          "name": "IUser",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "getActiveUserCount",
+      "exported": true,
+      "qualifiedName": "UserBridge.getActiveUserCount",
+      "line": 73,
+      "endLine": 73,
+      "signature": "protected abstract getActiveUserCount(): Promise<number>;",
+      "containerClass": "UserBridge",
+      "calls": []
+    },
+    {
+      "type": "method",
+      "name": "getUserUnreadMessageCount",
+      "exported": true,
+      "qualifiedName": "UserBridge.getUserUnreadMessageCount",
+      "line": 75,
+      "endLine": 75,
+      "signature": "protected abstract getUserUnreadMessageCount(uid: string, appId: string): Promise<number>;",
+      "containerClass": "UserBridge",
+      "calls": []
+    },
+    {
+      "type": "method",
+      "name": "getUserRoomIds",
+      "exported": true,
+      "qualifiedName": "UserBridge.getUserRoomIds",
+      "line": 77,
+      "endLine": 77,
+      "signature": "protected abstract getUserRoomIds(userId: string, appId: string): Promise<string[]>;",
+      "containerClass": "UserBridge",
+      "calls": []
+    },
+    {
+      "type": "method",
+      "name": "create",
+      "exported": true,
+      "qualifiedName": "UserBridge.create",
+      "line": 85,
+      "endLine": 85,
+      "signature": "protected abstract create(data: Partial<IUser>, appId: string, options?: IUserCreationOptions): Promise<string>;",
+      "containerClass": "UserBridge",
+      "calls": [
+        {
+          "name": "IUser",
+          "edgeType": "type"
+        },
+        {
+          "name": "IUserCreationOptions",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "remove",
+      "exported": true,
+      "qualifiedName": "UserBridge.remove",
+      "line": 93,
+      "endLine": 93,
+      "signature": "protected abstract remove(user: IUser, appId: string): Promise<boolean>;",
+      "containerClass": "UserBridge",
+      "calls": [
+        {
+          "name": "IUser",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "update",
+      "exported": true,
+      "qualifiedName": "UserBridge.update",
+      "line": 107,
+      "endLine": 107,
+      "signature": "protected abstract update(user: IUser, updates: Partial<IUser>, appId: string): Promise<boolean>;",
+      "containerClass": "UserBridge",
+      "calls": [
+        {
+          "name": "IUser",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "deleteUsersCreatedByApp",
+      "exported": true,
+      "qualifiedName": "UserBridge.deleteUsersCreatedByApp",
+      "line": 115,
+      "endLine": 115,
+      "signature": "protected abstract deleteUsersCreatedByApp(appId: string, type: UserType.APP | UserType.BOT): Promise<boolean>;",
+      "containerClass": "UserBridge",
+      "calls": []
+    },
+    {
+      "type": "method",
+      "name": "deactivate",
+      "exported": true,
+      "qualifiedName": "UserBridge.deactivate",
+      "line": 127,
+      "endLine": 127,
+      "signature": "protected abstract deactivate(userId: IUser['id'], confirmRelinquish: boolean, appId: string): Promise<boolean>;",
+      "containerClass": "UserBridge",
+      "calls": [
+        {
+          "name": "IUser",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "setActiveState",
+      "exported": true,
+      "qualifiedName": "UserBridge.setActiveState",
+      "line": 129,
+      "endLine": 133,
+      "signature": "protected abstract setActiveState(",
+      "containerClass": "UserBridge",
+      "calls": [
+        {
+          "name": "IUser",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "endActiveState",
+      "exported": true,
+      "qualifiedName": "UserBridge.endActiveState",
+      "line": 135,
+      "endLine": 135,
+      "signature": "protected abstract endActiveState(userId: IUser['id'], appId: string, statusId?: string): Promise<void>;",
+      "containerClass": "UserBridge",
+      "calls": [
+        {
+          "name": "IUser",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "hasReadPermission",
+      "exported": true,
+      "qualifiedName": "UserBridge.hasReadPermission",
+      "line": 137,
+      "endLine": 150,
+      "signature": "private hasReadPermission(appId: string): boolean",
+      "containerClass": "UserBridge",
+      "calls": [
+        {
+          "name": "hasPermission",
+          "edgeType": "call"
+        },
+        {
+          "name": "notifyAboutError",
+          "edgeType": "call"
+        },
+        {
+          "name": "PermissionDeniedError",
+          "edgeType": "new"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "hasWritePermission",
+      "exported": true,
+      "qualifiedName": "UserBridge.hasWritePermission",
+      "line": 141,
+      "endLine": 154,
+      "signature": "private hasWritePermission(appId: string): boolean",
+      "containerClass": "UserBridge",
+      "calls": [
+        {
+          "name": "hasPermission",
+          "edgeType": "call"
+        },
+        {
+          "name": "notifyAboutError",
+          "edgeType": "call"
+        },
+        {
+          "name": "PermissionDeniedError",
+          "edgeType": "new"
+        }
+      ]
+    }
+  ],
+  "imports": [
+    {
+      "module": "@rocket.chat/apps-engine/definition/users",
+      "resolved": "external"
+    },
+    {
+      "module": "./BaseBridge",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/packages/apps/src/server/bridges/BaseBridge.ts"
+    },
+    {
+      "module": "../errors/PermissionDeniedError",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/packages/apps/src/server/errors/PermissionDeniedError.ts"
+    },
+    {
+      "module": "../managers/AppPermissionManager",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/packages/apps/src/server/managers/AppPermissionManager.ts"
+    },
+    {
+      "module": "../permissions/AppPermissions",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/packages/apps/src/server/permissions/AppPermissions.ts"
+    }
+  ]
+}

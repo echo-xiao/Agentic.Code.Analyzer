@@ -1,0 +1,145 @@
+{
+  "sourcePath": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/tests/mocks/data/marketplace.ts",
+  "symbols": [
+    {
+      "type": "function",
+      "name": "createFakeAppBought",
+      "exported": true,
+      "line": 32,
+      "endLine": 43,
+      "signature": "export function createFakeAppBought(partial: Partial<App> = {}): App",
+      "calls": [
+        {
+          "name": "createFakeApp",
+          "edgeType": "call"
+        },
+        {
+          "name": "subscriptionInfoZero",
+          "edgeType": "call"
+        },
+        {
+          "name": "App",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "function",
+      "name": "createFakeAppSubscribed",
+      "exported": true,
+      "line": 36,
+      "endLine": 62,
+      "signature": "export function createFakeAppSubscribed(partial: Partial<App> = {}): App",
+      "calls": [
+        {
+          "name": "createFakeApp",
+          "edgeType": "call"
+        },
+        {
+          "name": "boolean",
+          "edgeType": "call"
+        },
+        {
+          "name": "int",
+          "edgeType": "call"
+        },
+        {
+          "name": "word",
+          "edgeType": "call"
+        },
+        {
+          "name": "toISOString",
+          "edgeType": "call"
+        },
+        {
+          "name": "future",
+          "edgeType": "call"
+        },
+        {
+          "name": "past",
+          "edgeType": "call"
+        },
+        {
+          "name": "App",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "function",
+      "name": "createFakeAppInstalledMarketplace",
+      "exported": true,
+      "line": 40,
+      "endLine": 53,
+      "signature": "export function createFakeAppInstalledMarketplace(partial: Partial<App> = {}): App",
+      "calls": [
+        {
+          "name": "createFakeAppBought",
+          "edgeType": "call"
+        },
+        {
+          "name": "App",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "function",
+      "name": "createFakeAppPrivate",
+      "exported": true,
+      "line": 44,
+      "endLine": 73,
+      "signature": "export function createFakeAppPrivate(partial: Partial<App> = {}): App",
+      "calls": [
+        {
+          "name": "createFakeApp",
+          "edgeType": "call"
+        },
+        {
+          "name": "App",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "variable_function",
+      "name": "subscriptionInfoZero",
+      "exported": false,
+      "line": 10,
+      "endLine": 27,
+      "signature": "(): AppSubscriptionInfo =>",
+      "calls": [
+        {
+          "name": "AppSubscriptionInfo",
+          "edgeType": "type"
+        },
+        {
+          "name": "AppSubscriptionStatus",
+          "edgeType": "type"
+        }
+      ]
+    }
+  ],
+  "imports": [
+    {
+      "module": "@faker-js/faker",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/apps",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/core-typings",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/core-typings",
+      "resolved": "external"
+    },
+    {
+      "module": "../data",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/tests/mocks/data.ts"
+    }
+  ]
+}

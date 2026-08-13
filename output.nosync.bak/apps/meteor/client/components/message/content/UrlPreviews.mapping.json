@@ -1,0 +1,297 @@
+{
+  "sourcePath": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/client/components/message/content/UrlPreviews.tsx",
+  "symbols": [
+    {
+      "type": "variable_function",
+      "name": "normalizeMeta",
+      "exported": false,
+      "line": 20,
+      "endLine": 48,
+      "signature": "({ url, meta }: { url: string; meta: Record<string, string> }): OEmbedPreviewMetadata =>",
+      "calls": [
+        {
+          "name": "fromEntries",
+          "edgeType": "call"
+        },
+        {
+          "name": "filter",
+          "edgeType": "call"
+        },
+        {
+          "name": "entries",
+          "edgeType": "call"
+        },
+        {
+          "name": "buildImageURL",
+          "edgeType": "call"
+        },
+        {
+          "name": "OEmbedPreviewMetadata",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "variable_function",
+      "name": "hasContentType",
+      "exported": false,
+      "line": 24,
+      "endLine": 25,
+      "signature": "(headers: OembedUrlLegacy['headers']): headers is { contentType: string } =>",
+      "calls": [
+        {
+          "name": "OembedUrlLegacy",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "variable_function",
+      "name": "getHeaderType",
+      "exported": false,
+      "line": 27,
+      "endLine": 40,
+      "signature": "(headers: OembedUrlLegacy['headers']): UrlPreviewMetadata['type'] | undefined =>",
+      "calls": [
+        {
+          "name": "hasContentType",
+          "edgeType": "call"
+        },
+        {
+          "name": "match",
+          "edgeType": "call"
+        },
+        {
+          "name": "OembedUrlLegacy",
+          "edgeType": "type"
+        },
+        {
+          "name": "UrlPreviewMetadata",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "variable_function",
+      "name": "isValidPreviewMeta",
+      "exported": false,
+      "line": 31,
+      "endLine": 41,
+      "signature": "({ siteName, siteUrl, authorName, authorUrl, title, description, image, html, }: OEmbedPreviewMetadata): boolean =>",
+      "calls": [
+        {
+          "name": "OEmbedPreviewMetadata",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "variable_function",
+      "name": "hasMeta",
+      "exported": false,
+      "line": 43,
+      "endLine": 43,
+      "signature": "(url: OembedUrlLegacy): url is { url: string; meta: Record<string, string> } =>",
+      "calls": [
+        {
+          "name": "values",
+          "edgeType": "call"
+        },
+        {
+          "name": "OembedUrlLegacy",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "variable_function",
+      "name": "processMetaAndHeaders",
+      "exported": false,
+      "line": 45,
+      "endLine": 64,
+      "signature": "(url: OembedUrlLegacy): PreviewData | false =>",
+      "calls": [
+        {
+          "name": "hasMeta",
+          "edgeType": "call"
+        },
+        {
+          "name": "normalizeMeta",
+          "edgeType": "call"
+        },
+        {
+          "name": "isValidPreviewMeta",
+          "edgeType": "call"
+        },
+        {
+          "name": "getHeaderType",
+          "edgeType": "call"
+        },
+        {
+          "name": "hasContentType",
+          "edgeType": "call"
+        },
+        {
+          "name": "OembedUrlLegacy",
+          "edgeType": "type"
+        },
+        {
+          "name": "PreviewData",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "variable_function",
+      "name": "isPreviewData",
+      "exported": false,
+      "line": 49,
+      "endLine": 49,
+      "signature": "(data: PreviewData | false): data is PreviewData =>",
+      "calls": [
+        {
+          "name": "PreviewData",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "variable_function",
+      "name": "isMetaPreview",
+      "exported": false,
+      "line": 51,
+      "endLine": 51,
+      "signature": "(_data: PreviewData['data'], type: PreviewTypes): _data is OEmbedPreviewMetadata =>",
+      "calls": [
+        {
+          "name": "PreviewData",
+          "edgeType": "type"
+        },
+        {
+          "name": "PreviewTypes",
+          "edgeType": "type"
+        },
+        {
+          "name": "OEmbedPreviewMetadata",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "variable_function",
+      "name": "UrlPreviews",
+      "exported": false,
+      "line": 55,
+      "endLine": 77,
+      "signature": "({ urls }: UrlPreviewsProps) =>",
+      "calls": [
+        {
+          "name": "useOembedLayout",
+          "edgeType": "call"
+        },
+        {
+          "name": "filter",
+          "edgeType": "call"
+        },
+        {
+          "name": "map",
+          "edgeType": "call"
+        },
+        {
+          "name": "isMetaPreview",
+          "edgeType": "call"
+        },
+        {
+          "name": "MessageBlock",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "OEmbedResolver",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "UrlPreview",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "oembedMaxWidth",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "index",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "data",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "UrlPreviewsProps",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "type",
+      "name": "OembedUrlLegacy",
+      "line": 11,
+      "endLine": 11,
+      "signature": "type OembedUrlLegacy = Required<IMessage>['urls'][0];"
+    },
+    {
+      "type": "type",
+      "name": "PreviewTypes",
+      "line": 13,
+      "endLine": 13,
+      "signature": "type PreviewTypes = 'headers' | 'oembed';"
+    },
+    {
+      "type": "type",
+      "name": "PreviewData",
+      "line": 15,
+      "endLine": 18,
+      "signature": "type PreviewData ="
+    },
+    {
+      "type": "type",
+      "name": "UrlPreviewsProps",
+      "line": 53,
+      "endLine": 53,
+      "signature": "export type UrlPreviewsProps ="
+    }
+  ],
+  "imports": [
+    {
+      "module": "@rocket.chat/core-typings",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/fuselage",
+      "resolved": "external"
+    },
+    {
+      "module": "../hooks/useOembedLayout",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/client/components/message/hooks/useOembedLayout.ts"
+    },
+    {
+      "module": "./urlPreviews/OEmbedPreviewMetadata",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/client/components/message/content/urlPreviews/OEmbedPreviewMetadata.ts"
+    },
+    {
+      "module": "./urlPreviews/OEmbedResolver",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/client/components/message/content/urlPreviews/OEmbedResolver.tsx"
+    },
+    {
+      "module": "./urlPreviews/UrlPreview",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/client/components/message/content/urlPreviews/UrlPreview.tsx"
+    },
+    {
+      "module": "./urlPreviews/UrlPreviewMetadata",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/client/components/message/content/urlPreviews/UrlPreviewMetadata.tsx"
+    },
+    {
+      "module": "./urlPreviews/buildImageURL",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/client/components/message/content/urlPreviews/buildImageURL.ts"
+    }
+  ]
+}

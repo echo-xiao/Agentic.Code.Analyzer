@@ -1,0 +1,1455 @@
+{
+  "sourcePath": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/client/lib/e2ee/rocketchat.e2e.room.ts",
+  "symbols": [
+    {
+      "type": "class",
+      "name": "E2ERoom",
+      "exported": true,
+      "line": 68,
+      "endLine": 815,
+      "signature": "export class E2ERoom extends Emitter",
+      "calls": [
+        {
+          "name": "Emitter",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "hasSessionKey",
+      "exported": true,
+      "qualifiedName": "E2ERoom.hasSessionKey",
+      "line": 109,
+      "endLine": 111,
+      "signature": "hasSessionKey()",
+      "containerClass": "E2ERoom",
+      "calls": []
+    },
+    {
+      "type": "method",
+      "name": "getState",
+      "exported": true,
+      "qualifiedName": "E2ERoom.getState",
+      "line": 113,
+      "endLine": 115,
+      "signature": "getState()",
+      "containerClass": "E2ERoom",
+      "calls": []
+    },
+    {
+      "type": "method",
+      "name": "setState",
+      "exported": true,
+      "qualifiedName": "E2ERoom.setState",
+      "line": 117,
+      "endLine": 131,
+      "signature": "setState(requestedState: E2ERoomState)",
+      "containerClass": "E2ERoom",
+      "calls": [
+        {
+          "name": "span",
+          "edgeType": "call"
+        },
+        {
+          "name": "filterMutation",
+          "edgeType": "call"
+        },
+        {
+          "name": "error",
+          "edgeType": "call"
+        },
+        {
+          "name": "info",
+          "edgeType": "call"
+        },
+        {
+          "name": "STATE_CHANGED",
+          "edgeType": "event_emit"
+        },
+        {
+          "name": "E2ERoomState",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "isReady",
+      "exported": true,
+      "qualifiedName": "E2ERoom.isReady",
+      "line": 121,
+      "endLine": 123,
+      "signature": "isReady()",
+      "containerClass": "E2ERoom",
+      "calls": []
+    },
+    {
+      "type": "method",
+      "name": "isDisabled",
+      "exported": true,
+      "qualifiedName": "E2ERoom.isDisabled",
+      "line": 125,
+      "endLine": 127,
+      "signature": "isDisabled()",
+      "containerClass": "E2ERoom",
+      "calls": []
+    },
+    {
+      "type": "method",
+      "name": "enable",
+      "exported": true,
+      "qualifiedName": "E2ERoom.enable",
+      "line": 129,
+      "endLine": 135,
+      "signature": "enable()",
+      "containerClass": "E2ERoom",
+      "calls": [
+        {
+          "name": "setState",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "disable",
+      "exported": true,
+      "qualifiedName": "E2ERoom.disable",
+      "line": 133,
+      "endLine": 135,
+      "signature": "disable()",
+      "containerClass": "E2ERoom",
+      "calls": [
+        {
+          "name": "setState",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "pause",
+      "exported": true,
+      "qualifiedName": "E2ERoom.pause",
+      "line": 137,
+      "endLine": 140,
+      "signature": "pause()",
+      "containerClass": "E2ERoom",
+      "calls": [
+        {
+          "name": "PAUSED",
+          "edgeType": "event_emit"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "resume",
+      "exported": true,
+      "qualifiedName": "E2ERoom.resume",
+      "line": 141,
+      "endLine": 144,
+      "signature": "resume()",
+      "containerClass": "E2ERoom",
+      "calls": [
+        {
+          "name": "PAUSED",
+          "edgeType": "event_emit"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "keyReceived",
+      "exported": true,
+      "qualifiedName": "E2ERoom.keyReceived",
+      "line": 145,
+      "endLine": 147,
+      "signature": "keyReceived()",
+      "containerClass": "E2ERoom",
+      "calls": [
+        {
+          "name": "setState",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "shouldConvertSentMessages",
+      "exported": true,
+      "qualifiedName": "E2ERoom.shouldConvertSentMessages",
+      "line": 149,
+      "endLine": 165,
+      "signature": "async shouldConvertSentMessages(message: { msg?: string })",
+      "containerClass": "E2ERoom",
+      "calls": [
+        {
+          "name": "isReady",
+          "edgeType": "call"
+        },
+        {
+          "name": "resolve",
+          "edgeType": "event_listen",
+          "event": "PAUSED"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "shouldConvertReceivedMessages",
+      "exported": true,
+      "qualifiedName": "E2ERoom.shouldConvertReceivedMessages",
+      "line": 153,
+      "endLine": 155,
+      "signature": "shouldConvertReceivedMessages()",
+      "containerClass": "E2ERoom",
+      "calls": [
+        {
+          "name": "isReady",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "isWaitingKeys",
+      "exported": true,
+      "qualifiedName": "E2ERoom.isWaitingKeys",
+      "line": 157,
+      "endLine": 159,
+      "signature": "isWaitingKeys()",
+      "containerClass": "E2ERoom",
+      "calls": []
+    },
+    {
+      "type": "method",
+      "name": "decryptSubscription",
+      "exported": true,
+      "qualifiedName": "E2ERoom.decryptSubscription",
+      "line": 169,
+      "endLine": 201,
+      "signature": "async decryptSubscription()",
+      "containerClass": "E2ERoom",
+      "calls": [
+        {
+          "name": "span",
+          "edgeType": "call"
+        },
+        {
+          "name": "find",
+          "edgeType": "call"
+        },
+        {
+          "name": "warn",
+          "edgeType": "call"
+        },
+        {
+          "name": "decryptMessage",
+          "edgeType": "call"
+        },
+        {
+          "name": "info",
+          "edgeType": "call"
+        },
+        {
+          "name": "store",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "decryptOldRoomKeys",
+      "exported": true,
+      "qualifiedName": "E2ERoom.decryptOldRoomKeys",
+      "line": 173,
+      "endLine": 200,
+      "signature": "async decryptOldRoomKeys()",
+      "containerClass": "E2ERoom",
+      "calls": [
+        {
+          "name": "span",
+          "edgeType": "call"
+        },
+        {
+          "name": "find",
+          "edgeType": "call"
+        },
+        {
+          "name": "info",
+          "edgeType": "call"
+        },
+        {
+          "name": "decryptSessionKey",
+          "edgeType": "call"
+        },
+        {
+          "name": "push",
+          "edgeType": "call"
+        },
+        {
+          "name": "error",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "exportOldRoomKeys",
+      "exported": true,
+      "qualifiedName": "E2ERoom.exportOldRoomKeys",
+      "line": 177,
+      "endLine": 206,
+      "signature": "async exportOldRoomKeys(oldKeys: ISubscription['oldRoomKeys'])",
+      "containerClass": "E2ERoom",
+      "calls": [
+        {
+          "name": "set",
+          "edgeType": "call"
+        },
+        {
+          "name": "span",
+          "edgeType": "call"
+        },
+        {
+          "name": "info",
+          "edgeType": "call"
+        },
+        {
+          "name": "exportSessionKey",
+          "edgeType": "call"
+        },
+        {
+          "name": "push",
+          "edgeType": "call"
+        },
+        {
+          "name": "error",
+          "edgeType": "call"
+        },
+        {
+          "name": "ISubscription",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "decryptPendingMessages",
+      "exported": true,
+      "qualifiedName": "E2ERoom.decryptPendingMessages",
+      "line": 181,
+      "endLine": 186,
+      "signature": "async decryptPendingMessages()",
+      "containerClass": "E2ERoom",
+      "calls": [
+        {
+          "name": "updateAsync",
+          "edgeType": "call"
+        },
+        {
+          "name": "decryptMessage",
+          "edgeType": "call"
+        },
+        {
+          "name": "IE2EEMessage",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "handshake",
+      "exported": true,
+      "qualifiedName": "E2ERoom.handshake",
+      "line": 186,
+      "endLine": 230,
+      "signature": "async handshake()",
+      "containerClass": "E2ERoom",
+      "calls": [
+        {
+          "name": "span",
+          "edgeType": "call"
+        },
+        {
+          "name": "isReady",
+          "edgeType": "call"
+        },
+        {
+          "name": "setState",
+          "edgeType": "call"
+        },
+        {
+          "name": "find",
+          "edgeType": "call"
+        },
+        {
+          "name": "importGroupKey",
+          "edgeType": "call"
+        },
+        {
+          "name": "info",
+          "edgeType": "call"
+        },
+        {
+          "name": "error",
+          "edgeType": "call"
+        },
+        {
+          "name": "get",
+          "edgeType": "call"
+        },
+        {
+          "name": "set",
+          "edgeType": "call"
+        },
+        {
+          "name": "createGroupKey",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "isSupportedRoomType",
+      "exported": true,
+      "qualifiedName": "E2ERoom.isSupportedRoomType",
+      "line": 190,
+      "endLine": 192,
+      "signature": "isSupportedRoomType(type: string)",
+      "containerClass": "E2ERoom",
+      "calls": [
+        {
+          "name": "allowRoomSettingChange",
+          "edgeType": "call"
+        },
+        {
+          "name": "getRoomDirectives",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "decryptSessionKey",
+      "exported": true,
+      "qualifiedName": "E2ERoom.decryptSessionKey",
+      "line": 194,
+      "endLine": 196,
+      "signature": "async decryptSessionKey(key: string)",
+      "containerClass": "E2ERoom",
+      "calls": [
+        {
+          "name": "importKey",
+          "edgeType": "call"
+        },
+        {
+          "name": "parse",
+          "edgeType": "call"
+        },
+        {
+          "name": "exportSessionKey",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "exportSessionKey",
+      "exported": true,
+      "qualifiedName": "E2ERoom.exportSessionKey",
+      "line": 198,
+      "endLine": 212,
+      "signature": "async exportSessionKey(key: string)",
+      "containerClass": "E2ERoom",
+      "calls": [
+        {
+          "name": "span",
+          "edgeType": "call"
+        },
+        {
+          "name": "decode",
+          "edgeType": "call"
+        },
+        {
+          "name": "set",
+          "edgeType": "call"
+        },
+        {
+          "name": "error",
+          "edgeType": "call"
+        },
+        {
+          "name": "decrypt",
+          "edgeType": "call"
+        },
+        {
+          "name": "info",
+          "edgeType": "call"
+        },
+        {
+          "name": "encode",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "importGroupKey",
+      "exported": true,
+      "qualifiedName": "E2ERoom.importGroupKey",
+      "line": 202,
+      "endLine": 243,
+      "signature": "async importGroupKey(groupKey: string)",
+      "containerClass": "E2ERoom",
+      "calls": [
+        {
+          "name": "span",
+          "edgeType": "call"
+        },
+        {
+          "name": "decode",
+          "edgeType": "call"
+        },
+        {
+          "name": "set",
+          "edgeType": "call"
+        },
+        {
+          "name": "info",
+          "edgeType": "call"
+        },
+        {
+          "name": "decrypt",
+          "edgeType": "call"
+        },
+        {
+          "name": "encode",
+          "edgeType": "call"
+        },
+        {
+          "name": "error",
+          "edgeType": "call"
+        },
+        {
+          "name": "randomUUID",
+          "edgeType": "call"
+        },
+        {
+          "name": "importKey",
+          "edgeType": "call"
+        },
+        {
+          "name": "parse",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "createNewGroupKey",
+      "exported": true,
+      "qualifiedName": "E2ERoom.createNewGroupKey",
+      "line": 206,
+      "endLine": 211,
+      "signature": "async createNewGroupKey()",
+      "containerClass": "E2ERoom",
+      "calls": [
+        {
+          "name": "generate",
+          "edgeType": "call"
+        },
+        {
+          "name": "exportJwk",
+          "edgeType": "call"
+        },
+        {
+          "name": "stringify",
+          "edgeType": "call"
+        },
+        {
+          "name": "randomUUID",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "createGroupKey",
+      "exported": true,
+      "qualifiedName": "E2ERoom.createGroupKey",
+      "line": 210,
+      "endLine": 223,
+      "signature": "async createGroupKey()",
+      "containerClass": "E2ERoom",
+      "calls": [
+        {
+          "name": "createNewGroupKey",
+          "edgeType": "call"
+        },
+        {
+          "name": "e2e.setRoomKeyID",
+          "edgeType": "rest_call"
+        },
+        {
+          "name": "post",
+          "edgeType": "call"
+        },
+        {
+          "name": "encryptGroupKeyForParticipant",
+          "edgeType": "call"
+        },
+        {
+          "name": "e2e.updateGroupKey",
+          "edgeType": "rest_call"
+        },
+        {
+          "name": "encryptKeyForOtherParticipants",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "resetRoomKey",
+      "exported": true,
+      "qualifiedName": "E2ERoom.resetRoomKey",
+      "line": 214,
+      "endLine": 236,
+      "signature": "async resetRoomKey()",
+      "containerClass": "E2ERoom",
+      "calls": [
+        {
+          "name": "span",
+          "edgeType": "call"
+        },
+        {
+          "name": "error",
+          "edgeType": "call"
+        },
+        {
+          "name": "setState",
+          "edgeType": "call"
+        },
+        {
+          "name": "createNewGroupKey",
+          "edgeType": "call"
+        },
+        {
+          "name": "encryptGroupKeyForParticipant",
+          "edgeType": "call"
+        },
+        {
+          "name": "info",
+          "edgeType": "call"
+        },
+        {
+          "name": "set",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "onRoomKeyReset",
+      "exported": true,
+      "qualifiedName": "E2ERoom.onRoomKeyReset",
+      "line": 218,
+      "endLine": 233,
+      "signature": "onRoomKeyReset(keyID: string)",
+      "containerClass": "E2ERoom",
+      "calls": [
+        {
+          "name": "set",
+          "edgeType": "call"
+        },
+        {
+          "name": "span",
+          "edgeType": "call"
+        },
+        {
+          "name": "warn",
+          "edgeType": "call"
+        },
+        {
+          "name": "info",
+          "edgeType": "call"
+        },
+        {
+          "name": "setState",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "encryptKeyForOtherParticipants",
+      "exported": true,
+      "qualifiedName": "E2ERoom.encryptKeyForOtherParticipants",
+      "line": 222,
+      "endLine": 265,
+      "signature": "async encryptKeyForOtherParticipants()",
+      "containerClass": "E2ERoom",
+      "calls": [
+        {
+          "name": "span",
+          "edgeType": "call"
+        },
+        {
+          "name": "find",
+          "edgeType": "call"
+        },
+        {
+          "name": "exportOldRoomKeys",
+          "edgeType": "call"
+        },
+        {
+          "name": "filter",
+          "edgeType": "call"
+        },
+        {
+          "name": "e2e.getUsersOfRoomWithoutKey",
+          "edgeType": "rest_call"
+        },
+        {
+          "name": "get",
+          "edgeType": "call"
+        },
+        {
+          "name": "info",
+          "edgeType": "call"
+        },
+        {
+          "name": "encryptGroupKeyForParticipant",
+          "edgeType": "call"
+        },
+        {
+          "name": "warn",
+          "edgeType": "call"
+        },
+        {
+          "name": "encryptOldKeysForParticipant",
+          "edgeType": "call"
+        },
+        {
+          "name": "push",
+          "edgeType": "call"
+        },
+        {
+          "name": "e2e.provideUsersSuggestedGroupKeys",
+          "edgeType": "rest_call"
+        },
+        {
+          "name": "post",
+          "edgeType": "call"
+        },
+        {
+          "name": "error",
+          "edgeType": "call"
+        },
+        {
+          "name": "set",
+          "edgeType": "call"
+        },
+        {
+          "name": "IUser",
+          "edgeType": "type"
+        },
+        {
+          "name": "ISubscription",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "encryptOldKeysForParticipant",
+      "exported": true,
+      "qualifiedName": "E2ERoom.encryptOldKeysForParticipant",
+      "line": 226,
+      "endLine": 256,
+      "signature": "async encryptOldKeysForParticipant(publicKey: string, oldRoomKeys: { E2EKey: string; e2eKeyId: string; ts: Date }[])",
+      "containerClass": "E2ERoom",
+      "calls": [
+        {
+          "name": "span",
+          "edgeType": "call"
+        },
+        {
+          "name": "info",
+          "edgeType": "call"
+        },
+        {
+          "name": "importPublicKey",
+          "edgeType": "call"
+        },
+        {
+          "name": "parse",
+          "edgeType": "call"
+        },
+        {
+          "name": "error",
+          "edgeType": "call"
+        },
+        {
+          "name": "set",
+          "edgeType": "call"
+        },
+        {
+          "name": "encrypt",
+          "edgeType": "call"
+        },
+        {
+          "name": "decode",
+          "edgeType": "call"
+        },
+        {
+          "name": "encode",
+          "edgeType": "call"
+        },
+        {
+          "name": "push",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "encryptGroupKeyForParticipant",
+      "exported": true,
+      "qualifiedName": "E2ERoom.encryptGroupKeyForParticipant",
+      "line": 230,
+      "endLine": 248,
+      "signature": "async encryptGroupKeyForParticipant(publicKey: string)",
+      "containerClass": "E2ERoom",
+      "calls": [
+        {
+          "name": "span",
+          "edgeType": "call"
+        },
+        {
+          "name": "importPublicKey",
+          "edgeType": "call"
+        },
+        {
+          "name": "parse",
+          "edgeType": "call"
+        },
+        {
+          "name": "error",
+          "edgeType": "call"
+        },
+        {
+          "name": "set",
+          "edgeType": "call"
+        },
+        {
+          "name": "encrypt",
+          "edgeType": "call"
+        },
+        {
+          "name": "decode",
+          "edgeType": "call"
+        },
+        {
+          "name": "encode",
+          "edgeType": "call"
+        },
+        {
+          "name": "info",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "encryptFile",
+      "exported": true,
+      "qualifiedName": "E2ERoom.encryptFile",
+      "line": 235,
+      "endLine": 264,
+      "signature": "async encryptFile(file: File)",
+      "containerClass": "E2ERoom",
+      "calls": [
+        {
+          "name": "span",
+          "edgeType": "call"
+        },
+        {
+          "name": "arrayBuffer",
+          "edgeType": "call"
+        },
+        {
+          "name": "sha256HashFromArrayBuffer",
+          "edgeType": "call"
+        },
+        {
+          "name": "getRandomValues",
+          "edgeType": "call"
+        },
+        {
+          "name": "generateAESCTRKey",
+          "edgeType": "call"
+        },
+        {
+          "name": "encryptAESCTR",
+          "edgeType": "call"
+        },
+        {
+          "name": "error",
+          "edgeType": "call"
+        },
+        {
+          "name": "set",
+          "edgeType": "call"
+        },
+        {
+          "name": "exportKey",
+          "edgeType": "call"
+        },
+        {
+          "name": "createSha256HashFromText",
+          "edgeType": "call"
+        },
+        {
+          "name": "encode",
+          "edgeType": "call"
+        },
+        {
+          "name": "Uint8Array",
+          "edgeType": "new"
+        },
+        {
+          "name": "File",
+          "edgeType": "new"
+        },
+        {
+          "name": "File",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "encryptText",
+      "exported": true,
+      "qualifiedName": "E2ERoom.encryptText",
+      "line": 240,
+      "endLine": 260,
+      "signature": "async encryptText(data: Uint8Array<ArrayBuffer>)",
+      "containerClass": "E2ERoom",
+      "calls": [
+        {
+          "name": "span",
+          "edgeType": "call"
+        },
+        {
+          "name": "encrypt",
+          "edgeType": "call"
+        },
+        {
+          "name": "encode",
+          "edgeType": "call"
+        },
+        {
+          "name": "info",
+          "edgeType": "call"
+        },
+        {
+          "name": "error",
+          "edgeType": "call"
+        },
+        {
+          "name": "Uint8Array",
+          "edgeType": "type"
+        },
+        {
+          "name": "ArrayBuffer",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "encryptMessageContent",
+      "exported": true,
+      "qualifiedName": "E2ERoom.encryptMessageContent",
+      "line": 245,
+      "endLine": 254,
+      "signature": "async encryptMessageContent( contentToBeEncrypted: Pick<IMessage, 'attachments' | 'files' | 'file'> & Optional<Pick<IMessage, 'msg'>, 'msg'>, )",
+      "containerClass": "E2ERoom",
+      "calls": [
+        {
+          "name": "encode",
+          "edgeType": "call"
+        },
+        {
+          "name": "stringify",
+          "edgeType": "call"
+        },
+        {
+          "name": "encryptText",
+          "edgeType": "call"
+        },
+        {
+          "name": "TextEncoder",
+          "edgeType": "new"
+        },
+        {
+          "name": "IMessage",
+          "edgeType": "type"
+        },
+        {
+          "name": "Optional",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "encryptMessage",
+      "exported": true,
+      "qualifiedName": "E2ERoom.encryptMessage",
+      "line": 252,
+      "endLine": 265,
+      "signature": "async encryptMessage(message: AtLeast<IMessage, '_id' | 'rid' | 'msg'>): Promise<IE2EEMessage>",
+      "containerClass": "E2ERoom",
+      "calls": [
+        {
+          "name": "encryptMessageContent",
+          "edgeType": "call"
+        },
+        {
+          "name": "AtLeast",
+          "edgeType": "type"
+        },
+        {
+          "name": "IMessage",
+          "edgeType": "type"
+        },
+        {
+          "name": "IE2EEMessage",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "decryptContent",
+      "exported": true,
+      "qualifiedName": "E2ERoom.decryptContent",
+      "line": 256,
+      "endLine": 260,
+      "signature": "async decryptContent<T extends EncryptedMessageContent>(data: T)",
+      "containerClass": "E2ERoom",
+      "calls": [
+        {
+          "name": "decrypt",
+          "edgeType": "call"
+        },
+        {
+          "name": "assign",
+          "edgeType": "call"
+        },
+        {
+          "name": "EncryptedMessageContent",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "decryptMessageContent",
+      "exported": true,
+      "qualifiedName": "E2ERoom.decryptMessageContent",
+      "line": 260,
+      "endLine": 297,
+      "signature": "async decryptMessageContent(message: IE2EEMessage): Promise<IE2EEMessage>",
+      "containerClass": "E2ERoom",
+      "calls": [
+        {
+          "name": "filter",
+          "edgeType": "call"
+        },
+        {
+          "name": "isRemovedFileAttachment",
+          "edgeType": "call"
+        },
+        {
+          "name": "find",
+          "edgeType": "call"
+        },
+        {
+          "name": "decrypt",
+          "edgeType": "call"
+        },
+        {
+          "name": "assign",
+          "edgeType": "call"
+        },
+        {
+          "name": "map",
+          "edgeType": "call"
+        },
+        {
+          "name": "isFileAttachment",
+          "edgeType": "call"
+        },
+        {
+          "name": "IE2EEMessage",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "decryptMessage",
+      "exported": true,
+      "qualifiedName": "E2ERoom.decryptMessage",
+      "line": 265,
+      "endLine": 292,
+      "signature": "async decryptMessage(message: IMessage | IE2EEMessage): Promise<IE2EEMessage | IMessage>",
+      "containerClass": "E2ERoom",
+      "calls": [
+        {
+          "name": "isEncryptedMessageContent",
+          "edgeType": "call"
+        },
+        {
+          "name": "decryptMessageContent",
+          "edgeType": "call"
+        },
+        {
+          "name": "decrypt",
+          "edgeType": "call"
+        },
+        {
+          "name": "IMessage",
+          "edgeType": "type"
+        },
+        {
+          "name": "IE2EEMessage",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "decrypt",
+      "exported": true,
+      "qualifiedName": "E2ERoom.decrypt",
+      "line": 269,
+      "endLine": 308,
+      "signature": "async decrypt(message: string | EncryptedContent): Promise<Pick<Partial<IMessage>, 'attachments' | 'files' | 'file' | 'msg'>>",
+      "containerClass": "E2ERoom",
+      "calls": [
+        {
+          "name": "set",
+          "edgeType": "call"
+        },
+        {
+          "name": "span",
+          "edgeType": "call"
+        },
+        {
+          "name": "decodeEncryptedContent",
+          "edgeType": "call"
+        },
+        {
+          "name": "retrieveDecryptionKey",
+          "edgeType": "call"
+        },
+        {
+          "name": "error",
+          "edgeType": "call"
+        },
+        {
+          "name": "decrypt",
+          "edgeType": "call"
+        },
+        {
+          "name": "parse",
+          "edgeType": "call"
+        },
+        {
+          "name": "EncryptedContent",
+          "edgeType": "type"
+        },
+        {
+          "name": "IMessage",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "retrieveDecryptionKey",
+      "exported": true,
+      "qualifiedName": "E2ERoom.retrieveDecryptionKey",
+      "line": 273,
+      "endLine": 276,
+      "signature": "private retrieveDecryptionKey(kid: string): Aes.Key | null",
+      "containerClass": "E2ERoom",
+      "calls": [
+        {
+          "name": "find",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "provideKeyToUser",
+      "exported": true,
+      "qualifiedName": "E2ERoom.provideKeyToUser",
+      "line": 277,
+      "endLine": 284,
+      "signature": "provideKeyToUser(keyId: string)",
+      "containerClass": "E2ERoom",
+      "calls": [
+        {
+          "name": "encryptKeyForOtherParticipants",
+          "edgeType": "call"
+        },
+        {
+          "name": "setState",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "onStateChange",
+      "exported": true,
+      "qualifiedName": "E2ERoom.onStateChange",
+      "line": 281,
+      "endLine": 284,
+      "signature": "onStateChange(cb: () => void)",
+      "containerClass": "E2ERoom",
+      "calls": [
+        {
+          "name": "cb",
+          "edgeType": "event_listen",
+          "event": "STATE_CHANGED"
+        },
+        {
+          "name": "off",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "encryptGroupKeyForParticipantsWaitingForTheKeys",
+      "exported": true,
+      "qualifiedName": "E2ERoom.encryptGroupKeyForParticipantsWaitingForTheKeys",
+      "line": 285,
+      "endLine": 305,
+      "signature": "async encryptGroupKeyForParticipantsWaitingForTheKeys(users: { _id: IUser['_id']; public_key: string }[])",
+      "containerClass": "E2ERoom",
+      "calls": [
+        {
+          "name": "isReady",
+          "edgeType": "call"
+        },
+        {
+          "name": "find",
+          "edgeType": "call"
+        },
+        {
+          "name": "exportOldRoomKeys",
+          "edgeType": "call"
+        },
+        {
+          "name": "all",
+          "edgeType": "call"
+        },
+        {
+          "name": "map",
+          "edgeType": "call"
+        },
+        {
+          "name": "encryptGroupKeyForParticipant",
+          "edgeType": "call"
+        },
+        {
+          "name": "encryptOldKeysForParticipant",
+          "edgeType": "call"
+        },
+        {
+          "name": "IUser",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "constructor",
+      "exported": true,
+      "qualifiedName": "E2ERoom.constructor",
+      "line": 91,
+      "endLine": 107,
+      "signature": "constructor(userId: string, room: IRoom)",
+      "containerClass": "E2ERoom",
+      "calls": [
+        {
+          "name": "READY",
+          "edgeType": "event_listen"
+        },
+        {
+          "name": "decryptOldRoomKeys",
+          "edgeType": "call"
+        },
+        {
+          "name": "decryptPendingMessages",
+          "edgeType": "call"
+        },
+        {
+          "name": "decryptSubscription",
+          "edgeType": "call"
+        },
+        {
+          "name": "STATE_CHANGED",
+          "edgeType": "event_listen"
+        },
+        {
+          "name": "handshake",
+          "edgeType": "call"
+        },
+        {
+          "name": "setState",
+          "edgeType": "call"
+        },
+        {
+          "name": "IRoom",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "class_property",
+      "name": "state",
+      "exported": true,
+      "qualifiedName": "E2ERoom.state",
+      "line": 69,
+      "endLine": 69,
+      "signature": "state: E2ERoomState | undefined = undefined;",
+      "containerClass": "E2ERoom",
+      "calls": [
+        {
+          "name": "E2ERoomState",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "variable_function",
+      "name": "filterMutation",
+      "exported": false,
+      "line": 47,
+      "endLine": 66,
+      "signature": "(currentState: E2ERoomState | undefined, nextState: E2ERoomState): E2ERoomState | false =>",
+      "calls": [
+        {
+          "name": "includes",
+          "edgeType": "call"
+        },
+        {
+          "name": "E2ERoomState",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "type",
+      "name": "Mutations",
+      "line": 37,
+      "endLine": 37,
+      "signature": "type Mutations ="
+    }
+  ],
+  "imports": [
+    {
+      "module": "@rocket.chat/base64",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/core-typings",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/core-typings",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/emitter",
+      "resolved": "external"
+    },
+    {
+      "module": "@tanstack/react-query",
+      "resolved": "external"
+    },
+    {
+      "module": "ejson",
+      "resolved": "external"
+    },
+    {
+      "module": "./E2ERoomState",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/client/lib/e2ee/E2ERoomState.ts"
+    },
+    {
+      "module": "./binary",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/client/lib/e2ee/binary.ts"
+    },
+    {
+      "module": "./content",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/client/lib/e2ee/content.ts"
+    },
+    {
+      "module": "./crypto/aes",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/client/lib/e2ee/crypto/aes.ts"
+    },
+    {
+      "module": "./crypto/rsa",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/client/lib/e2ee/crypto/rsa.ts"
+    },
+    {
+      "module": "./helper",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/client/lib/e2ee/helper.ts"
+    },
+    {
+      "module": "./logger",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/client/lib/e2ee/logger.ts"
+    },
+    {
+      "module": "./prefixed",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/client/lib/e2ee/prefixed.ts"
+    },
+    {
+      "module": "./rocketchat.e2e",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/client/lib/e2ee/rocketchat.e2e.ts"
+    },
+    {
+      "module": "../../../app/utils/client/lib/SDKClient",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/app/utils/client/lib/SDKClient.ts"
+    },
+    {
+      "module": "../../../app/utils/lib/i18n",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/app/utils/lib/i18n.ts"
+    },
+    {
+      "module": "../../../definition/IRoomTypeConfig",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/definition/IRoomTypeConfig.ts"
+    },
+    {
+      "module": "../../stores",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/client/stores/index.ts"
+    },
+    {
+      "module": "../rooms/roomCoordinator",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/client/lib/rooms/roomCoordinator.tsx"
+    }
+  ]
+}

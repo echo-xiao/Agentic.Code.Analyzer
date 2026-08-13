@@ -1,0 +1,121 @@
+{
+  "sourcePath": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/app/utils/server/lib/normalizeMessagesForUser.ts",
+  "symbols": [
+    {
+      "type": "function",
+      "name": "getNameOfUsername",
+      "exported": false,
+      "line": 19,
+      "endLine": 21,
+      "signature": "function getNameOfUsername(users: Map<string, string>, username: string): string",
+      "calls": [
+        {
+          "name": "get",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "variable_function",
+      "name": "filterStarred",
+      "exported": false,
+      "line": 6,
+      "endLine": 15,
+      "signature": "<T extends IMessage = IMessage>(message: T, uid?: string): T =>",
+      "calls": [
+        {
+          "name": "isArray",
+          "edgeType": "call"
+        },
+        {
+          "name": "filter",
+          "edgeType": "call"
+        },
+        {
+          "name": "IMessage",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "variable_function",
+      "name": "normalizeMessagesForUser",
+      "exported": true,
+      "line": 16,
+      "endLine": 79,
+      "signature": "async <T extends IMessage = IMessage>(messages: T[], uid?: string): Promise<T[]> =>",
+      "calls": [
+        {
+          "name": "get",
+          "edgeType": "call"
+        },
+        {
+          "name": "map",
+          "edgeType": "call"
+        },
+        {
+          "name": "filterStarred",
+          "edgeType": "call"
+        },
+        {
+          "name": "forEach",
+          "edgeType": "call"
+        },
+        {
+          "name": "values",
+          "edgeType": "call"
+        },
+        {
+          "name": "toArray",
+          "edgeType": "call"
+        },
+        {
+          "name": "findUsersByUsernames",
+          "edgeType": "call"
+        },
+        {
+          "name": "set",
+          "edgeType": "call"
+        },
+        {
+          "name": "getNameOfUsername",
+          "edgeType": "call"
+        },
+        {
+          "name": "fromEntries",
+          "edgeType": "call"
+        },
+        {
+          "name": "entries",
+          "edgeType": "call"
+        },
+        {
+          "name": "Set",
+          "edgeType": "new"
+        },
+        {
+          "name": "Map",
+          "edgeType": "new"
+        },
+        {
+          "name": "IMessage",
+          "edgeType": "type"
+        }
+      ]
+    }
+  ],
+  "imports": [
+    {
+      "module": "@rocket.chat/core-typings",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/models",
+      "resolved": "external"
+    },
+    {
+      "module": "../../../settings/server",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/app/settings/server/index.ts"
+    }
+  ]
+}

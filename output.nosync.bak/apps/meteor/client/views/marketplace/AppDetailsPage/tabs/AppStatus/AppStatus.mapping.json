@@ -1,0 +1,301 @@
+{
+  "sourcePath": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/client/views/marketplace/AppDetailsPage/tabs/AppStatus/AppStatus.tsx",
+  "symbols": [
+    {
+      "type": "module",
+      "name": "AppStatus",
+      "exported": false,
+      "line": 1,
+      "endLine": 182,
+      "signature": "AppStatus",
+      "calls": [
+        {
+          "name": "memo",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "inner_function",
+      "name": "handleAcquireApp",
+      "exported": false,
+      "qualifiedName": "AppStatus.handleAcquireApp",
+      "line": 85,
+      "endLine": 94,
+      "signature": "() =>",
+      "calls": [
+        {
+          "name": "setLoading",
+          "edgeType": "call"
+        },
+        {
+          "name": "setModal",
+          "edgeType": "call"
+        },
+        {
+          "name": "appInstallationHandler",
+          "edgeType": "call"
+        },
+        {
+          "name": "AddonRequiredModal",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "actionType",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "cancelAction",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "appInstallationHandler",
+          "edgeType": "jsx"
+        }
+      ]
+    },
+    {
+      "type": "variable_function",
+      "name": "AppStatus",
+      "exported": false,
+      "line": 26,
+      "endLine": 179,
+      "signature": "({ app, showStatus = true, isAppDetailsPage, installed, ...props }: AppStatusProps) =>",
+      "calls": [
+        {
+          "name": "useTranslation",
+          "edgeType": "call"
+        },
+        {
+          "name": "useState",
+          "edgeType": "call"
+        },
+        {
+          "name": "useSafely",
+          "edgeType": "call"
+        },
+        {
+          "name": "useSetModal",
+          "edgeType": "call"
+        },
+        {
+          "name": "usePermission",
+          "edgeType": "call"
+        },
+        {
+          "name": "useRouteParameter",
+          "edgeType": "call"
+        },
+        {
+          "name": "appButtonProps",
+          "edgeType": "call"
+        },
+        {
+          "name": "lt",
+          "edgeType": "call"
+        },
+        {
+          "name": "useIsEnterprise",
+          "edgeType": "call"
+        },
+        {
+          "name": "useHasLicenseModule",
+          "edgeType": "call"
+        },
+        {
+          "name": "appMultiStatusProps",
+          "edgeType": "call"
+        },
+        {
+          "name": "useMarketplaceActions",
+          "edgeType": "call"
+        },
+        {
+          "name": "useCallback",
+          "edgeType": "call"
+        },
+        {
+          "name": "setEndUserRequested",
+          "edgeType": "call"
+        },
+        {
+          "name": "setLoading",
+          "edgeType": "call"
+        },
+        {
+          "name": "setModal",
+          "edgeType": "call"
+        },
+        {
+          "name": "useAppInstallationHandler",
+          "edgeType": "call"
+        },
+        {
+          "name": "appInstallationHandler",
+          "edgeType": "call"
+        },
+        {
+          "name": "map",
+          "edgeType": "call"
+        },
+        {
+          "name": "getStatusVariant",
+          "edgeType": "call"
+        },
+        {
+          "name": "getStatusFontColor",
+          "edgeType": "call"
+        },
+        {
+          "name": "handleAppRequestsNumber",
+          "edgeType": "call"
+        },
+        {
+          "name": "Box",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "Button",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "Margins",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "Tag",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "AddonRequiredModal",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "AppStatusPriceDisplay",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "Icon",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "actionType",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "cancelAction",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "appInstallationHandler",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "loading",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "handleAcquireApp",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "purchaseType",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "pricingPlans",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "price",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "index",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "AppStatusProps",
+          "edgeType": "type"
+        },
+        {
+          "name": "AppInstallationHandlerParams",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "type",
+      "name": "AppStatusProps",
+      "line": 19,
+      "endLine": 24,
+      "signature": "export type AppStatusProps ="
+    }
+  ],
+  "imports": [
+    {
+      "module": "@rocket.chat/core-typings",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/fuselage",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/fuselage-hooks",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/ui-contexts",
+      "resolved": "external"
+    },
+    {
+      "module": "react",
+      "resolved": "external"
+    },
+    {
+      "module": "react-i18next",
+      "resolved": "external"
+    },
+    {
+      "module": "semver",
+      "resolved": "external"
+    },
+    {
+      "module": "./AppStatusPriceDisplay",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/client/views/marketplace/AppDetailsPage/tabs/AppStatus/AppStatusPriceDisplay.tsx"
+    },
+    {
+      "module": "../../../../../hooks/useHasLicenseModule",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/client/hooks/useHasLicenseModule.ts"
+    },
+    {
+      "module": "../../../../../hooks/useIsEnterprise",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/client/hooks/useIsEnterprise.ts"
+    },
+    {
+      "module": "../../../AppsList/AddonRequiredModal",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/client/views/marketplace/AppsList/AddonRequiredModal.tsx"
+    },
+    {
+      "module": "../../../helpers",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/client/views/marketplace/helpers.ts"
+    },
+    {
+      "module": "../../../helpers",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/client/views/marketplace/helpers.ts"
+    },
+    {
+      "module": "../../../hooks/useAppInstallationHandler",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/client/views/marketplace/hooks/useAppInstallationHandler.tsx"
+    },
+    {
+      "module": "../../../hooks/useAppInstallationHandler",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/client/views/marketplace/hooks/useAppInstallationHandler.tsx"
+    },
+    {
+      "module": "../../../hooks/useMarketplaceActions",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/client/views/marketplace/hooks/useMarketplaceActions.ts"
+    }
+  ]
+}

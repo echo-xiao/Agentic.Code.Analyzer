@@ -1,0 +1,208 @@
+{
+  "sourcePath": "/Users/echoooooo/Desktop/code/Rocket.Chat/packages/ui-client/src/views/setupWizard/steps/AdminInfoStep.tsx",
+  "symbols": [
+    {
+      "type": "variable_function",
+      "name": "toRegExp",
+      "exported": false,
+      "line": 10,
+      "endLine": 10,
+      "signature": "(username: string): RegExp =>",
+      "calls": [
+        {
+          "name": "trim",
+          "edgeType": "call"
+        },
+        {
+          "name": "escapeRegExp",
+          "edgeType": "call"
+        },
+        {
+          "name": "RegExp",
+          "edgeType": "new"
+        }
+      ]
+    },
+    {
+      "type": "variable_function",
+      "name": "hasBlockedName",
+      "exported": false,
+      "line": 12,
+      "endLine": 13,
+      "signature": "(username: string): boolean =>",
+      "calls": [
+        {
+          "name": "some",
+          "edgeType": "call"
+        },
+        {
+          "name": "test",
+          "edgeType": "call"
+        },
+        {
+          "name": "trim",
+          "edgeType": "call"
+        },
+        {
+          "name": "escapeRegExp",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "inner_function",
+      "name": "handleSubmit",
+      "exported": false,
+      "qualifiedName": "AdminInfoStep.handleSubmit",
+      "line": 64,
+      "endLine": 66,
+      "signature": "async (data) =>",
+      "calls": [
+        {
+          "name": "registerAdminUser",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "variable_function",
+      "name": "AdminInfoStep",
+      "exported": false,
+      "line": 15,
+      "endLine": 81,
+      "signature": "() =>",
+      "calls": [
+        {
+          "name": "useTranslation",
+          "edgeType": "call"
+        },
+        {
+          "name": "useSetting",
+          "edgeType": "call"
+        },
+        {
+          "name": "useSetupWizardContext",
+          "edgeType": "call"
+        },
+        {
+          "name": "usePasswordPolicyOptions",
+          "edgeType": "call"
+        },
+        {
+          "name": "usePasswordPolicy",
+          "edgeType": "call"
+        },
+        {
+          "name": "useVerifyPassword",
+          "edgeType": "call"
+        },
+        {
+          "name": "useMemo",
+          "edgeType": "call"
+        },
+        {
+          "name": "join",
+          "edgeType": "call"
+        },
+        {
+          "name": "map",
+          "edgeType": "call"
+        },
+        {
+          "name": "test",
+          "edgeType": "call"
+        },
+        {
+          "name": "hasBlockedName",
+          "edgeType": "call"
+        },
+        {
+          "name": "validatePasswordPolicy",
+          "edgeType": "call"
+        },
+        {
+          "name": "registerAdminUser",
+          "edgeType": "call"
+        },
+        {
+          "name": "I18nextProvider",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "AdminInfoPage",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "i18n",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "validatePassword",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "passwordRulesHint",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "validateUsername",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "validateEmail",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "currentStep",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "maxSteps",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "handleSubmit",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "RegExp",
+          "edgeType": "new"
+        },
+        {
+          "name": "ComponentProps",
+          "edgeType": "type"
+        }
+      ]
+    }
+  ],
+  "imports": [
+    {
+      "module": "@rocket.chat/onboarding-ui",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/string-helpers",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/ui-contexts",
+      "resolved": "external"
+    },
+    {
+      "module": "react",
+      "resolved": "external"
+    },
+    {
+      "module": "react",
+      "resolved": "external"
+    },
+    {
+      "module": "react-i18next",
+      "resolved": "external"
+    },
+    {
+      "module": "../contexts/SetupWizardContext",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/packages/ui-client/src/views/setupWizard/contexts/SetupWizardContext.tsx"
+    }
+  ]
+}

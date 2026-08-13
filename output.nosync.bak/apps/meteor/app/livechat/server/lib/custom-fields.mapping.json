@@ -1,0 +1,285 @@
+{
+  "sourcePath": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/app/livechat/server/lib/custom-fields.ts",
+  "symbols": [
+    {
+      "type": "function",
+      "name": "updateContactsCustomFields",
+      "exported": true,
+      "line": 22,
+      "endLine": 49,
+      "signature": "export async function updateContactsCustomFields( contact: ILivechatContact, validCustomFields: { key: string; value: string; overwrite: boolean; }[], ): Promise<void>",
+      "calls": [
+        {
+          "name": "reduce",
+          "edgeType": "call"
+        },
+        {
+          "name": "push",
+          "edgeType": "call"
+        },
+        {
+          "name": "keys",
+          "edgeType": "call"
+        },
+        {
+          "name": "debug",
+          "edgeType": "call"
+        },
+        {
+          "name": "updateById",
+          "edgeType": "call"
+        },
+        {
+          "name": "ILivechatContact",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "function",
+      "name": "setCustomFields",
+      "exported": true,
+      "line": 33,
+      "endLine": 79,
+      "signature": "export async function setCustomFields({ token, key, value, overwrite, }: { key: string; value: string; overwrite: boolean; token: string; }): Promise<number>",
+      "calls": [
+        {
+          "name": "debug",
+          "edgeType": "call"
+        },
+        {
+          "name": "findOneById",
+          "edgeType": "call"
+        },
+        {
+          "name": "test",
+          "edgeType": "call"
+        },
+        {
+          "name": "updateDataByToken",
+          "edgeType": "call"
+        },
+        {
+          "name": "updateLivechatDataByToken",
+          "edgeType": "call"
+        },
+        {
+          "name": "getVisitorByToken",
+          "edgeType": "call"
+        },
+        {
+          "name": "toArray",
+          "edgeType": "call"
+        },
+        {
+          "name": "findAllByVisitorId",
+          "edgeType": "call"
+        },
+        {
+          "name": "all",
+          "edgeType": "call"
+        },
+        {
+          "name": "map",
+          "edgeType": "call"
+        },
+        {
+          "name": "updateContactsCustomFields",
+          "edgeType": "call"
+        },
+        {
+          "name": "RegExp",
+          "edgeType": "new"
+        }
+      ]
+    },
+    {
+      "type": "function",
+      "name": "setMultipleVisitorCustomFields",
+      "exported": true,
+      "line": 47,
+      "endLine": 101,
+      "signature": "export async function setMultipleVisitorCustomFields( visitor: ILivechatVisitor, customFields: { key: string; value: string; overwrite: boolean; }[], livechatCustomFields?: ILivechatCustomField[], )",
+      "calls": [
+        {
+          "name": "map",
+          "edgeType": "call"
+        },
+        {
+          "name": "toArray",
+          "edgeType": "call"
+        },
+        {
+          "name": "findByScope",
+          "edgeType": "call"
+        },
+        {
+          "name": "validateRequiredCustomFields",
+          "edgeType": "call"
+        },
+        {
+          "name": "filter",
+          "edgeType": "call"
+        },
+        {
+          "name": "includes",
+          "edgeType": "call"
+        },
+        {
+          "name": "find",
+          "edgeType": "call"
+        },
+        {
+          "name": "reduce",
+          "edgeType": "call"
+        },
+        {
+          "name": "keys",
+          "edgeType": "call"
+        },
+        {
+          "name": "updateAllLivechatDataByToken",
+          "edgeType": "call"
+        },
+        {
+          "name": "findAllByVisitorId",
+          "edgeType": "call"
+        },
+        {
+          "name": "all",
+          "edgeType": "call"
+        },
+        {
+          "name": "updateContactsCustomFields",
+          "edgeType": "call"
+        },
+        {
+          "name": "warn",
+          "edgeType": "call"
+        },
+        {
+          "name": "ILivechatVisitor",
+          "edgeType": "type"
+        },
+        {
+          "name": "ILivechatCustomField",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "function",
+      "name": "setMultipleCustomFields",
+      "exported": true,
+      "line": 59,
+      "endLine": 132,
+      "signature": "export async function setMultipleCustomFields({ visitor, customFields, }: { visitor: ILivechatVisitor; customFields: { key: string; value: string; overwrite: boolean; }[]; }): Promise< { key: string; value: string; overwrite: boolean; }[] >",
+      "calls": [
+        {
+          "name": "debug",
+          "edgeType": "call"
+        },
+        {
+          "name": "map",
+          "edgeType": "call"
+        },
+        {
+          "name": "toArray",
+          "edgeType": "call"
+        },
+        {
+          "name": "find",
+          "edgeType": "call"
+        },
+        {
+          "name": "reduce",
+          "edgeType": "call"
+        },
+        {
+          "name": "test",
+          "edgeType": "call"
+        },
+        {
+          "name": "push",
+          "edgeType": "call"
+        },
+        {
+          "name": "all",
+          "edgeType": "call"
+        },
+        {
+          "name": "updateDataByToken",
+          "edgeType": "call"
+        },
+        {
+          "name": "setMultipleVisitorCustomFields",
+          "edgeType": "call"
+        },
+        {
+          "name": "filter",
+          "edgeType": "call"
+        },
+        {
+          "name": "RegExp",
+          "edgeType": "new"
+        },
+        {
+          "name": "ILivechatVisitor",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "variable_function",
+      "name": "validateRequiredCustomFields",
+      "exported": true,
+      "line": 7,
+      "endLine": 20,
+      "signature": "(customFields: string[], livechatCustomFields: ILivechatCustomField[]) =>",
+      "calls": [
+        {
+          "name": "filter",
+          "edgeType": "call"
+        },
+        {
+          "name": "forEach",
+          "edgeType": "call"
+        },
+        {
+          "name": "find",
+          "edgeType": "call"
+        },
+        {
+          "name": "push",
+          "edgeType": "call"
+        },
+        {
+          "name": "join",
+          "edgeType": "call"
+        },
+        {
+          "name": "ILivechatCustomField",
+          "edgeType": "type"
+        }
+      ]
+    }
+  ],
+  "imports": [
+    {
+      "module": "@rocket.chat/core-typings",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/models",
+      "resolved": "external"
+    },
+    {
+      "module": "./logger",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/app/livechat/server/lib/logger.ts"
+    },
+    {
+      "module": "../../../utils/lib/i18n",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/app/utils/lib/i18n.ts"
+    }
+  ]
+}

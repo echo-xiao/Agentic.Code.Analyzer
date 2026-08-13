@@ -1,0 +1,42 @@
+{
+  "sourcePath": "/Users/echoooooo/Desktop/code/Rocket.Chat/packages/livechat/src/helpers/canRenderMessage.ts",
+  "symbols": [
+    {
+      "type": "variable_function",
+      "name": "getHiddenSystemMessages",
+      "exported": true,
+      "line": 26,
+      "endLine": 32,
+      "signature": "() =>",
+      "calls": []
+    },
+    {
+      "type": "variable_function",
+      "name": "canRenderMessage",
+      "exported": true,
+      "line": 30,
+      "endLine": 34,
+      "signature": "({ t }: { t: string }) =>",
+      "calls": [
+        {
+          "name": "getHiddenSystemMessages",
+          "edgeType": "call"
+        },
+        {
+          "name": "includes",
+          "edgeType": "call"
+        }
+      ]
+    }
+  ],
+  "imports": [
+    {
+      "module": "../components/Messages/constants",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/packages/livechat/src/components/Messages/constants.ts"
+    },
+    {
+      "module": "../store",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/packages/livechat/src/store/index.tsx"
+    }
+  ]
+}

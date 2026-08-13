@@ -1,0 +1,81 @@
+{
+  "sourcePath": "/Users/echoooooo/Desktop/code/Rocket.Chat/packages/livechat/src/lib/transcript.ts",
+  "symbols": [
+    {
+      "type": "variable_function",
+      "name": "promptTranscript",
+      "exported": false,
+      "line": 7,
+      "endLine": 41,
+      "signature": "async () =>",
+      "calls": [
+        {
+          "name": "warn",
+          "edgeType": "call"
+        },
+        {
+          "name": "then",
+          "edgeType": "call"
+        },
+        {
+          "name": "confirm",
+          "edgeType": "call"
+        },
+        {
+          "name": "requestTranscript",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "variable_function",
+      "name": "transcriptSentAlert",
+      "exported": false,
+      "line": 11,
+      "endLine": 15,
+      "signature": "(message: string) =>",
+      "calls": [
+        {
+          "name": "alert",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "variable_function",
+      "name": "handleTranscript",
+      "exported": true,
+      "line": 17,
+      "endLine": 32,
+      "signature": "async () =>",
+      "calls": [
+        {
+          "name": "promptTranscript",
+          "edgeType": "call"
+        },
+        {
+          "name": "transcriptSentAlert",
+          "edgeType": "call"
+        }
+      ]
+    }
+  ],
+  "imports": [
+    {
+      "module": "i18next",
+      "resolved": "external"
+    },
+    {
+      "module": "../api",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/packages/livechat/src/api.ts"
+    },
+    {
+      "module": "../components/Modal",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/packages/livechat/src/components/Modal"
+    },
+    {
+      "module": "../store",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/packages/livechat/src/store/index.tsx"
+    }
+  ]
+}

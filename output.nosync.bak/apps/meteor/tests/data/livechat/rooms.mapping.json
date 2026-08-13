@@ -1,0 +1,1109 @@
+{
+  "sourcePath": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/tests/data/livechat/rooms.ts",
+  "symbols": [
+    {
+      "type": "variable_function",
+      "name": "createLivechatRoom",
+      "exported": true,
+      "line": 21,
+      "endLine": 33,
+      "signature": "async (visitorToken: string, extraRoomParams?: Record<string, string>): Promise<IOmnichannelRoom> =>",
+      "calls": [
+        {
+          "name": "append",
+          "edgeType": "call"
+        },
+        {
+          "name": "entries",
+          "edgeType": "call"
+        },
+        {
+          "name": "expect",
+          "edgeType": "call"
+        },
+        {
+          "name": "set",
+          "edgeType": "call"
+        },
+        {
+          "name": "query",
+          "edgeType": "call"
+        },
+        {
+          "name": "get",
+          "edgeType": "call"
+        },
+        {
+          "name": "api",
+          "edgeType": "call"
+        },
+        {
+          "name": "URLSearchParams",
+          "edgeType": "new"
+        },
+        {
+          "name": "IOmnichannelRoom",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "variable_function",
+      "name": "createLivechatRoomWidget",
+      "exported": true,
+      "line": 25,
+      "endLine": 45,
+      "signature": "async ( visitorToken: string, extraRoomParams?: Record<string, string>, ): Promise<IOmnichannelRoom> =>",
+      "calls": [
+        {
+          "name": "append",
+          "edgeType": "call"
+        },
+        {
+          "name": "entries",
+          "edgeType": "call"
+        },
+        {
+          "name": "expect",
+          "edgeType": "call"
+        },
+        {
+          "name": "set",
+          "edgeType": "call"
+        },
+        {
+          "name": "query",
+          "edgeType": "call"
+        },
+        {
+          "name": "get",
+          "edgeType": "call"
+        },
+        {
+          "name": "api",
+          "edgeType": "call"
+        },
+        {
+          "name": "URLSearchParams",
+          "edgeType": "new"
+        },
+        {
+          "name": "IOmnichannelRoom",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "variable_function",
+      "name": "createVisitorWithCustomData",
+      "exported": true,
+      "line": 32,
+      "endLine": 79,
+      "signature": "async ({ department, visitorName, customPhone, customFields, customToken, customEmail, ignoreEmail = false, ignorePhone = false, }: { department?: string; customPhone?: string; visitorName?: string; customEmail?: string; customFields?: { key: string; value: string; overwrite: boolean }[]; customToken?: string; ignoreEmail?: boolean; ignorePhone?: boolean; }): Promise<ILivechatVisitor> =>",
+      "calls": [
+        {
+          "name": "getRandomVisitorToken",
+          "edgeType": "call"
+        },
+        {
+          "name": "floor",
+          "edgeType": "call"
+        },
+        {
+          "name": "random",
+          "edgeType": "call"
+        },
+        {
+          "name": "get",
+          "edgeType": "call"
+        },
+        {
+          "name": "api",
+          "edgeType": "call"
+        },
+        {
+          "name": "send",
+          "edgeType": "call"
+        },
+        {
+          "name": "set",
+          "edgeType": "call"
+        },
+        {
+          "name": "post",
+          "edgeType": "call"
+        },
+        {
+          "name": "now",
+          "edgeType": "call"
+        },
+        {
+          "name": "ILivechatVisitor",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "variable_function",
+      "name": "createVisitor",
+      "exported": true,
+      "line": 54,
+      "endLine": 88,
+      "signature": "( department?: string, visitorName?: string, customEmail?: string, customPhone?: string, ): Promise<ILivechatVisitor> =>",
+      "calls": [
+        {
+          "name": "getRandomVisitorToken",
+          "edgeType": "call"
+        },
+        {
+          "name": "floor",
+          "edgeType": "call"
+        },
+        {
+          "name": "random",
+          "edgeType": "call"
+        },
+        {
+          "name": "end",
+          "edgeType": "call"
+        },
+        {
+          "name": "get",
+          "edgeType": "call"
+        },
+        {
+          "name": "api",
+          "edgeType": "call"
+        },
+        {
+          "name": "resolve",
+          "edgeType": "call"
+        },
+        {
+          "name": "send",
+          "edgeType": "call"
+        },
+        {
+          "name": "set",
+          "edgeType": "call"
+        },
+        {
+          "name": "post",
+          "edgeType": "call"
+        },
+        {
+          "name": "now",
+          "edgeType": "call"
+        },
+        {
+          "name": "reject",
+          "edgeType": "call"
+        },
+        {
+          "name": "ILivechatVisitor",
+          "edgeType": "type"
+        },
+        {
+          "name": "DummyResponse",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "variable_function",
+      "name": "deleteVisitor",
+      "exported": true,
+      "line": 90,
+      "endLine": 92,
+      "signature": "async (token: string): Promise<void> =>",
+      "calls": [
+        {
+          "name": "delete",
+          "edgeType": "call"
+        },
+        {
+          "name": "api",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "variable_function",
+      "name": "takeInquiry",
+      "exported": true,
+      "line": 94,
+      "endLine": 102,
+      "signature": "async (inquiryId: string, agentCredentials?: Credentials): Promise<void> =>",
+      "calls": [
+        {
+          "name": "expect",
+          "edgeType": "call"
+        },
+        {
+          "name": "send",
+          "edgeType": "call"
+        },
+        {
+          "name": "set",
+          "edgeType": "call"
+        },
+        {
+          "name": "post",
+          "edgeType": "call"
+        },
+        {
+          "name": "api",
+          "edgeType": "call"
+        },
+        {
+          "name": "Credentials",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "variable_function",
+      "name": "fetchInquiry",
+      "exported": true,
+      "line": 98,
+      "endLine": 111,
+      "signature": "(roomId: string): Promise<ILivechatInquiryRecord> =>",
+      "calls": [
+        {
+          "name": "end",
+          "edgeType": "call"
+        },
+        {
+          "name": "set",
+          "edgeType": "call"
+        },
+        {
+          "name": "query",
+          "edgeType": "call"
+        },
+        {
+          "name": "get",
+          "edgeType": "call"
+        },
+        {
+          "name": "api",
+          "edgeType": "call"
+        },
+        {
+          "name": "reject",
+          "edgeType": "call"
+        },
+        {
+          "name": "resolve",
+          "edgeType": "call"
+        },
+        {
+          "name": "ILivechatInquiryRecord",
+          "edgeType": "type"
+        },
+        {
+          "name": "DummyResponse",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "variable_function",
+      "name": "createDepartment",
+      "exported": true,
+      "line": 102,
+      "endLine": 133,
+      "signature": "( agents?: { agentId: string; count?: number }[], name?: string, enabled = true, opts: Record<string, any> = {}, departmentUnit?: { _id?: string }, userCredentials: Credentials = credentials, ): Promise<ILivechatDepartment> =>",
+      "calls": [
+        {
+          "name": "end",
+          "edgeType": "call"
+        },
+        {
+          "name": "send",
+          "edgeType": "call"
+        },
+        {
+          "name": "set",
+          "edgeType": "call"
+        },
+        {
+          "name": "post",
+          "edgeType": "call"
+        },
+        {
+          "name": "api",
+          "edgeType": "call"
+        },
+        {
+          "name": "now",
+          "edgeType": "call"
+        },
+        {
+          "name": "reject",
+          "edgeType": "call"
+        },
+        {
+          "name": "resolve",
+          "edgeType": "call"
+        },
+        {
+          "name": "Credentials",
+          "edgeType": "type"
+        },
+        {
+          "name": "ILivechatDepartment",
+          "edgeType": "type"
+        },
+        {
+          "name": "DummyResponse",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "variable_function",
+      "name": "updateDepartment",
+      "exported": true,
+      "line": 113,
+      "endLine": 153,
+      "signature": "({ departmentId, userCredentials, agents, name, enabled = true, opts = {}, departmentUnit, }: { departmentId: string; userCredentials: Credentials; agents?: { agentId: string }[]; name?: string; enabled?: boolean; opts?: Record<string, any>; departmentUnit?: { _id?: string }; }): Promise<ILivechatDepartment> =>",
+      "calls": [
+        {
+          "name": "end",
+          "edgeType": "call"
+        },
+        {
+          "name": "send",
+          "edgeType": "call"
+        },
+        {
+          "name": "set",
+          "edgeType": "call"
+        },
+        {
+          "name": "put",
+          "edgeType": "call"
+        },
+        {
+          "name": "api",
+          "edgeType": "call"
+        },
+        {
+          "name": "now",
+          "edgeType": "call"
+        },
+        {
+          "name": "reject",
+          "edgeType": "call"
+        },
+        {
+          "name": "resolve",
+          "edgeType": "call"
+        },
+        {
+          "name": "Credentials",
+          "edgeType": "type"
+        },
+        {
+          "name": "ILivechatDepartment",
+          "edgeType": "type"
+        },
+        {
+          "name": "DummyResponse",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "variable_function",
+      "name": "deleteAgent",
+      "exported": true,
+      "line": 133,
+      "endLine": 138,
+      "signature": "async (agentId: string = credentials['X-User-Id']): Promise<void> =>",
+      "calls": [
+        {
+          "name": "expect",
+          "edgeType": "call"
+        },
+        {
+          "name": "set",
+          "edgeType": "call"
+        },
+        {
+          "name": "delete",
+          "edgeType": "call"
+        },
+        {
+          "name": "api",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "variable_function",
+      "name": "createAgent",
+      "exported": true,
+      "line": 137,
+      "endLine": 151,
+      "signature": "(overrideUsername?: string): Promise<ILivechatAgent> =>",
+      "calls": [
+        {
+          "name": "end",
+          "edgeType": "call"
+        },
+        {
+          "name": "send",
+          "edgeType": "call"
+        },
+        {
+          "name": "set",
+          "edgeType": "call"
+        },
+        {
+          "name": "post",
+          "edgeType": "call"
+        },
+        {
+          "name": "api",
+          "edgeType": "call"
+        },
+        {
+          "name": "reject",
+          "edgeType": "call"
+        },
+        {
+          "name": "resolve",
+          "edgeType": "call"
+        },
+        {
+          "name": "ILivechatAgent",
+          "edgeType": "type"
+        },
+        {
+          "name": "DummyResponse",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "variable_function",
+      "name": "createManager",
+      "exported": true,
+      "line": 153,
+      "endLine": 167,
+      "signature": "(overrideUsername?: string): Promise<ILivechatAgent> =>",
+      "calls": [
+        {
+          "name": "end",
+          "edgeType": "call"
+        },
+        {
+          "name": "send",
+          "edgeType": "call"
+        },
+        {
+          "name": "set",
+          "edgeType": "call"
+        },
+        {
+          "name": "post",
+          "edgeType": "call"
+        },
+        {
+          "name": "api",
+          "edgeType": "call"
+        },
+        {
+          "name": "reject",
+          "edgeType": "call"
+        },
+        {
+          "name": "resolve",
+          "edgeType": "call"
+        },
+        {
+          "name": "ILivechatAgent",
+          "edgeType": "type"
+        },
+        {
+          "name": "DummyResponse",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "variable_function",
+      "name": "switchLivechatStatus",
+      "exported": true,
+      "line": 169,
+      "endLine": 175,
+      "signature": "async (status: 'available' | 'not-available', overrideCredentials?: Credentials): Promise<void> =>",
+      "calls": [
+        {
+          "name": "expect",
+          "edgeType": "call"
+        },
+        {
+          "name": "send",
+          "edgeType": "call"
+        },
+        {
+          "name": "set",
+          "edgeType": "call"
+        },
+        {
+          "name": "post",
+          "edgeType": "call"
+        },
+        {
+          "name": "api",
+          "edgeType": "call"
+        },
+        {
+          "name": "Credentials",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "variable_function",
+      "name": "makeAgentAvailable",
+      "exported": true,
+      "line": 173,
+      "endLine": 189,
+      "signature": "async (overrideCredentials?: Credentials): Promise<Response> =>",
+      "calls": [
+        {
+          "name": "restorePermissionToRoles",
+          "edgeType": "call"
+        },
+        {
+          "name": "send",
+          "edgeType": "call"
+        },
+        {
+          "name": "set",
+          "edgeType": "call"
+        },
+        {
+          "name": "post",
+          "edgeType": "call"
+        },
+        {
+          "name": "api",
+          "edgeType": "call"
+        },
+        {
+          "name": "Credentials",
+          "edgeType": "type"
+        },
+        {
+          "name": "Response",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "variable_function",
+      "name": "makeAgentUnavailable",
+      "exported": true,
+      "line": 177,
+      "endLine": 190,
+      "signature": "async (overrideCredentials?: Credentials): Promise<void> =>",
+      "calls": [
+        {
+          "name": "expect",
+          "edgeType": "call"
+        },
+        {
+          "name": "send",
+          "edgeType": "call"
+        },
+        {
+          "name": "set",
+          "edgeType": "call"
+        },
+        {
+          "name": "post",
+          "edgeType": "call"
+        },
+        {
+          "name": "api",
+          "edgeType": "call"
+        },
+        {
+          "name": "Credentials",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "variable_function",
+      "name": "getLivechatRoomInfo",
+      "exported": true,
+      "line": 181,
+      "endLine": 193,
+      "signature": "(roomId: string): Promise<IOmnichannelRoom> =>",
+      "calls": [
+        {
+          "name": "end",
+          "edgeType": "call"
+        },
+        {
+          "name": "query",
+          "edgeType": "call"
+        },
+        {
+          "name": "set",
+          "edgeType": "call"
+        },
+        {
+          "name": "get",
+          "edgeType": "call"
+        },
+        {
+          "name": "api",
+          "edgeType": "call"
+        },
+        {
+          "name": "resolve",
+          "edgeType": "call"
+        },
+        {
+          "name": "IOmnichannelRoom",
+          "edgeType": "type"
+        },
+        {
+          "name": "DummyResponse",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "variable_function",
+      "name": "sendMessage",
+      "exported": true,
+      "line": 188,
+      "endLine": 205,
+      "signature": "(roomId: string, message: string, visitorToken: string): Promise<IMessage> =>",
+      "calls": [
+        {
+          "name": "end",
+          "edgeType": "call"
+        },
+        {
+          "name": "send",
+          "edgeType": "call"
+        },
+        {
+          "name": "set",
+          "edgeType": "call"
+        },
+        {
+          "name": "post",
+          "edgeType": "call"
+        },
+        {
+          "name": "api",
+          "edgeType": "call"
+        },
+        {
+          "name": "reject",
+          "edgeType": "call"
+        },
+        {
+          "name": "resolve",
+          "edgeType": "call"
+        },
+        {
+          "name": "IMessage",
+          "edgeType": "type"
+        },
+        {
+          "name": "DummyResponse",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "variable_function",
+      "name": "uploadFile",
+      "exported": true,
+      "line": 192,
+      "endLine": 205,
+      "signature": "(roomId: string, visitorToken: string): Promise<IMessage> =>",
+      "calls": [
+        {
+          "name": "end",
+          "edgeType": "call"
+        },
+        {
+          "name": "attach",
+          "edgeType": "call"
+        },
+        {
+          "name": "set",
+          "edgeType": "call"
+        },
+        {
+          "name": "post",
+          "edgeType": "call"
+        },
+        {
+          "name": "api",
+          "edgeType": "call"
+        },
+        {
+          "name": "reject",
+          "edgeType": "call"
+        },
+        {
+          "name": "resolve",
+          "edgeType": "call"
+        },
+        {
+          "name": "IMessage",
+          "edgeType": "type"
+        },
+        {
+          "name": "DummyResponse",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "variable_function",
+      "name": "sendAgentMessage",
+      "exported": true,
+      "line": 197,
+      "endLine": 217,
+      "signature": "(roomId: string, msg?: string, userCredentials: Credentials = credentials): Promise<IMessage> =>",
+      "calls": [
+        {
+          "name": "end",
+          "edgeType": "call"
+        },
+        {
+          "name": "send",
+          "edgeType": "call"
+        },
+        {
+          "name": "set",
+          "edgeType": "call"
+        },
+        {
+          "name": "post",
+          "edgeType": "call"
+        },
+        {
+          "name": "methodCall",
+          "edgeType": "call"
+        },
+        {
+          "name": "stringify",
+          "edgeType": "call"
+        },
+        {
+          "name": "sentence",
+          "edgeType": "call"
+        },
+        {
+          "name": "reject",
+          "edgeType": "call"
+        },
+        {
+          "name": "resolve",
+          "edgeType": "call"
+        },
+        {
+          "name": "parse",
+          "edgeType": "call"
+        },
+        {
+          "name": "Credentials",
+          "edgeType": "type"
+        },
+        {
+          "name": "IMessage",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "variable_function",
+      "name": "fetchMessages",
+      "exported": true,
+      "line": 201,
+      "endLine": 222,
+      "signature": "(roomId: string, visitorToken: string): Promise<IMessage[]> =>",
+      "calls": [
+        {
+          "name": "end",
+          "edgeType": "call"
+        },
+        {
+          "name": "query",
+          "edgeType": "call"
+        },
+        {
+          "name": "set",
+          "edgeType": "call"
+        },
+        {
+          "name": "get",
+          "edgeType": "call"
+        },
+        {
+          "name": "api",
+          "edgeType": "call"
+        },
+        {
+          "name": "reject",
+          "edgeType": "call"
+        },
+        {
+          "name": "resolve",
+          "edgeType": "call"
+        },
+        {
+          "name": "IMessage",
+          "edgeType": "type"
+        },
+        {
+          "name": "DummyResponse",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "variable_function",
+      "name": "closeOmnichannelRoom",
+      "exported": true,
+      "line": 205,
+      "endLine": 211,
+      "signature": "async (roomId: string, tags?: string[]): Promise<void> =>",
+      "calls": [
+        {
+          "name": "expect",
+          "edgeType": "call"
+        },
+        {
+          "name": "send",
+          "edgeType": "call"
+        },
+        {
+          "name": "set",
+          "edgeType": "call"
+        },
+        {
+          "name": "post",
+          "edgeType": "call"
+        },
+        {
+          "name": "api",
+          "edgeType": "call"
+        },
+        {
+          "name": "sentence",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "variable_function",
+      "name": "bulkCreateLivechatRooms",
+      "exported": true,
+      "line": 209,
+      "endLine": 226,
+      "signature": "async ( amount: number, department?: string, resolveRoomExtraParams?: (index: number) => Record<string, string> | undefined, ): Promise<IOmnichannelRoom[]> =>",
+      "calls": [
+        {
+          "name": "createVisitor",
+          "edgeType": "call"
+        },
+        {
+          "name": "resolveRoomExtraParams",
+          "edgeType": "call"
+        },
+        {
+          "name": "createLivechatRoom",
+          "edgeType": "call"
+        },
+        {
+          "name": "push",
+          "edgeType": "call"
+        },
+        {
+          "name": "IOmnichannelRoom",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "variable_function",
+      "name": "startANewLivechatRoomAndTakeIt",
+      "exported": true,
+      "line": 217,
+      "endLine": 248,
+      "signature": "async ({ departmentId, agent, }: { departmentId?: string; agent?: Credentials; } = {}): Promise<{ room: IOmnichannelRoom; visitor: ILivechatVisitor }> =>",
+      "calls": [
+        {
+          "name": "getSettingValueById",
+          "edgeType": "call"
+        },
+        {
+          "name": "updateSetting",
+          "edgeType": "call"
+        },
+        {
+          "name": "sleep",
+          "edgeType": "call"
+        },
+        {
+          "name": "createVisitor",
+          "edgeType": "call"
+        },
+        {
+          "name": "createLivechatRoom",
+          "edgeType": "call"
+        },
+        {
+          "name": "fetchInquiry",
+          "edgeType": "call"
+        },
+        {
+          "name": "takeInquiry",
+          "edgeType": "call"
+        },
+        {
+          "name": "sendMessage",
+          "edgeType": "call"
+        },
+        {
+          "name": "Credentials",
+          "edgeType": "type"
+        },
+        {
+          "name": "IOmnichannelRoom",
+          "edgeType": "type"
+        },
+        {
+          "name": "ILivechatVisitor",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "variable_function",
+      "name": "placeRoomOnHold",
+      "exported": true,
+      "line": 227,
+      "endLine": 229,
+      "signature": "async (roomId: string): Promise<void> =>",
+      "calls": [
+        {
+          "name": "expect",
+          "edgeType": "call"
+        },
+        {
+          "name": "send",
+          "edgeType": "call"
+        },
+        {
+          "name": "set",
+          "edgeType": "call"
+        },
+        {
+          "name": "post",
+          "edgeType": "call"
+        },
+        {
+          "name": "api",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "variable_function",
+      "name": "moveBackToQueue",
+      "exported": true,
+      "line": 231,
+      "endLine": 238,
+      "signature": "async (roomId: string, overrideCredentials?: Credentials): Promise<void> =>",
+      "calls": [
+        {
+          "name": "expect",
+          "edgeType": "call"
+        },
+        {
+          "name": "send",
+          "edgeType": "call"
+        },
+        {
+          "name": "set",
+          "edgeType": "call"
+        },
+        {
+          "name": "post",
+          "edgeType": "call"
+        },
+        {
+          "name": "api",
+          "edgeType": "call"
+        },
+        {
+          "name": "Credentials",
+          "edgeType": "type"
+        }
+      ]
+    }
+  ],
+  "imports": [
+    {
+      "module": "@faker-js/faker",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/api-client",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/core-typings",
+      "resolved": "external"
+    },
+    {
+      "module": "supertest",
+      "resolved": "external"
+    },
+    {
+      "module": "../api-data",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/tests/data/api-data.ts"
+    },
+    {
+      "module": "../interactions",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/tests/data/interactions.ts"
+    },
+    {
+      "module": "../permissions.helper",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/tests/data/permissions.helper.ts"
+    },
+    {
+      "module": "../user",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/tests/data/user.ts"
+    },
+    {
+      "module": "./users",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/tests/data/livechat/users.ts"
+    },
+    {
+      "module": "./utils",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/tests/data/livechat/utils.ts"
+    },
+    {
+      "module": "./utils",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/tests/data/livechat/utils.ts"
+    }
+  ]
+}

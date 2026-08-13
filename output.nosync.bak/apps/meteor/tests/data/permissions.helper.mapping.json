@@ -1,0 +1,359 @@
+{
+  "sourcePath": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/tests/data/permissions.helper.ts",
+  "symbols": [
+    {
+      "type": "variable_function",
+      "name": "updatePermission",
+      "exported": true,
+      "line": 8,
+      "endLine": 24,
+      "signature": "(permission: string, roles: string[]): Promise<void | Error> =>",
+      "calls": [
+        {
+          "name": "end",
+          "edgeType": "call"
+        },
+        {
+          "name": "expect",
+          "edgeType": "call"
+        },
+        {
+          "name": "send",
+          "edgeType": "call"
+        },
+        {
+          "name": "set",
+          "edgeType": "call"
+        },
+        {
+          "name": "post",
+          "edgeType": "call"
+        },
+        {
+          "name": "api",
+          "edgeType": "call"
+        },
+        {
+          "name": "reject",
+          "edgeType": "call"
+        },
+        {
+          "name": "resolve",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "variable_function",
+      "name": "updateEEPermission",
+      "exported": true,
+      "line": 26,
+      "endLine": 27,
+      "signature": "(permission: string, roles: string[]): Promise<void | Error> =>",
+      "calls": [
+        {
+          "name": "updatePermission",
+          "edgeType": "call"
+        },
+        {
+          "name": "resolve",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "variable_function",
+      "name": "updateManyPermissions",
+      "exported": false,
+      "line": 29,
+      "endLine": 38,
+      "signature": "(permissions: { [key: string]: string[] }): Promise<void | Error> =>",
+      "calls": [
+        {
+          "name": "end",
+          "edgeType": "call"
+        },
+        {
+          "name": "expect",
+          "edgeType": "call"
+        },
+        {
+          "name": "send",
+          "edgeType": "call"
+        },
+        {
+          "name": "set",
+          "edgeType": "call"
+        },
+        {
+          "name": "post",
+          "edgeType": "call"
+        },
+        {
+          "name": "api",
+          "edgeType": "call"
+        },
+        {
+          "name": "map",
+          "edgeType": "call"
+        },
+        {
+          "name": "keys",
+          "edgeType": "call"
+        },
+        {
+          "name": "resolve",
+          "edgeType": "call"
+        },
+        {
+          "name": "reject",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "variable_function",
+      "name": "updateSetting",
+      "exported": true,
+      "line": 40,
+      "endLine": 60,
+      "signature": "(setting: string, value: ISetting['value'], debounce = true): Promise<void | Error> =>",
+      "calls": [
+        {
+          "name": "end",
+          "edgeType": "call"
+        },
+        {
+          "name": "expect",
+          "edgeType": "call"
+        },
+        {
+          "name": "send",
+          "edgeType": "call"
+        },
+        {
+          "name": "set",
+          "edgeType": "call"
+        },
+        {
+          "name": "post",
+          "edgeType": "call"
+        },
+        {
+          "name": "reject",
+          "edgeType": "call"
+        },
+        {
+          "name": "resolve",
+          "edgeType": "call"
+        },
+        {
+          "name": "ISetting",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "variable_function",
+      "name": "getSettingValueById",
+      "exported": true,
+      "line": 62,
+      "endLine": 66,
+      "signature": "async (setting: string): Promise<ISetting['value']> =>",
+      "calls": [
+        {
+          "name": "expect",
+          "edgeType": "call"
+        },
+        {
+          "name": "set",
+          "edgeType": "call"
+        },
+        {
+          "name": "get",
+          "edgeType": "call"
+        },
+        {
+          "name": "ISetting",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "variable_function",
+      "name": "updateEESetting",
+      "exported": true,
+      "line": 66,
+      "endLine": 77,
+      "signature": "(setting: string, value: ISetting['value']): Promise<void | Error> =>",
+      "calls": [
+        {
+          "name": "end",
+          "edgeType": "call"
+        },
+        {
+          "name": "expect",
+          "edgeType": "call"
+        },
+        {
+          "name": "send",
+          "edgeType": "call"
+        },
+        {
+          "name": "set",
+          "edgeType": "call"
+        },
+        {
+          "name": "post",
+          "edgeType": "call"
+        },
+        {
+          "name": "resolve",
+          "edgeType": "call"
+        },
+        {
+          "name": "reject",
+          "edgeType": "call"
+        },
+        {
+          "name": "ISetting",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "variable_function",
+      "name": "removePermissions",
+      "exported": true,
+      "line": 79,
+      "endLine": 81,
+      "signature": "async (perms: string[]) =>",
+      "calls": [
+        {
+          "name": "updateManyPermissions",
+          "edgeType": "call"
+        },
+        {
+          "name": "fromEntries",
+          "edgeType": "call"
+        },
+        {
+          "name": "map",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "variable_function",
+      "name": "addPermissions",
+      "exported": true,
+      "line": 83,
+      "endLine": 85,
+      "signature": "async (perms: { [key: string]: string[] }) =>",
+      "calls": [
+        {
+          "name": "updateManyPermissions",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "variable_function",
+      "name": "removePermissionFromAllRoles",
+      "exported": true,
+      "line": 89,
+      "endLine": 91,
+      "signature": "async (permission: Permission) =>",
+      "calls": [
+        {
+          "name": "updatePermission",
+          "edgeType": "call"
+        },
+        {
+          "name": "Permission",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "variable_function",
+      "name": "getPermissions",
+      "exported": false,
+      "line": 93,
+      "endLine": 99,
+      "signature": "() =>",
+      "calls": []
+    },
+    {
+      "type": "variable_function",
+      "name": "restorePermissionToRoles",
+      "exported": true,
+      "line": 97,
+      "endLine": 116,
+      "signature": "async (permission: Permission) =>",
+      "calls": [
+        {
+          "name": "find",
+          "edgeType": "call"
+        },
+        {
+          "name": "getPermissions",
+          "edgeType": "call"
+        },
+        {
+          "name": "map",
+          "edgeType": "call"
+        },
+        {
+          "name": "forEach",
+          "edgeType": "call"
+        },
+        {
+          "name": "indexOf",
+          "edgeType": "call"
+        },
+        {
+          "name": "splice",
+          "edgeType": "call"
+        },
+        {
+          "name": "updatePermission",
+          "edgeType": "call"
+        },
+        {
+          "name": "Permission",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "type",
+      "name": "Permission",
+      "line": 87,
+      "endLine": 87,
+      "signature": "type Permission = (typeof permissions)[number]['_id'];"
+    }
+  ],
+  "imports": [
+    {
+      "module": "@rocket.chat/core-typings",
+      "resolved": "external"
+    },
+    {
+      "module": "./api-data",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/tests/data/api-data.ts"
+    },
+    {
+      "module": "../../app/authorization/server/constant/permissions",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/app/authorization/server/constant/permissions.ts"
+    },
+    {
+      "module": "../../ee/app/livechat-enterprise/server/permissions",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/ee/app/livechat-enterprise/server/permissions.ts"
+    },
+    {
+      "module": "../e2e/config/constants",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/tests/e2e/config/constants.ts"
+    }
+  ]
+}

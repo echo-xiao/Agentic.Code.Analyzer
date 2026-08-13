@@ -1,0 +1,442 @@
+{
+  "sourcePath": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/app/assets/server/assets.ts",
+  "symbols": [
+    {
+      "type": "module",
+      "name": "assets",
+      "exported": false,
+      "line": 1,
+      "endLine": 481,
+      "signature": "assets",
+      "calls": [
+        {
+          "name": "keys",
+          "edgeType": "call"
+        },
+        {
+          "name": "getAssetByKey",
+          "edgeType": "call"
+        },
+        {
+          "name": "addAssetToSetting",
+          "edgeType": "call"
+        },
+        {
+          "name": "startup",
+          "edgeType": "call"
+        },
+        {
+          "name": "message",
+          "edgeType": "event_emit"
+        },
+        {
+          "name": "use",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "class",
+      "name": "RocketChatAssetsClass",
+      "exported": false,
+      "line": 218,
+      "endLine": 360,
+      "signature": "class RocketChatAssetsClass",
+      "calls": []
+    },
+    {
+      "type": "method",
+      "name": "setAssetWithBuffer",
+      "exported": false,
+      "qualifiedName": "RocketChatAssetsClass.setAssetWithBuffer",
+      "line": 223,
+      "endLine": 281,
+      "signature": "public async setAssetWithBuffer( file: Buffer, contentType: string, asset: string, ): Promise<{ key: string; value: IRocketChatAsset; }>",
+      "containerClass": "RocketChatAssetsClass",
+      "calls": [
+        {
+          "name": "getAssetByKey",
+          "edgeType": "call"
+        },
+        {
+          "name": "getExtension",
+          "edgeType": "call"
+        },
+        {
+          "name": "includes",
+          "edgeType": "call"
+        },
+        {
+          "name": "sizeOf",
+          "edgeType": "call"
+        },
+        {
+          "name": "bufferToStream",
+          "edgeType": "call"
+        },
+        {
+          "name": "deleteFile",
+          "edgeType": "call"
+        },
+        {
+          "name": "createWriteStream",
+          "edgeType": "call"
+        },
+        {
+          "name": "end",
+          "edgeType": "event_listen"
+        },
+        {
+          "name": "processAsset",
+          "edgeType": "call"
+        },
+        {
+          "name": "resolve",
+          "edgeType": "call"
+        },
+        {
+          "name": "pipe",
+          "edgeType": "call"
+        },
+        {
+          "name": "IRocketChatAsset",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "unsetAsset",
+      "exported": false,
+      "qualifiedName": "RocketChatAssetsClass.unsetAsset",
+      "line": 234,
+      "endLine": 253,
+      "signature": "public async unsetAsset(asset: string)",
+      "containerClass": "RocketChatAssetsClass",
+      "calls": [
+        {
+          "name": "getAssetByKey",
+          "edgeType": "call"
+        },
+        {
+          "name": "deleteFile",
+          "edgeType": "call"
+        },
+        {
+          "name": "processAsset",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "refreshClients",
+      "exported": false,
+      "qualifiedName": "RocketChatAssetsClass.refreshClients",
+      "line": 238,
+      "endLine": 242,
+      "signature": "public refreshClients(): boolean",
+      "containerClass": "RocketChatAssetsClass",
+      "calls": [
+        {
+          "name": "message",
+          "edgeType": "event_emit"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "processAsset",
+      "exported": false,
+      "qualifiedName": "RocketChatAssetsClass.processAsset",
+      "line": 242,
+      "endLine": 284,
+      "signature": "public async processAsset(settingKey: string, settingValue: any): Promise<Record<string, any> | undefined>",
+      "containerClass": "RocketChatAssetsClass",
+      "calls": [
+        {
+          "name": "indexOf",
+          "edgeType": "call"
+        },
+        {
+          "name": "replace",
+          "edgeType": "call"
+        },
+        {
+          "name": "getAssetByKey",
+          "edgeType": "call"
+        },
+        {
+          "name": "getFile",
+          "edgeType": "call"
+        },
+        {
+          "name": "digest",
+          "edgeType": "call"
+        },
+        {
+          "name": "update",
+          "edgeType": "call"
+        },
+        {
+          "name": "createHash",
+          "edgeType": "call"
+        },
+        {
+          "name": "pop",
+          "edgeType": "call"
+        },
+        {
+          "name": "split",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "getURL",
+      "exported": false,
+      "qualifiedName": "RocketChatAssetsClass.getURL",
+      "line": 246,
+      "endLine": 251,
+      "signature": "public getURL(assetName: string, options = { cdn: false, full: true }): string",
+      "containerClass": "RocketChatAssetsClass",
+      "calls": [
+        {
+          "name": "get",
+          "edgeType": "call"
+        },
+        {
+          "name": "getURL",
+          "edgeType": "call"
+        },
+        {
+          "name": "IRocketChatAsset",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "function",
+      "name": "getAssetByKey",
+      "exported": false,
+      "line": 214,
+      "endLine": 216,
+      "signature": "function getAssetByKey(key: string)",
+      "calls": [
+        {
+          "name": "IRocketChatAssets",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "function",
+      "name": "addAssetToSetting",
+      "exported": true,
+      "line": 253,
+      "endLine": 279,
+      "signature": "export async function addAssetToSetting(asset: string, value: IRocketChatAsset, options?: Partial<ISetting>): Promise<void>",
+      "calls": [
+        {
+          "name": "get",
+          "edgeType": "call"
+        },
+        {
+          "name": "getAssetByKey",
+          "edgeType": "call"
+        },
+        {
+          "name": "updateValueById",
+          "edgeType": "call"
+        },
+        {
+          "name": "notifyOnSettingChangedById",
+          "edgeType": "call"
+        },
+        {
+          "name": "IRocketChatAsset",
+          "edgeType": "type"
+        },
+        {
+          "name": "ISetting",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "variable",
+      "name": "RocketChatAssets",
+      "exported": true,
+      "line": 251,
+      "endLine": 251,
+      "signature": "RocketChatAssets = new RocketChatAssetsClass()",
+      "calls": []
+    },
+    {
+      "type": "variable_function",
+      "name": "refreshClients",
+      "exported": true,
+      "line": 272,
+      "endLine": 283,
+      "signature": "async (userId: string) =>",
+      "calls": [
+        {
+          "name": "hasPermissionAsync",
+          "edgeType": "call"
+        },
+        {
+          "name": "refreshClients",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "variable_function",
+      "name": "listener",
+      "exported": false,
+      "line": 276,
+      "endLine": 334,
+      "signature": "(req: IncomingMessage, res: ServerResponse, next: NextHandleFunction) =>",
+      "calls": [
+        {
+          "name": "replace",
+          "edgeType": "call"
+        },
+        {
+          "name": "decodeURIComponent",
+          "edgeType": "call"
+        },
+        {
+          "name": "getAssetByKey",
+          "edgeType": "call"
+        },
+        {
+          "name": "isArray",
+          "edgeType": "call"
+        },
+        {
+          "name": "includes",
+          "edgeType": "call"
+        },
+        {
+          "name": "writeHead",
+          "edgeType": "call"
+        },
+        {
+          "name": "end",
+          "edgeType": "call"
+        },
+        {
+          "name": "staticFilesMiddleware",
+          "edgeType": "call"
+        },
+        {
+          "name": "toUTCString",
+          "edgeType": "call"
+        },
+        {
+          "name": "setHeader",
+          "edgeType": "call"
+        },
+        {
+          "name": "pipe",
+          "edgeType": "call"
+        },
+        {
+          "name": "toFormat",
+          "edgeType": "call"
+        },
+        {
+          "name": "sharp",
+          "edgeType": "call"
+        },
+        {
+          "name": "Date",
+          "edgeType": "new"
+        },
+        {
+          "name": "IncomingMessage",
+          "edgeType": "type"
+        },
+        {
+          "name": "ServerResponse",
+          "edgeType": "type"
+        },
+        {
+          "name": "NextHandleFunction",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "type",
+      "name": "IRocketChatAssetsConfig",
+      "line": 23,
+      "endLine": 23,
+      "signature": "type IRocketChatAssetsConfig = Record<keyof IRocketChatAssets, IRocketChatAsset &"
+    }
+  ],
+  "imports": [
+    {
+      "module": "node:crypto",
+      "resolved": "external"
+    },
+    {
+      "module": "node:http",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/core-typings",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/models",
+      "resolved": "external"
+    },
+    {
+      "module": "connect",
+      "resolved": "external"
+    },
+    {
+      "module": "image-size",
+      "resolved": "external"
+    },
+    {
+      "module": "meteor/meteor",
+      "resolved": "external"
+    },
+    {
+      "module": "meteor/webapp",
+      "resolved": "external"
+    },
+    {
+      "module": "sharp",
+      "resolved": "external"
+    },
+    {
+      "module": "../../../server/lib/authorization/hasPermission",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/server/lib/authorization/hasPermission.ts"
+    },
+    {
+      "module": "../../file/server",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/app/file/server/index.ts"
+    },
+    {
+      "module": "../../lib/server/lib/notifyListener",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/app/lib/server/lib/notifyListener.ts"
+    },
+    {
+      "module": "../../settings/server",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/app/settings/server/index.ts"
+    },
+    {
+      "module": "../../utils/lib/mimeTypes",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/app/utils/lib/mimeTypes.ts"
+    },
+    {
+      "module": "../../utils/server/getURL",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/app/utils/server/getURL.ts"
+    }
+  ]
+}

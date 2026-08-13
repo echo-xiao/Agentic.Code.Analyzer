@@ -1,0 +1,338 @@
+{
+  "sourcePath": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/app/apps/server/bridges/api.ts",
+  "symbols": [
+    {
+      "type": "module",
+      "name": "api",
+      "exported": false,
+      "line": 1,
+      "endLine": 128,
+      "signature": "api",
+      "calls": [
+        {
+          "name": "use",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "class",
+      "name": "AppApisBridge",
+      "exported": true,
+      "line": 21,
+      "endLine": 127,
+      "signature": "export class AppApisBridge extends ApiBridge",
+      "calls": [
+        {
+          "name": "ApiBridge",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "registerApi",
+      "exported": true,
+      "qualifiedName": "AppApisBridge.registerApi",
+      "line": 54,
+      "endLine": 80,
+      "signature": "public async registerApi({ api, computedPath, endpoint }: AppApi, appId: string): Promise<void>",
+      "containerClass": "AppApisBridge",
+      "calls": [
+        {
+          "name": "debugLog",
+          "edgeType": "call"
+        },
+        {
+          "name": "_verifyApi",
+          "edgeType": "call"
+        },
+        {
+          "name": "get",
+          "edgeType": "call"
+        },
+        {
+          "name": "Router",
+          "edgeType": "call"
+        },
+        {
+          "name": "set",
+          "edgeType": "call"
+        },
+        {
+          "name": "trim",
+          "edgeType": "call"
+        },
+        {
+          "name": "startsWith",
+          "edgeType": "call"
+        },
+        {
+          "name": "authenticationMiddleware",
+          "edgeType": "call"
+        },
+        {
+          "name": "bindEnvironment",
+          "edgeType": "call"
+        },
+        {
+          "name": "_appApiExecutor",
+          "edgeType": "call"
+        },
+        {
+          "name": "AppApi",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "unregisterApis",
+      "exported": true,
+      "qualifiedName": "AppApisBridge.unregisterApis",
+      "line": 58,
+      "endLine": 64,
+      "signature": "public async unregisterApis(appId: string): Promise<void>",
+      "containerClass": "AppApisBridge",
+      "calls": [
+        {
+          "name": "debugLog",
+          "edgeType": "call"
+        },
+        {
+          "name": "get",
+          "edgeType": "call"
+        },
+        {
+          "name": "delete",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "_verifyApi",
+      "exported": true,
+      "qualifiedName": "AppApisBridge._verifyApi",
+      "line": 62,
+      "endLine": 70,
+      "signature": "private _verifyApi(api: IApi, endpoint: IApiEndpoint): void",
+      "containerClass": "AppApisBridge",
+      "calls": [
+        {
+          "name": "IApi",
+          "edgeType": "type"
+        },
+        {
+          "name": "IApiEndpoint",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "_appApiExecutor",
+      "exported": true,
+      "qualifiedName": "AppApisBridge._appApiExecutor",
+      "line": 66,
+      "endLine": 92,
+      "signature": "private _appApiExecutor(endpoint: IApiEndpoint, appId: string): RequestHandler",
+      "containerClass": "AppApisBridge",
+      "calls": [
+        {
+          "name": "toLowerCase",
+          "edgeType": "call"
+        },
+        {
+          "name": "convertToApp",
+          "edgeType": "call"
+        },
+        {
+          "name": "get",
+          "edgeType": "call"
+        },
+        {
+          "name": "getConverters",
+          "edgeType": "call"
+        },
+        {
+          "name": "catch",
+          "edgeType": "call"
+        },
+        {
+          "name": "then",
+          "edgeType": "call"
+        },
+        {
+          "name": "executeApi",
+          "edgeType": "call"
+        },
+        {
+          "name": "getApiManager",
+          "edgeType": "call"
+        },
+        {
+          "name": "getManager",
+          "edgeType": "call"
+        },
+        {
+          "name": "set",
+          "edgeType": "call"
+        },
+        {
+          "name": "status",
+          "edgeType": "call"
+        },
+        {
+          "name": "send",
+          "edgeType": "call"
+        },
+        {
+          "name": "IApiEndpoint",
+          "edgeType": "type"
+        },
+        {
+          "name": "RequestHandler",
+          "edgeType": "type"
+        },
+        {
+          "name": "IRequestWithPrivateHash",
+          "edgeType": "type"
+        },
+        {
+          "name": "Response",
+          "edgeType": "type"
+        },
+        {
+          "name": "IApiRequest",
+          "edgeType": "type"
+        },
+        {
+          "name": "RequestMethod",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "constructor",
+      "exported": true,
+      "qualifiedName": "AppApisBridge.constructor",
+      "line": 24,
+      "endLine": 52,
+      "signature": "constructor(private readonly orch: IAppServerOrchestrator)",
+      "containerClass": "AppApisBridge",
+      "calls": [
+        {
+          "name": "use",
+          "edgeType": "call"
+        },
+        {
+          "name": "sendStatus",
+          "edgeType": "call"
+        },
+        {
+          "name": "get",
+          "edgeType": "call"
+        },
+        {
+          "name": "router",
+          "edgeType": "call"
+        },
+        {
+          "name": "notFound",
+          "edgeType": "call"
+        },
+        {
+          "name": "Map",
+          "edgeType": "new"
+        },
+        {
+          "name": "IAppServerOrchestrator",
+          "edgeType": "type"
+        },
+        {
+          "name": "IRequestWithPrivateHash",
+          "edgeType": "type"
+        },
+        {
+          "name": "Response",
+          "edgeType": "type"
+        },
+        {
+          "name": "Request",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "class_property",
+      "name": "appRouters",
+      "exported": true,
+      "qualifiedName": "AppApisBridge.appRouters",
+      "line": 22,
+      "endLine": 22,
+      "signature": "appRouters: Map<string, IRouter>;",
+      "containerClass": "AppApisBridge",
+      "calls": [
+        {
+          "name": "IRouter",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "interface",
+      "name": "IRequestWithPrivateHash",
+      "line": 16,
+      "endLine": 19,
+      "signature": "interface IRequestWithPrivateHash extends Request"
+    }
+  ],
+  "imports": [
+    {
+      "module": "@rocket.chat/apps",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/apps/dist/server/bridges/ApiBridge",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/apps/dist/server/managers/AppApi",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/apps-engine/definition/accessors",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/apps-engine/definition/api",
+      "resolved": "external"
+    },
+    {
+      "module": "express",
+      "resolved": "external"
+    },
+    {
+      "module": "express",
+      "resolved": "external"
+    },
+    {
+      "module": "meteor/meteor",
+      "resolved": "external"
+    },
+    {
+      "module": "meteor/webapp",
+      "resolved": "external"
+    },
+    {
+      "module": "./router",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/app/apps/server/bridges/router.ts"
+    },
+    {
+      "module": "../../../../server/api/v1/middlewares/authentication",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/server/api/v1/middlewares/authentication.ts"
+    }
+  ]
+}

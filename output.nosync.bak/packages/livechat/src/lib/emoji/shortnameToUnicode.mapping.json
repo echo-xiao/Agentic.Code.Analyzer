@@ -1,0 +1,102 @@
+{
+  "sourcePath": "/Users/echoooooo/Desktop/code/Rocket.Chat/packages/livechat/src/lib/emoji/shortnameToUnicode.ts",
+  "symbols": [
+    {
+      "type": "variable_function",
+      "name": "unescapeHTML",
+      "exported": false,
+      "line": 30,
+      "endLine": 35,
+      "signature": "(string: string) =>",
+      "calls": [
+        {
+          "name": "replace",
+          "edgeType": "call"
+        },
+        {
+          "name": "HTMLEntity",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "variable_function",
+      "name": "isAscii",
+      "exported": false,
+      "line": 34,
+      "endLine": 39,
+      "signature": "(string: string): string is EmojiASCIICode =>",
+      "calls": [
+        {
+          "name": "trim",
+          "edgeType": "call"
+        },
+        {
+          "name": "unescapeHTML",
+          "edgeType": "call"
+        },
+        {
+          "name": "EmojiASCIICode",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "variable_function",
+      "name": "shortnameToUnicode",
+      "exported": false,
+      "line": 38,
+      "endLine": 45,
+      "signature": "(stringMessage: string) =>",
+      "calls": [
+        {
+          "name": "replace",
+          "edgeType": "call"
+        },
+        {
+          "name": "isAscii",
+          "edgeType": "call"
+        },
+        {
+          "name": "unescapeHTML",
+          "edgeType": "call"
+        },
+        {
+          "name": "EmojiShortname",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "type",
+      "name": "EmojiShortname",
+      "line": 4,
+      "endLine": 4,
+      "signature": "type EmojiShortname = keyof typeof emojis;"
+    },
+    {
+      "type": "type",
+      "name": "EmojiASCIICode",
+      "line": 5,
+      "endLine": 5,
+      "signature": "type EmojiASCIICode = keyof typeof ascii;"
+    },
+    {
+      "type": "type",
+      "name": "HTMLEntity",
+      "line": 28,
+      "endLine": 28,
+      "signature": "type HTMLEntity = keyof typeof unescaped;"
+    }
+  ],
+  "imports": [
+    {
+      "module": "./ascii",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/packages/livechat/src/lib/emoji/ascii.ts"
+    },
+    {
+      "module": "./emojis",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/packages/livechat/src/lib/emoji/emojis.ts"
+    }
+  ]
+}

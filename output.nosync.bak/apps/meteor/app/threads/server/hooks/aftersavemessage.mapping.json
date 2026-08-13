@@ -1,0 +1,205 @@
+{
+  "sourcePath": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/app/threads/server/hooks/aftersavemessage.ts",
+  "symbols": [
+    {
+      "type": "module",
+      "name": "aftersavemessage",
+      "exported": false,
+      "line": 1,
+      "endLine": 91,
+      "signature": "aftersavemessage",
+      "calls": [
+        {
+          "name": "startup",
+          "edgeType": "call"
+        },
+        {
+          "name": "watch",
+          "edgeType": "call"
+        },
+        {
+          "name": "remove",
+          "edgeType": "call"
+        },
+        {
+          "name": "afterSaveMessage",
+          "edgeType": "event_listen"
+        },
+        {
+          "name": "processThreads",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "function",
+      "name": "notifyUsersOnReply",
+      "exported": false,
+      "line": 14,
+      "endLine": 23,
+      "signature": "async function notifyUsersOnReply(message: IMessage, replies: IUser['_id'][])",
+      "calls": [
+        {
+          "name": "isEditedMessage",
+          "edgeType": "call"
+        },
+        {
+          "name": "updateThreadUsersSubscriptions",
+          "edgeType": "call"
+        },
+        {
+          "name": "IMessage",
+          "edgeType": "type"
+        },
+        {
+          "name": "IUser",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "function",
+      "name": "metaData",
+      "exported": false,
+      "line": 18,
+      "endLine": 22,
+      "signature": "async function metaData(message: IMessage, parentMessage: IMessage, followers: string[])",
+      "calls": [
+        {
+          "name": "reply",
+          "edgeType": "call"
+        },
+        {
+          "name": "IMessage",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "function",
+      "name": "processThreads",
+      "exported": true,
+      "line": 34,
+      "endLine": 64,
+      "signature": "export async function processThreads(message: IMessage, room: IRoom, options?: SendMessageOptions)",
+      "calls": [
+        {
+          "name": "findOneById",
+          "edgeType": "call"
+        },
+        {
+          "name": "getMentions",
+          "edgeType": "call"
+        },
+        {
+          "name": "filter",
+          "edgeType": "call"
+        },
+        {
+          "name": "notifyUsersOnReply",
+          "edgeType": "call"
+        },
+        {
+          "name": "metaData",
+          "edgeType": "call"
+        },
+        {
+          "name": "notification",
+          "edgeType": "call"
+        },
+        {
+          "name": "notifyOnMessageChange",
+          "edgeType": "call"
+        },
+        {
+          "name": "Set",
+          "edgeType": "new"
+        },
+        {
+          "name": "IMessage",
+          "edgeType": "type"
+        },
+        {
+          "name": "IRoom",
+          "edgeType": "type"
+        },
+        {
+          "name": "SendMessageOptions",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "variable_function",
+      "name": "notification",
+      "exported": false,
+      "line": 22,
+      "endLine": 32,
+      "signature": "async (message: IMessage, room: IRoom, replies: string[]) =>",
+      "calls": [
+        {
+          "name": "isEditedMessage",
+          "edgeType": "call"
+        },
+        {
+          "name": "sendMessageNotifications",
+          "edgeType": "call"
+        },
+        {
+          "name": "IMessage",
+          "edgeType": "type"
+        },
+        {
+          "name": "IRoom",
+          "edgeType": "type"
+        }
+      ]
+    }
+  ],
+  "imports": [
+    {
+      "module": "@rocket.chat/core-typings",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/core-typings",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/models",
+      "resolved": "external"
+    },
+    {
+      "module": "meteor/meteor",
+      "resolved": "external"
+    },
+    {
+      "module": "../../../../server/lib/callbacks",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/server/lib/callbacks.ts"
+    },
+    {
+      "module": "../../../../server/lib/messages/sendMessage",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/server/lib/messages/sendMessage.ts"
+    },
+    {
+      "module": "../../../lib/server/lib/notifyListener",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/app/lib/server/lib/notifyListener.ts"
+    },
+    {
+      "module": "../../../lib/server/lib/notifyUsersOnMessage",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/app/lib/server/lib/notifyUsersOnMessage.ts"
+    },
+    {
+      "module": "../../../lib/server/lib/sendNotificationsOnMessage",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/app/lib/server/lib/sendNotificationsOnMessage.ts"
+    },
+    {
+      "module": "../../../settings/server",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/app/settings/server/index.ts"
+    },
+    {
+      "module": "../functions",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/app/threads/server/functions.ts"
+    }
+  ]
+}

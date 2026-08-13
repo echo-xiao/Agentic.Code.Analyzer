@@ -1,0 +1,49 @@
+{
+  "sourcePath": "/Users/echoooooo/Desktop/code/Rocket.Chat/packages/ui-contexts/src/hooks/useAssetPath.ts",
+  "symbols": [
+    {
+      "type": "variable_function",
+      "name": "useAssetPath",
+      "exported": true,
+      "line": 6,
+      "endLine": 11,
+      "signature": "(assetId: keyof IRocketChatAssets): string | undefined =>",
+      "calls": [
+        {
+          "name": "useSetting",
+          "edgeType": "call"
+        },
+        {
+          "name": "useAbsoluteUrl",
+          "edgeType": "call"
+        },
+        {
+          "name": "absoluteUrl",
+          "edgeType": "call"
+        },
+        {
+          "name": "IRocketChatAssets",
+          "edgeType": "type"
+        },
+        {
+          "name": "ISettingAsset",
+          "edgeType": "type"
+        }
+      ]
+    }
+  ],
+  "imports": [
+    {
+      "module": "@rocket.chat/core-typings",
+      "resolved": "external"
+    },
+    {
+      "module": "./useAbsoluteUrl",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/packages/ui-contexts/src/hooks/useAbsoluteUrl.ts"
+    },
+    {
+      "module": "./useSetting",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/packages/ui-contexts/src/hooks/useSetting.ts"
+    }
+  ]
+}

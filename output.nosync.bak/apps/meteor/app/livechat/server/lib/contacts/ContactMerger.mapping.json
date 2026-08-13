@@ -1,0 +1,494 @@
+{
+  "sourcePath": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/app/livechat/server/lib/contacts/ContactMerger.ts",
+  "symbols": [
+    {
+      "type": "class",
+      "name": "ContactMerger",
+      "exported": true,
+      "line": 45,
+      "endLine": 336,
+      "signature": "export class ContactMerger",
+      "calls": []
+    },
+    {
+      "type": "method",
+      "name": "getManagerId",
+      "exported": true,
+      "qualifiedName": "ContactMerger.getManagerId",
+      "line": 48,
+      "endLine": 54,
+      "signature": "private getManagerId(manager: ManagerValue): IUser['_id'] | undefined",
+      "containerClass": "ContactMerger",
+      "calls": [
+        {
+          "name": "get",
+          "edgeType": "call"
+        },
+        {
+          "name": "ManagerValue",
+          "edgeType": "type"
+        },
+        {
+          "name": "IUser",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "isSameManager",
+      "exported": true,
+      "qualifiedName": "ContactMerger.isSameManager",
+      "line": 52,
+      "endLine": 68,
+      "signature": "private isSameManager(manager1: ManagerValue, manager2: ManagerValue): boolean",
+      "containerClass": "ContactMerger",
+      "calls": [
+        {
+          "name": "getManagerId",
+          "edgeType": "call"
+        },
+        {
+          "name": "ManagerValue",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "isSameField",
+      "exported": true,
+      "qualifiedName": "ContactMerger.isSameField",
+      "line": 56,
+      "endLine": 74,
+      "signature": "private isSameField(field1: FieldAndValue, field2: FieldAndValue): boolean",
+      "containerClass": "ContactMerger",
+      "calls": [
+        {
+          "name": "isSameManager",
+          "edgeType": "call"
+        },
+        {
+          "name": "isSameChannel",
+          "edgeType": "call"
+        },
+        {
+          "name": "FieldAndValue",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "loadDataForFields",
+      "exported": true,
+      "qualifiedName": "ContactMerger.loadDataForFields",
+      "line": 60,
+      "endLine": 79,
+      "signature": "private async loadDataForFields(session: ClientSession | undefined, ...fieldLists: FieldAndValue[][]): Promise<void>",
+      "containerClass": "ContactMerger",
+      "calls": [
+        {
+          "name": "has",
+          "edgeType": "call"
+        },
+        {
+          "name": "getContactManagerIdByUsername",
+          "edgeType": "call"
+        },
+        {
+          "name": "set",
+          "edgeType": "call"
+        },
+        {
+          "name": "ClientSession",
+          "edgeType": "type"
+        },
+        {
+          "name": "FieldAndValue",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "createWithFields",
+      "exported": true,
+      "qualifiedName": "ContactMerger.createWithFields",
+      "line": 64,
+      "endLine": 69,
+      "signature": "static async createWithFields(session: ClientSession | undefined, ...fieldLists: FieldAndValue[][]): Promise<ContactMerger>",
+      "containerClass": "ContactMerger",
+      "calls": [
+        {
+          "name": "loadDataForFields",
+          "edgeType": "call"
+        },
+        {
+          "name": "ContactMerger",
+          "edgeType": "new"
+        },
+        {
+          "name": "ClientSession",
+          "edgeType": "type"
+        },
+        {
+          "name": "FieldAndValue",
+          "edgeType": "type"
+        },
+        {
+          "name": "ContactMerger",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "getAllFieldsFromContact",
+      "exported": true,
+      "qualifiedName": "ContactMerger.getAllFieldsFromContact",
+      "line": 68,
+      "endLine": 101,
+      "signature": "static getAllFieldsFromContact(contact: ILivechatContact): FieldAndValue[]",
+      "containerClass": "ContactMerger",
+      "calls": [
+        {
+          "name": "forEach",
+          "edgeType": "call"
+        },
+        {
+          "name": "keys",
+          "edgeType": "call"
+        },
+        {
+          "name": "Set",
+          "edgeType": "new"
+        },
+        {
+          "name": "ILivechatContact",
+          "edgeType": "type"
+        },
+        {
+          "name": "FieldAndValue",
+          "edgeType": "type"
+        },
+        {
+          "name": "CustomFieldAndValue",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "getAllFieldsFromVisitor",
+      "exported": true,
+      "qualifiedName": "ContactMerger.getAllFieldsFromVisitor",
+      "line": 72,
+      "endLine": 112,
+      "signature": "static async getAllFieldsFromVisitor(visitor: ILivechatVisitor, source?: IOmnichannelSource): Promise<FieldAndValue[]>",
+      "containerClass": "ContactMerger",
+      "calls": [
+        {
+          "name": "forEach",
+          "edgeType": "call"
+        },
+        {
+          "name": "keys",
+          "edgeType": "call"
+        },
+        {
+          "name": "Set",
+          "edgeType": "new"
+        },
+        {
+          "name": "ILivechatVisitor",
+          "edgeType": "type"
+        },
+        {
+          "name": "IOmnichannelSource",
+          "edgeType": "type"
+        },
+        {
+          "name": "FieldAndValue",
+          "edgeType": "type"
+        },
+        {
+          "name": "CustomFieldAndValue",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "getFieldValuesByType",
+      "exported": true,
+      "qualifiedName": "ContactMerger.getFieldValuesByType",
+      "line": 76,
+      "endLine": 78,
+      "signature": "static getFieldValuesByType<T extends keyof ContactFields>(fields: FieldAndValue[], type: T): ContactFields[T][]",
+      "containerClass": "ContactMerger",
+      "calls": [
+        {
+          "name": "map",
+          "edgeType": "call"
+        },
+        {
+          "name": "filter",
+          "edgeType": "call"
+        },
+        {
+          "name": "ContactFields",
+          "edgeType": "type"
+        },
+        {
+          "name": "FieldAndValue",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "mergeFieldsIntoContact",
+      "exported": true,
+      "qualifiedName": "ContactMerger.mergeFieldsIntoContact",
+      "line": 80,
+      "endLine": 198,
+      "signature": "static async mergeFieldsIntoContact({ fields, contact, conflictHandlingMode = 'conflict', session, }: MergeFieldsIntoContactParams): Promise<void>",
+      "containerClass": "ContactMerger",
+      "calls": [
+        {
+          "name": "getAllFieldsFromContact",
+          "edgeType": "call"
+        },
+        {
+          "name": "createWithFields",
+          "edgeType": "call"
+        },
+        {
+          "name": "filter",
+          "edgeType": "call"
+        },
+        {
+          "name": "some",
+          "edgeType": "call"
+        },
+        {
+          "name": "isSameField",
+          "edgeType": "call"
+        },
+        {
+          "name": "getFieldValuesByType",
+          "edgeType": "call"
+        },
+        {
+          "name": "startsWith",
+          "edgeType": "call"
+        },
+        {
+          "name": "map",
+          "edgeType": "call"
+        },
+        {
+          "name": "getManagerId",
+          "edgeType": "call"
+        },
+        {
+          "name": "Boolean",
+          "edgeType": "call"
+        },
+        {
+          "name": "shift",
+          "edgeType": "call"
+        },
+        {
+          "name": "slice",
+          "edgeType": "call"
+        },
+        {
+          "name": "sort",
+          "edgeType": "call"
+        },
+        {
+          "name": "from",
+          "edgeType": "call"
+        },
+        {
+          "name": "has",
+          "edgeType": "call"
+        },
+        {
+          "name": "set",
+          "edgeType": "call"
+        },
+        {
+          "name": "push",
+          "edgeType": "call"
+        },
+        {
+          "name": "get",
+          "edgeType": "call"
+        },
+        {
+          "name": "replace",
+          "edgeType": "call"
+        },
+        {
+          "name": "keys",
+          "edgeType": "call"
+        },
+        {
+          "name": "updateById",
+          "edgeType": "call"
+        },
+        {
+          "name": "Set",
+          "edgeType": "new"
+        },
+        {
+          "name": "Map",
+          "edgeType": "new"
+        },
+        {
+          "name": "MergeFieldsIntoContactParams",
+          "edgeType": "type"
+        },
+        {
+          "name": "CustomFieldAndValue",
+          "edgeType": "type"
+        },
+        {
+          "name": "DeepWritable",
+          "edgeType": "type"
+        },
+        {
+          "name": "UpdateFilter",
+          "edgeType": "type"
+        },
+        {
+          "name": "ILivechatContact",
+          "edgeType": "type"
+        },
+        {
+          "name": "ILivechatContactConflictingField",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "mergeVisitorIntoContact",
+      "exported": true,
+      "qualifiedName": "ContactMerger.mergeVisitorIntoContact",
+      "line": 89,
+      "endLine": 101,
+      "signature": "public static async mergeVisitorIntoContact( visitor: ILivechatVisitor, contact: ILivechatContact, source?: IOmnichannelSource, ): Promise<void>",
+      "containerClass": "ContactMerger",
+      "calls": [
+        {
+          "name": "getAllFieldsFromVisitor",
+          "edgeType": "call"
+        },
+        {
+          "name": "mergeFieldsIntoContact",
+          "edgeType": "call"
+        },
+        {
+          "name": "ILivechatVisitor",
+          "edgeType": "type"
+        },
+        {
+          "name": "ILivechatContact",
+          "edgeType": "type"
+        },
+        {
+          "name": "IOmnichannelSource",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "class_property",
+      "name": "managerList",
+      "exported": true,
+      "qualifiedName": "ContactMerger.managerList",
+      "line": 46,
+      "endLine": 46,
+      "signature": "private managerList = new Map<Required<IUser>['username'], IUser['_id'] | undefined>();",
+      "containerClass": "ContactMerger",
+      "calls": [
+        {
+          "name": "Map",
+          "edgeType": "new"
+        },
+        {
+          "name": "IUser",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "type",
+      "name": "ManagerValue",
+      "line": 16,
+      "endLine": 16,
+      "signature": "type ManagerValue ="
+    },
+    {
+      "type": "type",
+      "name": "ContactFields",
+      "line": 17,
+      "endLine": 25,
+      "signature": "type ContactFields ="
+    },
+    {
+      "type": "type",
+      "name": "CustomFieldAndValue",
+      "line": 27,
+      "endLine": 27,
+      "signature": "type CustomFieldAndValue ="
+    },
+    {
+      "type": "type",
+      "name": "FieldAndValue",
+      "line": 29,
+      "endLine": 34,
+      "signature": "export type FieldAndValue = |"
+    },
+    {
+      "type": "type",
+      "name": "ConflictHandlingMode",
+      "line": 36,
+      "endLine": 36,
+      "signature": "type ConflictHandlingMode = 'conflict' | 'overwrite' | 'ignore';"
+    },
+    {
+      "type": "type",
+      "name": "MergeFieldsIntoContactParams",
+      "line": 38,
+      "endLine": 43,
+      "signature": "type MergeFieldsIntoContactParams ="
+    }
+  ],
+  "imports": [
+    {
+      "module": "@rocket.chat/core-typings",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/models",
+      "resolved": "external"
+    },
+    {
+      "module": "mongodb",
+      "resolved": "external"
+    },
+    {
+      "module": "./getContactManagerIdByUsername",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/app/livechat/server/lib/contacts/getContactManagerIdByUsername.ts"
+    },
+    {
+      "module": "../../../lib/isSameChannel",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/app/livechat/lib/isSameChannel.ts"
+    }
+  ]
+}

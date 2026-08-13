@@ -1,0 +1,75 @@
+{
+  "sourcePath": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/tests/data/teams.helper.ts",
+  "symbols": [
+    {
+      "type": "variable_function",
+      "name": "createTeam",
+      "exported": true,
+      "line": 5,
+      "endLine": 21,
+      "signature": "async ( credentials: Record<string, any>, teamName: string, type: TeamType, members?: string[], ): Promise<ITeam> =>",
+      "calls": [
+        {
+          "name": "send",
+          "edgeType": "call"
+        },
+        {
+          "name": "set",
+          "edgeType": "call"
+        },
+        {
+          "name": "post",
+          "edgeType": "call"
+        },
+        {
+          "name": "api",
+          "edgeType": "call"
+        },
+        {
+          "name": "TeamType",
+          "edgeType": "type"
+        },
+        {
+          "name": "ITeam",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "variable_function",
+      "name": "deleteTeam",
+      "exported": true,
+      "line": 14,
+      "endLine": 18,
+      "signature": "async (credentials: Record<string, any>, teamName: string): Promise<void> =>",
+      "calls": [
+        {
+          "name": "send",
+          "edgeType": "call"
+        },
+        {
+          "name": "set",
+          "edgeType": "call"
+        },
+        {
+          "name": "post",
+          "edgeType": "call"
+        },
+        {
+          "name": "api",
+          "edgeType": "call"
+        }
+      ]
+    }
+  ],
+  "imports": [
+    {
+      "module": "@rocket.chat/core-typings",
+      "resolved": "external"
+    },
+    {
+      "module": "./api-data",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/tests/data/api-data.ts"
+    }
+  ]
+}

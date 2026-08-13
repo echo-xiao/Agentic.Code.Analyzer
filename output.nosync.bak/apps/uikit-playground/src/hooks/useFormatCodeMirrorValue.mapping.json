@@ -1,0 +1,83 @@
+{
+  "sourcePath": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/uikit-playground/src/hooks/useFormatCodeMirrorValue.ts",
+  "symbols": [
+    {
+      "type": "function",
+      "name": "isILayoutblock",
+      "exported": false,
+      "line": 9,
+      "endLine": 11,
+      "signature": "function isILayoutblock(obj: object): obj is IPayload",
+      "calls": [
+        {
+          "name": "IPayload",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "variable_function",
+      "name": "useFormatCodeMirrorValue",
+      "exported": false,
+      "line": 13,
+      "endLine": 32,
+      "signature": "( callback: (parsedCode: IPayload, prettierCode: Awaited<ReturnType<typeof codePrettier>>) => void, changes: ICodeMirrorChanges, ) =>",
+      "calls": [
+        {
+          "name": "useEffect",
+          "edgeType": "call"
+        },
+        {
+          "name": "parse",
+          "edgeType": "call"
+        },
+        {
+          "name": "isILayoutblock",
+          "edgeType": "call"
+        },
+        {
+          "name": "then",
+          "edgeType": "call"
+        },
+        {
+          "name": "codePrettier",
+          "edgeType": "call"
+        },
+        {
+          "name": "callback",
+          "edgeType": "call"
+        },
+        {
+          "name": "IPayload",
+          "edgeType": "type"
+        },
+        {
+          "name": "ICodeMirrorChanges",
+          "edgeType": "type"
+        }
+      ]
+    }
+  ],
+  "imports": [
+    {
+      "module": "json5",
+      "resolved": "external"
+    },
+    {
+      "module": "react",
+      "resolved": "external"
+    },
+    {
+      "module": "./useCodeMirror",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/uikit-playground/src/hooks/useCodeMirror.ts"
+    },
+    {
+      "module": "../Context/initialState",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/uikit-playground/src/Context/initialState.ts"
+    },
+    {
+      "module": "../utils/codePrettier",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/uikit-playground/src/utils/codePrettier.ts"
+    }
+  ]
+}

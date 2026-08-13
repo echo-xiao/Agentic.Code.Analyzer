@@ -1,0 +1,746 @@
+{
+  "sourcePath": "/Users/echoooooo/Desktop/code/Rocket.Chat/packages/models/src/models/LivechatDepartmentAgents.ts",
+  "symbols": [
+    {
+      "type": "class",
+      "name": "LivechatDepartmentAgentsRaw",
+      "exported": true,
+      "line": 20,
+      "endLine": 375,
+      "signature": "export class LivechatDepartmentAgentsRaw extends BaseRaw<ILivechatDepartmentAgents> implements ILivechatDepartmentAgentsModel",
+      "calls": [
+        {
+          "name": "BaseRaw",
+          "edgeType": "type"
+        },
+        {
+          "name": "ILivechatDepartmentAgentsModel",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "modelIndexes",
+      "exported": true,
+      "qualifiedName": "LivechatDepartmentAgentsRaw.modelIndexes",
+      "line": 25,
+      "endLine": 48,
+      "signature": "protected override modelIndexes(): Array<IndexDescription>",
+      "containerClass": "LivechatDepartmentAgentsRaw",
+      "calls": [
+        {
+          "name": "IndexDescription",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "findUsersInQueue",
+      "exported": true,
+      "qualifiedName": "LivechatDepartmentAgentsRaw.findUsersInQueue",
+      "line": 38,
+      "endLine": 59,
+      "signature": "findUsersInQueue<P extends Document>( usersList: string[], options?: | undefined | FindOptions<ILivechatDepartmentAgents> | FindOptions<P extends ILivechatDepartmentAgents ? ILivechatDepartmentAgents : P>, ): FindCursor<ILivechatDepartmentAgents> | FindCursor<P>",
+      "containerClass": "LivechatDepartmentAgentsRaw",
+      "calls": [
+        {
+          "name": "isArray",
+          "edgeType": "call"
+        },
+        {
+          "name": "find",
+          "edgeType": "call"
+        },
+        {
+          "name": "Document",
+          "edgeType": "type"
+        },
+        {
+          "name": "FindOptions",
+          "edgeType": "type"
+        },
+        {
+          "name": "ILivechatDepartmentAgents",
+          "edgeType": "type"
+        },
+        {
+          "name": "FindCursor",
+          "edgeType": "type"
+        },
+        {
+          "name": "Filter",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "findByAgentIds",
+      "exported": true,
+      "qualifiedName": "LivechatDepartmentAgentsRaw.findByAgentIds",
+      "line": 48,
+      "endLine": 50,
+      "signature": "findByAgentIds(agentIds: string[], options?: FindOptions<ILivechatDepartmentAgents>): FindCursor<ILivechatDepartmentAgents>",
+      "containerClass": "LivechatDepartmentAgentsRaw",
+      "calls": [
+        {
+          "name": "find",
+          "edgeType": "call"
+        },
+        {
+          "name": "FindOptions",
+          "edgeType": "type"
+        },
+        {
+          "name": "ILivechatDepartmentAgents",
+          "edgeType": "type"
+        },
+        {
+          "name": "FindCursor",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "findByAgentId",
+      "exported": true,
+      "qualifiedName": "LivechatDepartmentAgentsRaw.findByAgentId",
+      "line": 52,
+      "endLine": 54,
+      "signature": "findByAgentId(agentId: string, options?: FindOptions<ILivechatDepartmentAgents>): FindCursor<ILivechatDepartmentAgents>",
+      "containerClass": "LivechatDepartmentAgentsRaw",
+      "calls": [
+        {
+          "name": "find",
+          "edgeType": "call"
+        },
+        {
+          "name": "FindOptions",
+          "edgeType": "type"
+        },
+        {
+          "name": "ILivechatDepartmentAgents",
+          "edgeType": "type"
+        },
+        {
+          "name": "FindCursor",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "findAgentsByDepartmentId",
+      "exported": true,
+      "qualifiedName": "LivechatDepartmentAgentsRaw.findAgentsByDepartmentId",
+      "line": 68,
+      "endLine": 79,
+      "signature": "findAgentsByDepartmentId( departmentId: string, options?: undefined | FindOptions<ILivechatDepartmentAgents>, ): FindPaginated<FindCursor<ILivechatDepartmentAgents>>",
+      "containerClass": "LivechatDepartmentAgentsRaw",
+      "calls": [
+        {
+          "name": "findPaginated",
+          "edgeType": "call"
+        },
+        {
+          "name": "FindOptions",
+          "edgeType": "type"
+        },
+        {
+          "name": "ILivechatDepartmentAgents",
+          "edgeType": "type"
+        },
+        {
+          "name": "FindPaginated",
+          "edgeType": "type"
+        },
+        {
+          "name": "FindCursor",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "findByDepartmentIds",
+      "exported": true,
+      "qualifiedName": "LivechatDepartmentAgentsRaw.findByDepartmentIds",
+      "line": 75,
+      "endLine": 77,
+      "signature": "findByDepartmentIds(departmentIds: string[], options = {}): FindCursor<ILivechatDepartmentAgents>",
+      "containerClass": "LivechatDepartmentAgentsRaw",
+      "calls": [
+        {
+          "name": "find",
+          "edgeType": "call"
+        },
+        {
+          "name": "FindCursor",
+          "edgeType": "type"
+        },
+        {
+          "name": "ILivechatDepartmentAgents",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "findAgentsByAgentIdAndBusinessHourId",
+      "exported": true,
+      "qualifiedName": "LivechatDepartmentAgentsRaw.findAgentsByAgentIdAndBusinessHourId",
+      "line": 79,
+      "endLine": 81,
+      "signature": "async findAgentsByAgentIdAndBusinessHourId(_agentId: string, _businessHourId: string): Promise<ILivechatDepartmentAgents[]>",
+      "containerClass": "LivechatDepartmentAgentsRaw",
+      "calls": [
+        {
+          "name": "ILivechatDepartmentAgents",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "setDepartmentEnabledByDepartmentId",
+      "exported": true,
+      "qualifiedName": "LivechatDepartmentAgentsRaw.setDepartmentEnabledByDepartmentId",
+      "line": 83,
+      "endLine": 85,
+      "signature": "setDepartmentEnabledByDepartmentId(departmentId: string, departmentEnabled: boolean): Promise<Document | UpdateResult>",
+      "containerClass": "LivechatDepartmentAgentsRaw",
+      "calls": [
+        {
+          "name": "updateMany",
+          "edgeType": "call"
+        },
+        {
+          "name": "Document",
+          "edgeType": "type"
+        },
+        {
+          "name": "UpdateResult",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "removeByDepartmentId",
+      "exported": true,
+      "qualifiedName": "LivechatDepartmentAgentsRaw.removeByDepartmentId",
+      "line": 87,
+      "endLine": 89,
+      "signature": "removeByDepartmentId(departmentId: string): Promise<DeleteResult>",
+      "containerClass": "LivechatDepartmentAgentsRaw",
+      "calls": [
+        {
+          "name": "deleteMany",
+          "edgeType": "call"
+        },
+        {
+          "name": "DeleteResult",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "findByDepartmentId",
+      "exported": true,
+      "qualifiedName": "LivechatDepartmentAgentsRaw.findByDepartmentId",
+      "line": 91,
+      "endLine": 93,
+      "signature": "findByDepartmentId(departmentId: string, options?: FindOptions<ILivechatDepartmentAgents>): FindCursor<ILivechatDepartmentAgents>",
+      "containerClass": "LivechatDepartmentAgentsRaw",
+      "calls": [
+        {
+          "name": "find",
+          "edgeType": "call"
+        },
+        {
+          "name": "FindOptions",
+          "edgeType": "type"
+        },
+        {
+          "name": "ILivechatDepartmentAgents",
+          "edgeType": "type"
+        },
+        {
+          "name": "FindCursor",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "findOneByAgentIdAndDepartmentId",
+      "exported": true,
+      "qualifiedName": "LivechatDepartmentAgentsRaw.findOneByAgentIdAndDepartmentId",
+      "line": 95,
+      "endLine": 101,
+      "signature": "findOneByAgentIdAndDepartmentId( agentId: string, departmentId: string, options?: FindOptions<ILivechatDepartmentAgents>, ): Promise<ILivechatDepartmentAgents | null>",
+      "containerClass": "LivechatDepartmentAgentsRaw",
+      "calls": [
+        {
+          "name": "findOne",
+          "edgeType": "call"
+        },
+        {
+          "name": "FindOptions",
+          "edgeType": "type"
+        },
+        {
+          "name": "ILivechatDepartmentAgents",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "saveAgent",
+      "exported": true,
+      "qualifiedName": "LivechatDepartmentAgentsRaw.saveAgent",
+      "line": 103,
+      "endLine": 126,
+      "signature": "saveAgent(agent: { agentId: string; departmentId: string; username: string; departmentEnabled: boolean; count: number; order: number; }): Promise<UpdateResult>",
+      "containerClass": "LivechatDepartmentAgentsRaw",
+      "calls": [
+        {
+          "name": "updateOne",
+          "edgeType": "call"
+        },
+        {
+          "name": "UpdateResult",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "removeByAgentId",
+      "exported": true,
+      "qualifiedName": "LivechatDepartmentAgentsRaw.removeByAgentId",
+      "line": 114,
+      "endLine": 116,
+      "signature": "async removeByAgentId(agentId: string): Promise<DeleteResult>",
+      "containerClass": "LivechatDepartmentAgentsRaw",
+      "calls": [
+        {
+          "name": "deleteMany",
+          "edgeType": "call"
+        },
+        {
+          "name": "DeleteResult",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "removeByDepartmentIdAndAgentId",
+      "exported": true,
+      "qualifiedName": "LivechatDepartmentAgentsRaw.removeByDepartmentIdAndAgentId",
+      "line": 118,
+      "endLine": 120,
+      "signature": "async removeByDepartmentIdAndAgentId(departmentId: string, agentId: string): Promise<void>",
+      "containerClass": "LivechatDepartmentAgentsRaw",
+      "calls": [
+        {
+          "name": "deleteMany",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "getNextAgentForDepartment",
+      "exported": true,
+      "qualifiedName": "LivechatDepartmentAgentsRaw.getNextAgentForDepartment",
+      "line": 122,
+      "endLine": 177,
+      "signature": "async getNextAgentForDepartment( departmentId: ILivechatDepartmentAgents['departmentId'], isLivechatEnabledWhenAgentIdle?: boolean, ignoreAgentId?: ILivechatDepartmentAgents['agentId'], extraQuery?: Filter<AvailableAgentsAggregation>, acceptChatsWithNoAgents?: boolean, ): Promise<Pick<ILivechatDepartmentAgents, '_id' | 'agentId' | 'departmentId' | 'username'> | null | undefined>",
+      "containerClass": "LivechatDepartmentAgentsRaw",
+      "calls": [
+        {
+          "name": "toArray",
+          "edgeType": "call"
+        },
+        {
+          "name": "findByDepartmentId",
+          "edgeType": "call"
+        },
+        {
+          "name": "findOnlineUserFromList",
+          "edgeType": "call"
+        },
+        {
+          "name": "map",
+          "edgeType": "call"
+        },
+        {
+          "name": "filter",
+          "edgeType": "call"
+        },
+        {
+          "name": "getUnavailableAgents",
+          "edgeType": "call"
+        },
+        {
+          "name": "findOneAndUpdate",
+          "edgeType": "call"
+        },
+        {
+          "name": "ILivechatDepartmentAgents",
+          "edgeType": "type"
+        },
+        {
+          "name": "Filter",
+          "edgeType": "type"
+        },
+        {
+          "name": "AvailableAgentsAggregation",
+          "edgeType": "type"
+        },
+        {
+          "name": "SortDirection",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "getBotsForDepartment",
+      "exported": true,
+      "qualifiedName": "LivechatDepartmentAgentsRaw.getBotsForDepartment",
+      "line": 132,
+      "endLine": 150,
+      "signature": "async getBotsForDepartment(departmentId: string): Promise<undefined | FindCursor<ILivechatDepartmentAgents>>",
+      "containerClass": "LivechatDepartmentAgentsRaw",
+      "calls": [
+        {
+          "name": "toArray",
+          "edgeType": "call"
+        },
+        {
+          "name": "findByDepartmentId",
+          "edgeType": "call"
+        },
+        {
+          "name": "findBotAgents",
+          "edgeType": "call"
+        },
+        {
+          "name": "map",
+          "edgeType": "call"
+        },
+        {
+          "name": "filter",
+          "edgeType": "call"
+        },
+        {
+          "name": "find",
+          "edgeType": "call"
+        },
+        {
+          "name": "FindCursor",
+          "edgeType": "type"
+        },
+        {
+          "name": "ILivechatDepartmentAgents",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "countBotsForDepartment",
+      "exported": true,
+      "qualifiedName": "LivechatDepartmentAgentsRaw.countBotsForDepartment",
+      "line": 136,
+      "endLine": 144,
+      "signature": "async countBotsForDepartment(departmentId: string): Promise<number>",
+      "containerClass": "LivechatDepartmentAgentsRaw",
+      "calls": [
+        {
+          "name": "toArray",
+          "edgeType": "call"
+        },
+        {
+          "name": "findByDepartmentId",
+          "edgeType": "call"
+        },
+        {
+          "name": "countBotAgents",
+          "edgeType": "call"
+        },
+        {
+          "name": "map",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "getNextBotForDepartment",
+      "exported": true,
+      "qualifiedName": "LivechatDepartmentAgentsRaw.getNextBotForDepartment",
+      "line": 140,
+      "endLine": 182,
+      "signature": "async getNextBotForDepartment( departmentId: ILivechatDepartmentAgents['departmentId'], ignoreAgentId?: ILivechatDepartmentAgents['agentId'], ): Promise<Pick<ILivechatDepartmentAgents, '_id' | 'agentId' | 'departmentId' | 'username'> | null | undefined>",
+      "containerClass": "LivechatDepartmentAgentsRaw",
+      "calls": [
+        {
+          "name": "toArray",
+          "edgeType": "call"
+        },
+        {
+          "name": "findByDepartmentId",
+          "edgeType": "call"
+        },
+        {
+          "name": "filter",
+          "edgeType": "call"
+        },
+        {
+          "name": "map",
+          "edgeType": "call"
+        },
+        {
+          "name": "findBotAgents",
+          "edgeType": "call"
+        },
+        {
+          "name": "findOneAndUpdate",
+          "edgeType": "call"
+        },
+        {
+          "name": "ILivechatDepartmentAgents",
+          "edgeType": "type"
+        },
+        {
+          "name": "SortDirection",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "replaceUsernameOfAgentByUserId",
+      "exported": true,
+      "qualifiedName": "LivechatDepartmentAgentsRaw.replaceUsernameOfAgentByUserId",
+      "line": 147,
+      "endLine": 157,
+      "signature": "replaceUsernameOfAgentByUserId(userId: string, username: string): Promise<UpdateResult | Document>",
+      "containerClass": "LivechatDepartmentAgentsRaw",
+      "calls": [
+        {
+          "name": "updateMany",
+          "edgeType": "call"
+        },
+        {
+          "name": "UpdateResult",
+          "edgeType": "type"
+        },
+        {
+          "name": "Document",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "countByDepartmentId",
+      "exported": true,
+      "qualifiedName": "LivechatDepartmentAgentsRaw.countByDepartmentId",
+      "line": 151,
+      "endLine": 153,
+      "signature": "countByDepartmentId(departmentId: string): Promise<number>",
+      "containerClass": "LivechatDepartmentAgentsRaw",
+      "calls": [
+        {
+          "name": "countDocuments",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "disableAgentsByDepartmentId",
+      "exported": true,
+      "qualifiedName": "LivechatDepartmentAgentsRaw.disableAgentsByDepartmentId",
+      "line": 155,
+      "endLine": 157,
+      "signature": "disableAgentsByDepartmentId(departmentId: string): Promise<UpdateResult | Document>",
+      "containerClass": "LivechatDepartmentAgentsRaw",
+      "calls": [
+        {
+          "name": "updateMany",
+          "edgeType": "call"
+        },
+        {
+          "name": "UpdateResult",
+          "edgeType": "type"
+        },
+        {
+          "name": "Document",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "enableAgentsByDepartmentId",
+      "exported": true,
+      "qualifiedName": "LivechatDepartmentAgentsRaw.enableAgentsByDepartmentId",
+      "line": 159,
+      "endLine": 161,
+      "signature": "enableAgentsByDepartmentId(departmentId: string): Promise<UpdateResult | Document>",
+      "containerClass": "LivechatDepartmentAgentsRaw",
+      "calls": [
+        {
+          "name": "updateMany",
+          "edgeType": "call"
+        },
+        {
+          "name": "UpdateResult",
+          "edgeType": "type"
+        },
+        {
+          "name": "Document",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "findAllAgentsConnectedToListOfDepartments",
+      "exported": true,
+      "qualifiedName": "LivechatDepartmentAgentsRaw.findAllAgentsConnectedToListOfDepartments",
+      "line": 163,
+      "endLine": 165,
+      "signature": "findAllAgentsConnectedToListOfDepartments(departmentIds: string[]): Promise<string[]>",
+      "containerClass": "LivechatDepartmentAgentsRaw",
+      "calls": [
+        {
+          "name": "distinct",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "findByAgentsAndDepartmentId",
+      "exported": true,
+      "qualifiedName": "LivechatDepartmentAgentsRaw.findByAgentsAndDepartmentId",
+      "line": 167,
+      "endLine": 173,
+      "signature": "findByAgentsAndDepartmentId( agentsIds: ILivechatDepartmentAgents['agentId'][], departmentId: ILivechatDepartmentAgents['departmentId'], options?: FindOptions<ILivechatDepartmentAgents>, ): FindCursor<ILivechatDepartmentAgents>",
+      "containerClass": "LivechatDepartmentAgentsRaw",
+      "calls": [
+        {
+          "name": "find",
+          "edgeType": "call"
+        },
+        {
+          "name": "ILivechatDepartmentAgents",
+          "edgeType": "type"
+        },
+        {
+          "name": "FindOptions",
+          "edgeType": "type"
+        },
+        {
+          "name": "FindCursor",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "findDepartmentsOfAgent",
+      "exported": true,
+      "qualifiedName": "LivechatDepartmentAgentsRaw.findDepartmentsOfAgent",
+      "line": 175,
+      "endLine": 206,
+      "signature": "findDepartmentsOfAgent(agentId: string, enabled = false): AggregationCursor<ILivechatDepartmentAgents & { departmentName: string }>",
+      "containerClass": "LivechatDepartmentAgentsRaw",
+      "calls": [
+        {
+          "name": "aggregate",
+          "edgeType": "call"
+        },
+        {
+          "name": "AggregationCursor",
+          "edgeType": "type"
+        },
+        {
+          "name": "ILivechatDepartmentAgents",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "constructor",
+      "exported": true,
+      "qualifiedName": "LivechatDepartmentAgentsRaw.constructor",
+      "line": 21,
+      "endLine": 23,
+      "signature": "constructor(db: Db, trash?: Collection<RocketChatRecordDeleted<ILivechatDepartmentAgents>>)",
+      "containerClass": "LivechatDepartmentAgentsRaw",
+      "calls": [
+        {
+          "name": "Db",
+          "edgeType": "type"
+        },
+        {
+          "name": "Collection",
+          "edgeType": "type"
+        },
+        {
+          "name": "RocketChatRecordDeleted",
+          "edgeType": "type"
+        },
+        {
+          "name": "ILivechatDepartmentAgents",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "variable_function",
+      "name": "isStringValue",
+      "exported": false,
+      "line": 180,
+      "endLine": 180,
+      "signature": "(value: any): value is string =>",
+      "calls": []
+    }
+  ],
+  "imports": [
+    {
+      "module": "@rocket.chat/core-typings",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/model-typings",
+      "resolved": "external"
+    },
+    {
+      "module": "mongodb",
+      "resolved": "external"
+    },
+    {
+      "module": "../index",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/packages/models/src/index.ts"
+    },
+    {
+      "module": "./BaseRaw",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/packages/models/src/models/BaseRaw.ts"
+    }
+  ]
+}

@@ -1,0 +1,144 @@
+{
+  "sourcePath": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/reporters/jira.ts",
+  "symbols": [
+    {
+      "type": "class",
+      "name": "JIRAReporter",
+      "exported": true,
+      "line": 13,
+      "endLine": 243,
+      "signature": "class JIRAReporter implements Reporter",
+      "calls": [
+        {
+          "name": "Reporter",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "ensureJiraOk",
+      "exported": true,
+      "qualifiedName": "JIRAReporter.ensureJiraOk",
+      "line": 54,
+      "endLine": 61,
+      "signature": "private static async ensureJiraOk(response: Awaited<ReturnType<typeof fetch>>, context: string): Promise<void>",
+      "containerClass": "JIRAReporter",
+      "calls": [
+        {
+          "name": "text",
+          "edgeType": "call"
+        },
+        {
+          "name": "slice",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "onTestEnd",
+      "exported": true,
+      "qualifiedName": "JIRAReporter.onTestEnd",
+      "line": 58,
+      "endLine": 64,
+      "signature": "async onTestEnd(test: TestCase, result: TestResult)",
+      "containerClass": "JIRAReporter",
+      "calls": [
+        {
+          "name": "_onTestEnd",
+          "edgeType": "call"
+        },
+        {
+          "name": "error",
+          "edgeType": "call"
+        },
+        {
+          "name": "TestCase",
+          "edgeType": "type"
+        },
+        {
+          "name": "TestResult",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "_onTestEnd",
+      "exported": true,
+      "qualifiedName": "JIRAReporter._onTestEnd",
+      "line": 62,
+      "endLine": 233,
+      "signature": "private async _onTestEnd(test: TestCase, result: TestResult)",
+      "containerClass": "JIRAReporter",
+      "calls": [
+        {
+          "name": "log",
+          "edgeType": "call"
+        },
+        {
+          "name": "stringify",
+          "edgeType": "call"
+        },
+        {
+          "name": "fetch",
+          "edgeType": "call"
+        },
+        {
+          "name": "replace",
+          "edgeType": "call"
+        },
+        {
+          "name": "ensureJiraOk",
+          "edgeType": "call"
+        },
+        {
+          "name": "parse",
+          "edgeType": "call"
+        },
+        {
+          "name": "text",
+          "edgeType": "call"
+        },
+        {
+          "name": "find",
+          "edgeType": "call"
+        },
+        {
+          "name": "URLSearchParams",
+          "edgeType": "new"
+        },
+        {
+          "name": "TestCase",
+          "edgeType": "type"
+        },
+        {
+          "name": "TestResult",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "constructor",
+      "exported": true,
+      "qualifiedName": "JIRAReporter.constructor",
+      "line": 32,
+      "endLine": 52,
+      "signature": "constructor(options: { url: string; apiKey: string; branch: string; draft: boolean; run: number; headSha: string; author: string; run_url: string; pr: number; })",
+      "containerClass": "JIRAReporter",
+      "calls": []
+    }
+  ],
+  "imports": [
+    {
+      "module": "@playwright/test/reporter",
+      "resolved": "external"
+    },
+    {
+      "module": "node-fetch",
+      "resolved": "external"
+    }
+  ]
+}

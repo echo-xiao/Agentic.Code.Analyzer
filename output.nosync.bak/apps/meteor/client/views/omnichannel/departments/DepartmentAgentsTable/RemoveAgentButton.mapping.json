@@ -1,0 +1,116 @@
+{
+  "sourcePath": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/client/views/omnichannel/departments/DepartmentAgentsTable/RemoveAgentButton.tsx",
+  "symbols": [
+    {
+      "type": "inner_function",
+      "name": "onRemoveAgent",
+      "exported": false,
+      "qualifiedName": "RemoveAgentButton.onRemoveAgent",
+      "line": 16,
+      "endLine": 20,
+      "signature": "async () =>",
+      "calls": [
+        {
+          "name": "onRemove",
+          "edgeType": "call"
+        },
+        {
+          "name": "dispatchToastMessage",
+          "edgeType": "call"
+        },
+        {
+          "name": "setModal",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "function",
+      "name": "RemoveAgentButton",
+      "exported": true,
+      "line": 8,
+      "endLine": 26,
+      "signature": "function RemoveAgentButton({ agentId, onRemove }: { agentId: string; onRemove: (agentId: string) => void })",
+      "calls": [
+        {
+          "name": "useSetModal",
+          "edgeType": "call"
+        },
+        {
+          "name": "useToastMessageDispatch",
+          "edgeType": "call"
+        },
+        {
+          "name": "useTranslation",
+          "edgeType": "call"
+        },
+        {
+          "name": "useStableCallback",
+          "edgeType": "call"
+        },
+        {
+          "name": "stopPropagation",
+          "edgeType": "call"
+        },
+        {
+          "name": "onRemove",
+          "edgeType": "call"
+        },
+        {
+          "name": "dispatchToastMessage",
+          "edgeType": "call"
+        },
+        {
+          "name": "setModal",
+          "edgeType": "call"
+        },
+        {
+          "name": "GenericModal",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "IconButton",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "onRemoveAgent",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "handleDelete",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "MouseEvent",
+          "edgeType": "type"
+        }
+      ]
+    }
+  ],
+  "imports": [
+    {
+      "module": "@rocket.chat/fuselage",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/fuselage-hooks",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/ui-client",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/ui-contexts",
+      "resolved": "external"
+    },
+    {
+      "module": "react",
+      "resolved": "external"
+    },
+    {
+      "module": "react-i18next",
+      "resolved": "external"
+    }
+  ]
+}

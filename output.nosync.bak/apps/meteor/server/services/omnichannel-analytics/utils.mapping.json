@@ -1,0 +1,85 @@
+{
+  "sourcePath": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/server/services/omnichannel-analytics/utils.ts",
+  "symbols": [
+    {
+      "type": "function",
+      "name": "dayIterator",
+      "exported": true,
+      "line": 5,
+      "endLine": 12,
+      "signature": "export async function* dayIterator(from: moment.Moment, to: moment.Moment): AsyncGenerator<moment.Moment>",
+      "calls": [
+        {
+          "name": "startOf",
+          "edgeType": "call"
+        },
+        {
+          "name": "clone",
+          "edgeType": "call"
+        },
+        {
+          "name": "diff",
+          "edgeType": "call"
+        },
+        {
+          "name": "AsyncGenerator",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "function",
+      "name": "weekIterator",
+      "exported": true,
+      "line": 9,
+      "endLine": 15,
+      "signature": "export async function* weekIterator(from: moment.Moment, to: moment.Moment, timezone: string): AsyncGenerator<moment.Moment>",
+      "calls": [
+        {
+          "name": "tz",
+          "edgeType": "call"
+        },
+        {
+          "name": "diff",
+          "edgeType": "call"
+        },
+        {
+          "name": "moment",
+          "edgeType": "call"
+        },
+        {
+          "name": "AsyncGenerator",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "function",
+      "name": "hourIterator",
+      "exported": true,
+      "line": 13,
+      "endLine": 21,
+      "signature": "export async function* hourIterator(day: moment.Moment): AsyncGenerator<moment.Moment>",
+      "calls": [
+        {
+          "name": "startOf",
+          "edgeType": "call"
+        },
+        {
+          "name": "moment",
+          "edgeType": "call"
+        },
+        {
+          "name": "AsyncGenerator",
+          "edgeType": "type"
+        }
+      ]
+    }
+  ],
+  "imports": [
+    {
+      "module": "moment-timezone",
+      "resolved": "external"
+    }
+  ]
+}

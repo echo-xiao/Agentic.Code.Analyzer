@@ -1,0 +1,769 @@
+{
+  "sourcePath": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/server/ufs/ufs-store.ts",
+  "symbols": [
+    {
+      "type": "class",
+      "name": "Store",
+      "exported": true,
+      "line": 36,
+      "endLine": 361,
+      "signature": "export class Store",
+      "calls": []
+    },
+    {
+      "type": "method",
+      "name": "removeById",
+      "exported": true,
+      "qualifiedName": "Store.removeById",
+      "line": 221,
+      "endLine": 235,
+      "signature": "async removeById(fileId: string, options?: { session?: ClientSession }, isDeleted = false): Promise<void>",
+      "containerClass": "Store",
+      "calls": [
+        {
+          "name": "delete",
+          "edgeType": "call"
+        },
+        {
+          "name": "getTempFilePath",
+          "edgeType": "call"
+        },
+        {
+          "name": "catch",
+          "edgeType": "call"
+        },
+        {
+          "name": "unlink",
+          "edgeType": "call"
+        },
+        {
+          "name": "error",
+          "edgeType": "call"
+        },
+        {
+          "name": "removeById",
+          "edgeType": "call"
+        },
+        {
+          "name": "getCollection",
+          "edgeType": "call"
+        },
+        {
+          "name": "ClientSession",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "delete",
+      "exported": true,
+      "qualifiedName": "Store.delete",
+      "line": 225,
+      "endLine": 227,
+      "signature": "async delete(_fileId: string, _options?: { session?: ClientSession }): Promise<any>",
+      "containerClass": "Store",
+      "calls": [
+        {
+          "name": "ClientSession",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "generateToken",
+      "exported": true,
+      "qualifiedName": "Store.generateToken",
+      "line": 229,
+      "endLine": 237,
+      "signature": "generateToken(pattern?: string)",
+      "containerClass": "Store",
+      "calls": [
+        {
+          "name": "replace",
+          "edgeType": "call"
+        },
+        {
+          "name": "random",
+          "edgeType": "call"
+        },
+        {
+          "name": "round",
+          "edgeType": "call"
+        },
+        {
+          "name": "toUpperCase",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "getCollection",
+      "exported": true,
+      "qualifiedName": "Store.getCollection",
+      "line": 233,
+      "endLine": 236,
+      "signature": "getCollection()",
+      "containerClass": "Store",
+      "calls": []
+    },
+    {
+      "type": "method",
+      "name": "getFilePath",
+      "exported": true,
+      "qualifiedName": "Store.getFilePath",
+      "line": 237,
+      "endLine": 239,
+      "signature": "async getFilePath(_fileId: string, _file?: IUpload): Promise<string>",
+      "containerClass": "Store",
+      "calls": [
+        {
+          "name": "IUpload",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "getFileRelativeURL",
+      "exported": true,
+      "qualifiedName": "Store.getFileRelativeURL",
+      "line": 241,
+      "endLine": 244,
+      "signature": "async getFileRelativeURL(fileId: string)",
+      "containerClass": "Store",
+      "calls": [
+        {
+          "name": "findOne",
+          "edgeType": "call"
+        },
+        {
+          "name": "getCollection",
+          "edgeType": "call"
+        },
+        {
+          "name": "getRelativeURL",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "getFileURL",
+      "exported": true,
+      "qualifiedName": "Store.getFileURL",
+      "line": 245,
+      "endLine": 248,
+      "signature": "async getFileURL(fileId: string)",
+      "containerClass": "Store",
+      "calls": [
+        {
+          "name": "findOne",
+          "edgeType": "call"
+        },
+        {
+          "name": "getCollection",
+          "edgeType": "call"
+        },
+        {
+          "name": "getURL",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "getFilter",
+      "exported": true,
+      "qualifiedName": "Store.getFilter",
+      "line": 249,
+      "endLine": 251,
+      "signature": "getFilter()",
+      "containerClass": "Store",
+      "calls": []
+    },
+    {
+      "type": "method",
+      "name": "getName",
+      "exported": true,
+      "qualifiedName": "Store.getName",
+      "line": 253,
+      "endLine": 255,
+      "signature": "getName()",
+      "containerClass": "Store",
+      "calls": []
+    },
+    {
+      "type": "method",
+      "name": "getReadStream",
+      "exported": true,
+      "qualifiedName": "Store.getReadStream",
+      "line": 257,
+      "endLine": 259,
+      "signature": "async getReadStream(_fileId: string, _file: IUpload, _options?: { start?: number; end?: number }): Promise<stream.Readable>",
+      "containerClass": "Store",
+      "calls": [
+        {
+          "name": "IUpload",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "getRelativeURL",
+      "exported": true,
+      "qualifiedName": "Store.getRelativeURL",
+      "line": 261,
+      "endLine": 267,
+      "signature": "getRelativeURL(path: string)",
+      "containerClass": "Store",
+      "calls": [
+        {
+          "name": "replace",
+          "edgeType": "call"
+        },
+        {
+          "name": "absoluteUrl",
+          "edgeType": "call"
+        },
+        {
+          "name": "getName",
+          "edgeType": "call"
+        },
+        {
+          "name": "trim",
+          "edgeType": "call"
+        },
+        {
+          "name": "encodeURI",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "getURL",
+      "exported": true,
+      "qualifiedName": "Store.getURL",
+      "line": 265,
+      "endLine": 270,
+      "signature": "getURL(path: string)",
+      "containerClass": "Store",
+      "calls": [
+        {
+          "name": "replace",
+          "edgeType": "call"
+        },
+        {
+          "name": "absoluteUrl",
+          "edgeType": "call"
+        },
+        {
+          "name": "getName",
+          "edgeType": "call"
+        },
+        {
+          "name": "trim",
+          "edgeType": "call"
+        },
+        {
+          "name": "encodeURI",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "getRedirectURL",
+      "exported": true,
+      "qualifiedName": "Store.getRedirectURL",
+      "line": 269,
+      "endLine": 271,
+      "signature": "async getRedirectURL(_file: IUpload, _forceDownload = false): Promise<string>",
+      "containerClass": "Store",
+      "calls": [
+        {
+          "name": "IUpload",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "getWriteStream",
+      "exported": true,
+      "qualifiedName": "Store.getWriteStream",
+      "line": 273,
+      "endLine": 275,
+      "signature": "async getWriteStream(_fileId: string, _file: IUpload): Promise<stream.Writable>",
+      "containerClass": "Store",
+      "calls": [
+        {
+          "name": "IUpload",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "onCopyError",
+      "exported": true,
+      "qualifiedName": "Store.onCopyError",
+      "line": 277,
+      "endLine": 279,
+      "signature": "onCopyError(err: Error, fileId: string, _file: IUpload)",
+      "containerClass": "Store",
+      "calls": [
+        {
+          "name": "error",
+          "edgeType": "call"
+        },
+        {
+          "name": "IUpload",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "onFinishUpload",
+      "exported": true,
+      "qualifiedName": "Store.onFinishUpload",
+      "line": 281,
+      "endLine": 283,
+      "signature": "async onFinishUpload(_file: IUpload)",
+      "containerClass": "Store",
+      "calls": [
+        {
+          "name": "IUpload",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "onRead",
+      "exported": true,
+      "qualifiedName": "Store.onRead",
+      "line": 285,
+      "endLine": 287,
+      "signature": "async onRead(_fileId: string, _file: IUpload, _request: createServer.IncomingMessage, _response: http.ServerResponse)",
+      "containerClass": "Store",
+      "calls": [
+        {
+          "name": "IUpload",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "onReadError",
+      "exported": true,
+      "qualifiedName": "Store.onReadError",
+      "line": 289,
+      "endLine": 291,
+      "signature": "onReadError(err: Error, fileId: string, _file: IUpload)",
+      "containerClass": "Store",
+      "calls": [
+        {
+          "name": "error",
+          "edgeType": "call"
+        },
+        {
+          "name": "IUpload",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "onValidate",
+      "exported": true,
+      "qualifiedName": "Store.onValidate",
+      "line": 293,
+      "endLine": 295,
+      "signature": "async onValidate(_file: IUpload, _options?: { session?: ClientSession })",
+      "containerClass": "Store",
+      "calls": [
+        {
+          "name": "IUpload",
+          "edgeType": "type"
+        },
+        {
+          "name": "ClientSession",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "onWriteError",
+      "exported": true,
+      "qualifiedName": "Store.onWriteError",
+      "line": 297,
+      "endLine": 299,
+      "signature": "onWriteError(err: Error, fileId: string, _file: IUpload)",
+      "containerClass": "Store",
+      "calls": [
+        {
+          "name": "error",
+          "edgeType": "call"
+        },
+        {
+          "name": "IUpload",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "transformRead",
+      "exported": true,
+      "qualifiedName": "Store.transformRead",
+      "line": 301,
+      "endLine": 314,
+      "signature": "transformRead( readStream: stream.Readable, writeStream: stream.Writable, fileId: string, file: IUpload, request: createServer.IncomingMessage, headers?: Record<string, any>, )",
+      "containerClass": "Store",
+      "calls": [
+        {
+          "name": "call",
+          "edgeType": "call"
+        },
+        {
+          "name": "pipe",
+          "edgeType": "call"
+        },
+        {
+          "name": "IUpload",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "transformWrite",
+      "exported": true,
+      "qualifiedName": "Store.transformWrite",
+      "line": 312,
+      "endLine": 318,
+      "signature": "transformWrite(readStream: stream.Readable, writeStream: stream.Writable, fileId: string, file: IUpload)",
+      "containerClass": "Store",
+      "calls": [
+        {
+          "name": "call",
+          "edgeType": "call"
+        },
+        {
+          "name": "pipe",
+          "edgeType": "call"
+        },
+        {
+          "name": "IUpload",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "validate",
+      "exported": true,
+      "qualifiedName": "Store.validate",
+      "line": 316,
+      "endLine": 320,
+      "signature": "async validate(file: IUpload, options?: { session?: ClientSession })",
+      "containerClass": "Store",
+      "calls": [
+        {
+          "name": "onValidate",
+          "edgeType": "call"
+        },
+        {
+          "name": "IUpload",
+          "edgeType": "type"
+        },
+        {
+          "name": "ClientSession",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "getUrlExpiryTimeSpan",
+      "exported": true,
+      "qualifiedName": "Store.getUrlExpiryTimeSpan",
+      "line": 320,
+      "endLine": 322,
+      "signature": "async getUrlExpiryTimeSpan(): Promise<number | null>",
+      "containerClass": "Store",
+      "calls": []
+    },
+    {
+      "type": "method",
+      "name": "constructor",
+      "exported": true,
+      "qualifiedName": "Store.constructor",
+      "line": 54,
+      "endLine": 219,
+      "signature": "constructor(options: StoreOptions)",
+      "containerClass": "Store",
+      "calls": [
+        {
+          "name": "getStore",
+          "edgeType": "call"
+        },
+        {
+          "name": "addStore",
+          "edgeType": "call"
+        },
+        {
+          "name": "check",
+          "edgeType": "call"
+        },
+        {
+          "name": "findOne",
+          "edgeType": "call"
+        },
+        {
+          "name": "getCollection",
+          "edgeType": "call"
+        },
+        {
+          "name": "getFilter",
+          "edgeType": "call"
+        },
+        {
+          "name": "isValid",
+          "edgeType": "call"
+        },
+        {
+          "name": "getName",
+          "edgeType": "call"
+        },
+        {
+          "name": "create",
+          "edgeType": "call"
+        },
+        {
+          "name": "getReadStream",
+          "edgeType": "call"
+        },
+        {
+          "name": "error",
+          "edgeType": "event_listen"
+        },
+        {
+          "name": "call",
+          "edgeType": "call"
+        },
+        {
+          "name": "write",
+          "edgeType": "call"
+        },
+        {
+          "name": "removeById",
+          "edgeType": "call"
+        },
+        {
+          "name": "insertOne",
+          "edgeType": "call"
+        },
+        {
+          "name": "callback",
+          "edgeType": "call"
+        },
+        {
+          "name": "generateEtag",
+          "edgeType": "call"
+        },
+        {
+          "name": "getFileRelativeURL",
+          "edgeType": "call"
+        },
+        {
+          "name": "generateToken",
+          "edgeType": "call"
+        },
+        {
+          "name": "getFileURL",
+          "edgeType": "call"
+        },
+        {
+          "name": "updateOne",
+          "edgeType": "call"
+        },
+        {
+          "name": "getWriteStream",
+          "edgeType": "call"
+        },
+        {
+          "name": "errorHandler",
+          "edgeType": "event_listen",
+          "event": "error"
+        },
+        {
+          "name": "finishHandler",
+          "edgeType": "event_listen",
+          "event": "finish"
+        },
+        {
+          "name": "transformWrite",
+          "edgeType": "call"
+        },
+        {
+          "name": "TypeError",
+          "edgeType": "new"
+        },
+        {
+          "name": "Date",
+          "edgeType": "new"
+        },
+        {
+          "name": "StoreOptions",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "class_property",
+      "name": "options",
+      "exported": true,
+      "qualifiedName": "Store.options",
+      "line": 37,
+      "endLine": 37,
+      "signature": "protected options: StoreOptions;",
+      "containerClass": "Store",
+      "calls": [
+        {
+          "name": "StoreOptions",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "class_property",
+      "name": "copy",
+      "exported": true,
+      "qualifiedName": "Store.copy",
+      "line": 39,
+      "endLine": 43,
+      "signature": "public copy: (",
+      "containerClass": "Store",
+      "calls": [
+        {
+          "name": "Store",
+          "edgeType": "type"
+        },
+        {
+          "name": "OptionalId",
+          "edgeType": "type"
+        },
+        {
+          "name": "IUpload",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "class_property",
+      "name": "create",
+      "exported": true,
+      "qualifiedName": "Store.create",
+      "line": 45,
+      "endLine": 45,
+      "signature": "public create: (file: Omit<OptionalId<IUpload>, '_updatedAt'>, options?:",
+      "containerClass": "Store",
+      "calls": [
+        {
+          "name": "OptionalId",
+          "edgeType": "type"
+        },
+        {
+          "name": "IUpload",
+          "edgeType": "type"
+        },
+        {
+          "name": "ClientSession",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "class_property",
+      "name": "write",
+      "exported": true,
+      "qualifiedName": "Store.write",
+      "line": 47,
+      "endLine": 52,
+      "signature": "public write: ( rs: stream.Readable, fileId: string, callback: (err?: Error, file?: IUpload) => void, options?:",
+      "containerClass": "Store",
+      "calls": [
+        {
+          "name": "IUpload",
+          "edgeType": "type"
+        },
+        {
+          "name": "ClientSession",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "type",
+      "name": "StoreOptions",
+      "line": 15,
+      "endLine": 34,
+      "signature": "export type StoreOptions ="
+    }
+  ],
+  "imports": [
+    {
+      "module": "node:fs",
+      "resolved": "external"
+    },
+    {
+      "module": "node:http",
+      "resolved": "external"
+    },
+    {
+      "module": "node:stream",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/core-typings",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/model-typings",
+      "resolved": "external"
+    },
+    {
+      "module": "connect",
+      "resolved": "external"
+    },
+    {
+      "module": "meteor/check",
+      "resolved": "external"
+    },
+    {
+      "module": "meteor/meteor",
+      "resolved": "external"
+    },
+    {
+      "module": "mongodb",
+      "resolved": "external"
+    },
+    {
+      "module": ".",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/server/ufs/index.ts"
+    },
+    {
+      "module": "./ufs-filter",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/server/ufs/ufs-filter.ts"
+    }
+  ]
+}

@@ -1,0 +1,119 @@
+{
+  "sourcePath": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/client/hooks/useExpirationText.ts",
+  "symbols": [
+    {
+      "type": "function",
+      "name": "parseExpiresAt",
+      "exported": false,
+      "line": 10,
+      "endLine": 30,
+      "signature": "function parseExpiresAt(value?: unknown): Date | undefined",
+      "calls": [
+        {
+          "name": "isNaN",
+          "edgeType": "call"
+        },
+        {
+          "name": "getTime",
+          "edgeType": "call"
+        },
+        {
+          "name": "Date",
+          "edgeType": "new"
+        }
+      ]
+    },
+    {
+      "type": "function",
+      "name": "useExpirationText",
+      "exported": true,
+      "line": 14,
+      "endLine": 37,
+      "signature": "export function useExpirationText(statusExpiresAt?: Date | string)",
+      "calls": [
+        {
+          "name": "useTranslation",
+          "edgeType": "call"
+        },
+        {
+          "name": "useLanguage",
+          "edgeType": "call"
+        },
+        {
+          "name": "useFormatTime",
+          "edgeType": "call"
+        },
+        {
+          "name": "useFormatDate",
+          "edgeType": "call"
+        },
+        {
+          "name": "useMemo",
+          "edgeType": "call"
+        },
+        {
+          "name": "parseExpiresAt",
+          "edgeType": "call"
+        },
+        {
+          "name": "getTime",
+          "edgeType": "call"
+        },
+        {
+          "name": "now",
+          "edgeType": "call"
+        },
+        {
+          "name": "isSameDay",
+          "edgeType": "call"
+        },
+        {
+          "name": "formatTime",
+          "edgeType": "call"
+        },
+        {
+          "name": "getFullYear",
+          "edgeType": "call"
+        },
+        {
+          "name": "format",
+          "edgeType": "call"
+        },
+        {
+          "name": "formatDate",
+          "edgeType": "call"
+        },
+        {
+          "name": "Date",
+          "edgeType": "new"
+        }
+      ]
+    }
+  ],
+  "imports": [
+    {
+      "module": "@rocket.chat/ui-contexts",
+      "resolved": "external"
+    },
+    {
+      "module": "date-fns",
+      "resolved": "external"
+    },
+    {
+      "module": "react",
+      "resolved": "external"
+    },
+    {
+      "module": "react-i18next",
+      "resolved": "external"
+    },
+    {
+      "module": "./useFormatDate",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/client/hooks/useFormatDate.ts"
+    },
+    {
+      "module": "./useFormatTime",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/client/hooks/useFormatTime.ts"
+    }
+  ]
+}

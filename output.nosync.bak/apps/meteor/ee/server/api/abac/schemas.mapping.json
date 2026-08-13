@@ -1,0 +1,243 @@
+{
+  "sourcePath": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/ee/server/api/abac/schemas.ts",
+  "symbols": [
+    {
+      "type": "variable",
+      "name": "GenericSuccessSchema",
+      "exported": true,
+      "line": 25,
+      "endLine": 25,
+      "signature": "GenericSuccessSchema = ajv.compile<void>(GenericSuccess)",
+      "calls": []
+    },
+    {
+      "type": "variable",
+      "name": "PUTAbacAttributeUpdateBodySchema",
+      "exported": true,
+      "line": 43,
+      "endLine": 43,
+      "signature": "PUTAbacAttributeUpdateBodySchema = ajv.compile<IAbacAttributeDefinition>(UpdateAbacAttributeBody)",
+      "calls": [
+        {
+          "name": "IAbacAttributeDefinition",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "variable",
+      "name": "POSTAbacAttributeDefinitionSchema",
+      "exported": true,
+      "line": 61,
+      "endLine": 61,
+      "signature": "POSTAbacAttributeDefinitionSchema = ajv.compile<IAbacAttributeDefinition>(AbacAttributeDefinition)",
+      "calls": [
+        {
+          "name": "IAbacAttributeDefinition",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "variable",
+      "name": "GETAbacAttributesQuerySchema",
+      "exported": true,
+      "line": 74,
+      "endLine": 76,
+      "signature": "GETAbacAttributesQuerySchema = ajvQuery.compile<",
+      "calls": []
+    },
+    {
+      "type": "variable",
+      "name": "GETAbacAttributesResponseSchema",
+      "exported": true,
+      "line": 110,
+      "endLine": 115,
+      "signature": "GETAbacAttributesResponseSchema = ajv.compile<",
+      "calls": [
+        {
+          "name": "IAbacAttribute",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "variable",
+      "name": "GETAbacAttributeByIdResponseSchema",
+      "exported": true,
+      "line": 134,
+      "endLine": 137,
+      "signature": "GETAbacAttributeByIdResponseSchema = ajv.compile<",
+      "calls": []
+    },
+    {
+      "type": "variable",
+      "name": "GETAbacAttributeIsInUseResponseSchema",
+      "exported": true,
+      "line": 149,
+      "endLine": 149,
+      "signature": "GETAbacAttributeIsInUseResponseSchema = ajv.compile<",
+      "calls": []
+    },
+    {
+      "type": "variable",
+      "name": "GETAbacAuditEventsQuerySchema",
+      "exported": true,
+      "line": 192,
+      "endLine": 198,
+      "signature": "GETAbacAuditEventsQuerySchema = ajvQuery.compile< PaginatedRequest<",
+      "calls": [
+        {
+          "name": "PaginatedRequest",
+          "edgeType": "type"
+        },
+        {
+          "name": "IAuditServerActor",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "variable",
+      "name": "GETAbacAuditEventsResponseSchema",
+      "exported": true,
+      "line": 227,
+      "endLine": 238,
+      "signature": "GETAbacAuditEventsResponseSchema = ajv.compile<",
+      "calls": [
+        {
+          "name": "IServerEvents",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "variable",
+      "name": "POSTRoomAbacAttributesBodySchema",
+      "exported": true,
+      "line": 260,
+      "endLine": 260,
+      "signature": "POSTRoomAbacAttributesBodySchema = ajv.compile<",
+      "calls": []
+    },
+    {
+      "type": "variable",
+      "name": "POSTSingleRoomAbacAttributeBodySchema",
+      "exported": true,
+      "line": 277,
+      "endLine": 277,
+      "signature": "POSTSingleRoomAbacAttributeBodySchema = ajv.compile<",
+      "calls": []
+    },
+    {
+      "type": "variable",
+      "name": "PUTRoomAbacAttributeValuesBodySchema",
+      "exported": true,
+      "line": 294,
+      "endLine": 294,
+      "signature": "PUTRoomAbacAttributeValuesBodySchema = ajv.compile<",
+      "calls": []
+    },
+    {
+      "type": "variable",
+      "name": "POSTAbacUsersSyncBodySchema",
+      "exported": true,
+      "line": 344,
+      "endLine": 349,
+      "signature": "POSTAbacUsersSyncBodySchema = ajv.compile<",
+      "calls": []
+    },
+    {
+      "type": "variable",
+      "name": "GenericErrorSchema",
+      "exported": true,
+      "line": 351,
+      "endLine": 351,
+      "signature": "GenericErrorSchema = ajv.compile<",
+      "calls": []
+    },
+    {
+      "type": "variable",
+      "name": "GETAbacPdpHealthResponseSchema",
+      "exported": true,
+      "line": 353,
+      "endLine": 365,
+      "signature": "GETAbacPdpHealthResponseSchema = ajv.compile<",
+      "calls": []
+    },
+    {
+      "type": "variable",
+      "name": "GETAbacPdpHealthErrorResponseSchema",
+      "exported": true,
+      "line": 367,
+      "endLine": 376,
+      "signature": "GETAbacPdpHealthErrorResponseSchema = ajv.compile<",
+      "calls": []
+    },
+    {
+      "type": "variable",
+      "name": "GETAbacRoomsListQueryValidator",
+      "exported": true,
+      "line": 391,
+      "endLine": 391,
+      "signature": "GETAbacRoomsListQueryValidator = ajvQuery.compile<GETAbacRoomsListQuery>(GETAbacRoomsListQuerySchema)",
+      "calls": [
+        {
+          "name": "GETAbacRoomsListQuery",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "variable",
+      "name": "GETAbacRoomsResponseSchema",
+      "exported": true,
+      "line": 393,
+      "endLine": 416,
+      "signature": "GETAbacRoomsResponseSchema =",
+      "calls": []
+    },
+    {
+      "type": "variable",
+      "name": "GETAbacRoomsResponseValidator",
+      "exported": true,
+      "line": 422,
+      "endLine": 422,
+      "signature": "GETAbacRoomsResponseValidator = ajv.compile<GETAbacRoomsResponse>(GETAbacRoomsResponseSchema)",
+      "calls": [
+        {
+          "name": "GETAbacRoomsResponse",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "type",
+      "name": "GETAbacRoomsListQuery",
+      "line": 389,
+      "endLine": 389,
+      "signature": "type GETAbacRoomsListQuery = PaginatedRequest<"
+    },
+    {
+      "type": "type",
+      "name": "GETAbacRoomsResponse",
+      "line": 418,
+      "endLine": 420,
+      "signature": "type GETAbacRoomsResponse = PaginatedResult<"
+    }
+  ],
+  "imports": [
+    {
+      "module": "@rocket.chat/core-typings",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/rest-typings",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/rest-typings",
+      "resolved": "external"
+    }
+  ]
+}

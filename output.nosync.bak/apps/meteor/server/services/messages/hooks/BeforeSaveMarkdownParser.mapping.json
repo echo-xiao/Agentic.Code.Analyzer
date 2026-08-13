@@ -1,0 +1,86 @@
+{
+  "sourcePath": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/server/services/messages/hooks/BeforeSaveMarkdownParser.ts",
+  "symbols": [
+    {
+      "type": "class",
+      "name": "BeforeSaveMarkdownParser",
+      "exported": true,
+      "line": 17,
+      "endLine": 51,
+      "signature": "export class BeforeSaveMarkdownParser",
+      "calls": []
+    },
+    {
+      "type": "method",
+      "name": "parseMarkdown",
+      "exported": true,
+      "qualifiedName": "BeforeSaveMarkdownParser.parseMarkdown",
+      "line": 22,
+      "endLine": 50,
+      "signature": "async parseMarkdown({ message, config }: { message: IMessage; config: ParserConfig }): Promise<IMessage>",
+      "containerClass": "BeforeSaveMarkdownParser",
+      "calls": [
+        {
+          "name": "isE2EEMessage",
+          "edgeType": "call"
+        },
+        {
+          "name": "getMessageMaxParseLength",
+          "edgeType": "call"
+        },
+        {
+          "name": "parse",
+          "edgeType": "call"
+        },
+        {
+          "name": "error",
+          "edgeType": "call"
+        },
+        {
+          "name": "IMessage",
+          "edgeType": "type"
+        },
+        {
+          "name": "ParserConfig",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "constructor",
+      "exported": true,
+      "qualifiedName": "BeforeSaveMarkdownParser.constructor",
+      "line": 18,
+      "endLine": 20,
+      "signature": "constructor(private enabled: boolean = true)",
+      "containerClass": "BeforeSaveMarkdownParser",
+      "calls": []
+    },
+    {
+      "type": "type",
+      "name": "ParserConfig",
+      "line": 7,
+      "endLine": 15,
+      "signature": "type ParserConfig ="
+    }
+  ],
+  "imports": [
+    {
+      "module": "@rocket.chat/core-typings",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/core-typings",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/message-parser",
+      "resolved": "external"
+    },
+    {
+      "module": "../../../../lib/getMessageMaxParseLength",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/lib/getMessageMaxParseLength.ts"
+    }
+  ]
+}

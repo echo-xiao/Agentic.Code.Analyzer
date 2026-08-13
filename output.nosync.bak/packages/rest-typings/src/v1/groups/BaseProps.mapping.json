@@ -1,0 +1,92 @@
+{
+  "sourcePath": "/Users/echoooooo/Desktop/code/Rocket.Chat/packages/rest-typings/src/v1/groups/BaseProps.ts",
+  "symbols": [
+    {
+      "type": "variable_function",
+      "name": "withGroupBaseProperties",
+      "exported": true,
+      "line": 5,
+      "endLine": 30,
+      "signature": "(properties: Record<string, any> = {}, required: string[] = []) =>",
+      "calls": [
+        {
+          "name": "concat",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "variable",
+      "name": "baseSchema",
+      "exported": true,
+      "line": 33,
+      "endLine": 33,
+      "signature": "baseSchema = withGroupBaseProperties()",
+      "calls": []
+    },
+    {
+      "type": "variable",
+      "name": "withBaseProps",
+      "exported": true,
+      "line": 34,
+      "endLine": 34,
+      "signature": "withBaseProps = ajv.compile<BaseProps>(baseSchema)",
+      "calls": [
+        {
+          "name": "BaseProps",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "variable",
+      "name": "withUserIdSchema",
+      "exported": true,
+      "line": 44,
+      "endLine": 53,
+      "signature": "withUserIdSchema = withGroupBaseProperties(",
+      "calls": []
+    },
+    {
+      "type": "variable",
+      "name": "withUserIdProps",
+      "exported": true,
+      "line": 54,
+      "endLine": 54,
+      "signature": "withUserIdProps = ajv.compile<WithUserId>(withUserIdSchema)",
+      "calls": [
+        {
+          "name": "WithUserId",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "type",
+      "name": "GroupsBaseProps",
+      "line": 3,
+      "endLine": 3,
+      "signature": "export type GroupsBaseProps ="
+    },
+    {
+      "type": "type",
+      "name": "BaseProps",
+      "line": 32,
+      "endLine": 32,
+      "signature": "export type BaseProps = GroupsBaseProps;"
+    },
+    {
+      "type": "type",
+      "name": "WithUserId",
+      "line": 36,
+      "endLine": 43,
+      "signature": "export type WithUserId = GroupsBaseProps & ( |"
+    }
+  ],
+  "imports": [
+    {
+      "module": "../Ajv",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/packages/rest-typings/src/v1/Ajv.ts"
+    }
+  ]
+}

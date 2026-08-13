@@ -1,0 +1,67 @@
+{
+  "sourcePath": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/client/lib/errors/RocketChatError.ts",
+  "symbols": [
+    {
+      "type": "class",
+      "name": "RocketChatError",
+      "exported": true,
+      "line": 1,
+      "endLine": 14,
+      "signature": "export abstract class RocketChatError<TErrorId extends string, TDetails = unknown> extends Error",
+      "calls": []
+    },
+    {
+      "type": "method",
+      "name": "constructor",
+      "exported": true,
+      "qualifiedName": "RocketChatError.constructor",
+      "line": 8,
+      "endLine": 13,
+      "signature": "constructor(error: TErrorId, reason?: string, details?: TDetails)",
+      "containerClass": "RocketChatError",
+      "calls": [
+        {
+          "name": "TErrorId",
+          "edgeType": "type"
+        },
+        {
+          "name": "TDetails",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "class_property",
+      "name": "error",
+      "exported": true,
+      "qualifiedName": "RocketChatError.error",
+      "line": 2,
+      "endLine": 2,
+      "signature": "public readonly error: TErrorId;",
+      "containerClass": "RocketChatError",
+      "calls": [
+        {
+          "name": "TErrorId",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "class_property",
+      "name": "details",
+      "exported": true,
+      "qualifiedName": "RocketChatError.details",
+      "line": 6,
+      "endLine": 6,
+      "signature": "public readonly details?: TDetails;",
+      "containerClass": "RocketChatError",
+      "calls": [
+        {
+          "name": "TDetails",
+          "edgeType": "type"
+        }
+      ]
+    }
+  ],
+  "imports": []
+}

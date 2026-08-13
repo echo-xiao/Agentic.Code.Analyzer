@@ -1,0 +1,66 @@
+{
+  "sourcePath": "/Users/echoooooo/Desktop/code/Rocket.Chat/packages/fuselage-ui-kit/src/contexts/AppIdContext.tsx",
+  "symbols": [
+    {
+      "type": "variable_function",
+      "name": "AppIdProvider",
+      "exported": true,
+      "line": 13,
+      "endLine": 19,
+      "signature": "({ children, appId }: AppIdProviderProps) =>",
+      "calls": [
+        {
+          "name": "AppIdContext.Provider",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "appId",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "AppIdProviderProps",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "variable_function",
+      "name": "useAppId",
+      "exported": true,
+      "line": 17,
+      "endLine": 24,
+      "signature": "() =>",
+      "calls": [
+        {
+          "name": "useContext",
+          "edgeType": "call"
+        },
+        {
+          "name": "useDebugValue",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "type",
+      "name": "AppIdProviderProps",
+      "line": 8,
+      "endLine": 11,
+      "signature": "export type AppIdProviderProps ="
+    }
+  ],
+  "imports": [
+    {
+      "module": "react",
+      "resolved": "external"
+    },
+    {
+      "module": "react",
+      "resolved": "external"
+    },
+    {
+      "module": "./UiKitContext",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/packages/fuselage-ui-kit/src/contexts/UiKitContext.ts"
+    }
+  ]
+}

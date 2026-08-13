@@ -1,0 +1,56 @@
+{
+  "sourcePath": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/client/components/message/content/attachments/structure/AttachmentEncryptedDownload.tsx",
+  "symbols": [
+    {
+      "type": "variable_function",
+      "name": "AttachmentEncryptedDownload",
+      "exported": false,
+      "line": 8,
+      "endLine": 12,
+      "signature": "({ title, href, ...props }: AttachmentDownloadProps) =>",
+      "calls": [
+        {
+          "name": "useDownloadFromServiceWorker",
+          "edgeType": "call"
+        },
+        {
+          "name": "AttachmentDownloadBase",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "title",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "href",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "AttachmentDownloadProps",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "type",
+      "name": "AttachmentDownloadProps",
+      "line": 6,
+      "endLine": 6,
+      "signature": "type AttachmentDownloadProps = ComponentProps<typeof AttachmentDownloadBase>;"
+    }
+  ],
+  "imports": [
+    {
+      "module": "react",
+      "resolved": "external"
+    },
+    {
+      "module": "./AttachmentDownloadBase",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/client/components/message/content/attachments/structure/AttachmentDownloadBase.tsx"
+    },
+    {
+      "module": "../../../../../hooks/useDownloadFromServiceWorker",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/client/hooks/useDownloadFromServiceWorker.ts"
+    }
+  ]
+}

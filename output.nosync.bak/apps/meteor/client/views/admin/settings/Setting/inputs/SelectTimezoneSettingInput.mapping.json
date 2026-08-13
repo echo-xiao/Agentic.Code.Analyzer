@@ -1,0 +1,131 @@
+{
+  "sourcePath": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/client/views/admin/settings/Setting/inputs/SelectTimezoneSettingInput.tsx",
+  "symbols": [
+    {
+      "type": "inner_function",
+      "name": "handleChange",
+      "exported": false,
+      "qualifiedName": "SelectTimezoneSettingInput.handleChange",
+      "line": 26,
+      "endLine": 28,
+      "signature": "(value: string): void =>",
+      "calls": [
+        {
+          "name": "onChangeValue",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "function",
+      "name": "SelectTimezoneSettingInput",
+      "exported": true,
+      "line": 10,
+      "endLine": 53,
+      "signature": "function SelectTimezoneSettingInput({ _id, label, value, hint, placeholder, readonly, autocomplete, disabled, required, hasResetButton, onChangeValue, onResetButtonClick, }: SelectTimezoneSettingInputProps)",
+      "calls": [
+        {
+          "name": "useTimezoneNameList",
+          "edgeType": "call"
+        },
+        {
+          "name": "onChangeValue",
+          "edgeType": "call"
+        },
+        {
+          "name": "canonicalizeTimezone",
+          "edgeType": "call"
+        },
+        {
+          "name": "handleChange",
+          "edgeType": "call"
+        },
+        {
+          "name": "map",
+          "edgeType": "call"
+        },
+        {
+          "name": "Field",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "FieldRow",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "FieldLabel",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "FieldHint",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "ResetSettingButton",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "Select",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "_id",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "required",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "onResetButtonClick",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "placeholder",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "disabled",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "readonly",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "SelectTimezoneSettingInputProps",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "type",
+      "name": "SelectTimezoneSettingInputProps",
+      "line": 8,
+      "endLine": 8,
+      "signature": "export type SelectTimezoneSettingInputProps = SettingInputProps;"
+    }
+  ],
+  "imports": [
+    {
+      "module": "@rocket.chat/fuselage",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/tools",
+      "resolved": "external"
+    },
+    {
+      "module": "../../../../../hooks/useTimezoneNameList",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/client/hooks/useTimezoneNameList.ts"
+    },
+    {
+      "module": "../ResetSettingButton",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/client/views/admin/settings/Setting/ResetSettingButton/index.ts"
+    },
+    {
+      "module": "./types",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/client/views/admin/settings/Setting/inputs/types.ts"
+    }
+  ]
+}

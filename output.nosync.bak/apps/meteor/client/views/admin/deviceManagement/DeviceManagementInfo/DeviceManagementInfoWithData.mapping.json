@@ -1,0 +1,150 @@
+{
+  "sourcePath": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/client/views/admin/deviceManagement/DeviceManagementInfo/DeviceManagementInfoWithData.tsx",
+  "symbols": [
+    {
+      "type": "variable_function",
+      "name": "convertSessionFromAPI",
+      "exported": false,
+      "line": 17,
+      "endLine": 25,
+      "signature": "({ loginAt, logoutAt, ...rest }: Serialized<DeviceManagementPopulatedSession>): DeviceManagementPopulatedSession =>",
+      "calls": [
+        {
+          "name": "Date",
+          "edgeType": "new"
+        },
+        {
+          "name": "Serialized",
+          "edgeType": "type"
+        },
+        {
+          "name": "DeviceManagementPopulatedSession",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "variable_function",
+      "name": "DeviceInfoWithData",
+      "exported": false,
+      "line": 29,
+      "endLine": 64,
+      "signature": "({ deviceId }: DeviceInfoWithDataProps) =>",
+      "calls": [
+        {
+          "name": "useTranslation",
+          "edgeType": "call"
+        },
+        {
+          "name": "useEndpoint",
+          "edgeType": "call"
+        },
+        {
+          "name": "useQuery",
+          "edgeType": "call"
+        },
+        {
+          "name": "sessionInfo",
+          "edgeType": "call"
+        },
+        {
+          "name": "getSessionInfo",
+          "edgeType": "call"
+        },
+        {
+          "name": "convertSessionFromAPI",
+          "edgeType": "call"
+        },
+        {
+          "name": "ContextualbarHeader",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "ContextualbarTitle",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "ContextualbarContent",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "Box",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "States",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "StatesTitle",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "StatesSubtitle",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "ContextualbarSkeletonBody",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "ContextualbarClose",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "StatesIcon",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "DeviceManagementInfo",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "DeviceInfoWithDataProps",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "type",
+      "name": "DeviceInfoWithDataProps",
+      "line": 27,
+      "endLine": 27,
+      "signature": "export type DeviceInfoWithDataProps ="
+    }
+  ],
+  "imports": [
+    {
+      "module": "@rocket.chat/core-typings",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/fuselage",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/ui-client",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/ui-contexts",
+      "resolved": "external"
+    },
+    {
+      "module": "@tanstack/react-query",
+      "resolved": "external"
+    },
+    {
+      "module": "react-i18next",
+      "resolved": "external"
+    },
+    {
+      "module": "./DeviceManagementInfo",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/client/views/admin/deviceManagement/DeviceManagementInfo/DeviceManagementInfo.tsx"
+    },
+    {
+      "module": "../../../../lib/queryKeys",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/client/lib/queryKeys.ts"
+    }
+  ]
+}

@@ -1,0 +1,85 @@
+{
+  "sourcePath": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/server/lib/dataExport/uploadZipFile.ts",
+  "symbols": [
+    {
+      "type": "variable_function",
+      "name": "uploadZipFile",
+      "exported": true,
+      "line": 10,
+      "endLine": 41,
+      "signature": "async (filePath: string, userId: IUser['_id'], exportType: 'json' | 'html'): Promise<any> =>",
+      "calls": [
+        {
+          "name": "stat",
+          "edgeType": "call"
+        },
+        {
+          "name": "findOneById",
+          "edgeType": "call"
+        },
+        {
+          "name": "split",
+          "edgeType": "call"
+        },
+        {
+          "name": "toISOString",
+          "edgeType": "call"
+        },
+        {
+          "name": "id",
+          "edgeType": "call"
+        },
+        {
+          "name": "encodeURIComponent",
+          "edgeType": "call"
+        },
+        {
+          "name": "createReadStream",
+          "edgeType": "call"
+        },
+        {
+          "name": "getStore",
+          "edgeType": "call"
+        },
+        {
+          "name": "insert",
+          "edgeType": "call"
+        },
+        {
+          "name": "Date",
+          "edgeType": "new"
+        },
+        {
+          "name": "IUser",
+          "edgeType": "type"
+        }
+      ]
+    }
+  ],
+  "imports": [
+    {
+      "module": "node:fs",
+      "resolved": "external"
+    },
+    {
+      "module": "node:fs/promises",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/core-typings",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/models",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/random",
+      "resolved": "external"
+    },
+    {
+      "module": "../../../app/file-upload/server",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/app/file-upload/server/index.ts"
+    }
+  ]
+}

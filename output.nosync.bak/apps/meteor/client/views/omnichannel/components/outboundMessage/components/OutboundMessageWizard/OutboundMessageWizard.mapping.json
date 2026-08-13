@@ -1,0 +1,340 @@
+{
+  "sourcePath": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/client/views/omnichannel/components/outboundMessage/components/OutboundMessageWizard/OutboundMessageWizard.tsx",
+  "symbols": [
+    {
+      "type": "variable_function",
+      "name": "OutboundMessageWizard",
+      "exported": false,
+      "line": 31,
+      "endLine": 205,
+      "signature": "({ defaultValues = {}, onSuccess, onError }: OutboundMessageWizardProps) =>",
+      "calls": [
+        {
+          "name": "useTranslation",
+          "edgeType": "call"
+        },
+        {
+          "name": "useQueryClient",
+          "edgeType": "call"
+        },
+        {
+          "name": "useToastBarDispatch",
+          "edgeType": "call"
+        },
+        {
+          "name": "useState",
+          "edgeType": "call"
+        },
+        {
+          "name": "useOutboundMessageUpsellModal",
+          "edgeType": "call"
+        },
+        {
+          "name": "useOmnichannelEnabled",
+          "edgeType": "call"
+        },
+        {
+          "name": "useHasLicenseModule",
+          "edgeType": "call"
+        },
+        {
+          "name": "usePermission",
+          "edgeType": "call"
+        },
+        {
+          "name": "useEndpointMutation",
+          "edgeType": "call"
+        },
+        {
+          "name": "useOutboundProvidersList",
+          "edgeType": "call"
+        },
+        {
+          "name": "useWizard",
+          "edgeType": "call"
+        },
+        {
+          "name": "useEffect",
+          "edgeType": "call"
+        },
+        {
+          "name": "removeQueries",
+          "edgeType": "call"
+        },
+        {
+          "name": "outboundProviders",
+          "edgeType": "call"
+        },
+        {
+          "name": "useLayoutEffect",
+          "edgeType": "call"
+        },
+        {
+          "name": "open",
+          "edgeType": "call"
+        },
+        {
+          "name": "useStableCallback",
+          "edgeType": "call"
+        },
+        {
+          "name": "setState",
+          "edgeType": "call"
+        },
+        {
+          "name": "isRecipientStepValid",
+          "edgeType": "call"
+        },
+        {
+          "name": "isMessageStepValid",
+          "edgeType": "call"
+        },
+        {
+          "name": "isRepliesStepValid",
+          "edgeType": "call"
+        },
+        {
+          "name": "formatOutboundMessagePayload",
+          "edgeType": "call"
+        },
+        {
+          "name": "mutateAsync",
+          "edgeType": "call"
+        },
+        {
+          "name": "dispatchToastMessage",
+          "edgeType": "call"
+        },
+        {
+          "name": "formatPhoneNumber",
+          "edgeType": "call"
+        },
+        {
+          "name": "onSuccess",
+          "edgeType": "call"
+        },
+        {
+          "name": "get",
+          "edgeType": "call"
+        },
+        {
+          "name": "error",
+          "edgeType": "call"
+        },
+        {
+          "name": "onError",
+          "edgeType": "call"
+        },
+        {
+          "name": "resetNextSteps",
+          "edgeType": "call"
+        },
+        {
+          "name": "ErrorBoundary",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "Wizard",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "Box",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "WizardContent",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "OutboundMessageWizardErrorState",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "OutboubdMessageWizardSkeleton",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "GenericError",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "WizardTabs",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "RecipientStep",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "MessageStep",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "RepliesStep",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "ReviewStep",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "refetchProviders",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "wizardApi",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "state",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "handleDirtyStep",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "handleSubmit",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "contact",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "templates",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "sender",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "recipient",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "template",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "templateParameters",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "handleSend",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "URLSearchParams",
+          "edgeType": "new"
+        },
+        {
+          "name": "OutboundMessageWizardProps",
+          "edgeType": "type"
+        },
+        {
+          "name": "SubmitPayload",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "type",
+      "name": "OutboundMessageWizardProps",
+      "line": 25,
+      "endLine": 29,
+      "signature": "type OutboundMessageWizardProps ="
+    }
+  ],
+  "imports": [
+    {
+      "module": "@rocket.chat/fuselage",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/fuselage-hooks",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/fuselage-toastbar",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/ui-client",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/ui-contexts",
+      "resolved": "external"
+    },
+    {
+      "module": "@tanstack/react-query",
+      "resolved": "external"
+    },
+    {
+      "module": "react",
+      "resolved": "external"
+    },
+    {
+      "module": "react-error-boundary",
+      "resolved": "external"
+    },
+    {
+      "module": "react-i18next",
+      "resolved": "external"
+    },
+    {
+      "module": "./components/OutboundMessageWizardErrorState",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/client/views/omnichannel/components/outboundMessage/components/OutboundMessageWizard/components/OutboundMessageWizardErrorState.tsx"
+    },
+    {
+      "module": "./components/OutboundMessageWizardSkeleton",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/client/views/omnichannel/components/outboundMessage/components/OutboundMessageWizard/components/OutboundMessageWizardSkeleton.tsx"
+    },
+    {
+      "module": "./forms",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/client/views/omnichannel/components/outboundMessage/components/OutboundMessageWizard/forms/index.ts"
+    },
+    {
+      "module": "./steps",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/client/views/omnichannel/components/outboundMessage/components/OutboundMessageWizard/steps/index.ts"
+    },
+    {
+      "module": "../../../../../../components/GenericError",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/client/components/GenericError/index.ts"
+    },
+    {
+      "module": "../../../../../../hooks/useEndpointMutation",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/client/hooks/useEndpointMutation.ts"
+    },
+    {
+      "module": "../../../../../../hooks/useHasLicenseModule",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/client/hooks/useHasLicenseModule.ts"
+    },
+    {
+      "module": "../../../../../../lib/formatPhoneNumber",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/client/lib/formatPhoneNumber.ts"
+    },
+    {
+      "module": "../../../../../../lib/queryKeys",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/client/lib/queryKeys.ts"
+    },
+    {
+      "module": "../../../../hooks/useOmnichannelEnabled",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/client/views/omnichannel/hooks/useOmnichannelEnabled.ts"
+    },
+    {
+      "module": "../../hooks/useOutboundProvidersList",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/client/views/omnichannel/components/outboundMessage/hooks/useOutboundProvidersList.ts"
+    },
+    {
+      "module": "../../modals",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/client/views/omnichannel/components/outboundMessage/modals/index.ts"
+    },
+    {
+      "module": "../../utils/outbound-message",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/client/views/omnichannel/components/outboundMessage/utils/outbound-message.ts"
+    }
+  ]
+}

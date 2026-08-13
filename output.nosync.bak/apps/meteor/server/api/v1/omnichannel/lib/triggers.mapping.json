@@ -1,0 +1,81 @@
+{
+  "sourcePath": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/server/api/v1/omnichannel/lib/triggers.ts",
+  "symbols": [
+    {
+      "type": "function",
+      "name": "findTriggers",
+      "exported": true,
+      "line": 5,
+      "endLine": 27,
+      "signature": "export async function findTriggers({ pagination: { offset, count, sort }, }: { pagination: { offset: number; count: number; sort: Record<string, number> }; }): Promise<PaginatedResult<{ triggers: Array<ILivechatTrigger> }>>",
+      "calls": [
+        {
+          "name": "findPaginated",
+          "edgeType": "call"
+        },
+        {
+          "name": "all",
+          "edgeType": "call"
+        },
+        {
+          "name": "toArray",
+          "edgeType": "call"
+        },
+        {
+          "name": "PaginatedResult",
+          "edgeType": "type"
+        },
+        {
+          "name": "ILivechatTrigger",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "function",
+      "name": "findTriggerById",
+      "exported": true,
+      "line": 13,
+      "endLine": 15,
+      "signature": "export async function findTriggerById({ triggerId }: { triggerId: string }): Promise<ILivechatTrigger | null>",
+      "calls": [
+        {
+          "name": "findOneById",
+          "edgeType": "call"
+        },
+        {
+          "name": "ILivechatTrigger",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "function",
+      "name": "deleteTrigger",
+      "exported": true,
+      "line": 17,
+      "endLine": 19,
+      "signature": "export async function deleteTrigger({ triggerId }: { triggerId: string }): Promise<void>",
+      "calls": [
+        {
+          "name": "removeById",
+          "edgeType": "call"
+        }
+      ]
+    }
+  ],
+  "imports": [
+    {
+      "module": "@rocket.chat/core-typings",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/models",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/rest-typings",
+      "resolved": "external"
+    }
+  ]
+}

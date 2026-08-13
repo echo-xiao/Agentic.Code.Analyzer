@@ -1,0 +1,236 @@
+{
+  "sourcePath": "/Users/echoooooo/Desktop/code/Rocket.Chat/packages/livechat/src/lib/hooks.ts",
+  "symbols": [
+    {
+      "type": "class",
+      "name": "Hooks",
+      "exported": false,
+      "line": 354,
+      "endLine": 378,
+      "signature": "class Hooks",
+      "calls": []
+    },
+    {
+      "type": "method",
+      "name": "init",
+      "exported": false,
+      "qualifiedName": "Hooks.init",
+      "line": 365,
+      "endLine": 372,
+      "signature": "init()",
+      "containerClass": "Hooks",
+      "calls": [
+        {
+          "name": "addEventListener",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "reset",
+      "exported": false,
+      "qualifiedName": "Hooks.reset",
+      "line": 369,
+      "endLine": 372,
+      "signature": "reset()",
+      "containerClass": "Hooks",
+      "calls": [
+        {
+          "name": "removeEventListener",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "constructor",
+      "exported": false,
+      "qualifiedName": "Hooks.constructor",
+      "line": 357,
+      "endLine": 363,
+      "signature": "constructor()",
+      "containerClass": "Hooks",
+      "calls": []
+    },
+    {
+      "type": "function",
+      "name": "onNewMessageHandler",
+      "exported": false,
+      "line": 330,
+      "endLine": 352,
+      "signature": "function onNewMessageHandler(event: MessageEvent<LivechatMessageEventData<HooksWidgetAPI>>)",
+      "calls": [
+        {
+          "name": "hasOwnProperty",
+          "edgeType": "call"
+        },
+        {
+          "name": "MessageEvent",
+          "edgeType": "type"
+        },
+        {
+          "name": "LivechatMessageEventData",
+          "edgeType": "type"
+        },
+        {
+          "name": "HooksWidgetAPI",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "variable_function",
+      "name": "evaluateChangesAndLoadConfigByFields",
+      "exported": true,
+      "line": 14,
+      "endLine": 43,
+      "signature": "async (fn: () => Promise<void>) =>",
+      "calls": [
+        {
+          "name": "parse",
+          "edgeType": "call"
+        },
+        {
+          "name": "stringify",
+          "edgeType": "call"
+        },
+        {
+          "name": "fn",
+          "edgeType": "call"
+        },
+        {
+          "name": "loadConfig",
+          "edgeType": "call"
+        },
+        {
+          "name": "loadMessages",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "variable_function",
+      "name": "createOrUpdateGuest",
+      "exported": true,
+      "line": 18,
+      "endLine": 48,
+      "signature": "async (guest: StoreState['guest']) =>",
+      "calls": [
+        {
+          "name": "setState",
+          "edgeType": "call"
+        },
+        {
+          "name": "unsubscribeAll",
+          "edgeType": "call"
+        },
+        {
+          "name": "grantVisitor",
+          "edgeType": "call"
+        },
+        {
+          "name": "chat-visitor-registered",
+          "edgeType": "event_emit"
+        },
+        {
+          "name": "StoreState",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "variable_function",
+      "name": "updateIframeGuestData",
+      "exported": false,
+      "line": 22,
+      "endLine": 40,
+      "signature": "(data: Partial<StoreState['guest']>) =>",
+      "calls": [
+        {
+          "name": "setState",
+          "edgeType": "call"
+        },
+        {
+          "name": "createOrUpdateGuest",
+          "edgeType": "call"
+        },
+        {
+          "name": "StoreState",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "variable_function",
+      "name": "updateIframeData",
+      "exported": false,
+      "line": 28,
+      "endLine": 38,
+      "signature": "(data: Partial<StoreState['iframe']>) =>",
+      "calls": [
+        {
+          "name": "setState",
+          "edgeType": "call"
+        },
+        {
+          "name": "StoreState",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "type",
+      "name": "HooksWidgetAPI",
+      "line": 26,
+      "endLine": 26,
+      "signature": "export type HooksWidgetAPI = typeof api;"
+    }
+  ],
+  "imports": [
+    {
+      "module": "i18next",
+      "resolved": "external"
+    },
+    {
+      "module": "../api",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/packages/livechat/src/api.ts"
+    },
+    {
+      "module": "../store",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/packages/livechat/src/store/index.tsx"
+    },
+    {
+      "module": "../store",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/packages/livechat/src/store/index.tsx"
+    },
+    {
+      "module": "../widget",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/packages/livechat/src/widget.ts"
+    },
+    {
+      "module": "./customFields",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/packages/livechat/src/lib/customFields.ts"
+    },
+    {
+      "module": "./main",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/packages/livechat/src/lib/main.ts"
+    },
+    {
+      "module": "./parentCall",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/packages/livechat/src/lib/parentCall.ts"
+    },
+    {
+      "module": "./random",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/packages/livechat/src/lib/random.ts"
+    },
+    {
+      "module": "./room",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/packages/livechat/src/lib/room.ts"
+    },
+    {
+      "module": "./triggers",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/packages/livechat/src/lib/triggers.ts"
+    }
+  ]
+}

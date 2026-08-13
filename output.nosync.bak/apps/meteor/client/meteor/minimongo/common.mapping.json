@@ -1,0 +1,186 @@
+{
+  "sourcePath": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/client/meteor/minimongo/common.ts",
+  "symbols": [
+    {
+      "type": "function",
+      "name": "assertHasValidFieldNames",
+      "exported": true,
+      "line": 122,
+      "endLine": 129,
+      "signature": "export function assertHasValidFieldNames(doc: unknown)",
+      "calls": [
+        {
+          "name": "stringify",
+          "edgeType": "call"
+        },
+        {
+          "name": "assertIsValidFieldName",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "function",
+      "name": "assertIsValidFieldName",
+      "exported": false,
+      "line": 126,
+      "endLine": 131,
+      "signature": "function assertIsValidFieldName(key: string)",
+      "calls": [
+        {
+          "name": "match",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "variable",
+      "name": "hasOwn",
+      "exported": true,
+      "line": 5,
+      "endLine": 5,
+      "signature": "hasOwn = Object.prototype.hasOwnProperty",
+      "calls": []
+    },
+    {
+      "type": "variable_function",
+      "name": "isBinary",
+      "exported": false,
+      "line": 7,
+      "endLine": 7,
+      "signature": "(x: unknown): x is Uint8Array =>",
+      "calls": [
+        {
+          "name": "Uint8Array",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "variable_function",
+      "name": "isArguments",
+      "exported": false,
+      "line": 9,
+      "endLine": 9,
+      "signature": "(x: unknown): x is IArguments =>",
+      "calls": [
+        {
+          "name": "call",
+          "edgeType": "call"
+        },
+        {
+          "name": "IArguments",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "variable_function",
+      "name": "clone",
+      "exported": true,
+      "line": 11,
+      "endLine": 49,
+      "signature": "(v: unknown) =>",
+      "calls": [
+        {
+          "name": "getTime",
+          "edgeType": "call"
+        },
+        {
+          "name": "isBinary",
+          "edgeType": "call"
+        },
+        {
+          "name": "isArray",
+          "edgeType": "call"
+        },
+        {
+          "name": "map",
+          "edgeType": "call"
+        },
+        {
+          "name": "isArguments",
+          "edgeType": "call"
+        },
+        {
+          "name": "from",
+          "edgeType": "call"
+        },
+        {
+          "name": "clone",
+          "edgeType": "call"
+        },
+        {
+          "name": "fromEntries",
+          "edgeType": "call"
+        },
+        {
+          "name": "entriesOf",
+          "edgeType": "call"
+        },
+        {
+          "name": "Date",
+          "edgeType": "new"
+        },
+        {
+          "name": "Uint8Array",
+          "edgeType": "new"
+        },
+        {
+          "name": "ArrayBuffer",
+          "edgeType": "new"
+        }
+      ]
+    },
+    {
+      "type": "variable_function",
+      "name": "equals",
+      "exported": true,
+      "line": 15,
+      "endLine": 76,
+      "signature": "<T>(a: T, b: T): boolean =>",
+      "calls": [
+        {
+          "name": "valueOf",
+          "edgeType": "call"
+        },
+        {
+          "name": "isArray",
+          "edgeType": "call"
+        },
+        {
+          "name": "equals",
+          "edgeType": "call"
+        },
+        {
+          "name": "keys",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "variable_function",
+      "name": "isPlainObject",
+      "exported": true,
+      "line": 19,
+      "endLine": 19,
+      "signature": "(x: any): x is Record<string, any> =>",
+      "calls": [
+        {
+          "name": "getBSONType",
+          "edgeType": "call"
+        }
+      ]
+    }
+  ],
+  "imports": [
+    {
+      "module": "@rocket.chat/mongo-adapter",
+      "resolved": "external"
+    },
+    {
+      "module": "../../lib/objectUtils",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/client/lib/objectUtils.ts"
+    }
+  ]
+}

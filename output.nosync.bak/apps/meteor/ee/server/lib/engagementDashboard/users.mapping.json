@@ -1,0 +1,267 @@
+{
+  "sourcePath": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/ee/server/lib/engagementDashboard/users.ts",
+  "symbols": [
+    {
+      "type": "variable_function",
+      "name": "handleUserCreated",
+      "exported": true,
+      "line": 7,
+      "endLine": 17,
+      "signature": "async (user: IUser): Promise<IUser> =>",
+      "calls": [
+        {
+          "name": "includes",
+          "edgeType": "call"
+        },
+        {
+          "name": "saveUserData",
+          "edgeType": "call"
+        },
+        {
+          "name": "convertDateToInt",
+          "edgeType": "call"
+        },
+        {
+          "name": "IUser",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "variable_function",
+      "name": "fillFirstDaysOfUsersIfNeeded",
+      "exported": true,
+      "line": 11,
+      "endLine": 29,
+      "signature": "async (date: Date): Promise<void> =>",
+      "calls": [
+        {
+          "name": "toArray",
+          "edgeType": "call"
+        },
+        {
+          "name": "findByTypeBeforeDate",
+          "edgeType": "call"
+        },
+        {
+          "name": "convertDateToInt",
+          "edgeType": "call"
+        },
+        {
+          "name": "toDate",
+          "edgeType": "call"
+        },
+        {
+          "name": "subtract",
+          "edgeType": "call"
+        },
+        {
+          "name": "moment",
+          "edgeType": "call"
+        },
+        {
+          "name": "getTotalOfRegisteredUsersByDate",
+          "edgeType": "call"
+        },
+        {
+          "name": "forEach",
+          "edgeType": "call"
+        },
+        {
+          "name": "insertOne",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "variable_function",
+      "name": "findWeeklyUsersRegisteredData",
+      "exported": true,
+      "line": 15,
+      "endLine": 62,
+      "signature": "async ({ start, end, }: { start: Date; end: Date; }): Promise<{ days: { day: Date; users: number }[]; period: { count: number; variation: number; }; yesterday: { count: number; variation: number; }; }> =>",
+      "calls": [
+        {
+          "name": "diffBetweenDaysInclusive",
+          "edgeType": "call"
+        },
+        {
+          "name": "toDate",
+          "edgeType": "call"
+        },
+        {
+          "name": "subtract",
+          "edgeType": "call"
+        },
+        {
+          "name": "clone",
+          "edgeType": "call"
+        },
+        {
+          "name": "moment",
+          "edgeType": "call"
+        },
+        {
+          "name": "convertDateToInt",
+          "edgeType": "call"
+        },
+        {
+          "name": "toArray",
+          "edgeType": "call"
+        },
+        {
+          "name": "getTotalOfRegisteredUsersByDate",
+          "edgeType": "call"
+        },
+        {
+          "name": "find",
+          "edgeType": "call"
+        },
+        {
+          "name": "getTotalOfWeekItems",
+          "edgeType": "call"
+        },
+        {
+          "name": "map",
+          "edgeType": "call"
+        },
+        {
+          "name": "convertIntToDate",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "variable_function",
+      "name": "createDestructuredDate",
+      "exported": false,
+      "line": 35,
+      "endLine": 49,
+      "signature": "( input: moment.MomentInput, ): { year: number; month: number; day: number; } =>",
+      "calls": [
+        {
+          "name": "moment",
+          "edgeType": "call"
+        },
+        {
+          "name": "year",
+          "edgeType": "call"
+        },
+        {
+          "name": "month",
+          "edgeType": "call"
+        },
+        {
+          "name": "date",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "variable_function",
+      "name": "findActiveUsersMonthlyData",
+      "exported": true,
+      "line": 45,
+      "endLine": 64,
+      "signature": "async ({ start, end, }: { start: Date; end: Date; }): Promise<{ month: { day: number; month: number; year: number; usersList: IUser['_id'][]; users: number; }[]; }> =>",
+      "calls": [
+        {
+          "name": "getActiveUsersOfPeriodByDayBetweenDates",
+          "edgeType": "call"
+        },
+        {
+          "name": "createDestructuredDate",
+          "edgeType": "call"
+        },
+        {
+          "name": "IUser",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "variable_function",
+      "name": "findBusiestsChatsInADayByHours",
+      "exported": true,
+      "line": 66,
+      "endLine": 81,
+      "signature": "async ({ start, }: { start: Date; }): Promise<{ hours: { hour: number; users: number; }[]; }> =>",
+      "calls": [
+        {
+          "name": "getBusiestTimeWithinHoursPeriod",
+          "edgeType": "call"
+        },
+        {
+          "name": "toDate",
+          "edgeType": "call"
+        },
+        {
+          "name": "subtract",
+          "edgeType": "call"
+        },
+        {
+          "name": "moment",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "variable_function",
+      "name": "findBusiestsChatsWithinAWeek",
+      "exported": true,
+      "line": 83,
+      "endLine": 99,
+      "signature": "async ({ start, }: { start: Date; }): Promise<{ month: { day: number; month: number; year: number; users: number; }[]; }> =>",
+      "calls": [
+        {
+          "name": "getTotalOfSessionsByDayBetweenDates",
+          "edgeType": "call"
+        },
+        {
+          "name": "createDestructuredDate",
+          "edgeType": "call"
+        },
+        {
+          "name": "subtract",
+          "edgeType": "call"
+        },
+        {
+          "name": "moment",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "variable_function",
+      "name": "findUserSessionsByHourWithinAWeek",
+      "exported": true,
+      "line": 101,
+      "endLine": 120,
+      "signature": "async ({ start, end, }: { start: Date; end: Date; }): Promise<{ week: { hour: number; day: number; month: number; year: number; users: number; }[]; }> =>",
+      "calls": [
+        {
+          "name": "getTotalOfSessionByHourAndDayBetweenDates",
+          "edgeType": "call"
+        }
+      ]
+    }
+  ],
+  "imports": [
+    {
+      "module": "@rocket.chat/core-typings",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/models",
+      "resolved": "external"
+    },
+    {
+      "module": "moment",
+      "resolved": "external"
+    },
+    {
+      "module": "./date",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/ee/server/lib/engagementDashboard/date.ts"
+    }
+  ]
+}

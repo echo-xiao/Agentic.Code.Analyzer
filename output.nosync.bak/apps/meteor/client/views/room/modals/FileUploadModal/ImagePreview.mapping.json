@@ -1,0 +1,122 @@
+{
+  "sourcePath": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/client/views/room/modals/FileUploadModal/ImagePreview.tsx",
+  "symbols": [
+    {
+      "type": "inner_function",
+      "name": "handleLoad",
+      "exported": false,
+      "qualifiedName": "ImagePreview.handleLoad",
+      "line": 17,
+      "endLine": 17,
+      "signature": "(): void =>",
+      "calls": [
+        {
+          "name": "setLoading",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "inner_function",
+      "name": "handleError",
+      "exported": false,
+      "qualifiedName": "ImagePreview.handleError",
+      "line": 18,
+      "endLine": 21,
+      "signature": "(): void =>",
+      "calls": [
+        {
+          "name": "setLoading",
+          "edgeType": "call"
+        },
+        {
+          "name": "setError",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "variable_function",
+      "name": "ImagePreview",
+      "exported": false,
+      "line": 13,
+      "endLine": 42,
+      "signature": "({ url, file, altText = '' }: ImagePreviewProps) =>",
+      "calls": [
+        {
+          "name": "useState",
+          "edgeType": "call"
+        },
+        {
+          "name": "setLoading",
+          "edgeType": "call"
+        },
+        {
+          "name": "setError",
+          "edgeType": "call"
+        },
+        {
+          "name": "GenericPreview",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "PreviewSkeleton",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "Box",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "file",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "url",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "altText",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "handleLoad",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "handleError",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "ImagePreviewProps",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "type",
+      "name": "ImagePreviewProps",
+      "line": 7,
+      "endLine": 11,
+      "signature": "export type ImagePreviewProps ="
+    }
+  ],
+  "imports": [
+    {
+      "module": "@rocket.chat/fuselage",
+      "resolved": "external"
+    },
+    {
+      "module": "react",
+      "resolved": "external"
+    },
+    {
+      "module": "./GenericPreview",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/client/views/room/modals/FileUploadModal/GenericPreview.tsx"
+    },
+    {
+      "module": "./PreviewSkeleton",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/client/views/room/modals/FileUploadModal/PreviewSkeleton.tsx"
+    }
+  ]
+}

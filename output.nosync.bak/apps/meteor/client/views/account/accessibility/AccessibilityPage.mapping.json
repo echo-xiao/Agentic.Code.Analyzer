@@ -1,0 +1,373 @@
+{
+  "sourcePath": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/client/views/account/accessibility/AccessibilityPage.tsx",
+  "symbols": [
+    {
+      "type": "inner_function",
+      "name": "handleSaveData",
+      "exported": false,
+      "qualifiedName": "AccessibilityPage.handleSaveData",
+      "line": 75,
+      "endLine": 78,
+      "signature": "(formData: AccessibilityPreferencesData) =>",
+      "calls": [
+        {
+          "name": "getDirtyFields",
+          "edgeType": "call"
+        },
+        {
+          "name": "mutateAsync",
+          "edgeType": "call"
+        },
+        {
+          "name": "AccessibilityPreferencesData",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "inner_function",
+      "name": "onSuccess",
+      "exported": false,
+      "qualifiedName": "AccessibilityPage.onSuccess",
+      "line": 67,
+      "endLine": 67,
+      "signature": "() =>",
+      "calls": [
+        {
+          "name": "dispatchToastMessage",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "inner_function",
+      "name": "onError",
+      "exported": false,
+      "qualifiedName": "AccessibilityPage.onError",
+      "line": 68,
+      "endLine": 68,
+      "signature": "(error) =>",
+      "calls": [
+        {
+          "name": "dispatchToastMessage",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "inner_function",
+      "name": "onSettled",
+      "exported": false,
+      "qualifiedName": "AccessibilityPage.onSettled",
+      "line": 69,
+      "endLine": 72,
+      "signature": "(_data, _error, { data: { fontSize } }) =>",
+      "calls": [
+        {
+          "name": "reset",
+          "edgeType": "call"
+        },
+        {
+          "name": "createFontStyleElement",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "variable_function",
+      "name": "AccessibilityPage",
+      "exported": false,
+      "line": 30,
+      "endLine": 209,
+      "signature": "() =>",
+      "calls": [
+        {
+          "name": "useTranslation",
+          "edgeType": "call"
+        },
+        {
+          "name": "useToastMessageDispatch",
+          "edgeType": "call"
+        },
+        {
+          "name": "useAccessiblityPreferencesValues",
+          "edgeType": "call"
+        },
+        {
+          "name": "useCreateFontStyleElement",
+          "edgeType": "call"
+        },
+        {
+          "name": "useSetting",
+          "edgeType": "call"
+        },
+        {
+          "name": "useLocationHash",
+          "edgeType": "call"
+        },
+        {
+          "name": "useMemo",
+          "edgeType": "call"
+        },
+        {
+          "name": "useId",
+          "edgeType": "call"
+        },
+        {
+          "name": "useForm",
+          "edgeType": "call"
+        },
+        {
+          "name": "watch",
+          "edgeType": "call"
+        },
+        {
+          "name": "useEndpoint",
+          "edgeType": "call"
+        },
+        {
+          "name": "useMutation",
+          "edgeType": "call"
+        },
+        {
+          "name": "dispatchToastMessage",
+          "edgeType": "call"
+        },
+        {
+          "name": "reset",
+          "edgeType": "call"
+        },
+        {
+          "name": "createFontStyleElement",
+          "edgeType": "call"
+        },
+        {
+          "name": "getDirtyFields",
+          "edgeType": "call"
+        },
+        {
+          "name": "mutateAsync",
+          "edgeType": "call"
+        },
+        {
+          "name": "handleSubmit",
+          "edgeType": "call"
+        },
+        {
+          "name": "map",
+          "edgeType": "call"
+        },
+        {
+          "name": "onChange",
+          "edgeType": "call"
+        },
+        {
+          "name": "fontSizes",
+          "edgeType": "call"
+        },
+        {
+          "name": "Page",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "PageScrollableContentWithShadow",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "Box",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "ExternalLink",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "Accordion",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "AccordionItem",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "Field",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "FieldRow",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "FieldLabel",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "FieldHint",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "FieldGroup",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "VisuallyHidden",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "FieldDescription",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "PageFooter",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "ButtonGroup",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "Button",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "PageHeader",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "Controller",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "RadioButton",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "Select",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "ToggleSwitch",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "pageFormId",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "linkListId",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "id",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "control",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "shouldExpand",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "value",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "timeFormatOptions",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "isDirty",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "isSubmitting",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "SelectOption",
+          "edgeType": "type"
+        },
+        {
+          "name": "AccessibilityPreferencesData",
+          "edgeType": "type"
+        },
+        {
+          "name": "HTMLInputElement",
+          "edgeType": "type"
+        }
+      ]
+    }
+  ],
+  "imports": [
+    {
+      "module": "@react-aria/visually-hidden",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/css-in-js",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/fuselage",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/fuselage",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/fuselage-forms",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/ui-client",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/ui-contexts",
+      "resolved": "external"
+    },
+    {
+      "module": "@tanstack/react-query",
+      "resolved": "external"
+    },
+    {
+      "module": "react",
+      "resolved": "external"
+    },
+    {
+      "module": "react-hook-form",
+      "resolved": "external"
+    },
+    {
+      "module": "./fontSizes",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/client/views/account/accessibility/fontSizes.ts"
+    },
+    {
+      "module": "./hooks/useAcessibilityPreferencesValues",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/client/views/account/accessibility/hooks/useAcessibilityPreferencesValues.ts"
+    },
+    {
+      "module": "./hooks/useAcessibilityPreferencesValues",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/client/views/account/accessibility/hooks/useAcessibilityPreferencesValues.ts"
+    },
+    {
+      "module": "./hooks/useCreateFontStyleElement",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/client/views/account/accessibility/hooks/useCreateFontStyleElement.ts"
+    },
+    {
+      "module": "./themeItems",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/client/views/account/accessibility/themeItems.ts"
+    },
+    {
+      "module": "../../../lib/getDirtyFields",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/client/lib/getDirtyFields.ts"
+    },
+    {
+      "module": "../../../lib/links",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/client/lib/links.ts"
+    }
+  ]
+}

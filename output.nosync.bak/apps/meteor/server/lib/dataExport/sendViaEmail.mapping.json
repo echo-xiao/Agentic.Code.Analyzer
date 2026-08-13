@@ -1,0 +1,145 @@
+{
+  "sourcePath": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/server/lib/dataExport/sendViaEmail.ts",
+  "symbols": [
+    {
+      "type": "function",
+      "name": "sendViaEmail",
+      "exported": true,
+      "line": 11,
+      "endLine": 86,
+      "signature": "export async function sendViaEmail( data: { rid: string; toUsers: string[]; toEmails: string[]; subject: string; messages: string[]; language: string; }, user: IUser, ): Promise<{ missing: string[]; }>",
+      "calls": [
+        {
+          "name": "filter",
+          "edgeType": "call"
+        },
+        {
+          "name": "map",
+          "edgeType": "call"
+        },
+        {
+          "name": "trim",
+          "edgeType": "call"
+        },
+        {
+          "name": "forEach",
+          "edgeType": "call"
+        },
+        {
+          "name": "toArray",
+          "edgeType": "call"
+        },
+        {
+          "name": "findUsersByUsernames",
+          "edgeType": "call"
+        },
+        {
+          "name": "checkAddressFormat",
+          "edgeType": "call"
+        },
+        {
+          "name": "indexOf",
+          "edgeType": "call"
+        },
+        {
+          "name": "splice",
+          "edgeType": "call"
+        },
+        {
+          "name": "push",
+          "edgeType": "call"
+        },
+        {
+          "name": "moment",
+          "edgeType": "call"
+        },
+        {
+          "name": "getMomentLocale",
+          "edgeType": "call"
+        },
+        {
+          "name": "call",
+          "edgeType": "call"
+        },
+        {
+          "name": "Function",
+          "edgeType": "call"
+        },
+        {
+          "name": "locale",
+          "edgeType": "call"
+        },
+        {
+          "name": "join",
+          "edgeType": "call"
+        },
+        {
+          "name": "findByRoomIdAndMessageIds",
+          "edgeType": "call"
+        },
+        {
+          "name": "format",
+          "edgeType": "call"
+        },
+        {
+          "name": "escapeHTML",
+          "edgeType": "call"
+        },
+        {
+          "name": "parse",
+          "edgeType": "call"
+        },
+        {
+          "name": "send",
+          "edgeType": "call"
+        },
+        {
+          "name": "get",
+          "edgeType": "call"
+        },
+        {
+          "name": "IUser",
+          "edgeType": "type"
+        },
+        {
+          "name": "IMessage",
+          "edgeType": "type"
+        }
+      ]
+    }
+  ],
+  "imports": [
+    {
+      "module": "@rocket.chat/core-typings",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/models",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/string-helpers",
+      "resolved": "external"
+    },
+    {
+      "module": "moment",
+      "resolved": "external"
+    },
+    {
+      "module": "../../../app/mailer/server/api",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/app/mailer/server/api.ts"
+    },
+    {
+      "module": "../../../app/settings/server",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/app/settings/server/index.ts"
+    },
+    {
+      "module": "../../../app/ui-utils/server",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/app/ui-utils/server/index.ts"
+    },
+    {
+      "module": "../getMomentLocale",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/server/lib/getMomentLocale.ts"
+    }
+  ]
+}

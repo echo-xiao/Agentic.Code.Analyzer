@@ -1,0 +1,85 @@
+{
+  "sourcePath": "/Users/echoooooo/Desktop/code/Rocket.Chat/packages/apps/src/client/AppServerCommunicator.ts",
+  "symbols": [
+    {
+      "type": "class",
+      "name": "AppServerCommunicator",
+      "exported": true,
+      "line": 3,
+      "endLine": 16,
+      "signature": "export abstract class AppServerCommunicator",
+      "calls": []
+    },
+    {
+      "type": "method",
+      "name": "getEnabledApps",
+      "exported": true,
+      "qualifiedName": "AppServerCommunicator.getEnabledApps",
+      "line": 4,
+      "endLine": 4,
+      "signature": "public abstract getEnabledApps(): Promise<Array<IAppInfo>>;",
+      "containerClass": "AppServerCommunicator",
+      "calls": [
+        {
+          "name": "IAppInfo",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "getDisabledApps",
+      "exported": true,
+      "qualifiedName": "AppServerCommunicator.getDisabledApps",
+      "line": 6,
+      "endLine": 6,
+      "signature": "public abstract getDisabledApps(): Promise<Array<IAppInfo>>;",
+      "containerClass": "AppServerCommunicator",
+      "calls": [
+        {
+          "name": "IAppInfo",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "getLanguageAdditions",
+      "exported": true,
+      "qualifiedName": "AppServerCommunicator.getLanguageAdditions",
+      "line": 9,
+      "endLine": 9,
+      "signature": "public abstract getLanguageAdditions(): Promise<Map<string, Map<string, object>>>;",
+      "containerClass": "AppServerCommunicator",
+      "calls": []
+    },
+    {
+      "type": "method",
+      "name": "getSlashCommands",
+      "exported": true,
+      "qualifiedName": "AppServerCommunicator.getSlashCommands",
+      "line": 12,
+      "endLine": 12,
+      "signature": "public abstract getSlashCommands(): Promise<Map<string, Array<string>>>;",
+      "containerClass": "AppServerCommunicator",
+      "calls": []
+    },
+    {
+      "type": "method",
+      "name": "getContextualBarButtons",
+      "exported": true,
+      "qualifiedName": "AppServerCommunicator.getContextualBarButtons",
+      "line": 15,
+      "endLine": 15,
+      "signature": "public abstract getContextualBarButtons(): Promise<Map<string, Array<object>>>;",
+      "containerClass": "AppServerCommunicator",
+      "calls": []
+    }
+  ],
+  "imports": [
+    {
+      "module": "@rocket.chat/apps-engine/definition/metadata",
+      "resolved": "external"
+    }
+  ]
+}

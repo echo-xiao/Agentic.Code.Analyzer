@@ -1,0 +1,106 @@
+{
+  "sourcePath": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/client/views/composer/EmojiPicker/EmojiElement.tsx",
+  "symbols": [
+    {
+      "type": "module",
+      "name": "EmojiElement",
+      "exported": false,
+      "line": 1,
+      "endLine": 49,
+      "signature": "EmojiElement",
+      "calls": [
+        {
+          "name": "memo",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "variable_function",
+      "name": "EmojiElement",
+      "exported": false,
+      "line": 15,
+      "endLine": 46,
+      "signature": "({ emoji, image, onClick, small = false, ...props }: EmojiElementProps) =>",
+      "calls": [
+        {
+          "name": "usePreviewEmoji",
+          "edgeType": "call"
+        },
+        {
+          "name": "sanitize",
+          "edgeType": "call"
+        },
+        {
+          "name": "handlePreview",
+          "edgeType": "call"
+        },
+        {
+          "name": "IconButton",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "small",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "handleRemovePreview",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "onClick",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "emoji",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "emojiElement",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "EmojiElementProps",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "type",
+      "name": "EmojiElementProps",
+      "line": 10,
+      "endLine": 13,
+      "signature": "export type EmojiElementProps = EmojiItem &"
+    }
+  ],
+  "imports": [
+    {
+      "module": "@rocket.chat/css-in-js",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/fuselage",
+      "resolved": "external"
+    },
+    {
+      "module": "dompurify",
+      "resolved": "external"
+    },
+    {
+      "module": "react",
+      "resolved": "external"
+    },
+    {
+      "module": "react",
+      "resolved": "external"
+    },
+    {
+      "module": "../../../../app/emoji/client",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/app/emoji/client/index.ts"
+    },
+    {
+      "module": "../../../contexts/EmojiPickerContext",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/client/contexts/EmojiPickerContext.ts"
+    }
+  ]
+}

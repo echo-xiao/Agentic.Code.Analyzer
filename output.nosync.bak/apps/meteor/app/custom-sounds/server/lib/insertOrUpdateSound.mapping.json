@@ -1,0 +1,81 @@
+{
+  "sourcePath": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/app/custom-sounds/server/lib/insertOrUpdateSound.ts",
+  "symbols": [
+    {
+      "type": "variable_function",
+      "name": "insertOrUpdateSound",
+      "exported": true,
+      "line": 8,
+      "endLine": 61,
+      "signature": "async (soundData: ICustomSoundData): Promise<string> =>",
+      "calls": [
+        {
+          "name": "replace",
+          "edgeType": "call"
+        },
+        {
+          "name": "trim",
+          "edgeType": "call"
+        },
+        {
+          "name": "test",
+          "edgeType": "call"
+        },
+        {
+          "name": "toArray",
+          "edgeType": "call"
+        },
+        {
+          "name": "findByName",
+          "edgeType": "call"
+        },
+        {
+          "name": "create",
+          "edgeType": "call"
+        },
+        {
+          "name": "deleteFile",
+          "edgeType": "call"
+        },
+        {
+          "name": "updateById",
+          "edgeType": "call"
+        },
+        {
+          "name": "findOneById",
+          "edgeType": "call"
+        },
+        {
+          "name": "notify.updateCustomSound",
+          "edgeType": "event_emit"
+        },
+        {
+          "name": "ICustomSoundData",
+          "edgeType": "type"
+        }
+      ]
+    }
+  ],
+  "imports": [
+    {
+      "module": "@rocket.chat/core-services",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/models",
+      "resolved": "external"
+    },
+    {
+      "module": "meteor/meteor",
+      "resolved": "external"
+    },
+    {
+      "module": "../methods/insertOrUpdateSound",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/app/custom-sounds/server/methods/insertOrUpdateSound.ts"
+    },
+    {
+      "module": "../startup/custom-sounds",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/app/custom-sounds/server/startup/custom-sounds.ts"
+    }
+  ]
+}

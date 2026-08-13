@@ -1,0 +1,65 @@
+{
+  "sourcePath": "/Users/echoooooo/Desktop/code/Rocket.Chat/packages/ui-contexts/src/hooks/useGoToRoom.ts",
+  "symbols": [
+    {
+      "type": "variable_function",
+      "name": "useGoToRoom",
+      "exported": true,
+      "line": 7,
+      "endLine": 22,
+      "signature": "(): ((roomId: IRoom['_id']) => Promise<void>) =>",
+      "calls": [
+        {
+          "name": "useRouter",
+          "edgeType": "call"
+        },
+        {
+          "name": "useEndpoint",
+          "edgeType": "call"
+        },
+        {
+          "name": "useStableCallback",
+          "edgeType": "call"
+        },
+        {
+          "name": "getRoomById",
+          "edgeType": "call"
+        },
+        {
+          "name": "getRoomRoute",
+          "edgeType": "call"
+        },
+        {
+          "name": "includes",
+          "edgeType": "call"
+        },
+        {
+          "name": "navigate",
+          "edgeType": "call"
+        },
+        {
+          "name": "IRoom",
+          "edgeType": "type"
+        }
+      ]
+    }
+  ],
+  "imports": [
+    {
+      "module": "@rocket.chat/core-typings",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/fuselage-hooks",
+      "resolved": "external"
+    },
+    {
+      "module": "./useEndpoint",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/packages/ui-contexts/src/hooks/useEndpoint.ts"
+    },
+    {
+      "module": "./useRouter",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/packages/ui-contexts/src/hooks/useRouter.ts"
+    }
+  ]
+}

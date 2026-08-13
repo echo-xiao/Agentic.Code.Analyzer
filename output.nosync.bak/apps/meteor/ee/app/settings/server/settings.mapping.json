@@ -1,0 +1,137 @@
+{
+  "sourcePath": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/ee/app/settings/server/settings.ts",
+  "symbols": [
+    {
+      "type": "module",
+      "name": "settings",
+      "exported": false,
+      "line": 1,
+      "endLine": 66,
+      "signature": "settings",
+      "calls": [
+        {
+          "name": "use",
+          "edgeType": "call"
+        },
+        {
+          "name": "next",
+          "edgeType": "call"
+        },
+        {
+          "name": "changeSettingValue",
+          "edgeType": "call"
+        },
+        {
+          "name": "fetch-settings",
+          "edgeType": "event_listen"
+        },
+        {
+          "name": "ISetting",
+          "edgeType": "type"
+        },
+        {
+          "name": "startup",
+          "edgeType": "call"
+        },
+        {
+          "name": "updateSettings",
+          "edgeType": "call"
+        },
+        {
+          "name": "onValidateLicense",
+          "edgeType": "call"
+        },
+        {
+          "name": "onInvalidateLicense",
+          "edgeType": "call"
+        },
+        {
+          "name": "onRemoveLicense",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "function",
+      "name": "changeSettingValue",
+      "exported": true,
+      "line": 10,
+      "endLine": 30,
+      "signature": "export function changeSettingValue(record: ISetting): SettingValue",
+      "calls": [
+        {
+          "name": "hasValidLicense",
+          "edgeType": "call"
+        },
+        {
+          "name": "hasModule",
+          "edgeType": "call"
+        },
+        {
+          "name": "ISetting",
+          "edgeType": "type"
+        },
+        {
+          "name": "SettingValue",
+          "edgeType": "type"
+        },
+        {
+          "name": "LicenseModule",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "function",
+      "name": "updateSettings",
+      "exported": false,
+      "line": 35,
+      "endLine": 39,
+      "signature": "async function updateSettings(): Promise<void>",
+      "calls": [
+        {
+          "name": "findEnterpriseSettings",
+          "edgeType": "call"
+        },
+        {
+          "name": "forEach",
+          "edgeType": "call"
+        },
+        {
+          "name": "set",
+          "edgeType": "call"
+        },
+        {
+          "name": "ISetting",
+          "edgeType": "type"
+        }
+      ]
+    }
+  ],
+  "imports": [
+    {
+      "module": "@rocket.chat/core-typings",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/license",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/models",
+      "resolved": "external"
+    },
+    {
+      "module": "meteor/meteor",
+      "resolved": "external"
+    },
+    {
+      "module": "../../../../app/settings/server",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/app/settings/server/index.ts"
+    },
+    {
+      "module": "../../../../app/settings/server/Middleware",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/app/settings/server/Middleware.ts"
+    }
+  ]
+}

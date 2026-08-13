@@ -1,0 +1,469 @@
+{
+  "sourcePath": "/Users/echoooooo/Desktop/code/Rocket.Chat/packages/apps/src/server/accessors/RoomBuilder.ts",
+  "symbols": [
+    {
+      "type": "class",
+      "name": "RoomBuilder",
+      "exported": true,
+      "line": 6,
+      "endLine": 155,
+      "signature": "export class RoomBuilder implements IRoomBuilder",
+      "calls": [
+        {
+          "name": "IRoomBuilder",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "setData",
+      "exported": true,
+      "qualifiedName": "RoomBuilder.setData",
+      "line": 19,
+      "endLine": 24,
+      "signature": "public setData(data: Partial<IRoom>): IRoomBuilder",
+      "containerClass": "RoomBuilder",
+      "calls": [
+        {
+          "name": "IRoom",
+          "edgeType": "type"
+        },
+        {
+          "name": "IRoomBuilder",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "setDisplayName",
+      "exported": true,
+      "qualifiedName": "RoomBuilder.setDisplayName",
+      "line": 23,
+      "endLine": 26,
+      "signature": "public setDisplayName(name: string): IRoomBuilder",
+      "containerClass": "RoomBuilder",
+      "calls": [
+        {
+          "name": "IRoomBuilder",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "getDisplayName",
+      "exported": true,
+      "qualifiedName": "RoomBuilder.getDisplayName",
+      "line": 27,
+      "endLine": 29,
+      "signature": "public getDisplayName(): string",
+      "containerClass": "RoomBuilder",
+      "calls": []
+    },
+    {
+      "type": "method",
+      "name": "setSlugifiedName",
+      "exported": true,
+      "qualifiedName": "RoomBuilder.setSlugifiedName",
+      "line": 31,
+      "endLine": 34,
+      "signature": "public setSlugifiedName(name: string): IRoomBuilder",
+      "containerClass": "RoomBuilder",
+      "calls": [
+        {
+          "name": "IRoomBuilder",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "getSlugifiedName",
+      "exported": true,
+      "qualifiedName": "RoomBuilder.getSlugifiedName",
+      "line": 35,
+      "endLine": 37,
+      "signature": "public getSlugifiedName(): string",
+      "containerClass": "RoomBuilder",
+      "calls": []
+    },
+    {
+      "type": "method",
+      "name": "setType",
+      "exported": true,
+      "qualifiedName": "RoomBuilder.setType",
+      "line": 39,
+      "endLine": 42,
+      "signature": "public setType(type: RoomType): IRoomBuilder",
+      "containerClass": "RoomBuilder",
+      "calls": [
+        {
+          "name": "RoomType",
+          "edgeType": "type"
+        },
+        {
+          "name": "IRoomBuilder",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "getType",
+      "exported": true,
+      "qualifiedName": "RoomBuilder.getType",
+      "line": 43,
+      "endLine": 45,
+      "signature": "public getType(): RoomType",
+      "containerClass": "RoomBuilder",
+      "calls": [
+        {
+          "name": "RoomType",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "setCreator",
+      "exported": true,
+      "qualifiedName": "RoomBuilder.setCreator",
+      "line": 47,
+      "endLine": 50,
+      "signature": "public setCreator(creator: IUser): IRoomBuilder",
+      "containerClass": "RoomBuilder",
+      "calls": [
+        {
+          "name": "IUser",
+          "edgeType": "type"
+        },
+        {
+          "name": "IRoomBuilder",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "getCreator",
+      "exported": true,
+      "qualifiedName": "RoomBuilder.getCreator",
+      "line": 51,
+      "endLine": 53,
+      "signature": "public getCreator(): IUser",
+      "containerClass": "RoomBuilder",
+      "calls": [
+        {
+          "name": "IUser",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "addUsername",
+      "exported": true,
+      "qualifiedName": "RoomBuilder.addUsername",
+      "line": 58,
+      "endLine": 61,
+      "signature": "public addUsername(username: string): IRoomBuilder",
+      "containerClass": "RoomBuilder",
+      "calls": [
+        {
+          "name": "addMemberToBeAddedByUsername",
+          "edgeType": "call"
+        },
+        {
+          "name": "IRoomBuilder",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "setUsernames",
+      "exported": true,
+      "qualifiedName": "RoomBuilder.setUsernames",
+      "line": 65,
+      "endLine": 68,
+      "signature": "public setUsernames(usernames: Array<string>): IRoomBuilder",
+      "containerClass": "RoomBuilder",
+      "calls": [
+        {
+          "name": "setMembersToBeAddedByUsernames",
+          "edgeType": "call"
+        },
+        {
+          "name": "IRoomBuilder",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "getUsernames",
+      "exported": true,
+      "qualifiedName": "RoomBuilder.getUsernames",
+      "line": 72,
+      "endLine": 78,
+      "signature": "public getUsernames(): Array<string>",
+      "containerClass": "RoomBuilder",
+      "calls": [
+        {
+          "name": "getMembersToBeAddedUsernames",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "addMemberToBeAddedByUsername",
+      "exported": true,
+      "qualifiedName": "RoomBuilder.addMemberToBeAddedByUsername",
+      "line": 76,
+      "endLine": 79,
+      "signature": "public addMemberToBeAddedByUsername(username: string): IRoomBuilder",
+      "containerClass": "RoomBuilder",
+      "calls": [
+        {
+          "name": "push",
+          "edgeType": "call"
+        },
+        {
+          "name": "IRoomBuilder",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "setMembersToBeAddedByUsernames",
+      "exported": true,
+      "qualifiedName": "RoomBuilder.setMembersToBeAddedByUsernames",
+      "line": 80,
+      "endLine": 83,
+      "signature": "public setMembersToBeAddedByUsernames(usernames: Array<string>): IRoomBuilder",
+      "containerClass": "RoomBuilder",
+      "calls": [
+        {
+          "name": "IRoomBuilder",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "getMembersToBeAddedUsernames",
+      "exported": true,
+      "qualifiedName": "RoomBuilder.getMembersToBeAddedUsernames",
+      "line": 84,
+      "endLine": 86,
+      "signature": "public getMembersToBeAddedUsernames(): Array<string>",
+      "containerClass": "RoomBuilder",
+      "calls": []
+    },
+    {
+      "type": "method",
+      "name": "setDefault",
+      "exported": true,
+      "qualifiedName": "RoomBuilder.setDefault",
+      "line": 88,
+      "endLine": 91,
+      "signature": "public setDefault(isDefault: boolean): IRoomBuilder",
+      "containerClass": "RoomBuilder",
+      "calls": [
+        {
+          "name": "IRoomBuilder",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "getIsDefault",
+      "exported": true,
+      "qualifiedName": "RoomBuilder.getIsDefault",
+      "line": 92,
+      "endLine": 94,
+      "signature": "public getIsDefault(): boolean",
+      "containerClass": "RoomBuilder",
+      "calls": []
+    },
+    {
+      "type": "method",
+      "name": "setReadOnly",
+      "exported": true,
+      "qualifiedName": "RoomBuilder.setReadOnly",
+      "line": 96,
+      "endLine": 99,
+      "signature": "public setReadOnly(isReadOnly: boolean): IRoomBuilder",
+      "containerClass": "RoomBuilder",
+      "calls": [
+        {
+          "name": "IRoomBuilder",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "getIsReadOnly",
+      "exported": true,
+      "qualifiedName": "RoomBuilder.getIsReadOnly",
+      "line": 100,
+      "endLine": 102,
+      "signature": "public getIsReadOnly(): boolean",
+      "containerClass": "RoomBuilder",
+      "calls": []
+    },
+    {
+      "type": "method",
+      "name": "setDisplayingOfSystemMessages",
+      "exported": true,
+      "qualifiedName": "RoomBuilder.setDisplayingOfSystemMessages",
+      "line": 104,
+      "endLine": 107,
+      "signature": "public setDisplayingOfSystemMessages(displaySystemMessages: boolean): IRoomBuilder",
+      "containerClass": "RoomBuilder",
+      "calls": [
+        {
+          "name": "IRoomBuilder",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "getDisplayingOfSystemMessages",
+      "exported": true,
+      "qualifiedName": "RoomBuilder.getDisplayingOfSystemMessages",
+      "line": 108,
+      "endLine": 110,
+      "signature": "public getDisplayingOfSystemMessages(): boolean",
+      "containerClass": "RoomBuilder",
+      "calls": []
+    },
+    {
+      "type": "method",
+      "name": "addCustomField",
+      "exported": true,
+      "qualifiedName": "RoomBuilder.addCustomField",
+      "line": 112,
+      "endLine": 119,
+      "signature": "public addCustomField(key: string, value: object): IRoomBuilder",
+      "containerClass": "RoomBuilder",
+      "calls": [
+        {
+          "name": "IRoomBuilder",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "setCustomFields",
+      "exported": true,
+      "qualifiedName": "RoomBuilder.setCustomFields",
+      "line": 116,
+      "endLine": 119,
+      "signature": "public setCustomFields(fields: { [key: string]: object }): IRoomBuilder",
+      "containerClass": "RoomBuilder",
+      "calls": [
+        {
+          "name": "IRoomBuilder",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "getCustomFields",
+      "exported": true,
+      "qualifiedName": "RoomBuilder.getCustomFields",
+      "line": 120,
+      "endLine": 122,
+      "signature": "public getCustomFields(): { [key: string]: object }",
+      "containerClass": "RoomBuilder",
+      "calls": []
+    },
+    {
+      "type": "method",
+      "name": "getUserIds",
+      "exported": true,
+      "qualifiedName": "RoomBuilder.getUserIds",
+      "line": 124,
+      "endLine": 126,
+      "signature": "public getUserIds(): Array<string>",
+      "containerClass": "RoomBuilder",
+      "calls": []
+    },
+    {
+      "type": "method",
+      "name": "getRoom",
+      "exported": true,
+      "qualifiedName": "RoomBuilder.getRoom",
+      "line": 128,
+      "endLine": 130,
+      "signature": "public getRoom(): IRoom",
+      "containerClass": "RoomBuilder",
+      "calls": [
+        {
+          "name": "IRoom",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "constructor",
+      "exported": true,
+      "qualifiedName": "RoomBuilder.constructor",
+      "line": 13,
+      "endLine": 17,
+      "signature": "constructor(data?: Partial<IRoom>)",
+      "containerClass": "RoomBuilder",
+      "calls": [
+        {
+          "name": "IRoom",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "class_property",
+      "name": "room",
+      "exported": true,
+      "qualifiedName": "RoomBuilder.room",
+      "line": 9,
+      "endLine": 9,
+      "signature": "protected room: IRoom;",
+      "containerClass": "RoomBuilder",
+      "calls": [
+        {
+          "name": "IRoom",
+          "edgeType": "type"
+        }
+      ]
+    }
+  ],
+  "imports": [
+    {
+      "module": "@rocket.chat/apps-engine/definition/accessors",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/apps-engine/definition/metadata",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/apps-engine/definition/rooms",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/apps-engine/definition/users",
+      "resolved": "external"
+    }
+  ]
+}

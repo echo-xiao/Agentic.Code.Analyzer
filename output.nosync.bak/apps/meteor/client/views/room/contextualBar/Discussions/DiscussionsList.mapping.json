@@ -1,0 +1,251 @@
+{
+  "sourcePath": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/client/views/room/contextualBar/Discussions/DiscussionsList.tsx",
+  "symbols": [
+    {
+      "type": "inner_function",
+      "name": "onClick",
+      "exported": false,
+      "qualifiedName": "DiscussionsList.onClick",
+      "line": 56,
+      "endLine": 60,
+      "signature": "(e: MouseEvent<HTMLElement>) =>",
+      "calls": [
+        {
+          "name": "goToRoom",
+          "edgeType": "call"
+        },
+        {
+          "name": "MouseEvent",
+          "edgeType": "type"
+        },
+        {
+          "name": "HTMLElement",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "function",
+      "name": "DiscussionsList",
+      "exported": true,
+      "line": 37,
+      "endLine": 115,
+      "signature": "function DiscussionsList({ itemCount, discussions = [], loadMoreItems, isPending, isSuccess, onClose, error, text, onChangeFilter, }: DiscussionsListProps)",
+      "calls": [
+        {
+          "name": "useTranslation",
+          "edgeType": "call"
+        },
+        {
+          "name": "useId",
+          "edgeType": "call"
+        },
+        {
+          "name": "useSetting",
+          "edgeType": "call"
+        },
+        {
+          "name": "useAutoFocus",
+          "edgeType": "call"
+        },
+        {
+          "name": "useGoToRoom",
+          "edgeType": "call"
+        },
+        {
+          "name": "useCallback",
+          "edgeType": "call"
+        },
+        {
+          "name": "goToRoom",
+          "edgeType": "call"
+        },
+        {
+          "name": "ContextualbarDialog",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "ContextualbarHeader",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "ContextualbarTitle",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "ContextualbarSection",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "ContextualbarContent",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "Box",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "Callout",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "ContextualbarIcon",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "ContextualbarClose",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "TextInput",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "Icon",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "ResultsLiveRegion",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "Throbber",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "ContextualbarEmptyContent",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "PaginatedVirtualList",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "DiscussionsListRow",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "onClose",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "text",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "onChangeFilter",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "isSuccess",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "itemCount",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "discussionListId",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "discussions",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "discussion",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "showRealNames",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "onClick",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "DiscussionsListProps",
+          "edgeType": "type"
+        },
+        {
+          "name": "MouseEvent",
+          "edgeType": "type"
+        },
+        {
+          "name": "HTMLElement",
+          "edgeType": "type"
+        },
+        {
+          "name": "RefObject",
+          "edgeType": "type"
+        },
+        {
+          "name": "HTMLInputElement",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "type",
+      "name": "DiscussionsListProps",
+      "line": 25,
+      "endLine": 35,
+      "signature": "type DiscussionsListProps ="
+    }
+  ],
+  "imports": [
+    {
+      "module": "@rocket.chat/core-typings",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/fuselage",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/fuselage-hooks",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/ui-client",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/ui-contexts",
+      "resolved": "external"
+    },
+    {
+      "module": "@tanstack/react-query",
+      "resolved": "external"
+    },
+    {
+      "module": "react",
+      "resolved": "external"
+    },
+    {
+      "module": "react",
+      "resolved": "external"
+    },
+    {
+      "module": "react-i18next",
+      "resolved": "external"
+    },
+    {
+      "module": "./DiscussionsListRow",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/client/views/room/contextualBar/Discussions/DiscussionsListRow.tsx"
+    },
+    {
+      "module": "../../../../components/PaginatedVirtualList",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/client/components/PaginatedVirtualList/index.ts"
+    },
+    {
+      "module": "../../../../components/ResultsLiveRegion",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/client/components/ResultsLiveRegion.tsx"
+    },
+    {
+      "module": "../../hooks/useGoToRoom",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/client/views/room/hooks/useGoToRoom.ts"
+    }
+  ]
+}

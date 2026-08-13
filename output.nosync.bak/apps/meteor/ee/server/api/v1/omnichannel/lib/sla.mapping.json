@@ -1,0 +1,144 @@
+{
+  "sourcePath": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/ee/server/api/v1/omnichannel/lib/sla.ts",
+  "symbols": [
+    {
+      "type": "function",
+      "name": "findSLA",
+      "exported": true,
+      "line": 24,
+      "endLine": 46,
+      "signature": "export async function findSLA({ text, pagination: { offset, count, sort }, }: FindSLAParams): Promise<PaginatedResult<{ sla: IOmnichannelServiceLevelAgreements[] }>>",
+      "calls": [
+        {
+          "name": "escapeRegExp",
+          "edgeType": "call"
+        },
+        {
+          "name": "findPaginated",
+          "edgeType": "call"
+        },
+        {
+          "name": "all",
+          "edgeType": "call"
+        },
+        {
+          "name": "toArray",
+          "edgeType": "call"
+        },
+        {
+          "name": "RegExp",
+          "edgeType": "new"
+        },
+        {
+          "name": "FindSLAParams",
+          "edgeType": "type"
+        },
+        {
+          "name": "PaginatedResult",
+          "edgeType": "type"
+        },
+        {
+          "name": "IOmnichannelServiceLevelAgreements",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "variable_function",
+      "name": "updateRoomSLA",
+      "exported": true,
+      "line": 31,
+      "endLine": 37,
+      "signature": "async ( roomId: string, user: Required<Pick<IUser, '_id' | 'username' | 'name'>>, sla: Pick<IOmnichannelServiceLevelAgreements, '_id' | 'name' | 'dueTimeInMinutes'>, ) =>",
+      "calls": [
+        {
+          "name": "all",
+          "edgeType": "call"
+        },
+        {
+          "name": "updateInquiryQueueSla",
+          "edgeType": "call"
+        },
+        {
+          "name": "updateRoomSlaWeights",
+          "edgeType": "call"
+        },
+        {
+          "name": "addSlaChangeHistoryToRoom",
+          "edgeType": "call"
+        },
+        {
+          "name": "IUser",
+          "edgeType": "type"
+        },
+        {
+          "name": "IOmnichannelServiceLevelAgreements",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "variable_function",
+      "name": "removeRoomSLA",
+      "exported": true,
+      "line": 39,
+      "endLine": 41,
+      "signature": "async (roomId: string, user: Required<Pick<IUser, '_id' | 'username' | 'name'>>) =>",
+      "calls": [
+        {
+          "name": "all",
+          "edgeType": "call"
+        },
+        {
+          "name": "removeInquiryQueueSla",
+          "edgeType": "call"
+        },
+        {
+          "name": "removeSlaFromRoom",
+          "edgeType": "call"
+        },
+        {
+          "name": "addSlaChangeHistoryToRoom",
+          "edgeType": "call"
+        },
+        {
+          "name": "IUser",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "type",
+      "name": "FindSLAParams",
+      "line": 15,
+      "endLine": 22,
+      "signature": "type FindSLAParams ="
+    }
+  ],
+  "imports": [
+    {
+      "module": "@rocket.chat/core-typings",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/models",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/rest-typings",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/string-helpers",
+      "resolved": "external"
+    },
+    {
+      "module": "mongodb",
+      "resolved": "external"
+    },
+    {
+      "module": "../../../../../app/livechat-enterprise/server/lib/SlaHelper",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/ee/app/livechat-enterprise/server/lib/SlaHelper.ts"
+    }
+  ]
+}

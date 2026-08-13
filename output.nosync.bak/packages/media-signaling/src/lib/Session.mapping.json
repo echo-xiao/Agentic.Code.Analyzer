@@ -1,0 +1,1690 @@
+{
+  "sourcePath": "/Users/echoooooo/Desktop/code/Rocket.Chat/packages/media-signaling/src/lib/Session.ts",
+  "symbols": [
+    {
+      "type": "class",
+      "name": "MediaSignalingSession",
+      "exported": true,
+      "line": 49,
+      "endLine": 774,
+      "signature": "export class MediaSignalingSession extends Emitter<MediaSignalingEvents>",
+      "calls": [
+        {
+          "name": "Emitter",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "isBusy",
+      "exported": true,
+      "qualifiedName": "MediaSignalingSession.isBusy",
+      "line": 116,
+      "endLine": 118,
+      "signature": "public isBusy(): boolean",
+      "containerClass": "MediaSignalingSession",
+      "calls": [
+        {
+          "name": "getMainCall",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "enableStateReport",
+      "exported": true,
+      "qualifiedName": "MediaSignalingSession.enableStateReport",
+      "line": 120,
+      "endLine": 126,
+      "signature": "public enableStateReport(interval: number): void",
+      "containerClass": "MediaSignalingSession",
+      "calls": [
+        {
+          "name": "disableStateReport",
+          "edgeType": "call"
+        },
+        {
+          "name": "reportState",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "disableStateReport",
+      "exported": true,
+      "qualifiedName": "MediaSignalingSession.disableStateReport",
+      "line": 124,
+      "endLine": 129,
+      "signature": "public disableStateReport(): void",
+      "containerClass": "MediaSignalingSession",
+      "calls": [
+        {
+          "name": "clearInterval",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "endSession",
+      "exported": true,
+      "qualifiedName": "MediaSignalingSession.endSession",
+      "line": 128,
+      "endLine": 145,
+      "signature": "public endSession(): void",
+      "containerClass": "MediaSignalingSession",
+      "calls": [
+        {
+          "name": "endSession",
+          "edgeType": "call"
+        },
+        {
+          "name": "disableStateReport",
+          "edgeType": "call"
+        },
+        {
+          "name": "catch",
+          "edgeType": "call"
+        },
+        {
+          "name": "setInputTrack",
+          "edgeType": "call"
+        },
+        {
+          "name": "values",
+          "edgeType": "call"
+        },
+        {
+          "name": "setScreenVideoTrack",
+          "edgeType": "call"
+        },
+        {
+          "name": "ignore",
+          "edgeType": "call"
+        },
+        {
+          "name": "clear",
+          "edgeType": "call"
+        },
+        {
+          "name": "sessionStateChange",
+          "edgeType": "event_emit"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "getCallData",
+      "exported": true,
+      "qualifiedName": "MediaSignalingSession.getCallData",
+      "line": 132,
+      "endLine": 134,
+      "signature": "public getCallData(callId: string): IClientMediaCall | null",
+      "containerClass": "MediaSignalingSession",
+      "calls": [
+        {
+          "name": "get",
+          "edgeType": "call"
+        },
+        {
+          "name": "IClientMediaCall",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "getState",
+      "exported": true,
+      "qualifiedName": "MediaSignalingSession.getState",
+      "line": 136,
+      "endLine": 148,
+      "signature": "public getState(skipLocal = false): (AnyMediaCallData & { call: IClientMediaCall }) | null",
+      "containerClass": "MediaSignalingSession",
+      "calls": [
+        {
+          "name": "getMainCall",
+          "edgeType": "call"
+        },
+        {
+          "name": "AnyMediaCallData",
+          "edgeType": "type"
+        },
+        {
+          "name": "IClientMediaCall",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "getMainCall",
+      "exported": true,
+      "qualifiedName": "MediaSignalingSession.getMainCall",
+      "line": 140,
+      "endLine": 165,
+      "signature": "private getMainCall(skipLocal = false): ClientMediaCall | null",
+      "containerClass": "MediaSignalingSession",
+      "calls": [
+        {
+          "name": "values",
+          "edgeType": "call"
+        },
+        {
+          "name": "ClientMediaCall",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "processSignal",
+      "exported": true,
+      "qualifiedName": "MediaSignalingSession.processSignal",
+      "line": 144,
+      "endLine": 154,
+      "signature": "public async processSignal(signal: ServerMediaSignal): Promise<void>",
+      "containerClass": "MediaSignalingSession",
+      "calls": [
+        {
+          "name": "debug",
+          "edgeType": "call"
+        },
+        {
+          "name": "processCallSignal",
+          "edgeType": "call"
+        },
+        {
+          "name": "processSessionSignal",
+          "edgeType": "call"
+        },
+        {
+          "name": "ServerMediaSignal",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "processSessionSignal",
+      "exported": true,
+      "qualifiedName": "MediaSignalingSession.processSessionSignal",
+      "line": 148,
+      "endLine": 153,
+      "signature": "private processSessionSignal(signal: ServerMediaSessionSignal): void",
+      "containerClass": "MediaSignalingSession",
+      "calls": [
+        {
+          "name": "confirmSessionRegistered",
+          "edgeType": "call"
+        },
+        {
+          "name": "ServerMediaSessionSignal",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "processCallSignal",
+      "exported": true,
+      "qualifiedName": "MediaSignalingSession.processCallSignal",
+      "line": 152,
+      "endLine": 174,
+      "signature": "private async processCallSignal(signal: ServerMediaCallSignal): Promise<void>",
+      "containerClass": "MediaSignalingSession",
+      "calls": [
+        {
+          "name": "isCallIgnored",
+          "edgeType": "call"
+        },
+        {
+          "name": "getOrCreateCallBySignal",
+          "edgeType": "call"
+        },
+        {
+          "name": "setContractState",
+          "edgeType": "call"
+        },
+        {
+          "name": "getReplacedCallBySignal",
+          "edgeType": "call"
+        },
+        {
+          "name": "processSignal",
+          "edgeType": "call"
+        },
+        {
+          "name": "ServerMediaCallSignal",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "setDeviceId",
+      "exported": true,
+      "qualifiedName": "MediaSignalingSession.setDeviceId",
+      "line": 156,
+      "endLine": 174,
+      "signature": "public async setDeviceId(deviceId: ConstrainDOMString | null): Promise<void>",
+      "containerClass": "MediaSignalingSession",
+      "calls": [
+        {
+          "name": "warn",
+          "edgeType": "call"
+        },
+        {
+          "name": "isSameDeviceId",
+          "edgeType": "call"
+        },
+        {
+          "name": "debug",
+          "edgeType": "call"
+        },
+        {
+          "name": "setInputTrack",
+          "edgeType": "call"
+        },
+        {
+          "name": "startInputTrack",
+          "edgeType": "call"
+        },
+        {
+          "name": "ConstrainDOMString",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "startCall",
+      "exported": true,
+      "qualifiedName": "MediaSignalingSession.startCall",
+      "line": 160,
+      "endLine": 172,
+      "signature": "public async startCall(calleeType: CallActorType, calleeId: string, params: { contactInfo?: CallContact } = {}): Promise<void>",
+      "containerClass": "MediaSignalingSession",
+      "calls": [
+        {
+          "name": "debug",
+          "edgeType": "call"
+        },
+        {
+          "name": "getMainCall",
+          "edgeType": "call"
+        },
+        {
+          "name": "createTemporaryCallId",
+          "edgeType": "call"
+        },
+        {
+          "name": "createCall",
+          "edgeType": "call"
+        },
+        {
+          "name": "requestCall",
+          "edgeType": "call"
+        },
+        {
+          "name": "CallActorType",
+          "edgeType": "type"
+        },
+        {
+          "name": "CallContact",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "setIceGatheringTimeout",
+      "exported": true,
+      "qualifiedName": "MediaSignalingSession.setIceGatheringTimeout",
+      "line": 164,
+      "endLine": 166,
+      "signature": "public setIceGatheringTimeout(newTimeout: number): void",
+      "containerClass": "MediaSignalingSession",
+      "calls": []
+    },
+    {
+      "type": "method",
+      "name": "setIceServers",
+      "exported": true,
+      "qualifiedName": "MediaSignalingSession.setIceServers",
+      "line": 168,
+      "endLine": 170,
+      "signature": "public setIceServers(iceServers: RTCIceServer[]): void",
+      "containerClass": "MediaSignalingSession",
+      "calls": [
+        {
+          "name": "RTCIceServer",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "createTemporaryCallId",
+      "exported": true,
+      "qualifiedName": "MediaSignalingSession.createTemporaryCallId",
+      "line": 172,
+      "endLine": 174,
+      "signature": "private createTemporaryCallId(): string",
+      "containerClass": "MediaSignalingSession",
+      "calls": [
+        {
+          "name": "randomStringFactory",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "isCallIgnored",
+      "exported": true,
+      "qualifiedName": "MediaSignalingSession.isCallIgnored",
+      "line": 176,
+      "endLine": 178,
+      "signature": "private isCallIgnored(callId: string): boolean",
+      "containerClass": "MediaSignalingSession",
+      "calls": [
+        {
+          "name": "has",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "ignoreCall",
+      "exported": true,
+      "qualifiedName": "MediaSignalingSession.ignoreCall",
+      "line": 180,
+      "endLine": 190,
+      "signature": "private ignoreCall(callId: string)",
+      "containerClass": "MediaSignalingSession",
+      "calls": [
+        {
+          "name": "debug",
+          "edgeType": "call"
+        },
+        {
+          "name": "has",
+          "edgeType": "call"
+        },
+        {
+          "name": "get",
+          "edgeType": "call"
+        },
+        {
+          "name": "delete",
+          "edgeType": "call"
+        },
+        {
+          "name": "ignore",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "sendRegisterSignal",
+      "exported": true,
+      "qualifiedName": "MediaSignalingSession.sendRegisterSignal",
+      "line": 184,
+      "endLine": 192,
+      "signature": "private sendRegisterSignal(): void",
+      "containerClass": "MediaSignalingSession",
+      "calls": [
+        {
+          "name": "sendSignal",
+          "edgeType": "call"
+        },
+        {
+          "name": "Boolean",
+          "edgeType": "call"
+        },
+        {
+          "name": "Date",
+          "edgeType": "new"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "confirmSessionRegistered",
+      "exported": true,
+      "qualifiedName": "MediaSignalingSession.confirmSessionRegistered",
+      "line": 188,
+      "endLine": 205,
+      "signature": "private confirmSessionRegistered(signal: ServerMediaSignalRegistered): void",
+      "containerClass": "MediaSignalingSession",
+      "calls": [
+        {
+          "name": "debug",
+          "edgeType": "call"
+        },
+        {
+          "name": "confirmRegistration",
+          "edgeType": "call"
+        },
+        {
+          "name": "registered",
+          "edgeType": "event_emit"
+        },
+        {
+          "name": "onSessionStateChange",
+          "edgeType": "call"
+        },
+        {
+          "name": "filter",
+          "edgeType": "call"
+        },
+        {
+          "name": "has",
+          "edgeType": "call"
+        },
+        {
+          "name": "outOfSync",
+          "edgeType": "event_emit"
+        },
+        {
+          "name": "ServerMediaSignalRegistered",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "getExistingCallBySignal",
+      "exported": true,
+      "qualifiedName": "MediaSignalingSession.getExistingCallBySignal",
+      "line": 192,
+      "endLine": 208,
+      "signature": "private getExistingCallBySignal(signal: ServerMediaCallSignal): ClientMediaCall | null",
+      "containerClass": "MediaSignalingSession",
+      "calls": [
+        {
+          "name": "get",
+          "edgeType": "call"
+        },
+        {
+          "name": "set",
+          "edgeType": "call"
+        },
+        {
+          "name": "delete",
+          "edgeType": "call"
+        },
+        {
+          "name": "ServerMediaCallSignal",
+          "edgeType": "type"
+        },
+        {
+          "name": "ClientMediaCall",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "getReplacedCallBySignal",
+      "exported": true,
+      "qualifiedName": "MediaSignalingSession.getReplacedCallBySignal",
+      "line": 196,
+      "endLine": 202,
+      "signature": "private getReplacedCallBySignal(signal: ServerMediaCallSignal): ClientMediaCall | null",
+      "containerClass": "MediaSignalingSession",
+      "calls": [
+        {
+          "name": "get",
+          "edgeType": "call"
+        },
+        {
+          "name": "ServerMediaCallSignal",
+          "edgeType": "type"
+        },
+        {
+          "name": "ClientMediaCall",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "getOrCreateCallBySignal",
+      "exported": true,
+      "qualifiedName": "MediaSignalingSession.getOrCreateCallBySignal",
+      "line": 200,
+      "endLine": 208,
+      "signature": "private getOrCreateCallBySignal(signal: ServerMediaCallSignal): ClientMediaCall",
+      "containerClass": "MediaSignalingSession",
+      "calls": [
+        {
+          "name": "debug",
+          "edgeType": "call"
+        },
+        {
+          "name": "getExistingCallBySignal",
+          "edgeType": "call"
+        },
+        {
+          "name": "createCall",
+          "edgeType": "call"
+        },
+        {
+          "name": "ServerMediaCallSignal",
+          "edgeType": "type"
+        },
+        {
+          "name": "ClientMediaCall",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "reportState",
+      "exported": true,
+      "qualifiedName": "MediaSignalingSession.reportState",
+      "line": 204,
+      "endLine": 234,
+      "signature": "private reportState(): void",
+      "containerClass": "MediaSignalingSession",
+      "calls": [
+        {
+          "name": "values",
+          "edgeType": "call"
+        },
+        {
+          "name": "isAbleToReportStates",
+          "edgeType": "call"
+        },
+        {
+          "name": "reportStates",
+          "edgeType": "call"
+        },
+        {
+          "name": "autoRegister",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "autoRegister",
+      "exported": true,
+      "qualifiedName": "MediaSignalingSession.autoRegister",
+      "line": 208,
+      "endLine": 217,
+      "signature": "private autoRegister(): void",
+      "containerClass": "MediaSignalingSession",
+      "calls": [
+        {
+          "name": "now",
+          "edgeType": "call"
+        },
+        {
+          "name": "valueOf",
+          "edgeType": "call"
+        },
+        {
+          "name": "reRegister",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "setInputTrack",
+      "exported": true,
+      "qualifiedName": "MediaSignalingSession.setInputTrack",
+      "line": 212,
+      "endLine": 237,
+      "signature": "private async setInputTrack(newInputTrack: MediaStreamTrack | null): Promise<void>",
+      "containerClass": "MediaSignalingSession",
+      "calls": [
+        {
+          "name": "debug",
+          "edgeType": "call"
+        },
+        {
+          "name": "Boolean",
+          "edgeType": "call"
+        },
+        {
+          "name": "values",
+          "edgeType": "call"
+        },
+        {
+          "name": "catch",
+          "edgeType": "call"
+        },
+        {
+          "name": "setInputTrack",
+          "edgeType": "call"
+        },
+        {
+          "name": "stop",
+          "edgeType": "call"
+        },
+        {
+          "name": "MediaStreamTrack",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "requestInputTrackUpdate",
+      "exported": true,
+      "qualifiedName": "MediaSignalingSession.requestInputTrackUpdate",
+      "line": 216,
+      "endLine": 224,
+      "signature": "public requestInputTrackUpdate(): void",
+      "containerClass": "MediaSignalingSession",
+      "calls": [
+        {
+          "name": "shouldSwitchInputTrack",
+          "edgeType": "call"
+        },
+        {
+          "name": "catch",
+          "edgeType": "call"
+        },
+        {
+          "name": "switchInputTrack",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "switchInputTrack",
+      "exported": true,
+      "qualifiedName": "MediaSignalingSession.switchInputTrack",
+      "line": 234,
+      "endLine": 259,
+      "signature": "private async switchInputTrack(): Promise<void>",
+      "containerClass": "MediaSignalingSession",
+      "calls": [
+        {
+          "name": "debug",
+          "edgeType": "call"
+        },
+        {
+          "name": "warn",
+          "edgeType": "call"
+        },
+        {
+          "name": "shouldSwitchInputTrack",
+          "edgeType": "call"
+        },
+        {
+          "name": "setInputTrack",
+          "edgeType": "call"
+        },
+        {
+          "name": "startInputTrack",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "shouldStartInputTrack",
+      "exported": true,
+      "qualifiedName": "MediaSignalingSession.shouldStartInputTrack",
+      "line": 238,
+      "endLine": 254,
+      "signature": "private shouldStartInputTrack(): boolean",
+      "containerClass": "MediaSignalingSession",
+      "calls": [
+        {
+          "name": "values",
+          "edgeType": "call"
+        },
+        {
+          "name": "needsInputTrack",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "shouldSwitchInputTrack",
+      "exported": true,
+      "qualifiedName": "MediaSignalingSession.shouldSwitchInputTrack",
+      "line": 242,
+      "endLine": 248,
+      "signature": "private shouldSwitchInputTrack(): boolean",
+      "containerClass": "MediaSignalingSession",
+      "calls": [
+        {
+          "name": "mayNeedInputTrack",
+          "edgeType": "call"
+        },
+        {
+          "name": "shouldStartInputTrack",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "getAudioConstraints",
+      "exported": true,
+      "qualifiedName": "MediaSignalingSession.getAudioConstraints",
+      "line": 246,
+      "endLine": 252,
+      "signature": "private getAudioConstraints(): boolean | MediaTrackConstraints",
+      "containerClass": "MediaSignalingSession",
+      "calls": [
+        {
+          "name": "MediaTrackConstraints",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "startInputTrack",
+      "exported": true,
+      "qualifiedName": "MediaSignalingSession.startInputTrack",
+      "line": 250,
+      "endLine": 292,
+      "signature": "private async startInputTrack(): Promise<void>",
+      "containerClass": "MediaSignalingSession",
+      "calls": [
+        {
+          "name": "debug",
+          "edgeType": "call"
+        },
+        {
+          "name": "catch",
+          "edgeType": "call"
+        },
+        {
+          "name": "mediaStreamFactory",
+          "edgeType": "call"
+        },
+        {
+          "name": "getAudioConstraints",
+          "edgeType": "call"
+        },
+        {
+          "name": "hangupCallsThatNeedInput",
+          "edgeType": "call"
+        },
+        {
+          "name": "getAudioTracks",
+          "edgeType": "call"
+        },
+        {
+          "name": "mayNeedInputTrack",
+          "edgeType": "call"
+        },
+        {
+          "name": "stop",
+          "edgeType": "call"
+        },
+        {
+          "name": "setInputTrack",
+          "edgeType": "call"
+        },
+        {
+          "name": "MediaStream",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "hangupCallsThatNeedInput",
+      "exported": true,
+      "qualifiedName": "MediaSignalingSession.hangupCallsThatNeedInput",
+      "line": 254,
+      "endLine": 268,
+      "signature": "private hangupCallsThatNeedInput(): void",
+      "containerClass": "MediaSignalingSession",
+      "calls": [
+        {
+          "name": "debug",
+          "edgeType": "call"
+        },
+        {
+          "name": "values",
+          "edgeType": "call"
+        },
+        {
+          "name": "needsInputTrack",
+          "edgeType": "call"
+        },
+        {
+          "name": "hangup",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "mayNeedInputTrack",
+      "exported": true,
+      "qualifiedName": "MediaSignalingSession.mayNeedInputTrack",
+      "line": 258,
+      "endLine": 266,
+      "signature": "private mayNeedInputTrack(): boolean",
+      "containerClass": "MediaSignalingSession",
+      "calls": [
+        {
+          "name": "values",
+          "edgeType": "call"
+        },
+        {
+          "name": "mayNeedInputTrack",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "setScreenVideoTrack",
+      "exported": true,
+      "qualifiedName": "MediaSignalingSession.setScreenVideoTrack",
+      "line": 262,
+      "endLine": 266,
+      "signature": "private async setScreenVideoTrack(newVideoTrack: MediaStreamTrack | null, call: ClientMediaCall): Promise<void>",
+      "containerClass": "MediaSignalingSession",
+      "calls": [
+        {
+          "name": "debug",
+          "edgeType": "call"
+        },
+        {
+          "name": "Boolean",
+          "edgeType": "call"
+        },
+        {
+          "name": "setScreenVideoTrack",
+          "edgeType": "call"
+        },
+        {
+          "name": "MediaStreamTrack",
+          "edgeType": "type"
+        },
+        {
+          "name": "ClientMediaCall",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "startScreenVideoTrack",
+      "exported": true,
+      "qualifiedName": "MediaSignalingSession.startScreenVideoTrack",
+      "line": 266,
+      "endLine": 285,
+      "signature": "private async startScreenVideoTrack(): Promise<MediaStreamTrack | void>",
+      "containerClass": "MediaSignalingSession",
+      "calls": [
+        {
+          "name": "debug",
+          "edgeType": "call"
+        },
+        {
+          "name": "catch",
+          "edgeType": "call"
+        },
+        {
+          "name": "displayMediaFactory",
+          "edgeType": "call"
+        },
+        {
+          "name": "error",
+          "edgeType": "call"
+        },
+        {
+          "name": "getVideoTracks",
+          "edgeType": "call"
+        },
+        {
+          "name": "MediaStreamTrack",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "endScreenSharing",
+      "exported": true,
+      "qualifiedName": "MediaSignalingSession.endScreenSharing",
+      "line": 270,
+      "endLine": 273,
+      "signature": "private async endScreenSharing(call: ClientMediaCall): Promise<void>",
+      "containerClass": "MediaSignalingSession",
+      "calls": [
+        {
+          "name": "debug",
+          "edgeType": "call"
+        },
+        {
+          "name": "setScreenVideoTrack",
+          "edgeType": "call"
+        },
+        {
+          "name": "ClientMediaCall",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "startScreenSharing",
+      "exported": true,
+      "qualifiedName": "MediaSignalingSession.startScreenSharing",
+      "line": 274,
+      "endLine": 282,
+      "signature": "private async startScreenSharing(call: ClientMediaCall): Promise<void>",
+      "containerClass": "MediaSignalingSession",
+      "calls": [
+        {
+          "name": "debug",
+          "edgeType": "call"
+        },
+        {
+          "name": "startScreenVideoTrack",
+          "edgeType": "call"
+        },
+        {
+          "name": "setScreenVideoTrack",
+          "edgeType": "call"
+        },
+        {
+          "name": "ClientMediaCall",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "createCall",
+      "exported": true,
+      "qualifiedName": "MediaSignalingSession.createCall",
+      "line": 278,
+      "endLine": 309,
+      "signature": "private createCall(callId: string): ClientMediaCall",
+      "containerClass": "MediaSignalingSession",
+      "calls": [
+        {
+          "name": "debug",
+          "edgeType": "call"
+        },
+        {
+          "name": "set",
+          "edgeType": "call"
+        },
+        {
+          "name": "contactUpdate",
+          "edgeType": "event_listen"
+        },
+        {
+          "name": "onCallContactUpdate",
+          "edgeType": "call"
+        },
+        {
+          "name": "stateChange",
+          "edgeType": "event_listen"
+        },
+        {
+          "name": "onCallStateChange",
+          "edgeType": "call"
+        },
+        {
+          "name": "clientStateChange",
+          "edgeType": "event_listen"
+        },
+        {
+          "name": "onCallClientStateChange",
+          "edgeType": "call"
+        },
+        {
+          "name": "trackStateChange",
+          "edgeType": "event_listen"
+        },
+        {
+          "name": "onTrackStateChange",
+          "edgeType": "call"
+        },
+        {
+          "name": "initialized",
+          "edgeType": "event_listen"
+        },
+        {
+          "name": "onNewCall",
+          "edgeType": "call"
+        },
+        {
+          "name": "confirmed",
+          "edgeType": "event_listen"
+        },
+        {
+          "name": "onConfirmedCall",
+          "edgeType": "call"
+        },
+        {
+          "name": "accepted",
+          "edgeType": "event_listen"
+        },
+        {
+          "name": "onAcceptedCall",
+          "edgeType": "call"
+        },
+        {
+          "name": "accepting",
+          "edgeType": "event_listen"
+        },
+        {
+          "name": "onAcceptingCall",
+          "edgeType": "call"
+        },
+        {
+          "name": "hidden",
+          "edgeType": "event_listen"
+        },
+        {
+          "name": "onHiddenCall",
+          "edgeType": "call"
+        },
+        {
+          "name": "active",
+          "edgeType": "event_listen"
+        },
+        {
+          "name": "onActiveCall",
+          "edgeType": "call"
+        },
+        {
+          "name": "ended",
+          "edgeType": "event_listen"
+        },
+        {
+          "name": "onEndedCall",
+          "edgeType": "call"
+        },
+        {
+          "name": "screenShareRequestChange",
+          "edgeType": "event_listen"
+        },
+        {
+          "name": "onScreenShareRequestChange",
+          "edgeType": "call"
+        },
+        {
+          "name": "streamChange",
+          "edgeType": "event_listen"
+        },
+        {
+          "name": "onSessionStateChange",
+          "edgeType": "call"
+        },
+        {
+          "name": "ClientMediaCall",
+          "edgeType": "new"
+        },
+        {
+          "name": "ClientMediaCall",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "onCallContactUpdate",
+      "exported": true,
+      "qualifiedName": "MediaSignalingSession.onCallContactUpdate",
+      "line": 282,
+      "endLine": 285,
+      "signature": "private onCallContactUpdate(_call: ClientMediaCall): void",
+      "containerClass": "MediaSignalingSession",
+      "calls": [
+        {
+          "name": "debug",
+          "edgeType": "call"
+        },
+        {
+          "name": "onSessionStateChange",
+          "edgeType": "call"
+        },
+        {
+          "name": "ClientMediaCall",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "onCallStateChange",
+      "exported": true,
+      "qualifiedName": "MediaSignalingSession.onCallStateChange",
+      "line": 286,
+      "endLine": 289,
+      "signature": "private onCallStateChange(_call: ClientMediaCall): void",
+      "containerClass": "MediaSignalingSession",
+      "calls": [
+        {
+          "name": "debug",
+          "edgeType": "call"
+        },
+        {
+          "name": "onSessionStateChange",
+          "edgeType": "call"
+        },
+        {
+          "name": "ClientMediaCall",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "onCallClientStateChange",
+      "exported": true,
+      "qualifiedName": "MediaSignalingSession.onCallClientStateChange",
+      "line": 290,
+      "endLine": 293,
+      "signature": "private onCallClientStateChange(_call: ClientMediaCall): void",
+      "containerClass": "MediaSignalingSession",
+      "calls": [
+        {
+          "name": "debug",
+          "edgeType": "call"
+        },
+        {
+          "name": "onSessionStateChange",
+          "edgeType": "call"
+        },
+        {
+          "name": "ClientMediaCall",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "onNewCall",
+      "exported": true,
+      "qualifiedName": "MediaSignalingSession.onNewCall",
+      "line": 294,
+      "endLine": 297,
+      "signature": "private onNewCall(_call: ClientMediaCall): void",
+      "containerClass": "MediaSignalingSession",
+      "calls": [
+        {
+          "name": "debug",
+          "edgeType": "call"
+        },
+        {
+          "name": "onSessionStateChange",
+          "edgeType": "call"
+        },
+        {
+          "name": "ClientMediaCall",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "onConfirmedCall",
+      "exported": true,
+      "qualifiedName": "MediaSignalingSession.onConfirmedCall",
+      "line": 298,
+      "endLine": 301,
+      "signature": "private onConfirmedCall(_call: ClientMediaCall): void",
+      "containerClass": "MediaSignalingSession",
+      "calls": [
+        {
+          "name": "debug",
+          "edgeType": "call"
+        },
+        {
+          "name": "onSessionStateChange",
+          "edgeType": "call"
+        },
+        {
+          "name": "ClientMediaCall",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "onAcceptedCall",
+      "exported": true,
+      "qualifiedName": "MediaSignalingSession.onAcceptedCall",
+      "line": 302,
+      "endLine": 305,
+      "signature": "private onAcceptedCall(_call: ClientMediaCall): void",
+      "containerClass": "MediaSignalingSession",
+      "calls": [
+        {
+          "name": "debug",
+          "edgeType": "call"
+        },
+        {
+          "name": "onSessionStateChange",
+          "edgeType": "call"
+        },
+        {
+          "name": "ClientMediaCall",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "onAcceptingCall",
+      "exported": true,
+      "qualifiedName": "MediaSignalingSession.onAcceptingCall",
+      "line": 306,
+      "endLine": 309,
+      "signature": "private onAcceptingCall(_call: ClientMediaCall): void",
+      "containerClass": "MediaSignalingSession",
+      "calls": [
+        {
+          "name": "debug",
+          "edgeType": "call"
+        },
+        {
+          "name": "onSessionStateChange",
+          "edgeType": "call"
+        },
+        {
+          "name": "ClientMediaCall",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "onTrackStateChange",
+      "exported": true,
+      "qualifiedName": "MediaSignalingSession.onTrackStateChange",
+      "line": 310,
+      "endLine": 313,
+      "signature": "private onTrackStateChange(_call: ClientMediaCall): void",
+      "containerClass": "MediaSignalingSession",
+      "calls": [
+        {
+          "name": "debug",
+          "edgeType": "call"
+        },
+        {
+          "name": "onSessionStateChange",
+          "edgeType": "call"
+        },
+        {
+          "name": "ClientMediaCall",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "onEndedCall",
+      "exported": true,
+      "qualifiedName": "MediaSignalingSession.onEndedCall",
+      "line": 314,
+      "endLine": 318,
+      "signature": "private onEndedCall(call: ClientMediaCall): void",
+      "containerClass": "MediaSignalingSession",
+      "calls": [
+        {
+          "name": "debug",
+          "edgeType": "call"
+        },
+        {
+          "name": "ignoreCall",
+          "edgeType": "call"
+        },
+        {
+          "name": "onSessionStateChange",
+          "edgeType": "call"
+        },
+        {
+          "name": "ClientMediaCall",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "onHiddenCall",
+      "exported": true,
+      "qualifiedName": "MediaSignalingSession.onHiddenCall",
+      "line": 318,
+      "endLine": 321,
+      "signature": "private onHiddenCall(_call: ClientMediaCall): void",
+      "containerClass": "MediaSignalingSession",
+      "calls": [
+        {
+          "name": "debug",
+          "edgeType": "call"
+        },
+        {
+          "name": "onSessionStateChange",
+          "edgeType": "call"
+        },
+        {
+          "name": "ClientMediaCall",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "onActiveCall",
+      "exported": true,
+      "qualifiedName": "MediaSignalingSession.onActiveCall",
+      "line": 322,
+      "endLine": 325,
+      "signature": "private onActiveCall(_call: ClientMediaCall): void",
+      "containerClass": "MediaSignalingSession",
+      "calls": [
+        {
+          "name": "debug",
+          "edgeType": "call"
+        },
+        {
+          "name": "onSessionStateChange",
+          "edgeType": "call"
+        },
+        {
+          "name": "ClientMediaCall",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "onScreenShareRequestChange",
+      "exported": true,
+      "qualifiedName": "MediaSignalingSession.onScreenShareRequestChange",
+      "line": 326,
+      "endLine": 336,
+      "signature": "private async onScreenShareRequestChange(call: ClientMediaCall, requested: boolean): Promise<void>",
+      "containerClass": "MediaSignalingSession",
+      "calls": [
+        {
+          "name": "debug",
+          "edgeType": "call"
+        },
+        {
+          "name": "endScreenSharing",
+          "edgeType": "call"
+        },
+        {
+          "name": "startScreenSharing",
+          "edgeType": "call"
+        },
+        {
+          "name": "onSessionStateChange",
+          "edgeType": "call"
+        },
+        {
+          "name": "ClientMediaCall",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "onSessionStateChange",
+      "exported": true,
+      "qualifiedName": "MediaSignalingSession.onSessionStateChange",
+      "line": 330,
+      "endLine": 366,
+      "signature": "private onSessionStateChange(): void",
+      "containerClass": "MediaSignalingSession",
+      "calls": [
+        {
+          "name": "endedCall",
+          "edgeType": "event_emit"
+        },
+        {
+          "name": "debug",
+          "edgeType": "call"
+        },
+        {
+          "name": "getMainCall",
+          "edgeType": "call"
+        },
+        {
+          "name": "Boolean",
+          "edgeType": "call"
+        },
+        {
+          "name": "newCall",
+          "edgeType": "event_emit"
+        },
+        {
+          "name": "acceptedCall",
+          "edgeType": "event_emit"
+        },
+        {
+          "name": "sessionStateChange",
+          "edgeType": "event_emit"
+        },
+        {
+          "name": "requestInputTrackUpdate",
+          "edgeType": "call"
+        },
+        {
+          "name": "hiddenCall",
+          "edgeType": "event_emit"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "constructor",
+      "exported": true,
+      "qualifiedName": "MediaSignalingSession.constructor",
+      "line": 92,
+      "endLine": 114,
+      "signature": "constructor(private config: MediaSignalingSessionConfig)",
+      "containerClass": "MediaSignalingSession",
+      "calls": [
+        {
+          "name": "randomStringFactory",
+          "edgeType": "call"
+        },
+        {
+          "name": "sendRegisterSignal",
+          "edgeType": "call"
+        },
+        {
+          "name": "register",
+          "edgeType": "call"
+        },
+        {
+          "name": "enableStateReport",
+          "edgeType": "call"
+        },
+        {
+          "name": "Map",
+          "edgeType": "new"
+        },
+        {
+          "name": "Set",
+          "edgeType": "new"
+        },
+        {
+          "name": "MediaSignalTransportWrapper",
+          "edgeType": "new"
+        },
+        {
+          "name": "SessionRegistration",
+          "edgeType": "new"
+        },
+        {
+          "name": "MediaSignalingSessionConfig",
+          "edgeType": "type"
+        },
+        {
+          "name": "ClientMediaCall",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "class_property",
+      "name": "knownCalls",
+      "exported": true,
+      "qualifiedName": "MediaSignalingSession.knownCalls",
+      "line": 54,
+      "endLine": 54,
+      "signature": "private knownCalls: Map<string, ClientMediaCall>;",
+      "containerClass": "MediaSignalingSession",
+      "calls": [
+        {
+          "name": "ClientMediaCall",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "class_property",
+      "name": "transporter",
+      "exported": true,
+      "qualifiedName": "MediaSignalingSession.transporter",
+      "line": 58,
+      "endLine": 58,
+      "signature": "private transporter: MediaSignalTransportWrapper;",
+      "containerClass": "MediaSignalingSession",
+      "calls": [
+        {
+          "name": "MediaSignalTransportWrapper",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "class_property",
+      "name": "inputTrack",
+      "exported": true,
+      "qualifiedName": "MediaSignalingSession.inputTrack",
+      "line": 62,
+      "endLine": 62,
+      "signature": "private inputTrack: MediaStreamTrack | null;",
+      "containerClass": "MediaSignalingSession",
+      "calls": [
+        {
+          "name": "MediaStreamTrack",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "class_property",
+      "name": "deviceId",
+      "exported": true,
+      "qualifiedName": "MediaSignalingSession.deviceId",
+      "line": 66,
+      "endLine": 66,
+      "signature": "private deviceId: ConstrainDOMString | null;",
+      "containerClass": "MediaSignalingSession",
+      "calls": [
+        {
+          "name": "ConstrainDOMString",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "class_property",
+      "name": "currentDeviceId",
+      "exported": true,
+      "qualifiedName": "MediaSignalingSession.currentDeviceId",
+      "line": 68,
+      "endLine": 68,
+      "signature": "private currentDeviceId: ConstrainDOMString | null;",
+      "containerClass": "MediaSignalingSession",
+      "calls": [
+        {
+          "name": "ConstrainDOMString",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "class_property",
+      "name": "registration",
+      "exported": true,
+      "qualifiedName": "MediaSignalingSession.registration",
+      "line": 78,
+      "endLine": 78,
+      "signature": "private registration: SessionRegistration;",
+      "containerClass": "MediaSignalingSession",
+      "calls": [
+        {
+          "name": "SessionRegistration",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "type",
+      "name": "MediaSignalingEvents",
+      "line": 21,
+      "endLine": 29,
+      "signature": "export type MediaSignalingEvents ="
+    },
+    {
+      "type": "type",
+      "name": "MediaSignalingSessionConfig",
+      "line": 31,
+      "endLine": 45,
+      "signature": "export type MediaSignalingSessionConfig ="
+    }
+  ],
+  "imports": [
+    {
+      "module": "@rocket.chat/emitter",
+      "resolved": "external"
+    },
+    {
+      "module": "./Call",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/packages/media-signaling/src/lib/Call.ts"
+    },
+    {
+      "module": "./TransportWrapper",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/packages/media-signaling/src/lib/TransportWrapper.ts"
+    },
+    {
+      "module": "../definition",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/packages/media-signaling/src/definition/index.ts"
+    },
+    {
+      "module": "../definition/call",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/packages/media-signaling/src/definition/call/index.ts"
+    },
+    {
+      "module": "../definition/logger",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/packages/media-signaling/src/definition/logger.ts"
+    },
+    {
+      "module": "./components/SessionRegistration",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/packages/media-signaling/src/lib/components/SessionRegistration.ts"
+    },
+    {
+      "module": "./utils/isSameDeviceId",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/packages/media-signaling/src/lib/utils/isSameDeviceId.ts"
+    }
+  ]
+}

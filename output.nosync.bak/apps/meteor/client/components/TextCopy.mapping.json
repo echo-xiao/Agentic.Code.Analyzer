@@ -1,0 +1,105 @@
+{
+  "sourcePath": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/client/components/TextCopy.tsx",
+  "symbols": [
+    {
+      "type": "variable_function",
+      "name": "defaultWrapperRenderer",
+      "exported": false,
+      "line": 7,
+      "endLine": 11,
+      "signature": "(text: string) =>",
+      "calls": [
+        {
+          "name": "Box",
+          "edgeType": "jsx"
+        }
+      ]
+    },
+    {
+      "type": "inner_function",
+      "name": "handleClick",
+      "exported": false,
+      "qualifiedName": "TextCopy.handleClick",
+      "line": 23,
+      "endLine": 25,
+      "signature": "() =>",
+      "calls": [
+        {
+          "name": "copy",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "variable_function",
+      "name": "TextCopy",
+      "exported": false,
+      "line": 18,
+      "endLine": 43,
+      "signature": "({ text, wrapper = defaultWrapperRenderer, ...props }: TextCopyProps) =>",
+      "calls": [
+        {
+          "name": "useTranslation",
+          "edgeType": "call"
+        },
+        {
+          "name": "useClipboardWithToast",
+          "edgeType": "call"
+        },
+        {
+          "name": "copy",
+          "edgeType": "call"
+        },
+        {
+          "name": "wrapper",
+          "edgeType": "call"
+        },
+        {
+          "name": "Box",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "Scrollable",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "Button",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "handleClick",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "TextCopyProps",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "type",
+      "name": "TextCopyProps",
+      "line": 13,
+      "endLine": 16,
+      "signature": "export type TextCopyProps ="
+    }
+  ],
+  "imports": [
+    {
+      "module": "@rocket.chat/fuselage",
+      "resolved": "external"
+    },
+    {
+      "module": "react",
+      "resolved": "external"
+    },
+    {
+      "module": "react-i18next",
+      "resolved": "external"
+    },
+    {
+      "module": "../hooks/useClipboardWithToast",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/client/hooks/useClipboardWithToast.ts"
+    }
+  ]
+}

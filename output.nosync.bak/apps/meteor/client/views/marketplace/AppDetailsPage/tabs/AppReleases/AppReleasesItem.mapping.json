@@ -1,0 +1,83 @@
+{
+  "sourcePath": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/client/views/marketplace/AppDetailsPage/tabs/AppReleases/AppReleasesItem.tsx",
+  "symbols": [
+    {
+      "type": "variable_function",
+      "name": "AppReleasesItem",
+      "exported": false,
+      "line": 21,
+      "endLine": 45,
+      "signature": "({ release, ...props }: ReleaseItemProps) =>",
+      "calls": [
+        {
+          "name": "useTranslation",
+          "edgeType": "call"
+        },
+        {
+          "name": "useTimeAgo",
+          "edgeType": "call"
+        },
+        {
+          "name": "formatDate",
+          "edgeType": "call"
+        },
+        {
+          "name": "sanitize",
+          "edgeType": "call"
+        },
+        {
+          "name": "Box",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "AccordionItem",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "title",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "ReleaseItemProps",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "type",
+      "name": "IRelease",
+      "line": 8,
+      "endLine": 15,
+      "signature": "type IRelease ="
+    },
+    {
+      "type": "type",
+      "name": "ReleaseItemProps",
+      "line": 17,
+      "endLine": 19,
+      "signature": "type ReleaseItemProps ="
+    }
+  ],
+  "imports": [
+    {
+      "module": "@rocket.chat/fuselage",
+      "resolved": "external"
+    },
+    {
+      "module": "dompurify",
+      "resolved": "external"
+    },
+    {
+      "module": "react-i18next",
+      "resolved": "external"
+    },
+    {
+      "module": "../../../../../hooks/useTimeAgo",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/client/hooks/useTimeAgo.ts"
+    },
+    {
+      "module": "../../../lib/purifyOptions",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/client/views/marketplace/lib/purifyOptions.ts"
+    }
+  ]
+}

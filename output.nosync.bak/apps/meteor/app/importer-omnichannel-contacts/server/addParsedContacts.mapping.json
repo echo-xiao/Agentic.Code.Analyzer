@@ -1,0 +1,49 @@
+{
+  "sourcePath": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/app/importer-omnichannel-contacts/server/addParsedContacts.ts",
+  "symbols": [
+    {
+      "type": "function",
+      "name": "addParsedContacts",
+      "exported": true,
+      "line": 5,
+      "endLine": 39,
+      "signature": "export async function addParsedContacts(this: ImportDataConverter, parsedContacts: string[][]): Promise<number>",
+      "calls": [
+        {
+          "name": "shift",
+          "edgeType": "call"
+        },
+        {
+          "name": "reduce",
+          "edgeType": "call"
+        },
+        {
+          "name": "id",
+          "edgeType": "call"
+        },
+        {
+          "name": "addContact",
+          "edgeType": "call"
+        },
+        {
+          "name": "split",
+          "edgeType": "call"
+        },
+        {
+          "name": "ImportDataConverter",
+          "edgeType": "type"
+        }
+      ]
+    }
+  ],
+  "imports": [
+    {
+      "module": "@rocket.chat/random",
+      "resolved": "external"
+    },
+    {
+      "module": "../../importer/server/classes/ImportDataConverter",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/app/importer/server/classes/ImportDataConverter.ts"
+    }
+  ]
+}

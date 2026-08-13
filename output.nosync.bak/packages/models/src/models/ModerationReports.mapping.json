@@ -1,0 +1,507 @@
+{
+  "sourcePath": "/Users/echoooooo/Desktop/code/Rocket.Chat/packages/models/src/models/ModerationReports.ts",
+  "symbols": [
+    {
+      "type": "class",
+      "name": "ModerationReportsRaw",
+      "exported": true,
+      "line": 15,
+      "endLine": 441,
+      "signature": "export class ModerationReportsRaw extends BaseRaw<IModerationReport> implements IModerationReportsModel",
+      "calls": [
+        {
+          "name": "BaseRaw",
+          "edgeType": "type"
+        },
+        {
+          "name": "IModerationReportsModel",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "modelIndexes",
+      "exported": true,
+      "qualifiedName": "ModerationReportsRaw.modelIndexes",
+      "line": 20,
+      "endLine": 34,
+      "signature": "override modelIndexes(): IndexDescription[] | undefined",
+      "containerClass": "ModerationReportsRaw",
+      "calls": [
+        {
+          "name": "IndexDescription",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "createWithMessageDescriptionAndUserId",
+      "exported": true,
+      "qualifiedName": "ModerationReportsRaw.createWithMessageDescriptionAndUserId",
+      "line": 24,
+      "endLine": 38,
+      "signature": "createWithMessageDescriptionAndUserId( message: IMessage, description: IModerationReport['description'], room: IModerationReport['room'], reportedBy: IModerationReport['reportedBy'], ): ReturnType<BaseRaw<IModerationReport>['insertOne']>",
+      "containerClass": "ModerationReportsRaw",
+      "calls": [
+        {
+          "name": "insertOne",
+          "edgeType": "call"
+        },
+        {
+          "name": "Date",
+          "edgeType": "new"
+        },
+        {
+          "name": "IMessage",
+          "edgeType": "type"
+        },
+        {
+          "name": "IModerationReport",
+          "edgeType": "type"
+        },
+        {
+          "name": "BaseRaw",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "createWithDescriptionAndUser",
+      "exported": true,
+      "qualifiedName": "ModerationReportsRaw.createWithDescriptionAndUser",
+      "line": 33,
+      "endLine": 46,
+      "signature": "createWithDescriptionAndUser( reportedUser: UserReport['reportedUser'], description: UserReport['description'], reportedBy: UserReport['reportedBy'], ): ReturnType<BaseRaw<IModerationReport>['insertOne']>",
+      "containerClass": "ModerationReportsRaw",
+      "calls": [
+        {
+          "name": "insertOne",
+          "edgeType": "call"
+        },
+        {
+          "name": "Date",
+          "edgeType": "new"
+        },
+        {
+          "name": "UserReport",
+          "edgeType": "type"
+        },
+        {
+          "name": "BaseRaw",
+          "edgeType": "type"
+        },
+        {
+          "name": "IModerationReport",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "findMessageReportsGroupedByUser",
+      "exported": true,
+      "qualifiedName": "ModerationReportsRaw.findMessageReportsGroupedByUser",
+      "line": 41,
+      "endLine": 114,
+      "signature": "findMessageReportsGroupedByUser( latest: Date, oldest: Date, selector: string, pagination: PaginationParams<IModerationReport>, ): AggregationCursor<IModerationAudit>",
+      "containerClass": "ModerationReportsRaw",
+      "calls": [
+        {
+          "name": "getSearchQueryForSelector",
+          "edgeType": "call"
+        },
+        {
+          "name": "aggregate",
+          "edgeType": "call"
+        },
+        {
+          "name": "PaginationParams",
+          "edgeType": "type"
+        },
+        {
+          "name": "IModerationReport",
+          "edgeType": "type"
+        },
+        {
+          "name": "AggregationCursor",
+          "edgeType": "type"
+        },
+        {
+          "name": "IModerationAudit",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "findUserReports",
+      "exported": true,
+      "qualifiedName": "ModerationReportsRaw.findUserReports",
+      "line": 50,
+      "endLine": 105,
+      "signature": "findUserReports( latest: Date, oldest: Date, selector: string, pagination: PaginationParams<IModerationReport>, ): AggregationCursor<Pick<UserReport, '_id' | 'reportedUser' | 'ts'> & { count: number }>",
+      "containerClass": "ModerationReportsRaw",
+      "calls": [
+        {
+          "name": "getSearchQueryForSelectorUsers",
+          "edgeType": "call"
+        },
+        {
+          "name": "aggregate",
+          "edgeType": "call"
+        },
+        {
+          "name": "readSecondaryPreferred",
+          "edgeType": "call"
+        },
+        {
+          "name": "PaginationParams",
+          "edgeType": "type"
+        },
+        {
+          "name": "IModerationReport",
+          "edgeType": "type"
+        },
+        {
+          "name": "AggregationCursor",
+          "edgeType": "type"
+        },
+        {
+          "name": "UserReport",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "getTotalUniqueReportedUsers",
+      "exported": true,
+      "qualifiedName": "ModerationReportsRaw.getTotalUniqueReportedUsers",
+      "line": 59,
+      "endLine": 76,
+      "signature": "async getTotalUniqueReportedUsers(latest: Date, oldest: Date, selector: string, isMessageReports?: boolean): Promise<number>",
+      "containerClass": "ModerationReportsRaw",
+      "calls": [
+        {
+          "name": "getSearchQueryForSelector",
+          "edgeType": "call"
+        },
+        {
+          "name": "getSearchQueryForSelectorUsers",
+          "edgeType": "call"
+        },
+        {
+          "name": "toArray",
+          "edgeType": "call"
+        },
+        {
+          "name": "aggregate",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "countMessageReportsInRange",
+      "exported": true,
+      "qualifiedName": "ModerationReportsRaw.countMessageReportsInRange",
+      "line": 63,
+      "endLine": 69,
+      "signature": "countMessageReportsInRange(latest: Date, oldest: Date, selector: string): Promise<number>",
+      "containerClass": "ModerationReportsRaw",
+      "calls": [
+        {
+          "name": "countDocuments",
+          "edgeType": "call"
+        },
+        {
+          "name": "getSearchQueryForSelector",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "findReportedMessagesByReportedUserId",
+      "exported": true,
+      "qualifiedName": "ModerationReportsRaw.findReportedMessagesByReportedUserId",
+      "line": 67,
+      "endLine": 107,
+      "signature": "findReportedMessagesByReportedUserId( userId: string, selector: string, pagination: PaginationParams<IModerationReport>, options: FindOptions<IModerationReport> = {}, ): FindPaginated<FindCursor<Pick<MessageReport, '_id' | 'message' | 'ts' | 'room'>>>",
+      "containerClass": "ModerationReportsRaw",
+      "calls": [
+        {
+          "name": "findPaginated",
+          "edgeType": "call"
+        },
+        {
+          "name": "PaginationParams",
+          "edgeType": "type"
+        },
+        {
+          "name": "IModerationReport",
+          "edgeType": "type"
+        },
+        {
+          "name": "FindOptions",
+          "edgeType": "type"
+        },
+        {
+          "name": "FindPaginated",
+          "edgeType": "type"
+        },
+        {
+          "name": "FindCursor",
+          "edgeType": "type"
+        },
+        {
+          "name": "MessageReport",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "findUserReportsByReportedUserId",
+      "exported": true,
+      "qualifiedName": "ModerationReportsRaw.findUserReportsByReportedUserId",
+      "line": 76,
+      "endLine": 109,
+      "signature": "findUserReportsByReportedUserId( userId: string, selector: string, pagination: PaginationParams<IModerationReport>, options: FindOptions<IModerationReport> = {}, ): FindPaginated<FindCursor<Omit<UserReport, 'moderationInfo'>>>",
+      "containerClass": "ModerationReportsRaw",
+      "calls": [
+        {
+          "name": "getSearchQueryForSelectorUsers",
+          "edgeType": "call"
+        },
+        {
+          "name": "findPaginated",
+          "edgeType": "call"
+        },
+        {
+          "name": "PaginationParams",
+          "edgeType": "type"
+        },
+        {
+          "name": "IModerationReport",
+          "edgeType": "type"
+        },
+        {
+          "name": "FindOptions",
+          "edgeType": "type"
+        },
+        {
+          "name": "FindPaginated",
+          "edgeType": "type"
+        },
+        {
+          "name": "FindCursor",
+          "edgeType": "type"
+        },
+        {
+          "name": "UserReport",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "findReportsByMessageId",
+      "exported": true,
+      "qualifiedName": "ModerationReportsRaw.findReportsByMessageId",
+      "line": 85,
+      "endLine": 118,
+      "signature": "findReportsByMessageId( messageId: string, selector: string, pagination: PaginationParams<IModerationReport>, options: FindOptions<IModerationReport> = {}, ): FindPaginated<FindCursor<Pick<IModerationReport, '_id' | 'description' | 'reportedBy' | 'ts' | 'room'>>>",
+      "containerClass": "ModerationReportsRaw",
+      "calls": [
+        {
+          "name": "getSearchQueryForSelector",
+          "edgeType": "call"
+        },
+        {
+          "name": "findPaginated",
+          "edgeType": "call"
+        },
+        {
+          "name": "PaginationParams",
+          "edgeType": "type"
+        },
+        {
+          "name": "IModerationReport",
+          "edgeType": "type"
+        },
+        {
+          "name": "FindOptions",
+          "edgeType": "type"
+        },
+        {
+          "name": "FindPaginated",
+          "edgeType": "type"
+        },
+        {
+          "name": "FindCursor",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "hideMessageReportsByMessageId",
+      "exported": true,
+      "qualifiedName": "ModerationReportsRaw.hideMessageReportsByMessageId",
+      "line": 94,
+      "endLine": 107,
+      "signature": "async hideMessageReportsByMessageId(messageId: string, userId: string, reason: string, action: string): Promise<UpdateResult | Document>",
+      "containerClass": "ModerationReportsRaw",
+      "calls": [
+        {
+          "name": "updateMany",
+          "edgeType": "call"
+        },
+        {
+          "name": "Date",
+          "edgeType": "new"
+        },
+        {
+          "name": "UpdateResult",
+          "edgeType": "type"
+        },
+        {
+          "name": "Document",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "hideMessageReportsByUserId",
+      "exported": true,
+      "qualifiedName": "ModerationReportsRaw.hideMessageReportsByUserId",
+      "line": 98,
+      "endLine": 110,
+      "signature": "async hideMessageReportsByUserId(userId: string, moderatorId: string, reason: string, action: string): Promise<UpdateResult | Document>",
+      "containerClass": "ModerationReportsRaw",
+      "calls": [
+        {
+          "name": "updateMany",
+          "edgeType": "call"
+        },
+        {
+          "name": "Date",
+          "edgeType": "new"
+        },
+        {
+          "name": "UpdateResult",
+          "edgeType": "type"
+        },
+        {
+          "name": "Document",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "hideUserReportsByUserId",
+      "exported": true,
+      "qualifiedName": "ModerationReportsRaw.hideUserReportsByUserId",
+      "line": 102,
+      "endLine": 115,
+      "signature": "async hideUserReportsByUserId(userId: string, moderatorId: string, reason: string, action: string): Promise<UpdateResult | Document>",
+      "containerClass": "ModerationReportsRaw",
+      "calls": [
+        {
+          "name": "updateMany",
+          "edgeType": "call"
+        },
+        {
+          "name": "Date",
+          "edgeType": "new"
+        },
+        {
+          "name": "UpdateResult",
+          "edgeType": "type"
+        },
+        {
+          "name": "Document",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "getSearchQueryForSelector",
+      "exported": true,
+      "qualifiedName": "ModerationReportsRaw.getSearchQueryForSelector",
+      "line": 106,
+      "endLine": 140,
+      "signature": "private getSearchQueryForSelector(selector?: string): any",
+      "containerClass": "ModerationReportsRaw",
+      "calls": []
+    },
+    {
+      "type": "method",
+      "name": "getSearchQueryForSelectorUsers",
+      "exported": true,
+      "qualifiedName": "ModerationReportsRaw.getSearchQueryForSelectorUsers",
+      "line": 110,
+      "endLine": 132,
+      "signature": "private getSearchQueryForSelectorUsers(selector?: string): any",
+      "containerClass": "ModerationReportsRaw",
+      "calls": []
+    },
+    {
+      "type": "method",
+      "name": "constructor",
+      "exported": true,
+      "qualifiedName": "ModerationReportsRaw.constructor",
+      "line": 16,
+      "endLine": 18,
+      "signature": "constructor(db: Db, trash?: Collection<RocketChatRecordDeleted<IModerationReport>>)",
+      "containerClass": "ModerationReportsRaw",
+      "calls": [
+        {
+          "name": "Db",
+          "edgeType": "type"
+        },
+        {
+          "name": "Collection",
+          "edgeType": "type"
+        },
+        {
+          "name": "RocketChatRecordDeleted",
+          "edgeType": "type"
+        },
+        {
+          "name": "IModerationReport",
+          "edgeType": "type"
+        }
+      ]
+    }
+  ],
+  "imports": [
+    {
+      "module": "@rocket.chat/core-typings",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/model-typings",
+      "resolved": "external"
+    },
+    {
+      "module": "mongodb",
+      "resolved": "external"
+    },
+    {
+      "module": "./BaseRaw",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/packages/models/src/models/BaseRaw.ts"
+    },
+    {
+      "module": "../readSecondaryPreferred",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/packages/models/src/readSecondaryPreferred.ts"
+    }
+  ]
+}

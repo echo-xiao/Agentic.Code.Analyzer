@@ -1,0 +1,72 @@
+{
+  "sourcePath": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/tests/mocks/client/FakeRoomProvider.tsx",
+  "symbols": [
+    {
+      "type": "variable_function",
+      "name": "FakeRoomProvider",
+      "exported": false,
+      "line": 15,
+      "endLine": 35,
+      "signature": "({ children, roomOverrides, subscriptionOverrides }: FakeRoomProviderProps) =>",
+      "calls": [
+        {
+          "name": "useMemo",
+          "edgeType": "call"
+        },
+        {
+          "name": "createFakeRoom",
+          "edgeType": "call"
+        },
+        {
+          "name": "createFakeSubscription",
+          "edgeType": "call"
+        },
+        {
+          "name": "boolean",
+          "edgeType": "call"
+        },
+        {
+          "name": "RoomContext.Provider",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "FakeRoomProviderProps",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "type",
+      "name": "FakeRoomProviderProps",
+      "line": 9,
+      "endLine": 13,
+      "signature": "type FakeRoomProviderProps ="
+    }
+  ],
+  "imports": [
+    {
+      "module": "@faker-js/faker",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/core-typings",
+      "resolved": "external"
+    },
+    {
+      "module": "react",
+      "resolved": "external"
+    },
+    {
+      "module": "react",
+      "resolved": "external"
+    },
+    {
+      "module": "../../../client/views/room/contexts/RoomContext",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/client/views/room/contexts/RoomContext.ts"
+    },
+    {
+      "module": "../data",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/tests/mocks/data.ts"
+    }
+  ]
+}

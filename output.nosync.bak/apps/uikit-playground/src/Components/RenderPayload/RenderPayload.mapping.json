@@ -1,0 +1,53 @@
+{
+  "sourcePath": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/uikit-playground/src/Components/RenderPayload/RenderPayload.tsx",
+  "symbols": [
+    {
+      "type": "variable_function",
+      "name": "RenderPayload",
+      "exported": false,
+      "line": 11,
+      "endLine": 35,
+      "signature": "({ blocks, surface = SurfaceOptions.Message, }: { index?: number; blocks: ILayoutBlock[]; surface?: SurfaceOptions; }) =>",
+      "calls": [
+        {
+          "name": "uiKitMessage",
+          "edgeType": "call"
+        },
+        {
+          "name": "uiKitBanner",
+          "edgeType": "call"
+        },
+        {
+          "name": "uiKitModal",
+          "edgeType": "call"
+        },
+        {
+          "name": "uiKitContextualBar",
+          "edgeType": "call"
+        },
+        {
+          "name": "ILayoutBlock",
+          "edgeType": "type"
+        },
+        {
+          "name": "SurfaceOptions",
+          "edgeType": "type"
+        }
+      ]
+    }
+  ],
+  "imports": [
+    {
+      "module": "@rocket.chat/fuselage-ui-kit",
+      "resolved": "external"
+    },
+    {
+      "module": "../../Context/initialState",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/uikit-playground/src/Context/initialState.ts"
+    },
+    {
+      "module": "../Preview/Display/Surface/constant",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/uikit-playground/src/Components/Preview/Display/Surface/constant.ts"
+    }
+  ]
+}

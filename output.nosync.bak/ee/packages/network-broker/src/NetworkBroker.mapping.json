@@ -1,0 +1,353 @@
+{
+  "sourcePath": "/Users/echoooooo/Desktop/code/Rocket.Chat/ee/packages/network-broker/src/NetworkBroker.ts",
+  "symbols": [
+    {
+      "type": "class",
+      "name": "NetworkBroker",
+      "exported": true,
+      "line": 22,
+      "endLine": 206,
+      "signature": "export class NetworkBroker implements IBroker",
+      "calls": [
+        {
+          "name": "IBroker",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "call",
+      "exported": true,
+      "qualifiedName": "NetworkBroker.call",
+      "line": 37,
+      "endLine": 69,
+      "signature": "async call(method: string, data: any, options?: CallingOptions): Promise<any>",
+      "containerClass": "NetworkBroker",
+      "calls": [
+        {
+          "name": "getStore",
+          "edgeType": "call"
+        },
+        {
+          "name": "call",
+          "edgeType": "call"
+        },
+        {
+          "name": "$node.services",
+          "edgeType": "call"
+        },
+        {
+          "name": "find",
+          "edgeType": "call"
+        },
+        {
+          "name": "split",
+          "edgeType": "call"
+        },
+        {
+          "name": "injectCurrentContext",
+          "edgeType": "call"
+        },
+        {
+          "name": "CallingOptions",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "destroyService",
+      "exported": true,
+      "qualifiedName": "NetworkBroker.destroyService",
+      "line": 41,
+      "endLine": 48,
+      "signature": "async destroyService(instance: IServiceClass): Promise<void>",
+      "containerClass": "NetworkBroker",
+      "calls": [
+        {
+          "name": "getName",
+          "edgeType": "call"
+        },
+        {
+          "name": "destroyService",
+          "edgeType": "call"
+        },
+        {
+          "name": "removeAllListeners",
+          "edgeType": "call"
+        },
+        {
+          "name": "IServiceClass",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "createService",
+      "exported": true,
+      "qualifiedName": "NetworkBroker.createService",
+      "line": 45,
+      "endLine": 136,
+      "signature": "createService(instance: IServiceClass, serviceDependencies: string[] = []): void",
+      "containerClass": "NetworkBroker",
+      "calls": [
+        {
+          "name": "filter",
+          "edgeType": "call"
+        },
+        {
+          "name": "getOwnPropertyNames",
+          "edgeType": "call"
+        },
+        {
+          "name": "getPrototypeOf",
+          "edgeType": "call"
+        },
+        {
+          "name": "getName",
+          "edgeType": "call"
+        },
+        {
+          "name": "getEvents",
+          "edgeType": "call"
+        },
+        {
+          "name": "isInternal",
+          "edgeType": "call"
+        },
+        {
+          "name": "reduce",
+          "edgeType": "call"
+        },
+        {
+          "name": "test",
+          "edgeType": "call"
+        },
+        {
+          "name": "match",
+          "edgeType": "call"
+        },
+        {
+          "name": "bind",
+          "edgeType": "call"
+        },
+        {
+          "name": "isReadable",
+          "edgeType": "call"
+        },
+        {
+          "name": "tracerSpan",
+          "edgeType": "call"
+        },
+        {
+          "name": "createService",
+          "edgeType": "call"
+        },
+        {
+          "name": "IServiceClass",
+          "edgeType": "type"
+        },
+        {
+          "name": "ServiceSchema",
+          "edgeType": "type"
+        },
+        {
+          "name": "Context",
+          "edgeType": "type"
+        },
+        {
+          "name": "EventSignatures",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "broadcast",
+      "exported": true,
+      "qualifiedName": "NetworkBroker.broadcast",
+      "line": 49,
+      "endLine": 51,
+      "signature": "async broadcast<T extends keyof EventSignatures>(event: T, ...args: Parameters<EventSignatures[T]>): Promise<void>",
+      "containerClass": "NetworkBroker",
+      "calls": [
+        {
+          "name": "EventSignatures",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "broadcastLocal",
+      "exported": true,
+      "qualifiedName": "NetworkBroker.broadcastLocal",
+      "line": 53,
+      "endLine": 55,
+      "signature": "async broadcastLocal<T extends keyof EventSignatures>(event: T, ...args: Parameters<EventSignatures[T]>): Promise<void>",
+      "containerClass": "NetworkBroker",
+      "calls": [
+        {
+          "name": "broadcastLocal",
+          "edgeType": "call"
+        },
+        {
+          "name": "EventSignatures",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "broadcastToServices",
+      "exported": true,
+      "qualifiedName": "NetworkBroker.broadcastToServices",
+      "line": 57,
+      "endLine": 63,
+      "signature": "async broadcastToServices<T extends keyof EventSignatures>( services: string[], event: T, ...args: Parameters<EventSignatures[T]> ): Promise<void>",
+      "containerClass": "NetworkBroker",
+      "calls": [
+        {
+          "name": "EventSignatures",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "nodeList",
+      "exported": true,
+      "qualifiedName": "NetworkBroker.nodeList",
+      "line": 65,
+      "endLine": 67,
+      "signature": "async nodeList(): Promise<IBrokerNode[]>",
+      "containerClass": "NetworkBroker",
+      "calls": [
+        {
+          "name": "$node.list",
+          "edgeType": "call"
+        },
+        {
+          "name": "call",
+          "edgeType": "call"
+        },
+        {
+          "name": "IBrokerNode",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "start",
+      "exported": true,
+      "qualifiedName": "NetworkBroker.start",
+      "line": 69,
+      "endLine": 81,
+      "signature": "async start(): Promise<void>",
+      "containerClass": "NetworkBroker",
+      "calls": [
+        {
+          "name": "resolve",
+          "edgeType": "call"
+        },
+        {
+          "name": "start",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "constructor",
+      "exported": true,
+      "qualifiedName": "NetworkBroker.constructor",
+      "line": 31,
+      "endLine": 35,
+      "signature": "constructor(broker: ServiceBroker)",
+      "containerClass": "NetworkBroker",
+      "calls": [
+        {
+          "name": "ServiceBroker",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "class_property",
+      "name": "broker",
+      "exported": true,
+      "qualifiedName": "NetworkBroker.broker",
+      "line": 23,
+      "endLine": 23,
+      "signature": "private broker: ServiceBroker;",
+      "containerClass": "NetworkBroker",
+      "calls": [
+        {
+          "name": "ServiceBroker",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "class_property",
+      "name": "started",
+      "exported": true,
+      "qualifiedName": "NetworkBroker.started",
+      "line": 25,
+      "endLine": 25,
+      "signature": "private started: Promise<boolean> = Promise.resolve(false);",
+      "containerClass": "NetworkBroker",
+      "calls": [
+        {
+          "name": "resolve",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "class_property",
+      "name": "metrics",
+      "exported": true,
+      "qualifiedName": "NetworkBroker.metrics",
+      "line": 29,
+      "endLine": 29,
+      "signature": "metrics: IServiceMetrics;",
+      "containerClass": "NetworkBroker",
+      "calls": [
+        {
+          "name": "IServiceMetrics",
+          "edgeType": "type"
+        }
+      ]
+    }
+  ],
+  "imports": [
+    {
+      "module": "node:stream",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/core-services",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/core-services",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/tracing",
+      "resolved": "external"
+    },
+    {
+      "module": "moleculer",
+      "resolved": "external"
+    },
+    {
+      "module": "./EnterpriseCheck",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/ee/packages/network-broker/src/EnterpriseCheck.ts"
+    }
+  ]
+}

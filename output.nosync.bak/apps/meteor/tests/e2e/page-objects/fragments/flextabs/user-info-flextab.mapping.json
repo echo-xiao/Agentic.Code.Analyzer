@@ -1,0 +1,89 @@
+{
+  "sourcePath": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/tests/e2e/page-objects/fragments/flextabs/user-info-flextab.ts",
+  "symbols": [
+    {
+      "type": "class",
+      "name": "UserInfoFlexTab",
+      "exported": true,
+      "line": 6,
+      "endLine": 33,
+      "signature": "export class UserInfoFlexTab extends FlexTab",
+      "calls": [
+        {
+          "name": "FlexTab",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "openMoreActions",
+      "exported": true,
+      "qualifiedName": "UserInfoFlexTab.openMoreActions",
+      "line": 30,
+      "endLine": 32,
+      "signature": "async openMoreActions()",
+      "containerClass": "UserInfoFlexTab",
+      "calls": [
+        {
+          "name": "click",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "constructor",
+      "exported": true,
+      "qualifiedName": "UserInfoFlexTab.constructor",
+      "line": 9,
+      "endLine": 12,
+      "signature": "constructor(page: Page)",
+      "containerClass": "UserInfoFlexTab",
+      "calls": [
+        {
+          "name": "getByRole",
+          "edgeType": "call"
+        },
+        {
+          "name": "MenuMore",
+          "edgeType": "new"
+        },
+        {
+          "name": "Page",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "class_property",
+      "name": "menu",
+      "exported": true,
+      "qualifiedName": "UserInfoFlexTab.menu",
+      "line": 7,
+      "endLine": 7,
+      "signature": "readonly menu: MenuMore;",
+      "containerClass": "UserInfoFlexTab",
+      "calls": [
+        {
+          "name": "MenuMore",
+          "edgeType": "type"
+        }
+      ]
+    }
+  ],
+  "imports": [
+    {
+      "module": "@playwright/test",
+      "resolved": "external"
+    },
+    {
+      "module": "./flextab",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/tests/e2e/page-objects/fragments/flextabs/flextab.ts"
+    },
+    {
+      "module": "../menu",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/tests/e2e/page-objects/fragments/menu.ts"
+    }
+  ]
+}

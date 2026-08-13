@@ -1,0 +1,349 @@
+{
+  "sourcePath": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/app/livechat/server/lib/hooks.ts",
+  "symbols": [
+    {
+      "type": "function",
+      "name": "afterAgentUserActivated",
+      "exported": true,
+      "line": 23,
+      "endLine": 28,
+      "signature": "export async function afterAgentUserActivated(user: IUser)",
+      "calls": [
+        {
+          "name": "includes",
+          "edgeType": "call"
+        },
+        {
+          "name": "livechat.onNewAgentCreated",
+          "edgeType": "event_emit"
+        },
+        {
+          "name": "IUser",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "function",
+      "name": "afterAgentAdded",
+      "exported": true,
+      "line": 27,
+      "endLine": 32,
+      "signature": "export async function afterAgentAdded(user: IUser)",
+      "calls": [
+        {
+          "name": "setUserStatusLivechat",
+          "edgeType": "call"
+        },
+        {
+          "name": "livechat.onNewAgentCreated",
+          "edgeType": "event_emit"
+        },
+        {
+          "name": "IUser",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "function",
+      "name": "afterRemoveAgent",
+      "exported": true,
+      "line": 31,
+      "endLine": 34,
+      "signature": "export async function afterRemoveAgent(user: AtLeast<IUser, '_id' | 'username'>)",
+      "calls": [
+        {
+          "name": "livechat.afterAgentRemoved",
+          "edgeType": "event_emit"
+        },
+        {
+          "name": "AtLeast",
+          "edgeType": "type"
+        },
+        {
+          "name": "IUser",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "function",
+      "name": "afterDepartmentArchived",
+      "exported": true,
+      "line": 35,
+      "endLine": 41,
+      "signature": "export async function afterDepartmentArchived(department: AtLeast<ILivechatDepartment, '_id' | 'businessHourId'>)",
+      "calls": [
+        {
+          "name": "disableAgentsByDepartmentId",
+          "edgeType": "call"
+        },
+        {
+          "name": "notifyOnLivechatDepartmentAgentChangedByDepartmentId",
+          "edgeType": "call"
+        },
+        {
+          "name": "livechat.afterDepartmentArchived",
+          "edgeType": "event_emit"
+        },
+        {
+          "name": "AtLeast",
+          "edgeType": "type"
+        },
+        {
+          "name": "ILivechatDepartment",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "function",
+      "name": "afterDepartmentUnarchived",
+      "exported": true,
+      "line": 39,
+      "endLine": 43,
+      "signature": "export async function afterDepartmentUnarchived(department: AtLeast<ILivechatDepartment, '_id' | 'businessHourId'>)",
+      "calls": [
+        {
+          "name": "enableAgentsByDepartmentId",
+          "edgeType": "call"
+        },
+        {
+          "name": "notifyOnLivechatDepartmentAgentChangedByDepartmentId",
+          "edgeType": "call"
+        },
+        {
+          "name": "AtLeast",
+          "edgeType": "type"
+        },
+        {
+          "name": "ILivechatDepartment",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "variable",
+      "name": "checkDefaultAgentOnNewRoom",
+      "exported": true,
+      "line": 43,
+      "endLine": 45,
+      "signature": "checkDefaultAgentOnNewRoom = makeFunction( async (defaultAgent?: SelectedAgent, _params?:",
+      "calls": [
+        {
+          "name": "SelectedAgent",
+          "edgeType": "type"
+        },
+        {
+          "name": "IOmnichannelSource",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "variable_function",
+      "name": "beforeDelegateAgent",
+      "exported": true,
+      "line": 47,
+      "endLine": 64,
+      "signature": "async ( agent: SelectedAgent | undefined, { department }: { department?: string } = {}, ): Promise<SelectedAgent | null | undefined> =>",
+      "calls": [
+        {
+          "name": "get",
+          "edgeType": "call"
+        },
+        {
+          "name": "getNextBotForDepartment",
+          "edgeType": "call"
+        },
+        {
+          "name": "getNextBotAgent",
+          "edgeType": "call"
+        },
+        {
+          "name": "SelectedAgent",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "variable",
+      "name": "beforeNewRoom",
+      "exported": true,
+      "line": 54,
+      "endLine": 56,
+      "signature": "beforeNewRoom = makeFunction(",
+      "calls": [
+        {
+          "name": "IOmnichannelRoomInfo",
+          "edgeType": "type"
+        },
+        {
+          "name": "IOmnichannelRoomExtraData",
+          "edgeType": "type"
+        },
+        {
+          "name": "IOmnichannelRoom",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "variable",
+      "name": "onNewRoom",
+      "exported": true,
+      "line": 58,
+      "endLine": 88,
+      "signature": "onNewRoom = makeFunction(async (room: IOmnichannelRoom) =>",
+      "calls": [
+        {
+          "name": "all",
+          "edgeType": "call"
+        },
+        {
+          "name": "setLastChatById",
+          "edgeType": "call"
+        },
+        {
+          "name": "updateLastChatById",
+          "edgeType": "call"
+        },
+        {
+          "name": "get",
+          "edgeType": "call"
+        },
+        {
+          "name": "sendToCRM",
+          "edgeType": "call"
+        },
+        {
+          "name": "Date",
+          "edgeType": "new"
+        },
+        {
+          "name": "IOmnichannelRoom",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "variable",
+      "name": "afterTakeInquiry",
+      "exported": true,
+      "line": 90,
+      "endLine": 97,
+      "signature": "afterTakeInquiry = makeFunction( async (",
+      "calls": [
+        {
+          "name": "get",
+          "edgeType": "call"
+        },
+        {
+          "name": "sendToCRM",
+          "edgeType": "call"
+        },
+        {
+          "name": "InquiryWithAgentInfo",
+          "edgeType": "type"
+        },
+        {
+          "name": "IOmnichannelRoom",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "variable",
+      "name": "afterInquiryQueued",
+      "exported": true,
+      "line": 99,
+      "endLine": 101,
+      "signature": "afterInquiryQueued = makeFunction(async (_inquiry: ILivechatInquiryRecord) =>",
+      "calls": [
+        {
+          "name": "ILivechatInquiryRecord",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "variable",
+      "name": "afterRoomQueued",
+      "exported": true,
+      "line": 103,
+      "endLine": 109,
+      "signature": "afterRoomQueued = makeFunction((room: IOmnichannelRoom) =>",
+      "calls": [
+        {
+          "name": "get",
+          "edgeType": "call"
+        },
+        {
+          "name": "sendToCRM",
+          "edgeType": "call"
+        },
+        {
+          "name": "IOmnichannelRoom",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "variable",
+      "name": "beforeRouteChat",
+      "exported": true,
+      "line": 111,
+      "endLine": 115,
+      "signature": "beforeRouteChat = makeFunction( async (inquiry: ILivechatInquiryRecord, _agent?: SelectedAgent | null): Promise<ILivechatInquiryRecord | null | undefined> =>",
+      "calls": [
+        {
+          "name": "ILivechatInquiryRecord",
+          "edgeType": "type"
+        },
+        {
+          "name": "SelectedAgent",
+          "edgeType": "type"
+        }
+      ]
+    }
+  ],
+  "imports": [
+    {
+      "module": "@rocket.chat/core-typings",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/core-typings",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/models",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/patch-injection",
+      "resolved": "external"
+    },
+    {
+      "module": "./utils",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/app/livechat/server/lib/utils.ts"
+    },
+    {
+      "module": "../../../../server/lib/callbacks",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/server/lib/callbacks.ts"
+    },
+    {
+      "module": "../../../lib/server/lib/notifyListener",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/app/lib/server/lib/notifyListener.ts"
+    },
+    {
+      "module": "../../../settings/server",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/app/settings/server/index.ts"
+    },
+    {
+      "module": "../hooks/sendToCRM",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/app/livechat/server/hooks/sendToCRM.ts"
+    }
+  ]
+}

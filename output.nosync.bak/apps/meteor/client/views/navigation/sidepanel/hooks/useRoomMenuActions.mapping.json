@@ -1,0 +1,167 @@
+{
+  "sourcePath": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/client/views/navigation/sidepanel/hooks/useRoomMenuActions.ts",
+  "symbols": [
+    {
+      "type": "inner_function",
+      "name": "onClick",
+      "exported": false,
+      "qualifiedName": "useRoomMenuActions.onClick",
+      "line": 128,
+      "endLine": 128,
+      "signature": "() =>",
+      "calls": [
+        {
+          "name": "navigate",
+          "edgeType": "call"
+        },
+        {
+          "name": "LocationPathname",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "variable_function",
+      "name": "useRoomMenuActions",
+      "exported": true,
+      "line": 26,
+      "endLine": 145,
+      "signature": "({ rid, type, name, isUnread, cl, roomOpen, hideDefaultOptions, href, }: RoomMenuActionsProps): { title: string; items: GenericMenuItemProps[] }[] =>",
+      "calls": [
+        {
+          "name": "useTranslation",
+          "edgeType": "call"
+        },
+        {
+          "name": "useUserSubscription",
+          "edgeType": "call"
+        },
+        {
+          "name": "useRouter",
+          "edgeType": "call"
+        },
+        {
+          "name": "Boolean",
+          "edgeType": "call"
+        },
+        {
+          "name": "usePermission",
+          "edgeType": "call"
+        },
+        {
+          "name": "useSetting",
+          "edgeType": "call"
+        },
+        {
+          "name": "includes",
+          "edgeType": "call"
+        },
+        {
+          "name": "useHideRoomAction",
+          "edgeType": "call"
+        },
+        {
+          "name": "useToggleFavoriteAction",
+          "edgeType": "call"
+        },
+        {
+          "name": "useToggleReadAction",
+          "edgeType": "call"
+        },
+        {
+          "name": "useLeaveRoomAction",
+          "edgeType": "call"
+        },
+        {
+          "name": "useToggleNotificationAction",
+          "edgeType": "call"
+        },
+        {
+          "name": "useOmnichannelPrioritiesMenu",
+          "edgeType": "call"
+        },
+        {
+          "name": "useMemo",
+          "edgeType": "call"
+        },
+        {
+          "name": "filter",
+          "edgeType": "call"
+        },
+        {
+          "name": "navigate",
+          "edgeType": "call"
+        },
+        {
+          "name": "RoomMenuActionsProps",
+          "edgeType": "type"
+        },
+        {
+          "name": "GenericMenuItemProps",
+          "edgeType": "type"
+        },
+        {
+          "name": "LocationPathname",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "type",
+      "name": "RoomMenuActionsProps",
+      "line": 15,
+      "endLine": 24,
+      "signature": "type RoomMenuActionsProps ="
+    }
+  ],
+  "imports": [
+    {
+      "module": "@rocket.chat/core-typings",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/ui-client",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/ui-contexts",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/ui-contexts",
+      "resolved": "external"
+    },
+    {
+      "module": "react",
+      "resolved": "external"
+    },
+    {
+      "module": "react-i18next",
+      "resolved": "external"
+    },
+    {
+      "module": "../../../../hooks/menuActions/useLeaveRoom",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/client/hooks/menuActions/useLeaveRoom.tsx"
+    },
+    {
+      "module": "../../../../hooks/menuActions/useToggleFavoriteAction",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/client/hooks/menuActions/useToggleFavoriteAction.ts"
+    },
+    {
+      "module": "../../../../hooks/menuActions/useToggleNotificationsAction",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/client/hooks/menuActions/useToggleNotificationsAction.ts"
+    },
+    {
+      "module": "../../../../hooks/menuActions/useToggleReadAction",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/client/hooks/menuActions/useToggleReadAction.ts"
+    },
+    {
+      "module": "../../../../hooks/useHideRoomAction",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/client/hooks/useHideRoomAction.tsx"
+    },
+    {
+      "module": "../../../omnichannel/hooks/useOmnichannelPrioritiesMenu",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/client/views/omnichannel/hooks/useOmnichannelPrioritiesMenu.tsx"
+    }
+  ]
+}

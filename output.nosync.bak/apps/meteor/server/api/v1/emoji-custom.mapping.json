@@ -1,0 +1,111 @@
+{
+  "sourcePath": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/server/api/v1/emoji-custom.ts",
+  "symbols": [
+    {
+      "type": "function",
+      "name": "validateDateParam",
+      "exported": false,
+      "line": 52,
+      "endLine": 63,
+      "signature": "function validateDateParam(paramName: string, paramValue: string | undefined): Date | undefined",
+      "calls": [
+        {
+          "name": "isNaN",
+          "edgeType": "call"
+        },
+        {
+          "name": "getTime",
+          "edgeType": "call"
+        },
+        {
+          "name": "Date",
+          "edgeType": "new"
+        }
+      ]
+    },
+    {
+      "type": "type",
+      "name": "EmojiCustomCreateEndpoints",
+      "line": 302,
+      "endLine": 302,
+      "signature": "type EmojiCustomCreateEndpoints = ExtractRoutesFromAPI<typeof emojiCustomCreateEndpoints>;"
+    },
+    {
+      "type": "type",
+      "name": "EmojiCustomEndpoints",
+      "line": 304,
+      "endLine": 304,
+      "signature": "export type EmojiCustomEndpoints = EmojiCustomCreateEndpoints;"
+    }
+  ],
+  "imports": [
+    {
+      "module": "@rocket.chat/core-services",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/core-typings",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/models",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/rest-typings",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/string-helpers",
+      "resolved": "external"
+    },
+    {
+      "module": "meteor/meteor",
+      "resolved": "external"
+    },
+    {
+      "module": "mongodb",
+      "resolved": "external"
+    },
+    {
+      "module": "../../../app/emoji-custom/server/lib/insertOrUpdateEmoji",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/app/emoji-custom/server/lib/insertOrUpdateEmoji.ts"
+    },
+    {
+      "module": "../../../app/emoji-custom/server/lib/insertOrUpdateEmoji",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/app/emoji-custom/server/lib/insertOrUpdateEmoji.ts"
+    },
+    {
+      "module": "../../../app/emoji-custom/server/lib/uploadEmojiCustom",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/app/emoji-custom/server/lib/uploadEmojiCustom.ts"
+    },
+    {
+      "module": "../../../app/emoji-custom/server/methods/deleteEmojiCustom",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/app/emoji-custom/server/methods/deleteEmojiCustom.ts"
+    },
+    {
+      "module": "../../../app/settings/server",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/app/settings/server/index.ts"
+    },
+    {
+      "module": "../ApiClass",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/server/api/ApiClass.ts"
+    },
+    {
+      "module": "../api",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/server/api/api.ts"
+    },
+    {
+      "module": "../lib/emoji-custom",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/server/api/lib/emoji-custom.ts"
+    },
+    {
+      "module": "../lib/getPaginationItems",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/server/api/lib/getPaginationItems.ts"
+    },
+    {
+      "module": "../lib/getUploadFormData",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/server/api/lib/getUploadFormData.ts"
+    }
+  ]
+}

@@ -1,0 +1,1787 @@
+{
+  "sourcePath": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/server/bridges/slack/SlackAdapter.ts",
+  "symbols": [
+    {
+      "type": "class",
+      "name": "SlackAdapter",
+      "exported": true,
+      "line": 32,
+      "endLine": 1453,
+      "signature": "export default class SlackAdapter",
+      "calls": []
+    },
+    {
+      "type": "method",
+      "name": "connect",
+      "exported": true,
+      "qualifiedName": "SlackAdapter.connect",
+      "line": 49,
+      "endLine": 72,
+      "signature": "async connect({ apiToken, appCredential })",
+      "containerClass": "SlackAdapter",
+      "calls": [
+        {
+          "name": "connectApp",
+          "edgeType": "call"
+        },
+        {
+          "name": "connectLegacy",
+          "edgeType": "call"
+        },
+        {
+          "name": "info",
+          "edgeType": "call"
+        },
+        {
+          "name": "debug",
+          "edgeType": "call"
+        },
+        {
+          "name": "startup",
+          "edgeType": "call"
+        },
+        {
+          "name": "populateMembershipChannelMap",
+          "edgeType": "call"
+        },
+        {
+          "name": "error",
+          "edgeType": "call"
+        },
+        {
+          "name": "disconnect",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "connectApp",
+      "exported": true,
+      "qualifiedName": "SlackAdapter.connectApp",
+      "line": 61,
+      "endLine": 82,
+      "signature": "async connectApp(appCredential)",
+      "containerClass": "SlackAdapter",
+      "calls": [
+        {
+          "name": "verifyAppCredentials",
+          "edgeType": "call"
+        },
+        {
+          "name": "registerForEvents",
+          "edgeType": "call"
+        },
+        {
+          "name": "start",
+          "edgeType": "call"
+        },
+        {
+          "name": "SlackAPI",
+          "edgeType": "new"
+        },
+        {
+          "name": "SlackApp",
+          "edgeType": "new"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "connectLegacy",
+      "exported": true,
+      "qualifiedName": "SlackAdapter.connectLegacy",
+      "line": 70,
+      "endLine": 89,
+      "signature": "async connectLegacy(apiToken)",
+      "containerClass": "SlackAdapter",
+      "calls": [
+        {
+          "name": "verifyToken",
+          "edgeType": "call"
+        },
+        {
+          "name": "registerForEventsLegacy",
+          "edgeType": "call"
+        },
+        {
+          "name": "start",
+          "edgeType": "call"
+        },
+        {
+          "name": "SlackAPI",
+          "edgeType": "new"
+        },
+        {
+          "name": "RTMClient",
+          "edgeType": "new"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "disconnect",
+      "exported": true,
+      "qualifiedName": "SlackAdapter.disconnect",
+      "line": 77,
+      "endLine": 83,
+      "signature": "async disconnect()",
+      "containerClass": "SlackAdapter",
+      "calls": [
+        {
+          "name": "disconnect",
+          "edgeType": "call"
+        },
+        {
+          "name": "stop",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "setRocket",
+      "exported": true,
+      "qualifiedName": "SlackAdapter.setRocket",
+      "line": 81,
+      "endLine": 83,
+      "signature": "setRocket(rocket)",
+      "containerClass": "SlackAdapter",
+      "calls": []
+    },
+    {
+      "type": "method",
+      "name": "registerForEvents",
+      "exported": true,
+      "qualifiedName": "SlackAdapter.registerForEvents",
+      "line": 85,
+      "endLine": 192,
+      "signature": "registerForEvents()",
+      "containerClass": "SlackAdapter",
+      "calls": [
+        {
+          "name": "message",
+          "edgeType": "call"
+        },
+        {
+          "name": "debug",
+          "edgeType": "call"
+        },
+        {
+          "name": "onMessage",
+          "edgeType": "call"
+        },
+        {
+          "name": "error",
+          "edgeType": "call"
+        },
+        {
+          "name": "event",
+          "edgeType": "call"
+        },
+        {
+          "name": "onReactionAdded",
+          "edgeType": "call"
+        },
+        {
+          "name": "onReactionRemoved",
+          "edgeType": "call"
+        },
+        {
+          "name": "processMemberJoinChannel",
+          "edgeType": "call"
+        },
+        {
+          "name": "onChannelLeft",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "registerForEventsLegacy",
+      "exported": true,
+      "qualifiedName": "SlackAdapter.registerForEventsLegacy",
+      "line": 92,
+      "endLine": 346,
+      "signature": "registerForEventsLegacy()",
+      "containerClass": "SlackAdapter",
+      "calls": [
+        {
+          "name": "debug",
+          "edgeType": "call"
+        },
+        {
+          "name": "authenticated",
+          "edgeType": "event_listen"
+        },
+        {
+          "name": "info",
+          "edgeType": "call"
+        },
+        {
+          "name": "unable_to_rtm_start",
+          "edgeType": "event_listen"
+        },
+        {
+          "name": "disconnect",
+          "edgeType": "call"
+        },
+        {
+          "name": "disconnected",
+          "edgeType": "event_listen"
+        },
+        {
+          "name": "message",
+          "edgeType": "event_listen"
+        },
+        {
+          "name": "onMessage",
+          "edgeType": "call"
+        },
+        {
+          "name": "error",
+          "edgeType": "call"
+        },
+        {
+          "name": "reaction_added",
+          "edgeType": "event_listen"
+        },
+        {
+          "name": "onReactionAdded",
+          "edgeType": "call"
+        },
+        {
+          "name": "reaction_removed",
+          "edgeType": "event_listen"
+        },
+        {
+          "name": "onReactionRemoved",
+          "edgeType": "call"
+        },
+        {
+          "name": "channel_created",
+          "edgeType": "event_listen"
+        },
+        {
+          "name": "channel_joined",
+          "edgeType": "event_listen"
+        },
+        {
+          "name": "channel_left",
+          "edgeType": "event_listen"
+        },
+        {
+          "name": "onChannelLeft",
+          "edgeType": "call"
+        },
+        {
+          "name": "channel_deleted",
+          "edgeType": "event_listen"
+        },
+        {
+          "name": "channel_rename",
+          "edgeType": "event_listen"
+        },
+        {
+          "name": "group_joined",
+          "edgeType": "event_listen"
+        },
+        {
+          "name": "group_left",
+          "edgeType": "event_listen"
+        },
+        {
+          "name": "group_rename",
+          "edgeType": "event_listen"
+        },
+        {
+          "name": "team_join",
+          "edgeType": "event_listen"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "onReactionRemoved",
+      "exported": true,
+      "qualifiedName": "SlackAdapter.onReactionRemoved",
+      "line": 99,
+      "endLine": 137,
+      "signature": "async onReactionRemoved(slackReactionMsg)",
+      "containerClass": "SlackAdapter",
+      "calls": [
+        {
+          "name": "getUser",
+          "edgeType": "call"
+        },
+        {
+          "name": "findOneBySlackTs",
+          "edgeType": "call"
+        },
+        {
+          "name": "createRocketID",
+          "edgeType": "call"
+        },
+        {
+          "name": "findOneById",
+          "edgeType": "call"
+        },
+        {
+          "name": "includes",
+          "edgeType": "call"
+        },
+        {
+          "name": "indexOf",
+          "edgeType": "call"
+        },
+        {
+          "name": "set",
+          "edgeType": "call"
+        },
+        {
+          "name": "debug",
+          "edgeType": "call"
+        },
+        {
+          "name": "executeSetReaction",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "onReactionAdded",
+      "exported": true,
+      "qualifiedName": "SlackAdapter.onReactionAdded",
+      "line": 106,
+      "endLine": 145,
+      "signature": "async onReactionAdded(slackReactionMsg)",
+      "containerClass": "SlackAdapter",
+      "calls": [
+        {
+          "name": "getUser",
+          "edgeType": "call"
+        },
+        {
+          "name": "includes",
+          "edgeType": "call"
+        },
+        {
+          "name": "findOneBySlackTs",
+          "edgeType": "call"
+        },
+        {
+          "name": "createRocketID",
+          "edgeType": "call"
+        },
+        {
+          "name": "findOneById",
+          "edgeType": "call"
+        },
+        {
+          "name": "indexOf",
+          "edgeType": "call"
+        },
+        {
+          "name": "set",
+          "edgeType": "call"
+        },
+        {
+          "name": "debug",
+          "edgeType": "call"
+        },
+        {
+          "name": "executeSetReaction",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "onChannelLeft",
+      "exported": true,
+      "qualifiedName": "SlackAdapter.onChannelLeft",
+      "line": 110,
+      "endLine": 112,
+      "signature": "onChannelLeft(channelLeftMsg)",
+      "containerClass": "SlackAdapter",
+      "calls": [
+        {
+          "name": "removeSlackChannel",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "onMessage",
+      "exported": true,
+      "qualifiedName": "SlackAdapter.onMessage",
+      "line": 118,
+      "endLine": 143,
+      "signature": "async onMessage(slackMessage, isImporting)",
+      "containerClass": "SlackAdapter",
+      "calls": [
+        {
+          "name": "isArray",
+          "edgeType": "call"
+        },
+        {
+          "name": "processFileShare",
+          "edgeType": "call"
+        },
+        {
+          "name": "processMessageDeleted",
+          "edgeType": "call"
+        },
+        {
+          "name": "processMessageChanged",
+          "edgeType": "call"
+        },
+        {
+          "name": "processChannelJoin",
+          "edgeType": "call"
+        },
+        {
+          "name": "processNewMessage",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "postFindChannel",
+      "exported": true,
+      "qualifiedName": "SlackAdapter.postFindChannel",
+      "line": 122,
+      "endLine": 140,
+      "signature": "async postFindChannel(rocketChannelName)",
+      "containerClass": "SlackAdapter",
+      "calls": [
+        {
+          "name": "debug",
+          "edgeType": "call"
+        },
+        {
+          "name": "getChannels",
+          "edgeType": "call"
+        },
+        {
+          "name": "getGroups",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "getTimeStamp",
+      "exported": true,
+      "qualifiedName": "SlackAdapter.getTimeStamp",
+      "line": 132,
+      "endLine": 148,
+      "signature": "getTimeStamp(rocketMsg)",
+      "containerClass": "SlackAdapter",
+      "calls": [
+        {
+          "name": "indexOf",
+          "edgeType": "call"
+        },
+        {
+          "name": "substr",
+          "edgeType": "call"
+        },
+        {
+          "name": "replace",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "addSlackChannel",
+      "exported": true,
+      "qualifiedName": "SlackAdapter.addSlackChannel",
+      "line": 141,
+      "endLine": 150,
+      "signature": "addSlackChannel(rocketChID, slackChID)",
+      "containerClass": "SlackAdapter",
+      "calls": [
+        {
+          "name": "getSlackChannel",
+          "edgeType": "call"
+        },
+        {
+          "name": "debug",
+          "edgeType": "call"
+        },
+        {
+          "name": "set",
+          "edgeType": "call"
+        },
+        {
+          "name": "charAt",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "removeSlackChannel",
+      "exported": true,
+      "qualifiedName": "SlackAdapter.removeSlackChannel",
+      "line": 145,
+      "endLine": 157,
+      "signature": "removeSlackChannel(slackChID)",
+      "containerClass": "SlackAdapter",
+      "calls": [
+        {
+          "name": "keys",
+          "edgeType": "call"
+        },
+        {
+          "name": "next",
+          "edgeType": "call"
+        },
+        {
+          "name": "get",
+          "edgeType": "call"
+        },
+        {
+          "name": "delete",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "getSlackChannel",
+      "exported": true,
+      "qualifiedName": "SlackAdapter.getSlackChannel",
+      "line": 149,
+      "endLine": 151,
+      "signature": "getSlackChannel(rocketChID)",
+      "containerClass": "SlackAdapter",
+      "calls": [
+        {
+          "name": "get",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "populateMembershipChannelMapByChannels",
+      "exported": true,
+      "qualifiedName": "SlackAdapter.populateMembershipChannelMapByChannels",
+      "line": 153,
+      "endLine": 167,
+      "signature": "async populateMembershipChannelMapByChannels()",
+      "containerClass": "SlackAdapter",
+      "calls": [
+        {
+          "name": "getChannels",
+          "edgeType": "call"
+        },
+        {
+          "name": "findOneByName",
+          "edgeType": "call"
+        },
+        {
+          "name": "findOneByImportId",
+          "edgeType": "call"
+        },
+        {
+          "name": "addSlackChannel",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "populateMembershipChannelMapByGroups",
+      "exported": true,
+      "qualifiedName": "SlackAdapter.populateMembershipChannelMapByGroups",
+      "line": 157,
+      "endLine": 171,
+      "signature": "async populateMembershipChannelMapByGroups()",
+      "containerClass": "SlackAdapter",
+      "calls": [
+        {
+          "name": "getGroups",
+          "edgeType": "call"
+        },
+        {
+          "name": "findOneByName",
+          "edgeType": "call"
+        },
+        {
+          "name": "findOneByImportId",
+          "edgeType": "call"
+        },
+        {
+          "name": "addSlackChannel",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "populateMembershipChannelMap",
+      "exported": true,
+      "qualifiedName": "SlackAdapter.populateMembershipChannelMap",
+      "line": 161,
+      "endLine": 165,
+      "signature": "async populateMembershipChannelMap()",
+      "containerClass": "SlackAdapter",
+      "calls": [
+        {
+          "name": "debug",
+          "edgeType": "call"
+        },
+        {
+          "name": "populateMembershipChannelMapByChannels",
+          "edgeType": "call"
+        },
+        {
+          "name": "populateMembershipChannelMapByGroups",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "postReactionAdded",
+      "exported": true,
+      "qualifiedName": "SlackAdapter.postReactionAdded",
+      "line": 168,
+      "endLine": 182,
+      "signature": "async postReactionAdded(reaction, slackChannel, slackTS)",
+      "containerClass": "SlackAdapter",
+      "calls": [
+        {
+          "name": "debug",
+          "edgeType": "call"
+        },
+        {
+          "name": "react",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "postReactionRemove",
+      "exported": true,
+      "qualifiedName": "SlackAdapter.postReactionRemove",
+      "line": 175,
+      "endLine": 189,
+      "signature": "async postReactionRemove(reaction, slackChannel, slackTS)",
+      "containerClass": "SlackAdapter",
+      "calls": [
+        {
+          "name": "debug",
+          "edgeType": "call"
+        },
+        {
+          "name": "removeReaction",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "postDeleteMessage",
+      "exported": true,
+      "qualifiedName": "SlackAdapter.postDeleteMessage",
+      "line": 179,
+      "endLine": 197,
+      "signature": "async postDeleteMessage(rocketMessage)",
+      "containerClass": "SlackAdapter",
+      "calls": [
+        {
+          "name": "getSlackChannel",
+          "edgeType": "call"
+        },
+        {
+          "name": "getTimeStamp",
+          "edgeType": "call"
+        },
+        {
+          "name": "debug",
+          "edgeType": "call"
+        },
+        {
+          "name": "removeMessage",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "storeMessageBeingSent",
+      "exported": true,
+      "qualifiedName": "SlackAdapter.storeMessageBeingSent",
+      "line": 183,
+      "endLine": 185,
+      "signature": "storeMessageBeingSent(data)",
+      "containerClass": "SlackAdapter",
+      "calls": [
+        {
+          "name": "push",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "removeMessageBeingSent",
+      "exported": true,
+      "qualifiedName": "SlackAdapter.removeMessageBeingSent",
+      "line": 187,
+      "endLine": 192,
+      "signature": "removeMessageBeingSent(data)",
+      "containerClass": "SlackAdapter",
+      "calls": [
+        {
+          "name": "indexOf",
+          "edgeType": "call"
+        },
+        {
+          "name": "splice",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "isMessageBeingSent",
+      "exported": true,
+      "qualifiedName": "SlackAdapter.isMessageBeingSent",
+      "line": 191,
+      "endLine": 207,
+      "signature": "isMessageBeingSent(username, channel)",
+      "containerClass": "SlackAdapter",
+      "calls": [
+        {
+          "name": "some",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "createSlackMessageId",
+      "exported": true,
+      "qualifiedName": "SlackAdapter.createSlackMessageId",
+      "line": 195,
+      "endLine": 197,
+      "signature": "createSlackMessageId(ts, channelId)",
+      "containerClass": "SlackAdapter",
+      "calls": [
+        {
+          "name": "replace",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "postMessage",
+      "exported": true,
+      "qualifiedName": "SlackAdapter.postMessage",
+      "line": 199,
+      "endLine": 243,
+      "signature": "async postMessage(slackChannel, rocketMessage)",
+      "containerClass": "SlackAdapter",
+      "calls": [
+        {
+          "name": "getUserAvatarURL",
+          "edgeType": "call"
+        },
+        {
+          "name": "replace",
+          "edgeType": "call"
+        },
+        {
+          "name": "absoluteUrl",
+          "edgeType": "call"
+        },
+        {
+          "name": "findOneById",
+          "edgeType": "call"
+        },
+        {
+          "name": "debug",
+          "edgeType": "call"
+        },
+        {
+          "name": "storeMessageBeingSent",
+          "edgeType": "call"
+        },
+        {
+          "name": "sendMessage",
+          "edgeType": "call"
+        },
+        {
+          "name": "removeMessageBeingSent",
+          "edgeType": "call"
+        },
+        {
+          "name": "setSlackBotIdAndSlackTs",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "postMessageUpdate",
+      "exported": true,
+      "qualifiedName": "SlackAdapter.postMessageUpdate",
+      "line": 206,
+      "endLine": 220,
+      "signature": "async postMessageUpdate(slackChannel, rocketMessage)",
+      "containerClass": "SlackAdapter",
+      "calls": [
+        {
+          "name": "getTimeStamp",
+          "edgeType": "call"
+        },
+        {
+          "name": "debug",
+          "edgeType": "call"
+        },
+        {
+          "name": "updateMessage",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "processMemberJoinChannel",
+      "exported": true,
+      "qualifiedName": "SlackAdapter.processMemberJoinChannel",
+      "line": 210,
+      "endLine": 220,
+      "signature": "async processMemberJoinChannel(event, context)",
+      "containerClass": "SlackAdapter",
+      "calls": [
+        {
+          "name": "debug",
+          "edgeType": "call"
+        },
+        {
+          "name": "getChannel",
+          "edgeType": "call"
+        },
+        {
+          "name": "addSlackChannel",
+          "edgeType": "call"
+        },
+        {
+          "name": "getUser",
+          "edgeType": "call"
+        },
+        {
+          "name": "addUserToRoom",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "processChannelJoin",
+      "exported": true,
+      "qualifiedName": "SlackAdapter.processChannelJoin",
+      "line": 214,
+      "endLine": 220,
+      "signature": "async processChannelJoin(slackMessage)",
+      "containerClass": "SlackAdapter",
+      "calls": [
+        {
+          "name": "debug",
+          "edgeType": "call"
+        },
+        {
+          "name": "addChannel",
+          "edgeType": "call"
+        },
+        {
+          "name": "addSlackChannel",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "processFileShare",
+      "exported": true,
+      "qualifiedName": "SlackAdapter.processFileShare",
+      "line": 218,
+      "endLine": 247,
+      "signature": "async processFileShare(slackMessage)",
+      "containerClass": "SlackAdapter",
+      "calls": [
+        {
+          "name": "get",
+          "edgeType": "call"
+        },
+        {
+          "name": "getChannel",
+          "edgeType": "call"
+        },
+        {
+          "name": "getUser",
+          "edgeType": "call"
+        },
+        {
+          "name": "indexOf",
+          "edgeType": "call"
+        },
+        {
+          "name": "split",
+          "edgeType": "call"
+        },
+        {
+          "name": "createRocketID",
+          "edgeType": "call"
+        },
+        {
+          "name": "createAndSaveMessage",
+          "edgeType": "call"
+        },
+        {
+          "name": "Date",
+          "edgeType": "new"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "processMessageDeleted",
+      "exported": true,
+      "qualifiedName": "SlackAdapter.processMessageDeleted",
+      "line": 225,
+      "endLine": 249,
+      "signature": "async processMessageDeleted(slackMessage)",
+      "containerClass": "SlackAdapter",
+      "calls": [
+        {
+          "name": "getChannel",
+          "edgeType": "call"
+        },
+        {
+          "name": "findOneById",
+          "edgeType": "call"
+        },
+        {
+          "name": "findOneBySlackBotIdAndSlackTs",
+          "edgeType": "call"
+        },
+        {
+          "name": "createRocketID",
+          "edgeType": "call"
+        },
+        {
+          "name": "deleteMessage",
+          "edgeType": "call"
+        },
+        {
+          "name": "debug",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "processMessageChanged",
+      "exported": true,
+      "qualifiedName": "SlackAdapter.processMessageChanged",
+      "line": 232,
+      "endLine": 256,
+      "signature": "async processMessageChanged(slackMessage)",
+      "containerClass": "SlackAdapter",
+      "calls": [
+        {
+          "name": "findOneById",
+          "edgeType": "call"
+        },
+        {
+          "name": "createRocketID",
+          "edgeType": "call"
+        },
+        {
+          "name": "getChannel",
+          "edgeType": "call"
+        },
+        {
+          "name": "findUser",
+          "edgeType": "call"
+        },
+        {
+          "name": "addUser",
+          "edgeType": "call"
+        },
+        {
+          "name": "convertSlackMsgTxtToRocketTxtFormat",
+          "edgeType": "call"
+        },
+        {
+          "name": "updateMessage",
+          "edgeType": "call"
+        },
+        {
+          "name": "debug",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "processNewMessage",
+      "exported": true,
+      "qualifiedName": "SlackAdapter.processNewMessage",
+      "line": 239,
+      "endLine": 269,
+      "signature": "async processNewMessage(slackMessage, isImporting)",
+      "containerClass": "SlackAdapter",
+      "calls": [
+        {
+          "name": "getChannel",
+          "edgeType": "call"
+        },
+        {
+          "name": "findOneById",
+          "edgeType": "call"
+        },
+        {
+          "name": "findUser",
+          "edgeType": "call"
+        },
+        {
+          "name": "addUser",
+          "edgeType": "call"
+        },
+        {
+          "name": "createRocketID",
+          "edgeType": "call"
+        },
+        {
+          "name": "split",
+          "edgeType": "call"
+        },
+        {
+          "name": "createAndSaveMessage",
+          "edgeType": "call"
+        },
+        {
+          "name": "Date",
+          "edgeType": "new"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "processBotMessage",
+      "exported": true,
+      "qualifiedName": "SlackAdapter.processBotMessage",
+      "line": 243,
+      "endLine": 272,
+      "signature": "async processBotMessage(rocketChannel, slackMessage)",
+      "containerClass": "SlackAdapter",
+      "calls": [
+        {
+          "name": "get",
+          "edgeType": "call"
+        },
+        {
+          "name": "match",
+          "edgeType": "call"
+        },
+        {
+          "name": "getSlackChannel",
+          "edgeType": "call"
+        },
+        {
+          "name": "isMessageBeingSent",
+          "edgeType": "call"
+        },
+        {
+          "name": "convertSlackMsgTxtToRocketTxtFormat",
+          "edgeType": "call"
+        },
+        {
+          "name": "addAliasToMsg",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "processMeMessage",
+      "exported": true,
+      "qualifiedName": "SlackAdapter.processMeMessage",
+      "line": 247,
+      "endLine": 251,
+      "signature": "async processMeMessage(rocketUser, slackMessage)",
+      "containerClass": "SlackAdapter",
+      "calls": [
+        {
+          "name": "addAliasToMsg",
+          "edgeType": "call"
+        },
+        {
+          "name": "convertSlackMsgTxtToRocketTxtFormat",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "processChannelJoinMessage",
+      "exported": true,
+      "qualifiedName": "SlackAdapter.processChannelJoinMessage",
+      "line": 251,
+      "endLine": 260,
+      "signature": "async processChannelJoinMessage(rocketChannel, rocketUser, slackMessage, isImporting)",
+      "containerClass": "SlackAdapter",
+      "calls": [
+        {
+          "name": "saveSystemMessage",
+          "edgeType": "call"
+        },
+        {
+          "name": "split",
+          "edgeType": "call"
+        },
+        {
+          "name": "addUserToRoom",
+          "edgeType": "call"
+        },
+        {
+          "name": "Date",
+          "edgeType": "new"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "processGroupJoinMessage",
+      "exported": true,
+      "qualifiedName": "SlackAdapter.processGroupJoinMessage",
+      "line": 255,
+      "endLine": 269,
+      "signature": "async processGroupJoinMessage(rocketChannel, rocketUser, slackMessage, isImporting)",
+      "containerClass": "SlackAdapter",
+      "calls": [
+        {
+          "name": "findUser",
+          "edgeType": "call"
+        },
+        {
+          "name": "addUser",
+          "edgeType": "call"
+        },
+        {
+          "name": "saveSystemMessage",
+          "edgeType": "call"
+        },
+        {
+          "name": "split",
+          "edgeType": "call"
+        },
+        {
+          "name": "addUserToRoom",
+          "edgeType": "call"
+        },
+        {
+          "name": "Date",
+          "edgeType": "new"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "processLeaveMessage",
+      "exported": true,
+      "qualifiedName": "SlackAdapter.processLeaveMessage",
+      "line": 259,
+      "endLine": 268,
+      "signature": "async processLeaveMessage(rocketChannel, rocketUser, slackMessage, isImporting)",
+      "containerClass": "SlackAdapter",
+      "calls": [
+        {
+          "name": "saveSystemMessage",
+          "edgeType": "call"
+        },
+        {
+          "name": "split",
+          "edgeType": "call"
+        },
+        {
+          "name": "removeUserFromRoom",
+          "edgeType": "call"
+        },
+        {
+          "name": "Date",
+          "edgeType": "new"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "processTopicMessage",
+      "exported": true,
+      "qualifiedName": "SlackAdapter.processTopicMessage",
+      "line": 263,
+      "endLine": 272,
+      "signature": "async processTopicMessage(rocketChannel, rocketUser, slackMessage, isImporting)",
+      "containerClass": "SlackAdapter",
+      "calls": [
+        {
+          "name": "saveSystemMessage",
+          "edgeType": "call"
+        },
+        {
+          "name": "split",
+          "edgeType": "call"
+        },
+        {
+          "name": "saveRoomTopic",
+          "edgeType": "call"
+        },
+        {
+          "name": "Date",
+          "edgeType": "new"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "processPurposeMessage",
+      "exported": true,
+      "qualifiedName": "SlackAdapter.processPurposeMessage",
+      "line": 267,
+      "endLine": 276,
+      "signature": "async processPurposeMessage(rocketChannel, rocketUser, slackMessage, isImporting)",
+      "containerClass": "SlackAdapter",
+      "calls": [
+        {
+          "name": "saveSystemMessage",
+          "edgeType": "call"
+        },
+        {
+          "name": "split",
+          "edgeType": "call"
+        },
+        {
+          "name": "saveRoomTopic",
+          "edgeType": "call"
+        },
+        {
+          "name": "Date",
+          "edgeType": "new"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "processNameMessage",
+      "exported": true,
+      "qualifiedName": "SlackAdapter.processNameMessage",
+      "line": 271,
+      "endLine": 280,
+      "signature": "async processNameMessage(rocketChannel, rocketUser, slackMessage, isImporting)",
+      "containerClass": "SlackAdapter",
+      "calls": [
+        {
+          "name": "saveSystemMessage",
+          "edgeType": "call"
+        },
+        {
+          "name": "split",
+          "edgeType": "call"
+        },
+        {
+          "name": "saveRoomName",
+          "edgeType": "call"
+        },
+        {
+          "name": "Date",
+          "edgeType": "new"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "processShareMessage",
+      "exported": true,
+      "qualifiedName": "SlackAdapter.processShareMessage",
+      "line": 275,
+      "endLine": 293,
+      "signature": "async processShareMessage(rocketChannel, rocketUser, slackMessage, isImporting)",
+      "containerClass": "SlackAdapter",
+      "calls": [
+        {
+          "name": "createSlackMessageId",
+          "edgeType": "call"
+        },
+        {
+          "name": "uploadFileFromSlack",
+          "edgeType": "call"
+        },
+        {
+          "name": "split",
+          "edgeType": "call"
+        },
+        {
+          "name": "Date",
+          "edgeType": "new"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "processPinnedItemMessage",
+      "exported": true,
+      "qualifiedName": "SlackAdapter.processPinnedItemMessage",
+      "line": 279,
+      "endLine": 308,
+      "signature": "async processPinnedItemMessage(rocketChannel, rocketUser, slackMessage, isImporting)",
+      "containerClass": "SlackAdapter",
+      "calls": [
+        {
+          "name": "convertSlackMsgTxtToRocketTxtFormat",
+          "edgeType": "call"
+        },
+        {
+          "name": "getUserAvatarURL",
+          "edgeType": "call"
+        },
+        {
+          "name": "split",
+          "edgeType": "call"
+        },
+        {
+          "name": "createSlackMessageId",
+          "edgeType": "call"
+        },
+        {
+          "name": "setPinnedByIdAndUserId",
+          "edgeType": "call"
+        },
+        {
+          "name": "error",
+          "edgeType": "call"
+        },
+        {
+          "name": "Date",
+          "edgeType": "new"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "processSubtypedMessage",
+      "exported": true,
+      "qualifiedName": "SlackAdapter.processSubtypedMessage",
+      "line": 283,
+      "endLine": 330,
+      "signature": "async processSubtypedMessage(rocketChannel, rocketUser, slackMessage, isImporting)",
+      "containerClass": "SlackAdapter",
+      "calls": [
+        {
+          "name": "processBotMessage",
+          "edgeType": "call"
+        },
+        {
+          "name": "processMeMessage",
+          "edgeType": "call"
+        },
+        {
+          "name": "processChannelJoinMessage",
+          "edgeType": "call"
+        },
+        {
+          "name": "processGroupJoinMessage",
+          "edgeType": "call"
+        },
+        {
+          "name": "processLeaveMessage",
+          "edgeType": "call"
+        },
+        {
+          "name": "processTopicMessage",
+          "edgeType": "call"
+        },
+        {
+          "name": "processPurposeMessage",
+          "edgeType": "call"
+        },
+        {
+          "name": "processNameMessage",
+          "edgeType": "call"
+        },
+        {
+          "name": "archiveRoom",
+          "edgeType": "call"
+        },
+        {
+          "name": "unarchiveRoom",
+          "edgeType": "call"
+        },
+        {
+          "name": "processShareMessage",
+          "edgeType": "call"
+        },
+        {
+          "name": "error",
+          "edgeType": "call"
+        },
+        {
+          "name": "processPinnedItemMessage",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "uploadFileFromSlack",
+      "exported": true,
+      "qualifiedName": "SlackAdapter.uploadFileFromSlack",
+      "line": 296,
+      "endLine": 349,
+      "signature": "async uploadFileFromSlack(details, slackFileURL, rocketUser, rocketChannel, timeStamp, isImporting)",
+      "containerClass": "SlackAdapter",
+      "calls": [
+        {
+          "name": "test",
+          "edgeType": "call"
+        },
+        {
+          "name": "parse",
+          "edgeType": "call"
+        },
+        {
+          "name": "get",
+          "edgeType": "call"
+        },
+        {
+          "name": "getStore",
+          "edgeType": "call"
+        },
+        {
+          "name": "insert",
+          "edgeType": "call"
+        },
+        {
+          "name": "replace",
+          "edgeType": "call"
+        },
+        {
+          "name": "absoluteUrl",
+          "edgeType": "call"
+        },
+        {
+          "name": "sendMessage",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "importFromHistory",
+      "exported": true,
+      "qualifiedName": "SlackAdapter.importFromHistory",
+      "line": 300,
+      "endLine": 315,
+      "signature": "async importFromHistory(options)",
+      "containerClass": "SlackAdapter",
+      "calls": [
+        {
+          "name": "debug",
+          "edgeType": "call"
+        },
+        {
+          "name": "getHistory",
+          "edgeType": "call"
+        },
+        {
+          "name": "isArray",
+          "edgeType": "call"
+        },
+        {
+          "name": "reverse",
+          "edgeType": "call"
+        },
+        {
+          "name": "onMessage",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "copyChannelInfo",
+      "exported": true,
+      "qualifiedName": "SlackAdapter.copyChannelInfo",
+      "line": 304,
+      "endLine": 346,
+      "signature": "async copyChannelInfo(rid, channelMap)",
+      "containerClass": "SlackAdapter",
+      "calls": [
+        {
+          "name": "debug",
+          "edgeType": "call"
+        },
+        {
+          "name": "getRoomInfo",
+          "edgeType": "call"
+        },
+        {
+          "name": "getMembers",
+          "edgeType": "call"
+        },
+        {
+          "name": "isArray",
+          "edgeType": "call"
+        },
+        {
+          "name": "findUser",
+          "edgeType": "call"
+        },
+        {
+          "name": "addUser",
+          "edgeType": "call"
+        },
+        {
+          "name": "addUserToRoom",
+          "edgeType": "call"
+        },
+        {
+          "name": "saveRoomTopic",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "copyPins",
+      "exported": true,
+      "qualifiedName": "SlackAdapter.copyPins",
+      "line": 308,
+      "endLine": 338,
+      "signature": "async copyPins(rid, channelMap)",
+      "containerClass": "SlackAdapter",
+      "calls": [
+        {
+          "name": "getPins",
+          "edgeType": "call"
+        },
+        {
+          "name": "isArray",
+          "edgeType": "call"
+        },
+        {
+          "name": "findUser",
+          "edgeType": "call"
+        },
+        {
+          "name": "convertSlackMsgTxtToRocketTxtFormat",
+          "edgeType": "call"
+        },
+        {
+          "name": "getUserAvatarURL",
+          "edgeType": "call"
+        },
+        {
+          "name": "split",
+          "edgeType": "call"
+        },
+        {
+          "name": "createSlackMessageId",
+          "edgeType": "call"
+        },
+        {
+          "name": "setPinnedByIdAndUserId",
+          "edgeType": "call"
+        },
+        {
+          "name": "Date",
+          "edgeType": "new"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "importMessages",
+      "exported": true,
+      "qualifiedName": "SlackAdapter.importMessages",
+      "line": 312,
+      "endLine": 347,
+      "signature": "async importMessages(rid, callback)",
+      "containerClass": "SlackAdapter",
+      "calls": [
+        {
+          "name": "info",
+          "edgeType": "call"
+        },
+        {
+          "name": "findOneById",
+          "edgeType": "call"
+        },
+        {
+          "name": "getSlackChannel",
+          "edgeType": "call"
+        },
+        {
+          "name": "copyChannelInfo",
+          "edgeType": "call"
+        },
+        {
+          "name": "debug",
+          "edgeType": "call"
+        },
+        {
+          "name": "importFromHistory",
+          "edgeType": "call"
+        },
+        {
+          "name": "copyPins",
+          "edgeType": "call"
+        },
+        {
+          "name": "callback",
+          "edgeType": "call"
+        },
+        {
+          "name": "postFindChannel",
+          "edgeType": "call"
+        },
+        {
+          "name": "addSlackChannel",
+          "edgeType": "call"
+        },
+        {
+          "name": "importMessages",
+          "edgeType": "call"
+        },
+        {
+          "name": "error",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "constructor",
+      "exported": true,
+      "qualifiedName": "SlackAdapter.constructor",
+      "line": 33,
+      "endLine": 47,
+      "signature": "constructor(slackBridge)",
+      "containerClass": "SlackAdapter",
+      "calls": [
+        {
+          "name": "debug",
+          "edgeType": "call"
+        },
+        {
+          "name": "Map",
+          "edgeType": "new"
+        }
+      ]
+    }
+  ],
+  "imports": [
+    {
+      "module": "node:http",
+      "resolved": "external"
+    },
+    {
+      "module": "node:https",
+      "resolved": "external"
+    },
+    {
+      "module": "node:url",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/core-services",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/models",
+      "resolved": "external"
+    },
+    {
+      "module": "@slack/bolt",
+      "resolved": "external"
+    },
+    {
+      "module": "@slack/rtm-api",
+      "resolved": "external"
+    },
+    {
+      "module": "meteor/meteor",
+      "resolved": "external"
+    },
+    {
+      "module": "./SlackAPI",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/server/bridges/slack/SlackAPI.ts"
+    },
+    {
+      "module": "./logger",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/server/bridges/slack/logger.ts"
+    },
+    {
+      "module": "../../../app/channel-settings/server",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/app/channel-settings/server/index.ts"
+    },
+    {
+      "module": "../../../app/file-upload/server",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/app/file-upload/server/index.ts"
+    },
+    {
+      "module": "../../../app/reactions/server/setReaction",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/app/reactions/server/setReaction.ts"
+    },
+    {
+      "module": "../../../app/settings/server",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/app/settings/server/index.ts"
+    },
+    {
+      "module": "../../../app/utils/server/getUserAvatarURL",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/app/utils/server/getUserAvatarURL.ts"
+    },
+    {
+      "module": "../../lib/messages/deleteMessage",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/server/lib/messages/deleteMessage.ts"
+    },
+    {
+      "module": "../../lib/messages/sendMessage",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/server/lib/messages/sendMessage.ts"
+    },
+    {
+      "module": "../../lib/messages/updateMessage",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/server/lib/messages/updateMessage.ts"
+    },
+    {
+      "module": "../../lib/rooms/addUserToRoom",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/server/lib/rooms/addUserToRoom.ts"
+    },
+    {
+      "module": "../../lib/rooms/archiveRoom",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/server/lib/rooms/archiveRoom.ts"
+    },
+    {
+      "module": "../../lib/rooms/removeUserFromRoom",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/server/lib/rooms/removeUserFromRoom.ts"
+    },
+    {
+      "module": "../../lib/rooms/unarchiveRoom",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/server/lib/rooms/unarchiveRoom.ts"
+    }
+  ]
+}

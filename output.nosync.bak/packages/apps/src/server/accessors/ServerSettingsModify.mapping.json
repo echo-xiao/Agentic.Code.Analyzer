@@ -1,0 +1,121 @@
+{
+  "sourcePath": "/Users/echoooooo/Desktop/code/Rocket.Chat/packages/apps/src/server/accessors/ServerSettingsModify.ts",
+  "symbols": [
+    {
+      "type": "class",
+      "name": "ServerSettingsModify",
+      "exported": true,
+      "line": 6,
+      "endLine": 27,
+      "signature": "export class ServerSettingsModify implements IServerSettingsModify",
+      "calls": [
+        {
+          "name": "IServerSettingsModify",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "hideGroup",
+      "exported": true,
+      "qualifiedName": "ServerSettingsModify.hideGroup",
+      "line": 12,
+      "endLine": 14,
+      "signature": "public async hideGroup(name: string): Promise<void>",
+      "containerClass": "ServerSettingsModify",
+      "calls": [
+        {
+          "name": "doHideGroup",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "hideSetting",
+      "exported": true,
+      "qualifiedName": "ServerSettingsModify.hideSetting",
+      "line": 16,
+      "endLine": 18,
+      "signature": "public async hideSetting(id: string): Promise<void>",
+      "containerClass": "ServerSettingsModify",
+      "calls": [
+        {
+          "name": "doHideSetting",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "modifySetting",
+      "exported": true,
+      "qualifiedName": "ServerSettingsModify.modifySetting",
+      "line": 20,
+      "endLine": 22,
+      "signature": "public async modifySetting(setting: ISetting): Promise<void>",
+      "containerClass": "ServerSettingsModify",
+      "calls": [
+        {
+          "name": "doUpdateOne",
+          "edgeType": "call"
+        },
+        {
+          "name": "ISetting",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "incrementValue",
+      "exported": true,
+      "qualifiedName": "ServerSettingsModify.incrementValue",
+      "line": 24,
+      "endLine": 26,
+      "signature": "public async incrementValue(id: ISetting['id'], value = 1): Promise<void>",
+      "containerClass": "ServerSettingsModify",
+      "calls": [
+        {
+          "name": "doIncrementValue",
+          "edgeType": "call"
+        },
+        {
+          "name": "ISetting",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "constructor",
+      "exported": true,
+      "qualifiedName": "ServerSettingsModify.constructor",
+      "line": 7,
+      "endLine": 10,
+      "signature": "constructor( private readonly bridge: ServerSettingBridge, private readonly appId: string, )",
+      "containerClass": "ServerSettingsModify",
+      "calls": [
+        {
+          "name": "ServerSettingBridge",
+          "edgeType": "type"
+        }
+      ]
+    }
+  ],
+  "imports": [
+    {
+      "module": "@rocket.chat/apps-engine/definition/accessors",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/apps-engine/definition/settings",
+      "resolved": "external"
+    },
+    {
+      "module": "../bridges/ServerSettingBridge",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/packages/apps/src/server/bridges/ServerSettingBridge.ts"
+    }
+  ]
+}

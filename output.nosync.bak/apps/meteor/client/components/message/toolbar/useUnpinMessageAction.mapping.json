@@ -1,0 +1,73 @@
+{
+  "sourcePath": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/client/components/message/toolbar/useUnpinMessageAction.ts",
+  "symbols": [
+    {
+      "type": "variable_function",
+      "name": "useUnpinMessageAction",
+      "exported": true,
+      "line": 8,
+      "endLine": 33,
+      "signature": "( message: IMessage, { room, subscription }: { room: IRoom; subscription: ISubscription | undefined }, ): MessageActionConfig | null =>",
+      "calls": [
+        {
+          "name": "useSetting",
+          "edgeType": "call"
+        },
+        {
+          "name": "usePermission",
+          "edgeType": "call"
+        },
+        {
+          "name": "useUnpinMessageMutation",
+          "edgeType": "call"
+        },
+        {
+          "name": "isOmnichannelRoom",
+          "edgeType": "call"
+        },
+        {
+          "name": "unpinMessage",
+          "edgeType": "call"
+        },
+        {
+          "name": "IMessage",
+          "edgeType": "type"
+        },
+        {
+          "name": "IRoom",
+          "edgeType": "type"
+        },
+        {
+          "name": "ISubscription",
+          "edgeType": "type"
+        },
+        {
+          "name": "MessageActionConfig",
+          "edgeType": "type"
+        }
+      ]
+    }
+  ],
+  "imports": [
+    {
+      "module": "@rocket.chat/core-typings",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/core-typings",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/ui-contexts",
+      "resolved": "external"
+    },
+    {
+      "module": "../../../../app/ui-utils/client/lib/MessageAction",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/app/ui-utils/client/lib/MessageAction.ts"
+    },
+    {
+      "module": "../hooks/useUnpinMessageMutation",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/client/components/message/hooks/useUnpinMessageMutation.ts"
+    }
+  ]
+}

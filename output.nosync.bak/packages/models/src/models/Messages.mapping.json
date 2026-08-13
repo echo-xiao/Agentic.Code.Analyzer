@@ -1,0 +1,2761 @@
+{
+  "sourcePath": "/Users/echoooooo/Desktop/code/Rocket.Chat/packages/models/src/models/Messages.ts",
+  "symbols": [
+    {
+      "type": "class",
+      "name": "MessagesRaw",
+      "exported": true,
+      "line": 36,
+      "endLine": 1813,
+      "signature": "export class MessagesRaw extends BaseRaw<IMessage> implements IMessagesModel",
+      "calls": [
+        {
+          "name": "BaseRaw",
+          "edgeType": "type"
+        },
+        {
+          "name": "IMessagesModel",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "modelIndexes",
+      "exported": true,
+      "qualifiedName": "MessagesRaw.modelIndexes",
+      "line": 41,
+      "endLine": 79,
+      "signature": "protected override modelIndexes(): IndexDescription[]",
+      "containerClass": "MessagesRaw",
+      "calls": [
+        {
+          "name": "IndexDescription",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "findVisibleByMentionAndRoomId",
+      "exported": true,
+      "qualifiedName": "MessagesRaw.findVisibleByMentionAndRoomId",
+      "line": 45,
+      "endLine": 53,
+      "signature": "findVisibleByMentionAndRoomId(username: IUser['username'], rid: IRoom['_id'], options?: FindOptions<IMessage>): FindCursor<IMessage>",
+      "containerClass": "MessagesRaw",
+      "calls": [
+        {
+          "name": "find",
+          "edgeType": "call"
+        },
+        {
+          "name": "IUser",
+          "edgeType": "type"
+        },
+        {
+          "name": "IRoom",
+          "edgeType": "type"
+        },
+        {
+          "name": "FindOptions",
+          "edgeType": "type"
+        },
+        {
+          "name": "IMessage",
+          "edgeType": "type"
+        },
+        {
+          "name": "FindCursor",
+          "edgeType": "type"
+        },
+        {
+          "name": "Filter",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "findPaginatedVisibleByMentionAndRoomId",
+      "exported": true,
+      "qualifiedName": "MessagesRaw.findPaginatedVisibleByMentionAndRoomId",
+      "line": 49,
+      "endLine": 61,
+      "signature": "findPaginatedVisibleByMentionAndRoomId( username: IUser['username'], rid: IRoom['_id'], options?: FindOptions<IMessage>, ): FindPaginated<FindCursor<IMessage>>",
+      "containerClass": "MessagesRaw",
+      "calls": [
+        {
+          "name": "findPaginated",
+          "edgeType": "call"
+        },
+        {
+          "name": "IUser",
+          "edgeType": "type"
+        },
+        {
+          "name": "IRoom",
+          "edgeType": "type"
+        },
+        {
+          "name": "FindOptions",
+          "edgeType": "type"
+        },
+        {
+          "name": "IMessage",
+          "edgeType": "type"
+        },
+        {
+          "name": "FindPaginated",
+          "edgeType": "type"
+        },
+        {
+          "name": "FindCursor",
+          "edgeType": "type"
+        },
+        {
+          "name": "Filter",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "findStarredByUserAtRoom",
+      "exported": true,
+      "qualifiedName": "MessagesRaw.findStarredByUserAtRoom",
+      "line": 57,
+      "endLine": 69,
+      "signature": "findStarredByUserAtRoom( userId: IUser['_id'], roomId: IRoom['_id'], options?: FindOptions<IMessage>, ): FindPaginated<FindCursor<IMessage>>",
+      "containerClass": "MessagesRaw",
+      "calls": [
+        {
+          "name": "findPaginated",
+          "edgeType": "call"
+        },
+        {
+          "name": "IUser",
+          "edgeType": "type"
+        },
+        {
+          "name": "IRoom",
+          "edgeType": "type"
+        },
+        {
+          "name": "FindOptions",
+          "edgeType": "type"
+        },
+        {
+          "name": "IMessage",
+          "edgeType": "type"
+        },
+        {
+          "name": "FindPaginated",
+          "edgeType": "type"
+        },
+        {
+          "name": "FindCursor",
+          "edgeType": "type"
+        },
+        {
+          "name": "Filter",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "findPaginatedByRoomIdAndType",
+      "exported": true,
+      "qualifiedName": "MessagesRaw.findPaginatedByRoomIdAndType",
+      "line": 65,
+      "endLine": 76,
+      "signature": "findPaginatedByRoomIdAndType( roomId: IRoom['_id'], type: IMessage['t'], options: FindOptions<IMessage> = {}, ): FindPaginated<FindCursor<IMessage>>",
+      "containerClass": "MessagesRaw",
+      "calls": [
+        {
+          "name": "findPaginated",
+          "edgeType": "call"
+        },
+        {
+          "name": "IRoom",
+          "edgeType": "type"
+        },
+        {
+          "name": "IMessage",
+          "edgeType": "type"
+        },
+        {
+          "name": "FindOptions",
+          "edgeType": "type"
+        },
+        {
+          "name": "FindPaginated",
+          "edgeType": "type"
+        },
+        {
+          "name": "FindCursor",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "findDiscussionsByRoomAndText",
+      "exported": true,
+      "qualifiedName": "MessagesRaw.findDiscussionsByRoomAndText",
+      "line": 73,
+      "endLine": 81,
+      "signature": "findDiscussionsByRoomAndText(rid: IRoom['_id'], text: string, options?: FindOptions<IMessage>): FindPaginated<FindCursor<IMessage>>",
+      "containerClass": "MessagesRaw",
+      "calls": [
+        {
+          "name": "escapeRegExp",
+          "edgeType": "call"
+        },
+        {
+          "name": "findPaginated",
+          "edgeType": "call"
+        },
+        {
+          "name": "RegExp",
+          "edgeType": "new"
+        },
+        {
+          "name": "IRoom",
+          "edgeType": "type"
+        },
+        {
+          "name": "FindOptions",
+          "edgeType": "type"
+        },
+        {
+          "name": "IMessage",
+          "edgeType": "type"
+        },
+        {
+          "name": "FindPaginated",
+          "edgeType": "type"
+        },
+        {
+          "name": "FindCursor",
+          "edgeType": "type"
+        },
+        {
+          "name": "Filter",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "findAllNumberOfTransferredRooms",
+      "exported": true,
+      "qualifiedName": "MessagesRaw.findAllNumberOfTransferredRooms",
+      "line": 105,
+      "endLine": 178,
+      "signature": "findAllNumberOfTransferredRooms({ start, end, departmentId, onlyCount = false, options = {}, }: { start: Date; end: Date; departmentId?: ILivechatDepartment['_id']; onlyCount?: boolean; options?: PaginatedRequest; }): AggregationCursor<{ total: number }> | AggregationCursor<{ _id: string | null; numberOfTransferredRooms: number }>",
+      "containerClass": "MessagesRaw",
+      "calls": [
+        {
+          "name": "push",
+          "edgeType": "call"
+        },
+        {
+          "name": "aggregate",
+          "edgeType": "call"
+        },
+        {
+          "name": "readSecondaryPreferred",
+          "edgeType": "call"
+        },
+        {
+          "name": "Date",
+          "edgeType": "new"
+        },
+        {
+          "name": "ILivechatDepartment",
+          "edgeType": "type"
+        },
+        {
+          "name": "PaginatedRequest",
+          "edgeType": "type"
+        },
+        {
+          "name": "AggregationCursor",
+          "edgeType": "type"
+        },
+        {
+          "name": "Collection",
+          "edgeType": "type"
+        },
+        {
+          "name": "IMessage",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "getTotalOfMessagesSentByDate",
+      "exported": true,
+      "qualifiedName": "MessagesRaw.getTotalOfMessagesSentByDate",
+      "line": 121,
+      "endLine": 197,
+      "signature": "getTotalOfMessagesSentByDate({ start, end, options = {} }: { start: Date; end: Date; options?: PaginatedRequest }): Promise<any[]>",
+      "containerClass": "MessagesRaw",
+      "calls": [
+        {
+          "name": "push",
+          "edgeType": "call"
+        },
+        {
+          "name": "toArray",
+          "edgeType": "call"
+        },
+        {
+          "name": "aggregate",
+          "edgeType": "call"
+        },
+        {
+          "name": "readSecondaryPreferred",
+          "edgeType": "call"
+        },
+        {
+          "name": "PaginatedRequest",
+          "edgeType": "type"
+        },
+        {
+          "name": "Collection",
+          "edgeType": "type"
+        },
+        {
+          "name": "IMessage",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "findLivechatClosedMessages",
+      "exported": true,
+      "qualifiedName": "MessagesRaw.findLivechatClosedMessages",
+      "line": 125,
+      "endLine": 134,
+      "signature": "findLivechatClosedMessages(rid: IRoom['_id'], searchTerm?: string, options?: FindOptions<IMessage>): FindPaginated<FindCursor<IMessage>>",
+      "containerClass": "MessagesRaw",
+      "calls": [
+        {
+          "name": "findPaginated",
+          "edgeType": "call"
+        },
+        {
+          "name": "escapeRegExp",
+          "edgeType": "call"
+        },
+        {
+          "name": "RegExp",
+          "edgeType": "new"
+        },
+        {
+          "name": "IRoom",
+          "edgeType": "type"
+        },
+        {
+          "name": "FindOptions",
+          "edgeType": "type"
+        },
+        {
+          "name": "IMessage",
+          "edgeType": "type"
+        },
+        {
+          "name": "FindPaginated",
+          "edgeType": "type"
+        },
+        {
+          "name": "FindCursor",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "findLivechatClosingMessage",
+      "exported": true,
+      "qualifiedName": "MessagesRaw.findLivechatClosingMessage",
+      "line": 129,
+      "endLine": 137,
+      "signature": "findLivechatClosingMessage(rid: IRoom['_id'], options?: FindOptions<IMessage>): Promise<IMessage | null>",
+      "containerClass": "MessagesRaw",
+      "calls": [
+        {
+          "name": "findOne",
+          "edgeType": "call"
+        },
+        {
+          "name": "IRoom",
+          "edgeType": "type"
+        },
+        {
+          "name": "FindOptions",
+          "edgeType": "type"
+        },
+        {
+          "name": "IMessage",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "findVisibleByRoomIdNotContainingTypesBeforeTs",
+      "exported": true,
+      "qualifiedName": "MessagesRaw.findVisibleByRoomIdNotContainingTypesBeforeTs",
+      "line": 133,
+      "endLine": 168,
+      "signature": "findVisibleByRoomIdNotContainingTypesBeforeTs( roomId: IRoom['_id'], types: IMessage['t'][], ts: Date, showSystemMessages: boolean, options?: FindOptions<IMessage>, showThreadMessages = true, ): FindCursor<IMessage>",
+      "containerClass": "MessagesRaw",
+      "calls": [
+        {
+          "name": "find",
+          "edgeType": "call"
+        },
+        {
+          "name": "IRoom",
+          "edgeType": "type"
+        },
+        {
+          "name": "IMessage",
+          "edgeType": "type"
+        },
+        {
+          "name": "FindOptions",
+          "edgeType": "type"
+        },
+        {
+          "name": "FindCursor",
+          "edgeType": "type"
+        },
+        {
+          "name": "Filter",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "findLivechatMessagesWithoutTypes",
+      "exported": true,
+      "qualifiedName": "MessagesRaw.findLivechatMessagesWithoutTypes",
+      "line": 144,
+      "endLine": 163,
+      "signature": "findLivechatMessagesWithoutTypes( rid: IRoom['_id'], ignoredTypes: IMessage['t'][], showSystemMessages: boolean, options?: FindOptions<IMessage>, ): FindCursor<IMessage>",
+      "containerClass": "MessagesRaw",
+      "calls": [
+        {
+          "name": "find",
+          "edgeType": "call"
+        },
+        {
+          "name": "IRoom",
+          "edgeType": "type"
+        },
+        {
+          "name": "IMessage",
+          "edgeType": "type"
+        },
+        {
+          "name": "FindOptions",
+          "edgeType": "type"
+        },
+        {
+          "name": "FindCursor",
+          "edgeType": "type"
+        },
+        {
+          "name": "Filter",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "setBlocksById",
+      "exported": true,
+      "qualifiedName": "MessagesRaw.setBlocksById",
+      "line": 153,
+      "endLine": 162,
+      "signature": "async setBlocksById(_id: string, blocks: Required<IMessage>['blocks']): Promise<void>",
+      "containerClass": "MessagesRaw",
+      "calls": [
+        {
+          "name": "updateOne",
+          "edgeType": "call"
+        },
+        {
+          "name": "IMessage",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "countRoomsWithStarredMessages",
+      "exported": true,
+      "qualifiedName": "MessagesRaw.countRoomsWithStarredMessages",
+      "line": 157,
+      "endLine": 175,
+      "signature": "async countRoomsWithStarredMessages(options: AggregateOptions): Promise<number>",
+      "containerClass": "MessagesRaw",
+      "calls": [
+        {
+          "name": "next",
+          "edgeType": "call"
+        },
+        {
+          "name": "aggregate",
+          "edgeType": "call"
+        },
+        {
+          "name": "AggregateOptions",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "countRoomsWithMessageType",
+      "exported": true,
+      "qualifiedName": "MessagesRaw.countRoomsWithMessageType",
+      "line": 161,
+      "endLine": 179,
+      "signature": "async countRoomsWithMessageType(type: IMessage['t'], options: AggregateOptions): Promise<number>",
+      "containerClass": "MessagesRaw",
+      "calls": [
+        {
+          "name": "next",
+          "edgeType": "call"
+        },
+        {
+          "name": "aggregate",
+          "edgeType": "call"
+        },
+        {
+          "name": "IMessage",
+          "edgeType": "type"
+        },
+        {
+          "name": "AggregateOptions",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "countByType",
+      "exported": true,
+      "qualifiedName": "MessagesRaw.countByType",
+      "line": 165,
+      "endLine": 167,
+      "signature": "async countByType(type: IMessage['t'], options: CountDocumentsOptions): Promise<number>",
+      "containerClass": "MessagesRaw",
+      "calls": [
+        {
+          "name": "countDocuments",
+          "edgeType": "call"
+        },
+        {
+          "name": "IMessage",
+          "edgeType": "type"
+        },
+        {
+          "name": "CountDocumentsOptions",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "countRoomsWithPinnedMessages",
+      "exported": true,
+      "qualifiedName": "MessagesRaw.countRoomsWithPinnedMessages",
+      "line": 169,
+      "endLine": 187,
+      "signature": "async countRoomsWithPinnedMessages(options: AggregateOptions): Promise<number>",
+      "containerClass": "MessagesRaw",
+      "calls": [
+        {
+          "name": "next",
+          "edgeType": "call"
+        },
+        {
+          "name": "aggregate",
+          "edgeType": "call"
+        },
+        {
+          "name": "AggregateOptions",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "countPinned",
+      "exported": true,
+      "qualifiedName": "MessagesRaw.countPinned",
+      "line": 173,
+      "endLine": 181,
+      "signature": "countPinned(options?: CountDocumentsOptions): Promise<number>",
+      "containerClass": "MessagesRaw",
+      "calls": [
+        {
+          "name": "countDocuments",
+          "edgeType": "call"
+        },
+        {
+          "name": "CountDocumentsOptions",
+          "edgeType": "type"
+        },
+        {
+          "name": "Filter",
+          "edgeType": "type"
+        },
+        {
+          "name": "IMessage",
+          "edgeType": "type"
+        },
+        {
+          "name": "MessageTypesValues",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "findPaginatedPinnedByRoom",
+      "exported": true,
+      "qualifiedName": "MessagesRaw.findPaginatedPinnedByRoom",
+      "line": 177,
+      "endLine": 186,
+      "signature": "findPaginatedPinnedByRoom(roomId: IMessage['rid'], options?: FindOptions<IMessage>): FindPaginated<FindCursor<IMessage>>",
+      "containerClass": "MessagesRaw",
+      "calls": [
+        {
+          "name": "findPaginated",
+          "edgeType": "call"
+        },
+        {
+          "name": "IMessage",
+          "edgeType": "type"
+        },
+        {
+          "name": "FindOptions",
+          "edgeType": "type"
+        },
+        {
+          "name": "FindPaginated",
+          "edgeType": "type"
+        },
+        {
+          "name": "FindCursor",
+          "edgeType": "type"
+        },
+        {
+          "name": "Filter",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "countStarred",
+      "exported": true,
+      "qualifiedName": "MessagesRaw.countStarred",
+      "line": 181,
+      "endLine": 188,
+      "signature": "countStarred(options?: CountDocumentsOptions): Promise<number>",
+      "containerClass": "MessagesRaw",
+      "calls": [
+        {
+          "name": "countDocuments",
+          "edgeType": "call"
+        },
+        {
+          "name": "CountDocumentsOptions",
+          "edgeType": "type"
+        },
+        {
+          "name": "Filter",
+          "edgeType": "type"
+        },
+        {
+          "name": "IMessage",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "setFederationReactionEventId",
+      "exported": true,
+      "qualifiedName": "MessagesRaw.setFederationReactionEventId",
+      "line": 185,
+      "endLine": 194,
+      "signature": "async setFederationReactionEventId(username: string, _id: string, reaction: string, federationEventId: string): Promise<void>",
+      "containerClass": "MessagesRaw",
+      "calls": [
+        {
+          "name": "updateOne",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "unsetFederationReactionEventId",
+      "exported": true,
+      "qualifiedName": "MessagesRaw.unsetFederationReactionEventId",
+      "line": 189,
+      "endLine": 198,
+      "signature": "async unsetFederationReactionEventId(federationEventId: string, _id: string, reaction: string): Promise<void>",
+      "containerClass": "MessagesRaw",
+      "calls": [
+        {
+          "name": "updateOne",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "findOneByFederationId",
+      "exported": true,
+      "qualifiedName": "MessagesRaw.findOneByFederationId",
+      "line": 193,
+      "endLine": 195,
+      "signature": "async findOneByFederationId(federationEventId: string): Promise<IMessage | null>",
+      "containerClass": "MessagesRaw",
+      "calls": [
+        {
+          "name": "findOne",
+          "edgeType": "call"
+        },
+        {
+          "name": "IMessage",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "findLatestFederationThreadMessageByTmid",
+      "exported": true,
+      "qualifiedName": "MessagesRaw.findLatestFederationThreadMessageByTmid",
+      "line": 197,
+      "endLine": 208,
+      "signature": "async findLatestFederationThreadMessageByTmid(tmid: string, messageId: IMessage['_id']): Promise<IMessage | null>",
+      "containerClass": "MessagesRaw",
+      "calls": [
+        {
+          "name": "findOne",
+          "edgeType": "call"
+        },
+        {
+          "name": "IMessage",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "setFederationEventIdById",
+      "exported": true,
+      "qualifiedName": "MessagesRaw.setFederationEventIdById",
+      "line": 201,
+      "endLine": 210,
+      "signature": "async setFederationEventIdById(_id: string, federationEventId: string): Promise<void>",
+      "containerClass": "MessagesRaw",
+      "calls": [
+        {
+          "name": "updateOne",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "findOneByFederationIdAndUsernameOnReactions",
+      "exported": true,
+      "qualifiedName": "MessagesRaw.findOneByFederationIdAndUsernameOnReactions",
+      "line": 205,
+      "endLine": 240,
+      "signature": "async findOneByFederationIdAndUsernameOnReactions(federationEventId: string, username: string): Promise<IMessage | null>",
+      "containerClass": "MessagesRaw",
+      "calls": [
+        {
+          "name": "toArray",
+          "edgeType": "call"
+        },
+        {
+          "name": "aggregate",
+          "edgeType": "call"
+        },
+        {
+          "name": "readSecondaryPreferred",
+          "edgeType": "call"
+        },
+        {
+          "name": "IMessage",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "removeByRoomId",
+      "exported": true,
+      "qualifiedName": "MessagesRaw.removeByRoomId",
+      "line": 209,
+      "endLine": 211,
+      "signature": "removeByRoomId(roomId: string): Promise<DeleteResult>",
+      "containerClass": "MessagesRaw",
+      "calls": [
+        {
+          "name": "deleteMany",
+          "edgeType": "call"
+        },
+        {
+          "name": "DeleteResult",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "setReactions",
+      "exported": true,
+      "qualifiedName": "MessagesRaw.setReactions",
+      "line": 213,
+      "endLine": 215,
+      "signature": "setReactions(messageId: string, reactions: IMessage['reactions']): Promise<UpdateResult>",
+      "containerClass": "MessagesRaw",
+      "calls": [
+        {
+          "name": "updateOne",
+          "edgeType": "call"
+        },
+        {
+          "name": "IMessage",
+          "edgeType": "type"
+        },
+        {
+          "name": "UpdateResult",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "keepHistoryForToken",
+      "exported": true,
+      "qualifiedName": "MessagesRaw.keepHistoryForToken",
+      "line": 217,
+      "endLine": 231,
+      "signature": "keepHistoryForToken(token: string): Promise<UpdateResult | Document>",
+      "containerClass": "MessagesRaw",
+      "calls": [
+        {
+          "name": "updateMany",
+          "edgeType": "call"
+        },
+        {
+          "name": "UpdateResult",
+          "edgeType": "type"
+        },
+        {
+          "name": "Document",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "setRoomIdByToken",
+      "exported": true,
+      "qualifiedName": "MessagesRaw.setRoomIdByToken",
+      "line": 221,
+      "endLine": 234,
+      "signature": "setRoomIdByToken(token: string, rid: string): Promise<UpdateResult | Document>",
+      "containerClass": "MessagesRaw",
+      "calls": [
+        {
+          "name": "updateMany",
+          "edgeType": "call"
+        },
+        {
+          "name": "UpdateResult",
+          "edgeType": "type"
+        },
+        {
+          "name": "Document",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "unsetReactions",
+      "exported": true,
+      "qualifiedName": "MessagesRaw.unsetReactions",
+      "line": 225,
+      "endLine": 227,
+      "signature": "unsetReactions(messageId: string): Promise<UpdateResult>",
+      "containerClass": "MessagesRaw",
+      "calls": [
+        {
+          "name": "updateOne",
+          "edgeType": "call"
+        },
+        {
+          "name": "UpdateResult",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "addTranslations",
+      "exported": true,
+      "qualifiedName": "MessagesRaw.addTranslations",
+      "line": 229,
+      "endLine": 236,
+      "signature": "addTranslations(messageId: string, translations: Record<string, string>, providerName: string): Promise<UpdateResult>",
+      "containerClass": "MessagesRaw",
+      "calls": [
+        {
+          "name": "forEach",
+          "edgeType": "call"
+        },
+        {
+          "name": "keys",
+          "edgeType": "call"
+        },
+        {
+          "name": "updateOne",
+          "edgeType": "call"
+        },
+        {
+          "name": "UpdateResult",
+          "edgeType": "type"
+        },
+        {
+          "name": "DeepWritable",
+          "edgeType": "type"
+        },
+        {
+          "name": "UpdateFilter",
+          "edgeType": "type"
+        },
+        {
+          "name": "IMessage",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "addAttachmentTranslations",
+      "exported": true,
+      "qualifiedName": "MessagesRaw.addAttachmentTranslations",
+      "line": 233,
+      "endLine": 240,
+      "signature": "addAttachmentTranslations(messageId: string, attachmentIndex: string, translations: Record<string, string>): Promise<UpdateResult>",
+      "containerClass": "MessagesRaw",
+      "calls": [
+        {
+          "name": "forEach",
+          "edgeType": "call"
+        },
+        {
+          "name": "keys",
+          "edgeType": "call"
+        },
+        {
+          "name": "updateOne",
+          "edgeType": "call"
+        },
+        {
+          "name": "UpdateResult",
+          "edgeType": "type"
+        },
+        {
+          "name": "DeepWritable",
+          "edgeType": "type"
+        },
+        {
+          "name": "UpdateFilter",
+          "edgeType": "type"
+        },
+        {
+          "name": "IMessage",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "setImportFileRocketChatAttachment",
+      "exported": true,
+      "qualifiedName": "MessagesRaw.setImportFileRocketChatAttachment",
+      "line": 237,
+      "endLine": 255,
+      "signature": "setImportFileRocketChatAttachment( importFileId: string, rocketChatUrl: string, attachment: MessageAttachment, ): Promise<UpdateResult | Document>",
+      "containerClass": "MessagesRaw",
+      "calls": [
+        {
+          "name": "updateMany",
+          "edgeType": "call"
+        },
+        {
+          "name": "MessageAttachment",
+          "edgeType": "type"
+        },
+        {
+          "name": "UpdateResult",
+          "edgeType": "type"
+        },
+        {
+          "name": "Document",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "countVisibleByRoomIdBetweenTimestampsInclusive",
+      "exported": true,
+      "qualifiedName": "MessagesRaw.countVisibleByRoomIdBetweenTimestampsInclusive",
+      "line": 245,
+      "endLine": 258,
+      "signature": "countVisibleByRoomIdBetweenTimestampsInclusive(roomId: string, afterTimestamp: Date, beforeTimestamp: Date): Promise<number>",
+      "containerClass": "MessagesRaw",
+      "calls": [
+        {
+          "name": "countDocuments",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "findByMention",
+      "exported": true,
+      "qualifiedName": "MessagesRaw.findByMention",
+      "line": 250,
+      "endLine": 254,
+      "signature": "findByMention(username: string, options?: FindOptions<IMessage>): FindCursor<IMessage>",
+      "containerClass": "MessagesRaw",
+      "calls": [
+        {
+          "name": "find",
+          "edgeType": "call"
+        },
+        {
+          "name": "FindOptions",
+          "edgeType": "type"
+        },
+        {
+          "name": "IMessage",
+          "edgeType": "type"
+        },
+        {
+          "name": "FindCursor",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "findFilesByUserId",
+      "exported": true,
+      "qualifiedName": "MessagesRaw.findFilesByUserId",
+      "line": 254,
+      "endLine": 260,
+      "signature": "findFilesByUserId(userId: string, options: FindOptions<IMessage> = {}): FindCursor<Pick<IMessage, 'file' | 'files'>>",
+      "containerClass": "MessagesRaw",
+      "calls": [
+        {
+          "name": "find",
+          "edgeType": "call"
+        },
+        {
+          "name": "FindOptions",
+          "edgeType": "type"
+        },
+        {
+          "name": "IMessage",
+          "edgeType": "type"
+        },
+        {
+          "name": "FindCursor",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "findFilesByRoomIdPinnedTimestampAndUsers",
+      "exported": true,
+      "qualifiedName": "MessagesRaw.findFilesByRoomIdPinnedTimestampAndUsers",
+      "line": 258,
+      "endLine": 285,
+      "signature": "findFilesByRoomIdPinnedTimestampAndUsers( rid: string, excludePinned: boolean, ignoreDiscussion = true, ts: Filter<IMessage>['ts'], users: string[] = [], ignoreThreads = true, options: FindOptions<IMessage> = {}, ): FindCursor<IMessage>",
+      "containerClass": "MessagesRaw",
+      "calls": [
+        {
+          "name": "find",
+          "edgeType": "call"
+        },
+        {
+          "name": "Filter",
+          "edgeType": "type"
+        },
+        {
+          "name": "IMessage",
+          "edgeType": "type"
+        },
+        {
+          "name": "FindOptions",
+          "edgeType": "type"
+        },
+        {
+          "name": "FindCursor",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "findDiscussionByRoomIdPinnedTimestampAndUsers",
+      "exported": true,
+      "qualifiedName": "MessagesRaw.findDiscussionByRoomIdPinnedTimestampAndUsers",
+      "line": 270,
+      "endLine": 286,
+      "signature": "findDiscussionByRoomIdPinnedTimestampAndUsers( rid: string, excludePinned: boolean, ts: Filter<IMessage>['ts'], users: string[] = [], options: FindOptions<IMessage> = {}, ): FindCursor<IMessage>",
+      "containerClass": "MessagesRaw",
+      "calls": [
+        {
+          "name": "find",
+          "edgeType": "call"
+        },
+        {
+          "name": "Filter",
+          "edgeType": "type"
+        },
+        {
+          "name": "IMessage",
+          "edgeType": "type"
+        },
+        {
+          "name": "FindOptions",
+          "edgeType": "type"
+        },
+        {
+          "name": "FindCursor",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "findVisibleByRoomId",
+      "exported": true,
+      "qualifiedName": "MessagesRaw.findVisibleByRoomId",
+      "line": 280,
+      "endLine": 290,
+      "signature": "findVisibleByRoomId<T extends IMessage = IMessage>(rid: string, options?: FindOptions<T>): FindCursor<T>",
+      "containerClass": "MessagesRaw",
+      "calls": [
+        {
+          "name": "find",
+          "edgeType": "call"
+        },
+        {
+          "name": "IMessage",
+          "edgeType": "type"
+        },
+        {
+          "name": "FindOptions",
+          "edgeType": "type"
+        },
+        {
+          "name": "FindCursor",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "findVisibleByIds",
+      "exported": true,
+      "qualifiedName": "MessagesRaw.findVisibleByIds",
+      "line": 284,
+      "endLine": 293,
+      "signature": "findVisibleByIds(ids: string[], options?: FindOptions<IMessage>): FindCursor<IMessage>",
+      "containerClass": "MessagesRaw",
+      "calls": [
+        {
+          "name": "find",
+          "edgeType": "call"
+        },
+        {
+          "name": "FindOptions",
+          "edgeType": "type"
+        },
+        {
+          "name": "IMessage",
+          "edgeType": "type"
+        },
+        {
+          "name": "FindCursor",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "findVisibleThreadByThreadId",
+      "exported": true,
+      "qualifiedName": "MessagesRaw.findVisibleThreadByThreadId",
+      "line": 288,
+      "endLine": 298,
+      "signature": "findVisibleThreadByThreadId(tmid: string, options?: FindOptions<IMessage>): FindCursor<IMessage>",
+      "containerClass": "MessagesRaw",
+      "calls": [
+        {
+          "name": "find",
+          "edgeType": "call"
+        },
+        {
+          "name": "FindOptions",
+          "edgeType": "type"
+        },
+        {
+          "name": "IMessage",
+          "edgeType": "type"
+        },
+        {
+          "name": "FindCursor",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "findVisibleByRoomIdNotContainingTypes",
+      "exported": true,
+      "qualifiedName": "MessagesRaw.findVisibleByRoomIdNotContainingTypes",
+      "line": 292,
+      "endLine": 320,
+      "signature": "findVisibleByRoomIdNotContainingTypes( roomId: string, types: MessageTypesValues[], options?: FindOptions<IMessage>, showThreadMessages = true, ): FindCursor<IMessage>",
+      "containerClass": "MessagesRaw",
+      "calls": [
+        {
+          "name": "isArray",
+          "edgeType": "call"
+        },
+        {
+          "name": "find",
+          "edgeType": "call"
+        },
+        {
+          "name": "MessageTypesValues",
+          "edgeType": "type"
+        },
+        {
+          "name": "FindOptions",
+          "edgeType": "type"
+        },
+        {
+          "name": "IMessage",
+          "edgeType": "type"
+        },
+        {
+          "name": "FindCursor",
+          "edgeType": "type"
+        },
+        {
+          "name": "Filter",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "findVisibleByRoomIdAfterTimestamp",
+      "exported": true,
+      "qualifiedName": "MessagesRaw.findVisibleByRoomIdAfterTimestamp",
+      "line": 301,
+      "endLine": 328,
+      "signature": "findVisibleByRoomIdAfterTimestamp( roomId: string, timestamp: Date, showThreadMessages = true, options?: FindOptions<IMessage>, ): FindCursor<IMessage>",
+      "containerClass": "MessagesRaw",
+      "calls": [
+        {
+          "name": "find",
+          "edgeType": "call"
+        },
+        {
+          "name": "FindOptions",
+          "edgeType": "type"
+        },
+        {
+          "name": "IMessage",
+          "edgeType": "type"
+        },
+        {
+          "name": "FindCursor",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "findForUpdates",
+      "exported": true,
+      "qualifiedName": "MessagesRaw.findForUpdates",
+      "line": 310,
+      "endLine": 318,
+      "signature": "findForUpdates(roomId: IMessage['rid'], timestamp: { $lt: Date } | { $gt: Date }, options?: FindOptions<IMessage>): FindCursor<IMessage>",
+      "containerClass": "MessagesRaw",
+      "calls": [
+        {
+          "name": "find",
+          "edgeType": "call"
+        },
+        {
+          "name": "IMessage",
+          "edgeType": "type"
+        },
+        {
+          "name": "FindOptions",
+          "edgeType": "type"
+        },
+        {
+          "name": "FindCursor",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "findVisibleByRoomIdBeforeTimestamp",
+      "exported": true,
+      "qualifiedName": "MessagesRaw.findVisibleByRoomIdBeforeTimestamp",
+      "line": 314,
+      "endLine": 341,
+      "signature": "findVisibleByRoomIdBeforeTimestamp( roomId: string, timestamp: Date, showThreadMessages = true, options?: FindOptions<IMessage>, ): FindCursor<IMessage>",
+      "containerClass": "MessagesRaw",
+      "calls": [
+        {
+          "name": "find",
+          "edgeType": "call"
+        },
+        {
+          "name": "FindOptions",
+          "edgeType": "type"
+        },
+        {
+          "name": "IMessage",
+          "edgeType": "type"
+        },
+        {
+          "name": "FindCursor",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "findVisibleByRoomIdBeforeTimestampNotContainingTypes",
+      "exported": true,
+      "qualifiedName": "MessagesRaw.findVisibleByRoomIdBeforeTimestampNotContainingTypes",
+      "line": 323,
+      "endLine": 356,
+      "signature": "findVisibleByRoomIdBeforeTimestampNotContainingTypes( roomId: string, timestamp: Date, types: MessageTypesValues[], options?: FindOptions<IMessage>, showThreadMessages = true, inclusive = false, ): FindCursor<IMessage>",
+      "containerClass": "MessagesRaw",
+      "calls": [
+        {
+          "name": "isArray",
+          "edgeType": "call"
+        },
+        {
+          "name": "find",
+          "edgeType": "call"
+        },
+        {
+          "name": "MessageTypesValues",
+          "edgeType": "type"
+        },
+        {
+          "name": "FindOptions",
+          "edgeType": "type"
+        },
+        {
+          "name": "IMessage",
+          "edgeType": "type"
+        },
+        {
+          "name": "FindCursor",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "findVisibleByRoomIdBetweenTimestampsNotContainingTypes",
+      "exported": true,
+      "qualifiedName": "MessagesRaw.findVisibleByRoomIdBetweenTimestampsNotContainingTypes",
+      "line": 334,
+      "endLine": 369,
+      "signature": "findVisibleByRoomIdBetweenTimestampsNotContainingTypes( roomId: string, afterTimestamp: Date, beforeTimestamp: Date, types: MessageTypesValues[], options: FindOptions<IMessage> = {}, showThreadMessages = true, inclusive = false, ): FindCursor<IMessage>",
+      "containerClass": "MessagesRaw",
+      "calls": [
+        {
+          "name": "isArray",
+          "edgeType": "call"
+        },
+        {
+          "name": "find",
+          "edgeType": "call"
+        },
+        {
+          "name": "MessageTypesValues",
+          "edgeType": "type"
+        },
+        {
+          "name": "FindOptions",
+          "edgeType": "type"
+        },
+        {
+          "name": "IMessage",
+          "edgeType": "type"
+        },
+        {
+          "name": "FindCursor",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "countVisibleByRoomIdBetweenTimestampsNotContainingTypes",
+      "exported": true,
+      "qualifiedName": "MessagesRaw.countVisibleByRoomIdBetweenTimestampsNotContainingTypes",
+      "line": 346,
+      "endLine": 380,
+      "signature": "countVisibleByRoomIdBetweenTimestampsNotContainingTypes( roomId: string, afterTimestamp: Date, beforeTimestamp: Date, types: MessageTypesValues[], showThreadMessages = true, inclusive = false, ): Promise<number>",
+      "containerClass": "MessagesRaw",
+      "calls": [
+        {
+          "name": "isArray",
+          "edgeType": "call"
+        },
+        {
+          "name": "countDocuments",
+          "edgeType": "call"
+        },
+        {
+          "name": "MessageTypesValues",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "getLastTimestamp",
+      "exported": true,
+      "qualifiedName": "MessagesRaw.getLastTimestamp",
+      "line": 357,
+      "endLine": 362,
+      "signature": "async getLastTimestamp(options: FindOptions<IMessage> = { projection: { _id: 0, ts: 1 } }): Promise<Date | undefined>",
+      "containerClass": "MessagesRaw",
+      "calls": [
+        {
+          "name": "toArray",
+          "edgeType": "call"
+        },
+        {
+          "name": "find",
+          "edgeType": "call"
+        },
+        {
+          "name": "FindOptions",
+          "edgeType": "type"
+        },
+        {
+          "name": "IMessage",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "findByRoomIdAndMessageIds",
+      "exported": true,
+      "qualifiedName": "MessagesRaw.findByRoomIdAndMessageIds",
+      "line": 361,
+      "endLine": 370,
+      "signature": "findByRoomIdAndMessageIds(rid: string, messageIds: string[], options?: FindOptions<IMessage>): FindCursor<IMessage>",
+      "containerClass": "MessagesRaw",
+      "calls": [
+        {
+          "name": "find",
+          "edgeType": "call"
+        },
+        {
+          "name": "FindOptions",
+          "edgeType": "type"
+        },
+        {
+          "name": "IMessage",
+          "edgeType": "type"
+        },
+        {
+          "name": "FindCursor",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "findOneBySlackBotIdAndSlackTs",
+      "exported": true,
+      "qualifiedName": "MessagesRaw.findOneBySlackBotIdAndSlackTs",
+      "line": 365,
+      "endLine": 372,
+      "signature": "findOneBySlackBotIdAndSlackTs(slackBotId: string, slackTs: Date): Promise<IMessage | null>",
+      "containerClass": "MessagesRaw",
+      "calls": [
+        {
+          "name": "findOne",
+          "edgeType": "call"
+        },
+        {
+          "name": "IMessage",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "findOneBySlackTs",
+      "exported": true,
+      "qualifiedName": "MessagesRaw.findOneBySlackTs",
+      "line": 369,
+      "endLine": 373,
+      "signature": "findOneBySlackTs(slackTs: Date): Promise<IMessage | null>",
+      "containerClass": "MessagesRaw",
+      "calls": [
+        {
+          "name": "findOne",
+          "edgeType": "call"
+        },
+        {
+          "name": "IMessage",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "findOneByRoomIdAndMessageId",
+      "exported": true,
+      "qualifiedName": "MessagesRaw.findOneByRoomIdAndMessageId",
+      "line": 373,
+      "endLine": 380,
+      "signature": "findOneByRoomIdAndMessageId(rid: string, messageId: string, options?: FindOptions<IMessage>): Promise<IMessage | null>",
+      "containerClass": "MessagesRaw",
+      "calls": [
+        {
+          "name": "findOne",
+          "edgeType": "call"
+        },
+        {
+          "name": "FindOptions",
+          "edgeType": "type"
+        },
+        {
+          "name": "IMessage",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "getLastVisibleUserMessageSentByRoomId",
+      "exported": true,
+      "qualifiedName": "MessagesRaw.getLastVisibleUserMessageSentByRoomId",
+      "line": 377,
+      "endLine": 392,
+      "signature": "getLastVisibleUserMessageSentByRoomId(rid: string, messageId?: string): Promise<IMessage | null>",
+      "containerClass": "MessagesRaw",
+      "calls": [
+        {
+          "name": "findOne",
+          "edgeType": "call"
+        },
+        {
+          "name": "IMessage",
+          "edgeType": "type"
+        },
+        {
+          "name": "Filter",
+          "edgeType": "type"
+        },
+        {
+          "name": "FindOptions",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "cloneAndSaveAsHistoryByRecord",
+      "exported": true,
+      "qualifiedName": "MessagesRaw.cloneAndSaveAsHistoryByRecord",
+      "line": 381,
+      "endLine": 394,
+      "signature": "async cloneAndSaveAsHistoryByRecord(record: IMessage, user: IMessage['u']): Promise<InsertOneResult<IMessage>>",
+      "containerClass": "MessagesRaw",
+      "calls": [
+        {
+          "name": "insertOne",
+          "edgeType": "call"
+        },
+        {
+          "name": "Date",
+          "edgeType": "new"
+        },
+        {
+          "name": "IMessage",
+          "edgeType": "type"
+        },
+        {
+          "name": "InsertOneResult",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "cloneAndSaveAsHistoryById",
+      "exported": true,
+      "qualifiedName": "MessagesRaw.cloneAndSaveAsHistoryById",
+      "line": 385,
+      "endLine": 392,
+      "signature": "async cloneAndSaveAsHistoryById(_id: string, user: IMessage['u']): Promise<InsertOneResult<IMessage>>",
+      "containerClass": "MessagesRaw",
+      "calls": [
+        {
+          "name": "findOneById",
+          "edgeType": "call"
+        },
+        {
+          "name": "cloneAndSaveAsHistoryByRecord",
+          "edgeType": "call"
+        },
+        {
+          "name": "IMessage",
+          "edgeType": "type"
+        },
+        {
+          "name": "InsertOneResult",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "setHiddenById",
+      "exported": true,
+      "qualifiedName": "MessagesRaw.setHiddenById",
+      "line": 390,
+      "endLine": 403,
+      "signature": "setHiddenById(_id: string, hidden: boolean): Promise<UpdateResult>",
+      "containerClass": "MessagesRaw",
+      "calls": [
+        {
+          "name": "updateOne",
+          "edgeType": "call"
+        },
+        {
+          "name": "UpdateResult",
+          "edgeType": "type"
+        },
+        {
+          "name": "UpdateFilter",
+          "edgeType": "type"
+        },
+        {
+          "name": "IMessage",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "setHiddenByIds",
+      "exported": true,
+      "qualifiedName": "MessagesRaw.setHiddenByIds",
+      "line": 394,
+      "endLine": 407,
+      "signature": "setHiddenByIds(ids: string[], hidden: boolean): Promise<Document | UpdateResult>",
+      "containerClass": "MessagesRaw",
+      "calls": [
+        {
+          "name": "updateMany",
+          "edgeType": "call"
+        },
+        {
+          "name": "Document",
+          "edgeType": "type"
+        },
+        {
+          "name": "UpdateResult",
+          "edgeType": "type"
+        },
+        {
+          "name": "UpdateFilter",
+          "edgeType": "type"
+        },
+        {
+          "name": "IMessage",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "setAsDeletedByIdAndUser",
+      "exported": true,
+      "qualifiedName": "MessagesRaw.setAsDeletedByIdAndUser",
+      "line": 398,
+      "endLine": 423,
+      "signature": "setAsDeletedByIdAndUser(_id: string, user: IMessage['u']): Promise<UpdateResult>",
+      "containerClass": "MessagesRaw",
+      "calls": [
+        {
+          "name": "updateOne",
+          "edgeType": "call"
+        },
+        {
+          "name": "Date",
+          "edgeType": "new"
+        },
+        {
+          "name": "IMessage",
+          "edgeType": "type"
+        },
+        {
+          "name": "UpdateResult",
+          "edgeType": "type"
+        },
+        {
+          "name": "UpdateFilter",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "setAsDeletedByIdsAndUser",
+      "exported": true,
+      "qualifiedName": "MessagesRaw.setAsDeletedByIdsAndUser",
+      "line": 402,
+      "endLine": 427,
+      "signature": "setAsDeletedByIdsAndUser(ids: string[], user: IMessage['u']): Promise<Document | UpdateResult>",
+      "containerClass": "MessagesRaw",
+      "calls": [
+        {
+          "name": "updateMany",
+          "edgeType": "call"
+        },
+        {
+          "name": "Date",
+          "edgeType": "new"
+        },
+        {
+          "name": "IMessage",
+          "edgeType": "type"
+        },
+        {
+          "name": "Document",
+          "edgeType": "type"
+        },
+        {
+          "name": "UpdateResult",
+          "edgeType": "type"
+        },
+        {
+          "name": "UpdateFilter",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "setPinnedByIdAndUserId",
+      "exported": true,
+      "qualifiedName": "MessagesRaw.setPinnedByIdAndUserId",
+      "line": 406,
+      "endLine": 429,
+      "signature": "setPinnedByIdAndUserId( _id: string, pinnedBy: Pick<IUser, '_id' | 'username'> | undefined, pinned?: boolean, pinnedAt?: Date, ): Promise<UpdateResult>",
+      "containerClass": "MessagesRaw",
+      "calls": [
+        {
+          "name": "updateOne",
+          "edgeType": "call"
+        },
+        {
+          "name": "Date",
+          "edgeType": "new"
+        },
+        {
+          "name": "IUser",
+          "edgeType": "type"
+        },
+        {
+          "name": "UpdateResult",
+          "edgeType": "type"
+        },
+        {
+          "name": "UpdateFilter",
+          "edgeType": "type"
+        },
+        {
+          "name": "IMessage",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "setUrlsById",
+      "exported": true,
+      "qualifiedName": "MessagesRaw.setUrlsById",
+      "line": 415,
+      "endLine": 425,
+      "signature": "setUrlsById(_id: string, urls: NonNullable<IMessage['urls']>): Promise<UpdateResult>",
+      "containerClass": "MessagesRaw",
+      "calls": [
+        {
+          "name": "updateOne",
+          "edgeType": "call"
+        },
+        {
+          "name": "IMessage",
+          "edgeType": "type"
+        },
+        {
+          "name": "UpdateResult",
+          "edgeType": "type"
+        },
+        {
+          "name": "UpdateFilter",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "updateAllUsernamesByUserId",
+      "exported": true,
+      "qualifiedName": "MessagesRaw.updateAllUsernamesByUserId",
+      "line": 419,
+      "endLine": 429,
+      "signature": "updateAllUsernamesByUserId(userId: string, username: string): Promise<UpdateResult | Document>",
+      "containerClass": "MessagesRaw",
+      "calls": [
+        {
+          "name": "updateMany",
+          "edgeType": "call"
+        },
+        {
+          "name": "UpdateResult",
+          "edgeType": "type"
+        },
+        {
+          "name": "Document",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "updateUsernameOfEditByUserId",
+      "exported": true,
+      "qualifiedName": "MessagesRaw.updateUsernameOfEditByUserId",
+      "line": 423,
+      "endLine": 433,
+      "signature": "updateUsernameOfEditByUserId(userId: string, username: string): Promise<UpdateResult | Document>",
+      "containerClass": "MessagesRaw",
+      "calls": [
+        {
+          "name": "updateMany",
+          "edgeType": "call"
+        },
+        {
+          "name": "UpdateResult",
+          "edgeType": "type"
+        },
+        {
+          "name": "Document",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "updateUsernameAndMessageOfMentionByIdAndOldUsername",
+      "exported": true,
+      "qualifiedName": "MessagesRaw.updateUsernameAndMessageOfMentionByIdAndOldUsername",
+      "line": 427,
+      "endLine": 449,
+      "signature": "updateUsernameAndMessageOfMentionByIdAndOldUsername( _id: string, oldUsername: string, newUsername: string, newMessage: string, ): Promise<UpdateResult>",
+      "containerClass": "MessagesRaw",
+      "calls": [
+        {
+          "name": "updateOne",
+          "edgeType": "call"
+        },
+        {
+          "name": "UpdateResult",
+          "edgeType": "type"
+        },
+        {
+          "name": "UpdateFilter",
+          "edgeType": "type"
+        },
+        {
+          "name": "IMessage",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "updateUserStarById",
+      "exported": true,
+      "qualifiedName": "MessagesRaw.updateUserStarById",
+      "line": 436,
+      "endLine": 455,
+      "signature": "updateUserStarById(_id: string, userId: string, starred?: boolean): Promise<UpdateResult>",
+      "containerClass": "MessagesRaw",
+      "calls": [
+        {
+          "name": "updateOne",
+          "edgeType": "call"
+        },
+        {
+          "name": "UpdateResult",
+          "edgeType": "type"
+        },
+        {
+          "name": "UpdateFilter",
+          "edgeType": "type"
+        },
+        {
+          "name": "IMessage",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "setMessageAttachments",
+      "exported": true,
+      "qualifiedName": "MessagesRaw.setMessageAttachments",
+      "line": 440,
+      "endLine": 450,
+      "signature": "setMessageAttachments(_id: string, attachments: IMessage['attachments']): Promise<UpdateResult>",
+      "containerClass": "MessagesRaw",
+      "calls": [
+        {
+          "name": "updateOne",
+          "edgeType": "call"
+        },
+        {
+          "name": "IMessage",
+          "edgeType": "type"
+        },
+        {
+          "name": "UpdateResult",
+          "edgeType": "type"
+        },
+        {
+          "name": "UpdateFilter",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "setSlackBotIdAndSlackTs",
+      "exported": true,
+      "qualifiedName": "MessagesRaw.setSlackBotIdAndSlackTs",
+      "line": 444,
+      "endLine": 455,
+      "signature": "setSlackBotIdAndSlackTs(_id: string, slackBotId: string, slackTs: Date): Promise<UpdateResult>",
+      "containerClass": "MessagesRaw",
+      "calls": [
+        {
+          "name": "updateOne",
+          "edgeType": "call"
+        },
+        {
+          "name": "UpdateResult",
+          "edgeType": "type"
+        },
+        {
+          "name": "UpdateFilter",
+          "edgeType": "type"
+        },
+        {
+          "name": "IMessage",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "unlinkUserId",
+      "exported": true,
+      "qualifiedName": "MessagesRaw.unlinkUserId",
+      "line": 448,
+      "endLine": 463,
+      "signature": "unlinkUserId(userId: string, newUserId: string, newUsername: string, newNameAlias: string): Promise<UpdateResult | Document>",
+      "containerClass": "MessagesRaw",
+      "calls": [
+        {
+          "name": "updateMany",
+          "edgeType": "call"
+        },
+        {
+          "name": "UpdateResult",
+          "edgeType": "type"
+        },
+        {
+          "name": "Document",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "setReceiptsArchivedById",
+      "exported": true,
+      "qualifiedName": "MessagesRaw.setReceiptsArchivedById",
+      "line": 452,
+      "endLine": 463,
+      "signature": "setReceiptsArchivedById(ids: string[], archived: boolean): Promise<UpdateResult | Document>",
+      "containerClass": "MessagesRaw",
+      "calls": [
+        {
+          "name": "updateMany",
+          "edgeType": "call"
+        },
+        {
+          "name": "UpdateResult",
+          "edgeType": "type"
+        },
+        {
+          "name": "Document",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "createWithTypeRoomIdMessageUserAndUnread",
+      "exported": true,
+      "qualifiedName": "MessagesRaw.createWithTypeRoomIdMessageUserAndUnread",
+      "line": 458,
+      "endLine": 483,
+      "signature": "async createWithTypeRoomIdMessageUserAndUnread( type: MessageTypesValues, rid: string, message: string, user: Pick<IMessage['u'], '_id' | 'username' | 'name'>, unread?: boolean, extraData?: Partial<IMessage>, ): Promise<InsertOneResult<IMessage>>",
+      "containerClass": "MessagesRaw",
+      "calls": [
+        {
+          "name": "assign",
+          "edgeType": "call"
+        },
+        {
+          "name": "insertOne",
+          "edgeType": "call"
+        },
+        {
+          "name": "Date",
+          "edgeType": "new"
+        },
+        {
+          "name": "MessageTypesValues",
+          "edgeType": "type"
+        },
+        {
+          "name": "IMessage",
+          "edgeType": "type"
+        },
+        {
+          "name": "InsertOneResult",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "removeByRoomIds",
+      "exported": true,
+      "qualifiedName": "MessagesRaw.removeByRoomIds",
+      "line": 471,
+      "endLine": 473,
+      "signature": "removeByRoomIds(rids: string[]): Promise<DeleteResult>",
+      "containerClass": "MessagesRaw",
+      "calls": [
+        {
+          "name": "deleteMany",
+          "edgeType": "call"
+        },
+        {
+          "name": "DeleteResult",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "findThreadsByRoomIdPinnedTimestampAndUsers",
+      "exported": true,
+      "qualifiedName": "MessagesRaw.findThreadsByRoomIdPinnedTimestampAndUsers",
+      "line": 475,
+      "endLine": 502,
+      "signature": "findThreadsByRoomIdPinnedTimestampAndUsers( { rid, pinned, ignoreDiscussion = true, ts, users = [], }: { rid: string; pinned: boolean; ignoreDiscussion?: boolean; ts: Filter<IMessage>['ts']; users: string[] }, options?: FindOptions<IMessage>, ): FindCursor<IMessage>",
+      "containerClass": "MessagesRaw",
+      "calls": [
+        {
+          "name": "find",
+          "edgeType": "call"
+        },
+        {
+          "name": "Filter",
+          "edgeType": "type"
+        },
+        {
+          "name": "IMessage",
+          "edgeType": "type"
+        },
+        {
+          "name": "FindOptions",
+          "edgeType": "type"
+        },
+        {
+          "name": "FindCursor",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "findByIdPinnedTimestampLimitAndUsers",
+      "exported": true,
+      "qualifiedName": "MessagesRaw.findByIdPinnedTimestampLimitAndUsers",
+      "line": 488,
+      "endLine": 524,
+      "signature": "async findByIdPinnedTimestampLimitAndUsers( rid: string, ignorePinned: boolean, ignoreDiscussion = true, ts: Filter<IMessage>['ts'], limit: number, users: string[] = [], ignoreThreads = true, ): Promise<string[]>",
+      "containerClass": "MessagesRaw",
+      "calls": [
+        {
+          "name": "map",
+          "edgeType": "call"
+        },
+        {
+          "name": "toArray",
+          "edgeType": "call"
+        },
+        {
+          "name": "find",
+          "edgeType": "call"
+        },
+        {
+          "name": "Filter",
+          "edgeType": "type"
+        },
+        {
+          "name": "IMessage",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "removeByIdPinnedTimestampLimitAndUsers",
+      "exported": true,
+      "qualifiedName": "MessagesRaw.removeByIdPinnedTimestampLimitAndUsers",
+      "line": 500,
+      "endLine": 560,
+      "signature": "async removeByIdPinnedTimestampLimitAndUsers( rid: string, ignorePinned: boolean, ignoreDiscussion = true, ts: Filter<IMessage>['ts'], limit: number, users: string[] = [], ignoreThreads = true, selectedMessageIds: string[] = [], ): Promise<number>",
+      "containerClass": "MessagesRaw",
+      "calls": [
+        {
+          "name": "toArray",
+          "edgeType": "call"
+        },
+        {
+          "name": "find",
+          "edgeType": "call"
+        },
+        {
+          "name": "deleteMany",
+          "edgeType": "call"
+        },
+        {
+          "name": "Filter",
+          "edgeType": "type"
+        },
+        {
+          "name": "IMessage",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "removeByUserId",
+      "exported": true,
+      "qualifiedName": "MessagesRaw.removeByUserId",
+      "line": 513,
+      "endLine": 517,
+      "signature": "removeByUserId(userId: string): Promise<DeleteResult>",
+      "containerClass": "MessagesRaw",
+      "calls": [
+        {
+          "name": "deleteMany",
+          "edgeType": "call"
+        },
+        {
+          "name": "DeleteResult",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "getMessageByFileId",
+      "exported": true,
+      "qualifiedName": "MessagesRaw.getMessageByFileId",
+      "line": 517,
+      "endLine": 521,
+      "signature": "getMessageByFileId(fileID: string): Promise<IMessage | null>",
+      "containerClass": "MessagesRaw",
+      "calls": [
+        {
+          "name": "findOne",
+          "edgeType": "call"
+        },
+        {
+          "name": "IMessage",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "getMessageByFileIdAndUsername",
+      "exported": true,
+      "qualifiedName": "MessagesRaw.getMessageByFileIdAndUsername",
+      "line": 521,
+      "endLine": 537,
+      "signature": "getMessageByFileIdAndUsername(fileID: string, userId: string): Promise<IMessage | null>",
+      "containerClass": "MessagesRaw",
+      "calls": [
+        {
+          "name": "findOne",
+          "edgeType": "call"
+        },
+        {
+          "name": "IMessage",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "setVisibleMessagesAsRead",
+      "exported": true,
+      "qualifiedName": "MessagesRaw.setVisibleMessagesAsRead",
+      "line": 525,
+      "endLine": 546,
+      "signature": "setVisibleMessagesAsRead(rid: string, until: Date): Promise<UpdateResult | Document>",
+      "containerClass": "MessagesRaw",
+      "calls": [
+        {
+          "name": "updateMany",
+          "edgeType": "call"
+        },
+        {
+          "name": "UpdateResult",
+          "edgeType": "type"
+        },
+        {
+          "name": "Document",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "setThreadMessagesAsRead",
+      "exported": true,
+      "qualifiedName": "MessagesRaw.setThreadMessagesAsRead",
+      "line": 529,
+      "endLine": 543,
+      "signature": "setThreadMessagesAsRead(rid: string, tmid: string, until: Date): Promise<UpdateResult | Document>",
+      "containerClass": "MessagesRaw",
+      "calls": [
+        {
+          "name": "updateMany",
+          "edgeType": "call"
+        },
+        {
+          "name": "UpdateResult",
+          "edgeType": "type"
+        },
+        {
+          "name": "Document",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "setAsReadById",
+      "exported": true,
+      "qualifiedName": "MessagesRaw.setAsReadById",
+      "line": 533,
+      "endLine": 544,
+      "signature": "setAsReadById(_id: string): Promise<UpdateResult>",
+      "containerClass": "MessagesRaw",
+      "calls": [
+        {
+          "name": "updateOne",
+          "edgeType": "call"
+        },
+        {
+          "name": "UpdateResult",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "findVisibleUnreadMessagesByRoomAndDate",
+      "exported": true,
+      "qualifiedName": "MessagesRaw.findVisibleUnreadMessagesByRoomAndDate",
+      "line": 537,
+      "endLine": 561,
+      "signature": "findVisibleUnreadMessagesByRoomAndDate(rid: string, after: Date): FindCursor<Pick<IMessage, '_id' | 't' | 'pinned' | 'drid' | 'tmid'>>",
+      "containerClass": "MessagesRaw",
+      "calls": [
+        {
+          "name": "find",
+          "edgeType": "call"
+        },
+        {
+          "name": "FindCursor",
+          "edgeType": "type"
+        },
+        {
+          "name": "IMessage",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "findUnreadThreadMessagesByDate",
+      "exported": true,
+      "qualifiedName": "MessagesRaw.findUnreadThreadMessagesByDate",
+      "line": 541,
+      "endLine": 565,
+      "signature": "findUnreadThreadMessagesByDate( rid: string, tmid: string, userId: string, after: Date, ): FindCursor<Pick<IMessage, '_id' | 't' | 'pinned' | 'drid' | 'tmid'>>",
+      "containerClass": "MessagesRaw",
+      "calls": [
+        {
+          "name": "find",
+          "edgeType": "call"
+        },
+        {
+          "name": "FindCursor",
+          "edgeType": "type"
+        },
+        {
+          "name": "IMessage",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "refreshDiscussionMetadata",
+      "exported": true,
+      "qualifiedName": "MessagesRaw.refreshDiscussionMetadata",
+      "line": 557,
+      "endLine": 574,
+      "signature": "async refreshDiscussionMetadata(room: Pick<IRoom, '_id' | 'msgs' | 'lm'>): Promise<null | WithId<IMessage>>",
+      "containerClass": "MessagesRaw",
+      "calls": [
+        {
+          "name": "findOneAndUpdate",
+          "edgeType": "call"
+        },
+        {
+          "name": "IRoom",
+          "edgeType": "type"
+        },
+        {
+          "name": "WithId",
+          "edgeType": "type"
+        },
+        {
+          "name": "IMessage",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "countThreads",
+      "exported": true,
+      "qualifiedName": "MessagesRaw.countThreads",
+      "line": 564,
+      "endLine": 566,
+      "signature": "countThreads(): Promise<number>",
+      "containerClass": "MessagesRaw",
+      "calls": [
+        {
+          "name": "countDocuments",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "updateRepliesByThreadId",
+      "exported": true,
+      "qualifiedName": "MessagesRaw.updateRepliesByThreadId",
+      "line": 568,
+      "endLine": 588,
+      "signature": "updateRepliesByThreadId(tmid: string, replies: string[], ts: Date): Promise<UpdateResult>",
+      "containerClass": "MessagesRaw",
+      "calls": [
+        {
+          "name": "updateOne",
+          "edgeType": "call"
+        },
+        {
+          "name": "UpdateResult",
+          "edgeType": "type"
+        },
+        {
+          "name": "UpdateFilter",
+          "edgeType": "type"
+        },
+        {
+          "name": "IMessage",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "getThreadFollowsByThreadId",
+      "exported": true,
+      "qualifiedName": "MessagesRaw.getThreadFollowsByThreadId",
+      "line": 572,
+      "endLine": 575,
+      "signature": "async getThreadFollowsByThreadId(tmid: string): Promise<string[] | undefined>",
+      "containerClass": "MessagesRaw",
+      "calls": [
+        {
+          "name": "findOneById",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "addThreadFollowerByThreadId",
+      "exported": true,
+      "qualifiedName": "MessagesRaw.addThreadFollowerByThreadId",
+      "line": 576,
+      "endLine": 588,
+      "signature": "addThreadFollowerByThreadId(tmid: string, userId: string): Promise<UpdateResult>",
+      "containerClass": "MessagesRaw",
+      "calls": [
+        {
+          "name": "updateOne",
+          "edgeType": "call"
+        },
+        {
+          "name": "UpdateResult",
+          "edgeType": "type"
+        },
+        {
+          "name": "UpdateFilter",
+          "edgeType": "type"
+        },
+        {
+          "name": "IMessage",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "removeThreadFollowerByThreadId",
+      "exported": true,
+      "qualifiedName": "MessagesRaw.removeThreadFollowerByThreadId",
+      "line": 580,
+      "endLine": 592,
+      "signature": "removeThreadFollowerByThreadId(tmid: string, userId: string): Promise<UpdateResult>",
+      "containerClass": "MessagesRaw",
+      "calls": [
+        {
+          "name": "updateOne",
+          "edgeType": "call"
+        },
+        {
+          "name": "UpdateResult",
+          "edgeType": "type"
+        },
+        {
+          "name": "UpdateFilter",
+          "edgeType": "type"
+        },
+        {
+          "name": "IMessage",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "findThreadsByRoomId",
+      "exported": true,
+      "qualifiedName": "MessagesRaw.findThreadsByRoomId",
+      "line": 584,
+      "endLine": 586,
+      "signature": "findThreadsByRoomId(rid: string, skip: number, limit: number): FindCursor<IMessage>",
+      "containerClass": "MessagesRaw",
+      "calls": [
+        {
+          "name": "find",
+          "edgeType": "call"
+        },
+        {
+          "name": "FindCursor",
+          "edgeType": "type"
+        },
+        {
+          "name": "IMessage",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "findAgentLastMessageByVisitorLastMessageTs",
+      "exported": true,
+      "qualifiedName": "MessagesRaw.findAgentLastMessageByVisitorLastMessageTs",
+      "line": 588,
+      "endLine": 596,
+      "signature": "findAgentLastMessageByVisitorLastMessageTs(roomId: string, visitorLastMessageTs: Date): Promise<IMessage | null>",
+      "containerClass": "MessagesRaw",
+      "calls": [
+        {
+          "name": "findOne",
+          "edgeType": "call"
+        },
+        {
+          "name": "IMessage",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "findAllImportedMessagesWithFilesToDownload",
+      "exported": true,
+      "qualifiedName": "MessagesRaw.findAllImportedMessagesWithFilesToDownload",
+      "line": 592,
+      "endLine": 609,
+      "signature": "findAllImportedMessagesWithFilesToDownload(): FindCursor<IMessageWithPendingFileImport>",
+      "containerClass": "MessagesRaw",
+      "calls": [
+        {
+          "name": "find",
+          "edgeType": "call"
+        },
+        {
+          "name": "FindCursor",
+          "edgeType": "type"
+        },
+        {
+          "name": "IMessageWithPendingFileImport",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "countAllImportedMessagesWithFilesToDownload",
+      "exported": true,
+      "qualifiedName": "MessagesRaw.countAllImportedMessagesWithFilesToDownload",
+      "line": 596,
+      "endLine": 613,
+      "signature": "countAllImportedMessagesWithFilesToDownload(): Promise<number>",
+      "containerClass": "MessagesRaw",
+      "calls": [
+        {
+          "name": "countDocuments",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "decreaseReplyCountById",
+      "exported": true,
+      "qualifiedName": "MessagesRaw.decreaseReplyCountById",
+      "line": 600,
+      "endLine": 608,
+      "signature": "decreaseReplyCountById(_id: string, inc = -1): Promise<IMessage | null>",
+      "containerClass": "MessagesRaw",
+      "calls": [
+        {
+          "name": "findOneAndUpdate",
+          "edgeType": "call"
+        },
+        {
+          "name": "IMessage",
+          "edgeType": "type"
+        },
+        {
+          "name": "UpdateFilter",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "removeFileAttachmentsByMessageIds",
+      "exported": true,
+      "qualifiedName": "MessagesRaw.removeFileAttachmentsByMessageIds",
+      "line": 604,
+      "endLine": 633,
+      "signature": "removeFileAttachmentsByMessageIds(_ids: string[], replaceWith?: MessageAttachment)",
+      "containerClass": "MessagesRaw",
+      "calls": [
+        {
+          "name": "resolve",
+          "edgeType": "call"
+        },
+        {
+          "name": "updateMany",
+          "edgeType": "call"
+        },
+        {
+          "name": "MessageAttachment",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "clearFilesByMessageIds",
+      "exported": true,
+      "qualifiedName": "MessagesRaw.clearFilesByMessageIds",
+      "line": 608,
+      "endLine": 619,
+      "signature": "clearFilesByMessageIds(_ids: string[])",
+      "containerClass": "MessagesRaw",
+      "calls": [
+        {
+          "name": "resolve",
+          "edgeType": "call"
+        },
+        {
+          "name": "updateMany",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "constructor",
+      "exported": true,
+      "qualifiedName": "MessagesRaw.constructor",
+      "line": 37,
+      "endLine": 39,
+      "signature": "constructor(db: Db, trash?: Collection<RocketChatRecordDeleted<IMessage>>)",
+      "containerClass": "MessagesRaw",
+      "calls": [
+        {
+          "name": "Db",
+          "edgeType": "type"
+        },
+        {
+          "name": "Collection",
+          "edgeType": "type"
+        },
+        {
+          "name": "RocketChatRecordDeleted",
+          "edgeType": "type"
+        },
+        {
+          "name": "IMessage",
+          "edgeType": "type"
+        }
+      ]
+    }
+  ],
+  "imports": [
+    {
+      "module": "@rocket.chat/core-typings",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/model-typings",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/rest-typings",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/string-helpers",
+      "resolved": "external"
+    },
+    {
+      "module": "mongodb",
+      "resolved": "external"
+    },
+    {
+      "module": "./BaseRaw",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/packages/models/src/models/BaseRaw.ts"
+    },
+    {
+      "module": "../readSecondaryPreferred",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/packages/models/src/readSecondaryPreferred.ts"
+    }
+  ]
+}

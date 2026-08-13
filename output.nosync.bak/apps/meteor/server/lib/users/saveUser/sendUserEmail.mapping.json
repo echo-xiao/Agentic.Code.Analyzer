@@ -1,0 +1,115 @@
+{
+  "sourcePath": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/server/lib/users/saveUser/sendUserEmail.ts",
+  "symbols": [
+    {
+      "type": "module",
+      "name": "sendUserEmail",
+      "exported": false,
+      "line": 1,
+      "endLine": 56,
+      "signature": "sendUserEmail",
+      "calls": [
+        {
+          "name": "startup",
+          "edgeType": "call"
+        },
+        {
+          "name": "getTemplate",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "function",
+      "name": "sendUserEmail",
+      "exported": true,
+      "line": 20,
+      "endLine": 47,
+      "signature": "export async function sendUserEmail(subject: string, html: string, userData: SaveUserData): Promise<void>",
+      "calls": [
+        {
+          "name": "get",
+          "edgeType": "call"
+        },
+        {
+          "name": "send",
+          "edgeType": "call"
+        },
+        {
+          "name": "MeteorError",
+          "edgeType": "new"
+        },
+        {
+          "name": "SaveUserData",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "function",
+      "name": "sendWelcomeEmail",
+      "exported": true,
+      "line": 24,
+      "endLine": 26,
+      "signature": "export async function sendWelcomeEmail(userData: Pick<SaveUserData, 'email' | 'name' | 'password'>)",
+      "calls": [
+        {
+          "name": "sendUserEmail",
+          "edgeType": "call"
+        },
+        {
+          "name": "get",
+          "edgeType": "call"
+        },
+        {
+          "name": "SaveUserData",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "function",
+      "name": "sendPasswordEmail",
+      "exported": true,
+      "line": 28,
+      "endLine": 30,
+      "signature": "export async function sendPasswordEmail(userData: Pick<SaveUserData, 'email' | 'name' | 'password'>)",
+      "calls": [
+        {
+          "name": "sendUserEmail",
+          "edgeType": "call"
+        },
+        {
+          "name": "get",
+          "edgeType": "call"
+        },
+        {
+          "name": "SaveUserData",
+          "edgeType": "type"
+        }
+      ]
+    }
+  ],
+  "imports": [
+    {
+      "module": "@rocket.chat/core-services",
+      "resolved": "external"
+    },
+    {
+      "module": "meteor/meteor",
+      "resolved": "external"
+    },
+    {
+      "module": "./saveUser",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/server/lib/users/saveUser/saveUser.ts"
+    },
+    {
+      "module": "../../../../app/mailer/server/api",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/app/mailer/server/api.ts"
+    },
+    {
+      "module": "../../../../app/settings/server",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/app/settings/server/index.ts"
+    }
+  ]
+}

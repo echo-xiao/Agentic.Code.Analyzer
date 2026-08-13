@@ -1,0 +1,217 @@
+{
+  "sourcePath": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/client/views/admin/ABAC/ABACRoomsTab/RoomsContextualBar.tsx",
+  "symbols": [
+    {
+      "type": "inner_function",
+      "name": "onSuccess",
+      "exported": false,
+      "qualifiedName": "RoomsContextualBar.onSuccess",
+      "line": 56,
+      "endLine": 63,
+      "signature": "() =>",
+      "calls": [
+        {
+          "name": "dispatchToastMessage",
+          "edgeType": "call"
+        },
+        {
+          "name": "onClose",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "inner_function",
+      "name": "onError",
+      "exported": false,
+      "qualifiedName": "RoomsContextualBar.onError",
+      "line": 64,
+      "endLine": 66,
+      "signature": "(error) =>",
+      "calls": [
+        {
+          "name": "dispatchToastMessage",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "inner_function",
+      "name": "onSettled",
+      "exported": false,
+      "qualifiedName": "RoomsContextualBar.onSettled",
+      "line": 67,
+      "endLine": 69,
+      "signature": "() =>",
+      "calls": [
+        {
+          "name": "invalidateQueries",
+          "edgeType": "call"
+        },
+        {
+          "name": "list",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "variable_function",
+      "name": "RoomsContextualBar",
+      "exported": false,
+      "line": 21,
+      "endLine": 89,
+      "signature": "({ roomInfo, attributesData, redacted = false, onClose }: RoomsContextualBarProps) =>",
+      "calls": [
+        {
+          "name": "useTranslation",
+          "edgeType": "call"
+        },
+        {
+          "name": "useQueryClient",
+          "edgeType": "call"
+        },
+        {
+          "name": "useForm",
+          "edgeType": "call"
+        },
+        {
+          "name": "useState",
+          "edgeType": "call"
+        },
+        {
+          "name": "useRouteParameter",
+          "edgeType": "call"
+        },
+        {
+          "name": "useEndpoint",
+          "edgeType": "call"
+        },
+        {
+          "name": "watch",
+          "edgeType": "call"
+        },
+        {
+          "name": "useToastMessageDispatch",
+          "edgeType": "call"
+        },
+        {
+          "name": "useMutation",
+          "edgeType": "call"
+        },
+        {
+          "name": "reduce",
+          "edgeType": "call"
+        },
+        {
+          "name": "createOrUpdateABACRoom",
+          "edgeType": "call"
+        },
+        {
+          "name": "dispatchToastMessage",
+          "edgeType": "call"
+        },
+        {
+          "name": "onClose",
+          "edgeType": "call"
+        },
+        {
+          "name": "invalidateQueries",
+          "edgeType": "call"
+        },
+        {
+          "name": "list",
+          "edgeType": "call"
+        },
+        {
+          "name": "mutateAsync",
+          "edgeType": "call"
+        },
+        {
+          "name": "ContextualbarHeader",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "ContextualbarTitle",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "FormProvider",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "ContextualbarClose",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "RoomForm",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "onClose",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "roomInfo",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "setSelectedRoomLabel",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "redacted",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "RoomsContextualBarProps",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "type",
+      "name": "RoomsContextualBarProps",
+      "line": 12,
+      "endLine": 19,
+      "signature": "export type RoomsContextualBarProps ="
+    }
+  ],
+  "imports": [
+    {
+      "module": "@rocket.chat/fuselage",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/ui-client",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/ui-contexts",
+      "resolved": "external"
+    },
+    {
+      "module": "@tanstack/react-query",
+      "resolved": "external"
+    },
+    {
+      "module": "react",
+      "resolved": "external"
+    },
+    {
+      "module": "react-hook-form",
+      "resolved": "external"
+    },
+    {
+      "module": "react-i18next",
+      "resolved": "external"
+    },
+    {
+      "module": "./RoomForm",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/client/views/admin/ABAC/ABACRoomsTab/RoomForm.tsx"
+    },
+    {
+      "module": "../../../../lib/queryKeys",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/client/lib/queryKeys.ts"
+    }
+  ]
+}

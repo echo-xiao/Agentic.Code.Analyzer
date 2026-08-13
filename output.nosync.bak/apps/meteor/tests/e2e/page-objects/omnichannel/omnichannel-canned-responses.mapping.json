@@ -1,0 +1,65 @@
+{
+  "sourcePath": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/tests/e2e/page-objects/omnichannel/omnichannel-canned-responses.ts",
+  "symbols": [
+    {
+      "type": "class",
+      "name": "OmnichannelCannedResponses",
+      "exported": true,
+      "line": 5,
+      "endLine": 50,
+      "signature": "export class OmnichannelCannedResponses extends OmnichannelAdmin",
+      "calls": [
+        {
+          "name": "OmnichannelAdmin",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "listItem",
+      "exported": true,
+      "qualifiedName": "OmnichannelCannedResponses.listItem",
+      "line": 30,
+      "endLine": 32,
+      "signature": "listItem(name: string)",
+      "containerClass": "OmnichannelCannedResponses",
+      "calls": [
+        {
+          "name": "getByText",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "addTag",
+      "exported": true,
+      "qualifiedName": "OmnichannelCannedResponses.addTag",
+      "line": 34,
+      "endLine": 37,
+      "signature": "async addTag(tag: string)",
+      "containerClass": "OmnichannelCannedResponses",
+      "calls": [
+        {
+          "name": "fill",
+          "edgeType": "call"
+        },
+        {
+          "name": "click",
+          "edgeType": "call"
+        }
+      ]
+    }
+  ],
+  "imports": [
+    {
+      "module": "@playwright/test",
+      "resolved": "external"
+    },
+    {
+      "module": "./omnichannel-admin",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/tests/e2e/page-objects/omnichannel/omnichannel-admin.ts"
+    }
+  ]
+}

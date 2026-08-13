@@ -1,0 +1,277 @@
+{
+  "sourcePath": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/client/views/omnichannel/components/outboundMessage/components/OutboundMessageWizard/forms/RepliesForm/RepliesForm.tsx",
+  "symbols": [
+    {
+      "type": "variable_function",
+      "name": "RepliesForm",
+      "exported": false,
+      "line": 41,
+      "endLine": 150,
+      "signature": "(props: RepliesFormProps) =>",
+      "calls": [
+        {
+          "name": "useToastBarDispatch",
+          "edgeType": "call"
+        },
+        {
+          "name": "useTranslation",
+          "edgeType": "call"
+        },
+        {
+          "name": "useId",
+          "edgeType": "call"
+        },
+        {
+          "name": "useUser",
+          "edgeType": "call"
+        },
+        {
+          "name": "usePermission",
+          "edgeType": "call"
+        },
+        {
+          "name": "useForm",
+          "edgeType": "call"
+        },
+        {
+          "name": "useMemo",
+          "edgeType": "call"
+        },
+        {
+          "name": "renderActions",
+          "edgeType": "call"
+        },
+        {
+          "name": "useWatch",
+          "edgeType": "call"
+        },
+        {
+          "name": "useEndpoint",
+          "edgeType": "call"
+        },
+        {
+          "name": "useQuery",
+          "edgeType": "call"
+        },
+        {
+          "name": "department",
+          "edgeType": "call"
+        },
+        {
+          "name": "getDepartment",
+          "edgeType": "call"
+        },
+        {
+          "name": "useAllowedAgents",
+          "edgeType": "call"
+        },
+        {
+          "name": "useEffect",
+          "edgeType": "call"
+        },
+        {
+          "name": "trigger",
+          "edgeType": "call"
+        },
+        {
+          "name": "clearErrors",
+          "edgeType": "call"
+        },
+        {
+          "name": "useStableCallback",
+          "edgeType": "call"
+        },
+        {
+          "name": "find",
+          "edgeType": "call"
+        },
+        {
+          "name": "then",
+          "edgeType": "call"
+        },
+        {
+          "name": "refetchDepartment",
+          "edgeType": "call"
+        },
+        {
+          "name": "onSubmit",
+          "edgeType": "call"
+        },
+        {
+          "name": "dispatchToastMessage",
+          "edgeType": "call"
+        },
+        {
+          "name": "handleSubmit",
+          "edgeType": "call"
+        },
+        {
+          "name": "setValue",
+          "edgeType": "call"
+        },
+        {
+          "name": "Form",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "Scrollable",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "FieldGroup",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "Box",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "Button",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "DepartmentField",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "AgentField",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "repliesFormId",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "control",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "isErrorDepartment",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "isFetchingDepartment",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "refetchDepartment",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "agents",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "isSubmitting",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "FormFetchError",
+          "edgeType": "new"
+        },
+        {
+          "name": "RepliesFormProps",
+          "edgeType": "type"
+        },
+        {
+          "name": "RepliesFormData",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "type",
+      "name": "RepliesFormData",
+      "line": 19,
+      "endLine": 22,
+      "signature": "export type RepliesFormData ="
+    },
+    {
+      "type": "type",
+      "name": "RepliesFormSubmitPayload",
+      "line": 24,
+      "endLine": 29,
+      "signature": "export type RepliesFormSubmitPayload ="
+    },
+    {
+      "type": "type",
+      "name": "RepliesFormRef",
+      "line": 31,
+      "endLine": 33,
+      "signature": "export type RepliesFormRef ="
+    },
+    {
+      "type": "type",
+      "name": "RepliesFormProps",
+      "line": 35,
+      "endLine": 39,
+      "signature": "type RepliesFormProps ="
+    }
+  ],
+  "imports": [
+    {
+      "module": "@rocket.chat/core-typings",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/fuselage",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/fuselage-hooks",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/fuselage-toastbar",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/ui-contexts",
+      "resolved": "external"
+    },
+    {
+      "module": "@tanstack/react-query",
+      "resolved": "external"
+    },
+    {
+      "module": "react",
+      "resolved": "external"
+    },
+    {
+      "module": "react",
+      "resolved": "external"
+    },
+    {
+      "module": "react-hook-form",
+      "resolved": "external"
+    },
+    {
+      "module": "react-i18next",
+      "resolved": "external"
+    },
+    {
+      "module": "./components/AgentField",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/client/views/omnichannel/components/outboundMessage/components/OutboundMessageWizard/forms/RepliesForm/components/AgentField.tsx"
+    },
+    {
+      "module": "./components/DepartmentField",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/client/views/omnichannel/components/outboundMessage/components/OutboundMessageWizard/forms/RepliesForm/components/DepartmentField.tsx"
+    },
+    {
+      "module": "./hooks/useAllowedAgents",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/client/views/omnichannel/components/outboundMessage/components/OutboundMessageWizard/forms/RepliesForm/hooks/useAllowedAgents.ts"
+    },
+    {
+      "module": "../../../../../../../../lib/queryKeys",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/client/lib/queryKeys.ts"
+    },
+    {
+      "module": "../../components/OutboundMessageForm",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/client/views/omnichannel/components/outboundMessage/components/OutboundMessageWizard/components/OutboundMessageForm.tsx"
+    },
+    {
+      "module": "../../utils/errors",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/client/views/omnichannel/components/outboundMessage/components/OutboundMessageWizard/utils/errors.ts"
+    }
+  ]
+}

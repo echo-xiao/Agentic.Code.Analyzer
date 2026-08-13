@@ -1,0 +1,347 @@
+{
+  "sourcePath": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/client/views/admin/customUserStatus/CustomUserStatusForm.tsx",
+  "symbols": [
+    {
+      "type": "inner_function",
+      "name": "handleSave",
+      "exported": false,
+      "qualifiedName": "CustomUserStatusForm.handleSave",
+      "line": 42,
+      "endLine": 61,
+      "signature": "async (data: CustomUserStatusFormFormData) =>",
+      "calls": [
+        {
+          "name": "updateStatus",
+          "edgeType": "call"
+        },
+        {
+          "name": "createStatus",
+          "edgeType": "call"
+        },
+        {
+          "name": "dispatchToastMessage",
+          "edgeType": "call"
+        },
+        {
+          "name": "onReload",
+          "edgeType": "call"
+        },
+        {
+          "name": "push",
+          "edgeType": "call"
+        },
+        {
+          "name": "CustomUserStatusFormFormData",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "inner_function",
+      "name": "handleDeleteStatus",
+      "exported": false,
+      "qualifiedName": "CustomUserStatusForm.handleDeleteStatus",
+      "line": 65,
+      "endLine": 88,
+      "signature": "() =>",
+      "calls": [
+        {
+          "name": "setModal",
+          "edgeType": "call"
+        },
+        {
+          "name": "deleteStatus",
+          "edgeType": "call"
+        },
+        {
+          "name": "dispatchToastMessage",
+          "edgeType": "call"
+        },
+        {
+          "name": "onReload",
+          "edgeType": "call"
+        },
+        {
+          "name": "push",
+          "edgeType": "call"
+        },
+        {
+          "name": "GenericModal",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "handleDelete",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "handleCancel",
+          "edgeType": "jsx"
+        }
+      ]
+    },
+    {
+      "type": "inner_function",
+      "name": "handleCancel",
+      "exported": false,
+      "qualifiedName": "CustomUserStatusForm.handleCancel",
+      "line": 66,
+      "endLine": 68,
+      "signature": "(): void =>",
+      "calls": [
+        {
+          "name": "setModal",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "inner_function",
+      "name": "handleDelete",
+      "exported": false,
+      "qualifiedName": "CustomUserStatusForm.handleDelete",
+      "line": 70,
+      "endLine": 81,
+      "signature": "async (): Promise<void> =>",
+      "calls": [
+        {
+          "name": "deleteStatus",
+          "edgeType": "call"
+        },
+        {
+          "name": "dispatchToastMessage",
+          "edgeType": "call"
+        },
+        {
+          "name": "onReload",
+          "edgeType": "call"
+        },
+        {
+          "name": "push",
+          "edgeType": "call"
+        },
+        {
+          "name": "setModal",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "variable_function",
+      "name": "CustomUserStatusForm",
+      "exported": false,
+      "line": 20,
+      "endLine": 141,
+      "signature": "({ onClose, onReload, status }: CustomUserStatusFormProps) =>",
+      "calls": [
+        {
+          "name": "useTranslation",
+          "edgeType": "call"
+        },
+        {
+          "name": "useSetModal",
+          "edgeType": "call"
+        },
+        {
+          "name": "useRoute",
+          "edgeType": "call"
+        },
+        {
+          "name": "useToastMessageDispatch",
+          "edgeType": "call"
+        },
+        {
+          "name": "useId",
+          "edgeType": "call"
+        },
+        {
+          "name": "useForm",
+          "edgeType": "call"
+        },
+        {
+          "name": "useEndpoint",
+          "edgeType": "call"
+        },
+        {
+          "name": "useCallback",
+          "edgeType": "call"
+        },
+        {
+          "name": "updateStatus",
+          "edgeType": "call"
+        },
+        {
+          "name": "createStatus",
+          "edgeType": "call"
+        },
+        {
+          "name": "dispatchToastMessage",
+          "edgeType": "call"
+        },
+        {
+          "name": "onReload",
+          "edgeType": "call"
+        },
+        {
+          "name": "push",
+          "edgeType": "call"
+        },
+        {
+          "name": "setModal",
+          "edgeType": "call"
+        },
+        {
+          "name": "deleteStatus",
+          "edgeType": "call"
+        },
+        {
+          "name": "handleSubmit",
+          "edgeType": "call"
+        },
+        {
+          "name": "register",
+          "edgeType": "call"
+        },
+        {
+          "name": "GenericModal",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "ContextualbarScrollableContent",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "FieldGroup",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "Field",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "FieldLabel",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "FieldRow",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "FieldError",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "ContextualbarFooter",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "ButtonGroup",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "Button",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "Box",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "TextInput",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "Controller",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "Select",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "handleDelete",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "handleCancel",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "formId",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "control",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "presenceOptions",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "onClose",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "handleDeleteStatus",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "CustomUserStatusFormProps",
+          "edgeType": "type"
+        },
+        {
+          "name": "CustomUserStatusFormFormData",
+          "edgeType": "type"
+        },
+        {
+          "name": "SelectOption",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "type",
+      "name": "CustomUserStatusFormFormData",
+      "line": 9,
+      "endLine": 12,
+      "signature": "type CustomUserStatusFormFormData ="
+    },
+    {
+      "type": "type",
+      "name": "CustomUserStatusFormProps",
+      "line": 14,
+      "endLine": 18,
+      "signature": "export type CustomUserStatusFormProps ="
+    }
+  ],
+  "imports": [
+    {
+      "module": "@rocket.chat/core-typings",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/fuselage",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/fuselage",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/ui-client",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/ui-contexts",
+      "resolved": "external"
+    },
+    {
+      "module": "react",
+      "resolved": "external"
+    },
+    {
+      "module": "react-hook-form",
+      "resolved": "external"
+    }
+  ]
+}

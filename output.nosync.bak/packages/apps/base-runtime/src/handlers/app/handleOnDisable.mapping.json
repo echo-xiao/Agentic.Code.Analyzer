@@ -1,0 +1,61 @@
+{
+  "sourcePath": "/Users/echoooooo/Desktop/code/Rocket.Chat/packages/apps/base-runtime/src/handlers/app/handleOnDisable.ts",
+  "symbols": [
+    {
+      "type": "function",
+      "name": "handleOnDisable",
+      "exported": true,
+      "line": 8,
+      "endLine": 20,
+      "signature": "export default async function handleOnDisable(request: RequestContext): Promise<boolean>",
+      "calls": [
+        {
+          "name": "get",
+          "edgeType": "call"
+        },
+        {
+          "name": "call",
+          "edgeType": "call"
+        },
+        {
+          "name": "wrapAppForRequest",
+          "edgeType": "call"
+        },
+        {
+          "name": "getConfigurationModify",
+          "edgeType": "call"
+        },
+        {
+          "name": "RequestContext",
+          "edgeType": "type"
+        },
+        {
+          "name": "App",
+          "edgeType": "type"
+        }
+      ]
+    }
+  ],
+  "imports": [
+    {
+      "module": "@rocket.chat/apps-engine/definition/App",
+      "resolved": "external"
+    },
+    {
+      "module": "../../AppObjectRegistry",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/packages/apps/base-runtime/src/AppObjectRegistry.ts"
+    },
+    {
+      "module": "../../lib/accessors/mod",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/packages/apps/base-runtime/src/lib/accessors/mod.ts"
+    },
+    {
+      "module": "../../lib/requestContext",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/packages/apps/base-runtime/src/lib/requestContext.ts"
+    },
+    {
+      "module": "../../lib/wrapAppForRequest",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/packages/apps/base-runtime/src/lib/wrapAppForRequest.ts"
+    }
+  ]
+}

@@ -1,0 +1,65 @@
+{
+  "sourcePath": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/app/livechat/server/lib/contacts/disableContact.ts",
+  "symbols": [
+    {
+      "type": "function",
+      "name": "disableContactById",
+      "exported": true,
+      "line": 7,
+      "endLine": 23,
+      "signature": "export async function disableContactById(contactId: string): Promise<void>",
+      "calls": [
+        {
+          "name": "findOneEnabledById",
+          "edgeType": "call"
+        },
+        {
+          "name": "checkContactOpenRooms",
+          "edgeType": "call"
+        },
+        {
+          "name": "get",
+          "edgeType": "call"
+        },
+        {
+          "name": "all",
+          "edgeType": "call"
+        },
+        {
+          "name": "map",
+          "edgeType": "call"
+        },
+        {
+          "name": "removeGuest",
+          "edgeType": "call"
+        },
+        {
+          "name": "disableByContactId",
+          "edgeType": "call"
+        },
+        {
+          "name": "ILivechatContact",
+          "edgeType": "type"
+        }
+      ]
+    }
+  ],
+  "imports": [
+    {
+      "module": "@rocket.chat/core-typings",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/models",
+      "resolved": "external"
+    },
+    {
+      "module": "../../../../settings/server",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/app/settings/server/index.ts"
+    },
+    {
+      "module": "../guests",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/app/livechat/server/lib/guests.ts"
+    }
+  ]
+}

@@ -1,0 +1,99 @@
+{
+  "sourcePath": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/server/api/v1/call-history.ts",
+  "symbols": [
+    {
+      "type": "variable",
+      "name": "isCallHistoryListProps",
+      "exported": true,
+      "line": 55,
+      "endLine": 55,
+      "signature": "isCallHistoryListProps = ajvQuery.compile<CallHistoryList>(CallHistoryListSchema)",
+      "calls": [
+        {
+          "name": "CallHistoryList",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "variable",
+      "name": "isCallHistoryInfoProps",
+      "exported": true,
+      "line": 159,
+      "endLine": 159,
+      "signature": "isCallHistoryInfoProps = ajvQuery.compile<CallHistoryInfo>(CallHistoryInfoSchema)",
+      "calls": [
+        {
+          "name": "CallHistoryInfo",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "type",
+      "name": "CallHistoryList",
+      "line": 19,
+      "endLine": 23,
+      "signature": "type CallHistoryList = PaginatedRequest<"
+    },
+    {
+      "type": "type",
+      "name": "CallHistoryListEndpoints",
+      "line": 128,
+      "endLine": 128,
+      "signature": "type CallHistoryListEndpoints = ExtractRoutesFromAPI<typeof callHistoryListEndpoints>;"
+    },
+    {
+      "type": "type",
+      "name": "CallHistoryInfo",
+      "line": 130,
+      "endLine": 130,
+      "signature": "type CallHistoryInfo ="
+    },
+    {
+      "type": "type",
+      "name": "CallHistoryInfoEndpoints",
+      "line": 226,
+      "endLine": 226,
+      "signature": "type CallHistoryInfoEndpoints = ExtractRoutesFromAPI<typeof callHistoryInfoEndpoints>;"
+    }
+  ],
+  "imports": [
+    {
+      "module": "@rocket.chat/core-services",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/core-typings",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/models",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/rest-typings",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/rest-typings",
+      "resolved": "external"
+    },
+    {
+      "module": "../../../lib/utils/arrayUtils",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/lib/utils/arrayUtils.ts"
+    },
+    {
+      "module": "../ApiClass",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/server/api/ApiClass.ts"
+    },
+    {
+      "module": "../api",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/server/api/api.ts"
+    },
+    {
+      "module": "../lib/getPaginationItems",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/server/api/lib/getPaginationItems.ts"
+    }
+  ]
+}

@@ -1,0 +1,117 @@
+{
+  "sourcePath": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/tests/e2e/page-objects/fragments/home-omnichannel-content.ts",
+  "symbols": [
+    {
+      "type": "class",
+      "name": "HomeOmnichannelContent",
+      "exported": true,
+      "line": 6,
+      "endLine": 48,
+      "signature": "export class HomeOmnichannelContent extends HomeContent",
+      "calls": [
+        {
+          "name": "HomeContent",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "selectCannedResponse",
+      "exported": true,
+      "qualifiedName": "HomeOmnichannelContent.selectCannedResponse",
+      "line": 41,
+      "endLine": 47,
+      "signature": "async selectCannedResponse(cannedResponseName: string): Promise<void>",
+      "containerClass": "HomeOmnichannelContent",
+      "calls": [
+        {
+          "name": "pressSequentially",
+          "edgeType": "call"
+        },
+        {
+          "name": "waitFor",
+          "edgeType": "call"
+        },
+        {
+          "name": "click",
+          "edgeType": "call"
+        },
+        {
+          "name": "getByText",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "constructor",
+      "exported": true,
+      "qualifiedName": "HomeOmnichannelContent.constructor",
+      "line": 11,
+      "endLine": 15,
+      "signature": "constructor(page: Page)",
+      "containerClass": "HomeOmnichannelContent",
+      "calls": [
+        {
+          "name": "OmnichannelTransferChatModal",
+          "edgeType": "new"
+        },
+        {
+          "name": "OmnichannelReturnToQueueModal",
+          "edgeType": "new"
+        },
+        {
+          "name": "Page",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "class_property",
+      "name": "forwardChatModal",
+      "exported": true,
+      "qualifiedName": "HomeOmnichannelContent.forwardChatModal",
+      "line": 7,
+      "endLine": 7,
+      "signature": "readonly forwardChatModal: OmnichannelTransferChatModal;",
+      "containerClass": "HomeOmnichannelContent",
+      "calls": [
+        {
+          "name": "OmnichannelTransferChatModal",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "class_property",
+      "name": "returnToQueueModal",
+      "exported": true,
+      "qualifiedName": "HomeOmnichannelContent.returnToQueueModal",
+      "line": 9,
+      "endLine": 9,
+      "signature": "readonly returnToQueueModal: OmnichannelReturnToQueueModal;",
+      "containerClass": "HomeOmnichannelContent",
+      "calls": [
+        {
+          "name": "OmnichannelReturnToQueueModal",
+          "edgeType": "type"
+        }
+      ]
+    }
+  ],
+  "imports": [
+    {
+      "module": "@playwright/test",
+      "resolved": "external"
+    },
+    {
+      "module": "./home-content",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/tests/e2e/page-objects/fragments/home-content.ts"
+    },
+    {
+      "module": "./modals",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/tests/e2e/page-objects/fragments/modals/index.ts"
+    }
+  ]
+}

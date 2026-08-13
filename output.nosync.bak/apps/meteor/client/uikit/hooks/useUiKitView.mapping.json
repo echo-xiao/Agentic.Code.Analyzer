@@ -1,0 +1,154 @@
+{
+  "sourcePath": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/client/uikit/hooks/useUiKitView.ts",
+  "symbols": [
+    {
+      "type": "inner_function",
+      "name": "handleUpdate",
+      "exported": false,
+      "qualifiedName": "useUiKitView.handleUpdate",
+      "line": 76,
+      "endLine": 83,
+      "signature": "(interaction: UiKit.ServerInteraction): void =>",
+      "calls": [
+        {
+          "name": "setErrors",
+          "edgeType": "call"
+        },
+        {
+          "name": "updateView",
+          "edgeType": "call"
+        },
+        {
+          "name": "getViewFromInteraction",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "function",
+      "name": "useUiKitView",
+      "exported": true,
+      "line": 53,
+      "endLine": 93,
+      "signature": "export function useUiKitView<S extends UiKit.View>(initialView: S): UseUiKitViewReturnType<S>",
+      "calls": [
+        {
+          "name": "useSafely",
+          "edgeType": "call"
+        },
+        {
+          "name": "useState",
+          "edgeType": "call"
+        },
+        {
+          "name": "useReducer",
+          "edgeType": "call"
+        },
+        {
+          "name": "useUiKitActionManager",
+          "edgeType": "call"
+        },
+        {
+          "name": "useMemo",
+          "edgeType": "call"
+        },
+        {
+          "name": "reduce",
+          "edgeType": "call"
+        },
+        {
+          "name": "entries",
+          "edgeType": "call"
+        },
+        {
+          "name": "getViewId",
+          "edgeType": "call"
+        },
+        {
+          "name": "useEffect",
+          "edgeType": "call"
+        },
+        {
+          "name": "setErrors",
+          "edgeType": "call"
+        },
+        {
+          "name": "updateView",
+          "edgeType": "call"
+        },
+        {
+          "name": "getViewFromInteraction",
+          "edgeType": "call"
+        },
+        {
+          "name": "off",
+          "edgeType": "call"
+        },
+        {
+          "name": "UseUiKitViewReturnType",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "variable_function",
+      "name": "reduceValues",
+      "exported": false,
+      "line": 9,
+      "endLine": 15,
+      "signature": "( values: { [actionId: string]: { value: unknown; blockId?: string } }, { actionId, payload }: { actionId: string; payload: { value: unknown; blockId?: string } }, ): { [actionId: string]: { value: unknown; blockId?: string } } =>",
+      "calls": []
+    },
+    {
+      "type": "variable_function",
+      "name": "getViewId",
+      "exported": false,
+      "line": 17,
+      "endLine": 27,
+      "signature": "(view: UiKit.View): string =>",
+      "calls": []
+    },
+    {
+      "type": "variable_function",
+      "name": "getViewFromInteraction",
+      "exported": false,
+      "line": 21,
+      "endLine": 31,
+      "signature": "(interaction: UiKit.ServerInteraction): UiKit.View | undefined =>",
+      "calls": []
+    },
+    {
+      "type": "type",
+      "name": "UseUiKitViewReturnType",
+      "line": 25,
+      "endLine": 35,
+      "signature": "type UseUiKitViewReturnType<TView extends UiKit.View> ="
+    }
+  ],
+  "imports": [
+    {
+      "module": "@rocket.chat/fuselage-hooks",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/fuselage-ui-kit",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/ui-kit",
+      "resolved": "external"
+    },
+    {
+      "module": "react",
+      "resolved": "external"
+    },
+    {
+      "module": "react",
+      "resolved": "external"
+    },
+    {
+      "module": "./useUiKitActionManager",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/client/uikit/hooks/useUiKitActionManager.ts"
+    }
+  ]
+}

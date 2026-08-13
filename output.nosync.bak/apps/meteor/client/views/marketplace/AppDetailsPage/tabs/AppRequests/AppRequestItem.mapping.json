@@ -1,0 +1,72 @@
+{
+  "sourcePath": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/client/views/marketplace/AppDetailsPage/tabs/AppRequests/AppRequestItem.tsx",
+  "symbols": [
+    {
+      "type": "variable_function",
+      "name": "AppRequestItem",
+      "exported": false,
+      "line": 15,
+      "endLine": 42,
+      "signature": "({ seen, name, createdDate, message, username }: AppRequestItemProps) =>",
+      "calls": [
+        {
+          "name": "useFormatDateAndTime",
+          "edgeType": "call"
+        },
+        {
+          "name": "usePermission",
+          "edgeType": "call"
+        },
+        {
+          "name": "formatDateAndTime",
+          "edgeType": "call"
+        },
+        {
+          "name": "Box",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "Badge",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "UserAvatar",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "username",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "AppRequestItemProps",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "type",
+      "name": "AppRequestItemProps",
+      "line": 7,
+      "endLine": 13,
+      "signature": "export type AppRequestItemProps ="
+    }
+  ],
+  "imports": [
+    {
+      "module": "@rocket.chat/fuselage",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/ui-avatar",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/ui-contexts",
+      "resolved": "external"
+    },
+    {
+      "module": "../../../../../hooks/useFormatDateAndTime",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/client/hooks/useFormatDateAndTime.ts"
+    }
+  ]
+}

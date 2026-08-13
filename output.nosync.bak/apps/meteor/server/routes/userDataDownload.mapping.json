@@ -1,0 +1,201 @@
+{
+  "sourcePath": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/server/routes/userDataDownload.ts",
+  "symbols": [
+    {
+      "type": "module",
+      "name": "userDataDownload",
+      "exported": false,
+      "line": 1,
+      "endLine": 89,
+      "signature": "userDataDownload",
+      "calls": [
+        {
+          "name": "use",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "variable_function",
+      "name": "matchUID",
+      "exported": false,
+      "line": 15,
+      "endLine": 22,
+      "signature": "async (uid: string | undefined, token: string | undefined, ownerUID: string) =>",
+      "calls": [
+        {
+          "name": "Boolean",
+          "edgeType": "call"
+        },
+        {
+          "name": "findOneByIdAndLoginToken",
+          "edgeType": "call"
+        },
+        {
+          "name": "hashLoginToken",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "variable_function",
+      "name": "isRequestFromOwner",
+      "exported": false,
+      "line": 19,
+      "endLine": 40,
+      "signature": "async (req: IIncomingMessage, ownerUID: IUser['_id']) =>",
+      "calls": [
+        {
+          "name": "matchUID",
+          "edgeType": "call"
+        },
+        {
+          "name": "get",
+          "edgeType": "call"
+        },
+        {
+          "name": "flat",
+          "edgeType": "call"
+        },
+        {
+          "name": "IIncomingMessage",
+          "edgeType": "type"
+        },
+        {
+          "name": "IUser",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "variable_function",
+      "name": "sendUserDataFile",
+      "exported": false,
+      "line": 23,
+      "endLine": 33,
+      "signature": "(file: IUserDataFile) =>",
+      "calls": [
+        {
+          "name": "getStore",
+          "edgeType": "call"
+        },
+        {
+          "name": "end",
+          "edgeType": "call"
+        },
+        {
+          "name": "writeHead",
+          "edgeType": "call"
+        },
+        {
+          "name": "setHeader",
+          "edgeType": "call"
+        },
+        {
+          "name": "get",
+          "edgeType": "call"
+        },
+        {
+          "name": "IUserDataFile",
+          "edgeType": "type"
+        },
+        {
+          "name": "IncomingMessage",
+          "edgeType": "type"
+        },
+        {
+          "name": "ServerResponse",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "variable_function",
+      "name": "userDataDownloadHandler",
+      "exported": false,
+      "line": 37,
+      "endLine": 62,
+      "signature": "async (req: IncomingMessage, res: ServerResponse, next: () => void) =>",
+      "calls": [
+        {
+          "name": "get",
+          "edgeType": "call"
+        },
+        {
+          "name": "end",
+          "edgeType": "call"
+        },
+        {
+          "name": "writeHead",
+          "edgeType": "call"
+        },
+        {
+          "name": "matchFileRoute",
+          "edgeType": "call"
+        },
+        {
+          "name": "findOneById",
+          "edgeType": "call"
+        },
+        {
+          "name": "isRequestFromOwner",
+          "edgeType": "call"
+        },
+        {
+          "name": "sendUserDataFile",
+          "edgeType": "call"
+        },
+        {
+          "name": "IncomingMessage",
+          "edgeType": "type"
+        },
+        {
+          "name": "ServerResponse",
+          "edgeType": "type"
+        },
+        {
+          "name": "IIncomingMessage",
+          "edgeType": "type"
+        }
+      ]
+    }
+  ],
+  "imports": [
+    {
+      "module": "node:http",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/account-utils",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/core-typings",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/models",
+      "resolved": "external"
+    },
+    {
+      "module": "meteor/ostrio:cookies",
+      "resolved": "external"
+    },
+    {
+      "module": "meteor/webapp",
+      "resolved": "external"
+    },
+    {
+      "module": "path-to-regexp",
+      "resolved": "external"
+    },
+    {
+      "module": "../../app/file-upload/server",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/app/file-upload/server/index.ts"
+    },
+    {
+      "module": "../../app/settings/server",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/app/settings/server/index.ts"
+    }
+  ]
+}

@@ -1,0 +1,57 @@
+{
+  "sourcePath": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/app/channel-settings/server/functions/saveRoomCustomFields.ts",
+  "symbols": [
+    {
+      "type": "variable_function",
+      "name": "saveRoomCustomFields",
+      "exported": true,
+      "line": 8,
+      "endLine": 30,
+      "signature": "async function (rid: string, roomCustomFields: Record<string, any>): Promise<UpdateResult>",
+      "calls": [
+        {
+          "name": "test",
+          "edgeType": "call"
+        },
+        {
+          "name": "setCustomFieldsById",
+          "edgeType": "call"
+        },
+        {
+          "name": "updateCustomFieldsByRoomId",
+          "edgeType": "call"
+        },
+        {
+          "name": "notifyOnSubscriptionChangedByRoomId",
+          "edgeType": "call"
+        },
+        {
+          "name": "UpdateResult",
+          "edgeType": "type"
+        }
+      ]
+    }
+  ],
+  "imports": [
+    {
+      "module": "@rocket.chat/models",
+      "resolved": "external"
+    },
+    {
+      "module": "meteor/check",
+      "resolved": "external"
+    },
+    {
+      "module": "meteor/meteor",
+      "resolved": "external"
+    },
+    {
+      "module": "mongodb",
+      "resolved": "external"
+    },
+    {
+      "module": "../../../lib/server/lib/notifyListener",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/app/lib/server/lib/notifyListener.ts"
+    }
+  ]
+}

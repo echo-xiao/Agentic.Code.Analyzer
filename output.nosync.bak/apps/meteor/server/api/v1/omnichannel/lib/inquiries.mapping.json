@@ -1,0 +1,175 @@
+{
+  "sourcePath": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/server/api/v1/omnichannel/lib/inquiries.ts",
+  "symbols": [
+    {
+      "type": "function",
+      "name": "findInquiries",
+      "exported": true,
+      "line": 36,
+      "endLine": 84,
+      "signature": "export async function findInquiries({ userId, department: filterDepartment, status, pagination: { offset, count, sort }, }: { userId: IUser['_id']; department?: string; status?: LivechatInquiryStatus; pagination: { offset: number; count: number; sort: Record<string, number> }; }): Promise<PaginatedResult<{ inquiries: Array<ILivechatInquiryRecord> }>>",
+      "calls": [
+        {
+          "name": "applyDepartmentRestrictions",
+          "edgeType": "call"
+        },
+        {
+          "name": "getOmniChatSortQuery",
+          "edgeType": "call"
+        },
+        {
+          "name": "getInquirySortMechanismSetting",
+          "edgeType": "call"
+        },
+        {
+          "name": "includes",
+          "edgeType": "call"
+        },
+        {
+          "name": "values",
+          "edgeType": "call"
+        },
+        {
+          "name": "findPaginated",
+          "edgeType": "call"
+        },
+        {
+          "name": "all",
+          "edgeType": "call"
+        },
+        {
+          "name": "toArray",
+          "edgeType": "call"
+        },
+        {
+          "name": "IUser",
+          "edgeType": "type"
+        },
+        {
+          "name": "LivechatInquiryStatus",
+          "edgeType": "type"
+        },
+        {
+          "name": "PaginatedResult",
+          "edgeType": "type"
+        },
+        {
+          "name": "ILivechatInquiryRecord",
+          "edgeType": "type"
+        },
+        {
+          "name": "Filter",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "function",
+      "name": "findOneInquiryByRoomId",
+      "exported": true,
+      "line": 50,
+      "endLine": 54,
+      "signature": "export async function findOneInquiryByRoomId({ roomId }: { roomId: IRoom['_id'] }): Promise<{ inquiry: ILivechatInquiryRecord | null }>",
+      "calls": [
+        {
+          "name": "findOneByRoomId",
+          "edgeType": "call"
+        },
+        {
+          "name": "IRoom",
+          "edgeType": "type"
+        },
+        {
+          "name": "ILivechatInquiryRecord",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "variable_function",
+      "name": "agentDepartments",
+      "exported": false,
+      "line": 10,
+      "endLine": 15,
+      "signature": "async (userId: IUser['_id']): Promise<string[]> =>",
+      "calls": [
+        {
+          "name": "map",
+          "edgeType": "call"
+        },
+        {
+          "name": "toArray",
+          "edgeType": "call"
+        },
+        {
+          "name": "findByAgentId",
+          "edgeType": "call"
+        },
+        {
+          "name": "findEnabledInIds",
+          "edgeType": "call"
+        },
+        {
+          "name": "IUser",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "variable_function",
+      "name": "applyDepartmentRestrictions",
+      "exported": false,
+      "line": 14,
+      "endLine": 31,
+      "signature": "async ( userId: IUser['_id'], filterDepartment?: string, ): Promise<{ $in: string[] } | { $exists: false } | string> =>",
+      "calls": [
+        {
+          "name": "agentDepartments",
+          "edgeType": "call"
+        },
+        {
+          "name": "isArray",
+          "edgeType": "call"
+        },
+        {
+          "name": "includes",
+          "edgeType": "call"
+        },
+        {
+          "name": "IUser",
+          "edgeType": "type"
+        }
+      ]
+    }
+  ],
+  "imports": [
+    {
+      "module": "@rocket.chat/core-typings",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/core-typings",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/models",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/rest-typings",
+      "resolved": "external"
+    },
+    {
+      "module": "mongodb",
+      "resolved": "external"
+    },
+    {
+      "module": "../../../../../app/livechat/lib/inquiries",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/app/livechat/lib/inquiries.ts"
+    },
+    {
+      "module": "../../../../../app/livechat/server/lib/settings",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/app/livechat/server/lib/settings.ts"
+    }
+  ]
+}

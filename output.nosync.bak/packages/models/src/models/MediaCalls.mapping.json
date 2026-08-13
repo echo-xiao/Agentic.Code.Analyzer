@@ -1,0 +1,441 @@
+{
+  "sourcePath": "/Users/echoooooo/Desktop/code/Rocket.Chat/packages/models/src/models/MediaCalls.ts",
+  "symbols": [
+    {
+      "type": "class",
+      "name": "MediaCallsRaw",
+      "exported": true,
+      "line": 25,
+      "endLine": 228,
+      "signature": "export class MediaCallsRaw extends BaseRaw<IMediaCall> implements IMediaCallsModel",
+      "calls": [
+        {
+          "name": "BaseRaw",
+          "edgeType": "type"
+        },
+        {
+          "name": "IMediaCallsModel",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "modelIndexes",
+      "exported": true,
+      "qualifiedName": "MediaCallsRaw.modelIndexes",
+      "line": 30,
+      "endLine": 39,
+      "signature": "protected override modelIndexes(): IndexDescription[]",
+      "containerClass": "MediaCallsRaw",
+      "calls": [
+        {
+          "name": "IndexDescription",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "findOneByIdAndCallee",
+      "exported": true,
+      "qualifiedName": "MediaCallsRaw.findOneByIdAndCallee",
+      "line": 34,
+      "endLine": 48,
+      "signature": "public async findOneByIdAndCallee<T extends Document = IMediaCall>( id: IMediaCall['_id'], callee: MediaCallActor, options?: FindOptions<IMediaCall>, ): Promise<T | null>",
+      "containerClass": "MediaCallsRaw",
+      "calls": [
+        {
+          "name": "findOne",
+          "edgeType": "call"
+        },
+        {
+          "name": "Document",
+          "edgeType": "type"
+        },
+        {
+          "name": "IMediaCall",
+          "edgeType": "type"
+        },
+        {
+          "name": "MediaCallActor",
+          "edgeType": "type"
+        },
+        {
+          "name": "FindOptions",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "findOneByCallerRequestedId",
+      "exported": true,
+      "qualifiedName": "MediaCallsRaw.findOneByCallerRequestedId",
+      "line": 42,
+      "endLine": 55,
+      "signature": "public async findOneByCallerRequestedId<T extends Document = IMediaCall>( id: Required<IMediaCall>['callerRequestedId'], caller: { type: MediaCallActorType; id: string }, options?: FindOptions<T>, ): Promise<T | null>",
+      "containerClass": "MediaCallsRaw",
+      "calls": [
+        {
+          "name": "findOne",
+          "edgeType": "call"
+        },
+        {
+          "name": "Document",
+          "edgeType": "type"
+        },
+        {
+          "name": "IMediaCall",
+          "edgeType": "type"
+        },
+        {
+          "name": "MediaCallActorType",
+          "edgeType": "type"
+        },
+        {
+          "name": "FindOptions",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "updateOneById",
+      "exported": true,
+      "qualifiedName": "MediaCallsRaw.updateOneById",
+      "line": 50,
+      "endLine": 56,
+      "signature": "public updateOneById( _id: string, update: UpdateFilter<IMediaCall> | Partial<IMediaCall>, options?: UpdateOptions, ): Promise<UpdateResult>",
+      "containerClass": "MediaCallsRaw",
+      "calls": [
+        {
+          "name": "updateOne",
+          "edgeType": "call"
+        },
+        {
+          "name": "UpdateFilter",
+          "edgeType": "type"
+        },
+        {
+          "name": "IMediaCall",
+          "edgeType": "type"
+        },
+        {
+          "name": "UpdateOptions",
+          "edgeType": "type"
+        },
+        {
+          "name": "UpdateResult",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "startRingingById",
+      "exported": true,
+      "qualifiedName": "MediaCallsRaw.startRingingById",
+      "line": 58,
+      "endLine": 66,
+      "signature": "public async startRingingById(callId: string, expiresAt: Date): Promise<UpdateResult>",
+      "containerClass": "MediaCallsRaw",
+      "calls": [
+        {
+          "name": "updateOne",
+          "edgeType": "call"
+        },
+        {
+          "name": "UpdateResult",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "acceptCallById",
+      "exported": true,
+      "qualifiedName": "MediaCallsRaw.acceptCallById",
+      "line": 62,
+      "endLine": 88,
+      "signature": "public async acceptCallById( callId: string, data: { calleeContractId: string; supportedFeatures: string[] }, expiresAt: Date, ): Promise<UpdateResult>",
+      "containerClass": "MediaCallsRaw",
+      "calls": [
+        {
+          "name": "updateOne",
+          "edgeType": "call"
+        },
+        {
+          "name": "Date",
+          "edgeType": "new"
+        },
+        {
+          "name": "UpdateResult",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "activateCallById",
+      "exported": true,
+      "qualifiedName": "MediaCallsRaw.activateCallById",
+      "line": 70,
+      "endLine": 84,
+      "signature": "public async activateCallById(callId: string, expiresAt: Date): Promise<UpdateResult>",
+      "containerClass": "MediaCallsRaw",
+      "calls": [
+        {
+          "name": "updateOne",
+          "edgeType": "call"
+        },
+        {
+          "name": "Date",
+          "edgeType": "new"
+        },
+        {
+          "name": "UpdateResult",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "hangupCallById",
+      "exported": true,
+      "qualifiedName": "MediaCallsRaw.hangupCallById",
+      "line": 74,
+      "endLine": 92,
+      "signature": "public async hangupCallById(callId: string, params?: { endedBy?: IMediaCall['endedBy']; reason?: string }): Promise<UpdateResult>",
+      "containerClass": "MediaCallsRaw",
+      "calls": [
+        {
+          "name": "updateOne",
+          "edgeType": "call"
+        },
+        {
+          "name": "Date",
+          "edgeType": "new"
+        },
+        {
+          "name": "IMediaCall",
+          "edgeType": "type"
+        },
+        {
+          "name": "UpdateResult",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "setExpiresAtById",
+      "exported": true,
+      "qualifiedName": "MediaCallsRaw.setExpiresAtById",
+      "line": 78,
+      "endLine": 88,
+      "signature": "public async setExpiresAtById(callId: string, expiresAt: Date): Promise<UpdateResult>",
+      "containerClass": "MediaCallsRaw",
+      "calls": [
+        {
+          "name": "updateOne",
+          "edgeType": "call"
+        },
+        {
+          "name": "UpdateResult",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "transferCallById",
+      "exported": true,
+      "qualifiedName": "MediaCallsRaw.transferCallById",
+      "line": 82,
+      "endLine": 101,
+      "signature": "public async transferCallById(callId: string, params: { by: MediaCallSignedContact; to: MediaCallContact }): Promise<UpdateResult>",
+      "containerClass": "MediaCallsRaw",
+      "calls": [
+        {
+          "name": "updateOne",
+          "edgeType": "call"
+        },
+        {
+          "name": "Date",
+          "edgeType": "new"
+        },
+        {
+          "name": "MediaCallSignedContact",
+          "edgeType": "type"
+        },
+        {
+          "name": "MediaCallContact",
+          "edgeType": "type"
+        },
+        {
+          "name": "UpdateResult",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "findAllExpiredCalls",
+      "exported": true,
+      "qualifiedName": "MediaCallsRaw.findAllExpiredCalls",
+      "line": 86,
+      "endLine": 96,
+      "signature": "public findAllExpiredCalls<T extends Document = IMediaCall>(options?: FindOptions<T>): FindCursor<T>",
+      "containerClass": "MediaCallsRaw",
+      "calls": [
+        {
+          "name": "find",
+          "edgeType": "call"
+        },
+        {
+          "name": "Date",
+          "edgeType": "new"
+        },
+        {
+          "name": "Document",
+          "edgeType": "type"
+        },
+        {
+          "name": "IMediaCall",
+          "edgeType": "type"
+        },
+        {
+          "name": "FindOptions",
+          "edgeType": "type"
+        },
+        {
+          "name": "FindCursor",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "findAllNotOverByUid",
+      "exported": true,
+      "qualifiedName": "MediaCallsRaw.findAllNotOverByUid",
+      "line": 90,
+      "endLine": 101,
+      "signature": "public findAllNotOverByUid<T extends Document = IMediaCall>(uid: IUser['_id'], options?: FindOptions<T>): FindCursor<T>",
+      "containerClass": "MediaCallsRaw",
+      "calls": [
+        {
+          "name": "find",
+          "edgeType": "call"
+        },
+        {
+          "name": "Date",
+          "edgeType": "new"
+        },
+        {
+          "name": "Document",
+          "edgeType": "type"
+        },
+        {
+          "name": "IMediaCall",
+          "edgeType": "type"
+        },
+        {
+          "name": "IUser",
+          "edgeType": "type"
+        },
+        {
+          "name": "FindOptions",
+          "edgeType": "type"
+        },
+        {
+          "name": "FindCursor",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "hasUnfinishedCalls",
+      "exported": true,
+      "qualifiedName": "MediaCallsRaw.hasUnfinishedCalls",
+      "line": 94,
+      "endLine": 97,
+      "signature": "public async hasUnfinishedCalls(): Promise<boolean>",
+      "containerClass": "MediaCallsRaw",
+      "calls": [
+        {
+          "name": "countDocuments",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "hasUnfinishedCallsByUid",
+      "exported": true,
+      "qualifiedName": "MediaCallsRaw.hasUnfinishedCallsByUid",
+      "line": 98,
+      "endLine": 108,
+      "signature": "public async hasUnfinishedCallsByUid(uid: IUser['_id'], exceptCallId?: string): Promise<boolean>",
+      "containerClass": "MediaCallsRaw",
+      "calls": [
+        {
+          "name": "countDocuments",
+          "edgeType": "call"
+        },
+        {
+          "name": "IUser",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "constructor",
+      "exported": true,
+      "qualifiedName": "MediaCallsRaw.constructor",
+      "line": 26,
+      "endLine": 28,
+      "signature": "constructor(db: Db, trash?: Collection<RocketChatRecordDeleted<IMediaCall>>)",
+      "containerClass": "MediaCallsRaw",
+      "calls": [
+        {
+          "name": "Db",
+          "edgeType": "type"
+        },
+        {
+          "name": "Collection",
+          "edgeType": "type"
+        },
+        {
+          "name": "RocketChatRecordDeleted",
+          "edgeType": "type"
+        },
+        {
+          "name": "IMediaCall",
+          "edgeType": "type"
+        }
+      ]
+    }
+  ],
+  "imports": [
+    {
+      "module": "@rocket.chat/core-typings",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/model-typings",
+      "resolved": "external"
+    },
+    {
+      "module": "mongodb",
+      "resolved": "external"
+    },
+    {
+      "module": "./BaseRaw",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/packages/models/src/models/BaseRaw.ts"
+    }
+  ]
+}

@@ -1,0 +1,87 @@
+{
+  "sourcePath": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/ee/app/livechat-enterprise/server/hooks/afterInquiryQueued.ts",
+  "symbols": [
+    {
+      "type": "module",
+      "name": "afterInquiryQueued",
+      "exported": false,
+      "line": 1,
+      "endLine": 23,
+      "signature": "afterInquiryQueued",
+      "calls": [
+        {
+          "name": "patch",
+          "edgeType": "call"
+        },
+        {
+          "name": "originalFn",
+          "edgeType": "call"
+        },
+        {
+          "name": "afterInquiryQueuedFunc",
+          "edgeType": "call"
+        },
+        {
+          "name": "ILivechatInquiryRecord",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "variable_function",
+      "name": "afterInquiryQueuedFunc",
+      "exported": true,
+      "line": 8,
+      "endLine": 17,
+      "signature": "async (inquiry: ILivechatInquiryRecord) =>",
+      "calls": [
+        {
+          "name": "get",
+          "edgeType": "call"
+        },
+        {
+          "name": "moment",
+          "edgeType": "call"
+        },
+        {
+          "name": "scheduleInquiry",
+          "edgeType": "call"
+        },
+        {
+          "name": "format",
+          "edgeType": "call"
+        },
+        {
+          "name": "Date",
+          "edgeType": "new"
+        },
+        {
+          "name": "ILivechatInquiryRecord",
+          "edgeType": "type"
+        }
+      ]
+    }
+  ],
+  "imports": [
+    {
+      "module": "@rocket.chat/core-typings",
+      "resolved": "external"
+    },
+    {
+      "module": "moment",
+      "resolved": "external"
+    },
+    {
+      "module": "../../../../../app/livechat/server/lib/hooks",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/app/livechat/server/lib/hooks.ts"
+    },
+    {
+      "module": "../../../../../app/settings/server",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/app/settings/server/index.ts"
+    },
+    {
+      "module": "../lib/QueueInactivityMonitor",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/ee/app/livechat-enterprise/server/lib/QueueInactivityMonitor.ts"
+    }
+  ]
+}

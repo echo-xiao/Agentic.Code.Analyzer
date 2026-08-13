@@ -1,0 +1,1243 @@
+{
+  "sourcePath": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/app/lib/server/lib/notifyListener.ts",
+  "symbols": [
+    {
+      "type": "function",
+      "name": "getMessageToBroadcast",
+      "exported": true,
+      "line": 434,
+      "endLine": 473,
+      "signature": "export async function getMessageToBroadcast({ id, data }: { id: IMessage['_id']; data?: IMessage }): Promise<IMessage | void>",
+      "calls": [
+        {
+          "name": "findOneById",
+          "edgeType": "call"
+        },
+        {
+          "name": "getSettingCached",
+          "edgeType": "call"
+        },
+        {
+          "name": "shouldHideSystemMessage",
+          "edgeType": "call"
+        },
+        {
+          "name": "getUserNameCached",
+          "edgeType": "call"
+        },
+        {
+          "name": "IMessage",
+          "edgeType": "type"
+        },
+        {
+          "name": "MessageTypesValues",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "variable_function",
+      "name": "notifyOnLivechatPriorityChanged",
+      "exported": true,
+      "line": 47,
+      "endLine": 53,
+      "signature": "async ( data: Pick<ILivechatPriority, 'name' | '_id'>, clientAction: ClientAction = 'updated', ): Promise<void> =>",
+      "calls": [
+        {
+          "name": "watch.priorities",
+          "edgeType": "event_emit"
+        },
+        {
+          "name": "ILivechatPriority",
+          "edgeType": "type"
+        },
+        {
+          "name": "ClientAction",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "variable_function",
+      "name": "notifyOnRoomChanged",
+      "exported": true,
+      "line": 54,
+      "endLine": 62,
+      "signature": "async <T extends IRocketChatRecord>( data: T | T[], clientAction: ClientAction = 'updated', ): Promise<void> =>",
+      "calls": [
+        {
+          "name": "isArray",
+          "edgeType": "call"
+        },
+        {
+          "name": "watch.rooms",
+          "edgeType": "event_emit"
+        },
+        {
+          "name": "IRocketChatRecord",
+          "edgeType": "type"
+        },
+        {
+          "name": "ClientAction",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "variable_function",
+      "name": "notifyOnRoomChangedById",
+      "exported": true,
+      "line": 61,
+      "endLine": 70,
+      "signature": "async <T extends IRocketChatRecord>( ids: T['_id'] | T['_id'][], clientAction: ClientAction = 'updated', ): Promise<void> =>",
+      "calls": [
+        {
+          "name": "isArray",
+          "edgeType": "call"
+        },
+        {
+          "name": "findByIds",
+          "edgeType": "call"
+        },
+        {
+          "name": "watch.rooms",
+          "edgeType": "event_emit"
+        },
+        {
+          "name": "IRocketChatRecord",
+          "edgeType": "type"
+        },
+        {
+          "name": "ClientAction",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "variable_function",
+      "name": "notifyOnRoomChangedByUsernamesOrUids",
+      "exported": true,
+      "line": 68,
+      "endLine": 77,
+      "signature": "async <T extends IRoom>( uids: T['u']['_id'][], usernames: T['u']['username'][], clientAction: ClientAction = 'updated', ): Promise<void> =>",
+      "calls": [
+        {
+          "name": "findByUsernamesOrUids",
+          "edgeType": "call"
+        },
+        {
+          "name": "watch.rooms",
+          "edgeType": "event_emit"
+        },
+        {
+          "name": "IRoom",
+          "edgeType": "type"
+        },
+        {
+          "name": "ClientAction",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "variable_function",
+      "name": "notifyOnRoomChangedByContactId",
+      "exported": true,
+      "line": 76,
+      "endLine": 85,
+      "signature": "async <T extends ILivechatContact>( contactId: T['_id'], clientAction: ClientAction = 'updated', ): Promise<void> =>",
+      "calls": [
+        {
+          "name": "findOpenByContactId",
+          "edgeType": "call"
+        },
+        {
+          "name": "forEach",
+          "edgeType": "call"
+        },
+        {
+          "name": "watch.rooms",
+          "edgeType": "event_emit"
+        },
+        {
+          "name": "ILivechatContact",
+          "edgeType": "type"
+        },
+        {
+          "name": "ClientAction",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "variable_function",
+      "name": "notifyOnRoomChangedByUserDM",
+      "exported": true,
+      "line": 83,
+      "endLine": 91,
+      "signature": "async <T extends IRoom>( userId: T['u']['_id'], clientAction: ClientAction = 'updated', ): Promise<void> =>",
+      "calls": [
+        {
+          "name": "findDMsByUids",
+          "edgeType": "call"
+        },
+        {
+          "name": "watch.rooms",
+          "edgeType": "event_emit"
+        },
+        {
+          "name": "IRoom",
+          "edgeType": "type"
+        },
+        {
+          "name": "ClientAction",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "variable_function",
+      "name": "notifyOnPermissionChanged",
+      "exported": true,
+      "line": 90,
+      "endLine": 100,
+      "signature": "async (permission: IPermission, clientAction: ClientAction = 'updated'): Promise<void> =>",
+      "calls": [
+        {
+          "name": "permission.changed",
+          "edgeType": "event_emit"
+        },
+        {
+          "name": "findOneNotHiddenById",
+          "edgeType": "call"
+        },
+        {
+          "name": "notifyOnSettingChanged",
+          "edgeType": "call"
+        },
+        {
+          "name": "IPermission",
+          "edgeType": "type"
+        },
+        {
+          "name": "ClientAction",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "variable_function",
+      "name": "notifyOnPermissionChangedById",
+      "exported": true,
+      "line": 94,
+      "endLine": 101,
+      "signature": "async (pid: IPermission['_id'], clientAction: ClientAction = 'updated'): Promise<void> =>",
+      "calls": [
+        {
+          "name": "findOneById",
+          "edgeType": "call"
+        },
+        {
+          "name": "notifyOnPermissionChanged",
+          "edgeType": "call"
+        },
+        {
+          "name": "IPermission",
+          "edgeType": "type"
+        },
+        {
+          "name": "ClientAction",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "variable_function",
+      "name": "notifyOnRoleChanged",
+      "exported": true,
+      "line": 98,
+      "endLine": 100,
+      "signature": "async <T extends IRole>(role: T, clientAction: 'removed' | 'changed' = 'changed'): Promise<void> =>",
+      "calls": [
+        {
+          "name": "watch.roles",
+          "edgeType": "event_emit"
+        },
+        {
+          "name": "IRole",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "variable_function",
+      "name": "notifyOnRoleChangedById",
+      "exported": true,
+      "line": 102,
+      "endLine": 112,
+      "signature": "async <T extends IRole>( id: T['_id'], clientAction: 'removed' | 'changed' = 'changed', ): Promise<void> =>",
+      "calls": [
+        {
+          "name": "findOneById",
+          "edgeType": "call"
+        },
+        {
+          "name": "notifyOnRoleChanged",
+          "edgeType": "call"
+        },
+        {
+          "name": "IRole",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "variable_function",
+      "name": "notifyOnLoginServiceConfigurationChanged",
+      "exported": true,
+      "line": 109,
+      "endLine": 118,
+      "signature": "async <T extends ILoginServiceConfiguration>( service: Partial<T> & Pick<T, '_id'>, clientAction: ClientAction = 'updated', ): Promise<void> =>",
+      "calls": [
+        {
+          "name": "watch.loginServiceConfiguration",
+          "edgeType": "event_emit"
+        },
+        {
+          "name": "ILoginServiceConfiguration",
+          "edgeType": "type"
+        },
+        {
+          "name": "ClientAction",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "variable_function",
+      "name": "notifyOnLoginServiceConfigurationChangedByService",
+      "exported": true,
+      "line": 116,
+      "endLine": 128,
+      "signature": "async <T extends ILoginServiceConfiguration>( service: T['service'], clientAction: ClientAction = 'updated', ): Promise<void> =>",
+      "calls": [
+        {
+          "name": "findOneByService",
+          "edgeType": "call"
+        },
+        {
+          "name": "notifyOnLoginServiceConfigurationChanged",
+          "edgeType": "call"
+        },
+        {
+          "name": "ILoginServiceConfiguration",
+          "edgeType": "type"
+        },
+        {
+          "name": "ClientAction",
+          "edgeType": "type"
+        },
+        {
+          "name": "LoginServiceConfigurationData",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "variable_function",
+      "name": "notifyOnIntegrationChanged",
+      "exported": true,
+      "line": 123,
+      "endLine": 128,
+      "signature": "async <T extends IIntegration>( data: T, clientAction: ClientAction = 'updated', ): Promise<void> =>",
+      "calls": [
+        {
+          "name": "watch.integrations",
+          "edgeType": "event_emit"
+        },
+        {
+          "name": "IIntegration",
+          "edgeType": "type"
+        },
+        {
+          "name": "ClientAction",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "variable_function",
+      "name": "notifyOnIntegrationChangedById",
+      "exported": true,
+      "line": 130,
+      "endLine": 140,
+      "signature": "async <T extends IIntegration>( id: T['_id'], clientAction: ClientAction = 'updated', ): Promise<void> =>",
+      "calls": [
+        {
+          "name": "findOneById",
+          "edgeType": "call"
+        },
+        {
+          "name": "watch.integrations",
+          "edgeType": "event_emit"
+        },
+        {
+          "name": "IIntegration",
+          "edgeType": "type"
+        },
+        {
+          "name": "ClientAction",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "variable_function",
+      "name": "notifyOnIntegrationChangedByUserId",
+      "exported": true,
+      "line": 137,
+      "endLine": 146,
+      "signature": "async <T extends IIntegration>( id: T['userId'], clientAction: ClientAction = 'updated', ): Promise<void> =>",
+      "calls": [
+        {
+          "name": "findByUserId",
+          "edgeType": "call"
+        },
+        {
+          "name": "watch.integrations",
+          "edgeType": "event_emit"
+        },
+        {
+          "name": "IIntegration",
+          "edgeType": "type"
+        },
+        {
+          "name": "ClientAction",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "variable_function",
+      "name": "notifyOnIntegrationChangedByChannels",
+      "exported": true,
+      "line": 144,
+      "endLine": 153,
+      "signature": "async <T extends IIntegration>( channels: T['channel'], clientAction: ClientAction = 'updated', ): Promise<void> =>",
+      "calls": [
+        {
+          "name": "findByChannels",
+          "edgeType": "call"
+        },
+        {
+          "name": "watch.integrations",
+          "edgeType": "event_emit"
+        },
+        {
+          "name": "IIntegration",
+          "edgeType": "type"
+        },
+        {
+          "name": "ClientAction",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "variable_function",
+      "name": "notifyOnEmailInboxChanged",
+      "exported": true,
+      "line": 151,
+      "endLine": 156,
+      "signature": "async <T extends IEmailInbox>( data: Pick<T, '_id'> | T, // TODO: improve typing clientAction: ClientAction = 'updated', ): Promise<void> =>",
+      "calls": [
+        {
+          "name": "watch.emailInbox",
+          "edgeType": "event_emit"
+        },
+        {
+          "name": "IEmailInbox",
+          "edgeType": "type"
+        },
+        {
+          "name": "ClientAction",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "variable_function",
+      "name": "notifyOnLivechatInquiryChanged",
+      "exported": true,
+      "line": 158,
+      "endLine": 168,
+      "signature": "async ( data: ILivechatInquiryRecord | ILivechatInquiryRecord[], clientAction: ClientAction = 'updated', diff?: Partial<Record<keyof ILivechatInquiryRecord, unknown> & { queuedAt: unknown; takenAt: unknown }>, ): Promise<void> =>",
+      "calls": [
+        {
+          "name": "isArray",
+          "edgeType": "call"
+        },
+        {
+          "name": "watch.inquiries",
+          "edgeType": "event_emit"
+        },
+        {
+          "name": "ILivechatInquiryRecord",
+          "edgeType": "type"
+        },
+        {
+          "name": "ClientAction",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "variable_function",
+      "name": "notifyOnLivechatInquiryChangedById",
+      "exported": true,
+      "line": 166,
+      "endLine": 185,
+      "signature": "async ( ids: ILivechatInquiryRecord['_id'] | ILivechatInquiryRecord['_id'][], clientAction: ClientAction = 'updated', diff?: Partial<Record<keyof ILivechatInquiryRecord, unknown> & { queuedAt: unknown; takenAt: unknown }>, ): Promise<void> =>",
+      "calls": [
+        {
+          "name": "isArray",
+          "edgeType": "call"
+        },
+        {
+          "name": "trashFind",
+          "edgeType": "call"
+        },
+        {
+          "name": "find",
+          "edgeType": "call"
+        },
+        {
+          "name": "watch.inquiries",
+          "edgeType": "event_emit"
+        },
+        {
+          "name": "ILivechatInquiryRecord",
+          "edgeType": "type"
+        },
+        {
+          "name": "ClientAction",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "variable_function",
+      "name": "notifyOnLivechatInquiryChangedByVisitorIds",
+      "exported": true,
+      "line": 174,
+      "endLine": 184,
+      "signature": "async ( visitorIds: ILivechatInquiryRecord['v']['_id'][], clientAction: Exclude<ClientAction, 'removed'> = 'updated', diff?: Partial<Record<keyof ILivechatInquiryRecord, unknown> & { queuedAt: Date; takenAt: Date }>, ): Promise<void> =>",
+      "calls": [
+        {
+          "name": "findByVisitorIds",
+          "edgeType": "call"
+        },
+        {
+          "name": "forEach",
+          "edgeType": "call"
+        },
+        {
+          "name": "watch.inquiries",
+          "edgeType": "event_emit"
+        },
+        {
+          "name": "ILivechatInquiryRecord",
+          "edgeType": "type"
+        },
+        {
+          "name": "ClientAction",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "variable_function",
+      "name": "notifyOnLivechatInquiryChangedByRoom",
+      "exported": true,
+      "line": 182,
+      "endLine": 201,
+      "signature": "async ( rids: ILivechatInquiryRecord['rid'] | ILivechatInquiryRecord['rid'][], clientAction: ClientAction = 'updated', diff?: Partial<Record<keyof ILivechatInquiryRecord, unknown> & { queuedAt: unknown; takenAt: unknown }>, ): Promise<void> =>",
+      "calls": [
+        {
+          "name": "isArray",
+          "edgeType": "call"
+        },
+        {
+          "name": "trashFind",
+          "edgeType": "call"
+        },
+        {
+          "name": "find",
+          "edgeType": "call"
+        },
+        {
+          "name": "watch.inquiries",
+          "edgeType": "event_emit"
+        },
+        {
+          "name": "ILivechatInquiryRecord",
+          "edgeType": "type"
+        },
+        {
+          "name": "ClientAction",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "variable_function",
+      "name": "notifyOnLivechatInquiryChangedByToken",
+      "exported": true,
+      "line": 190,
+      "endLine": 202,
+      "signature": "async ( token: ILivechatInquiryRecord['v']['token'], clientAction: ClientAction = 'updated', diff?: Partial<Record<keyof ILivechatInquiryRecord, unknown> & { queuedAt: unknown; takenAt: unknown }>, ): Promise<void> =>",
+      "calls": [
+        {
+          "name": "findOneByToken",
+          "edgeType": "call"
+        },
+        {
+          "name": "watch.inquiries",
+          "edgeType": "event_emit"
+        },
+        {
+          "name": "ILivechatInquiryRecord",
+          "edgeType": "type"
+        },
+        {
+          "name": "ClientAction",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "variable_function",
+      "name": "notifyOnIntegrationHistoryChanged",
+      "exported": true,
+      "line": 198,
+      "endLine": 204,
+      "signature": "async <T extends IIntegrationHistory>( data: AtLeast<T, '_id'>, clientAction: ClientAction = 'updated', diff: Partial<T> = {}, ): Promise<void> =>",
+      "calls": [
+        {
+          "name": "watch.integrationHistory",
+          "edgeType": "event_emit"
+        },
+        {
+          "name": "IIntegrationHistory",
+          "edgeType": "type"
+        },
+        {
+          "name": "AtLeast",
+          "edgeType": "type"
+        },
+        {
+          "name": "ClientAction",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "variable_function",
+      "name": "notifyOnIntegrationHistoryChangedById",
+      "exported": true,
+      "line": 206,
+      "endLine": 218,
+      "signature": "async <T extends IIntegrationHistory>( id: T['_id'], clientAction: ClientAction = 'updated', diff: Partial<T> = {}, ): Promise<void> =>",
+      "calls": [
+        {
+          "name": "findOneById",
+          "edgeType": "call"
+        },
+        {
+          "name": "watch.integrationHistory",
+          "edgeType": "event_emit"
+        },
+        {
+          "name": "IIntegrationHistory",
+          "edgeType": "type"
+        },
+        {
+          "name": "ClientAction",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "variable_function",
+      "name": "notifyOnLivechatDepartmentAgentChanged",
+      "exported": true,
+      "line": 214,
+      "endLine": 219,
+      "signature": "async <T extends ILivechatDepartmentAgents>( data: Partial<T> & Pick<T, '_id' | 'agentId' | 'departmentId'>, clientAction: ClientAction = 'updated', ): Promise<void> =>",
+      "calls": [
+        {
+          "name": "watch.livechatDepartmentAgents",
+          "edgeType": "event_emit"
+        },
+        {
+          "name": "ILivechatDepartmentAgents",
+          "edgeType": "type"
+        },
+        {
+          "name": "ClientAction",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "variable_function",
+      "name": "notifyOnLivechatDepartmentAgentChangedByDepartmentId",
+      "exported": true,
+      "line": 221,
+      "endLine": 230,
+      "signature": "async <T extends ILivechatDepartmentAgents>( departmentId: T['departmentId'], clientAction: 'inserted' | 'updated' = 'updated', ): Promise<void> =>",
+      "calls": [
+        {
+          "name": "findByDepartmentId",
+          "edgeType": "call"
+        },
+        {
+          "name": "watch.livechatDepartmentAgents",
+          "edgeType": "event_emit"
+        },
+        {
+          "name": "ILivechatDepartmentAgents",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "variable_function",
+      "name": "notifyOnLivechatDepartmentAgentChangedByAgentsAndDepartmentId",
+      "exported": true,
+      "line": 228,
+      "endLine": 240,
+      "signature": "async <T extends ILivechatDepartmentAgents>( agentsIds: T['agentId'][], departmentId: T['departmentId'], clientAction: 'inserted' | 'updated' = 'updated', ): Promise<void> =>",
+      "calls": [
+        {
+          "name": "findByAgentsAndDepartmentId",
+          "edgeType": "call"
+        },
+        {
+          "name": "watch.livechatDepartmentAgents",
+          "edgeType": "event_emit"
+        },
+        {
+          "name": "ILivechatDepartmentAgents",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "variable_function",
+      "name": "notifyOnSettingChanged",
+      "exported": true,
+      "line": 236,
+      "endLine": 241,
+      "signature": "async ( setting: ISetting & { editor?: ISettingColor['editor'] }, clientAction: ClientAction = 'updated', ): Promise<void> =>",
+      "calls": [
+        {
+          "name": "watch.settings",
+          "edgeType": "event_emit"
+        },
+        {
+          "name": "ISetting",
+          "edgeType": "type"
+        },
+        {
+          "name": "ISettingColor",
+          "edgeType": "type"
+        },
+        {
+          "name": "ClientAction",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "variable_function",
+      "name": "notifyOnSettingChangedById",
+      "exported": true,
+      "line": 243,
+      "endLine": 251,
+      "signature": "async (id: ISetting['_id'], clientAction: ClientAction = 'updated'): Promise<void> =>",
+      "calls": [
+        {
+          "name": "trashFindOneById",
+          "edgeType": "call"
+        },
+        {
+          "name": "findOneById",
+          "edgeType": "call"
+        },
+        {
+          "name": "watch.settings",
+          "edgeType": "event_emit"
+        },
+        {
+          "name": "ISetting",
+          "edgeType": "type"
+        },
+        {
+          "name": "ClientAction",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "variable_function",
+      "name": "notifyOnUserChange",
+      "exported": true,
+      "line": 255,
+      "endLine": 267,
+      "signature": "async ({ clientAction, id, data, diff, unset }: NotifyUserChange) =>",
+      "calls": [
+        {
+          "name": "watch.users",
+          "edgeType": "event_emit"
+        },
+        {
+          "name": "NotifyUserChange",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "variable_function",
+      "name": "notifyOnUserChangeAsync",
+      "exported": true,
+      "line": 262,
+      "endLine": 274,
+      "signature": "async (cb: () => Promise<NotifyUserChange | NotifyUserChange[] | void>) =>",
+      "calls": [
+        {
+          "name": "cb",
+          "edgeType": "call"
+        },
+        {
+          "name": "isArray",
+          "edgeType": "call"
+        },
+        {
+          "name": "forEach",
+          "edgeType": "call"
+        },
+        {
+          "name": "notifyOnUserChange",
+          "edgeType": "call"
+        },
+        {
+          "name": "NotifyUserChange",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "variable_function",
+      "name": "notifyOnUserChangeById",
+      "exported": true,
+      "line": 267,
+      "endLine": 280,
+      "signature": "async ({ clientAction, id, }: { id: IUser['_id']; clientAction: 'inserted' | 'removed' | 'updated'; }) =>",
+      "calls": [
+        {
+          "name": "findOneById",
+          "edgeType": "call"
+        },
+        {
+          "name": "notifyOnUserChange",
+          "edgeType": "call"
+        },
+        {
+          "name": "IUser",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "variable_function",
+      "name": "notifyOnMessageChange",
+      "exported": true,
+      "line": 291,
+      "endLine": 297,
+      "signature": "async ({ id, data }: { id: IMessage['_id']; data?: IMessage }): Promise<void> =>",
+      "calls": [
+        {
+          "name": "getMessageToBroadcast",
+          "edgeType": "call"
+        },
+        {
+          "name": "watch.messages",
+          "edgeType": "event_emit"
+        },
+        {
+          "name": "IMessage",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "variable_function",
+      "name": "notifyOnSubscriptionChanged",
+      "exported": true,
+      "line": 295,
+      "endLine": 297,
+      "signature": "async (subscription: ISubscription, clientAction: ClientAction = 'updated'): Promise<void> =>",
+      "calls": [
+        {
+          "name": "watch.subscriptions",
+          "edgeType": "event_emit"
+        },
+        {
+          "name": "ISubscription",
+          "edgeType": "type"
+        },
+        {
+          "name": "ClientAction",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "variable_function",
+      "name": "notifyOnSubscriptionChangedByRoomIdAndUserId",
+      "exported": true,
+      "line": 299,
+      "endLine": 309,
+      "signature": "async ( rid: ISubscription['rid'], uid: ISubscription['u']['_id'], clientAction: Exclude<ClientAction, 'removed'> = 'updated', ): Promise<void> =>",
+      "calls": [
+        {
+          "name": "findByUserIdAndRoomIds",
+          "edgeType": "call"
+        },
+        {
+          "name": "forEach",
+          "edgeType": "call"
+        },
+        {
+          "name": "watch.subscriptions",
+          "edgeType": "event_emit"
+        },
+        {
+          "name": "ISubscription",
+          "edgeType": "type"
+        },
+        {
+          "name": "ClientAction",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "variable_function",
+      "name": "notifyOnSubscriptionChangedById",
+      "exported": true,
+      "line": 307,
+      "endLine": 317,
+      "signature": "async ( id: ISubscription['_id'], clientAction: Exclude<ClientAction, 'removed'> = 'updated', ): Promise<void> =>",
+      "calls": [
+        {
+          "name": "findOneById",
+          "edgeType": "call"
+        },
+        {
+          "name": "watch.subscriptions",
+          "edgeType": "event_emit"
+        },
+        {
+          "name": "ISubscription",
+          "edgeType": "type"
+        },
+        {
+          "name": "ClientAction",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "variable_function",
+      "name": "notifyOnSubscriptionChangedByUserPreferences",
+      "exported": true,
+      "line": 314,
+      "endLine": 327,
+      "signature": "async ( uid: ISubscription['u']['_id'], notificationOriginField: keyof ISubscription, originFieldNotEqualValue: 'user' | 'subscription', clientAction: Exclude<ClientAction, 'removed'> = 'updated', ): Promise<void> =>",
+      "calls": [
+        {
+          "name": "findByUserPreferences",
+          "edgeType": "call"
+        },
+        {
+          "name": "forEach",
+          "edgeType": "call"
+        },
+        {
+          "name": "watch.subscriptions",
+          "edgeType": "event_emit"
+        },
+        {
+          "name": "ISubscription",
+          "edgeType": "type"
+        },
+        {
+          "name": "ClientAction",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "variable_function",
+      "name": "notifyOnSubscriptionChangedByRoomId",
+      "exported": true,
+      "line": 323,
+      "endLine": 332,
+      "signature": "async ( rid: ISubscription['rid'], clientAction: Exclude<ClientAction, 'removed'> = 'updated', ): Promise<void> =>",
+      "calls": [
+        {
+          "name": "findByRoomId",
+          "edgeType": "call"
+        },
+        {
+          "name": "forEach",
+          "edgeType": "call"
+        },
+        {
+          "name": "watch.subscriptions",
+          "edgeType": "event_emit"
+        },
+        {
+          "name": "ISubscription",
+          "edgeType": "type"
+        },
+        {
+          "name": "ClientAction",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "variable_function",
+      "name": "notifyOnSubscriptionChangedByAutoTranslateAndUserId",
+      "exported": true,
+      "line": 330,
+      "endLine": 339,
+      "signature": "async ( uid: ISubscription['u']['_id'], clientAction: Exclude<ClientAction, 'removed'> = 'updated', ): Promise<void> =>",
+      "calls": [
+        {
+          "name": "findByAutoTranslateAndUserId",
+          "edgeType": "call"
+        },
+        {
+          "name": "forEach",
+          "edgeType": "call"
+        },
+        {
+          "name": "watch.subscriptions",
+          "edgeType": "event_emit"
+        },
+        {
+          "name": "ISubscription",
+          "edgeType": "type"
+        },
+        {
+          "name": "ClientAction",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "variable_function",
+      "name": "notifyOnSubscriptionChangedByUserIdAndRoomType",
+      "exported": true,
+      "line": 337,
+      "endLine": 347,
+      "signature": "async ( uid: ISubscription['u']['_id'], t: ISubscription['t'], clientAction: Exclude<ClientAction, 'removed'> = 'updated', ): Promise<void> =>",
+      "calls": [
+        {
+          "name": "findByUserIdAndRoomType",
+          "edgeType": "call"
+        },
+        {
+          "name": "forEach",
+          "edgeType": "call"
+        },
+        {
+          "name": "watch.subscriptions",
+          "edgeType": "event_emit"
+        },
+        {
+          "name": "ISubscription",
+          "edgeType": "type"
+        },
+        {
+          "name": "ClientAction",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "variable_function",
+      "name": "notifyOnSubscriptionChangedByVisitorIds",
+      "exported": true,
+      "line": 345,
+      "endLine": 354,
+      "signature": "async ( visitorIds: Exclude<ISubscription['v'], undefined>['_id'][], clientAction: Exclude<ClientAction, 'removed'> = 'updated', ): Promise<void> =>",
+      "calls": [
+        {
+          "name": "findOpenByVisitorIds",
+          "edgeType": "call"
+        },
+        {
+          "name": "forEach",
+          "edgeType": "call"
+        },
+        {
+          "name": "watch.subscriptions",
+          "edgeType": "event_emit"
+        },
+        {
+          "name": "ISubscription",
+          "edgeType": "type"
+        },
+        {
+          "name": "ClientAction",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "variable_function",
+      "name": "notifyOnSubscriptionChangedByNameAndRoomType",
+      "exported": true,
+      "line": 352,
+      "endLine": 361,
+      "signature": "async ( filter: Partial<Pick<ISubscription, 'name' | 't'>>, clientAction: Exclude<ClientAction, 'removed'> = 'updated', ): Promise<void> =>",
+      "calls": [
+        {
+          "name": "findByNameAndRoomType",
+          "edgeType": "call"
+        },
+        {
+          "name": "forEach",
+          "edgeType": "call"
+        },
+        {
+          "name": "watch.subscriptions",
+          "edgeType": "event_emit"
+        },
+        {
+          "name": "ISubscription",
+          "edgeType": "type"
+        },
+        {
+          "name": "ClientAction",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "variable_function",
+      "name": "notifyOnSubscriptionChangedByUserId",
+      "exported": true,
+      "line": 359,
+      "endLine": 368,
+      "signature": "async ( uid: ISubscription['u']['_id'], clientAction: Exclude<ClientAction, 'removed'> = 'updated', ): Promise<void> =>",
+      "calls": [
+        {
+          "name": "findByUserId",
+          "edgeType": "call"
+        },
+        {
+          "name": "forEach",
+          "edgeType": "call"
+        },
+        {
+          "name": "watch.subscriptions",
+          "edgeType": "event_emit"
+        },
+        {
+          "name": "ISubscription",
+          "edgeType": "type"
+        },
+        {
+          "name": "ClientAction",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "variable_function",
+      "name": "notifyOnSubscriptionChangedByRoomIdAndUserIds",
+      "exported": true,
+      "line": 366,
+      "endLine": 376,
+      "signature": "async ( rid: ISubscription['rid'], uids: ISubscription['u']['_id'][], clientAction: Exclude<ClientAction, 'removed'> = 'updated', ): Promise<void> =>",
+      "calls": [
+        {
+          "name": "findByRoomIdAndUserIds",
+          "edgeType": "call"
+        },
+        {
+          "name": "forEach",
+          "edgeType": "call"
+        },
+        {
+          "name": "watch.subscriptions",
+          "edgeType": "event_emit"
+        },
+        {
+          "name": "ISubscription",
+          "edgeType": "type"
+        },
+        {
+          "name": "ClientAction",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "type",
+      "name": "ClientAction",
+      "line": 45,
+      "endLine": 45,
+      "signature": "type ClientAction = 'inserted' | 'updated' | 'removed';"
+    },
+    {
+      "type": "type",
+      "name": "NotifyUserChange",
+      "line": 247,
+      "endLine": 253,
+      "signature": "type NotifyUserChange ="
+    }
+  ],
+  "imports": [
+    {
+      "module": "@rocket.chat/core-services",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/core-typings",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/models",
+      "resolved": "external"
+    },
+    {
+      "module": "mem",
+      "resolved": "external"
+    },
+    {
+      "module": "../../../../lib/publishFields",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/lib/publishFields.ts"
+    },
+    {
+      "module": "../../../../server/lib/systemMessage/hideSystemMessage",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/server/lib/systemMessage/hideSystemMessage.ts"
+    }
+  ]
+}

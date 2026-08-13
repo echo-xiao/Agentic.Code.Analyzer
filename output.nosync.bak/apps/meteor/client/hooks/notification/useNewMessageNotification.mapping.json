@@ -1,0 +1,53 @@
+{
+  "sourcePath": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/client/hooks/notification/useNewMessageNotification.ts",
+  "symbols": [
+    {
+      "type": "variable_function",
+      "name": "useNewMessageNotification",
+      "exported": true,
+      "line": 5,
+      "endLine": 20,
+      "signature": "() =>",
+      "calls": [
+        {
+          "name": "useCustomSound",
+          "edgeType": "call"
+        },
+        {
+          "name": "useStableCallback",
+          "edgeType": "call"
+        },
+        {
+          "name": "playNewMessageCustom",
+          "edgeType": "call"
+        },
+        {
+          "name": "playNewMessage",
+          "edgeType": "call"
+        },
+        {
+          "name": "AtLeast",
+          "edgeType": "type"
+        },
+        {
+          "name": "ISubscription",
+          "edgeType": "type"
+        }
+      ]
+    }
+  ],
+  "imports": [
+    {
+      "module": "@rocket.chat/core-typings",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/fuselage-hooks",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/ui-contexts",
+      "resolved": "external"
+    }
+  ]
+}

@@ -1,0 +1,422 @@
+{
+  "sourcePath": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/client/views/admin/customSounds/EditSound.tsx",
+  "symbols": [
+    {
+      "type": "inner_function",
+      "name": "handleChangeFile",
+      "exported": false,
+      "qualifiedName": "EditSound.handleChangeFile",
+      "line": 49,
+      "endLine": 51,
+      "signature": "(soundFile: File) =>",
+      "calls": [
+        {
+          "name": "setFile",
+          "edgeType": "call"
+        },
+        {
+          "name": "File",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "inner_function",
+      "name": "handleSave",
+      "exported": false,
+      "qualifiedName": "EditSound.handleSave",
+      "line": 55,
+      "endLine": 74,
+      "signature": "async () =>",
+      "calls": [
+        {
+          "name": "trim",
+          "edgeType": "call"
+        },
+        {
+          "name": "validate",
+          "edgeType": "call"
+        },
+        {
+          "name": "dispatchToastMessage",
+          "edgeType": "call"
+        },
+        {
+          "name": "append",
+          "edgeType": "call"
+        },
+        {
+          "name": "saveAction",
+          "edgeType": "call"
+        },
+        {
+          "name": "FormData",
+          "edgeType": "new"
+        }
+      ]
+    },
+    {
+      "type": "inner_function",
+      "name": "handleDeleteButtonClick",
+      "exported": false,
+      "qualifiedName": "EditSound.handleDeleteButtonClick",
+      "line": 76,
+      "endLine": 97,
+      "signature": "() =>",
+      "calls": [
+        {
+          "name": "deleteCustomSoundEndpoint",
+          "edgeType": "call"
+        },
+        {
+          "name": "dispatchToastMessage",
+          "edgeType": "call"
+        },
+        {
+          "name": "setModal",
+          "edgeType": "call"
+        },
+        {
+          "name": "close",
+          "edgeType": "call"
+        },
+        {
+          "name": "onChange",
+          "edgeType": "call"
+        },
+        {
+          "name": "GenericModal",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "handleDelete",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "handleCancel",
+          "edgeType": "jsx"
+        }
+      ]
+    },
+    {
+      "type": "inner_function",
+      "name": "handleDelete",
+      "exported": false,
+      "qualifiedName": "EditSound.handleDelete",
+      "line": 77,
+      "endLine": 88,
+      "signature": "async (): Promise<void> =>",
+      "calls": [
+        {
+          "name": "deleteCustomSoundEndpoint",
+          "edgeType": "call"
+        },
+        {
+          "name": "dispatchToastMessage",
+          "edgeType": "call"
+        },
+        {
+          "name": "setModal",
+          "edgeType": "call"
+        },
+        {
+          "name": "close",
+          "edgeType": "call"
+        },
+        {
+          "name": "onChange",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "inner_function",
+      "name": "handleCancel",
+      "exported": false,
+      "qualifiedName": "EditSound.handleCancel",
+      "line": 90,
+      "endLine": 90,
+      "signature": "(): void =>",
+      "calls": [
+        {
+          "name": "setModal",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "inner_function",
+      "name": "onSuccess",
+      "exported": false,
+      "qualifiedName": "EditSound.onSuccess",
+      "line": 42,
+      "endLine": 46,
+      "signature": "() =>",
+      "calls": [
+        {
+          "name": "dispatchToastMessage",
+          "edgeType": "call"
+        },
+        {
+          "name": "onChange",
+          "edgeType": "call"
+        },
+        {
+          "name": "close",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "function",
+      "name": "EditSound",
+      "exported": true,
+      "line": 24,
+      "endLine": 152,
+      "signature": "function EditSound({ close, onChange, data, ...props }: EditSoundProps)",
+      "calls": [
+        {
+          "name": "useTranslation",
+          "edgeType": "call"
+        },
+        {
+          "name": "useToastMessageDispatch",
+          "edgeType": "call"
+        },
+        {
+          "name": "useSetModal",
+          "edgeType": "call"
+        },
+        {
+          "name": "useState",
+          "edgeType": "call"
+        },
+        {
+          "name": "useEffect",
+          "edgeType": "call"
+        },
+        {
+          "name": "setName",
+          "edgeType": "call"
+        },
+        {
+          "name": "setFile",
+          "edgeType": "call"
+        },
+        {
+          "name": "useEndpoint",
+          "edgeType": "call"
+        },
+        {
+          "name": "useEndpointUploadMutation",
+          "edgeType": "call"
+        },
+        {
+          "name": "dispatchToastMessage",
+          "edgeType": "call"
+        },
+        {
+          "name": "onChange",
+          "edgeType": "call"
+        },
+        {
+          "name": "close",
+          "edgeType": "call"
+        },
+        {
+          "name": "useCallback",
+          "edgeType": "call"
+        },
+        {
+          "name": "useMemo",
+          "edgeType": "call"
+        },
+        {
+          "name": "trim",
+          "edgeType": "call"
+        },
+        {
+          "name": "validate",
+          "edgeType": "call"
+        },
+        {
+          "name": "append",
+          "edgeType": "call"
+        },
+        {
+          "name": "saveAction",
+          "edgeType": "call"
+        },
+        {
+          "name": "deleteCustomSoundEndpoint",
+          "edgeType": "call"
+        },
+        {
+          "name": "setModal",
+          "edgeType": "call"
+        },
+        {
+          "name": "useSingleFileInput",
+          "edgeType": "call"
+        },
+        {
+          "name": "join",
+          "edgeType": "call"
+        },
+        {
+          "name": "fileSize",
+          "edgeType": "call"
+        },
+        {
+          "name": "GenericModal",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "ContextualbarScrollableContent",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "Field",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "FieldLabel",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "FieldRow",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "Box",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "Margins",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "ContextualbarFooter",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "ButtonGroup",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "Button",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "TextInput",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "IconButton",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "handleDelete",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "handleCancel",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "name",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "clickUpload",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "close",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "handleSave",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "handleDeleteButtonClick",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "FormData",
+          "edgeType": "new"
+        },
+        {
+          "name": "EditSoundProps",
+          "edgeType": "type"
+        },
+        {
+          "name": "File",
+          "edgeType": "type"
+        },
+        {
+          "name": "ChangeEvent",
+          "edgeType": "type"
+        },
+        {
+          "name": "HTMLInputElement",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "type",
+      "name": "EditSoundProps",
+      "line": 14,
+      "endLine": 22,
+      "signature": "export type EditSoundProps ="
+    }
+  ],
+  "imports": [
+    {
+      "module": "@rocket.chat/fuselage",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/ui-client",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/ui-contexts",
+      "resolved": "external"
+    },
+    {
+      "module": "filesize",
+      "resolved": "external"
+    },
+    {
+      "module": "react",
+      "resolved": "external"
+    },
+    {
+      "module": "react",
+      "resolved": "external"
+    },
+    {
+      "module": "react-i18next",
+      "resolved": "external"
+    },
+    {
+      "module": "./lib",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/client/views/admin/customSounds/lib.ts"
+    },
+    {
+      "module": "../../../../lib/constants",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/lib/constants.ts"
+    },
+    {
+      "module": "../../../hooks/useEndpointUploadMutation",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/client/hooks/useEndpointUploadMutation.ts"
+    },
+    {
+      "module": "../../../hooks/useSingleFileInput",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/client/hooks/useSingleFileInput.ts"
+    }
+  ]
+}

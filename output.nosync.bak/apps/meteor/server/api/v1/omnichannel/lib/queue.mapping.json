@@ -1,0 +1,33 @@
+{
+  "sourcePath": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/server/api/v1/omnichannel/lib/queue.ts",
+  "symbols": [
+    {
+      "type": "function",
+      "name": "findQueueMetrics",
+      "exported": true,
+      "line": 4,
+      "endLine": 46,
+      "signature": "export async function findQueueMetrics({ agentId, includeOfflineAgents, departmentId, pagination: { offset, count, sort }, }: { agentId?: string; includeOfflineAgents?: boolean; departmentId?: string; pagination: { offset: number; count: number; sort: Record<string, number> }; }): Promise< PaginatedResult<{ queue: Array<{ _id: string; user: { _id: string; userId: string; username: string; status: ",
+      "calls": [
+        {
+          "name": "getQueueMetrics",
+          "edgeType": "call"
+        },
+        {
+          "name": "PaginatedResult",
+          "edgeType": "type"
+        }
+      ]
+    }
+  ],
+  "imports": [
+    {
+      "module": "@rocket.chat/models",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/rest-typings",
+      "resolved": "external"
+    }
+  ]
+}

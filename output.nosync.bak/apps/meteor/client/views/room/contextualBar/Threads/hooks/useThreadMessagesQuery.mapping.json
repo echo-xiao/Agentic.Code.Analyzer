@@ -1,0 +1,207 @@
+{
+  "sourcePath": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/client/views/room/contextualBar/Threads/hooks/useThreadMessagesQuery.ts",
+  "symbols": [
+    {
+      "type": "variable_function",
+      "name": "processMessages",
+      "exported": false,
+      "line": 17,
+      "endLine": 19,
+      "signature": "async (messages: IMessage[]): Promise<IMessage[]> =>",
+      "calls": [
+        {
+          "name": "all",
+          "edgeType": "call"
+        },
+        {
+          "name": "map",
+          "edgeType": "call"
+        },
+        {
+          "name": "onClientMessageReceived",
+          "edgeType": "call"
+        },
+        {
+          "name": "IMessage",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "variable_function",
+      "name": "useThreadMessagesQuery",
+      "exported": true,
+      "line": 21,
+      "endLine": 122,
+      "signature": "(tmid: IThreadMainMessage['_id'], rid?: IRoom['_id']) =>",
+      "calls": [
+        {
+          "name": "useRoom",
+          "edgeType": "call"
+        },
+        {
+          "name": "useQueryClient",
+          "edgeType": "call"
+        },
+        {
+          "name": "threadMessages",
+          "edgeType": "call"
+        },
+        {
+          "name": "useMethod",
+          "edgeType": "call"
+        },
+        {
+          "name": "useStream",
+          "edgeType": "call"
+        },
+        {
+          "name": "useRef",
+          "edgeType": "call"
+        },
+        {
+          "name": "useEffect",
+          "edgeType": "call"
+        },
+        {
+          "name": "subscribeToRoomMessages",
+          "edgeType": "call"
+        },
+        {
+          "name": "onClientMessageReceived",
+          "edgeType": "call"
+        },
+        {
+          "name": "upsertThreadMessageInCache",
+          "edgeType": "call"
+        },
+        {
+          "name": "subscribeToNotifyRoom",
+          "edgeType": "call"
+        },
+        {
+          "name": "setQueryData",
+          "edgeType": "call"
+        },
+        {
+          "name": "filter",
+          "edgeType": "call"
+        },
+        {
+          "name": "createDeleteCriteria",
+          "edgeType": "call"
+        },
+        {
+          "name": "map",
+          "edgeType": "call"
+        },
+        {
+          "name": "matchDeleteCriteria",
+          "edgeType": "call"
+        },
+        {
+          "name": "modifyMessageOnFilesDelete",
+          "edgeType": "call"
+        },
+        {
+          "name": "getQueryState",
+          "edgeType": "call"
+        },
+        {
+          "name": "markThreadMessagesAsRead",
+          "edgeType": "call"
+        },
+        {
+          "name": "unsubscribeFromRoomMessages",
+          "edgeType": "call"
+        },
+        {
+          "name": "unsubscribeFromDeleteMessage",
+          "edgeType": "call"
+        },
+        {
+          "name": "unsubscribeFromDeleteMessageBulk",
+          "edgeType": "call"
+        },
+        {
+          "name": "unsubscribeFromMessagesRead",
+          "edgeType": "call"
+        },
+        {
+          "name": "useQuery",
+          "edgeType": "call"
+        },
+        {
+          "name": "getQueryData",
+          "edgeType": "call"
+        },
+        {
+          "name": "getThreadMessages",
+          "edgeType": "call"
+        },
+        {
+          "name": "isThreadMessage",
+          "edgeType": "call"
+        },
+        {
+          "name": "mergeThreadMessages",
+          "edgeType": "call"
+        },
+        {
+          "name": "processMessages",
+          "edgeType": "call"
+        },
+        {
+          "name": "IThreadMainMessage",
+          "edgeType": "type"
+        },
+        {
+          "name": "IRoom",
+          "edgeType": "type"
+        },
+        {
+          "name": "IThreadMessage",
+          "edgeType": "type"
+        }
+      ]
+    }
+  ],
+  "imports": [
+    {
+      "module": "@rocket.chat/core-typings",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/ui-contexts",
+      "resolved": "external"
+    },
+    {
+      "module": "@tanstack/react-query",
+      "resolved": "external"
+    },
+    {
+      "module": "react",
+      "resolved": "external"
+    },
+    {
+      "module": "../../../../../lib/onClientMessageReceived",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/client/lib/onClientMessageReceived.ts"
+    },
+    {
+      "module": "../../../../../lib/queryKeys",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/client/lib/queryKeys.ts"
+    },
+    {
+      "module": "../../../../../lib/utils/modifyMessageOnFilesDelete",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/client/lib/utils/modifyMessageOnFilesDelete.ts"
+    },
+    {
+      "module": "../../../../../lib/utils/threadMessageUtils",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/client/lib/utils/threadMessageUtils.ts"
+    },
+    {
+      "module": "../../../contexts/RoomContext",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/client/views/room/contexts/RoomContext.ts"
+    }
+  ]
+}

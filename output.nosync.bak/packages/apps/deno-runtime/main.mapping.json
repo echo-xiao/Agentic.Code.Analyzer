@@ -1,0 +1,103 @@
+{
+  "sourcePath": "/Users/echoooooo/Desktop/code/Rocket.Chat/packages/apps/deno-runtime/main.ts",
+  "symbols": [
+    {
+      "type": "module",
+      "name": "main",
+      "exported": false,
+      "line": 1,
+      "endLine": 55,
+      "signature": "main",
+      "calls": [
+        {
+          "name": "includes",
+          "edgeType": "call"
+        },
+        {
+          "name": "error",
+          "edgeType": "call"
+        },
+        {
+          "name": "exit",
+          "edgeType": "call"
+        },
+        {
+          "name": "setTransport",
+          "edgeType": "call"
+        },
+        {
+          "name": "setSandboxRequire",
+          "edgeType": "call"
+        },
+        {
+          "name": "setSandboxGlobals",
+          "edgeType": "call"
+        },
+        {
+          "name": "prepareEnvironment",
+          "edgeType": "call"
+        },
+        {
+          "name": "registerErrorListeners",
+          "edgeType": "call"
+        },
+        {
+          "name": "startMainLoop",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "function",
+      "name": "prepareEnvironment",
+      "exported": false,
+      "line": 27,
+      "endLine": 38,
+      "signature": "function prepareEnvironment()",
+      "calls": [
+        {
+          "name": "call",
+          "edgeType": "call"
+        }
+      ]
+    }
+  ],
+  "imports": [
+    {
+      "module": "node:buffer",
+      "resolved": "external"
+    },
+    {
+      "module": "node:net",
+      "resolved": "external"
+    },
+    {
+      "module": "node:process",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/apps/base-runtime/handlers/app/construct",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/apps/base-runtime/lib/messenger",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/apps/base-runtime/mainLoop",
+      "resolved": "external"
+    },
+    {
+      "module": "./error-handlers",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/packages/apps/deno-runtime/error-handlers.ts"
+    },
+    {
+      "module": "./lib/require",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/packages/apps/deno-runtime/lib/require.ts"
+    },
+    {
+      "module": "./lib/transports/stdoutTransport",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/packages/apps/deno-runtime/lib/transports/stdoutTransport.ts"
+    }
+  ]
+}

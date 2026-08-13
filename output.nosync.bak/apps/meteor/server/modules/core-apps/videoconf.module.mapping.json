@@ -1,0 +1,61 @@
+{
+  "sourcePath": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/server/modules/core-apps/videoconf.module.ts",
+  "symbols": [
+    {
+      "type": "class",
+      "name": "VideoConfModule",
+      "exported": true,
+      "line": 7,
+      "endLine": 57,
+      "signature": "export class VideoConfModule implements IUiKitCoreApp",
+      "calls": [
+        {
+          "name": "IUiKitCoreApp",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "blockAction",
+      "exported": true,
+      "qualifiedName": "VideoConfModule.blockAction",
+      "line": 10,
+      "endLine": 56,
+      "signature": "async blockAction(payload: UiKitCoreAppBlockActionPayload): Promise<UiKit.ServerInteraction | undefined>",
+      "containerClass": "VideoConfModule",
+      "calls": [
+        {
+          "name": "join",
+          "edgeType": "call"
+        },
+        {
+          "name": "getInfo",
+          "edgeType": "call"
+        },
+        {
+          "name": "UiKitCoreAppBlockActionPayload",
+          "edgeType": "type"
+        }
+      ]
+    }
+  ],
+  "imports": [
+    {
+      "module": "@rocket.chat/core-services",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/core-services",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/ui-kit",
+      "resolved": "external"
+    },
+    {
+      "module": "../../lib/i18n",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/server/lib/i18n.ts"
+    }
+  ]
+}

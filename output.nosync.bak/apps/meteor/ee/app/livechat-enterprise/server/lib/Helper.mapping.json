@@ -1,0 +1,476 @@
+{
+  "sourcePath": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/ee/app/livechat-enterprise/server/lib/Helper.ts",
+  "symbols": [
+    {
+      "type": "variable_function",
+      "name": "isAgentWithinChatLimits",
+      "exported": true,
+      "line": 41,
+      "endLine": 153,
+      "signature": "async ({ agentId, departmentId, totalChats, departmentChats, }: { agentId: string; departmentId?: string; totalChats: number; departmentChats: number; }): Promise<boolean> =>",
+      "calls": [
+        {
+          "name": "getAgentInfo",
+          "edgeType": "call"
+        },
+        {
+          "name": "get",
+          "edgeType": "call"
+        },
+        {
+          "name": "findOneById",
+          "edgeType": "call"
+        },
+        {
+          "name": "debug",
+          "edgeType": "call"
+        },
+        {
+          "name": "ILivechatDepartment",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "variable_function",
+      "name": "getWaitingQueueMessage",
+      "exported": false,
+      "line": 55,
+      "endLine": 62,
+      "signature": "async (departmentId?: string) =>",
+      "calls": [
+        {
+          "name": "findOneById",
+          "edgeType": "call"
+        },
+        {
+          "name": "get",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "variable_function",
+      "name": "getQueueInfo",
+      "exported": false,
+      "line": 59,
+      "endLine": 68,
+      "signature": "async (department?: string) =>",
+      "calls": [
+        {
+          "name": "get",
+          "edgeType": "call"
+        },
+        {
+          "name": "getMostRecentAverageChatDurationTime",
+          "edgeType": "call"
+        },
+        {
+          "name": "getWaitingQueueMessage",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "variable_function",
+      "name": "getSpotEstimatedWaitTime",
+      "exported": false,
+      "line": 63,
+      "endLine": 71,
+      "signature": "(spot: number, maxNumberSimultaneousChat: number, avgChatDuration: number) =>",
+      "calls": []
+    },
+    {
+      "type": "variable_function",
+      "name": "normalizeQueueInfo",
+      "exported": false,
+      "line": 67,
+      "endLine": 84,
+      "signature": "async ({ position, queueInfo, department, }: { position: number; department?: string; queueInfo?: QueueInfo; }) =>",
+      "calls": [
+        {
+          "name": "getQueueInfo",
+          "edgeType": "call"
+        },
+        {
+          "name": "getSpotEstimatedWaitTime",
+          "edgeType": "call"
+        },
+        {
+          "name": "QueueInfo",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "variable_function",
+      "name": "dispatchInquiryPosition",
+      "exported": true,
+      "line": 79,
+      "endLine": 92,
+      "signature": "async (inquiry: Omit<InquiryWithAgentInfo, 'v'>, queueInfo?: QueueInfo) =>",
+      "calls": [
+        {
+          "name": "normalizeQueueInfo",
+          "edgeType": "call"
+        },
+        {
+          "name": "omnichannel.room",
+          "edgeType": "event_emit"
+        },
+        {
+          "name": "InquiryWithAgentInfo",
+          "edgeType": "type"
+        },
+        {
+          "name": "QueueInfo",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "variable_function",
+      "name": "dispatchWaitingQueueStatus",
+      "exported": false,
+      "line": 83,
+      "endLine": 101,
+      "signature": "async (department?: string) =>",
+      "calls": [
+        {
+          "name": "get",
+          "edgeType": "call"
+        },
+        {
+          "name": "getCurrentSortedQueueAsync",
+          "edgeType": "call"
+        },
+        {
+          "name": "getOmniChatSortQuery",
+          "edgeType": "call"
+        },
+        {
+          "name": "getInquirySortMechanismSetting",
+          "edgeType": "call"
+        },
+        {
+          "name": "getQueueInfo",
+          "edgeType": "call"
+        },
+        {
+          "name": "forEach",
+          "edgeType": "call"
+        },
+        {
+          "name": "dispatchInquiryPosition",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "variable",
+      "name": "debouncedDispatchWaitingQueueStatus",
+      "exported": true,
+      "line": 89,
+      "endLine": 89,
+      "signature": "debouncedDispatchWaitingQueueStatus = memoizeDebounce(dispatchWaitingQueueStatus, 1200)",
+      "calls": []
+    },
+    {
+      "type": "variable_function",
+      "name": "setPredictedVisitorAbandonmentTime",
+      "exported": true,
+      "line": 91,
+      "endLine": 120,
+      "signature": "async ( room: Pick<IOmnichannelRoom, '_id' | 'responseBy' | 'departmentId'>, roomUpdater?: Updater<IOmnichannelRoom>, ) =>",
+      "calls": [
+        {
+          "name": "get",
+          "edgeType": "call"
+        },
+        {
+          "name": "findOneById",
+          "edgeType": "call"
+        },
+        {
+          "name": "toDate",
+          "edgeType": "call"
+        },
+        {
+          "name": "moment",
+          "edgeType": "call"
+        },
+        {
+          "name": "getPredictedVisitorAbandonmentByRoomIdUpdateQuery",
+          "edgeType": "call"
+        },
+        {
+          "name": "setPredictedVisitorAbandonmentByRoomId",
+          "edgeType": "call"
+        },
+        {
+          "name": "IOmnichannelRoom",
+          "edgeType": "type"
+        },
+        {
+          "name": "Updater",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "variable_function",
+      "name": "updatePredictedVisitorAbandonment",
+      "exported": true,
+      "line": 98,
+      "endLine": 111,
+      "signature": "async () =>",
+      "calls": [
+        {
+          "name": "get",
+          "edgeType": "call"
+        },
+        {
+          "name": "unsetAllPredictedVisitorAbandonment",
+          "edgeType": "call"
+        },
+        {
+          "name": "livechat.applyRoomRestrictions",
+          "edgeType": "event_emit"
+        },
+        {
+          "name": "forEach",
+          "edgeType": "call"
+        },
+        {
+          "name": "findOpen",
+          "edgeType": "call"
+        },
+        {
+          "name": "push",
+          "edgeType": "call"
+        },
+        {
+          "name": "setPredictedVisitorAbandonmentTime",
+          "edgeType": "call"
+        },
+        {
+          "name": "all",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "variable_function",
+      "name": "updateQueueInactivityTimeout",
+      "exported": true,
+      "line": 102,
+      "endLine": 118,
+      "signature": "async () =>",
+      "calls": [
+        {
+          "name": "get",
+          "edgeType": "call"
+        },
+        {
+          "name": "stop",
+          "edgeType": "call"
+        },
+        {
+          "name": "forEach",
+          "edgeType": "call"
+        },
+        {
+          "name": "getQueuedInquiries",
+          "edgeType": "call"
+        },
+        {
+          "name": "moment",
+          "edgeType": "call"
+        },
+        {
+          "name": "scheduleInquiry",
+          "edgeType": "call"
+        },
+        {
+          "name": "format",
+          "edgeType": "call"
+        },
+        {
+          "name": "error",
+          "edgeType": "call"
+        },
+        {
+          "name": "Date",
+          "edgeType": "new"
+        }
+      ]
+    },
+    {
+      "type": "variable_function",
+      "name": "updateSLAInquiries",
+      "exported": true,
+      "line": 106,
+      "endLine": 121,
+      "signature": "async ( executedBy: string, sla?: Pick<IOmnichannelServiceLevelAgreements, '_id' | 'dueTimeInMinutes'>, ) =>",
+      "calls": [
+        {
+          "name": "livechat.applyRoomRestrictions",
+          "edgeType": "event_emit"
+        },
+        {
+          "name": "forEach",
+          "edgeType": "call"
+        },
+        {
+          "name": "findOpenBySlaId",
+          "edgeType": "call"
+        },
+        {
+          "name": "push",
+          "edgeType": "call"
+        },
+        {
+          "name": "updateInquiryQueueSla",
+          "edgeType": "call"
+        },
+        {
+          "name": "allSettled",
+          "edgeType": "call"
+        },
+        {
+          "name": "IOmnichannelServiceLevelAgreements",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "variable_function",
+      "name": "getLivechatCustomFields",
+      "exported": true,
+      "line": 113,
+      "endLine": 128,
+      "signature": "async () =>",
+      "calls": [
+        {
+          "name": "toArray",
+          "edgeType": "call"
+        },
+        {
+          "name": "find",
+          "edgeType": "call"
+        },
+        {
+          "name": "map",
+          "edgeType": "call"
+        },
+        {
+          "name": "split",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "variable_function",
+      "name": "getLivechatQueueInfo",
+      "exported": true,
+      "line": 117,
+      "endLine": 152,
+      "signature": "async (room?: IOmnichannelRoom) =>",
+      "calls": [
+        {
+          "name": "get",
+          "edgeType": "call"
+        },
+        {
+          "name": "findOneByRoomId",
+          "edgeType": "call"
+        },
+        {
+          "name": "getCurrentSortedQueueAsync",
+          "edgeType": "call"
+        },
+        {
+          "name": "getOmniChatSortQuery",
+          "edgeType": "call"
+        },
+        {
+          "name": "getInquirySortMechanismSetting",
+          "edgeType": "call"
+        },
+        {
+          "name": "normalizeQueueInfo",
+          "edgeType": "call"
+        },
+        {
+          "name": "IOmnichannelRoom",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "type",
+      "name": "QueueInfo",
+      "line": 29,
+      "endLine": 39,
+      "signature": "type QueueInfo ="
+    }
+  ],
+  "imports": [
+    {
+      "module": "@rocket.chat/core-services",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/core-typings",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/models",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/models",
+      "resolved": "external"
+    },
+    {
+      "module": "moment",
+      "resolved": "external"
+    },
+    {
+      "module": "mongodb",
+      "resolved": "external"
+    },
+    {
+      "module": "./QueueInactivityMonitor",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/ee/app/livechat-enterprise/server/lib/QueueInactivityMonitor.ts"
+    },
+    {
+      "module": "./SlaHelper",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/ee/app/livechat-enterprise/server/lib/SlaHelper.ts"
+    },
+    {
+      "module": "./debounceByParams",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/ee/app/livechat-enterprise/server/lib/debounceByParams.ts"
+    },
+    {
+      "module": "./logger",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/ee/app/livechat-enterprise/server/lib/logger.ts"
+    },
+    {
+      "module": "../../../../../app/livechat/lib/inquiries",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/app/livechat/lib/inquiries.ts"
+    },
+    {
+      "module": "../../../../../app/livechat/server/lib/settings",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/app/livechat/server/lib/settings.ts"
+    },
+    {
+      "module": "../../../../../app/settings/server",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/app/settings/server/index.ts"
+    },
+    {
+      "module": "../../../../../server/lib/callbacks",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/server/lib/callbacks.ts"
+    }
+  ]
+}

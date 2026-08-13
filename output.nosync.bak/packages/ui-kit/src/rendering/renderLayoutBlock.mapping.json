@@ -1,0 +1,83 @@
+{
+  "sourcePath": "/Users/echoooooo/Desktop/code/Rocket.Chat/packages/ui-kit/src/rendering/renderLayoutBlock.ts",
+  "symbols": [
+    {
+      "type": "variable_function",
+      "name": "getLayoutBlockRenderer",
+      "exported": false,
+      "line": 7,
+      "endLine": 10,
+      "signature": "<T>( renderers: BlockRenderers<T>, type: Exclude<LayoutBlock, ConditionalBlock>['type'], ): LayoutBlockRenderer<T> | undefined =>",
+      "calls": [
+        {
+          "name": "BlockRenderers",
+          "edgeType": "type"
+        },
+        {
+          "name": "LayoutBlock",
+          "edgeType": "type"
+        },
+        {
+          "name": "ConditionalBlock",
+          "edgeType": "type"
+        },
+        {
+          "name": "LayoutBlockRenderer",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "variable_function",
+      "name": "renderLayoutBlock",
+      "exported": true,
+      "line": 12,
+      "endLine": 22,
+      "signature": "<T>(renderers: BlockRenderers<T>) =>",
+      "calls": [
+        {
+          "name": "getLayoutBlockRenderer",
+          "edgeType": "call"
+        },
+        {
+          "name": "call",
+          "edgeType": "call"
+        },
+        {
+          "name": "BlockRenderers",
+          "edgeType": "type"
+        },
+        {
+          "name": "LayoutBlock",
+          "edgeType": "type"
+        },
+        {
+          "name": "ConditionalBlock",
+          "edgeType": "type"
+        }
+      ]
+    }
+  ],
+  "imports": [
+    {
+      "module": "./BlockContext",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/packages/ui-kit/src/rendering/BlockContext.ts"
+    },
+    {
+      "module": "./BlockRenderers",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/packages/ui-kit/src/rendering/BlockRenderers.ts"
+    },
+    {
+      "module": "./LayoutBlockRenderer",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/packages/ui-kit/src/rendering/LayoutBlockRenderer.ts"
+    },
+    {
+      "module": "../blocks/LayoutBlock",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/packages/ui-kit/src/blocks/LayoutBlock.ts"
+    },
+    {
+      "module": "../blocks/layout/ConditionalBlock",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/packages/ui-kit/src/blocks/layout/ConditionalBlock.ts"
+    }
+  ]
+}

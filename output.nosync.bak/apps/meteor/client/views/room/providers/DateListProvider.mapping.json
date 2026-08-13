@@ -1,0 +1,100 @@
+{
+  "sourcePath": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/client/views/room/providers/DateListProvider.tsx",
+  "symbols": [
+    {
+      "type": "variable_function",
+      "name": "useDateRef",
+      "exported": false,
+      "line": 11,
+      "endLine": 14,
+      "signature": "() =>",
+      "calls": [
+        {
+          "name": "useDateListController",
+          "edgeType": "call"
+        },
+        {
+          "name": "useMemo",
+          "edgeType": "call"
+        },
+        {
+          "name": "dateRef",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "variable_function",
+      "name": "DateListProvider",
+      "exported": false,
+      "line": 15,
+      "endLine": 36,
+      "signature": "({ children }: { children: ReactNode }) =>",
+      "calls": [
+        {
+          "name": "useState",
+          "edgeType": "call"
+        },
+        {
+          "name": "delete",
+          "edgeType": "call"
+        },
+        {
+          "name": "remove",
+          "edgeType": "call"
+        },
+        {
+          "name": "addToList",
+          "edgeType": "call"
+        },
+        {
+          "name": "DateListContext.Provider",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "Set",
+          "edgeType": "new"
+        },
+        {
+          "name": "ReactNode",
+          "edgeType": "type"
+        },
+        {
+          "name": "HTMLElement",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "variable_function",
+      "name": "useDateListController",
+      "exported": false,
+      "line": 19,
+      "endLine": 25,
+      "signature": "() =>",
+      "calls": [
+        {
+          "name": "useContext",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "type",
+      "name": "DateListContextValue",
+      "line": 4,
+      "endLine": 7,
+      "signature": "type DateListContextValue ="
+    }
+  ],
+  "imports": [
+    {
+      "module": "react",
+      "resolved": "external"
+    },
+    {
+      "module": "react",
+      "resolved": "external"
+    }
+  ]
+}

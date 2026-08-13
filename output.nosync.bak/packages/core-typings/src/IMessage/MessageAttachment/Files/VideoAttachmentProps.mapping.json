@@ -1,0 +1,44 @@
+{
+  "sourcePath": "/Users/echoooooo/Desktop/code/Rocket.Chat/packages/core-typings/src/IMessage/MessageAttachment/Files/VideoAttachmentProps.ts",
+  "symbols": [
+    {
+      "type": "variable_function",
+      "name": "isFileVideoAttachment",
+      "exported": true,
+      "line": 12,
+      "endLine": 13,
+      "signature": "(attachment: FileAttachmentProps): attachment is VideoAttachmentProps & { type: 'file' } =>",
+      "calls": [
+        {
+          "name": "FileAttachmentProps",
+          "edgeType": "type"
+        },
+        {
+          "name": "VideoAttachmentProps",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "type",
+      "name": "VideoAttachmentProps",
+      "line": 5,
+      "endLine": 10,
+      "signature": "export type VideoAttachmentProps ="
+    }
+  ],
+  "imports": [
+    {
+      "module": "../MessageAttachmentBase",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/packages/core-typings/src/IMessage/MessageAttachment/MessageAttachmentBase.ts"
+    },
+    {
+      "module": "./FileAttachmentProps",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/packages/core-typings/src/IMessage/MessageAttachment/Files/FileAttachmentProps.ts"
+    },
+    {
+      "module": "./FileProp",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/packages/core-typings/src/IMessage/MessageAttachment/Files/FileProp.ts"
+    }
+  ]
+}

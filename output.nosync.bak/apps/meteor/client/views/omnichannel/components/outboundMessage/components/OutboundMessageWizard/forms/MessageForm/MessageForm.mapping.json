@@ -1,0 +1,230 @@
+{
+  "sourcePath": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/client/views/omnichannel/components/outboundMessage/components/OutboundMessageWizard/forms/MessageForm/MessageForm.tsx",
+  "symbols": [
+    {
+      "type": "variable_function",
+      "name": "MessageForm",
+      "exported": false,
+      "line": 40,
+      "endLine": 103,
+      "signature": "(props: MessageFormProps) =>",
+      "calls": [
+        {
+          "name": "useToastBarDispatch",
+          "edgeType": "call"
+        },
+        {
+          "name": "useTranslation",
+          "edgeType": "call"
+        },
+        {
+          "name": "useId",
+          "edgeType": "call"
+        },
+        {
+          "name": "useForm",
+          "edgeType": "call"
+        },
+        {
+          "name": "useWatch",
+          "edgeType": "call"
+        },
+        {
+          "name": "useMemo",
+          "edgeType": "call"
+        },
+        {
+          "name": "find",
+          "edgeType": "call"
+        },
+        {
+          "name": "extractParameterMetadata",
+          "edgeType": "call"
+        },
+        {
+          "name": "renderActions",
+          "edgeType": "call"
+        },
+        {
+          "name": "useStableCallback",
+          "edgeType": "call"
+        },
+        {
+          "name": "onSubmit",
+          "edgeType": "call"
+        },
+        {
+          "name": "dispatchToastMessage",
+          "edgeType": "call"
+        },
+        {
+          "name": "handleSubmit",
+          "edgeType": "call"
+        },
+        {
+          "name": "setValue",
+          "edgeType": "call"
+        },
+        {
+          "name": "map",
+          "edgeType": "call"
+        },
+        {
+          "name": "Form",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "Scrollable",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "FieldGroup",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "Box",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "Button",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "TemplateField",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "TemplatePlaceholderField",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "TemplatePreviewForm",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "messageFormId",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "control",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "templates",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "metadata",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "contact",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "template",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "isSubmitting",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "FormFetchError",
+          "edgeType": "new"
+        },
+        {
+          "name": "MessageFormProps",
+          "edgeType": "type"
+        },
+        {
+          "name": "MessageFormData",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "type",
+      "name": "MessageFormData",
+      "line": 18,
+      "endLine": 21,
+      "signature": "export type MessageFormData ="
+    },
+    {
+      "type": "type",
+      "name": "MessageFormSubmitPayload",
+      "line": 23,
+      "endLine": 27,
+      "signature": "export type MessageFormSubmitPayload ="
+    },
+    {
+      "type": "type",
+      "name": "MessageFormProps",
+      "line": 29,
+      "endLine": 38,
+      "signature": "type MessageFormProps ="
+    }
+  ],
+  "imports": [
+    {
+      "module": "@rocket.chat/core-typings",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/fuselage",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/fuselage-hooks",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/fuselage-toastbar",
+      "resolved": "external"
+    },
+    {
+      "module": "react",
+      "resolved": "external"
+    },
+    {
+      "module": "react",
+      "resolved": "external"
+    },
+    {
+      "module": "react-hook-form",
+      "resolved": "external"
+    },
+    {
+      "module": "react-i18next",
+      "resolved": "external"
+    },
+    {
+      "module": "./components/TemplateField",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/client/views/omnichannel/components/outboundMessage/components/OutboundMessageWizard/forms/MessageForm/components/TemplateField.tsx"
+    },
+    {
+      "module": "./components/TemplatePlaceholderField",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/client/views/omnichannel/components/outboundMessage/components/OutboundMessageWizard/forms/MessageForm/components/TemplatePlaceholderField.tsx"
+    },
+    {
+      "module": "./components/TemplatePreviewField",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/client/views/omnichannel/components/outboundMessage/components/OutboundMessageWizard/forms/MessageForm/components/TemplatePreviewField.tsx"
+    },
+    {
+      "module": "../../../../types/template",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/client/views/omnichannel/components/outboundMessage/types/template.ts"
+    },
+    {
+      "module": "../../../../utils/template",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/client/views/omnichannel/components/outboundMessage/utils/template.ts"
+    },
+    {
+      "module": "../../components/OutboundMessageForm",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/client/views/omnichannel/components/outboundMessage/components/OutboundMessageWizard/components/OutboundMessageForm.tsx"
+    },
+    {
+      "module": "../../utils/errors",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/client/views/omnichannel/components/outboundMessage/components/OutboundMessageWizard/utils/errors.ts"
+    }
+  ]
+}

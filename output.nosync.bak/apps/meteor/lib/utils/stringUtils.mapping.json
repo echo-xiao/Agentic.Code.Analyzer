@@ -1,0 +1,334 @@
+{
+  "sourcePath": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/lib/utils/stringUtils.ts",
+  "symbols": [
+    {
+      "type": "function",
+      "name": "truncate",
+      "exported": true,
+      "line": 4,
+      "endLine": 6,
+      "signature": "export function truncate(str: string, length: number): string",
+      "calls": [
+        {
+          "name": "slice",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "function",
+      "name": "makeString",
+      "exported": false,
+      "line": 8,
+      "endLine": 11,
+      "signature": "function makeString(object: unknown): string",
+      "calls": []
+    },
+    {
+      "type": "function",
+      "name": "defaultToWhiteSpace",
+      "exported": false,
+      "line": 12,
+      "endLine": 16,
+      "signature": "function defaultToWhiteSpace(characters: unknown): string",
+      "calls": [
+        {
+          "name": "escapeRegExp",
+          "edgeType": "call"
+        },
+        {
+          "name": "makeString",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "function",
+      "name": "trim",
+      "exported": true,
+      "line": 20,
+      "endLine": 25,
+      "signature": "export function trim(_str: unknown, _characters?: unknown): string",
+      "calls": [
+        {
+          "name": "makeString",
+          "edgeType": "call"
+        },
+        {
+          "name": "call",
+          "edgeType": "call"
+        },
+        {
+          "name": "defaultToWhiteSpace",
+          "edgeType": "call"
+        },
+        {
+          "name": "replace",
+          "edgeType": "call"
+        },
+        {
+          "name": "RegExp",
+          "edgeType": "new"
+        }
+      ]
+    },
+    {
+      "type": "function",
+      "name": "ltrim",
+      "exported": true,
+      "line": 24,
+      "endLine": 29,
+      "signature": "export function ltrim(_str: unknown, _characters: unknown): string",
+      "calls": [
+        {
+          "name": "makeString",
+          "edgeType": "call"
+        },
+        {
+          "name": "call",
+          "edgeType": "call"
+        },
+        {
+          "name": "defaultToWhiteSpace",
+          "edgeType": "call"
+        },
+        {
+          "name": "replace",
+          "edgeType": "call"
+        },
+        {
+          "name": "RegExp",
+          "edgeType": "new"
+        }
+      ]
+    },
+    {
+      "type": "function",
+      "name": "rtrim",
+      "exported": true,
+      "line": 28,
+      "endLine": 33,
+      "signature": "export function rtrim(_str: unknown, _characters: unknown): string",
+      "calls": [
+        {
+          "name": "makeString",
+          "edgeType": "call"
+        },
+        {
+          "name": "call",
+          "edgeType": "call"
+        },
+        {
+          "name": "defaultToWhiteSpace",
+          "edgeType": "call"
+        },
+        {
+          "name": "replace",
+          "edgeType": "call"
+        },
+        {
+          "name": "RegExp",
+          "edgeType": "new"
+        }
+      ]
+    },
+    {
+      "type": "function",
+      "name": "capitalize",
+      "exported": true,
+      "line": 32,
+      "endLine": 37,
+      "signature": "export function capitalize(_str: unknown, lowercaseRest: boolean): string",
+      "calls": [
+        {
+          "name": "makeString",
+          "edgeType": "call"
+        },
+        {
+          "name": "slice",
+          "edgeType": "call"
+        },
+        {
+          "name": "toLowerCase",
+          "edgeType": "call"
+        },
+        {
+          "name": "toUpperCase",
+          "edgeType": "call"
+        },
+        {
+          "name": "charAt",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "function",
+      "name": "stripTags",
+      "exported": true,
+      "line": 36,
+      "endLine": 38,
+      "signature": "export function stripTags(str: unknown): string",
+      "calls": [
+        {
+          "name": "replace",
+          "edgeType": "call"
+        },
+        {
+          "name": "sanitize",
+          "edgeType": "call"
+        },
+        {
+          "name": "makeString",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "function",
+      "name": "strLeft",
+      "exported": true,
+      "line": 40,
+      "endLine": 45,
+      "signature": "export function strLeft(_str: unknown, _sep: unknown): string",
+      "calls": [
+        {
+          "name": "makeString",
+          "edgeType": "call"
+        },
+        {
+          "name": "indexOf",
+          "edgeType": "call"
+        },
+        {
+          "name": "slice",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "function",
+      "name": "strRight",
+      "exported": true,
+      "line": 44,
+      "endLine": 49,
+      "signature": "export function strRight(_str: unknown, _sep: unknown): string",
+      "calls": [
+        {
+          "name": "makeString",
+          "edgeType": "call"
+        },
+        {
+          "name": "indexOf",
+          "edgeType": "call"
+        },
+        {
+          "name": "slice",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "function",
+      "name": "strRightBack",
+      "exported": true,
+      "line": 48,
+      "endLine": 53,
+      "signature": "export function strRightBack(_str: unknown, _sep: unknown): string",
+      "calls": [
+        {
+          "name": "makeString",
+          "edgeType": "call"
+        },
+        {
+          "name": "lastIndexOf",
+          "edgeType": "call"
+        },
+        {
+          "name": "slice",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "function",
+      "name": "numberFormat",
+      "exported": true,
+      "line": 52,
+      "endLine": 63,
+      "signature": "export function numberFormat(_number: number, dec: number, dsep?: string, tsep?: string): string",
+      "calls": [
+        {
+          "name": "isNaN",
+          "edgeType": "call"
+        },
+        {
+          "name": "toFixed",
+          "edgeType": "call"
+        },
+        {
+          "name": "split",
+          "edgeType": "call"
+        },
+        {
+          "name": "replace",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "function",
+      "name": "pad",
+      "exported": true,
+      "line": 56,
+      "endLine": 76,
+      "signature": "export function pad(_str: unknown, _length: number, padStr?: string, type: 'right' | 'left' | 'both' = 'right')",
+      "calls": [
+        {
+          "name": "makeString",
+          "edgeType": "call"
+        },
+        {
+          "name": "charAt",
+          "edgeType": "call"
+        },
+        {
+          "name": "repeat",
+          "edgeType": "call"
+        },
+        {
+          "name": "ceil",
+          "edgeType": "call"
+        },
+        {
+          "name": "floor",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "function",
+      "name": "lrpad",
+      "exported": true,
+      "line": 60,
+      "endLine": 62,
+      "signature": "export function lrpad(str: unknown, length: number, padStr?: string): string",
+      "calls": [
+        {
+          "name": "pad",
+          "edgeType": "call"
+        }
+      ]
+    }
+  ],
+  "imports": [
+    {
+      "module": "@rocket.chat/string-helpers",
+      "resolved": "external"
+    },
+    {
+      "module": "dompurify",
+      "resolved": "external"
+    }
+  ]
+}

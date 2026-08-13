@@ -1,0 +1,168 @@
+{
+  "sourcePath": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/server/services/meteor/userReactivity.ts",
+  "symbols": [
+    {
+      "type": "module",
+      "name": "userReactivity",
+      "exported": false,
+      "line": 1,
+      "endLine": 137,
+      "signature": "userReactivity",
+      "calls": [
+        {
+          "name": "getValueById",
+          "edgeType": "call"
+        },
+        {
+          "name": "now",
+          "edgeType": "call"
+        },
+        {
+          "name": "getLoginExpirationInMs",
+          "edgeType": "call"
+        },
+        {
+          "name": "toArray",
+          "edgeType": "call"
+        },
+        {
+          "name": "find",
+          "edgeType": "call"
+        },
+        {
+          "name": "forEach",
+          "edgeType": "call"
+        },
+        {
+          "name": "filter",
+          "edgeType": "call"
+        },
+        {
+          "name": "push",
+          "edgeType": "call"
+        },
+        {
+          "name": "call",
+          "edgeType": "call"
+        },
+        {
+          "name": "watch.users",
+          "edgeType": "event_emit"
+        },
+        {
+          "name": "Date",
+          "edgeType": "new"
+        },
+        {
+          "name": "rawCollection",
+          "edgeType": "call"
+        },
+        {
+          "name": "added",
+          "edgeType": "call"
+        },
+        {
+          "name": "get",
+          "edgeType": "call"
+        },
+        {
+          "name": "set",
+          "edgeType": "call"
+        },
+        {
+          "name": "delete",
+          "edgeType": "call"
+        },
+        {
+          "name": "Set",
+          "edgeType": "new"
+        },
+        {
+          "name": "Callbacks",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "variable",
+      "name": "serviceConfigCallbacks",
+      "exported": true,
+      "line": 54,
+      "endLine": 54,
+      "signature": "serviceConfigCallbacks = new Set<Callbacks>()",
+      "calls": [
+        {
+          "name": "Callbacks",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "variable_function",
+      "name": "processOnChange",
+      "exported": true,
+      "line": 120,
+      "endLine": 136,
+      "signature": "(diff: Record<string, any>, id: string): void =>",
+      "calls": [
+        {
+          "name": "map",
+          "edgeType": "call"
+        },
+        {
+          "name": "get",
+          "edgeType": "call"
+        },
+        {
+          "name": "forEach",
+          "edgeType": "call"
+        },
+        {
+          "name": "filter",
+          "edgeType": "call"
+        },
+        {
+          "name": "includes",
+          "edgeType": "call"
+        },
+        {
+          "name": "removed",
+          "edgeType": "call"
+        },
+        {
+          "name": "delete",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "type",
+      "name": "Callbacks",
+      "line": 48,
+      "endLine": 52,
+      "signature": "type Callbacks ="
+    }
+  ],
+  "imports": [
+    {
+      "module": "@rocket.chat/core-services",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/models",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/tools",
+      "resolved": "external"
+    },
+    {
+      "module": "meteor/accounts-base",
+      "resolved": "external"
+    },
+    {
+      "module": "meteor/mongo",
+      "resolved": "external"
+    }
+  ]
+}

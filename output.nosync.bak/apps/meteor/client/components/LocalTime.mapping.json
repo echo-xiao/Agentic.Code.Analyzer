@@ -1,0 +1,62 @@
+{
+  "sourcePath": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/client/components/LocalTime.tsx",
+  "symbols": [
+    {
+      "type": "module",
+      "name": "LocalTime",
+      "exported": false,
+      "line": 1,
+      "endLine": 18,
+      "signature": "LocalTime",
+      "calls": [
+        {
+          "name": "memo",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "variable_function",
+      "name": "LocalTime",
+      "exported": false,
+      "line": 10,
+      "endLine": 15,
+      "signature": "({ utcOffset }: LocalTimeProps) =>",
+      "calls": [
+        {
+          "name": "useUTCClock",
+          "edgeType": "call"
+        },
+        {
+          "name": "useTranslation",
+          "edgeType": "call"
+        },
+        {
+          "name": "LocalTimeProps",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "type",
+      "name": "LocalTimeProps",
+      "line": 6,
+      "endLine": 8,
+      "signature": "export type LocalTimeProps ="
+    }
+  ],
+  "imports": [
+    {
+      "module": "react",
+      "resolved": "external"
+    },
+    {
+      "module": "react-i18next",
+      "resolved": "external"
+    },
+    {
+      "module": "../hooks/useUTCClock",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/client/hooks/useUTCClock.ts"
+    }
+  ]
+}

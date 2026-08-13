@@ -1,0 +1,348 @@
+{
+  "sourcePath": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/client/navbar/NavBarPagesGroup/actions/CreateTeamModal.tsx",
+  "symbols": [
+    {
+      "type": "module",
+      "name": "CreateTeamModal",
+      "exported": false,
+      "line": 1,
+      "endLine": 292,
+      "signature": "CreateTeamModal",
+      "calls": [
+        {
+          "name": "memo",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "inner_function",
+      "name": "handleCreateTeam",
+      "exported": false,
+      "qualifiedName": "CreateTeamModal.handleCreateTeam",
+      "line": 118,
+      "endLine": 149,
+      "signature": "async ({ name, members, isPrivate, readOnly, topic, broadcast, encrypted, }: CreateTeamModalInputs): Promise<void> =>",
+      "calls": [
+        {
+          "name": "createTeamAction",
+          "edgeType": "call"
+        },
+        {
+          "name": "dispatchToastMessage",
+          "edgeType": "call"
+        },
+        {
+          "name": "goToRoom",
+          "edgeType": "call"
+        },
+        {
+          "name": "onClose",
+          "edgeType": "call"
+        },
+        {
+          "name": "CreateTeamModalInputs",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "variable_function",
+      "name": "CreateTeamModal",
+      "exported": false,
+      "line": 45,
+      "endLine": 289,
+      "signature": "({ onClose }: CreateTeamModalProps) =>",
+      "calls": [
+        {
+          "name": "useTranslation",
+          "edgeType": "call"
+        },
+        {
+          "name": "useSetting",
+          "edgeType": "call"
+        },
+        {
+          "name": "usePermissionWithScopedRoles",
+          "edgeType": "call"
+        },
+        {
+          "name": "useToastMessageDispatch",
+          "edgeType": "call"
+        },
+        {
+          "name": "usePermission",
+          "edgeType": "call"
+        },
+        {
+          "name": "useEndpoint",
+          "edgeType": "call"
+        },
+        {
+          "name": "useMemo",
+          "edgeType": "call"
+        },
+        {
+          "name": "useCreateChannelTypePermission",
+          "edgeType": "call"
+        },
+        {
+          "name": "test",
+          "edgeType": "call"
+        },
+        {
+          "name": "checkTeamNameExists",
+          "edgeType": "call"
+        },
+        {
+          "name": "useForm",
+          "edgeType": "call"
+        },
+        {
+          "name": "watch",
+          "edgeType": "call"
+        },
+        {
+          "name": "useEffect",
+          "edgeType": "call"
+        },
+        {
+          "name": "setValue",
+          "edgeType": "call"
+        },
+        {
+          "name": "useEncryptedRoomDescription",
+          "edgeType": "call"
+        },
+        {
+          "name": "useGoToRoom",
+          "edgeType": "call"
+        },
+        {
+          "name": "createTeamAction",
+          "edgeType": "call"
+        },
+        {
+          "name": "dispatchToastMessage",
+          "edgeType": "call"
+        },
+        {
+          "name": "goToRoom",
+          "edgeType": "call"
+        },
+        {
+          "name": "onClose",
+          "edgeType": "call"
+        },
+        {
+          "name": "useId",
+          "edgeType": "call"
+        },
+        {
+          "name": "handleSubmit",
+          "edgeType": "call"
+        },
+        {
+          "name": "validateTeamName",
+          "edgeType": "call"
+        },
+        {
+          "name": "getEncryptedHint",
+          "edgeType": "call"
+        },
+        {
+          "name": "Modal",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "ModalHeader",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "ModalTitle",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "ModalContent",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "Box",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "FieldGroup",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "Field",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "FieldLabel",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "FieldRow",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "FieldError",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "FieldHint",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "Accordion",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "AccordionItem",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "ModalFooter",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "ModalFooterControllers",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "Button",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "ModalClose",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "Controller",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "TextInput",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "Icon",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "UserAutoCompleteMultiple",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "ToggleSwitch",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "createTeamFormId",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "onClose",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "control",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "value",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "onChange",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "ref",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "readOnlyDisabled",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "isSubmitting",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "RegExp",
+          "edgeType": "new"
+        },
+        {
+          "name": "CreateTeamModalProps",
+          "edgeType": "type"
+        },
+        {
+          "name": "CreateTeamModalInputs",
+          "edgeType": "type"
+        },
+        {
+          "name": "ComponentProps",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "type",
+      "name": "CreateTeamModalInputs",
+      "line": 33,
+      "endLine": 41,
+      "signature": "type CreateTeamModalInputs ="
+    },
+    {
+      "type": "type",
+      "name": "CreateTeamModalProps",
+      "line": 43,
+      "endLine": 43,
+      "signature": "export type CreateTeamModalProps ="
+    }
+  ],
+  "imports": [
+    {
+      "module": "@rocket.chat/fuselage",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/fuselage-forms",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/ui-contexts",
+      "resolved": "external"
+    },
+    {
+      "module": "react",
+      "resolved": "external"
+    },
+    {
+      "module": "react",
+      "resolved": "external"
+    },
+    {
+      "module": "react-hook-form",
+      "resolved": "external"
+    },
+    {
+      "module": "./useEncryptedRoomDescription",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/client/navbar/NavBarPagesGroup/actions/useEncryptedRoomDescription.ts"
+    },
+    {
+      "module": "../../../components/UserAutoCompleteMultiple",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/client/components/UserAutoCompleteMultiple/index.ts"
+    },
+    {
+      "module": "../../../hooks/useCreateChannelTypePermission",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/client/hooks/useCreateChannelTypePermission.ts"
+    },
+    {
+      "module": "../../../views/room/hooks/useGoToRoom",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/client/views/room/hooks/useGoToRoom.ts"
+    }
+  ]
+}

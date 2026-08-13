@@ -1,0 +1,238 @@
+{
+  "sourcePath": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/server/lib/cloud/supportedVersionsToken/supportedVersionsToken.ts",
+  "symbols": [
+    {
+      "type": "variable_function",
+      "name": "wrapPromise",
+      "exported": true,
+      "line": 25,
+      "endLine": 42,
+      "signature": "<T>( promise: Promise<T>, ): Promise< | { success: true; result: T; } | { success: false; error: any; } > =>",
+      "calls": [
+        {
+          "name": "catch",
+          "edgeType": "call"
+        },
+        {
+          "name": "then",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "variable_function",
+      "name": "handleResponse",
+      "exported": true,
+      "line": 44,
+      "endLine": 58,
+      "signature": "async <T>(promise: Promise<Response>) =>",
+      "calls": [
+        {
+          "name": "wrapPromise",
+          "edgeType": "call"
+        },
+        {
+          "name": "json",
+          "edgeType": "call"
+        },
+        {
+          "name": "Response",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "variable_function",
+      "name": "cacheValueInSettings",
+      "exported": false,
+      "line": 48,
+      "endLine": 88,
+      "signature": "<T extends SettingValue>( key: string, fn: (retry?: number) => Promise<T>, ): (() => Promise<T>) & { reset: (retry?: number) => Promise<T>; } =>",
+      "calls": [
+        {
+          "name": "debug",
+          "edgeType": "call"
+        },
+        {
+          "name": "fn",
+          "edgeType": "call"
+        },
+        {
+          "name": "updateAuditedBySystem",
+          "edgeType": "call"
+        },
+        {
+          "name": "notifyOnSettingChangedById",
+          "edgeType": "call"
+        },
+        {
+          "name": "assign",
+          "edgeType": "call"
+        },
+        {
+          "name": "get",
+          "edgeType": "call"
+        },
+        {
+          "name": "reset",
+          "edgeType": "call"
+        },
+        {
+          "name": "SettingValue",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "variable_function",
+      "name": "getSupportedVersionsFromCloud",
+      "exported": false,
+      "line": 61,
+      "endLine": 90,
+      "signature": "async () =>",
+      "calls": [
+        {
+          "name": "parse",
+          "edgeType": "call"
+        },
+        {
+          "name": "generateWorkspaceBearerHttpHeader",
+          "edgeType": "call"
+        },
+        {
+          "name": "handleResponse",
+          "edgeType": "call"
+        },
+        {
+          "name": "fetch",
+          "edgeType": "call"
+        },
+        {
+          "name": "error",
+          "edgeType": "call"
+        },
+        {
+          "name": "SupportedVersions",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "variable_function",
+      "name": "getSupportedVersionsToken",
+      "exported": false,
+      "line": 65,
+      "endLine": 125,
+      "signature": "async (retry = 0) =>",
+      "calls": [
+        {
+          "name": "all",
+          "edgeType": "call"
+        },
+        {
+          "name": "getLicense",
+          "edgeType": "call"
+        },
+        {
+          "name": "getSupportedVersionsFromCloud",
+          "edgeType": "call"
+        },
+        {
+          "name": "supportedVersionsChooseLatest",
+          "edgeType": "call"
+        },
+        {
+          "name": "debug",
+          "edgeType": "call"
+        },
+        {
+          "name": "info",
+          "edgeType": "call"
+        },
+        {
+          "name": "buildVersionUpdateMessage",
+          "edgeType": "call"
+        },
+        {
+          "name": "reset",
+          "edgeType": "call"
+        },
+        {
+          "name": "pow",
+          "edgeType": "call"
+        },
+        {
+          "name": "error",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "variable",
+      "name": "getCachedSupportedVersionsToken",
+      "exported": true,
+      "line": 69,
+      "endLine": 69,
+      "signature": "getCachedSupportedVersionsToken = cacheValueInSettings('Cloud_Workspace_Supported_Versions_Token', getSupportedVersionsToken)",
+      "calls": []
+    }
+  ],
+  "imports": [
+    {
+      "module": "@rocket.chat/core-typings",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/license",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/models",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/server-cloud-communication",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/server-fetch",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/server-fetch",
+      "resolved": "external"
+    },
+    {
+      "module": "./supportedVersionsChooseLatest",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/server/lib/cloud/supportedVersionsToken/supportedVersionsChooseLatest.ts"
+    },
+    {
+      "module": "../../../../app/lib/server/lib/notifyListener",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/app/lib/server/lib/notifyListener.ts"
+    },
+    {
+      "module": "../../../../app/settings/server",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/app/settings/server/index.ts"
+    },
+    {
+      "module": "../../../../app/utils/rocketchat-supported-versions.info",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/app/utils/rocketchat-supported-versions.info"
+    },
+    {
+      "module": "../../../../app/version-check/server/functions/buildVersionUpdateMessage",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/app/version-check/server/functions/buildVersionUpdateMessage.ts"
+    },
+    {
+      "module": "../../../settings/lib/auditedSettingUpdates",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/server/settings/lib/auditedSettingUpdates.ts"
+    },
+    {
+      "module": "../../logger/system",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/server/lib/logger/system.ts"
+    },
+    {
+      "module": "../getWorkspaceAccessToken",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/server/lib/cloud/getWorkspaceAccessToken.ts"
+    }
+  ]
+}

@@ -1,0 +1,537 @@
+{
+  "sourcePath": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/app/meteor-accounts-saml/server/lib/Utils.ts",
+  "symbols": [
+    {
+      "type": "module",
+      "name": "Utils",
+      "exported": false,
+      "line": 1,
+      "endLine": 479,
+      "signature": "Utils",
+      "calls": [
+        {
+          "name": "EventEmitter",
+          "edgeType": "new"
+        }
+      ]
+    },
+    {
+      "type": "class",
+      "name": "SAMLUtils",
+      "exported": true,
+      "line": 30,
+      "endLine": 476,
+      "signature": "export class SAMLUtils",
+      "calls": []
+    },
+    {
+      "type": "method",
+      "name": "getServiceProviderOptions",
+      "exported": true,
+      "qualifiedName": "SAMLUtils.getServiceProviderOptions",
+      "line": 57,
+      "endLine": 61,
+      "signature": "public static getServiceProviderOptions(providerName: string): IServiceProviderOptions | undefined",
+      "containerClass": "SAMLUtils",
+      "calls": [
+        {
+          "name": "log",
+          "edgeType": "call"
+        },
+        {
+          "name": "find",
+          "edgeType": "call"
+        },
+        {
+          "name": "IServiceProviderOptions",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "setServiceProvidersList",
+      "exported": true,
+      "qualifiedName": "SAMLUtils.setServiceProvidersList",
+      "line": 61,
+      "endLine": 63,
+      "signature": "public static setServiceProvidersList(list: Array<IServiceProviderOptions>): void",
+      "containerClass": "SAMLUtils",
+      "calls": [
+        {
+          "name": "IServiceProviderOptions",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "setLoggerInstance",
+      "exported": true,
+      "qualifiedName": "SAMLUtils.setLoggerInstance",
+      "line": 65,
+      "endLine": 67,
+      "signature": "public static setLoggerInstance(instance: Logger): void",
+      "containerClass": "SAMLUtils",
+      "calls": [
+        {
+          "name": "Logger",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "updateGlobalSettings",
+      "exported": true,
+      "qualifiedName": "SAMLUtils.updateGlobalSettings",
+      "line": 70,
+      "endLine": 91,
+      "signature": "public static updateGlobalSettings(samlConfigs: Record<string, any>): void",
+      "containerClass": "SAMLUtils",
+      "calls": [
+        {
+          "name": "Boolean",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "generateUniqueID",
+      "exported": true,
+      "qualifiedName": "SAMLUtils.generateUniqueID",
+      "line": 74,
+      "endLine": 81,
+      "signature": "public static generateUniqueID(): string",
+      "containerClass": "SAMLUtils",
+      "calls": [
+        {
+          "name": "substr",
+          "edgeType": "call"
+        },
+        {
+          "name": "floor",
+          "edgeType": "call"
+        },
+        {
+          "name": "random",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "generateInstant",
+      "exported": true,
+      "qualifiedName": "SAMLUtils.generateInstant",
+      "line": 78,
+      "endLine": 80,
+      "signature": "public static generateInstant(): string",
+      "containerClass": "SAMLUtils",
+      "calls": [
+        {
+          "name": "toISOString",
+          "edgeType": "call"
+        },
+        {
+          "name": "Date",
+          "edgeType": "new"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "certToPEM",
+      "exported": true,
+      "qualifiedName": "SAMLUtils.certToPEM",
+      "line": 82,
+      "endLine": 92,
+      "signature": "public static certToPEM(cert: string): string",
+      "containerClass": "SAMLUtils",
+      "calls": [
+        {
+          "name": "match",
+          "edgeType": "call"
+        },
+        {
+          "name": "splice",
+          "edgeType": "call"
+        },
+        {
+          "name": "push",
+          "edgeType": "call"
+        },
+        {
+          "name": "join",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "fillTemplateData",
+      "exported": true,
+      "qualifiedName": "SAMLUtils.fillTemplateData",
+      "line": 86,
+      "endLine": 99,
+      "signature": "public static fillTemplateData(template: string, data: Record<string, string>): string",
+      "containerClass": "SAMLUtils",
+      "calls": [
+        {
+          "name": "includes",
+          "edgeType": "call"
+        },
+        {
+          "name": "replace",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "getValidationActionRedirectPath",
+      "exported": true,
+      "qualifiedName": "SAMLUtils.getValidationActionRedirectPath",
+      "line": 90,
+      "endLine": 93,
+      "signature": "public static getValidationActionRedirectPath(credentialToken: string): string",
+      "containerClass": "SAMLUtils",
+      "calls": []
+    },
+    {
+      "type": "method",
+      "name": "log",
+      "exported": true,
+      "qualifiedName": "SAMLUtils.log",
+      "line": 94,
+      "endLine": 98,
+      "signature": "public static log(obj: object | string): void",
+      "containerClass": "SAMLUtils",
+      "calls": [
+        {
+          "name": "debug",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "error",
+      "exported": true,
+      "qualifiedName": "SAMLUtils.error",
+      "line": 98,
+      "endLine": 102,
+      "signature": "public static error(obj: object | string): void",
+      "containerClass": "SAMLUtils",
+      "calls": [
+        {
+          "name": "error",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "warn",
+      "exported": true,
+      "qualifiedName": "SAMLUtils.warn",
+      "line": 102,
+      "endLine": 106,
+      "signature": "public static warn(obj: object | string): void",
+      "containerClass": "SAMLUtils",
+      "calls": [
+        {
+          "name": "warn",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "inflateXml",
+      "exported": true,
+      "qualifiedName": "SAMLUtils.inflateXml",
+      "line": 106,
+      "endLine": 121,
+      "signature": "public static async inflateXml(deflatedXml: Buffer<ArrayBuffer>): Promise<Buffer<ArrayBuffer>>",
+      "containerClass": "SAMLUtils",
+      "calls": [
+        {
+          "name": "inflateRaw",
+          "edgeType": "call"
+        },
+        {
+          "name": "log",
+          "edgeType": "call"
+        },
+        {
+          "name": "reject",
+          "edgeType": "call"
+        },
+        {
+          "name": "resolve",
+          "edgeType": "call"
+        },
+        {
+          "name": "from",
+          "edgeType": "call"
+        },
+        {
+          "name": "ArrayBuffer",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "validateStatus",
+      "exported": true,
+      "qualifiedName": "SAMLUtils.validateStatus",
+      "line": 110,
+      "endLine": 140,
+      "signature": "public static validateStatus(doc: Document): { success: boolean; message: string; statusCode: string; }",
+      "containerClass": "SAMLUtils",
+      "calls": [
+        {
+          "name": "getElementsByTagNameNS",
+          "edgeType": "call"
+        },
+        {
+          "name": "getAttribute",
+          "edgeType": "call"
+        },
+        {
+          "name": "Document",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "normalizeCert",
+      "exported": true,
+      "qualifiedName": "SAMLUtils.normalizeCert",
+      "line": 118,
+      "endLine": 128,
+      "signature": "public static normalizeCert(cert: string): string",
+      "containerClass": "SAMLUtils",
+      "calls": [
+        {
+          "name": "trim",
+          "edgeType": "call"
+        },
+        {
+          "name": "replace",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "getUserDataMapping",
+      "exported": true,
+      "qualifiedName": "SAMLUtils.getUserDataMapping",
+      "line": 122,
+      "endLine": 234,
+      "signature": "public static getUserDataMapping(): IUserDataMap",
+      "containerClass": "SAMLUtils",
+      "calls": [
+        {
+          "name": "parse",
+          "edgeType": "call"
+        },
+        {
+          "name": "log",
+          "edgeType": "call"
+        },
+        {
+          "name": "toLowerCase",
+          "edgeType": "call"
+        },
+        {
+          "name": "hasOwnProperty",
+          "edgeType": "call"
+        },
+        {
+          "name": "isArray",
+          "edgeType": "call"
+        },
+        {
+          "name": "includes",
+          "edgeType": "call"
+        },
+        {
+          "name": "Set",
+          "edgeType": "new"
+        },
+        {
+          "name": "IUserDataMap",
+          "edgeType": "type"
+        },
+        {
+          "name": "IAttributeMapping",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "getProfileValue",
+      "exported": true,
+      "qualifiedName": "SAMLUtils.getProfileValue",
+      "line": 126,
+      "endLine": 191,
+      "signature": "public static getProfileValue(profile: Record<string, any>, mapping: IAttributeMapping, forceString = false): any",
+      "containerClass": "SAMLUtils",
+      "calls": [
+        {
+          "name": "ensureArray",
+          "edgeType": "call"
+        },
+        {
+          "name": "isArray",
+          "edgeType": "call"
+        },
+        {
+          "name": "abs",
+          "edgeType": "call"
+        },
+        {
+          "name": "join",
+          "edgeType": "call"
+        },
+        {
+          "name": "includes",
+          "edgeType": "call"
+        },
+        {
+          "name": "fillTemplateData",
+          "edgeType": "call"
+        },
+        {
+          "name": "match",
+          "edgeType": "call"
+        },
+        {
+          "name": "RegExp",
+          "edgeType": "new"
+        },
+        {
+          "name": "IAttributeMapping",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "normalizeUsername",
+      "exported": true,
+      "qualifiedName": "SAMLUtils.normalizeUsername",
+      "line": 130,
+      "endLine": 140,
+      "signature": "public static normalizeUsername(name: string): string",
+      "containerClass": "SAMLUtils",
+      "calls": [
+        {
+          "name": "toLowerCase",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "mapProfileToUserObject",
+      "exported": true,
+      "qualifiedName": "SAMLUtils.mapProfileToUserObject",
+      "line": 134,
+      "endLine": 197,
+      "signature": "public static mapProfileToUserObject(profile: Record<string, any>): ISAMLUser",
+      "containerClass": "SAMLUtils",
+      "calls": [
+        {
+          "name": "getUserDataMapping",
+          "edgeType": "call"
+        },
+        {
+          "name": "log",
+          "edgeType": "call"
+        },
+        {
+          "name": "set",
+          "edgeType": "call"
+        },
+        {
+          "name": "getProfileValue",
+          "edgeType": "call"
+        },
+        {
+          "name": "ensureArray",
+          "edgeType": "call"
+        },
+        {
+          "name": "normalizeUsername",
+          "edgeType": "call"
+        },
+        {
+          "name": "isArray",
+          "edgeType": "call"
+        },
+        {
+          "name": "split",
+          "edgeType": "call"
+        },
+        {
+          "name": "mapUser",
+          "edgeType": "event_emit"
+        },
+        {
+          "name": "Map",
+          "edgeType": "new"
+        },
+        {
+          "name": "ISAMLUser",
+          "edgeType": "type"
+        }
+      ]
+    }
+  ],
+  "imports": [
+    {
+      "module": "node:events",
+      "resolved": "external"
+    },
+    {
+      "module": "node:zlib",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/logger",
+      "resolved": "external"
+    },
+    {
+      "module": "./constants",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/app/meteor-accounts-saml/server/lib/constants.ts"
+    },
+    {
+      "module": "../../../../lib/utils/arrayUtils",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/lib/utils/arrayUtils.ts"
+    },
+    {
+      "module": "../definition/IAttributeMapping",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/app/meteor-accounts-saml/server/definition/IAttributeMapping.ts"
+    },
+    {
+      "module": "../definition/ISAMLGlobalSettings",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/app/meteor-accounts-saml/server/definition/ISAMLGlobalSettings.ts"
+    },
+    {
+      "module": "../definition/ISAMLUser",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/app/meteor-accounts-saml/server/definition/ISAMLUser.ts"
+    },
+    {
+      "module": "../definition/IServiceProviderOptions",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/app/meteor-accounts-saml/server/definition/IServiceProviderOptions.ts"
+    }
+  ]
+}

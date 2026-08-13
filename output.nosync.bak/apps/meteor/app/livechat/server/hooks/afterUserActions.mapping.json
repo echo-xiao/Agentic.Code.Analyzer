@@ -1,0 +1,192 @@
+{
+  "sourcePath": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/app/livechat/server/hooks/afterUserActions.ts",
+  "symbols": [
+    {
+      "type": "module",
+      "name": "afterUserActions",
+      "exported": false,
+      "line": 1,
+      "endLine": 53,
+      "signature": "afterUserActions",
+      "calls": [
+        {
+          "name": "handleAgentCreated",
+          "edgeType": "event_listen",
+          "event": "afterCreateUser"
+        },
+        {
+          "name": "handleAgentUpdated",
+          "edgeType": "event_listen",
+          "event": "afterSaveUser"
+        },
+        {
+          "name": "handleDeactivateUser",
+          "edgeType": "event_listen",
+          "event": "afterDeactivateUser"
+        },
+        {
+          "name": "handleActivateUser",
+          "edgeType": "event_listen",
+          "event": "afterActivateUser"
+        }
+      ]
+    },
+    {
+      "type": "variable_function",
+      "name": "wasAgent",
+      "exported": false,
+      "line": 12,
+      "endLine": 12,
+      "signature": "(user: Pick<IUser, 'roles'> | null) =>",
+      "calls": [
+        {
+          "name": "includes",
+          "edgeType": "call"
+        },
+        {
+          "name": "IUser",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "variable_function",
+      "name": "isAgent",
+      "exported": false,
+      "line": 13,
+      "endLine": 13,
+      "signature": "(user: Pick<IUser, 'roles'> | null) =>",
+      "calls": [
+        {
+          "name": "includes",
+          "edgeType": "call"
+        },
+        {
+          "name": "IUser",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "variable_function",
+      "name": "handleAgentUpdated",
+      "exported": false,
+      "line": 15,
+      "endLine": 25,
+      "signature": "async (userData: IAfterSaveUserProps) =>",
+      "calls": [
+        {
+          "name": "wasAgent",
+          "edgeType": "call"
+        },
+        {
+          "name": "isAgent",
+          "edgeType": "call"
+        },
+        {
+          "name": "afterRemoveAgent",
+          "edgeType": "call"
+        },
+        {
+          "name": "afterAgentAdded",
+          "edgeType": "call"
+        },
+        {
+          "name": "IAfterSaveUserProps",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "variable_function",
+      "name": "handleAgentCreated",
+      "exported": false,
+      "line": 19,
+      "endLine": 24,
+      "signature": "async (user: IUser) =>",
+      "calls": [
+        {
+          "name": "isAgent",
+          "edgeType": "call"
+        },
+        {
+          "name": "afterAgentAdded",
+          "edgeType": "call"
+        },
+        {
+          "name": "IUser",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "variable_function",
+      "name": "handleDeactivateUser",
+      "exported": false,
+      "line": 23,
+      "endLine": 27,
+      "signature": "async (user: IUser) =>",
+      "calls": [
+        {
+          "name": "wasAgent",
+          "edgeType": "call"
+        },
+        {
+          "name": "makeAgentUnavailable",
+          "edgeType": "call"
+        },
+        {
+          "name": "IUser",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "variable_function",
+      "name": "handleActivateUser",
+      "exported": false,
+      "line": 27,
+      "endLine": 31,
+      "signature": "async (user: IUser) =>",
+      "calls": [
+        {
+          "name": "isAgent",
+          "edgeType": "call"
+        },
+        {
+          "name": "afterAgentUserActivated",
+          "edgeType": "call"
+        },
+        {
+          "name": "IUser",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "type",
+      "name": "IAfterSaveUserProps",
+      "line": 7,
+      "endLine": 10,
+      "signature": "type IAfterSaveUserProps ="
+    }
+  ],
+  "imports": [
+    {
+      "module": "@rocket.chat/core-typings",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/models",
+      "resolved": "external"
+    },
+    {
+      "module": "../../../../server/lib/callbacks",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/server/lib/callbacks.ts"
+    },
+    {
+      "module": "../lib/hooks",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/app/livechat/server/lib/hooks.ts"
+    }
+  ]
+}

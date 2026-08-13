@@ -1,0 +1,49 @@
+{
+  "sourcePath": "/Users/echoooooo/Desktop/code/Rocket.Chat/packages/ui-contexts/src/hooks/usePermission.ts",
+  "symbols": [
+    {
+      "type": "variable_function",
+      "name": "usePermission",
+      "exported": true,
+      "line": 6,
+      "endLine": 10,
+      "signature": "(permission: string | ObjectId, scope?: string | ObjectId): boolean =>",
+      "calls": [
+        {
+          "name": "useContext",
+          "edgeType": "call"
+        },
+        {
+          "name": "useMemo",
+          "edgeType": "call"
+        },
+        {
+          "name": "queryPermission",
+          "edgeType": "call"
+        },
+        {
+          "name": "useSyncExternalStore",
+          "edgeType": "call"
+        },
+        {
+          "name": "ObjectId",
+          "edgeType": "type"
+        }
+      ]
+    }
+  ],
+  "imports": [
+    {
+      "module": "mongodb",
+      "resolved": "external"
+    },
+    {
+      "module": "react",
+      "resolved": "external"
+    },
+    {
+      "module": "../AuthorizationContext",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/packages/ui-contexts/src/AuthorizationContext.ts"
+    }
+  ]
+}

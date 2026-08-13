@@ -1,0 +1,129 @@
+{
+  "sourcePath": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/server/routes/avatar/middlewares/auth.ts",
+  "symbols": [
+    {
+      "type": "variable_function",
+      "name": "renderFallback",
+      "exported": false,
+      "line": 8,
+      "endLine": 26,
+      "signature": "(req: IncomingMessage, res: ServerResponse) =>",
+      "calls": [
+        {
+          "name": "writeHead",
+          "edgeType": "call"
+        },
+        {
+          "name": "end",
+          "edgeType": "call"
+        },
+        {
+          "name": "startsWith",
+          "edgeType": "call"
+        },
+        {
+          "name": "split",
+          "edgeType": "call"
+        },
+        {
+          "name": "write",
+          "edgeType": "call"
+        },
+        {
+          "name": "renderSVGLetters",
+          "edgeType": "call"
+        },
+        {
+          "name": "IncomingMessage",
+          "edgeType": "type"
+        },
+        {
+          "name": "ServerResponse",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "variable_function",
+      "name": "getProtectAvatars",
+      "exported": false,
+      "line": 12,
+      "endLine": 25,
+      "signature": "(callback?: typeof renderFallback) =>",
+      "calls": [
+        {
+          "name": "userCanAccessAvatar",
+          "edgeType": "call"
+        },
+        {
+          "name": "callback",
+          "edgeType": "call"
+        },
+        {
+          "name": "writeHead",
+          "edgeType": "call"
+        },
+        {
+          "name": "end",
+          "edgeType": "call"
+        },
+        {
+          "name": "next",
+          "edgeType": "call"
+        },
+        {
+          "name": "IncomingMessage",
+          "edgeType": "type"
+        },
+        {
+          "name": "ServerResponse",
+          "edgeType": "type"
+        },
+        {
+          "name": "NextFunction",
+          "edgeType": "type"
+        },
+        {
+          "name": "IIncomingMessage",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "variable",
+      "name": "protectAvatarsWithFallback",
+      "exported": true,
+      "line": 28,
+      "endLine": 28,
+      "signature": "protectAvatarsWithFallback = getProtectAvatars(renderFallback)",
+      "calls": []
+    },
+    {
+      "type": "variable",
+      "name": "protectAvatars",
+      "exported": true,
+      "line": 31,
+      "endLine": 31,
+      "signature": "protectAvatars = getProtectAvatars()",
+      "calls": []
+    }
+  ],
+  "imports": [
+    {
+      "module": "node:http",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/core-typings",
+      "resolved": "external"
+    },
+    {
+      "module": "connect",
+      "resolved": "external"
+    },
+    {
+      "module": "../utils",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/server/routes/avatar/utils.ts"
+    }
+  ]
+}

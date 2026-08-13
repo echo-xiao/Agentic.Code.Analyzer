@@ -1,0 +1,93 @@
+{
+  "sourcePath": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/tests/e2e/page-objects/admin-third-party-login.ts",
+  "symbols": [
+    {
+      "type": "class",
+      "name": "AdminThirdPartyLogin",
+      "exported": true,
+      "line": 5,
+      "endLine": 47,
+      "signature": "export class AdminThirdPartyLogin extends Admin",
+      "calls": [
+        {
+          "name": "Admin",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "getThirdPartyAppByName",
+      "exported": true,
+      "qualifiedName": "AdminThirdPartyLogin.getThirdPartyAppByName",
+      "line": 38,
+      "endLine": 40,
+      "signature": "getThirdPartyAppByName(name: string): Locator",
+      "containerClass": "AdminThirdPartyLogin",
+      "calls": [
+        {
+          "name": "locator",
+          "edgeType": "call"
+        },
+        {
+          "name": "getByRole",
+          "edgeType": "call"
+        },
+        {
+          "name": "Locator",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "deleteThirdPartyAppByName",
+      "exported": true,
+      "qualifiedName": "AdminThirdPartyLogin.deleteThirdPartyAppByName",
+      "line": 42,
+      "endLine": 46,
+      "signature": "async deleteThirdPartyAppByName(name: string)",
+      "containerClass": "AdminThirdPartyLogin",
+      "calls": [
+        {
+          "name": "click",
+          "edgeType": "call"
+        },
+        {
+          "name": "getThirdPartyAppByName",
+          "edgeType": "call"
+        },
+        {
+          "name": "confirmDelete",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "constructor",
+      "exported": true,
+      "qualifiedName": "AdminThirdPartyLogin.constructor",
+      "line": 6,
+      "endLine": 8,
+      "signature": "constructor(page: Page)",
+      "containerClass": "AdminThirdPartyLogin",
+      "calls": [
+        {
+          "name": "Page",
+          "edgeType": "type"
+        }
+      ]
+    }
+  ],
+  "imports": [
+    {
+      "module": "@playwright/test",
+      "resolved": "external"
+    },
+    {
+      "module": "./admin",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/tests/e2e/page-objects/admin.ts"
+    }
+  ]
+}

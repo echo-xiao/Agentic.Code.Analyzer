@@ -1,0 +1,184 @@
+{
+  "sourcePath": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/app/metrics/server/lib/statsTracker.js",
+  "symbols": [
+    {
+      "type": "module",
+      "name": "statsTracker",
+      "exported": false,
+      "line": 1,
+      "endLine": 48,
+      "signature": "statsTracker",
+      "calls": [
+        {
+          "name": "StatsTracker",
+          "edgeType": "new"
+        }
+      ]
+    },
+    {
+      "type": "class",
+      "name": "StatsTracker",
+      "exported": false,
+      "line": 3,
+      "endLine": 45,
+      "signature": "class StatsTracker",
+      "calls": []
+    },
+    {
+      "type": "method",
+      "name": "track",
+      "exported": false,
+      "qualifiedName": "StatsTracker.track",
+      "line": 9,
+      "endLine": 11,
+      "signature": "track(type, stats, ...args)",
+      "containerClass": "StatsTracker",
+      "calls": []
+    },
+    {
+      "type": "method",
+      "name": "now",
+      "exported": false,
+      "qualifiedName": "StatsTracker.now",
+      "line": 13,
+      "endLine": 16,
+      "signature": "now()",
+      "containerClass": "StatsTracker",
+      "calls": [
+        {
+          "name": "hrtime",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "timing",
+      "exported": false,
+      "qualifiedName": "StatsTracker.timing",
+      "line": 17,
+      "endLine": 19,
+      "signature": "timing(stats, time, tags)",
+      "containerClass": "StatsTracker",
+      "calls": [
+        {
+          "name": "track",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "increment",
+      "exported": false,
+      "qualifiedName": "StatsTracker.increment",
+      "line": 21,
+      "endLine": 23,
+      "signature": "increment(stats, time, tags)",
+      "containerClass": "StatsTracker",
+      "calls": [
+        {
+          "name": "track",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "decrement",
+      "exported": false,
+      "qualifiedName": "StatsTracker.decrement",
+      "line": 25,
+      "endLine": 27,
+      "signature": "decrement(stats, time, tags)",
+      "containerClass": "StatsTracker",
+      "calls": [
+        {
+          "name": "track",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "histogram",
+      "exported": false,
+      "qualifiedName": "StatsTracker.histogram",
+      "line": 29,
+      "endLine": 31,
+      "signature": "histogram(stats, time, tags)",
+      "containerClass": "StatsTracker",
+      "calls": [
+        {
+          "name": "track",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "gauge",
+      "exported": false,
+      "qualifiedName": "StatsTracker.gauge",
+      "line": 33,
+      "endLine": 35,
+      "signature": "gauge(stats, time, tags)",
+      "containerClass": "StatsTracker",
+      "calls": [
+        {
+          "name": "track",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "unique",
+      "exported": false,
+      "qualifiedName": "StatsTracker.unique",
+      "line": 37,
+      "endLine": 39,
+      "signature": "unique(stats, time, tags)",
+      "containerClass": "StatsTracker",
+      "calls": [
+        {
+          "name": "track",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "set",
+      "exported": false,
+      "qualifiedName": "StatsTracker.set",
+      "line": 41,
+      "endLine": 43,
+      "signature": "set(stats, time, tags)",
+      "containerClass": "StatsTracker",
+      "calls": [
+        {
+          "name": "track",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "constructor",
+      "exported": false,
+      "qualifiedName": "StatsTracker.constructor",
+      "line": 4,
+      "endLine": 7,
+      "signature": "constructor()",
+      "containerClass": "StatsTracker",
+      "calls": []
+    }
+  ],
+  "imports": [
+    {
+      "module": "node-dogstatsd",
+      "resolved": "external"
+    }
+  ]
+}

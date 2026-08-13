@@ -1,0 +1,374 @@
+{
+  "sourcePath": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/server/routes/avatar/utils.ts",
+  "symbols": [
+    {
+      "type": "function",
+      "name": "isUserAuthenticated",
+      "exported": false,
+      "line": 92,
+      "endLine": 107,
+      "signature": "async function isUserAuthenticated({ headers, query }: Pick<IIncomingMessage, 'headers' | 'query'>)",
+      "calls": [
+        {
+          "name": "get",
+          "edgeType": "call"
+        },
+        {
+          "name": "findOneByIdAndLoginToken",
+          "edgeType": "call"
+        },
+        {
+          "name": "hashLoginToken",
+          "edgeType": "call"
+        },
+        {
+          "name": "IIncomingMessage",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "function",
+      "name": "userCanAccessAvatar",
+      "exported": true,
+      "line": 100,
+      "endLine": 111,
+      "signature": "export async function userCanAccessAvatar({ headers = {}, query = {} }: IIncomingMessage)",
+      "calls": [
+        {
+          "name": "get",
+          "edgeType": "call"
+        },
+        {
+          "name": "isUserAuthenticated",
+          "edgeType": "call"
+        },
+        {
+          "name": "warnUnauthenticatedAccess",
+          "edgeType": "call"
+        },
+        {
+          "name": "IIncomingMessage",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "function",
+      "name": "setCacheAndDispositionHeaders",
+      "exported": true,
+      "line": 131,
+      "endLine": 135,
+      "signature": "export function setCacheAndDispositionHeaders(req: IIncomingMessage, res: ServerResponse)",
+      "calls": [
+        {
+          "name": "getCacheTime",
+          "edgeType": "call"
+        },
+        {
+          "name": "setHeader",
+          "edgeType": "call"
+        },
+        {
+          "name": "IIncomingMessage",
+          "edgeType": "type"
+        },
+        {
+          "name": "ServerResponse",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "variable",
+      "name": "MAX_SVG_AVATAR_SIZE",
+      "exported": true,
+      "line": 20,
+      "endLine": 20,
+      "signature": "MAX_SVG_AVATAR_SIZE = 1024",
+      "calls": []
+    },
+    {
+      "type": "variable",
+      "name": "MIN_SVG_AVATAR_SIZE",
+      "exported": true,
+      "line": 21,
+      "endLine": 21,
+      "signature": "MIN_SVG_AVATAR_SIZE = 16",
+      "calls": []
+    },
+    {
+      "type": "variable_function",
+      "name": "serveAvatarFile",
+      "exported": true,
+      "line": 24,
+      "endLine": 48,
+      "signature": "(file: IUpload, req: IIncomingMessage, res: ServerResponse, next: NextFunction) =>",
+      "calls": [
+        {
+          "name": "setHeader",
+          "edgeType": "call"
+        },
+        {
+          "name": "toUTCString",
+          "edgeType": "call"
+        },
+        {
+          "name": "writeHead",
+          "edgeType": "call"
+        },
+        {
+          "name": "end",
+          "edgeType": "call"
+        },
+        {
+          "name": "get",
+          "edgeType": "call"
+        },
+        {
+          "name": "IUpload",
+          "edgeType": "type"
+        },
+        {
+          "name": "IIncomingMessage",
+          "edgeType": "type"
+        },
+        {
+          "name": "ServerResponse",
+          "edgeType": "type"
+        },
+        {
+          "name": "NextFunction",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "variable_function",
+      "name": "getAvatarSizeFromRequest",
+      "exported": true,
+      "line": 28,
+      "endLine": 34,
+      "signature": "(req: IIncomingMessage) =>",
+      "calls": [
+        {
+          "name": "min",
+          "edgeType": "call"
+        },
+        {
+          "name": "max",
+          "edgeType": "call"
+        },
+        {
+          "name": "IIncomingMessage",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "variable_function",
+      "name": "serveSvgAvatarInRequestedFormat",
+      "exported": true,
+      "line": 31,
+      "endLine": 57,
+      "signature": "({ nameOrUsername, req, res, useAllInitials = false, }: { nameOrUsername: string; req: IIncomingMessage; res: ServerResponse; useAllInitials?: boolean; }) =>",
+      "calls": [
+        {
+          "name": "getAvatarSizeFromRequest",
+          "edgeType": "call"
+        },
+        {
+          "name": "renderSVGLetters",
+          "edgeType": "call"
+        },
+        {
+          "name": "setHeader",
+          "edgeType": "call"
+        },
+        {
+          "name": "includes",
+          "edgeType": "call"
+        },
+        {
+          "name": "pipe",
+          "edgeType": "call"
+        },
+        {
+          "name": "toFormat",
+          "edgeType": "call"
+        },
+        {
+          "name": "sharp",
+          "edgeType": "call"
+        },
+        {
+          "name": "from",
+          "edgeType": "call"
+        },
+        {
+          "name": "write",
+          "edgeType": "call"
+        },
+        {
+          "name": "end",
+          "edgeType": "call"
+        },
+        {
+          "name": "IIncomingMessage",
+          "edgeType": "type"
+        },
+        {
+          "name": "ServerResponse",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "variable_function",
+      "name": "wasFallbackModified",
+      "exported": true,
+      "line": 45,
+      "endLine": 50,
+      "signature": "(reqModifiedHeader?: string) =>",
+      "calls": []
+    },
+    {
+      "type": "variable_function",
+      "name": "getFirstLetter",
+      "exported": false,
+      "line": 61,
+      "endLine": 64,
+      "signature": "(name: string) =>",
+      "calls": [
+        {
+          "name": "sanitizeHtml",
+          "edgeType": "call"
+        },
+        {
+          "name": "toUpperCase",
+          "edgeType": "call"
+        },
+        {
+          "name": "substring",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "variable_function",
+      "name": "getInitials",
+      "exported": false,
+      "line": 65,
+      "endLine": 65,
+      "signature": "(name: string) =>",
+      "calls": [
+        {
+          "name": "join",
+          "edgeType": "call"
+        },
+        {
+          "name": "map",
+          "edgeType": "call"
+        },
+        {
+          "name": "slice",
+          "edgeType": "call"
+        },
+        {
+          "name": "split",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "variable_function",
+      "name": "renderSVGLetters",
+      "exported": true,
+      "line": 67,
+      "endLine": 83,
+      "signature": "(name: string, viewSize = 200, useAllInitials = false) =>",
+      "calls": [
+        {
+          "name": "getAvatarColor",
+          "edgeType": "call"
+        },
+        {
+          "name": "getFirstLetter",
+          "edgeType": "call"
+        },
+        {
+          "name": "getInitials",
+          "edgeType": "call"
+        },
+        {
+          "name": "pow",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "variable_function",
+      "name": "getCacheTime",
+      "exported": false,
+      "line": 71,
+      "endLine": 71,
+      "signature": "(cacheTime: number) =>",
+      "calls": [
+        {
+          "name": "get",
+          "edgeType": "call"
+        }
+      ]
+    }
+  ],
+  "imports": [
+    {
+      "module": "node:http",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/account-utils",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/core-typings",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/models",
+      "resolved": "external"
+    },
+    {
+      "module": "connect",
+      "resolved": "external"
+    },
+    {
+      "module": "meteor/ostrio:cookies",
+      "resolved": "external"
+    },
+    {
+      "module": "sanitize-html",
+      "resolved": "external"
+    },
+    {
+      "module": "sharp",
+      "resolved": "external"
+    },
+    {
+      "module": "underscore",
+      "resolved": "external"
+    },
+    {
+      "module": "../../../app/file-upload/server",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/app/file-upload/server/index.ts"
+    },
+    {
+      "module": "../../../app/settings/server",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/app/settings/server/index.ts"
+    },
+    {
+      "module": "../../../app/utils/lib/getAvatarColor",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/app/utils/lib/getAvatarColor.ts"
+    }
+  ]
+}

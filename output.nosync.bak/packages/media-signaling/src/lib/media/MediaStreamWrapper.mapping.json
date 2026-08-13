@@ -1,0 +1,606 @@
+{
+  "sourcePath": "/Users/echoooooo/Desktop/code/Rocket.Chat/packages/media-signaling/src/lib/media/MediaStreamWrapper.ts",
+  "symbols": [
+    {
+      "type": "class",
+      "name": "MediaStreamWrapper",
+      "exported": true,
+      "line": 9,
+      "endLine": 326,
+      "signature": "export class MediaStreamWrapper implements IMediaStreamWrapper",
+      "calls": [
+        {
+          "name": "IMediaStreamWrapper",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "hasAudio",
+      "exported": true,
+      "qualifiedName": "MediaStreamWrapper.hasAudio",
+      "line": 69,
+      "endLine": 80,
+      "signature": "public hasAudio(): boolean",
+      "containerClass": "MediaStreamWrapper",
+      "calls": [
+        {
+          "name": "getAudioTracks",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "hasVideo",
+      "exported": true,
+      "qualifiedName": "MediaStreamWrapper.hasVideo",
+      "line": 73,
+      "endLine": 84,
+      "signature": "public hasVideo(): boolean",
+      "containerClass": "MediaStreamWrapper",
+      "calls": [
+        {
+          "name": "getVideoTracks",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "isAudioMutedBySystem",
+      "exported": true,
+      "qualifiedName": "MediaStreamWrapper.isAudioMutedBySystem",
+      "line": 77,
+      "endLine": 83,
+      "signature": "public isAudioMutedBySystem(): boolean",
+      "containerClass": "MediaStreamWrapper",
+      "calls": []
+    },
+    {
+      "type": "method",
+      "name": "isAudioEnabled",
+      "exported": true,
+      "qualifiedName": "MediaStreamWrapper.isAudioEnabled",
+      "line": 81,
+      "endLine": 87,
+      "signature": "public isAudioEnabled(): boolean",
+      "containerClass": "MediaStreamWrapper",
+      "calls": []
+    },
+    {
+      "type": "method",
+      "name": "isStopped",
+      "exported": true,
+      "qualifiedName": "MediaStreamWrapper.isStopped",
+      "line": 85,
+      "endLine": 87,
+      "signature": "public isStopped(): boolean",
+      "containerClass": "MediaStreamWrapper",
+      "calls": []
+    },
+    {
+      "type": "method",
+      "name": "setAudioEnabled",
+      "exported": true,
+      "qualifiedName": "MediaStreamWrapper.setAudioEnabled",
+      "line": 89,
+      "endLine": 100,
+      "signature": "public setAudioEnabled(enabled: boolean)",
+      "containerClass": "MediaStreamWrapper",
+      "calls": [
+        {
+          "name": "isAudioMutedBySystem",
+          "edgeType": "call"
+        },
+        {
+          "name": "stateChanged",
+          "edgeType": "event_emit"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "setActive",
+      "exported": true,
+      "qualifiedName": "MediaStreamWrapper.setActive",
+      "line": 93,
+      "endLine": 100,
+      "signature": "public setActive(active: boolean)",
+      "containerClass": "MediaStreamWrapper",
+      "calls": [
+        {
+          "name": "stateChanged",
+          "edgeType": "event_emit"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "stop",
+      "exported": true,
+      "qualifiedName": "MediaStreamWrapper.stop",
+      "line": 97,
+      "endLine": 102,
+      "signature": "public stop(): void",
+      "containerClass": "MediaStreamWrapper",
+      "calls": [
+        {
+          "name": "removeTracks",
+          "edgeType": "call"
+        },
+        {
+          "name": "clear",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "setTrack",
+      "exported": true,
+      "qualifiedName": "MediaStreamWrapper.setTrack",
+      "line": 101,
+      "endLine": 109,
+      "signature": "public async setTrack(kind: MediaStreamTrack['kind'], track: MediaStreamTrack | null): Promise<void>",
+      "containerClass": "MediaStreamWrapper",
+      "calls": [
+        {
+          "name": "debug",
+          "edgeType": "call"
+        },
+        {
+          "name": "isSameTrack",
+          "edgeType": "call"
+        },
+        {
+          "name": "replaceTrack",
+          "edgeType": "call"
+        },
+        {
+          "name": "MediaStreamTrack",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "addRemoteId",
+      "exported": true,
+      "qualifiedName": "MediaStreamWrapper.addRemoteId",
+      "line": 105,
+      "endLine": 111,
+      "signature": "public addRemoteId(id: string): void",
+      "containerClass": "MediaStreamWrapper",
+      "calls": [
+        {
+          "name": "hasRemoteId",
+          "edgeType": "call"
+        },
+        {
+          "name": "push",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "hasRemoteId",
+      "exported": true,
+      "qualifiedName": "MediaStreamWrapper.hasRemoteId",
+      "line": 109,
+      "endLine": 111,
+      "signature": "public hasRemoteId(id: string): boolean",
+      "containerClass": "MediaStreamWrapper",
+      "calls": [
+        {
+          "name": "includes",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "getTracks",
+      "exported": true,
+      "qualifiedName": "MediaStreamWrapper.getTracks",
+      "line": 113,
+      "endLine": 122,
+      "signature": "private getTracks(kind?: MediaStreamTrack['kind'] | null): MediaStreamTrack[]",
+      "containerClass": "MediaStreamWrapper",
+      "calls": [
+        {
+          "name": "getAudioTracks",
+          "edgeType": "call"
+        },
+        {
+          "name": "getVideoTracks",
+          "edgeType": "call"
+        },
+        {
+          "name": "getTracks",
+          "edgeType": "call"
+        },
+        {
+          "name": "MediaStreamTrack",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "removeTracks",
+      "exported": true,
+      "qualifiedName": "MediaStreamWrapper.removeTracks",
+      "line": 117,
+      "endLine": 125,
+      "signature": "private removeTracks(kind?: MediaStreamTrack['kind']): void",
+      "containerClass": "MediaStreamWrapper",
+      "calls": [
+        {
+          "name": "getTracks",
+          "edgeType": "call"
+        },
+        {
+          "name": "forEach",
+          "edgeType": "call"
+        },
+        {
+          "name": "removeTrack",
+          "edgeType": "call"
+        },
+        {
+          "name": "MediaStreamTrack",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "replaceTrack",
+      "exported": true,
+      "qualifiedName": "MediaStreamWrapper.replaceTrack",
+      "line": 121,
+      "endLine": 132,
+      "signature": "private async replaceTrack(kind: MediaStreamTrack['kind'], newTrack: MediaStreamTrack | null): Promise<void>",
+      "containerClass": "MediaStreamWrapper",
+      "calls": [
+        {
+          "name": "removeTracks",
+          "edgeType": "call"
+        },
+        {
+          "name": "addTrack",
+          "edgeType": "call"
+        },
+        {
+          "name": "wrapTrack",
+          "edgeType": "call"
+        },
+        {
+          "name": "syncTrackChange",
+          "edgeType": "call"
+        },
+        {
+          "name": "trackChanged",
+          "edgeType": "event_emit"
+        },
+        {
+          "name": "MediaStreamTrack",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "syncTrackChange",
+      "exported": true,
+      "qualifiedName": "MediaStreamWrapper.syncTrackChange",
+      "line": 125,
+      "endLine": 154,
+      "signature": "private async syncTrackChange(kind: MediaStreamTrack['kind'], track: MediaStreamTrack | null): Promise<void>",
+      "containerClass": "MediaStreamWrapper",
+      "calls": [
+        {
+          "name": "debug",
+          "edgeType": "call"
+        },
+        {
+          "name": "replaceTrack",
+          "edgeType": "call"
+        },
+        {
+          "name": "addTrack",
+          "edgeType": "call"
+        },
+        {
+          "name": "find",
+          "edgeType": "call"
+        },
+        {
+          "name": "getTransceivers",
+          "edgeType": "call"
+        },
+        {
+          "name": "MediaStreamTrack",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "wrapTrack",
+      "exported": true,
+      "qualifiedName": "MediaStreamWrapper.wrapTrack",
+      "line": 129,
+      "endLine": 166,
+      "signature": "private wrapTrack(kind: MediaStreamTrack['kind'], track: MediaStreamTrack | null)",
+      "containerClass": "MediaStreamWrapper",
+      "calls": [
+        {
+          "name": "getWrappedTrack",
+          "edgeType": "call"
+        },
+        {
+          "name": "clear",
+          "edgeType": "call"
+        },
+        {
+          "name": "registerAudioLevelTracker",
+          "edgeType": "call"
+        },
+        {
+          "name": "mute",
+          "edgeType": "event_listen"
+        },
+        {
+          "name": "stateChanged",
+          "edgeType": "event_emit"
+        },
+        {
+          "name": "unmute",
+          "edgeType": "event_listen"
+        },
+        {
+          "name": "ended",
+          "edgeType": "event_listen"
+        },
+        {
+          "name": "MediaStreamTrackWrapper",
+          "edgeType": "new"
+        },
+        {
+          "name": "MediaStreamTrack",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "isSameTrack",
+      "exported": true,
+      "qualifiedName": "MediaStreamWrapper.isSameTrack",
+      "line": 133,
+      "endLine": 135,
+      "signature": "private isSameTrack(trackId: string): boolean",
+      "containerClass": "MediaStreamWrapper",
+      "calls": [
+        {
+          "name": "Boolean",
+          "edgeType": "call"
+        },
+        {
+          "name": "getTrackById",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "getWrappedTrack",
+      "exported": true,
+      "qualifiedName": "MediaStreamWrapper.getWrappedTrack",
+      "line": 137,
+      "endLine": 143,
+      "signature": "private getWrappedTrack(kind: MediaStreamTrack['kind']): MediaStreamTrackWrapper | null",
+      "containerClass": "MediaStreamWrapper",
+      "calls": [
+        {
+          "name": "MediaStreamTrack",
+          "edgeType": "type"
+        },
+        {
+          "name": "MediaStreamTrackWrapper",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "registerAudioLevelTracker",
+      "exported": true,
+      "qualifiedName": "MediaStreamWrapper.registerAudioLevelTracker",
+      "line": 141,
+      "endLine": 148,
+      "signature": "private registerAudioLevelTracker()",
+      "containerClass": "MediaStreamWrapper",
+      "calls": [
+        {
+          "name": "collectAudioStats",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "collectAudioStats",
+      "exported": true,
+      "qualifiedName": "MediaStreamWrapper.collectAudioStats",
+      "line": 145,
+      "endLine": 179,
+      "signature": "private async collectAudioStats()",
+      "containerClass": "MediaStreamWrapper",
+      "calls": [
+        {
+          "name": "getStats",
+          "edgeType": "call"
+        },
+        {
+          "name": "forEach",
+          "edgeType": "call"
+        },
+        {
+          "name": "registerAudioLevelTracker",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "constructor",
+      "exported": true,
+      "qualifiedName": "MediaStreamWrapper.constructor",
+      "line": 52,
+      "endLine": 67,
+      "signature": "constructor( remote: boolean, public readonly tag: string, private readonly peer: RTCPeerConnection, private readonly logger?: IMediaSignalLogger, )",
+      "containerClass": "MediaStreamWrapper",
+      "calls": [
+        {
+          "name": "MediaStream",
+          "edgeType": "new"
+        },
+        {
+          "name": "Emitter",
+          "edgeType": "new"
+        },
+        {
+          "name": "RTCPeerConnection",
+          "edgeType": "type"
+        },
+        {
+          "name": "IMediaSignalLogger",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "class_property",
+      "name": "emitter",
+      "exported": true,
+      "qualifiedName": "MediaStreamWrapper.emitter",
+      "line": 10,
+      "endLine": 10,
+      "signature": "public readonly emitter: Emitter<MediaStreamEvents>;",
+      "containerClass": "MediaStreamWrapper",
+      "calls": [
+        {
+          "name": "Emitter",
+          "edgeType": "type"
+        },
+        {
+          "name": "MediaStreamEvents",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "class_property",
+      "name": "stream",
+      "exported": true,
+      "qualifiedName": "MediaStreamWrapper.stream",
+      "line": 18,
+      "endLine": 18,
+      "signature": "public readonly stream: MediaStream;",
+      "containerClass": "MediaStreamWrapper",
+      "calls": [
+        {
+          "name": "MediaStream",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "class_property",
+      "name": "audioTrack",
+      "exported": true,
+      "qualifiedName": "MediaStreamWrapper.audioTrack",
+      "line": 32,
+      "endLine": 32,
+      "signature": "private audioTrack: MediaStreamTrackWrapper | null = null;",
+      "containerClass": "MediaStreamWrapper",
+      "calls": [
+        {
+          "name": "MediaStreamTrackWrapper",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "class_property",
+      "name": "videoTrack",
+      "exported": true,
+      "qualifiedName": "MediaStreamWrapper.videoTrack",
+      "line": 34,
+      "endLine": 34,
+      "signature": "private videoTrack: MediaStreamTrackWrapper | null = null;",
+      "containerClass": "MediaStreamWrapper",
+      "calls": [
+        {
+          "name": "MediaStreamTrackWrapper",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "class_property",
+      "name": "audioSender",
+      "exported": true,
+      "qualifiedName": "MediaStreamWrapper.audioSender",
+      "line": 36,
+      "endLine": 36,
+      "signature": "private audioSender: RTCRtpSender | null = null;",
+      "containerClass": "MediaStreamWrapper",
+      "calls": [
+        {
+          "name": "RTCRtpSender",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "class_property",
+      "name": "videoSender",
+      "exported": true,
+      "qualifiedName": "MediaStreamWrapper.videoSender",
+      "line": 38,
+      "endLine": 38,
+      "signature": "private videoSender: RTCRtpSender | null = null;",
+      "containerClass": "MediaStreamWrapper",
+      "calls": [
+        {
+          "name": "RTCRtpSender",
+          "edgeType": "type"
+        }
+      ]
+    }
+  ],
+  "imports": [
+    {
+      "module": "@rocket.chat/emitter",
+      "resolved": "external"
+    },
+    {
+      "module": "./MediaStreamTrackWrapper",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/packages/media-signaling/src/lib/media/MediaStreamTrackWrapper.ts"
+    },
+    {
+      "module": "../../definition/logger",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/packages/media-signaling/src/definition/logger.ts"
+    },
+    {
+      "module": "../../definition/media/IMediaStreamWrapper",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/packages/media-signaling/src/definition/media/IMediaStreamWrapper.ts"
+    }
+  ]
+}

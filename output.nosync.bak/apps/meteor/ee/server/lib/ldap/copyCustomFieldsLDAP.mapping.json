@@ -1,0 +1,81 @@
+{
+  "sourcePath": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/ee/server/lib/ldap/copyCustomFieldsLDAP.ts",
+  "symbols": [
+    {
+      "type": "variable_function",
+      "name": "copyCustomFieldsLDAP",
+      "exported": true,
+      "line": 8,
+      "endLine": 71,
+      "signature": "( { ldapUser, userData, customFieldsSettings, customFieldsMap, syncCustomFields, }: { ldapUser: ILDAPEntry; userData: IImportUser; syncCustomFields: boolean; customFieldsSettings: string; customFieldsMap: string; }, logger: Logger, ): void =>",
+      "calls": [
+        {
+          "name": "debug",
+          "edgeType": "call"
+        },
+        {
+          "name": "parse",
+          "edgeType": "call"
+        },
+        {
+          "name": "error",
+          "edgeType": "call"
+        },
+        {
+          "name": "forEach",
+          "edgeType": "call"
+        },
+        {
+          "name": "entries",
+          "edgeType": "call"
+        },
+        {
+          "name": "getNestedProp",
+          "edgeType": "call"
+        },
+        {
+          "name": "templateVarHandler",
+          "edgeType": "call"
+        },
+        {
+          "name": "replacesNestedValues",
+          "edgeType": "call"
+        },
+        {
+          "name": "ILDAPEntry",
+          "edgeType": "type"
+        },
+        {
+          "name": "IImportUser",
+          "edgeType": "type"
+        },
+        {
+          "name": "Logger",
+          "edgeType": "type"
+        }
+      ]
+    }
+  ],
+  "imports": [
+    {
+      "module": "@rocket.chat/core-typings",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/logger",
+      "resolved": "external"
+    },
+    {
+      "module": "./replacesNestedValues",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/ee/server/lib/ldap/replacesNestedValues.ts"
+    },
+    {
+      "module": "../../../../app/utils/lib/templateVarHandler",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/app/utils/lib/templateVarHandler.ts"
+    },
+    {
+      "module": "../../../../server/lib/getNestedProp",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/server/lib/getNestedProp.ts"
+    }
+  ]
+}

@@ -1,0 +1,297 @@
+{
+  "sourcePath": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/client/components/CreateDiscussion/CreateDiscussion.tsx",
+  "symbols": [
+    {
+      "type": "inner_function",
+      "name": "handleCreate",
+      "exported": false,
+      "qualifiedName": "CreateDiscussion.handleCreate",
+      "line": 94,
+      "endLine": 103,
+      "signature": "async ({ name, parentRoom, encrypted, usernames, firstMessage, topic }: CreateDiscussionFormValues) =>",
+      "calls": [
+        {
+          "name": "mutate",
+          "edgeType": "call"
+        },
+        {
+          "name": "CreateDiscussionFormValues",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "inner_function",
+      "name": "onSuccess",
+      "exported": false,
+      "qualifiedName": "CreateDiscussion.onSuccess",
+      "line": 88,
+      "endLine": 91,
+      "signature": "({ discussion }) =>",
+      "calls": [
+        {
+          "name": "goToRoom",
+          "edgeType": "call"
+        },
+        {
+          "name": "onClose",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "variable_function",
+      "name": "CreateDiscussion",
+      "exported": false,
+      "line": 44,
+      "endLine": 213,
+      "signature": "({ onClose, defaultParentRoom, parentMessageId, nameSuggestion, encryptedParentRoom = false, }: CreateDiscussionProps) =>",
+      "calls": [
+        {
+          "name": "useTranslation",
+          "edgeType": "call"
+        },
+        {
+          "name": "useState",
+          "edgeType": "call"
+        },
+        {
+          "name": "useForm",
+          "edgeType": "call"
+        },
+        {
+          "name": "useStableCallback",
+          "edgeType": "call"
+        },
+        {
+          "name": "setValue",
+          "edgeType": "call"
+        },
+        {
+          "name": "setEncryptedDisabled",
+          "edgeType": "call"
+        },
+        {
+          "name": "watch",
+          "edgeType": "call"
+        },
+        {
+          "name": "useEndpoint",
+          "edgeType": "call"
+        },
+        {
+          "name": "useGoToRoom",
+          "edgeType": "call"
+        },
+        {
+          "name": "useMutation",
+          "edgeType": "call"
+        },
+        {
+          "name": "goToRoom",
+          "edgeType": "call"
+        },
+        {
+          "name": "onClose",
+          "edgeType": "call"
+        },
+        {
+          "name": "mutate",
+          "edgeType": "call"
+        },
+        {
+          "name": "useEncryptedRoomDescription",
+          "edgeType": "call"
+        },
+        {
+          "name": "handleSubmit",
+          "edgeType": "call"
+        },
+        {
+          "name": "Boolean",
+          "edgeType": "call"
+        },
+        {
+          "name": "getEncryptedHint",
+          "edgeType": "call"
+        },
+        {
+          "name": "GenericModal",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "Box",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "FieldGroup",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "Field",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "FieldLabel",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "FieldRow",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "FieldError",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "FieldHint",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "Controller",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "DefaultParentRoomField",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "RoomAutoComplete",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "Icon",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "TextInput",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "UserAutoCompleteMultiple",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "TextAreaInput",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "ToggleSwitch",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "onClose",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "control",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "defaultParentRoom",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "onParentRoomChange",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "encrypted",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "value",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "encryptedDisabled",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "CreateDiscussionProps",
+          "edgeType": "type"
+        },
+        {
+          "name": "IRoom",
+          "edgeType": "type"
+        },
+        {
+          "name": "CreateDiscussionFormValues",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "type",
+      "name": "CreateDiscussionFormValues",
+      "line": 27,
+      "endLine": 34,
+      "signature": "type CreateDiscussionFormValues ="
+    },
+    {
+      "type": "type",
+      "name": "CreateDiscussionProps",
+      "line": 36,
+      "endLine": 42,
+      "signature": "export type CreateDiscussionProps ="
+    }
+  ],
+  "imports": [
+    {
+      "module": "@rocket.chat/core-typings",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/fuselage",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/fuselage-forms",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/fuselage-hooks",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/ui-client",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/ui-contexts",
+      "resolved": "external"
+    },
+    {
+      "module": "@tanstack/react-query",
+      "resolved": "external"
+    },
+    {
+      "module": "react",
+      "resolved": "external"
+    },
+    {
+      "module": "react-hook-form",
+      "resolved": "external"
+    },
+    {
+      "module": "../../navbar/NavBarPagesGroup/actions/useEncryptedRoomDescription",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/client/navbar/NavBarPagesGroup/actions/useEncryptedRoomDescription.ts"
+    },
+    {
+      "module": "../../views/room/hooks/useGoToRoom",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/client/views/room/hooks/useGoToRoom.ts"
+    },
+    {
+      "module": "../RoomAutoComplete",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/client/components/RoomAutoComplete/index.ts"
+    },
+    {
+      "module": "../UserAutoCompleteMultiple",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/client/components/UserAutoCompleteMultiple/index.ts"
+    },
+    {
+      "module": "./DefaultParentRoomField",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/client/components/CreateDiscussion/DefaultParentRoomField.tsx"
+    }
+  ]
+}

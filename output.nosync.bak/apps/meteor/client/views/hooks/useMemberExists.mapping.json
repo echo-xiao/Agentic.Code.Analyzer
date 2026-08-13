@@ -1,0 +1,48 @@
+{
+  "sourcePath": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/client/views/hooks/useMemberExists.ts",
+  "symbols": [
+    {
+      "type": "variable_function",
+      "name": "useMemberExists",
+      "exported": true,
+      "line": 6,
+      "endLine": 13,
+      "signature": "({ roomId, username }: UseMemberExistsProps) =>",
+      "calls": [
+        {
+          "name": "useEndpoint",
+          "edgeType": "call"
+        },
+        {
+          "name": "useQuery",
+          "edgeType": "call"
+        },
+        {
+          "name": "checkMember",
+          "edgeType": "call"
+        },
+        {
+          "name": "UseMemberExistsProps",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "type",
+      "name": "UseMemberExistsProps",
+      "line": 4,
+      "endLine": 4,
+      "signature": "type UseMemberExistsProps ="
+    }
+  ],
+  "imports": [
+    {
+      "module": "@rocket.chat/ui-contexts",
+      "resolved": "external"
+    },
+    {
+      "module": "@tanstack/react-query",
+      "resolved": "external"
+    }
+  ]
+}

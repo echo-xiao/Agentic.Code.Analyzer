@@ -1,0 +1,134 @@
+{
+  "sourcePath": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/client/components/dashboards/DownloadDataButton.tsx",
+  "symbols": [
+    {
+      "type": "inner_function",
+      "name": "handleClick",
+      "exported": false,
+      "qualifiedName": "DownloadDataButton.handleClick",
+      "line": 30,
+      "endLine": 46,
+      "signature": "(): void =>",
+      "calls": [
+        {
+          "name": "catch",
+          "edgeType": "call"
+        },
+        {
+          "name": "then",
+          "edgeType": "call"
+        },
+        {
+          "name": "resolve",
+          "edgeType": "call"
+        },
+        {
+          "name": "dataExtractor",
+          "edgeType": "call"
+        },
+        {
+          "name": "downloadCsvAs",
+          "edgeType": "call"
+        },
+        {
+          "name": "dispatchToastMessage",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "variable_function",
+      "name": "DownloadDataButton",
+      "exported": false,
+      "line": 20,
+      "endLine": 59,
+      "signature": "<H extends readonly string[]>({ attachmentName, headers, dataAvailable, dataExtractor, ...props }: DownloadDataButtonProps<H>) =>",
+      "calls": [
+        {
+          "name": "useTranslation",
+          "edgeType": "call"
+        },
+        {
+          "name": "useToastMessageDispatch",
+          "edgeType": "call"
+        },
+        {
+          "name": "catch",
+          "edgeType": "call"
+        },
+        {
+          "name": "then",
+          "edgeType": "call"
+        },
+        {
+          "name": "resolve",
+          "edgeType": "call"
+        },
+        {
+          "name": "dataExtractor",
+          "edgeType": "call"
+        },
+        {
+          "name": "downloadCsvAs",
+          "edgeType": "call"
+        },
+        {
+          "name": "dispatchToastMessage",
+          "edgeType": "call"
+        },
+        {
+          "name": "IconButton",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "handleClick",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "DownloadDataButtonProps",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "type",
+      "name": "RowFor",
+      "line": 9,
+      "endLine": 11,
+      "signature": "type RowFor<THeaders extends readonly string[]> = readonly unknown[] &"
+    },
+    {
+      "type": "type",
+      "name": "DownloadDataButtonProps",
+      "line": 13,
+      "endLine": 18,
+      "signature": "type DownloadDataButtonProps<THeaders extends readonly string[]> ="
+    }
+  ],
+  "imports": [
+    {
+      "module": "@rocket.chat/fuselage",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/fuselage",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/ui-contexts",
+      "resolved": "external"
+    },
+    {
+      "module": "react",
+      "resolved": "external"
+    },
+    {
+      "module": "react-i18next",
+      "resolved": "external"
+    },
+    {
+      "module": "../../lib/download",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/client/lib/download.ts"
+    }
+  ]
+}

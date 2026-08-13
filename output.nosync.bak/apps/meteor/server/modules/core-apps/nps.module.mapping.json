@@ -1,0 +1,93 @@
+{
+  "sourcePath": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/server/modules/core-apps/nps.module.ts",
+  "symbols": [
+    {
+      "type": "class",
+      "name": "Nps",
+      "exported": true,
+      "line": 7,
+      "endLine": 70,
+      "signature": "export class Nps implements IUiKitCoreApp",
+      "calls": [
+        {
+          "name": "IUiKitCoreApp",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "blockAction",
+      "exported": true,
+      "qualifiedName": "Nps.blockAction",
+      "line": 10,
+      "endLine": 34,
+      "signature": "async blockAction(payload: UiKitCoreAppBlockActionPayload): Promise<UiKit.ServerInteraction>",
+      "containerClass": "Nps",
+      "calls": [
+        {
+          "name": "replace",
+          "edgeType": "call"
+        },
+        {
+          "name": "createModal",
+          "edgeType": "call"
+        },
+        {
+          "name": "UiKitCoreAppBlockActionPayload",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "viewSubmit",
+      "exported": true,
+      "qualifiedName": "Nps.viewSubmit",
+      "line": 14,
+      "endLine": 47,
+      "signature": "async viewSubmit(payload: UiKitCoreAppViewSubmitPayload): Promise<undefined>",
+      "containerClass": "Nps",
+      "calls": [
+        {
+          "name": "keys",
+          "edgeType": "call"
+        },
+        {
+          "name": "replace",
+          "edgeType": "call"
+        },
+        {
+          "name": "vote",
+          "edgeType": "call"
+        },
+        {
+          "name": "dismiss",
+          "edgeType": "call"
+        },
+        {
+          "name": "UiKitCoreAppViewSubmitPayload",
+          "edgeType": "type"
+        }
+      ]
+    }
+  ],
+  "imports": [
+    {
+      "module": "@rocket.chat/core-services",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/core-services",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/ui-kit",
+      "resolved": "external"
+    },
+    {
+      "module": "./nps/createModal",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/server/modules/core-apps/nps/createModal.ts"
+    }
+  ]
+}

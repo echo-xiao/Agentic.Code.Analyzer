@@ -1,0 +1,67 @@
+{
+  "sourcePath": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/client/uikit/hooks/useBannerContextValue.ts",
+  "symbols": [
+    {
+      "type": "variable_function",
+      "name": "useBannerContextValue",
+      "exported": true,
+      "line": 18,
+      "endLine": 47,
+      "signature": "({ view, values }: UseBannerContextValueParams): UseBannerContextValueReturn =>",
+      "calls": [
+        {
+          "name": "useUiKitActionManager",
+          "edgeType": "call"
+        },
+        {
+          "name": "emitInteraction",
+          "edgeType": "call"
+        },
+        {
+          "name": "disposeView",
+          "edgeType": "call"
+        },
+        {
+          "name": "UseBannerContextValueParams",
+          "edgeType": "type"
+        },
+        {
+          "name": "UseBannerContextValueReturn",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "type",
+      "name": "UseBannerContextValueParams",
+      "line": 7,
+      "endLine": 15,
+      "signature": "type UseBannerContextValueParams ="
+    },
+    {
+      "type": "type",
+      "name": "UseBannerContextValueReturn",
+      "line": 16,
+      "endLine": 16,
+      "signature": "type UseBannerContextValueReturn = ContextType<typeof UiKitContext>;"
+    }
+  ],
+  "imports": [
+    {
+      "module": "@rocket.chat/fuselage-ui-kit",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/ui-kit",
+      "resolved": "external"
+    },
+    {
+      "module": "react",
+      "resolved": "external"
+    },
+    {
+      "module": "./useUiKitActionManager",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/client/uikit/hooks/useUiKitActionManager.ts"
+    }
+  ]
+}

@@ -1,0 +1,181 @@
+{
+  "sourcePath": "/Users/echoooooo/Desktop/code/Rocket.Chat/packages/models/src/models/WebdavAccounts.ts",
+  "symbols": [
+    {
+      "type": "class",
+      "name": "WebdavAccountsRaw",
+      "exported": true,
+      "line": 7,
+      "endLine": 43,
+      "signature": "export class WebdavAccountsRaw extends BaseRaw<IWebdavAccount> implements IWebdavAccountsModel",
+      "calls": [
+        {
+          "name": "BaseRaw",
+          "edgeType": "type"
+        },
+        {
+          "name": "IWebdavAccountsModel",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "modelIndexes",
+      "exported": true,
+      "qualifiedName": "WebdavAccountsRaw.modelIndexes",
+      "line": 12,
+      "endLine": 14,
+      "signature": "protected override modelIndexes(): IndexDescription[]",
+      "containerClass": "WebdavAccountsRaw",
+      "calls": [
+        {
+          "name": "IndexDescription",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "findOneByIdAndUserId",
+      "exported": true,
+      "qualifiedName": "WebdavAccountsRaw.findOneByIdAndUserId",
+      "line": 16,
+      "endLine": 18,
+      "signature": "findOneByIdAndUserId(_id: string, userId: string, options: FindOptions<IWebdavAccount>): Promise<IWebdavAccount | null>",
+      "containerClass": "WebdavAccountsRaw",
+      "calls": [
+        {
+          "name": "findOne",
+          "edgeType": "call"
+        },
+        {
+          "name": "FindOptions",
+          "edgeType": "type"
+        },
+        {
+          "name": "IWebdavAccount",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "findOneByUserIdServerUrlAndUsername",
+      "exported": true,
+      "qualifiedName": "WebdavAccountsRaw.findOneByUserIdServerUrlAndUsername",
+      "line": 20,
+      "endLine": 33,
+      "signature": "findOneByUserIdServerUrlAndUsername( { userId, serverURL, username, }: { userId: string; serverURL: string; username: string; }, options: FindOptions<IWebdavAccount>, ): Promise<IWebdavAccount | null>",
+      "containerClass": "WebdavAccountsRaw",
+      "calls": [
+        {
+          "name": "findOne",
+          "edgeType": "call"
+        },
+        {
+          "name": "FindOptions",
+          "edgeType": "type"
+        },
+        {
+          "name": "IWebdavAccount",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "findWithUserId",
+      "exported": true,
+      "qualifiedName": "WebdavAccountsRaw.findWithUserId",
+      "line": 35,
+      "endLine": 38,
+      "signature": "findWithUserId(userId: string, options: FindOptions<IWebdavAccount>): FindCursor<IWebdavAccount>",
+      "containerClass": "WebdavAccountsRaw",
+      "calls": [
+        {
+          "name": "find",
+          "edgeType": "call"
+        },
+        {
+          "name": "FindOptions",
+          "edgeType": "type"
+        },
+        {
+          "name": "IWebdavAccount",
+          "edgeType": "type"
+        },
+        {
+          "name": "FindCursor",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "removeByUserAndId",
+      "exported": true,
+      "qualifiedName": "WebdavAccountsRaw.removeByUserAndId",
+      "line": 39,
+      "endLine": 41,
+      "signature": "removeByUserAndId(_id: string, userId: string): Promise<DeleteResult>",
+      "containerClass": "WebdavAccountsRaw",
+      "calls": [
+        {
+          "name": "deleteOne",
+          "edgeType": "call"
+        },
+        {
+          "name": "DeleteResult",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "constructor",
+      "exported": true,
+      "qualifiedName": "WebdavAccountsRaw.constructor",
+      "line": 8,
+      "endLine": 10,
+      "signature": "constructor(db: Db, trash?: Collection<RocketChatRecordDeleted<IWebdavAccount>>)",
+      "containerClass": "WebdavAccountsRaw",
+      "calls": [
+        {
+          "name": "Db",
+          "edgeType": "type"
+        },
+        {
+          "name": "Collection",
+          "edgeType": "type"
+        },
+        {
+          "name": "RocketChatRecordDeleted",
+          "edgeType": "type"
+        },
+        {
+          "name": "IWebdavAccount",
+          "edgeType": "type"
+        }
+      ]
+    }
+  ],
+  "imports": [
+    {
+      "module": "@rocket.chat/core-typings",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/model-typings",
+      "resolved": "external"
+    },
+    {
+      "module": "mongodb",
+      "resolved": "external"
+    },
+    {
+      "module": "./BaseRaw",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/packages/models/src/models/BaseRaw.ts"
+    }
+  ]
+}

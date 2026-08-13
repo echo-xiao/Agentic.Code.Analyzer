@@ -1,0 +1,100 @@
+{
+  "sourcePath": "/Users/echoooooo/Desktop/code/Rocket.Chat/packages/apps/src/client/AppClientManager.ts",
+  "symbols": [
+    {
+      "type": "class",
+      "name": "AppClientManager",
+      "exported": true,
+      "line": 6,
+      "endLine": 32,
+      "signature": "export class AppClientManager",
+      "calls": []
+    },
+    {
+      "type": "method",
+      "name": "load",
+      "exported": true,
+      "qualifiedName": "AppClientManager.load",
+      "line": 24,
+      "endLine": 27,
+      "signature": "public async load(): Promise<void>",
+      "containerClass": "AppClientManager",
+      "calls": [
+        {
+          "name": "getEnabledApps",
+          "edgeType": "call"
+        },
+        {
+          "name": "log",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "initialize",
+      "exported": true,
+      "qualifiedName": "AppClientManager.initialize",
+      "line": 28,
+      "endLine": 30,
+      "signature": "public async initialize(): Promise<void>",
+      "containerClass": "AppClientManager",
+      "calls": [
+        {
+          "name": "initialize",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "constructor",
+      "exported": true,
+      "qualifiedName": "AppClientManager.constructor",
+      "line": 9,
+      "endLine": 22,
+      "signature": "constructor( private readonly appsEngineUIHost: AppsEngineUIHost, private readonly communicator?: AppServerCommunicator, )",
+      "containerClass": "AppClientManager",
+      "calls": [
+        {
+          "name": "AppsEngineUIHost",
+          "edgeType": "type"
+        },
+        {
+          "name": "AppServerCommunicator",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "class_property",
+      "name": "apps",
+      "exported": true,
+      "qualifiedName": "AppClientManager.apps",
+      "line": 7,
+      "endLine": 7,
+      "signature": "private apps: Array<IAppInfo>;",
+      "containerClass": "AppClientManager",
+      "calls": [
+        {
+          "name": "IAppInfo",
+          "edgeType": "type"
+        }
+      ]
+    }
+  ],
+  "imports": [
+    {
+      "module": "@rocket.chat/apps-engine/definition/metadata",
+      "resolved": "external"
+    },
+    {
+      "module": "./AppServerCommunicator",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/packages/apps/src/client/AppServerCommunicator.ts"
+    },
+    {
+      "module": "./AppsEngineUIHost",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/packages/apps/src/client/AppsEngineUIHost.ts"
+    }
+  ]
+}

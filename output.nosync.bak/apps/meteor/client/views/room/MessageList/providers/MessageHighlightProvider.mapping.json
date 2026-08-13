@@ -1,0 +1,64 @@
+{
+  "sourcePath": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/client/views/room/MessageList/providers/MessageHighlightProvider.tsx",
+  "symbols": [
+    {
+      "type": "variable_function",
+      "name": "MessageHighlightProvider",
+      "exported": false,
+      "line": 9,
+      "endLine": 20,
+      "signature": "({ children }: MessageHighlightProviderProps) =>",
+      "calls": [
+        {
+          "name": "useSyncExternalStore",
+          "edgeType": "call"
+        },
+        {
+          "name": "useMemo",
+          "edgeType": "call"
+        },
+        {
+          "name": "MessageHighlightContext.Provider",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "contextValue",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "MessageHighlightProviderProps",
+          "edgeType": "type"
+        },
+        {
+          "name": "ContextType",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "type",
+      "name": "MessageHighlightProviderProps",
+      "line": 7,
+      "endLine": 7,
+      "signature": "export type MessageHighlightProviderProps ="
+    }
+  ],
+  "imports": [
+    {
+      "module": "react",
+      "resolved": "external"
+    },
+    {
+      "module": "react",
+      "resolved": "external"
+    },
+    {
+      "module": "./messageHighlightSubscription",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/client/views/room/MessageList/providers/messageHighlightSubscription.ts"
+    },
+    {
+      "module": "../contexts/MessageHighlightContext",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/client/views/room/MessageList/contexts/MessageHighlightContext.tsx"
+    }
+  ]
+}

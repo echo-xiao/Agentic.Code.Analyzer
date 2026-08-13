@@ -1,0 +1,683 @@
+{
+  "sourcePath": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/app/settings/server/CachedSettings.ts",
+  "symbols": [
+    {
+      "type": "class",
+      "name": "CachedSettings",
+      "exported": true,
+      "line": 77,
+      "endLine": 392,
+      "signature": "export class CachedSettings extends Emitter<",
+      "calls": [
+        {
+          "name": "Emitter",
+          "edgeType": "type"
+        },
+        {
+          "name": "ICachedSettings",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "initialized",
+      "exported": true,
+      "qualifiedName": "CachedSettings.initialized",
+      "line": 95,
+      "endLine": 102,
+      "signature": "initialized(): void",
+      "containerClass": "CachedSettings",
+      "calls": [
+        {
+          "name": "ready",
+          "edgeType": "event_emit"
+        },
+        {
+          "name": "debug",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "has",
+      "exported": true,
+      "qualifiedName": "CachedSettings.has",
+      "line": 104,
+      "endLine": 109,
+      "signature": "public override has(_id: ISetting['_id']): boolean",
+      "containerClass": "CachedSettings",
+      "calls": [
+        {
+          "name": "warn",
+          "edgeType": "call"
+        },
+        {
+          "name": "has",
+          "edgeType": "call"
+        },
+        {
+          "name": "ISetting",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "getSetting",
+      "exported": true,
+      "qualifiedName": "CachedSettings.getSetting",
+      "line": 113,
+      "endLine": 118,
+      "signature": "public getSetting(_id: ISetting['_id']): ISetting | undefined",
+      "containerClass": "CachedSettings",
+      "calls": [
+        {
+          "name": "warn",
+          "edgeType": "call"
+        },
+        {
+          "name": "get",
+          "edgeType": "call"
+        },
+        {
+          "name": "ISetting",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "get",
+      "exported": true,
+      "qualifiedName": "CachedSettings.get",
+      "line": 124,
+      "endLine": 129,
+      "signature": "public get<T extends SettingValue = SettingValue>(_id: ISetting['_id']): T",
+      "containerClass": "CachedSettings",
+      "calls": [
+        {
+          "name": "warn",
+          "edgeType": "call"
+        },
+        {
+          "name": "get",
+          "edgeType": "call"
+        },
+        {
+          "name": "SettingValue",
+          "edgeType": "type"
+        },
+        {
+          "name": "ISetting",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "getByRegexp",
+      "exported": true,
+      "qualifiedName": "CachedSettings.getByRegexp",
+      "line": 135,
+      "endLine": 141,
+      "signature": "public getByRegexp<T extends SettingValue = SettingValue>(_id: RegExp): [string, T][]",
+      "containerClass": "CachedSettings",
+      "calls": [
+        {
+          "name": "warn",
+          "edgeType": "call"
+        },
+        {
+          "name": "map",
+          "edgeType": "call"
+        },
+        {
+          "name": "filter",
+          "edgeType": "call"
+        },
+        {
+          "name": "entries",
+          "edgeType": "call"
+        },
+        {
+          "name": "test",
+          "edgeType": "call"
+        },
+        {
+          "name": "SettingValue",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "watchMultiple",
+      "exported": true,
+      "qualifiedName": "CachedSettings.watchMultiple",
+      "line": 147,
+      "endLine": 180,
+      "signature": "public watchMultiple<T extends SettingValue = SettingValue>(_id: ISetting['_id'][], callback: (settings: T[]) => void): () => void",
+      "containerClass": "CachedSettings",
+      "calls": [
+        {
+          "name": "ready",
+          "edgeType": "event_listen"
+        },
+        {
+          "name": "clear",
+          "edgeType": "call"
+        },
+        {
+          "name": "watchMultiple",
+          "edgeType": "call"
+        },
+        {
+          "name": "forEach",
+          "edgeType": "call"
+        },
+        {
+          "name": "fn",
+          "edgeType": "call"
+        },
+        {
+          "name": "every",
+          "edgeType": "call"
+        },
+        {
+          "name": "has",
+          "edgeType": "call"
+        },
+        {
+          "name": "map",
+          "edgeType": "call"
+        },
+        {
+          "name": "get",
+          "edgeType": "call"
+        },
+        {
+          "name": "callback",
+          "edgeType": "call"
+        },
+        {
+          "name": "debounce",
+          "edgeType": "call"
+        },
+        {
+          "name": "Set",
+          "edgeType": "new"
+        },
+        {
+          "name": "SettingValue",
+          "edgeType": "type"
+        },
+        {
+          "name": "ISetting",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "watch",
+      "exported": true,
+      "qualifiedName": "CachedSettings.watch",
+      "line": 159,
+      "endLine": 179,
+      "signature": "public watch<T extends SettingValue = SettingValue>( _id: ISetting['_id'], cb: (args: T) => void, config?: OverCustomSettingsConfig, ): () => void",
+      "containerClass": "CachedSettings",
+      "calls": [
+        {
+          "name": "ready",
+          "edgeType": "event_listen"
+        },
+        {
+          "name": "clear",
+          "edgeType": "call"
+        },
+        {
+          "name": "watch",
+          "edgeType": "call"
+        },
+        {
+          "name": "forEach",
+          "edgeType": "call"
+        },
+        {
+          "name": "fn",
+          "edgeType": "call"
+        },
+        {
+          "name": "has",
+          "edgeType": "call"
+        },
+        {
+          "name": "cb",
+          "edgeType": "call"
+        },
+        {
+          "name": "get",
+          "edgeType": "call"
+        },
+        {
+          "name": "change",
+          "edgeType": "call"
+        },
+        {
+          "name": "Set",
+          "edgeType": "new"
+        },
+        {
+          "name": "SettingValue",
+          "edgeType": "type"
+        },
+        {
+          "name": "ISetting",
+          "edgeType": "type"
+        },
+        {
+          "name": "OverCustomSettingsConfig",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "watchOnce",
+      "exported": true,
+      "qualifiedName": "CachedSettings.watchOnce",
+      "line": 176,
+      "endLine": 186,
+      "signature": "public watchOnce<T extends SettingValue = SettingValue>( _id: ISetting['_id'], cb: (args: T) => void, config?: OverCustomSettingsConfig, ): () => void",
+      "containerClass": "CachedSettings",
+      "calls": [
+        {
+          "name": "has",
+          "edgeType": "call"
+        },
+        {
+          "name": "cb",
+          "edgeType": "call"
+        },
+        {
+          "name": "get",
+          "edgeType": "call"
+        },
+        {
+          "name": "changeOnce",
+          "edgeType": "call"
+        },
+        {
+          "name": "SettingValue",
+          "edgeType": "type"
+        },
+        {
+          "name": "ISetting",
+          "edgeType": "type"
+        },
+        {
+          "name": "OverCustomSettingsConfig",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "change",
+      "exported": true,
+      "qualifiedName": "CachedSettings.change",
+      "line": 193,
+      "endLine": 200,
+      "signature": "public change<T extends SettingValue = SettingValue>( _id: ISetting['_id'], callback: (args: T) => void, config?: OverCustomSettingsConfig, ): () => void",
+      "containerClass": "CachedSettings",
+      "calls": [
+        {
+          "name": "getConfig",
+          "edgeType": "call"
+        },
+        {
+          "name": "debounce",
+          "edgeType": "call"
+        },
+        {
+          "name": "SettingValue",
+          "edgeType": "type"
+        },
+        {
+          "name": "ISetting",
+          "edgeType": "type"
+        },
+        {
+          "name": "OverCustomSettingsConfig",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "changeMultiple",
+      "exported": true,
+      "qualifiedName": "CachedSettings.changeMultiple",
+      "line": 210,
+      "endLine": 227,
+      "signature": "public changeMultiple<T extends SettingValue = SettingValue>( _ids: ISetting['_id'][], callback: (settings: T[]) => void, config?: OverCustomSettingsConfig, ): () => void",
+      "containerClass": "CachedSettings",
+      "calls": [
+        {
+          "name": "map",
+          "edgeType": "call"
+        },
+        {
+          "name": "change",
+          "edgeType": "call"
+        },
+        {
+          "name": "callback",
+          "edgeType": "call"
+        },
+        {
+          "name": "get",
+          "edgeType": "call"
+        },
+        {
+          "name": "forEach",
+          "edgeType": "call"
+        },
+        {
+          "name": "fn",
+          "edgeType": "call"
+        },
+        {
+          "name": "SettingValue",
+          "edgeType": "type"
+        },
+        {
+          "name": "ISetting",
+          "edgeType": "type"
+        },
+        {
+          "name": "OverCustomSettingsConfig",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "changeOnce",
+      "exported": true,
+      "qualifiedName": "CachedSettings.changeOnce",
+      "line": 228,
+      "endLine": 235,
+      "signature": "public changeOnce<T extends SettingValue = SettingValue>( _id: ISetting['_id'], callback: (args: T) => void, config?: OverCustomSettingsConfig, ): () => void",
+      "containerClass": "CachedSettings",
+      "calls": [
+        {
+          "name": "getConfig",
+          "edgeType": "call"
+        },
+        {
+          "name": "debounce",
+          "edgeType": "call"
+        },
+        {
+          "name": "SettingValue",
+          "edgeType": "type"
+        },
+        {
+          "name": "ISetting",
+          "edgeType": "type"
+        },
+        {
+          "name": "OverCustomSettingsConfig",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "set",
+      "exported": true,
+      "qualifiedName": "CachedSettings.set",
+      "line": 244,
+      "endLine": 259,
+      "signature": "public set(record: ISetting): void",
+      "containerClass": "CachedSettings",
+      "calls": [
+        {
+          "name": "has",
+          "edgeType": "call"
+        },
+        {
+          "name": "get",
+          "edgeType": "call"
+        },
+        {
+          "name": "set",
+          "edgeType": "call"
+        },
+        {
+          "name": "ready",
+          "edgeType": "event_listen"
+        },
+        {
+          "name": "record._id",
+          "edgeType": "event_emit"
+        },
+        {
+          "name": "ISetting",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "watchByRegex",
+      "exported": true,
+      "qualifiedName": "CachedSettings.watchByRegex",
+      "line": 254,
+      "endLine": 274,
+      "signature": "public watchByRegex(regex: RegExp, cb: (...args: [string, SettingValue]) => void, config?: OverCustomSettingsConfig): () => void",
+      "containerClass": "CachedSettings",
+      "calls": [
+        {
+          "name": "ready",
+          "edgeType": "event_listen"
+        },
+        {
+          "name": "clear",
+          "edgeType": "call"
+        },
+        {
+          "name": "watchByRegex",
+          "edgeType": "call"
+        },
+        {
+          "name": "forEach",
+          "edgeType": "call"
+        },
+        {
+          "name": "fn",
+          "edgeType": "call"
+        },
+        {
+          "name": "entries",
+          "edgeType": "call"
+        },
+        {
+          "name": "test",
+          "edgeType": "call"
+        },
+        {
+          "name": "cb",
+          "edgeType": "call"
+        },
+        {
+          "name": "changeByRegex",
+          "edgeType": "call"
+        },
+        {
+          "name": "Set",
+          "edgeType": "new"
+        },
+        {
+          "name": "SettingValue",
+          "edgeType": "type"
+        },
+        {
+          "name": "OverCustomSettingsConfig",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "changeByRegex",
+      "exported": true,
+      "qualifiedName": "CachedSettings.changeByRegex",
+      "line": 259,
+      "endLine": 270,
+      "signature": "public changeByRegex(regex: RegExp, callback: (...args: [string, SettingValue]) => void, config?: OverCustomSettingsConfig): () => void",
+      "containerClass": "CachedSettings",
+      "calls": [
+        {
+          "name": "test",
+          "edgeType": "call"
+        },
+        {
+          "name": "getConfig",
+          "edgeType": "call"
+        },
+        {
+          "name": "get",
+          "edgeType": "call"
+        },
+        {
+          "name": "debounce",
+          "edgeType": "call"
+        },
+        {
+          "name": "cb",
+          "edgeType": "call"
+        },
+        {
+          "name": "set",
+          "edgeType": "call"
+        },
+        {
+          "name": "Map",
+          "edgeType": "new"
+        },
+        {
+          "name": "SettingValue",
+          "edgeType": "type"
+        },
+        {
+          "name": "OverCustomSettingsConfig",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "onReady",
+      "exported": true,
+      "qualifiedName": "CachedSettings.onReady",
+      "line": 266,
+      "endLine": 271,
+      "signature": "public onReady(cb: () => void): void",
+      "containerClass": "CachedSettings",
+      "calls": [
+        {
+          "name": "cb",
+          "edgeType": "call"
+        },
+        {
+          "name": "cb",
+          "edgeType": "event_listen",
+          "event": "ready"
+        }
+      ]
+    },
+    {
+      "type": "class_property",
+      "name": "store",
+      "exported": true,
+      "qualifiedName": "CachedSettings.store",
+      "line": 90,
+      "endLine": 90,
+      "signature": "store = new Map<string, ISetting>();",
+      "containerClass": "CachedSettings",
+      "calls": [
+        {
+          "name": "Map",
+          "edgeType": "new"
+        },
+        {
+          "name": "ISetting",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "class_property",
+      "name": "getConfig",
+      "exported": true,
+      "qualifiedName": "CachedSettings.getConfig",
+      "line": 248,
+      "endLine": 251,
+      "signature": "public getConfig = (config?: OverCustomSettingsConfig): SettingsConfig => (",
+      "containerClass": "CachedSettings",
+      "calls": [
+        {
+          "name": "OverCustomSettingsConfig",
+          "edgeType": "type"
+        },
+        {
+          "name": "SettingsConfig",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "interface",
+      "name": "ICachedSettings",
+      "line": 15,
+      "endLine": 66,
+      "signature": "export interface ICachedSettings"
+    },
+    {
+      "type": "type",
+      "name": "SettingsConfig",
+      "line": 9,
+      "endLine": 11,
+      "signature": "type SettingsConfig ="
+    },
+    {
+      "type": "type",
+      "name": "OverCustomSettingsConfig",
+      "line": 13,
+      "endLine": 13,
+      "signature": "type OverCustomSettingsConfig = Partial<SettingsConfig>;"
+    }
+  ],
+  "imports": [
+    {
+      "module": "@rocket.chat/core-typings",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/emitter",
+      "resolved": "external"
+    },
+    {
+      "module": "underscore",
+      "resolved": "external"
+    },
+    {
+      "module": "../../../server/lib/logger/system",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/server/lib/logger/system.ts"
+    }
+  ]
+}

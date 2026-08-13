@@ -1,0 +1,200 @@
+{
+  "sourcePath": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/app/lib/server/lib/deprecationWarningLogger.ts",
+  "symbols": [
+    {
+      "type": "variable_function",
+      "name": "writeDeprecationHeader",
+      "exported": false,
+      "line": 13,
+      "endLine": 19,
+      "signature": "(res: Response | undefined, type: string, message: string, version: string) =>",
+      "calls": [
+        {
+          "name": "set",
+          "edgeType": "call"
+        },
+        {
+          "name": "Response",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "variable_function",
+      "name": "compareVersions",
+      "exported": false,
+      "line": 17,
+      "endLine": 21,
+      "signature": "(version: string, message: string) =>",
+      "calls": [
+        {
+          "name": "lte",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "variable",
+      "name": "apiDeprecationLogger",
+      "exported": true,
+      "line": 31,
+      "endLine": 106,
+      "signature": "apiDeprecationLogger = ((logger) =>",
+      "calls": [
+        {
+          "name": "compareVersions",
+          "edgeType": "call"
+        },
+        {
+          "name": "writeDeprecationHeader",
+          "edgeType": "call"
+        },
+        {
+          "name": "inc",
+          "edgeType": "call"
+        },
+        {
+          "name": "warn",
+          "edgeType": "call"
+        },
+        {
+          "name": "messageGenerator",
+          "edgeType": "call"
+        },
+        {
+          "name": "section",
+          "edgeType": "call"
+        },
+        {
+          "name": "DeprecationLoggerNextPlannedVersion",
+          "edgeType": "type"
+        },
+        {
+          "name": "Response",
+          "edgeType": "type"
+        },
+        {
+          "name": "MessageFn",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "variable",
+      "name": "methodDeprecationLogger",
+      "exported": true,
+      "line": 112,
+      "endLine": 175,
+      "signature": "methodDeprecationLogger = ((logger) =>",
+      "calls": [
+        {
+          "name": "isArray",
+          "edgeType": "call"
+        },
+        {
+          "name": "join",
+          "edgeType": "call"
+        },
+        {
+          "name": "map",
+          "edgeType": "call"
+        },
+        {
+          "name": "startsWith",
+          "edgeType": "call"
+        },
+        {
+          "name": "compareVersions",
+          "edgeType": "call"
+        },
+        {
+          "name": "inc",
+          "edgeType": "call"
+        },
+        {
+          "name": "warn",
+          "edgeType": "call"
+        },
+        {
+          "name": "messageGenerator",
+          "edgeType": "call"
+        },
+        {
+          "name": "section",
+          "edgeType": "call"
+        },
+        {
+          "name": "PathPattern",
+          "edgeType": "type"
+        },
+        {
+          "name": "DeprecationLoggerNextPlannedVersion",
+          "edgeType": "type"
+        },
+        {
+          "name": "DeprecationInfo",
+          "edgeType": "type"
+        },
+        {
+          "name": "MessageFn",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "variable",
+      "name": "streamDeprecationLogger",
+      "exported": true,
+      "line": 177,
+      "endLine": 177,
+      "signature": "streamDeprecationLogger = deprecationLogger.section('STREAM')",
+      "calls": []
+    },
+    {
+      "type": "type",
+      "name": "MessageFn",
+      "line": 9,
+      "endLine": 9,
+      "signature": "type MessageFn<T> = (params:"
+    },
+    {
+      "type": "type",
+      "name": "DeprecationLoggerNextPlannedVersion",
+      "line": 21,
+      "endLine": 21,
+      "signature": "export type DeprecationLoggerNextPlannedVersion = '9.0.0';"
+    },
+    {
+      "type": "type",
+      "name": "DeprecationPath",
+      "line": 108,
+      "endLine": 108,
+      "signature": "type DeprecationPath<T> = T extends `/$"
+    },
+    {
+      "type": "type",
+      "name": "DeprecationInfo",
+      "line": 110,
+      "endLine": 110,
+      "signature": "type DeprecationInfo<T> = DeprecationPath<T> | Array<DeprecationPath<T>>;"
+    }
+  ],
+  "imports": [
+    {
+      "module": "@rocket.chat/logger",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/rest-typings",
+      "resolved": "external"
+    },
+    {
+      "module": "semver",
+      "resolved": "external"
+    },
+    {
+      "module": "../../../metrics/server/lib/metrics",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/app/metrics/server/lib/metrics.ts"
+    }
+  ]
+}

@@ -1,0 +1,187 @@
+{
+  "sourcePath": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/client/lib/sdk/storage.ts",
+  "symbols": [
+    {
+      "type": "variable",
+      "name": "STORAGE_KEYS",
+      "exported": true,
+      "line": 6,
+      "endLine": 13,
+      "signature": "STORAGE_KEYS =",
+      "calls": []
+    },
+    {
+      "type": "variable_function",
+      "name": "getStorageForBackend",
+      "exported": false,
+      "line": 19,
+      "endLine": 29,
+      "signature": "(backend: StorageBackend): Storage | undefined =>",
+      "calls": [
+        {
+          "name": "StorageBackend",
+          "edgeType": "type"
+        },
+        {
+          "name": "Storage",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "variable_function",
+      "name": "getStorage",
+      "exported": false,
+      "line": 23,
+      "endLine": 25,
+      "signature": "(): Storage | undefined =>",
+      "calls": [
+        {
+          "name": "getStorageForBackend",
+          "edgeType": "call"
+        },
+        {
+          "name": "Storage",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "variable_function",
+      "name": "getStoredItem",
+      "exported": true,
+      "line": 27,
+      "endLine": 27,
+      "signature": "(key: StorageKey): string | null =>",
+      "calls": [
+        {
+          "name": "getItem",
+          "edgeType": "call"
+        },
+        {
+          "name": "getStorage",
+          "edgeType": "call"
+        },
+        {
+          "name": "StorageKey",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "variable_function",
+      "name": "setStoredItem",
+      "exported": true,
+      "line": 29,
+      "endLine": 29,
+      "signature": "(key: StorageKey, value: string): void =>",
+      "calls": [
+        {
+          "name": "setItem",
+          "edgeType": "call"
+        },
+        {
+          "name": "getStorage",
+          "edgeType": "call"
+        },
+        {
+          "name": "StorageKey",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "variable_function",
+      "name": "removeStoredItem",
+      "exported": true,
+      "line": 31,
+      "endLine": 31,
+      "signature": "(key: StorageKey): void =>",
+      "calls": [
+        {
+          "name": "removeItem",
+          "edgeType": "call"
+        },
+        {
+          "name": "getStorage",
+          "edgeType": "call"
+        },
+        {
+          "name": "StorageKey",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "variable_function",
+      "name": "setStorageBackend",
+      "exported": true,
+      "line": 35,
+      "endLine": 46,
+      "signature": "(backend: StorageBackend): boolean =>",
+      "calls": [
+        {
+          "name": "moveLoginKeys",
+          "edgeType": "call"
+        },
+        {
+          "name": "StorageBackend",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "variable_function",
+      "name": "moveLoginKeys",
+      "exported": false,
+      "line": 39,
+      "endLine": 79,
+      "signature": "(backend: StorageBackend): boolean =>",
+      "calls": [
+        {
+          "name": "getStorageForBackend",
+          "edgeType": "call"
+        },
+        {
+          "name": "warn",
+          "edgeType": "call"
+        },
+        {
+          "name": "getItem",
+          "edgeType": "call"
+        },
+        {
+          "name": "setItem",
+          "edgeType": "call"
+        },
+        {
+          "name": "removeItem",
+          "edgeType": "call"
+        },
+        {
+          "name": "clear",
+          "edgeType": "call"
+        },
+        {
+          "name": "StorageBackend",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "type",
+      "name": "StorageKey",
+      "line": 15,
+      "endLine": 15,
+      "signature": "export type StorageKey = (typeof STORAGE_KEYS)[keyof typeof STORAGE_KEYS];"
+    },
+    {
+      "type": "type",
+      "name": "StorageBackend",
+      "line": 17,
+      "endLine": 17,
+      "signature": "type StorageBackend = 'local' | 'session';"
+    }
+  ],
+  "imports": []
+}

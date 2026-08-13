@@ -1,0 +1,41 @@
+{
+  "sourcePath": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/app/livechat/server/lib/contacts/getContactManagerIdByUsername.ts",
+  "symbols": [
+    {
+      "type": "function",
+      "name": "getContactManagerIdByUsername",
+      "exported": true,
+      "line": 5,
+      "endLine": 12,
+      "signature": "export async function getContactManagerIdByUsername( username: Required<IUser>['username'], session?: ClientSession, ): Promise<IUser['_id'] | undefined>",
+      "calls": [
+        {
+          "name": "findOneByUsername",
+          "edgeType": "call"
+        },
+        {
+          "name": "IUser",
+          "edgeType": "type"
+        },
+        {
+          "name": "ClientSession",
+          "edgeType": "type"
+        }
+      ]
+    }
+  ],
+  "imports": [
+    {
+      "module": "@rocket.chat/core-typings",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/models",
+      "resolved": "external"
+    },
+    {
+      "module": "mongodb",
+      "resolved": "external"
+    }
+  ]
+}

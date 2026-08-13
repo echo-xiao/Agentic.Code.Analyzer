@@ -1,0 +1,62 @@
+{
+  "sourcePath": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/lib/utils/parseParameters.ts",
+  "symbols": [
+    {
+      "type": "function",
+      "name": "split",
+      "exported": false,
+      "line": 1,
+      "endLine": 12,
+      "signature": "function split(parameters: string, ignoreExtraUnquotedSpaces = true): string[]",
+      "calls": [
+        {
+          "name": "replace",
+          "edgeType": "call"
+        },
+        {
+          "name": "split",
+          "edgeType": "call"
+        },
+        {
+          "name": "filter",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "function",
+      "name": "parseParameters",
+      "exported": true,
+      "line": 5,
+      "endLine": 55,
+      "signature": "export function parseParameters(parameters: string, ignoreExtraUnquotedSpaces = true): string[]",
+      "calls": [
+        {
+          "name": "trim",
+          "edgeType": "call"
+        },
+        {
+          "name": "match",
+          "edgeType": "call"
+        },
+        {
+          "name": "split",
+          "edgeType": "call"
+        },
+        {
+          "name": "forEach",
+          "edgeType": "call"
+        },
+        {
+          "name": "replace",
+          "edgeType": "call"
+        },
+        {
+          "name": "map",
+          "edgeType": "call"
+        }
+      ]
+    }
+  ],
+  "imports": []
+}

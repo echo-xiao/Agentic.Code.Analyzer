@@ -1,0 +1,123 @@
+{
+  "sourcePath": "/Users/echoooooo/Desktop/code/Rocket.Chat/packages/random/src/AleaRandomGenerator.ts",
+  "symbols": [
+    {
+      "type": "class",
+      "name": "AleaRandomGenerator",
+      "exported": true,
+      "line": 80,
+      "endLine": 105,
+      "signature": "export class AleaRandomGenerator extends RandomGenerator",
+      "calls": [
+        {
+          "name": "RandomGenerator",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "fraction",
+      "exported": true,
+      "qualifiedName": "AleaRandomGenerator.fraction",
+      "line": 96,
+      "endLine": 98,
+      "signature": "fraction()",
+      "containerClass": "AleaRandomGenerator",
+      "calls": [
+        {
+          "name": "alea",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "safelyCreateWithSeeds",
+      "exported": true,
+      "qualifiedName": "AleaRandomGenerator.safelyCreateWithSeeds",
+      "line": 100,
+      "endLine": 102,
+      "signature": "protected safelyCreateWithSeeds(...seeds: readonly unknown[]): RandomGenerator",
+      "containerClass": "AleaRandomGenerator",
+      "calls": [
+        {
+          "name": "AleaRandomGenerator",
+          "edgeType": "new"
+        },
+        {
+          "name": "RandomGenerator",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "constructor",
+      "exported": true,
+      "qualifiedName": "AleaRandomGenerator.constructor",
+      "line": 83,
+      "endLine": 89,
+      "signature": "constructor({ seeds = [] }: { seeds?: readonly unknown[] } = {})",
+      "containerClass": "AleaRandomGenerator",
+      "calls": [
+        {
+          "name": "createAlea",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "class_property",
+      "name": "insecure",
+      "exported": true,
+      "qualifiedName": "AleaRandomGenerator.insecure",
+      "line": 100,
+      "endLine": 100,
+      "signature": "insecure: RandomGenerator = this;",
+      "containerClass": "AleaRandomGenerator",
+      "calls": [
+        {
+          "name": "RandomGenerator",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "function",
+      "name": "createAlea",
+      "exported": false,
+      "line": 6,
+      "endLine": 74,
+      "signature": "function createAlea(seeds: readonly unknown[])",
+      "calls": [
+        {
+          "name": "charCodeAt",
+          "edgeType": "call"
+        },
+        {
+          "name": "createMash",
+          "edgeType": "call"
+        },
+        {
+          "name": "mash",
+          "edgeType": "call"
+        },
+        {
+          "name": "random",
+          "edgeType": "call"
+        },
+        {
+          "name": "Date",
+          "edgeType": "new"
+        }
+      ]
+    }
+  ],
+  "imports": [
+    {
+      "module": "./RandomGenerator",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/packages/random/src/RandomGenerator.ts"
+    }
+  ]
+}

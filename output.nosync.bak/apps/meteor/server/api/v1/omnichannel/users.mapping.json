@@ -1,0 +1,121 @@
+{
+  "sourcePath": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/server/api/v1/omnichannel/users.ts",
+  "symbols": [
+    {
+      "type": "module",
+      "name": "users",
+      "exported": false,
+      "line": 1,
+      "endLine": 127,
+      "signature": "users",
+      "calls": [
+        {
+          "name": "livechat/users/:type",
+          "edgeType": "rest_route"
+        },
+        {
+          "name": "addRoute",
+          "edgeType": "call"
+        },
+        {
+          "name": "check",
+          "edgeType": "call"
+        },
+        {
+          "name": "getPaginationItems",
+          "edgeType": "call"
+        },
+        {
+          "name": "parseJsonQuery",
+          "edgeType": "call"
+        },
+        {
+          "name": "hasAtLeastOnePermissionAsync",
+          "edgeType": "call"
+        },
+        {
+          "name": "forbidden",
+          "edgeType": "call"
+        },
+        {
+          "name": "success",
+          "edgeType": "call"
+        },
+        {
+          "name": "findAgents",
+          "edgeType": "call"
+        },
+        {
+          "name": "findManagers",
+          "edgeType": "call"
+        },
+        {
+          "name": "addAgent",
+          "edgeType": "call"
+        },
+        {
+          "name": "addManager",
+          "edgeType": "call"
+        },
+        {
+          "name": "failure",
+          "edgeType": "call"
+        },
+        {
+          "name": "livechat/users/:type/:_id",
+          "edgeType": "rest_route"
+        },
+        {
+          "name": "includes",
+          "edgeType": "call"
+        },
+        {
+          "name": "findOneByIdAndRole",
+          "edgeType": "call"
+        },
+        {
+          "name": "removeAgent",
+          "edgeType": "call"
+        },
+        {
+          "name": "removeManager",
+          "edgeType": "call"
+        }
+      ]
+    }
+  ],
+  "imports": [
+    {
+      "module": "@rocket.chat/models",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/rest-typings",
+      "resolved": "external"
+    },
+    {
+      "module": "meteor/check",
+      "resolved": "external"
+    },
+    {
+      "module": "../..",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/server/api/index.ts"
+    },
+    {
+      "module": "./lib/users",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/server/api/v1/omnichannel/lib/users.ts"
+    },
+    {
+      "module": "../../../../app/livechat/server/lib/omni-users",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/app/livechat/server/lib/omni-users.ts"
+    },
+    {
+      "module": "../../../lib/authorization/hasPermission",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/server/lib/authorization/hasPermission.ts"
+    },
+    {
+      "module": "../../lib/getPaginationItems",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/server/api/lib/getPaginationItems.ts"
+    }
+  ]
+}

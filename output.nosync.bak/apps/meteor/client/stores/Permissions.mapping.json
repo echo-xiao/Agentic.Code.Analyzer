@@ -1,0 +1,37 @@
+{
+  "sourcePath": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/client/stores/Permissions.ts",
+  "symbols": [
+    {
+      "type": "variable",
+      "name": "Permissions",
+      "exported": true,
+      "line": 7,
+      "endLine": 7,
+      "signature": "Permissions = createGlobalStore(createDocumentMapStore<IPermission>())",
+      "calls": [
+        {
+          "name": "createDocumentMapStore",
+          "edgeType": "call"
+        },
+        {
+          "name": "IPermission",
+          "edgeType": "type"
+        }
+      ]
+    }
+  ],
+  "imports": [
+    {
+      "module": "@rocket.chat/core-typings",
+      "resolved": "external"
+    },
+    {
+      "module": "../lib/cachedStores/DocumentMapStore",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/client/lib/cachedStores/DocumentMapStore.ts"
+    },
+    {
+      "module": "../lib/cachedStores/createGlobalStore",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/client/lib/cachedStores/createGlobalStore.ts"
+    }
+  ]
+}

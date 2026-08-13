@@ -1,0 +1,52 @@
+{
+  "sourcePath": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/client/lib/getUserInitialStatus.ts",
+  "symbols": [
+    {
+      "type": "variable_function",
+      "name": "getUserStatusInitialValues",
+      "exported": true,
+      "line": 12,
+      "endLine": 24,
+      "signature": "(user: IUser | null, initialStatusText?: string) =>",
+      "calls": [
+        {
+          "name": "toLocaleDateString",
+          "edgeType": "call"
+        },
+        {
+          "name": "slice",
+          "edgeType": "call"
+        },
+        {
+          "name": "toTimeString",
+          "edgeType": "call"
+        },
+        {
+          "name": "Date",
+          "edgeType": "new"
+        },
+        {
+          "name": "IUser",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "type",
+      "name": "UserStatusInitialValues",
+      "line": 4,
+      "endLine": 10,
+      "signature": "export type UserStatusInitialValues ="
+    }
+  ],
+  "imports": [
+    {
+      "module": "@rocket.chat/core-typings",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/core-typings",
+      "resolved": "external"
+    }
+  ]
+}

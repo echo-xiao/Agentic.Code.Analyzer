@@ -1,0 +1,73 @@
+{
+  "sourcePath": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/client/views/room/MessageList/hooks/useMessageBody.ts",
+  "symbols": [
+    {
+      "type": "variable_function",
+      "name": "useMessageBody",
+      "exported": true,
+      "line": 9,
+      "endLine": 47,
+      "signature": "(message: IMessage | undefined): string | Root =>",
+      "calls": [
+        {
+          "name": "useMessageListAutoTranslate",
+          "edgeType": "call"
+        },
+        {
+          "name": "useAutoLinkDomains",
+          "edgeType": "call"
+        },
+        {
+          "name": "useMemo",
+          "edgeType": "call"
+        },
+        {
+          "name": "parseMessageTextToAstMarkdown",
+          "edgeType": "call"
+        },
+        {
+          "name": "find",
+          "edgeType": "call"
+        },
+        {
+          "name": "IMessage",
+          "edgeType": "type"
+        },
+        {
+          "name": "Root",
+          "edgeType": "type"
+        },
+        {
+          "name": "Options",
+          "edgeType": "type"
+        }
+      ]
+    }
+  ],
+  "imports": [
+    {
+      "module": "@rocket.chat/core-typings",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/message-parser",
+      "resolved": "external"
+    },
+    {
+      "module": "react",
+      "resolved": "external"
+    },
+    {
+      "module": "./useAutoLinkDomains",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/client/views/room/MessageList/hooks/useAutoLinkDomains.ts"
+    },
+    {
+      "module": "../../../../components/message/list/MessageListContext",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/client/components/message/list/MessageListContext.tsx"
+    },
+    {
+      "module": "../../../../lib/parseMessageTextToAstMarkdown",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/client/lib/parseMessageTextToAstMarkdown.ts"
+    }
+  ]
+}

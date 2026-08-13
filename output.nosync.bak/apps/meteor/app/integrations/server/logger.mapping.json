@@ -1,0 +1,38 @@
+{
+  "sourcePath": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/app/integrations/server/logger.ts",
+  "symbols": [
+    {
+      "type": "variable",
+      "name": "integrationLogger",
+      "exported": true,
+      "line": 3,
+      "endLine": 3,
+      "signature": "integrationLogger = new Logger('Integrations')",
+      "calls": []
+    },
+    {
+      "type": "variable",
+      "name": "incomingLogger",
+      "exported": true,
+      "line": 5,
+      "endLine": 5,
+      "signature": "incomingLogger = integrationLogger.section('Incoming WebHook')",
+      "calls": []
+    },
+    {
+      "type": "variable",
+      "name": "outgoingLogger",
+      "exported": true,
+      "line": 6,
+      "endLine": 6,
+      "signature": "outgoingLogger = integrationLogger.section('Outgoing WebHook')",
+      "calls": []
+    }
+  ],
+  "imports": [
+    {
+      "module": "@rocket.chat/logger",
+      "resolved": "external"
+    }
+  ]
+}

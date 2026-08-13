@@ -1,0 +1,66 @@
+{
+  "sourcePath": "/Users/echoooooo/Desktop/code/Rocket.Chat/packages/livechat/src/providers/SDKProvider.tsx",
+  "symbols": [
+    {
+      "type": "variable_function",
+      "name": "useSDK",
+      "exported": true,
+      "line": 13,
+      "endLine": 19,
+      "signature": "() =>",
+      "calls": [
+        {
+          "name": "useContext",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "variable_function",
+      "name": "SDKProvider",
+      "exported": false,
+      "line": 17,
+      "endLine": 21,
+      "signature": "({ children }: { serverURL: string; children: ComponentChildren }) =>",
+      "calls": [
+        {
+          "name": "useMemo",
+          "edgeType": "call"
+        },
+        {
+          "name": "SDKContext.Provider",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "ComponentChildren",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "type",
+      "name": "SDKContextValue",
+      "line": 7,
+      "endLine": 9,
+      "signature": "type SDKContextValue ="
+    }
+  ],
+  "imports": [
+    {
+      "module": "@rocket.chat/ddp-client",
+      "resolved": "external"
+    },
+    {
+      "module": "preact",
+      "resolved": "external"
+    },
+    {
+      "module": "preact/hooks",
+      "resolved": "external"
+    },
+    {
+      "module": "../api",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/packages/livechat/src/api.ts"
+    }
+  ]
+}

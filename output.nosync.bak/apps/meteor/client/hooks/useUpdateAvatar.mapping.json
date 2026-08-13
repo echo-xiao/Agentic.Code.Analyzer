@@ -1,0 +1,216 @@
+{
+  "sourcePath": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/client/hooks/useUpdateAvatar.ts",
+  "symbols": [
+    {
+      "type": "variable_function",
+      "name": "isAvatarReset",
+      "exported": false,
+      "line": 9,
+      "endLine": 9,
+      "signature": "(avatarObj: AvatarObject): avatarObj is AvatarReset =>",
+      "calls": [
+        {
+          "name": "AvatarObject",
+          "edgeType": "type"
+        },
+        {
+          "name": "AvatarReset",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "variable_function",
+      "name": "isServiceObject",
+      "exported": false,
+      "line": 10,
+      "endLine": 11,
+      "signature": "(avatarObj: AvatarObject): avatarObj is AvatarServiceObject =>",
+      "calls": [
+        {
+          "name": "isAvatarReset",
+          "edgeType": "call"
+        },
+        {
+          "name": "AvatarObject",
+          "edgeType": "type"
+        },
+        {
+          "name": "AvatarServiceObject",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "variable_function",
+      "name": "isAvatarUrl",
+      "exported": false,
+      "line": 12,
+      "endLine": 13,
+      "signature": "(avatarObj: AvatarObject): avatarObj is AvatarUrlObj =>",
+      "calls": [
+        {
+          "name": "isAvatarReset",
+          "edgeType": "call"
+        },
+        {
+          "name": "AvatarObject",
+          "edgeType": "type"
+        },
+        {
+          "name": "AvatarUrlObj",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "inner_function",
+      "name": "onSuccess",
+      "exported": false,
+      "qualifiedName": "useUpdateAvatar.onSuccess",
+      "line": 25,
+      "endLine": 27,
+      "signature": "() =>",
+      "calls": [
+        {
+          "name": "dispatchToastMessage",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "inner_function",
+      "name": "onSuccess",
+      "exported": false,
+      "qualifiedName": "useUpdateAvatar.onSuccess",
+      "line": 30,
+      "endLine": 32,
+      "signature": "() =>",
+      "calls": [
+        {
+          "name": "dispatchToastMessage",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "inner_function",
+      "name": "onSuccess",
+      "exported": false,
+      "qualifiedName": "useUpdateAvatar.onSuccess",
+      "line": 35,
+      "endLine": 37,
+      "signature": "() =>",
+      "calls": [
+        {
+          "name": "dispatchToastMessage",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "variable_function",
+      "name": "useUpdateAvatar",
+      "exported": true,
+      "line": 15,
+      "endLine": 83,
+      "signature": "(avatarObj: AvatarObject, userId: IUser['_id']) =>",
+      "calls": [
+        {
+          "name": "useTranslation",
+          "edgeType": "call"
+        },
+        {
+          "name": "isAvatarUrl",
+          "edgeType": "call"
+        },
+        {
+          "name": "useMethod",
+          "edgeType": "call"
+        },
+        {
+          "name": "useToastMessageDispatch",
+          "edgeType": "call"
+        },
+        {
+          "name": "useEndpointUploadMutation",
+          "edgeType": "call"
+        },
+        {
+          "name": "dispatchToastMessage",
+          "edgeType": "call"
+        },
+        {
+          "name": "useEndpointMutation",
+          "edgeType": "call"
+        },
+        {
+          "name": "useCallback",
+          "edgeType": "call"
+        },
+        {
+          "name": "isAvatarReset",
+          "edgeType": "call"
+        },
+        {
+          "name": "resetAvatarAction",
+          "edgeType": "call"
+        },
+        {
+          "name": "saveAvatarUrlAction",
+          "edgeType": "call"
+        },
+        {
+          "name": "isServiceObject",
+          "edgeType": "call"
+        },
+        {
+          "name": "setAvatarFromService",
+          "edgeType": "call"
+        },
+        {
+          "name": "set",
+          "edgeType": "call"
+        },
+        {
+          "name": "saveAvatarAction",
+          "edgeType": "call"
+        },
+        {
+          "name": "AvatarObject",
+          "edgeType": "type"
+        },
+        {
+          "name": "IUser",
+          "edgeType": "type"
+        }
+      ]
+    }
+  ],
+  "imports": [
+    {
+      "module": "@rocket.chat/core-typings",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/ui-contexts",
+      "resolved": "external"
+    },
+    {
+      "module": "react",
+      "resolved": "external"
+    },
+    {
+      "module": "react-i18next",
+      "resolved": "external"
+    },
+    {
+      "module": "./useEndpointMutation",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/client/hooks/useEndpointMutation.ts"
+    },
+    {
+      "module": "./useEndpointUploadMutation",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/client/hooks/useEndpointUploadMutation.ts"
+    }
+  ]
+}

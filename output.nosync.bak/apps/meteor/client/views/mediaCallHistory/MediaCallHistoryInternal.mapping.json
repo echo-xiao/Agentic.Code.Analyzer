@@ -1,0 +1,131 @@
+{
+  "sourcePath": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/client/views/mediaCallHistory/MediaCallHistoryInternal.tsx",
+  "symbols": [
+    {
+      "type": "variable_function",
+      "name": "isInternalCallHistoryItem",
+      "exported": true,
+      "line": 20,
+      "endLine": 22,
+      "signature": "(data: { item: Serialized<CallHistoryItem> }): data is InternalCallEndpointData =>",
+      "calls": [
+        {
+          "name": "Serialized",
+          "edgeType": "type"
+        },
+        {
+          "name": "CallHistoryItem",
+          "edgeType": "type"
+        },
+        {
+          "name": "InternalCallEndpointData",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "variable_function",
+      "name": "getContact",
+      "exported": false,
+      "line": 24,
+      "endLine": 36,
+      "signature": "(item: InternalCallEndpointData['item'], call: InternalCallEndpointData['call']): CallHistoryInternalContact =>",
+      "calls": [
+        {
+          "name": "InternalCallEndpointData",
+          "edgeType": "type"
+        },
+        {
+          "name": "CallHistoryInternalContact",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "variable_function",
+      "name": "MediaCallHistoryInternal",
+      "exported": false,
+      "line": 28,
+      "endLine": 51,
+      "signature": "({ data, onClose, openUserInfo, openRoomId, messageRoomId }: MediaCallHistoryInternalProps) =>",
+      "calls": [
+        {
+          "name": "useMemo",
+          "edgeType": "call"
+        },
+        {
+          "name": "getContact",
+          "edgeType": "call"
+        },
+        {
+          "name": "useMediaCallInternalHistoryActions",
+          "edgeType": "call"
+        },
+        {
+          "name": "openUserInfo",
+          "edgeType": "call"
+        },
+        {
+          "name": "CallHistoryContextualBar",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "onClose",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "actions",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "contact",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "historyData",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "Date",
+          "edgeType": "new"
+        },
+        {
+          "name": "MediaCallHistoryInternalProps",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "type",
+      "name": "InternalCallEndpointData",
+      "line": 7,
+      "endLine": 10,
+      "signature": "type InternalCallEndpointData = Serialized<"
+    },
+    {
+      "type": "type",
+      "name": "MediaCallHistoryInternalProps",
+      "line": 12,
+      "endLine": 18,
+      "signature": "export type MediaCallHistoryInternalProps ="
+    }
+  ],
+  "imports": [
+    {
+      "module": "@rocket.chat/core-typings",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/ui-voip",
+      "resolved": "external"
+    },
+    {
+      "module": "react",
+      "resolved": "external"
+    },
+    {
+      "module": "./useMediaCallInternalHistoryActions",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/client/views/mediaCallHistory/useMediaCallInternalHistoryActions.ts"
+    }
+  ]
+}

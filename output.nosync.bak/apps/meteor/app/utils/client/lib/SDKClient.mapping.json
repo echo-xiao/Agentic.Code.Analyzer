@@ -1,0 +1,634 @@
+{
+  "sourcePath": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/app/utils/client/lib/SDKClient.ts",
+  "symbols": [
+    {
+      "type": "variable_function",
+      "name": "isChangedCollectionPayload",
+      "exported": false,
+      "line": 26,
+      "endLine": 48,
+      "signature": "( msg: any, ): msg is { msg: 'changed'; collection: string; fields: { eventName: string; args: unknown[] } } =>",
+      "calls": [
+        {
+          "name": "isArray",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "inner_function",
+      "name": "onChange",
+      "exported": false,
+      "qualifiedName": "createNewMeteorStream.onChange",
+      "line": 75,
+      "endLine": 97,
+      "signature": "(cb) =>",
+      "calls": [
+        {
+          "name": "cb",
+          "edgeType": "call"
+        },
+        {
+          "name": "ready",
+          "edgeType": "event_listen"
+        }
+      ]
+    },
+    {
+      "type": "inner_function",
+      "name": "onReady",
+      "exported": false,
+      "qualifiedName": "createNewMeteorStream.onReady",
+      "line": 61,
+      "endLine": 64,
+      "signature": "(args: any) =>",
+      "calls": [
+        {
+          "name": "ready",
+          "edgeType": "event_emit"
+        }
+      ]
+    },
+    {
+      "type": "inner_function",
+      "name": "onError",
+      "exported": false,
+      "qualifiedName": "createNewMeteorStream.onError",
+      "line": 65,
+      "endLine": 68,
+      "signature": "(err: any) =>",
+      "calls": [
+        {
+          "name": "ready",
+          "edgeType": "event_emit"
+        },
+        {
+          "name": "error",
+          "edgeType": "event_emit"
+        }
+      ]
+    },
+    {
+      "type": "inner_function",
+      "name": "onStop",
+      "exported": false,
+      "qualifiedName": "createNewMeteorStream.onStop",
+      "line": 69,
+      "endLine": 71,
+      "signature": "() =>",
+      "calls": [
+        {
+          "name": "stop",
+          "edgeType": "event_emit"
+        }
+      ]
+    },
+    {
+      "type": "inner_function",
+      "name": "onError",
+      "exported": false,
+      "qualifiedName": "createNewMeteorStream.onError",
+      "line": 118,
+      "endLine": 121,
+      "signature": "(cb: (...args: any[]) => void) =>",
+      "calls": [
+        {
+          "name": "error",
+          "edgeType": "event_listen"
+        },
+        {
+          "name": "cb",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "inner_function",
+      "name": "onStop",
+      "exported": false,
+      "qualifiedName": "createNewMeteorStream.onStop",
+      "line": 123,
+      "endLine": 123,
+      "signature": "(cb: () => void) =>",
+      "calls": [
+        {
+          "name": "cb",
+          "edgeType": "event_listen",
+          "event": "stop"
+        }
+      ]
+    },
+    {
+      "type": "variable_function",
+      "name": "createNewMeteorStream",
+      "exported": false,
+      "line": 46,
+      "endLine": 129,
+      "signature": "(streamName: StreamNames, key: StreamKeys<StreamNames>, args: unknown[]): StreamMapValue =>",
+      "calls": [
+        {
+          "name": "ready",
+          "edgeType": "event_emit"
+        },
+        {
+          "name": "error",
+          "edgeType": "event_emit"
+        },
+        {
+          "name": "stop",
+          "edgeType": "event_emit"
+        },
+        {
+          "name": "cb",
+          "edgeType": "call"
+        },
+        {
+          "name": "ready",
+          "edgeType": "event_listen"
+        },
+        {
+          "name": "resolve",
+          "edgeType": "call"
+        },
+        {
+          "name": "reject",
+          "edgeType": "call"
+        },
+        {
+          "name": "error",
+          "edgeType": "event_listen"
+        },
+        {
+          "name": "cb",
+          "edgeType": "event_listen",
+          "event": "stop"
+        },
+        {
+          "name": "Emitter",
+          "edgeType": "new"
+        },
+        {
+          "name": "Set",
+          "edgeType": "new"
+        },
+        {
+          "name": "StreamNames",
+          "edgeType": "type"
+        },
+        {
+          "name": "StreamKeys",
+          "edgeType": "type"
+        },
+        {
+          "name": "StreamMapValue",
+          "edgeType": "type"
+        },
+        {
+          "name": "ClientStream",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "inner_function",
+      "name": "onChange",
+      "exported": false,
+      "qualifiedName": "createNewDdpSdkStream.onChange",
+      "line": 107,
+      "endLine": 119,
+      "signature": "(cb) =>",
+      "calls": [
+        {
+          "name": "cb",
+          "edgeType": "call"
+        },
+        {
+          "name": "ready",
+          "edgeType": "event_listen"
+        }
+      ]
+    },
+    {
+      "type": "inner_function",
+      "name": "onError",
+      "exported": false,
+      "qualifiedName": "createNewDdpSdkStream.onError",
+      "line": 144,
+      "endLine": 144,
+      "signature": "(cb: (...args: any[]) => void) =>",
+      "calls": [
+        {
+          "name": "error",
+          "edgeType": "event_listen"
+        },
+        {
+          "name": "cb",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "inner_function",
+      "name": "onStop",
+      "exported": false,
+      "qualifiedName": "createNewDdpSdkStream.onStop",
+      "line": 145,
+      "endLine": 145,
+      "signature": "(cb: () => void) =>",
+      "calls": [
+        {
+          "name": "cb",
+          "edgeType": "event_listen",
+          "event": "stop"
+        }
+      ]
+    },
+    {
+      "type": "variable_function",
+      "name": "createNewDdpSdkStream",
+      "exported": false,
+      "line": 50,
+      "endLine": 151,
+      "signature": "( streamProxy: Emitter<EventMap>, streamName: StreamNames, key: StreamKeys<StreamNames>, args: unknown[], ): StreamMapValue =>",
+      "calls": [
+        {
+          "name": "then",
+          "edgeType": "call"
+        },
+        {
+          "name": "catch",
+          "edgeType": "call"
+        },
+        {
+          "name": "ensureConnectedAndAuthenticated",
+          "edgeType": "call"
+        },
+        {
+          "name": "getDdpSdk",
+          "edgeType": "call"
+        },
+        {
+          "name": "ready",
+          "edgeType": "call"
+        },
+        {
+          "name": "ready",
+          "edgeType": "event_emit"
+        },
+        {
+          "name": "error",
+          "edgeType": "event_emit"
+        },
+        {
+          "name": "onCollection",
+          "edgeType": "call"
+        },
+        {
+          "name": "cb",
+          "edgeType": "call"
+        },
+        {
+          "name": "ready",
+          "edgeType": "event_listen"
+        },
+        {
+          "name": "offCollection",
+          "edgeType": "call"
+        },
+        {
+          "name": "stop",
+          "edgeType": "call"
+        },
+        {
+          "name": "resolve",
+          "edgeType": "call"
+        },
+        {
+          "name": "reject",
+          "edgeType": "call"
+        },
+        {
+          "name": "error",
+          "edgeType": "event_listen"
+        },
+        {
+          "name": "cb",
+          "edgeType": "event_listen",
+          "event": "stop"
+        },
+        {
+          "name": "Emitter",
+          "edgeType": "new"
+        },
+        {
+          "name": "Set",
+          "edgeType": "new"
+        },
+        {
+          "name": "Emitter",
+          "edgeType": "type"
+        },
+        {
+          "name": "EventMap",
+          "edgeType": "type"
+        },
+        {
+          "name": "StreamNames",
+          "edgeType": "type"
+        },
+        {
+          "name": "StreamKeys",
+          "edgeType": "type"
+        },
+        {
+          "name": "StreamMapValue",
+          "edgeType": "type"
+        },
+        {
+          "name": "ClientStream",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "variable_function",
+      "name": "createStreamManager",
+      "exported": false,
+      "line": 59,
+      "endLine": 161,
+      "signature": "() =>",
+      "calls": [
+        {
+          "name": "onLogout",
+          "edgeType": "call"
+        },
+        {
+          "name": "getDdpSdk",
+          "edgeType": "call"
+        },
+        {
+          "name": "forEach",
+          "edgeType": "call"
+        },
+        {
+          "name": "stop",
+          "edgeType": "call"
+        },
+        {
+          "name": "message",
+          "edgeType": "event_listen"
+        },
+        {
+          "name": "parseDDP",
+          "edgeType": "call"
+        },
+        {
+          "name": "isChangedCollectionPayload",
+          "edgeType": "call"
+        },
+        {
+          "name": "isArray",
+          "edgeType": "call"
+        },
+        {
+          "name": "callback",
+          "edgeType": "call"
+        },
+        {
+          "name": "get",
+          "edgeType": "call"
+        },
+        {
+          "name": "createNewDdpSdkStream",
+          "edgeType": "call"
+        },
+        {
+          "name": "createNewMeteorStream",
+          "edgeType": "call"
+        },
+        {
+          "name": "off",
+          "edgeType": "call"
+        },
+        {
+          "name": "has",
+          "edgeType": "call"
+        },
+        {
+          "name": "delete",
+          "edgeType": "call"
+        },
+        {
+          "name": "onError",
+          "edgeType": "call"
+        },
+        {
+          "name": "onStop",
+          "edgeType": "call"
+        },
+        {
+          "name": "set",
+          "edgeType": "call"
+        },
+        {
+          "name": "Emitter",
+          "edgeType": "new"
+        },
+        {
+          "name": "Map",
+          "edgeType": "new"
+        },
+        {
+          "name": "EventMap",
+          "edgeType": "type"
+        },
+        {
+          "name": "StreamMapValue",
+          "edgeType": "type"
+        },
+        {
+          "name": "SDK",
+          "edgeType": "type"
+        },
+        {
+          "name": "StreamNames",
+          "edgeType": "type"
+        },
+        {
+          "name": "StreamKeys",
+          "edgeType": "type"
+        },
+        {
+          "name": "StreamerCallbackArgs",
+          "edgeType": "type"
+        },
+        {
+          "name": "ClientStream",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "variable_function",
+      "name": "createOnAnyStreamEvent",
+      "exported": false,
+      "line": 83,
+      "endLine": 135,
+      "signature": "() =>",
+      "calls": [
+        {
+          "name": "get",
+          "edgeType": "call"
+        },
+        {
+          "name": "set",
+          "edgeType": "call"
+        },
+        {
+          "name": "has",
+          "edgeType": "call"
+        },
+        {
+          "name": "onCollection",
+          "edgeType": "call"
+        },
+        {
+          "name": "getDdpSdk",
+          "edgeType": "call"
+        },
+        {
+          "name": "isChangedCollectionPayload",
+          "edgeType": "call"
+        },
+        {
+          "name": "event",
+          "edgeType": "event_emit"
+        },
+        {
+          "name": "message",
+          "edgeType": "event_listen"
+        },
+        {
+          "name": "parseDDP",
+          "edgeType": "call"
+        },
+        {
+          "name": "callback",
+          "edgeType": "call"
+        },
+        {
+          "name": "handler",
+          "edgeType": "event_listen",
+          "event": "event"
+        },
+        {
+          "name": "off",
+          "edgeType": "call"
+        },
+        {
+          "name": "Emitter",
+          "edgeType": "new"
+        },
+        {
+          "name": "StreamNames",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "variable_function",
+      "name": "createSDK",
+      "exported": true,
+      "line": 87,
+      "endLine": 113,
+      "signature": "(rest: RestClientInterface) =>",
+      "calls": [
+        {
+          "name": "createStreamManager",
+          "edgeType": "call"
+        },
+        {
+          "name": "createOnAnyStreamEvent",
+          "edgeType": "call"
+        },
+        {
+          "name": "callAsync",
+          "edgeType": "call"
+        },
+        {
+          "name": "getDdpSdk",
+          "edgeType": "call"
+        },
+        {
+          "name": "call",
+          "edgeType": "call"
+        },
+        {
+          "name": "RestClientInterface",
+          "edgeType": "type"
+        },
+        {
+          "name": "ServerMethods",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "variable",
+      "name": "sdk",
+      "exported": true,
+      "line": 91,
+      "endLine": 91,
+      "signature": "sdk = createSDK(APIClient)",
+      "calls": []
+    },
+    {
+      "type": "type",
+      "name": "EventMap",
+      "line": 32,
+      "endLine": 34,
+      "signature": "type EventMap<N extends StreamNames = StreamNames, K extends StreamKeys<N> = StreamKeys<N>> ="
+    },
+    {
+      "type": "type",
+      "name": "StreamMapValue",
+      "line": 36,
+      "endLine": 44,
+      "signature": "type StreamMapValue ="
+    }
+  ],
+  "imports": [
+    {
+      "module": "@rocket.chat/api-client",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/ddp-client",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/emitter",
+      "resolved": "external"
+    },
+    {
+      "module": "meteor/meteor",
+      "resolved": "external"
+    },
+    {
+      "module": "./RestApiClient",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/app/utils/client/lib/RestApiClient.ts"
+    },
+    {
+      "module": "../../../../client/lib/sdk/ddpProtocol",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/client/lib/sdk/ddpProtocol.ts"
+    },
+    {
+      "module": "../../../../client/lib/sdk/ddpSdk",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/client/lib/sdk/ddpSdk.ts"
+    },
+    {
+      "module": "../../../../client/lib/sdk/sdkTransportEnabled",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/client/lib/sdk/sdkTransportEnabled.ts"
+    }
+  ]
+}

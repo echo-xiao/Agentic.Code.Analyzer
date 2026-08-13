@@ -1,0 +1,351 @@
+{
+  "sourcePath": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/client/views/admin/settings/groups/LDAPGroupPage.tsx",
+  "symbols": [
+    {
+      "type": "module",
+      "name": "LDAPGroupPage",
+      "exported": false,
+      "line": 1,
+      "endLine": 130,
+      "signature": "LDAPGroupPage",
+      "calls": [
+        {
+          "name": "memo",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "inner_function",
+      "name": "handleTestConnectionButtonClick",
+      "exported": false,
+      "qualifiedName": "LDAPGroupPage.handleTestConnectionButtonClick",
+      "line": 43,
+      "endLine": 50,
+      "signature": "async (): Promise<void> =>",
+      "calls": [
+        {
+          "name": "testConnection",
+          "edgeType": "call"
+        },
+        {
+          "name": "dispatchToastMessage",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "inner_function",
+      "name": "handleSearchTestButtonClick",
+      "exported": false,
+      "qualifiedName": "LDAPGroupPage.handleSearchTestButtonClick",
+      "line": 52,
+      "endLine": 101,
+      "signature": "async (): Promise<void> =>",
+      "calls": [
+        {
+          "name": "testConnection",
+          "edgeType": "call"
+        },
+        {
+          "name": "testSearch",
+          "edgeType": "call"
+        },
+        {
+          "name": "dispatchToastMessage",
+          "edgeType": "call"
+        },
+        {
+          "name": "setModal",
+          "edgeType": "call"
+        },
+        {
+          "name": "preventDefault",
+          "edgeType": "call"
+        },
+        {
+          "name": "confirmSearch",
+          "edgeType": "call"
+        },
+        {
+          "name": "GenericModal",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "Field",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "Box",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "FieldLabel",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "FieldRow",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "TextInput",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "closeModal",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "handleChangeUsername",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "ChangeEvent",
+          "edgeType": "type"
+        },
+        {
+          "name": "HTMLInputElement",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "inner_function",
+      "name": "handleChangeUsername",
+      "exported": false,
+      "qualifiedName": "LDAPGroupPage.handleChangeUsername",
+      "line": 56,
+      "endLine": 58,
+      "signature": "(event: ChangeEvent<HTMLInputElement>): void =>",
+      "calls": [
+        {
+          "name": "ChangeEvent",
+          "edgeType": "type"
+        },
+        {
+          "name": "HTMLInputElement",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "function",
+      "name": "LDAPGroupPage",
+      "exported": false,
+      "line": 20,
+      "endLine": 127,
+      "signature": "function LDAPGroupPage({ _id, i18nLabel, onClickBack, ...group }: LDAPGroupPageProps)",
+      "calls": [
+        {
+          "name": "useTranslation",
+          "edgeType": "call"
+        },
+        {
+          "name": "useToastMessageDispatch",
+          "edgeType": "call"
+        },
+        {
+          "name": "useEndpoint",
+          "edgeType": "call"
+        },
+        {
+          "name": "useSetting",
+          "edgeType": "call"
+        },
+        {
+          "name": "useSetModal",
+          "edgeType": "call"
+        },
+        {
+          "name": "useStableCallback",
+          "edgeType": "call"
+        },
+        {
+          "name": "setModal",
+          "edgeType": "call"
+        },
+        {
+          "name": "useLdapSync",
+          "edgeType": "call"
+        },
+        {
+          "name": "useExternalLink",
+          "edgeType": "call"
+        },
+        {
+          "name": "useEditableSettings",
+          "edgeType": "call"
+        },
+        {
+          "name": "useMemo",
+          "edgeType": "call"
+        },
+        {
+          "name": "some",
+          "edgeType": "call"
+        },
+        {
+          "name": "testConnection",
+          "edgeType": "call"
+        },
+        {
+          "name": "dispatchToastMessage",
+          "edgeType": "call"
+        },
+        {
+          "name": "testSearch",
+          "edgeType": "call"
+        },
+        {
+          "name": "preventDefault",
+          "edgeType": "call"
+        },
+        {
+          "name": "confirmSearch",
+          "edgeType": "call"
+        },
+        {
+          "name": "handleLinkClick",
+          "edgeType": "call"
+        },
+        {
+          "name": "GenericModal",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "Field",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "Box",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "FieldLabel",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "FieldRow",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "Button",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "TextInput",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "BaseGroupPage",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "closeModal",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "handleChangeUsername",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "_id",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "i18nLabel",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "onClickBack",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "handleTestConnectionButtonClick",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "handleSearchTestButtonClick",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "handleSyncNow",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "LDAPGroupPageProps",
+          "edgeType": "type"
+        },
+        {
+          "name": "ChangeEvent",
+          "edgeType": "type"
+        },
+        {
+          "name": "HTMLInputElement",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "type",
+      "name": "LDAPGroupPageProps",
+      "line": 16,
+      "endLine": 18,
+      "signature": "export type LDAPGroupPageProps = ISetting &"
+    }
+  ],
+  "imports": [
+    {
+      "module": "@rocket.chat/core-typings",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/fuselage",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/fuselage-hooks",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/ui-client",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/ui-contexts",
+      "resolved": "external"
+    },
+    {
+      "module": "react",
+      "resolved": "external"
+    },
+    {
+      "module": "react",
+      "resolved": "external"
+    },
+    {
+      "module": "react-i18next",
+      "resolved": "external"
+    },
+    {
+      "module": "./BaseGroupPage",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/client/views/admin/settings/groups/BaseGroupPage.tsx"
+    },
+    {
+      "module": "../../../../hooks/useExternalLink",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/client/hooks/useExternalLink.ts"
+    },
+    {
+      "module": "../../../../hooks/useLdapSync",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/client/hooks/useLdapSync.tsx"
+    },
+    {
+      "module": "../../../../lib/links",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/client/lib/links.ts"
+    },
+    {
+      "module": "../../EditableSettingsContext",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/client/views/admin/EditableSettingsContext.ts"
+    }
+  ]
+}

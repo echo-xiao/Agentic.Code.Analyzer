@@ -1,0 +1,200 @@
+{
+  "sourcePath": "/Users/echoooooo/Desktop/code/Rocket.Chat/packages/apps/base-runtime/src/mainLoop.ts",
+  "symbols": [
+    {
+      "type": "function",
+      "name": "requestRouter",
+      "exported": false,
+      "line": 29,
+      "endLine": 75,
+      "signature": "async function requestRouter({ type, payload }: Messenger.JsonRpcRequest): Promise<void>",
+      "calls": [
+        {
+          "name": "resolve",
+          "edgeType": "call"
+        },
+        {
+          "name": "sendInvalidRequestError",
+          "edgeType": "call"
+        },
+        {
+          "name": "assign",
+          "edgeType": "call"
+        },
+        {
+          "name": "split",
+          "edgeType": "call"
+        },
+        {
+          "name": "errorResponse",
+          "edgeType": "call"
+        },
+        {
+          "name": "catch",
+          "edgeType": "call"
+        },
+        {
+          "name": "handler",
+          "edgeType": "call"
+        },
+        {
+          "name": "internalError",
+          "edgeType": "call"
+        },
+        {
+          "name": "successResponse",
+          "edgeType": "call"
+        },
+        {
+          "name": "Logger",
+          "edgeType": "new"
+        },
+        {
+          "name": "Handlers",
+          "edgeType": "type"
+        },
+        {
+          "name": "RequestContext",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "function",
+      "name": "handleResponse",
+      "exported": false,
+      "line": 33,
+      "endLine": 43,
+      "signature": "function handleResponse(response: Messenger.JsonRpcResponse): void",
+      "calls": [
+        {
+          "name": "isErrorResponse",
+          "edgeType": "call"
+        },
+        {
+          "name": "SuccessObject",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "function",
+      "name": "startMainLoop",
+      "exported": true,
+      "line": 45,
+      "endLine": 75,
+      "signature": "export async function startMainLoop(): Promise<void>",
+      "calls": [
+        {
+          "name": "sendNotification",
+          "edgeType": "call"
+        },
+        {
+          "name": "decodeStream",
+          "edgeType": "call"
+        },
+        {
+          "name": "pongResponse",
+          "edgeType": "call"
+        },
+        {
+          "name": "sendMetrics",
+          "edgeType": "call"
+        },
+        {
+          "name": "parseMessage",
+          "edgeType": "call"
+        },
+        {
+          "name": "isRequest",
+          "edgeType": "call"
+        },
+        {
+          "name": "requestRouter",
+          "edgeType": "call"
+        },
+        {
+          "name": "isResponse",
+          "edgeType": "call"
+        },
+        {
+          "name": "handleResponse",
+          "edgeType": "call"
+        },
+        {
+          "name": "isErrorResponse",
+          "edgeType": "call"
+        },
+        {
+          "name": "errorResponse",
+          "edgeType": "call"
+        },
+        {
+          "name": "sendParseError",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "type",
+      "name": "Handlers",
+      "line": 17,
+      "endLine": 25,
+      "signature": "type Handlers ="
+    }
+  ],
+  "imports": [
+    {
+      "module": "node:process",
+      "resolved": "external"
+    },
+    {
+      "module": "jsonrpc-lite",
+      "resolved": "external"
+    },
+    {
+      "module": "./handlers/api-handler",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/packages/apps/base-runtime/src/handlers/api-handler.ts"
+    },
+    {
+      "module": "./handlers/app/handler",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/packages/apps/base-runtime/src/handlers/app/handler.ts"
+    },
+    {
+      "module": "./handlers/outboundcomms-handler",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/packages/apps/base-runtime/src/handlers/outboundcomms-handler.ts"
+    },
+    {
+      "module": "./handlers/scheduler-handler",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/packages/apps/base-runtime/src/handlers/scheduler-handler.ts"
+    },
+    {
+      "module": "./handlers/slashcommand-handler",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/packages/apps/base-runtime/src/handlers/slashcommand-handler.ts"
+    },
+    {
+      "module": "./handlers/videoconference-handler",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/packages/apps/base-runtime/src/handlers/videoconference-handler.ts"
+    },
+    {
+      "module": "./lib/codec",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/packages/apps/base-runtime/src/lib/codec.ts"
+    },
+    {
+      "module": "./lib/logger",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/packages/apps/base-runtime/src/lib/logger.ts"
+    },
+    {
+      "module": "./lib/messenger",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/packages/apps/base-runtime/src/lib/messenger.ts"
+    },
+    {
+      "module": "./lib/metricsCollector",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/packages/apps/base-runtime/src/lib/metricsCollector.ts"
+    },
+    {
+      "module": "./lib/requestContext",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/packages/apps/base-runtime/src/lib/requestContext.ts"
+    }
+  ]
+}

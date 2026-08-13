@@ -1,0 +1,145 @@
+{
+  "sourcePath": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/tests/e2e/page-objects/account.manage-devices.ts",
+  "symbols": [
+    {
+      "type": "class",
+      "name": "AccountManageDevices",
+      "exported": true,
+      "line": 6,
+      "endLine": 33,
+      "signature": "export class AccountManageDevices extends Account",
+      "calls": [
+        {
+          "name": "Account",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "getNthDeviceId",
+      "exported": true,
+      "qualifiedName": "AccountManageDevices.getNthDeviceId",
+      "line": 21,
+      "endLine": 27,
+      "signature": "async getNthDeviceId(nth: number): Promise<string>",
+      "containerClass": "AccountManageDevices",
+      "calls": [
+        {
+          "name": "getAttribute",
+          "edgeType": "call"
+        },
+        {
+          "name": "nth",
+          "edgeType": "call"
+        },
+        {
+          "name": "getByRole",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "logoutDeviceById",
+      "exported": true,
+      "qualifiedName": "AccountManageDevices.logoutDeviceById",
+      "line": 25,
+      "endLine": 28,
+      "signature": "async logoutDeviceById(deviceId: string)",
+      "containerClass": "AccountManageDevices",
+      "calls": [
+        {
+          "name": "click",
+          "edgeType": "call"
+        },
+        {
+          "name": "getByRole",
+          "edgeType": "call"
+        },
+        {
+          "name": "getDeviceRowById",
+          "edgeType": "call"
+        },
+        {
+          "name": "confirmLogout",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "constructor",
+      "exported": true,
+      "qualifiedName": "AccountManageDevices.constructor",
+      "line": 11,
+      "endLine": 15,
+      "signature": "constructor(page: Page)",
+      "containerClass": "AccountManageDevices",
+      "calls": [
+        {
+          "name": "getByRole",
+          "edgeType": "call"
+        },
+        {
+          "name": "ConfirmLogoutModal",
+          "edgeType": "new"
+        },
+        {
+          "name": "DevicesTable",
+          "edgeType": "new"
+        },
+        {
+          "name": "Page",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "class_property",
+      "name": "logoutModal",
+      "exported": true,
+      "qualifiedName": "AccountManageDevices.logoutModal",
+      "line": 7,
+      "endLine": 7,
+      "signature": "readonly logoutModal: ConfirmLogoutModal;",
+      "containerClass": "AccountManageDevices",
+      "calls": [
+        {
+          "name": "ConfirmLogoutModal",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "class_property",
+      "name": "table",
+      "exported": true,
+      "qualifiedName": "AccountManageDevices.table",
+      "line": 9,
+      "endLine": 9,
+      "signature": "readonly table: DevicesTable;",
+      "containerClass": "AccountManageDevices",
+      "calls": [
+        {
+          "name": "DevicesTable",
+          "edgeType": "type"
+        }
+      ]
+    }
+  ],
+  "imports": [
+    {
+      "module": "playwright-core",
+      "resolved": "external"
+    },
+    {
+      "module": "./account",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/tests/e2e/page-objects/account.ts"
+    },
+    {
+      "module": "./fragments",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/tests/e2e/page-objects/fragments/index.ts"
+    }
+  ]
+}

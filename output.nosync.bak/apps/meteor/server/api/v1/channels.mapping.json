@@ -1,0 +1,735 @@
+{
+  "sourcePath": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/server/api/v1/channels.ts",
+  "symbols": [
+    {
+      "type": "module",
+      "name": "channels",
+      "exported": false,
+      "line": 1,
+      "endLine": 1510,
+      "signature": "channels",
+      "calls": [
+        {
+          "name": "channels.addAll",
+          "edgeType": "rest_route"
+        },
+        {
+          "name": "addRoute",
+          "edgeType": "call"
+        },
+        {
+          "name": "findChannelByIdOrName",
+          "edgeType": "call"
+        },
+        {
+          "name": "addAllUserToRoomFn",
+          "edgeType": "call"
+        },
+        {
+          "name": "success",
+          "edgeType": "call"
+        },
+        {
+          "name": "channels.archive",
+          "edgeType": "rest_route"
+        },
+        {
+          "name": "executeArchiveRoom",
+          "edgeType": "call"
+        },
+        {
+          "name": "channels.unarchive",
+          "edgeType": "rest_route"
+        },
+        {
+          "name": "failure",
+          "edgeType": "call"
+        },
+        {
+          "name": "executeUnarchiveRoom",
+          "edgeType": "call"
+        },
+        {
+          "name": "channels.history",
+          "edgeType": "rest_route"
+        },
+        {
+          "name": "getPaginationItems",
+          "edgeType": "call"
+        },
+        {
+          "name": "getChannelHistory",
+          "edgeType": "call"
+        },
+        {
+          "name": "forbidden",
+          "edgeType": "call"
+        },
+        {
+          "name": "Date",
+          "edgeType": "new"
+        },
+        {
+          "name": "channels.roles",
+          "edgeType": "rest_route"
+        },
+        {
+          "name": "executeGetRoomRoles",
+          "edgeType": "call"
+        },
+        {
+          "name": "channels.join",
+          "edgeType": "rest_route"
+        },
+        {
+          "name": "join",
+          "edgeType": "call"
+        },
+        {
+          "name": "channels.kick",
+          "edgeType": "rest_route"
+        },
+        {
+          "name": "getUserFromParams",
+          "edgeType": "call"
+        },
+        {
+          "name": "removeUserFromRoomMethod",
+          "edgeType": "call"
+        },
+        {
+          "name": "channels.leave",
+          "edgeType": "rest_route"
+        },
+        {
+          "name": "findOneById",
+          "edgeType": "call"
+        },
+        {
+          "name": "leaveRoomMethod",
+          "edgeType": "call"
+        },
+        {
+          "name": "channels.messages",
+          "edgeType": "rest_route"
+        },
+        {
+          "name": "parseJsonQuery",
+          "edgeType": "call"
+        },
+        {
+          "name": "map",
+          "edgeType": "call"
+        },
+        {
+          "name": "split",
+          "edgeType": "call"
+        },
+        {
+          "name": "trim",
+          "edgeType": "call"
+        },
+        {
+          "name": "parseIds",
+          "edgeType": "call"
+        },
+        {
+          "name": "toLowerCase",
+          "edgeType": "call"
+        },
+        {
+          "name": "canAccessRoomAsync",
+          "edgeType": "call"
+        },
+        {
+          "name": "hasPermissionAsync",
+          "edgeType": "call"
+        },
+        {
+          "name": "findOneByRoomIdAndUserId",
+          "edgeType": "call"
+        },
+        {
+          "name": "findPaginated",
+          "edgeType": "call"
+        },
+        {
+          "name": "all",
+          "edgeType": "call"
+        },
+        {
+          "name": "toArray",
+          "edgeType": "call"
+        },
+        {
+          "name": "normalizeMessagesForUser",
+          "edgeType": "call"
+        },
+        {
+          "name": "channels.open",
+          "edgeType": "rest_route"
+        },
+        {
+          "name": "openRoom",
+          "edgeType": "call"
+        },
+        {
+          "name": "channels.setReadOnly",
+          "edgeType": "rest_route"
+        },
+        {
+          "name": "saveRoomSettings",
+          "edgeType": "call"
+        },
+        {
+          "name": "channels.setAnnouncement",
+          "edgeType": "rest_route"
+        },
+        {
+          "name": "channels.getAllUserMentionsByChannel",
+          "edgeType": "rest_route"
+        },
+        {
+          "name": "getUserMentionsByChannel",
+          "edgeType": "call"
+        },
+        {
+          "name": "channels.moderators",
+          "edgeType": "rest_route"
+        },
+        {
+          "name": "findByRoomIdAndRoles",
+          "edgeType": "call"
+        },
+        {
+          "name": "channels.delete",
+          "edgeType": "rest_route"
+        },
+        {
+          "name": "eraseRoom",
+          "edgeType": "call"
+        },
+        {
+          "name": "channels.convertToTeam",
+          "edgeType": "rest_route"
+        },
+        {
+          "name": "hasAllPermissionAsync",
+          "edgeType": "call"
+        },
+        {
+          "name": "findByRoomId",
+          "edgeType": "call"
+        },
+        {
+          "name": "create",
+          "edgeType": "call"
+        },
+        {
+          "name": "ISubscription",
+          "edgeType": "type"
+        },
+        {
+          "name": "channels.addModerator",
+          "edgeType": "rest_route"
+        },
+        {
+          "name": "addRoomModerator",
+          "edgeType": "call"
+        },
+        {
+          "name": "channels.addOwner",
+          "edgeType": "rest_route"
+        },
+        {
+          "name": "addRoomOwner",
+          "edgeType": "call"
+        },
+        {
+          "name": "channels.close",
+          "edgeType": "rest_route"
+        },
+        {
+          "name": "hideRoomMethod",
+          "edgeType": "call"
+        },
+        {
+          "name": "channels.counters",
+          "edgeType": "rest_route"
+        },
+        {
+          "name": "countVisibleByRoomIdBetweenTimestampsInclusive",
+          "edgeType": "call"
+        },
+        {
+          "name": "countActiveUsersInNonDMRoom",
+          "edgeType": "call"
+        },
+        {
+          "name": "channels.create",
+          "edgeType": "rest_route"
+        },
+        {
+          "name": "validate",
+          "edgeType": "call"
+        },
+        {
+          "name": "listByNames",
+          "edgeType": "call"
+        },
+        {
+          "name": "members",
+          "edgeType": "call"
+        },
+        {
+          "name": "push",
+          "edgeType": "call"
+        },
+        {
+          "name": "filter",
+          "edgeType": "call"
+        },
+        {
+          "name": "execute",
+          "edgeType": "call"
+        },
+        {
+          "name": "Set",
+          "edgeType": "new"
+        },
+        {
+          "name": "channels.files",
+          "edgeType": "rest_route"
+        },
+        {
+          "name": "findPaginatedWithoutThumbs",
+          "edgeType": "call"
+        },
+        {
+          "name": "addUserToFileObj",
+          "edgeType": "call"
+        },
+        {
+          "name": "channels.getIntegrations",
+          "edgeType": "rest_route"
+        },
+        {
+          "name": "assign",
+          "edgeType": "call"
+        },
+        {
+          "name": "mountIntegrationQueryBasedOnPermissions",
+          "edgeType": "call"
+        },
+        {
+          "name": "channels.info",
+          "edgeType": "rest_route"
+        },
+        {
+          "name": "channels.invite",
+          "edgeType": "rest_route"
+        },
+        {
+          "name": "isRoomNativeFederated",
+          "edgeType": "call"
+        },
+        {
+          "name": "getUsernameListFromParams",
+          "edgeType": "call"
+        },
+        {
+          "name": "addUsersToRoomMethod",
+          "edgeType": "call"
+        },
+        {
+          "name": "getUserListFromParams",
+          "edgeType": "call"
+        },
+        {
+          "name": "channels.list",
+          "edgeType": "rest_route"
+        },
+        {
+          "name": "findByUserIdAndType",
+          "edgeType": "call"
+        },
+        {
+          "name": "findByUserId",
+          "edgeType": "call"
+        },
+        {
+          "name": "composeRoomWithLastMessage",
+          "edgeType": "call"
+        },
+        {
+          "name": "channels.list.joined",
+          "edgeType": "rest_route"
+        },
+        {
+          "name": "findByUserIdAndTypes",
+          "edgeType": "call"
+        },
+        {
+          "name": "findPaginatedByTypeAndIds",
+          "edgeType": "call"
+        },
+        {
+          "name": "channels.members",
+          "edgeType": "rest_route"
+        },
+        {
+          "name": "check",
+          "edgeType": "call"
+        },
+        {
+          "name": "ObjectIncluding",
+          "edgeType": "call"
+        },
+        {
+          "name": "Maybe",
+          "edgeType": "call"
+        },
+        {
+          "name": "findUsersOfRoom",
+          "edgeType": "call"
+        },
+        {
+          "name": "UserStatus",
+          "edgeType": "type"
+        },
+        {
+          "name": "channels.online",
+          "edgeType": "rest_route"
+        },
+        {
+          "name": "keys",
+          "edgeType": "call"
+        },
+        {
+          "name": "findOne",
+          "edgeType": "call"
+        },
+        {
+          "name": "findUsersNotOffline",
+          "edgeType": "call"
+        },
+        {
+          "name": "IUser",
+          "edgeType": "type"
+        },
+        {
+          "name": "channels.removeModerator",
+          "edgeType": "rest_route"
+        },
+        {
+          "name": "removeRoomModerator",
+          "edgeType": "call"
+        },
+        {
+          "name": "channels.removeOwner",
+          "edgeType": "rest_route"
+        },
+        {
+          "name": "removeRoomOwner",
+          "edgeType": "call"
+        },
+        {
+          "name": "channels.rename",
+          "edgeType": "rest_route"
+        },
+        {
+          "name": "channels.setCustomFields",
+          "edgeType": "rest_route"
+        },
+        {
+          "name": "channels.setDefault",
+          "edgeType": "rest_route"
+        },
+        {
+          "name": "includes",
+          "edgeType": "call"
+        },
+        {
+          "name": "channels.setDescription",
+          "edgeType": "rest_route"
+        },
+        {
+          "name": "hasOwnProperty",
+          "edgeType": "call"
+        },
+        {
+          "name": "channels.setPurpose",
+          "edgeType": "rest_route"
+        },
+        {
+          "name": "channels.setTopic",
+          "edgeType": "rest_route"
+        },
+        {
+          "name": "channels.setType",
+          "edgeType": "rest_route"
+        },
+        {
+          "name": "RoomType",
+          "edgeType": "type"
+        },
+        {
+          "name": "channels.addLeader",
+          "edgeType": "rest_route"
+        },
+        {
+          "name": "addRoomLeader",
+          "edgeType": "call"
+        },
+        {
+          "name": "channels.removeLeader",
+          "edgeType": "rest_route"
+        },
+        {
+          "name": "removeRoomLeader",
+          "edgeType": "call"
+        },
+        {
+          "name": "channels.setJoinCode",
+          "edgeType": "rest_route"
+        },
+        {
+          "name": "channels.anonymousread",
+          "edgeType": "rest_route"
+        },
+        {
+          "name": "get",
+          "edgeType": "call"
+        },
+        {
+          "name": "getOneById",
+          "edgeType": "call"
+        },
+        {
+          "name": "notFound",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "function",
+      "name": "findChannelByIdOrName",
+      "exported": false,
+      "line": 69,
+      "endLine": 106,
+      "signature": "async function findChannelByIdOrName({ params, checkedArchived = true, userId, }: { params: | { roomId?: string; } | { roomName?: string; }; userId?: string; checkedArchived?: boolean; }): Promise<IRoom>",
+      "calls": [
+        {
+          "name": "findOneById",
+          "edgeType": "call"
+        },
+        {
+          "name": "findOneByName",
+          "edgeType": "call"
+        },
+        {
+          "name": "normalizeMessagesForUser",
+          "edgeType": "call"
+        },
+        {
+          "name": "IRoom",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "function",
+      "name": "createChannelValidator",
+      "exported": false,
+      "line": 655,
+      "endLine": 688,
+      "signature": "async function createChannelValidator(params: { user: { value: string }; name?: { key: string; value?: string }; members?: { key: string; value?: string[] }; customFields?: { key: string; value?: string }; teams?: { key: string; value?: string[] }; teamId?: { key: string; value?: string }; })",
+      "calls": [
+        {
+          "name": "getInfoById",
+          "edgeType": "call"
+        },
+        {
+          "name": "hasPermissionAsync",
+          "edgeType": "call"
+        },
+        {
+          "name": "isArray",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "function",
+      "name": "createChannel",
+      "exported": false,
+      "line": 666,
+      "endLine": 691,
+      "signature": "async function createChannel( userId: string, params: { name?: string; members?: string[]; customFields?: Record<string, any>; extraData?: Record<string, any>; readOnly?: boolean; excludeSelf?: boolean; }, ): Promise<{ channel: IRoom }>",
+      "calls": [
+        {
+          "name": "createChannelMethod",
+          "edgeType": "call"
+        },
+        {
+          "name": "findChannelByIdOrName",
+          "edgeType": "call"
+        },
+        {
+          "name": "IRoom",
+          "edgeType": "type"
+        }
+      ]
+    }
+  ],
+  "imports": [
+    {
+      "module": "@rocket.chat/core-services",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/core-typings",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/models",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/rest-typings",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/tools",
+      "resolved": "external"
+    },
+    {
+      "module": "meteor/meteor",
+      "resolved": "external"
+    },
+    {
+      "module": "../../../app/authorization/server",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/app/authorization/server/index.ts"
+    },
+    {
+      "module": "../../../app/channel-settings/server/methods/saveRoomSettings",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/app/channel-settings/server/methods/saveRoomSettings.ts"
+    },
+    {
+      "module": "../../../app/integrations/server/lib/mountQueriesBasedOnPermission",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/app/integrations/server/lib/mountQueriesBasedOnPermission.ts"
+    },
+    {
+      "module": "../../../app/lib/server/methods/addUsersToRoom",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/app/lib/server/methods/addUsersToRoom.ts"
+    },
+    {
+      "module": "../../../app/lib/server/methods/archiveRoom",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/app/lib/server/methods/archiveRoom.ts"
+    },
+    {
+      "module": "../../../app/lib/server/methods/createChannel",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/app/lib/server/methods/createChannel.ts"
+    },
+    {
+      "module": "../../../app/lib/server/methods/getChannelHistory",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/app/lib/server/methods/getChannelHistory.ts"
+    },
+    {
+      "module": "../../../app/lib/server/methods/getRoomRoles",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/app/lib/server/methods/getRoomRoles.ts"
+    },
+    {
+      "module": "../../../app/lib/server/methods/leaveRoom",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/app/lib/server/methods/leaveRoom.ts"
+    },
+    {
+      "module": "../../../app/lib/server/methods/unarchiveRoom",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/app/lib/server/methods/unarchiveRoom.ts"
+    },
+    {
+      "module": "../../../app/mentions/server/methods/getUserMentionsByChannel",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/app/mentions/server/methods/getUserMentionsByChannel.ts"
+    },
+    {
+      "module": "../../../app/settings/server",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/app/settings/server/index.ts"
+    },
+    {
+      "module": "../../../app/utils/server/lib/normalizeMessagesForUser",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/app/utils/server/lib/normalizeMessagesForUser.ts"
+    },
+    {
+      "module": "../../lib/authorization/hasPermission",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/server/lib/authorization/hasPermission.ts"
+    },
+    {
+      "module": "../../lib/eraseRoom",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/server/lib/eraseRoom.ts"
+    },
+    {
+      "module": "../../lib/findUsersOfRoom",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/server/lib/findUsersOfRoom.ts"
+    },
+    {
+      "module": "../../lib/openRoom",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/server/lib/openRoom.ts"
+    },
+    {
+      "module": "../../methods/addAllUserToRoom",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/server/methods/addAllUserToRoom.ts"
+    },
+    {
+      "module": "../../methods/addRoomLeader",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/server/methods/addRoomLeader.ts"
+    },
+    {
+      "module": "../../methods/addRoomModerator",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/server/methods/addRoomModerator.ts"
+    },
+    {
+      "module": "../../methods/addRoomOwner",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/server/methods/addRoomOwner.ts"
+    },
+    {
+      "module": "../../methods/hideRoom",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/server/methods/hideRoom.ts"
+    },
+    {
+      "module": "../../methods/removeRoomLeader",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/server/methods/removeRoomLeader.ts"
+    },
+    {
+      "module": "../../methods/removeRoomModerator",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/server/methods/removeRoomModerator.ts"
+    },
+    {
+      "module": "../../methods/removeRoomOwner",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/server/methods/removeRoomOwner.ts"
+    },
+    {
+      "module": "../../methods/removeUserFromRoom",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/server/methods/removeUserFromRoom.ts"
+    },
+    {
+      "module": "../api",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/server/api/api.ts"
+    },
+    {
+      "module": "../lib/addUserToFileObj",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/server/api/lib/addUserToFileObj.ts"
+    },
+    {
+      "module": "../lib/composeRoomWithLastMessage",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/server/api/lib/composeRoomWithLastMessage.ts"
+    },
+    {
+      "module": "../lib/getPaginationItems",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/server/api/lib/getPaginationItems.ts"
+    },
+    {
+      "module": "../lib/getUserFromParams",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/server/api/lib/getUserFromParams.ts"
+    }
+  ]
+}

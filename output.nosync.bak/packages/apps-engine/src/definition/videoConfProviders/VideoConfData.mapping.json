@@ -1,0 +1,25 @@
+{
+  "sourcePath": "/Users/echoooooo/Desktop/code/Rocket.Chat/packages/apps-engine/src/definition/videoConfProviders/VideoConfData.ts",
+  "symbols": [
+    {
+      "type": "type",
+      "name": "VideoConfData",
+      "line": 3,
+      "endLine": 5,
+      "signature": "export type VideoConfData = Pick<IVideoConference, '_id' | 'type' | 'rid' | 'createdBy' | 'providerData' | 'discussionRid'> &"
+    },
+    {
+      "type": "type",
+      "name": "VideoConfDataExtended",
+      "line": 7,
+      "endLine": 7,
+      "signature": "export type VideoConfDataExtended = VideoConfData & Required<Pick<IVideoConference, 'url'>>;"
+    }
+  ],
+  "imports": [
+    {
+      "module": "../videoConferences/IVideoConference",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/packages/apps-engine/src/definition/videoConferences/IVideoConference.ts"
+    }
+  ]
+}

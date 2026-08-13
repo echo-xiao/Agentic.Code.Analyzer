@@ -1,0 +1,688 @@
+{
+  "sourcePath": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/tests/e2e/federation/page-objects/fragments/home-content.ts",
+  "symbols": [
+    {
+      "type": "class",
+      "name": "FederationHomeContent",
+      "exported": true,
+      "line": 3,
+      "endLine": 244,
+      "signature": "export class FederationHomeContent",
+      "calls": []
+    },
+    {
+      "type": "method",
+      "name": "sendMessage",
+      "exported": true,
+      "qualifiedName": "FederationHomeContent.sendMessage",
+      "line": 30,
+      "endLine": 33,
+      "signature": "async sendMessage(text: string): Promise<void>",
+      "containerClass": "FederationHomeContent",
+      "calls": [
+        {
+          "name": "type",
+          "edgeType": "call"
+        },
+        {
+          "name": "locator",
+          "edgeType": "call"
+        },
+        {
+          "name": "click",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "sendMessageUsingEnter",
+      "exported": true,
+      "qualifiedName": "FederationHomeContent.sendMessageUsingEnter",
+      "line": 34,
+      "endLine": 37,
+      "signature": "async sendMessageUsingEnter(text: string): Promise<void>",
+      "containerClass": "FederationHomeContent",
+      "calls": [
+        {
+          "name": "type",
+          "edgeType": "call"
+        },
+        {
+          "name": "locator",
+          "edgeType": "call"
+        },
+        {
+          "name": "press",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "editLastMessage",
+      "exported": true,
+      "qualifiedName": "FederationHomeContent.editLastMessage",
+      "line": 38,
+      "endLine": 43,
+      "signature": "async editLastMessage(message: string): Promise<void>",
+      "containerClass": "FederationHomeContent",
+      "calls": [
+        {
+          "name": "openLastMessageMenu",
+          "edgeType": "call"
+        },
+        {
+          "name": "click",
+          "edgeType": "call"
+        },
+        {
+          "name": "fill",
+          "edgeType": "call"
+        },
+        {
+          "name": "locator",
+          "edgeType": "call"
+        },
+        {
+          "name": "press",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "deleteLastMessage",
+      "exported": true,
+      "qualifiedName": "FederationHomeContent.deleteLastMessage",
+      "line": 42,
+      "endLine": 46,
+      "signature": "async deleteLastMessage(): Promise<void>",
+      "containerClass": "FederationHomeContent",
+      "calls": [
+        {
+          "name": "openLastMessageMenu",
+          "edgeType": "call"
+        },
+        {
+          "name": "click",
+          "edgeType": "call"
+        },
+        {
+          "name": "locator",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "starLastMessage",
+      "exported": true,
+      "qualifiedName": "FederationHomeContent.starLastMessage",
+      "line": 46,
+      "endLine": 50,
+      "signature": "async starLastMessage(): Promise<void>",
+      "containerClass": "FederationHomeContent",
+      "calls": [
+        {
+          "name": "openLastMessageMenu",
+          "edgeType": "call"
+        },
+        {
+          "name": "waitFor",
+          "edgeType": "call"
+        },
+        {
+          "name": "click",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "replyInDm",
+      "exported": true,
+      "qualifiedName": "FederationHomeContent.replyInDm",
+      "line": 50,
+      "endLine": 57,
+      "signature": "async replyInDm(message: string): Promise<void>",
+      "containerClass": "FederationHomeContent",
+      "calls": [
+        {
+          "name": "openLastMessageMenu",
+          "edgeType": "call"
+        },
+        {
+          "name": "click",
+          "edgeType": "call"
+        },
+        {
+          "name": "waitForTimeout",
+          "edgeType": "call"
+        },
+        {
+          "name": "type",
+          "edgeType": "call"
+        },
+        {
+          "name": "locator",
+          "edgeType": "call"
+        },
+        {
+          "name": "press",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "sendAudioRecordedMessage",
+      "exported": true,
+      "qualifiedName": "FederationHomeContent.sendAudioRecordedMessage",
+      "line": 54,
+      "endLine": 59,
+      "signature": "async sendAudioRecordedMessage(): Promise<void>",
+      "containerClass": "FederationHomeContent",
+      "calls": [
+        {
+          "name": "click",
+          "edgeType": "call"
+        },
+        {
+          "name": "waitForTimeout",
+          "edgeType": "call"
+        },
+        {
+          "name": "locator",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "sendAudioRecordedInThreadMessage",
+      "exported": true,
+      "qualifiedName": "FederationHomeContent.sendAudioRecordedInThreadMessage",
+      "line": 58,
+      "endLine": 63,
+      "signature": "async sendAudioRecordedInThreadMessage(): Promise<void>",
+      "containerClass": "FederationHomeContent",
+      "calls": [
+        {
+          "name": "click",
+          "edgeType": "call"
+        },
+        {
+          "name": "nth",
+          "edgeType": "call"
+        },
+        {
+          "name": "waitForTimeout",
+          "edgeType": "call"
+        },
+        {
+          "name": "locator",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "sendVideoRecordedMessage",
+      "exported": true,
+      "qualifiedName": "FederationHomeContent.sendVideoRecordedMessage",
+      "line": 62,
+      "endLine": 70,
+      "signature": "async sendVideoRecordedMessage(): Promise<void>",
+      "containerClass": "FederationHomeContent",
+      "calls": [
+        {
+          "name": "click",
+          "edgeType": "call"
+        },
+        {
+          "name": "locator",
+          "edgeType": "call"
+        },
+        {
+          "name": "waitForTimeout",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "dispatchSlashCommand",
+      "exported": true,
+      "qualifiedName": "FederationHomeContent.dispatchSlashCommand",
+      "line": 66,
+      "endLine": 70,
+      "signature": "async dispatchSlashCommand(text: string): Promise<void>",
+      "containerClass": "FederationHomeContent",
+      "calls": [
+        {
+          "name": "fill",
+          "edgeType": "call"
+        },
+        {
+          "name": "locator",
+          "edgeType": "call"
+        },
+        {
+          "name": "waitFor",
+          "edgeType": "call"
+        },
+        {
+          "name": "click",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "getLastFileMessageByFileName",
+      "exported": true,
+      "qualifiedName": "FederationHomeContent.getLastFileMessageByFileName",
+      "line": 78,
+      "endLine": 83,
+      "signature": "async getLastFileMessageByFileName(filename: string): Promise<Locator>",
+      "containerClass": "FederationHomeContent",
+      "calls": [
+        {
+          "name": "locator",
+          "edgeType": "call"
+        },
+        {
+          "name": "last",
+          "edgeType": "call"
+        },
+        {
+          "name": "Locator",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "getLastFileThreadMessageByFileName",
+      "exported": true,
+      "qualifiedName": "FederationHomeContent.getLastFileThreadMessageByFileName",
+      "line": 82,
+      "endLine": 87,
+      "signature": "async getLastFileThreadMessageByFileName(filename: string): Promise<Locator>",
+      "containerClass": "FederationHomeContent",
+      "calls": [
+        {
+          "name": "locator",
+          "edgeType": "call"
+        },
+        {
+          "name": "last",
+          "edgeType": "call"
+        },
+        {
+          "name": "Locator",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "sendFileMessage",
+      "exported": true,
+      "qualifiedName": "FederationHomeContent.sendFileMessage",
+      "line": 149,
+      "endLine": 151,
+      "signature": "async sendFileMessage(fileName: string): Promise<void>",
+      "containerClass": "FederationHomeContent",
+      "calls": [
+        {
+          "name": "setInputFiles",
+          "edgeType": "call"
+        },
+        {
+          "name": "locator",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "sendThreadMessage",
+      "exported": true,
+      "qualifiedName": "FederationHomeContent.sendThreadMessage",
+      "line": 153,
+      "endLine": 156,
+      "signature": "async sendThreadMessage(message: string): Promise<void>",
+      "containerClass": "FederationHomeContent",
+      "calls": [
+        {
+          "name": "fill",
+          "edgeType": "call"
+        },
+        {
+          "name": "last",
+          "edgeType": "call"
+        },
+        {
+          "name": "locator",
+          "edgeType": "call"
+        },
+        {
+          "name": "getByRole",
+          "edgeType": "call"
+        },
+        {
+          "name": "press",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "openLastMessageMenu",
+      "exported": true,
+      "qualifiedName": "FederationHomeContent.openLastMessageMenu",
+      "line": 157,
+      "endLine": 161,
+      "signature": "async openLastMessageMenu(): Promise<void>",
+      "containerClass": "FederationHomeContent",
+      "calls": [
+        {
+          "name": "hover",
+          "edgeType": "call"
+        },
+        {
+          "name": "waitFor",
+          "edgeType": "call"
+        },
+        {
+          "name": "getByRole",
+          "edgeType": "call"
+        },
+        {
+          "name": "click",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "threadSendToChannelAlso",
+      "exported": true,
+      "qualifiedName": "FederationHomeContent.threadSendToChannelAlso",
+      "line": 161,
+      "endLine": 163,
+      "signature": "threadSendToChannelAlso(): Locator",
+      "containerClass": "FederationHomeContent",
+      "calls": [
+        {
+          "name": "locator",
+          "edgeType": "call"
+        },
+        {
+          "name": "getByRole",
+          "edgeType": "call"
+        },
+        {
+          "name": "Locator",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "quoteMessage",
+      "exported": true,
+      "qualifiedName": "FederationHomeContent.quoteMessage",
+      "line": 165,
+      "endLine": 170,
+      "signature": "async quoteMessage(message: string): Promise<void>",
+      "containerClass": "FederationHomeContent",
+      "calls": [
+        {
+          "name": "openLastMessageMenu",
+          "edgeType": "call"
+        },
+        {
+          "name": "click",
+          "edgeType": "call"
+        },
+        {
+          "name": "locator",
+          "edgeType": "call"
+        },
+        {
+          "name": "fill",
+          "edgeType": "call"
+        },
+        {
+          "name": "press",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "openLastThreadMessageMenu",
+      "exported": true,
+      "qualifiedName": "FederationHomeContent.openLastThreadMessageMenu",
+      "line": 169,
+      "endLine": 173,
+      "signature": "async openLastThreadMessageMenu(): Promise<void>",
+      "containerClass": "FederationHomeContent",
+      "calls": [
+        {
+          "name": "hover",
+          "edgeType": "call"
+        },
+        {
+          "name": "waitFor",
+          "edgeType": "call"
+        },
+        {
+          "name": "getByRole",
+          "edgeType": "call"
+        },
+        {
+          "name": "click",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "quoteMessageInsideThread",
+      "exported": true,
+      "qualifiedName": "FederationHomeContent.quoteMessageInsideThread",
+      "line": 173,
+      "endLine": 177,
+      "signature": "async quoteMessageInsideThread(message: string): Promise<void>",
+      "containerClass": "FederationHomeContent",
+      "calls": [
+        {
+          "name": "openLastThreadMessageMenu",
+          "edgeType": "call"
+        },
+        {
+          "name": "click",
+          "edgeType": "call"
+        },
+        {
+          "name": "locator",
+          "edgeType": "call"
+        },
+        {
+          "name": "sendThreadMessage",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "reactToMessage",
+      "exported": true,
+      "qualifiedName": "FederationHomeContent.reactToMessage",
+      "line": 177,
+      "endLine": 182,
+      "signature": "async reactToMessage(emoji: string): Promise<void>",
+      "containerClass": "FederationHomeContent",
+      "calls": [
+        {
+          "name": "openLastMessageMenu",
+          "edgeType": "call"
+        },
+        {
+          "name": "click",
+          "edgeType": "call"
+        },
+        {
+          "name": "locator",
+          "edgeType": "call"
+        },
+        {
+          "name": "type",
+          "edgeType": "call"
+        },
+        {
+          "name": "last",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "unreactLastMessage",
+      "exported": true,
+      "qualifiedName": "FederationHomeContent.unreactLastMessage",
+      "line": 181,
+      "endLine": 184,
+      "signature": "async unreactLastMessage(): Promise<void>",
+      "containerClass": "FederationHomeContent",
+      "calls": [
+        {
+          "name": "waitFor",
+          "edgeType": "call"
+        },
+        {
+          "name": "nth",
+          "edgeType": "call"
+        },
+        {
+          "name": "locator",
+          "edgeType": "call"
+        },
+        {
+          "name": "click",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "getSystemMessageByText",
+      "exported": true,
+      "qualifiedName": "FederationHomeContent.getSystemMessageByText",
+      "line": 185,
+      "endLine": 187,
+      "signature": "async getSystemMessageByText(text: string): Promise<Locator>",
+      "containerClass": "FederationHomeContent",
+      "calls": [
+        {
+          "name": "locator",
+          "edgeType": "call"
+        },
+        {
+          "name": "Locator",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "getLastSystemMessageName",
+      "exported": true,
+      "qualifiedName": "FederationHomeContent.getLastSystemMessageName",
+      "line": 189,
+      "endLine": 191,
+      "signature": "async getLastSystemMessageName(): Promise<Locator>",
+      "containerClass": "FederationHomeContent",
+      "calls": [
+        {
+          "name": "getByRole",
+          "edgeType": "call"
+        },
+        {
+          "name": "last",
+          "edgeType": "call"
+        },
+        {
+          "name": "locator",
+          "edgeType": "call"
+        },
+        {
+          "name": "Locator",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "getAllReactions",
+      "exported": true,
+      "qualifiedName": "FederationHomeContent.getAllReactions",
+      "line": 193,
+      "endLine": 195,
+      "signature": "async getAllReactions(): Promise<Locator>",
+      "containerClass": "FederationHomeContent",
+      "calls": [
+        {
+          "name": "locator",
+          "edgeType": "call"
+        },
+        {
+          "name": "Locator",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "constructor",
+      "exported": true,
+      "qualifiedName": "FederationHomeContent.constructor",
+      "line": 6,
+      "endLine": 8,
+      "signature": "constructor(page: Page)",
+      "containerClass": "FederationHomeContent",
+      "calls": [
+        {
+          "name": "Page",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "class_property",
+      "name": "page",
+      "exported": true,
+      "qualifiedName": "FederationHomeContent.page",
+      "line": 4,
+      "endLine": 4,
+      "signature": "protected readonly page: Page;",
+      "containerClass": "FederationHomeContent",
+      "calls": [
+        {
+          "name": "Page",
+          "edgeType": "type"
+        }
+      ]
+    }
+  ],
+  "imports": [
+    {
+      "module": "@playwright/test",
+      "resolved": "external"
+    }
+  ]
+}

@@ -1,0 +1,44 @@
+{
+  "sourcePath": "/Users/echoooooo/Desktop/code/Rocket.Chat/packages/ui-client/src/components/GenericTable/hooks/useSort.ts",
+  "symbols": [
+    {
+      "type": "variable_function",
+      "name": "useSort",
+      "exported": true,
+      "line": 5,
+      "endLine": 34,
+      "signature": "<T extends string>( by: T, initialDirection: Direction = 'asc', ): { sortBy: T; sortDirection: Direction; setSort: (sortBy: T, direction?: Direction | undefined) => void; } =>",
+      "calls": [
+        {
+          "name": "useState",
+          "edgeType": "call"
+        },
+        {
+          "name": "useCallback",
+          "edgeType": "call"
+        },
+        {
+          "name": "_setSort",
+          "edgeType": "call"
+        },
+        {
+          "name": "Direction",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "type",
+      "name": "Direction",
+      "line": 3,
+      "endLine": 3,
+      "signature": "type Direction = 'asc' | 'desc';"
+    }
+  ],
+  "imports": [
+    {
+      "module": "react",
+      "resolved": "external"
+    }
+  ]
+}

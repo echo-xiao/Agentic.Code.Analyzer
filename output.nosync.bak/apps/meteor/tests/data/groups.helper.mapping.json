@@ -1,0 +1,63 @@
+{
+  "sourcePath": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/tests/data/groups.helper.ts",
+  "symbols": [
+    {
+      "type": "variable_function",
+      "name": "createGroup",
+      "exported": true,
+      "line": 3,
+      "endLine": 8,
+      "signature": "({ name }: { name: string }) =>",
+      "calls": [
+        {
+          "name": "send",
+          "edgeType": "call"
+        },
+        {
+          "name": "set",
+          "edgeType": "call"
+        },
+        {
+          "name": "post",
+          "edgeType": "call"
+        },
+        {
+          "name": "api",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "variable_function",
+      "name": "deleteGroup",
+      "exported": true,
+      "line": 7,
+      "endLine": 19,
+      "signature": "({ groupId, roomName }: { groupId?: string; roomName?: string }) =>",
+      "calls": [
+        {
+          "name": "send",
+          "edgeType": "call"
+        },
+        {
+          "name": "set",
+          "edgeType": "call"
+        },
+        {
+          "name": "post",
+          "edgeType": "call"
+        },
+        {
+          "name": "api",
+          "edgeType": "call"
+        }
+      ]
+    }
+  ],
+  "imports": [
+    {
+      "module": "./api-data",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/tests/data/api-data.ts"
+    }
+  ]
+}

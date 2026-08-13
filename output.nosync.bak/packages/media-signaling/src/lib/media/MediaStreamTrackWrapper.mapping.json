@@ -1,0 +1,218 @@
+{
+  "sourcePath": "/Users/echoooooo/Desktop/code/Rocket.Chat/packages/media-signaling/src/lib/media/MediaStreamTrackWrapper.ts",
+  "symbols": [
+    {
+      "type": "class",
+      "name": "MediaStreamTrackWrapper",
+      "exported": true,
+      "line": 15,
+      "endLine": 148,
+      "signature": "export class MediaStreamTrackWrapper",
+      "calls": []
+    },
+    {
+      "type": "method",
+      "name": "clear",
+      "exported": true,
+      "qualifiedName": "MediaStreamTrackWrapper.clear",
+      "line": 77,
+      "endLine": 85,
+      "signature": "public clear()",
+      "containerClass": "MediaStreamTrackWrapper",
+      "calls": [
+        {
+          "name": "clearMuteTimeout",
+          "edgeType": "call"
+        },
+        {
+          "name": "clearEndedInterval",
+          "edgeType": "call"
+        },
+        {
+          "name": "removeEventListener",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "setMuted",
+      "exported": true,
+      "qualifiedName": "MediaStreamTrackWrapper.setMuted",
+      "line": 81,
+      "endLine": 92,
+      "signature": "private setMuted(muted: boolean)",
+      "containerClass": "MediaStreamTrackWrapper",
+      "calls": [
+        {
+          "name": "mute",
+          "edgeType": "event_emit"
+        },
+        {
+          "name": "unmute",
+          "edgeType": "event_emit"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "setEnded",
+      "exported": true,
+      "qualifiedName": "MediaStreamTrackWrapper.setEnded",
+      "line": 85,
+      "endLine": 95,
+      "signature": "private setEnded()",
+      "containerClass": "MediaStreamTrackWrapper",
+      "calls": [
+        {
+          "name": "clearEndedInterval",
+          "edgeType": "call"
+        },
+        {
+          "name": "clearMuteTimeout",
+          "edgeType": "call"
+        },
+        {
+          "name": "ended",
+          "edgeType": "event_emit"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "onTrackMute",
+      "exported": true,
+      "qualifiedName": "MediaStreamTrackWrapper.onTrackMute",
+      "line": 89,
+      "endLine": 98,
+      "signature": "private onTrackMute()",
+      "containerClass": "MediaStreamTrackWrapper",
+      "calls": [
+        {
+          "name": "clearMuteTimeout",
+          "edgeType": "call"
+        },
+        {
+          "name": "setMuted",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "onTrackUnmute",
+      "exported": true,
+      "qualifiedName": "MediaStreamTrackWrapper.onTrackUnmute",
+      "line": 93,
+      "endLine": 99,
+      "signature": "private onTrackUnmute()",
+      "containerClass": "MediaStreamTrackWrapper",
+      "calls": [
+        {
+          "name": "clearMuteTimeout",
+          "edgeType": "call"
+        },
+        {
+          "name": "setMuted",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "clearMuteTimeout",
+      "exported": true,
+      "qualifiedName": "MediaStreamTrackWrapper.clearMuteTimeout",
+      "line": 97,
+      "endLine": 104,
+      "signature": "private clearMuteTimeout()",
+      "containerClass": "MediaStreamTrackWrapper",
+      "calls": []
+    },
+    {
+      "type": "method",
+      "name": "clearEndedInterval",
+      "exported": true,
+      "qualifiedName": "MediaStreamTrackWrapper.clearEndedInterval",
+      "line": 101,
+      "endLine": 108,
+      "signature": "private clearEndedInterval()",
+      "containerClass": "MediaStreamTrackWrapper",
+      "calls": [
+        {
+          "name": "clearInterval",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "constructor",
+      "exported": true,
+      "qualifiedName": "MediaStreamTrackWrapper.constructor",
+      "line": 56,
+      "endLine": 75,
+      "signature": "constructor(public readonly track: MediaStreamTrack)",
+      "containerClass": "MediaStreamTrackWrapper",
+      "calls": [
+        {
+          "name": "setEnded",
+          "edgeType": "call"
+        },
+        {
+          "name": "onTrackMute",
+          "edgeType": "call"
+        },
+        {
+          "name": "onTrackUnmute",
+          "edgeType": "call"
+        },
+        {
+          "name": "addEventListener",
+          "edgeType": "call"
+        },
+        {
+          "name": "Emitter",
+          "edgeType": "new"
+        },
+        {
+          "name": "MediaStreamTrack",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "class_property",
+      "name": "emitter",
+      "exported": true,
+      "qualifiedName": "MediaStreamTrackWrapper.emitter",
+      "line": 38,
+      "endLine": 38,
+      "signature": "public readonly emitter: Emitter<MediaStreamTrackEvents>;",
+      "containerClass": "MediaStreamTrackWrapper",
+      "calls": [
+        {
+          "name": "Emitter",
+          "edgeType": "type"
+        },
+        {
+          "name": "MediaStreamTrackEvents",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "type",
+      "name": "MediaStreamTrackEvents",
+      "line": 9,
+      "endLine": 13,
+      "signature": "export type MediaStreamTrackEvents ="
+    }
+  ],
+  "imports": [
+    {
+      "module": "@rocket.chat/emitter",
+      "resolved": "external"
+    }
+  ]
+}

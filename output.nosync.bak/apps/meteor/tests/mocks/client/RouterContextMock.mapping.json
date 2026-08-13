@@ -1,0 +1,136 @@
+{
+  "sourcePath": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/tests/mocks/client/RouterContextMock.tsx",
+  "symbols": [
+    {
+      "type": "variable_function",
+      "name": "encodeSearchParameters",
+      "exported": false,
+      "line": 7,
+      "endLine": 17,
+      "signature": "(searchParameters: SearchParameters) =>",
+      "calls": [
+        {
+          "name": "entries",
+          "edgeType": "call"
+        },
+        {
+          "name": "append",
+          "edgeType": "call"
+        },
+        {
+          "name": "URLSearchParams",
+          "edgeType": "new"
+        },
+        {
+          "name": "SearchParameters",
+          "edgeType": "type"
+        },
+        {
+          "name": "LocationSearch",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "variable_function",
+      "name": "buildRoutePath",
+      "exported": false,
+      "line": 11,
+      "endLine": 48,
+      "signature": "(to: To): LocationPathname | `${LocationPathname}?${LocationSearch}` =>",
+      "calls": [
+        {
+          "name": "encodeSearchParameters",
+          "edgeType": "call"
+        },
+        {
+          "name": "compile",
+          "edgeType": "call"
+        },
+        {
+          "name": "To",
+          "edgeType": "type"
+        },
+        {
+          "name": "LocationPathname",
+          "edgeType": "type"
+        },
+        {
+          "name": "LocationSearch",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "variable_function",
+      "name": "RouterContextMock",
+      "exported": false,
+      "line": 23,
+      "endLine": 76,
+      "signature": "({ children, navigate, currentPath, searchParameters = {}, routeParameters = {} }: RouterContextMockProps) =>",
+      "calls": [
+        {
+          "name": "useRef",
+          "edgeType": "call"
+        },
+        {
+          "name": "buildRoutePath",
+          "edgeType": "call"
+        },
+        {
+          "name": "useMemo",
+          "edgeType": "call"
+        },
+        {
+          "name": "slice",
+          "edgeType": "call"
+        },
+        {
+          "name": "push",
+          "edgeType": "call"
+        },
+        {
+          "name": "RouterContext.Provider",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "RouterContextMockProps",
+          "edgeType": "type"
+        },
+        {
+          "name": "To",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "type",
+      "name": "RouterContextMockProps",
+      "line": 15,
+      "endLine": 21,
+      "signature": "type RouterContextMockProps ="
+    }
+  ],
+  "imports": [
+    {
+      "module": "@rocket.chat/ui-contexts",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/ui-contexts",
+      "resolved": "external"
+    },
+    {
+      "module": "path-to-regexp",
+      "resolved": "external"
+    },
+    {
+      "module": "react",
+      "resolved": "external"
+    },
+    {
+      "module": "react",
+      "resolved": "external"
+    }
+  ]
+}

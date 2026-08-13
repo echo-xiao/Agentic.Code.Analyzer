@@ -1,0 +1,59 @@
+{
+  "sourcePath": "/Users/echoooooo/Desktop/code/Rocket.Chat/packages/livechat/src/history.ts",
+  "symbols": [
+    {
+      "type": "variable_function",
+      "name": "createHistoryAdapter",
+      "exported": true,
+      "line": 5,
+      "endLine": 12,
+      "signature": "(memoryHistory: MemoryHistory): CustomHistory =>",
+      "calls": [
+        {
+          "name": "listen",
+          "edgeType": "call"
+        },
+        {
+          "name": "callback",
+          "edgeType": "call"
+        },
+        {
+          "name": "MemoryHistory",
+          "edgeType": "type"
+        },
+        {
+          "name": "CustomHistory",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "variable",
+      "name": "history",
+      "exported": true,
+      "line": 9,
+      "endLine": 9,
+      "signature": "history = createHistoryAdapter(createMemoryHistory())",
+      "calls": [
+        {
+          "name": "createMemoryHistory",
+          "edgeType": "call"
+        }
+      ]
+    }
+  ],
+  "imports": [
+    {
+      "module": "history",
+      "resolved": "external"
+    },
+    {
+      "module": "history",
+      "resolved": "external"
+    },
+    {
+      "module": "preact-router",
+      "resolved": "external"
+    }
+  ]
+}

@@ -1,0 +1,69 @@
+{
+  "sourcePath": "/Users/echoooooo/Desktop/code/Rocket.Chat/packages/apps/base-runtime/src/handlers/app/handleSetStatus.ts",
+  "symbols": [
+    {
+      "type": "function",
+      "name": "handleSetStatus",
+      "exported": true,
+      "line": 8,
+      "endLine": 28,
+      "signature": "export default async function handleSetStatus(request: RequestContext): Promise<null>",
+      "calls": [
+        {
+          "name": "isArray",
+          "edgeType": "call"
+        },
+        {
+          "name": "includes",
+          "edgeType": "call"
+        },
+        {
+          "name": "values",
+          "edgeType": "call"
+        },
+        {
+          "name": "get",
+          "edgeType": "call"
+        },
+        {
+          "name": "call",
+          "edgeType": "call"
+        },
+        {
+          "name": "wrapAppForRequest",
+          "edgeType": "call"
+        },
+        {
+          "name": "RequestContext",
+          "edgeType": "type"
+        },
+        {
+          "name": "App",
+          "edgeType": "type"
+        }
+      ]
+    }
+  ],
+  "imports": [
+    {
+      "module": "@rocket.chat/apps-engine/definition/App",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/apps-engine/definition/AppStatus",
+      "resolved": "external"
+    },
+    {
+      "module": "../../AppObjectRegistry",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/packages/apps/base-runtime/src/AppObjectRegistry.ts"
+    },
+    {
+      "module": "../../lib/requestContext",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/packages/apps/base-runtime/src/lib/requestContext.ts"
+    },
+    {
+      "module": "../../lib/wrapAppForRequest",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/packages/apps/base-runtime/src/lib/wrapAppForRequest.ts"
+    }
+  ]
+}

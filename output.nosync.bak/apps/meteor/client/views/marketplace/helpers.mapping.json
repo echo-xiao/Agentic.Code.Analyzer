@@ -1,0 +1,139 @@
+{
+  "sourcePath": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/client/views/marketplace/helpers.ts",
+  "symbols": [
+    {
+      "type": "variable",
+      "name": "appEnabledStatuses",
+      "exported": true,
+      "line": 9,
+      "endLine": 9,
+      "signature": "appEnabledStatuses = [AppStatus.AUTO_ENABLED, AppStatus.MANUALLY_ENABLED]",
+      "calls": []
+    },
+    {
+      "type": "variable_function",
+      "name": "appButtonProps",
+      "exported": true,
+      "line": 40,
+      "endLine": 168,
+      "signature": "({ installed, version, marketplaceVersion, isPurchased, price, purchaseType, subscriptionInfo, pricingPlans, isEnterpriseOnly, versionIncompatible, isAdminUser, // TODO: Unify this two variables requestedEndUser, endUserRequested, }: appButtonPropsType): appButtonResponseProps | undefined =>",
+      "calls": [
+        {
+          "name": "lt",
+          "edgeType": "call"
+        },
+        {
+          "name": "every",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "variable_function",
+      "name": "appIncompatibleStatusProps",
+      "exported": true,
+      "line": 59,
+      "endLine": 63,
+      "signature": "(): appStatusSpanResponseProps =>",
+      "calls": []
+    },
+    {
+      "type": "variable_function",
+      "name": "appStatusSpanProps",
+      "exported": true,
+      "line": 65,
+      "endLine": 143,
+      "signature": "( { installed, status, subscriptionInfo, appRequestStats, migrated, clusterStatus }: App, isEnterprise?: boolean, context?: string, isAppDetailsPage?: boolean, ): appStatusSpanResponseProps | undefined =>",
+      "calls": [
+        {
+          "name": "includes",
+          "edgeType": "call"
+        },
+        {
+          "name": "every",
+          "edgeType": "call"
+        },
+        {
+          "name": "App",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "variable_function",
+      "name": "appMultiStatusProps",
+      "exported": true,
+      "line": 74,
+      "endLine": 92,
+      "signature": "( app: App, isAppDetailsPage: boolean, context: string, isEnterprise: boolean, ): appStatusSpanResponseProps[] =>",
+      "calls": [
+        {
+          "name": "appStatusSpanProps",
+          "edgeType": "call"
+        },
+        {
+          "name": "push",
+          "edgeType": "call"
+        },
+        {
+          "name": "appIncompatibleStatusProps",
+          "edgeType": "call"
+        },
+        {
+          "name": "App",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "type",
+      "name": "Actions",
+      "line": 11,
+      "endLine": 11,
+      "signature": "export type Actions = 'update' | 'install' | 'purchase' | 'request';"
+    },
+    {
+      "type": "type",
+      "name": "appButtonResponseProps",
+      "line": 13,
+      "endLine": 17,
+      "signature": "type appButtonResponseProps ="
+    },
+    {
+      "type": "type",
+      "name": "appStatusSpanResponseProps",
+      "line": 19,
+      "endLine": 36,
+      "signature": "export type appStatusSpanResponseProps ="
+    },
+    {
+      "type": "type",
+      "name": "appButtonPropsType",
+      "line": 38,
+      "endLine": 38,
+      "signature": "type appButtonPropsType = App &"
+    }
+  ],
+  "imports": [
+    {
+      "module": "@rocket.chat/apps-engine/definition/AppStatus",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/core-typings",
+      "resolved": "external"
+    },
+    {
+      "module": "semver",
+      "resolved": "external"
+    },
+    {
+      "module": "./helpers/appErroredStatuses",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/client/views/marketplace/helpers/appErroredStatuses.ts"
+    },
+    {
+      "module": "../../../app/utils/lib/i18n",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/app/utils/lib/i18n.ts"
+    }
+  ]
+}

@@ -1,0 +1,328 @@
+{
+  "sourcePath": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/client/views/admin/customEmoji/AddCustomEmoji.tsx",
+  "symbols": [
+    {
+      "type": "inner_function",
+      "name": "handleSave",
+      "exported": false,
+      "qualifiedName": "AddCustomEmoji.handleSave",
+      "line": 43,
+      "endLine": 61,
+      "signature": "async () =>",
+      "calls": [
+        {
+          "name": "setErrors",
+          "edgeType": "call"
+        },
+        {
+          "name": "append",
+          "edgeType": "call"
+        },
+        {
+          "name": "saveAction",
+          "edgeType": "call"
+        },
+        {
+          "name": "FormData",
+          "edgeType": "new"
+        }
+      ]
+    },
+    {
+      "type": "inner_function",
+      "name": "handleChangeName",
+      "exported": false,
+      "qualifiedName": "AddCustomEmoji.handleChangeName",
+      "line": 65,
+      "endLine": 71,
+      "signature": "(e: ChangeEvent<HTMLInputElement>): void =>",
+      "calls": [
+        {
+          "name": "setErrors",
+          "edgeType": "call"
+        },
+        {
+          "name": "setName",
+          "edgeType": "call"
+        },
+        {
+          "name": "ChangeEvent",
+          "edgeType": "type"
+        },
+        {
+          "name": "HTMLInputElement",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "inner_function",
+      "name": "handleChangeAliases",
+      "exported": false,
+      "qualifiedName": "AddCustomEmoji.handleChangeAliases",
+      "line": 73,
+      "endLine": 79,
+      "signature": "(e: ChangeEvent<HTMLInputElement>): void =>",
+      "calls": [
+        {
+          "name": "setErrors",
+          "edgeType": "call"
+        },
+        {
+          "name": "setAliases",
+          "edgeType": "call"
+        },
+        {
+          "name": "ChangeEvent",
+          "edgeType": "type"
+        },
+        {
+          "name": "HTMLInputElement",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "inner_function",
+      "name": "onSuccess",
+      "exported": false,
+      "qualifiedName": "AddCustomEmoji.onSuccess",
+      "line": 36,
+      "endLine": 40,
+      "signature": "() =>",
+      "calls": [
+        {
+          "name": "dispatchToastMessage",
+          "edgeType": "call"
+        },
+        {
+          "name": "onChange",
+          "edgeType": "call"
+        },
+        {
+          "name": "close",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "variable_function",
+      "name": "AddCustomEmoji",
+      "exported": false,
+      "line": 16,
+      "endLine": 123,
+      "signature": "({ close, onChange, ...props }: AddCustomEmojiProps) =>",
+      "calls": [
+        {
+          "name": "useTranslation",
+          "edgeType": "call"
+        },
+        {
+          "name": "useState",
+          "edgeType": "call"
+        },
+        {
+          "name": "useCallback",
+          "edgeType": "call"
+        },
+        {
+          "name": "setEmojiFile",
+          "edgeType": "call"
+        },
+        {
+          "name": "setNewEmojiPreview",
+          "edgeType": "call"
+        },
+        {
+          "name": "createObjectURL",
+          "edgeType": "call"
+        },
+        {
+          "name": "setErrors",
+          "edgeType": "call"
+        },
+        {
+          "name": "useToastMessageDispatch",
+          "edgeType": "call"
+        },
+        {
+          "name": "useEndpointUploadMutation",
+          "edgeType": "call"
+        },
+        {
+          "name": "dispatchToastMessage",
+          "edgeType": "call"
+        },
+        {
+          "name": "onChange",
+          "edgeType": "call"
+        },
+        {
+          "name": "close",
+          "edgeType": "call"
+        },
+        {
+          "name": "append",
+          "edgeType": "call"
+        },
+        {
+          "name": "saveAction",
+          "edgeType": "call"
+        },
+        {
+          "name": "useSingleFileInput",
+          "edgeType": "call"
+        },
+        {
+          "name": "setName",
+          "edgeType": "call"
+        },
+        {
+          "name": "setAliases",
+          "edgeType": "call"
+        },
+        {
+          "name": "ContextualbarScrollableContent",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "Field",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "FieldLabel",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "FieldRow",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "FieldError",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "Box",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "Margins",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "ContextualbarFooter",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "ButtonGroup",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "Button",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "TextInput",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "IconButton",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "name",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "handleChangeName",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "aliases",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "handleChangeAliases",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "clickUpload",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "newEmojiPreview",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "close",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "handleSave",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "FormData",
+          "edgeType": "new"
+        },
+        {
+          "name": "AddCustomEmojiProps",
+          "edgeType": "type"
+        },
+        {
+          "name": "Blob",
+          "edgeType": "type"
+        },
+        {
+          "name": "ChangeEvent",
+          "edgeType": "type"
+        },
+        {
+          "name": "HTMLInputElement",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "type",
+      "name": "AddCustomEmojiProps",
+      "line": 11,
+      "endLine": 14,
+      "signature": "export type AddCustomEmojiProps ="
+    }
+  ],
+  "imports": [
+    {
+      "module": "@rocket.chat/fuselage",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/ui-client",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/ui-contexts",
+      "resolved": "external"
+    },
+    {
+      "module": "react",
+      "resolved": "external"
+    },
+    {
+      "module": "react",
+      "resolved": "external"
+    },
+    {
+      "module": "react-i18next",
+      "resolved": "external"
+    },
+    {
+      "module": "../../../hooks/useEndpointUploadMutation",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/client/hooks/useEndpointUploadMutation.ts"
+    },
+    {
+      "module": "../../../hooks/useSingleFileInput",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/client/hooks/useSingleFileInput.ts"
+    }
+  ]
+}

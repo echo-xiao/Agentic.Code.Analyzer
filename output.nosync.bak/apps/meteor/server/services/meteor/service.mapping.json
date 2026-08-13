@@ -1,0 +1,383 @@
+{
+  "sourcePath": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/server/services/meteor/service.ts",
+  "symbols": [
+    {
+      "type": "module",
+      "name": "service",
+      "exported": false,
+      "line": 1,
+      "endLine": 219,
+      "signature": "service",
+      "calls": [
+        {
+          "name": "use",
+          "edgeType": "call"
+        },
+        {
+          "name": "next",
+          "edgeType": "call"
+        },
+        {
+          "name": "updateValue",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "class",
+      "name": "MeteorService",
+      "exported": true,
+      "line": 35,
+      "endLine": 218,
+      "signature": "export class MeteorService extends ServiceClassInternal implements IMeteor",
+      "calls": [
+        {
+          "name": "ServiceClassInternal",
+          "edgeType": "type"
+        },
+        {
+          "name": "IMeteor",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "started",
+      "exported": true,
+      "qualifiedName": "MeteorService.started",
+      "line": 154,
+      "endLine": 175,
+      "signature": "override async started(): Promise<void>",
+      "containerClass": "MeteorService",
+      "calls": [
+        {
+          "name": "call",
+          "edgeType": "call"
+        },
+        {
+          "name": "set",
+          "edgeType": "call"
+        },
+        {
+          "name": "meteor.clientVersionUpdated",
+          "edgeType": "event_emit"
+        },
+        {
+          "name": "AutoUpdateRecord",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "getAutoUpdateClientVersions",
+      "exported": true,
+      "qualifiedName": "MeteorService.getAutoUpdateClientVersions",
+      "line": 158,
+      "endLine": 160,
+      "signature": "async getAutoUpdateClientVersions(): Promise<Record<string, AutoUpdateRecord>>",
+      "containerClass": "MeteorService",
+      "calls": [
+        {
+          "name": "fromEntries",
+          "edgeType": "call"
+        },
+        {
+          "name": "AutoUpdateRecord",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "getLoginServiceConfiguration",
+      "exported": true,
+      "qualifiedName": "MeteorService.getLoginServiceConfiguration",
+      "line": 162,
+      "endLine": 164,
+      "signature": "async getLoginServiceConfiguration(): Promise<LoginServiceConfiguration[]>",
+      "containerClass": "MeteorService",
+      "calls": [
+        {
+          "name": "toArray",
+          "edgeType": "call"
+        },
+        {
+          "name": "find",
+          "edgeType": "call"
+        },
+        {
+          "name": "LoginServiceConfiguration",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "callMethodWithToken",
+      "exported": true,
+      "qualifiedName": "MeteorService.callMethodWithToken",
+      "line": 166,
+      "endLine": 186,
+      "signature": "async callMethodWithToken( userId: string, token: string, method: string, args: any[], ): Promise<{ result: unknown; }>",
+      "containerClass": "MeteorService",
+      "calls": [
+        {
+          "name": "findOneByIdAndLoginHashedToken",
+          "edgeType": "call"
+        },
+        {
+          "name": "callAsync",
+          "edgeType": "call"
+        },
+        {
+          "name": "runAsUser",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "notifyGuestStatusChanged",
+      "exported": true,
+      "qualifiedName": "MeteorService.notifyGuestStatusChanged",
+      "line": 177,
+      "endLine": 179,
+      "signature": "async notifyGuestStatusChanged(token: string, status: UserStatus): Promise<void>",
+      "containerClass": "MeteorService",
+      "calls": [
+        {
+          "name": "notifyGuestStatusChanged",
+          "edgeType": "call"
+        },
+        {
+          "name": "UserStatus",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "getURL",
+      "exported": true,
+      "qualifiedName": "MeteorService.getURL",
+      "line": 181,
+      "endLine": 183,
+      "signature": "async getURL(path: string, params: Record<string, any> = {}, cloudDeepLinkUrl?: string): Promise<string>",
+      "containerClass": "MeteorService",
+      "calls": [
+        {
+          "name": "getURL",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "getMessageURLToReplyTo",
+      "exported": true,
+      "qualifiedName": "MeteorService.getMessageURLToReplyTo",
+      "line": 185,
+      "endLine": 187,
+      "signature": "async getMessageURLToReplyTo(roomType: string, roomId: string, messageIdToReplyTo: string): Promise<string>",
+      "containerClass": "MeteorService",
+      "calls": [
+        {
+          "name": "getURL",
+          "edgeType": "call"
+        },
+        {
+          "name": "getRouteLink",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "constructor",
+      "exported": true,
+      "qualifiedName": "MeteorService.constructor",
+      "line": 38,
+      "endLine": 152,
+      "signature": "constructor()",
+      "containerClass": "MeteorService",
+      "calls": [
+        {
+          "name": "onEvent",
+          "edgeType": "call"
+        },
+        {
+          "name": "get",
+          "edgeType": "call"
+        },
+        {
+          "name": "close",
+          "edgeType": "call"
+        },
+        {
+          "name": "forEach",
+          "edgeType": "call"
+        },
+        {
+          "name": "set",
+          "edgeType": "call"
+        },
+        {
+          "name": "setValue",
+          "edgeType": "call"
+        },
+        {
+          "name": "suppress",
+          "edgeType": "call"
+        },
+        {
+          "name": "wrapExceptions",
+          "edgeType": "call"
+        },
+        {
+          "name": "removed",
+          "edgeType": "call"
+        },
+        {
+          "name": "invalidatePublicationUserCache",
+          "edgeType": "call"
+        },
+        {
+          "name": "processOnChange",
+          "edgeType": "call"
+        },
+        {
+          "name": "findOneAgentById",
+          "edgeType": "call"
+        },
+        {
+          "name": "remove",
+          "edgeType": "call"
+        },
+        {
+          "name": "isOutgoingIntegration",
+          "edgeType": "call"
+        },
+        {
+          "name": "addIntegration",
+          "edgeType": "call"
+        },
+        {
+          "name": "removeIntegration",
+          "edgeType": "call"
+        },
+        {
+          "name": "configureEmailInboxes",
+          "edgeType": "call"
+        },
+        {
+          "name": "now",
+          "edgeType": "call"
+        },
+        {
+          "name": "getTime",
+          "edgeType": "call"
+        },
+        {
+          "name": "observe",
+          "edgeType": "call"
+        },
+        {
+          "name": "ListenersModule",
+          "edgeType": "new"
+        },
+        {
+          "name": "ILivechatAgent",
+          "edgeType": "type"
+        }
+      ]
+    }
+  ],
+  "imports": [
+    {
+      "module": "@rocket.chat/core-services",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/core-services",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/core-typings",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/models",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/tools",
+      "resolved": "external"
+    },
+    {
+      "module": "meteor/meteor",
+      "resolved": "external"
+    },
+    {
+      "module": "./userReactivity",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/server/services/meteor/userReactivity.ts"
+    },
+    {
+      "module": "../../../app/integrations/server/lib/definition",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/app/integrations/server/lib/definition.ts"
+    },
+    {
+      "module": "../../../app/integrations/server/lib/triggerHandler",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/app/integrations/server/lib/triggerHandler.ts"
+    },
+    {
+      "module": "../../../app/livechat/server/lib/guests",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/app/livechat/server/lib/guests.ts"
+    },
+    {
+      "module": "../../../app/livechat/server/lib/stream/agentStatus",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/app/livechat/server/lib/stream/agentStatus.ts"
+    },
+    {
+      "module": "../../../app/metrics/server",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/app/metrics/server/index.ts"
+    },
+    {
+      "module": "../../../app/notifications/server/lib/Notifications",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/app/notifications/server/lib/Notifications.ts"
+    },
+    {
+      "module": "../../../app/settings/server",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/app/settings/server/index.ts"
+    },
+    {
+      "module": "../../../app/settings/server/Middleware",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/app/settings/server/Middleware.ts"
+    },
+    {
+      "module": "../../../app/settings/server/raw",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/app/settings/server/raw.ts"
+    },
+    {
+      "module": "../../../app/utils/server/getURL",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/app/utils/server/getURL.ts"
+    },
+    {
+      "module": "../../features/EmailInbox/EmailInbox",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/server/features/EmailInbox/EmailInbox.ts"
+    },
+    {
+      "module": "../../lib/rooms/roomCoordinator",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/server/lib/rooms/roomCoordinator.ts"
+    },
+    {
+      "module": "../../modules/listeners/listeners.module",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/server/modules/listeners/listeners.module.ts"
+    },
+    {
+      "module": "../../modules/streamer/publication-user-cache",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/server/modules/streamer/publication-user-cache.ts"
+    }
+  ]
+}

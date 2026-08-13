@@ -1,0 +1,136 @@
+{
+  "sourcePath": "/Users/echoooooo/Desktop/code/Rocket.Chat/packages/apps/src/server/bridges/ApiBridge.ts",
+  "symbols": [
+    {
+      "type": "class",
+      "name": "ApiBridge",
+      "exported": true,
+      "line": 7,
+      "endLine": 49,
+      "signature": "export abstract class ApiBridge extends BaseBridge",
+      "calls": [
+        {
+          "name": "BaseBridge",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "doRegisterApi",
+      "exported": true,
+      "qualifiedName": "ApiBridge.doRegisterApi",
+      "line": 8,
+      "endLine": 12,
+      "signature": "public async doRegisterApi(api: AppApi, appId: string): Promise<void>",
+      "containerClass": "ApiBridge",
+      "calls": [
+        {
+          "name": "hasDefaultPermission",
+          "edgeType": "call"
+        },
+        {
+          "name": "registerApi",
+          "edgeType": "call"
+        },
+        {
+          "name": "AppApi",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "doUnregisterApis",
+      "exported": true,
+      "qualifiedName": "ApiBridge.doUnregisterApis",
+      "line": 12,
+      "endLine": 16,
+      "signature": "public async doUnregisterApis(appId: string): Promise<void>",
+      "containerClass": "ApiBridge",
+      "calls": [
+        {
+          "name": "hasDefaultPermission",
+          "edgeType": "call"
+        },
+        {
+          "name": "unregisterApis",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "registerApi",
+      "exported": true,
+      "qualifiedName": "ApiBridge.registerApi",
+      "line": 22,
+      "endLine": 22,
+      "signature": "protected abstract registerApi(api: AppApi, appId: string): Promise<void>;",
+      "containerClass": "ApiBridge",
+      "calls": [
+        {
+          "name": "AppApi",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "unregisterApis",
+      "exported": true,
+      "qualifiedName": "ApiBridge.unregisterApis",
+      "line": 29,
+      "endLine": 29,
+      "signature": "protected abstract unregisterApis(appId: string): Promise<void>;",
+      "containerClass": "ApiBridge",
+      "calls": []
+    },
+    {
+      "type": "method",
+      "name": "hasDefaultPermission",
+      "exported": true,
+      "qualifiedName": "ApiBridge.hasDefaultPermission",
+      "line": 31,
+      "endLine": 44,
+      "signature": "private hasDefaultPermission(appId: string): boolean",
+      "containerClass": "ApiBridge",
+      "calls": [
+        {
+          "name": "hasPermission",
+          "edgeType": "call"
+        },
+        {
+          "name": "notifyAboutError",
+          "edgeType": "call"
+        },
+        {
+          "name": "PermissionDeniedError",
+          "edgeType": "new"
+        }
+      ]
+    }
+  ],
+  "imports": [
+    {
+      "module": "./BaseBridge",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/packages/apps/src/server/bridges/BaseBridge.ts"
+    },
+    {
+      "module": "../errors/PermissionDeniedError",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/packages/apps/src/server/errors/PermissionDeniedError.ts"
+    },
+    {
+      "module": "../managers/AppApi",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/packages/apps/src/server/managers/AppApi.ts"
+    },
+    {
+      "module": "../managers/AppPermissionManager",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/packages/apps/src/server/managers/AppPermissionManager.ts"
+    },
+    {
+      "module": "../permissions/AppPermissions",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/packages/apps/src/server/permissions/AppPermissions.ts"
+    }
+  ]
+}

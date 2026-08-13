@@ -1,0 +1,229 @@
+{
+  "sourcePath": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/client/views/admin/ABAC/ABACSettingTab/AbacEnabledToggle.tsx",
+  "symbols": [
+    {
+      "type": "inner_function",
+      "name": "onChange",
+      "exported": false,
+      "qualifiedName": "ABACEnabledToggle.onChange",
+      "line": 29,
+      "endLine": 52,
+      "signature": "(value: boolean) =>",
+      "calls": [
+        {
+          "name": "setValue",
+          "edgeType": "call"
+        },
+        {
+          "name": "dispatch",
+          "edgeType": "call"
+        },
+        {
+          "name": "setModal",
+          "edgeType": "call"
+        },
+        {
+          "name": "handleChange",
+          "edgeType": "call"
+        },
+        {
+          "name": "WarningModal",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "EditableSetting",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "inner_function",
+      "name": "handleChange",
+      "exported": false,
+      "qualifiedName": "ABACEnabledToggle.handleChange",
+      "line": 35,
+      "endLine": 38,
+      "signature": "(value: boolean, setting: EditableSetting) =>",
+      "calls": [
+        {
+          "name": "setValue",
+          "edgeType": "call"
+        },
+        {
+          "name": "dispatch",
+          "edgeType": "call"
+        },
+        {
+          "name": "EditableSetting",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "inner_function",
+      "name": "onReset",
+      "exported": false,
+      "qualifiedName": "ABACEnabledToggle.onReset",
+      "line": 56,
+      "endLine": 71,
+      "signature": "() =>",
+      "calls": [
+        {
+          "name": "setModal",
+          "edgeType": "call"
+        },
+        {
+          "name": "setValue",
+          "edgeType": "call"
+        },
+        {
+          "name": "dispatch",
+          "edgeType": "call"
+        },
+        {
+          "name": "WarningModal",
+          "edgeType": "jsx"
+        }
+      ]
+    },
+    {
+      "type": "variable_function",
+      "name": "ABACEnabledToggle",
+      "exported": false,
+      "line": 17,
+      "endLine": 96,
+      "signature": "({ className, hasABAC }: ABACEnabledToggleProps) =>",
+      "calls": [
+        {
+          "name": "useEditableSetting",
+          "edgeType": "call"
+        },
+        {
+          "name": "useSetModal",
+          "edgeType": "call"
+        },
+        {
+          "name": "useSettingsDispatch",
+          "edgeType": "call"
+        },
+        {
+          "name": "useTranslation",
+          "edgeType": "call"
+        },
+        {
+          "name": "useState",
+          "edgeType": "call"
+        },
+        {
+          "name": "useEffect",
+          "edgeType": "call"
+        },
+        {
+          "name": "setValue",
+          "edgeType": "call"
+        },
+        {
+          "name": "useCallback",
+          "edgeType": "call"
+        },
+        {
+          "name": "dispatch",
+          "edgeType": "call"
+        },
+        {
+          "name": "setModal",
+          "edgeType": "call"
+        },
+        {
+          "name": "handleChange",
+          "edgeType": "call"
+        },
+        {
+          "name": "onChange",
+          "edgeType": "call"
+        },
+        {
+          "name": "onReset",
+          "edgeType": "call"
+        },
+        {
+          "name": "WarningModal",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "SettingSkeleton",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "MemoizedSetting",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "value",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "className",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "ABACEnabledToggleProps",
+          "edgeType": "type"
+        },
+        {
+          "name": "EditableSetting",
+          "edgeType": "type"
+        },
+        {
+          "name": "SettingValue",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "type",
+      "name": "ABACEnabledToggleProps",
+      "line": 12,
+      "endLine": 15,
+      "signature": "export type ABACEnabledToggleProps ="
+    }
+  ],
+  "imports": [
+    {
+      "module": "@rocket.chat/core-typings",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/ui-contexts",
+      "resolved": "external"
+    },
+    {
+      "module": "react",
+      "resolved": "external"
+    },
+    {
+      "module": "react-i18next",
+      "resolved": "external"
+    },
+    {
+      "module": "./WarningModal",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/client/views/admin/ABAC/ABACSettingTab/WarningModal.tsx"
+    },
+    {
+      "module": "../../EditableSettingsContext",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/client/views/admin/EditableSettingsContext.ts"
+    },
+    {
+      "module": "../../EditableSettingsContext",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/client/views/admin/EditableSettingsContext.ts"
+    },
+    {
+      "module": "../../settings/Setting/MemoizedSetting",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/client/views/admin/settings/Setting/MemoizedSetting.tsx"
+    },
+    {
+      "module": "../../settings/Setting/SettingSkeleton",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/client/views/admin/settings/Setting/SettingSkeleton.tsx"
+    }
+  ]
+}

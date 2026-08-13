@@ -1,0 +1,231 @@
+{
+  "sourcePath": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/tests/e2e/page-objects/omnichannel/omnichannel-contact-center/omnichannel-contact-center-contacts.ts",
+  "symbols": [
+    {
+      "type": "class",
+      "name": "OmnichannelContactCenterContactsTable",
+      "exported": false,
+      "line": 10,
+      "endLine": 14,
+      "signature": "class OmnichannelContactCenterContactsTable extends Table",
+      "calls": [
+        {
+          "name": "Table",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "constructor",
+      "exported": false,
+      "qualifiedName": "OmnichannelContactCenterContactsTable.constructor",
+      "line": 11,
+      "endLine": 13,
+      "signature": "constructor(page: Page)",
+      "containerClass": "OmnichannelContactCenterContactsTable",
+      "calls": [
+        {
+          "name": "getByRole",
+          "edgeType": "call"
+        },
+        {
+          "name": "Page",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "class",
+      "name": "OmnichannelContactCenterContacts",
+      "exported": true,
+      "line": 16,
+      "endLine": 45,
+      "signature": "export class OmnichannelContactCenterContacts extends OmnichannelContactCenter",
+      "calls": [
+        {
+          "name": "OmnichannelContactCenter",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "deleteContact",
+      "exported": true,
+      "qualifiedName": "OmnichannelContactCenterContacts.deleteContact",
+      "line": 40,
+      "endLine": 44,
+      "signature": "async deleteContact(contactName: string)",
+      "containerClass": "OmnichannelContactCenterContacts",
+      "calls": [
+        {
+          "name": "click",
+          "edgeType": "call"
+        },
+        {
+          "name": "getByRole",
+          "edgeType": "call"
+        },
+        {
+          "name": "findRowByName",
+          "edgeType": "call"
+        },
+        {
+          "name": "selectMenuItem",
+          "edgeType": "call"
+        },
+        {
+          "name": "waitForDisplay",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "constructor",
+      "exported": true,
+      "qualifiedName": "OmnichannelContactCenterContacts.constructor",
+      "line": 27,
+      "endLine": 34,
+      "signature": "constructor(page: Page)",
+      "containerClass": "OmnichannelContactCenterContacts",
+      "calls": [
+        {
+          "name": "OmnichannelContactInfo",
+          "edgeType": "new"
+        },
+        {
+          "name": "OmnichannelEditContactFlexTab",
+          "edgeType": "new"
+        },
+        {
+          "name": "OmnichannelContactCenterContactsTable",
+          "edgeType": "new"
+        },
+        {
+          "name": "OmnichannelDeleteContactModal",
+          "edgeType": "new"
+        },
+        {
+          "name": "MenuMoreActions",
+          "edgeType": "new"
+        },
+        {
+          "name": "Page",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "class_property",
+      "name": "contactInfo",
+      "exported": true,
+      "qualifiedName": "OmnichannelContactCenterContacts.contactInfo",
+      "line": 17,
+      "endLine": 17,
+      "signature": "readonly contactInfo: OmnichannelContactInfo;",
+      "containerClass": "OmnichannelContactCenterContacts",
+      "calls": [
+        {
+          "name": "OmnichannelContactInfo",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "class_property",
+      "name": "editContact",
+      "exported": true,
+      "qualifiedName": "OmnichannelContactCenterContacts.editContact",
+      "line": 19,
+      "endLine": 19,
+      "signature": "readonly editContact: OmnichannelEditContactFlexTab;",
+      "containerClass": "OmnichannelContactCenterContacts",
+      "calls": [
+        {
+          "name": "OmnichannelEditContactFlexTab",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "class_property",
+      "name": "table",
+      "exported": true,
+      "qualifiedName": "OmnichannelContactCenterContacts.table",
+      "line": 21,
+      "endLine": 21,
+      "signature": "readonly table: OmnichannelContactCenterContactsTable;",
+      "containerClass": "OmnichannelContactCenterContacts",
+      "calls": [
+        {
+          "name": "OmnichannelContactCenterContactsTable",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "class_property",
+      "name": "deleteContactModal",
+      "exported": true,
+      "qualifiedName": "OmnichannelContactCenterContacts.deleteContactModal",
+      "line": 23,
+      "endLine": 23,
+      "signature": "readonly deleteContactModal: OmnichannelDeleteContactModal;",
+      "containerClass": "OmnichannelContactCenterContacts",
+      "calls": [
+        {
+          "name": "OmnichannelDeleteContactModal",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "class_property",
+      "name": "menu",
+      "exported": true,
+      "qualifiedName": "OmnichannelContactCenterContacts.menu",
+      "line": 25,
+      "endLine": 25,
+      "signature": "readonly menu: MenuMoreActions;",
+      "containerClass": "OmnichannelContactCenterContacts",
+      "calls": [
+        {
+          "name": "MenuMoreActions",
+          "edgeType": "type"
+        }
+      ]
+    }
+  ],
+  "imports": [
+    {
+      "module": "@playwright/test",
+      "resolved": "external"
+    },
+    {
+      "module": "../omnichannel-info",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/tests/e2e/page-objects/omnichannel/omnichannel-info.ts"
+    },
+    {
+      "module": "./omnichannel-contact-center",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/tests/e2e/page-objects/omnichannel/omnichannel-contact-center/omnichannel-contact-center.ts"
+    },
+    {
+      "module": "../../fragments",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/tests/e2e/page-objects/fragments/index.ts"
+    },
+    {
+      "module": "../../fragments/flextabs",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/tests/e2e/page-objects/fragments/flextabs/index.ts"
+    },
+    {
+      "module": "../../fragments/modals",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/tests/e2e/page-objects/fragments/modals/index.ts"
+    },
+    {
+      "module": "../../fragments/table",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/tests/e2e/page-objects/fragments/table.ts"
+    }
+  ]
+}

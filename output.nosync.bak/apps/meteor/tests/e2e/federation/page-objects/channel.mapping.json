@@ -1,0 +1,392 @@
+{
+  "sourcePath": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/tests/e2e/federation/page-objects/channel.ts",
+  "symbols": [
+    {
+      "type": "class",
+      "name": "FederationChannel",
+      "exported": true,
+      "line": 9,
+      "endLine": 94,
+      "signature": "export class FederationChannel",
+      "calls": []
+    },
+    {
+      "type": "method",
+      "name": "getFederationServerName",
+      "exported": true,
+      "qualifiedName": "FederationChannel.getFederationServerName",
+      "line": 44,
+      "endLine": 46,
+      "signature": "async getFederationServerName(): Promise<string>",
+      "containerClass": "FederationChannel",
+      "calls": [
+        {
+          "name": "trim",
+          "edgeType": "call"
+        },
+        {
+          "name": "substring",
+          "edgeType": "call"
+        },
+        {
+          "name": "innerText",
+          "edgeType": "call"
+        },
+        {
+          "name": "locator",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "createPublicChannelAndInviteUsersUsingCreationModal",
+      "exported": true,
+      "qualifiedName": "FederationChannel.createPublicChannelAndInviteUsersUsingCreationModal",
+      "line": 48,
+      "endLine": 54,
+      "signature": "async createPublicChannelAndInviteUsersUsingCreationModal(channelName: string, usernamesToInvite: string[])",
+      "containerClass": "FederationChannel",
+      "calls": [
+        {
+          "name": "createNew",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "createDiscussionSearchingForChannel",
+      "exported": true,
+      "qualifiedName": "FederationChannel.createDiscussionSearchingForChannel",
+      "line": 52,
+      "endLine": 57,
+      "signature": "async createDiscussionSearchingForChannel(channelName: string)",
+      "containerClass": "FederationChannel",
+      "calls": [
+        {
+          "name": "openCreate",
+          "edgeType": "call"
+        },
+        {
+          "name": "waitFor",
+          "edgeType": "call"
+        },
+        {
+          "name": "locator",
+          "edgeType": "call"
+        },
+        {
+          "name": "focus",
+          "edgeType": "call"
+        },
+        {
+          "name": "type",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "createTeam",
+      "exported": true,
+      "qualifiedName": "FederationChannel.createTeam",
+      "line": 56,
+      "endLine": 58,
+      "signature": "async createTeam(teamName: string)",
+      "containerClass": "FederationChannel",
+      "calls": [
+        {
+          "name": "createNew",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "createPrivateGroupAndInviteUsersUsingCreationModal",
+      "exported": true,
+      "qualifiedName": "FederationChannel.createPrivateGroupAndInviteUsersUsingCreationModal",
+      "line": 60,
+      "endLine": 66,
+      "signature": "async createPrivateGroupAndInviteUsersUsingCreationModal(channelName: string, usernamesToInvite: string[])",
+      "containerClass": "FederationChannel",
+      "calls": [
+        {
+          "name": "createNew",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "createDirectMessagesUsingModal",
+      "exported": true,
+      "qualifiedName": "FederationChannel.createDirectMessagesUsingModal",
+      "line": 64,
+      "endLine": 71,
+      "signature": "async createDirectMessagesUsingModal(usernamesToInvite: string[])",
+      "containerClass": "FederationChannel",
+      "calls": [
+        {
+          "name": "openCreate",
+          "edgeType": "call"
+        },
+        {
+          "name": "inviteUserToDM",
+          "edgeType": "call"
+        },
+        {
+          "name": "click",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "createNonFederatedPublicChannelAndInviteUsersUsingCreationModal",
+      "exported": true,
+      "qualifiedName": "FederationChannel.createNonFederatedPublicChannelAndInviteUsersUsingCreationModal",
+      "line": 68,
+      "endLine": 77,
+      "signature": "async createNonFederatedPublicChannelAndInviteUsersUsingCreationModal(channelName: string, usernamesToInvite: string[])",
+      "containerClass": "FederationChannel",
+      "calls": [
+        {
+          "name": "openCreate",
+          "edgeType": "call"
+        },
+        {
+          "name": "click",
+          "edgeType": "call"
+        },
+        {
+          "name": "fill",
+          "edgeType": "call"
+        },
+        {
+          "name": "inviteUserToChannel",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "constructor",
+      "exported": true,
+      "qualifiedName": "FederationChannel.constructor",
+      "line": 28,
+      "endLine": 38,
+      "signature": "constructor(page: Page)",
+      "containerClass": "FederationChannel",
+      "calls": [
+        {
+          "name": "FederationHomeContent",
+          "edgeType": "new"
+        },
+        {
+          "name": "FederationSidenav",
+          "edgeType": "new"
+        },
+        {
+          "name": "Navbar",
+          "edgeType": "new"
+        },
+        {
+          "name": "FederationHomeFlextab",
+          "edgeType": "new"
+        },
+        {
+          "name": "RoomToolbar",
+          "edgeType": "new"
+        },
+        {
+          "name": "ToastMessages",
+          "edgeType": "new"
+        },
+        {
+          "name": "CreateNewChannelModal",
+          "edgeType": "new"
+        },
+        {
+          "name": "CreateNewDMModal",
+          "edgeType": "new"
+        },
+        {
+          "name": "Page",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "class_property",
+      "name": "page",
+      "exported": true,
+      "qualifiedName": "FederationChannel.page",
+      "line": 10,
+      "endLine": 10,
+      "signature": "private readonly page: Page;",
+      "containerClass": "FederationChannel",
+      "calls": [
+        {
+          "name": "Page",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "class_property",
+      "name": "content",
+      "exported": true,
+      "qualifiedName": "FederationChannel.content",
+      "line": 12,
+      "endLine": 12,
+      "signature": "readonly content: FederationHomeContent;",
+      "containerClass": "FederationChannel",
+      "calls": [
+        {
+          "name": "FederationHomeContent",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "class_property",
+      "name": "sidenav",
+      "exported": true,
+      "qualifiedName": "FederationChannel.sidenav",
+      "line": 14,
+      "endLine": 14,
+      "signature": "readonly sidenav: FederationSidenav;",
+      "containerClass": "FederationChannel",
+      "calls": [
+        {
+          "name": "FederationSidenav",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "class_property",
+      "name": "navbar",
+      "exported": true,
+      "qualifiedName": "FederationChannel.navbar",
+      "line": 16,
+      "endLine": 16,
+      "signature": "readonly navbar: Navbar;",
+      "containerClass": "FederationChannel",
+      "calls": [
+        {
+          "name": "Navbar",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "class_property",
+      "name": "tabs",
+      "exported": true,
+      "qualifiedName": "FederationChannel.tabs",
+      "line": 18,
+      "endLine": 18,
+      "signature": "readonly tabs: FederationHomeFlextab;",
+      "containerClass": "FederationChannel",
+      "calls": [
+        {
+          "name": "FederationHomeFlextab",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "class_property",
+      "name": "roomToolbar",
+      "exported": true,
+      "qualifiedName": "FederationChannel.roomToolbar",
+      "line": 20,
+      "endLine": 20,
+      "signature": "readonly roomToolbar: RoomToolbar;",
+      "containerClass": "FederationChannel",
+      "calls": [
+        {
+          "name": "RoomToolbar",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "class_property",
+      "name": "toastMessage",
+      "exported": true,
+      "qualifiedName": "FederationChannel.toastMessage",
+      "line": 22,
+      "endLine": 22,
+      "signature": "readonly toastMessage: ToastMessages;",
+      "containerClass": "FederationChannel",
+      "calls": [
+        {
+          "name": "ToastMessages",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "class_property",
+      "name": "newChannelModal",
+      "exported": true,
+      "qualifiedName": "FederationChannel.newChannelModal",
+      "line": 24,
+      "endLine": 24,
+      "signature": "readonly newChannelModal: CreateNewChannelModal;",
+      "containerClass": "FederationChannel",
+      "calls": [
+        {
+          "name": "CreateNewChannelModal",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "class_property",
+      "name": "newDMModal",
+      "exported": true,
+      "qualifiedName": "FederationChannel.newDMModal",
+      "line": 26,
+      "endLine": 26,
+      "signature": "readonly newDMModal: CreateNewDMModal;",
+      "containerClass": "FederationChannel",
+      "calls": [
+        {
+          "name": "CreateNewDMModal",
+          "edgeType": "type"
+        }
+      ]
+    }
+  ],
+  "imports": [
+    {
+      "module": "@playwright/test",
+      "resolved": "external"
+    },
+    {
+      "module": "./fragments/home-content",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/tests/e2e/federation/page-objects/fragments/home-content.ts"
+    },
+    {
+      "module": "./fragments/home-flextab",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/tests/e2e/federation/page-objects/fragments/home-flextab.ts"
+    },
+    {
+      "module": "./fragments/home-sidenav",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/tests/e2e/federation/page-objects/fragments/home-sidenav.ts"
+    },
+    {
+      "module": "../../page-objects/fragments",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/tests/e2e/page-objects/fragments/index.ts"
+    },
+    {
+      "module": "../../page-objects/fragments/modals",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/tests/e2e/page-objects/fragments/modals/index.ts"
+    }
+  ]
+}

@@ -1,0 +1,45 @@
+{
+  "sourcePath": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/server/configuration/configureIRC.ts",
+  "symbols": [
+    {
+      "type": "function",
+      "name": "configureIRC",
+      "exported": true,
+      "line": 6,
+      "endLine": 28,
+      "signature": "export async function configureIRC(settings: ICachedSettings): Promise<void>",
+      "calls": [
+        {
+          "name": "get",
+          "edgeType": "call"
+        },
+        {
+          "name": "init",
+          "edgeType": "call"
+        },
+        {
+          "name": "Bridge",
+          "edgeType": "new"
+        },
+        {
+          "name": "ICachedSettings",
+          "edgeType": "type"
+        }
+      ]
+    }
+  ],
+  "imports": [
+    {
+      "module": "meteor/meteor",
+      "resolved": "external"
+    },
+    {
+      "module": "../../app/settings/server/CachedSettings",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/app/settings/server/CachedSettings.ts"
+    },
+    {
+      "module": "../bridges/irc/irc-bridge",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/server/bridges/irc/irc-bridge"
+    }
+  ]
+}

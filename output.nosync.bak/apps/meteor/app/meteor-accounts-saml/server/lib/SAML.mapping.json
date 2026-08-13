@@ -1,0 +1,900 @@
+{
+  "sourcePath": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/app/meteor-accounts-saml/server/lib/SAML.ts",
+  "symbols": [
+    {
+      "type": "class",
+      "name": "SAML",
+      "exported": true,
+      "line": 55,
+      "endLine": 600,
+      "signature": "export class SAML",
+      "calls": []
+    },
+    {
+      "type": "method",
+      "name": "processRequest",
+      "exported": true,
+      "qualifiedName": "SAML.processRequest",
+      "line": 56,
+      "endLine": 86,
+      "signature": "public static async processRequest( req: IIncomingMessage, res: ServerResponse, service: IServiceProviderOptions, samlObject: ISAMLAction, ): Promise<void>",
+      "containerClass": "SAML",
+      "calls": [
+        {
+          "name": "showErrorMessage",
+          "edgeType": "call"
+        },
+        {
+          "name": "processMetadataAction",
+          "edgeType": "call"
+        },
+        {
+          "name": "processLogoutAction",
+          "edgeType": "call"
+        },
+        {
+          "name": "processSLORedirectAction",
+          "edgeType": "call"
+        },
+        {
+          "name": "processAuthorizeAction",
+          "edgeType": "call"
+        },
+        {
+          "name": "processValidateAction",
+          "edgeType": "call"
+        },
+        {
+          "name": "IIncomingMessage",
+          "edgeType": "type"
+        },
+        {
+          "name": "ServerResponse",
+          "edgeType": "type"
+        },
+        {
+          "name": "IServiceProviderOptions",
+          "edgeType": "type"
+        },
+        {
+          "name": "ISAMLAction",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "hasCredential",
+      "exported": true,
+      "qualifiedName": "SAML.hasCredential",
+      "line": 65,
+      "endLine": 67,
+      "signature": "public static async hasCredential(credentialToken: string): Promise<boolean>",
+      "containerClass": "SAML",
+      "calls": [
+        {
+          "name": "findOneNotExpiredById",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "retrieveCredential",
+      "exported": true,
+      "qualifiedName": "SAML.retrieveCredential",
+      "line": 69,
+      "endLine": 75,
+      "signature": "public static async retrieveCredential(credentialToken: string): Promise<Record<string, any> | undefined>",
+      "containerClass": "SAML",
+      "calls": [
+        {
+          "name": "findOneNotExpiredById",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "storeCredential",
+      "exported": true,
+      "qualifiedName": "SAML.storeCredential",
+      "line": 73,
+      "endLine": 75,
+      "signature": "public static async storeCredential(credentialToken: string, loginResult: { profile: Record<string, any> }): Promise<void>",
+      "containerClass": "SAML",
+      "calls": [
+        {
+          "name": "create",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "insertOrUpdateSAMLUser",
+      "exported": true,
+      "qualifiedName": "SAML.insertOrUpdateSAMLUser",
+      "line": 77,
+      "endLine": 229,
+      "signature": "public static async insertOrUpdateSAMLUser(userObject: ISAMLUser): Promise<{ userId: string; token: string }>",
+      "containerClass": "SAML",
+      "calls": [
+        {
+          "name": "has",
+          "edgeType": "call"
+        },
+        {
+          "name": "get",
+          "edgeType": "call"
+        },
+        {
+          "name": "findOne",
+          "edgeType": "call"
+        },
+        {
+          "name": "join",
+          "edgeType": "call"
+        },
+        {
+          "name": "map",
+          "edgeType": "call"
+        },
+        {
+          "name": "escapeRegExp",
+          "edgeType": "call"
+        },
+        {
+          "name": "findUser",
+          "edgeType": "call"
+        },
+        {
+          "name": "ensureArray",
+          "edgeType": "call"
+        },
+        {
+          "name": "split",
+          "edgeType": "call"
+        },
+        {
+          "name": "convertRoleNamesToIds",
+          "edgeType": "call"
+        },
+        {
+          "name": "generateUsernameSuggestion",
+          "edgeType": "call"
+        },
+        {
+          "name": "guessNameFromUsername",
+          "edgeType": "call"
+        },
+        {
+          "name": "includes",
+          "edgeType": "call"
+        },
+        {
+          "name": "insertUserDoc",
+          "edgeType": "call"
+        },
+        {
+          "name": "findOneById",
+          "edgeType": "call"
+        },
+        {
+          "name": "subscribeToSAMLChannels",
+          "edgeType": "call"
+        },
+        {
+          "name": "_generateStampedLoginToken",
+          "edgeType": "call"
+        },
+        {
+          "name": "addPersonalAccessTokenToUser",
+          "edgeType": "call"
+        },
+        {
+          "name": "updateOne",
+          "edgeType": "call"
+        },
+        {
+          "name": "saveUserIdentity",
+          "edgeType": "call"
+        },
+        {
+          "name": "RegExp",
+          "edgeType": "new"
+        },
+        {
+          "name": "ISAMLUser",
+          "edgeType": "type"
+        },
+        {
+          "name": "IPersonalAccessToken",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "processMetadataAction",
+      "exported": true,
+      "qualifiedName": "SAML.processMetadataAction",
+      "line": 81,
+      "endLine": 91,
+      "signature": "private static processMetadataAction(res: ServerResponse, service: IServiceProviderOptions): void",
+      "containerClass": "SAML",
+      "calls": [
+        {
+          "name": "writeHead",
+          "edgeType": "call"
+        },
+        {
+          "name": "write",
+          "edgeType": "call"
+        },
+        {
+          "name": "generateServiceProviderMetadata",
+          "edgeType": "call"
+        },
+        {
+          "name": "end",
+          "edgeType": "call"
+        },
+        {
+          "name": "showErrorMessage",
+          "edgeType": "call"
+        },
+        {
+          "name": "SAMLServiceProvider",
+          "edgeType": "new"
+        },
+        {
+          "name": "ServerResponse",
+          "edgeType": "type"
+        },
+        {
+          "name": "IServiceProviderOptions",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "processLogoutAction",
+      "exported": true,
+      "qualifiedName": "SAML.processLogoutAction",
+      "line": 85,
+      "endLine": 92,
+      "signature": "private static async processLogoutAction(req: IIncomingMessage, res: ServerResponse, service: IServiceProviderOptions): Promise<void>",
+      "containerClass": "SAML",
+      "calls": [
+        {
+          "name": "processLogoutRequest",
+          "edgeType": "call"
+        },
+        {
+          "name": "processLogoutResponse",
+          "edgeType": "call"
+        },
+        {
+          "name": "IIncomingMessage",
+          "edgeType": "type"
+        },
+        {
+          "name": "ServerResponse",
+          "edgeType": "type"
+        },
+        {
+          "name": "IServiceProviderOptions",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "_logoutRemoveTokens",
+      "exported": true,
+      "qualifiedName": "SAML._logoutRemoveTokens",
+      "line": 89,
+      "endLine": 94,
+      "signature": "private static async _logoutRemoveTokens(userId: string): Promise<void>",
+      "containerClass": "SAML",
+      "calls": [
+        {
+          "name": "log",
+          "edgeType": "call"
+        },
+        {
+          "name": "unsetLoginTokens",
+          "edgeType": "call"
+        },
+        {
+          "name": "removeSamlServiceSession",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "processLogoutRequest",
+      "exported": true,
+      "qualifiedName": "SAML.processLogoutRequest",
+      "line": 93,
+      "endLine": 168,
+      "signature": "private static async processLogoutRequest(req: IIncomingMessage, res: ServerResponse, service: IServiceProviderOptions): Promise<void>",
+      "containerClass": "SAML",
+      "calls": [
+        {
+          "name": "error",
+          "edgeType": "call"
+        },
+        {
+          "name": "catch",
+          "edgeType": "call"
+        },
+        {
+          "name": "getSAMLEnvelope",
+          "edgeType": "call"
+        },
+        {
+          "name": "errorHandler",
+          "edgeType": "call"
+        },
+        {
+          "name": "validateLogoutRequest",
+          "edgeType": "call"
+        },
+        {
+          "name": "writeHead",
+          "edgeType": "call"
+        },
+        {
+          "name": "absoluteUrl",
+          "edgeType": "call"
+        },
+        {
+          "name": "end",
+          "edgeType": "call"
+        },
+        {
+          "name": "redirect",
+          "edgeType": "call"
+        },
+        {
+          "name": "toArray",
+          "edgeType": "call"
+        },
+        {
+          "name": "findBySAMLNameIdOrIdpSession",
+          "edgeType": "call"
+        },
+        {
+          "name": "_logoutRemoveTokens",
+          "edgeType": "call"
+        },
+        {
+          "name": "generateLogoutResponse",
+          "edgeType": "call"
+        },
+        {
+          "name": "logoutResponseToUrl",
+          "edgeType": "call"
+        },
+        {
+          "name": "SAMLServiceProvider",
+          "edgeType": "new"
+        },
+        {
+          "name": "IIncomingMessage",
+          "edgeType": "type"
+        },
+        {
+          "name": "ServerResponse",
+          "edgeType": "type"
+        },
+        {
+          "name": "IServiceProviderOptions",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "processLogoutResponse",
+      "exported": true,
+      "qualifiedName": "SAML.processLogoutResponse",
+      "line": 97,
+      "endLine": 138,
+      "signature": "private static async processLogoutResponse(req: IIncomingMessage, res: ServerResponse, service: IServiceProviderOptions): Promise<void>",
+      "containerClass": "SAML",
+      "calls": [
+        {
+          "name": "getSAMLEnvelope",
+          "edgeType": "call"
+        },
+        {
+          "name": "error",
+          "edgeType": "call"
+        },
+        {
+          "name": "validateLogoutResponse",
+          "edgeType": "call"
+        },
+        {
+          "name": "log",
+          "edgeType": "call"
+        },
+        {
+          "name": "toArray",
+          "edgeType": "call"
+        },
+        {
+          "name": "findBySAMLInResponseTo",
+          "edgeType": "call"
+        },
+        {
+          "name": "_logoutRemoveTokens",
+          "edgeType": "call"
+        },
+        {
+          "name": "logOutUser",
+          "edgeType": "call"
+        },
+        {
+          "name": "writeHead",
+          "edgeType": "call"
+        },
+        {
+          "name": "absoluteUrl",
+          "edgeType": "call"
+        },
+        {
+          "name": "end",
+          "edgeType": "call"
+        },
+        {
+          "name": "SAMLServiceProvider",
+          "edgeType": "new"
+        },
+        {
+          "name": "IIncomingMessage",
+          "edgeType": "type"
+        },
+        {
+          "name": "ServerResponse",
+          "edgeType": "type"
+        },
+        {
+          "name": "IServiceProviderOptions",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "processSLORedirectAction",
+      "exported": true,
+      "qualifiedName": "SAML.processSLORedirectAction",
+      "line": 101,
+      "endLine": 147,
+      "signature": "private static processSLORedirectAction(req: IIncomingMessage, res: ServerResponse, service: IServiceProviderOptions): void",
+      "containerClass": "SAML",
+      "calls": [
+        {
+          "name": "writeHead",
+          "edgeType": "call"
+        },
+        {
+          "name": "end",
+          "edgeType": "call"
+        },
+        {
+          "name": "replace",
+          "edgeType": "call"
+        },
+        {
+          "name": "normalizePath",
+          "edgeType": "call"
+        },
+        {
+          "name": "URL",
+          "edgeType": "new"
+        },
+        {
+          "name": "IIncomingMessage",
+          "edgeType": "type"
+        },
+        {
+          "name": "ServerResponse",
+          "edgeType": "type"
+        },
+        {
+          "name": "IServiceProviderOptions",
+          "edgeType": "type"
+        },
+        {
+          "name": "URL",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "processAuthorizeAction",
+      "exported": true,
+      "qualifiedName": "SAML.processAuthorizeAction",
+      "line": 105,
+      "endLine": 124,
+      "signature": "private static async processAuthorizeAction( res: ServerResponse, service: IServiceProviderOptions, samlObject: ISAMLAction, ): Promise<void>",
+      "containerClass": "SAML",
+      "calls": [
+        {
+          "name": "getAuthorizeUrl",
+          "edgeType": "call"
+        },
+        {
+          "name": "error",
+          "edgeType": "call"
+        },
+        {
+          "name": "absoluteUrl",
+          "edgeType": "call"
+        },
+        {
+          "name": "writeHead",
+          "edgeType": "call"
+        },
+        {
+          "name": "end",
+          "edgeType": "call"
+        },
+        {
+          "name": "SAMLServiceProvider",
+          "edgeType": "new"
+        },
+        {
+          "name": "ServerResponse",
+          "edgeType": "type"
+        },
+        {
+          "name": "IServiceProviderOptions",
+          "edgeType": "type"
+        },
+        {
+          "name": "ISAMLAction",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "processValidateAction",
+      "exported": true,
+      "qualifiedName": "SAML.processValidateAction",
+      "line": 113,
+      "endLine": 177,
+      "signature": "private static async processValidateAction( req: IIncomingMessage, res: ServerResponse, service: IServiceProviderOptions, _samlObject: ISAMLAction, ): Promise<void>",
+      "containerClass": "SAML",
+      "calls": [
+        {
+          "name": "writeHead",
+          "edgeType": "call"
+        },
+        {
+          "name": "absoluteUrl",
+          "edgeType": "call"
+        },
+        {
+          "name": "end",
+          "edgeType": "call"
+        },
+        {
+          "name": "catch",
+          "edgeType": "call"
+        },
+        {
+          "name": "getSAMLEnvelope",
+          "edgeType": "call"
+        },
+        {
+          "name": "error",
+          "edgeType": "call"
+        },
+        {
+          "name": "redirect",
+          "edgeType": "call"
+        },
+        {
+          "name": "validateResponse",
+          "edgeType": "call"
+        },
+        {
+          "name": "now",
+          "edgeType": "call"
+        },
+        {
+          "name": "getTime",
+          "edgeType": "call"
+        },
+        {
+          "name": "markUsed",
+          "edgeType": "call"
+        },
+        {
+          "name": "warn",
+          "edgeType": "call"
+        },
+        {
+          "name": "id",
+          "edgeType": "call"
+        },
+        {
+          "name": "storeCredential",
+          "edgeType": "call"
+        },
+        {
+          "name": "getValidationActionRedirectPath",
+          "edgeType": "call"
+        },
+        {
+          "name": "SAMLServiceProvider",
+          "edgeType": "new"
+        },
+        {
+          "name": "Date",
+          "edgeType": "new"
+        },
+        {
+          "name": "IIncomingMessage",
+          "edgeType": "type"
+        },
+        {
+          "name": "ServerResponse",
+          "edgeType": "type"
+        },
+        {
+          "name": "IServiceProviderOptions",
+          "edgeType": "type"
+        },
+        {
+          "name": "ISAMLAction",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "findUser",
+      "exported": true,
+      "qualifiedName": "SAML.findUser",
+      "line": 122,
+      "endLine": 138,
+      "signature": "private static async findUser(username: string | undefined, emailRegex: RegExp): Promise<IUser | undefined | null>",
+      "containerClass": "SAML",
+      "calls": [
+        {
+          "name": "findOne",
+          "edgeType": "call"
+        },
+        {
+          "name": "IUser",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "guessNameFromUsername",
+      "exported": true,
+      "qualifiedName": "SAML.guessNameFromUsername",
+      "line": 126,
+      "endLine": 132,
+      "signature": "private static guessNameFromUsername(username: string): string",
+      "containerClass": "SAML",
+      "calls": [
+        {
+          "name": "replace",
+          "edgeType": "call"
+        },
+        {
+          "name": "toUpperCase",
+          "edgeType": "call"
+        },
+        {
+          "name": "toLowerCase",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "subscribeToSAMLChannels",
+      "exported": true,
+      "qualifiedName": "SAML.subscribeToSAMLChannels",
+      "line": 130,
+      "endLine": 162,
+      "signature": "private static async subscribeToSAMLChannels(channels: Array<string>, user: IUser): Promise<void>",
+      "containerClass": "SAML",
+      "calls": [
+        {
+          "name": "trim",
+          "edgeType": "call"
+        },
+        {
+          "name": "findOneByNameAndType",
+          "edgeType": "call"
+        },
+        {
+          "name": "addUserToRoom",
+          "edgeType": "call"
+        },
+        {
+          "name": "createRoom",
+          "edgeType": "call"
+        },
+        {
+          "name": "error",
+          "edgeType": "call"
+        },
+        {
+          "name": "IUser",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "variable_function",
+      "name": "showErrorMessage",
+      "exported": false,
+      "line": 25,
+      "endLine": 31,
+      "signature": "function (res: ServerResponse, err: string): void",
+      "calls": [
+        {
+          "name": "writeHead",
+          "edgeType": "call"
+        },
+        {
+          "name": "escapeHTML",
+          "edgeType": "call"
+        },
+        {
+          "name": "end",
+          "edgeType": "call"
+        },
+        {
+          "name": "ServerResponse",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "variable_function",
+      "name": "convertRoleNamesToIds",
+      "exported": false,
+      "line": 29,
+      "endLine": 49,
+      "signature": "async (roleNamesOrIds: string[]): Promise<IRole['_id'][]> =>",
+      "calls": [
+        {
+          "name": "filter",
+          "edgeType": "call"
+        },
+        {
+          "name": "map",
+          "edgeType": "call"
+        },
+        {
+          "name": "trim",
+          "edgeType": "call"
+        },
+        {
+          "name": "join",
+          "edgeType": "call"
+        },
+        {
+          "name": "toArray",
+          "edgeType": "call"
+        },
+        {
+          "name": "findInIdsOrNames",
+          "edgeType": "call"
+        },
+        {
+          "name": "warn",
+          "edgeType": "call"
+        },
+        {
+          "name": "IRole",
+          "edgeType": "type"
+        }
+      ]
+    }
+  ],
+  "imports": [
+    {
+      "module": "node:http",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/core-typings",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/models",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/random",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/string-helpers",
+      "resolved": "external"
+    },
+    {
+      "module": "meteor/accounts-base",
+      "resolved": "external"
+    },
+    {
+      "module": "meteor/meteor",
+      "resolved": "external"
+    },
+    {
+      "module": "./ServiceProvider",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/app/meteor-accounts-saml/server/lib/ServiceProvider.ts"
+    },
+    {
+      "module": "./Utils",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/app/meteor-accounts-saml/server/lib/Utils.ts"
+    },
+    {
+      "module": "./getSAMLEnvelope",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/app/meteor-accounts-saml/server/lib/getSAMLEnvelope.ts"
+    },
+    {
+      "module": "../../../../lib/utils/arrayUtils",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/lib/utils/arrayUtils.ts"
+    },
+    {
+      "module": "../../../../server/lib/logger/system",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/server/lib/logger/system.ts"
+    },
+    {
+      "module": "../../../../server/lib/rooms/addUserToRoom",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/server/lib/rooms/addUserToRoom.ts"
+    },
+    {
+      "module": "../../../../server/lib/rooms/createRoom",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/server/lib/rooms/createRoom.ts"
+    },
+    {
+      "module": "../../../../server/lib/users/getUsernameSuggestion",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/server/lib/users/getUsernameSuggestion.ts"
+    },
+    {
+      "module": "../../../../server/lib/users/saveUserIdentity",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/server/lib/users/saveUserIdentity.ts"
+    },
+    {
+      "module": "../../../settings/server",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/app/settings/server/index.ts"
+    },
+    {
+      "module": "../../../utils/lib/i18n",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/app/utils/lib/i18n.ts"
+    },
+    {
+      "module": "../definition/ISAMLAction",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/app/meteor-accounts-saml/server/definition/ISAMLAction.ts"
+    },
+    {
+      "module": "../definition/ISAMLUser",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/app/meteor-accounts-saml/server/definition/ISAMLUser.ts"
+    },
+    {
+      "module": "../definition/IServiceProviderOptions",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/app/meteor-accounts-saml/server/definition/IServiceProviderOptions.ts"
+    }
+  ]
+}

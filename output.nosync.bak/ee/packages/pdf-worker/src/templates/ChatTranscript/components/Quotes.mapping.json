@@ -1,0 +1,109 @@
+{
+  "sourcePath": "/Users/echoooooo/Desktop/code/Rocket.Chat/ee/packages/pdf-worker/src/templates/ChatTranscript/components/Quotes.tsx",
+  "symbols": [
+    {
+      "type": "variable_function",
+      "name": "Quote",
+      "exported": false,
+      "line": 33,
+      "endLine": 47,
+      "signature": "({ quote, children, index }: QuoteProps) =>",
+      "calls": [
+        {
+          "name": "View",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "MessageHeader",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "Markup",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "QuoteProps",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "variable_function",
+      "name": "Quotes",
+      "exported": true,
+      "line": 53,
+      "endLine": 61,
+      "signature": "({ quotes }: QuotesProps) =>",
+      "calls": [
+        {
+          "name": "reduceRight",
+          "edgeType": "call"
+        },
+        {
+          "name": "Quote",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "quote",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "index",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "QuotesProps",
+          "edgeType": "type"
+        },
+        {
+          "name": "ReactNode",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "type",
+      "name": "QuoteProps",
+      "line": 27,
+      "endLine": 31,
+      "signature": "type QuoteProps ="
+    },
+    {
+      "type": "type",
+      "name": "QuotesProps",
+      "line": 49,
+      "endLine": 51,
+      "signature": "type QuotesProps ="
+    }
+  ],
+  "imports": [
+    {
+      "module": "@react-pdf/renderer",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/fuselage-tokens/colors.json",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/fuselage-tokens/typography.json",
+      "resolved": "external"
+    },
+    {
+      "module": "react",
+      "resolved": "external"
+    },
+    {
+      "module": "../../../types/ChatTranscriptData",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/ee/packages/pdf-worker/src/types/ChatTranscriptData.ts"
+    },
+    {
+      "module": "../markup",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/ee/packages/pdf-worker/src/templates/ChatTranscript/markup/index.tsx"
+    },
+    {
+      "module": "./MessageHeader",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/ee/packages/pdf-worker/src/templates/ChatTranscript/components/MessageHeader.tsx"
+    }
+  ]
+}

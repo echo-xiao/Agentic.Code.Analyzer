@@ -1,0 +1,650 @@
+{
+  "sourcePath": "/Users/echoooooo/Desktop/code/Rocket.Chat/packages/apps/src/server/accessors/MessageBuilder.ts",
+  "symbols": [
+    {
+      "type": "class",
+      "name": "MessageBuilder",
+      "exported": true,
+      "line": 12,
+      "endLine": 225,
+      "signature": "export class MessageBuilder implements IMessageBuilder",
+      "calls": [
+        {
+          "name": "IMessageBuilder",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "setData",
+      "exported": true,
+      "qualifiedName": "MessageBuilder.setData",
+      "line": 22,
+      "endLine": 27,
+      "signature": "public setData(data: IMessage): IMessageBuilder",
+      "containerClass": "MessageBuilder",
+      "calls": [
+        {
+          "name": "IMessage",
+          "edgeType": "type"
+        },
+        {
+          "name": "IMessageBuilder",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "setUpdateData",
+      "exported": true,
+      "qualifiedName": "MessageBuilder.setUpdateData",
+      "line": 26,
+      "endLine": 32,
+      "signature": "public setUpdateData(data: IMessage, editor: IUser): IMessageBuilder",
+      "containerClass": "MessageBuilder",
+      "calls": [
+        {
+          "name": "Date",
+          "edgeType": "new"
+        },
+        {
+          "name": "IMessage",
+          "edgeType": "type"
+        },
+        {
+          "name": "IUser",
+          "edgeType": "type"
+        },
+        {
+          "name": "IMessageBuilder",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "setThreadId",
+      "exported": true,
+      "qualifiedName": "MessageBuilder.setThreadId",
+      "line": 30,
+      "endLine": 34,
+      "signature": "public setThreadId(threadId: string): IMessageBuilder",
+      "containerClass": "MessageBuilder",
+      "calls": [
+        {
+          "name": "IMessageBuilder",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "getThreadId",
+      "exported": true,
+      "qualifiedName": "MessageBuilder.getThreadId",
+      "line": 34,
+      "endLine": 36,
+      "signature": "public getThreadId(): string",
+      "containerClass": "MessageBuilder",
+      "calls": []
+    },
+    {
+      "type": "method",
+      "name": "setRoom",
+      "exported": true,
+      "qualifiedName": "MessageBuilder.setRoom",
+      "line": 38,
+      "endLine": 41,
+      "signature": "public setRoom(room: IRoom): IMessageBuilder",
+      "containerClass": "MessageBuilder",
+      "calls": [
+        {
+          "name": "IRoom",
+          "edgeType": "type"
+        },
+        {
+          "name": "IMessageBuilder",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "getRoom",
+      "exported": true,
+      "qualifiedName": "MessageBuilder.getRoom",
+      "line": 42,
+      "endLine": 44,
+      "signature": "public getRoom(): IRoom",
+      "containerClass": "MessageBuilder",
+      "calls": [
+        {
+          "name": "IRoom",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "setSender",
+      "exported": true,
+      "qualifiedName": "MessageBuilder.setSender",
+      "line": 46,
+      "endLine": 49,
+      "signature": "public setSender(sender: IUser): IMessageBuilder",
+      "containerClass": "MessageBuilder",
+      "calls": [
+        {
+          "name": "IUser",
+          "edgeType": "type"
+        },
+        {
+          "name": "IMessageBuilder",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "getSender",
+      "exported": true,
+      "qualifiedName": "MessageBuilder.getSender",
+      "line": 50,
+      "endLine": 52,
+      "signature": "public getSender(): IUser",
+      "containerClass": "MessageBuilder",
+      "calls": [
+        {
+          "name": "IUser",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "setText",
+      "exported": true,
+      "qualifiedName": "MessageBuilder.setText",
+      "line": 54,
+      "endLine": 57,
+      "signature": "public setText(text: string): IMessageBuilder",
+      "containerClass": "MessageBuilder",
+      "calls": [
+        {
+          "name": "IMessageBuilder",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "getText",
+      "exported": true,
+      "qualifiedName": "MessageBuilder.getText",
+      "line": 58,
+      "endLine": 60,
+      "signature": "public getText(): string",
+      "containerClass": "MessageBuilder",
+      "calls": []
+    },
+    {
+      "type": "method",
+      "name": "setEmojiAvatar",
+      "exported": true,
+      "qualifiedName": "MessageBuilder.setEmojiAvatar",
+      "line": 62,
+      "endLine": 65,
+      "signature": "public setEmojiAvatar(emoji: string): IMessageBuilder",
+      "containerClass": "MessageBuilder",
+      "calls": [
+        {
+          "name": "IMessageBuilder",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "getEmojiAvatar",
+      "exported": true,
+      "qualifiedName": "MessageBuilder.getEmojiAvatar",
+      "line": 66,
+      "endLine": 68,
+      "signature": "public getEmojiAvatar(): string",
+      "containerClass": "MessageBuilder",
+      "calls": []
+    },
+    {
+      "type": "method",
+      "name": "setAvatarUrl",
+      "exported": true,
+      "qualifiedName": "MessageBuilder.setAvatarUrl",
+      "line": 70,
+      "endLine": 73,
+      "signature": "public setAvatarUrl(avatarUrl: string): IMessageBuilder",
+      "containerClass": "MessageBuilder",
+      "calls": [
+        {
+          "name": "IMessageBuilder",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "getAvatarUrl",
+      "exported": true,
+      "qualifiedName": "MessageBuilder.getAvatarUrl",
+      "line": 74,
+      "endLine": 76,
+      "signature": "public getAvatarUrl(): string",
+      "containerClass": "MessageBuilder",
+      "calls": []
+    },
+    {
+      "type": "method",
+      "name": "setUsernameAlias",
+      "exported": true,
+      "qualifiedName": "MessageBuilder.setUsernameAlias",
+      "line": 78,
+      "endLine": 81,
+      "signature": "public setUsernameAlias(alias: string): IMessageBuilder",
+      "containerClass": "MessageBuilder",
+      "calls": [
+        {
+          "name": "IMessageBuilder",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "getUsernameAlias",
+      "exported": true,
+      "qualifiedName": "MessageBuilder.getUsernameAlias",
+      "line": 82,
+      "endLine": 84,
+      "signature": "public getUsernameAlias(): string",
+      "containerClass": "MessageBuilder",
+      "calls": []
+    },
+    {
+      "type": "method",
+      "name": "addAttachment",
+      "exported": true,
+      "qualifiedName": "MessageBuilder.addAttachment",
+      "line": 86,
+      "endLine": 93,
+      "signature": "public addAttachment(attachment: IMessageAttachment): IMessageBuilder",
+      "containerClass": "MessageBuilder",
+      "calls": [
+        {
+          "name": "push",
+          "edgeType": "call"
+        },
+        {
+          "name": "IMessageAttachment",
+          "edgeType": "type"
+        },
+        {
+          "name": "IMessageBuilder",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "setAttachments",
+      "exported": true,
+      "qualifiedName": "MessageBuilder.setAttachments",
+      "line": 90,
+      "endLine": 93,
+      "signature": "public setAttachments(attachments: Array<IMessageAttachment>): IMessageBuilder",
+      "containerClass": "MessageBuilder",
+      "calls": [
+        {
+          "name": "IMessageAttachment",
+          "edgeType": "type"
+        },
+        {
+          "name": "IMessageBuilder",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "getAttachments",
+      "exported": true,
+      "qualifiedName": "MessageBuilder.getAttachments",
+      "line": 94,
+      "endLine": 96,
+      "signature": "public getAttachments(): Array<IMessageAttachment>",
+      "containerClass": "MessageBuilder",
+      "calls": [
+        {
+          "name": "IMessageAttachment",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "replaceAttachment",
+      "exported": true,
+      "qualifiedName": "MessageBuilder.replaceAttachment",
+      "line": 98,
+      "endLine": 109,
+      "signature": "public replaceAttachment(position: number, attachment: IMessageAttachment): IMessageBuilder",
+      "containerClass": "MessageBuilder",
+      "calls": [
+        {
+          "name": "IMessageAttachment",
+          "edgeType": "type"
+        },
+        {
+          "name": "IMessageBuilder",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "removeAttachment",
+      "exported": true,
+      "qualifiedName": "MessageBuilder.removeAttachment",
+      "line": 102,
+      "endLine": 114,
+      "signature": "public removeAttachment(position: number): IMessageBuilder",
+      "containerClass": "MessageBuilder",
+      "calls": [
+        {
+          "name": "splice",
+          "edgeType": "call"
+        },
+        {
+          "name": "IMessageBuilder",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "setEditor",
+      "exported": true,
+      "qualifiedName": "MessageBuilder.setEditor",
+      "line": 106,
+      "endLine": 109,
+      "signature": "public setEditor(user: IUser): IMessageBuilder",
+      "containerClass": "MessageBuilder",
+      "calls": [
+        {
+          "name": "IUser",
+          "edgeType": "type"
+        },
+        {
+          "name": "IMessageBuilder",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "getEditor",
+      "exported": true,
+      "qualifiedName": "MessageBuilder.getEditor",
+      "line": 110,
+      "endLine": 112,
+      "signature": "public getEditor(): IUser",
+      "containerClass": "MessageBuilder",
+      "calls": [
+        {
+          "name": "IUser",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "setGroupable",
+      "exported": true,
+      "qualifiedName": "MessageBuilder.setGroupable",
+      "line": 114,
+      "endLine": 117,
+      "signature": "public setGroupable(groupable: boolean): IMessageBuilder",
+      "containerClass": "MessageBuilder",
+      "calls": [
+        {
+          "name": "IMessageBuilder",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "getGroupable",
+      "exported": true,
+      "qualifiedName": "MessageBuilder.getGroupable",
+      "line": 118,
+      "endLine": 120,
+      "signature": "public getGroupable(): boolean",
+      "containerClass": "MessageBuilder",
+      "calls": []
+    },
+    {
+      "type": "method",
+      "name": "setParseUrls",
+      "exported": true,
+      "qualifiedName": "MessageBuilder.setParseUrls",
+      "line": 122,
+      "endLine": 125,
+      "signature": "public setParseUrls(parseUrls: boolean): IMessageBuilder",
+      "containerClass": "MessageBuilder",
+      "calls": [
+        {
+          "name": "IMessageBuilder",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "getParseUrls",
+      "exported": true,
+      "qualifiedName": "MessageBuilder.getParseUrls",
+      "line": 126,
+      "endLine": 128,
+      "signature": "public getParseUrls()",
+      "containerClass": "MessageBuilder",
+      "calls": []
+    },
+    {
+      "type": "method",
+      "name": "getMessage",
+      "exported": true,
+      "qualifiedName": "MessageBuilder.getMessage",
+      "line": 130,
+      "endLine": 136,
+      "signature": "public getMessage(): IMessage",
+      "containerClass": "MessageBuilder",
+      "calls": [
+        {
+          "name": "IMessage",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "addBlocks",
+      "exported": true,
+      "qualifiedName": "MessageBuilder.addBlocks",
+      "line": 134,
+      "endLine": 146,
+      "signature": "public addBlocks(blocks: BlockBuilder | Array<IBlock | LayoutBlock>)",
+      "containerClass": "MessageBuilder",
+      "calls": [
+        {
+          "name": "isArray",
+          "edgeType": "call"
+        },
+        {
+          "name": "push",
+          "edgeType": "call"
+        },
+        {
+          "name": "getBlocks",
+          "edgeType": "call"
+        },
+        {
+          "name": "BlockBuilder",
+          "edgeType": "type"
+        },
+        {
+          "name": "IBlock",
+          "edgeType": "type"
+        },
+        {
+          "name": "LayoutBlock",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "setBlocks",
+      "exported": true,
+      "qualifiedName": "MessageBuilder.setBlocks",
+      "line": 138,
+      "endLine": 146,
+      "signature": "public setBlocks(blocks: BlockBuilder | Array<IBlock | LayoutBlock>)",
+      "containerClass": "MessageBuilder",
+      "calls": [
+        {
+          "name": "getBlocks",
+          "edgeType": "call"
+        },
+        {
+          "name": "BlockBuilder",
+          "edgeType": "type"
+        },
+        {
+          "name": "IBlock",
+          "edgeType": "type"
+        },
+        {
+          "name": "LayoutBlock",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "getBlocks",
+      "exported": true,
+      "qualifiedName": "MessageBuilder.getBlocks",
+      "line": 142,
+      "endLine": 144,
+      "signature": "public getBlocks(): Array<IBlock | LayoutBlock>",
+      "containerClass": "MessageBuilder",
+      "calls": [
+        {
+          "name": "IBlock",
+          "edgeType": "type"
+        },
+        {
+          "name": "LayoutBlock",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "addCustomField",
+      "exported": true,
+      "qualifiedName": "MessageBuilder.addCustomField",
+      "line": 146,
+      "endLine": 161,
+      "signature": "public addCustomField(key: string, value: any): IMessageBuilder",
+      "containerClass": "MessageBuilder",
+      "calls": [
+        {
+          "name": "includes",
+          "edgeType": "call"
+        },
+        {
+          "name": "IMessageBuilder",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "constructor",
+      "exported": true,
+      "qualifiedName": "MessageBuilder.constructor",
+      "line": 17,
+      "endLine": 20,
+      "signature": "constructor(message?: IMessage)",
+      "containerClass": "MessageBuilder",
+      "calls": [
+        {
+          "name": "IMessage",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "class_property",
+      "name": "msg",
+      "exported": true,
+      "qualifiedName": "MessageBuilder.msg",
+      "line": 15,
+      "endLine": 15,
+      "signature": "private msg: IMessage;",
+      "containerClass": "MessageBuilder",
+      "calls": [
+        {
+          "name": "IMessage",
+          "edgeType": "type"
+        }
+      ]
+    }
+  ],
+  "imports": [
+    {
+      "module": "@rocket.chat/apps-engine/definition/accessors",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/apps-engine/definition/messages",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/apps-engine/definition/metadata",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/apps-engine/definition/rooms",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/apps-engine/definition/uikit",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/apps-engine/definition/uikit",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/apps-engine/definition/users",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/ui-kit",
+      "resolved": "external"
+    }
+  ]
+}

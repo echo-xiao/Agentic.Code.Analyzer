@@ -1,0 +1,228 @@
+{
+  "sourcePath": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/server/bridges/webdav/lib/webdavClientAdapter.ts",
+  "symbols": [
+    {
+      "type": "class",
+      "name": "WebdavClientAdapter",
+      "exported": true,
+      "line": 7,
+      "endLine": 91,
+      "signature": "export class WebdavClientAdapter",
+      "calls": []
+    },
+    {
+      "type": "method",
+      "name": "stat",
+      "exported": true,
+      "qualifiedName": "WebdavClientAdapter.stat",
+      "line": 21,
+      "endLine": 27,
+      "signature": "async stat(path: string): Promise<FileStat | ResponseDataDetailed<FileStat>>",
+      "containerClass": "WebdavClientAdapter",
+      "calls": [
+        {
+          "name": "stat",
+          "edgeType": "call"
+        },
+        {
+          "name": "FileStat",
+          "edgeType": "type"
+        },
+        {
+          "name": "ResponseDataDetailed",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "createDirectory",
+      "exported": true,
+      "qualifiedName": "WebdavClientAdapter.createDirectory",
+      "line": 25,
+      "endLine": 31,
+      "signature": "async createDirectory(path: string): Promise<void>",
+      "containerClass": "WebdavClientAdapter",
+      "calls": [
+        {
+          "name": "createDirectory",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "deleteFile",
+      "exported": true,
+      "qualifiedName": "WebdavClientAdapter.deleteFile",
+      "line": 29,
+      "endLine": 35,
+      "signature": "async deleteFile(path: string): Promise<void>",
+      "containerClass": "WebdavClientAdapter",
+      "calls": [
+        {
+          "name": "deleteFile",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "getFileContents",
+      "exported": true,
+      "qualifiedName": "WebdavClientAdapter.getFileContents",
+      "line": 33,
+      "endLine": 39,
+      "signature": "async getFileContents(filename: string): Promise<Buffer>",
+      "containerClass": "WebdavClientAdapter",
+      "calls": [
+        {
+          "name": "getFileContents",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "getDirectoryContents",
+      "exported": true,
+      "qualifiedName": "WebdavClientAdapter.getDirectoryContents",
+      "line": 37,
+      "endLine": 43,
+      "signature": "async getDirectoryContents(path: string): Promise<FileStat[] | ResponseDataDetailed<FileStat[]>>",
+      "containerClass": "WebdavClientAdapter",
+      "calls": [
+        {
+          "name": "getDirectoryContents",
+          "edgeType": "call"
+        },
+        {
+          "name": "FileStat",
+          "edgeType": "type"
+        },
+        {
+          "name": "ResponseDataDetailed",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "putFileContents",
+      "exported": true,
+      "qualifiedName": "WebdavClientAdapter.putFileContents",
+      "line": 41,
+      "endLine": 47,
+      "signature": "async putFileContents(path: string, data: Buffer, options: Record<string, any> = {}): Promise<any>",
+      "containerClass": "WebdavClientAdapter",
+      "calls": [
+        {
+          "name": "putFileContents",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "createReadStream",
+      "exported": true,
+      "qualifiedName": "WebdavClientAdapter.createReadStream",
+      "line": 45,
+      "endLine": 47,
+      "signature": "createReadStream(path: string, options?: Record<string, any>): Readable",
+      "containerClass": "WebdavClientAdapter",
+      "calls": [
+        {
+          "name": "createReadStream",
+          "edgeType": "call"
+        },
+        {
+          "name": "Readable",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "createWriteStream",
+      "exported": true,
+      "qualifiedName": "WebdavClientAdapter.createWriteStream",
+      "line": 49,
+      "endLine": 66,
+      "signature": "createWriteStream(path: string, fileSize: number): Writable",
+      "containerClass": "WebdavClientAdapter",
+      "calls": [
+        {
+          "name": "catch",
+          "edgeType": "call"
+        },
+        {
+          "name": "customRequest",
+          "edgeType": "call"
+        },
+        {
+          "name": "error",
+          "edgeType": "event_emit"
+        },
+        {
+          "name": "Writable",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "constructor",
+      "exported": true,
+      "qualifiedName": "WebdavClientAdapter.constructor",
+      "line": 10,
+      "endLine": 19,
+      "signature": "constructor(serverConfig: string, cred: WebDAVClientOptions)",
+      "containerClass": "WebdavClientAdapter",
+      "calls": [
+        {
+          "name": "createClient",
+          "edgeType": "call"
+        },
+        {
+          "name": "WebDAVClientOptions",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "class_property",
+      "name": "_client",
+      "exported": true,
+      "qualifiedName": "WebdavClientAdapter._client",
+      "line": 8,
+      "endLine": 8,
+      "signature": "_client: WebDAVClient;",
+      "containerClass": "WebdavClientAdapter",
+      "calls": [
+        {
+          "name": "WebDAVClient",
+          "edgeType": "type"
+        }
+      ]
+    }
+  ],
+  "imports": [
+    {
+      "module": "node:stream",
+      "resolved": "external"
+    },
+    {
+      "module": "node:stream",
+      "resolved": "external"
+    },
+    {
+      "module": "webdav",
+      "resolved": "external"
+    },
+    {
+      "module": "webdav",
+      "resolved": "external"
+    }
+  ]
+}

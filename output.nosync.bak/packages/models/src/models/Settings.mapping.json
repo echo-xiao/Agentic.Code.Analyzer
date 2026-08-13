@@ -1,0 +1,489 @@
+{
+  "sourcePath": "/Users/echoooooo/Desktop/code/Rocket.Chat/packages/models/src/models/Settings.ts",
+  "symbols": [
+    {
+      "type": "class",
+      "name": "SettingsRaw",
+      "exported": true,
+      "line": 19,
+      "endLine": 254,
+      "signature": "export class SettingsRaw extends BaseRaw<ISetting> implements ISettingsModel",
+      "calls": [
+        {
+          "name": "BaseRaw",
+          "edgeType": "type"
+        },
+        {
+          "name": "ISettingsModel",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "getValueById",
+      "exported": true,
+      "qualifiedName": "SettingsRaw.getValueById",
+      "line": 24,
+      "endLine": 28,
+      "signature": "async getValueById<T extends SettingValue = SettingValue>(_id: string): Promise<T | undefined>",
+      "containerClass": "SettingsRaw",
+      "calls": [
+        {
+          "name": "findOne",
+          "edgeType": "call"
+        },
+        {
+          "name": "SettingValue",
+          "edgeType": "type"
+        },
+        {
+          "name": "ISetting",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "findNotHidden",
+      "exported": true,
+      "qualifiedName": "SettingsRaw.findNotHidden",
+      "line": 28,
+      "endLine": 38,
+      "signature": "findNotHidden({ updatedAfter }: { updatedAfter?: Date } = {}): FindCursor<ISetting>",
+      "containerClass": "SettingsRaw",
+      "calls": [
+        {
+          "name": "find",
+          "edgeType": "call"
+        },
+        {
+          "name": "FindCursor",
+          "edgeType": "type"
+        },
+        {
+          "name": "ISetting",
+          "edgeType": "type"
+        },
+        {
+          "name": "Filter",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "findOneNotHiddenById",
+      "exported": true,
+      "qualifiedName": "SettingsRaw.findOneNotHiddenById",
+      "line": 32,
+      "endLine": 39,
+      "signature": "findOneNotHiddenById(_id: string): Promise<ISetting | null>",
+      "containerClass": "SettingsRaw",
+      "calls": [
+        {
+          "name": "findOne",
+          "edgeType": "call"
+        },
+        {
+          "name": "ISetting",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "findByIds",
+      "exported": true,
+      "qualifiedName": "SettingsRaw.findByIds",
+      "line": 36,
+      "endLine": 48,
+      "signature": "findByIds(_id: string[] | string = [], options?: FindOptions<ISetting>): FindCursor<ISetting>",
+      "containerClass": "SettingsRaw",
+      "calls": [
+        {
+          "name": "find",
+          "edgeType": "call"
+        },
+        {
+          "name": "FindOptions",
+          "edgeType": "type"
+        },
+        {
+          "name": "ISetting",
+          "edgeType": "type"
+        },
+        {
+          "name": "FindCursor",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "updateValueById",
+      "exported": true,
+      "qualifiedName": "SettingsRaw.updateValueById",
+      "line": 40,
+      "endLine": 58,
+      "signature": "updateValueById( _id: string, value: (ISetting['value'] extends undefined ? never : ISetting['value']) | null, options?: UpdateOptions, ): Promise<UpdateResult>",
+      "containerClass": "SettingsRaw",
+      "calls": [
+        {
+          "name": "updateOne",
+          "edgeType": "call"
+        },
+        {
+          "name": "ISetting",
+          "edgeType": "type"
+        },
+        {
+          "name": "UpdateOptions",
+          "edgeType": "type"
+        },
+        {
+          "name": "UpdateResult",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "resetValueById",
+      "exported": true,
+      "qualifiedName": "SettingsRaw.resetValueById",
+      "line": 48,
+      "endLine": 65,
+      "signature": "async resetValueById( _id: string, value?: (ISetting['value'] extends undefined ? never : ISetting['value']) | null, ): Promise<Document | UpdateResult | undefined>",
+      "containerClass": "SettingsRaw",
+      "calls": [
+        {
+          "name": "findOneById",
+          "edgeType": "call"
+        },
+        {
+          "name": "updateValueById",
+          "edgeType": "call"
+        },
+        {
+          "name": "ISetting",
+          "edgeType": "type"
+        },
+        {
+          "name": "Document",
+          "edgeType": "type"
+        },
+        {
+          "name": "UpdateResult",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "incrementValueById",
+      "exported": true,
+      "qualifiedName": "SettingsRaw.incrementValueById",
+      "line": 55,
+      "endLine": 72,
+      "signature": "async incrementValueById( _id: ISetting['_id'], value?: ISetting['value'], options?: FindOneAndUpdateOptions, ): Promise<null | WithId<ISetting>>",
+      "containerClass": "SettingsRaw",
+      "calls": [
+        {
+          "name": "findOneAndUpdate",
+          "edgeType": "call"
+        },
+        {
+          "name": "ISetting",
+          "edgeType": "type"
+        },
+        {
+          "name": "FindOneAndUpdateOptions",
+          "edgeType": "type"
+        },
+        {
+          "name": "WithId",
+          "edgeType": "type"
+        },
+        {
+          "name": "UpdateFilter",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "updateOptionsById",
+      "exported": true,
+      "qualifiedName": "SettingsRaw.updateOptionsById",
+      "line": 63,
+      "endLine": 75,
+      "signature": "updateOptionsById<T extends ISetting = ISetting>( _id: ISetting['_id'], options: UpdateFilter<T>['$set'], ): Promise<Document | UpdateResult>",
+      "containerClass": "SettingsRaw",
+      "calls": [
+        {
+          "name": "updateOne",
+          "edgeType": "call"
+        },
+        {
+          "name": "ISetting",
+          "edgeType": "type"
+        },
+        {
+          "name": "UpdateFilter",
+          "edgeType": "type"
+        },
+        {
+          "name": "Document",
+          "edgeType": "type"
+        },
+        {
+          "name": "UpdateResult",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "updateValueNotHiddenById",
+      "exported": true,
+      "qualifiedName": "SettingsRaw.updateValueNotHiddenById",
+      "line": 70,
+      "endLine": 87,
+      "signature": "updateValueNotHiddenById<T extends ISetting['value'] = ISetting['value']>( _id: ISetting['_id'], value: T, ): Promise<Document | UpdateResult>",
+      "containerClass": "SettingsRaw",
+      "calls": [
+        {
+          "name": "updateOne",
+          "edgeType": "call"
+        },
+        {
+          "name": "ISetting",
+          "edgeType": "type"
+        },
+        {
+          "name": "Document",
+          "edgeType": "type"
+        },
+        {
+          "name": "UpdateResult",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "updateValueAndEditorById",
+      "exported": true,
+      "qualifiedName": "SettingsRaw.updateValueAndEditorById",
+      "line": 77,
+      "endLine": 96,
+      "signature": "updateValueAndEditorById<T extends ISetting['value'] = ISetting['value']>( _id: ISetting['_id'], value: T, editor: ISettingColor['editor'], ): Promise<Document | UpdateResult>",
+      "containerClass": "SettingsRaw",
+      "calls": [
+        {
+          "name": "updateOne",
+          "edgeType": "call"
+        },
+        {
+          "name": "ISetting",
+          "edgeType": "type"
+        },
+        {
+          "name": "ISettingColor",
+          "edgeType": "type"
+        },
+        {
+          "name": "Document",
+          "edgeType": "type"
+        },
+        {
+          "name": "UpdateResult",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "findNotHiddenPublic",
+      "exported": true,
+      "qualifiedName": "SettingsRaw.findNotHiddenPublic",
+      "line": 85,
+      "endLine": 112,
+      "signature": "findNotHiddenPublic<T extends ISetting = ISetting>( ids: ISetting['_id'][] = [], ): FindCursor< T extends ISettingColor ? Pick<T, '_id' | 'value' | 'editor' | 'enterprise' | 'invalidValue' | 'modules' | 'requiredOnWizard'> : Pick<T, '_id' | 'value' | 'enterprise' | 'invalidValue' | 'modules' | 'requiredOnWizard'> >",
+      "containerClass": "SettingsRaw",
+      "calls": [
+        {
+          "name": "find",
+          "edgeType": "call"
+        },
+        {
+          "name": "ISetting",
+          "edgeType": "type"
+        },
+        {
+          "name": "FindCursor",
+          "edgeType": "type"
+        },
+        {
+          "name": "ISettingColor",
+          "edgeType": "type"
+        },
+        {
+          "name": "Filter",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "findSetupWizardSettings",
+      "exported": true,
+      "qualifiedName": "SettingsRaw.findSetupWizardSettings",
+      "line": 95,
+      "endLine": 97,
+      "signature": "findSetupWizardSettings(): FindCursor<ISetting>",
+      "containerClass": "SettingsRaw",
+      "calls": [
+        {
+          "name": "find",
+          "edgeType": "call"
+        },
+        {
+          "name": "FindCursor",
+          "edgeType": "type"
+        },
+        {
+          "name": "ISetting",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "addOptionValueById",
+      "exported": true,
+      "qualifiedName": "SettingsRaw.addOptionValueById",
+      "line": 99,
+      "endLine": 116,
+      "signature": "addOptionValueById(_id: ISetting['_id'], option: ISettingSelectOption): Promise<Document | UpdateResult>",
+      "containerClass": "SettingsRaw",
+      "calls": [
+        {
+          "name": "updateOne",
+          "edgeType": "call"
+        },
+        {
+          "name": "ISetting",
+          "edgeType": "type"
+        },
+        {
+          "name": "ISettingSelectOption",
+          "edgeType": "type"
+        },
+        {
+          "name": "Document",
+          "edgeType": "type"
+        },
+        {
+          "name": "UpdateResult",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "findNotHiddenPublicUpdatedAfter",
+      "exported": true,
+      "qualifiedName": "SettingsRaw.findNotHiddenPublicUpdatedAfter",
+      "line": 103,
+      "endLine": 123,
+      "signature": "findNotHiddenPublicUpdatedAfter(updatedAt: Date): FindCursor<ISetting>",
+      "containerClass": "SettingsRaw",
+      "calls": [
+        {
+          "name": "find",
+          "edgeType": "call"
+        },
+        {
+          "name": "FindCursor",
+          "edgeType": "type"
+        },
+        {
+          "name": "ISetting",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "findEnterpriseSettings",
+      "exported": true,
+      "qualifiedName": "SettingsRaw.findEnterpriseSettings",
+      "line": 107,
+      "endLine": 109,
+      "signature": "findEnterpriseSettings(): FindCursor<ISetting>",
+      "containerClass": "SettingsRaw",
+      "calls": [
+        {
+          "name": "find",
+          "edgeType": "call"
+        },
+        {
+          "name": "FindCursor",
+          "edgeType": "type"
+        },
+        {
+          "name": "ISetting",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "constructor",
+      "exported": true,
+      "qualifiedName": "SettingsRaw.constructor",
+      "line": 20,
+      "endLine": 22,
+      "signature": "constructor(db: Db, trash?: Collection<RocketChatRecordDeleted<ISetting>>)",
+      "containerClass": "SettingsRaw",
+      "calls": [
+        {
+          "name": "Db",
+          "edgeType": "type"
+        },
+        {
+          "name": "Collection",
+          "edgeType": "type"
+        },
+        {
+          "name": "RocketChatRecordDeleted",
+          "edgeType": "type"
+        },
+        {
+          "name": "ISetting",
+          "edgeType": "type"
+        }
+      ]
+    }
+  ],
+  "imports": [
+    {
+      "module": "@rocket.chat/core-typings",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/model-typings",
+      "resolved": "external"
+    },
+    {
+      "module": "mongodb",
+      "resolved": "external"
+    },
+    {
+      "module": "./BaseRaw",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/packages/models/src/models/BaseRaw.ts"
+    }
+  ]
+}

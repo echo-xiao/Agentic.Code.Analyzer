@@ -1,0 +1,41 @@
+{
+  "sourcePath": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/client/views/omnichannel/components/outboundMessage/hooks/useOutboundMessageAccess.ts",
+  "symbols": [
+    {
+      "type": "variable_function",
+      "name": "useOutboundMessageAccess",
+      "exported": true,
+      "line": 6,
+      "endLine": 21,
+      "signature": "(): boolean =>",
+      "calls": [
+        {
+          "name": "useOmnichannelEnabled",
+          "edgeType": "call"
+        },
+        {
+          "name": "useHasLicenseModule",
+          "edgeType": "call"
+        },
+        {
+          "name": "usePermission",
+          "edgeType": "call"
+        }
+      ]
+    }
+  ],
+  "imports": [
+    {
+      "module": "@rocket.chat/ui-contexts",
+      "resolved": "external"
+    },
+    {
+      "module": "../../../../../hooks/useHasLicenseModule",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/client/hooks/useHasLicenseModule.ts"
+    },
+    {
+      "module": "../../../hooks/useOmnichannelEnabled",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/client/views/omnichannel/hooks/useOmnichannelEnabled.ts"
+    }
+  ]
+}

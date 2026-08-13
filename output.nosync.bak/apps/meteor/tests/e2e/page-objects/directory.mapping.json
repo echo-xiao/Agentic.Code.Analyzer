@@ -1,0 +1,112 @@
+{
+  "sourcePath": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/tests/e2e/page-objects/directory.ts",
+  "symbols": [
+    {
+      "type": "class",
+      "name": "Directory",
+      "exported": true,
+      "line": 3,
+      "endLine": 22,
+      "signature": "export class Directory",
+      "calls": []
+    },
+    {
+      "type": "method",
+      "name": "searchChannel",
+      "exported": true,
+      "qualifiedName": "Directory.searchChannel",
+      "line": 10,
+      "endLine": 12,
+      "signature": "async searchChannel(name: string)",
+      "containerClass": "Directory",
+      "calls": [
+        {
+          "name": "fill",
+          "edgeType": "call"
+        },
+        {
+          "name": "getByRole",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "getSearchByChannelName",
+      "exported": true,
+      "qualifiedName": "Directory.getSearchByChannelName",
+      "line": 14,
+      "endLine": 16,
+      "signature": "getSearchByChannelName(name: string)",
+      "containerClass": "Directory",
+      "calls": [
+        {
+          "name": "locator",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "openChannel",
+      "exported": true,
+      "qualifiedName": "Directory.openChannel",
+      "line": 18,
+      "endLine": 21,
+      "signature": "async openChannel(name: string)",
+      "containerClass": "Directory",
+      "calls": [
+        {
+          "name": "searchChannel",
+          "edgeType": "call"
+        },
+        {
+          "name": "click",
+          "edgeType": "call"
+        },
+        {
+          "name": "getSearchByChannelName",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "constructor",
+      "exported": true,
+      "qualifiedName": "Directory.constructor",
+      "line": 6,
+      "endLine": 8,
+      "signature": "constructor(page: Page)",
+      "containerClass": "Directory",
+      "calls": [
+        {
+          "name": "Page",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "class_property",
+      "name": "page",
+      "exported": true,
+      "qualifiedName": "Directory.page",
+      "line": 4,
+      "endLine": 4,
+      "signature": "public readonly page: Page;",
+      "containerClass": "Directory",
+      "calls": [
+        {
+          "name": "Page",
+          "edgeType": "type"
+        }
+      ]
+    }
+  ],
+  "imports": [
+    {
+      "module": "@playwright/test",
+      "resolved": "external"
+    }
+  ]
+}

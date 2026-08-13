@@ -1,0 +1,353 @@
+{
+  "sourcePath": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/tests/data/livechat/users.ts",
+  "symbols": [
+    {
+      "type": "variable_function",
+      "name": "createBotAgent",
+      "exported": true,
+      "line": 11,
+      "endLine": 26,
+      "signature": "async (): Promise<{ credentials: Credentials; user: IUser; }> =>",
+      "calls": [
+        {
+          "name": "createUser",
+          "edgeType": "call"
+        },
+        {
+          "name": "login",
+          "edgeType": "call"
+        },
+        {
+          "name": "createAgent",
+          "edgeType": "call"
+        },
+        {
+          "name": "makeAgentAvailable",
+          "edgeType": "call"
+        },
+        {
+          "name": "Credentials",
+          "edgeType": "type"
+        },
+        {
+          "name": "IUser",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "variable_function",
+      "name": "getRandomVisitorToken",
+      "exported": true,
+      "line": 18,
+      "endLine": 18,
+      "signature": "(): string =>",
+      "calls": [
+        {
+          "name": "alphanumeric",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "variable_function",
+      "name": "getAgent",
+      "exported": true,
+      "line": 20,
+      "endLine": 26,
+      "signature": "async (userId: string): Promise<ILivechatAgent> =>",
+      "calls": [
+        {
+          "name": "expect",
+          "edgeType": "call"
+        },
+        {
+          "name": "set",
+          "edgeType": "call"
+        },
+        {
+          "name": "get",
+          "edgeType": "call"
+        },
+        {
+          "name": "api",
+          "edgeType": "call"
+        },
+        {
+          "name": "ILivechatAgent",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "variable_function",
+      "name": "removeAgent",
+      "exported": true,
+      "line": 24,
+      "endLine": 29,
+      "signature": "async (userId: string): Promise<void> =>",
+      "calls": [
+        {
+          "name": "expect",
+          "edgeType": "call"
+        },
+        {
+          "name": "set",
+          "edgeType": "call"
+        },
+        {
+          "name": "delete",
+          "edgeType": "call"
+        },
+        {
+          "name": "api",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "variable_function",
+      "name": "createAgentAndReLogin",
+      "exported": true,
+      "line": 28,
+      "endLine": 43,
+      "signature": "async (): Promise<{ credentials: Credentials; user: IUser & { username: string }; }> =>",
+      "calls": [
+        {
+          "name": "id",
+          "edgeType": "call"
+        },
+        {
+          "name": "send",
+          "edgeType": "call"
+        },
+        {
+          "name": "set",
+          "edgeType": "call"
+        },
+        {
+          "name": "post",
+          "edgeType": "call"
+        },
+        {
+          "name": "api",
+          "edgeType": "call"
+        },
+        {
+          "name": "login",
+          "edgeType": "call"
+        },
+        {
+          "name": "createAgent",
+          "edgeType": "call"
+        },
+        {
+          "name": "Credentials",
+          "edgeType": "type"
+        },
+        {
+          "name": "IUser",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "variable_function",
+      "name": "createAnOnlineAgent",
+      "exported": true,
+      "line": 35,
+      "endLine": 46,
+      "signature": "async (): Promise<{ credentials: Credentials; user: IUser & { username: string }; }> =>",
+      "calls": [
+        {
+          "name": "createAgentAndReLogin",
+          "edgeType": "call"
+        },
+        {
+          "name": "makeAgentAvailable",
+          "edgeType": "call"
+        },
+        {
+          "name": "Credentials",
+          "edgeType": "type"
+        },
+        {
+          "name": "IUser",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "variable_function",
+      "name": "createAnOfflineAgent",
+      "exported": true,
+      "line": 42,
+      "endLine": 58,
+      "signature": "async (): Promise<{ credentials: Credentials; user: IUser & { username: string }; }> =>",
+      "calls": [
+        {
+          "name": "now",
+          "edgeType": "call"
+        },
+        {
+          "name": "send",
+          "edgeType": "call"
+        },
+        {
+          "name": "set",
+          "edgeType": "call"
+        },
+        {
+          "name": "post",
+          "edgeType": "call"
+        },
+        {
+          "name": "api",
+          "edgeType": "call"
+        },
+        {
+          "name": "login",
+          "edgeType": "call"
+        },
+        {
+          "name": "createAgent",
+          "edgeType": "call"
+        },
+        {
+          "name": "makeAgentUnavailable",
+          "edgeType": "call"
+        },
+        {
+          "name": "Credentials",
+          "edgeType": "type"
+        },
+        {
+          "name": "IUser",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "variable_function",
+      "name": "createAnAwayAgent",
+      "exported": true,
+      "line": 49,
+      "endLine": 67,
+      "signature": "async (): Promise<{ credentials: Credentials; user: IUser & { username: string }; }> =>",
+      "calls": [
+        {
+          "name": "now",
+          "edgeType": "call"
+        },
+        {
+          "name": "send",
+          "edgeType": "call"
+        },
+        {
+          "name": "set",
+          "edgeType": "call"
+        },
+        {
+          "name": "post",
+          "edgeType": "call"
+        },
+        {
+          "name": "api",
+          "edgeType": "call"
+        },
+        {
+          "name": "login",
+          "edgeType": "call"
+        },
+        {
+          "name": "createAgent",
+          "edgeType": "call"
+        },
+        {
+          "name": "makeAgentAvailable",
+          "edgeType": "call"
+        },
+        {
+          "name": "setUserStatus",
+          "edgeType": "call"
+        },
+        {
+          "name": "setUserAway",
+          "edgeType": "call"
+        },
+        {
+          "name": "Credentials",
+          "edgeType": "type"
+        },
+        {
+          "name": "IUser",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "variable_function",
+      "name": "updateLivechatSettingsForUser",
+      "exported": true,
+      "line": 56,
+      "endLine": 71,
+      "signature": "async ( agentId: string, livechatSettings: Record<string, any>, agentDepartments: string[] = [], ): Promise<void> =>",
+      "calls": [
+        {
+          "name": "expect",
+          "edgeType": "call"
+        },
+        {
+          "name": "send",
+          "edgeType": "call"
+        },
+        {
+          "name": "set",
+          "edgeType": "call"
+        },
+        {
+          "name": "post",
+          "edgeType": "call"
+        },
+        {
+          "name": "api",
+          "edgeType": "call"
+        }
+      ]
+    }
+  ],
+  "imports": [
+    {
+      "module": "@faker-js/faker",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/api-client",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/core-typings",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/random",
+      "resolved": "external"
+    },
+    {
+      "module": "../api-data",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/tests/data/api-data.ts"
+    },
+    {
+      "module": "../user",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/tests/data/user.ts"
+    },
+    {
+      "module": "../users.helper",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/tests/data/users.helper.ts"
+    },
+    {
+      "module": "./rooms",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/tests/data/livechat/rooms.ts"
+    }
+  ]
+}

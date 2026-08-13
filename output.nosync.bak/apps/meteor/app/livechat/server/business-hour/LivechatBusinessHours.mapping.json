@@ -1,0 +1,77 @@
+{
+  "sourcePath": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/app/livechat/server/business-hour/LivechatBusinessHours.ts",
+  "symbols": [
+    {
+      "type": "variable_function",
+      "name": "createDefaultBusinessHourRow",
+      "exported": true,
+      "line": 6,
+      "endLine": 47,
+      "signature": "(): Omit<ILivechatBusinessHour, '_updatedAt'> =>",
+      "calls": [
+        {
+          "name": "toHexString",
+          "edgeType": "call"
+        },
+        {
+          "name": "map",
+          "edgeType": "call"
+        },
+        {
+          "name": "format",
+          "edgeType": "call"
+        },
+        {
+          "name": "utc",
+          "edgeType": "call"
+        },
+        {
+          "name": "moment",
+          "edgeType": "call"
+        },
+        {
+          "name": "includes",
+          "edgeType": "call"
+        },
+        {
+          "name": "guess",
+          "edgeType": "call"
+        },
+        {
+          "name": "utcOffset",
+          "edgeType": "call"
+        },
+        {
+          "name": "ObjectId",
+          "edgeType": "new"
+        },
+        {
+          "name": "Date",
+          "edgeType": "new"
+        },
+        {
+          "name": "ILivechatBusinessHour",
+          "edgeType": "type"
+        }
+      ]
+    }
+  ],
+  "imports": [
+    {
+      "module": "@rocket.chat/core-typings",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/core-typings",
+      "resolved": "external"
+    },
+    {
+      "module": "moment-timezone",
+      "resolved": "external"
+    },
+    {
+      "module": "mongodb",
+      "resolved": "external"
+    }
+  ]
+}

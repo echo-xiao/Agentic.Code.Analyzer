@@ -1,0 +1,109 @@
+{
+  "sourcePath": "/Users/echoooooo/Desktop/code/Rocket.Chat/packages/apps-engine/src/definition/livechat/ILivechatRoom.ts",
+  "symbols": [
+    {
+      "type": "variable_function",
+      "name": "isLivechatRoom",
+      "exported": true,
+      "line": 75,
+      "endLine": 77,
+      "signature": "(room: IRoom): room is ILivechatRoom =>",
+      "calls": [
+        {
+          "name": "IRoom",
+          "edgeType": "type"
+        },
+        {
+          "name": "ILivechatRoom",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "variable_function",
+      "name": "isLivechatFromApp",
+      "exported": true,
+      "line": 78,
+      "endLine": 80,
+      "signature": "(room: ILivechatRoom): room is ILivechatRoom & { source: IOmnichannelSourceApp } =>",
+      "calls": [
+        {
+          "name": "ILivechatRoom",
+          "edgeType": "type"
+        },
+        {
+          "name": "IOmnichannelSourceApp",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "interface",
+      "name": "IOmnichannelSource",
+      "line": 17,
+      "endLine": 31,
+      "signature": "export interface IOmnichannelSource"
+    },
+    {
+      "type": "interface",
+      "name": "IOmnichannelSourceApp",
+      "line": 33,
+      "endLine": 47,
+      "signature": "interface IOmnichannelSourceApp"
+    },
+    {
+      "type": "interface",
+      "name": "IVisitorChannelInfo",
+      "line": 55,
+      "endLine": 58,
+      "signature": "export interface IVisitorChannelInfo"
+    },
+    {
+      "type": "interface",
+      "name": "ILivechatRoom",
+      "line": 60,
+      "endLine": 73,
+      "signature": "export interface ILivechatRoom extends IRoom"
+    },
+    {
+      "type": "type",
+      "name": "OmnichannelSource",
+      "line": 49,
+      "endLine": 53,
+      "signature": "export type OmnichannelSource = |"
+    },
+    {
+      "type": "enum",
+      "name": "OmnichannelSourceType",
+      "line": 8,
+      "endLine": 15,
+      "signature": "export enum OmnichannelSourceType"
+    }
+  ],
+  "imports": [
+    {
+      "module": "../rooms",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/packages/apps-engine/src/definition/rooms/index.ts"
+    },
+    {
+      "module": "../rooms/IRoom",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/packages/apps-engine/src/definition/rooms/IRoom.ts"
+    },
+    {
+      "module": "../users",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/packages/apps-engine/src/definition/users/index.ts"
+    },
+    {
+      "module": "./IDepartment",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/packages/apps-engine/src/definition/livechat/IDepartment.ts"
+    },
+    {
+      "module": "./ILivechatContact",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/packages/apps-engine/src/definition/livechat/ILivechatContact.ts"
+    },
+    {
+      "module": "./IVisitor",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/packages/apps-engine/src/definition/livechat/IVisitor.ts"
+    }
+  ]
+}

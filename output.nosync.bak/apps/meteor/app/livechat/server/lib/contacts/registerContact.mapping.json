@@ -1,0 +1,176 @@
+{
+  "sourcePath": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/app/livechat/server/lib/contacts/registerContact.ts",
+  "symbols": [
+    {
+      "type": "function",
+      "name": "registerContact",
+      "exported": true,
+      "line": 28,
+      "endLine": 124,
+      "signature": "export async function registerContact( { token, name, email = '', phone, username, customFields = {}, contactManager }: RegisterContactProps, userId: string, ): Promise<string>",
+      "calls": [
+        {
+          "name": "toLowerCase",
+          "edgeType": "call"
+        },
+        {
+          "name": "trim",
+          "edgeType": "call"
+        },
+        {
+          "name": "findOneByUsername",
+          "edgeType": "call"
+        },
+        {
+          "name": "isArray",
+          "edgeType": "call"
+        },
+        {
+          "name": "includes",
+          "edgeType": "call"
+        },
+        {
+          "name": "getVisitorByToken",
+          "edgeType": "call"
+        },
+        {
+          "name": "getNextVisitorUsername",
+          "edgeType": "call"
+        },
+        {
+          "name": "findOneGuestByEmailAddress",
+          "edgeType": "call"
+        },
+        {
+          "name": "insertOne",
+          "edgeType": "call"
+        },
+        {
+          "name": "getAllowedCustomFields",
+          "edgeType": "call"
+        },
+        {
+          "name": "validateCustomFields",
+          "edgeType": "call"
+        },
+        {
+          "name": "keys",
+          "edgeType": "call"
+        },
+        {
+          "name": "updateOne",
+          "edgeType": "call"
+        },
+        {
+          "name": "livechat.applyRoomRestrictions",
+          "edgeType": "event_emit"
+        },
+        {
+          "name": "toArray",
+          "edgeType": "call"
+        },
+        {
+          "name": "findByVisitorId",
+          "edgeType": "call"
+        },
+        {
+          "name": "all",
+          "edgeType": "call"
+        },
+        {
+          "name": "setFnameById",
+          "edgeType": "call"
+        },
+        {
+          "name": "setNameByRoomId",
+          "edgeType": "call"
+        },
+        {
+          "name": "updateDisplayNameByRoomId",
+          "edgeType": "call"
+        },
+        {
+          "name": "notifyOnRoomChangedById",
+          "edgeType": "call"
+        },
+        {
+          "name": "notifyOnLivechatInquiryChangedByRoom",
+          "edgeType": "call"
+        },
+        {
+          "name": "notifyOnSubscriptionChangedByRoomId",
+          "edgeType": "call"
+        },
+        {
+          "name": "MeteorError",
+          "edgeType": "new"
+        },
+        {
+          "name": "Date",
+          "edgeType": "new"
+        },
+        {
+          "name": "RegisterContactProps",
+          "edgeType": "type"
+        },
+        {
+          "name": "MatchKeysAndValues",
+          "edgeType": "type"
+        },
+        {
+          "name": "ILivechatVisitor",
+          "edgeType": "type"
+        },
+        {
+          "name": "OnlyFieldsOfType",
+          "edgeType": "type"
+        },
+        {
+          "name": "IOmnichannelRoom",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "type",
+      "name": "RegisterContactProps",
+      "line": 15,
+      "endLine": 26,
+      "signature": "type RegisterContactProps ="
+    }
+  ],
+  "imports": [
+    {
+      "module": "@rocket.chat/core-services",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/core-typings",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/models",
+      "resolved": "external"
+    },
+    {
+      "module": "mongodb",
+      "resolved": "external"
+    },
+    {
+      "module": "./getAllowedCustomFields",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/app/livechat/server/lib/contacts/getAllowedCustomFields.ts"
+    },
+    {
+      "module": "./validateCustomFields",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/app/livechat/server/lib/contacts/validateCustomFields.ts"
+    },
+    {
+      "module": "../../../../../server/lib/callbacks",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/server/lib/callbacks.ts"
+    },
+    {
+      "module": "../../../../lib/server/lib/notifyListener",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/app/lib/server/lib/notifyListener.ts"
+    }
+  ]
+}

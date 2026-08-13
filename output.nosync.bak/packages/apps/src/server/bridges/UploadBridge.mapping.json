@@ -1,0 +1,221 @@
+{
+  "sourcePath": "/Users/echoooooo/Desktop/code/Rocket.Chat/packages/apps/src/server/bridges/UploadBridge.ts",
+  "symbols": [
+    {
+      "type": "class",
+      "name": "UploadBridge",
+      "exported": true,
+      "line": 9,
+      "endLine": 63,
+      "signature": "export abstract class UploadBridge extends BaseBridge",
+      "calls": [
+        {
+          "name": "BaseBridge",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "doGetById",
+      "exported": true,
+      "qualifiedName": "UploadBridge.doGetById",
+      "line": 10,
+      "endLine": 14,
+      "signature": "public async doGetById(id: string, appId: string): Promise<IUpload>",
+      "containerClass": "UploadBridge",
+      "calls": [
+        {
+          "name": "hasReadPermission",
+          "edgeType": "call"
+        },
+        {
+          "name": "getById",
+          "edgeType": "call"
+        },
+        {
+          "name": "IUpload",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "doGetBuffer",
+      "exported": true,
+      "qualifiedName": "UploadBridge.doGetBuffer",
+      "line": 14,
+      "endLine": 18,
+      "signature": "public async doGetBuffer(upload: IUpload, appId: string): Promise<Buffer>",
+      "containerClass": "UploadBridge",
+      "calls": [
+        {
+          "name": "hasReadPermission",
+          "edgeType": "call"
+        },
+        {
+          "name": "getBuffer",
+          "edgeType": "call"
+        },
+        {
+          "name": "IUpload",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "doCreateUpload",
+      "exported": true,
+      "qualifiedName": "UploadBridge.doCreateUpload",
+      "line": 18,
+      "endLine": 22,
+      "signature": "public async doCreateUpload(details: IUploadDetails, buffer: Buffer, appId: string): Promise<IUpload>",
+      "containerClass": "UploadBridge",
+      "calls": [
+        {
+          "name": "hasWritePermission",
+          "edgeType": "call"
+        },
+        {
+          "name": "createUpload",
+          "edgeType": "call"
+        },
+        {
+          "name": "IUploadDetails",
+          "edgeType": "type"
+        },
+        {
+          "name": "IUpload",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "getById",
+      "exported": true,
+      "qualifiedName": "UploadBridge.getById",
+      "line": 22,
+      "endLine": 22,
+      "signature": "protected abstract getById(id: string, appId: string): Promise<IUpload>;",
+      "containerClass": "UploadBridge",
+      "calls": [
+        {
+          "name": "IUpload",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "getBuffer",
+      "exported": true,
+      "qualifiedName": "UploadBridge.getBuffer",
+      "line": 24,
+      "endLine": 24,
+      "signature": "protected abstract getBuffer(upload: IUpload, appId: string): Promise<Buffer>;",
+      "containerClass": "UploadBridge",
+      "calls": [
+        {
+          "name": "IUpload",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "createUpload",
+      "exported": true,
+      "qualifiedName": "UploadBridge.createUpload",
+      "line": 26,
+      "endLine": 26,
+      "signature": "protected abstract createUpload(details: IUploadDetails, buffer: Buffer, appId: string): Promise<IUpload>;",
+      "containerClass": "UploadBridge",
+      "calls": [
+        {
+          "name": "IUploadDetails",
+          "edgeType": "type"
+        },
+        {
+          "name": "IUpload",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "hasReadPermission",
+      "exported": true,
+      "qualifiedName": "UploadBridge.hasReadPermission",
+      "line": 28,
+      "endLine": 41,
+      "signature": "private hasReadPermission(appId: string): boolean",
+      "containerClass": "UploadBridge",
+      "calls": [
+        {
+          "name": "hasPermission",
+          "edgeType": "call"
+        },
+        {
+          "name": "notifyAboutError",
+          "edgeType": "call"
+        },
+        {
+          "name": "PermissionDeniedError",
+          "edgeType": "new"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "hasWritePermission",
+      "exported": true,
+      "qualifiedName": "UploadBridge.hasWritePermission",
+      "line": 32,
+      "endLine": 45,
+      "signature": "private hasWritePermission(appId: string): boolean",
+      "containerClass": "UploadBridge",
+      "calls": [
+        {
+          "name": "hasPermission",
+          "edgeType": "call"
+        },
+        {
+          "name": "notifyAboutError",
+          "edgeType": "call"
+        },
+        {
+          "name": "PermissionDeniedError",
+          "edgeType": "new"
+        }
+      ]
+    }
+  ],
+  "imports": [
+    {
+      "module": "@rocket.chat/apps-engine/definition/uploads",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/apps-engine/definition/uploads/IUploadDetails",
+      "resolved": "external"
+    },
+    {
+      "module": "./BaseBridge",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/packages/apps/src/server/bridges/BaseBridge.ts"
+    },
+    {
+      "module": "../errors/PermissionDeniedError",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/packages/apps/src/server/errors/PermissionDeniedError.ts"
+    },
+    {
+      "module": "../managers/AppPermissionManager",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/packages/apps/src/server/managers/AppPermissionManager.ts"
+    },
+    {
+      "module": "../permissions/AppPermissions",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/packages/apps/src/server/permissions/AppPermissions.ts"
+    }
+  ]
+}

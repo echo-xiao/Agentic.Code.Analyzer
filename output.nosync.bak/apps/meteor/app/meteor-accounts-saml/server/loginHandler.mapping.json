@@ -1,0 +1,90 @@
+{
+  "sourcePath": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/app/meteor-accounts-saml/server/loginHandler.ts",
+  "symbols": [
+    {
+      "type": "module",
+      "name": "loginHandler",
+      "exported": false,
+      "line": 1,
+      "endLine": 66,
+      "signature": "loginHandler",
+      "calls": [
+        {
+          "name": "registerLoginHandler",
+          "edgeType": "call"
+        },
+        {
+          "name": "retrieveCredential",
+          "edgeType": "call"
+        },
+        {
+          "name": "removeById",
+          "edgeType": "call"
+        },
+        {
+          "name": "log",
+          "edgeType": "call"
+        },
+        {
+          "name": "makeError",
+          "edgeType": "call"
+        },
+        {
+          "name": "mapProfileToUserObject",
+          "edgeType": "call"
+        },
+        {
+          "name": "insertOrUpdateSAMLUser",
+          "edgeType": "call"
+        },
+        {
+          "name": "updateCustomFields",
+          "edgeType": "event_emit"
+        },
+        {
+          "name": "error",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "variable_function",
+      "name": "makeError",
+      "exported": false,
+      "line": 10,
+      "endLine": 13,
+      "signature": "(message: string): Record<string, any> =>",
+      "calls": []
+    }
+  ],
+  "imports": [
+    {
+      "module": "@rocket.chat/models",
+      "resolved": "external"
+    },
+    {
+      "module": "meteor/accounts-base",
+      "resolved": "external"
+    },
+    {
+      "module": "meteor/meteor",
+      "resolved": "external"
+    },
+    {
+      "module": "./lib/SAML",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/app/meteor-accounts-saml/server/lib/SAML.ts"
+    },
+    {
+      "module": "./lib/Utils",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/app/meteor-accounts-saml/server/lib/Utils.ts"
+    },
+    {
+      "module": "../../../server/lib/i18n",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/server/lib/i18n.ts"
+    },
+    {
+      "module": "../../../server/lib/logger/system",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/server/lib/logger/system.ts"
+    }
+  ]
+}

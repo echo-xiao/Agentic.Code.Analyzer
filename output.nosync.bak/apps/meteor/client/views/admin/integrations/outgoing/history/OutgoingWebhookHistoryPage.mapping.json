@@ -1,0 +1,248 @@
+{
+  "sourcePath": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/client/views/admin/integrations/outgoing/history/OutgoingWebhookHistoryPage.tsx",
+  "symbols": [
+    {
+      "type": "inner_function",
+      "name": "handleClearHistory",
+      "exported": false,
+      "qualifiedName": "OutgoingWebhookHistoryPage.handleClearHistory",
+      "line": 53,
+      "endLine": 62,
+      "signature": "async (): Promise<void> =>",
+      "calls": [
+        {
+          "name": "clearIntegrationHistory",
+          "edgeType": "call"
+        },
+        {
+          "name": "dispatchToastMessage",
+          "edgeType": "call"
+        },
+        {
+          "name": "refetch",
+          "edgeType": "call"
+        },
+        {
+          "name": "setMounted",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "variable_function",
+      "name": "OutgoingWebhookHistoryPage",
+      "exported": false,
+      "line": 11,
+      "endLine": 131,
+      "signature": "(props: ComponentProps<typeof Page>) =>",
+      "calls": [
+        {
+          "name": "useToastMessageDispatch",
+          "edgeType": "call"
+        },
+        {
+          "name": "useTranslation",
+          "edgeType": "call"
+        },
+        {
+          "name": "useRouter",
+          "edgeType": "call"
+        },
+        {
+          "name": "usePagination",
+          "edgeType": "call"
+        },
+        {
+          "name": "useState",
+          "edgeType": "call"
+        },
+        {
+          "name": "useMethod",
+          "edgeType": "call"
+        },
+        {
+          "name": "useRouteParameter",
+          "edgeType": "call"
+        },
+        {
+          "name": "useMemo",
+          "edgeType": "call"
+        },
+        {
+          "name": "useEndpoint",
+          "edgeType": "call"
+        },
+        {
+          "name": "useQueryClient",
+          "edgeType": "call"
+        },
+        {
+          "name": "useQuery",
+          "edgeType": "call"
+        },
+        {
+          "name": "fetchHistory",
+          "edgeType": "call"
+        },
+        {
+          "name": "setMounted",
+          "edgeType": "call"
+        },
+        {
+          "name": "clearIntegrationHistory",
+          "edgeType": "call"
+        },
+        {
+          "name": "dispatchToastMessage",
+          "edgeType": "call"
+        },
+        {
+          "name": "refetch",
+          "edgeType": "call"
+        },
+        {
+          "name": "useEffect",
+          "edgeType": "call"
+        },
+        {
+          "name": "integrationHistory",
+          "edgeType": "stream_sub"
+        },
+        {
+          "name": "stream",
+          "edgeType": "call"
+        },
+        {
+          "name": "setTotal",
+          "edgeType": "call"
+        },
+        {
+          "name": "setQueryData",
+          "edgeType": "call"
+        },
+        {
+          "name": "concat",
+          "edgeType": "call"
+        },
+        {
+          "name": "findIndex",
+          "edgeType": "call"
+        },
+        {
+          "name": "assign",
+          "edgeType": "call"
+        },
+        {
+          "name": "navigate",
+          "edgeType": "call"
+        },
+        {
+          "name": "Page",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "PageHeader",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "ButtonGroup",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "Button",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "PageContent",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "CustomScrollbars",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "HistoryContent",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "Pagination",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "handleClearHistory",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "isPending",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "current",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "itemsPerPage",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "itemsPerPageLabel",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "showingResultsLabel",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "setItemsPerPage",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "setCurrent",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "ComponentProps",
+          "edgeType": "type"
+        },
+        {
+          "name": "HistoryData",
+          "edgeType": "type"
+        }
+      ]
+    }
+  ],
+  "imports": [
+    {
+      "module": "@rocket.chat/fuselage",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/ui-client",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/ui-contexts",
+      "resolved": "external"
+    },
+    {
+      "module": "@tanstack/react-query",
+      "resolved": "external"
+    },
+    {
+      "module": "react",
+      "resolved": "external"
+    },
+    {
+      "module": "react",
+      "resolved": "external"
+    },
+    {
+      "module": "./HistoryContent",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/client/views/admin/integrations/outgoing/history/HistoryContent.tsx"
+    },
+    {
+      "module": "../../../../../../app/utils/client/lib/SDKClient",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/app/utils/client/lib/SDKClient.ts"
+    }
+  ]
+}

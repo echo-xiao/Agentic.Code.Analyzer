@@ -1,0 +1,61 @@
+{
+  "sourcePath": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/client/sidebar/hooks/useAvatarTemplate.tsx",
+  "symbols": [
+    {
+      "type": "variable_function",
+      "name": "useAvatarTemplate",
+      "exported": true,
+      "line": 7,
+      "endLine": 39,
+      "signature": "( sidebarViewMode?: 'extended' | 'medium' | 'condensed', sidebarDisplayAvatar?: boolean, ): null | ComponentType<SubscriptionWithRoom & { rid: string }> =>",
+      "calls": [
+        {
+          "name": "useUserPreference",
+          "edgeType": "call"
+        },
+        {
+          "name": "useMemo",
+          "edgeType": "call"
+        },
+        {
+          "name": "RoomAvatar",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "size",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "ComponentType",
+          "edgeType": "type"
+        },
+        {
+          "name": "SubscriptionWithRoom",
+          "edgeType": "type"
+        }
+      ]
+    }
+  ],
+  "imports": [
+    {
+      "module": "@rocket.chat/ui-avatar",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/ui-contexts",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/ui-contexts",
+      "resolved": "external"
+    },
+    {
+      "module": "react",
+      "resolved": "external"
+    },
+    {
+      "module": "react",
+      "resolved": "external"
+    }
+  ]
+}

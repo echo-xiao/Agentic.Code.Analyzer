@@ -1,0 +1,99 @@
+{
+  "sourcePath": "/Users/echoooooo/Desktop/code/Rocket.Chat/packages/mongo-adapter/src/lookups.ts",
+  "symbols": [
+    {
+      "type": "variable_function",
+      "name": "buildResult",
+      "exported": false,
+      "line": 4,
+      "endLine": 15,
+      "signature": "(arrayIndices: ArrayIndices | undefined, dontIterate: boolean, value: unknown): [LookupBranch] =>",
+      "calls": [
+        {
+          "name": "ArrayIndices",
+          "edgeType": "type"
+        },
+        {
+          "name": "LookupBranch",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "variable_function",
+      "name": "createLookupFunction",
+      "exported": true,
+      "line": 8,
+      "endLine": 50,
+      "signature": "( key: string, options: { forSort?: boolean } = {}, ): (<T>(doc: T, arrayIndices?: ArrayIndices) => LookupBranch[]) =>",
+      "calls": [
+        {
+          "name": "split",
+          "edgeType": "call"
+        },
+        {
+          "name": "createLookupFunction",
+          "edgeType": "call"
+        },
+        {
+          "name": "join",
+          "edgeType": "call"
+        },
+        {
+          "name": "isArray",
+          "edgeType": "call"
+        },
+        {
+          "name": "isNumericKey",
+          "edgeType": "call"
+        },
+        {
+          "name": "concat",
+          "edgeType": "call"
+        },
+        {
+          "name": "buildResult",
+          "edgeType": "call"
+        },
+        {
+          "name": "isIndexable",
+          "edgeType": "call"
+        },
+        {
+          "name": "lookupRest",
+          "edgeType": "call"
+        },
+        {
+          "name": "forEach",
+          "edgeType": "call"
+        },
+        {
+          "name": "isPlainObject",
+          "edgeType": "call"
+        },
+        {
+          "name": "push",
+          "edgeType": "call"
+        },
+        {
+          "name": "ArrayIndices",
+          "edgeType": "type"
+        },
+        {
+          "name": "LookupBranch",
+          "edgeType": "type"
+        }
+      ]
+    }
+  ],
+  "imports": [
+    {
+      "module": "./common",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/packages/mongo-adapter/src/common.ts"
+    },
+    {
+      "module": "./types",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/packages/mongo-adapter/src/types.ts"
+    }
+  ]
+}

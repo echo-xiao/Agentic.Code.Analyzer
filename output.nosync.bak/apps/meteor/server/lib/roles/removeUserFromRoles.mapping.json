@@ -1,0 +1,77 @@
+{
+  "sourcePath": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/server/lib/roles/removeUserFromRoles.ts",
+  "symbols": [
+    {
+      "type": "variable_function",
+      "name": "removeUserFromRolesAsync",
+      "exported": true,
+      "line": 9,
+      "endLine": 45,
+      "signature": "async (userId: IUser['_id'], roles: IRole['_id'][], scope?: IRoom['_id']): Promise<boolean> =>",
+      "calls": [
+        {
+          "name": "findOneById",
+          "edgeType": "call"
+        },
+        {
+          "name": "validateRoleList",
+          "edgeType": "call"
+        },
+        {
+          "name": "removeRolesByUserId",
+          "edgeType": "call"
+        },
+        {
+          "name": "syncRoomRolePriorityForUserAndRoom",
+          "edgeType": "call"
+        },
+        {
+          "name": "notifyOnSubscriptionChangedByRoomIdAndUserId",
+          "edgeType": "call"
+        },
+        {
+          "name": "MeteorError",
+          "edgeType": "new"
+        },
+        {
+          "name": "IUser",
+          "edgeType": "type"
+        },
+        {
+          "name": "IRole",
+          "edgeType": "type"
+        },
+        {
+          "name": "IRoom",
+          "edgeType": "type"
+        }
+      ]
+    }
+  ],
+  "imports": [
+    {
+      "module": "@rocket.chat/core-services",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/core-typings",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/models",
+      "resolved": "external"
+    },
+    {
+      "module": "./syncRoomRolePriority",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/server/lib/roles/syncRoomRolePriority.ts"
+    },
+    {
+      "module": "./validateRoleList",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/server/lib/roles/validateRoleList.ts"
+    },
+    {
+      "module": "../../../app/lib/server/lib/notifyListener",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/app/lib/server/lib/notifyListener.ts"
+    }
+  ]
+}

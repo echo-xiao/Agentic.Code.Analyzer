@@ -1,0 +1,598 @@
+{
+  "sourcePath": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/client/meteor/minimongo/OrderedDict.ts",
+  "symbols": [
+    {
+      "type": "class",
+      "name": "OrderedDict",
+      "exported": true,
+      "line": 22,
+      "endLine": 223,
+      "signature": "export class OrderedDict<TKey extends string, TValue>",
+      "calls": []
+    },
+    {
+      "type": "method",
+      "name": "_k",
+      "exported": true,
+      "qualifiedName": "OrderedDict._k",
+      "line": 31,
+      "endLine": 33,
+      "signature": "_k(key: TKey): string",
+      "containerClass": "OrderedDict",
+      "calls": [
+        {
+          "name": "TKey",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "empty",
+      "exported": true,
+      "qualifiedName": "OrderedDict.empty",
+      "line": 35,
+      "endLine": 37,
+      "signature": "empty(): boolean",
+      "containerClass": "OrderedDict",
+      "calls": []
+    },
+    {
+      "type": "method",
+      "name": "size",
+      "exported": true,
+      "qualifiedName": "OrderedDict.size",
+      "line": 39,
+      "endLine": 41,
+      "signature": "size(): number",
+      "containerClass": "OrderedDict",
+      "calls": []
+    },
+    {
+      "type": "method",
+      "name": "_linkEltIn",
+      "exported": true,
+      "qualifiedName": "OrderedDict._linkEltIn",
+      "line": 43,
+      "endLine": 54,
+      "signature": "_linkEltIn(elt: ElementType<TKey, TValue>): void",
+      "containerClass": "OrderedDict",
+      "calls": [
+        {
+          "name": "ElementType",
+          "edgeType": "type"
+        },
+        {
+          "name": "TKey",
+          "edgeType": "type"
+        },
+        {
+          "name": "TValue",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "_linkEltOut",
+      "exported": true,
+      "qualifiedName": "OrderedDict._linkEltOut",
+      "line": 47,
+      "endLine": 52,
+      "signature": "_linkEltOut(elt: ElementType<TKey, TValue>): void",
+      "containerClass": "OrderedDict",
+      "calls": [
+        {
+          "name": "ElementType",
+          "edgeType": "type"
+        },
+        {
+          "name": "TKey",
+          "edgeType": "type"
+        },
+        {
+          "name": "TValue",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "putBefore",
+      "exported": true,
+      "qualifiedName": "OrderedDict.putBefore",
+      "line": 51,
+      "endLine": 58,
+      "signature": "putBefore(key: TKey, item: TValue, before: TKey | null): void",
+      "containerClass": "OrderedDict",
+      "calls": [
+        {
+          "name": "_k",
+          "edgeType": "call"
+        },
+        {
+          "name": "element",
+          "edgeType": "call"
+        },
+        {
+          "name": "_linkEltIn",
+          "edgeType": "call"
+        },
+        {
+          "name": "TKey",
+          "edgeType": "type"
+        },
+        {
+          "name": "TValue",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "append",
+      "exported": true,
+      "qualifiedName": "OrderedDict.append",
+      "line": 55,
+      "endLine": 57,
+      "signature": "append(key: TKey, item: TValue): void",
+      "containerClass": "OrderedDict",
+      "calls": [
+        {
+          "name": "putBefore",
+          "edgeType": "call"
+        },
+        {
+          "name": "TKey",
+          "edgeType": "type"
+        },
+        {
+          "name": "TValue",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "remove",
+      "exported": true,
+      "qualifiedName": "OrderedDict.remove",
+      "line": 59,
+      "endLine": 66,
+      "signature": "remove(key: TKey): TValue",
+      "containerClass": "OrderedDict",
+      "calls": [
+        {
+          "name": "_k",
+          "edgeType": "call"
+        },
+        {
+          "name": "_linkEltOut",
+          "edgeType": "call"
+        },
+        {
+          "name": "TKey",
+          "edgeType": "type"
+        },
+        {
+          "name": "TValue",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "get",
+      "exported": true,
+      "qualifiedName": "OrderedDict.get",
+      "line": 63,
+      "endLine": 67,
+      "signature": "get(key: TKey): TValue | undefined",
+      "containerClass": "OrderedDict",
+      "calls": [
+        {
+          "name": "has",
+          "edgeType": "call"
+        },
+        {
+          "name": "_k",
+          "edgeType": "call"
+        },
+        {
+          "name": "TKey",
+          "edgeType": "type"
+        },
+        {
+          "name": "TValue",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "has",
+      "exported": true,
+      "qualifiedName": "OrderedDict.has",
+      "line": 67,
+      "endLine": 69,
+      "signature": "has(key: TKey): boolean",
+      "containerClass": "OrderedDict",
+      "calls": [
+        {
+          "name": "call",
+          "edgeType": "call"
+        },
+        {
+          "name": "_k",
+          "edgeType": "call"
+        },
+        {
+          "name": "TKey",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "forEach",
+      "exported": true,
+      "qualifiedName": "OrderedDict.forEach",
+      "line": 78,
+      "endLine": 90,
+      "signature": "forEach<TContext>( iter: (this: TContext | null, value: TValue, key: TKey, index: number) => void | typeof OrderedDict.BREAK, context: TContext | null = null, ): void",
+      "containerClass": "OrderedDict",
+      "calls": [
+        {
+          "name": "call",
+          "edgeType": "call"
+        },
+        {
+          "name": "TContext",
+          "edgeType": "type"
+        },
+        {
+          "name": "TValue",
+          "edgeType": "type"
+        },
+        {
+          "name": "TKey",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "forEachAsync",
+      "exported": true,
+      "qualifiedName": "OrderedDict.forEachAsync",
+      "line": 95,
+      "endLine": 107,
+      "signature": "async forEachAsync<TContext>( asyncIter: (this: TContext | null, value: TValue, key: TKey, index: number) => Promise<void | typeof OrderedDict.BREAK>, context: TContext | null = null, ): Promise<void>",
+      "containerClass": "OrderedDict",
+      "calls": [
+        {
+          "name": "call",
+          "edgeType": "call"
+        },
+        {
+          "name": "TContext",
+          "edgeType": "type"
+        },
+        {
+          "name": "TValue",
+          "edgeType": "type"
+        },
+        {
+          "name": "TKey",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "first",
+      "exported": true,
+      "qualifiedName": "OrderedDict.first",
+      "line": 102,
+      "endLine": 107,
+      "signature": "first(): TKey | undefined",
+      "containerClass": "OrderedDict",
+      "calls": [
+        {
+          "name": "empty",
+          "edgeType": "call"
+        },
+        {
+          "name": "TKey",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "firstValue",
+      "exported": true,
+      "qualifiedName": "OrderedDict.firstValue",
+      "line": 106,
+      "endLine": 111,
+      "signature": "firstValue(): TValue | undefined",
+      "containerClass": "OrderedDict",
+      "calls": [
+        {
+          "name": "empty",
+          "edgeType": "call"
+        },
+        {
+          "name": "TValue",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "last",
+      "exported": true,
+      "qualifiedName": "OrderedDict.last",
+      "line": 110,
+      "endLine": 115,
+      "signature": "last(): TKey | undefined",
+      "containerClass": "OrderedDict",
+      "calls": [
+        {
+          "name": "empty",
+          "edgeType": "call"
+        },
+        {
+          "name": "TKey",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "lastValue",
+      "exported": true,
+      "qualifiedName": "OrderedDict.lastValue",
+      "line": 114,
+      "endLine": 119,
+      "signature": "lastValue(): TValue | undefined",
+      "containerClass": "OrderedDict",
+      "calls": [
+        {
+          "name": "empty",
+          "edgeType": "call"
+        },
+        {
+          "name": "TValue",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "prev",
+      "exported": true,
+      "qualifiedName": "OrderedDict.prev",
+      "line": 118,
+      "endLine": 124,
+      "signature": "prev(key: TKey): TKey | null",
+      "containerClass": "OrderedDict",
+      "calls": [
+        {
+          "name": "has",
+          "edgeType": "call"
+        },
+        {
+          "name": "_k",
+          "edgeType": "call"
+        },
+        {
+          "name": "TKey",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "next",
+      "exported": true,
+      "qualifiedName": "OrderedDict.next",
+      "line": 122,
+      "endLine": 128,
+      "signature": "next(key: TKey): TKey | null",
+      "containerClass": "OrderedDict",
+      "calls": [
+        {
+          "name": "has",
+          "edgeType": "call"
+        },
+        {
+          "name": "_k",
+          "edgeType": "call"
+        },
+        {
+          "name": "TKey",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "moveBefore",
+      "exported": true,
+      "qualifiedName": "OrderedDict.moveBefore",
+      "line": 126,
+      "endLine": 139,
+      "signature": "moveBefore(key: TKey, before: TKey | null): void",
+      "containerClass": "OrderedDict",
+      "calls": [
+        {
+          "name": "_k",
+          "edgeType": "call"
+        },
+        {
+          "name": "_linkEltOut",
+          "edgeType": "call"
+        },
+        {
+          "name": "_linkEltIn",
+          "edgeType": "call"
+        },
+        {
+          "name": "TKey",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "indexOf",
+      "exported": true,
+      "qualifiedName": "OrderedDict.indexOf",
+      "line": 130,
+      "endLine": 139,
+      "signature": "indexOf(key: TKey): number",
+      "containerClass": "OrderedDict",
+      "calls": [
+        {
+          "name": "forEach",
+          "edgeType": "call"
+        },
+        {
+          "name": "_k",
+          "edgeType": "call"
+        },
+        {
+          "name": "TKey",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "_checkRep",
+      "exported": true,
+      "qualifiedName": "OrderedDict._checkRep",
+      "line": 134,
+      "endLine": 144,
+      "signature": "_checkRep(): void",
+      "containerClass": "OrderedDict",
+      "calls": [
+        {
+          "name": "forEach",
+          "edgeType": "call"
+        },
+        {
+          "name": "keys",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "class_property",
+      "name": "_dict",
+      "exported": true,
+      "qualifiedName": "OrderedDict._dict",
+      "line": 23,
+      "endLine": 23,
+      "signature": "private _dict: Record<string, ElementType<TKey, TValue>> = Object.create(null);",
+      "containerClass": "OrderedDict",
+      "calls": [
+        {
+          "name": "create",
+          "edgeType": "call"
+        },
+        {
+          "name": "ElementType",
+          "edgeType": "type"
+        },
+        {
+          "name": "TKey",
+          "edgeType": "type"
+        },
+        {
+          "name": "TValue",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "class_property",
+      "name": "_first",
+      "exported": true,
+      "qualifiedName": "OrderedDict._first",
+      "line": 25,
+      "endLine": 25,
+      "signature": "private _first: ElementType<TKey, TValue> | null = null;",
+      "containerClass": "OrderedDict",
+      "calls": [
+        {
+          "name": "ElementType",
+          "edgeType": "type"
+        },
+        {
+          "name": "TKey",
+          "edgeType": "type"
+        },
+        {
+          "name": "TValue",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "class_property",
+      "name": "_last",
+      "exported": true,
+      "qualifiedName": "OrderedDict._last",
+      "line": 27,
+      "endLine": 27,
+      "signature": "private _last: ElementType<TKey, TValue> | null = null;",
+      "containerClass": "OrderedDict",
+      "calls": [
+        {
+          "name": "ElementType",
+          "edgeType": "type"
+        },
+        {
+          "name": "TKey",
+          "edgeType": "type"
+        },
+        {
+          "name": "TValue",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "function",
+      "name": "element",
+      "exported": false,
+      "line": 8,
+      "endLine": 20,
+      "signature": "function element<TKey, TValue>( key: TKey, value: TValue, next: ElementType<TKey, TValue> | null, prev: ElementType<TKey, TValue> | null = null, ): ElementType<TKey, TValue>",
+      "calls": [
+        {
+          "name": "TKey",
+          "edgeType": "type"
+        },
+        {
+          "name": "TValue",
+          "edgeType": "type"
+        },
+        {
+          "name": "ElementType",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "type",
+      "name": "ElementType",
+      "line": 1,
+      "endLine": 6,
+      "signature": "type ElementType<TKey, TValue> ="
+    }
+  ],
+  "imports": []
+}

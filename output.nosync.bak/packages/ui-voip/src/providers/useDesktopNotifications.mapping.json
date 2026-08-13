@@ -1,0 +1,91 @@
+{
+  "sourcePath": "/Users/echoooooo/Desktop/code/Rocket.Chat/packages/ui-voip/src/providers/useDesktopNotifications.ts",
+  "symbols": [
+    {
+      "type": "variable_function",
+      "name": "getDisplayInfo",
+      "exported": false,
+      "line": 8,
+      "endLine": 20,
+      "signature": "(peerInfo?: PeerInfo) =>",
+      "calls": [
+        {
+          "name": "PeerInfo",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "variable_function",
+      "name": "useDesktopNotifications",
+      "exported": true,
+      "line": 12,
+      "endLine": 70,
+      "signature": "(sessionInfo: SessionState) =>",
+      "calls": [
+        {
+          "name": "useRef",
+          "edgeType": "call"
+        },
+        {
+          "name": "useTranslation",
+          "edgeType": "call"
+        },
+        {
+          "name": "useUserPreference",
+          "edgeType": "call"
+        },
+        {
+          "name": "getDisplayInfo",
+          "edgeType": "call"
+        },
+        {
+          "name": "useEffect",
+          "edgeType": "call"
+        },
+        {
+          "name": "closeCustomNotification",
+          "edgeType": "call"
+        },
+        {
+          "name": "convertAvatarUrlToPng",
+          "edgeType": "call"
+        },
+        {
+          "name": "dispatchCustomNotification",
+          "edgeType": "call"
+        },
+        {
+          "name": "notifyDesktop",
+          "edgeType": "call"
+        },
+        {
+          "name": "SessionState",
+          "edgeType": "type"
+        }
+      ]
+    }
+  ],
+  "imports": [
+    {
+      "module": "@rocket.chat/ui-contexts",
+      "resolved": "external"
+    },
+    {
+      "module": "react",
+      "resolved": "external"
+    },
+    {
+      "module": "react-i18next",
+      "resolved": "external"
+    },
+    {
+      "module": "../context/definitions",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/packages/ui-voip/src/context/definitions.ts"
+    },
+    {
+      "module": "../utils/convertAvatarUrlToPng",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/packages/ui-voip/src/utils/convertAvatarUrlToPng.ts"
+    }
+  ]
+}

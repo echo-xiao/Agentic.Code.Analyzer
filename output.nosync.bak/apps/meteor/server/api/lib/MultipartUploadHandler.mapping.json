@@ -1,0 +1,295 @@
+{
+  "sourcePath": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/server/api/lib/MultipartUploadHandler.ts",
+  "symbols": [
+    {
+      "type": "class",
+      "name": "MultipartUploadHandler",
+      "exported": true,
+      "line": 31,
+      "endLine": 205,
+      "signature": "export class MultipartUploadHandler",
+      "calls": []
+    },
+    {
+      "type": "method",
+      "name": "cleanup",
+      "exported": true,
+      "qualifiedName": "MultipartUploadHandler.cleanup",
+      "line": 38,
+      "endLine": 44,
+      "signature": "static async cleanup(tempFilePath: string): Promise<void>",
+      "containerClass": "MultipartUploadHandler",
+      "calls": [
+        {
+          "name": "unlink",
+          "edgeType": "call"
+        },
+        {
+          "name": "warn",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "stripExifFromFile",
+      "exported": true,
+      "qualifiedName": "MultipartUploadHandler.stripExifFromFile",
+      "line": 42,
+      "endLine": 58,
+      "signature": "static async stripExifFromFile(tempFilePath: string): Promise<number>",
+      "containerClass": "MultipartUploadHandler",
+      "calls": [
+        {
+          "name": "createWriteStream",
+          "edgeType": "call"
+        },
+        {
+          "name": "pipeline",
+          "edgeType": "call"
+        },
+        {
+          "name": "createReadStream",
+          "edgeType": "call"
+        },
+        {
+          "name": "rename",
+          "edgeType": "call"
+        },
+        {
+          "name": "cleanup",
+          "edgeType": "call"
+        },
+        {
+          "name": "ExifTransformer",
+          "edgeType": "new"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "parseRequest",
+      "exported": true,
+      "qualifiedName": "MultipartUploadHandler.parseRequest",
+      "line": 46,
+      "endLine": 186,
+      "signature": "static async parseRequest( request: IncomingMessage | Request, options: ParseOptions, ): Promise<{ file: ParsedUpload | null; fields: Record<string, string> }>",
+      "containerClass": "MultipartUploadHandler",
+      "calls": [
+        {
+          "name": "fromEntries",
+          "edgeType": "call"
+        },
+        {
+          "name": "entries",
+          "edgeType": "call"
+        },
+        {
+          "name": "busboy",
+          "edgeType": "call"
+        },
+        {
+          "name": "withResolvers",
+          "edgeType": "call"
+        },
+        {
+          "name": "reject",
+          "edgeType": "call"
+        },
+        {
+          "name": "resolve",
+          "edgeType": "call"
+        },
+        {
+          "name": "field",
+          "edgeType": "event_listen"
+        },
+        {
+          "name": "file",
+          "edgeType": "event_listen"
+        },
+        {
+          "name": "resume",
+          "edgeType": "call"
+        },
+        {
+          "name": "includes",
+          "edgeType": "call"
+        },
+        {
+          "name": "id",
+          "edgeType": "call"
+        },
+        {
+          "name": "getTempFilePath",
+          "edgeType": "call"
+        },
+        {
+          "name": "createWriteStream",
+          "edgeType": "call"
+        },
+        {
+          "name": "bind",
+          "edgeType": "call"
+        },
+        {
+          "name": "fileDestroyer",
+          "edgeType": "event_listen",
+          "event": "error"
+        },
+        {
+          "name": "pipe",
+          "edgeType": "call"
+        },
+        {
+          "name": "finish",
+          "edgeType": "event_listen"
+        },
+        {
+          "name": "cleanup",
+          "edgeType": "call"
+        },
+        {
+          "name": "getMimeType",
+          "edgeType": "call"
+        },
+        {
+          "name": "tryResolve",
+          "edgeType": "call"
+        },
+        {
+          "name": "error",
+          "edgeType": "event_listen"
+        },
+        {
+          "name": "destroy",
+          "edgeType": "call"
+        },
+        {
+          "name": "filesLimit",
+          "edgeType": "event_listen"
+        },
+        {
+          "name": "partsLimit",
+          "edgeType": "event_listen"
+        },
+        {
+          "name": "fieldsLimit",
+          "edgeType": "event_listen"
+        },
+        {
+          "name": "fromWeb",
+          "edgeType": "call"
+        },
+        {
+          "name": "MeteorError",
+          "edgeType": "new"
+        },
+        {
+          "name": "IncomingMessage",
+          "edgeType": "type"
+        },
+        {
+          "name": "Request",
+          "edgeType": "type"
+        },
+        {
+          "name": "ParseOptions",
+          "edgeType": "type"
+        },
+        {
+          "name": "ParsedUpload",
+          "edgeType": "type"
+        },
+        {
+          "name": "BusboyConfig",
+          "edgeType": "type"
+        },
+        {
+          "name": "Stream",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "class_property",
+      "name": "transforms",
+      "exported": true,
+      "qualifiedName": "MultipartUploadHandler.transforms",
+      "line": 32,
+      "endLine": 36,
+      "signature": "static transforms =",
+      "containerClass": "MultipartUploadHandler",
+      "calls": [
+        {
+          "name": "ExifTransformer",
+          "edgeType": "new"
+        },
+        {
+          "name": "Transform",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "type",
+      "name": "ParsedUpload",
+      "line": 15,
+      "endLine": 21,
+      "signature": "export type ParsedUpload ="
+    },
+    {
+      "type": "type",
+      "name": "ParseOptions",
+      "line": 23,
+      "endLine": 29,
+      "signature": "export type ParseOptions ="
+    }
+  ],
+  "imports": [
+    {
+      "module": "node:fs",
+      "resolved": "external"
+    },
+    {
+      "module": "node:http",
+      "resolved": "external"
+    },
+    {
+      "module": "node:stream",
+      "resolved": "external"
+    },
+    {
+      "module": "node:stream",
+      "resolved": "external"
+    },
+    {
+      "module": "node:stream/promises",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/core-services",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/random",
+      "resolved": "external"
+    },
+    {
+      "module": "busboy",
+      "resolved": "external"
+    },
+    {
+      "module": "exif-be-gone",
+      "resolved": "external"
+    },
+    {
+      "module": "../../../app/utils/lib/mimeTypes",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/app/utils/lib/mimeTypes.ts"
+    },
+    {
+      "module": "../../ufs",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/server/ufs/index.ts"
+    }
+  ]
+}

@@ -1,0 +1,271 @@
+{
+  "sourcePath": "/Users/echoooooo/Desktop/code/Rocket.Chat/ee/packages/abac/src/pdp/LocalPDP.ts",
+  "symbols": [
+    {
+      "type": "class",
+      "name": "LocalPDP",
+      "exported": true,
+      "line": 9,
+      "endLine": 106,
+      "signature": "export class LocalPDP implements IPolicyDecisionPoint",
+      "calls": [
+        {
+          "name": "IPolicyDecisionPoint",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "isAvailable",
+      "exported": true,
+      "qualifiedName": "LocalPDP.isAvailable",
+      "line": 10,
+      "endLine": 12,
+      "signature": "async isAvailable(): Promise<boolean>",
+      "containerClass": "LocalPDP",
+      "calls": []
+    },
+    {
+      "type": "method",
+      "name": "getHealthStatus",
+      "exported": true,
+      "qualifiedName": "LocalPDP.getHealthStatus",
+      "line": 14,
+      "endLine": 16,
+      "signature": "async getHealthStatus(): Promise<void>",
+      "containerClass": "LocalPDP",
+      "calls": []
+    },
+    {
+      "type": "method",
+      "name": "canAccessObject",
+      "exported": true,
+      "qualifiedName": "LocalPDP.canAccessObject",
+      "line": 18,
+      "endLine": 40,
+      "signature": "async canAccessObject( room: AtLeast<IRoom, '_id' | 'abacAttributes'>, user: AtLeast<IUser, '_id'>, ): Promise<{ granted: boolean; userToRemove?: IUser }>",
+      "containerClass": "LocalPDP",
+      "calls": [
+        {
+          "name": "findOne",
+          "edgeType": "call"
+        },
+        {
+          "name": "buildCompliantConditions",
+          "edgeType": "call"
+        },
+        {
+          "name": "findOneById",
+          "edgeType": "call"
+        },
+        {
+          "name": "AtLeast",
+          "edgeType": "type"
+        },
+        {
+          "name": "IRoom",
+          "edgeType": "type"
+        },
+        {
+          "name": "IUser",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "onRoomAttributesChanged",
+      "exported": true,
+      "qualifiedName": "LocalPDP.onRoomAttributesChanged",
+      "line": 25,
+      "endLine": 35,
+      "signature": "async onRoomAttributesChanged( room: AtLeast<IRoom, '_id' | 't' | 'teamMain' | 'abacAttributes'>, newAttributes: IAbacAttributeDefinition[], ): Promise<IUser[]>",
+      "containerClass": "LocalPDP",
+      "calls": [
+        {
+          "name": "buildNonCompliantConditions",
+          "edgeType": "call"
+        },
+        {
+          "name": "toArray",
+          "edgeType": "call"
+        },
+        {
+          "name": "find",
+          "edgeType": "call"
+        },
+        {
+          "name": "AtLeast",
+          "edgeType": "type"
+        },
+        {
+          "name": "IRoom",
+          "edgeType": "type"
+        },
+        {
+          "name": "IAbacAttributeDefinition",
+          "edgeType": "type"
+        },
+        {
+          "name": "IUser",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "onSubjectAttributesChanged",
+      "exported": true,
+      "qualifiedName": "LocalPDP.onSubjectAttributesChanged",
+      "line": 32,
+      "endLine": 52,
+      "signature": "async onSubjectAttributesChanged(user: IUser, _next: IAbacAttributeDefinition[]): Promise<IRoom[]>",
+      "containerClass": "LocalPDP",
+      "calls": [
+        {
+          "name": "toArray",
+          "edgeType": "call"
+        },
+        {
+          "name": "find",
+          "edgeType": "call"
+        },
+        {
+          "name": "buildRoomNonCompliantConditionsFromSubject",
+          "edgeType": "call"
+        },
+        {
+          "name": "IUser",
+          "edgeType": "type"
+        },
+        {
+          "name": "IAbacAttributeDefinition",
+          "edgeType": "type"
+        },
+        {
+          "name": "IRoom",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "evaluateUserRooms",
+      "exported": true,
+      "qualifiedName": "LocalPDP.evaluateUserRooms",
+      "line": 36,
+      "endLine": 43,
+      "signature": "async evaluateUserRooms( _entries: Array<{ user: Pick<IUser, '_id' | 'emails' | 'username'>; rooms: AtLeast<IRoom, '_id' | 'abacAttributes'>[]; }>, ): Promise<Array<{ user: Pick<IUser, '_id' | 'emails' | 'username'>; room: IRoom }>>",
+      "containerClass": "LocalPDP",
+      "calls": [
+        {
+          "name": "IUser",
+          "edgeType": "type"
+        },
+        {
+          "name": "AtLeast",
+          "edgeType": "type"
+        },
+        {
+          "name": "IRoom",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "reevaluateUsers",
+      "exported": true,
+      "qualifiedName": "LocalPDP.reevaluateUsers",
+      "line": 45,
+      "endLine": 47,
+      "signature": "async reevaluateUsers(users: ReevaluationUser[]): Promise<void>",
+      "containerClass": "LocalPDP",
+      "calls": [
+        {
+          "name": "syncUsersAbacAttributesByIds",
+          "edgeType": "call"
+        },
+        {
+          "name": "map",
+          "edgeType": "call"
+        },
+        {
+          "name": "ReevaluationUser",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "checkUsernamesMatchAttributes",
+      "exported": true,
+      "qualifiedName": "LocalPDP.checkUsernamesMatchAttributes",
+      "line": 49,
+      "endLine": 65,
+      "signature": "async checkUsernamesMatchAttributes(usernames: string[], attributes: IAbacAttributeDefinition[], _object: IRoom): Promise<void>",
+      "containerClass": "LocalPDP",
+      "calls": [
+        {
+          "name": "toArray",
+          "edgeType": "call"
+        },
+        {
+          "name": "map",
+          "edgeType": "call"
+        },
+        {
+          "name": "find",
+          "edgeType": "call"
+        },
+        {
+          "name": "buildNonCompliantConditions",
+          "edgeType": "call"
+        },
+        {
+          "name": "Set",
+          "edgeType": "new"
+        },
+        {
+          "name": "OnlyCompliantCanBeAddedToRoomError",
+          "edgeType": "new"
+        },
+        {
+          "name": "IAbacAttributeDefinition",
+          "edgeType": "type"
+        },
+        {
+          "name": "IRoom",
+          "edgeType": "type"
+        }
+      ]
+    }
+  ],
+  "imports": [
+    {
+      "module": "@rocket.chat/core-services",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/core-typings",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/models",
+      "resolved": "external"
+    },
+    {
+      "module": "../errors",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/ee/packages/abac/src/errors.ts"
+    },
+    {
+      "module": "../helper",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/ee/packages/abac/src/helper.ts"
+    },
+    {
+      "module": "./types",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/ee/packages/abac/src/pdp/types.ts"
+    }
+  ]
+}

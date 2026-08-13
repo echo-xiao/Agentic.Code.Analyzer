@@ -1,0 +1,369 @@
+{
+  "sourcePath": "/Users/echoooooo/Desktop/code/Rocket.Chat/packages/apps/src/server/accessors/UIController.ts",
+  "symbols": [
+    {
+      "type": "class",
+      "name": "UIController",
+      "exported": true,
+      "line": 22,
+      "endLine": 126,
+      "signature": "export class UIController implements IUIController",
+      "calls": [
+        {
+          "name": "IUIController",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "openModalView",
+      "exported": true,
+      "qualifiedName": "UIController.openModalView",
+      "line": 35,
+      "endLine": 37,
+      "signature": "public openModalView(view: IUIKitModalViewParam, context: IUIKitInteractionParam, user: IUser)",
+      "containerClass": "UIController",
+      "calls": [
+        {
+          "name": "openModal",
+          "edgeType": "call"
+        },
+        {
+          "name": "IUIKitModalViewParam",
+          "edgeType": "type"
+        },
+        {
+          "name": "IUIKitInteractionParam",
+          "edgeType": "type"
+        },
+        {
+          "name": "IUser",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "updateModalView",
+      "exported": true,
+      "qualifiedName": "UIController.updateModalView",
+      "line": 42,
+      "endLine": 44,
+      "signature": "public updateModalView(view: IUIKitModalViewParam, context: IUIKitInteractionParam, user: IUser)",
+      "containerClass": "UIController",
+      "calls": [
+        {
+          "name": "openModal",
+          "edgeType": "call"
+        },
+        {
+          "name": "IUIKitModalViewParam",
+          "edgeType": "type"
+        },
+        {
+          "name": "IUIKitInteractionParam",
+          "edgeType": "type"
+        },
+        {
+          "name": "IUser",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "openContextualBarView",
+      "exported": true,
+      "qualifiedName": "UIController.openContextualBarView",
+      "line": 49,
+      "endLine": 51,
+      "signature": "public openContextualBarView(view: IUIKitContextualBarViewParam, context: IUIKitInteractionParam, user: IUser)",
+      "containerClass": "UIController",
+      "calls": [
+        {
+          "name": "openContextualBar",
+          "edgeType": "call"
+        },
+        {
+          "name": "IUIKitContextualBarViewParam",
+          "edgeType": "type"
+        },
+        {
+          "name": "IUIKitInteractionParam",
+          "edgeType": "type"
+        },
+        {
+          "name": "IUser",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "updateContextualBarView",
+      "exported": true,
+      "qualifiedName": "UIController.updateContextualBarView",
+      "line": 56,
+      "endLine": 58,
+      "signature": "public updateContextualBarView(view: IUIKitContextualBarViewParam, context: IUIKitInteractionParam, user: IUser)",
+      "containerClass": "UIController",
+      "calls": [
+        {
+          "name": "openContextualBar",
+          "edgeType": "call"
+        },
+        {
+          "name": "IUIKitContextualBarViewParam",
+          "edgeType": "type"
+        },
+        {
+          "name": "IUIKitInteractionParam",
+          "edgeType": "type"
+        },
+        {
+          "name": "IUser",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "openSurfaceView",
+      "exported": true,
+      "qualifiedName": "UIController.openSurfaceView",
+      "line": 60,
+      "endLine": 70,
+      "signature": "public openSurfaceView(view: IUIKitSurfaceViewParam, context: IUIKitInteractionParam, user: IUser)",
+      "containerClass": "UIController",
+      "calls": [
+        {
+          "name": "assignIds",
+          "edgeType": "call"
+        },
+        {
+          "name": "openContextualBar",
+          "edgeType": "call"
+        },
+        {
+          "name": "openModal",
+          "edgeType": "call"
+        },
+        {
+          "name": "IUIKitSurfaceViewParam",
+          "edgeType": "type"
+        },
+        {
+          "name": "IUIKitInteractionParam",
+          "edgeType": "type"
+        },
+        {
+          "name": "IUser",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "updateSurfaceView",
+      "exported": true,
+      "qualifiedName": "UIController.updateSurfaceView",
+      "line": 64,
+      "endLine": 74,
+      "signature": "public updateSurfaceView(view: IUIKitSurfaceViewParam, context: IUIKitInteractionParam, user: IUser)",
+      "containerClass": "UIController",
+      "calls": [
+        {
+          "name": "assignIds",
+          "edgeType": "call"
+        },
+        {
+          "name": "openContextualBar",
+          "edgeType": "call"
+        },
+        {
+          "name": "openModal",
+          "edgeType": "call"
+        },
+        {
+          "name": "IUIKitSurfaceViewParam",
+          "edgeType": "type"
+        },
+        {
+          "name": "IUIKitInteractionParam",
+          "edgeType": "type"
+        },
+        {
+          "name": "IUser",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "setViewError",
+      "exported": true,
+      "qualifiedName": "UIController.setViewError",
+      "line": 68,
+      "endLine": 76,
+      "signature": "public setViewError(errorInteraction: IUIKitErrorInteractionParam, context: IUIKitInteractionParam, user: IUser)",
+      "containerClass": "UIController",
+      "calls": [
+        {
+          "name": "doNotifyUser",
+          "edgeType": "call"
+        },
+        {
+          "name": "formatErrorInteraction",
+          "edgeType": "call"
+        },
+        {
+          "name": "IUIKitErrorInteractionParam",
+          "edgeType": "type"
+        },
+        {
+          "name": "IUIKitInteractionParam",
+          "edgeType": "type"
+        },
+        {
+          "name": "IUser",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "openContextualBar",
+      "exported": true,
+      "qualifiedName": "UIController.openContextualBar",
+      "line": 72,
+      "endLine": 89,
+      "signature": "private openContextualBar( view: IUIKitContextualBarViewParam, context: IUIKitInteractionParam, user: IUser, isUpdate = false, ): Promise<void>",
+      "containerClass": "UIController",
+      "calls": [
+        {
+          "name": "doNotifyUser",
+          "edgeType": "call"
+        },
+        {
+          "name": "formatContextualBarInteraction",
+          "edgeType": "call"
+        },
+        {
+          "name": "IUIKitContextualBarViewParam",
+          "edgeType": "type"
+        },
+        {
+          "name": "IUIKitInteractionParam",
+          "edgeType": "type"
+        },
+        {
+          "name": "IUser",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "openModal",
+      "exported": true,
+      "qualifiedName": "UIController.openModal",
+      "line": 81,
+      "endLine": 93,
+      "signature": "private openModal(view: IUIKitModalViewParam, context: IUIKitInteractionParam, user: IUser, isUpdate = false): Promise<void>",
+      "containerClass": "UIController",
+      "calls": [
+        {
+          "name": "doNotifyUser",
+          "edgeType": "call"
+        },
+        {
+          "name": "formatModalInteraction",
+          "edgeType": "call"
+        },
+        {
+          "name": "IUIKitModalViewParam",
+          "edgeType": "type"
+        },
+        {
+          "name": "IUIKitInteractionParam",
+          "edgeType": "type"
+        },
+        {
+          "name": "IUser",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "constructor",
+      "exported": true,
+      "qualifiedName": "UIController.constructor",
+      "line": 25,
+      "endLine": 30,
+      "signature": "constructor( private readonly appId: string, bridges: AppBridges, )",
+      "containerClass": "UIController",
+      "calls": [
+        {
+          "name": "getUiInteractionBridge",
+          "edgeType": "call"
+        },
+        {
+          "name": "AppBridges",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "class_property",
+      "name": "uiInteractionBridge",
+      "exported": true,
+      "qualifiedName": "UIController.uiInteractionBridge",
+      "line": 23,
+      "endLine": 23,
+      "signature": "private readonly uiInteractionBridge: UiInteractionBridge;",
+      "containerClass": "UIController",
+      "calls": [
+        {
+          "name": "UiInteractionBridge",
+          "edgeType": "type"
+        }
+      ]
+    }
+  ],
+  "imports": [
+    {
+      "module": "@rocket.chat/apps-engine/definition/accessors",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/apps-engine/definition/accessors/IUIController",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/apps-engine/definition/uikit",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/apps-engine/definition/uikit/UIKitInteractionPayloadFormatter",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/apps-engine/definition/uikit/UIKitInteractionResponder",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/apps-engine/definition/users",
+      "resolved": "external"
+    },
+    {
+      "module": "../bridges",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/packages/apps/src/server/bridges/index.ts"
+    },
+    {
+      "module": "../misc/UIHelper",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/packages/apps/src/server/misc/UIHelper.ts"
+    }
+  ]
+}

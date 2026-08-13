@@ -1,0 +1,77 @@
+{
+  "sourcePath": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/client/components/message/toolbar/useMarkAsUnreadMessageAction.ts",
+  "symbols": [
+    {
+      "type": "variable_function",
+      "name": "useMarkAsUnreadMessageAction",
+      "exported": true,
+      "line": 8,
+      "endLine": 42,
+      "signature": "( message: IMessage, { room, subscription }: { room: IRoom; subscription: ISubscription | undefined }, ): MessageActionConfig | null =>",
+      "calls": [
+        {
+          "name": "useUser",
+          "edgeType": "call"
+        },
+        {
+          "name": "useMarkAsUnreadMutation",
+          "edgeType": "call"
+        },
+        {
+          "name": "useRouter",
+          "edgeType": "call"
+        },
+        {
+          "name": "isOmnichannelRoom",
+          "edgeType": "call"
+        },
+        {
+          "name": "navigate",
+          "edgeType": "call"
+        },
+        {
+          "name": "markAsUnread",
+          "edgeType": "call"
+        },
+        {
+          "name": "IMessage",
+          "edgeType": "type"
+        },
+        {
+          "name": "IRoom",
+          "edgeType": "type"
+        },
+        {
+          "name": "ISubscription",
+          "edgeType": "type"
+        },
+        {
+          "name": "MessageActionConfig",
+          "edgeType": "type"
+        }
+      ]
+    }
+  ],
+  "imports": [
+    {
+      "module": "@rocket.chat/core-typings",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/core-typings",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/ui-contexts",
+      "resolved": "external"
+    },
+    {
+      "module": "../../../../app/ui-utils/client/lib/MessageAction",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/app/ui-utils/client/lib/MessageAction.ts"
+    },
+    {
+      "module": "../hooks/useMarkAsUnreadMutation",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/client/components/message/hooks/useMarkAsUnreadMutation.tsx"
+    }
+  ]
+}

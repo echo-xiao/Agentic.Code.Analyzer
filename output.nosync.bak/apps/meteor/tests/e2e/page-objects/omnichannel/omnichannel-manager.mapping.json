@@ -1,0 +1,195 @@
+{
+  "sourcePath": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/tests/e2e/page-objects/omnichannel/omnichannel-manager.ts",
+  "symbols": [
+    {
+      "type": "class",
+      "name": "OmnichannelManagersTable",
+      "exported": false,
+      "line": 7,
+      "endLine": 11,
+      "signature": "class OmnichannelManagersTable extends Table",
+      "calls": [
+        {
+          "name": "Table",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "constructor",
+      "exported": false,
+      "qualifiedName": "OmnichannelManagersTable.constructor",
+      "line": 8,
+      "endLine": 10,
+      "signature": "constructor(page: Page)",
+      "containerClass": "OmnichannelManagersTable",
+      "calls": [
+        {
+          "name": "getByRole",
+          "edgeType": "call"
+        },
+        {
+          "name": "Page",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "class",
+      "name": "OmnichannelManager",
+      "exported": true,
+      "line": 13,
+      "endLine": 46,
+      "signature": "export class OmnichannelManager extends OmnichannelAdmin",
+      "calls": [
+        {
+          "name": "OmnichannelAdmin",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "goto",
+      "exported": true,
+      "qualifiedName": "OmnichannelManager.goto",
+      "line": 24,
+      "endLine": 27,
+      "signature": "async goto()",
+      "containerClass": "OmnichannelManager",
+      "calls": [
+        {
+          "name": "goto",
+          "edgeType": "call"
+        },
+        {
+          "name": "waitFor",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "selectUsername",
+      "exported": true,
+      "qualifiedName": "OmnichannelManager.selectUsername",
+      "line": 32,
+      "endLine": 35,
+      "signature": "async selectUsername(username: string)",
+      "containerClass": "OmnichannelManager",
+      "calls": [
+        {
+          "name": "fill",
+          "edgeType": "call"
+        },
+        {
+          "name": "selectOption",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "removeManager",
+      "exported": true,
+      "qualifiedName": "OmnichannelManager.removeManager",
+      "line": 40,
+      "endLine": 43,
+      "signature": "async removeManager(name: string)",
+      "containerClass": "OmnichannelManager",
+      "calls": [
+        {
+          "name": "click",
+          "edgeType": "call"
+        },
+        {
+          "name": "getByRole",
+          "edgeType": "call"
+        },
+        {
+          "name": "findRowByName",
+          "edgeType": "call"
+        },
+        {
+          "name": "confirmDelete",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "constructor",
+      "exported": true,
+      "qualifiedName": "OmnichannelManager.constructor",
+      "line": 18,
+      "endLine": 22,
+      "signature": "constructor(page: Page)",
+      "containerClass": "OmnichannelManager",
+      "calls": [
+        {
+          "name": "OmnichannelManagersTable",
+          "edgeType": "new"
+        },
+        {
+          "name": "Listbox",
+          "edgeType": "new"
+        },
+        {
+          "name": "Page",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "class_property",
+      "name": "table",
+      "exported": true,
+      "qualifiedName": "OmnichannelManager.table",
+      "line": 14,
+      "endLine": 14,
+      "signature": "readonly table: OmnichannelManagersTable;",
+      "containerClass": "OmnichannelManager",
+      "calls": [
+        {
+          "name": "OmnichannelManagersTable",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "class_property",
+      "name": "listbox",
+      "exported": true,
+      "qualifiedName": "OmnichannelManager.listbox",
+      "line": 16,
+      "endLine": 16,
+      "signature": "readonly listbox: Listbox;",
+      "containerClass": "OmnichannelManager",
+      "calls": [
+        {
+          "name": "Listbox",
+          "edgeType": "type"
+        }
+      ]
+    }
+  ],
+  "imports": [
+    {
+      "module": "@playwright/test",
+      "resolved": "external"
+    },
+    {
+      "module": "./omnichannel-admin",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/tests/e2e/page-objects/omnichannel/omnichannel-admin.ts"
+    },
+    {
+      "module": "../fragments/listbox",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/tests/e2e/page-objects/fragments/listbox.ts"
+    },
+    {
+      "module": "../fragments/table",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/tests/e2e/page-objects/fragments/table.ts"
+    }
+  ]
+}

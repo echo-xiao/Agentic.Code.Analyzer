@@ -1,0 +1,141 @@
+{
+  "sourcePath": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/client/providers/ToastMessagesProvider.tsx",
+  "symbols": [
+    {
+      "type": "variable_function",
+      "name": "ToastMessageInnerProvider",
+      "exported": false,
+      "line": 19,
+      "endLine": 75,
+      "signature": "({ children }: ToastMessageInnerProviderProps) =>",
+      "calls": [
+        {
+          "name": "useToastBarDispatch",
+          "edgeType": "call"
+        },
+        {
+          "name": "useQueryClient",
+          "edgeType": "call"
+        },
+        {
+          "name": "getQueryCache",
+          "edgeType": "call"
+        },
+        {
+          "name": "dispatchToastMessage",
+          "edgeType": "call"
+        },
+        {
+          "name": "useEffect",
+          "edgeType": "call"
+        },
+        {
+          "name": "subscribeToToastMessages",
+          "edgeType": "call"
+        },
+        {
+          "name": "dispatchToastBar",
+          "edgeType": "call"
+        },
+        {
+          "name": "getErrorMessage",
+          "edgeType": "call"
+        },
+        {
+          "name": "isValidElement",
+          "edgeType": "call"
+        },
+        {
+          "name": "ToastMessagesContext.Provider",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "contextValue",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "ToastMessageInnerProviderProps",
+          "edgeType": "type"
+        },
+        {
+          "name": "DefaultError",
+          "edgeType": "type"
+        },
+        {
+          "name": "Query",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "variable_function",
+      "name": "ToastMessagesProvider",
+      "exported": false,
+      "line": 28,
+      "endLine": 32,
+      "signature": "({ children }: ToastMessagesProviderProps) =>",
+      "calls": [
+        {
+          "name": "ToastBarProvider",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "ToastMessageInnerProvider",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "ToastMessagesProviderProps",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "type",
+      "name": "ToastMessageInnerProviderProps",
+      "line": 15,
+      "endLine": 17,
+      "signature": "export type ToastMessageInnerProviderProps ="
+    },
+    {
+      "type": "type",
+      "name": "ToastMessagesProviderProps",
+      "line": 23,
+      "endLine": 25,
+      "signature": "export type ToastMessagesProviderProps ="
+    }
+  ],
+  "imports": [
+    {
+      "module": "@rocket.chat/fuselage-toastbar",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/ui-contexts",
+      "resolved": "external"
+    },
+    {
+      "module": "@tanstack/react-query",
+      "resolved": "external"
+    },
+    {
+      "module": "@tanstack/react-query",
+      "resolved": "external"
+    },
+    {
+      "module": "react",
+      "resolved": "external"
+    },
+    {
+      "module": "react",
+      "resolved": "external"
+    },
+    {
+      "module": "../lib/errorHandling",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/client/lib/errorHandling.ts"
+    },
+    {
+      "module": "../lib/toast",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/client/lib/toast.ts"
+    }
+  ]
+}

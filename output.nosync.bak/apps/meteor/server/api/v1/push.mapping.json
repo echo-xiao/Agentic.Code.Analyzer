@@ -1,0 +1,162 @@
+{
+  "sourcePath": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/server/api/v1/push.ts",
+  "symbols": [
+    {
+      "type": "function",
+      "name": "cleanTokenResult",
+      "exported": false,
+      "line": 86,
+      "endLine": 99,
+      "signature": "function cleanTokenResult(result: Omit<IPushToken, 'authToken'>): PushTokenResult",
+      "calls": [
+        {
+          "name": "IPushToken",
+          "edgeType": "type"
+        },
+        {
+          "name": "PushTokenResult",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "variable",
+      "name": "isPushTokenPOSTProps",
+      "exported": true,
+      "line": 61,
+      "endLine": 61,
+      "signature": "isPushTokenPOSTProps = ajv.compile<PushTokenPOST>(PushTokenPOSTSchema)",
+      "calls": [
+        {
+          "name": "PushTokenPOST",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "variable",
+      "name": "isPushTokenDELETEProps",
+      "exported": true,
+      "line": 79,
+      "endLine": 79,
+      "signature": "isPushTokenDELETEProps = ajv.compile<PushTokenDELETE>(PushTokenDELETESchema)",
+      "calls": [
+        {
+          "name": "PushTokenDELETE",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "type",
+      "name": "PushTokenPOST",
+      "line": 25,
+      "endLine": 31,
+      "signature": "type PushTokenPOST ="
+    },
+    {
+      "type": "type",
+      "name": "PushTokenDELETE",
+      "line": 63,
+      "endLine": 65,
+      "signature": "type PushTokenDELETE ="
+    },
+    {
+      "type": "type",
+      "name": "PushTokenResult",
+      "line": 81,
+      "endLine": 81,
+      "signature": "type PushTokenResult = Pick<IPushToken, '_id' | 'token' | 'appName' | 'userId' | 'enabled' | 'createdAt' | '_updatedAt' | 'voipToken'>;"
+    },
+    {
+      "type": "type",
+      "name": "PushTestEndpoints",
+      "line": 376,
+      "endLine": 376,
+      "signature": "type PushTestEndpoints = ExtractRoutesFromAPI<typeof pushTestEndpoints>;"
+    },
+    {
+      "type": "type",
+      "name": "PushTokenEndpoints",
+      "line": 378,
+      "endLine": 378,
+      "signature": "type PushTokenEndpoints = ExtractRoutesFromAPI<typeof pushTokenEndpoints>;"
+    },
+    {
+      "type": "type",
+      "name": "PushGetInfoEndpoints",
+      "line": 380,
+      "endLine": 380,
+      "signature": "type PushGetInfoEndpoints = ExtractRoutesFromAPI<typeof pushGetInfoEndpoints>;"
+    },
+    {
+      "type": "type",
+      "name": "PushEndpoints",
+      "line": 382,
+      "endLine": 382,
+      "signature": "type PushEndpoints = PushTestEndpoints & PushTokenEndpoints & PushGetInfoEndpoints;"
+    }
+  ],
+  "imports": [
+    {
+      "module": "@rocket.chat/core-services",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/core-typings",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/core-typings",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/models",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/rest-typings",
+      "resolved": "external"
+    },
+    {
+      "module": "ajv",
+      "resolved": "external"
+    },
+    {
+      "module": "meteor/accounts-base",
+      "resolved": "external"
+    },
+    {
+      "module": "meteor/meteor",
+      "resolved": "external"
+    },
+    {
+      "module": "../../../app/push-notifications/server/lib/PushNotification",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/app/push-notifications/server/lib/PushNotification.ts"
+    },
+    {
+      "module": "../../../app/settings/server",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/app/settings/server/index.ts"
+    },
+    {
+      "module": "../../lib/authorization/canAccessRoom",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/server/lib/authorization/canAccessRoom.ts"
+    },
+    {
+      "module": "../../lib/pushConfig",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/server/lib/pushConfig.ts"
+    },
+    {
+      "module": "../ApiClass",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/server/api/ApiClass.ts"
+    },
+    {
+      "module": "../api",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/server/api/api.ts"
+    },
+    {
+      "module": "../definition",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/server/api/definition.ts"
+    }
+  ]
+}

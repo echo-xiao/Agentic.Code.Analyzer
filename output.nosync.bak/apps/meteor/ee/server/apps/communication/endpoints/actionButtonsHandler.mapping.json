@@ -1,0 +1,49 @@
+{
+  "sourcePath": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/ee/server/apps/communication/endpoints/actionButtonsHandler.ts",
+  "symbols": [
+    {
+      "type": "variable_function",
+      "name": "registerActionButtonsHandler",
+      "exported": true,
+      "line": 4,
+      "endLine": 15,
+      "signature": "({ api, _manager }: AppsRestApi) =>",
+      "calls": [
+        {
+          "name": "actionButtons",
+          "edgeType": "rest_route"
+        },
+        {
+          "name": "addRoute",
+          "edgeType": "call"
+        },
+        {
+          "name": "getAllActionButtons",
+          "edgeType": "call"
+        },
+        {
+          "name": "getUIActionButtonManager",
+          "edgeType": "call"
+        },
+        {
+          "name": "success",
+          "edgeType": "call"
+        },
+        {
+          "name": "AppsRestApi",
+          "edgeType": "type"
+        }
+      ]
+    }
+  ],
+  "imports": [
+    {
+      "module": "../../../../../server/api",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/server/api/index.ts"
+    },
+    {
+      "module": "../rest",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/ee/server/apps/communication/rest.ts"
+    }
+  ]
+}

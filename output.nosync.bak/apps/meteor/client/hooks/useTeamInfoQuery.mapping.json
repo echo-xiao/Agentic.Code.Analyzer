@@ -1,0 +1,76 @@
+{
+  "sourcePath": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/client/hooks/useTeamInfoQuery.ts",
+  "symbols": [
+    {
+      "type": "variable_function",
+      "name": "useTeamInfoQuery",
+      "exported": true,
+      "line": 13,
+      "endLine": 26,
+      "signature": "<TData = Partial<Serialized<ITeam>>>(teamId: string, options: TeamInfoQueryOptions<TData> = {}) =>",
+      "calls": [
+        {
+          "name": "useEndpoint",
+          "edgeType": "call"
+        },
+        {
+          "name": "useQuery",
+          "edgeType": "call"
+        },
+        {
+          "name": "teamInfo",
+          "edgeType": "call"
+        },
+        {
+          "name": "teamsInfoEndpoint",
+          "edgeType": "call"
+        },
+        {
+          "name": "Serialized",
+          "edgeType": "type"
+        },
+        {
+          "name": "ITeam",
+          "edgeType": "type"
+        },
+        {
+          "name": "TeamInfoQueryOptions",
+          "edgeType": "type"
+        },
+        {
+          "name": "TData",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "type",
+      "name": "TeamInfoQueryOptions",
+      "line": 8,
+      "endLine": 11,
+      "signature": "type TeamInfoQueryOptions<TData = Partial<Serialized<ITeam>>> = Omit<"
+    }
+  ],
+  "imports": [
+    {
+      "module": "@rocket.chat/core-typings",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/ui-contexts",
+      "resolved": "external"
+    },
+    {
+      "module": "@tanstack/react-query",
+      "resolved": "external"
+    },
+    {
+      "module": "@tanstack/react-query",
+      "resolved": "external"
+    },
+    {
+      "module": "../lib/queryKeys",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/client/lib/queryKeys.ts"
+    }
+  ]
+}

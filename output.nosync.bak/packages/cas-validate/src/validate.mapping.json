@@ -1,0 +1,310 @@
+{
+  "sourcePath": "/Users/echoooooo/Desktop/code/Rocket.Chat/packages/cas-validate/src/validate.ts",
+  "symbols": [
+    {
+      "type": "function",
+      "name": "parseJasigAttributes",
+      "exported": false,
+      "line": 27,
+      "endLine": 59,
+      "signature": "function parseJasigAttributes(elemAttribute: Cheerio<any>, cheerio: CheerioAPI): Record<string, string[]>",
+      "calls": [
+        {
+          "name": "children",
+          "edgeType": "call"
+        },
+        {
+          "name": "replace",
+          "edgeType": "call"
+        },
+        {
+          "name": "toLowerCase",
+          "edgeType": "call"
+        },
+        {
+          "name": "text",
+          "edgeType": "call"
+        },
+        {
+          "name": "cheerio",
+          "edgeType": "call"
+        },
+        {
+          "name": "push",
+          "edgeType": "call"
+        },
+        {
+          "name": "Cheerio",
+          "edgeType": "type"
+        },
+        {
+          "name": "CheerioAPI",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "function",
+      "name": "parseRubyCasAttributes",
+      "exported": false,
+      "line": 31,
+      "endLine": 74,
+      "signature": "function parseRubyCasAttributes(elemSuccess: Cheerio<any>, cheerio: CheerioAPI): Record<string, string[]>",
+      "calls": [
+        {
+          "name": "children",
+          "edgeType": "call"
+        },
+        {
+          "name": "replace",
+          "edgeType": "call"
+        },
+        {
+          "name": "toLowerCase",
+          "edgeType": "call"
+        },
+        {
+          "name": "text",
+          "edgeType": "call"
+        },
+        {
+          "name": "cheerio",
+          "edgeType": "call"
+        },
+        {
+          "name": "push",
+          "edgeType": "call"
+        },
+        {
+          "name": "Cheerio",
+          "edgeType": "type"
+        },
+        {
+          "name": "CheerioAPI",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "function",
+      "name": "parseAttributes",
+      "exported": false,
+      "line": 35,
+      "endLine": 80,
+      "signature": "function parseAttributes(elemSuccess: Cheerio<any>, cheerio: CheerioAPI): Record<string, string[]>",
+      "calls": [
+        {
+          "name": "first",
+          "edgeType": "call"
+        },
+        {
+          "name": "find",
+          "edgeType": "call"
+        },
+        {
+          "name": "children",
+          "edgeType": "call"
+        },
+        {
+          "name": "parseJasigAttributes",
+          "edgeType": "call"
+        },
+        {
+          "name": "parseRubyCasAttributes",
+          "edgeType": "call"
+        },
+        {
+          "name": "keys",
+          "edgeType": "call"
+        },
+        {
+          "name": "push",
+          "edgeType": "call"
+        },
+        {
+          "name": "Cheerio",
+          "edgeType": "type"
+        },
+        {
+          "name": "CheerioAPI",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "function",
+      "name": "getQueryPath",
+      "exported": true,
+      "line": 39,
+      "endLine": 50,
+      "signature": "export function getQueryPath( partialPathname: string, validatePath: string, query: string | ParsedUrlQueryInput | null | undefined, ): string",
+      "calls": [
+        {
+          "name": "endsWith",
+          "edgeType": "call"
+        },
+        {
+          "name": "format",
+          "edgeType": "call"
+        },
+        {
+          "name": "ParsedUrlQueryInput",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "function",
+      "name": "validate",
+      "exported": true,
+      "line": 47,
+      "endLine": 181,
+      "signature": "export function validate(options: CasOptions, ticket: string, callback: CasCallback, renew = false): void",
+      "calls": [
+        {
+          "name": "parse",
+          "edgeType": "call"
+        },
+        {
+          "name": "getQueryPath",
+          "edgeType": "call"
+        },
+        {
+          "name": "get",
+          "edgeType": "call"
+        },
+        {
+          "name": "error",
+          "edgeType": "event_listen"
+        },
+        {
+          "name": "callback",
+          "edgeType": "call"
+        },
+        {
+          "name": "setEncoding",
+          "edgeType": "call"
+        },
+        {
+          "name": "data",
+          "edgeType": "event_listen"
+        },
+        {
+          "name": "destroy",
+          "edgeType": "call"
+        },
+        {
+          "name": "end",
+          "edgeType": "event_listen"
+        },
+        {
+          "name": "split",
+          "edgeType": "call"
+        },
+        {
+          "name": "load",
+          "edgeType": "call"
+        },
+        {
+          "name": "first",
+          "edgeType": "call"
+        },
+        {
+          "name": "cheerio",
+          "edgeType": "call"
+        },
+        {
+          "name": "find",
+          "edgeType": "call"
+        },
+        {
+          "name": "text",
+          "edgeType": "call"
+        },
+        {
+          "name": "push",
+          "edgeType": "call"
+        },
+        {
+          "name": "trim",
+          "edgeType": "call"
+        },
+        {
+          "name": "parseAttributes",
+          "edgeType": "call"
+        },
+        {
+          "name": "attr",
+          "edgeType": "call"
+        },
+        {
+          "name": "error",
+          "edgeType": "call"
+        },
+        {
+          "name": "abort",
+          "edgeType": "call"
+        },
+        {
+          "name": "CasOptions",
+          "edgeType": "type"
+        },
+        {
+          "name": "CasCallback",
+          "edgeType": "type"
+        },
+        {
+          "name": "IncomingMessage",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "type",
+      "name": "CasOptions",
+      "line": 9,
+      "endLine": 14,
+      "signature": "export type CasOptions ="
+    },
+    {
+      "type": "type",
+      "name": "CasCallbackExtendedData",
+      "line": 16,
+      "endLine": 23,
+      "signature": "export type CasCallbackExtendedData ="
+    },
+    {
+      "type": "type",
+      "name": "CasCallback",
+      "line": 25,
+      "endLine": 25,
+      "signature": "export type CasCallback = (err: any, status?: unknown, username?: string, extended?: CasCallbackExtendedData) => void;"
+    }
+  ],
+  "imports": [
+    {
+      "module": "node:http",
+      "resolved": "external"
+    },
+    {
+      "module": "node:https",
+      "resolved": "external"
+    },
+    {
+      "module": "node:querystring",
+      "resolved": "external"
+    },
+    {
+      "module": "node:url",
+      "resolved": "external"
+    },
+    {
+      "module": "cheerio",
+      "resolved": "external"
+    },
+    {
+      "module": "cheerio",
+      "resolved": "external"
+    }
+  ]
+}

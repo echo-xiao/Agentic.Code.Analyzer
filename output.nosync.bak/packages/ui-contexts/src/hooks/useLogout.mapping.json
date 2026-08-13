@@ -1,0 +1,53 @@
+{
+  "sourcePath": "/Users/echoooooo/Desktop/code/Rocket.Chat/packages/ui-contexts/src/hooks/useLogout.ts",
+  "symbols": [
+    {
+      "type": "variable_function",
+      "name": "useLogout",
+      "exported": true,
+      "line": 7,
+      "endLine": 15,
+      "signature": "(): (() => void) =>",
+      "calls": [
+        {
+          "name": "useRouter",
+          "edgeType": "call"
+        },
+        {
+          "name": "useContext",
+          "edgeType": "call"
+        },
+        {
+          "name": "useStableCallback",
+          "edgeType": "call"
+        },
+        {
+          "name": "logout",
+          "edgeType": "call"
+        },
+        {
+          "name": "navigate",
+          "edgeType": "call"
+        }
+      ]
+    }
+  ],
+  "imports": [
+    {
+      "module": "@rocket.chat/fuselage-hooks",
+      "resolved": "external"
+    },
+    {
+      "module": "react",
+      "resolved": "external"
+    },
+    {
+      "module": "../UserContext",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/packages/ui-contexts/src/UserContext.ts"
+    },
+    {
+      "module": "./useRouter",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/packages/ui-contexts/src/hooks/useRouter.ts"
+    }
+  ]
+}

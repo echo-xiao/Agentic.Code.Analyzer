@@ -1,0 +1,251 @@
+{
+  "sourcePath": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/app/autotranslate/client/lib/autotranslate.ts",
+  "symbols": [
+    {
+      "type": "module",
+      "name": "autotranslate",
+      "exported": false,
+      "line": 1,
+      "endLine": 174,
+      "signature": "autotranslate",
+      "calls": [
+        {
+          "name": "refreshUserCache",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "variable_function",
+      "name": "refreshUserCache",
+      "exported": false,
+      "line": 19,
+      "endLine": 25,
+      "signature": "() =>",
+      "calls": [
+        {
+          "name": "getState",
+          "edgeType": "call"
+        },
+        {
+          "name": "get",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "variable",
+      "name": "AutoTranslate",
+      "exported": true,
+      "line": 26,
+      "endLine": 130,
+      "signature": "AutoTranslate =",
+      "calls": [
+        {
+          "name": "mem",
+          "edgeType": "call"
+        },
+        {
+          "name": "find",
+          "edgeType": "call"
+        },
+        {
+          "name": "findSubscriptionByRid",
+          "edgeType": "call"
+        },
+        {
+          "name": "defaultUserLanguage",
+          "edgeType": "call"
+        },
+        {
+          "name": "indexOf",
+          "edgeType": "call"
+        },
+        {
+          "name": "some",
+          "edgeType": "call"
+        },
+        {
+          "name": "slice",
+          "edgeType": "call"
+        },
+        {
+          "name": "isTranslatedMessageAttachment",
+          "edgeType": "call"
+        },
+        {
+          "name": "translateAttachments",
+          "edgeType": "call"
+        },
+        {
+          "name": "all",
+          "edgeType": "call"
+        },
+        {
+          "name": "autoTranslate.getProviderUiMetadata",
+          "edgeType": "call"
+        },
+        {
+          "name": "call",
+          "edgeType": "call"
+        },
+        {
+          "name": "autotranslate.getSupportedLanguages",
+          "edgeType": "rest_call"
+        },
+        {
+          "name": "get",
+          "edgeType": "call"
+        },
+        {
+          "name": "error",
+          "edgeType": "call"
+        },
+        {
+          "name": "peek",
+          "edgeType": "call"
+        },
+        {
+          "name": "getState",
+          "edgeType": "call"
+        },
+        {
+          "name": "hasPermission",
+          "edgeType": "call"
+        },
+        {
+          "name": "forEach",
+          "edgeType": "call"
+        },
+        {
+          "name": "splice",
+          "edgeType": "call"
+        },
+        {
+          "name": "unsubscribe",
+          "edgeType": "call"
+        },
+        {
+          "name": "loadProviders",
+          "edgeType": "call"
+        },
+        {
+          "name": "push",
+          "edgeType": "call"
+        },
+        {
+          "name": "tryLoad",
+          "edgeType": "call"
+        },
+        {
+          "name": "observe",
+          "edgeType": "call"
+        },
+        {
+          "name": "clear",
+          "edgeType": "call"
+        },
+        {
+          "name": "ISupportedLanguage",
+          "edgeType": "type"
+        },
+        {
+          "name": "IRoom",
+          "edgeType": "type"
+        },
+        {
+          "name": "ISubscription",
+          "edgeType": "type"
+        },
+        {
+          "name": "MessageAttachmentDefault",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "variable_function",
+      "name": "createAutoTranslateMessageStreamHandler",
+      "exported": true,
+      "line": 132,
+      "endLine": 169,
+      "signature": "(): ((message: ITranslatedMessage) => void) =>",
+      "calls": [
+        {
+          "name": "init",
+          "edgeType": "call"
+        },
+        {
+          "name": "getUserId",
+          "edgeType": "call"
+        },
+        {
+          "name": "findSubscriptionByRid",
+          "edgeType": "call"
+        },
+        {
+          "name": "getLanguage",
+          "edgeType": "call"
+        },
+        {
+          "name": "hasTranslationLanguageInMessage",
+          "edgeType": "call"
+        },
+        {
+          "name": "hasTranslationLanguageInAttachments",
+          "edgeType": "call"
+        },
+        {
+          "name": "update",
+          "edgeType": "call"
+        },
+        {
+          "name": "ITranslatedMessage",
+          "edgeType": "type"
+        }
+      ]
+    }
+  ],
+  "imports": [
+    {
+      "module": "@rocket.chat/core-typings",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/core-typings",
+      "resolved": "external"
+    },
+    {
+      "module": "mem",
+      "resolved": "external"
+    },
+    {
+      "module": "../../../../client/cachedStores",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/client/cachedStores/index.ts"
+    },
+    {
+      "module": "../../../../client/lib/settings",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/client/lib/settings/index.ts"
+    },
+    {
+      "module": "../../../../client/lib/user",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/client/lib/user.ts"
+    },
+    {
+      "module": "../../../../client/stores",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/client/stores/index.ts"
+    },
+    {
+      "module": "../../../../client/views/room/MessageList/lib/autoTranslate",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/client/views/room/MessageList/lib/autoTranslate.ts"
+    },
+    {
+      "module": "../../../authorization/client",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/app/authorization/client/index.ts"
+    },
+    {
+      "module": "../../../utils/client/lib/SDKClient",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/app/utils/client/lib/SDKClient.ts"
+    }
+  ]
+}

@@ -1,0 +1,249 @@
+{
+  "sourcePath": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/tests/e2e/page-objects/omnichannel/omnichannel-reports.ts",
+  "symbols": [
+    {
+      "type": "class",
+      "name": "OmnichannelReportsSection",
+      "exported": false,
+      "line": 3,
+      "endLine": 53,
+      "signature": "class OmnichannelReportsSection",
+      "calls": []
+    },
+    {
+      "type": "method",
+      "name": "findRowByName",
+      "exported": false,
+      "qualifiedName": "OmnichannelReportsSection.findRowByName",
+      "line": 37,
+      "endLine": 39,
+      "signature": "findRowByName(name: string)",
+      "containerClass": "OmnichannelReportsSection",
+      "calls": [
+        {
+          "name": "locator",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "chartItem",
+      "exported": false,
+      "qualifiedName": "OmnichannelReportsSection.chartItem",
+      "line": 41,
+      "endLine": 43,
+      "signature": "chartItem(label: string, value: number)",
+      "containerClass": "OmnichannelReportsSection",
+      "calls": [
+        {
+          "name": "locator",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "legendItem",
+      "exported": false,
+      "qualifiedName": "OmnichannelReportsSection.legendItem",
+      "line": 45,
+      "endLine": 47,
+      "signature": "legendItem(text: string)",
+      "containerClass": "OmnichannelReportsSection",
+      "calls": [
+        {
+          "name": "locator",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "selectPeriod",
+      "exported": false,
+      "qualifiedName": "OmnichannelReportsSection.selectPeriod",
+      "line": 49,
+      "endLine": 52,
+      "signature": "async selectPeriod(period: string)",
+      "containerClass": "OmnichannelReportsSection",
+      "calls": [
+        {
+          "name": "click",
+          "edgeType": "call"
+        },
+        {
+          "name": "locator",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "constructor",
+      "exported": false,
+      "qualifiedName": "OmnichannelReportsSection.constructor",
+      "line": 8,
+      "endLine": 11,
+      "signature": "constructor(page: Page, sectionId: string)",
+      "containerClass": "OmnichannelReportsSection",
+      "calls": [
+        {
+          "name": "locator",
+          "edgeType": "call"
+        },
+        {
+          "name": "Page",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "class_property",
+      "name": "page",
+      "exported": false,
+      "qualifiedName": "OmnichannelReportsSection.page",
+      "line": 4,
+      "endLine": 4,
+      "signature": "private readonly page: Page;",
+      "containerClass": "OmnichannelReportsSection",
+      "calls": [
+        {
+          "name": "Page",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "class_property",
+      "name": "section",
+      "exported": false,
+      "qualifiedName": "OmnichannelReportsSection.section",
+      "line": 6,
+      "endLine": 6,
+      "signature": "private readonly section: Locator;",
+      "containerClass": "OmnichannelReportsSection",
+      "calls": [
+        {
+          "name": "Locator",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "class",
+      "name": "OmnichannelReports",
+      "exported": true,
+      "line": 53,
+      "endLine": 71,
+      "signature": "export class OmnichannelReports",
+      "calls": []
+    },
+    {
+      "type": "method",
+      "name": "constructor",
+      "exported": true,
+      "qualifiedName": "OmnichannelReports.constructor",
+      "line": 64,
+      "endLine": 70,
+      "signature": "constructor(page: Page)",
+      "containerClass": "OmnichannelReports",
+      "calls": [
+        {
+          "name": "OmnichannelReportsSection",
+          "edgeType": "new"
+        },
+        {
+          "name": "Page",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "class_property",
+      "name": "statusSection",
+      "exported": true,
+      "qualifiedName": "OmnichannelReports.statusSection",
+      "line": 54,
+      "endLine": 54,
+      "signature": "readonly statusSection: OmnichannelReportsSection;",
+      "containerClass": "OmnichannelReports",
+      "calls": [
+        {
+          "name": "OmnichannelReportsSection",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "class_property",
+      "name": "channelsSection",
+      "exported": true,
+      "qualifiedName": "OmnichannelReports.channelsSection",
+      "line": 56,
+      "endLine": 56,
+      "signature": "readonly channelsSection: OmnichannelReportsSection;",
+      "containerClass": "OmnichannelReports",
+      "calls": [
+        {
+          "name": "OmnichannelReportsSection",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "class_property",
+      "name": "departmentsSection",
+      "exported": true,
+      "qualifiedName": "OmnichannelReports.departmentsSection",
+      "line": 58,
+      "endLine": 58,
+      "signature": "readonly departmentsSection: OmnichannelReportsSection;",
+      "containerClass": "OmnichannelReports",
+      "calls": [
+        {
+          "name": "OmnichannelReportsSection",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "class_property",
+      "name": "tagsSection",
+      "exported": true,
+      "qualifiedName": "OmnichannelReports.tagsSection",
+      "line": 60,
+      "endLine": 60,
+      "signature": "readonly tagsSection: OmnichannelReportsSection;",
+      "containerClass": "OmnichannelReports",
+      "calls": [
+        {
+          "name": "OmnichannelReportsSection",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "class_property",
+      "name": "agentsSection",
+      "exported": true,
+      "qualifiedName": "OmnichannelReports.agentsSection",
+      "line": 62,
+      "endLine": 62,
+      "signature": "readonly agentsSection: OmnichannelReportsSection;",
+      "containerClass": "OmnichannelReports",
+      "calls": [
+        {
+          "name": "OmnichannelReportsSection",
+          "edgeType": "type"
+        }
+      ]
+    }
+  ],
+  "imports": [
+    {
+      "module": "@playwright/test",
+      "resolved": "external"
+    }
+  ]
+}

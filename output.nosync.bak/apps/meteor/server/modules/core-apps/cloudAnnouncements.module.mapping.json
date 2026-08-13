@@ -1,0 +1,363 @@
+{
+  "sourcePath": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/server/modules/core-apps/cloudAnnouncements.module.ts",
+  "symbols": [
+    {
+      "type": "class",
+      "name": "CloudAnnouncementsModule",
+      "exported": true,
+      "line": 32,
+      "endLine": 294,
+      "signature": "export class CloudAnnouncementsModule implements IUiKitCoreApp",
+      "calls": [
+        {
+          "name": "IUiKitCoreApp",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "getWorkspaceAccessToken",
+      "exported": true,
+      "qualifiedName": "CloudAnnouncementsModule.getWorkspaceAccessToken",
+      "line": 35,
+      "endLine": 37,
+      "signature": "protected async getWorkspaceAccessToken()",
+      "containerClass": "CloudAnnouncementsModule",
+      "calls": [
+        {
+          "name": "getWorkspaceAccessToken",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "getCloudUrl",
+      "exported": true,
+      "qualifiedName": "CloudAnnouncementsModule.getCloudUrl",
+      "line": 39,
+      "endLine": 41,
+      "signature": "protected getCloudUrl()",
+      "containerClass": "CloudAnnouncementsModule",
+      "calls": [
+        {
+          "name": "get",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "blockAction",
+      "exported": true,
+      "qualifiedName": "CloudAnnouncementsModule.blockAction",
+      "line": 43,
+      "endLine": 45,
+      "signature": "blockAction(payload: UiKitCoreAppBlockActionPayload): Promise<UiKit.ServerInteraction | undefined>",
+      "containerClass": "CloudAnnouncementsModule",
+      "calls": [
+        {
+          "name": "handlePayload",
+          "edgeType": "call"
+        },
+        {
+          "name": "UiKitCoreAppBlockActionPayload",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "viewSubmit",
+      "exported": true,
+      "qualifiedName": "CloudAnnouncementsModule.viewSubmit",
+      "line": 47,
+      "endLine": 49,
+      "signature": "viewSubmit(payload: UiKitCoreAppViewSubmitPayload): Promise<UiKit.ServerInteraction | undefined>",
+      "containerClass": "CloudAnnouncementsModule",
+      "calls": [
+        {
+          "name": "handlePayload",
+          "edgeType": "call"
+        },
+        {
+          "name": "UiKitCoreAppViewSubmitPayload",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "viewClosed",
+      "exported": true,
+      "qualifiedName": "CloudAnnouncementsModule.viewClosed",
+      "line": 51,
+      "endLine": 92,
+      "signature": "async viewClosed(payload: UiKitCoreAppViewClosedPayload): Promise<UiKit.ServerInteraction | undefined>",
+      "containerClass": "CloudAnnouncementsModule",
+      "calls": [
+        {
+          "name": "filter",
+          "edgeType": "call"
+        },
+        {
+          "name": "isTruthy",
+          "edgeType": "call"
+        },
+        {
+          "name": "toArray",
+          "edgeType": "call"
+        },
+        {
+          "name": "findByIds",
+          "edgeType": "call"
+        },
+        {
+          "name": "find",
+          "edgeType": "call"
+        },
+        {
+          "name": "dismiss",
+          "edgeType": "call"
+        },
+        {
+          "name": "handlePayload",
+          "edgeType": "call"
+        },
+        {
+          "name": "UiKitCoreAppViewClosedPayload",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "handlePayload",
+      "exported": true,
+      "qualifiedName": "CloudAnnouncementsModule.handlePayload",
+      "line": 55,
+      "endLine": 77,
+      "signature": "protected async handlePayload( payload: UiKitCoreAppBlockActionPayload | UiKitCoreAppViewSubmitPayload | UiKitCoreAppViewClosedPayload, ): Promise<UiKit.ServerInteraction | undefined>",
+      "containerClass": "CloudAnnouncementsModule",
+      "calls": [
+        {
+          "name": "getInteractant",
+          "edgeType": "call"
+        },
+        {
+          "name": "getInteraction",
+          "edgeType": "call"
+        },
+        {
+          "name": "pushUserInteraction",
+          "edgeType": "call"
+        },
+        {
+          "name": "error",
+          "edgeType": "call"
+        },
+        {
+          "name": "InvalidCloudAnnouncementInteractionError",
+          "edgeType": "new"
+        },
+        {
+          "name": "UiKitCoreAppBlockActionPayload",
+          "edgeType": "type"
+        },
+        {
+          "name": "UiKitCoreAppViewSubmitPayload",
+          "edgeType": "type"
+        },
+        {
+          "name": "UiKitCoreAppViewClosedPayload",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "getInteractant",
+      "exported": true,
+      "qualifiedName": "CloudAnnouncementsModule.getInteractant",
+      "line": 61,
+      "endLine": 87,
+      "signature": "protected getInteractant( payload: UiKitCoreAppBlockActionPayload | UiKitCoreAppViewSubmitPayload | UiKitCoreAppViewClosedPayload, ): CloudAnnouncementInteractant",
+      "containerClass": "CloudAnnouncementsModule",
+      "calls": [
+        {
+          "name": "CloudWorkspaceConnectionError",
+          "edgeType": "new"
+        },
+        {
+          "name": "UiKitCoreAppBlockActionPayload",
+          "edgeType": "type"
+        },
+        {
+          "name": "UiKitCoreAppViewSubmitPayload",
+          "edgeType": "type"
+        },
+        {
+          "name": "UiKitCoreAppViewClosedPayload",
+          "edgeType": "type"
+        },
+        {
+          "name": "CloudAnnouncementInteractant",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "getInteraction",
+      "exported": true,
+      "qualifiedName": "CloudAnnouncementsModule.getInteraction",
+      "line": 70,
+      "endLine": 173,
+      "signature": "protected getInteraction( payload: UiKitCoreAppBlockActionPayload | UiKitCoreAppViewSubmitPayload | UiKitCoreAppViewClosedPayload, ): UiKit.UserInteraction",
+      "containerClass": "CloudAnnouncementsModule",
+      "calls": [
+        {
+          "name": "Boolean",
+          "edgeType": "call"
+        },
+        {
+          "name": "InvalidCoreAppInteractionError",
+          "edgeType": "new"
+        },
+        {
+          "name": "UiKitCoreAppBlockActionPayload",
+          "edgeType": "type"
+        },
+        {
+          "name": "UiKitCoreAppViewSubmitPayload",
+          "edgeType": "type"
+        },
+        {
+          "name": "UiKitCoreAppViewClosedPayload",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "pushUserInteraction",
+      "exported": true,
+      "qualifiedName": "CloudAnnouncementsModule.pushUserInteraction",
+      "line": 76,
+      "endLine": 115,
+      "signature": "protected async pushUserInteraction( interactant: CloudAnnouncementInteractant, userInteraction: UiKit.UserInteraction, ): Promise<UiKit.ServerInteraction>",
+      "containerClass": "CloudAnnouncementsModule",
+      "calls": [
+        {
+          "name": "getWorkspaceAccessToken",
+          "edgeType": "call"
+        },
+        {
+          "name": "fetch",
+          "edgeType": "call"
+        },
+        {
+          "name": "getCloudUrl",
+          "edgeType": "call"
+        },
+        {
+          "name": "stringify",
+          "edgeType": "call"
+        },
+        {
+          "name": "json",
+          "edgeType": "call"
+        },
+        {
+          "name": "syncWorkspace",
+          "edgeType": "call"
+        },
+        {
+          "name": "CloudWorkspaceConnectionError",
+          "edgeType": "new"
+        },
+        {
+          "name": "CloudAnnouncementInteractant",
+          "edgeType": "type"
+        },
+        {
+          "name": "CloudAnnouncementInteractionRequest",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "type",
+      "name": "CloudAnnouncementInteractant",
+      "line": 22,
+      "endLine": 28,
+      "signature": "type CloudAnnouncementInteractant = |"
+    },
+    {
+      "type": "type",
+      "name": "CloudAnnouncementInteractionRequest",
+      "line": 30,
+      "endLine": 30,
+      "signature": "type CloudAnnouncementInteractionRequest = UiKit.UserInteraction & CloudAnnouncementInteractant;"
+    }
+  ],
+  "imports": [
+    {
+      "module": "@rocket.chat/core-services",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/core-services",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/core-typings",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/models",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/server-fetch",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/tools",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/ui-kit",
+      "resolved": "external"
+    },
+    {
+      "module": "../../../app/cloud/server",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/app/cloud/server/index.ts"
+    },
+    {
+      "module": "../../../app/settings/server",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/app/settings/server/index.ts"
+    },
+    {
+      "module": "../../../lib/errors/CloudWorkspaceConnectionError",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/lib/errors/CloudWorkspaceConnectionError.ts"
+    },
+    {
+      "module": "../../../lib/errors/InvalidCloudAnnouncementInteractionError",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/lib/errors/InvalidCloudAnnouncementInteractionError.ts"
+    },
+    {
+      "module": "../../../lib/errors/InvalidCoreAppInteractionError",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/lib/errors/InvalidCoreAppInteractionError.ts"
+    },
+    {
+      "module": "../../lib/cloud/syncWorkspace",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/server/lib/cloud/syncWorkspace/index.ts"
+    },
+    {
+      "module": "../../lib/logger/system",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/server/lib/logger/system.ts"
+    }
+  ]
+}

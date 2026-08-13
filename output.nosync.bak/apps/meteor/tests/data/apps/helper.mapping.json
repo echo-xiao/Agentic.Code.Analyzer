@@ -1,0 +1,189 @@
+{
+  "sourcePath": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/tests/data/apps/helper.ts",
+  "symbols": [
+    {
+      "type": "variable_function",
+      "name": "getApps",
+      "exported": false,
+      "line": 6,
+      "endLine": 14,
+      "signature": "() =>",
+      "calls": [
+        {
+          "name": "end",
+          "edgeType": "call"
+        },
+        {
+          "name": "set",
+          "edgeType": "call"
+        },
+        {
+          "name": "get",
+          "edgeType": "call"
+        },
+        {
+          "name": "installedApps",
+          "edgeType": "call"
+        },
+        {
+          "name": "resolve",
+          "edgeType": "call"
+        },
+        {
+          "name": "App",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "variable_function",
+      "name": "removeAppById",
+      "exported": false,
+      "line": 16,
+      "endLine": 22,
+      "signature": "(id: App['id']) =>",
+      "calls": [
+        {
+          "name": "end",
+          "edgeType": "call"
+        },
+        {
+          "name": "set",
+          "edgeType": "call"
+        },
+        {
+          "name": "delete",
+          "edgeType": "call"
+        },
+        {
+          "name": "apps",
+          "edgeType": "call"
+        },
+        {
+          "name": "App",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "variable_function",
+      "name": "cleanupApps",
+      "exported": true,
+      "line": 24,
+      "endLine": 27,
+      "signature": "async () =>",
+      "calls": [
+        {
+          "name": "getApps",
+          "edgeType": "call"
+        },
+        {
+          "name": "all",
+          "edgeType": "call"
+        },
+        {
+          "name": "map",
+          "edgeType": "call"
+        },
+        {
+          "name": "removeAppById",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "variable_function",
+      "name": "installTestApp",
+      "exported": true,
+      "line": 28,
+      "endLine": 39,
+      "signature": "() =>",
+      "calls": [
+        {
+          "name": "end",
+          "edgeType": "call"
+        },
+        {
+          "name": "send",
+          "edgeType": "call"
+        },
+        {
+          "name": "set",
+          "edgeType": "call"
+        },
+        {
+          "name": "post",
+          "edgeType": "call"
+        },
+        {
+          "name": "apps",
+          "edgeType": "call"
+        },
+        {
+          "name": "resolve",
+          "edgeType": "call"
+        },
+        {
+          "name": "App",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "variable_function",
+      "name": "installLocalTestPackage",
+      "exported": true,
+      "line": 41,
+      "endLine": 53,
+      "signature": "(path: string) =>",
+      "calls": [
+        {
+          "name": "end",
+          "edgeType": "call"
+        },
+        {
+          "name": "attach",
+          "edgeType": "call"
+        },
+        {
+          "name": "set",
+          "edgeType": "call"
+        },
+        {
+          "name": "post",
+          "edgeType": "call"
+        },
+        {
+          "name": "apps",
+          "edgeType": "call"
+        },
+        {
+          "name": "reject",
+          "edgeType": "call"
+        },
+        {
+          "name": "resolve",
+          "edgeType": "call"
+        },
+        {
+          "name": "App",
+          "edgeType": "type"
+        }
+      ]
+    }
+  ],
+  "imports": [
+    {
+      "module": "@rocket.chat/core-typings",
+      "resolved": "external"
+    },
+    {
+      "module": "../api-data",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/tests/data/api-data.ts"
+    },
+    {
+      "module": "./apps-data",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/tests/data/apps/apps-data.ts"
+    }
+  ]
+}

@@ -1,0 +1,81 @@
+{
+  "sourcePath": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/ee/server/apps/communication/endpoints/appLogsHandler.ts",
+  "symbols": [
+    {
+      "type": "variable_function",
+      "name": "registerAppLogsHandler",
+      "exported": true,
+      "line": 22,
+      "endLine": 80,
+      "signature": "({ api, _manager, _orch }: AppsRestApi) =>",
+      "calls": [
+        {
+          "name": "get",
+          "edgeType": "call"
+        },
+        {
+          "name": "compile",
+          "edgeType": "call"
+        },
+        {
+          "name": "getOneById",
+          "edgeType": "call"
+        },
+        {
+          "name": "notFound",
+          "edgeType": "call"
+        },
+        {
+          "name": "getPaginationItems",
+          "edgeType": "call"
+        },
+        {
+          "name": "parseJsonQuery",
+          "edgeType": "call"
+        },
+        {
+          "name": "makeAppLogsQuery",
+          "edgeType": "call"
+        },
+        {
+          "name": "failure",
+          "edgeType": "call"
+        },
+        {
+          "name": "findPaginated",
+          "edgeType": "call"
+        },
+        {
+          "name": "getLogStorage",
+          "edgeType": "call"
+        },
+        {
+          "name": "success",
+          "edgeType": "call"
+        },
+        {
+          "name": "AppsRestApi",
+          "edgeType": "type"
+        }
+      ]
+    }
+  ],
+  "imports": [
+    {
+      "module": "@rocket.chat/rest-typings",
+      "resolved": "external"
+    },
+    {
+      "module": "../../../../../server/api/lib/getPaginationItems",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/server/api/lib/getPaginationItems.ts"
+    },
+    {
+      "module": "../rest",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/ee/server/apps/communication/rest.ts"
+    },
+    {
+      "module": "./lib/makeAppLogsQuery",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/ee/server/apps/communication/endpoints/lib/makeAppLogsQuery.ts"
+    }
+  ]
+}

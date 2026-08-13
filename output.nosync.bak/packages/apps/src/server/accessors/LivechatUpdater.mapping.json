@@ -1,0 +1,165 @@
+{
+  "sourcePath": "/Users/echoooooo/Desktop/code/Rocket.Chat/packages/apps/src/server/accessors/LivechatUpdater.ts",
+  "symbols": [
+    {
+      "type": "class",
+      "name": "LivechatUpdater",
+      "exported": true,
+      "line": 12,
+      "endLine": 36,
+      "signature": "export class LivechatUpdater implements ILivechatUpdater",
+      "calls": [
+        {
+          "name": "ILivechatUpdater",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "transferVisitor",
+      "exported": true,
+      "qualifiedName": "LivechatUpdater.transferVisitor",
+      "line": 18,
+      "endLine": 20,
+      "signature": "public transferVisitor(visitor: IVisitor, transferData: ILivechatTransferData): Promise<boolean>",
+      "containerClass": "LivechatUpdater",
+      "calls": [
+        {
+          "name": "doTransferVisitor",
+          "edgeType": "call"
+        },
+        {
+          "name": "getLivechatBridge",
+          "edgeType": "call"
+        },
+        {
+          "name": "IVisitor",
+          "edgeType": "type"
+        },
+        {
+          "name": "ILivechatTransferData",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "closeRoom",
+      "exported": true,
+      "qualifiedName": "LivechatUpdater.closeRoom",
+      "line": 22,
+      "endLine": 24,
+      "signature": "public closeRoom(room: ILivechatRoom, comment: string, closer?: IUser): Promise<boolean>",
+      "containerClass": "LivechatUpdater",
+      "calls": [
+        {
+          "name": "doCloseRoom",
+          "edgeType": "call"
+        },
+        {
+          "name": "getLivechatBridge",
+          "edgeType": "call"
+        },
+        {
+          "name": "ILivechatRoom",
+          "edgeType": "type"
+        },
+        {
+          "name": "IUser",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "setCustomFields",
+      "exported": true,
+      "qualifiedName": "LivechatUpdater.setCustomFields",
+      "line": 26,
+      "endLine": 31,
+      "signature": "public setCustomFields(token: IVisitor['token'], key: string, value: string, overwrite: boolean): Promise<boolean>",
+      "containerClass": "LivechatUpdater",
+      "calls": [
+        {
+          "name": "then",
+          "edgeType": "call"
+        },
+        {
+          "name": "doSetCustomFields",
+          "edgeType": "call"
+        },
+        {
+          "name": "getLivechatBridge",
+          "edgeType": "call"
+        },
+        {
+          "name": "IVisitor",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "updateVisitorExternalId",
+      "exported": true,
+      "qualifiedName": "LivechatUpdater.updateVisitorExternalId",
+      "line": 30,
+      "endLine": 32,
+      "signature": "public updateVisitorExternalId(visitorId: string, externalId: Omit<IVisitorExternalIdentifier, 'appId'>): Promise<IVisitor | undefined>",
+      "containerClass": "LivechatUpdater",
+      "calls": [
+        {
+          "name": "doUpdateVisitorExternalId",
+          "edgeType": "call"
+        },
+        {
+          "name": "getLivechatBridge",
+          "edgeType": "call"
+        },
+        {
+          "name": "IVisitorExternalIdentifier",
+          "edgeType": "type"
+        },
+        {
+          "name": "IVisitor",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "constructor",
+      "exported": true,
+      "qualifiedName": "LivechatUpdater.constructor",
+      "line": 13,
+      "endLine": 16,
+      "signature": "constructor( private readonly bridges: AppBridges, private readonly appId: string, )",
+      "containerClass": "LivechatUpdater",
+      "calls": [
+        {
+          "name": "AppBridges",
+          "edgeType": "type"
+        }
+      ]
+    }
+  ],
+  "imports": [
+    {
+      "module": "@rocket.chat/apps-engine/definition/accessors",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/apps-engine/definition/livechat",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/apps-engine/definition/users",
+      "resolved": "external"
+    },
+    {
+      "module": "../bridges",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/packages/apps/src/server/bridges/index.ts"
+    }
+  ]
+}

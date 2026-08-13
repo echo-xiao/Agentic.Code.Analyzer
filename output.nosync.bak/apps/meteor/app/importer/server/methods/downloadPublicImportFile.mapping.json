@@ -1,0 +1,243 @@
+{
+  "sourcePath": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/app/importer/server/methods/downloadPublicImportFile.ts",
+  "symbols": [
+    {
+      "type": "module",
+      "name": "downloadPublicImportFile",
+      "exported": false,
+      "line": 1,
+      "endLine": 102,
+      "signature": "downloadPublicImportFile",
+      "calls": [
+        {
+          "name": "downloadPublicImportFile",
+          "edgeType": "call"
+        },
+        {
+          "name": "methods",
+          "edgeType": "call"
+        },
+        {
+          "name": "method",
+          "edgeType": "call"
+        },
+        {
+          "name": "userId",
+          "edgeType": "call"
+        },
+        {
+          "name": "hasPermissionAsync",
+          "edgeType": "call"
+        },
+        {
+          "name": "executeDownloadPublicImportFile",
+          "edgeType": "call"
+        },
+        {
+          "name": "ServerMethods",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "function",
+      "name": "downloadHttpFile",
+      "exported": false,
+      "line": 16,
+      "endLine": 21,
+      "signature": "function downloadHttpFile(fileUrl: string, writeStream: fs.WriteStream): void",
+      "calls": [
+        {
+          "name": "startsWith",
+          "edgeType": "call"
+        },
+        {
+          "name": "get",
+          "edgeType": "call"
+        },
+        {
+          "name": "pipe",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "function",
+      "name": "copyLocalFile",
+      "exported": false,
+      "line": 20,
+      "endLine": 23,
+      "signature": "function copyLocalFile(filePath: fs.PathLike, writeStream: fs.WriteStream): void",
+      "calls": [
+        {
+          "name": "createReadStream",
+          "edgeType": "call"
+        },
+        {
+          "name": "pipe",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "variable_function",
+      "name": "executeDownloadPublicImportFile",
+      "exported": true,
+      "line": 24,
+      "endLine": 73,
+      "signature": "async (userId: IUser['_id'], fileUrl: string, importerKey: string): Promise<void> =>",
+      "calls": [
+        {
+          "name": "get",
+          "edgeType": "call"
+        },
+        {
+          "name": "startsWith",
+          "edgeType": "call"
+        },
+        {
+          "name": "existsSync",
+          "edgeType": "call"
+        },
+        {
+          "name": "newOperation",
+          "edgeType": "call"
+        },
+        {
+          "name": "split",
+          "edgeType": "call"
+        },
+        {
+          "name": "substring",
+          "edgeType": "call"
+        },
+        {
+          "name": "lastIndexOf",
+          "edgeType": "call"
+        },
+        {
+          "name": "getUTCFullYear",
+          "edgeType": "call"
+        },
+        {
+          "name": "getUTCMonth",
+          "edgeType": "call"
+        },
+        {
+          "name": "getUTCDate",
+          "edgeType": "call"
+        },
+        {
+          "name": "getUTCHours",
+          "edgeType": "call"
+        },
+        {
+          "name": "getUTCMinutes",
+          "edgeType": "call"
+        },
+        {
+          "name": "getUTCSeconds",
+          "edgeType": "call"
+        },
+        {
+          "name": "startFileUpload",
+          "edgeType": "call"
+        },
+        {
+          "name": "updateProgress",
+          "edgeType": "call"
+        },
+        {
+          "name": "createWriteStream",
+          "edgeType": "call"
+        },
+        {
+          "name": "error",
+          "edgeType": "event_listen"
+        },
+        {
+          "name": "end",
+          "edgeType": "event_listen"
+        },
+        {
+          "name": "downloadHttpFile",
+          "edgeType": "call"
+        },
+        {
+          "name": "isDirectory",
+          "edgeType": "call"
+        },
+        {
+          "name": "statSync",
+          "edgeType": "call"
+        },
+        {
+          "name": "updateRecord",
+          "edgeType": "call"
+        },
+        {
+          "name": "copyLocalFile",
+          "edgeType": "call"
+        },
+        {
+          "name": "Date",
+          "edgeType": "new"
+        },
+        {
+          "name": "IUser",
+          "edgeType": "type"
+        }
+      ]
+    }
+  ],
+  "imports": [
+    {
+      "module": "node:fs",
+      "resolved": "external"
+    },
+    {
+      "module": "node:http",
+      "resolved": "external"
+    },
+    {
+      "module": "node:https",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/core-services",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/core-typings",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/ddp-client",
+      "resolved": "external"
+    },
+    {
+      "module": "meteor/meteor",
+      "resolved": "external"
+    },
+    {
+      "module": "..",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/app/importer/server/index.ts"
+    },
+    {
+      "module": "../../../../server/lib/authorization/hasPermission",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/server/lib/authorization/hasPermission.ts"
+    },
+    {
+      "module": "../../../lib/server/lib/deprecationWarningLogger",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/app/lib/server/lib/deprecationWarningLogger.ts"
+    },
+    {
+      "module": "../../lib/ImporterProgressStep",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/app/importer/lib/ImporterProgressStep.ts"
+    },
+    {
+      "module": "../startup/store",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/app/importer/server/startup/store.ts"
+    }
+  ]
+}

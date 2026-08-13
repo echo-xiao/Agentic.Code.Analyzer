@@ -1,0 +1,155 @@
+{
+  "sourcePath": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/app/apps/server/converters/users.js",
+  "symbols": [
+    {
+      "type": "class",
+      "name": "AppUsersConverter",
+      "exported": true,
+      "line": 5,
+      "endLine": 123,
+      "signature": "export class AppUsersConverter",
+      "calls": []
+    },
+    {
+      "type": "method",
+      "name": "convertById",
+      "exported": true,
+      "qualifiedName": "AppUsersConverter.convertById",
+      "line": 10,
+      "endLine": 14,
+      "signature": "async convertById(userId)",
+      "containerClass": "AppUsersConverter",
+      "calls": [
+        {
+          "name": "findOneById",
+          "edgeType": "call"
+        },
+        {
+          "name": "convertToApp",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "convertByUsername",
+      "exported": true,
+      "qualifiedName": "AppUsersConverter.convertByUsername",
+      "line": 14,
+      "endLine": 18,
+      "signature": "async convertByUsername(username)",
+      "containerClass": "AppUsersConverter",
+      "calls": [
+        {
+          "name": "findOneByUsername",
+          "edgeType": "call"
+        },
+        {
+          "name": "convertToApp",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "convertToApp",
+      "exported": true,
+      "qualifiedName": "AppUsersConverter.convertToApp",
+      "line": 18,
+      "endLine": 53,
+      "signature": "convertToApp(user)",
+      "containerClass": "AppUsersConverter",
+      "calls": [
+        {
+          "name": "_convertUserTypeToEnum",
+          "edgeType": "call"
+        },
+        {
+          "name": "_convertStatusConnectionToEnum",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "convertToRocketChat",
+      "exported": true,
+      "qualifiedName": "AppUsersConverter.convertToRocketChat",
+      "line": 22,
+      "endLine": 47,
+      "signature": "convertToRocketChat(user)",
+      "containerClass": "AppUsersConverter",
+      "calls": [
+        {
+          "name": "removeEmpty",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "_convertUserTypeToEnum",
+      "exported": true,
+      "qualifiedName": "AppUsersConverter._convertUserTypeToEnum",
+      "line": 26,
+      "endLine": 41,
+      "signature": "_convertUserTypeToEnum(type)",
+      "containerClass": "AppUsersConverter",
+      "calls": [
+        {
+          "name": "warn",
+          "edgeType": "call"
+        },
+        {
+          "name": "toUpperCase",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "_convertStatusConnectionToEnum",
+      "exported": true,
+      "qualifiedName": "AppUsersConverter._convertStatusConnectionToEnum",
+      "line": 30,
+      "endLine": 49,
+      "signature": "_convertStatusConnectionToEnum(username, userId, status)",
+      "containerClass": "AppUsersConverter",
+      "calls": [
+        {
+          "name": "warn",
+          "edgeType": "call"
+        },
+        {
+          "name": "toUpperCase",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "constructor",
+      "exported": true,
+      "qualifiedName": "AppUsersConverter.constructor",
+      "line": 6,
+      "endLine": 8,
+      "signature": "constructor(orch)",
+      "containerClass": "AppUsersConverter",
+      "calls": []
+    }
+  ],
+  "imports": [
+    {
+      "module": "@rocket.chat/apps-engine/definition/users",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/models",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/tools",
+      "resolved": "external"
+    }
+  ]
+}

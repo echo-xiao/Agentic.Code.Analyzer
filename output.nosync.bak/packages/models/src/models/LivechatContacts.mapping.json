@@ -1,0 +1,989 @@
+{
+  "sourcePath": "/Users/echoooooo/Desktop/code/Rocket.Chat/packages/models/src/models/LivechatContacts.ts",
+  "symbols": [
+    {
+      "type": "class",
+      "name": "LivechatContactsRaw",
+      "exported": true,
+      "line": 31,
+      "endLine": 461,
+      "signature": "export class LivechatContactsRaw extends BaseRaw<ILivechatContact> implements ILivechatContactsModel",
+      "calls": [
+        {
+          "name": "BaseRaw",
+          "edgeType": "type"
+        },
+        {
+          "name": "ILivechatContactsModel",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "modelIndexes",
+      "exported": true,
+      "qualifiedName": "LivechatContactsRaw.modelIndexes",
+      "line": 36,
+      "endLine": 103,
+      "signature": "protected override modelIndexes(): IndexDescription[]",
+      "containerClass": "LivechatContactsRaw",
+      "calls": [
+        {
+          "name": "IndexDescription",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "insertContact",
+      "exported": true,
+      "qualifiedName": "LivechatContactsRaw.insertContact",
+      "line": 40,
+      "endLine": 50,
+      "signature": "async insertContact( data: InsertionModel<Omit<ILivechatContact, 'createdAt'>> & { createdAt?: ILivechatContact['createdAt'] }, ): Promise<ILivechatContact['_id']>",
+      "containerClass": "LivechatContactsRaw",
+      "calls": [
+        {
+          "name": "insertOne",
+          "edgeType": "call"
+        },
+        {
+          "name": "Date",
+          "edgeType": "new"
+        },
+        {
+          "name": "InsertionModel",
+          "edgeType": "type"
+        },
+        {
+          "name": "ILivechatContact",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "patchContact",
+      "exported": true,
+      "qualifiedName": "LivechatContactsRaw.patchContact",
+      "line": 46,
+      "endLine": 70,
+      "signature": "async patchContact( contactId: string, changes: { set?: Partial<ILivechatContact>; unset?: Partial<Record<keyof ILivechatContact, '' | 1>>; }, options?: FindOneAndUpdateOptions, )",
+      "containerClass": "LivechatContactsRaw",
+      "calls": [
+        {
+          "name": "findOneAndUpdate",
+          "edgeType": "call"
+        },
+        {
+          "name": "keys",
+          "edgeType": "call"
+        },
+        {
+          "name": "ILivechatContact",
+          "edgeType": "type"
+        },
+        {
+          "name": "FindOneAndUpdateOptions",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "updateById",
+      "exported": true,
+      "qualifiedName": "LivechatContactsRaw.updateById",
+      "line": 57,
+      "endLine": 59,
+      "signature": "updateById(contactId: string, update: UpdateFilter<ILivechatContact>, options?: UpdateOptions): Promise<Document | UpdateResult>",
+      "containerClass": "LivechatContactsRaw",
+      "calls": [
+        {
+          "name": "updateOne",
+          "edgeType": "call"
+        },
+        {
+          "name": "UpdateFilter",
+          "edgeType": "type"
+        },
+        {
+          "name": "ILivechatContact",
+          "edgeType": "type"
+        },
+        {
+          "name": "UpdateOptions",
+          "edgeType": "type"
+        },
+        {
+          "name": "Document",
+          "edgeType": "type"
+        },
+        {
+          "name": "UpdateResult",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "updateContactCustomFields",
+      "exported": true,
+      "qualifiedName": "LivechatContactsRaw.updateContactCustomFields",
+      "line": 61,
+      "endLine": 77,
+      "signature": "async updateContactCustomFields( contactId: string, dataToUpdate: { customFields: Record<string, unknown>; conflictingFields: ILivechatContactConflictingField[] }, options?: FindOneAndUpdateOptions, ): Promise<ILivechatContact | null>",
+      "containerClass": "LivechatContactsRaw",
+      "calls": [
+        {
+          "name": "findOneAndUpdate",
+          "edgeType": "call"
+        },
+        {
+          "name": "ILivechatContactConflictingField",
+          "edgeType": "type"
+        },
+        {
+          "name": "FindOneAndUpdateOptions",
+          "edgeType": "type"
+        },
+        {
+          "name": "ILivechatContact",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "findPaginatedContacts",
+      "exported": true,
+      "qualifiedName": "LivechatContactsRaw.findPaginatedContacts",
+      "line": 69,
+      "endLine": 92,
+      "signature": "findPaginatedContacts( search: { searchText?: string; unknown?: boolean }, options?: FindOptions, ): FindPaginated<FindCursor<ILivechatContact>>",
+      "containerClass": "LivechatContactsRaw",
+      "calls": [
+        {
+          "name": "escapeRegExp",
+          "edgeType": "call"
+        },
+        {
+          "name": "findPaginated",
+          "edgeType": "call"
+        },
+        {
+          "name": "FindOptions",
+          "edgeType": "type"
+        },
+        {
+          "name": "FindPaginated",
+          "edgeType": "type"
+        },
+        {
+          "name": "FindCursor",
+          "edgeType": "type"
+        },
+        {
+          "name": "ILivechatContact",
+          "edgeType": "type"
+        },
+        {
+          "name": "Filter",
+          "edgeType": "type"
+        },
+        {
+          "name": "RootFilterOperators",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "findContactMatchingVisitor",
+      "exported": true,
+      "qualifiedName": "LivechatContactsRaw.findContactMatchingVisitor",
+      "line": 76,
+      "endLine": 99,
+      "signature": "async findContactMatchingVisitor(visitor: AtLeast<ILivechatVisitor, 'visitorEmails' | 'phone'>): Promise<ILivechatContact | null>",
+      "containerClass": "LivechatContactsRaw",
+      "calls": [
+        {
+          "name": "filter",
+          "edgeType": "call"
+        },
+        {
+          "name": "map",
+          "edgeType": "call"
+        },
+        {
+          "name": "Boolean",
+          "edgeType": "call"
+        },
+        {
+          "name": "findOne",
+          "edgeType": "call"
+        },
+        {
+          "name": "AtLeast",
+          "edgeType": "type"
+        },
+        {
+          "name": "ILivechatVisitor",
+          "edgeType": "type"
+        },
+        {
+          "name": "ILivechatContact",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "findContactByEmailAndContactManager",
+      "exported": true,
+      "qualifiedName": "LivechatContactsRaw.findContactByEmailAndContactManager",
+      "line": 80,
+      "endLine": 85,
+      "signature": "async findContactByEmailAndContactManager(email: string): Promise<Pick<ILivechatContact, 'contactManager'> | null>",
+      "containerClass": "LivechatContactsRaw",
+      "calls": [
+        {
+          "name": "findOne",
+          "edgeType": "call"
+        },
+        {
+          "name": "ILivechatContact",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "makeQueryForVisitor",
+      "exported": true,
+      "qualifiedName": "LivechatContactsRaw.makeQueryForVisitor",
+      "line": 84,
+      "endLine": 98,
+      "signature": "private makeQueryForVisitor( visitor: ILivechatContactVisitorAssociation, extraFilters?: Filter<Required<ILivechatContact>['channels'][number]>, ): Filter<ILivechatContact>",
+      "containerClass": "LivechatContactsRaw",
+      "calls": [
+        {
+          "name": "ILivechatContactVisitorAssociation",
+          "edgeType": "type"
+        },
+        {
+          "name": "Filter",
+          "edgeType": "type"
+        },
+        {
+          "name": "ILivechatContact",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "findOneByVisitor",
+      "exported": true,
+      "qualifiedName": "LivechatContactsRaw.findOneByVisitor",
+      "line": 91,
+      "endLine": 96,
+      "signature": "async findOneByVisitor<T extends Document = ILivechatContact>( visitor: ILivechatContactVisitorAssociation, options: FindOptions<ILivechatContact> = {}, ): Promise<T | null>",
+      "containerClass": "LivechatContactsRaw",
+      "calls": [
+        {
+          "name": "findOne",
+          "edgeType": "call"
+        },
+        {
+          "name": "makeQueryForVisitor",
+          "edgeType": "call"
+        },
+        {
+          "name": "Document",
+          "edgeType": "type"
+        },
+        {
+          "name": "ILivechatContact",
+          "edgeType": "type"
+        },
+        {
+          "name": "ILivechatContactVisitorAssociation",
+          "edgeType": "type"
+        },
+        {
+          "name": "FindOptions",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "addChannel",
+      "exported": true,
+      "qualifiedName": "LivechatContactsRaw.addChannel",
+      "line": 98,
+      "endLine": 100,
+      "signature": "async addChannel(contactId: string, channel: ILivechatContactChannel): Promise<void>",
+      "containerClass": "LivechatContactsRaw",
+      "calls": [
+        {
+          "name": "updateOne",
+          "edgeType": "call"
+        },
+        {
+          "name": "ILivechatContactChannel",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "updateLastChatById",
+      "exported": true,
+      "qualifiedName": "LivechatContactsRaw.updateLastChatById",
+      "line": 102,
+      "endLine": 114,
+      "signature": "async updateLastChatById( contactId: string, visitor: ILivechatContactVisitorAssociation, lastChat: ILivechatContact['lastChat'], ): Promise<UpdateResult>",
+      "containerClass": "LivechatContactsRaw",
+      "calls": [
+        {
+          "name": "updateOne",
+          "edgeType": "call"
+        },
+        {
+          "name": "makeQueryForVisitor",
+          "edgeType": "call"
+        },
+        {
+          "name": "ILivechatContactVisitorAssociation",
+          "edgeType": "type"
+        },
+        {
+          "name": "ILivechatContact",
+          "edgeType": "type"
+        },
+        {
+          "name": "UpdateResult",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "isChannelBlocked",
+      "exported": true,
+      "qualifiedName": "LivechatContactsRaw.isChannelBlocked",
+      "line": 110,
+      "endLine": 112,
+      "signature": "async isChannelBlocked(visitor: ILivechatContactVisitorAssociation): Promise<boolean>",
+      "containerClass": "LivechatContactsRaw",
+      "calls": [
+        {
+          "name": "Boolean",
+          "edgeType": "call"
+        },
+        {
+          "name": "findOne",
+          "edgeType": "call"
+        },
+        {
+          "name": "makeQueryForVisitor",
+          "edgeType": "call"
+        },
+        {
+          "name": "ILivechatContactVisitorAssociation",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "setChannelBlockStatus",
+      "exported": true,
+      "qualifiedName": "LivechatContactsRaw.setChannelBlockStatus",
+      "line": 114,
+      "endLine": 116,
+      "signature": "setChannelBlockStatus(visitor: ILivechatContactVisitorAssociation, blocked: boolean): Promise<UpdateResult>",
+      "containerClass": "LivechatContactsRaw",
+      "calls": [
+        {
+          "name": "updateOne",
+          "edgeType": "call"
+        },
+        {
+          "name": "makeQueryForVisitor",
+          "edgeType": "call"
+        },
+        {
+          "name": "ILivechatContactVisitorAssociation",
+          "edgeType": "type"
+        },
+        {
+          "name": "UpdateResult",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "setChannelVerifiedStatus",
+      "exported": true,
+      "qualifiedName": "LivechatContactsRaw.setChannelVerifiedStatus",
+      "line": 118,
+      "endLine": 125,
+      "signature": "setChannelVerifiedStatus(visitor: ILivechatContactVisitorAssociation, verified: boolean): Promise<UpdateResult>",
+      "containerClass": "LivechatContactsRaw",
+      "calls": [
+        {
+          "name": "updateOne",
+          "edgeType": "call"
+        },
+        {
+          "name": "makeQueryForVisitor",
+          "edgeType": "call"
+        },
+        {
+          "name": "Date",
+          "edgeType": "new"
+        },
+        {
+          "name": "ILivechatContactVisitorAssociation",
+          "edgeType": "type"
+        },
+        {
+          "name": "UpdateResult",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "setVerifiedUpdateQuery",
+      "exported": true,
+      "qualifiedName": "LivechatContactsRaw.setVerifiedUpdateQuery",
+      "line": 122,
+      "endLine": 127,
+      "signature": "setVerifiedUpdateQuery(verified: boolean, contactUpdater: Updater<ILivechatContact>): Updater<ILivechatContact>",
+      "containerClass": "LivechatContactsRaw",
+      "calls": [
+        {
+          "name": "set",
+          "edgeType": "call"
+        },
+        {
+          "name": "Date",
+          "edgeType": "new"
+        },
+        {
+          "name": "Updater",
+          "edgeType": "type"
+        },
+        {
+          "name": "ILivechatContact",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "setFieldAndValueUpdateQuery",
+      "exported": true,
+      "qualifiedName": "LivechatContactsRaw.setFieldAndValueUpdateQuery",
+      "line": 126,
+      "endLine": 129,
+      "signature": "setFieldAndValueUpdateQuery(field: string, value: string, contactUpdater: Updater<ILivechatContact>): Updater<ILivechatContact>",
+      "containerClass": "LivechatContactsRaw",
+      "calls": [
+        {
+          "name": "set",
+          "edgeType": "call"
+        },
+        {
+          "name": "Updater",
+          "edgeType": "type"
+        },
+        {
+          "name": "ILivechatContact",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "updateFromUpdaterByAssociation",
+      "exported": true,
+      "qualifiedName": "LivechatContactsRaw.updateFromUpdaterByAssociation",
+      "line": 130,
+      "endLine": 136,
+      "signature": "updateFromUpdaterByAssociation( visitor: ILivechatContactVisitorAssociation, contactUpdater: Updater<ILivechatContact>, options: UpdateOptions = {}, ): Promise<UpdateResult>",
+      "containerClass": "LivechatContactsRaw",
+      "calls": [
+        {
+          "name": "updateFromUpdater",
+          "edgeType": "call"
+        },
+        {
+          "name": "makeQueryForVisitor",
+          "edgeType": "call"
+        },
+        {
+          "name": "ILivechatContactVisitorAssociation",
+          "edgeType": "type"
+        },
+        {
+          "name": "Updater",
+          "edgeType": "type"
+        },
+        {
+          "name": "ILivechatContact",
+          "edgeType": "type"
+        },
+        {
+          "name": "UpdateOptions",
+          "edgeType": "type"
+        },
+        {
+          "name": "UpdateResult",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "findSimilarVerifiedContacts",
+      "exported": true,
+      "qualifiedName": "LivechatContactsRaw.findSimilarVerifiedContacts",
+      "line": 138,
+      "endLine": 156,
+      "signature": "async findSimilarVerifiedContacts( { field, value }: Pick<ILivechatContactChannel, 'field' | 'value'>, originalContactId: string, options?: FindOptions<ILivechatContact>, ): Promise<ILivechatContact[]>",
+      "containerClass": "LivechatContactsRaw",
+      "calls": [
+        {
+          "name": "toArray",
+          "edgeType": "call"
+        },
+        {
+          "name": "find",
+          "edgeType": "call"
+        },
+        {
+          "name": "ILivechatContactChannel",
+          "edgeType": "type"
+        },
+        {
+          "name": "FindOptions",
+          "edgeType": "type"
+        },
+        {
+          "name": "ILivechatContact",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "findAllByVisitorId",
+      "exported": true,
+      "qualifiedName": "LivechatContactsRaw.findAllByVisitorId",
+      "line": 146,
+      "endLine": 150,
+      "signature": "findAllByVisitorId(visitorId: string): FindCursor<ILivechatContact>",
+      "containerClass": "LivechatContactsRaw",
+      "calls": [
+        {
+          "name": "find",
+          "edgeType": "call"
+        },
+        {
+          "name": "FindCursor",
+          "edgeType": "type"
+        },
+        {
+          "name": "ILivechatContact",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "findOneEnabledById",
+      "exported": true,
+      "qualifiedName": "LivechatContactsRaw.findOneEnabledById",
+      "line": 154,
+      "endLine": 156,
+      "signature": "async findOneEnabledById(_id: ILivechatContact['_id'], options?: any): Promise<ILivechatContact | null>",
+      "containerClass": "LivechatContactsRaw",
+      "calls": [
+        {
+          "name": "findOne",
+          "edgeType": "call"
+        },
+        {
+          "name": "ILivechatContact",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "disableByVisitorId",
+      "exported": true,
+      "qualifiedName": "LivechatContactsRaw.disableByVisitorId",
+      "line": 158,
+      "endLine": 173,
+      "signature": "disableByVisitorId(visitorId: string): Promise<UpdateResult | Document>",
+      "containerClass": "LivechatContactsRaw",
+      "calls": [
+        {
+          "name": "updateOne",
+          "edgeType": "call"
+        },
+        {
+          "name": "UpdateResult",
+          "edgeType": "type"
+        },
+        {
+          "name": "Document",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "disableByContactId",
+      "exported": true,
+      "qualifiedName": "LivechatContactsRaw.disableByContactId",
+      "line": 162,
+      "endLine": 178,
+      "signature": "disableByContactId(contactId: string): Promise<UpdateResult>",
+      "containerClass": "LivechatContactsRaw",
+      "calls": [
+        {
+          "name": "updateOne",
+          "edgeType": "call"
+        },
+        {
+          "name": "UpdateResult",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "addEmail",
+      "exported": true,
+      "qualifiedName": "LivechatContactsRaw.addEmail",
+      "line": 166,
+      "endLine": 170,
+      "signature": "async addEmail(contactId: string, email: string): Promise<ILivechatContact | null>",
+      "containerClass": "LivechatContactsRaw",
+      "calls": [
+        {
+          "name": "findOneAndUpdate",
+          "edgeType": "call"
+        },
+        {
+          "name": "ILivechatContact",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "isContactActiveOnPeriod",
+      "exported": true,
+      "qualifiedName": "LivechatContactsRaw.isContactActiveOnPeriod",
+      "line": 170,
+      "endLine": 177,
+      "signature": "isContactActiveOnPeriod(visitor: ILivechatContactVisitorAssociation, period: string): Promise<number>",
+      "containerClass": "LivechatContactsRaw",
+      "calls": [
+        {
+          "name": "makeQueryForVisitor",
+          "edgeType": "call"
+        },
+        {
+          "name": "countDocuments",
+          "edgeType": "call"
+        },
+        {
+          "name": "ILivechatContactVisitorAssociation",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "markContactActiveForPeriod",
+      "exported": true,
+      "qualifiedName": "LivechatContactsRaw.markContactActiveForPeriod",
+      "line": 174,
+      "endLine": 185,
+      "signature": "markContactActiveForPeriod(visitor: ILivechatContactVisitorAssociation, period: string): Promise<UpdateResult>",
+      "containerClass": "LivechatContactsRaw",
+      "calls": [
+        {
+          "name": "updateOne",
+          "edgeType": "call"
+        },
+        {
+          "name": "makeQueryForVisitor",
+          "edgeType": "call"
+        },
+        {
+          "name": "ILivechatContactVisitorAssociation",
+          "edgeType": "type"
+        },
+        {
+          "name": "UpdateResult",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "countContactsOnPeriod",
+      "exported": true,
+      "qualifiedName": "LivechatContactsRaw.countContactsOnPeriod",
+      "line": 178,
+      "endLine": 182,
+      "signature": "countContactsOnPeriod(period: string): Promise<number>",
+      "containerClass": "LivechatContactsRaw",
+      "calls": [
+        {
+          "name": "countDocuments",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "countByContactInfo",
+      "exported": true,
+      "qualifiedName": "LivechatContactsRaw.countByContactInfo",
+      "line": 182,
+      "endLine": 190,
+      "signature": "countByContactInfo({ contactId, email, phone }: { contactId?: string; email?: string; phone?: string }): Promise<number>",
+      "containerClass": "LivechatContactsRaw",
+      "calls": [
+        {
+          "name": "countDocuments",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "countUnknown",
+      "exported": true,
+      "qualifiedName": "LivechatContactsRaw.countUnknown",
+      "line": 186,
+      "endLine": 188,
+      "signature": "countUnknown(): Promise<number>",
+      "containerClass": "LivechatContactsRaw",
+      "calls": [
+        {
+          "name": "countDocuments",
+          "edgeType": "call"
+        },
+        {
+          "name": "readSecondaryPreferred",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "countBlocked",
+      "exported": true,
+      "qualifiedName": "LivechatContactsRaw.countBlocked",
+      "line": 190,
+      "endLine": 192,
+      "signature": "countBlocked(): Promise<number>",
+      "containerClass": "LivechatContactsRaw",
+      "calls": [
+        {
+          "name": "countDocuments",
+          "edgeType": "call"
+        },
+        {
+          "name": "readSecondaryPreferred",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "countFullyBlocked",
+      "exported": true,
+      "qualifiedName": "LivechatContactsRaw.countFullyBlocked",
+      "line": 194,
+      "endLine": 202,
+      "signature": "countFullyBlocked(): Promise<number>",
+      "containerClass": "LivechatContactsRaw",
+      "calls": [
+        {
+          "name": "countDocuments",
+          "edgeType": "call"
+        },
+        {
+          "name": "readSecondaryPreferred",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "countVerified",
+      "exported": true,
+      "qualifiedName": "LivechatContactsRaw.countVerified",
+      "line": 198,
+      "endLine": 200,
+      "signature": "countVerified(): Promise<number>",
+      "containerClass": "LivechatContactsRaw",
+      "calls": [
+        {
+          "name": "countDocuments",
+          "edgeType": "call"
+        },
+        {
+          "name": "readSecondaryPreferred",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "countContactsWithoutChannels",
+      "exported": true,
+      "qualifiedName": "LivechatContactsRaw.countContactsWithoutChannels",
+      "line": 202,
+      "endLine": 204,
+      "signature": "countContactsWithoutChannels(): Promise<number>",
+      "containerClass": "LivechatContactsRaw",
+      "calls": [
+        {
+          "name": "countDocuments",
+          "edgeType": "call"
+        },
+        {
+          "name": "readSecondaryPreferred",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "getStatistics",
+      "exported": true,
+      "qualifiedName": "LivechatContactsRaw.getStatistics",
+      "line": 206,
+      "endLine": 223,
+      "signature": "getStatistics(): AggregationCursor<{ totalConflicts: number; avgChannelsPerContact: number }>",
+      "containerClass": "LivechatContactsRaw",
+      "calls": [
+        {
+          "name": "aggregate",
+          "edgeType": "call"
+        },
+        {
+          "name": "readSecondaryPreferred",
+          "edgeType": "call"
+        },
+        {
+          "name": "AggregationCursor",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "updateByVisitorId",
+      "exported": true,
+      "qualifiedName": "LivechatContactsRaw.updateByVisitorId",
+      "line": 210,
+      "endLine": 212,
+      "signature": "updateByVisitorId(visitorId: string, update: UpdateFilter<ILivechatContact>, options?: UpdateOptions): Promise<UpdateResult>",
+      "containerClass": "LivechatContactsRaw",
+      "calls": [
+        {
+          "name": "updateOne",
+          "edgeType": "call"
+        },
+        {
+          "name": "UpdateFilter",
+          "edgeType": "type"
+        },
+        {
+          "name": "ILivechatContact",
+          "edgeType": "type"
+        },
+        {
+          "name": "UpdateOptions",
+          "edgeType": "type"
+        },
+        {
+          "name": "UpdateResult",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "constructor",
+      "exported": true,
+      "qualifiedName": "LivechatContactsRaw.constructor",
+      "line": 32,
+      "endLine": 34,
+      "signature": "constructor(db: Db, trash?: Collection<RocketChatRecordDeleted<ILivechatContact>>)",
+      "containerClass": "LivechatContactsRaw",
+      "calls": [
+        {
+          "name": "Db",
+          "edgeType": "type"
+        },
+        {
+          "name": "Collection",
+          "edgeType": "type"
+        },
+        {
+          "name": "RocketChatRecordDeleted",
+          "edgeType": "type"
+        },
+        {
+          "name": "ILivechatContact",
+          "edgeType": "type"
+        }
+      ]
+    }
+  ],
+  "imports": [
+    {
+      "module": "@rocket.chat/core-typings",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/model-typings",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/string-helpers",
+      "resolved": "external"
+    },
+    {
+      "module": "mongodb",
+      "resolved": "external"
+    },
+    {
+      "module": "./BaseRaw",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/packages/models/src/models/BaseRaw.ts"
+    },
+    {
+      "module": "../readSecondaryPreferred",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/packages/models/src/readSecondaryPreferred.ts"
+    }
+  ]
+}

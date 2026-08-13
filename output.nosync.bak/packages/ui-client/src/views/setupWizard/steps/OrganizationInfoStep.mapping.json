@@ -1,0 +1,182 @@
+{
+  "sourcePath": "/Users/echoooooo/Desktop/code/Rocket.Chat/packages/ui-client/src/views/setupWizard/steps/OrganizationInfoStep.tsx",
+  "symbols": [
+    {
+      "type": "variable_function",
+      "name": "getSettingOptions",
+      "exported": false,
+      "line": 11,
+      "endLine": 27,
+      "signature": "( settings: Array<ISetting> | undefined, settingId: ISetting['_id'], t: TFunction, ): Array<[key: string, text: string]> =>",
+      "calls": [
+        {
+          "name": "find",
+          "edgeType": "call"
+        },
+        {
+          "name": "map",
+          "edgeType": "call"
+        },
+        {
+          "name": "ISetting",
+          "edgeType": "type"
+        },
+        {
+          "name": "TFunction",
+          "edgeType": "type"
+        },
+        {
+          "name": "TranslationKey",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "inner_function",
+      "name": "handleSubmit",
+      "exported": false,
+      "qualifiedName": "OrganizationInfoStep.handleSubmit",
+      "line": 40,
+      "endLine": 50,
+      "signature": "async (data) =>",
+      "calls": [
+        {
+          "name": "completeSetupWizard",
+          "edgeType": "call"
+        },
+        {
+          "name": "setSetupWizardData",
+          "edgeType": "call"
+        },
+        {
+          "name": "saveOrganizationData",
+          "edgeType": "call"
+        },
+        {
+          "name": "goToNextStep",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "variable_function",
+      "name": "OrganizationInfoStep",
+      "exported": false,
+      "line": 19,
+      "endLine": 67,
+      "signature": "() =>",
+      "calls": [
+        {
+          "name": "useTranslation",
+          "edgeType": "call"
+        },
+        {
+          "name": "useRole",
+          "edgeType": "call"
+        },
+        {
+          "name": "useSetupWizardContext",
+          "edgeType": "call"
+        },
+        {
+          "name": "getSettingOptions",
+          "edgeType": "call"
+        },
+        {
+          "name": "completeSetupWizard",
+          "edgeType": "call"
+        },
+        {
+          "name": "setSetupWizardData",
+          "edgeType": "call"
+        },
+        {
+          "name": "saveOrganizationData",
+          "edgeType": "call"
+        },
+        {
+          "name": "goToNextStep",
+          "edgeType": "call"
+        },
+        {
+          "name": "I18nextProvider",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "OrganizationInfoPage",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "i18n",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "organizationData",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "handleSubmit",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "currentStep",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "maxSteps",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "organizationIndustryOptions",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "organizationSizeOptions",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "countryOptions",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "ComponentProps",
+          "edgeType": "type"
+        }
+      ]
+    }
+  ],
+  "imports": [
+    {
+      "module": "@rocket.chat/core-typings",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/onboarding-ui",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/ui-contexts",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/ui-contexts",
+      "resolved": "external"
+    },
+    {
+      "module": "i18next",
+      "resolved": "external"
+    },
+    {
+      "module": "react",
+      "resolved": "external"
+    },
+    {
+      "module": "react-i18next",
+      "resolved": "external"
+    },
+    {
+      "module": "../contexts/SetupWizardContext",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/packages/ui-client/src/views/setupWizard/contexts/SetupWizardContext.tsx"
+    }
+  ]
+}

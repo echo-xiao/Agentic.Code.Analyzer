@@ -1,0 +1,72 @@
+{
+  "sourcePath": "/Users/echoooooo/Desktop/code/Rocket.Chat/ee/packages/license/src/v2/bundles.ts",
+  "symbols": [
+    {
+      "type": "function",
+      "name": "isBundle",
+      "exported": true,
+      "line": 21,
+      "endLine": 32,
+      "signature": "export function isBundle(moduleName: string): boolean",
+      "calls": [
+        {
+          "name": "getBundleFromModule",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "function",
+      "name": "getBundleModules",
+      "exported": true,
+      "line": 25,
+      "endLine": 36,
+      "signature": "export function getBundleModules(moduleName: string): readonly string[]",
+      "calls": [
+        {
+          "name": "reduce",
+          "edgeType": "call"
+        },
+        {
+          "name": "keys",
+          "edgeType": "call"
+        },
+        {
+          "name": "concat",
+          "edgeType": "call"
+        },
+        {
+          "name": "getBundleFromModule",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "variable_function",
+      "name": "getBundleFromModule",
+      "exported": true,
+      "line": 12,
+      "endLine": 19,
+      "signature": "(moduleName: string): string | undefined =>",
+      "calls": [
+        {
+          "name": "match",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "interface",
+      "name": "IBundle",
+      "line": 3,
+      "endLine": 5,
+      "signature": "interface IBundle"
+    }
+  ],
+  "imports": [
+    {
+      "module": "@rocket.chat/core-typings",
+      "resolved": "external"
+    }
+  ]
+}

@@ -1,0 +1,787 @@
+{
+  "sourcePath": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/app/ui-utils/client/lib/RoomHistoryManager.ts",
+  "symbols": [
+    {
+      "type": "class",
+      "name": "RoomHistoryManagerClass",
+      "exported": false,
+      "line": 60,
+      "endLine": 359,
+      "signature": "class RoomHistoryManagerClass extends Emitter",
+      "calls": [
+        {
+          "name": "Emitter",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "getRoom",
+      "exported": false,
+      "qualifiedName": "RoomHistoryManagerClass.getRoom",
+      "line": 67,
+      "endLine": 80,
+      "signature": "public getRoom(rid: IRoom['_id']): RoomHistoryState",
+      "containerClass": "RoomHistoryManagerClass",
+      "calls": [
+        {
+          "name": "IRoom",
+          "edgeType": "type"
+        },
+        {
+          "name": "RoomHistoryState",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "updateRoom",
+      "exported": false,
+      "qualifiedName": "RoomHistoryManagerClass.updateRoom",
+      "line": 71,
+      "endLine": 75,
+      "signature": "public updateRoom(rid: IRoom['_id'], patch: Partial<RoomHistoryState>): void",
+      "containerClass": "RoomHistoryManagerClass",
+      "calls": [
+        {
+          "name": "getRoom",
+          "edgeType": "call"
+        },
+        {
+          "name": "assign",
+          "edgeType": "call"
+        },
+        {
+          "name": "roomStateEvent",
+          "edgeType": "call"
+        },
+        {
+          "name": "IRoom",
+          "edgeType": "type"
+        },
+        {
+          "name": "RoomHistoryState",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "subscribeToRoom",
+      "exported": false,
+      "qualifiedName": "RoomHistoryManagerClass.subscribeToRoom",
+      "line": 75,
+      "endLine": 77,
+      "signature": "public subscribeToRoom(rid: IRoom['_id'], cb: (state: RoomHistoryState) => void): () => void",
+      "containerClass": "RoomHistoryManagerClass",
+      "calls": [
+        {
+          "name": "roomStateEvent",
+          "edgeType": "call"
+        },
+        {
+          "name": "IRoom",
+          "edgeType": "type"
+        },
+        {
+          "name": "RoomHistoryState",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "queue",
+      "exported": false,
+      "qualifiedName": "RoomHistoryManagerClass.queue",
+      "line": 79,
+      "endLine": 92,
+      "signature": "private async queue(): Promise<void>",
+      "containerClass": "RoomHistoryManagerClass",
+      "calls": [
+        {
+          "name": "randomUUID",
+          "edgeType": "call"
+        },
+        {
+          "name": "resolve",
+          "edgeType": "call"
+        },
+        {
+          "name": "push",
+          "edgeType": "call"
+        },
+        {
+          "name": "Date",
+          "edgeType": "new"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "run",
+      "exported": false,
+      "qualifiedName": "RoomHistoryManagerClass.run",
+      "line": 83,
+      "endLine": 93,
+      "signature": "private run(fn: () => void)",
+      "containerClass": "RoomHistoryManagerClass",
+      "calls": [
+        {
+          "name": "differenceInMilliseconds",
+          "edgeType": "call"
+        },
+        {
+          "name": "fn",
+          "edgeType": "call"
+        },
+        {
+          "name": "Date",
+          "edgeType": "new"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "isLoaded",
+      "exported": false,
+      "qualifiedName": "RoomHistoryManagerClass.isLoaded",
+      "line": 87,
+      "endLine": 90,
+      "signature": "public isLoaded(rid: IRoom['_id'])",
+      "containerClass": "RoomHistoryManagerClass",
+      "calls": [
+        {
+          "name": "getRoom",
+          "edgeType": "call"
+        },
+        {
+          "name": "IRoom",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "unqueue",
+      "exported": false,
+      "qualifiedName": "RoomHistoryManagerClass.unqueue",
+      "line": 91,
+      "endLine": 97,
+      "signature": "private unqueue()",
+      "containerClass": "RoomHistoryManagerClass",
+      "calls": [
+        {
+          "name": "pop",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "getMore",
+      "exported": false,
+      "qualifiedName": "RoomHistoryManagerClass.getMore",
+      "line": 95,
+      "endLine": 175,
+      "signature": "public async getMore(rid: IRoom['_id'], { limit = defaultLimit }: { limit?: number } = {}): Promise<void>",
+      "containerClass": "RoomHistoryManagerClass",
+      "calls": [
+        {
+          "name": "getRoom",
+          "edgeType": "call"
+        },
+        {
+          "name": "updateRoom",
+          "edgeType": "call"
+        },
+        {
+          "name": "queue",
+          "edgeType": "call"
+        },
+        {
+          "name": "find",
+          "edgeType": "call"
+        },
+        {
+          "name": "getUserPreference",
+          "edgeType": "call"
+        },
+        {
+          "name": "getUserId",
+          "edgeType": "call"
+        },
+        {
+          "name": "callWithErrorHandling",
+          "edgeType": "call"
+        },
+        {
+          "name": "unqueue",
+          "edgeType": "call"
+        },
+        {
+          "name": "querySelector",
+          "edgeType": "call"
+        },
+        {
+          "name": "upsertMessageBulk",
+          "edgeType": "call"
+        },
+        {
+          "name": "filter",
+          "edgeType": "call"
+        },
+        {
+          "name": "loaded-messages",
+          "edgeType": "event_emit"
+        },
+        {
+          "name": "getMore",
+          "edgeType": "call"
+        },
+        {
+          "name": "IRoom",
+          "edgeType": "type"
+        },
+        {
+          "name": "HTMLElement",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "restoreScroll",
+      "exported": false,
+      "qualifiedName": "RoomHistoryManagerClass.restoreScroll",
+      "line": 99,
+      "endLine": 114,
+      "signature": "public restoreScroll(rid: IRoom['_id'])",
+      "containerClass": "RoomHistoryManagerClass",
+      "calls": [
+        {
+          "name": "getRoom",
+          "edgeType": "call"
+        },
+        {
+          "name": "querySelector",
+          "edgeType": "call"
+        },
+        {
+          "name": "IRoom",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "getMoreNext",
+      "exported": false,
+      "qualifiedName": "RoomHistoryManagerClass.getMoreNext",
+      "line": 103,
+      "endLine": 141,
+      "signature": "public async getMoreNext(rid: IRoom['_id'])",
+      "containerClass": "RoomHistoryManagerClass",
+      "calls": [
+        {
+          "name": "getRoom",
+          "edgeType": "call"
+        },
+        {
+          "name": "queue",
+          "edgeType": "call"
+        },
+        {
+          "name": "updateRoom",
+          "edgeType": "call"
+        },
+        {
+          "name": "findFirst",
+          "edgeType": "call"
+        },
+        {
+          "name": "getTime",
+          "edgeType": "call"
+        },
+        {
+          "name": "find",
+          "edgeType": "call"
+        },
+        {
+          "name": "callWithErrorHandling",
+          "edgeType": "call"
+        },
+        {
+          "name": "upsertMessageBulk",
+          "edgeType": "call"
+        },
+        {
+          "name": "filter",
+          "edgeType": "call"
+        },
+        {
+          "name": "from",
+          "edgeType": "call"
+        },
+        {
+          "name": "loaded-messages",
+          "edgeType": "event_emit"
+        },
+        {
+          "name": "unqueue",
+          "edgeType": "call"
+        },
+        {
+          "name": "IRoom",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "hasMore",
+      "exported": false,
+      "qualifiedName": "RoomHistoryManagerClass.hasMore",
+      "line": 107,
+      "endLine": 109,
+      "signature": "public hasMore(rid: IRoom['_id'])",
+      "containerClass": "RoomHistoryManagerClass",
+      "calls": [
+        {
+          "name": "getRoom",
+          "edgeType": "call"
+        },
+        {
+          "name": "IRoom",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "hasMoreNext",
+      "exported": false,
+      "qualifiedName": "RoomHistoryManagerClass.hasMoreNext",
+      "line": 111,
+      "endLine": 113,
+      "signature": "public hasMoreNext(rid: IRoom['_id'])",
+      "containerClass": "RoomHistoryManagerClass",
+      "calls": [
+        {
+          "name": "getRoom",
+          "edgeType": "call"
+        },
+        {
+          "name": "IRoom",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "getMoreIfIsEmpty",
+      "exported": false,
+      "qualifiedName": "RoomHistoryManagerClass.getMoreIfIsEmpty",
+      "line": 115,
+      "endLine": 121,
+      "signature": "public getMoreIfIsEmpty(rid: IRoom['_id'])",
+      "containerClass": "RoomHistoryManagerClass",
+      "calls": [
+        {
+          "name": "getRoom",
+          "edgeType": "call"
+        },
+        {
+          "name": "getMore",
+          "edgeType": "call"
+        },
+        {
+          "name": "IRoom",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "isLoading",
+      "exported": false,
+      "qualifiedName": "RoomHistoryManagerClass.isLoading",
+      "line": 119,
+      "endLine": 121,
+      "signature": "public isLoading(rid: IRoom['_id'])",
+      "containerClass": "RoomHistoryManagerClass",
+      "calls": [
+        {
+          "name": "getRoom",
+          "edgeType": "call"
+        },
+        {
+          "name": "IRoom",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "close",
+      "exported": false,
+      "qualifiedName": "RoomHistoryManagerClass.close",
+      "line": 123,
+      "endLine": 126,
+      "signature": "public close(rid: IRoom['_id'])",
+      "containerClass": "RoomHistoryManagerClass",
+      "calls": [
+        {
+          "name": "remove",
+          "edgeType": "call"
+        },
+        {
+          "name": "IRoom",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "clear",
+      "exported": false,
+      "qualifiedName": "RoomHistoryManagerClass.clear",
+      "line": 127,
+      "endLine": 137,
+      "signature": "public clear(rid: IRoom['_id'])",
+      "containerClass": "RoomHistoryManagerClass",
+      "calls": [
+        {
+          "name": "getRoom",
+          "edgeType": "call"
+        },
+        {
+          "name": "remove",
+          "edgeType": "call"
+        },
+        {
+          "name": "updateRoom",
+          "edgeType": "call"
+        },
+        {
+          "name": "IRoom",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "getSurroundingMessages",
+      "exported": false,
+      "qualifiedName": "RoomHistoryManagerClass.getSurroundingMessages",
+      "line": 131,
+      "endLine": 133,
+      "signature": "public async getSurroundingMessages(message?: Pick<IMessage, '_id' | 'rid'> & { ts?: Date })",
+      "containerClass": "RoomHistoryManagerClass",
+      "calls": [
+        {
+          "name": "loadSurroundingMessages",
+          "edgeType": "call"
+        },
+        {
+          "name": "IMessage",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "getSurroundingChannelMessages",
+      "exported": false,
+      "qualifiedName": "RoomHistoryManagerClass.getSurroundingChannelMessages",
+      "line": 135,
+      "endLine": 137,
+      "signature": "public async getSurroundingChannelMessages(message?: Pick<IMessage, '_id' | 'rid'> & { ts?: Date })",
+      "containerClass": "RoomHistoryManagerClass",
+      "calls": [
+        {
+          "name": "loadSurroundingMessages",
+          "edgeType": "call"
+        },
+        {
+          "name": "IMessage",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "loadSurroundingMessages",
+      "exported": false,
+      "qualifiedName": "RoomHistoryManagerClass.loadSurroundingMessages",
+      "line": 139,
+      "endLine": 181,
+      "signature": "private async loadSurroundingMessages(message: (Pick<IMessage, '_id' | 'rid'> & { ts?: Date }) | undefined, showThreadMessages: boolean)",
+      "containerClass": "RoomHistoryManagerClass",
+      "calls": [
+        {
+          "name": "some",
+          "edgeType": "call"
+        },
+        {
+          "name": "getRoom",
+          "edgeType": "call"
+        },
+        {
+          "name": "updateRoom",
+          "edgeType": "call"
+        },
+        {
+          "name": "find",
+          "edgeType": "call"
+        },
+        {
+          "name": "callWithErrorHandling",
+          "edgeType": "call"
+        },
+        {
+          "name": "clear",
+          "edgeType": "call"
+        },
+        {
+          "name": "upsertMessageBulk",
+          "edgeType": "call"
+        },
+        {
+          "name": "filter",
+          "edgeType": "call"
+        },
+        {
+          "name": "from",
+          "edgeType": "call"
+        },
+        {
+          "name": "loaded-messages",
+          "edgeType": "event_emit"
+        },
+        {
+          "name": "IMessage",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "class_property",
+      "name": "histories",
+      "exported": false,
+      "qualifiedName": "RoomHistoryManagerClass.histories",
+      "line": 63,
+      "endLine": 63,
+      "signature": "private histories: Record<IRoom['_id'], RoomHistoryState> =",
+      "containerClass": "RoomHistoryManagerClass",
+      "calls": [
+        {
+          "name": "IRoom",
+          "edgeType": "type"
+        },
+        {
+          "name": "RoomHistoryState",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "function",
+      "name": "upsertMessage",
+      "exported": true,
+      "line": 27,
+      "endLine": 29,
+      "signature": "export async function upsertMessage({ msg, subscription }: { msg: IMessage & { ignored?: boolean }; subscription?: ISubscription })",
+      "calls": [
+        {
+          "name": "store",
+          "edgeType": "call"
+        },
+        {
+          "name": "processMessage",
+          "edgeType": "call"
+        },
+        {
+          "name": "IMessage",
+          "edgeType": "type"
+        },
+        {
+          "name": "ISubscription",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "function",
+      "name": "upsertMessageBulk",
+      "exported": true,
+      "line": 31,
+      "endLine": 40,
+      "signature": "export async function upsertMessageBulk({ msgs, subscription, }: { msgs: (IMessage & { ignored?: boolean })[]; subscription?: ISubscription; })",
+      "calls": [
+        {
+          "name": "all",
+          "edgeType": "call"
+        },
+        {
+          "name": "map",
+          "edgeType": "call"
+        },
+        {
+          "name": "processMessage",
+          "edgeType": "call"
+        },
+        {
+          "name": "storeMany",
+          "edgeType": "call"
+        },
+        {
+          "name": "IMessage",
+          "edgeType": "type"
+        },
+        {
+          "name": "ISubscription",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "variable_function",
+      "name": "processMessage",
+      "exported": false,
+      "line": 13,
+      "endLine": 25,
+      "signature": "async (msg: IMessage & { ignored?: boolean }, { subscription }: { subscription?: ISubscription }) =>",
+      "calls": [
+        {
+          "name": "includes",
+          "edgeType": "call"
+        },
+        {
+          "name": "onClientMessageReceived",
+          "edgeType": "call"
+        },
+        {
+          "name": "IMessage",
+          "edgeType": "type"
+        },
+        {
+          "name": "ISubscription",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "variable_function",
+      "name": "roomStateEvent",
+      "exported": false,
+      "line": 47,
+      "endLine": 47,
+      "signature": "(rid: IRoom['_id']) =>",
+      "calls": [
+        {
+          "name": "IRoom",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "variable",
+      "name": "RoomHistoryManager",
+      "exported": true,
+      "line": 133,
+      "endLine": 133,
+      "signature": "RoomHistoryManager = new RoomHistoryManagerClass()",
+      "calls": []
+    },
+    {
+      "type": "variable_function",
+      "name": "useRoomHistoryState",
+      "exported": true,
+      "line": 135,
+      "endLine": 139,
+      "signature": "<T>(rid: IRoom['_id'], selector: (state: RoomHistoryState) => T): T =>",
+      "calls": [
+        {
+          "name": "useSyncExternalStore",
+          "edgeType": "call"
+        },
+        {
+          "name": "useCallback",
+          "edgeType": "call"
+        },
+        {
+          "name": "subscribeToRoom",
+          "edgeType": "call"
+        },
+        {
+          "name": "selector",
+          "edgeType": "call"
+        },
+        {
+          "name": "getRoom",
+          "edgeType": "call"
+        },
+        {
+          "name": "IRoom",
+          "edgeType": "type"
+        },
+        {
+          "name": "RoomHistoryState",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "type",
+      "name": "RoomHistoryState",
+      "line": 33,
+      "endLine": 45,
+      "signature": "export type RoomHistoryState ="
+    }
+  ],
+  "imports": [
+    {
+      "module": "@rocket.chat/core-typings",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/emitter",
+      "resolved": "external"
+    },
+    {
+      "module": "date-fns",
+      "resolved": "external"
+    },
+    {
+      "module": "react",
+      "resolved": "external"
+    },
+    {
+      "module": "../../../../client/lib/onClientMessageReceived",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/client/lib/onClientMessageReceived.ts"
+    },
+    {
+      "module": "../../../../client/lib/user",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/client/lib/user.ts"
+    },
+    {
+      "module": "../../../../client/lib/utils/callWithErrorHandling",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/client/lib/utils/callWithErrorHandling.ts"
+    },
+    {
+      "module": "../../../../client/lib/utils/getConfig",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/client/lib/utils/getConfig.ts"
+    },
+    {
+      "module": "../../../../client/stores",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/client/stores/index.ts"
+    },
+    {
+      "module": "../../../utils/client",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/app/utils/client/index.ts"
+    }
+  ]
+}

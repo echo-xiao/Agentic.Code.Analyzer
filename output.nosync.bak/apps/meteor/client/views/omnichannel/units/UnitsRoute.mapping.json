@@ -1,0 +1,49 @@
+{
+  "sourcePath": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/client/views/omnichannel/units/UnitsRoute.tsx",
+  "symbols": [
+    {
+      "type": "variable_function",
+      "name": "UnitsRoute",
+      "exported": false,
+      "line": 7,
+      "endLine": 16,
+      "signature": "() =>",
+      "calls": [
+        {
+          "name": "usePermission",
+          "edgeType": "call"
+        },
+        {
+          "name": "useHasLicenseModule",
+          "edgeType": "call"
+        },
+        {
+          "name": "NotAuthorizedPage",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "UnitsPage",
+          "edgeType": "jsx"
+        }
+      ]
+    }
+  ],
+  "imports": [
+    {
+      "module": "@rocket.chat/ui-contexts",
+      "resolved": "external"
+    },
+    {
+      "module": "./UnitsPage",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/client/views/omnichannel/units/UnitsPage.tsx"
+    },
+    {
+      "module": "../../../hooks/useHasLicenseModule",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/client/hooks/useHasLicenseModule.ts"
+    },
+    {
+      "module": "../../notAuthorized/NotAuthorizedPage",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/client/views/notAuthorized/NotAuthorizedPage.tsx"
+    }
+  ]
+}

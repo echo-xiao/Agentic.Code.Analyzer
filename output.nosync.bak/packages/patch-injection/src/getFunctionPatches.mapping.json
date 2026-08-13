@@ -1,0 +1,41 @@
+{
+  "sourcePath": "/Users/echoooooo/Desktop/code/Rocket.Chat/packages/patch-injection/src/getFunctionPatches.ts",
+  "symbols": [
+    {
+      "type": "variable_function",
+      "name": "getFunctionPatches",
+      "exported": true,
+      "line": 4,
+      "endLine": 15,
+      "signature": "<T extends BaseFunction>(baseFunction: T): Set<PatchData<T>> =>",
+      "calls": [
+        {
+          "name": "has",
+          "edgeType": "call"
+        },
+        {
+          "name": "get",
+          "edgeType": "call"
+        },
+        {
+          "name": "BaseFunction",
+          "edgeType": "type"
+        },
+        {
+          "name": "PatchData",
+          "edgeType": "type"
+        }
+      ]
+    }
+  ],
+  "imports": [
+    {
+      "module": "./data",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/packages/patch-injection/src/data.ts"
+    },
+    {
+      "module": "./definition",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/packages/patch-injection/src/definition.ts"
+    }
+  ]
+}

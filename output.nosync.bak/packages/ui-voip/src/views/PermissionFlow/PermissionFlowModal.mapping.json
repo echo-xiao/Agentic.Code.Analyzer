@@ -1,0 +1,172 @@
+{
+  "sourcePath": "/Users/echoooooo/Desktop/code/Rocket.Chat/packages/ui-voip/src/views/PermissionFlow/PermissionFlowModal.tsx",
+  "symbols": [
+    {
+      "type": "variable_function",
+      "name": "getFooter",
+      "exported": false,
+      "line": 31,
+      "endLine": 75,
+      "signature": "( type: PermissionFlowModalProps['type'], { onCancel, onConfirm, onClose, t, }: { onCancel: () => void; onConfirm: () => void; onClose: () => void; t: ReturnType<typeof useTranslation>['t'] }, ) =>",
+      "calls": [
+        {
+          "name": "Button",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "onClose",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "onCancel",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "onConfirm",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "PermissionFlowModalProps",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "inner_function",
+      "name": "onClose",
+      "exported": false,
+      "qualifiedName": "PermissionFlowModal.onClose",
+      "line": 49,
+      "endLine": 51,
+      "signature": "() =>",
+      "calls": [
+        {
+          "name": "setModal",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "variable_function",
+      "name": "PermissionFlowModal",
+      "exported": false,
+      "line": 43,
+      "endLine": 71,
+      "signature": "({ onCancel, onConfirm, type }: PermissionFlowModalProps) =>",
+      "calls": [
+        {
+          "name": "useTranslation",
+          "edgeType": "call"
+        },
+        {
+          "name": "useId",
+          "edgeType": "call"
+        },
+        {
+          "name": "useAbsoluteUrl",
+          "edgeType": "call"
+        },
+        {
+          "name": "useSetModal",
+          "edgeType": "call"
+        },
+        {
+          "name": "setModal",
+          "edgeType": "call"
+        },
+        {
+          "name": "absoluteUrl",
+          "edgeType": "call"
+        },
+        {
+          "name": "getFooter",
+          "edgeType": "call"
+        },
+        {
+          "name": "Modal",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "ModalHeader",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "ModalTitle",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "ModalContent",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "Box",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "ModalFooter",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "ModalFooterControllers",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "ModalClose",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "modalId",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "onClose",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "breakSpaces",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "PermissionFlowModalProps",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "type",
+      "name": "PermissionFlowModalType",
+      "line": 17,
+      "endLine": 17,
+      "signature": "export type PermissionFlowModalType = 'denied' | 'incomingPrompt' | 'outgoingPrompt' | 'deviceChangePrompt';"
+    },
+    {
+      "type": "type",
+      "name": "PermissionFlowModalProps",
+      "line": 19,
+      "endLine": 23,
+      "signature": "type PermissionFlowModalProps ="
+    }
+  ],
+  "imports": [
+    {
+      "module": "@rocket.chat/css-in-js",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/fuselage",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/ui-contexts",
+      "resolved": "external"
+    },
+    {
+      "module": "react",
+      "resolved": "external"
+    },
+    {
+      "module": "react-i18next",
+      "resolved": "external"
+    }
+  ]
+}

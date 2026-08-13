@@ -1,0 +1,347 @@
+{
+  "sourcePath": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/app/livechat/server/business-hour/AbstractBusinessHour.ts",
+  "symbols": [
+    {
+      "type": "class",
+      "name": "AbstractBusinessHourBehavior",
+      "exported": true,
+      "line": 36,
+      "endLine": 73,
+      "signature": "export abstract class AbstractBusinessHourBehavior",
+      "calls": []
+    },
+    {
+      "type": "method",
+      "name": "findHoursToCreateJobs",
+      "exported": true,
+      "qualifiedName": "AbstractBusinessHourBehavior.findHoursToCreateJobs",
+      "line": 41,
+      "endLine": 43,
+      "signature": "async findHoursToCreateJobs(): Promise<IWorkHoursCronJobsWrapper[]>",
+      "containerClass": "AbstractBusinessHourBehavior",
+      "calls": [
+        {
+          "name": "findHoursToScheduleJobs",
+          "edgeType": "call"
+        },
+        {
+          "name": "IWorkHoursCronJobsWrapper",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "onDisableBusinessHours",
+      "exported": true,
+      "qualifiedName": "AbstractBusinessHourBehavior.onDisableBusinessHours",
+      "line": 45,
+      "endLine": 47,
+      "signature": "async onDisableBusinessHours(): Promise<void>",
+      "containerClass": "AbstractBusinessHourBehavior",
+      "calls": [
+        {
+          "name": "removeBusinessHoursFromAllUsers",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "allowAgentChangeServiceStatus",
+      "exported": true,
+      "qualifiedName": "AbstractBusinessHourBehavior.allowAgentChangeServiceStatus",
+      "line": 49,
+      "endLine": 51,
+      "signature": "async allowAgentChangeServiceStatus(agentId: string): Promise<boolean>",
+      "containerClass": "AbstractBusinessHourBehavior",
+      "calls": [
+        {
+          "name": "isAgentWithinBusinessHours",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "changeAgentActiveStatus",
+      "exported": true,
+      "qualifiedName": "AbstractBusinessHourBehavior.changeAgentActiveStatus",
+      "line": 53,
+      "endLine": 72,
+      "signature": "async changeAgentActiveStatus(agentId: string, status: ILivechatAgentStatus): Promise<any>",
+      "containerClass": "AbstractBusinessHourBehavior",
+      "calls": [
+        {
+          "name": "setLivechatStatusIf",
+          "edgeType": "call"
+        },
+        {
+          "name": "notifyOnUserChange",
+          "edgeType": "call"
+        },
+        {
+          "name": "ILivechatAgentStatus",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "class_property",
+      "name": "BusinessHourRepository",
+      "exported": true,
+      "qualifiedName": "AbstractBusinessHourBehavior.BusinessHourRepository",
+      "line": 37,
+      "endLine": 37,
+      "signature": "protected BusinessHourRepository: ILivechatBusinessHoursModel = LivechatBusinessHours;",
+      "containerClass": "AbstractBusinessHourBehavior",
+      "calls": [
+        {
+          "name": "ILivechatBusinessHoursModel",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "class_property",
+      "name": "UsersRepository",
+      "exported": true,
+      "qualifiedName": "AbstractBusinessHourBehavior.UsersRepository",
+      "line": 39,
+      "endLine": 39,
+      "signature": "protected UsersRepository: IUsersModel = Users;",
+      "containerClass": "AbstractBusinessHourBehavior",
+      "calls": [
+        {
+          "name": "IUsersModel",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "class",
+      "name": "AbstractBusinessHourType",
+      "exported": true,
+      "line": 58,
+      "endLine": 127,
+      "signature": "export abstract class AbstractBusinessHourType",
+      "calls": []
+    },
+    {
+      "type": "method",
+      "name": "baseSaveBusinessHour",
+      "exported": true,
+      "qualifiedName": "AbstractBusinessHourType.baseSaveBusinessHour",
+      "line": 63,
+      "endLine": 74,
+      "signature": "protected async baseSaveBusinessHour(businessHourData: ILivechatBusinessHour): Promise<string>",
+      "containerClass": "AbstractBusinessHourType",
+      "calls": [
+        {
+          "name": "Boolean",
+          "edgeType": "call"
+        },
+        {
+          "name": "convertWorkHours",
+          "edgeType": "call"
+        },
+        {
+          "name": "updateOne",
+          "edgeType": "call"
+        },
+        {
+          "name": "insertOne",
+          "edgeType": "call"
+        },
+        {
+          "name": "ILivechatBusinessHour",
+          "edgeType": "type"
+        },
+        {
+          "name": "UpdateFilter",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "convertWorkHours",
+      "exported": true,
+      "qualifiedName": "AbstractBusinessHourType.convertWorkHours",
+      "line": 67,
+      "endLine": 104,
+      "signature": "private convertWorkHours(businessHourData: ILivechatBusinessHour): ILivechatBusinessHour",
+      "containerClass": "AbstractBusinessHourType",
+      "calls": [
+        {
+          "name": "forEach",
+          "edgeType": "call"
+        },
+        {
+          "name": "utc",
+          "edgeType": "call"
+        },
+        {
+          "name": "tz",
+          "edgeType": "call"
+        },
+        {
+          "name": "isBefore",
+          "edgeType": "call"
+        },
+        {
+          "name": "isSame",
+          "edgeType": "call"
+        },
+        {
+          "name": "format",
+          "edgeType": "call"
+        },
+        {
+          "name": "clone",
+          "edgeType": "call"
+        },
+        {
+          "name": "formatDayOfTheWeekFromServerTimezoneAndUtcHour",
+          "edgeType": "call"
+        },
+        {
+          "name": "ILivechatBusinessHour",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "getUTCFromTimezone",
+      "exported": true,
+      "qualifiedName": "AbstractBusinessHourType.getUTCFromTimezone",
+      "line": 71,
+      "endLine": 76,
+      "signature": "protected getUTCFromTimezone(timezone?: string): string",
+      "containerClass": "AbstractBusinessHourType",
+      "calls": [
+        {
+          "name": "utcOffset",
+          "edgeType": "call"
+        },
+        {
+          "name": "moment",
+          "edgeType": "call"
+        },
+        {
+          "name": "format",
+          "edgeType": "call"
+        },
+        {
+          "name": "tz",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "formatDayOfTheWeekFromServerTimezoneAndUtcHour",
+      "exported": true,
+      "qualifiedName": "AbstractBusinessHourType.formatDayOfTheWeekFromServerTimezoneAndUtcHour",
+      "line": 75,
+      "endLine": 79,
+      "signature": "private formatDayOfTheWeekFromServerTimezoneAndUtcHour(utc: any, format: string): string",
+      "containerClass": "AbstractBusinessHourType",
+      "calls": [
+        {
+          "name": "format",
+          "edgeType": "call"
+        },
+        {
+          "name": "moment",
+          "edgeType": "call"
+        },
+        {
+          "name": "utcOffset",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "class_property",
+      "name": "BusinessHourRepository",
+      "exported": true,
+      "qualifiedName": "AbstractBusinessHourType.BusinessHourRepository",
+      "line": 59,
+      "endLine": 59,
+      "signature": "protected BusinessHourRepository: ILivechatBusinessHoursModel = LivechatBusinessHours;",
+      "containerClass": "AbstractBusinessHourType",
+      "calls": [
+        {
+          "name": "ILivechatBusinessHoursModel",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "class_property",
+      "name": "UsersRepository",
+      "exported": true,
+      "qualifiedName": "AbstractBusinessHourType.UsersRepository",
+      "line": 61,
+      "endLine": 61,
+      "signature": "protected UsersRepository: IUsersModel = Users;",
+      "containerClass": "AbstractBusinessHourType",
+      "calls": [
+        {
+          "name": "IUsersModel",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "interface",
+      "name": "IBusinessHourBehavior",
+      "line": 11,
+      "endLine": 27,
+      "signature": "export interface IBusinessHourBehavior"
+    },
+    {
+      "type": "interface",
+      "name": "IBusinessHourType",
+      "line": 29,
+      "endLine": 34,
+      "signature": "export interface IBusinessHourType"
+    }
+  ],
+  "imports": [
+    {
+      "module": "@rocket.chat/core-typings",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/core-typings",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/model-typings",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/models",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/models",
+      "resolved": "external"
+    },
+    {
+      "module": "moment-timezone",
+      "resolved": "external"
+    },
+    {
+      "module": "mongodb",
+      "resolved": "external"
+    },
+    {
+      "module": "../../../lib/server/lib/notifyListener",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/app/lib/server/lib/notifyListener.ts"
+    }
+  ]
+}

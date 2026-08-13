@@ -1,0 +1,103 @@
+{
+  "sourcePath": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/app/meteor-accounts-saml/server/methods/samlLogout.ts",
+  "symbols": [
+    {
+      "type": "module",
+      "name": "samlLogout",
+      "exported": false,
+      "line": 1,
+      "endLine": 79,
+      "signature": "samlLogout",
+      "calls": [
+        {
+          "name": "samlLogout",
+          "edgeType": "call"
+        },
+        {
+          "name": "methods",
+          "edgeType": "call"
+        },
+        {
+          "name": "userId",
+          "edgeType": "call"
+        },
+        {
+          "name": "getSamlServiceProviderOptions",
+          "edgeType": "call"
+        },
+        {
+          "name": "log",
+          "edgeType": "call"
+        },
+        {
+          "name": "getSAMLByIdAndSAMLProvider",
+          "edgeType": "call"
+        },
+        {
+          "name": "generateLogoutRequest",
+          "edgeType": "call"
+        },
+        {
+          "name": "setSamlInResponseTo",
+          "edgeType": "call"
+        },
+        {
+          "name": "requestToUrl",
+          "edgeType": "call"
+        },
+        {
+          "name": "SAMLServiceProvider",
+          "edgeType": "new"
+        },
+        {
+          "name": "ServerMethods",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "function",
+      "name": "getSamlServiceProviderOptions",
+      "exported": false,
+      "line": 12,
+      "endLine": 26,
+      "signature": "function getSamlServiceProviderOptions(provider: string): IServiceProviderOptions",
+      "calls": [
+        {
+          "name": "filter",
+          "edgeType": "call"
+        },
+        {
+          "name": "IServiceProviderOptions",
+          "edgeType": "type"
+        }
+      ]
+    }
+  ],
+  "imports": [
+    {
+      "module": "@rocket.chat/ddp-client",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/models",
+      "resolved": "external"
+    },
+    {
+      "module": "meteor/meteor",
+      "resolved": "external"
+    },
+    {
+      "module": "../definition/IServiceProviderOptions",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/app/meteor-accounts-saml/server/definition/IServiceProviderOptions.ts"
+    },
+    {
+      "module": "../lib/ServiceProvider",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/app/meteor-accounts-saml/server/lib/ServiceProvider.ts"
+    },
+    {
+      "module": "../lib/Utils",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/app/meteor-accounts-saml/server/lib/Utils.ts"
+    }
+  ]
+}

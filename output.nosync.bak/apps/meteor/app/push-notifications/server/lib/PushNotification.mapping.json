@@ -1,0 +1,249 @@
+{
+  "sourcePath": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/app/push-notifications/server/lib/PushNotification.ts",
+  "symbols": [
+    {
+      "type": "module",
+      "name": "PushNotification",
+      "exported": false,
+      "line": 1,
+      "endLine": 157,
+      "signature": "PushNotification",
+      "calls": [
+        {
+          "name": "PushNotification",
+          "edgeType": "new"
+        }
+      ]
+    },
+    {
+      "type": "class",
+      "name": "PushNotification",
+      "exported": false,
+      "line": 45,
+      "endLine": 154,
+      "signature": "class PushNotification",
+      "calls": []
+    },
+    {
+      "type": "method",
+      "name": "getNotificationId",
+      "exported": false,
+      "qualifiedName": "PushNotification.getNotificationId",
+      "line": 46,
+      "endLine": 49,
+      "signature": "getNotificationId(roomId: string): number",
+      "containerClass": "PushNotification",
+      "calls": [
+        {
+          "name": "get",
+          "edgeType": "call"
+        },
+        {
+          "name": "hash",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "getNotificationConfig",
+      "exported": false,
+      "qualifiedName": "PushNotification.getNotificationConfig",
+      "line": 50,
+      "endLine": 88,
+      "signature": "private getNotificationConfig({ rid, uid: userId, mid: messageId, roomName, username, message, payload, badge = 1, category, idOnly = false, }: GetNotificationConfigParam): IPushNotificationConfig",
+      "containerClass": "PushNotification",
+      "calls": [
+        {
+          "name": "absoluteUrl",
+          "edgeType": "call"
+        },
+        {
+          "name": "getNotificationId",
+          "edgeType": "call"
+        },
+        {
+          "name": "getURL",
+          "edgeType": "call"
+        },
+        {
+          "name": "GetNotificationConfigParam",
+          "edgeType": "type"
+        },
+        {
+          "name": "IPushNotificationConfig",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "send",
+      "exported": false,
+      "qualifiedName": "PushNotification.send",
+      "line": 65,
+      "endLine": 84,
+      "signature": "async send({ rid, uid, mid, roomName, username, message, payload, badge = 1, category }: PushNotificationData): Promise<void>",
+      "containerClass": "PushNotification",
+      "calls": [
+        {
+          "name": "get",
+          "edgeType": "call"
+        },
+        {
+          "name": "getNotificationConfig",
+          "edgeType": "call"
+        },
+        {
+          "name": "send",
+          "edgeType": "call"
+        },
+        {
+          "name": "inc",
+          "edgeType": "call"
+        },
+        {
+          "name": "PushNotificationData",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "getNotificationForMessageId",
+      "exported": false,
+      "qualifiedName": "PushNotification.getNotificationForMessageId",
+      "line": 69,
+      "endLine": 110,
+      "signature": "async getNotificationForMessageId({ receiver, message, room, }: { receiver: IUser; message: IMessage; room: IRoom; }): Promise<NotificationPayload>",
+      "containerClass": "PushNotification",
+      "calls": [
+        {
+          "name": "findOneById",
+          "edgeType": "call"
+        },
+        {
+          "name": "beforeSendMessageNotifications",
+          "edgeType": "event_emit"
+        },
+        {
+          "name": "keys",
+          "edgeType": "call"
+        },
+        {
+          "name": "get",
+          "edgeType": "call"
+        },
+        {
+          "name": "replaceMentionedUsernamesWithFullNames",
+          "edgeType": "call"
+        },
+        {
+          "name": "parseMessageTextPerUser",
+          "edgeType": "call"
+        },
+        {
+          "name": "getPushData",
+          "edgeType": "call"
+        },
+        {
+          "name": "getNotificationConfig",
+          "edgeType": "call"
+        },
+        {
+          "name": "IUser",
+          "edgeType": "type"
+        },
+        {
+          "name": "IMessage",
+          "edgeType": "type"
+        },
+        {
+          "name": "IRoom",
+          "edgeType": "type"
+        },
+        {
+          "name": "NotificationPayload",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "function",
+      "name": "hash",
+      "exported": false,
+      "line": 34,
+      "endLine": 43,
+      "signature": "function hash(str: string): number",
+      "calls": [
+        {
+          "name": "charCodeAt",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "type",
+      "name": "PushNotificationData",
+      "line": 13,
+      "endLine": 23,
+      "signature": "type PushNotificationData ="
+    },
+    {
+      "type": "type",
+      "name": "GetNotificationConfigParam",
+      "line": 25,
+      "endLine": 27,
+      "signature": "type GetNotificationConfigParam = PushNotificationData &"
+    },
+    {
+      "type": "type",
+      "name": "NotificationPayload",
+      "line": 29,
+      "endLine": 32,
+      "signature": "type NotificationPayload ="
+    }
+  ],
+  "imports": [
+    {
+      "module": "@rocket.chat/core-typings",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/models",
+      "resolved": "external"
+    },
+    {
+      "module": "meteor/meteor",
+      "resolved": "external"
+    },
+    {
+      "module": "../../../../server/lib/callbacks",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/server/lib/callbacks.ts"
+    },
+    {
+      "module": "../../../assets/server",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/app/assets/server/index.ts"
+    },
+    {
+      "module": "../../../lib/server/functions/notifications",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/app/lib/server/functions/notifications/index.ts"
+    },
+    {
+      "module": "../../../lib/server/functions/notifications/mobile",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/app/lib/server/functions/notifications/mobile.ts"
+    },
+    {
+      "module": "../../../metrics/server",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/app/metrics/server/index.ts"
+    },
+    {
+      "module": "../../../push/server",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/app/push/server/index.ts"
+    },
+    {
+      "module": "../../../settings/server",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/app/settings/server/index.ts"
+    }
+  ]
+}

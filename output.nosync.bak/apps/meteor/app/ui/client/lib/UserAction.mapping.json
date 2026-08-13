@@ -1,0 +1,187 @@
+{
+  "sourcePath": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/app/ui/client/lib/UserAction.ts",
+  "symbols": [
+    {
+      "type": "function",
+      "name": "handleStreamAction",
+      "exported": false,
+      "line": 46,
+      "endLine": 69,
+      "signature": "function handleStreamAction(rid: string, username: string, activityTypes: string[], extras?: IExtras): void",
+      "calls": [
+        {
+          "name": "get",
+          "edgeType": "call"
+        },
+        {
+          "name": "entries",
+          "edgeType": "call"
+        },
+        {
+          "name": "includes",
+          "edgeType": "call"
+        },
+        {
+          "name": "splice",
+          "edgeType": "call"
+        },
+        {
+          "name": "indexOf",
+          "edgeType": "call"
+        },
+        {
+          "name": "handleStreamAction",
+          "edgeType": "call"
+        },
+        {
+          "name": "set",
+          "edgeType": "call"
+        },
+        {
+          "name": "changed",
+          "edgeType": "event_emit"
+        },
+        {
+          "name": "Map",
+          "edgeType": "new"
+        },
+        {
+          "name": "IExtras",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "variable",
+      "name": "USER_ACTIVITIES",
+      "exported": true,
+      "line": 15,
+      "endLine": 20,
+      "signature": "USER_ACTIVITIES =",
+      "calls": []
+    },
+    {
+      "type": "variable_function",
+      "name": "shownName",
+      "exported": false,
+      "line": 31,
+      "endLine": 39,
+      "signature": "function (user: IUser | null | undefined): string | undefined",
+      "calls": [
+        {
+          "name": "peek",
+          "edgeType": "call"
+        },
+        {
+          "name": "IUser",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "variable",
+      "name": "UserAction",
+      "exported": true,
+      "line": 43,
+      "endLine": 151,
+      "signature": "UserAction = new (class",
+      "calls": [
+        {
+          "name": "get",
+          "edgeType": "call"
+        },
+        {
+          "name": "getUserId",
+          "edgeType": "call"
+        },
+        {
+          "name": "shownName",
+          "edgeType": "call"
+        },
+        {
+          "name": "handleStreamAction",
+          "edgeType": "call"
+        },
+        {
+          "name": "set",
+          "edgeType": "call"
+        },
+        {
+          "name": "notify-room",
+          "edgeType": "stream_sub"
+        },
+        {
+          "name": "stream",
+          "edgeType": "call"
+        },
+        {
+          "name": "stop",
+          "edgeType": "call"
+        },
+        {
+          "name": "delete",
+          "edgeType": "call"
+        },
+        {
+          "name": "start",
+          "edgeType": "call"
+        },
+        {
+          "name": "emitActivities",
+          "edgeType": "call"
+        },
+        {
+          "name": "clearInterval",
+          "edgeType": "call"
+        },
+        {
+          "name": "onChanged",
+          "edgeType": "event_listen",
+          "event": "changed"
+        },
+        {
+          "name": "Set",
+          "edgeType": "new"
+        },
+        {
+          "name": "IExtras",
+          "edgeType": "type"
+        },
+        {
+          "name": "IRoomActivity",
+          "edgeType": "type"
+        }
+      ]
+    }
+  ],
+  "imports": [
+    {
+      "module": "@rocket.chat/core-typings",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/emitter",
+      "resolved": "external"
+    },
+    {
+      "module": "lodash",
+      "resolved": "external"
+    },
+    {
+      "module": "../../../../client/lib/settings",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/client/lib/settings/index.ts"
+    },
+    {
+      "module": "../../../../client/lib/user",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/client/lib/user.ts"
+    },
+    {
+      "module": "../../../../client/stores",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/client/stores/index.ts"
+    },
+    {
+      "module": "../../../utils/client/lib/SDKClient",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/app/utils/client/lib/SDKClient.ts"
+    }
+  ]
+}

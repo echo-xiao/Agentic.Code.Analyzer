@@ -1,0 +1,41 @@
+{
+  "sourcePath": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/server/lib/rooms/joinDefaultChannels.ts",
+  "symbols": [
+    {
+      "type": "variable_function",
+      "name": "joinDefaultChannels",
+      "exported": true,
+      "line": 6,
+      "endLine": 13,
+      "signature": "async (userId: string, silenced?: boolean): Promise<void> =>",
+      "calls": [
+        {
+          "name": "findOneById",
+          "edgeType": "call"
+        },
+        {
+          "name": "addUserToDefaultChannels",
+          "edgeType": "call"
+        },
+        {
+          "name": "Boolean",
+          "edgeType": "call"
+        }
+      ]
+    }
+  ],
+  "imports": [
+    {
+      "module": "@rocket.chat/models",
+      "resolved": "external"
+    },
+    {
+      "module": "meteor/meteor",
+      "resolved": "external"
+    },
+    {
+      "module": "./addUserToDefaultChannels",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/server/lib/rooms/addUserToDefaultChannels.ts"
+    }
+  ]
+}

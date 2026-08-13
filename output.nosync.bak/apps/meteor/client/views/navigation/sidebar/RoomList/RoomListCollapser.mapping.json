@@ -1,0 +1,80 @@
+{
+  "sourcePath": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/client/views/navigation/sidebar/RoomList/RoomListCollapser.tsx",
+  "symbols": [
+    {
+      "type": "variable_function",
+      "name": "RoomListCollapser",
+      "exported": false,
+      "line": 18,
+      "endLine": 39,
+      "signature": "({ groupTitle, unreadCount: unreadGroupCount, collapsedGroups, group, ...props }: RoomListCollapserProps) =>",
+      "calls": [
+        {
+          "name": "useTranslation",
+          "edgeType": "call"
+        },
+        {
+          "name": "useUnreadDisplay",
+          "edgeType": "call"
+        },
+        {
+          "name": "includes",
+          "edgeType": "call"
+        },
+        {
+          "name": "Badge",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "SidebarV2CollapseGroup",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "unreadVariant",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "unreadTitle",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "RoomListCollapserProps",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "type",
+      "name": "RoomListCollapserProps",
+      "line": 9,
+      "endLine": 16,
+      "signature": "export type RoomListCollapserProps ="
+    }
+  ],
+  "imports": [
+    {
+      "module": "@rocket.chat/core-typings",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/fuselage",
+      "resolved": "external"
+    },
+    {
+      "module": "react",
+      "resolved": "external"
+    },
+    {
+      "module": "react-i18next",
+      "resolved": "external"
+    },
+    {
+      "module": "../../contexts/RoomsNavigationContext",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/client/views/navigation/contexts/RoomsNavigationContext.ts"
+    },
+    {
+      "module": "../hooks/useUnreadDisplay",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/client/views/navigation/sidebar/hooks/useUnreadDisplay.ts"
+    }
+  ]
+}

@@ -1,0 +1,822 @@
+{
+  "sourcePath": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/tests/mocks/data.ts",
+  "symbols": [
+    {
+      "type": "function",
+      "name": "createFakeUser",
+      "exported": true,
+      "line": 34,
+      "endLine": 46,
+      "signature": "export function createFakeUser(overrides?: Partial<IUser>): IUser",
+      "calls": [
+        {
+          "name": "mongodbObjectId",
+          "edgeType": "call"
+        },
+        {
+          "name": "recent",
+          "edgeType": "call"
+        },
+        {
+          "name": "userName",
+          "edgeType": "call"
+        },
+        {
+          "name": "fullName",
+          "edgeType": "call"
+        },
+        {
+          "name": "boolean",
+          "edgeType": "call"
+        },
+        {
+          "name": "IUser",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "function",
+      "name": "createFakeMessage",
+      "exported": true,
+      "line": 118,
+      "endLine": 133,
+      "signature": "export function createFakeMessage(overrides?: Partial<IMessage>): IMessage",
+      "calls": [
+        {
+          "name": "mongodbObjectId",
+          "edgeType": "call"
+        },
+        {
+          "name": "recent",
+          "edgeType": "call"
+        },
+        {
+          "name": "sentence",
+          "edgeType": "call"
+        },
+        {
+          "name": "userName",
+          "edgeType": "call"
+        },
+        {
+          "name": "fullName",
+          "edgeType": "call"
+        },
+        {
+          "name": "IMessage",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "function",
+      "name": "createFakeMessageWithMd",
+      "exported": true,
+      "line": 125,
+      "endLine": 133,
+      "signature": "export function createFakeMessageWithMd(overrides?: Partial<MessageWithMdEnforced<IMessage>>): MessageWithMdEnforced<IMessage>",
+      "calls": [
+        {
+          "name": "createFakeMessage",
+          "edgeType": "call"
+        },
+        {
+          "name": "parse",
+          "edgeType": "call"
+        },
+        {
+          "name": "MessageWithMdEnforced",
+          "edgeType": "type"
+        },
+        {
+          "name": "IMessage",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "function",
+      "name": "createFakeApp",
+      "exported": true,
+      "line": 129,
+      "endLine": 203,
+      "signature": "export function createFakeApp(partialApp: Partial<App> = {}): App",
+      "calls": [
+        {
+          "name": "mongodbObjectId",
+          "edgeType": "call"
+        },
+        {
+          "name": "dataUri",
+          "edgeType": "call"
+        },
+        {
+          "name": "productName",
+          "edgeType": "call"
+        },
+        {
+          "name": "int",
+          "edgeType": "call"
+        },
+        {
+          "name": "name",
+          "edgeType": "call"
+        },
+        {
+          "name": "url",
+          "edgeType": "call"
+        },
+        {
+          "name": "email",
+          "edgeType": "call"
+        },
+        {
+          "name": "paragraph",
+          "edgeType": "call"
+        },
+        {
+          "name": "sentence",
+          "edgeType": "call"
+        },
+        {
+          "name": "semver",
+          "edgeType": "call"
+        },
+        {
+          "name": "boolean",
+          "edgeType": "call"
+        },
+        {
+          "name": "float",
+          "edgeType": "call"
+        },
+        {
+          "name": "arrayElement",
+          "edgeType": "call"
+        },
+        {
+          "name": "word",
+          "edgeType": "call"
+        },
+        {
+          "name": "enumValue",
+          "edgeType": "call"
+        },
+        {
+          "name": "toISOString",
+          "edgeType": "call"
+        },
+        {
+          "name": "future",
+          "edgeType": "call"
+        },
+        {
+          "name": "past",
+          "edgeType": "call"
+        },
+        {
+          "name": "recent",
+          "edgeType": "call"
+        },
+        {
+          "name": "multiple",
+          "edgeType": "call"
+        },
+        {
+          "name": "verb",
+          "edgeType": "call"
+        },
+        {
+          "name": "countryCode",
+          "edgeType": "call"
+        },
+        {
+          "name": "App",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "function",
+      "name": "createFakeMessageWithAttachment",
+      "exported": true,
+      "line": 199,
+      "endLine": 232,
+      "signature": "export function createFakeMessageWithAttachment(overrides?: Partial<IMessage>): IMessage",
+      "calls": [
+        {
+          "name": "createFakeMessage",
+          "edgeType": "call"
+        },
+        {
+          "name": "mongodbObjectId",
+          "edgeType": "call"
+        },
+        {
+          "name": "commonFileName",
+          "edgeType": "call"
+        },
+        {
+          "name": "int",
+          "edgeType": "call"
+        },
+        {
+          "name": "alpha",
+          "edgeType": "call"
+        },
+        {
+          "name": "IMessage",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "function",
+      "name": "pullNextVisitorName",
+      "exported": false,
+      "line": 205,
+      "endLine": 213,
+      "signature": "function pullNextVisitorName()",
+      "calls": [
+        {
+          "name": "pop",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "function",
+      "name": "createFakeVisitor",
+      "exported": true,
+      "line": 209,
+      "endLine": 214,
+      "signature": "export function createFakeVisitor()",
+      "calls": [
+        {
+          "name": "pullNextVisitorName",
+          "edgeType": "call"
+        },
+        {
+          "name": "email",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "function",
+      "name": "createFakeContactChannel",
+      "exported": true,
+      "line": 213,
+      "endLine": 232,
+      "signature": "export function createFakeContactChannel(overrides?: Partial<Serialized<ILivechatContactChannel>>): Serialized<ILivechatContactChannel>",
+      "calls": [
+        {
+          "name": "uuid",
+          "edgeType": "call"
+        },
+        {
+          "name": "Serialized",
+          "edgeType": "type"
+        },
+        {
+          "name": "ILivechatContactChannel",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "function",
+      "name": "createFakeContact",
+      "exported": true,
+      "line": 217,
+      "endLine": 229,
+      "signature": "export function createFakeContact(overrides?: Partial<Serialized<ILivechatContact>>): Serialized<ILivechatContact>",
+      "calls": [
+        {
+          "name": "uuid",
+          "edgeType": "call"
+        },
+        {
+          "name": "toISOString",
+          "edgeType": "call"
+        },
+        {
+          "name": "pullNextVisitorName",
+          "edgeType": "call"
+        },
+        {
+          "name": "number",
+          "edgeType": "call"
+        },
+        {
+          "name": "email",
+          "edgeType": "call"
+        },
+        {
+          "name": "createFakeContactChannel",
+          "edgeType": "call"
+        },
+        {
+          "name": "Date",
+          "edgeType": "new"
+        },
+        {
+          "name": "Serialized",
+          "edgeType": "type"
+        },
+        {
+          "name": "ILivechatContact",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "function",
+      "name": "createFakeContactWithManagerData",
+      "exported": true,
+      "line": 221,
+      "endLine": 235,
+      "signature": "export function createFakeContactWithManagerData( overrides?: Partial<Serialized<ILivechatContactWithManagerData>>, ): Serialized<ILivechatContactWithManagerData>",
+      "calls": [
+        {
+          "name": "createFakeContact",
+          "edgeType": "call"
+        },
+        {
+          "name": "uuid",
+          "edgeType": "call"
+        },
+        {
+          "name": "fullName",
+          "edgeType": "call"
+        },
+        {
+          "name": "userName",
+          "edgeType": "call"
+        },
+        {
+          "name": "Serialized",
+          "edgeType": "type"
+        },
+        {
+          "name": "ILivechatContactWithManagerData",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "function",
+      "name": "createFakeAgent",
+      "exported": true,
+      "line": 227,
+      "endLine": 257,
+      "signature": "export function createFakeAgent(overrides?: Partial<Serialized<ILivechatAgent>>): Serialized<ILivechatAgent>",
+      "calls": [
+        {
+          "name": "email",
+          "edgeType": "call"
+        },
+        {
+          "name": "firstName",
+          "edgeType": "call"
+        },
+        {
+          "name": "lastName",
+          "edgeType": "call"
+        },
+        {
+          "name": "userName",
+          "edgeType": "call"
+        },
+        {
+          "name": "uuid",
+          "edgeType": "call"
+        },
+        {
+          "name": "toISOString",
+          "edgeType": "call"
+        },
+        {
+          "name": "Date",
+          "edgeType": "new"
+        },
+        {
+          "name": "Serialized",
+          "edgeType": "type"
+        },
+        {
+          "name": "ILivechatAgent",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "function",
+      "name": "createFakeTag",
+      "exported": true,
+      "line": 231,
+      "endLine": 241,
+      "signature": "export function createFakeTag(overrides?: Partial<Serialized<ILivechatTag>>): Serialized<ILivechatTag>",
+      "calls": [
+        {
+          "name": "uuid",
+          "edgeType": "call"
+        },
+        {
+          "name": "department",
+          "edgeType": "call"
+        },
+        {
+          "name": "toISOString",
+          "edgeType": "call"
+        },
+        {
+          "name": "Date",
+          "edgeType": "new"
+        },
+        {
+          "name": "Serialized",
+          "edgeType": "type"
+        },
+        {
+          "name": "ILivechatTag",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "function",
+      "name": "createFakeBusinessUnit",
+      "exported": true,
+      "line": 235,
+      "endLine": 246,
+      "signature": "export function createFakeBusinessUnit(overrides?: Partial<Serialized<IOmnichannelBusinessUnit>>): Serialized<IOmnichannelBusinessUnit>",
+      "calls": [
+        {
+          "name": "uuid",
+          "edgeType": "call"
+        },
+        {
+          "name": "department",
+          "edgeType": "call"
+        },
+        {
+          "name": "toISOString",
+          "edgeType": "call"
+        },
+        {
+          "name": "Date",
+          "edgeType": "new"
+        },
+        {
+          "name": "Serialized",
+          "edgeType": "type"
+        },
+        {
+          "name": "IOmnichannelBusinessUnit",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "function",
+      "name": "createFakeMonitor",
+      "exported": true,
+      "line": 255,
+      "endLine": 270,
+      "signature": "export function createFakeMonitor(overrides?: Partial<Serialized<ILivechatMonitor>>): Serialized<ILivechatMonitor>",
+      "calls": [
+        {
+          "name": "firstName",
+          "edgeType": "call"
+        },
+        {
+          "name": "lastName",
+          "edgeType": "call"
+        },
+        {
+          "name": "userName",
+          "edgeType": "call"
+        },
+        {
+          "name": "uuid",
+          "edgeType": "call"
+        },
+        {
+          "name": "Serialized",
+          "edgeType": "type"
+        },
+        {
+          "name": "ILivechatMonitor",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "variable_function",
+      "name": "createFakeRoom",
+      "exported": true,
+      "line": 38,
+      "endLine": 53,
+      "signature": "<T extends IRoom = IRoom>(overrides?: Partial<T & { retention?: { enabled: boolean } }>): T =>",
+      "calls": [
+        {
+          "name": "mongodbObjectId",
+          "edgeType": "call"
+        },
+        {
+          "name": "recent",
+          "edgeType": "call"
+        },
+        {
+          "name": "arrayElement",
+          "edgeType": "call"
+        },
+        {
+          "name": "int",
+          "edgeType": "call"
+        },
+        {
+          "name": "userName",
+          "edgeType": "call"
+        },
+        {
+          "name": "fullName",
+          "edgeType": "call"
+        },
+        {
+          "name": "IRoom",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "variable_function",
+      "name": "createFakeOmnichannelRoom",
+      "exported": true,
+      "line": 55,
+      "endLine": 86,
+      "signature": "(overrides?: Partial<IOmnichannelRoom>): IOmnichannelRoom =>",
+      "calls": [
+        {
+          "name": "mongodbObjectId",
+          "edgeType": "call"
+        },
+        {
+          "name": "recent",
+          "edgeType": "call"
+        },
+        {
+          "name": "int",
+          "edgeType": "call"
+        },
+        {
+          "name": "userName",
+          "edgeType": "call"
+        },
+        {
+          "name": "fullName",
+          "edgeType": "call"
+        },
+        {
+          "name": "uuid",
+          "edgeType": "call"
+        },
+        {
+          "name": "boolean",
+          "edgeType": "call"
+        },
+        {
+          "name": "IOmnichannelRoom",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "variable_function",
+      "name": "createFakeSubscription",
+      "exported": true,
+      "line": 88,
+      "endLine": 115,
+      "signature": "(overrides?: Partial<SubscriptionWithRoom>): SubscriptionWithRoom =>",
+      "calls": [
+        {
+          "name": "mongodbObjectId",
+          "edgeType": "call"
+        },
+        {
+          "name": "recent",
+          "edgeType": "call"
+        },
+        {
+          "name": "userName",
+          "edgeType": "call"
+        },
+        {
+          "name": "fullName",
+          "edgeType": "call"
+        },
+        {
+          "name": "boolean",
+          "edgeType": "call"
+        },
+        {
+          "name": "int",
+          "edgeType": "call"
+        },
+        {
+          "name": "arrayElement",
+          "edgeType": "call"
+        },
+        {
+          "name": "toLowerCase",
+          "edgeType": "call"
+        },
+        {
+          "name": "SubscriptionWithRoom",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "variable_function",
+      "name": "createFakeExternalComponentUserInfo",
+      "exported": true,
+      "line": 133,
+      "endLine": 138,
+      "signature": "(partial: Partial<IExternalComponentUserInfo> = {}): IExternalComponentUserInfo =>",
+      "calls": [
+        {
+          "name": "mongodbObjectId",
+          "edgeType": "call"
+        },
+        {
+          "name": "userName",
+          "edgeType": "call"
+        },
+        {
+          "name": "avatar",
+          "edgeType": "call"
+        },
+        {
+          "name": "IExternalComponentUserInfo",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "variable_function",
+      "name": "createFakeExternalComponentRoomInfo",
+      "exported": true,
+      "line": 140,
+      "endLine": 145,
+      "signature": "(partial: Partial<IExternalComponentRoomInfo> = {}): IExternalComponentRoomInfo =>",
+      "calls": [
+        {
+          "name": "mongodbObjectId",
+          "edgeType": "call"
+        },
+        {
+          "name": "multiple",
+          "edgeType": "call"
+        },
+        {
+          "name": "slug",
+          "edgeType": "call"
+        },
+        {
+          "name": "IExternalComponentRoomInfo",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "variable_function",
+      "name": "createFakeLicenseInfo",
+      "exported": true,
+      "line": 147,
+      "endLine": 196,
+      "signature": "(partial: Partial<Omit<LicenseInfo, 'license'>> = {}): Omit<LicenseInfo, 'license'> =>",
+      "calls": [
+        {
+          "name": "arrayElements",
+          "edgeType": "call"
+        },
+        {
+          "name": "boolean",
+          "edgeType": "call"
+        },
+        {
+          "name": "int",
+          "edgeType": "call"
+        },
+        {
+          "name": "multiple",
+          "edgeType": "call"
+        },
+        {
+          "name": "productAdjective",
+          "edgeType": "call"
+        },
+        {
+          "name": "color",
+          "edgeType": "call"
+        },
+        {
+          "name": "LicenseInfo",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "variable_function",
+      "name": "createFakeDepartment",
+      "exported": true,
+      "line": 239,
+      "endLine": 253,
+      "signature": "(overrides: Partial<Serialized<ILivechatDepartment>> = {}): Serialized<ILivechatDepartment> =>",
+      "calls": [
+        {
+          "name": "uuid",
+          "edgeType": "call"
+        },
+        {
+          "name": "department",
+          "edgeType": "call"
+        },
+        {
+          "name": "email",
+          "edgeType": "call"
+        },
+        {
+          "name": "toISOString",
+          "edgeType": "call"
+        },
+        {
+          "name": "Date",
+          "edgeType": "new"
+        },
+        {
+          "name": "Serialized",
+          "edgeType": "type"
+        },
+        {
+          "name": "ILivechatDepartment",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "variable_function",
+      "name": "createMockedPagination",
+      "exported": true,
+      "line": 259,
+      "endLine": 266,
+      "signature": "(results = 0, total = 0) =>",
+      "calls": []
+    }
+  ],
+  "imports": [
+    {
+      "module": "@faker-js/faker",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/apps/dist/client/definition/IExternalComponentRoomInfo",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/apps/dist/client/definition/IExternalComponentUserInfo",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/apps-engine/definition/livechat",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/core-typings",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/core-typings",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/message-parser",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/rest-typings",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/ui-contexts",
+      "resolved": "external"
+    },
+    {
+      "module": "../../client/lib/parseMessageTextToAstMarkdown",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/client/lib/parseMessageTextToAstMarkdown.ts"
+    }
+  ]
+}

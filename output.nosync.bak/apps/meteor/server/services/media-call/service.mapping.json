@@ -1,0 +1,921 @@
+{
+  "sourcePath": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/server/services/media-call/service.ts",
+  "symbols": [
+    {
+      "type": "class",
+      "name": "MediaCallService",
+      "exported": true,
+      "line": 31,
+      "endLine": 473,
+      "signature": "export class MediaCallService extends ServiceClassInternal implements IMediaCallService",
+      "calls": [
+        {
+          "name": "ServiceClassInternal",
+          "edgeType": "type"
+        },
+        {
+          "name": "IMediaCallService",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "answerCall",
+      "exported": true,
+      "qualifiedName": "MediaCallService.answerCall",
+      "line": 53,
+      "endLine": 99,
+      "signature": "public async answerCall(uid: IUser['_id'], params: Omit<ClientMediaSignalAnswer, 'type'>): Promise<IMediaCall>",
+      "containerClass": "MediaCallService",
+      "calls": [
+        {
+          "name": "findOneByIdAndCallee",
+          "edgeType": "call"
+        },
+        {
+          "name": "receiveSignal",
+          "edgeType": "call"
+        },
+        {
+          "name": "findOneById",
+          "edgeType": "call"
+        },
+        {
+          "name": "IUser",
+          "edgeType": "type"
+        },
+        {
+          "name": "ClientMediaSignalAnswer",
+          "edgeType": "type"
+        },
+        {
+          "name": "IMediaCall",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "processSignal",
+      "exported": true,
+      "qualifiedName": "MediaCallService.processSignal",
+      "line": 57,
+      "endLine": 63,
+      "signature": "public async processSignal(uid: IUser['_id'], signal: ClientMediaSignal): Promise<void>",
+      "containerClass": "MediaCallService",
+      "calls": [
+        {
+          "name": "receiveSignal",
+          "edgeType": "call"
+        },
+        {
+          "name": "error",
+          "edgeType": "call"
+        },
+        {
+          "name": "IUser",
+          "edgeType": "type"
+        },
+        {
+          "name": "ClientMediaSignal",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "processSerializedSignal",
+      "exported": true,
+      "qualifiedName": "MediaCallService.processSerializedSignal",
+      "line": 61,
+      "endLine": 72,
+      "signature": "public async processSerializedSignal(uid: IUser['_id'], signal: string): Promise<void>",
+      "containerClass": "MediaCallService",
+      "calls": [
+        {
+          "name": "deserializeClientSignal",
+          "edgeType": "call"
+        },
+        {
+          "name": "receiveSignal",
+          "edgeType": "call"
+        },
+        {
+          "name": "error",
+          "edgeType": "call"
+        },
+        {
+          "name": "IUser",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "hangupExpiredCalls",
+      "exported": true,
+      "qualifiedName": "MediaCallService.hangupExpiredCalls",
+      "line": 65,
+      "endLine": 77,
+      "signature": "public async hangupExpiredCalls(): Promise<void>",
+      "containerClass": "MediaCallService",
+      "calls": [
+        {
+          "name": "catch",
+          "edgeType": "call"
+        },
+        {
+          "name": "hangupExpiredCalls",
+          "edgeType": "call"
+        },
+        {
+          "name": "error",
+          "edgeType": "call"
+        },
+        {
+          "name": "hasUnfinishedCalls",
+          "edgeType": "call"
+        },
+        {
+          "name": "scheduleExpirationCheck",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "getUserStateSignals",
+      "exported": true,
+      "qualifiedName": "MediaCallService.getUserStateSignals",
+      "line": 69,
+      "endLine": 79,
+      "signature": "public async getUserStateSignals(uid: IUser['_id'], contractId: string): Promise<ServerMediaCallSignal[]>",
+      "containerClass": "MediaCallService",
+      "calls": [
+        {
+          "name": "toArray",
+          "edgeType": "call"
+        },
+        {
+          "name": "findAllNotOverByUid",
+          "edgeType": "call"
+        },
+        {
+          "name": "getSignalsForExistingCall",
+          "edgeType": "call"
+        },
+        {
+          "name": "push",
+          "edgeType": "call"
+        },
+        {
+          "name": "IUser",
+          "edgeType": "type"
+        },
+        {
+          "name": "ServerMediaCallSignal",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "saveCallToHistory",
+      "exported": true,
+      "qualifiedName": "MediaCallService.saveCallToHistory",
+      "line": 73,
+      "endLine": 91,
+      "signature": "private async saveCallToHistory(callId: IMediaCall['_id']): Promise<void>",
+      "containerClass": "MediaCallService",
+      "calls": [
+        {
+          "name": "info",
+          "edgeType": "call"
+        },
+        {
+          "name": "findOneById",
+          "edgeType": "call"
+        },
+        {
+          "name": "warn",
+          "edgeType": "call"
+        },
+        {
+          "name": "saveExternalCallToHistory",
+          "edgeType": "call"
+        },
+        {
+          "name": "saveInternalCallToHistory",
+          "edgeType": "call"
+        },
+        {
+          "name": "IMediaCall",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "saveExternalCallToHistory",
+      "exported": true,
+      "qualifiedName": "MediaCallService.saveExternalCallToHistory",
+      "line": 77,
+      "endLine": 113,
+      "signature": "private async saveExternalCallToHistory(call: IMediaCall): Promise<void>",
+      "containerClass": "MediaCallService",
+      "calls": [
+        {
+          "name": "warn",
+          "edgeType": "call"
+        },
+        {
+          "name": "getCallHistoryItemState",
+          "edgeType": "call"
+        },
+        {
+          "name": "getCallDuration",
+          "edgeType": "call"
+        },
+        {
+          "name": "catch",
+          "edgeType": "call"
+        },
+        {
+          "name": "insertOne",
+          "edgeType": "call"
+        },
+        {
+          "name": "error",
+          "edgeType": "call"
+        },
+        {
+          "name": "Date",
+          "edgeType": "new"
+        },
+        {
+          "name": "IMediaCall",
+          "edgeType": "type"
+        },
+        {
+          "name": "InsertionModel",
+          "edgeType": "type"
+        },
+        {
+          "name": "IExternalMediaCallHistoryItem",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "getContactDataForInternalHistory",
+      "exported": true,
+      "qualifiedName": "MediaCallService.getContactDataForInternalHistory",
+      "line": 81,
+      "endLine": 89,
+      "signature": "private getContactDataForInternalHistory( contact: IMediaCall['caller'] | IMediaCall['callee'], ): Pick<IInternalMediaCallHistoryItem, 'contactId' | 'contactName' | 'contactUsername'>",
+      "containerClass": "MediaCallService",
+      "calls": [
+        {
+          "name": "IMediaCall",
+          "edgeType": "type"
+        },
+        {
+          "name": "IInternalMediaCallHistoryItem",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "saveInternalCallToHistory",
+      "exported": true,
+      "qualifiedName": "MediaCallService.saveInternalCallToHistory",
+      "line": 87,
+      "endLine": 133,
+      "signature": "private async saveInternalCallToHistory(call: IMediaCall): Promise<void>",
+      "containerClass": "MediaCallService",
+      "calls": [
+        {
+          "name": "warn",
+          "edgeType": "call"
+        },
+        {
+          "name": "catch",
+          "edgeType": "call"
+        },
+        {
+          "name": "getRoomIdForInternalCall",
+          "edgeType": "call"
+        },
+        {
+          "name": "error",
+          "edgeType": "call"
+        },
+        {
+          "name": "getCallHistoryItemState",
+          "edgeType": "call"
+        },
+        {
+          "name": "getCallDuration",
+          "edgeType": "call"
+        },
+        {
+          "name": "getContactDataForInternalHistory",
+          "edgeType": "call"
+        },
+        {
+          "name": "insertMany",
+          "edgeType": "call"
+        },
+        {
+          "name": "sendHistoryMessage",
+          "edgeType": "call"
+        },
+        {
+          "name": "Date",
+          "edgeType": "new"
+        },
+        {
+          "name": "IMediaCall",
+          "edgeType": "type"
+        },
+        {
+          "name": "InsertionModel",
+          "edgeType": "type"
+        },
+        {
+          "name": "IInternalMediaCallHistoryItem",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "getLanguageForUser",
+      "exported": true,
+      "qualifiedName": "MediaCallService.getLanguageForUser",
+      "line": 91,
+      "endLine": 93,
+      "signature": "private getLanguageForUser(language?: string): string",
+      "containerClass": "MediaCallService",
+      "calls": [
+        {
+          "name": "get",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "sendHistoryMessage",
+      "exported": true,
+      "qualifiedName": "MediaCallService.sendHistoryMessage",
+      "line": 95,
+      "endLine": 123,
+      "signature": "private async sendHistoryMessage(call: IMediaCall, room: IRoom): Promise<void>",
+      "containerClass": "MediaCallService",
+      "calls": [
+        {
+          "name": "findOneById",
+          "edgeType": "call"
+        },
+        {
+          "name": "getCallHistoryItemState",
+          "edgeType": "call"
+        },
+        {
+          "name": "callStateToTranslationKey",
+          "edgeType": "call"
+        },
+        {
+          "name": "getLanguageForUser",
+          "edgeType": "call"
+        },
+        {
+          "name": "getCallDuration",
+          "edgeType": "call"
+        },
+        {
+          "name": "getHistoryMessagePayload",
+          "edgeType": "call"
+        },
+        {
+          "name": "sendMessage",
+          "edgeType": "call"
+        },
+        {
+          "name": "updateMany",
+          "edgeType": "call"
+        },
+        {
+          "name": "error",
+          "edgeType": "call"
+        },
+        {
+          "name": "IMediaCall",
+          "edgeType": "type"
+        },
+        {
+          "name": "IRoom",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "getCallDuration",
+      "exported": true,
+      "qualifiedName": "MediaCallService.getCallDuration",
+      "line": 99,
+      "endLine": 107,
+      "signature": "private getCallDuration(call: IMediaCall): number",
+      "containerClass": "MediaCallService",
+      "calls": [
+        {
+          "name": "valueOf",
+          "edgeType": "call"
+        },
+        {
+          "name": "floor",
+          "edgeType": "call"
+        },
+        {
+          "name": "Date",
+          "edgeType": "new"
+        },
+        {
+          "name": "IMediaCall",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "getCallHistoryItemState",
+      "exported": true,
+      "qualifiedName": "MediaCallService.getCallHistoryItemState",
+      "line": 103,
+      "endLine": 133,
+      "signature": "private getCallHistoryItemState(call: IMediaCall): CallHistoryItemState",
+      "containerClass": "MediaCallService",
+      "calls": [
+        {
+          "name": "startsWith",
+          "edgeType": "call"
+        },
+        {
+          "name": "includes",
+          "edgeType": "call"
+        },
+        {
+          "name": "IMediaCall",
+          "edgeType": "type"
+        },
+        {
+          "name": "CallHistoryItemState",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "getRoomIdForInternalCall",
+      "exported": true,
+      "qualifiedName": "MediaCallService.getRoomIdForInternalCall",
+      "line": 107,
+      "endLine": 137,
+      "signature": "private async getRoomIdForInternalCall(call: IMediaCall): Promise<IRoom>",
+      "containerClass": "MediaCallService",
+      "calls": [
+        {
+          "name": "findOneDirectRoomContainingAllUserIDs",
+          "edgeType": "call"
+        },
+        {
+          "name": "filter",
+          "edgeType": "call"
+        },
+        {
+          "name": "toArray",
+          "edgeType": "call"
+        },
+        {
+          "name": "map",
+          "edgeType": "call"
+        },
+        {
+          "name": "findByIds",
+          "edgeType": "call"
+        },
+        {
+          "name": "includes",
+          "edgeType": "call"
+        },
+        {
+          "name": "createDirectMessage",
+          "edgeType": "call"
+        },
+        {
+          "name": "Set",
+          "edgeType": "new"
+        },
+        {
+          "name": "IMediaCall",
+          "edgeType": "type"
+        },
+        {
+          "name": "IRoom",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "setPresenceForUsers",
+      "exported": true,
+      "qualifiedName": "MediaCallService.setPresenceForUsers",
+      "line": 111,
+      "endLine": 129,
+      "signature": "private async setPresenceForUsers(uids: IUser['_id'][], callId: IMediaCall['_id']): Promise<void>",
+      "containerClass": "MediaCallService",
+      "calls": [
+        {
+          "name": "toArray",
+          "edgeType": "call"
+        },
+        {
+          "name": "findByIds",
+          "edgeType": "call"
+        },
+        {
+          "name": "map",
+          "edgeType": "call"
+        },
+        {
+          "name": "all",
+          "edgeType": "call"
+        },
+        {
+          "name": "setActiveState",
+          "edgeType": "call"
+        },
+        {
+          "name": "getLanguageForUser",
+          "edgeType": "call"
+        },
+        {
+          "name": "get",
+          "edgeType": "call"
+        },
+        {
+          "name": "error",
+          "edgeType": "call"
+        },
+        {
+          "name": "Map",
+          "edgeType": "new"
+        },
+        {
+          "name": "IUser",
+          "edgeType": "type"
+        },
+        {
+          "name": "IMediaCall",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "clearPresenceForUsers",
+      "exported": true,
+      "qualifiedName": "MediaCallService.clearPresenceForUsers",
+      "line": 115,
+      "endLine": 124,
+      "signature": "private async clearPresenceForUsers(uids: IUser['_id'][], callId: IMediaCall['_id']): Promise<void>",
+      "containerClass": "MediaCallService",
+      "calls": [
+        {
+          "name": "all",
+          "edgeType": "call"
+        },
+        {
+          "name": "map",
+          "edgeType": "call"
+        },
+        {
+          "name": "catch",
+          "edgeType": "call"
+        },
+        {
+          "name": "endActiveState",
+          "edgeType": "call"
+        },
+        {
+          "name": "error",
+          "edgeType": "call"
+        },
+        {
+          "name": "IUser",
+          "edgeType": "type"
+        },
+        {
+          "name": "IMediaCall",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "sendSignal",
+      "exported": true,
+      "qualifiedName": "MediaCallService.sendSignal",
+      "line": 119,
+      "endLine": 121,
+      "signature": "private async sendSignal(toUid: IUser['_id'], signal: ServerMediaSignal): Promise<void>",
+      "containerClass": "MediaCallService",
+      "calls": [
+        {
+          "name": "user.media-signal",
+          "edgeType": "event_emit"
+        },
+        {
+          "name": "IUser",
+          "edgeType": "type"
+        },
+        {
+          "name": "ServerMediaSignal",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "configureMediaCallServer",
+      "exported": true,
+      "qualifiedName": "MediaCallService.configureMediaCallServer",
+      "line": 123,
+      "endLine": 125,
+      "signature": "private configureMediaCallServer(): void",
+      "containerClass": "MediaCallService",
+      "calls": [
+        {
+          "name": "configure",
+          "edgeType": "call"
+        },
+        {
+          "name": "getMediaServerSettings",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "getMediaServerSettings",
+      "exported": true,
+      "qualifiedName": "MediaCallService.getMediaServerSettings",
+      "line": 127,
+      "endLine": 153,
+      "signature": "private getMediaServerSettings(): IMediaCallServerSettings",
+      "containerClass": "MediaCallService",
+      "calls": [
+        {
+          "name": "get",
+          "edgeType": "call"
+        },
+        {
+          "name": "userHasMediaCallPermission",
+          "edgeType": "call"
+        },
+        {
+          "name": "userHasFeaturePermission",
+          "edgeType": "call"
+        },
+        {
+          "name": "IMediaCallServerSettings",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "userHasFeaturePermission",
+      "exported": true,
+      "qualifiedName": "MediaCallService.userHasFeaturePermission",
+      "line": 131,
+      "endLine": 141,
+      "signature": "private userHasFeaturePermission(_uid: IUser['_id'], feature: CallFeature): boolean",
+      "containerClass": "MediaCallService",
+      "calls": [
+        {
+          "name": "get",
+          "edgeType": "call"
+        },
+        {
+          "name": "IUser",
+          "edgeType": "type"
+        },
+        {
+          "name": "CallFeature",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "userHasMediaCallPermission",
+      "exported": true,
+      "qualifiedName": "MediaCallService.userHasMediaCallPermission",
+      "line": 135,
+      "endLine": 143,
+      "signature": "private async userHasMediaCallPermission(uid: IUser['_id'], callType: 'internal' | 'external' | 'any'): Promise<boolean>",
+      "containerClass": "MediaCallService",
+      "calls": [
+        {
+          "name": "hasAtLeastOnePermission",
+          "edgeType": "call"
+        },
+        {
+          "name": "hasPermission",
+          "edgeType": "call"
+        },
+        {
+          "name": "IUser",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "deserializeClientSignal",
+      "exported": true,
+      "qualifiedName": "MediaCallService.deserializeClientSignal",
+      "line": 139,
+      "endLine": 150,
+      "signature": "private async deserializeClientSignal(serialized: string): Promise<ClientMediaSignal>",
+      "containerClass": "MediaCallService",
+      "calls": [
+        {
+          "name": "parse",
+          "edgeType": "call"
+        },
+        {
+          "name": "isClientMediaSignal",
+          "edgeType": "call"
+        },
+        {
+          "name": "error",
+          "edgeType": "call"
+        },
+        {
+          "name": "ClientMediaSignal",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "constructor",
+      "exported": true,
+      "qualifiedName": "MediaCallService.constructor",
+      "line": 34,
+      "endLine": 51,
+      "signature": "constructor()",
+      "containerClass": "MediaCallService",
+      "calls": [
+        {
+          "name": "signalRequest",
+          "edgeType": "event_listen"
+        },
+        {
+          "name": "sendSignal",
+          "edgeType": "call"
+        },
+        {
+          "name": "callUpdated",
+          "edgeType": "event_listen"
+        },
+        {
+          "name": "media-call.updated",
+          "edgeType": "event_emit"
+        },
+        {
+          "name": "callActivated",
+          "edgeType": "event_listen"
+        },
+        {
+          "name": "setPresenceForUsers",
+          "edgeType": "call"
+        },
+        {
+          "name": "callEnded",
+          "edgeType": "event_listen"
+        },
+        {
+          "name": "clearPresenceForUsers",
+          "edgeType": "call"
+        },
+        {
+          "name": "historyUpdate",
+          "edgeType": "event_listen"
+        },
+        {
+          "name": "setImmediate",
+          "edgeType": "call"
+        },
+        {
+          "name": "saveCallToHistory",
+          "edgeType": "call"
+        },
+        {
+          "name": "pushNotificationRequest",
+          "edgeType": "event_listen"
+        },
+        {
+          "name": "sendVoipPushNotification",
+          "edgeType": "call"
+        },
+        {
+          "name": "onEvent",
+          "edgeType": "call"
+        },
+        {
+          "name": "receiveCallUpdate",
+          "edgeType": "call"
+        },
+        {
+          "name": "startsWith",
+          "edgeType": "call"
+        },
+        {
+          "name": "configureMediaCallServer",
+          "edgeType": "call"
+        }
+      ]
+    }
+  ],
+  "imports": [
+    {
+      "module": "@rocket.chat/core-services",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/core-typings",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/core-typings",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/media-calls",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/media-signaling",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/media-signaling",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/model-typings",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/models",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/ui-voip/dist/ui-kit/getHistoryMessagePayload",
+      "resolved": "external"
+    },
+    {
+      "module": "./logger",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/server/services/media-call/logger.ts"
+    },
+    {
+      "module": "./push/sendVoipPushNotification",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/server/services/media-call/push/sendVoipPushNotification.ts"
+    },
+    {
+      "module": "../../../app/settings/server",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/app/settings/server/index.ts"
+    },
+    {
+      "module": "../../lib/i18n",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/server/lib/i18n.ts"
+    },
+    {
+      "module": "../../lib/messages/sendMessage",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/server/lib/messages/sendMessage.ts"
+    },
+    {
+      "module": "../../methods/createDirectMessage",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/server/methods/createDirectMessage.ts"
+    }
+  ]
+}

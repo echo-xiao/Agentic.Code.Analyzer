@@ -1,0 +1,110 @@
+{
+  "sourcePath": "/Users/echoooooo/Desktop/code/Rocket.Chat/packages/ui-voip/src/context/MediaCallInstanceContext.ts",
+  "symbols": [
+    {
+      "type": "variable",
+      "name": "MediaCallInstanceContext",
+      "exported": true,
+      "line": 30,
+      "endLine": 40,
+      "signature": "MediaCallInstanceContext = createContext<MediaCallInstanceContextValue>(",
+      "calls": [
+        {
+          "name": "resolve",
+          "edgeType": "call"
+        },
+        {
+          "name": "Emitter",
+          "edgeType": "new"
+        },
+        {
+          "name": "MediaCallInstanceContextValue",
+          "edgeType": "type"
+        },
+        {
+          "name": "Signals",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "variable_function",
+      "name": "useMediaCallInstance",
+      "exported": true,
+      "line": 42,
+      "endLine": 42,
+      "signature": "(): MediaCallInstanceContextValue =>",
+      "calls": [
+        {
+          "name": "useContext",
+          "edgeType": "call"
+        },
+        {
+          "name": "MediaCallInstanceContextValue",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "type",
+      "name": "Signals",
+      "line": 9,
+      "endLine": 11,
+      "signature": "export type Signals ="
+    },
+    {
+      "type": "type",
+      "name": "AvailableViews",
+      "line": 13,
+      "endLine": 13,
+      "signature": "export type AvailableViews = 'room' | 'popout' | 'widget';"
+    },
+    {
+      "type": "type",
+      "name": "RegisterView",
+      "line": 15,
+      "endLine": 15,
+      "signature": "type RegisterView = (view: AvailableViews) => void;"
+    },
+    {
+      "type": "type",
+      "name": "UnregisterView",
+      "line": 16,
+      "endLine": 16,
+      "signature": "type UnregisterView = (view: AvailableViews) => void;"
+    },
+    {
+      "type": "type",
+      "name": "MediaCallInstanceContextValue",
+      "line": 18,
+      "endLine": 28,
+      "signature": "type MediaCallInstanceContextValue ="
+    }
+  ],
+  "imports": [
+    {
+      "module": "@rocket.chat/emitter",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/media-signaling",
+      "resolved": "external"
+    },
+    {
+      "module": "react",
+      "resolved": "external"
+    },
+    {
+      "module": "react",
+      "resolved": "external"
+    },
+    {
+      "module": "../components",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/packages/ui-voip/src/components/index.ts"
+    },
+    {
+      "module": "./definitions",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/packages/ui-voip/src/context/definitions.ts"
+    }
+  ]
+}

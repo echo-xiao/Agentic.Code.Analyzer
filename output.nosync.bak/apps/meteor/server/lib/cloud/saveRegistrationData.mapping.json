@@ -1,0 +1,131 @@
+{
+  "sourcePath": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/server/lib/cloud/saveRegistrationData.ts",
+  "symbols": [
+    {
+      "type": "function",
+      "name": "saveRegistrationData",
+      "exported": true,
+      "line": 21,
+      "endLine": 41,
+      "signature": "export async function saveRegistrationData({ workspaceId, client_name, client_id, client_secret, client_secret_expires_at, publicKey, registration_client_uri, }: SaveRegistrationDataDTO)",
+      "calls": [
+        {
+          "name": "saveRegistrationDataBase",
+          "edgeType": "call"
+        },
+        {
+          "name": "syncCloudData",
+          "edgeType": "call"
+        },
+        {
+          "name": "SaveRegistrationDataDTO",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "function",
+      "name": "saveRegistrationDataBase",
+      "exported": false,
+      "line": 33,
+      "endLine": 92,
+      "signature": "async function saveRegistrationDataBase({ workspaceId, client_name, client_id, client_secret, client_secret_expires_at, publicKey, registration_client_uri, }: SaveRegistrationDataDTO)",
+      "calls": [
+        {
+          "name": "map",
+          "edgeType": "call"
+        },
+        {
+          "name": "updateAuditedBySystem",
+          "edgeType": "call"
+        },
+        {
+          "name": "forEach",
+          "edgeType": "call"
+        },
+        {
+          "name": "all",
+          "edgeType": "call"
+        },
+        {
+          "name": "notifyOnSettingChangedById",
+          "edgeType": "call"
+        },
+        {
+          "name": "from",
+          "edgeType": "call"
+        },
+        {
+          "name": "get",
+          "edgeType": "call"
+        },
+        {
+          "name": "SaveRegistrationDataDTO",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "function",
+      "name": "saveRegistrationDataManual",
+      "exported": true,
+      "line": 45,
+      "endLine": 65,
+      "signature": "export async function saveRegistrationDataManual({ workspaceId, client_name, client_id, client_secret, client_secret_expires_at, publicKey, registration_client_uri, licenseData, }: ManualSaveRegistrationDataDTO)",
+      "calls": [
+        {
+          "name": "saveRegistrationDataBase",
+          "edgeType": "call"
+        },
+        {
+          "name": "applyLicense",
+          "edgeType": "call"
+        },
+        {
+          "name": "ManualSaveRegistrationDataDTO",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "type",
+      "name": "SaveRegistrationDataDTO",
+      "line": 9,
+      "endLine": 17,
+      "signature": "type SaveRegistrationDataDTO ="
+    },
+    {
+      "type": "type",
+      "name": "ManualSaveRegistrationDataDTO",
+      "line": 19,
+      "endLine": 19,
+      "signature": "type ManualSaveRegistrationDataDTO = SaveRegistrationDataDTO &"
+    }
+  ],
+  "imports": [
+    {
+      "module": "@rocket.chat/license",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/models",
+      "resolved": "external"
+    },
+    {
+      "module": "./syncWorkspace/syncCloudData",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/server/lib/cloud/syncWorkspace/syncCloudData.ts"
+    },
+    {
+      "module": "../../../app/lib/server/lib/notifyListener",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/app/lib/server/lib/notifyListener.ts"
+    },
+    {
+      "module": "../../../app/settings/server",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/app/settings/server/index.ts"
+    },
+    {
+      "module": "../../settings/lib/auditedSettingUpdates",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/server/settings/lib/auditedSettingUpdates.ts"
+    }
+  ]
+}

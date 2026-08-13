@@ -1,0 +1,64 @@
+{
+  "sourcePath": "/Users/echoooooo/Desktop/code/Rocket.Chat/ee/packages/media-calls/src/base/BaseCallProvider.ts",
+  "symbols": [
+    {
+      "type": "class",
+      "name": "BaseCallProvider",
+      "exported": true,
+      "line": 6,
+      "endLine": 16,
+      "signature": "export class BaseCallProvider",
+      "calls": []
+    },
+    {
+      "type": "method",
+      "name": "reactToCallChanges",
+      "exported": true,
+      "qualifiedName": "BaseCallProvider.reactToCallChanges",
+      "line": 13,
+      "endLine": 15,
+      "signature": "public async reactToCallChanges(params: { dtmf?: ClientMediaSignalBody<'dtmf'> }): Promise<void>",
+      "containerClass": "BaseCallProvider",
+      "calls": [
+        {
+          "name": "debug",
+          "edgeType": "call"
+        },
+        {
+          "name": "ClientMediaSignalBody",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "constructor",
+      "exported": true,
+      "qualifiedName": "BaseCallProvider.constructor",
+      "line": 11,
+      "endLine": 11,
+      "signature": "constructor(public readonly call: IMediaCall)",
+      "containerClass": "BaseCallProvider",
+      "calls": [
+        {
+          "name": "IMediaCall",
+          "edgeType": "type"
+        }
+      ]
+    }
+  ],
+  "imports": [
+    {
+      "module": "@rocket.chat/core-typings",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/media-signaling",
+      "resolved": "external"
+    },
+    {
+      "module": "../logger",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/ee/packages/media-calls/src/logger.ts"
+    }
+  ]
+}

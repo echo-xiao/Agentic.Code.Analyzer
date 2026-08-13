@@ -1,0 +1,257 @@
+{
+  "sourcePath": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/client/views/marketplace/AppsList/AppRow.tsx",
+  "symbols": [
+    {
+      "type": "module",
+      "name": "AppRow",
+      "exported": false,
+      "line": 1,
+      "endLine": 88,
+      "signature": "AppRow",
+      "calls": [
+        {
+          "name": "memo",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "inner_function",
+      "name": "handleNavigateToAppInfo",
+      "exported": false,
+      "qualifiedName": "AppRow.handleNavigateToAppInfo",
+      "line": 21,
+      "endLine": 35,
+      "signature": "() =>",
+      "calls": [
+        {
+          "name": "navigate",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "inner_function",
+      "name": "handleKeyDown",
+      "exported": false,
+      "qualifiedName": "AppRow.handleKeyDown",
+      "line": 37,
+      "endLine": 43,
+      "signature": "(e: KeyboardEvent<HTMLOrSVGElement>) =>",
+      "calls": [
+        {
+          "name": "includes",
+          "edgeType": "call"
+        },
+        {
+          "name": "handleNavigateToAppInfo",
+          "edgeType": "call"
+        },
+        {
+          "name": "KeyboardEvent",
+          "edgeType": "type"
+        },
+        {
+          "name": "HTMLOrSVGElement",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "variable_function",
+      "name": "AppRow",
+      "exported": false,
+      "line": 15,
+      "endLine": 85,
+      "signature": "({ className, ...props }: App & { className?: string }) =>",
+      "calls": [
+        {
+          "name": "useRouter",
+          "edgeType": "call"
+        },
+        {
+          "name": "useRouteParameter",
+          "edgeType": "call"
+        },
+        {
+          "name": "navigate",
+          "edgeType": "call"
+        },
+        {
+          "name": "includes",
+          "edgeType": "call"
+        },
+        {
+          "name": "handleNavigateToAppInfo",
+          "edgeType": "call"
+        },
+        {
+          "name": "stopPropagation",
+          "edgeType": "call"
+        },
+        {
+          "name": "lt",
+          "edgeType": "call"
+        },
+        {
+          "name": "Boolean",
+          "edgeType": "call"
+        },
+        {
+          "name": "Card",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "CardRow",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "CardCol",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "CardHeader",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "CardTitle",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "CardBody",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "CardControls",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "AppAvatar",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "BundleChips",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "AddonChip",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "Badge",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "AppStatus",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "AppMenu",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "className",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "id",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "handleNavigateToAppInfo",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "handleKeyDown",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "iconFileContent",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "iconFileData",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "bundledIn",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "props",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "preventClickPropagation",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "installed",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "App",
+          "edgeType": "type"
+        },
+        {
+          "name": "KeyboardEvent",
+          "edgeType": "type"
+        },
+        {
+          "name": "HTMLOrSVGElement",
+          "edgeType": "type"
+        },
+        {
+          "name": "MouseEvent",
+          "edgeType": "type"
+        }
+      ]
+    }
+  ],
+  "imports": [
+    {
+      "module": "@rocket.chat/core-typings",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/fuselage",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/ui-avatar",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/ui-contexts",
+      "resolved": "external"
+    },
+    {
+      "module": "react",
+      "resolved": "external"
+    },
+    {
+      "module": "react",
+      "resolved": "external"
+    },
+    {
+      "module": "semver",
+      "resolved": "external"
+    },
+    {
+      "module": "../AppDetailsPage/tabs/AppStatus/AppStatus",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/client/views/marketplace/AppDetailsPage/tabs/AppStatus/AppStatus.tsx"
+    },
+    {
+      "module": "../AppMenu",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/client/views/marketplace/AppMenu.tsx"
+    },
+    {
+      "module": "../BundleChips",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/client/views/marketplace/BundleChips.tsx"
+    },
+    {
+      "module": "./AddonChip",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/client/views/marketplace/AppsList/AddonChip.tsx"
+    }
+  ]
+}

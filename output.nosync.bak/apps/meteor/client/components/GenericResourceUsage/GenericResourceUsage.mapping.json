@@ -1,0 +1,61 @@
+{
+  "sourcePath": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/client/components/GenericResourceUsage/GenericResourceUsage.tsx",
+  "symbols": [
+    {
+      "type": "variable_function",
+      "name": "GenericResourceUsage",
+      "exported": false,
+      "line": 5,
+      "endLine": 59,
+      "signature": "({ title, value, max, percentage, threshold = 80, variant = percentage < threshold ? 'success' : 'danger', subTitle, tooltip, ...props }: { title: string; subTitle?: ReactNode; value: number; max: number; percentage: number; threshold?: number; variant?: 'warning' | 'danger' | 'success'; tooltip?: string; }) =>",
+      "calls": [
+        {
+          "name": "useId",
+          "edgeType": "call"
+        },
+        {
+          "name": "Box",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "ProgressBar",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "tooltip",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "labelId",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "percentage",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "variant",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "ReactNode",
+          "edgeType": "type"
+        }
+      ]
+    }
+  ],
+  "imports": [
+    {
+      "module": "@rocket.chat/fuselage",
+      "resolved": "external"
+    },
+    {
+      "module": "react",
+      "resolved": "external"
+    },
+    {
+      "module": "react",
+      "resolved": "external"
+    }
+  ]
+}

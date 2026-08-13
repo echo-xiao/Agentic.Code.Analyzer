@@ -1,0 +1,59 @@
+{
+  "sourcePath": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/tests/e2e/utils/omnichannel/agents.ts",
+  "symbols": [
+    {
+      "type": "variable_function",
+      "name": "makeAgentAvailable",
+      "exported": true,
+      "line": 3,
+      "endLine": 14,
+      "signature": "async (api: BaseTest['api'], agentId: string) =>",
+      "calls": [
+        {
+          "name": "post",
+          "edgeType": "call"
+        },
+        {
+          "name": "BaseTest",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "variable_function",
+      "name": "createAgent",
+      "exported": true,
+      "line": 7,
+      "endLine": 21,
+      "signature": "async (api: BaseTest['api'], username: string) =>",
+      "calls": [
+        {
+          "name": "post",
+          "edgeType": "call"
+        },
+        {
+          "name": "status",
+          "edgeType": "call"
+        },
+        {
+          "name": "json",
+          "edgeType": "call"
+        },
+        {
+          "name": "delete",
+          "edgeType": "call"
+        },
+        {
+          "name": "BaseTest",
+          "edgeType": "type"
+        }
+      ]
+    }
+  ],
+  "imports": [
+    {
+      "module": "../test",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/tests/e2e/utils/test.ts"
+    }
+  ]
+}

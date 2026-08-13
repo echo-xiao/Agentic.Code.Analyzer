@@ -1,0 +1,119 @@
+{
+  "sourcePath": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/server/lib/rooms/banUserFromRoom.ts",
+  "symbols": [
+    {
+      "type": "variable_function",
+      "name": "performUserBan",
+      "exported": true,
+      "line": 16,
+      "endLine": 59,
+      "signature": "async function (room: IRoom, user: IUser, byUser: IUser): Promise<void>",
+      "calls": [
+        {
+          "name": "findOneByRoomIdAndUserId",
+          "edgeType": "call"
+        },
+        {
+          "name": "isBannedSubscription",
+          "edgeType": "call"
+        },
+        {
+          "name": "banByRoomIdAndUserId",
+          "edgeType": "call"
+        },
+        {
+          "name": "removeRoomByUserId",
+          "edgeType": "call"
+        },
+        {
+          "name": "incUsersCountById",
+          "edgeType": "call"
+        },
+        {
+          "name": "includes",
+          "edgeType": "call"
+        },
+        {
+          "name": "removeUserFromRolesAsync",
+          "edgeType": "call"
+        },
+        {
+          "name": "removeMember",
+          "edgeType": "call"
+        },
+        {
+          "name": "saveSystemMessage",
+          "edgeType": "call"
+        },
+        {
+          "name": "notifyOnSubscriptionChanged",
+          "edgeType": "call"
+        },
+        {
+          "name": "notifyOnRoomChangedById",
+          "edgeType": "call"
+        },
+        {
+          "name": "IRoom",
+          "edgeType": "type"
+        },
+        {
+          "name": "IUser",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "variable_function",
+      "name": "banUserFromRoom",
+      "exported": true,
+      "line": 26,
+      "endLine": 35,
+      "signature": "async function (rid: string, user: IUser, byUser: IUser): Promise<void>",
+      "calls": [
+        {
+          "name": "findOneById",
+          "edgeType": "call"
+        },
+        {
+          "name": "performUserBan",
+          "edgeType": "call"
+        },
+        {
+          "name": "IUser",
+          "edgeType": "type"
+        }
+      ]
+    }
+  ],
+  "imports": [
+    {
+      "module": "@rocket.chat/core-services",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/core-typings",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/core-typings",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/models",
+      "resolved": "external"
+    },
+    {
+      "module": "../../../app/lib/server/lib/notifyListener",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/app/lib/server/lib/notifyListener.ts"
+    },
+    {
+      "module": "../callbacks/afterBanFromRoomCallback",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/server/lib/callbacks/afterBanFromRoomCallback.ts"
+    },
+    {
+      "module": "../roles/removeUserFromRoles",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/server/lib/roles/removeUserFromRoles.ts"
+    }
+  ]
+}

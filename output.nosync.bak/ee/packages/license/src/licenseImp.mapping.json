@@ -1,0 +1,137 @@
+{
+  "sourcePath": "/Users/echoooooo/Desktop/code/Rocket.Chat/ee/packages/license/src/licenseImp.ts",
+  "symbols": [
+    {
+      "type": "class",
+      "name": "LicenseImp",
+      "exported": true,
+      "line": 30,
+      "endLine": 115,
+      "signature": "export class LicenseImp extends LicenseManager",
+      "calls": [
+        {
+          "name": "LicenseManager",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "isLimitReached",
+      "exported": true,
+      "qualifiedName": "LicenseImp.isLimitReached",
+      "line": 74,
+      "endLine": 76,
+      "signature": "public async isLimitReached<T extends LicenseLimitKind>(action: T, context?: Partial<LimitContext<T>>): Promise<boolean>",
+      "containerClass": "LicenseImp",
+      "calls": [
+        {
+          "name": "shouldPreventAction",
+          "edgeType": "call"
+        },
+        {
+          "name": "LicenseLimitKind",
+          "edgeType": "type"
+        },
+        {
+          "name": "LimitContext",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "constructor",
+      "exported": true,
+      "qualifiedName": "LicenseImp.constructor",
+      "line": 31,
+      "endLine": 54,
+      "signature": "constructor()",
+      "containerClass": "LicenseImp",
+      "calls": [
+        {
+          "name": "onValidateLicense",
+          "edgeType": "call"
+        },
+        {
+          "name": "call",
+          "edgeType": "call"
+        },
+        {
+          "name": "getLicense",
+          "edgeType": "call"
+        },
+        {
+          "name": "hasValidLicense",
+          "edgeType": "call"
+        },
+        {
+          "name": "startup",
+          "edgeType": "call"
+        },
+        {
+          "name": "slice",
+          "edgeType": "call"
+        },
+        {
+          "name": "onRemoveLicense",
+          "edgeType": "call"
+        },
+        {
+          "name": "onInvalidateLicense",
+          "edgeType": "call"
+        }
+      ]
+    }
+  ],
+  "imports": [
+    {
+      "module": "@rocket.chat/core-typings",
+      "resolved": "external"
+    },
+    {
+      "module": "./deprecated",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/ee/packages/license/src/deprecated.ts"
+    },
+    {
+      "module": "./events/deprecated",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/ee/packages/license/src/events/deprecated.ts"
+    },
+    {
+      "module": "./events/listeners",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/ee/packages/license/src/events/listeners.ts"
+    },
+    {
+      "module": "./events/overwriteClassOnLicense",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/ee/packages/license/src/events/overwriteClassOnLicense.ts"
+    },
+    {
+      "module": "./license",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/ee/packages/license/src/license.ts"
+    },
+    {
+      "module": "./logger",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/ee/packages/license/src/logger.ts"
+    },
+    {
+      "module": "./modules",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/ee/packages/license/src/modules.ts"
+    },
+    {
+      "module": "./showLicense",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/ee/packages/license/src/showLicense.ts"
+    },
+    {
+      "module": "./tags",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/ee/packages/license/src/tags.ts"
+    },
+    {
+      "module": "./validation/getCurrentValueForLicenseLimit",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/ee/packages/license/src/validation/getCurrentValueForLicenseLimit.ts"
+    },
+    {
+      "module": "./validation/validateFormat",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/ee/packages/license/src/validation/validateFormat.ts"
+    }
+  ]
+}

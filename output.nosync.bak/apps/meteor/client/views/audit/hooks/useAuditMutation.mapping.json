@@ -1,0 +1,61 @@
+{
+  "sourcePath": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/client/views/audit/hooks/useAuditMutation.ts",
+  "symbols": [
+    {
+      "type": "variable_function",
+      "name": "useAuditMutation",
+      "exported": true,
+      "line": 7,
+      "endLine": 39,
+      "signature": "(type: IAuditLog['fields']['type']) =>",
+      "calls": [
+        {
+          "name": "useMethod",
+          "edgeType": "call"
+        },
+        {
+          "name": "useMutation",
+          "edgeType": "call"
+        },
+        {
+          "name": "getOmnichannelAuditMessages",
+          "edgeType": "call"
+        },
+        {
+          "name": "getAuditMessages",
+          "edgeType": "call"
+        },
+        {
+          "name": "Date",
+          "edgeType": "new"
+        },
+        {
+          "name": "IAuditLog",
+          "edgeType": "type"
+        },
+        {
+          "name": "AuditFields",
+          "edgeType": "type"
+        }
+      ]
+    }
+  ],
+  "imports": [
+    {
+      "module": "@rocket.chat/core-typings",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/ui-contexts",
+      "resolved": "external"
+    },
+    {
+      "module": "@tanstack/react-query",
+      "resolved": "external"
+    },
+    {
+      "module": "./useAuditForm",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/client/views/audit/hooks/useAuditForm.ts"
+    }
+  ]
+}

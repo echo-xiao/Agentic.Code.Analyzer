@@ -1,0 +1,164 @@
+{
+  "sourcePath": "/Users/echoooooo/Desktop/code/Rocket.Chat/packages/apps/src/server/managers/AppApi.ts",
+  "symbols": [
+    {
+      "type": "class",
+      "name": "AppApi",
+      "exported": true,
+      "line": 10,
+      "endLine": 100,
+      "signature": "export class AppApi",
+      "calls": []
+    },
+    {
+      "type": "method",
+      "name": "runExecutor",
+      "exported": true,
+      "qualifiedName": "AppApi.runExecutor",
+      "line": 44,
+      "endLine": 79,
+      "signature": "public async runExecutor(request: IApiRequest, _logStorage: AppLogStorage, _accessors: AppAccessorManager): Promise<IApiResponse>",
+      "containerClass": "AppApi",
+      "calls": [
+        {
+          "name": "validateVisibility",
+          "edgeType": "call"
+        },
+        {
+          "name": "validateSecurity",
+          "edgeType": "call"
+        },
+        {
+          "name": "sendRequest",
+          "edgeType": "call"
+        },
+        {
+          "name": "getRuntimeController",
+          "edgeType": "call"
+        },
+        {
+          "name": "error",
+          "edgeType": "call"
+        },
+        {
+          "name": "IApiRequest",
+          "edgeType": "type"
+        },
+        {
+          "name": "AppLogStorage",
+          "edgeType": "type"
+        },
+        {
+          "name": "AppAccessorManager",
+          "edgeType": "type"
+        },
+        {
+          "name": "IApiResponse",
+          "edgeType": "type"
+        },
+        {
+          "name": "IApiEndpointInfo",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "validateVisibility",
+      "exported": true,
+      "qualifiedName": "AppApi.validateVisibility",
+      "line": 48,
+      "endLine": 58,
+      "signature": "private validateVisibility(request: IApiRequest): boolean",
+      "containerClass": "AppApi",
+      "calls": [
+        {
+          "name": "getStorageItem",
+          "edgeType": "call"
+        },
+        {
+          "name": "IApiRequest",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "validateSecurity",
+      "exported": true,
+      "qualifiedName": "AppApi.validateSecurity",
+      "line": 52,
+      "endLine": 58,
+      "signature": "private validateSecurity(_request: IApiRequest): boolean",
+      "containerClass": "AppApi",
+      "calls": [
+        {
+          "name": "IApiRequest",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "constructor",
+      "exported": true,
+      "qualifiedName": "AppApi.constructor",
+      "line": 21,
+      "endLine": 42,
+      "signature": "constructor( public app: ProxiedApp, public api: IApi, public endpoint: IApiEndpoint, )",
+      "containerClass": "AppApi",
+      "calls": [
+        {
+          "name": "getID",
+          "edgeType": "call"
+        },
+        {
+          "name": "getStorageItem",
+          "edgeType": "call"
+        },
+        {
+          "name": "ProxiedApp",
+          "edgeType": "type"
+        },
+        {
+          "name": "IApi",
+          "edgeType": "type"
+        },
+        {
+          "name": "IApiEndpoint",
+          "edgeType": "type"
+        }
+      ]
+    }
+  ],
+  "imports": [
+    {
+      "module": "@rocket.chat/apps-engine/definition/api",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/apps-engine/definition/api",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/apps-engine/definition/api/IApiEndpoint",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/apps-engine/definition/api/IApiEndpointInfo",
+      "resolved": "external"
+    },
+    {
+      "module": "../ProxiedApp",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/packages/apps/src/server/ProxiedApp.ts"
+    },
+    {
+      "module": "../storage",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/packages/apps/src/server/storage/index.ts"
+    },
+    {
+      "module": "./AppAccessorManager",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/packages/apps/src/server/managers/AppAccessorManager.ts"
+    }
+  ]
+}

@@ -1,0 +1,97 @@
+{
+  "sourcePath": "/Users/echoooooo/Desktop/code/Rocket.Chat/packages/apps/src/server/runtime/node/AppsEngineNodeRuntime.ts",
+  "symbols": [
+    {
+      "type": "class",
+      "name": "NodeRuntimeSubprocessController",
+      "exported": true,
+      "line": 8,
+      "endLine": 43,
+      "signature": "export class NodeRuntimeSubprocessController extends BaseRuntimeSubprocessController",
+      "calls": [
+        {
+          "name": "BaseRuntimeSubprocessController",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "buildProcessConfiguration",
+      "exported": true,
+      "qualifiedName": "NodeRuntimeSubprocessController.buildProcessConfiguration",
+      "line": 19,
+      "endLine": 42,
+      "signature": "protected buildProcessConfiguration(): ProcessConfiguration",
+      "containerClass": "NodeRuntimeSubprocessController",
+      "calls": [
+        {
+          "name": "resolve",
+          "edgeType": "call"
+        },
+        {
+          "name": "dirname",
+          "edgeType": "call"
+        },
+        {
+          "name": "map",
+          "edgeType": "call"
+        },
+        {
+          "name": "ProcessConfiguration",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "constructor",
+      "exported": true,
+      "qualifiedName": "NodeRuntimeSubprocessController.constructor",
+      "line": 13,
+      "endLine": 17,
+      "signature": "constructor(manager: AppManager, appPackage: IParseAppPackageResult, storageItem: IAppStorageItem)",
+      "containerClass": "NodeRuntimeSubprocessController",
+      "calls": [
+        {
+          "name": "resolve",
+          "edgeType": "call"
+        },
+        {
+          "name": "AppManager",
+          "edgeType": "type"
+        },
+        {
+          "name": "IParseAppPackageResult",
+          "edgeType": "type"
+        },
+        {
+          "name": "IAppStorageItem",
+          "edgeType": "type"
+        }
+      ]
+    }
+  ],
+  "imports": [
+    {
+      "module": "node:path",
+      "resolved": "external"
+    },
+    {
+      "module": "../../AppManager",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/packages/apps/src/server/AppManager.ts"
+    },
+    {
+      "module": "../../compiler",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/packages/apps/src/server/compiler/index.ts"
+    },
+    {
+      "module": "../../storage",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/packages/apps/src/server/storage/index.ts"
+    },
+    {
+      "module": "../base/BaseRuntimeSubprocessController",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/packages/apps/src/server/runtime/base/BaseRuntimeSubprocessController.ts"
+    }
+  ]
+}

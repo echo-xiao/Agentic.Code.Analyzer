@@ -1,0 +1,82 @@
+{
+  "sourcePath": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/app/apps/server/converters/settings.js",
+  "symbols": [
+    {
+      "type": "class",
+      "name": "AppSettingsConverter",
+      "exported": true,
+      "line": 4,
+      "endLine": 52,
+      "signature": "export class AppSettingsConverter",
+      "calls": []
+    },
+    {
+      "type": "method",
+      "name": "convertById",
+      "exported": true,
+      "qualifiedName": "AppSettingsConverter.convertById",
+      "line": 9,
+      "endLine": 13,
+      "signature": "async convertById(settingId)",
+      "containerClass": "AppSettingsConverter",
+      "calls": [
+        {
+          "name": "findOneById",
+          "edgeType": "call"
+        },
+        {
+          "name": "convertToApp",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "convertToApp",
+      "exported": true,
+      "qualifiedName": "AppSettingsConverter.convertToApp",
+      "line": 13,
+      "endLine": 28,
+      "signature": "convertToApp(setting)",
+      "containerClass": "AppSettingsConverter",
+      "calls": [
+        {
+          "name": "_convertTypeToApp",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "_convertTypeToApp",
+      "exported": true,
+      "qualifiedName": "AppSettingsConverter._convertTypeToApp",
+      "line": 17,
+      "endLine": 36,
+      "signature": "_convertTypeToApp(type)",
+      "containerClass": "AppSettingsConverter",
+      "calls": []
+    },
+    {
+      "type": "method",
+      "name": "constructor",
+      "exported": true,
+      "qualifiedName": "AppSettingsConverter.constructor",
+      "line": 5,
+      "endLine": 7,
+      "signature": "constructor(orch)",
+      "containerClass": "AppSettingsConverter",
+      "calls": []
+    }
+  ],
+  "imports": [
+    {
+      "module": "@rocket.chat/apps-engine/definition/settings",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/models",
+      "resolved": "external"
+    }
+  ]
+}

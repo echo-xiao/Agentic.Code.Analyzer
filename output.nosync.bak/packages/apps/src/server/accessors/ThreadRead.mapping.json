@@ -1,0 +1,69 @@
+{
+  "sourcePath": "/Users/echoooooo/Desktop/code/Rocket.Chat/packages/apps/src/server/accessors/ThreadRead.ts",
+  "symbols": [
+    {
+      "type": "class",
+      "name": "ThreadRead",
+      "exported": true,
+      "line": 6,
+      "endLine": 15,
+      "signature": "export class ThreadRead implements IThreadRead",
+      "calls": [
+        {
+          "name": "IThreadRead",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "getThreadById",
+      "exported": true,
+      "qualifiedName": "ThreadRead.getThreadById",
+      "line": 12,
+      "endLine": 14,
+      "signature": "public getThreadById(id: string): Promise<Array<IMessage>>",
+      "containerClass": "ThreadRead",
+      "calls": [
+        {
+          "name": "doGetById",
+          "edgeType": "call"
+        },
+        {
+          "name": "IMessage",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "constructor",
+      "exported": true,
+      "qualifiedName": "ThreadRead.constructor",
+      "line": 7,
+      "endLine": 10,
+      "signature": "constructor( private threadBridge: ThreadBridge, private appId: string, )",
+      "containerClass": "ThreadRead",
+      "calls": [
+        {
+          "name": "ThreadBridge",
+          "edgeType": "type"
+        }
+      ]
+    }
+  ],
+  "imports": [
+    {
+      "module": "@rocket.chat/apps-engine/definition/accessors/IThreadRead",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/apps-engine/definition/messages",
+      "resolved": "external"
+    },
+    {
+      "module": "../bridges/ThreadBridge",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/packages/apps/src/server/bridges/ThreadBridge.ts"
+    }
+  ]
+}

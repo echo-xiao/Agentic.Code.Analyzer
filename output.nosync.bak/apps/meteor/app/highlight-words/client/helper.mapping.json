@@ -1,0 +1,109 @@
+{
+  "sourcePath": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/app/highlight-words/client/helper.ts",
+  "symbols": [
+    {
+      "type": "variable_function",
+      "name": "checkHighlightedWordsInUrls",
+      "exported": false,
+      "line": 3,
+      "endLine": 3,
+      "signature": "(msg: string, urlRegex: RegExp) =>",
+      "calls": [
+        {
+          "name": "match",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "variable_function",
+      "name": "removeHighlightedUrls",
+      "exported": false,
+      "line": 5,
+      "endLine": 13,
+      "signature": "(msg: string, highlight: string, urlMatches: string[]) =>",
+      "calls": [
+        {
+          "name": "reduce",
+          "edgeType": "call"
+        },
+        {
+          "name": "replace",
+          "edgeType": "call"
+        },
+        {
+          "name": "RegExp",
+          "edgeType": "new"
+        }
+      ]
+    },
+    {
+      "type": "variable_function",
+      "name": "getRegexHighlight",
+      "exported": true,
+      "line": 11,
+      "endLine": 15,
+      "signature": "(highlight: string) =>",
+      "calls": [
+        {
+          "name": "escapeRegExp",
+          "edgeType": "call"
+        },
+        {
+          "name": "RegExp",
+          "edgeType": "new"
+        }
+      ]
+    },
+    {
+      "type": "variable_function",
+      "name": "getRegexHighlightUrl",
+      "exported": true,
+      "line": 17,
+      "endLine": 23,
+      "signature": "(highlight: string) =>",
+      "calls": [
+        {
+          "name": "escapeRegExp",
+          "edgeType": "call"
+        },
+        {
+          "name": "RegExp",
+          "edgeType": "new"
+        }
+      ]
+    },
+    {
+      "type": "variable_function",
+      "name": "highlightWords",
+      "exported": true,
+      "line": 25,
+      "endLine": 32,
+      "signature": "(msg: string, highlights: { highlight: string; regex: RegExp; urlRegex: RegExp }[]) =>",
+      "calls": [
+        {
+          "name": "reduce",
+          "edgeType": "call"
+        },
+        {
+          "name": "checkHighlightedWordsInUrls",
+          "edgeType": "call"
+        },
+        {
+          "name": "replace",
+          "edgeType": "call"
+        },
+        {
+          "name": "removeHighlightedUrls",
+          "edgeType": "call"
+        }
+      ]
+    }
+  ],
+  "imports": [
+    {
+      "module": "@rocket.chat/string-helpers",
+      "resolved": "external"
+    }
+  ]
+}

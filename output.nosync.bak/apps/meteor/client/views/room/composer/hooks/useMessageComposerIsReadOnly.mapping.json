@@ -1,0 +1,53 @@
+{
+  "sourcePath": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/client/views/room/composer/hooks/useMessageComposerIsReadOnly.ts",
+  "symbols": [
+    {
+      "type": "variable_function",
+      "name": "useMessageComposerIsReadOnly",
+      "exported": true,
+      "line": 7,
+      "endLine": 14,
+      "signature": "(room: IRoom): boolean =>",
+      "calls": [
+        {
+          "name": "useUser",
+          "edgeType": "call"
+        },
+        {
+          "name": "usePermission",
+          "edgeType": "call"
+        },
+        {
+          "name": "useMemo",
+          "edgeType": "call"
+        },
+        {
+          "name": "readOnly",
+          "edgeType": "call"
+        },
+        {
+          "name": "IRoom",
+          "edgeType": "type"
+        }
+      ]
+    }
+  ],
+  "imports": [
+    {
+      "module": "@rocket.chat/core-typings",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/ui-contexts",
+      "resolved": "external"
+    },
+    {
+      "module": "react",
+      "resolved": "external"
+    },
+    {
+      "module": "../../../../lib/rooms/roomCoordinator",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/client/lib/rooms/roomCoordinator.tsx"
+    }
+  ]
+}

@@ -1,0 +1,410 @@
+{
+  "sourcePath": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/client/navbar/NavBarPagesGroup/actions/CreateChannelModal.tsx",
+  "symbols": [
+    {
+      "type": "variable_function",
+      "name": "getFederationHintKey",
+      "exported": false,
+      "line": 55,
+      "endLine": 69,
+      "signature": "(federationModule: boolean, featureToggle: boolean, federationAccessPermission: boolean): TranslationKey =>",
+      "calls": [
+        {
+          "name": "TranslationKey",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "variable_function",
+      "name": "hasExternalMembers",
+      "exported": false,
+      "line": 59,
+      "endLine": 59,
+      "signature": "(members: string[]): boolean =>",
+      "calls": [
+        {
+          "name": "some",
+          "edgeType": "call"
+        },
+        {
+          "name": "startsWith",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "inner_function",
+      "name": "handleCreateChannel",
+      "exported": false,
+      "qualifiedName": "CreateChannelModal.handleCreateChannel",
+      "line": 144,
+      "endLine": 174,
+      "signature": "async ({ name, members, readOnly, topic, broadcast, encrypted, federated }: CreateChannelModalPayload) =>",
+      "calls": [
+        {
+          "name": "createPrivateChannel",
+          "edgeType": "call"
+        },
+        {
+          "name": "goToRoom",
+          "edgeType": "call"
+        },
+        {
+          "name": "createChannel",
+          "edgeType": "call"
+        },
+        {
+          "name": "dispatchToastMessage",
+          "edgeType": "call"
+        },
+        {
+          "name": "reload",
+          "edgeType": "call"
+        },
+        {
+          "name": "onClose",
+          "edgeType": "call"
+        },
+        {
+          "name": "CreateChannelModalPayload",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "variable_function",
+      "name": "CreateChannelModal",
+      "exported": false,
+      "line": 61,
+      "endLine": 322,
+      "signature": "({ teamId = '', mainRoom, onClose, reload }: CreateChannelModalProps) =>",
+      "calls": [
+        {
+          "name": "useTranslation",
+          "edgeType": "call"
+        },
+        {
+          "name": "usePermissionWithScopedRoles",
+          "edgeType": "call"
+        },
+        {
+          "name": "useSetting",
+          "edgeType": "call"
+        },
+        {
+          "name": "useEncryptedRoomDescription",
+          "edgeType": "call"
+        },
+        {
+          "name": "useMemo",
+          "edgeType": "call"
+        },
+        {
+          "name": "useIsFederationEnabled",
+          "edgeType": "call"
+        },
+        {
+          "name": "useHasLicenseModule",
+          "edgeType": "call"
+        },
+        {
+          "name": "usePermission",
+          "edgeType": "call"
+        },
+        {
+          "name": "getFederationHintKey",
+          "edgeType": "call"
+        },
+        {
+          "name": "useEndpoint",
+          "edgeType": "call"
+        },
+        {
+          "name": "useToastMessageDispatch",
+          "edgeType": "call"
+        },
+        {
+          "name": "useCreateChannelTypePermission",
+          "edgeType": "call"
+        },
+        {
+          "name": "useForm",
+          "edgeType": "call"
+        },
+        {
+          "name": "watch",
+          "edgeType": "call"
+        },
+        {
+          "name": "useEffect",
+          "edgeType": "call"
+        },
+        {
+          "name": "setValue",
+          "edgeType": "call"
+        },
+        {
+          "name": "test",
+          "edgeType": "call"
+        },
+        {
+          "name": "channelNameExists",
+          "edgeType": "call"
+        },
+        {
+          "name": "useGoToRoom",
+          "edgeType": "call"
+        },
+        {
+          "name": "createPrivateChannel",
+          "edgeType": "call"
+        },
+        {
+          "name": "goToRoom",
+          "edgeType": "call"
+        },
+        {
+          "name": "createChannel",
+          "edgeType": "call"
+        },
+        {
+          "name": "dispatchToastMessage",
+          "edgeType": "call"
+        },
+        {
+          "name": "reload",
+          "edgeType": "call"
+        },
+        {
+          "name": "onClose",
+          "edgeType": "call"
+        },
+        {
+          "name": "Boolean",
+          "edgeType": "call"
+        },
+        {
+          "name": "useId",
+          "edgeType": "call"
+        },
+        {
+          "name": "handleSubmit",
+          "edgeType": "call"
+        },
+        {
+          "name": "validateChannelName",
+          "edgeType": "call"
+        },
+        {
+          "name": "hasExternalMembers",
+          "edgeType": "call"
+        },
+        {
+          "name": "getEncryptedHint",
+          "edgeType": "call"
+        },
+        {
+          "name": "Modal",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "ModalHeader",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "ModalTitle",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "ModalContent",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "FieldGroup",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "Field",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "FieldLabel",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "FieldRow",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "FieldError",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "FieldHint",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "Accordion",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "AccordionItem",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "Box",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "ModalFooter",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "ModalFooterControllers",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "Button",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "ModalClose",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "Controller",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "TextInput",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "Icon",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "UserAutoCompleteMultiple",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "ToggleSwitch",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "createChannelFormId",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "onClose",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "control",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "federated",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "value",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "e2eDisabled",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "RegExp",
+          "edgeType": "new"
+        },
+        {
+          "name": "CreateChannelModalProps",
+          "edgeType": "type"
+        },
+        {
+          "name": "CreateChannelModalPayload",
+          "edgeType": "type"
+        },
+        {
+          "name": "ComponentProps",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "type",
+      "name": "CreateChannelModalProps",
+      "line": 37,
+      "endLine": 42,
+      "signature": "export type CreateChannelModalProps ="
+    },
+    {
+      "type": "type",
+      "name": "CreateChannelModalPayload",
+      "line": 44,
+      "endLine": 53,
+      "signature": "type CreateChannelModalPayload ="
+    }
+  ],
+  "imports": [
+    {
+      "module": "@rocket.chat/core-typings",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/fuselage",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/fuselage-forms",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/ui-contexts",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/ui-contexts",
+      "resolved": "external"
+    },
+    {
+      "module": "react",
+      "resolved": "external"
+    },
+    {
+      "module": "react",
+      "resolved": "external"
+    },
+    {
+      "module": "react-hook-form",
+      "resolved": "external"
+    },
+    {
+      "module": "./useEncryptedRoomDescription",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/client/navbar/NavBarPagesGroup/actions/useEncryptedRoomDescription.ts"
+    },
+    {
+      "module": "../../../components/UserAutoCompleteMultiple",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/client/components/UserAutoCompleteMultiple/index.ts"
+    },
+    {
+      "module": "../../../hooks/useCreateChannelTypePermission",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/client/hooks/useCreateChannelTypePermission.ts"
+    },
+    {
+      "module": "../../../hooks/useHasLicenseModule",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/client/hooks/useHasLicenseModule.ts"
+    },
+    {
+      "module": "../../../hooks/useIsFederationEnabled",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/client/hooks/useIsFederationEnabled.ts"
+    },
+    {
+      "module": "../../../views/room/hooks/useGoToRoom",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/client/views/room/hooks/useGoToRoom.ts"
+    }
+  ]
+}

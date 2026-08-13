@@ -1,0 +1,500 @@
+{
+  "sourcePath": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/app/authentication/server/startup/index.js",
+  "symbols": [
+    {
+      "type": "module",
+      "name": "index",
+      "exported": false,
+      "line": 1,
+      "endLine": 533,
+      "signature": "index",
+      "calls": [
+        {
+          "name": "config",
+          "edgeType": "call"
+        },
+        {
+          "name": "assign",
+          "edgeType": "call"
+        },
+        {
+          "name": "getBaseUserFields",
+          "edgeType": "call"
+        },
+        {
+          "name": "getValueById",
+          "edgeType": "call"
+        },
+        {
+          "name": "getLoginExpirationInDays",
+          "edgeType": "call"
+        },
+        {
+          "name": "call",
+          "edgeType": "call"
+        },
+        {
+          "name": "startup",
+          "edgeType": "call"
+        },
+        {
+          "name": "watchMultiple",
+          "edgeType": "call"
+        },
+        {
+          "name": "get",
+          "edgeType": "call"
+        },
+        {
+          "name": "replace",
+          "edgeType": "call"
+        },
+        {
+          "name": "escapeHTML",
+          "edgeType": "call"
+        },
+        {
+          "name": "getTemplateWrapped",
+          "edgeType": "call"
+        },
+        {
+          "name": "safeHtmlDots",
+          "edgeType": "call"
+        },
+        {
+          "name": "absoluteUrl",
+          "edgeType": "call"
+        },
+        {
+          "name": "replacekey",
+          "edgeType": "call"
+        },
+        {
+          "name": "onCreateUser",
+          "edgeType": "call"
+        },
+        {
+          "name": "test",
+          "edgeType": "call"
+        },
+        {
+          "name": "map",
+          "edgeType": "call"
+        },
+        {
+          "name": "parseCSV",
+          "edgeType": "call"
+        },
+        {
+          "name": "getNewUserRoles",
+          "edgeType": "call"
+        },
+        {
+          "name": "findOne",
+          "edgeType": "call"
+        },
+        {
+          "name": "findOneByRolesAndType",
+          "edgeType": "call"
+        },
+        {
+          "name": "includes",
+          "edgeType": "call"
+        },
+        {
+          "name": "push",
+          "edgeType": "call"
+        },
+        {
+          "name": "updateValueById",
+          "edgeType": "call"
+        },
+        {
+          "name": "notifyOnSettingChangedById",
+          "edgeType": "call"
+        },
+        {
+          "name": "addUserRolesAsync",
+          "edgeType": "call"
+        },
+        {
+          "name": "findOneById",
+          "edgeType": "call"
+        },
+        {
+          "name": "joinDefaultChannels",
+          "edgeType": "call"
+        },
+        {
+          "name": "setImmediate",
+          "edgeType": "call"
+        },
+        {
+          "name": "afterCreateUser",
+          "edgeType": "event_emit"
+        },
+        {
+          "name": "getAvatarSuggestionForUser",
+          "edgeType": "call"
+        },
+        {
+          "name": "keys",
+          "edgeType": "call"
+        },
+        {
+          "name": "setAvatarFromServiceWithValidation",
+          "edgeType": "call"
+        },
+        {
+          "name": "catch",
+          "edgeType": "call"
+        },
+        {
+          "name": "triggerEvent",
+          "edgeType": "call"
+        },
+        {
+          "name": "error",
+          "edgeType": "call"
+        },
+        {
+          "name": "getRocketChatLogger",
+          "edgeType": "call"
+        },
+        {
+          "name": "Set",
+          "edgeType": "new"
+        },
+        {
+          "name": "Date",
+          "edgeType": "new"
+        },
+        {
+          "name": "validateLoginAttempt",
+          "edgeType": "call"
+        },
+        {
+          "name": "validateNewUser",
+          "edgeType": "call"
+        },
+        {
+          "name": "isEmpty",
+          "edgeType": "call"
+        },
+        {
+          "name": "trim",
+          "edgeType": "call"
+        },
+        {
+          "name": "split",
+          "edgeType": "call"
+        },
+        {
+          "name": "some",
+          "edgeType": "call"
+        },
+        {
+          "name": "match",
+          "edgeType": "call"
+        },
+        {
+          "name": "escapeRegExp",
+          "edgeType": "call"
+        },
+        {
+          "name": "onLogin",
+          "edgeType": "call"
+        },
+        {
+          "name": "getMaxLoginTokens",
+          "edgeType": "call"
+        },
+        {
+          "name": "ensureLoginTokensLimit",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "variable_function",
+      "name": "getLinkedInName",
+      "exported": false,
+      "line": 166,
+      "endLine": 187,
+      "signature": "({ firstName, lastName }) =>",
+      "calls": []
+    },
+    {
+      "type": "variable_function",
+      "name": "validateEmailDomain",
+      "exported": false,
+      "line": 170,
+      "endLine": 192,
+      "signature": "(user) =>",
+      "calls": [
+        {
+          "name": "get",
+          "edgeType": "call"
+        },
+        {
+          "name": "isEmpty",
+          "edgeType": "call"
+        },
+        {
+          "name": "trim",
+          "edgeType": "call"
+        },
+        {
+          "name": "map",
+          "edgeType": "call"
+        },
+        {
+          "name": "split",
+          "edgeType": "call"
+        },
+        {
+          "name": "some",
+          "edgeType": "call"
+        },
+        {
+          "name": "match",
+          "edgeType": "call"
+        },
+        {
+          "name": "escapeRegExp",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "variable_function",
+      "name": "onCreateUserAsync",
+      "exported": false,
+      "line": 174,
+      "endLine": 250,
+      "signature": "async function (options, user = {})",
+      "calls": [
+        {
+          "name": "get",
+          "edgeType": "call"
+        },
+        {
+          "name": "getLinkedInName",
+          "edgeType": "call"
+        },
+        {
+          "name": "values",
+          "edgeType": "call"
+        },
+        {
+          "name": "findUsersInRole",
+          "edgeType": "call"
+        },
+        {
+          "name": "forEach",
+          "edgeType": "call"
+        },
+        {
+          "name": "isArray",
+          "edgeType": "call"
+        },
+        {
+          "name": "push",
+          "edgeType": "call"
+        },
+        {
+          "name": "subject",
+          "edgeType": "call"
+        },
+        {
+          "name": "html",
+          "edgeType": "call"
+        },
+        {
+          "name": "send",
+          "edgeType": "call"
+        },
+        {
+          "name": "onCreateUser",
+          "edgeType": "event_emit"
+        },
+        {
+          "name": "validateEmailDomain",
+          "edgeType": "call"
+        },
+        {
+          "name": "removeEmpty",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "variable_function",
+      "name": "validateLoginAttemptAsync",
+      "exported": false,
+      "line": 297,
+      "endLine": 362,
+      "signature": "async function (login)",
+      "calls": [
+        {
+          "name": "beforeValidateLogin",
+          "edgeType": "event_emit"
+        },
+        {
+          "name": "isValidLoginAttemptByIp",
+          "edgeType": "call"
+        },
+        {
+          "name": "getClientAddress",
+          "edgeType": "call"
+        },
+        {
+          "name": "isValidAttemptByUser",
+          "edgeType": "call"
+        },
+        {
+          "name": "isArray",
+          "edgeType": "call"
+        },
+        {
+          "name": "includes",
+          "edgeType": "call"
+        },
+        {
+          "name": "get",
+          "edgeType": "call"
+        },
+        {
+          "name": "filter",
+          "edgeType": "call"
+        },
+        {
+          "name": "onValidateLogin",
+          "edgeType": "event_emit"
+        },
+        {
+          "name": "updateLastLoginById",
+          "edgeType": "call"
+        },
+        {
+          "name": "setImmediate",
+          "edgeType": "call"
+        },
+        {
+          "name": "afterValidateLogin",
+          "edgeType": "event_emit"
+        },
+        {
+          "name": "triggerEvent",
+          "edgeType": "call"
+        }
+      ]
+    }
+  ],
+  "imports": [
+    {
+      "module": "@rocket.chat/apps",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/core-services",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/models",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/string-helpers",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/tools",
+      "resolved": "external"
+    },
+    {
+      "module": "meteor/accounts-base",
+      "resolved": "external"
+    },
+    {
+      "module": "meteor/check",
+      "resolved": "external"
+    },
+    {
+      "module": "meteor/meteor",
+      "resolved": "external"
+    },
+    {
+      "module": "underscore",
+      "resolved": "external"
+    },
+    {
+      "module": "../../../../lib/utils/parseCSV",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/lib/utils/parseCSV.ts"
+    },
+    {
+      "module": "../../../../lib/utils/safeHtmlDots",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/lib/utils/safeHtmlDots.ts"
+    },
+    {
+      "module": "../../../../server/lib/callbacks",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/server/lib/callbacks.ts"
+    },
+    {
+      "module": "../../../../server/lib/callbacks/beforeCreateUserCallback",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/server/lib/callbacks/beforeCreateUserCallback.ts"
+    },
+    {
+      "module": "../../../../server/lib/getClientAddress",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/server/lib/getClientAddress.ts"
+    },
+    {
+      "module": "../../../../server/lib/getMaxLoginTokens",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/server/lib/getMaxLoginTokens.ts"
+    },
+    {
+      "module": "../../../../server/lib/i18n",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/server/lib/i18n.ts"
+    },
+    {
+      "module": "../../../../server/lib/roles/addUserRoles",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/server/lib/roles/addUserRoles.ts"
+    },
+    {
+      "module": "../../../../server/lib/rooms/joinDefaultChannels",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/server/lib/rooms/joinDefaultChannels.ts"
+    },
+    {
+      "module": "../../../../server/lib/users/getAvatarSuggestionForUser",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/server/lib/users/getAvatarSuggestionForUser.ts"
+    },
+    {
+      "module": "../../../../server/lib/users/setUserAvatar",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/server/lib/users/setUserAvatar.ts"
+    },
+    {
+      "module": "../../../../server/services/user/lib/getNewUserRoles",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/server/services/user/lib/getNewUserRoles.ts"
+    },
+    {
+      "module": "../../../lib/server/lib/notifyListener",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/app/lib/server/lib/notifyListener.ts"
+    },
+    {
+      "module": "../../../mailer/server/api",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/app/mailer/server/api.ts"
+    },
+    {
+      "module": "../../../settings/server",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/app/settings/server/index.ts"
+    },
+    {
+      "module": "../../../utils/server/functions/getBaseUserFields",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/app/utils/server/functions/getBaseUserFields.ts"
+    },
+    {
+      "module": "../lib/restrictLoginAttempts",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/app/authentication/server/lib/restrictLoginAttempts.ts"
+    }
+  ]
+}

@@ -1,0 +1,124 @@
+{
+  "sourcePath": "/Users/echoooooo/Desktop/code/Rocket.Chat/packages/rest-typings/src/v1/statistics.ts",
+  "symbols": [
+    {
+      "type": "variable",
+      "name": "isStatisticsProps",
+      "exported": true,
+      "line": 37,
+      "endLine": 37,
+      "signature": "isStatisticsProps = ajv.compile<StatisticsProps>(StatisticsSchema)",
+      "calls": [
+        {
+          "name": "StatisticsProps",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "variable",
+      "name": "isStatisticsListProps",
+      "exported": true,
+      "line": 69,
+      "endLine": 69,
+      "signature": "isStatisticsListProps = ajv.compile<StatisticsListProps>(StatisticsListSchema)",
+      "calls": [
+        {
+          "name": "StatisticsListProps",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "variable",
+      "name": "isTelemetryPayload",
+      "exported": true,
+      "line": 90,
+      "endLine": 90,
+      "signature": "isTelemetryPayload = ajv.compile<TelemetryPayload>(TelemetryPayloadSchema)",
+      "calls": [
+        {
+          "name": "TelemetryPayload",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "type",
+      "name": "SlashCommand",
+      "line": 6,
+      "endLine": 6,
+      "signature": "type SlashCommand ="
+    },
+    {
+      "type": "type",
+      "name": "SettingsCounter",
+      "line": 8,
+      "endLine": 8,
+      "signature": "type SettingsCounter ="
+    },
+    {
+      "type": "type",
+      "name": "TelemetryMap",
+      "line": 10,
+      "endLine": 10,
+      "signature": "export type TelemetryMap ="
+    },
+    {
+      "type": "type",
+      "name": "TelemetryEvents",
+      "line": 12,
+      "endLine": 12,
+      "signature": "export type TelemetryEvents = keyof TelemetryMap;"
+    },
+    {
+      "type": "type",
+      "name": "Param",
+      "line": 14,
+      "endLine": 17,
+      "signature": "type Param ="
+    },
+    {
+      "type": "type",
+      "name": "TelemetryPayload",
+      "line": 19,
+      "endLine": 21,
+      "signature": "type TelemetryPayload ="
+    },
+    {
+      "type": "type",
+      "name": "StatisticsProps",
+      "line": 23,
+      "endLine": 23,
+      "signature": "type StatisticsProps ="
+    },
+    {
+      "type": "type",
+      "name": "StatisticsListProps",
+      "line": 39,
+      "endLine": 39,
+      "signature": "type StatisticsListProps = PaginatedRequest<"
+    },
+    {
+      "type": "type",
+      "name": "StatisticsEndpoints",
+      "line": 92,
+      "endLine": 107,
+      "signature": "export type StatisticsEndpoints ="
+    }
+  ],
+  "imports": [
+    {
+      "module": "@rocket.chat/core-typings",
+      "resolved": "external"
+    },
+    {
+      "module": "./Ajv",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/packages/rest-typings/src/v1/Ajv.ts"
+    },
+    {
+      "module": "../helpers/PaginatedRequest",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/packages/rest-typings/src/helpers/PaginatedRequest.ts"
+    }
+  ]
+}

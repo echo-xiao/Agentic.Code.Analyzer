@@ -1,0 +1,180 @@
+{
+  "sourcePath": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/tests/e2e/page-objects/fragments/sidepanel.ts",
+  "symbols": [
+    {
+      "type": "class",
+      "name": "Sidepanel",
+      "exported": true,
+      "line": 3,
+      "endLine": 61,
+      "signature": "export class Sidepanel",
+      "calls": []
+    },
+    {
+      "type": "method",
+      "name": "getSidepanelHeader",
+      "exported": true,
+      "qualifiedName": "Sidepanel.getSidepanelHeader",
+      "line": 34,
+      "endLine": 36,
+      "signature": "getSidepanelHeader(name: string): Locator",
+      "containerClass": "Sidepanel",
+      "calls": [
+        {
+          "name": "getByRole",
+          "edgeType": "call"
+        },
+        {
+          "name": "Locator",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "getTeamItemByName",
+      "exported": true,
+      "qualifiedName": "Sidepanel.getTeamItemByName",
+      "line": 38,
+      "endLine": 43,
+      "signature": "getTeamItemByName(name: string): Locator",
+      "containerClass": "Sidepanel",
+      "calls": [
+        {
+          "name": "filter",
+          "edgeType": "call"
+        },
+        {
+          "name": "getByRole",
+          "edgeType": "call"
+        },
+        {
+          "name": "Locator",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "getMainRoomByName",
+      "exported": true,
+      "qualifiedName": "Sidepanel.getMainRoomByName",
+      "line": 42,
+      "endLine": 44,
+      "signature": "getMainRoomByName(name: string): Locator",
+      "containerClass": "Sidepanel",
+      "calls": [
+        {
+          "name": "getTeamItemByName",
+          "edgeType": "call"
+        },
+        {
+          "name": "Locator",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "getItemByName",
+      "exported": true,
+      "qualifiedName": "Sidepanel.getItemByName",
+      "line": 46,
+      "endLine": 48,
+      "signature": "getItemByName(name: string): Locator",
+      "containerClass": "Sidepanel",
+      "calls": [
+        {
+          "name": "getByRole",
+          "edgeType": "call"
+        },
+        {
+          "name": "Locator",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "getSidepanelItem",
+      "exported": true,
+      "qualifiedName": "Sidepanel.getSidepanelItem",
+      "line": 50,
+      "endLine": 53,
+      "signature": "getSidepanelItem(name: string, subtitle?: string): Locator",
+      "containerClass": "Sidepanel",
+      "calls": [
+        {
+          "name": "getByRole",
+          "edgeType": "call"
+        },
+        {
+          "name": "RegExp",
+          "edgeType": "new"
+        },
+        {
+          "name": "Locator",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "getItemUnreadBadge",
+      "exported": true,
+      "qualifiedName": "Sidepanel.getItemUnreadBadge",
+      "line": 54,
+      "endLine": 56,
+      "signature": "getItemUnreadBadge(item: Locator): Locator",
+      "containerClass": "Sidepanel",
+      "calls": [
+        {
+          "name": "getByRole",
+          "edgeType": "call"
+        },
+        {
+          "name": "Locator",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "constructor",
+      "exported": true,
+      "qualifiedName": "Sidepanel.constructor",
+      "line": 6,
+      "endLine": 8,
+      "signature": "constructor(page: Page)",
+      "containerClass": "Sidepanel",
+      "calls": [
+        {
+          "name": "Page",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "class_property",
+      "name": "page",
+      "exported": true,
+      "qualifiedName": "Sidepanel.page",
+      "line": 4,
+      "endLine": 4,
+      "signature": "private readonly page: Page;",
+      "containerClass": "Sidepanel",
+      "calls": [
+        {
+          "name": "Page",
+          "edgeType": "type"
+        }
+      ]
+    }
+  ],
+  "imports": [
+    {
+      "module": "@playwright/test",
+      "resolved": "external"
+    }
+  ]
+}

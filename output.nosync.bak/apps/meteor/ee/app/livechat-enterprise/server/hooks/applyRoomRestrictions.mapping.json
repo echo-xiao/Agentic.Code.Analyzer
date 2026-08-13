@@ -1,0 +1,49 @@
+{
+  "sourcePath": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/ee/app/livechat-enterprise/server/hooks/applyRoomRestrictions.ts",
+  "symbols": [
+    {
+      "type": "module",
+      "name": "applyRoomRestrictions",
+      "exported": false,
+      "line": 1,
+      "endLine": 24,
+      "signature": "applyRoomRestrictions",
+      "calls": [
+        {
+          "name": "livechat.applyRoomRestrictions",
+          "edgeType": "event_listen"
+        },
+        {
+          "name": "restrictQuery",
+          "edgeType": "call"
+        },
+        {
+          "name": "FilterOperators",
+          "edgeType": "type"
+        },
+        {
+          "name": "IOmnichannelRoom",
+          "edgeType": "type"
+        }
+      ]
+    }
+  ],
+  "imports": [
+    {
+      "module": "@rocket.chat/core-typings",
+      "resolved": "external"
+    },
+    {
+      "module": "mongodb",
+      "resolved": "external"
+    },
+    {
+      "module": "../../../../../server/lib/callbacks",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/server/lib/callbacks.ts"
+    },
+    {
+      "module": "../lib/restrictQuery",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/ee/app/livechat-enterprise/server/lib/restrictQuery.ts"
+    }
+  ]
+}

@@ -1,0 +1,90 @@
+{
+  "sourcePath": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/server/lib/rooms/getRoomsWithSingleOwner.ts",
+  "symbols": [
+    {
+      "type": "function",
+      "name": "shouldRemoveOrChangeOwner",
+      "exported": true,
+      "line": 15,
+      "endLine": 17,
+      "signature": "export function shouldRemoveOrChangeOwner(subscribedRooms: SubscribedRoomsForUserWithDetails[]): boolean",
+      "calls": [
+        {
+          "name": "some",
+          "edgeType": "call"
+        },
+        {
+          "name": "SubscribedRoomsForUserWithDetails",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "function",
+      "name": "getSubscribedRoomsForUserWithDetails",
+      "exported": true,
+      "line": 19,
+      "endLine": 81,
+      "signature": "export async function getSubscribedRoomsForUserWithDetails( userId: string, assignNewOwner = true, roomIds: string[] = [], ): Promise<SubscribedRoomsForUserWithDetails[]>",
+      "calls": [
+        {
+          "name": "findByUserIdAndRoomIds",
+          "edgeType": "call"
+        },
+        {
+          "name": "findByUserIdExceptType",
+          "edgeType": "call"
+        },
+        {
+          "name": "subscriptionHasRole",
+          "edgeType": "call"
+        },
+        {
+          "name": "countByRoomIdAndRoles",
+          "edgeType": "call"
+        },
+        {
+          "name": "findByRoomId",
+          "edgeType": "call"
+        },
+        {
+          "name": "findOneActiveById",
+          "edgeType": "call"
+        },
+        {
+          "name": "countByRoomId",
+          "edgeType": "call"
+        },
+        {
+          "name": "push",
+          "edgeType": "call"
+        },
+        {
+          "name": "SubscribedRoomsForUserWithDetails",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "type",
+      "name": "SubscribedRoomsForUserWithDetails",
+      "line": 6,
+      "endLine": 13,
+      "signature": "export type SubscribedRoomsForUserWithDetails ="
+    }
+  ],
+  "imports": [
+    {
+      "module": "@rocket.chat/core-typings",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/models",
+      "resolved": "external"
+    },
+    {
+      "module": "../../../app/authorization/server",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/app/authorization/server/index.ts"
+    }
+  ]
+}

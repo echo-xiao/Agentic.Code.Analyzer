@@ -1,0 +1,41 @@
+{
+  "sourcePath": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/client/views/room/composer/messageBox/hooks/useMessageBoxPlaceholder.ts",
+  "symbols": [
+    {
+      "type": "variable_function",
+      "name": "useMessageBoxPlaceholder",
+      "exported": true,
+      "line": 6,
+      "endLine": 18,
+      "signature": "(placeholder: string, room?: IRoom) =>",
+      "calls": [
+        {
+          "name": "useRoomName",
+          "edgeType": "call"
+        },
+        {
+          "name": "isDirectMessageRoom",
+          "edgeType": "call"
+        },
+        {
+          "name": "IRoom",
+          "edgeType": "type"
+        }
+      ]
+    }
+  ],
+  "imports": [
+    {
+      "module": "@rocket.chat/core-typings",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/core-typings",
+      "resolved": "external"
+    },
+    {
+      "module": "../../../../../hooks/useRoomName",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/client/hooks/useRoomName.ts"
+    }
+  ]
+}

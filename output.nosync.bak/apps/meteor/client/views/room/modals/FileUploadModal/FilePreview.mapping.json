@@ -1,0 +1,131 @@
+{
+  "sourcePath": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/client/views/room/modals/FileUploadModal/FilePreview.tsx",
+  "symbols": [
+    {
+      "type": "variable_function",
+      "name": "getFileType",
+      "exported": false,
+      "line": 12,
+      "endLine": 21,
+      "signature": "(fileType: File['type']): FilePreviewType | undefined =>",
+      "calls": [
+        {
+          "name": "values",
+          "edgeType": "call"
+        },
+        {
+          "name": "indexOf",
+          "edgeType": "call"
+        },
+        {
+          "name": "File",
+          "edgeType": "type"
+        },
+        {
+          "name": "FilePreviewType",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "variable_function",
+      "name": "shouldShowMediaPreview",
+      "exported": false,
+      "line": 16,
+      "endLine": 31,
+      "signature": "(file: File, fileType: FilePreviewType | undefined): boolean =>",
+      "calls": [
+        {
+          "name": "includes",
+          "edgeType": "call"
+        },
+        {
+          "name": "values",
+          "edgeType": "call"
+        },
+        {
+          "name": "File",
+          "edgeType": "type"
+        },
+        {
+          "name": "FilePreviewType",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "variable_function",
+      "name": "FilePreview",
+      "exported": false,
+      "line": 25,
+      "endLine": 33,
+      "signature": "({ file, altText }: FilePreviewProps) =>",
+      "calls": [
+        {
+          "name": "getFileType",
+          "edgeType": "call"
+        },
+        {
+          "name": "shouldShowMediaPreview",
+          "edgeType": "call"
+        },
+        {
+          "name": "MediaPreview",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "GenericPreview",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "file",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "altText",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "FilePreviewProps",
+          "edgeType": "type"
+        },
+        {
+          "name": "FilePreviewType",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "type",
+      "name": "FilePreviewProps",
+      "line": 20,
+      "endLine": 23,
+      "signature": "export type FilePreviewProps ="
+    },
+    {
+      "type": "enum",
+      "name": "FilePreviewType",
+      "line": 6,
+      "endLine": 10,
+      "signature": "export enum FilePreviewType"
+    }
+  ],
+  "imports": [
+    {
+      "module": "./GenericPreview",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/client/views/room/modals/FileUploadModal/GenericPreview.tsx"
+    },
+    {
+      "module": "./MediaPreview",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/client/views/room/modals/FileUploadModal/MediaPreview.tsx"
+    },
+    {
+      "module": "../../../../lib/constants",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/client/lib/constants.ts"
+    },
+    {
+      "module": "../../../../lib/utils/isIE11",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/client/lib/utils/isIE11.ts"
+    }
+  ]
+}

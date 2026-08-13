@@ -1,0 +1,205 @@
+{
+  "sourcePath": "/Users/echoooooo/Desktop/code/Rocket.Chat/packages/ui-client/src/hooks/useLicense.ts",
+  "symbols": [
+    {
+      "type": "variable_function",
+      "name": "useLicenseBase",
+      "exported": true,
+      "line": 28,
+      "endLine": 55,
+      "signature": "<TData = LicenseDataType>({ params, enabled = true, select, }: { params?: LicenseParams; enabled?: boolean; select: (data: LicenseDataType) => TData; }) =>",
+      "calls": [
+        {
+          "name": "useUserId",
+          "edgeType": "call"
+        },
+        {
+          "name": "useEndpoint",
+          "edgeType": "call"
+        },
+        {
+          "name": "useInvalidateLicense",
+          "edgeType": "call"
+        },
+        {
+          "name": "useStream",
+          "edgeType": "call"
+        },
+        {
+          "name": "useEffect",
+          "edgeType": "call"
+        },
+        {
+          "name": "notify",
+          "edgeType": "call"
+        },
+        {
+          "name": "invalidateQueries",
+          "edgeType": "call"
+        },
+        {
+          "name": "useQuery",
+          "edgeType": "call"
+        },
+        {
+          "name": "getLicenses",
+          "edgeType": "call"
+        },
+        {
+          "name": "LicenseDataType",
+          "edgeType": "type"
+        },
+        {
+          "name": "LicenseParams",
+          "edgeType": "type"
+        },
+        {
+          "name": "TData",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "variable_function",
+      "name": "useLicense",
+      "exported": true,
+      "line": 40,
+      "endLine": 45,
+      "signature": "(params?: LicenseParams) =>",
+      "calls": [
+        {
+          "name": "useLicenseBase",
+          "edgeType": "call"
+        },
+        {
+          "name": "LicenseParams",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "variable_function",
+      "name": "useLicenseWithCloudAnnouncement",
+      "exported": true,
+      "line": 44,
+      "endLine": 52,
+      "signature": "(params?: LicenseParams) =>",
+      "calls": [
+        {
+          "name": "useLicenseBase",
+          "edgeType": "call"
+        },
+        {
+          "name": "LicenseParams",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "variable_function",
+      "name": "useHasLicense",
+      "exported": true,
+      "line": 48,
+      "endLine": 50,
+      "signature": "(): UseQueryResult<boolean> =>",
+      "calls": [
+        {
+          "name": "useLicenseBase",
+          "edgeType": "call"
+        },
+        {
+          "name": "Boolean",
+          "edgeType": "call"
+        },
+        {
+          "name": "UseQueryResult",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "variable_function",
+      "name": "useLicenseName",
+      "exported": true,
+      "line": 52,
+      "endLine": 54,
+      "signature": "(params?: LicenseParams) =>",
+      "calls": [
+        {
+          "name": "useLicenseBase",
+          "edgeType": "call"
+        },
+        {
+          "name": "join",
+          "edgeType": "call"
+        },
+        {
+          "name": "map",
+          "edgeType": "call"
+        },
+        {
+          "name": "LicenseParams",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "variable_function",
+      "name": "useInvalidateLicense",
+      "exported": true,
+      "line": 56,
+      "endLine": 59,
+      "signature": "() =>",
+      "calls": [
+        {
+          "name": "useQueryClient",
+          "edgeType": "call"
+        },
+        {
+          "name": "invalidateQueryClientLicenses",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "type",
+      "name": "LicenseDataType",
+      "line": 8,
+      "endLine": 8,
+      "signature": "type LicenseDataType = Serialized<Awaited<OperationResult<'GET', '/v1/licenses.info'>>>;"
+    },
+    {
+      "type": "type",
+      "name": "LicenseParams",
+      "line": 10,
+      "endLine": 12,
+      "signature": "type LicenseParams ="
+    }
+  ],
+  "imports": [
+    {
+      "module": "@rocket.chat/core-typings",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/rest-typings",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/ui-contexts",
+      "resolved": "external"
+    },
+    {
+      "module": "@tanstack/react-query",
+      "resolved": "external"
+    },
+    {
+      "module": "@tanstack/react-query",
+      "resolved": "external"
+    },
+    {
+      "module": "react",
+      "resolved": "external"
+    }
+  ]
+}

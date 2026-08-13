@@ -1,0 +1,45 @@
+{
+  "sourcePath": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/client/views/room/composer/hooks/useMessageComposerIsBlocked.ts",
+  "symbols": [
+    {
+      "type": "variable_function",
+      "name": "useMessageComposerIsBlocked",
+      "exported": true,
+      "line": 6,
+      "endLine": 19,
+      "signature": "({ subscription }: { subscription?: ISubscription }): boolean =>",
+      "calls": [
+        {
+          "name": "useRoom",
+          "edgeType": "call"
+        },
+        {
+          "name": "isDirectMessageRoom",
+          "edgeType": "call"
+        },
+        {
+          "name": "Boolean",
+          "edgeType": "call"
+        },
+        {
+          "name": "ISubscription",
+          "edgeType": "type"
+        }
+      ]
+    }
+  ],
+  "imports": [
+    {
+      "module": "@rocket.chat/core-typings",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/core-typings",
+      "resolved": "external"
+    },
+    {
+      "module": "../../contexts/RoomContext",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/client/views/room/contexts/RoomContext.ts"
+    }
+  ]
+}

@@ -1,0 +1,165 @@
+{
+  "sourcePath": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/client/lib/customEmoji.ts",
+  "symbols": [
+    {
+      "type": "variable_function",
+      "name": "isSetNotNull",
+      "exported": false,
+      "line": 7,
+      "endLine": 15,
+      "signature": "(fn: () => unknown) =>",
+      "calls": [
+        {
+          "name": "fn",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "variable_function",
+      "name": "updateEmojiCustom",
+      "exported": true,
+      "line": 11,
+      "endLine": 58,
+      "signature": "(emojiData: IEmoji) =>",
+      "calls": [
+        {
+          "name": "isSetNotNull",
+          "edgeType": "call"
+        },
+        {
+          "name": "indexOf",
+          "edgeType": "call"
+        },
+        {
+          "name": "splice",
+          "edgeType": "call"
+        },
+        {
+          "name": "push",
+          "edgeType": "call"
+        },
+        {
+          "name": "assign",
+          "edgeType": "call"
+        },
+        {
+          "name": "replaceEmojiInRecent",
+          "edgeType": "call"
+        },
+        {
+          "name": "dispatchUpdate",
+          "edgeType": "call"
+        },
+        {
+          "name": "IEmoji",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "variable_function",
+      "name": "deleteEmojiCustom",
+      "exported": true,
+      "line": 15,
+      "endLine": 37,
+      "signature": "(emojiData: IEmoji) =>",
+      "calls": [
+        {
+          "name": "indexOf",
+          "edgeType": "call"
+        },
+        {
+          "name": "splice",
+          "edgeType": "call"
+        },
+        {
+          "name": "removeFromRecent",
+          "edgeType": "call"
+        },
+        {
+          "name": "dispatchUpdate",
+          "edgeType": "call"
+        },
+        {
+          "name": "IEmoji",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "variable_function",
+      "name": "getEmojiUrlFromName",
+      "exported": false,
+      "line": 19,
+      "endLine": 25,
+      "signature": "(name: string, extension: string, etag?: string) =>",
+      "calls": [
+        {
+          "name": "getURL",
+          "edgeType": "call"
+        },
+        {
+          "name": "encodeURIComponent",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "variable_function",
+      "name": "customRender",
+      "exported": true,
+      "line": 23,
+      "endLine": 55,
+      "signature": "(html: string) =>",
+      "calls": [
+        {
+          "name": "join",
+          "edgeType": "call"
+        },
+        {
+          "name": "map",
+          "edgeType": "call"
+        },
+        {
+          "name": "dispatchUpdate",
+          "edgeType": "call"
+        },
+        {
+          "name": "replace",
+          "edgeType": "call"
+        },
+        {
+          "name": "indexOf",
+          "edgeType": "call"
+        },
+        {
+          "name": "getEmojiUrlFromName",
+          "edgeType": "call"
+        },
+        {
+          "name": "RegExp",
+          "edgeType": "new"
+        }
+      ]
+    }
+  ],
+  "imports": [
+    {
+      "module": "@rocket.chat/core-typings",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/string-helpers",
+      "resolved": "external"
+    },
+    {
+      "module": "../../app/emoji/client",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/app/emoji/client/index.ts"
+    },
+    {
+      "module": "../../app/utils/client",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/app/utils/client/index.ts"
+    }
+  ]
+}

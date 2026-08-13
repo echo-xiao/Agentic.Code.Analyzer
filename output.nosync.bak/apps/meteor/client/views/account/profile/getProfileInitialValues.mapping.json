@@ -1,0 +1,60 @@
+{
+  "sourcePath": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/client/views/account/profile/getProfileInitialValues.ts",
+  "symbols": [
+    {
+      "type": "variable_function",
+      "name": "getProfileInitialValues",
+      "exported": true,
+      "line": 18,
+      "endLine": 30,
+      "signature": "(user: IUser | null): AccountProfileFormValues =>",
+      "calls": [
+        {
+          "name": "getUserEmailAddress",
+          "edgeType": "call"
+        },
+        {
+          "name": "getUserStatusInitialValues",
+          "edgeType": "call"
+        },
+        {
+          "name": "IUser",
+          "edgeType": "type"
+        },
+        {
+          "name": "AccountProfileFormValues",
+          "edgeType": "type"
+        },
+        {
+          "name": "AvatarObject",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "type",
+      "name": "AccountProfileFormValues",
+      "line": 7,
+      "endLine": 16,
+      "signature": "export type AccountProfileFormValues ="
+    }
+  ],
+  "imports": [
+    {
+      "module": "@rocket.chat/core-typings",
+      "resolved": "external"
+    },
+    {
+      "module": "../../../../lib/getUserEmailAddress",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/lib/getUserEmailAddress.ts"
+    },
+    {
+      "module": "../../../lib/getUserInitialStatus",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/client/lib/getUserInitialStatus.ts"
+    },
+    {
+      "module": "../../../lib/getUserInitialStatus",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/client/lib/getUserInitialStatus.ts"
+    }
+  ]
+}

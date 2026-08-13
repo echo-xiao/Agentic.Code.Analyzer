@@ -1,0 +1,161 @@
+{
+  "sourcePath": "/Users/echoooooo/Desktop/code/Rocket.Chat/packages/ui-client/src/components/GenericMenu/GenericMenu.tsx",
+  "symbols": [
+    {
+      "type": "inner_function",
+      "name": "handleItems",
+      "exported": false,
+      "qualifiedName": "GenericMenu.handleItems",
+      "line": 45,
+      "endLine": 46,
+      "signature": "(items: GenericMenuItemProps[]) =>",
+      "calls": [
+        {
+          "name": "map",
+          "edgeType": "call"
+        },
+        {
+          "name": "GenericMenuItemProps",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "variable_function",
+      "name": "GenericMenu",
+      "exported": false,
+      "line": 33,
+      "endLine": 106,
+      "signature": "({ title, icon = 'menu', disabled, onAction, callbackAction, button, className, ...props }: GenericMenuProps) =>",
+      "calls": [
+        {
+          "name": "useTranslation",
+          "edgeType": "call"
+        },
+        {
+          "name": "reduce",
+          "edgeType": "call"
+        },
+        {
+          "name": "map",
+          "edgeType": "call"
+        },
+        {
+          "name": "filter",
+          "edgeType": "call"
+        },
+        {
+          "name": "useHandleMenuAction",
+          "edgeType": "call"
+        },
+        {
+          "name": "some",
+          "edgeType": "call"
+        },
+        {
+          "name": "cloneElement",
+          "edgeType": "call"
+        },
+        {
+          "name": "exists",
+          "edgeType": "call"
+        },
+        {
+          "name": "handleItems",
+          "edgeType": "call"
+        },
+        {
+          "name": "Menu",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "MenuSection",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "MenuItem",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "IconButton",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "GenericMenuItem",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "icon",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "className",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "title",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "button",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "GenericMenuProps",
+          "edgeType": "type"
+        },
+        {
+          "name": "GenericMenuItemProps",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "type",
+      "name": "GenericMenuCommonProps",
+      "line": 9,
+      "endLine": 15,
+      "signature": "type GenericMenuCommonProps ="
+    },
+    {
+      "type": "type",
+      "name": "GenericMenuConditionalProps",
+      "line": 17,
+      "endLine": 29,
+      "signature": "type GenericMenuConditionalProps = |"
+    },
+    {
+      "type": "type",
+      "name": "GenericMenuProps",
+      "line": 31,
+      "endLine": 31,
+      "signature": "type GenericMenuProps = GenericMenuCommonProps & GenericMenuConditionalProps & Omit<ComponentProps<typeof Menu>, 'children'>;"
+    }
+  ],
+  "imports": [
+    {
+      "module": "@rocket.chat/fuselage",
+      "resolved": "external"
+    },
+    {
+      "module": "react",
+      "resolved": "external"
+    },
+    {
+      "module": "react-i18next",
+      "resolved": "external"
+    },
+    {
+      "module": "./GenericMenuItem",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/packages/ui-client/src/components/GenericMenu/GenericMenuItem.tsx"
+    },
+    {
+      "module": "./GenericMenuItem",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/packages/ui-client/src/components/GenericMenu/GenericMenuItem.tsx"
+    },
+    {
+      "module": "./hooks/useHandleMenuAction",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/packages/ui-client/src/components/GenericMenu/hooks/useHandleMenuAction.ts"
+    }
+  ]
+}

@@ -1,0 +1,97 @@
+{
+  "sourcePath": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/server/api/v1/omnichannel/upload.ts",
+  "symbols": [
+    {
+      "type": "module",
+      "name": "upload",
+      "exported": false,
+      "line": 1,
+      "endLine": 76,
+      "signature": "upload",
+      "calls": [
+        {
+          "name": "livechat/upload/:rid",
+          "edgeType": "rest_route"
+        },
+        {
+          "name": "addRoute",
+          "edgeType": "call"
+        },
+        {
+          "name": "get",
+          "edgeType": "call"
+        },
+        {
+          "name": "forbidden",
+          "edgeType": "call"
+        },
+        {
+          "name": "failure",
+          "edgeType": "call"
+        },
+        {
+          "name": "getVisitorByToken",
+          "edgeType": "call"
+        },
+        {
+          "name": "findOneOpenByRoomIdAndVisitorToken",
+          "edgeType": "call"
+        },
+        {
+          "name": "parseRequest",
+          "edgeType": "call"
+        },
+        {
+          "name": "fileUploadIsValidContentType",
+          "edgeType": "call"
+        },
+        {
+          "name": "getStore",
+          "edgeType": "call"
+        },
+        {
+          "name": "insert",
+          "edgeType": "call"
+        },
+        {
+          "name": "success",
+          "edgeType": "call"
+        },
+        {
+          "name": "sendFileLivechatMessage",
+          "edgeType": "call"
+        }
+      ]
+    }
+  ],
+  "imports": [
+    {
+      "module": "@rocket.chat/models",
+      "resolved": "external"
+    },
+    {
+      "module": "../..",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/server/api/index.ts"
+    },
+    {
+      "module": "../../../../app/file-upload/server",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/app/file-upload/server/index.ts"
+    },
+    {
+      "module": "../../../../app/livechat/server/methods/sendFileLivechatMessage",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/app/livechat/server/methods/sendFileLivechatMessage.ts"
+    },
+    {
+      "module": "../../../../app/settings/server",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/app/settings/server/index.ts"
+    },
+    {
+      "module": "../../../../app/utils/server/restrictions",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/app/utils/server/restrictions.ts"
+    },
+    {
+      "module": "../../lib/MultipartUploadHandler",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/server/api/lib/MultipartUploadHandler.ts"
+    }
+  ]
+}

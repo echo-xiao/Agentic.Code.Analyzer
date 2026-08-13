@@ -1,0 +1,116 @@
+{
+  "sourcePath": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/tests/e2e/page-objects/fragments/user-card.ts",
+  "symbols": [
+    {
+      "type": "class",
+      "name": "UserCard",
+      "exported": true,
+      "line": 5,
+      "endLine": 31,
+      "signature": "export class UserCard",
+      "calls": []
+    },
+    {
+      "type": "method",
+      "name": "waitForDisplay",
+      "exported": true,
+      "qualifiedName": "UserCard.waitForDisplay",
+      "line": 12,
+      "endLine": 14,
+      "signature": "waitForDisplay()",
+      "containerClass": "UserCard",
+      "calls": [
+        {
+          "name": "toBeVisible",
+          "edgeType": "call"
+        },
+        {
+          "name": "expect",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "waitForDismissal",
+      "exported": true,
+      "qualifiedName": "UserCard.waitForDismissal",
+      "line": 16,
+      "endLine": 18,
+      "signature": "waitForDismissal()",
+      "containerClass": "UserCard",
+      "calls": [
+        {
+          "name": "toBeVisible",
+          "edgeType": "call"
+        },
+        {
+          "name": "expect",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "openUserInfo",
+      "exported": true,
+      "qualifiedName": "UserCard.openUserInfo",
+      "line": 28,
+      "endLine": 30,
+      "signature": "async openUserInfo()",
+      "containerClass": "UserCard",
+      "calls": [
+        {
+          "name": "click",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "constructor",
+      "exported": true,
+      "qualifiedName": "UserCard.constructor",
+      "line": 8,
+      "endLine": 10,
+      "signature": "constructor(protected page: Page)",
+      "containerClass": "UserCard",
+      "calls": [
+        {
+          "name": "getByRole",
+          "edgeType": "call"
+        },
+        {
+          "name": "Page",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "class_property",
+      "name": "root",
+      "exported": true,
+      "qualifiedName": "UserCard.root",
+      "line": 6,
+      "endLine": 6,
+      "signature": "readonly root: Locator;",
+      "containerClass": "UserCard",
+      "calls": [
+        {
+          "name": "Locator",
+          "edgeType": "type"
+        }
+      ]
+    }
+  ],
+  "imports": [
+    {
+      "module": "@playwright/test",
+      "resolved": "external"
+    },
+    {
+      "module": "../../utils/test",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/tests/e2e/utils/test.ts"
+    }
+  ]
+}

@@ -1,0 +1,243 @@
+{
+  "sourcePath": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/server/methods/saveUserProfile.ts",
+  "symbols": [
+    {
+      "type": "function",
+      "name": "saveUserProfile",
+      "exported": false,
+      "line": 26,
+      "endLine": 193,
+      "signature": "async function saveUserProfile( this: AuthenticatedContext, settings: { email?: string; username?: string; realname?: string; newPassword?: string; statusText?: string; statusType?: string; bio?: string; nickname?: string; }, customFields: Record<string, unknown>, ..._: unknown[] )",
+      "calls": [
+        {
+          "name": "get",
+          "edgeType": "call"
+        },
+        {
+          "name": "validateUserEditing",
+          "edgeType": "call"
+        },
+        {
+          "name": "findOneById",
+          "edgeType": "call"
+        },
+        {
+          "name": "saveUserIdentity",
+          "edgeType": "call"
+        },
+        {
+          "name": "setUserStatusMethod",
+          "edgeType": "call"
+        },
+        {
+          "name": "setBio",
+          "edgeType": "call"
+        },
+        {
+          "name": "trim",
+          "edgeType": "call"
+        },
+        {
+          "name": "setNickname",
+          "edgeType": "call"
+        },
+        {
+          "name": "setEmailFunction",
+          "edgeType": "call"
+        },
+        {
+          "name": "compareUserPassword",
+          "edgeType": "call"
+        },
+        {
+          "name": "compareUserPasswordHistory",
+          "edgeType": "call"
+        },
+        {
+          "name": "validate",
+          "edgeType": "call"
+        },
+        {
+          "name": "setPasswordAsync",
+          "edgeType": "call"
+        },
+        {
+          "name": "unsetRequirePasswordChange",
+          "edgeType": "call"
+        },
+        {
+          "name": "addPasswordToHistory",
+          "edgeType": "call"
+        },
+        {
+          "name": "removeNonLoginTokensExcept",
+          "edgeType": "call"
+        },
+        {
+          "name": "_clearAllLoginTokens",
+          "edgeType": "call"
+        },
+        {
+          "name": "setProfile",
+          "edgeType": "call"
+        },
+        {
+          "name": "keys",
+          "edgeType": "call"
+        },
+        {
+          "name": "saveCustomFields",
+          "edgeType": "call"
+        },
+        {
+          "name": "afterSaveUser",
+          "edgeType": "event_emit"
+        },
+        {
+          "name": "notifyOnUserChange",
+          "edgeType": "call"
+        },
+        {
+          "name": "getUserInfo",
+          "edgeType": "call"
+        },
+        {
+          "name": "triggerEvent",
+          "edgeType": "call"
+        },
+        {
+          "name": "AuthenticatedContext",
+          "edgeType": "type"
+        },
+        {
+          "name": "UpdateFilter",
+          "edgeType": "type"
+        },
+        {
+          "name": "IUser",
+          "edgeType": "type"
+        },
+        {
+          "name": "UserStatus",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "function",
+      "name": "executeSaveUserProfile",
+      "exported": true,
+      "line": 68,
+      "endLine": 95,
+      "signature": "export function executeSaveUserProfile( this: AuthenticatedContext, user: IUser, settings: { email?: string; username?: string; realname?: string; newPassword?: string; statusText?: string; statusType?: string; bio?: string; nickname?: string; }, customFields: Record<string, any> = {}, ...args: unknown[] )",
+      "calls": [
+        {
+          "name": "check",
+          "edgeType": "call"
+        },
+        {
+          "name": "Maybe",
+          "edgeType": "call"
+        },
+        {
+          "name": "keys",
+          "edgeType": "call"
+        },
+        {
+          "name": "call",
+          "edgeType": "call"
+        },
+        {
+          "name": "AuthenticatedContext",
+          "edgeType": "type"
+        },
+        {
+          "name": "IUser",
+          "edgeType": "type"
+        }
+      ]
+    }
+  ],
+  "imports": [
+    {
+      "module": "@rocket.chat/apps",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/core-typings",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/models",
+      "resolved": "external"
+    },
+    {
+      "module": "meteor/accounts-base",
+      "resolved": "external"
+    },
+    {
+      "module": "meteor/check",
+      "resolved": "external"
+    },
+    {
+      "module": "meteor/meteor",
+      "resolved": "external"
+    },
+    {
+      "module": "mongodb",
+      "resolved": "external"
+    },
+    {
+      "module": "../../app/2fa/server/twoFactorRequired",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/app/2fa/server/twoFactorRequired.ts"
+    },
+    {
+      "module": "../../app/lib/server/lib/notifyListener",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/app/lib/server/lib/notifyListener.ts"
+    },
+    {
+      "module": "../../app/lib/server/lib/passwordPolicy",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/app/lib/server/lib/passwordPolicy.ts"
+    },
+    {
+      "module": "../../app/lib/server/methods/setEmail",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/app/lib/server/methods/setEmail.ts"
+    },
+    {
+      "module": "../../app/settings/server",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/app/settings/server/index.ts"
+    },
+    {
+      "module": "../../app/user-status/server/methods/setUserStatus",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/app/user-status/server/methods/setUserStatus.ts"
+    },
+    {
+      "module": "../api/lib/getUserInfo",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/server/api/lib/getUserInfo.ts"
+    },
+    {
+      "module": "../lib/callbacks",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/server/lib/callbacks.ts"
+    },
+    {
+      "module": "../lib/compareUserPassword",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/server/lib/compareUserPassword.ts"
+    },
+    {
+      "module": "../lib/compareUserPasswordHistory",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/server/lib/compareUserPasswordHistory.ts"
+    },
+    {
+      "module": "../lib/users/saveCustomFields",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/server/lib/users/saveCustomFields.ts"
+    },
+    {
+      "module": "../lib/users/saveUser",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/server/lib/users/saveUser/index.ts"
+    },
+    {
+      "module": "../lib/users/saveUserIdentity",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/server/lib/users/saveUserIdentity.ts"
+    }
+  ]
+}

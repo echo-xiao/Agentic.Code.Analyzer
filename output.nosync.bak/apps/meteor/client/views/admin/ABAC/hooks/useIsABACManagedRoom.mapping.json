@@ -1,0 +1,41 @@
+{
+  "sourcePath": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/client/views/admin/ABAC/hooks/useIsABACManagedRoom.ts",
+  "symbols": [
+    {
+      "type": "variable_function",
+      "name": "useIsABACManagedRoom",
+      "exported": true,
+      "line": 6,
+      "endLine": 9,
+      "signature": "(room: Partial<IRoom>): boolean =>",
+      "calls": [
+        {
+          "name": "useIsABACAvailable",
+          "edgeType": "call"
+        },
+        {
+          "name": "isABACManagedRoom",
+          "edgeType": "call"
+        },
+        {
+          "name": "IRoom",
+          "edgeType": "type"
+        }
+      ]
+    }
+  ],
+  "imports": [
+    {
+      "module": "@rocket.chat/core-typings",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/core-typings",
+      "resolved": "external"
+    },
+    {
+      "module": "./useIsABACAvailable",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/client/views/admin/ABAC/hooks/useIsABACAvailable.ts"
+    }
+  ]
+}

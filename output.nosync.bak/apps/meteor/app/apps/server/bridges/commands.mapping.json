@@ -1,0 +1,513 @@
+{
+  "sourcePath": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/app/apps/server/bridges/commands.ts",
+  "symbols": [
+    {
+      "type": "class",
+      "name": "AppCommandsBridge",
+      "exported": true,
+      "line": 11,
+      "endLine": 222,
+      "signature": "export class AppCommandsBridge extends CommandBridge",
+      "calls": [
+        {
+          "name": "CommandBridge",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "doesCommandExist",
+      "exported": true,
+      "qualifiedName": "AppCommandsBridge.doesCommandExist",
+      "line": 19,
+      "endLine": 29,
+      "signature": "protected async doesCommandExist(command: string, appId: string): Promise<boolean>",
+      "containerClass": "AppCommandsBridge",
+      "calls": [
+        {
+          "name": "debugLog",
+          "edgeType": "call"
+        },
+        {
+          "name": "toLowerCase",
+          "edgeType": "call"
+        },
+        {
+          "name": "has",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "enableCommand",
+      "exported": true,
+      "qualifiedName": "AppCommandsBridge.enableCommand",
+      "line": 23,
+      "endLine": 39,
+      "signature": "protected async enableCommand(command: string, appId: string): Promise<void>",
+      "containerClass": "AppCommandsBridge",
+      "calls": [
+        {
+          "name": "debugLog",
+          "edgeType": "call"
+        },
+        {
+          "name": "trim",
+          "edgeType": "call"
+        },
+        {
+          "name": "toLowerCase",
+          "edgeType": "call"
+        },
+        {
+          "name": "has",
+          "edgeType": "call"
+        },
+        {
+          "name": "get",
+          "edgeType": "call"
+        },
+        {
+          "name": "delete",
+          "edgeType": "call"
+        },
+        {
+          "name": "commandUpdated",
+          "edgeType": "call"
+        },
+        {
+          "name": "getNotifier",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "disableCommand",
+      "exported": true,
+      "qualifiedName": "AppCommandsBridge.disableCommand",
+      "line": 27,
+      "endLine": 50,
+      "signature": "protected async disableCommand(command: string, appId: string): Promise<void>",
+      "containerClass": "AppCommandsBridge",
+      "calls": [
+        {
+          "name": "debugLog",
+          "edgeType": "call"
+        },
+        {
+          "name": "trim",
+          "edgeType": "call"
+        },
+        {
+          "name": "toLowerCase",
+          "edgeType": "call"
+        },
+        {
+          "name": "has",
+          "edgeType": "call"
+        },
+        {
+          "name": "set",
+          "edgeType": "call"
+        },
+        {
+          "name": "commandDisabled",
+          "edgeType": "call"
+        },
+        {
+          "name": "getNotifier",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "modifyCommand",
+      "exported": true,
+      "qualifiedName": "AppCommandsBridge.modifyCommand",
+      "line": 32,
+      "endLine": 55,
+      "signature": "protected async modifyCommand(command: ISlashCommand, appId: string): Promise<void>",
+      "containerClass": "AppCommandsBridge",
+      "calls": [
+        {
+          "name": "debugLog",
+          "edgeType": "call"
+        },
+        {
+          "name": "_verifyCommand",
+          "edgeType": "call"
+        },
+        {
+          "name": "toLowerCase",
+          "edgeType": "call"
+        },
+        {
+          "name": "bind",
+          "edgeType": "call"
+        },
+        {
+          "name": "commandUpdated",
+          "edgeType": "call"
+        },
+        {
+          "name": "getNotifier",
+          "edgeType": "call"
+        },
+        {
+          "name": "ISlashCommand",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "registerCommand",
+      "exported": true,
+      "qualifiedName": "AppCommandsBridge.registerCommand",
+      "line": 36,
+      "endLine": 57,
+      "signature": "protected async registerCommand(command: ISlashCommand, appId: string): Promise<void>",
+      "containerClass": "AppCommandsBridge",
+      "calls": [
+        {
+          "name": "debugLog",
+          "edgeType": "call"
+        },
+        {
+          "name": "_verifyCommand",
+          "edgeType": "call"
+        },
+        {
+          "name": "toLowerCase",
+          "edgeType": "call"
+        },
+        {
+          "name": "getI18nKeyForApp",
+          "edgeType": "call"
+        },
+        {
+          "name": "bind",
+          "edgeType": "call"
+        },
+        {
+          "name": "commandAdded",
+          "edgeType": "call"
+        },
+        {
+          "name": "getNotifier",
+          "edgeType": "call"
+        },
+        {
+          "name": "ISlashCommand",
+          "edgeType": "type"
+        },
+        {
+          "name": "SlashCommand",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "unregisterCommand",
+      "exported": true,
+      "qualifiedName": "AppCommandsBridge.unregisterCommand",
+      "line": 40,
+      "endLine": 52,
+      "signature": "protected async unregisterCommand(command: string, appId: string): Promise<void>",
+      "containerClass": "AppCommandsBridge",
+      "calls": [
+        {
+          "name": "debugLog",
+          "edgeType": "call"
+        },
+        {
+          "name": "trim",
+          "edgeType": "call"
+        },
+        {
+          "name": "toLowerCase",
+          "edgeType": "call"
+        },
+        {
+          "name": "delete",
+          "edgeType": "call"
+        },
+        {
+          "name": "commandRemoved",
+          "edgeType": "call"
+        },
+        {
+          "name": "getNotifier",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "_verifyCommand",
+      "exported": true,
+      "qualifiedName": "AppCommandsBridge._verifyCommand",
+      "line": 44,
+      "endLine": 64,
+      "signature": "private _verifyCommand(command: ISlashCommand): void",
+      "containerClass": "AppCommandsBridge",
+      "calls": [
+        {
+          "name": "ISlashCommand",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "_appCommandExecutor",
+      "exported": true,
+      "qualifiedName": "AppCommandsBridge._appCommandExecutor",
+      "line": 48,
+      "endLine": 64,
+      "signature": "private async _appCommandExecutor({ command, message, params, triggerId, userId }: SlashCommandCallbackParams<string>): Promise<void>",
+      "containerClass": "AppCommandsBridge",
+      "calls": [
+        {
+          "name": "convertById",
+          "edgeType": "call"
+        },
+        {
+          "name": "get",
+          "edgeType": "call"
+        },
+        {
+          "name": "getConverters",
+          "edgeType": "call"
+        },
+        {
+          "name": "parseParameters",
+          "edgeType": "call"
+        },
+        {
+          "name": "freeze",
+          "edgeType": "call"
+        },
+        {
+          "name": "executeCommand",
+          "edgeType": "call"
+        },
+        {
+          "name": "getCommandManager",
+          "edgeType": "call"
+        },
+        {
+          "name": "getManager",
+          "edgeType": "call"
+        },
+        {
+          "name": "SlashCommandContext",
+          "edgeType": "new"
+        },
+        {
+          "name": "SlashCommandCallbackParams",
+          "edgeType": "type"
+        },
+        {
+          "name": "IAppsUser",
+          "edgeType": "type"
+        },
+        {
+          "name": "IAppsRoom",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "_appCommandPreviewer",
+      "exported": true,
+      "qualifiedName": "AppCommandsBridge._appCommandPreviewer",
+      "line": 52,
+      "endLine": 71,
+      "signature": "private async _appCommandPreviewer( command: string, parameters: any, message: RequiredField<Partial<IMessage>, 'rid'>, userId: string, ): Promise<ISlashCommandPreview | undefined>",
+      "containerClass": "AppCommandsBridge",
+      "calls": [
+        {
+          "name": "convertById",
+          "edgeType": "call"
+        },
+        {
+          "name": "get",
+          "edgeType": "call"
+        },
+        {
+          "name": "getConverters",
+          "edgeType": "call"
+        },
+        {
+          "name": "parseParameters",
+          "edgeType": "call"
+        },
+        {
+          "name": "freeze",
+          "edgeType": "call"
+        },
+        {
+          "name": "getPreviews",
+          "edgeType": "call"
+        },
+        {
+          "name": "getCommandManager",
+          "edgeType": "call"
+        },
+        {
+          "name": "getManager",
+          "edgeType": "call"
+        },
+        {
+          "name": "SlashCommandContext",
+          "edgeType": "new"
+        },
+        {
+          "name": "RequiredField",
+          "edgeType": "type"
+        },
+        {
+          "name": "IMessage",
+          "edgeType": "type"
+        },
+        {
+          "name": "ISlashCommandPreview",
+          "edgeType": "type"
+        },
+        {
+          "name": "IAppsUser",
+          "edgeType": "type"
+        },
+        {
+          "name": "IAppsRoom",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "_appCommandPreviewExecutor",
+      "exported": true,
+      "qualifiedName": "AppCommandsBridge._appCommandPreviewExecutor",
+      "line": 61,
+      "endLine": 84,
+      "signature": "private async _appCommandPreviewExecutor( command: string, parameters: any, message: IMessage, preview: ISlashCommandPreviewItem, userId: string, triggerId: string, ): Promise<void>",
+      "containerClass": "AppCommandsBridge",
+      "calls": [
+        {
+          "name": "convertById",
+          "edgeType": "call"
+        },
+        {
+          "name": "get",
+          "edgeType": "call"
+        },
+        {
+          "name": "getConverters",
+          "edgeType": "call"
+        },
+        {
+          "name": "parseParameters",
+          "edgeType": "call"
+        },
+        {
+          "name": "freeze",
+          "edgeType": "call"
+        },
+        {
+          "name": "executePreview",
+          "edgeType": "call"
+        },
+        {
+          "name": "getCommandManager",
+          "edgeType": "call"
+        },
+        {
+          "name": "getManager",
+          "edgeType": "call"
+        },
+        {
+          "name": "SlashCommandContext",
+          "edgeType": "new"
+        },
+        {
+          "name": "IMessage",
+          "edgeType": "type"
+        },
+        {
+          "name": "ISlashCommandPreviewItem",
+          "edgeType": "type"
+        },
+        {
+          "name": "IAppsUser",
+          "edgeType": "type"
+        },
+        {
+          "name": "IAppsRoom",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "constructor",
+      "exported": true,
+      "qualifiedName": "AppCommandsBridge.constructor",
+      "line": 14,
+      "endLine": 17,
+      "signature": "constructor(private readonly orch: IAppServerOrchestrator)",
+      "containerClass": "AppCommandsBridge",
+      "calls": [
+        {
+          "name": "Map",
+          "edgeType": "new"
+        },
+        {
+          "name": "IAppServerOrchestrator",
+          "edgeType": "type"
+        }
+      ]
+    }
+  ],
+  "imports": [
+    {
+      "module": "@rocket.chat/apps",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/apps/dist/server/bridges/CommandBridge",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/apps-engine/definition/slashcommands",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/apps-engine/definition/slashcommands",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/core-typings",
+      "resolved": "external"
+    },
+    {
+      "module": "../../../../ee/lib/misc/Utilities",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/ee/lib/misc/Utilities.ts"
+    },
+    {
+      "module": "../../../../lib/utils/parseParameters",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/lib/utils/parseParameters.ts"
+    },
+    {
+      "module": "../../../utils/server/slashCommand",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/app/utils/server/slashCommand.ts"
+    }
+  ]
+}

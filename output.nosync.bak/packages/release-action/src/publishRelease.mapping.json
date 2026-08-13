@@ -1,0 +1,153 @@
+{
+  "sourcePath": "/Users/echoooooo/Desktop/code/Rocket.Chat/packages/release-action/src/publishRelease.ts",
+  "symbols": [
+    {
+      "type": "function",
+      "name": "publishRelease",
+      "exported": true,
+      "line": 15,
+      "endLine": 127,
+      "signature": "export async function publishRelease({ githubToken, mainPackagePath, mergeFinal = false, baseRef, cwd = process.cwd(), }: { githubToken: string; mainPackagePath: string; baseRef?: string; mergeFinal?: boolean; cwd?: string; })",
+      "calls": [
+        {
+          "name": "cwd",
+          "edgeType": "call"
+        },
+        {
+          "name": "setupOctokit",
+          "edgeType": "call"
+        },
+        {
+          "name": "createNpmFile",
+          "edgeType": "call"
+        },
+        {
+          "name": "checkoutBranch",
+          "edgeType": "call"
+        },
+        {
+          "name": "readPackageJson",
+          "edgeType": "call"
+        },
+        {
+          "name": "isPreRelease",
+          "edgeType": "call"
+        },
+        {
+          "name": "exec",
+          "edgeType": "call"
+        },
+        {
+          "name": "info",
+          "edgeType": "call"
+        },
+        {
+          "name": "createBumpFile",
+          "edgeType": "call"
+        },
+        {
+          "name": "join",
+          "edgeType": "call"
+        },
+        {
+          "name": "readFileSync",
+          "edgeType": "call"
+        },
+        {
+          "name": "getChangelogEntry",
+          "edgeType": "call"
+        },
+        {
+          "name": "getEngineVersionsMd",
+          "edgeType": "call"
+        },
+        {
+          "name": "bumpFileVersions",
+          "edgeType": "call"
+        },
+        {
+          "name": "commitChanges",
+          "edgeType": "call"
+        },
+        {
+          "name": "getLatestRelease",
+          "edgeType": "call"
+        },
+        {
+          "name": "gt",
+          "edgeType": "call"
+        },
+        {
+          "name": "getCurrentBranch",
+          "edgeType": "call"
+        },
+        {
+          "name": "mergeBranch",
+          "edgeType": "call"
+        },
+        {
+          "name": "pushChanges",
+          "edgeType": "call"
+        },
+        {
+          "name": "fixWorkspaceVersionsBeforePublish",
+          "edgeType": "call"
+        },
+        {
+          "name": "createTag",
+          "edgeType": "call"
+        },
+        {
+          "name": "createRelease",
+          "edgeType": "call"
+        }
+      ]
+    }
+  ],
+  "imports": [
+    {
+      "module": "node:fs",
+      "resolved": "external"
+    },
+    {
+      "module": "node:path",
+      "resolved": "external"
+    },
+    {
+      "module": "@actions/core",
+      "resolved": "external"
+    },
+    {
+      "module": "@actions/exec",
+      "resolved": "external"
+    },
+    {
+      "module": "@actions/github",
+      "resolved": "external"
+    },
+    {
+      "module": "semver",
+      "resolved": "external"
+    },
+    {
+      "module": "./createNpmFile",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/packages/release-action/src/createNpmFile.ts"
+    },
+    {
+      "module": "./fixWorkspaceVersionsBeforePublish",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/packages/release-action/src/fixWorkspaceVersionsBeforePublish.ts"
+    },
+    {
+      "module": "./gitUtils",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/packages/release-action/src/gitUtils.ts"
+    },
+    {
+      "module": "./setupOctokit",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/packages/release-action/src/setupOctokit.ts"
+    },
+    {
+      "module": "./utils",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/packages/release-action/src/utils.ts"
+    }
+  ]
+}

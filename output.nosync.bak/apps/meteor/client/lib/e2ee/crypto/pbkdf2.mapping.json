@@ -1,0 +1,236 @@
+{
+  "sourcePath": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/client/lib/e2ee/crypto/pbkdf2.ts",
+  "symbols": [
+    {
+      "type": "variable_function",
+      "name": "importBaseKey",
+      "exported": true,
+      "line": 35,
+      "endLine": 38,
+      "signature": "async (keyData: Uint8Array<ArrayBuffer>): Promise<BaseKey> =>",
+      "calls": [
+        {
+          "name": "importRaw",
+          "edgeType": "call"
+        },
+        {
+          "name": "Uint8Array",
+          "edgeType": "type"
+        },
+        {
+          "name": "ArrayBuffer",
+          "edgeType": "type"
+        },
+        {
+          "name": "BaseKey",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "variable_function",
+      "name": "derive",
+      "exported": true,
+      "line": 54,
+      "endLine": 61,
+      "signature": "async (key: BaseKey, options: Options): Promise<DerivedBits> =>",
+      "calls": [
+        {
+          "name": "deriveBits",
+          "edgeType": "call"
+        },
+        {
+          "name": "BaseKey",
+          "edgeType": "type"
+        },
+        {
+          "name": "Options",
+          "edgeType": "type"
+        },
+        {
+          "name": "DerivedBits",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "variable_function",
+      "name": "importKey",
+      "exported": true,
+      "line": 58,
+      "endLine": 62,
+      "signature": "async <T extends Algorithms>(derivedBits: DerivedBits, algorithm: T): Promise<DerivedKey<T>> =>",
+      "calls": [
+        {
+          "name": "importRaw",
+          "edgeType": "call"
+        },
+        {
+          "name": "Algorithms",
+          "edgeType": "type"
+        },
+        {
+          "name": "DerivedBits",
+          "edgeType": "type"
+        },
+        {
+          "name": "DerivedKey",
+          "edgeType": "type"
+        },
+        {
+          "name": "AesKeyGenParams",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "variable_function",
+      "name": "decrypt",
+      "exported": true,
+      "line": 62,
+      "endLine": 69,
+      "signature": "async (key: DerivedKey, content: EncryptedContent): Promise<Uint8Array<ArrayBuffer>> =>",
+      "calls": [
+        {
+          "name": "decryptBuffer",
+          "edgeType": "call"
+        },
+        {
+          "name": "Uint8Array",
+          "edgeType": "new"
+        },
+        {
+          "name": "DerivedKey",
+          "edgeType": "type"
+        },
+        {
+          "name": "EncryptedContent",
+          "edgeType": "type"
+        },
+        {
+          "name": "Uint8Array",
+          "edgeType": "type"
+        },
+        {
+          "name": "ArrayBuffer",
+          "edgeType": "type"
+        },
+        {
+          "name": "AesCbcParams",
+          "edgeType": "type"
+        },
+        {
+          "name": "AesGcmParams",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "variable_function",
+      "name": "encrypt",
+      "exported": true,
+      "line": 66,
+      "endLine": 74,
+      "signature": "async ( key: DerivedKey<{ name: 'AES-GCM'; length: 256 }>, data: Uint8Array<ArrayBuffer>, ): Promise<EncryptedContent> =>",
+      "calls": [
+        {
+          "name": "getRandomValues",
+          "edgeType": "call"
+        },
+        {
+          "name": "encryptBuffer",
+          "edgeType": "call"
+        },
+        {
+          "name": "Uint8Array",
+          "edgeType": "new"
+        },
+        {
+          "name": "DerivedKey",
+          "edgeType": "type"
+        },
+        {
+          "name": "Uint8Array",
+          "edgeType": "type"
+        },
+        {
+          "name": "ArrayBuffer",
+          "edgeType": "type"
+        },
+        {
+          "name": "EncryptedContent",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "type",
+      "name": "Algorithms",
+      "line": 3,
+      "endLine": 3,
+      "signature": "type Algorithms ="
+    },
+    {
+      "type": "type",
+      "name": "DerivedKey",
+      "line": 5,
+      "endLine": 10,
+      "signature": "export type DerivedKey<TAlgorithm extends Algorithms = Algorithms> = IKey<"
+    },
+    {
+      "type": "type",
+      "name": "Options",
+      "line": 12,
+      "endLine": 15,
+      "signature": "export type Options ="
+    },
+    {
+      "type": "type",
+      "name": "EncryptedContent",
+      "line": 17,
+      "endLine": 20,
+      "signature": "export type EncryptedContent ="
+    },
+    {
+      "type": "type",
+      "name": "Narrow",
+      "line": 22,
+      "endLine": 24,
+      "signature": "type Narrow<T, U extends"
+    },
+    {
+      "type": "type",
+      "name": "BaseKey",
+      "line": 26,
+      "endLine": 33,
+      "signature": "export type BaseKey = IKey<"
+    },
+    {
+      "type": "type",
+      "name": "Throws",
+      "line": 39,
+      "endLine": 39,
+      "signature": "type Throws<F> = F extends (...args: infer TArgs) => infer TRet ? (...args: TArgs) => TRet & never : never;"
+    },
+    {
+      "type": "type",
+      "name": "FixedSizeArrayBuffer",
+      "line": 41,
+      "endLine": 50,
+      "signature": "type FixedSizeArrayBuffer<N extends number> = Narrow< ArrayBuffer,"
+    },
+    {
+      "type": "type",
+      "name": "DerivedBits",
+      "line": 52,
+      "endLine": 52,
+      "signature": "export type DerivedBits = FixedSizeArrayBuffer<32>;"
+    }
+  ],
+  "imports": [
+    {
+      "module": "./shared",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/client/lib/e2ee/crypto/shared.ts"
+    }
+  ]
+}

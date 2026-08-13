@@ -1,0 +1,53 @@
+{
+  "sourcePath": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/server/api/v1/omnichannel/pageVisited.ts",
+  "symbols": [
+    {
+      "type": "module",
+      "name": "pageVisited",
+      "exported": false,
+      "line": 1,
+      "endLine": 24,
+      "signature": "pageVisited",
+      "calls": [
+        {
+          "name": "livechat/page.visited",
+          "edgeType": "rest_route"
+        },
+        {
+          "name": "addRoute",
+          "edgeType": "call"
+        },
+        {
+          "name": "savePageHistory",
+          "edgeType": "call"
+        },
+        {
+          "name": "success",
+          "edgeType": "call"
+        },
+        {
+          "name": "IOmnichannelSystemMessage",
+          "edgeType": "type"
+        }
+      ]
+    }
+  ],
+  "imports": [
+    {
+      "module": "@rocket.chat/core-typings",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/rest-typings",
+      "resolved": "external"
+    },
+    {
+      "module": "../..",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/server/api/index.ts"
+    },
+    {
+      "module": "../../../../app/livechat/server/lib/tracking",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/app/livechat/server/lib/tracking.ts"
+    }
+  ]
+}

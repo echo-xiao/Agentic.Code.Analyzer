@@ -1,0 +1,546 @@
+{
+  "sourcePath": "/Users/echoooooo/Desktop/code/Rocket.Chat/packages/core-services/src/LocalBroker.ts",
+  "symbols": [
+    {
+      "type": "class",
+      "name": "LocalBroker",
+      "exported": true,
+      "line": 19,
+      "endLine": 231,
+      "signature": "export class LocalBroker implements IBroker",
+      "calls": [
+        {
+          "name": "IBroker",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "call",
+      "exported": true,
+      "qualifiedName": "LocalBroker.call",
+      "line": 32,
+      "endLine": 53,
+      "signature": "async call(method: string, data: any, options?: CallingOptions): Promise<any>",
+      "containerClass": "LocalBroker",
+      "calls": [
+        {
+          "name": "warn",
+          "edgeType": "call"
+        },
+        {
+          "name": "tracerActiveSpan",
+          "edgeType": "call"
+        },
+        {
+          "name": "get",
+          "edgeType": "call"
+        },
+        {
+          "name": "injectCurrentContext",
+          "edgeType": "call"
+        },
+        {
+          "name": "CallingOptions",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "destroyService",
+      "exported": true,
+      "qualifiedName": "LocalBroker.destroyService",
+      "line": 36,
+      "endLine": 57,
+      "signature": "async destroyService(instance: ServiceClass): Promise<void>",
+      "containerClass": "LocalBroker",
+      "calls": [
+        {
+          "name": "getName",
+          "edgeType": "call"
+        },
+        {
+          "name": "forEach",
+          "edgeType": "call"
+        },
+        {
+          "name": "getEvents",
+          "edgeType": "call"
+        },
+        {
+          "name": "removeListener",
+          "edgeType": "call"
+        },
+        {
+          "name": "getOwnPropertyNames",
+          "edgeType": "call"
+        },
+        {
+          "name": "getPrototypeOf",
+          "edgeType": "call"
+        },
+        {
+          "name": "delete",
+          "edgeType": "call"
+        },
+        {
+          "name": "removeAllListeners",
+          "edgeType": "call"
+        },
+        {
+          "name": "stopped",
+          "edgeType": "call"
+        },
+        {
+          "name": "ServiceClass",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "createService",
+      "exported": true,
+      "qualifiedName": "LocalBroker.createService",
+      "line": 43,
+      "endLine": 82,
+      "signature": "createService(instance: IServiceClass, serviceDependencies: string[] = []): void",
+      "containerClass": "LocalBroker",
+      "calls": [
+        {
+          "name": "getName",
+          "edgeType": "call"
+        },
+        {
+          "name": "has",
+          "edgeType": "call"
+        },
+        {
+          "name": "filter",
+          "edgeType": "call"
+        },
+        {
+          "name": "created",
+          "edgeType": "call"
+        },
+        {
+          "name": "forEach",
+          "edgeType": "call"
+        },
+        {
+          "name": "getEvents",
+          "edgeType": "call"
+        },
+        {
+          "name": "listener",
+          "edgeType": "event_listen",
+          "event": "event.eventName"
+        },
+        {
+          "name": "getOwnPropertyNames",
+          "edgeType": "call"
+        },
+        {
+          "name": "getPrototypeOf",
+          "edgeType": "call"
+        },
+        {
+          "name": "set",
+          "edgeType": "call"
+        },
+        {
+          "name": "bind",
+          "edgeType": "call"
+        },
+        {
+          "name": "registerPendingServices",
+          "edgeType": "call"
+        },
+        {
+          "name": "from",
+          "edgeType": "call"
+        },
+        {
+          "name": "start",
+          "edgeType": "call"
+        },
+        {
+          "name": "Set",
+          "edgeType": "new"
+        },
+        {
+          "name": "IServiceClass",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "onBroadcast",
+      "exported": true,
+      "qualifiedName": "LocalBroker.onBroadcast",
+      "line": 47,
+      "endLine": 49,
+      "signature": "onBroadcast(callback: (eventName: string, args: unknown[]) => void): void",
+      "containerClass": "LocalBroker",
+      "calls": [
+        {
+          "name": "callback",
+          "edgeType": "event_listen",
+          "event": "broadcast"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "broadcast",
+      "exported": true,
+      "qualifiedName": "LocalBroker.broadcast",
+      "line": 51,
+      "endLine": 55,
+      "signature": "async broadcast<T extends keyof EventSignatures>(event: T, ...args: Parameters<EventSignatures[T]>): Promise<void>",
+      "containerClass": "LocalBroker",
+      "calls": [
+        {
+          "name": "broadcastLocal",
+          "edgeType": "call"
+        },
+        {
+          "name": "broadcast",
+          "edgeType": "event_emit"
+        },
+        {
+          "name": "EventSignatures",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "broadcastLocal",
+      "exported": true,
+      "qualifiedName": "LocalBroker.broadcastLocal",
+      "line": 55,
+      "endLine": 57,
+      "signature": "async broadcastLocal<T extends keyof EventSignatures>(event: T, ...args: Parameters<EventSignatures[T]>): Promise<void>",
+      "containerClass": "LocalBroker",
+      "calls": [
+        {
+          "name": "EventSignatures",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "broadcastToServices",
+      "exported": true,
+      "qualifiedName": "LocalBroker.broadcastToServices",
+      "line": 59,
+      "endLine": 65,
+      "signature": "async broadcastToServices<T extends keyof EventSignatures>( _services: string[], event: T, ...args: Parameters<EventSignatures[T]> ): Promise<void>",
+      "containerClass": "LocalBroker",
+      "calls": [
+        {
+          "name": "EventSignatures",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "nodeList",
+      "exported": true,
+      "qualifiedName": "LocalBroker.nodeList",
+      "line": 67,
+      "endLine": 72,
+      "signature": "async nodeList(): Promise<IBrokerNode[]>",
+      "containerClass": "LocalBroker",
+      "calls": [
+        {
+          "name": "toArray",
+          "edgeType": "call"
+        },
+        {
+          "name": "find",
+          "edgeType": "call"
+        },
+        {
+          "name": "map",
+          "edgeType": "call"
+        },
+        {
+          "name": "IBrokerNode",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "registerPendingServices",
+      "exported": true,
+      "qualifiedName": "LocalBroker.registerPendingServices",
+      "line": 74,
+      "endLine": 78,
+      "signature": "private registerPendingServices(services: string[] = []): void",
+      "containerClass": "LocalBroker",
+      "calls": [
+        {
+          "name": "forEach",
+          "edgeType": "call"
+        },
+        {
+          "name": "filter",
+          "edgeType": "call"
+        },
+        {
+          "name": "has",
+          "edgeType": "call"
+        },
+        {
+          "name": "get",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "removePendingService",
+      "exported": true,
+      "qualifiedName": "LocalBroker.removePendingService",
+      "line": 81,
+      "endLine": 83,
+      "signature": "private removePendingService(service: string): void",
+      "containerClass": "LocalBroker",
+      "calls": [
+        {
+          "name": "delete",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "startService",
+      "exported": true,
+      "qualifiedName": "LocalBroker.startService",
+      "line": 85,
+      "endLine": 113,
+      "signature": "private async startService(service: ExtendedServiceClass): Promise<void>",
+      "containerClass": "LocalBroker",
+      "calls": [
+        {
+          "name": "getName",
+          "edgeType": "call"
+        },
+        {
+          "name": "debug",
+          "edgeType": "call"
+        },
+        {
+          "name": "filter",
+          "edgeType": "call"
+        },
+        {
+          "name": "has",
+          "edgeType": "call"
+        },
+        {
+          "name": "get",
+          "edgeType": "call"
+        },
+        {
+          "name": "started",
+          "edgeType": "call"
+        },
+        {
+          "name": "set",
+          "edgeType": "call"
+        },
+        {
+          "name": "removePendingService",
+          "edgeType": "call"
+        },
+        {
+          "name": "ExtendedServiceClass",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "start",
+      "exported": true,
+      "qualifiedName": "LocalBroker.start",
+      "line": 89,
+      "endLine": 122,
+      "signature": "async start(): Promise<void>",
+      "containerClass": "LocalBroker",
+      "calls": [
+        {
+          "name": "now",
+          "edgeType": "call"
+        },
+        {
+          "name": "filter",
+          "edgeType": "call"
+        },
+        {
+          "name": "from",
+          "edgeType": "call"
+        },
+        {
+          "name": "values",
+          "edgeType": "call"
+        },
+        {
+          "name": "info",
+          "edgeType": "call"
+        },
+        {
+          "name": "clearInterval",
+          "edgeType": "call"
+        },
+        {
+          "name": "resolve",
+          "edgeType": "call"
+        },
+        {
+          "name": "join",
+          "edgeType": "call"
+        },
+        {
+          "name": "error",
+          "edgeType": "call"
+        },
+        {
+          "name": "reject",
+          "edgeType": "call"
+        },
+        {
+          "name": "get",
+          "edgeType": "call"
+        },
+        {
+          "name": "startService",
+          "edgeType": "call"
+        },
+        {
+          "name": "debug",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "class_property",
+      "name": "methods",
+      "exported": true,
+      "qualifiedName": "LocalBroker.methods",
+      "line": 22,
+      "endLine": 22,
+      "signature": "private methods = new Map<string, (...params: any) => any>();",
+      "containerClass": "LocalBroker",
+      "calls": [
+        {
+          "name": "Map",
+          "edgeType": "new"
+        }
+      ]
+    },
+    {
+      "type": "class_property",
+      "name": "events",
+      "exported": true,
+      "qualifiedName": "LocalBroker.events",
+      "line": 24,
+      "endLine": 24,
+      "signature": "private events = new EventEmitter();",
+      "containerClass": "LocalBroker",
+      "calls": [
+        {
+          "name": "EventEmitter",
+          "edgeType": "new"
+        }
+      ]
+    },
+    {
+      "type": "class_property",
+      "name": "services",
+      "exported": true,
+      "qualifiedName": "LocalBroker.services",
+      "line": 26,
+      "endLine": 26,
+      "signature": "private services = new Map<string, ExtendedServiceClass>();",
+      "containerClass": "LocalBroker",
+      "calls": [
+        {
+          "name": "Map",
+          "edgeType": "new"
+        },
+        {
+          "name": "ExtendedServiceClass",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "class_property",
+      "name": "pendingServices",
+      "exported": true,
+      "qualifiedName": "LocalBroker.pendingServices",
+      "line": 28,
+      "endLine": 28,
+      "signature": "private pendingServices: Set<string> = new Set();",
+      "containerClass": "LocalBroker",
+      "calls": [
+        {
+          "name": "Set",
+          "edgeType": "new"
+        }
+      ]
+    },
+    {
+      "type": "type",
+      "name": "ExtendedServiceClass",
+      "line": 12,
+      "endLine": 12,
+      "signature": "type ExtendedServiceClass ="
+    }
+  ],
+  "imports": [
+    {
+      "module": "node:events",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/logger",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/models",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/tracing",
+      "resolved": "external"
+    },
+    {
+      "module": ".",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/packages/core-services/src/index.ts"
+    },
+    {
+      "module": "./events/Events",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/packages/core-services/src/events/Events.ts"
+    },
+    {
+      "module": "./types/IBroker",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/packages/core-services/src/types/IBroker.ts"
+    },
+    {
+      "module": "./types/ServiceClass",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/packages/core-services/src/types/ServiceClass.ts"
+    }
+  ]
+}

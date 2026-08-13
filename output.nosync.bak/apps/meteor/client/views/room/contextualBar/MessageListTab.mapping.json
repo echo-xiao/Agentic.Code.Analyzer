@@ -1,0 +1,255 @@
+{
+  "sourcePath": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/client/views/room/contextualBar/MessageListTab.tsx",
+  "symbols": [
+    {
+      "type": "inner_function",
+      "name": "handleTabBarCloseButtonClick",
+      "exported": false,
+      "qualifiedName": "MessageListTab.handleTabBarCloseButtonClick",
+      "line": 43,
+      "endLine": 45,
+      "signature": "() =>",
+      "calls": [
+        {
+          "name": "closeTab",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "variable_function",
+      "name": "MessageListTab",
+      "exported": false,
+      "line": 38,
+      "endLine": 117,
+      "signature": "({ iconName, title, emptyResultMessage, context, queryResult }: MessageListTabProps) =>",
+      "calls": [
+        {
+          "name": "useFormatDate",
+          "edgeType": "call"
+        },
+        {
+          "name": "useUserPreference",
+          "edgeType": "call"
+        },
+        {
+          "name": "useRoomToolbox",
+          "edgeType": "call"
+        },
+        {
+          "name": "useCallback",
+          "edgeType": "call"
+        },
+        {
+          "name": "closeTab",
+          "edgeType": "call"
+        },
+        {
+          "name": "useRoomSubscription",
+          "edgeType": "call"
+        },
+        {
+          "name": "isMessageNewDay",
+          "edgeType": "call"
+        },
+        {
+          "name": "isSystemMessage",
+          "edgeType": "call"
+        },
+        {
+          "name": "includes",
+          "edgeType": "call"
+        },
+        {
+          "name": "formatDate",
+          "edgeType": "call"
+        },
+        {
+          "name": "ContextualbarDialog",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "ContextualbarHeader",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "ContextualbarTitle",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "ContextualbarContent",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "Box",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "MessageListErrorBoundary",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "MessageListProvider",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "VirtualizedScrollbars",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "MessageDivider",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "ContextualbarIcon",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "ContextualbarClose",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "Throbber",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "ContextualbarEmptyContent",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "Virtuoso",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "SystemMessage",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "RoomMessage",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "iconName",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "handleTabBarCloseButtonClick",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "emptyResultMessage",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "message",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "showUserAvatar",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "unread",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "mention",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "all",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "context",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "MessageListTabProps",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "type",
+      "name": "MessageListTabProps",
+      "line": 30,
+      "endLine": 36,
+      "signature": "type MessageListTabProps ="
+    }
+  ],
+  "imports": [
+    {
+      "module": "@rocket.chat/core-typings",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/fuselage",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/icons",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/message-types",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/ui-client",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/ui-contexts",
+      "resolved": "external"
+    },
+    {
+      "module": "@tanstack/react-query",
+      "resolved": "external"
+    },
+    {
+      "module": "react",
+      "resolved": "external"
+    },
+    {
+      "module": "react",
+      "resolved": "external"
+    },
+    {
+      "module": "react-virtuoso",
+      "resolved": "external"
+    },
+    {
+      "module": "../../../../app/ui-utils/client/lib/MessageAction",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/app/ui-utils/client/lib/MessageAction.ts"
+    },
+    {
+      "module": "../../../components/message/variants/RoomMessage",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/client/components/message/variants/RoomMessage.tsx"
+    },
+    {
+      "module": "../../../components/message/variants/SystemMessage",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/client/components/message/variants/SystemMessage.tsx"
+    },
+    {
+      "module": "../../../hooks/useFormatDate",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/client/hooks/useFormatDate.ts"
+    },
+    {
+      "module": "../MessageList/MessageListErrorBoundary",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/client/views/room/MessageList/MessageListErrorBoundary.tsx"
+    },
+    {
+      "module": "../MessageList/lib/isMessageNewDay",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/client/views/room/MessageList/lib/isMessageNewDay.ts"
+    },
+    {
+      "module": "../MessageList/providers/MessageListProvider",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/client/views/room/MessageList/providers/MessageListProvider.tsx"
+    },
+    {
+      "module": "../contexts/RoomContext",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/client/views/room/contexts/RoomContext.ts"
+    }
+  ]
+}

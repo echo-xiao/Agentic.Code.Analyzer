@@ -1,0 +1,201 @@
+{
+  "sourcePath": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/server/api/v1/import.ts",
+  "symbols": [
+    {
+      "type": "module",
+      "name": "import",
+      "exported": false,
+      "line": 1,
+      "endLine": 396,
+      "signature": "import",
+      "calls": [
+        {
+          "name": "uploadImportFile",
+          "edgeType": "rest_route"
+        },
+        {
+          "name": "post",
+          "edgeType": "call"
+        },
+        {
+          "name": "executeUploadImportFile",
+          "edgeType": "call"
+        },
+        {
+          "name": "success",
+          "edgeType": "call"
+        },
+        {
+          "name": "downloadPublicImportFile",
+          "edgeType": "rest_route"
+        },
+        {
+          "name": "executeDownloadPublicImportFile",
+          "edgeType": "call"
+        },
+        {
+          "name": "startImport",
+          "edgeType": "rest_route"
+        },
+        {
+          "name": "executeStartImport",
+          "edgeType": "call"
+        },
+        {
+          "name": "getImportFileData",
+          "edgeType": "rest_route"
+        },
+        {
+          "name": "get",
+          "edgeType": "call"
+        },
+        {
+          "name": "compile",
+          "edgeType": "call"
+        },
+        {
+          "name": "executeGetImportFileData",
+          "edgeType": "call"
+        },
+        {
+          "name": "getImportProgress",
+          "edgeType": "rest_route"
+        },
+        {
+          "name": "executeGetImportProgress",
+          "edgeType": "call"
+        },
+        {
+          "name": "getLatestImportOperations",
+          "edgeType": "rest_route"
+        },
+        {
+          "name": "executeGetLatestImportOperations",
+          "edgeType": "call"
+        },
+        {
+          "name": "IImport",
+          "edgeType": "type"
+        },
+        {
+          "name": "downloadPendingFiles",
+          "edgeType": "rest_route"
+        },
+        {
+          "name": "newOperation",
+          "edgeType": "call"
+        },
+        {
+          "name": "prepareFileCount",
+          "edgeType": "call"
+        },
+        {
+          "name": "PendingFileImporter",
+          "edgeType": "new"
+        },
+        {
+          "name": "downloadPendingAvatars",
+          "edgeType": "rest_route"
+        },
+        {
+          "name": "PendingAvatarImporter",
+          "edgeType": "new"
+        },
+        {
+          "name": "getCurrentImportOperation",
+          "edgeType": "rest_route"
+        },
+        {
+          "name": "findLastImport",
+          "edgeType": "call"
+        },
+        {
+          "name": "importers.list",
+          "edgeType": "rest_route"
+        },
+        {
+          "name": "map",
+          "edgeType": "call"
+        },
+        {
+          "name": "getAllVisible",
+          "edgeType": "call"
+        },
+        {
+          "name": "import.clear",
+          "edgeType": "rest_route"
+        },
+        {
+          "name": "clear",
+          "edgeType": "call"
+        },
+        {
+          "name": "import.new",
+          "edgeType": "rest_route"
+        },
+        {
+          "name": "import.status",
+          "edgeType": "rest_route"
+        },
+        {
+          "name": "status",
+          "edgeType": "call"
+        },
+        {
+          "name": "import.addUsers",
+          "edgeType": "rest_route"
+        },
+        {
+          "name": "addUsers",
+          "edgeType": "call"
+        },
+        {
+          "name": "import.run",
+          "edgeType": "rest_route"
+        }
+      ]
+    }
+  ],
+  "imports": [
+    {
+      "module": "@rocket.chat/core-services",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/core-typings",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/models",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/rest-typings",
+      "resolved": "external"
+    },
+    {
+      "module": "meteor/meteor",
+      "resolved": "external"
+    },
+    {
+      "module": "../../../app/importer/server",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/app/importer/server/index.ts"
+    },
+    {
+      "module": "../../../app/importer/server/methods",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/app/importer/server/methods/index.ts"
+    },
+    {
+      "module": "../../../app/importer-pending-avatars/server/PendingAvatarImporter",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/app/importer-pending-avatars/server/PendingAvatarImporter.ts"
+    },
+    {
+      "module": "../../../app/importer-pending-files/server/PendingFileImporter",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/app/importer-pending-files/server/PendingFileImporter.ts"
+    },
+    {
+      "module": "../api",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/server/api/api.ts"
+    }
+  ]
+}

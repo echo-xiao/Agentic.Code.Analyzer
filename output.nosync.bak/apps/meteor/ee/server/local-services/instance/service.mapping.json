@@ -1,0 +1,471 @@
+{
+  "sourcePath": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/ee/server/local-services/instance/service.ts",
+  "symbols": [
+    {
+      "type": "class",
+      "name": "EJSONSerializer",
+      "exported": false,
+      "line": 23,
+      "endLine": 31,
+      "signature": "class EJSONSerializer extends Base",
+      "calls": [
+        {
+          "name": "Base",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "serialize",
+      "exported": false,
+      "qualifiedName": "EJSONSerializer.serialize",
+      "line": 24,
+      "endLine": 26,
+      "signature": "override serialize(obj: any): Buffer",
+      "containerClass": "EJSONSerializer",
+      "calls": [
+        {
+          "name": "from",
+          "edgeType": "call"
+        },
+        {
+          "name": "stringify",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "deserialize",
+      "exported": false,
+      "qualifiedName": "EJSONSerializer.deserialize",
+      "line": 28,
+      "endLine": 30,
+      "signature": "override deserialize(buf: Buffer): any",
+      "containerClass": "EJSONSerializer",
+      "calls": [
+        {
+          "name": "parse",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "class",
+      "name": "InstanceService",
+      "exported": true,
+      "line": 33,
+      "endLine": 257,
+      "signature": "export class InstanceService extends ServiceClassInternal implements IInstanceService",
+      "calls": [
+        {
+          "name": "ServiceClassInternal",
+          "edgeType": "type"
+        },
+        {
+          "name": "IInstanceService",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "created",
+      "exported": true,
+      "qualifiedName": "InstanceService.created",
+      "line": 68,
+      "endLine": 141,
+      "signature": "override async created()",
+      "containerClass": "InstanceService",
+      "calls": [
+        {
+          "name": "getTransporter",
+          "edgeType": "call"
+        },
+        {
+          "name": "id",
+          "edgeType": "call"
+        },
+        {
+          "name": "getLogger",
+          "edgeType": "call"
+        },
+        {
+          "name": "createService",
+          "edgeType": "call"
+        },
+        {
+          "name": "__emit",
+          "edgeType": "call"
+        },
+        {
+          "name": "_emit",
+          "edgeType": "call"
+        },
+        {
+          "name": "getAppsStatusLocal",
+          "edgeType": "call"
+        },
+        {
+          "name": "watchActiveInstances",
+          "edgeType": "call"
+        },
+        {
+          "name": "error",
+          "edgeType": "event_listen"
+        },
+        {
+          "name": "change",
+          "edgeType": "event_listen"
+        },
+        {
+          "name": "connectNode",
+          "edgeType": "call"
+        },
+        {
+          "name": "disconnectNode",
+          "edgeType": "call"
+        },
+        {
+          "name": "error",
+          "edgeType": "call"
+        },
+        {
+          "name": "ServiceBroker",
+          "edgeType": "new"
+        },
+        {
+          "name": "EJSONSerializer",
+          "edgeType": "new"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "connectNode",
+      "exported": true,
+      "qualifiedName": "InstanceService.connectNode",
+      "line": 72,
+      "endLine": 80,
+      "signature": "private connectNode(record: IInstanceStatus)",
+      "containerClass": "InstanceService",
+      "calls": [
+        {
+          "name": "id",
+          "edgeType": "call"
+        },
+        {
+          "name": "addOfflineNode",
+          "edgeType": "call"
+        },
+        {
+          "name": "IInstanceStatus",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "disconnectNode",
+      "exported": true,
+      "qualifiedName": "InstanceService.disconnectNode",
+      "line": 76,
+      "endLine": 79,
+      "signature": "private disconnectNode(nodeId: string)",
+      "containerClass": "InstanceService",
+      "calls": [
+        {
+          "name": "disconnected",
+          "edgeType": "call"
+        },
+        {
+          "name": "delete",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "started",
+      "exported": true,
+      "qualifiedName": "InstanceService.started",
+      "line": 80,
+      "endLine": 115,
+      "signature": "override async started()",
+      "containerClass": "InstanceService",
+      "calls": [
+        {
+          "name": "start",
+          "edgeType": "call"
+        },
+        {
+          "name": "trim",
+          "edgeType": "call"
+        },
+        {
+          "name": "type",
+          "edgeType": "call"
+        },
+        {
+          "name": "platform",
+          "edgeType": "call"
+        },
+        {
+          "name": "arch",
+          "edgeType": "call"
+        },
+        {
+          "name": "release",
+          "edgeType": "call"
+        },
+        {
+          "name": "uptime",
+          "edgeType": "call"
+        },
+        {
+          "name": "loadavg",
+          "edgeType": "call"
+        },
+        {
+          "name": "totalmem",
+          "edgeType": "call"
+        },
+        {
+          "name": "freemem",
+          "edgeType": "call"
+        },
+        {
+          "name": "cpus",
+          "edgeType": "call"
+        },
+        {
+          "name": "registerInstance",
+          "edgeType": "call"
+        },
+        {
+          "name": "hasModule",
+          "edgeType": "call"
+        },
+        {
+          "name": "get",
+          "edgeType": "call"
+        },
+        {
+          "name": "startBroadcast",
+          "edgeType": "call"
+        },
+        {
+          "name": "error",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "startBroadcast",
+      "exported": true,
+      "qualifiedName": "InstanceService.startBroadcast",
+      "line": 84,
+      "endLine": 92,
+      "signature": "private async startBroadcast()",
+      "containerClass": "InstanceService",
+      "calls": [
+        {
+          "name": "broadcast",
+          "edgeType": "event_listen"
+        },
+        {
+          "name": "bind",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "sendBroadcast",
+      "exported": true,
+      "qualifiedName": "InstanceService.sendBroadcast",
+      "line": 88,
+      "endLine": 94,
+      "signature": "private sendBroadcast(streamName: string, eventName: string, args: unknown[])",
+      "containerClass": "InstanceService",
+      "calls": [
+        {
+          "name": "broadcast",
+          "edgeType": "event_emit"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "getInstances",
+      "exported": true,
+      "qualifiedName": "InstanceService.getInstances",
+      "line": 92,
+      "endLine": 94,
+      "signature": "async getInstances(): Promise<BrokerNode[]>",
+      "containerClass": "InstanceService",
+      "calls": [
+        {
+          "name": "$node.list",
+          "edgeType": "call"
+        },
+        {
+          "name": "call",
+          "edgeType": "call"
+        },
+        {
+          "name": "BrokerNode",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "getAppsStatusInInstances",
+      "exported": true,
+      "qualifiedName": "InstanceService.getAppsStatusInInstances",
+      "line": 96,
+      "endLine": 135,
+      "signature": "async getAppsStatusInInstances(): Promise<AppStatusReport>",
+      "containerClass": "InstanceService",
+      "calls": [
+        {
+          "name": "getInstances",
+          "edgeType": "call"
+        },
+        {
+          "name": "forEach",
+          "edgeType": "call"
+        },
+        {
+          "name": "push",
+          "edgeType": "call"
+        },
+        {
+          "name": "matrix.getAppsStatus",
+          "edgeType": "call"
+        },
+        {
+          "name": "call",
+          "edgeType": "call"
+        },
+        {
+          "name": "all",
+          "edgeType": "call"
+        },
+        {
+          "name": "AppsEngineNoNodesFoundError",
+          "edgeType": "new"
+        },
+        {
+          "name": "AppStatusReport",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "constructor",
+      "exported": true,
+      "qualifiedName": "InstanceService.constructor",
+      "line": 44,
+      "endLine": 66,
+      "signature": "constructor()",
+      "containerClass": "InstanceService",
+      "calls": [
+        {
+          "name": "onEvent",
+          "edgeType": "call"
+        },
+        {
+          "name": "startBroadcast",
+          "edgeType": "call"
+        },
+        {
+          "name": "onSettingChanged",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "class_property",
+      "name": "broker",
+      "exported": true,
+      "qualifiedName": "InstanceService.broker",
+      "line": 40,
+      "endLine": 40,
+      "signature": "private broker: ServiceBroker;",
+      "containerClass": "InstanceService",
+      "calls": [
+        {
+          "name": "ServiceBroker",
+          "edgeType": "type"
+        }
+      ]
+    }
+  ],
+  "imports": [
+    {
+      "module": "node:os",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/core-services",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/core-services",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/core-typings",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/instance-status",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/models",
+      "resolved": "external"
+    },
+    {
+      "module": "ejson",
+      "resolved": "external"
+    },
+    {
+      "module": "moleculer",
+      "resolved": "external"
+    },
+    {
+      "module": "moleculer",
+      "resolved": "external"
+    },
+    {
+      "module": "./getLogger",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/ee/server/local-services/instance/getLogger.ts"
+    },
+    {
+      "module": "./getTransporter",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/ee/server/local-services/instance/getTransporter.ts"
+    },
+    {
+      "module": "../../../../server/lib/logger/system",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/server/lib/logger/system.ts"
+    },
+    {
+      "module": "../../../../server/modules/streamer/streamer.module",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/server/modules/streamer/streamer.module.ts"
+    },
+    {
+      "module": "../../../../server/services/apps-engine/service",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/server/services/apps-engine/service.ts"
+    },
+    {
+      "module": "../../sdk/types/IInstanceService",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/ee/server/sdk/types/IInstanceService.ts"
+    }
+  ]
+}

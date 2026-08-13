@@ -1,0 +1,77 @@
+{
+  "sourcePath": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/app/livechat/server/hooks/afterAgentRemoved.ts",
+  "symbols": [
+    {
+      "type": "module",
+      "name": "afterAgentRemoved",
+      "exported": false,
+      "line": 1,
+      "endLine": 42,
+      "signature": "afterAgentRemoved",
+      "calls": [
+        {
+          "name": "livechat.afterAgentRemoved",
+          "edgeType": "event_listen"
+        },
+        {
+          "name": "toArray",
+          "edgeType": "call"
+        },
+        {
+          "name": "findByAgentId",
+          "edgeType": "call"
+        },
+        {
+          "name": "all",
+          "edgeType": "call"
+        },
+        {
+          "name": "removeAgent",
+          "edgeType": "call"
+        },
+        {
+          "name": "removeByAgentId",
+          "edgeType": "call"
+        },
+        {
+          "name": "removeContactManagerByUsername",
+          "edgeType": "call"
+        },
+        {
+          "name": "decreaseNumberOfAgentsByIds",
+          "edgeType": "call"
+        },
+        {
+          "name": "map",
+          "edgeType": "call"
+        },
+        {
+          "name": "notifyOnUserChange",
+          "edgeType": "call"
+        },
+        {
+          "name": "forEach",
+          "edgeType": "call"
+        },
+        {
+          "name": "notifyOnLivechatDepartmentAgentChanged",
+          "edgeType": "call"
+        }
+      ]
+    }
+  ],
+  "imports": [
+    {
+      "module": "@rocket.chat/models",
+      "resolved": "external"
+    },
+    {
+      "module": "../../../../server/lib/callbacks",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/server/lib/callbacks.ts"
+    },
+    {
+      "module": "../../../lib/server/lib/notifyListener",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/app/lib/server/lib/notifyListener.ts"
+    }
+  ]
+}

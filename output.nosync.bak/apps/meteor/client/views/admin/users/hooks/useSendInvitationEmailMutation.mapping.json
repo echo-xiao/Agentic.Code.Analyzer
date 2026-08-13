@@ -1,0 +1,102 @@
+{
+  "sourcePath": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/client/views/admin/users/hooks/useSendInvitationEmailMutation.ts",
+  "symbols": [
+    {
+      "type": "inner_function",
+      "name": "onSuccess",
+      "exported": false,
+      "qualifiedName": "useSendInvitationEmailMutation.onSuccess",
+      "line": 26,
+      "endLine": 26,
+      "signature": "() =>",
+      "calls": [
+        {
+          "name": "dispatchToastMessage",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "inner_function",
+      "name": "onError",
+      "exported": false,
+      "qualifiedName": "useSendInvitationEmailMutation.onError",
+      "line": 27,
+      "endLine": 27,
+      "signature": "(error) =>",
+      "calls": [
+        {
+          "name": "dispatchToastMessage",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "variable_function",
+      "name": "useSendInvitationEmailMutation",
+      "exported": true,
+      "line": 10,
+      "endLine": 29,
+      "signature": "(): UseMutationResult< { success: boolean }, Error, UseSendInvitationEmailMutationVariables > =>",
+      "calls": [
+        {
+          "name": "useTranslation",
+          "edgeType": "call"
+        },
+        {
+          "name": "useToastMessageDispatch",
+          "edgeType": "call"
+        },
+        {
+          "name": "useEndpoint",
+          "edgeType": "call"
+        },
+        {
+          "name": "useMutation",
+          "edgeType": "call"
+        },
+        {
+          "name": "sendInvites",
+          "edgeType": "call"
+        },
+        {
+          "name": "dispatchToastMessage",
+          "edgeType": "call"
+        },
+        {
+          "name": "UseMutationResult",
+          "edgeType": "type"
+        },
+        {
+          "name": "UseSendInvitationEmailMutationVariables",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "type",
+      "name": "UseSendInvitationEmailMutationVariables",
+      "line": 6,
+      "endLine": 8,
+      "signature": "type UseSendInvitationEmailMutationVariables ="
+    }
+  ],
+  "imports": [
+    {
+      "module": "@rocket.chat/ui-contexts",
+      "resolved": "external"
+    },
+    {
+      "module": "@tanstack/react-query",
+      "resolved": "external"
+    },
+    {
+      "module": "@tanstack/react-query",
+      "resolved": "external"
+    },
+    {
+      "module": "react-i18next",
+      "resolved": "external"
+    }
+  ]
+}

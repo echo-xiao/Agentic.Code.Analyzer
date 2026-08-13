@@ -1,0 +1,99 @@
+{
+  "sourcePath": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/ee/app/livechat-enterprise/server/hooks/setPredictedVisitorAbandonmentTime.ts",
+  "symbols": [
+    {
+      "type": "module",
+      "name": "setPredictedVisitorAbandonmentTime",
+      "exported": false,
+      "line": 1,
+      "endLine": 47,
+      "signature": "setPredictedVisitorAbandonmentTime",
+      "calls": [
+        {
+          "name": "remove",
+          "edgeType": "call"
+        },
+        {
+          "name": "afterOmnichannelSaveMessage",
+          "edgeType": "event_listen"
+        },
+        {
+          "name": "markRoomResponded",
+          "edgeType": "call"
+        },
+        {
+          "name": "shouldSaveInactivity",
+          "edgeType": "call"
+        },
+        {
+          "name": "isSame",
+          "edgeType": "call"
+        },
+        {
+          "name": "moment",
+          "edgeType": "call"
+        },
+        {
+          "name": "setPredictedVisitorAbandonmentTime",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "function",
+      "name": "shouldSaveInactivity",
+      "exported": false,
+      "line": 10,
+      "endLine": 23,
+      "signature": "function shouldSaveInactivity(message: IMessage): boolean",
+      "calls": [
+        {
+          "name": "isEditedMessage",
+          "edgeType": "call"
+        },
+        {
+          "name": "isMessageFromVisitor",
+          "edgeType": "call"
+        },
+        {
+          "name": "get",
+          "edgeType": "call"
+        },
+        {
+          "name": "IMessage",
+          "edgeType": "type"
+        }
+      ]
+    }
+  ],
+  "imports": [
+    {
+      "module": "@rocket.chat/core-typings",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/core-typings",
+      "resolved": "external"
+    },
+    {
+      "module": "moment",
+      "resolved": "external"
+    },
+    {
+      "module": "../../../../../app/livechat/server/hooks/markRoomResponded",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/app/livechat/server/hooks/markRoomResponded.ts"
+    },
+    {
+      "module": "../../../../../app/settings/server",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/app/settings/server/index.ts"
+    },
+    {
+      "module": "../../../../../server/lib/callbacks",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/server/lib/callbacks.ts"
+    },
+    {
+      "module": "../lib/Helper",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/ee/app/livechat-enterprise/server/lib/Helper.ts"
+    }
+  ]
+}

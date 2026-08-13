@@ -1,0 +1,1304 @@
+{
+  "sourcePath": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/tests/e2e/page-objects/fragments/voice-calls.ts",
+  "symbols": [
+    {
+      "type": "class",
+      "name": "VoiceCallControls",
+      "exported": true,
+      "line": 13,
+      "endLine": 67,
+      "signature": "export class VoiceCallControls",
+      "calls": []
+    },
+    {
+      "type": "method",
+      "name": "constructor",
+      "exported": true,
+      "qualifiedName": "VoiceCallControls.constructor",
+      "line": 16,
+      "endLine": 18,
+      "signature": "constructor(controls: Locator)",
+      "containerClass": "VoiceCallControls",
+      "calls": [
+        {
+          "name": "Locator",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "class_property",
+      "name": "_controls",
+      "exported": true,
+      "qualifiedName": "VoiceCallControls._controls",
+      "line": 14,
+      "endLine": 14,
+      "signature": "private readonly _controls: Locator;",
+      "containerClass": "VoiceCallControls",
+      "calls": [
+        {
+          "name": "Locator",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "class",
+      "name": "TransferModal",
+      "exported": true,
+      "line": 69,
+      "endLine": 99,
+      "signature": "export class TransferModal",
+      "calls": []
+    },
+    {
+      "type": "method",
+      "name": "transferCall",
+      "exported": true,
+      "qualifiedName": "TransferModal.transferCall",
+      "line": 91,
+      "endLine": 98,
+      "signature": "async transferCall(username: string): Promise<void>",
+      "containerClass": "TransferModal",
+      "calls": [
+        {
+          "name": "fill",
+          "edgeType": "call"
+        },
+        {
+          "name": "click",
+          "edgeType": "call"
+        },
+        {
+          "name": "getByRole",
+          "edgeType": "call"
+        },
+        {
+          "name": "toContainText",
+          "edgeType": "call"
+        },
+        {
+          "name": "expect",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "constructor",
+      "exported": true,
+      "qualifiedName": "TransferModal.constructor",
+      "line": 74,
+      "endLine": 77,
+      "signature": "constructor(page: Page, root: Locator)",
+      "containerClass": "TransferModal",
+      "calls": [
+        {
+          "name": "Page",
+          "edgeType": "type"
+        },
+        {
+          "name": "Locator",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "class_property",
+      "name": "root",
+      "exported": true,
+      "qualifiedName": "TransferModal.root",
+      "line": 70,
+      "endLine": 70,
+      "signature": "private readonly root: Locator;",
+      "containerClass": "TransferModal",
+      "calls": [
+        {
+          "name": "Locator",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "class_property",
+      "name": "page",
+      "exported": true,
+      "qualifiedName": "TransferModal.page",
+      "line": 72,
+      "endLine": 72,
+      "signature": "private readonly page: Page;",
+      "containerClass": "TransferModal",
+      "calls": [
+        {
+          "name": "Page",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "class",
+      "name": "Widget",
+      "exported": true,
+      "line": 95,
+      "endLine": 216,
+      "signature": "export class Widget",
+      "calls": []
+    },
+    {
+      "type": "method",
+      "name": "showCallHere",
+      "exported": true,
+      "qualifiedName": "Widget.showCallHere",
+      "line": 127,
+      "endLine": 130,
+      "signature": "async showCallHere(): Promise<void>",
+      "containerClass": "Widget",
+      "calls": [
+        {
+          "name": "click",
+          "edgeType": "call"
+        },
+        {
+          "name": "toBeVisible",
+          "edgeType": "call"
+        },
+        {
+          "name": "expect",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "getTimerContentInSeconds",
+      "exported": true,
+      "qualifiedName": "Widget.getTimerContentInSeconds",
+      "line": 131,
+      "endLine": 134,
+      "signature": "async getTimerContentInSeconds()",
+      "containerClass": "Widget",
+      "calls": [
+        {
+          "name": "innerText",
+          "edgeType": "call"
+        },
+        {
+          "name": "timerToSeconds",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "initiateCall",
+      "exported": true,
+      "qualifiedName": "Widget.initiateCall",
+      "line": 135,
+      "endLine": 138,
+      "signature": "async initiateCall(): Promise<void>",
+      "containerClass": "Widget",
+      "calls": [
+        {
+          "name": "click",
+          "edgeType": "call"
+        },
+        {
+          "name": "toBeVisible",
+          "edgeType": "call"
+        },
+        {
+          "name": "expect",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "acceptCall",
+      "exported": true,
+      "qualifiedName": "Widget.acceptCall",
+      "line": 139,
+      "endLine": 142,
+      "signature": "async acceptCall(): Promise<void>",
+      "containerClass": "Widget",
+      "calls": [
+        {
+          "name": "click",
+          "edgeType": "call"
+        },
+        {
+          "name": "toBeVisible",
+          "edgeType": "call"
+        },
+        {
+          "name": "expect",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "endCall",
+      "exported": true,
+      "qualifiedName": "Widget.endCall",
+      "line": 143,
+      "endLine": 146,
+      "signature": "async endCall(): Promise<void>",
+      "containerClass": "Widget",
+      "calls": [
+        {
+          "name": "click",
+          "edgeType": "call"
+        },
+        {
+          "name": "toBeVisible",
+          "edgeType": "call"
+        },
+        {
+          "name": "expect",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "goToDm",
+      "exported": true,
+      "qualifiedName": "Widget.goToDm",
+      "line": 147,
+      "endLine": 150,
+      "signature": "async goToDm(): Promise<void>",
+      "containerClass": "Widget",
+      "calls": [
+        {
+          "name": "click",
+          "edgeType": "call"
+        },
+        {
+          "name": "toBeVisible",
+          "edgeType": "call"
+        },
+        {
+          "name": "expect",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "transferCall",
+      "exported": true,
+      "qualifiedName": "Widget.transferCall",
+      "line": 151,
+      "endLine": 157,
+      "signature": "async transferCall(username: string): Promise<void>",
+      "containerClass": "Widget",
+      "calls": [
+        {
+          "name": "click",
+          "edgeType": "call"
+        },
+        {
+          "name": "toBeVisible",
+          "edgeType": "call"
+        },
+        {
+          "name": "expect",
+          "edgeType": "call"
+        },
+        {
+          "name": "transferCall",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "muteSelf",
+      "exported": true,
+      "qualifiedName": "Widget.muteSelf",
+      "line": 155,
+      "endLine": 158,
+      "signature": "async muteSelf(): Promise<void>",
+      "containerClass": "Widget",
+      "calls": [
+        {
+          "name": "click",
+          "edgeType": "call"
+        },
+        {
+          "name": "toHaveAttribute",
+          "edgeType": "call"
+        },
+        {
+          "name": "expect",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "unmuteSelf",
+      "exported": true,
+      "qualifiedName": "Widget.unmuteSelf",
+      "line": 159,
+      "endLine": 162,
+      "signature": "async unmuteSelf(): Promise<void>",
+      "containerClass": "Widget",
+      "calls": [
+        {
+          "name": "click",
+          "edgeType": "call"
+        },
+        {
+          "name": "toHaveAttribute",
+          "edgeType": "call"
+        },
+        {
+          "name": "expect",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "holdSelf",
+      "exported": true,
+      "qualifiedName": "Widget.holdSelf",
+      "line": 163,
+      "endLine": 166,
+      "signature": "async holdSelf(): Promise<void>",
+      "containerClass": "Widget",
+      "calls": [
+        {
+          "name": "click",
+          "edgeType": "call"
+        },
+        {
+          "name": "toHaveAttribute",
+          "edgeType": "call"
+        },
+        {
+          "name": "expect",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "resumeSelf",
+      "exported": true,
+      "qualifiedName": "Widget.resumeSelf",
+      "line": 167,
+      "endLine": 170,
+      "signature": "async resumeSelf(): Promise<void>",
+      "containerClass": "Widget",
+      "calls": [
+        {
+          "name": "click",
+          "edgeType": "call"
+        },
+        {
+          "name": "toHaveAttribute",
+          "edgeType": "call"
+        },
+        {
+          "name": "expect",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "openDialpad",
+      "exported": true,
+      "qualifiedName": "Widget.openDialpad",
+      "line": 171,
+      "endLine": 174,
+      "signature": "async openDialpad(): Promise<void>",
+      "containerClass": "Widget",
+      "calls": [
+        {
+          "name": "click",
+          "edgeType": "call"
+        },
+        {
+          "name": "toHaveAttribute",
+          "edgeType": "call"
+        },
+        {
+          "name": "expect",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "closeDialpad",
+      "exported": true,
+      "qualifiedName": "Widget.closeDialpad",
+      "line": 175,
+      "endLine": 178,
+      "signature": "async closeDialpad(): Promise<void>",
+      "containerClass": "Widget",
+      "calls": [
+        {
+          "name": "click",
+          "edgeType": "call"
+        },
+        {
+          "name": "toHaveAttribute",
+          "edgeType": "call"
+        },
+        {
+          "name": "expect",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "shareScreen",
+      "exported": true,
+      "qualifiedName": "Widget.shareScreen",
+      "line": 183,
+      "endLine": 186,
+      "signature": "async shareScreen(): Promise<void>",
+      "containerClass": "Widget",
+      "calls": [
+        {
+          "name": "click",
+          "edgeType": "call"
+        },
+        {
+          "name": "toHaveAttribute",
+          "edgeType": "call"
+        },
+        {
+          "name": "expect",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "stopSharing",
+      "exported": true,
+      "qualifiedName": "Widget.stopSharing",
+      "line": 187,
+      "endLine": 190,
+      "signature": "async stopSharing(): Promise<void>",
+      "containerClass": "Widget",
+      "calls": [
+        {
+          "name": "click",
+          "edgeType": "call"
+        },
+        {
+          "name": "toHaveAttribute",
+          "edgeType": "call"
+        },
+        {
+          "name": "expect",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "openPopout",
+      "exported": true,
+      "qualifiedName": "Widget.openPopout",
+      "line": 191,
+      "endLine": 193,
+      "signature": "async openPopout(): Promise<void>",
+      "containerClass": "Widget",
+      "calls": [
+        {
+          "name": "click",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "peerCard",
+      "exported": true,
+      "qualifiedName": "Widget.peerCard",
+      "line": 195,
+      "endLine": 197,
+      "signature": "peerCard(username: string): Locator",
+      "containerClass": "Widget",
+      "calls": [
+        {
+          "name": "getByText",
+          "edgeType": "call"
+        },
+        {
+          "name": "Locator",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "constructor",
+      "exported": true,
+      "qualifiedName": "Widget.constructor",
+      "line": 104,
+      "endLine": 109,
+      "signature": "constructor(page: Page)",
+      "containerClass": "Widget",
+      "calls": [
+        {
+          "name": "getByRole",
+          "edgeType": "call"
+        },
+        {
+          "name": "TransferModal",
+          "edgeType": "new"
+        },
+        {
+          "name": "VoiceCallControls",
+          "edgeType": "new"
+        },
+        {
+          "name": "Page",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "class_property",
+      "name": "root",
+      "exported": true,
+      "qualifiedName": "Widget.root",
+      "line": 96,
+      "endLine": 96,
+      "signature": "private readonly root: Locator;",
+      "containerClass": "Widget",
+      "calls": [
+        {
+          "name": "Locator",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "class_property",
+      "name": "callControls",
+      "exported": true,
+      "qualifiedName": "Widget.callControls",
+      "line": 98,
+      "endLine": 98,
+      "signature": "private readonly callControls: VoiceCallControls;",
+      "containerClass": "Widget",
+      "calls": [
+        {
+          "name": "VoiceCallControls",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "class_property",
+      "name": "headerControls",
+      "exported": true,
+      "qualifiedName": "Widget.headerControls",
+      "line": 100,
+      "endLine": 100,
+      "signature": "private readonly headerControls: VoiceCallControls;",
+      "containerClass": "Widget",
+      "calls": [
+        {
+          "name": "VoiceCallControls",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "class_property",
+      "name": "transferModal",
+      "exported": true,
+      "qualifiedName": "Widget.transferModal",
+      "line": 102,
+      "endLine": 102,
+      "signature": "private readonly transferModal: TransferModal;",
+      "containerClass": "Widget",
+      "calls": [
+        {
+          "name": "TransferModal",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "class",
+      "name": "RoomSection",
+      "exported": true,
+      "line": 197,
+      "endLine": 295,
+      "signature": "export class RoomSection",
+      "calls": []
+    },
+    {
+      "type": "method",
+      "name": "showCallHere",
+      "exported": true,
+      "qualifiedName": "RoomSection.showCallHere",
+      "line": 231,
+      "endLine": 234,
+      "signature": "async showCallHere(): Promise<void>",
+      "containerClass": "RoomSection",
+      "calls": [
+        {
+          "name": "click",
+          "edgeType": "call"
+        },
+        {
+          "name": "toBeVisible",
+          "edgeType": "call"
+        },
+        {
+          "name": "expect",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "getTimerContentInSeconds",
+      "exported": true,
+      "qualifiedName": "RoomSection.getTimerContentInSeconds",
+      "line": 235,
+      "endLine": 238,
+      "signature": "async getTimerContentInSeconds()",
+      "containerClass": "RoomSection",
+      "calls": [
+        {
+          "name": "innerText",
+          "edgeType": "call"
+        },
+        {
+          "name": "timerToSeconds",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "endCall",
+      "exported": true,
+      "qualifiedName": "RoomSection.endCall",
+      "line": 239,
+      "endLine": 242,
+      "signature": "async endCall(): Promise<void>",
+      "containerClass": "RoomSection",
+      "calls": [
+        {
+          "name": "click",
+          "edgeType": "call"
+        },
+        {
+          "name": "toBeVisible",
+          "edgeType": "call"
+        },
+        {
+          "name": "expect",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "hideChat",
+      "exported": true,
+      "qualifiedName": "RoomSection.hideChat",
+      "line": 243,
+      "endLine": 247,
+      "signature": "async hideChat(): Promise<void>",
+      "containerClass": "RoomSection",
+      "calls": [
+        {
+          "name": "toHaveAccessibleName",
+          "edgeType": "call"
+        },
+        {
+          "name": "expect",
+          "edgeType": "call"
+        },
+        {
+          "name": "click",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "showChat",
+      "exported": true,
+      "qualifiedName": "RoomSection.showChat",
+      "line": 247,
+      "endLine": 251,
+      "signature": "async showChat(): Promise<void>",
+      "containerClass": "RoomSection",
+      "calls": [
+        {
+          "name": "toHaveAccessibleName",
+          "edgeType": "call"
+        },
+        {
+          "name": "expect",
+          "edgeType": "call"
+        },
+        {
+          "name": "click",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "muteSelf",
+      "exported": true,
+      "qualifiedName": "RoomSection.muteSelf",
+      "line": 251,
+      "endLine": 254,
+      "signature": "async muteSelf(): Promise<void>",
+      "containerClass": "RoomSection",
+      "calls": [
+        {
+          "name": "click",
+          "edgeType": "call"
+        },
+        {
+          "name": "toHaveAttribute",
+          "edgeType": "call"
+        },
+        {
+          "name": "expect",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "unmuteSelf",
+      "exported": true,
+      "qualifiedName": "RoomSection.unmuteSelf",
+      "line": 255,
+      "endLine": 258,
+      "signature": "async unmuteSelf(): Promise<void>",
+      "containerClass": "RoomSection",
+      "calls": [
+        {
+          "name": "click",
+          "edgeType": "call"
+        },
+        {
+          "name": "toHaveAttribute",
+          "edgeType": "call"
+        },
+        {
+          "name": "expect",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "holdSelf",
+      "exported": true,
+      "qualifiedName": "RoomSection.holdSelf",
+      "line": 259,
+      "endLine": 262,
+      "signature": "async holdSelf(): Promise<void>",
+      "containerClass": "RoomSection",
+      "calls": [
+        {
+          "name": "click",
+          "edgeType": "call"
+        },
+        {
+          "name": "toHaveAttribute",
+          "edgeType": "call"
+        },
+        {
+          "name": "expect",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "resumeSelf",
+      "exported": true,
+      "qualifiedName": "RoomSection.resumeSelf",
+      "line": 263,
+      "endLine": 266,
+      "signature": "async resumeSelf(): Promise<void>",
+      "containerClass": "RoomSection",
+      "calls": [
+        {
+          "name": "click",
+          "edgeType": "call"
+        },
+        {
+          "name": "toHaveAttribute",
+          "edgeType": "call"
+        },
+        {
+          "name": "expect",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "shareScreen",
+      "exported": true,
+      "qualifiedName": "RoomSection.shareScreen",
+      "line": 267,
+      "endLine": 270,
+      "signature": "async shareScreen(): Promise<void>",
+      "containerClass": "RoomSection",
+      "calls": [
+        {
+          "name": "click",
+          "edgeType": "call"
+        },
+        {
+          "name": "toHaveAttribute",
+          "edgeType": "call"
+        },
+        {
+          "name": "expect",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "stopSharing",
+      "exported": true,
+      "qualifiedName": "RoomSection.stopSharing",
+      "line": 271,
+      "endLine": 274,
+      "signature": "async stopSharing(): Promise<void>",
+      "containerClass": "RoomSection",
+      "calls": [
+        {
+          "name": "click",
+          "edgeType": "call"
+        },
+        {
+          "name": "toHaveAttribute",
+          "edgeType": "call"
+        },
+        {
+          "name": "expect",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "peerCard",
+      "exported": true,
+      "qualifiedName": "RoomSection.peerCard",
+      "line": 275,
+      "endLine": 277,
+      "signature": "peerCard(username: string): Locator",
+      "containerClass": "RoomSection",
+      "calls": [
+        {
+          "name": "getByText",
+          "edgeType": "call"
+        },
+        {
+          "name": "Locator",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "openPopout",
+      "exported": true,
+      "qualifiedName": "RoomSection.openPopout",
+      "line": 279,
+      "endLine": 281,
+      "signature": "async openPopout(): Promise<void>",
+      "containerClass": "RoomSection",
+      "calls": [
+        {
+          "name": "click",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "constructor",
+      "exported": true,
+      "qualifiedName": "RoomSection.constructor",
+      "line": 204,
+      "endLine": 209,
+      "signature": "constructor(root: Locator)",
+      "containerClass": "RoomSection",
+      "calls": [
+        {
+          "name": "first",
+          "edgeType": "call"
+        },
+        {
+          "name": "getByRole",
+          "edgeType": "call"
+        },
+        {
+          "name": "last",
+          "edgeType": "call"
+        },
+        {
+          "name": "VoiceCallControls",
+          "edgeType": "new"
+        },
+        {
+          "name": "Locator",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "class_property",
+      "name": "root",
+      "exported": true,
+      "qualifiedName": "RoomSection.root",
+      "line": 198,
+      "endLine": 198,
+      "signature": "private readonly root: Locator;",
+      "containerClass": "RoomSection",
+      "calls": [
+        {
+          "name": "Locator",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "class_property",
+      "name": "callControls",
+      "exported": true,
+      "qualifiedName": "RoomSection.callControls",
+      "line": 200,
+      "endLine": 200,
+      "signature": "public readonly callControls: VoiceCallControls;",
+      "containerClass": "RoomSection",
+      "calls": [
+        {
+          "name": "VoiceCallControls",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "class_property",
+      "name": "otherControls",
+      "exported": true,
+      "qualifiedName": "RoomSection.otherControls",
+      "line": 202,
+      "endLine": 202,
+      "signature": "public readonly otherControls: VoiceCallControls;",
+      "containerClass": "RoomSection",
+      "calls": [
+        {
+          "name": "VoiceCallControls",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "class",
+      "name": "PopoutPage",
+      "exported": true,
+      "line": 281,
+      "endLine": 294,
+      "signature": "export class PopoutPage extends RoomSection",
+      "calls": [
+        {
+          "name": "RoomSection",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "endCall",
+      "exported": true,
+      "qualifiedName": "PopoutPage.endCall",
+      "line": 289,
+      "endLine": 293,
+      "signature": "override async endCall(): Promise<void>",
+      "containerClass": "PopoutPage",
+      "calls": [
+        {
+          "name": "close",
+          "edgeType": "event_listen"
+        },
+        {
+          "name": "resolve",
+          "edgeType": "call"
+        },
+        {
+          "name": "click",
+          "edgeType": "call"
+        },
+        {
+          "name": "toBe",
+          "edgeType": "call"
+        },
+        {
+          "name": "expect",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "constructor",
+      "exported": true,
+      "qualifiedName": "PopoutPage.constructor",
+      "line": 284,
+      "endLine": 287,
+      "signature": "constructor(page: Page)",
+      "containerClass": "PopoutPage",
+      "calls": [
+        {
+          "name": "getByRole",
+          "edgeType": "call"
+        },
+        {
+          "name": "Page",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "class_property",
+      "name": "page",
+      "exported": true,
+      "qualifiedName": "PopoutPage.page",
+      "line": 282,
+      "endLine": 282,
+      "signature": "private readonly page: Page;",
+      "containerClass": "PopoutPage",
+      "calls": [
+        {
+          "name": "Page",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "class",
+      "name": "VoiceCalls",
+      "exported": true,
+      "line": 293,
+      "endLine": 340,
+      "signature": "export class VoiceCalls",
+      "calls": []
+    },
+    {
+      "type": "method",
+      "name": "openPopoutRoom",
+      "exported": true,
+      "qualifiedName": "VoiceCalls.openPopoutRoom",
+      "line": 316,
+      "endLine": 326,
+      "signature": "async openPopoutRoom(): Promise<void>",
+      "containerClass": "VoiceCalls",
+      "calls": [
+        {
+          "name": "all",
+          "edgeType": "call"
+        },
+        {
+          "name": "waitForEvent",
+          "edgeType": "call"
+        },
+        {
+          "name": "openPopout",
+          "edgeType": "call"
+        },
+        {
+          "name": "waitForLoadState",
+          "edgeType": "call"
+        },
+        {
+          "name": "close",
+          "edgeType": "event_listen"
+        },
+        {
+          "name": "PopoutPage",
+          "edgeType": "new"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "openPopoutWidget",
+      "exported": true,
+      "qualifiedName": "VoiceCalls.openPopoutWidget",
+      "line": 321,
+      "endLine": 331,
+      "signature": "async openPopoutWidget(): Promise<void>",
+      "containerClass": "VoiceCalls",
+      "calls": [
+        {
+          "name": "all",
+          "edgeType": "call"
+        },
+        {
+          "name": "waitForEvent",
+          "edgeType": "call"
+        },
+        {
+          "name": "openPopout",
+          "edgeType": "call"
+        },
+        {
+          "name": "waitForLoadState",
+          "edgeType": "call"
+        },
+        {
+          "name": "close",
+          "edgeType": "event_listen"
+        },
+        {
+          "name": "PopoutPage",
+          "edgeType": "new"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "constructor",
+      "exported": true,
+      "qualifiedName": "VoiceCalls.constructor",
+      "line": 302,
+      "endLine": 306,
+      "signature": "constructor(page: Page)",
+      "containerClass": "VoiceCalls",
+      "calls": [
+        {
+          "name": "getByRole",
+          "edgeType": "call"
+        },
+        {
+          "name": "Widget",
+          "edgeType": "new"
+        },
+        {
+          "name": "RoomSection",
+          "edgeType": "new"
+        },
+        {
+          "name": "Page",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "class_property",
+      "name": "widget",
+      "exported": true,
+      "qualifiedName": "VoiceCalls.widget",
+      "line": 294,
+      "endLine": 294,
+      "signature": "public readonly widget: Widget;",
+      "containerClass": "VoiceCalls",
+      "calls": [
+        {
+          "name": "Widget",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "class_property",
+      "name": "roomSection",
+      "exported": true,
+      "qualifiedName": "VoiceCalls.roomSection",
+      "line": 296,
+      "endLine": 296,
+      "signature": "public readonly roomSection: RoomSection;",
+      "containerClass": "VoiceCalls",
+      "calls": [
+        {
+          "name": "RoomSection",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "class_property",
+      "name": "popoutPage",
+      "exported": true,
+      "qualifiedName": "VoiceCalls.popoutPage",
+      "line": 298,
+      "endLine": 298,
+      "signature": "public popoutPage: PopoutPage | undefined;",
+      "containerClass": "VoiceCalls",
+      "calls": [
+        {
+          "name": "PopoutPage",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "class_property",
+      "name": "page",
+      "exported": true,
+      "qualifiedName": "VoiceCalls.page",
+      "line": 300,
+      "endLine": 300,
+      "signature": "private readonly page: Page;",
+      "containerClass": "VoiceCalls",
+      "calls": [
+        {
+          "name": "Page",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "variable_function",
+      "name": "timerToSeconds",
+      "exported": false,
+      "line": 5,
+      "endLine": 11,
+      "signature": "(time: string): number =>",
+      "calls": [
+        {
+          "name": "reverse",
+          "edgeType": "call"
+        },
+        {
+          "name": "split",
+          "edgeType": "call"
+        }
+      ]
+    }
+  ],
+  "imports": [
+    {
+      "module": "@playwright/test",
+      "resolved": "external"
+    },
+    {
+      "module": "../../utils/test",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/tests/e2e/utils/test.ts"
+    }
+  ]
+}

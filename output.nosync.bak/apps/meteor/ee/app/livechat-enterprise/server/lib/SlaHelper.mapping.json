@@ -1,0 +1,167 @@
+{
+  "sourcePath": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/ee/app/livechat-enterprise/server/lib/SlaHelper.ts",
+  "symbols": [
+    {
+      "type": "variable_function",
+      "name": "removeSLAFromRooms",
+      "exported": true,
+      "line": 12,
+      "endLine": 23,
+      "signature": "async (slaId: string, userId: string) =>",
+      "calls": [
+        {
+          "name": "livechat.applyRoomRestrictions",
+          "edgeType": "event_emit"
+        },
+        {
+          "name": "toArray",
+          "edgeType": "call"
+        },
+        {
+          "name": "findOpenBySlaId",
+          "edgeType": "call"
+        },
+        {
+          "name": "map",
+          "edgeType": "call"
+        },
+        {
+          "name": "bulkUnsetSla",
+          "edgeType": "call"
+        },
+        {
+          "name": "notifyOnLivechatInquiryChangedByRoom",
+          "edgeType": "call"
+        },
+        {
+          "name": "bulkRemoveSlaFromRoomsById",
+          "edgeType": "call"
+        },
+        {
+          "name": "notifyOnRoomChangedById",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "variable_function",
+      "name": "updateInquiryQueueSla",
+      "exported": true,
+      "line": 16,
+      "endLine": 32,
+      "signature": "async (roomId: string, sla: Pick<IOmnichannelServiceLevelAgreements, 'dueTimeInMinutes' | '_id'>) =>",
+      "calls": [
+        {
+          "name": "findOneByRoomId",
+          "edgeType": "call"
+        },
+        {
+          "name": "setSlaForRoom",
+          "edgeType": "call"
+        },
+        {
+          "name": "notifyOnLivechatInquiryChanged",
+          "edgeType": "call"
+        },
+        {
+          "name": "Date",
+          "edgeType": "new"
+        },
+        {
+          "name": "IOmnichannelServiceLevelAgreements",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "variable_function",
+      "name": "updateRoomSlaWeights",
+      "exported": true,
+      "line": 20,
+      "endLine": 22,
+      "signature": "async (roomId: string, sla: Pick<IOmnichannelServiceLevelAgreements, 'dueTimeInMinutes' | '_id'>) =>",
+      "calls": [
+        {
+          "name": "setSlaForRoomById",
+          "edgeType": "call"
+        },
+        {
+          "name": "IOmnichannelServiceLevelAgreements",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "variable_function",
+      "name": "removeInquiryQueueSla",
+      "exported": true,
+      "line": 24,
+      "endLine": 26,
+      "signature": "async (roomId: string) =>",
+      "calls": [
+        {
+          "name": "unsetSlaForRoom",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "variable_function",
+      "name": "removeSlaFromRoom",
+      "exported": true,
+      "line": 28,
+      "endLine": 30,
+      "signature": "async (roomId: string) =>",
+      "calls": [
+        {
+          "name": "removeSlaFromRoomById",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "variable_function",
+      "name": "addSlaChangeHistoryToRoom",
+      "exported": true,
+      "line": 32,
+      "endLine": 46,
+      "signature": "async ( roomId: string, user: Pick<IUser, '_id' | 'name' | 'username'>, sla?: Pick<IOmnichannelServiceLevelAgreements, 'name'>, ) =>",
+      "calls": [
+        {
+          "name": "saveSystemMessage",
+          "edgeType": "call"
+        },
+        {
+          "name": "IUser",
+          "edgeType": "type"
+        },
+        {
+          "name": "IOmnichannelServiceLevelAgreements",
+          "edgeType": "type"
+        }
+      ]
+    }
+  ],
+  "imports": [
+    {
+      "module": "@rocket.chat/core-services",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/core-typings",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/models",
+      "resolved": "external"
+    },
+    {
+      "module": "../../../../../app/lib/server/lib/notifyListener",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/app/lib/server/lib/notifyListener.ts"
+    },
+    {
+      "module": "../../../../../server/lib/callbacks",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/server/lib/callbacks.ts"
+    }
+  ]
+}

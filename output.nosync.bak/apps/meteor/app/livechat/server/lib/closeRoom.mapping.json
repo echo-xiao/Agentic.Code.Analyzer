@@ -1,0 +1,440 @@
+{
+  "sourcePath": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/app/livechat/server/lib/closeRoom.ts",
+  "symbols": [
+    {
+      "type": "function",
+      "name": "closeRoom",
+      "exported": true,
+      "line": 29,
+      "endLine": 65,
+      "signature": "export async function closeRoom(params: CloseRoomParams, attempts = 2): Promise<void>",
+      "calls": [
+        {
+          "name": "startSession",
+          "edgeType": "call"
+        },
+        {
+          "name": "startTransaction",
+          "edgeType": "call"
+        },
+        {
+          "name": "doCloseRoom",
+          "edgeType": "call"
+        },
+        {
+          "name": "commitTransaction",
+          "edgeType": "call"
+        },
+        {
+          "name": "error",
+          "edgeType": "call"
+        },
+        {
+          "name": "inTransaction",
+          "edgeType": "call"
+        },
+        {
+          "name": "abortTransaction",
+          "edgeType": "call"
+        },
+        {
+          "name": "shouldRetryTransaction",
+          "edgeType": "call"
+        },
+        {
+          "name": "debug",
+          "edgeType": "call"
+        },
+        {
+          "name": "closeRoom",
+          "edgeType": "call"
+        },
+        {
+          "name": "endSession",
+          "edgeType": "call"
+        },
+        {
+          "name": "afterRoomClosed",
+          "edgeType": "call"
+        },
+        {
+          "name": "CloseRoomParams",
+          "edgeType": "type"
+        },
+        {
+          "name": "IOmnichannelRoom",
+          "edgeType": "type"
+        },
+        {
+          "name": "ChatCloser",
+          "edgeType": "type"
+        },
+        {
+          "name": "ILivechatInquiryRecord",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "function",
+      "name": "afterRoomClosed",
+      "exported": false,
+      "line": 33,
+      "endLine": 90,
+      "signature": "async function afterRoomClosed( newRoom: IOmnichannelRoom, chatCloser: ChatCloser, inquiry: ILivechatInquiryRecord | null, params: CloseRoomParams, ): Promise<void>",
+      "calls": [
+        {
+          "name": "get",
+          "edgeType": "call"
+        },
+        {
+          "name": "debug",
+          "edgeType": "call"
+        },
+        {
+          "name": "saveSystemMessageAndNotifyUser",
+          "edgeType": "call"
+        },
+        {
+          "name": "isRoomClosedByVisitorParams",
+          "edgeType": "call"
+        },
+        {
+          "name": "saveSystemMessage",
+          "edgeType": "call"
+        },
+        {
+          "name": "nextTick",
+          "edgeType": "call"
+        },
+        {
+          "name": "triggerEvent",
+          "edgeType": "call"
+        },
+        {
+          "name": "parseTranscriptRequest",
+          "edgeType": "call"
+        },
+        {
+          "name": "livechat.closeRoom",
+          "edgeType": "event_emit"
+        },
+        {
+          "name": "notifyOnRoomChangedById",
+          "edgeType": "call"
+        },
+        {
+          "name": "notifyOnLivechatInquiryChanged",
+          "edgeType": "call"
+        },
+        {
+          "name": "IOmnichannelRoom",
+          "edgeType": "type"
+        },
+        {
+          "name": "ChatCloser",
+          "edgeType": "type"
+        },
+        {
+          "name": "ILivechatInquiryRecord",
+          "edgeType": "type"
+        },
+        {
+          "name": "CloseRoomParams",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "function",
+      "name": "doCloseRoom",
+      "exported": false,
+      "line": 42,
+      "endLine": 135,
+      "signature": "async function doCloseRoom( params: CloseRoomParams, session: ClientSession, ): Promise<{ room: IOmnichannelRoom; closedBy: ChatCloser; removedInquiry: ILivechatInquiryRecord | null }>",
+      "calls": [
+        {
+          "name": "debug",
+          "edgeType": "call"
+        },
+        {
+          "name": "isOmnichannelRoom",
+          "edgeType": "call"
+        },
+        {
+          "name": "get",
+          "edgeType": "call"
+        },
+        {
+          "name": "trim",
+          "edgeType": "call"
+        },
+        {
+          "name": "resolveChatTags",
+          "edgeType": "call"
+        },
+        {
+          "name": "getTime",
+          "edgeType": "call"
+        },
+        {
+          "name": "isRoomClosedByUserParams",
+          "edgeType": "call"
+        },
+        {
+          "name": "isRoomClosedByVisitorParams",
+          "edgeType": "call"
+        },
+        {
+          "name": "findOneByRoomId",
+          "edgeType": "call"
+        },
+        {
+          "name": "removeByRoomId",
+          "edgeType": "call"
+        },
+        {
+          "name": "notifyOnLivechatInquiryChanged",
+          "edgeType": "call"
+        },
+        {
+          "name": "closeRoomById",
+          "edgeType": "call"
+        },
+        {
+          "name": "countByRoomId",
+          "edgeType": "call"
+        },
+        {
+          "name": "notifyOnSubscriptionChanged",
+          "edgeType": "call"
+        },
+        {
+          "name": "findOneById",
+          "edgeType": "call"
+        },
+        {
+          "name": "notifyOnRoomChanged",
+          "edgeType": "call"
+        },
+        {
+          "name": "Date",
+          "edgeType": "new"
+        },
+        {
+          "name": "CloseRoomParams",
+          "edgeType": "type"
+        },
+        {
+          "name": "ClientSession",
+          "edgeType": "type"
+        },
+        {
+          "name": "IOmnichannelRoom",
+          "edgeType": "type"
+        },
+        {
+          "name": "ChatCloser",
+          "edgeType": "type"
+        },
+        {
+          "name": "ILivechatInquiryRecord",
+          "edgeType": "type"
+        },
+        {
+          "name": "IOmnichannelRoomClosingInfo",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "function",
+      "name": "resolveChatTags",
+      "exported": false,
+      "line": 49,
+      "endLine": 111,
+      "signature": "async function resolveChatTags( room: IOmnichannelRoom, options: CloseRoomParams['options'] = {}, ): Promise<{ updatedOptions: CloseRoomParams['options'] }>",
+      "calls": [
+        {
+          "name": "debug",
+          "edgeType": "call"
+        },
+        {
+          "name": "concat",
+          "edgeType": "call"
+        },
+        {
+          "name": "filter",
+          "edgeType": "call"
+        },
+        {
+          "name": "concatUnique",
+          "edgeType": "call"
+        },
+        {
+          "name": "findOneById",
+          "edgeType": "call"
+        },
+        {
+          "name": "Set",
+          "edgeType": "new"
+        },
+        {
+          "name": "IOmnichannelRoom",
+          "edgeType": "type"
+        },
+        {
+          "name": "CloseRoomParams",
+          "edgeType": "type"
+        },
+        {
+          "name": "ILivechatDepartment",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "function",
+      "name": "closeOpenChats",
+      "exported": true,
+      "line": 56,
+      "endLine": 68,
+      "signature": "export async function closeOpenChats(userId: string, comment?: string)",
+      "calls": [
+        {
+          "name": "debug",
+          "edgeType": "call"
+        },
+        {
+          "name": "findOneById",
+          "edgeType": "call"
+        },
+        {
+          "name": "applyDepartmentRestrictions",
+          "edgeType": "call"
+        },
+        {
+          "name": "findOpenByAgent",
+          "edgeType": "call"
+        },
+        {
+          "name": "forEach",
+          "edgeType": "call"
+        },
+        {
+          "name": "push",
+          "edgeType": "call"
+        },
+        {
+          "name": "closeRoom",
+          "edgeType": "call"
+        },
+        {
+          "name": "all",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "variable_function",
+      "name": "isRoomClosedByUserParams",
+      "exported": false,
+      "line": 24,
+      "endLine": 25,
+      "signature": "(params: CloseRoomParams): params is CloseRoomParamsByUser =>",
+      "calls": [
+        {
+          "name": "CloseRoomParams",
+          "edgeType": "type"
+        },
+        {
+          "name": "CloseRoomParamsByUser",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "variable_function",
+      "name": "isRoomClosedByVisitorParams",
+      "exported": false,
+      "line": 26,
+      "endLine": 27,
+      "signature": "(params: CloseRoomParams): params is CloseRoomParamsByVisitor =>",
+      "calls": [
+        {
+          "name": "CloseRoomParams",
+          "edgeType": "type"
+        },
+        {
+          "name": "CloseRoomParamsByVisitor",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "type",
+      "name": "ChatCloser",
+      "line": 22,
+      "endLine": 22,
+      "signature": "type ChatCloser ="
+    }
+  ],
+  "imports": [
+    {
+      "module": "@rocket.chat/apps",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/core-services",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/core-typings",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/core-typings",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/models",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/omni-core",
+      "resolved": "external"
+    },
+    {
+      "module": "mongodb",
+      "resolved": "external"
+    },
+    {
+      "module": "./localTypes",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/app/livechat/server/lib/localTypes.ts"
+    },
+    {
+      "module": "./logger",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/app/livechat/server/lib/logger.ts"
+    },
+    {
+      "module": "./parseTranscriptRequest",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/app/livechat/server/lib/parseTranscriptRequest.ts"
+    },
+    {
+      "module": "../../../../server/database/utils",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/server/database/utils.ts"
+    },
+    {
+      "module": "../../../../server/lib/callbacks",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/server/lib/callbacks.ts"
+    },
+    {
+      "module": "../../../lib/server/lib/notifyListener",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/app/lib/server/lib/notifyListener.ts"
+    },
+    {
+      "module": "../../../settings/server",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/app/settings/server/index.ts"
+    }
+  ]
+}

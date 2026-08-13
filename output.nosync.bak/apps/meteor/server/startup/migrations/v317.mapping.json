@@ -1,0 +1,141 @@
+{
+  "sourcePath": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/server/startup/migrations/v317.ts",
+  "symbols": [
+    {
+      "type": "module",
+      "name": "v317",
+      "exported": false,
+      "line": 1,
+      "endLine": 125,
+      "signature": "v317",
+      "calls": [
+        {
+          "name": "addMigration",
+          "edgeType": "call"
+        },
+        {
+          "name": "filter",
+          "edgeType": "call"
+        },
+        {
+          "name": "map",
+          "edgeType": "call"
+        },
+        {
+          "name": "getSettingValue",
+          "edgeType": "call"
+        },
+        {
+          "name": "warn",
+          "edgeType": "call"
+        },
+        {
+          "name": "updateOne",
+          "edgeType": "call"
+        },
+        {
+          "name": "all",
+          "edgeType": "call"
+        },
+        {
+          "name": "toArray",
+          "edgeType": "call"
+        },
+        {
+          "name": "find",
+          "edgeType": "call"
+        },
+        {
+          "name": "updateOAuthServices",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "function",
+      "name": "updateOAuthServices",
+      "exported": false,
+      "line": 26,
+      "endLine": 58,
+      "signature": "async function updateOAuthServices(): Promise<void>",
+      "calls": [
+        {
+          "name": "toArray",
+          "edgeType": "call"
+        },
+        {
+          "name": "find",
+          "edgeType": "call"
+        },
+        {
+          "name": "filter",
+          "edgeType": "call"
+        },
+        {
+          "name": "replace",
+          "edgeType": "call"
+        },
+        {
+          "name": "test",
+          "edgeType": "call"
+        },
+        {
+          "name": "toLowerCase",
+          "edgeType": "call"
+        },
+        {
+          "name": "getSettingValue",
+          "edgeType": "call"
+        },
+        {
+          "name": "createOrUpdateService",
+          "edgeType": "call"
+        },
+        {
+          "name": "ILoginServiceConfiguration",
+          "edgeType": "type"
+        },
+        {
+          "name": "OAuthConfiguration",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "variable_function",
+      "name": "getSettingValue",
+      "exported": false,
+      "line": 24,
+      "endLine": 24,
+      "signature": "async (key: string) =>",
+      "calls": [
+        {
+          "name": "getValueById",
+          "edgeType": "call"
+        }
+      ]
+    }
+  ],
+  "imports": [
+    {
+      "module": "@rocket.chat/core-typings",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/models",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/tools",
+      "resolved": "external"
+    },
+    {
+      "module": "../../lib/logger/system",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/server/lib/logger/system.ts"
+    },
+    {
+      "module": "../../lib/migrations",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/server/lib/migrations.ts"
+    }
+  ]
+}

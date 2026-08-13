@@ -1,0 +1,271 @@
+{
+  "sourcePath": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/server/lib/users/setUserActiveStatus.ts",
+  "symbols": [
+    {
+      "type": "function",
+      "name": "reactivateDirectConversations",
+      "exported": false,
+      "line": 22,
+      "endLine": 50,
+      "signature": "async function reactivateDirectConversations(userId: string)",
+      "calls": [
+        {
+          "name": "toArray",
+          "edgeType": "call"
+        },
+        {
+          "name": "getDirectConversationsByUserId",
+          "edgeType": "call"
+        },
+        {
+          "name": "reduce",
+          "edgeType": "call"
+        },
+        {
+          "name": "isDirectMessageRoom",
+          "edgeType": "call"
+        },
+        {
+          "name": "push",
+          "edgeType": "call"
+        },
+        {
+          "name": "findActiveByUserIds",
+          "edgeType": "call"
+        },
+        {
+          "name": "map",
+          "edgeType": "call"
+        },
+        {
+          "name": "find",
+          "edgeType": "call"
+        },
+        {
+          "name": "includes",
+          "edgeType": "call"
+        },
+        {
+          "name": "setDmReadOnlyByUserId",
+          "edgeType": "call"
+        },
+        {
+          "name": "notifyOnRoomChangedById",
+          "edgeType": "call"
+        },
+        {
+          "name": "Set",
+          "edgeType": "new"
+        },
+        {
+          "name": "IUser",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "function",
+      "name": "setUserActiveStatus",
+      "exported": true,
+      "line": 26,
+      "endLine": 143,
+      "signature": "export async function setUserActiveStatus( userId: string, active: boolean, confirmRelinquish = false, executedBy?: string, ): Promise<boolean | undefined>",
+      "calls": [
+        {
+          "name": "check",
+          "edgeType": "call"
+        },
+        {
+          "name": "findOneById",
+          "edgeType": "call"
+        },
+        {
+          "name": "isUserFederated",
+          "edgeType": "call"
+        },
+        {
+          "name": "findOneAdmin",
+          "edgeType": "call"
+        },
+        {
+          "name": "countActiveUsersInRoles",
+          "edgeType": "call"
+        },
+        {
+          "name": "getSubscribedRoomsForUserWithDetails",
+          "edgeType": "call"
+        },
+        {
+          "name": "filter",
+          "edgeType": "call"
+        },
+        {
+          "name": "shouldRemoveOrChangeOwner",
+          "edgeType": "call"
+        },
+        {
+          "name": "getUserSingleOwnedRooms",
+          "edgeType": "call"
+        },
+        {
+          "name": "allSettled",
+          "edgeType": "call"
+        },
+        {
+          "name": "closeOmnichannelConversations",
+          "edgeType": "call"
+        },
+        {
+          "name": "relinquishRoomOwnerships",
+          "edgeType": "call"
+        },
+        {
+          "name": "beforeActivateUser",
+          "edgeType": "event_emit"
+        },
+        {
+          "name": "setUserActive",
+          "edgeType": "call"
+        },
+        {
+          "name": "afterActivateUser",
+          "edgeType": "event_emit"
+        },
+        {
+          "name": "afterDeactivateUser",
+          "edgeType": "event_emit"
+        },
+        {
+          "name": "setArchivedForDMsWithUsername",
+          "edgeType": "call"
+        },
+        {
+          "name": "notifyOnSubscriptionChangedByNameAndRoomType",
+          "edgeType": "call"
+        },
+        {
+          "name": "unsetLoginTokens",
+          "edgeType": "call"
+        },
+        {
+          "name": "all",
+          "edgeType": "call"
+        },
+        {
+          "name": "deleteByUserId",
+          "edgeType": "call"
+        },
+        {
+          "name": "setDmReadOnlyByUserId",
+          "edgeType": "call"
+        },
+        {
+          "name": "notifyOnUserChange",
+          "edgeType": "call"
+        },
+        {
+          "name": "notifyOnRoomChangedByUserDM",
+          "edgeType": "call"
+        },
+        {
+          "name": "unsetReason",
+          "edgeType": "call"
+        },
+        {
+          "name": "reactivateDirectConversations",
+          "edgeType": "call"
+        },
+        {
+          "name": "get",
+          "edgeType": "call"
+        },
+        {
+          "name": "isArray",
+          "edgeType": "call"
+        },
+        {
+          "name": "map",
+          "edgeType": "call"
+        },
+        {
+          "name": "subject",
+          "edgeType": "call"
+        },
+        {
+          "name": "html",
+          "edgeType": "call"
+        },
+        {
+          "name": "sendNoWrap",
+          "edgeType": "call"
+        },
+        {
+          "name": "IUserEmail",
+          "edgeType": "type"
+        },
+        {
+          "name": "UserActivated",
+          "edgeType": "type"
+        }
+      ]
+    }
+  ],
+  "imports": [
+    {
+      "module": "@rocket.chat/core-typings",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/core-typings",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/models",
+      "resolved": "external"
+    },
+    {
+      "module": "meteor/accounts-base",
+      "resolved": "external"
+    },
+    {
+      "module": "meteor/check",
+      "resolved": "external"
+    },
+    {
+      "module": "meteor/meteor",
+      "resolved": "external"
+    },
+    {
+      "module": "./getUserSingleOwnedRooms",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/server/lib/users/getUserSingleOwnedRooms.ts"
+    },
+    {
+      "module": "../../../app/lib/server/lib/notifyListener",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/app/lib/server/lib/notifyListener.ts"
+    },
+    {
+      "module": "../../../app/mailer/server/api",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/app/mailer/server/api.ts"
+    },
+    {
+      "module": "../../../app/settings/server",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/app/settings/server/index.ts"
+    },
+    {
+      "module": "../callbacks",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/server/lib/callbacks.ts"
+    },
+    {
+      "module": "../omnichannel/closeOmnichannelConversations",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/server/lib/omnichannel/closeOmnichannelConversations.ts"
+    },
+    {
+      "module": "../rooms/getRoomsWithSingleOwner",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/server/lib/rooms/getRoomsWithSingleOwner.ts"
+    },
+    {
+      "module": "../rooms/relinquishRoomOwnerships",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/server/lib/rooms/relinquishRoomOwnerships.ts"
+    }
+  ]
+}

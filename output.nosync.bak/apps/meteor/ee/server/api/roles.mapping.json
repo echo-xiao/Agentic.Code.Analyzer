@@ -1,0 +1,151 @@
+{
+  "sourcePath": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/ee/server/api/roles.ts",
+  "symbols": [
+    {
+      "type": "module",
+      "name": "roles",
+      "exported": false,
+      "line": 1,
+      "endLine": 174,
+      "signature": "roles",
+      "calls": [
+        {
+          "name": "roles.create",
+          "edgeType": "rest_route"
+        },
+        {
+          "name": "addRoute",
+          "edgeType": "call"
+        },
+        {
+          "name": "hasModule",
+          "edgeType": "call"
+        },
+        {
+          "name": "isRoleCreateProps",
+          "edgeType": "call"
+        },
+        {
+          "name": "hasPermissionAsync",
+          "edgeType": "call"
+        },
+        {
+          "name": "findOneByIdOrName",
+          "edgeType": "call"
+        },
+        {
+          "name": "get",
+          "edgeType": "call"
+        },
+        {
+          "name": "insertRoleAsync",
+          "edgeType": "call"
+        },
+        {
+          "name": "success",
+          "edgeType": "call"
+        },
+        {
+          "name": "roles.update",
+          "edgeType": "rest_route"
+        },
+        {
+          "name": "isRoleUpdateProps",
+          "edgeType": "call"
+        },
+        {
+          "name": "findOne",
+          "edgeType": "call"
+        },
+        {
+          "name": "updateRole",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "variable",
+      "name": "isRoleCreateProps",
+      "exported": true,
+      "line": 39,
+      "endLine": 39,
+      "signature": "isRoleCreateProps = ajv.compile<RoleCreateProps>(roleCreatePropsSchema)",
+      "calls": [
+        {
+          "name": "RoleCreateProps",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "variable",
+      "name": "isRoleUpdateProps",
+      "exported": true,
+      "line": 73,
+      "endLine": 73,
+      "signature": "isRoleUpdateProps = ajv.compile<RoleUpdateProps>(roleUpdatePropsSchema)",
+      "calls": [
+        {
+          "name": "RoleUpdateProps",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "type",
+      "name": "RoleCreateProps",
+      "line": 13,
+      "endLine": 13,
+      "signature": "type RoleCreateProps = Pick<IRole, 'name'> & Partial<Pick<IRole, 'description' | 'scope' | 'mandatory2fa'>>;"
+    },
+    {
+      "type": "type",
+      "name": "RoleUpdateProps",
+      "line": 41,
+      "endLine": 44,
+      "signature": "type RoleUpdateProps ="
+    }
+  ],
+  "imports": [
+    {
+      "module": "@rocket.chat/core-typings",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/license",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/models",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/rest-typings",
+      "resolved": "external"
+    },
+    {
+      "module": "meteor/meteor",
+      "resolved": "external"
+    },
+    {
+      "module": "../../../app/settings/server/index",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/app/settings/server/index.ts"
+    },
+    {
+      "module": "../../../server/api/api",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/server/api/api.ts"
+    },
+    {
+      "module": "../../../server/lib/authorization/hasPermission",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/server/lib/authorization/hasPermission.ts"
+    },
+    {
+      "module": "../lib/roles/insertRole",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/ee/server/lib/roles/insertRole.ts"
+    },
+    {
+      "module": "../lib/roles/updateRole",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/ee/server/lib/roles/updateRole.ts"
+    }
+  ]
+}

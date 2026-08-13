@@ -1,0 +1,76 @@
+{
+  "sourcePath": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/reporters/rocketchat.ts",
+  "symbols": [
+    {
+      "type": "class",
+      "name": "RocketChatReporter",
+      "exported": true,
+      "line": 4,
+      "endLine": 57,
+      "signature": "class RocketChatReporter implements Reporter",
+      "calls": [
+        {
+          "name": "Reporter",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "onTestEnd",
+      "exported": true,
+      "qualifiedName": "RocketChatReporter.onTestEnd",
+      "line": 23,
+      "endLine": 56,
+      "signature": "async onTestEnd(test: TestCase, result: TestResult)",
+      "containerClass": "RocketChatReporter",
+      "calls": [
+        {
+          "name": "log",
+          "edgeType": "call"
+        },
+        {
+          "name": "fetch",
+          "edgeType": "call"
+        },
+        {
+          "name": "stringify",
+          "edgeType": "call"
+        },
+        {
+          "name": "error",
+          "edgeType": "call"
+        },
+        {
+          "name": "TestCase",
+          "edgeType": "type"
+        },
+        {
+          "name": "TestResult",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "constructor",
+      "exported": true,
+      "qualifiedName": "RocketChatReporter.constructor",
+      "line": 15,
+      "endLine": 21,
+      "signature": "constructor(options: { url: string; apiKey: string; branch: string; draft: boolean; run: number })",
+      "containerClass": "RocketChatReporter",
+      "calls": []
+    }
+  ],
+  "imports": [
+    {
+      "module": "@playwright/test/reporter",
+      "resolved": "external"
+    },
+    {
+      "module": "node-fetch",
+      "resolved": "external"
+    }
+  ]
+}

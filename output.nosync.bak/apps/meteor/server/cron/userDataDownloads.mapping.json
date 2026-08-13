@@ -1,0 +1,57 @@
+{
+  "sourcePath": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/server/cron/userDataDownloads.ts",
+  "symbols": [
+    {
+      "type": "variable_function",
+      "name": "userDataDownloadsCron",
+      "exported": true,
+      "line": 7,
+      "endLine": 40,
+      "signature": "(): void =>",
+      "calls": [
+        {
+          "name": "processDataDownloads",
+          "edgeType": "call"
+        },
+        {
+          "name": "remove",
+          "edgeType": "call"
+        },
+        {
+          "name": "watchMultiple",
+          "edgeType": "call"
+        },
+        {
+          "name": "unplug",
+          "edgeType": "call"
+        },
+        {
+          "name": "plug",
+          "edgeType": "call"
+        },
+        {
+          "name": "SettingValue",
+          "edgeType": "type"
+        }
+      ]
+    }
+  ],
+  "imports": [
+    {
+      "module": "@rocket.chat/core-typings",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/cron",
+      "resolved": "external"
+    },
+    {
+      "module": "../../app/settings/server",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/app/settings/server/index.ts"
+    },
+    {
+      "module": "../lib/dataExport",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/server/lib/dataExport/index.ts"
+    }
+  ]
+}

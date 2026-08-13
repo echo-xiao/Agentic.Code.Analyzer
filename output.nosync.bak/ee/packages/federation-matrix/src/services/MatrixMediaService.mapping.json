@@ -1,0 +1,198 @@
+{
+  "sourcePath": "/Users/echoooooo/Desktop/code/Rocket.Chat/ee/packages/federation-matrix/src/services/MatrixMediaService.ts",
+  "symbols": [
+    {
+      "type": "class",
+      "name": "MatrixMediaService",
+      "exported": true,
+      "line": 19,
+      "endLine": 134,
+      "signature": "export class MatrixMediaService",
+      "calls": []
+    },
+    {
+      "type": "method",
+      "name": "generateMXCUri",
+      "exported": true,
+      "qualifiedName": "MatrixMediaService.generateMXCUri",
+      "line": 20,
+      "endLine": 22,
+      "signature": "static generateMXCUri(fileId: string, serverName: string): string",
+      "containerClass": "MatrixMediaService",
+      "calls": []
+    },
+    {
+      "type": "method",
+      "name": "parseMXCUri",
+      "exported": true,
+      "qualifiedName": "MatrixMediaService.parseMXCUri",
+      "line": 24,
+      "endLine": 34,
+      "signature": "static parseMXCUri(mxcUri: string): { serverName: string; mediaId: string } | null",
+      "containerClass": "MatrixMediaService",
+      "calls": [
+        {
+          "name": "match",
+          "edgeType": "call"
+        },
+        {
+          "name": "error",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "prepareLocalFileForMatrix",
+      "exported": true,
+      "qualifiedName": "MatrixMediaService.prepareLocalFileForMatrix",
+      "line": 28,
+      "endLine": 54,
+      "signature": "static async prepareLocalFileForMatrix(fileId: string, serverName: string, matrixRoomId: string): Promise<string>",
+      "containerClass": "MatrixMediaService",
+      "calls": [
+        {
+          "name": "findOneById",
+          "edgeType": "call"
+        },
+        {
+          "name": "error",
+          "edgeType": "call"
+        },
+        {
+          "name": "generateMXCUri",
+          "edgeType": "call"
+        },
+        {
+          "name": "setFederationInfo",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "getLocalFileForMatrixNode",
+      "exported": true,
+      "qualifiedName": "MatrixMediaService.getLocalFileForMatrixNode",
+      "line": 32,
+      "endLine": 55,
+      "signature": "static async getLocalFileForMatrixNode(mediaId: string, serverName: string): Promise<IUpload | null>",
+      "containerClass": "MatrixMediaService",
+      "calls": [
+        {
+          "name": "findOneByETag",
+          "edgeType": "call"
+        },
+        {
+          "name": "findByFederationMediaIdAndServerName",
+          "edgeType": "call"
+        },
+        {
+          "name": "findOneById",
+          "edgeType": "call"
+        },
+        {
+          "name": "error",
+          "edgeType": "call"
+        },
+        {
+          "name": "IUpload",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "downloadAndStoreRemoteFile",
+      "exported": true,
+      "qualifiedName": "MatrixMediaService.downloadAndStoreRemoteFile",
+      "line": 36,
+      "endLine": 76,
+      "signature": "static async downloadAndStoreRemoteFile(mxcUri: string, matrixRoomId: string, metadata: IUploadDetails): Promise<string>",
+      "containerClass": "MatrixMediaService",
+      "calls": [
+        {
+          "name": "parseMXCUri",
+          "edgeType": "call"
+        },
+        {
+          "name": "error",
+          "edgeType": "call"
+        },
+        {
+          "name": "findByFederationMediaIdAndServerName",
+          "edgeType": "call"
+        },
+        {
+          "name": "downloadFromRemoteServer",
+          "edgeType": "call"
+        },
+        {
+          "name": "uploadFile",
+          "edgeType": "call"
+        },
+        {
+          "name": "setFederationInfo",
+          "edgeType": "call"
+        },
+        {
+          "name": "IUploadDetails",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "getLocalFileBuffer",
+      "exported": true,
+      "qualifiedName": "MatrixMediaService.getLocalFileBuffer",
+      "line": 40,
+      "endLine": 42,
+      "signature": "static async getLocalFileBuffer(file: IUpload): Promise<Buffer>",
+      "containerClass": "MatrixMediaService",
+      "calls": [
+        {
+          "name": "getFileBuffer",
+          "edgeType": "call"
+        },
+        {
+          "name": "IUpload",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "interface",
+      "name": "IRemoteFileReference",
+      "line": 10,
+      "endLine": 17,
+      "signature": "export interface IRemoteFileReference"
+    }
+  ],
+  "imports": [
+    {
+      "module": "@rocket.chat/apps-engine/definition/uploads/IUploadDetails",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/core-services",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/core-typings",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/federation-sdk",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/logger",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/models",
+      "resolved": "external"
+    }
+  ]
+}

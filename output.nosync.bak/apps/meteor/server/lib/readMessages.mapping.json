@@ -1,0 +1,65 @@
+{
+  "sourcePath": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/server/lib/readMessages.ts",
+  "symbols": [
+    {
+      "type": "function",
+      "name": "readMessages",
+      "exported": true,
+      "line": 7,
+      "endLine": 28,
+      "signature": "export async function readMessages(room: IRoom, uid: IUser['_id'], readThreads: boolean): Promise<void>",
+      "calls": [
+        {
+          "name": "beforeReadMessages",
+          "edgeType": "event_emit"
+        },
+        {
+          "name": "findOneByRoomIdAndUserId",
+          "edgeType": "call"
+        },
+        {
+          "name": "setAsReadByRoomIdAndUserId",
+          "edgeType": "call"
+        },
+        {
+          "name": "notifyOnSubscriptionChangedByRoomIdAndUserId",
+          "edgeType": "call"
+        },
+        {
+          "name": "clearQueueByUserId",
+          "edgeType": "call"
+        },
+        {
+          "name": "afterReadMessages",
+          "edgeType": "event_emit"
+        },
+        {
+          "name": "IRoom",
+          "edgeType": "type"
+        },
+        {
+          "name": "IUser",
+          "edgeType": "type"
+        }
+      ]
+    }
+  ],
+  "imports": [
+    {
+      "module": "@rocket.chat/core-typings",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/models",
+      "resolved": "external"
+    },
+    {
+      "module": "./callbacks",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/server/lib/callbacks.ts"
+    },
+    {
+      "module": "../../app/lib/server/lib/notifyListener",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/app/lib/server/lib/notifyListener.ts"
+    }
+  ]
+}

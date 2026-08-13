@@ -1,0 +1,89 @@
+{
+  "sourcePath": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/server/api/v1/omnichannel/lib/rooms.ts",
+  "symbols": [
+    {
+      "type": "function",
+      "name": "findRooms",
+      "exported": true,
+      "line": 7,
+      "endLine": 92,
+      "signature": "export async function findRooms({ agents, roomName, departmentId, open, createdAt, closedAt, tags, customFields, onhold, queued, units, query, options: { offset, count, fields, sort }, callerId, }: { agents?: Array<string>; roomName?: string; departmentId?: string; open?: boolean; createdAt?: { start?: string | undefined; end?: string | undefined; }; closedAt?: { start?: string | undefined; end?: ",
+      "calls": [
+        {
+          "name": "livechat.applyRoomRestrictions",
+          "edgeType": "event_emit"
+        },
+        {
+          "name": "findRoomsWithCriteria",
+          "edgeType": "call"
+        },
+        {
+          "name": "includes",
+          "edgeType": "call"
+        },
+        {
+          "name": "all",
+          "edgeType": "call"
+        },
+        {
+          "name": "toArray",
+          "edgeType": "call"
+        },
+        {
+          "name": "filter",
+          "edgeType": "call"
+        },
+        {
+          "name": "map",
+          "edgeType": "call"
+        },
+        {
+          "name": "findInIds",
+          "edgeType": "call"
+        },
+        {
+          "name": "forEach",
+          "edgeType": "call"
+        },
+        {
+          "name": "find",
+          "edgeType": "call"
+        },
+        {
+          "name": "Set",
+          "edgeType": "new"
+        },
+        {
+          "name": "PaginatedResult",
+          "edgeType": "type"
+        },
+        {
+          "name": "IOmnichannelRoom",
+          "edgeType": "type"
+        },
+        {
+          "name": "ILivechatDepartment",
+          "edgeType": "type"
+        }
+      ]
+    }
+  ],
+  "imports": [
+    {
+      "module": "@rocket.chat/core-typings",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/models",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/rest-typings",
+      "resolved": "external"
+    },
+    {
+      "module": "../../../../lib/callbacks",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/server/lib/callbacks.ts"
+    }
+  ]
+}

@@ -1,0 +1,136 @@
+{
+  "sourcePath": "/Users/echoooooo/Desktop/code/Rocket.Chat/packages/ui-voip/src/views/CallHistoryContextualbar/CallHistoryActions.tsx",
+  "symbols": [
+    {
+      "type": "variable_function",
+      "name": "getItems",
+      "exported": false,
+      "line": 36,
+      "endLine": 50,
+      "signature": "(actions: HistoryActionCallbacks, t: TFunction, state: PeekMediaSessionStateReturn) =>",
+      "calls": [
+        {
+          "name": "map",
+          "edgeType": "call"
+        },
+        {
+          "name": "filter",
+          "edgeType": "call"
+        },
+        {
+          "name": "entries",
+          "edgeType": "call"
+        },
+        {
+          "name": "HistoryActionCallbacks",
+          "edgeType": "type"
+        },
+        {
+          "name": "TFunction",
+          "edgeType": "type"
+        },
+        {
+          "name": "PeekMediaSessionStateReturn",
+          "edgeType": "type"
+        },
+        {
+          "name": "HistoryActions",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "variable_function",
+      "name": "CallHistoryActions",
+      "exported": false,
+      "line": 40,
+      "endLine": 51,
+      "signature": "({ onClose, actions }: CallHistoryActionsProps) =>",
+      "calls": [
+        {
+          "name": "useTranslation",
+          "edgeType": "call"
+        },
+        {
+          "name": "usePeekMediaSessionState",
+          "edgeType": "call"
+        },
+        {
+          "name": "getItems",
+          "edgeType": "call"
+        },
+        {
+          "name": "ContextualbarActions",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "GenericMenu",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "ContextualbarClose",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "items",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "onClose",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "CallHistoryActionsProps",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "type",
+      "name": "HistoryActions",
+      "line": 9,
+      "endLine": 9,
+      "signature": "type HistoryActions = 'voiceCall' | 'videoCall' | 'jumpToMessage' | 'directMessage' | 'userInfo';"
+    },
+    {
+      "type": "type",
+      "name": "HistoryActionCallbacks",
+      "line": 11,
+      "endLine": 13,
+      "signature": "export type HistoryActionCallbacks ="
+    },
+    {
+      "type": "type",
+      "name": "CallHistoryActionsProps",
+      "line": 15,
+      "endLine": 18,
+      "signature": "type CallHistoryActionsProps ="
+    }
+  ],
+  "imports": [
+    {
+      "module": "@rocket.chat/icons",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/ui-client",
+      "resolved": "external"
+    },
+    {
+      "module": "i18next",
+      "resolved": "external"
+    },
+    {
+      "module": "react-i18next",
+      "resolved": "external"
+    },
+    {
+      "module": "../../context/usePeekMediaSessionState",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/packages/ui-voip/src/context/usePeekMediaSessionState.ts"
+    },
+    {
+      "module": "../../context/usePeekMediaSessionState",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/packages/ui-voip/src/context/usePeekMediaSessionState.ts"
+    }
+  ]
+}

@@ -1,0 +1,169 @@
+{
+  "sourcePath": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/tests/e2e/page-objects/encrypted-room.ts",
+  "symbols": [
+    {
+      "type": "class",
+      "name": "EncryptedRoomPage",
+      "exported": true,
+      "line": 7,
+      "endLine": 51,
+      "signature": "export class EncryptedRoomPage extends HomeContent",
+      "calls": [
+        {
+          "name": "HomeContent",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "lastNthMessage",
+      "exported": true,
+      "qualifiedName": "EncryptedRoomPage.lastNthMessage",
+      "line": 27,
+      "endLine": 29,
+      "signature": "lastNthMessage(index: number)",
+      "containerClass": "EncryptedRoomPage",
+      "calls": [
+        {
+          "name": "nthMessage",
+          "edgeType": "call"
+        },
+        {
+          "name": "Message",
+          "edgeType": "new"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "enableEncryption",
+      "exported": true,
+      "qualifiedName": "EncryptedRoomPage.enableEncryption",
+      "line": 31,
+      "endLine": 37,
+      "signature": "async enableEncryption()",
+      "containerClass": "EncryptedRoomPage",
+      "calls": [
+        {
+          "name": "openMoreOptions",
+          "edgeType": "call"
+        },
+        {
+          "name": "click",
+          "edgeType": "call"
+        },
+        {
+          "name": "enable",
+          "edgeType": "call"
+        },
+        {
+          "name": "EnableRoomEncryptionModal",
+          "edgeType": "new"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "disableEncryption",
+      "exported": true,
+      "qualifiedName": "EncryptedRoomPage.disableEncryption",
+      "line": 35,
+      "endLine": 41,
+      "signature": "async disableEncryption()",
+      "containerClass": "EncryptedRoomPage",
+      "calls": [
+        {
+          "name": "openMoreOptions",
+          "edgeType": "call"
+        },
+        {
+          "name": "click",
+          "edgeType": "call"
+        },
+        {
+          "name": "disable",
+          "edgeType": "call"
+        },
+        {
+          "name": "DisableRoomEncryptionModal",
+          "edgeType": "new"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "showExportMessagesTab",
+      "exported": true,
+      "qualifiedName": "EncryptedRoomPage.showExportMessagesTab",
+      "line": 39,
+      "endLine": 42,
+      "signature": "async showExportMessagesTab()",
+      "containerClass": "EncryptedRoomPage",
+      "calls": [
+        {
+          "name": "openMoreOptions",
+          "edgeType": "call"
+        },
+        {
+          "name": "click",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "constructor",
+      "exported": true,
+      "qualifiedName": "EncryptedRoomPage.constructor",
+      "line": 10,
+      "endLine": 13,
+      "signature": "constructor(page: Page)",
+      "containerClass": "EncryptedRoomPage",
+      "calls": [
+        {
+          "name": "EncryptedRoomToolbar",
+          "edgeType": "new"
+        },
+        {
+          "name": "Page",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "class_property",
+      "name": "toolbar",
+      "exported": true,
+      "qualifiedName": "EncryptedRoomPage.toolbar",
+      "line": 8,
+      "endLine": 8,
+      "signature": "readonly toolbar: EncryptedRoomToolbar;",
+      "containerClass": "EncryptedRoomPage",
+      "calls": [
+        {
+          "name": "EncryptedRoomToolbar",
+          "edgeType": "type"
+        }
+      ]
+    }
+  ],
+  "imports": [
+    {
+      "module": "@playwright/test",
+      "resolved": "external"
+    },
+    {
+      "module": "./fragments",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/tests/e2e/page-objects/fragments/index.ts"
+    },
+    {
+      "module": "./fragments/message",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/tests/e2e/page-objects/fragments/message.ts"
+    },
+    {
+      "module": "./fragments/modals",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/tests/e2e/page-objects/fragments/modals/index.ts"
+    }
+  ]
+}

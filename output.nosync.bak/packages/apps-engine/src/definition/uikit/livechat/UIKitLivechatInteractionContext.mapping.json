@@ -1,0 +1,157 @@
+{
+  "sourcePath": "/Users/echoooooo/Desktop/code/Rocket.Chat/packages/apps-engine/src/definition/uikit/livechat/UIKitLivechatInteractionContext.ts",
+  "symbols": [
+    {
+      "type": "class",
+      "name": "UIKitLivechatInteractionContext",
+      "exported": true,
+      "line": 5,
+      "endLine": 23,
+      "signature": "export abstract class UIKitLivechatInteractionContext",
+      "calls": []
+    },
+    {
+      "type": "method",
+      "name": "getInteractionResponder",
+      "exported": true,
+      "qualifiedName": "UIKitLivechatInteractionContext.getInteractionResponder",
+      "line": 18,
+      "endLine": 20,
+      "signature": "public getInteractionResponder()",
+      "containerClass": "UIKitLivechatInteractionContext",
+      "calls": []
+    },
+    {
+      "type": "method",
+      "name": "getInteractionData",
+      "exported": true,
+      "qualifiedName": "UIKitLivechatInteractionContext.getInteractionData",
+      "line": 22,
+      "endLine": 22,
+      "signature": "public abstract getInteractionData(): IUIKitLivechatBaseIncomingInteraction;",
+      "containerClass": "UIKitLivechatInteractionContext",
+      "calls": [
+        {
+          "name": "IUIKitLivechatBaseIncomingInteraction",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "constructor",
+      "exported": true,
+      "qualifiedName": "UIKitLivechatInteractionContext.constructor",
+      "line": 10,
+      "endLine": 16,
+      "signature": "constructor(baseContext: IUIKitLivechatBaseIncomingInteraction)",
+      "containerClass": "UIKitLivechatInteractionContext",
+      "calls": [
+        {
+          "name": "UIKitInteractionResponder",
+          "edgeType": "new"
+        },
+        {
+          "name": "IUIKitLivechatBaseIncomingInteraction",
+          "edgeType": "type"
+        },
+        {
+          "name": "IUIKitBaseIncomingInteraction",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "class_property",
+      "name": "baseContext",
+      "exported": true,
+      "qualifiedName": "UIKitLivechatInteractionContext.baseContext",
+      "line": 6,
+      "endLine": 6,
+      "signature": "private baseContext: IUIKitLivechatBaseIncomingInteraction;",
+      "containerClass": "UIKitLivechatInteractionContext",
+      "calls": [
+        {
+          "name": "IUIKitLivechatBaseIncomingInteraction",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "class_property",
+      "name": "responder",
+      "exported": true,
+      "qualifiedName": "UIKitLivechatInteractionContext.responder",
+      "line": 8,
+      "endLine": 8,
+      "signature": "private responder: UIKitInteractionResponder;",
+      "containerClass": "UIKitLivechatInteractionContext",
+      "calls": [
+        {
+          "name": "UIKitInteractionResponder",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "class",
+      "name": "UIKitLivechatBlockInteractionContext",
+      "exported": true,
+      "line": 21,
+      "endLine": 29,
+      "signature": "export class UIKitLivechatBlockInteractionContext extends UIKitLivechatInteractionContext",
+      "calls": [
+        {
+          "name": "UIKitLivechatInteractionContext",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "getInteractionData",
+      "exported": true,
+      "qualifiedName": "UIKitLivechatBlockInteractionContext.getInteractionData",
+      "line": 26,
+      "endLine": 28,
+      "signature": "public getInteractionData(): IUIKitLivechatBlockIncomingInteraction",
+      "containerClass": "UIKitLivechatBlockInteractionContext",
+      "calls": [
+        {
+          "name": "IUIKitLivechatBlockIncomingInteraction",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "constructor",
+      "exported": true,
+      "qualifiedName": "UIKitLivechatBlockInteractionContext.constructor",
+      "line": 22,
+      "endLine": 24,
+      "signature": "constructor(private readonly interactionData: IUIKitLivechatBlockIncomingInteraction)",
+      "containerClass": "UIKitLivechatBlockInteractionContext",
+      "calls": [
+        {
+          "name": "IUIKitLivechatBlockIncomingInteraction",
+          "edgeType": "type"
+        }
+      ]
+    }
+  ],
+  "imports": [
+    {
+      "module": "../UIKitIncomingInteractionTypes",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/packages/apps-engine/src/definition/uikit/UIKitIncomingInteractionTypes.ts"
+    },
+    {
+      "module": "../UIKitInteractionResponder",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/packages/apps-engine/src/definition/uikit/UIKitInteractionResponder.ts"
+    },
+    {
+      "module": "./UIKitLivechatIncomingInteractionType",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/packages/apps-engine/src/definition/uikit/livechat/UIKitLivechatIncomingInteractionType.ts"
+    }
+  ]
+}

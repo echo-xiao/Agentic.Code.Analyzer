@@ -1,0 +1,201 @@
+{
+  "sourcePath": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/server/lib/OutboundMessageProvider.ts",
+  "symbols": [
+    {
+      "type": "class",
+      "name": "OutboundMessageProvider",
+      "exported": true,
+      "line": 8,
+      "endLine": 69,
+      "signature": "export class OutboundMessageProvider implements IOutboundMessageProvider",
+      "calls": [
+        {
+          "name": "IOutboundMessageProvider",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "findOneByProviderId",
+      "exported": true,
+      "qualifiedName": "OutboundMessageProvider.findOneByProviderId",
+      "line": 18,
+      "endLine": 27,
+      "signature": "public findOneByProviderId(providerId: string)",
+      "containerClass": "OutboundMessageProvider",
+      "calls": [
+        {
+          "name": "values",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "registerPhoneProvider",
+      "exported": true,
+      "qualifiedName": "OutboundMessageProvider.registerPhoneProvider",
+      "line": 22,
+      "endLine": 24,
+      "signature": "public registerPhoneProvider(provider: IOutboundPhoneMessageProvider): void",
+      "containerClass": "OutboundMessageProvider",
+      "calls": [
+        {
+          "name": "set",
+          "edgeType": "call"
+        },
+        {
+          "name": "get",
+          "edgeType": "call"
+        },
+        {
+          "name": "IOutboundPhoneMessageProvider",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "registerEmailProvider",
+      "exported": true,
+      "qualifiedName": "OutboundMessageProvider.registerEmailProvider",
+      "line": 26,
+      "endLine": 28,
+      "signature": "public registerEmailProvider(provider: IOutboundEmailMessageProvider): void",
+      "containerClass": "OutboundMessageProvider",
+      "calls": [
+        {
+          "name": "set",
+          "edgeType": "call"
+        },
+        {
+          "name": "get",
+          "edgeType": "call"
+        },
+        {
+          "name": "IOutboundEmailMessageProvider",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "getOutboundMessageProviders",
+      "exported": true,
+      "qualifiedName": "OutboundMessageProvider.getOutboundMessageProviders",
+      "line": 30,
+      "endLine": 49,
+      "signature": "public getOutboundMessageProviders(type?: ValidOutboundProvider): IOutboundProvider[]",
+      "containerClass": "OutboundMessageProvider",
+      "calls": [
+        {
+          "name": "map",
+          "edgeType": "call"
+        },
+        {
+          "name": "from",
+          "edgeType": "call"
+        },
+        {
+          "name": "values",
+          "edgeType": "call"
+        },
+        {
+          "name": "get",
+          "edgeType": "call"
+        },
+        {
+          "name": "flatMap",
+          "edgeType": "call"
+        },
+        {
+          "name": "ValidOutboundProvider",
+          "edgeType": "type"
+        },
+        {
+          "name": "IOutboundProvider",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "unregisterProvider",
+      "exported": true,
+      "qualifiedName": "OutboundMessageProvider.unregisterProvider",
+      "line": 34,
+      "endLine": 44,
+      "signature": "public unregisterProvider(appId: string, providerType: ValidOutboundProvider): void",
+      "containerClass": "OutboundMessageProvider",
+      "calls": [
+        {
+          "name": "get",
+          "edgeType": "call"
+        },
+        {
+          "name": "set",
+          "edgeType": "call"
+        },
+        {
+          "name": "filter",
+          "edgeType": "call"
+        },
+        {
+          "name": "ValidOutboundProvider",
+          "edgeType": "type"
+        },
+        {
+          "name": "IOutboundMessageProviders",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "constructor",
+      "exported": true,
+      "qualifiedName": "OutboundMessageProvider.constructor",
+      "line": 11,
+      "endLine": 16,
+      "signature": "constructor()",
+      "containerClass": "OutboundMessageProvider",
+      "calls": [
+        {
+          "name": "Map",
+          "edgeType": "new"
+        }
+      ]
+    },
+    {
+      "type": "class_property",
+      "name": "outboundMessageProviders",
+      "exported": true,
+      "qualifiedName": "OutboundMessageProvider.outboundMessageProviders",
+      "line": 9,
+      "endLine": 9,
+      "signature": "private readonly outboundMessageProviders: Map<ValidOutboundProvider, IOutboundMessageProviders[]>;",
+      "containerClass": "OutboundMessageProvider",
+      "calls": [
+        {
+          "name": "ValidOutboundProvider",
+          "edgeType": "type"
+        },
+        {
+          "name": "IOutboundMessageProviders",
+          "edgeType": "type"
+        }
+      ]
+    }
+  ],
+  "imports": [
+    {
+      "module": "@rocket.chat/apps-engine/definition/outboundCommunication",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/core-typings",
+      "resolved": "external"
+    }
+  ]
+}

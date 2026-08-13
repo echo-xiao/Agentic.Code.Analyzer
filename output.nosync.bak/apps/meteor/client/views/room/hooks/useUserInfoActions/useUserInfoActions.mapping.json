@@ -1,0 +1,258 @@
+{
+  "sourcePath": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/client/views/room/hooks/useUserInfoActions/useUserInfoActions.ts",
+  "symbols": [
+    {
+      "type": "variable_function",
+      "name": "useUserInfoActions",
+      "exported": true,
+      "line": 68,
+      "endLine": 162,
+      "signature": "({ user, rid, reload, size = 2, isMember, isInvited, }: UserInfoActionsParams): UseUserInfoActionsResult =>",
+      "calls": [
+        {
+          "name": "useAddUserAction",
+          "edgeType": "call"
+        },
+        {
+          "name": "useBlockUserAction",
+          "edgeType": "call"
+        },
+        {
+          "name": "useChangeLeaderAction",
+          "edgeType": "call"
+        },
+        {
+          "name": "useChangeModeratorAction",
+          "edgeType": "call"
+        },
+        {
+          "name": "useRedirectModerationConsole",
+          "edgeType": "call"
+        },
+        {
+          "name": "useChangeOwnerAction",
+          "edgeType": "call"
+        },
+        {
+          "name": "useDirectMessageAction",
+          "edgeType": "call"
+        },
+        {
+          "name": "useIgnoreUserAction",
+          "edgeType": "call"
+        },
+        {
+          "name": "useMuteUserAction",
+          "edgeType": "call"
+        },
+        {
+          "name": "useRemoveUserAction",
+          "edgeType": "call"
+        },
+        {
+          "name": "useBanUserAction",
+          "edgeType": "call"
+        },
+        {
+          "name": "useVideoCallAction",
+          "edgeType": "call"
+        },
+        {
+          "name": "useReportUser",
+          "edgeType": "call"
+        },
+        {
+          "name": "useEmbeddedLayout",
+          "edgeType": "call"
+        },
+        {
+          "name": "useLayoutHiddenActions",
+          "edgeType": "call"
+        },
+        {
+          "name": "useUserMediaCallAction",
+          "edgeType": "call"
+        },
+        {
+          "name": "useMemo",
+          "edgeType": "call"
+        },
+        {
+          "name": "filter",
+          "edgeType": "call"
+        },
+        {
+          "name": "entries",
+          "edgeType": "call"
+        },
+        {
+          "name": "includes",
+          "edgeType": "call"
+        },
+        {
+          "name": "slice",
+          "edgeType": "call"
+        },
+        {
+          "name": "reduce",
+          "edgeType": "call"
+        },
+        {
+          "name": "find",
+          "edgeType": "call"
+        },
+        {
+          "name": "push",
+          "edgeType": "call"
+        },
+        {
+          "name": "UserInfoActionsParams",
+          "edgeType": "type"
+        },
+        {
+          "name": "UseUserInfoActionsResult",
+          "edgeType": "type"
+        },
+        {
+          "name": "UserMenuAction",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "type",
+      "name": "UserInfoActionType",
+      "line": 24,
+      "endLine": 24,
+      "signature": "export type UserInfoActionType = 'communication' | 'privileges' | 'management' | 'moderation';"
+    },
+    {
+      "type": "type",
+      "name": "UserInfoActionWithOnlyIcon",
+      "line": 26,
+      "endLine": 34,
+      "signature": "type UserInfoActionWithOnlyIcon ="
+    },
+    {
+      "type": "type",
+      "name": "UserInfoActionWithContent",
+      "line": 36,
+      "endLine": 44,
+      "signature": "type UserInfoActionWithContent ="
+    },
+    {
+      "type": "type",
+      "name": "UserInfoAction",
+      "line": 46,
+      "endLine": 46,
+      "signature": "export type UserInfoAction = UserInfoActionWithContent | UserInfoActionWithOnlyIcon;"
+    },
+    {
+      "type": "type",
+      "name": "UserMenuAction",
+      "line": 48,
+      "endLine": 52,
+      "signature": "export type UserMenuAction ="
+    },
+    {
+      "type": "type",
+      "name": "UserInfoActionsParams",
+      "line": 54,
+      "endLine": 61,
+      "signature": "type UserInfoActionsParams ="
+    },
+    {
+      "type": "type",
+      "name": "UseUserInfoActionsResult",
+      "line": 63,
+      "endLine": 66,
+      "signature": "type UseUserInfoActionsResult ="
+    }
+  ],
+  "imports": [
+    {
+      "module": "@rocket.chat/core-typings",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/fuselage",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/ui-client",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/ui-client",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/ui-contexts",
+      "resolved": "external"
+    },
+    {
+      "module": "react",
+      "resolved": "external"
+    },
+    {
+      "module": "react",
+      "resolved": "external"
+    },
+    {
+      "module": "./actions/useAddUserAction",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/client/views/room/hooks/useUserInfoActions/actions/useAddUserAction.tsx"
+    },
+    {
+      "module": "./actions/useBanUserAction",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/client/views/room/hooks/useUserInfoActions/actions/useBanUserAction.tsx"
+    },
+    {
+      "module": "./actions/useBlockUserAction",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/client/views/room/hooks/useUserInfoActions/actions/useBlockUserAction.ts"
+    },
+    {
+      "module": "./actions/useChangeLeaderAction",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/client/views/room/hooks/useUserInfoActions/actions/useChangeLeaderAction.ts"
+    },
+    {
+      "module": "./actions/useChangeModeratorAction",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/client/views/room/hooks/useUserInfoActions/actions/useChangeModeratorAction.tsx"
+    },
+    {
+      "module": "./actions/useChangeOwnerAction",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/client/views/room/hooks/useUserInfoActions/actions/useChangeOwnerAction.tsx"
+    },
+    {
+      "module": "./actions/useDirectMessageAction",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/client/views/room/hooks/useUserInfoActions/actions/useDirectMessageAction.ts"
+    },
+    {
+      "module": "./actions/useIgnoreUserAction",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/client/views/room/hooks/useUserInfoActions/actions/useIgnoreUserAction.ts"
+    },
+    {
+      "module": "./actions/useMuteUserAction",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/client/views/room/hooks/useUserInfoActions/actions/useMuteUserAction.tsx"
+    },
+    {
+      "module": "./actions/useRedirectModerationConsole",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/client/views/room/hooks/useUserInfoActions/actions/useRedirectModerationConsole.ts"
+    },
+    {
+      "module": "./actions/useRemoveUserAction",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/client/views/room/hooks/useUserInfoActions/actions/useRemoveUserAction.tsx"
+    },
+    {
+      "module": "./actions/useReportUser",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/client/views/room/hooks/useUserInfoActions/actions/useReportUser.tsx"
+    },
+    {
+      "module": "./actions/useUserMediaCallAction",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/client/views/room/hooks/useUserInfoActions/actions/useUserMediaCallAction.ts"
+    },
+    {
+      "module": "./actions/useVideoCallAction",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/client/views/room/hooks/useUserInfoActions/actions/useVideoCallAction.tsx"
+    }
+  ]
+}

@@ -1,0 +1,69 @@
+{
+  "sourcePath": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/tests/data/livechat/inquiries.ts",
+  "symbols": [
+    {
+      "type": "variable_function",
+      "name": "fetchAllInquiries",
+      "exported": true,
+      "line": 7,
+      "endLine": 31,
+      "signature": "async (credentials: Credentials, department?: string): Promise<ILivechatInquiryRecord[]> =>",
+      "calls": [
+        {
+          "name": "expect",
+          "edgeType": "call"
+        },
+        {
+          "name": "query",
+          "edgeType": "call"
+        },
+        {
+          "name": "set",
+          "edgeType": "call"
+        },
+        {
+          "name": "get",
+          "edgeType": "call"
+        },
+        {
+          "name": "api",
+          "edgeType": "call"
+        },
+        {
+          "name": "push",
+          "edgeType": "call"
+        },
+        {
+          "name": "Credentials",
+          "edgeType": "type"
+        },
+        {
+          "name": "ILivechatInquiryRecord",
+          "edgeType": "type"
+        },
+        {
+          "name": "PaginatedResult",
+          "edgeType": "type"
+        }
+      ]
+    }
+  ],
+  "imports": [
+    {
+      "module": "@rocket.chat/api-client",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/core-typings",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/rest-typings",
+      "resolved": "external"
+    },
+    {
+      "module": "../api-data",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/tests/data/api-data.ts"
+    }
+  ]
+}

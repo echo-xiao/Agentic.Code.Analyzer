@@ -1,0 +1,183 @@
+{
+  "sourcePath": "/Users/echoooooo/Desktop/code/Rocket.Chat/scripts/todo-issue/src/diff.ts",
+  "symbols": [
+    {
+      "type": "function",
+      "name": "extractMentions",
+      "exported": false,
+      "line": 11,
+      "endLine": 25,
+      "signature": "function extractMentions(text: string): { cleaned: string; mentions: string[] }",
+      "calls": [
+        {
+          "name": "exec",
+          "edgeType": "call"
+        },
+        {
+          "name": "includes",
+          "edgeType": "call"
+        },
+        {
+          "name": "push",
+          "edgeType": "call"
+        },
+        {
+          "name": "trim",
+          "edgeType": "call"
+        },
+        {
+          "name": "replace",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "function",
+      "name": "extractLabels",
+      "exported": false,
+      "line": 15,
+      "endLine": 27,
+      "signature": "function extractLabels(title: string): { cleaned: string; labels: string[] }",
+      "calls": [
+        {
+          "name": "match",
+          "edgeType": "call"
+        },
+        {
+          "name": "push",
+          "edgeType": "call"
+        },
+        {
+          "name": "trim",
+          "edgeType": "call"
+        },
+        {
+          "name": "trimEnd",
+          "edgeType": "call"
+        },
+        {
+          "name": "replace",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "function",
+      "name": "extractBody",
+      "exported": false,
+      "line": 21,
+      "endLine": 44,
+      "signature": "function extractBody(changes: Change[], startIndex: number, prefix: string): string | false",
+      "calls": [
+        {
+          "name": "trim",
+          "edgeType": "call"
+        },
+        {
+          "name": "replace",
+          "edgeType": "call"
+        },
+        {
+          "name": "slice",
+          "edgeType": "call"
+        },
+        {
+          "name": "test",
+          "edgeType": "call"
+        },
+        {
+          "name": "match",
+          "edgeType": "call"
+        },
+        {
+          "name": "push",
+          "edgeType": "call"
+        },
+        {
+          "name": "join",
+          "edgeType": "call"
+        },
+        {
+          "name": "RegExp",
+          "edgeType": "new"
+        },
+        {
+          "name": "Change",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "function",
+      "name": "extractTodos",
+      "exported": true,
+      "line": 25,
+      "endLine": 84,
+      "signature": "export function extractTodos(diffText: string): TodoItem[]",
+      "calls": [
+        {
+          "name": "parseDiff",
+          "edgeType": "call"
+        },
+        {
+          "name": "test",
+          "edgeType": "call"
+        },
+        {
+          "name": "slice",
+          "edgeType": "call"
+        },
+        {
+          "name": "exec",
+          "edgeType": "call"
+        },
+        {
+          "name": "trim",
+          "edgeType": "call"
+        },
+        {
+          "name": "extractBody",
+          "edgeType": "call"
+        },
+        {
+          "name": "extractLabels",
+          "edgeType": "call"
+        },
+        {
+          "name": "extractMentions",
+          "edgeType": "call"
+        },
+        {
+          "name": "includes",
+          "edgeType": "call"
+        },
+        {
+          "name": "push",
+          "edgeType": "call"
+        },
+        {
+          "name": "RegExp",
+          "edgeType": "new"
+        },
+        {
+          "name": "TodoItem",
+          "edgeType": "type"
+        }
+      ]
+    }
+  ],
+  "imports": [
+    {
+      "module": "parse-diff",
+      "resolved": "external"
+    },
+    {
+      "module": "parse-diff",
+      "resolved": "external"
+    },
+    {
+      "module": "./types",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/scripts/todo-issue/src/types.ts"
+    }
+  ]
+}

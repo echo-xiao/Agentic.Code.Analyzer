@@ -1,0 +1,43 @@
+{
+  "sourcePath": "/Users/echoooooo/Desktop/code/Rocket.Chat/packages/apps/base-runtime/src/lib/sanitizeDeprecatedUsage.ts",
+  "symbols": [
+    {
+      "type": "function",
+      "name": "hasPotentialDeprecatedUsage",
+      "exported": false,
+      "line": 3,
+      "endLine": 12,
+      "signature": "function hasPotentialDeprecatedUsage(source: string)",
+      "calls": [
+        {
+          "name": "includes",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "function",
+      "name": "sanitizeDeprecatedUsage",
+      "exported": true,
+      "line": 7,
+      "endLine": 13,
+      "signature": "export function sanitizeDeprecatedUsage(source: string)",
+      "calls": [
+        {
+          "name": "hasPotentialDeprecatedUsage",
+          "edgeType": "call"
+        },
+        {
+          "name": "fixBrokenSynchronousAPICalls",
+          "edgeType": "call"
+        }
+      ]
+    }
+  ],
+  "imports": [
+    {
+      "module": "./ast/mod",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/packages/apps/base-runtime/src/lib/ast/mod.ts"
+    }
+  ]
+}

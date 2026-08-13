@@ -1,0 +1,153 @@
+{
+  "sourcePath": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/app/oauth2-server-config/server/oauth/oauth2-server.ts",
+  "symbols": [
+    {
+      "type": "module",
+      "name": "oauth2-server",
+      "exported": false,
+      "line": 1,
+      "endLine": 86,
+      "signature": "oauth2-server",
+      "calls": [
+        {
+          "name": "disable",
+          "edgeType": "call"
+        },
+        {
+          "name": "get",
+          "edgeType": "call"
+        },
+        {
+          "name": "send",
+          "edgeType": "call"
+        },
+        {
+          "name": "status",
+          "edgeType": "call"
+        },
+        {
+          "name": "replace",
+          "edgeType": "call"
+        },
+        {
+          "name": "getAccessToken",
+          "edgeType": "call"
+        },
+        {
+          "name": "findOneActiveById",
+          "edgeType": "call"
+        },
+        {
+          "name": "absoluteUrl",
+          "edgeType": "call"
+        },
+        {
+          "name": "Request",
+          "edgeType": "type"
+        },
+        {
+          "name": "Response",
+          "edgeType": "type"
+        },
+        {
+          "name": "addAuthMethod",
+          "edgeType": "call"
+        },
+        {
+          "name": "isPlainObject",
+          "edgeType": "call"
+        },
+        {
+          "name": "oAuth2ServerAuth",
+          "edgeType": "call"
+        },
+        {
+          "name": "use",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "function",
+      "name": "getAccessToken",
+      "exported": false,
+      "line": 18,
+      "endLine": 20,
+      "signature": "async function getAccessToken(accessToken: string)",
+      "calls": [
+        {
+          "name": "findOneByAccessToken",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "function",
+      "name": "oAuth2ServerAuth",
+      "exported": true,
+      "line": 22,
+      "endLine": 44,
+      "signature": "export async function oAuth2ServerAuth(partialRequest: { authorization?: string; accessToken?: string }): Promise<IUser | undefined>",
+      "calls": [
+        {
+          "name": "replace",
+          "edgeType": "call"
+        },
+        {
+          "name": "getAccessToken",
+          "edgeType": "call"
+        },
+        {
+          "name": "findOneActiveById",
+          "edgeType": "call"
+        },
+        {
+          "name": "Date",
+          "edgeType": "new"
+        },
+        {
+          "name": "IUser",
+          "edgeType": "type"
+        }
+      ]
+    }
+  ],
+  "imports": [
+    {
+      "module": "@rocket.chat/core-typings",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/models",
+      "resolved": "external"
+    },
+    {
+      "module": "express",
+      "resolved": "external"
+    },
+    {
+      "module": "express",
+      "resolved": "external"
+    },
+    {
+      "module": "meteor/meteor",
+      "resolved": "external"
+    },
+    {
+      "module": "meteor/webapp",
+      "resolved": "external"
+    },
+    {
+      "module": "../../../../lib/utils/isPlainObject",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/lib/utils/isPlainObject.ts"
+    },
+    {
+      "module": "../../../../server/api",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/server/api/index.ts"
+    },
+    {
+      "module": "../../../../server/oauth2-server/oauth",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/server/oauth2-server/oauth.ts"
+    }
+  ]
+}

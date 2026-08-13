@@ -1,0 +1,49 @@
+{
+  "sourcePath": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/tests/data/validation.helper.ts",
+  "symbols": [
+    {
+      "type": "function",
+      "name": "expectInvalidParams",
+      "exported": true,
+      "line": 5,
+      "endLine": 11,
+      "signature": "export function expectInvalidParams(res: Awaited<ReturnType<(typeof request)['post']>>, expectedErrors: string[]): void",
+      "calls": [
+        {
+          "name": "property",
+          "edgeType": "call"
+        },
+        {
+          "name": "expect",
+          "edgeType": "call"
+        },
+        {
+          "name": "equal",
+          "edgeType": "call"
+        },
+        {
+          "name": "map",
+          "edgeType": "call"
+        },
+        {
+          "name": "split",
+          "edgeType": "call"
+        },
+        {
+          "name": "trim",
+          "edgeType": "call"
+        }
+      ]
+    }
+  ],
+  "imports": [
+    {
+      "module": "chai",
+      "resolved": "external"
+    },
+    {
+      "module": "./api-data",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/tests/data/api-data.ts"
+    }
+  ]
+}

@@ -1,0 +1,481 @@
+{
+  "sourcePath": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/client/views/account/profile/AccountProfileForm.tsx",
+  "symbols": [
+    {
+      "type": "inner_function",
+      "name": "handleSendConfirmationEmail",
+      "exported": false,
+      "qualifiedName": "AccountProfileForm.handleSendConfirmationEmail",
+      "line": 96,
+      "endLine": 102,
+      "signature": "async () =>",
+      "calls": [
+        {
+          "name": "mutateAsync",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "inner_function",
+      "name": "handleSave",
+      "exported": false,
+      "qualifiedName": "AccountProfileForm.handleSave",
+      "line": 128,
+      "endLine": 182,
+      "signature": "async (values: AccountProfileFormValues) =>",
+      "calls": [
+        {
+          "name": "getExpiresAt",
+          "edgeType": "call"
+        },
+        {
+          "name": "find",
+          "edgeType": "call"
+        },
+        {
+          "name": "updateOwnBasicInfo",
+          "edgeType": "call"
+        },
+        {
+          "name": "getUserEmailAddress",
+          "edgeType": "call"
+        },
+        {
+          "name": "setUserStatus",
+          "edgeType": "call"
+        },
+        {
+          "name": "toISOString",
+          "edgeType": "call"
+        },
+        {
+          "name": "updateAvatar",
+          "edgeType": "call"
+        },
+        {
+          "name": "dispatchToastMessage",
+          "edgeType": "call"
+        },
+        {
+          "name": "reset",
+          "edgeType": "call"
+        },
+        {
+          "name": "Date",
+          "edgeType": "new"
+        },
+        {
+          "name": "AccountProfileFormValues",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "inner_function",
+      "name": "onSuccess",
+      "exported": false,
+      "qualifiedName": "AccountProfileForm.onSuccess",
+      "line": 92,
+      "endLine": 92,
+      "signature": "() =>",
+      "calls": [
+        {
+          "name": "dispatchToastMessage",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "inner_function",
+      "name": "onError",
+      "exported": false,
+      "qualifiedName": "AccountProfileForm.onError",
+      "line": 93,
+      "endLine": 93,
+      "signature": "(error) =>",
+      "calls": [
+        {
+          "name": "dispatchToastMessage",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "variable_function",
+      "name": "AccountProfileForm",
+      "exported": false,
+      "line": 41,
+      "endLine": 416,
+      "signature": "(props: AllHTMLAttributes<HTMLFormElement>) =>",
+      "calls": [
+        {
+          "name": "useTranslation",
+          "edgeType": "call"
+        },
+        {
+          "name": "useUser",
+          "edgeType": "call"
+        },
+        {
+          "name": "useToastMessageDispatch",
+          "edgeType": "call"
+        },
+        {
+          "name": "useLayout",
+          "edgeType": "call"
+        },
+        {
+          "name": "useEndpoint",
+          "edgeType": "call"
+        },
+        {
+          "name": "useAccountsCustomFields",
+          "edgeType": "call"
+        },
+        {
+          "name": "useAccountProfileSettings",
+          "edgeType": "call"
+        },
+        {
+          "name": "useFormContext",
+          "edgeType": "call"
+        },
+        {
+          "name": "watch",
+          "edgeType": "call"
+        },
+        {
+          "name": "trim",
+          "edgeType": "call"
+        },
+        {
+          "name": "useEffect",
+          "edgeType": "call"
+        },
+        {
+          "name": "setValue",
+          "edgeType": "call"
+        },
+        {
+          "name": "useMemo",
+          "edgeType": "call"
+        },
+        {
+          "name": "map",
+          "edgeType": "call"
+        },
+        {
+          "name": "getUserEmailAddress",
+          "edgeType": "call"
+        },
+        {
+          "name": "useMutation",
+          "edgeType": "call"
+        },
+        {
+          "name": "dispatchToastMessage",
+          "edgeType": "call"
+        },
+        {
+          "name": "useCallback",
+          "edgeType": "call"
+        },
+        {
+          "name": "mutateAsync",
+          "edgeType": "call"
+        },
+        {
+          "name": "test",
+          "edgeType": "call"
+        },
+        {
+          "name": "checkUsernameAvailability",
+          "edgeType": "call"
+        },
+        {
+          "name": "useUpdateAvatar",
+          "edgeType": "call"
+        },
+        {
+          "name": "getExpiresAt",
+          "edgeType": "call"
+        },
+        {
+          "name": "find",
+          "edgeType": "call"
+        },
+        {
+          "name": "updateOwnBasicInfo",
+          "edgeType": "call"
+        },
+        {
+          "name": "setUserStatus",
+          "edgeType": "call"
+        },
+        {
+          "name": "toISOString",
+          "edgeType": "call"
+        },
+        {
+          "name": "updateAvatar",
+          "edgeType": "call"
+        },
+        {
+          "name": "reset",
+          "edgeType": "call"
+        },
+        {
+          "name": "handleSubmit",
+          "edgeType": "call"
+        },
+        {
+          "name": "validateStatusExpiration",
+          "edgeType": "call"
+        },
+        {
+          "name": "onChange",
+          "edgeType": "call"
+        },
+        {
+          "name": "toLocaleDateString",
+          "edgeType": "call"
+        },
+        {
+          "name": "validateEmail",
+          "edgeType": "call"
+        },
+        {
+          "name": "Box",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "FieldGroup",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "VisuallyHidden",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "Field",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "FieldLabel",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "FieldRow",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "FieldError",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "FieldHint",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "Margins",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "Button",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "Controller",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "UserAvatarEditor",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "TextInput",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "Icon",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "Divider",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "UserStatusMenu",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "Select",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "InputBox",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "TextAreaInput",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "CustomFieldsForm",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "control",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "userFullName",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "username",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "onChange",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "requireName",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "value",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "statusDurationOptions",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "handleSendConfirmationEmail",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "customFieldsMetadata",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "Date",
+          "edgeType": "new"
+        },
+        {
+          "name": "AllHTMLAttributes",
+          "edgeType": "type"
+        },
+        {
+          "name": "HTMLFormElement",
+          "edgeType": "type"
+        },
+        {
+          "name": "AccountProfileFormValues",
+          "edgeType": "type"
+        },
+        {
+          "name": "SelectOption",
+          "edgeType": "type"
+        },
+        {
+          "name": "ChangeEvent",
+          "edgeType": "type"
+        },
+        {
+          "name": "HTMLInputElement",
+          "edgeType": "type"
+        }
+      ]
+    }
+  ],
+  "imports": [
+    {
+      "module": "@react-aria/visually-hidden",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/core-typings",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/css-in-js",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/fuselage",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/fuselage",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/fuselage-forms",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/tools",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/ui-client",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/ui-contexts",
+      "resolved": "external"
+    },
+    {
+      "module": "@tanstack/react-query",
+      "resolved": "external"
+    },
+    {
+      "module": "react",
+      "resolved": "external"
+    },
+    {
+      "module": "react",
+      "resolved": "external"
+    },
+    {
+      "module": "react-hook-form",
+      "resolved": "external"
+    },
+    {
+      "module": "./getProfileInitialValues",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/client/views/account/profile/getProfileInitialValues.ts"
+    },
+    {
+      "module": "./useAccountProfileSettings",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/client/views/account/profile/useAccountProfileSettings.ts"
+    },
+    {
+      "module": "../../../../lib/getUserEmailAddress",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/lib/getUserEmailAddress.ts"
+    },
+    {
+      "module": "../../../components/UserStatusMenu",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/client/components/UserStatusMenu.tsx"
+    },
+    {
+      "module": "../../../components/avatar/UserAvatarEditor",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/client/components/avatar/UserAvatarEditor/index.ts"
+    },
+    {
+      "module": "../../../hooks/useUpdateAvatar",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/client/hooks/useUpdateAvatar.ts"
+    },
+    {
+      "module": "../../../lib/constants",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/client/lib/constants.ts"
+    },
+    {
+      "module": "../../../lib/statusDurations",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/client/lib/statusDurations.ts"
+    }
+  ]
+}

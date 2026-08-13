@@ -1,0 +1,120 @@
+{
+  "sourcePath": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/ee/server/apps/marketplace/appRequestNotifyUsers.ts",
+  "symbols": [
+    {
+      "type": "variable_function",
+      "name": "notifyBatchOfUsersError",
+      "exported": false,
+      "line": 11,
+      "endLine": 13,
+      "signature": "(error: Error) =>",
+      "calls": []
+    },
+    {
+      "type": "variable_function",
+      "name": "notifyBatchOfUsers",
+      "exported": false,
+      "line": 15,
+      "endLine": 37,
+      "signature": "async (appName: string, learnMoreUrl: string, appRequests: AppRequest[]): Promise<string[]> =>",
+      "calls": [
+        {
+          "name": "reduce",
+          "edgeType": "call"
+        },
+        {
+          "name": "includes",
+          "edgeType": "call"
+        },
+        {
+          "name": "push",
+          "edgeType": "call"
+        },
+        {
+          "name": "sendDirectMessageToUsers",
+          "edgeType": "call"
+        },
+        {
+          "name": "AppRequest",
+          "edgeType": "type"
+        },
+        {
+          "name": "IUser",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "variable_function",
+      "name": "appRequestNotififyForUsers",
+      "exported": true,
+      "line": 19,
+      "endLine": 89,
+      "signature": "async ( marketplaceBaseUrl: string, workspaceUrl: string, appId: string, appName: string, ): Promise<(string | Error)[]> =>",
+      "calls": [
+        {
+          "name": "getWorkspaceAccessToken",
+          "edgeType": "call"
+        },
+        {
+          "name": "fetch",
+          "edgeType": "call"
+        },
+        {
+          "name": "json",
+          "edgeType": "call"
+        },
+        {
+          "name": "ceil",
+          "edgeType": "call"
+        },
+        {
+          "name": "push",
+          "edgeType": "call"
+        },
+        {
+          "name": "catch",
+          "edgeType": "call"
+        },
+        {
+          "name": "notifyBatchOfUsers",
+          "edgeType": "call"
+        },
+        {
+          "name": "from",
+          "edgeType": "call"
+        },
+        {
+          "name": "all",
+          "edgeType": "call"
+        },
+        {
+          "name": "flat",
+          "edgeType": "call"
+        }
+      ]
+    }
+  ],
+  "imports": [
+    {
+      "module": "@rocket.chat/core-typings",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/server-fetch",
+      "resolved": "external"
+    },
+    {
+      "module": "../../../../app/cloud/server",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/app/cloud/server/index.ts"
+    },
+    {
+      "module": "../../../../server/lib/i18n",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/server/lib/i18n.ts"
+    },
+    {
+      "module": "../../../../server/lib/sendDirectMessageToUsers",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/server/lib/sendDirectMessageToUsers.ts"
+    }
+  ]
+}

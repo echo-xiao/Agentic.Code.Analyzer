@@ -1,0 +1,131 @@
+{
+  "sourcePath": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/client/views/omnichannel/webhooks/WebhooksPageContainer.tsx",
+  "symbols": [
+    {
+      "type": "variable_function",
+      "name": "reduceSettings",
+      "exported": false,
+      "line": 12,
+      "endLine": 16,
+      "signature": "(settings: Serialized<ISetting>[]) =>",
+      "calls": [
+        {
+          "name": "reduce",
+          "edgeType": "call"
+        },
+        {
+          "name": "Serialized",
+          "edgeType": "type"
+        },
+        {
+          "name": "ISetting",
+          "edgeType": "type"
+        },
+        {
+          "name": "SettingValue",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "variable_function",
+      "name": "WebhooksPageContainer",
+      "exported": false,
+      "line": 18,
+      "endLine": 54,
+      "signature": "() =>",
+      "calls": [
+        {
+          "name": "useTranslation",
+          "edgeType": "call"
+        },
+        {
+          "name": "useEndpoint",
+          "edgeType": "call"
+        },
+        {
+          "name": "useQuery",
+          "edgeType": "call"
+        },
+        {
+          "name": "getIntegrationsSettings",
+          "edgeType": "call"
+        },
+        {
+          "name": "reduceSettings",
+          "edgeType": "call"
+        },
+        {
+          "name": "usePermission",
+          "edgeType": "call"
+        },
+        {
+          "name": "Page",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "PageScrollableContentWithShadow",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "Callout",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "NotAuthorizedPage",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "PageSkeleton",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "PageHeader",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "WebhooksPage",
+          "edgeType": "jsx"
+        }
+      ]
+    }
+  ],
+  "imports": [
+    {
+      "module": "@rocket.chat/core-typings",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/fuselage",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/ui-client",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/ui-contexts",
+      "resolved": "external"
+    },
+    {
+      "module": "@tanstack/react-query",
+      "resolved": "external"
+    },
+    {
+      "module": "react-i18next",
+      "resolved": "external"
+    },
+    {
+      "module": "./WebhooksPage",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/client/views/omnichannel/webhooks/WebhooksPage.tsx"
+    },
+    {
+      "module": "../../../components/PageSkeleton",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/client/components/PageSkeleton.tsx"
+    },
+    {
+      "module": "../../notAuthorized/NotAuthorizedPage",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/client/views/notAuthorized/NotAuthorizedPage.tsx"
+    }
+  ]
+}

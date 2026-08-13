@@ -1,0 +1,200 @@
+{
+  "sourcePath": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/tests/e2e/federation/page-objects/fragments/home-flextab.ts",
+  "symbols": [
+    {
+      "type": "class",
+      "name": "FederationHomeFlextab",
+      "exported": true,
+      "line": 9,
+      "endLine": 44,
+      "signature": "export class FederationHomeFlextab",
+      "calls": []
+    },
+    {
+      "type": "method",
+      "name": "searchForChannelOnAddChannelToTeam",
+      "exported": true,
+      "qualifiedName": "FederationHomeFlextab.searchForChannelOnAddChannelToTeam",
+      "line": 35,
+      "endLine": 39,
+      "signature": "async searchForChannelOnAddChannelToTeam(channelName: string): Promise<void>",
+      "containerClass": "FederationHomeFlextab",
+      "calls": [
+        {
+          "name": "focus",
+          "edgeType": "call"
+        },
+        {
+          "name": "locator",
+          "edgeType": "call"
+        },
+        {
+          "name": "waitForTimeout",
+          "edgeType": "call"
+        },
+        {
+          "name": "type",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "constructor",
+      "exported": true,
+      "qualifiedName": "FederationHomeFlextab.constructor",
+      "line": 22,
+      "endLine": 29,
+      "signature": "constructor(page: Page)",
+      "containerClass": "FederationHomeFlextab",
+      "calls": [
+        {
+          "name": "FederationHomeFlextabMembers",
+          "edgeType": "new"
+        },
+        {
+          "name": "FederationHomeFlextabRoom",
+          "edgeType": "new"
+        },
+        {
+          "name": "FederationHomeFlextabChannels",
+          "edgeType": "new"
+        },
+        {
+          "name": "FederationHomeFlextabNotificationPreferences",
+          "edgeType": "new"
+        },
+        {
+          "name": "FederationHomeFlextabDirectMessageMember",
+          "edgeType": "new"
+        },
+        {
+          "name": "Page",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "class_property",
+      "name": "page",
+      "exported": true,
+      "qualifiedName": "FederationHomeFlextab.page",
+      "line": 10,
+      "endLine": 10,
+      "signature": "private readonly page: Page;",
+      "containerClass": "FederationHomeFlextab",
+      "calls": [
+        {
+          "name": "Page",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "class_property",
+      "name": "members",
+      "exported": true,
+      "qualifiedName": "FederationHomeFlextab.members",
+      "line": 12,
+      "endLine": 12,
+      "signature": "readonly members: FederationHomeFlextabMembers;",
+      "containerClass": "FederationHomeFlextab",
+      "calls": [
+        {
+          "name": "FederationHomeFlextabMembers",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "class_property",
+      "name": "dmUserMember",
+      "exported": true,
+      "qualifiedName": "FederationHomeFlextab.dmUserMember",
+      "line": 14,
+      "endLine": 14,
+      "signature": "readonly dmUserMember: FederationHomeFlextabDirectMessageMember;",
+      "containerClass": "FederationHomeFlextab",
+      "calls": [
+        {
+          "name": "FederationHomeFlextabDirectMessageMember",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "class_property",
+      "name": "room",
+      "exported": true,
+      "qualifiedName": "FederationHomeFlextab.room",
+      "line": 16,
+      "endLine": 16,
+      "signature": "readonly room: FederationHomeFlextabRoom;",
+      "containerClass": "FederationHomeFlextab",
+      "calls": [
+        {
+          "name": "FederationHomeFlextabRoom",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "class_property",
+      "name": "channels",
+      "exported": true,
+      "qualifiedName": "FederationHomeFlextab.channels",
+      "line": 18,
+      "endLine": 18,
+      "signature": "readonly channels: FederationHomeFlextabChannels;",
+      "containerClass": "FederationHomeFlextab",
+      "calls": [
+        {
+          "name": "FederationHomeFlextabChannels",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "class_property",
+      "name": "notificationPreferences",
+      "exported": true,
+      "qualifiedName": "FederationHomeFlextab.notificationPreferences",
+      "line": 20,
+      "endLine": 20,
+      "signature": "readonly notificationPreferences: FederationHomeFlextabNotificationPreferences;",
+      "containerClass": "FederationHomeFlextab",
+      "calls": [
+        {
+          "name": "FederationHomeFlextabNotificationPreferences",
+          "edgeType": "type"
+        }
+      ]
+    }
+  ],
+  "imports": [
+    {
+      "module": "@playwright/test",
+      "resolved": "external"
+    },
+    {
+      "module": "./home-flextab-channels",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/tests/e2e/federation/page-objects/fragments/home-flextab-channels.ts"
+    },
+    {
+      "module": "./home-flextab-dm-member",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/tests/e2e/federation/page-objects/fragments/home-flextab-dm-member.ts"
+    },
+    {
+      "module": "./home-flextab-members",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/tests/e2e/federation/page-objects/fragments/home-flextab-members.ts"
+    },
+    {
+      "module": "./home-flextab-notificationPreferences",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/tests/e2e/federation/page-objects/fragments/home-flextab-notificationPreferences.ts"
+    },
+    {
+      "module": "./home-flextab-room",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/tests/e2e/federation/page-objects/fragments/home-flextab-room.ts"
+    }
+  ]
+}

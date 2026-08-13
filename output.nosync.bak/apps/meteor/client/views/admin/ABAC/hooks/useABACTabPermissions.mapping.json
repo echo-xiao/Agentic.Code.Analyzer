@@ -1,0 +1,45 @@
+{
+  "sourcePath": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/client/views/admin/ABAC/hooks/useABACTabPermissions.ts",
+  "symbols": [
+    {
+      "type": "variable",
+      "name": "ABAC_TAB_ORDER",
+      "exported": true,
+      "line": 5,
+      "endLine": 5,
+      "signature": "ABAC_TAB_ORDER: ABACTab[] = ['settings', 'room-attributes', 'rooms', 'logs']",
+      "calls": []
+    },
+    {
+      "type": "variable_function",
+      "name": "useABACTabPermissions",
+      "exported": true,
+      "line": 7,
+      "endLine": 14,
+      "signature": "(): Record<ABACTab, boolean> =>",
+      "calls": [
+        {
+          "name": "usePermission",
+          "edgeType": "call"
+        },
+        {
+          "name": "ABACTab",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "type",
+      "name": "ABACTab",
+      "line": 3,
+      "endLine": 3,
+      "signature": "export type ABACTab = 'settings' | 'room-attributes' | 'rooms' | 'logs';"
+    }
+  ],
+  "imports": [
+    {
+      "module": "@rocket.chat/ui-contexts",
+      "resolved": "external"
+    }
+  ]
+}

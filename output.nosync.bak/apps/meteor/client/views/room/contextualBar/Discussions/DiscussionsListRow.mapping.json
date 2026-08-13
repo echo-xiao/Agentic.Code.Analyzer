@@ -1,0 +1,90 @@
+{
+  "sourcePath": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/client/views/room/contextualBar/Discussions/DiscussionsListRow.tsx",
+  "symbols": [
+    {
+      "type": "module",
+      "name": "DiscussionsListRow",
+      "exported": false,
+      "line": 1,
+      "endLine": 40,
+      "signature": "DiscussionsListRow",
+      "calls": [
+        {
+          "name": "memo",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "function",
+      "name": "DiscussionListRow",
+      "exported": false,
+      "line": 15,
+      "endLine": 37,
+      "signature": "function DiscussionListRow({ discussion, showRealNames, onClick }: DiscussionListRowProps)",
+      "calls": [
+        {
+          "name": "useTimeAgo",
+          "edgeType": "call"
+        },
+        {
+          "name": "normalizeThreadMessage",
+          "edgeType": "call"
+        },
+        {
+          "name": "DiscussionsListItem",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "msg",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "formatDate",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "onClick",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "DiscussionListRowProps",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "type",
+      "name": "DiscussionListRowProps",
+      "line": 9,
+      "endLine": 13,
+      "signature": "type DiscussionListRowProps ="
+    }
+  ],
+  "imports": [
+    {
+      "module": "@rocket.chat/core-typings",
+      "resolved": "external"
+    },
+    {
+      "module": "react",
+      "resolved": "external"
+    },
+    {
+      "module": "react",
+      "resolved": "external"
+    },
+    {
+      "module": "./components/DiscussionsListItem",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/client/views/room/contextualBar/Discussions/components/DiscussionsListItem.tsx"
+    },
+    {
+      "module": "../../../../hooks/useTimeAgo",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/client/hooks/useTimeAgo.ts"
+    },
+    {
+      "module": "../../../../lib/normalizeThreadMessage",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/client/lib/normalizeThreadMessage.tsx"
+    }
+  ]
+}

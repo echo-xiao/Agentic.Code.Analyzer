@@ -1,0 +1,261 @@
+{
+  "sourcePath": "/Users/echoooooo/Desktop/code/Rocket.Chat/packages/gazzodown/src/elements/SpoilerSpan.tsx",
+  "symbols": [
+    {
+      "type": "inner_function",
+      "name": "onKeyDown",
+      "exported": false,
+      "qualifiedName": "SpoilerSpan.onKeyDown",
+      "line": 60,
+      "endLine": 66,
+      "signature": "(e: KeyboardEvent<HTMLSpanElement>) =>",
+      "calls": [
+        {
+          "name": "preventDefault",
+          "edgeType": "call"
+        },
+        {
+          "name": "reveal",
+          "edgeType": "call"
+        },
+        {
+          "name": "KeyboardEvent",
+          "edgeType": "type"
+        },
+        {
+          "name": "HTMLSpanElement",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "variable_function",
+      "name": "SpoilerSpan",
+      "exported": false,
+      "line": 52,
+      "endLine": 82,
+      "signature": "({ children }: SpoilerSpanProps) =>",
+      "calls": [
+        {
+          "name": "useTranslation",
+          "edgeType": "call"
+        },
+        {
+          "name": "useState",
+          "edgeType": "call"
+        },
+        {
+          "name": "useCallback",
+          "edgeType": "call"
+        },
+        {
+          "name": "setRevealed",
+          "edgeType": "call"
+        },
+        {
+          "name": "preventDefault",
+          "edgeType": "call"
+        },
+        {
+          "name": "reveal",
+          "edgeType": "call"
+        },
+        {
+          "name": "map",
+          "edgeType": "call"
+        },
+        {
+          "name": "renderBlockComponent",
+          "edgeType": "call"
+        },
+        {
+          "name": "revealedStyle",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "srText",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "reveal",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "onKeyDown",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "spoilerStyle",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "srOnlyStyle",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "SpoilerSpanProps",
+          "edgeType": "type"
+        },
+        {
+          "name": "KeyboardEvent",
+          "edgeType": "type"
+        },
+        {
+          "name": "HTMLSpanElement",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "variable_function",
+      "name": "renderBlockComponent",
+      "exported": false,
+      "line": 56,
+      "endLine": 107,
+      "signature": "(block: MessageParser.Inlines, index: number) =>",
+      "calls": [
+        {
+          "name": "StrikeSpan",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "ItalicSpan",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "BoldSpan",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "SpoilerSpan",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "Timestamp",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "KatexErrorBoundary",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "EmojiElement",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "UserMentionElement",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "ChannelMentionElement",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "PlainSpan",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "LinkSpan",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "CodeElement",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "ColorElement",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "ImageElement",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "KatexElement",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "index",
+          "edgeType": "jsx"
+        }
+      ]
+    },
+    {
+      "type": "type",
+      "name": "SpoilerSpanProps",
+      "line": 22,
+      "endLine": 24,
+      "signature": "export type SpoilerSpanProps ="
+    }
+  ],
+  "imports": [
+    {
+      "module": "@rocket.chat/message-parser",
+      "resolved": "external"
+    },
+    {
+      "module": "react",
+      "resolved": "external"
+    },
+    {
+      "module": "react",
+      "resolved": "external"
+    },
+    {
+      "module": "react-i18next",
+      "resolved": "external"
+    },
+    {
+      "module": "./BoldSpan",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/packages/gazzodown/src/elements/BoldSpan.tsx"
+    },
+    {
+      "module": "./ImageElement",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/packages/gazzodown/src/elements/ImageElement.tsx"
+    },
+    {
+      "module": "./ItalicSpan",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/packages/gazzodown/src/elements/ItalicSpan.tsx"
+    },
+    {
+      "module": "./LinkSpan",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/packages/gazzodown/src/elements/LinkSpan.tsx"
+    },
+    {
+      "module": "./PlainSpan",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/packages/gazzodown/src/elements/PlainSpan.tsx"
+    },
+    {
+      "module": "./StrikeSpan",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/packages/gazzodown/src/elements/StrikeSpan.tsx"
+    },
+    {
+      "module": "./Timestamp",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/packages/gazzodown/src/elements/Timestamp/index.tsx"
+    },
+    {
+      "module": "../code/CodeElement",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/packages/gazzodown/src/code/CodeElement.tsx"
+    },
+    {
+      "module": "../colors/ColorElement",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/packages/gazzodown/src/colors/ColorElement.tsx"
+    },
+    {
+      "module": "../emoji/EmojiElement",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/packages/gazzodown/src/emoji/EmojiElement.tsx"
+    },
+    {
+      "module": "../katex/KatexErrorBoundary",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/packages/gazzodown/src/katex/KatexErrorBoundary.tsx"
+    },
+    {
+      "module": "../mentions/ChannelMentionElement",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/packages/gazzodown/src/mentions/ChannelMentionElement.tsx"
+    },
+    {
+      "module": "../mentions/UserMentionElement",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/packages/gazzodown/src/mentions/UserMentionElement.tsx"
+    }
+  ]
+}

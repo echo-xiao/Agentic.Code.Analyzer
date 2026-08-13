@@ -1,0 +1,365 @@
+{
+  "sourcePath": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/client/views/admin/subscription/components/cards/PlanCard/ManageLicenseModal/useLicenseFileInput.ts",
+  "symbols": [
+    {
+      "type": "variable_function",
+      "name": "isTxtFile",
+      "exported": false,
+      "line": 5,
+      "endLine": 5,
+      "signature": "(file: File): boolean =>",
+      "calls": [
+        {
+          "name": "endsWith",
+          "edgeType": "call"
+        },
+        {
+          "name": "toLowerCase",
+          "edgeType": "call"
+        },
+        {
+          "name": "File",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "variable_function",
+      "name": "readFileAsText",
+      "exported": false,
+      "line": 7,
+      "endLine": 20,
+      "signature": "(file: File): Promise<string> =>",
+      "calls": [
+        {
+          "name": "resolve",
+          "edgeType": "call"
+        },
+        {
+          "name": "reject",
+          "edgeType": "call"
+        },
+        {
+          "name": "readAsText",
+          "edgeType": "call"
+        },
+        {
+          "name": "FileReader",
+          "edgeType": "new"
+        },
+        {
+          "name": "File",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "variable_function",
+      "name": "isFileDrag",
+      "exported": false,
+      "line": 22,
+      "endLine": 22,
+      "signature": "(event: DragEvent<HTMLElement>) =>",
+      "calls": [
+        {
+          "name": "includes",
+          "edgeType": "call"
+        },
+        {
+          "name": "DragEvent",
+          "edgeType": "type"
+        },
+        {
+          "name": "HTMLElement",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "inner_function",
+      "name": "handleFile",
+      "exported": false,
+      "qualifiedName": "useLicenseFileInput.handleFile",
+      "line": 31,
+      "endLine": 51,
+      "signature": "async (selected: File | undefined) =>",
+      "calls": [
+        {
+          "name": "isTxtFile",
+          "edgeType": "call"
+        },
+        {
+          "name": "setSelectedFile",
+          "edgeType": "call"
+        },
+        {
+          "name": "setFileError",
+          "edgeType": "call"
+        },
+        {
+          "name": "setLicense",
+          "edgeType": "call"
+        },
+        {
+          "name": "readFileAsText",
+          "edgeType": "call"
+        },
+        {
+          "name": "File",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "inner_function",
+      "name": "handleRemoveFile",
+      "exported": false,
+      "qualifiedName": "useLicenseFileInput.handleRemoveFile",
+      "line": 53,
+      "endLine": 57,
+      "signature": "() =>",
+      "calls": [
+        {
+          "name": "setSelectedFile",
+          "edgeType": "call"
+        },
+        {
+          "name": "setFileError",
+          "edgeType": "call"
+        },
+        {
+          "name": "setLicense",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "inner_function",
+      "name": "handleDrop",
+      "exported": false,
+      "qualifiedName": "useLicenseFileInput.handleDrop",
+      "line": 59,
+      "endLine": 67,
+      "signature": "(event: DragEvent<HTMLElement>) =>",
+      "calls": [
+        {
+          "name": "isFileDrag",
+          "edgeType": "call"
+        },
+        {
+          "name": "preventDefault",
+          "edgeType": "call"
+        },
+        {
+          "name": "stopPropagation",
+          "edgeType": "call"
+        },
+        {
+          "name": "setIsDragOver",
+          "edgeType": "call"
+        },
+        {
+          "name": "handleFile",
+          "edgeType": "call"
+        },
+        {
+          "name": "DragEvent",
+          "edgeType": "type"
+        },
+        {
+          "name": "HTMLElement",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "inner_function",
+      "name": "handleDragLeave",
+      "exported": false,
+      "qualifiedName": "useLicenseFileInput.handleDragLeave",
+      "line": 69,
+      "endLine": 76,
+      "signature": "(event: DragEvent<HTMLElement>) =>",
+      "calls": [
+        {
+          "name": "preventDefault",
+          "edgeType": "call"
+        },
+        {
+          "name": "stopPropagation",
+          "edgeType": "call"
+        },
+        {
+          "name": "setIsDragOver",
+          "edgeType": "call"
+        },
+        {
+          "name": "DragEvent",
+          "edgeType": "type"
+        },
+        {
+          "name": "HTMLElement",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "inner_function",
+      "name": "handleDragOver",
+      "exported": false,
+      "qualifiedName": "useLicenseFileInput.handleDragOver",
+      "line": 78,
+      "endLine": 86,
+      "signature": "(event: DragEvent<HTMLElement>) =>",
+      "calls": [
+        {
+          "name": "isFileDrag",
+          "edgeType": "call"
+        },
+        {
+          "name": "preventDefault",
+          "edgeType": "call"
+        },
+        {
+          "name": "stopPropagation",
+          "edgeType": "call"
+        },
+        {
+          "name": "setIsDragOver",
+          "edgeType": "call"
+        },
+        {
+          "name": "DragEvent",
+          "edgeType": "type"
+        },
+        {
+          "name": "HTMLElement",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "inner_function",
+      "name": "handleTextChange",
+      "exported": false,
+      "qualifiedName": "useLicenseFileInput.handleTextChange",
+      "line": 88,
+      "endLine": 92,
+      "signature": "(event: ChangeEvent<HTMLTextAreaElement>) =>",
+      "calls": [
+        {
+          "name": "setSelectedFile",
+          "edgeType": "call"
+        },
+        {
+          "name": "setFileError",
+          "edgeType": "call"
+        },
+        {
+          "name": "setLicense",
+          "edgeType": "call"
+        },
+        {
+          "name": "ChangeEvent",
+          "edgeType": "type"
+        },
+        {
+          "name": "HTMLTextAreaElement",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "variable_function",
+      "name": "useLicenseFileInput",
+      "exported": true,
+      "line": 24,
+      "endLine": 106,
+      "signature": "(enterpriseLicense: string) =>",
+      "calls": [
+        {
+          "name": "useTranslation",
+          "edgeType": "call"
+        },
+        {
+          "name": "useState",
+          "edgeType": "call"
+        },
+        {
+          "name": "isTxtFile",
+          "edgeType": "call"
+        },
+        {
+          "name": "setSelectedFile",
+          "edgeType": "call"
+        },
+        {
+          "name": "setFileError",
+          "edgeType": "call"
+        },
+        {
+          "name": "setLicense",
+          "edgeType": "call"
+        },
+        {
+          "name": "readFileAsText",
+          "edgeType": "call"
+        },
+        {
+          "name": "isFileDrag",
+          "edgeType": "call"
+        },
+        {
+          "name": "preventDefault",
+          "edgeType": "call"
+        },
+        {
+          "name": "stopPropagation",
+          "edgeType": "call"
+        },
+        {
+          "name": "setIsDragOver",
+          "edgeType": "call"
+        },
+        {
+          "name": "handleFile",
+          "edgeType": "call"
+        },
+        {
+          "name": "File",
+          "edgeType": "type"
+        },
+        {
+          "name": "DragEvent",
+          "edgeType": "type"
+        },
+        {
+          "name": "HTMLElement",
+          "edgeType": "type"
+        },
+        {
+          "name": "ChangeEvent",
+          "edgeType": "type"
+        },
+        {
+          "name": "HTMLTextAreaElement",
+          "edgeType": "type"
+        }
+      ]
+    }
+  ],
+  "imports": [
+    {
+      "module": "react",
+      "resolved": "external"
+    },
+    {
+      "module": "react",
+      "resolved": "external"
+    },
+    {
+      "module": "react-i18next",
+      "resolved": "external"
+    }
+  ]
+}

@@ -1,0 +1,174 @@
+{
+  "sourcePath": "/Users/echoooooo/Desktop/code/Rocket.Chat/packages/livechat/src/lib/main.js",
+  "symbols": [
+    {
+      "type": "variable_function",
+      "name": "updateBusinessUnit",
+      "exported": true,
+      "line": 8,
+      "endLine": 36,
+      "signature": "async (newBusinessUnit) =>",
+      "calls": [
+        {
+          "name": "config",
+          "edgeType": "call"
+        },
+        {
+          "name": "setState",
+          "edgeType": "call"
+        },
+        {
+          "name": "unsetSinglePropInStateByName",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "variable_function",
+      "name": "loadConfig",
+      "exported": true,
+      "line": 12,
+      "endLine": 43,
+      "signature": "async () =>",
+      "calls": [
+        {
+          "name": "config",
+          "edgeType": "call"
+        },
+        {
+          "name": "setState",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "variable_function",
+      "name": "shouldMarkAsUnread",
+      "exported": true,
+      "line": 16,
+      "endLine": 19,
+      "signature": "() =>",
+      "calls": []
+    },
+    {
+      "type": "variable_function",
+      "name": "getLastReadMessage",
+      "exported": true,
+      "line": 20,
+      "endLine": 31,
+      "signature": "() =>",
+      "calls": [
+        {
+          "name": "filter",
+          "edgeType": "call"
+        },
+        {
+          "name": "canRenderMessage",
+          "edgeType": "call"
+        },
+        {
+          "name": "find",
+          "edgeType": "call"
+        },
+        {
+          "name": "reverse",
+          "edgeType": "call"
+        },
+        {
+          "name": "slice",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "variable_function",
+      "name": "getUnreadMessages",
+      "exported": true,
+      "line": 24,
+      "endLine": 35,
+      "signature": "() =>",
+      "calls": [
+        {
+          "name": "filter",
+          "edgeType": "call"
+        },
+        {
+          "name": "canRenderMessage",
+          "edgeType": "call"
+        },
+        {
+          "name": "findIndex",
+          "edgeType": "call"
+        },
+        {
+          "name": "findLastIndex",
+          "edgeType": "call"
+        },
+        {
+          "name": "slice",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "variable_function",
+      "name": "processUnread",
+      "exported": true,
+      "line": 28,
+      "endLine": 53,
+      "signature": "async () =>",
+      "calls": [
+        {
+          "name": "getUnreadMessages",
+          "edgeType": "call"
+        },
+        {
+          "name": "setState",
+          "edgeType": "call"
+        },
+        {
+          "name": "shouldMarkAsUnread",
+          "edgeType": "call"
+        },
+        {
+          "name": "getLastReadMessage",
+          "edgeType": "call"
+        },
+        {
+          "name": "filter",
+          "edgeType": "call"
+        },
+        {
+          "name": "push",
+          "edgeType": "call"
+        },
+        {
+          "name": "Date",
+          "edgeType": "new"
+        }
+      ]
+    }
+  ],
+  "imports": [
+    {
+      "module": "i18next",
+      "resolved": "external"
+    },
+    {
+      "module": "../api",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/packages/livechat/src/api.ts"
+    },
+    {
+      "module": "../helpers/canRenderMessage",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/packages/livechat/src/helpers/canRenderMessage.ts"
+    },
+    {
+      "module": "../store",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/packages/livechat/src/store/index.tsx"
+    },
+    {
+      "module": "./constants",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/packages/livechat/src/lib/constants.ts"
+    }
+  ]
+}

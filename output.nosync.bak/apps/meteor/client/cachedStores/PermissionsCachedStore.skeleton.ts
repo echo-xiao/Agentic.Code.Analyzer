@@ -1,0 +1,15 @@
+## File: apps/meteor/client/cachedStores/PermissionsCachedStore.ts
+
+```typescript
+import type { IPermission } from '@rocket.chat/core-typings';
+
+import { PrivateCachedStore } from '../lib/cachedStores/CachedStore';
+import { Permissions } from '../stores';
+
+export const PermissionsCachedStore = new PrivateCachedStore<IPermission>({
+	name: 'permissions',
+	eventType: 'notify-logged',
+	store: Permissions.use,
+});
+
+```

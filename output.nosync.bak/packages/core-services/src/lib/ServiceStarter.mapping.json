@@ -1,0 +1,149 @@
+{
+  "sourcePath": "/Users/echoooooo/Desktop/code/Rocket.Chat/packages/core-services/src/lib/ServiceStarter.ts",
+  "symbols": [
+    {
+      "type": "class",
+      "name": "ServiceStarter",
+      "exported": true,
+      "line": 6,
+      "endLine": 68,
+      "signature": "export class ServiceStarter",
+      "calls": []
+    },
+    {
+      "type": "method",
+      "name": "checkStatus",
+      "exported": true,
+      "qualifiedName": "ServiceStarter.checkStatus",
+      "line": 22,
+      "endLine": 30,
+      "signature": "private async checkStatus(): Promise<void>",
+      "containerClass": "ServiceStarter",
+      "calls": [
+        {
+          "name": "doCall",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "doCall",
+      "exported": true,
+      "qualifiedName": "ServiceStarter.doCall",
+      "line": 26,
+      "endLine": 39,
+      "signature": "private async doCall(call: 'start' | 'stop'): Promise<void>",
+      "containerClass": "ServiceStarter",
+      "calls": [
+        {
+          "name": "starterFn",
+          "edgeType": "call"
+        },
+        {
+          "name": "stopperFn",
+          "edgeType": "call"
+        },
+        {
+          "name": "checkStatus",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "call",
+      "exported": true,
+      "qualifiedName": "ServiceStarter.call",
+      "line": 30,
+      "endLine": 38,
+      "signature": "private async call(call: 'start' | 'stop'): Promise<void>",
+      "containerClass": "ServiceStarter",
+      "calls": [
+        {
+          "name": "checkStatus",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "start",
+      "exported": true,
+      "qualifiedName": "ServiceStarter.start",
+      "line": 34,
+      "endLine": 36,
+      "signature": "async start(): Promise<void>",
+      "containerClass": "ServiceStarter",
+      "calls": [
+        {
+          "name": "start",
+          "edgeType": "call"
+        },
+        {
+          "name": "call",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "stop",
+      "exported": true,
+      "qualifiedName": "ServiceStarter.stop",
+      "line": 38,
+      "endLine": 40,
+      "signature": "async stop(): Promise<void>",
+      "containerClass": "ServiceStarter",
+      "calls": [
+        {
+          "name": "stop",
+          "edgeType": "call"
+        },
+        {
+          "name": "call",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "wait",
+      "exported": true,
+      "qualifiedName": "ServiceStarter.wait",
+      "line": 42,
+      "endLine": 44,
+      "signature": "async wait(): Promise<void>",
+      "containerClass": "ServiceStarter",
+      "calls": []
+    },
+    {
+      "type": "method",
+      "name": "constructor",
+      "exported": true,
+      "qualifiedName": "ServiceStarter.constructor",
+      "line": 17,
+      "endLine": 20,
+      "signature": "constructor(starterFn: () => Promise<void>, stopperFn?: () => Promise<void>)",
+      "containerClass": "ServiceStarter",
+      "calls": []
+    },
+    {
+      "type": "class_property",
+      "name": "lock",
+      "exported": true,
+      "qualifiedName": "ServiceStarter.lock",
+      "line": 7,
+      "endLine": 7,
+      "signature": "private lock = Promise.resolve();",
+      "containerClass": "ServiceStarter",
+      "calls": [
+        {
+          "name": "resolve",
+          "edgeType": "call"
+        }
+      ]
+    }
+  ],
+  "imports": []
+}

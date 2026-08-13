@@ -1,0 +1,12 @@
+## File: packages/omni-core/src/isDepartmentCreationAvailable.ts
+
+```typescript
+import { LivechatDepartment } from '@rocket.chat/models';
+import { makeFunction } from '@rocket.chat/patch-injection';
+
+export const isDepartmentCreationAvailable = makeFunction(async (): Promise<boolean> => {
+	// Only one department can exist at a time
+	return (await LivechatDepartment.countTotal()) === 0;
+});
+
+```

@@ -1,0 +1,265 @@
+{
+  "sourcePath": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/tests/e2e/page-objects/fragments/flextabs/edit-room-flextab.ts",
+  "symbols": [
+    {
+      "type": "class",
+      "name": "EditRoomFlexTab",
+      "exported": true,
+      "line": 6,
+      "endLine": 71,
+      "signature": "export class EditRoomFlexTab extends FlexTab",
+      "calls": [
+        {
+          "name": "FlexTab",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "getMaxAgeLabel",
+      "exported": true,
+      "qualifiedName": "EditRoomFlexTab.getMaxAgeLabel",
+      "line": 39,
+      "endLine": 41,
+      "signature": "getMaxAgeLabel(maxAge = '30')",
+      "containerClass": "EditRoomFlexTab",
+      "calls": [
+        {
+          "name": "getByText",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "toggleSidepanelItems",
+      "exported": true,
+      "qualifiedName": "EditRoomFlexTab.toggleSidepanelItems",
+      "line": 67,
+      "endLine": 70,
+      "signature": "async toggleSidepanelItems()",
+      "containerClass": "EditRoomFlexTab",
+      "calls": [
+        {
+          "name": "click",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "constructor",
+      "exported": true,
+      "qualifiedName": "EditRoomFlexTab.constructor",
+      "line": 7,
+      "endLine": 9,
+      "signature": "constructor(locator: Locator)",
+      "containerClass": "EditRoomFlexTab",
+      "calls": [
+        {
+          "name": "Locator",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "class",
+      "name": "EditTeamFlexTab",
+      "exported": true,
+      "line": 72,
+      "endLine": 76,
+      "signature": "export class EditTeamFlexTab extends EditRoomFlexTab",
+      "calls": [
+        {
+          "name": "EditRoomFlexTab",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "constructor",
+      "exported": true,
+      "qualifiedName": "EditTeamFlexTab.constructor",
+      "line": 73,
+      "endLine": 75,
+      "signature": "constructor(page: Page)",
+      "containerClass": "EditTeamFlexTab",
+      "calls": [
+        {
+          "name": "getByRole",
+          "edgeType": "call"
+        },
+        {
+          "name": "Page",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "class",
+      "name": "OmnichannelEditRoomFlexTab",
+      "exported": true,
+      "line": 78,
+      "endLine": 113,
+      "signature": "export class OmnichannelEditRoomFlexTab extends EditRoomFlexTab",
+      "calls": [
+        {
+          "name": "EditRoomFlexTab",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "optionTag",
+      "exported": true,
+      "qualifiedName": "OmnichannelEditRoomFlexTab.optionTag",
+      "line": 93,
+      "endLine": 95,
+      "signature": "optionTag(name: string): Locator",
+      "containerClass": "OmnichannelEditRoomFlexTab",
+      "calls": [
+        {
+          "name": "getOption",
+          "edgeType": "call"
+        },
+        {
+          "name": "Locator",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "selectTag",
+      "exported": true,
+      "qualifiedName": "OmnichannelEditRoomFlexTab.selectTag",
+      "line": 97,
+      "endLine": 99,
+      "signature": "async selectTag(name: string)",
+      "containerClass": "OmnichannelEditRoomFlexTab",
+      "calls": [
+        {
+          "name": "selectOption",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "selectSLA",
+      "exported": true,
+      "qualifiedName": "OmnichannelEditRoomFlexTab.selectSLA",
+      "line": 101,
+      "endLine": 104,
+      "signature": "async selectSLA(name: string)",
+      "containerClass": "OmnichannelEditRoomFlexTab",
+      "calls": [
+        {
+          "name": "click",
+          "edgeType": "call"
+        },
+        {
+          "name": "selectOption",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "getRoomCustomField",
+      "exported": true,
+      "qualifiedName": "OmnichannelEditRoomFlexTab.getRoomCustomField",
+      "line": 109,
+      "endLine": 111,
+      "signature": "getRoomCustomField(label: string): Locator",
+      "containerClass": "OmnichannelEditRoomFlexTab",
+      "calls": [
+        {
+          "name": "getByLabel",
+          "edgeType": "call"
+        },
+        {
+          "name": "getByRole",
+          "edgeType": "call"
+        },
+        {
+          "name": "Locator",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "constructor",
+      "exported": true,
+      "qualifiedName": "OmnichannelEditRoomFlexTab.constructor",
+      "line": 83,
+      "endLine": 87,
+      "signature": "constructor(page: Page)",
+      "containerClass": "OmnichannelEditRoomFlexTab",
+      "calls": [
+        {
+          "name": "getByRole",
+          "edgeType": "call"
+        },
+        {
+          "name": "Listbox",
+          "edgeType": "new"
+        },
+        {
+          "name": "Page",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "class_property",
+      "name": "tagsListbox",
+      "exported": true,
+      "qualifiedName": "OmnichannelEditRoomFlexTab.tagsListbox",
+      "line": 79,
+      "endLine": 79,
+      "signature": "private readonly tagsListbox: Listbox;",
+      "containerClass": "OmnichannelEditRoomFlexTab",
+      "calls": [
+        {
+          "name": "Listbox",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "class_property",
+      "name": "slaListbox",
+      "exported": true,
+      "qualifiedName": "OmnichannelEditRoomFlexTab.slaListbox",
+      "line": 81,
+      "endLine": 81,
+      "signature": "private readonly slaListbox: Listbox;",
+      "containerClass": "OmnichannelEditRoomFlexTab",
+      "calls": [
+        {
+          "name": "Listbox",
+          "edgeType": "type"
+        }
+      ]
+    }
+  ],
+  "imports": [
+    {
+      "module": "@playwright/test",
+      "resolved": "external"
+    },
+    {
+      "module": "./flextab",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/tests/e2e/page-objects/fragments/flextabs/flextab.ts"
+    },
+    {
+      "module": "../listbox",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/tests/e2e/page-objects/fragments/listbox.ts"
+    }
+  ]
+}

@@ -1,0 +1,130 @@
+{
+  "sourcePath": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/server/lib/users/saveUser/validateUserEditing.ts",
+  "symbols": [
+    {
+      "type": "function",
+      "name": "validateUserEditing",
+      "exported": true,
+      "line": 33,
+      "endLine": 123,
+      "signature": "export async function validateUserEditing(userId: IUser['_id'], userData: UpdateUserData): Promise<void>",
+      "calls": [
+        {
+          "name": "hasPermissionAsync",
+          "edgeType": "call"
+        },
+        {
+          "name": "findOneById",
+          "edgeType": "call"
+        },
+        {
+          "name": "isEditingUserRoles",
+          "edgeType": "call"
+        },
+        {
+          "name": "get",
+          "edgeType": "call"
+        },
+        {
+          "name": "isEditingField",
+          "edgeType": "call"
+        },
+        {
+          "name": "canEditExtension",
+          "edgeType": "call"
+        },
+        {
+          "name": "MeteorError",
+          "edgeType": "new"
+        },
+        {
+          "name": "IUser",
+          "edgeType": "type"
+        },
+        {
+          "name": "UpdateUserData",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "variable_function",
+      "name": "isEditingUserRoles",
+      "exported": false,
+      "line": 10,
+      "endLine": 12,
+      "signature": "(previousRoles: IUser['roles'], newRoles?: IUser['roles']) =>",
+      "calls": [
+        {
+          "name": "some",
+          "edgeType": "call"
+        },
+        {
+          "name": "includes",
+          "edgeType": "call"
+        },
+        {
+          "name": "IUser",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "variable_function",
+      "name": "isEditingField",
+      "exported": false,
+      "line": 13,
+      "endLine": 13,
+      "signature": "(previousValue?: string, newValue?: string) =>",
+      "calls": []
+    },
+    {
+      "type": "variable_function",
+      "name": "canEditExtension",
+      "exported": true,
+      "line": 15,
+      "endLine": 25,
+      "signature": "async (newExtension?: string) =>",
+      "calls": [
+        {
+          "name": "get",
+          "edgeType": "call"
+        },
+        {
+          "name": "findOneByFreeSwitchExtension",
+          "edgeType": "call"
+        },
+        {
+          "name": "MeteorError",
+          "edgeType": "new"
+        }
+      ]
+    }
+  ],
+  "imports": [
+    {
+      "module": "@rocket.chat/core-services",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/core-typings",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/models",
+      "resolved": "external"
+    },
+    {
+      "module": "./saveUser",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/server/lib/users/saveUser/saveUser.ts"
+    },
+    {
+      "module": "../../../../app/settings/server",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/app/settings/server/index.ts"
+    },
+    {
+      "module": "../../authorization/hasPermission",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/server/lib/authorization/hasPermission.ts"
+    }
+  ]
+}

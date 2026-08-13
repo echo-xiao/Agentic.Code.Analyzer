@@ -1,0 +1,75 @@
+{
+  "sourcePath": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/app/lib/server/methods/getSlashCommandPreviews.ts",
+  "symbols": [
+    {
+      "type": "module",
+      "name": "getSlashCommandPreviews",
+      "exported": false,
+      "line": 1,
+      "endLine": 52,
+      "signature": "getSlashCommandPreviews",
+      "calls": [
+        {
+          "name": "getSlashCommandPreviews",
+          "edgeType": "call"
+        },
+        {
+          "name": "methods",
+          "edgeType": "call"
+        },
+        {
+          "name": "userId",
+          "edgeType": "call"
+        },
+        {
+          "name": "ServerMethods",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "variable_function",
+      "name": "getSlashCommandPreviews",
+      "exported": true,
+      "line": 18,
+      "endLine": 38,
+      "signature": "async (command: { cmd: string; params: string; msg: RequiredField<Partial<IMessage>, 'rid'>; userId: string; }): Promise<SlashCommandPreviews | undefined> =>",
+      "calls": [
+        {
+          "name": "getPreviews",
+          "edgeType": "call"
+        },
+        {
+          "name": "RequiredField",
+          "edgeType": "type"
+        },
+        {
+          "name": "IMessage",
+          "edgeType": "type"
+        },
+        {
+          "name": "SlashCommandPreviews",
+          "edgeType": "type"
+        }
+      ]
+    }
+  ],
+  "imports": [
+    {
+      "module": "@rocket.chat/core-typings",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/ddp-client",
+      "resolved": "external"
+    },
+    {
+      "module": "meteor/meteor",
+      "resolved": "external"
+    },
+    {
+      "module": "../../../utils/server/slashCommand",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/app/utils/server/slashCommand.ts"
+    }
+  ]
+}

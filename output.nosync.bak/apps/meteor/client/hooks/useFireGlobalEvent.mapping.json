@@ -1,0 +1,70 @@
+{
+  "sourcePath": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/client/hooks/useFireGlobalEvent.ts",
+  "symbols": [
+    {
+      "type": "variable_function",
+      "name": "getScopeForEvent",
+      "exported": false,
+      "line": 7,
+      "endLine": 7,
+      "signature": "(eventName: string, scope?: string) =>",
+      "calls": []
+    },
+    {
+      "type": "variable_function",
+      "name": "useFireGlobalEvent",
+      "exported": true,
+      "line": 9,
+      "endLine": 34,
+      "signature": "(eventName: string, scope?: string) =>",
+      "calls": [
+        {
+          "name": "useSetting",
+          "edgeType": "call"
+        },
+        {
+          "name": "useRef",
+          "edgeType": "call"
+        },
+        {
+          "name": "getScopeForEvent",
+          "edgeType": "call"
+        },
+        {
+          "name": "useEffect",
+          "edgeType": "call"
+        },
+        {
+          "name": "useMutation",
+          "edgeType": "call"
+        },
+        {
+          "name": "fireGlobalEventBase",
+          "edgeType": "call"
+        },
+        {
+          "name": "postMessage",
+          "edgeType": "call"
+        }
+      ]
+    }
+  ],
+  "imports": [
+    {
+      "module": "@rocket.chat/ui-contexts",
+      "resolved": "external"
+    },
+    {
+      "module": "@tanstack/react-query",
+      "resolved": "external"
+    },
+    {
+      "module": "react",
+      "resolved": "external"
+    },
+    {
+      "module": "../lib/utils/fireGlobalEventBase",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/client/lib/utils/fireGlobalEventBase.ts"
+    }
+  ]
+}

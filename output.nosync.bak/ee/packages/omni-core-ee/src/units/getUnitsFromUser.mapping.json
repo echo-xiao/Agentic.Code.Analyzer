@@ -1,0 +1,103 @@
+{
+  "sourcePath": "/Users/echoooooo/Desktop/code/Rocket.Chat/ee/packages/omni-core-ee/src/units/getUnitsFromUser.ts",
+  "symbols": [
+    {
+      "type": "function",
+      "name": "getUnitsFromUserRoles",
+      "exported": false,
+      "line": 7,
+      "endLine": 9,
+      "signature": "async function getUnitsFromUserRoles(user: string): Promise<string[]>",
+      "calls": [
+        {
+          "name": "findByMonitorId",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "function",
+      "name": "getDepartmentsFromUserRoles",
+      "exported": false,
+      "line": 11,
+      "endLine": 13,
+      "signature": "async function getDepartmentsFromUserRoles(user: string): Promise<string[]>",
+      "calls": [
+        {
+          "name": "map",
+          "edgeType": "call"
+        },
+        {
+          "name": "toArray",
+          "edgeType": "call"
+        },
+        {
+          "name": "findByAgentId",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "function",
+      "name": "hasUnits",
+      "exported": false,
+      "line": 18,
+      "endLine": 21,
+      "signature": "async function hasUnits(): Promise<boolean>",
+      "calls": [
+        {
+          "name": "countUnits",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "variable_function",
+      "name": "getUnitsFromUser",
+      "exported": true,
+      "line": 25,
+      "endLine": 47,
+      "signature": "async (userId?: string): Promise<string[] | undefined> =>",
+      "calls": [
+        {
+          "name": "memoizedHasUnits",
+          "edgeType": "call"
+        },
+        {
+          "name": "hasAnyRole",
+          "edgeType": "call"
+        },
+        {
+          "name": "memoizedGetUnitFromUserRoles",
+          "edgeType": "call"
+        },
+        {
+          "name": "memoizedGetDepartmentsFromUserRoles",
+          "edgeType": "call"
+        },
+        {
+          "name": "debug",
+          "edgeType": "call"
+        }
+      ]
+    }
+  ],
+  "imports": [
+    {
+      "module": "@rocket.chat/core-services",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/models",
+      "resolved": "external"
+    },
+    {
+      "module": "mem",
+      "resolved": "external"
+    },
+    {
+      "module": "../utils/logger",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/ee/packages/omni-core-ee/src/utils/logger.ts"
+    }
+  ]
+}

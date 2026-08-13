@@ -1,0 +1,48 @@
+{
+  "sourcePath": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/server/lib/ldap/operations/fallback.ts",
+  "symbols": [
+    {
+      "type": "function",
+      "name": "executeFallback",
+      "exported": true,
+      "line": 12,
+      "endLine": 24,
+      "signature": "export function executeFallback(ldapUser: ILDAPEntry, input: string, operation: LDAPVariableFallback): string | undefined",
+      "calls": [
+        {
+          "name": "Boolean",
+          "edgeType": "call"
+        },
+        {
+          "name": "getLdapDynamicValue",
+          "edgeType": "call"
+        },
+        {
+          "name": "ILDAPEntry",
+          "edgeType": "type"
+        },
+        {
+          "name": "LDAPVariableFallback",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "type",
+      "name": "LDAPVariableFallback",
+      "line": 5,
+      "endLine": 10,
+      "signature": "export type LDAPVariableFallback ="
+    }
+  ],
+  "imports": [
+    {
+      "module": "@rocket.chat/core-typings",
+      "resolved": "external"
+    },
+    {
+      "module": "../getLdapDynamicValue",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/server/lib/ldap/getLdapDynamicValue.ts"
+    }
+  ]
+}

@@ -1,0 +1,184 @@
+{
+  "sourcePath": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/client/views/room/MessageList/MessageListItem.tsx",
+  "symbols": [
+    {
+      "type": "variable_function",
+      "name": "MessageListItem",
+      "exported": true,
+      "line": 24,
+      "endLine": 100,
+      "signature": "({ message, previous, showUnreadDivider, sequential, showUserAvatar, visible, subscription, system, }: MessageListItemProps) =>",
+      "calls": [
+        {
+          "name": "useTranslation",
+          "edgeType": "call"
+        },
+        {
+          "name": "useMessageListFormatDate",
+          "edgeType": "call"
+        },
+        {
+          "name": "useDateRef",
+          "edgeType": "call"
+        },
+        {
+          "name": "isMessageNewDay",
+          "edgeType": "call"
+        },
+        {
+          "name": "Boolean",
+          "edgeType": "call"
+        },
+        {
+          "name": "includes",
+          "edgeType": "call"
+        },
+        {
+          "name": "substring",
+          "edgeType": "call"
+        },
+        {
+          "name": "replaceAll",
+          "edgeType": "call"
+        },
+        {
+          "name": "toISOString",
+          "edgeType": "call"
+        },
+        {
+          "name": "toLowerCase",
+          "edgeType": "call"
+        },
+        {
+          "name": "formatDate",
+          "edgeType": "call"
+        },
+        {
+          "name": "isThreadMessage",
+          "edgeType": "call"
+        },
+        {
+          "name": "Box",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "MessageDivider",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "Bubble",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "RoomMessage",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "ThreadMessagePreview",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "SystemMessage",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "ref",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "message",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "showUserAvatar",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "shouldShowAsSequential",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "unread",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "mention",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "all",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "ignoredUser",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "showUnreadDivider",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "sequential",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "Date",
+          "edgeType": "new"
+        },
+        {
+          "name": "MessageListItemProps",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "type",
+      "name": "MessageListItemProps",
+      "line": 13,
+      "endLine": 23,
+      "signature": "export type MessageListItemProps ="
+    }
+  ],
+  "imports": [
+    {
+      "module": "@rocket.chat/core-typings",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/css-in-js",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/fuselage",
+      "resolved": "external"
+    },
+    {
+      "module": "react-i18next",
+      "resolved": "external"
+    },
+    {
+      "module": "./lib/isMessageNewDay",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/client/views/room/MessageList/lib/isMessageNewDay.ts"
+    },
+    {
+      "module": "../../../components/message/list/MessageListContext",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/client/components/message/list/MessageListContext.tsx"
+    },
+    {
+      "module": "../../../components/message/variants/RoomMessage",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/client/components/message/variants/RoomMessage.tsx"
+    },
+    {
+      "module": "../../../components/message/variants/SystemMessage",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/client/components/message/variants/SystemMessage.tsx"
+    },
+    {
+      "module": "../../../components/message/variants/ThreadMessagePreview",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/client/components/message/variants/ThreadMessagePreview.tsx"
+    },
+    {
+      "module": "../providers/DateListProvider",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/client/views/room/providers/DateListProvider.tsx"
+    }
+  ]
+}

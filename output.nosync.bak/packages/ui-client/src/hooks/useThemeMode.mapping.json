@@ -1,0 +1,69 @@
+{
+  "sourcePath": "/Users/echoooooo/Desktop/code/Rocket.Chat/packages/ui-client/src/hooks/useThemeMode.ts",
+  "symbols": [
+    {
+      "type": "variable_function",
+      "name": "useThemeMode",
+      "exported": true,
+      "line": 11,
+      "endLine": 42,
+      "signature": "(): [ currentThemeMode: ThemeMode, setThemeMode: (value: ThemeMode) => () => void, resolvedThemeMode: Themes, ] =>",
+      "calls": [
+        {
+          "name": "useUserPreference",
+          "edgeType": "call"
+        },
+        {
+          "name": "useEndpoint",
+          "edgeType": "call"
+        },
+        {
+          "name": "useState",
+          "edgeType": "call"
+        },
+        {
+          "name": "saveUserPreferences",
+          "edgeType": "call"
+        },
+        {
+          "name": "useCallback",
+          "edgeType": "call"
+        },
+        {
+          "name": "useDarkMode",
+          "edgeType": "call"
+        },
+        {
+          "name": "useTheme",
+          "edgeType": "call"
+        },
+        {
+          "name": "ThemeMode",
+          "edgeType": "type"
+        },
+        {
+          "name": "Themes",
+          "edgeType": "type"
+        }
+      ]
+    }
+  ],
+  "imports": [
+    {
+      "module": "@rocket.chat/core-typings",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/fuselage-hooks",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/ui-contexts",
+      "resolved": "external"
+    },
+    {
+      "module": "react",
+      "resolved": "external"
+    }
+  ]
+}

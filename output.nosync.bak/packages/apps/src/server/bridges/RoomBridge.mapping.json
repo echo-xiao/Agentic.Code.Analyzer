@@ -1,0 +1,888 @@
+{
+  "sourcePath": "/Users/echoooooo/Desktop/code/Rocket.Chat/packages/apps/src/server/bridges/RoomBridge.ts",
+  "symbols": [
+    {
+      "type": "class",
+      "name": "RoomBridge",
+      "exported": true,
+      "line": 30,
+      "endLine": 235,
+      "signature": "export abstract class RoomBridge extends BaseBridge",
+      "calls": [
+        {
+          "name": "BaseBridge",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "doCreate",
+      "exported": true,
+      "qualifiedName": "RoomBridge.doCreate",
+      "line": 31,
+      "endLine": 35,
+      "signature": "public async doCreate(room: IRoom, members: Array<string>, appId: string): Promise<string>",
+      "containerClass": "RoomBridge",
+      "calls": [
+        {
+          "name": "hasWritePermission",
+          "edgeType": "call"
+        },
+        {
+          "name": "create",
+          "edgeType": "call"
+        },
+        {
+          "name": "stripReadOnlyRoomFields",
+          "edgeType": "call"
+        },
+        {
+          "name": "IRoom",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "doGetById",
+      "exported": true,
+      "qualifiedName": "RoomBridge.doGetById",
+      "line": 35,
+      "endLine": 39,
+      "signature": "public async doGetById(roomId: string, appId: string): Promise<IRoom>",
+      "containerClass": "RoomBridge",
+      "calls": [
+        {
+          "name": "hasReadPermission",
+          "edgeType": "call"
+        },
+        {
+          "name": "getById",
+          "edgeType": "call"
+        },
+        {
+          "name": "IRoom",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "doGetByName",
+      "exported": true,
+      "qualifiedName": "RoomBridge.doGetByName",
+      "line": 39,
+      "endLine": 43,
+      "signature": "public async doGetByName(roomName: string, appId: string): Promise<IRoom>",
+      "containerClass": "RoomBridge",
+      "calls": [
+        {
+          "name": "hasReadPermission",
+          "edgeType": "call"
+        },
+        {
+          "name": "getByName",
+          "edgeType": "call"
+        },
+        {
+          "name": "IRoom",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "doGetCreatorById",
+      "exported": true,
+      "qualifiedName": "RoomBridge.doGetCreatorById",
+      "line": 43,
+      "endLine": 47,
+      "signature": "public async doGetCreatorById(roomId: string, appId: string): Promise<IUser | undefined>",
+      "containerClass": "RoomBridge",
+      "calls": [
+        {
+          "name": "hasReadPermission",
+          "edgeType": "call"
+        },
+        {
+          "name": "getCreatorById",
+          "edgeType": "call"
+        },
+        {
+          "name": "IUser",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "doGetCreatorByName",
+      "exported": true,
+      "qualifiedName": "RoomBridge.doGetCreatorByName",
+      "line": 47,
+      "endLine": 51,
+      "signature": "public async doGetCreatorByName(roomName: string, appId: string): Promise<IUser | undefined>",
+      "containerClass": "RoomBridge",
+      "calls": [
+        {
+          "name": "hasReadPermission",
+          "edgeType": "call"
+        },
+        {
+          "name": "getCreatorByName",
+          "edgeType": "call"
+        },
+        {
+          "name": "IUser",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "doGetDirectByUsernames",
+      "exported": true,
+      "qualifiedName": "RoomBridge.doGetDirectByUsernames",
+      "line": 51,
+      "endLine": 55,
+      "signature": "public async doGetDirectByUsernames(usernames: Array<string>, appId: string): Promise<IRoom | undefined>",
+      "containerClass": "RoomBridge",
+      "calls": [
+        {
+          "name": "hasReadPermission",
+          "edgeType": "call"
+        },
+        {
+          "name": "getDirectByUsernames",
+          "edgeType": "call"
+        },
+        {
+          "name": "IRoom",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "doGetMembers",
+      "exported": true,
+      "qualifiedName": "RoomBridge.doGetMembers",
+      "line": 55,
+      "endLine": 59,
+      "signature": "public async doGetMembers(roomId: string, appId: string): Promise<Array<IUser>>",
+      "containerClass": "RoomBridge",
+      "calls": [
+        {
+          "name": "hasReadPermission",
+          "edgeType": "call"
+        },
+        {
+          "name": "getMembers",
+          "edgeType": "call"
+        },
+        {
+          "name": "IUser",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "doGetAllRooms",
+      "exported": true,
+      "qualifiedName": "RoomBridge.doGetAllRooms",
+      "line": 59,
+      "endLine": 67,
+      "signature": "public async doGetAllRooms( filters: GetRoomsFilters = {}, options: GetRoomsOptions = {}, appId: string, ): Promise<Array<IRoomRaw> | undefined>",
+      "containerClass": "RoomBridge",
+      "calls": [
+        {
+          "name": "hasViewAllRoomsPermission",
+          "edgeType": "call"
+        },
+        {
+          "name": "getAllRooms",
+          "edgeType": "call"
+        },
+        {
+          "name": "GetRoomsFilters",
+          "edgeType": "type"
+        },
+        {
+          "name": "GetRoomsOptions",
+          "edgeType": "type"
+        },
+        {
+          "name": "IRoomRaw",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "doUpdate",
+      "exported": true,
+      "qualifiedName": "RoomBridge.doUpdate",
+      "line": 67,
+      "endLine": 71,
+      "signature": "public async doUpdate(room: IRoom, members: Array<string>, appId: string): Promise<void>",
+      "containerClass": "RoomBridge",
+      "calls": [
+        {
+          "name": "hasWritePermission",
+          "edgeType": "call"
+        },
+        {
+          "name": "update",
+          "edgeType": "call"
+        },
+        {
+          "name": "stripReadOnlyRoomFields",
+          "edgeType": "call"
+        },
+        {
+          "name": "IRoom",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "doCreateDiscussion",
+      "exported": true,
+      "qualifiedName": "RoomBridge.doCreateDiscussion",
+      "line": 71,
+      "endLine": 81,
+      "signature": "public async doCreateDiscussion( room: IRoom, parentMessage: IMessage | undefined, reply: string | undefined, members: Array<string>, appId: string, ): Promise<string>",
+      "containerClass": "RoomBridge",
+      "calls": [
+        {
+          "name": "hasWritePermission",
+          "edgeType": "call"
+        },
+        {
+          "name": "createDiscussion",
+          "edgeType": "call"
+        },
+        {
+          "name": "stripReadOnlyRoomFields",
+          "edgeType": "call"
+        },
+        {
+          "name": "IRoom",
+          "edgeType": "type"
+        },
+        {
+          "name": "IMessage",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "doDelete",
+      "exported": true,
+      "qualifiedName": "RoomBridge.doDelete",
+      "line": 81,
+      "endLine": 85,
+      "signature": "public async doDelete(room: string, appId: string): Promise<void>",
+      "containerClass": "RoomBridge",
+      "calls": [
+        {
+          "name": "hasWritePermission",
+          "edgeType": "call"
+        },
+        {
+          "name": "delete",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "doGetModerators",
+      "exported": true,
+      "qualifiedName": "RoomBridge.doGetModerators",
+      "line": 85,
+      "endLine": 89,
+      "signature": "public async doGetModerators(roomId: string, appId: string): Promise<Array<IUser>>",
+      "containerClass": "RoomBridge",
+      "calls": [
+        {
+          "name": "hasReadPermission",
+          "edgeType": "call"
+        },
+        {
+          "name": "getModerators",
+          "edgeType": "call"
+        },
+        {
+          "name": "IUser",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "doGetOwners",
+      "exported": true,
+      "qualifiedName": "RoomBridge.doGetOwners",
+      "line": 89,
+      "endLine": 93,
+      "signature": "public async doGetOwners(roomId: string, appId: string): Promise<Array<IUser>>",
+      "containerClass": "RoomBridge",
+      "calls": [
+        {
+          "name": "hasReadPermission",
+          "edgeType": "call"
+        },
+        {
+          "name": "getOwners",
+          "edgeType": "call"
+        },
+        {
+          "name": "IUser",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "doGetLeaders",
+      "exported": true,
+      "qualifiedName": "RoomBridge.doGetLeaders",
+      "line": 93,
+      "endLine": 97,
+      "signature": "public async doGetLeaders(roomId: string, appId: string): Promise<Array<IUser>>",
+      "containerClass": "RoomBridge",
+      "calls": [
+        {
+          "name": "hasReadPermission",
+          "edgeType": "call"
+        },
+        {
+          "name": "getLeaders",
+          "edgeType": "call"
+        },
+        {
+          "name": "IUser",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "doGetMessages",
+      "exported": true,
+      "qualifiedName": "RoomBridge.doGetMessages",
+      "line": 97,
+      "endLine": 101,
+      "signature": "public async doGetMessages(roomId: string, options: GetMessagesOptions, appId: string): Promise<IMessageRaw[]>",
+      "containerClass": "RoomBridge",
+      "calls": [
+        {
+          "name": "hasReadPermission",
+          "edgeType": "call"
+        },
+        {
+          "name": "getMessages",
+          "edgeType": "call"
+        },
+        {
+          "name": "GetMessagesOptions",
+          "edgeType": "type"
+        },
+        {
+          "name": "IMessageRaw",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "doRemoveUsers",
+      "exported": true,
+      "qualifiedName": "RoomBridge.doRemoveUsers",
+      "line": 101,
+      "endLine": 105,
+      "signature": "public async doRemoveUsers(roomId: string, usernames: Array<string>, appId: string): Promise<void>",
+      "containerClass": "RoomBridge",
+      "calls": [
+        {
+          "name": "hasWritePermission",
+          "edgeType": "call"
+        },
+        {
+          "name": "removeUsers",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "doGetUnreadByUser",
+      "exported": true,
+      "qualifiedName": "RoomBridge.doGetUnreadByUser",
+      "line": 105,
+      "endLine": 109,
+      "signature": "public async doGetUnreadByUser(roomId: string, uid: string, options: GetMessagesOptions, appId: string): Promise<IMessageRaw[]>",
+      "containerClass": "RoomBridge",
+      "calls": [
+        {
+          "name": "hasReadPermission",
+          "edgeType": "call"
+        },
+        {
+          "name": "getUnreadByUser",
+          "edgeType": "call"
+        },
+        {
+          "name": "GetMessagesOptions",
+          "edgeType": "type"
+        },
+        {
+          "name": "IMessageRaw",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "doGetUserUnreadMessageCount",
+      "exported": true,
+      "qualifiedName": "RoomBridge.doGetUserUnreadMessageCount",
+      "line": 109,
+      "endLine": 113,
+      "signature": "public async doGetUserUnreadMessageCount(roomId: string, uid: string, appId: string): Promise<number>",
+      "containerClass": "RoomBridge",
+      "calls": [
+        {
+          "name": "hasReadPermission",
+          "edgeType": "call"
+        },
+        {
+          "name": "getUserUnreadMessageCount",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "create",
+      "exported": true,
+      "qualifiedName": "RoomBridge.create",
+      "line": 113,
+      "endLine": 113,
+      "signature": "protected abstract create(room: IRoom, members: Array<string>, appId: string): Promise<string>;",
+      "containerClass": "RoomBridge",
+      "calls": [
+        {
+          "name": "IRoom",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "getById",
+      "exported": true,
+      "qualifiedName": "RoomBridge.getById",
+      "line": 115,
+      "endLine": 115,
+      "signature": "protected abstract getById(roomId: string, appId: string): Promise<IRoom>;",
+      "containerClass": "RoomBridge",
+      "calls": [
+        {
+          "name": "IRoom",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "getByName",
+      "exported": true,
+      "qualifiedName": "RoomBridge.getByName",
+      "line": 117,
+      "endLine": 117,
+      "signature": "protected abstract getByName(roomName: string, appId: string): Promise<IRoom>;",
+      "containerClass": "RoomBridge",
+      "calls": [
+        {
+          "name": "IRoom",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "getCreatorById",
+      "exported": true,
+      "qualifiedName": "RoomBridge.getCreatorById",
+      "line": 119,
+      "endLine": 119,
+      "signature": "protected abstract getCreatorById(roomId: string, appId: string): Promise<IUser | undefined>;",
+      "containerClass": "RoomBridge",
+      "calls": [
+        {
+          "name": "IUser",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "getCreatorByName",
+      "exported": true,
+      "qualifiedName": "RoomBridge.getCreatorByName",
+      "line": 121,
+      "endLine": 121,
+      "signature": "protected abstract getCreatorByName(roomName: string, appId: string): Promise<IUser | undefined>;",
+      "containerClass": "RoomBridge",
+      "calls": [
+        {
+          "name": "IUser",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "getDirectByUsernames",
+      "exported": true,
+      "qualifiedName": "RoomBridge.getDirectByUsernames",
+      "line": 123,
+      "endLine": 123,
+      "signature": "protected abstract getDirectByUsernames(usernames: Array<string>, appId: string): Promise<IRoom | undefined>;",
+      "containerClass": "RoomBridge",
+      "calls": [
+        {
+          "name": "IRoom",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "getMembers",
+      "exported": true,
+      "qualifiedName": "RoomBridge.getMembers",
+      "line": 125,
+      "endLine": 125,
+      "signature": "protected abstract getMembers(roomId: string, appId: string): Promise<Array<IUser>>;",
+      "containerClass": "RoomBridge",
+      "calls": [
+        {
+          "name": "IUser",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "getAllRooms",
+      "exported": true,
+      "qualifiedName": "RoomBridge.getAllRooms",
+      "line": 127,
+      "endLine": 127,
+      "signature": "protected abstract getAllRooms(filters: GetRoomsFilters, options: GetRoomsOptions, appId: string): Promise<Array<IRoomRaw>>;",
+      "containerClass": "RoomBridge",
+      "calls": [
+        {
+          "name": "GetRoomsFilters",
+          "edgeType": "type"
+        },
+        {
+          "name": "GetRoomsOptions",
+          "edgeType": "type"
+        },
+        {
+          "name": "IRoomRaw",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "update",
+      "exported": true,
+      "qualifiedName": "RoomBridge.update",
+      "line": 129,
+      "endLine": 129,
+      "signature": "protected abstract update(room: IRoom, members: Array<string>, appId: string): Promise<void>;",
+      "containerClass": "RoomBridge",
+      "calls": [
+        {
+          "name": "IRoom",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "createDiscussion",
+      "exported": true,
+      "qualifiedName": "RoomBridge.createDiscussion",
+      "line": 131,
+      "endLine": 137,
+      "signature": "protected abstract createDiscussion(",
+      "containerClass": "RoomBridge",
+      "calls": [
+        {
+          "name": "IRoom",
+          "edgeType": "type"
+        },
+        {
+          "name": "IMessage",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "delete",
+      "exported": true,
+      "qualifiedName": "RoomBridge.delete",
+      "line": 139,
+      "endLine": 139,
+      "signature": "protected abstract delete(room: string, appId: string): Promise<void>;",
+      "containerClass": "RoomBridge",
+      "calls": []
+    },
+    {
+      "type": "method",
+      "name": "getModerators",
+      "exported": true,
+      "qualifiedName": "RoomBridge.getModerators",
+      "line": 141,
+      "endLine": 141,
+      "signature": "protected abstract getModerators(roomId: string, appId: string): Promise<Array<IUser>>;",
+      "containerClass": "RoomBridge",
+      "calls": [
+        {
+          "name": "IUser",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "getOwners",
+      "exported": true,
+      "qualifiedName": "RoomBridge.getOwners",
+      "line": 143,
+      "endLine": 143,
+      "signature": "protected abstract getOwners(roomId: string, appId: string): Promise<Array<IUser>>;",
+      "containerClass": "RoomBridge",
+      "calls": [
+        {
+          "name": "IUser",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "getLeaders",
+      "exported": true,
+      "qualifiedName": "RoomBridge.getLeaders",
+      "line": 145,
+      "endLine": 145,
+      "signature": "protected abstract getLeaders(roomId: string, appId: string): Promise<Array<IUser>>;",
+      "containerClass": "RoomBridge",
+      "calls": [
+        {
+          "name": "IUser",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "getMessages",
+      "exported": true,
+      "qualifiedName": "RoomBridge.getMessages",
+      "line": 147,
+      "endLine": 147,
+      "signature": "protected abstract getMessages(roomId: string, options: GetMessagesOptions, appId: string): Promise<IMessageRaw[]>;",
+      "containerClass": "RoomBridge",
+      "calls": [
+        {
+          "name": "GetMessagesOptions",
+          "edgeType": "type"
+        },
+        {
+          "name": "IMessageRaw",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "removeUsers",
+      "exported": true,
+      "qualifiedName": "RoomBridge.removeUsers",
+      "line": 149,
+      "endLine": 149,
+      "signature": "protected abstract removeUsers(roomId: string, usernames: Array<string>, appId: string): Promise<void>;",
+      "containerClass": "RoomBridge",
+      "calls": []
+    },
+    {
+      "type": "method",
+      "name": "getUnreadByUser",
+      "exported": true,
+      "qualifiedName": "RoomBridge.getUnreadByUser",
+      "line": 151,
+      "endLine": 151,
+      "signature": "protected abstract getUnreadByUser(roomId: string, uid: string, options: GetMessagesOptions, appId: string): Promise<IMessageRaw[]>;",
+      "containerClass": "RoomBridge",
+      "calls": [
+        {
+          "name": "GetMessagesOptions",
+          "edgeType": "type"
+        },
+        {
+          "name": "IMessageRaw",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "getUserUnreadMessageCount",
+      "exported": true,
+      "qualifiedName": "RoomBridge.getUserUnreadMessageCount",
+      "line": 153,
+      "endLine": 153,
+      "signature": "protected abstract getUserUnreadMessageCount(roomId: string, uid: string, appId: string): Promise<number>;",
+      "containerClass": "RoomBridge",
+      "calls": []
+    },
+    {
+      "type": "method",
+      "name": "hasWritePermission",
+      "exported": true,
+      "qualifiedName": "RoomBridge.hasWritePermission",
+      "line": 155,
+      "endLine": 168,
+      "signature": "private hasWritePermission(appId: string): boolean",
+      "containerClass": "RoomBridge",
+      "calls": [
+        {
+          "name": "hasPermission",
+          "edgeType": "call"
+        },
+        {
+          "name": "notifyAboutError",
+          "edgeType": "call"
+        },
+        {
+          "name": "PermissionDeniedError",
+          "edgeType": "new"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "hasReadPermission",
+      "exported": true,
+      "qualifiedName": "RoomBridge.hasReadPermission",
+      "line": 159,
+      "endLine": 172,
+      "signature": "private hasReadPermission(appId: string): boolean",
+      "containerClass": "RoomBridge",
+      "calls": [
+        {
+          "name": "hasPermission",
+          "edgeType": "call"
+        },
+        {
+          "name": "notifyAboutError",
+          "edgeType": "call"
+        },
+        {
+          "name": "PermissionDeniedError",
+          "edgeType": "new"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "hasViewAllRoomsPermission",
+      "exported": true,
+      "qualifiedName": "RoomBridge.hasViewAllRoomsPermission",
+      "line": 163,
+      "endLine": 176,
+      "signature": "private hasViewAllRoomsPermission(appId: string): boolean",
+      "containerClass": "RoomBridge",
+      "calls": [
+        {
+          "name": "hasPermission",
+          "edgeType": "call"
+        },
+        {
+          "name": "notifyAboutError",
+          "edgeType": "call"
+        },
+        {
+          "name": "PermissionDeniedError",
+          "edgeType": "new"
+        }
+      ]
+    },
+    {
+      "type": "variable_function",
+      "name": "stripReadOnlyRoomFields",
+      "exported": false,
+      "line": 17,
+      "endLine": 28,
+      "signature": "(room: IRoom): IRoom =>",
+      "calls": [
+        {
+          "name": "IRoom",
+          "edgeType": "type"
+        }
+      ]
+    }
+  ],
+  "imports": [
+    {
+      "module": "@rocket.chat/apps-engine/definition/messages",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/apps-engine/definition/rooms",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/apps-engine/definition/rooms/IGetMessagesOptions",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/apps-engine/definition/rooms/IGetMessagesOptions",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/apps-engine/definition/users",
+      "resolved": "external"
+    },
+    {
+      "module": "./BaseBridge",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/packages/apps/src/server/bridges/BaseBridge.ts"
+    },
+    {
+      "module": "../errors/PermissionDeniedError",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/packages/apps/src/server/errors/PermissionDeniedError.ts"
+    },
+    {
+      "module": "../managers/AppPermissionManager",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/packages/apps/src/server/managers/AppPermissionManager.ts"
+    },
+    {
+      "module": "../permissions/AppPermissions",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/packages/apps/src/server/permissions/AppPermissions.ts"
+    }
+  ]
+}

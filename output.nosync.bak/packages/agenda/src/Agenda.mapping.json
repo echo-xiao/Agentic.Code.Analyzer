@@ -1,0 +1,1788 @@
+{
+  "sourcePath": "/Users/echoooooo/Desktop/code/Rocket.Chat/packages/agenda/src/Agenda.ts",
+  "symbols": [
+    {
+      "type": "class",
+      "name": "Agenda",
+      "exported": true,
+      "line": 79,
+      "endLine": 984,
+      "signature": "export class Agenda extends EventEmitter",
+      "calls": []
+    },
+    {
+      "type": "method",
+      "name": "mongo",
+      "exported": true,
+      "qualifiedName": "Agenda.mongo",
+      "line": 153,
+      "endLine": 159,
+      "signature": "public mongo(mdb: MongoDB, collection: string | undefined)",
+      "containerClass": "Agenda",
+      "calls": [
+        {
+          "name": "Boolean",
+          "edgeType": "call"
+        },
+        {
+          "name": "dbInit",
+          "edgeType": "call"
+        },
+        {
+          "name": "MongoDB",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "database",
+      "exported": true,
+      "qualifiedName": "Agenda.database",
+      "line": 165,
+      "endLine": 186,
+      "signature": "public async database(url: string, collection: string | undefined, options: MongoClientOptions = {})",
+      "containerClass": "Agenda",
+      "calls": [
+        {
+          "name": "hasMongoProtocol",
+          "edgeType": "call"
+        },
+        {
+          "name": "connect",
+          "edgeType": "call"
+        },
+        {
+          "name": "debug",
+          "edgeType": "call"
+        },
+        {
+          "name": "db",
+          "edgeType": "call"
+        },
+        {
+          "name": "dbInit",
+          "edgeType": "call"
+        },
+        {
+          "name": "error:database",
+          "edgeType": "event_emit"
+        },
+        {
+          "name": "MongoClientOptions",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "dbInit",
+      "exported": true,
+      "qualifiedName": "Agenda.dbInit",
+      "line": 169,
+      "endLine": 181,
+      "signature": "public async dbInit(collection: string | undefined)",
+      "containerClass": "Agenda",
+      "calls": [
+        {
+          "name": "debug",
+          "edgeType": "call"
+        },
+        {
+          "name": "collection",
+          "edgeType": "call"
+        },
+        {
+          "name": "getMongoDB",
+          "edgeType": "call"
+        },
+        {
+          "name": "createIndex",
+          "edgeType": "call"
+        },
+        {
+          "name": "ready",
+          "edgeType": "event_emit"
+        },
+        {
+          "name": "error",
+          "edgeType": "event_emit"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "name",
+      "exported": true,
+      "qualifiedName": "Agenda.name",
+      "line": 173,
+      "endLine": 177,
+      "signature": "public name(name: string): Agenda",
+      "containerClass": "Agenda",
+      "calls": [
+        {
+          "name": "debug",
+          "edgeType": "call"
+        },
+        {
+          "name": "Agenda",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "processEvery",
+      "exported": true,
+      "qualifiedName": "Agenda.processEvery",
+      "line": 177,
+      "endLine": 181,
+      "signature": "public processEvery(time: string): Agenda",
+      "containerClass": "Agenda",
+      "calls": [
+        {
+          "name": "debug",
+          "edgeType": "call"
+        },
+        {
+          "name": "humanInterval",
+          "edgeType": "call"
+        },
+        {
+          "name": "Agenda",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "maxConcurrency",
+      "exported": true,
+      "qualifiedName": "Agenda.maxConcurrency",
+      "line": 181,
+      "endLine": 185,
+      "signature": "public maxConcurrency(num: number): Agenda",
+      "containerClass": "Agenda",
+      "calls": [
+        {
+          "name": "debug",
+          "edgeType": "call"
+        },
+        {
+          "name": "Agenda",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "defaultConcurrency",
+      "exported": true,
+      "qualifiedName": "Agenda.defaultConcurrency",
+      "line": 185,
+      "endLine": 189,
+      "signature": "public defaultConcurrency(num: number): Agenda",
+      "containerClass": "Agenda",
+      "calls": [
+        {
+          "name": "debug",
+          "edgeType": "call"
+        },
+        {
+          "name": "Agenda",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "lockLimit",
+      "exported": true,
+      "qualifiedName": "Agenda.lockLimit",
+      "line": 189,
+      "endLine": 193,
+      "signature": "public lockLimit(num: number): Agenda",
+      "containerClass": "Agenda",
+      "calls": [
+        {
+          "name": "debug",
+          "edgeType": "call"
+        },
+        {
+          "name": "Agenda",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "defaultLockLimit",
+      "exported": true,
+      "qualifiedName": "Agenda.defaultLockLimit",
+      "line": 193,
+      "endLine": 197,
+      "signature": "public defaultLockLimit(num: number): Agenda",
+      "containerClass": "Agenda",
+      "calls": [
+        {
+          "name": "debug",
+          "edgeType": "call"
+        },
+        {
+          "name": "Agenda",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "defaultLockLifetime",
+      "exported": true,
+      "qualifiedName": "Agenda.defaultLockLifetime",
+      "line": 197,
+      "endLine": 201,
+      "signature": "public defaultLockLifetime(ms: number): Agenda",
+      "containerClass": "Agenda",
+      "calls": [
+        {
+          "name": "debug",
+          "edgeType": "call"
+        },
+        {
+          "name": "Agenda",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "sort",
+      "exported": true,
+      "qualifiedName": "Agenda.sort",
+      "line": 201,
+      "endLine": 205,
+      "signature": "public sort(query: JobSort): Agenda",
+      "containerClass": "Agenda",
+      "calls": [
+        {
+          "name": "debug",
+          "edgeType": "call"
+        },
+        {
+          "name": "JobSort",
+          "edgeType": "type"
+        },
+        {
+          "name": "Agenda",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "create",
+      "exported": true,
+      "qualifiedName": "Agenda.create",
+      "line": 205,
+      "endLine": 216,
+      "signature": "public create(name: string, data: IJob['data'] = {}): Job",
+      "containerClass": "Agenda",
+      "calls": [
+        {
+          "name": "debug",
+          "edgeType": "call"
+        },
+        {
+          "name": "Job",
+          "edgeType": "new"
+        },
+        {
+          "name": "IJob",
+          "edgeType": "type"
+        },
+        {
+          "name": "Job",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "getCollection",
+      "exported": true,
+      "qualifiedName": "Agenda.getCollection",
+      "line": 209,
+      "endLine": 215,
+      "signature": "private getCollection(): Collection",
+      "containerClass": "Agenda",
+      "calls": [
+        {
+          "name": "Collection",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "getMongoDB",
+      "exported": true,
+      "qualifiedName": "Agenda.getMongoDB",
+      "line": 213,
+      "endLine": 219,
+      "signature": "private getMongoDB(): MongoDB",
+      "containerClass": "Agenda",
+      "calls": [
+        {
+          "name": "MongoDB",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "jobs",
+      "exported": true,
+      "qualifiedName": "Agenda.jobs",
+      "line": 217,
+      "endLine": 227,
+      "signature": "public async jobs(query = {}, sort = {}, limit = 0, skip = 0): Promise<Job[]>",
+      "containerClass": "Agenda",
+      "calls": [
+        {
+          "name": "toArray",
+          "edgeType": "call"
+        },
+        {
+          "name": "skip",
+          "edgeType": "call"
+        },
+        {
+          "name": "limit",
+          "edgeType": "call"
+        },
+        {
+          "name": "sort",
+          "edgeType": "call"
+        },
+        {
+          "name": "find",
+          "edgeType": "call"
+        },
+        {
+          "name": "getCollection",
+          "edgeType": "call"
+        },
+        {
+          "name": "map",
+          "edgeType": "call"
+        },
+        {
+          "name": "createJob",
+          "edgeType": "call"
+        },
+        {
+          "name": "debug",
+          "edgeType": "call"
+        },
+        {
+          "name": "error:database",
+          "edgeType": "event_emit"
+        },
+        {
+          "name": "Job",
+          "edgeType": "type"
+        },
+        {
+          "name": "IJob",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "purge",
+      "exported": true,
+      "qualifiedName": "Agenda.purge",
+      "line": 221,
+      "endLine": 232,
+      "signature": "public async purge(): Promise<unknown>",
+      "containerClass": "Agenda",
+      "calls": [
+        {
+          "name": "keys",
+          "edgeType": "call"
+        },
+        {
+          "name": "debug",
+          "edgeType": "call"
+        },
+        {
+          "name": "cancel",
+          "edgeType": "call"
+        },
+        {
+          "name": "error:database",
+          "edgeType": "event_emit"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "define",
+      "exported": true,
+      "qualifiedName": "Agenda.define",
+      "line": 227,
+      "endLine": 241,
+      "signature": "public define(name: string, maybeOptions: Partial<JobOptions> | JobDefinition['fn'], maybeProcessor?: JobDefinition['fn']): void",
+      "containerClass": "Agenda",
+      "calls": [
+        {
+          "name": "debug",
+          "edgeType": "call"
+        },
+        {
+          "name": "JobOptions",
+          "edgeType": "type"
+        },
+        {
+          "name": "JobDefinition",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "every",
+      "exported": true,
+      "qualifiedName": "Agenda.every",
+      "line": 235,
+      "endLine": 252,
+      "signature": "public async every( interval: string | number, names: string | string[], data: IJob['data'], options: RepeatOptions, ): Promise<Job | Job[] | undefined>",
+      "containerClass": "Agenda",
+      "calls": [
+        {
+          "name": "debug",
+          "edgeType": "call"
+        },
+        {
+          "name": "_createIntervalJob",
+          "edgeType": "call"
+        },
+        {
+          "name": "isArray",
+          "edgeType": "call"
+        },
+        {
+          "name": "_createIntervalJobs",
+          "edgeType": "call"
+        },
+        {
+          "name": "IJob",
+          "edgeType": "type"
+        },
+        {
+          "name": "RepeatOptions",
+          "edgeType": "type"
+        },
+        {
+          "name": "Job",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "_createIntervalJob",
+      "exported": true,
+      "qualifiedName": "Agenda._createIntervalJob",
+      "line": 244,
+      "endLine": 251,
+      "signature": "public async _createIntervalJob(interval: string | number, name: string, data: IJob['data'], options: RepeatOptions): Promise<Job>",
+      "containerClass": "Agenda",
+      "calls": [
+        {
+          "name": "create",
+          "edgeType": "call"
+        },
+        {
+          "name": "repeatEvery",
+          "edgeType": "call"
+        },
+        {
+          "name": "save",
+          "edgeType": "call"
+        },
+        {
+          "name": "IJob",
+          "edgeType": "type"
+        },
+        {
+          "name": "RepeatOptions",
+          "edgeType": "type"
+        },
+        {
+          "name": "Job",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "_createIntervalJobs",
+      "exported": true,
+      "qualifiedName": "Agenda._createIntervalJobs",
+      "line": 248,
+      "endLine": 263,
+      "signature": "private _createIntervalJobs( interval: string | number, names: string[], data: IJob['data'], options: RepeatOptions, ): Promise<Job[]> | undefined",
+      "containerClass": "Agenda",
+      "calls": [
+        {
+          "name": "map",
+          "edgeType": "call"
+        },
+        {
+          "name": "_createIntervalJob",
+          "edgeType": "call"
+        },
+        {
+          "name": "debug",
+          "edgeType": "call"
+        },
+        {
+          "name": "all",
+          "edgeType": "call"
+        },
+        {
+          "name": "IJob",
+          "edgeType": "type"
+        },
+        {
+          "name": "RepeatOptions",
+          "edgeType": "type"
+        },
+        {
+          "name": "Job",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "_createScheduledJob",
+      "exported": true,
+      "qualifiedName": "Agenda._createScheduledJob",
+      "line": 257,
+      "endLine": 261,
+      "signature": "private async _createScheduledJob(when: string | Date, name: string, data: IJob['data']): Promise<Job>",
+      "containerClass": "Agenda",
+      "calls": [
+        {
+          "name": "create",
+          "edgeType": "call"
+        },
+        {
+          "name": "save",
+          "edgeType": "call"
+        },
+        {
+          "name": "schedule",
+          "edgeType": "call"
+        },
+        {
+          "name": "IJob",
+          "edgeType": "type"
+        },
+        {
+          "name": "Job",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "_createScheduledJobs",
+      "exported": true,
+      "qualifiedName": "Agenda._createScheduledJobs",
+      "line": 261,
+      "endLine": 270,
+      "signature": "private async _createScheduledJobs(when: string | Date, names: string[], data: IJob['data']): Promise<Job[]>",
+      "containerClass": "Agenda",
+      "calls": [
+        {
+          "name": "all",
+          "edgeType": "call"
+        },
+        {
+          "name": "map",
+          "edgeType": "call"
+        },
+        {
+          "name": "_createScheduledJob",
+          "edgeType": "call"
+        },
+        {
+          "name": "debug",
+          "edgeType": "call"
+        },
+        {
+          "name": "IJob",
+          "edgeType": "type"
+        },
+        {
+          "name": "Job",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "schedule",
+      "exported": true,
+      "qualifiedName": "Agenda.schedule",
+      "line": 269,
+      "endLine": 281,
+      "signature": "public schedule(when: string | Date, names: string | string[], data: IJob['data']): Promise<Job | Job[]>",
+      "containerClass": "Agenda",
+      "calls": [
+        {
+          "name": "debug",
+          "edgeType": "call"
+        },
+        {
+          "name": "_createScheduledJob",
+          "edgeType": "call"
+        },
+        {
+          "name": "isArray",
+          "edgeType": "call"
+        },
+        {
+          "name": "_createScheduledJobs",
+          "edgeType": "call"
+        },
+        {
+          "name": "IJob",
+          "edgeType": "type"
+        },
+        {
+          "name": "Job",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "now",
+      "exported": true,
+      "qualifiedName": "Agenda.now",
+      "line": 273,
+      "endLine": 287,
+      "signature": "public async now(name: string, data: IJob['data'], ...args: Array<any>): Promise<Job>",
+      "containerClass": "Agenda",
+      "calls": [
+        {
+          "name": "debug",
+          "edgeType": "call"
+        },
+        {
+          "name": "noCallback",
+          "edgeType": "call"
+        },
+        {
+          "name": "create",
+          "edgeType": "call"
+        },
+        {
+          "name": "schedule",
+          "edgeType": "call"
+        },
+        {
+          "name": "save",
+          "edgeType": "call"
+        },
+        {
+          "name": "Date",
+          "edgeType": "new"
+        },
+        {
+          "name": "IJob",
+          "edgeType": "type"
+        },
+        {
+          "name": "Job",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "cancel",
+      "exported": true,
+      "qualifiedName": "Agenda.cancel",
+      "line": 277,
+      "endLine": 288,
+      "signature": "public async cancel(query: Record<string, any>): Promise<number>",
+      "containerClass": "Agenda",
+      "calls": [
+        {
+          "name": "debug",
+          "edgeType": "call"
+        },
+        {
+          "name": "deleteMany",
+          "edgeType": "call"
+        },
+        {
+          "name": "getCollection",
+          "edgeType": "call"
+        },
+        {
+          "name": "error:database",
+          "edgeType": "event_emit"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "has",
+      "exported": true,
+      "qualifiedName": "Agenda.has",
+      "line": 281,
+      "endLine": 285,
+      "signature": "public async has(query: Record<string, any>): Promise<boolean>",
+      "containerClass": "Agenda",
+      "calls": [
+        {
+          "name": "debug",
+          "edgeType": "call"
+        },
+        {
+          "name": "findOne",
+          "edgeType": "call"
+        },
+        {
+          "name": "getCollection",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "_processDbResult",
+      "exported": true,
+      "qualifiedName": "Agenda._processDbResult",
+      "line": 285,
+      "endLine": 315,
+      "signature": "private async _processDbResult(job: Job, result: Document | InsertOneResult | null): Promise<void>",
+      "containerClass": "Agenda",
+      "calls": [
+        {
+          "name": "debug",
+          "edgeType": "call"
+        },
+        {
+          "name": "findOne",
+          "edgeType": "call"
+        },
+        {
+          "name": "getCollection",
+          "edgeType": "call"
+        },
+        {
+          "name": "processJobs",
+          "edgeType": "call"
+        },
+        {
+          "name": "Job",
+          "edgeType": "type"
+        },
+        {
+          "name": "Document",
+          "edgeType": "type"
+        },
+        {
+          "name": "InsertOneResult",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "_updateJob",
+      "exported": true,
+      "qualifiedName": "Agenda._updateJob",
+      "line": 289,
+      "endLine": 304,
+      "signature": "private async _updateJob(job: Job, props: Record<string, any>): Promise<void>",
+      "containerClass": "Agenda",
+      "calls": [
+        {
+          "name": "debug",
+          "edgeType": "call"
+        },
+        {
+          "name": "findOneAndUpdate",
+          "edgeType": "call"
+        },
+        {
+          "name": "getCollection",
+          "edgeType": "call"
+        },
+        {
+          "name": "_processDbResult",
+          "edgeType": "call"
+        },
+        {
+          "name": "error:database",
+          "edgeType": "event_emit"
+        },
+        {
+          "name": "Job",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "_saveSingleJob",
+      "exported": true,
+      "qualifiedName": "Agenda._saveSingleJob",
+      "line": 293,
+      "endLine": 332,
+      "signature": "private async _saveSingleJob(job: Job, props: Record<string, any>, now: Date): Promise<void>",
+      "containerClass": "Agenda",
+      "calls": [
+        {
+          "name": "debug",
+          "edgeType": "call"
+        },
+        {
+          "name": "keys",
+          "edgeType": "call"
+        },
+        {
+          "name": "findOneAndUpdate",
+          "edgeType": "call"
+        },
+        {
+          "name": "getCollection",
+          "edgeType": "call"
+        },
+        {
+          "name": "_processDbResult",
+          "edgeType": "call"
+        },
+        {
+          "name": "error:database",
+          "edgeType": "event_emit"
+        },
+        {
+          "name": "Job",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "_saveUniqueJob",
+      "exported": true,
+      "qualifiedName": "Agenda._saveUniqueJob",
+      "line": 297,
+      "endLine": 317,
+      "signature": "private async _saveUniqueJob(job: Job, props: Record<string, any>): Promise<void>",
+      "containerClass": "Agenda",
+      "calls": [
+        {
+          "name": "debug",
+          "edgeType": "call"
+        },
+        {
+          "name": "findOneAndUpdate",
+          "edgeType": "call"
+        },
+        {
+          "name": "getCollection",
+          "edgeType": "call"
+        },
+        {
+          "name": "_processDbResult",
+          "edgeType": "call"
+        },
+        {
+          "name": "error:database",
+          "edgeType": "event_emit"
+        },
+        {
+          "name": "Job",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "_saveNewJob",
+      "exported": true,
+      "qualifiedName": "Agenda._saveNewJob",
+      "line": 301,
+      "endLine": 312,
+      "signature": "private async _saveNewJob(job: Job, props: Record<string, any>): Promise<void>",
+      "containerClass": "Agenda",
+      "calls": [
+        {
+          "name": "debug",
+          "edgeType": "call"
+        },
+        {
+          "name": "insertOne",
+          "edgeType": "call"
+        },
+        {
+          "name": "getCollection",
+          "edgeType": "call"
+        },
+        {
+          "name": "_processDbResult",
+          "edgeType": "call"
+        },
+        {
+          "name": "error:database",
+          "edgeType": "event_emit"
+        },
+        {
+          "name": "Job",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "saveJob",
+      "exported": true,
+      "qualifiedName": "Agenda.saveJob",
+      "line": 305,
+      "endLine": 344,
+      "signature": "public async saveJob(job: Job): Promise<void>",
+      "containerClass": "Agenda",
+      "calls": [
+        {
+          "name": "debug",
+          "edgeType": "call"
+        },
+        {
+          "name": "toJSON",
+          "edgeType": "call"
+        },
+        {
+          "name": "toISOString",
+          "edgeType": "call"
+        },
+        {
+          "name": "_updateJob",
+          "edgeType": "call"
+        },
+        {
+          "name": "_saveSingleJob",
+          "edgeType": "call"
+        },
+        {
+          "name": "_saveUniqueJob",
+          "edgeType": "call"
+        },
+        {
+          "name": "_saveNewJob",
+          "edgeType": "call"
+        },
+        {
+          "name": "Date",
+          "edgeType": "new"
+        },
+        {
+          "name": "Job",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "start",
+      "exported": true,
+      "qualifiedName": "Agenda.start",
+      "line": 309,
+      "endLine": 319,
+      "signature": "public async start(): Promise<void>",
+      "containerClass": "Agenda",
+      "calls": [
+        {
+          "name": "debug",
+          "edgeType": "call"
+        },
+        {
+          "name": "processJobs",
+          "edgeType": "call"
+        },
+        {
+          "name": "nextTick",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "_unlockJobs",
+      "exported": true,
+      "qualifiedName": "Agenda._unlockJobs",
+      "line": 313,
+      "endLine": 331,
+      "signature": "private async _unlockJobs(): Promise<void>",
+      "containerClass": "Agenda",
+      "calls": [
+        {
+          "name": "debug",
+          "edgeType": "call"
+        },
+        {
+          "name": "map",
+          "edgeType": "call"
+        },
+        {
+          "name": "updateMany",
+          "edgeType": "call"
+        },
+        {
+          "name": "getCollection",
+          "edgeType": "call"
+        },
+        {
+          "name": "error:database",
+          "edgeType": "event_emit"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "stop",
+      "exported": true,
+      "qualifiedName": "Agenda.stop",
+      "line": 317,
+      "endLine": 323,
+      "signature": "public stop(): Promise<void>",
+      "containerClass": "Agenda",
+      "calls": [
+        {
+          "name": "debug",
+          "edgeType": "call"
+        },
+        {
+          "name": "clearInterval",
+          "edgeType": "call"
+        },
+        {
+          "name": "_unlockJobs",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "getDefinition",
+      "exported": true,
+      "qualifiedName": "Agenda.getDefinition",
+      "line": 321,
+      "endLine": 323,
+      "signature": "public getDefinition(jobName: string): JobDefinition",
+      "containerClass": "Agenda",
+      "calls": [
+        {
+          "name": "JobDefinition",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "_findAndLockNextJob",
+      "exported": true,
+      "qualifiedName": "Agenda._findAndLockNextJob",
+      "line": 325,
+      "endLine": 389,
+      "signature": "private async _findAndLockNextJob(jobName: string, definition: JobDefinition): Promise<Job | undefined>",
+      "containerClass": "Agenda",
+      "calls": [
+        {
+          "name": "valueOf",
+          "edgeType": "call"
+        },
+        {
+          "name": "now",
+          "edgeType": "call"
+        },
+        {
+          "name": "debug",
+          "edgeType": "call"
+        },
+        {
+          "name": "getMongoDB",
+          "edgeType": "call"
+        },
+        {
+          "name": "connections",
+          "edgeType": "call"
+        },
+        {
+          "name": "isDestroyed",
+          "edgeType": "call"
+        },
+        {
+          "name": "error",
+          "edgeType": "event_emit"
+        },
+        {
+          "name": "findOneAndUpdate",
+          "edgeType": "call"
+        },
+        {
+          "name": "getCollection",
+          "edgeType": "call"
+        },
+        {
+          "name": "createJob",
+          "edgeType": "call"
+        },
+        {
+          "name": "error:database",
+          "edgeType": "event_emit"
+        },
+        {
+          "name": "Date",
+          "edgeType": "new"
+        },
+        {
+          "name": "JobDefinition",
+          "edgeType": "type"
+        },
+        {
+          "name": "Job",
+          "edgeType": "type"
+        },
+        {
+          "name": "IJob",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "_shouldLock",
+      "exported": true,
+      "qualifiedName": "Agenda._shouldLock",
+      "line": 334,
+      "endLine": 347,
+      "signature": "private _shouldLock(name: string): boolean",
+      "containerClass": "Agenda",
+      "calls": [
+        {
+          "name": "getDefinition",
+          "edgeType": "call"
+        },
+        {
+          "name": "debug",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "_enqueueJobs",
+      "exported": true,
+      "qualifiedName": "Agenda._enqueueJobs",
+      "line": 338,
+      "endLine": 342,
+      "signature": "private _enqueueJobs(job: Job | Job[]): void",
+      "containerClass": "Agenda",
+      "calls": [
+        {
+          "name": "isArray",
+          "edgeType": "call"
+        },
+        {
+          "name": "forEach",
+          "edgeType": "call"
+        },
+        {
+          "name": "insert",
+          "edgeType": "call"
+        },
+        {
+          "name": "Job",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "_lockOnTheFly",
+      "exported": true,
+      "qualifiedName": "Agenda._lockOnTheFly",
+      "line": 347,
+      "endLine": 414,
+      "signature": "private async _lockOnTheFly(): Promise<void>",
+      "containerClass": "Agenda",
+      "calls": [
+        {
+          "name": "debug",
+          "edgeType": "call"
+        },
+        {
+          "name": "pop",
+          "edgeType": "call"
+        },
+        {
+          "name": "_shouldLock",
+          "edgeType": "call"
+        },
+        {
+          "name": "findOneAndUpdate",
+          "edgeType": "call"
+        },
+        {
+          "name": "getCollection",
+          "edgeType": "call"
+        },
+        {
+          "name": "createJob",
+          "edgeType": "call"
+        },
+        {
+          "name": "push",
+          "edgeType": "call"
+        },
+        {
+          "name": "_enqueueJobs",
+          "edgeType": "call"
+        },
+        {
+          "name": "_jobProcessing",
+          "edgeType": "call"
+        },
+        {
+          "name": "error:database",
+          "edgeType": "event_emit"
+        },
+        {
+          "name": "_lockOnTheFly",
+          "edgeType": "call"
+        },
+        {
+          "name": "Date",
+          "edgeType": "new"
+        },
+        {
+          "name": "IJob",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "_jobQueueFilling",
+      "exported": true,
+      "qualifiedName": "Agenda._jobQueueFilling",
+      "line": 351,
+      "endLine": 380,
+      "signature": "private async _jobQueueFilling(name: string): Promise<void>",
+      "containerClass": "Agenda",
+      "calls": [
+        {
+          "name": "_shouldLock",
+          "edgeType": "call"
+        },
+        {
+          "name": "debug",
+          "edgeType": "call"
+        },
+        {
+          "name": "now",
+          "edgeType": "call"
+        },
+        {
+          "name": "_findAndLockNextJob",
+          "edgeType": "call"
+        },
+        {
+          "name": "push",
+          "edgeType": "call"
+        },
+        {
+          "name": "_enqueueJobs",
+          "edgeType": "call"
+        },
+        {
+          "name": "_jobQueueFilling",
+          "edgeType": "call"
+        },
+        {
+          "name": "_jobProcessing",
+          "edgeType": "call"
+        },
+        {
+          "name": "Date",
+          "edgeType": "new"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "_runOrRetry",
+      "exported": true,
+      "qualifiedName": "Agenda._runOrRetry",
+      "line": 355,
+      "endLine": 398,
+      "signature": "private async _runOrRetry(): Promise<void>",
+      "containerClass": "Agenda",
+      "calls": [
+        {
+          "name": "pop",
+          "edgeType": "call"
+        },
+        {
+          "name": "now",
+          "edgeType": "call"
+        },
+        {
+          "name": "debug",
+          "edgeType": "call"
+        },
+        {
+          "name": "splice",
+          "edgeType": "call"
+        },
+        {
+          "name": "indexOf",
+          "edgeType": "call"
+        },
+        {
+          "name": "_jobProcessing",
+          "edgeType": "call"
+        },
+        {
+          "name": "push",
+          "edgeType": "call"
+        },
+        {
+          "name": "then",
+          "edgeType": "call"
+        },
+        {
+          "name": "catch",
+          "edgeType": "call"
+        },
+        {
+          "name": "_processJobResult",
+          "edgeType": "call"
+        },
+        {
+          "name": "_enqueueJobs",
+          "edgeType": "call"
+        },
+        {
+          "name": "Date",
+          "edgeType": "new"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "_jobProcessing",
+      "exported": true,
+      "qualifiedName": "Agenda._jobProcessing",
+      "line": 359,
+      "endLine": 387,
+      "signature": "private _jobProcessing(): void",
+      "containerClass": "Agenda",
+      "calls": [
+        {
+          "name": "returnNextConcurrencyFreeJob",
+          "edgeType": "call"
+        },
+        {
+          "name": "debug",
+          "edgeType": "call"
+        },
+        {
+          "name": "_runOrRetry",
+          "edgeType": "call"
+        },
+        {
+          "name": "valueOf",
+          "edgeType": "call"
+        },
+        {
+          "name": "_jobProcessing",
+          "edgeType": "call"
+        },
+        {
+          "name": "Date",
+          "edgeType": "new"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "_processJobResult",
+      "exported": true,
+      "qualifiedName": "Agenda._processJobResult",
+      "line": 363,
+      "endLine": 391,
+      "signature": "private _processJobResult(err: Error | null, job: Job): void",
+      "containerClass": "Agenda",
+      "calls": [
+        {
+          "name": "error",
+          "edgeType": "event_emit"
+        },
+        {
+          "name": "includes",
+          "edgeType": "call"
+        },
+        {
+          "name": "debug",
+          "edgeType": "call"
+        },
+        {
+          "name": "splice",
+          "edgeType": "call"
+        },
+        {
+          "name": "indexOf",
+          "edgeType": "call"
+        },
+        {
+          "name": "_jobProcessing",
+          "edgeType": "call"
+        },
+        {
+          "name": "Job",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "processJobs",
+      "exported": true,
+      "qualifiedName": "Agenda.processJobs",
+      "line": 367,
+      "endLine": 393,
+      "signature": "public processJobs(extraJob?: Job): void",
+      "containerClass": "Agenda",
+      "calls": [
+        {
+          "name": "debug",
+          "edgeType": "call"
+        },
+        {
+          "name": "hasOwn",
+          "edgeType": "call"
+        },
+        {
+          "name": "_jobQueueFilling",
+          "edgeType": "call"
+        },
+        {
+          "name": "push",
+          "edgeType": "call"
+        },
+        {
+          "name": "_lockOnTheFly",
+          "edgeType": "call"
+        },
+        {
+          "name": "Job",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "constructor",
+      "exported": true,
+      "qualifiedName": "Agenda.constructor",
+      "line": 124,
+      "endLine": 151,
+      "signature": "constructor(config: AgendaConfig = {})",
+      "containerClass": "Agenda",
+      "calls": [
+        {
+          "name": "humanInterval",
+          "edgeType": "call"
+        },
+        {
+          "name": "resolve",
+          "edgeType": "event_listen",
+          "event": "ready"
+        },
+        {
+          "name": "mongo",
+          "edgeType": "call"
+        },
+        {
+          "name": "database",
+          "edgeType": "call"
+        },
+        {
+          "name": "JobProcessingQueue",
+          "edgeType": "new"
+        },
+        {
+          "name": "AgendaConfig",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "class_property",
+      "name": "_db",
+      "exported": true,
+      "qualifiedName": "Agenda._db",
+      "line": 92,
+      "endLine": 92,
+      "signature": "protected _db: MongoClient | undefined;",
+      "containerClass": "Agenda",
+      "calls": [
+        {
+          "name": "MongoClient",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "class_property",
+      "name": "_mdb",
+      "exported": true,
+      "qualifiedName": "Agenda._mdb",
+      "line": 94,
+      "endLine": 94,
+      "signature": "private _mdb: MongoDB | undefined;",
+      "containerClass": "Agenda",
+      "calls": [
+        {
+          "name": "MongoDB",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "class_property",
+      "name": "_collection",
+      "exported": true,
+      "qualifiedName": "Agenda._collection",
+      "line": 96,
+      "endLine": 96,
+      "signature": "private _collection: Collection | undefined;",
+      "containerClass": "Agenda",
+      "calls": [
+        {
+          "name": "Collection",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "class_property",
+      "name": "_definitions",
+      "exported": true,
+      "qualifiedName": "Agenda._definitions",
+      "line": 98,
+      "endLine": 98,
+      "signature": "private _definitions: Record<string, JobDefinition> =",
+      "containerClass": "Agenda",
+      "calls": [
+        {
+          "name": "JobDefinition",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "class_property",
+      "name": "_runningJobs",
+      "exported": true,
+      "qualifiedName": "Agenda._runningJobs",
+      "line": 100,
+      "endLine": 100,
+      "signature": "private _runningJobs: Job[];",
+      "containerClass": "Agenda",
+      "calls": [
+        {
+          "name": "Job",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "class_property",
+      "name": "_lockedJobs",
+      "exported": true,
+      "qualifiedName": "Agenda._lockedJobs",
+      "line": 102,
+      "endLine": 102,
+      "signature": "private _lockedJobs: Job[];",
+      "containerClass": "Agenda",
+      "calls": [
+        {
+          "name": "Job",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "class_property",
+      "name": "_jobsToLock",
+      "exported": true,
+      "qualifiedName": "Agenda._jobsToLock",
+      "line": 104,
+      "endLine": 104,
+      "signature": "private _jobsToLock: Job[];",
+      "containerClass": "Agenda",
+      "calls": [
+        {
+          "name": "Job",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "class_property",
+      "name": "_jobQueue",
+      "exported": true,
+      "qualifiedName": "Agenda._jobQueue",
+      "line": 106,
+      "endLine": 106,
+      "signature": "private _jobQueue: JobProcessingQueue;",
+      "containerClass": "Agenda",
+      "calls": [
+        {
+          "name": "JobProcessingQueue",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "class_property",
+      "name": "_sort",
+      "exported": true,
+      "qualifiedName": "Agenda._sort",
+      "line": 110,
+      "endLine": 110,
+      "signature": "private _sort: JobSort;",
+      "containerClass": "Agenda",
+      "calls": [
+        {
+          "name": "JobSort",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "class_property",
+      "name": "_indexes",
+      "exported": true,
+      "qualifiedName": "Agenda._indexes",
+      "line": 112,
+      "endLine": 112,
+      "signature": "private _indexes: JobSort;",
+      "containerClass": "Agenda",
+      "calls": [
+        {
+          "name": "JobSort",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "type",
+      "name": "JobSort",
+      "line": 20,
+      "endLine": 20,
+      "signature": "type JobSort = Partial<Record<keyof IJob, 1 | -1>>;"
+    },
+    {
+      "type": "type",
+      "name": "MongoTopology",
+      "line": 22,
+      "endLine": 26,
+      "signature": "type MongoTopology ="
+    },
+    {
+      "type": "type",
+      "name": "MongoDB",
+      "line": 28,
+      "endLine": 48,
+      "signature": "type MongoDB = Db &"
+    },
+    {
+      "type": "type",
+      "name": "AgendaConfig",
+      "line": 50,
+      "endLine": 75,
+      "signature": "type AgendaConfig ="
+    },
+    {
+      "type": "type",
+      "name": "RepeatOptions",
+      "line": 77,
+      "endLine": 77,
+      "signature": "export type RepeatOptions ="
+    }
+  ],
+  "imports": [
+    {
+      "module": "node:events",
+      "resolved": "external"
+    },
+    {
+      "module": "debug",
+      "resolved": "external"
+    },
+    {
+      "module": "human-interval",
+      "resolved": "external"
+    },
+    {
+      "module": "mongodb",
+      "resolved": "external"
+    },
+    {
+      "module": "mongodb",
+      "resolved": "external"
+    },
+    {
+      "module": "./Job",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/packages/agenda/src/Job.ts"
+    },
+    {
+      "module": "./JobProcessingQueue",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/packages/agenda/src/JobProcessingQueue.ts"
+    },
+    {
+      "module": "./createJob",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/packages/agenda/src/createJob.ts"
+    },
+    {
+      "module": "./definition/IJob",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/packages/agenda/src/definition/IJob.ts"
+    },
+    {
+      "module": "./definition/JobDefinition",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/packages/agenda/src/definition/JobDefinition.ts"
+    },
+    {
+      "module": "./lib/hasMongoProtocol",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/packages/agenda/src/lib/hasMongoProtocol.ts"
+    },
+    {
+      "module": "./lib/noCallback",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/packages/agenda/src/lib/noCallback.ts"
+    }
+  ]
+}

@@ -1,0 +1,115 @@
+{
+  "sourcePath": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/client/views/room/body/hooks/useFileUpload.ts",
+  "symbols": [
+    {
+      "type": "variable_function",
+      "name": "emptySubscribe",
+      "exported": false,
+      "line": 6,
+      "endLine": 6,
+      "signature": "() =>",
+      "calls": []
+    },
+    {
+      "type": "variable_function",
+      "name": "getEmptyUploads",
+      "exported": false,
+      "line": 8,
+      "endLine": 8,
+      "signature": "() =>",
+      "calls": []
+    },
+    {
+      "type": "variable_function",
+      "name": "getEmptyBool",
+      "exported": false,
+      "line": 9,
+      "endLine": 9,
+      "signature": "() =>",
+      "calls": []
+    },
+    {
+      "type": "inner_function",
+      "name": "handleUploadFiles",
+      "exported": false,
+      "qualifiedName": "useFileUpload.handleUploadFiles",
+      "line": 29,
+      "endLine": 32,
+      "signature": "(files: readonly File[]): void =>",
+      "calls": [
+        {
+          "name": "uploadFiles",
+          "edgeType": "call"
+        },
+        {
+          "name": "File",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "variable_function",
+      "name": "useFileUpload",
+      "exported": true,
+      "line": 11,
+      "endLine": 49,
+      "signature": "() =>",
+      "calls": [
+        {
+          "name": "useChat",
+          "edgeType": "call"
+        },
+        {
+          "name": "useSyncExternalStore",
+          "edgeType": "call"
+        },
+        {
+          "name": "useEffect",
+          "edgeType": "call"
+        },
+        {
+          "name": "wipeFailedOnes",
+          "edgeType": "call"
+        },
+        {
+          "name": "clear",
+          "edgeType": "call"
+        },
+        {
+          "name": "useCallback",
+          "edgeType": "call"
+        },
+        {
+          "name": "uploadFiles",
+          "edgeType": "call"
+        },
+        {
+          "name": "some",
+          "edgeType": "call"
+        },
+        {
+          "name": "useMemo",
+          "edgeType": "call"
+        },
+        {
+          "name": "File",
+          "edgeType": "type"
+        }
+      ]
+    }
+  ],
+  "imports": [
+    {
+      "module": "react",
+      "resolved": "external"
+    },
+    {
+      "module": "../../../../lib/chats/Upload",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/client/lib/chats/Upload.ts"
+    },
+    {
+      "module": "../../contexts/ChatContext",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/client/views/room/contexts/ChatContext.ts"
+    }
+  ]
+}

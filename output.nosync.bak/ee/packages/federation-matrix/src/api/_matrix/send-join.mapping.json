@@ -1,0 +1,65 @@
+{
+  "sourcePath": "/Users/echoooooo/Desktop/code/Rocket.Chat/ee/packages/federation-matrix/src/api/_matrix/send-join.ts",
+  "symbols": [
+    {
+      "type": "variable_function",
+      "name": "getMatrixSendJoinRoutes",
+      "exported": true,
+      "line": 221,
+      "endLine": 246,
+      "signature": "() =>",
+      "calls": [
+        {
+          "name": "put",
+          "edgeType": "call"
+        },
+        {
+          "name": "canAccessResourceMiddleware",
+          "edgeType": "call"
+        },
+        {
+          "name": "param",
+          "edgeType": "call"
+        },
+        {
+          "name": "json",
+          "edgeType": "call"
+        },
+        {
+          "name": "sendJoin",
+          "edgeType": "call"
+        },
+        {
+          "name": "Router",
+          "edgeType": "new"
+        },
+        {
+          "name": "EventID",
+          "edgeType": "type"
+        }
+      ]
+    }
+  ],
+  "imports": [
+    {
+      "module": "@rocket.chat/federation-sdk",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/federation-sdk",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/http-router",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/rest-typings/dist/v1/Ajv",
+      "resolved": "external"
+    },
+    {
+      "module": "../middlewares/canAccessResource",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/ee/packages/federation-matrix/src/api/middlewares/canAccessResource.ts"
+    }
+  ]
+}

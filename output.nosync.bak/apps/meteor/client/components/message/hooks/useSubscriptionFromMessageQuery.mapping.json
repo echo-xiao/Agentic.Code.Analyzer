@@ -1,0 +1,45 @@
+{
+  "sourcePath": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/client/components/message/hooks/useSubscriptionFromMessageQuery.ts",
+  "symbols": [
+    {
+      "type": "variable_function",
+      "name": "useSubscriptionFromMessageQuery",
+      "exported": true,
+      "line": 6,
+      "endLine": 16,
+      "signature": "(message: IMessage) =>",
+      "calls": [
+        {
+          "name": "useChat",
+          "edgeType": "call"
+        },
+        {
+          "name": "useQuery",
+          "edgeType": "call"
+        },
+        {
+          "name": "getSubscriptionFromMessage",
+          "edgeType": "call"
+        },
+        {
+          "name": "IMessage",
+          "edgeType": "type"
+        }
+      ]
+    }
+  ],
+  "imports": [
+    {
+      "module": "@rocket.chat/core-typings",
+      "resolved": "external"
+    },
+    {
+      "module": "@tanstack/react-query",
+      "resolved": "external"
+    },
+    {
+      "module": "../../../views/room/contexts/ChatContext",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/client/views/room/contexts/ChatContext.ts"
+    }
+  ]
+}

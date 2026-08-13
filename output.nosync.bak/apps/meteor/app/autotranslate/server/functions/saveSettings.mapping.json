@@ -1,0 +1,69 @@
+{
+  "sourcePath": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/app/autotranslate/server/functions/saveSettings.ts",
+  "symbols": [
+    {
+      "type": "variable_function",
+      "name": "saveAutoTranslateSettings",
+      "exported": true,
+      "line": 8,
+      "endLine": 78,
+      "signature": "async ( userId: string, rid: string, field: string, value: string, options: { defaultLanguage: string }, ) =>",
+      "calls": [
+        {
+          "name": "hasPermissionAsync",
+          "edgeType": "call"
+        },
+        {
+          "name": "check",
+          "edgeType": "call"
+        },
+        {
+          "name": "indexOf",
+          "edgeType": "call"
+        },
+        {
+          "name": "findOneByRoomIdAndUserId",
+          "edgeType": "call"
+        },
+        {
+          "name": "findE2ERoomById",
+          "edgeType": "call"
+        },
+        {
+          "name": "updateAutoTranslateById",
+          "edgeType": "call"
+        },
+        {
+          "name": "updateAutoTranslateLanguageById",
+          "edgeType": "call"
+        },
+        {
+          "name": "notifyOnSubscriptionChangedById",
+          "edgeType": "call"
+        }
+      ]
+    }
+  ],
+  "imports": [
+    {
+      "module": "@rocket.chat/models",
+      "resolved": "external"
+    },
+    {
+      "module": "meteor/check",
+      "resolved": "external"
+    },
+    {
+      "module": "meteor/meteor",
+      "resolved": "external"
+    },
+    {
+      "module": "../../../../server/lib/authorization/hasPermission",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/server/lib/authorization/hasPermission.ts"
+    },
+    {
+      "module": "../../../lib/server/lib/notifyListener",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/app/lib/server/lib/notifyListener.ts"
+    }
+  ]
+}

@@ -1,0 +1,273 @@
+{
+  "sourcePath": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/client/views/account/tokens/AccountTokensTable/AddToken.tsx",
+  "symbols": [
+    {
+      "type": "inner_function",
+      "name": "handleAddToken",
+      "exported": false,
+      "qualifiedName": "AddToken.handleAddToken",
+      "line": 42,
+      "endLine": 63,
+      "signature": "async ({ name: tokenName, bypassTwoFactor }: AddTokenFormData) =>",
+      "calls": [
+        {
+          "name": "createTokenFn",
+          "edgeType": "call"
+        },
+        {
+          "name": "setModal",
+          "edgeType": "call"
+        },
+        {
+          "name": "reload",
+          "edgeType": "call"
+        },
+        {
+          "name": "reset",
+          "edgeType": "call"
+        },
+        {
+          "name": "dispatchToastMessage",
+          "edgeType": "call"
+        },
+        {
+          "name": "GenericModal",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "Box",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "Trans",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "handleDismissModal",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "AddTokenFormData",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "inner_function",
+      "name": "handleDismissModal",
+      "exported": false,
+      "qualifiedName": "AddToken.handleDismissModal",
+      "line": 47,
+      "endLine": 51,
+      "signature": "() =>",
+      "calls": [
+        {
+          "name": "setModal",
+          "edgeType": "call"
+        },
+        {
+          "name": "reload",
+          "edgeType": "call"
+        },
+        {
+          "name": "reset",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "variable_function",
+      "name": "AddToken",
+      "exported": false,
+      "line": 18,
+      "endLine": 107,
+      "signature": "({ reload }: AddTokenProps) =>",
+      "calls": [
+        {
+          "name": "useTranslation",
+          "edgeType": "call"
+        },
+        {
+          "name": "useUserId",
+          "edgeType": "call"
+        },
+        {
+          "name": "useSetModal",
+          "edgeType": "call"
+        },
+        {
+          "name": "useEndpoint",
+          "edgeType": "call"
+        },
+        {
+          "name": "useToastMessageDispatch",
+          "edgeType": "call"
+        },
+        {
+          "name": "useMemo",
+          "edgeType": "call"
+        },
+        {
+          "name": "useForm",
+          "edgeType": "call"
+        },
+        {
+          "name": "useCallback",
+          "edgeType": "call"
+        },
+        {
+          "name": "createTokenFn",
+          "edgeType": "call"
+        },
+        {
+          "name": "setModal",
+          "edgeType": "call"
+        },
+        {
+          "name": "reload",
+          "edgeType": "call"
+        },
+        {
+          "name": "reset",
+          "edgeType": "call"
+        },
+        {
+          "name": "dispatchToastMessage",
+          "edgeType": "call"
+        },
+        {
+          "name": "useId",
+          "edgeType": "call"
+        },
+        {
+          "name": "handleSubmit",
+          "edgeType": "call"
+        },
+        {
+          "name": "trim",
+          "edgeType": "call"
+        },
+        {
+          "name": "GenericModal",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "Box",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "FieldGroup",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "Field",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "FieldRow",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "Margins",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "Button",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "FieldError",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "Trans",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "Controller",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "TextInput",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "Select",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "handleDismissModal",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "control",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "nameErrorId",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "twoFactorAuthOptions",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "AddTokenProps",
+          "edgeType": "type"
+        },
+        {
+          "name": "AddTokenFormData",
+          "edgeType": "type"
+        },
+        {
+          "name": "SelectOption",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "type",
+      "name": "AddTokenFormData",
+      "line": 9,
+      "endLine": 12,
+      "signature": "type AddTokenFormData ="
+    },
+    {
+      "type": "type",
+      "name": "AddTokenProps",
+      "line": 14,
+      "endLine": 16,
+      "signature": "export type AddTokenProps ="
+    }
+  ],
+  "imports": [
+    {
+      "module": "@rocket.chat/fuselage",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/fuselage",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/ui-client",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/ui-contexts",
+      "resolved": "external"
+    },
+    {
+      "module": "react",
+      "resolved": "external"
+    },
+    {
+      "module": "react-hook-form",
+      "resolved": "external"
+    },
+    {
+      "module": "react-i18next",
+      "resolved": "external"
+    }
+  ]
+}

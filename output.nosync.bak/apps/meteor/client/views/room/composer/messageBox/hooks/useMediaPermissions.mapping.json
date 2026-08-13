@@ -1,0 +1,98 @@
+{
+  "sourcePath": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/client/views/room/composer/messageBox/hooks/useMediaPermissions.ts",
+  "symbols": [
+    {
+      "type": "variable_function",
+      "name": "getDeviceKind",
+      "exported": false,
+      "line": 6,
+      "endLine": 13,
+      "signature": "(name: MediaDevices): MediaDeviceKind =>",
+      "calls": [
+        {
+          "name": "MediaDevices",
+          "edgeType": "type"
+        },
+        {
+          "name": "MediaDeviceKind",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "variable_function",
+      "name": "useMediaPermissions",
+      "exported": true,
+      "line": 10,
+      "endLine": 54,
+      "signature": "(name: MediaDevices): [isPermissionDenied: boolean, setIsPermissionDenied: (state: boolean) => void] =>",
+      "calls": [
+        {
+          "name": "useQueryClient",
+          "edgeType": "call"
+        },
+        {
+          "name": "useStableCallback",
+          "edgeType": "call"
+        },
+        {
+          "name": "setQueryData",
+          "edgeType": "call"
+        },
+        {
+          "name": "useQuery",
+          "edgeType": "call"
+        },
+        {
+          "name": "query",
+          "edgeType": "call"
+        },
+        {
+          "name": "warn",
+          "edgeType": "call"
+        },
+        {
+          "name": "some",
+          "edgeType": "call"
+        },
+        {
+          "name": "enumerateDevices",
+          "edgeType": "call"
+        },
+        {
+          "name": "getDeviceKind",
+          "edgeType": "call"
+        },
+        {
+          "name": "Boolean",
+          "edgeType": "call"
+        },
+        {
+          "name": "MediaDevices",
+          "edgeType": "type"
+        },
+        {
+          "name": "PermissionName",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "type",
+      "name": "MediaDevices",
+      "line": 4,
+      "endLine": 4,
+      "signature": "type MediaDevices = 'camera' | 'microphone';"
+    }
+  ],
+  "imports": [
+    {
+      "module": "@rocket.chat/fuselage-hooks",
+      "resolved": "external"
+    },
+    {
+      "module": "@tanstack/react-query",
+      "resolved": "external"
+    }
+  ]
+}

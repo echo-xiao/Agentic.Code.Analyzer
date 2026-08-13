@@ -1,0 +1,341 @@
+{
+  "sourcePath": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/client/components/avatar/UserAvatarEditor/UserAvatarEditor.tsx",
+  "symbols": [
+    {
+      "type": "inner_function",
+      "name": "handleAddUrl",
+      "exported": false,
+      "qualifiedName": "UserAvatarEditor.handleAddUrl",
+      "line": 55,
+      "endLine": 74,
+      "signature": "async (): Promise<void> =>",
+      "calls": [
+        {
+          "name": "isSafeAvatarUrl",
+          "edgeType": "call"
+        },
+        {
+          "name": "setAvatarUrlError",
+          "edgeType": "call"
+        },
+        {
+          "name": "isValidImageFormat",
+          "edgeType": "call"
+        },
+        {
+          "name": "setNewAvatarSource",
+          "edgeType": "call"
+        },
+        {
+          "name": "setAvatarObj",
+          "edgeType": "call"
+        },
+        {
+          "name": "dispatchToastMessage",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "inner_function",
+      "name": "handleAvatarFromUrlChange",
+      "exported": false,
+      "qualifiedName": "UserAvatarEditor.handleAvatarFromUrlChange",
+      "line": 83,
+      "endLine": 89,
+      "signature": "(event: ChangeEvent<HTMLInputElement>): void =>",
+      "calls": [
+        {
+          "name": "setAvatarUrlError",
+          "edgeType": "call"
+        },
+        {
+          "name": "setAvatarFromUrl",
+          "edgeType": "call"
+        },
+        {
+          "name": "ChangeEvent",
+          "edgeType": "type"
+        },
+        {
+          "name": "HTMLInputElement",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "inner_function",
+      "name": "handleSelectSuggestion",
+      "exported": false,
+      "qualifiedName": "UserAvatarEditor.handleSelectSuggestion",
+      "line": 91,
+      "endLine": 95,
+      "signature": "(suggestion: UserAvatarSuggestion) =>",
+      "calls": [
+        {
+          "name": "setAvatarObj",
+          "edgeType": "call"
+        },
+        {
+          "name": "setNewAvatarSource",
+          "edgeType": "call"
+        },
+        {
+          "name": "UserAvatarSuggestion",
+          "edgeType": "type"
+        },
+        {
+          "name": "AvatarObject",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "function",
+      "name": "UserAvatarEditor",
+      "exported": true,
+      "line": 26,
+      "endLine": 158,
+      "signature": "function UserAvatarEditor({ currentUsername, username, setAvatarObj, name, disabled, etag }: UserAvatarEditorProps)",
+      "calls": [
+        {
+          "name": "useTranslation",
+          "edgeType": "call"
+        },
+        {
+          "name": "useSetting",
+          "edgeType": "call"
+        },
+        {
+          "name": "useState",
+          "edgeType": "call"
+        },
+        {
+          "name": "useToastMessageDispatch",
+          "edgeType": "call"
+        },
+        {
+          "name": "useCallback",
+          "edgeType": "call"
+        },
+        {
+          "name": "setAvatarObj",
+          "edgeType": "call"
+        },
+        {
+          "name": "readFileAsDataURL",
+          "edgeType": "call"
+        },
+        {
+          "name": "isValidImageFormat",
+          "edgeType": "call"
+        },
+        {
+          "name": "setNewAvatarSource",
+          "edgeType": "call"
+        },
+        {
+          "name": "dispatchToastMessage",
+          "edgeType": "call"
+        },
+        {
+          "name": "useSingleFileInput",
+          "edgeType": "call"
+        },
+        {
+          "name": "Boolean",
+          "edgeType": "call"
+        },
+        {
+          "name": "isSafeAvatarUrl",
+          "edgeType": "call"
+        },
+        {
+          "name": "setAvatarUrlError",
+          "edgeType": "call"
+        },
+        {
+          "name": "setAvatarFromUrl",
+          "edgeType": "call"
+        },
+        {
+          "name": "handleAddUrl",
+          "edgeType": "call"
+        },
+        {
+          "name": "Box",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "Button",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "Field",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "FieldLabel",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "FieldRow",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "FieldError",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "UserAvatar",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "Avatar",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "IconButton",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "UserAvatarSuggestions",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "TextInput",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "url",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "etag",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "disabled",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "clickReset",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "clickUpload",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "handleSelectSuggestion",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "handleAddUrl",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "avatarFromUrl",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "handleAvatarFromUrlChange",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "avatarUrlError",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "UserAvatarEditorProps",
+          "edgeType": "type"
+        },
+        {
+          "name": "File",
+          "edgeType": "type"
+        },
+        {
+          "name": "AvatarObject",
+          "edgeType": "type"
+        },
+        {
+          "name": "ChangeEvent",
+          "edgeType": "type"
+        },
+        {
+          "name": "HTMLInputElement",
+          "edgeType": "type"
+        },
+        {
+          "name": "UserAvatarSuggestion",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "type",
+      "name": "UserAvatarEditorProps",
+      "line": 17,
+      "endLine": 24,
+      "signature": "export type UserAvatarEditorProps ="
+    }
+  ],
+  "imports": [
+    {
+      "module": "@rocket.chat/core-typings",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/fuselage",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/fuselage-forms",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/ui-avatar",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/ui-contexts",
+      "resolved": "external"
+    },
+    {
+      "module": "react",
+      "resolved": "external"
+    },
+    {
+      "module": "react",
+      "resolved": "external"
+    },
+    {
+      "module": "react-i18next",
+      "resolved": "external"
+    },
+    {
+      "module": "./UserAvatarSuggestion",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/client/components/avatar/UserAvatarEditor/UserAvatarSuggestion.ts"
+    },
+    {
+      "module": "./UserAvatarSuggestions",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/client/components/avatar/UserAvatarEditor/UserAvatarSuggestions.tsx"
+    },
+    {
+      "module": "./readFileAsDataURL",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/client/components/avatar/UserAvatarEditor/readFileAsDataURL.ts"
+    },
+    {
+      "module": "../../../hooks/useSingleFileInput",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/client/hooks/useSingleFileInput.ts"
+    },
+    {
+      "module": "../../../lib/utils/isSafeAvatarUrl",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/client/lib/utils/isSafeAvatarUrl.ts"
+    },
+    {
+      "module": "../../../lib/utils/isValidImageFormat",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/client/lib/utils/isValidImageFormat.ts"
+    }
+  ]
+}

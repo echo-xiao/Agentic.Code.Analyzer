@@ -1,0 +1,93 @@
+{
+  "sourcePath": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/client/views/omnichannel/agents/AgentsTable/AgentsTableRow.tsx",
+  "symbols": [
+    {
+      "type": "variable_function",
+      "name": "AgentsTableRow",
+      "exported": false,
+      "line": 9,
+      "endLine": 70,
+      "signature": "({ user: { _id, name, username, avatarETag, emails, statusLivechat }, mediaQuery, }: { user: { _id: string; name?: string; username?: string; avatarETag?: string; emails?: { address: string }[]; statusLivechat: string; }; mediaQuery: boolean; }) =>",
+      "calls": [
+        {
+          "name": "useTranslation",
+          "edgeType": "call"
+        },
+        {
+          "name": "useRouter",
+          "edgeType": "call"
+        },
+        {
+          "name": "useRemoveAgent",
+          "edgeType": "call"
+        },
+        {
+          "name": "navigate",
+          "edgeType": "call"
+        },
+        {
+          "name": "stopPropagation",
+          "edgeType": "call"
+        },
+        {
+          "name": "handleDelete",
+          "edgeType": "call"
+        },
+        {
+          "name": "GenericTableRow",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "GenericTableCell",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "Box",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "UserAvatar",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "IconButton",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "username",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "avatarETag",
+          "edgeType": "jsx"
+        }
+      ]
+    }
+  ],
+  "imports": [
+    {
+      "module": "@rocket.chat/fuselage",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/ui-avatar",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/ui-client",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/ui-contexts",
+      "resolved": "external"
+    },
+    {
+      "module": "react-i18next",
+      "resolved": "external"
+    },
+    {
+      "module": "../hooks/useRemoveAgent",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/client/views/omnichannel/agents/hooks/useRemoveAgent.tsx"
+    }
+  ]
+}

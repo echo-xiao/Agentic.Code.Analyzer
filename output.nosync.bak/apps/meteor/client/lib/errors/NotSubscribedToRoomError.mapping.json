@@ -1,0 +1,68 @@
+{
+  "sourcePath": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/client/lib/errors/NotSubscribedToRoomError.ts",
+  "symbols": [
+    {
+      "type": "class",
+      "name": "NotSubscribedToRoomError",
+      "exported": true,
+      "line": 7,
+      "endLine": 15,
+      "signature": "export class NotSubscribedToRoomError extends RocketChatError<'not-subscribed-room', NotSubscribedToRoomErrorDetails>",
+      "calls": [
+        {
+          "name": "RocketChatError",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "constructor",
+      "exported": true,
+      "qualifiedName": "NotSubscribedToRoomError.constructor",
+      "line": 12,
+      "endLine": 14,
+      "signature": "constructor(message = 'Not subscribed to this room', details: NotSubscribedToRoomErrorDetails)",
+      "containerClass": "NotSubscribedToRoomError",
+      "calls": [
+        {
+          "name": "NotSubscribedToRoomErrorDetails",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "class_property",
+      "name": "details",
+      "exported": true,
+      "qualifiedName": "NotSubscribedToRoomError.details",
+      "line": 10,
+      "endLine": 10,
+      "signature": "public declare readonly details: NotSubscribedToRoomErrorDetails;",
+      "containerClass": "NotSubscribedToRoomError",
+      "calls": [
+        {
+          "name": "NotSubscribedToRoomErrorDetails",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "type",
+      "name": "NotSubscribedToRoomErrorDetails",
+      "line": 5,
+      "endLine": 5,
+      "signature": "type NotSubscribedToRoomErrorDetails ="
+    }
+  ],
+  "imports": [
+    {
+      "module": "@rocket.chat/core-typings",
+      "resolved": "external"
+    },
+    {
+      "module": "./RocketChatError",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/client/lib/errors/RocketChatError.ts"
+    }
+  ]
+}

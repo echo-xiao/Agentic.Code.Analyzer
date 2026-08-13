@@ -1,0 +1,73 @@
+{
+  "sourcePath": "/Users/echoooooo/Desktop/code/Rocket.Chat/packages/apps/src/server/accessors/ApiExtend.ts",
+  "symbols": [
+    {
+      "type": "class",
+      "name": "ApiExtend",
+      "exported": true,
+      "line": 6,
+      "endLine": 15,
+      "signature": "export class ApiExtend implements IApiExtend",
+      "calls": [
+        {
+          "name": "IApiExtend",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "provideApi",
+      "exported": true,
+      "qualifiedName": "ApiExtend.provideApi",
+      "line": 12,
+      "endLine": 14,
+      "signature": "public provideApi(api: IApi): Promise<void>",
+      "containerClass": "ApiExtend",
+      "calls": [
+        {
+          "name": "resolve",
+          "edgeType": "call"
+        },
+        {
+          "name": "addApi",
+          "edgeType": "call"
+        },
+        {
+          "name": "IApi",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "constructor",
+      "exported": true,
+      "qualifiedName": "ApiExtend.constructor",
+      "line": 7,
+      "endLine": 10,
+      "signature": "constructor( private readonly manager: AppApiManager, private readonly appId: string, )",
+      "containerClass": "ApiExtend",
+      "calls": [
+        {
+          "name": "AppApiManager",
+          "edgeType": "type"
+        }
+      ]
+    }
+  ],
+  "imports": [
+    {
+      "module": "@rocket.chat/apps-engine/definition/accessors",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/apps-engine/definition/api",
+      "resolved": "external"
+    },
+    {
+      "module": "../managers/AppApiManager",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/packages/apps/src/server/managers/AppApiManager.ts"
+    }
+  ]
+}

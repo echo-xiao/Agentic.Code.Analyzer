@@ -1,0 +1,260 @@
+{
+  "sourcePath": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/client/views/omnichannel/cannedResponses/components/CannedResponsesComposer/CannedResponsesComposer.tsx",
+  "symbols": [
+    {
+      "type": "module",
+      "name": "CannedResponsesComposer",
+      "exported": false,
+      "line": 1,
+      "endLine": 135,
+      "signature": "CannedResponsesComposer",
+      "calls": [
+        {
+          "name": "memo",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "inner_function",
+      "name": "onClickEmoji",
+      "exported": false,
+      "qualifiedName": "CannedResponsesComposer.onClickEmoji",
+      "line": 64,
+      "endLine": 77,
+      "signature": "(emoji: string): void =>",
+      "calls": [
+        {
+          "name": "slice",
+          "edgeType": "call"
+        },
+        {
+          "name": "focus",
+          "edgeType": "call"
+        },
+        {
+          "name": "setSelectionRange",
+          "edgeType": "call"
+        },
+        {
+          "name": "onChange",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "inner_function",
+      "name": "handleOpenEmojiPicker",
+      "exported": false,
+      "qualifiedName": "CannedResponsesComposer.handleOpenEmojiPicker",
+      "line": 79,
+      "endLine": 89,
+      "signature": "(): void =>",
+      "calls": [
+        {
+          "name": "openEmojiPicker",
+          "edgeType": "call"
+        },
+        {
+          "name": "onClickEmoji",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "variable_function",
+      "name": "CannedResponsesComposer",
+      "exported": false,
+      "line": 23,
+      "endLine": 132,
+      "signature": "({ onChange, ...props }: CannedResponsesComposerProps) =>",
+      "calls": [
+        {
+          "name": "useTranslation",
+          "edgeType": "call"
+        },
+        {
+          "name": "useUserPreference",
+          "edgeType": "call"
+        },
+        {
+          "name": "useRef",
+          "edgeType": "call"
+        },
+        {
+          "name": "useState",
+          "edgeType": "call"
+        },
+        {
+          "name": "useEmojiPicker",
+          "edgeType": "call"
+        },
+        {
+          "name": "useCallback",
+          "edgeType": "call"
+        },
+        {
+          "name": "slice",
+          "edgeType": "call"
+        },
+        {
+          "name": "focus",
+          "edgeType": "call"
+        },
+        {
+          "name": "setSelectionRange",
+          "edgeType": "call"
+        },
+        {
+          "name": "onChange",
+          "edgeType": "call"
+        },
+        {
+          "name": "openEmojiPicker",
+          "edgeType": "call"
+        },
+        {
+          "name": "onClickEmoji",
+          "edgeType": "call"
+        },
+        {
+          "name": "setVisible",
+          "edgeType": "call"
+        },
+        {
+          "name": "useMarkdownSyntax",
+          "edgeType": "call"
+        },
+        {
+          "name": "MessageComposer",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "MessageComposerToolbar",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "MessageComposerToolbarActions",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "Button",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "PositionAnimated",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "Tile",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "MessageComposerInput",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "MessageComposerAction",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "MessageComposerActionsDivider",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "Backdrop",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "InsertPlaceholderDropdown",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "textAreaRef",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "handleOpenEmojiPicker",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "ref",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "openPlaceholderSelect",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "onChange",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "setVisible",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "CannedResponsesComposerProps",
+          "edgeType": "type"
+        },
+        {
+          "name": "HTMLTextAreaElement",
+          "edgeType": "type"
+        },
+        {
+          "name": "HTMLButtonElement",
+          "edgeType": "type"
+        },
+        {
+          "name": "ChangeEvent",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "type",
+      "name": "CannedResponsesComposerProps",
+      "line": 19,
+      "endLine": 21,
+      "signature": "export type CannedResponsesComposerProps = Omit<ComponentProps<typeof MessageComposerInput>, 'onChange'> &"
+    }
+  ],
+  "imports": [
+    {
+      "module": "@rocket.chat/fuselage",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/ui-composer",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/ui-contexts",
+      "resolved": "external"
+    },
+    {
+      "module": "react",
+      "resolved": "external"
+    },
+    {
+      "module": "react",
+      "resolved": "external"
+    },
+    {
+      "module": "react-i18next",
+      "resolved": "external"
+    },
+    {
+      "module": "./InsertPlaceholderDropdown",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/client/views/omnichannel/cannedResponses/components/CannedResponsesComposer/InsertPlaceholderDropdown.tsx"
+    },
+    {
+      "module": "../../../../../components/Backdrop",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/client/components/Backdrop.tsx"
+    },
+    {
+      "module": "../../../../../contexts/EmojiPickerContext",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/client/contexts/EmojiPickerContext.ts"
+    }
+  ]
+}

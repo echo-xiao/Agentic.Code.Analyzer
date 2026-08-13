@@ -1,0 +1,338 @@
+{
+  "sourcePath": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/app/channel-settings/server/methods/saveRoomSettings.ts",
+  "symbols": [
+    {
+      "type": "module",
+      "name": "saveRoomSettings",
+      "exported": false,
+      "line": 1,
+      "endLine": 560,
+      "signature": "saveRoomSettings",
+      "calls": [
+        {
+          "name": "saveRoomSettings",
+          "edgeType": "call"
+        },
+        {
+          "name": "methods",
+          "edgeType": "call"
+        },
+        {
+          "name": "userId",
+          "edgeType": "call"
+        },
+        {
+          "name": "ServerMethods",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "function",
+      "name": "save",
+      "exported": false,
+      "line": 426,
+      "endLine": 438,
+      "signature": "async function save<TRoomSetting extends keyof RoomSettings>( setting: TRoomSetting, params: { userId: IUser['_id']; user: RequiredField<IUser, 'username' | 'name'>; value: RoomSettings[TRoomSetting]; room: IRoom; rid: IRoom['_id']; }, )",
+      "calls": [
+        {
+          "name": "saver",
+          "edgeType": "call"
+        },
+        {
+          "name": "RoomSettings",
+          "edgeType": "type"
+        },
+        {
+          "name": "TRoomSetting",
+          "edgeType": "type"
+        },
+        {
+          "name": "IUser",
+          "edgeType": "type"
+        },
+        {
+          "name": "RequiredField",
+          "edgeType": "type"
+        },
+        {
+          "name": "IRoom",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "function",
+      "name": "saveRoomSettings",
+      "exported": true,
+      "line": 450,
+      "endLine": 545,
+      "signature": "export async function saveRoomSettings( userId: IUser['_id'], rid: IRoom['_id'], settings: Partial<RoomSettings> | keyof RoomSettings, value?: RoomSettings[keyof RoomSettings], ): Promise<{ result: true; rid: IRoom['_id'] }>",
+      "calls": [
+        {
+          "name": "test",
+          "edgeType": "call"
+        },
+        {
+          "name": "every",
+          "edgeType": "call"
+        },
+        {
+          "name": "keys",
+          "edgeType": "call"
+        },
+        {
+          "name": "includes",
+          "edgeType": "call"
+        },
+        {
+          "name": "findOneById",
+          "edgeType": "call"
+        },
+        {
+          "name": "hasPermissionAsync",
+          "edgeType": "call"
+        },
+        {
+          "name": "validate",
+          "edgeType": "call"
+        },
+        {
+          "name": "save",
+          "edgeType": "call"
+        },
+        {
+          "name": "notifyOnRoomChangedById",
+          "edgeType": "call"
+        },
+        {
+          "name": "IUser",
+          "edgeType": "type"
+        },
+        {
+          "name": "IRoom",
+          "edgeType": "type"
+        },
+        {
+          "name": "RoomSettings",
+          "edgeType": "type"
+        },
+        {
+          "name": "RequiredField",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "variable_function",
+      "name": "hasRetentionPolicy",
+      "exported": false,
+      "line": 63,
+      "endLine": 64,
+      "signature": "(room: IRoom & { retention?: any }): room is IRoomWithRetentionPolicy =>",
+      "calls": [
+        {
+          "name": "IRoom",
+          "edgeType": "type"
+        },
+        {
+          "name": "IRoomWithRetentionPolicy",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "variable_function",
+      "name": "isAbacManagedTeam",
+      "exported": false,
+      "line": 66,
+      "endLine": 73,
+      "signature": "(team: Partial<ITeam> | null, teamRoom: IRoom): boolean =>",
+      "calls": [
+        {
+          "name": "get",
+          "edgeType": "call"
+        },
+        {
+          "name": "isArray",
+          "edgeType": "call"
+        },
+        {
+          "name": "ITeam",
+          "edgeType": "type"
+        },
+        {
+          "name": "IRoom",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "variable_function",
+      "name": "guardABACManagedField",
+      "exported": false,
+      "line": 70,
+      "endLine": 83,
+      "signature": "(room: IRoom, value: string | undefined, current: string | undefined, fieldName: string): void =>",
+      "calls": [
+        {
+          "name": "isABACManagedRoom",
+          "edgeType": "call"
+        },
+        {
+          "name": "IRoom",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "variable_function",
+      "name": "validate",
+      "exported": false,
+      "line": 397,
+      "endLine": 408,
+      "signature": "<TRoomSetting extends keyof RoomSettings>( setting: TRoomSetting, params: { userId: IUser['_id']; value: RoomSettings[TRoomSetting]; room: IRoom; rid: IRoom['_id']; }, ) =>",
+      "calls": [
+        {
+          "name": "validator",
+          "edgeType": "call"
+        },
+        {
+          "name": "RoomSettings",
+          "edgeType": "type"
+        },
+        {
+          "name": "TRoomSetting",
+          "edgeType": "type"
+        },
+        {
+          "name": "IUser",
+          "edgeType": "type"
+        },
+        {
+          "name": "IRoom",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "type",
+      "name": "RoomSettings",
+      "line": 27,
+      "endLine": 52,
+      "signature": "type RoomSettings ="
+    },
+    {
+      "type": "type",
+      "name": "RoomSettingsValidators",
+      "line": 54,
+      "endLine": 61,
+      "signature": "type RoomSettingsValidators ="
+    },
+    {
+      "type": "type",
+      "name": "RoomSettingsSavers",
+      "line": 241,
+      "endLine": 249,
+      "signature": "type RoomSettingsSavers ="
+    }
+  ],
+  "imports": [
+    {
+      "module": "@rocket.chat/core-services",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/core-typings",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/core-typings",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/ddp-client",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/models",
+      "resolved": "external"
+    },
+    {
+      "module": "meteor/check",
+      "resolved": "external"
+    },
+    {
+      "module": "meteor/meteor",
+      "resolved": "external"
+    },
+    {
+      "module": "../../../../definition/IRoomTypeConfig",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/definition/IRoomTypeConfig.ts"
+    },
+    {
+      "module": "../../../../server/lib/authorization/hasPermission",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/server/lib/authorization/hasPermission.ts"
+    },
+    {
+      "module": "../../../../server/lib/rooms/roomCoordinator",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/server/lib/rooms/roomCoordinator.ts"
+    },
+    {
+      "module": "../../../../server/lib/rooms/setRoomAvatar",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/server/lib/rooms/setRoomAvatar.ts"
+    },
+    {
+      "module": "../../../authorization/server/lib/isABACManagedRoom",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/app/authorization/server/lib/isABACManagedRoom.ts"
+    },
+    {
+      "module": "../../../lib/server/lib/notifyListener",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/app/lib/server/lib/notifyListener.ts"
+    },
+    {
+      "module": "../../../settings/server",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/app/settings/server/index.ts"
+    },
+    {
+      "module": "../functions/saveReactWhenReadOnly",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/app/channel-settings/server/functions/saveReactWhenReadOnly.ts"
+    },
+    {
+      "module": "../functions/saveRoomAnnouncement",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/app/channel-settings/server/functions/saveRoomAnnouncement.ts"
+    },
+    {
+      "module": "../functions/saveRoomCustomFields",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/app/channel-settings/server/functions/saveRoomCustomFields.ts"
+    },
+    {
+      "module": "../functions/saveRoomDescription",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/app/channel-settings/server/functions/saveRoomDescription.ts"
+    },
+    {
+      "module": "../functions/saveRoomEncrypted",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/app/channel-settings/server/functions/saveRoomEncrypted.ts"
+    },
+    {
+      "module": "../functions/saveRoomName",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/app/channel-settings/server/functions/saveRoomName.ts"
+    },
+    {
+      "module": "../functions/saveRoomReadOnly",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/app/channel-settings/server/functions/saveRoomReadOnly.ts"
+    },
+    {
+      "module": "../functions/saveRoomSystemMessages",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/app/channel-settings/server/functions/saveRoomSystemMessages.ts"
+    },
+    {
+      "module": "../functions/saveRoomTopic",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/app/channel-settings/server/functions/saveRoomTopic.ts"
+    },
+    {
+      "module": "../functions/saveRoomType",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/app/channel-settings/server/functions/saveRoomType.ts"
+    }
+  ]
+}

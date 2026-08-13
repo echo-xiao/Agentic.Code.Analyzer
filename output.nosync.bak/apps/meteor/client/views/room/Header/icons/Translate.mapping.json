@@ -1,0 +1,78 @@
+{
+  "sourcePath": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/client/views/room/Header/icons/Translate.tsx",
+  "symbols": [
+    {
+      "type": "module",
+      "name": "Translate",
+      "exported": false,
+      "line": 1,
+      "endLine": 21,
+      "signature": "Translate",
+      "calls": [
+        {
+          "name": "memo",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "variable_function",
+      "name": "Translate",
+      "exported": false,
+      "line": 11,
+      "endLine": 18,
+      "signature": "({ room: { autoTranslateLanguage, autoTranslate } }: TranslateProps) =>",
+      "calls": [
+        {
+          "name": "useTranslation",
+          "edgeType": "call"
+        },
+        {
+          "name": "useSetting",
+          "edgeType": "call"
+        },
+        {
+          "name": "HeaderState",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "encryptedLabel",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "TranslateProps",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "type",
+      "name": "TranslateProps",
+      "line": 7,
+      "endLine": 9,
+      "signature": "export type TranslateProps ="
+    }
+  ],
+  "imports": [
+    {
+      "module": "@rocket.chat/core-typings",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/ui-client",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/ui-contexts",
+      "resolved": "external"
+    },
+    {
+      "module": "react",
+      "resolved": "external"
+    },
+    {
+      "module": "react-i18next",
+      "resolved": "external"
+    }
+  ]
+}

@@ -1,0 +1,726 @@
+{
+  "sourcePath": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/app/importer/server/classes/Importer.ts",
+  "symbols": [
+    {
+      "type": "class",
+      "name": "Importer",
+      "exported": true,
+      "line": 37,
+      "endLine": 420,
+      "signature": "export class Importer",
+      "calls": []
+    },
+    {
+      "type": "method",
+      "name": "startFileUpload",
+      "exported": true,
+      "qualifiedName": "Importer.startFileUpload",
+      "line": 80,
+      "endLine": 83,
+      "signature": "async startFileUpload(fileName: string, contentType?: string): Promise<IImport>",
+      "containerClass": "Importer",
+      "calls": [
+        {
+          "name": "updateProgress",
+          "edgeType": "call"
+        },
+        {
+          "name": "updateRecord",
+          "edgeType": "call"
+        },
+        {
+          "name": "IImport",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "prepareUsingLocalFile",
+      "exported": true,
+      "qualifiedName": "Importer.prepareUsingLocalFile",
+      "line": 90,
+      "endLine": 92,
+      "signature": "async prepareUsingLocalFile(_fullFilePath: string): Promise<ImporterProgress>",
+      "containerClass": "Importer",
+      "calls": [
+        {
+          "name": "updateProgress",
+          "edgeType": "call"
+        },
+        {
+          "name": "ImporterProgress",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "inner_function",
+      "name": "onErrorFn",
+      "exported": false,
+      "qualifiedName": "Importer.startImport.onErrorFn",
+      "line": 192,
+      "endLine": 194,
+      "signature": "async () =>",
+      "containerClass": "Importer",
+      "calls": [
+        {
+          "name": "addCountCompleted",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "startImport",
+      "exported": true,
+      "qualifiedName": "Importer.startImport",
+      "line": 103,
+      "endLine": 233,
+      "signature": "async startImport(importSelection: IImporterShortSelection, startedByUserId: string): Promise<ImporterProgress>",
+      "containerClass": "Importer",
+      "calls": [
+        {
+          "name": "updateProgress",
+          "edgeType": "call"
+        },
+        {
+          "name": "reloadCount",
+          "edgeType": "call"
+        },
+        {
+          "name": "now",
+          "edgeType": "call"
+        },
+        {
+          "name": "abort",
+          "edgeType": "call"
+        },
+        {
+          "name": "includes",
+          "edgeType": "call"
+        },
+        {
+          "name": "addCountCompleted",
+          "edgeType": "call"
+        },
+        {
+          "name": "notify.importedMessages",
+          "edgeType": "event_emit"
+        },
+        {
+          "name": "addCountError",
+          "edgeType": "call"
+        },
+        {
+          "name": "incrementValueById",
+          "edgeType": "call"
+        },
+        {
+          "name": "notifyOnSettingChanged",
+          "edgeType": "call"
+        },
+        {
+          "name": "nextTick",
+          "edgeType": "call"
+        },
+        {
+          "name": "backupSettingValues",
+          "edgeType": "call"
+        },
+        {
+          "name": "applySettingValues",
+          "edgeType": "call"
+        },
+        {
+          "name": "convertUsers",
+          "edgeType": "call"
+        },
+        {
+          "name": "convertContacts",
+          "edgeType": "call"
+        },
+        {
+          "name": "convertChannels",
+          "edgeType": "call"
+        },
+        {
+          "name": "convertMessages",
+          "edgeType": "call"
+        },
+        {
+          "name": "clearSuccessfullyImportedData",
+          "edgeType": "call"
+        },
+        {
+          "name": "error",
+          "edgeType": "call"
+        },
+        {
+          "name": "log",
+          "edgeType": "call"
+        },
+        {
+          "name": "getProgress",
+          "edgeType": "call"
+        },
+        {
+          "name": "IImporterShortSelection",
+          "edgeType": "type"
+        },
+        {
+          "name": "ImporterProgress",
+          "edgeType": "type"
+        },
+        {
+          "name": "IImportRecord",
+          "edgeType": "type"
+        },
+        {
+          "name": "IImportChannel",
+          "edgeType": "type"
+        },
+        {
+          "name": "IImportUser",
+          "edgeType": "type"
+        },
+        {
+          "name": "IImportContact",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "backupSettingValues",
+      "exported": true,
+      "qualifiedName": "Importer.backupSettingValues",
+      "line": 107,
+      "endLine": 119,
+      "signature": "async backupSettingValues()",
+      "containerClass": "Importer",
+      "calls": [
+        {
+          "name": "findOneById",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "applySettingValues",
+      "exported": true,
+      "qualifiedName": "Importer.applySettingValues",
+      "line": 111,
+      "endLine": 126,
+      "signature": "async applySettingValues(settingValues: OldSettings)",
+      "containerClass": "Importer",
+      "calls": [
+        {
+          "name": "map",
+          "edgeType": "call"
+        },
+        {
+          "name": "updateValueById",
+          "edgeType": "call"
+        },
+        {
+          "name": "forEach",
+          "edgeType": "call"
+        },
+        {
+          "name": "all",
+          "edgeType": "call"
+        },
+        {
+          "name": "notifyOnSettingChangedById",
+          "edgeType": "call"
+        },
+        {
+          "name": "OldSettings",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "getProgress",
+      "exported": true,
+      "qualifiedName": "Importer.getProgress",
+      "line": 115,
+      "endLine": 117,
+      "signature": "getProgress(): ImporterProgress",
+      "containerClass": "Importer",
+      "calls": [
+        {
+          "name": "ImporterProgress",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "updateProgress",
+      "exported": true,
+      "qualifiedName": "Importer.updateProgress",
+      "line": 127,
+      "endLine": 139,
+      "signature": "async updateProgress(step: IImportProgress['step']): Promise<ImporterProgress>",
+      "containerClass": "Importer",
+      "calls": [
+        {
+          "name": "debug",
+          "edgeType": "call"
+        },
+        {
+          "name": "updateRecord",
+          "edgeType": "call"
+        },
+        {
+          "name": "includes",
+          "edgeType": "call"
+        },
+        {
+          "name": "reportProgress",
+          "edgeType": "call"
+        },
+        {
+          "name": "IImportProgress",
+          "edgeType": "type"
+        },
+        {
+          "name": "ImporterProgress",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "reloadCount",
+      "exported": true,
+      "qualifiedName": "Importer.reloadCount",
+      "line": 131,
+      "endLine": 135,
+      "signature": "reloadCount()",
+      "containerClass": "Importer",
+      "calls": []
+    },
+    {
+      "type": "method",
+      "name": "addCountToTotal",
+      "exported": true,
+      "qualifiedName": "Importer.addCountToTotal",
+      "line": 141,
+      "endLine": 146,
+      "signature": "async addCountToTotal(count: number): Promise<ImporterProgress>",
+      "containerClass": "Importer",
+      "calls": [
+        {
+          "name": "updateRecord",
+          "edgeType": "call"
+        },
+        {
+          "name": "ImporterProgress",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "addCountCompleted",
+      "exported": true,
+      "qualifiedName": "Importer.addCountCompleted",
+      "line": 151,
+      "endLine": 155,
+      "signature": "async addCountCompleted(count: number): Promise<ImporterProgress>",
+      "containerClass": "Importer",
+      "calls": [
+        {
+          "name": "maybeUpdateRecord",
+          "edgeType": "call"
+        },
+        {
+          "name": "ImporterProgress",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "addCountError",
+      "exported": true,
+      "qualifiedName": "Importer.addCountError",
+      "line": 155,
+      "endLine": 159,
+      "signature": "async addCountError(count: number): Promise<ImporterProgress>",
+      "containerClass": "Importer",
+      "calls": [
+        {
+          "name": "maybeUpdateRecord",
+          "edgeType": "call"
+        },
+        {
+          "name": "ImporterProgress",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "maybeUpdateRecord",
+      "exported": true,
+      "qualifiedName": "Importer.maybeUpdateRecord",
+      "line": 159,
+      "endLine": 182,
+      "signature": "async maybeUpdateRecord()",
+      "containerClass": "Importer",
+      "calls": [
+        {
+          "name": "updateRecord",
+          "edgeType": "call"
+        },
+        {
+          "name": "reportProgress",
+          "edgeType": "call"
+        },
+        {
+          "name": "log",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "reportProgress",
+      "exported": true,
+      "qualifiedName": "Importer.reportProgress",
+      "line": 166,
+      "endLine": 172,
+      "signature": "reportProgress()",
+      "containerClass": "Importer",
+      "calls": [
+        {
+          "name": "progressUpdated",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "updateRecord",
+      "exported": true,
+      "qualifiedName": "Importer.updateRecord",
+      "line": 173,
+      "endLine": 183,
+      "signature": "async updateRecord(fields: MatchKeysAndValues<IImport>): Promise<IImport>",
+      "containerClass": "Importer",
+      "calls": [
+        {
+          "name": "update",
+          "edgeType": "call"
+        },
+        {
+          "name": "findOne",
+          "edgeType": "call"
+        },
+        {
+          "name": "MatchKeysAndValues",
+          "edgeType": "type"
+        },
+        {
+          "name": "IImport",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "buildSelection",
+      "exported": true,
+      "qualifiedName": "Importer.buildSelection",
+      "line": 177,
+      "endLine": 208,
+      "signature": "async buildSelection(): Promise<Selection>",
+      "containerClass": "Importer",
+      "calls": [
+        {
+          "name": "updateProgress",
+          "edgeType": "call"
+        },
+        {
+          "name": "getAllUsersForSelection",
+          "edgeType": "call"
+        },
+        {
+          "name": "getAllChannelsForSelection",
+          "edgeType": "call"
+        },
+        {
+          "name": "getAllContactsForSelection",
+          "edgeType": "call"
+        },
+        {
+          "name": "checkIfDirectMessagesExists",
+          "edgeType": "call"
+        },
+        {
+          "name": "map",
+          "edgeType": "call"
+        },
+        {
+          "name": "Boolean",
+          "edgeType": "call"
+        },
+        {
+          "name": "countMessages",
+          "edgeType": "call"
+        },
+        {
+          "name": "push",
+          "edgeType": "call"
+        },
+        {
+          "name": "SelectionUser",
+          "edgeType": "new"
+        },
+        {
+          "name": "SelectionChannel",
+          "edgeType": "new"
+        },
+        {
+          "name": "Selection",
+          "edgeType": "new"
+        },
+        {
+          "name": "Selection",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "isCursorNotFoundError",
+      "exported": true,
+      "qualifiedName": "Importer.isCursorNotFoundError",
+      "line": 184,
+      "endLine": 186,
+      "signature": "protected isCursorNotFoundError(error: unknown): error is MongoServerError & { codeName: 'CursorNotFound' }",
+      "containerClass": "Importer",
+      "calls": [
+        {
+          "name": "MongoServerError",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "constructor",
+      "exported": true,
+      "qualifiedName": "Importer.constructor",
+      "line": 56,
+      "endLine": 75,
+      "signature": "constructor(info: ImporterInfo, importRecord: IImport, converterOptions: ConverterOptions = {})",
+      "containerClass": "Importer",
+      "calls": [
+        {
+          "name": "reloadCount",
+          "edgeType": "call"
+        },
+        {
+          "name": "debug",
+          "edgeType": "call"
+        },
+        {
+          "name": "Logger",
+          "edgeType": "new"
+        },
+        {
+          "name": "ImportDataConverter",
+          "edgeType": "new"
+        },
+        {
+          "name": "ImporterProgress",
+          "edgeType": "new"
+        },
+        {
+          "name": "ImporterInfo",
+          "edgeType": "type"
+        },
+        {
+          "name": "IImport",
+          "edgeType": "type"
+        },
+        {
+          "name": "ConverterOptions",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "class_property",
+      "name": "converter",
+      "exported": true,
+      "qualifiedName": "Importer.converter",
+      "line": 42,
+      "endLine": 42,
+      "signature": "protected converter: ImportDataConverter;",
+      "containerClass": "Importer",
+      "calls": [
+        {
+          "name": "ImportDataConverter",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "class_property",
+      "name": "info",
+      "exported": true,
+      "qualifiedName": "Importer.info",
+      "line": 44,
+      "endLine": 44,
+      "signature": "protected info: ImporterInfo;",
+      "containerClass": "Importer",
+      "calls": [
+        {
+          "name": "ImporterInfo",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "class_property",
+      "name": "logger",
+      "exported": true,
+      "qualifiedName": "Importer.logger",
+      "line": 46,
+      "endLine": 46,
+      "signature": "protected logger: Logger;",
+      "containerClass": "Importer",
+      "calls": [
+        {
+          "name": "Logger",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "class_property",
+      "name": "oldSettings",
+      "exported": true,
+      "qualifiedName": "Importer.oldSettings",
+      "line": 48,
+      "endLine": 48,
+      "signature": "protected oldSettings: OldSettings;",
+      "containerClass": "Importer",
+      "calls": [
+        {
+          "name": "OldSettings",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "class_property",
+      "name": "importRecord",
+      "exported": true,
+      "qualifiedName": "Importer.importRecord",
+      "line": 52,
+      "endLine": 52,
+      "signature": "public importRecord: IImport;",
+      "containerClass": "Importer",
+      "calls": [
+        {
+          "name": "IImport",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "class_property",
+      "name": "progress",
+      "exported": true,
+      "qualifiedName": "Importer.progress",
+      "line": 54,
+      "endLine": 54,
+      "signature": "public progress: ImporterProgress;",
+      "containerClass": "Importer",
+      "calls": [
+        {
+          "name": "ImporterProgress",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "type",
+      "name": "OldSettings",
+      "line": 26,
+      "endLine": 32,
+      "signature": "type OldSettings ="
+    }
+  ],
+  "imports": [
+    {
+      "module": "@rocket.chat/core-services",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/core-typings",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/logger",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/models",
+      "resolved": "external"
+    },
+    {
+      "module": "adm-zip",
+      "resolved": "external"
+    },
+    {
+      "module": "mongodb",
+      "resolved": "external"
+    },
+    {
+      "module": "..",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/app/importer/server/index.ts"
+    },
+    {
+      "module": "./ImportDataConverter",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/app/importer/server/classes/ImportDataConverter.ts"
+    },
+    {
+      "module": "./ImportDataConverter",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/app/importer/server/classes/ImportDataConverter.ts"
+    },
+    {
+      "module": "./ImporterProgress",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/app/importer/server/classes/ImporterProgress.ts"
+    },
+    {
+      "module": "./ImporterWebsocket",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/app/importer/server/classes/ImporterWebsocket.ts"
+    },
+    {
+      "module": "../../../lib/server/lib/notifyListener",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/app/lib/server/lib/notifyListener.ts"
+    },
+    {
+      "module": "../../../utils/lib/i18n",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/app/utils/lib/i18n.ts"
+    },
+    {
+      "module": "../../lib/ImporterProgressStep",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/app/importer/lib/ImporterProgressStep.ts"
+    },
+    {
+      "module": "../definitions/ImporterInfo",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/app/importer/server/definitions/ImporterInfo.ts"
+    }
+  ]
+}

@@ -1,0 +1,136 @@
+{
+  "sourcePath": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/client/components/message/content/attachments/structure/AttachmentImage.tsx",
+  "symbols": [
+    {
+      "type": "module",
+      "name": "AttachmentImage",
+      "exported": false,
+      "line": 1,
+      "endLine": 98,
+      "signature": "AttachmentImage",
+      "calls": [
+        {
+          "name": "memo",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "variable_function",
+      "name": "getDimensions",
+      "exported": false,
+      "line": 21,
+      "endLine": 38,
+      "signature": "( originalWidth: number, originalHeight: number, limits: { width: number; height: number }, ): { width: number; height: number; ratio: number } =>",
+      "calls": [
+        {
+          "name": "min",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "variable_function",
+      "name": "AttachmentImage",
+      "exported": false,
+      "line": 29,
+      "endLine": 84,
+      "signature": "({ id, previewUrl, dataSrc, loadImage = true, setLoadImage, src, alt = '', ...size }: AttachmentImageProps) =>",
+      "calls": [
+        {
+          "name": "useAttachmentDimensions",
+          "edgeType": "call"
+        },
+        {
+          "name": "useState",
+          "edgeType": "call"
+        },
+        {
+          "name": "useMemo",
+          "edgeType": "call"
+        },
+        {
+          "name": "setError",
+          "edgeType": "call"
+        },
+        {
+          "name": "getDimensions",
+          "edgeType": "call"
+        },
+        {
+          "name": "Box",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "ImageBox",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "Load",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "Retry",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "setLoadImage",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "setHasNoError",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "id",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "src",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "alt",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "AttachmentImageProps",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "type",
+      "name": "AttachmentImageProps",
+      "line": 9,
+      "endLine": 19,
+      "signature": "export type AttachmentImageProps ="
+    }
+  ],
+  "imports": [
+    {
+      "module": "@rocket.chat/fuselage",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/ui-contexts",
+      "resolved": "external"
+    },
+    {
+      "module": "react",
+      "resolved": "external"
+    },
+    {
+      "module": "./image/ImageBox",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/client/components/message/content/attachments/structure/image/ImageBox.tsx"
+    },
+    {
+      "module": "./image/Load",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/client/components/message/content/attachments/structure/image/Load.tsx"
+    },
+    {
+      "module": "./image/Retry",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/client/components/message/content/attachments/structure/image/Retry.tsx"
+    }
+  ]
+}

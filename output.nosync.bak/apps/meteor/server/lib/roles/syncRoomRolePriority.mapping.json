@@ -1,0 +1,57 @@
+{
+  "sourcePath": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/server/lib/roles/syncRoomRolePriority.ts",
+  "symbols": [
+    {
+      "type": "variable_function",
+      "name": "syncRoomRolePriorityForUserAndRoom",
+      "exported": true,
+      "line": 13,
+      "endLine": 36,
+      "signature": "async ( userId: IUser['_id'], rid: IRoom['_id'], roles?: IRole['_id'][], ): Promise<void> =>",
+      "calls": [
+        {
+          "name": "calculateRoomRolePriorityFromRoles",
+          "edgeType": "call"
+        },
+        {
+          "name": "addRoomRolePriorityByUserId",
+          "edgeType": "call"
+        },
+        {
+          "name": "updateRolePriority",
+          "edgeType": "call"
+        },
+        {
+          "name": "findOneByRoomIdAndUserId",
+          "edgeType": "call"
+        },
+        {
+          "name": "IUser",
+          "edgeType": "type"
+        },
+        {
+          "name": "IRoom",
+          "edgeType": "type"
+        },
+        {
+          "name": "IRole",
+          "edgeType": "type"
+        }
+      ]
+    }
+  ],
+  "imports": [
+    {
+      "module": "@rocket.chat/core-typings",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/models",
+      "resolved": "external"
+    },
+    {
+      "module": "../../../lib/roles/calculateRoomRolePriorityFromRoles",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/lib/roles/calculateRoomRolePriorityFromRoles.ts"
+    }
+  ]
+}

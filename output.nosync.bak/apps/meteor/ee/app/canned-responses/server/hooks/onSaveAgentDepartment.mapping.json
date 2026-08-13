@@ -1,0 +1,45 @@
+{
+  "sourcePath": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/ee/app/canned-responses/server/hooks/onSaveAgentDepartment.ts",
+  "symbols": [
+    {
+      "type": "module",
+      "name": "onSaveAgentDepartment",
+      "exported": false,
+      "line": 1,
+      "endLine": 19,
+      "signature": "onSaveAgentDepartment",
+      "calls": [
+        {
+          "name": "livechat.saveAgentDepartment",
+          "edgeType": "event_listen"
+        },
+        {
+          "name": "forEach",
+          "edgeType": "call"
+        },
+        {
+          "name": "findByDepartmentId",
+          "edgeType": "call"
+        },
+        {
+          "name": "canned-responses",
+          "edgeType": "event_emit"
+        }
+      ]
+    }
+  ],
+  "imports": [
+    {
+      "module": "@rocket.chat/models",
+      "resolved": "external"
+    },
+    {
+      "module": "../../../../../app/notifications/server/lib/Notifications",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/app/notifications/server/lib/Notifications.ts"
+    },
+    {
+      "module": "../../../../../server/lib/callbacks",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/server/lib/callbacks.ts"
+    }
+  ]
+}

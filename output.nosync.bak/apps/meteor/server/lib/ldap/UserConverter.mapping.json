@@ -1,0 +1,185 @@
+{
+  "sourcePath": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/server/lib/ldap/UserConverter.ts",
+  "symbols": [
+    {
+      "type": "class",
+      "name": "LDAPUserConverter",
+      "exported": true,
+      "line": 12,
+      "endLine": 67,
+      "signature": "export class LDAPUserConverter extends UserConverter",
+      "calls": [
+        {
+          "name": "UserConverter",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "findExistingUser",
+      "exported": true,
+      "qualifiedName": "LDAPUserConverter.findExistingUser",
+      "line": 25,
+      "endLine": 48,
+      "signature": "override async findExistingUser(data: IImportUser): Promise<IUser | undefined | null>",
+      "containerClass": "LDAPUserConverter",
+      "calls": [
+        {
+          "name": "findOneByLDAPId",
+          "edgeType": "call"
+        },
+        {
+          "name": "findOneWithoutLDAPByEmailAddress",
+          "edgeType": "call"
+        },
+        {
+          "name": "findOneWithoutLDAPByUsernameIgnoringCase",
+          "edgeType": "call"
+        },
+        {
+          "name": "IImportUser",
+          "edgeType": "type"
+        },
+        {
+          "name": "IUser",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "insertUser",
+      "exported": true,
+      "qualifiedName": "LDAPUserConverter.insertUser",
+      "line": 29,
+      "endLine": 39,
+      "signature": "override async insertUser(userData: IImportUser): Promise<IUser['_id']>",
+      "containerClass": "LDAPUserConverter",
+      "calls": [
+        {
+          "name": "shouldPreventAction",
+          "edgeType": "call"
+        },
+        {
+          "name": "warn",
+          "edgeType": "call"
+        },
+        {
+          "name": "insertUser",
+          "edgeType": "call"
+        },
+        {
+          "name": "IImportUser",
+          "edgeType": "type"
+        },
+        {
+          "name": "IUser",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "convertSingleUser",
+      "exported": true,
+      "qualifiedName": "LDAPUserConverter.convertSingleUser",
+      "line": 33,
+      "endLine": 37,
+      "signature": "static async convertSingleUser(userData: IImportUser, options?: UserConverterOptions): Promise<void>",
+      "containerClass": "LDAPUserConverter",
+      "calls": [
+        {
+          "name": "addObject",
+          "edgeType": "call"
+        },
+        {
+          "name": "convertData",
+          "edgeType": "call"
+        },
+        {
+          "name": "LDAPUserConverter",
+          "edgeType": "new"
+        },
+        {
+          "name": "IImportUser",
+          "edgeType": "type"
+        },
+        {
+          "name": "UserConverterOptions",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "constructor",
+      "exported": true,
+      "qualifiedName": "LDAPUserConverter.constructor",
+      "line": 15,
+      "endLine": 23,
+      "signature": "constructor(options?: UserConverterOptions & RecordConverterOptions, logger?: Logger, cache?: ConverterCache)",
+      "containerClass": "LDAPUserConverter",
+      "calls": [
+        {
+          "name": "get",
+          "edgeType": "call"
+        },
+        {
+          "name": "UserConverterOptions",
+          "edgeType": "type"
+        },
+        {
+          "name": "RecordConverterOptions",
+          "edgeType": "type"
+        },
+        {
+          "name": "Logger",
+          "edgeType": "type"
+        },
+        {
+          "name": "ConverterCache",
+          "edgeType": "type"
+        }
+      ]
+    }
+  ],
+  "imports": [
+    {
+      "module": "@rocket.chat/core-typings",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/license",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/logger",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/models",
+      "resolved": "external"
+    },
+    {
+      "module": "./Logger",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/server/lib/ldap/Logger.ts"
+    },
+    {
+      "module": "../../../app/importer/server/classes/converters/ConverterCache",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/app/importer/server/classes/converters/ConverterCache.ts"
+    },
+    {
+      "module": "../../../app/importer/server/classes/converters/RecordConverter",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/app/importer/server/classes/converters/RecordConverter.ts"
+    },
+    {
+      "module": "../../../app/importer/server/classes/converters/UserConverter",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/app/importer/server/classes/converters/UserConverter.ts"
+    },
+    {
+      "module": "../../../app/settings/server",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/app/settings/server/index.ts"
+    }
+  ]
+}

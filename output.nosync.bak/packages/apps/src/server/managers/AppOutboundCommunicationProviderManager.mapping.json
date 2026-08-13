@@ -1,0 +1,408 @@
+{
+  "sourcePath": "/Users/echoooooo/Desktop/code/Rocket.Chat/packages/apps/src/server/managers/AppOutboundCommunicationProviderManager.ts",
+  "symbols": [
+    {
+      "type": "class",
+      "name": "AppOutboundCommunicationProviderManager",
+      "exported": true,
+      "line": 17,
+      "endLine": 139,
+      "signature": "export class AppOutboundCommunicationProviderManager",
+      "calls": []
+    },
+    {
+      "type": "method",
+      "name": "isAlreadyDefined",
+      "exported": true,
+      "qualifiedName": "AppOutboundCommunicationProviderManager.isAlreadyDefined",
+      "line": 31,
+      "endLine": 40,
+      "signature": "public isAlreadyDefined(providerId: string, providerType: ValidOutboundProvider): boolean",
+      "containerClass": "AppOutboundCommunicationProviderManager",
+      "calls": [
+        {
+          "name": "get",
+          "edgeType": "call"
+        },
+        {
+          "name": "ValidOutboundProvider",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "addProvider",
+      "exported": true,
+      "qualifiedName": "AppOutboundCommunicationProviderManager.addProvider",
+      "line": 35,
+      "endLine": 53,
+      "signature": "public addProvider(appId: string, provider: IOutboundMessageProviders): void",
+      "containerClass": "AppOutboundCommunicationProviderManager",
+      "calls": [
+        {
+          "name": "getOneById",
+          "edgeType": "call"
+        },
+        {
+          "name": "hasPermission",
+          "edgeType": "call"
+        },
+        {
+          "name": "has",
+          "edgeType": "call"
+        },
+        {
+          "name": "set",
+          "edgeType": "call"
+        },
+        {
+          "name": "get",
+          "edgeType": "call"
+        },
+        {
+          "name": "PermissionDeniedError",
+          "edgeType": "new"
+        },
+        {
+          "name": "Map",
+          "edgeType": "new"
+        },
+        {
+          "name": "OutboundMessageProvider",
+          "edgeType": "new"
+        },
+        {
+          "name": "IOutboundMessageProviders",
+          "edgeType": "type"
+        },
+        {
+          "name": "ValidOutboundProvider",
+          "edgeType": "type"
+        },
+        {
+          "name": "OutboundMessageProvider",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "registerProviders",
+      "exported": true,
+      "qualifiedName": "AppOutboundCommunicationProviderManager.registerProviders",
+      "line": 39,
+      "endLine": 62,
+      "signature": "public async registerProviders(appId: string): Promise<void>",
+      "containerClass": "AppOutboundCommunicationProviderManager",
+      "calls": [
+        {
+          "name": "has",
+          "edgeType": "call"
+        },
+        {
+          "name": "get",
+          "edgeType": "call"
+        },
+        {
+          "name": "registerPhoneProvider",
+          "edgeType": "call"
+        },
+        {
+          "name": "setRegistered",
+          "edgeType": "call"
+        },
+        {
+          "name": "registerEmailProvider",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "unregisterProviders",
+      "exported": true,
+      "qualifiedName": "AppOutboundCommunicationProviderManager.unregisterProviders",
+      "line": 43,
+      "endLine": 56,
+      "signature": "public async unregisterProviders(appId: string, opts?: { keepReferences: boolean }): Promise<void>",
+      "containerClass": "AppOutboundCommunicationProviderManager",
+      "calls": [
+        {
+          "name": "has",
+          "edgeType": "call"
+        },
+        {
+          "name": "get",
+          "edgeType": "call"
+        },
+        {
+          "name": "unregisterProvider",
+          "edgeType": "call"
+        },
+        {
+          "name": "delete",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "registerPhoneProvider",
+      "exported": true,
+      "qualifiedName": "AppOutboundCommunicationProviderManager.registerPhoneProvider",
+      "line": 47,
+      "endLine": 49,
+      "signature": "private async registerPhoneProvider(appId: string, provider: IOutboundPhoneMessageProvider): Promise<void>",
+      "containerClass": "AppOutboundCommunicationProviderManager",
+      "calls": [
+        {
+          "name": "doRegisterPhoneProvider",
+          "edgeType": "call"
+        },
+        {
+          "name": "IOutboundPhoneMessageProvider",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "registerEmailProvider",
+      "exported": true,
+      "qualifiedName": "AppOutboundCommunicationProviderManager.registerEmailProvider",
+      "line": 51,
+      "endLine": 53,
+      "signature": "private async registerEmailProvider(appId: string, provider: IOutboundEmailMessageProvider): Promise<void>",
+      "containerClass": "AppOutboundCommunicationProviderManager",
+      "calls": [
+        {
+          "name": "doRegisterEmailProvider",
+          "edgeType": "call"
+        },
+        {
+          "name": "IOutboundEmailMessageProvider",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "unregisterProvider",
+      "exported": true,
+      "qualifiedName": "AppOutboundCommunicationProviderManager.unregisterProvider",
+      "line": 55,
+      "endLine": 65,
+      "signature": "private async unregisterProvider(appId: string, info: OutboundMessageProvider, opts?: { keepReferences: boolean }): Promise<void>",
+      "containerClass": "AppOutboundCommunicationProviderManager",
+      "calls": [
+        {
+          "name": "doUnRegisterProvider",
+          "edgeType": "call"
+        },
+        {
+          "name": "setRegistered",
+          "edgeType": "call"
+        },
+        {
+          "name": "delete",
+          "edgeType": "call"
+        },
+        {
+          "name": "get",
+          "edgeType": "call"
+        },
+        {
+          "name": "OutboundMessageProvider",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "getProviderMetadata",
+      "exported": true,
+      "qualifiedName": "AppOutboundCommunicationProviderManager.getProviderMetadata",
+      "line": 59,
+      "endLine": 66,
+      "signature": "public getProviderMetadata(appId: string, providerType: ValidOutboundProvider)",
+      "containerClass": "AppOutboundCommunicationProviderManager",
+      "calls": [
+        {
+          "name": "get",
+          "edgeType": "call"
+        },
+        {
+          "name": "runGetProviderMetadata",
+          "edgeType": "call"
+        },
+        {
+          "name": "getLogStorage",
+          "edgeType": "call"
+        },
+        {
+          "name": "ValidOutboundProvider",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "sendOutboundMessage",
+      "exported": true,
+      "qualifiedName": "AppOutboundCommunicationProviderManager.sendOutboundMessage",
+      "line": 63,
+      "endLine": 70,
+      "signature": "public sendOutboundMessage(appId: string, providerType: ValidOutboundProvider, body: IOutboundMessage)",
+      "containerClass": "AppOutboundCommunicationProviderManager",
+      "calls": [
+        {
+          "name": "get",
+          "edgeType": "call"
+        },
+        {
+          "name": "runSendOutboundMessage",
+          "edgeType": "call"
+        },
+        {
+          "name": "getLogStorage",
+          "edgeType": "call"
+        },
+        {
+          "name": "ValidOutboundProvider",
+          "edgeType": "type"
+        },
+        {
+          "name": "IOutboundMessage",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "constructor",
+      "exported": true,
+      "qualifiedName": "AppOutboundCommunicationProviderManager.constructor",
+      "line": 24,
+      "endLine": 29,
+      "signature": "constructor(private readonly manager: AppManager)",
+      "containerClass": "AppOutboundCommunicationProviderManager",
+      "calls": [
+        {
+          "name": "getOutboundMessageBridge",
+          "edgeType": "call"
+        },
+        {
+          "name": "getBridges",
+          "edgeType": "call"
+        },
+        {
+          "name": "getAccessorManager",
+          "edgeType": "call"
+        },
+        {
+          "name": "Map",
+          "edgeType": "new"
+        },
+        {
+          "name": "AppManager",
+          "edgeType": "type"
+        },
+        {
+          "name": "ValidOutboundProvider",
+          "edgeType": "type"
+        },
+        {
+          "name": "OutboundMessageProvider",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "class_property",
+      "name": "accessors",
+      "exported": true,
+      "qualifiedName": "AppOutboundCommunicationProviderManager.accessors",
+      "line": 18,
+      "endLine": 18,
+      "signature": "private readonly accessors: AppAccessorManager;",
+      "containerClass": "AppOutboundCommunicationProviderManager",
+      "calls": [
+        {
+          "name": "AppAccessorManager",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "class_property",
+      "name": "bridge",
+      "exported": true,
+      "qualifiedName": "AppOutboundCommunicationProviderManager.bridge",
+      "line": 20,
+      "endLine": 20,
+      "signature": "private readonly bridge: OutboundMessageBridge;",
+      "containerClass": "AppOutboundCommunicationProviderManager",
+      "calls": [
+        {
+          "name": "OutboundMessageBridge",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "class_property",
+      "name": "outboundMessageProviders",
+      "exported": true,
+      "qualifiedName": "AppOutboundCommunicationProviderManager.outboundMessageProviders",
+      "line": 22,
+      "endLine": 22,
+      "signature": "private outboundMessageProviders: Map<string, Map<ValidOutboundProvider, OutboundMessageProvider>>;",
+      "containerClass": "AppOutboundCommunicationProviderManager",
+      "calls": [
+        {
+          "name": "ValidOutboundProvider",
+          "edgeType": "type"
+        },
+        {
+          "name": "OutboundMessageProvider",
+          "edgeType": "type"
+        }
+      ]
+    }
+  ],
+  "imports": [
+    {
+      "module": "@rocket.chat/apps-engine/definition/outboundCommunication",
+      "resolved": "external"
+    },
+    {
+      "module": ".",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/packages/apps/src/server/managers/index.ts"
+    },
+    {
+      "module": "../AppManager",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/packages/apps/src/server/AppManager.ts"
+    },
+    {
+      "module": "../bridges",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/packages/apps/src/server/bridges/index.ts"
+    },
+    {
+      "module": "./AppOutboundCommunicationProvider",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/packages/apps/src/server/managers/AppOutboundCommunicationProvider.ts"
+    },
+    {
+      "module": "./AppPermissionManager",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/packages/apps/src/server/managers/AppPermissionManager.ts"
+    },
+    {
+      "module": "../errors/PermissionDeniedError",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/packages/apps/src/server/errors/PermissionDeniedError.ts"
+    },
+    {
+      "module": "../permissions/AppPermissions",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/packages/apps/src/server/permissions/AppPermissions.ts"
+    }
+  ]
+}

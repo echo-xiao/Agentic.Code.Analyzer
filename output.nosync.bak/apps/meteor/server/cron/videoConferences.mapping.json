@@ -1,0 +1,83 @@
+{
+  "sourcePath": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/server/cron/videoConferences.ts",
+  "symbols": [
+    {
+      "type": "function",
+      "name": "runVideoConferences",
+      "exported": false,
+      "line": 10,
+      "endLine": 18,
+      "signature": "async function runVideoConferences(): Promise<void>",
+      "calls": [
+        {
+          "name": "valueOf",
+          "edgeType": "call"
+        },
+        {
+          "name": "toArray",
+          "edgeType": "call"
+        },
+        {
+          "name": "map",
+          "edgeType": "call"
+        },
+        {
+          "name": "findAllLongRunning",
+          "edgeType": "call"
+        },
+        {
+          "name": "all",
+          "edgeType": "call"
+        },
+        {
+          "name": "setStatus",
+          "edgeType": "call"
+        },
+        {
+          "name": "Date",
+          "edgeType": "new"
+        },
+        {
+          "name": "VideoConference",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "function",
+      "name": "videoConferencesCron",
+      "exported": true,
+      "line": 14,
+      "endLine": 18,
+      "signature": "export async function videoConferencesCron(): Promise<void>",
+      "calls": [
+        {
+          "name": "runVideoConferences",
+          "edgeType": "call"
+        }
+      ]
+    }
+  ],
+  "imports": [
+    {
+      "module": "@rocket.chat/core-services",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/core-typings",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/core-typings",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/cron",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/models",
+      "resolved": "external"
+    }
+  ]
+}

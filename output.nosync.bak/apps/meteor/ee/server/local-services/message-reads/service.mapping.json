@@ -1,0 +1,109 @@
+{
+  "sourcePath": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/ee/server/local-services/message-reads/service.ts",
+  "symbols": [
+    {
+      "type": "class",
+      "name": "MessageReadsService",
+      "exported": true,
+      "line": 8,
+      "endLine": 51,
+      "signature": "export class MessageReadsService extends ServiceClassInternal implements IMessageReadsService",
+      "calls": [
+        {
+          "name": "ServiceClassInternal",
+          "edgeType": "type"
+        },
+        {
+          "name": "IMessageReadsService",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "readThread",
+      "exported": true,
+      "qualifiedName": "MessageReadsService.readThread",
+      "line": 11,
+      "endLine": 50,
+      "signature": "async readThread(userId: string, tmid: string): Promise<void>",
+      "containerClass": "MessageReadsService",
+      "calls": [
+        {
+          "name": "findOneByUserIdAndThreadId",
+          "edgeType": "call"
+        },
+        {
+          "name": "findOneById",
+          "edgeType": "call"
+        },
+        {
+          "name": "updateReadTimestampByUserIdAndThreadId",
+          "edgeType": "call"
+        },
+        {
+          "name": "storeThreadMessagesReadReceipts",
+          "edgeType": "call"
+        },
+        {
+          "name": "countUnarchivedByRoomId",
+          "edgeType": "call"
+        },
+        {
+          "name": "toArray",
+          "edgeType": "call"
+        },
+        {
+          "name": "findUnarchivedByRoomId",
+          "edgeType": "call"
+        },
+        {
+          "name": "map",
+          "edgeType": "call"
+        },
+        {
+          "name": "countByThreadAndUserIds",
+          "edgeType": "call"
+        },
+        {
+          "name": "countByThreadId",
+          "edgeType": "call"
+        },
+        {
+          "name": "getMinimumLastSeenByThreadId",
+          "edgeType": "call"
+        },
+        {
+          "name": "setThreadMessagesAsRead",
+          "edgeType": "call"
+        },
+        {
+          "name": "notify.messagesRead",
+          "edgeType": "event_emit"
+        }
+      ]
+    }
+  ],
+  "imports": [
+    {
+      "module": "@rocket.chat/core-services",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/models",
+      "resolved": "external"
+    },
+    {
+      "module": "../../lib/constants",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/ee/server/lib/constants.ts"
+    },
+    {
+      "module": "../../lib/message-read-receipt/ReadReceipt",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/ee/server/lib/message-read-receipt/ReadReceipt.ts"
+    },
+    {
+      "module": "../../sdk/types/IMessageReadsService",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/ee/server/sdk/types/IMessageReadsService.ts"
+    }
+  ]
+}

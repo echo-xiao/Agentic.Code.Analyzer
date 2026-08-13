@@ -1,0 +1,44 @@
+{
+  "sourcePath": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/client/views/marketplace/helpers/handleInstallError.ts",
+  "symbols": [
+    {
+      "type": "function",
+      "name": "handleInstallError",
+      "exported": true,
+      "line": 16,
+      "endLine": 49,
+      "signature": "export function handleInstallError(apiError: ApiError | Error): void",
+      "calls": [
+        {
+          "name": "dispatchToastMessage",
+          "edgeType": "call"
+        },
+        {
+          "name": "join",
+          "edgeType": "call"
+        },
+        {
+          "name": "ApiError",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "interface",
+      "name": "ApiError",
+      "line": 5,
+      "endLine": 14,
+      "signature": "interface ApiError"
+    }
+  ],
+  "imports": [
+    {
+      "module": "../../../../app/utils/lib/i18n",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/app/utils/lib/i18n.ts"
+    },
+    {
+      "module": "../../../lib/toast",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/client/lib/toast.ts"
+    }
+  ]
+}

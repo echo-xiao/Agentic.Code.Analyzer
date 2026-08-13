@@ -1,0 +1,688 @@
+{
+  "sourcePath": "/Users/echoooooo/Desktop/code/Rocket.Chat/packages/apps/src/server/managers/AppVideoConfProviderManager.ts",
+  "symbols": [
+    {
+      "type": "class",
+      "name": "AppVideoConfProviderManager",
+      "exported": true,
+      "line": 20,
+      "endLine": 217,
+      "signature": "export class AppVideoConfProviderManager",
+      "calls": []
+    },
+    {
+      "type": "method",
+      "name": "canProviderBeTouchedBy",
+      "exported": true,
+      "qualifiedName": "AppVideoConfProviderManager.canProviderBeTouchedBy",
+      "line": 37,
+      "endLine": 40,
+      "signature": "public canProviderBeTouchedBy(appId: string, providerName: string): boolean",
+      "containerClass": "AppVideoConfProviderManager",
+      "calls": [
+        {
+          "name": "trim",
+          "edgeType": "call"
+        },
+        {
+          "name": "toLowerCase",
+          "edgeType": "call"
+        },
+        {
+          "name": "has",
+          "edgeType": "call"
+        },
+        {
+          "name": "get",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "isAlreadyDefined",
+      "exported": true,
+      "qualifiedName": "AppVideoConfProviderManager.isAlreadyDefined",
+      "line": 41,
+      "endLine": 51,
+      "signature": "public isAlreadyDefined(providerName: string): boolean",
+      "containerClass": "AppVideoConfProviderManager",
+      "calls": [
+        {
+          "name": "trim",
+          "edgeType": "call"
+        },
+        {
+          "name": "toLowerCase",
+          "edgeType": "call"
+        },
+        {
+          "name": "has",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "addProvider",
+      "exported": true,
+      "qualifiedName": "AppVideoConfProviderManager.addProvider",
+      "line": 45,
+      "endLine": 69,
+      "signature": "public addProvider(appId: string, provider: IVideoConfProvider): void",
+      "containerClass": "AppVideoConfProviderManager",
+      "calls": [
+        {
+          "name": "getOneById",
+          "edgeType": "call"
+        },
+        {
+          "name": "hasPermission",
+          "edgeType": "call"
+        },
+        {
+          "name": "trim",
+          "edgeType": "call"
+        },
+        {
+          "name": "toLowerCase",
+          "edgeType": "call"
+        },
+        {
+          "name": "canProviderBeTouchedBy",
+          "edgeType": "call"
+        },
+        {
+          "name": "has",
+          "edgeType": "call"
+        },
+        {
+          "name": "set",
+          "edgeType": "call"
+        },
+        {
+          "name": "get",
+          "edgeType": "call"
+        },
+        {
+          "name": "linkAppProvider",
+          "edgeType": "call"
+        },
+        {
+          "name": "PermissionDeniedError",
+          "edgeType": "new"
+        },
+        {
+          "name": "VideoConfProviderAlreadyExistsError",
+          "edgeType": "new"
+        },
+        {
+          "name": "Map",
+          "edgeType": "new"
+        },
+        {
+          "name": "AppVideoConfProvider",
+          "edgeType": "new"
+        },
+        {
+          "name": "IVideoConfProvider",
+          "edgeType": "type"
+        },
+        {
+          "name": "AppVideoConfProvider",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "registerProviders",
+      "exported": true,
+      "qualifiedName": "AppVideoConfProviderManager.registerProviders",
+      "line": 49,
+      "endLine": 62,
+      "signature": "public async registerProviders(appId: string): Promise<void>",
+      "containerClass": "AppVideoConfProviderManager",
+      "calls": [
+        {
+          "name": "has",
+          "edgeType": "call"
+        },
+        {
+          "name": "get",
+          "edgeType": "call"
+        },
+        {
+          "name": "registerProvider",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "unregisterProviders",
+      "exported": true,
+      "qualifiedName": "AppVideoConfProviderManager.unregisterProviders",
+      "line": 53,
+      "endLine": 64,
+      "signature": "public async unregisterProviders(appId: string): Promise<void>",
+      "containerClass": "AppVideoConfProviderManager",
+      "calls": [
+        {
+          "name": "has",
+          "edgeType": "call"
+        },
+        {
+          "name": "get",
+          "edgeType": "call"
+        },
+        {
+          "name": "unregisterProvider",
+          "edgeType": "call"
+        },
+        {
+          "name": "delete",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "isFullyConfigured",
+      "exported": true,
+      "qualifiedName": "AppVideoConfProviderManager.isFullyConfigured",
+      "line": 57,
+      "endLine": 64,
+      "signature": "public async isFullyConfigured(providerName: string): Promise<boolean>",
+      "containerClass": "AppVideoConfProviderManager",
+      "calls": [
+        {
+          "name": "retrieveProviderInfo",
+          "edgeType": "call"
+        },
+        {
+          "name": "runIsFullyConfigured",
+          "edgeType": "call"
+        },
+        {
+          "name": "getLogStorage",
+          "edgeType": "call"
+        },
+        {
+          "name": "VideoConfProviderNotRegisteredError",
+          "edgeType": "new"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "onNewVideoConference",
+      "exported": true,
+      "qualifiedName": "AppVideoConfProviderManager.onNewVideoConference",
+      "line": 61,
+      "endLine": 68,
+      "signature": "public async onNewVideoConference(providerName: string, call: VideoConference): Promise<void>",
+      "containerClass": "AppVideoConfProviderManager",
+      "calls": [
+        {
+          "name": "retrieveProviderInfo",
+          "edgeType": "call"
+        },
+        {
+          "name": "runOnNewVideoConference",
+          "edgeType": "call"
+        },
+        {
+          "name": "getLogStorage",
+          "edgeType": "call"
+        },
+        {
+          "name": "VideoConfProviderNotRegisteredError",
+          "edgeType": "new"
+        },
+        {
+          "name": "VideoConference",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "onVideoConferenceChanged",
+      "exported": true,
+      "qualifiedName": "AppVideoConfProviderManager.onVideoConferenceChanged",
+      "line": 65,
+      "endLine": 72,
+      "signature": "public async onVideoConferenceChanged(providerName: string, call: VideoConference): Promise<void>",
+      "containerClass": "AppVideoConfProviderManager",
+      "calls": [
+        {
+          "name": "retrieveProviderInfo",
+          "edgeType": "call"
+        },
+        {
+          "name": "runOnVideoConferenceChanged",
+          "edgeType": "call"
+        },
+        {
+          "name": "getLogStorage",
+          "edgeType": "call"
+        },
+        {
+          "name": "VideoConfProviderNotRegisteredError",
+          "edgeType": "new"
+        },
+        {
+          "name": "VideoConference",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "onUserJoin",
+      "exported": true,
+      "qualifiedName": "AppVideoConfProviderManager.onUserJoin",
+      "line": 69,
+      "endLine": 76,
+      "signature": "public async onUserJoin(providerName: string, call: VideoConference, user?: IVideoConferenceUser): Promise<void>",
+      "containerClass": "AppVideoConfProviderManager",
+      "calls": [
+        {
+          "name": "retrieveProviderInfo",
+          "edgeType": "call"
+        },
+        {
+          "name": "runOnUserJoin",
+          "edgeType": "call"
+        },
+        {
+          "name": "getLogStorage",
+          "edgeType": "call"
+        },
+        {
+          "name": "VideoConfProviderNotRegisteredError",
+          "edgeType": "new"
+        },
+        {
+          "name": "VideoConference",
+          "edgeType": "type"
+        },
+        {
+          "name": "IVideoConferenceUser",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "getVideoConferenceInfo",
+      "exported": true,
+      "qualifiedName": "AppVideoConfProviderManager.getVideoConferenceInfo",
+      "line": 73,
+      "endLine": 84,
+      "signature": "public async getVideoConferenceInfo( providerName: string, call: VideoConference, user?: IVideoConferenceUser, ): Promise<Array<IBlock> | undefined>",
+      "containerClass": "AppVideoConfProviderManager",
+      "calls": [
+        {
+          "name": "retrieveProviderInfo",
+          "edgeType": "call"
+        },
+        {
+          "name": "runGetVideoConferenceInfo",
+          "edgeType": "call"
+        },
+        {
+          "name": "getLogStorage",
+          "edgeType": "call"
+        },
+        {
+          "name": "VideoConfProviderNotRegisteredError",
+          "edgeType": "new"
+        },
+        {
+          "name": "VideoConference",
+          "edgeType": "type"
+        },
+        {
+          "name": "IVideoConferenceUser",
+          "edgeType": "type"
+        },
+        {
+          "name": "IBlock",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "generateUrl",
+      "exported": true,
+      "qualifiedName": "AppVideoConfProviderManager.generateUrl",
+      "line": 81,
+      "endLine": 88,
+      "signature": "public async generateUrl(providerName: string, call: VideoConfData): Promise<string>",
+      "containerClass": "AppVideoConfProviderManager",
+      "calls": [
+        {
+          "name": "retrieveProviderInfo",
+          "edgeType": "call"
+        },
+        {
+          "name": "runGenerateUrl",
+          "edgeType": "call"
+        },
+        {
+          "name": "getLogStorage",
+          "edgeType": "call"
+        },
+        {
+          "name": "VideoConfProviderNotRegisteredError",
+          "edgeType": "new"
+        },
+        {
+          "name": "VideoConfData",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "customizeUrl",
+      "exported": true,
+      "qualifiedName": "AppVideoConfProviderManager.customizeUrl",
+      "line": 85,
+      "endLine": 97,
+      "signature": "public async customizeUrl( providerName: string, call: VideoConfDataExtended, user?: IVideoConferenceUser, options?: IVideoConferenceOptions, ): Promise<string>",
+      "containerClass": "AppVideoConfProviderManager",
+      "calls": [
+        {
+          "name": "retrieveProviderInfo",
+          "edgeType": "call"
+        },
+        {
+          "name": "runCustomizeUrl",
+          "edgeType": "call"
+        },
+        {
+          "name": "getLogStorage",
+          "edgeType": "call"
+        },
+        {
+          "name": "VideoConfProviderNotRegisteredError",
+          "edgeType": "new"
+        },
+        {
+          "name": "VideoConfDataExtended",
+          "edgeType": "type"
+        },
+        {
+          "name": "IVideoConferenceUser",
+          "edgeType": "type"
+        },
+        {
+          "name": "IVideoConferenceOptions",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "retrieveProviderInfo",
+      "exported": true,
+      "qualifiedName": "AppVideoConfProviderManager.retrieveProviderInfo",
+      "line": 94,
+      "endLine": 107,
+      "signature": "private retrieveProviderInfo(providerName: string): AppVideoConfProvider | undefined",
+      "containerClass": "AppVideoConfProviderManager",
+      "calls": [
+        {
+          "name": "trim",
+          "edgeType": "call"
+        },
+        {
+          "name": "toLowerCase",
+          "edgeType": "call"
+        },
+        {
+          "name": "has",
+          "edgeType": "call"
+        },
+        {
+          "name": "get",
+          "edgeType": "call"
+        },
+        {
+          "name": "AppVideoConfProvider",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "linkAppProvider",
+      "exported": true,
+      "qualifiedName": "AppVideoConfProviderManager.linkAppProvider",
+      "line": 98,
+      "endLine": 100,
+      "signature": "private linkAppProvider(appId: string, providerName: string): void",
+      "containerClass": "AppVideoConfProviderManager",
+      "calls": [
+        {
+          "name": "set",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "registerProvider",
+      "exported": true,
+      "qualifiedName": "AppVideoConfProviderManager.registerProvider",
+      "line": 102,
+      "endLine": 105,
+      "signature": "private async registerProvider(appId: string, info: AppVideoConfProvider): Promise<void>",
+      "containerClass": "AppVideoConfProviderManager",
+      "calls": [
+        {
+          "name": "doRegisterProvider",
+          "edgeType": "call"
+        },
+        {
+          "name": "hasBeenRegistered",
+          "edgeType": "call"
+        },
+        {
+          "name": "AppVideoConfProvider",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "unregisterProvider",
+      "exported": true,
+      "qualifiedName": "AppVideoConfProviderManager.unregisterProvider",
+      "line": 106,
+      "endLine": 118,
+      "signature": "private async unregisterProvider(appId: string, info: AppVideoConfProvider): Promise<void>",
+      "containerClass": "AppVideoConfProviderManager",
+      "calls": [
+        {
+          "name": "trim",
+          "edgeType": "call"
+        },
+        {
+          "name": "toLowerCase",
+          "edgeType": "call"
+        },
+        {
+          "name": "doUnRegisterProvider",
+          "edgeType": "call"
+        },
+        {
+          "name": "delete",
+          "edgeType": "call"
+        },
+        {
+          "name": "get",
+          "edgeType": "call"
+        },
+        {
+          "name": "AppVideoConfProvider",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "constructor",
+      "exported": true,
+      "qualifiedName": "AppVideoConfProviderManager.constructor",
+      "line": 29,
+      "endLine": 35,
+      "signature": "constructor(private readonly manager: AppManager)",
+      "containerClass": "AppVideoConfProviderManager",
+      "calls": [
+        {
+          "name": "getVideoConferenceBridge",
+          "edgeType": "call"
+        },
+        {
+          "name": "getBridges",
+          "edgeType": "call"
+        },
+        {
+          "name": "getAccessorManager",
+          "edgeType": "call"
+        },
+        {
+          "name": "Map",
+          "edgeType": "new"
+        },
+        {
+          "name": "AppManager",
+          "edgeType": "type"
+        },
+        {
+          "name": "AppVideoConfProvider",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "class_property",
+      "name": "accessors",
+      "exported": true,
+      "qualifiedName": "AppVideoConfProviderManager.accessors",
+      "line": 21,
+      "endLine": 21,
+      "signature": "private readonly accessors: AppAccessorManager;",
+      "containerClass": "AppVideoConfProviderManager",
+      "calls": [
+        {
+          "name": "AppAccessorManager",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "class_property",
+      "name": "bridge",
+      "exported": true,
+      "qualifiedName": "AppVideoConfProviderManager.bridge",
+      "line": 23,
+      "endLine": 23,
+      "signature": "private readonly bridge: VideoConferenceBridge;",
+      "containerClass": "AppVideoConfProviderManager",
+      "calls": [
+        {
+          "name": "VideoConferenceBridge",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "class_property",
+      "name": "videoConfProviders",
+      "exported": true,
+      "qualifiedName": "AppVideoConfProviderManager.videoConfProviders",
+      "line": 25,
+      "endLine": 25,
+      "signature": "private videoConfProviders: Map<string, Map<string, AppVideoConfProvider>>;",
+      "containerClass": "AppVideoConfProviderManager",
+      "calls": [
+        {
+          "name": "AppVideoConfProvider",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "class_property",
+      "name": "providerApps",
+      "exported": true,
+      "qualifiedName": "AppVideoConfProviderManager.providerApps",
+      "line": 27,
+      "endLine": 27,
+      "signature": "private providerApps: Map<IVideoConfProvider['name'], string>;",
+      "containerClass": "AppVideoConfProviderManager",
+      "calls": [
+        {
+          "name": "IVideoConfProvider",
+          "edgeType": "type"
+        }
+      ]
+    }
+  ],
+  "imports": [
+    {
+      "module": "@rocket.chat/apps-engine/definition/uikit",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/apps-engine/definition/videoConfProviders",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/apps-engine/definition/videoConferences",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/apps-engine/definition/videoConferences/IVideoConferenceUser",
+      "resolved": "external"
+    },
+    {
+      "module": "../AppManager",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/packages/apps/src/server/AppManager.ts"
+    },
+    {
+      "module": "../bridges",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/packages/apps/src/server/bridges/index.ts"
+    },
+    {
+      "module": "../errors",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/packages/apps/src/server/errors/index.ts"
+    },
+    {
+      "module": "./AppAccessorManager",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/packages/apps/src/server/managers/AppAccessorManager.ts"
+    },
+    {
+      "module": "./AppPermissionManager",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/packages/apps/src/server/managers/AppPermissionManager.ts"
+    },
+    {
+      "module": "./AppVideoConfProvider",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/packages/apps/src/server/managers/AppVideoConfProvider.ts"
+    },
+    {
+      "module": "../errors/PermissionDeniedError",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/packages/apps/src/server/errors/PermissionDeniedError.ts"
+    },
+    {
+      "module": "../permissions/AppPermissions",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/packages/apps/src/server/permissions/AppPermissions.ts"
+    }
+  ]
+}

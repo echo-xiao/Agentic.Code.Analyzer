@@ -1,0 +1,83 @@
+{
+  "sourcePath": "/Users/echoooooo/Desktop/code/Rocket.Chat/packages/ddp-client/src/types/streams.ts",
+  "symbols": [
+    {
+      "type": "interface",
+      "name": "StreamerEvents",
+      "line": 35,
+      "endLine": 481,
+      "signature": "export interface StreamerEvents"
+    },
+    {
+      "type": "type",
+      "name": "ClientAction",
+      "line": 33,
+      "endLine": 33,
+      "signature": "type ClientAction = 'inserted' | 'updated' | 'removed' | 'changed';"
+    },
+    {
+      "type": "type",
+      "name": "StreamNames",
+      "line": 483,
+      "endLine": 483,
+      "signature": "export type StreamNames = keyof StreamerEvents;"
+    },
+    {
+      "type": "type",
+      "name": "StreamKeys",
+      "line": 485,
+      "endLine": 485,
+      "signature": "export type StreamKeys<S extends StreamNames> = StreamerEvents[S][number]['key'];"
+    },
+    {
+      "type": "type",
+      "name": "StreamerConfigs",
+      "line": 487,
+      "endLine": 487,
+      "signature": "export type StreamerConfigs<N extends StreamNames> = StreamerEvents[N][number];"
+    },
+    {
+      "type": "type",
+      "name": "StreamerConfig",
+      "line": 489,
+      "endLine": 490,
+      "signature": "export type StreamerConfig<N extends StreamNames, K extends StreamKeys<N>> = StreamerConfigs<N> extends infer U ? (U extends any ? ("
+    },
+    {
+      "type": "type",
+      "name": "StreamerCallbackArgs",
+      "line": 492,
+      "endLine": 497,
+      "signature": "export type StreamerCallbackArgs<N extends StreamNames, K extends StreamKeys<N>> = StreamerConfig<N, K> extends"
+    },
+    {
+      "type": "type",
+      "name": "StreamerCallback",
+      "line": 499,
+      "endLine": 499,
+      "signature": "export type StreamerCallback<N extends StreamNames, K extends StreamKeys<N>> = (...args: StreamerCallbackArgs<N, K>) => void;"
+    }
+  ],
+  "imports": [
+    {
+      "module": "@rocket.chat/apps-engine/definition/AppStatus",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/apps-engine/definition/settings",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/core-typings",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/media-signaling",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/ui-kit",
+      "resolved": "external"
+    }
+  ]
+}

@@ -1,0 +1,82 @@
+{
+  "sourcePath": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/client/views/composer/EmojiPicker/EmojiPickerDesktopDropdown.tsx",
+  "symbols": [
+    {
+      "type": "variable_function",
+      "name": "getDropdownContainer",
+      "exported": false,
+      "line": 6,
+      "endLine": 18,
+      "signature": "(descendant: HTMLElement | null) =>",
+      "calls": [
+        {
+          "name": "getComputedStyle",
+          "edgeType": "call"
+        },
+        {
+          "name": "HTMLElement",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "variable_function",
+      "name": "useDropdownPosition",
+      "exported": false,
+      "line": 10,
+      "endLine": 33,
+      "signature": "(reference: RefObject<HTMLElement | null>, target: RefObject<HTMLElement | null>) =>",
+      "calls": [
+        {
+          "name": "getDropdownContainer",
+          "edgeType": "call"
+        },
+        {
+          "name": "getBoundingClientRect",
+          "edgeType": "call"
+        },
+        {
+          "name": "useMemo",
+          "edgeType": "call"
+        },
+        {
+          "name": "usePosition",
+          "edgeType": "call"
+        },
+        {
+          "name": "RefObject",
+          "edgeType": "type"
+        },
+        {
+          "name": "HTMLElement",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "type",
+      "name": "EmojiPickerDesktopDropdownProps",
+      "line": 14,
+      "endLine": 17,
+      "signature": "export type EmojiPickerDesktopDropdownProps ="
+    }
+  ],
+  "imports": [
+    {
+      "module": "@rocket.chat/fuselage",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/fuselage-hooks",
+      "resolved": "external"
+    },
+    {
+      "module": "react",
+      "resolved": "external"
+    },
+    {
+      "module": "react",
+      "resolved": "external"
+    }
+  ]
+}

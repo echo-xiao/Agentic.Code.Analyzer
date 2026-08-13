@@ -1,0 +1,277 @@
+{
+  "sourcePath": "/Users/echoooooo/Desktop/code/Rocket.Chat/packages/models/src/models/UsersSessions.ts",
+  "symbols": [
+    {
+      "type": "class",
+      "name": "UsersSessionsRaw",
+      "exported": true,
+      "line": 7,
+      "endLine": 131,
+      "signature": "export class UsersSessionsRaw extends BaseRaw<IUserSession> implements IUsersSessionsModel",
+      "calls": [
+        {
+          "name": "BaseRaw",
+          "edgeType": "type"
+        },
+        {
+          "name": "IUsersSessionsModel",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "clearConnectionsFromInstanceId",
+      "exported": true,
+      "qualifiedName": "UsersSessionsRaw.clearConnectionsFromInstanceId",
+      "line": 17,
+      "endLine": 30,
+      "signature": "clearConnectionsFromInstanceId(instanceId: string[]): ReturnType<BaseRaw<IUserSession>['updateMany']>",
+      "containerClass": "UsersSessionsRaw",
+      "calls": [
+        {
+          "name": "updateMany",
+          "edgeType": "call"
+        },
+        {
+          "name": "BaseRaw",
+          "edgeType": "type"
+        },
+        {
+          "name": "IUserSession",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "updateConnectionStatusById",
+      "exported": true,
+      "qualifiedName": "UsersSessionsRaw.updateConnectionStatusById",
+      "line": 21,
+      "endLine": 35,
+      "signature": "updateConnectionStatusById(uid: string, connectionId: string, status: string): ReturnType<BaseRaw<IUserSession>['updateOne']>",
+      "containerClass": "UsersSessionsRaw",
+      "calls": [
+        {
+          "name": "updateOne",
+          "edgeType": "call"
+        },
+        {
+          "name": "Date",
+          "edgeType": "new"
+        },
+        {
+          "name": "BaseRaw",
+          "edgeType": "type"
+        },
+        {
+          "name": "IUserSession",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "removeConnectionsFromInstanceId",
+      "exported": true,
+      "qualifiedName": "UsersSessionsRaw.removeConnectionsFromInstanceId",
+      "line": 25,
+      "endLine": 38,
+      "signature": "async removeConnectionsFromInstanceId(instanceId: string): ReturnType<BaseRaw<IUserSession>['updateMany']>",
+      "containerClass": "UsersSessionsRaw",
+      "calls": [
+        {
+          "name": "updateMany",
+          "edgeType": "call"
+        },
+        {
+          "name": "BaseRaw",
+          "edgeType": "type"
+        },
+        {
+          "name": "IUserSession",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "removeConnectionsFromOtherInstanceIds",
+      "exported": true,
+      "qualifiedName": "UsersSessionsRaw.removeConnectionsFromOtherInstanceIds",
+      "line": 29,
+      "endLine": 42,
+      "signature": "removeConnectionsFromOtherInstanceIds(instanceIds: string[]): ReturnType<BaseRaw<IUserSession>['updateMany']>",
+      "containerClass": "UsersSessionsRaw",
+      "calls": [
+        {
+          "name": "updateMany",
+          "edgeType": "call"
+        },
+        {
+          "name": "BaseRaw",
+          "edgeType": "type"
+        },
+        {
+          "name": "IUserSession",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "removeConnectionByConnectionId",
+      "exported": true,
+      "qualifiedName": "UsersSessionsRaw.removeConnectionByConnectionId",
+      "line": 33,
+      "endLine": 46,
+      "signature": "async removeConnectionByConnectionId(connectionId: string): ReturnType<BaseRaw<IUserSession>['updateMany']>",
+      "containerClass": "UsersSessionsRaw",
+      "calls": [
+        {
+          "name": "updateMany",
+          "edgeType": "call"
+        },
+        {
+          "name": "BaseRaw",
+          "edgeType": "type"
+        },
+        {
+          "name": "IUserSession",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "findByInstanceId",
+      "exported": true,
+      "qualifiedName": "UsersSessionsRaw.findByInstanceId",
+      "line": 37,
+      "endLine": 41,
+      "signature": "findByInstanceId(instanceId: string): FindCursor<IUserSession>",
+      "containerClass": "UsersSessionsRaw",
+      "calls": [
+        {
+          "name": "find",
+          "edgeType": "call"
+        },
+        {
+          "name": "FindCursor",
+          "edgeType": "type"
+        },
+        {
+          "name": "IUserSession",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "addConnectionById",
+      "exported": true,
+      "qualifiedName": "UsersSessionsRaw.addConnectionById",
+      "line": 41,
+      "endLine": 60,
+      "signature": "addConnectionById( userId: string, { id, instanceId, status }: Pick<IUserSessionConnection, 'id' | 'instanceId' | 'status'>, ): ReturnType<BaseRaw<IUserSession>['updateOne']>",
+      "containerClass": "UsersSessionsRaw",
+      "calls": [
+        {
+          "name": "updateOne",
+          "edgeType": "call"
+        },
+        {
+          "name": "Date",
+          "edgeType": "new"
+        },
+        {
+          "name": "IUserSessionConnection",
+          "edgeType": "type"
+        },
+        {
+          "name": "BaseRaw",
+          "edgeType": "type"
+        },
+        {
+          "name": "IUserSession",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "findByOtherInstanceIds",
+      "exported": true,
+      "qualifiedName": "UsersSessionsRaw.findByOtherInstanceIds",
+      "line": 48,
+      "endLine": 58,
+      "signature": "findByOtherInstanceIds(instanceIds: string[], options?: FindOptions<IUserSession>): FindCursor<IUserSession>",
+      "containerClass": "UsersSessionsRaw",
+      "calls": [
+        {
+          "name": "find",
+          "edgeType": "call"
+        },
+        {
+          "name": "FindOptions",
+          "edgeType": "type"
+        },
+        {
+          "name": "IUserSession",
+          "edgeType": "type"
+        },
+        {
+          "name": "FindCursor",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "constructor",
+      "exported": true,
+      "qualifiedName": "UsersSessionsRaw.constructor",
+      "line": 8,
+      "endLine": 15,
+      "signature": "constructor(db: Db, trash?: Collection<RocketChatRecordDeleted<IUserSession>>)",
+      "containerClass": "UsersSessionsRaw",
+      "calls": [
+        {
+          "name": "Db",
+          "edgeType": "type"
+        },
+        {
+          "name": "Collection",
+          "edgeType": "type"
+        },
+        {
+          "name": "RocketChatRecordDeleted",
+          "edgeType": "type"
+        },
+        {
+          "name": "IUserSession",
+          "edgeType": "type"
+        }
+      ]
+    }
+  ],
+  "imports": [
+    {
+      "module": "@rocket.chat/core-typings",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/model-typings",
+      "resolved": "external"
+    },
+    {
+      "module": "mongodb",
+      "resolved": "external"
+    },
+    {
+      "module": "./BaseRaw",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/packages/models/src/models/BaseRaw.ts"
+    }
+  ]
+}

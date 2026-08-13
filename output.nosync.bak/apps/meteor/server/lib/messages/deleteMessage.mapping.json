@@ -1,0 +1,229 @@
+{
+  "sourcePath": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/server/lib/messages/deleteMessage.ts",
+  "symbols": [
+    {
+      "type": "function",
+      "name": "deleteMessage",
+      "exported": true,
+      "line": 35,
+      "endLine": 111,
+      "signature": "export async function deleteMessage(message: IMessage, user: IUser): Promise<void>",
+      "calls": [
+        {
+          "name": "findOneById",
+          "edgeType": "call"
+        },
+        {
+          "name": "get",
+          "edgeType": "call"
+        },
+        {
+          "name": "triggerEvent",
+          "edgeType": "call"
+        },
+        {
+          "name": "beforeDelete",
+          "edgeType": "call"
+        },
+        {
+          "name": "isThreadMessage",
+          "edgeType": "call"
+        },
+        {
+          "name": "deleteThreadMessage",
+          "edgeType": "call"
+        },
+        {
+          "name": "filter",
+          "edgeType": "call"
+        },
+        {
+          "name": "cloneAndSaveAsHistoryById",
+          "edgeType": "call"
+        },
+        {
+          "name": "setHiddenById",
+          "edgeType": "call"
+        },
+        {
+          "name": "updateOne",
+          "edgeType": "call"
+        },
+        {
+          "name": "removeById",
+          "edgeType": "call"
+        },
+        {
+          "name": "removeByMessageId",
+          "edgeType": "call"
+        },
+        {
+          "name": "deleteById",
+          "edgeType": "call"
+        },
+        {
+          "name": "getStore",
+          "edgeType": "call"
+        },
+        {
+          "name": "setAsDeletedByIdAndUser",
+          "edgeType": "call"
+        },
+        {
+          "name": "notify.deleteMessage",
+          "edgeType": "event_emit"
+        },
+        {
+          "name": "getLastVisibleUserMessageSentByRoomId",
+          "edgeType": "call"
+        },
+        {
+          "name": "resetLastMessageById",
+          "edgeType": "call"
+        },
+        {
+          "name": "decreaseMessageCountById",
+          "edgeType": "call"
+        },
+        {
+          "name": "afterDeleteMessage",
+          "edgeType": "event_emit"
+        },
+        {
+          "name": "notifyOnRoomChangedById",
+          "edgeType": "call"
+        },
+        {
+          "name": "notifyOnMessageChange",
+          "edgeType": "call"
+        },
+        {
+          "name": "IMessage",
+          "edgeType": "type"
+        },
+        {
+          "name": "IUser",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "function",
+      "name": "deleteThreadMessage",
+      "exported": false,
+      "line": 39,
+      "endLine": 59,
+      "signature": "async function deleteThreadMessage(message: IThreadMessage, user: IUser, room: IRoom | null): Promise<void>",
+      "calls": [
+        {
+          "name": "decreaseReplyCountById",
+          "edgeType": "call"
+        },
+        {
+          "name": "removeUnreadThreadsByRoomId",
+          "edgeType": "call"
+        },
+        {
+          "name": "notifyOnSubscriptionChangedByRoomIdAndUserIds",
+          "edgeType": "call"
+        },
+        {
+          "name": "notifyOnMessageChange",
+          "edgeType": "call"
+        },
+        {
+          "name": "Set",
+          "edgeType": "new"
+        },
+        {
+          "name": "IThreadMessage",
+          "edgeType": "type"
+        },
+        {
+          "name": "IUser",
+          "edgeType": "type"
+        },
+        {
+          "name": "IRoom",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "variable_function",
+      "name": "deleteMessageValidatingPermission",
+      "exported": true,
+      "line": 17,
+      "endLine": 33,
+      "signature": "async (message: AtLeast<IMessage, '_id'>, userId: IUser['_id']): Promise<void> =>",
+      "calls": [
+        {
+          "name": "findOneById",
+          "edgeType": "call"
+        },
+        {
+          "name": "canDeleteMessageAsync",
+          "edgeType": "call"
+        },
+        {
+          "name": "deleteMessage",
+          "edgeType": "call"
+        },
+        {
+          "name": "AtLeast",
+          "edgeType": "type"
+        },
+        {
+          "name": "IMessage",
+          "edgeType": "type"
+        },
+        {
+          "name": "IUser",
+          "edgeType": "type"
+        }
+      ]
+    }
+  ],
+  "imports": [
+    {
+      "module": "@rocket.chat/apps",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/core-services",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/core-typings",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/models",
+      "resolved": "external"
+    },
+    {
+      "module": "meteor/meteor",
+      "resolved": "external"
+    },
+    {
+      "module": "../../../app/file-upload/server",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/app/file-upload/server/index.ts"
+    },
+    {
+      "module": "../../../app/lib/server/lib/notifyListener",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/app/lib/server/lib/notifyListener.ts"
+    },
+    {
+      "module": "../../../app/settings/server",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/app/settings/server/index.ts"
+    },
+    {
+      "module": "../authorization/canDeleteMessage",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/server/lib/authorization/canDeleteMessage.ts"
+    },
+    {
+      "module": "../callbacks",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/server/lib/callbacks.ts"
+    }
+  ]
+}

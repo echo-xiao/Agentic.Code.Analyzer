@@ -1,0 +1,61 @@
+{
+  "sourcePath": "/Users/echoooooo/Desktop/code/Rocket.Chat/ee/packages/federation-matrix/src/helpers/validateFederatedUsername.ts",
+  "symbols": [
+    {
+      "type": "function",
+      "name": "validateFederatedUsername",
+      "exported": true,
+      "line": 6,
+      "endLine": 76,
+      "signature": "export function validateFederatedUsername(mxid: string): mxid is UserID",
+      "calls": [
+        {
+          "name": "startsWith",
+          "edgeType": "call"
+        },
+        {
+          "name": "substring",
+          "edgeType": "call"
+        },
+        {
+          "name": "indexOf",
+          "edgeType": "call"
+        },
+        {
+          "name": "test",
+          "edgeType": "call"
+        },
+        {
+          "name": "lastIndexOf",
+          "edgeType": "call"
+        },
+        {
+          "name": "endsWith",
+          "edgeType": "call"
+        },
+        {
+          "name": "isIPv6",
+          "edgeType": "call"
+        },
+        {
+          "name": "isIPv4",
+          "edgeType": "call"
+        },
+        {
+          "name": "UserID",
+          "edgeType": "type"
+        }
+      ]
+    }
+  ],
+  "imports": [
+    {
+      "module": "node:net",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/federation-sdk",
+      "resolved": "external"
+    }
+  ]
+}

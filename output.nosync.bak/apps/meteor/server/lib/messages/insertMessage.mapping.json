@@ -1,0 +1,73 @@
+{
+  "sourcePath": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/server/lib/messages/insertMessage.ts",
+  "symbols": [
+    {
+      "type": "variable_function",
+      "name": "insertMessage",
+      "exported": true,
+      "line": 8,
+      "endLine": 48,
+      "signature": "async function ( user: Pick<IUser, '_id' | 'username'>, message: IMessage, rid: IRoom['_id'], upsert = false, ): Promise<IMessage | boolean>",
+      "calls": [
+        {
+          "name": "validateMessage",
+          "edgeType": "call"
+        },
+        {
+          "name": "prepareMessageObject",
+          "edgeType": "call"
+        },
+        {
+          "name": "parseUrlsInMessage",
+          "edgeType": "call"
+        },
+        {
+          "name": "findOneById",
+          "edgeType": "call"
+        },
+        {
+          "name": "updateOne",
+          "edgeType": "call"
+        },
+        {
+          "name": "insertOne",
+          "edgeType": "call"
+        },
+        {
+          "name": "incMsgCountById",
+          "edgeType": "call"
+        },
+        {
+          "name": "IUser",
+          "edgeType": "type"
+        },
+        {
+          "name": "IMessage",
+          "edgeType": "type"
+        },
+        {
+          "name": "IRoom",
+          "edgeType": "type"
+        }
+      ]
+    }
+  ],
+  "imports": [
+    {
+      "module": "@rocket.chat/core-typings",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/models",
+      "resolved": "external"
+    },
+    {
+      "module": "./parseUrlsInMessage",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/server/lib/messages/parseUrlsInMessage.ts"
+    },
+    {
+      "module": "./sendMessage",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/server/lib/messages/sendMessage.ts"
+    }
+  ]
+}

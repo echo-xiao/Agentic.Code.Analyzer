@@ -1,0 +1,63 @@
+{
+  "sourcePath": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/server/api/lib/integrations.ts",
+  "symbols": [
+    {
+      "type": "variable_function",
+      "name": "hasIntegrationsPermission",
+      "exported": false,
+      "line": 6,
+      "endLine": 18,
+      "signature": "async (userId: string, integration: IIntegration): Promise<boolean> =>",
+      "calls": [
+        {
+          "name": "hasPermissionAsync",
+          "edgeType": "call"
+        },
+        {
+          "name": "IIntegration",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "variable_function",
+      "name": "findOneIntegration",
+      "exported": true,
+      "line": 10,
+      "endLine": 30,
+      "signature": "async ({ userId, integrationId, createdBy, }: { userId: string; integrationId: string; createdBy?: IUser['_id']; }): Promise<IIntegration> =>",
+      "calls": [
+        {
+          "name": "findOneByIdAndCreatedByIfExists",
+          "edgeType": "call"
+        },
+        {
+          "name": "hasIntegrationsPermission",
+          "edgeType": "call"
+        },
+        {
+          "name": "IUser",
+          "edgeType": "type"
+        },
+        {
+          "name": "IIntegration",
+          "edgeType": "type"
+        }
+      ]
+    }
+  ],
+  "imports": [
+    {
+      "module": "@rocket.chat/core-typings",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/models",
+      "resolved": "external"
+    },
+    {
+      "module": "../../lib/authorization/hasPermission",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/server/lib/authorization/hasPermission.ts"
+    }
+  ]
+}

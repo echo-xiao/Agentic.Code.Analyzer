@@ -1,0 +1,121 @@
+{
+  "sourcePath": "/Users/echoooooo/Desktop/code/Rocket.Chat/ee/apps/account-service/src/Account.ts",
+  "symbols": [
+    {
+      "type": "class",
+      "name": "Account",
+      "exported": true,
+      "line": 8,
+      "endLine": 40,
+      "signature": "export class Account extends ServiceClass implements IAccount",
+      "calls": [
+        {
+          "name": "ServiceClass",
+          "edgeType": "type"
+        },
+        {
+          "name": "IAccount",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "login",
+      "exported": true,
+      "qualifiedName": "Account.login",
+      "line": 23,
+      "endLine": 29,
+      "signature": "async login({ resume }: { resume: string }): Promise<false | ILoginResult>",
+      "containerClass": "Account",
+      "calls": [
+        {
+          "name": "loginViaResume",
+          "edgeType": "call"
+        },
+        {
+          "name": "ILoginResult",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "logout",
+      "exported": true,
+      "qualifiedName": "Account.logout",
+      "line": 27,
+      "endLine": 29,
+      "signature": "async logout({ userId, token }: { userId: string; token: string }): Promise<void>",
+      "containerClass": "Account",
+      "calls": [
+        {
+          "name": "removeSession",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "started",
+      "exported": true,
+      "qualifiedName": "Account.started",
+      "line": 31,
+      "endLine": 35,
+      "signature": "override async started(): Promise<void>",
+      "containerClass": "Account",
+      "calls": [
+        {
+          "name": "get",
+          "edgeType": "call"
+        },
+        {
+          "name": "getLoginExpirationInDays",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "constructor",
+      "exported": true,
+      "qualifiedName": "Account.constructor",
+      "line": 13,
+      "endLine": 21,
+      "signature": "constructor()",
+      "containerClass": "Account",
+      "calls": [
+        {
+          "name": "onSettingChanged",
+          "edgeType": "call"
+        },
+        {
+          "name": "getLoginExpirationInDays",
+          "edgeType": "call"
+        }
+      ]
+    }
+  ],
+  "imports": [
+    {
+      "module": "@rocket.chat/core-services",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/core-services",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/tools",
+      "resolved": "external"
+    },
+    {
+      "module": "./lib/loginViaResume",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/ee/apps/account-service/src/lib/loginViaResume.ts"
+    },
+    {
+      "module": "./lib/removeSession",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/ee/apps/account-service/src/lib/removeSession.ts"
+    }
+  ]
+}

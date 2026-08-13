@@ -1,0 +1,492 @@
+{
+  "sourcePath": "/Users/echoooooo/Desktop/code/Rocket.Chat/packages/apps/src/server/bridges/MessageBridge.ts",
+  "symbols": [
+    {
+      "type": "class",
+      "name": "MessageBridge",
+      "exported": true,
+      "line": 15,
+      "endLine": 117,
+      "signature": "export abstract class MessageBridge extends BaseBridge",
+      "calls": [
+        {
+          "name": "BaseBridge",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "doCreate",
+      "exported": true,
+      "qualifiedName": "MessageBridge.doCreate",
+      "line": 16,
+      "endLine": 20,
+      "signature": "public async doCreate(message: IMessage, appId: string): Promise<string>",
+      "containerClass": "MessageBridge",
+      "calls": [
+        {
+          "name": "hasWritePermission",
+          "edgeType": "call"
+        },
+        {
+          "name": "create",
+          "edgeType": "call"
+        },
+        {
+          "name": "IMessage",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "doUpdate",
+      "exported": true,
+      "qualifiedName": "MessageBridge.doUpdate",
+      "line": 20,
+      "endLine": 24,
+      "signature": "public async doUpdate(message: IMessage, appId: string): Promise<void>",
+      "containerClass": "MessageBridge",
+      "calls": [
+        {
+          "name": "hasWritePermission",
+          "edgeType": "call"
+        },
+        {
+          "name": "update",
+          "edgeType": "call"
+        },
+        {
+          "name": "IMessage",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "doNotifyUser",
+      "exported": true,
+      "qualifiedName": "MessageBridge.doNotifyUser",
+      "line": 24,
+      "endLine": 28,
+      "signature": "public async doNotifyUser(user: IUser, message: IMessage, appId: string): Promise<void>",
+      "containerClass": "MessageBridge",
+      "calls": [
+        {
+          "name": "hasWritePermission",
+          "edgeType": "call"
+        },
+        {
+          "name": "notifyUser",
+          "edgeType": "call"
+        },
+        {
+          "name": "IUser",
+          "edgeType": "type"
+        },
+        {
+          "name": "IMessage",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "doNotifyRoom",
+      "exported": true,
+      "qualifiedName": "MessageBridge.doNotifyRoom",
+      "line": 28,
+      "endLine": 32,
+      "signature": "public async doNotifyRoom(room: IRoom, message: IMessage, appId: string): Promise<void>",
+      "containerClass": "MessageBridge",
+      "calls": [
+        {
+          "name": "hasWritePermission",
+          "edgeType": "call"
+        },
+        {
+          "name": "notifyRoom",
+          "edgeType": "call"
+        },
+        {
+          "name": "IRoom",
+          "edgeType": "type"
+        },
+        {
+          "name": "IMessage",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "doTyping",
+      "exported": true,
+      "qualifiedName": "MessageBridge.doTyping",
+      "line": 32,
+      "endLine": 36,
+      "signature": "public async doTyping(options: ITypingDescriptor, appId: string): Promise<void>",
+      "containerClass": "MessageBridge",
+      "calls": [
+        {
+          "name": "hasWritePermission",
+          "edgeType": "call"
+        },
+        {
+          "name": "typing",
+          "edgeType": "call"
+        },
+        {
+          "name": "ITypingDescriptor",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "doGetById",
+      "exported": true,
+      "qualifiedName": "MessageBridge.doGetById",
+      "line": 36,
+      "endLine": 40,
+      "signature": "public async doGetById(messageId: string, appId: string): Promise<IMessage>",
+      "containerClass": "MessageBridge",
+      "calls": [
+        {
+          "name": "hasReadPermission",
+          "edgeType": "call"
+        },
+        {
+          "name": "getById",
+          "edgeType": "call"
+        },
+        {
+          "name": "IMessage",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "doDelete",
+      "exported": true,
+      "qualifiedName": "MessageBridge.doDelete",
+      "line": 40,
+      "endLine": 44,
+      "signature": "public async doDelete(message: IMessage, user: IUser, appId: string): Promise<void>",
+      "containerClass": "MessageBridge",
+      "calls": [
+        {
+          "name": "hasWritePermission",
+          "edgeType": "call"
+        },
+        {
+          "name": "delete",
+          "edgeType": "call"
+        },
+        {
+          "name": "IMessage",
+          "edgeType": "type"
+        },
+        {
+          "name": "IUser",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "doAddReaction",
+      "exported": true,
+      "qualifiedName": "MessageBridge.doAddReaction",
+      "line": 44,
+      "endLine": 48,
+      "signature": "public async doAddReaction(messageId: string, userId: string, reaction: Reaction, appId: string): Promise<void>",
+      "containerClass": "MessageBridge",
+      "calls": [
+        {
+          "name": "hasWritePermission",
+          "edgeType": "call"
+        },
+        {
+          "name": "addReaction",
+          "edgeType": "call"
+        },
+        {
+          "name": "Reaction",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "doRemoveReaction",
+      "exported": true,
+      "qualifiedName": "MessageBridge.doRemoveReaction",
+      "line": 48,
+      "endLine": 52,
+      "signature": "public async doRemoveReaction(messageId: string, userId: string, reaction: Reaction, appId: string): Promise<void>",
+      "containerClass": "MessageBridge",
+      "calls": [
+        {
+          "name": "hasWritePermission",
+          "edgeType": "call"
+        },
+        {
+          "name": "removeReaction",
+          "edgeType": "call"
+        },
+        {
+          "name": "Reaction",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "create",
+      "exported": true,
+      "qualifiedName": "MessageBridge.create",
+      "line": 52,
+      "endLine": 52,
+      "signature": "protected abstract create(message: IMessage, appId: string): Promise<string>;",
+      "containerClass": "MessageBridge",
+      "calls": [
+        {
+          "name": "IMessage",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "update",
+      "exported": true,
+      "qualifiedName": "MessageBridge.update",
+      "line": 54,
+      "endLine": 54,
+      "signature": "protected abstract update(message: IMessage, appId: string): Promise<void>;",
+      "containerClass": "MessageBridge",
+      "calls": [
+        {
+          "name": "IMessage",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "notifyUser",
+      "exported": true,
+      "qualifiedName": "MessageBridge.notifyUser",
+      "line": 56,
+      "endLine": 56,
+      "signature": "protected abstract notifyUser(user: IUser, message: IMessage, appId: string): Promise<void>;",
+      "containerClass": "MessageBridge",
+      "calls": [
+        {
+          "name": "IUser",
+          "edgeType": "type"
+        },
+        {
+          "name": "IMessage",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "notifyRoom",
+      "exported": true,
+      "qualifiedName": "MessageBridge.notifyRoom",
+      "line": 58,
+      "endLine": 58,
+      "signature": "protected abstract notifyRoom(room: IRoom, message: IMessage, appId: string): Promise<void>;",
+      "containerClass": "MessageBridge",
+      "calls": [
+        {
+          "name": "IRoom",
+          "edgeType": "type"
+        },
+        {
+          "name": "IMessage",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "typing",
+      "exported": true,
+      "qualifiedName": "MessageBridge.typing",
+      "line": 60,
+      "endLine": 60,
+      "signature": "protected abstract typing(options: ITypingDescriptor, appId: string): Promise<void>;",
+      "containerClass": "MessageBridge",
+      "calls": [
+        {
+          "name": "ITypingDescriptor",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "getById",
+      "exported": true,
+      "qualifiedName": "MessageBridge.getById",
+      "line": 62,
+      "endLine": 62,
+      "signature": "protected abstract getById(messageId: string, appId: string): Promise<IMessage>;",
+      "containerClass": "MessageBridge",
+      "calls": [
+        {
+          "name": "IMessage",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "delete",
+      "exported": true,
+      "qualifiedName": "MessageBridge.delete",
+      "line": 64,
+      "endLine": 64,
+      "signature": "protected abstract delete(message: IMessage, user: IUser, appId: string): Promise<void>;",
+      "containerClass": "MessageBridge",
+      "calls": [
+        {
+          "name": "IMessage",
+          "edgeType": "type"
+        },
+        {
+          "name": "IUser",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "addReaction",
+      "exported": true,
+      "qualifiedName": "MessageBridge.addReaction",
+      "line": 66,
+      "endLine": 66,
+      "signature": "protected abstract addReaction(messageId: string, userId: string, reaction: Reaction): Promise<void>;",
+      "containerClass": "MessageBridge",
+      "calls": [
+        {
+          "name": "Reaction",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "removeReaction",
+      "exported": true,
+      "qualifiedName": "MessageBridge.removeReaction",
+      "line": 68,
+      "endLine": 68,
+      "signature": "protected abstract removeReaction(messageId: string, userId: string, reaction: Reaction): Promise<void>;",
+      "containerClass": "MessageBridge",
+      "calls": [
+        {
+          "name": "Reaction",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "hasReadPermission",
+      "exported": true,
+      "qualifiedName": "MessageBridge.hasReadPermission",
+      "line": 70,
+      "endLine": 83,
+      "signature": "private hasReadPermission(appId: string): boolean",
+      "containerClass": "MessageBridge",
+      "calls": [
+        {
+          "name": "hasPermission",
+          "edgeType": "call"
+        },
+        {
+          "name": "notifyAboutError",
+          "edgeType": "call"
+        },
+        {
+          "name": "PermissionDeniedError",
+          "edgeType": "new"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "hasWritePermission",
+      "exported": true,
+      "qualifiedName": "MessageBridge.hasWritePermission",
+      "line": 74,
+      "endLine": 87,
+      "signature": "private hasWritePermission(appId: string): boolean",
+      "containerClass": "MessageBridge",
+      "calls": [
+        {
+          "name": "hasPermission",
+          "edgeType": "call"
+        },
+        {
+          "name": "notifyAboutError",
+          "edgeType": "call"
+        },
+        {
+          "name": "PermissionDeniedError",
+          "edgeType": "new"
+        }
+      ]
+    },
+    {
+      "type": "interface",
+      "name": "ITypingDescriptor",
+      "line": 11,
+      "endLine": 13,
+      "signature": "export interface ITypingDescriptor extends ITypingOptions"
+    }
+  ],
+  "imports": [
+    {
+      "module": "@rocket.chat/apps-engine/definition/accessors/INotifier",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/apps-engine/definition/messages",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/apps-engine/definition/rooms",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/apps-engine/definition/users",
+      "resolved": "external"
+    },
+    {
+      "module": "./BaseBridge",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/packages/apps/src/server/bridges/BaseBridge.ts"
+    },
+    {
+      "module": "../errors/PermissionDeniedError",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/packages/apps/src/server/errors/PermissionDeniedError.ts"
+    },
+    {
+      "module": "../managers/AppPermissionManager",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/packages/apps/src/server/managers/AppPermissionManager.ts"
+    },
+    {
+      "module": "../permissions/AppPermissions",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/packages/apps/src/server/permissions/AppPermissions.ts"
+    }
+  ]
+}

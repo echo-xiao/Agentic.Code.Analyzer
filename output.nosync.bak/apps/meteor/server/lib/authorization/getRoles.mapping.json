@@ -1,0 +1,63 @@
+{
+  "sourcePath": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/server/lib/authorization/getRoles.ts",
+  "symbols": [
+    {
+      "type": "variable_function",
+      "name": "getRoles",
+      "exported": true,
+      "line": 4,
+      "endLine": 4,
+      "signature": "async (): Promise<IRole[]> =>",
+      "calls": [
+        {
+          "name": "toArray",
+          "edgeType": "call"
+        },
+        {
+          "name": "find",
+          "edgeType": "call"
+        },
+        {
+          "name": "IRole",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "variable_function",
+      "name": "getRoleIds",
+      "exported": true,
+      "line": 6,
+      "endLine": 7,
+      "signature": "async (): Promise<IRole['_id'][]> =>",
+      "calls": [
+        {
+          "name": "map",
+          "edgeType": "call"
+        },
+        {
+          "name": "toArray",
+          "edgeType": "call"
+        },
+        {
+          "name": "find",
+          "edgeType": "call"
+        },
+        {
+          "name": "IRole",
+          "edgeType": "type"
+        }
+      ]
+    }
+  ],
+  "imports": [
+    {
+      "module": "@rocket.chat/core-typings",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/models",
+      "resolved": "external"
+    }
+  ]
+}

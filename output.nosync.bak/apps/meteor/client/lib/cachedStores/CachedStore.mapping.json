@@ -1,0 +1,962 @@
+{
+  "sourcePath": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/client/lib/cachedStores/CachedStore.ts",
+  "symbols": [
+    {
+      "type": "module",
+      "name": "CachedStore",
+      "exported": false,
+      "line": 1,
+      "endLine": 404,
+      "signature": "CachedStore",
+      "calls": [
+        {
+          "name": "config",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "class",
+      "name": "CachedStore",
+      "exported": true,
+      "line": 44,
+      "endLine": 369,
+      "signature": "export abstract class CachedStore<T extends IRocketChatRecord, U = T> implements IWithManageableCache",
+      "calls": [
+        {
+          "name": "IWithManageableCache",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "getToken",
+      "exported": true,
+      "qualifiedName": "CachedStore.getToken",
+      "line": 86,
+      "endLine": 86,
+      "signature": "protected abstract getToken(): unknown;",
+      "containerClass": "CachedStore",
+      "calls": []
+    },
+    {
+      "type": "method",
+      "name": "loadFromCache",
+      "exported": true,
+      "qualifiedName": "CachedStore.loadFromCache",
+      "line": 88,
+      "endLine": 127,
+      "signature": "private async loadFromCache()",
+      "containerClass": "CachedStore",
+      "calls": [
+        {
+          "name": "getItem",
+          "edgeType": "call"
+        },
+        {
+          "name": "getToken",
+          "edgeType": "call"
+        },
+        {
+          "name": "now",
+          "edgeType": "call"
+        },
+        {
+          "name": "getTime",
+          "edgeType": "call"
+        },
+        {
+          "name": "log",
+          "edgeType": "call"
+        },
+        {
+          "name": "filter",
+          "edgeType": "call"
+        },
+        {
+          "name": "map",
+          "edgeType": "call"
+        },
+        {
+          "name": "deserializeFromCache",
+          "edgeType": "call"
+        },
+        {
+          "name": "max",
+          "edgeType": "call"
+        },
+        {
+          "name": "replaceAll",
+          "edgeType": "call"
+        },
+        {
+          "name": "getState",
+          "edgeType": "call"
+        },
+        {
+          "name": "Date",
+          "edgeType": "new"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "deserializeFromCache",
+      "exported": true,
+      "qualifiedName": "CachedStore.deserializeFromCache",
+      "line": 92,
+      "endLine": 103,
+      "signature": "protected deserializeFromCache(record: unknown): T | undefined",
+      "containerClass": "CachedStore",
+      "calls": [
+        {
+          "name": "hasUnserializedUpdatedAt",
+          "edgeType": "call"
+        },
+        {
+          "name": "Date",
+          "edgeType": "new"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "callLoad",
+      "exported": true,
+      "qualifiedName": "CachedStore.callLoad",
+      "line": 96,
+      "endLine": 100,
+      "signature": "private async callLoad()",
+      "containerClass": "CachedStore",
+      "calls": [
+        {
+          "name": "call",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "callSync",
+      "exported": true,
+      "qualifiedName": "CachedStore.callSync",
+      "line": 100,
+      "endLine": 104,
+      "signature": "private async callSync(updatedSince: Date)",
+      "containerClass": "CachedStore",
+      "calls": [
+        {
+          "name": "call",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "loadFromServer",
+      "exported": true,
+      "qualifiedName": "CachedStore.loadFromServer",
+      "line": 104,
+      "endLine": 124,
+      "signature": "private async loadFromServer()",
+      "containerClass": "CachedStore",
+      "calls": [
+        {
+          "name": "callLoad",
+          "edgeType": "call"
+        },
+        {
+          "name": "log",
+          "edgeType": "call"
+        },
+        {
+          "name": "map",
+          "edgeType": "call"
+        },
+        {
+          "name": "mapRecord",
+          "edgeType": "call"
+        },
+        {
+          "name": "hasUpdatedAt",
+          "edgeType": "call"
+        },
+        {
+          "name": "storeMany",
+          "edgeType": "call"
+        },
+        {
+          "name": "getState",
+          "edgeType": "call"
+        },
+        {
+          "name": "handleLoadedFromServer",
+          "edgeType": "call"
+        },
+        {
+          "name": "Date",
+          "edgeType": "new"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "mapRecord",
+      "exported": true,
+      "qualifiedName": "CachedStore.mapRecord",
+      "line": 108,
+      "endLine": 110,
+      "signature": "protected mapRecord(record: U): T",
+      "containerClass": "CachedStore",
+      "calls": []
+    },
+    {
+      "type": "method",
+      "name": "handleLoadedFromServer",
+      "exported": true,
+      "qualifiedName": "CachedStore.handleLoadedFromServer",
+      "line": 112,
+      "endLine": 114,
+      "signature": "protected handleLoadedFromServer(_records: T[]): void",
+      "containerClass": "CachedStore",
+      "calls": []
+    },
+    {
+      "type": "method",
+      "name": "handleSyncEvent",
+      "exported": true,
+      "qualifiedName": "CachedStore.handleSyncEvent",
+      "line": 116,
+      "endLine": 118,
+      "signature": "protected handleSyncEvent(_action: 'removed' | 'changed', _record: T): void",
+      "containerClass": "CachedStore",
+      "calls": []
+    },
+    {
+      "type": "method",
+      "name": "loadFromServerAndPopulate",
+      "exported": true,
+      "qualifiedName": "CachedStore.loadFromServerAndPopulate",
+      "line": 120,
+      "endLine": 123,
+      "signature": "private async loadFromServerAndPopulate()",
+      "containerClass": "CachedStore",
+      "calls": [
+        {
+          "name": "loadFromServer",
+          "edgeType": "call"
+        },
+        {
+          "name": "save",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "clearCacheOnLogout",
+      "exported": true,
+      "qualifiedName": "CachedStore.clearCacheOnLogout",
+      "line": 135,
+      "endLine": 135,
+      "signature": "abstract clearCacheOnLogout(): void;",
+      "containerClass": "CachedStore",
+      "calls": []
+    },
+    {
+      "type": "method",
+      "name": "clearCache",
+      "exported": true,
+      "qualifiedName": "CachedStore.clearCache",
+      "line": 137,
+      "endLine": 141,
+      "signature": "protected async clearCache()",
+      "containerClass": "CachedStore",
+      "calls": [
+        {
+          "name": "log",
+          "edgeType": "call"
+        },
+        {
+          "name": "removeItem",
+          "edgeType": "call"
+        },
+        {
+          "name": "replaceAll",
+          "edgeType": "call"
+        },
+        {
+          "name": "getState",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "setupListener",
+      "exported": true,
+      "qualifiedName": "CachedStore.setupListener",
+      "line": 141,
+      "endLine": 146,
+      "signature": "protected setupListener()",
+      "containerClass": "CachedStore",
+      "calls": [
+        {
+          "name": "stream",
+          "edgeType": "call"
+        },
+        {
+          "name": "log",
+          "edgeType": "call"
+        },
+        {
+          "name": "handleRecordEvent",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "handleRecordEvent",
+      "exported": true,
+      "qualifiedName": "CachedStore.handleRecordEvent",
+      "line": 145,
+      "endLine": 155,
+      "signature": "protected async handleRecordEvent(action: 'removed' | 'changed', record: U)",
+      "containerClass": "CachedStore",
+      "calls": [
+        {
+          "name": "mapRecord",
+          "edgeType": "call"
+        },
+        {
+          "name": "delete",
+          "edgeType": "call"
+        },
+        {
+          "name": "getState",
+          "edgeType": "call"
+        },
+        {
+          "name": "store",
+          "edgeType": "call"
+        },
+        {
+          "name": "save",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "trySync",
+      "exported": true,
+      "qualifiedName": "CachedStore.trySync",
+      "line": 149,
+      "endLine": 158,
+      "signature": "private trySync(delay = 10)",
+      "containerClass": "CachedStore",
+      "calls": [
+        {
+          "name": "sync",
+          "edgeType": "call"
+        },
+        {
+          "name": "trySync",
+          "edgeType": "call"
+        },
+        {
+          "name": "save",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "sync",
+      "exported": true,
+      "qualifiedName": "CachedStore.sync",
+      "line": 153,
+      "endLine": 217,
+      "signature": "protected async sync()",
+      "containerClass": "CachedStore",
+      "calls": [
+        {
+          "name": "getTime",
+          "edgeType": "call"
+        },
+        {
+          "name": "log",
+          "edgeType": "call"
+        },
+        {
+          "name": "callSync",
+          "edgeType": "call"
+        },
+        {
+          "name": "mapRecord",
+          "edgeType": "call"
+        },
+        {
+          "name": "hasUpdatedAt",
+          "edgeType": "call"
+        },
+        {
+          "name": "push",
+          "edgeType": "call"
+        },
+        {
+          "name": "store",
+          "edgeType": "call"
+        },
+        {
+          "name": "getState",
+          "edgeType": "call"
+        },
+        {
+          "name": "handleSyncEvent",
+          "edgeType": "call"
+        },
+        {
+          "name": "hasDeletedAt",
+          "edgeType": "call"
+        },
+        {
+          "name": "delete",
+          "edgeType": "call"
+        },
+        {
+          "name": "forEach",
+          "edgeType": "call"
+        },
+        {
+          "name": "sort",
+          "edgeType": "call"
+        },
+        {
+          "name": "action",
+          "edgeType": "call"
+        },
+        {
+          "name": "Date",
+          "edgeType": "new"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "performInitialization",
+      "exported": true,
+      "qualifiedName": "CachedStore.performInitialization",
+      "line": 159,
+      "endLine": 185,
+      "signature": "private async performInitialization()",
+      "containerClass": "CachedStore",
+      "calls": [
+        {
+          "name": "loadFromCache",
+          "edgeType": "call"
+        },
+        {
+          "name": "trySync",
+          "edgeType": "call"
+        },
+        {
+          "name": "loadFromServerAndPopulate",
+          "edgeType": "call"
+        },
+        {
+          "name": "reconnectionUnsubscribe",
+          "edgeType": "call"
+        },
+        {
+          "name": "getDdpSdk",
+          "edgeType": "call"
+        },
+        {
+          "name": "connection",
+          "edgeType": "event_listen"
+        },
+        {
+          "name": "setupListener",
+          "edgeType": "call"
+        },
+        {
+          "name": "stop",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "init",
+      "exported": true,
+      "qualifiedName": "CachedStore.init",
+      "line": 165,
+      "endLine": 178,
+      "signature": "init()",
+      "containerClass": "CachedStore",
+      "calls": [
+        {
+          "name": "finally",
+          "edgeType": "call"
+        },
+        {
+          "name": "catch",
+          "edgeType": "call"
+        },
+        {
+          "name": "performInitialization",
+          "edgeType": "call"
+        },
+        {
+          "name": "setReady",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "release",
+      "exported": true,
+      "qualifiedName": "CachedStore.release",
+      "line": 169,
+      "endLine": 176,
+      "signature": "async release()",
+      "containerClass": "CachedStore",
+      "calls": [
+        {
+          "name": "listenerUnsubscriber",
+          "edgeType": "call"
+        },
+        {
+          "name": "setReady",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "setReady",
+      "exported": true,
+      "qualifiedName": "CachedStore.setReady",
+      "line": 175,
+      "endLine": 177,
+      "signature": "setReady(ready: boolean)",
+      "containerClass": "CachedStore",
+      "calls": [
+        {
+          "name": "setState",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "constructor",
+      "exported": true,
+      "qualifiedName": "CachedStore.constructor",
+      "line": 67,
+      "endLine": 77,
+      "signature": "constructor({ name, eventType, store }: { name: Name; eventType: StreamNames; store: UseBoundStore<StoreApi<IDocumentMapStore<T>>> })",
+      "containerClass": "CachedStore",
+      "calls": [
+        {
+          "name": "includes",
+          "edgeType": "call"
+        },
+        {
+          "name": "getConfig",
+          "edgeType": "call"
+        },
+        {
+          "name": "bind",
+          "edgeType": "call"
+        },
+        {
+          "name": "register",
+          "edgeType": "call"
+        },
+        {
+          "name": "Name",
+          "edgeType": "type"
+        },
+        {
+          "name": "StreamNames",
+          "edgeType": "type"
+        },
+        {
+          "name": "UseBoundStore",
+          "edgeType": "type"
+        },
+        {
+          "name": "StoreApi",
+          "edgeType": "type"
+        },
+        {
+          "name": "IDocumentMapStore",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "class_property",
+      "name": "store",
+      "exported": true,
+      "qualifiedName": "CachedStore.store",
+      "line": 47,
+      "endLine": 47,
+      "signature": "readonly store: UseBoundStore<StoreApi<IDocumentMapStore<T>>>;",
+      "containerClass": "CachedStore",
+      "calls": [
+        {
+          "name": "UseBoundStore",
+          "edgeType": "type"
+        },
+        {
+          "name": "StoreApi",
+          "edgeType": "type"
+        },
+        {
+          "name": "IDocumentMapStore",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "class_property",
+      "name": "name",
+      "exported": true,
+      "qualifiedName": "CachedStore.name",
+      "line": 49,
+      "endLine": 49,
+      "signature": "protected name: Name;",
+      "containerClass": "CachedStore",
+      "calls": [
+        {
+          "name": "Name",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "class_property",
+      "name": "eventType",
+      "exported": true,
+      "qualifiedName": "CachedStore.eventType",
+      "line": 51,
+      "endLine": 51,
+      "signature": "protected eventType: StreamNames;",
+      "containerClass": "CachedStore",
+      "calls": [
+        {
+          "name": "StreamNames",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "class_property",
+      "name": "updatedAt",
+      "exported": true,
+      "qualifiedName": "CachedStore.updatedAt",
+      "line": 59,
+      "endLine": 59,
+      "signature": "private updatedAt = new Date(0);",
+      "containerClass": "CachedStore",
+      "calls": [
+        {
+          "name": "Date",
+          "edgeType": "new"
+        }
+      ]
+    },
+    {
+      "type": "class_property",
+      "name": "useReady",
+      "exported": true,
+      "qualifiedName": "CachedStore.useReady",
+      "line": 65,
+      "endLine": 65,
+      "signature": "readonly useReady = create(() => false);",
+      "containerClass": "CachedStore",
+      "calls": [
+        {
+          "name": "create",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "class_property",
+      "name": "save",
+      "exported": true,
+      "qualifiedName": "CachedStore.save",
+      "line": 116,
+      "endLine": 125,
+      "signature": "private save = withDebouncing(",
+      "containerClass": "CachedStore",
+      "calls": [
+        {
+          "name": "withDebouncing",
+          "edgeType": "call"
+        },
+        {
+          "name": "log",
+          "edgeType": "call"
+        },
+        {
+          "name": "setItem",
+          "edgeType": "call"
+        },
+        {
+          "name": "getToken",
+          "edgeType": "call"
+        },
+        {
+          "name": "from",
+          "edgeType": "call"
+        },
+        {
+          "name": "values",
+          "edgeType": "call"
+        },
+        {
+          "name": "getState",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "class",
+      "name": "PublicCachedStore",
+      "exported": true,
+      "line": 172,
+      "endLine": 180,
+      "signature": "export class PublicCachedStore<T extends IRocketChatRecord, U = T> extends CachedStore<T, U>",
+      "calls": [
+        {
+          "name": "CachedStore",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "getToken",
+      "exported": true,
+      "qualifiedName": "PublicCachedStore.getToken",
+      "line": 173,
+      "endLine": 175,
+      "signature": "protected override getToken()",
+      "containerClass": "PublicCachedStore",
+      "calls": []
+    },
+    {
+      "type": "method",
+      "name": "clearCacheOnLogout",
+      "exported": true,
+      "qualifiedName": "PublicCachedStore.clearCacheOnLogout",
+      "line": 177,
+      "endLine": 179,
+      "signature": "override clearCacheOnLogout()",
+      "containerClass": "PublicCachedStore",
+      "calls": []
+    },
+    {
+      "type": "class",
+      "name": "PrivateCachedStore",
+      "exported": true,
+      "line": 182,
+      "endLine": 204,
+      "signature": "export class PrivateCachedStore<T extends IRocketChatRecord, U = T> extends CachedStore<T, U>",
+      "calls": [
+        {
+          "name": "CachedStore",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "getToken",
+      "exported": true,
+      "qualifiedName": "PrivateCachedStore.getToken",
+      "line": 183,
+      "endLine": 185,
+      "signature": "protected override getToken()",
+      "containerClass": "PrivateCachedStore",
+      "calls": [
+        {
+          "name": "getStoredItem",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "clearCacheOnLogout",
+      "exported": true,
+      "qualifiedName": "PrivateCachedStore.clearCacheOnLogout",
+      "line": 187,
+      "endLine": 189,
+      "signature": "override clearCacheOnLogout()",
+      "containerClass": "PrivateCachedStore",
+      "calls": [
+        {
+          "name": "clearCache",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "listen",
+      "exported": true,
+      "qualifiedName": "PrivateCachedStore.listen",
+      "line": 191,
+      "endLine": 203,
+      "signature": "listen()",
+      "containerClass": "PrivateCachedStore",
+      "calls": [
+        {
+          "name": "onLoggedIn",
+          "edgeType": "call"
+        },
+        {
+          "name": "init",
+          "edgeType": "call"
+        },
+        {
+          "name": "onLogout",
+          "edgeType": "call"
+        },
+        {
+          "name": "getDdpSdk",
+          "edgeType": "call"
+        },
+        {
+          "name": "release",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "variable_function",
+      "name": "hasId",
+      "exported": false,
+      "line": 21,
+      "endLine": 21,
+      "signature": "<T>(record: T): record is T & { _id: string } =>",
+      "calls": []
+    },
+    {
+      "type": "variable_function",
+      "name": "hasUpdatedAt",
+      "exported": false,
+      "line": 22,
+      "endLine": 26,
+      "signature": "<T>(record: T): record is T & { _updatedAt: Date } =>",
+      "calls": []
+    },
+    {
+      "type": "variable_function",
+      "name": "hasDeletedAt",
+      "exported": false,
+      "line": 27,
+      "endLine": 31,
+      "signature": "<T>(record: T): record is T & { _deletedAt: Date } =>",
+      "calls": []
+    },
+    {
+      "type": "variable_function",
+      "name": "hasUnserializedUpdatedAt",
+      "exported": false,
+      "line": 32,
+      "endLine": 36,
+      "signature": "<T>(record: T): record is T & { _updatedAt: ConstructorParameters<typeof Date>[0] } =>",
+      "calls": []
+    },
+    {
+      "type": "interface",
+      "name": "IWithManageableCache",
+      "line": 40,
+      "endLine": 42,
+      "signature": "export interface IWithManageableCache"
+    },
+    {
+      "type": "type",
+      "name": "Name",
+      "line": 19,
+      "endLine": 19,
+      "signature": "type Name = 'rooms' | 'subscriptions' | 'permissions' | 'public-settings' | 'private-settings';"
+    }
+  ],
+  "imports": [
+    {
+      "module": "@rocket.chat/core-typings",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/ddp-client",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/tools",
+      "resolved": "external"
+    },
+    {
+      "module": "localforage",
+      "resolved": "external"
+    },
+    {
+      "module": "meteor/meteor",
+      "resolved": "external"
+    },
+    {
+      "module": "zustand",
+      "resolved": "external"
+    },
+    {
+      "module": "../baseURI",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/client/lib/baseURI.ts"
+    },
+    {
+      "module": "../loggedIn",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/client/lib/loggedIn.ts"
+    },
+    {
+      "module": "./CachedStoresManager",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/client/lib/cachedStores/CachedStoresManager.ts"
+    },
+    {
+      "module": "./DocumentMapStore",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/client/lib/cachedStores/DocumentMapStore.ts"
+    },
+    {
+      "module": "../../../app/utils/client/lib/SDKClient",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/app/utils/client/lib/SDKClient.ts"
+    },
+    {
+      "module": "../../../lib/utils/highOrderFunctions",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/lib/utils/highOrderFunctions.ts"
+    },
+    {
+      "module": "../sdk/ddpSdk",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/client/lib/sdk/ddpSdk.ts"
+    },
+    {
+      "module": "../sdk/storage",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/client/lib/sdk/storage.ts"
+    },
+    {
+      "module": "../user",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/client/lib/user.ts"
+    },
+    {
+      "module": "../utils/getConfig",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/client/lib/utils/getConfig.ts"
+    }
+  ]
+}

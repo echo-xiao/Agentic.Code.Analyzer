@@ -1,0 +1,205 @@
+{
+  "sourcePath": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/client/views/admin/invites/InviteRow.tsx",
+  "symbols": [
+    {
+      "type": "variable_function",
+      "name": "isExpired",
+      "exported": false,
+      "line": 12,
+      "endLine": 18,
+      "signature": "(expires: IInvite['expires']): boolean =>",
+      "calls": [
+        {
+          "name": "getTime",
+          "edgeType": "call"
+        },
+        {
+          "name": "Date",
+          "edgeType": "new"
+        },
+        {
+          "name": "IInvite",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "inner_function",
+      "name": "handleRemoveButtonClick",
+      "exported": false,
+      "qualifiedName": "InviteRow.handleRemoveButtonClick",
+      "line": 54,
+      "endLine": 57,
+      "signature": "async (event: MouseEvent<HTMLElement>): Promise<void> =>",
+      "calls": [
+        {
+          "name": "stopPropagation",
+          "edgeType": "call"
+        },
+        {
+          "name": "onRemove",
+          "edgeType": "call"
+        },
+        {
+          "name": "removeInvite",
+          "edgeType": "call"
+        },
+        {
+          "name": "MouseEvent",
+          "edgeType": "type"
+        },
+        {
+          "name": "HTMLElement",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "variable_function",
+      "name": "InviteRow",
+      "exported": false,
+      "line": 23,
+      "endLine": 81,
+      "signature": "({ _id, createdAt, expires, uses, maxUses, onRemove }: InviteRowProps) =>",
+      "calls": [
+        {
+          "name": "useTranslation",
+          "edgeType": "call"
+        },
+        {
+          "name": "useFormatDateAndTime",
+          "edgeType": "call"
+        },
+        {
+          "name": "useEndpoint",
+          "edgeType": "call"
+        },
+        {
+          "name": "useTimeFromNow",
+          "edgeType": "call"
+        },
+        {
+          "name": "isExpired",
+          "edgeType": "call"
+        },
+        {
+          "name": "getTimeFromNow",
+          "edgeType": "call"
+        },
+        {
+          "name": "stopPropagation",
+          "edgeType": "call"
+        },
+        {
+          "name": "onRemove",
+          "edgeType": "call"
+        },
+        {
+          "name": "removeInvite",
+          "edgeType": "call"
+        },
+        {
+          "name": "useMediaQuery",
+          "edgeType": "call"
+        },
+        {
+          "name": "formatDateAndTime",
+          "edgeType": "call"
+        },
+        {
+          "name": "daysToExpire",
+          "edgeType": "call"
+        },
+        {
+          "name": "maxUsesLeft",
+          "edgeType": "call"
+        },
+        {
+          "name": "GenericTableRow",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "GenericTableCell",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "Box",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "IconButton",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "handleRemoveButtonClick",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "Date",
+          "edgeType": "new"
+        },
+        {
+          "name": "InviteRowProps",
+          "edgeType": "type"
+        },
+        {
+          "name": "IInvite",
+          "edgeType": "type"
+        },
+        {
+          "name": "MouseEvent",
+          "edgeType": "type"
+        },
+        {
+          "name": "HTMLElement",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "type",
+      "name": "InviteRowProps",
+      "line": 16,
+      "endLine": 21,
+      "signature": "export type InviteRowProps = Omit<IInvite, 'createdAt' | 'expires' | '_updatedAt'> &"
+    }
+  ],
+  "imports": [
+    {
+      "module": "@rocket.chat/core-typings",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/fuselage",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/fuselage-hooks",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/ui-client",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/ui-contexts",
+      "resolved": "external"
+    },
+    {
+      "module": "react",
+      "resolved": "external"
+    },
+    {
+      "module": "react-i18next",
+      "resolved": "external"
+    },
+    {
+      "module": "../../../hooks/useFormatDateAndTime",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/client/hooks/useFormatDateAndTime.ts"
+    },
+    {
+      "module": "../../../hooks/useTimeFromNow",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/client/hooks/useTimeFromNow.ts"
+    }
+  ]
+}

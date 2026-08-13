@@ -1,0 +1,329 @@
+{
+  "sourcePath": "/Users/echoooooo/Desktop/code/Rocket.Chat/packages/server-fetch/src/helpers.ts",
+  "symbols": [
+    {
+      "type": "function",
+      "name": "nslookup",
+      "exported": true,
+      "line": 111,
+      "endLine": 118,
+      "signature": "export function nslookup(hostname: string): Promise<string>",
+      "calls": [
+        {
+          "name": "lookup",
+          "edgeType": "call"
+        },
+        {
+          "name": "reject",
+          "edgeType": "call"
+        },
+        {
+          "name": "resolve",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "function",
+      "name": "checkDirectIp",
+      "exported": true,
+      "line": 115,
+      "endLine": 117,
+      "signature": "export function checkDirectIp(ip: string): boolean",
+      "calls": [
+        {
+          "name": "test",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "function",
+      "name": "extractHostname",
+      "exported": true,
+      "line": 119,
+      "endLine": 129,
+      "signature": "export function extractHostname(urlString: string): string | null",
+      "calls": [
+        {
+          "name": "startsWith",
+          "edgeType": "call"
+        },
+        {
+          "name": "endsWith",
+          "edgeType": "call"
+        },
+        {
+          "name": "slice",
+          "edgeType": "call"
+        },
+        {
+          "name": "URL",
+          "edgeType": "new"
+        }
+      ]
+    },
+    {
+      "type": "function",
+      "name": "buildPinnedUrl",
+      "exported": true,
+      "line": 123,
+      "endLine": 150,
+      "signature": "export function buildPinnedUrl(originalUrl: string, resolvedIp: string): string",
+      "calls": [
+        {
+          "name": "match",
+          "edgeType": "call"
+        },
+        {
+          "name": "includes",
+          "edgeType": "call"
+        },
+        {
+          "name": "startsWith",
+          "edgeType": "call"
+        },
+        {
+          "name": "endsWith",
+          "edgeType": "call"
+        },
+        {
+          "name": "URL",
+          "edgeType": "new"
+        }
+      ]
+    },
+    {
+      "type": "variable_function",
+      "name": "isValidDomain",
+      "exported": true,
+      "line": 6,
+      "endLine": 6,
+      "signature": "(domain: string) =>",
+      "calls": [
+        {
+          "name": "test",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "variable_function",
+      "name": "unwrapBrackets",
+      "exported": true,
+      "line": 8,
+      "endLine": 8,
+      "signature": "(address: string) =>",
+      "calls": [
+        {
+          "name": "startsWith",
+          "edgeType": "call"
+        },
+        {
+          "name": "endsWith",
+          "edgeType": "call"
+        },
+        {
+          "name": "slice",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "variable_function",
+      "name": "isIpValid",
+      "exported": true,
+      "line": 10,
+      "endLine": 10,
+      "signature": "(ip: string): boolean =>",
+      "calls": [
+        {
+          "name": "isIP",
+          "edgeType": "call"
+        },
+        {
+          "name": "unwrapBrackets",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "variable_function",
+      "name": "isIpInCidrRange",
+      "exported": true,
+      "line": 12,
+      "endLine": 59,
+      "signature": "(ip: string, cidr: string): boolean =>",
+      "calls": [
+        {
+          "name": "split",
+          "edgeType": "call"
+        },
+        {
+          "name": "unwrapBrackets",
+          "edgeType": "call"
+        },
+        {
+          "name": "isIPv4",
+          "edgeType": "call"
+        },
+        {
+          "name": "reduce",
+          "edgeType": "call"
+        },
+        {
+          "name": "toNum",
+          "edgeType": "call"
+        },
+        {
+          "name": "isIPv6",
+          "edgeType": "call"
+        },
+        {
+          "name": "filter",
+          "edgeType": "call"
+        },
+        {
+          "name": "includes",
+          "edgeType": "call"
+        },
+        {
+          "name": "push",
+          "edgeType": "call"
+        },
+        {
+          "name": "BigInt",
+          "edgeType": "call"
+        },
+        {
+          "name": "toBigInt",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "variable_function",
+      "name": "isIpInAnyRange",
+      "exported": true,
+      "line": 16,
+      "endLine": 19,
+      "signature": "(ip: string): boolean =>",
+      "calls": [
+        {
+          "name": "includes",
+          "edgeType": "call"
+        },
+        {
+          "name": "some",
+          "edgeType": "call"
+        },
+        {
+          "name": "isIpInCidrRange",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "variable_function",
+      "name": "normalizeAllowlistEntry",
+      "exported": true,
+      "line": 20,
+      "endLine": 35,
+      "signature": "(entry: string): string =>",
+      "calls": [
+        {
+          "name": "trim",
+          "edgeType": "call"
+        },
+        {
+          "name": "isValidDomain",
+          "edgeType": "call"
+        },
+        {
+          "name": "toLowerCase",
+          "edgeType": "call"
+        },
+        {
+          "name": "startsWith",
+          "edgeType": "call"
+        },
+        {
+          "name": "includes",
+          "edgeType": "call"
+        },
+        {
+          "name": "isIPv6",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "variable_function",
+      "name": "normalizeHostForAllowlistMatch",
+      "exported": true,
+      "line": 24,
+      "endLine": 32,
+      "signature": "(hostOrIp: string): string =>",
+      "calls": [
+        {
+          "name": "startsWith",
+          "edgeType": "call"
+        },
+        {
+          "name": "includes",
+          "edgeType": "call"
+        },
+        {
+          "name": "isIPv6",
+          "edgeType": "call"
+        },
+        {
+          "name": "toLowerCase",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "variable_function",
+      "name": "parseIpv4WithPort",
+      "exported": true,
+      "line": 28,
+      "endLine": 34,
+      "signature": "(input: string): { ip: string; port?: string } | null =>",
+      "calls": [
+        {
+          "name": "match",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "variable_function",
+      "name": "allowlistedIpResolved",
+      "exported": true,
+      "line": 32,
+      "endLine": 40,
+      "signature": "(ipOrDomain: string, port: string | undefined, wasUrlParsed: boolean): string =>",
+      "calls": [
+        {
+          "name": "includes",
+          "edgeType": "call"
+        }
+      ]
+    }
+  ],
+  "imports": [
+    {
+      "module": "node:dns",
+      "resolved": "external"
+    },
+    {
+      "module": "node:net",
+      "resolved": "external"
+    },
+    {
+      "module": "./constants",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/packages/server-fetch/src/constants.ts"
+    }
+  ]
+}

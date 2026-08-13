@@ -1,0 +1,61 @@
+{
+  "sourcePath": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/server/configuration/ldap.ts",
+  "symbols": [
+    {
+      "type": "function",
+      "name": "configureLDAP",
+      "exported": true,
+      "line": 7,
+      "endLine": 52,
+      "signature": "export async function configureLDAP(settings: ICachedSettings): Promise<void>",
+      "calls": [
+        {
+          "name": "registerLoginHandler",
+          "edgeType": "call"
+        },
+        {
+          "name": "loginRequest",
+          "edgeType": "call"
+        },
+        {
+          "name": "watch",
+          "edgeType": "call"
+        },
+        {
+          "name": "remove",
+          "edgeType": "call"
+        },
+        {
+          "name": "beforeValidateLogin",
+          "edgeType": "event_listen"
+        },
+        {
+          "name": "get",
+          "edgeType": "call"
+        },
+        {
+          "name": "ICachedSettings",
+          "edgeType": "type"
+        }
+      ]
+    }
+  ],
+  "imports": [
+    {
+      "module": "@rocket.chat/core-services",
+      "resolved": "external"
+    },
+    {
+      "module": "meteor/accounts-base",
+      "resolved": "external"
+    },
+    {
+      "module": "../../app/settings/server/CachedSettings",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/app/settings/server/CachedSettings.ts"
+    },
+    {
+      "module": "../lib/callbacks",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/server/lib/callbacks.ts"
+    }
+  ]
+}

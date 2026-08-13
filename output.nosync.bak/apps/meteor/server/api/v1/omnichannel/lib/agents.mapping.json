@@ -1,0 +1,37 @@
+{
+  "sourcePath": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/server/api/v1/omnichannel/lib/agents.ts",
+  "symbols": [
+    {
+      "type": "function",
+      "name": "findAgentDepartments",
+      "exported": true,
+      "line": 4,
+      "endLine": 14,
+      "signature": "export async function findAgentDepartments({ enabledDepartmentsOnly, agentId, }: { enabledDepartmentsOnly?: boolean; agentId: string; }): Promise<{ departments: (ILivechatDepartmentAgents & { departmentName: string })[] }>",
+      "calls": [
+        {
+          "name": "toArray",
+          "edgeType": "call"
+        },
+        {
+          "name": "findDepartmentsOfAgent",
+          "edgeType": "call"
+        },
+        {
+          "name": "ILivechatDepartmentAgents",
+          "edgeType": "type"
+        }
+      ]
+    }
+  ],
+  "imports": [
+    {
+      "module": "@rocket.chat/core-typings",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/models",
+      "resolved": "external"
+    }
+  ]
+}

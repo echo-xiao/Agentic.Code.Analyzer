@@ -1,0 +1,350 @@
+{
+  "sourcePath": "/Users/echoooooo/Desktop/code/Rocket.Chat/packages/cron/src/index.ts",
+  "symbols": [
+    {
+      "type": "class",
+      "name": "AgendaCronJobs",
+      "exported": true,
+      "line": 56,
+      "endLine": 198,
+      "signature": "export class AgendaCronJobs",
+      "calls": []
+    },
+    {
+      "type": "method",
+      "name": "start",
+      "exported": true,
+      "qualifiedName": "AgendaCronJobs.start",
+      "line": 65,
+      "endLine": 142,
+      "signature": "public async start(mongo: Db): Promise<void>",
+      "containerClass": "AgendaCronJobs",
+      "calls": [
+        {
+          "name": "start",
+          "edgeType": "event_listen"
+        },
+        {
+          "name": "debug",
+          "edgeType": "call"
+        },
+        {
+          "name": "complete",
+          "edgeType": "event_listen"
+        },
+        {
+          "name": "info",
+          "edgeType": "call"
+        },
+        {
+          "name": "getTime",
+          "edgeType": "call"
+        },
+        {
+          "name": "success",
+          "edgeType": "event_listen"
+        },
+        {
+          "name": "fail",
+          "edgeType": "event_listen"
+        },
+        {
+          "name": "error",
+          "edgeType": "call"
+        },
+        {
+          "name": "error:database",
+          "edgeType": "event_listen"
+        },
+        {
+          "name": "error",
+          "edgeType": "event_listen"
+        },
+        {
+          "name": "ready",
+          "edgeType": "event_listen"
+        },
+        {
+          "name": "start",
+          "edgeType": "call"
+        },
+        {
+          "name": "addAtTimestamp",
+          "edgeType": "call"
+        },
+        {
+          "name": "Agenda",
+          "edgeType": "new"
+        },
+        {
+          "name": "Db",
+          "edgeType": "type"
+        },
+        {
+          "name": "Job",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "add",
+      "exported": true,
+      "qualifiedName": "AgendaCronJobs.add",
+      "line": 69,
+      "endLine": 77,
+      "signature": "public async add(name: string, schedule: string, callback: () => any | Promise<any>): Promise<void>",
+      "containerClass": "AgendaCronJobs",
+      "calls": [
+        {
+          "name": "reserve",
+          "edgeType": "call"
+        },
+        {
+          "name": "define",
+          "edgeType": "call"
+        },
+        {
+          "name": "every",
+          "edgeType": "call"
+        },
+        {
+          "name": "debug",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "addAtTimestamp",
+      "exported": true,
+      "qualifiedName": "AgendaCronJobs.addAtTimestamp",
+      "line": 73,
+      "endLine": 81,
+      "signature": "public async addAtTimestamp(name: string, when: Date, callback: () => any | Promise<any>): Promise<void>",
+      "containerClass": "AgendaCronJobs",
+      "calls": [
+        {
+          "name": "reserve",
+          "edgeType": "call"
+        },
+        {
+          "name": "define",
+          "edgeType": "call"
+        },
+        {
+          "name": "schedule",
+          "edgeType": "call"
+        },
+        {
+          "name": "debug",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "remove",
+      "exported": true,
+      "qualifiedName": "AgendaCronJobs.remove",
+      "line": 77,
+      "endLine": 84,
+      "signature": "public async remove(name: string): Promise<void>",
+      "containerClass": "AgendaCronJobs",
+      "calls": [
+        {
+          "name": "unreserve",
+          "edgeType": "call"
+        },
+        {
+          "name": "cancel",
+          "edgeType": "call"
+        },
+        {
+          "name": "debug",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "has",
+      "exported": true,
+      "qualifiedName": "AgendaCronJobs.has",
+      "line": 81,
+      "endLine": 87,
+      "signature": "public async has(jobName: string): Promise<boolean>",
+      "containerClass": "AgendaCronJobs",
+      "calls": [
+        {
+          "name": "Boolean",
+          "edgeType": "call"
+        },
+        {
+          "name": "find",
+          "edgeType": "call"
+        },
+        {
+          "name": "has",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "reserve",
+      "exported": true,
+      "qualifiedName": "AgendaCronJobs.reserve",
+      "line": 85,
+      "endLine": 87,
+      "signature": "private async reserve(config: ReservedJob): Promise<void>",
+      "containerClass": "AgendaCronJobs",
+      "calls": [
+        {
+          "name": "ReservedJob",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "unreserve",
+      "exported": true,
+      "qualifiedName": "AgendaCronJobs.unreserve",
+      "line": 89,
+      "endLine": 91,
+      "signature": "private async unreserve(jobName: string): Promise<void>",
+      "containerClass": "AgendaCronJobs",
+      "calls": [
+        {
+          "name": "filter",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "define",
+      "exported": true,
+      "qualifiedName": "AgendaCronJobs.define",
+      "line": 93,
+      "endLine": 101,
+      "signature": "private async define(jobName: string, callback: () => any | Promise<any>): Promise<void>",
+      "containerClass": "AgendaCronJobs",
+      "calls": [
+        {
+          "name": "define",
+          "edgeType": "call"
+        },
+        {
+          "name": "runCronJobFunctionAndPersistResult",
+          "edgeType": "call"
+        },
+        {
+          "name": "callback",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "class_property",
+      "name": "reservedJobs",
+      "exported": true,
+      "qualifiedName": "AgendaCronJobs.reservedJobs",
+      "line": 57,
+      "endLine": 57,
+      "signature": "private reservedJobs: ReservedJob[] = [];",
+      "containerClass": "AgendaCronJobs",
+      "calls": [
+        {
+          "name": "ReservedJob",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "class_property",
+      "name": "scheduler",
+      "exported": true,
+      "qualifiedName": "AgendaCronJobs.scheduler",
+      "line": 59,
+      "endLine": 59,
+      "signature": "private scheduler: Agenda | undefined;",
+      "containerClass": "AgendaCronJobs",
+      "calls": [
+        {
+          "name": "Agenda",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "variable_function",
+      "name": "runCronJobFunctionAndPersistResult",
+      "exported": false,
+      "line": 9,
+      "endLine": 40,
+      "signature": "async (fn: () => Promise<any>, jobName: string): Promise<void> =>",
+      "calls": [
+        {
+          "name": "insertOne",
+          "edgeType": "call"
+        },
+        {
+          "name": "id",
+          "edgeType": "call"
+        },
+        {
+          "name": "fn",
+          "edgeType": "call"
+        },
+        {
+          "name": "updateOne",
+          "edgeType": "call"
+        },
+        {
+          "name": "Date",
+          "edgeType": "new"
+        }
+      ]
+    },
+    {
+      "type": "variable",
+      "name": "cronJobs",
+      "exported": true,
+      "line": 69,
+      "endLine": 69,
+      "signature": "cronJobs = new AgendaCronJobs()",
+      "calls": []
+    },
+    {
+      "type": "type",
+      "name": "ReservedJob",
+      "line": 13,
+      "endLine": 25,
+      "signature": "type ReservedJob ="
+    }
+  ],
+  "imports": [
+    {
+      "module": "@rocket.chat/agenda",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/logger",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/models",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/random",
+      "resolved": "external"
+    },
+    {
+      "module": "mongodb",
+      "resolved": "external"
+    }
+  ]
+}

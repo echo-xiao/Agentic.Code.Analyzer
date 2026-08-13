@@ -1,0 +1,45 @@
+{
+  "sourcePath": "/Users/echoooooo/Desktop/code/Rocket.Chat/ee/packages/license/src/events/deprecated.ts",
+  "symbols": [
+    {
+      "type": "function",
+      "name": "onLicense",
+      "exported": true,
+      "line": 7,
+      "endLine": 13,
+      "signature": "export function onLicense(this: LicenseManager, feature: LicenseModule, cb: (...args: any[]) => void): void | Promise<void>",
+      "calls": [
+        {
+          "name": "call",
+          "edgeType": "call"
+        },
+        {
+          "name": "cb",
+          "edgeType": "call"
+        },
+        {
+          "name": "LicenseManager",
+          "edgeType": "type"
+        },
+        {
+          "name": "LicenseModule",
+          "edgeType": "type"
+        }
+      ]
+    }
+  ],
+  "imports": [
+    {
+      "module": "@rocket.chat/core-typings",
+      "resolved": "external"
+    },
+    {
+      "module": "../license",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/ee/packages/license/src/license.ts"
+    },
+    {
+      "module": "../modules",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/ee/packages/license/src/modules.ts"
+    }
+  ]
+}

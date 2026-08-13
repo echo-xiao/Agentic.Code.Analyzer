@@ -1,0 +1,159 @@
+{
+  "sourcePath": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/client/components/connectionStatus/ConnectionStatusBar.stories.tsx",
+  "symbols": [
+    {
+      "type": "module",
+      "name": "ConnectionStatusBar.stories",
+      "exported": false,
+      "line": 1,
+      "endLine": 85,
+      "signature": "ConnectionStatusBar.stories",
+      "calls": [
+        {
+          "name": "Meta",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "variable_function",
+      "name": "stateDecorator",
+      "exported": false,
+      "line": 15,
+      "endLine": 22,
+      "signature": "(value: Partial<ServerContextValue>) =>",
+      "calls": [
+        {
+          "name": "buildStoryDecorator",
+          "edgeType": "call"
+        },
+        {
+          "name": "withServerContext",
+          "edgeType": "call"
+        },
+        {
+          "name": "mockAppRoot",
+          "edgeType": "call"
+        },
+        {
+          "name": "action",
+          "edgeType": "call"
+        },
+        {
+          "name": "ServerContextValue",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "variable_function",
+      "name": "Template",
+      "exported": false,
+      "line": 24,
+      "endLine": 24,
+      "signature": "() =>",
+      "calls": [
+        {
+          "name": "ConnectionStatusBar",
+          "edgeType": "jsx"
+        }
+      ]
+    },
+    {
+      "type": "variable",
+      "name": "Connected",
+      "exported": true,
+      "line": 26,
+      "endLine": 36,
+      "signature": "Connected =",
+      "calls": [
+        {
+          "name": "stateDecorator",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "variable",
+      "name": "Connecting",
+      "exported": true,
+      "line": 38,
+      "endLine": 48,
+      "signature": "Connecting =",
+      "calls": [
+        {
+          "name": "stateDecorator",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "variable",
+      "name": "Failed",
+      "exported": true,
+      "line": 50,
+      "endLine": 60,
+      "signature": "Failed =",
+      "calls": [
+        {
+          "name": "stateDecorator",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "variable",
+      "name": "Waiting",
+      "exported": true,
+      "line": 62,
+      "endLine": 72,
+      "signature": "Waiting =",
+      "calls": [
+        {
+          "name": "stateDecorator",
+          "edgeType": "call"
+        },
+        {
+          "name": "now",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "variable",
+      "name": "Offline",
+      "exported": true,
+      "line": 74,
+      "endLine": 84,
+      "signature": "Offline =",
+      "calls": [
+        {
+          "name": "stateDecorator",
+          "edgeType": "call"
+        }
+      ]
+    }
+  ],
+  "imports": [
+    {
+      "module": "@rocket.chat/mock-providers",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/ui-contexts",
+      "resolved": "external"
+    },
+    {
+      "module": "@storybook/react",
+      "resolved": "external"
+    },
+    {
+      "module": "storybook/actions",
+      "resolved": "external"
+    },
+    {
+      "module": "./ConnectionStatusBar",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/client/components/connectionStatus/ConnectionStatusBar.tsx"
+    }
+  ]
+}

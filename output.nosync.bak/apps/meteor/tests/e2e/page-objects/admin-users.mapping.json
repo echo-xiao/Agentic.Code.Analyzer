@@ -1,0 +1,292 @@
+{
+  "sourcePath": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/tests/e2e/page-objects/admin-users.ts",
+  "symbols": [
+    {
+      "type": "class",
+      "name": "AdminUsers",
+      "exported": true,
+      "line": 9,
+      "endLine": 71,
+      "signature": "export class AdminUsers extends Admin",
+      "calls": [
+        {
+          "name": "Admin",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "getUserRowByUsername",
+      "exported": true,
+      "qualifiedName": "AdminUsers.getUserRowByUsername",
+      "line": 39,
+      "endLine": 41,
+      "signature": "getUserRowByUsername(username: string): Locator",
+      "containerClass": "AdminUsers",
+      "calls": [
+        {
+          "name": "first",
+          "edgeType": "call"
+        },
+        {
+          "name": "locator",
+          "edgeType": "call"
+        },
+        {
+          "name": "Locator",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "getTabByName",
+      "exported": true,
+      "qualifiedName": "AdminUsers.getTabByName",
+      "line": 43,
+      "endLine": 45,
+      "signature": "getTabByName(name: 'All' | 'Pending' | 'Active' | 'Deactivated' = 'All'): Locator",
+      "containerClass": "AdminUsers",
+      "calls": [
+        {
+          "name": "getByRole",
+          "edgeType": "call"
+        },
+        {
+          "name": "Locator",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "openUserActionMenu",
+      "exported": true,
+      "qualifiedName": "AdminUsers.openUserActionMenu",
+      "line": 47,
+      "endLine": 49,
+      "signature": "private async openUserActionMenu(username: string): Promise<void>",
+      "containerClass": "AdminUsers",
+      "calls": [
+        {
+          "name": "click",
+          "edgeType": "call"
+        },
+        {
+          "name": "getByRole",
+          "edgeType": "call"
+        },
+        {
+          "name": "getUserRowByUsername",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "dispatchUserAction",
+      "exported": true,
+      "qualifiedName": "AdminUsers.dispatchUserAction",
+      "line": 51,
+      "endLine": 54,
+      "signature": "async dispatchUserAction(username: string, action: UserActions)",
+      "containerClass": "AdminUsers",
+      "calls": [
+        {
+          "name": "openUserActionMenu",
+          "edgeType": "call"
+        },
+        {
+          "name": "click",
+          "edgeType": "call"
+        },
+        {
+          "name": "getByRole",
+          "edgeType": "call"
+        },
+        {
+          "name": "UserActions",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "activatePendingUser",
+      "exported": true,
+      "qualifiedName": "AdminUsers.activatePendingUser",
+      "line": 55,
+      "endLine": 57,
+      "signature": "async activatePendingUser(username: string): Promise<void>",
+      "containerClass": "AdminUsers",
+      "calls": [
+        {
+          "name": "click",
+          "edgeType": "call"
+        },
+        {
+          "name": "getByRole",
+          "edgeType": "call"
+        },
+        {
+          "name": "getUserRowByUsername",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "deleteUser",
+      "exported": true,
+      "qualifiedName": "AdminUsers.deleteUser",
+      "line": 59,
+      "endLine": 64,
+      "signature": "async deleteUser(username: string): Promise<void>",
+      "containerClass": "AdminUsers",
+      "calls": [
+        {
+          "name": "searchUser",
+          "edgeType": "call"
+        },
+        {
+          "name": "click",
+          "edgeType": "call"
+        },
+        {
+          "name": "getUserRowByUsername",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "searchUser",
+      "exported": true,
+      "qualifiedName": "AdminUsers.searchUser",
+      "line": 63,
+      "endLine": 66,
+      "signature": "async searchUser(username: string): Promise<void>",
+      "containerClass": "AdminUsers",
+      "calls": [
+        {
+          "name": "fill",
+          "edgeType": "call"
+        },
+        {
+          "name": "toHaveCount",
+          "edgeType": "call"
+        },
+        {
+          "name": "expect",
+          "edgeType": "call"
+        },
+        {
+          "name": "getUserRowByUsername",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "constructor",
+      "exported": true,
+      "qualifiedName": "AdminUsers.constructor",
+      "line": 16,
+      "endLine": 21,
+      "signature": "constructor(page: Page)",
+      "containerClass": "AdminUsers",
+      "calls": [
+        {
+          "name": "EditUserFlexTab",
+          "edgeType": "new"
+        },
+        {
+          "name": "UserInfoFlexTab",
+          "edgeType": "new"
+        },
+        {
+          "name": "MenuMoreActions",
+          "edgeType": "new"
+        },
+        {
+          "name": "Page",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "class_property",
+      "name": "editUser",
+      "exported": true,
+      "qualifiedName": "AdminUsers.editUser",
+      "line": 10,
+      "endLine": 10,
+      "signature": "readonly editUser: EditUserFlexTab;",
+      "containerClass": "AdminUsers",
+      "calls": [
+        {
+          "name": "EditUserFlexTab",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "class_property",
+      "name": "userInfo",
+      "exported": true,
+      "qualifiedName": "AdminUsers.userInfo",
+      "line": 12,
+      "endLine": 12,
+      "signature": "readonly userInfo: UserInfoFlexTab;",
+      "containerClass": "AdminUsers",
+      "calls": [
+        {
+          "name": "UserInfoFlexTab",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "class_property",
+      "name": "userRowMenu",
+      "exported": true,
+      "qualifiedName": "AdminUsers.userRowMenu",
+      "line": 14,
+      "endLine": 14,
+      "signature": "readonly userRowMenu: MenuMoreActions;",
+      "containerClass": "AdminUsers",
+      "calls": [
+        {
+          "name": "MenuMoreActions",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "type",
+      "name": "UserActions",
+      "line": 7,
+      "endLine": 7,
+      "signature": "type UserActions = 'Make Admin' | 'Remove Admin' | 'Activate' | 'Deactivate';"
+    }
+  ],
+  "imports": [
+    {
+      "module": "@playwright/test",
+      "resolved": "external"
+    },
+    {
+      "module": "./admin",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/tests/e2e/page-objects/admin.ts"
+    },
+    {
+      "module": "./fragments",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/tests/e2e/page-objects/fragments/index.ts"
+    },
+    {
+      "module": "../utils/test",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/tests/e2e/utils/test.ts"
+    }
+  ]
+}

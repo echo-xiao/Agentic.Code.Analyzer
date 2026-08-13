@@ -1,0 +1,64 @@
+{
+  "sourcePath": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/uikit-playground/src/Components/PersistStore/PersistStore.tsx",
+  "symbols": [
+    {
+      "type": "inner_function",
+      "name": "handleBeforeUnload",
+      "exported": false,
+      "qualifiedName": "PersistStore.handleBeforeUnload",
+      "line": 10,
+      "endLine": 12,
+      "signature": "() =>",
+      "calls": [
+        {
+          "name": "persistStore",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "variable_function",
+      "name": "PersistStore",
+      "exported": false,
+      "line": 6,
+      "endLine": 22,
+      "signature": "(props: ComponentProps<'div'>) =>",
+      "calls": [
+        {
+          "name": "useContext",
+          "edgeType": "call"
+        },
+        {
+          "name": "useEffect",
+          "edgeType": "call"
+        },
+        {
+          "name": "persistStore",
+          "edgeType": "call"
+        },
+        {
+          "name": "Fragment",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "ComponentProps",
+          "edgeType": "type"
+        }
+      ]
+    }
+  ],
+  "imports": [
+    {
+      "module": "react",
+      "resolved": "external"
+    },
+    {
+      "module": "../../Context",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/uikit-playground/src/Context/index.tsx"
+    },
+    {
+      "module": "../../utils/persistStore",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/uikit-playground/src/utils/persistStore.ts"
+    }
+  ]
+}

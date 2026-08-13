@@ -1,0 +1,55 @@
+{
+  "sourcePath": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/client/views/account/accessibility/hooks/useCreateFontStyleElement.ts",
+  "symbols": [
+    {
+      "type": "variable_function",
+      "name": "createStyleElement",
+      "exported": false,
+      "line": 3,
+      "endLine": 11,
+      "signature": "(id: string) =>",
+      "calls": [
+        {
+          "name": "getElementById",
+          "edgeType": "call"
+        },
+        {
+          "name": "createElement",
+          "edgeType": "call"
+        },
+        {
+          "name": "setAttribute",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "variable_function",
+      "name": "useCreateFontStyleElement",
+      "exported": true,
+      "line": 7,
+      "endLine": 14,
+      "signature": "(): ((fontSize: string) => void) =>",
+      "calls": [
+        {
+          "name": "useCallback",
+          "edgeType": "call"
+        },
+        {
+          "name": "createStyleElement",
+          "edgeType": "call"
+        },
+        {
+          "name": "appendChild",
+          "edgeType": "call"
+        }
+      ]
+    }
+  ],
+  "imports": [
+    {
+      "module": "react",
+      "resolved": "external"
+    }
+  ]
+}

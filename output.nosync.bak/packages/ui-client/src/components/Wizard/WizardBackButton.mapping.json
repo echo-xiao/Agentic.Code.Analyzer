@@ -1,0 +1,111 @@
+{
+  "sourcePath": "/Users/echoooooo/Desktop/code/Rocket.Chat/packages/ui-client/src/components/Wizard/WizardBackButton.tsx",
+  "symbols": [
+    {
+      "type": "inner_function",
+      "name": "handleClick",
+      "exported": false,
+      "qualifiedName": "WizardBackButton.handleClick",
+      "line": 40,
+      "endLine": 48,
+      "signature": "async (event: MouseEvent<HTMLButtonElement>) =>",
+      "calls": [
+        {
+          "name": "onClick",
+          "edgeType": "call"
+        },
+        {
+          "name": "isDefaultPrevented",
+          "edgeType": "call"
+        },
+        {
+          "name": "previous",
+          "edgeType": "call"
+        },
+        {
+          "name": "MouseEvent",
+          "edgeType": "type"
+        },
+        {
+          "name": "HTMLButtonElement",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "variable_function",
+      "name": "WizardBackButton",
+      "exported": false,
+      "line": 36,
+      "endLine": 55,
+      "signature": "({ children, disabled, manual, onClick, ...props }: WizardBackButtonProps) =>",
+      "calls": [
+        {
+          "name": "useTranslation",
+          "edgeType": "call"
+        },
+        {
+          "name": "useWizardContext",
+          "edgeType": "call"
+        },
+        {
+          "name": "onClick",
+          "edgeType": "call"
+        },
+        {
+          "name": "isDefaultPrevented",
+          "edgeType": "call"
+        },
+        {
+          "name": "previous",
+          "edgeType": "call"
+        },
+        {
+          "name": "Button",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "handleClick",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "WizardBackButtonProps",
+          "edgeType": "type"
+        },
+        {
+          "name": "MouseEvent",
+          "edgeType": "type"
+        },
+        {
+          "name": "HTMLButtonElement",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "type",
+      "name": "WizardBackButtonProps",
+      "line": 7,
+      "endLine": 10,
+      "signature": "type WizardBackButtonProps = Omit<ComponentPropsWithoutRef<typeof Button>, 'primary' | 'onClick'> &"
+    }
+  ],
+  "imports": [
+    {
+      "module": "@rocket.chat/fuselage",
+      "resolved": "external"
+    },
+    {
+      "module": "react",
+      "resolved": "external"
+    },
+    {
+      "module": "react-i18next",
+      "resolved": "external"
+    },
+    {
+      "module": "./useWizardContext",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/packages/ui-client/src/components/Wizard/useWizardContext.ts"
+    }
+  ]
+}

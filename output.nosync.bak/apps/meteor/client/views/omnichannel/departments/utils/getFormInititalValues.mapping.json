@@ -1,0 +1,53 @@
+{
+  "sourcePath": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/client/views/omnichannel/departments/utils/getFormInititalValues.ts",
+  "symbols": [
+    {
+      "type": "function",
+      "name": "withDefault",
+      "exported": false,
+      "line": 11,
+      "endLine": 13,
+      "signature": "function withDefault<T>(key: T | undefined | null, defaultValue: T)",
+      "calls": []
+    },
+    {
+      "type": "variable_function",
+      "name": "getFormInitialValues",
+      "exported": true,
+      "line": 15,
+      "endLine": 34,
+      "signature": "({ department, agents, allowedToForwardData }: InitialValueParams) =>",
+      "calls": [
+        {
+          "name": "withDefault",
+          "edgeType": "call"
+        },
+        {
+          "name": "map",
+          "edgeType": "call"
+        },
+        {
+          "name": "InitialValueParams",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "type",
+      "name": "InitialValueParams",
+      "line": 5,
+      "endLine": 9,
+      "signature": "type InitialValueParams ="
+    }
+  ],
+  "imports": [
+    {
+      "module": "@rocket.chat/core-typings",
+      "resolved": "external"
+    },
+    {
+      "module": "../EditDepartment",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/client/views/omnichannel/departments/EditDepartment.tsx"
+    }
+  ]
+}

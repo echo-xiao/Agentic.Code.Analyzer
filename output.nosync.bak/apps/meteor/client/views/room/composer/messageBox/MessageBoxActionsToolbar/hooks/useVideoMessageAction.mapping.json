@@ -1,0 +1,128 @@
+{
+  "sourcePath": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/client/views/room/composer/messageBox/MessageBoxActionsToolbar/hooks/useVideoMessageAction.ts",
+  "symbols": [
+    {
+      "type": "inner_function",
+      "name": "handleOpenVideoMessage",
+      "exported": false,
+      "qualifiedName": "useVideoMessageAction.handleOpenVideoMessage",
+      "line": 37,
+      "endLine": 41,
+      "signature": "() =>",
+      "calls": [
+        {
+          "name": "get",
+          "edgeType": "call"
+        },
+        {
+          "name": "setRecordingVideo",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "variable_function",
+      "name": "useVideoMessageAction",
+      "exported": true,
+      "line": 11,
+      "endLine": 62,
+      "signature": "(disabled: boolean): GenericMenuItemProps =>",
+      "calls": [
+        {
+          "name": "useSetting",
+          "edgeType": "call"
+        },
+        {
+          "name": "useMediaPermissions",
+          "edgeType": "call"
+        },
+        {
+          "name": "useMemo",
+          "edgeType": "call"
+        },
+        {
+          "name": "Boolean",
+          "edgeType": "call"
+        },
+        {
+          "name": "match",
+          "edgeType": "call"
+        },
+        {
+          "name": "getSupportedMimeTypes",
+          "edgeType": "call"
+        },
+        {
+          "name": "useMediaActionTitle",
+          "edgeType": "call"
+        },
+        {
+          "name": "useChat",
+          "edgeType": "call"
+        },
+        {
+          "name": "get",
+          "edgeType": "call"
+        },
+        {
+          "name": "setRecordingVideo",
+          "edgeType": "call"
+        },
+        {
+          "name": "useStableCallback",
+          "edgeType": "call"
+        },
+        {
+          "name": "setIsPermissionDenied",
+          "edgeType": "call"
+        },
+        {
+          "name": "useEffect",
+          "edgeType": "call"
+        },
+        {
+          "name": "handleDenyVideo",
+          "edgeType": "call"
+        },
+        {
+          "name": "GenericMenuItemProps",
+          "edgeType": "type"
+        }
+      ]
+    }
+  ],
+  "imports": [
+    {
+      "module": "@rocket.chat/fuselage-hooks",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/ui-client",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/ui-contexts",
+      "resolved": "external"
+    },
+    {
+      "module": "react",
+      "resolved": "external"
+    },
+    {
+      "module": "../../../../../../../app/ui/client/lib/recorderjs/videoRecorder",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/app/ui/client/lib/recorderjs/videoRecorder.ts"
+    },
+    {
+      "module": "../../../../contexts/ChatContext",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/client/views/room/contexts/ChatContext.ts"
+    },
+    {
+      "module": "../../hooks/useMediaActionTitle",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/client/views/room/composer/messageBox/hooks/useMediaActionTitle.ts"
+    },
+    {
+      "module": "../../hooks/useMediaPermissions",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/client/views/room/composer/messageBox/hooks/useMediaPermissions.ts"
+    }
+  ]
+}

@@ -1,0 +1,169 @@
+{
+  "sourcePath": "/Users/echoooooo/Desktop/code/Rocket.Chat/packages/apps/base-runtime/src/lib/accessors/extenders/RoomExtender.ts",
+  "symbols": [
+    {
+      "type": "class",
+      "name": "RoomExtender",
+      "exported": true,
+      "line": 6,
+      "endLine": 55,
+      "signature": "export class RoomExtender implements IRoomExtender",
+      "calls": [
+        {
+          "name": "IRoomExtender",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "addCustomField",
+      "exported": true,
+      "qualifiedName": "RoomExtender.addCustomField",
+      "line": 16,
+      "endLine": 32,
+      "signature": "public addCustomField(key: string, value: unknown): IRoomExtender",
+      "containerClass": "RoomExtender",
+      "calls": [
+        {
+          "name": "includes",
+          "edgeType": "call"
+        },
+        {
+          "name": "IRoomExtender",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "addMember",
+      "exported": true,
+      "qualifiedName": "RoomExtender.addMember",
+      "line": 20,
+      "endLine": 28,
+      "signature": "public addMember(user: IUser): IRoomExtender",
+      "containerClass": "RoomExtender",
+      "calls": [
+        {
+          "name": "find",
+          "edgeType": "call"
+        },
+        {
+          "name": "push",
+          "edgeType": "call"
+        },
+        {
+          "name": "IUser",
+          "edgeType": "type"
+        },
+        {
+          "name": "IRoomExtender",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "getMembersBeingAdded",
+      "exported": true,
+      "qualifiedName": "RoomExtender.getMembersBeingAdded",
+      "line": 24,
+      "endLine": 26,
+      "signature": "public getMembersBeingAdded(): Array<IUser>",
+      "containerClass": "RoomExtender",
+      "calls": [
+        {
+          "name": "IUser",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "getUsernamesOfMembersBeingAdded",
+      "exported": true,
+      "qualifiedName": "RoomExtender.getUsernamesOfMembersBeingAdded",
+      "line": 28,
+      "endLine": 30,
+      "signature": "public getUsernamesOfMembersBeingAdded(): Array<string>",
+      "containerClass": "RoomExtender",
+      "calls": [
+        {
+          "name": "map",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "getRoom",
+      "exported": true,
+      "qualifiedName": "RoomExtender.getRoom",
+      "line": 32,
+      "endLine": 34,
+      "signature": "public getRoom(): IRoom",
+      "containerClass": "RoomExtender",
+      "calls": [
+        {
+          "name": "structuredClone",
+          "edgeType": "call"
+        },
+        {
+          "name": "IRoom",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "constructor",
+      "exported": true,
+      "qualifiedName": "RoomExtender.constructor",
+      "line": 11,
+      "endLine": 14,
+      "signature": "constructor(private room: IRoom)",
+      "containerClass": "RoomExtender",
+      "calls": [
+        {
+          "name": "IRoom",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "class_property",
+      "name": "members",
+      "exported": true,
+      "qualifiedName": "RoomExtender.members",
+      "line": 9,
+      "endLine": 9,
+      "signature": "private members: Array<IUser>;",
+      "containerClass": "RoomExtender",
+      "calls": [
+        {
+          "name": "IUser",
+          "edgeType": "type"
+        }
+      ]
+    }
+  ],
+  "imports": [
+    {
+      "module": "@rocket.chat/apps-engine/definition/accessors/IRoomExtender",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/apps-engine/definition/metadata/RocketChatAssociations",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/apps-engine/definition/rooms/IRoom",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/apps-engine/definition/users/IUser",
+      "resolved": "external"
+    }
+  ]
+}

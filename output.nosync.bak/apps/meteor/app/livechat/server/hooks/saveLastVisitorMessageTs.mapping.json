@@ -1,0 +1,41 @@
+{
+  "sourcePath": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/app/livechat/server/hooks/saveLastVisitorMessageTs.ts",
+  "symbols": [
+    {
+      "type": "module",
+      "name": "saveLastVisitorMessageTs",
+      "exported": false,
+      "line": 1,
+      "endLine": 20,
+      "signature": "saveLastVisitorMessageTs",
+      "calls": [
+        {
+          "name": "afterOmnichannelSaveMessage",
+          "edgeType": "event_listen"
+        },
+        {
+          "name": "isMessageFromVisitor",
+          "edgeType": "call"
+        },
+        {
+          "name": "getVisitorLastMessageTsUpdateQueryByRoomId",
+          "edgeType": "call"
+        }
+      ]
+    }
+  ],
+  "imports": [
+    {
+      "module": "@rocket.chat/core-typings",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/models",
+      "resolved": "external"
+    },
+    {
+      "module": "../../../../server/lib/callbacks",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/server/lib/callbacks.ts"
+    }
+  ]
+}

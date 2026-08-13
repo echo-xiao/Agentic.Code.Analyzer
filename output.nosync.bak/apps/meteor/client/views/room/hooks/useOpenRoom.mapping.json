@@ -1,0 +1,237 @@
+{
+  "sourcePath": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/client/views/room/hooks/useOpenRoom.ts",
+  "symbols": [
+    {
+      "type": "function",
+      "name": "useOpenRoom",
+      "exported": true,
+      "line": 18,
+      "endLine": 178,
+      "signature": "export function useOpenRoom({ type, reference }: { type: RoomType; reference: string })",
+      "calls": [
+        {
+          "name": "useUser",
+          "edgeType": "call"
+        },
+        {
+          "name": "usePermission",
+          "edgeType": "call"
+        },
+        {
+          "name": "useSetting",
+          "edgeType": "call"
+        },
+        {
+          "name": "useMethod",
+          "edgeType": "call"
+        },
+        {
+          "name": "useEndpoint",
+          "edgeType": "call"
+        },
+        {
+          "name": "useRoute",
+          "edgeType": "call"
+        },
+        {
+          "name": "useOpenRoomMutation",
+          "edgeType": "call"
+        },
+        {
+          "name": "useCallback",
+          "edgeType": "call"
+        },
+        {
+          "name": "find",
+          "edgeType": "call"
+        },
+        {
+          "name": "get",
+          "edgeType": "call"
+        },
+        {
+          "name": "useQuery",
+          "edgeType": "call"
+        },
+        {
+          "name": "roomReference",
+          "edgeType": "call"
+        },
+        {
+          "name": "tryCacheShortcut",
+          "edgeType": "call"
+        },
+        {
+          "name": "open",
+          "edgeType": "call"
+        },
+        {
+          "name": "getRoomByTypeAndName",
+          "edgeType": "call"
+        },
+        {
+          "name": "createDirectMessage",
+          "edgeType": "call"
+        },
+        {
+          "name": "push",
+          "edgeType": "call"
+        },
+        {
+          "name": "filter",
+          "edgeType": "call"
+        },
+        {
+          "name": "getObjectKeys",
+          "edgeType": "call"
+        },
+        {
+          "name": "forEach",
+          "edgeType": "call"
+        },
+        {
+          "name": "store",
+          "edgeType": "call"
+        },
+        {
+          "name": "close",
+          "edgeType": "call"
+        },
+        {
+          "name": "isPublicRoom",
+          "edgeType": "call"
+        },
+        {
+          "name": "mutateAsync",
+          "edgeType": "call"
+        },
+        {
+          "name": "some",
+          "edgeType": "call"
+        },
+        {
+          "name": "min",
+          "edgeType": "call"
+        },
+        {
+          "name": "useQueryClient",
+          "edgeType": "call"
+        },
+        {
+          "name": "useEffect",
+          "edgeType": "call"
+        },
+        {
+          "name": "remove",
+          "edgeType": "call"
+        },
+        {
+          "name": "includes",
+          "edgeType": "call"
+        },
+        {
+          "name": "values",
+          "edgeType": "call"
+        },
+        {
+          "name": "removeQueries",
+          "edgeType": "call"
+        },
+        {
+          "name": "info",
+          "edgeType": "call"
+        },
+        {
+          "name": "NotAuthorizedError",
+          "edgeType": "new"
+        },
+        {
+          "name": "RoomNotFoundError",
+          "edgeType": "new"
+        },
+        {
+          "name": "OldUrlRoomError",
+          "edgeType": "new"
+        },
+        {
+          "name": "TypeError",
+          "edgeType": "new"
+        },
+        {
+          "name": "NotSubscribedToRoomError",
+          "edgeType": "new"
+        },
+        {
+          "name": "RoomType",
+          "edgeType": "type"
+        },
+        {
+          "name": "IRoom",
+          "edgeType": "type"
+        }
+      ]
+    }
+  ],
+  "imports": [
+    {
+      "module": "@rocket.chat/core-typings",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/tools",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/ui-contexts",
+      "resolved": "external"
+    },
+    {
+      "module": "@tanstack/react-query",
+      "resolved": "external"
+    },
+    {
+      "module": "react",
+      "resolved": "external"
+    },
+    {
+      "module": "./useOpenRoomMutation",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/client/views/room/hooks/useOpenRoomMutation.ts"
+    },
+    {
+      "module": "../../../../app/ui-utils/client",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/app/ui-utils/client/index.ts"
+    },
+    {
+      "module": "../../../../lib/publishFields",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/lib/publishFields.ts"
+    },
+    {
+      "module": "../../../lib/RoomManager",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/client/lib/RoomManager.ts"
+    },
+    {
+      "module": "../../../lib/errors/NotAuthorizedError",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/client/lib/errors/NotAuthorizedError.ts"
+    },
+    {
+      "module": "../../../lib/errors/NotSubscribedToRoomError",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/client/lib/errors/NotSubscribedToRoomError.ts"
+    },
+    {
+      "module": "../../../lib/errors/OldUrlRoomError",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/client/lib/errors/OldUrlRoomError.ts"
+    },
+    {
+      "module": "../../../lib/errors/RoomNotFoundError",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/client/lib/errors/RoomNotFoundError.ts"
+    },
+    {
+      "module": "../../../lib/queryKeys",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/client/lib/queryKeys.ts"
+    },
+    {
+      "module": "../../../stores",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/client/stores/index.ts"
+    }
+  ]
+}

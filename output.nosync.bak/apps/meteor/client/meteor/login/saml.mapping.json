@@ -1,0 +1,129 @@
+{
+  "sourcePath": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/client/meteor/login/saml.ts",
+  "symbols": [
+    {
+      "type": "module",
+      "name": "saml",
+      "exported": false,
+      "line": 1,
+      "endLine": 123,
+      "signature": "saml",
+      "calls": [
+        {
+          "name": "apply",
+          "edgeType": "call"
+        },
+        {
+          "name": "peek",
+          "edgeType": "call"
+        },
+        {
+          "name": "standardLogout",
+          "edgeType": "call"
+        },
+        {
+          "name": "info",
+          "edgeType": "call"
+        },
+        {
+          "name": "catch",
+          "edgeType": "call"
+        },
+        {
+          "name": "then",
+          "edgeType": "call"
+        },
+        {
+          "name": "samlLogout",
+          "edgeType": "call"
+        },
+        {
+          "name": "call",
+          "edgeType": "call"
+        },
+        {
+          "name": "removeStoredItem",
+          "edgeType": "call"
+        },
+        {
+          "name": "replace",
+          "edgeType": "call"
+        },
+        {
+          "name": "absoluteUrl",
+          "edgeType": "call"
+        },
+        {
+          "name": "encodeURIComponent",
+          "edgeType": "call"
+        },
+        {
+          "name": "id",
+          "edgeType": "call"
+        },
+        {
+          "name": "handleLogin",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "variable_function",
+      "name": "loginWithSamlToken",
+      "exported": false,
+      "line": 97,
+      "endLine": 105,
+      "signature": "(credentialToken: string) =>",
+      "calls": [
+        {
+          "name": "callLoginMethod",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "variable_function",
+      "name": "loginWithSamlTokenAndTOTP",
+      "exported": false,
+      "line": 107,
+      "endLine": 120,
+      "signature": "(credentialToken: string, code: string) =>",
+      "calls": [
+        {
+          "name": "callLoginMethod",
+          "edgeType": "call"
+        }
+      ]
+    }
+  ],
+  "imports": [
+    {
+      "module": "@rocket.chat/random",
+      "resolved": "external"
+    },
+    {
+      "module": "meteor/accounts-base",
+      "resolved": "external"
+    },
+    {
+      "module": "meteor/meteor",
+      "resolved": "external"
+    },
+    {
+      "module": "../../lib/2fa/overrideLoginMethod",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/client/lib/2fa/overrideLoginMethod.ts"
+    },
+    {
+      "module": "../../lib/absoluteUrl",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/client/lib/absoluteUrl.ts"
+    },
+    {
+      "module": "../../lib/sdk/storage",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/client/lib/sdk/storage.ts"
+    },
+    {
+      "module": "../../lib/settings",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/client/lib/settings/index.ts"
+    }
+  ]
+}

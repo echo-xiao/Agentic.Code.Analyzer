@@ -1,0 +1,13 @@
+## File: apps/meteor/app/file-upload/lib/FileUploadBase.ts
+
+```typescript
+import path from 'node:path';
+
+import { UploadFS } from '../../../server/ufs';
+
+// set ufs temp dir to $TMPDIR/ufs instead of /tmp/ufs if the variable is set
+if ('TMPDIR' in process.env) {
+	UploadFS.config.tmpDir = path.join(process.env.TMPDIR || '', 'ufs');
+}
+
+```

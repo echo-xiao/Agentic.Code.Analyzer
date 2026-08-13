@@ -1,0 +1,283 @@
+{
+  "sourcePath": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/tests/e2e/page-objects/auth.ts",
+  "symbols": [
+    {
+      "type": "class",
+      "name": "Main",
+      "exported": false,
+      "line": 5,
+      "endLine": 15,
+      "signature": "abstract class Main",
+      "calls": []
+    },
+    {
+      "type": "method",
+      "name": "waitForDisplay",
+      "exported": false,
+      "qualifiedName": "Main.waitForDisplay",
+      "line": 8,
+      "endLine": 10,
+      "signature": "waitForDisplay()",
+      "containerClass": "Main",
+      "calls": [
+        {
+          "name": "toBeVisible",
+          "edgeType": "call"
+        },
+        {
+          "name": "expect",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "waitForDismissal",
+      "exported": false,
+      "qualifiedName": "Main.waitForDismissal",
+      "line": 12,
+      "endLine": 14,
+      "signature": "waitForDismissal()",
+      "containerClass": "Main",
+      "calls": [
+        {
+          "name": "toBeVisible",
+          "edgeType": "call"
+        },
+        {
+          "name": "expect",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "constructor",
+      "exported": false,
+      "qualifiedName": "Main.constructor",
+      "line": 6,
+      "endLine": 6,
+      "signature": "constructor(protected root: Locator)",
+      "containerClass": "Main",
+      "calls": [
+        {
+          "name": "Locator",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "class",
+      "name": "Authenticated",
+      "exported": true,
+      "line": 19,
+      "endLine": 23,
+      "signature": "export class Authenticated extends Main",
+      "calls": [
+        {
+          "name": "Main",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "constructor",
+      "exported": true,
+      "qualifiedName": "Authenticated.constructor",
+      "line": 20,
+      "endLine": 22,
+      "signature": "constructor(protected page: Page)",
+      "containerClass": "Authenticated",
+      "calls": [
+        {
+          "name": "locator",
+          "edgeType": "call"
+        },
+        {
+          "name": "Page",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "class",
+      "name": "LoginForm",
+      "exported": false,
+      "line": 25,
+      "endLine": 48,
+      "signature": "class LoginForm",
+      "calls": []
+    },
+    {
+      "type": "method",
+      "name": "fillForm",
+      "exported": false,
+      "qualifiedName": "LoginForm.fillForm",
+      "line": 44,
+      "endLine": 47,
+      "signature": "async fillForm(username: string, password: string)",
+      "containerClass": "LoginForm",
+      "calls": [
+        {
+          "name": "fill",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "constructor",
+      "exported": false,
+      "qualifiedName": "LoginForm.constructor",
+      "line": 28,
+      "endLine": 30,
+      "signature": "constructor(protected page: Page)",
+      "containerClass": "LoginForm",
+      "calls": [
+        {
+          "name": "getByRole",
+          "edgeType": "call"
+        },
+        {
+          "name": "Page",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "class_property",
+      "name": "root",
+      "exported": false,
+      "qualifiedName": "LoginForm.root",
+      "line": 26,
+      "endLine": 26,
+      "signature": "readonly root: Locator;",
+      "containerClass": "LoginForm",
+      "calls": [
+        {
+          "name": "Locator",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "class",
+      "name": "Login",
+      "exported": true,
+      "line": 49,
+      "endLine": 77,
+      "signature": "export class Login extends Main",
+      "calls": [
+        {
+          "name": "Main",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "login",
+      "exported": true,
+      "qualifiedName": "Login.login",
+      "line": 57,
+      "endLine": 60,
+      "signature": "async login(username: string, password: string)",
+      "containerClass": "Login",
+      "calls": [
+        {
+          "name": "fillForm",
+          "edgeType": "call"
+        },
+        {
+          "name": "click",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "constructor",
+      "exported": true,
+      "qualifiedName": "Login.constructor",
+      "line": 52,
+      "endLine": 55,
+      "signature": "constructor(protected page: Page)",
+      "containerClass": "Login",
+      "calls": [
+        {
+          "name": "getByRole",
+          "edgeType": "call"
+        },
+        {
+          "name": "LoginForm",
+          "edgeType": "new"
+        },
+        {
+          "name": "Page",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "class_property",
+      "name": "form",
+      "exported": true,
+      "qualifiedName": "Login.form",
+      "line": 50,
+      "endLine": 50,
+      "signature": "readonly form: LoginForm;",
+      "containerClass": "Login",
+      "calls": [
+        {
+          "name": "LoginForm",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "class",
+      "name": "Registration",
+      "exported": true,
+      "line": 77,
+      "endLine": 149,
+      "signature": "export class Registration extends Main",
+      "calls": [
+        {
+          "name": "Main",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "constructor",
+      "exported": true,
+      "qualifiedName": "Registration.constructor",
+      "line": 78,
+      "endLine": 80,
+      "signature": "constructor(protected page: Page)",
+      "containerClass": "Registration",
+      "calls": [
+        {
+          "name": "getByRole",
+          "edgeType": "call"
+        },
+        {
+          "name": "Page",
+          "edgeType": "type"
+        }
+      ]
+    }
+  ],
+  "imports": [
+    {
+      "module": "@playwright/test",
+      "resolved": "external"
+    },
+    {
+      "module": "../utils/test",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/tests/e2e/utils/test.ts"
+    }
+  ]
+}

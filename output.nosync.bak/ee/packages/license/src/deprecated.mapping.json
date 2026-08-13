@@ -1,0 +1,111 @@
+{
+  "sourcePath": "/Users/echoooooo/Desktop/code/Rocket.Chat/ee/packages/license/src/deprecated.ts",
+  "symbols": [
+    {
+      "type": "function",
+      "name": "getMaxActiveUsers",
+      "exported": true,
+      "line": 19,
+      "endLine": 21,
+      "signature": "export function getMaxActiveUsers(this: LicenseManager)",
+      "calls": [
+        {
+          "name": "getLicenseLimit",
+          "edgeType": "call"
+        },
+        {
+          "name": "getLicense",
+          "edgeType": "call"
+        },
+        {
+          "name": "LicenseManager",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "function",
+      "name": "getAppsConfig",
+      "exported": true,
+      "line": 23,
+      "endLine": 28,
+      "signature": "export function getAppsConfig(this: LicenseManager)",
+      "calls": [
+        {
+          "name": "getLicenseLimit",
+          "edgeType": "call"
+        },
+        {
+          "name": "getLicense",
+          "edgeType": "call"
+        },
+        {
+          "name": "LicenseManager",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "function",
+      "name": "getUnmodifiedLicenseAndModules",
+      "exported": true,
+      "line": 27,
+      "endLine": 36,
+      "signature": "export function getUnmodifiedLicenseAndModules(this: LicenseManager)",
+      "calls": [
+        {
+          "name": "call",
+          "edgeType": "call"
+        },
+        {
+          "name": "LicenseManager",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "variable_function",
+      "name": "getLicenseLimit",
+      "exported": true,
+      "line": 7,
+      "endLine": 15,
+      "signature": "(license: ILicenseV3 | undefined, kind: LicenseLimitKind) =>",
+      "calls": [
+        {
+          "name": "min",
+          "edgeType": "call"
+        },
+        {
+          "name": "map",
+          "edgeType": "call"
+        },
+        {
+          "name": "ILicenseV3",
+          "edgeType": "type"
+        },
+        {
+          "name": "LicenseLimitKind",
+          "edgeType": "type"
+        }
+      ]
+    }
+  ],
+  "imports": [
+    {
+      "module": "@rocket.chat/core-typings",
+      "resolved": "external"
+    },
+    {
+      "module": "./license",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/ee/packages/license/src/license.ts"
+    },
+    {
+      "module": "./modules",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/ee/packages/license/src/modules.ts"
+    },
+    {
+      "module": "./validation/validateDefaultLimits",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/ee/packages/license/src/validation/validateDefaultLimits.ts"
+    }
+  ]
+}

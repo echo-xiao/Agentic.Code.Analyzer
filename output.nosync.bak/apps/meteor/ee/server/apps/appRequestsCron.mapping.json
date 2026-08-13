@@ -1,0 +1,119 @@
+{
+  "sourcePath": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/ee/server/apps/appRequestsCron.ts",
+  "symbols": [
+    {
+      "type": "module",
+      "name": "appRequestsCron",
+      "exported": false,
+      "line": 1,
+      "endLine": 64,
+      "signature": "appRequestsCron",
+      "calls": [
+        {
+          "name": "appsNotifyAppRequests",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "variable_function",
+      "name": "appsNotifyAppRequests",
+      "exported": false,
+      "line": 9,
+      "endLine": 61,
+      "signature": "async function _appsNotifyAppRequests()",
+      "calls": [
+        {
+          "name": "installedApps",
+          "edgeType": "call"
+        },
+        {
+          "name": "get",
+          "edgeType": "call"
+        },
+        {
+          "name": "getWorkspaceAccessToken",
+          "edgeType": "call"
+        },
+        {
+          "name": "debugLog",
+          "edgeType": "call"
+        },
+        {
+          "name": "fetch",
+          "edgeType": "call"
+        },
+        {
+          "name": "getMarketplaceClient",
+          "edgeType": "call"
+        },
+        {
+          "name": "json",
+          "edgeType": "call"
+        },
+        {
+          "name": "filter",
+          "edgeType": "call"
+        },
+        {
+          "name": "indexOf",
+          "edgeType": "call"
+        },
+        {
+          "name": "getID",
+          "edgeType": "call"
+        },
+        {
+          "name": "getName",
+          "edgeType": "call"
+        },
+        {
+          "name": "catch",
+          "edgeType": "call"
+        },
+        {
+          "name": "then",
+          "edgeType": "call"
+        },
+        {
+          "name": "appRequestNotififyForUsers",
+          "edgeType": "call"
+        },
+        {
+          "name": "getMarketplaceUrl",
+          "edgeType": "call"
+        },
+        {
+          "name": "ExtendedFetchOptions",
+          "edgeType": "type"
+        }
+      ]
+    }
+  ],
+  "imports": [
+    {
+      "module": "@rocket.chat/cron",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/server-fetch",
+      "resolved": "external"
+    },
+    {
+      "module": "./marketplace/appRequestNotifyUsers",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/ee/server/apps/marketplace/appRequestNotifyUsers.ts"
+    },
+    {
+      "module": "./orchestrator",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/ee/server/apps/orchestrator.ts"
+    },
+    {
+      "module": "../../../app/cloud/server",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/app/cloud/server/index.ts"
+    },
+    {
+      "module": "../../../app/settings/server",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/app/settings/server/index.ts"
+    }
+  ]
+}

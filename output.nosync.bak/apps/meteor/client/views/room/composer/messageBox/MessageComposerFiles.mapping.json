@@ -1,0 +1,112 @@
+{
+  "sourcePath": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/client/views/room/composer/messageBox/MessageComposerFiles.tsx",
+  "symbols": [
+    {
+      "type": "inner_function",
+      "name": "handleEdit",
+      "exported": false,
+      "qualifiedName": "MessageComposerFiles.handleEdit",
+      "line": 13,
+      "endLine": 19,
+      "signature": "(id: Upload['id'], fileName: string, altText?: string) =>",
+      "calls": [
+        {
+          "name": "editUploadFileName",
+          "edgeType": "call"
+        },
+        {
+          "name": "editUploadAltText",
+          "edgeType": "call"
+        },
+        {
+          "name": "Upload",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "variable_function",
+      "name": "MessageComposerFiles",
+      "exported": false,
+      "line": 9,
+      "endLine": 41,
+      "signature": "() =>",
+      "calls": [
+        {
+          "name": "useTranslation",
+          "edgeType": "call"
+        },
+        {
+          "name": "useFileUpload",
+          "edgeType": "call"
+        },
+        {
+          "name": "useCallback",
+          "edgeType": "call"
+        },
+        {
+          "name": "editUploadFileName",
+          "edgeType": "call"
+        },
+        {
+          "name": "editUploadAltText",
+          "edgeType": "call"
+        },
+        {
+          "name": "map",
+          "edgeType": "call"
+        },
+        {
+          "name": "MessageComposerFileGroup",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "MessageComposerFileItem",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "upload",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "handleEdit",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "isProcessingUploads",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "Upload",
+          "edgeType": "type"
+        }
+      ]
+    }
+  ],
+  "imports": [
+    {
+      "module": "@rocket.chat/ui-composer",
+      "resolved": "external"
+    },
+    {
+      "module": "react",
+      "resolved": "external"
+    },
+    {
+      "module": "react-i18next",
+      "resolved": "external"
+    },
+    {
+      "module": "./MessageComposerFileItem",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/client/views/room/composer/messageBox/MessageComposerFileItem.tsx"
+    },
+    {
+      "module": "../../../../lib/chats/Upload",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/client/lib/chats/Upload.ts"
+    },
+    {
+      "module": "../../body/hooks/useFileUpload",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/client/views/room/body/hooks/useFileUpload.ts"
+    }
+  ]
+}

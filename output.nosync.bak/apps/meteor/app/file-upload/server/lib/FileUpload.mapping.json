@@ -1,0 +1,874 @@
+{
+  "sourcePath": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/app/file-upload/server/lib/FileUpload.ts",
+  "symbols": [
+    {
+      "type": "module",
+      "name": "FileUpload",
+      "exported": false,
+      "line": 1,
+      "endLine": 926,
+      "signature": "FileUpload",
+      "calls": [
+        {
+          "name": "watch",
+          "edgeType": "call"
+        },
+        {
+          "name": "findOneById",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "class",
+      "name": "FileUploadClass",
+      "exported": true,
+      "line": 766,
+      "endLine": 925,
+      "signature": "export class FileUploadClass",
+      "calls": []
+    },
+    {
+      "type": "method",
+      "name": "getStore",
+      "exported": true,
+      "qualifiedName": "FileUploadClass.getStore",
+      "line": 795,
+      "endLine": 797,
+      "signature": "getStore()",
+      "containerClass": "FileUploadClass",
+      "calls": []
+    },
+    {
+      "type": "method",
+      "name": "getModelFromName",
+      "exported": true,
+      "qualifiedName": "FileUploadClass.getModelFromName",
+      "line": 807,
+      "endLine": 818,
+      "signature": "getModelFromName(): typeof this.model",
+      "containerClass": "FileUploadClass",
+      "calls": [
+        {
+          "name": "split",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "delete",
+      "exported": true,
+      "qualifiedName": "FileUploadClass.delete",
+      "line": 811,
+      "endLine": 818,
+      "signature": "async delete(fileId: string, options?: { session?: ClientSession })",
+      "containerClass": "FileUploadClass",
+      "calls": [
+        {
+          "name": "delete",
+          "edgeType": "call"
+        },
+        {
+          "name": "deleteFile",
+          "edgeType": "call"
+        },
+        {
+          "name": "ClientSession",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "deleteById",
+      "exported": true,
+      "qualifiedName": "FileUploadClass.deleteById",
+      "line": 815,
+      "endLine": 825,
+      "signature": "async deleteById(fileId: string)",
+      "containerClass": "FileUploadClass",
+      "calls": [
+        {
+          "name": "findOneById",
+          "edgeType": "call"
+        },
+        {
+          "name": "getStoreByName",
+          "edgeType": "call"
+        },
+        {
+          "name": "delete",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "deleteByName",
+      "exported": true,
+      "qualifiedName": "FileUploadClass.deleteByName",
+      "line": 819,
+      "endLine": 829,
+      "signature": "async deleteByName(fileName: string, options?: { session?: ClientSession })",
+      "containerClass": "FileUploadClass",
+      "calls": [
+        {
+          "name": "findOneByName",
+          "edgeType": "call"
+        },
+        {
+          "name": "getStoreByName",
+          "edgeType": "call"
+        },
+        {
+          "name": "delete",
+          "edgeType": "call"
+        },
+        {
+          "name": "ClientSession",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "deleteByRoomId",
+      "exported": true,
+      "qualifiedName": "FileUploadClass.deleteByRoomId",
+      "line": 823,
+      "endLine": 833,
+      "signature": "async deleteByRoomId(rid: string)",
+      "containerClass": "FileUploadClass",
+      "calls": [
+        {
+          "name": "findOneByRoomId",
+          "edgeType": "call"
+        },
+        {
+          "name": "getStoreByName",
+          "edgeType": "call"
+        },
+        {
+          "name": "delete",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "_validateFile",
+      "exported": true,
+      "qualifiedName": "FileUploadClass._validateFile",
+      "line": 827,
+      "endLine": 852,
+      "signature": "private async _validateFile( fileData: Omit<OptionalId<IUpload>, '_updatedAt'>, content: stream.Readable | Buffer | string, ): Promise<stream.Readable | Buffer | string>",
+      "containerClass": "FileUploadClass",
+      "calls": [
+        {
+          "name": "getFilter",
+          "edgeType": "call"
+        },
+        {
+          "name": "streamToBuffer",
+          "edgeType": "call"
+        },
+        {
+          "name": "from",
+          "edgeType": "call"
+        },
+        {
+          "name": "check",
+          "edgeType": "call"
+        },
+        {
+          "name": "OptionalId",
+          "edgeType": "type"
+        },
+        {
+          "name": "IUpload",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "_doInsert",
+      "exported": true,
+      "qualifiedName": "FileUploadClass._doInsert",
+      "line": 834,
+      "endLine": 857,
+      "signature": "async _doInsert( fileData: Omit<OptionalId<IUpload>, '_updatedAt'>, content: stream.Readable | Buffer | string, options?: { session?: ClientSession }, ): Promise<IUpload>",
+      "containerClass": "FileUploadClass",
+      "calls": [
+        {
+          "name": "create",
+          "edgeType": "call"
+        },
+        {
+          "name": "getTempFilePath",
+          "edgeType": "call"
+        },
+        {
+          "name": "rename",
+          "edgeType": "call"
+        },
+        {
+          "name": "isArrayBufferView",
+          "edgeType": "call"
+        },
+        {
+          "name": "writeFile",
+          "edgeType": "call"
+        },
+        {
+          "name": "finished",
+          "edgeType": "call"
+        },
+        {
+          "name": "pipe",
+          "edgeType": "call"
+        },
+        {
+          "name": "createWriteStream",
+          "edgeType": "call"
+        },
+        {
+          "name": "ufsComplete",
+          "edgeType": "call"
+        },
+        {
+          "name": "OptionalId",
+          "edgeType": "type"
+        },
+        {
+          "name": "IUpload",
+          "edgeType": "type"
+        },
+        {
+          "name": "ClientSession",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "insert",
+      "exported": true,
+      "qualifiedName": "FileUploadClass.insert",
+      "line": 842,
+      "endLine": 849,
+      "signature": "async insert( fileData: Omit<OptionalId<IUpload>, '_updatedAt'>, streamOrBuffer: stream.Readable | Buffer | string, options?: { session?: ClientSession }, ): Promise<IUpload>",
+      "containerClass": "FileUploadClass",
+      "calls": [
+        {
+          "name": "_validateFile",
+          "edgeType": "call"
+        },
+        {
+          "name": "_doInsert",
+          "edgeType": "call"
+        },
+        {
+          "name": "OptionalId",
+          "edgeType": "type"
+        },
+        {
+          "name": "IUpload",
+          "edgeType": "type"
+        },
+        {
+          "name": "ClientSession",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "constructor",
+      "exported": true,
+      "qualifiedName": "FileUploadClass.constructor",
+      "line": 777,
+      "endLine": 793,
+      "signature": "constructor({ name, model, store, get, insert, getStore, copy }: FileUploadClassOptions)",
+      "containerClass": "FileUploadClass",
+      "calls": [
+        {
+          "name": "getModelFromName",
+          "edgeType": "call"
+        },
+        {
+          "name": "getStore",
+          "edgeType": "call"
+        },
+        {
+          "name": "FileUploadClassOptions",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "class_property",
+      "name": "name",
+      "exported": true,
+      "qualifiedName": "FileUploadClass.name",
+      "line": 767,
+      "endLine": 767,
+      "signature": "public name: FileUploadClassOptions['name'];",
+      "containerClass": "FileUploadClass",
+      "calls": [
+        {
+          "name": "FileUploadClassOptions",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "class_property",
+      "name": "_store",
+      "exported": true,
+      "qualifiedName": "FileUploadClass._store",
+      "line": 771,
+      "endLine": 771,
+      "signature": "public _store: Store;",
+      "containerClass": "FileUploadClass",
+      "calls": [
+        {
+          "name": "Store",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "class_property",
+      "name": "get",
+      "exported": true,
+      "qualifiedName": "FileUploadClass.get",
+      "line": 773,
+      "endLine": 773,
+      "signature": "public get: FileUploadClassOptions['get'];",
+      "containerClass": "FileUploadClass",
+      "calls": [
+        {
+          "name": "FileUploadClassOptions",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "class_property",
+      "name": "copy",
+      "exported": true,
+      "qualifiedName": "FileUploadClass.copy",
+      "line": 775,
+      "endLine": 775,
+      "signature": "public copy: FileUploadClassOptions['copy'];",
+      "containerClass": "FileUploadClass",
+      "calls": [
+        {
+          "name": "FileUploadClassOptions",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "variable",
+      "name": "FileUpload",
+      "exported": true,
+      "line": 115,
+      "endLine": 754,
+      "signature": "FileUpload =",
+      "calls": [
+        {
+          "name": "pop",
+          "edgeType": "call"
+        },
+        {
+          "name": "split",
+          "edgeType": "call"
+        },
+        {
+          "name": "getStores",
+          "edgeType": "call"
+        },
+        {
+          "name": "assign",
+          "edgeType": "call"
+        },
+        {
+          "name": "test",
+          "edgeType": "call"
+        },
+        {
+          "name": "findOne",
+          "edgeType": "call"
+        },
+        {
+          "name": "findOneById",
+          "edgeType": "call"
+        },
+        {
+          "name": "get",
+          "edgeType": "call"
+        },
+        {
+          "name": "canAccessRoomAsync",
+          "edgeType": "call"
+        },
+        {
+          "name": "filesize",
+          "edgeType": "call"
+        },
+        {
+          "name": "isE2EEUpload",
+          "edgeType": "call"
+        },
+        {
+          "name": "fileUploadIsValidContentType",
+          "edgeType": "call"
+        },
+        {
+          "name": "triggerEvent",
+          "edgeType": "call"
+        },
+        {
+          "name": "getTempFilePath",
+          "edgeType": "call"
+        },
+        {
+          "name": "sharp",
+          "edgeType": "call"
+        },
+        {
+          "name": "rotate",
+          "edgeType": "call"
+        },
+        {
+          "name": "metadata",
+          "edgeType": "call"
+        },
+        {
+          "name": "toBuffer",
+          "edgeType": "call"
+        },
+        {
+          "name": "resize",
+          "edgeType": "call"
+        },
+        {
+          "name": "writeFile",
+          "edgeType": "call"
+        },
+        {
+          "name": "error",
+          "edgeType": "call"
+        },
+        {
+          "name": "updateOne",
+          "edgeType": "call"
+        },
+        {
+          "name": "getCollection",
+          "edgeType": "call"
+        },
+        {
+          "name": "includes",
+          "edgeType": "call"
+        },
+        {
+          "name": "addExtensionTo",
+          "edgeType": "call"
+        },
+        {
+          "name": "getReadStream",
+          "edgeType": "call"
+        },
+        {
+          "name": "getStore",
+          "edgeType": "call"
+        },
+        {
+          "name": "blur",
+          "edgeType": "call"
+        },
+        {
+          "name": "jpeg",
+          "edgeType": "call"
+        },
+        {
+          "name": "then",
+          "edgeType": "call"
+        },
+        {
+          "name": "pipe",
+          "edgeType": "call"
+        },
+        {
+          "name": "getBuffer",
+          "edgeType": "call"
+        },
+        {
+          "name": "png",
+          "edgeType": "call"
+        },
+        {
+          "name": "lookup",
+          "edgeType": "call"
+        },
+        {
+          "name": "insert",
+          "edgeType": "call"
+        },
+        {
+          "name": "withMetadata",
+          "edgeType": "call"
+        },
+        {
+          "name": "toFile",
+          "edgeType": "call"
+        },
+        {
+          "name": "unlink",
+          "edgeType": "call"
+        },
+        {
+          "name": "rename",
+          "edgeType": "call"
+        },
+        {
+          "name": "reorientation",
+          "edgeType": "call"
+        },
+        {
+          "name": "stripExifFromFile",
+          "edgeType": "call"
+        },
+        {
+          "name": "findOneByName",
+          "edgeType": "call"
+        },
+        {
+          "name": "deleteFile",
+          "edgeType": "call"
+        },
+        {
+          "name": "updateFileNameById",
+          "edgeType": "call"
+        },
+        {
+          "name": "parse",
+          "edgeType": "call"
+        },
+        {
+          "name": "findOneByIdAndLoginToken",
+          "edgeType": "call"
+        },
+        {
+          "name": "hashLoginToken",
+          "edgeType": "call"
+        },
+        {
+          "name": "canAccessUploadedFile",
+          "edgeType": "call"
+        },
+        {
+          "name": "getRoomDirectives",
+          "edgeType": "call"
+        },
+        {
+          "name": "validateAndDecodeJWT",
+          "edgeType": "call"
+        },
+        {
+          "name": "isAuthorizedByJWT",
+          "edgeType": "call"
+        },
+        {
+          "name": "isAuthorizedByRoom",
+          "edgeType": "call"
+        },
+        {
+          "name": "findOneByRoomIdAndUserId",
+          "edgeType": "call"
+        },
+        {
+          "name": "canAccessRoomIdAsync",
+          "edgeType": "call"
+        },
+        {
+          "name": "extension",
+          "edgeType": "call"
+        },
+        {
+          "name": "getStoreByName",
+          "edgeType": "call"
+        },
+        {
+          "name": "writeHead",
+          "edgeType": "call"
+        },
+        {
+          "name": "end",
+          "edgeType": "call"
+        },
+        {
+          "name": "finish",
+          "edgeType": "event_listen"
+        },
+        {
+          "name": "getContents",
+          "edgeType": "call"
+        },
+        {
+          "name": "reject",
+          "edgeType": "call"
+        },
+        {
+          "name": "resolve",
+          "edgeType": "call"
+        },
+        {
+          "name": "copy",
+          "edgeType": "call"
+        },
+        {
+          "name": "createWriteStream",
+          "edgeType": "call"
+        },
+        {
+          "name": "removeHeader",
+          "edgeType": "call"
+        },
+        {
+          "name": "setHeader",
+          "edgeType": "call"
+        },
+        {
+          "name": "stringify",
+          "edgeType": "call"
+        },
+        {
+          "name": "toISOString",
+          "edgeType": "call"
+        },
+        {
+          "name": "now",
+          "edgeType": "call"
+        },
+        {
+          "name": "encodeURI",
+          "edgeType": "call"
+        },
+        {
+          "name": "forEach",
+          "edgeType": "call"
+        },
+        {
+          "name": "generateJWT",
+          "edgeType": "call"
+        },
+        {
+          "name": "trim",
+          "edgeType": "call"
+        },
+        {
+          "name": "find",
+          "edgeType": "call"
+        },
+        {
+          "name": "all",
+          "edgeType": "call"
+        },
+        {
+          "name": "map",
+          "edgeType": "call"
+        },
+        {
+          "name": "deleteById",
+          "edgeType": "call"
+        },
+        {
+          "name": "Date",
+          "edgeType": "new"
+        },
+        {
+          "name": "RegExp",
+          "edgeType": "new"
+        },
+        {
+          "name": "IUpload",
+          "edgeType": "type"
+        },
+        {
+          "name": "Store",
+          "edgeType": "type"
+        },
+        {
+          "name": "ClientSession",
+          "edgeType": "type"
+        },
+        {
+          "name": "NextFunction",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "type",
+      "name": "FileUploadClassOptions",
+      "line": 756,
+      "endLine": 764,
+      "signature": "type FileUploadClassOptions ="
+    }
+  ],
+  "imports": [
+    {
+      "module": "node:buffer",
+      "resolved": "external"
+    },
+    {
+      "module": "node:fs",
+      "resolved": "external"
+    },
+    {
+      "module": "node:fs",
+      "resolved": "external"
+    },
+    {
+      "module": "node:fs/promises",
+      "resolved": "external"
+    },
+    {
+      "module": "node:http",
+      "resolved": "external"
+    },
+    {
+      "module": "node:https",
+      "resolved": "external"
+    },
+    {
+      "module": "node:stream",
+      "resolved": "external"
+    },
+    {
+      "module": "node:stream/promises",
+      "resolved": "external"
+    },
+    {
+      "module": "node:url",
+      "resolved": "external"
+    },
+    {
+      "module": "node:util/types",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/account-utils",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/apps",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/apps-engine/definition/exceptions",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/core-typings",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/models",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/tools",
+      "resolved": "external"
+    },
+    {
+      "module": "connect",
+      "resolved": "external"
+    },
+    {
+      "module": "filesize",
+      "resolved": "external"
+    },
+    {
+      "module": "meteor/check",
+      "resolved": "external"
+    },
+    {
+      "module": "meteor/meteor",
+      "resolved": "external"
+    },
+    {
+      "module": "meteor/ostrio:cookies",
+      "resolved": "external"
+    },
+    {
+      "module": "mongodb",
+      "resolved": "external"
+    },
+    {
+      "module": "sharp",
+      "resolved": "external"
+    },
+    {
+      "module": "stream-buffers",
+      "resolved": "external"
+    },
+    {
+      "module": "stream-buffers",
+      "resolved": "external"
+    },
+    {
+      "module": "../../../../server/api/lib/MultipartUploadHandler",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/server/api/lib/MultipartUploadHandler.ts"
+    },
+    {
+      "module": "../../../../server/lib/authorization/canAccessRoom",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/server/lib/authorization/canAccessRoom.ts"
+    },
+    {
+      "module": "../../../../server/lib/i18n",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/server/lib/i18n.ts"
+    },
+    {
+      "module": "../../../../server/lib/logger/system",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/server/lib/logger/system.ts"
+    },
+    {
+      "module": "../../../../server/lib/rooms/roomCoordinator",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/server/lib/rooms/roomCoordinator.ts"
+    },
+    {
+      "module": "../../../../server/ufs",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/server/ufs/index.ts"
+    },
+    {
+      "module": "../../../../server/ufs/ufs-methods",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/server/ufs/ufs-methods.ts"
+    },
+    {
+      "module": "../../../../server/ufs/ufs-store",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/server/ufs/ufs-store.ts"
+    },
+    {
+      "module": "../../../settings/server",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/app/settings/server/index.ts"
+    },
+    {
+      "module": "../../../utils/lib/mimeTypes",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/app/utils/lib/mimeTypes.ts"
+    },
+    {
+      "module": "../../../utils/server/lib/JWTHelper",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/app/utils/server/lib/JWTHelper.ts"
+    },
+    {
+      "module": "../../../utils/server/restrictions",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/app/utils/server/restrictions.ts"
+    }
+  ]
+}

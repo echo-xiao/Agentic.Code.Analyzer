@@ -1,0 +1,291 @@
+{
+  "sourcePath": "/Users/echoooooo/Desktop/code/Rocket.Chat/packages/apps-engine/src/definition/uikit/UIKitInteractionContext.ts",
+  "symbols": [
+    {
+      "type": "class",
+      "name": "UIKitInteractionContext",
+      "exported": true,
+      "line": 11,
+      "endLine": 29,
+      "signature": "export abstract class UIKitInteractionContext",
+      "calls": []
+    },
+    {
+      "type": "method",
+      "name": "getInteractionResponder",
+      "exported": true,
+      "qualifiedName": "UIKitInteractionContext.getInteractionResponder",
+      "line": 24,
+      "endLine": 26,
+      "signature": "public getInteractionResponder()",
+      "containerClass": "UIKitInteractionContext",
+      "calls": []
+    },
+    {
+      "type": "method",
+      "name": "getInteractionData",
+      "exported": true,
+      "qualifiedName": "UIKitInteractionContext.getInteractionData",
+      "line": 28,
+      "endLine": 28,
+      "signature": "public abstract getInteractionData(): IUIKitBaseIncomingInteraction;",
+      "containerClass": "UIKitInteractionContext",
+      "calls": [
+        {
+          "name": "IUIKitBaseIncomingInteraction",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "constructor",
+      "exported": true,
+      "qualifiedName": "UIKitInteractionContext.constructor",
+      "line": 16,
+      "endLine": 22,
+      "signature": "constructor(baseContext: IUIKitBaseIncomingInteraction)",
+      "containerClass": "UIKitInteractionContext",
+      "calls": [
+        {
+          "name": "UIKitInteractionResponder",
+          "edgeType": "new"
+        },
+        {
+          "name": "IUIKitBaseIncomingInteraction",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "class_property",
+      "name": "baseContext",
+      "exported": true,
+      "qualifiedName": "UIKitInteractionContext.baseContext",
+      "line": 12,
+      "endLine": 12,
+      "signature": "private baseContext: IUIKitBaseIncomingInteraction;",
+      "containerClass": "UIKitInteractionContext",
+      "calls": [
+        {
+          "name": "IUIKitBaseIncomingInteraction",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "class_property",
+      "name": "responder",
+      "exported": true,
+      "qualifiedName": "UIKitInteractionContext.responder",
+      "line": 14,
+      "endLine": 14,
+      "signature": "private responder: UIKitInteractionResponder;",
+      "containerClass": "UIKitInteractionContext",
+      "calls": [
+        {
+          "name": "UIKitInteractionResponder",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "class",
+      "name": "UIKitBlockInteractionContext",
+      "exported": true,
+      "line": 27,
+      "endLine": 35,
+      "signature": "export class UIKitBlockInteractionContext extends UIKitInteractionContext",
+      "calls": [
+        {
+          "name": "UIKitInteractionContext",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "getInteractionData",
+      "exported": true,
+      "qualifiedName": "UIKitBlockInteractionContext.getInteractionData",
+      "line": 32,
+      "endLine": 34,
+      "signature": "public getInteractionData(): IUIKitBlockIncomingInteraction",
+      "containerClass": "UIKitBlockInteractionContext",
+      "calls": [
+        {
+          "name": "IUIKitBlockIncomingInteraction",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "constructor",
+      "exported": true,
+      "qualifiedName": "UIKitBlockInteractionContext.constructor",
+      "line": 28,
+      "endLine": 30,
+      "signature": "constructor(private readonly interactionData: IUIKitBlockIncomingInteraction)",
+      "containerClass": "UIKitBlockInteractionContext",
+      "calls": [
+        {
+          "name": "IUIKitBlockIncomingInteraction",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "class",
+      "name": "UIKitViewSubmitInteractionContext",
+      "exported": true,
+      "line": 37,
+      "endLine": 45,
+      "signature": "export class UIKitViewSubmitInteractionContext extends UIKitInteractionContext",
+      "calls": [
+        {
+          "name": "UIKitInteractionContext",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "getInteractionData",
+      "exported": true,
+      "qualifiedName": "UIKitViewSubmitInteractionContext.getInteractionData",
+      "line": 42,
+      "endLine": 44,
+      "signature": "public getInteractionData(): IUIKitViewSubmitIncomingInteraction",
+      "containerClass": "UIKitViewSubmitInteractionContext",
+      "calls": [
+        {
+          "name": "IUIKitViewSubmitIncomingInteraction",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "constructor",
+      "exported": true,
+      "qualifiedName": "UIKitViewSubmitInteractionContext.constructor",
+      "line": 38,
+      "endLine": 40,
+      "signature": "constructor(private readonly interactionData: IUIKitViewSubmitIncomingInteraction)",
+      "containerClass": "UIKitViewSubmitInteractionContext",
+      "calls": [
+        {
+          "name": "IUIKitViewSubmitIncomingInteraction",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "class",
+      "name": "UIKitViewCloseInteractionContext",
+      "exported": true,
+      "line": 47,
+      "endLine": 55,
+      "signature": "export class UIKitViewCloseInteractionContext extends UIKitInteractionContext",
+      "calls": [
+        {
+          "name": "UIKitInteractionContext",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "getInteractionData",
+      "exported": true,
+      "qualifiedName": "UIKitViewCloseInteractionContext.getInteractionData",
+      "line": 52,
+      "endLine": 54,
+      "signature": "public getInteractionData(): IUIKitViewCloseIncomingInteraction",
+      "containerClass": "UIKitViewCloseInteractionContext",
+      "calls": [
+        {
+          "name": "IUIKitViewCloseIncomingInteraction",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "constructor",
+      "exported": true,
+      "qualifiedName": "UIKitViewCloseInteractionContext.constructor",
+      "line": 48,
+      "endLine": 50,
+      "signature": "constructor(private readonly interactionData: IUIKitViewCloseIncomingInteraction)",
+      "containerClass": "UIKitViewCloseInteractionContext",
+      "calls": [
+        {
+          "name": "IUIKitViewCloseIncomingInteraction",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "class",
+      "name": "UIKitActionButtonInteractionContext",
+      "exported": true,
+      "line": 57,
+      "endLine": 65,
+      "signature": "export class UIKitActionButtonInteractionContext extends UIKitInteractionContext",
+      "calls": [
+        {
+          "name": "UIKitInteractionContext",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "getInteractionData",
+      "exported": true,
+      "qualifiedName": "UIKitActionButtonInteractionContext.getInteractionData",
+      "line": 62,
+      "endLine": 64,
+      "signature": "public getInteractionData(): IUIKitActionButtonIncomingInteraction",
+      "containerClass": "UIKitActionButtonInteractionContext",
+      "calls": [
+        {
+          "name": "IUIKitActionButtonIncomingInteraction",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "constructor",
+      "exported": true,
+      "qualifiedName": "UIKitActionButtonInteractionContext.constructor",
+      "line": 58,
+      "endLine": 60,
+      "signature": "constructor(private readonly interactionData: IUIKitActionButtonIncomingInteraction | IUIKitActionButtonMessageBoxIncomingInteraction)",
+      "containerClass": "UIKitActionButtonInteractionContext",
+      "calls": [
+        {
+          "name": "IUIKitActionButtonIncomingInteraction",
+          "edgeType": "type"
+        },
+        {
+          "name": "IUIKitActionButtonMessageBoxIncomingInteraction",
+          "edgeType": "type"
+        }
+      ]
+    }
+  ],
+  "imports": [
+    {
+      "module": "./UIKitIncomingInteractionTypes",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/packages/apps-engine/src/definition/uikit/UIKitIncomingInteractionTypes.ts"
+    },
+    {
+      "module": "./UIKitInteractionResponder",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/packages/apps-engine/src/definition/uikit/UIKitInteractionResponder.ts"
+    }
+  ]
+}

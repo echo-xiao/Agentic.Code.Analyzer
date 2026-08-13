@@ -1,0 +1,361 @@
+{
+  "sourcePath": "/Users/echoooooo/Desktop/code/Rocket.Chat/packages/livechat/src/routes/Register/index.tsx",
+  "symbols": [
+    {
+      "type": "inner_function",
+      "name": "onSubmit",
+      "exported": false,
+      "qualifiedName": "Register.onSubmit",
+      "line": 77,
+      "endLine": 110,
+      "signature": "async ({ name, email, department, ...customFields }: { name: string; email: string; department?: string; customFields: FormPayloadCustomField; }) =>",
+      "calls": [
+        {
+          "name": "dispatch",
+          "edgeType": "call"
+        },
+        {
+          "name": "grantVisitor",
+          "edgeType": "call"
+        },
+        {
+          "name": "parentCall",
+          "edgeType": "call"
+        },
+        {
+          "name": "chat-visitor-registered",
+          "edgeType": "event_emit"
+        },
+        {
+          "name": "registerCustomFields",
+          "edgeType": "call"
+        },
+        {
+          "name": "FormPayloadCustomField",
+          "edgeType": "type"
+        },
+        {
+          "name": "StoreState",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "variable_function",
+      "name": "Register",
+      "exported": true,
+      "line": 32,
+      "endLine": 205,
+      "signature": "(_: RegisterProps) =>",
+      "calls": [
+        {
+          "name": "useTranslation",
+          "edgeType": "call"
+        },
+        {
+          "name": "useRef",
+          "edgeType": "call"
+        },
+        {
+          "name": "useContext",
+          "edgeType": "call"
+        },
+        {
+          "name": "useForm",
+          "edgeType": "call"
+        },
+        {
+          "name": "forEach",
+          "edgeType": "call"
+        },
+        {
+          "name": "entries",
+          "edgeType": "call"
+        },
+        {
+          "name": "setCustomField",
+          "edgeType": "call"
+        },
+        {
+          "name": "dispatch",
+          "edgeType": "call"
+        },
+        {
+          "name": "grantVisitor",
+          "edgeType": "call"
+        },
+        {
+          "name": "parentCall",
+          "edgeType": "call"
+        },
+        {
+          "name": "chat-visitor-registered",
+          "edgeType": "event_emit"
+        },
+        {
+          "name": "registerCustomFields",
+          "edgeType": "call"
+        },
+        {
+          "name": "useMemo",
+          "edgeType": "call"
+        },
+        {
+          "name": "find",
+          "edgeType": "call"
+        },
+        {
+          "name": "useEffect",
+          "edgeType": "call"
+        },
+        {
+          "name": "resetField",
+          "edgeType": "call"
+        },
+        {
+          "name": "filter",
+          "edgeType": "call"
+        },
+        {
+          "name": "route",
+          "edgeType": "call"
+        },
+        {
+          "name": "createClassName",
+          "edgeType": "call"
+        },
+        {
+          "name": "handleSubmit",
+          "edgeType": "call"
+        },
+        {
+          "name": "validateEmail",
+          "edgeType": "call"
+        },
+        {
+          "name": "map",
+          "edgeType": "call"
+        },
+        {
+          "name": "sortArrayByColumn",
+          "edgeType": "call"
+        },
+        {
+          "name": "Screen",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "FormScrollShadow",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "ScreenContent",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "Form",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "FormField",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "ScreenFooter",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "Button",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "Controller",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "TextInput",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "SelectInput",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "CustomFieldsForm",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "topRef",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "bottomRef",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "control",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "guestName",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "loading",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "guestEmail",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "defaultDepartmentId",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "customFields",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "errors",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "RegisterProps",
+          "edgeType": "type"
+        },
+        {
+          "name": "HTMLDivElement",
+          "edgeType": "type"
+        },
+        {
+          "name": "RegisterFormValues",
+          "edgeType": "type"
+        },
+        {
+          "name": "FormPayloadCustomField",
+          "edgeType": "type"
+        },
+        {
+          "name": "StoreState",
+          "edgeType": "type"
+        },
+        {
+          "name": "SubmitHandler",
+          "edgeType": "type"
+        },
+        {
+          "name": "FieldValues",
+          "edgeType": "type"
+        },
+        {
+          "name": "HTMLFormElement",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "type",
+      "name": "FormPayloadCustomField",
+      "line": 24,
+      "endLine": 24,
+      "signature": "type FormPayloadCustomField ="
+    },
+    {
+      "type": "type",
+      "name": "RegisterFormValues",
+      "line": 26,
+      "endLine": 26,
+      "signature": "export type RegisterFormValues ="
+    },
+    {
+      "type": "type",
+      "name": "RegisterProps",
+      "line": 28,
+      "endLine": 30,
+      "signature": "type RegisterProps ="
+    }
+  ],
+  "imports": [
+    {
+      "module": "preact/hooks",
+      "resolved": "external"
+    },
+    {
+      "module": "preact/src/jsx",
+      "resolved": "external"
+    },
+    {
+      "module": "preact-router",
+      "resolved": "external"
+    },
+    {
+      "module": "react-hook-form",
+      "resolved": "external"
+    },
+    {
+      "module": "react-hook-form",
+      "resolved": "external"
+    },
+    {
+      "module": "react-i18next",
+      "resolved": "external"
+    },
+    {
+      "module": "./styles.scss",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/packages/livechat/src/routes/Register/styles.scss"
+    },
+    {
+      "module": "../../api",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/packages/livechat/src/api.ts"
+    },
+    {
+      "module": "../../components/Button",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/packages/livechat/src/components/Button/index.tsx"
+    },
+    {
+      "module": "../../components/Form",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/packages/livechat/src/components/Form/index.tsx"
+    },
+    {
+      "module": "../../components/Form/FormScrollShadow",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/packages/livechat/src/components/Form/FormScrollShadow/index.tsx"
+    },
+    {
+      "module": "../../components/Screen",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/packages/livechat/src/components/Screen/index.ts"
+    },
+    {
+      "module": "../../helpers/createClassName",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/packages/livechat/src/helpers/createClassName.ts"
+    },
+    {
+      "module": "../../helpers/sortArrayByColumn",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/packages/livechat/src/helpers/sortArrayByColumn.ts"
+    },
+    {
+      "module": "../../lib/customFields",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/packages/livechat/src/lib/customFields.ts"
+    },
+    {
+      "module": "../../lib/email",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/packages/livechat/src/lib/email.ts"
+    },
+    {
+      "module": "../../lib/parentCall",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/packages/livechat/src/lib/parentCall.ts"
+    },
+    {
+      "module": "../../lib/triggers",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/packages/livechat/src/lib/triggers.ts"
+    },
+    {
+      "module": "../../store",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/packages/livechat/src/store/index.tsx"
+    },
+    {
+      "module": "../../store",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/packages/livechat/src/store/index.tsx"
+    }
+  ]
+}

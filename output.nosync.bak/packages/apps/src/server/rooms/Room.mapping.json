@@ -1,0 +1,166 @@
+{
+  "sourcePath": "/Users/echoooooo/Desktop/code/Rocket.Chat/packages/apps/src/server/rooms/Room.ts",
+  "symbols": [
+    {
+      "type": "class",
+      "name": "Room",
+      "exported": true,
+      "line": 8,
+      "endLine": 105,
+      "signature": "export class Room implements IRoom",
+      "calls": [
+        {
+          "name": "IRoom",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "getUsernames",
+      "exported": true,
+      "qualifiedName": "Room.getUsernames",
+      "line": 85,
+      "endLine": 92,
+      "signature": "public async getUsernames(): Promise<Array<string>>",
+      "containerClass": "Room",
+      "calls": [
+        {
+          "name": "doGetUsernamesOfRoomById",
+          "edgeType": "call"
+        },
+        {
+          "name": "getInternalBridge",
+          "edgeType": "call"
+        },
+        {
+          "name": "getBridges",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "toJSON",
+      "exported": true,
+      "qualifiedName": "Room.toJSON",
+      "line": 89,
+      "endLine": 91,
+      "signature": "public toJSON()",
+      "containerClass": "Room",
+      "calls": []
+    },
+    {
+      "type": "method",
+      "name": "toString",
+      "exported": true,
+      "qualifiedName": "Room.toString",
+      "line": 93,
+      "endLine": 95,
+      "signature": "public toString()",
+      "containerClass": "Room",
+      "calls": []
+    },
+    {
+      "type": "method",
+      "name": "valueOf",
+      "exported": true,
+      "qualifiedName": "Room.valueOf",
+      "line": 97,
+      "endLine": 99,
+      "signature": "public valueOf()",
+      "containerClass": "Room",
+      "calls": []
+    },
+    {
+      "type": "method",
+      "name": "constructor",
+      "exported": true,
+      "qualifiedName": "Room.constructor",
+      "line": 55,
+      "endLine": 64,
+      "signature": "public constructor(room: IRoom, manager: AppManager)",
+      "containerClass": "Room",
+      "calls": [
+        {
+          "name": "assign",
+          "edgeType": "call"
+        },
+        {
+          "name": "defineProperty",
+          "edgeType": "call"
+        },
+        {
+          "name": "IRoom",
+          "edgeType": "type"
+        },
+        {
+          "name": "AppManager",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "class_property",
+      "name": "type",
+      "exported": true,
+      "qualifiedName": "Room.type",
+      "line": 15,
+      "endLine": 15,
+      "signature": "public type: RoomType;",
+      "containerClass": "Room",
+      "calls": [
+        {
+          "name": "RoomType",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "class_property",
+      "name": "creator",
+      "exported": true,
+      "qualifiedName": "Room.creator",
+      "line": 17,
+      "endLine": 17,
+      "signature": "public creator: IUser;",
+      "containerClass": "Room",
+      "calls": [
+        {
+          "name": "IUser",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "class_property",
+      "name": "[PrivateManager]",
+      "exported": true,
+      "qualifiedName": "Room.[PrivateManager]",
+      "line": 39,
+      "endLine": 39,
+      "signature": "private [PrivateManager]: AppManager;",
+      "containerClass": "Room",
+      "calls": [
+        {
+          "name": "AppManager",
+          "edgeType": "type"
+        }
+      ]
+    }
+  ],
+  "imports": [
+    {
+      "module": "@rocket.chat/apps-engine/definition/rooms",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/apps-engine/definition/users",
+      "resolved": "external"
+    },
+    {
+      "module": "../AppManager",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/packages/apps/src/server/AppManager.ts"
+    }
+  ]
+}

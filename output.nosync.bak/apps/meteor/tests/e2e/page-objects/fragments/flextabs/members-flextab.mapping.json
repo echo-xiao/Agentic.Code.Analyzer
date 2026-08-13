@@ -1,0 +1,795 @@
+{
+  "sourcePath": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/tests/e2e/page-objects/fragments/flextabs/members-flextab.ts",
+  "symbols": [
+    {
+      "type": "class",
+      "name": "ConfirmMuteModal",
+      "exported": true,
+      "line": 10,
+      "endLine": 23,
+      "signature": "export class ConfirmMuteModal extends Modal",
+      "calls": [
+        {
+          "name": "Modal",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "confirmMute",
+      "exported": true,
+      "qualifiedName": "ConfirmMuteModal.confirmMute",
+      "line": 19,
+      "endLine": 22,
+      "signature": "async confirmMute()",
+      "containerClass": "ConfirmMuteModal",
+      "calls": [
+        {
+          "name": "click",
+          "edgeType": "call"
+        },
+        {
+          "name": "waitForDismissal",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "constructor",
+      "exported": true,
+      "qualifiedName": "ConfirmMuteModal.constructor",
+      "line": 11,
+      "endLine": 13,
+      "signature": "constructor(page: Page)",
+      "containerClass": "ConfirmMuteModal",
+      "calls": [
+        {
+          "name": "getByRole",
+          "edgeType": "call"
+        },
+        {
+          "name": "Page",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "class",
+      "name": "RemoveTeamMemberModal",
+      "exported": true,
+      "line": 24,
+      "endLine": 53,
+      "signature": "export class RemoveTeamMemberModal extends Modal",
+      "calls": [
+        {
+          "name": "Modal",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "channel",
+      "exported": true,
+      "qualifiedName": "RemoveTeamMemberModal.channel",
+      "line": 33,
+      "endLine": 35,
+      "signature": "channel(channelName: string)",
+      "containerClass": "RemoveTeamMemberModal",
+      "calls": [
+        {
+          "name": "getByText",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "channelCheckbox",
+      "exported": true,
+      "qualifiedName": "RemoveTeamMemberModal.channelCheckbox",
+      "line": 37,
+      "endLine": 39,
+      "signature": "channelCheckbox(channelName: string)",
+      "containerClass": "RemoveTeamMemberModal",
+      "calls": [
+        {
+          "name": "getByRole",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "selectChannel",
+      "exported": true,
+      "qualifiedName": "RemoveTeamMemberModal.selectChannel",
+      "line": 41,
+      "endLine": 43,
+      "signature": "async selectChannel(channelName: string)",
+      "containerClass": "RemoveTeamMemberModal",
+      "calls": [
+        {
+          "name": "click",
+          "edgeType": "call"
+        },
+        {
+          "name": "channel",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "continue",
+      "exported": true,
+      "qualifiedName": "RemoveTeamMemberModal.continue",
+      "line": 49,
+      "endLine": 52,
+      "signature": "async continue()",
+      "containerClass": "RemoveTeamMemberModal",
+      "calls": [
+        {
+          "name": "click",
+          "edgeType": "call"
+        },
+        {
+          "name": "waitForDismissal",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "constructor",
+      "exported": true,
+      "qualifiedName": "RemoveTeamMemberModal.constructor",
+      "line": 25,
+      "endLine": 27,
+      "signature": "constructor(page: Page)",
+      "containerClass": "RemoveTeamMemberModal",
+      "calls": [
+        {
+          "name": "getByRole",
+          "edgeType": "call"
+        },
+        {
+          "name": "Page",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "class",
+      "name": "AddUsersFlexTab",
+      "exported": false,
+      "line": 54,
+      "endLine": 72,
+      "signature": "class AddUsersFlexTab extends FlexTab",
+      "calls": [
+        {
+          "name": "FlexTab",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "btnAddUsers",
+      "exported": false,
+      "qualifiedName": "AddUsersFlexTab.btnAddUsers",
+      "line": 62,
+      "endLine": 64,
+      "signature": "private btnAddUsers()",
+      "containerClass": "AddUsersFlexTab",
+      "calls": [
+        {
+          "name": "getByRole",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "addUser",
+      "exported": false,
+      "qualifiedName": "AddUsersFlexTab.addUser",
+      "line": 66,
+      "endLine": 71,
+      "signature": "async addUser(username: string)",
+      "containerClass": "AddUsersFlexTab",
+      "calls": [
+        {
+          "name": "pressSequentially",
+          "edgeType": "call"
+        },
+        {
+          "name": "getByRole",
+          "edgeType": "call"
+        },
+        {
+          "name": "selectOption",
+          "edgeType": "call"
+        },
+        {
+          "name": "click",
+          "edgeType": "call"
+        },
+        {
+          "name": "btnAddUsers",
+          "edgeType": "call"
+        },
+        {
+          "name": "waitForDismissal",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "constructor",
+      "exported": false,
+      "qualifiedName": "AddUsersFlexTab.constructor",
+      "line": 57,
+      "endLine": 60,
+      "signature": "constructor(page: Page)",
+      "containerClass": "AddUsersFlexTab",
+      "calls": [
+        {
+          "name": "getByRole",
+          "edgeType": "call"
+        },
+        {
+          "name": "Listbox",
+          "edgeType": "new"
+        },
+        {
+          "name": "Page",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "class_property",
+      "name": "listbox",
+      "exported": false,
+      "qualifiedName": "AddUsersFlexTab.listbox",
+      "line": 55,
+      "endLine": 55,
+      "signature": "readonly listbox: Listbox;",
+      "containerClass": "AddUsersFlexTab",
+      "calls": [
+        {
+          "name": "Listbox",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "class",
+      "name": "MembersFlexTab",
+      "exported": true,
+      "line": 70,
+      "endLine": 173,
+      "signature": "export class MembersFlexTab extends FlexTab",
+      "calls": [
+        {
+          "name": "FlexTab",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "memberOption",
+      "exported": true,
+      "qualifiedName": "MembersFlexTab.memberOption",
+      "line": 96,
+      "endLine": 98,
+      "signature": "memberOption(username: string)",
+      "containerClass": "MembersFlexTab",
+      "calls": [
+        {
+          "name": "locator",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "getMenuItemAction",
+      "exported": true,
+      "qualifiedName": "MembersFlexTab.getMenuItemAction",
+      "line": 100,
+      "endLine": 102,
+      "signature": "getMenuItemAction(action: string)",
+      "containerClass": "MembersFlexTab",
+      "calls": [
+        {
+          "name": "getMenuItem",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "openMemberInfo",
+      "exported": true,
+      "qualifiedName": "MembersFlexTab.openMemberInfo",
+      "line": 104,
+      "endLine": 106,
+      "signature": "async openMemberInfo(username: string)",
+      "containerClass": "MembersFlexTab",
+      "calls": [
+        {
+          "name": "click",
+          "edgeType": "call"
+        },
+        {
+          "name": "memberOption",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "openMoreActions",
+      "exported": true,
+      "qualifiedName": "MembersFlexTab.openMoreActions",
+      "line": 108,
+      "endLine": 110,
+      "signature": "async openMoreActions()",
+      "containerClass": "MembersFlexTab",
+      "calls": [
+        {
+          "name": "click",
+          "edgeType": "call"
+        },
+        {
+          "name": "getByRole",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "openMemberOptionMoreActions",
+      "exported": true,
+      "qualifiedName": "MembersFlexTab.openMemberOptionMoreActions",
+      "line": 112,
+      "endLine": 115,
+      "signature": "async openMemberOptionMoreActions(username: string)",
+      "containerClass": "MembersFlexTab",
+      "calls": [
+        {
+          "name": "hover",
+          "edgeType": "call"
+        },
+        {
+          "name": "memberOption",
+          "edgeType": "call"
+        },
+        {
+          "name": "click",
+          "edgeType": "call"
+        },
+        {
+          "name": "getByRole",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "addUser",
+      "exported": true,
+      "qualifiedName": "MembersFlexTab.addUser",
+      "line": 116,
+      "endLine": 119,
+      "signature": "async addUser(username: string)",
+      "containerClass": "MembersFlexTab",
+      "calls": [
+        {
+          "name": "click",
+          "edgeType": "call"
+        },
+        {
+          "name": "getByRole",
+          "edgeType": "call"
+        },
+        {
+          "name": "addUser",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "inviteUser",
+      "exported": true,
+      "qualifiedName": "MembersFlexTab.inviteUser",
+      "line": 124,
+      "endLine": 126,
+      "signature": "async inviteUser()",
+      "containerClass": "MembersFlexTab",
+      "calls": [
+        {
+          "name": "click",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "muteUser",
+      "exported": true,
+      "qualifiedName": "MembersFlexTab.muteUser",
+      "line": 128,
+      "endLine": 132,
+      "signature": "async muteUser(username: string)",
+      "containerClass": "MembersFlexTab",
+      "calls": [
+        {
+          "name": "openMemberOptionMoreActions",
+          "edgeType": "call"
+        },
+        {
+          "name": "selectMenuItem",
+          "edgeType": "call"
+        },
+        {
+          "name": "confirmMute",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "unmuteUser",
+      "exported": true,
+      "qualifiedName": "MembersFlexTab.unmuteUser",
+      "line": 132,
+      "endLine": 135,
+      "signature": "async unmuteUser(username: string)",
+      "containerClass": "MembersFlexTab",
+      "calls": [
+        {
+          "name": "openMemberOptionMoreActions",
+          "edgeType": "call"
+        },
+        {
+          "name": "selectMenuItem",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "setUserAsModerator",
+      "exported": true,
+      "qualifiedName": "MembersFlexTab.setUserAsModerator",
+      "line": 136,
+      "endLine": 139,
+      "signature": "async setUserAsModerator(username: string)",
+      "containerClass": "MembersFlexTab",
+      "calls": [
+        {
+          "name": "openMemberOptionMoreActions",
+          "edgeType": "call"
+        },
+        {
+          "name": "selectMenuItem",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "setUserAsOwner",
+      "exported": true,
+      "qualifiedName": "MembersFlexTab.setUserAsOwner",
+      "line": 140,
+      "endLine": 143,
+      "signature": "async setUserAsOwner(username: string)",
+      "containerClass": "MembersFlexTab",
+      "calls": [
+        {
+          "name": "openMemberOptionMoreActions",
+          "edgeType": "call"
+        },
+        {
+          "name": "selectMenuItem",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "showAllUsers",
+      "exported": true,
+      "qualifiedName": "MembersFlexTab.showAllUsers",
+      "line": 144,
+      "endLine": 147,
+      "signature": "async showAllUsers()",
+      "containerClass": "MembersFlexTab",
+      "calls": [
+        {
+          "name": "click",
+          "edgeType": "call"
+        },
+        {
+          "name": "getByRole",
+          "edgeType": "call"
+        },
+        {
+          "name": "selectOption",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "ignoreUserAction",
+      "exported": true,
+      "qualifiedName": "MembersFlexTab.ignoreUserAction",
+      "line": 148,
+      "endLine": 152,
+      "signature": "private async ignoreUserAction(action: string, username: string)",
+      "containerClass": "MembersFlexTab",
+      "calls": [
+        {
+          "name": "openMemberInfo",
+          "edgeType": "call"
+        },
+        {
+          "name": "openMoreActions",
+          "edgeType": "call"
+        },
+        {
+          "name": "selectMenuItem",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "ignoreUser",
+      "exported": true,
+      "qualifiedName": "MembersFlexTab.ignoreUser",
+      "line": 152,
+      "endLine": 154,
+      "signature": "async ignoreUser(username: string)",
+      "containerClass": "MembersFlexTab",
+      "calls": [
+        {
+          "name": "ignoreUserAction",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "unignoreUser",
+      "exported": true,
+      "qualifiedName": "MembersFlexTab.unignoreUser",
+      "line": 156,
+      "endLine": 158,
+      "signature": "async unignoreUser(username: string)",
+      "containerClass": "MembersFlexTab",
+      "calls": [
+        {
+          "name": "ignoreUserAction",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "confirmRemoveUser",
+      "exported": true,
+      "qualifiedName": "MembersFlexTab.confirmRemoveUser",
+      "line": 160,
+      "endLine": 162,
+      "signature": "async confirmRemoveUser()",
+      "containerClass": "MembersFlexTab",
+      "calls": [
+        {
+          "name": "confirmRemove",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "constructor",
+      "exported": true,
+      "qualifiedName": "MembersFlexTab.constructor",
+      "line": 85,
+      "endLine": 94,
+      "signature": "constructor(page: Page)",
+      "containerClass": "MembersFlexTab",
+      "calls": [
+        {
+          "name": "getByRole",
+          "edgeType": "call"
+        },
+        {
+          "name": "ConfirmRemoveModal",
+          "edgeType": "new"
+        },
+        {
+          "name": "RemoveTeamMemberModal",
+          "edgeType": "new"
+        },
+        {
+          "name": "Listbox",
+          "edgeType": "new"
+        },
+        {
+          "name": "MenuMore",
+          "edgeType": "new"
+        },
+        {
+          "name": "ConfirmMuteModal",
+          "edgeType": "new"
+        },
+        {
+          "name": "AddUsersFlexTab",
+          "edgeType": "new"
+        },
+        {
+          "name": "UserInfoFlexTab",
+          "edgeType": "new"
+        },
+        {
+          "name": "Page",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "class_property",
+      "name": "listbox",
+      "exported": true,
+      "qualifiedName": "MembersFlexTab.listbox",
+      "line": 71,
+      "endLine": 71,
+      "signature": "readonly listbox: Listbox;",
+      "containerClass": "MembersFlexTab",
+      "calls": [
+        {
+          "name": "Listbox",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "class_property",
+      "name": "removeModal",
+      "exported": true,
+      "qualifiedName": "MembersFlexTab.removeModal",
+      "line": 73,
+      "endLine": 73,
+      "signature": "readonly removeModal: ConfirmRemoveModal;",
+      "containerClass": "MembersFlexTab",
+      "calls": [
+        {
+          "name": "ConfirmRemoveModal",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "class_property",
+      "name": "removeTeamMemberModal",
+      "exported": true,
+      "qualifiedName": "MembersFlexTab.removeTeamMemberModal",
+      "line": 75,
+      "endLine": 75,
+      "signature": "readonly removeTeamMemberModal: RemoveTeamMemberModal;",
+      "containerClass": "MembersFlexTab",
+      "calls": [
+        {
+          "name": "RemoveTeamMemberModal",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "class_property",
+      "name": "menu",
+      "exported": true,
+      "qualifiedName": "MembersFlexTab.menu",
+      "line": 77,
+      "endLine": 77,
+      "signature": "readonly menu: MenuMore;",
+      "containerClass": "MembersFlexTab",
+      "calls": [
+        {
+          "name": "MenuMore",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "class_property",
+      "name": "confirmMuteModal",
+      "exported": true,
+      "qualifiedName": "MembersFlexTab.confirmMuteModal",
+      "line": 79,
+      "endLine": 79,
+      "signature": "readonly confirmMuteModal: ConfirmMuteModal;",
+      "containerClass": "MembersFlexTab",
+      "calls": [
+        {
+          "name": "ConfirmMuteModal",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "class_property",
+      "name": "addUsersFlexTab",
+      "exported": true,
+      "qualifiedName": "MembersFlexTab.addUsersFlexTab",
+      "line": 81,
+      "endLine": 81,
+      "signature": "readonly addUsersFlexTab: AddUsersFlexTab;",
+      "containerClass": "MembersFlexTab",
+      "calls": [
+        {
+          "name": "AddUsersFlexTab",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "class_property",
+      "name": "userInfo",
+      "exported": true,
+      "qualifiedName": "MembersFlexTab.userInfo",
+      "line": 83,
+      "endLine": 83,
+      "signature": "readonly userInfo: UserInfoFlexTab;",
+      "containerClass": "MembersFlexTab",
+      "calls": [
+        {
+          "name": "UserInfoFlexTab",
+          "edgeType": "type"
+        }
+      ]
+    }
+  ],
+  "imports": [
+    {
+      "module": "@playwright/test",
+      "resolved": "external"
+    },
+    {
+      "module": "./flextab",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/tests/e2e/page-objects/fragments/flextabs/flextab.ts"
+    },
+    {
+      "module": "../listbox",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/tests/e2e/page-objects/fragments/listbox.ts"
+    },
+    {
+      "module": "../menu",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/tests/e2e/page-objects/fragments/menu.ts"
+    },
+    {
+      "module": "../modals",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/tests/e2e/page-objects/fragments/modals/index.ts"
+    },
+    {
+      "module": "./user-info-flextab",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/tests/e2e/page-objects/fragments/flextabs/user-info-flextab.ts"
+    },
+    {
+      "module": "../modals/modal",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/tests/e2e/page-objects/fragments/modals/modal.ts"
+    }
+  ]
+}

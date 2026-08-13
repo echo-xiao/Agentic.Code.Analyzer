@@ -1,0 +1,69 @@
+{
+  "sourcePath": "/Users/echoooooo/Desktop/code/Rocket.Chat/packages/core-typings/src/IUpload.ts",
+  "symbols": [
+    {
+      "type": "variable_function",
+      "name": "isE2EEUpload",
+      "exported": true,
+      "line": 79,
+      "endLine": 79,
+      "signature": "(upload: IUpload): upload is IE2EEUpload =>",
+      "calls": [
+        {
+          "name": "Boolean",
+          "edgeType": "call"
+        },
+        {
+          "name": "IUpload",
+          "edgeType": "type"
+        },
+        {
+          "name": "IE2EEUpload",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "interface",
+      "name": "IUpload",
+      "line": 5,
+      "endLine": 67,
+      "signature": "export interface IUpload extends IRocketChatRecord"
+    },
+    {
+      "type": "interface",
+      "name": "IUploadWithUser",
+      "line": 69,
+      "endLine": 71,
+      "signature": "export interface IUploadWithUser extends IUpload"
+    },
+    {
+      "type": "interface",
+      "name": "IE2EEUpload",
+      "line": 73,
+      "endLine": 75,
+      "signature": "export interface IE2EEUpload extends IUpload"
+    },
+    {
+      "type": "type",
+      "name": "IUploadToConfirm",
+      "line": 77,
+      "endLine": 77,
+      "signature": "export type IUploadToConfirm = Pick<IUpload, '_id' | 'name' | 'content'>;"
+    }
+  ],
+  "imports": [
+    {
+      "module": "./IMessage",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/packages/core-typings/src/IMessage/index.ts"
+    },
+    {
+      "module": "./IRocketChatRecord",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/packages/core-typings/src/IRocketChatRecord.ts"
+    },
+    {
+      "module": "./IUser",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/packages/core-typings/src/IUser.ts"
+    }
+  ]
+}

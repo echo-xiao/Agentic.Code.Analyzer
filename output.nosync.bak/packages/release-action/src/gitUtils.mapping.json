@@ -1,0 +1,145 @@
+{
+  "sourcePath": "/Users/echoooooo/Desktop/code/Rocket.Chat/packages/release-action/src/gitUtils.ts",
+  "symbols": [
+    {
+      "type": "function",
+      "name": "setupGitUser",
+      "exported": true,
+      "line": 3,
+      "endLine": 6,
+      "signature": "export async function setupGitUser()",
+      "calls": [
+        {
+          "name": "exec",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "function",
+      "name": "createBranch",
+      "exported": true,
+      "line": 7,
+      "endLine": 9,
+      "signature": "export async function createBranch(newBranch: string)",
+      "calls": [
+        {
+          "name": "exec",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "function",
+      "name": "checkoutBranch",
+      "exported": true,
+      "line": 11,
+      "endLine": 13,
+      "signature": "export async function checkoutBranch(branchName: string)",
+      "calls": [
+        {
+          "name": "exec",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "function",
+      "name": "mergeBranch",
+      "exported": true,
+      "line": 15,
+      "endLine": 17,
+      "signature": "export async function mergeBranch(branchName: string)",
+      "calls": [
+        {
+          "name": "exec",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "function",
+      "name": "commitChanges",
+      "exported": true,
+      "line": 19,
+      "endLine": 22,
+      "signature": "export async function commitChanges(commitMessage: string)",
+      "calls": [
+        {
+          "name": "exec",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "function",
+      "name": "createTag",
+      "exported": true,
+      "line": 23,
+      "endLine": 26,
+      "signature": "export async function createTag(version: string)",
+      "calls": [
+        {
+          "name": "exec",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "function",
+      "name": "getCurrentBranch",
+      "exported": true,
+      "line": 27,
+      "endLine": 31,
+      "signature": "export async function getCurrentBranch()",
+      "calls": [
+        {
+          "name": "getExecOutput",
+          "edgeType": "call"
+        },
+        {
+          "name": "trim",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "function",
+      "name": "pushChanges",
+      "exported": true,
+      "line": 31,
+      "endLine": 33,
+      "signature": "export async function pushChanges()",
+      "calls": [
+        {
+          "name": "exec",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "function",
+      "name": "pushNewBranch",
+      "exported": true,
+      "line": 35,
+      "endLine": 47,
+      "signature": "export async function pushNewBranch(newBranch: string, force = false)",
+      "calls": [
+        {
+          "name": "push",
+          "edgeType": "call"
+        },
+        {
+          "name": "exec",
+          "edgeType": "call"
+        }
+      ]
+    }
+  ],
+  "imports": [
+    {
+      "module": "@actions/exec",
+      "resolved": "external"
+    }
+  ]
+}

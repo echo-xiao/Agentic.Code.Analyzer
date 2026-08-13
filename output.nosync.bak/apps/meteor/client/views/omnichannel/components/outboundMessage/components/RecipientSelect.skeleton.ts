@@ -1,0 +1,24 @@
+## File: apps/meteor/client/views/omnichannel/components/outboundMessage/components/RecipientSelect.tsx
+
+```typescript
+import type { Serialized, ILivechatContact } from '@rocket.chat/core-typings';
+import { Select } from '@rocket.chat/fuselage';
+import type { ComponentProps, Key } from 'react';
+import { useMemo } from 'react';
+
+import { formatPhoneNumber } from '../../../../../lib/formatPhoneNumber';
+
+type RecipientSelectProps = Omit<ComponentProps<typeof Select>, 'options' | 'onChange' | 'value'> & {
+	type: 'phone' | 'email';
+	contact: Serialized<ILivechatContact> | undefined;
+	value: string;
+	onChange: (value: Key) => void;
+};
+
+const RecipientSelect = ({ contact, type, value, disabled, onChange, ...props }: RecipientSelectProps) => {
+    /* Implementation Hidden */
+};
+
+export default RecipientSelect;
+
+```

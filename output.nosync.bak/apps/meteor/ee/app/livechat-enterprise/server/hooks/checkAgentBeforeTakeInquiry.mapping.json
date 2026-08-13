@@ -1,0 +1,88 @@
+{
+  "sourcePath": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/ee/app/livechat-enterprise/server/hooks/checkAgentBeforeTakeInquiry.ts",
+  "symbols": [
+    {
+      "type": "module",
+      "name": "checkAgentBeforeTakeInquiry",
+      "exported": false,
+      "line": 1,
+      "endLine": 66,
+      "signature": "checkAgentBeforeTakeInquiry",
+      "calls": [
+        {
+          "name": "validateMaxChats",
+          "edgeType": "event_listen",
+          "event": "livechat.checkAgentBeforeTakeInquiry"
+        }
+      ]
+    },
+    {
+      "type": "variable_function",
+      "name": "validateMaxChats",
+      "exported": false,
+      "line": 10,
+      "endLine": 63,
+      "signature": "async ({ agent, inquiry, }: { agent: { agentId: string; }; inquiry: { _id: string; department: string; }; options: { forwardingToDepartment?: { oldDepartmentId: string; transferData: any; }; clientAction?: boolean; }; }) =>",
+      "calls": [
+        {
+          "name": "debug",
+          "edgeType": "call"
+        },
+        {
+          "name": "checkOnlineAgents",
+          "edgeType": "call"
+        },
+        {
+          "name": "get",
+          "edgeType": "call"
+        },
+        {
+          "name": "info",
+          "edgeType": "call"
+        },
+        {
+          "name": "allowAgentSkipQueue",
+          "edgeType": "call"
+        },
+        {
+          "name": "getAgentAndAmountOngoingChats",
+          "edgeType": "call"
+        },
+        {
+          "name": "isAgentWithinChatLimits",
+          "edgeType": "call"
+        }
+      ]
+    }
+  ],
+  "imports": [
+    {
+      "module": "@rocket.chat/models",
+      "resolved": "external"
+    },
+    {
+      "module": "../../../../../app/livechat/server/lib/Helper",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/app/livechat/server/lib/Helper.ts"
+    },
+    {
+      "module": "../../../../../app/livechat/server/lib/service-status",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/app/livechat/server/lib/service-status.ts"
+    },
+    {
+      "module": "../../../../../app/settings/server",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/app/settings/server/index.ts"
+    },
+    {
+      "module": "../../../../../server/lib/callbacks",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/server/lib/callbacks.ts"
+    },
+    {
+      "module": "../lib/Helper",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/ee/app/livechat-enterprise/server/lib/Helper.ts"
+    },
+    {
+      "module": "../lib/logger",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/ee/app/livechat-enterprise/server/lib/logger.ts"
+    }
+  ]
+}

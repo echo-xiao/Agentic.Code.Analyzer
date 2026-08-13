@@ -1,0 +1,261 @@
+{
+  "sourcePath": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/app/importer-csv/server/CsvImporter.ts",
+  "symbols": [
+    {
+      "type": "class",
+      "name": "CsvImporter",
+      "exported": true,
+      "line": 13,
+      "endLine": 286,
+      "signature": "export class CsvImporter extends Importer",
+      "calls": [
+        {
+          "name": "Importer",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "prepareUsingLocalFile",
+      "exported": true,
+      "qualifiedName": "CsvImporter.prepareUsingLocalFile",
+      "line": 22,
+      "endLine": 285,
+      "signature": "override async prepareUsingLocalFile(fullFilePath: string): Promise<ImporterProgress>",
+      "containerClass": "CsvImporter",
+      "calls": [
+        {
+          "name": "debug",
+          "edgeType": "call"
+        },
+        {
+          "name": "clearImportData",
+          "edgeType": "call"
+        },
+        {
+          "name": "getEntryCount",
+          "edgeType": "call"
+        },
+        {
+          "name": "progressUpdated",
+          "edgeType": "call"
+        },
+        {
+          "name": "floor",
+          "edgeType": "call"
+        },
+        {
+          "name": "error",
+          "edgeType": "call"
+        },
+        {
+          "name": "get",
+          "edgeType": "call"
+        },
+        {
+          "name": "id",
+          "edgeType": "call"
+        },
+        {
+          "name": "set",
+          "edgeType": "call"
+        },
+        {
+          "name": "getEntries",
+          "edgeType": "call"
+        },
+        {
+          "name": "indexOf",
+          "edgeType": "call"
+        },
+        {
+          "name": "increaseProgressCount",
+          "edgeType": "call"
+        },
+        {
+          "name": "toLowerCase",
+          "edgeType": "call"
+        },
+        {
+          "name": "updateProgress",
+          "edgeType": "call"
+        },
+        {
+          "name": "csvParser",
+          "edgeType": "call"
+        },
+        {
+          "name": "getData",
+          "edgeType": "call"
+        },
+        {
+          "name": "trim",
+          "edgeType": "call"
+        },
+        {
+          "name": "getRoomId",
+          "edgeType": "call"
+        },
+        {
+          "name": "filter",
+          "edgeType": "call"
+        },
+        {
+          "name": "map",
+          "edgeType": "call"
+        },
+        {
+          "name": "split",
+          "edgeType": "call"
+        },
+        {
+          "name": "addChannel",
+          "edgeType": "call"
+        },
+        {
+          "name": "updateRecord",
+          "edgeType": "call"
+        },
+        {
+          "name": "addUser",
+          "edgeType": "call"
+        },
+        {
+          "name": "call",
+          "edgeType": "call"
+        },
+        {
+          "name": "warn",
+          "edgeType": "call"
+        },
+        {
+          "name": "join",
+          "edgeType": "call"
+        },
+        {
+          "name": "sort",
+          "edgeType": "call"
+        },
+        {
+          "name": "has",
+          "edgeType": "call"
+        },
+        {
+          "name": "addMessage",
+          "edgeType": "call"
+        },
+        {
+          "name": "incrementValueById",
+          "edgeType": "call"
+        },
+        {
+          "name": "notifyOnSettingChanged",
+          "edgeType": "call"
+        },
+        {
+          "name": "findOneByUsername",
+          "edgeType": "call"
+        },
+        {
+          "name": "includes",
+          "edgeType": "call"
+        },
+        {
+          "name": "addImportIds",
+          "edgeType": "call"
+        },
+        {
+          "name": "addCountToTotal",
+          "edgeType": "call"
+        },
+        {
+          "name": "getProgress",
+          "edgeType": "call"
+        },
+        {
+          "name": "Set",
+          "edgeType": "new"
+        },
+        {
+          "name": "Map",
+          "edgeType": "new"
+        },
+        {
+          "name": "Date",
+          "edgeType": "new"
+        },
+        {
+          "name": "ImporterProgress",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "constructor",
+      "exported": true,
+      "qualifiedName": "CsvImporter.constructor",
+      "line": 16,
+      "endLine": 20,
+      "signature": "constructor(info: ImporterInfo, importRecord: IImport, converterOptions: ConverterOptions = {})",
+      "containerClass": "CsvImporter",
+      "calls": [
+        {
+          "name": "ImporterInfo",
+          "edgeType": "type"
+        },
+        {
+          "name": "IImport",
+          "edgeType": "type"
+        },
+        {
+          "name": "ConverterOptions",
+          "edgeType": "type"
+        }
+      ]
+    }
+  ],
+  "imports": [
+    {
+      "module": "@rocket.chat/core-typings",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/models",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/random",
+      "resolved": "external"
+    },
+    {
+      "module": "csv-parse/lib/sync",
+      "resolved": "external"
+    },
+    {
+      "module": "../../importer/server",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/app/importer/server/index.ts"
+    },
+    {
+      "module": "../../importer/server/classes/ImportDataConverter",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/app/importer/server/classes/ImportDataConverter.ts"
+    },
+    {
+      "module": "../../importer/server/classes/ImporterProgress",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/app/importer/server/classes/ImporterProgress.ts"
+    },
+    {
+      "module": "../../importer/server/definitions/ImporterInfo",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/app/importer/server/definitions/ImporterInfo.ts"
+    },
+    {
+      "module": "../../importer-omnichannel-contacts/server/addParsedContacts",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/app/importer-omnichannel-contacts/server/addParsedContacts.ts"
+    },
+    {
+      "module": "../../lib/server/lib/notifyListener",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/app/lib/server/lib/notifyListener.ts"
+    }
+  ]
+}

@@ -1,0 +1,62 @@
+{
+  "sourcePath": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/lib/transforms.ts",
+  "symbols": [
+    {
+      "type": "variable_function",
+      "name": "createAsyncTransformChain",
+      "exported": true,
+      "line": 8,
+      "endLine": 24,
+      "signature": "<T>( ...transforms: Transform<T, Promise<Awaited<T>>>[] ): TransformChain<T, Promise<Awaited<T>>> =>",
+      "calls": [
+        {
+          "name": "reduce",
+          "edgeType": "call"
+        },
+        {
+          "name": "then",
+          "edgeType": "call"
+        },
+        {
+          "name": "resolve",
+          "edgeType": "call"
+        },
+        {
+          "name": "push",
+          "edgeType": "call"
+        },
+        {
+          "name": "filter",
+          "edgeType": "call"
+        },
+        {
+          "name": "assign",
+          "edgeType": "call"
+        },
+        {
+          "name": "Transform",
+          "edgeType": "type"
+        },
+        {
+          "name": "TransformChain",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "type",
+      "name": "Transform",
+      "line": 1,
+      "endLine": 1,
+      "signature": "type Transform<T, U extends T | Promise<Awaited<T>>> = (x: T) => U;"
+    },
+    {
+      "type": "type",
+      "name": "TransformChain",
+      "line": 3,
+      "endLine": 6,
+      "signature": "type TransformChain<T, U extends T | Promise<Awaited<T>>> ="
+    }
+  ],
+  "imports": []
+}

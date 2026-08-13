@@ -1,0 +1,105 @@
+{
+  "sourcePath": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/client/views/admin/subscription/surface/UiKitSubscriptionLicenseSurface.tsx",
+  "symbols": [
+    {
+      "type": "class",
+      "name": "SubscriptionLicenseSurfaceRenderer",
+      "exported": true,
+      "line": 20,
+      "endLine": 28,
+      "signature": "export class SubscriptionLicenseSurfaceRenderer extends FuselageSurfaceRenderer",
+      "calls": [
+        {
+          "name": "FuselageSurfaceRenderer",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "constructor",
+      "exported": true,
+      "qualifiedName": "SubscriptionLicenseSurfaceRenderer.constructor",
+      "line": 21,
+      "endLine": 23,
+      "signature": "public constructor()",
+      "containerClass": "SubscriptionLicenseSurfaceRenderer",
+      "calls": []
+    },
+    {
+      "type": "variable_function",
+      "name": "SubscriptionLicenseSurface",
+      "exported": false,
+      "line": 14,
+      "endLine": 18,
+      "signature": "({ children }: SubscriptionLicenseSurfaceProps) =>",
+      "calls": [
+        {
+          "name": "Surface",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "Margins",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "SubscriptionLicenseSurfaceProps",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "variable",
+      "name": "UiKitSubscriptionLicenseSurface",
+      "exported": true,
+      "line": 32,
+      "endLine": 32,
+      "signature": "UiKitSubscriptionLicenseSurface = createSurfaceRenderer(SubscriptionLicenseSurface, new SubscriptionLicenseSurfaceRenderer())",
+      "calls": [
+        {
+          "name": "SubscriptionLicenseSurfaceRenderer",
+          "edgeType": "new"
+        }
+      ]
+    },
+    {
+      "type": "type",
+      "name": "SubscriptionLicenseSurfaceProps",
+      "line": 6,
+      "endLine": 8,
+      "signature": "export type SubscriptionLicenseSurfaceProps ="
+    },
+    {
+      "type": "type",
+      "name": "SubscriptionLicenseLayoutBlock",
+      "line": 10,
+      "endLine": 10,
+      "signature": "type SubscriptionLicenseLayoutBlock = ContextBlock | DividerBlock | ImageBlock | SectionBlock | CalloutBlock;"
+    },
+    {
+      "type": "type",
+      "name": "SubscriptionLicenseLayout",
+      "line": 12,
+      "endLine": 12,
+      "signature": "export type SubscriptionLicenseLayout = SubscriptionLicenseLayoutBlock[];"
+    }
+  ],
+  "imports": [
+    {
+      "module": "@rocket.chat/fuselage",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/fuselage-ui-kit",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/ui-kit",
+      "resolved": "external"
+    },
+    {
+      "module": "react",
+      "resolved": "external"
+    }
+  ]
+}

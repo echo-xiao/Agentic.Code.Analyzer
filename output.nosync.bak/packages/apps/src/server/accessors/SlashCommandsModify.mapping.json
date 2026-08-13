@@ -1,0 +1,113 @@
+{
+  "sourcePath": "/Users/echoooooo/Desktop/code/Rocket.Chat/packages/apps/src/server/accessors/SlashCommandsModify.ts",
+  "symbols": [
+    {
+      "type": "class",
+      "name": "SlashCommandsModify",
+      "exported": true,
+      "line": 6,
+      "endLine": 23,
+      "signature": "export class SlashCommandsModify implements ISlashCommandsModify",
+      "calls": [
+        {
+          "name": "ISlashCommandsModify",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "modifySlashCommand",
+      "exported": true,
+      "qualifiedName": "SlashCommandsModify.modifySlashCommand",
+      "line": 12,
+      "endLine": 14,
+      "signature": "public modifySlashCommand(slashCommand: ISlashCommand): Promise<void>",
+      "containerClass": "SlashCommandsModify",
+      "calls": [
+        {
+          "name": "resolve",
+          "edgeType": "call"
+        },
+        {
+          "name": "modifyCommand",
+          "edgeType": "call"
+        },
+        {
+          "name": "ISlashCommand",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "disableSlashCommand",
+      "exported": true,
+      "qualifiedName": "SlashCommandsModify.disableSlashCommand",
+      "line": 16,
+      "endLine": 18,
+      "signature": "public disableSlashCommand(command: string): Promise<void>",
+      "containerClass": "SlashCommandsModify",
+      "calls": [
+        {
+          "name": "resolve",
+          "edgeType": "call"
+        },
+        {
+          "name": "disableCommand",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "enableSlashCommand",
+      "exported": true,
+      "qualifiedName": "SlashCommandsModify.enableSlashCommand",
+      "line": 20,
+      "endLine": 22,
+      "signature": "public enableSlashCommand(command: string): Promise<void>",
+      "containerClass": "SlashCommandsModify",
+      "calls": [
+        {
+          "name": "resolve",
+          "edgeType": "call"
+        },
+        {
+          "name": "enableCommand",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "constructor",
+      "exported": true,
+      "qualifiedName": "SlashCommandsModify.constructor",
+      "line": 7,
+      "endLine": 10,
+      "signature": "constructor( private readonly manager: AppSlashCommandManager, private readonly appId: string, )",
+      "containerClass": "SlashCommandsModify",
+      "calls": [
+        {
+          "name": "AppSlashCommandManager",
+          "edgeType": "type"
+        }
+      ]
+    }
+  ],
+  "imports": [
+    {
+      "module": "@rocket.chat/apps-engine/definition/accessors",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/apps-engine/definition/slashcommands",
+      "resolved": "external"
+    },
+    {
+      "module": "../managers",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/packages/apps/src/server/managers/index.ts"
+    }
+  ]
+}

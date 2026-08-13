@@ -1,0 +1,77 @@
+{
+  "sourcePath": "/Users/echoooooo/Desktop/code/Rocket.Chat/packages/apps/node-runtime/src/main.ts",
+  "symbols": [
+    {
+      "type": "module",
+      "name": "main",
+      "exported": false,
+      "line": 1,
+      "endLine": 31,
+      "signature": "main",
+      "calls": [
+        {
+          "name": "includes",
+          "edgeType": "call"
+        },
+        {
+          "name": "error",
+          "edgeType": "call"
+        },
+        {
+          "name": "exit",
+          "edgeType": "call"
+        },
+        {
+          "name": "setTransport",
+          "edgeType": "call"
+        },
+        {
+          "name": "setSandboxRequire",
+          "edgeType": "call"
+        },
+        {
+          "name": "setSandboxGlobals",
+          "edgeType": "call"
+        },
+        {
+          "name": "registerErrorListeners",
+          "edgeType": "call"
+        },
+        {
+          "name": "startMainLoop",
+          "edgeType": "call"
+        }
+      ]
+    }
+  ],
+  "imports": [
+    {
+      "module": "./lib/loader-hook",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/packages/apps/node-runtime/src/lib/loader-hook.ts"
+    },
+    {
+      "module": "@rocket.chat/apps/base-runtime/dist/handlers/app/construct",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/apps/base-runtime/dist/lib/messenger",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/apps/base-runtime/dist/mainLoop",
+      "resolved": "external"
+    },
+    {
+      "module": "./error-handlers",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/packages/apps/node-runtime/src/error-handlers.ts"
+    },
+    {
+      "module": "./lib/require",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/packages/apps/node-runtime/src/lib/require.ts"
+    },
+    {
+      "module": "./lib/transports/stdoutTransport",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/packages/apps/node-runtime/src/lib/transports/stdoutTransport.ts"
+    }
+  ]
+}

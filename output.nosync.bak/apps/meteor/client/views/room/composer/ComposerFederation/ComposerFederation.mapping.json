@@ -1,0 +1,80 @@
+{
+  "sourcePath": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/client/views/room/composer/ComposerFederation/ComposerFederation.tsx",
+  "symbols": [
+    {
+      "type": "variable_function",
+      "name": "ComposerFederation",
+      "exported": false,
+      "line": 13,
+      "endLine": 35,
+      "signature": "({ children, blocked, ...props }: ComposerFederationProps) =>",
+      "calls": [
+        {
+          "name": "useIsFederationEnabled",
+          "edgeType": "call"
+        },
+        {
+          "name": "useHasLicenseModule",
+          "edgeType": "call"
+        },
+        {
+          "name": "ComposerFederationInvalidVersion",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "ComposerFederationDisabled",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "ComposerFederationJoinRoomDisabled",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "ComposerMessage",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "ComposerFederationProps",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "type",
+      "name": "ComposerFederationProps",
+      "line": 9,
+      "endLine": 11,
+      "signature": "type ComposerFederationProps = ComposerMessageProps &"
+    }
+  ],
+  "imports": [
+    {
+      "module": "../../../../hooks/useHasLicenseModule",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/client/hooks/useHasLicenseModule.ts"
+    },
+    {
+      "module": "../ComposerMessage",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/client/views/room/composer/ComposerMessage.tsx"
+    },
+    {
+      "module": "../ComposerMessage",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/client/views/room/composer/ComposerMessage.tsx"
+    },
+    {
+      "module": "./ComposerFederationDisabled",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/client/views/room/composer/ComposerFederation/ComposerFederationDisabled.tsx"
+    },
+    {
+      "module": "./ComposerFederationInvalidVersion",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/client/views/room/composer/ComposerFederation/ComposerFederationInvalidVersion.tsx"
+    },
+    {
+      "module": "./ComposerFederationJoinRoomDisabled",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/client/views/room/composer/ComposerFederation/ComposerFederationJoinRoomDisabled.tsx"
+    },
+    {
+      "module": "../../../../hooks/useIsFederationEnabled",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/client/hooks/useIsFederationEnabled.ts"
+    }
+  ]
+}

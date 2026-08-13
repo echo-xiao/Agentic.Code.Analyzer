@@ -1,0 +1,130 @@
+{
+  "sourcePath": "/Users/echoooooo/Desktop/code/Rocket.Chat/packages/apps/tests/test-data/bridges/serverSettingBridge.ts",
+  "symbols": [
+    {
+      "type": "class",
+      "name": "TestsServerSettingBridge",
+      "exported": true,
+      "line": 5,
+      "endLine": 42,
+      "signature": "export class TestsServerSettingBridge extends ServerSettingBridge",
+      "calls": [
+        {
+          "name": "ServerSettingBridge",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "getAll",
+      "exported": true,
+      "qualifiedName": "TestsServerSettingBridge.getAll",
+      "line": 6,
+      "endLine": 8,
+      "signature": "public getAll(appId: string): Promise<Array<ISetting>>",
+      "containerClass": "TestsServerSettingBridge",
+      "calls": [
+        {
+          "name": "ISetting",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "getOneById",
+      "exported": true,
+      "qualifiedName": "TestsServerSettingBridge.getOneById",
+      "line": 10,
+      "endLine": 21,
+      "signature": "public getOneById(id: string, appId: string): Promise<ISetting>",
+      "containerClass": "TestsServerSettingBridge",
+      "calls": [
+        {
+          "name": "resolve",
+          "edgeType": "call"
+        },
+        {
+          "name": "ISetting",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "hideGroup",
+      "exported": true,
+      "qualifiedName": "TestsServerSettingBridge.hideGroup",
+      "line": 14,
+      "endLine": 16,
+      "signature": "public hideGroup(name: string): Promise<void>",
+      "containerClass": "TestsServerSettingBridge",
+      "calls": []
+    },
+    {
+      "type": "method",
+      "name": "hideSetting",
+      "exported": true,
+      "qualifiedName": "TestsServerSettingBridge.hideSetting",
+      "line": 18,
+      "endLine": 20,
+      "signature": "public hideSetting(id: string): Promise<void>",
+      "containerClass": "TestsServerSettingBridge",
+      "calls": []
+    },
+    {
+      "type": "method",
+      "name": "isReadableById",
+      "exported": true,
+      "qualifiedName": "TestsServerSettingBridge.isReadableById",
+      "line": 22,
+      "endLine": 24,
+      "signature": "public isReadableById(id: string, appId: string): Promise<boolean>",
+      "containerClass": "TestsServerSettingBridge",
+      "calls": []
+    },
+    {
+      "type": "method",
+      "name": "updateOne",
+      "exported": true,
+      "qualifiedName": "TestsServerSettingBridge.updateOne",
+      "line": 26,
+      "endLine": 28,
+      "signature": "public updateOne(setting: ISetting, appId: string): Promise<void>",
+      "containerClass": "TestsServerSettingBridge",
+      "calls": [
+        {
+          "name": "ISetting",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "incrementValue",
+      "exported": true,
+      "qualifiedName": "TestsServerSettingBridge.incrementValue",
+      "line": 30,
+      "endLine": 32,
+      "signature": "public incrementValue(id: ISetting['id'], value: number, appId: string): Promise<void>",
+      "containerClass": "TestsServerSettingBridge",
+      "calls": [
+        {
+          "name": "ISetting",
+          "edgeType": "type"
+        }
+      ]
+    }
+  ],
+  "imports": [
+    {
+      "module": "@rocket.chat/apps-engine/definition/settings",
+      "resolved": "external"
+    },
+    {
+      "module": "../../../src/server/bridges",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/packages/apps/src/server/bridges/index.ts"
+    }
+  ]
+}

@@ -1,0 +1,254 @@
+{
+  "sourcePath": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/client/lib/2fa/overrideLoginMethod.ts",
+  "symbols": [
+    {
+      "type": "inner_function",
+      "name": "onCode",
+      "exported": false,
+      "qualifiedName": "overrideLoginMethod.onCode",
+      "line": 28,
+      "endLine": 54,
+      "signature": "(code: string) =>",
+      "calls": [
+        {
+          "name": "loginMethodTOTP",
+          "edgeType": "call"
+        },
+        {
+          "name": "callback",
+          "edgeType": "call"
+        },
+        {
+          "name": "resolve",
+          "edgeType": "call"
+        },
+        {
+          "name": "isTotpInvalidError",
+          "edgeType": "call"
+        },
+        {
+          "name": "reject",
+          "edgeType": "call"
+        },
+        {
+          "name": "then",
+          "edgeType": "call"
+        },
+        {
+          "name": "all",
+          "edgeType": "call"
+        },
+        {
+          "name": "isTotpMaxAttemptsError",
+          "edgeType": "call"
+        },
+        {
+          "name": "dispatchToastMessage",
+          "edgeType": "call"
+        },
+        {
+          "name": "MeteorErrorLike",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "variable_function",
+      "name": "overrideLoginMethod",
+      "exported": true,
+      "line": 8,
+      "endLine": 60,
+      "signature": "<TArgs extends any[]>( loginMethod: (...args: [...args: TArgs, cb: LoginCallback]) => void, loginArgs: TArgs, callback: LoginCallback | undefined, loginMethodTOTP: (...args: [...args: TArgs, code: string, cb: LoginCallback]) => void, ) =>",
+      "calls": [
+        {
+          "name": "loginMethod",
+          "edgeType": "call"
+        },
+        {
+          "name": "isTotpRequiredError",
+          "edgeType": "call"
+        },
+        {
+          "name": "callback",
+          "edgeType": "call"
+        },
+        {
+          "name": "process2faReturn",
+          "edgeType": "call"
+        },
+        {
+          "name": "loginMethodTOTP",
+          "edgeType": "call"
+        },
+        {
+          "name": "resolve",
+          "edgeType": "call"
+        },
+        {
+          "name": "isTotpInvalidError",
+          "edgeType": "call"
+        },
+        {
+          "name": "reject",
+          "edgeType": "call"
+        },
+        {
+          "name": "then",
+          "edgeType": "call"
+        },
+        {
+          "name": "all",
+          "edgeType": "call"
+        },
+        {
+          "name": "isTotpMaxAttemptsError",
+          "edgeType": "call"
+        },
+        {
+          "name": "dispatchToastMessage",
+          "edgeType": "call"
+        },
+        {
+          "name": "TArgs",
+          "edgeType": "type"
+        },
+        {
+          "name": "LoginCallback",
+          "edgeType": "type"
+        },
+        {
+          "name": "MeteorErrorLike",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "inner_function",
+      "name": "onCode",
+      "exported": false,
+      "qualifiedName": "handleLogin.onCode",
+      "line": 35,
+      "endLine": 35,
+      "signature": "(code: string) =>",
+      "calls": [
+        {
+          "name": "loginWithTOTP",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "variable_function",
+      "name": "handleLogin",
+      "exported": true,
+      "line": 17,
+      "endLine": 51,
+      "signature": "<TLoginFunction extends (...args: any[]) => Promise<any>>( login: TLoginFunction, loginWithTOTP: (...args: [...args: Parameters<TLoginFunction>, code: string]) => ReturnType<TLoginFunction>, ) =>",
+      "calls": [
+        {
+          "name": "slice",
+          "edgeType": "call"
+        },
+        {
+          "name": "catch",
+          "edgeType": "call"
+        },
+        {
+          "name": "then",
+          "edgeType": "call"
+        },
+        {
+          "name": "login",
+          "edgeType": "call"
+        },
+        {
+          "name": "isTotpRequiredError",
+          "edgeType": "call"
+        },
+        {
+          "name": "reject",
+          "edgeType": "call"
+        },
+        {
+          "name": "process2faAsyncReturn",
+          "edgeType": "call"
+        },
+        {
+          "name": "loginWithTOTP",
+          "edgeType": "call"
+        },
+        {
+          "name": "callback",
+          "edgeType": "call"
+        },
+        {
+          "name": "isTotpInvalidError",
+          "edgeType": "call"
+        },
+        {
+          "name": "all",
+          "edgeType": "call"
+        },
+        {
+          "name": "dispatchToastMessage",
+          "edgeType": "call"
+        },
+        {
+          "name": "TLoginFunction",
+          "edgeType": "type"
+        },
+        {
+          "name": "LoginCallback",
+          "edgeType": "type"
+        },
+        {
+          "name": "MeteorErrorLike",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "variable_function",
+      "name": "callLoginMethod",
+      "exported": true,
+      "line": 24,
+      "endLine": 36,
+      "signature": "(options: Omit<Accounts.LoginMethodOptions, 'userCallback'>) =>",
+      "calls": [
+        {
+          "name": "callLoginMethod",
+          "edgeType": "call"
+        },
+        {
+          "name": "reject",
+          "edgeType": "call"
+        },
+        {
+          "name": "resolve",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "type",
+      "name": "LoginCallback",
+      "line": 6,
+      "endLine": 6,
+      "signature": "export type LoginCallback = (error: MeteorErrorLike | undefined, result?: unknown) => void;"
+    }
+  ],
+  "imports": [
+    {
+      "module": "meteor/accounts-base",
+      "resolved": "external"
+    },
+    {
+      "module": "./types",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/client/lib/2fa/types.ts"
+    },
+    {
+      "module": "./utils",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/client/lib/2fa/utils.ts"
+    }
+  ]
+}

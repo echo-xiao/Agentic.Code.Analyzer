@@ -1,0 +1,930 @@
+{
+  "sourcePath": "/Users/echoooooo/Desktop/code/Rocket.Chat/packages/livechat/src/widget.ts",
+  "symbols": [
+    {
+      "type": "module",
+      "name": "widget",
+      "exported": false,
+      "line": 1,
+      "endLine": 738,
+      "signature": "widget",
+      "calls": [
+        {
+          "name": "warn",
+          "edgeType": "call"
+        },
+        {
+          "name": "init",
+          "edgeType": "call"
+        },
+        {
+          "name": "call",
+          "edgeType": "call"
+        },
+        {
+          "name": "forEach",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "function",
+      "name": "registerCallback",
+      "exported": false,
+      "line": 84,
+      "endLine": 90,
+      "signature": "function registerCallback(eventName: string, fn: () => unknown)",
+      "calls": [
+        {
+          "name": "indexOf",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "function",
+      "name": "emitCallback",
+      "exported": false,
+      "line": 88,
+      "endLine": 94,
+      "signature": "function emitCallback(eventName: string, data?: unknown)",
+      "calls": []
+    },
+    {
+      "type": "function",
+      "name": "clearAllCallbacks",
+      "exported": false,
+      "line": 92,
+      "endLine": 96,
+      "signature": "function clearAllCallbacks()",
+      "calls": [
+        {
+          "name": "forEach",
+          "edgeType": "call"
+        },
+        {
+          "name": "events",
+          "edgeType": "call"
+        },
+        {
+          "name": "off",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "function",
+      "name": "callHook",
+      "exported": false,
+      "line": 103,
+      "endLine": 117,
+      "signature": "function callHook(action: keyof HooksWidgetAPI, ...params: Parameters<HooksWidgetAPI[keyof HooksWidgetAPI]>)",
+      "calls": [
+        {
+          "name": "push",
+          "edgeType": "call"
+        },
+        {
+          "name": "formatMessage",
+          "edgeType": "call"
+        },
+        {
+          "name": "postMessage",
+          "edgeType": "call"
+        },
+        {
+          "name": "HooksWidgetAPI",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "function",
+      "name": "processHookQueue",
+      "exported": false,
+      "line": 107,
+      "endLine": 117,
+      "signature": "function processHookQueue()",
+      "calls": [
+        {
+          "name": "forEach",
+          "edgeType": "call"
+        },
+        {
+          "name": "callHook",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "function",
+      "name": "closeWidget",
+      "exported": false,
+      "line": 227,
+      "endLine": 239,
+      "signature": "function closeWidget()",
+      "calls": [
+        {
+          "name": "updateWidgetStyle",
+          "edgeType": "call"
+        },
+        {
+          "name": "emitCallback",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "function",
+      "name": "pageVisited",
+      "exported": false,
+      "line": 231,
+      "endLine": 237,
+      "signature": "function pageVisited(change: string)",
+      "calls": [
+        {
+          "name": "callHook",
+          "edgeType": "call"
+        },
+        {
+          "name": "parse",
+          "edgeType": "call"
+        },
+        {
+          "name": "stringify",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "function",
+      "name": "setCustomField",
+      "exported": false,
+      "line": 235,
+      "endLine": 244,
+      "signature": "function setCustomField(key: string, value = '', overwrite = true)",
+      "calls": [
+        {
+          "name": "callHook",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "function",
+      "name": "setCustomFields",
+      "exported": false,
+      "line": 239,
+      "endLine": 248,
+      "signature": "function setCustomFields(fields: [key: string, value: string, overwrite?: boolean][])",
+      "calls": [
+        {
+          "name": "isArray",
+          "edgeType": "call"
+        },
+        {
+          "name": "log",
+          "edgeType": "call"
+        },
+        {
+          "name": "forEach",
+          "edgeType": "call"
+        },
+        {
+          "name": "setCustomField",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "function",
+      "name": "setTheme",
+      "exported": false,
+      "line": 243,
+      "endLine": 253,
+      "signature": "function setTheme(theme: StoreState['iframe']['theme'])",
+      "calls": [
+        {
+          "name": "warn",
+          "edgeType": "call"
+        },
+        {
+          "name": "callHook",
+          "edgeType": "call"
+        },
+        {
+          "name": "StoreState",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "function",
+      "name": "setDepartment",
+      "exported": false,
+      "line": 247,
+      "endLine": 249,
+      "signature": "function setDepartment(department: string)",
+      "calls": [
+        {
+          "name": "callHook",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "function",
+      "name": "setBusinessUnit",
+      "exported": false,
+      "line": 251,
+      "endLine": 253,
+      "signature": "function setBusinessUnit(businessUnit: string)",
+      "calls": [
+        {
+          "name": "callHook",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "function",
+      "name": "clearBusinessUnit",
+      "exported": false,
+      "line": 255,
+      "endLine": 257,
+      "signature": "function clearBusinessUnit()",
+      "calls": [
+        {
+          "name": "callHook",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "function",
+      "name": "setGuestToken",
+      "exported": false,
+      "line": 259,
+      "endLine": 261,
+      "signature": "function setGuestToken(token: string)",
+      "calls": [
+        {
+          "name": "callHook",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "function",
+      "name": "setGuestName",
+      "exported": false,
+      "line": 263,
+      "endLine": 265,
+      "signature": "function setGuestName(name: string)",
+      "calls": [
+        {
+          "name": "callHook",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "function",
+      "name": "setGuestEmail",
+      "exported": false,
+      "line": 267,
+      "endLine": 269,
+      "signature": "function setGuestEmail(email: string)",
+      "calls": [
+        {
+          "name": "callHook",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "function",
+      "name": "registerGuest",
+      "exported": false,
+      "line": 271,
+      "endLine": 273,
+      "signature": "function registerGuest(guest: StoreState['guest'])",
+      "calls": [
+        {
+          "name": "callHook",
+          "edgeType": "call"
+        },
+        {
+          "name": "StoreState",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "function",
+      "name": "clearDepartment",
+      "exported": false,
+      "line": 275,
+      "endLine": 277,
+      "signature": "function clearDepartment()",
+      "calls": [
+        {
+          "name": "callHook",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "function",
+      "name": "setAgent",
+      "exported": false,
+      "line": 279,
+      "endLine": 281,
+      "signature": "function setAgent(agent: StoreState['defaultAgent'])",
+      "calls": [
+        {
+          "name": "callHook",
+          "edgeType": "call"
+        },
+        {
+          "name": "StoreState",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "function",
+      "name": "setLanguage",
+      "exported": false,
+      "line": 283,
+      "endLine": 285,
+      "signature": "function setLanguage(lang: string)",
+      "calls": [
+        {
+          "name": "callHook",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "function",
+      "name": "showWidget",
+      "exported": false,
+      "line": 287,
+      "endLine": 290,
+      "signature": "function showWidget()",
+      "calls": [
+        {
+          "name": "callHook",
+          "edgeType": "call"
+        },
+        {
+          "name": "emitCallback",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "function",
+      "name": "hideWidget",
+      "exported": false,
+      "line": 291,
+      "endLine": 294,
+      "signature": "function hideWidget()",
+      "calls": [
+        {
+          "name": "callHook",
+          "edgeType": "call"
+        },
+        {
+          "name": "emitCallback",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "function",
+      "name": "maximizeWidget",
+      "exported": false,
+      "line": 295,
+      "endLine": 298,
+      "signature": "function maximizeWidget()",
+      "calls": [
+        {
+          "name": "callHook",
+          "edgeType": "call"
+        },
+        {
+          "name": "emitCallback",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "function",
+      "name": "minimizeWidget",
+      "exported": false,
+      "line": 299,
+      "endLine": 302,
+      "signature": "function minimizeWidget()",
+      "calls": [
+        {
+          "name": "callHook",
+          "edgeType": "call"
+        },
+        {
+          "name": "emitCallback",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "function",
+      "name": "setParentUrl",
+      "exported": false,
+      "line": 303,
+      "endLine": 305,
+      "signature": "function setParentUrl(url: string)",
+      "calls": [
+        {
+          "name": "callHook",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "function",
+      "name": "transferChat",
+      "exported": false,
+      "line": 307,
+      "endLine": 309,
+      "signature": "function transferChat(rid: string, department: string)",
+      "calls": [
+        {
+          "name": "callHook",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "function",
+      "name": "setGuestMetadata",
+      "exported": false,
+      "line": 311,
+      "endLine": 317,
+      "signature": "function setGuestMetadata(metadata: StoreState['iframe']['guestMetadata'])",
+      "calls": [
+        {
+          "name": "callHook",
+          "edgeType": "call"
+        },
+        {
+          "name": "StoreState",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "function",
+      "name": "setHiddenSystemMessages",
+      "exported": false,
+      "line": 315,
+      "endLine": 330,
+      "signature": "function setHiddenSystemMessages(hidden: StoreState['iframe']['hiddenSystemMessages'])",
+      "calls": [
+        {
+          "name": "isArray",
+          "edgeType": "call"
+        },
+        {
+          "name": "filter",
+          "edgeType": "call"
+        },
+        {
+          "name": "includes",
+          "edgeType": "call"
+        },
+        {
+          "name": "warn",
+          "edgeType": "call"
+        },
+        {
+          "name": "callHook",
+          "edgeType": "call"
+        },
+        {
+          "name": "StoreState",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "function",
+      "name": "initialize",
+      "exported": false,
+      "line": 319,
+      "endLine": 378,
+      "signature": "function initialize(initParams: Partial<InitializeParams>)",
+      "calls": [
+        {
+          "name": "hasOwnProperty",
+          "edgeType": "call"
+        },
+        {
+          "name": "isDefined",
+          "edgeType": "call"
+        },
+        {
+          "name": "setCustomField",
+          "edgeType": "call"
+        },
+        {
+          "name": "setCustomFields",
+          "edgeType": "call"
+        },
+        {
+          "name": "setTheme",
+          "edgeType": "call"
+        },
+        {
+          "name": "setDepartment",
+          "edgeType": "call"
+        },
+        {
+          "name": "setBusinessUnit",
+          "edgeType": "call"
+        },
+        {
+          "name": "setGuestToken",
+          "edgeType": "call"
+        },
+        {
+          "name": "setGuestName",
+          "edgeType": "call"
+        },
+        {
+          "name": "setGuestEmail",
+          "edgeType": "call"
+        },
+        {
+          "name": "registerGuest",
+          "edgeType": "call"
+        },
+        {
+          "name": "setLanguage",
+          "edgeType": "call"
+        },
+        {
+          "name": "setAgent",
+          "edgeType": "call"
+        },
+        {
+          "name": "setParentUrl",
+          "edgeType": "call"
+        },
+        {
+          "name": "setGuestMetadata",
+          "edgeType": "call"
+        },
+        {
+          "name": "setHiddenSystemMessages",
+          "edgeType": "call"
+        },
+        {
+          "name": "InitializeParams",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "function",
+      "name": "isValidMessage",
+      "exported": false,
+      "line": 491,
+      "endLine": 505,
+      "signature": "function isValidMessage(event: MessageEvent<LivechatMessageEventData<InternalWidgetAPI>>)",
+      "calls": [
+        {
+          "name": "MessageEvent",
+          "edgeType": "type"
+        },
+        {
+          "name": "LivechatMessageEventData",
+          "edgeType": "type"
+        },
+        {
+          "name": "InternalWidgetAPI",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "function",
+      "name": "onNewMessage",
+      "exported": false,
+      "line": 495,
+      "endLine": 509,
+      "signature": "function onNewMessage(event: MessageEvent<LivechatMessageEventData<InternalWidgetAPI>>)",
+      "calls": [
+        {
+          "name": "isValidMessage",
+          "edgeType": "call"
+        },
+        {
+          "name": "hasOwnProperty",
+          "edgeType": "call"
+        },
+        {
+          "name": "MessageEvent",
+          "edgeType": "type"
+        },
+        {
+          "name": "LivechatMessageEventData",
+          "edgeType": "type"
+        },
+        {
+          "name": "InternalWidgetAPI",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "function",
+      "name": "listenForMessageOnce",
+      "exported": false,
+      "line": 499,
+      "endLine": 513,
+      "signature": "function listenForMessageOnce<K extends keyof InternalWidgetAPI>( key: K, callback: (data: LivechatMessageEventData<InternalWidgetAPI, K>) => void, ): void",
+      "calls": [
+        {
+          "name": "isValidMessage",
+          "edgeType": "call"
+        },
+        {
+          "name": "callback",
+          "edgeType": "call"
+        },
+        {
+          "name": "removeEventListener",
+          "edgeType": "call"
+        },
+        {
+          "name": "addEventListener",
+          "edgeType": "call"
+        },
+        {
+          "name": "InternalWidgetAPI",
+          "edgeType": "type"
+        },
+        {
+          "name": "LivechatMessageEventData",
+          "edgeType": "type"
+        },
+        {
+          "name": "MessageEvent",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "variable",
+      "name": "VALID_CALLBACKS",
+      "exported": true,
+      "line": 65,
+      "endLine": 78,
+      "signature": "VALID_CALLBACKS = [",
+      "calls": []
+    },
+    {
+      "type": "variable_function",
+      "name": "formatMessage",
+      "exported": false,
+      "line": 96,
+      "endLine": 100,
+      "signature": "(action: keyof HooksWidgetAPI, ...params: Parameters<HooksWidgetAPI[keyof HooksWidgetAPI]>) =>",
+      "calls": [
+        {
+          "name": "HooksWidgetAPI",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "variable_function",
+      "name": "updateWidgetStyle",
+      "exported": false,
+      "line": 111,
+      "endLine": 146,
+      "signature": "(isOpened: boolean) =>",
+      "calls": [
+        {
+          "name": "remove",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "inner_function",
+      "name": "handleMediaQueryTest",
+      "exported": false,
+      "qualifiedName": "createWidget.handleMediaQueryTest",
+      "line": 144,
+      "endLine": 153,
+      "signature": "({ matches }: { matches: boolean }) =>",
+      "calls": [
+        {
+          "name": "updateWidgetStyle",
+          "edgeType": "call"
+        },
+        {
+          "name": "callHook",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "variable_function",
+      "name": "createWidget",
+      "exported": false,
+      "line": 115,
+      "endLine": 158,
+      "signature": "(url: string) =>",
+      "calls": [
+        {
+          "name": "createElement",
+          "edgeType": "call"
+        },
+        {
+          "name": "appendChild",
+          "edgeType": "call"
+        },
+        {
+          "name": "updateWidgetStyle",
+          "edgeType": "call"
+        },
+        {
+          "name": "callHook",
+          "edgeType": "call"
+        },
+        {
+          "name": "matchMedia",
+          "edgeType": "call"
+        },
+        {
+          "name": "addListener",
+          "edgeType": "call"
+        },
+        {
+          "name": "handleMediaQueryTest",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "variable_function",
+      "name": "openWidget",
+      "exported": false,
+      "line": 119,
+      "endLine": 133,
+      "signature": "() =>",
+      "calls": [
+        {
+          "name": "updateWidgetStyle",
+          "edgeType": "call"
+        },
+        {
+          "name": "focus",
+          "edgeType": "call"
+        },
+        {
+          "name": "emitCallback",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "variable_function",
+      "name": "setWidgetPosition",
+      "exported": false,
+      "line": 123,
+      "endLine": 130,
+      "signature": "(position: 'left' | 'right' = 'right') =>",
+      "calls": []
+    },
+    {
+      "type": "variable_function",
+      "name": "resizeWidget",
+      "exported": false,
+      "line": 127,
+      "endLine": 134,
+      "signature": "(height: number) =>",
+      "calls": [
+        {
+          "name": "updateWidgetStyle",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "variable_function",
+      "name": "attachMessageListener",
+      "exported": false,
+      "line": 410,
+      "endLine": 412,
+      "signature": "() =>",
+      "calls": [
+        {
+          "name": "addEventListener",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "variable_function",
+      "name": "trackNavigation",
+      "exported": false,
+      "line": 414,
+      "endLine": 426,
+      "signature": "() =>",
+      "calls": [
+        {
+          "name": "pageVisited",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "variable_function",
+      "name": "init",
+      "exported": false,
+      "line": 418,
+      "endLine": 429,
+      "signature": "(url: string) =>",
+      "calls": [
+        {
+          "name": "trim",
+          "edgeType": "call"
+        },
+        {
+          "name": "createWidget",
+          "edgeType": "call"
+        },
+        {
+          "name": "attachMessageListener",
+          "edgeType": "call"
+        },
+        {
+          "name": "trackNavigation",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "type",
+      "name": "InternalWidgetAPI",
+      "line": 9,
+      "endLine": 23,
+      "signature": "type InternalWidgetAPI ="
+    },
+    {
+      "type": "type",
+      "name": "LivechatMessageEventData",
+      "line": 25,
+      "endLine": 29,
+      "signature": "export type LivechatMessageEventData<ApiType extends Record<string, any>, Fn extends keyof ApiType = keyof ApiType> ="
+    },
+    {
+      "type": "type",
+      "name": "InitializeParams",
+      "line": 31,
+      "endLine": 46,
+      "signature": "type InitializeParams ="
+    }
+  ],
+  "imports": [
+    {
+      "module": "@rocket.chat/core-typings",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/ddp-client",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/emitter",
+      "resolved": "external"
+    },
+    {
+      "module": "./helpers/isDefined",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/packages/livechat/src/helpers/isDefined.ts"
+    },
+    {
+      "module": "./lib/hooks",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/packages/livechat/src/lib/hooks.ts"
+    },
+    {
+      "module": "./store",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/packages/livechat/src/store/index.tsx"
+    }
+  ]
+}

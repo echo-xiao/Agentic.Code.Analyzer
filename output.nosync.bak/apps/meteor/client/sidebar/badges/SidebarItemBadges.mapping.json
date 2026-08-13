@@ -1,0 +1,92 @@
+{
+  "sourcePath": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/client/sidebar/badges/SidebarItemBadges.tsx",
+  "symbols": [
+    {
+      "type": "variable_function",
+      "name": "SidebarItemBadges",
+      "exported": false,
+      "line": 14,
+      "endLine": 24,
+      "signature": "({ room, roomTitle }: SidebarItemBadgesProps) =>",
+      "calls": [
+        {
+          "name": "useUnreadDisplay",
+          "edgeType": "call"
+        },
+        {
+          "name": "isOmnichannelRoom",
+          "edgeType": "call"
+        },
+        {
+          "name": "isInviteSubscription",
+          "edgeType": "call"
+        },
+        {
+          "name": "UnreadBadge",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "OmnichannelBadges",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "InvitationBadge",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "unreadTitle",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "roomTitle",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "unreadVariant",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "room",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "SidebarItemBadgesProps",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "type",
+      "name": "SidebarItemBadgesProps",
+      "line": 9,
+      "endLine": 12,
+      "signature": "export type SidebarItemBadgesProps ="
+    }
+  ],
+  "imports": [
+    {
+      "module": "@rocket.chat/core-typings",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/ui-contexts",
+      "resolved": "external"
+    },
+    {
+      "module": "./UnreadBadge",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/client/sidebar/badges/UnreadBadge.tsx"
+    },
+    {
+      "module": "../../components/InvitationBadge",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/client/components/InvitationBadge/index.ts"
+    },
+    {
+      "module": "../../views/omnichannel/components/OmnichannelBadges",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/client/views/omnichannel/components/OmnichannelBadges/index.ts"
+    },
+    {
+      "module": "../hooks/useUnreadDisplay",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/client/sidebar/hooks/useUnreadDisplay.ts"
+    }
+  ]
+}

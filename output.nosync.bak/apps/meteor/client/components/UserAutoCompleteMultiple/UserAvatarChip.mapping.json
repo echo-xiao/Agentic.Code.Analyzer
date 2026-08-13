@@ -1,0 +1,68 @@
+{
+  "sourcePath": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/client/components/UserAutoCompleteMultiple/UserAvatarChip.tsx",
+  "symbols": [
+    {
+      "type": "variable_function",
+      "name": "UserAvatarChip",
+      "exported": false,
+      "line": 12,
+      "endLine": 22,
+      "signature": "({ federated, username, name, ...props }: UserAvatarChipProps) =>",
+      "calls": [
+        {
+          "name": "useUserDisplayName",
+          "edgeType": "call"
+        },
+        {
+          "name": "Chip",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "Box",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "Icon",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "UserAvatar",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "username",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "UserAvatarChipProps",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "type",
+      "name": "UserAvatarChipProps",
+      "line": 6,
+      "endLine": 10,
+      "signature": "export type UserAvatarChipProps = ComponentProps<typeof Chip> &"
+    }
+  ],
+  "imports": [
+    {
+      "module": "@rocket.chat/fuselage",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/ui-avatar",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/ui-client",
+      "resolved": "external"
+    },
+    {
+      "module": "react",
+      "resolved": "external"
+    }
+  ]
+}

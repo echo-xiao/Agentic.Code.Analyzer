@@ -1,0 +1,97 @@
+{
+  "sourcePath": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/server/lib/authorization/hasRole.ts",
+  "symbols": [
+    {
+      "type": "variable_function",
+      "name": "hasAnyRoleAsync",
+      "exported": true,
+      "line": 7,
+      "endLine": 21,
+      "signature": "async ( userId: IUser['_id'], roleIds: IRole['_id'][], scope?: IRoom['_id'] | undefined, ): Promise<boolean> =>",
+      "calls": [
+        {
+          "name": "isArray",
+          "edgeType": "call"
+        },
+        {
+          "name": "isUserInRoles",
+          "edgeType": "call"
+        },
+        {
+          "name": "IUser",
+          "edgeType": "type"
+        },
+        {
+          "name": "IRole",
+          "edgeType": "type"
+        },
+        {
+          "name": "IRoom",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "variable_function",
+      "name": "hasRoleAsync",
+      "exported": true,
+      "line": 15,
+      "endLine": 21,
+      "signature": "async (userId: IUser['_id'], roleId: IRole['_id'], scope?: IRoom['_id'] | undefined): Promise<boolean> =>",
+      "calls": [
+        {
+          "name": "isArray",
+          "edgeType": "call"
+        },
+        {
+          "name": "hasAnyRoleAsync",
+          "edgeType": "call"
+        },
+        {
+          "name": "IUser",
+          "edgeType": "type"
+        },
+        {
+          "name": "IRole",
+          "edgeType": "type"
+        },
+        {
+          "name": "IRoom",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "variable_function",
+      "name": "subscriptionHasRole",
+      "exported": true,
+      "line": 19,
+      "endLine": 19,
+      "signature": "(sub: ISubscription, role: IRole['_id']): boolean | undefined =>",
+      "calls": [
+        {
+          "name": "includes",
+          "edgeType": "call"
+        },
+        {
+          "name": "ISubscription",
+          "edgeType": "type"
+        },
+        {
+          "name": "IRole",
+          "edgeType": "type"
+        }
+      ]
+    }
+  ],
+  "imports": [
+    {
+      "module": "@rocket.chat/core-typings",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/models",
+      "resolved": "external"
+    }
+  ]
+}

@@ -1,0 +1,65 @@
+{
+  "sourcePath": "/Users/echoooooo/Desktop/code/Rocket.Chat/packages/apps/src/server/bridges/AppDetailChangesBridge.ts",
+  "symbols": [
+    {
+      "type": "class",
+      "name": "AppDetailChangesBridge",
+      "exported": true,
+      "line": 11,
+      "endLine": 17,
+      "signature": "export abstract class AppDetailChangesBridge extends BaseBridge",
+      "calls": [
+        {
+          "name": "BaseBridge",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "doOnAppSettingsChange",
+      "exported": true,
+      "qualifiedName": "AppDetailChangesBridge.doOnAppSettingsChange",
+      "line": 12,
+      "endLine": 14,
+      "signature": "public doOnAppSettingsChange(appId: string, setting: ISetting): void",
+      "containerClass": "AppDetailChangesBridge",
+      "calls": [
+        {
+          "name": "onAppSettingsChange",
+          "edgeType": "call"
+        },
+        {
+          "name": "ISetting",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "onAppSettingsChange",
+      "exported": true,
+      "qualifiedName": "AppDetailChangesBridge.onAppSettingsChange",
+      "line": 16,
+      "endLine": 16,
+      "signature": "protected abstract onAppSettingsChange(appId: string, setting: ISetting): void;",
+      "containerClass": "AppDetailChangesBridge",
+      "calls": [
+        {
+          "name": "ISetting",
+          "edgeType": "type"
+        }
+      ]
+    }
+  ],
+  "imports": [
+    {
+      "module": "@rocket.chat/apps-engine/definition/settings",
+      "resolved": "external"
+    },
+    {
+      "module": "./BaseBridge",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/packages/apps/src/server/bridges/BaseBridge.ts"
+    }
+  ]
+}

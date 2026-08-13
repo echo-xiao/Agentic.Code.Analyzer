@@ -1,0 +1,345 @@
+{
+  "sourcePath": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/app/lib/server/lib/sendNotificationsOnMessage.ts",
+  "symbols": [
+    {
+      "type": "module",
+      "name": "sendNotificationsOnMessage",
+      "exported": false,
+      "line": 1,
+      "endLine": 431,
+      "signature": "sendNotificationsOnMessage",
+      "calls": [
+        {
+          "name": "watch",
+          "edgeType": "call"
+        },
+        {
+          "name": "remove",
+          "edgeType": "call"
+        },
+        {
+          "name": "afterSaveMessage",
+          "edgeType": "event_listen"
+        },
+        {
+          "name": "sendAllNotifications",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "function",
+      "name": "sendMessageNotifications",
+      "exported": true,
+      "line": 275,
+      "endLine": 384,
+      "signature": "export async function sendMessageNotifications(message: IMessage, room: IRoom, usersInThread: string[] = [])",
+      "calls": [
+        {
+          "name": "get",
+          "edgeType": "call"
+        },
+        {
+          "name": "getMsgSender",
+          "edgeType": "call"
+        },
+        {
+          "name": "getRoomDirectives",
+          "edgeType": "call"
+        },
+        {
+          "name": "getMentions",
+          "edgeType": "call"
+        },
+        {
+          "name": "push",
+          "edgeType": "call"
+        },
+        {
+          "name": "beforeSendMessageNotifications",
+          "edgeType": "event_emit"
+        },
+        {
+          "name": "replaceMentionedUsernamesWithFullNames",
+          "edgeType": "call"
+        },
+        {
+          "name": "countRoomMembers",
+          "edgeType": "call"
+        },
+        {
+          "name": "forEach",
+          "edgeType": "call"
+        },
+        {
+          "name": "toArray",
+          "edgeType": "call"
+        },
+        {
+          "name": "aggregate",
+          "edgeType": "call"
+        },
+        {
+          "name": "sendNotification",
+          "edgeType": "call"
+        },
+        {
+          "name": "includes",
+          "edgeType": "call"
+        },
+        {
+          "name": "IMessage",
+          "edgeType": "type"
+        },
+        {
+          "name": "IRoom",
+          "edgeType": "type"
+        },
+        {
+          "name": "WithRequiredProperty",
+          "edgeType": "type"
+        },
+        {
+          "name": "RootFilterOperators",
+          "edgeType": "type"
+        },
+        {
+          "name": "ISubscription",
+          "edgeType": "type"
+        },
+        {
+          "name": "SubscriptionAggregation",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "function",
+      "name": "sendAllNotifications",
+      "exported": true,
+      "line": 279,
+      "endLine": 304,
+      "signature": "export async function sendAllNotifications(message: IMessage, room: IRoom)",
+      "calls": [
+        {
+          "name": "get",
+          "edgeType": "call"
+        },
+        {
+          "name": "isEditedMessage",
+          "edgeType": "call"
+        },
+        {
+          "name": "abs",
+          "edgeType": "call"
+        },
+        {
+          "name": "diff",
+          "edgeType": "call"
+        },
+        {
+          "name": "moment",
+          "edgeType": "call"
+        },
+        {
+          "name": "sendMessageNotifications",
+          "edgeType": "call"
+        },
+        {
+          "name": "Date",
+          "edgeType": "new"
+        },
+        {
+          "name": "IMessage",
+          "edgeType": "type"
+        },
+        {
+          "name": "IRoom",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "variable_function",
+      "name": "sendNotification",
+      "exported": true,
+      "line": 46,
+      "endLine": 237,
+      "signature": "async ({ subscription, sender, hasReplyToThread, hasMentionToAll, hasMentionToHere, message, notificationMessage, room, mentionIds, disableAllMessageNotifications, }: { subscription: SubscriptionAggregation; sender: Pick<IUser, '_id' | 'name' | 'username'>; hasReplyToThread: boolean; hasMentionToAll: boolean; hasMentionToHere: boolean; message: AtLeast<IMessage, '_id' | 'u' | 'msg' | 't' | 'attach",
+      "calls": [
+        {
+          "name": "get",
+          "edgeType": "call"
+        },
+        {
+          "name": "includes",
+          "edgeType": "call"
+        },
+        {
+          "name": "findOneById",
+          "edgeType": "call"
+        },
+        {
+          "name": "hasPermissionAsync",
+          "edgeType": "call"
+        },
+        {
+          "name": "parseMessageTextPerUser",
+          "edgeType": "call"
+        },
+        {
+          "name": "messageContainsHighlight",
+          "edgeType": "call"
+        },
+        {
+          "name": "shouldNotifyDesktop",
+          "edgeType": "call"
+        },
+        {
+          "name": "notifyDesktopUser",
+          "edgeType": "call"
+        },
+        {
+          "name": "shouldNotifyMobile",
+          "edgeType": "call"
+        },
+        {
+          "name": "push",
+          "edgeType": "call"
+        },
+        {
+          "name": "getPushData",
+          "edgeType": "call"
+        },
+        {
+          "name": "shouldNotifyEmail",
+          "edgeType": "call"
+        },
+        {
+          "name": "shortnameToUnicode",
+          "edgeType": "call"
+        },
+        {
+          "name": "shift",
+          "edgeType": "call"
+        },
+        {
+          "name": "filter",
+          "edgeType": "call"
+        },
+        {
+          "name": "getEmailData",
+          "edgeType": "call"
+        },
+        {
+          "name": "scheduleItem",
+          "edgeType": "call"
+        },
+        {
+          "name": "SubscriptionAggregation",
+          "edgeType": "type"
+        },
+        {
+          "name": "IUser",
+          "edgeType": "type"
+        },
+        {
+          "name": "AtLeast",
+          "edgeType": "type"
+        },
+        {
+          "name": "IMessage",
+          "edgeType": "type"
+        },
+        {
+          "name": "IRoom",
+          "edgeType": "type"
+        },
+        {
+          "name": "NotificationItem",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "type",
+      "name": "SubscriptionAggregation",
+      "line": 27,
+      "endLine": 40,
+      "signature": "type SubscriptionAggregation ="
+    },
+    {
+      "type": "type",
+      "name": "WithRequiredProperty",
+      "line": 42,
+      "endLine": 44,
+      "signature": "type WithRequiredProperty<Type, Key extends keyof Type> = Type &"
+    }
+  ],
+  "imports": [
+    {
+      "module": "@rocket.chat/core-typings",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/models",
+      "resolved": "external"
+    },
+    {
+      "module": "emojione",
+      "resolved": "external"
+    },
+    {
+      "module": "moment",
+      "resolved": "external"
+    },
+    {
+      "module": "mongodb",
+      "resolved": "external"
+    },
+    {
+      "module": "./notifyUsersOnMessage",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/app/lib/server/lib/notifyUsersOnMessage.ts"
+    },
+    {
+      "module": "../../../../server/lib/authorization/hasPermission",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/server/lib/authorization/hasPermission.ts"
+    },
+    {
+      "module": "../../../../server/lib/callbacks",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/server/lib/callbacks.ts"
+    },
+    {
+      "module": "../../../../server/lib/rooms/roomCoordinator",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/server/lib/rooms/roomCoordinator.ts"
+    },
+    {
+      "module": "../../../notification-queue/server/NotificationQueue",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/app/notification-queue/server/NotificationQueue.ts"
+    },
+    {
+      "module": "../../../settings/server",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/app/settings/server/index.ts"
+    },
+    {
+      "module": "../functions/notifications",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/app/lib/server/functions/notifications/index.ts"
+    },
+    {
+      "module": "../functions/notifications/desktop",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/app/lib/server/functions/notifications/desktop.ts"
+    },
+    {
+      "module": "../functions/notifications/email",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/app/lib/server/functions/notifications/email.ts"
+    },
+    {
+      "module": "../functions/notifications/messageContainsHighlight",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/app/lib/server/functions/notifications/messageContainsHighlight.ts"
+    },
+    {
+      "module": "../functions/notifications/mobile",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/app/lib/server/functions/notifications/mobile.ts"
+    }
+  ]
+}

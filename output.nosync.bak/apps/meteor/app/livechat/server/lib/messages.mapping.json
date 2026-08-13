@@ -1,0 +1,242 @@
+{
+  "sourcePath": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/app/livechat/server/lib/messages.ts",
+  "symbols": [
+    {
+      "type": "function",
+      "name": "sendOfflineMessage",
+      "exported": true,
+      "line": 27,
+      "endLine": 94,
+      "signature": "export async function sendOfflineMessage(data: OfflineMessageData)",
+      "calls": [
+        {
+          "name": "get",
+          "edgeType": "call"
+        },
+        {
+          "name": "replace",
+          "edgeType": "call"
+        },
+        {
+          "name": "concat",
+          "edgeType": "call"
+        },
+        {
+          "name": "match",
+          "edgeType": "call"
+        },
+        {
+          "name": "substr",
+          "edgeType": "call"
+        },
+        {
+          "name": "lastIndexOf",
+          "edgeType": "call"
+        },
+        {
+          "name": "dnsResolveMx",
+          "edgeType": "call"
+        },
+        {
+          "name": "findOneByIdOrName",
+          "edgeType": "call"
+        },
+        {
+          "name": "substring",
+          "edgeType": "call"
+        },
+        {
+          "name": "send",
+          "edgeType": "call"
+        },
+        {
+          "name": "setImmediate",
+          "edgeType": "call"
+        },
+        {
+          "name": "livechat.offlineMessage",
+          "edgeType": "event_emit"
+        },
+        {
+          "name": "OfflineMessageData",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "function",
+      "name": "updateMessage",
+      "exported": true,
+      "line": 31,
+      "endLine": 53,
+      "signature": "export async function updateMessage({ guest, message }: { guest: ILivechatVisitor; message: AtLeast<IMessage, '_id' | 'msg' | 'rid'> })",
+      "calls": [
+        {
+          "name": "check",
+          "edgeType": "call"
+        },
+        {
+          "name": "ObjectIncluding",
+          "edgeType": "call"
+        },
+        {
+          "name": "findOneById",
+          "edgeType": "call"
+        },
+        {
+          "name": "get",
+          "edgeType": "call"
+        },
+        {
+          "name": "updateMessageFunc",
+          "edgeType": "call"
+        },
+        {
+          "name": "ILivechatVisitor",
+          "edgeType": "type"
+        },
+        {
+          "name": "AtLeast",
+          "edgeType": "type"
+        },
+        {
+          "name": "IMessage",
+          "edgeType": "type"
+        },
+        {
+          "name": "IUser",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "function",
+      "name": "deleteMessage",
+      "exported": true,
+      "line": 35,
+      "endLine": 47,
+      "signature": "export async function deleteMessage({ guest, message }: { guest: ILivechatVisitor; message: IMessage })",
+      "calls": [
+        {
+          "name": "get",
+          "edgeType": "call"
+        },
+        {
+          "name": "deleteMessageFunc",
+          "edgeType": "call"
+        },
+        {
+          "name": "ILivechatVisitor",
+          "edgeType": "type"
+        },
+        {
+          "name": "IMessage",
+          "edgeType": "type"
+        },
+        {
+          "name": "IUser",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "function",
+      "name": "sendMessage",
+      "exported": true,
+      "line": 39,
+      "endLine": 56,
+      "signature": "export async function sendMessage({ guest, message, roomInfo, agent, }: { guest: ILivechatVisitor; message: ILivechatMessage; roomInfo: IOmnichannelRoomInfo; agent?: SelectedAgent; })",
+      "calls": [
+        {
+          "name": "getRoom",
+          "edgeType": "call"
+        },
+        {
+          "name": "sendMessageFunc",
+          "edgeType": "call"
+        },
+        {
+          "name": "showConnecting",
+          "edgeType": "call"
+        },
+        {
+          "name": "ILivechatVisitor",
+          "edgeType": "type"
+        },
+        {
+          "name": "ILivechatMessage",
+          "edgeType": "type"
+        },
+        {
+          "name": "IOmnichannelRoomInfo",
+          "edgeType": "type"
+        },
+        {
+          "name": "SelectedAgent",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "type",
+      "name": "OfflineMessageData",
+      "line": 19,
+      "endLine": 25,
+      "signature": "type OfflineMessageData ="
+    }
+  ],
+  "imports": [
+    {
+      "module": "node:dns",
+      "resolved": "external"
+    },
+    {
+      "module": "node:util",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/core-typings",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/models",
+      "resolved": "external"
+    },
+    {
+      "module": "./localTypes",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/app/livechat/server/lib/localTypes.ts"
+    },
+    {
+      "module": "./rooms",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/app/livechat/server/lib/rooms.ts"
+    },
+    {
+      "module": "./utils",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/app/livechat/server/lib/utils.ts"
+    },
+    {
+      "module": "../../../../server/lib/callbacks",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/server/lib/callbacks.ts"
+    },
+    {
+      "module": "../../../../server/lib/messages/deleteMessage",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/server/lib/messages/deleteMessage.ts"
+    },
+    {
+      "module": "../../../../server/lib/messages/sendMessage",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/server/lib/messages/sendMessage.ts"
+    },
+    {
+      "module": "../../../../server/lib/messages/updateMessage",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/server/lib/messages/updateMessage.ts"
+    },
+    {
+      "module": "../../../mailer/server/api",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/app/mailer/server/api.ts"
+    },
+    {
+      "module": "../../../settings/server",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/app/settings/server/index.ts"
+    }
+  ]
+}

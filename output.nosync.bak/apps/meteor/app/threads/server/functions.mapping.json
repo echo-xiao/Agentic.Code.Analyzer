@@ -1,0 +1,187 @@
+{
+  "sourcePath": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/app/threads/server/functions.ts",
+  "symbols": [
+    {
+      "type": "function",
+      "name": "reply",
+      "exported": true,
+      "line": 12,
+      "endLine": 60,
+      "signature": "export async function reply({ tmid }: { tmid?: string }, message: IMessage, parentMessage: IMessage, followers: string[])",
+      "calls": [
+        {
+          "name": "isEditedMessage",
+          "edgeType": "call"
+        },
+        {
+          "name": "getMentions",
+          "edgeType": "call"
+        },
+        {
+          "name": "isArray",
+          "edgeType": "call"
+        },
+        {
+          "name": "updateRepliesByThreadId",
+          "edgeType": "call"
+        },
+        {
+          "name": "all",
+          "edgeType": "call"
+        },
+        {
+          "name": "getUserIdsFromHighlights",
+          "edgeType": "call"
+        },
+        {
+          "name": "getThreadFollowsByThreadId",
+          "edgeType": "call"
+        },
+        {
+          "name": "filter",
+          "edgeType": "call"
+        },
+        {
+          "name": "includes",
+          "edgeType": "call"
+        },
+        {
+          "name": "addUnreadThreadByRoomIdAndUserIds",
+          "edgeType": "call"
+        },
+        {
+          "name": "push",
+          "edgeType": "call"
+        },
+        {
+          "name": "setAlertForRoomIdAndUserIds",
+          "edgeType": "call"
+        },
+        {
+          "name": "setOpenForRoomIdAndUserIds",
+          "edgeType": "call"
+        },
+        {
+          "name": "allSettled",
+          "edgeType": "call"
+        },
+        {
+          "name": "notifyOnSubscriptionChangedByRoomIdAndUserIds",
+          "edgeType": "call"
+        },
+        {
+          "name": "Set",
+          "edgeType": "new"
+        },
+        {
+          "name": "IMessage",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "function",
+      "name": "follow",
+      "exported": true,
+      "line": 16,
+      "endLine": 22,
+      "signature": "export async function follow({ tmid, uid }: { tmid: string; uid: string })",
+      "calls": [
+        {
+          "name": "addThreadFollowerByThreadId",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "function",
+      "name": "unfollow",
+      "exported": true,
+      "line": 20,
+      "endLine": 31,
+      "signature": "export async function unfollow({ tmid, rid, uid }: { tmid: string; rid: string; uid: string })",
+      "calls": [
+        {
+          "name": "removeUnreadThreadByRoomIdAndUserId",
+          "edgeType": "call"
+        },
+        {
+          "name": "notifyOnSubscriptionChangedByRoomIdAndUserId",
+          "edgeType": "call"
+        },
+        {
+          "name": "removeThreadFollowerByThreadId",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "variable_function",
+      "name": "readThread",
+      "exported": true,
+      "line": 24,
+      "endLine": 41,
+      "signature": "async ({ user, room, tmid }: { user: IUser; room: IRoom; tmid: string }) =>",
+      "calls": [
+        {
+          "name": "findOneByRoomIdAndUserId",
+          "edgeType": "call"
+        },
+        {
+          "name": "includes",
+          "edgeType": "call"
+        },
+        {
+          "name": "removeUnreadThreadByRoomIdAndUserId",
+          "edgeType": "call"
+        },
+        {
+          "name": "notifyOnSubscriptionChangedByRoomIdAndUserId",
+          "edgeType": "call"
+        },
+        {
+          "name": "clearQueueByUserId",
+          "edgeType": "call"
+        },
+        {
+          "name": "afterReadMessages",
+          "edgeType": "event_emit"
+        },
+        {
+          "name": "IUser",
+          "edgeType": "type"
+        },
+        {
+          "name": "IRoom",
+          "edgeType": "type"
+        }
+      ]
+    }
+  ],
+  "imports": [
+    {
+      "module": "@rocket.chat/core-typings",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/core-typings",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/models",
+      "resolved": "external"
+    },
+    {
+      "module": "../../../server/lib/callbacks",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/server/lib/callbacks.ts"
+    },
+    {
+      "module": "../../lib/server/lib/notifyListener",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/app/lib/server/lib/notifyListener.ts"
+    },
+    {
+      "module": "../../lib/server/lib/notifyUsersOnMessage",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/app/lib/server/lib/notifyUsersOnMessage.ts"
+    }
+  ]
+}

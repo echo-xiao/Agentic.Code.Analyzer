@@ -1,0 +1,114 @@
+{
+  "sourcePath": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/client/components/message/content/reactions/ReactionTooltip.tsx",
+  "symbols": [
+    {
+      "type": "variable_function",
+      "name": "getTranslationKey",
+      "exported": false,
+      "line": 18,
+      "endLine": 36,
+      "signature": "(users: string[], mine: boolean): TranslationKey =>",
+      "calls": [
+        {
+          "name": "TranslationKey",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "variable_function",
+      "name": "ReactionTooltip",
+      "exported": false,
+      "line": 22,
+      "endLine": 83,
+      "signature": "({ emojiName, usernames, mine, messageId, showRealName, username }: ReactionTooltipProps) =>",
+      "calls": [
+        {
+          "name": "useTranslation",
+          "edgeType": "call"
+        },
+        {
+          "name": "getTranslationKey",
+          "edgeType": "call"
+        },
+        {
+          "name": "useGetMessageByID",
+          "edgeType": "call"
+        },
+        {
+          "name": "useQuery",
+          "edgeType": "call"
+        },
+        {
+          "name": "getMessage",
+          "edgeType": "call"
+        },
+        {
+          "name": "indexOf",
+          "edgeType": "call"
+        },
+        {
+          "name": "splice",
+          "edgeType": "call"
+        },
+        {
+          "name": "filter",
+          "edgeType": "call"
+        },
+        {
+          "name": "join",
+          "edgeType": "call"
+        },
+        {
+          "name": "slice",
+          "edgeType": "call"
+        },
+        {
+          "name": "Skeleton",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "MarkdownText",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "ReactionTooltipProps",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "type",
+      "name": "ReactionTooltipProps",
+      "line": 9,
+      "endLine": 16,
+      "signature": "export type ReactionTooltipProps ="
+    }
+  ],
+  "imports": [
+    {
+      "module": "@rocket.chat/fuselage",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/ui-contexts",
+      "resolved": "external"
+    },
+    {
+      "module": "@tanstack/react-query",
+      "resolved": "external"
+    },
+    {
+      "module": "react-i18next",
+      "resolved": "external"
+    },
+    {
+      "module": "../../../../views/room/contextualBar/Threads/hooks/useGetMessageByID",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/client/views/room/contextualBar/Threads/hooks/useGetMessageByID.ts"
+    },
+    {
+      "module": "../../../MarkdownText",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/client/components/MarkdownText.tsx"
+    }
+  ]
+}

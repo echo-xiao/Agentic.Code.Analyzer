@@ -1,0 +1,24 @@
+## File: packages/livechat/src/routes/GDPRAgreement/container.tsx
+
+```typescript
+import type { TFunction } from 'i18next';
+import type { Ref } from 'preact';
+import { useContext } from 'preact/hooks';
+import { route } from 'preact-router';
+import { withTranslation } from 'react-i18next';
+
+import GDPRAgreement from './component';
+import { StoreContext } from '../../store';
+
+type GDPRContainerProps = {
+	t: TFunction;
+	ref?: Ref<any>;
+};
+
+const GDPRContainer = ({ ref, t }: GDPRContainerProps) => {
+    /* Implementation Hidden */
+};
+
+export default withTranslation()(GDPRContainer);
+
+```

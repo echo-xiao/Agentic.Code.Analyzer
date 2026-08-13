@@ -1,0 +1,47 @@
+{
+  "sourcePath": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/app/lib/server/lib/checkSettingValueBonds.ts",
+  "symbols": [
+    {
+      "type": "variable_function",
+      "name": "hasNumericBounds",
+      "exported": false,
+      "line": 4,
+      "endLine": 6,
+      "signature": "(setting: ISetting): setting is ISetting & { minValue?: number; maxValue?: number } =>",
+      "calls": [
+        {
+          "name": "ISetting",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "variable_function",
+      "name": "checkSettingValueBounds",
+      "exported": true,
+      "line": 8,
+      "endLine": 28,
+      "signature": "(setting: ISetting, value?: ISetting['value']): void =>",
+      "calls": [
+        {
+          "name": "hasNumericBounds",
+          "edgeType": "call"
+        },
+        {
+          "name": "ISetting",
+          "edgeType": "type"
+        }
+      ]
+    }
+  ],
+  "imports": [
+    {
+      "module": "@rocket.chat/core-typings",
+      "resolved": "external"
+    },
+    {
+      "module": "meteor/meteor",
+      "resolved": "external"
+    }
+  ]
+}

@@ -1,0 +1,216 @@
+{
+  "sourcePath": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/client/components/message/toolbar/MessageToolbar.tsx",
+  "symbols": [
+    {
+      "type": "module",
+      "name": "MessageToolbar",
+      "exported": false,
+      "line": 1,
+      "endLine": 95,
+      "signature": "MessageToolbar",
+      "calls": [
+        {
+          "name": "memo",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "variable_function",
+      "name": "getMessageContext",
+      "exported": false,
+      "line": 24,
+      "endLine": 42,
+      "signature": "(message: IMessage, room: IRoom, context?: MessageActionContext): MessageActionContext =>",
+      "calls": [
+        {
+          "name": "isVideoConfMessage",
+          "edgeType": "call"
+        },
+        {
+          "name": "isRoomFederated",
+          "edgeType": "call"
+        },
+        {
+          "name": "isThreadMessage",
+          "edgeType": "call"
+        },
+        {
+          "name": "IMessage",
+          "edgeType": "type"
+        },
+        {
+          "name": "IRoom",
+          "edgeType": "type"
+        },
+        {
+          "name": "MessageActionContext",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "variable_function",
+      "name": "MessageToolbar",
+      "exported": false,
+      "line": 53,
+      "endLine": 76,
+      "signature": "({ message, messageContext, room, subscription, onChangeMenuVisibility, ...props }: MessageToolbarProps) =>",
+      "calls": [
+        {
+          "name": "useTranslation",
+          "edgeType": "call"
+        },
+        {
+          "name": "useRef",
+          "edgeType": "call"
+        },
+        {
+          "name": "useToolbar",
+          "edgeType": "call"
+        },
+        {
+          "name": "getMessageContext",
+          "edgeType": "call"
+        },
+        {
+          "name": "FuselageMessageToolbar",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "MessageToolbarItems",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "MessageToolbarStarsActionMenu",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "MessageToolbarActionMenu",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "toolbarRef",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "message",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "room",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "subscription",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "context",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "onChangeMenuVisibility",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "MessageToolbarProps",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "type",
+      "name": "MessageToolbarProps",
+      "line": 45,
+      "endLine": 51,
+      "signature": "export type MessageToolbarProps ="
+    }
+  ],
+  "imports": [
+    {
+      "module": "@react-aria/toolbar",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/core-typings",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/core-typings",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/fuselage",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/ui-contexts",
+      "resolved": "external"
+    },
+    {
+      "module": "react",
+      "resolved": "external"
+    },
+    {
+      "module": "react",
+      "resolved": "external"
+    },
+    {
+      "module": "./MessageToolbarActionMenu",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/client/components/message/toolbar/MessageToolbarActionMenu.tsx"
+    },
+    {
+      "module": "./MessageToolbarStarsActionMenu",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/client/components/message/toolbar/MessageToolbarStarsActionMenu.tsx"
+    },
+    {
+      "module": "./items/DefaultItems",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/client/components/message/toolbar/items/DefaultItems.tsx"
+    },
+    {
+      "module": "./items/DirectItems",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/client/components/message/toolbar/items/DirectItems.tsx"
+    },
+    {
+      "module": "./items/FederatedItems",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/client/components/message/toolbar/items/FederatedItems.tsx"
+    },
+    {
+      "module": "./items/MentionsItems",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/client/components/message/toolbar/items/MentionsItems.tsx"
+    },
+    {
+      "module": "./items/MobileItems",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/client/components/message/toolbar/items/MobileItems.tsx"
+    },
+    {
+      "module": "./items/PinnedItems",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/client/components/message/toolbar/items/PinnedItems.tsx"
+    },
+    {
+      "module": "./items/SearchItems",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/client/components/message/toolbar/items/SearchItems.tsx"
+    },
+    {
+      "module": "./items/StarredItems",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/client/components/message/toolbar/items/StarredItems.tsx"
+    },
+    {
+      "module": "./items/ThreadsItems",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/client/components/message/toolbar/items/ThreadsItems.tsx"
+    },
+    {
+      "module": "./items/VideoconfItems",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/client/components/message/toolbar/items/VideoconfItems.tsx"
+    },
+    {
+      "module": "./items/VideoconfThreadsItems",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/client/components/message/toolbar/items/VideoconfThreadsItems.tsx"
+    },
+    {
+      "module": "../../../../app/ui-utils/client/lib/MessageAction",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/app/ui-utils/client/lib/MessageAction.ts"
+    }
+  ]
+}

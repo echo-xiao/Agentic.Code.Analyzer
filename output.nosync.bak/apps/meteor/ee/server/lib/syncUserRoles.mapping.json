@@ -1,0 +1,136 @@
+{
+  "sourcePath": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/ee/server/lib/syncUserRoles.ts",
+  "symbols": [
+    {
+      "type": "function",
+      "name": "filterRoleList",
+      "exported": false,
+      "line": 19,
+      "endLine": 31,
+      "signature": "function filterRoleList( roleList: Array<IRole['_id']>, rolesToFilterOut: Array<IRole['_id']>, rolesToFilterIn?: Array<IRole['_id']>, ): Array<IRole['_id']>",
+      "calls": [
+        {
+          "name": "filter",
+          "edgeType": "call"
+        },
+        {
+          "name": "includes",
+          "edgeType": "call"
+        },
+        {
+          "name": "IRole",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "function",
+      "name": "broadcastRoleChange",
+      "exported": false,
+      "line": 27,
+      "endLine": 48,
+      "signature": "function broadcastRoleChange( type: 'changed' | 'added' | 'removed', roleList: Array<IRole['_id']>, user: AtLeast<IUser, '_id' | 'username'>, ): void",
+      "calls": [
+        {
+          "name": "get",
+          "edgeType": "call"
+        },
+        {
+          "name": "user.roleUpdate",
+          "edgeType": "event_emit"
+        },
+        {
+          "name": "IRole",
+          "edgeType": "type"
+        },
+        {
+          "name": "AtLeast",
+          "edgeType": "type"
+        },
+        {
+          "name": "IUser",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "function",
+      "name": "syncUserRoles",
+      "exported": true,
+      "line": 35,
+      "endLine": 69,
+      "signature": "export async function syncUserRoles( uid: IUser['_id'], newRoleList: Array<IRole['_id']>, { allowedRoles, skipRemovingRoles, scope }: setUserRolesOptions, ): Promise<void>",
+      "calls": [
+        {
+          "name": "findOneById",
+          "edgeType": "call"
+        },
+        {
+          "name": "filterRoleList",
+          "edgeType": "call"
+        },
+        {
+          "name": "shouldPreventAction",
+          "edgeType": "call"
+        },
+        {
+          "name": "addUserRolesAsync",
+          "edgeType": "call"
+        },
+        {
+          "name": "broadcastRoleChange",
+          "edgeType": "call"
+        },
+        {
+          "name": "removeUserFromRolesAsync",
+          "edgeType": "call"
+        },
+        {
+          "name": "IUser",
+          "edgeType": "type"
+        },
+        {
+          "name": "IRole",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "type",
+      "name": "setUserRolesOptions",
+      "line": 10,
+      "endLine": 17,
+      "signature": "type setUserRolesOptions ="
+    }
+  ],
+  "imports": [
+    {
+      "module": "@rocket.chat/core-services",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/core-typings",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/license",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/models",
+      "resolved": "external"
+    },
+    {
+      "module": "../../../app/settings/server",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/app/settings/server/index.ts"
+    },
+    {
+      "module": "../../../server/lib/roles/addUserRoles",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/server/lib/roles/addUserRoles.ts"
+    },
+    {
+      "module": "../../../server/lib/roles/removeUserFromRoles",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/server/lib/roles/removeUserFromRoles.ts"
+    }
+  ]
+}

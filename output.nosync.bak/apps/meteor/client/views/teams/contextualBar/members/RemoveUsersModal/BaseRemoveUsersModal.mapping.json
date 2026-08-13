@@ -1,0 +1,167 @@
+{
+  "sourcePath": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/client/views/teams/contextualBar/members/RemoveUsersModal/BaseRemoveUsersModal.tsx",
+  "symbols": [
+    {
+      "type": "inner_function",
+      "name": "onChangeRoomSelection",
+      "exported": false,
+      "qualifiedName": "BaseRemoveUsersModal.onChangeRoomSelection",
+      "line": 42,
+      "endLine": 50,
+      "signature": "(room: Serialized<IRoom>) =>",
+      "calls": [
+        {
+          "name": "setSelectedRooms",
+          "edgeType": "call"
+        },
+        {
+          "name": "Serialized",
+          "edgeType": "type"
+        },
+        {
+          "name": "IRoom",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "variable_function",
+      "name": "BaseRemoveUsersModal",
+      "exported": false,
+      "line": 23,
+      "endLine": 84,
+      "signature": "({ onClose, onCancel, onConfirm, rooms, currentStep = rooms?.length === 0 ? STEPS.CONFIRM_DELETE : STEPS.LIST_ROOMS, username, }: BaseRemoveUsersModalProps) =>",
+      "calls": [
+        {
+          "name": "useState",
+          "edgeType": "call"
+        },
+        {
+          "name": "useStableCallback",
+          "edgeType": "call"
+        },
+        {
+          "name": "setStep",
+          "edgeType": "call"
+        },
+        {
+          "name": "usePermission",
+          "edgeType": "call"
+        },
+        {
+          "name": "filter",
+          "edgeType": "call"
+        },
+        {
+          "name": "useCallback",
+          "edgeType": "call"
+        },
+        {
+          "name": "setSelectedRooms",
+          "edgeType": "call"
+        },
+        {
+          "name": "values",
+          "edgeType": "call"
+        },
+        {
+          "name": "fromEntries",
+          "edgeType": "call"
+        },
+        {
+          "name": "map",
+          "edgeType": "call"
+        },
+        {
+          "name": "RemoveUsersSecondStep",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "RemoveUsersFirstStep",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "onConfirm",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "onClose",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "selectedRooms",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "rooms",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "username",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "onContinue",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "onCancel",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "onToggleAllRooms",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "onChangeRoomSelection",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "BaseRemoveUsersModalProps",
+          "edgeType": "type"
+        },
+        {
+          "name": "Serialized",
+          "edgeType": "type"
+        },
+        {
+          "name": "IRoom",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "type",
+      "name": "BaseRemoveUsersModalProps",
+      "line": 14,
+      "endLine": 21,
+      "signature": "type BaseRemoveUsersModalProps ="
+    }
+  ],
+  "imports": [
+    {
+      "module": "@rocket.chat/core-typings",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/fuselage-hooks",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/ui-contexts",
+      "resolved": "external"
+    },
+    {
+      "module": "react",
+      "resolved": "external"
+    },
+    {
+      "module": "./RemoveUsersFirstStep",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/client/views/teams/contextualBar/members/RemoveUsersModal/RemoveUsersFirstStep.tsx"
+    },
+    {
+      "module": "./RemoveUsersSecondStep",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/client/views/teams/contextualBar/members/RemoveUsersModal/RemoveUsersSecondStep.tsx"
+    }
+  ]
+}

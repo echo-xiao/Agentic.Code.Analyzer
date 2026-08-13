@@ -1,0 +1,127 @@
+{
+  "sourcePath": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/client/views/admin/import/ImportOperationSummary.tsx",
+  "symbols": [
+    {
+      "type": "inner_function",
+      "name": "handleClick",
+      "exported": false,
+      "qualifiedName": "ImportOperationSummary.handleClick",
+      "line": 75,
+      "endLine": 84,
+      "signature": "() =>",
+      "calls": [
+        {
+          "name": "navigate",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "function",
+      "name": "ImportOperationSummary",
+      "exported": true,
+      "line": 35,
+      "endLine": 114,
+      "signature": "function ImportOperationSummary({ type, _updatedAt, status, file = '', user, small, count: { users = 0, channels = 0, messages = 0, total = 0, contacts = 0 } = {}, valid, }: ImportOperationSummaryProps)",
+      "calls": [
+        {
+          "name": "useTranslation",
+          "edgeType": "call"
+        },
+        {
+          "name": "useFormatDateAndTime",
+          "edgeType": "call"
+        },
+        {
+          "name": "useMemo",
+          "edgeType": "call"
+        },
+        {
+          "name": "indexOf",
+          "edgeType": "call"
+        },
+        {
+          "name": "slice",
+          "edgeType": "call"
+        },
+        {
+          "name": "includes",
+          "edgeType": "call"
+        },
+        {
+          "name": "useRouter",
+          "edgeType": "call"
+        },
+        {
+          "name": "navigate",
+          "edgeType": "call"
+        },
+        {
+          "name": "formatDateAndTime",
+          "edgeType": "call"
+        },
+        {
+          "name": "replace",
+          "edgeType": "call"
+        },
+        {
+          "name": "TableRow",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "TableCell",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "ImportOperationSummaryProps",
+          "edgeType": "type"
+        },
+        {
+          "name": "TranslationKey",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "type",
+      "name": "ImportOperationSummaryProps",
+      "line": 17,
+      "endLine": 32,
+      "signature": "export type ImportOperationSummaryProps ="
+    }
+  ],
+  "imports": [
+    {
+      "module": "@rocket.chat/core-typings",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/fuselage",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/ui-contexts",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/ui-contexts",
+      "resolved": "external"
+    },
+    {
+      "module": "react",
+      "resolved": "external"
+    },
+    {
+      "module": "react-i18next",
+      "resolved": "external"
+    },
+    {
+      "module": "../../../../app/importer/lib/ImporterProgressStep",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/app/importer/lib/ImporterProgressStep.ts"
+    },
+    {
+      "module": "../../../hooks/useFormatDateAndTime",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/client/hooks/useFormatDateAndTime.ts"
+    }
+  ]
+}

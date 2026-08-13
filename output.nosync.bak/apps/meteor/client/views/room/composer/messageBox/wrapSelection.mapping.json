@@ -1,0 +1,98 @@
+{
+  "sourcePath": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/client/views/room/composer/messageBox/wrapSelection.ts",
+  "symbols": [
+    {
+      "type": "inner_function",
+      "name": "handleEvent",
+      "exported": false,
+      "qualifiedName": "once.handleEvent",
+      "line": 18,
+      "endLine": 21,
+      "signature": "(e: Event) =>",
+      "calls": [
+        {
+          "name": "callback",
+          "edgeType": "call"
+        },
+        {
+          "name": "removeEventListener",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "variable_function",
+      "name": "once",
+      "exported": false,
+      "line": 17,
+      "endLine": 23,
+      "signature": "(target: EventTarget, eventName: string, callback: (event: Event) => void) =>",
+      "calls": [
+        {
+          "name": "callback",
+          "edgeType": "call"
+        },
+        {
+          "name": "removeEventListener",
+          "edgeType": "call"
+        },
+        {
+          "name": "addEventListener",
+          "edgeType": "call"
+        },
+        {
+          "name": "EventTarget",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "variable_function",
+      "name": "handleSelectionWrapping",
+      "exported": true,
+      "line": 21,
+      "endLine": 62,
+      "signature": "(event: InputEvent, chat: ChatAPI): boolean =>",
+      "calls": [
+        {
+          "name": "slice",
+          "edgeType": "call"
+        },
+        {
+          "name": "wrapSelection",
+          "edgeType": "call"
+        },
+        {
+          "name": "once",
+          "edgeType": "call"
+        },
+        {
+          "name": "setSelectionRange",
+          "edgeType": "call"
+        },
+        {
+          "name": "preventDefault",
+          "edgeType": "call"
+        },
+        {
+          "name": "InputEvent",
+          "edgeType": "type"
+        },
+        {
+          "name": "ChatAPI",
+          "edgeType": "type"
+        },
+        {
+          "name": "HTMLTextAreaElement",
+          "edgeType": "type"
+        }
+      ]
+    }
+  ],
+  "imports": [
+    {
+      "module": "../../../../lib/chats/ChatAPI",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/client/lib/chats/ChatAPI.ts"
+    }
+  ]
+}

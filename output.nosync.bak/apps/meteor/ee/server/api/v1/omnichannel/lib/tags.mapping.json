@@ -1,0 +1,144 @@
+{
+  "sourcePath": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/ee/server/api/v1/omnichannel/lib/tags.ts",
+  "symbols": [
+    {
+      "type": "function",
+      "name": "findTags",
+      "exported": true,
+      "line": 49,
+      "endLine": 123,
+      "signature": "export async function findTags({ userId, text, department, viewAll, pagination: { offset, count, sort }, }: FindTagsParams): Promise<FindTagsResult>",
+      "calls": [
+        {
+          "name": "hasPermissionAsync",
+          "edgeType": "call"
+        },
+        {
+          "name": "getDepartmentsWhichUserCanAccess",
+          "edgeType": "call"
+        },
+        {
+          "name": "debug",
+          "edgeType": "call"
+        },
+        {
+          "name": "slice",
+          "edgeType": "call"
+        },
+        {
+          "name": "includes",
+          "edgeType": "call"
+        },
+        {
+          "name": "escapeRegExp",
+          "edgeType": "call"
+        },
+        {
+          "name": "findPaginated",
+          "edgeType": "call"
+        },
+        {
+          "name": "all",
+          "edgeType": "call"
+        },
+        {
+          "name": "toArray",
+          "edgeType": "call"
+        },
+        {
+          "name": "RegExp",
+          "edgeType": "new"
+        },
+        {
+          "name": "FindTagsParams",
+          "edgeType": "type"
+        },
+        {
+          "name": "FindTagsResult",
+          "edgeType": "type"
+        },
+        {
+          "name": "Filter",
+          "edgeType": "type"
+        },
+        {
+          "name": "ILivechatTag",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "function",
+      "name": "findTagById",
+      "exported": true,
+      "line": 59,
+      "endLine": 61,
+      "signature": "export async function findTagById({ tagId }: FindTagsByIdParams): Promise<FindTagsByIdResult>",
+      "calls": [
+        {
+          "name": "findOneById",
+          "edgeType": "call"
+        },
+        {
+          "name": "FindTagsByIdParams",
+          "edgeType": "type"
+        },
+        {
+          "name": "FindTagsByIdResult",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "type",
+      "name": "FindTagsParams",
+      "line": 10,
+      "endLine": 20,
+      "signature": "type FindTagsParams ="
+    },
+    {
+      "type": "type",
+      "name": "FindTagsByIdParams",
+      "line": 22,
+      "endLine": 25,
+      "signature": "type FindTagsByIdParams ="
+    },
+    {
+      "type": "type",
+      "name": "FindTagsByIdResult",
+      "line": 27,
+      "endLine": 27,
+      "signature": "type FindTagsByIdResult = ILivechatTag | null;"
+    }
+  ],
+  "imports": [
+    {
+      "module": "@rocket.chat/core-typings",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/models",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/string-helpers",
+      "resolved": "external"
+    },
+    {
+      "module": "mongodb",
+      "resolved": "external"
+    },
+    {
+      "module": "./departments",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/ee/server/api/v1/omnichannel/lib/departments.ts"
+    },
+    {
+      "module": "../../../../../../server/lib/authorization/hasPermission",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/server/lib/authorization/hasPermission.ts"
+    },
+    {
+      "module": "../../../../../app/livechat-enterprise/server/lib/logger",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/ee/app/livechat-enterprise/server/lib/logger.ts"
+    }
+  ]
+}

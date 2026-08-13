@@ -1,0 +1,83 @@
+{
+  "sourcePath": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/client/components/message/content/attachments/default/hooks/usePerformActionMutation.ts",
+  "symbols": [
+    {
+      "type": "variable_function",
+      "name": "usePerformActionMutation",
+      "exported": true,
+      "line": 15,
+      "endLine": 46,
+      "signature": "( options?: Omit<UseMutationOptions<void, Error, UsePerfomActionMutationParams>, 'mutationFn'>, ): UseMutationResult<void, Error, UsePerfomActionMutationParams> =>",
+      "calls": [
+        {
+          "name": "useChat",
+          "edgeType": "call"
+        },
+        {
+          "name": "useMutation",
+          "edgeType": "call"
+        },
+        {
+          "name": "sendMessage",
+          "edgeType": "call"
+        },
+        {
+          "name": "replyWith",
+          "edgeType": "call"
+        },
+        {
+          "name": "getMessageByID",
+          "edgeType": "call"
+        },
+        {
+          "name": "quoteMessage",
+          "edgeType": "call"
+        },
+        {
+          "name": "UseMutationOptions",
+          "edgeType": "type"
+        },
+        {
+          "name": "UsePerfomActionMutationParams",
+          "edgeType": "type"
+        },
+        {
+          "name": "UseMutationResult",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "type",
+      "name": "ProcessingType",
+      "line": 7,
+      "endLine": 7,
+      "signature": "type ProcessingType = Exclude<MessageAttachmentAction['actions'][number]['msg_processing_type'], undefined>;"
+    },
+    {
+      "type": "type",
+      "name": "UsePerfomActionMutationParams",
+      "line": 9,
+      "endLine": 13,
+      "signature": "type UsePerfomActionMutationParams ="
+    }
+  ],
+  "imports": [
+    {
+      "module": "@rocket.chat/core-typings",
+      "resolved": "external"
+    },
+    {
+      "module": "@tanstack/react-query",
+      "resolved": "external"
+    },
+    {
+      "module": "@tanstack/react-query",
+      "resolved": "external"
+    },
+    {
+      "module": "../../../../../../views/room/contexts/ChatContext",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/client/views/room/contexts/ChatContext.ts"
+    }
+  ]
+}

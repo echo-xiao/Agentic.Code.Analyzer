@@ -1,0 +1,69 @@
+{
+  "sourcePath": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/server/lib/rooms/deleteRoom.ts",
+  "symbols": [
+    {
+      "type": "variable_function",
+      "name": "deleteRoom",
+      "exported": true,
+      "line": 7,
+      "endLine": 28,
+      "signature": "async function (rid: string): Promise<void>",
+      "calls": [
+        {
+          "name": "removeFilesByRoomId",
+          "edgeType": "call"
+        },
+        {
+          "name": "removeByRoomId",
+          "edgeType": "call"
+        },
+        {
+          "name": "beforeDeleteRoom",
+          "edgeType": "event_emit"
+        },
+        {
+          "name": "notifyOnSubscriptionChanged",
+          "edgeType": "call"
+        },
+        {
+          "name": "deleteByRoomId",
+          "edgeType": "call"
+        },
+        {
+          "name": "getStore",
+          "edgeType": "call"
+        },
+        {
+          "name": "afterDeleteRoom",
+          "edgeType": "event_emit"
+        },
+        {
+          "name": "removeById",
+          "edgeType": "call"
+        },
+        {
+          "name": "notifyOnRoomChangedById",
+          "edgeType": "call"
+        }
+      ]
+    }
+  ],
+  "imports": [
+    {
+      "module": "@rocket.chat/models",
+      "resolved": "external"
+    },
+    {
+      "module": "../../../app/file-upload/server",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/app/file-upload/server/index.ts"
+    },
+    {
+      "module": "../../../app/lib/server/lib/notifyListener",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/app/lib/server/lib/notifyListener.ts"
+    },
+    {
+      "module": "../callbacks",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/server/lib/callbacks.ts"
+    }
+  ]
+}

@@ -1,0 +1,87 @@
+{
+  "sourcePath": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/client/lib/utils/timestamp/conversion.ts",
+  "symbols": [
+    {
+      "type": "variable_function",
+      "name": "dateToISOString",
+      "exported": true,
+      "line": 3,
+      "endLine": 23,
+      "signature": "(date: Date, timezone?: TimezoneKey): string =>",
+      "calls": [
+        {
+          "name": "isNaN",
+          "edgeType": "call"
+        },
+        {
+          "name": "getTime",
+          "edgeType": "call"
+        },
+        {
+          "name": "getFullYear",
+          "edgeType": "call"
+        },
+        {
+          "name": "padStart",
+          "edgeType": "call"
+        },
+        {
+          "name": "getMonth",
+          "edgeType": "call"
+        },
+        {
+          "name": "getDate",
+          "edgeType": "call"
+        },
+        {
+          "name": "getHours",
+          "edgeType": "call"
+        },
+        {
+          "name": "getMinutes",
+          "edgeType": "call"
+        },
+        {
+          "name": "getSeconds",
+          "edgeType": "call"
+        },
+        {
+          "name": "getMilliseconds",
+          "edgeType": "call"
+        },
+        {
+          "name": "replace",
+          "edgeType": "call"
+        },
+        {
+          "name": "toISOString",
+          "edgeType": "call"
+        },
+        {
+          "name": "TimezoneKey",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "variable_function",
+      "name": "generateTimestampMarkup",
+      "exported": true,
+      "line": 10,
+      "endLine": 12,
+      "signature": "(timestamp: string, format: TimestampFormat): string =>",
+      "calls": [
+        {
+          "name": "TimestampFormat",
+          "edgeType": "type"
+        }
+      ]
+    }
+  ],
+  "imports": [
+    {
+      "module": "./types",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/client/lib/utils/timestamp/types.ts"
+    }
+  ]
+}

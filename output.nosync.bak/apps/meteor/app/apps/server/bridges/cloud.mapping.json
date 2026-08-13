@@ -1,0 +1,77 @@
+{
+  "sourcePath": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/app/apps/server/bridges/cloud.ts",
+  "symbols": [
+    {
+      "type": "class",
+      "name": "AppCloudBridge",
+      "exported": true,
+      "line": 7,
+      "endLine": 19,
+      "signature": "export class AppCloudBridge extends CloudWorkspaceBridge",
+      "calls": [
+        {
+          "name": "CloudWorkspaceBridge",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "getWorkspaceToken",
+      "exported": true,
+      "qualifiedName": "AppCloudBridge.getWorkspaceToken",
+      "line": 12,
+      "endLine": 18,
+      "signature": "public async getWorkspaceToken(scope: string, appId: string): Promise<IWorkspaceToken>",
+      "containerClass": "AppCloudBridge",
+      "calls": [
+        {
+          "name": "debugLog",
+          "edgeType": "call"
+        },
+        {
+          "name": "getWorkspaceAccessTokenWithScope",
+          "edgeType": "call"
+        },
+        {
+          "name": "IWorkspaceToken",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "constructor",
+      "exported": true,
+      "qualifiedName": "AppCloudBridge.constructor",
+      "line": 8,
+      "endLine": 10,
+      "signature": "constructor(private readonly orch: IAppServerOrchestrator)",
+      "containerClass": "AppCloudBridge",
+      "calls": [
+        {
+          "name": "IAppServerOrchestrator",
+          "edgeType": "type"
+        }
+      ]
+    }
+  ],
+  "imports": [
+    {
+      "module": "@rocket.chat/apps",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/apps/dist/server/bridges/CloudWorkspaceBridge",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/apps-engine/definition/cloud/IWorkspaceToken",
+      "resolved": "external"
+    },
+    {
+      "module": "../../../cloud/server",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/app/cloud/server/index.ts"
+    }
+  ]
+}

@@ -1,0 +1,101 @@
+{
+  "sourcePath": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/server/api/v1/middlewares/permissions.ts",
+  "symbols": [
+    {
+      "type": "variable_function",
+      "name": "permissionsMiddleware",
+      "exported": true,
+      "line": 13,
+      "endLine": 56,
+      "signature": "(options: TypedOptions): MiddlewareHandler =>",
+      "calls": [
+        {
+          "name": "next",
+          "edgeType": "call"
+        },
+        {
+          "name": "get",
+          "edgeType": "call"
+        },
+        {
+          "name": "unauthorized",
+          "edgeType": "call"
+        },
+        {
+          "name": "json",
+          "edgeType": "call"
+        },
+        {
+          "name": "forbidden",
+          "edgeType": "call"
+        },
+        {
+          "name": "checkPermissionsForInvocation",
+          "edgeType": "call"
+        },
+        {
+          "name": "error",
+          "edgeType": "call"
+        },
+        {
+          "name": "internalError",
+          "edgeType": "call"
+        },
+        {
+          "name": "TypedOptions",
+          "edgeType": "type"
+        },
+        {
+          "name": "MiddlewareHandler",
+          "edgeType": "type"
+        },
+        {
+          "name": "HonoContext",
+          "edgeType": "type"
+        },
+        {
+          "name": "PermissionsPayload",
+          "edgeType": "type"
+        },
+        {
+          "name": "Method",
+          "edgeType": "type"
+        }
+      ]
+    }
+  ],
+  "imports": [
+    {
+      "module": "@rocket.chat/logger",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/rest-typings",
+      "resolved": "external"
+    },
+    {
+      "module": "hono",
+      "resolved": "external"
+    },
+    {
+      "module": "../../ApiClass",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/server/api/ApiClass.ts"
+    },
+    {
+      "module": "../../api",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/server/api/api.ts"
+    },
+    {
+      "module": "../../api.helpers",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/server/api/api.helpers.ts"
+    },
+    {
+      "module": "../../definition",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/server/api/definition.ts"
+    },
+    {
+      "module": "../../router",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/server/api/router.ts"
+    }
+  ]
+}

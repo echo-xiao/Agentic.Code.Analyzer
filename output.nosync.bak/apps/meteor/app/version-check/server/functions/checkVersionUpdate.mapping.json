@@ -1,0 +1,113 @@
+{
+  "sourcePath": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/app/version-check/server/functions/checkVersionUpdate.ts",
+  "symbols": [
+    {
+      "type": "variable_function",
+      "name": "getMessagesToSendToAdmins",
+      "exported": false,
+      "line": 10,
+      "endLine": 41,
+      "signature": "async ( alerts: { id: string; priority: number; title: string; text: string; textArguments?: string[]; modifiers: string[]; infoUrl: string; }[], adminUser: IUser, ): Promise<{ msg: string }[]> =>",
+      "calls": [
+        {
+          "name": "bannerExistsById",
+          "edgeType": "call"
+        },
+        {
+          "name": "push",
+          "edgeType": "call"
+        },
+        {
+          "name": "isArray",
+          "edgeType": "call"
+        },
+        {
+          "name": "IUser",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "variable_function",
+      "name": "checkVersionUpdate",
+      "exported": true,
+      "line": 27,
+      "endLine": 35,
+      "signature": "async () =>",
+      "calls": [
+        {
+          "name": "info",
+          "edgeType": "call"
+        },
+        {
+          "name": "getNewUpdates",
+          "edgeType": "call"
+        },
+        {
+          "name": "buildVersionUpdateMessage",
+          "edgeType": "call"
+        },
+        {
+          "name": "showAlertsFromCloud",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "variable_function",
+      "name": "showAlertsFromCloud",
+      "exported": false,
+      "line": 31,
+      "endLine": 57,
+      "signature": "async ( alerts?: { id: string; priority: number; title: string; text: string; textArguments?: string[]; modifiers: string[]; infoUrl: string; }[], ) =>",
+      "calls": [
+        {
+          "name": "sendMessagesToAdmins",
+          "edgeType": "call"
+        },
+        {
+          "name": "getMessagesToSendToAdmins",
+          "edgeType": "call"
+        },
+        {
+          "name": "map",
+          "edgeType": "call"
+        },
+        {
+          "name": "replace",
+          "edgeType": "call"
+        }
+      ]
+    }
+  ],
+  "imports": [
+    {
+      "module": "@rocket.chat/core-typings",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/models",
+      "resolved": "external"
+    },
+    {
+      "module": "../../../../server/lib/i18n",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/server/lib/i18n.ts"
+    },
+    {
+      "module": "../../../../server/lib/sendMessagesToAdmins",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/server/lib/sendMessagesToAdmins.ts"
+    },
+    {
+      "module": "../logger",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/app/version-check/server/logger.ts"
+    },
+    {
+      "module": "./buildVersionUpdateMessage",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/app/version-check/server/functions/buildVersionUpdateMessage.ts"
+    },
+    {
+      "module": "./getNewUpdates",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/app/version-check/server/functions/getNewUpdates.ts"
+    }
+  ]
+}

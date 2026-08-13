@@ -1,0 +1,428 @@
+{
+  "sourcePath": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/client/views/account/profile/AccountProfilePage.tsx",
+  "symbols": [
+    {
+      "type": "inner_function",
+      "name": "handleLogoutOtherLocations",
+      "exported": false,
+      "qualifiedName": "AccountProfilePage.handleLogoutOtherLocations",
+      "line": 52,
+      "endLine": 64,
+      "signature": "async () =>",
+      "calls": [
+        {
+          "name": "setLoggingOut",
+          "edgeType": "call"
+        },
+        {
+          "name": "logoutOtherClients",
+          "edgeType": "call"
+        },
+        {
+          "name": "dispatchToastMessage",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "inner_function",
+      "name": "handleConfirmOwnerChange",
+      "exported": false,
+      "qualifiedName": "AccountProfilePage.handleConfirmOwnerChange",
+      "line": 66,
+      "endLine": 89,
+      "signature": "(passwordOrUsername: string, shouldChangeOwner: string[], shouldBeRemoved: string[]) =>",
+      "calls": [
+        {
+          "name": "deleteOwnAccount",
+          "edgeType": "call"
+        },
+        {
+          "name": "SHA256",
+          "edgeType": "call"
+        },
+        {
+          "name": "dispatchToastMessage",
+          "edgeType": "call"
+        },
+        {
+          "name": "setModal",
+          "edgeType": "call"
+        },
+        {
+          "name": "logout",
+          "edgeType": "call"
+        },
+        {
+          "name": "ConfirmOwnerChangeModal",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "handleConfirm",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "shouldChangeOwner",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "shouldBeRemoved",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "TranslationKey",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "inner_function",
+      "name": "handleConfirm",
+      "exported": false,
+      "qualifiedName": "AccountProfilePage.handleConfirm",
+      "line": 68,
+      "endLine": 77,
+      "signature": "async (): Promise<void> =>",
+      "calls": [
+        {
+          "name": "deleteOwnAccount",
+          "edgeType": "call"
+        },
+        {
+          "name": "SHA256",
+          "edgeType": "call"
+        },
+        {
+          "name": "dispatchToastMessage",
+          "edgeType": "call"
+        },
+        {
+          "name": "setModal",
+          "edgeType": "call"
+        },
+        {
+          "name": "logout",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "inner_function",
+      "name": "handleDeleteOwnAccount",
+      "exported": false,
+      "qualifiedName": "AccountProfilePage.handleDeleteOwnAccount",
+      "line": 93,
+      "endLine": 114,
+      "signature": "async () =>",
+      "calls": [
+        {
+          "name": "deleteOwnAccount",
+          "edgeType": "call"
+        },
+        {
+          "name": "SHA256",
+          "edgeType": "call"
+        },
+        {
+          "name": "dispatchToastMessage",
+          "edgeType": "call"
+        },
+        {
+          "name": "setModal",
+          "edgeType": "call"
+        },
+        {
+          "name": "handleConfirmOwnerChange",
+          "edgeType": "call"
+        },
+        {
+          "name": "ActionConfirmModal",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "handleConfirm",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "hasLocalPassword",
+          "edgeType": "jsx"
+        }
+      ]
+    },
+    {
+      "type": "inner_function",
+      "name": "handleConfirm",
+      "exported": false,
+      "qualifiedName": "AccountProfilePage.handleConfirm",
+      "line": 94,
+      "endLine": 111,
+      "signature": "async (passwordOrUsername: string): Promise<void> =>",
+      "calls": [
+        {
+          "name": "deleteOwnAccount",
+          "edgeType": "call"
+        },
+        {
+          "name": "SHA256",
+          "edgeType": "call"
+        },
+        {
+          "name": "dispatchToastMessage",
+          "edgeType": "call"
+        },
+        {
+          "name": "setModal",
+          "edgeType": "call"
+        },
+        {
+          "name": "handleConfirmOwnerChange",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "variable_function",
+      "name": "AccountProfilePage",
+      "exported": false,
+      "line": 25,
+      "endLine": 152,
+      "signature": "() =>",
+      "calls": [
+        {
+          "name": "useTranslation",
+          "edgeType": "call"
+        },
+        {
+          "name": "useUser",
+          "edgeType": "call"
+        },
+        {
+          "name": "useToastMessageDispatch",
+          "edgeType": "call"
+        },
+        {
+          "name": "useLayout",
+          "edgeType": "call"
+        },
+        {
+          "name": "useSetModal",
+          "edgeType": "call"
+        },
+        {
+          "name": "useLogout",
+          "edgeType": "call"
+        },
+        {
+          "name": "useState",
+          "edgeType": "call"
+        },
+        {
+          "name": "useSetting",
+          "edgeType": "call"
+        },
+        {
+          "name": "useAllowPasswordChange",
+          "edgeType": "call"
+        },
+        {
+          "name": "useForm",
+          "edgeType": "call"
+        },
+        {
+          "name": "getProfileInitialValues",
+          "edgeType": "call"
+        },
+        {
+          "name": "useEndpoint",
+          "edgeType": "call"
+        },
+        {
+          "name": "useCallback",
+          "edgeType": "call"
+        },
+        {
+          "name": "setLoggingOut",
+          "edgeType": "call"
+        },
+        {
+          "name": "logoutOtherClients",
+          "edgeType": "call"
+        },
+        {
+          "name": "dispatchToastMessage",
+          "edgeType": "call"
+        },
+        {
+          "name": "deleteOwnAccount",
+          "edgeType": "call"
+        },
+        {
+          "name": "SHA256",
+          "edgeType": "call"
+        },
+        {
+          "name": "setModal",
+          "edgeType": "call"
+        },
+        {
+          "name": "logout",
+          "edgeType": "call"
+        },
+        {
+          "name": "handleConfirmOwnerChange",
+          "edgeType": "call"
+        },
+        {
+          "name": "useId",
+          "edgeType": "call"
+        },
+        {
+          "name": "reset",
+          "edgeType": "call"
+        },
+        {
+          "name": "Page",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "PageScrollableContentWithShadow",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "Box",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "FormProvider",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "ButtonGroup",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "Button",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "PageFooter",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "ConfirmOwnerChangeModal",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "ActionConfirmModal",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "PageHeader",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "AccountProfileForm",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "handleConfirm",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "shouldChangeOwner",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "shouldBeRemoved",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "hasLocalPassword",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "profileFormId",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "isMobile",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "handleLogoutOtherLocations",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "loggingOut",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "handleDeleteOwnAccount",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "isDirty",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "isSubmitting",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "TranslationKey",
+          "edgeType": "type"
+        }
+      ]
+    }
+  ],
+  "imports": [
+    {
+      "module": "@rocket.chat/fuselage",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/sha256",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/ui-client",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/ui-contexts",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/ui-contexts",
+      "resolved": "external"
+    },
+    {
+      "module": "react",
+      "resolved": "external"
+    },
+    {
+      "module": "react-hook-form",
+      "resolved": "external"
+    },
+    {
+      "module": "./AccountProfileForm",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/client/views/account/profile/AccountProfileForm.tsx"
+    },
+    {
+      "module": "./ActionConfirmModal",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/client/views/account/profile/ActionConfirmModal.tsx"
+    },
+    {
+      "module": "./getProfileInitialValues",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/client/views/account/profile/getProfileInitialValues.ts"
+    },
+    {
+      "module": "../../../components/ConfirmOwnerChangeModal",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/client/components/ConfirmOwnerChangeModal.tsx"
+    },
+    {
+      "module": "../security/useAllowPasswordChange",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/client/views/account/security/useAllowPasswordChange.ts"
+    }
+  ]
+}

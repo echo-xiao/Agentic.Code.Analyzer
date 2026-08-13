@@ -1,0 +1,41 @@
+{
+  "sourcePath": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/client/views/admin/users/AdminUsersRoute.tsx",
+  "symbols": [
+    {
+      "type": "variable_function",
+      "name": "AdminUsersRoute",
+      "exported": false,
+      "line": 6,
+      "endLine": 14,
+      "signature": "() =>",
+      "calls": [
+        {
+          "name": "usePermission",
+          "edgeType": "call"
+        },
+        {
+          "name": "NotAuthorizedPage",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "AdminUsersPage",
+          "edgeType": "jsx"
+        }
+      ]
+    }
+  ],
+  "imports": [
+    {
+      "module": "@rocket.chat/ui-contexts",
+      "resolved": "external"
+    },
+    {
+      "module": "./AdminUsersPage",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/client/views/admin/users/AdminUsersPage.tsx"
+    },
+    {
+      "module": "../../notAuthorized/NotAuthorizedPage",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/client/views/notAuthorized/NotAuthorizedPage.tsx"
+    }
+  ]
+}

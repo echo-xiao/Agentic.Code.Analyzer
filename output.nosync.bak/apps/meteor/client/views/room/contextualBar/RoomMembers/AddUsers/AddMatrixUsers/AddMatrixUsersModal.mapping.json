@@ -1,0 +1,256 @@
+{
+  "sourcePath": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/client/views/room/contextualBar/RoomMembers/AddUsers/AddMatrixUsers/AddMatrixUsersModal.tsx",
+  "symbols": [
+    {
+      "type": "variable_function",
+      "name": "verificationStatusAsIcon",
+      "exported": false,
+      "line": 33,
+      "endLine": 42,
+      "signature": "(verificationStatus: string): ComponentProps<typeof Icon>['name'] =>",
+      "calls": [
+        {
+          "name": "ComponentProps",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "inner_function",
+      "name": "onSubmit",
+      "exported": false,
+      "qualifiedName": "AddMatrixUsersModal.onSubmit",
+      "line": 56,
+      "endLine": 72,
+      "signature": "async (data: FormValues) =>",
+      "calls": [
+        {
+          "name": "setLoading",
+          "edgeType": "call"
+        },
+        {
+          "name": "setError",
+          "edgeType": "call"
+        },
+        {
+          "name": "onSave",
+          "edgeType": "call"
+        },
+        {
+          "name": "onClose",
+          "edgeType": "call"
+        },
+        {
+          "name": "setBannedError",
+          "edgeType": "call"
+        },
+        {
+          "name": "setUnbanConfirmed",
+          "edgeType": "call"
+        },
+        {
+          "name": "FormValues",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "variable_function",
+      "name": "AddMatrixUsersModal",
+      "exported": false,
+      "line": 37,
+      "endLine": 131,
+      "signature": "({ onClose, matrixIdVerifiedStatus, onSave, completeUserList }: AddMatrixUsersModalProps) =>",
+      "calls": [
+        {
+          "name": "useTranslation",
+          "edgeType": "call"
+        },
+        {
+          "name": "useId",
+          "edgeType": "call"
+        },
+        {
+          "name": "useState",
+          "edgeType": "call"
+        },
+        {
+          "name": "filter",
+          "edgeType": "call"
+        },
+        {
+          "name": "has",
+          "edgeType": "call"
+        },
+        {
+          "name": "get",
+          "edgeType": "call"
+        },
+        {
+          "name": "useForm",
+          "edgeType": "call"
+        },
+        {
+          "name": "setLoading",
+          "edgeType": "call"
+        },
+        {
+          "name": "setError",
+          "edgeType": "call"
+        },
+        {
+          "name": "onSave",
+          "edgeType": "call"
+        },
+        {
+          "name": "onClose",
+          "edgeType": "call"
+        },
+        {
+          "name": "setBannedError",
+          "edgeType": "call"
+        },
+        {
+          "name": "setUnbanConfirmed",
+          "edgeType": "call"
+        },
+        {
+          "name": "map",
+          "edgeType": "call"
+        },
+        {
+          "name": "entries",
+          "edgeType": "call"
+        },
+        {
+          "name": "verificationStatusAsIcon",
+          "edgeType": "call"
+        },
+        {
+          "name": "handleSubmit",
+          "edgeType": "call"
+        },
+        {
+          "name": "Modal",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "ModalHeader",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "ModalHeaderText",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "ModalTitle",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "ModalContent",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "Box",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "ModalFooter",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "ModalFooterAnnotation",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "Label",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "ModalFooterControllers",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "Button",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "ModalClose",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "Icon",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "CheckBox",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "onClose",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "_matrixId",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "unbanConfirmed",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "checkboxId",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "loading",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "AddMatrixUsersModalProps",
+          "edgeType": "type"
+        },
+        {
+          "name": "FormValues",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "type",
+      "name": "AddMatrixUsersModalProps",
+      "line": 22,
+      "endLine": 27,
+      "signature": "type AddMatrixUsersModalProps ="
+    },
+    {
+      "type": "type",
+      "name": "FormValues",
+      "line": 29,
+      "endLine": 31,
+      "signature": "type FormValues ="
+    }
+  ],
+  "imports": [
+    {
+      "module": "@rocket.chat/fuselage",
+      "resolved": "external"
+    },
+    {
+      "module": "react",
+      "resolved": "external"
+    },
+    {
+      "module": "react",
+      "resolved": "external"
+    },
+    {
+      "module": "react-hook-form",
+      "resolved": "external"
+    },
+    {
+      "module": "react-i18next",
+      "resolved": "external"
+    }
+  ]
+}

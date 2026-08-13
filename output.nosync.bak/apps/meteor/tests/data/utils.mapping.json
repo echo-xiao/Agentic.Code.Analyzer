@@ -1,0 +1,107 @@
+{
+  "sourcePath": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/tests/data/utils.ts",
+  "symbols": [
+    {
+      "type": "function",
+      "name": "withTimeout",
+      "exported": true,
+      "line": 7,
+      "endLine": 17,
+      "signature": "export function withTimeout<T>(fn: (signal: AbortSignal) => Promise<T>, ms: number): Promise<T>",
+      "calls": [
+        {
+          "name": "abort",
+          "edgeType": "call"
+        },
+        {
+          "name": "finally",
+          "edgeType": "call"
+        },
+        {
+          "name": "fn",
+          "edgeType": "call"
+        },
+        {
+          "name": "AbortController",
+          "edgeType": "new"
+        },
+        {
+          "name": "AbortSignal",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "variable_function",
+      "name": "pagination",
+      "exported": true,
+      "line": 11,
+      "endLine": 32,
+      "signature": "<TPath extends PathWithoutPrefix<Path>>( apiEndpoint: TPath, credentials: Credentials, extraQueryParams: Record<string, any> = {}, ) =>",
+      "calls": [
+        {
+          "name": "expect",
+          "edgeType": "call"
+        },
+        {
+          "name": "query",
+          "edgeType": "call"
+        },
+        {
+          "name": "set",
+          "edgeType": "call"
+        },
+        {
+          "name": "get",
+          "edgeType": "call"
+        },
+        {
+          "name": "api",
+          "edgeType": "call"
+        },
+        {
+          "name": "stringify",
+          "edgeType": "call"
+        },
+        {
+          "name": "property",
+          "edgeType": "call"
+        },
+        {
+          "name": "PathWithoutPrefix",
+          "edgeType": "type"
+        },
+        {
+          "name": "Path",
+          "edgeType": "type"
+        },
+        {
+          "name": "TPath",
+          "edgeType": "type"
+        },
+        {
+          "name": "Credentials",
+          "edgeType": "type"
+        }
+      ]
+    }
+  ],
+  "imports": [
+    {
+      "module": "@rocket.chat/api-client",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/rest-typings",
+      "resolved": "external"
+    },
+    {
+      "module": "chai",
+      "resolved": "external"
+    },
+    {
+      "module": "./api-data",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/tests/data/api-data.ts"
+    }
+  ]
+}

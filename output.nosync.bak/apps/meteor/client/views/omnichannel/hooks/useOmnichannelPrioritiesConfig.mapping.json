@@ -1,0 +1,85 @@
+{
+  "sourcePath": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/client/views/omnichannel/hooks/useOmnichannelPrioritiesConfig.ts",
+  "symbols": [
+    {
+      "type": "variable",
+      "name": "PRIORITIES_CONFIG",
+      "exported": true,
+      "line": 12,
+      "endLine": 41,
+      "signature": "PRIORITIES_CONFIG: Record<number, PrioritiesConfig> =",
+      "calls": []
+    },
+    {
+      "type": "variable_function",
+      "name": "useOmnichannelPrioritiesConfig",
+      "exported": true,
+      "line": 43,
+      "endLine": 64,
+      "signature": "(level: LivechatPriorityWeight, showUnprioritized: boolean) =>",
+      "calls": [
+        {
+          "name": "useTranslation",
+          "edgeType": "call"
+        },
+        {
+          "name": "useOmnichannelPriorities",
+          "edgeType": "call"
+        },
+        {
+          "name": "useMemo",
+          "edgeType": "call"
+        },
+        {
+          "name": "find",
+          "edgeType": "call"
+        },
+        {
+          "name": "LivechatPriorityWeight",
+          "edgeType": "type"
+        },
+        {
+          "name": "TranslationKey",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "type",
+      "name": "PrioritiesConfig",
+      "line": 10,
+      "endLine": 10,
+      "signature": "type PrioritiesConfig ="
+    }
+  ],
+  "imports": [
+    {
+      "module": "@rocket.chat/core-typings",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/fuselage",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/icons",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/ui-contexts",
+      "resolved": "external"
+    },
+    {
+      "module": "react",
+      "resolved": "external"
+    },
+    {
+      "module": "react-i18next",
+      "resolved": "external"
+    },
+    {
+      "module": "./useOmnichannelPriorities",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/client/views/omnichannel/hooks/useOmnichannelPriorities.ts"
+    }
+  ]
+}

@@ -1,0 +1,909 @@
+{
+  "sourcePath": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/server/api/v1/im.ts",
+  "symbols": [
+    {
+      "type": "variable_function",
+      "name": "findDirectMessageRoom",
+      "exported": false,
+      "line": 43,
+      "endLine": 75,
+      "signature": "async ( keys: { roomId?: string; username?: string }, uid: string, ): Promise<{ room: IRoom; subscription: ISubscription | null }> =>",
+      "calls": [
+        {
+          "name": "findOneById",
+          "edgeType": "call"
+        },
+        {
+          "name": "getRoomByNameOrIdWithOptionToJoin",
+          "edgeType": "call"
+        },
+        {
+          "name": "findOne",
+          "edgeType": "call"
+        },
+        {
+          "name": "IRoom",
+          "edgeType": "type"
+        },
+        {
+          "name": "ISubscription",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "variable_function",
+      "name": "dmDeleteAction",
+      "exported": false,
+      "line": 141,
+      "endLine": 155,
+      "signature": "<Path extends string>(_path: Path): TypedAction<typeof dmDeleteEndpointsProps, Path> =>",
+      "calls": [
+        {
+          "name": "findDirectMessageRoom",
+          "edgeType": "call"
+        },
+        {
+          "name": "canAccessRoomIdAsync",
+          "edgeType": "call"
+        },
+        {
+          "name": "hasPermissionAsync",
+          "edgeType": "call"
+        },
+        {
+          "name": "eraseRoom",
+          "edgeType": "call"
+        },
+        {
+          "name": "success",
+          "edgeType": "call"
+        },
+        {
+          "name": "Path",
+          "edgeType": "type"
+        },
+        {
+          "name": "TypedAction",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "variable_function",
+      "name": "dmCloseAction",
+      "exported": false,
+      "line": 157,
+      "endLine": 196,
+      "signature": "<Path extends string>(_path: Path): TypedAction<typeof dmCloseEndpointsProps, Path> =>",
+      "calls": [
+        {
+          "name": "findOneById",
+          "edgeType": "call"
+        },
+        {
+          "name": "findOneByRoomIdAndUserId",
+          "edgeType": "call"
+        },
+        {
+          "name": "canAccessRoomIdAsync",
+          "edgeType": "call"
+        },
+        {
+          "name": "forbidden",
+          "edgeType": "call"
+        },
+        {
+          "name": "findDirectMessageRoom",
+          "edgeType": "call"
+        },
+        {
+          "name": "failure",
+          "edgeType": "call"
+        },
+        {
+          "name": "hideRoomMethod",
+          "edgeType": "call"
+        },
+        {
+          "name": "success",
+          "edgeType": "call"
+        },
+        {
+          "name": "Path",
+          "edgeType": "type"
+        },
+        {
+          "name": "TypedAction",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "variable_function",
+      "name": "dmOpenAction",
+      "exported": false,
+      "line": 221,
+      "endLine": 236,
+      "signature": "<Path extends string>(_path: Path): TypedAction<typeof dmOpenEndpointsProps, Path> =>",
+      "calls": [
+        {
+          "name": "canAccessRoomIdAsync",
+          "edgeType": "call"
+        },
+        {
+          "name": "forbidden",
+          "edgeType": "call"
+        },
+        {
+          "name": "findDirectMessageRoom",
+          "edgeType": "call"
+        },
+        {
+          "name": "openRoom",
+          "edgeType": "call"
+        },
+        {
+          "name": "success",
+          "edgeType": "call"
+        },
+        {
+          "name": "Path",
+          "edgeType": "type"
+        },
+        {
+          "name": "TypedAction",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "variable_function",
+      "name": "dmSetTopicAction",
+      "exported": false,
+      "line": 269,
+      "endLine": 292,
+      "signature": "<Path extends string>(_path: Path): TypedAction<typeof dmSetTopicEndpointsProps, Path> =>",
+      "calls": [
+        {
+          "name": "canAccessRoomIdAsync",
+          "edgeType": "call"
+        },
+        {
+          "name": "forbidden",
+          "edgeType": "call"
+        },
+        {
+          "name": "findDirectMessageRoom",
+          "edgeType": "call"
+        },
+        {
+          "name": "saveRoomSettings",
+          "edgeType": "call"
+        },
+        {
+          "name": "success",
+          "edgeType": "call"
+        },
+        {
+          "name": "Path",
+          "edgeType": "type"
+        },
+        {
+          "name": "TypedAction",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "variable_function",
+      "name": "dmCountersAction",
+      "exported": false,
+      "line": 344,
+      "endLine": 405,
+      "signature": "<Path extends string>(_path: Path): TypedAction<typeof dmCountersEndpointsProps, Path> =>",
+      "calls": [
+        {
+          "name": "hasPermissionAsync",
+          "edgeType": "call"
+        },
+        {
+          "name": "forbidden",
+          "edgeType": "call"
+        },
+        {
+          "name": "canAccessRoomIdAsync",
+          "edgeType": "call"
+        },
+        {
+          "name": "findDirectMessageRoom",
+          "edgeType": "call"
+        },
+        {
+          "name": "toISOString",
+          "edgeType": "call"
+        },
+        {
+          "name": "countActiveUsersInDMRoom",
+          "edgeType": "call"
+        },
+        {
+          "name": "success",
+          "edgeType": "call"
+        },
+        {
+          "name": "Date",
+          "edgeType": "new"
+        },
+        {
+          "name": "Path",
+          "edgeType": "type"
+        },
+        {
+          "name": "TypedAction",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "variable_function",
+      "name": "dmFilesAction",
+      "exported": false,
+      "line": 431,
+      "endLine": 472,
+      "signature": "<Path extends string>(_path: Path): TypedAction<typeof dmFilesEndpointsProps, Path> =>",
+      "calls": [
+        {
+          "name": "getPaginationItems",
+          "edgeType": "call"
+        },
+        {
+          "name": "parseJsonQuery",
+          "edgeType": "call"
+        },
+        {
+          "name": "findDirectMessageRoom",
+          "edgeType": "call"
+        },
+        {
+          "name": "canAccessRoomIdAsync",
+          "edgeType": "call"
+        },
+        {
+          "name": "forbidden",
+          "edgeType": "call"
+        },
+        {
+          "name": "findPaginatedWithoutThumbs",
+          "edgeType": "call"
+        },
+        {
+          "name": "all",
+          "edgeType": "call"
+        },
+        {
+          "name": "toArray",
+          "edgeType": "call"
+        },
+        {
+          "name": "success",
+          "edgeType": "call"
+        },
+        {
+          "name": "addUserToFileObj",
+          "edgeType": "call"
+        },
+        {
+          "name": "Path",
+          "edgeType": "type"
+        },
+        {
+          "name": "TypedAction",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "variable_function",
+      "name": "dmMembersAction",
+      "exported": false,
+      "line": 498,
+      "endLine": 577,
+      "signature": "<Path extends string>(_path: Path): TypedAction<typeof dmMembersEndpointsProps, Path> =>",
+      "calls": [
+        {
+          "name": "findDirectMessageRoom",
+          "edgeType": "call"
+        },
+        {
+          "name": "canAccessRoomIdAsync",
+          "edgeType": "call"
+        },
+        {
+          "name": "forbidden",
+          "edgeType": "call"
+        },
+        {
+          "name": "getPaginationItems",
+          "edgeType": "call"
+        },
+        {
+          "name": "parseJsonQuery",
+          "edgeType": "call"
+        },
+        {
+          "name": "check",
+          "edgeType": "call"
+        },
+        {
+          "name": "ObjectIncluding",
+          "edgeType": "call"
+        },
+        {
+          "name": "Maybe",
+          "edgeType": "call"
+        },
+        {
+          "name": "split",
+          "edgeType": "call"
+        },
+        {
+          "name": "trim",
+          "edgeType": "call"
+        },
+        {
+          "name": "get",
+          "edgeType": "call"
+        },
+        {
+          "name": "findPaginatedByActiveUsersExcept",
+          "edgeType": "call"
+        },
+        {
+          "name": "all",
+          "edgeType": "call"
+        },
+        {
+          "name": "toArray",
+          "edgeType": "call"
+        },
+        {
+          "name": "findByRoomIdAndUserIds",
+          "edgeType": "call"
+        },
+        {
+          "name": "map",
+          "edgeType": "call"
+        },
+        {
+          "name": "find",
+          "edgeType": "call"
+        },
+        {
+          "name": "success",
+          "edgeType": "call"
+        },
+        {
+          "name": "Path",
+          "edgeType": "type"
+        },
+        {
+          "name": "TypedAction",
+          "edgeType": "type"
+        },
+        {
+          "name": "FindOptions",
+          "edgeType": "type"
+        },
+        {
+          "name": "IUser",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "variable_function",
+      "name": "dmMessagesAction",
+      "exported": false,
+      "line": 603,
+      "endLine": 655,
+      "signature": "<Path extends string>(_path: Path): TypedAction<typeof dmMessagesEndpointsProps, Path> =>",
+      "calls": [
+        {
+          "name": "findDirectMessageRoom",
+          "edgeType": "call"
+        },
+        {
+          "name": "canAccessRoomIdAsync",
+          "edgeType": "call"
+        },
+        {
+          "name": "forbidden",
+          "edgeType": "call"
+        },
+        {
+          "name": "getPaginationItems",
+          "edgeType": "call"
+        },
+        {
+          "name": "parseJsonQuery",
+          "edgeType": "call"
+        },
+        {
+          "name": "map",
+          "edgeType": "call"
+        },
+        {
+          "name": "split",
+          "edgeType": "call"
+        },
+        {
+          "name": "trim",
+          "edgeType": "call"
+        },
+        {
+          "name": "parseIds",
+          "edgeType": "call"
+        },
+        {
+          "name": "toLowerCase",
+          "edgeType": "call"
+        },
+        {
+          "name": "findPaginated",
+          "edgeType": "call"
+        },
+        {
+          "name": "all",
+          "edgeType": "call"
+        },
+        {
+          "name": "toArray",
+          "edgeType": "call"
+        },
+        {
+          "name": "success",
+          "edgeType": "call"
+        },
+        {
+          "name": "normalizeMessagesForUser",
+          "edgeType": "call"
+        },
+        {
+          "name": "Path",
+          "edgeType": "type"
+        },
+        {
+          "name": "TypedAction",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "variable_function",
+      "name": "dmHistoryAction",
+      "exported": false,
+      "line": 678,
+      "endLine": 711,
+      "signature": "<Path extends string>(_path: Path): TypedAction<typeof dmHistoryEndpointsProps, Path> =>",
+      "calls": [
+        {
+          "name": "getPaginationItems",
+          "edgeType": "call"
+        },
+        {
+          "name": "findDirectMessageRoom",
+          "edgeType": "call"
+        },
+        {
+          "name": "getChannelHistory",
+          "edgeType": "call"
+        },
+        {
+          "name": "forbidden",
+          "edgeType": "call"
+        },
+        {
+          "name": "success",
+          "edgeType": "call"
+        },
+        {
+          "name": "Date",
+          "edgeType": "new"
+        },
+        {
+          "name": "Path",
+          "edgeType": "type"
+        },
+        {
+          "name": "TypedAction",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "variable_function",
+      "name": "dmMessagesOthersAction",
+      "exported": false,
+      "line": 760,
+      "endLine": 801,
+      "signature": "<Path extends string>(_name: Path): TypedAction<typeof dmMessagesOthersEndpointsProps, Path> =>",
+      "calls": [
+        {
+          "name": "get",
+          "edgeType": "call"
+        },
+        {
+          "name": "findOneById",
+          "edgeType": "call"
+        },
+        {
+          "name": "getPaginationItems",
+          "edgeType": "call"
+        },
+        {
+          "name": "parseJsonQuery",
+          "edgeType": "call"
+        },
+        {
+          "name": "assign",
+          "edgeType": "call"
+        },
+        {
+          "name": "findPaginated",
+          "edgeType": "call"
+        },
+        {
+          "name": "all",
+          "edgeType": "call"
+        },
+        {
+          "name": "toArray",
+          "edgeType": "call"
+        },
+        {
+          "name": "success",
+          "edgeType": "call"
+        },
+        {
+          "name": "normalizeMessagesForUser",
+          "edgeType": "call"
+        },
+        {
+          "name": "Path",
+          "edgeType": "type"
+        },
+        {
+          "name": "TypedAction",
+          "edgeType": "type"
+        },
+        {
+          "name": "IRoom",
+          "edgeType": "type"
+        },
+        {
+          "name": "IMessage",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "variable_function",
+      "name": "dmListAction",
+      "exported": false,
+      "line": 812,
+      "endLine": 841,
+      "signature": "<Path extends string>(_name: Path): TypedAction<typeof dmListEndpointsProps, Path> =>",
+      "calls": [
+        {
+          "name": "getPaginationItems",
+          "edgeType": "call"
+        },
+        {
+          "name": "parseJsonQuery",
+          "edgeType": "call"
+        },
+        {
+          "name": "toArray",
+          "edgeType": "call"
+        },
+        {
+          "name": "map",
+          "edgeType": "call"
+        },
+        {
+          "name": "find",
+          "edgeType": "call"
+        },
+        {
+          "name": "findPaginated",
+          "edgeType": "call"
+        },
+        {
+          "name": "all",
+          "edgeType": "call"
+        },
+        {
+          "name": "success",
+          "edgeType": "call"
+        },
+        {
+          "name": "composeRoomWithLastMessage",
+          "edgeType": "call"
+        },
+        {
+          "name": "Path",
+          "edgeType": "type"
+        },
+        {
+          "name": "TypedAction",
+          "edgeType": "type"
+        },
+        {
+          "name": "IRoom",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "variable_function",
+      "name": "dmListEveryoneAction",
+      "exported": false,
+      "line": 854,
+      "endLine": 877,
+      "signature": "<Path extends string>(_name: Path): TypedAction<typeof dmListEveryoneEndpointsProps, Path> =>",
+      "calls": [
+        {
+          "name": "getPaginationItems",
+          "edgeType": "call"
+        },
+        {
+          "name": "parseJsonQuery",
+          "edgeType": "call"
+        },
+        {
+          "name": "findPaginated",
+          "edgeType": "call"
+        },
+        {
+          "name": "all",
+          "edgeType": "call"
+        },
+        {
+          "name": "toArray",
+          "edgeType": "call"
+        },
+        {
+          "name": "success",
+          "edgeType": "call"
+        },
+        {
+          "name": "map",
+          "edgeType": "call"
+        },
+        {
+          "name": "composeRoomWithLastMessage",
+          "edgeType": "call"
+        },
+        {
+          "name": "Path",
+          "edgeType": "type"
+        },
+        {
+          "name": "TypedAction",
+          "edgeType": "type"
+        },
+        {
+          "name": "IRoom",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "variable_function",
+      "name": "dmCreateAction",
+      "exported": false,
+      "line": 889,
+      "endLine": 901,
+      "signature": "<Path extends string>(_path: Path): TypedAction<typeof dmCreateEndpointsProps, Path> =>",
+      "calls": [
+        {
+          "name": "map",
+          "edgeType": "call"
+        },
+        {
+          "name": "split",
+          "edgeType": "call"
+        },
+        {
+          "name": "trim",
+          "edgeType": "call"
+        },
+        {
+          "name": "createDirectMessage",
+          "edgeType": "call"
+        },
+        {
+          "name": "success",
+          "edgeType": "call"
+        },
+        {
+          "name": "Path",
+          "edgeType": "type"
+        },
+        {
+          "name": "TypedAction",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "variable_function",
+      "name": "dmBlockUserAction",
+      "exported": false,
+      "line": 920,
+      "endLine": 937,
+      "signature": "<Path extends string>(_path: Path): TypedAction<typeof dmBlockUserEndpointsProps, Path> =>",
+      "calls": [
+        {
+          "name": "findDirectMessageRoom",
+          "edgeType": "call"
+        },
+        {
+          "name": "find",
+          "edgeType": "call"
+        },
+        {
+          "name": "blockUserMethod",
+          "edgeType": "call"
+        },
+        {
+          "name": "unblockUserMethod",
+          "edgeType": "call"
+        },
+        {
+          "name": "success",
+          "edgeType": "call"
+        },
+        {
+          "name": "Path",
+          "edgeType": "type"
+        },
+        {
+          "name": "TypedAction",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "type",
+      "name": "DmDeleteProps",
+      "line": 50,
+      "endLine": 56,
+      "signature": "type DmDeleteProps = |"
+    },
+    {
+      "type": "type",
+      "name": "DmCloseProps",
+      "line": 58,
+      "endLine": 60,
+      "signature": "type DmCloseProps ="
+    },
+    {
+      "type": "type",
+      "name": "DmCountersProps",
+      "line": 294,
+      "endLine": 297,
+      "signature": "type DmCountersProps ="
+    },
+    {
+      "type": "type",
+      "name": "DmEndpoints",
+      "line": 968,
+      "endLine": 968,
+      "signature": "export type DmEndpoints = ExtractRoutesFromAPI<typeof dmEndpoints>;"
+    }
+  ],
+  "imports": [
+    {
+      "module": "@rocket.chat/core-typings",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/models",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/rest-typings",
+      "resolved": "external"
+    },
+    {
+      "module": "meteor/check",
+      "resolved": "external"
+    },
+    {
+      "module": "meteor/meteor",
+      "resolved": "external"
+    },
+    {
+      "module": "mongodb",
+      "resolved": "external"
+    },
+    {
+      "module": "../../../app/channel-settings/server/methods/saveRoomSettings",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/app/channel-settings/server/methods/saveRoomSettings.ts"
+    },
+    {
+      "module": "../../../app/lib/server/methods/getChannelHistory",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/app/lib/server/methods/getChannelHistory.ts"
+    },
+    {
+      "module": "../../../app/settings/server",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/app/settings/server/index.ts"
+    },
+    {
+      "module": "../../../app/utils/server/lib/normalizeMessagesForUser",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/app/utils/server/lib/normalizeMessagesForUser.ts"
+    },
+    {
+      "module": "../../lib/authorization/canAccessRoom",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/server/lib/authorization/canAccessRoom.ts"
+    },
+    {
+      "module": "../../lib/authorization/hasPermission",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/server/lib/authorization/hasPermission.ts"
+    },
+    {
+      "module": "../../lib/eraseRoom",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/server/lib/eraseRoom.ts"
+    },
+    {
+      "module": "../../lib/openRoom",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/server/lib/openRoom.ts"
+    },
+    {
+      "module": "../../lib/rooms/getRoomByNameOrIdWithOptionToJoin",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/server/lib/rooms/getRoomByNameOrIdWithOptionToJoin.ts"
+    },
+    {
+      "module": "../../lib/users/blockUser",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/server/lib/users/blockUser.ts"
+    },
+    {
+      "module": "../../lib/users/unblockUser",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/server/lib/users/unblockUser.ts"
+    },
+    {
+      "module": "../../methods/createDirectMessage",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/server/methods/createDirectMessage.ts"
+    },
+    {
+      "module": "../../methods/hideRoom",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/server/methods/hideRoom.ts"
+    },
+    {
+      "module": "../ApiClass",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/server/api/ApiClass.ts"
+    },
+    {
+      "module": "../api",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/server/api/api.ts"
+    },
+    {
+      "module": "../definition",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/server/api/definition.ts"
+    },
+    {
+      "module": "../lib/addUserToFileObj",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/server/api/lib/addUserToFileObj.ts"
+    },
+    {
+      "module": "../lib/composeRoomWithLastMessage",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/server/api/lib/composeRoomWithLastMessage.ts"
+    },
+    {
+      "module": "../lib/getPaginationItems",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/server/api/lib/getPaginationItems.ts"
+    }
+  ]
+}

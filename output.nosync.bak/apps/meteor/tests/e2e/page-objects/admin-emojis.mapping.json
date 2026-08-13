@@ -1,0 +1,137 @@
+{
+  "sourcePath": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/tests/e2e/page-objects/admin-emojis.ts",
+  "symbols": [
+    {
+      "type": "class",
+      "name": "AdminEmoji",
+      "exported": true,
+      "line": 6,
+      "endLine": 35,
+      "signature": "export class AdminEmoji extends Admin",
+      "calls": [
+        {
+          "name": "Admin",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "findEmojiByName",
+      "exported": true,
+      "qualifiedName": "AdminEmoji.findEmojiByName",
+      "line": 25,
+      "endLine": 28,
+      "signature": "async findEmojiByName(emojiName: string)",
+      "containerClass": "AdminEmoji",
+      "calls": [
+        {
+          "name": "fill",
+          "edgeType": "call"
+        },
+        {
+          "name": "getByRole",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "deleteEmoji",
+      "exported": true,
+      "qualifiedName": "AdminEmoji.deleteEmoji",
+      "line": 29,
+      "endLine": 33,
+      "signature": "async deleteEmoji(emojiName: string)",
+      "containerClass": "AdminEmoji",
+      "calls": [
+        {
+          "name": "click",
+          "edgeType": "call"
+        },
+        {
+          "name": "findEmojiByName",
+          "edgeType": "call"
+        },
+        {
+          "name": "delete",
+          "edgeType": "call"
+        },
+        {
+          "name": "confirmDelete",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "constructor",
+      "exported": true,
+      "qualifiedName": "AdminEmoji.constructor",
+      "line": 11,
+      "endLine": 15,
+      "signature": "constructor(page: Page)",
+      "containerClass": "AdminEmoji",
+      "calls": [
+        {
+          "name": "AddEmojiFlexTab",
+          "edgeType": "new"
+        },
+        {
+          "name": "EditEmojiFlexTab",
+          "edgeType": "new"
+        },
+        {
+          "name": "Page",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "class_property",
+      "name": "addEmojiFlexTab",
+      "exported": true,
+      "qualifiedName": "AdminEmoji.addEmojiFlexTab",
+      "line": 7,
+      "endLine": 7,
+      "signature": "readonly addEmojiFlexTab: AddEmojiFlexTab;",
+      "containerClass": "AdminEmoji",
+      "calls": [
+        {
+          "name": "AddEmojiFlexTab",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "class_property",
+      "name": "editEmojiFlexTab",
+      "exported": true,
+      "qualifiedName": "AdminEmoji.editEmojiFlexTab",
+      "line": 9,
+      "endLine": 9,
+      "signature": "readonly editEmojiFlexTab: EditEmojiFlexTab;",
+      "containerClass": "AdminEmoji",
+      "calls": [
+        {
+          "name": "EditEmojiFlexTab",
+          "edgeType": "type"
+        }
+      ]
+    }
+  ],
+  "imports": [
+    {
+      "module": "@playwright/test",
+      "resolved": "external"
+    },
+    {
+      "module": "./admin",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/tests/e2e/page-objects/admin.ts"
+    },
+    {
+      "module": "./fragments/flextabs",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/tests/e2e/page-objects/fragments/flextabs/index.ts"
+    }
+  ]
+}

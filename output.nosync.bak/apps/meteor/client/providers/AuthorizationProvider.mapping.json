@@ -1,0 +1,187 @@
+{
+  "sourcePath": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/client/providers/AuthorizationProvider.tsx",
+  "symbols": [
+    {
+      "type": "variable_function",
+      "name": "noopSubscribe",
+      "exported": false,
+      "line": 20,
+      "endLine": 20,
+      "signature": "(): (() => void) =>",
+      "calls": []
+    },
+    {
+      "type": "variable_function",
+      "name": "subscribeToSubscriptions",
+      "exported": false,
+      "line": 22,
+      "endLine": 22,
+      "signature": "(onStoreChange: () => void): (() => void) =>",
+      "calls": []
+    },
+    {
+      "type": "variable_function",
+      "name": "selectUserRoles",
+      "exported": false,
+      "line": 24,
+      "endLine": 27,
+      "signature": "(userId: IUser['_id'] | undefined): AuthorizableUser['roles'] | undefined =>",
+      "calls": [
+        {
+          "name": "get",
+          "edgeType": "call"
+        },
+        {
+          "name": "getState",
+          "edgeType": "call"
+        },
+        {
+          "name": "IUser",
+          "edgeType": "type"
+        },
+        {
+          "name": "AuthorizableUser",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "variable_function",
+      "name": "AuthorizationProvider",
+      "exported": false,
+      "line": 28,
+      "endLine": 109,
+      "signature": "({ children }: AuthorizationProviderProps) =>",
+      "calls": [
+        {
+          "name": "useReady",
+          "edgeType": "call"
+        },
+        {
+          "name": "listen",
+          "edgeType": "call"
+        },
+        {
+          "name": "init",
+          "edgeType": "call"
+        },
+        {
+          "name": "useUserId",
+          "edgeType": "call"
+        },
+        {
+          "name": "useSyncExternalStore",
+          "edgeType": "call"
+        },
+        {
+          "name": "getState",
+          "edgeType": "call"
+        },
+        {
+          "name": "selectUserRoles",
+          "edgeType": "call"
+        },
+        {
+          "name": "useMemo",
+          "edgeType": "call"
+        },
+        {
+          "name": "createAuthorizationFunctions",
+          "edgeType": "call"
+        },
+        {
+          "name": "get",
+          "edgeType": "call"
+        },
+        {
+          "name": "includes",
+          "edgeType": "call"
+        },
+        {
+          "name": "find",
+          "edgeType": "call"
+        },
+        {
+          "name": "hasPermission",
+          "edgeType": "call"
+        },
+        {
+          "name": "hasAtLeastOnePermission",
+          "edgeType": "call"
+        },
+        {
+          "name": "map",
+          "edgeType": "call"
+        },
+        {
+          "name": "hasAllPermission",
+          "edgeType": "call"
+        },
+        {
+          "name": "hasRole",
+          "edgeType": "call"
+        },
+        {
+          "name": "AuthorizationContext.Provider",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "contextValue",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "AuthorizationProviderProps",
+          "edgeType": "type"
+        },
+        {
+          "name": "ContextType",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "type",
+      "name": "AuthorizableUser",
+      "line": 14,
+      "endLine": 14,
+      "signature": "type AuthorizableUser = Pick<IUser, '_id' | 'roles'>;"
+    },
+    {
+      "type": "type",
+      "name": "AuthorizationProviderProps",
+      "line": 16,
+      "endLine": 18,
+      "signature": "export type AuthorizationProviderProps ="
+    }
+  ],
+  "imports": [
+    {
+      "module": "@rocket.chat/core-typings",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/ui-contexts",
+      "resolved": "external"
+    },
+    {
+      "module": "react",
+      "resolved": "external"
+    },
+    {
+      "module": "react",
+      "resolved": "external"
+    },
+    {
+      "module": "../../app/authorization/lib/createAuthorizationFunctions",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/app/authorization/lib/createAuthorizationFunctions.ts"
+    },
+    {
+      "module": "../cachedStores",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/client/cachedStores/index.ts"
+    },
+    {
+      "module": "../stores",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/client/stores/index.ts"
+    }
+  ]
+}

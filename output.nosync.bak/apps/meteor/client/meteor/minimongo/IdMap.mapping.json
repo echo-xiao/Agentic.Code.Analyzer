@@ -1,0 +1,302 @@
+{
+  "sourcePath": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/client/meteor/minimongo/IdMap.ts",
+  "symbols": [
+    {
+      "type": "class",
+      "name": "IdMap",
+      "exported": true,
+      "line": 15,
+      "endLine": 77,
+      "signature": "export class IdMap<TId, TValue> implements IIdMap<TId, TValue>",
+      "calls": [
+        {
+          "name": "IIdMap",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "get",
+      "exported": true,
+      "qualifiedName": "IdMap.get",
+      "line": 18,
+      "endLine": 20,
+      "signature": "get(id: TId): TValue | undefined",
+      "containerClass": "IdMap",
+      "calls": [
+        {
+          "name": "get",
+          "edgeType": "call"
+        },
+        {
+          "name": "TId",
+          "edgeType": "type"
+        },
+        {
+          "name": "TValue",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "set",
+      "exported": true,
+      "qualifiedName": "IdMap.set",
+      "line": 22,
+      "endLine": 24,
+      "signature": "set(id: TId, value: TValue): void",
+      "containerClass": "IdMap",
+      "calls": [
+        {
+          "name": "set",
+          "edgeType": "call"
+        },
+        {
+          "name": "TId",
+          "edgeType": "type"
+        },
+        {
+          "name": "TValue",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "remove",
+      "exported": true,
+      "qualifiedName": "IdMap.remove",
+      "line": 26,
+      "endLine": 28,
+      "signature": "remove(id: TId): void",
+      "containerClass": "IdMap",
+      "calls": [
+        {
+          "name": "delete",
+          "edgeType": "call"
+        },
+        {
+          "name": "TId",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "has",
+      "exported": true,
+      "qualifiedName": "IdMap.has",
+      "line": 30,
+      "endLine": 32,
+      "signature": "has(id: TId): boolean",
+      "containerClass": "IdMap",
+      "calls": [
+        {
+          "name": "has",
+          "edgeType": "call"
+        },
+        {
+          "name": "TId",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "empty",
+      "exported": true,
+      "qualifiedName": "IdMap.empty",
+      "line": 34,
+      "endLine": 36,
+      "signature": "empty(): boolean",
+      "containerClass": "IdMap",
+      "calls": []
+    },
+    {
+      "type": "method",
+      "name": "clear",
+      "exported": true,
+      "qualifiedName": "IdMap.clear",
+      "line": 38,
+      "endLine": 40,
+      "signature": "clear(): void",
+      "containerClass": "IdMap",
+      "calls": [
+        {
+          "name": "clear",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "forEach",
+      "exported": true,
+      "qualifiedName": "IdMap.forEach",
+      "line": 42,
+      "endLine": 48,
+      "signature": "forEach(callback: (value: TValue, id: TId) => boolean | void): void",
+      "containerClass": "IdMap",
+      "calls": [
+        {
+          "name": "call",
+          "edgeType": "call"
+        },
+        {
+          "name": "TValue",
+          "edgeType": "type"
+        },
+        {
+          "name": "TId",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "forEachAsync",
+      "exported": true,
+      "qualifiedName": "IdMap.forEachAsync",
+      "line": 46,
+      "endLine": 52,
+      "signature": "async forEachAsync(callback: (value: TValue, id: TId) => Promise<boolean | void>): Promise<void>",
+      "containerClass": "IdMap",
+      "calls": [
+        {
+          "name": "call",
+          "edgeType": "call"
+        },
+        {
+          "name": "TValue",
+          "edgeType": "type"
+        },
+        {
+          "name": "TId",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "size",
+      "exported": true,
+      "qualifiedName": "IdMap.size",
+      "line": 50,
+      "endLine": 52,
+      "signature": "size(): number",
+      "containerClass": "IdMap",
+      "calls": []
+    },
+    {
+      "type": "method",
+      "name": "setDefault",
+      "exported": true,
+      "qualifiedName": "IdMap.setDefault",
+      "line": 54,
+      "endLine": 60,
+      "signature": "setDefault(id: TId, def: TValue): TValue",
+      "containerClass": "IdMap",
+      "calls": [
+        {
+          "name": "has",
+          "edgeType": "call"
+        },
+        {
+          "name": "set",
+          "edgeType": "call"
+        },
+        {
+          "name": "get",
+          "edgeType": "call"
+        },
+        {
+          "name": "TId",
+          "edgeType": "type"
+        },
+        {
+          "name": "TValue",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "clone",
+      "exported": true,
+      "qualifiedName": "IdMap.clone",
+      "line": 58,
+      "endLine": 64,
+      "signature": "clone(): IdMap<TId, TValue>",
+      "containerClass": "IdMap",
+      "calls": [
+        {
+          "name": "forEach",
+          "edgeType": "call"
+        },
+        {
+          "name": "set",
+          "edgeType": "call"
+        },
+        {
+          "name": "clone",
+          "edgeType": "call"
+        },
+        {
+          "name": "IdMap",
+          "edgeType": "new"
+        },
+        {
+          "name": "IdMap",
+          "edgeType": "type"
+        },
+        {
+          "name": "TId",
+          "edgeType": "type"
+        },
+        {
+          "name": "TValue",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "class_property",
+      "name": "_map",
+      "exported": true,
+      "qualifiedName": "IdMap._map",
+      "line": 16,
+      "endLine": 16,
+      "signature": "private _map: Map<TId, TValue> = new Map();",
+      "containerClass": "IdMap",
+      "calls": [
+        {
+          "name": "Map",
+          "edgeType": "new"
+        },
+        {
+          "name": "TId",
+          "edgeType": "type"
+        },
+        {
+          "name": "TValue",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "interface",
+      "name": "IIdMap",
+      "line": 3,
+      "endLine": 13,
+      "signature": "interface IIdMap<TId, TValue>"
+    }
+  ],
+  "imports": [
+    {
+      "module": "./common",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/client/meteor/minimongo/common.ts"
+    }
+  ]
+}

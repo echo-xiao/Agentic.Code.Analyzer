@@ -1,0 +1,76 @@
+{
+  "sourcePath": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/ee/server/lib/roles/insertRole.ts",
+  "symbols": [
+    {
+      "type": "variable_function",
+      "name": "insertRoleAsync",
+      "exported": true,
+      "line": 12,
+      "endLine": 35,
+      "signature": "async (roleData: Omit<IRole, '_id' | '_updatedAt'>, options: InsertRoleOptions = {}): Promise<IRole> =>",
+      "calls": [
+        {
+          "name": "findOneByName",
+          "edgeType": "call"
+        },
+        {
+          "name": "isValidRoleScope",
+          "edgeType": "call"
+        },
+        {
+          "name": "createWithRandomId",
+          "edgeType": "call"
+        },
+        {
+          "name": "notifyOnRoleChanged",
+          "edgeType": "call"
+        },
+        {
+          "name": "user.roleUpdate",
+          "edgeType": "event_emit"
+        },
+        {
+          "name": "MeteorError",
+          "edgeType": "new"
+        },
+        {
+          "name": "IRole",
+          "edgeType": "type"
+        },
+        {
+          "name": "InsertRoleOptions",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "type",
+      "name": "InsertRoleOptions",
+      "line": 8,
+      "endLine": 10,
+      "signature": "type InsertRoleOptions ="
+    }
+  ],
+  "imports": [
+    {
+      "module": "@rocket.chat/core-services",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/core-typings",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/models",
+      "resolved": "external"
+    },
+    {
+      "module": "../../../../app/lib/server/lib/notifyListener",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/app/lib/server/lib/notifyListener.ts"
+    },
+    {
+      "module": "../../../../lib/roles/isValidRoleScope",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/lib/roles/isValidRoleScope.ts"
+    }
+  ]
+}

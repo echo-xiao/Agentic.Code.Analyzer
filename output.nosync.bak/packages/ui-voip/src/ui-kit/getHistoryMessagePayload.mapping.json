@@ -1,0 +1,169 @@
+{
+  "sourcePath": "/Users/echoooooo/Desktop/code/Rocket.Chat/packages/ui-voip/src/ui-kit/getHistoryMessagePayload.ts",
+  "symbols": [
+    {
+      "type": "variable_function",
+      "name": "callStateToTranslationKey",
+      "exported": true,
+      "line": 7,
+      "endLine": 19,
+      "signature": "(callState: CallHistoryItemState): TextObject =>",
+      "calls": [
+        {
+          "name": "CallHistoryItemState",
+          "edgeType": "type"
+        },
+        {
+          "name": "TextObject",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "variable_function",
+      "name": "callStateToIcon",
+      "exported": true,
+      "line": 11,
+      "endLine": 23,
+      "signature": "(callState: CallHistoryItemState): FrameableIconElement =>",
+      "calls": [
+        {
+          "name": "CallHistoryItemState",
+          "edgeType": "type"
+        },
+        {
+          "name": "FrameableIconElement",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "variable_function",
+      "name": "buildDurationString",
+      "exported": false,
+      "line": 15,
+      "endLine": 17,
+      "signature": "(...values: number[]): string =>",
+      "calls": [
+        {
+          "name": "join",
+          "edgeType": "call"
+        },
+        {
+          "name": "map",
+          "edgeType": "call"
+        },
+        {
+          "name": "padStart",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "variable_function",
+      "name": "getCallDurationText",
+      "exported": true,
+      "line": 19,
+      "endLine": 31,
+      "signature": "(callDuration: number | undefined): string | undefined =>",
+      "calls": [
+        {
+          "name": "secondsToMilliseconds",
+          "edgeType": "call"
+        },
+        {
+          "name": "intervalToDuration",
+          "edgeType": "call"
+        },
+        {
+          "name": "buildDurationString",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "variable_function",
+      "name": "getFormattedCallDuration",
+      "exported": true,
+      "line": 23,
+      "endLine": 33,
+      "signature": "(callDuration: number | undefined): TextObject | undefined =>",
+      "calls": [
+        {
+          "name": "getCallDurationText",
+          "edgeType": "call"
+        },
+        {
+          "name": "TextObject",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "variable_function",
+      "name": "getHistoryAction",
+      "exported": true,
+      "line": 27,
+      "endLine": 35,
+      "signature": "(callId: string): IconButtonElement =>",
+      "calls": [
+        {
+          "name": "IconButtonElement",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "variable_function",
+      "name": "getHistoryMessagePayload",
+      "exported": true,
+      "line": 31,
+      "endLine": 66,
+      "signature": "( callState: CallHistoryItemState, callDuration: number | undefined, callId?: string, msg: string = '', ): Pick<IMessage, 'msg' | 'groupable'> & { blocks: [InfoCardBlock] } =>",
+      "calls": [
+        {
+          "name": "callStateToTranslationKey",
+          "edgeType": "call"
+        },
+        {
+          "name": "callStateToIcon",
+          "edgeType": "call"
+        },
+        {
+          "name": "getFormattedCallDuration",
+          "edgeType": "call"
+        },
+        {
+          "name": "getHistoryAction",
+          "edgeType": "call"
+        },
+        {
+          "name": "CallHistoryItemState",
+          "edgeType": "type"
+        },
+        {
+          "name": "IMessage",
+          "edgeType": "type"
+        },
+        {
+          "name": "InfoCardBlock",
+          "edgeType": "type"
+        }
+      ]
+    }
+  ],
+  "imports": [
+    {
+      "module": "@rocket.chat/core-typings",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/ui-kit",
+      "resolved": "external"
+    },
+    {
+      "module": "date-fns",
+      "resolved": "external"
+    }
+  ]
+}

@@ -1,0 +1,137 @@
+{
+  "sourcePath": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/app/apps/server/bridges/environmental.ts",
+  "symbols": [
+    {
+      "type": "class",
+      "name": "AppEnvironmentalVariableBridge",
+      "exported": true,
+      "line": 4,
+      "endLine": 45,
+      "signature": "export class AppEnvironmentalVariableBridge extends EnvironmentalVariableBridge",
+      "calls": [
+        {
+          "name": "EnvironmentalVariableBridge",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "getValueByName",
+      "exported": true,
+      "qualifiedName": "AppEnvironmentalVariableBridge.getValueByName",
+      "line": 12,
+      "endLine": 20,
+      "signature": "protected async getValueByName(envVarName: string, appId: string): Promise<string | undefined>",
+      "containerClass": "AppEnvironmentalVariableBridge",
+      "calls": [
+        {
+          "name": "debugLog",
+          "edgeType": "call"
+        },
+        {
+          "name": "isReadable",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "isReadable",
+      "exported": true,
+      "qualifiedName": "AppEnvironmentalVariableBridge.isReadable",
+      "line": 16,
+      "endLine": 20,
+      "signature": "protected async isReadable(envVarName: string, appId: string): Promise<boolean>",
+      "containerClass": "AppEnvironmentalVariableBridge",
+      "calls": [
+        {
+          "name": "debugLog",
+          "edgeType": "call"
+        },
+        {
+          "name": "includes",
+          "edgeType": "call"
+        },
+        {
+          "name": "toUpperCase",
+          "edgeType": "call"
+        },
+        {
+          "name": "isAppsOwnVariable",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "isAppsOwnVariable",
+      "exported": true,
+      "qualifiedName": "AppEnvironmentalVariableBridge.isAppsOwnVariable",
+      "line": 20,
+      "endLine": 26,
+      "signature": "protected isAppsOwnVariable(envVarName: string, appId: string): boolean",
+      "containerClass": "AppEnvironmentalVariableBridge",
+      "calls": [
+        {
+          "name": "replace",
+          "edgeType": "call"
+        },
+        {
+          "name": "toUpperCase",
+          "edgeType": "call"
+        },
+        {
+          "name": "startsWith",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "isSet",
+      "exported": true,
+      "qualifiedName": "AppEnvironmentalVariableBridge.isSet",
+      "line": 24,
+      "endLine": 32,
+      "signature": "protected async isSet(envVarName: string, appId: string): Promise<boolean>",
+      "containerClass": "AppEnvironmentalVariableBridge",
+      "calls": [
+        {
+          "name": "debugLog",
+          "edgeType": "call"
+        },
+        {
+          "name": "isReadable",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "constructor",
+      "exported": true,
+      "qualifiedName": "AppEnvironmentalVariableBridge.constructor",
+      "line": 7,
+      "endLine": 10,
+      "signature": "constructor(private readonly orch: IAppServerOrchestrator)",
+      "containerClass": "AppEnvironmentalVariableBridge",
+      "calls": [
+        {
+          "name": "IAppServerOrchestrator",
+          "edgeType": "type"
+        }
+      ]
+    }
+  ],
+  "imports": [
+    {
+      "module": "@rocket.chat/apps",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/apps/dist/server/bridges/EnvironmentalVariableBridge",
+      "resolved": "external"
+    }
+  ]
+}

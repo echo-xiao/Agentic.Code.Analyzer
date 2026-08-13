@@ -1,0 +1,325 @@
+{
+  "sourcePath": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/tests/e2e/page-objects/fragments/modals/create-new-modal.ts",
+  "symbols": [
+    {
+      "type": "class",
+      "name": "CreateNewModal",
+      "exported": true,
+      "line": 6,
+      "endLine": 53,
+      "signature": "export abstract class CreateNewModal extends Modal",
+      "calls": [
+        {
+          "name": "Modal",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "addMember",
+      "exported": true,
+      "qualifiedName": "CreateNewModal.addMember",
+      "line": 42,
+      "endLine": 47,
+      "signature": "async addMember(memberName: string): Promise<void>",
+      "containerClass": "CreateNewModal",
+      "calls": [
+        {
+          "name": "click",
+          "edgeType": "call"
+        },
+        {
+          "name": "fill",
+          "edgeType": "call"
+        },
+        {
+          "name": "selectOption",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "create",
+      "exported": true,
+      "qualifiedName": "CreateNewModal.create",
+      "line": 46,
+      "endLine": 49,
+      "signature": "async create()",
+      "containerClass": "CreateNewModal",
+      "calls": [
+        {
+          "name": "click",
+          "edgeType": "call"
+        },
+        {
+          "name": "waitForDismissal",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "constructor",
+      "exported": true,
+      "qualifiedName": "CreateNewModal.constructor",
+      "line": 9,
+      "endLine": 12,
+      "signature": "constructor(root: Locator, page: Page)",
+      "containerClass": "CreateNewModal",
+      "calls": [
+        {
+          "name": "Listbox",
+          "edgeType": "new"
+        },
+        {
+          "name": "Locator",
+          "edgeType": "type"
+        },
+        {
+          "name": "Page",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "class_property",
+      "name": "listbox",
+      "exported": true,
+      "qualifiedName": "CreateNewModal.listbox",
+      "line": 7,
+      "endLine": 7,
+      "signature": "readonly listbox: Listbox;",
+      "containerClass": "CreateNewModal",
+      "calls": [
+        {
+          "name": "Listbox",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "class",
+      "name": "CreateNewChannelModal",
+      "exported": true,
+      "line": 50,
+      "endLine": 64,
+      "signature": "export class CreateNewChannelModal extends CreateNewModal",
+      "calls": [
+        {
+          "name": "CreateNewModal",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "inviteUserToChannel",
+      "exported": true,
+      "qualifiedName": "CreateNewChannelModal.inviteUserToChannel",
+      "line": 59,
+      "endLine": 63,
+      "signature": "async inviteUserToChannel(username: string)",
+      "containerClass": "CreateNewChannelModal",
+      "calls": [
+        {
+          "name": "click",
+          "edgeType": "call"
+        },
+        {
+          "name": "fill",
+          "edgeType": "call"
+        },
+        {
+          "name": "selectOption",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "constructor",
+      "exported": true,
+      "qualifiedName": "CreateNewChannelModal.constructor",
+      "line": 51,
+      "endLine": 53,
+      "signature": "constructor(page: Page)",
+      "containerClass": "CreateNewChannelModal",
+      "calls": [
+        {
+          "name": "getByRole",
+          "edgeType": "call"
+        },
+        {
+          "name": "Page",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "class",
+      "name": "CreateNewDMModal",
+      "exported": true,
+      "line": 64,
+      "endLine": 79,
+      "signature": "export class CreateNewDMModal extends CreateNewModal",
+      "calls": [
+        {
+          "name": "CreateNewModal",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "inviteUserToDM",
+      "exported": true,
+      "qualifiedName": "CreateNewDMModal.inviteUserToDM",
+      "line": 73,
+      "endLine": 78,
+      "signature": "async inviteUserToDM(username: string)",
+      "containerClass": "CreateNewDMModal",
+      "calls": [
+        {
+          "name": "click",
+          "edgeType": "call"
+        },
+        {
+          "name": "fill",
+          "edgeType": "call"
+        },
+        {
+          "name": "selectOption",
+          "edgeType": "call"
+        },
+        {
+          "name": "press",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "constructor",
+      "exported": true,
+      "qualifiedName": "CreateNewDMModal.constructor",
+      "line": 65,
+      "endLine": 67,
+      "signature": "constructor(page: Page)",
+      "containerClass": "CreateNewDMModal",
+      "calls": [
+        {
+          "name": "getByRole",
+          "edgeType": "call"
+        },
+        {
+          "name": "Page",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "class",
+      "name": "CreateNewTeamModal",
+      "exported": true,
+      "line": 78,
+      "endLine": 86,
+      "signature": "export class CreateNewTeamModal extends CreateNewModal",
+      "calls": [
+        {
+          "name": "CreateNewModal",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "constructor",
+      "exported": true,
+      "qualifiedName": "CreateNewTeamModal.constructor",
+      "line": 79,
+      "endLine": 81,
+      "signature": "constructor(page: Page)",
+      "containerClass": "CreateNewTeamModal",
+      "calls": [
+        {
+          "name": "getByRole",
+          "edgeType": "call"
+        },
+        {
+          "name": "Page",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "class",
+      "name": "CreateNewDiscussionModal",
+      "exported": true,
+      "line": 88,
+      "endLine": 104,
+      "signature": "export class CreateNewDiscussionModal extends CreateNewModal",
+      "calls": [
+        {
+          "name": "CreateNewModal",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "getParentRoomListItem",
+      "exported": true,
+      "qualifiedName": "CreateNewDiscussionModal.getParentRoomListItem",
+      "line": 97,
+      "endLine": 99,
+      "signature": "getParentRoomListItem(name: string): Locator",
+      "containerClass": "CreateNewDiscussionModal",
+      "calls": [
+        {
+          "name": "getOption",
+          "edgeType": "call"
+        },
+        {
+          "name": "Locator",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "constructor",
+      "exported": true,
+      "qualifiedName": "CreateNewDiscussionModal.constructor",
+      "line": 89,
+      "endLine": 91,
+      "signature": "constructor(page: Page)",
+      "containerClass": "CreateNewDiscussionModal",
+      "calls": [
+        {
+          "name": "getByRole",
+          "edgeType": "call"
+        },
+        {
+          "name": "Page",
+          "edgeType": "type"
+        }
+      ]
+    }
+  ],
+  "imports": [
+    {
+      "module": "@playwright/test",
+      "resolved": "external"
+    },
+    {
+      "module": "../listbox",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/tests/e2e/page-objects/fragments/listbox.ts"
+    },
+    {
+      "module": "./modal",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/tests/e2e/page-objects/fragments/modals/modal.ts"
+    }
+  ]
+}

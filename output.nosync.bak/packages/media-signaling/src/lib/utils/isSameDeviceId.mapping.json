@@ -1,0 +1,82 @@
+{
+  "sourcePath": "/Users/echoooooo/Desktop/code/Rocket.Chat/packages/media-signaling/src/lib/utils/isSameDeviceId.ts",
+  "symbols": [
+    {
+      "type": "function",
+      "name": "ensureStringArray",
+      "exported": false,
+      "line": 1,
+      "endLine": 15,
+      "signature": "function ensureStringArray(value: string | string[] | undefined): string[]",
+      "calls": [
+        {
+          "name": "isArray",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "function",
+      "name": "normalizeDeviceId",
+      "exported": false,
+      "line": 5,
+      "endLine": 24,
+      "signature": "function normalizeDeviceId(deviceId: ConstrainDOMString | null): { exact: string[]; ideal: string[] }",
+      "calls": [
+        {
+          "name": "isArray",
+          "edgeType": "call"
+        },
+        {
+          "name": "ensureStringArray",
+          "edgeType": "call"
+        },
+        {
+          "name": "ConstrainDOMString",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "function",
+      "name": "isSameStringArray",
+      "exported": false,
+      "line": 9,
+      "endLine": 24,
+      "signature": "function isSameStringArray(array1: string[], array2: string[]): boolean",
+      "calls": [
+        {
+          "name": "includes",
+          "edgeType": "call"
+        },
+        {
+          "name": "Set",
+          "edgeType": "new"
+        }
+      ]
+    },
+    {
+      "type": "function",
+      "name": "isSameDeviceId",
+      "exported": true,
+      "line": 13,
+      "endLine": 29,
+      "signature": "export function isSameDeviceId(deviceId1: ConstrainDOMString | null, deviceId2: ConstrainDOMString | null): boolean",
+      "calls": [
+        {
+          "name": "normalizeDeviceId",
+          "edgeType": "call"
+        },
+        {
+          "name": "isSameStringArray",
+          "edgeType": "call"
+        },
+        {
+          "name": "ConstrainDOMString",
+          "edgeType": "type"
+        }
+      ]
+    }
+  ],
+  "imports": []
+}

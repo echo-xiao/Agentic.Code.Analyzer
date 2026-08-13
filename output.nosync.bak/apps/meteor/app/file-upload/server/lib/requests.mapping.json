@@ -1,0 +1,127 @@
+{
+  "sourcePath": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/app/file-upload/server/lib/requests.ts",
+  "symbols": [
+    {
+      "type": "module",
+      "name": "requests",
+      "exported": false,
+      "line": 1,
+      "endLine": 63,
+      "signature": "requests",
+      "calls": [
+        {
+          "name": "use",
+          "edgeType": "call"
+        },
+        {
+          "name": "getPath",
+          "edgeType": "call"
+        },
+        {
+          "name": "exec",
+          "edgeType": "call"
+        },
+        {
+          "name": "findOneById",
+          "edgeType": "call"
+        },
+        {
+          "name": "requestCanAccessFiles",
+          "edgeType": "call"
+        },
+        {
+          "name": "writeHead",
+          "edgeType": "call"
+        },
+        {
+          "name": "end",
+          "edgeType": "call"
+        },
+        {
+          "name": "hasReplyWithRedirectUrlParam",
+          "edgeType": "call"
+        },
+        {
+          "name": "getStoreByName",
+          "edgeType": "call"
+        },
+        {
+          "name": "getRedirectURL",
+          "edgeType": "call"
+        },
+        {
+          "name": "getStore",
+          "edgeType": "call"
+        },
+        {
+          "name": "getUrlExpiryTimeSpan",
+          "edgeType": "call"
+        },
+        {
+          "name": "debug",
+          "edgeType": "call"
+        },
+        {
+          "name": "respondWithRedirectUrlInfo",
+          "edgeType": "call"
+        },
+        {
+          "name": "setHeader",
+          "edgeType": "call"
+        },
+        {
+          "name": "get",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "variable_function",
+      "name": "hasReplyWithRedirectUrlParam",
+      "exported": false,
+      "line": 9,
+      "endLine": 20,
+      "signature": "(req: IncomingMessage) =>",
+      "calls": [
+        {
+          "name": "split",
+          "edgeType": "call"
+        },
+        {
+          "name": "get",
+          "edgeType": "call"
+        },
+        {
+          "name": "URLSearchParams",
+          "edgeType": "new"
+        },
+        {
+          "name": "IncomingMessage",
+          "edgeType": "type"
+        }
+      ]
+    }
+  ],
+  "imports": [
+    {
+      "module": "node:http",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/models",
+      "resolved": "external"
+    },
+    {
+      "module": "meteor/webapp",
+      "resolved": "external"
+    },
+    {
+      "module": "./FileUpload",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/app/file-upload/server/lib/FileUpload.ts"
+    },
+    {
+      "module": "../../../../server/lib/logger/system",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/server/lib/logger/system.ts"
+    }
+  ]
+}

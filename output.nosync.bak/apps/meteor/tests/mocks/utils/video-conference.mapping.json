@@ -1,0 +1,63 @@
+{
+  "sourcePath": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/tests/mocks/utils/video-conference.ts",
+  "symbols": [
+    {
+      "type": "function",
+      "name": "createFakeVideoConfCall",
+      "exported": true,
+      "line": 7,
+      "endLine": 22,
+      "signature": "export function createFakeVideoConfCall({ type, rid }: { type: VideoConferenceType; rid: IRoom['_id'] })",
+      "calls": [
+        {
+          "name": "userName",
+          "edgeType": "call"
+        },
+        {
+          "name": "fullName",
+          "edgeType": "call"
+        },
+        {
+          "name": "recent",
+          "edgeType": "call"
+        },
+        {
+          "name": "name",
+          "edgeType": "call"
+        },
+        {
+          "name": "VideoConferenceType",
+          "edgeType": "type"
+        },
+        {
+          "name": "IRoom",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "function",
+      "name": "createFakeIncomingCall",
+      "exported": true,
+      "line": 11,
+      "endLine": 18,
+      "signature": "export function createFakeIncomingCall({ rid }: { rid: IRoom['_id'] })",
+      "calls": [
+        {
+          "name": "IRoom",
+          "edgeType": "type"
+        }
+      ]
+    }
+  ],
+  "imports": [
+    {
+      "module": "@faker-js/faker",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/core-typings",
+      "resolved": "external"
+    }
+  ]
+}

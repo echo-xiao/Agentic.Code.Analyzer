@@ -1,0 +1,53 @@
+{
+  "sourcePath": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/server/lib/cas/updateCasService.ts",
+  "symbols": [
+    {
+      "type": "function",
+      "name": "updateCasServices",
+      "exported": true,
+      "line": 7,
+      "endLine": 30,
+      "signature": "export async function updateCasServices(): Promise<void>",
+      "calls": [
+        {
+          "name": "get",
+          "edgeType": "call"
+        },
+        {
+          "name": "info",
+          "edgeType": "call"
+        },
+        {
+          "name": "upsertAsync",
+          "edgeType": "call"
+        },
+        {
+          "name": "removeAsync",
+          "edgeType": "call"
+        },
+        {
+          "name": "LoginServiceConfiguration",
+          "edgeType": "type"
+        }
+      ]
+    }
+  ],
+  "imports": [
+    {
+      "module": "@rocket.chat/core-typings",
+      "resolved": "external"
+    },
+    {
+      "module": "meteor/service-configuration",
+      "resolved": "external"
+    },
+    {
+      "module": "./logger",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/server/lib/cas/logger.ts"
+    },
+    {
+      "module": "../../../app/settings/server/cached",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/app/settings/server/cached.ts"
+    }
+  ]
+}

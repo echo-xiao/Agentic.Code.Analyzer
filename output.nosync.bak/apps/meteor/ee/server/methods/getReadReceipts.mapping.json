@@ -1,0 +1,111 @@
+{
+  "sourcePath": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/ee/server/methods/getReadReceipts.ts",
+  "symbols": [
+    {
+      "type": "module",
+      "name": "getReadReceipts",
+      "exported": false,
+      "line": 1,
+      "endLine": 50,
+      "signature": "getReadReceipts",
+      "calls": [
+        {
+          "name": "getReadReceipts",
+          "edgeType": "call"
+        },
+        {
+          "name": "methods",
+          "edgeType": "call"
+        },
+        {
+          "name": "check",
+          "edgeType": "call"
+        },
+        {
+          "name": "userId",
+          "edgeType": "call"
+        },
+        {
+          "name": "getReadReceiptsFunction",
+          "edgeType": "call"
+        },
+        {
+          "name": "ServerMethods",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "variable_function",
+      "name": "getReadReceiptsFunction",
+      "exported": true,
+      "line": 18,
+      "endLine": 36,
+      "signature": "async function (messageId: IMessage['_id'], userId: string): Promise<IReadReceiptWithUser[]>",
+      "calls": [
+        {
+          "name": "hasModule",
+          "edgeType": "call"
+        },
+        {
+          "name": "check",
+          "edgeType": "call"
+        },
+        {
+          "name": "findOneById",
+          "edgeType": "call"
+        },
+        {
+          "name": "canAccessRoomIdAsync",
+          "edgeType": "call"
+        },
+        {
+          "name": "getReceipts",
+          "edgeType": "call"
+        },
+        {
+          "name": "IMessage",
+          "edgeType": "type"
+        },
+        {
+          "name": "IReadReceiptWithUser",
+          "edgeType": "type"
+        }
+      ]
+    }
+  ],
+  "imports": [
+    {
+      "module": "@rocket.chat/core-typings",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/ddp-client",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/license",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/models",
+      "resolved": "external"
+    },
+    {
+      "module": "meteor/check",
+      "resolved": "external"
+    },
+    {
+      "module": "meteor/meteor",
+      "resolved": "external"
+    },
+    {
+      "module": "../../../server/lib/authorization/canAccessRoom",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/server/lib/authorization/canAccessRoom.ts"
+    },
+    {
+      "module": "../lib/message-read-receipt/ReadReceipt",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/ee/server/lib/message-read-receipt/ReadReceipt.ts"
+    }
+  ]
+}

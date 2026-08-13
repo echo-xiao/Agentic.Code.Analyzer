@@ -1,0 +1,265 @@
+{
+  "sourcePath": "/Users/echoooooo/Desktop/code/Rocket.Chat/packages/apps/base-runtime/src/lib/accessors/extenders/HttpExtender.ts",
+  "symbols": [
+    {
+      "type": "class",
+      "name": "HttpExtend",
+      "exported": true,
+      "line": 3,
+      "endLine": 58,
+      "signature": "export class HttpExtend implements IHttpExtend",
+      "calls": [
+        {
+          "name": "IHttpExtend",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "provideDefaultHeader",
+      "exported": true,
+      "qualifiedName": "HttpExtend.provideDefaultHeader",
+      "line": 19,
+      "endLine": 21,
+      "signature": "public provideDefaultHeader(key: string, value: string): void",
+      "containerClass": "HttpExtend",
+      "calls": [
+        {
+          "name": "set",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "provideDefaultHeaders",
+      "exported": true,
+      "qualifiedName": "HttpExtend.provideDefaultHeaders",
+      "line": 23,
+      "endLine": 25,
+      "signature": "public provideDefaultHeaders(headers: { [key: string]: string }): void",
+      "containerClass": "HttpExtend",
+      "calls": [
+        {
+          "name": "forEach",
+          "edgeType": "call"
+        },
+        {
+          "name": "keys",
+          "edgeType": "call"
+        },
+        {
+          "name": "set",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "provideDefaultParam",
+      "exported": true,
+      "qualifiedName": "HttpExtend.provideDefaultParam",
+      "line": 27,
+      "endLine": 29,
+      "signature": "public provideDefaultParam(key: string, value: string): void",
+      "containerClass": "HttpExtend",
+      "calls": [
+        {
+          "name": "set",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "provideDefaultParams",
+      "exported": true,
+      "qualifiedName": "HttpExtend.provideDefaultParams",
+      "line": 31,
+      "endLine": 33,
+      "signature": "public provideDefaultParams(params: { [key: string]: string }): void",
+      "containerClass": "HttpExtend",
+      "calls": [
+        {
+          "name": "forEach",
+          "edgeType": "call"
+        },
+        {
+          "name": "keys",
+          "edgeType": "call"
+        },
+        {
+          "name": "set",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "providePreRequestHandler",
+      "exported": true,
+      "qualifiedName": "HttpExtend.providePreRequestHandler",
+      "line": 35,
+      "endLine": 37,
+      "signature": "public providePreRequestHandler(handler: IHttpPreRequestHandler): void",
+      "containerClass": "HttpExtend",
+      "calls": [
+        {
+          "name": "push",
+          "edgeType": "call"
+        },
+        {
+          "name": "IHttpPreRequestHandler",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "providePreResponseHandler",
+      "exported": true,
+      "qualifiedName": "HttpExtend.providePreResponseHandler",
+      "line": 39,
+      "endLine": 41,
+      "signature": "public providePreResponseHandler(handler: IHttpPreResponseHandler): void",
+      "containerClass": "HttpExtend",
+      "calls": [
+        {
+          "name": "push",
+          "edgeType": "call"
+        },
+        {
+          "name": "IHttpPreResponseHandler",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "getDefaultHeaders",
+      "exported": true,
+      "qualifiedName": "HttpExtend.getDefaultHeaders",
+      "line": 43,
+      "endLine": 45,
+      "signature": "public getDefaultHeaders(): Map<string, string>",
+      "containerClass": "HttpExtend",
+      "calls": [
+        {
+          "name": "Map",
+          "edgeType": "new"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "getDefaultParams",
+      "exported": true,
+      "qualifiedName": "HttpExtend.getDefaultParams",
+      "line": 47,
+      "endLine": 49,
+      "signature": "public getDefaultParams(): Map<string, string>",
+      "containerClass": "HttpExtend",
+      "calls": [
+        {
+          "name": "Map",
+          "edgeType": "new"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "getPreRequestHandlers",
+      "exported": true,
+      "qualifiedName": "HttpExtend.getPreRequestHandlers",
+      "line": 51,
+      "endLine": 53,
+      "signature": "public getPreRequestHandlers(): Array<IHttpPreRequestHandler>",
+      "containerClass": "HttpExtend",
+      "calls": [
+        {
+          "name": "from",
+          "edgeType": "call"
+        },
+        {
+          "name": "IHttpPreRequestHandler",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "getPreResponseHandlers",
+      "exported": true,
+      "qualifiedName": "HttpExtend.getPreResponseHandlers",
+      "line": 55,
+      "endLine": 57,
+      "signature": "public getPreResponseHandlers(): Array<IHttpPreResponseHandler>",
+      "containerClass": "HttpExtend",
+      "calls": [
+        {
+          "name": "from",
+          "edgeType": "call"
+        },
+        {
+          "name": "IHttpPreResponseHandler",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "constructor",
+      "exported": true,
+      "qualifiedName": "HttpExtend.constructor",
+      "line": 12,
+      "endLine": 17,
+      "signature": "constructor()",
+      "containerClass": "HttpExtend",
+      "calls": [
+        {
+          "name": "Map",
+          "edgeType": "new"
+        }
+      ]
+    },
+    {
+      "type": "class_property",
+      "name": "requests",
+      "exported": true,
+      "qualifiedName": "HttpExtend.requests",
+      "line": 8,
+      "endLine": 8,
+      "signature": "private requests: Array<IHttpPreRequestHandler>;",
+      "containerClass": "HttpExtend",
+      "calls": [
+        {
+          "name": "IHttpPreRequestHandler",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "class_property",
+      "name": "responses",
+      "exported": true,
+      "qualifiedName": "HttpExtend.responses",
+      "line": 10,
+      "endLine": 10,
+      "signature": "private responses: Array<IHttpPreResponseHandler>;",
+      "containerClass": "HttpExtend",
+      "calls": [
+        {
+          "name": "IHttpPreResponseHandler",
+          "edgeType": "type"
+        }
+      ]
+    }
+  ],
+  "imports": [
+    {
+      "module": "@rocket.chat/apps-engine/definition/accessors/IHttp",
+      "resolved": "external"
+    }
+  ]
+}

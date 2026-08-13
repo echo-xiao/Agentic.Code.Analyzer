@@ -1,0 +1,87 @@
+{
+  "sourcePath": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/app/apps/server/converters/departments.js",
+  "symbols": [
+    {
+      "type": "class",
+      "name": "AppDepartmentsConverter",
+      "exported": true,
+      "line": 5,
+      "endLine": 67,
+      "signature": "export class AppDepartmentsConverter",
+      "calls": []
+    },
+    {
+      "type": "method",
+      "name": "convertById",
+      "exported": true,
+      "qualifiedName": "AppDepartmentsConverter.convertById",
+      "line": 10,
+      "endLine": 14,
+      "signature": "async convertById(id)",
+      "containerClass": "AppDepartmentsConverter",
+      "calls": [
+        {
+          "name": "findOneById",
+          "edgeType": "call"
+        },
+        {
+          "name": "convertDepartment",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "convertDepartment",
+      "exported": true,
+      "qualifiedName": "AppDepartmentsConverter.convertDepartment",
+      "line": 14,
+      "endLine": 38,
+      "signature": "async convertDepartment(department)",
+      "containerClass": "AppDepartmentsConverter",
+      "calls": [
+        {
+          "name": "transformMappedData",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "convertAppDepartment",
+      "exported": true,
+      "qualifiedName": "AppDepartmentsConverter.convertAppDepartment",
+      "line": 18,
+      "endLine": 42,
+      "signature": "convertAppDepartment(department)",
+      "containerClass": "AppDepartmentsConverter",
+      "calls": [
+        {
+          "name": "assign",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "constructor",
+      "exported": true,
+      "qualifiedName": "AppDepartmentsConverter.constructor",
+      "line": 6,
+      "endLine": 8,
+      "signature": "constructor(orch)",
+      "containerClass": "AppDepartmentsConverter",
+      "calls": []
+    }
+  ],
+  "imports": [
+    {
+      "module": "@rocket.chat/models",
+      "resolved": "external"
+    },
+    {
+      "module": "./transformMappedData",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/app/apps/server/converters/transformMappedData.ts"
+    }
+  ]
+}

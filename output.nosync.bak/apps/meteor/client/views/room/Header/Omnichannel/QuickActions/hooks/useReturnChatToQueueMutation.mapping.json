@@ -1,0 +1,124 @@
+{
+  "sourcePath": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/client/views/room/Header/Omnichannel/QuickActions/hooks/useReturnChatToQueueMutation.ts",
+  "symbols": [
+    {
+      "type": "inner_function",
+      "name": "onSuccess",
+      "exported": false,
+      "qualifiedName": "useReturnChatToQueueMutation.onSuccess",
+      "line": 20,
+      "endLine": 26,
+      "signature": "async (data, rid, context) =>",
+      "calls": [
+        {
+          "name": "invalidateQueries",
+          "edgeType": "call"
+        },
+        {
+          "name": "removeQueries",
+          "edgeType": "call"
+        },
+        {
+          "name": "room",
+          "edgeType": "call"
+        },
+        {
+          "name": "info",
+          "edgeType": "call"
+        },
+        {
+          "name": "subscription",
+          "edgeType": "call"
+        },
+        {
+          "name": "onSuccess",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "variable_function",
+      "name": "useReturnChatToQueueMutation",
+      "exported": true,
+      "line": 8,
+      "endLine": 28,
+      "signature": "( options?: Omit<UseMutationOptions<void, Error, IRoom['_id']>, 'mutationFn'>, ): UseMutationResult<void, Error, IRoom['_id']> =>",
+      "calls": [
+        {
+          "name": "useEndpoint",
+          "edgeType": "call"
+        },
+        {
+          "name": "useQueryClient",
+          "edgeType": "call"
+        },
+        {
+          "name": "useMutation",
+          "edgeType": "call"
+        },
+        {
+          "name": "returnChatToQueue",
+          "edgeType": "call"
+        },
+        {
+          "name": "invalidateQueries",
+          "edgeType": "call"
+        },
+        {
+          "name": "removeQueries",
+          "edgeType": "call"
+        },
+        {
+          "name": "room",
+          "edgeType": "call"
+        },
+        {
+          "name": "info",
+          "edgeType": "call"
+        },
+        {
+          "name": "subscription",
+          "edgeType": "call"
+        },
+        {
+          "name": "onSuccess",
+          "edgeType": "call"
+        },
+        {
+          "name": "UseMutationOptions",
+          "edgeType": "type"
+        },
+        {
+          "name": "IRoom",
+          "edgeType": "type"
+        },
+        {
+          "name": "UseMutationResult",
+          "edgeType": "type"
+        }
+      ]
+    }
+  ],
+  "imports": [
+    {
+      "module": "@rocket.chat/core-typings",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/ui-contexts",
+      "resolved": "external"
+    },
+    {
+      "module": "@tanstack/react-query",
+      "resolved": "external"
+    },
+    {
+      "module": "@tanstack/react-query",
+      "resolved": "external"
+    },
+    {
+      "module": "../../../../../../lib/queryKeys",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/client/lib/queryKeys.ts"
+    }
+  ]
+}

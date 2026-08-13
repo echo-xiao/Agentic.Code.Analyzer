@@ -1,0 +1,10 @@
+## File: packages/ui-contexts/src/hooks/useUnstoreLoginToken.ts
+
+```typescript
+import { useContext } from 'react';
+
+import { AuthenticationContext } from '../AuthenticationContext';
+
+export const useUnstoreLoginToken = (): ((callback: () => void) => () => void) => useContext(AuthenticationContext).unstoreLoginToken;
+
+```

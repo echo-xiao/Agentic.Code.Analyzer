@@ -1,0 +1,69 @@
+{
+  "sourcePath": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/tests/e2e/page-objects/fragments/modals/omnichannel-reset-priorities-modal.ts",
+  "symbols": [
+    {
+      "type": "class",
+      "name": "OmnichannelResetPrioritiesModal",
+      "exported": true,
+      "line": 5,
+      "endLine": 18,
+      "signature": "export class OmnichannelResetPrioritiesModal extends Modal",
+      "calls": [
+        {
+          "name": "Modal",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "reset",
+      "exported": true,
+      "qualifiedName": "OmnichannelResetPrioritiesModal.reset",
+      "line": 14,
+      "endLine": 17,
+      "signature": "async reset()",
+      "containerClass": "OmnichannelResetPrioritiesModal",
+      "calls": [
+        {
+          "name": "click",
+          "edgeType": "call"
+        },
+        {
+          "name": "waitForDismissal",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "constructor",
+      "exported": true,
+      "qualifiedName": "OmnichannelResetPrioritiesModal.constructor",
+      "line": 6,
+      "endLine": 8,
+      "signature": "constructor(page: Page)",
+      "containerClass": "OmnichannelResetPrioritiesModal",
+      "calls": [
+        {
+          "name": "getByRole",
+          "edgeType": "call"
+        },
+        {
+          "name": "Page",
+          "edgeType": "type"
+        }
+      ]
+    }
+  ],
+  "imports": [
+    {
+      "module": "@playwright/test",
+      "resolved": "external"
+    },
+    {
+      "module": "./modal",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/tests/e2e/page-objects/fragments/modals/modal.ts"
+    }
+  ]
+}

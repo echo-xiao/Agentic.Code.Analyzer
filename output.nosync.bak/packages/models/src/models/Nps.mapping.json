@@ -1,0 +1,217 @@
+{
+  "sourcePath": "/Users/echoooooo/Desktop/code/Rocket.Chat/packages/models/src/models/Nps.ts",
+  "symbols": [
+    {
+      "type": "class",
+      "name": "NpsRaw",
+      "exported": true,
+      "line": 8,
+      "endLine": 98,
+      "signature": "export class NpsRaw extends BaseRaw<INps> implements INpsModel",
+      "calls": [
+        {
+          "name": "BaseRaw",
+          "edgeType": "type"
+        },
+        {
+          "name": "INpsModel",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "modelIndexes",
+      "exported": true,
+      "qualifiedName": "NpsRaw.modelIndexes",
+      "line": 13,
+      "endLine": 15,
+      "signature": "override modelIndexes(): IndexDescription[]",
+      "containerClass": "NpsRaw",
+      "calls": [
+        {
+          "name": "IndexDescription",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "getOpenExpiredAndStartSending",
+      "exported": true,
+      "qualifiedName": "NpsRaw.getOpenExpiredAndStartSending",
+      "line": 18,
+      "endLine": 33,
+      "signature": "async getOpenExpiredAndStartSending(): Promise<INps | null>",
+      "containerClass": "NpsRaw",
+      "calls": [
+        {
+          "name": "findOneAndUpdate",
+          "edgeType": "call"
+        },
+        {
+          "name": "Date",
+          "edgeType": "new"
+        },
+        {
+          "name": "INps",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "getOpenExpiredAlreadySending",
+      "exported": true,
+      "qualifiedName": "NpsRaw.getOpenExpiredAlreadySending",
+      "line": 23,
+      "endLine": 32,
+      "signature": "async getOpenExpiredAlreadySending(): Promise<INps | null>",
+      "containerClass": "NpsRaw",
+      "calls": [
+        {
+          "name": "findOne",
+          "edgeType": "call"
+        },
+        {
+          "name": "Date",
+          "edgeType": "new"
+        },
+        {
+          "name": "INps",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "updateStatusById",
+      "exported": true,
+      "qualifiedName": "NpsRaw.updateStatusById",
+      "line": 27,
+      "endLine": 34,
+      "signature": "updateStatusById(_id: INps['_id'], status: INps['status']): Promise<UpdateResult>",
+      "containerClass": "NpsRaw",
+      "calls": [
+        {
+          "name": "updateOne",
+          "edgeType": "call"
+        },
+        {
+          "name": "INps",
+          "edgeType": "type"
+        },
+        {
+          "name": "UpdateResult",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "save",
+      "exported": true,
+      "qualifiedName": "NpsRaw.save",
+      "line": 31,
+      "endLine": 58,
+      "signature": "save({ _id, startAt, expireAt, createdBy, status, }: Pick<INps, '_id' | 'startAt' | 'expireAt' | 'createdBy' | 'status'>): Promise<UpdateResult>",
+      "containerClass": "NpsRaw",
+      "calls": [
+        {
+          "name": "updateOne",
+          "edgeType": "call"
+        },
+        {
+          "name": "Date",
+          "edgeType": "new"
+        },
+        {
+          "name": "INps",
+          "edgeType": "type"
+        },
+        {
+          "name": "UpdateResult",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "closeAllByStatus",
+      "exported": true,
+      "qualifiedName": "NpsRaw.closeAllByStatus",
+      "line": 41,
+      "endLine": 53,
+      "signature": "closeAllByStatus(status: NPSStatus): Promise<UpdateResult | Document>",
+      "containerClass": "NpsRaw",
+      "calls": [
+        {
+          "name": "updateMany",
+          "edgeType": "call"
+        },
+        {
+          "name": "NPSStatus",
+          "edgeType": "type"
+        },
+        {
+          "name": "UpdateResult",
+          "edgeType": "type"
+        },
+        {
+          "name": "Document",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "constructor",
+      "exported": true,
+      "qualifiedName": "NpsRaw.constructor",
+      "line": 9,
+      "endLine": 11,
+      "signature": "constructor(db: Db, trash?: Collection<RocketChatRecordDeleted<INps>>)",
+      "containerClass": "NpsRaw",
+      "calls": [
+        {
+          "name": "Db",
+          "edgeType": "type"
+        },
+        {
+          "name": "Collection",
+          "edgeType": "type"
+        },
+        {
+          "name": "RocketChatRecordDeleted",
+          "edgeType": "type"
+        },
+        {
+          "name": "INps",
+          "edgeType": "type"
+        }
+      ]
+    }
+  ],
+  "imports": [
+    {
+      "module": "@rocket.chat/core-typings",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/core-typings",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/model-typings",
+      "resolved": "external"
+    },
+    {
+      "module": "mongodb",
+      "resolved": "external"
+    },
+    {
+      "module": "./BaseRaw",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/packages/models/src/models/BaseRaw.ts"
+    }
+  ]
+}

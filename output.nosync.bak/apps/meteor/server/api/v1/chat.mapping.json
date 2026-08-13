@@ -1,0 +1,180 @@
+{
+  "sourcePath": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/server/api/v1/chat.ts",
+  "symbols": [
+    {
+      "type": "type",
+      "name": "ChatStarMessageLocal",
+      "line": 58,
+      "endLine": 60,
+      "signature": "type ChatStarMessageLocal ="
+    },
+    {
+      "type": "type",
+      "name": "ChatUnstarMessageLocal",
+      "line": 62,
+      "endLine": 64,
+      "signature": "type ChatUnstarMessageLocal ="
+    },
+    {
+      "type": "type",
+      "name": "ChatFollowMessageLocal",
+      "line": 90,
+      "endLine": 92,
+      "signature": "type ChatFollowMessageLocal ="
+    },
+    {
+      "type": "type",
+      "name": "ChatUnfollowMessageLocal",
+      "line": 106,
+      "endLine": 108,
+      "signature": "type ChatUnfollowMessageLocal ="
+    },
+    {
+      "type": "type",
+      "name": "ChatPinMessage",
+      "line": 130,
+      "endLine": 132,
+      "signature": "type ChatPinMessage ="
+    },
+    {
+      "type": "type",
+      "name": "ChatUnpinMessage",
+      "line": 134,
+      "endLine": 136,
+      "signature": "type ChatUnpinMessage ="
+    },
+    {
+      "type": "type",
+      "name": "ChatEndpoints",
+      "line": 1389,
+      "endLine": 1389,
+      "signature": "export type ChatEndpoints = ExtractRoutesFromAPI<typeof chatEndpoints>;"
+    }
+  ],
+  "imports": [
+    {
+      "module": "@rocket.chat/core-services",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/core-typings",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/message-types",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/models",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/rest-typings",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/string-helpers",
+      "resolved": "external"
+    },
+    {
+      "module": "meteor/meteor",
+      "resolved": "external"
+    },
+    {
+      "module": "../../../app/authorization/server",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/app/authorization/server/index.ts"
+    },
+    {
+      "module": "../../../app/lib/server/methods/getSingleMessage",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/app/lib/server/methods/getSingleMessage.ts"
+    },
+    {
+      "module": "../../../app/lib/server/methods/sendMessage",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/app/lib/server/methods/sendMessage.ts"
+    },
+    {
+      "module": "../../../app/lib/server/methods/updateMessage",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/app/lib/server/methods/updateMessage.ts"
+    },
+    {
+      "module": "../../../app/license/server/airGappedRestrictionsWrapper",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/app/license/server/airGappedRestrictionsWrapper.ts"
+    },
+    {
+      "module": "../../../app/message-pin/server/pinMessage",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/app/message-pin/server/pinMessage.ts"
+    },
+    {
+      "module": "../../../app/message-star/server/starMessage",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/app/message-star/server/starMessage.ts"
+    },
+    {
+      "module": "../../../app/reactions/server/setReaction",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/app/reactions/server/setReaction.ts"
+    },
+    {
+      "module": "../../../app/settings/server",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/app/settings/server/index.ts"
+    },
+    {
+      "module": "../../../app/threads/server/methods/followMessage",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/app/threads/server/methods/followMessage.ts"
+    },
+    {
+      "module": "../../../app/threads/server/methods/unfollowMessage",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/app/threads/server/methods/unfollowMessage.ts"
+    },
+    {
+      "module": "../../../app/utils/server/lib/normalizeMessagesForUser",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/app/utils/server/lib/normalizeMessagesForUser.ts"
+    },
+    {
+      "module": "../../lib/authorization/canAccessRoom",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/server/lib/authorization/canAccessRoom.ts"
+    },
+    {
+      "module": "../../lib/authorization/hasPermission",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/server/lib/authorization/hasPermission.ts"
+    },
+    {
+      "module": "../../lib/messages/deleteMessage",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/server/lib/messages/deleteMessage.ts"
+    },
+    {
+      "module": "../../lib/messages/processWebhookMessage",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/server/lib/messages/processWebhookMessage.ts"
+    },
+    {
+      "module": "../../lib/moderation/reportMessage",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/server/lib/moderation/reportMessage.ts"
+    },
+    {
+      "module": "../../methods/ignoreUser",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/server/methods/ignoreUser.ts"
+    },
+    {
+      "module": "../../methods/messageSearch",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/server/methods/messageSearch.ts"
+    },
+    {
+      "module": "../../publications/messages",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/server/publications/messages.ts"
+    },
+    {
+      "module": "../ApiClass",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/server/api/ApiClass.ts"
+    },
+    {
+      "module": "../api",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/server/api/api.ts"
+    },
+    {
+      "module": "../lib/getPaginationItems",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/server/api/lib/getPaginationItems.ts"
+    },
+    {
+      "module": "../lib/messages",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/server/api/lib/messages.ts"
+    }
+  ]
+}

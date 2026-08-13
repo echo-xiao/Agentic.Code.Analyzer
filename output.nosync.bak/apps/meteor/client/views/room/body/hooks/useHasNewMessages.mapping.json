@@ -1,0 +1,186 @@
+{
+  "sourcePath": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/client/views/room/body/hooks/useHasNewMessages.ts",
+  "symbols": [
+    {
+      "type": "inner_function",
+      "name": "handleNewMessageButtonClick",
+      "exported": false,
+      "qualifiedName": "useHasNewMessages.handleNewMessageButtonClick",
+      "line": 25,
+      "endLine": 29,
+      "signature": "() =>",
+      "calls": [
+        {
+          "name": "setShouldJumpToBottom",
+          "edgeType": "call"
+        },
+        {
+          "name": "setHasNewMessages",
+          "edgeType": "call"
+        },
+        {
+          "name": "focus",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "inner_function",
+      "name": "handleJumpToRecentButtonClick",
+      "exported": false,
+      "qualifiedName": "useHasNewMessages.handleJumpToRecentButtonClick",
+      "line": 31,
+      "endLine": 35,
+      "signature": "async () =>",
+      "calls": [
+        {
+          "name": "clear",
+          "edgeType": "call"
+        },
+        {
+          "name": "getMoreIfIsEmpty",
+          "edgeType": "call"
+        },
+        {
+          "name": "setShouldJumpToBottom",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "inner_function",
+      "name": "handleComposerResize",
+      "exported": false,
+      "qualifiedName": "useHasNewMessages.handleComposerResize",
+      "line": 37,
+      "endLine": 40,
+      "signature": "(): void =>",
+      "calls": [
+        {
+          "name": "setShouldJumpToBottom",
+          "edgeType": "call"
+        },
+        {
+          "name": "setHasNewMessages",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "variable_function",
+      "name": "useHasNewMessages",
+      "exported": true,
+      "line": 11,
+      "endLine": 90,
+      "signature": "( rid: string, uid: string | undefined, setShouldJumpToBottom: Dispatch<SetStateAction<boolean>>, isAtBottom: MutableRefObject<boolean>, ) =>",
+      "calls": [
+        {
+          "name": "useChat",
+          "edgeType": "call"
+        },
+        {
+          "name": "useState",
+          "edgeType": "call"
+        },
+        {
+          "name": "useCallback",
+          "edgeType": "call"
+        },
+        {
+          "name": "setShouldJumpToBottom",
+          "edgeType": "call"
+        },
+        {
+          "name": "setHasNewMessages",
+          "edgeType": "call"
+        },
+        {
+          "name": "focus",
+          "edgeType": "call"
+        },
+        {
+          "name": "clear",
+          "edgeType": "call"
+        },
+        {
+          "name": "getMoreIfIsEmpty",
+          "edgeType": "call"
+        },
+        {
+          "name": "useEffect",
+          "edgeType": "call"
+        },
+        {
+          "name": "isEditedMessage",
+          "edgeType": "call"
+        },
+        {
+          "name": "hasMoreNext",
+          "edgeType": "call"
+        },
+        {
+          "name": "handleJumpToRecentButtonClick",
+          "edgeType": "call"
+        },
+        {
+          "name": "remove",
+          "edgeType": "call"
+        },
+        {
+          "name": "useDebouncedCallback",
+          "edgeType": "call"
+        },
+        {
+          "name": "Dispatch",
+          "edgeType": "type"
+        },
+        {
+          "name": "SetStateAction",
+          "edgeType": "type"
+        },
+        {
+          "name": "MutableRefObject",
+          "edgeType": "type"
+        },
+        {
+          "name": "IMessage",
+          "edgeType": "type"
+        }
+      ]
+    }
+  ],
+  "imports": [
+    {
+      "module": "@rocket.chat/core-typings",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/core-typings",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/fuselage-hooks",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/ui-client",
+      "resolved": "external"
+    },
+    {
+      "module": "react",
+      "resolved": "external"
+    },
+    {
+      "module": "react",
+      "resolved": "external"
+    },
+    {
+      "module": "../../../../../app/ui-utils/client",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/app/ui-utils/client/index.ts"
+    },
+    {
+      "module": "../../contexts/ChatContext",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/client/views/room/contexts/ChatContext.ts"
+    }
+  ]
+}

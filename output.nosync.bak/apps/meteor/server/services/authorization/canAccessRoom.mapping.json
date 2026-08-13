@@ -1,0 +1,112 @@
+{
+  "sourcePath": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/server/services/authorization/canAccessRoom.ts",
+  "symbols": [
+    {
+      "type": "function",
+      "name": "canAccessPublicRoom",
+      "exported": false,
+      "line": 9,
+      "endLine": 16,
+      "signature": "async function canAccessPublicRoom(user?: Partial<IUser>): Promise<boolean>",
+      "calls": [
+        {
+          "name": "get",
+          "edgeType": "call"
+        },
+        {
+          "name": "hasPermission",
+          "edgeType": "call"
+        },
+        {
+          "name": "IUser",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "variable_function",
+      "name": "isPartialUser",
+      "exported": true,
+      "line": 103,
+      "endLine": 105,
+      "signature": "(user: IUser | Pick<IUser, '_id'> | undefined): user is Pick<IUser, '_id'> =>",
+      "calls": [
+        {
+          "name": "Boolean",
+          "edgeType": "call"
+        },
+        {
+          "name": "keys",
+          "edgeType": "call"
+        },
+        {
+          "name": "IUser",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "variable_function",
+      "name": "canAccessRoom",
+      "exported": true,
+      "line": 107,
+      "endLine": 134,
+      "signature": "async (room, user, extraData): Promise<boolean> =>",
+      "calls": [
+        {
+          "name": "isPartialUser",
+          "edgeType": "call"
+        },
+        {
+          "name": "findOneById",
+          "edgeType": "call"
+        },
+        {
+          "name": "log",
+          "edgeType": "call"
+        },
+        {
+          "name": "roomAccessValidator",
+          "edgeType": "call"
+        },
+        {
+          "name": "IUser",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "type",
+      "name": "RoomAccessValidatorConverted",
+      "line": 13,
+      "endLine": 17,
+      "signature": "type RoomAccessValidatorConverted = ("
+    }
+  ],
+  "imports": [
+    {
+      "module": "@rocket.chat/core-services",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/core-services",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/core-typings",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/core-typings",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/models",
+      "resolved": "external"
+    },
+    {
+      "module": "./canAccessRoomLivechat",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/server/services/authorization/canAccessRoomLivechat.ts"
+    }
+  ]
+}

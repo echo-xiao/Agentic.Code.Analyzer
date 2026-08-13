@@ -1,0 +1,41 @@
+{
+  "sourcePath": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/client/views/directory/tabs/teams/TeamsTab.tsx",
+  "symbols": [
+    {
+      "type": "variable_function",
+      "name": "TeamsTab",
+      "exported": false,
+      "line": 6,
+      "endLine": 14,
+      "signature": "() =>",
+      "calls": [
+        {
+          "name": "usePermission",
+          "edgeType": "call"
+        },
+        {
+          "name": "TeamsTable",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "NotAuthorizedPage",
+          "edgeType": "jsx"
+        }
+      ]
+    }
+  ],
+  "imports": [
+    {
+      "module": "@rocket.chat/ui-contexts",
+      "resolved": "external"
+    },
+    {
+      "module": "./TeamsTable",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/client/views/directory/tabs/teams/TeamsTable/index.ts"
+    },
+    {
+      "module": "../../../notAuthorized/NotAuthorizedPage",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/client/views/notAuthorized/NotAuthorizedPage.tsx"
+    }
+  ]
+}

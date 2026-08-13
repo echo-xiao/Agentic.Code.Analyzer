@@ -1,0 +1,200 @@
+{
+  "sourcePath": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/packages/autoupdate/autoupdate_server.js",
+  "symbols": [
+    {
+      "type": "module",
+      "name": "autoupdate_server",
+      "exported": false,
+      "line": 1,
+      "endLine": 167,
+      "signature": "autoupdate_server",
+      "calls": [
+        {
+          "name": "meteor_autoupdate_clientVersions",
+          "edgeType": "pubsub_publish"
+        },
+        {
+          "name": "check",
+          "edgeType": "call"
+        },
+        {
+          "name": "OneOf",
+          "edgeType": "call"
+        },
+        {
+          "name": "floor",
+          "edgeType": "call"
+        },
+        {
+          "name": "random",
+          "edgeType": "call"
+        },
+        {
+          "name": "watch",
+          "edgeType": "call"
+        },
+        {
+          "name": "call",
+          "edgeType": "call"
+        },
+        {
+          "name": "onStop",
+          "edgeType": "call"
+        },
+        {
+          "name": "stop",
+          "edgeType": "call"
+        },
+        {
+          "name": "ready",
+          "edgeType": "call"
+        },
+        {
+          "name": "startup",
+          "edgeType": "call"
+        },
+        {
+          "name": "updateVersions",
+          "edgeType": "call"
+        },
+        {
+          "name": "forEach",
+          "edgeType": "call"
+        },
+        {
+          "name": "set",
+          "edgeType": "call"
+        },
+        {
+          "name": "onListening",
+          "edgeType": "call"
+        },
+        {
+          "name": "resolve",
+          "edgeType": "call"
+        },
+        {
+          "name": "setupListeners",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "function",
+      "name": "updateVersions",
+      "exported": false,
+      "line": 58,
+      "endLine": 103,
+      "signature": "async function updateVersions(shouldReloadClientProgram)",
+      "calls": [
+        {
+          "name": "reloadClientPrograms",
+          "edgeType": "call"
+        },
+        {
+          "name": "keys",
+          "edgeType": "call"
+        },
+        {
+          "name": "forEach",
+          "edgeType": "call"
+        },
+        {
+          "name": "calculateClientHash",
+          "edgeType": "call"
+        },
+        {
+          "name": "calculateClientHashRefreshable",
+          "edgeType": "call"
+        },
+        {
+          "name": "calculateClientHashNonRefreshable",
+          "edgeType": "call"
+        },
+        {
+          "name": "calculateClientHashReplaceable",
+          "edgeType": "call"
+        },
+        {
+          "name": "generateBoilerplate",
+          "edgeType": "call"
+        },
+        {
+          "name": "onListening",
+          "edgeType": "call"
+        },
+        {
+          "name": "getRefreshableAssets",
+          "edgeType": "call"
+        },
+        {
+          "name": "set",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "function",
+      "name": "enqueueVersionsRefresh",
+      "exported": false,
+      "line": 101,
+      "endLine": 105,
+      "signature": "function enqueueVersionsRefresh()",
+      "calls": [
+        {
+          "name": "queueTask",
+          "edgeType": "call"
+        },
+        {
+          "name": "updateVersions",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "variable",
+      "name": "Autoupdate",
+      "exported": true,
+      "line": 31,
+      "endLine": 39,
+      "signature": "Autoupdate = (__meteor_runtime_config__.autoupdate =",
+      "calls": []
+    },
+    {
+      "type": "variable_function",
+      "name": "setupListeners",
+      "exported": false,
+      "line": 105,
+      "endLine": 117,
+      "signature": "() =>",
+      "calls": [
+        {
+          "name": "onMessage",
+          "edgeType": "call"
+        },
+        {
+          "name": "SIGHUP",
+          "edgeType": "event_listen"
+        },
+        {
+          "name": "bindEnvironment",
+          "edgeType": "call"
+        },
+        {
+          "name": "enqueueVersionsRefresh",
+          "edgeType": "call"
+        }
+      ]
+    }
+  ],
+  "imports": [
+    {
+      "module": "meteor/meteor",
+      "resolved": "external"
+    },
+    {
+      "module": "./client_versions.js",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/packages/autoupdate/client_versions.js.ts"
+    }
+  ]
+}

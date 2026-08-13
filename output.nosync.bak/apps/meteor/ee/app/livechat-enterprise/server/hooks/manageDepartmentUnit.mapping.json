@@ -1,0 +1,92 @@
+{
+  "sourcePath": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/ee/app/livechat-enterprise/server/hooks/manageDepartmentUnit.ts",
+  "symbols": [
+    {
+      "type": "module",
+      "name": "manageDepartmentUnit",
+      "exported": false,
+      "line": 1,
+      "endLine": 60,
+      "signature": "manageDepartmentUnit",
+      "calls": [
+        {
+          "name": "manageDepartmentUnit",
+          "edgeType": "event_listen",
+          "event": "livechat.manageDepartmentUnit"
+        }
+      ]
+    },
+    {
+      "type": "variable_function",
+      "name": "manageDepartmentUnit",
+      "exported": true,
+      "line": 8,
+      "endLine": 57,
+      "signature": "async ({ userId, departmentId, unitId }: { userId: string; departmentId: string; unitId: string }) =>",
+      "calls": [
+        {
+          "name": "getUnitsFromUser",
+          "edgeType": "call"
+        },
+        {
+          "name": "hasAnyRoleAsync",
+          "edgeType": "call"
+        },
+        {
+          "name": "findOneById",
+          "edgeType": "call"
+        },
+        {
+          "name": "includes",
+          "edgeType": "call"
+        },
+        {
+          "name": "isArray",
+          "edgeType": "call"
+        },
+        {
+          "name": "decrementDepartmentsCount",
+          "edgeType": "call"
+        },
+        {
+          "name": "addDepartmentToUnit",
+          "edgeType": "call"
+        },
+        {
+          "name": "incrementDepartmentsCount",
+          "edgeType": "call"
+        },
+        {
+          "name": "removeDepartmentFromUnit",
+          "edgeType": "call"
+        },
+        {
+          "name": "ILivechatDepartment",
+          "edgeType": "type"
+        }
+      ]
+    }
+  ],
+  "imports": [
+    {
+      "module": "@rocket.chat/core-typings",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/models",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/omni-core-ee",
+      "resolved": "external"
+    },
+    {
+      "module": "../../../../../server/lib/authorization/hasRole",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/server/lib/authorization/hasRole.ts"
+    },
+    {
+      "module": "../../../../../server/lib/callbacks",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/server/lib/callbacks.ts"
+    }
+  ]
+}

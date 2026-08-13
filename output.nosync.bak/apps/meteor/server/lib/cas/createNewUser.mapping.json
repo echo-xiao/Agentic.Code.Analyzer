@@ -1,0 +1,92 @@
+{
+  "sourcePath": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/server/lib/cas/createNewUser.ts",
+  "symbols": [
+    {
+      "type": "variable_function",
+      "name": "createNewUser",
+      "exported": true,
+      "line": 15,
+      "endLine": 63,
+      "signature": "async (username: string, { attributes, casVersion, flagEmailAsVerified }: CASUserOptions): Promise<IUser> =>",
+      "calls": [
+        {
+          "name": "map",
+          "edgeType": "call"
+        },
+        {
+          "name": "filter",
+          "edgeType": "call"
+        },
+        {
+          "name": "pick",
+          "edgeType": "call"
+        },
+        {
+          "name": "debug",
+          "edgeType": "call"
+        },
+        {
+          "name": "insertUserDoc",
+          "edgeType": "call"
+        },
+        {
+          "name": "findOneById",
+          "edgeType": "call"
+        },
+        {
+          "name": "split",
+          "edgeType": "call"
+        },
+        {
+          "name": "findOneByNameAndType",
+          "edgeType": "call"
+        },
+        {
+          "name": "createRoom",
+          "edgeType": "call"
+        },
+        {
+          "name": "CASUserOptions",
+          "edgeType": "type"
+        },
+        {
+          "name": "IUser",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "type",
+      "name": "CASUserOptions",
+      "line": 9,
+      "endLine": 13,
+      "signature": "type CASUserOptions ="
+    }
+  ],
+  "imports": [
+    {
+      "module": "@rocket.chat/core-typings",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/models",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/tools",
+      "resolved": "external"
+    },
+    {
+      "module": "meteor/accounts-base",
+      "resolved": "external"
+    },
+    {
+      "module": "./logger",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/server/lib/cas/logger.ts"
+    },
+    {
+      "module": "../rooms/createRoom",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/server/lib/rooms/createRoom.ts"
+    }
+  ]
+}

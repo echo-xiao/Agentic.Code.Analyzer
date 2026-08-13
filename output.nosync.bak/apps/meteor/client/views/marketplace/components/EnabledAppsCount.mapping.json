@@ -1,0 +1,65 @@
+{
+  "sourcePath": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/client/views/marketplace/components/EnabledAppsCount.tsx",
+  "symbols": [
+    {
+      "type": "variable_function",
+      "name": "EnabledAppsCount",
+      "exported": false,
+      "line": 6,
+      "endLine": 44,
+      "signature": "({ limit, enabled, context, tooltip, }: { limit: number; enabled: number; context: 'private' | 'explore' | 'installed' | 'premium' | 'requested'; tooltip?: string; }) =>",
+      "calls": [
+        {
+          "name": "useTranslation",
+          "edgeType": "call"
+        },
+        {
+          "name": "useMemo",
+          "edgeType": "call"
+        },
+        {
+          "name": "round",
+          "edgeType": "call"
+        },
+        {
+          "name": "GenericResourceUsage",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "enabled",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "limit",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "percentage",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "variant",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "tooltip",
+          "edgeType": "jsx"
+        }
+      ]
+    }
+  ],
+  "imports": [
+    {
+      "module": "react",
+      "resolved": "external"
+    },
+    {
+      "module": "react-i18next",
+      "resolved": "external"
+    },
+    {
+      "module": "../../../components/GenericResourceUsage",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/client/components/GenericResourceUsage/index.ts"
+    }
+  ]
+}

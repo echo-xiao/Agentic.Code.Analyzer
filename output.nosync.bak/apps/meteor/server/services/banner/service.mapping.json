@@ -1,0 +1,297 @@
+{
+  "sourcePath": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/server/services/banner/service.ts",
+  "symbols": [
+    {
+      "type": "class",
+      "name": "BannerService",
+      "exported": true,
+      "line": 8,
+      "endLine": 173,
+      "signature": "export class BannerService extends ServiceClassInternal implements IBannerService",
+      "calls": [
+        {
+          "name": "ServiceClassInternal",
+          "edgeType": "type"
+        },
+        {
+          "name": "IBannerService",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "getById",
+      "exported": true,
+      "qualifiedName": "BannerService.getById",
+      "line": 11,
+      "endLine": 13,
+      "signature": "async getById(bannerId: string): Promise<null | IBanner>",
+      "containerClass": "BannerService",
+      "calls": [
+        {
+          "name": "findOneById",
+          "edgeType": "call"
+        },
+        {
+          "name": "IBanner",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "discardDismissal",
+      "exported": true,
+      "qualifiedName": "BannerService.discardDismissal",
+      "line": 15,
+      "endLine": 28,
+      "signature": "async discardDismissal(bannerId: string): Promise<boolean>",
+      "containerClass": "BannerService",
+      "calls": [
+        {
+          "name": "findOneById",
+          "edgeType": "call"
+        },
+        {
+          "name": "create",
+          "edgeType": "call"
+        },
+        {
+          "name": "updateMany",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "create",
+      "exported": true,
+      "qualifiedName": "BannerService.create",
+      "line": 19,
+      "endLine": 38,
+      "signature": "async create(doc: Optional<IBanner, '_id' | '_updatedAt'>): Promise<IBanner>",
+      "containerClass": "BannerService",
+      "calls": [
+        {
+          "name": "randomUUID",
+          "edgeType": "call"
+        },
+        {
+          "name": "createOrUpdate",
+          "edgeType": "call"
+        },
+        {
+          "name": "findOneById",
+          "edgeType": "call"
+        },
+        {
+          "name": "sendToUsers",
+          "edgeType": "call"
+        },
+        {
+          "name": "Optional",
+          "edgeType": "type"
+        },
+        {
+          "name": "IBanner",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "getBannersForUser",
+      "exported": true,
+      "qualifiedName": "BannerService.getBannersForUser",
+      "line": 23,
+      "endLine": 53,
+      "signature": "async getBannersForUser(userId: string, platform: BannerPlatform, bannerId?: string): Promise<IBanner[]>",
+      "containerClass": "BannerService",
+      "calls": [
+        {
+          "name": "findOneById",
+          "edgeType": "call"
+        },
+        {
+          "name": "toArray",
+          "edgeType": "call"
+        },
+        {
+          "name": "findActiveByRoleOrId",
+          "edgeType": "call"
+        },
+        {
+          "name": "map",
+          "edgeType": "call"
+        },
+        {
+          "name": "findByUserIdAndBannerId",
+          "edgeType": "call"
+        },
+        {
+          "name": "filter",
+          "edgeType": "call"
+        },
+        {
+          "name": "has",
+          "edgeType": "call"
+        },
+        {
+          "name": "Set",
+          "edgeType": "new"
+        },
+        {
+          "name": "BannerPlatform",
+          "edgeType": "type"
+        },
+        {
+          "name": "IBanner",
+          "edgeType": "type"
+        },
+        {
+          "name": "IUser",
+          "edgeType": "type"
+        },
+        {
+          "name": "IBannerDismiss",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "dismiss",
+      "exported": true,
+      "qualifiedName": "BannerService.dismiss",
+      "line": 27,
+      "endLine": 62,
+      "signature": "async dismiss(userId: string, bannerId: string): Promise<boolean>",
+      "containerClass": "BannerService",
+      "calls": [
+        {
+          "name": "findOneById",
+          "edgeType": "call"
+        },
+        {
+          "name": "insertOne",
+          "edgeType": "call"
+        },
+        {
+          "name": "Date",
+          "edgeType": "new"
+        },
+        {
+          "name": "IUser",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "disable",
+      "exported": true,
+      "qualifiedName": "BannerService.disable",
+      "line": 31,
+      "endLine": 39,
+      "signature": "async disable(bannerId: string): Promise<boolean>",
+      "containerClass": "BannerService",
+      "calls": [
+        {
+          "name": "disable",
+          "edgeType": "call"
+        },
+        {
+          "name": "banner.disabled",
+          "edgeType": "event_emit"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "enable",
+      "exported": true,
+      "qualifiedName": "BannerService.enable",
+      "line": 35,
+      "endLine": 51,
+      "signature": "async enable(bannerId: string, doc: Partial<Omit<IBanner, '_id'>> = {}): Promise<boolean>",
+      "containerClass": "BannerService",
+      "calls": [
+        {
+          "name": "findOneById",
+          "edgeType": "call"
+        },
+        {
+          "name": "updateOne",
+          "edgeType": "call"
+        },
+        {
+          "name": "sendToUsers",
+          "edgeType": "call"
+        },
+        {
+          "name": "IBanner",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "sendToUsers",
+      "exported": true,
+      "qualifiedName": "BannerService.sendToUsers",
+      "line": 39,
+      "endLine": 63,
+      "signature": "async sendToUsers(banner: IBanner): Promise<boolean>",
+      "containerClass": "BannerService",
+      "calls": [
+        {
+          "name": "banner.enabled",
+          "edgeType": "event_emit"
+        },
+        {
+          "name": "countActiveUsersInRoles",
+          "edgeType": "call"
+        },
+        {
+          "name": "forEach",
+          "edgeType": "call"
+        },
+        {
+          "name": "findActiveUsersInRoles",
+          "edgeType": "call"
+        },
+        {
+          "name": "banner.user",
+          "edgeType": "event_emit"
+        },
+        {
+          "name": "IBanner",
+          "edgeType": "type"
+        }
+      ]
+    }
+  ],
+  "imports": [
+    {
+      "module": "node:crypto",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/core-services",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/core-services",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/core-typings",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/models",
+      "resolved": "external"
+    }
+  ]
+}

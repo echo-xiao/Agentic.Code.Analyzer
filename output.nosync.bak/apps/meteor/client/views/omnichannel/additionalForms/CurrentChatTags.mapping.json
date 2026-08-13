@@ -1,0 +1,64 @@
+{
+  "sourcePath": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/client/views/omnichannel/additionalForms/CurrentChatTags.tsx",
+  "symbols": [
+    {
+      "type": "variable_function",
+      "name": "CurrentChatTags",
+      "exported": false,
+      "line": 13,
+      "endLine": 21,
+      "signature": "({ value, handler, department, viewAll, ...props }: CurrentChatTagsProps) =>",
+      "calls": [
+        {
+          "name": "useHasLicenseModule",
+          "edgeType": "call"
+        },
+        {
+          "name": "AutoCompleteTagsMultiple",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "handler",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "value",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "department",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "viewAll",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "CurrentChatTagsProps",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "type",
+      "name": "CurrentChatTagsProps",
+      "line": 6,
+      "endLine": 11,
+      "signature": "export type CurrentChatTagsProps = Pick<ComponentProps<typeof AutoCompleteTagsMultiple>, 'id' | 'aria-labelledby'> &"
+    }
+  ],
+  "imports": [
+    {
+      "module": "react",
+      "resolved": "external"
+    },
+    {
+      "module": "../../../hooks/useHasLicenseModule",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/client/hooks/useHasLicenseModule.ts"
+    },
+    {
+      "module": "../tags/AutoCompleteTagsMultiple",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/client/views/omnichannel/tags/AutoCompleteTagsMultiple.tsx"
+    }
+  ]
+}

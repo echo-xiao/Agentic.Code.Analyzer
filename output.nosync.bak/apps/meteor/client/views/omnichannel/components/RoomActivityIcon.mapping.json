@@ -1,0 +1,56 @@
+{
+  "sourcePath": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/client/views/omnichannel/components/RoomActivityIcon.tsx",
+  "symbols": [
+    {
+      "type": "variable_function",
+      "name": "RoomActivityIcon",
+      "exported": false,
+      "line": 11,
+      "endLine": 18,
+      "signature": "({ room }: RoomActivityIconProps) =>",
+      "calls": [
+        {
+          "name": "useTranslation",
+          "edgeType": "call"
+        },
+        {
+          "name": "useIsRoomOverMacLimit",
+          "edgeType": "call"
+        },
+        {
+          "name": "Icon",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "RoomActivityIconProps",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "type",
+      "name": "RoomActivityIconProps",
+      "line": 7,
+      "endLine": 9,
+      "signature": "export type RoomActivityIconProps ="
+    }
+  ],
+  "imports": [
+    {
+      "module": "@rocket.chat/core-typings",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/fuselage",
+      "resolved": "external"
+    },
+    {
+      "module": "react-i18next",
+      "resolved": "external"
+    },
+    {
+      "module": "../hooks/useIsRoomOverMacLimit",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/client/views/omnichannel/hooks/useIsRoomOverMacLimit.ts"
+    }
+  ]
+}

@@ -1,0 +1,53 @@
+{
+  "sourcePath": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/client/views/omnichannel/directory/hooks/useDepartmentInfo.ts",
+  "symbols": [
+    {
+      "type": "variable_function",
+      "name": "useDepartmentInfo",
+      "exported": true,
+      "line": 6,
+      "endLine": 13,
+      "signature": "(departmentId: string): UseQueryResult<OperationResult<'GET', '/v1/livechat/department/:_id'>> =>",
+      "calls": [
+        {
+          "name": "useEndpoint",
+          "edgeType": "call"
+        },
+        {
+          "name": "useQuery",
+          "edgeType": "call"
+        },
+        {
+          "name": "deptInfo",
+          "edgeType": "call"
+        },
+        {
+          "name": "UseQueryResult",
+          "edgeType": "type"
+        },
+        {
+          "name": "OperationResult",
+          "edgeType": "type"
+        }
+      ]
+    }
+  ],
+  "imports": [
+    {
+      "module": "@rocket.chat/rest-typings",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/ui-contexts",
+      "resolved": "external"
+    },
+    {
+      "module": "@tanstack/react-query",
+      "resolved": "external"
+    },
+    {
+      "module": "@tanstack/react-query",
+      "resolved": "external"
+    }
+  ]
+}

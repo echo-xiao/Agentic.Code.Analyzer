@@ -1,0 +1,165 @@
+{
+  "sourcePath": "/Users/echoooooo/Desktop/code/Rocket.Chat/packages/models/src/models/CustomSounds.ts",
+  "symbols": [
+    {
+      "type": "class",
+      "name": "CustomSoundsRaw",
+      "exported": true,
+      "line": 7,
+      "endLine": 34,
+      "signature": "export class CustomSoundsRaw extends BaseRaw<ICustomSound> implements ICustomSoundsModel",
+      "calls": [
+        {
+          "name": "BaseRaw",
+          "edgeType": "type"
+        },
+        {
+          "name": "ICustomSoundsModel",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "modelIndexes",
+      "exported": true,
+      "qualifiedName": "CustomSoundsRaw.modelIndexes",
+      "line": 12,
+      "endLine": 14,
+      "signature": "protected override modelIndexes(): IndexDescription[]",
+      "containerClass": "CustomSoundsRaw",
+      "calls": [
+        {
+          "name": "IndexDescription",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "findByName",
+      "exported": true,
+      "qualifiedName": "CustomSoundsRaw.findByName",
+      "line": 17,
+      "endLine": 24,
+      "signature": "findByName(name: string, exceptId?: string, options?: FindOptions<ICustomSound>): FindCursor<ICustomSound>",
+      "containerClass": "CustomSoundsRaw",
+      "calls": [
+        {
+          "name": "find",
+          "edgeType": "call"
+        },
+        {
+          "name": "FindOptions",
+          "edgeType": "type"
+        },
+        {
+          "name": "ICustomSound",
+          "edgeType": "type"
+        },
+        {
+          "name": "FindCursor",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "create",
+      "exported": true,
+      "qualifiedName": "CustomSoundsRaw.create",
+      "line": 22,
+      "endLine": 24,
+      "signature": "create(data: Omit<ICustomSound, '_id' | '_updatedAt'>): Promise<InsertOneResult<WithId<ICustomSound>>>",
+      "containerClass": "CustomSoundsRaw",
+      "calls": [
+        {
+          "name": "insertOne",
+          "edgeType": "call"
+        },
+        {
+          "name": "ICustomSound",
+          "edgeType": "type"
+        },
+        {
+          "name": "InsertOneResult",
+          "edgeType": "type"
+        },
+        {
+          "name": "WithId",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "updateById",
+      "exported": true,
+      "qualifiedName": "CustomSoundsRaw.updateById",
+      "line": 26,
+      "endLine": 28,
+      "signature": "updateById(_id: string, data: Partial<Omit<ICustomSound, '_id'>>): Promise<UpdateResult>",
+      "containerClass": "CustomSoundsRaw",
+      "calls": [
+        {
+          "name": "updateOne",
+          "edgeType": "call"
+        },
+        {
+          "name": "ICustomSound",
+          "edgeType": "type"
+        },
+        {
+          "name": "UpdateResult",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "constructor",
+      "exported": true,
+      "qualifiedName": "CustomSoundsRaw.constructor",
+      "line": 8,
+      "endLine": 10,
+      "signature": "constructor(db: Db, trash?: Collection<RocketChatRecordDeleted<ICustomSound>>)",
+      "containerClass": "CustomSoundsRaw",
+      "calls": [
+        {
+          "name": "Db",
+          "edgeType": "type"
+        },
+        {
+          "name": "Collection",
+          "edgeType": "type"
+        },
+        {
+          "name": "RocketChatRecordDeleted",
+          "edgeType": "type"
+        },
+        {
+          "name": "ICustomSound",
+          "edgeType": "type"
+        }
+      ]
+    }
+  ],
+  "imports": [
+    {
+      "module": "@rocket.chat/core-typings",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/model-typings",
+      "resolved": "external"
+    },
+    {
+      "module": "mongodb",
+      "resolved": "external"
+    },
+    {
+      "module": "./BaseRaw",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/packages/models/src/models/BaseRaw.ts"
+    }
+  ]
+}

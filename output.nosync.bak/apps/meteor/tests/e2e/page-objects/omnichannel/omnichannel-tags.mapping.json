@@ -1,0 +1,257 @@
+{
+  "sourcePath": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/tests/e2e/page-objects/omnichannel/omnichannel-tags.ts",
+  "symbols": [
+    {
+      "type": "class",
+      "name": "OmnichannelEditTagFlexTab",
+      "exported": false,
+      "line": 8,
+      "endLine": 25,
+      "signature": "class OmnichannelEditTagFlexTab extends FlexTab",
+      "calls": [
+        {
+          "name": "FlexTab",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "selectDepartment",
+      "exported": false,
+      "qualifiedName": "OmnichannelEditTagFlexTab.selectDepartment",
+      "line": 20,
+      "endLine": 24,
+      "signature": "async selectDepartment(name: string)",
+      "containerClass": "OmnichannelEditTagFlexTab",
+      "calls": [
+        {
+          "name": "click",
+          "edgeType": "call"
+        },
+        {
+          "name": "fill",
+          "edgeType": "call"
+        },
+        {
+          "name": "selectOption",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "constructor",
+      "exported": false,
+      "qualifiedName": "OmnichannelEditTagFlexTab.constructor",
+      "line": 11,
+      "endLine": 14,
+      "signature": "constructor(page: Page)",
+      "containerClass": "OmnichannelEditTagFlexTab",
+      "calls": [
+        {
+          "name": "getByRole",
+          "edgeType": "call"
+        },
+        {
+          "name": "Listbox",
+          "edgeType": "new"
+        },
+        {
+          "name": "Page",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "class_property",
+      "name": "listbox",
+      "exported": false,
+      "qualifiedName": "OmnichannelEditTagFlexTab.listbox",
+      "line": 9,
+      "endLine": 9,
+      "signature": "readonly listbox: Listbox;",
+      "containerClass": "OmnichannelEditTagFlexTab",
+      "calls": [
+        {
+          "name": "Listbox",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "class",
+      "name": "OmnichannelTagsTable",
+      "exported": false,
+      "line": 24,
+      "endLine": 28,
+      "signature": "class OmnichannelTagsTable extends Table",
+      "calls": [
+        {
+          "name": "Table",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "constructor",
+      "exported": false,
+      "qualifiedName": "OmnichannelTagsTable.constructor",
+      "line": 25,
+      "endLine": 27,
+      "signature": "constructor(page: Page)",
+      "containerClass": "OmnichannelTagsTable",
+      "calls": [
+        {
+          "name": "getByRole",
+          "edgeType": "call"
+        },
+        {
+          "name": "Page",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "class",
+      "name": "OmnichannelTags",
+      "exported": true,
+      "line": 30,
+      "endLine": 49,
+      "signature": "export class OmnichannelTags extends OmnichannelAdmin",
+      "calls": [
+        {
+          "name": "OmnichannelAdmin",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "createNew",
+      "exported": true,
+      "qualifiedName": "OmnichannelTags.createNew",
+      "line": 41,
+      "endLine": 43,
+      "signature": "async createNew()",
+      "containerClass": "OmnichannelTags",
+      "calls": [
+        {
+          "name": "click",
+          "edgeType": "call"
+        },
+        {
+          "name": "getButtonByType",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "deleteTag",
+      "exported": true,
+      "qualifiedName": "OmnichannelTags.deleteTag",
+      "line": 45,
+      "endLine": 48,
+      "signature": "async deleteTag(name: string)",
+      "containerClass": "OmnichannelTags",
+      "calls": [
+        {
+          "name": "click",
+          "edgeType": "call"
+        },
+        {
+          "name": "getByRole",
+          "edgeType": "call"
+        },
+        {
+          "name": "findRowByName",
+          "edgeType": "call"
+        },
+        {
+          "name": "confirmDelete",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "constructor",
+      "exported": true,
+      "qualifiedName": "OmnichannelTags.constructor",
+      "line": 35,
+      "endLine": 39,
+      "signature": "constructor(page: Page)",
+      "containerClass": "OmnichannelTags",
+      "calls": [
+        {
+          "name": "OmnichannelEditTagFlexTab",
+          "edgeType": "new"
+        },
+        {
+          "name": "OmnichannelTagsTable",
+          "edgeType": "new"
+        },
+        {
+          "name": "Page",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "class_property",
+      "name": "editTag",
+      "exported": true,
+      "qualifiedName": "OmnichannelTags.editTag",
+      "line": 31,
+      "endLine": 31,
+      "signature": "readonly editTag: OmnichannelEditTagFlexTab;",
+      "containerClass": "OmnichannelTags",
+      "calls": [
+        {
+          "name": "OmnichannelEditTagFlexTab",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "class_property",
+      "name": "table",
+      "exported": true,
+      "qualifiedName": "OmnichannelTags.table",
+      "line": 33,
+      "endLine": 33,
+      "signature": "readonly table: OmnichannelTagsTable;",
+      "containerClass": "OmnichannelTags",
+      "calls": [
+        {
+          "name": "OmnichannelTagsTable",
+          "edgeType": "type"
+        }
+      ]
+    }
+  ],
+  "imports": [
+    {
+      "module": "@playwright/test",
+      "resolved": "external"
+    },
+    {
+      "module": "./omnichannel-admin",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/tests/e2e/page-objects/omnichannel/omnichannel-admin.ts"
+    },
+    {
+      "module": "../fragments/flextabs/flextab",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/tests/e2e/page-objects/fragments/flextabs/flextab.ts"
+    },
+    {
+      "module": "../fragments/listbox",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/tests/e2e/page-objects/fragments/listbox.ts"
+    },
+    {
+      "module": "../fragments/table",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/tests/e2e/page-objects/fragments/table.ts"
+    }
+  ]
+}

@@ -1,0 +1,137 @@
+{
+  "sourcePath": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/server/lib/users/saveUser/saveNewUser.ts",
+  "symbols": [
+    {
+      "type": "variable_function",
+      "name": "saveNewUser",
+      "exported": true,
+      "line": 16,
+      "endLine": 90,
+      "signature": "async function (userData: SaveUserData, sendPassword: boolean, performedBy: IUser)",
+      "calls": [
+        {
+          "name": "validateEmailDomain",
+          "edgeType": "call"
+        },
+        {
+          "name": "getNewUserRoles",
+          "edgeType": "call"
+        },
+        {
+          "name": "includes",
+          "edgeType": "call"
+        },
+        {
+          "name": "createUserAsync",
+          "edgeType": "call"
+        },
+        {
+          "name": "getUpdater",
+          "edgeType": "call"
+        },
+        {
+          "name": "set",
+          "edgeType": "call"
+        },
+        {
+          "name": "handleBio",
+          "edgeType": "call"
+        },
+        {
+          "name": "handleNickname",
+          "edgeType": "call"
+        },
+        {
+          "name": "updateFromUpdater",
+          "edgeType": "call"
+        },
+        {
+          "name": "sendWelcomeEmail",
+          "edgeType": "call"
+        },
+        {
+          "name": "sendPasswordEmail",
+          "edgeType": "call"
+        },
+        {
+          "name": "get",
+          "edgeType": "call"
+        },
+        {
+          "name": "url",
+          "edgeType": "call"
+        },
+        {
+          "name": "setUserAvatar",
+          "edgeType": "call"
+        },
+        {
+          "name": "notifyOnUserChangeById",
+          "edgeType": "call"
+        },
+        {
+          "name": "SaveUserData",
+          "edgeType": "type"
+        },
+        {
+          "name": "IUser",
+          "edgeType": "type"
+        }
+      ]
+    }
+  ],
+  "imports": [
+    {
+      "module": "@rocket.chat/core-typings",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/models",
+      "resolved": "external"
+    },
+    {
+      "module": "gravatar",
+      "resolved": "external"
+    },
+    {
+      "module": "meteor/accounts-base",
+      "resolved": "external"
+    },
+    {
+      "module": "../../../../app/lib/server/lib/notifyListener",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/app/lib/server/lib/notifyListener.ts"
+    },
+    {
+      "module": "../../../../app/lib/server/lib/validateEmailDomain",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/app/lib/server/lib/validateEmailDomain.ts"
+    },
+    {
+      "module": "../setUserAvatar",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/server/lib/users/setUserAvatar.ts"
+    },
+    {
+      "module": "./handleBio",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/server/lib/users/saveUser/handleBio.ts"
+    },
+    {
+      "module": "./handleNickname",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/server/lib/users/saveUser/handleNickname.ts"
+    },
+    {
+      "module": "./saveUser",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/server/lib/users/saveUser/saveUser.ts"
+    },
+    {
+      "module": "./sendUserEmail",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/server/lib/users/saveUser/sendUserEmail.ts"
+    },
+    {
+      "module": "../../../../app/settings/server",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/app/settings/server/index.ts"
+    },
+    {
+      "module": "../../../services/user/lib/getNewUserRoles",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/server/services/user/lib/getNewUserRoles.ts"
+    }
+  ]
+}

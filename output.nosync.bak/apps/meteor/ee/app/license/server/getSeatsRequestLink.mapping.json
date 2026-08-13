@@ -1,0 +1,80 @@
+{
+  "sourcePath": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/ee/app/license/server/getSeatsRequestLink.ts",
+  "symbols": [
+    {
+      "type": "variable_function",
+      "name": "getSeatsRequestLink",
+      "exported": true,
+      "line": 6,
+      "endLine": 34,
+      "signature": "async (url: string, params?: Record<string, string>): Promise<string> =>",
+      "calls": [
+        {
+          "name": "findOneById",
+          "edgeType": "call"
+        },
+        {
+          "name": "getActiveLocalUserCount",
+          "edgeType": "call"
+        },
+        {
+          "name": "toArray",
+          "edgeType": "call"
+        },
+        {
+          "name": "findSetupWizardSettings",
+          "edgeType": "call"
+        },
+        {
+          "name": "append",
+          "edgeType": "call"
+        },
+        {
+          "name": "forEach",
+          "edgeType": "call"
+        },
+        {
+          "name": "filter",
+          "edgeType": "call"
+        },
+        {
+          "name": "includes",
+          "edgeType": "call"
+        },
+        {
+          "name": "toLowerCase",
+          "edgeType": "call"
+        },
+        {
+          "name": "entries",
+          "edgeType": "call"
+        },
+        {
+          "name": "URL",
+          "edgeType": "new"
+        },
+        {
+          "name": "WizardSettings",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "type",
+      "name": "WizardSettings",
+      "line": 4,
+      "endLine": 4,
+      "signature": "type WizardSettings = Array<ISetting>;"
+    }
+  ],
+  "imports": [
+    {
+      "module": "@rocket.chat/core-typings",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/models",
+      "resolved": "external"
+    }
+  ]
+}

@@ -1,0 +1,85 @@
+{
+  "sourcePath": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/tests/mocks/data/subscriptions.ts",
+  "symbols": [
+    {
+      "type": "function",
+      "name": "mockSubscription",
+      "exported": true,
+      "line": 3,
+      "endLine": 19,
+      "signature": "export function mockSubscription()",
+      "calls": [
+        {
+          "name": "uuid",
+          "edgeType": "call"
+        },
+        {
+          "name": "firstName",
+          "edgeType": "call"
+        },
+        {
+          "name": "boolean",
+          "edgeType": "call"
+        },
+        {
+          "name": "generateOldKeys",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "function",
+      "name": "generateOldKeys",
+      "exported": false,
+      "line": 7,
+      "endLine": 18,
+      "signature": "function generateOldKeys()",
+      "calls": [
+        {
+          "name": "int",
+          "edgeType": "call"
+        },
+        {
+          "name": "push",
+          "edgeType": "call"
+        },
+        {
+          "name": "uuid",
+          "edgeType": "call"
+        },
+        {
+          "name": "slice",
+          "edgeType": "call"
+        },
+        {
+          "name": "Date",
+          "edgeType": "new"
+        }
+      ]
+    },
+    {
+      "type": "function",
+      "name": "generateMultipleSubs",
+      "exported": true,
+      "line": 11,
+      "endLine": 17,
+      "signature": "export function generateMultipleSubs(amount: number)",
+      "calls": [
+        {
+          "name": "push",
+          "edgeType": "call"
+        },
+        {
+          "name": "mockSubscription",
+          "edgeType": "call"
+        }
+      ]
+    }
+  ],
+  "imports": [
+    {
+      "module": "@faker-js/faker",
+      "resolved": "external"
+    }
+  ]
+}

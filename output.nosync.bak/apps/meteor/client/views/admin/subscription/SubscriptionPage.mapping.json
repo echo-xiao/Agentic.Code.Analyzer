@@ -1,0 +1,419 @@
+{
+  "sourcePath": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/client/views/admin/subscription/SubscriptionPage.tsx",
+  "symbols": [
+    {
+      "type": "module",
+      "name": "SubscriptionPage",
+      "exported": false,
+      "line": 1,
+      "endLine": 205,
+      "signature": "SubscriptionPage",
+      "calls": [
+        {
+          "name": "memo",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "function",
+      "name": "useShowLicense",
+      "exported": false,
+      "line": 35,
+      "endLine": 50,
+      "signature": "function useShowLicense()",
+      "calls": [
+        {
+          "name": "useSessionStorage",
+          "edgeType": "call"
+        },
+        {
+          "name": "useEffect",
+          "edgeType": "call"
+        },
+        {
+          "name": "tinykeys",
+          "edgeType": "call"
+        },
+        {
+          "name": "setShowLicenseTab",
+          "edgeType": "call"
+        },
+        {
+          "name": "unsubscribe",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "inner_function",
+      "name": "handleSyncLicenseUpdate",
+      "exported": false,
+      "qualifiedName": "SubscriptionPage.handleSyncLicenseUpdate",
+      "line": 68,
+      "endLine": 72,
+      "signature": "() =>",
+      "calls": [
+        {
+          "name": "mutate",
+          "edgeType": "call"
+        },
+        {
+          "name": "invalidateLicenseQuery",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "inner_function",
+      "name": "onSuccess",
+      "exported": false,
+      "qualifiedName": "SubscriptionPage.onSuccess",
+      "line": 70,
+      "endLine": 70,
+      "signature": "() =>",
+      "calls": [
+        {
+          "name": "invalidateLicenseQuery",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "variable_function",
+      "name": "SubscriptionPage",
+      "exported": false,
+      "line": 39,
+      "endLine": 189,
+      "signature": "() =>",
+      "calls": [
+        {
+          "name": "useShowLicense",
+          "edgeType": "call"
+        },
+        {
+          "name": "useRouter",
+          "edgeType": "call"
+        },
+        {
+          "name": "useIsEnterprise",
+          "edgeType": "call"
+        },
+        {
+          "name": "useRegistrationStatus",
+          "edgeType": "call"
+        },
+        {
+          "name": "useLicenseWithCloudAnnouncement",
+          "edgeType": "call"
+        },
+        {
+          "name": "useWorkspaceSync",
+          "edgeType": "call"
+        },
+        {
+          "name": "useInvalidateLicense",
+          "edgeType": "call"
+        },
+        {
+          "name": "useSearchParameter",
+          "edgeType": "call"
+        },
+        {
+          "name": "useDebouncedValue",
+          "edgeType": "call"
+        },
+        {
+          "name": "getKeyLimit",
+          "edgeType": "call"
+        },
+        {
+          "name": "useCancelSubscriptionModal",
+          "edgeType": "call"
+        },
+        {
+          "name": "useCallback",
+          "edgeType": "call"
+        },
+        {
+          "name": "mutate",
+          "edgeType": "call"
+        },
+        {
+          "name": "invalidateLicenseQuery",
+          "edgeType": "call"
+        },
+        {
+          "name": "useEffect",
+          "edgeType": "call"
+        },
+        {
+          "name": "handleSyncLicenseUpdate",
+          "edgeType": "call"
+        },
+        {
+          "name": "navigate",
+          "edgeType": "call"
+        },
+        {
+          "name": "getRouteName",
+          "edgeType": "call"
+        },
+        {
+          "name": "fromEntries",
+          "edgeType": "call"
+        },
+        {
+          "name": "filter",
+          "edgeType": "call"
+        },
+        {
+          "name": "entries",
+          "edgeType": "call"
+        },
+        {
+          "name": "getSearchParameters",
+          "edgeType": "call"
+        },
+        {
+          "name": "stringify",
+          "edgeType": "call"
+        },
+        {
+          "name": "Boolean",
+          "edgeType": "call"
+        },
+        {
+          "name": "Page",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "PageHeaderNoShadow",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "ButtonGroup",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "Button",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "UpgradeButton",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "PageBlockWithBorder",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "PageScrollableContentWithShadow",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "Callout",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "Accordion",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "AccordionItem",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "Box",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "Grid",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "GridItem",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "UpgradeToGetMore",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "UiKitSubscriptionLicense",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "SubscriptionCalloutLimits",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "SubscriptionPageSkeleton",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "PlanCard",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "FeaturesCard",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "SeatsCard",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "CountSeatsCard",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "MACCard",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "CountMACCard",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "AppsUsageCard",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "ActiveSessionsCard",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "ActiveSessionsPeakCard",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "cloudSyncAnnouncement",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "license",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "activeModules",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "isEnterprise",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "isCancelSubscriptionLoading",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "openCancelSubscriptionModal",
+          "edgeType": "jsx"
+        }
+      ]
+    }
+  ],
+  "imports": [
+    {
+      "module": "@rocket.chat/fuselage",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/fuselage-hooks",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/ui-client",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/ui-contexts",
+      "resolved": "external"
+    },
+    {
+      "module": "i18next",
+      "resolved": "external"
+    },
+    {
+      "module": "react",
+      "resolved": "external"
+    },
+    {
+      "module": "tinykeys",
+      "resolved": "external"
+    },
+    {
+      "module": "./SubscriptionCalloutLimits",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/client/views/admin/subscription/SubscriptionCalloutLimits.tsx"
+    },
+    {
+      "module": "./SubscriptionPageSkeleton",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/client/views/admin/subscription/SubscriptionPageSkeleton.tsx"
+    },
+    {
+      "module": "./components/UpgradeButton",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/client/views/admin/subscription/components/UpgradeButton.tsx"
+    },
+    {
+      "module": "./components/UpgradeToGetMore",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/client/views/admin/subscription/components/UpgradeToGetMore.tsx"
+    },
+    {
+      "module": "./components/cards/ActiveSessionsCard",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/client/views/admin/subscription/components/cards/ActiveSessionsCard.tsx"
+    },
+    {
+      "module": "./components/cards/ActiveSessionsPeakCard",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/client/views/admin/subscription/components/cards/ActiveSessionsPeakCard.tsx"
+    },
+    {
+      "module": "./components/cards/AppsUsageCard",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/client/views/admin/subscription/components/cards/AppsUsageCard/index.ts"
+    },
+    {
+      "module": "./components/cards/CountMACCard",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/client/views/admin/subscription/components/cards/CountMACCard.tsx"
+    },
+    {
+      "module": "./components/cards/CountSeatsCard",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/client/views/admin/subscription/components/cards/CountSeatsCard.tsx"
+    },
+    {
+      "module": "./components/cards/FeaturesCard",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/client/views/admin/subscription/components/cards/FeaturesCard.tsx"
+    },
+    {
+      "module": "./components/cards/MACCard",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/client/views/admin/subscription/components/cards/MACCard.tsx"
+    },
+    {
+      "module": "./components/cards/PlanCard",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/client/views/admin/subscription/components/cards/PlanCard.tsx"
+    },
+    {
+      "module": "./components/cards/SeatsCard",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/client/views/admin/subscription/components/cards/SeatsCard.tsx"
+    },
+    {
+      "module": "./hooks/useCancelSubscriptionModal",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/client/views/admin/subscription/hooks/useCancelSubscriptionModal.tsx"
+    },
+    {
+      "module": "./hooks/useWorkspaceSync",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/client/views/admin/subscription/hooks/useWorkspaceSync.ts"
+    },
+    {
+      "module": "./surface/UiKitSubscriptionLicense",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/client/views/admin/subscription/surface/UiKitSubscriptionLicense.tsx"
+    },
+    {
+      "module": "../../../hooks/useIsEnterprise",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/client/hooks/useIsEnterprise.ts"
+    },
+    {
+      "module": "../../../hooks/useRegistrationStatus",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/client/hooks/useRegistrationStatus.ts"
+    }
+  ]
+}

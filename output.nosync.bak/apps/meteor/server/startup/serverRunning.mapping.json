@@ -1,0 +1,151 @@
+{
+  "sourcePath": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/server/startup/serverRunning.ts",
+  "symbols": [
+    {
+      "type": "module",
+      "name": "serverRunning",
+      "exported": false,
+      "line": 1,
+      "endLine": 129,
+      "signature": "serverRunning",
+      "calls": [
+        {
+          "name": "startup",
+          "edgeType": "call"
+        },
+        {
+          "name": "getMongoInfo",
+          "edgeType": "call"
+        },
+        {
+          "name": "clean",
+          "edgeType": "call"
+        },
+        {
+          "name": "readFileSync",
+          "edgeType": "call"
+        },
+        {
+          "name": "join",
+          "edgeType": "call"
+        },
+        {
+          "name": "cwd",
+          "edgeType": "call"
+        },
+        {
+          "name": "parse",
+          "edgeType": "call"
+        },
+        {
+          "name": "error",
+          "edgeType": "call"
+        },
+        {
+          "name": "exit",
+          "edgeType": "call"
+        },
+        {
+          "name": "get",
+          "edgeType": "call"
+        },
+        {
+          "name": "getHashedWorkspaceUrl",
+          "edgeType": "call"
+        },
+        {
+          "name": "push",
+          "edgeType": "call"
+        },
+        {
+          "name": "substr",
+          "edgeType": "call"
+        },
+        {
+          "name": "satisfies",
+          "edgeType": "call"
+        },
+        {
+          "name": "showErrorBox",
+          "edgeType": "call"
+        },
+        {
+          "name": "exitIfNotBypassed",
+          "edgeType": "call"
+        },
+        {
+          "name": "coerce",
+          "edgeType": "call"
+        },
+        {
+          "name": "showSuccessBox",
+          "edgeType": "call"
+        },
+        {
+          "name": "showWarningBox",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "variable_function",
+      "name": "exitIfNotBypassed",
+      "exported": false,
+      "line": 17,
+      "endLine": 23,
+      "signature": "(ignore: string | undefined, errorCode = 1) =>",
+      "calls": [
+        {
+          "name": "includes",
+          "edgeType": "call"
+        },
+        {
+          "name": "toLowerCase",
+          "edgeType": "call"
+        },
+        {
+          "name": "exit",
+          "edgeType": "call"
+        }
+      ]
+    }
+  ],
+  "imports": [
+    {
+      "module": "node:fs",
+      "resolved": "external"
+    },
+    {
+      "module": "node:path",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/license",
+      "resolved": "external"
+    },
+    {
+      "module": "meteor/meteor",
+      "resolved": "external"
+    },
+    {
+      "module": "semver",
+      "resolved": "external"
+    },
+    {
+      "module": "../../app/settings/server",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/app/settings/server/index.ts"
+    },
+    {
+      "module": "../../app/utils/rocketchat.info",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/app/utils/rocketchat.info"
+    },
+    {
+      "module": "../../app/utils/server/functions/getMongoInfo",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/app/utils/server/functions/getMongoInfo.ts"
+    },
+    {
+      "module": "../lib/logger/showBox",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/server/lib/logger/showBox.ts"
+    }
+  ]
+}

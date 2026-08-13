@@ -1,0 +1,41 @@
+{
+  "sourcePath": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/client/hooks/usePreventPropagation.ts",
+  "symbols": [
+    {
+      "type": "variable_function",
+      "name": "usePreventPropagation",
+      "exported": true,
+      "line": 4,
+      "endLine": 10,
+      "signature": "(fn?: (e: UIEvent) => void): ((e: UIEvent) => void) =>",
+      "calls": [
+        {
+          "name": "useStableCallback",
+          "edgeType": "call"
+        },
+        {
+          "name": "stopPropagation",
+          "edgeType": "call"
+        },
+        {
+          "name": "fn",
+          "edgeType": "call"
+        },
+        {
+          "name": "UIEvent",
+          "edgeType": "type"
+        }
+      ]
+    }
+  ],
+  "imports": [
+    {
+      "module": "@rocket.chat/fuselage-hooks",
+      "resolved": "external"
+    },
+    {
+      "module": "react",
+      "resolved": "external"
+    }
+  ]
+}

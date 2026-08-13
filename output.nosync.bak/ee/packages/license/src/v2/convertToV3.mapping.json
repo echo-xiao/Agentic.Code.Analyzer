@@ -1,0 +1,81 @@
+{
+  "sourcePath": "/Users/echoooooo/Desktop/code/Rocket.Chat/ee/packages/license/src/v2/convertToV3.ts",
+  "symbols": [
+    {
+      "type": "variable_function",
+      "name": "convertToV3",
+      "exported": true,
+      "line": 11,
+      "endLine": 113,
+      "signature": "(v2: ILicenseV2): ILicenseV3 =>",
+      "calls": [
+        {
+          "name": "toISOString",
+          "edgeType": "call"
+        },
+        {
+          "name": "parse",
+          "edgeType": "call"
+        },
+        {
+          "name": "map",
+          "edgeType": "call"
+        },
+        {
+          "name": "filter",
+          "edgeType": "call"
+        },
+        {
+          "name": "getTagColor",
+          "edgeType": "call"
+        },
+        {
+          "name": "reduce",
+          "edgeType": "call"
+        },
+        {
+          "name": "isBundle",
+          "edgeType": "call"
+        },
+        {
+          "name": "getBundleModules",
+          "edgeType": "call"
+        },
+        {
+          "name": "Date",
+          "edgeType": "new"
+        },
+        {
+          "name": "Set",
+          "edgeType": "new"
+        },
+        {
+          "name": "ILicenseV2",
+          "edgeType": "type"
+        },
+        {
+          "name": "ILicenseV3",
+          "edgeType": "type"
+        },
+        {
+          "name": "InternalModuleName",
+          "edgeType": "type"
+        }
+      ]
+    }
+  ],
+  "imports": [
+    {
+      "module": "@rocket.chat/core-typings",
+      "resolved": "external"
+    },
+    {
+      "module": "./bundles",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/ee/packages/license/src/v2/bundles.ts"
+    },
+    {
+      "module": "./getTagColor",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/ee/packages/license/src/v2/getTagColor.ts"
+    }
+  ]
+}

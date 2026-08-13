@@ -1,0 +1,213 @@
+{
+  "sourcePath": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/server/lib/users/deleteUser.ts",
+  "symbols": [
+    {
+      "type": "function",
+      "name": "deleteUser",
+      "exported": true,
+      "line": 34,
+      "endLine": 186,
+      "signature": "export async function deleteUser(userId: string, confirmRelinquish = false, deletedBy?: IUser['_id']): Promise<{ deletedRooms: string[] }>",
+      "calls": [
+        {
+          "name": "findOneById",
+          "edgeType": "call"
+        },
+        {
+          "name": "isUserFederated",
+          "edgeType": "call"
+        },
+        {
+          "name": "getSubscribedRoomsForUserWithDetails",
+          "edgeType": "call"
+        },
+        {
+          "name": "shouldRemoveOrChangeOwner",
+          "edgeType": "call"
+        },
+        {
+          "name": "getUserSingleOwnedRooms",
+          "edgeType": "call"
+        },
+        {
+          "name": "relinquishRoomOwnerships",
+          "edgeType": "call"
+        },
+        {
+          "name": "get",
+          "edgeType": "call"
+        },
+        {
+          "name": "getStore",
+          "edgeType": "call"
+        },
+        {
+          "name": "findFilesByUserId",
+          "edgeType": "call"
+        },
+        {
+          "name": "map",
+          "edgeType": "call"
+        },
+        {
+          "name": "deleteById",
+          "edgeType": "call"
+        },
+        {
+          "name": "includes",
+          "edgeType": "call"
+        },
+        {
+          "name": "removeByUserId",
+          "edgeType": "call"
+        },
+        {
+          "name": "hideMessageReportsByUserId",
+          "edgeType": "call"
+        },
+        {
+          "name": "unlinkUserId",
+          "edgeType": "call"
+        },
+        {
+          "name": "updateGroupDMsRemovingUsernamesByUsername",
+          "edgeType": "call"
+        },
+        {
+          "name": "removeDirectRoomContainingUsername",
+          "edgeType": "call"
+        },
+        {
+          "name": "notifyOnRoomChangedById",
+          "edgeType": "call"
+        },
+        {
+          "name": "toArray",
+          "edgeType": "call"
+        },
+        {
+          "name": "findByAgentId",
+          "edgeType": "call"
+        },
+        {
+          "name": "removeByAgentId",
+          "edgeType": "call"
+        },
+        {
+          "name": "forEach",
+          "edgeType": "call"
+        },
+        {
+          "name": "notifyOnLivechatDepartmentAgentChanged",
+          "edgeType": "call"
+        },
+        {
+          "name": "removeByMonitorId",
+          "edgeType": "call"
+        },
+        {
+          "name": "removeContactManagerByUsername",
+          "edgeType": "call"
+        },
+        {
+          "name": "deleteByName",
+          "edgeType": "call"
+        },
+        {
+          "name": "disableByUserId",
+          "edgeType": "call"
+        },
+        {
+          "name": "notifyOnIntegrationChangedByUserId",
+          "edgeType": "call"
+        },
+        {
+          "name": "user.deleted",
+          "edgeType": "event_emit"
+        },
+        {
+          "name": "removeById",
+          "edgeType": "call"
+        },
+        {
+          "name": "triggerEvent",
+          "edgeType": "call"
+        },
+        {
+          "name": "updateGroupDMsName",
+          "edgeType": "call"
+        },
+        {
+          "name": "notifyOnUserChange",
+          "edgeType": "call"
+        },
+        {
+          "name": "afterDeleteUser",
+          "edgeType": "event_emit"
+        },
+        {
+          "name": "IUser",
+          "edgeType": "type"
+        }
+      ]
+    }
+  ],
+  "imports": [
+    {
+      "module": "@rocket.chat/apps",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/core-services",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/core-typings",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/models",
+      "resolved": "external"
+    },
+    {
+      "module": "meteor/meteor",
+      "resolved": "external"
+    },
+    {
+      "module": "./getUserSingleOwnedRooms",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/server/lib/users/getUserSingleOwnedRooms.ts"
+    },
+    {
+      "module": "../../../app/file-upload/server",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/app/file-upload/server/index.ts"
+    },
+    {
+      "module": "../../../app/lib/server/lib/notifyListener",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/app/lib/server/lib/notifyListener.ts"
+    },
+    {
+      "module": "../../../app/settings/server",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/app/settings/server/index.ts"
+    },
+    {
+      "module": "../callbacks",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/server/lib/callbacks.ts"
+    },
+    {
+      "module": "../i18n",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/server/lib/i18n.ts"
+    },
+    {
+      "module": "../rooms/getRoomsWithSingleOwner",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/server/lib/rooms/getRoomsWithSingleOwner.ts"
+    },
+    {
+      "module": "../rooms/relinquishRoomOwnerships",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/server/lib/rooms/relinquishRoomOwnerships.ts"
+    },
+    {
+      "module": "../rooms/updateGroupDMsName",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/server/lib/rooms/updateGroupDMsName.ts"
+    }
+  ]
+}

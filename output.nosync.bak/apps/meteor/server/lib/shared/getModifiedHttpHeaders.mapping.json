@@ -1,0 +1,62 @@
+{
+  "sourcePath": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/server/lib/shared/getModifiedHttpHeaders.ts",
+  "symbols": [
+    {
+      "type": "variable_function",
+      "name": "normalizeHeaders",
+      "exported": true,
+      "line": 1,
+      "endLine": 7,
+      "signature": "(httpHeaders?: Headers | Record<string, string>) =>",
+      "calls": [
+        {
+          "name": "fromEntries",
+          "edgeType": "call"
+        },
+        {
+          "name": "entries",
+          "edgeType": "call"
+        },
+        {
+          "name": "Headers",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "variable_function",
+      "name": "getModifiedHttpHeaders",
+      "exported": true,
+      "line": 5,
+      "endLine": 24,
+      "signature": "(httpHeaders: Headers | Record<string, string>) =>",
+      "calls": [
+        {
+          "name": "normalizeHeaders",
+          "edgeType": "call"
+        },
+        {
+          "name": "split",
+          "edgeType": "call"
+        },
+        {
+          "name": "map",
+          "edgeType": "call"
+        },
+        {
+          "name": "startsWith",
+          "edgeType": "call"
+        },
+        {
+          "name": "join",
+          "edgeType": "call"
+        },
+        {
+          "name": "Headers",
+          "edgeType": "type"
+        }
+      ]
+    }
+  ],
+  "imports": []
+}

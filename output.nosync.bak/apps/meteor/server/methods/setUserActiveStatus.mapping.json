@@ -1,0 +1,79 @@
+{
+  "sourcePath": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/server/methods/setUserActiveStatus.ts",
+  "symbols": [
+    {
+      "type": "module",
+      "name": "setUserActiveStatus",
+      "exported": false,
+      "line": 1,
+      "endLine": 47,
+      "signature": "setUserActiveStatus",
+      "calls": [
+        {
+          "name": "setUserActiveStatus",
+          "edgeType": "call"
+        },
+        {
+          "name": "methods",
+          "edgeType": "call"
+        },
+        {
+          "name": "userId",
+          "edgeType": "call"
+        },
+        {
+          "name": "executeSetUserActiveStatus",
+          "edgeType": "call"
+        },
+        {
+          "name": "ServerMethods",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "variable_function",
+      "name": "executeSetUserActiveStatus",
+      "exported": true,
+      "line": 15,
+      "endLine": 33,
+      "signature": "async ( fromUserId: string, userId: string, active: boolean, confirmRelinquish?: boolean, ): Promise<boolean> =>",
+      "calls": [
+        {
+          "name": "check",
+          "edgeType": "call"
+        },
+        {
+          "name": "hasPermissionAsync",
+          "edgeType": "call"
+        },
+        {
+          "name": "setUserActiveStatus",
+          "edgeType": "call"
+        }
+      ]
+    }
+  ],
+  "imports": [
+    {
+      "module": "@rocket.chat/ddp-client",
+      "resolved": "external"
+    },
+    {
+      "module": "meteor/check",
+      "resolved": "external"
+    },
+    {
+      "module": "meteor/meteor",
+      "resolved": "external"
+    },
+    {
+      "module": "../lib/authorization/hasPermission",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/server/lib/authorization/hasPermission.ts"
+    },
+    {
+      "module": "../lib/users/setUserActiveStatus",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/server/lib/users/setUserActiveStatus.ts"
+    }
+  ]
+}

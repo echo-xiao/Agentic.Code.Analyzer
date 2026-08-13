@@ -1,0 +1,261 @@
+{
+  "sourcePath": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/app/livechat/server/business-hour/Single.ts",
+  "symbols": [
+    {
+      "type": "class",
+      "name": "SingleBusinessHourBehavior",
+      "exported": true,
+      "line": 10,
+      "endLine": 99,
+      "signature": "export class SingleBusinessHourBehavior extends AbstractBusinessHourBehavior implements IBusinessHourBehavior",
+      "calls": [
+        {
+          "name": "AbstractBusinessHourBehavior",
+          "edgeType": "type"
+        },
+        {
+          "name": "IBusinessHourBehavior",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "openBusinessHoursByDayAndHour",
+      "exported": true,
+      "qualifiedName": "SingleBusinessHourBehavior.openBusinessHoursByDayAndHour",
+      "line": 11,
+      "endLine": 13,
+      "signature": "async openBusinessHoursByDayAndHour(): Promise<void>",
+      "containerClass": "SingleBusinessHourBehavior",
+      "calls": [
+        {
+          "name": "openBusinessHourDefault",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "closeBusinessHoursByDayAndHour",
+      "exported": true,
+      "qualifiedName": "SingleBusinessHourBehavior.closeBusinessHoursByDayAndHour",
+      "line": 15,
+      "endLine": 24,
+      "signature": "async closeBusinessHoursByDayAndHour(day: string, hour: string): Promise<void>",
+      "containerClass": "SingleBusinessHourBehavior",
+      "calls": [
+        {
+          "name": "map",
+          "edgeType": "call"
+        },
+        {
+          "name": "findActiveBusinessHoursToClose",
+          "edgeType": "call"
+        },
+        {
+          "name": "closeAgentsBusinessHoursByBusinessHourIds",
+          "edgeType": "call"
+        },
+        {
+          "name": "makeAgentsUnavailableBasedOnBusinessHour",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "onStartBusinessHours",
+      "exported": true,
+      "qualifiedName": "SingleBusinessHourBehavior.onStartBusinessHours",
+      "line": 19,
+      "endLine": 21,
+      "signature": "async onStartBusinessHours(): Promise<void>",
+      "containerClass": "SingleBusinessHourBehavior",
+      "calls": [
+        {
+          "name": "openBusinessHourDefault",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "onNewAgentCreated",
+      "exported": true,
+      "qualifiedName": "SingleBusinessHourBehavior.onNewAgentCreated",
+      "line": 23,
+      "endLine": 63,
+      "signature": "async onNewAgentCreated(agentId: string): Promise<void>",
+      "containerClass": "SingleBusinessHourBehavior",
+      "calls": [
+        {
+          "name": "findOneDefaultBusinessHour",
+          "edgeType": "call"
+        },
+        {
+          "name": "debug",
+          "edgeType": "call"
+        },
+        {
+          "name": "filterBusinessHoursThatMustBeOpened",
+          "edgeType": "call"
+        },
+        {
+          "name": "setLivechatStatus",
+          "edgeType": "call"
+        },
+        {
+          "name": "notifyOnUserChange",
+          "edgeType": "call"
+        },
+        {
+          "name": "addBusinessHourByAgentIds",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "afterSaveBusinessHours",
+      "exported": true,
+      "qualifiedName": "SingleBusinessHourBehavior.afterSaveBusinessHours",
+      "line": 27,
+      "endLine": 29,
+      "signature": "afterSaveBusinessHours(): Promise<void>",
+      "containerClass": "SingleBusinessHourBehavior",
+      "calls": [
+        {
+          "name": "openBusinessHourDefault",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "removeBusinessHourById",
+      "exported": true,
+      "qualifiedName": "SingleBusinessHourBehavior.removeBusinessHourById",
+      "line": 31,
+      "endLine": 33,
+      "signature": "removeBusinessHourById(): Promise<void>",
+      "containerClass": "SingleBusinessHourBehavior",
+      "calls": [
+        {
+          "name": "resolve",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "onAddAgentToDepartment",
+      "exported": true,
+      "qualifiedName": "SingleBusinessHourBehavior.onAddAgentToDepartment",
+      "line": 35,
+      "endLine": 37,
+      "signature": "onAddAgentToDepartment(): Promise<any>",
+      "containerClass": "SingleBusinessHourBehavior",
+      "calls": [
+        {
+          "name": "resolve",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "onRemoveAgentFromDepartment",
+      "exported": true,
+      "qualifiedName": "SingleBusinessHourBehavior.onRemoveAgentFromDepartment",
+      "line": 39,
+      "endLine": 41,
+      "signature": "onRemoveAgentFromDepartment(): Promise<void>",
+      "containerClass": "SingleBusinessHourBehavior",
+      "calls": [
+        {
+          "name": "resolve",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "onRemoveDepartment",
+      "exported": true,
+      "qualifiedName": "SingleBusinessHourBehavior.onRemoveDepartment",
+      "line": 43,
+      "endLine": 45,
+      "signature": "onRemoveDepartment(): Promise<void>",
+      "containerClass": "SingleBusinessHourBehavior",
+      "calls": [
+        {
+          "name": "resolve",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "onDepartmentDisabled",
+      "exported": true,
+      "qualifiedName": "SingleBusinessHourBehavior.onDepartmentDisabled",
+      "line": 47,
+      "endLine": 49,
+      "signature": "onDepartmentDisabled(): Promise<void>",
+      "containerClass": "SingleBusinessHourBehavior",
+      "calls": [
+        {
+          "name": "resolve",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "onDepartmentArchived",
+      "exported": true,
+      "qualifiedName": "SingleBusinessHourBehavior.onDepartmentArchived",
+      "line": 51,
+      "endLine": 53,
+      "signature": "onDepartmentArchived(): Promise<void>",
+      "containerClass": "SingleBusinessHourBehavior",
+      "calls": [
+        {
+          "name": "resolve",
+          "edgeType": "call"
+        }
+      ]
+    }
+  ],
+  "imports": [
+    {
+      "module": "@rocket.chat/core-typings",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/models",
+      "resolved": "external"
+    },
+    {
+      "module": "./AbstractBusinessHour",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/app/livechat/server/business-hour/AbstractBusinessHour.ts"
+    },
+    {
+      "module": "./AbstractBusinessHour",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/app/livechat/server/business-hour/AbstractBusinessHour.ts"
+    },
+    {
+      "module": "./Helper",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/app/livechat/server/business-hour/Helper.ts"
+    },
+    {
+      "module": "../../../lib/server/lib/notifyListener",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/app/lib/server/lib/notifyListener.ts"
+    },
+    {
+      "module": "../lib/logger",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/app/livechat/server/lib/logger.ts"
+    }
+  ]
+}

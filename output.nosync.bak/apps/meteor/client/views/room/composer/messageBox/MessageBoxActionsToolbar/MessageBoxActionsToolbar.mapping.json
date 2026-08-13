@@ -1,0 +1,303 @@
+{
+  "sourcePath": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/client/views/room/composer/messageBox/MessageBoxActionsToolbar/MessageBoxActionsToolbar.tsx",
+  "symbols": [
+    {
+      "type": "module",
+      "name": "MessageBoxActionsToolbar",
+      "exported": false,
+      "line": 1,
+      "endLine": 167,
+      "signature": "MessageBoxActionsToolbar",
+      "calls": [
+        {
+          "name": "memo",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "variable_function",
+      "name": "isHidden",
+      "exported": false,
+      "line": 33,
+      "endLine": 38,
+      "signature": "(hiddenActions: Array<string>, action: GenericMenuItemProps) =>",
+      "calls": [
+        {
+          "name": "includes",
+          "edgeType": "call"
+        },
+        {
+          "name": "GenericMenuItemProps",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "inner_function",
+      "name": "onClick",
+      "exported": false,
+      "qualifiedName": "MessageBoxActionsToolbar.onClick",
+      "line": 114,
+      "endLine": 120,
+      "signature": "(event?: MouseEvent<HTMLElement>) =>",
+      "calls": [
+        {
+          "name": "action",
+          "edgeType": "call"
+        },
+        {
+          "name": "MouseEvent",
+          "edgeType": "type"
+        },
+        {
+          "name": "HTMLElement",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "variable_function",
+      "name": "MessageBoxActionsToolbar",
+      "exported": false,
+      "line": 37,
+      "endLine": 161,
+      "signature": "({ canSend, isRecording, rid, tmid, variant = 'large', isMicrophoneDenied, isEditing = false, }: MessageBoxActionsToolbarProps) =>",
+      "calls": [
+        {
+          "name": "useTranslation",
+          "edgeType": "call"
+        },
+        {
+          "name": "useChat",
+          "edgeType": "call"
+        },
+        {
+          "name": "useRoom",
+          "edgeType": "call"
+        },
+        {
+          "name": "useAudioMessageAction",
+          "edgeType": "call"
+        },
+        {
+          "name": "useVideoMessageAction",
+          "edgeType": "call"
+        },
+        {
+          "name": "useFileUploadAction",
+          "edgeType": "call"
+        },
+        {
+          "name": "useWebdavActions",
+          "edgeType": "call"
+        },
+        {
+          "name": "useCreateDiscussionAction",
+          "edgeType": "call"
+        },
+        {
+          "name": "useShareLocationAction",
+          "edgeType": "call"
+        },
+        {
+          "name": "useTimestampAction",
+          "edgeType": "call"
+        },
+        {
+          "name": "useMessageboxAppsActionButtons",
+          "edgeType": "call"
+        },
+        {
+          "name": "useLayoutHiddenActions",
+          "edgeType": "call"
+        },
+        {
+          "name": "isHidden",
+          "edgeType": "call"
+        },
+        {
+          "name": "includes",
+          "edgeType": "call"
+        },
+        {
+          "name": "push",
+          "edgeType": "call"
+        },
+        {
+          "name": "get",
+          "edgeType": "call"
+        },
+        {
+          "name": "map",
+          "edgeType": "call"
+        },
+        {
+          "name": "entries",
+          "edgeType": "call"
+        },
+        {
+          "name": "filter",
+          "edgeType": "call"
+        },
+        {
+          "name": "action",
+          "edgeType": "call"
+        },
+        {
+          "name": "Boolean",
+          "edgeType": "call"
+        },
+        {
+          "name": "renderAction",
+          "edgeType": "call"
+        },
+        {
+          "name": "MessageComposerAction",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "MessageComposerActionsDivider",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "GenericMenu",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "id",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "icon",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "disabled",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "onClick",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "isRecording",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "MessageBoxActionsToolbarProps",
+          "edgeType": "type"
+        },
+        {
+          "name": "GenericMenuItemProps",
+          "edgeType": "type"
+        },
+        {
+          "name": "ComponentProps",
+          "edgeType": "type"
+        },
+        {
+          "name": "MouseEvent",
+          "edgeType": "type"
+        },
+        {
+          "name": "HTMLElement",
+          "edgeType": "type"
+        },
+        {
+          "name": "TranslationKey",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "type",
+      "name": "MessageBoxActionsToolbarProps",
+      "line": 23,
+      "endLine": 31,
+      "signature": "type MessageBoxActionsToolbarProps ="
+    }
+  ],
+  "imports": [
+    {
+      "module": "@rocket.chat/core-typings",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/fuselage",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/tools",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/ui-client",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/ui-composer",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/ui-contexts",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/ui-contexts",
+      "resolved": "external"
+    },
+    {
+      "module": "react",
+      "resolved": "external"
+    },
+    {
+      "module": "react",
+      "resolved": "external"
+    },
+    {
+      "module": "./hooks/useAudioMessageAction",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/client/views/room/composer/messageBox/MessageBoxActionsToolbar/hooks/useAudioMessageAction.ts"
+    },
+    {
+      "module": "./hooks/useCreateDiscussionAction",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/client/views/room/composer/messageBox/MessageBoxActionsToolbar/hooks/useCreateDiscussionAction.tsx"
+    },
+    {
+      "module": "./hooks/useFileUploadAction",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/client/views/room/composer/messageBox/MessageBoxActionsToolbar/hooks/useFileUploadAction.ts"
+    },
+    {
+      "module": "./hooks/useShareLocationAction",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/client/views/room/composer/messageBox/MessageBoxActionsToolbar/hooks/useShareLocationAction.tsx"
+    },
+    {
+      "module": "./hooks/useTimestampAction",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/client/views/room/composer/messageBox/MessageBoxActionsToolbar/hooks/useTimestampAction.tsx"
+    },
+    {
+      "module": "./hooks/useVideoMessageAction",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/client/views/room/composer/messageBox/MessageBoxActionsToolbar/hooks/useVideoMessageAction.ts"
+    },
+    {
+      "module": "./hooks/useWebdavActions",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/client/views/room/composer/messageBox/MessageBoxActionsToolbar/hooks/useWebdavActions.tsx"
+    },
+    {
+      "module": "../../../../../../app/ui-utils/client",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/app/ui-utils/client/index.ts"
+    },
+    {
+      "module": "../../../../../hooks/useMessageboxAppsActionButtons",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/client/hooks/useMessageboxAppsActionButtons.ts"
+    },
+    {
+      "module": "../../../contexts/ChatContext",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/client/views/room/contexts/ChatContext.ts"
+    },
+    {
+      "module": "../../../contexts/RoomContext",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/client/views/room/contexts/RoomContext.ts"
+    }
+  ]
+}

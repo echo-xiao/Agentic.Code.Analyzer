@@ -1,0 +1,277 @@
+{
+  "sourcePath": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/client/views/omnichannel/contactInfo/tabs/ContactInfoHistory/ContactInfoHistory.tsx",
+  "symbols": [
+    {
+      "type": "variable_function",
+      "name": "isFilterBlocked",
+      "exported": false,
+      "line": 23,
+      "endLine": 23,
+      "signature": "(hasLicense: boolean, fieldValue: Key) =>",
+      "calls": [
+        {
+          "name": "Key",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "inner_function",
+      "name": "handleChangeFilter",
+      "exported": false,
+      "qualifiedName": "ContactInfoHistory.handleChangeFilter",
+      "line": 41,
+      "endLine": 47,
+      "signature": "(value: Key) =>",
+      "calls": [
+        {
+          "name": "isFilterBlocked",
+          "edgeType": "call"
+        },
+        {
+          "name": "setModal",
+          "edgeType": "call"
+        },
+        {
+          "name": "setStoredType",
+          "edgeType": "call"
+        },
+        {
+          "name": "AdvancedContactModal",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "Key",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "variable_function",
+      "name": "ContactInfoHistory",
+      "exported": false,
+      "line": 25,
+      "endLine": 128,
+      "signature": "({ contact, setChatId }: ContactInfoHistoryProps) =>",
+      "calls": [
+        {
+          "name": "useTranslation",
+          "edgeType": "call"
+        },
+        {
+          "name": "useSetModal",
+          "edgeType": "call"
+        },
+        {
+          "name": "useLocalStorage",
+          "edgeType": "call"
+        },
+        {
+          "name": "useHasLicenseModule",
+          "edgeType": "call"
+        },
+        {
+          "name": "isFilterBlocked",
+          "edgeType": "call"
+        },
+        {
+          "name": "useOmnichannelSource",
+          "edgeType": "call"
+        },
+        {
+          "name": "useEndpoint",
+          "edgeType": "call"
+        },
+        {
+          "name": "useQuery",
+          "edgeType": "call"
+        },
+        {
+          "name": "getContactHistory",
+          "edgeType": "call"
+        },
+        {
+          "name": "setModal",
+          "edgeType": "call"
+        },
+        {
+          "name": "setStoredType",
+          "edgeType": "call"
+        },
+        {
+          "name": "useMemo",
+          "edgeType": "call"
+        },
+        {
+          "name": "reduce",
+          "edgeType": "call"
+        },
+        {
+          "name": "values",
+          "edgeType": "call"
+        },
+        {
+          "name": "find",
+          "edgeType": "call"
+        },
+        {
+          "name": "getSourceName",
+          "edgeType": "call"
+        },
+        {
+          "name": "push",
+          "edgeType": "call"
+        },
+        {
+          "name": "setChatId",
+          "edgeType": "call"
+        },
+        {
+          "name": "ContextualbarContent",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "Box",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "Margins",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "States",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "StatesTitle",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "VirtualizedScrollbars",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "AdvancedContactModal",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "Select",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "Throbber",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "StatesIcon",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "ContextualbarEmptyContent",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "Virtuoso",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "ContactInfoHistoryItem",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "type",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "handleChangeFilter",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "historyFilterOptions",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "index",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "ContactInfoHistoryProps",
+          "edgeType": "type"
+        },
+        {
+          "name": "Key",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "type",
+      "name": "ContactInfoHistoryProps",
+      "line": 18,
+      "endLine": 21,
+      "signature": "type ContactInfoHistoryProps ="
+    }
+  ],
+  "imports": [
+    {
+      "module": "@rocket.chat/core-typings",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/core-typings",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/fuselage",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/fuselage-hooks",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/ui-client",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/ui-contexts",
+      "resolved": "external"
+    },
+    {
+      "module": "@tanstack/react-query",
+      "resolved": "external"
+    },
+    {
+      "module": "react",
+      "resolved": "external"
+    },
+    {
+      "module": "react",
+      "resolved": "external"
+    },
+    {
+      "module": "react-i18next",
+      "resolved": "external"
+    },
+    {
+      "module": "react-virtuoso",
+      "resolved": "external"
+    },
+    {
+      "module": "./ContactInfoHistoryItem",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/client/views/omnichannel/contactInfo/tabs/ContactInfoHistory/ContactInfoHistoryItem.tsx"
+    },
+    {
+      "module": "../../../../../hooks/useHasLicenseModule",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/client/hooks/useHasLicenseModule.ts"
+    },
+    {
+      "module": "../../../hooks/useOmnichannelSource",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/client/views/omnichannel/hooks/useOmnichannelSource.ts"
+    },
+    {
+      "module": "../../AdvancedContactModal",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/client/views/omnichannel/contactInfo/AdvancedContactModal.tsx"
+    }
+  ]
+}

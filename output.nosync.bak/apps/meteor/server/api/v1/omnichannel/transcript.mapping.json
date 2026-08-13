@@ -1,0 +1,89 @@
+{
+  "sourcePath": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/server/api/v1/omnichannel/transcript.ts",
+  "symbols": [
+    {
+      "type": "module",
+      "name": "transcript",
+      "exported": false,
+      "line": 1,
+      "endLine": 74,
+      "signature": "transcript",
+      "calls": [
+        {
+          "name": "livechat/transcript",
+          "edgeType": "rest_route"
+        },
+        {
+          "name": "addRoute",
+          "edgeType": "call"
+        },
+        {
+          "name": "sendTranscript",
+          "edgeType": "call"
+        },
+        {
+          "name": "failure",
+          "edgeType": "call"
+        },
+        {
+          "name": "success",
+          "edgeType": "call"
+        },
+        {
+          "name": "livechat/transcript/:rid",
+          "edgeType": "rest_route"
+        },
+        {
+          "name": "findOneById",
+          "edgeType": "call"
+        },
+        {
+          "name": "isWithinMACLimit",
+          "edgeType": "call"
+        },
+        {
+          "name": "unsetEmailTranscriptRequestedByRoomId",
+          "edgeType": "call"
+        },
+        {
+          "name": "requestTranscript",
+          "edgeType": "call"
+        },
+        {
+          "name": "IOmnichannelRoom",
+          "edgeType": "type"
+        }
+      ]
+    }
+  ],
+  "imports": [
+    {
+      "module": "@rocket.chat/core-services",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/core-typings",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/models",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/rest-typings",
+      "resolved": "external"
+    },
+    {
+      "module": "../..",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/server/api/index.ts"
+    },
+    {
+      "module": "../../../../app/livechat/server/lib/sendTranscript",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/app/livechat/server/lib/sendTranscript.ts"
+    },
+    {
+      "module": "../../../lib/i18n",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/server/lib/i18n.ts"
+    }
+  ]
+}

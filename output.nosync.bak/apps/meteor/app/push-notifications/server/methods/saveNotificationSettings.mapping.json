@@ -1,0 +1,192 @@
+{
+  "sourcePath": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/app/push-notifications/server/methods/saveNotificationSettings.ts",
+  "symbols": [
+    {
+      "type": "module",
+      "name": "saveNotificationSettings",
+      "exported": false,
+      "line": 1,
+      "endLine": 173,
+      "signature": "saveNotificationSettings",
+      "calls": [
+        {
+          "name": "saveNotificationSettings",
+          "edgeType": "call"
+        },
+        {
+          "name": "saveAudioNotificationValue",
+          "edgeType": "call"
+        },
+        {
+          "name": "methods",
+          "edgeType": "call"
+        },
+        {
+          "name": "method",
+          "edgeType": "call"
+        },
+        {
+          "name": "userId",
+          "edgeType": "call"
+        },
+        {
+          "name": "check",
+          "edgeType": "call"
+        },
+        {
+          "name": "saveNotificationSettingsMethod",
+          "edgeType": "call"
+        },
+        {
+          "name": "findOneByRoomIdAndUserId",
+          "edgeType": "call"
+        },
+        {
+          "name": "notifyOnSubscriptionChangedById",
+          "edgeType": "call"
+        },
+        {
+          "name": "ServerMethods",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "variable_function",
+      "name": "saveAudioNotificationValue",
+      "exported": false,
+      "line": 11,
+      "endLine": 12,
+      "signature": "(subId: ISubscription['_id'], value: string) =>",
+      "calls": [
+        {
+          "name": "clearAudioNotificationValueById",
+          "edgeType": "call"
+        },
+        {
+          "name": "updateAudioNotificationValueById",
+          "edgeType": "call"
+        },
+        {
+          "name": "ISubscription",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "variable_function",
+      "name": "saveNotificationSettingsMethod",
+      "exported": true,
+      "line": 32,
+      "endLine": 132,
+      "signature": "async ( userId: string, roomId: string, field: NotificationFieldType, value: string, ): Promise<boolean> =>",
+      "calls": [
+        {
+          "name": "getUserNotificationPreference",
+          "edgeType": "call"
+        },
+        {
+          "name": "updateNotificationsPrefById",
+          "edgeType": "call"
+        },
+        {
+          "name": "getNotificationPrefValue",
+          "edgeType": "call"
+        },
+        {
+          "name": "updateUnreadAlertById",
+          "edgeType": "call"
+        },
+        {
+          "name": "updateDisableNotificationsById",
+          "edgeType": "call"
+        },
+        {
+          "name": "updateHideUnreadStatusById",
+          "edgeType": "call"
+        },
+        {
+          "name": "updateHideMentionStatusById",
+          "edgeType": "call"
+        },
+        {
+          "name": "updateMuteGroupMentions",
+          "edgeType": "call"
+        },
+        {
+          "name": "saveAudioNotificationValue",
+          "edgeType": "call"
+        },
+        {
+          "name": "includes",
+          "edgeType": "call"
+        },
+        {
+          "name": "keys",
+          "edgeType": "call"
+        },
+        {
+          "name": "findOneByRoomIdAndUserId",
+          "edgeType": "call"
+        },
+        {
+          "name": "updateMethod",
+          "edgeType": "call"
+        },
+        {
+          "name": "notifyOnSubscriptionChangedById",
+          "edgeType": "call"
+        },
+        {
+          "name": "NotificationFieldType",
+          "edgeType": "type"
+        },
+        {
+          "name": "ISubscription",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "type",
+      "name": "NotificationFieldType",
+      "line": 14,
+      "endLine": 23,
+      "signature": "export type NotificationFieldType ="
+    }
+  ],
+  "imports": [
+    {
+      "module": "@rocket.chat/core-typings",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/ddp-client",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/models",
+      "resolved": "external"
+    },
+    {
+      "module": "meteor/check",
+      "resolved": "external"
+    },
+    {
+      "module": "meteor/meteor",
+      "resolved": "external"
+    },
+    {
+      "module": "../../../lib/server/lib/deprecationWarningLogger",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/app/lib/server/lib/deprecationWarningLogger.ts"
+    },
+    {
+      "module": "../../../lib/server/lib/notifyListener",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/app/lib/server/lib/notifyListener.ts"
+    },
+    {
+      "module": "../../../utils/server/getUserNotificationPreference",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/app/utils/server/getUserNotificationPreference.ts"
+    }
+  ]
+}

@@ -1,0 +1,121 @@
+{
+  "sourcePath": "/Users/echoooooo/Desktop/code/Rocket.Chat/packages/apps/src/server/accessors/ServerSettingRead.ts",
+  "symbols": [
+    {
+      "type": "class",
+      "name": "ServerSettingRead",
+      "exported": true,
+      "line": 6,
+      "endLine": 38,
+      "signature": "export class ServerSettingRead implements IServerSettingRead",
+      "calls": [
+        {
+          "name": "IServerSettingRead",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "getOneById",
+      "exported": true,
+      "qualifiedName": "ServerSettingRead.getOneById",
+      "line": 12,
+      "endLine": 14,
+      "signature": "public getOneById(id: string): Promise<ISetting>",
+      "containerClass": "ServerSettingRead",
+      "calls": [
+        {
+          "name": "doGetOneById",
+          "edgeType": "call"
+        },
+        {
+          "name": "ISetting",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "getValueById",
+      "exported": true,
+      "qualifiedName": "ServerSettingRead.getValueById",
+      "line": 16,
+      "endLine": 28,
+      "signature": "public async getValueById(id: string): Promise<any>",
+      "containerClass": "ServerSettingRead",
+      "calls": [
+        {
+          "name": "doGetOneById",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "getAll",
+      "exported": true,
+      "qualifiedName": "ServerSettingRead.getAll",
+      "line": 20,
+      "endLine": 23,
+      "signature": "public getAll(): Promise<IterableIterator<ISetting>>",
+      "containerClass": "ServerSettingRead",
+      "calls": [
+        {
+          "name": "IterableIterator",
+          "edgeType": "type"
+        },
+        {
+          "name": "ISetting",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "isReadableById",
+      "exported": true,
+      "qualifiedName": "ServerSettingRead.isReadableById",
+      "line": 24,
+      "endLine": 26,
+      "signature": "public isReadableById(id: string): Promise<boolean>",
+      "containerClass": "ServerSettingRead",
+      "calls": [
+        {
+          "name": "doIsReadableById",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "constructor",
+      "exported": true,
+      "qualifiedName": "ServerSettingRead.constructor",
+      "line": 7,
+      "endLine": 10,
+      "signature": "constructor( private readonly settingBridge: ServerSettingBridge, private readonly appId: string, )",
+      "containerClass": "ServerSettingRead",
+      "calls": [
+        {
+          "name": "ServerSettingBridge",
+          "edgeType": "type"
+        }
+      ]
+    }
+  ],
+  "imports": [
+    {
+      "module": "@rocket.chat/apps-engine/definition/accessors",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/apps-engine/definition/settings",
+      "resolved": "external"
+    },
+    {
+      "module": "../bridges/ServerSettingBridge",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/packages/apps/src/server/bridges/ServerSettingBridge.ts"
+    }
+  ]
+}

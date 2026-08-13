@@ -1,0 +1,522 @@
+{
+  "sourcePath": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/app/file/server/file.server.ts",
+  "symbols": [
+    {
+      "type": "class",
+      "name": "GridFS",
+      "exported": false,
+      "line": 46,
+      "endLine": 127,
+      "signature": "class GridFS implements IRocketChatFileStore",
+      "calls": [
+        {
+          "name": "IRocketChatFileStore",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "findOne",
+      "exported": false,
+      "qualifiedName": "GridFS.findOne",
+      "line": 57,
+      "endLine": 63,
+      "signature": "private async findOne(filename: string)",
+      "containerClass": "GridFS",
+      "calls": [
+        {
+          "name": "toArray",
+          "edgeType": "call"
+        },
+        {
+          "name": "limit",
+          "edgeType": "call"
+        },
+        {
+          "name": "find",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "remove",
+      "exported": false,
+      "qualifiedName": "GridFS.remove",
+      "line": 61,
+      "endLine": 63,
+      "signature": "async remove(fileId: string)",
+      "containerClass": "GridFS",
+      "calls": [
+        {
+          "name": "delete",
+          "edgeType": "call"
+        },
+        {
+          "name": "ObjectId",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "createWriteStream",
+      "exported": false,
+      "qualifiedName": "GridFS.createWriteStream",
+      "line": 65,
+      "endLine": 74,
+      "signature": "createWriteStream(fileName: string, contentType: string)",
+      "containerClass": "GridFS",
+      "calls": [
+        {
+          "name": "openUploadStream",
+          "edgeType": "call"
+        },
+        {
+          "name": "close",
+          "edgeType": "event_listen"
+        },
+        {
+          "name": "end",
+          "edgeType": "event_emit"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "createReadStream",
+      "exported": false,
+      "qualifiedName": "GridFS.createReadStream",
+      "line": 69,
+      "endLine": 71,
+      "signature": "createReadStream(fileName: string)",
+      "containerClass": "GridFS",
+      "calls": [
+        {
+          "name": "openDownloadStreamByName",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "getFileWithReadStream",
+      "exported": false,
+      "qualifiedName": "GridFS.getFileWithReadStream",
+      "line": 73,
+      "endLine": 85,
+      "signature": "async getFileWithReadStream(fileName: string)",
+      "containerClass": "GridFS",
+      "calls": [
+        {
+          "name": "findOne",
+          "edgeType": "call"
+        },
+        {
+          "name": "createReadStream",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "getFile",
+      "exported": false,
+      "qualifiedName": "GridFS.getFile",
+      "line": 77,
+      "endLine": 97,
+      "signature": "async getFile(fileName: string)",
+      "containerClass": "GridFS",
+      "calls": [
+        {
+          "name": "getFileWithReadStream",
+          "edgeType": "call"
+        },
+        {
+          "name": "data",
+          "edgeType": "event_listen"
+        },
+        {
+          "name": "push",
+          "edgeType": "call"
+        },
+        {
+          "name": "end",
+          "edgeType": "event_listen"
+        },
+        {
+          "name": "resolve",
+          "edgeType": "call"
+        },
+        {
+          "name": "concat",
+          "edgeType": "call"
+        },
+        {
+          "name": "IFile",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "deleteFile",
+      "exported": false,
+      "qualifiedName": "GridFS.deleteFile",
+      "line": 81,
+      "endLine": 87,
+      "signature": "async deleteFile(fileName: string)",
+      "containerClass": "GridFS",
+      "calls": [
+        {
+          "name": "findOne",
+          "edgeType": "call"
+        },
+        {
+          "name": "remove",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "constructor",
+      "exported": false,
+      "qualifiedName": "GridFS.constructor",
+      "line": 51,
+      "endLine": 55,
+      "signature": "constructor({ name = 'file' } = {})",
+      "containerClass": "GridFS",
+      "calls": []
+    },
+    {
+      "type": "class",
+      "name": "FileSystem",
+      "exported": false,
+      "line": 84,
+      "endLine": 165,
+      "signature": "class FileSystem implements IRocketChatFileStore",
+      "calls": [
+        {
+          "name": "IRocketChatFileStore",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "createWriteStream",
+      "exported": false,
+      "qualifiedName": "FileSystem.createWriteStream",
+      "line": 100,
+      "endLine": 106,
+      "signature": "createWriteStream(fileName: string)",
+      "containerClass": "FileSystem",
+      "calls": [
+        {
+          "name": "createWriteStream",
+          "edgeType": "call"
+        },
+        {
+          "name": "join",
+          "edgeType": "call"
+        },
+        {
+          "name": "sanitizeFileName",
+          "edgeType": "call"
+        },
+        {
+          "name": "close",
+          "edgeType": "event_listen"
+        },
+        {
+          "name": "end",
+          "edgeType": "event_emit"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "createReadStream",
+      "exported": false,
+      "qualifiedName": "FileSystem.createReadStream",
+      "line": 104,
+      "endLine": 106,
+      "signature": "createReadStream(fileName: string)",
+      "containerClass": "FileSystem",
+      "calls": [
+        {
+          "name": "createReadStream",
+          "edgeType": "call"
+        },
+        {
+          "name": "join",
+          "edgeType": "call"
+        },
+        {
+          "name": "sanitizeFileName",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "stat",
+      "exported": false,
+      "qualifiedName": "FileSystem.stat",
+      "line": 108,
+      "endLine": 110,
+      "signature": "stat(fileName: string)",
+      "containerClass": "FileSystem",
+      "calls": [
+        {
+          "name": "stat",
+          "edgeType": "call"
+        },
+        {
+          "name": "join",
+          "edgeType": "call"
+        },
+        {
+          "name": "sanitizeFileName",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "remove",
+      "exported": false,
+      "qualifiedName": "FileSystem.remove",
+      "line": 112,
+      "endLine": 114,
+      "signature": "async remove(fileName: string)",
+      "containerClass": "FileSystem",
+      "calls": [
+        {
+          "name": "unlink",
+          "edgeType": "call"
+        },
+        {
+          "name": "join",
+          "edgeType": "call"
+        },
+        {
+          "name": "sanitizeFileName",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "getFileWithReadStream",
+      "exported": false,
+      "qualifiedName": "FileSystem.getFileWithReadStream",
+      "line": 116,
+      "endLine": 130,
+      "signature": "async getFileWithReadStream(fileName: string)",
+      "containerClass": "FileSystem",
+      "calls": [
+        {
+          "name": "stat",
+          "edgeType": "call"
+        },
+        {
+          "name": "createReadStream",
+          "edgeType": "call"
+        },
+        {
+          "name": "lookup",
+          "edgeType": "call"
+        },
+        {
+          "name": "error",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "getFile",
+      "exported": false,
+      "qualifiedName": "FileSystem.getFile",
+      "line": 120,
+      "endLine": 140,
+      "signature": "async getFile(fileName: string)",
+      "containerClass": "FileSystem",
+      "calls": [
+        {
+          "name": "getFileWithReadStream",
+          "edgeType": "call"
+        },
+        {
+          "name": "data",
+          "edgeType": "event_listen"
+        },
+        {
+          "name": "isBuffer",
+          "edgeType": "call"
+        },
+        {
+          "name": "push",
+          "edgeType": "call"
+        },
+        {
+          "name": "from",
+          "edgeType": "call"
+        },
+        {
+          "name": "end",
+          "edgeType": "event_listen"
+        },
+        {
+          "name": "resolve",
+          "edgeType": "call"
+        },
+        {
+          "name": "concat",
+          "edgeType": "call"
+        },
+        {
+          "name": "IFile",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "deleteFile",
+      "exported": false,
+      "qualifiedName": "FileSystem.deleteFile",
+      "line": 124,
+      "endLine": 130,
+      "signature": "async deleteFile(fileName: string)",
+      "containerClass": "FileSystem",
+      "calls": [
+        {
+          "name": "remove",
+          "edgeType": "call"
+        },
+        {
+          "name": "error",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "constructor",
+      "exported": false,
+      "qualifiedName": "FileSystem.constructor",
+      "line": 87,
+      "endLine": 98,
+      "signature": "constructor({ absolutePath = '~/uploads' } = {})",
+      "containerClass": "FileSystem",
+      "calls": [
+        {
+          "name": "split",
+          "edgeType": "call"
+        },
+        {
+          "name": "replace",
+          "edgeType": "call"
+        },
+        {
+          "name": "resolve",
+          "edgeType": "call"
+        },
+        {
+          "name": "sync",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "variable",
+      "name": "RocketChatFile",
+      "exported": true,
+      "line": 120,
+      "endLine": 135,
+      "signature": "RocketChatFile =",
+      "calls": [
+        {
+          "name": "from",
+          "edgeType": "call"
+        },
+        {
+          "name": "split",
+          "edgeType": "call"
+        },
+        {
+          "name": "isBuffer",
+          "edgeType": "call"
+        },
+        {
+          "name": "replace",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "interface",
+      "name": "IRocketChatFileStore",
+      "line": 24,
+      "endLine": 44,
+      "signature": "interface IRocketChatFileStore"
+    },
+    {
+      "type": "type",
+      "name": "IFile",
+      "line": 17,
+      "endLine": 22,
+      "signature": "type IFile ="
+    }
+  ],
+  "imports": [
+    {
+      "module": "node:fs",
+      "resolved": "external"
+    },
+    {
+      "module": "node:fs",
+      "resolved": "external"
+    },
+    {
+      "module": "node:fs/promises",
+      "resolved": "external"
+    },
+    {
+      "module": "node:path",
+      "resolved": "external"
+    },
+    {
+      "module": "node:stream",
+      "resolved": "external"
+    },
+    {
+      "module": "bson",
+      "resolved": "external"
+    },
+    {
+      "module": "meteor/mongo",
+      "resolved": "external"
+    },
+    {
+      "module": "meteor/npm-mongo",
+      "resolved": "external"
+    },
+    {
+      "module": "mime-type/with-db",
+      "resolved": "external"
+    },
+    {
+      "module": "mkdirp",
+      "resolved": "external"
+    },
+    {
+      "module": "./functions/sanitizeFileName",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/app/file/server/functions/sanitizeFileName.ts"
+    }
+  ]
+}

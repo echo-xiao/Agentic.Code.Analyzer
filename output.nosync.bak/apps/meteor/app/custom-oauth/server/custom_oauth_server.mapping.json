@@ -1,0 +1,613 @@
+{
+  "sourcePath": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/app/custom-oauth/server/custom_oauth_server.js",
+  "symbols": [
+    {
+      "type": "module",
+      "name": "custom_oauth_server",
+      "exported": false,
+      "line": 1,
+      "endLine": 552,
+      "signature": "custom_oauth_server",
+      "calls": [
+        {
+          "name": "apply",
+          "edgeType": "call"
+        },
+        {
+          "name": "findOneById",
+          "edgeType": "call"
+        },
+        {
+          "name": "get",
+          "edgeType": "call"
+        },
+        {
+          "name": "loginAuthenticatedUserRequest",
+          "edgeType": "call"
+        },
+        {
+          "name": "afterValidateNewOAuthUser",
+          "edgeType": "event_emit"
+        }
+      ]
+    },
+    {
+      "type": "class",
+      "name": "CustomOAuth",
+      "exported": true,
+      "line": 26,
+      "endLine": 523,
+      "signature": "export class CustomOAuth",
+      "calls": []
+    },
+    {
+      "type": "method",
+      "name": "configure",
+      "exported": true,
+      "qualifiedName": "CustomOAuth.configure",
+      "line": 55,
+      "endLine": 112,
+      "signature": "configure(options)",
+      "containerClass": "CustomOAuth",
+      "calls": [
+        {
+          "name": "test",
+          "edgeType": "call"
+        },
+        {
+          "name": "trim",
+          "edgeType": "call"
+        },
+        {
+          "name": "isAbsoluteURL",
+          "edgeType": "call"
+        },
+        {
+          "name": "addAutopublishFields",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "getAccessToken",
+      "exported": true,
+      "qualifiedName": "CustomOAuth.getAccessToken",
+      "line": 59,
+      "endLine": 113,
+      "signature": "async getAccessToken(query)",
+      "containerClass": "CustomOAuth",
+      "calls": [
+        {
+          "name": "findOneAsync",
+          "edgeType": "call"
+        },
+        {
+          "name": "_redirectUri",
+          "edgeType": "call"
+        },
+        {
+          "name": "from",
+          "edgeType": "call"
+        },
+        {
+          "name": "openSecret",
+          "edgeType": "call"
+        },
+        {
+          "name": "append",
+          "edgeType": "call"
+        },
+        {
+          "name": "fetch",
+          "edgeType": "call"
+        },
+        {
+          "name": "json",
+          "edgeType": "call"
+        },
+        {
+          "name": "extend",
+          "edgeType": "call"
+        },
+        {
+          "name": "URLSearchParams",
+          "edgeType": "new"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "getIdentity",
+      "exported": true,
+      "qualifiedName": "CustomOAuth.getIdentity",
+      "line": 63,
+      "endLine": 93,
+      "signature": "async getIdentity(accessToken)",
+      "containerClass": "CustomOAuth",
+      "calls": [
+        {
+          "name": "fetch",
+          "edgeType": "call"
+        },
+        {
+          "name": "json",
+          "edgeType": "call"
+        },
+        {
+          "name": "debug",
+          "edgeType": "call"
+        },
+        {
+          "name": "normalizeIdentity",
+          "edgeType": "call"
+        },
+        {
+          "name": "extend",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "registerService",
+      "exported": true,
+      "qualifiedName": "CustomOAuth.registerService",
+      "line": 67,
+      "endLine": 101,
+      "signature": "registerService()",
+      "containerClass": "CustomOAuth",
+      "calls": [
+        {
+          "name": "registerService",
+          "edgeType": "call"
+        },
+        {
+          "name": "getAccessToken",
+          "edgeType": "call"
+        },
+        {
+          "name": "getIdentity",
+          "edgeType": "call"
+        },
+        {
+          "name": "extend",
+          "edgeType": "call"
+        },
+        {
+          "name": "Date",
+          "edgeType": "new"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "normalizeIdentity",
+      "exported": true,
+      "qualifiedName": "CustomOAuth.normalizeIdentity",
+      "line": 71,
+      "endLine": 104,
+      "signature": "async normalizeIdentity(identity, accessToken)",
+      "containerClass": "CustomOAuth",
+      "calls": [
+        {
+          "name": "values",
+          "edgeType": "call"
+        },
+        {
+          "name": "normalizer",
+          "edgeType": "call"
+        },
+        {
+          "name": "getUsername",
+          "edgeType": "call"
+        },
+        {
+          "name": "getEmail",
+          "edgeType": "call"
+        },
+        {
+          "name": "getEmailFromPath",
+          "edgeType": "call"
+        },
+        {
+          "name": "getAvatarUrl",
+          "edgeType": "call"
+        },
+        {
+          "name": "getCustomName",
+          "edgeType": "call"
+        },
+        {
+          "name": "getName",
+          "edgeType": "call"
+        },
+        {
+          "name": "renameInvalidProperties",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "getEmailFromPath",
+      "exported": true,
+      "qualifiedName": "CustomOAuth.getEmailFromPath",
+      "line": 75,
+      "endLine": 107,
+      "signature": "async getEmailFromPath(accessToken)",
+      "containerClass": "CustomOAuth",
+      "calls": [
+        {
+          "name": "fetch",
+          "edgeType": "call"
+        },
+        {
+          "name": "json",
+          "edgeType": "call"
+        },
+        {
+          "name": "find",
+          "edgeType": "call"
+        },
+        {
+          "name": "extend",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "retrieveCredential",
+      "exported": true,
+      "qualifiedName": "CustomOAuth.retrieveCredential",
+      "line": 79,
+      "endLine": 81,
+      "signature": "retrieveCredential(credentialToken, credentialSecret)",
+      "containerClass": "CustomOAuth",
+      "calls": [
+        {
+          "name": "retrieveCredential",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "getUsername",
+      "exported": true,
+      "qualifiedName": "CustomOAuth.getUsername",
+      "line": 83,
+      "endLine": 94,
+      "signature": "getUsername(data)",
+      "containerClass": "CustomOAuth",
+      "calls": [
+        {
+          "name": "fromTemplate",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "getEmail",
+      "exported": true,
+      "qualifiedName": "CustomOAuth.getEmail",
+      "line": 87,
+      "endLine": 98,
+      "signature": "getEmail(data)",
+      "containerClass": "CustomOAuth",
+      "calls": [
+        {
+          "name": "fromTemplate",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "getCustomName",
+      "exported": true,
+      "qualifiedName": "CustomOAuth.getCustomName",
+      "line": 91,
+      "endLine": 103,
+      "signature": "getCustomName(data)",
+      "containerClass": "CustomOAuth",
+      "calls": [
+        {
+          "name": "fromTemplate",
+          "edgeType": "call"
+        },
+        {
+          "name": "getName",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "getAvatarUrl",
+      "exported": true,
+      "qualifiedName": "CustomOAuth.getAvatarUrl",
+      "line": 95,
+      "endLine": 106,
+      "signature": "getAvatarUrl(data)",
+      "containerClass": "CustomOAuth",
+      "calls": [
+        {
+          "name": "fromTemplate",
+          "edgeType": "call"
+        },
+        {
+          "name": "debug",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "getName",
+      "exported": true,
+      "qualifiedName": "CustomOAuth.getName",
+      "line": 99,
+      "endLine": 109,
+      "signature": "getName(identity)",
+      "containerClass": "CustomOAuth",
+      "calls": []
+    },
+    {
+      "type": "method",
+      "name": "addHookToProcessUser",
+      "exported": true,
+      "qualifiedName": "CustomOAuth.addHookToProcessUser",
+      "line": 103,
+      "endLine": 215,
+      "signature": "addHookToProcessUser()",
+      "containerClass": "CustomOAuth",
+      "calls": [
+        {
+          "name": "push",
+          "edgeType": "call"
+        },
+        {
+          "name": "findOneByUsernameIgnoringCase",
+          "edgeType": "call"
+        },
+        {
+          "name": "findOneByUsernameAndServiceNameIgnoringCase",
+          "edgeType": "call"
+        },
+        {
+          "name": "findOneByEmailAddress",
+          "edgeType": "call"
+        },
+        {
+          "name": "findOneByEmailAddressAndServiceNameIgnoringCase",
+          "edgeType": "call"
+        },
+        {
+          "name": "afterProcessOAuthUser",
+          "edgeType": "event_emit"
+        },
+        {
+          "name": "find",
+          "edgeType": "call"
+        },
+        {
+          "name": "findOneById",
+          "edgeType": "call"
+        },
+        {
+          "name": "notifyOnUserChange",
+          "edgeType": "call"
+        },
+        {
+          "name": "startSession",
+          "edgeType": "call"
+        },
+        {
+          "name": "assign",
+          "edgeType": "call"
+        },
+        {
+          "name": "startTransaction",
+          "edgeType": "call"
+        },
+        {
+          "name": "getUpdater",
+          "edgeType": "call"
+        },
+        {
+          "name": "set",
+          "edgeType": "call"
+        },
+        {
+          "name": "saveUserIdentity",
+          "edgeType": "call"
+        },
+        {
+          "name": "updateFromUpdater",
+          "edgeType": "call"
+        },
+        {
+          "name": "commitTransaction",
+          "edgeType": "call"
+        },
+        {
+          "name": "abortTransaction",
+          "edgeType": "call"
+        },
+        {
+          "name": "endSession",
+          "edgeType": "call"
+        },
+        {
+          "name": "allSettled",
+          "edgeType": "call"
+        },
+        {
+          "name": "map",
+          "edgeType": "call"
+        },
+        {
+          "name": "cb",
+          "edgeType": "call"
+        },
+        {
+          "name": "validateNewUser",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "registerAccessTokenService",
+      "exported": true,
+      "qualifiedName": "CustomOAuth.registerAccessTokenService",
+      "line": 107,
+      "endLine": 139,
+      "signature": "registerAccessTokenService(name)",
+      "containerClass": "CustomOAuth",
+      "calls": [
+        {
+          "name": "registerAccessTokenService",
+          "edgeType": "call"
+        },
+        {
+          "name": "check",
+          "edgeType": "call"
+        },
+        {
+          "name": "ObjectIncluding",
+          "edgeType": "call"
+        },
+        {
+          "name": "getIdentity",
+          "edgeType": "call"
+        },
+        {
+          "name": "pick",
+          "edgeType": "call"
+        },
+        {
+          "name": "extend",
+          "edgeType": "call"
+        },
+        {
+          "name": "Date",
+          "edgeType": "new"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "constructor",
+      "exported": true,
+      "qualifiedName": "CustomOAuth.constructor",
+      "line": 27,
+      "endLine": 53,
+      "signature": "constructor(name, options)",
+      "containerClass": "CustomOAuth",
+      "calls": [
+        {
+          "name": "debug",
+          "edgeType": "call"
+        },
+        {
+          "name": "test",
+          "edgeType": "call"
+        },
+        {
+          "name": "configure",
+          "edgeType": "call"
+        },
+        {
+          "name": "registerService",
+          "edgeType": "call"
+        },
+        {
+          "name": "addHookToProcessUser",
+          "edgeType": "call"
+        },
+        {
+          "name": "registerAccessTokenService",
+          "edgeType": "call"
+        }
+      ]
+    }
+  ],
+  "imports": [
+    {
+      "module": "@rocket.chat/core-services",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/logger",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/models",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/server-fetch",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/tools",
+      "resolved": "external"
+    },
+    {
+      "module": "meteor/accounts-base",
+      "resolved": "external"
+    },
+    {
+      "module": "meteor/check",
+      "resolved": "external"
+    },
+    {
+      "module": "meteor/meteor",
+      "resolved": "external"
+    },
+    {
+      "module": "meteor/oauth",
+      "resolved": "external"
+    },
+    {
+      "module": "meteor/service-configuration",
+      "resolved": "external"
+    },
+    {
+      "module": "underscore",
+      "resolved": "external"
+    },
+    {
+      "module": "./transform_helpers",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/app/custom-oauth/server/transform_helpers.ts"
+    },
+    {
+      "module": "../../../server/database/utils",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/server/database/utils.ts"
+    },
+    {
+      "module": "../../../server/lib/callbacks",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/server/lib/callbacks.ts"
+    },
+    {
+      "module": "../../../server/lib/users/saveUserIdentity",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/server/lib/users/saveUserIdentity.ts"
+    },
+    {
+      "module": "../../lib/server/lib/notifyListener",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/app/lib/server/lib/notifyListener.ts"
+    },
+    {
+      "module": "../../lib/server/oauth/oauth",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/app/lib/server/oauth/oauth.ts"
+    },
+    {
+      "module": "../../settings/server",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/app/settings/server/index.ts"
+    }
+  ]
+}

@@ -1,0 +1,41 @@
+## File: packages/rest-typings/src/v1/channels/ChannelsGetAllUserMentionsByChannelProps.ts
+
+```typescript
+import type { PaginatedRequest } from '../../helpers/PaginatedRequest';
+import { ajvQuery } from '../Ajv';
+
+export type ChannelsGetAllUserMentionsByChannelProps = PaginatedRequest<{ roomId: string }>;
+
+const channelsGetAllUserMentionsByChannelPropsSchema = {
+	type: 'object',
+	properties: {
+		roomId: {
+			type: 'string',
+		},
+		offset: {
+			type: 'number',
+			nullable: true,
+		},
+		count: {
+			type: 'number',
+			nullable: true,
+		},
+		sort: {
+			type: 'string',
+			nullable: true,
+		},
+		query: {
+			type: 'string',
+			nullable: true,
+		},
+	},
+	required: ['roomId'],
+
+	additionalProperties: false,
+};
+
+export const isChannelsGetAllUserMentionsByChannelProps = ajvQuery.compile<ChannelsGetAllUserMentionsByChannelProps>(
+	channelsGetAllUserMentionsByChannelPropsSchema,
+);
+
+```

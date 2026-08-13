@@ -1,0 +1,145 @@
+{
+  "sourcePath": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/app/livechat/server/lib/transfer.ts",
+  "symbols": [
+    {
+      "type": "function",
+      "name": "saveTransferHistory",
+      "exported": true,
+      "line": 9,
+      "endLine": 41,
+      "signature": "export async function saveTransferHistory(room: IOmnichannelRoom, transferData: TransferData)",
+      "calls": [
+        {
+          "name": "check",
+          "edgeType": "call"
+        },
+        {
+          "name": "ObjectIncluding",
+          "edgeType": "call"
+        },
+        {
+          "name": "Maybe",
+          "edgeType": "call"
+        },
+        {
+          "name": "info",
+          "edgeType": "call"
+        },
+        {
+          "name": "saveSystemMessageAndNotifyUser",
+          "edgeType": "call"
+        },
+        {
+          "name": "Date",
+          "edgeType": "new"
+        },
+        {
+          "name": "IOmnichannelRoom",
+          "edgeType": "type"
+        },
+        {
+          "name": "TransferData",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "function",
+      "name": "forwardOpenChats",
+      "exported": true,
+      "line": 13,
+      "endLine": 33,
+      "signature": "export async function forwardOpenChats(userId: string)",
+      "calls": [
+        {
+          "name": "debug",
+          "edgeType": "call"
+        },
+        {
+          "name": "findOneById",
+          "edgeType": "call"
+        },
+        {
+          "name": "findOpenByAgent",
+          "edgeType": "call"
+        },
+        {
+          "name": "findOneEnabledById",
+          "edgeType": "call"
+        },
+        {
+          "name": "normalizeTransferredByData",
+          "edgeType": "call"
+        },
+        {
+          "name": "transfer",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "function",
+      "name": "transfer",
+      "exported": true,
+      "line": 17,
+      "endLine": 36,
+      "signature": "export async function transfer(room: IOmnichannelRoom, guest: ILivechatVisitor, transferData: TransferData)",
+      "calls": [
+        {
+          "name": "debug",
+          "edgeType": "call"
+        },
+        {
+          "name": "findOneById",
+          "edgeType": "call"
+        },
+        {
+          "name": "transferRoom",
+          "edgeType": "call"
+        },
+        {
+          "name": "IOmnichannelRoom",
+          "edgeType": "type"
+        },
+        {
+          "name": "ILivechatVisitor",
+          "edgeType": "type"
+        },
+        {
+          "name": "TransferData",
+          "edgeType": "type"
+        },
+        {
+          "name": "ILivechatDepartment",
+          "edgeType": "type"
+        }
+      ]
+    }
+  ],
+  "imports": [
+    {
+      "module": "@rocket.chat/core-services",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/core-typings",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/models",
+      "resolved": "external"
+    },
+    {
+      "module": "./Helper",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/app/livechat/server/lib/Helper.ts"
+    },
+    {
+      "module": "./RoutingManager",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/app/livechat/server/lib/RoutingManager.ts"
+    },
+    {
+      "module": "./logger",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/app/livechat/server/lib/logger.ts"
+    }
+  ]
+}

@@ -1,0 +1,391 @@
+{
+  "sourcePath": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/server/api/v1/misc.ts",
+  "symbols": [
+    {
+      "type": "module",
+      "name": "misc",
+      "exported": false,
+      "line": 1,
+      "endLine": 887,
+      "signature": "misc",
+      "calls": [
+        {
+          "name": "me",
+          "edgeType": "rest_route"
+        },
+        {
+          "name": "get",
+          "edgeType": "call"
+        },
+        {
+          "name": "compile",
+          "edgeType": "call"
+        },
+        {
+          "name": "getBaseUserFields",
+          "edgeType": "call"
+        },
+        {
+          "name": "findOneById",
+          "edgeType": "call"
+        },
+        {
+          "name": "success",
+          "edgeType": "call"
+        },
+        {
+          "name": "getUserInfo",
+          "edgeType": "call"
+        },
+        {
+          "name": "MeApiSuccessResponse",
+          "edgeType": "type"
+        },
+        {
+          "name": "IUser",
+          "edgeType": "type"
+        },
+        {
+          "name": "shield.svg",
+          "edgeType": "rest_route"
+        },
+        {
+          "name": "includes",
+          "edgeType": "call"
+        },
+        {
+          "name": "map",
+          "edgeType": "call"
+        },
+        {
+          "name": "split",
+          "edgeType": "call"
+        },
+        {
+          "name": "trim",
+          "edgeType": "call"
+        },
+        {
+          "name": "failure",
+          "edgeType": "call"
+        },
+        {
+          "name": "now",
+          "edgeType": "call"
+        },
+        {
+          "name": "countUsersNotOffline",
+          "edgeType": "call"
+        },
+        {
+          "name": "getUserFromParams",
+          "edgeType": "call"
+        },
+        {
+          "name": "toUpperCase",
+          "edgeType": "call"
+        },
+        {
+          "name": "escapeHTML",
+          "edgeType": "call"
+        },
+        {
+          "name": "replace",
+          "edgeType": "call"
+        },
+        {
+          "name": "getURL",
+          "edgeType": "call"
+        },
+        {
+          "name": "spotlight",
+          "edgeType": "rest_route"
+        },
+        {
+          "name": "spotlightMethod",
+          "edgeType": "call"
+        },
+        {
+          "name": "parseSpotlightUsernames",
+          "edgeType": "call"
+        },
+        {
+          "name": "parseSpotlightType",
+          "edgeType": "call"
+        },
+        {
+          "name": "directory",
+          "edgeType": "rest_route"
+        },
+        {
+          "name": "getPaginationItems",
+          "edgeType": "call"
+        },
+        {
+          "name": "parseJsonQuery",
+          "edgeType": "call"
+        },
+        {
+          "name": "keys",
+          "edgeType": "call"
+        },
+        {
+          "name": "values",
+          "edgeType": "call"
+        },
+        {
+          "name": "browseChannelsMethod",
+          "edgeType": "call"
+        },
+        {
+          "name": "max",
+          "edgeType": "call"
+        },
+        {
+          "name": "IDirectoryUserResult",
+          "edgeType": "type"
+        },
+        {
+          "name": "IDirectoryChannelResult",
+          "edgeType": "type"
+        },
+        {
+          "name": "pw.getPolicy",
+          "edgeType": "rest_route"
+        },
+        {
+          "name": "getPasswordPolicy",
+          "edgeType": "call"
+        },
+        {
+          "name": "method.call/:method",
+          "edgeType": "rest_route"
+        },
+        {
+          "name": "post",
+          "edgeType": "call"
+        },
+        {
+          "name": "check",
+          "edgeType": "call"
+        },
+        {
+          "name": "parse",
+          "edgeType": "call"
+        },
+        {
+          "name": "digest",
+          "edgeType": "call"
+        },
+        {
+          "name": "update",
+          "edgeType": "call"
+        },
+        {
+          "name": "createHash",
+          "edgeType": "call"
+        },
+        {
+          "name": "_increment",
+          "edgeType": "call"
+        },
+        {
+          "name": "_check",
+          "edgeType": "call"
+        },
+        {
+          "name": "getErrorMessage",
+          "edgeType": "call"
+        },
+        {
+          "name": "mountResult",
+          "edgeType": "call"
+        },
+        {
+          "name": "callAsync",
+          "edgeType": "call"
+        },
+        {
+          "name": "error",
+          "edgeType": "call"
+        },
+        {
+          "name": "_debug",
+          "edgeType": "call"
+        },
+        {
+          "name": "method.callAnon/:method",
+          "edgeType": "rest_route"
+        },
+        {
+          "name": "smtp.check",
+          "edgeType": "rest_route"
+        },
+        {
+          "name": "isSMTPConfigured",
+          "edgeType": "call"
+        },
+        {
+          "name": "fingerprint",
+          "edgeType": "rest_route"
+        },
+        {
+          "name": "removeAllCredentials",
+          "edgeType": "call"
+        },
+        {
+          "name": "push",
+          "edgeType": "call"
+        },
+        {
+          "name": "updateAuditedByUser",
+          "edgeType": "call"
+        },
+        {
+          "name": "auditSettingOperation",
+          "edgeType": "call"
+        },
+        {
+          "name": "randomUUID",
+          "edgeType": "call"
+        },
+        {
+          "name": "resetAuditedSettingByUser",
+          "edgeType": "call"
+        },
+        {
+          "name": "forEach",
+          "edgeType": "call"
+        },
+        {
+          "name": "all",
+          "edgeType": "call"
+        },
+        {
+          "name": "notifyOnSettingChangedById",
+          "edgeType": "call"
+        },
+        {
+          "name": "Date",
+          "edgeType": "new"
+        }
+      ]
+    },
+    {
+      "type": "variable_function",
+      "name": "mountResult",
+      "exported": false,
+      "line": 597,
+      "endLine": 614,
+      "signature": "({ id, error, result, }: { id: string; error?: unknown; result?: unknown; }): { message: string; } =>",
+      "calls": [
+        {
+          "name": "stringify",
+          "edgeType": "call"
+        }
+      ]
+    }
+  ],
+  "imports": [
+    {
+      "module": "node:crypto",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/core-typings",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/models",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/rest-typings",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/rest-typings",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/string-helpers",
+      "resolved": "external"
+    },
+    {
+      "module": "ejson",
+      "resolved": "external"
+    },
+    {
+      "module": "meteor/check",
+      "resolved": "external"
+    },
+    {
+      "module": "meteor/ddp-rate-limiter",
+      "resolved": "external"
+    },
+    {
+      "module": "meteor/meteor",
+      "resolved": "external"
+    },
+    {
+      "module": "../../../app/lib/server",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/app/lib/server/index.ts"
+    },
+    {
+      "module": "../../../app/lib/server/lib/notifyListener",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/app/lib/server/lib/notifyListener.ts"
+    },
+    {
+      "module": "../../../app/settings/server",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/app/settings/server/index.ts"
+    },
+    {
+      "module": "../../../app/utils/server/functions/getBaseUserFields",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/app/utils/server/functions/getBaseUserFields.ts"
+    },
+    {
+      "module": "../../../app/utils/server/functions/isSMTPConfigured",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/app/utils/server/functions/isSMTPConfigured.ts"
+    },
+    {
+      "module": "../../../app/utils/server/getURL",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/app/utils/server/getURL.ts"
+    },
+    {
+      "module": "../../lib/i18n",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/server/lib/i18n.ts"
+    },
+    {
+      "module": "../../lib/logger/system",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/server/lib/logger/system.ts"
+    },
+    {
+      "module": "../../methods/browseChannels",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/server/methods/browseChannels.ts"
+    },
+    {
+      "module": "../../publications/spotlight",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/server/publications/spotlight.ts"
+    },
+    {
+      "module": "../../settings/lib/auditedSettingUpdates",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/server/settings/lib/auditedSettingUpdates.ts"
+    },
+    {
+      "module": "../api",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/server/api/api.ts"
+    },
+    {
+      "module": "../lib/getPaginationItems",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/server/api/lib/getPaginationItems.ts"
+    },
+    {
+      "module": "../lib/getUserFromParams",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/server/api/lib/getUserFromParams.ts"
+    },
+    {
+      "module": "../lib/getUserInfo",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/server/api/lib/getUserInfo.ts"
+    }
+  ]
+}

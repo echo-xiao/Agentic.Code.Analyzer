@@ -1,0 +1,221 @@
+{
+  "sourcePath": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/ee/server/models/raw/ReadReceipts.ts",
+  "symbols": [
+    {
+      "type": "class",
+      "name": "ReadReceiptsRaw",
+      "exported": true,
+      "line": 6,
+      "endLine": 50,
+      "signature": "export class ReadReceiptsRaw extends BaseRaw<IReadReceipt> implements IReadReceiptsModel",
+      "calls": [
+        {
+          "name": "BaseRaw",
+          "edgeType": "type"
+        },
+        {
+          "name": "IReadReceiptsModel",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "modelIndexes",
+      "exported": true,
+      "qualifiedName": "ReadReceiptsRaw.modelIndexes",
+      "line": 11,
+      "endLine": 21,
+      "signature": "protected override modelIndexes(): IndexDescription[]",
+      "containerClass": "ReadReceiptsRaw",
+      "calls": [
+        {
+          "name": "IndexDescription",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "findByMessageId",
+      "exported": true,
+      "qualifiedName": "ReadReceiptsRaw.findByMessageId",
+      "line": 15,
+      "endLine": 17,
+      "signature": "findByMessageId(messageId: string): FindCursor<IReadReceipt>",
+      "containerClass": "ReadReceiptsRaw",
+      "calls": [
+        {
+          "name": "find",
+          "edgeType": "call"
+        },
+        {
+          "name": "FindCursor",
+          "edgeType": "type"
+        },
+        {
+          "name": "IReadReceipt",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "removeByUserId",
+      "exported": true,
+      "qualifiedName": "ReadReceiptsRaw.removeByUserId",
+      "line": 19,
+      "endLine": 21,
+      "signature": "removeByUserId(userId: string): Promise<DeleteResult>",
+      "containerClass": "ReadReceiptsRaw",
+      "calls": [
+        {
+          "name": "deleteMany",
+          "edgeType": "call"
+        },
+        {
+          "name": "DeleteResult",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "removeByRoomId",
+      "exported": true,
+      "qualifiedName": "ReadReceiptsRaw.removeByRoomId",
+      "line": 23,
+      "endLine": 25,
+      "signature": "removeByRoomId(roomId: string): Promise<DeleteResult>",
+      "containerClass": "ReadReceiptsRaw",
+      "calls": [
+        {
+          "name": "deleteMany",
+          "edgeType": "call"
+        },
+        {
+          "name": "DeleteResult",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "removeByRoomIds",
+      "exported": true,
+      "qualifiedName": "ReadReceiptsRaw.removeByRoomIds",
+      "line": 27,
+      "endLine": 29,
+      "signature": "removeByRoomIds(roomIds: string[]): Promise<DeleteResult>",
+      "containerClass": "ReadReceiptsRaw",
+      "calls": [
+        {
+          "name": "deleteMany",
+          "edgeType": "call"
+        },
+        {
+          "name": "DeleteResult",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "removeByMessageId",
+      "exported": true,
+      "qualifiedName": "ReadReceiptsRaw.removeByMessageId",
+      "line": 31,
+      "endLine": 33,
+      "signature": "removeByMessageId(messageId: string): Promise<DeleteResult>",
+      "containerClass": "ReadReceiptsRaw",
+      "calls": [
+        {
+          "name": "deleteMany",
+          "edgeType": "call"
+        },
+        {
+          "name": "DeleteResult",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "removeByMessageIds",
+      "exported": true,
+      "qualifiedName": "ReadReceiptsRaw.removeByMessageIds",
+      "line": 35,
+      "endLine": 37,
+      "signature": "removeByMessageIds(messageIds: string[]): Promise<DeleteResult>",
+      "containerClass": "ReadReceiptsRaw",
+      "calls": [
+        {
+          "name": "deleteMany",
+          "edgeType": "call"
+        },
+        {
+          "name": "DeleteResult",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "findOlderThan",
+      "exported": true,
+      "qualifiedName": "ReadReceiptsRaw.findOlderThan",
+      "line": 39,
+      "endLine": 41,
+      "signature": "findOlderThan(date: Date): FindCursor<IReadReceipt>",
+      "containerClass": "ReadReceiptsRaw",
+      "calls": [
+        {
+          "name": "find",
+          "edgeType": "call"
+        },
+        {
+          "name": "FindCursor",
+          "edgeType": "type"
+        },
+        {
+          "name": "IReadReceipt",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "constructor",
+      "exported": true,
+      "qualifiedName": "ReadReceiptsRaw.constructor",
+      "line": 7,
+      "endLine": 9,
+      "signature": "constructor(db: Db)",
+      "containerClass": "ReadReceiptsRaw",
+      "calls": [
+        {
+          "name": "Db",
+          "edgeType": "type"
+        }
+      ]
+    }
+  ],
+  "imports": [
+    {
+      "module": "@rocket.chat/core-typings",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/model-typings",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/models",
+      "resolved": "external"
+    },
+    {
+      "module": "mongodb",
+      "resolved": "external"
+    }
+  ]
+}

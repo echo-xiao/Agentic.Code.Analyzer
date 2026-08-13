@@ -1,0 +1,65 @@
+{
+  "sourcePath": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/server/services/device-management/service.ts",
+  "symbols": [
+    {
+      "type": "class",
+      "name": "DeviceManagementService",
+      "exported": true,
+      "line": 7,
+      "endLine": 23,
+      "signature": "export class DeviceManagementService extends ServiceClassInternal implements IDeviceManagementService",
+      "calls": [
+        {
+          "name": "ServiceClassInternal",
+          "edgeType": "type"
+        },
+        {
+          "name": "IDeviceManagementService",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "constructor",
+      "exported": true,
+      "qualifiedName": "DeviceManagementService.constructor",
+      "line": 10,
+      "endLine": 22,
+      "signature": "constructor()",
+      "containerClass": "DeviceManagementService",
+      "calls": [
+        {
+          "name": "onEvent",
+          "edgeType": "call"
+        },
+        {
+          "name": "device-login",
+          "edgeType": "event_emit"
+        },
+        {
+          "name": "getHeader",
+          "edgeType": "call"
+        }
+      ]
+    }
+  ],
+  "imports": [
+    {
+      "module": "@rocket.chat/core-services",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/core-services",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/tools",
+      "resolved": "external"
+    },
+    {
+      "module": "./events",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/server/services/device-management/events.ts"
+    }
+  ]
+}

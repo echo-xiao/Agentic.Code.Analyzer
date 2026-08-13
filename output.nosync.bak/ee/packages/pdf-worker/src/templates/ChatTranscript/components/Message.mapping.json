@@ -1,0 +1,165 @@
+{
+  "sourcePath": "/Users/echoooooo/Desktop/code/Rocket.Chat/ee/packages/pdf-worker/src/templates/ChatTranscript/components/Message.tsx",
+  "symbols": [
+    {
+      "type": "variable_function",
+      "name": "processMd",
+      "exported": false,
+      "line": 27,
+      "endLine": 32,
+      "signature": "(message: PDFMessage) =>",
+      "calls": [
+        {
+          "name": "map",
+          "edgeType": "call"
+        },
+        {
+          "name": "splitByTens",
+          "edgeType": "call"
+        },
+        {
+          "name": "isSystemMessage",
+          "edgeType": "call"
+        },
+        {
+          "name": "View",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "Markup",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "index",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "PDFMessage",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "variable_function",
+      "name": "processMessage",
+      "exported": false,
+      "line": 34,
+      "endLine": 52,
+      "signature": "(message: PDFMessage) =>",
+      "calls": [
+        {
+          "name": "markupEntriesGreaterThan10",
+          "edgeType": "call"
+        },
+        {
+          "name": "processMd",
+          "edgeType": "call"
+        },
+        {
+          "name": "isSystemMessage",
+          "edgeType": "call"
+        },
+        {
+          "name": "View",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "Markup",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "Text",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "PDFMessage",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "variable_function",
+      "name": "Message",
+      "exported": false,
+      "line": 38,
+      "endLine": 48,
+      "signature": "({ message, invalidFileMessage }: { message: PDFMessage; invalidFileMessage: string }) =>",
+      "calls": [
+        {
+          "name": "messageLongerThanPage",
+          "edgeType": "call"
+        },
+        {
+          "name": "processMessage",
+          "edgeType": "call"
+        },
+        {
+          "name": "View",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "Divider",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "MessageHeader",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "Quotes",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "Files",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "invalidFileMessage",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "PDFMessage",
+          "edgeType": "type"
+        }
+      ]
+    }
+  ],
+  "imports": [
+    {
+      "module": "@react-pdf/renderer",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/fuselage-tokens/typography.json",
+      "resolved": "external"
+    },
+    {
+      "module": "../../../types/ChatTranscriptData",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/ee/packages/pdf-worker/src/types/ChatTranscriptData.ts"
+    },
+    {
+      "module": "../markup",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/ee/packages/pdf-worker/src/templates/ChatTranscript/markup/index.tsx"
+    },
+    {
+      "module": "./Divider",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/ee/packages/pdf-worker/src/templates/ChatTranscript/components/Divider.tsx"
+    },
+    {
+      "module": "./Files",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/ee/packages/pdf-worker/src/templates/ChatTranscript/components/Files.tsx"
+    },
+    {
+      "module": "./MessageHeader",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/ee/packages/pdf-worker/src/templates/ChatTranscript/components/MessageHeader.tsx"
+    },
+    {
+      "module": "./Quotes",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/ee/packages/pdf-worker/src/templates/ChatTranscript/components/Quotes.tsx"
+    },
+    {
+      "module": "./utils",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/ee/packages/pdf-worker/src/templates/ChatTranscript/components/utils.ts"
+    }
+  ]
+}

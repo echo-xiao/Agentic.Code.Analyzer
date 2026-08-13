@@ -1,0 +1,211 @@
+{
+  "sourcePath": "/Users/echoooooo/Desktop/code/Rocket.Chat/packages/apps/src/server/managers/AppLicenseManager.ts",
+  "symbols": [
+    {
+      "type": "class",
+      "name": "AppLicenseManager",
+      "exported": true,
+      "line": 14,
+      "endLine": 99,
+      "signature": "export class AppLicenseManager",
+      "calls": []
+    },
+    {
+      "type": "method",
+      "name": "validate",
+      "exported": true,
+      "qualifiedName": "AppLicenseManager.validate",
+      "line": 24,
+      "endLine": 54,
+      "signature": "public async validate(validationResult: AppLicenseValidationResult, appMarketplaceInfo?: IMarketplaceInfo[]): Promise<void>",
+      "containerClass": "AppLicenseManager",
+      "calls": [
+        {
+          "name": "setValidated",
+          "edgeType": "call"
+        },
+        {
+          "name": "addError",
+          "edgeType": "call"
+        },
+        {
+          "name": "decryptLicense",
+          "edgeType": "call"
+        },
+        {
+          "name": "validateV1",
+          "edgeType": "call"
+        },
+        {
+          "name": "InvalidLicenseError",
+          "edgeType": "new"
+        },
+        {
+          "name": "AppLicenseValidationResult",
+          "edgeType": "type"
+        },
+        {
+          "name": "IMarketplaceInfo",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "validateV1",
+      "exported": true,
+      "qualifiedName": "AppLicenseManager.validateV1",
+      "line": 28,
+      "endLine": 70,
+      "signature": "private async validateV1( appMarketplaceInfo: IMarketplaceInfo, license: any, validationResult: AppLicenseValidationResult, ): Promise<void>",
+      "containerClass": "AppLicenseManager",
+      "calls": [
+        {
+          "name": "find",
+          "edgeType": "call"
+        },
+        {
+          "name": "addError",
+          "edgeType": "call"
+        },
+        {
+          "name": "getActiveUserCount",
+          "edgeType": "call"
+        },
+        {
+          "name": "addWarning",
+          "edgeType": "call"
+        },
+        {
+          "name": "Date",
+          "edgeType": "new"
+        },
+        {
+          "name": "InvalidLicenseError",
+          "edgeType": "new"
+        },
+        {
+          "name": "IMarketplaceInfo",
+          "edgeType": "type"
+        },
+        {
+          "name": "AppLicenseValidationResult",
+          "edgeType": "type"
+        },
+        {
+          "name": "UserBridge",
+          "edgeType": "type"
+        },
+        {
+          "name": "IInternalUserBridge",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "constructor",
+      "exported": true,
+      "qualifiedName": "AppLicenseManager.constructor",
+      "line": 19,
+      "endLine": 22,
+      "signature": "constructor(private readonly manager: AppManager)",
+      "containerClass": "AppLicenseManager",
+      "calls": [
+        {
+          "name": "getInternalBridge",
+          "edgeType": "call"
+        },
+        {
+          "name": "getBridges",
+          "edgeType": "call"
+        },
+        {
+          "name": "getUserBridge",
+          "edgeType": "call"
+        },
+        {
+          "name": "Crypto",
+          "edgeType": "new"
+        },
+        {
+          "name": "AppManager",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "class_property",
+      "name": "crypto",
+      "exported": true,
+      "qualifiedName": "AppLicenseManager.crypto",
+      "line": 15,
+      "endLine": 15,
+      "signature": "private readonly crypto: Crypto;",
+      "containerClass": "AppLicenseManager",
+      "calls": [
+        {
+          "name": "Crypto",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "class_property",
+      "name": "userBridge",
+      "exported": true,
+      "qualifiedName": "AppLicenseManager.userBridge",
+      "line": 17,
+      "endLine": 17,
+      "signature": "private readonly userBridge: UserBridge;",
+      "containerClass": "AppLicenseManager",
+      "calls": [
+        {
+          "name": "UserBridge",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "enum",
+      "name": "LicenseVersion",
+      "line": 10,
+      "endLine": 12,
+      "signature": "enum LicenseVersion"
+    }
+  ],
+  "imports": [
+    {
+      "module": "../AppManager",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/packages/apps/src/server/AppManager.ts"
+    },
+    {
+      "module": "../bridges",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/packages/apps/src/server/bridges/index.ts"
+    },
+    {
+      "module": "../bridges/IInternalUserBridge",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/packages/apps/src/server/bridges/IInternalUserBridge.ts"
+    },
+    {
+      "module": "../errors",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/packages/apps/src/server/errors/index.ts"
+    },
+    {
+      "module": "../marketplace",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/packages/apps/src/server/marketplace/index.ts"
+    },
+    {
+      "module": "../marketplace/MarketplacePurchaseType",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/packages/apps/src/server/marketplace/MarketplacePurchaseType.ts"
+    },
+    {
+      "module": "../marketplace/license",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/packages/apps/src/server/marketplace/license/index.ts"
+    },
+    {
+      "module": "../marketplace/license",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/packages/apps/src/server/marketplace/license/index.ts"
+    }
+  ]
+}

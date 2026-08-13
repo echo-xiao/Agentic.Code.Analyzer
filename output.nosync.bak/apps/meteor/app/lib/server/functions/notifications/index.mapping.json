@@ -1,0 +1,95 @@
+{
+  "sourcePath": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/app/lib/server/functions/notifications/index.ts",
+  "symbols": [
+    {
+      "type": "function",
+      "name": "parseMessageTextPerUser",
+      "exported": true,
+      "line": 14,
+      "endLine": 32,
+      "signature": "export async function parseMessageTextPerUser( messageText: string, message: Pick<IMessage, 'u' | 'msg' | 't' | 'attachments'>, receiver: Pick<IUser, 'language'>, ): Promise<string>",
+      "calls": [
+        {
+          "name": "get",
+          "edgeType": "call"
+        },
+        {
+          "name": "isFileAttachment",
+          "edgeType": "call"
+        },
+        {
+          "name": "isFileImageAttachment",
+          "edgeType": "call"
+        },
+        {
+          "name": "renderNotification",
+          "edgeType": "event_emit"
+        },
+        {
+          "name": "IMessage",
+          "edgeType": "type"
+        },
+        {
+          "name": "IUser",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "function",
+      "name": "replaceMentionedUsernamesWithFullNames",
+      "exported": true,
+      "line": 30,
+      "endLine": 37,
+      "signature": "export function replaceMentionedUsernamesWithFullNames(message: string, mentions: NonNullable<IMessage['mentions']>): string",
+      "calls": [
+        {
+          "name": "forEach",
+          "edgeType": "call"
+        },
+        {
+          "name": "replace",
+          "edgeType": "call"
+        },
+        {
+          "name": "escapeRegExp",
+          "edgeType": "call"
+        },
+        {
+          "name": "RegExp",
+          "edgeType": "new"
+        },
+        {
+          "name": "IMessage",
+          "edgeType": "type"
+        }
+      ]
+    }
+  ],
+  "imports": [
+    {
+      "module": "@rocket.chat/core-typings",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/core-typings",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/string-helpers",
+      "resolved": "external"
+    },
+    {
+      "module": "../../../../../server/lib/callbacks",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/server/lib/callbacks.ts"
+    },
+    {
+      "module": "../../../../../server/lib/i18n",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/server/lib/i18n.ts"
+    },
+    {
+      "module": "../../../../settings/server",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/app/settings/server/index.ts"
+    }
+  ]
+}

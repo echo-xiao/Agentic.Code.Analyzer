@@ -1,0 +1,80 @@
+{
+  "sourcePath": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/server/services/messages/hooks/BeforeSaveSpotify.ts",
+  "symbols": [
+    {
+      "type": "class",
+      "name": "BeforeSaveSpotify",
+      "exported": true,
+      "line": 4,
+      "endLine": 38,
+      "signature": "export class BeforeSaveSpotify",
+      "calls": []
+    },
+    {
+      "type": "method",
+      "name": "convertSpotifyLinks",
+      "exported": true,
+      "qualifiedName": "BeforeSaveSpotify.convertSpotifyLinks",
+      "line": 5,
+      "endLine": 37,
+      "signature": "async convertSpotifyLinks({ message }: { message: IMessage }): Promise<IMessage>",
+      "containerClass": "BeforeSaveSpotify",
+      "calls": [
+        {
+          "name": "trim",
+          "edgeType": "call"
+        },
+        {
+          "name": "isArray",
+          "edgeType": "call"
+        },
+        {
+          "name": "split",
+          "edgeType": "call"
+        },
+        {
+          "name": "test",
+          "edgeType": "call"
+        },
+        {
+          "name": "exec",
+          "edgeType": "call"
+        },
+        {
+          "name": "filter",
+          "edgeType": "call"
+        },
+        {
+          "name": "slice",
+          "edgeType": "call"
+        },
+        {
+          "name": "join",
+          "edgeType": "call"
+        },
+        {
+          "name": "map",
+          "edgeType": "call"
+        },
+        {
+          "name": "encodeURI",
+          "edgeType": "call"
+        },
+        {
+          "name": "push",
+          "edgeType": "call"
+        },
+        {
+          "name": "IMessage",
+          "edgeType": "type"
+        }
+      ]
+    }
+  ],
+  "imports": [
+    {
+      "module": "@rocket.chat/core-typings",
+      "resolved": "external"
+    }
+  ]
+}

@@ -1,0 +1,44 @@
+{
+  "sourcePath": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/tests/e2e/utils/omnichannel/businessHours.ts",
+  "symbols": [
+    {
+      "type": "variable_function",
+      "name": "createBusinessHour",
+      "exported": true,
+      "line": 10,
+      "endLine": 36,
+      "signature": "async (api: BaseTest['api'], { name, departments = [] }: CreateBusinessHoursParams = {}) =>",
+      "calls": [
+        {
+          "name": "join",
+          "edgeType": "call"
+        },
+        {
+          "name": "post",
+          "edgeType": "call"
+        },
+        {
+          "name": "BaseTest",
+          "edgeType": "type"
+        },
+        {
+          "name": "CreateBusinessHoursParams",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "type",
+      "name": "CreateBusinessHoursParams",
+      "line": 3,
+      "endLine": 8,
+      "signature": "type CreateBusinessHoursParams ="
+    }
+  ],
+  "imports": [
+    {
+      "module": "../test",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/tests/e2e/utils/test.ts"
+    }
+  ]
+}

@@ -1,0 +1,73 @@
+{
+  "sourcePath": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/server/lib/cloud/syncWorkspace/index.ts",
+  "symbols": [
+    {
+      "type": "function",
+      "name": "syncWorkspace",
+      "exported": true,
+      "line": 14,
+      "endLine": 56,
+      "signature": "export async function syncWorkspace()",
+      "calls": [
+        {
+          "name": "announcementSync",
+          "edgeType": "call"
+        },
+        {
+          "name": "syncCloudData",
+          "edgeType": "call"
+        },
+        {
+          "name": "info",
+          "edgeType": "call"
+        },
+        {
+          "name": "isAbortError",
+          "edgeType": "call"
+        },
+        {
+          "name": "error",
+          "edgeType": "call"
+        },
+        {
+          "name": "legacySyncWorkspace",
+          "edgeType": "call"
+        },
+        {
+          "name": "reset",
+          "edgeType": "call"
+        }
+      ]
+    }
+  ],
+  "imports": [
+    {
+      "module": "../../../../lib/errors/CloudWorkspaceRegistrationError",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/lib/errors/CloudWorkspaceRegistrationError.ts"
+    },
+    {
+      "module": "../../logger/system",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/server/lib/logger/system.ts"
+    },
+    {
+      "module": "../getWorkspaceAccessToken",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/server/lib/cloud/getWorkspaceAccessToken.ts"
+    },
+    {
+      "module": "./announcementSync",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/server/lib/cloud/syncWorkspace/announcementSync.ts"
+    },
+    {
+      "module": "./legacySyncWorkspace",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/server/lib/cloud/syncWorkspace/legacySyncWorkspace.ts"
+    },
+    {
+      "module": "./syncCloudData",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/server/lib/cloud/syncWorkspace/syncCloudData.ts"
+    },
+    {
+      "module": "../supportedVersionsToken/supportedVersionsToken",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/server/lib/cloud/supportedVersionsToken/supportedVersionsToken.ts"
+    }
+  ]
+}

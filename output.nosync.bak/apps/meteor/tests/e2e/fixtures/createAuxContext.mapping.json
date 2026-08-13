@@ -1,0 +1,53 @@
+{
+  "sourcePath": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/tests/e2e/fixtures/createAuxContext.ts",
+  "symbols": [
+    {
+      "type": "variable_function",
+      "name": "createAuxContext",
+      "exported": true,
+      "line": 5,
+      "endLine": 19,
+      "signature": "async ( browser: Browser, userState: IUserState, route = '/', waitForMainContent = true, ): Promise<{ page: Page }> =>",
+      "calls": [
+        {
+          "name": "newPage",
+          "edgeType": "call"
+        },
+        {
+          "name": "goto",
+          "edgeType": "call"
+        },
+        {
+          "name": "waitFor",
+          "edgeType": "call"
+        },
+        {
+          "name": "locator",
+          "edgeType": "call"
+        },
+        {
+          "name": "Browser",
+          "edgeType": "type"
+        },
+        {
+          "name": "IUserState",
+          "edgeType": "type"
+        },
+        {
+          "name": "Page",
+          "edgeType": "type"
+        }
+      ]
+    }
+  ],
+  "imports": [
+    {
+      "module": "@playwright/test",
+      "resolved": "external"
+    },
+    {
+      "module": "./userStates",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/tests/e2e/fixtures/userStates.ts"
+    }
+  ]
+}

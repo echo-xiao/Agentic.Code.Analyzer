@@ -1,0 +1,197 @@
+{
+  "sourcePath": "/Users/echoooooo/Desktop/code/Rocket.Chat/packages/ui-client/src/providers/ModalProvider/ModalStore.ts",
+  "symbols": [
+    {
+      "type": "class",
+      "name": "ModalStore",
+      "exported": false,
+      "line": 11,
+      "endLine": 61,
+      "signature": "class ModalStore extends Emitter<",
+      "calls": [
+        {
+          "name": "Emitter",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "update",
+      "exported": false,
+      "qualifiedName": "ModalStore.update",
+      "line": 14,
+      "endLine": 16,
+      "signature": "update(): void",
+      "containerClass": "ModalStore",
+      "calls": [
+        {
+          "name": "update",
+          "edgeType": "event_emit"
+        }
+      ]
+    },
+    {
+      "type": "class_property",
+      "name": "modalStack",
+      "exported": false,
+      "qualifiedName": "ModalStore.modalStack",
+      "line": 12,
+      "endLine": 12,
+      "signature": "private modalStack: ModalWithRegion[] = [];",
+      "containerClass": "ModalStore",
+      "calls": [
+        {
+          "name": "ModalWithRegion",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "class_property",
+      "name": "open",
+      "exported": false,
+      "qualifiedName": "ModalStore.open",
+      "line": 19,
+      "endLine": 30,
+      "signature": "open = (node: ReactNode, region?: symbol): ModalInstance =>",
+      "containerClass": "ModalStore",
+      "calls": [
+        {
+          "name": "update",
+          "edgeType": "call"
+        },
+        {
+          "name": "filter",
+          "edgeType": "call"
+        },
+        {
+          "name": "ReactNode",
+          "edgeType": "type"
+        },
+        {
+          "name": "ModalInstance",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "class_property",
+      "name": "push",
+      "exported": false,
+      "qualifiedName": "ModalStore.push",
+      "line": 32,
+      "endLine": 43,
+      "signature": "push = (node: ReactNode, region?: symbol): ModalInstance =>",
+      "containerClass": "ModalStore",
+      "calls": [
+        {
+          "name": "update",
+          "edgeType": "call"
+        },
+        {
+          "name": "filter",
+          "edgeType": "call"
+        },
+        {
+          "name": "ReactNode",
+          "edgeType": "type"
+        },
+        {
+          "name": "ModalInstance",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "class_property",
+      "name": "close",
+      "exported": false,
+      "qualifiedName": "ModalStore.close",
+      "line": 45,
+      "endLine": 48,
+      "signature": "close = (): void =>",
+      "containerClass": "ModalStore",
+      "calls": [
+        {
+          "name": "slice",
+          "edgeType": "call"
+        },
+        {
+          "name": "update",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "class_property",
+      "name": "subscribe",
+      "exported": false,
+      "qualifiedName": "ModalStore.subscribe",
+      "line": 50,
+      "endLine": 54,
+      "signature": "subscribe = (cb: () => void): (() => void) =>",
+      "containerClass": "ModalStore",
+      "calls": [
+        {
+          "name": "cb",
+          "edgeType": "event_listen",
+          "event": "update"
+        },
+        {
+          "name": "off",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "class_property",
+      "name": "getSnapshot",
+      "exported": false,
+      "qualifiedName": "ModalStore.getSnapshot",
+      "line": 56,
+      "endLine": 56,
+      "signature": "getSnapshot = (): ModalWithRegion | null => this.current;",
+      "containerClass": "ModalStore",
+      "calls": [
+        {
+          "name": "ModalWithRegion",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "variable",
+      "name": "modalStore",
+      "exported": true,
+      "line": 63,
+      "endLine": 63,
+      "signature": "modalStore = new ModalStore()",
+      "calls": []
+    },
+    {
+      "type": "type",
+      "name": "ModalInstance",
+      "line": 4,
+      "endLine": 7,
+      "signature": "type ModalInstance ="
+    },
+    {
+      "type": "type",
+      "name": "ModalWithRegion",
+      "line": 9,
+      "endLine": 9,
+      "signature": "type ModalWithRegion ="
+    }
+  ],
+  "imports": [
+    {
+      "module": "@rocket.chat/emitter",
+      "resolved": "external"
+    },
+    {
+      "module": "react",
+      "resolved": "external"
+    }
+  ]
+}

@@ -1,0 +1,45 @@
+{
+  "sourcePath": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/client/views/omnichannel/directory/hooks/usePriorityInfo.ts",
+  "symbols": [
+    {
+      "type": "variable_function",
+      "name": "usePriorityInfo",
+      "exported": true,
+      "line": 6,
+      "endLine": 15,
+      "signature": "(priorityId: string) =>",
+      "calls": [
+        {
+          "name": "useOmnichannelPriorities",
+          "edgeType": "call"
+        },
+        {
+          "name": "useEndpoint",
+          "edgeType": "call"
+        },
+        {
+          "name": "useQuery",
+          "edgeType": "call"
+        },
+        {
+          "name": "getPriority",
+          "edgeType": "call"
+        }
+      ]
+    }
+  ],
+  "imports": [
+    {
+      "module": "@rocket.chat/ui-contexts",
+      "resolved": "external"
+    },
+    {
+      "module": "@tanstack/react-query",
+      "resolved": "external"
+    },
+    {
+      "module": "../../hooks/useOmnichannelPriorities",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/client/views/omnichannel/hooks/useOmnichannelPriorities.ts"
+    }
+  ]
+}

@@ -1,0 +1,141 @@
+{
+  "sourcePath": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/client/views/room/hooks/useUserInfoActions/actions/useAddUserAction.ts",
+  "symbols": [
+    {
+      "type": "variable_function",
+      "name": "useAddUserAction",
+      "exported": true,
+      "line": 25,
+      "endLine": 99,
+      "signature": "( user: Pick<IUser, '_id' | 'username'>, rid: IRoom['_id'], reload?: () => void, ): UserInfoAction | undefined =>",
+      "calls": [
+        {
+          "name": "useTranslation",
+          "edgeType": "call"
+        },
+        {
+          "name": "useUserRoom",
+          "edgeType": "call"
+        },
+        {
+          "name": "useUser",
+          "edgeType": "call"
+        },
+        {
+          "name": "useUserSubscription",
+          "edgeType": "call"
+        },
+        {
+          "name": "useToastMessageDispatch",
+          "edgeType": "call"
+        },
+        {
+          "name": "useAtLeastOnePermission",
+          "edgeType": "call"
+        },
+        {
+          "name": "useMemo",
+          "edgeType": "call"
+        },
+        {
+          "name": "isRoomFederated",
+          "edgeType": "call"
+        },
+        {
+          "name": "isRoomNativeFederated",
+          "edgeType": "call"
+        },
+        {
+          "name": "isEditableByTheUser",
+          "edgeType": "call"
+        },
+        {
+          "name": "getRoomDirectives",
+          "edgeType": "call"
+        },
+        {
+          "name": "useEndpoint",
+          "edgeType": "call"
+        },
+        {
+          "name": "useStableCallback",
+          "edgeType": "call"
+        },
+        {
+          "name": "inviteUser",
+          "edgeType": "call"
+        },
+        {
+          "name": "reload",
+          "edgeType": "call"
+        },
+        {
+          "name": "useAddMatrixUsers",
+          "edgeType": "call"
+        },
+        {
+          "name": "mutate",
+          "edgeType": "call"
+        },
+        {
+          "name": "handleAddUser",
+          "edgeType": "call"
+        },
+        {
+          "name": "dispatchToastMessage",
+          "edgeType": "call"
+        },
+        {
+          "name": "IUser",
+          "edgeType": "type"
+        },
+        {
+          "name": "IRoom",
+          "edgeType": "type"
+        },
+        {
+          "name": "UserInfoAction",
+          "edgeType": "type"
+        }
+      ]
+    }
+  ],
+  "imports": [
+    {
+      "module": "@rocket.chat/core-typings",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/core-typings",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/fuselage-hooks",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/ui-contexts",
+      "resolved": "external"
+    },
+    {
+      "module": "react",
+      "resolved": "external"
+    },
+    {
+      "module": "../../../../../lib/federation/Federation",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/client/lib/federation/Federation.ts"
+    },
+    {
+      "module": "../../../contextualBar/RoomMembers/AddUsers/AddMatrixUsers/useAddMatrixUsers",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/client/views/room/contextualBar/RoomMembers/AddUsers/AddMatrixUsers/useAddMatrixUsers.tsx"
+    },
+    {
+      "module": "../../../lib/getRoomDirectives",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/client/views/room/lib/getRoomDirectives.ts"
+    },
+    {
+      "module": "../useUserInfoActions",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/client/views/room/hooks/useUserInfoActions/useUserInfoActions.ts"
+    }
+  ]
+}

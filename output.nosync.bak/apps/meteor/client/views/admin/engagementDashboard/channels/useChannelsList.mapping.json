@@ -1,0 +1,64 @@
+{
+  "sourcePath": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/client/views/admin/engagementDashboard/channels/useChannelsList.ts",
+  "symbols": [
+    {
+      "type": "variable_function",
+      "name": "useChannelsList",
+      "exported": true,
+      "line": 14,
+      "endLine": 43,
+      "signature": "({ period, offset, count }: UseChannelsListOptions) =>",
+      "calls": [
+        {
+          "name": "useEndpoint",
+          "edgeType": "call"
+        },
+        {
+          "name": "useQuery",
+          "edgeType": "call"
+        },
+        {
+          "name": "getPeriodRange",
+          "edgeType": "call"
+        },
+        {
+          "name": "getChannelsList",
+          "edgeType": "call"
+        },
+        {
+          "name": "toISOString",
+          "edgeType": "call"
+        },
+        {
+          "name": "UseChannelsListOptions",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "type",
+      "name": "UseChannelsListOptions",
+      "line": 7,
+      "endLine": 11,
+      "signature": "type UseChannelsListOptions ="
+    }
+  ],
+  "imports": [
+    {
+      "module": "@rocket.chat/ui-contexts",
+      "resolved": "external"
+    },
+    {
+      "module": "@tanstack/react-query",
+      "resolved": "external"
+    },
+    {
+      "module": "../../../../components/dashboards/periods",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/client/components/dashboards/periods.ts"
+    },
+    {
+      "module": "../../../../components/dashboards/periods",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/client/components/dashboards/periods.ts"
+    }
+  ]
+}

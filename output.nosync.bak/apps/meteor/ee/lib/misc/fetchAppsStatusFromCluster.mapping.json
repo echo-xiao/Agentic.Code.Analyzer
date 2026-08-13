@@ -1,0 +1,53 @@
+{
+  "sourcePath": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/ee/lib/misc/fetchAppsStatusFromCluster.ts",
+  "symbols": [
+    {
+      "type": "function",
+      "name": "fetchAppsStatusFromCluster",
+      "exported": true,
+      "line": 6,
+      "endLine": 24,
+      "signature": "export async function fetchAppsStatusFromCluster()",
+      "calls": [
+        {
+          "name": "isRunningMs",
+          "edgeType": "call"
+        },
+        {
+          "name": "getAppsStatusInNodes",
+          "edgeType": "call"
+        },
+        {
+          "name": "getAppsStatusInInstances",
+          "edgeType": "call"
+        },
+        {
+          "name": "forEach",
+          "edgeType": "call"
+        },
+        {
+          "name": "values",
+          "edgeType": "call"
+        },
+        {
+          "name": "sort",
+          "edgeType": "call"
+        }
+      ]
+    }
+  ],
+  "imports": [
+    {
+      "module": "@rocket.chat/core-services",
+      "resolved": "external"
+    },
+    {
+      "module": "../../../server/lib/isRunningMs",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/server/lib/isRunningMs.ts"
+    },
+    {
+      "module": "../../server/sdk",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/ee/server/sdk/index.ts"
+    }
+  ]
+}

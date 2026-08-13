@@ -1,0 +1,59 @@
+{
+  "sourcePath": "/Users/echoooooo/Desktop/code/Rocket.Chat/packages/apps/base-runtime/src/handlers/tests/helpers/mod.ts",
+  "symbols": [
+    {
+      "type": "function",
+      "name": "createMockRequest",
+      "exported": true,
+      "line": 7,
+      "endLine": 18,
+      "signature": "export function createMockRequest({ method, params }: RequestDescriptor): RequestContext",
+      "calls": [
+        {
+          "name": "Logger",
+          "edgeType": "new"
+        },
+        {
+          "name": "RequestDescriptor",
+          "edgeType": "type"
+        },
+        {
+          "name": "RequestContext",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "function",
+      "name": "createMockApp",
+      "exported": true,
+      "line": 11,
+      "endLine": 20,
+      "signature": "export function createMockApp(): App",
+      "calls": [
+        {
+          "name": "App",
+          "edgeType": "type"
+        }
+      ]
+    }
+  ],
+  "imports": [
+    {
+      "module": "@rocket.chat/apps-engine/definition/App",
+      "resolved": "external"
+    },
+    {
+      "module": "../../../lib/logger",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/packages/apps/base-runtime/src/lib/logger.ts"
+    },
+    {
+      "module": "../../../lib/messenger",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/packages/apps/base-runtime/src/lib/messenger.ts"
+    },
+    {
+      "module": "../../../lib/requestContext",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/packages/apps/base-runtime/src/lib/requestContext.ts"
+    }
+  ]
+}

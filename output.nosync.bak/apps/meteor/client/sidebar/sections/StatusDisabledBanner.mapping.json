@@ -1,0 +1,56 @@
+{
+  "sourcePath": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/client/sidebar/sections/StatusDisabledBanner.tsx",
+  "symbols": [
+    {
+      "type": "variable_function",
+      "name": "StatusDisabledSection",
+      "exported": false,
+      "line": 8,
+      "endLine": 20,
+      "signature": "({ onDismiss }: StatusDisabledSectionProps) =>",
+      "calls": [
+        {
+          "name": "useTranslation",
+          "edgeType": "call"
+        },
+        {
+          "name": "useStatusDisabledModal",
+          "edgeType": "call"
+        },
+        {
+          "name": "SidebarV2Banner",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "onDismiss",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "StatusDisabledSectionProps",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "type",
+      "name": "StatusDisabledSectionProps",
+      "line": 6,
+      "endLine": 6,
+      "signature": "export type StatusDisabledSectionProps ="
+    }
+  ],
+  "imports": [
+    {
+      "module": "@rocket.chat/fuselage",
+      "resolved": "external"
+    },
+    {
+      "module": "react-i18next",
+      "resolved": "external"
+    },
+    {
+      "module": "../../views/admin/customUserStatus/hooks/useStatusDisabledModal",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/client/views/admin/customUserStatus/hooks/useStatusDisabledModal.tsx"
+    }
+  ]
+}

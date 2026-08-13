@@ -1,0 +1,41 @@
+{
+  "sourcePath": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/client/hooks/quickActions/useOnHoldChatQuickAction.ts",
+  "symbols": [
+    {
+      "type": "variable_function",
+      "name": "useOnHoldChatQuickAction",
+      "exported": true,
+      "line": 6,
+      "endLine": 22,
+      "signature": "(): QuickActionsActionConfig | undefined =>",
+      "calls": [
+        {
+          "name": "useHasLicenseModule",
+          "edgeType": "call"
+        },
+        {
+          "name": "useMemo",
+          "edgeType": "call"
+        },
+        {
+          "name": "QuickActionsActionConfig",
+          "edgeType": "type"
+        }
+      ]
+    }
+  ],
+  "imports": [
+    {
+      "module": "react",
+      "resolved": "external"
+    },
+    {
+      "module": "../../views/room/lib/quickActions",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/client/views/room/lib/quickActions.tsx"
+    },
+    {
+      "module": "../useHasLicenseModule",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/client/hooks/useHasLicenseModule.ts"
+    }
+  ]
+}

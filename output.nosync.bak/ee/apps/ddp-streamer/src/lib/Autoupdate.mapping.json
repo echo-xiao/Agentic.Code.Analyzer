@@ -1,0 +1,93 @@
+{
+  "sourcePath": "/Users/echoooooo/Desktop/code/Rocket.Chat/ee/apps/ddp-streamer/src/lib/Autoupdate.ts",
+  "symbols": [
+    {
+      "type": "class",
+      "name": "AutoupdateSingleton",
+      "exported": false,
+      "line": 5,
+      "endLine": 18,
+      "signature": "class AutoupdateSingleton extends EventEmitter",
+      "calls": []
+    },
+    {
+      "type": "method",
+      "name": "updateVersion",
+      "exported": false,
+      "qualifiedName": "AutoupdateSingleton.updateVersion",
+      "line": 8,
+      "endLine": 13,
+      "signature": "public updateVersion(record: AutoUpdateRecord): void",
+      "containerClass": "AutoupdateSingleton",
+      "calls": [
+        {
+          "name": "set",
+          "edgeType": "call"
+        },
+        {
+          "name": "update",
+          "edgeType": "event_emit"
+        },
+        {
+          "name": "AutoUpdateRecord",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "getVersions",
+      "exported": false,
+      "qualifiedName": "AutoupdateSingleton.getVersions",
+      "line": 12,
+      "endLine": 14,
+      "signature": "public getVersions(): Map<string, Omit<AutoUpdateRecord, '_id'>>",
+      "containerClass": "AutoupdateSingleton",
+      "calls": [
+        {
+          "name": "AutoUpdateRecord",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "class_property",
+      "name": "versions",
+      "exported": false,
+      "qualifiedName": "AutoupdateSingleton.versions",
+      "line": 6,
+      "endLine": 6,
+      "signature": "private versions = new Map<string, Omit<AutoUpdateRecord, '_id'>>();",
+      "containerClass": "AutoupdateSingleton",
+      "calls": [
+        {
+          "name": "Map",
+          "edgeType": "new"
+        },
+        {
+          "name": "AutoUpdateRecord",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "variable",
+      "name": "Autoupdate",
+      "exported": true,
+      "line": 17,
+      "endLine": 17,
+      "signature": "Autoupdate = new AutoupdateSingleton()",
+      "calls": []
+    }
+  ],
+  "imports": [
+    {
+      "module": "events",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/core-services",
+      "resolved": "external"
+    }
+  ]
+}

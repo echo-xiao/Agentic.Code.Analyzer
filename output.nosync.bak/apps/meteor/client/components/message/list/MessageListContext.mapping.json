@@ -1,0 +1,425 @@
+{
+  "sourcePath": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/client/components/message/list/MessageListContext.tsx",
+  "symbols": [
+    {
+      "type": "variable",
+      "name": "messageListContextDefaultValue",
+      "exported": true,
+      "line": 47,
+      "endLine": 75,
+      "signature": "messageListContextDefaultValue: MessageListContextValue =",
+      "calls": []
+    },
+    {
+      "type": "variable",
+      "name": "MessageListContext",
+      "exported": true,
+      "line": 77,
+      "endLine": 77,
+      "signature": "MessageListContext = createContext<MessageListContextValue>(messageListContextDefaultValue)",
+      "calls": [
+        {
+          "name": "MessageListContextValue",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "variable_function",
+      "name": "useShowTranslated",
+      "exported": true,
+      "line": 79,
+      "endLine": 80,
+      "signature": "(...args) =>",
+      "calls": [
+        {
+          "name": "showAutoTranslate",
+          "edgeType": "call"
+        },
+        {
+          "name": "useContext",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "variable_function",
+      "name": "useShowStarred",
+      "exported": true,
+      "line": 81,
+      "endLine": 82,
+      "signature": "(...args) =>",
+      "calls": [
+        {
+          "name": "useShowStarred",
+          "edgeType": "call"
+        },
+        {
+          "name": "useContext",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "variable_function",
+      "name": "useShowFollowing",
+      "exported": true,
+      "line": 83,
+      "endLine": 84,
+      "signature": "(...args) =>",
+      "calls": [
+        {
+          "name": "useShowFollowing",
+          "edgeType": "call"
+        },
+        {
+          "name": "useContext",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "variable_function",
+      "name": "useMessageDateFormatter",
+      "exported": true,
+      "line": 85,
+      "endLine": 86,
+      "signature": "(...args) =>",
+      "calls": [
+        {
+          "name": "useMessageDateFormatter",
+          "edgeType": "call"
+        },
+        {
+          "name": "useContext",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "variable_function",
+      "name": "useMessageListShowRoles",
+      "exported": true,
+      "line": 87,
+      "endLine": 87,
+      "signature": "(): MessageListContextValue['showRoles'] =>",
+      "calls": [
+        {
+          "name": "useContext",
+          "edgeType": "call"
+        },
+        {
+          "name": "MessageListContextValue",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "variable_function",
+      "name": "useMessageListShowRealName",
+      "exported": true,
+      "line": 88,
+      "endLine": 88,
+      "signature": "(): MessageListContextValue['showRealName'] =>",
+      "calls": [
+        {
+          "name": "useContext",
+          "edgeType": "call"
+        },
+        {
+          "name": "MessageListContextValue",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "variable_function",
+      "name": "useMessageListShowUsername",
+      "exported": true,
+      "line": 89,
+      "endLine": 89,
+      "signature": "(): MessageListContextValue['showUsername'] =>",
+      "calls": [
+        {
+          "name": "useContext",
+          "edgeType": "call"
+        },
+        {
+          "name": "MessageListContextValue",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "variable_function",
+      "name": "useMessageListHighlights",
+      "exported": true,
+      "line": 90,
+      "endLine": 90,
+      "signature": "(): MessageListContextValue['highlights'] =>",
+      "calls": [
+        {
+          "name": "useContext",
+          "edgeType": "call"
+        },
+        {
+          "name": "MessageListContextValue",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "variable_function",
+      "name": "useMessageListJumpToMessageParam",
+      "exported": true,
+      "line": 91,
+      "endLine": 92,
+      "signature": "(): MessageListContextValue['jumpToMessageParam'] =>",
+      "calls": [
+        {
+          "name": "useContext",
+          "edgeType": "call"
+        },
+        {
+          "name": "MessageListContextValue",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "variable_function",
+      "name": "useUserHasReacted",
+      "exported": true,
+      "line": 94,
+      "endLine": 95,
+      "signature": "(message: IMessage) =>",
+      "calls": [
+        {
+          "name": "useUserHasReacted",
+          "edgeType": "call"
+        },
+        {
+          "name": "useContext",
+          "edgeType": "call"
+        },
+        {
+          "name": "IMessage",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "variable_function",
+      "name": "useOpenEmojiPicker",
+      "exported": true,
+      "line": 96,
+      "endLine": 97,
+      "signature": "(...args) =>",
+      "calls": [
+        {
+          "name": "useOpenEmojiPicker",
+          "edgeType": "call"
+        },
+        {
+          "name": "useContext",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "variable_function",
+      "name": "useMessageListShowColors",
+      "exported": true,
+      "line": 99,
+      "endLine": 99,
+      "signature": "(): MessageListContextValue['showColors'] =>",
+      "calls": [
+        {
+          "name": "useContext",
+          "edgeType": "call"
+        },
+        {
+          "name": "MessageListContextValue",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "variable_function",
+      "name": "useMessageListKatex",
+      "exported": true,
+      "line": 101,
+      "endLine": 101,
+      "signature": "(): MessageListContextValue['katex'] =>",
+      "calls": [
+        {
+          "name": "useContext",
+          "edgeType": "call"
+        },
+        {
+          "name": "MessageListContextValue",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "variable_function",
+      "name": "useMessageListReadReceipts",
+      "exported": true,
+      "line": 103,
+      "endLine": 103,
+      "signature": "(): MessageListContextValue['readReceipts'] =>",
+      "calls": [
+        {
+          "name": "useContext",
+          "edgeType": "call"
+        },
+        {
+          "name": "MessageListContextValue",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "variable_function",
+      "name": "useMessageListAutoTranslate",
+      "exported": true,
+      "line": 105,
+      "endLine": 105,
+      "signature": "(): MessageListContextValue['autoTranslate'] =>",
+      "calls": [
+        {
+          "name": "useContext",
+          "edgeType": "call"
+        },
+        {
+          "name": "MessageListContextValue",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "variable_function",
+      "name": "useMessageListOembedEnabled",
+      "exported": true,
+      "line": 107,
+      "endLine": 107,
+      "signature": "(): MessageListContextValue['apiEmbedEnabled'] =>",
+      "calls": [
+        {
+          "name": "useContext",
+          "edgeType": "call"
+        },
+        {
+          "name": "MessageListContextValue",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "variable_function",
+      "name": "useMessageListAutoLinkDomains",
+      "exported": true,
+      "line": 109,
+      "endLine": 110,
+      "signature": "(): MessageListContextValue['autoLinkDomains'] =>",
+      "calls": [
+        {
+          "name": "useContext",
+          "edgeType": "call"
+        },
+        {
+          "name": "MessageListContextValue",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "variable_function",
+      "name": "useMessageListFormatDateAndTime",
+      "exported": true,
+      "line": 112,
+      "endLine": 113,
+      "signature": "(): MessageListContextValue['formatDateAndTime'] =>",
+      "calls": [
+        {
+          "name": "useContext",
+          "edgeType": "call"
+        },
+        {
+          "name": "MessageListContextValue",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "variable_function",
+      "name": "useMessageListFormatTime",
+      "exported": true,
+      "line": 115,
+      "endLine": 115,
+      "signature": "(): MessageListContextValue['formatTime'] =>",
+      "calls": [
+        {
+          "name": "useContext",
+          "edgeType": "call"
+        },
+        {
+          "name": "MessageListContextValue",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "variable_function",
+      "name": "useMessageListFormatDate",
+      "exported": true,
+      "line": 116,
+      "endLine": 116,
+      "signature": "(): MessageListContextValue['formatDate'] =>",
+      "calls": [
+        {
+          "name": "useContext",
+          "edgeType": "call"
+        },
+        {
+          "name": "MessageListContextValue",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "type",
+      "name": "MessageListContextValue",
+      "line": 9,
+      "endLine": 45,
+      "signature": "export type MessageListContextValue ="
+    }
+  ],
+  "imports": [
+    {
+      "module": "@rocket.chat/core-typings",
+      "resolved": "external"
+    },
+    {
+      "module": "react",
+      "resolved": "external"
+    },
+    {
+      "module": "react",
+      "resolved": "external"
+    },
+    {
+      "module": "../../../hooks/useFormatDate",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/client/hooks/useFormatDate.ts"
+    },
+    {
+      "module": "../../../hooks/useFormatDateAndTime",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/client/hooks/useFormatDateAndTime.ts"
+    },
+    {
+      "module": "../../../hooks/useFormatTime",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/client/hooks/useFormatTime.ts"
+    }
+  ]
+}

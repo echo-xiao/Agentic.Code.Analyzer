@@ -1,0 +1,332 @@
+{
+  "sourcePath": "/Users/echoooooo/Desktop/code/Rocket.Chat/packages/core-services/src/types/ServiceClass.ts",
+  "symbols": [
+    {
+      "type": "class",
+      "name": "ServiceClass",
+      "exported": true,
+      "line": 55,
+      "endLine": 153,
+      "signature": "export abstract class ServiceClass implements IServiceClass",
+      "calls": [
+        {
+          "name": "IServiceClass",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "setApi",
+      "exported": true,
+      "qualifiedName": "ServiceClass.setApi",
+      "line": 72,
+      "endLine": 74,
+      "signature": "setApi(api: IApiService): void",
+      "containerClass": "ServiceClass",
+      "calls": [
+        {
+          "name": "IApiService",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "getEvents",
+      "exported": true,
+      "qualifiedName": "ServiceClass.getEvents",
+      "line": 76,
+      "endLine": 81,
+      "signature": "getEvents(): { eventName: keyof EventSignatures; listeners: { (...args: any[]): void }[] }[]",
+      "containerClass": "ServiceClass",
+      "calls": [
+        {
+          "name": "map",
+          "edgeType": "call"
+        },
+        {
+          "name": "eventNames",
+          "edgeType": "call"
+        },
+        {
+          "name": "rawListeners",
+          "edgeType": "call"
+        },
+        {
+          "name": "EventSignatures",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "removeAllListeners",
+      "exported": true,
+      "qualifiedName": "ServiceClass.removeAllListeners",
+      "line": 80,
+      "endLine": 83,
+      "signature": "removeAllListeners(): void",
+      "containerClass": "ServiceClass",
+      "calls": [
+        {
+          "name": "removeAllListeners",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "getName",
+      "exported": true,
+      "qualifiedName": "ServiceClass.getName",
+      "line": 84,
+      "endLine": 86,
+      "signature": "getName(): string",
+      "containerClass": "ServiceClass",
+      "calls": []
+    },
+    {
+      "type": "method",
+      "name": "isInternal",
+      "exported": true,
+      "qualifiedName": "ServiceClass.isInternal",
+      "line": 88,
+      "endLine": 90,
+      "signature": "isInternal(): boolean",
+      "containerClass": "ServiceClass",
+      "calls": []
+    },
+    {
+      "type": "method",
+      "name": "onEvent",
+      "exported": true,
+      "qualifiedName": "ServiceClass.onEvent",
+      "line": 96,
+      "endLine": 98,
+      "signature": "public onEvent<T extends keyof EventSignatures>(event: T, handler: EventSignatures[T]): void",
+      "containerClass": "ServiceClass",
+      "calls": [
+        {
+          "name": "EventSignatures",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "emit",
+      "exported": true,
+      "qualifiedName": "ServiceClass.emit",
+      "line": 100,
+      "endLine": 102,
+      "signature": "public emit<T extends keyof EventSignatures>(event: T, ...args: Parameters<EventSignatures[T]>): void",
+      "containerClass": "ServiceClass",
+      "calls": [
+        {
+          "name": "EventSignatures",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "registerEventListener",
+      "exported": true,
+      "qualifiedName": "ServiceClass.registerEventListener",
+      "line": 104,
+      "endLine": 116,
+      "signature": "private registerEventListener()",
+      "containerClass": "ServiceClass",
+      "calls": [
+        {
+          "name": "onEvent",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "onSettingChanged",
+      "exported": true,
+      "qualifiedName": "ServiceClass.onSettingChanged",
+      "line": 108,
+      "endLine": 126,
+      "signature": "public onSettingChanged( settingId: ISetting['_id'], cb: (data: { clientAction: ClientAction; setting: ISetting }) => Promise<void>, ignoreActions: ClientAction[] = ['removed'], ): void",
+      "containerClass": "ServiceClass",
+      "calls": [
+        {
+          "name": "registerEventListener",
+          "edgeType": "call"
+        },
+        {
+          "name": "includes",
+          "edgeType": "call"
+        },
+        {
+          "name": "cb",
+          "edgeType": "call"
+        },
+        {
+          "name": "ISetting",
+          "edgeType": "type"
+        },
+        {
+          "name": "ClientAction",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "created",
+      "exported": true,
+      "qualifiedName": "ServiceClass.created",
+      "line": 116,
+      "endLine": 118,
+      "signature": "async created(): Promise<void>",
+      "containerClass": "ServiceClass",
+      "calls": []
+    },
+    {
+      "type": "method",
+      "name": "started",
+      "exported": true,
+      "qualifiedName": "ServiceClass.started",
+      "line": 120,
+      "endLine": 122,
+      "signature": "async started(): Promise<void>",
+      "containerClass": "ServiceClass",
+      "calls": []
+    },
+    {
+      "type": "method",
+      "name": "stopped",
+      "exported": true,
+      "qualifiedName": "ServiceClass.stopped",
+      "line": 124,
+      "endLine": 126,
+      "signature": "async stopped(): Promise<void>",
+      "containerClass": "ServiceClass",
+      "calls": []
+    },
+    {
+      "type": "method",
+      "name": "constructor",
+      "exported": true,
+      "qualifiedName": "ServiceClass.constructor",
+      "line": 68,
+      "endLine": 70,
+      "signature": "constructor()",
+      "containerClass": "ServiceClass",
+      "calls": [
+        {
+          "name": "bind",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "class_property",
+      "name": "events",
+      "exported": true,
+      "qualifiedName": "ServiceClass.events",
+      "line": 58,
+      "endLine": 58,
+      "signature": "protected events = new EventEmitter();",
+      "containerClass": "ServiceClass",
+      "calls": [
+        {
+          "name": "EventEmitter",
+          "edgeType": "new"
+        }
+      ]
+    },
+    {
+      "type": "class_property",
+      "name": "settings",
+      "exported": true,
+      "qualifiedName": "ServiceClass.settings",
+      "line": 60,
+      "endLine": 60,
+      "signature": "protected settings = new EventEmitter();",
+      "containerClass": "ServiceClass",
+      "calls": [
+        {
+          "name": "EventEmitter",
+          "edgeType": "new"
+        }
+      ]
+    },
+    {
+      "type": "class_property",
+      "name": "api",
+      "exported": true,
+      "qualifiedName": "ServiceClass.api",
+      "line": 64,
+      "endLine": 64,
+      "signature": "protected api?: IApiService;",
+      "containerClass": "ServiceClass",
+      "calls": [
+        {
+          "name": "IApiService",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "class",
+      "name": "ServiceClassInternal",
+      "exported": true,
+      "line": 133,
+      "endLine": 135,
+      "signature": "export abstract class ServiceClassInternal extends ServiceClass",
+      "calls": [
+        {
+          "name": "ServiceClass",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "interface",
+      "name": "IServiceContext",
+      "line": 10,
+      "endLine": 28,
+      "signature": "export interface IServiceContext"
+    },
+    {
+      "type": "interface",
+      "name": "IServiceClass",
+      "line": 30,
+      "endLine": 53,
+      "signature": "export interface IServiceClass"
+    }
+  ],
+  "imports": [
+    {
+      "module": "node:events",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/core-typings",
+      "resolved": "external"
+    },
+    {
+      "module": "./IApiService",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/packages/core-services/src/types/IApiService.ts"
+    },
+    {
+      "module": "./IBroker",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/packages/core-services/src/types/IBroker.ts"
+    },
+    {
+      "module": "../events/Events",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/packages/core-services/src/events/Events.ts"
+    },
+    {
+      "module": "../lib/asyncLocalStorage",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/packages/core-services/src/lib/asyncLocalStorage.ts"
+    }
+  ]
+}

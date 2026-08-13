@@ -1,0 +1,64 @@
+{
+  "sourcePath": "/Users/echoooooo/Desktop/code/Rocket.Chat/packages/ui-contexts/src/hooks/useWriteStream.ts",
+  "symbols": [
+    {
+      "type": "function",
+      "name": "useWriteStream",
+      "exported": true,
+      "line": 8,
+      "endLine": 19,
+      "signature": "export function useWriteStream<N extends StreamNames>(streamName: N): WriteStreamCallback<N>",
+      "calls": [
+        {
+          "name": "useContext",
+          "edgeType": "call"
+        },
+        {
+          "name": "useCallback",
+          "edgeType": "call"
+        },
+        {
+          "name": "writeStream",
+          "edgeType": "call"
+        },
+        {
+          "name": "StreamNames",
+          "edgeType": "type"
+        },
+        {
+          "name": "WriteStreamCallback",
+          "edgeType": "type"
+        },
+        {
+          "name": "StreamKeys",
+          "edgeType": "type"
+        },
+        {
+          "name": "StreamerCallbackArgs",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "type",
+      "name": "WriteStreamCallback",
+      "line": 6,
+      "endLine": 6,
+      "signature": "type WriteStreamCallback<N extends StreamNames> = <K extends StreamKeys<N>>(eventName: K, ...args: StreamerCallbackArgs<N, K>) => void;"
+    }
+  ],
+  "imports": [
+    {
+      "module": "@rocket.chat/ddp-client",
+      "resolved": "external"
+    },
+    {
+      "module": "react",
+      "resolved": "external"
+    },
+    {
+      "module": "../ServerContext",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/packages/ui-contexts/src/ServerContext.ts"
+    }
+  ]
+}

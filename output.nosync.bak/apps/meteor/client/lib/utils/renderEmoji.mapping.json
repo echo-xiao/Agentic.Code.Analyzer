@@ -1,0 +1,79 @@
+{
+  "sourcePath": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/client/lib/utils/renderEmoji.ts",
+  "symbols": [
+    {
+      "type": "variable_function",
+      "name": "renderEmoji",
+      "exported": true,
+      "line": 6,
+      "endLine": 14,
+      "signature": "(emojiName: string): string | undefined =>",
+      "calls": [
+        {
+          "name": "render",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "variable_function",
+      "name": "createGetEmojiClassNameAndDataTitle",
+      "exported": false,
+      "line": 18,
+      "endLine": 49,
+      "signature": "(parser: (emojiName: string) => string | undefined) =>",
+      "calls": [
+        {
+          "name": "parser",
+          "edgeType": "call"
+        },
+        {
+          "name": "createElement",
+          "edgeType": "call"
+        },
+        {
+          "name": "fromEntries",
+          "edgeType": "call"
+        },
+        {
+          "name": "map",
+          "edgeType": "call"
+        },
+        {
+          "name": "split",
+          "edgeType": "call"
+        },
+        {
+          "name": "getAttribute",
+          "edgeType": "call"
+        },
+        {
+          "name": "EmojiParserResult",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "variable",
+      "name": "getEmojiClassNameAndDataTitle",
+      "exported": true,
+      "line": 51,
+      "endLine": 51,
+      "signature": "getEmojiClassNameAndDataTitle = createGetEmojiClassNameAndDataTitle(renderEmoji)",
+      "calls": []
+    },
+    {
+      "type": "type",
+      "name": "EmojiParserResult",
+      "line": 10,
+      "endLine": 16,
+      "signature": "type EmojiParserResult ="
+    }
+  ],
+  "imports": [
+    {
+      "module": "../../../app/emoji/client/lib",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/app/emoji/client/lib.ts"
+    }
+  ]
+}

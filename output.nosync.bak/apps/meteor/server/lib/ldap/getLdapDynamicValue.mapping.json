@@ -1,0 +1,61 @@
+{
+  "sourcePath": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/server/lib/ldap/getLdapDynamicValue.ts",
+  "symbols": [
+    {
+      "type": "function",
+      "name": "getLdapDynamicValue",
+      "exported": true,
+      "line": 6,
+      "endLine": 31,
+      "signature": "export function getLdapDynamicValue(ldapUser: ILDAPEntry, attributeSetting: string | undefined): string | undefined",
+      "calls": [
+        {
+          "name": "includes",
+          "edgeType": "call"
+        },
+        {
+          "name": "replace",
+          "edgeType": "call"
+        },
+        {
+          "name": "trim",
+          "edgeType": "call"
+        },
+        {
+          "name": "ldapKeyExists",
+          "edgeType": "call"
+        },
+        {
+          "name": "getLdapString",
+          "edgeType": "call"
+        },
+        {
+          "name": "split",
+          "edgeType": "call"
+        },
+        {
+          "name": "find",
+          "edgeType": "call"
+        },
+        {
+          "name": "ILDAPEntry",
+          "edgeType": "type"
+        }
+      ]
+    }
+  ],
+  "imports": [
+    {
+      "module": "@rocket.chat/core-typings",
+      "resolved": "external"
+    },
+    {
+      "module": "./getLdapString",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/server/lib/ldap/getLdapString.ts"
+    },
+    {
+      "module": "./ldapKeyExists",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/server/lib/ldap/ldapKeyExists.ts"
+    }
+  ]
+}

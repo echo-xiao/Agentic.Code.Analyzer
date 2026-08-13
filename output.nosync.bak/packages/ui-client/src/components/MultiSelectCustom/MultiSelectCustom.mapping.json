@@ -1,0 +1,317 @@
+{
+  "sourcePath": "/Users/echoooooo/Desktop/code/Rocket.Chat/packages/ui-client/src/components/MultiSelectCustom/MultiSelectCustom.tsx",
+  "symbols": [
+    {
+      "type": "variable_function",
+      "name": "isValidReference",
+      "exported": false,
+      "line": 12,
+      "endLine": 17,
+      "signature": "(reference: RefObject<HTMLElement | null>, event: { target: Node | null }): boolean =>",
+      "calls": [
+        {
+          "name": "Boolean",
+          "edgeType": "call"
+        },
+        {
+          "name": "contains",
+          "edgeType": "call"
+        },
+        {
+          "name": "RefObject",
+          "edgeType": "type"
+        },
+        {
+          "name": "HTMLElement",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "variable_function",
+      "name": "onMouseEventPreventSideEffects",
+      "exported": false,
+      "line": 16,
+      "endLine": 20,
+      "signature": "(e: MouseEvent): void =>",
+      "calls": [
+        {
+          "name": "preventDefault",
+          "edgeType": "call"
+        },
+        {
+          "name": "stopPropagation",
+          "edgeType": "call"
+        },
+        {
+          "name": "stopImmediatePropagation",
+          "edgeType": "call"
+        },
+        {
+          "name": "MouseEvent",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "inner_function",
+      "name": "onClose",
+      "exported": false,
+      "qualifiedName": "MultiSelectCustom.onClose",
+      "line": 63,
+      "endLine": 71,
+      "signature": "(e: MouseEvent) =>",
+      "calls": [
+        {
+          "name": "isValidReference",
+          "edgeType": "call"
+        },
+        {
+          "name": "toggleCollapsed",
+          "edgeType": "call"
+        },
+        {
+          "name": "onMouseEventPreventSideEffects",
+          "edgeType": "call"
+        },
+        {
+          "name": "MouseEvent",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "inner_function",
+      "name": "onSelect",
+      "exported": false,
+      "qualifiedName": "MultiSelectCustom.onSelect",
+      "line": 77,
+      "endLine": 92,
+      "signature": "(selectedOption: OptionProp, e?: ChangeEvent<HTMLElement>): void =>",
+      "calls": [
+        {
+          "name": "stopPropagation",
+          "edgeType": "call"
+        },
+        {
+          "name": "hasOwnProperty",
+          "edgeType": "call"
+        },
+        {
+          "name": "setSelectedOptions",
+          "edgeType": "call"
+        },
+        {
+          "name": "filter",
+          "edgeType": "call"
+        },
+        {
+          "name": "Set",
+          "edgeType": "new"
+        },
+        {
+          "name": "OptionProp",
+          "edgeType": "type"
+        },
+        {
+          "name": "ChangeEvent",
+          "edgeType": "type"
+        },
+        {
+          "name": "HTMLElement",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "variable_function",
+      "name": "MultiSelectCustom",
+      "exported": true,
+      "line": 50,
+      "endLine": 118,
+      "signature": "({ dropdownOptions, defaultTitle, selectedOptionsTitle, selectedOptions, setSelectedOptions, searchBarText, ...props }: DropDownProps) =>",
+      "calls": [
+        {
+          "name": "useRef",
+          "edgeType": "call"
+        },
+        {
+          "name": "useToggle",
+          "edgeType": "call"
+        },
+        {
+          "name": "useCallback",
+          "edgeType": "call"
+        },
+        {
+          "name": "isValidReference",
+          "edgeType": "call"
+        },
+        {
+          "name": "toggleCollapsed",
+          "edgeType": "call"
+        },
+        {
+          "name": "onMouseEventPreventSideEffects",
+          "edgeType": "call"
+        },
+        {
+          "name": "useOutsideClick",
+          "edgeType": "call"
+        },
+        {
+          "name": "stopPropagation",
+          "edgeType": "call"
+        },
+        {
+          "name": "hasOwnProperty",
+          "edgeType": "call"
+        },
+        {
+          "name": "setSelectedOptions",
+          "edgeType": "call"
+        },
+        {
+          "name": "filter",
+          "edgeType": "call"
+        },
+        {
+          "name": "useButtonPattern",
+          "edgeType": "call"
+        },
+        {
+          "name": "Box",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "MultiSelectCustomListWrapper",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "MultiSelectCustomAnchor",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "MultiSelectCustomList",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "reference",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "collapsed",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "defaultTitle",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "selectedOptionsTitle",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "selectedOptionsCount",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "target",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "dropdownOptions",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "onSelect",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "searchBarText",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "Set",
+          "edgeType": "new"
+        },
+        {
+          "name": "DropDownProps",
+          "edgeType": "type"
+        },
+        {
+          "name": "HTMLInputElement",
+          "edgeType": "type"
+        },
+        {
+          "name": "HTMLElement",
+          "edgeType": "type"
+        },
+        {
+          "name": "MouseEvent",
+          "edgeType": "type"
+        },
+        {
+          "name": "OptionProp",
+          "edgeType": "type"
+        },
+        {
+          "name": "ChangeEvent",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "type",
+      "name": "OptionProp",
+      "line": 20,
+      "endLine": 26,
+      "signature": "export type OptionProp ="
+    },
+    {
+      "type": "type",
+      "name": "DropDownProps",
+      "line": 41,
+      "endLine": 48,
+      "signature": "type DropDownProps ="
+    }
+  ],
+  "imports": [
+    {
+      "module": "@rocket.chat/fuselage",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/fuselage",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/fuselage-hooks",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/icons",
+      "resolved": "external"
+    },
+    {
+      "module": "react",
+      "resolved": "external"
+    },
+    {
+      "module": "react",
+      "resolved": "external"
+    },
+    {
+      "module": "./MultiSelectCustomAnchor",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/packages/ui-client/src/components/MultiSelectCustom/MultiSelectCustomAnchor.tsx"
+    },
+    {
+      "module": "./MultiSelectCustomList",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/packages/ui-client/src/components/MultiSelectCustom/MultiSelectCustomList.tsx"
+    },
+    {
+      "module": "./MultiSelectCustomListWrapper",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/packages/ui-client/src/components/MultiSelectCustom/MultiSelectCustomListWrapper.tsx"
+    }
+  ]
+}

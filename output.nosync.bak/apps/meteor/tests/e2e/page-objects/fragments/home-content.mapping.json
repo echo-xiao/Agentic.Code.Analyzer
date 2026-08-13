@@ -1,0 +1,1170 @@
+{
+  "sourcePath": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/tests/e2e/page-objects/fragments/home-content.ts",
+  "symbols": [
+    {
+      "type": "class",
+      "name": "HomeContent",
+      "exported": true,
+      "line": 16,
+      "endLine": 636,
+      "signature": "export class HomeContent",
+      "calls": []
+    },
+    {
+      "type": "method",
+      "name": "nthMessage",
+      "exported": true,
+      "qualifiedName": "HomeContent.nthMessage",
+      "line": 89,
+      "endLine": 91,
+      "signature": "nthMessage(index: number): Locator",
+      "containerClass": "HomeContent",
+      "calls": [
+        {
+          "name": "nth",
+          "edgeType": "call"
+        },
+        {
+          "name": "Locator",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "joinRoomIfNeeded",
+      "exported": true,
+      "qualifiedName": "HomeContent.joinRoomIfNeeded",
+      "line": 113,
+      "endLine": 121,
+      "signature": "async joinRoomIfNeeded(): Promise<void>",
+      "containerClass": "HomeContent",
+      "calls": [
+        {
+          "name": "isEnabled",
+          "edgeType": "call"
+        },
+        {
+          "name": "isVisible",
+          "edgeType": "call"
+        },
+        {
+          "name": "click",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "sendMessage",
+      "exported": true,
+      "qualifiedName": "HomeContent.sendMessage",
+      "line": 117,
+      "endLine": 145,
+      "signature": "async sendMessage(text: string, enforce = true): Promise<void>",
+      "containerClass": "HomeContent",
+      "calls": [
+        {
+          "name": "joinRoomIfNeeded",
+          "edgeType": "call"
+        },
+        {
+          "name": "toBeEnabled",
+          "edgeType": "call"
+        },
+        {
+          "name": "expect",
+          "edgeType": "call"
+        },
+        {
+          "name": "fill",
+          "edgeType": "call"
+        },
+        {
+          "name": "click",
+          "edgeType": "call"
+        },
+        {
+          "name": "count",
+          "edgeType": "call"
+        },
+        {
+          "name": "getAttribute",
+          "edgeType": "call"
+        },
+        {
+          "name": "last",
+          "edgeType": "call"
+        },
+        {
+          "name": "toEqual",
+          "edgeType": "call"
+        },
+        {
+          "name": "poll",
+          "edgeType": "call"
+        },
+        {
+          "name": "toHaveClass",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "dispatchSlashCommand",
+      "exported": true,
+      "qualifiedName": "HomeContent.dispatchSlashCommand",
+      "line": 121,
+      "endLine": 129,
+      "signature": "async dispatchSlashCommand(text: string): Promise<void>",
+      "containerClass": "HomeContent",
+      "calls": [
+        {
+          "name": "joinRoomIfNeeded",
+          "edgeType": "call"
+        },
+        {
+          "name": "toBeEnabled",
+          "edgeType": "call"
+        },
+        {
+          "name": "expect",
+          "edgeType": "call"
+        },
+        {
+          "name": "fill",
+          "edgeType": "call"
+        },
+        {
+          "name": "press",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "forwardMessage",
+      "exported": true,
+      "qualifiedName": "HomeContent.forwardMessage",
+      "line": 125,
+      "endLine": 134,
+      "signature": "async forwardMessage(chatName: string)",
+      "containerClass": "HomeContent",
+      "calls": [
+        {
+          "name": "hover",
+          "edgeType": "call"
+        },
+        {
+          "name": "last",
+          "edgeType": "call"
+        },
+        {
+          "name": "click",
+          "edgeType": "call"
+        },
+        {
+          "name": "locator",
+          "edgeType": "call"
+        },
+        {
+          "name": "getByRole",
+          "edgeType": "call"
+        },
+        {
+          "name": "type",
+          "edgeType": "call"
+        },
+        {
+          "name": "waitFor",
+          "edgeType": "call"
+        },
+        {
+          "name": "getByText",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "getLastMessageByFileName",
+      "exported": true,
+      "qualifiedName": "HomeContent.getLastMessageByFileName",
+      "line": 168,
+      "endLine": 173,
+      "signature": "getLastMessageByFileName(filename: string): Locator",
+      "containerClass": "HomeContent",
+      "calls": [
+        {
+          "name": "getByRole",
+          "edgeType": "call"
+        },
+        {
+          "name": "last",
+          "edgeType": "call"
+        },
+        {
+          "name": "filter",
+          "edgeType": "call"
+        },
+        {
+          "name": "Locator",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "quotedFileDescription",
+      "exported": true,
+      "qualifiedName": "HomeContent.quotedFileDescription",
+      "line": 192,
+      "endLine": 194,
+      "signature": "quotedFileDescription(fileDescription: string): Locator",
+      "containerClass": "HomeContent",
+      "calls": [
+        {
+          "name": "getByText",
+          "edgeType": "call"
+        },
+        {
+          "name": "Locator",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "quotedFileName",
+      "exported": true,
+      "qualifiedName": "HomeContent.quotedFileName",
+      "line": 196,
+      "endLine": 198,
+      "signature": "quotedFileName(fileName: string): Locator",
+      "containerClass": "HomeContent",
+      "calls": [
+        {
+          "name": "getByTitle",
+          "edgeType": "call"
+        },
+        {
+          "name": "Locator",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "threadMessageQuotedFileDescription",
+      "exported": true,
+      "qualifiedName": "HomeContent.threadMessageQuotedFileDescription",
+      "line": 200,
+      "endLine": 202,
+      "signature": "threadMessageQuotedFileDescription(fileDescription: string): Locator",
+      "containerClass": "HomeContent",
+      "calls": [
+        {
+          "name": "getByText",
+          "edgeType": "call"
+        },
+        {
+          "name": "Locator",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "threadMessageQuotedFileName",
+      "exported": true,
+      "qualifiedName": "HomeContent.threadMessageQuotedFileName",
+      "line": 204,
+      "endLine": 206,
+      "signature": "threadMessageQuotedFileName(fileName: string): Locator",
+      "containerClass": "HomeContent",
+      "calls": [
+        {
+          "name": "getByTitle",
+          "edgeType": "call"
+        },
+        {
+          "name": "Locator",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "quotedLinkText",
+      "exported": true,
+      "qualifiedName": "HomeContent.quotedLinkText",
+      "line": 212,
+      "endLine": 214,
+      "signature": "quotedLinkText(name: string): Locator",
+      "containerClass": "HomeContent",
+      "calls": [
+        {
+          "name": "getByRole",
+          "edgeType": "call"
+        },
+        {
+          "name": "Locator",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "getLastThreadMessageByFileName",
+      "exported": true,
+      "qualifiedName": "HomeContent.getLastThreadMessageByFileName",
+      "line": 240,
+      "endLine": 242,
+      "signature": "getLastThreadMessageByFileName(filename: string): Locator",
+      "containerClass": "HomeContent",
+      "calls": [
+        {
+          "name": "getByRole",
+          "edgeType": "call"
+        },
+        {
+          "name": "last",
+          "edgeType": "call"
+        },
+        {
+          "name": "Locator",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "getGalleryButtonByName",
+      "exported": true,
+      "qualifiedName": "HomeContent.getGalleryButtonByName",
+      "line": 309,
+      "endLine": 311,
+      "signature": "async getGalleryButtonByName(name: string)",
+      "containerClass": "HomeContent",
+      "calls": [
+        {
+          "name": "locator",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "dragAndDropTxtFile",
+      "exported": true,
+      "qualifiedName": "HomeContent.dragAndDropTxtFile",
+      "line": 313,
+      "endLine": 330,
+      "signature": "async dragAndDropTxtFile({ waitForResponse = true }: { waitForResponse?: boolean } = {}): Promise<void>",
+      "containerClass": "HomeContent",
+      "calls": [
+        {
+          "name": "readFile",
+          "edgeType": "call"
+        },
+        {
+          "name": "getFilePath",
+          "edgeType": "call"
+        },
+        {
+          "name": "evaluateHandle",
+          "edgeType": "call"
+        },
+        {
+          "name": "createMediaResponsePromise",
+          "edgeType": "call"
+        },
+        {
+          "name": "dispatchEvent",
+          "edgeType": "call"
+        },
+        {
+          "name": "locator",
+          "edgeType": "call"
+        },
+        {
+          "name": "DataTransfer",
+          "edgeType": "new"
+        },
+        {
+          "name": "File",
+          "edgeType": "new"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "dragAndDropLstFile",
+      "exported": true,
+      "qualifiedName": "HomeContent.dragAndDropLstFile",
+      "line": 317,
+      "endLine": 334,
+      "signature": "async dragAndDropLstFile({ waitForResponse = true }: { waitForResponse?: boolean } = {}): Promise<void>",
+      "containerClass": "HomeContent",
+      "calls": [
+        {
+          "name": "readFile",
+          "edgeType": "call"
+        },
+        {
+          "name": "getFilePath",
+          "edgeType": "call"
+        },
+        {
+          "name": "evaluateHandle",
+          "edgeType": "call"
+        },
+        {
+          "name": "createMediaResponsePromise",
+          "edgeType": "call"
+        },
+        {
+          "name": "dispatchEvent",
+          "edgeType": "call"
+        },
+        {
+          "name": "locator",
+          "edgeType": "call"
+        },
+        {
+          "name": "DataTransfer",
+          "edgeType": "new"
+        },
+        {
+          "name": "File",
+          "edgeType": "new"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "dragAndDropTxtFileToThread",
+      "exported": true,
+      "qualifiedName": "HomeContent.dragAndDropTxtFileToThread",
+      "line": 321,
+      "endLine": 338,
+      "signature": "async dragAndDropTxtFileToThread({ waitForResponse = true }: { waitForResponse?: boolean } = {}): Promise<void>",
+      "containerClass": "HomeContent",
+      "calls": [
+        {
+          "name": "readFile",
+          "edgeType": "call"
+        },
+        {
+          "name": "getFilePath",
+          "edgeType": "call"
+        },
+        {
+          "name": "evaluateHandle",
+          "edgeType": "call"
+        },
+        {
+          "name": "createMediaResponsePromise",
+          "edgeType": "call"
+        },
+        {
+          "name": "dispatchEvent",
+          "edgeType": "call"
+        },
+        {
+          "name": "locator",
+          "edgeType": "call"
+        },
+        {
+          "name": "DataTransfer",
+          "edgeType": "new"
+        },
+        {
+          "name": "File",
+          "edgeType": "new"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "sendFileMessage",
+      "exported": true,
+      "qualifiedName": "HomeContent.sendFileMessage",
+      "line": 325,
+      "endLine": 331,
+      "signature": "async sendFileMessage(fileName: string, { waitForResponse = true }: { waitForResponse?: boolean } = {}): Promise<void>",
+      "containerClass": "HomeContent",
+      "calls": [
+        {
+          "name": "createMediaResponsePromise",
+          "edgeType": "call"
+        },
+        {
+          "name": "setInputFiles",
+          "edgeType": "call"
+        },
+        {
+          "name": "locator",
+          "edgeType": "call"
+        },
+        {
+          "name": "getByLabel",
+          "edgeType": "call"
+        },
+        {
+          "name": "getFilePath",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "sendFileMessageToThread",
+      "exported": true,
+      "qualifiedName": "HomeContent.sendFileMessageToThread",
+      "line": 329,
+      "endLine": 336,
+      "signature": "async sendFileMessageToThread(fileName: string, { waitForResponse = true }: { waitForResponse?: boolean } = {}): Promise<void>",
+      "containerClass": "HomeContent",
+      "calls": [
+        {
+          "name": "click",
+          "edgeType": "call"
+        },
+        {
+          "name": "createMediaResponsePromise",
+          "edgeType": "call"
+        },
+        {
+          "name": "setInputFiles",
+          "edgeType": "call"
+        },
+        {
+          "name": "locator",
+          "edgeType": "call"
+        },
+        {
+          "name": "getByLabel",
+          "edgeType": "call"
+        },
+        {
+          "name": "getFilePath",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "openLastMessageMenu",
+      "exported": true,
+      "qualifiedName": "HomeContent.openLastMessageMenu",
+      "line": 333,
+      "endLine": 337,
+      "signature": "async openLastMessageMenu(): Promise<void>",
+      "containerClass": "HomeContent",
+      "calls": [
+        {
+          "name": "hover",
+          "edgeType": "call"
+        },
+        {
+          "name": "waitFor",
+          "edgeType": "call"
+        },
+        {
+          "name": "getByRole",
+          "edgeType": "call"
+        },
+        {
+          "name": "click",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "openLastThreadMessageMenu",
+      "exported": true,
+      "qualifiedName": "HomeContent.openLastThreadMessageMenu",
+      "line": 337,
+      "endLine": 341,
+      "signature": "async openLastThreadMessageMenu(): Promise<void>",
+      "containerClass": "HomeContent",
+      "calls": [
+        {
+          "name": "hover",
+          "edgeType": "call"
+        },
+        {
+          "name": "waitFor",
+          "edgeType": "call"
+        },
+        {
+          "name": "getByRole",
+          "edgeType": "call"
+        },
+        {
+          "name": "click",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "toggleAlsoSendThreadToChannel",
+      "exported": true,
+      "qualifiedName": "HomeContent.toggleAlsoSendThreadToChannel",
+      "line": 341,
+      "endLine": 346,
+      "signature": "async toggleAlsoSendThreadToChannel(isChecked: boolean): Promise<void>",
+      "containerClass": "HomeContent",
+      "calls": [
+        {
+          "name": "setChecked",
+          "edgeType": "call"
+        },
+        {
+          "name": "locator",
+          "edgeType": "call"
+        },
+        {
+          "name": "getByRole",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "getVideoConfPopup",
+      "exported": true,
+      "qualifiedName": "HomeContent.getVideoConfPopup",
+      "line": 373,
+      "endLine": 375,
+      "signature": "getVideoConfPopup(name?: string): Locator",
+      "containerClass": "HomeContent",
+      "calls": [
+        {
+          "name": "getByRole",
+          "edgeType": "call"
+        },
+        {
+          "name": "Locator",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "findSystemMessage",
+      "exported": true,
+      "qualifiedName": "HomeContent.findSystemMessage",
+      "line": 414,
+      "endLine": 416,
+      "signature": "findSystemMessage(text: string): Locator",
+      "containerClass": "HomeContent",
+      "calls": [
+        {
+          "name": "locator",
+          "edgeType": "call"
+        },
+        {
+          "name": "Locator",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "getSystemMessageByText",
+      "exported": true,
+      "qualifiedName": "HomeContent.getSystemMessageByText",
+      "line": 418,
+      "endLine": 420,
+      "signature": "getSystemMessageByText(text: string): Locator",
+      "containerClass": "HomeContent",
+      "calls": [
+        {
+          "name": "locator",
+          "edgeType": "call"
+        },
+        {
+          "name": "Locator",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "getMessageByText",
+      "exported": true,
+      "qualifiedName": "HomeContent.getMessageByText",
+      "line": 422,
+      "endLine": 424,
+      "signature": "getMessageByText(text: string): Locator",
+      "containerClass": "HomeContent",
+      "calls": [
+        {
+          "name": "locator",
+          "edgeType": "call"
+        },
+        {
+          "name": "Locator",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "getLastMessageActionButton",
+      "exported": true,
+      "qualifiedName": "HomeContent.getLastMessageActionButton",
+      "line": 426,
+      "endLine": 428,
+      "signature": "getLastMessageActionButton(name: string): Locator",
+      "containerClass": "HomeContent",
+      "calls": [
+        {
+          "name": "getByRole",
+          "edgeType": "call"
+        },
+        {
+          "name": "Locator",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "getLastThreadMessageActionButton",
+      "exported": true,
+      "qualifiedName": "HomeContent.getLastThreadMessageActionButton",
+      "line": 430,
+      "endLine": 432,
+      "signature": "getLastThreadMessageActionButton(name: string): Locator",
+      "containerClass": "HomeContent",
+      "calls": [
+        {
+          "name": "getByRole",
+          "edgeType": "call"
+        },
+        {
+          "name": "Locator",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "getMessageById",
+      "exported": true,
+      "qualifiedName": "HomeContent.getMessageById",
+      "line": 434,
+      "endLine": 436,
+      "signature": "getMessageById(id: string): Locator",
+      "containerClass": "HomeContent",
+      "calls": [
+        {
+          "name": "locator",
+          "edgeType": "call"
+        },
+        {
+          "name": "Locator",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "scrollToMessage",
+      "exported": true,
+      "qualifiedName": "HomeContent.scrollToMessage",
+      "line": 438,
+      "endLine": 448,
+      "signature": "async scrollToMessage(messageLocator: Locator, direction: 'up' | 'down' = 'up'): Promise<Locator>",
+      "containerClass": "HomeContent",
+      "calls": [
+        {
+          "name": "toPass",
+          "edgeType": "call"
+        },
+        {
+          "name": "expect",
+          "edgeType": "call"
+        },
+        {
+          "name": "evaluate",
+          "edgeType": "call"
+        },
+        {
+          "name": "scrollBy",
+          "edgeType": "call"
+        },
+        {
+          "name": "toBeVisible",
+          "edgeType": "call"
+        },
+        {
+          "name": "first",
+          "edgeType": "call"
+        },
+        {
+          "name": "Locator",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "waitForChannel",
+      "exported": true,
+      "qualifiedName": "HomeContent.waitForChannel",
+      "line": 442,
+      "endLine": 449,
+      "signature": "async waitForChannel(): Promise<void>",
+      "containerClass": "HomeContent",
+      "calls": [
+        {
+          "name": "waitFor",
+          "edgeType": "call"
+        },
+        {
+          "name": "locator",
+          "edgeType": "call"
+        },
+        {
+          "name": "getByRole",
+          "edgeType": "call"
+        },
+        {
+          "name": "toHaveAttribute",
+          "edgeType": "call"
+        },
+        {
+          "name": "expect",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "waitForThread",
+      "exported": true,
+      "qualifiedName": "HomeContent.waitForThread",
+      "line": 446,
+      "endLine": 451,
+      "signature": "async waitForThread(): Promise<void>",
+      "containerClass": "HomeContent",
+      "calls": [
+        {
+          "name": "getByRole",
+          "edgeType": "call"
+        },
+        {
+          "name": "waitFor",
+          "edgeType": "call"
+        },
+        {
+          "name": "toHaveAttribute",
+          "edgeType": "call"
+        },
+        {
+          "name": "expect",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "openReplyInThread",
+      "exported": true,
+      "qualifiedName": "HomeContent.openReplyInThread",
+      "line": 450,
+      "endLine": 454,
+      "signature": "async openReplyInThread(): Promise<void>",
+      "containerClass": "HomeContent",
+      "calls": [
+        {
+          "name": "hover",
+          "edgeType": "call"
+        },
+        {
+          "name": "waitFor",
+          "edgeType": "call"
+        },
+        {
+          "name": "getByRole",
+          "edgeType": "call"
+        },
+        {
+          "name": "click",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "sendMessageInThread",
+      "exported": true,
+      "qualifiedName": "HomeContent.sendMessageInThread",
+      "line": 454,
+      "endLine": 457,
+      "signature": "async sendMessageInThread(text: string): Promise<void>",
+      "containerClass": "HomeContent",
+      "calls": [
+        {
+          "name": "fill",
+          "edgeType": "call"
+        },
+        {
+          "name": "click",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "sendMessageInVideoConfPopup",
+      "exported": true,
+      "qualifiedName": "HomeContent.sendMessageInVideoConfPopup",
+      "line": 458,
+      "endLine": 461,
+      "signature": "async sendMessageInVideoConfPopup(text: string): Promise<void>",
+      "containerClass": "HomeContent",
+      "calls": [
+        {
+          "name": "fill",
+          "edgeType": "call"
+        },
+        {
+          "name": "getByRole",
+          "edgeType": "call"
+        },
+        {
+          "name": "click",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "deleteLastMessage",
+      "exported": true,
+      "qualifiedName": "HomeContent.deleteLastMessage",
+      "line": 462,
+      "endLine": 468,
+      "signature": "async deleteLastMessage(): Promise<void>",
+      "containerClass": "HomeContent",
+      "calls": [
+        {
+          "name": "hover",
+          "edgeType": "call"
+        },
+        {
+          "name": "openLastMessageMenu",
+          "edgeType": "call"
+        },
+        {
+          "name": "click",
+          "edgeType": "call"
+        },
+        {
+          "name": "toBeDisabled",
+          "edgeType": "call"
+        },
+        {
+          "name": "expect",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "quoteMessage",
+      "exported": true,
+      "qualifiedName": "HomeContent.quoteMessage",
+      "line": 482,
+      "endLine": 490,
+      "signature": "async quoteMessage(quoteText: string, originalMessageText?: string): Promise<void>",
+      "containerClass": "HomeContent",
+      "calls": [
+        {
+          "name": "hover",
+          "edgeType": "call"
+        },
+        {
+          "name": "click",
+          "edgeType": "call"
+        },
+        {
+          "name": "toBeVisible",
+          "edgeType": "call"
+        },
+        {
+          "name": "expect",
+          "edgeType": "call"
+        },
+        {
+          "name": "toContainText",
+          "edgeType": "call"
+        },
+        {
+          "name": "sendMessage",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "markAllRoomsAsRead",
+      "exported": true,
+      "qualifiedName": "HomeContent.markAllRoomsAsRead",
+      "line": 490,
+      "endLine": 496,
+      "signature": "async markAllRoomsAsRead(): Promise<void>",
+      "containerClass": "HomeContent",
+      "calls": [
+        {
+          "name": "down",
+          "edgeType": "call"
+        },
+        {
+          "name": "press",
+          "edgeType": "call"
+        },
+        {
+          "name": "up",
+          "edgeType": "call"
+        },
+        {
+          "name": "toBeVisible",
+          "edgeType": "call"
+        },
+        {
+          "name": "expect",
+          "edgeType": "call"
+        },
+        {
+          "name": "click",
+          "edgeType": "call"
+        },
+        {
+          "name": "getByRole",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "constructor",
+      "exported": true,
+      "qualifiedName": "HomeContent.constructor",
+      "line": 23,
+      "endLine": 27,
+      "signature": "constructor(page: Page)",
+      "containerClass": "HomeContent",
+      "calls": [
+        {
+          "name": "RoomComposer",
+          "edgeType": "new"
+        },
+        {
+          "name": "ThreadComposer",
+          "edgeType": "new"
+        },
+        {
+          "name": "Page",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "class_property",
+      "name": "page",
+      "exported": true,
+      "qualifiedName": "HomeContent.page",
+      "line": 17,
+      "endLine": 17,
+      "signature": "protected readonly page: Page;",
+      "containerClass": "HomeContent",
+      "calls": [
+        {
+          "name": "Page",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "class_property",
+      "name": "composer",
+      "exported": true,
+      "qualifiedName": "HomeContent.composer",
+      "line": 19,
+      "endLine": 19,
+      "signature": "readonly composer: RoomComposer;",
+      "containerClass": "HomeContent",
+      "calls": [
+        {
+          "name": "RoomComposer",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "class_property",
+      "name": "threadComposer",
+      "exported": true,
+      "qualifiedName": "HomeContent.threadComposer",
+      "line": 21,
+      "endLine": 21,
+      "signature": "protected readonly threadComposer: ThreadComposer;",
+      "containerClass": "HomeContent",
+      "calls": [
+        {
+          "name": "ThreadComposer",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "function",
+      "name": "getFilePath",
+      "exported": true,
+      "line": 12,
+      "endLine": 14,
+      "signature": "export function getFilePath(fileName: string): string",
+      "calls": [
+        {
+          "name": "join",
+          "edgeType": "call"
+        }
+      ]
+    }
+  ],
+  "imports": [
+    {
+      "module": "fs/promises",
+      "resolved": "external"
+    },
+    {
+      "module": "node:path",
+      "resolved": "external"
+    },
+    {
+      "module": "@playwright/test",
+      "resolved": "external"
+    },
+    {
+      "module": "./composer",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/tests/e2e/page-objects/fragments/composer.ts"
+    },
+    {
+      "module": "../../fixtures/responses/mediaResponse",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/tests/e2e/fixtures/responses/mediaResponse.ts"
+    },
+    {
+      "module": "../../utils/test",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/tests/e2e/utils/test.ts"
+    }
+  ]
+}

@@ -1,0 +1,71 @@
+{
+  "sourcePath": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/client/views/omnichannel/additionalForms/ContactManagerInput.tsx",
+  "symbols": [
+    {
+      "type": "inner_function",
+      "name": "handleChange",
+      "exported": false,
+      "qualifiedName": "ContactManagerInput.handleChange",
+      "line": 16,
+      "endLine": 22,
+      "signature": "(currentValue: string) =>",
+      "calls": [
+        {
+          "name": "onChange",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "variable_function",
+      "name": "ContactManagerInput",
+      "exported": false,
+      "line": 9,
+      "endLine": 25,
+      "signature": "({ value: userId, onChange }: ContactManagerInputProps) =>",
+      "calls": [
+        {
+          "name": "useHasLicenseModule",
+          "edgeType": "call"
+        },
+        {
+          "name": "onChange",
+          "edgeType": "call"
+        },
+        {
+          "name": "AutoCompleteAgent",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "userId",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "handleChange",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "ContactManagerInputProps",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "type",
+      "name": "ContactManagerInputProps",
+      "line": 4,
+      "endLine": 7,
+      "signature": "export type ContactManagerInputProps ="
+    }
+  ],
+  "imports": [
+    {
+      "module": "../../../hooks/useHasLicenseModule",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/client/hooks/useHasLicenseModule.ts"
+    },
+    {
+      "module": "../components/AutoCompleteAgent",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/client/views/omnichannel/components/AutoCompleteAgent.tsx"
+    }
+  ]
+}

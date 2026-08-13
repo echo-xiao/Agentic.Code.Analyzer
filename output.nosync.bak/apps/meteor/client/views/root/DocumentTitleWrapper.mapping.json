@@ -1,0 +1,110 @@
+{
+  "sourcePath": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/client/views/root/DocumentTitleWrapper.tsx",
+  "symbols": [
+    {
+      "type": "variable_function",
+      "name": "useRouteTitleFocus",
+      "exported": false,
+      "line": 10,
+      "endLine": 25,
+      "signature": "() =>",
+      "calls": [
+        {
+          "name": "useCallback",
+          "edgeType": "call"
+        },
+        {
+          "name": "focus",
+          "edgeType": "call"
+        },
+        {
+          "name": "HTMLElement",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "variable_function",
+      "name": "DocumentTitleWrapper",
+      "exported": false,
+      "line": 18,
+      "endLine": 51,
+      "signature": "({ children }: DocumentTitleWrapperProps) =>",
+      "calls": [
+        {
+          "name": "useDocumentTitle",
+          "edgeType": "call"
+        },
+        {
+          "name": "useSetting",
+          "edgeType": "call"
+        },
+        {
+          "name": "useUnreadMessages",
+          "edgeType": "call"
+        },
+        {
+          "name": "useRouteTitleFocus",
+          "edgeType": "call"
+        },
+        {
+          "name": "useEffect",
+          "edgeType": "call"
+        },
+        {
+          "name": "Box",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "refocusRef",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "key",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "DocumentTitleWrapperProps",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "type",
+      "name": "DocumentTitleWrapperProps",
+      "line": 14,
+      "endLine": 16,
+      "signature": "type DocumentTitleWrapperProps ="
+    }
+  ],
+  "imports": [
+    {
+      "module": "@rocket.chat/css-in-js",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/fuselage",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/ui-client",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/ui-contexts",
+      "resolved": "external"
+    },
+    {
+      "module": "react",
+      "resolved": "external"
+    },
+    {
+      "module": "react",
+      "resolved": "external"
+    },
+    {
+      "module": "./hooks/useUnreadMessages",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/client/views/root/hooks/useUnreadMessages.ts"
+    }
+  ]
+}

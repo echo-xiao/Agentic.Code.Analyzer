@@ -1,0 +1,84 @@
+{
+  "sourcePath": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/client/views/teams/contextualBar/info/useTeamActions.ts",
+  "symbols": [
+    {
+      "type": "variable_function",
+      "name": "useTeamActions",
+      "exported": true,
+      "line": 14,
+      "endLine": 75,
+      "signature": "(room: IRoom, { onClickEdit }: GenProps) =>",
+      "calls": [
+        {
+          "name": "useTranslation",
+          "edgeType": "call"
+        },
+        {
+          "name": "useHideRoomAction",
+          "edgeType": "call"
+        },
+        {
+          "name": "useConvertToChannel",
+          "edgeType": "call"
+        },
+        {
+          "name": "useDeleteRoom",
+          "edgeType": "call"
+        },
+        {
+          "name": "useLeaveTeam",
+          "edgeType": "call"
+        },
+        {
+          "name": "useMemo",
+          "edgeType": "call"
+        },
+        {
+          "name": "IRoom",
+          "edgeType": "type"
+        },
+        {
+          "name": "GenProps",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "type",
+      "name": "GenProps",
+      "line": 10,
+      "endLine": 12,
+      "signature": "type GenProps ="
+    }
+  ],
+  "imports": [
+    {
+      "module": "@rocket.chat/core-typings",
+      "resolved": "external"
+    },
+    {
+      "module": "react",
+      "resolved": "external"
+    },
+    {
+      "module": "react-i18next",
+      "resolved": "external"
+    },
+    {
+      "module": "./useConvertToChannel",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/client/views/teams/contextualBar/info/useConvertToChannel.tsx"
+    },
+    {
+      "module": "./useLeaveTeam",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/client/views/teams/contextualBar/info/useLeaveTeam.tsx"
+    },
+    {
+      "module": "../../../../hooks/useHideRoomAction",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/client/hooks/useHideRoomAction.tsx"
+    },
+    {
+      "module": "../../../hooks/roomActions/useDeleteRoom",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/client/views/hooks/roomActions/useDeleteRoom.tsx"
+    }
+  ]
+}

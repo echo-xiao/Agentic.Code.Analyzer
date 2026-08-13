@@ -1,0 +1,750 @@
+{
+  "sourcePath": "/Users/echoooooo/Desktop/code/Rocket.Chat/packages/message-parser/src/utils.ts",
+  "symbols": [
+    {
+      "type": "variable_function",
+      "name": "generate",
+      "exported": false,
+      "line": 27,
+      "endLine": 30,
+      "signature": "<Type extends keyof Types>(type: Type) =>",
+      "calls": [
+        {
+          "name": "Types",
+          "edgeType": "type"
+        },
+        {
+          "name": "Type",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "variable",
+      "name": "paragraph",
+      "exported": true,
+      "line": 32,
+      "endLine": 32,
+      "signature": "paragraph = generate('PARAGRAPH')",
+      "calls": []
+    },
+    {
+      "type": "variable",
+      "name": "bold",
+      "exported": true,
+      "line": 34,
+      "endLine": 34,
+      "signature": "bold = generate('BOLD')",
+      "calls": []
+    },
+    {
+      "type": "variable_function",
+      "name": "color",
+      "exported": true,
+      "line": 36,
+      "endLine": 39,
+      "signature": "(r: number, g: number, b: number, a = 255): Color =>",
+      "calls": [
+        {
+          "name": "Color",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "variable_function",
+      "name": "heading",
+      "exported": true,
+      "line": 41,
+      "endLine": 45,
+      "signature": "(value: Heading['value'], level: Heading['level'] = 1): Heading =>",
+      "calls": [
+        {
+          "name": "Heading",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "variable_function",
+      "name": "code",
+      "exported": true,
+      "line": 47,
+      "endLine": 51,
+      "signature": "(value: Code['value'], language?: Code['language']): Code =>",
+      "calls": [
+        {
+          "name": "Code",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "variable_function",
+      "name": "bigEmoji",
+      "exported": true,
+      "line": 53,
+      "endLine": 56,
+      "signature": "(value: BigEmoji['value']): BigEmoji =>",
+      "calls": [
+        {
+          "name": "BigEmoji",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "variable_function",
+      "name": "task",
+      "exported": true,
+      "line": 58,
+      "endLine": 62,
+      "signature": "(value: Task['value'], status: boolean): Task =>",
+      "calls": [
+        {
+          "name": "Task",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "variable",
+      "name": "inlineCode",
+      "exported": true,
+      "line": 64,
+      "endLine": 64,
+      "signature": "inlineCode = generate('INLINE_CODE')",
+      "calls": []
+    },
+    {
+      "type": "variable",
+      "name": "tasks",
+      "exported": true,
+      "line": 65,
+      "endLine": 65,
+      "signature": "tasks = generate('TASKS')",
+      "calls": []
+    },
+    {
+      "type": "variable",
+      "name": "italic",
+      "exported": true,
+      "line": 67,
+      "endLine": 67,
+      "signature": "italic = generate('ITALIC')",
+      "calls": []
+    },
+    {
+      "type": "variable",
+      "name": "spoiler",
+      "exported": true,
+      "line": 68,
+      "endLine": 68,
+      "signature": "spoiler = generate('SPOILER')",
+      "calls": []
+    },
+    {
+      "type": "variable",
+      "name": "plain",
+      "exported": true,
+      "line": 70,
+      "endLine": 70,
+      "signature": "plain = generate('PLAIN_TEXT')",
+      "calls": []
+    },
+    {
+      "type": "variable",
+      "name": "strike",
+      "exported": true,
+      "line": 71,
+      "endLine": 71,
+      "signature": "strike = generate('STRIKE')",
+      "calls": []
+    },
+    {
+      "type": "variable",
+      "name": "codeLine",
+      "exported": true,
+      "line": 73,
+      "endLine": 73,
+      "signature": "codeLine = generate('CODE_LINE')",
+      "calls": []
+    },
+    {
+      "type": "variable_function",
+      "name": "isValidLink",
+      "exported": false,
+      "line": 75,
+      "endLine": 75,
+      "signature": "(link: string) =>",
+      "calls": [
+        {
+          "name": "canParse",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "variable_function",
+      "name": "hasAbsoluteSchemePrefix",
+      "exported": false,
+      "line": 77,
+      "endLine": 77,
+      "signature": "(src: string) =>",
+      "calls": [
+        {
+          "name": "test",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "variable_function",
+      "name": "link",
+      "exported": true,
+      "line": 79,
+      "endLine": 82,
+      "signature": "(src: string, label?: Markup[]): Link =>",
+      "calls": [
+        {
+          "name": "plain",
+          "edgeType": "call"
+        },
+        {
+          "name": "Markup",
+          "edgeType": "type"
+        },
+        {
+          "name": "Link",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "variable_function",
+      "name": "autoLink",
+      "exported": true,
+      "line": 87,
+      "endLine": 106,
+      "signature": "(src: string, customDomains?: string[]) =>",
+      "calls": [
+        {
+          "name": "tldParse",
+          "edgeType": "call"
+        },
+        {
+          "name": "includes",
+          "edgeType": "call"
+        },
+        {
+          "name": "plain",
+          "edgeType": "call"
+        },
+        {
+          "name": "isValidLink",
+          "edgeType": "call"
+        },
+        {
+          "name": "startsWith",
+          "edgeType": "call"
+        },
+        {
+          "name": "hasAbsoluteSchemePrefix",
+          "edgeType": "call"
+        },
+        {
+          "name": "link",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "variable_function",
+      "name": "autoEmail",
+      "exported": true,
+      "line": 93,
+      "endLine": 103,
+      "signature": "(src: string) =>",
+      "calls": [
+        {
+          "name": "tldParse",
+          "edgeType": "call"
+        },
+        {
+          "name": "plain",
+          "edgeType": "call"
+        },
+        {
+          "name": "link",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "variable",
+      "name": "image",
+      "exported": true,
+      "line": 97,
+      "endLine": 100,
+      "signature": "image = (() =>",
+      "calls": [
+        {
+          "name": "generate",
+          "edgeType": "call"
+        },
+        {
+          "name": "fn",
+          "edgeType": "call"
+        },
+        {
+          "name": "plain",
+          "edgeType": "call"
+        },
+        {
+          "name": "Markup",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "variable",
+      "name": "quote",
+      "exported": true,
+      "line": 102,
+      "endLine": 102,
+      "signature": "quote = generate('QUOTE')",
+      "calls": []
+    },
+    {
+      "type": "variable",
+      "name": "spoilerBlock",
+      "exported": true,
+      "line": 103,
+      "endLine": 103,
+      "signature": "spoilerBlock = generate('SPOILER_BLOCK')",
+      "calls": []
+    },
+    {
+      "type": "variable",
+      "name": "mentionChannel",
+      "exported": true,
+      "line": 105,
+      "endLine": 108,
+      "signature": "mentionChannel = (() =>",
+      "calls": [
+        {
+          "name": "generate",
+          "edgeType": "call"
+        },
+        {
+          "name": "fn",
+          "edgeType": "call"
+        },
+        {
+          "name": "plain",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "variable",
+      "name": "orderedList",
+      "exported": true,
+      "line": 110,
+      "endLine": 110,
+      "signature": "orderedList = generate('ORDERED_LIST')",
+      "calls": []
+    },
+    {
+      "type": "variable",
+      "name": "unorderedList",
+      "exported": true,
+      "line": 112,
+      "endLine": 112,
+      "signature": "unorderedList = generate('UNORDERED_LIST')",
+      "calls": []
+    },
+    {
+      "type": "variable_function",
+      "name": "listItem",
+      "exported": true,
+      "line": 114,
+      "endLine": 118,
+      "signature": "(text: Inlines[], number?: number): ListItem =>",
+      "calls": [
+        {
+          "name": "Inlines",
+          "edgeType": "type"
+        },
+        {
+          "name": "ListItem",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "variable_function",
+      "name": "trimCellContent",
+      "exported": false,
+      "line": 121,
+      "endLine": 145,
+      "signature": "(value: Inlines[]): Inlines[] =>",
+      "calls": [
+        {
+          "name": "slice",
+          "edgeType": "call"
+        },
+        {
+          "name": "replace",
+          "edgeType": "call"
+        },
+        {
+          "name": "shift",
+          "edgeType": "call"
+        },
+        {
+          "name": "pop",
+          "edgeType": "call"
+        },
+        {
+          "name": "Inlines",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "variable_function",
+      "name": "tableCell",
+      "exported": false,
+      "line": 125,
+      "endLine": 129,
+      "signature": "(value: Inlines[], align: TableCell['align']): TableCell =>",
+      "calls": [
+        {
+          "name": "trimCellContent",
+          "edgeType": "call"
+        },
+        {
+          "name": "Inlines",
+          "edgeType": "type"
+        },
+        {
+          "name": "TableCell",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "variable_function",
+      "name": "table",
+      "exported": true,
+      "line": 131,
+      "endLine": 145,
+      "signature": "(header: Inlines[][], aligns: Array<TableCell['align']>, rows: Inlines[][][], fallback?: SourceRange): Table =>",
+      "calls": [
+        {
+          "name": "map",
+          "edgeType": "call"
+        },
+        {
+          "name": "tableCell",
+          "edgeType": "call"
+        },
+        {
+          "name": "Inlines",
+          "edgeType": "type"
+        },
+        {
+          "name": "TableCell",
+          "edgeType": "type"
+        },
+        {
+          "name": "SourceRange",
+          "edgeType": "type"
+        },
+        {
+          "name": "Table",
+          "edgeType": "type"
+        },
+        {
+          "name": "TableRow",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "variable",
+      "name": "mentionUser",
+      "exported": true,
+      "line": 147,
+      "endLine": 150,
+      "signature": "mentionUser = (() =>",
+      "calls": [
+        {
+          "name": "generate",
+          "edgeType": "call"
+        },
+        {
+          "name": "fn",
+          "edgeType": "call"
+        },
+        {
+          "name": "plain",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "variable_function",
+      "name": "emoji",
+      "exported": true,
+      "line": 152,
+      "endLine": 156,
+      "signature": "(shortCode: string): Emoji =>",
+      "calls": [
+        {
+          "name": "plain",
+          "edgeType": "call"
+        },
+        {
+          "name": "Emoji",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "variable_function",
+      "name": "emojiUnicode",
+      "exported": true,
+      "line": 158,
+      "endLine": 162,
+      "signature": "(unicode: string): Emoji =>",
+      "calls": [
+        {
+          "name": "Emoji",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "variable_function",
+      "name": "emoticon",
+      "exported": true,
+      "line": 164,
+      "endLine": 168,
+      "signature": "(emoticon: string, shortCode: string): Emoji =>",
+      "calls": [
+        {
+          "name": "plain",
+          "edgeType": "call"
+        },
+        {
+          "name": "Emoji",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "variable_function",
+      "name": "joinEmoji",
+      "exported": false,
+      "line": 170,
+      "endLine": 192,
+      "signature": "(current: Inlines, previous: Inlines | undefined, next: Inlines | undefined): Inlines =>",
+      "calls": [
+        {
+          "name": "trim",
+          "edgeType": "call"
+        },
+        {
+          "name": "Inlines",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "variable_function",
+      "name": "reducePlainTexts",
+      "exported": true,
+      "line": 174,
+      "endLine": 253,
+      "signature": "(values: Paragraph['value']): Paragraph['value'] =>",
+      "calls": [
+        {
+          "name": "isArray",
+          "edgeType": "call"
+        },
+        {
+          "name": "push",
+          "edgeType": "call"
+        },
+        {
+          "name": "joinEmoji",
+          "edgeType": "call"
+        },
+        {
+          "name": "appendJoinedInline",
+          "edgeType": "call"
+        },
+        {
+          "name": "Paragraph",
+          "edgeType": "type"
+        },
+        {
+          "name": "Inlines",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "variable_function",
+      "name": "lineBreak",
+      "exported": true,
+      "line": 177,
+      "endLine": 180,
+      "signature": "(): LineBreak =>",
+      "calls": [
+        {
+          "name": "LineBreak",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "variable_function",
+      "name": "horizontalRule",
+      "exported": true,
+      "line": 182,
+      "endLine": 186,
+      "signature": "(fallback?: SourceRange): HorizontalRule =>",
+      "calls": [
+        {
+          "name": "SourceRange",
+          "edgeType": "type"
+        },
+        {
+          "name": "HorizontalRule",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "variable_function",
+      "name": "katex",
+      "exported": true,
+      "line": 188,
+      "endLine": 191,
+      "signature": "(content: string): KaTeX =>",
+      "calls": [
+        {
+          "name": "KaTeX",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "variable_function",
+      "name": "inlineKatex",
+      "exported": true,
+      "line": 193,
+      "endLine": 196,
+      "signature": "(content: string): InlineKaTeX =>",
+      "calls": [
+        {
+          "name": "InlineKaTeX",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "variable_function",
+      "name": "phoneChecker",
+      "exported": true,
+      "line": 198,
+      "endLine": 204,
+      "signature": "(text: string, number: string) =>",
+      "calls": [
+        {
+          "name": "plain",
+          "edgeType": "call"
+        },
+        {
+          "name": "link",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "variable_function",
+      "name": "timestamp",
+      "exported": true,
+      "line": 202,
+      "endLine": 211,
+      "signature": "(value: string, type?: 't' | 'T' | 'd' | 'D' | 'f' | 'F' | 'R', fallback?: SourceRange): Timestamp =>",
+      "calls": [
+        {
+          "name": "SourceRange",
+          "edgeType": "type"
+        },
+        {
+          "name": "Timestamp",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "variable_function",
+      "name": "timestampFromHours",
+      "exported": true,
+      "line": 206,
+      "endLine": 214,
+      "signature": "(hours: string, minutes = '00', seconds = '00', timezone = '') =>",
+      "calls": [
+        {
+          "name": "split",
+          "edgeType": "call"
+        },
+        {
+          "name": "toISOString",
+          "edgeType": "call"
+        },
+        {
+          "name": "getTime",
+          "edgeType": "call"
+        },
+        {
+          "name": "Date",
+          "edgeType": "new"
+        }
+      ]
+    },
+    {
+      "type": "variable_function",
+      "name": "timestampFromIsoTime",
+      "exported": true,
+      "line": 210,
+      "endLine": 234,
+      "signature": "({ year, month, day, hours, minutes, seconds, milliseconds, timezone, }: { year: string; month: string; day: string; hours: string; minutes: string; seconds: string; milliseconds?: string; timezone?: string; }) =>",
+      "calls": [
+        {
+          "name": "getTime",
+          "edgeType": "call"
+        },
+        {
+          "name": "Date",
+          "edgeType": "new"
+        }
+      ]
+    }
+  ],
+  "imports": [
+    {
+      "module": "tldts",
+      "resolved": "external"
+    },
+    {
+      "module": "./definitions",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/packages/message-parser/src/definitions.ts"
+    }
+  ]
+}

@@ -1,0 +1,57 @@
+{
+  "sourcePath": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/client/views/admin/engagementDashboard/users/useNewUsers.ts",
+  "symbols": [
+    {
+      "type": "variable_function",
+      "name": "useNewUsers",
+      "exported": true,
+      "line": 7,
+      "endLine": 33,
+      "signature": "({ period, utc }: { period: Period['key']; utc: boolean }) =>",
+      "calls": [
+        {
+          "name": "useEndpoint",
+          "edgeType": "call"
+        },
+        {
+          "name": "useQuery",
+          "edgeType": "call"
+        },
+        {
+          "name": "getPeriodRange",
+          "edgeType": "call"
+        },
+        {
+          "name": "getNewUsers",
+          "edgeType": "call"
+        },
+        {
+          "name": "toISOString",
+          "edgeType": "call"
+        },
+        {
+          "name": "Period",
+          "edgeType": "type"
+        }
+      ]
+    }
+  ],
+  "imports": [
+    {
+      "module": "@rocket.chat/ui-contexts",
+      "resolved": "external"
+    },
+    {
+      "module": "@tanstack/react-query",
+      "resolved": "external"
+    },
+    {
+      "module": "../../../../components/dashboards/periods",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/client/components/dashboards/periods.ts"
+    },
+    {
+      "module": "../../../../components/dashboards/periods",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/client/components/dashboards/periods.ts"
+    }
+  ]
+}

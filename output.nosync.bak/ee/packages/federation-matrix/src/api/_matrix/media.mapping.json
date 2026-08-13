@@ -1,0 +1,129 @@
+{
+  "sourcePath": "/Users/echoooooo/Desktop/code/Rocket.Chat/ee/packages/federation-matrix/src/api/_matrix/media.ts",
+  "symbols": [
+    {
+      "type": "function",
+      "name": "createMultipartResponse",
+      "exported": false,
+      "line": 45,
+      "endLine": 64,
+      "signature": "function createMultipartResponse( buffer: Buffer, mimeType: string, fileName: string, metadata: Record<string, any> = {}, ): { body: Buffer; contentType: string }",
+      "calls": [
+        {
+          "name": "randomBytes",
+          "edgeType": "call"
+        },
+        {
+          "name": "push",
+          "edgeType": "call"
+        },
+        {
+          "name": "stringify",
+          "edgeType": "call"
+        },
+        {
+          "name": "from",
+          "edgeType": "call"
+        },
+        {
+          "name": "join",
+          "edgeType": "call"
+        },
+        {
+          "name": "concat",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "function",
+      "name": "getMediaFile",
+      "exported": false,
+      "line": 54,
+      "endLine": 62,
+      "signature": "async function getMediaFile(mediaId: string, serverName: string): Promise<{ file: IUpload; buffer: Buffer } | null>",
+      "calls": [
+        {
+          "name": "getLocalFileForMatrixNode",
+          "edgeType": "call"
+        },
+        {
+          "name": "getLocalFileBuffer",
+          "edgeType": "call"
+        },
+        {
+          "name": "IUpload",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "variable_function",
+      "name": "getMatrixMediaRoutes",
+      "exported": true,
+      "line": 58,
+      "endLine": 131,
+      "signature": "() =>",
+      "calls": [
+        {
+          "name": "get",
+          "edgeType": "call"
+        },
+        {
+          "name": "canAccessResourceMiddleware",
+          "edgeType": "call"
+        },
+        {
+          "name": "param",
+          "edgeType": "call"
+        },
+        {
+          "name": "getConfig",
+          "edgeType": "call"
+        },
+        {
+          "name": "getMediaFile",
+          "edgeType": "call"
+        },
+        {
+          "name": "createMultipartResponse",
+          "edgeType": "call"
+        },
+        {
+          "name": "Router",
+          "edgeType": "new"
+        }
+      ]
+    }
+  ],
+  "imports": [
+    {
+      "module": "node:crypto",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/core-typings",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/federation-sdk",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/http-router",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/rest-typings/dist/v1/Ajv",
+      "resolved": "external"
+    },
+    {
+      "module": "../../services/MatrixMediaService",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/ee/packages/federation-matrix/src/services/MatrixMediaService.ts"
+    },
+    {
+      "module": "../middlewares/canAccessResource",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/ee/packages/federation-matrix/src/api/middlewares/canAccessResource.ts"
+    }
+  ]
+}

@@ -1,0 +1,45 @@
+{
+  "sourcePath": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/client/views/marketplace/sidebarItems.tsx",
+  "symbols": [
+    {
+      "type": "variable",
+      "name": "{\n\tregisterSidebarItem: registerMarketplaceSidebarItem,\n\tunregisterSidebarItem: unregisterMarketplaceSidebarItem,\n\tgetSidebarItems: getMarketplaceSidebarItems,\n\tsubscribeToSidebarItems: subscribeToMarketplaceSidebarItems,\n}",
+      "exported": true,
+      "line": 6,
+      "endLine": 52,
+      "signature": "",
+      "calls": [
+        {
+          "name": "hasAtLeastOnePermission",
+          "edgeType": "call"
+        },
+        {
+          "name": "hasPermission",
+          "edgeType": "call"
+        },
+        {
+          "name": "MarketplaceRequestBadge",
+          "edgeType": "jsx"
+        }
+      ]
+    }
+  ],
+  "imports": [
+    {
+      "module": "./components/MarketplaceRequestBadge",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/client/views/marketplace/components/MarketplaceRequestBadge.tsx"
+    },
+    {
+      "module": "../../../app/authorization/client",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/app/authorization/client/index.ts"
+    },
+    {
+      "module": "../../lib/createSidebarItems",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/client/lib/createSidebarItems.ts"
+    },
+    {
+      "module": "../../lib/links",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/client/lib/links.ts"
+    }
+  ]
+}

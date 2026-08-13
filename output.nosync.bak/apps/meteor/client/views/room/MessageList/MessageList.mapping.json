@@ -1,0 +1,387 @@
+{
+  "sourcePath": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/client/views/room/MessageList/MessageList.tsx",
+  "symbols": [
+    {
+      "type": "inner_function",
+      "name": "handlePrepend",
+      "exported": false,
+      "qualifiedName": "MessageList.handlePrepend",
+      "line": 104,
+      "endLine": 132,
+      "signature": "(offset: number) =>",
+      "calls": [
+        {
+          "name": "setShouldJumpToBottom",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "variable_function",
+      "name": "MessageList",
+      "exported": true,
+      "line": 51,
+      "endLine": 324,
+      "signature": "function MessageList({ rid, canPreview, hasMorePreviousMessages, isLoadingMoreMessages, user, room, retentionPolicy, hasMoreNextMessages, shouldJumpToBottom, setShouldJumpToBottom, isAtBottom, isJumpingToMessage, setIsJumpingToMessage, setUnreadCount, setLastMessageDate, debouncedClearNewMessagesOnScroll, handleDateScroll, debouncedMessageRead, setKeepAtBottom, }: MessageListProps)",
+      "calls": [
+        {
+          "name": "useRef",
+          "edgeType": "call"
+        },
+        {
+          "name": "useLayoutEffect",
+          "edgeType": "call"
+        },
+        {
+          "name": "useMessages",
+          "edgeType": "call"
+        },
+        {
+          "name": "useEffect",
+          "edgeType": "call"
+        },
+        {
+          "name": "setKeepAtBottom",
+          "edgeType": "call"
+        },
+        {
+          "name": "scrollToIndex",
+          "edgeType": "call"
+        },
+        {
+          "name": "useKeepMountedMessages",
+          "edgeType": "call"
+        },
+        {
+          "name": "useTryToJumpToMessage",
+          "edgeType": "call"
+        },
+        {
+          "name": "useCallback",
+          "edgeType": "call"
+        },
+        {
+          "name": "setShouldJumpToBottom",
+          "edgeType": "call"
+        },
+        {
+          "name": "useFirstUnreadMessageId",
+          "edgeType": "call"
+        },
+        {
+          "name": "useSearchParameter",
+          "edgeType": "call"
+        },
+        {
+          "name": "getStore",
+          "edgeType": "call"
+        },
+        {
+          "name": "scrollTo",
+          "edgeType": "call"
+        },
+        {
+          "name": "useStoreScrollPosition",
+          "edgeType": "call"
+        },
+        {
+          "name": "useRoomSubscription",
+          "edgeType": "call"
+        },
+        {
+          "name": "useUserPreference",
+          "edgeType": "call"
+        },
+        {
+          "name": "useSetting",
+          "edgeType": "call"
+        },
+        {
+          "name": "useTranslation",
+          "edgeType": "call"
+        },
+        {
+          "name": "useChat",
+          "edgeType": "call"
+        },
+        {
+          "name": "findItemIndex",
+          "edgeType": "call"
+        },
+        {
+          "name": "min",
+          "edgeType": "call"
+        },
+        {
+          "name": "max",
+          "edgeType": "call"
+        },
+        {
+          "name": "setIsUnreadMarkVisibleCallback",
+          "edgeType": "call"
+        },
+        {
+          "name": "useDebouncedCallback",
+          "edgeType": "call"
+        },
+        {
+          "name": "setUnreadCount",
+          "edgeType": "call"
+        },
+        {
+          "name": "setLastMessageDate",
+          "edgeType": "call"
+        },
+        {
+          "name": "handlePrepend",
+          "edgeType": "call"
+        },
+        {
+          "name": "storeScrollPosition",
+          "edgeType": "call"
+        },
+        {
+          "name": "debouncedClearNewMessagesOnScroll",
+          "edgeType": "call"
+        },
+        {
+          "name": "handleTopVisibleMessage",
+          "edgeType": "call"
+        },
+        {
+          "name": "handleDateScroll",
+          "edgeType": "call"
+        },
+        {
+          "name": "debouncedMessageRead",
+          "edgeType": "call"
+        },
+        {
+          "name": "map",
+          "edgeType": "call"
+        },
+        {
+          "name": "isMessageSequential",
+          "edgeType": "call"
+        },
+        {
+          "name": "isSystemMessage",
+          "edgeType": "call"
+        },
+        {
+          "name": "isThreadMessage",
+          "edgeType": "call"
+        },
+        {
+          "name": "MessageListProvider",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "SelectedMessagesProvider",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "VList",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "Fragment",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "LoadingMessagesIndicator",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "RoomForeword",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "RetentionPolicyWarning",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "MessageListItem",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "virtualizerRef",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "isLoadingMoreMessages",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "keepMountedMessages",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "user",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "room",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "message",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "previous",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "showUnreadDivider",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "showUserAvatar",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "sequential",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "visible",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "subscription",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "system",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "MessageListProps",
+          "edgeType": "type"
+        },
+        {
+          "name": "VirtualizerHandle",
+          "edgeType": "type"
+        },
+        {
+          "name": "IMessage",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "type",
+      "name": "MessageListProps",
+      "line": 29,
+      "endLine": 49,
+      "signature": "export type MessageListProps ="
+    }
+  ],
+  "imports": [
+    {
+      "module": "@rocket.chat/core-typings",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/core-typings",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/fuselage-hooks",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/message-types",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/ui-contexts",
+      "resolved": "external"
+    },
+    {
+      "module": "react",
+      "resolved": "external"
+    },
+    {
+      "module": "react",
+      "resolved": "external"
+    },
+    {
+      "module": "react-i18next",
+      "resolved": "external"
+    },
+    {
+      "module": "virtua",
+      "resolved": "external"
+    },
+    {
+      "module": "virtua",
+      "resolved": "external"
+    },
+    {
+      "module": "./MessageListItem",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/client/views/room/MessageList/MessageListItem.tsx"
+    },
+    {
+      "module": "../contexts/RoomContext",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/client/views/room/contexts/RoomContext.ts"
+    },
+    {
+      "module": "../hooks/useFirstUnreadMessageId",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/client/views/room/hooks/useFirstUnreadMessageId.ts"
+    },
+    {
+      "module": "../providers/SelectedMessagesProvider",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/client/views/room/providers/SelectedMessagesProvider.tsx"
+    },
+    {
+      "module": "./hooks/useMessages",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/client/views/room/MessageList/hooks/useMessages.ts"
+    },
+    {
+      "module": "./hooks/useTryToJumpToMessage",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/client/views/room/MessageList/hooks/useTryToJumpToMessage.ts"
+    },
+    {
+      "module": "./lib/isMessageSequential",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/client/views/room/MessageList/lib/isMessageSequential.ts"
+    },
+    {
+      "module": "./providers/MessageListProvider",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/client/views/room/MessageList/providers/MessageListProvider.tsx"
+    },
+    {
+      "module": "../../../lib/RoomManager",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/client/lib/RoomManager.ts"
+    },
+    {
+      "module": "../body/LoadingMessagesIndicator",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/client/views/room/body/LoadingMessagesIndicator.tsx"
+    },
+    {
+      "module": "../body/RetentionPolicyWarning",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/client/views/room/body/RetentionPolicyWarning.tsx"
+    },
+    {
+      "module": "../body/RoomForeword/RoomForeword",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/client/views/room/body/RoomForeword/RoomForeword.tsx"
+    },
+    {
+      "module": "../body/hooks/useStoreScrollPosition",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/client/views/room/body/hooks/useStoreScrollPosition.ts"
+    },
+    {
+      "module": "../contexts/ChatContext",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/client/views/room/contexts/ChatContext.ts"
+    },
+    {
+      "module": "../hooks/useRetentionPolicy",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/client/views/room/hooks/useRetentionPolicy.ts"
+    },
+    {
+      "module": "./hooks/useKeepMountedMessages",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/client/views/room/MessageList/hooks/useKeepMountedMessages.ts"
+    }
+  ]
+}

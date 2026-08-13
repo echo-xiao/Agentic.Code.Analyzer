@@ -1,0 +1,99 @@
+{
+  "sourcePath": "/Users/echoooooo/Desktop/code/Rocket.Chat/packages/apps/base-runtime/src/lib/ast/mod.ts",
+  "symbols": [
+    {
+      "type": "function",
+      "name": "fixAst",
+      "exported": false,
+      "line": 9,
+      "endLine": 48,
+      "signature": "function fixAst(ast: Node): boolean",
+      "calls": [
+        {
+          "name": "splice",
+          "edgeType": "call"
+        },
+        {
+          "name": "fullAncestor",
+          "edgeType": "call"
+        },
+        {
+          "name": "forEach",
+          "edgeType": "call"
+        },
+        {
+          "name": "operation",
+          "edgeType": "call"
+        },
+        {
+          "name": "push",
+          "edgeType": "call"
+        },
+        {
+          "name": "buildFixModifiedFunctionsOperation",
+          "edgeType": "call"
+        },
+        {
+          "name": "Set",
+          "edgeType": "new"
+        },
+        {
+          "name": "WalkerState",
+          "edgeType": "type"
+        },
+        {
+          "name": "AnyNode",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "function",
+      "name": "fixBrokenSynchronousAPICalls",
+      "exported": true,
+      "line": 13,
+      "endLine": 32,
+      "signature": "export function fixBrokenSynchronousAPICalls(appSource: string): string",
+      "calls": [
+        {
+          "name": "parse",
+          "edgeType": "call"
+        },
+        {
+          "name": "fixAst",
+          "edgeType": "call"
+        },
+        {
+          "name": "generate",
+          "edgeType": "call"
+        }
+      ]
+    }
+  ],
+  "imports": [
+    {
+      "module": "acorn",
+      "resolved": "external"
+    },
+    {
+      "module": "acorn",
+      "resolved": "external"
+    },
+    {
+      "module": "acorn-walk",
+      "resolved": "external"
+    },
+    {
+      "module": "astring",
+      "resolved": "external"
+    },
+    {
+      "module": "./operations",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/packages/apps/base-runtime/src/lib/ast/operations.ts"
+    },
+    {
+      "module": "./operations",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/packages/apps/base-runtime/src/lib/ast/operations.ts"
+    }
+  ]
+}

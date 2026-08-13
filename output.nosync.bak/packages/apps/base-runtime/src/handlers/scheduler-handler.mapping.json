@@ -1,0 +1,133 @@
+{
+  "sourcePath": "/Users/echoooooo/Desktop/code/Rocket.Chat/packages/apps/base-runtime/src/handlers/scheduler-handler.ts",
+  "symbols": [
+    {
+      "type": "function",
+      "name": "handleScheduler",
+      "exported": true,
+      "line": 12,
+      "endLine": 66,
+      "signature": "export default async function handleScheduler(request: RequestContext): Promise<Defined | JsonRpcError>",
+      "calls": [
+        {
+          "name": "split",
+          "edgeType": "call"
+        },
+        {
+          "name": "isArray",
+          "edgeType": "call"
+        },
+        {
+          "name": "invalidParams",
+          "edgeType": "call"
+        },
+        {
+          "name": "get",
+          "edgeType": "call"
+        },
+        {
+          "name": "methodNotFound",
+          "edgeType": "call"
+        },
+        {
+          "name": "debug",
+          "edgeType": "call"
+        },
+        {
+          "name": "assertAppAvailable",
+          "edgeType": "call"
+        },
+        {
+          "name": "call",
+          "edgeType": "call"
+        },
+        {
+          "name": "wrapAppForRequest",
+          "edgeType": "call"
+        },
+        {
+          "name": "getReader",
+          "edgeType": "call"
+        },
+        {
+          "name": "getModifier",
+          "edgeType": "call"
+        },
+        {
+          "name": "getHttp",
+          "edgeType": "call"
+        },
+        {
+          "name": "getPersistence",
+          "edgeType": "call"
+        },
+        {
+          "name": "error",
+          "edgeType": "call"
+        },
+        {
+          "name": "internalError",
+          "edgeType": "call"
+        },
+        {
+          "name": "RequestContext",
+          "edgeType": "type"
+        },
+        {
+          "name": "Defined",
+          "edgeType": "type"
+        },
+        {
+          "name": "JsonRpcError",
+          "edgeType": "type"
+        },
+        {
+          "name": "IProcessor",
+          "edgeType": "type"
+        },
+        {
+          "name": "App",
+          "edgeType": "type"
+        }
+      ]
+    }
+  ],
+  "imports": [
+    {
+      "module": "@rocket.chat/apps-engine/definition/App",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/apps-engine/definition/scheduler/IProcessor",
+      "resolved": "external"
+    },
+    {
+      "module": "jsonrpc-lite",
+      "resolved": "external"
+    },
+    {
+      "module": "jsonrpc-lite",
+      "resolved": "external"
+    },
+    {
+      "module": "../AppObjectRegistry",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/packages/apps/base-runtime/src/AppObjectRegistry.ts"
+    },
+    {
+      "module": "../lib/accessors/mod",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/packages/apps/base-runtime/src/lib/accessors/mod.ts"
+    },
+    {
+      "module": "../lib/requestContext",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/packages/apps/base-runtime/src/lib/requestContext.ts"
+    },
+    {
+      "module": "../lib/wrapAppForRequest",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/packages/apps/base-runtime/src/lib/wrapAppForRequest.ts"
+    },
+    {
+      "module": "./lib/assertions",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/packages/apps/base-runtime/src/handlers/lib/assertions.ts"
+    }
+  ]
+}

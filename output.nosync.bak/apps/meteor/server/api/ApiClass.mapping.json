@@ -1,0 +1,1695 @@
+{
+  "sourcePath": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/server/api/ApiClass.ts",
+  "symbols": [
+    {
+      "type": "class",
+      "name": "APIClass",
+      "exported": true,
+      "line": 163,
+      "endLine": 1217,
+      "signature": "export class APIClass<TBasePath extends string = '', TOperations extends Record<string, unknown> = Record<string, never>>",
+      "calls": []
+    },
+    {
+      "type": "method",
+      "name": "setLimitedCustomFields",
+      "exported": true,
+      "qualifiedName": "APIClass.setLimitedCustomFields",
+      "line": 236,
+      "endLine": 248,
+      "signature": "public setLimitedCustomFields(customFields: string[]): void",
+      "containerClass": "APIClass",
+      "calls": [
+        {
+          "name": "reduce",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "parseJsonQuery",
+      "exported": true,
+      "qualifiedName": "APIClass.parseJsonQuery",
+      "line": 240,
+      "endLine": 242,
+      "signature": "async parseJsonQuery(routeContext: GenericRouteExecutionContext)",
+      "containerClass": "APIClass",
+      "calls": [
+        {
+          "name": "parseJsonQuery",
+          "edgeType": "call"
+        },
+        {
+          "name": "GenericRouteExecutionContext",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "addAuthMethod",
+      "exported": true,
+      "qualifiedName": "APIClass.addAuthMethod",
+      "line": 244,
+      "endLine": 246,
+      "signature": "public addAuthMethod(func: (routeContext: APIActionContext) => Promise<IUser | undefined>): void",
+      "containerClass": "APIClass",
+      "calls": [
+        {
+          "name": "push",
+          "edgeType": "call"
+        },
+        {
+          "name": "APIActionContext",
+          "edgeType": "type"
+        },
+        {
+          "name": "IUser",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "shouldAddRateLimitToRoute",
+      "exported": true,
+      "qualifiedName": "APIClass.shouldAddRateLimitToRoute",
+      "line": 248,
+      "endLine": 256,
+      "signature": "protected shouldAddRateLimitToRoute(options: { rateLimiterOptions?: RateLimiterOptions | boolean }): boolean",
+      "containerClass": "APIClass",
+      "calls": [
+        {
+          "name": "Boolean",
+          "edgeType": "call"
+        },
+        {
+          "name": "RateLimiterOptions",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "success",
+      "exported": true,
+      "qualifiedName": "APIClass.success",
+      "line": 256,
+      "endLine": 267,
+      "signature": "public success<T>(result: T = {} as T, statusCode: SuccessStatusCodes = 200): SuccessResult<T>",
+      "containerClass": "APIClass",
+      "calls": [
+        {
+          "name": "isObject",
+          "edgeType": "call"
+        },
+        {
+          "name": "SuccessStatusCodes",
+          "edgeType": "type"
+        },
+        {
+          "name": "SuccessResult",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "redirect",
+      "exported": true,
+      "qualifiedName": "APIClass.redirect",
+      "line": 260,
+      "endLine": 265,
+      "signature": "public redirect<T, C extends RedirectStatusCodes>(code: C, result: T): RedirectResult<T, C>",
+      "containerClass": "APIClass",
+      "calls": [
+        {
+          "name": "RedirectStatusCodes",
+          "edgeType": "type"
+        },
+        {
+          "name": "RedirectResult",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "failure",
+      "exported": true,
+      "qualifiedName": "APIClass.failure",
+      "line": 275,
+      "endLine": 309,
+      "signature": "public failure<T, TErrorType extends string, TStack extends string, TErrorDetails>( result?: T, errorType?: TErrorType, stack?: TStack, error?: { details: TErrorDetails }, ): FailureResult<T>",
+      "containerClass": "APIClass",
+      "calls": [
+        {
+          "name": "isObject",
+          "edgeType": "call"
+        },
+        {
+          "name": "parse",
+          "edgeType": "call"
+        },
+        {
+          "name": "TErrorType",
+          "edgeType": "type"
+        },
+        {
+          "name": "TStack",
+          "edgeType": "type"
+        },
+        {
+          "name": "TErrorDetails",
+          "edgeType": "type"
+        },
+        {
+          "name": "FailureResult",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "notFound",
+      "exported": true,
+      "qualifiedName": "APIClass.notFound",
+      "line": 284,
+      "endLine": 292,
+      "signature": "public notFound(msg?: string): NotFoundResult",
+      "containerClass": "APIClass",
+      "calls": [
+        {
+          "name": "NotFoundResult",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "internalError",
+      "exported": true,
+      "qualifiedName": "APIClass.internalError",
+      "line": 292,
+      "endLine": 300,
+      "signature": "public internalError<T>(msg?: T): InternalError<T>",
+      "containerClass": "APIClass",
+      "calls": [
+        {
+          "name": "InternalError",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "unavailable",
+      "exported": true,
+      "qualifiedName": "APIClass.unavailable",
+      "line": 296,
+      "endLine": 304,
+      "signature": "public unavailable<T>(msg?: T): UnavailableResult<T>",
+      "containerClass": "APIClass",
+      "calls": [
+        {
+          "name": "UnavailableResult",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "unauthorized",
+      "exported": true,
+      "qualifiedName": "APIClass.unauthorized",
+      "line": 304,
+      "endLine": 312,
+      "signature": "public unauthorized<T>(msg?: T): UnauthorizedResult<T>",
+      "containerClass": "APIClass",
+      "calls": [
+        {
+          "name": "UnauthorizedResult",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "forbidden",
+      "exported": true,
+      "qualifiedName": "APIClass.forbidden",
+      "line": 312,
+      "endLine": 323,
+      "signature": "public forbidden<T>(msg?: T): ForbiddenResult<T>",
+      "containerClass": "APIClass",
+      "calls": [
+        {
+          "name": "ForbiddenResult",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "tooManyRequests",
+      "exported": true,
+      "qualifiedName": "APIClass.tooManyRequests",
+      "line": 316,
+      "endLine": 324,
+      "signature": "public tooManyRequests<T>(msg?: T): TooManyRequestsResult<T>",
+      "containerClass": "APIClass",
+      "calls": [
+        {
+          "name": "TooManyRequestsResult",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "getRateLimiter",
+      "exported": true,
+      "qualifiedName": "APIClass.getRateLimiter",
+      "line": 320,
+      "endLine": 322,
+      "signature": "protected getRateLimiter(route: string): { rateLimiter: RateLimiter; options: RateLimiterOptions }",
+      "containerClass": "APIClass",
+      "calls": [
+        {
+          "name": "RateLimiter",
+          "edgeType": "type"
+        },
+        {
+          "name": "RateLimiterOptions",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "shouldVerifyRateLimit",
+      "exported": true,
+      "qualifiedName": "APIClass.shouldVerifyRateLimit",
+      "line": 324,
+      "endLine": 331,
+      "signature": "protected async shouldVerifyRateLimit(route: string, userId?: string): Promise<boolean>",
+      "containerClass": "APIClass",
+      "calls": [
+        {
+          "name": "hasOwnProperty",
+          "edgeType": "call"
+        },
+        {
+          "name": "get",
+          "edgeType": "call"
+        },
+        {
+          "name": "hasPermissionAsync",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "enforceRateLimit",
+      "exported": true,
+      "qualifiedName": "APIClass.enforceRateLimit",
+      "line": 328,
+      "endLine": 358,
+      "signature": "protected async enforceRateLimit( objectForRateLimitMatch: RateLimiterOptionsToCheck, _: any, response: Response, userId?: string, ): Promise<void>",
+      "containerClass": "APIClass",
+      "calls": [
+        {
+          "name": "shouldVerifyRateLimit",
+          "edgeType": "call"
+        },
+        {
+          "name": "increment",
+          "edgeType": "call"
+        },
+        {
+          "name": "check",
+          "edgeType": "call"
+        },
+        {
+          "name": "ceil",
+          "edgeType": "call"
+        },
+        {
+          "name": "set",
+          "edgeType": "call"
+        },
+        {
+          "name": "getTime",
+          "edgeType": "call"
+        },
+        {
+          "name": "Date",
+          "edgeType": "new"
+        },
+        {
+          "name": "RateLimiterOptionsToCheck",
+          "edgeType": "type"
+        },
+        {
+          "name": "Response",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "reloadRoutesToRefreshRateLimiter",
+      "exported": true,
+      "qualifiedName": "APIClass.reloadRoutesToRefreshRateLimiter",
+      "line": 337,
+      "endLine": 351,
+      "signature": "public reloadRoutesToRefreshRateLimiter(): void",
+      "containerClass": "APIClass",
+      "calls": [
+        {
+          "name": "forEach",
+          "edgeType": "call"
+        },
+        {
+          "name": "shouldAddRateLimitToRoute",
+          "edgeType": "call"
+        },
+        {
+          "name": "catch",
+          "edgeType": "call"
+        },
+        {
+          "name": "wrapExceptions",
+          "edgeType": "call"
+        },
+        {
+          "name": "addRateLimiterRuleForRoutes",
+          "edgeType": "call"
+        },
+        {
+          "name": "filter",
+          "edgeType": "call"
+        },
+        {
+          "name": "keys",
+          "edgeType": "call"
+        },
+        {
+          "name": "error",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "addRateLimiterRuleForRoutes",
+      "exported": true,
+      "qualifiedName": "APIClass.addRateLimiterRuleForRoutes",
+      "line": 341,
+      "endLine": 377,
+      "signature": "protected addRateLimiterRuleForRoutes({ routes, rateLimiterOptions, endpoints, }: { routes: string[]; rateLimiterOptions: RateLimiterOptions | boolean; endpoints: Record<string, string> | string[]; }): void",
+      "containerClass": "APIClass",
+      "calls": [
+        {
+          "name": "forEach",
+          "edgeType": "call"
+        },
+        {
+          "name": "addRule",
+          "edgeType": "call"
+        },
+        {
+          "name": "map",
+          "edgeType": "call"
+        },
+        {
+          "name": "namedRoutes",
+          "edgeType": "call"
+        },
+        {
+          "name": "RateLimiter",
+          "edgeType": "new"
+        },
+        {
+          "name": "RateLimiterOptions",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "processTwoFactor",
+      "exported": true,
+      "qualifiedName": "APIClass.processTwoFactor",
+      "line": 353,
+      "endLine": 379,
+      "signature": "public async processTwoFactor({ userId, request, options, connection, }: { userId: string; request: Request; options?: Options; connection: IMethodConnection; }): Promise<boolean>",
+      "containerClass": "APIClass",
+      "calls": [
+        {
+          "name": "get",
+          "edgeType": "call"
+        },
+        {
+          "name": "checkCodeForUser",
+          "edgeType": "call"
+        },
+        {
+          "name": "Request",
+          "edgeType": "type"
+        },
+        {
+          "name": "Options",
+          "edgeType": "type"
+        },
+        {
+          "name": "IMethodConnection",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "getFullRouteName",
+      "exported": true,
+      "qualifiedName": "APIClass.getFullRouteName",
+      "line": 367,
+      "endLine": 369,
+      "signature": "public getFullRouteName(route: string, method: string): string",
+      "containerClass": "APIClass",
+      "calls": []
+    },
+    {
+      "type": "method",
+      "name": "namedRoutes",
+      "exported": true,
+      "qualifiedName": "APIClass.namedRoutes",
+      "line": 371,
+      "endLine": 375,
+      "signature": "protected namedRoutes(route: string, endpoints: Record<string, string> | string[]): string[]",
+      "containerClass": "APIClass",
+      "calls": [
+        {
+          "name": "isArray",
+          "edgeType": "call"
+        },
+        {
+          "name": "keys",
+          "edgeType": "call"
+        },
+        {
+          "name": "map",
+          "edgeType": "call"
+        },
+        {
+          "name": "getFullRouteName",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "registerTypedRoutesLegacy",
+      "exported": true,
+      "qualifiedName": "APIClass.registerTypedRoutesLegacy",
+      "line": 375,
+      "endLine": 417,
+      "signature": "private registerTypedRoutesLegacy<TSubPathPattern extends string, TOptions extends Options>( method: Method, subpath: TSubPathPattern, options: TOptions, ): void",
+      "containerClass": "APIClass",
+      "calls": [
+        {
+          "name": "toLowerCase",
+          "edgeType": "call"
+        },
+        {
+          "name": "compile",
+          "edgeType": "call"
+        },
+        {
+          "name": "registerTypedRoutes",
+          "edgeType": "call"
+        },
+        {
+          "name": "Options",
+          "edgeType": "type"
+        },
+        {
+          "name": "Method",
+          "edgeType": "type"
+        },
+        {
+          "name": "TSubPathPattern",
+          "edgeType": "type"
+        },
+        {
+          "name": "TOptions",
+          "edgeType": "type"
+        },
+        {
+          "name": "ValidateFunction",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "registerTypedRoutes",
+      "exported": true,
+      "qualifiedName": "APIClass.registerTypedRoutes",
+      "line": 383,
+      "endLine": 435,
+      "signature": "private registerTypedRoutes< TSubPathPattern extends string, TOptions extends TypedOptions, TPathPattern extends `${TBasePath}/${TSubPathPattern}`, >(method: MinimalRoute['method'], subpath: TSubPathPattern, options: TOptions): void",
+      "containerClass": "APIClass",
+      "calls": [
+        {
+          "name": "replaceAll",
+          "edgeType": "call"
+        },
+        {
+          "name": "toLowerCase",
+          "edgeType": "call"
+        },
+        {
+          "name": "fromEntries",
+          "edgeType": "call"
+        },
+        {
+          "name": "map",
+          "edgeType": "call"
+        },
+        {
+          "name": "entries",
+          "edgeType": "call"
+        },
+        {
+          "name": "TypedOptions",
+          "edgeType": "type"
+        },
+        {
+          "name": "TBasePath",
+          "edgeType": "type"
+        },
+        {
+          "name": "TSubPathPattern",
+          "edgeType": "type"
+        },
+        {
+          "name": "MinimalRoute",
+          "edgeType": "type"
+        },
+        {
+          "name": "TOptions",
+          "edgeType": "type"
+        },
+        {
+          "name": "TPathPattern",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "method",
+      "exported": true,
+      "qualifiedName": "APIClass.method",
+      "line": 391,
+      "endLine": 409,
+      "signature": "private method<TSubPathPattern extends string, TOptions extends TypedOptions, TPathPattern extends `${TBasePath}/${TSubPathPattern}`>( method: MinimalRoute['method'], subpath: TSubPathPattern, options: TOptions, action: TypedAction<TOptions, TSubPathPattern>, ): APIClass< TBasePath, | TOperations | Prettify< { method: Method; path: TPathPattern; } & Omit<TOptions, 'response'> > >",
+      "containerClass": "APIClass",
+      "calls": [
+        {
+          "name": "addRoute",
+          "edgeType": "call"
+        },
+        {
+          "name": "toLowerCase",
+          "edgeType": "call"
+        },
+        {
+          "name": "registerTypedRoutes",
+          "edgeType": "call"
+        },
+        {
+          "name": "TypedOptions",
+          "edgeType": "type"
+        },
+        {
+          "name": "TBasePath",
+          "edgeType": "type"
+        },
+        {
+          "name": "TSubPathPattern",
+          "edgeType": "type"
+        },
+        {
+          "name": "MinimalRoute",
+          "edgeType": "type"
+        },
+        {
+          "name": "TOptions",
+          "edgeType": "type"
+        },
+        {
+          "name": "TypedAction",
+          "edgeType": "type"
+        },
+        {
+          "name": "APIClass",
+          "edgeType": "type"
+        },
+        {
+          "name": "TOperations",
+          "edgeType": "type"
+        },
+        {
+          "name": "Prettify",
+          "edgeType": "type"
+        },
+        {
+          "name": "Method",
+          "edgeType": "type"
+        },
+        {
+          "name": "TPathPattern",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "get",
+      "exported": true,
+      "qualifiedName": "APIClass.get",
+      "line": 409,
+      "endLine": 424,
+      "signature": "get<TSubPathPattern extends string, TOptions extends TypedOptions, TPathPattern extends `${TBasePath}/${TSubPathPattern}`>( subpath: TSubPathPattern, options: TOptions, action: TypedAction<TOptions, TSubPathPattern>, ): APIClass< TBasePath, | TOperations | Prettify< { method: 'GET'; path: TPathPattern; } & TOptions > >",
+      "containerClass": "APIClass",
+      "calls": [
+        {
+          "name": "method",
+          "edgeType": "call"
+        },
+        {
+          "name": "TypedOptions",
+          "edgeType": "type"
+        },
+        {
+          "name": "TBasePath",
+          "edgeType": "type"
+        },
+        {
+          "name": "TSubPathPattern",
+          "edgeType": "type"
+        },
+        {
+          "name": "TOptions",
+          "edgeType": "type"
+        },
+        {
+          "name": "TypedAction",
+          "edgeType": "type"
+        },
+        {
+          "name": "APIClass",
+          "edgeType": "type"
+        },
+        {
+          "name": "TOperations",
+          "edgeType": "type"
+        },
+        {
+          "name": "Prettify",
+          "edgeType": "type"
+        },
+        {
+          "name": "TPathPattern",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "post",
+      "exported": true,
+      "qualifiedName": "APIClass.post",
+      "line": 426,
+      "endLine": 445,
+      "signature": "post<TSubPathPattern extends string, TOptions extends TypedOptions, TPathPattern extends `${TBasePath}/${TSubPathPattern}`>( subpath: TSubPathPattern, options: TOptions, action: TypedAction<TOptions, TSubPathPattern>, ): APIClass< TBasePath, | TOperations | ({ method: 'POST'; path: TPathPattern; } & Omit<TOptions, 'response'>) | Prettify< { method: 'POST'; path: TPathPattern; } & TOptions > >",
+      "containerClass": "APIClass",
+      "calls": [
+        {
+          "name": "method",
+          "edgeType": "call"
+        },
+        {
+          "name": "TypedOptions",
+          "edgeType": "type"
+        },
+        {
+          "name": "TBasePath",
+          "edgeType": "type"
+        },
+        {
+          "name": "TSubPathPattern",
+          "edgeType": "type"
+        },
+        {
+          "name": "TOptions",
+          "edgeType": "type"
+        },
+        {
+          "name": "TypedAction",
+          "edgeType": "type"
+        },
+        {
+          "name": "APIClass",
+          "edgeType": "type"
+        },
+        {
+          "name": "TOperations",
+          "edgeType": "type"
+        },
+        {
+          "name": "TPathPattern",
+          "edgeType": "type"
+        },
+        {
+          "name": "Prettify",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "put",
+      "exported": true,
+      "qualifiedName": "APIClass.put",
+      "line": 447,
+      "endLine": 466,
+      "signature": "put<TSubPathPattern extends string, TOptions extends TypedOptions, TPathPattern extends `${TBasePath}/${TSubPathPattern}`>( subpath: TSubPathPattern, options: TOptions, action: TypedAction<TOptions, TSubPathPattern>, ): APIClass< TBasePath, | TOperations | ({ method: 'PUT'; path: TPathPattern; } & Omit<TOptions, 'response'>) | Prettify< { method: 'PUT'; path: TPathPattern; } & TOptions > >",
+      "containerClass": "APIClass",
+      "calls": [
+        {
+          "name": "method",
+          "edgeType": "call"
+        },
+        {
+          "name": "TypedOptions",
+          "edgeType": "type"
+        },
+        {
+          "name": "TBasePath",
+          "edgeType": "type"
+        },
+        {
+          "name": "TSubPathPattern",
+          "edgeType": "type"
+        },
+        {
+          "name": "TOptions",
+          "edgeType": "type"
+        },
+        {
+          "name": "TypedAction",
+          "edgeType": "type"
+        },
+        {
+          "name": "APIClass",
+          "edgeType": "type"
+        },
+        {
+          "name": "TOperations",
+          "edgeType": "type"
+        },
+        {
+          "name": "TPathPattern",
+          "edgeType": "type"
+        },
+        {
+          "name": "Prettify",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "delete",
+      "exported": true,
+      "qualifiedName": "APIClass.delete",
+      "line": 468,
+      "endLine": 487,
+      "signature": "delete<TSubPathPattern extends string, TOptions extends TypedOptions, TPathPattern extends `${TBasePath}/${TSubPathPattern}`>( subpath: TSubPathPattern, options: TOptions, action: TypedAction<TOptions, TSubPathPattern>, ): APIClass< TBasePath, | TOperations | ({ method: 'DELETE'; path: TPathPattern; } & Omit<TOptions, 'response'>) | Prettify< { method: 'DELETE'; path: TPathPattern; } & TOptions > ",
+      "containerClass": "APIClass",
+      "calls": [
+        {
+          "name": "method",
+          "edgeType": "call"
+        },
+        {
+          "name": "TypedOptions",
+          "edgeType": "type"
+        },
+        {
+          "name": "TBasePath",
+          "edgeType": "type"
+        },
+        {
+          "name": "TSubPathPattern",
+          "edgeType": "type"
+        },
+        {
+          "name": "TOptions",
+          "edgeType": "type"
+        },
+        {
+          "name": "TypedAction",
+          "edgeType": "type"
+        },
+        {
+          "name": "APIClass",
+          "edgeType": "type"
+        },
+        {
+          "name": "TOperations",
+          "edgeType": "type"
+        },
+        {
+          "name": "TPathPattern",
+          "edgeType": "type"
+        },
+        {
+          "name": "Prettify",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "addRoute",
+      "exported": true,
+      "qualifiedName": "APIClass.addRoute",
+      "line": 526,
+      "endLine": 690,
+      "signature": "public addRoute< TSubPathPattern extends string, TPathPattern extends JoinPathPattern<TBasePath, TSubPathPattern>, TOptions extends Options, >(subpaths: TSubPathPattern[], options: TOptions, endpoints?: Operations<TPathPattern, TOptions>): void",
+      "containerClass": "APIClass",
+      "calls": [
+        {
+          "name": "checkPermissions",
+          "edgeType": "call"
+        },
+        {
+          "name": "isArray",
+          "edgeType": "call"
+        },
+        {
+          "name": "shouldAddRateLimitToRoute",
+          "edgeType": "call"
+        },
+        {
+          "name": "addRateLimiterRuleForRoutes",
+          "edgeType": "call"
+        },
+        {
+          "name": "forEach",
+          "edgeType": "call"
+        },
+        {
+          "name": "keys",
+          "edgeType": "call"
+        },
+        {
+          "name": "assign",
+          "edgeType": "call"
+        },
+        {
+          "name": "shouldBreakInVersion",
+          "edgeType": "call"
+        },
+        {
+          "name": "get",
+          "edgeType": "call"
+        },
+        {
+          "name": "_hashLoginToken",
+          "edgeType": "call"
+        },
+        {
+          "name": "getFullRouteName",
+          "edgeType": "call"
+        },
+        {
+          "name": "toLowerCase",
+          "edgeType": "call"
+        },
+        {
+          "name": "generateConnection",
+          "edgeType": "call"
+        },
+        {
+          "name": "parseDeprecation",
+          "edgeType": "call"
+        },
+        {
+          "name": "enforceRateLimit",
+          "edgeType": "call"
+        },
+        {
+          "name": "validatorFunc",
+          "edgeType": "call"
+        },
+        {
+          "name": "join",
+          "edgeType": "call"
+        },
+        {
+          "name": "map",
+          "edgeType": "call"
+        },
+        {
+          "name": "processTwoFactor",
+          "edgeType": "call"
+        },
+        {
+          "name": "parseJsonQuery",
+          "edgeType": "call"
+        },
+        {
+          "name": "createMeteorInvocation",
+          "edgeType": "call"
+        },
+        {
+          "name": "finally",
+          "edgeType": "call"
+        },
+        {
+          "name": "applyInvocation",
+          "edgeType": "call"
+        },
+        {
+          "name": "apply",
+          "edgeType": "call"
+        },
+        {
+          "name": "tooManyRequests",
+          "edgeType": "call"
+        },
+        {
+          "name": "unauthorized",
+          "edgeType": "call"
+        },
+        {
+          "name": "forbidden",
+          "edgeType": "call"
+        },
+        {
+          "name": "failure",
+          "edgeType": "call"
+        },
+        {
+          "name": "replaceAll",
+          "edgeType": "call"
+        },
+        {
+          "name": "authenticationMiddlewareForHono",
+          "edgeType": "call"
+        },
+        {
+          "name": "permissionsMiddleware",
+          "edgeType": "call"
+        },
+        {
+          "name": "license",
+          "edgeType": "call"
+        },
+        {
+          "name": "push",
+          "edgeType": "call"
+        },
+        {
+          "name": "registerTypedRoutesLegacy",
+          "edgeType": "call"
+        },
+        {
+          "name": "JoinPathPattern",
+          "edgeType": "type"
+        },
+        {
+          "name": "TBasePath",
+          "edgeType": "type"
+        },
+        {
+          "name": "TSubPathPattern",
+          "edgeType": "type"
+        },
+        {
+          "name": "Options",
+          "edgeType": "type"
+        },
+        {
+          "name": "TOptions",
+          "edgeType": "type"
+        },
+        {
+          "name": "Operations",
+          "edgeType": "type"
+        },
+        {
+          "name": "TPathPattern",
+          "edgeType": "type"
+        },
+        {
+          "name": "Method",
+          "edgeType": "type"
+        },
+        {
+          "name": "IMethodConnection",
+          "edgeType": "type"
+        },
+        {
+          "name": "InnerAction",
+          "edgeType": "type"
+        },
+        {
+          "name": "TypedOptions",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "authenticatedRoute",
+      "exported": true,
+      "qualifiedName": "APIClass.authenticatedRoute",
+      "line": 534,
+      "endLine": 559,
+      "signature": "public async authenticatedRoute(routeContext: APIActionContext): Promise<IUser | null>",
+      "containerClass": "APIClass",
+      "calls": [
+        {
+          "name": "get",
+          "edgeType": "call"
+        },
+        {
+          "name": "findOne",
+          "edgeType": "call"
+        },
+        {
+          "name": "_hashLoginToken",
+          "edgeType": "call"
+        },
+        {
+          "name": "getDefaultUserFields",
+          "edgeType": "call"
+        },
+        {
+          "name": "method",
+          "edgeType": "call"
+        },
+        {
+          "name": "APIActionContext",
+          "edgeType": "type"
+        },
+        {
+          "name": "IUser",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "updateRateLimiterDictionaryForRoute",
+      "exported": true,
+      "qualifiedName": "APIClass.updateRateLimiterDictionaryForRoute",
+      "line": 538,
+      "endLine": 545,
+      "signature": "public updateRateLimiterDictionaryForRoute(route: string, numRequestsAllowed: number, intervalTimeInMS?: number): void",
+      "containerClass": "APIClass",
+      "calls": [
+        {
+          "name": "reloadRoutesToRefreshRateLimiter",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "_initAuth",
+      "exported": true,
+      "qualifiedName": "APIClass._initAuth",
+      "line": 542,
+      "endLine": 736,
+      "signature": "protected _initAuth(): void",
+      "containerClass": "APIClass",
+      "calls": [
+        {
+          "name": "without",
+          "edgeType": "call"
+        },
+        {
+          "name": "keys",
+          "edgeType": "call"
+        },
+        {
+          "name": "get",
+          "edgeType": "call"
+        },
+        {
+          "name": "includes",
+          "edgeType": "call"
+        },
+        {
+          "name": "login",
+          "edgeType": "rest_route"
+        },
+        {
+          "name": "addRoute",
+          "edgeType": "call"
+        },
+        {
+          "name": "loginCompatibility",
+          "edgeType": "call"
+        },
+        {
+          "name": "generateConnection",
+          "edgeType": "call"
+        },
+        {
+          "name": "withValue",
+          "edgeType": "call"
+        },
+        {
+          "name": "login",
+          "edgeType": "call"
+        },
+        {
+          "name": "callAsync",
+          "edgeType": "call"
+        },
+        {
+          "name": "findOne",
+          "edgeType": "call"
+        },
+        {
+          "name": "getDefaultUserFields",
+          "edgeType": "call"
+        },
+        {
+          "name": "unauthorized",
+          "edgeType": "call"
+        },
+        {
+          "name": "success",
+          "edgeType": "call"
+        },
+        {
+          "name": "getUserInfo",
+          "edgeType": "call"
+        },
+        {
+          "name": "internalError",
+          "edgeType": "call"
+        },
+        {
+          "name": "assign",
+          "edgeType": "call"
+        },
+        {
+          "name": "lastIndexOf",
+          "edgeType": "call"
+        },
+        {
+          "name": "substring",
+          "edgeType": "call"
+        },
+        {
+          "name": "updateOne",
+          "edgeType": "call"
+        },
+        {
+          "name": "notifyOnUserChangeAsync",
+          "edgeType": "call"
+        },
+        {
+          "name": "findOneById",
+          "edgeType": "call"
+        },
+        {
+          "name": "getNestedProp",
+          "edgeType": "call"
+        },
+        {
+          "name": "warn",
+          "edgeType": "call"
+        },
+        {
+          "name": "call",
+          "edgeType": "call"
+        },
+        {
+          "name": "Request",
+          "edgeType": "type"
+        },
+        {
+          "name": "APIClass",
+          "edgeType": "type"
+        },
+        {
+          "name": "IUser",
+          "edgeType": "type"
+        },
+        {
+          "name": "TypedThis",
+          "edgeType": "type"
+        },
+        {
+          "name": "This",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "createMeteorInvocation",
+      "exported": true,
+      "qualifiedName": "APIClass.createMeteorInvocation",
+      "line": 546,
+      "endLine": 578,
+      "signature": "static createMeteorInvocation( connection: { id: string; close: () => void; clientAddress: string; httpHeaders: Record<string, any>; }, userId?: string, token?: string, )",
+      "containerClass": "APIClass",
+      "calls": [
+        {
+          "name": "_setAccountData",
+          "edgeType": "call"
+        },
+        {
+          "name": "withValue",
+          "edgeType": "call"
+        },
+        {
+          "name": "action",
+          "edgeType": "call"
+        },
+        {
+          "name": "resolve",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "constructor",
+      "exported": true,
+      "qualifiedName": "APIClass.constructor",
+      "line": 196,
+      "endLine": 234,
+      "signature": "constructor({ useDefaultAuth, ...properties }: IAPIProperties)",
+      "containerClass": "APIClass",
+      "calls": [
+        {
+          "name": "replaceAll",
+          "edgeType": "call"
+        },
+        {
+          "name": "join",
+          "edgeType": "call"
+        },
+        {
+          "name": "filter",
+          "edgeType": "call"
+        },
+        {
+          "name": "replace",
+          "edgeType": "call"
+        },
+        {
+          "name": "_initAuth",
+          "edgeType": "call"
+        },
+        {
+          "name": "RocketChatAPIRouter",
+          "edgeType": "new"
+        },
+        {
+          "name": "IAPIProperties",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "class_property",
+      "name": "typedRoutes",
+      "exported": true,
+      "qualifiedName": "APIClass.typedRoutes",
+      "line": 164,
+      "endLine": 164,
+      "signature": "public typedRoutes: Record<string, Record<string, Route>> =",
+      "containerClass": "APIClass",
+      "calls": [
+        {
+          "name": "Route",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "class_property",
+      "name": "_routes",
+      "exported": true,
+      "qualifiedName": "APIClass._routes",
+      "line": 170,
+      "endLine": 170,
+      "signature": "private _routes:",
+      "containerClass": "APIClass",
+      "calls": [
+        {
+          "name": "Options",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "class_property",
+      "name": "authMethods",
+      "exported": true,
+      "qualifiedName": "APIClass.authMethods",
+      "line": 172,
+      "endLine": 172,
+      "signature": "public authMethods: ((routeContext: APIActionContext) => Promise<IUser | undefined>)[];",
+      "containerClass": "APIClass",
+      "calls": [
+        {
+          "name": "APIActionContext",
+          "edgeType": "type"
+        },
+        {
+          "name": "IUser",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "class_property",
+      "name": "helperMethods",
+      "exported": true,
+      "qualifiedName": "APIClass.helperMethods",
+      "line": 174,
+      "endLine": 174,
+      "signature": "protected helperMethods: Map<string, () => any> = new Map();",
+      "containerClass": "APIClass",
+      "calls": [
+        {
+          "name": "Map",
+          "edgeType": "new"
+        }
+      ]
+    },
+    {
+      "type": "class_property",
+      "name": "defaultLimitedUserFieldsToExclude",
+      "exported": true,
+      "qualifiedName": "APIClass.defaultLimitedUserFieldsToExclude",
+      "line": 185,
+      "endLine": 185,
+      "signature": "public defaultLimitedUserFieldsToExclude: IAPIDefaultFieldsToExclude;",
+      "containerClass": "APIClass",
+      "calls": [
+        {
+          "name": "IAPIDefaultFieldsToExclude",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "class_property",
+      "name": "limitedUserFieldsToExclude",
+      "exported": true,
+      "qualifiedName": "APIClass.limitedUserFieldsToExclude",
+      "line": 187,
+      "endLine": 187,
+      "signature": "public limitedUserFieldsToExclude: IAPIDefaultFieldsToExclude;",
+      "containerClass": "APIClass",
+      "calls": [
+        {
+          "name": "IAPIDefaultFieldsToExclude",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "class_property",
+      "name": "router",
+      "exported": true,
+      "qualifiedName": "APIClass.router",
+      "line": 194,
+      "endLine": 194,
+      "signature": "readonly router: Router<any, any, any>;",
+      "containerClass": "APIClass",
+      "calls": [
+        {
+          "name": "Router",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "variable",
+      "name": "applyBreakingChanges",
+      "exported": true,
+      "line": 63,
+      "endLine": 63,
+      "signature": "applyBreakingChanges = shouldBreakInVersion('9.0.0')",
+      "calls": []
+    },
+    {
+      "type": "variable",
+      "name": "defaultRateLimiterOptions",
+      "exported": true,
+      "line": 135,
+      "endLine": 138,
+      "signature": "defaultRateLimiterOptions: RateLimiterOptions =",
+      "calls": [
+        {
+          "name": "get",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "variable_function",
+      "name": "generateConnection",
+      "exported": false,
+      "line": 147,
+      "endLine": 161,
+      "signature": "( ipAddress: string, httpHeaders: Record<string, any>, ): { id: string; close: () => void; clientAddress: string; httpHeaders: Record<string, any>; } =>",
+      "calls": [
+        {
+          "name": "id",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "interface",
+      "name": "IAPIProperties",
+      "line": 105,
+      "endLine": 111,
+      "signature": "interface IAPIProperties"
+    },
+    {
+      "type": "interface",
+      "name": "IAPIDefaultFieldsToExclude",
+      "line": 113,
+      "endLine": 128,
+      "signature": "interface IAPIDefaultFieldsToExclude"
+    },
+    {
+      "type": "type",
+      "name": "MinimalRoute",
+      "line": 64,
+      "endLine": 67,
+      "signature": "type MinimalRoute ="
+    },
+    {
+      "type": "type",
+      "name": "Prettify",
+      "line": 69,
+      "endLine": 71,
+      "signature": "export type Prettify<T> ="
+    },
+    {
+      "type": "type",
+      "name": "ExtractValidation",
+      "line": 73,
+      "endLine": 73,
+      "signature": "type ExtractValidation<T> = T extends ValidateFunction<infer TSchema> ? TSchema : never;"
+    },
+    {
+      "type": "type",
+      "name": "UnionToIntersection",
+      "line": 75,
+      "endLine": 75,
+      "signature": "type UnionToIntersection<U> = (U extends any ? (x: U) => any : never) extends (x: infer I) => any ? I : never;"
+    },
+    {
+      "type": "type",
+      "name": "ExtractRoutesFromAPI",
+      "line": 77,
+      "endLine": 81,
+      "signature": "export type ExtractRoutesFromAPI<T> = Prettify<"
+    },
+    {
+      "type": "type",
+      "name": "ConvertToRoute",
+      "line": 83,
+      "endLine": 103,
+      "signature": "type ConvertToRoute<TRoute extends MinimalRoute> ="
+    },
+    {
+      "type": "type",
+      "name": "RateLimiterOptions",
+      "line": 130,
+      "endLine": 133,
+      "signature": "export type RateLimiterOptions ="
+    }
+  ],
+  "imports": [
+    {
+      "module": "@rocket.chat/core-typings",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/http-router",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/license",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/logger",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/models",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/random",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/rest-typings",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/rest-typings",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/tools",
+      "resolved": "external"
+    },
+    {
+      "module": "ajv",
+      "resolved": "external"
+    },
+    {
+      "module": "meteor/accounts-base",
+      "resolved": "external"
+    },
+    {
+      "module": "meteor/ddp",
+      "resolved": "external"
+    },
+    {
+      "module": "meteor/ddp-common",
+      "resolved": "external"
+    },
+    {
+      "module": "meteor/meteor",
+      "resolved": "external"
+    },
+    {
+      "module": "meteor/rate-limit",
+      "resolved": "external"
+    },
+    {
+      "module": "meteor/rate-limit",
+      "resolved": "external"
+    },
+    {
+      "module": "underscore",
+      "resolved": "external"
+    },
+    {
+      "module": "./api.helpers",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/server/api/api.helpers.ts"
+    },
+    {
+      "module": "./definition",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/server/api/definition.ts"
+    },
+    {
+      "module": "./lib/getUserInfo",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/server/api/lib/getUserInfo.ts"
+    },
+    {
+      "module": "./lib/parseJsonQuery",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/server/api/lib/parseJsonQuery.ts"
+    },
+    {
+      "module": "./router",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/server/api/router.ts"
+    },
+    {
+      "module": "./router",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/server/api/router.ts"
+    },
+    {
+      "module": "../../app/lib/server/lib/notifyListener",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/app/lib/server/lib/notifyListener.ts"
+    },
+    {
+      "module": "../../app/settings/server",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/app/settings/server/index.ts"
+    },
+    {
+      "module": "../lib/getNestedProp",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/server/lib/getNestedProp.ts"
+    },
+    {
+      "module": "./v1/middlewares/authenticationHono",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/server/api/v1/middlewares/authenticationHono.ts"
+    },
+    {
+      "module": "./v1/middlewares/permissions",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/server/api/v1/middlewares/permissions.ts"
+    },
+    {
+      "module": "../../app/2fa/server/code",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/app/2fa/server/code/index.ts"
+    },
+    {
+      "module": "../../app/utils/server/functions/getDefaultUserFields",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/app/utils/server/functions/getDefaultUserFields.ts"
+    },
+    {
+      "module": "../../ee/server/api/v1/middlewares/license",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/ee/server/api/v1/middlewares/license.ts"
+    },
+    {
+      "module": "../../lib/utils/isObject",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/lib/utils/isObject.ts"
+    },
+    {
+      "module": "../lib/authorization/hasPermission",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/server/lib/authorization/hasPermission.ts"
+    },
+    {
+      "module": "../lib/shouldBreakInVersion",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/server/lib/shouldBreakInVersion.ts"
+    }
+  ]
+}

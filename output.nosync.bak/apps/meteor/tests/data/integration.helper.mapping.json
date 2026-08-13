@@ -1,0 +1,115 @@
+{
+  "sourcePath": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/tests/data/integration.helper.ts",
+  "symbols": [
+    {
+      "type": "variable_function",
+      "name": "createIntegration",
+      "exported": true,
+      "line": 7,
+      "endLine": 26,
+      "signature": "(integration: IntegrationsCreateProps, userCredentials: Credentials) =>",
+      "calls": [
+        {
+          "name": "end",
+          "edgeType": "call"
+        },
+        {
+          "name": "send",
+          "edgeType": "call"
+        },
+        {
+          "name": "set",
+          "edgeType": "call"
+        },
+        {
+          "name": "post",
+          "edgeType": "call"
+        },
+        {
+          "name": "api",
+          "edgeType": "call"
+        },
+        {
+          "name": "reject",
+          "edgeType": "call"
+        },
+        {
+          "name": "resolve",
+          "edgeType": "call"
+        },
+        {
+          "name": "IntegrationsCreateProps",
+          "edgeType": "type"
+        },
+        {
+          "name": "Credentials",
+          "edgeType": "type"
+        },
+        {
+          "name": "IIntegration",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "variable_function",
+      "name": "removeIntegration",
+      "exported": true,
+      "line": 28,
+      "endLine": 48,
+      "signature": "(integrationId: IIntegration['_id'], type: 'incoming' | 'outgoing') =>",
+      "calls": [
+        {
+          "name": "end",
+          "edgeType": "call"
+        },
+        {
+          "name": "send",
+          "edgeType": "call"
+        },
+        {
+          "name": "set",
+          "edgeType": "call"
+        },
+        {
+          "name": "post",
+          "edgeType": "call"
+        },
+        {
+          "name": "api",
+          "edgeType": "call"
+        },
+        {
+          "name": "warn",
+          "edgeType": "call"
+        },
+        {
+          "name": "resolve",
+          "edgeType": "call"
+        },
+        {
+          "name": "IIntegration",
+          "edgeType": "type"
+        }
+      ]
+    }
+  ],
+  "imports": [
+    {
+      "module": "@rocket.chat/api-client",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/core-typings",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/rest-typings",
+      "resolved": "external"
+    },
+    {
+      "module": "./api-data",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/tests/data/api-data.ts"
+    }
+  ]
+}

@@ -1,0 +1,71 @@
+{
+  "sourcePath": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/client/views/omnichannel/components/OmnichannelSortingDisclaimer.tsx",
+  "symbols": [
+    {
+      "type": "variable_function",
+      "name": "useOmnichannelSortingDisclaimer",
+      "exported": true,
+      "line": 8,
+      "endLine": 20,
+      "signature": "() =>",
+      "calls": [
+        {
+          "name": "useOmnichannelEnterpriseEnabled",
+          "edgeType": "call"
+        },
+        {
+          "name": "useSetting",
+          "edgeType": "call"
+        },
+        {
+          "name": "useState",
+          "edgeType": "call"
+        },
+        {
+          "name": "OmniSortingType",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "variable_function",
+      "name": "OmnichannelSortingDisclaimer",
+      "exported": true,
+      "line": 12,
+      "endLine": 22,
+      "signature": "() =>",
+      "calls": [
+        {
+          "name": "useTranslation",
+          "edgeType": "call"
+        },
+        {
+          "name": "useOmnichannelSortingDisclaimer",
+          "edgeType": "call"
+        }
+      ]
+    }
+  ],
+  "imports": [
+    {
+      "module": "@rocket.chat/core-typings",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/ui-contexts",
+      "resolved": "external"
+    },
+    {
+      "module": "react",
+      "resolved": "external"
+    },
+    {
+      "module": "react-i18next",
+      "resolved": "external"
+    },
+    {
+      "module": "../hooks/useOmnichannelEnterpriseEnabled",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/client/views/omnichannel/hooks/useOmnichannelEnterpriseEnabled.ts"
+    }
+  ]
+}

@@ -1,0 +1,74 @@
+{
+  "sourcePath": "/Users/echoooooo/Desktop/code/Rocket.Chat/ee/packages/federation-matrix/tests/helper/config.ts",
+  "symbols": [
+    {
+      "type": "module",
+      "name": "config",
+      "exported": false,
+      "line": 1,
+      "endLine": 114,
+      "signature": "config",
+      "calls": [
+        {
+          "name": "getFederationConfig",
+          "edgeType": "call"
+        },
+        {
+          "name": "error",
+          "edgeType": "call"
+        },
+        {
+          "name": "exit",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "function",
+      "name": "validateEnvVar",
+      "exported": false,
+      "line": 38,
+      "endLine": 44,
+      "signature": "function validateEnvVar(name: string, defaultValue?: string): string",
+      "calls": [
+        {
+          "name": "trim",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "function",
+      "name": "getFederationConfig",
+      "exported": false,
+      "line": 53,
+      "endLine": 92,
+      "signature": "function getFederationConfig(): IFederationConfig",
+      "calls": [
+        {
+          "name": "validateEnvVar",
+          "edgeType": "call"
+        },
+        {
+          "name": "IFederationConfig",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "interface",
+      "name": "IFederationConfig",
+      "line": 21,
+      "endLine": 24,
+      "signature": "export interface IFederationConfig"
+    },
+    {
+      "type": "type",
+      "name": "FederationServerConfig",
+      "line": 9,
+      "endLine": 20,
+      "signature": "type FederationServerConfig ="
+    }
+  ],
+  "imports": []
+}

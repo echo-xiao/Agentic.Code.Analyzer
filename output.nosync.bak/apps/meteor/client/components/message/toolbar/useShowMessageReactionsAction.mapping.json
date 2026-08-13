@@ -1,0 +1,53 @@
+{
+  "sourcePath": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/client/components/message/toolbar/useShowMessageReactionsAction.tsx",
+  "symbols": [
+    {
+      "type": "variable_function",
+      "name": "useShowMessageReactionsAction",
+      "exported": true,
+      "line": 7,
+      "endLine": 33,
+      "signature": "(message: IMessage): MessageActionConfig | null =>",
+      "calls": [
+        {
+          "name": "useSetModal",
+          "edgeType": "call"
+        },
+        {
+          "name": "setModal",
+          "edgeType": "call"
+        },
+        {
+          "name": "ReactionListModal",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "IMessage",
+          "edgeType": "type"
+        },
+        {
+          "name": "MessageActionConfig",
+          "edgeType": "type"
+        }
+      ]
+    }
+  ],
+  "imports": [
+    {
+      "module": "@rocket.chat/core-typings",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/ui-contexts",
+      "resolved": "external"
+    },
+    {
+      "module": "../../../../app/ui-utils/client/lib/MessageAction",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/app/ui-utils/client/lib/MessageAction.ts"
+    },
+    {
+      "module": "../../../views/room/modals/ReactionListModal",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/client/views/room/modals/ReactionListModal/index.ts"
+    }
+  ]
+}

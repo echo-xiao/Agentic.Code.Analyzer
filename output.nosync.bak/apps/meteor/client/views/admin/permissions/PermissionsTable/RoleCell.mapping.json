@@ -1,0 +1,181 @@
+{
+  "sourcePath": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/client/views/admin/permissions/PermissionsTable/RoleCell.tsx",
+  "symbols": [
+    {
+      "type": "module",
+      "name": "RoleCell",
+      "exported": false,
+      "line": 1,
+      "endLine": 73,
+      "signature": "RoleCell",
+      "calls": [
+        {
+          "name": "memo",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "inner_function",
+      "name": "handleSubmit",
+      "exported": false,
+      "qualifiedName": "RoleCell.handleSubmit",
+      "line": 32,
+      "endLine": 35,
+      "signature": "() =>",
+      "calls": [
+        {
+          "name": "handleConfirmChange",
+          "edgeType": "call"
+        },
+        {
+          "name": "setModal",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "variable_function",
+      "name": "RoleCell",
+      "exported": false,
+      "line": 21,
+      "endLine": 70,
+      "signature": "({ _id, name, description, onChange, permissionId, permissionName, grantedRoles = [] }: RoleCellProps) =>",
+      "calls": [
+        {
+          "name": "useTranslation",
+          "edgeType": "call"
+        },
+        {
+          "name": "useSetModal",
+          "edgeType": "call"
+        },
+        {
+          "name": "useState",
+          "edgeType": "call"
+        },
+        {
+          "name": "includes",
+          "edgeType": "call"
+        },
+        {
+          "name": "isPermissionRestrictedForRole",
+          "edgeType": "call"
+        },
+        {
+          "name": "useStableCallback",
+          "edgeType": "call"
+        },
+        {
+          "name": "handleConfirmChange",
+          "edgeType": "call"
+        },
+        {
+          "name": "setModal",
+          "edgeType": "call"
+        },
+        {
+          "name": "setLoading",
+          "edgeType": "call"
+        },
+        {
+          "name": "onChange",
+          "edgeType": "call"
+        },
+        {
+          "name": "setGranted",
+          "edgeType": "call"
+        },
+        {
+          "name": "GenericModal",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "GenericTableCell",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "Margins",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "Box",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "CheckBox",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "Throbber",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "handleSubmit",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "checkboxLabel",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "granted",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "handleChange",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "isDisabled",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "RoleCellProps",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "type",
+      "name": "RoleCellProps",
+      "line": 11,
+      "endLine": 19,
+      "signature": "export type RoleCellProps ="
+    }
+  ],
+  "imports": [
+    {
+      "module": "@rocket.chat/core-typings",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/fuselage",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/fuselage-hooks",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/ui-client",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/ui-contexts",
+      "resolved": "external"
+    },
+    {
+      "module": "react",
+      "resolved": "external"
+    },
+    {
+      "module": "react-i18next",
+      "resolved": "external"
+    },
+    {
+      "module": "../../../../../app/authorization/lib",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/app/authorization/lib/index.ts"
+    }
+  ]
+}

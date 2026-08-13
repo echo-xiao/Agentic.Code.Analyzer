@@ -1,0 +1,165 @@
+{
+  "sourcePath": "/Users/echoooooo/Desktop/code/Rocket.Chat/packages/i18n/src/index.ts",
+  "symbols": [
+    {
+      "type": "variable_function",
+      "name": "addSprinfToI18n",
+      "exported": true,
+      "line": 16,
+      "endLine": 31,
+      "signature": "(t: TFunction) =>",
+      "calls": [
+        {
+          "name": "isObject",
+          "edgeType": "call"
+        },
+        {
+          "name": "isArray",
+          "edgeType": "call"
+        },
+        {
+          "name": "TFunction",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "variable_function",
+      "name": "extractTranslationNamespaces",
+      "exported": true,
+      "line": 69,
+      "endLine": 86,
+      "signature": "(source: Record<string, string>): Record<TranslationNamespace, Record<string, string>> =>",
+      "calls": [
+        {
+          "name": "entries",
+          "edgeType": "call"
+        },
+        {
+          "name": "find",
+          "edgeType": "call"
+        },
+        {
+          "name": "startsWith",
+          "edgeType": "call"
+        },
+        {
+          "name": "slice",
+          "edgeType": "call"
+        },
+        {
+          "name": "TranslationNamespace",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "variable_function",
+      "name": "extractTranslationKeys",
+      "exported": true,
+      "line": 79,
+      "endLine": 84,
+      "signature": "(source: Record<string, string>, namespaces: string | string[] = []): { [key: string]: any } =>",
+      "calls": [
+        {
+          "name": "extractTranslationNamespaces",
+          "edgeType": "call"
+        },
+        {
+          "name": "isArray",
+          "edgeType": "call"
+        },
+        {
+          "name": "reduce",
+          "edgeType": "call"
+        },
+        {
+          "name": "TranslationNamespace",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "variable",
+      "name": "availableTranslationNamespaces",
+      "exported": true,
+      "line": 95,
+      "endLine": 95,
+      "signature": "availableTranslationNamespaces = Object.keys(namespacesMap) as TranslationNamespace[]",
+      "calls": [
+        {
+          "name": "keys",
+          "edgeType": "call"
+        },
+        {
+          "name": "TranslationNamespace",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "variable",
+      "name": "defaultTranslationNamespace",
+      "exported": true,
+      "line": 96,
+      "endLine": 96,
+      "signature": "defaultTranslationNamespace: TranslationNamespace = 'core'",
+      "calls": []
+    },
+    {
+      "type": "variable_function",
+      "name": "applyCustomTranslations",
+      "exported": true,
+      "line": 98,
+      "endLine": 120,
+      "signature": "( i18n: i18n, parsedCustomTranslations: Record<string, Record<string, string>>, { namespaces, languages }: { namespaces?: string[]; languages?: string[] } = {}, ) =>",
+      "calls": [
+        {
+          "name": "entries",
+          "edgeType": "call"
+        },
+        {
+          "name": "includes",
+          "edgeType": "call"
+        },
+        {
+          "name": "find",
+          "edgeType": "call"
+        },
+        {
+          "name": "startsWith",
+          "edgeType": "call"
+        },
+        {
+          "name": "slice",
+          "edgeType": "call"
+        },
+        {
+          "name": "addResourceBundle",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "type",
+      "name": "TranslationNamespace",
+      "line": 83,
+      "endLine": 85,
+      "signature": "export type TranslationNamespace = | (Extract<RocketchatI18nKeys, `$"
+    }
+  ],
+  "imports": [
+    {
+      "module": "@rocket.chat/tools",
+      "resolved": "external"
+    },
+    {
+      "module": "i18next",
+      "resolved": "external"
+    },
+    {
+      "module": "./resources.ts",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/packages/i18n/src/resources.ts"
+    }
+  ]
+}

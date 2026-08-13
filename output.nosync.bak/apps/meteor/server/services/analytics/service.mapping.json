@@ -1,0 +1,93 @@
+{
+  "sourcePath": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/server/services/analytics/service.ts",
+  "symbols": [
+    {
+      "type": "class",
+      "name": "AnalyticsService",
+      "exported": true,
+      "line": 6,
+      "endLine": 22,
+      "signature": "export class AnalyticsService extends ServiceClassInternal implements IAnalyticsService",
+      "calls": [
+        {
+          "name": "ServiceClassInternal",
+          "edgeType": "type"
+        },
+        {
+          "name": "IAnalyticsService",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "saveSeatRequest",
+      "exported": true,
+      "qualifiedName": "AnalyticsService.saveSeatRequest",
+      "line": 9,
+      "endLine": 11,
+      "signature": "async saveSeatRequest(): Promise<void>",
+      "containerClass": "AnalyticsService",
+      "calls": [
+        {
+          "name": "update",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "getSeatRequestCount",
+      "exported": true,
+      "qualifiedName": "AnalyticsService.getSeatRequestCount",
+      "line": 13,
+      "endLine": 17,
+      "signature": "async getSeatRequestCount(): Promise<number>",
+      "containerClass": "AnalyticsService",
+      "calls": [
+        {
+          "name": "findOne",
+          "edgeType": "call"
+        },
+        {
+          "name": "IAnalyticsSeatRequest",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "resetSeatRequestCount",
+      "exported": true,
+      "qualifiedName": "AnalyticsService.resetSeatRequestCount",
+      "line": 17,
+      "endLine": 19,
+      "signature": "async resetSeatRequestCount(): Promise<void>",
+      "containerClass": "AnalyticsService",
+      "calls": [
+        {
+          "name": "update",
+          "edgeType": "call"
+        }
+      ]
+    }
+  ],
+  "imports": [
+    {
+      "module": "@rocket.chat/core-services",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/core-services",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/core-typings",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/models",
+      "resolved": "external"
+    }
+  ]
+}

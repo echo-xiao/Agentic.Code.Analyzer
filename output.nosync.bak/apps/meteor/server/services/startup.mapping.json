@@ -1,0 +1,277 @@
+{
+  "sourcePath": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/server/services/startup.ts",
+  "symbols": [
+    {
+      "type": "variable_function",
+      "name": "registerServices",
+      "exported": true,
+      "line": 35,
+      "endLine": 80,
+      "signature": "async (): Promise<void> =>",
+      "calls": [
+        {
+          "name": "defaultRemoteCollectionDriver",
+          "edgeType": "call"
+        },
+        {
+          "name": "registerService",
+          "edgeType": "call"
+        },
+        {
+          "name": "isRunningMs",
+          "edgeType": "call"
+        },
+        {
+          "name": "AppsEngineService",
+          "edgeType": "new"
+        },
+        {
+          "name": "AnalyticsService",
+          "edgeType": "new"
+        },
+        {
+          "name": "AuthorizationLivechat",
+          "edgeType": "new"
+        },
+        {
+          "name": "BannerService",
+          "edgeType": "new"
+        },
+        {
+          "name": "CalendarService",
+          "edgeType": "new"
+        },
+        {
+          "name": "LDAPService",
+          "edgeType": "new"
+        },
+        {
+          "name": "MediaService",
+          "edgeType": "new"
+        },
+        {
+          "name": "MeteorService",
+          "edgeType": "new"
+        },
+        {
+          "name": "NPSService",
+          "edgeType": "new"
+        },
+        {
+          "name": "RoomService",
+          "edgeType": "new"
+        },
+        {
+          "name": "SAUMonitorService",
+          "edgeType": "new"
+        },
+        {
+          "name": "OmnichannelService",
+          "edgeType": "new"
+        },
+        {
+          "name": "TeamService",
+          "edgeType": "new"
+        },
+        {
+          "name": "UiKitCoreAppService",
+          "edgeType": "new"
+        },
+        {
+          "name": "PushService",
+          "edgeType": "new"
+        },
+        {
+          "name": "DeviceManagementService",
+          "edgeType": "new"
+        },
+        {
+          "name": "VideoConfService",
+          "edgeType": "new"
+        },
+        {
+          "name": "UploadService",
+          "edgeType": "new"
+        },
+        {
+          "name": "MessageService",
+          "edgeType": "new"
+        },
+        {
+          "name": "SettingsService",
+          "edgeType": "new"
+        },
+        {
+          "name": "OmnichannelIntegrationService",
+          "edgeType": "new"
+        },
+        {
+          "name": "ImportService",
+          "edgeType": "new"
+        },
+        {
+          "name": "OmnichannelAnalyticsService",
+          "edgeType": "new"
+        },
+        {
+          "name": "UserService",
+          "edgeType": "new"
+        },
+        {
+          "name": "MediaCallService",
+          "edgeType": "new"
+        },
+        {
+          "name": "CallHistoryService",
+          "edgeType": "new"
+        },
+        {
+          "name": "Presence",
+          "edgeType": "new"
+        },
+        {
+          "name": "Authorization",
+          "edgeType": "new"
+        },
+        {
+          "name": "QueueWorker",
+          "edgeType": "new"
+        },
+        {
+          "name": "OmnichannelTranscript",
+          "edgeType": "new"
+        }
+      ]
+    }
+  ],
+  "imports": [
+    {
+      "module": "@rocket.chat/core-services",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/logger",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/omnichannel-services",
+      "resolved": "external"
+    },
+    {
+      "module": "meteor/mongo",
+      "resolved": "external"
+    },
+    {
+      "module": "../../app/livechat/server/roomAccessValidator.internalService",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/app/livechat/server/roomAccessValidator.internalService.ts"
+    },
+    {
+      "module": "../lib/isRunningMs",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/server/lib/isRunningMs.ts"
+    },
+    {
+      "module": "./analytics/service",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/server/services/analytics/service.ts"
+    },
+    {
+      "module": "./apps-engine/service",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/server/services/apps-engine/service.ts"
+    },
+    {
+      "module": "./banner/service",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/server/services/banner/service.ts"
+    },
+    {
+      "module": "./calendar/service",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/server/services/calendar/service.ts"
+    },
+    {
+      "module": "./call-history/service",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/server/services/call-history/service.ts"
+    },
+    {
+      "module": "./device-management/service",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/server/services/device-management/service.ts"
+    },
+    {
+      "module": "./image/service",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/server/services/image/service.ts"
+    },
+    {
+      "module": "./import/service",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/server/services/import/service.ts"
+    },
+    {
+      "module": "./ldap/service",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/server/services/ldap/service.ts"
+    },
+    {
+      "module": "./media-call/service",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/server/services/media-call/service.ts"
+    },
+    {
+      "module": "./messages/service",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/server/services/messages/service.ts"
+    },
+    {
+      "module": "./meteor/service",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/server/services/meteor/service.ts"
+    },
+    {
+      "module": "./nps/service",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/server/services/nps/service.ts"
+    },
+    {
+      "module": "./omnichannel/service",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/server/services/omnichannel/service.ts"
+    },
+    {
+      "module": "./omnichannel-analytics/service",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/server/services/omnichannel-analytics/service.ts"
+    },
+    {
+      "module": "./omnichannel-integrations/service",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/server/services/omnichannel-integrations/service.ts"
+    },
+    {
+      "module": "./push/service",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/server/services/push/service.ts"
+    },
+    {
+      "module": "./room/service",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/server/services/room/service.ts"
+    },
+    {
+      "module": "./sauMonitor/service",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/server/services/sauMonitor/service.ts"
+    },
+    {
+      "module": "./settings/service",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/server/services/settings/service.ts"
+    },
+    {
+      "module": "./team/service",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/server/services/team/service.ts"
+    },
+    {
+      "module": "./uikit-core-app/service",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/server/services/uikit-core-app/service.ts"
+    },
+    {
+      "module": "./upload/service",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/server/services/upload/service.ts"
+    },
+    {
+      "module": "./user/service",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/server/services/user/service.ts"
+    },
+    {
+      "module": "./video-conference/service",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/server/services/video-conference/service.ts"
+    },
+    {
+      "module": "../lib/i18n",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/server/lib/i18n.ts"
+    }
+  ]
+}

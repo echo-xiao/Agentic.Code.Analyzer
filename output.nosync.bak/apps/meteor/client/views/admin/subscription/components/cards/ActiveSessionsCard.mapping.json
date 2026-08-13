@@ -1,0 +1,94 @@
+{
+  "sourcePath": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/client/views/admin/subscription/components/cards/ActiveSessionsCard.tsx",
+  "symbols": [
+    {
+      "type": "variable_function",
+      "name": "getLimits",
+      "exported": false,
+      "line": 10,
+      "endLine": 23,
+      "signature": "({ max, current }: { max: number; current: number }) =>",
+      "calls": []
+    },
+    {
+      "type": "variable_function",
+      "name": "ActiveSessionsCard",
+      "exported": false,
+      "line": 14,
+      "endLine": 58,
+      "signature": "() =>",
+      "calls": [
+        {
+          "name": "useTranslation",
+          "edgeType": "call"
+        },
+        {
+          "name": "useActiveConnections",
+          "edgeType": "call"
+        },
+        {
+          "name": "getLimits",
+          "edgeType": "call"
+        },
+        {
+          "name": "FeatureUsageCard",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "FeatureUsageCardBody",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "UpgradeButton",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "Box",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "Skeleton",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "card",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "CardProps",
+          "edgeType": "type"
+        }
+      ]
+    }
+  ],
+  "imports": [
+    {
+      "module": "@rocket.chat/fuselage",
+      "resolved": "external"
+    },
+    {
+      "module": "react-i18next",
+      "resolved": "external"
+    },
+    {
+      "module": "../../../../hooks/useActiveConnections",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/client/views/hooks/useActiveConnections.ts"
+    },
+    {
+      "module": "../FeatureUsageCard",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/client/views/admin/subscription/components/FeatureUsageCard.tsx"
+    },
+    {
+      "module": "../FeatureUsageCard",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/client/views/admin/subscription/components/FeatureUsageCard.tsx"
+    },
+    {
+      "module": "../FeatureUsageCardBody",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/client/views/admin/subscription/components/FeatureUsageCardBody.tsx"
+    },
+    {
+      "module": "../UpgradeButton",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/client/views/admin/subscription/components/UpgradeButton.tsx"
+    }
+  ]
+}

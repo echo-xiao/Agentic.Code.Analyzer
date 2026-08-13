@@ -1,0 +1,52 @@
+{
+  "sourcePath": "/Users/echoooooo/Desktop/code/Rocket.Chat/packages/gazzodown/src/katex/KatexBlock.tsx",
+  "symbols": [
+    {
+      "type": "variable_function",
+      "name": "KatexBlock",
+      "exported": false,
+      "line": 10,
+      "endLine": 24,
+      "signature": "({ code }: KatexBlockProps) =>",
+      "calls": [
+        {
+          "name": "useMemo",
+          "edgeType": "call"
+        },
+        {
+          "name": "renderToString",
+          "edgeType": "call"
+        },
+        {
+          "name": "code",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "KatexBlockProps",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "type",
+      "name": "KatexBlockProps",
+      "line": 6,
+      "endLine": 8,
+      "signature": "export type KatexBlockProps ="
+    }
+  ],
+  "imports": [
+    {
+      "module": "katex",
+      "resolved": "external"
+    },
+    {
+      "module": "react",
+      "resolved": "external"
+    },
+    {
+      "module": "katex/dist/katex.css",
+      "resolved": "external"
+    }
+  ]
+}

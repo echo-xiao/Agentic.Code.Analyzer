@@ -1,0 +1,200 @@
+{
+  "sourcePath": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/tests/e2e/federation/page-objects/fragments/home-sidenav.ts",
+  "symbols": [
+    {
+      "type": "class",
+      "name": "FederationSidenav",
+      "exported": true,
+      "line": 3,
+      "endLine": 51,
+      "signature": "export class FederationSidenav",
+      "calls": []
+    },
+    {
+      "type": "method",
+      "name": "countFilteredChannelsOnDirectory",
+      "exported": true,
+      "qualifiedName": "FederationSidenav.countFilteredChannelsOnDirectory",
+      "line": 16,
+      "endLine": 24,
+      "signature": "async countFilteredChannelsOnDirectory(name: string): Promise<number>",
+      "containerClass": "FederationSidenav",
+      "calls": [
+        {
+          "name": "click",
+          "edgeType": "call"
+        },
+        {
+          "name": "locator",
+          "edgeType": "call"
+        },
+        {
+          "name": "focus",
+          "edgeType": "call"
+        },
+        {
+          "name": "type",
+          "edgeType": "call"
+        },
+        {
+          "name": "waitForTimeout",
+          "edgeType": "call"
+        },
+        {
+          "name": "count",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "openChatWhenHaveMultipleWithTheSameName",
+      "exported": true,
+      "qualifiedName": "FederationSidenav.openChatWhenHaveMultipleWithTheSameName",
+      "line": 20,
+      "endLine": 26,
+      "signature": "async openChatWhenHaveMultipleWithTheSameName(name: string, item: number): Promise<void>",
+      "containerClass": "FederationSidenav",
+      "calls": [
+        {
+          "name": "click",
+          "edgeType": "call"
+        },
+        {
+          "name": "locator",
+          "edgeType": "call"
+        },
+        {
+          "name": "focus",
+          "edgeType": "call"
+        },
+        {
+          "name": "type",
+          "edgeType": "call"
+        },
+        {
+          "name": "waitForTimeout",
+          "edgeType": "call"
+        },
+        {
+          "name": "nth",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "countRoomsByNameOnSearch",
+      "exported": true,
+      "qualifiedName": "FederationSidenav.countRoomsByNameOnSearch",
+      "line": 24,
+      "endLine": 32,
+      "signature": "async countRoomsByNameOnSearch(name: string): Promise<number>",
+      "containerClass": "FederationSidenav",
+      "calls": [
+        {
+          "name": "click",
+          "edgeType": "call"
+        },
+        {
+          "name": "locator",
+          "edgeType": "call"
+        },
+        {
+          "name": "focus",
+          "edgeType": "call"
+        },
+        {
+          "name": "type",
+          "edgeType": "call"
+        },
+        {
+          "name": "waitFor",
+          "edgeType": "call"
+        },
+        {
+          "name": "waitForTimeout",
+          "edgeType": "call"
+        },
+        {
+          "name": "count",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "openDMMultipleChat",
+      "exported": true,
+      "qualifiedName": "FederationSidenav.openDMMultipleChat",
+      "line": 28,
+      "endLine": 34,
+      "signature": "async openDMMultipleChat(name: string): Promise<void>",
+      "containerClass": "FederationSidenav",
+      "calls": [
+        {
+          "name": "click",
+          "edgeType": "call"
+        },
+        {
+          "name": "locator",
+          "edgeType": "call"
+        },
+        {
+          "name": "focus",
+          "edgeType": "call"
+        },
+        {
+          "name": "type",
+          "edgeType": "call"
+        },
+        {
+          "name": "waitFor",
+          "edgeType": "call"
+        },
+        {
+          "name": "nth",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "constructor",
+      "exported": true,
+      "qualifiedName": "FederationSidenav.constructor",
+      "line": 6,
+      "endLine": 8,
+      "signature": "constructor(page: Page)",
+      "containerClass": "FederationSidenav",
+      "calls": [
+        {
+          "name": "Page",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "class_property",
+      "name": "page",
+      "exported": true,
+      "qualifiedName": "FederationSidenav.page",
+      "line": 4,
+      "endLine": 4,
+      "signature": "private readonly page: Page;",
+      "containerClass": "FederationSidenav",
+      "calls": [
+        {
+          "name": "Page",
+          "edgeType": "type"
+        }
+      ]
+    }
+  ],
+  "imports": [
+    {
+      "module": "@playwright/test",
+      "resolved": "external"
+    }
+  ]
+}

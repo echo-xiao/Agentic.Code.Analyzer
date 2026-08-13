@@ -1,0 +1,61 @@
+{
+  "sourcePath": "/Users/echoooooo/Desktop/code/Rocket.Chat/ee/packages/pdf-worker/src/templates/ChatTranscript/components/utils.ts",
+  "symbols": [
+    {
+      "type": "variable_function",
+      "name": "messageLongerThanPage",
+      "exported": true,
+      "line": 6,
+      "endLine": 6,
+      "signature": "(message: string | undefined) =>",
+      "calls": []
+    },
+    {
+      "type": "variable_function",
+      "name": "markupEntriesGreaterThan10",
+      "exported": true,
+      "line": 10,
+      "endLine": 10,
+      "signature": "(messageMd: unknown[] = []) =>",
+      "calls": []
+    },
+    {
+      "type": "variable_function",
+      "name": "splitByTens",
+      "exported": true,
+      "line": 11,
+      "endLine": 17,
+      "signature": "(array: unknown[] = []): unknown[][] =>",
+      "calls": [
+        {
+          "name": "push",
+          "edgeType": "call"
+        },
+        {
+          "name": "slice",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "variable_function",
+      "name": "isSystemMessage",
+      "exported": true,
+      "line": 15,
+      "endLine": 15,
+      "signature": "(message: PDFMessage) =>",
+      "calls": [
+        {
+          "name": "PDFMessage",
+          "edgeType": "type"
+        }
+      ]
+    }
+  ],
+  "imports": [
+    {
+      "module": "../../../types/ChatTranscriptData",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/ee/packages/pdf-worker/src/types/ChatTranscriptData.ts"
+    }
+  ]
+}

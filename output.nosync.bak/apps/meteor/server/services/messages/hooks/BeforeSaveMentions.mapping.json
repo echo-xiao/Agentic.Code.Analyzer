@@ -1,0 +1,190 @@
+{
+  "sourcePath": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/server/services/messages/hooks/BeforeSaveMentions.ts",
+  "symbols": [
+    {
+      "type": "class",
+      "name": "MentionQueries",
+      "exported": false,
+      "line": 9,
+      "endLine": 61,
+      "signature": "class MentionQueries",
+      "calls": []
+    },
+    {
+      "type": "method",
+      "name": "getUsers",
+      "exported": false,
+      "qualifiedName": "MentionQueries.getUsers",
+      "line": 10,
+      "endLine": 35,
+      "signature": "async getUsers(usernames: string[]): Promise<{ type: 'team' | 'user'; _id: string; username?: string; name?: string }[]>",
+      "containerClass": "MentionQueries",
+      "calls": [
+        {
+          "name": "listByNames",
+          "edgeType": "call"
+        },
+        {
+          "name": "toArray",
+          "edgeType": "call"
+        },
+        {
+          "name": "find",
+          "edgeType": "call"
+        },
+        {
+          "name": "map",
+          "edgeType": "call"
+        },
+        {
+          "name": "get",
+          "edgeType": "call"
+        },
+        {
+          "name": "Set",
+          "edgeType": "new"
+        },
+        {
+          "name": "IUser",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "getUser",
+      "exported": false,
+      "qualifiedName": "MentionQueries.getUser",
+      "line": 14,
+      "endLine": 16,
+      "signature": "async getUser(userId: string): Promise<IUser | null>",
+      "containerClass": "MentionQueries",
+      "calls": [
+        {
+          "name": "findOneById",
+          "edgeType": "call"
+        },
+        {
+          "name": "IUser",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "getTotalChannelMembers",
+      "exported": false,
+      "qualifiedName": "MentionQueries.getTotalChannelMembers",
+      "line": 18,
+      "endLine": 20,
+      "signature": "getTotalChannelMembers(rid: string): Promise<number>",
+      "containerClass": "MentionQueries",
+      "calls": [
+        {
+          "name": "countByRoomId",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "getChannels",
+      "exported": false,
+      "qualifiedName": "MentionQueries.getChannels",
+      "line": 22,
+      "endLine": 37,
+      "signature": "getChannels(channels: string[]): Promise<Pick<IRoom, '_id' | 'name' | 'fname' | 'federated'>[]>",
+      "containerClass": "MentionQueries",
+      "calls": [
+        {
+          "name": "toArray",
+          "edgeType": "call"
+        },
+        {
+          "name": "find",
+          "edgeType": "call"
+        },
+        {
+          "name": "Set",
+          "edgeType": "new"
+        },
+        {
+          "name": "IRoom",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "variable",
+      "name": "mentionServer",
+      "exported": true,
+      "line": 29,
+      "endLine": 51,
+      "signature": "mentionServer = new MentionsServer(",
+      "calls": [
+        {
+          "name": "get",
+          "edgeType": "call"
+        },
+        {
+          "name": "getUsers",
+          "edgeType": "call"
+        },
+        {
+          "name": "getUser",
+          "edgeType": "call"
+        },
+        {
+          "name": "getTotalChannelMembers",
+          "edgeType": "call"
+        },
+        {
+          "name": "getChannels",
+          "edgeType": "call"
+        },
+        {
+          "name": "messageMaxAll",
+          "edgeType": "call"
+        },
+        {
+          "name": "notify.ephemeralMessage",
+          "edgeType": "event_emit"
+        },
+        {
+          "name": "MeteorError",
+          "edgeType": "new"
+        },
+        {
+          "name": "IMessage",
+          "edgeType": "type"
+        }
+      ]
+    }
+  ],
+  "imports": [
+    {
+      "module": "@rocket.chat/core-services",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/core-typings",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/models",
+      "resolved": "external"
+    },
+    {
+      "module": "../../../../app/mentions/server/Mentions",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/app/mentions/server/Mentions.ts"
+    },
+    {
+      "module": "../../../../app/settings/server",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/app/settings/server/index.ts"
+    },
+    {
+      "module": "../../../lib/i18n",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/server/lib/i18n.ts"
+    }
+  ]
+}

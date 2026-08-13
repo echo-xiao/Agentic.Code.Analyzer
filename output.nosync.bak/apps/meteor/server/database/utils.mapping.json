@@ -1,0 +1,236 @@
+{
+  "sourcePath": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/server/database/utils.ts",
+  "symbols": [
+    {
+      "type": "class",
+      "name": "UnsuccessfulTransactionError",
+      "exported": false,
+      "line": 57,
+      "endLine": 63,
+      "signature": "class UnsuccessfulTransactionError extends Error",
+      "calls": []
+    },
+    {
+      "type": "method",
+      "name": "constructor",
+      "exported": false,
+      "qualifiedName": "UnsuccessfulTransactionError.constructor",
+      "line": 60,
+      "endLine": 62,
+      "signature": "constructor(message?: string)",
+      "containerClass": "UnsuccessfulTransactionError",
+      "calls": []
+    },
+    {
+      "type": "variable",
+      "name": "{ db, client }",
+      "exported": true,
+      "line": 8,
+      "endLine": 8,
+      "signature": "",
+      "calls": [
+        {
+          "name": "defaultRemoteCollectionDriver",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "variable_function",
+      "name": "shouldRetryTransaction",
+      "exported": true,
+      "line": 22,
+      "endLine": 24,
+      "signature": "(e: unknown): boolean =>",
+      "calls": [
+        {
+          "name": "includes",
+          "edgeType": "call"
+        },
+        {
+          "name": "MongoError",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "variable_function",
+      "name": "isExtendedSession",
+      "exported": false,
+      "line": 26,
+      "endLine": 28,
+      "signature": "(session: any): session is ExtendedSession =>",
+      "calls": [
+        {
+          "name": "ExtendedSession",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "variable_function",
+      "name": "onceTransactionCommitedSuccessfully",
+      "exported": true,
+      "line": 29,
+      "endLine": 47,
+      "signature": "async <T extends ClientSession>(cb: () => Promise<void> | void, session?: T) =>",
+      "calls": [
+        {
+          "name": "cb",
+          "edgeType": "call"
+        },
+        {
+          "name": "inTransaction",
+          "edgeType": "call"
+        },
+        {
+          "name": "isExtendedSession",
+          "edgeType": "call"
+        },
+        {
+          "name": "error",
+          "edgeType": "call"
+        },
+        {
+          "name": "onceSuccesfulCommit",
+          "edgeType": "call"
+        },
+        {
+          "name": "withError",
+          "edgeType": "call"
+        },
+        {
+          "name": "ClientSession",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "variable_function",
+      "name": "getExtendedSession",
+      "exported": false,
+      "line": 37,
+      "endLine": 39,
+      "signature": "(session: ClientSession, onceSuccesfulCommit: ExtendedSession['onceSuccesfulCommit']): ExtendedSession =>",
+      "calls": [
+        {
+          "name": "assign",
+          "edgeType": "call"
+        },
+        {
+          "name": "ClientSession",
+          "edgeType": "type"
+        },
+        {
+          "name": "ExtendedSession",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "variable_function",
+      "name": "wrapInSessionTransaction",
+      "exported": true,
+      "line": 49,
+      "endLine": 74,
+      "signature": "<T extends Array<unknown>, U>(curriedCallback: (session: ClientSession) => (...args: T) => U) =>",
+      "calls": [
+        {
+          "name": "getExtendedSession",
+          "edgeType": "call"
+        },
+        {
+          "name": "startSession",
+          "edgeType": "call"
+        },
+        {
+          "name": "cb",
+          "edgeType": "event_listen",
+          "event": "success"
+        },
+        {
+          "name": "success",
+          "edgeType": "event_emit"
+        },
+        {
+          "name": "startTransaction",
+          "edgeType": "call"
+        },
+        {
+          "name": "dispatch",
+          "edgeType": "event_listen",
+          "event": "ended"
+        },
+        {
+          "name": "apply",
+          "edgeType": "call"
+        },
+        {
+          "name": "curriedCallback",
+          "edgeType": "call"
+        },
+        {
+          "name": "commitTransaction",
+          "edgeType": "call"
+        },
+        {
+          "name": "abortTransaction",
+          "edgeType": "call"
+        },
+        {
+          "name": "removeListener",
+          "edgeType": "call"
+        },
+        {
+          "name": "shouldRetryTransaction",
+          "edgeType": "call"
+        },
+        {
+          "name": "endSession",
+          "edgeType": "call"
+        },
+        {
+          "name": "Emitter",
+          "edgeType": "new"
+        },
+        {
+          "name": "UnsuccessfulTransactionError",
+          "edgeType": "new"
+        },
+        {
+          "name": "ClientSession",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "type",
+      "name": "ExtendedSession",
+      "line": 33,
+      "endLine": 35,
+      "signature": "type ExtendedSession = ClientSession &"
+    }
+  ],
+  "imports": [
+    {
+      "module": "@rocket.chat/emitter",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/emitter",
+      "resolved": "external"
+    },
+    {
+      "module": "meteor/mongo",
+      "resolved": "external"
+    },
+    {
+      "module": "mongodb",
+      "resolved": "external"
+    },
+    {
+      "module": "../lib/logger/system",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/server/lib/logger/system.ts"
+    }
+  ]
+}

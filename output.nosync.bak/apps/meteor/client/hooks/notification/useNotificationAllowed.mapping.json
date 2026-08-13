@@ -1,0 +1,41 @@
+{
+  "sourcePath": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/client/hooks/notification/useNotificationAllowed.ts",
+  "symbols": [
+    {
+      "type": "variable_function",
+      "name": "useNotificationAllowed",
+      "exported": true,
+      "line": 5,
+      "endLine": 19,
+      "signature": "(): boolean =>",
+      "calls": [
+        {
+          "name": "useSyncExternalStore",
+          "edgeType": "call"
+        },
+        {
+          "name": "useCallback",
+          "edgeType": "call"
+        },
+        {
+          "name": "change",
+          "edgeType": "event_listen"
+        },
+        {
+          "name": "callback",
+          "edgeType": "call"
+        }
+      ]
+    }
+  ],
+  "imports": [
+    {
+      "module": "react",
+      "resolved": "external"
+    },
+    {
+      "module": "../../lib/notificationManager",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/client/lib/notificationManager.ts"
+    }
+  ]
+}

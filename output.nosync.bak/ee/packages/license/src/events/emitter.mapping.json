@@ -1,0 +1,175 @@
+{
+  "sourcePath": "/Users/echoooooo/Desktop/code/Rocket.Chat/ee/packages/license/src/events/emitter.ts",
+  "symbols": [
+    {
+      "type": "function",
+      "name": "moduleValidated",
+      "exported": true,
+      "line": 7,
+      "endLine": 21,
+      "signature": "export function moduleValidated(this: LicenseManager, module: LicenseModule)",
+      "calls": [
+        {
+          "name": "isInternalModuleName",
+          "edgeType": "call"
+        },
+        {
+          "name": "module",
+          "edgeType": "event_emit"
+        },
+        {
+          "name": "error",
+          "edgeType": "call"
+        },
+        {
+          "name": "LicenseManager",
+          "edgeType": "type"
+        },
+        {
+          "name": "LicenseModule",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "function",
+      "name": "moduleRemoved",
+      "exported": true,
+      "line": 11,
+      "endLine": 25,
+      "signature": "export function moduleRemoved(this: LicenseManager, module: LicenseModule)",
+      "calls": [
+        {
+          "name": "isInternalModuleName",
+          "edgeType": "call"
+        },
+        {
+          "name": "module",
+          "edgeType": "event_emit"
+        },
+        {
+          "name": "error",
+          "edgeType": "call"
+        },
+        {
+          "name": "LicenseManager",
+          "edgeType": "type"
+        },
+        {
+          "name": "LicenseModule",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "function",
+      "name": "behaviorTriggered",
+      "exported": true,
+      "line": 15,
+      "endLine": 40,
+      "signature": "export function behaviorTriggered(this: LicenseManager, options: BehaviorWithContext)",
+      "calls": [
+        {
+          "name": "error",
+          "edgeType": "call"
+        },
+        {
+          "name": "includes",
+          "edgeType": "call"
+        },
+        {
+          "name": "LicenseManager",
+          "edgeType": "type"
+        },
+        {
+          "name": "BehaviorWithContext",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "function",
+      "name": "behaviorTriggeredToggled",
+      "exported": true,
+      "line": 19,
+      "endLine": 30,
+      "signature": "export function behaviorTriggeredToggled(this: LicenseManager, options: BehaviorWithContext)",
+      "calls": [
+        {
+          "name": "error",
+          "edgeType": "call"
+        },
+        {
+          "name": "LicenseManager",
+          "edgeType": "type"
+        },
+        {
+          "name": "BehaviorWithContext",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "function",
+      "name": "licenseValidated",
+      "exported": true,
+      "line": 23,
+      "endLine": 29,
+      "signature": "export function licenseValidated(this: LicenseManager)",
+      "calls": [
+        {
+          "name": "validate",
+          "edgeType": "event_emit"
+        },
+        {
+          "name": "error",
+          "edgeType": "call"
+        },
+        {
+          "name": "LicenseManager",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "function",
+      "name": "licenseInvalidated",
+      "exported": true,
+      "line": 27,
+      "endLine": 33,
+      "signature": "export function licenseInvalidated(this: LicenseManager)",
+      "calls": [
+        {
+          "name": "invalidate",
+          "edgeType": "event_emit"
+        },
+        {
+          "name": "error",
+          "edgeType": "call"
+        },
+        {
+          "name": "LicenseManager",
+          "edgeType": "type"
+        }
+      ]
+    }
+  ],
+  "imports": [
+    {
+      "module": "@rocket.chat/core-typings",
+      "resolved": "external"
+    },
+    {
+      "module": "../license",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/ee/packages/license/src/license.ts"
+    },
+    {
+      "module": "../logger",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/ee/packages/license/src/logger.ts"
+    },
+    {
+      "module": "../modules",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/ee/packages/license/src/modules.ts"
+    }
+  ]
+}

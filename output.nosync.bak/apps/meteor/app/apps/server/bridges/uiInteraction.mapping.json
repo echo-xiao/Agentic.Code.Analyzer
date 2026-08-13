@@ -1,0 +1,97 @@
+{
+  "sourcePath": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/app/apps/server/bridges/uiInteraction.ts",
+  "symbols": [
+    {
+      "type": "class",
+      "name": "UiInteractionBridge",
+      "exported": true,
+      "line": 8,
+      "endLine": 24,
+      "signature": "export class UiInteractionBridge extends AppsEngineUiInteractionBridge",
+      "calls": [
+        {
+          "name": "AppsEngineUiInteractionBridge",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "notifyUser",
+      "exported": true,
+      "qualifiedName": "UiInteractionBridge.notifyUser",
+      "line": 13,
+      "endLine": 23,
+      "signature": "protected async notifyUser(user: IUser, interaction: IUIKitInteraction, appId: string): Promise<void>",
+      "containerClass": "UiInteractionBridge",
+      "calls": [
+        {
+          "name": "debugLog",
+          "edgeType": "call"
+        },
+        {
+          "name": "getOneById",
+          "edgeType": "call"
+        },
+        {
+          "name": "getManager",
+          "edgeType": "call"
+        },
+        {
+          "name": "notify.uiInteraction",
+          "edgeType": "event_emit"
+        },
+        {
+          "name": "IUser",
+          "edgeType": "type"
+        },
+        {
+          "name": "IUIKitInteraction",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "constructor",
+      "exported": true,
+      "qualifiedName": "UiInteractionBridge.constructor",
+      "line": 9,
+      "endLine": 11,
+      "signature": "constructor(private readonly orch: IAppServerOrchestrator)",
+      "containerClass": "UiInteractionBridge",
+      "calls": [
+        {
+          "name": "IAppServerOrchestrator",
+          "edgeType": "type"
+        }
+      ]
+    }
+  ],
+  "imports": [
+    {
+      "module": "@rocket.chat/apps",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/apps/dist/server/bridges/UiInteractionBridge",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/apps-engine/definition/uikit",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/apps-engine/definition/users",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/core-services",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/ui-kit",
+      "resolved": "external"
+    }
+  ]
+}

@@ -1,0 +1,80 @@
+{
+  "sourcePath": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/client/views/room/Header/RoomMemberStatus.tsx",
+  "symbols": [
+    {
+      "type": "variable_function",
+      "name": "RoomMemberStatus",
+      "exported": false,
+      "line": 13,
+      "endLine": 23,
+      "signature": "({ room }: RoomMemberStatusProps): ReactElement | null =>",
+      "calls": [
+        {
+          "name": "getUidDirectMessage",
+          "edgeType": "call"
+        },
+        {
+          "name": "useUserId",
+          "edgeType": "call"
+        },
+        {
+          "name": "useUserPresence",
+          "edgeType": "call"
+        },
+        {
+          "name": "useExpirationText",
+          "edgeType": "call"
+        },
+        {
+          "name": "MarkdownText",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "expirationText",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "RoomMemberStatusProps",
+          "edgeType": "type"
+        },
+        {
+          "name": "ReactElement",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "type",
+      "name": "RoomMemberStatusProps",
+      "line": 9,
+      "endLine": 11,
+      "signature": "export type RoomMemberStatusProps ="
+    }
+  ],
+  "imports": [
+    {
+      "module": "@rocket.chat/core-typings",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/ui-contexts",
+      "resolved": "external"
+    },
+    {
+      "module": "react",
+      "resolved": "external"
+    },
+    {
+      "module": "../../../components/MarkdownText",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/client/components/MarkdownText.tsx"
+    },
+    {
+      "module": "../../../hooks/useExpirationText",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/client/hooks/useExpirationText.ts"
+    },
+    {
+      "module": "../../../lib/utils/getUidDirectMessage",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/client/lib/utils/getUidDirectMessage.ts"
+    }
+  ]
+}

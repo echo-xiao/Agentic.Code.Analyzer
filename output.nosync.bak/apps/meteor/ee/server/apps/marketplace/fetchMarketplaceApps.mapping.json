@@ -1,0 +1,112 @@
+{
+  "sourcePath": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/ee/server/apps/marketplace/fetchMarketplaceApps.ts",
+  "symbols": [
+    {
+      "type": "function",
+      "name": "fetchMarketplaceApps",
+      "exported": true,
+      "line": 142,
+      "endLine": 189,
+      "signature": "export async function fetchMarketplaceApps({ endUserID }: FetchMarketplaceAppsParams = {}): Promise<App[]>",
+      "calls": [
+        {
+          "name": "getMarketplaceHeaders",
+          "edgeType": "call"
+        },
+        {
+          "name": "getWorkspaceAccessToken",
+          "edgeType": "call"
+        },
+        {
+          "name": "fetch",
+          "edgeType": "call"
+        },
+        {
+          "name": "getMarketplaceClient",
+          "edgeType": "call"
+        },
+        {
+          "name": "get",
+          "edgeType": "call"
+        },
+        {
+          "name": "json",
+          "edgeType": "call"
+        },
+        {
+          "name": "parse",
+          "edgeType": "call"
+        },
+        {
+          "name": "error",
+          "edgeType": "call"
+        },
+        {
+          "name": "getRocketChatLogger",
+          "edgeType": "call"
+        },
+        {
+          "name": "includes",
+          "edgeType": "call"
+        },
+        {
+          "name": "MarketplaceConnectionError",
+          "edgeType": "new"
+        },
+        {
+          "name": "MarketplaceUnsupportedVersionError",
+          "edgeType": "new"
+        },
+        {
+          "name": "MarketplaceAppsError",
+          "edgeType": "new"
+        },
+        {
+          "name": "FetchMarketplaceAppsParams",
+          "edgeType": "type"
+        },
+        {
+          "name": "App",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "type",
+      "name": "FetchMarketplaceAppsParams",
+      "line": 10,
+      "endLine": 12,
+      "signature": "type FetchMarketplaceAppsParams ="
+    }
+  ],
+  "imports": [
+    {
+      "module": "@rocket.chat/core-typings",
+      "resolved": "external"
+    },
+    {
+      "module": "zod",
+      "resolved": "external"
+    },
+    {
+      "module": "./getMarketplaceHeaders",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/ee/server/apps/marketplace/getMarketplaceHeaders.ts"
+    },
+    {
+      "module": "./marketplaceErrors",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/ee/server/apps/marketplace/marketplaceErrors.ts"
+    },
+    {
+      "module": "../../../../app/cloud/server",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/app/cloud/server/index.ts"
+    },
+    {
+      "module": "../../../../app/settings/server",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/app/settings/server/index.ts"
+    },
+    {
+      "module": "../orchestrator",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/ee/server/apps/orchestrator.ts"
+    }
+  ]
+}

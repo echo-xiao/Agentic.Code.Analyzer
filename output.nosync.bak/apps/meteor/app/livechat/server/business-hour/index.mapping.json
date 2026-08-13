@@ -1,0 +1,94 @@
+{
+  "sourcePath": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/app/livechat/server/business-hour/index.ts",
+  "symbols": [
+    {
+      "type": "module",
+      "name": "index",
+      "exported": false,
+      "line": 1,
+      "endLine": 24,
+      "signature": "index",
+      "calls": [
+        {
+          "name": "startup",
+          "edgeType": "call"
+        },
+        {
+          "name": "on-business-hour-start",
+          "edgeType": "event_emit"
+        },
+        {
+          "name": "registerBusinessHourBehavior",
+          "edgeType": "call"
+        },
+        {
+          "name": "registerBusinessHourType",
+          "edgeType": "call"
+        },
+        {
+          "name": "onLogin",
+          "edgeType": "call"
+        },
+        {
+          "name": "includes",
+          "edgeType": "call"
+        },
+        {
+          "name": "BusinessHourBehaviorClass",
+          "edgeType": "new"
+        },
+        {
+          "name": "DefaultBusinessHour",
+          "edgeType": "new"
+        },
+        {
+          "name": "IUser",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "variable",
+      "name": "businessHourManager",
+      "exported": true,
+      "line": 11,
+      "endLine": 11,
+      "signature": "businessHourManager = new BusinessHourManager(cronJobs)",
+      "calls": []
+    }
+  ],
+  "imports": [
+    {
+      "module": "@rocket.chat/core-typings",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/cron",
+      "resolved": "external"
+    },
+    {
+      "module": "meteor/accounts-base",
+      "resolved": "external"
+    },
+    {
+      "module": "meteor/meteor",
+      "resolved": "external"
+    },
+    {
+      "module": "./BusinessHourManager",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/app/livechat/server/business-hour/BusinessHourManager.ts"
+    },
+    {
+      "module": "./Default",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/app/livechat/server/business-hour/Default.ts"
+    },
+    {
+      "module": "./Single",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/app/livechat/server/business-hour/Single.ts"
+    },
+    {
+      "module": "../../../../server/lib/callbacks",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/server/lib/callbacks.ts"
+    }
+  ]
+}

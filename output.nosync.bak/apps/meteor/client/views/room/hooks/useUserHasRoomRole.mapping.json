@@ -1,0 +1,65 @@
+{
+  "sourcePath": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/client/views/room/hooks/useUserHasRoomRole.ts",
+  "symbols": [
+    {
+      "type": "variable_function",
+      "name": "useUserHasRoomRole",
+      "exported": true,
+      "line": 7,
+      "endLine": 13,
+      "signature": "(uid: IUser['_id'], rid: IRoom['_id'], role: IRole['name']): boolean =>",
+      "calls": [
+        {
+          "name": "useRoomRolesQuery",
+          "edgeType": "call"
+        },
+        {
+          "name": "useCallback",
+          "edgeType": "call"
+        },
+        {
+          "name": "some",
+          "edgeType": "call"
+        },
+        {
+          "name": "includes",
+          "edgeType": "call"
+        },
+        {
+          "name": "IUser",
+          "edgeType": "type"
+        },
+        {
+          "name": "IRoom",
+          "edgeType": "type"
+        },
+        {
+          "name": "IRole",
+          "edgeType": "type"
+        },
+        {
+          "name": "RoomRoles",
+          "edgeType": "type"
+        }
+      ]
+    }
+  ],
+  "imports": [
+    {
+      "module": "@rocket.chat/core-typings",
+      "resolved": "external"
+    },
+    {
+      "module": "react",
+      "resolved": "external"
+    },
+    {
+      "module": "../../../hooks/useRoomRolesQuery",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/client/hooks/useRoomRolesQuery.ts"
+    },
+    {
+      "module": "../../../hooks/useRoomRolesQuery",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/client/hooks/useRoomRolesQuery.ts"
+    }
+  ]
+}

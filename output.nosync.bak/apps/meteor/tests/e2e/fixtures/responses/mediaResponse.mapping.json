@@ -1,0 +1,63 @@
+{
+  "sourcePath": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/tests/e2e/fixtures/responses/mediaResponse.ts",
+  "symbols": [
+    {
+      "type": "variable_function",
+      "name": "isMediaResponse",
+      "exported": false,
+      "line": 3,
+      "endLine": 4,
+      "signature": "(response: Response) =>",
+      "calls": [
+        {
+          "name": "test",
+          "edgeType": "call"
+        },
+        {
+          "name": "url",
+          "edgeType": "call"
+        },
+        {
+          "name": "method",
+          "edgeType": "call"
+        },
+        {
+          "name": "request",
+          "edgeType": "call"
+        },
+        {
+          "name": "Response",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "variable_function",
+      "name": "createMediaResponsePromise",
+      "exported": true,
+      "line": 6,
+      "endLine": 8,
+      "signature": "(page: Page) =>",
+      "calls": [
+        {
+          "name": "waitForResponse",
+          "edgeType": "call"
+        },
+        {
+          "name": "isMediaResponse",
+          "edgeType": "call"
+        },
+        {
+          "name": "Page",
+          "edgeType": "type"
+        }
+      ]
+    }
+  ],
+  "imports": [
+    {
+      "module": "@playwright/test",
+      "resolved": "external"
+    }
+  ]
+}

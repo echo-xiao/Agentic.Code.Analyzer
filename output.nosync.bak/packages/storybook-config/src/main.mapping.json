@@ -1,0 +1,55 @@
+{
+  "sourcePath": "/Users/echoooooo/Desktop/code/Rocket.Chat/packages/storybook-config/src/main.ts",
+  "symbols": [
+    {
+      "type": "function",
+      "name": "getAbsolutePath",
+      "exported": false,
+      "line": 5,
+      "endLine": 7,
+      "signature": "function getAbsolutePath(value: any): string",
+      "calls": [
+        {
+          "name": "dirname",
+          "edgeType": "call"
+        },
+        {
+          "name": "resolve",
+          "edgeType": "call"
+        },
+        {
+          "name": "join",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "variable_function",
+      "name": "baseConfig",
+      "exported": false,
+      "line": 9,
+      "endLine": 28,
+      "signature": "(customConfig?: Partial<StorybookConfig>): StorybookConfig =>",
+      "calls": [
+        {
+          "name": "getAbsolutePath",
+          "edgeType": "call"
+        },
+        {
+          "name": "StorybookConfig",
+          "edgeType": "type"
+        }
+      ]
+    }
+  ],
+  "imports": [
+    {
+      "module": "node:path",
+      "resolved": "external"
+    },
+    {
+      "module": "@storybook/react-webpack5",
+      "resolved": "external"
+    }
+  ]
+}

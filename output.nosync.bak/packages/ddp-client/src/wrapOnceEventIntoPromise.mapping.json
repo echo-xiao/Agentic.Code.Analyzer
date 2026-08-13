@@ -1,0 +1,33 @@
+{
+  "sourcePath": "/Users/echoooooo/Desktop/code/Rocket.Chat/packages/ddp-client/src/wrapOnceEventIntoPromise.ts",
+  "symbols": [
+    {
+      "type": "function",
+      "name": "wrapOnceEventIntoPromise",
+      "exported": true,
+      "line": 11,
+      "endLine": 25,
+      "signature": "export function wrapOnceEventIntoPromise<T extends { error?: string }>(emitter: Emitter, event: string)",
+      "calls": [
+        {
+          "name": "reject",
+          "edgeType": "call"
+        },
+        {
+          "name": "resolve",
+          "edgeType": "call"
+        },
+        {
+          "name": "Emitter",
+          "edgeType": "type"
+        }
+      ]
+    }
+  ],
+  "imports": [
+    {
+      "module": "@rocket.chat/emitter",
+      "resolved": "external"
+    }
+  ]
+}

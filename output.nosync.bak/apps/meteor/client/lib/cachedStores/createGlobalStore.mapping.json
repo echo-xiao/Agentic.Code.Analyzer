@@ -1,0 +1,45 @@
+{
+  "sourcePath": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/client/lib/cachedStores/createGlobalStore.ts",
+  "symbols": [
+    {
+      "type": "variable_function",
+      "name": "createGlobalStore",
+      "exported": true,
+      "line": 5,
+      "endLine": 14,
+      "signature": "<T extends { _id: string }, U>(store: UseBoundStore<StoreApi<IDocumentMapStore<T>>>, extension?: U) =>",
+      "calls": [
+        {
+          "name": "assign",
+          "edgeType": "call"
+        },
+        {
+          "name": "getState",
+          "edgeType": "call"
+        },
+        {
+          "name": "UseBoundStore",
+          "edgeType": "type"
+        },
+        {
+          "name": "StoreApi",
+          "edgeType": "type"
+        },
+        {
+          "name": "IDocumentMapStore",
+          "edgeType": "type"
+        }
+      ]
+    }
+  ],
+  "imports": [
+    {
+      "module": "zustand",
+      "resolved": "external"
+    },
+    {
+      "module": "./DocumentMapStore",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/client/lib/cachedStores/DocumentMapStore.ts"
+    }
+  ]
+}

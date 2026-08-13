@@ -1,0 +1,98 @@
+{
+  "sourcePath": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/client/views/admin/moderation/ModerationConsoleRoute.tsx",
+  "symbols": [
+    {
+      "type": "variable_function",
+      "name": "isValidTab",
+      "exported": false,
+      "line": 9,
+      "endLine": 9,
+      "signature": "(tab: string | undefined): tab is (typeof MODERATION_VALID_TABS)[number] =>",
+      "calls": [
+        {
+          "name": "includes",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "inner_function",
+      "name": "onSelectTab",
+      "exported": false,
+      "qualifiedName": "ModerationRoute.onSelectTab",
+      "line": 32,
+      "endLine": 40,
+      "signature": "(tab: (typeof MODERATION_VALID_TABS)[number]) =>",
+      "calls": [
+        {
+          "name": "navigate",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "variable_function",
+      "name": "ModerationRoute",
+      "exported": false,
+      "line": 11,
+      "endLine": 43,
+      "signature": "() =>",
+      "calls": [
+        {
+          "name": "usePermission",
+          "edgeType": "call"
+        },
+        {
+          "name": "useRouter",
+          "edgeType": "call"
+        },
+        {
+          "name": "useRouteParameter",
+          "edgeType": "call"
+        },
+        {
+          "name": "useEffect",
+          "edgeType": "call"
+        },
+        {
+          "name": "isValidTab",
+          "edgeType": "call"
+        },
+        {
+          "name": "navigate",
+          "edgeType": "call"
+        },
+        {
+          "name": "NotAuthorizedPage",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "ModerationConsolePage",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "onSelectTab",
+          "edgeType": "jsx"
+        }
+      ]
+    }
+  ],
+  "imports": [
+    {
+      "module": "@rocket.chat/ui-contexts",
+      "resolved": "external"
+    },
+    {
+      "module": "react",
+      "resolved": "external"
+    },
+    {
+      "module": "./ModerationConsolePage",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/client/views/admin/moderation/ModerationConsolePage.tsx"
+    },
+    {
+      "module": "../../notAuthorized/NotAuthorizedPage",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/client/views/notAuthorized/NotAuthorizedPage.tsx"
+    }
+  ]
+}

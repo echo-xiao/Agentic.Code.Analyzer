@@ -1,0 +1,564 @@
+{
+  "sourcePath": "/Users/echoooooo/Desktop/code/Rocket.Chat/packages/apps/src/server/ProxiedApp.ts",
+  "symbols": [
+    {
+      "type": "class",
+      "name": "ProxiedApp",
+      "exported": true,
+      "line": 18,
+      "endLine": 162,
+      "signature": "export class ProxiedApp",
+      "calls": []
+    },
+    {
+      "type": "method",
+      "name": "getRuntime",
+      "exported": true,
+      "qualifiedName": "ProxiedApp.getRuntime",
+      "line": 33,
+      "endLine": 35,
+      "signature": "public getRuntime(): AppsEngineRuntime",
+      "containerClass": "ProxiedApp",
+      "calls": [
+        {
+          "name": "getRuntime",
+          "edgeType": "call"
+        },
+        {
+          "name": "AppsEngineRuntime",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "getRuntimeController",
+      "exported": true,
+      "qualifiedName": "ProxiedApp.getRuntimeController",
+      "line": 37,
+      "endLine": 39,
+      "signature": "public getRuntimeController(): IRuntimeController",
+      "containerClass": "ProxiedApp",
+      "calls": [
+        {
+          "name": "IRuntimeController",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "getStorageItem",
+      "exported": true,
+      "qualifiedName": "ProxiedApp.getStorageItem",
+      "line": 41,
+      "endLine": 43,
+      "signature": "public getStorageItem(): IAppStorageItem",
+      "containerClass": "ProxiedApp",
+      "calls": [
+        {
+          "name": "IAppStorageItem",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "setStorageItem",
+      "exported": true,
+      "qualifiedName": "ProxiedApp.setStorageItem",
+      "line": 45,
+      "endLine": 47,
+      "signature": "public setStorageItem(item: IAppStorageItem): void",
+      "containerClass": "ProxiedApp",
+      "calls": [
+        {
+          "name": "IAppStorageItem",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "getPreviousStatus",
+      "exported": true,
+      "qualifiedName": "ProxiedApp.getPreviousStatus",
+      "line": 49,
+      "endLine": 51,
+      "signature": "public getPreviousStatus(): AppStatus",
+      "containerClass": "ProxiedApp",
+      "calls": [
+        {
+          "name": "AppStatus",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "getImplementationList",
+      "exported": true,
+      "qualifiedName": "ProxiedApp.getImplementationList",
+      "line": 53,
+      "endLine": 55,
+      "signature": "public getImplementationList(): { [inter: string]: boolean }",
+      "containerClass": "ProxiedApp",
+      "calls": []
+    },
+    {
+      "type": "method",
+      "name": "setupLogger",
+      "exported": true,
+      "qualifiedName": "ProxiedApp.setupLogger",
+      "line": 57,
+      "endLine": 61,
+      "signature": "public setupLogger(method: `${AppMethod}`): AppConsole",
+      "containerClass": "ProxiedApp",
+      "calls": [
+        {
+          "name": "AppConsole",
+          "edgeType": "new"
+        },
+        {
+          "name": "AppMethod",
+          "edgeType": "type"
+        },
+        {
+          "name": "AppConsole",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "call",
+      "exported": true,
+      "qualifiedName": "ProxiedApp.call",
+      "line": 62,
+      "endLine": 84,
+      "signature": "public async call(method: `${AppMethod}`, ...args: Array<any>): Promise<any>",
+      "containerClass": "ProxiedApp",
+      "calls": [
+        {
+          "name": "sendRequest",
+          "edgeType": "call"
+        },
+        {
+          "name": "error",
+          "edgeType": "call"
+        },
+        {
+          "name": "inspect",
+          "edgeType": "call"
+        },
+        {
+          "name": "AppsEngineException",
+          "edgeType": "new"
+        },
+        {
+          "name": "AppMethod",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "setStatus",
+      "exported": true,
+      "qualifiedName": "ProxiedApp.setStatus",
+      "line": 68,
+      "endLine": 74,
+      "signature": "public async setStatus(status: AppStatus, silent?: boolean): Promise<void>",
+      "containerClass": "ProxiedApp",
+      "calls": [
+        {
+          "name": "call",
+          "edgeType": "call"
+        },
+        {
+          "name": "clear",
+          "edgeType": "call"
+        },
+        {
+          "name": "doAppStatusChanged",
+          "edgeType": "call"
+        },
+        {
+          "name": "getAppActivationBridge",
+          "edgeType": "call"
+        },
+        {
+          "name": "getBridges",
+          "edgeType": "call"
+        },
+        {
+          "name": "AppStatus",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "getName",
+      "exported": true,
+      "qualifiedName": "ProxiedApp.getName",
+      "line": 72,
+      "endLine": 74,
+      "signature": "public getName(): string",
+      "containerClass": "ProxiedApp",
+      "calls": []
+    },
+    {
+      "type": "method",
+      "name": "getNameSlug",
+      "exported": true,
+      "qualifiedName": "ProxiedApp.getNameSlug",
+      "line": 76,
+      "endLine": 78,
+      "signature": "public getNameSlug(): string",
+      "containerClass": "ProxiedApp",
+      "calls": []
+    },
+    {
+      "type": "method",
+      "name": "getAppUserUsername",
+      "exported": true,
+      "qualifiedName": "ProxiedApp.getAppUserUsername",
+      "line": 81,
+      "endLine": 83,
+      "signature": "public getAppUserUsername(): string",
+      "containerClass": "ProxiedApp",
+      "calls": []
+    },
+    {
+      "type": "method",
+      "name": "getID",
+      "exported": true,
+      "qualifiedName": "ProxiedApp.getID",
+      "line": 85,
+      "endLine": 87,
+      "signature": "public getID(): string",
+      "containerClass": "ProxiedApp",
+      "calls": []
+    },
+    {
+      "type": "method",
+      "name": "getInstallationSource",
+      "exported": true,
+      "qualifiedName": "ProxiedApp.getInstallationSource",
+      "line": 89,
+      "endLine": 91,
+      "signature": "public getInstallationSource(): AppInstallationSource",
+      "containerClass": "ProxiedApp",
+      "calls": [
+        {
+          "name": "AppInstallationSource",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "getVersion",
+      "exported": true,
+      "qualifiedName": "ProxiedApp.getVersion",
+      "line": 93,
+      "endLine": 95,
+      "signature": "public getVersion(): string",
+      "containerClass": "ProxiedApp",
+      "calls": []
+    },
+    {
+      "type": "method",
+      "name": "getDescription",
+      "exported": true,
+      "qualifiedName": "ProxiedApp.getDescription",
+      "line": 97,
+      "endLine": 99,
+      "signature": "public getDescription(): string",
+      "containerClass": "ProxiedApp",
+      "calls": []
+    },
+    {
+      "type": "method",
+      "name": "getRequiredApiVersion",
+      "exported": true,
+      "qualifiedName": "ProxiedApp.getRequiredApiVersion",
+      "line": 101,
+      "endLine": 103,
+      "signature": "public getRequiredApiVersion(): string",
+      "containerClass": "ProxiedApp",
+      "calls": []
+    },
+    {
+      "type": "method",
+      "name": "getAuthorInfo",
+      "exported": true,
+      "qualifiedName": "ProxiedApp.getAuthorInfo",
+      "line": 105,
+      "endLine": 107,
+      "signature": "public getAuthorInfo(): IAppAuthorInfo",
+      "containerClass": "ProxiedApp",
+      "calls": [
+        {
+          "name": "IAppAuthorInfo",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "getInfo",
+      "exported": true,
+      "qualifiedName": "ProxiedApp.getInfo",
+      "line": 109,
+      "endLine": 111,
+      "signature": "public getInfo(): IAppInfo",
+      "containerClass": "ProxiedApp",
+      "calls": [
+        {
+          "name": "IAppInfo",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "getEssentials",
+      "exported": true,
+      "qualifiedName": "ProxiedApp.getEssentials",
+      "line": 113,
+      "endLine": 115,
+      "signature": "public getEssentials(): IAppInfo['essentials']",
+      "containerClass": "ProxiedApp",
+      "calls": [
+        {
+          "name": "getInfo",
+          "edgeType": "call"
+        },
+        {
+          "name": "IAppInfo",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "getLatestLicenseValidationResult",
+      "exported": true,
+      "qualifiedName": "ProxiedApp.getLatestLicenseValidationResult",
+      "line": 117,
+      "endLine": 119,
+      "signature": "public getLatestLicenseValidationResult(): AppLicenseValidationResult",
+      "containerClass": "ProxiedApp",
+      "calls": [
+        {
+          "name": "AppLicenseValidationResult",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "validateInstallation",
+      "exported": true,
+      "qualifiedName": "ProxiedApp.validateInstallation",
+      "line": 121,
+      "endLine": 127,
+      "signature": "public async validateInstallation(): Promise<void>",
+      "containerClass": "ProxiedApp",
+      "calls": [
+        {
+          "name": "verifySignedApp",
+          "edgeType": "call"
+        },
+        {
+          "name": "getSignatureManager",
+          "edgeType": "call"
+        },
+        {
+          "name": "getStorageItem",
+          "edgeType": "call"
+        },
+        {
+          "name": "InvalidInstallationError",
+          "edgeType": "new"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "validateLicense",
+      "exported": true,
+      "qualifiedName": "ProxiedApp.validateLicense",
+      "line": 125,
+      "endLine": 131,
+      "signature": "public validateLicense(): Promise<void>",
+      "containerClass": "ProxiedApp",
+      "calls": [
+        {
+          "name": "getStorageItem",
+          "edgeType": "call"
+        },
+        {
+          "name": "validate",
+          "edgeType": "call"
+        },
+        {
+          "name": "getLicenseManager",
+          "edgeType": "call"
+        },
+        {
+          "name": "AppLicenseValidationResult",
+          "edgeType": "new"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "constructor",
+      "exported": true,
+      "qualifiedName": "ProxiedApp.constructor",
+      "line": 23,
+      "endLine": 31,
+      "signature": "constructor( private readonly manager: AppManager, private storageItem: IAppStorageItem, private readonly appRuntime: IRuntimeController, )",
+      "containerClass": "ProxiedApp",
+      "calls": [
+        {
+          "name": "processExit",
+          "edgeType": "event_listen"
+        },
+        {
+          "name": "clear",
+          "edgeType": "call"
+        },
+        {
+          "name": "AppManager",
+          "edgeType": "type"
+        },
+        {
+          "name": "IAppStorageItem",
+          "edgeType": "type"
+        },
+        {
+          "name": "IRuntimeController",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "class_property",
+      "name": "previousStatus",
+      "exported": true,
+      "qualifiedName": "ProxiedApp.previousStatus",
+      "line": 19,
+      "endLine": 19,
+      "signature": "private previousStatus: AppStatus;",
+      "containerClass": "ProxiedApp",
+      "calls": [
+        {
+          "name": "AppStatus",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "class_property",
+      "name": "latestLicenseValidationResult",
+      "exported": true,
+      "qualifiedName": "ProxiedApp.latestLicenseValidationResult",
+      "line": 21,
+      "endLine": 21,
+      "signature": "private latestLicenseValidationResult: AppLicenseValidationResult;",
+      "containerClass": "ProxiedApp",
+      "calls": [
+        {
+          "name": "AppLicenseValidationResult",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "class_property",
+      "name": "getStatus",
+      "exported": true,
+      "qualifiedName": "ProxiedApp.getStatus",
+      "line": 64,
+      "endLine": 64,
+      "signature": "public getStatus = mem(() => this.appRuntime.getStatus().catch(() => AppStatus.UNKNOWN),",
+      "containerClass": "ProxiedApp",
+      "calls": [
+        {
+          "name": "mem",
+          "edgeType": "call"
+        },
+        {
+          "name": "catch",
+          "edgeType": "call"
+        },
+        {
+          "name": "getStatus",
+          "edgeType": "call"
+        }
+      ]
+    }
+  ],
+  "imports": [
+    {
+      "module": "node:util",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/apps-engine/definition/AppStatus",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/apps-engine/definition/exceptions",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/apps-engine/definition/metadata",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/apps-engine/definition/metadata",
+      "resolved": "external"
+    },
+    {
+      "module": "mem",
+      "resolved": "external"
+    },
+    {
+      "module": "./AppManager",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/packages/apps/src/server/AppManager.ts"
+    },
+    {
+      "module": "./errors/InvalidInstallationError",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/packages/apps/src/server/errors/InvalidInstallationError.ts"
+    },
+    {
+      "module": "./logging",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/packages/apps/src/server/logging/index.ts"
+    },
+    {
+      "module": "./marketplace/license",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/packages/apps/src/server/marketplace/license/index.ts"
+    },
+    {
+      "module": "./runtime/AppsEngineRuntime",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/packages/apps/src/server/runtime/AppsEngineRuntime.ts"
+    },
+    {
+      "module": "./runtime/IRuntimeController",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/packages/apps/src/server/runtime/IRuntimeController.ts"
+    },
+    {
+      "module": "./runtime/base/BaseRuntimeSubprocessController",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/packages/apps/src/server/runtime/base/BaseRuntimeSubprocessController.ts"
+    },
+    {
+      "module": "./storage",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/packages/apps/src/server/storage/index.ts"
+    }
+  ]
+}

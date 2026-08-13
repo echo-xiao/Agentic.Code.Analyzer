@@ -1,0 +1,354 @@
+{
+  "sourcePath": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/client/views/admin/settings/groups/OAuthGroupPage/OAuthGroupPage.tsx",
+  "symbols": [
+    {
+      "type": "module",
+      "name": "OAuthGroupPage",
+      "exported": false,
+      "line": 1,
+      "endLine": 144,
+      "signature": "OAuthGroupPage",
+      "calls": [
+        {
+          "name": "memo",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "inner_function",
+      "name": "handleRefreshOAuthServicesButtonClick",
+      "exported": false,
+      "qualifiedName": "OAuthGroupPage.handleRefreshOAuthServicesButtonClick",
+      "line": 41,
+      "endLine": 49,
+      "signature": "async (): Promise<void> =>",
+      "calls": [
+        {
+          "name": "dispatchToastMessage",
+          "edgeType": "call"
+        },
+        {
+          "name": "refreshOAuthService",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "inner_function",
+      "name": "handleAddCustomOAuthButtonClick",
+      "exported": false,
+      "qualifiedName": "OAuthGroupPage.handleAddCustomOAuthButtonClick",
+      "line": 51,
+      "endLine": 63,
+      "signature": "(): void =>",
+      "calls": [
+        {
+          "name": "addOAuthService",
+          "edgeType": "call"
+        },
+        {
+          "name": "dispatchToastMessage",
+          "edgeType": "call"
+        },
+        {
+          "name": "setModal",
+          "edgeType": "call"
+        },
+        {
+          "name": "CreateOAuthModal",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "onConfirm",
+          "edgeType": "jsx"
+        }
+      ]
+    },
+    {
+      "type": "inner_function",
+      "name": "onConfirm",
+      "exported": false,
+      "qualifiedName": "OAuthGroupPage.onConfirm",
+      "line": 52,
+      "endLine": 61,
+      "signature": "async (text: string): Promise<void> =>",
+      "calls": [
+        {
+          "name": "addOAuthService",
+          "edgeType": "call"
+        },
+        {
+          "name": "dispatchToastMessage",
+          "edgeType": "call"
+        },
+        {
+          "name": "setModal",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "inner_function",
+      "name": "handleConfirm",
+      "exported": false,
+      "qualifiedName": "OAuthGroupPage.handleConfirm",
+      "line": 72,
+      "endLine": 82,
+      "signature": "async (): Promise<void> =>",
+      "calls": [
+        {
+          "name": "removeOAuthService",
+          "edgeType": "call"
+        },
+        {
+          "name": "dispatchToastMessage",
+          "edgeType": "call"
+        },
+        {
+          "name": "setSettingSections",
+          "edgeType": "call"
+        },
+        {
+          "name": "filter",
+          "edgeType": "call"
+        },
+        {
+          "name": "capitalize",
+          "edgeType": "call"
+        },
+        {
+          "name": "setModal",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "function",
+      "name": "OAuthGroupPage",
+      "exported": false,
+      "line": 19,
+      "endLine": 141,
+      "signature": "function OAuthGroupPage({ _id, onClickBack, ...group }: OAuthGroupPageProps)",
+      "calls": [
+        {
+          "name": "useEditableSettingsGroupSections",
+          "edgeType": "call"
+        },
+        {
+          "name": "useTranslation",
+          "edgeType": "call"
+        },
+        {
+          "name": "useState",
+          "edgeType": "call"
+        },
+        {
+          "name": "test",
+          "edgeType": "call"
+        },
+        {
+          "name": "useAbsoluteUrl",
+          "edgeType": "call"
+        },
+        {
+          "name": "toLowerCase",
+          "edgeType": "call"
+        },
+        {
+          "name": "strRight",
+          "edgeType": "call"
+        },
+        {
+          "name": "getAbsoluteUrl",
+          "edgeType": "call"
+        },
+        {
+          "name": "useToastMessageDispatch",
+          "edgeType": "call"
+        },
+        {
+          "name": "useMethod",
+          "edgeType": "call"
+        },
+        {
+          "name": "useSetModal",
+          "edgeType": "call"
+        },
+        {
+          "name": "dispatchToastMessage",
+          "edgeType": "call"
+        },
+        {
+          "name": "refreshOAuthService",
+          "edgeType": "call"
+        },
+        {
+          "name": "addOAuthService",
+          "edgeType": "call"
+        },
+        {
+          "name": "setModal",
+          "edgeType": "call"
+        },
+        {
+          "name": "useEffect",
+          "edgeType": "call"
+        },
+        {
+          "name": "setSettingSections",
+          "edgeType": "call"
+        },
+        {
+          "name": "removeOAuthService",
+          "edgeType": "call"
+        },
+        {
+          "name": "filter",
+          "edgeType": "call"
+        },
+        {
+          "name": "capitalize",
+          "edgeType": "call"
+        },
+        {
+          "name": "map",
+          "edgeType": "call"
+        },
+        {
+          "name": "sectionIsCustomOAuth",
+          "edgeType": "call"
+        },
+        {
+          "name": "removeCustomOauthFactory",
+          "edgeType": "call"
+        },
+        {
+          "name": "sanitize",
+          "edgeType": "call"
+        },
+        {
+          "name": "callbackURL",
+          "edgeType": "call"
+        },
+        {
+          "name": "SettingsGroupPage",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "Button",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "SettingsSection",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "CreateOAuthModal",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "GenericModal",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "onConfirm",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "handleConfirm",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "_id",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "onClickBack",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "handleRefreshOAuthServicesButtonClick",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "handleAddCustomOAuthButtonClick",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "sectionName",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "solo",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "handleRemoveCustomOAuthButtonClick",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "OAuthGroupPageProps",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "type",
+      "name": "OAuthGroupPageProps",
+      "line": 15,
+      "endLine": 17,
+      "signature": "export type OAuthGroupPageProps = ISetting &"
+    }
+  ],
+  "imports": [
+    {
+      "module": "@rocket.chat/core-typings",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/fuselage",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/string-helpers",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/ui-client",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/ui-contexts",
+      "resolved": "external"
+    },
+    {
+      "module": "dompurify",
+      "resolved": "external"
+    },
+    {
+      "module": "react",
+      "resolved": "external"
+    },
+    {
+      "module": "./CreateOAuthModal",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/client/views/admin/settings/groups/OAuthGroupPage/CreateOAuthModal.tsx"
+    },
+    {
+      "module": "../../../../../../lib/utils/stringUtils",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/lib/utils/stringUtils.ts"
+    },
+    {
+      "module": "../../../EditableSettingsContext",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/client/views/admin/EditableSettingsContext.ts"
+    },
+    {
+      "module": "../../SettingsGroupPage",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/client/views/admin/settings/SettingsGroupPage/index.ts"
+    },
+    {
+      "module": "../../SettingsSection",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/client/views/admin/settings/SettingsSection/index.ts"
+    }
+  ]
+}

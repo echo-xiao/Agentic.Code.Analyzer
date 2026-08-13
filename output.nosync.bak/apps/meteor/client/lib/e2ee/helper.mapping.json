@@ -1,0 +1,156 @@
+{
+  "sourcePath": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/client/lib/e2ee/helper.ts",
+  "symbols": [
+    {
+      "type": "function",
+      "name": "encryptAESCTR",
+      "exported": true,
+      "line": 1,
+      "endLine": 3,
+      "signature": "export async function encryptAESCTR(counter: BufferSource, key: CryptoKey, data: BufferSource)",
+      "calls": [
+        {
+          "name": "encrypt",
+          "edgeType": "call"
+        },
+        {
+          "name": "BufferSource",
+          "edgeType": "type"
+        },
+        {
+          "name": "CryptoKey",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "function",
+      "name": "generateAESCTRKey",
+      "exported": true,
+      "line": 5,
+      "endLine": 7,
+      "signature": "export function generateAESCTRKey(): Promise<CryptoKey>",
+      "calls": [
+        {
+          "name": "generateKey",
+          "edgeType": "call"
+        },
+        {
+          "name": "CryptoKey",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "function",
+      "name": "generatePassphrase",
+      "exported": true,
+      "line": 17,
+      "endLine": 41,
+      "signature": "export async function generatePassphrase()",
+      "calls": [
+        {
+          "name": "floor",
+          "edgeType": "call"
+        },
+        {
+          "name": "getRandomValues",
+          "edgeType": "call"
+        },
+        {
+          "name": "push",
+          "edgeType": "call"
+        },
+        {
+          "name": "join",
+          "edgeType": "call"
+        },
+        {
+          "name": "Uint32Array",
+          "edgeType": "new"
+        }
+      ]
+    },
+    {
+      "type": "function",
+      "name": "createSha256HashFromText",
+      "exported": true,
+      "line": 21,
+      "endLine": 26,
+      "signature": "export async function createSha256HashFromText(data: string)",
+      "calls": [
+        {
+          "name": "digest",
+          "edgeType": "call"
+        },
+        {
+          "name": "encode",
+          "edgeType": "call"
+        },
+        {
+          "name": "join",
+          "edgeType": "call"
+        },
+        {
+          "name": "map",
+          "edgeType": "call"
+        },
+        {
+          "name": "from",
+          "edgeType": "call"
+        },
+        {
+          "name": "padStart",
+          "edgeType": "call"
+        },
+        {
+          "name": "TextEncoder",
+          "edgeType": "new"
+        },
+        {
+          "name": "Uint8Array",
+          "edgeType": "new"
+        }
+      ]
+    },
+    {
+      "type": "function",
+      "name": "sha256HashFromArrayBuffer",
+      "exported": true,
+      "line": 25,
+      "endLine": 28,
+      "signature": "export async function sha256HashFromArrayBuffer(arrayBuffer: ArrayBuffer)",
+      "calls": [
+        {
+          "name": "from",
+          "edgeType": "call"
+        },
+        {
+          "name": "digest",
+          "edgeType": "call"
+        },
+        {
+          "name": "join",
+          "edgeType": "call"
+        },
+        {
+          "name": "map",
+          "edgeType": "call"
+        },
+        {
+          "name": "padStart",
+          "edgeType": "call"
+        },
+        {
+          "name": "Uint8Array",
+          "edgeType": "new"
+        },
+        {
+          "name": "ArrayBuffer",
+          "edgeType": "type"
+        }
+      ]
+    }
+  ],
+  "imports": []
+}

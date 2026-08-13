@@ -1,0 +1,271 @@
+{
+  "sourcePath": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/app/autotranslate/server/msTranslate.ts",
+  "symbols": [
+    {
+      "type": "module",
+      "name": "msTranslate",
+      "exported": false,
+      "line": 1,
+      "endLine": 209,
+      "signature": "msTranslate",
+      "calls": [
+        {
+          "name": "registerProvider",
+          "edgeType": "call"
+        },
+        {
+          "name": "MsAutoTranslate",
+          "edgeType": "new"
+        }
+      ]
+    },
+    {
+      "type": "class",
+      "name": "MsAutoTranslate",
+      "exported": false,
+      "line": 22,
+      "endLine": 205,
+      "signature": "class MsAutoTranslate extends AutoTranslate",
+      "calls": [
+        {
+          "name": "AutoTranslate",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "_getProviderMetadata",
+      "exported": false,
+      "qualifiedName": "MsAutoTranslate._getProviderMetadata",
+      "line": 55,
+      "endLine": 61,
+      "signature": "_getProviderMetadata(): IProviderMetadata",
+      "containerClass": "MsAutoTranslate",
+      "calls": [
+        {
+          "name": "_getSettings",
+          "edgeType": "call"
+        },
+        {
+          "name": "IProviderMetadata",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "_getSettings",
+      "exported": false,
+      "qualifiedName": "MsAutoTranslate._getSettings",
+      "line": 64,
+      "endLine": 69,
+      "signature": "_getSettings(): IProviderMetadata['settings']",
+      "containerClass": "MsAutoTranslate",
+      "calls": [
+        {
+          "name": "IProviderMetadata",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "getSupportedLanguages",
+      "exported": false,
+      "qualifiedName": "MsAutoTranslate.getSupportedLanguages",
+      "line": 76,
+      "endLine": 96,
+      "signature": "async getSupportedLanguages(target: string): Promise<ISupportedLanguage[]>",
+      "containerClass": "MsAutoTranslate",
+      "calls": [
+        {
+          "name": "fetch",
+          "edgeType": "call"
+        },
+        {
+          "name": "json",
+          "edgeType": "call"
+        },
+        {
+          "name": "map",
+          "edgeType": "call"
+        },
+        {
+          "name": "keys",
+          "edgeType": "call"
+        },
+        {
+          "name": "ISupportedLanguage",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "_translate",
+      "exported": false,
+      "qualifiedName": "MsAutoTranslate._translate",
+      "line": 88,
+      "endLine": 136,
+      "signature": "async _translate( data: { Text: string; }[], targetLanguages: string[], ): Promise<ITranslationResult>",
+      "containerClass": "MsAutoTranslate",
+      "calls": [
+        {
+          "name": "getSupportedLanguages",
+          "edgeType": "call"
+        },
+        {
+          "name": "map",
+          "edgeType": "call"
+        },
+        {
+          "name": "indexOf",
+          "edgeType": "call"
+        },
+        {
+          "name": "findWhere",
+          "edgeType": "call"
+        },
+        {
+          "name": "substr",
+          "edgeType": "call"
+        },
+        {
+          "name": "fetch",
+          "edgeType": "call"
+        },
+        {
+          "name": "json",
+          "edgeType": "call"
+        },
+        {
+          "name": "assign",
+          "edgeType": "call"
+        },
+        {
+          "name": "join",
+          "edgeType": "call"
+        },
+        {
+          "name": "find",
+          "edgeType": "call"
+        },
+        {
+          "name": "ITranslationResult",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "_translateMessage",
+      "exported": false,
+      "qualifiedName": "MsAutoTranslate._translateMessage",
+      "line": 104,
+      "endLine": 115,
+      "signature": "async _translateMessage(message: IMessage, targetLanguages: string[]): Promise<ITranslationResult>",
+      "containerClass": "MsAutoTranslate",
+      "calls": [
+        {
+          "name": "map",
+          "edgeType": "call"
+        },
+        {
+          "name": "split",
+          "edgeType": "call"
+        },
+        {
+          "name": "_translate",
+          "edgeType": "call"
+        },
+        {
+          "name": "error",
+          "edgeType": "call"
+        },
+        {
+          "name": "IMessage",
+          "edgeType": "type"
+        },
+        {
+          "name": "ITranslationResult",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "_translateAttachmentDescriptions",
+      "exported": false,
+      "qualifiedName": "MsAutoTranslate._translateAttachmentDescriptions",
+      "line": 115,
+      "endLine": 129,
+      "signature": "async _translateAttachmentDescriptions(attachment: MessageAttachment, targetLanguages: string[]): Promise<ITranslationResult>",
+      "containerClass": "MsAutoTranslate",
+      "calls": [
+        {
+          "name": "_translate",
+          "edgeType": "call"
+        },
+        {
+          "name": "error",
+          "edgeType": "call"
+        },
+        {
+          "name": "MessageAttachment",
+          "edgeType": "type"
+        },
+        {
+          "name": "ITranslationResult",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "constructor",
+      "exported": false,
+      "qualifiedName": "MsAutoTranslate.constructor",
+      "line": 37,
+      "endLine": 48,
+      "signature": "constructor()",
+      "containerClass": "MsAutoTranslate",
+      "calls": [
+        {
+          "name": "watch",
+          "edgeType": "call"
+        }
+      ]
+    }
+  ],
+  "imports": [
+    {
+      "module": "@rocket.chat/core-typings",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/server-fetch",
+      "resolved": "external"
+    },
+    {
+      "module": "underscore",
+      "resolved": "external"
+    },
+    {
+      "module": "./autotranslate",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/app/autotranslate/server/autotranslate.ts"
+    },
+    {
+      "module": "./logger",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/app/autotranslate/server/logger.ts"
+    },
+    {
+      "module": "../../../server/lib/i18n",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/server/lib/i18n.ts"
+    },
+    {
+      "module": "../../settings/server",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/app/settings/server/index.ts"
+    }
+  ]
+}

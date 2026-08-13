@@ -1,0 +1,60 @@
+{
+  "sourcePath": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/client/components/dataView/Growth.tsx",
+  "symbols": [
+    {
+      "type": "variable_function",
+      "name": "Growth",
+      "exported": false,
+      "line": 11,
+      "endLine": 22,
+      "signature": "({ children, ...props }: GrowthProps) =>",
+      "calls": [
+        {
+          "name": "abs",
+          "edgeType": "call"
+        },
+        {
+          "name": "Box",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "NegativeGrowthSymbol",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "PositiveGrowthSymbol",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "GrowthProps",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "type",
+      "name": "GrowthProps",
+      "line": 7,
+      "endLine": 9,
+      "signature": "export type GrowthProps = ComponentProps<typeof Box> &"
+    }
+  ],
+  "imports": [
+    {
+      "module": "@rocket.chat/fuselage",
+      "resolved": "external"
+    },
+    {
+      "module": "react",
+      "resolved": "external"
+    },
+    {
+      "module": "./NegativeGrowthSymbol",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/client/components/dataView/NegativeGrowthSymbol.tsx"
+    },
+    {
+      "module": "./PositiveGrowthSymbol",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/client/components/dataView/PositiveGrowthSymbol.tsx"
+    }
+  ]
+}

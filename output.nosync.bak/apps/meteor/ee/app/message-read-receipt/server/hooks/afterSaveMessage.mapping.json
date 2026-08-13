@@ -1,0 +1,41 @@
+{
+  "sourcePath": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/ee/app/message-read-receipt/server/hooks/afterSaveMessage.ts",
+  "symbols": [
+    {
+      "type": "module",
+      "name": "afterSaveMessage",
+      "exported": false,
+      "line": 1,
+      "endLine": 22,
+      "signature": "afterSaveMessage",
+      "calls": [
+        {
+          "name": "afterSaveMessage",
+          "edgeType": "event_listen"
+        },
+        {
+          "name": "isEditedMessage",
+          "edgeType": "call"
+        },
+        {
+          "name": "markMessageAsReadBySender",
+          "edgeType": "call"
+        }
+      ]
+    }
+  ],
+  "imports": [
+    {
+      "module": "@rocket.chat/core-typings",
+      "resolved": "external"
+    },
+    {
+      "module": "../../../../../server/lib/callbacks",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/server/lib/callbacks.ts"
+    },
+    {
+      "module": "../../../../server/lib/message-read-receipt/ReadReceipt",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/ee/server/lib/message-read-receipt/ReadReceipt.ts"
+    }
+  ]
+}

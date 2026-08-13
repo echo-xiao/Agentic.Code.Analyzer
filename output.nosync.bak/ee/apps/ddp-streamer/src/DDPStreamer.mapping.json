@@ -1,0 +1,373 @@
+{
+  "sourcePath": "/Users/echoooooo/Desktop/code/Rocket.Chat/ee/apps/ddp-streamer/src/DDPStreamer.ts",
+  "symbols": [
+    {
+      "type": "class",
+      "name": "DDPStreamer",
+      "exported": true,
+      "line": 22,
+      "endLine": 308,
+      "signature": "export class DDPStreamer extends ServiceClass",
+      "calls": [
+        {
+          "name": "ServiceClass",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "created",
+      "exported": true,
+      "qualifiedName": "DDPStreamer.created",
+      "line": 105,
+      "endLine": 250,
+      "signature": "override async created(): Promise<void>",
+      "containerClass": "DDPStreamer",
+      "calls": [
+        {
+          "name": "register",
+          "edgeType": "call"
+        },
+        {
+          "name": "setMetrics",
+          "edgeType": "call"
+        },
+        {
+          "name": "DDP_EVENTS.CONNECTED",
+          "edgeType": "event_listen"
+        },
+        {
+          "name": "increment",
+          "edgeType": "call"
+        },
+        {
+          "name": "DDP_EVENTS.LOGGED",
+          "edgeType": "event_listen"
+        },
+        {
+          "name": "DDP_EVENTS.DISCONNECTED",
+          "edgeType": "event_listen"
+        },
+        {
+          "name": "decrement",
+          "edgeType": "call"
+        },
+        {
+          "name": "findOneById",
+          "edgeType": "call"
+        },
+        {
+          "name": "setImmediate",
+          "edgeType": "call"
+        },
+        {
+          "name": "added",
+          "edgeType": "call"
+        },
+        {
+          "name": "newConnection",
+          "edgeType": "call"
+        },
+        {
+          "name": "updateConnections",
+          "edgeType": "call"
+        },
+        {
+          "name": "sendUserData",
+          "edgeType": "call"
+        },
+        {
+          "name": "presence",
+          "edgeType": "event_emit"
+        },
+        {
+          "name": "accounts.login",
+          "edgeType": "event_emit"
+        },
+        {
+          "name": "DDP_EVENTS.LOGGEDOUT",
+          "edgeType": "event_listen"
+        },
+        {
+          "name": "accounts.logout",
+          "edgeType": "event_emit"
+        },
+        {
+          "name": "removeConnection",
+          "edgeType": "call"
+        },
+        {
+          "name": "socket.disconnected",
+          "edgeType": "event_emit"
+        },
+        {
+          "name": "socket.connected",
+          "edgeType": "event_emit"
+        },
+        {
+          "name": "Client",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "started",
+      "exported": true,
+      "qualifiedName": "DDPStreamer.started",
+      "line": 109,
+      "endLine": 155,
+      "signature": "override async started(): Promise<void>",
+      "containerClass": "DDPStreamer",
+      "calls": [
+        {
+          "name": "getAutoUpdateClientVersions",
+          "edgeType": "call"
+        },
+        {
+          "name": "forEach",
+          "edgeType": "call"
+        },
+        {
+          "name": "keys",
+          "edgeType": "call"
+        },
+        {
+          "name": "updateVersion",
+          "edgeType": "call"
+        },
+        {
+          "name": "listen",
+          "edgeType": "call"
+        },
+        {
+          "name": "get",
+          "edgeType": "call"
+        },
+        {
+          "name": "use",
+          "edgeType": "call"
+        },
+        {
+          "name": "polka",
+          "edgeType": "call"
+        },
+        {
+          "name": "proxy",
+          "edgeType": "call"
+        },
+        {
+          "name": "nodeList",
+          "edgeType": "call"
+        },
+        {
+          "name": "end",
+          "edgeType": "call"
+        },
+        {
+          "name": "error",
+          "edgeType": "call"
+        },
+        {
+          "name": "writeHead",
+          "edgeType": "call"
+        },
+        {
+          "name": "setHeader",
+          "edgeType": "call"
+        },
+        {
+          "name": "readUInt32LE",
+          "edgeType": "call"
+        },
+        {
+          "name": "randomBytes",
+          "edgeType": "call"
+        },
+        {
+          "name": "connection",
+          "edgeType": "event_listen"
+        },
+        {
+          "name": "registerInstance",
+          "edgeType": "call"
+        },
+        {
+          "name": "Client",
+          "edgeType": "new"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "stopped",
+      "exported": true,
+      "qualifiedName": "DDPStreamer.stopped",
+      "line": 113,
+      "endLine": 120,
+      "signature": "override async stopped(): Promise<void>",
+      "containerClass": "DDPStreamer",
+      "calls": [
+        {
+          "name": "forEach",
+          "edgeType": "call"
+        },
+        {
+          "name": "terminate",
+          "edgeType": "call"
+        },
+        {
+          "name": "close",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "constructor",
+      "exported": true,
+      "qualifiedName": "DDPStreamer.constructor",
+      "line": 29,
+      "endLine": 98,
+      "signature": "constructor(notifications: NotificationsModule)",
+      "containerClass": "DDPStreamer",
+      "calls": [
+        {
+          "name": "onEvent",
+          "edgeType": "call"
+        },
+        {
+          "name": "emitWithoutBroadcast",
+          "edgeType": "call"
+        },
+        {
+          "name": "meteor.loginServiceConfiguration",
+          "edgeType": "event_emit"
+        },
+        {
+          "name": "forEach",
+          "edgeType": "call"
+        },
+        {
+          "name": "get",
+          "edgeType": "call"
+        },
+        {
+          "name": "close",
+          "edgeType": "call"
+        },
+        {
+          "name": "terminate",
+          "edgeType": "call"
+        },
+        {
+          "name": "close",
+          "edgeType": "event_listen"
+        },
+        {
+          "name": "updateVersion",
+          "edgeType": "call"
+        },
+        {
+          "name": "invalidatePublicationUserCache",
+          "edgeType": "call"
+        },
+        {
+          "name": "ListenersModule",
+          "edgeType": "new"
+        },
+        {
+          "name": "NotificationsModule",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "class_property",
+      "name": "updateConnections",
+      "exported": true,
+      "qualifiedName": "DDPStreamer.updateConnections",
+      "line": 34,
+      "endLine": 36,
+      "signature": "updateConnections = throttle(() =>",
+      "containerClass": "DDPStreamer",
+      "calls": [
+        {
+          "name": "throttle",
+          "edgeType": "call"
+        },
+        {
+          "name": "updateConnections",
+          "edgeType": "call"
+        }
+      ]
+    }
+  ],
+  "imports": [
+    {
+      "module": "crypto",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/core-services",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/instance-status",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/models",
+      "resolved": "external"
+    },
+    {
+      "module": "polka",
+      "resolved": "external"
+    },
+    {
+      "module": "underscore",
+      "resolved": "external"
+    },
+    {
+      "module": "ws",
+      "resolved": "external"
+    },
+    {
+      "module": "./Client",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/ee/apps/ddp-streamer/src/Client.ts"
+    },
+    {
+      "module": "./configureServer",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/ee/apps/ddp-streamer/src/configureServer.ts"
+    },
+    {
+      "module": "./constants",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/ee/apps/ddp-streamer/src/constants.ts"
+    },
+    {
+      "module": "./lib/Autoupdate",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/ee/apps/ddp-streamer/src/lib/Autoupdate.ts"
+    },
+    {
+      "module": "./proxy",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/ee/apps/ddp-streamer/src/proxy.ts"
+    },
+    {
+      "module": "../../../../apps/meteor/server/modules/listeners/listeners.module",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/server/modules/listeners/listeners.module.ts"
+    },
+    {
+      "module": "../../../../apps/meteor/server/modules/notifications/notifications.module",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/server/modules/notifications/notifications.module.ts"
+    },
+    {
+      "module": "../../../../apps/meteor/server/modules/streamer/publication-user-cache",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/server/modules/streamer/publication-user-cache.ts"
+    },
+    {
+      "module": "../../../../apps/meteor/server/modules/streamer/streamer.module",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/server/modules/streamer/streamer.module.ts"
+    }
+  ]
+}

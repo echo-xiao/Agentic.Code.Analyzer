@@ -1,0 +1,534 @@
+{
+  "sourcePath": "/Users/echoooooo/Desktop/code/Rocket.Chat/packages/media-signaling/src/lib/services/webrtc/Negotiation.ts",
+  "symbols": [
+    {
+      "type": "class",
+      "name": "Negotiation",
+      "exported": true,
+      "line": 5,
+      "endLine": 216,
+      "signature": "export class Negotiation",
+      "calls": []
+    },
+    {
+      "type": "method",
+      "name": "end",
+      "exported": true,
+      "qualifiedName": "Negotiation.end",
+      "line": 60,
+      "endLine": 71,
+      "signature": "public end(finished = false): void",
+      "containerClass": "Negotiation",
+      "calls": [
+        {
+          "name": "debug",
+          "edgeType": "call"
+        },
+        {
+          "name": "ended",
+          "edgeType": "event_emit"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "process",
+      "exported": true,
+      "qualifiedName": "Negotiation.process",
+      "line": 64,
+      "endLine": 80,
+      "signature": "public async process(webrtcProcessor: IWebRTCProcessor): Promise<void>",
+      "containerClass": "Negotiation",
+      "calls": [
+        {
+          "name": "debug",
+          "edgeType": "call"
+        },
+        {
+          "name": "setWebRTCProcessor",
+          "edgeType": "call"
+        },
+        {
+          "name": "createLocalAnswer",
+          "edgeType": "call"
+        },
+        {
+          "name": "createLocalOffer",
+          "edgeType": "call"
+        },
+        {
+          "name": "IWebRTCProcessor",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "setRemoteAnswer",
+      "exported": true,
+      "qualifiedName": "Negotiation.setRemoteAnswer",
+      "line": 68,
+      "endLine": 83,
+      "signature": "public async setRemoteAnswer(sdp: RTCSessionDescriptionInit): Promise<void>",
+      "containerClass": "Negotiation",
+      "calls": [
+        {
+          "name": "isWebRTCNegotiation",
+          "edgeType": "call"
+        },
+        {
+          "name": "debug",
+          "edgeType": "call"
+        },
+        {
+          "name": "warn",
+          "edgeType": "call"
+        },
+        {
+          "name": "setPeerRemoteDescription",
+          "edgeType": "call"
+        },
+        {
+          "name": "end",
+          "edgeType": "call"
+        },
+        {
+          "name": "RTCSessionDescriptionInit",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "setLocalDescription",
+      "exported": true,
+      "qualifiedName": "Negotiation.setLocalDescription",
+      "line": 72,
+      "endLine": 90,
+      "signature": "protected async setLocalDescription(this: WebRTCNegotiation, sdp: RTCSessionDescriptionInit): Promise<void>",
+      "containerClass": "Negotiation",
+      "calls": [
+        {
+          "name": "debug",
+          "edgeType": "call"
+        },
+        {
+          "name": "assertNegotiationIsActive",
+          "edgeType": "call"
+        },
+        {
+          "name": "setPeerLocalDescription",
+          "edgeType": "call"
+        },
+        {
+          "name": "waitForIceGathering",
+          "edgeType": "call"
+        },
+        {
+          "name": "getPeerLocalDescription",
+          "edgeType": "call"
+        },
+        {
+          "name": "local-sdp",
+          "edgeType": "event_emit"
+        },
+        {
+          "name": "end",
+          "edgeType": "call"
+        },
+        {
+          "name": "WebRTCNegotiation",
+          "edgeType": "type"
+        },
+        {
+          "name": "RTCSessionDescriptionInit",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "setWebRTCProcessor",
+      "exported": true,
+      "qualifiedName": "Negotiation.setWebRTCProcessor",
+      "line": 76,
+      "endLine": 78,
+      "signature": "protected setWebRTCProcessor(webrtcProcessor: IWebRTCProcessor): asserts this is WebRTCNegotiation",
+      "containerClass": "Negotiation",
+      "calls": [
+        {
+          "name": "IWebRTCProcessor",
+          "edgeType": "type"
+        },
+        {
+          "name": "WebRTCNegotiation",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "isWebRTCNegotiation",
+      "exported": true,
+      "qualifiedName": "Negotiation.isWebRTCNegotiation",
+      "line": 80,
+      "endLine": 82,
+      "signature": "protected isWebRTCNegotiation(): this is WebRTCNegotiation",
+      "containerClass": "Negotiation",
+      "calls": [
+        {
+          "name": "WebRTCNegotiation",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "assertNegotiationIsActive",
+      "exported": true,
+      "qualifiedName": "Negotiation.assertNegotiationIsActive",
+      "line": 84,
+      "endLine": 89,
+      "signature": "protected assertNegotiationIsActive(): void",
+      "containerClass": "Negotiation",
+      "calls": [
+        {
+          "name": "fail",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "createLocalOffer",
+      "exported": true,
+      "qualifiedName": "Negotiation.createLocalOffer",
+      "line": 88,
+      "endLine": 95,
+      "signature": "protected async createLocalOffer(this: WebRTCNegotiation): Promise<void>",
+      "containerClass": "Negotiation",
+      "calls": [
+        {
+          "name": "debug",
+          "edgeType": "call"
+        },
+        {
+          "name": "assertNegotiationIsActive",
+          "edgeType": "call"
+        },
+        {
+          "name": "createOffer",
+          "edgeType": "call"
+        },
+        {
+          "name": "setLocalDescription",
+          "edgeType": "call"
+        },
+        {
+          "name": "WebRTCNegotiation",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "createLocalAnswer",
+      "exported": true,
+      "qualifiedName": "Negotiation.createLocalAnswer",
+      "line": 92,
+      "endLine": 102,
+      "signature": "protected async createLocalAnswer(this: WebRTCNegotiation, remoteOffer: RTCSessionDescriptionInit): Promise<void>",
+      "containerClass": "Negotiation",
+      "calls": [
+        {
+          "name": "debug",
+          "edgeType": "call"
+        },
+        {
+          "name": "assertNegotiationIsActive",
+          "edgeType": "call"
+        },
+        {
+          "name": "setPeerRemoteDescription",
+          "edgeType": "call"
+        },
+        {
+          "name": "createEarlyAnswer",
+          "edgeType": "call"
+        },
+        {
+          "name": "setLocalDescription",
+          "edgeType": "call"
+        },
+        {
+          "name": "WebRTCNegotiation",
+          "edgeType": "type"
+        },
+        {
+          "name": "RTCSessionDescriptionInit",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "fail",
+      "exported": true,
+      "qualifiedName": "Negotiation.fail",
+      "line": 96,
+      "endLine": 104,
+      "signature": "protected fail(errorCode: string): void",
+      "containerClass": "Negotiation",
+      "calls": [
+        {
+          "name": "error",
+          "edgeType": "event_emit"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "setPeerRemoteDescription",
+      "exported": true,
+      "qualifiedName": "Negotiation.setPeerRemoteDescription",
+      "line": 100,
+      "endLine": 107,
+      "signature": "protected async setPeerRemoteDescription(this: WebRTCNegotiation, remoteDescription: RTCSessionDescriptionInit): Promise<void>",
+      "containerClass": "Negotiation",
+      "calls": [
+        {
+          "name": "setRemoteDescription",
+          "edgeType": "call"
+        },
+        {
+          "name": "error",
+          "edgeType": "call"
+        },
+        {
+          "name": "fail",
+          "edgeType": "call"
+        },
+        {
+          "name": "WebRTCNegotiation",
+          "edgeType": "type"
+        },
+        {
+          "name": "RTCSessionDescriptionInit",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "createEarlyAnswer",
+      "exported": true,
+      "qualifiedName": "Negotiation.createEarlyAnswer",
+      "line": 104,
+      "endLine": 113,
+      "signature": "protected async createEarlyAnswer(this: WebRTCNegotiation): Promise<RTCSessionDescriptionInit>",
+      "containerClass": "Negotiation",
+      "calls": [
+        {
+          "name": "createAnswer",
+          "edgeType": "call"
+        },
+        {
+          "name": "error",
+          "edgeType": "call"
+        },
+        {
+          "name": "fail",
+          "edgeType": "call"
+        },
+        {
+          "name": "WebRTCNegotiation",
+          "edgeType": "type"
+        },
+        {
+          "name": "RTCSessionDescriptionInit",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "setPeerLocalDescription",
+      "exported": true,
+      "qualifiedName": "Negotiation.setPeerLocalDescription",
+      "line": 108,
+      "endLine": 115,
+      "signature": "protected async setPeerLocalDescription(this: WebRTCNegotiation, localDescription: RTCSessionDescriptionInit): Promise<void>",
+      "containerClass": "Negotiation",
+      "calls": [
+        {
+          "name": "setLocalDescription",
+          "edgeType": "call"
+        },
+        {
+          "name": "error",
+          "edgeType": "call"
+        },
+        {
+          "name": "fail",
+          "edgeType": "call"
+        },
+        {
+          "name": "WebRTCNegotiation",
+          "edgeType": "type"
+        },
+        {
+          "name": "RTCSessionDescriptionInit",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "getPeerLocalDescription",
+      "exported": true,
+      "qualifiedName": "Negotiation.getPeerLocalDescription",
+      "line": 112,
+      "endLine": 124,
+      "signature": "protected getPeerLocalDescription(this: WebRTCNegotiation): RTCSessionDescriptionInit",
+      "containerClass": "Negotiation",
+      "calls": [
+        {
+          "name": "getLocalDescription",
+          "edgeType": "call"
+        },
+        {
+          "name": "error",
+          "edgeType": "call"
+        },
+        {
+          "name": "fail",
+          "edgeType": "call"
+        },
+        {
+          "name": "WebRTCNegotiation",
+          "edgeType": "type"
+        },
+        {
+          "name": "RTCSessionDescriptionInit",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "constructor",
+      "exported": true,
+      "qualifiedName": "Negotiation.constructor",
+      "line": 43,
+      "endLine": 58,
+      "signature": "constructor( negotiation: NegotiationData, protected readonly logger?: IMediaSignalLogger | null, )",
+      "containerClass": "Negotiation",
+      "calls": [
+        {
+          "name": "Emitter",
+          "edgeType": "new"
+        },
+        {
+          "name": "NegotiationData",
+          "edgeType": "type"
+        },
+        {
+          "name": "IMediaSignalLogger",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "class_property",
+      "name": "emitter",
+      "exported": true,
+      "qualifiedName": "Negotiation.emitter",
+      "line": 6,
+      "endLine": 6,
+      "signature": "public readonly emitter: Emitter<NegotiationEvents>;",
+      "containerClass": "Negotiation",
+      "calls": [
+        {
+          "name": "Emitter",
+          "edgeType": "type"
+        },
+        {
+          "name": "NegotiationEvents",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "class_property",
+      "name": "webrtcProcessor",
+      "exported": true,
+      "qualifiedName": "Negotiation.webrtcProcessor",
+      "line": 31,
+      "endLine": 31,
+      "signature": "protected webrtcProcessor: IWebRTCProcessor | null;",
+      "containerClass": "Negotiation",
+      "calls": [
+        {
+          "name": "IWebRTCProcessor",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "class_property",
+      "name": "remoteOffer",
+      "exported": true,
+      "qualifiedName": "Negotiation.remoteOffer",
+      "line": 33,
+      "endLine": 33,
+      "signature": "protected remoteOffer: RTCSessionDescriptionInit | null;",
+      "containerClass": "Negotiation",
+      "calls": [
+        {
+          "name": "RTCSessionDescriptionInit",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "class",
+      "name": "WebRTCNegotiation",
+      "exported": true,
+      "line": 107,
+      "endLine": 109,
+      "signature": "export abstract class WebRTCNegotiation extends Negotiation",
+      "calls": [
+        {
+          "name": "Negotiation",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "class_property",
+      "name": "webrtcProcessor",
+      "exported": true,
+      "qualifiedName": "WebRTCNegotiation.webrtcProcessor",
+      "line": 108,
+      "endLine": 108,
+      "signature": "protected abstract override webrtcProcessor: IWebRTCProcessor;",
+      "containerClass": "WebRTCNegotiation",
+      "calls": [
+        {
+          "name": "IWebRTCProcessor",
+          "edgeType": "type"
+        }
+      ]
+    }
+  ],
+  "imports": [
+    {
+      "module": "@rocket.chat/emitter",
+      "resolved": "external"
+    },
+    {
+      "module": "../../../definition",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/packages/media-signaling/src/definition/index.ts"
+    }
+  ]
+}

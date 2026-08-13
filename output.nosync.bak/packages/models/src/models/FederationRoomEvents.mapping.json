@@ -1,0 +1,365 @@
+{
+  "sourcePath": "/Users/echoooooo/Desktop/code/Rocket.Chat/packages/models/src/models/FederationRoomEvents.ts",
+  "symbols": [
+    {
+      "type": "class",
+      "name": "FederationRoomEventsRaw",
+      "exported": true,
+      "line": 8,
+      "endLine": 141,
+      "signature": "export class FederationRoomEventsRaw extends FederationEventsModel implements IFederationRoomEventsModel",
+      "calls": [
+        {
+          "name": "FederationEventsModel",
+          "edgeType": "type"
+        },
+        {
+          "name": "IFederationRoomEventsModel",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "modelIndexes",
+      "exported": true,
+      "qualifiedName": "FederationRoomEventsRaw.modelIndexes",
+      "line": 13,
+      "endLine": 15,
+      "signature": "protected override modelIndexes(): IndexDescription[]",
+      "containerClass": "FederationRoomEventsRaw",
+      "calls": [
+        {
+          "name": "IndexDescription",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "createGenesisEvent",
+      "exported": true,
+      "qualifiedName": "FederationRoomEventsRaw.createGenesisEvent",
+      "line": 18,
+      "endLine": 20,
+      "signature": "async createGenesisEvent(origin: string, room: IRoom): Promise<Omit<IFederationEvent, '_updatedAt'>>",
+      "containerClass": "FederationRoomEventsRaw",
+      "calls": [
+        {
+          "name": "createGenesisEvent",
+          "edgeType": "call"
+        },
+        {
+          "name": "IRoom",
+          "edgeType": "type"
+        },
+        {
+          "name": "IFederationEvent",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "createDeleteRoomEvent",
+      "exported": true,
+      "qualifiedName": "FederationRoomEventsRaw.createDeleteRoomEvent",
+      "line": 22,
+      "endLine": 24,
+      "signature": "async createDeleteRoomEvent(origin: string, roomId: string): Promise<Omit<IFederationEvent, '_updatedAt'>>",
+      "containerClass": "FederationRoomEventsRaw",
+      "calls": [
+        {
+          "name": "createEvent",
+          "edgeType": "call"
+        },
+        {
+          "name": "IFederationEvent",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "createAddUserEvent",
+      "exported": true,
+      "qualifiedName": "FederationRoomEventsRaw.createAddUserEvent",
+      "line": 26,
+      "endLine": 39,
+      "signature": "async createAddUserEvent( origin: string, roomId: string, user: IUser, subscription: ISubscription, domainsAfterAdd: string[], ): Promise<Omit<IFederationEvent, '_updatedAt'>>",
+      "containerClass": "FederationRoomEventsRaw",
+      "calls": [
+        {
+          "name": "createEvent",
+          "edgeType": "call"
+        },
+        {
+          "name": "IUser",
+          "edgeType": "type"
+        },
+        {
+          "name": "ISubscription",
+          "edgeType": "type"
+        },
+        {
+          "name": "IFederationEvent",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "createRemoveUserEvent",
+      "exported": true,
+      "qualifiedName": "FederationRoomEventsRaw.createRemoveUserEvent",
+      "line": 36,
+      "endLine": 47,
+      "signature": "async createRemoveUserEvent( origin: string, roomId: string, user: IUser, domainsAfterRemoval: string[], ): Promise<Omit<IFederationEvent, '_updatedAt'>>",
+      "containerClass": "FederationRoomEventsRaw",
+      "calls": [
+        {
+          "name": "createEvent",
+          "edgeType": "call"
+        },
+        {
+          "name": "IUser",
+          "edgeType": "type"
+        },
+        {
+          "name": "IFederationEvent",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "createUserLeftEvent",
+      "exported": true,
+      "qualifiedName": "FederationRoomEventsRaw.createUserLeftEvent",
+      "line": 45,
+      "endLine": 56,
+      "signature": "async createUserLeftEvent( origin: string, roomId: string, user: IUser, domainsAfterLeave: string[], ): Promise<Omit<IFederationEvent, '_updatedAt'>>",
+      "containerClass": "FederationRoomEventsRaw",
+      "calls": [
+        {
+          "name": "createEvent",
+          "edgeType": "call"
+        },
+        {
+          "name": "IUser",
+          "edgeType": "type"
+        },
+        {
+          "name": "IFederationEvent",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "createMessageEvent",
+      "exported": true,
+      "qualifiedName": "FederationRoomEventsRaw.createMessageEvent",
+      "line": 54,
+      "endLine": 56,
+      "signature": "async createMessageEvent(origin: string, roomId: string, message: string): Promise<Omit<IFederationEvent, '_updatedAt'>>",
+      "containerClass": "FederationRoomEventsRaw",
+      "calls": [
+        {
+          "name": "createEvent",
+          "edgeType": "call"
+        },
+        {
+          "name": "IFederationEvent",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "createEditMessageEvent",
+      "exported": true,
+      "qualifiedName": "FederationRoomEventsRaw.createEditMessageEvent",
+      "line": 58,
+      "endLine": 72,
+      "signature": "async createEditMessageEvent( origin: string, roomId: string, originalMessage: { _id: string; msg: string; federation: Record<string, unknown> }, ): Promise<Omit<IFederationEvent, '_updatedAt'>>",
+      "containerClass": "FederationRoomEventsRaw",
+      "calls": [
+        {
+          "name": "createEvent",
+          "edgeType": "call"
+        },
+        {
+          "name": "IFederationEvent",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "createDeleteMessageEvent",
+      "exported": true,
+      "qualifiedName": "FederationRoomEventsRaw.createDeleteMessageEvent",
+      "line": 66,
+      "endLine": 71,
+      "signature": "async createDeleteMessageEvent(origin: string, roomId: string, messageId: string): Promise<Omit<IFederationEvent, '_updatedAt'>>",
+      "containerClass": "FederationRoomEventsRaw",
+      "calls": [
+        {
+          "name": "createEvent",
+          "edgeType": "call"
+        },
+        {
+          "name": "IFederationEvent",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "createSetMessageReactionEvent",
+      "exported": true,
+      "qualifiedName": "FederationRoomEventsRaw.createSetMessageReactionEvent",
+      "line": 70,
+      "endLine": 83,
+      "signature": "async createSetMessageReactionEvent( origin: string, roomId: string, messageId: string, username: string, reaction: string, ): Promise<Omit<IFederationEvent, '_updatedAt'>>",
+      "containerClass": "FederationRoomEventsRaw",
+      "calls": [
+        {
+          "name": "createEvent",
+          "edgeType": "call"
+        },
+        {
+          "name": "IFederationEvent",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "createUnsetMessageReactionEvent",
+      "exported": true,
+      "qualifiedName": "FederationRoomEventsRaw.createUnsetMessageReactionEvent",
+      "line": 80,
+      "endLine": 93,
+      "signature": "async createUnsetMessageReactionEvent( origin: string, roomId: string, messageId: string, username: string, reaction: string, ): Promise<Omit<IFederationEvent, '_updatedAt'>>",
+      "containerClass": "FederationRoomEventsRaw",
+      "calls": [
+        {
+          "name": "createEvent",
+          "edgeType": "call"
+        },
+        {
+          "name": "IFederationEvent",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "createMuteUserEvent",
+      "exported": true,
+      "qualifiedName": "FederationRoomEventsRaw.createMuteUserEvent",
+      "line": 90,
+      "endLine": 95,
+      "signature": "async createMuteUserEvent(origin: string, roomId: string, user: IUser): Promise<Omit<IFederationEvent, '_updatedAt'>>",
+      "containerClass": "FederationRoomEventsRaw",
+      "calls": [
+        {
+          "name": "createEvent",
+          "edgeType": "call"
+        },
+        {
+          "name": "IUser",
+          "edgeType": "type"
+        },
+        {
+          "name": "IFederationEvent",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "createUnmuteUserEvent",
+      "exported": true,
+      "qualifiedName": "FederationRoomEventsRaw.createUnmuteUserEvent",
+      "line": 94,
+      "endLine": 99,
+      "signature": "async createUnmuteUserEvent(origin: string, roomId: string, user: IUser): Promise<Omit<IFederationEvent, '_updatedAt'>>",
+      "containerClass": "FederationRoomEventsRaw",
+      "calls": [
+        {
+          "name": "createEvent",
+          "edgeType": "call"
+        },
+        {
+          "name": "IUser",
+          "edgeType": "type"
+        },
+        {
+          "name": "IFederationEvent",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "removeRoomEvents",
+      "exported": true,
+      "qualifiedName": "FederationRoomEventsRaw.removeRoomEvents",
+      "line": 98,
+      "endLine": 100,
+      "signature": "async removeRoomEvents(roomId: string): Promise<DeleteResult>",
+      "containerClass": "FederationRoomEventsRaw",
+      "calls": [
+        {
+          "name": "removeContextEvents",
+          "edgeType": "call"
+        },
+        {
+          "name": "DeleteResult",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "constructor",
+      "exported": true,
+      "qualifiedName": "FederationRoomEventsRaw.constructor",
+      "line": 9,
+      "endLine": 11,
+      "signature": "constructor(db: Db)",
+      "containerClass": "FederationRoomEventsRaw",
+      "calls": [
+        {
+          "name": "Db",
+          "edgeType": "type"
+        }
+      ]
+    }
+  ],
+  "imports": [
+    {
+      "module": "@rocket.chat/core-typings",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/core-typings",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/model-typings",
+      "resolved": "external"
+    },
+    {
+      "module": "mongodb",
+      "resolved": "external"
+    },
+    {
+      "module": "./FederationEvents",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/packages/models/src/models/FederationEvents.ts"
+    }
+  ]
+}

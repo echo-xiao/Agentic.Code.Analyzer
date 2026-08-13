@@ -1,0 +1,52 @@
+{
+  "sourcePath": "/Users/echoooooo/Desktop/code/Rocket.Chat/packages/livechat/src/helpers/baseUrl.ts",
+  "symbols": [
+    {
+      "type": "variable_function",
+      "name": "getConnectionBaseUrl",
+      "exported": true,
+      "line": 3,
+      "endLine": 3,
+      "signature": "() =>",
+      "calls": []
+    },
+    {
+      "type": "variable_function",
+      "name": "getAvatarUrl",
+      "exported": true,
+      "line": 5,
+      "endLine": 5,
+      "signature": "(username: string) =>",
+      "calls": [
+        {
+          "name": "getConnectionBaseUrl",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "variable_function",
+      "name": "getAttachmentUrl",
+      "exported": true,
+      "line": 7,
+      "endLine": 7,
+      "signature": "(url: string) =>",
+      "calls": [
+        {
+          "name": "getConnectionBaseUrl",
+          "edgeType": "call"
+        },
+        {
+          "name": "URL",
+          "edgeType": "new"
+        }
+      ]
+    }
+  ],
+  "imports": [
+    {
+      "module": "../api",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/packages/livechat/src/api.ts"
+    }
+  ]
+}

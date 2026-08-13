@@ -1,0 +1,97 @@
+{
+  "sourcePath": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/server/cron/usageReport.ts",
+  "symbols": [
+    {
+      "type": "function",
+      "name": "usageReportCron",
+      "exported": true,
+      "line": 18,
+      "endLine": 37,
+      "signature": "export async function usageReportCron(logger: Logger): Promise<void>",
+      "calls": [
+        {
+          "name": "shouldReportStatistics",
+          "edgeType": "call"
+        },
+        {
+          "name": "warn",
+          "edgeType": "call"
+        },
+        {
+          "name": "sendUsageReport",
+          "edgeType": "call"
+        },
+        {
+          "name": "sendUsageReportAndComputeRestriction",
+          "edgeType": "call"
+        },
+        {
+          "name": "getHours",
+          "edgeType": "call"
+        },
+        {
+          "name": "Date",
+          "edgeType": "new"
+        },
+        {
+          "name": "Logger",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "variable_function",
+      "name": "sendUsageReportAndComputeRestriction",
+      "exported": true,
+      "line": 8,
+      "endLine": 14,
+      "signature": "async (statsToken?: string) =>",
+      "calls": [
+        {
+          "name": "findLastStatsToken",
+          "edgeType": "call"
+        },
+        {
+          "name": "computeRestriction",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "variable_function",
+      "name": "shouldReportStatistics",
+      "exported": true,
+      "line": 12,
+      "endLine": 12,
+      "signature": "() =>",
+      "calls": [
+        {
+          "name": "toLowerCase",
+          "edgeType": "call"
+        }
+      ]
+    }
+  ],
+  "imports": [
+    {
+      "module": "@rocket.chat/cron",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/license",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/logger",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/models",
+      "resolved": "external"
+    },
+    {
+      "module": "../../app/statistics/server/functions/sendUsageReport",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/app/statistics/server/functions/sendUsageReport.ts"
+    }
+  ]
+}

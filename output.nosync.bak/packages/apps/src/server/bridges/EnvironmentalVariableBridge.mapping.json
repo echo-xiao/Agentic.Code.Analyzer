@@ -1,0 +1,154 @@
+{
+  "sourcePath": "/Users/echoooooo/Desktop/code/Rocket.Chat/packages/apps/src/server/bridges/EnvironmentalVariableBridge.ts",
+  "symbols": [
+    {
+      "type": "class",
+      "name": "EnvironmentalVariableBridge",
+      "exported": true,
+      "line": 6,
+      "endLine": 45,
+      "signature": "export abstract class EnvironmentalVariableBridge extends BaseBridge",
+      "calls": [
+        {
+          "name": "BaseBridge",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "doGetValueByName",
+      "exported": true,
+      "qualifiedName": "EnvironmentalVariableBridge.doGetValueByName",
+      "line": 7,
+      "endLine": 11,
+      "signature": "public async doGetValueByName(envVarName: string, appId: string): Promise<string | undefined>",
+      "containerClass": "EnvironmentalVariableBridge",
+      "calls": [
+        {
+          "name": "hasReadPermission",
+          "edgeType": "call"
+        },
+        {
+          "name": "getValueByName",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "doIsReadable",
+      "exported": true,
+      "qualifiedName": "EnvironmentalVariableBridge.doIsReadable",
+      "line": 11,
+      "endLine": 15,
+      "signature": "public async doIsReadable(envVarName: string, appId: string): Promise<boolean>",
+      "containerClass": "EnvironmentalVariableBridge",
+      "calls": [
+        {
+          "name": "hasReadPermission",
+          "edgeType": "call"
+        },
+        {
+          "name": "isReadable",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "doIsSet",
+      "exported": true,
+      "qualifiedName": "EnvironmentalVariableBridge.doIsSet",
+      "line": 15,
+      "endLine": 19,
+      "signature": "public async doIsSet(envVarName: string, appId: string): Promise<boolean>",
+      "containerClass": "EnvironmentalVariableBridge",
+      "calls": [
+        {
+          "name": "hasReadPermission",
+          "edgeType": "call"
+        },
+        {
+          "name": "isSet",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "getValueByName",
+      "exported": true,
+      "qualifiedName": "EnvironmentalVariableBridge.getValueByName",
+      "line": 19,
+      "endLine": 19,
+      "signature": "protected abstract getValueByName(envVarName: string, appId: string): Promise<string | undefined>;",
+      "containerClass": "EnvironmentalVariableBridge",
+      "calls": []
+    },
+    {
+      "type": "method",
+      "name": "isReadable",
+      "exported": true,
+      "qualifiedName": "EnvironmentalVariableBridge.isReadable",
+      "line": 21,
+      "endLine": 21,
+      "signature": "protected abstract isReadable(envVarName: string, appId: string): Promise<boolean>;",
+      "containerClass": "EnvironmentalVariableBridge",
+      "calls": []
+    },
+    {
+      "type": "method",
+      "name": "isSet",
+      "exported": true,
+      "qualifiedName": "EnvironmentalVariableBridge.isSet",
+      "line": 23,
+      "endLine": 23,
+      "signature": "protected abstract isSet(envVarName: string, appId: string): Promise<boolean>;",
+      "containerClass": "EnvironmentalVariableBridge",
+      "calls": []
+    },
+    {
+      "type": "method",
+      "name": "hasReadPermission",
+      "exported": true,
+      "qualifiedName": "EnvironmentalVariableBridge.hasReadPermission",
+      "line": 25,
+      "endLine": 38,
+      "signature": "private hasReadPermission(appId: string): boolean",
+      "containerClass": "EnvironmentalVariableBridge",
+      "calls": [
+        {
+          "name": "hasPermission",
+          "edgeType": "call"
+        },
+        {
+          "name": "notifyAboutError",
+          "edgeType": "call"
+        },
+        {
+          "name": "PermissionDeniedError",
+          "edgeType": "new"
+        }
+      ]
+    }
+  ],
+  "imports": [
+    {
+      "module": "./BaseBridge",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/packages/apps/src/server/bridges/BaseBridge.ts"
+    },
+    {
+      "module": "../errors/PermissionDeniedError",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/packages/apps/src/server/errors/PermissionDeniedError.ts"
+    },
+    {
+      "module": "../managers/AppPermissionManager",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/packages/apps/src/server/managers/AppPermissionManager.ts"
+    },
+    {
+      "module": "../permissions/AppPermissions",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/packages/apps/src/server/permissions/AppPermissions.ts"
+    }
+  ]
+}

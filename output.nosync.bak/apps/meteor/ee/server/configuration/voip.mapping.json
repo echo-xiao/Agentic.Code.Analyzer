@@ -1,0 +1,41 @@
+{
+  "sourcePath": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/ee/server/configuration/voip.ts",
+  "symbols": [
+    {
+      "type": "module",
+      "name": "voip",
+      "exported": false,
+      "line": 1,
+      "endLine": 11,
+      "signature": "voip",
+      "calls": [
+        {
+          "name": "onValidateLicense",
+          "edgeType": "call"
+        },
+        {
+          "name": "addSettings",
+          "edgeType": "call"
+        },
+        {
+          "name": "hangupExpiredCalls",
+          "edgeType": "call"
+        }
+      ]
+    }
+  ],
+  "imports": [
+    {
+      "module": "@rocket.chat/core-services",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/license",
+      "resolved": "external"
+    },
+    {
+      "module": "../settings/voip",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/ee/server/settings/voip.ts"
+    }
+  ]
+}

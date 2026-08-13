@@ -1,0 +1,317 @@
+{
+  "sourcePath": "/Users/echoooooo/Desktop/code/Rocket.Chat/packages/apps/src/server/accessors/LivechatRead.ts",
+  "symbols": [
+    {
+      "type": "class",
+      "name": "LivechatRead",
+      "exported": true,
+      "line": 9,
+      "endLine": 79,
+      "signature": "export class LivechatRead implements ILivechatRead",
+      "calls": [
+        {
+          "name": "ILivechatRead",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "isOnline",
+      "exported": true,
+      "qualifiedName": "LivechatRead.isOnline",
+      "line": 19,
+      "endLine": 25,
+      "signature": "public isOnline(departmentId?: string): boolean",
+      "containerClass": "LivechatRead",
+      "calls": [
+        {
+          "name": "warn",
+          "edgeType": "call"
+        },
+        {
+          "name": "doIsOnline",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "isOnlineAsync",
+      "exported": true,
+      "qualifiedName": "LivechatRead.isOnlineAsync",
+      "line": 23,
+      "endLine": 25,
+      "signature": "public isOnlineAsync(departmentId?: string): Promise<boolean>",
+      "containerClass": "LivechatRead",
+      "calls": [
+        {
+          "name": "doIsOnlineAsync",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "getDepartmentsEnabledWithAgents",
+      "exported": true,
+      "qualifiedName": "LivechatRead.getDepartmentsEnabledWithAgents",
+      "line": 27,
+      "endLine": 29,
+      "signature": "public getDepartmentsEnabledWithAgents(): Promise<Array<IDepartment>>",
+      "containerClass": "LivechatRead",
+      "calls": [
+        {
+          "name": "doFindDepartmentsEnabledWithAgents",
+          "edgeType": "call"
+        },
+        {
+          "name": "IDepartment",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "getLivechatRooms",
+      "exported": true,
+      "qualifiedName": "LivechatRead.getLivechatRooms",
+      "line": 31,
+      "endLine": 33,
+      "signature": "public getLivechatRooms(visitor: IVisitor, departmentId?: string): Promise<Array<ILivechatRoom>>",
+      "containerClass": "LivechatRead",
+      "calls": [
+        {
+          "name": "doFindRooms",
+          "edgeType": "call"
+        },
+        {
+          "name": "IVisitor",
+          "edgeType": "type"
+        },
+        {
+          "name": "ILivechatRoom",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "getLivechatTotalOpenRoomsByAgentId",
+      "exported": true,
+      "qualifiedName": "LivechatRead.getLivechatTotalOpenRoomsByAgentId",
+      "line": 35,
+      "endLine": 37,
+      "signature": "public getLivechatTotalOpenRoomsByAgentId(agentId: string): Promise<number>",
+      "containerClass": "LivechatRead",
+      "calls": [
+        {
+          "name": "doCountOpenRoomsByAgentId",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "getLivechatOpenRoomsByAgentId",
+      "exported": true,
+      "qualifiedName": "LivechatRead.getLivechatOpenRoomsByAgentId",
+      "line": 39,
+      "endLine": 41,
+      "signature": "public getLivechatOpenRoomsByAgentId(agentId: string): Promise<Array<ILivechatRoom>>",
+      "containerClass": "LivechatRead",
+      "calls": [
+        {
+          "name": "doFindOpenRoomsByAgentId",
+          "edgeType": "call"
+        },
+        {
+          "name": "ILivechatRoom",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "getLivechatVisitors",
+      "exported": true,
+      "qualifiedName": "LivechatRead.getLivechatVisitors",
+      "line": 48,
+      "endLine": 50,
+      "signature": "public getLivechatVisitors(query: object): Promise<Array<IVisitor>>",
+      "containerClass": "LivechatRead",
+      "calls": [
+        {
+          "name": "doFindVisitors",
+          "edgeType": "call"
+        },
+        {
+          "name": "IVisitor",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "getLivechatVisitorById",
+      "exported": true,
+      "qualifiedName": "LivechatRead.getLivechatVisitorById",
+      "line": 52,
+      "endLine": 54,
+      "signature": "public getLivechatVisitorById(id: string): Promise<IVisitor | undefined>",
+      "containerClass": "LivechatRead",
+      "calls": [
+        {
+          "name": "doFindVisitorById",
+          "edgeType": "call"
+        },
+        {
+          "name": "IVisitor",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "getLivechatVisitorByEmail",
+      "exported": true,
+      "qualifiedName": "LivechatRead.getLivechatVisitorByEmail",
+      "line": 56,
+      "endLine": 58,
+      "signature": "public getLivechatVisitorByEmail(email: string): Promise<IVisitor | undefined>",
+      "containerClass": "LivechatRead",
+      "calls": [
+        {
+          "name": "doFindVisitorByEmail",
+          "edgeType": "call"
+        },
+        {
+          "name": "IVisitor",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "getLivechatVisitorByToken",
+      "exported": true,
+      "qualifiedName": "LivechatRead.getLivechatVisitorByToken",
+      "line": 60,
+      "endLine": 62,
+      "signature": "public getLivechatVisitorByToken(token: string): Promise<IVisitor | undefined>",
+      "containerClass": "LivechatRead",
+      "calls": [
+        {
+          "name": "doFindVisitorByToken",
+          "edgeType": "call"
+        },
+        {
+          "name": "IVisitor",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "getLivechatVisitorByPhoneNumber",
+      "exported": true,
+      "qualifiedName": "LivechatRead.getLivechatVisitorByPhoneNumber",
+      "line": 64,
+      "endLine": 66,
+      "signature": "public getLivechatVisitorByPhoneNumber(phoneNumber: string): Promise<IVisitor | undefined>",
+      "containerClass": "LivechatRead",
+      "calls": [
+        {
+          "name": "doFindVisitorByPhoneNumber",
+          "edgeType": "call"
+        },
+        {
+          "name": "IVisitor",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "getLivechatDepartmentByIdOrName",
+      "exported": true,
+      "qualifiedName": "LivechatRead.getLivechatDepartmentByIdOrName",
+      "line": 68,
+      "endLine": 70,
+      "signature": "public getLivechatDepartmentByIdOrName(value: string): Promise<IDepartment | undefined>",
+      "containerClass": "LivechatRead",
+      "calls": [
+        {
+          "name": "doFindDepartmentByIdOrName",
+          "edgeType": "call"
+        },
+        {
+          "name": "IDepartment",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "_fetchLivechatRoomMessages",
+      "exported": true,
+      "qualifiedName": "LivechatRead._fetchLivechatRoomMessages",
+      "line": 72,
+      "endLine": 74,
+      "signature": "public _fetchLivechatRoomMessages(roomId: string): Promise<Array<IMessage>>",
+      "containerClass": "LivechatRead",
+      "calls": [
+        {
+          "name": "do_fetchLivechatRoomMessages",
+          "edgeType": "call"
+        },
+        {
+          "name": "IMessage",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "constructor",
+      "exported": true,
+      "qualifiedName": "LivechatRead.constructor",
+      "line": 10,
+      "endLine": 13,
+      "signature": "constructor( private readonly livechatBridge: LivechatBridge, private readonly appId: string, )",
+      "containerClass": "LivechatRead",
+      "calls": [
+        {
+          "name": "LivechatBridge",
+          "edgeType": "type"
+        }
+      ]
+    }
+  ],
+  "imports": [
+    {
+      "module": "@rocket.chat/apps-engine/definition/accessors/ILivechatRead",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/apps-engine/definition/livechat",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/apps-engine/definition/livechat/ILivechatRoom",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/apps-engine/definition/livechat/IVisitor",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/apps-engine/definition/messages",
+      "resolved": "external"
+    },
+    {
+      "module": "../bridges/LivechatBridge",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/packages/apps/src/server/bridges/LivechatBridge.ts"
+    }
+  ]
+}

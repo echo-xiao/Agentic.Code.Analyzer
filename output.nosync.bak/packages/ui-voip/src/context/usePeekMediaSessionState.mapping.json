@@ -1,0 +1,65 @@
+{
+  "sourcePath": "/Users/echoooooo/Desktop/code/Rocket.Chat/packages/ui-voip/src/context/usePeekMediaSessionState.ts",
+  "symbols": [
+    {
+      "type": "variable_function",
+      "name": "usePeekMediaSessionState",
+      "exported": true,
+      "line": 8,
+      "endLine": 44,
+      "signature": "(): PeekMediaSessionStateReturn =>",
+      "calls": [
+        {
+          "name": "useMediaCallInstance",
+          "edgeType": "call"
+        },
+        {
+          "name": "useCallback",
+          "edgeType": "call"
+        },
+        {
+          "name": "onStoreChange",
+          "edgeType": "event_listen",
+          "event": "sessionStateChange"
+        },
+        {
+          "name": "getState",
+          "edgeType": "call"
+        },
+        {
+          "name": "deriveWidgetStateFromCallState",
+          "edgeType": "call"
+        },
+        {
+          "name": "useSyncExternalStore",
+          "edgeType": "call"
+        },
+        {
+          "name": "PeekMediaSessionStateReturn",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "type",
+      "name": "PeekMediaSessionStateReturn",
+      "line": 6,
+      "endLine": 6,
+      "signature": "export type PeekMediaSessionStateReturn = 'unavailable' | 'available' | 'ongoing' | 'ringing' | 'calling';"
+    }
+  ],
+  "imports": [
+    {
+      "module": "react",
+      "resolved": "external"
+    },
+    {
+      "module": "./MediaCallInstanceContext",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/packages/ui-voip/src/context/MediaCallInstanceContext.ts"
+    },
+    {
+      "module": "../utils/deriveWidgetStateFromCallState",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/packages/ui-voip/src/utils/deriveWidgetStateFromCallState.ts"
+    }
+  ]
+}

@@ -1,0 +1,599 @@
+{
+  "sourcePath": "/Users/echoooooo/Desktop/code/Rocket.Chat/packages/agenda/src/Job.ts",
+  "symbols": [
+    {
+      "type": "class",
+      "name": "Job",
+      "exported": true,
+      "line": 18,
+      "endLine": 293,
+      "signature": "export class Job",
+      "calls": []
+    },
+    {
+      "type": "method",
+      "name": "toJSON",
+      "exported": true,
+      "qualifiedName": "Job.toJSON",
+      "line": 37,
+      "endLine": 41,
+      "signature": "public toJSON(): Partial<IJob>",
+      "containerClass": "Job",
+      "calls": [
+        {
+          "name": "IJob",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "computeNextRunAt",
+      "exported": true,
+      "qualifiedName": "Job.computeNextRunAt",
+      "line": 41,
+      "endLine": 54,
+      "signature": "public computeNextRunAt(): Job",
+      "containerClass": "Job",
+      "calls": [
+        {
+          "name": "_computeFromInterval",
+          "edgeType": "call"
+        },
+        {
+          "name": "_computeFromRepeatAt",
+          "edgeType": "call"
+        },
+        {
+          "name": "Date",
+          "edgeType": "new"
+        },
+        {
+          "name": "Job",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "dateForTimezone",
+      "exported": true,
+      "qualifiedName": "Job.dateForTimezone",
+      "line": 45,
+      "endLine": 52,
+      "signature": "public dateForTimezone(date: Date, timezone?: string | null): moment.Moment",
+      "containerClass": "Job",
+      "calls": [
+        {
+          "name": "moment",
+          "edgeType": "call"
+        },
+        {
+          "name": "tz",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "_computeFromInterval",
+      "exported": true,
+      "qualifiedName": "Job._computeFromInterval",
+      "line": 49,
+      "endLine": 87,
+      "signature": "private _computeFromInterval(interval: string | number, previousNextRunAt: Date): void",
+      "containerClass": "Job",
+      "calls": [
+        {
+          "name": "debug",
+          "edgeType": "call"
+        },
+        {
+          "name": "dateForTimezone",
+          "edgeType": "call"
+        },
+        {
+          "name": "_getNextDateFrom",
+          "edgeType": "call"
+        },
+        {
+          "name": "valueOf",
+          "edgeType": "call"
+        },
+        {
+          "name": "toISOString",
+          "edgeType": "call"
+        },
+        {
+          "name": "humanInterval",
+          "edgeType": "call"
+        },
+        {
+          "name": "isNaN",
+          "edgeType": "call"
+        },
+        {
+          "name": "fail",
+          "edgeType": "call"
+        },
+        {
+          "name": "Date",
+          "edgeType": "new"
+        },
+        {
+          "name": "CronTime",
+          "edgeType": "new"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "_computeFromRepeatAt",
+      "exported": true,
+      "qualifiedName": "Job._computeFromRepeatAt",
+      "line": 53,
+      "endLine": 70,
+      "signature": "private _computeFromRepeatAt(repeatAt: string): void",
+      "containerClass": "Job",
+      "calls": [
+        {
+          "name": "valueOf",
+          "edgeType": "call"
+        },
+        {
+          "name": "date",
+          "edgeType": "call"
+        },
+        {
+          "name": "now",
+          "edgeType": "call"
+        },
+        {
+          "name": "debug",
+          "edgeType": "call"
+        },
+        {
+          "name": "fail",
+          "edgeType": "call"
+        },
+        {
+          "name": "toISOString",
+          "edgeType": "call"
+        },
+        {
+          "name": "Date",
+          "edgeType": "new"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "repeatEvery",
+      "exported": true,
+      "qualifiedName": "Job.repeatEvery",
+      "line": 57,
+      "endLine": 70,
+      "signature": "public repeatEvery(interval: string | number, options: RepeatOptions = {}): Job",
+      "containerClass": "Job",
+      "calls": [
+        {
+          "name": "computeNextRunAt",
+          "edgeType": "call"
+        },
+        {
+          "name": "Date",
+          "edgeType": "new"
+        },
+        {
+          "name": "RepeatOptions",
+          "edgeType": "type"
+        },
+        {
+          "name": "Job",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "repeatAt",
+      "exported": true,
+      "qualifiedName": "Job.repeatAt",
+      "line": 61,
+      "endLine": 64,
+      "signature": "public repeatAt(time: string): Job",
+      "containerClass": "Job",
+      "calls": [
+        {
+          "name": "Job",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "disable",
+      "exported": true,
+      "qualifiedName": "Job.disable",
+      "line": 65,
+      "endLine": 68,
+      "signature": "public disable(): Job",
+      "containerClass": "Job",
+      "calls": [
+        {
+          "name": "Job",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "enable",
+      "exported": true,
+      "qualifiedName": "Job.enable",
+      "line": 69,
+      "endLine": 72,
+      "signature": "public enable(): Job",
+      "containerClass": "Job",
+      "calls": [
+        {
+          "name": "Job",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "unique",
+      "exported": true,
+      "qualifiedName": "Job.unique",
+      "line": 73,
+      "endLine": 77,
+      "signature": "public unique(unique: IJobAttributes['unique'], opts?: IJobAttributes['uniqueOpts']): Job",
+      "containerClass": "Job",
+      "calls": [
+        {
+          "name": "IJobAttributes",
+          "edgeType": "type"
+        },
+        {
+          "name": "Job",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "schedule",
+      "exported": true,
+      "qualifiedName": "Job.schedule",
+      "line": 77,
+      "endLine": 81,
+      "signature": "public schedule(time: string | Date): Job",
+      "containerClass": "Job",
+      "calls": [
+        {
+          "name": "isNaN",
+          "edgeType": "call"
+        },
+        {
+          "name": "getTime",
+          "edgeType": "call"
+        },
+        {
+          "name": "date",
+          "edgeType": "call"
+        },
+        {
+          "name": "Date",
+          "edgeType": "new"
+        },
+        {
+          "name": "Job",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "priority",
+      "exported": true,
+      "qualifiedName": "Job.priority",
+      "line": 81,
+      "endLine": 84,
+      "signature": "public priority(priority: string): Job",
+      "containerClass": "Job",
+      "calls": [
+        {
+          "name": "parsePriority",
+          "edgeType": "call"
+        },
+        {
+          "name": "Job",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "fail",
+      "exported": true,
+      "qualifiedName": "Job.fail",
+      "line": 85,
+      "endLine": 98,
+      "signature": "public fail(reason: Error | string): Job",
+      "containerClass": "Job",
+      "calls": [
+        {
+          "name": "debug",
+          "edgeType": "call"
+        },
+        {
+          "name": "Date",
+          "edgeType": "new"
+        },
+        {
+          "name": "Job",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "run",
+      "exported": true,
+      "qualifiedName": "Job.run",
+      "line": 89,
+      "endLine": 161,
+      "signature": "public run(): Promise<Job>",
+      "containerClass": "Job",
+      "calls": [
+        {
+          "name": "getDefinition",
+          "edgeType": "call"
+        },
+        {
+          "name": "debug",
+          "edgeType": "call"
+        },
+        {
+          "name": "toISOString",
+          "edgeType": "call"
+        },
+        {
+          "name": "computeNextRunAt",
+          "edgeType": "call"
+        },
+        {
+          "name": "save",
+          "edgeType": "call"
+        },
+        {
+          "name": "fail",
+          "edgeType": "call"
+        },
+        {
+          "name": "catch",
+          "edgeType": "call"
+        },
+        {
+          "name": "reject",
+          "edgeType": "call"
+        },
+        {
+          "name": "fail",
+          "edgeType": "event_emit"
+        },
+        {
+          "name": "success",
+          "edgeType": "event_emit"
+        },
+        {
+          "name": "complete",
+          "edgeType": "event_emit"
+        },
+        {
+          "name": "resolve",
+          "edgeType": "call"
+        },
+        {
+          "name": "start",
+          "edgeType": "event_emit"
+        },
+        {
+          "name": "fn",
+          "edgeType": "call"
+        },
+        {
+          "name": "jobCallback",
+          "edgeType": "call"
+        },
+        {
+          "name": "Date",
+          "edgeType": "new"
+        },
+        {
+          "name": "Job",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "isRunning",
+      "exported": true,
+      "qualifiedName": "Job.isRunning",
+      "line": 93,
+      "endLine": 107,
+      "signature": "public isRunning(): boolean",
+      "containerClass": "Job",
+      "calls": [
+        {
+          "name": "getTime",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "save",
+      "exported": true,
+      "qualifiedName": "Job.save",
+      "line": 97,
+      "endLine": 101,
+      "signature": "public save(...args: Array<any>): Promise<void>",
+      "containerClass": "Job",
+      "calls": [
+        {
+          "name": "noCallback",
+          "edgeType": "call"
+        },
+        {
+          "name": "saveJob",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "remove",
+      "exported": true,
+      "qualifiedName": "Job.remove",
+      "line": 101,
+      "endLine": 103,
+      "signature": "public remove(): Promise<number>",
+      "containerClass": "Job",
+      "calls": [
+        {
+          "name": "cancel",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "touch",
+      "exported": true,
+      "qualifiedName": "Job.touch",
+      "line": 105,
+      "endLine": 109,
+      "signature": "public async touch(...args: Array<any>): Promise<void>",
+      "containerClass": "Job",
+      "calls": [
+        {
+          "name": "noCallback",
+          "edgeType": "call"
+        },
+        {
+          "name": "save",
+          "edgeType": "call"
+        },
+        {
+          "name": "Date",
+          "edgeType": "new"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "constructor",
+      "exported": true,
+      "qualifiedName": "Job.constructor",
+      "line": 23,
+      "endLine": 35,
+      "signature": "constructor({ agenda, priority, ...args }: JobArgs)",
+      "containerClass": "Job",
+      "calls": [
+        {
+          "name": "parsePriority",
+          "edgeType": "call"
+        },
+        {
+          "name": "Date",
+          "edgeType": "new"
+        },
+        {
+          "name": "JobArgs",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "class_property",
+      "name": "agenda",
+      "exported": true,
+      "qualifiedName": "Job.agenda",
+      "line": 19,
+      "endLine": 19,
+      "signature": "public agenda: Agenda;",
+      "containerClass": "Job",
+      "calls": [
+        {
+          "name": "Agenda",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "class_property",
+      "name": "attrs",
+      "exported": true,
+      "qualifiedName": "Job.attrs",
+      "line": 21,
+      "endLine": 21,
+      "signature": "public attrs: IJobAttributes;",
+      "containerClass": "Job",
+      "calls": [
+        {
+          "name": "IJobAttributes",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "type",
+      "name": "JobArgs",
+      "line": 14,
+      "endLine": 16,
+      "signature": "export type JobArgs ="
+    }
+  ],
+  "imports": [
+    {
+      "module": "cron",
+      "resolved": "external"
+    },
+    {
+      "module": "date.js",
+      "resolved": "external"
+    },
+    {
+      "module": "debug",
+      "resolved": "external"
+    },
+    {
+      "module": "human-interval",
+      "resolved": "external"
+    },
+    {
+      "module": "moment-timezone",
+      "resolved": "external"
+    },
+    {
+      "module": "./Agenda",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/packages/agenda/src/Agenda.ts"
+    },
+    {
+      "module": "./definition/IJob",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/packages/agenda/src/definition/IJob.ts"
+    },
+    {
+      "module": "./lib/noCallback",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/packages/agenda/src/lib/noCallback.ts"
+    },
+    {
+      "module": "./lib/parsePriority",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/packages/agenda/src/lib/parsePriority.ts"
+    }
+  ]
+}

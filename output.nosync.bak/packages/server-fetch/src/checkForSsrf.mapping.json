@@ -1,0 +1,171 @@
+{
+  "sourcePath": "/Users/echoooooo/Desktop/code/Rocket.Chat/packages/server-fetch/src/checkForSsrf.ts",
+  "symbols": [
+    {
+      "type": "function",
+      "name": "getEffectiveAllowlist",
+      "exported": false,
+      "line": 24,
+      "endLine": 26,
+      "signature": "function getEffectiveAllowlist(allowListRaw: string[]): string[]",
+      "calls": [
+        {
+          "name": "filter",
+          "edgeType": "call"
+        },
+        {
+          "name": "map",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "function",
+      "name": "toEffectiveAllowlist",
+      "exported": false,
+      "line": 29,
+      "endLine": 37,
+      "signature": "function toEffectiveAllowlist(allowList?: string | string[]): string[]",
+      "calls": [
+        {
+          "name": "getEffectiveAllowlist",
+          "edgeType": "call"
+        },
+        {
+          "name": "parseSsrfAllowlist",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "function",
+      "name": "isInAllowlist",
+      "exported": false,
+      "line": 33,
+      "endLine": 40,
+      "signature": "function isInAllowlist(hostOrIp: string, port: string | undefined, allowlist: string[]): boolean",
+      "calls": [
+        {
+          "name": "normalizeHostForAllowlistMatch",
+          "edgeType": "call"
+        },
+        {
+          "name": "some",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "variable_function",
+      "name": "parseSsrfAllowlist",
+      "exported": true,
+      "line": 14,
+      "endLine": 22,
+      "signature": "(value: string): string[] =>",
+      "calls": [
+        {
+          "name": "trim",
+          "edgeType": "call"
+        },
+        {
+          "name": "filter",
+          "edgeType": "call"
+        },
+        {
+          "name": "map",
+          "edgeType": "call"
+        },
+        {
+          "name": "split",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "variable_function",
+      "name": "checkForSsrf",
+      "exported": true,
+      "line": 36,
+      "endLine": 39,
+      "signature": "async (input: string, allowList?: string | string[]): Promise<boolean> =>",
+      "calls": [
+        {
+          "name": "checkForSsrfWithIp",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "variable_function",
+      "name": "checkForSsrfWithIp",
+      "exported": true,
+      "line": 43,
+      "endLine": 128,
+      "signature": "async ( input: string, allowList?: string | string[], ): Promise<{ allowed: false } | { allowed: true; resolvedIp: string }> =>",
+      "calls": [
+        {
+          "name": "toEffectiveAllowlist",
+          "edgeType": "call"
+        },
+        {
+          "name": "parseIpv4WithPort",
+          "edgeType": "call"
+        },
+        {
+          "name": "startsWith",
+          "edgeType": "call"
+        },
+        {
+          "name": "endsWith",
+          "edgeType": "call"
+        },
+        {
+          "name": "slice",
+          "edgeType": "call"
+        },
+        {
+          "name": "isIpValid",
+          "edgeType": "call"
+        },
+        {
+          "name": "isValidDomain",
+          "edgeType": "call"
+        },
+        {
+          "name": "isInAllowlist",
+          "edgeType": "call"
+        },
+        {
+          "name": "allowlistedIpResolved",
+          "edgeType": "call"
+        },
+        {
+          "name": "nslookup",
+          "edgeType": "call"
+        },
+        {
+          "name": "isIpInAnyRange",
+          "edgeType": "call"
+        },
+        {
+          "name": "test",
+          "edgeType": "call"
+        },
+        {
+          "name": "URL",
+          "edgeType": "new"
+        }
+      ]
+    }
+  ],
+  "imports": [
+    {
+      "module": "@rocket.chat/tools",
+      "resolved": "external"
+    },
+    {
+      "module": "./helpers",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/packages/server-fetch/src/helpers.ts"
+    }
+  ]
+}

@@ -1,0 +1,73 @@
+{
+  "sourcePath": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/client/sidebar/sections/BannerSection.tsx",
+  "symbols": [
+    {
+      "type": "variable_function",
+      "name": "BannerSection",
+      "exported": false,
+      "line": 8,
+      "endLine": 24,
+      "signature": "() =>",
+      "calls": [
+        {
+          "name": "useAirGappedRestriction",
+          "edgeType": "call"
+        },
+        {
+          "name": "useRole",
+          "edgeType": "call"
+        },
+        {
+          "name": "useSessionStorage",
+          "edgeType": "call"
+        },
+        {
+          "name": "useSetting",
+          "edgeType": "call"
+        },
+        {
+          "name": "setBannerDismissed",
+          "edgeType": "call"
+        },
+        {
+          "name": "AirGappedRestrictionBanner",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "StatusDisabledBanner",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "isRestricted",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "remainingDays",
+          "edgeType": "jsx"
+        }
+      ]
+    }
+  ],
+  "imports": [
+    {
+      "module": "@rocket.chat/fuselage-hooks",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/ui-contexts",
+      "resolved": "external"
+    },
+    {
+      "module": "./AirGappedRestrictionBanner/AirGappedRestrictionBanner",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/client/sidebar/sections/AirGappedRestrictionBanner/AirGappedRestrictionBanner.tsx"
+    },
+    {
+      "module": "./StatusDisabledBanner",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/client/sidebar/sections/StatusDisabledBanner.tsx"
+    },
+    {
+      "module": "../../hooks/useAirGappedRestriction",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/client/hooks/useAirGappedRestriction.ts"
+    }
+  ]
+}

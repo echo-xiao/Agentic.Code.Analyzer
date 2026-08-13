@@ -1,0 +1,118 @@
+{
+  "sourcePath": "/Users/echoooooo/Desktop/code/Rocket.Chat/ee/packages/pdf-worker/src/templates/ChatTranscript/index.tsx",
+  "symbols": [
+    {
+      "type": "module",
+      "name": "index",
+      "exported": false,
+      "line": 1,
+      "endLine": 84,
+      "signature": "index",
+      "calls": [
+        {
+          "name": "register",
+          "edgeType": "call"
+        },
+        {
+          "name": "registerHyphenationCallback",
+          "edgeType": "call"
+        },
+        {
+          "name": "renderToStream",
+          "edgeType": "call"
+        },
+        {
+          "name": "I18nextProvider",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "ChatTranscriptPDF",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "i18n",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "ChatTranscriptData",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "variable_function",
+      "name": "ChatTranscriptPDF",
+      "exported": true,
+      "line": 34,
+      "endLine": 58,
+      "signature": "({ header, messages }: ChatTranscriptPDFProps) =>",
+      "calls": [
+        {
+          "name": "useTranslation",
+          "edgeType": "call"
+        },
+        {
+          "name": "Document",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "Page",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "Header",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "MessageList",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "messages",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "ChatTranscriptPDFProps",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "type",
+      "name": "ChatTranscriptPDFProps",
+      "line": 32,
+      "endLine": 32,
+      "signature": "type ChatTranscriptPDFProps = Omit<ChatTranscriptData, 'i18n'>;"
+    }
+  ],
+  "imports": [
+    {
+      "module": "node:path",
+      "resolved": "external"
+    },
+    {
+      "module": "@react-pdf/renderer",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/fuselage-tokens/colors.json",
+      "resolved": "external"
+    },
+    {
+      "module": "react-i18next",
+      "resolved": "external"
+    },
+    {
+      "module": "./components/Header",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/ee/packages/pdf-worker/src/templates/ChatTranscript/components/Header.tsx"
+    },
+    {
+      "module": "./components/MessageList",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/ee/packages/pdf-worker/src/templates/ChatTranscript/components/MessageList.tsx"
+    },
+    {
+      "module": "../../types/ChatTranscriptData",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/ee/packages/pdf-worker/src/types/ChatTranscriptData.ts"
+    }
+  ]
+}

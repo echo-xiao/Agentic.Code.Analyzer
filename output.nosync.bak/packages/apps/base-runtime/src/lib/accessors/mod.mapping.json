@@ -1,0 +1,839 @@
+{
+  "sourcePath": "/Users/echoooooo/Desktop/code/Rocket.Chat/packages/apps/base-runtime/src/lib/accessors/mod.ts",
+  "symbols": [
+    {
+      "type": "module",
+      "name": "mod",
+      "exported": false,
+      "line": 1,
+      "endLine": 357,
+      "signature": "mod",
+      "calls": [
+        {
+          "name": "has",
+          "edgeType": "call"
+        },
+        {
+          "name": "set",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "class",
+      "name": "AppAccessors",
+      "exported": true,
+      "line": 47,
+      "endLine": 354,
+      "signature": "export class AppAccessors",
+      "calls": []
+    },
+    {
+      "type": "method",
+      "name": "getSenderFn",
+      "exported": true,
+      "qualifiedName": "AppAccessors.getSenderFn",
+      "line": 112,
+      "endLine": 114,
+      "signature": "public getSenderFn()",
+      "containerClass": "AppAccessors",
+      "calls": []
+    },
+    {
+      "type": "method",
+      "name": "getEnvironmentRead",
+      "exported": true,
+      "qualifiedName": "AppAccessors.getEnvironmentRead",
+      "line": 116,
+      "endLine": 126,
+      "signature": "public getEnvironmentRead(): IEnvironmentRead",
+      "containerClass": "AppAccessors",
+      "calls": [
+        {
+          "name": "proxify",
+          "edgeType": "call"
+        },
+        {
+          "name": "IEnvironmentRead",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "getEnvironmentWrite",
+      "exported": true,
+      "qualifiedName": "AppAccessors.getEnvironmentWrite",
+      "line": 120,
+      "endLine": 129,
+      "signature": "public getEnvironmentWrite()",
+      "containerClass": "AppAccessors",
+      "calls": [
+        {
+          "name": "proxify",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "getConfigurationModify",
+      "exported": true,
+      "qualifiedName": "AppAccessors.getConfigurationModify",
+      "line": 124,
+      "endLine": 150,
+      "signature": "public getConfigurationModify()",
+      "containerClass": "AppAccessors",
+      "calls": [
+        {
+          "name": "proxify",
+          "edgeType": "call"
+        },
+        {
+          "name": "set",
+          "edgeType": "call"
+        },
+        {
+          "name": "modifySlashCommand",
+          "edgeType": "call"
+        },
+        {
+          "name": "disableSlashCommand",
+          "edgeType": "call"
+        },
+        {
+          "name": "enableSlashCommand",
+          "edgeType": "call"
+        },
+        {
+          "name": "WithProxy",
+          "edgeType": "type"
+        },
+        {
+          "name": "ISlashCommandsModify",
+          "edgeType": "type"
+        },
+        {
+          "name": "ISlashCommand",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "getConfigurationExtend",
+      "exported": true,
+      "qualifiedName": "AppAccessors.getConfigurationExtend",
+      "line": 128,
+      "endLine": 214,
+      "signature": "public getConfigurationExtend()",
+      "containerClass": "AppAccessors",
+      "calls": [
+        {
+          "name": "proxify",
+          "edgeType": "call"
+        },
+        {
+          "name": "get",
+          "edgeType": "call"
+        },
+        {
+          "name": "forEach",
+          "edgeType": "call"
+        },
+        {
+          "name": "filter",
+          "edgeType": "call"
+        },
+        {
+          "name": "set",
+          "edgeType": "call"
+        },
+        {
+          "name": "provideApi",
+          "edgeType": "call"
+        },
+        {
+          "name": "catch",
+          "edgeType": "call"
+        },
+        {
+          "name": "then",
+          "edgeType": "call"
+        },
+        {
+          "name": "senderFn",
+          "edgeType": "call"
+        },
+        {
+          "name": "push",
+          "edgeType": "call"
+        },
+        {
+          "name": "registerProcessors",
+          "edgeType": "call"
+        },
+        {
+          "name": "provideVideoConfProvider",
+          "edgeType": "call"
+        },
+        {
+          "name": "registerEmailProvider",
+          "edgeType": "call"
+        },
+        {
+          "name": "registerPhoneProvider",
+          "edgeType": "call"
+        },
+        {
+          "name": "provideSlashCommand",
+          "edgeType": "call"
+        },
+        {
+          "name": "WithProxy",
+          "edgeType": "type"
+        },
+        {
+          "name": "IApiExtend",
+          "edgeType": "type"
+        },
+        {
+          "name": "IApi",
+          "edgeType": "type"
+        },
+        {
+          "name": "IApiEndpointMetadata",
+          "edgeType": "type"
+        },
+        {
+          "name": "ISchedulerExtend",
+          "edgeType": "type"
+        },
+        {
+          "name": "IProcessor",
+          "edgeType": "type"
+        },
+        {
+          "name": "IVideoConfProvidersExtend",
+          "edgeType": "type"
+        },
+        {
+          "name": "IVideoConfProvider",
+          "edgeType": "type"
+        },
+        {
+          "name": "IOutboundCommunicationProviderExtend",
+          "edgeType": "type"
+        },
+        {
+          "name": "IOutboundEmailMessageProvider",
+          "edgeType": "type"
+        },
+        {
+          "name": "IOutboundPhoneMessageProvider",
+          "edgeType": "type"
+        },
+        {
+          "name": "ISlashCommandsExtend",
+          "edgeType": "type"
+        },
+        {
+          "name": "ISlashCommand",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "getDefaultAppAccessors",
+      "exported": true,
+      "qualifiedName": "AppAccessors.getDefaultAppAccessors",
+      "line": 132,
+      "endLine": 144,
+      "signature": "public getDefaultAppAccessors()",
+      "containerClass": "AppAccessors",
+      "calls": [
+        {
+          "name": "getEnvironmentRead",
+          "edgeType": "call"
+        },
+        {
+          "name": "getEnvironmentWrite",
+          "edgeType": "call"
+        },
+        {
+          "name": "getReader",
+          "edgeType": "call"
+        },
+        {
+          "name": "getHttp",
+          "edgeType": "call"
+        },
+        {
+          "name": "get",
+          "edgeType": "call"
+        },
+        {
+          "name": "IApiEndpointMetadata",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "getReader",
+      "exported": true,
+      "qualifiedName": "AppAccessors.getReader",
+      "line": 136,
+      "endLine": 162,
+      "signature": "public getReader()",
+      "containerClass": "AppAccessors",
+      "calls": [
+        {
+          "name": "proxify",
+          "edgeType": "call"
+        },
+        {
+          "name": "getNotifier",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "getModifier",
+      "exported": true,
+      "qualifiedName": "AppAccessors.getModifier",
+      "line": 140,
+      "endLine": 156,
+      "signature": "public getModifier()",
+      "containerClass": "AppAccessors",
+      "calls": [
+        {
+          "name": "bind",
+          "edgeType": "call"
+        },
+        {
+          "name": "proxify",
+          "edgeType": "call"
+        },
+        {
+          "name": "getNotifier",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "getPersistence",
+      "exported": true,
+      "qualifiedName": "AppAccessors.getPersistence",
+      "line": 144,
+      "endLine": 150,
+      "signature": "public getPersistence()",
+      "containerClass": "AppAccessors",
+      "calls": [
+        {
+          "name": "proxify",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "getHttp",
+      "exported": true,
+      "qualifiedName": "AppAccessors.getHttp",
+      "line": 148,
+      "endLine": 150,
+      "signature": "public getHttp()",
+      "containerClass": "AppAccessors",
+      "calls": []
+    },
+    {
+      "type": "method",
+      "name": "getCreator",
+      "exported": true,
+      "qualifiedName": "AppAccessors.getCreator",
+      "line": 152,
+      "endLine": 158,
+      "signature": "private getCreator()",
+      "containerClass": "AppAccessors",
+      "calls": [
+        {
+          "name": "ModifyCreator",
+          "edgeType": "new"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "getUpdater",
+      "exported": true,
+      "qualifiedName": "AppAccessors.getUpdater",
+      "line": 156,
+      "endLine": 162,
+      "signature": "private getUpdater()",
+      "containerClass": "AppAccessors",
+      "calls": [
+        {
+          "name": "ModifyUpdater",
+          "edgeType": "new"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "getExtender",
+      "exported": true,
+      "qualifiedName": "AppAccessors.getExtender",
+      "line": 160,
+      "endLine": 166,
+      "signature": "private getExtender()",
+      "containerClass": "AppAccessors",
+      "calls": [
+        {
+          "name": "ModifyExtender",
+          "edgeType": "new"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "getNotifier",
+      "exported": true,
+      "qualifiedName": "AppAccessors.getNotifier",
+      "line": 164,
+      "endLine": 166,
+      "signature": "private getNotifier()",
+      "containerClass": "AppAccessors",
+      "calls": []
+    },
+    {
+      "type": "method",
+      "name": "constructor",
+      "exported": true,
+      "qualifiedName": "AppAccessors.constructor",
+      "line": 78,
+      "endLine": 110,
+      "signature": "constructor(private readonly senderFn: typeof Messenger.sendRequest)",
+      "containerClass": "AppAccessors",
+      "calls": [
+        {
+          "name": "apply",
+          "edgeType": "call"
+        },
+        {
+          "name": "catch",
+          "edgeType": "call"
+        },
+        {
+          "name": "then",
+          "edgeType": "call"
+        },
+        {
+          "name": "senderFn",
+          "edgeType": "call"
+        },
+        {
+          "name": "formatErrorResponse",
+          "edgeType": "call"
+        },
+        {
+          "name": "getReader",
+          "edgeType": "call"
+        },
+        {
+          "name": "getPersistence",
+          "edgeType": "call"
+        },
+        {
+          "name": "getSenderFn",
+          "edgeType": "call"
+        },
+        {
+          "name": "Proxy",
+          "edgeType": "new"
+        },
+        {
+          "name": "Http",
+          "edgeType": "new"
+        },
+        {
+          "name": "Notifier",
+          "edgeType": "new"
+        }
+      ]
+    },
+    {
+      "type": "class_property",
+      "name": "defaultAppAccessors",
+      "exported": true,
+      "qualifiedName": "AppAccessors.defaultAppAccessors",
+      "line": 48,
+      "endLine": 48,
+      "signature": "private defaultAppAccessors?: IAppAccessors;",
+      "containerClass": "AppAccessors",
+      "calls": [
+        {
+          "name": "IAppAccessors",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "class_property",
+      "name": "environmentRead",
+      "exported": true,
+      "qualifiedName": "AppAccessors.environmentRead",
+      "line": 50,
+      "endLine": 50,
+      "signature": "private environmentRead?: IEnvironmentRead;",
+      "containerClass": "AppAccessors",
+      "calls": [
+        {
+          "name": "IEnvironmentRead",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "class_property",
+      "name": "environmentWriter",
+      "exported": true,
+      "qualifiedName": "AppAccessors.environmentWriter",
+      "line": 52,
+      "endLine": 52,
+      "signature": "private environmentWriter?: IEnvironmentWrite;",
+      "containerClass": "AppAccessors",
+      "calls": [
+        {
+          "name": "IEnvironmentWrite",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "class_property",
+      "name": "configModifier",
+      "exported": true,
+      "qualifiedName": "AppAccessors.configModifier",
+      "line": 54,
+      "endLine": 54,
+      "signature": "private configModifier?: IConfigurationModify;",
+      "containerClass": "AppAccessors",
+      "calls": [
+        {
+          "name": "IConfigurationModify",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "class_property",
+      "name": "configExtender",
+      "exported": true,
+      "qualifiedName": "AppAccessors.configExtender",
+      "line": 56,
+      "endLine": 56,
+      "signature": "private configExtender?: IConfigurationExtend;",
+      "containerClass": "AppAccessors",
+      "calls": [
+        {
+          "name": "IConfigurationExtend",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "class_property",
+      "name": "reader",
+      "exported": true,
+      "qualifiedName": "AppAccessors.reader",
+      "line": 58,
+      "endLine": 58,
+      "signature": "private reader?: IRead;",
+      "containerClass": "AppAccessors",
+      "calls": [
+        {
+          "name": "IRead",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "class_property",
+      "name": "modifier",
+      "exported": true,
+      "qualifiedName": "AppAccessors.modifier",
+      "line": 60,
+      "endLine": 60,
+      "signature": "private modifier?: IModify;",
+      "containerClass": "AppAccessors",
+      "calls": [
+        {
+          "name": "IModify",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "class_property",
+      "name": "persistence",
+      "exported": true,
+      "qualifiedName": "AppAccessors.persistence",
+      "line": 62,
+      "endLine": 62,
+      "signature": "private persistence?: IPersistence;",
+      "containerClass": "AppAccessors",
+      "calls": [
+        {
+          "name": "IPersistence",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "class_property",
+      "name": "creator",
+      "exported": true,
+      "qualifiedName": "AppAccessors.creator",
+      "line": 64,
+      "endLine": 64,
+      "signature": "private creator?: ModifyCreator;",
+      "containerClass": "AppAccessors",
+      "calls": [
+        {
+          "name": "ModifyCreator",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "class_property",
+      "name": "updater",
+      "exported": true,
+      "qualifiedName": "AppAccessors.updater",
+      "line": 66,
+      "endLine": 66,
+      "signature": "private updater?: ModifyUpdater;",
+      "containerClass": "AppAccessors",
+      "calls": [
+        {
+          "name": "ModifyUpdater",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "class_property",
+      "name": "extender",
+      "exported": true,
+      "qualifiedName": "AppAccessors.extender",
+      "line": 68,
+      "endLine": 68,
+      "signature": "private extender?: ModifyExtender;",
+      "containerClass": "AppAccessors",
+      "calls": [
+        {
+          "name": "ModifyExtender",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "class_property",
+      "name": "httpExtend",
+      "exported": true,
+      "qualifiedName": "AppAccessors.httpExtend",
+      "line": 70,
+      "endLine": 70,
+      "signature": "private httpExtend: IHttpExtend = new HttpExtend();",
+      "containerClass": "AppAccessors",
+      "calls": [
+        {
+          "name": "HttpExtend",
+          "edgeType": "new"
+        },
+        {
+          "name": "IHttpExtend",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "class_property",
+      "name": "http",
+      "exported": true,
+      "qualifiedName": "AppAccessors.http",
+      "line": 72,
+      "endLine": 72,
+      "signature": "private http?: IHttp;",
+      "containerClass": "AppAccessors",
+      "calls": [
+        {
+          "name": "IHttp",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "class_property",
+      "name": "notifier",
+      "exported": true,
+      "qualifiedName": "AppAccessors.notifier",
+      "line": 74,
+      "endLine": 74,
+      "signature": "private notifier?: INotifier;",
+      "containerClass": "AppAccessors",
+      "calls": [
+        {
+          "name": "INotifier",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "variable",
+      "name": "AppAccessorsInstance",
+      "exported": true,
+      "line": 139,
+      "endLine": 139,
+      "signature": "AppAccessorsInstance = new AppAccessors(Messenger.sendRequest)",
+      "calls": []
+    },
+    {
+      "type": "type",
+      "name": "WithProxy",
+      "line": 38,
+      "endLine": 38,
+      "signature": "type WithProxy<T> = T &"
+    }
+  ],
+  "imports": [
+    {
+      "module": "@rocket.chat/apps-engine/definition/accessors/IApiExtend",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/apps-engine/definition/accessors/IAppAccessors",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/apps-engine/definition/accessors/IConfigurationExtend",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/apps-engine/definition/accessors/IConfigurationModify",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/apps-engine/definition/accessors/IEnvironmentRead",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/apps-engine/definition/accessors/IEnvironmentWrite",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/apps-engine/definition/accessors/IHttp",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/apps-engine/definition/accessors/IModify",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/apps-engine/definition/accessors/INotifier",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/apps-engine/definition/accessors/IOutboundCommunicationProviderExtend",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/apps-engine/definition/accessors/IPersistence",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/apps-engine/definition/accessors/IRead",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/apps-engine/definition/accessors/ISchedulerExtend",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/apps-engine/definition/accessors/ISlashCommandsExtend",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/apps-engine/definition/accessors/ISlashCommandsModify",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/apps-engine/definition/accessors/IVideoConfProvidersExtend",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/apps-engine/definition/api/IApi",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/apps-engine/definition/api/IApiEndpointMetadata",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/apps-engine/definition/outboundCommunication/IOutboundCommsProvider",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/apps-engine/definition/scheduler/IProcessor",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/apps-engine/definition/slashcommands/ISlashCommand",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/apps-engine/definition/videoConfProviders/IVideoConfProvider",
+      "resolved": "external"
+    },
+    {
+      "module": "./extenders/HttpExtender",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/packages/apps/base-runtime/src/lib/accessors/extenders/HttpExtender.ts"
+    },
+    {
+      "module": "./formatResponseErrorHandler",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/packages/apps/base-runtime/src/lib/accessors/formatResponseErrorHandler.ts"
+    },
+    {
+      "module": "./http",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/packages/apps/base-runtime/src/lib/accessors/http.ts"
+    },
+    {
+      "module": "../../AppObjectRegistry",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/packages/apps/base-runtime/src/AppObjectRegistry.ts"
+    },
+    {
+      "module": "../messenger",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/packages/apps/base-runtime/src/lib/messenger.ts"
+    },
+    {
+      "module": "./modify/ModifyCreator",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/packages/apps/base-runtime/src/lib/accessors/modify/ModifyCreator.ts"
+    },
+    {
+      "module": "./modify/ModifyExtender",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/packages/apps/base-runtime/src/lib/accessors/modify/ModifyExtender.ts"
+    },
+    {
+      "module": "./modify/ModifyUpdater",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/packages/apps/base-runtime/src/lib/accessors/modify/ModifyUpdater.ts"
+    },
+    {
+      "module": "./notifier",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/packages/apps/base-runtime/src/lib/accessors/notifier.ts"
+    }
+  ]
+}

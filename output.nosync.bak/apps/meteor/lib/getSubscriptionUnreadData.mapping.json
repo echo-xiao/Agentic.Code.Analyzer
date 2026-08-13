@@ -1,0 +1,70 @@
+{
+  "sourcePath": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/lib/getSubscriptionUnreadData.ts",
+  "symbols": [
+    {
+      "type": "variable_function",
+      "name": "getUnreadTitle",
+      "exported": false,
+      "line": 4,
+      "endLine": 34,
+      "signature": "( { mentions, threads, groupMentions, total, }: { mentions: number; threads: number; groupMentions: number; total: number; }, t: TFunction, ) =>",
+      "calls": [
+        {
+          "name": "push",
+          "edgeType": "call"
+        },
+        {
+          "name": "join",
+          "edgeType": "call"
+        },
+        {
+          "name": "TFunction",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "variable_function",
+      "name": "getSubscriptionUnreadData",
+      "exported": true,
+      "line": 26,
+      "endLine": 49,
+      "signature": "( { userMentions, tunreadUser, tunread, unread, groupMentions, hideMentionStatus, hideUnreadStatus, alert }: UnreadData, t: TFunction, ) =>",
+      "calls": [
+        {
+          "name": "getUnreadTitle",
+          "edgeType": "call"
+        },
+        {
+          "name": "Boolean",
+          "edgeType": "call"
+        },
+        {
+          "name": "UnreadData",
+          "edgeType": "type"
+        },
+        {
+          "name": "TFunction",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "type",
+      "name": "UnreadData",
+      "line": 21,
+      "endLine": 24,
+      "signature": "export type UnreadData = Pick<"
+    }
+  ],
+  "imports": [
+    {
+      "module": "@rocket.chat/ui-contexts",
+      "resolved": "external"
+    },
+    {
+      "module": "i18next",
+      "resolved": "external"
+    }
+  ]
+}

@@ -1,0 +1,53 @@
+{
+  "sourcePath": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/client/lib/getRoomTypeTranslation.ts",
+  "symbols": [
+    {
+      "type": "variable_function",
+      "name": "getRoomTypeTranslation",
+      "exported": true,
+      "line": 13,
+      "endLine": 39,
+      "signature": "(room: IRoom) =>",
+      "calls": [
+        {
+          "name": "isPublicRoom",
+          "edgeType": "call"
+        },
+        {
+          "name": "isPrivateDiscussion",
+          "edgeType": "call"
+        },
+        {
+          "name": "isPrivateRoom",
+          "edgeType": "call"
+        },
+        {
+          "name": "isDirectMessageRoom",
+          "edgeType": "call"
+        },
+        {
+          "name": "isPrivateTeamRoom",
+          "edgeType": "call"
+        },
+        {
+          "name": "isPublicTeamRoom",
+          "edgeType": "call"
+        },
+        {
+          "name": "IRoom",
+          "edgeType": "type"
+        }
+      ]
+    }
+  ],
+  "imports": [
+    {
+      "module": "@rocket.chat/core-typings",
+      "resolved": "external"
+    },
+    {
+      "module": "../../app/utils/lib/i18n",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/app/utils/lib/i18n.ts"
+    }
+  ]
+}

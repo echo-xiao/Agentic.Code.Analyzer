@@ -1,0 +1,207 @@
+{
+  "sourcePath": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/client/views/omnichannel/cannedResponses/modals/CreateCannedResponse/CreateCannedResponseModal.tsx",
+  "symbols": [
+    {
+      "type": "module",
+      "name": "CreateCannedResponseModal",
+      "exported": false,
+      "line": 1,
+      "endLine": 82,
+      "signature": "CreateCannedResponseModal",
+      "calls": [
+        {
+          "name": "memo",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "variable_function",
+      "name": "getInitialData",
+      "exported": false,
+      "line": 14,
+      "endLine": 21,
+      "signature": "(cannedResponseData: IOmnichannelCannedResponse | undefined) =>",
+      "calls": [
+        {
+          "name": "IOmnichannelCannedResponse",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "inner_function",
+      "name": "handleCreate",
+      "exported": false,
+      "qualifiedName": "CreateCannedResponseModal.handleCreate",
+      "line": 41,
+      "endLine": 58,
+      "signature": "async ({ departmentId, ...data }: CannedResponseEditFormData) =>",
+      "calls": [
+        {
+          "name": "saveCannedResponse",
+          "edgeType": "call"
+        },
+        {
+          "name": "dispatchToastMessage",
+          "edgeType": "call"
+        },
+        {
+          "name": "onClose",
+          "edgeType": "call"
+        },
+        {
+          "name": "reloadCannedList",
+          "edgeType": "call"
+        },
+        {
+          "name": "CannedResponseEditFormData",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "variable_function",
+      "name": "CreateCannedResponseModal",
+      "exported": false,
+      "line": 29,
+      "endLine": 79,
+      "signature": "({ cannedResponseData, onClose, reloadCannedList }: CreateCannedResponseModalProps) =>",
+      "calls": [
+        {
+          "name": "useTranslation",
+          "edgeType": "call"
+        },
+        {
+          "name": "useToastMessageDispatch",
+          "edgeType": "call"
+        },
+        {
+          "name": "useForm",
+          "edgeType": "call"
+        },
+        {
+          "name": "getInitialData",
+          "edgeType": "call"
+        },
+        {
+          "name": "useEndpoint",
+          "edgeType": "call"
+        },
+        {
+          "name": "useCallback",
+          "edgeType": "call"
+        },
+        {
+          "name": "saveCannedResponse",
+          "edgeType": "call"
+        },
+        {
+          "name": "dispatchToastMessage",
+          "edgeType": "call"
+        },
+        {
+          "name": "onClose",
+          "edgeType": "call"
+        },
+        {
+          "name": "reloadCannedList",
+          "edgeType": "call"
+        },
+        {
+          "name": "handleSubmit",
+          "edgeType": "call"
+        },
+        {
+          "name": "GenericModal",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "ErrorBoundary",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "FormProvider",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "Box",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "GenericError",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "CannedResponseForm",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "onClose",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "CreateCannedResponseModalProps",
+          "edgeType": "type"
+        },
+        {
+          "name": "CannedResponseEditFormData",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "type",
+      "name": "CreateCannedResponseModalProps",
+      "line": 23,
+      "endLine": 27,
+      "signature": "export type CreateCannedResponseModalProps ="
+    }
+  ],
+  "imports": [
+    {
+      "module": "@rocket.chat/core-typings",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/fuselage",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/ui-client",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/ui-contexts",
+      "resolved": "external"
+    },
+    {
+      "module": "react",
+      "resolved": "external"
+    },
+    {
+      "module": "react-error-boundary",
+      "resolved": "external"
+    },
+    {
+      "module": "react-hook-form",
+      "resolved": "external"
+    },
+    {
+      "module": "react-i18next",
+      "resolved": "external"
+    },
+    {
+      "module": "../../../../../components/GenericError",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/client/components/GenericError/index.ts"
+    },
+    {
+      "module": "../../components/CannedResponseForm",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/client/views/omnichannel/cannedResponses/components/CannedResponseForm.tsx"
+    },
+    {
+      "module": "../CannedResponseEdit",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/client/views/omnichannel/cannedResponses/modals/CannedResponseEdit.tsx"
+    }
+  ]
+}

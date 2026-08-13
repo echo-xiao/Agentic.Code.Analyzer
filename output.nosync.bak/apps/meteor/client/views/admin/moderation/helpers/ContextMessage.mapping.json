@@ -1,0 +1,253 @@
+{
+  "sourcePath": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/client/views/admin/moderation/helpers/ContextMessage.tsx",
+  "symbols": [
+    {
+      "type": "variable_function",
+      "name": "ContextMessage",
+      "exported": false,
+      "line": 34,
+      "endLine": 119,
+      "signature": "({ message, room, deleted, onRedirect, onChange, }: { message: any; room: MessageReport['room']; deleted: boolean; onRedirect: (id: IMessage['_id']) => void; onChange: () => void; }) =>",
+      "calls": [
+        {
+          "name": "useTranslation",
+          "edgeType": "call"
+        },
+        {
+          "name": "isE2EEMessage",
+          "edgeType": "call"
+        },
+        {
+          "name": "useDeleteMessage",
+          "edgeType": "call"
+        },
+        {
+          "name": "useDismissMessageAction",
+          "edgeType": "call"
+        },
+        {
+          "name": "useFormatDateAndTime",
+          "edgeType": "call"
+        },
+        {
+          "name": "useFormatTime",
+          "edgeType": "call"
+        },
+        {
+          "name": "useFormatDate",
+          "edgeType": "call"
+        },
+        {
+          "name": "useSetting",
+          "edgeType": "call"
+        },
+        {
+          "name": "useUserDisplayName",
+          "edgeType": "call"
+        },
+        {
+          "name": "filter",
+          "edgeType": "call"
+        },
+        {
+          "name": "isQuoteAttachment",
+          "edgeType": "call"
+        },
+        {
+          "name": "formatDate",
+          "edgeType": "call"
+        },
+        {
+          "name": "formatDateAndTime",
+          "edgeType": "call"
+        },
+        {
+          "name": "formatTime",
+          "edgeType": "call"
+        },
+        {
+          "name": "action",
+          "edgeType": "call"
+        },
+        {
+          "name": "onRedirect",
+          "edgeType": "call"
+        },
+        {
+          "name": "deleteMessage",
+          "edgeType": "call"
+        },
+        {
+          "name": "MessageDivider",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "Message",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "MessageLeftContainer",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "MessageContainer",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "MessageHeader",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "MessageName",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "MessageUsername",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "MessageTimestamp",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "MessageRole",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "MessageBody",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "ReportReasonCollapsible",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "MessageToolbarWrapper",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "MessageToolbar",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "UserAvatar",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "Attachments",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "MessageContentBody",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "UiKitMessageBlock",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "MessageReportInfo",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "MessageToolbarItem",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "quotes",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "attachments",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "deleted",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "MessageReport",
+          "edgeType": "type"
+        },
+        {
+          "name": "IMessage",
+          "edgeType": "type"
+        },
+        {
+          "name": "MessageAttachment",
+          "edgeType": "type"
+        }
+      ]
+    }
+  ],
+  "imports": [
+    {
+      "module": "@rocket.chat/core-typings",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/core-typings",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/fuselage",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/ui-avatar",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/ui-client",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/ui-contexts",
+      "resolved": "external"
+    },
+    {
+      "module": "react-i18next",
+      "resolved": "external"
+    },
+    {
+      "module": "./ReportReasonCollapsible",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/client/views/admin/moderation/helpers/ReportReasonCollapsible.tsx"
+    },
+    {
+      "module": "../../../../components/message/MessageContentBody",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/client/components/message/MessageContentBody.tsx"
+    },
+    {
+      "module": "../../../../components/message/content/Attachments",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/client/components/message/content/Attachments.tsx"
+    },
+    {
+      "module": "../../../../components/message/uikit/UiKitMessageBlock",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/client/components/message/uikit/UiKitMessageBlock.tsx"
+    },
+    {
+      "module": "../../../../hooks/useFormatDate",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/client/hooks/useFormatDate.ts"
+    },
+    {
+      "module": "../../../../hooks/useFormatDateAndTime",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/client/hooks/useFormatDateAndTime.ts"
+    },
+    {
+      "module": "../../../../hooks/useFormatTime",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/client/hooks/useFormatTime.ts"
+    },
+    {
+      "module": "../MessageReportInfo",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/client/views/admin/moderation/MessageReportInfo.tsx"
+    },
+    {
+      "module": "../hooks/useDeleteMessage",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/client/views/admin/moderation/hooks/useDeleteMessage.tsx"
+    },
+    {
+      "module": "../hooks/useDismissMessageAction",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/client/views/admin/moderation/hooks/useDismissMessageAction.tsx"
+    }
+  ]
+}

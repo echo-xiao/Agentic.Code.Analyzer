@@ -1,0 +1,33 @@
+{
+  "sourcePath": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/server/bridges/irc/irc-bridge/localHandlers/onCreateRoom.js",
+  "symbols": [
+    {
+      "type": "function",
+      "name": "handleOnCreateRoom",
+      "exported": true,
+      "line": 3,
+      "endLine": 13,
+      "signature": "export default async function handleOnCreateRoom(user, room)",
+      "calls": [
+        {
+          "name": "findByRoomId",
+          "edgeType": "call"
+        },
+        {
+          "name": "forEach",
+          "edgeType": "call"
+        },
+        {
+          "name": "sendCommand",
+          "edgeType": "call"
+        }
+      ]
+    }
+  ],
+  "imports": [
+    {
+      "module": "@rocket.chat/models",
+      "resolved": "external"
+    }
+  ]
+}

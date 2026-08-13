@@ -1,0 +1,55 @@
+{
+  "sourcePath": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/app/integrations/server/lib/validateScriptEngine.ts",
+  "symbols": [
+    {
+      "type": "variable_function",
+      "name": "validateScriptEngine",
+      "exported": true,
+      "line": 7,
+      "endLine": 23,
+      "signature": "(engine?: IntegrationScriptEngine) =>",
+      "calls": [
+        {
+          "name": "IntegrationScriptEngine",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "variable_function",
+      "name": "isScriptEngineFrozen",
+      "exported": true,
+      "line": 11,
+      "endLine": 12,
+      "signature": "(engine?: IntegrationScriptEngine) =>",
+      "calls": [
+        {
+          "name": "catch",
+          "edgeType": "call"
+        },
+        {
+          "name": "wrapExceptions",
+          "edgeType": "call"
+        },
+        {
+          "name": "validateScriptEngine",
+          "edgeType": "call"
+        },
+        {
+          "name": "IntegrationScriptEngine",
+          "edgeType": "type"
+        }
+      ]
+    }
+  ],
+  "imports": [
+    {
+      "module": "@rocket.chat/core-typings",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/tools",
+      "resolved": "external"
+    }
+  ]
+}

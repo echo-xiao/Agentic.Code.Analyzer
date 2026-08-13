@@ -1,0 +1,49 @@
+{
+  "sourcePath": "/Users/echoooooo/Desktop/code/Rocket.Chat/packages/ui-contexts/src/hooks/useAssetWithDarkModePath.ts",
+  "symbols": [
+    {
+      "type": "variable_function",
+      "name": "useAssetWithDarkModePath",
+      "exported": true,
+      "line": 7,
+      "endLine": 15,
+      "signature": "<A extends keyof IRocketChatAssets>( assetId: A extends `${infer T}_dark` ? T : never, ): string | undefined =>",
+      "calls": [
+        {
+          "name": "useUserPreference",
+          "edgeType": "call"
+        },
+        {
+          "name": "useDarkMode",
+          "edgeType": "call"
+        },
+        {
+          "name": "useAssetPath",
+          "edgeType": "call"
+        },
+        {
+          "name": "IRocketChatAssets",
+          "edgeType": "type"
+        }
+      ]
+    }
+  ],
+  "imports": [
+    {
+      "module": "@rocket.chat/core-typings",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/fuselage-hooks",
+      "resolved": "external"
+    },
+    {
+      "module": "./useAssetPath",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/packages/ui-contexts/src/hooks/useAssetPath.ts"
+    },
+    {
+      "module": "./useUserPreference",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/packages/ui-contexts/src/hooks/useUserPreference.ts"
+    }
+  ]
+}

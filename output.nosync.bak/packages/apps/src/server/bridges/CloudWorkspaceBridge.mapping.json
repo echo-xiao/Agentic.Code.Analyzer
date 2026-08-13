@@ -1,0 +1,105 @@
+{
+  "sourcePath": "/Users/echoooooo/Desktop/code/Rocket.Chat/packages/apps/src/server/bridges/CloudWorkspaceBridge.ts",
+  "symbols": [
+    {
+      "type": "class",
+      "name": "CloudWorkspaceBridge",
+      "exported": true,
+      "line": 8,
+      "endLine": 31,
+      "signature": "export abstract class CloudWorkspaceBridge extends BaseBridge",
+      "calls": [
+        {
+          "name": "BaseBridge",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "doGetWorkspaceToken",
+      "exported": true,
+      "qualifiedName": "CloudWorkspaceBridge.doGetWorkspaceToken",
+      "line": 9,
+      "endLine": 13,
+      "signature": "public doGetWorkspaceToken(scope: string, appId: string): Promise<IWorkspaceToken>",
+      "containerClass": "CloudWorkspaceBridge",
+      "calls": [
+        {
+          "name": "hasCloudTokenPermission",
+          "edgeType": "call"
+        },
+        {
+          "name": "getWorkspaceToken",
+          "edgeType": "call"
+        },
+        {
+          "name": "IWorkspaceToken",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "getWorkspaceToken",
+      "exported": true,
+      "qualifiedName": "CloudWorkspaceBridge.getWorkspaceToken",
+      "line": 13,
+      "endLine": 13,
+      "signature": "protected abstract getWorkspaceToken(scope: string, appId: string): Promise<IWorkspaceToken>;",
+      "containerClass": "CloudWorkspaceBridge",
+      "calls": [
+        {
+          "name": "IWorkspaceToken",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "hasCloudTokenPermission",
+      "exported": true,
+      "qualifiedName": "CloudWorkspaceBridge.hasCloudTokenPermission",
+      "line": 15,
+      "endLine": 28,
+      "signature": "private hasCloudTokenPermission(appId: string): boolean",
+      "containerClass": "CloudWorkspaceBridge",
+      "calls": [
+        {
+          "name": "hasPermission",
+          "edgeType": "call"
+        },
+        {
+          "name": "notifyAboutError",
+          "edgeType": "call"
+        },
+        {
+          "name": "PermissionDeniedError",
+          "edgeType": "new"
+        }
+      ]
+    }
+  ],
+  "imports": [
+    {
+      "module": "@rocket.chat/apps-engine/definition/cloud/IWorkspaceToken",
+      "resolved": "external"
+    },
+    {
+      "module": "./BaseBridge",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/packages/apps/src/server/bridges/BaseBridge.ts"
+    },
+    {
+      "module": "../errors/PermissionDeniedError",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/packages/apps/src/server/errors/PermissionDeniedError.ts"
+    },
+    {
+      "module": "../managers/AppPermissionManager",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/packages/apps/src/server/managers/AppPermissionManager.ts"
+    },
+    {
+      "module": "../permissions/AppPermissions",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/packages/apps/src/server/permissions/AppPermissions.ts"
+    }
+  ]
+}

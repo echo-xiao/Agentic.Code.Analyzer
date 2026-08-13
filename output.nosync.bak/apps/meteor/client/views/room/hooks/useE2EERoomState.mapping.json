@@ -1,0 +1,53 @@
+{
+  "sourcePath": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/client/views/room/hooks/useE2EERoomState.ts",
+  "symbols": [
+    {
+      "type": "variable_function",
+      "name": "useE2EERoomState",
+      "exported": true,
+      "line": 6,
+      "endLine": 19,
+      "signature": "(rid: string) =>",
+      "calls": [
+        {
+          "name": "useE2EERoom",
+          "edgeType": "call"
+        },
+        {
+          "name": "useMemo",
+          "edgeType": "call"
+        },
+        {
+          "name": "onStateChange",
+          "edgeType": "call"
+        },
+        {
+          "name": "getState",
+          "edgeType": "call"
+        },
+        {
+          "name": "useSyncExternalStore",
+          "edgeType": "call"
+        },
+        {
+          "name": "E2ERoomState",
+          "edgeType": "type"
+        }
+      ]
+    }
+  ],
+  "imports": [
+    {
+      "module": "react",
+      "resolved": "external"
+    },
+    {
+      "module": "./useE2EERoom",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/client/views/room/hooks/useE2EERoom.ts"
+    },
+    {
+      "module": "../../../lib/e2ee/E2ERoomState",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/client/lib/e2ee/E2ERoomState.ts"
+    }
+  ]
+}

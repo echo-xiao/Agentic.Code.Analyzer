@@ -1,0 +1,352 @@
+{
+  "sourcePath": "/Users/echoooooo/Desktop/code/Rocket.Chat/packages/models/src/models/BaseUploadModel.ts",
+  "symbols": [
+    {
+      "type": "class",
+      "name": "BaseUploadModelRaw",
+      "exported": true,
+      "line": 20,
+      "endLine": 149,
+      "signature": "export abstract class BaseUploadModelRaw extends BaseRaw<T> implements IBaseUploadsModel<T>",
+      "calls": [
+        {
+          "name": "BaseRaw",
+          "edgeType": "type"
+        },
+        {
+          "name": "IBaseUploadsModel",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "modelIndexes",
+      "exported": true,
+      "qualifiedName": "BaseUploadModelRaw.modelIndexes",
+      "line": 21,
+      "endLine": 27,
+      "signature": "protected override modelIndexes(): IndexDescription[]",
+      "containerClass": "BaseUploadModelRaw",
+      "calls": [
+        {
+          "name": "IndexDescription",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "insertFileInit",
+      "exported": true,
+      "qualifiedName": "BaseUploadModelRaw.insertFileInit",
+      "line": 25,
+      "endLine": 43,
+      "signature": "async insertFileInit(userId: string, store: string, file: { name: string }, extra: object = {}): Promise<InsertOneResult<WithId<T>>>",
+      "containerClass": "BaseUploadModelRaw",
+      "calls": [
+        {
+          "name": "pop",
+          "edgeType": "call"
+        },
+        {
+          "name": "split",
+          "edgeType": "call"
+        },
+        {
+          "name": "shift",
+          "edgeType": "call"
+        },
+        {
+          "name": "insertOne",
+          "edgeType": "call"
+        },
+        {
+          "name": "Date",
+          "edgeType": "new"
+        },
+        {
+          "name": "InsertOneResult",
+          "edgeType": "type"
+        },
+        {
+          "name": "WithId",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "updateFileComplete",
+      "exported": true,
+      "qualifiedName": "BaseUploadModelRaw.updateFileComplete",
+      "line": 29,
+      "endLine": 54,
+      "signature": "updateFileComplete(fileId: string, userId: string, file: object): Promise<Document | UpdateResult> | undefined",
+      "containerClass": "BaseUploadModelRaw",
+      "calls": [
+        {
+          "name": "assign",
+          "edgeType": "call"
+        },
+        {
+          "name": "shift",
+          "edgeType": "call"
+        },
+        {
+          "name": "split",
+          "edgeType": "call"
+        },
+        {
+          "name": "updateOne",
+          "edgeType": "call"
+        },
+        {
+          "name": "Document",
+          "edgeType": "type"
+        },
+        {
+          "name": "UpdateResult",
+          "edgeType": "type"
+        },
+        {
+          "name": "Filter",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "confirmTemporaryFile",
+      "exported": true,
+      "qualifiedName": "BaseUploadModelRaw.confirmTemporaryFile",
+      "line": 33,
+      "endLine": 50,
+      "signature": "confirmTemporaryFile(fileId: string, userId: string): Promise<Document | UpdateResult> | undefined",
+      "containerClass": "BaseUploadModelRaw",
+      "calls": [
+        {
+          "name": "updateOne",
+          "edgeType": "call"
+        },
+        {
+          "name": "Document",
+          "edgeType": "type"
+        },
+        {
+          "name": "UpdateResult",
+          "edgeType": "type"
+        },
+        {
+          "name": "Filter",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "findByIds",
+      "exported": true,
+      "qualifiedName": "BaseUploadModelRaw.findByIds",
+      "line": 37,
+      "endLine": 45,
+      "signature": "findByIds(_ids: string[], options?: FindOptions<T>): FindCursor<T>",
+      "containerClass": "BaseUploadModelRaw",
+      "calls": [
+        {
+          "name": "find",
+          "edgeType": "call"
+        },
+        {
+          "name": "FindOptions",
+          "edgeType": "type"
+        },
+        {
+          "name": "FindCursor",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "findOneByName",
+      "exported": true,
+      "qualifiedName": "BaseUploadModelRaw.findOneByName",
+      "line": 41,
+      "endLine": 43,
+      "signature": "async findOneByName(name: string, options?: { session?: ClientSession }): Promise<T | null>",
+      "containerClass": "BaseUploadModelRaw",
+      "calls": [
+        {
+          "name": "findOne",
+          "edgeType": "call"
+        },
+        {
+          "name": "ClientSession",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "findOneByRoomId",
+      "exported": true,
+      "qualifiedName": "BaseUploadModelRaw.findOneByRoomId",
+      "line": 45,
+      "endLine": 47,
+      "signature": "async findOneByRoomId(rid: string): Promise<T | null>",
+      "containerClass": "BaseUploadModelRaw",
+      "calls": [
+        {
+          "name": "findOne",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "findExpiredTemporaryFiles",
+      "exported": true,
+      "qualifiedName": "BaseUploadModelRaw.findExpiredTemporaryFiles",
+      "line": 49,
+      "endLine": 58,
+      "signature": "findExpiredTemporaryFiles(options?: FindOptions<T>): FindCursor<T>",
+      "containerClass": "BaseUploadModelRaw",
+      "calls": [
+        {
+          "name": "find",
+          "edgeType": "call"
+        },
+        {
+          "name": "Date",
+          "edgeType": "new"
+        },
+        {
+          "name": "FindOptions",
+          "edgeType": "type"
+        },
+        {
+          "name": "FindCursor",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "updateFileNameById",
+      "exported": true,
+      "qualifiedName": "BaseUploadModelRaw.updateFileNameById",
+      "line": 53,
+      "endLine": 61,
+      "signature": "async updateFileNameById(fileId: string, name: string): Promise<Document | UpdateResult>",
+      "containerClass": "BaseUploadModelRaw",
+      "calls": [
+        {
+          "name": "updateOne",
+          "edgeType": "call"
+        },
+        {
+          "name": "Document",
+          "edgeType": "type"
+        },
+        {
+          "name": "UpdateResult",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "deleteFile",
+      "exported": true,
+      "qualifiedName": "BaseUploadModelRaw.deleteFile",
+      "line": 57,
+      "endLine": 59,
+      "signature": "async deleteFile(fileId: string, options?: { session?: ClientSession }): Promise<DeleteResult>",
+      "containerClass": "BaseUploadModelRaw",
+      "calls": [
+        {
+          "name": "deleteOne",
+          "edgeType": "call"
+        },
+        {
+          "name": "ClientSession",
+          "edgeType": "type"
+        },
+        {
+          "name": "DeleteResult",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "findOneByIdAndUserIdAndRoomId",
+      "exported": true,
+      "qualifiedName": "BaseUploadModelRaw.findOneByIdAndUserIdAndRoomId",
+      "line": 61,
+      "endLine": 63,
+      "signature": "async findOneByIdAndUserIdAndRoomId(fileId: string, userId: string, rid: string, options?: FindOptions<T>): Promise<T | null>",
+      "containerClass": "BaseUploadModelRaw",
+      "calls": [
+        {
+          "name": "findOne",
+          "edgeType": "call"
+        },
+        {
+          "name": "FindOptions",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "updateFileMetadata",
+      "exported": true,
+      "qualifiedName": "BaseUploadModelRaw.updateFileMetadata",
+      "line": 65,
+      "endLine": 71,
+      "signature": "async updateFileMetadata( fileId: string, userId: string, metadata: { name?: string; description?: string; typeGroup?: string; content?: EncryptedContent }, ): Promise<UpdateResult | null>",
+      "containerClass": "BaseUploadModelRaw",
+      "calls": [
+        {
+          "name": "updateOne",
+          "edgeType": "call"
+        },
+        {
+          "name": "EncryptedContent",
+          "edgeType": "type"
+        },
+        {
+          "name": "UpdateResult",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "type",
+      "name": "T",
+      "line": 18,
+      "endLine": 18,
+      "signature": "type T = IUpload;"
+    }
+  ],
+  "imports": [
+    {
+      "module": "@rocket.chat/core-typings",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/model-typings",
+      "resolved": "external"
+    },
+    {
+      "module": "mongodb",
+      "resolved": "external"
+    },
+    {
+      "module": "./BaseRaw",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/packages/models/src/models/BaseRaw.ts"
+    }
+  ]
+}

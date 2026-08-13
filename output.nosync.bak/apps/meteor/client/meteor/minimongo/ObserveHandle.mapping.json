@@ -1,0 +1,121 @@
+{
+  "sourcePath": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/client/meteor/minimongo/ObserveHandle.ts",
+  "symbols": [
+    {
+      "type": "class",
+      "name": "ObserveHandle",
+      "exported": true,
+      "line": 6,
+      "endLine": 21,
+      "signature": "export class ObserveHandle<T extends",
+      "calls": []
+    },
+    {
+      "type": "method",
+      "name": "stop",
+      "exported": true,
+      "qualifiedName": "ObserveHandle.stop",
+      "line": 18,
+      "endLine": 20,
+      "signature": "stop()",
+      "containerClass": "ObserveHandle",
+      "calls": []
+    },
+    {
+      "type": "method",
+      "name": "constructor",
+      "exported": true,
+      "qualifiedName": "ObserveHandle.constructor",
+      "line": 11,
+      "endLine": 16,
+      "signature": "constructor(public collection: LocalCollection<T>)",
+      "containerClass": "ObserveHandle",
+      "calls": [
+        {
+          "name": "drain",
+          "edgeType": "call"
+        },
+        {
+          "name": "resolve",
+          "edgeType": "call"
+        },
+        {
+          "name": "LocalCollection",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "class",
+      "name": "ReactiveObserveHandle",
+      "exported": true,
+      "line": 20,
+      "endLine": 37,
+      "signature": "export class ReactiveObserveHandle<T extends",
+      "calls": [
+        {
+          "name": "ObserveHandle",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "stop",
+      "exported": true,
+      "qualifiedName": "ReactiveObserveHandle.stop",
+      "line": 34,
+      "endLine": 36,
+      "signature": "override stop()",
+      "containerClass": "ReactiveObserveHandle",
+      "calls": [
+        {
+          "name": "delete",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "constructor",
+      "exported": true,
+      "qualifiedName": "ReactiveObserveHandle.constructor",
+      "line": 21,
+      "endLine": 32,
+      "signature": "constructor( private query: Query<T>, collection: LocalCollection<T>, )",
+      "containerClass": "ReactiveObserveHandle",
+      "calls": [
+        {
+          "name": "onInvalidate",
+          "edgeType": "call"
+        },
+        {
+          "name": "stop",
+          "edgeType": "call"
+        },
+        {
+          "name": "Query",
+          "edgeType": "type"
+        },
+        {
+          "name": "LocalCollection",
+          "edgeType": "type"
+        }
+      ]
+    }
+  ],
+  "imports": [
+    {
+      "module": "meteor/tracker",
+      "resolved": "external"
+    },
+    {
+      "module": "./LocalCollection",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/client/meteor/minimongo/LocalCollection.ts"
+    },
+    {
+      "module": "./queries",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/client/meteor/minimongo/queries.ts"
+    }
+  ]
+}

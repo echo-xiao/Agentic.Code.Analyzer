@@ -1,0 +1,220 @@
+{
+  "sourcePath": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/app/file-upload/ufs/AmazonS3/server.ts",
+  "symbols": [
+    {
+      "type": "class",
+      "name": "AmazonS3Store",
+      "exported": false,
+      "line": 33,
+      "endLine": 209,
+      "signature": "class AmazonS3Store extends UploadFS.Store",
+      "calls": []
+    },
+    {
+      "type": "method",
+      "name": "constructor",
+      "exported": false,
+      "qualifiedName": "AmazonS3Store.constructor",
+      "line": 36,
+      "endLine": 208,
+      "signature": "constructor(options: S3Options)",
+      "containerClass": "AmazonS3Store",
+      "calls": [
+        {
+          "name": "extend",
+          "edgeType": "call"
+        },
+        {
+          "name": "trim",
+          "edgeType": "call"
+        },
+        {
+          "name": "getUrlExpiryTimeSpanWithFallback",
+          "edgeType": "call"
+        },
+        {
+          "name": "getSignedUrl",
+          "edgeType": "call"
+        },
+        {
+          "name": "getPath",
+          "edgeType": "call"
+        },
+        {
+          "name": "encodeURI",
+          "edgeType": "call"
+        },
+        {
+          "name": "check",
+          "edgeType": "call"
+        },
+        {
+          "name": "id",
+          "edgeType": "call"
+        },
+        {
+          "name": "insertOne",
+          "edgeType": "call"
+        },
+        {
+          "name": "getCollection",
+          "edgeType": "call"
+        },
+        {
+          "name": "findOne",
+          "edgeType": "call"
+        },
+        {
+          "name": "send",
+          "edgeType": "call"
+        },
+        {
+          "name": "error",
+          "edgeType": "call"
+        },
+        {
+          "name": "newListener",
+          "edgeType": "event_listen"
+        },
+        {
+          "name": "nextTick",
+          "edgeType": "call"
+        },
+        {
+          "name": "removeListener",
+          "edgeType": "call"
+        },
+        {
+          "name": "listener",
+          "edgeType": "event_listen",
+          "event": "real_finish"
+        },
+        {
+          "name": "catch",
+          "edgeType": "call"
+        },
+        {
+          "name": "then",
+          "edgeType": "call"
+        },
+        {
+          "name": "done",
+          "edgeType": "call"
+        },
+        {
+          "name": "real_finish",
+          "edgeType": "event_emit"
+        },
+        {
+          "name": "error",
+          "edgeType": "event_emit"
+        },
+        {
+          "name": "S3Client",
+          "edgeType": "new"
+        },
+        {
+          "name": "GetObjectCommand",
+          "edgeType": "new"
+        },
+        {
+          "name": "DeleteObjectCommand",
+          "edgeType": "new"
+        },
+        {
+          "name": "Upload",
+          "edgeType": "new"
+        },
+        {
+          "name": "S3Options",
+          "edgeType": "type"
+        },
+        {
+          "name": "IUpload",
+          "edgeType": "type"
+        },
+        {
+          "name": "GetObjectCommandInput",
+          "edgeType": "type"
+        },
+        {
+          "name": "PutObjectCommandInput",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "class_property",
+      "name": "getPath",
+      "exported": false,
+      "qualifiedName": "AmazonS3Store.getPath",
+      "line": 34,
+      "endLine": 34,
+      "signature": "protected getPath: (file: Omit<IUpload, '_updatedAt'>) => string;",
+      "containerClass": "AmazonS3Store",
+      "calls": [
+        {
+          "name": "IUpload",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "type",
+      "name": "S3Options",
+      "line": 23,
+      "endLine": 31,
+      "signature": "export type S3Options = StoreOptions &"
+    }
+  ],
+  "imports": [
+    {
+      "module": "node:stream",
+      "resolved": "external"
+    },
+    {
+      "module": "@aws-sdk/client-s3",
+      "resolved": "external"
+    },
+    {
+      "module": "@aws-sdk/lib-storage",
+      "resolved": "external"
+    },
+    {
+      "module": "@aws-sdk/s3-request-presigner",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/core-typings",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/random",
+      "resolved": "external"
+    },
+    {
+      "module": "meteor/check",
+      "resolved": "external"
+    },
+    {
+      "module": "underscore",
+      "resolved": "external"
+    },
+    {
+      "module": "../../../../server/lib/logger/system",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/server/lib/logger/system.ts"
+    },
+    {
+      "module": "../../../../server/ufs",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/server/ufs/index.ts"
+    },
+    {
+      "module": "../../../../server/ufs/ufs-store",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/server/ufs/ufs-store.ts"
+    },
+    {
+      "module": "../../server/lib/urlExpiry",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/app/file-upload/server/lib/urlExpiry.ts"
+    }
+  ]
+}

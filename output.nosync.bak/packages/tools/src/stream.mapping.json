@@ -1,0 +1,57 @@
+{
+  "sourcePath": "/Users/echoooooo/Desktop/code/Rocket.Chat/packages/tools/src/stream.ts",
+  "symbols": [
+    {
+      "type": "variable_function",
+      "name": "streamToBuffer",
+      "exported": true,
+      "line": 3,
+      "endLine": 13,
+      "signature": "(stream: Readable): Promise<Buffer> =>",
+      "calls": [
+        {
+          "name": "resume",
+          "edgeType": "call"
+        },
+        {
+          "name": "error",
+          "edgeType": "event_listen"
+        },
+        {
+          "name": "end",
+          "edgeType": "event_listen"
+        },
+        {
+          "name": "data",
+          "edgeType": "event_listen"
+        },
+        {
+          "name": "push",
+          "edgeType": "call"
+        },
+        {
+          "name": "resolve",
+          "edgeType": "call"
+        },
+        {
+          "name": "concat",
+          "edgeType": "call"
+        },
+        {
+          "name": "reject",
+          "edgeType": "call"
+        },
+        {
+          "name": "Readable",
+          "edgeType": "type"
+        }
+      ]
+    }
+  ],
+  "imports": [
+    {
+      "module": "node:stream",
+      "resolved": "external"
+    }
+  ]
+}

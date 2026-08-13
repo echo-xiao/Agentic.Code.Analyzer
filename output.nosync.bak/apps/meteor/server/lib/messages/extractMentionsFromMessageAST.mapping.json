@@ -1,0 +1,165 @@
+{
+  "sourcePath": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/server/lib/messages/extractMentionsFromMessageAST.ts",
+  "symbols": [
+    {
+      "type": "function",
+      "name": "isUserMention",
+      "exported": false,
+      "line": 10,
+      "endLine": 12,
+      "signature": "function isUserMention(node: MessageNode): node is UserMention",
+      "calls": [
+        {
+          "name": "MessageNode",
+          "edgeType": "type"
+        },
+        {
+          "name": "UserMention",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "function",
+      "name": "isChannelMention",
+      "exported": false,
+      "line": 14,
+      "endLine": 16,
+      "signature": "function isChannelMention(node: MessageNode): node is ChannelMention",
+      "calls": [
+        {
+          "name": "MessageNode",
+          "edgeType": "type"
+        },
+        {
+          "name": "ChannelMention",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "function",
+      "name": "hasArrayValue",
+      "exported": false,
+      "line": 18,
+      "endLine": 20,
+      "signature": "function hasArrayValue(node: MessageNode): node is MessageNode & { value: MessageNode[] }",
+      "calls": [
+        {
+          "name": "isArray",
+          "edgeType": "call"
+        },
+        {
+          "name": "MessageNode",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "function",
+      "name": "hasObjectValue",
+      "exported": false,
+      "line": 22,
+      "endLine": 24,
+      "signature": "function hasObjectValue(node: MessageNode): node is MessageNode & { value: Record<string, MessageNode> }",
+      "calls": [
+        {
+          "name": "isArray",
+          "edgeType": "call"
+        },
+        {
+          "name": "MessageNode",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "function",
+      "name": "traverse",
+      "exported": false,
+      "line": 26,
+      "endLine": 49,
+      "signature": "function traverse(node: MessageNode, mentions: Set<string>, channels: Set<string>): void",
+      "calls": [
+        {
+          "name": "isUserMention",
+          "edgeType": "call"
+        },
+        {
+          "name": "isChannelMention",
+          "edgeType": "call"
+        },
+        {
+          "name": "hasArrayValue",
+          "edgeType": "call"
+        },
+        {
+          "name": "traverse",
+          "edgeType": "call"
+        },
+        {
+          "name": "hasObjectValue",
+          "edgeType": "call"
+        },
+        {
+          "name": "keys",
+          "edgeType": "call"
+        },
+        {
+          "name": "MessageNode",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "function",
+      "name": "extractMentionsFromMessageAST",
+      "exported": true,
+      "line": 30,
+      "endLine": 42,
+      "signature": "export function extractMentionsFromMessageAST(ast: Root): ExtractedMentions",
+      "calls": [
+        {
+          "name": "traverse",
+          "edgeType": "call"
+        },
+        {
+          "name": "from",
+          "edgeType": "call"
+        },
+        {
+          "name": "Set",
+          "edgeType": "new"
+        },
+        {
+          "name": "Root",
+          "edgeType": "type"
+        },
+        {
+          "name": "ExtractedMentions",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "type",
+      "name": "ExtractedMentions",
+      "line": 3,
+      "endLine": 6,
+      "signature": "type ExtractedMentions ="
+    },
+    {
+      "type": "type",
+      "name": "MessageNode",
+      "line": 8,
+      "endLine": 8,
+      "signature": "type MessageNode = Paragraph | Blocks | Inlines | Task | ListItem | BigEmoji;"
+    }
+  ],
+  "imports": [
+    {
+      "module": "@rocket.chat/message-parser",
+      "resolved": "external"
+    }
+  ]
+}

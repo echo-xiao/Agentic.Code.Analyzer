@@ -1,0 +1,149 @@
+{
+  "sourcePath": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/client/views/omnichannel/cannedResponses/contextualBar/CannedResponse/WrapCannedResponse.tsx",
+  "symbols": [
+    {
+      "type": "module",
+      "name": "WrapCannedResponse",
+      "exported": false,
+      "line": 1,
+      "endLine": 43,
+      "signature": "WrapCannedResponse",
+      "calls": [
+        {
+          "name": "memo",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "inner_function",
+      "name": "onClickEdit",
+      "exported": false,
+      "qualifiedName": "WrapCannedResponse.onClickEdit",
+      "line": 21,
+      "endLine": 23,
+      "signature": "(): void =>",
+      "calls": [
+        {
+          "name": "setModal",
+          "edgeType": "call"
+        },
+        {
+          "name": "CreateCannedResponse",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "cannedItem",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "reload",
+          "edgeType": "jsx"
+        }
+      ]
+    },
+    {
+      "type": "variable_function",
+      "name": "WrapCannedResponse",
+      "exported": false,
+      "line": 19,
+      "endLine": 40,
+      "signature": "({ canUseCannedResponses, cannedItem, onClickBack, onClose, onClickUse, reload }: WrapCannedResponseProps) =>",
+      "calls": [
+        {
+          "name": "useSetModal",
+          "edgeType": "call"
+        },
+        {
+          "name": "setModal",
+          "edgeType": "call"
+        },
+        {
+          "name": "useCanEditCannedResponse",
+          "edgeType": "call"
+        },
+        {
+          "name": "onClickUse",
+          "edgeType": "call"
+        },
+        {
+          "name": "CreateCannedResponse",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "CannedResponse",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "cannedItem",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "reload",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "canEditCannedResponses",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "canUseCannedResponses",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "onClickBack",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "onClickEdit",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "onClose",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "WrapCannedResponseProps",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "type",
+      "name": "WrapCannedResponseProps",
+      "line": 10,
+      "endLine": 17,
+      "signature": "export type WrapCannedResponseProps ="
+    }
+  ],
+  "imports": [
+    {
+      "module": "@rocket.chat/core-typings",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/ui-contexts",
+      "resolved": "external"
+    },
+    {
+      "module": "react",
+      "resolved": "external"
+    },
+    {
+      "module": "react",
+      "resolved": "external"
+    },
+    {
+      "module": "./CannedResponse",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/client/views/omnichannel/cannedResponses/contextualBar/CannedResponse/CannedResponse.tsx"
+    },
+    {
+      "module": "../../hooks/useCanEditCannedResponse",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/client/views/omnichannel/cannedResponses/hooks/useCanEditCannedResponse.ts"
+    },
+    {
+      "module": "../../modals/CreateCannedResponse",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/client/views/omnichannel/cannedResponses/modals/CreateCannedResponse/index.tsx"
+    }
+  ]
+}

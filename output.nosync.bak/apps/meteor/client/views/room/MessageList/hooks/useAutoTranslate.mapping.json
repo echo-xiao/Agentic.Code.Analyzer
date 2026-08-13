@@ -1,0 +1,100 @@
+{
+  "sourcePath": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/client/views/room/MessageList/hooks/useAutoTranslate.ts",
+  "symbols": [
+    {
+      "type": "variable_function",
+      "name": "useAutoTranslate",
+      "exported": true,
+      "line": 16,
+      "endLine": 42,
+      "signature": "(subscription?: ISubscription): AutoTranslateOptions =>",
+      "calls": [
+        {
+          "name": "useSetting",
+          "edgeType": "call"
+        },
+        {
+          "name": "useMemo",
+          "edgeType": "call"
+        },
+        {
+          "name": "isLivechatRoom",
+          "edgeType": "call"
+        },
+        {
+          "name": "Boolean",
+          "edgeType": "call"
+        },
+        {
+          "name": "getLanguage",
+          "edgeType": "call"
+        },
+        {
+          "name": "useCallback",
+          "edgeType": "call"
+        },
+        {
+          "name": "isOwnUserMessage",
+          "edgeType": "call"
+        },
+        {
+          "name": "hasTranslationLanguageInMessage",
+          "edgeType": "call"
+        },
+        {
+          "name": "hasTranslationLanguageInAttachments",
+          "edgeType": "call"
+        },
+        {
+          "name": "ISubscription",
+          "edgeType": "type"
+        },
+        {
+          "name": "AutoTranslateOptions",
+          "edgeType": "type"
+        },
+        {
+          "name": "IMessage",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "type",
+      "name": "AutoTranslateOptions",
+      "line": 10,
+      "endLine": 14,
+      "signature": "export type AutoTranslateOptions ="
+    }
+  ],
+  "imports": [
+    {
+      "module": "@rocket.chat/core-typings",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/ui-contexts",
+      "resolved": "external"
+    },
+    {
+      "module": "react",
+      "resolved": "external"
+    },
+    {
+      "module": "../../../../../app/autotranslate/client",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/app/autotranslate/client/index.ts"
+    },
+    {
+      "module": "../../../../lib/rooms/roomCoordinator",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/client/lib/rooms/roomCoordinator.tsx"
+    },
+    {
+      "module": "../lib/autoTranslate",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/client/views/room/MessageList/lib/autoTranslate.ts"
+    },
+    {
+      "module": "../lib/isOwnUserMessage",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/client/views/room/MessageList/lib/isOwnUserMessage.ts"
+    }
+  ]
+}

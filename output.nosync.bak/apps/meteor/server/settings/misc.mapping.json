@@ -1,0 +1,131 @@
+{
+  "sourcePath": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/server/settings/misc.ts",
+  "symbols": [
+    {
+      "type": "variable_function",
+      "name": "generateFingerprint",
+      "exported": false,
+      "line": 12,
+      "endLine": 18,
+      "signature": "function ()",
+      "calls": [
+        {
+          "name": "get",
+          "edgeType": "call"
+        },
+        {
+          "name": "digest",
+          "edgeType": "call"
+        },
+        {
+          "name": "update",
+          "edgeType": "call"
+        },
+        {
+          "name": "createHash",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "variable_function",
+      "name": "updateFingerprint",
+      "exported": false,
+      "line": 16,
+      "endLine": 30,
+      "signature": "async function (fingerprint: string, verified: boolean, emit = true)",
+      "calls": [
+        {
+          "name": "updateAuditedBySystem",
+          "edgeType": "call"
+        },
+        {
+          "name": "all",
+          "edgeType": "call"
+        },
+        {
+          "name": "auditedSettingBySystem",
+          "edgeType": "call"
+        },
+        {
+          "name": "notifyOnSettingChangedById",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "variable_function",
+      "name": "verifyFingerPrint",
+      "exported": true,
+      "line": 20,
+      "endLine": 43,
+      "signature": "async function (emit = true)",
+      "calls": [
+        {
+          "name": "getValueById",
+          "edgeType": "call"
+        },
+        {
+          "name": "generateFingerprint",
+          "edgeType": "call"
+        },
+        {
+          "name": "info",
+          "edgeType": "call"
+        },
+        {
+          "name": "updateFingerprint",
+          "edgeType": "call"
+        },
+        {
+          "name": "warn",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "variable_function",
+      "name": "createMiscSettings",
+      "exported": true,
+      "line": 25,
+      "endLine": 47,
+      "signature": "async () =>",
+      "calls": [
+        {
+          "name": "randomUUID",
+          "edgeType": "call"
+        },
+        {
+          "name": "verifyFingerPrint",
+          "edgeType": "call"
+        }
+      ]
+    }
+  ],
+  "imports": [
+    {
+      "module": "node:crypto",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/logger",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/models",
+      "resolved": "external"
+    },
+    {
+      "module": "./lib/auditedSettingUpdates",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/server/settings/lib/auditedSettingUpdates.ts"
+    },
+    {
+      "module": "../../app/lib/server/lib/notifyListener",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/app/lib/server/lib/notifyListener.ts"
+    },
+    {
+      "module": "../../app/settings/server",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/app/settings/server/index.ts"
+    }
+  ]
+}

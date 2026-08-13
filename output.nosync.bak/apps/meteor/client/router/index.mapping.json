@@ -1,0 +1,790 @@
+{
+  "sourcePath": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/client/router/index.tsx",
+  "symbols": [
+    {
+      "type": "class",
+      "name": "Router",
+      "exported": true,
+      "line": 20,
+      "endLine": 322,
+      "signature": "export class Router implements RouterContextValue",
+      "calls": [
+        {
+          "name": "RouterContextValue",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "registerRoute",
+      "exported": true,
+      "qualifiedName": "Router.registerRoute",
+      "line": 55,
+      "endLine": 84,
+      "signature": "private registerRoute(pathDef: string, options: RouteOptions)",
+      "containerClass": "Router",
+      "calls": [
+        {
+          "name": "test",
+          "edgeType": "call"
+        },
+        {
+          "name": "freeze",
+          "edgeType": "call"
+        },
+        {
+          "name": "entries",
+          "edgeType": "call"
+        },
+        {
+          "name": "refresh",
+          "edgeType": "call"
+        },
+        {
+          "name": "set",
+          "edgeType": "call"
+        },
+        {
+          "name": "updateCallbacks",
+          "edgeType": "call"
+        },
+        {
+          "name": "Route",
+          "edgeType": "new"
+        },
+        {
+          "name": "URLSearchParams",
+          "edgeType": "new"
+        },
+        {
+          "name": "Map",
+          "edgeType": "new"
+        },
+        {
+          "name": "RouteOptions",
+          "edgeType": "type"
+        },
+        {
+          "name": "Context",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "encodePath",
+      "exported": true,
+      "qualifiedName": "Router.encodePath",
+      "line": 59,
+      "endLine": 107,
+      "signature": "private encodePath( idOrPathDef: string, params: Record<string, string | null> = {}, queryParams: Record<string, string | null> = {}, ): string",
+      "containerClass": "Router",
+      "calls": [
+        {
+          "name": "has",
+          "edgeType": "call"
+        },
+        {
+          "name": "get",
+          "edgeType": "call"
+        },
+        {
+          "name": "test",
+          "edgeType": "call"
+        },
+        {
+          "name": "split",
+          "edgeType": "call"
+        },
+        {
+          "name": "assign",
+          "edgeType": "call"
+        },
+        {
+          "name": "fromEntries",
+          "edgeType": "call"
+        },
+        {
+          "name": "entries",
+          "edgeType": "call"
+        },
+        {
+          "name": "replace",
+          "edgeType": "call"
+        },
+        {
+          "name": "indexOf",
+          "edgeType": "call"
+        },
+        {
+          "name": "substring",
+          "edgeType": "call"
+        },
+        {
+          "name": "encodeParam",
+          "edgeType": "call"
+        },
+        {
+          "name": "match",
+          "edgeType": "call"
+        },
+        {
+          "name": "filter",
+          "edgeType": "call"
+        },
+        {
+          "name": "URLSearchParams",
+          "edgeType": "new"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "encodeParam",
+      "exported": true,
+      "qualifiedName": "Router.encodeParam",
+      "line": 67,
+      "endLine": 82,
+      "signature": "private encodeParam(param: string)",
+      "containerClass": "Router",
+      "calls": [
+        {
+          "name": "split",
+          "edgeType": "call"
+        },
+        {
+          "name": "includes",
+          "edgeType": "call"
+        },
+        {
+          "name": "encodeURIComponent",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "initialize",
+      "exported": true,
+      "qualifiedName": "Router.initialize",
+      "line": 71,
+      "endLine": 86,
+      "signature": "private initialize()",
+      "containerClass": "Router",
+      "calls": [
+        {
+          "name": "updateCallbacks",
+          "edgeType": "call"
+        },
+        {
+          "name": "setBase",
+          "edgeType": "call"
+        },
+        {
+          "name": "start",
+          "edgeType": "call"
+        },
+        {
+          "name": "queueMicrotask",
+          "edgeType": "call"
+        },
+        {
+          "name": "pathChanged",
+          "edgeType": "event_emit"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "refresh",
+      "exported": true,
+      "qualifiedName": "Router.refresh",
+      "line": 75,
+      "endLine": 95,
+      "signature": "private refresh()",
+      "containerClass": "Router",
+      "calls": [
+        {
+          "name": "pathChanged",
+          "edgeType": "event_emit"
+        },
+        {
+          "name": "action",
+          "edgeType": "call"
+        },
+        {
+          "name": "queueMicrotask",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "updateCallbacks",
+      "exported": true,
+      "qualifiedName": "Router.updateCallbacks",
+      "line": 79,
+      "endLine": 95,
+      "signature": "private updateCallbacks()",
+      "containerClass": "Router",
+      "calls": [
+        {
+          "name": "clearRoutes",
+          "edgeType": "call"
+        },
+        {
+          "name": "registerRoute",
+          "edgeType": "call"
+        },
+        {
+          "name": "Route",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "encodeSearchParameters",
+      "exported": true,
+      "qualifiedName": "Router.encodeSearchParameters",
+      "line": 111,
+      "endLine": 121,
+      "signature": "private encodeSearchParameters(searchParameters: SearchParameters)",
+      "containerClass": "Router",
+      "calls": [
+        {
+          "name": "entries",
+          "edgeType": "call"
+        },
+        {
+          "name": "append",
+          "edgeType": "call"
+        },
+        {
+          "name": "URLSearchParams",
+          "edgeType": "new"
+        },
+        {
+          "name": "SearchParameters",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "constructor",
+      "exported": true,
+      "qualifiedName": "Router.constructor",
+      "line": 48,
+      "endLine": 51,
+      "signature": "constructor()",
+      "containerClass": "Router",
+      "calls": [
+        {
+          "name": "registerRoute",
+          "edgeType": "call"
+        },
+        {
+          "name": "updateCallbacks",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "class_property",
+      "name": "current",
+      "exported": true,
+      "qualifiedName": "Router.current",
+      "line": 25,
+      "endLine": 34,
+      "signature": "private current: | Readonly<",
+      "containerClass": "Router",
+      "calls": [
+        {
+          "name": "Route",
+          "edgeType": "type"
+        },
+        {
+          "name": "Context",
+          "edgeType": "type"
+        },
+        {
+          "name": "URLSearchParams",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "class_property",
+      "name": "routes",
+      "exported": true,
+      "qualifiedName": "Router.routes",
+      "line": 40,
+      "endLine": 40,
+      "signature": "private routes = new Set<Route>();",
+      "containerClass": "Router",
+      "calls": [
+        {
+          "name": "Set",
+          "edgeType": "new"
+        },
+        {
+          "name": "Route",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "class_property",
+      "name": "pathDefById",
+      "exported": true,
+      "qualifiedName": "Router.pathDefById",
+      "line": 42,
+      "endLine": 42,
+      "signature": "private pathDefById = new Map<Route['pathDef'], Route['id']>();",
+      "containerClass": "Router",
+      "calls": [
+        {
+          "name": "Map",
+          "edgeType": "new"
+        },
+        {
+          "name": "Route",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "class_property",
+      "name": "basePath",
+      "exported": true,
+      "qualifiedName": "Router.basePath",
+      "line": 44,
+      "endLine": 44,
+      "signature": "private readonly basePath = getRootUrlPathPrefix();",
+      "containerClass": "Router",
+      "calls": [
+        {
+          "name": "getRootUrlPathPrefix",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "class_property",
+      "name": "page",
+      "exported": true,
+      "qualifiedName": "Router.page",
+      "line": 46,
+      "endLine": 46,
+      "signature": "private readonly page = new Page();",
+      "containerClass": "Router",
+      "calls": [
+        {
+          "name": "Page",
+          "edgeType": "new"
+        }
+      ]
+    },
+    {
+      "type": "class_property",
+      "name": "emitter",
+      "exported": true,
+      "qualifiedName": "Router.emitter",
+      "line": 52,
+      "endLine": 52,
+      "signature": "private emitter = new Emitter<",
+      "containerClass": "Router",
+      "calls": [
+        {
+          "name": "Emitter",
+          "edgeType": "new"
+        }
+      ]
+    },
+    {
+      "type": "class_property",
+      "name": "subscribeToRouteChange",
+      "exported": true,
+      "qualifiedName": "Router.subscribeToRouteChange",
+      "line": 84,
+      "endLine": 93,
+      "signature": "readonly subscribeToRouteChange = (onRouteChange: () => void): (() => void) =>",
+      "containerClass": "Router",
+      "calls": [
+        {
+          "name": "onRouteChange",
+          "edgeType": "event_listen",
+          "event": "pathChanged"
+        },
+        {
+          "name": "pathChanged",
+          "edgeType": "event_emit"
+        },
+        {
+          "name": "unsubscribe",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "class_property",
+      "name": "getLocationPathname",
+      "exported": true,
+      "qualifiedName": "Router.getLocationPathname",
+      "line": 95,
+      "endLine": 95,
+      "signature": "readonly getLocationPathname = () => this.current?.path.replace(/\\?.*/, '') as LocationPathname;",
+      "containerClass": "Router",
+      "calls": [
+        {
+          "name": "replace",
+          "edgeType": "call"
+        },
+        {
+          "name": "LocationPathname",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "class_property",
+      "name": "getLocationSearch",
+      "exported": true,
+      "qualifiedName": "Router.getLocationSearch",
+      "line": 97,
+      "endLine": 97,
+      "signature": "readonly getLocationSearch = () => location.search as LocationSearch;",
+      "containerClass": "Router",
+      "calls": [
+        {
+          "name": "LocationSearch",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "class_property",
+      "name": "getLocationHash",
+      "exported": true,
+      "qualifiedName": "Router.getLocationHash",
+      "line": 99,
+      "endLine": 99,
+      "signature": "readonly getLocationHash = () => location.hash as LocationHash;",
+      "containerClass": "Router",
+      "calls": [
+        {
+          "name": "LocationHash",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "class_property",
+      "name": "getRouteParameters",
+      "exported": true,
+      "qualifiedName": "Router.getRouteParameters",
+      "line": 101,
+      "endLine": 101,
+      "signature": "readonly getRouteParameters = () => (this.current?.params ? (Object.fromEntries(this.current.params.entries()) as RouteParameters) :",
+      "containerClass": "Router",
+      "calls": [
+        {
+          "name": "fromEntries",
+          "edgeType": "call"
+        },
+        {
+          "name": "entries",
+          "edgeType": "call"
+        },
+        {
+          "name": "RouteParameters",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "class_property",
+      "name": "getSearchParameters",
+      "exported": true,
+      "qualifiedName": "Router.getSearchParameters",
+      "line": 103,
+      "endLine": 104,
+      "signature": "readonly getSearchParameters = () => this.current?.queryParams ? (Object.fromEntries(this.current.queryParams.entries()) as SearchParameters) :",
+      "containerClass": "Router",
+      "calls": [
+        {
+          "name": "fromEntries",
+          "edgeType": "call"
+        },
+        {
+          "name": "entries",
+          "edgeType": "call"
+        },
+        {
+          "name": "SearchParameters",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "class_property",
+      "name": "getRouteName",
+      "exported": true,
+      "qualifiedName": "Router.getRouteName",
+      "line": 106,
+      "endLine": 106,
+      "signature": "readonly getRouteName = () => this.current?.route?.id as RouteName | undefined;",
+      "containerClass": "Router",
+      "calls": [
+        {
+          "name": "RouteName",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "class_property",
+      "name": "getPreviousRouteName",
+      "exported": true,
+      "qualifiedName": "Router.getPreviousRouteName",
+      "line": 108,
+      "endLine": 108,
+      "signature": "readonly getPreviousRouteName = () => this.current?.oldRoute?.id as RouteName | undefined;",
+      "containerClass": "Router",
+      "calls": [
+        {
+          "name": "RouteName",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "class_property",
+      "name": "buildRoutePath",
+      "exported": true,
+      "qualifiedName": "Router.buildRoutePath",
+      "line": 114,
+      "endLine": 135,
+      "signature": "readonly buildRoutePath = (to: To): LocationPathname | `$",
+      "containerClass": "Router",
+      "calls": [
+        {
+          "name": "encodeSearchParameters",
+          "edgeType": "call"
+        },
+        {
+          "name": "encodePath",
+          "edgeType": "call"
+        },
+        {
+          "name": "To",
+          "edgeType": "type"
+        },
+        {
+          "name": "LocationPathname",
+          "edgeType": "type"
+        },
+        {
+          "name": "LocationSearch",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "class_property",
+      "name": "navigate",
+      "exported": true,
+      "qualifiedName": "Router.navigate",
+      "line": 137,
+      "endLine": 158,
+      "signature": "readonly navigate = ( toOrDelta: To | number, options?:",
+      "containerClass": "Router",
+      "calls": [
+        {
+          "name": "go",
+          "edgeType": "call"
+        },
+        {
+          "name": "buildRoutePath",
+          "edgeType": "call"
+        },
+        {
+          "name": "replaceState",
+          "edgeType": "call"
+        },
+        {
+          "name": "pushState",
+          "edgeType": "call"
+        },
+        {
+          "name": "dispatchEvent",
+          "edgeType": "call"
+        },
+        {
+          "name": "PopStateEvent",
+          "edgeType": "new"
+        },
+        {
+          "name": "To",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "class_property",
+      "name": "defineRoutes",
+      "exported": true,
+      "qualifiedName": "Router.defineRoutes",
+      "line": 160,
+      "endLine": 181,
+      "signature": "readonly defineRoutes = (routes: readonly RouteObject[]) =>",
+      "containerClass": "Router",
+      "calls": [
+        {
+          "name": "initialize",
+          "edgeType": "call"
+        },
+        {
+          "name": "map",
+          "edgeType": "call"
+        },
+        {
+          "name": "registerRoute",
+          "edgeType": "call"
+        },
+        {
+          "name": "render",
+          "edgeType": "call"
+        },
+        {
+          "name": "dispatch",
+          "edgeType": "call"
+        },
+        {
+          "name": "forEach",
+          "edgeType": "call"
+        },
+        {
+          "name": "delete",
+          "edgeType": "call"
+        },
+        {
+          "name": "updateCallbacks",
+          "edgeType": "call"
+        },
+        {
+          "name": "Context",
+          "edgeType": "new"
+        },
+        {
+          "name": "RouteObject",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "class_property",
+      "name": "getRoomRoute",
+      "exported": true,
+      "qualifiedName": "Router.getRoomRoute",
+      "line": 183,
+      "endLine": 185,
+      "signature": "readonly getRoomRoute = (roomType: RoomType, routeData: RoomRouteData) =>",
+      "containerClass": "Router",
+      "calls": [
+        {
+          "name": "getRouteLink",
+          "edgeType": "call"
+        },
+        {
+          "name": "RoomType",
+          "edgeType": "type"
+        },
+        {
+          "name": "RoomRouteData",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "class",
+      "name": "Route",
+      "exported": false,
+      "line": 193,
+      "endLine": 207,
+      "signature": "class Route",
+      "calls": []
+    },
+    {
+      "type": "method",
+      "name": "constructor",
+      "exported": false,
+      "qualifiedName": "Route.constructor",
+      "line": 198,
+      "endLine": 204,
+      "signature": "constructor( public readonly pathDef: string, public readonly options: RouteOptions, )",
+      "containerClass": "Route",
+      "calls": [
+        {
+          "name": "RouteOptions",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "class_property",
+      "name": "actionHandle",
+      "exported": false,
+      "qualifiedName": "Route.actionHandle",
+      "line": 205,
+      "endLine": 205,
+      "signature": "actionHandle: (ctx: Context) => void;",
+      "containerClass": "Route",
+      "calls": [
+        {
+          "name": "Context",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "type",
+      "name": "RouteOptions",
+      "line": 188,
+      "endLine": 191,
+      "signature": "type RouteOptions ="
+    }
+  ],
+  "imports": [
+    {
+      "module": "@rocket.chat/core-typings",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/emitter",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/ui-contexts",
+      "resolved": "external"
+    },
+    {
+      "module": "./page",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/client/router/page.ts"
+    },
+    {
+      "module": "../lib/appLayout",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/client/lib/appLayout.tsx"
+    },
+    {
+      "module": "../lib/meteorRuntimeConfig",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/client/lib/meteorRuntimeConfig.ts"
+    },
+    {
+      "module": "../lib/rooms/roomCoordinator",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/client/lib/rooms/roomCoordinator.tsx"
+    }
+  ]
+}

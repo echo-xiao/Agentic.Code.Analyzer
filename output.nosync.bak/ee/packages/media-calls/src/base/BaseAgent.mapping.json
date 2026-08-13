@@ -1,0 +1,320 @@
+{
+  "sourcePath": "/Users/echoooooo/Desktop/code/Rocket.Chat/ee/packages/media-calls/src/base/BaseAgent.ts",
+  "symbols": [
+    {
+      "type": "class",
+      "name": "BaseMediaCallAgent",
+      "exported": true,
+      "line": 15,
+      "endLine": 109,
+      "signature": "export abstract class BaseMediaCallAgent implements IMediaCallAgent",
+      "calls": [
+        {
+          "name": "IMediaCallAgent",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "isRepresentingActor",
+      "exported": true,
+      "qualifiedName": "BaseMediaCallAgent.isRepresentingActor",
+      "line": 45,
+      "endLine": 47,
+      "signature": "public isRepresentingActor(actor: MediaCallActor): boolean",
+      "containerClass": "BaseMediaCallAgent",
+      "calls": [
+        {
+          "name": "MediaCallActor",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "getMyCallActor",
+      "exported": true,
+      "qualifiedName": "BaseMediaCallAgent.getMyCallActor",
+      "line": 49,
+      "endLine": 51,
+      "signature": "public getMyCallActor(call: IMediaCall): MediaCallContact",
+      "containerClass": "BaseMediaCallAgent",
+      "calls": [
+        {
+          "name": "IMediaCall",
+          "edgeType": "type"
+        },
+        {
+          "name": "MediaCallContact",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "getOtherCallActor",
+      "exported": true,
+      "qualifiedName": "BaseMediaCallAgent.getOtherCallActor",
+      "line": 53,
+      "endLine": 55,
+      "signature": "public getOtherCallActor(call: IMediaCall): MediaCallContact",
+      "containerClass": "BaseMediaCallAgent",
+      "calls": [
+        {
+          "name": "IMediaCall",
+          "edgeType": "type"
+        },
+        {
+          "name": "MediaCallContact",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "getSignedActor",
+      "exported": true,
+      "qualifiedName": "BaseMediaCallAgent.getSignedActor",
+      "line": 57,
+      "endLine": 62,
+      "signature": "public getSignedActor(contractId: string): MediaCallSignedActor",
+      "containerClass": "BaseMediaCallAgent",
+      "calls": [
+        {
+          "name": "MediaCallSignedActor",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "onCallAccepted",
+      "exported": true,
+      "qualifiedName": "BaseMediaCallAgent.onCallAccepted",
+      "line": 61,
+      "endLine": 61,
+      "signature": "public abstract onCallAccepted(call: IMediaCall): Promise<void>;",
+      "containerClass": "BaseMediaCallAgent",
+      "calls": [
+        {
+          "name": "IMediaCall",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "onCallActive",
+      "exported": true,
+      "qualifiedName": "BaseMediaCallAgent.onCallActive",
+      "line": 63,
+      "endLine": 63,
+      "signature": "public abstract onCallActive(callId: string): Promise<void>;",
+      "containerClass": "BaseMediaCallAgent",
+      "calls": []
+    },
+    {
+      "type": "method",
+      "name": "onCallEnded",
+      "exported": true,
+      "qualifiedName": "BaseMediaCallAgent.onCallEnded",
+      "line": 65,
+      "endLine": 65,
+      "signature": "public abstract onCallEnded(callId: string): Promise<void>;",
+      "containerClass": "BaseMediaCallAgent",
+      "calls": []
+    },
+    {
+      "type": "method",
+      "name": "getOrCreateChannel",
+      "exported": true,
+      "qualifiedName": "BaseMediaCallAgent.getOrCreateChannel",
+      "line": 67,
+      "endLine": 69,
+      "signature": "public async getOrCreateChannel(call: IMediaCall, contractId: string): Promise<IMediaCallChannel>",
+      "containerClass": "BaseMediaCallAgent",
+      "calls": [
+        {
+          "name": "createOrUpdateChannel",
+          "edgeType": "call"
+        },
+        {
+          "name": "IMediaCall",
+          "edgeType": "type"
+        },
+        {
+          "name": "IMediaCallChannel",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "onCallCreated",
+      "exported": true,
+      "qualifiedName": "BaseMediaCallAgent.onCallCreated",
+      "line": 71,
+      "endLine": 71,
+      "signature": "public abstract onCallCreated(call: IMediaCall): Promise<void>;",
+      "containerClass": "BaseMediaCallAgent",
+      "calls": [
+        {
+          "name": "IMediaCall",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "onRemoteDescriptionChanged",
+      "exported": true,
+      "qualifiedName": "BaseMediaCallAgent.onRemoteDescriptionChanged",
+      "line": 73,
+      "endLine": 73,
+      "signature": "public abstract onRemoteDescriptionChanged(callId: string, negotiationId: string): Promise<void>;",
+      "containerClass": "BaseMediaCallAgent",
+      "calls": []
+    },
+    {
+      "type": "method",
+      "name": "onCallTransferred",
+      "exported": true,
+      "qualifiedName": "BaseMediaCallAgent.onCallTransferred",
+      "line": 75,
+      "endLine": 75,
+      "signature": "public abstract onCallTransferred(callId: string): Promise<void>;",
+      "containerClass": "BaseMediaCallAgent",
+      "calls": []
+    },
+    {
+      "type": "method",
+      "name": "onDTMF",
+      "exported": true,
+      "qualifiedName": "BaseMediaCallAgent.onDTMF",
+      "line": 77,
+      "endLine": 77,
+      "signature": "public abstract onDTMF(callId: string, dtmf: string, duration: number): Promise<void>;",
+      "containerClass": "BaseMediaCallAgent",
+      "calls": []
+    },
+    {
+      "type": "method",
+      "name": "createOrUpdateChannel",
+      "exported": true,
+      "qualifiedName": "BaseMediaCallAgent.createOrUpdateChannel",
+      "line": 79,
+      "endLine": 105,
+      "signature": "protected async createOrUpdateChannel(call: IMediaCall, contractId: string): Promise<IMediaCallChannel>",
+      "containerClass": "BaseMediaCallAgent",
+      "calls": [
+        {
+          "name": "createOrUpdateChannel",
+          "edgeType": "call"
+        },
+        {
+          "name": "IMediaCall",
+          "edgeType": "type"
+        },
+        {
+          "name": "IMediaCallChannel",
+          "edgeType": "type"
+        },
+        {
+          "name": "InsertionModel",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "constructor",
+      "exported": true,
+      "qualifiedName": "BaseMediaCallAgent.constructor",
+      "line": 35,
+      "endLine": 43,
+      "signature": "constructor( protected readonly contact: MediaCallContact, public readonly role: CallRole, )",
+      "containerClass": "BaseMediaCallAgent",
+      "calls": [
+        {
+          "name": "MediaCallContact",
+          "edgeType": "type"
+        },
+        {
+          "name": "CallRole",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "class_property",
+      "name": "actorType",
+      "exported": true,
+      "qualifiedName": "BaseMediaCallAgent.actorType",
+      "line": 16,
+      "endLine": 16,
+      "signature": "public readonly actorType: MediaCallActorType;",
+      "containerClass": "BaseMediaCallAgent",
+      "calls": [
+        {
+          "name": "MediaCallActorType",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "class_property",
+      "name": "oppositeAgent",
+      "exported": true,
+      "qualifiedName": "BaseMediaCallAgent.oppositeAgent",
+      "line": 20,
+      "endLine": 20,
+      "signature": "public oppositeAgent: IMediaCallAgent | null;",
+      "containerClass": "BaseMediaCallAgent",
+      "calls": [
+        {
+          "name": "IMediaCallAgent",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "class_property",
+      "name": "localDescription",
+      "exported": true,
+      "qualifiedName": "BaseMediaCallAgent.localDescription",
+      "line": 33,
+      "endLine": 33,
+      "signature": "protected localDescription: RTCSessionDescriptionInit | null;",
+      "containerClass": "BaseMediaCallAgent",
+      "calls": [
+        {
+          "name": "RTCSessionDescriptionInit",
+          "edgeType": "type"
+        }
+      ]
+    }
+  ],
+  "imports": [
+    {
+      "module": "@rocket.chat/core-typings",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/media-signaling",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/model-typings",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/models",
+      "resolved": "external"
+    },
+    {
+      "module": "../definition/IMediaCallAgent",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/ee/packages/media-calls/src/definition/IMediaCallAgent.ts"
+    }
+  ]
+}

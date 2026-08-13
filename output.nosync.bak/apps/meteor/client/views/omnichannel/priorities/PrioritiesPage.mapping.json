@@ -1,0 +1,348 @@
+{
+  "sourcePath": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/client/views/omnichannel/priorities/PrioritiesPage.tsx",
+  "symbols": [
+    {
+      "type": "inner_function",
+      "name": "handleReset",
+      "exported": false,
+      "qualifiedName": "PrioritiesPage.handleReset",
+      "line": 37,
+      "endLine": 59,
+      "signature": "(): void =>",
+      "calls": [
+        {
+          "name": "setResetting",
+          "edgeType": "call"
+        },
+        {
+          "name": "setModal",
+          "edgeType": "call"
+        },
+        {
+          "name": "resetPriorities",
+          "edgeType": "call"
+        },
+        {
+          "name": "invalidateQueries",
+          "edgeType": "call"
+        },
+        {
+          "name": "push",
+          "edgeType": "call"
+        },
+        {
+          "name": "dispatchToastMessage",
+          "edgeType": "call"
+        },
+        {
+          "name": "PrioritiesResetModal",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "onReset",
+          "edgeType": "jsx"
+        }
+      ]
+    },
+    {
+      "type": "inner_function",
+      "name": "onReset",
+      "exported": false,
+      "qualifiedName": "PrioritiesPage.onReset",
+      "line": 38,
+      "endLine": 56,
+      "signature": "async (): Promise<void> =>",
+      "calls": [
+        {
+          "name": "setResetting",
+          "edgeType": "call"
+        },
+        {
+          "name": "setModal",
+          "edgeType": "call"
+        },
+        {
+          "name": "resetPriorities",
+          "edgeType": "call"
+        },
+        {
+          "name": "invalidateQueries",
+          "edgeType": "call"
+        },
+        {
+          "name": "push",
+          "edgeType": "call"
+        },
+        {
+          "name": "dispatchToastMessage",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "inner_function",
+      "name": "onContextualbarClose",
+      "exported": false,
+      "qualifiedName": "PrioritiesPage.onContextualbarClose",
+      "line": 65,
+      "endLine": 67,
+      "signature": "(): void =>",
+      "calls": [
+        {
+          "name": "push",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "inner_function",
+      "name": "onSavePriority",
+      "exported": false,
+      "qualifiedName": "PrioritiesPage.onSavePriority",
+      "line": 69,
+      "endLine": 81,
+      "signature": "async ({ reset, ...payload }: PriorityFormData): Promise<void> =>",
+      "calls": [
+        {
+          "name": "savePriority",
+          "edgeType": "call"
+        },
+        {
+          "name": "invalidateQueries",
+          "edgeType": "call"
+        },
+        {
+          "name": "dispatchToastMessage",
+          "edgeType": "call"
+        },
+        {
+          "name": "push",
+          "edgeType": "call"
+        },
+        {
+          "name": "PriorityFormData",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "variable_function",
+      "name": "PrioritiesPage",
+      "exported": true,
+      "line": 20,
+      "endLine": 102,
+      "signature": "({ priorityId, context }: PrioritiesPageProps) =>",
+      "calls": [
+        {
+          "name": "useTranslation",
+          "edgeType": "call"
+        },
+        {
+          "name": "useQueryClient",
+          "edgeType": "call"
+        },
+        {
+          "name": "useRoute",
+          "edgeType": "call"
+        },
+        {
+          "name": "useToastMessageDispatch",
+          "edgeType": "call"
+        },
+        {
+          "name": "useSetModal",
+          "edgeType": "call"
+        },
+        {
+          "name": "useState",
+          "edgeType": "call"
+        },
+        {
+          "name": "useEndpoint",
+          "edgeType": "call"
+        },
+        {
+          "name": "useOmnichannelPriorities",
+          "edgeType": "call"
+        },
+        {
+          "name": "useMemo",
+          "edgeType": "call"
+        },
+        {
+          "name": "some",
+          "edgeType": "call"
+        },
+        {
+          "name": "setResetting",
+          "edgeType": "call"
+        },
+        {
+          "name": "setModal",
+          "edgeType": "call"
+        },
+        {
+          "name": "resetPriorities",
+          "edgeType": "call"
+        },
+        {
+          "name": "invalidateQueries",
+          "edgeType": "call"
+        },
+        {
+          "name": "push",
+          "edgeType": "call"
+        },
+        {
+          "name": "dispatchToastMessage",
+          "edgeType": "call"
+        },
+        {
+          "name": "useStableCallback",
+          "edgeType": "call"
+        },
+        {
+          "name": "savePriority",
+          "edgeType": "call"
+        },
+        {
+          "name": "Page",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "PageHeader",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "ButtonGroup",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "Button",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "PageContent",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "PrioritiesResetModal",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "PrioritiesTable",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "PriorityList",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "onReset",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "handleReset",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "isResetting",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "priorities",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "isLoading",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "onRowClick",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "priorityId",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "context",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "onSavePriority",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "onContextualbarClose",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "PrioritiesPageProps",
+          "edgeType": "type"
+        },
+        {
+          "name": "PriorityFormData",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "type",
+      "name": "PrioritiesPageProps",
+      "line": 15,
+      "endLine": 18,
+      "signature": "type PrioritiesPageProps ="
+    }
+  ],
+  "imports": [
+    {
+      "module": "@rocket.chat/fuselage",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/fuselage-hooks",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/ui-client",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/ui-contexts",
+      "resolved": "external"
+    },
+    {
+      "module": "@tanstack/react-query",
+      "resolved": "external"
+    },
+    {
+      "module": "react",
+      "resolved": "external"
+    },
+    {
+      "module": "react-i18next",
+      "resolved": "external"
+    },
+    {
+      "module": "./PrioritiesResetModal",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/client/views/omnichannel/priorities/PrioritiesResetModal.tsx"
+    },
+    {
+      "module": "./PrioritiesTable",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/client/views/omnichannel/priorities/PrioritiesTable.tsx"
+    },
+    {
+      "module": "./PriorityEditForm",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/client/views/omnichannel/priorities/PriorityEditForm.tsx"
+    },
+    {
+      "module": "./PriorityList",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/client/views/omnichannel/priorities/PriorityList.tsx"
+    },
+    {
+      "module": "../hooks/useOmnichannelPriorities",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/client/views/omnichannel/hooks/useOmnichannelPriorities.ts"
+    }
+  ]
+}

@@ -1,0 +1,215 @@
+{
+  "sourcePath": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/app/integrations/server/lib/validateOutgoingIntegration.ts",
+  "symbols": [
+    {
+      "type": "function",
+      "name": "_verifyRequiredFields",
+      "exported": false,
+      "line": 15,
+      "endLine": 52,
+      "signature": "function _verifyRequiredFields(integration: INewOutgoingIntegration | IUpdateOutgoingIntegration): void",
+      "calls": [
+        {
+          "name": "test",
+          "edgeType": "call"
+        },
+        {
+          "name": "trim",
+          "edgeType": "call"
+        },
+        {
+          "name": "filter",
+          "edgeType": "call"
+        },
+        {
+          "name": "INewOutgoingIntegration",
+          "edgeType": "type"
+        },
+        {
+          "name": "IUpdateOutgoingIntegration",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "function",
+      "name": "_verifyUserHasPermissionForChannels",
+      "exported": false,
+      "line": 19,
+      "endLine": 63,
+      "signature": "async function _verifyUserHasPermissionForChannels(userId: IUser['_id'], channels: string[]): Promise<void>",
+      "calls": [
+        {
+          "name": "includes",
+          "edgeType": "call"
+        },
+        {
+          "name": "hasPermissionAsync",
+          "edgeType": "call"
+        },
+        {
+          "name": "substr",
+          "edgeType": "call"
+        },
+        {
+          "name": "findOne",
+          "edgeType": "call"
+        },
+        {
+          "name": "hasAllPermissionAsync",
+          "edgeType": "call"
+        },
+        {
+          "name": "findOneByRoomIdAndUserId",
+          "edgeType": "call"
+        },
+        {
+          "name": "IUser",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "function",
+      "name": "_verifyRetryInformation",
+      "exported": false,
+      "line": 23,
+      "endLine": 32,
+      "signature": "function _verifyRetryInformation(integration: IOutgoingIntegration): void",
+      "calls": [
+        {
+          "name": "trim",
+          "edgeType": "call"
+        },
+        {
+          "name": "toLowerCase",
+          "edgeType": "call"
+        },
+        {
+          "name": "IOutgoingIntegration",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "variable_function",
+      "name": "validateOutgoingIntegration",
+      "exported": true,
+      "line": 27,
+      "endLine": 114,
+      "signature": "async function ( integration: INewOutgoingIntegration | IUpdateOutgoingIntegration, userId: IUser['_id'], ): Promise<IOutgoingIntegration>",
+      "calls": [
+        {
+          "name": "test",
+          "edgeType": "call"
+        },
+        {
+          "name": "trim",
+          "edgeType": "call"
+        },
+        {
+          "name": "_verifyRequiredFields",
+          "edgeType": "call"
+        },
+        {
+          "name": "parseCSV",
+          "edgeType": "call"
+        },
+        {
+          "name": "includes",
+          "edgeType": "call"
+        },
+        {
+          "name": "toLowerCase",
+          "edgeType": "call"
+        },
+        {
+          "name": "hasPermissionAsync",
+          "edgeType": "call"
+        },
+        {
+          "name": "findOne",
+          "edgeType": "call"
+        },
+        {
+          "name": "filter",
+          "edgeType": "call"
+        },
+        {
+          "name": "isScriptEngineFrozen",
+          "edgeType": "call"
+        },
+        {
+          "name": "compileIntegrationScript",
+          "edgeType": "call"
+        },
+        {
+          "name": "_verifyUserHasPermissionForChannels",
+          "edgeType": "call"
+        },
+        {
+          "name": "_verifyRetryInformation",
+          "edgeType": "call"
+        },
+        {
+          "name": "Date",
+          "edgeType": "new"
+        },
+        {
+          "name": "INewOutgoingIntegration",
+          "edgeType": "type"
+        },
+        {
+          "name": "IUpdateOutgoingIntegration",
+          "edgeType": "type"
+        },
+        {
+          "name": "IUser",
+          "edgeType": "type"
+        },
+        {
+          "name": "IOutgoingIntegration",
+          "edgeType": "type"
+        }
+      ]
+    }
+  ],
+  "imports": [
+    {
+      "module": "@rocket.chat/core-typings",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/models",
+      "resolved": "external"
+    },
+    {
+      "module": "meteor/check",
+      "resolved": "external"
+    },
+    {
+      "module": "meteor/meteor",
+      "resolved": "external"
+    },
+    {
+      "module": "./compileIntegrationScript",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/app/integrations/server/lib/compileIntegrationScript.ts"
+    },
+    {
+      "module": "./validateScriptEngine",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/app/integrations/server/lib/validateScriptEngine.ts"
+    },
+    {
+      "module": "../../../../lib/utils/parseCSV",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/lib/utils/parseCSV.ts"
+    },
+    {
+      "module": "../../../../server/lib/authorization/hasPermission",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/server/lib/authorization/hasPermission.ts"
+    },
+    {
+      "module": "../../lib/outgoingEvents",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/app/integrations/lib/outgoingEvents.ts"
+    }
+  ]
+}

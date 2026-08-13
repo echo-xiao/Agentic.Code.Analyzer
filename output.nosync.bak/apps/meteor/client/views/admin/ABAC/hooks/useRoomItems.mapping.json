@@ -1,0 +1,96 @@
+{
+  "sourcePath": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/client/views/admin/ABAC/hooks/useRoomItems.tsx",
+  "symbols": [
+    {
+      "type": "inner_function",
+      "name": "onClick",
+      "exported": false,
+      "qualifiedName": "useRoomItems.onClick",
+      "line": 31,
+      "endLine": 31,
+      "signature": "() =>",
+      "calls": [
+        {
+          "name": "editAction",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "variable_function",
+      "name": "useRoomItems",
+      "exported": true,
+      "line": 10,
+      "endLine": 40,
+      "signature": "(room: { rid: string; name: string }): GenericMenuItemProps[] =>",
+      "calls": [
+        {
+          "name": "useTranslation",
+          "edgeType": "call"
+        },
+        {
+          "name": "useRouter",
+          "edgeType": "call"
+        },
+        {
+          "name": "useDeleteRoomModal",
+          "edgeType": "call"
+        },
+        {
+          "name": "useIsABACAvailable",
+          "edgeType": "call"
+        },
+        {
+          "name": "useStableCallback",
+          "edgeType": "call"
+        },
+        {
+          "name": "navigate",
+          "edgeType": "call"
+        },
+        {
+          "name": "editAction",
+          "edgeType": "call"
+        },
+        {
+          "name": "Box",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "GenericMenuItemProps",
+          "edgeType": "type"
+        }
+      ]
+    }
+  ],
+  "imports": [
+    {
+      "module": "@rocket.chat/fuselage",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/fuselage-hooks",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/ui-client",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/ui-contexts",
+      "resolved": "external"
+    },
+    {
+      "module": "react-i18next",
+      "resolved": "external"
+    },
+    {
+      "module": "./useDeleteRoomModal",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/client/views/admin/ABAC/hooks/useDeleteRoomModal.tsx"
+    },
+    {
+      "module": "./useIsABACAvailable",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/client/views/admin/ABAC/hooks/useIsABACAvailable.ts"
+    }
+  ]
+}

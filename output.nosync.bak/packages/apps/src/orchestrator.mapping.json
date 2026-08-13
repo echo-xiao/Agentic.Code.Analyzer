@@ -1,0 +1,54 @@
+{
+  "sourcePath": "/Users/echoooooo/Desktop/code/Rocket.Chat/packages/apps/src/orchestrator.ts",
+  "symbols": [
+    {
+      "type": "function",
+      "name": "registerOrchestrator",
+      "exported": true,
+      "line": 27,
+      "endLine": 29,
+      "signature": "export function registerOrchestrator(orch: IAppServerOrchestrator): void",
+      "calls": [
+        {
+          "name": "IAppServerOrchestrator",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "variable",
+      "name": "Apps",
+      "exported": true,
+      "line": 7,
+      "endLine": 25,
+      "signature": "Apps = new Proxy<Orchestrator>(",
+      "calls": [
+        {
+          "name": "bind",
+          "edgeType": "call"
+        },
+        {
+          "name": "Orchestrator",
+          "edgeType": "type"
+        },
+        {
+          "name": "IAppServerOrchestrator",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "type",
+      "name": "Orchestrator",
+      "line": 5,
+      "endLine": 5,
+      "signature": "type Orchestrator ="
+    }
+  ],
+  "imports": [
+    {
+      "module": "./IAppServerOrchestrator",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/packages/apps/src/IAppServerOrchestrator.ts"
+    }
+  ]
+}

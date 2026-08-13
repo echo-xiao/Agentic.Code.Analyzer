@@ -1,0 +1,82 @@
+{
+  "sourcePath": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/client/components/TwoFactorModal/TwoFactorModal.tsx",
+  "symbols": [
+    {
+      "type": "variable_function",
+      "name": "TwoFactorModal",
+      "exported": false,
+      "line": 27,
+      "endLine": 43,
+      "signature": "({ onConfirm, onClose, invalidAttempt, ...props }: TwoFactorModalProps) =>",
+      "calls": [
+        {
+          "name": "TwoFactorTotp",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "TwoFactorEmail",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "TwoFactorPassword",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "onConfirm",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "onClose",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "invalidAttempt",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "emailOrUsername",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "TwoFactorModalProps",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "type",
+      "name": "OnConfirm",
+      "line": 11,
+      "endLine": 11,
+      "signature": "export type OnConfirm = (code: string, method: Method) => void | Promise<void>;"
+    },
+    {
+      "type": "type",
+      "name": "TwoFactorModalProps",
+      "line": 13,
+      "endLine": 25,
+      "signature": "export type TwoFactorModalProps ="
+    },
+    {
+      "type": "enum",
+      "name": "Method",
+      "line": 5,
+      "endLine": 9,
+      "signature": "export enum Method"
+    }
+  ],
+  "imports": [
+    {
+      "module": "./TwoFactorEmailModal",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/client/components/TwoFactorModal/TwoFactorEmailModal.tsx"
+    },
+    {
+      "module": "./TwoFactorPasswordModal",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/client/components/TwoFactorModal/TwoFactorPasswordModal.tsx"
+    },
+    {
+      "module": "./TwoFactorTotpModal",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/client/components/TwoFactorModal/TwoFactorTotpModal.tsx"
+    }
+  ]
+}

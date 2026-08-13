@@ -1,0 +1,53 @@
+{
+  "sourcePath": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/client/providers/UserProvider/hooks/useClearRemovedRoomsHistory.ts",
+  "symbols": [
+    {
+      "type": "variable_function",
+      "name": "useClearRemovedRoomsHistory",
+      "exported": true,
+      "line": 7,
+      "endLine": 20,
+      "signature": "(userId: IUser['_id'] | undefined) =>",
+      "calls": [
+        {
+          "name": "useStream",
+          "edgeType": "call"
+        },
+        {
+          "name": "useEffect",
+          "edgeType": "call"
+        },
+        {
+          "name": "subscribeToNotifyUser",
+          "edgeType": "call"
+        },
+        {
+          "name": "clear",
+          "edgeType": "call"
+        },
+        {
+          "name": "IUser",
+          "edgeType": "type"
+        }
+      ]
+    }
+  ],
+  "imports": [
+    {
+      "module": "@rocket.chat/core-typings",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/ui-contexts",
+      "resolved": "external"
+    },
+    {
+      "module": "react",
+      "resolved": "external"
+    },
+    {
+      "module": "../../../../app/ui-utils/client",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/app/ui-utils/client/index.ts"
+    }
+  ]
+}

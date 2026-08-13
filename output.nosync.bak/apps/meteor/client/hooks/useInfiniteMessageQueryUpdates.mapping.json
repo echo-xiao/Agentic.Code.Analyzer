@@ -1,0 +1,165 @@
+{
+  "sourcePath": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/client/hooks/useInfiniteMessageQueryUpdates.ts",
+  "symbols": [
+    {
+      "type": "variable_function",
+      "name": "useInfiniteMessageQueryUpdates",
+      "exported": true,
+      "line": 8,
+      "endLine": 108,
+      "signature": "<T extends IMessage, TQueryKey extends readonly unknown[]>({ queryKey, roomId, filter, compare = (a, b) => b.ts.getTime() - a.ts.getTime(), }: { queryKey: TQueryKey; roomId: IRoom['_id']; filter: (message: IMessage) => message is T; compare?: (a: T, b: T) => number; }) =>",
+      "calls": [
+        {
+          "name": "getTime",
+          "edgeType": "call"
+        },
+        {
+          "name": "useQueryClient",
+          "edgeType": "call"
+        },
+        {
+          "name": "useStream",
+          "edgeType": "call"
+        },
+        {
+          "name": "useStableCallback",
+          "edgeType": "call"
+        },
+        {
+          "name": "getQueryData",
+          "edgeType": "call"
+        },
+        {
+          "name": "flatMap",
+          "edgeType": "call"
+        },
+        {
+          "name": "at",
+          "edgeType": "call"
+        },
+        {
+          "name": "mutation",
+          "edgeType": "call"
+        },
+        {
+          "name": "ceil",
+          "edgeType": "call"
+        },
+        {
+          "name": "from",
+          "edgeType": "call"
+        },
+        {
+          "name": "slice",
+          "edgeType": "call"
+        },
+        {
+          "name": "setQueryData",
+          "edgeType": "call"
+        },
+        {
+          "name": "useUserId",
+          "edgeType": "call"
+        },
+        {
+          "name": "useEffect",
+          "edgeType": "call"
+        },
+        {
+          "name": "subscribeToRoomMessages",
+          "edgeType": "call"
+        },
+        {
+          "name": "doFilter",
+          "edgeType": "call"
+        },
+        {
+          "name": "mutateQueryData",
+          "edgeType": "call"
+        },
+        {
+          "name": "findIndex",
+          "edgeType": "call"
+        },
+        {
+          "name": "push",
+          "edgeType": "call"
+        },
+        {
+          "name": "sort",
+          "edgeType": "call"
+        },
+        {
+          "name": "subscribeToNotifyRoom",
+          "edgeType": "call"
+        },
+        {
+          "name": "splice",
+          "edgeType": "call"
+        },
+        {
+          "name": "invalidateQueries",
+          "edgeType": "call"
+        },
+        {
+          "name": "getQueryKey",
+          "edgeType": "call"
+        },
+        {
+          "name": "unsubscribeFromRoomMessages",
+          "edgeType": "call"
+        },
+        {
+          "name": "unsubscribeFromDeleteMessage",
+          "edgeType": "call"
+        },
+        {
+          "name": "unsubscribeFromDeleteMessageBulk",
+          "edgeType": "call"
+        },
+        {
+          "name": "IMessage",
+          "edgeType": "type"
+        },
+        {
+          "name": "TQueryKey",
+          "edgeType": "type"
+        },
+        {
+          "name": "IRoom",
+          "edgeType": "type"
+        },
+        {
+          "name": "InfiniteData",
+          "edgeType": "type"
+        }
+      ]
+    }
+  ],
+  "imports": [
+    {
+      "module": "@rocket.chat/core-typings",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/fuselage-hooks",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/ui-contexts",
+      "resolved": "external"
+    },
+    {
+      "module": "@tanstack/react-query",
+      "resolved": "external"
+    },
+    {
+      "module": "@tanstack/react-query",
+      "resolved": "external"
+    },
+    {
+      "module": "react",
+      "resolved": "external"
+    }
+  ]
+}

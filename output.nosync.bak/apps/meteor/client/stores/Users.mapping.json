@@ -1,0 +1,41 @@
+{
+  "sourcePath": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/client/stores/Users.ts",
+  "symbols": [
+    {
+      "type": "variable",
+      "name": "Users",
+      "exported": true,
+      "line": 10,
+      "endLine": 12,
+      "signature": "Users = createGlobalStore(createDocumentMapStore<IUser>(hooks),",
+      "calls": [
+        {
+          "name": "createDocumentMapStore",
+          "edgeType": "call"
+        },
+        {
+          "name": "IUser",
+          "edgeType": "type"
+        }
+      ]
+    }
+  ],
+  "imports": [
+    {
+      "module": "@rocket.chat/core-typings",
+      "resolved": "external"
+    },
+    {
+      "module": "../lib/cachedStores/DocumentMapStore",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/client/lib/cachedStores/DocumentMapStore.ts"
+    },
+    {
+      "module": "../lib/cachedStores/DocumentMapStore",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/client/lib/cachedStores/DocumentMapStore.ts"
+    },
+    {
+      "module": "../lib/cachedStores/createGlobalStore",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/client/lib/cachedStores/createGlobalStore.ts"
+    }
+  ]
+}

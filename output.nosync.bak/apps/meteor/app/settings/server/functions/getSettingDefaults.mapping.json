@@ -1,0 +1,69 @@
+{
+  "sourcePath": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/app/settings/server/functions/getSettingDefaults.ts",
+  "symbols": [
+    {
+      "type": "variable_function",
+      "name": "getSettingDefaults",
+      "exported": true,
+      "line": 4,
+      "endLine": 45,
+      "signature": "( setting: Partial<ISetting> & Pick<ISetting, '_id' | 'value' | 'type'>, blockedSettings: Set<string> = new Set(), hiddenSettings: Set<string> = new Set(), wizardRequiredSettings: Set<string> = new Set(), ): ISetting =>",
+      "calls": [
+        {
+          "name": "fromEntries",
+          "edgeType": "call"
+        },
+        {
+          "name": "filter",
+          "edgeType": "call"
+        },
+        {
+          "name": "entries",
+          "edgeType": "call"
+        },
+        {
+          "name": "stringify",
+          "edgeType": "call"
+        },
+        {
+          "name": "has",
+          "edgeType": "call"
+        },
+        {
+          "name": "isSettingColor",
+          "edgeType": "call"
+        },
+        {
+          "name": "isSettingRange",
+          "edgeType": "call"
+        },
+        {
+          "name": "Set",
+          "edgeType": "new"
+        },
+        {
+          "name": "Date",
+          "edgeType": "new"
+        },
+        {
+          "name": "ISetting",
+          "edgeType": "type"
+        },
+        {
+          "name": "ISettingColor",
+          "edgeType": "type"
+        }
+      ]
+    }
+  ],
+  "imports": [
+    {
+      "module": "@rocket.chat/core-typings",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/core-typings",
+      "resolved": "external"
+    }
+  ]
+}

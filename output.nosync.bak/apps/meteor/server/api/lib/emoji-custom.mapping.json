@@ -1,0 +1,53 @@
+{
+  "sourcePath": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/server/api/lib/emoji-custom.ts",
+  "symbols": [
+    {
+      "type": "function",
+      "name": "findEmojisCustom",
+      "exported": true,
+      "line": 5,
+      "endLine": 31,
+      "signature": "export async function findEmojisCustom({ query = {}, pagination: { offset, count, sort }, }: { query: Filter<IEmojiCustom>; pagination: { offset: number; count: number; sort: FindOptions<IEmojiCustom>['sort'] }; }): Promise<{ emojis: IEmojiCustom[]; count: number; offset: any; total: number; }>",
+      "calls": [
+        {
+          "name": "findPaginated",
+          "edgeType": "call"
+        },
+        {
+          "name": "all",
+          "edgeType": "call"
+        },
+        {
+          "name": "toArray",
+          "edgeType": "call"
+        },
+        {
+          "name": "Filter",
+          "edgeType": "type"
+        },
+        {
+          "name": "IEmojiCustom",
+          "edgeType": "type"
+        },
+        {
+          "name": "FindOptions",
+          "edgeType": "type"
+        }
+      ]
+    }
+  ],
+  "imports": [
+    {
+      "module": "@rocket.chat/core-typings",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/models",
+      "resolved": "external"
+    },
+    {
+      "module": "mongodb",
+      "resolved": "external"
+    }
+  ]
+}

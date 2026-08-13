@@ -1,0 +1,185 @@
+{
+  "sourcePath": "/Users/echoooooo/Desktop/code/Rocket.Chat/packages/apps/src/server/bridges/OutboundMessagesBridge.ts",
+  "symbols": [
+    {
+      "type": "class",
+      "name": "OutboundMessageBridge",
+      "exported": true,
+      "line": 12,
+      "endLine": 51,
+      "signature": "export abstract class OutboundMessageBridge extends BaseBridge",
+      "calls": [
+        {
+          "name": "BaseBridge",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "doRegisterPhoneProvider",
+      "exported": true,
+      "qualifiedName": "OutboundMessageBridge.doRegisterPhoneProvider",
+      "line": 13,
+      "endLine": 17,
+      "signature": "public async doRegisterPhoneProvider(info: IOutboundPhoneMessageProvider, appId: string): Promise<void>",
+      "containerClass": "OutboundMessageBridge",
+      "calls": [
+        {
+          "name": "hasProviderPermission",
+          "edgeType": "call"
+        },
+        {
+          "name": "registerPhoneProvider",
+          "edgeType": "call"
+        },
+        {
+          "name": "IOutboundPhoneMessageProvider",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "doRegisterEmailProvider",
+      "exported": true,
+      "qualifiedName": "OutboundMessageBridge.doRegisterEmailProvider",
+      "line": 17,
+      "endLine": 21,
+      "signature": "public async doRegisterEmailProvider(info: IOutboundEmailMessageProvider, appId: string): Promise<void>",
+      "containerClass": "OutboundMessageBridge",
+      "calls": [
+        {
+          "name": "hasProviderPermission",
+          "edgeType": "call"
+        },
+        {
+          "name": "registerEmailProvider",
+          "edgeType": "call"
+        },
+        {
+          "name": "IOutboundEmailMessageProvider",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "doUnRegisterProvider",
+      "exported": true,
+      "qualifiedName": "OutboundMessageBridge.doUnRegisterProvider",
+      "line": 21,
+      "endLine": 25,
+      "signature": "public async doUnRegisterProvider(info: IOutboundMessageProviders, appId: string): Promise<void>",
+      "containerClass": "OutboundMessageBridge",
+      "calls": [
+        {
+          "name": "hasProviderPermission",
+          "edgeType": "call"
+        },
+        {
+          "name": "unRegisterProvider",
+          "edgeType": "call"
+        },
+        {
+          "name": "IOutboundMessageProviders",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "hasProviderPermission",
+      "exported": true,
+      "qualifiedName": "OutboundMessageBridge.hasProviderPermission",
+      "line": 25,
+      "endLine": 38,
+      "signature": "private hasProviderPermission(appId: string): boolean",
+      "containerClass": "OutboundMessageBridge",
+      "calls": [
+        {
+          "name": "hasPermission",
+          "edgeType": "call"
+        },
+        {
+          "name": "notifyAboutError",
+          "edgeType": "call"
+        },
+        {
+          "name": "PermissionDeniedError",
+          "edgeType": "new"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "registerPhoneProvider",
+      "exported": true,
+      "qualifiedName": "OutboundMessageBridge.registerPhoneProvider",
+      "line": 29,
+      "endLine": 29,
+      "signature": "protected abstract registerPhoneProvider(info: IOutboundPhoneMessageProvider, appId: string): Promise<void>;",
+      "containerClass": "OutboundMessageBridge",
+      "calls": [
+        {
+          "name": "IOutboundPhoneMessageProvider",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "registerEmailProvider",
+      "exported": true,
+      "qualifiedName": "OutboundMessageBridge.registerEmailProvider",
+      "line": 31,
+      "endLine": 31,
+      "signature": "protected abstract registerEmailProvider(info: IOutboundEmailMessageProvider, appId: string): Promise<void>;",
+      "containerClass": "OutboundMessageBridge",
+      "calls": [
+        {
+          "name": "IOutboundEmailMessageProvider",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "unRegisterProvider",
+      "exported": true,
+      "qualifiedName": "OutboundMessageBridge.unRegisterProvider",
+      "line": 33,
+      "endLine": 33,
+      "signature": "protected abstract unRegisterProvider(info: IOutboundMessageProviders, appId: string): Promise<void>;",
+      "containerClass": "OutboundMessageBridge",
+      "calls": [
+        {
+          "name": "IOutboundMessageProviders",
+          "edgeType": "type"
+        }
+      ]
+    }
+  ],
+  "imports": [
+    {
+      "module": "@rocket.chat/apps-engine/definition/outboundCommunication",
+      "resolved": "external"
+    },
+    {
+      "module": "./BaseBridge",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/packages/apps/src/server/bridges/BaseBridge.ts"
+    },
+    {
+      "module": "../errors/PermissionDeniedError",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/packages/apps/src/server/errors/PermissionDeniedError.ts"
+    },
+    {
+      "module": "../managers/AppPermissionManager",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/packages/apps/src/server/managers/AppPermissionManager.ts"
+    },
+    {
+      "module": "../permissions/AppPermissions",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/packages/apps/src/server/permissions/AppPermissions.ts"
+    }
+  ]
+}

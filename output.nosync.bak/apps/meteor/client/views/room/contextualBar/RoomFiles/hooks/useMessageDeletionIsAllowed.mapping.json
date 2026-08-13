@@ -1,0 +1,73 @@
+{
+  "sourcePath": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/client/views/room/contextualBar/RoomFiles/hooks/useMessageDeletionIsAllowed.ts",
+  "symbols": [
+    {
+      "type": "variable_function",
+      "name": "useMessageDeletionIsAllowed",
+      "exported": true,
+      "line": 7,
+      "endLine": 60,
+      "signature": "(rid: IRoom['_id'], file: IUpload, uid: IUser['_id'] | undefined) =>",
+      "calls": [
+        {
+          "name": "usePermission",
+          "edgeType": "call"
+        },
+        {
+          "name": "useSetting",
+          "edgeType": "call"
+        },
+        {
+          "name": "useMemo",
+          "edgeType": "call"
+        },
+        {
+          "name": "getDifference",
+          "edgeType": "call"
+        },
+        {
+          "name": "isUserOwnFile",
+          "edgeType": "call"
+        },
+        {
+          "name": "checkTimeframe",
+          "edgeType": "call"
+        },
+        {
+          "name": "Date",
+          "edgeType": "new"
+        },
+        {
+          "name": "IRoom",
+          "edgeType": "type"
+        },
+        {
+          "name": "IUpload",
+          "edgeType": "type"
+        },
+        {
+          "name": "IUser",
+          "edgeType": "type"
+        }
+      ]
+    }
+  ],
+  "imports": [
+    {
+      "module": "@rocket.chat/core-typings",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/ui-contexts",
+      "resolved": "external"
+    },
+    {
+      "module": "react",
+      "resolved": "external"
+    },
+    {
+      "module": "../lib/getDifference",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/client/views/room/contextualBar/RoomFiles/lib/getDifference.ts"
+    }
+  ]
+}

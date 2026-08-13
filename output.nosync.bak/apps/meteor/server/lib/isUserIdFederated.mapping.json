@@ -1,0 +1,33 @@
+{
+  "sourcePath": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/server/lib/isUserIdFederated.ts",
+  "symbols": [
+    {
+      "type": "variable_function",
+      "name": "isUserIdFederated",
+      "exported": true,
+      "line": 4,
+      "endLine": 11,
+      "signature": "async (userId: string): Promise<boolean> =>",
+      "calls": [
+        {
+          "name": "findOneById",
+          "edgeType": "call"
+        },
+        {
+          "name": "isUserFederated",
+          "edgeType": "call"
+        }
+      ]
+    }
+  ],
+  "imports": [
+    {
+      "module": "@rocket.chat/core-typings",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/models",
+      "resolved": "external"
+    }
+  ]
+}

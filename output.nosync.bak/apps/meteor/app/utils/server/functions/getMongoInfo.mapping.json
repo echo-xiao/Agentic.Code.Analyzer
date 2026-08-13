@@ -1,0 +1,81 @@
+{
+  "sourcePath": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/app/utils/server/functions/getMongoInfo.ts",
+  "symbols": [
+    {
+      "type": "function",
+      "name": "getOplogInfo",
+      "exported": false,
+      "line": 3,
+      "endLine": 7,
+      "signature": "function getOplogInfo(): { mongo: MongoConnection }",
+      "calls": [
+        {
+          "name": "defaultRemoteCollectionDriver",
+          "edgeType": "call"
+        },
+        {
+          "name": "MongoConnection",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "function",
+      "name": "fallbackMongoInfo",
+      "exported": false,
+      "line": 7,
+      "endLine": 37,
+      "signature": "async function fallbackMongoInfo(): Promise<{ mongoVersion: string; mongoStorageEngine?: string; mongo: MongoConnection; }>",
+      "calls": [
+        {
+          "name": "getOplogInfo",
+          "edgeType": "call"
+        },
+        {
+          "name": "command",
+          "edgeType": "call"
+        },
+        {
+          "name": "error",
+          "edgeType": "call"
+        },
+        {
+          "name": "MongoConnection",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "function",
+      "name": "getMongoInfo",
+      "exported": true,
+      "line": 15,
+      "endLine": 35,
+      "signature": "export async function getMongoInfo(): Promise<{ mongoVersion: string; mongoStorageEngine?: string; mongo: MongoConnection; }>",
+      "calls": [
+        {
+          "name": "getOplogInfo",
+          "edgeType": "call"
+        },
+        {
+          "name": "command",
+          "edgeType": "call"
+        },
+        {
+          "name": "fallbackMongoInfo",
+          "edgeType": "call"
+        },
+        {
+          "name": "MongoConnection",
+          "edgeType": "type"
+        }
+      ]
+    }
+  ],
+  "imports": [
+    {
+      "module": "meteor/mongo",
+      "resolved": "external"
+    }
+  ]
+}

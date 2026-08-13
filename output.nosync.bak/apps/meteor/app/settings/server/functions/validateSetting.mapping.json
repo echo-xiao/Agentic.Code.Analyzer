@@ -1,0 +1,33 @@
+{
+  "sourcePath": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/app/settings/server/functions/validateSetting.ts",
+  "symbols": [
+    {
+      "type": "variable_function",
+      "name": "validateSetting",
+      "exported": true,
+      "line": 3,
+      "endLine": 59,
+      "signature": "<T extends ISetting>(_id: T['_id'], type: T['type'], value: T['value'] | unknown): boolean =>",
+      "calls": [
+        {
+          "name": "isActionSettingWithEndpoint",
+          "edgeType": "call"
+        },
+        {
+          "name": "isArray",
+          "edgeType": "call"
+        },
+        {
+          "name": "ISetting",
+          "edgeType": "type"
+        }
+      ]
+    }
+  ],
+  "imports": [
+    {
+      "module": "@rocket.chat/core-typings",
+      "resolved": "external"
+    }
+  ]
+}

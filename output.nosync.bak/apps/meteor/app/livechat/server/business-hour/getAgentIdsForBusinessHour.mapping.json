@@ -1,0 +1,101 @@
+{
+  "sourcePath": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/app/livechat/server/business-hour/getAgentIdsForBusinessHour.ts",
+  "symbols": [
+    {
+      "type": "variable_function",
+      "name": "getAllAgentIdsWithoutDepartment",
+      "exported": false,
+      "line": 4,
+      "endLine": 23,
+      "signature": "async (): Promise<string[]> =>",
+      "calls": [
+        {
+          "name": "map",
+          "edgeType": "call"
+        },
+        {
+          "name": "toArray",
+          "edgeType": "call"
+        },
+        {
+          "name": "findNotArchived",
+          "edgeType": "call"
+        },
+        {
+          "name": "findAllAgentsConnectedToListOfDepartments",
+          "edgeType": "call"
+        },
+        {
+          "name": "findUsersInRolesWithQuery",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "variable_function",
+      "name": "getAllAgentIdsWithDepartmentNotConnectedToBusinessHour",
+      "exported": false,
+      "line": 8,
+      "endLine": 19,
+      "signature": "async (): Promise<string[]> =>",
+      "calls": [
+        {
+          "name": "map",
+          "edgeType": "call"
+        },
+        {
+          "name": "toArray",
+          "edgeType": "call"
+        },
+        {
+          "name": "findActiveDepartmentsWithoutBusinessHour",
+          "edgeType": "call"
+        },
+        {
+          "name": "findAllAgentsConnectedToListOfDepartments",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "variable_function",
+      "name": "getAgentIdsForBusinessHour",
+      "exported": true,
+      "line": 12,
+      "endLine": 19,
+      "signature": "async (): Promise<IUser['_id'][]> =>",
+      "calls": [
+        {
+          "name": "all",
+          "edgeType": "call"
+        },
+        {
+          "name": "getAllAgentIdsWithoutDepartment",
+          "edgeType": "call"
+        },
+        {
+          "name": "getAllAgentIdsWithDepartmentNotConnectedToBusinessHour",
+          "edgeType": "call"
+        },
+        {
+          "name": "Set",
+          "edgeType": "new"
+        },
+        {
+          "name": "IUser",
+          "edgeType": "type"
+        }
+      ]
+    }
+  ],
+  "imports": [
+    {
+      "module": "@rocket.chat/core-typings",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/models",
+      "resolved": "external"
+    }
+  ]
+}

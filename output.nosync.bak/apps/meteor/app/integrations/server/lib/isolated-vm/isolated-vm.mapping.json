@@ -1,0 +1,204 @@
+{
+  "sourcePath": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/app/integrations/server/lib/isolated-vm/isolated-vm.ts",
+  "symbols": [
+    {
+      "type": "class",
+      "name": "IsolatedVMScriptEngine",
+      "exported": true,
+      "line": 12,
+      "endLine": 99,
+      "signature": "export class IsolatedVMScriptEngine<IsIncoming extends boolean> extends IntegrationScriptEngine<IsIncoming>",
+      "calls": [
+        {
+          "name": "IntegrationScriptEngine",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "isDisabled",
+      "exported": true,
+      "qualifiedName": "IsolatedVMScriptEngine.isDisabled",
+      "line": 13,
+      "endLine": 15,
+      "signature": "protected isDisabled(): boolean",
+      "containerClass": "IsolatedVMScriptEngine",
+      "calls": []
+    },
+    {
+      "type": "method",
+      "name": "callScriptFunction",
+      "exported": true,
+      "qualifiedName": "IsolatedVMScriptEngine.callScriptFunction",
+      "line": 17,
+      "endLine": 25,
+      "signature": "protected async callScriptFunction( scriptReference: Reference<ValueOf<IScriptClass>>, ...params: Parameters<ValueOf<FullScriptClass>> ): Promise<any>",
+      "containerClass": "IsolatedVMScriptEngine",
+      "calls": [
+        {
+          "name": "applySync",
+          "edgeType": "call"
+        },
+        {
+          "name": "Reference",
+          "edgeType": "type"
+        },
+        {
+          "name": "ValueOf",
+          "edgeType": "type"
+        },
+        {
+          "name": "IScriptClass",
+          "edgeType": "type"
+        },
+        {
+          "name": "FullScriptClass",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "runScriptMethod",
+      "exported": true,
+      "qualifiedName": "IsolatedVMScriptEngine.runScriptMethod",
+      "line": 24,
+      "endLine": 41,
+      "signature": "protected async runScriptMethod({ script, method, params, }: { integrationId: IIntegration['_id']; script: Partial<IScriptClass>; method: keyof IScriptClass; params: Record<string, any>; }): Promise<any>",
+      "containerClass": "IsolatedVMScriptEngine",
+      "calls": [
+        {
+          "name": "fn",
+          "edgeType": "call"
+        },
+        {
+          "name": "IIntegration",
+          "edgeType": "type"
+        },
+        {
+          "name": "IScriptClass",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "getIntegrationScript",
+      "exported": true,
+      "qualifiedName": "IsolatedVMScriptEngine.getIntegrationScript",
+      "line": 37,
+      "endLine": 89,
+      "signature": "protected async getIntegrationScript(integration: IIntegration): Promise<Partial<IScriptClass>>",
+      "containerClass": "IsolatedVMScriptEngine",
+      "calls": [
+        {
+          "name": "info",
+          "edgeType": "call"
+        },
+        {
+          "name": "pick",
+          "edgeType": "call"
+        },
+        {
+          "name": "debug",
+          "edgeType": "call"
+        },
+        {
+          "name": "compileScript",
+          "edgeType": "call"
+        },
+        {
+          "name": "getCompatibilityScript",
+          "edgeType": "call"
+        },
+        {
+          "name": "createContextSync",
+          "edgeType": "call"
+        },
+        {
+          "name": "buildSandbox",
+          "edgeType": "call"
+        },
+        {
+          "name": "get",
+          "edgeType": "call"
+        },
+        {
+          "name": "fromEntries",
+          "edgeType": "call"
+        },
+        {
+          "name": "map",
+          "edgeType": "call"
+        },
+        {
+          "name": "getSync",
+          "edgeType": "call"
+        },
+        {
+          "name": "callScriptFunction",
+          "edgeType": "call"
+        },
+        {
+          "name": "error",
+          "edgeType": "call"
+        },
+        {
+          "name": "IIntegration",
+          "edgeType": "type"
+        },
+        {
+          "name": "IScriptClass",
+          "edgeType": "type"
+        },
+        {
+          "name": "Reference",
+          "edgeType": "type"
+        },
+        {
+          "name": "CompatibilityScriptResult",
+          "edgeType": "type"
+        },
+        {
+          "name": "ValueOf",
+          "edgeType": "type"
+        },
+        {
+          "name": "FullScriptClass",
+          "edgeType": "type"
+        }
+      ]
+    }
+  ],
+  "imports": [
+    {
+      "module": "@rocket.chat/core-typings",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/tools",
+      "resolved": "external"
+    },
+    {
+      "module": "isolated-vm",
+      "resolved": "external"
+    },
+    {
+      "module": "../ScriptEngine",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/app/integrations/server/lib/ScriptEngine.ts"
+    },
+    {
+      "module": "../definition",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/app/integrations/server/lib/definition.ts"
+    },
+    {
+      "module": "./buildSandbox",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/app/integrations/server/lib/isolated-vm/buildSandbox.ts"
+    },
+    {
+      "module": "./getCompatibilityScript",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/app/integrations/server/lib/isolated-vm/getCompatibilityScript.ts"
+    }
+  ]
+}

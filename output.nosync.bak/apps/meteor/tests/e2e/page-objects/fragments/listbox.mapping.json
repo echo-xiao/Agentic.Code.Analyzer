@@ -1,0 +1,100 @@
+{
+  "sourcePath": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/tests/e2e/page-objects/fragments/listbox.ts",
+  "symbols": [
+    {
+      "type": "class",
+      "name": "Listbox",
+      "exported": true,
+      "line": 3,
+      "endLine": 21,
+      "signature": "export class Listbox",
+      "calls": []
+    },
+    {
+      "type": "method",
+      "name": "selectOption",
+      "exported": true,
+      "qualifiedName": "Listbox.selectOption",
+      "line": 14,
+      "endLine": 16,
+      "signature": "async selectOption(name: string, exact?: boolean)",
+      "containerClass": "Listbox",
+      "calls": [
+        {
+          "name": "click",
+          "edgeType": "call"
+        },
+        {
+          "name": "getByRole",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "getOption",
+      "exported": true,
+      "qualifiedName": "Listbox.getOption",
+      "line": 18,
+      "endLine": 20,
+      "signature": "public getOption(name: string): Locator",
+      "containerClass": "Listbox",
+      "calls": [
+        {
+          "name": "getByRole",
+          "edgeType": "call"
+        },
+        {
+          "name": "Locator",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "constructor",
+      "exported": true,
+      "qualifiedName": "Listbox.constructor",
+      "line": 6,
+      "endLine": 12,
+      "signature": "constructor(page: Page, name?: string)",
+      "containerClass": "Listbox",
+      "calls": [
+        {
+          "name": "last",
+          "edgeType": "call"
+        },
+        {
+          "name": "getByRole",
+          "edgeType": "call"
+        },
+        {
+          "name": "Page",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "class_property",
+      "name": "root",
+      "exported": true,
+      "qualifiedName": "Listbox.root",
+      "line": 4,
+      "endLine": 4,
+      "signature": "readonly root: Locator;",
+      "containerClass": "Listbox",
+      "calls": [
+        {
+          "name": "Locator",
+          "edgeType": "type"
+        }
+      ]
+    }
+  ],
+  "imports": [
+    {
+      "module": "playwright-core",
+      "resolved": "external"
+    }
+  ]
+}

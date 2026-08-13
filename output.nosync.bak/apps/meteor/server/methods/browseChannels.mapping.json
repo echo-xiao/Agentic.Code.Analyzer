@@ -1,0 +1,401 @@
+{
+  "sourcePath": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/server/methods/browseChannels.ts",
+  "symbols": [
+    {
+      "type": "module",
+      "name": "browseChannels",
+      "exported": false,
+      "line": 1,
+      "endLine": 366,
+      "signature": "browseChannels",
+      "calls": [
+        {
+          "name": "browseChannels",
+          "edgeType": "call"
+        },
+        {
+          "name": "methods",
+          "edgeType": "call"
+        },
+        {
+          "name": "method",
+          "edgeType": "call"
+        },
+        {
+          "name": "browseChannelsMethod",
+          "edgeType": "call"
+        },
+        {
+          "name": "userAsync",
+          "edgeType": "call"
+        },
+        {
+          "name": "ServerMethods",
+          "edgeType": "type"
+        },
+        {
+          "name": "BrowseChannelsParams",
+          "edgeType": "type"
+        },
+        {
+          "name": "IUser",
+          "edgeType": "type"
+        },
+        {
+          "name": "addRule",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "variable_function",
+      "name": "sortChannels",
+      "exported": false,
+      "line": 17,
+      "endLine": 32,
+      "signature": "(field: string, direction: 'asc' | 'desc'): Record<string, 1 | -1> =>",
+      "calls": []
+    },
+    {
+      "type": "variable_function",
+      "name": "sortUsers",
+      "exported": false,
+      "line": 21,
+      "endLine": 33,
+      "signature": "(field: string, direction: 'asc' | 'desc'): Record<string, SortDirection> =>",
+      "calls": [
+        {
+          "name": "SortDirection",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "variable_function",
+      "name": "getChannelsAndGroups",
+      "exported": false,
+      "line": 25,
+      "endLine": 93,
+      "signature": "async ( user: AtLeast<IUser, '_id' | '__rooms'>, canViewAnon: boolean, searchTerm: string, sort: Record<string, number>, pagination: { skip: number; limit: number; }, ) =>",
+      "calls": [
+        {
+          "name": "hasPermissionAsync",
+          "edgeType": "call"
+        },
+        {
+          "name": "getAllPublicTeams",
+          "edgeType": "call"
+        },
+        {
+          "name": "map",
+          "edgeType": "call"
+        },
+        {
+          "name": "listTeamsBySubscriberUserId",
+          "edgeType": "call"
+        },
+        {
+          "name": "findPaginatedByNameOrFNameAndRoomIdsIncludingTeamRooms",
+          "edgeType": "call"
+        },
+        {
+          "name": "all",
+          "edgeType": "call"
+        },
+        {
+          "name": "toArray",
+          "edgeType": "call"
+        },
+        {
+          "name": "filter",
+          "edgeType": "call"
+        },
+        {
+          "name": "listByIds",
+          "edgeType": "call"
+        },
+        {
+          "name": "find",
+          "edgeType": "call"
+        },
+        {
+          "name": "RegExp",
+          "edgeType": "new"
+        },
+        {
+          "name": "Set",
+          "edgeType": "new"
+        },
+        {
+          "name": "AtLeast",
+          "edgeType": "type"
+        },
+        {
+          "name": "IUser",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "variable_function",
+      "name": "getTeams",
+      "exported": false,
+      "line": 42,
+      "endLine": 95,
+      "signature": "async ( user: AtLeast<IUser, '_id' | '__rooms'>, searchTerm: string, sort: Record<string, number>, pagination: { skip: number; limit: number; }, ) =>",
+      "calls": [
+        {
+          "name": "toArray",
+          "edgeType": "call"
+        },
+        {
+          "name": "findByUserId",
+          "edgeType": "call"
+        },
+        {
+          "name": "map",
+          "edgeType": "call"
+        },
+        {
+          "name": "findPaginatedContainingNameOrFNameInIdsAsTeamMain",
+          "edgeType": "call"
+        },
+        {
+          "name": "all",
+          "edgeType": "call"
+        },
+        {
+          "name": "getChannelsCountForTeam",
+          "edgeType": "call"
+        },
+        {
+          "name": "RegExp",
+          "edgeType": "new"
+        },
+        {
+          "name": "AtLeast",
+          "edgeType": "type"
+        },
+        {
+          "name": "IUser",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "variable_function",
+      "name": "findUsers",
+      "exported": false,
+      "line": 54,
+      "endLine": 125,
+      "signature": "async ({ text, sort, pagination, workspace, viewFullOtherUserInfo, }: { text: string; sort: Record<string, SortDirection>; pagination: { skip: number; limit: number; }; workspace: string; viewFullOtherUserInfo: boolean; }) =>",
+      "calls": [
+        {
+          "name": "split",
+          "edgeType": "call"
+        },
+        {
+          "name": "trim",
+          "edgeType": "call"
+        },
+        {
+          "name": "get",
+          "edgeType": "call"
+        },
+        {
+          "name": "findPaginatedByActiveUsersExcept",
+          "edgeType": "call"
+        },
+        {
+          "name": "all",
+          "edgeType": "call"
+        },
+        {
+          "name": "toArray",
+          "edgeType": "call"
+        },
+        {
+          "name": "findPaginatedByActiveExternalUsersExcept",
+          "edgeType": "call"
+        },
+        {
+          "name": "findPaginatedByActiveLocalUsersExcept",
+          "edgeType": "call"
+        },
+        {
+          "name": "SortDirection",
+          "edgeType": "type"
+        },
+        {
+          "name": "FindOptions",
+          "edgeType": "type"
+        },
+        {
+          "name": "IUser",
+          "edgeType": "type"
+        },
+        {
+          "name": "FederatedUser",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "variable_function",
+      "name": "getUsers",
+      "exported": false,
+      "line": 73,
+      "endLine": 95,
+      "signature": "async ( user: AtLeast<IUser, '_id' | '__rooms'> | undefined, text: string, workspace: string, sort: Record<string, SortDirection>, pagination: { skip: number; limit: number; }, ) =>",
+      "calls": [
+        {
+          "name": "hasPermissionAsync",
+          "edgeType": "call"
+        },
+        {
+          "name": "findUsers",
+          "edgeType": "call"
+        },
+        {
+          "name": "AtLeast",
+          "edgeType": "type"
+        },
+        {
+          "name": "IUser",
+          "edgeType": "type"
+        },
+        {
+          "name": "SortDirection",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "variable_function",
+      "name": "browseChannelsMethod",
+      "exported": true,
+      "line": 104,
+      "endLine": 158,
+      "signature": "async ( { text = '', workspace = '', type = 'channels', sortBy = 'name', sortDirection = 'asc', page = 0, offset = 0, limit = 10, }: BrowseChannelsParams, user: AtLeast<IUser, '_id' | '__rooms'> | undefined | null, ) =>",
+      "calls": [
+        {
+          "name": "trim",
+          "edgeType": "call"
+        },
+        {
+          "name": "escapeRegExp",
+          "edgeType": "call"
+        },
+        {
+          "name": "includes",
+          "edgeType": "call"
+        },
+        {
+          "name": "max",
+          "edgeType": "call"
+        },
+        {
+          "name": "get",
+          "edgeType": "call"
+        },
+        {
+          "name": "getChannelsAndGroups",
+          "edgeType": "call"
+        },
+        {
+          "name": "sortChannels",
+          "edgeType": "call"
+        },
+        {
+          "name": "getTeams",
+          "edgeType": "call"
+        },
+        {
+          "name": "getUsers",
+          "edgeType": "call"
+        },
+        {
+          "name": "sortUsers",
+          "edgeType": "call"
+        },
+        {
+          "name": "BrowseChannelsParams",
+          "edgeType": "type"
+        },
+        {
+          "name": "AtLeast",
+          "edgeType": "type"
+        },
+        {
+          "name": "IUser",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "type",
+      "name": "BrowseChannelsParams",
+      "line": 86,
+      "endLine": 95,
+      "signature": "type BrowseChannelsParams ="
+    }
+  ],
+  "imports": [
+    {
+      "module": "@rocket.chat/core-services",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/core-typings",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/ddp-client",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/models",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/string-helpers",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/tools",
+      "resolved": "external"
+    },
+    {
+      "module": "mem",
+      "resolved": "external"
+    },
+    {
+      "module": "meteor/ddp-rate-limiter",
+      "resolved": "external"
+    },
+    {
+      "module": "meteor/meteor",
+      "resolved": "external"
+    },
+    {
+      "module": "mongodb",
+      "resolved": "external"
+    },
+    {
+      "module": "../../app/lib/server/lib/deprecationWarningLogger",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/app/lib/server/lib/deprecationWarningLogger.ts"
+    },
+    {
+      "module": "../../app/settings/server",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/app/settings/server/index.ts"
+    },
+    {
+      "module": "../../lib/utils/stringUtils",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/lib/utils/stringUtils.ts"
+    },
+    {
+      "module": "../lib/authorization/hasPermission",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/server/lib/authorization/hasPermission.ts"
+    }
+  ]
+}

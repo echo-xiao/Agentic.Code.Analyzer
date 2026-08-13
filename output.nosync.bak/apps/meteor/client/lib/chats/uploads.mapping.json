@@ -1,0 +1,456 @@
+{
+  "sourcePath": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/client/lib/chats/uploads.ts",
+  "symbols": [
+    {
+      "type": "class",
+      "name": "UploadsStore",
+      "exported": false,
+      "line": 15,
+      "endLine": 216,
+      "signature": "class UploadsStore extends Emitter<",
+      "calls": [
+        {
+          "name": "Emitter",
+          "edgeType": "type"
+        },
+        {
+          "name": "UploadsAPI",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "updateUpload",
+      "exported": false,
+      "qualifiedName": "UploadsStore.updateUpload",
+      "line": 54,
+      "endLine": 56,
+      "signature": "private updateUpload(id: Upload['id'], patch: Partial<Upload>): void",
+      "containerClass": "UploadsStore",
+      "calls": [
+        {
+          "name": "set",
+          "edgeType": "call"
+        },
+        {
+          "name": "map",
+          "edgeType": "call"
+        },
+        {
+          "name": "Upload",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "send",
+      "exported": false,
+      "qualifiedName": "UploadsStore.send",
+      "line": 123,
+      "endLine": 215,
+      "signature": "async send(file: File, encrypted?: EncryptedFileUploadContent): Promise<void>",
+      "containerClass": "UploadsStore",
+      "calls": [
+        {
+          "name": "peek",
+          "edgeType": "call"
+        },
+        {
+          "name": "fileUploadIsValidContentType",
+          "edgeType": "call"
+        },
+        {
+          "name": "id",
+          "edgeType": "call"
+        },
+        {
+          "name": "set",
+          "edgeType": "call"
+        },
+        {
+          "name": "reject",
+          "edgeType": "call"
+        },
+        {
+          "name": "fileSize",
+          "edgeType": "call"
+        },
+        {
+          "name": "upload",
+          "edgeType": "call"
+        },
+        {
+          "name": "stringify",
+          "edgeType": "call"
+        },
+        {
+          "name": "resolve",
+          "edgeType": "call"
+        },
+        {
+          "name": "updateUpload",
+          "edgeType": "call"
+        },
+        {
+          "name": "min",
+          "edgeType": "call"
+        },
+        {
+          "name": "round",
+          "edgeType": "call"
+        },
+        {
+          "name": "parse",
+          "edgeType": "call"
+        },
+        {
+          "name": "getErrorMessage",
+          "edgeType": "call"
+        },
+        {
+          "name": "abort",
+          "edgeType": "call"
+        },
+        {
+          "name": "removeUpload",
+          "edgeType": "call"
+        },
+        {
+          "name": "File",
+          "edgeType": "type"
+        },
+        {
+          "name": "EncryptedFileUploadContent",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "constructor",
+      "exported": false,
+      "qualifiedName": "UploadsStore.constructor",
+      "line": 20,
+      "endLine": 24,
+      "signature": "constructor({ rid, tmid }: { rid: IRoom['_id']; tmid?: IMessage['_id'] })",
+      "containerClass": "UploadsStore",
+      "calls": [
+        {
+          "name": "IRoom",
+          "edgeType": "type"
+        },
+        {
+          "name": "IMessage",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "class_property",
+      "name": "uploads",
+      "exported": false,
+      "qualifiedName": "UploadsStore.uploads",
+      "line": 24,
+      "endLine": 24,
+      "signature": "private uploads: readonly Upload[] = [];",
+      "containerClass": "UploadsStore",
+      "calls": [
+        {
+          "name": "Upload",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "class_property",
+      "name": "set",
+      "exported": false,
+      "qualifiedName": "UploadsStore.set",
+      "line": 28,
+      "endLine": 31,
+      "signature": "set = (uploads: Upload[]): void =>",
+      "containerClass": "UploadsStore",
+      "calls": [
+        {
+          "name": "update",
+          "edgeType": "event_emit"
+        },
+        {
+          "name": "Upload",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "class_property",
+      "name": "get",
+      "exported": false,
+      "qualifiedName": "UploadsStore.get",
+      "line": 33,
+      "endLine": 33,
+      "signature": "get = (): readonly Upload[] => this.uploads;",
+      "containerClass": "UploadsStore",
+      "calls": [
+        {
+          "name": "Upload",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "class_property",
+      "name": "subscribe",
+      "exported": false,
+      "qualifiedName": "UploadsStore.subscribe",
+      "line": 35,
+      "endLine": 35,
+      "signature": "subscribe = (callback: () => void): (() => void) => this.on('update', callback);",
+      "containerClass": "UploadsStore",
+      "calls": [
+        {
+          "name": "callback",
+          "edgeType": "event_listen",
+          "event": "update"
+        }
+      ]
+    },
+    {
+      "type": "class_property",
+      "name": "setProcessingUploads",
+      "exported": false,
+      "qualifiedName": "UploadsStore.setProcessingUploads",
+      "line": 37,
+      "endLine": 40,
+      "signature": "setProcessingUploads = (processing: boolean): void =>",
+      "containerClass": "UploadsStore",
+      "calls": [
+        {
+          "name": "update",
+          "edgeType": "event_emit"
+        }
+      ]
+    },
+    {
+      "type": "class_property",
+      "name": "cancel",
+      "exported": false,
+      "qualifiedName": "UploadsStore.cancel",
+      "line": 44,
+      "endLine": 46,
+      "signature": "cancel = (id: Upload['id']): void =>",
+      "containerClass": "UploadsStore",
+      "calls": [
+        {
+          "name": "Upload",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "class_property",
+      "name": "wipeFailedOnes",
+      "exported": false,
+      "qualifiedName": "UploadsStore.wipeFailedOnes",
+      "line": 48,
+      "endLine": 50,
+      "signature": "wipeFailedOnes = (): void =>",
+      "containerClass": "UploadsStore",
+      "calls": [
+        {
+          "name": "set",
+          "edgeType": "call"
+        },
+        {
+          "name": "filter",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "class_property",
+      "name": "removeUpload",
+      "exported": false,
+      "qualifiedName": "UploadsStore.removeUpload",
+      "line": 56,
+      "endLine": 62,
+      "signature": "removeUpload = (id: Upload['id']): void =>",
+      "containerClass": "UploadsStore",
+      "calls": [
+        {
+          "name": "set",
+          "edgeType": "call"
+        },
+        {
+          "name": "filter",
+          "edgeType": "call"
+        },
+        {
+          "name": "stop",
+          "edgeType": "call"
+        },
+        {
+          "name": "Upload",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "class_property",
+      "name": "editUploadAltText",
+      "exported": false,
+      "qualifiedName": "UploadsStore.editUploadAltText",
+      "line": 64,
+      "endLine": 80,
+      "signature": "editUploadAltText = (uploadId: Upload['id'], altText: string) =>",
+      "containerClass": "UploadsStore",
+      "calls": [
+        {
+          "name": "set",
+          "edgeType": "call"
+        },
+        {
+          "name": "map",
+          "edgeType": "call"
+        },
+        {
+          "name": "isEncryptedUpload",
+          "edgeType": "call"
+        },
+        {
+          "name": "Upload",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "class_property",
+      "name": "editUploadFileName",
+      "exported": false,
+      "qualifiedName": "UploadsStore.editUploadFileName",
+      "line": 82,
+      "endLine": 114,
+      "signature": "editUploadFileName = (uploadId: Upload['id'], fileName: Upload['file']['name']) =>",
+      "containerClass": "UploadsStore",
+      "calls": [
+        {
+          "name": "set",
+          "edgeType": "call"
+        },
+        {
+          "name": "map",
+          "edgeType": "call"
+        },
+        {
+          "name": "isEncryptedUpload",
+          "edgeType": "call"
+        },
+        {
+          "name": "File",
+          "edgeType": "new"
+        },
+        {
+          "name": "Upload",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "class_property",
+      "name": "clear",
+      "exported": false,
+      "qualifiedName": "UploadsStore.clear",
+      "line": 116,
+      "endLine": 119,
+      "signature": "clear = () =>",
+      "containerClass": "UploadsStore",
+      "calls": [
+        {
+          "name": "set",
+          "edgeType": "call"
+        },
+        {
+          "name": "stop",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "variable_function",
+      "name": "createUploadsAPI",
+      "exported": true,
+      "line": 126,
+      "endLine": 127,
+      "signature": "({ rid, tmid }: { rid: IRoom['_id']; tmid?: IMessage['_id'] }): UploadsAPI =>",
+      "calls": [
+        {
+          "name": "UploadsStore",
+          "edgeType": "new"
+        },
+        {
+          "name": "IRoom",
+          "edgeType": "type"
+        },
+        {
+          "name": "IMessage",
+          "edgeType": "type"
+        },
+        {
+          "name": "UploadsAPI",
+          "edgeType": "type"
+        }
+      ]
+    }
+  ],
+  "imports": [
+    {
+      "module": "@rocket.chat/core-typings",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/emitter",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/random",
+      "resolved": "external"
+    },
+    {
+      "module": "filesize",
+      "resolved": "external"
+    },
+    {
+      "module": "../errorHandling",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/client/lib/errorHandling.ts"
+    },
+    {
+      "module": "./ChatAPI",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/client/lib/chats/ChatAPI.ts"
+    },
+    {
+      "module": "./Upload",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/client/lib/chats/Upload.ts"
+    },
+    {
+      "module": "../../../app/ui/client/lib/UserAction",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/app/ui/client/lib/UserAction.ts"
+    },
+    {
+      "module": "../../../app/utils/client",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/app/utils/client/index.ts"
+    },
+    {
+      "module": "../../../app/utils/client/lib/SDKClient",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/app/utils/client/lib/SDKClient.ts"
+    },
+    {
+      "module": "../../../app/utils/lib/i18n",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/app/utils/lib/i18n.ts"
+    },
+    {
+      "module": "../settings",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/client/lib/settings/index.ts"
+    }
+  ]
+}

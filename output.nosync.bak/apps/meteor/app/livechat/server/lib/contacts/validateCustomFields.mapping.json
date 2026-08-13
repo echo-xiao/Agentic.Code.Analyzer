@@ -1,0 +1,65 @@
+{
+  "sourcePath": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/app/livechat/server/lib/contacts/validateCustomFields.ts",
+  "symbols": [
+    {
+      "type": "function",
+      "name": "validateCustomFields",
+      "exported": true,
+      "line": 6,
+      "endLine": 56,
+      "signature": "export function validateCustomFields( allowedCustomFields: AtLeast<ILivechatCustomField, '_id'>[], customFields: Record<string, string | unknown>, { ignoreAdditionalFields = false, ignoreValidationErrors = false, }: { ignoreAdditionalFields?: boolean; ignoreValidationErrors?: boolean } = {}, ): Record<string, string>",
+      "calls": [
+        {
+          "name": "hasOwnProperty",
+          "edgeType": "call"
+        },
+        {
+          "name": "trim",
+          "edgeType": "call"
+        },
+        {
+          "name": "test",
+          "edgeType": "call"
+        },
+        {
+          "name": "map",
+          "edgeType": "call"
+        },
+        {
+          "name": "has",
+          "edgeType": "call"
+        },
+        {
+          "name": "RegExp",
+          "edgeType": "new"
+        },
+        {
+          "name": "Set",
+          "edgeType": "new"
+        },
+        {
+          "name": "AtLeast",
+          "edgeType": "type"
+        },
+        {
+          "name": "ILivechatCustomField",
+          "edgeType": "type"
+        }
+      ]
+    }
+  ],
+  "imports": [
+    {
+      "module": "@rocket.chat/core-typings",
+      "resolved": "external"
+    },
+    {
+      "module": "../../../../../lib/utils/stringUtils",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/lib/utils/stringUtils.ts"
+    },
+    {
+      "module": "../../../../utils/lib/i18n",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/app/utils/lib/i18n.ts"
+    }
+  ]
+}

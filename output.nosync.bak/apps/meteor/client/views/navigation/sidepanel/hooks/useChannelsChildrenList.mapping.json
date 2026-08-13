@@ -1,0 +1,99 @@
+{
+  "sourcePath": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/client/views/navigation/sidepanel/hooks/useChannelsChildrenList.ts",
+  "symbols": [
+    {
+      "type": "variable_function",
+      "name": "getMainRoomAndSort",
+      "exported": false,
+      "line": 14,
+      "endLine": 39,
+      "signature": "(records: SubscriptionWithRoom[], unreadOnly: boolean, teamId?: string) =>",
+      "calls": [
+        {
+          "name": "find",
+          "edgeType": "call"
+        },
+        {
+          "name": "filter",
+          "edgeType": "call"
+        },
+        {
+          "name": "apply",
+          "edgeType": "call"
+        },
+        {
+          "name": "flat",
+          "edgeType": "call"
+        },
+        {
+          "name": "reduce",
+          "edgeType": "call"
+        },
+        {
+          "name": "isUnreadSubscription",
+          "edgeType": "call"
+        },
+        {
+          "name": "push",
+          "edgeType": "call"
+        },
+        {
+          "name": "unshift",
+          "edgeType": "call"
+        },
+        {
+          "name": "SubscriptionWithRoom",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "variable_function",
+      "name": "useChannelsChildrenList",
+      "exported": true,
+      "line": 18,
+      "endLine": 34,
+      "signature": "(parentRid: string, unreadOnly: boolean, teamId?: string) =>",
+      "calls": [
+        {
+          "name": "use",
+          "edgeType": "call"
+        },
+        {
+          "name": "useShallow",
+          "edgeType": "call"
+        },
+        {
+          "name": "filter",
+          "edgeType": "call"
+        },
+        {
+          "name": "getMainRoomAndSort",
+          "edgeType": "call"
+        }
+      ]
+    }
+  ],
+  "imports": [
+    {
+      "module": "@rocket.chat/ui-contexts",
+      "resolved": "external"
+    },
+    {
+      "module": "zustand/shallow",
+      "resolved": "external"
+    },
+    {
+      "module": "../../../../lib/cachedStores/pipe",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/client/lib/cachedStores/pipe.ts"
+    },
+    {
+      "module": "../../../../stores",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/client/stores/index.ts"
+    },
+    {
+      "module": "../../contexts/RoomsNavigationContext",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/client/views/navigation/contexts/RoomsNavigationContext.ts"
+    }
+  ]
+}

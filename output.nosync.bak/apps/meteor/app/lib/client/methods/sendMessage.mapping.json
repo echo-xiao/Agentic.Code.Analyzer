@@ -1,0 +1,97 @@
+{
+  "sourcePath": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/app/lib/client/methods/sendMessage.ts",
+  "symbols": [
+    {
+      "type": "variable_function",
+      "name": "runOptimisticSendMessage",
+      "exported": true,
+      "line": 12,
+      "endLine": 52,
+      "signature": "async ( message: Partial<IMessage> & { rid: IMessage['rid']; msg: IMessage['msg'] }, ): Promise<void> =>",
+      "calls": [
+        {
+          "name": "getUserId",
+          "edgeType": "call"
+        },
+        {
+          "name": "trim",
+          "edgeType": "call"
+        },
+        {
+          "name": "get",
+          "edgeType": "call"
+        },
+        {
+          "name": "dispatchToastMessage",
+          "edgeType": "call"
+        },
+        {
+          "name": "getUser",
+          "edgeType": "call"
+        },
+        {
+          "name": "peek",
+          "edgeType": "call"
+        },
+        {
+          "name": "onClientMessageReceived",
+          "edgeType": "call"
+        },
+        {
+          "name": "store",
+          "edgeType": "call"
+        },
+        {
+          "name": "upsertThreadMessageInCache",
+          "edgeType": "call"
+        },
+        {
+          "name": "Date",
+          "edgeType": "new"
+        },
+        {
+          "name": "IMessage",
+          "edgeType": "type"
+        }
+      ]
+    }
+  ],
+  "imports": [
+    {
+      "module": "@rocket.chat/core-typings",
+      "resolved": "external"
+    },
+    {
+      "module": "../../../../client/lib/onClientMessageReceived",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/client/lib/onClientMessageReceived.ts"
+    },
+    {
+      "module": "../../../../client/lib/settings",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/client/lib/settings/index.ts"
+    },
+    {
+      "module": "../../../../client/lib/toast",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/client/lib/toast.ts"
+    },
+    {
+      "module": "../../../../client/lib/user",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/client/lib/user.ts"
+    },
+    {
+      "module": "../../../../client/lib/utils/threadMessageUtils",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/client/lib/utils/threadMessageUtils.ts"
+    },
+    {
+      "module": "../../../../client/stores",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/client/stores/index.ts"
+    },
+    {
+      "module": "../../../../lib/utils/stringUtils",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/lib/utils/stringUtils.ts"
+    },
+    {
+      "module": "../../../utils/lib/i18n",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/app/utils/lib/i18n.ts"
+    }
+  ]
+}

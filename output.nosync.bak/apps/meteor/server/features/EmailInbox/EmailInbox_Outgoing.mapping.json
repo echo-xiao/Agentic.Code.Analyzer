@@ -1,0 +1,357 @@
+{
+  "sourcePath": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/server/features/EmailInbox/EmailInbox_Outgoing.ts",
+  "symbols": [
+    {
+      "type": "module",
+      "name": "EmailInbox_Outgoing",
+      "exported": false,
+      "line": 1,
+      "endLine": 347,
+      "signature": "EmailInbox_Outgoing",
+      "calls": [
+        {
+          "name": "sendEmailAttachment",
+          "edgeType": "event_listen"
+        },
+        {
+          "name": "test",
+          "edgeType": "call"
+        },
+        {
+          "name": "findOneById",
+          "edgeType": "call"
+        },
+        {
+          "name": "trim",
+          "edgeType": "call"
+        },
+        {
+          "name": "filter",
+          "edgeType": "call"
+        },
+        {
+          "name": "get",
+          "edgeType": "call"
+        },
+        {
+          "name": "sendErrorReplyMessage",
+          "edgeType": "call"
+        },
+        {
+          "name": "toArray",
+          "edgeType": "call"
+        },
+        {
+          "name": "find",
+          "edgeType": "call"
+        },
+        {
+          "name": "map",
+          "edgeType": "call"
+        },
+        {
+          "name": "all",
+          "edgeType": "call"
+        },
+        {
+          "name": "Boolean",
+          "edgeType": "call"
+        },
+        {
+          "name": "join",
+          "edgeType": "call"
+        },
+        {
+          "name": "then",
+          "edgeType": "call"
+        },
+        {
+          "name": "sendEmail",
+          "edgeType": "call"
+        },
+        {
+          "name": "isArray",
+          "edgeType": "call"
+        },
+        {
+          "name": "concat",
+          "edgeType": "call"
+        },
+        {
+          "name": "updateEmailThreadByRoomId",
+          "edgeType": "call"
+        },
+        {
+          "name": "updateOne",
+          "edgeType": "call"
+        },
+        {
+          "name": "notifyOnMessageChange",
+          "edgeType": "call"
+        },
+        {
+          "name": "sendSuccessReplyMessage",
+          "edgeType": "call"
+        },
+        {
+          "name": "SlashCommandCallbackParams",
+          "edgeType": "type"
+        },
+        {
+          "name": "IOmnichannelRoom",
+          "edgeType": "type"
+        },
+        {
+          "name": "afterSaveMessage",
+          "edgeType": "event_listen"
+        },
+        {
+          "name": "getRocketCatUser",
+          "edgeType": "call"
+        },
+        {
+          "name": "sendMessage",
+          "edgeType": "call"
+        },
+        {
+          "name": "match",
+          "edgeType": "call"
+        },
+        {
+          "name": "isIMessageInbox",
+          "edgeType": "call"
+        },
+        {
+          "name": "replace",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "function",
+      "name": "buildMailAttachment",
+      "exported": false,
+      "line": 26,
+      "endLine": 36,
+      "signature": "async function buildMailAttachment(file: IUpload): Promise<Mail.Attachment | undefined>",
+      "calls": [
+        {
+          "name": "getBuffer",
+          "edgeType": "call"
+        },
+        {
+          "name": "IUpload",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "function",
+      "name": "sendEmail",
+      "exported": false,
+      "line": 72,
+      "endLine": 96,
+      "signature": "async function sendEmail(inbox: Inbox, mail: Mail.Options, options?: any): Promise<{ messageId: string }>",
+      "calls": [
+        {
+          "name": "catch",
+          "edgeType": "call"
+        },
+        {
+          "name": "then",
+          "edgeType": "call"
+        },
+        {
+          "name": "sendMail",
+          "edgeType": "call"
+        },
+        {
+          "name": "info",
+          "edgeType": "call"
+        },
+        {
+          "name": "error",
+          "edgeType": "call"
+        },
+        {
+          "name": "sendErrorReplyMessage",
+          "edgeType": "call"
+        },
+        {
+          "name": "Inbox",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "function",
+      "name": "sendTestEmailToInbox",
+      "exported": true,
+      "line": 298,
+      "endLine": 316,
+      "signature": "export async function sendTestEmailToInbox(emailInboxRecord: IEmailInbox, user: IUser): Promise<void>",
+      "calls": [
+        {
+          "name": "get",
+          "edgeType": "call"
+        },
+        {
+          "name": "find",
+          "edgeType": "call"
+        },
+        {
+          "name": "sendEmail",
+          "edgeType": "call"
+        },
+        {
+          "name": "IEmailInbox",
+          "edgeType": "type"
+        },
+        {
+          "name": "IUser",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "variable_function",
+      "name": "getRocketCatUser",
+      "exported": false,
+      "line": 21,
+      "endLine": 21,
+      "signature": "async (): Promise<IUser | null> =>",
+      "calls": [
+        {
+          "name": "findOneById",
+          "edgeType": "call"
+        },
+        {
+          "name": "IUser",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "variable_function",
+      "name": "sendErrorReplyMessage",
+      "exported": false,
+      "line": 31,
+      "endLine": 50,
+      "signature": "async (error: string, options: any) =>",
+      "calls": [
+        {
+          "name": "now",
+          "edgeType": "call"
+        },
+        {
+          "name": "getRocketCatUser",
+          "edgeType": "call"
+        },
+        {
+          "name": "sendMessage",
+          "edgeType": "call"
+        },
+        {
+          "name": "Date",
+          "edgeType": "new"
+        }
+      ]
+    },
+    {
+      "type": "variable_function",
+      "name": "sendSuccessReplyMessage",
+      "exported": false,
+      "line": 35,
+      "endLine": 53,
+      "signature": "async (options: { room: IOmnichannelRoom; msgId: string; sender: string }) =>",
+      "calls": [
+        {
+          "name": "now",
+          "edgeType": "call"
+        },
+        {
+          "name": "getRocketCatUser",
+          "edgeType": "call"
+        },
+        {
+          "name": "sendMessage",
+          "edgeType": "call"
+        },
+        {
+          "name": "Date",
+          "edgeType": "new"
+        },
+        {
+          "name": "IOmnichannelRoom",
+          "edgeType": "type"
+        }
+      ]
+    }
+  ],
+  "imports": [
+    {
+      "module": "@rocket.chat/core-typings",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/core-typings",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/models",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/tools",
+      "resolved": "external"
+    },
+    {
+      "module": "meteor/check",
+      "resolved": "external"
+    },
+    {
+      "module": "nodemailer/lib/mailer",
+      "resolved": "external"
+    },
+    {
+      "module": "./EmailInbox",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/server/features/EmailInbox/EmailInbox.ts"
+    },
+    {
+      "module": "./EmailInbox",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/server/features/EmailInbox/EmailInbox.ts"
+    },
+    {
+      "module": "./logger",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/server/features/EmailInbox/logger.ts"
+    },
+    {
+      "module": "../../../app/file-upload/server",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/app/file-upload/server/index.ts"
+    },
+    {
+      "module": "../../../app/lib/server/lib/notifyListener",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/app/lib/server/lib/notifyListener.ts"
+    },
+    {
+      "module": "../../../app/settings/server",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/app/settings/server/index.ts"
+    },
+    {
+      "module": "../../../app/utils/server/slashCommand",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/app/utils/server/slashCommand.ts"
+    },
+    {
+      "module": "../../lib/callbacks",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/server/lib/callbacks.ts"
+    },
+    {
+      "module": "../../lib/i18n",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/server/lib/i18n.ts"
+    },
+    {
+      "module": "../../lib/messages/sendMessage",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/server/lib/messages/sendMessage.ts"
+    }
+  ]
+}

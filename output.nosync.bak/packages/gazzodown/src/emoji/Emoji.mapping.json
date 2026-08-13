@@ -1,0 +1,90 @@
+{
+  "sourcePath": "/Users/echoooooo/Desktop/code/Rocket.Chat/packages/gazzodown/src/emoji/Emoji.tsx",
+  "symbols": [
+    {
+      "type": "module",
+      "name": "Emoji",
+      "exported": false,
+      "line": 1,
+      "endLine": 33,
+      "signature": "Emoji",
+      "calls": [
+        {
+          "name": "memo",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "variable_function",
+      "name": "Emoji",
+      "exported": false,
+      "line": 13,
+      "endLine": 30,
+      "signature": "({ big = false, preview = false, ...emoji }: EmojiProps) =>",
+      "calls": [
+        {
+          "name": "useContext",
+          "edgeType": "call"
+        },
+        {
+          "name": "useMemo",
+          "edgeType": "call"
+        },
+        {
+          "name": "PlainSpan",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "EmojiRenderer",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "asciiEmoji",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "big",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "preview",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "EmojiProps",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "type",
+      "name": "EmojiProps",
+      "line": 8,
+      "endLine": 11,
+      "signature": "export type EmojiProps = MessageParser.Emoji &"
+    }
+  ],
+  "imports": [
+    {
+      "module": "@rocket.chat/message-parser",
+      "resolved": "external"
+    },
+    {
+      "module": "react",
+      "resolved": "external"
+    },
+    {
+      "module": "../MarkupInteractionContext",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/packages/gazzodown/src/MarkupInteractionContext.ts"
+    },
+    {
+      "module": "./EmojiRenderer",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/packages/gazzodown/src/emoji/EmojiRenderer.tsx"
+    },
+    {
+      "module": "../elements/PlainSpan",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/packages/gazzodown/src/elements/PlainSpan.tsx"
+    }
+  ]
+}

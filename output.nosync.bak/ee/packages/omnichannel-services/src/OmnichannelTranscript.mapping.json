@@ -1,0 +1,625 @@
+{
+  "sourcePath": "/Users/echoooooo/Desktop/code/Rocket.Chat/ee/packages/omnichannel-services/src/OmnichannelTranscript.ts",
+  "symbols": [
+    {
+      "type": "class",
+      "name": "OmnichannelTranscript",
+      "exported": true,
+      "line": 25,
+      "endLine": 544,
+      "signature": "export class OmnichannelTranscript extends ServiceClass implements IOmnichannelTranscriptService",
+      "calls": [
+        {
+          "name": "ServiceClass",
+          "edgeType": "type"
+        },
+        {
+          "name": "IOmnichannelTranscriptService",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "started",
+      "exported": true,
+      "qualifiedName": "OmnichannelTranscript.started",
+      "line": 83,
+      "endLine": 103,
+      "signature": "override async started(): Promise<void>",
+      "containerClass": "OmnichannelTranscript",
+      "calls": [
+        {
+          "name": "all",
+          "edgeType": "call"
+        },
+        {
+          "name": "get",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "getTimezone",
+      "exported": true,
+      "qualifiedName": "OmnichannelTranscript.getTimezone",
+      "line": 87,
+      "endLine": 99,
+      "signature": "async getTimezone(agent?: AtLeast<ILivechatAgent, 'utcOffset'> | null): Promise<string>",
+      "containerClass": "OmnichannelTranscript",
+      "calls": [
+        {
+          "name": "guessTimezoneFromOffset",
+          "edgeType": "call"
+        },
+        {
+          "name": "guessTimezone",
+          "edgeType": "call"
+        },
+        {
+          "name": "AtLeast",
+          "edgeType": "type"
+        },
+        {
+          "name": "ILivechatAgent",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "getMessagesFromRoom",
+      "exported": true,
+      "qualifiedName": "OmnichannelTranscript.getMessagesFromRoom",
+      "line": 91,
+      "endLine": 114,
+      "signature": "private async getMessagesFromRoom({ rid }: { rid: string }): Promise<IMessage[]>",
+      "containerClass": "OmnichannelTranscript",
+      "calls": [
+        {
+          "name": "toArray",
+          "edgeType": "call"
+        },
+        {
+          "name": "findLivechatMessagesWithoutTypes",
+          "edgeType": "call"
+        },
+        {
+          "name": "IMessage",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "getQuotesFromMessage",
+      "exported": true,
+      "qualifiedName": "OmnichannelTranscript.getQuotesFromMessage",
+      "line": 95,
+      "endLine": 121,
+      "signature": "private getQuotesFromMessage(message: IMessage): Quote[]",
+      "containerClass": "OmnichannelTranscript",
+      "calls": [
+        {
+          "name": "isQuoteAttachment",
+          "edgeType": "call"
+        },
+        {
+          "name": "push",
+          "edgeType": "call"
+        },
+        {
+          "name": "parse",
+          "edgeType": "call"
+        },
+        {
+          "name": "getQuotesFromMessage",
+          "edgeType": "call"
+        },
+        {
+          "name": "IMessage",
+          "edgeType": "type"
+        },
+        {
+          "name": "Quote",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "getSystemMessage",
+      "exported": true,
+      "qualifiedName": "OmnichannelTranscript.getSystemMessage",
+      "line": 99,
+      "endLine": 110,
+      "signature": "private getSystemMessage(message: IMessage, t: TFunction): MessageData | undefined",
+      "containerClass": "OmnichannelTranscript",
+      "calls": [
+        {
+          "name": "getType",
+          "edgeType": "call"
+        },
+        {
+          "name": "text",
+          "edgeType": "call"
+        },
+        {
+          "name": "IMessage",
+          "edgeType": "type"
+        },
+        {
+          "name": "TFunction",
+          "edgeType": "type"
+        },
+        {
+          "name": "MessageData",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "getMessagesData",
+      "exported": true,
+      "qualifiedName": "OmnichannelTranscript.getMessagesData",
+      "line": 103,
+      "endLine": 248,
+      "signature": "async getMessagesData(messages: IMessage[], t: TFunction): Promise<MessageData[]>",
+      "containerClass": "OmnichannelTranscript",
+      "calls": [
+        {
+          "name": "getSystemMessage",
+          "edgeType": "call"
+        },
+        {
+          "name": "push",
+          "edgeType": "call"
+        },
+        {
+          "name": "isQuoteAttachment",
+          "edgeType": "call"
+        },
+        {
+          "name": "getQuotesFromMessage",
+          "edgeType": "call"
+        },
+        {
+          "name": "isFileAttachment",
+          "edgeType": "call"
+        },
+        {
+          "name": "error",
+          "edgeType": "call"
+        },
+        {
+          "name": "isFileImageAttachment",
+          "edgeType": "call"
+        },
+        {
+          "name": "isMimeTypeValid",
+          "edgeType": "call"
+        },
+        {
+          "name": "find",
+          "edgeType": "call"
+        },
+        {
+          "name": "map",
+          "edgeType": "call"
+        },
+        {
+          "name": "warn",
+          "edgeType": "call"
+        },
+        {
+          "name": "match",
+          "edgeType": "call"
+        },
+        {
+          "name": "findOneById",
+          "edgeType": "call"
+        },
+        {
+          "name": "streamUploadedFile",
+          "edgeType": "call"
+        },
+        {
+          "name": "streamToBuffer",
+          "edgeType": "call"
+        },
+        {
+          "name": "IMessage",
+          "edgeType": "type"
+        },
+        {
+          "name": "TFunction",
+          "edgeType": "type"
+        },
+        {
+          "name": "MessageData",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "workOnPdf",
+      "exported": true,
+      "qualifiedName": "OmnichannelTranscript.workOnPdf",
+      "line": 107,
+      "endLine": 183,
+      "signature": "async workOnPdf({ details }: { details: WorkDetailsWithSource }): Promise<void>",
+      "containerClass": "OmnichannelTranscript",
+      "calls": [
+        {
+          "name": "info",
+          "edgeType": "call"
+        },
+        {
+          "name": "error",
+          "edgeType": "call"
+        },
+        {
+          "name": "findOneById",
+          "edgeType": "call"
+        },
+        {
+          "name": "cloneInstance",
+          "edgeType": "call"
+        },
+        {
+          "name": "getMessagesFromRoom",
+          "edgeType": "call"
+        },
+        {
+          "name": "findOneEnabledById",
+          "edgeType": "call"
+        },
+        {
+          "name": "findOneAgentById",
+          "edgeType": "call"
+        },
+        {
+          "name": "getMessagesData",
+          "edgeType": "call"
+        },
+        {
+          "name": "getTimezone",
+          "edgeType": "call"
+        },
+        {
+          "name": "doRender",
+          "edgeType": "call"
+        },
+        {
+          "name": "pdfFailed",
+          "edgeType": "call"
+        },
+        {
+          "name": "WorkDetailsWithSource",
+          "edgeType": "type"
+        },
+        {
+          "name": "IUser",
+          "edgeType": "type"
+        },
+        {
+          "name": "IOmnichannelRoom",
+          "edgeType": "type"
+        },
+        {
+          "name": "ILivechatVisitor",
+          "edgeType": "type"
+        },
+        {
+          "name": "ILivechatAgent",
+          "edgeType": "type"
+        },
+        {
+          "name": "WorkerData",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "doRender",
+      "exported": true,
+      "qualifiedName": "OmnichannelTranscript.doRender",
+      "line": 111,
+      "endLine": 128,
+      "signature": "private async doRender({ data, details, i18n }: { data: WorkerData; details: WorkDetailsWithSource; i18n: i18n }): Promise<void>",
+      "containerClass": "OmnichannelTranscript",
+      "calls": [
+        {
+          "name": "renderToStream",
+          "edgeType": "call"
+        },
+        {
+          "name": "createDirectMessage",
+          "edgeType": "call"
+        },
+        {
+          "name": "uploadFiles",
+          "edgeType": "call"
+        },
+        {
+          "name": "from",
+          "edgeType": "call"
+        },
+        {
+          "name": "pdfComplete",
+          "edgeType": "call"
+        },
+        {
+          "name": "pdfFailed",
+          "edgeType": "call"
+        },
+        {
+          "name": "WorkerData",
+          "edgeType": "type"
+        },
+        {
+          "name": "WorkDetailsWithSource",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "pdfFailed",
+      "exported": true,
+      "qualifiedName": "OmnichannelTranscript.pdfFailed",
+      "line": 115,
+      "endLine": 138,
+      "signature": "private async pdfFailed({ details, e, i18n }: { details: WorkDetailsWithSource; e: Error; i18n: i18n }): Promise<void>",
+      "containerClass": "OmnichannelTranscript",
+      "calls": [
+        {
+          "name": "error",
+          "edgeType": "call"
+        },
+        {
+          "name": "findOneById",
+          "edgeType": "call"
+        },
+        {
+          "name": "createDirectMessage",
+          "edgeType": "call"
+        },
+        {
+          "name": "info",
+          "edgeType": "call"
+        },
+        {
+          "name": "sendMessage",
+          "edgeType": "call"
+        },
+        {
+          "name": "WorkDetailsWithSource",
+          "edgeType": "type"
+        },
+        {
+          "name": "IOmnichannelRoom",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "uploadFiles",
+      "exported": true,
+      "qualifiedName": "OmnichannelTranscript.uploadFiles",
+      "line": 119,
+      "endLine": 147,
+      "signature": "private async uploadFiles({ streamParam, roomIds, data, transcriptText, }: { streamParam: Readable; roomIds: string[]; data: Pick<WorkerData, 'siteName' | 'visitor'>; transcriptText: string; }): Promise<IUpload[]>",
+      "containerClass": "OmnichannelTranscript",
+      "calls": [
+        {
+          "name": "all",
+          "edgeType": "call"
+        },
+        {
+          "name": "map",
+          "edgeType": "call"
+        },
+        {
+          "name": "uploadFileFromStream",
+          "edgeType": "call"
+        },
+        {
+          "name": "replaceAll",
+          "edgeType": "call"
+        },
+        {
+          "name": "format",
+          "edgeType": "call"
+        },
+        {
+          "name": "Date",
+          "edgeType": "new"
+        },
+        {
+          "name": "Readable",
+          "edgeType": "type"
+        },
+        {
+          "name": "WorkerData",
+          "edgeType": "type"
+        },
+        {
+          "name": "IUpload",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "pdfComplete",
+      "exported": true,
+      "qualifiedName": "OmnichannelTranscript.pdfComplete",
+      "line": 133,
+      "endLine": 192,
+      "signature": "private async pdfComplete({ details, transcriptFile, rocketCatFile, i18n, }: { details: WorkDetailsWithSource; transcriptFile: IUpload; rocketCatFile: IUpload; i18n: i18n; }): Promise<void>",
+      "containerClass": "OmnichannelTranscript",
+      "calls": [
+        {
+          "name": "info",
+          "edgeType": "call"
+        },
+        {
+          "name": "setPdfTranscriptFileIdById",
+          "edgeType": "call"
+        },
+        {
+          "name": "allSettled",
+          "edgeType": "call"
+        },
+        {
+          "name": "sendFileMessage",
+          "edgeType": "call"
+        },
+        {
+          "name": "find",
+          "edgeType": "call"
+        },
+        {
+          "name": "isPromiseRejectedResult",
+          "edgeType": "call"
+        },
+        {
+          "name": "error",
+          "edgeType": "call"
+        },
+        {
+          "name": "WorkDetailsWithSource",
+          "edgeType": "type"
+        },
+        {
+          "name": "IUpload",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "constructor",
+      "exported": true,
+      "qualifiedName": "OmnichannelTranscript.constructor",
+      "line": 50,
+      "endLine": 81,
+      "signature": "constructor( loggerConstructor: typeof Logger, // Instance of i18n. Should already be init'd and loaded with the translation files private readonly translator: i18n, )",
+      "containerClass": "OmnichannelTranscript",
+      "calls": [
+        {
+          "name": "onSettingChanged",
+          "edgeType": "call"
+        },
+        {
+          "name": "PdfWorker",
+          "edgeType": "new"
+        },
+        {
+          "name": "loggerConstructor",
+          "edgeType": "new"
+        }
+      ]
+    },
+    {
+      "type": "class_property",
+      "name": "worker",
+      "exported": true,
+      "qualifiedName": "OmnichannelTranscript.worker",
+      "line": 28,
+      "endLine": 28,
+      "signature": "private worker: PdfWorker;",
+      "containerClass": "OmnichannelTranscript",
+      "calls": [
+        {
+          "name": "PdfWorker",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "class_property",
+      "name": "log",
+      "exported": true,
+      "qualifiedName": "OmnichannelTranscript.log",
+      "line": 30,
+      "endLine": 30,
+      "signature": "private log: Logger;",
+      "containerClass": "OmnichannelTranscript",
+      "calls": [
+        {
+          "name": "Logger",
+          "edgeType": "type"
+        }
+      ]
+    }
+  ],
+  "imports": [
+    {
+      "module": "node:stream",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/core-services",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/core-services",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/core-typings",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/core-typings",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/logger",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/message-parser",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/message-types",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/models",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/pdf-worker",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/pdf-worker",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/tools",
+      "resolved": "external"
+    },
+    {
+      "module": "i18next",
+      "resolved": "external"
+    },
+    {
+      "module": "./localTypes",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/ee/packages/omnichannel-services/src/localTypes.ts"
+    },
+    {
+      "module": "./localTypes",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/ee/packages/omnichannel-services/src/localTypes.ts"
+    }
+  ]
+}

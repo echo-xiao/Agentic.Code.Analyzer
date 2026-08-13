@@ -1,0 +1,59 @@
+{
+  "sourcePath": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/server/cron/temporaryUploadsCleanup.ts",
+  "symbols": [
+    {
+      "type": "function",
+      "name": "temporaryUploadCleanup",
+      "exported": false,
+      "line": 6,
+      "endLine": 12,
+      "signature": "async function temporaryUploadCleanup(): Promise<void>",
+      "calls": [
+        {
+          "name": "toArray",
+          "edgeType": "call"
+        },
+        {
+          "name": "findExpiredTemporaryFiles",
+          "edgeType": "call"
+        },
+        {
+          "name": "deleteById",
+          "edgeType": "call"
+        },
+        {
+          "name": "getStore",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "function",
+      "name": "temporaryUploadCleanupCron",
+      "exported": true,
+      "line": 10,
+      "endLine": 12,
+      "signature": "export async function temporaryUploadCleanupCron(): Promise<void>",
+      "calls": [
+        {
+          "name": "temporaryUploadCleanup",
+          "edgeType": "call"
+        }
+      ]
+    }
+  ],
+  "imports": [
+    {
+      "module": "@rocket.chat/cron",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/models",
+      "resolved": "external"
+    },
+    {
+      "module": "../../app/file-upload/server",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/app/file-upload/server/index.ts"
+    }
+  ]
+}

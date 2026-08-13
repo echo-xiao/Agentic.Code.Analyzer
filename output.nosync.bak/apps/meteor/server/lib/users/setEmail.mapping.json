@@ -1,0 +1,153 @@
+{
+  "sourcePath": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/server/lib/users/setEmail.ts",
+  "symbols": [
+    {
+      "type": "module",
+      "name": "setEmail",
+      "exported": false,
+      "line": 1,
+      "endLine": 107,
+      "signature": "setEmail",
+      "calls": [
+        {
+          "name": "startup",
+          "edgeType": "call"
+        },
+        {
+          "name": "getTemplate",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "variable_function",
+      "name": "_sendEmailChangeNotification",
+      "exported": false,
+      "line": 22,
+      "endLine": 42,
+      "signature": "async function (to: string, newEmail: string)",
+      "calls": [
+        {
+          "name": "get",
+          "edgeType": "call"
+        },
+        {
+          "name": "escapeHTML",
+          "edgeType": "call"
+        },
+        {
+          "name": "send",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "variable_function",
+      "name": "setEmail",
+      "exported": true,
+      "line": 26,
+      "endLine": 88,
+      "signature": "async function ( userId: string, email: string, shouldSendVerificationEmail = true, verified = false, updater?: Updater<IUser>, session?: ClientSession, )",
+      "calls": [
+        {
+          "name": "trim",
+          "edgeType": "call"
+        },
+        {
+          "name": "validateEmailDomain",
+          "edgeType": "call"
+        },
+        {
+          "name": "findOneById",
+          "edgeType": "call"
+        },
+        {
+          "name": "checkEmailAvailability",
+          "edgeType": "call"
+        },
+        {
+          "name": "onceTransactionCommitedSuccessfully",
+          "edgeType": "call"
+        },
+        {
+          "name": "_sendEmailChangeNotification",
+          "edgeType": "call"
+        },
+        {
+          "name": "set",
+          "edgeType": "call"
+        },
+        {
+          "name": "setEmail",
+          "edgeType": "call"
+        },
+        {
+          "name": "sendConfirmationEmail",
+          "edgeType": "call"
+        },
+        {
+          "name": "Updater",
+          "edgeType": "type"
+        },
+        {
+          "name": "IUser",
+          "edgeType": "type"
+        },
+        {
+          "name": "ClientSession",
+          "edgeType": "type"
+        }
+      ]
+    }
+  ],
+  "imports": [
+    {
+      "module": "@rocket.chat/core-typings",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/models",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/models",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/string-helpers",
+      "resolved": "external"
+    },
+    {
+      "module": "meteor/meteor",
+      "resolved": "external"
+    },
+    {
+      "module": "mongodb",
+      "resolved": "external"
+    },
+    {
+      "module": "./checkEmailAvailability",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/server/lib/users/checkEmailAvailability.ts"
+    },
+    {
+      "module": "../../../app/lib/server/lib",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/app/lib/server/lib/index.ts"
+    },
+    {
+      "module": "../../../app/mailer/server/api",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/app/mailer/server/api.ts"
+    },
+    {
+      "module": "../../../app/settings/server",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/app/settings/server/index.ts"
+    },
+    {
+      "module": "../../database/utils",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/server/database/utils.ts"
+    },
+    {
+      "module": "../../methods/sendConfirmationEmail",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/server/methods/sendConfirmationEmail.ts"
+    }
+  ]
+}

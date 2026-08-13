@@ -1,0 +1,799 @@
+{
+  "sourcePath": "/Users/echoooooo/Desktop/code/Rocket.Chat/ee/packages/presence/src/Presence.ts",
+  "symbols": [
+    {
+      "type": "class",
+      "name": "Presence",
+      "exported": true,
+      "line": 35,
+      "endLine": 469,
+      "signature": "export class Presence extends ServiceClass implements IPresence",
+      "calls": [
+        {
+          "name": "ServiceClass",
+          "edgeType": "type"
+        },
+        {
+          "name": "IPresence",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "onNodeDisconnected",
+      "exported": true,
+      "qualifiedName": "Presence.onNodeDisconnected",
+      "line": 106,
+      "endLine": 109,
+      "signature": "async onNodeDisconnected({ node }: { node: IBrokerNode }): Promise<void>",
+      "containerClass": "Presence",
+      "calls": [
+        {
+          "name": "removeLostConnections",
+          "edgeType": "call"
+        },
+        {
+          "name": "forEach",
+          "edgeType": "call"
+        },
+        {
+          "name": "updateUserPresence",
+          "edgeType": "call"
+        },
+        {
+          "name": "IBrokerNode",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "started",
+      "exported": true,
+      "qualifiedName": "Presence.started",
+      "line": 110,
+      "endLine": 128,
+      "signature": "override async started(): Promise<void>",
+      "containerClass": "Presence",
+      "calls": [
+        {
+          "name": "start",
+          "edgeType": "call"
+        },
+        {
+          "name": "removeLostConnections",
+          "edgeType": "call"
+        },
+        {
+          "name": "forEach",
+          "edgeType": "call"
+        },
+        {
+          "name": "updateUserPresence",
+          "edgeType": "call"
+        },
+        {
+          "name": "set",
+          "edgeType": "call"
+        },
+        {
+          "name": "hasModule",
+          "edgeType": "call"
+        },
+        {
+          "name": "handleExpirationJob",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "processExpiredStatuses",
+      "exported": true,
+      "qualifiedName": "Presence.processExpiredStatuses",
+      "line": 114,
+      "endLine": 121,
+      "signature": "private async processExpiredStatuses(): Promise<void>",
+      "containerClass": "Presence",
+      "calls": [
+        {
+          "name": "findExpiredStatuses",
+          "edgeType": "call"
+        },
+        {
+          "name": "updateUserPresence",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "setupNextExpiration",
+      "exported": true,
+      "qualifiedName": "Presence.setupNextExpiration",
+      "line": 118,
+      "endLine": 145,
+      "signature": "private async setupNextExpiration(): Promise<void>",
+      "containerClass": "Presence",
+      "calls": [
+        {
+          "name": "Symbol",
+          "edgeType": "call"
+        },
+        {
+          "name": "findNextStatusExpiration",
+          "edgeType": "call"
+        },
+        {
+          "name": "min",
+          "edgeType": "call"
+        },
+        {
+          "name": "max",
+          "edgeType": "call"
+        },
+        {
+          "name": "getTime",
+          "edgeType": "call"
+        },
+        {
+          "name": "now",
+          "edgeType": "call"
+        },
+        {
+          "name": "catch",
+          "edgeType": "call"
+        },
+        {
+          "name": "handleExpirationJob",
+          "edgeType": "call"
+        },
+        {
+          "name": "error",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "handleExpirationJob",
+      "exported": true,
+      "qualifiedName": "Presence.handleExpirationJob",
+      "line": 122,
+      "endLine": 125,
+      "signature": "private async handleExpirationJob(): Promise<void>",
+      "containerClass": "Presence",
+      "calls": [
+        {
+          "name": "processExpiredStatuses",
+          "edgeType": "call"
+        },
+        {
+          "name": "setupNextExpiration",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "handleReaperUpdates",
+      "exported": true,
+      "qualifiedName": "Presence.handleReaperUpdates",
+      "line": 126,
+      "endLine": 142,
+      "signature": "private async handleReaperUpdates(userIds: string[]): Promise<void>",
+      "containerClass": "Presence",
+      "calls": [
+        {
+          "name": "allSettled",
+          "edgeType": "call"
+        },
+        {
+          "name": "map",
+          "edgeType": "call"
+        },
+        {
+          "name": "updateUserPresence",
+          "edgeType": "call"
+        },
+        {
+          "name": "filter",
+          "edgeType": "call"
+        },
+        {
+          "name": "debug",
+          "edgeType": "call"
+        },
+        {
+          "name": "error",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "stopped",
+      "exported": true,
+      "qualifiedName": "Presence.stopped",
+      "line": 130,
+      "endLine": 136,
+      "signature": "override async stopped(): Promise<void>",
+      "containerClass": "Presence",
+      "calls": [
+        {
+          "name": "stop",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "toggleBroadcast",
+      "exported": true,
+      "qualifiedName": "Presence.toggleBroadcast",
+      "line": 134,
+      "endLine": 144,
+      "signature": "async toggleBroadcast(enabled: boolean): Promise<void>",
+      "containerClass": "Presence",
+      "calls": [
+        {
+          "name": "getTotalConnections",
+          "edgeType": "call"
+        },
+        {
+          "name": "set",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "getConnectionCount",
+      "exported": true,
+      "qualifiedName": "Presence.getConnectionCount",
+      "line": 138,
+      "endLine": 143,
+      "signature": "getConnectionCount(): { current: number; max: number }",
+      "containerClass": "Presence",
+      "calls": [
+        {
+          "name": "getTotalConnections",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "newConnection",
+      "exported": true,
+      "qualifiedName": "Presence.newConnection",
+      "line": 142,
+      "endLine": 162,
+      "signature": "async newConnection( uid: string | undefined, session: string | undefined, nodeId: string, ): Promise<{ uid: string; connectionId: string } | undefined>",
+      "containerClass": "Presence",
+      "calls": [
+        {
+          "name": "addConnectionById",
+          "edgeType": "call"
+        },
+        {
+          "name": "updateUserPresence",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "updateConnection",
+      "exported": true,
+      "qualifiedName": "Presence.updateConnection",
+      "line": 150,
+      "endLine": 170,
+      "signature": "async updateConnection(uid: string, connectionId: string): Promise<{ uid: string; connectionId: string } | undefined>",
+      "containerClass": "Presence",
+      "calls": [
+        {
+          "name": "updateOne",
+          "edgeType": "call"
+        },
+        {
+          "name": "updateUserPresence",
+          "edgeType": "call"
+        },
+        {
+          "name": "Date",
+          "edgeType": "new"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "removeConnection",
+      "exported": true,
+      "qualifiedName": "Presence.removeConnection",
+      "line": 154,
+      "endLine": 166,
+      "signature": "async removeConnection(uid: string | undefined, session: string | undefined): Promise<{ uid: string; session: string } | undefined>",
+      "containerClass": "Presence",
+      "calls": [
+        {
+          "name": "removeConnectionByConnectionId",
+          "edgeType": "call"
+        },
+        {
+          "name": "updateUserPresence",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "removeLostConnections",
+      "exported": true,
+      "qualifiedName": "Presence.removeLostConnections",
+      "line": 158,
+      "endLine": 185,
+      "signature": "async removeLostConnections(nodeID?: string): Promise<string[]>",
+      "containerClass": "Presence",
+      "calls": [
+        {
+          "name": "toArray",
+          "edgeType": "call"
+        },
+        {
+          "name": "findByInstanceId",
+          "edgeType": "call"
+        },
+        {
+          "name": "removeConnectionsFromInstanceId",
+          "edgeType": "call"
+        },
+        {
+          "name": "map",
+          "edgeType": "call"
+        },
+        {
+          "name": "nodeList",
+          "edgeType": "call"
+        },
+        {
+          "name": "filter",
+          "edgeType": "call"
+        },
+        {
+          "name": "findByOtherInstanceIds",
+          "edgeType": "call"
+        },
+        {
+          "name": "removeConnectionsFromOtherInstanceIds",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "updatePresenceAndReschedule",
+      "exported": true,
+      "qualifiedName": "Presence.updatePresenceAndReschedule",
+      "line": 166,
+      "endLine": 170,
+      "signature": "private async updatePresenceAndReschedule(uid: string, claimUpdate: ClaimUpdate): Promise<boolean>",
+      "containerClass": "Presence",
+      "calls": [
+        {
+          "name": "updateUserPresence",
+          "edgeType": "call"
+        },
+        {
+          "name": "setupNextExpiration",
+          "edgeType": "call"
+        },
+        {
+          "name": "ClaimUpdate",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "setStatus",
+      "exported": true,
+      "qualifiedName": "Presence.setStatus",
+      "line": 170,
+      "endLine": 183,
+      "signature": "async setStatus(userId: string, statusDefault: UserStatus, statusText?: string, statusExpiresAt?: Date): Promise<boolean>",
+      "containerClass": "Presence",
+      "calls": [
+        {
+          "name": "clearActiveState",
+          "edgeType": "call"
+        },
+        {
+          "name": "setActiveState",
+          "edgeType": "call"
+        },
+        {
+          "name": "normalizeStatusText",
+          "edgeType": "call"
+        },
+        {
+          "name": "UserStatus",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "setActiveState",
+      "exported": true,
+      "qualifiedName": "Presence.setActiveState",
+      "line": 177,
+      "endLine": 195,
+      "signature": "async setActiveState( userId: string, newState: Pick<IUser, 'statusDefault' | 'statusSource' | 'statusText' | 'statusExpiresAt' | 'statusId'>, ): Promise<boolean>",
+      "containerClass": "Presence",
+      "calls": [
+        {
+          "name": "getTime",
+          "edgeType": "call"
+        },
+        {
+          "name": "isNaN",
+          "edgeType": "call"
+        },
+        {
+          "name": "now",
+          "edgeType": "call"
+        },
+        {
+          "name": "updatePresenceAndReschedule",
+          "edgeType": "call"
+        },
+        {
+          "name": "normalizeStatusText",
+          "edgeType": "call"
+        },
+        {
+          "name": "Date",
+          "edgeType": "new"
+        },
+        {
+          "name": "IUser",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "endActiveState",
+      "exported": true,
+      "qualifiedName": "Presence.endActiveState",
+      "line": 188,
+      "endLine": 190,
+      "signature": "async endActiveState(userId: string, statusId?: string): Promise<boolean>",
+      "containerClass": "Presence",
+      "calls": [
+        {
+          "name": "updatePresenceAndReschedule",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "clearActiveState",
+      "exported": true,
+      "qualifiedName": "Presence.clearActiveState",
+      "line": 195,
+      "endLine": 197,
+      "signature": "async clearActiveState(userId: string): Promise<boolean>",
+      "containerClass": "Presence",
+      "calls": [
+        {
+          "name": "updatePresenceAndReschedule",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "setConnectionStatus",
+      "exported": true,
+      "qualifiedName": "Presence.setConnectionStatus",
+      "line": 199,
+      "endLine": 205,
+      "signature": "async setConnectionStatus(uid: string, status: UserStatus, session: string): Promise<boolean>",
+      "containerClass": "Presence",
+      "calls": [
+        {
+          "name": "updateConnectionStatusById",
+          "edgeType": "call"
+        },
+        {
+          "name": "updateUserPresence",
+          "edgeType": "call"
+        },
+        {
+          "name": "UserStatus",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "updateUserPresence",
+      "exported": true,
+      "qualifiedName": "Presence.updateUserPresence",
+      "line": 207,
+      "endLine": 253,
+      "signature": "private async updateUserPresence(uidOrUser: string | PresenceUser, claimUpdate?: ClaimUpdate): Promise<boolean>",
+      "containerClass": "Presence",
+      "calls": [
+        {
+          "name": "findOneById",
+          "edgeType": "call"
+        },
+        {
+          "name": "processPresence",
+          "edgeType": "call"
+        },
+        {
+          "name": "keys",
+          "edgeType": "call"
+        },
+        {
+          "name": "updatePresenceAndStatus",
+          "edgeType": "call"
+        },
+        {
+          "name": "PresenceUser",
+          "edgeType": "type"
+        },
+        {
+          "name": "ClaimUpdate",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "broadcast",
+      "exported": true,
+      "qualifiedName": "Presence.broadcast",
+      "line": 211,
+      "endLine": 222,
+      "signature": "private broadcast( user: Pick<IUser, '_id' | 'username' | 'status' | 'statusText' | 'statusSource' | 'statusExpiresAt' | 'roles'>, previousStatus: UserStatus | undefined, ): void",
+      "containerClass": "Presence",
+      "calls": [
+        {
+          "name": "presence.status",
+          "edgeType": "event_emit"
+        },
+        {
+          "name": "IUser",
+          "edgeType": "type"
+        },
+        {
+          "name": "UserStatus",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "validateAvailability",
+      "exported": true,
+      "qualifiedName": "Presence.validateAvailability",
+      "line": 218,
+      "endLine": 228,
+      "signature": "private async validateAvailability(): Promise<void>",
+      "containerClass": "Presence",
+      "calls": [
+        {
+          "name": "getTotalConnections",
+          "edgeType": "call"
+        },
+        {
+          "name": "set",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "getTotalConnections",
+      "exported": true,
+      "qualifiedName": "Presence.getTotalConnections",
+      "line": 222,
+      "endLine": 224,
+      "signature": "private getTotalConnections(): number",
+      "containerClass": "Presence",
+      "calls": [
+        {
+          "name": "reduce",
+          "edgeType": "call"
+        },
+        {
+          "name": "from",
+          "edgeType": "call"
+        },
+        {
+          "name": "values",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "getPeakConnections",
+      "exported": true,
+      "qualifiedName": "Presence.getPeakConnections",
+      "line": 226,
+      "endLine": 232,
+      "signature": "getPeakConnections(reset = false): number",
+      "containerClass": "Presence",
+      "calls": [
+        {
+          "name": "resetPeakConnections",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "resetPeakConnections",
+      "exported": true,
+      "qualifiedName": "Presence.resetPeakConnections",
+      "line": 230,
+      "endLine": 232,
+      "signature": "resetPeakConnections(): void",
+      "containerClass": "Presence",
+      "calls": []
+    },
+    {
+      "type": "method",
+      "name": "constructor",
+      "exported": true,
+      "qualifiedName": "Presence.constructor",
+      "line": 58,
+      "endLine": 104,
+      "signature": "constructor()",
+      "containerClass": "Presence",
+      "calls": [
+        {
+          "name": "handleReaperUpdates",
+          "edgeType": "call"
+        },
+        {
+          "name": "onEvent",
+          "edgeType": "call"
+        },
+        {
+          "name": "delete",
+          "edgeType": "call"
+        },
+        {
+          "name": "removeLostConnections",
+          "edgeType": "call"
+        },
+        {
+          "name": "forEach",
+          "edgeType": "call"
+        },
+        {
+          "name": "updateUserPresence",
+          "edgeType": "call"
+        },
+        {
+          "name": "hasOwn",
+          "edgeType": "call"
+        },
+        {
+          "name": "set",
+          "edgeType": "call"
+        },
+        {
+          "name": "max",
+          "edgeType": "call"
+        },
+        {
+          "name": "getTotalConnections",
+          "edgeType": "call"
+        },
+        {
+          "name": "validateAvailability",
+          "edgeType": "call"
+        },
+        {
+          "name": "toggleBroadcast",
+          "edgeType": "call"
+        },
+        {
+          "name": "PresenceReaper",
+          "edgeType": "new"
+        }
+      ]
+    },
+    {
+      "type": "class_property",
+      "name": "connsPerInstance",
+      "exported": true,
+      "qualifiedName": "Presence.connsPerInstance",
+      "line": 48,
+      "endLine": 48,
+      "signature": "private connsPerInstance = new Map<string, number>();",
+      "containerClass": "Presence",
+      "calls": [
+        {
+          "name": "Map",
+          "edgeType": "new"
+        }
+      ]
+    },
+    {
+      "type": "class_property",
+      "name": "reaper",
+      "exported": true,
+      "qualifiedName": "Presence.reaper",
+      "line": 52,
+      "endLine": 52,
+      "signature": "private reaper: PresenceReaper;",
+      "containerClass": "Presence",
+      "calls": [
+        {
+          "name": "PresenceReaper",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "type",
+      "name": "PresenceUser",
+      "line": 19,
+      "endLine": 33,
+      "signature": "type PresenceUser = Pick<"
+    }
+  ],
+  "imports": [
+    {
+      "module": "node:timers",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/core-services",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/core-services",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/core-typings",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/core-typings",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/logger",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/models",
+      "resolved": "external"
+    },
+    {
+      "module": "./lib/PresenceReaper",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/ee/packages/presence/src/lib/PresenceReaper.ts"
+    },
+    {
+      "module": "./lib/normalizeStatusText",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/ee/packages/presence/src/lib/normalizeStatusText.ts"
+    },
+    {
+      "module": "./lib/presenceEngine",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/ee/packages/presence/src/lib/presenceEngine.ts"
+    }
+  ]
+}

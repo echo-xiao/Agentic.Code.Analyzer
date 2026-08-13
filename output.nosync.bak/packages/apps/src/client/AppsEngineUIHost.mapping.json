@@ -1,0 +1,163 @@
+{
+  "sourcePath": "/Users/echoooooo/Desktop/code/Rocket.Chat/packages/apps/src/client/AppsEngineUIHost.ts",
+  "symbols": [
+    {
+      "type": "class",
+      "name": "AppsEngineUIHost",
+      "exported": true,
+      "line": 10,
+      "endLine": 78,
+      "signature": "export abstract class AppsEngineUIHost",
+      "calls": []
+    },
+    {
+      "type": "method",
+      "name": "initialize",
+      "exported": true,
+      "qualifiedName": "AppsEngineUIHost.initialize",
+      "line": 23,
+      "endLine": 44,
+      "signature": "public initialize()",
+      "containerClass": "AppsEngineUIHost",
+      "calls": [
+        {
+          "name": "addEventListener",
+          "edgeType": "call"
+        },
+        {
+          "name": "then",
+          "edgeType": "call"
+        },
+        {
+          "name": "getClientUserInfo",
+          "edgeType": "call"
+        },
+        {
+          "name": "handleAction",
+          "edgeType": "call"
+        },
+        {
+          "name": "getClientRoomInfo",
+          "edgeType": "call"
+        },
+        {
+          "name": "Window",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "getClientUserInfo",
+      "exported": true,
+      "qualifiedName": "AppsEngineUIHost.getClientUserInfo",
+      "line": 30,
+      "endLine": 30,
+      "signature": "public abstract getClientUserInfo(): Promise<IExternalComponentUserInfo>;",
+      "containerClass": "AppsEngineUIHost",
+      "calls": [
+        {
+          "name": "IExternalComponentUserInfo",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "getClientRoomInfo",
+      "exported": true,
+      "qualifiedName": "AppsEngineUIHost.getClientRoomInfo",
+      "line": 35,
+      "endLine": 35,
+      "signature": "public abstract getClientRoomInfo(): Promise<IExternalComponentRoomInfo>;",
+      "containerClass": "AppsEngineUIHost",
+      "calls": [
+        {
+          "name": "IExternalComponentRoomInfo",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "handleAction",
+      "exported": true,
+      "qualifiedName": "AppsEngineUIHost.handleAction",
+      "line": 43,
+      "endLine": 58,
+      "signature": "private async handleAction(action: AppsEngineUIMethods, id: string, data: HandleActionData): Promise<void>",
+      "containerClass": "AppsEngineUIHost",
+      "calls": [
+        {
+          "name": "postMessage",
+          "edgeType": "call"
+        },
+        {
+          "name": "AppsEngineUIMethods",
+          "edgeType": "type"
+        },
+        {
+          "name": "HandleActionData",
+          "edgeType": "type"
+        },
+        {
+          "name": "IAppsEngineUIResponse",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "constructor",
+      "exported": true,
+      "qualifiedName": "AppsEngineUIHost.constructor",
+      "line": 16,
+      "endLine": 18,
+      "signature": "constructor()",
+      "containerClass": "AppsEngineUIHost",
+      "calls": [
+        {
+          "name": "initialize",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "class_property",
+      "name": "responseDestination",
+      "exported": true,
+      "qualifiedName": "AppsEngineUIHost.responseDestination",
+      "line": 14,
+      "endLine": 14,
+      "signature": "private responseDestination!: Window;",
+      "containerClass": "AppsEngineUIHost",
+      "calls": [
+        {
+          "name": "Window",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "type",
+      "name": "HandleActionData",
+      "line": 5,
+      "endLine": 5,
+      "signature": "type HandleActionData = IExternalComponentUserInfo | IExternalComponentRoomInfo;"
+    }
+  ],
+  "imports": [
+    {
+      "module": "./constants",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/packages/apps/src/client/constants/index.ts"
+    },
+    {
+      "module": "./definition",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/packages/apps/src/client/definition/index.ts"
+    },
+    {
+      "module": "./definition",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/packages/apps/src/client/definition/index.ts"
+    }
+  ]
+}

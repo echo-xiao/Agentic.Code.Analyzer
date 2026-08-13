@@ -1,0 +1,127 @@
+{
+  "sourcePath": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/server/lib/cloud/getWorkspaceLicense.ts",
+  "symbols": [
+    {
+      "type": "function",
+      "name": "getWorkspaceLicense",
+      "exported": true,
+      "line": 49,
+      "endLine": 78,
+      "signature": "export async function getWorkspaceLicense()",
+      "calls": [
+        {
+          "name": "findOne",
+          "edgeType": "call"
+        },
+        {
+          "name": "getWorkspaceAccessToken",
+          "edgeType": "call"
+        },
+        {
+          "name": "fetchCloudWorkspaceLicensePayload",
+          "edgeType": "call"
+        },
+        {
+          "name": "getTime",
+          "edgeType": "call"
+        },
+        {
+          "name": "workspaceLicenseChanged",
+          "edgeType": "event_emit"
+        },
+        {
+          "name": "error",
+          "edgeType": "call"
+        },
+        {
+          "name": "CloudWorkspaceLicenseError",
+          "edgeType": "new"
+        }
+      ]
+    },
+    {
+      "type": "variable_function",
+      "name": "fetchCloudWorkspaceLicensePayload",
+      "exported": false,
+      "line": 14,
+      "endLine": 47,
+      "signature": "async ({ token }: { token: string }): Promise<Cloud.WorkspaceLicensePayload> =>",
+      "calls": [
+        {
+          "name": "get",
+          "edgeType": "call"
+        },
+        {
+          "name": "fetch",
+          "edgeType": "call"
+        },
+        {
+          "name": "json",
+          "edgeType": "call"
+        },
+        {
+          "name": "safeParse",
+          "edgeType": "call"
+        },
+        {
+          "name": "prettifyError",
+          "edgeType": "call"
+        },
+        {
+          "name": "CloudWorkspaceConnectionError",
+          "edgeType": "new"
+        },
+        {
+          "name": "CloudWorkspaceLicenseError",
+          "edgeType": "new"
+        }
+      ]
+    }
+  ],
+  "imports": [
+    {
+      "module": "@rocket.chat/core-typings",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/models",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/server-fetch",
+      "resolved": "external"
+    },
+    {
+      "module": "zod",
+      "resolved": "external"
+    },
+    {
+      "module": "./getWorkspaceAccessToken",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/server/lib/cloud/getWorkspaceAccessToken.ts"
+    },
+    {
+      "module": "../../../app/cloud/server/license",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/app/cloud/server/license.ts"
+    },
+    {
+      "module": "../../../app/settings/server",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/app/settings/server/index.ts"
+    },
+    {
+      "module": "../../../lib/errors/CloudWorkspaceConnectionError",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/lib/errors/CloudWorkspaceConnectionError.ts"
+    },
+    {
+      "module": "../../../lib/errors/CloudWorkspaceLicenseError",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/lib/errors/CloudWorkspaceLicenseError.ts"
+    },
+    {
+      "module": "../callbacks",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/server/lib/callbacks.ts"
+    },
+    {
+      "module": "../logger/system",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/server/lib/logger/system.ts"
+    }
+  ]
+}

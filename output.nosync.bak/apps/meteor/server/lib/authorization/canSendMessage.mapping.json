@@ -1,0 +1,99 @@
+{
+  "sourcePath": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/server/lib/authorization/canSendMessage.ts",
+  "symbols": [
+    {
+      "type": "function",
+      "name": "validateRoomMessagePermissionsAsync",
+      "exported": true,
+      "line": 17,
+      "endLine": 52,
+      "signature": "export async function validateRoomMessagePermissionsAsync( room: IRoom | null, args: { uid: IUser['_id']; username: IUser['username']; type: IUser['type'] } | IUser, extraData?: Record<string, any>, ): Promise<void>",
+      "calls": [
+        {
+          "name": "canAccessRoomAsync",
+          "edgeType": "call"
+        },
+        {
+          "name": "allowMemberAction",
+          "edgeType": "call"
+        },
+        {
+          "name": "getRoomDirectives",
+          "edgeType": "call"
+        },
+        {
+          "name": "findOneByRoomIdAndUserId",
+          "edgeType": "call"
+        },
+        {
+          "name": "hasPermissionAsync",
+          "edgeType": "call"
+        },
+        {
+          "name": "includes",
+          "edgeType": "call"
+        },
+        {
+          "name": "IRoom",
+          "edgeType": "type"
+        },
+        {
+          "name": "IUser",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "function",
+      "name": "canSendMessageAsync",
+      "exported": true,
+      "line": 25,
+      "endLine": 37,
+      "signature": "export async function canSendMessageAsync( rid: IRoom['_id'], user: { uid: IUser['_id']; username: IUser['username']; type: IUser['type'] } | IUser, extraData?: Record<string, any>, ): Promise<IRoom>",
+      "calls": [
+        {
+          "name": "findOneById",
+          "edgeType": "call"
+        },
+        {
+          "name": "validateRoomMessagePermissionsAsync",
+          "edgeType": "call"
+        },
+        {
+          "name": "IRoom",
+          "edgeType": "type"
+        },
+        {
+          "name": "IUser",
+          "edgeType": "type"
+        }
+      ]
+    }
+  ],
+  "imports": [
+    {
+      "module": "@rocket.chat/core-typings",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/models",
+      "resolved": "external"
+    },
+    {
+      "module": "./canAccessRoom",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/server/lib/authorization/canAccessRoom.ts"
+    },
+    {
+      "module": "./hasPermission",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/server/lib/authorization/hasPermission.ts"
+    },
+    {
+      "module": "../../../definition/IRoomTypeConfig",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/definition/IRoomTypeConfig.ts"
+    },
+    {
+      "module": "../rooms/roomCoordinator",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/server/lib/rooms/roomCoordinator.ts"
+    }
+  ]
+}

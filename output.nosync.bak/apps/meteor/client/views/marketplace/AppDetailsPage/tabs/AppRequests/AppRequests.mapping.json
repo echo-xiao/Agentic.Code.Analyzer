@@ -1,0 +1,240 @@
+{
+  "sourcePath": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/client/views/marketplace/AppDetailsPage/tabs/AppRequests/AppRequests.tsx",
+  "symbols": [
+    {
+      "type": "inner_function",
+      "name": "onSetItemsPerPage",
+      "exported": false,
+      "qualifiedName": "AppRequests.onSetItemsPerPage",
+      "line": 25,
+      "endLine": 25,
+      "signature": "(itemsPerPageOption: SetStateAction<itemsPerPage>) =>",
+      "calls": [
+        {
+          "name": "setLimit",
+          "edgeType": "call"
+        },
+        {
+          "name": "SetStateAction",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "inner_function",
+      "name": "onSetCurrent",
+      "exported": false,
+      "qualifiedName": "AppRequests.onSetCurrent",
+      "line": 26,
+      "endLine": 26,
+      "signature": "(currentItemsOption: SetStateAction<number>) =>",
+      "calls": [
+        {
+          "name": "setOffset",
+          "edgeType": "call"
+        },
+        {
+          "name": "SetStateAction",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "inner_function",
+      "name": "onSuccess",
+      "exported": false,
+      "qualifiedName": "AppRequests.onSuccess",
+      "line": 47,
+      "endLine": 50,
+      "signature": "() =>",
+      "calls": [
+        {
+          "name": "refetchQueries",
+          "edgeType": "call"
+        },
+        {
+          "name": "reloadApps",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "variable_function",
+      "name": "AppRequests",
+      "exported": false,
+      "line": 18,
+      "endLine": 99,
+      "signature": "({ id, isAdminUser }: AppRequestsProps) =>",
+      "calls": [
+        {
+          "name": "useState",
+          "edgeType": "call"
+        },
+        {
+          "name": "useAppRequests",
+          "edgeType": "call"
+        },
+        {
+          "name": "useTranslation",
+          "edgeType": "call"
+        },
+        {
+          "name": "setLimit",
+          "edgeType": "call"
+        },
+        {
+          "name": "setOffset",
+          "edgeType": "call"
+        },
+        {
+          "name": "useAppsReload",
+          "edgeType": "call"
+        },
+        {
+          "name": "useEndpoint",
+          "edgeType": "call"
+        },
+        {
+          "name": "useMutation",
+          "edgeType": "call"
+        },
+        {
+          "name": "markSeen",
+          "edgeType": "call"
+        },
+        {
+          "name": "useQueryClient",
+          "edgeType": "call"
+        },
+        {
+          "name": "useEffect",
+          "edgeType": "call"
+        },
+        {
+          "name": "map",
+          "edgeType": "call"
+        },
+        {
+          "name": "filter",
+          "edgeType": "call"
+        },
+        {
+          "name": "mutate",
+          "edgeType": "call"
+        },
+        {
+          "name": "refetchQueries",
+          "edgeType": "call"
+        },
+        {
+          "name": "reloadApps",
+          "edgeType": "call"
+        },
+        {
+          "name": "Box",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "States",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "StatesTitle",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "StatesSubtitle",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "AppRequestsLoading",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "AppRequestItem",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "Pagination",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "onSetItemsPerPage",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "onSetCurrent",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "AppRequestsProps",
+          "edgeType": "type"
+        },
+        {
+          "name": "SetStateAction",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "type",
+      "name": "itemsPerPage",
+      "line": 14,
+      "endLine": 14,
+      "signature": "type itemsPerPage = 25 | 50 | 100;"
+    },
+    {
+      "type": "type",
+      "name": "AppRequestsProps",
+      "line": 16,
+      "endLine": 16,
+      "signature": "export type AppRequestsProps ="
+    }
+  ],
+  "imports": [
+    {
+      "module": "@rocket.chat/core-typings",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/fuselage",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/ui-contexts",
+      "resolved": "external"
+    },
+    {
+      "module": "@tanstack/react-query",
+      "resolved": "external"
+    },
+    {
+      "module": "react",
+      "resolved": "external"
+    },
+    {
+      "module": "react",
+      "resolved": "external"
+    },
+    {
+      "module": "react-i18next",
+      "resolved": "external"
+    },
+    {
+      "module": "./AppRequestItem",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/client/views/marketplace/AppDetailsPage/tabs/AppRequests/AppRequestItem.tsx"
+    },
+    {
+      "module": "./AppRequestsLoading",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/client/views/marketplace/AppDetailsPage/tabs/AppRequests/AppRequestsLoading.tsx"
+    },
+    {
+      "module": "../../../hooks/useAppRequests",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/client/views/marketplace/hooks/useAppRequests.ts"
+    },
+    {
+      "module": "../../../hooks/useAppsReload",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/client/views/marketplace/hooks/useAppsReload.ts"
+    }
+  ]
+}

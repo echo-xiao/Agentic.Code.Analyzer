@@ -1,0 +1,144 @@
+{
+  "sourcePath": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/app/statistics/server/lib/getEEStatistics.ts",
+  "symbols": [
+    {
+      "type": "function",
+      "name": "getStatistics",
+      "exported": true,
+      "line": 14,
+      "endLine": 29,
+      "signature": "export async function getStatistics(): Promise<ENTERPRISE_STATISTICS>",
+      "calls": [
+        {
+          "name": "getModules",
+          "edgeType": "call"
+        },
+        {
+          "name": "map",
+          "edgeType": "call"
+        },
+        {
+          "name": "getTags",
+          "edgeType": "call"
+        },
+        {
+          "name": "getSeatRequestCount",
+          "edgeType": "call"
+        },
+        {
+          "name": "getEEStatistics",
+          "edgeType": "call"
+        },
+        {
+          "name": "ENTERPRISE_STATISTICS",
+          "edgeType": "type"
+        },
+        {
+          "name": "GenericStats",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "function",
+      "name": "getEEStatistics",
+      "exported": false,
+      "line": 18,
+      "endLine": 90,
+      "signature": "async function getEEStatistics(): Promise<EEOnlyStats | undefined>",
+      "calls": [
+        {
+          "name": "hasModule",
+          "edgeType": "call"
+        },
+        {
+          "name": "push",
+          "edgeType": "call"
+        },
+        {
+          "name": "then",
+          "edgeType": "call"
+        },
+        {
+          "name": "estimatedDocumentCount",
+          "edgeType": "call"
+        },
+        {
+          "name": "countPrioritizedRooms",
+          "edgeType": "call"
+        },
+        {
+          "name": "countRoomsWithSla",
+          "edgeType": "call"
+        },
+        {
+          "name": "countUnits",
+          "edgeType": "call"
+        },
+        {
+          "name": "countByRole",
+          "edgeType": "call"
+        },
+        {
+          "name": "countRoomsWithTranscriptSent",
+          "edgeType": "call"
+        },
+        {
+          "name": "catch",
+          "edgeType": "call"
+        },
+        {
+          "name": "all",
+          "edgeType": "call"
+        },
+        {
+          "name": "EEOnlyStats",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "type",
+      "name": "ENTERPRISE_STATISTICS",
+      "line": 8,
+      "endLine": 8,
+      "signature": "type ENTERPRISE_STATISTICS = IStats['enterprise'];"
+    },
+    {
+      "type": "type",
+      "name": "GenericStats",
+      "line": 10,
+      "endLine": 10,
+      "signature": "type GenericStats = Pick<ENTERPRISE_STATISTICS, 'modules' | 'tags' | 'seatRequests'>;"
+    },
+    {
+      "type": "type",
+      "name": "EEOnlyStats",
+      "line": 12,
+      "endLine": 12,
+      "signature": "type EEOnlyStats = Omit<ENTERPRISE_STATISTICS, keyof GenericStats>;"
+    }
+  ],
+  "imports": [
+    {
+      "module": "console",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/core-services",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/core-typings",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/license",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/models",
+      "resolved": "external"
+    }
+  ]
+}

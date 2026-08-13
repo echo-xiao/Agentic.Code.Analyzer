@@ -1,0 +1,92 @@
+{
+  "sourcePath": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/client/components/message/MessageCollapsible.tsx",
+  "symbols": [
+    {
+      "type": "variable_function",
+      "name": "MessageCollapsible",
+      "exported": false,
+      "line": 18,
+      "endLine": 34,
+      "signature": "({ children, title, hasDownload, link, size, isCollapsed }: MessageCollapsibleProps) =>",
+      "calls": [
+        {
+          "name": "useCollapse",
+          "edgeType": "call"
+        },
+        {
+          "name": "Box",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "AttachmentSize",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "CollapsibleContent",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "AttachmentDownload",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "title",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "size",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "collapsed",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "toggleCollapse",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "link",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "MessageCollapsibleProps",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "type",
+      "name": "MessageCollapsibleProps",
+      "line": 9,
+      "endLine": 16,
+      "signature": "export type MessageCollapsibleProps ="
+    }
+  ],
+  "imports": [
+    {
+      "module": "@rocket.chat/fuselage",
+      "resolved": "external"
+    },
+    {
+      "module": "react",
+      "resolved": "external"
+    },
+    {
+      "module": "./content/attachments/structure/AttachmentDownload",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/client/components/message/content/attachments/structure/AttachmentDownload.tsx"
+    },
+    {
+      "module": "./content/attachments/structure/AttachmentSize",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/client/components/message/content/attachments/structure/AttachmentSize.tsx"
+    },
+    {
+      "module": "./content/collapsible/CollapsibleContent",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/client/components/message/content/collapsible/CollapsibleContent.tsx"
+    },
+    {
+      "module": "./hooks/useCollapse",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/client/components/message/hooks/useCollapse.ts"
+    }
+  ]
+}

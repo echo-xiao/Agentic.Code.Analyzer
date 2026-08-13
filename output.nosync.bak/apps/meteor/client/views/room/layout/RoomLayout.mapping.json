@@ -1,0 +1,122 @@
+{
+  "sourcePath": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/client/views/room/layout/RoomLayout.tsx",
+  "symbols": [
+    {
+      "type": "variable_function",
+      "name": "useBreakpointsElement",
+      "exported": false,
+      "line": 18,
+      "endLine": 35,
+      "signature": "() =>",
+      "calls": [
+        {
+          "name": "useResizeObserver",
+          "edgeType": "call"
+        },
+        {
+          "name": "useMemo",
+          "edgeType": "call"
+        },
+        {
+          "name": "map",
+          "edgeType": "call"
+        },
+        {
+          "name": "filter",
+          "edgeType": "call"
+        },
+        {
+          "name": "HTMLElement",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "variable_function",
+      "name": "RoomLayout",
+      "exported": false,
+      "line": 22,
+      "endLine": 59,
+      "signature": "({ header, body, footer, aside, ...props }: RoomLayoutProps) =>",
+      "calls": [
+        {
+          "name": "useBreakpointsElement",
+          "edgeType": "call"
+        },
+        {
+          "name": "includes",
+          "edgeType": "call"
+        },
+        {
+          "name": "useLayout",
+          "edgeType": "call"
+        },
+        {
+          "name": "useMemo",
+          "edgeType": "call"
+        },
+        {
+          "name": "LayoutContext.Provider",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "Box",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "Suspense",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "HeaderSkeleton",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "ref",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "RoomLayoutProps",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "type",
+      "name": "RoomLayoutProps",
+      "line": 11,
+      "endLine": 16,
+      "signature": "export type RoomLayoutProps ="
+    }
+  ],
+  "imports": [
+    {
+      "module": "@rocket.chat/fuselage",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/fuselage-hooks",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/fuselage-tokens/breakpoints.json",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/ui-contexts",
+      "resolved": "external"
+    },
+    {
+      "module": "react",
+      "resolved": "external"
+    },
+    {
+      "module": "react",
+      "resolved": "external"
+    },
+    {
+      "module": "../Header/HeaderSkeleton",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/client/views/room/Header/HeaderSkeleton.tsx"
+    }
+  ]
+}

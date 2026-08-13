@@ -1,0 +1,785 @@
+{
+  "sourcePath": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/app/livechat/server/lib/QueueManager.ts",
+  "symbols": [
+    {
+      "type": "class",
+      "name": "QueueManager",
+      "exported": true,
+      "line": 92,
+      "endLine": 532,
+      "signature": "export class QueueManager",
+      "calls": []
+    },
+    {
+      "type": "method",
+      "name": "requeueInquiry",
+      "exported": true,
+      "qualifiedName": "QueueManager.requeueInquiry",
+      "line": 93,
+      "endLine": 122,
+      "signature": "static async requeueInquiry(inquiry: ILivechatInquiryRecord, room: IOmnichannelRoom, defaultAgent?: SelectedAgent)",
+      "containerClass": "QueueManager",
+      "calls": [
+        {
+          "name": "isWithinMACLimit",
+          "edgeType": "call"
+        },
+        {
+          "name": "error",
+          "edgeType": "call"
+        },
+        {
+          "name": "saveQueueInquiry",
+          "edgeType": "call"
+        },
+        {
+          "name": "delegateAgent",
+          "edgeType": "call"
+        },
+        {
+          "name": "debug",
+          "edgeType": "call"
+        },
+        {
+          "name": "beforeRouteChat",
+          "edgeType": "call"
+        },
+        {
+          "name": "delegateInquiry",
+          "edgeType": "call"
+        },
+        {
+          "name": "ILivechatInquiryRecord",
+          "edgeType": "type"
+        },
+        {
+          "name": "IOmnichannelRoom",
+          "edgeType": "type"
+        },
+        {
+          "name": "SelectedAgent",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "patchInquiryStatus",
+      "exported": true,
+      "qualifiedName": "QueueManager.patchInquiryStatus",
+      "line": 99,
+      "endLine": 101,
+      "signature": "public static patchInquiryStatus(fn: (typeof QueueManager)['getInquiryStatus'])",
+      "containerClass": "QueueManager",
+      "calls": []
+    },
+    {
+      "type": "method",
+      "name": "getInquiryStatus",
+      "exported": true,
+      "qualifiedName": "QueueManager.getInquiryStatus",
+      "line": 103,
+      "endLine": 140,
+      "signature": "static async getInquiryStatus({ room, agent }: { room: IOmnichannelRoom; agent?: SelectedAgent }): Promise<LivechatInquiryStatus>",
+      "containerClass": "QueueManager",
+      "calls": [
+        {
+          "name": "fnQueueInquiryStatus",
+          "edgeType": "call"
+        },
+        {
+          "name": "includes",
+          "edgeType": "call"
+        },
+        {
+          "name": "get",
+          "edgeType": "call"
+        },
+        {
+          "name": "isRoomContactVerified",
+          "edgeType": "call"
+        },
+        {
+          "name": "isWithinMACLimit",
+          "edgeType": "call"
+        },
+        {
+          "name": "allowAgentSkipQueue",
+          "edgeType": "call"
+        },
+        {
+          "name": "getConfig",
+          "edgeType": "call"
+        },
+        {
+          "name": "IOmnichannelRoom",
+          "edgeType": "type"
+        },
+        {
+          "name": "SelectedAgent",
+          "edgeType": "type"
+        },
+        {
+          "name": "LivechatInquiryStatus",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "processNewInquiry",
+      "exported": true,
+      "qualifiedName": "QueueManager.processNewInquiry",
+      "line": 107,
+      "endLine": 142,
+      "signature": "static async processNewInquiry(inquiry: ILivechatInquiryRecord, room: IOmnichannelRoom, defaultAgent?: SelectedAgent | null)",
+      "containerClass": "QueueManager",
+      "calls": [
+        {
+          "name": "debug",
+          "edgeType": "call"
+        },
+        {
+          "name": "setDefaultAgentById",
+          "edgeType": "call"
+        },
+        {
+          "name": "delegateInquiry",
+          "edgeType": "call"
+        },
+        {
+          "name": "all",
+          "edgeType": "call"
+        },
+        {
+          "name": "afterInquiryQueued",
+          "edgeType": "call"
+        },
+        {
+          "name": "afterRoomQueued",
+          "edgeType": "call"
+        },
+        {
+          "name": "dispatchInquiryQueued",
+          "edgeType": "call"
+        },
+        {
+          "name": "ILivechatInquiryRecord",
+          "edgeType": "type"
+        },
+        {
+          "name": "IOmnichannelRoom",
+          "edgeType": "type"
+        },
+        {
+          "name": "SelectedAgent",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "verifyInquiry",
+      "exported": true,
+      "qualifiedName": "QueueManager.verifyInquiry",
+      "line": 111,
+      "endLine": 138,
+      "signature": "static async verifyInquiry(inquiry: ILivechatInquiryRecord, room: IOmnichannelRoom)",
+      "containerClass": "QueueManager",
+      "calls": [
+        {
+          "name": "getInquiryStatus",
+          "edgeType": "call"
+        },
+        {
+          "name": "setStatusById",
+          "edgeType": "call"
+        },
+        {
+          "name": "processNewInquiry",
+          "edgeType": "call"
+        },
+        {
+          "name": "findOneById",
+          "edgeType": "call"
+        },
+        {
+          "name": "error",
+          "edgeType": "call"
+        },
+        {
+          "name": "dispatchInquiryPosition",
+          "edgeType": "call"
+        },
+        {
+          "name": "ILivechatInquiryRecord",
+          "edgeType": "type"
+        },
+        {
+          "name": "IOmnichannelRoom",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "isRoomContactVerified",
+      "exported": true,
+      "qualifiedName": "QueueManager.isRoomContactVerified",
+      "line": 115,
+      "endLine": 126,
+      "signature": "static async isRoomContactVerified(room: IOmnichannelRoom): Promise<boolean>",
+      "containerClass": "QueueManager",
+      "calls": [
+        {
+          "name": "findOneEnabledById",
+          "edgeType": "call"
+        },
+        {
+          "name": "Boolean",
+          "edgeType": "call"
+        },
+        {
+          "name": "some",
+          "edgeType": "call"
+        },
+        {
+          "name": "isVerifiedChannelInSource",
+          "edgeType": "call"
+        },
+        {
+          "name": "IOmnichannelRoom",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "startConversation",
+      "exported": true,
+      "qualifiedName": "QueueManager.startConversation",
+      "line": 119,
+      "endLine": 158,
+      "signature": "static async startConversation( rid: string, insertionRoom: InsertionModel<IOmnichannelRoom>, guest: ILivechatVisitor, roomInfo: IOmnichannelRoomInfo, defaultAgent?: SelectedAgent, message?: string, extraData?: IOmnichannelRoomExtraData, attempts = 3, ): Promise<{ room: IOmnichannelRoom; inquiry: ILivechatInquiryRecord }>",
+      "containerClass": "QueueManager",
+      "calls": [
+        {
+          "name": "startSession",
+          "edgeType": "call"
+        },
+        {
+          "name": "startTransaction",
+          "edgeType": "call"
+        },
+        {
+          "name": "createLivechatRoom",
+          "edgeType": "call"
+        },
+        {
+          "name": "debug",
+          "edgeType": "call"
+        },
+        {
+          "name": "createLivechatInquiry",
+          "edgeType": "call"
+        },
+        {
+          "name": "getInquiryStatus",
+          "edgeType": "call"
+        },
+        {
+          "name": "commitTransaction",
+          "edgeType": "call"
+        },
+        {
+          "name": "abortTransaction",
+          "edgeType": "call"
+        },
+        {
+          "name": "shouldRetryTransaction",
+          "edgeType": "call"
+        },
+        {
+          "name": "startConversation",
+          "edgeType": "call"
+        },
+        {
+          "name": "endSession",
+          "edgeType": "call"
+        },
+        {
+          "name": "InsertionModel",
+          "edgeType": "type"
+        },
+        {
+          "name": "IOmnichannelRoom",
+          "edgeType": "type"
+        },
+        {
+          "name": "ILivechatVisitor",
+          "edgeType": "type"
+        },
+        {
+          "name": "IOmnichannelRoomInfo",
+          "edgeType": "type"
+        },
+        {
+          "name": "SelectedAgent",
+          "edgeType": "type"
+        },
+        {
+          "name": "IOmnichannelRoomExtraData",
+          "edgeType": "type"
+        },
+        {
+          "name": "ILivechatInquiryRecord",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "requestRoom",
+      "exported": true,
+      "qualifiedName": "QueueManager.requestRoom",
+      "line": 132,
+      "endLine": 238,
+      "signature": "static async requestRoom({ guest, rid = Random.id(), message, roomInfo, agent, extraData: { customFields, ...extraData } = {}, }: { guest: ILivechatVisitor; rid?: string; message?: string; roomInfo: IOmnichannelRoomInfo; agent?: SelectedAgent; extraData?: IOmnichannelRoomExtraData; })",
+      "containerClass": "QueueManager",
+      "calls": [
+        {
+          "name": "id",
+          "edgeType": "call"
+        },
+        {
+          "name": "debug",
+          "edgeType": "call"
+        },
+        {
+          "name": "check",
+          "edgeType": "call"
+        },
+        {
+          "name": "ObjectIncluding",
+          "edgeType": "call"
+        },
+        {
+          "name": "Maybe",
+          "edgeType": "call"
+        },
+        {
+          "name": "beforeDelegateAgent",
+          "edgeType": "call"
+        },
+        {
+          "name": "getDepartment",
+          "edgeType": "call"
+        },
+        {
+          "name": "get",
+          "edgeType": "call"
+        },
+        {
+          "name": "checkOnlineAgents",
+          "edgeType": "call"
+        },
+        {
+          "name": "prepareLivechatRoom",
+          "edgeType": "call"
+        },
+        {
+          "name": "Boolean",
+          "edgeType": "call"
+        },
+        {
+          "name": "triggerEvent",
+          "edgeType": "call"
+        },
+        {
+          "name": "startConversation",
+          "edgeType": "call"
+        },
+        {
+          "name": "onNewRoom",
+          "edgeType": "call"
+        },
+        {
+          "name": "saveSystemMessageAndNotifyUser",
+          "edgeType": "call"
+        },
+        {
+          "name": "processNewInquiry",
+          "edgeType": "call"
+        },
+        {
+          "name": "findOneById",
+          "edgeType": "call"
+        },
+        {
+          "name": "error",
+          "edgeType": "call"
+        },
+        {
+          "name": "dispatchInquiryPosition",
+          "edgeType": "call"
+        },
+        {
+          "name": "ILivechatVisitor",
+          "edgeType": "type"
+        },
+        {
+          "name": "IOmnichannelRoomInfo",
+          "edgeType": "type"
+        },
+        {
+          "name": "SelectedAgent",
+          "edgeType": "type"
+        },
+        {
+          "name": "IOmnichannelRoomExtraData",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "dispatchInquiryPosition",
+      "exported": true,
+      "qualifiedName": "QueueManager.dispatchInquiryPosition",
+      "line": 150,
+      "endLine": 170,
+      "signature": "static async dispatchInquiryPosition( inquiry: ILivechatInquiryRecord, room: AtLeast<IOmnichannelRoom, 'servedBy' | 'departmentId'>, ): Promise<void>",
+      "containerClass": "QueueManager",
+      "calls": [
+        {
+          "name": "get",
+          "edgeType": "call"
+        },
+        {
+          "name": "getCurrentSortedQueueAsync",
+          "edgeType": "call"
+        },
+        {
+          "name": "getOmniChatSortQuery",
+          "edgeType": "call"
+        },
+        {
+          "name": "getInquirySortMechanismSetting",
+          "edgeType": "call"
+        },
+        {
+          "name": "dispatchInquiryPosition",
+          "edgeType": "call"
+        },
+        {
+          "name": "ILivechatInquiryRecord",
+          "edgeType": "type"
+        },
+        {
+          "name": "AtLeast",
+          "edgeType": "type"
+        },
+        {
+          "name": "IOmnichannelRoom",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "unarchiveRoom",
+      "exported": true,
+      "qualifiedName": "QueueManager.unarchiveRoom",
+      "line": 157,
+      "endLine": 216,
+      "signature": "static async unarchiveRoom(archivedRoom: IOmnichannelRoom)",
+      "containerClass": "QueueManager",
+      "calls": [
+        {
+          "name": "debug",
+          "edgeType": "call"
+        },
+        {
+          "name": "findOneByRoomId",
+          "edgeType": "call"
+        },
+        {
+          "name": "removeByRoomId",
+          "edgeType": "call"
+        },
+        {
+          "name": "notifyOnLivechatInquiryChangedById",
+          "edgeType": "call"
+        },
+        {
+          "name": "findOneOnlineAgentByUserList",
+          "edgeType": "call"
+        },
+        {
+          "name": "get",
+          "edgeType": "call"
+        },
+        {
+          "name": "isAgentAvailable",
+          "edgeType": "call"
+        },
+        {
+          "name": "unarchiveOneById",
+          "edgeType": "call"
+        },
+        {
+          "name": "findOneById",
+          "edgeType": "call"
+        },
+        {
+          "name": "createLivechatInquiry",
+          "edgeType": "call"
+        },
+        {
+          "name": "requeueInquiry",
+          "edgeType": "call"
+        },
+        {
+          "name": "IOmnichannelRoom",
+          "edgeType": "type"
+        },
+        {
+          "name": "ILivechatInquiryRecord",
+          "edgeType": "type"
+        },
+        {
+          "name": "SelectedAgent",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "class_property",
+      "name": "dispatchInquiryQueued",
+      "exported": true,
+      "qualifiedName": "QueueManager.dispatchInquiryQueued",
+      "line": 161,
+      "endLine": 212,
+      "signature": "private static dispatchInquiryQueued = async (inquiry: ILivechatInquiryRecord, room: IOmnichannelRoom, agent?: SelectedAgent | null) =>",
+      "containerClass": "QueueManager",
+      "calls": [
+        {
+          "name": "getConfig",
+          "edgeType": "call"
+        },
+        {
+          "name": "debug",
+          "edgeType": "call"
+        },
+        {
+          "name": "getOnlineAgents",
+          "edgeType": "call"
+        },
+        {
+          "name": "sendNotification",
+          "edgeType": "call"
+        },
+        {
+          "name": "ILivechatInquiryRecord",
+          "edgeType": "type"
+        },
+        {
+          "name": "IOmnichannelRoom",
+          "edgeType": "type"
+        },
+        {
+          "name": "SelectedAgent",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "variable_function",
+      "name": "saveQueueInquiry",
+      "exported": true,
+      "line": 39,
+      "endLine": 55,
+      "signature": "async (inquiry: ILivechatInquiryRecord) =>",
+      "calls": [
+        {
+          "name": "queueInquiry",
+          "edgeType": "call"
+        },
+        {
+          "name": "afterInquiryQueued",
+          "edgeType": "call"
+        },
+        {
+          "name": "notifyOnLivechatInquiryChanged",
+          "edgeType": "call"
+        },
+        {
+          "name": "Date",
+          "edgeType": "new"
+        },
+        {
+          "name": "ILivechatInquiryRecord",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "variable_function",
+      "name": "queueInquiry",
+      "exported": true,
+      "line": 46,
+      "endLine": 55,
+      "signature": "async (inquiry: ILivechatInquiryRecord, defaultAgent?: SelectedAgent) =>",
+      "calls": [
+        {
+          "name": "findOneById",
+          "edgeType": "call"
+        },
+        {
+          "name": "saveQueueInquiry",
+          "edgeType": "call"
+        },
+        {
+          "name": "requeueInquiry",
+          "edgeType": "call"
+        },
+        {
+          "name": "ILivechatInquiryRecord",
+          "edgeType": "type"
+        },
+        {
+          "name": "SelectedAgent",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "variable_function",
+      "name": "getDepartment",
+      "exported": false,
+      "line": 50,
+      "endLine": 69,
+      "signature": "async (department: string): Promise<string | undefined> =>",
+      "calls": [
+        {
+          "name": "checkOnlineForDepartment",
+          "edgeType": "call"
+        },
+        {
+          "name": "findOneById",
+          "edgeType": "call"
+        },
+        {
+          "name": "getDepartment",
+          "edgeType": "call"
+        },
+        {
+          "name": "ILivechatDepartment",
+          "edgeType": "type"
+        }
+      ]
+    }
+  ],
+  "imports": [
+    {
+      "module": "@rocket.chat/apps",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/apps-engine/definition/exceptions/AppsEngineException",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/core-services",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/core-typings",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/core-typings",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/logger",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/model-typings",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/models",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/random",
+      "resolved": "external"
+    },
+    {
+      "module": "meteor/check",
+      "resolved": "external"
+    },
+    {
+      "module": "meteor/meteor",
+      "resolved": "external"
+    },
+    {
+      "module": "./Helper",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/app/livechat/server/lib/Helper.ts"
+    },
+    {
+      "module": "./RoutingManager",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/app/livechat/server/lib/RoutingManager.ts"
+    },
+    {
+      "module": "./contacts/isVerifiedChannelInSource",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/app/livechat/server/lib/contacts/isVerifiedChannelInSource.ts"
+    },
+    {
+      "module": "./departmentsLib",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/app/livechat/server/lib/departmentsLib.ts"
+    },
+    {
+      "module": "./hooks",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/app/livechat/server/lib/hooks.ts"
+    },
+    {
+      "module": "./service-status",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/app/livechat/server/lib/service-status.ts"
+    },
+    {
+      "module": "./settings",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/app/livechat/server/lib/settings.ts"
+    },
+    {
+      "module": "../../../../ee/app/livechat-enterprise/server/lib/Helper",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/ee/app/livechat-enterprise/server/lib/Helper.ts"
+    },
+    {
+      "module": "../../../../server/database/utils",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/server/database/utils.ts"
+    },
+    {
+      "module": "../../../lib/server",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/app/lib/server/index.ts"
+    },
+    {
+      "module": "../../../lib/server/lib/notifyListener",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/app/lib/server/lib/notifyListener.ts"
+    },
+    {
+      "module": "../../../settings/server",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/app/settings/server/index.ts"
+    },
+    {
+      "module": "../../../utils/lib/i18n",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/app/utils/lib/i18n.ts"
+    },
+    {
+      "module": "../../lib/inquiries",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/app/livechat/lib/inquiries.ts"
+    }
+  ]
+}

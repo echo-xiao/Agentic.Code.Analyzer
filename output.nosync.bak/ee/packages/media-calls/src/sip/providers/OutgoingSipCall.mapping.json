@@ -1,0 +1,611 @@
+{
+  "sourcePath": "/Users/echoooooo/Desktop/code/Rocket.Chat/ee/packages/media-calls/src/sip/providers/OutgoingSipCall.ts",
+  "symbols": [
+    {
+      "type": "class",
+      "name": "OutgoingSipCall",
+      "exported": true,
+      "line": 25,
+      "endLine": 466,
+      "signature": "export class OutgoingSipCall extends BaseSipCall",
+      "calls": [
+        {
+          "name": "BaseSipCall",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "createCall",
+      "exported": true,
+      "qualifiedName": "OutgoingSipCall.createCall",
+      "line": 47,
+      "endLine": 90,
+      "signature": "public static async createCall(session: SipServerSession, params: InternalCallParams): Promise<IMediaCall>",
+      "containerClass": "OutgoingSipCall",
+      "calls": [
+        {
+          "name": "debug",
+          "edgeType": "call"
+        },
+        {
+          "name": "getAgentForActorAndRole",
+          "edgeType": "call"
+        },
+        {
+          "name": "filter",
+          "edgeType": "call"
+        },
+        {
+          "name": "includes",
+          "edgeType": "call"
+        },
+        {
+          "name": "createCall",
+          "edgeType": "call"
+        },
+        {
+          "name": "getOrCreateChannel",
+          "edgeType": "call"
+        },
+        {
+          "name": "registerCall",
+          "edgeType": "call"
+        },
+        {
+          "name": "onCallCreated",
+          "edgeType": "call"
+        },
+        {
+          "name": "SipError",
+          "edgeType": "new"
+        },
+        {
+          "name": "OutgoingSipCall",
+          "edgeType": "new"
+        },
+        {
+          "name": "SipServerSession",
+          "edgeType": "type"
+        },
+        {
+          "name": "InternalCallParams",
+          "edgeType": "type"
+        },
+        {
+          "name": "IMediaCall",
+          "edgeType": "type"
+        },
+        {
+          "name": "MediaCallSignedContact",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "reflectCall",
+      "exported": true,
+      "qualifiedName": "OutgoingSipCall.reflectCall",
+      "line": 51,
+      "endLine": 73,
+      "signature": "protected async reflectCall(call: IMediaCall, params: { dtmf?: ClientMediaSignalBody<'dtmf'> }): Promise<void>",
+      "containerClass": "OutgoingSipCall",
+      "calls": [
+        {
+          "name": "sendDTMF",
+          "edgeType": "call"
+        },
+        {
+          "name": "processTransferredCall",
+          "edgeType": "call"
+        },
+        {
+          "name": "processEndedCall",
+          "edgeType": "call"
+        },
+        {
+          "name": "createDialog",
+          "edgeType": "call"
+        },
+        {
+          "name": "isBusyState",
+          "edgeType": "call"
+        },
+        {
+          "name": "processNegotiations",
+          "edgeType": "call"
+        },
+        {
+          "name": "debug",
+          "edgeType": "call"
+        },
+        {
+          "name": "IMediaCall",
+          "edgeType": "type"
+        },
+        {
+          "name": "ClientMediaSignalBody",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "createDialog",
+      "exported": true,
+      "qualifiedName": "OutgoingSipCall.createDialog",
+      "line": 55,
+      "endLine": 213,
+      "signature": "protected async createDialog(call: IMediaCall): Promise<void>",
+      "containerClass": "OutgoingSipCall",
+      "calls": [
+        {
+          "name": "debug",
+          "edgeType": "call"
+        },
+        {
+          "name": "findLatestByCallId",
+          "edgeType": "call"
+        },
+        {
+          "name": "startRingingById",
+          "edgeType": "call"
+        },
+        {
+          "name": "getNewExpirationTime",
+          "edgeType": "call"
+        },
+        {
+          "name": "geContactUri",
+          "edgeType": "call"
+        },
+        {
+          "name": "createSipDialog",
+          "edgeType": "call"
+        },
+        {
+          "name": "stripDrachtioServerDetails",
+          "edgeType": "call"
+        },
+        {
+          "name": "error",
+          "edgeType": "call"
+        },
+        {
+          "name": "hangupByServer",
+          "edgeType": "call"
+        },
+        {
+          "name": "response",
+          "edgeType": "event_listen"
+        },
+        {
+          "name": "getSipErrorCode",
+          "edgeType": "call"
+        },
+        {
+          "name": "getHangupReasonForSipErrorCode",
+          "edgeType": "call"
+        },
+        {
+          "name": "includes",
+          "edgeType": "call"
+        },
+        {
+          "name": "info",
+          "edgeType": "call"
+        },
+        {
+          "name": "cancelAnyPendingRequest",
+          "edgeType": "call"
+        },
+        {
+          "name": "destroy",
+          "edgeType": "event_listen"
+        },
+        {
+          "name": "hangup",
+          "edgeType": "call"
+        },
+        {
+          "name": "modify",
+          "edgeType": "event_listen"
+        },
+        {
+          "name": "startNewNegotiation",
+          "edgeType": "call"
+        },
+        {
+          "name": "getAgentForActorAndRole",
+          "edgeType": "call"
+        },
+        {
+          "name": "send",
+          "edgeType": "call"
+        },
+        {
+          "name": "set",
+          "edgeType": "call"
+        },
+        {
+          "name": "onRemoteDescriptionChanged",
+          "edgeType": "call"
+        },
+        {
+          "name": "delete",
+          "edgeType": "call"
+        },
+        {
+          "name": "acceptCall",
+          "edgeType": "call"
+        },
+        {
+          "name": "IMediaCall",
+          "edgeType": "type"
+        },
+        {
+          "name": "CallHangupReason",
+          "edgeType": "type"
+        },
+        {
+          "name": "SrfRequest",
+          "edgeType": "type"
+        },
+        {
+          "name": "RTCSessionDescriptionInit",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "getPendingInboundNegotiation",
+      "exported": true,
+      "qualifiedName": "OutgoingSipCall.getPendingInboundNegotiation",
+      "line": 59,
+      "endLine": 85,
+      "signature": "protected async getPendingInboundNegotiation(): Promise<OutgoingSipCallNegotiation | null>",
+      "containerClass": "OutgoingSipCall",
+      "calls": [
+        {
+          "name": "values",
+          "edgeType": "call"
+        },
+        {
+          "name": "findOneById",
+          "edgeType": "call"
+        },
+        {
+          "name": "error",
+          "edgeType": "call"
+        },
+        {
+          "name": "delete",
+          "edgeType": "call"
+        },
+        {
+          "name": "send",
+          "edgeType": "call"
+        },
+        {
+          "name": "OutgoingSipCallNegotiation",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "processNegotiations",
+      "exported": true,
+      "qualifiedName": "OutgoingSipCall.processNegotiations",
+      "line": 63,
+      "endLine": 96,
+      "signature": "protected async processNegotiations(call: IMediaCall): Promise<void>",
+      "containerClass": "OutgoingSipCall",
+      "calls": [
+        {
+          "name": "findLatestByCallId",
+          "edgeType": "call"
+        },
+        {
+          "name": "processCalleeNegotiations",
+          "edgeType": "call"
+        },
+        {
+          "name": "debug",
+          "edgeType": "call"
+        },
+        {
+          "name": "catch",
+          "edgeType": "call"
+        },
+        {
+          "name": "modify",
+          "edgeType": "call"
+        },
+        {
+          "name": "error",
+          "edgeType": "call"
+        },
+        {
+          "name": "hangupDetachedCall",
+          "edgeType": "call"
+        },
+        {
+          "name": "saveWebrtcSession",
+          "edgeType": "call"
+        },
+        {
+          "name": "IMediaCall",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "processCalleeNegotiations",
+      "exported": true,
+      "qualifiedName": "OutgoingSipCall.processCalleeNegotiations",
+      "line": 67,
+      "endLine": 78,
+      "signature": "protected async processCalleeNegotiations(): Promise<void>",
+      "containerClass": "OutgoingSipCall",
+      "calls": [
+        {
+          "name": "getPendingInboundNegotiation",
+          "edgeType": "call"
+        },
+        {
+          "name": "debug",
+          "edgeType": "call"
+        },
+        {
+          "name": "send",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "processTransferredCall",
+      "exported": true,
+      "qualifiedName": "OutgoingSipCall.processTransferredCall",
+      "line": 71,
+      "endLine": 114,
+      "signature": "protected async processTransferredCall(call: IMediaCall): Promise<void>",
+      "containerClass": "OutgoingSipCall",
+      "calls": [
+        {
+          "name": "processEndedCall",
+          "edgeType": "call"
+        },
+        {
+          "name": "debug",
+          "edgeType": "call"
+        },
+        {
+          "name": "getContactForActor",
+          "edgeType": "call"
+        },
+        {
+          "name": "geContactUri",
+          "edgeType": "call"
+        },
+        {
+          "name": "request",
+          "edgeType": "call"
+        },
+        {
+          "name": "error",
+          "edgeType": "call"
+        },
+        {
+          "name": "hangupByServer",
+          "edgeType": "call"
+        },
+        {
+          "name": "IMediaCall",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "processEndedCall",
+      "exported": true,
+      "qualifiedName": "OutgoingSipCall.processEndedCall",
+      "line": 75,
+      "endLine": 95,
+      "signature": "protected async processEndedCall(): Promise<void>",
+      "containerClass": "OutgoingSipCall",
+      "calls": [
+        {
+          "name": "debug",
+          "edgeType": "call"
+        },
+        {
+          "name": "cancelAnyPendingRequest",
+          "edgeType": "call"
+        },
+        {
+          "name": "destroy",
+          "edgeType": "call"
+        },
+        {
+          "name": "error",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "getSipErrorCode",
+      "exported": true,
+      "qualifiedName": "OutgoingSipCall.getSipErrorCode",
+      "line": 79,
+      "endLine": 93,
+      "signature": "private getSipErrorCode(error: unknown): number | null",
+      "containerClass": "OutgoingSipCall",
+      "calls": []
+    },
+    {
+      "type": "method",
+      "name": "getHangupReasonForSipErrorCode",
+      "exported": true,
+      "qualifiedName": "OutgoingSipCall.getHangupReasonForSipErrorCode",
+      "line": 83,
+      "endLine": 98,
+      "signature": "private getHangupReasonForSipErrorCode(errorCode: number | null): CallHangupReason | null",
+      "containerClass": "OutgoingSipCall",
+      "calls": [
+        {
+          "name": "CallHangupReason",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "cancelAnyPendingRequest",
+      "exported": true,
+      "qualifiedName": "OutgoingSipCall.cancelAnyPendingRequest",
+      "line": 87,
+      "endLine": 100,
+      "signature": "private cancelAnyPendingRequest(): void",
+      "containerClass": "OutgoingSipCall",
+      "calls": [
+        {
+          "name": "cancel",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "constructor",
+      "exported": true,
+      "qualifiedName": "OutgoingSipCall.constructor",
+      "line": 34,
+      "endLine": 45,
+      "signature": "constructor( session: SipServerSession, call: IMediaCall, protected override readonly agent: BroadcastActorAgent, channel: IMediaCallChannel, )",
+      "containerClass": "OutgoingSipCall",
+      "calls": [
+        {
+          "name": "Map",
+          "edgeType": "new"
+        },
+        {
+          "name": "SipServerSession",
+          "edgeType": "type"
+        },
+        {
+          "name": "IMediaCall",
+          "edgeType": "type"
+        },
+        {
+          "name": "BroadcastActorAgent",
+          "edgeType": "type"
+        },
+        {
+          "name": "IMediaCallChannel",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "class_property",
+      "name": "sipDialogReq",
+      "exported": true,
+      "qualifiedName": "OutgoingSipCall.sipDialogReq",
+      "line": 28,
+      "endLine": 28,
+      "signature": "private sipDialogReq: SrfRequest | null;",
+      "containerClass": "OutgoingSipCall",
+      "calls": [
+        {
+          "name": "SrfRequest",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "class_property",
+      "name": "inboundRenegotiations",
+      "exported": true,
+      "qualifiedName": "OutgoingSipCall.inboundRenegotiations",
+      "line": 30,
+      "endLine": 30,
+      "signature": "private inboundRenegotiations: Map<string, OutgoingSipCallNegotiation>;",
+      "containerClass": "OutgoingSipCall",
+      "calls": [
+        {
+          "name": "OutgoingSipCallNegotiation",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "type",
+      "name": "OutgoingSipCallNegotiation",
+      "line": 16,
+      "endLine": 23,
+      "signature": "type OutgoingSipCallNegotiation ="
+    }
+  ],
+  "imports": [
+    {
+      "module": "@rocket.chat/core-typings",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/media-signaling",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/models",
+      "resolved": "external"
+    },
+    {
+      "module": "drachtio-srf",
+      "resolved": "external"
+    },
+    {
+      "module": "drachtio-srf",
+      "resolved": "external"
+    },
+    {
+      "module": "./BaseSipCall",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/ee/packages/media-calls/src/sip/providers/BaseSipCall.ts"
+    },
+    {
+      "module": "../../constants",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/ee/packages/media-calls/src/constants.ts"
+    },
+    {
+      "module": "../../definition/common",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/ee/packages/media-calls/src/definition/common.ts"
+    },
+    {
+      "module": "../../logger",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/ee/packages/media-calls/src/logger.ts"
+    },
+    {
+      "module": "../../server/BroadcastAgent",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/ee/packages/media-calls/src/server/BroadcastAgent.ts"
+    },
+    {
+      "module": "../../server/CallDirector",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/ee/packages/media-calls/src/server/CallDirector.ts"
+    },
+    {
+      "module": "../Session",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/ee/packages/media-calls/src/sip/Session.ts"
+    },
+    {
+      "module": "../errorCodes",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/ee/packages/media-calls/src/sip/errorCodes.ts"
+    }
+  ]
+}

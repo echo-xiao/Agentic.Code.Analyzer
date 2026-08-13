@@ -1,0 +1,342 @@
+{
+  "sourcePath": "/Users/echoooooo/Desktop/code/Rocket.Chat/packages/apps/src/server/bridges/ServerSettingBridge.ts",
+  "symbols": [
+    {
+      "type": "class",
+      "name": "ServerSettingBridge",
+      "exported": true,
+      "line": 8,
+      "endLine": 94,
+      "signature": "export abstract class ServerSettingBridge extends BaseBridge",
+      "calls": [
+        {
+          "name": "BaseBridge",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "doGetAll",
+      "exported": true,
+      "qualifiedName": "ServerSettingBridge.doGetAll",
+      "line": 9,
+      "endLine": 13,
+      "signature": "public async doGetAll(appId: string): Promise<Array<ISetting>>",
+      "containerClass": "ServerSettingBridge",
+      "calls": [
+        {
+          "name": "hasReadPermission",
+          "edgeType": "call"
+        },
+        {
+          "name": "getAll",
+          "edgeType": "call"
+        },
+        {
+          "name": "ISetting",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "doGetOneById",
+      "exported": true,
+      "qualifiedName": "ServerSettingBridge.doGetOneById",
+      "line": 13,
+      "endLine": 17,
+      "signature": "public async doGetOneById(id: string, appId: string): Promise<ISetting>",
+      "containerClass": "ServerSettingBridge",
+      "calls": [
+        {
+          "name": "hasReadPermission",
+          "edgeType": "call"
+        },
+        {
+          "name": "getOneById",
+          "edgeType": "call"
+        },
+        {
+          "name": "ISetting",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "doHideGroup",
+      "exported": true,
+      "qualifiedName": "ServerSettingBridge.doHideGroup",
+      "line": 17,
+      "endLine": 21,
+      "signature": "public async doHideGroup(name: string, appId: string): Promise<void>",
+      "containerClass": "ServerSettingBridge",
+      "calls": [
+        {
+          "name": "hasWritePermission",
+          "edgeType": "call"
+        },
+        {
+          "name": "hideGroup",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "doHideSetting",
+      "exported": true,
+      "qualifiedName": "ServerSettingBridge.doHideSetting",
+      "line": 21,
+      "endLine": 25,
+      "signature": "public async doHideSetting(id: string, appId: string): Promise<void>",
+      "containerClass": "ServerSettingBridge",
+      "calls": [
+        {
+          "name": "hasWritePermission",
+          "edgeType": "call"
+        },
+        {
+          "name": "hideSetting",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "doIsReadableById",
+      "exported": true,
+      "qualifiedName": "ServerSettingBridge.doIsReadableById",
+      "line": 25,
+      "endLine": 29,
+      "signature": "public async doIsReadableById(id: string, appId: string): Promise<boolean>",
+      "containerClass": "ServerSettingBridge",
+      "calls": [
+        {
+          "name": "hasReadPermission",
+          "edgeType": "call"
+        },
+        {
+          "name": "isReadableById",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "doUpdateOne",
+      "exported": true,
+      "qualifiedName": "ServerSettingBridge.doUpdateOne",
+      "line": 29,
+      "endLine": 33,
+      "signature": "public async doUpdateOne(setting: ISetting, appId: string): Promise<void>",
+      "containerClass": "ServerSettingBridge",
+      "calls": [
+        {
+          "name": "hasWritePermission",
+          "edgeType": "call"
+        },
+        {
+          "name": "updateOne",
+          "edgeType": "call"
+        },
+        {
+          "name": "ISetting",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "doIncrementValue",
+      "exported": true,
+      "qualifiedName": "ServerSettingBridge.doIncrementValue",
+      "line": 33,
+      "endLine": 37,
+      "signature": "public async doIncrementValue(id: ISetting['id'], value: number, appId: string): Promise<void>",
+      "containerClass": "ServerSettingBridge",
+      "calls": [
+        {
+          "name": "hasWritePermission",
+          "edgeType": "call"
+        },
+        {
+          "name": "incrementValue",
+          "edgeType": "call"
+        },
+        {
+          "name": "ISetting",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "getAll",
+      "exported": true,
+      "qualifiedName": "ServerSettingBridge.getAll",
+      "line": 37,
+      "endLine": 37,
+      "signature": "protected abstract getAll(appId: string): Promise<Array<ISetting>>;",
+      "containerClass": "ServerSettingBridge",
+      "calls": [
+        {
+          "name": "ISetting",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "getOneById",
+      "exported": true,
+      "qualifiedName": "ServerSettingBridge.getOneById",
+      "line": 39,
+      "endLine": 39,
+      "signature": "protected abstract getOneById(id: string, appId: string): Promise<ISetting>;",
+      "containerClass": "ServerSettingBridge",
+      "calls": [
+        {
+          "name": "ISetting",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "hideGroup",
+      "exported": true,
+      "qualifiedName": "ServerSettingBridge.hideGroup",
+      "line": 41,
+      "endLine": 41,
+      "signature": "protected abstract hideGroup(name: string, appId: string): Promise<void>;",
+      "containerClass": "ServerSettingBridge",
+      "calls": []
+    },
+    {
+      "type": "method",
+      "name": "hideSetting",
+      "exported": true,
+      "qualifiedName": "ServerSettingBridge.hideSetting",
+      "line": 43,
+      "endLine": 43,
+      "signature": "protected abstract hideSetting(id: string, appId: string): Promise<void>;",
+      "containerClass": "ServerSettingBridge",
+      "calls": []
+    },
+    {
+      "type": "method",
+      "name": "isReadableById",
+      "exported": true,
+      "qualifiedName": "ServerSettingBridge.isReadableById",
+      "line": 45,
+      "endLine": 45,
+      "signature": "protected abstract isReadableById(id: string, appId: string): Promise<boolean>;",
+      "containerClass": "ServerSettingBridge",
+      "calls": []
+    },
+    {
+      "type": "method",
+      "name": "updateOne",
+      "exported": true,
+      "qualifiedName": "ServerSettingBridge.updateOne",
+      "line": 47,
+      "endLine": 47,
+      "signature": "protected abstract updateOne(setting: ISetting, appId: string): Promise<void>;",
+      "containerClass": "ServerSettingBridge",
+      "calls": [
+        {
+          "name": "ISetting",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "incrementValue",
+      "exported": true,
+      "qualifiedName": "ServerSettingBridge.incrementValue",
+      "line": 49,
+      "endLine": 49,
+      "signature": "protected abstract incrementValue(id: ISetting['id'], value: number, appId: string): Promise<void>;",
+      "containerClass": "ServerSettingBridge",
+      "calls": [
+        {
+          "name": "ISetting",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "hasWritePermission",
+      "exported": true,
+      "qualifiedName": "ServerSettingBridge.hasWritePermission",
+      "line": 51,
+      "endLine": 64,
+      "signature": "private hasWritePermission(appId: string): boolean",
+      "containerClass": "ServerSettingBridge",
+      "calls": [
+        {
+          "name": "hasPermission",
+          "edgeType": "call"
+        },
+        {
+          "name": "notifyAboutError",
+          "edgeType": "call"
+        },
+        {
+          "name": "PermissionDeniedError",
+          "edgeType": "new"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "hasReadPermission",
+      "exported": true,
+      "qualifiedName": "ServerSettingBridge.hasReadPermission",
+      "line": 55,
+      "endLine": 68,
+      "signature": "private hasReadPermission(appId: string): boolean",
+      "containerClass": "ServerSettingBridge",
+      "calls": [
+        {
+          "name": "hasPermission",
+          "edgeType": "call"
+        },
+        {
+          "name": "notifyAboutError",
+          "edgeType": "call"
+        },
+        {
+          "name": "PermissionDeniedError",
+          "edgeType": "new"
+        }
+      ]
+    }
+  ],
+  "imports": [
+    {
+      "module": "@rocket.chat/apps-engine/definition/settings",
+      "resolved": "external"
+    },
+    {
+      "module": "./BaseBridge",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/packages/apps/src/server/bridges/BaseBridge.ts"
+    },
+    {
+      "module": "../errors/PermissionDeniedError",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/packages/apps/src/server/errors/PermissionDeniedError.ts"
+    },
+    {
+      "module": "../managers/AppPermissionManager",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/packages/apps/src/server/managers/AppPermissionManager.ts"
+    },
+    {
+      "module": "../permissions/AppPermissions",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/packages/apps/src/server/permissions/AppPermissions.ts"
+    }
+  ]
+}

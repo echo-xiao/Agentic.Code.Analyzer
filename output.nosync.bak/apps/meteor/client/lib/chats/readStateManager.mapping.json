@@ -1,0 +1,380 @@
+{
+  "sourcePath": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/client/lib/chats/readStateManager.ts",
+  "symbols": [
+    {
+      "type": "class",
+      "name": "ReadStateManager",
+      "exported": true,
+      "line": 11,
+      "endLine": 159,
+      "signature": "export class ReadStateManager extends Emitter",
+      "calls": [
+        {
+          "name": "Emitter",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "getRid",
+      "exported": true,
+      "qualifiedName": "ReadStateManager.getRid",
+      "line": 23,
+      "endLine": 25,
+      "signature": "public getRid()",
+      "containerClass": "ReadStateManager",
+      "calls": []
+    },
+    {
+      "type": "method",
+      "name": "subscribeToMessages",
+      "exported": true,
+      "qualifiedName": "ReadStateManager.subscribeToMessages",
+      "line": 35,
+      "endLine": 37,
+      "signature": "public subscribeToMessages()",
+      "containerClass": "ReadStateManager",
+      "calls": [
+        {
+          "name": "loaded-messages",
+          "edgeType": "event_listen"
+        },
+        {
+          "name": "updateFirstUnreadRecordId",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "updateSubscription",
+      "exported": true,
+      "qualifiedName": "ReadStateManager.updateSubscription",
+      "line": 39,
+      "endLine": 64,
+      "signature": "public updateSubscription(subscription?: ISubscription)",
+      "containerClass": "ReadStateManager",
+      "calls": [
+        {
+          "name": "setPropertyByRid",
+          "edgeType": "call"
+        },
+        {
+          "name": "updateFirstUnreadRecordId",
+          "edgeType": "call"
+        },
+        {
+          "name": "hasFocus",
+          "edgeType": "call"
+        },
+        {
+          "name": "ISubscription",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "updateFirstUnreadRecordId",
+      "exported": true,
+      "qualifiedName": "ReadStateManager.updateFirstUnreadRecordId",
+      "line": 43,
+      "endLine": 58,
+      "signature": "private updateFirstUnreadRecordId()",
+      "containerClass": "ReadStateManager",
+      "calls": [
+        {
+          "name": "findFirst",
+          "edgeType": "call"
+        },
+        {
+          "name": "getTime",
+          "edgeType": "call"
+        },
+        {
+          "name": "getUserId",
+          "edgeType": "call"
+        },
+        {
+          "name": "setFirstUnreadRecordId",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "setFirstUnreadRecordId",
+      "exported": true,
+      "qualifiedName": "ReadStateManager.setFirstUnreadRecordId",
+      "line": 47,
+      "endLine": 50,
+      "signature": "private setFirstUnreadRecordId(firstUnreadRecordId: string | undefined)",
+      "containerClass": "ReadStateManager",
+      "calls": [
+        {
+          "name": "unread-state-change",
+          "edgeType": "event_emit"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "clearUnreadMark",
+      "exported": true,
+      "qualifiedName": "ReadStateManager.clearUnreadMark",
+      "line": 51,
+      "endLine": 53,
+      "signature": "public clearUnreadMark()",
+      "containerClass": "ReadStateManager",
+      "calls": [
+        {
+          "name": "setFirstUnreadRecordId",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "setIsUnreadMarkVisibleCallback",
+      "exported": true,
+      "qualifiedName": "ReadStateManager.setIsUnreadMarkVisibleCallback",
+      "line": 78,
+      "endLine": 80,
+      "signature": "public setIsUnreadMarkVisibleCallback(callback: () => boolean)",
+      "containerClass": "ReadStateManager",
+      "calls": []
+    },
+    {
+      "type": "method",
+      "name": "attemptMarkAsRead",
+      "exported": true,
+      "qualifiedName": "ReadStateManager.attemptMarkAsRead",
+      "line": 83,
+      "endLine": 102,
+      "signature": "public attemptMarkAsRead()",
+      "containerClass": "ReadStateManager",
+      "calls": [
+        {
+          "name": "hasFocus",
+          "edgeType": "call"
+        },
+        {
+          "name": "isUnreadMarkVisible",
+          "edgeType": "call"
+        },
+        {
+          "name": "getRoom",
+          "edgeType": "call"
+        },
+        {
+          "name": "markAsRead",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "markAsRead",
+      "exported": true,
+      "qualifiedName": "ReadStateManager.markAsRead",
+      "line": 96,
+      "endLine": 104,
+      "signature": "public async markAsRead()",
+      "containerClass": "ReadStateManager",
+      "calls": [
+        {
+          "name": "then",
+          "edgeType": "call"
+        },
+        {
+          "name": "subscriptions.read",
+          "edgeType": "rest_call"
+        },
+        {
+          "name": "post",
+          "edgeType": "call"
+        },
+        {
+          "name": "updateRoom",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "constructor",
+      "exported": true,
+      "qualifiedName": "ReadStateManager.constructor",
+      "line": 18,
+      "endLine": 21,
+      "signature": "public constructor(rid: IRoom['_id'])",
+      "containerClass": "ReadStateManager",
+      "calls": [
+        {
+          "name": "IRoom",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "class_property",
+      "name": "rid",
+      "exported": true,
+      "qualifiedName": "ReadStateManager.rid",
+      "line": 12,
+      "endLine": 12,
+      "signature": "private rid: IRoom['_id'];",
+      "containerClass": "ReadStateManager",
+      "calls": [
+        {
+          "name": "IRoom",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "class_property",
+      "name": "firstUnreadRecordId",
+      "exported": true,
+      "qualifiedName": "ReadStateManager.firstUnreadRecordId",
+      "line": 14,
+      "endLine": 14,
+      "signature": "private firstUnreadRecordId?: IMessage['_id'];",
+      "containerClass": "ReadStateManager",
+      "calls": [
+        {
+          "name": "IMessage",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "class_property",
+      "name": "subscription",
+      "exported": true,
+      "qualifiedName": "ReadStateManager.subscription",
+      "line": 16,
+      "endLine": 16,
+      "signature": "private subscription?: ISubscription;",
+      "containerClass": "ReadStateManager",
+      "calls": [
+        {
+          "name": "ISubscription",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "class_property",
+      "name": "onUnreadStateChange",
+      "exported": true,
+      "qualifiedName": "ReadStateManager.onUnreadStateChange",
+      "line": 26,
+      "endLine": 28,
+      "signature": "public onUnreadStateChange = (callback: () => void): (() => void) =>",
+      "containerClass": "ReadStateManager",
+      "calls": [
+        {
+          "name": "callback",
+          "edgeType": "event_listen",
+          "event": "unread-state-change"
+        }
+      ]
+    },
+    {
+      "type": "class_property",
+      "name": "handleWindowEvents",
+      "exported": true,
+      "qualifiedName": "ReadStateManager.handleWindowEvents",
+      "line": 54,
+      "endLine": 73,
+      "signature": "public handleWindowEvents = (): (() => void) =>",
+      "containerClass": "ReadStateManager",
+      "calls": [
+        {
+          "name": "attemptMarkAsRead",
+          "edgeType": "call"
+        },
+        {
+          "name": "markAsRead",
+          "edgeType": "call"
+        },
+        {
+          "name": "updateFirstUnreadRecordId",
+          "edgeType": "call"
+        },
+        {
+          "name": "addEventListener",
+          "edgeType": "call"
+        },
+        {
+          "name": "removeEventListener",
+          "edgeType": "call"
+        },
+        {
+          "name": "KeyboardEvent",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "class_property",
+      "name": "debouncedMarkAsRead",
+      "exported": true,
+      "qualifiedName": "ReadStateManager.debouncedMarkAsRead",
+      "line": 86,
+      "endLine": 92,
+      "signature": "public debouncedMarkAsRead = withDebouncing(",
+      "containerClass": "ReadStateManager",
+      "calls": [
+        {
+          "name": "withDebouncing",
+          "edgeType": "call"
+        },
+        {
+          "name": "markAsRead",
+          "edgeType": "call"
+        },
+        {
+          "name": "error",
+          "edgeType": "call"
+        }
+      ]
+    }
+  ],
+  "imports": [
+    {
+      "module": "@rocket.chat/core-typings",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/emitter",
+      "resolved": "external"
+    },
+    {
+      "module": "../../../app/ui-utils/client/lib/LegacyRoomManager",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/app/ui-utils/client/lib/LegacyRoomManager.ts"
+    },
+    {
+      "module": "../../../app/ui-utils/client/lib/RoomHistoryManager",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/app/ui-utils/client/lib/RoomHistoryManager.ts"
+    },
+    {
+      "module": "../../../app/utils/client/lib/SDKClient",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/app/utils/client/lib/SDKClient.ts"
+    },
+    {
+      "module": "../../../lib/utils/highOrderFunctions",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/lib/utils/highOrderFunctions.ts"
+    },
+    {
+      "module": "../../stores",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/client/stores/index.ts"
+    },
+    {
+      "module": "../user",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/client/lib/user.ts"
+    }
+  ]
+}

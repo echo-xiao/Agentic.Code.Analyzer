@@ -1,0 +1,365 @@
+{
+  "sourcePath": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/tests/e2e/page-objects/omnichannel/omnichannel-units.ts",
+  "symbols": [
+    {
+      "type": "class",
+      "name": "OmnichannelUnitFlexTab",
+      "exported": true,
+      "line": 8,
+      "endLine": 65,
+      "signature": "export class OmnichannelUnitFlexTab extends FlexTab",
+      "calls": [
+        {
+          "name": "FlexTab",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "findDepartmentsChipOption",
+      "exported": true,
+      "qualifiedName": "OmnichannelUnitFlexTab.findDepartmentsChipOption",
+      "line": 36,
+      "endLine": 38,
+      "signature": "findDepartmentsChipOption(name: string)",
+      "containerClass": "OmnichannelUnitFlexTab",
+      "calls": [
+        {
+          "name": "getByRole",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "findMonitorChipOption",
+      "exported": true,
+      "qualifiedName": "OmnichannelUnitFlexTab.findMonitorChipOption",
+      "line": 40,
+      "endLine": 42,
+      "signature": "findMonitorChipOption(name: string)",
+      "containerClass": "OmnichannelUnitFlexTab",
+      "calls": [
+        {
+          "name": "getByRole",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "selectDepartment",
+      "exported": true,
+      "qualifiedName": "OmnichannelUnitFlexTab.selectDepartment",
+      "line": 44,
+      "endLine": 49,
+      "signature": "async selectDepartment(name: string)",
+      "containerClass": "OmnichannelUnitFlexTab",
+      "calls": [
+        {
+          "name": "click",
+          "edgeType": "call"
+        },
+        {
+          "name": "fill",
+          "edgeType": "call"
+        },
+        {
+          "name": "selectOption",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "selectMonitor",
+      "exported": true,
+      "qualifiedName": "OmnichannelUnitFlexTab.selectMonitor",
+      "line": 48,
+      "endLine": 52,
+      "signature": "async selectMonitor(option: string)",
+      "containerClass": "OmnichannelUnitFlexTab",
+      "calls": [
+        {
+          "name": "click",
+          "edgeType": "call"
+        },
+        {
+          "name": "selectOption",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "removeMonitor",
+      "exported": true,
+      "qualifiedName": "OmnichannelUnitFlexTab.removeMonitor",
+      "line": 52,
+      "endLine": 54,
+      "signature": "async removeMonitor(option: string)",
+      "containerClass": "OmnichannelUnitFlexTab",
+      "calls": [
+        {
+          "name": "click",
+          "edgeType": "call"
+        },
+        {
+          "name": "findMonitorChipOption",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "selectVisibility",
+      "exported": true,
+      "qualifiedName": "OmnichannelUnitFlexTab.selectVisibility",
+      "line": 56,
+      "endLine": 59,
+      "signature": "async selectVisibility(option: string)",
+      "containerClass": "OmnichannelUnitFlexTab",
+      "calls": [
+        {
+          "name": "click",
+          "edgeType": "call"
+        },
+        {
+          "name": "selectOption",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "constructor",
+      "exported": true,
+      "qualifiedName": "OmnichannelUnitFlexTab.constructor",
+      "line": 11,
+      "endLine": 14,
+      "signature": "constructor(page: Page)",
+      "containerClass": "OmnichannelUnitFlexTab",
+      "calls": [
+        {
+          "name": "getByRole",
+          "edgeType": "call"
+        },
+        {
+          "name": "Listbox",
+          "edgeType": "new"
+        },
+        {
+          "name": "Page",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "class_property",
+      "name": "listbox",
+      "exported": true,
+      "qualifiedName": "OmnichannelUnitFlexTab.listbox",
+      "line": 9,
+      "endLine": 9,
+      "signature": "readonly listbox: Listbox;",
+      "containerClass": "OmnichannelUnitFlexTab",
+      "calls": [
+        {
+          "name": "Listbox",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "class",
+      "name": "OmnichannelUnitsTable",
+      "exported": false,
+      "line": 60,
+      "endLine": 68,
+      "signature": "class OmnichannelUnitsTable extends Table",
+      "calls": [
+        {
+          "name": "Table",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "deleteUnitByName",
+      "exported": false,
+      "qualifiedName": "OmnichannelUnitsTable.deleteUnitByName",
+      "line": 65,
+      "endLine": 67,
+      "signature": "deleteUnitByName(name: string)",
+      "containerClass": "OmnichannelUnitsTable",
+      "calls": [
+        {
+          "name": "getByRole",
+          "edgeType": "call"
+        },
+        {
+          "name": "findRowByName",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "constructor",
+      "exported": false,
+      "qualifiedName": "OmnichannelUnitsTable.constructor",
+      "line": 61,
+      "endLine": 63,
+      "signature": "constructor(page: Locator)",
+      "containerClass": "OmnichannelUnitsTable",
+      "calls": [
+        {
+          "name": "Locator",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "class",
+      "name": "OmnichannelUnits",
+      "exported": true,
+      "line": 70,
+      "endLine": 89,
+      "signature": "export class OmnichannelUnits extends OmnichannelAdmin",
+      "calls": [
+        {
+          "name": "OmnichannelAdmin",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "createNew",
+      "exported": true,
+      "qualifiedName": "OmnichannelUnits.createNew",
+      "line": 81,
+      "endLine": 83,
+      "signature": "async createNew()",
+      "containerClass": "OmnichannelUnits",
+      "calls": [
+        {
+          "name": "click",
+          "edgeType": "call"
+        },
+        {
+          "name": "getButtonByType",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "deleteUnit",
+      "exported": true,
+      "qualifiedName": "OmnichannelUnits.deleteUnit",
+      "line": 85,
+      "endLine": 88,
+      "signature": "async deleteUnit(name: string)",
+      "containerClass": "OmnichannelUnits",
+      "calls": [
+        {
+          "name": "click",
+          "edgeType": "call"
+        },
+        {
+          "name": "deleteUnitByName",
+          "edgeType": "call"
+        },
+        {
+          "name": "confirmDelete",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "constructor",
+      "exported": true,
+      "qualifiedName": "OmnichannelUnits.constructor",
+      "line": 75,
+      "endLine": 79,
+      "signature": "constructor(page: Page)",
+      "containerClass": "OmnichannelUnits",
+      "calls": [
+        {
+          "name": "getByRole",
+          "edgeType": "call"
+        },
+        {
+          "name": "OmnichannelUnitFlexTab",
+          "edgeType": "new"
+        },
+        {
+          "name": "OmnichannelUnitsTable",
+          "edgeType": "new"
+        },
+        {
+          "name": "Page",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "class_property",
+      "name": "manageUnit",
+      "exported": true,
+      "qualifiedName": "OmnichannelUnits.manageUnit",
+      "line": 71,
+      "endLine": 71,
+      "signature": "readonly manageUnit: OmnichannelUnitFlexTab;",
+      "containerClass": "OmnichannelUnits",
+      "calls": [
+        {
+          "name": "OmnichannelUnitFlexTab",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "class_property",
+      "name": "table",
+      "exported": true,
+      "qualifiedName": "OmnichannelUnits.table",
+      "line": 73,
+      "endLine": 73,
+      "signature": "readonly table: OmnichannelUnitsTable;",
+      "containerClass": "OmnichannelUnits",
+      "calls": [
+        {
+          "name": "OmnichannelUnitsTable",
+          "edgeType": "type"
+        }
+      ]
+    }
+  ],
+  "imports": [
+    {
+      "module": "@playwright/test",
+      "resolved": "external"
+    },
+    {
+      "module": "./omnichannel-admin",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/tests/e2e/page-objects/omnichannel/omnichannel-admin.ts"
+    },
+    {
+      "module": "../fragments/flextabs/flextab",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/tests/e2e/page-objects/fragments/flextabs/flextab.ts"
+    },
+    {
+      "module": "../fragments/listbox",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/tests/e2e/page-objects/fragments/listbox.ts"
+    },
+    {
+      "module": "../fragments/table",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/tests/e2e/page-objects/fragments/table.ts"
+    }
+  ]
+}

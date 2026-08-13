@@ -1,0 +1,65 @@
+{
+  "sourcePath": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/server/startup/callbacks.ts",
+  "symbols": [
+    {
+      "type": "module",
+      "name": "callbacks",
+      "exported": false,
+      "line": 1,
+      "endLine": 39,
+      "signature": "callbacks",
+      "calls": [
+        {
+          "name": "setLogger",
+          "edgeType": "call"
+        },
+        {
+          "name": "Logger",
+          "edgeType": "new"
+        },
+        {
+          "name": "setMetricsTrackers",
+          "edgeType": "call"
+        },
+        {
+          "name": "now",
+          "edgeType": "call"
+        },
+        {
+          "name": "startTimer",
+          "edgeType": "call"
+        },
+        {
+          "name": "timing",
+          "edgeType": "call"
+        },
+        {
+          "name": "stopTimer",
+          "edgeType": "call"
+        },
+        {
+          "name": "stopHistogram",
+          "edgeType": "call"
+        }
+      ]
+    }
+  ],
+  "imports": [
+    {
+      "module": "@rocket.chat/logger",
+      "resolved": "external"
+    },
+    {
+      "module": "universal-perf-hooks",
+      "resolved": "external"
+    },
+    {
+      "module": "../../app/metrics/server",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/app/metrics/server/index.ts"
+    },
+    {
+      "module": "../lib/callbacks",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/server/lib/callbacks.ts"
+    }
+  ]
+}

@@ -1,0 +1,129 @@
+{
+  "sourcePath": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/app/lib/server/oauth/google.js",
+  "symbols": [
+    {
+      "type": "module",
+      "name": "google",
+      "exported": false,
+      "line": 1,
+      "endLine": 84,
+      "signature": "google",
+      "calls": [
+        {
+          "name": "registerAccessTokenService",
+          "edgeType": "call"
+        },
+        {
+          "name": "check",
+          "edgeType": "call"
+        },
+        {
+          "name": "ObjectIncluding",
+          "edgeType": "call"
+        },
+        {
+          "name": "Maybe",
+          "edgeType": "call"
+        },
+        {
+          "name": "getIdentity",
+          "edgeType": "call"
+        },
+        {
+          "name": "getScopes",
+          "edgeType": "call"
+        },
+        {
+          "name": "pick",
+          "edgeType": "call"
+        },
+        {
+          "name": "extend",
+          "edgeType": "call"
+        },
+        {
+          "name": "Date",
+          "edgeType": "new"
+        }
+      ]
+    },
+    {
+      "type": "function",
+      "name": "getIdentity",
+      "exported": false,
+      "line": 8,
+      "endLine": 24,
+      "signature": "async function getIdentity(accessToken)",
+      "calls": [
+        {
+          "name": "fetch",
+          "edgeType": "call"
+        },
+        {
+          "name": "text",
+          "edgeType": "call"
+        },
+        {
+          "name": "json",
+          "edgeType": "call"
+        },
+        {
+          "name": "extend",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "function",
+      "name": "getScopes",
+      "exported": false,
+      "line": 12,
+      "endLine": 28,
+      "signature": "async function getScopes(accessToken)",
+      "calls": [
+        {
+          "name": "fetch",
+          "edgeType": "call"
+        },
+        {
+          "name": "text",
+          "edgeType": "call"
+        },
+        {
+          "name": "split",
+          "edgeType": "call"
+        },
+        {
+          "name": "json",
+          "edgeType": "call"
+        },
+        {
+          "name": "extend",
+          "edgeType": "call"
+        }
+      ]
+    }
+  ],
+  "imports": [
+    {
+      "module": "@rocket.chat/server-fetch",
+      "resolved": "external"
+    },
+    {
+      "module": "meteor/check",
+      "resolved": "external"
+    },
+    {
+      "module": "meteor/google-oauth",
+      "resolved": "external"
+    },
+    {
+      "module": "underscore",
+      "resolved": "external"
+    },
+    {
+      "module": "./oauth",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/app/lib/server/oauth/oauth.ts"
+    }
+  ]
+}

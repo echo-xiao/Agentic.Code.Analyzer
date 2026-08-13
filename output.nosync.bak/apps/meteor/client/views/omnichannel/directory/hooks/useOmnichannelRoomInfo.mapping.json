@@ -1,0 +1,41 @@
+{
+  "sourcePath": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/client/views/omnichannel/directory/hooks/useOmnichannelRoomInfo.ts",
+  "symbols": [
+    {
+      "type": "variable_function",
+      "name": "useOmnichannelRoomInfo",
+      "exported": true,
+      "line": 5,
+      "endLine": 8,
+      "signature": "(rid: IRoom['_id']) =>",
+      "calls": [
+        {
+          "name": "useRoomInfoEndpoint",
+          "edgeType": "call"
+        },
+        {
+          "name": "IRoom",
+          "edgeType": "type"
+        },
+        {
+          "name": "Serialized",
+          "edgeType": "type"
+        },
+        {
+          "name": "IOmnichannelRoom",
+          "edgeType": "type"
+        }
+      ]
+    }
+  ],
+  "imports": [
+    {
+      "module": "@rocket.chat/core-typings",
+      "resolved": "external"
+    },
+    {
+      "module": "../../../../hooks/useRoomInfoEndpoint",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/client/hooks/useRoomInfoEndpoint.ts"
+    }
+  ]
+}

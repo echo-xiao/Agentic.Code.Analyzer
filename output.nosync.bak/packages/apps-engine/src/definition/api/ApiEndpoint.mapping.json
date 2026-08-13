@@ -1,0 +1,89 @@
+{
+  "sourcePath": "/Users/echoooooo/Desktop/code/Rocket.Chat/packages/apps-engine/src/definition/api/ApiEndpoint.ts",
+  "symbols": [
+    {
+      "type": "class",
+      "name": "ApiEndpoint",
+      "exported": true,
+      "line": 7,
+      "endLine": 40,
+      "signature": "export abstract class ApiEndpoint implements IApiEndpoint",
+      "calls": [
+        {
+          "name": "IApiEndpoint",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "success",
+      "exported": true,
+      "qualifiedName": "ApiEndpoint.success",
+      "line": 20,
+      "endLine": 25,
+      "signature": "protected success(content?: any): IApiResponse",
+      "containerClass": "ApiEndpoint",
+      "calls": [
+        {
+          "name": "IApiResponse",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "json",
+      "exported": true,
+      "qualifiedName": "ApiEndpoint.json",
+      "line": 29,
+      "endLine": 36,
+      "signature": "protected json(response: IApiResponseJSON): IApiResponse",
+      "containerClass": "ApiEndpoint",
+      "calls": [
+        {
+          "name": "IApiResponseJSON",
+          "edgeType": "type"
+        },
+        {
+          "name": "IApiResponse",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "constructor",
+      "exported": true,
+      "qualifiedName": "ApiEndpoint.constructor",
+      "line": 14,
+      "endLine": 14,
+      "signature": "constructor(public app: IApp)",
+      "containerClass": "ApiEndpoint",
+      "calls": [
+        {
+          "name": "IApp",
+          "edgeType": "type"
+        }
+      ]
+    }
+  ],
+  "imports": [
+    {
+      "module": "../IApp",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/packages/apps-engine/src/definition/IApp.ts"
+    },
+    {
+      "module": "../accessors",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/packages/apps-engine/src/definition/accessors/index.ts"
+    },
+    {
+      "module": "./IApiEndpoint",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/packages/apps-engine/src/definition/api/IApiEndpoint.ts"
+    },
+    {
+      "module": "./IResponse",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/packages/apps-engine/src/definition/api/IResponse.ts"
+    }
+  ]
+}

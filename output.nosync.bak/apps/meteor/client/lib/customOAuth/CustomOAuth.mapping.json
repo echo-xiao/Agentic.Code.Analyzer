@@ -1,0 +1,305 @@
+{
+  "sourcePath": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/client/lib/customOAuth/CustomOAuth.ts",
+  "symbols": [
+    {
+      "type": "class",
+      "name": "CustomOAuth",
+      "exported": true,
+      "line": 17,
+      "endLine": 142,
+      "signature": "export class CustomOAuth<TServiceName extends string = string> implements IOAuthProvider",
+      "calls": [
+        {
+          "name": "IOAuthProvider",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "configure",
+      "exported": true,
+      "qualifiedName": "CustomOAuth.configure",
+      "line": 37,
+      "endLine": 54,
+      "signature": "configure(options: Readonly<OauthConfig>)",
+      "containerClass": "CustomOAuth",
+      "calls": [
+        {
+          "name": "isAbsoluteURL",
+          "edgeType": "call"
+        },
+        {
+          "name": "CustomOAuthError",
+          "edgeType": "new"
+        },
+        {
+          "name": "OauthConfig",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "configureLogin",
+      "exported": true,
+      "qualifiedName": "CustomOAuth.configureLogin",
+      "line": 41,
+      "endLine": 54,
+      "signature": "configureLogin()",
+      "containerClass": "CustomOAuth",
+      "calls": [
+        {
+          "name": "capitalize",
+          "edgeType": "call"
+        },
+        {
+          "name": "createOAuthTotpLoginMethod",
+          "edgeType": "call"
+        },
+        {
+          "name": "credentialRequestCompleteHandler",
+          "edgeType": "call"
+        },
+        {
+          "name": "requestCredential",
+          "edgeType": "call"
+        },
+        {
+          "name": "overrideLoginMethod",
+          "edgeType": "call"
+        },
+        {
+          "name": "Capitalize",
+          "edgeType": "type"
+        },
+        {
+          "name": "TServiceName",
+          "edgeType": "type"
+        },
+        {
+          "name": "LoginCallback",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "requestCredential",
+      "exported": true,
+      "qualifiedName": "CustomOAuth.requestCredential",
+      "line": 45,
+      "endLine": 81,
+      "signature": "async requestCredential( options: Meteor.LoginWithExternalServiceOptions = {}, credentialRequestCompleteCallback: (credentialTokenOrError?: string | Error) => void, )",
+      "containerClass": "CustomOAuth",
+      "calls": [
+        {
+          "name": "loadLoginService",
+          "edgeType": "call"
+        },
+        {
+          "name": "credentialRequestCompleteCallback",
+          "edgeType": "call"
+        },
+        {
+          "name": "secret",
+          "edgeType": "call"
+        },
+        {
+          "name": "_loginStyle",
+          "edgeType": "call"
+        },
+        {
+          "name": "indexOf",
+          "edgeType": "call"
+        },
+        {
+          "name": "encodeURIComponent",
+          "edgeType": "call"
+        },
+        {
+          "name": "_redirectUri",
+          "edgeType": "call"
+        },
+        {
+          "name": "_stateParam",
+          "edgeType": "call"
+        },
+        {
+          "name": "launchLogin",
+          "edgeType": "call"
+        },
+        {
+          "name": "OAuthConfiguration",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "configureOAuthService",
+      "exported": true,
+      "qualifiedName": "CustomOAuth.configureOAuthService",
+      "line": 52,
+      "endLine": 71,
+      "signature": "static configureOAuthService<TServiceName extends string = string>( serviceName: TServiceName, options: Readonly<OauthConfig>, ): CustomOAuth<TServiceName>",
+      "containerClass": "CustomOAuth",
+      "calls": [
+        {
+          "name": "get",
+          "edgeType": "call"
+        },
+        {
+          "name": "configure",
+          "edgeType": "call"
+        },
+        {
+          "name": "includes",
+          "edgeType": "call"
+        },
+        {
+          "name": "serviceNames",
+          "edgeType": "call"
+        },
+        {
+          "name": "set",
+          "edgeType": "call"
+        },
+        {
+          "name": "CustomOAuthError",
+          "edgeType": "new"
+        },
+        {
+          "name": "CustomOAuth",
+          "edgeType": "new"
+        },
+        {
+          "name": "TServiceName",
+          "edgeType": "type"
+        },
+        {
+          "name": "OauthConfig",
+          "edgeType": "type"
+        },
+        {
+          "name": "CustomOAuth",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "configureCustomOAuthService",
+      "exported": true,
+      "qualifiedName": "CustomOAuth.configureCustomOAuthService",
+      "line": 59,
+      "endLine": 70,
+      "signature": "static configureCustomOAuthService<TServiceName extends string = string>( serviceName: TServiceName, options: Readonly<OauthConfig>, ): CustomOAuth<TServiceName> | undefined",
+      "containerClass": "CustomOAuth",
+      "calls": [
+        {
+          "name": "configureOAuthService",
+          "edgeType": "call"
+        },
+        {
+          "name": "error",
+          "edgeType": "call"
+        },
+        {
+          "name": "TServiceName",
+          "edgeType": "type"
+        },
+        {
+          "name": "OauthConfig",
+          "edgeType": "type"
+        },
+        {
+          "name": "CustomOAuth",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "constructor",
+      "exported": true,
+      "qualifiedName": "CustomOAuth.constructor",
+      "line": 26,
+      "endLine": 35,
+      "signature": "constructor( public readonly name: TServiceName, options: Readonly<OauthConfig>, )",
+      "containerClass": "CustomOAuth",
+      "calls": [
+        {
+          "name": "configure",
+          "edgeType": "call"
+        },
+        {
+          "name": "registerService",
+          "edgeType": "call"
+        },
+        {
+          "name": "configureLogin",
+          "edgeType": "call"
+        },
+        {
+          "name": "TServiceName",
+          "edgeType": "type"
+        },
+        {
+          "name": "OauthConfig",
+          "edgeType": "type"
+        }
+      ]
+    }
+  ],
+  "imports": [
+    {
+      "module": "@rocket.chat/core-typings",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/random",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/string-helpers",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/tools",
+      "resolved": "external"
+    },
+    {
+      "module": "meteor/accounts-base",
+      "resolved": "external"
+    },
+    {
+      "module": "meteor/meteor",
+      "resolved": "external"
+    },
+    {
+      "module": "meteor/oauth",
+      "resolved": "external"
+    },
+    {
+      "module": "../../definitions/IOAuthProvider",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/client/definitions/IOAuthProvider.ts"
+    },
+    {
+      "module": "../../meteor/login/oauth",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/client/meteor/login/oauth.ts"
+    },
+    {
+      "module": "../2fa/overrideLoginMethod",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/client/lib/2fa/overrideLoginMethod.ts"
+    },
+    {
+      "module": "../loginServices",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/client/lib/loginServices.ts"
+    },
+    {
+      "module": "./CustomOAuthError",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/client/lib/customOAuth/CustomOAuthError.ts"
+    }
+  ]
+}

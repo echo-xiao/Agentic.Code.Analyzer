@@ -1,0 +1,182 @@
+{
+  "sourcePath": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/app/meteor-accounts-saml/server/lib/generators/AuthorizeRequest.ts",
+  "symbols": [
+    {
+      "type": "class",
+      "name": "AuthorizeRequest",
+      "exported": true,
+      "line": 23,
+      "endLine": 81,
+      "signature": "export class AuthorizeRequest",
+      "calls": []
+    },
+    {
+      "type": "method",
+      "name": "generate",
+      "exported": true,
+      "qualifiedName": "AuthorizeRequest.generate",
+      "line": 24,
+      "endLine": 32,
+      "signature": "public static generate(serviceProviderOptions: IServiceProviderOptions, credentialToken: string): ISAMLRequest",
+      "containerClass": "AuthorizeRequest",
+      "calls": [
+        {
+          "name": "getDataForNewRequest",
+          "edgeType": "call"
+        },
+        {
+          "name": "fillTemplateData",
+          "edgeType": "call"
+        },
+        {
+          "name": "authorizeRequestTemplate",
+          "edgeType": "call"
+        },
+        {
+          "name": "IServiceProviderOptions",
+          "edgeType": "type"
+        },
+        {
+          "name": "ISAMLRequest",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "authorizeRequestTemplate",
+      "exported": true,
+      "qualifiedName": "AuthorizeRequest.authorizeRequestTemplate",
+      "line": 31,
+      "endLine": 39,
+      "signature": "private static authorizeRequestTemplate(serviceProviderOptions: IServiceProviderOptions): string",
+      "containerClass": "AuthorizeRequest",
+      "calls": [
+        {
+          "name": "identifierFormatTagTemplate",
+          "edgeType": "call"
+        },
+        {
+          "name": "authnContextTagTemplate",
+          "edgeType": "call"
+        },
+        {
+          "name": "fillTemplateData",
+          "edgeType": "call"
+        },
+        {
+          "name": "IServiceProviderOptions",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "identifierFormatTagTemplate",
+      "exported": true,
+      "qualifiedName": "AuthorizeRequest.identifierFormatTagTemplate",
+      "line": 35,
+      "endLine": 41,
+      "signature": "private static identifierFormatTagTemplate(serviceProviderOptions: IServiceProviderOptions): string",
+      "containerClass": "AuthorizeRequest",
+      "calls": [
+        {
+          "name": "IServiceProviderOptions",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "authnContextTagTemplate",
+      "exported": true,
+      "qualifiedName": "AuthorizeRequest.authnContextTagTemplate",
+      "line": 39,
+      "endLine": 45,
+      "signature": "private static authnContextTagTemplate(serviceProviderOptions: IServiceProviderOptions): string",
+      "containerClass": "AuthorizeRequest",
+      "calls": [
+        {
+          "name": "resolveCustomAuthnContext",
+          "edgeType": "call"
+        },
+        {
+          "name": "IServiceProviderOptions",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "getDataForNewRequest",
+      "exported": true,
+      "qualifiedName": "AuthorizeRequest.getDataForNewRequest",
+      "line": 43,
+      "endLine": 60,
+      "signature": "private static getDataForNewRequest( serviceProviderOptions: IServiceProviderOptions, credentialToken?: string, ): IAuthorizeRequestVariables",
+      "containerClass": "AuthorizeRequest",
+      "calls": [
+        {
+          "name": "generateUniqueID",
+          "edgeType": "call"
+        },
+        {
+          "name": "generateInstant",
+          "edgeType": "call"
+        },
+        {
+          "name": "resolveCustomAuthnContext",
+          "edgeType": "call"
+        },
+        {
+          "name": "IServiceProviderOptions",
+          "edgeType": "type"
+        },
+        {
+          "name": "IAuthorizeRequestVariables",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "function",
+      "name": "resolveCustomAuthnContext",
+      "exported": false,
+      "line": 15,
+      "endLine": 18,
+      "signature": "function resolveCustomAuthnContext(serviceProviderOptions: IServiceProviderOptions, defaultValue?: string): string | undefined",
+      "calls": [
+        {
+          "name": "trim",
+          "edgeType": "call"
+        },
+        {
+          "name": "IServiceProviderOptions",
+          "edgeType": "type"
+        }
+      ]
+    }
+  ],
+  "imports": [
+    {
+      "module": "../../definition/IAuthorizeRequestVariables",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/app/meteor-accounts-saml/server/definition/IAuthorizeRequestVariables.ts"
+    },
+    {
+      "module": "../../definition/ISAMLRequest",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/app/meteor-accounts-saml/server/definition/ISAMLRequest.ts"
+    },
+    {
+      "module": "../../definition/IServiceProviderOptions",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/app/meteor-accounts-saml/server/definition/IServiceProviderOptions.ts"
+    },
+    {
+      "module": "../Utils",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/app/meteor-accounts-saml/server/lib/Utils.ts"
+    },
+    {
+      "module": "../constants",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/app/meteor-accounts-saml/server/lib/constants.ts"
+    }
+  ]
+}

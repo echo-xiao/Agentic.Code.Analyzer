@@ -1,0 +1,69 @@
+{
+  "sourcePath": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/app/meteor-accounts-saml/server/lib/signature/validateRedirectSignature.ts",
+  "symbols": [
+    {
+      "type": "function",
+      "name": "validateRedirectSignature",
+      "exported": true,
+      "line": 7,
+      "endLine": 44,
+      "signature": "export function validateRedirectSignature(envelope: SAMLRedirectEnvelope, certificate: string): boolean",
+      "calls": [
+        {
+          "name": "log",
+          "edgeType": "call"
+        },
+        {
+          "name": "getSigAlgKeyByURI",
+          "edgeType": "call"
+        },
+        {
+          "name": "certToPEM",
+          "edgeType": "call"
+        },
+        {
+          "name": "createVerify",
+          "edgeType": "call"
+        },
+        {
+          "name": "update",
+          "edgeType": "call"
+        },
+        {
+          "name": "end",
+          "edgeType": "call"
+        },
+        {
+          "name": "verify",
+          "edgeType": "call"
+        },
+        {
+          "name": "error",
+          "edgeType": "call"
+        },
+        {
+          "name": "SAMLRedirectEnvelope",
+          "edgeType": "type"
+        }
+      ]
+    }
+  ],
+  "imports": [
+    {
+      "module": "node:crypto",
+      "resolved": "external"
+    },
+    {
+      "module": "../../definition/SAMLEnvelope",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/app/meteor-accounts-saml/server/definition/SAMLEnvelope.ts"
+    },
+    {
+      "module": "../Utils",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/app/meteor-accounts-saml/server/lib/Utils.ts"
+    },
+    {
+      "module": "./signatureAlgorithms",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/app/meteor-accounts-saml/server/lib/signature/signatureAlgorithms.ts"
+    }
+  ]
+}

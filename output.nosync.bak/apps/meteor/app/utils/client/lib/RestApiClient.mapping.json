@@ -1,0 +1,93 @@
+{
+  "sourcePath": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/app/utils/client/lib/RestApiClient.ts",
+  "symbols": [
+    {
+      "type": "module",
+      "name": "RestApiClient",
+      "exported": false,
+      "line": 1,
+      "endLine": 52,
+      "signature": "RestApiClient",
+      "calls": [
+        {
+          "name": "handleTwoFactorChallenge",
+          "edgeType": "call"
+        },
+        {
+          "name": "use",
+          "edgeType": "call"
+        },
+        {
+          "name": "next",
+          "edgeType": "call"
+        },
+        {
+          "name": "json",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "class",
+      "name": "RestApiClient",
+      "exported": false,
+      "line": 8,
+      "endLine": 25,
+      "signature": "class RestApiClient extends RestClient",
+      "calls": [
+        {
+          "name": "RestClient",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "getCredentials",
+      "exported": false,
+      "qualifiedName": "RestApiClient.getCredentials",
+      "line": 9,
+      "endLine": 24,
+      "signature": "override getCredentials(): | { 'X-User-Id': string; 'X-Auth-Token': string; } | undefined",
+      "containerClass": "RestApiClient",
+      "calls": [
+        {
+          "name": "getStoredItem",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "variable",
+      "name": "APIClient",
+      "exported": true,
+      "line": 19,
+      "endLine": 21,
+      "signature": "APIClient = new RestApiClient(",
+      "calls": [
+        {
+          "name": "replace",
+          "edgeType": "call"
+        }
+      ]
+    }
+  ],
+  "imports": [
+    {
+      "module": "@rocket.chat/api-client",
+      "resolved": "external"
+    },
+    {
+      "module": "../../../../client/lib/2fa/process2faReturn",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/client/lib/2fa/process2faReturn.ts"
+    },
+    {
+      "module": "../../../../client/lib/baseURI",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/client/lib/baseURI.ts"
+    },
+    {
+      "module": "../../../../client/lib/sdk/storage",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/client/lib/sdk/storage.ts"
+    }
+  ]
+}

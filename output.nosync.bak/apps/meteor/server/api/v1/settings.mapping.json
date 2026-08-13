@@ -1,0 +1,319 @@
+{
+  "sourcePath": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/server/api/v1/settings.ts",
+  "symbols": [
+    {
+      "type": "module",
+      "name": "settings",
+      "exported": false,
+      "line": 1,
+      "endLine": 449,
+      "signature": "settings",
+      "calls": [
+        {
+          "name": "settings.public",
+          "edgeType": "rest_route"
+        },
+        {
+          "name": "get",
+          "edgeType": "call"
+        },
+        {
+          "name": "getPaginationItems",
+          "edgeType": "call"
+        },
+        {
+          "name": "parseJsonQuery",
+          "edgeType": "call"
+        },
+        {
+          "name": "map",
+          "edgeType": "call"
+        },
+        {
+          "name": "split",
+          "edgeType": "call"
+        },
+        {
+          "name": "trim",
+          "edgeType": "call"
+        },
+        {
+          "name": "fetchSettings",
+          "edgeType": "call"
+        },
+        {
+          "name": "success",
+          "edgeType": "call"
+        },
+        {
+          "name": "settings.oauth",
+          "edgeType": "rest_route"
+        },
+        {
+          "name": "toArray",
+          "edgeType": "call"
+        },
+        {
+          "name": "find",
+          "edgeType": "call"
+        },
+        {
+          "name": "includes",
+          "edgeType": "call"
+        },
+        {
+          "name": "OAuthConfiguration",
+          "edgeType": "type"
+        },
+        {
+          "name": "FacebookOAuthConfiguration",
+          "edgeType": "type"
+        },
+        {
+          "name": "TwitterOAuthConfiguration",
+          "edgeType": "type"
+        },
+        {
+          "name": "settings.addCustomOAuth",
+          "edgeType": "rest_route"
+        },
+        {
+          "name": "post",
+          "edgeType": "call"
+        },
+        {
+          "name": "compile",
+          "edgeType": "call"
+        },
+        {
+          "name": "addOAuthServiceMethod",
+          "edgeType": "call"
+        },
+        {
+          "name": "settings",
+          "edgeType": "rest_route"
+        },
+        {
+          "name": "hasPermissionAsync",
+          "edgeType": "call"
+        },
+        {
+          "name": "assign",
+          "edgeType": "call"
+        },
+        {
+          "name": "settings/:_id",
+          "edgeType": "rest_route"
+        },
+        {
+          "name": "findOneNotHiddenById",
+          "edgeType": "call"
+        },
+        {
+          "name": "failure",
+          "edgeType": "call"
+        },
+        {
+          "name": "pick",
+          "edgeType": "call"
+        },
+        {
+          "name": "disableCustomScripts",
+          "edgeType": "call"
+        },
+        {
+          "name": "test",
+          "edgeType": "call"
+        },
+        {
+          "name": "forbidden",
+          "edgeType": "call"
+        },
+        {
+          "name": "isSettingAction",
+          "edgeType": "call"
+        },
+        {
+          "name": "isSettingsUpdatePropsActions",
+          "edgeType": "call"
+        },
+        {
+          "name": "isActionSettingWithEndpoint",
+          "edgeType": "call"
+        },
+        {
+          "name": "callAsync",
+          "edgeType": "call"
+        },
+        {
+          "name": "updateAuditedByUser",
+          "edgeType": "call"
+        },
+        {
+          "name": "isSettingColor",
+          "edgeType": "call"
+        },
+        {
+          "name": "isSettingsUpdatePropsColor",
+          "edgeType": "call"
+        },
+        {
+          "name": "updateOptionsById",
+          "edgeType": "call"
+        },
+        {
+          "name": "auditSettingOperation",
+          "edgeType": "call"
+        },
+        {
+          "name": "all",
+          "edgeType": "call"
+        },
+        {
+          "name": "notifyOnSettingChangedById",
+          "edgeType": "call"
+        },
+        {
+          "name": "isSettingsUpdatePropDefault",
+          "edgeType": "call"
+        },
+        {
+          "name": "checkSettingValueBounds",
+          "edgeType": "call"
+        },
+        {
+          "name": "set",
+          "edgeType": "call"
+        },
+        {
+          "name": "setValue",
+          "edgeType": "call"
+        },
+        {
+          "name": "notifyOnSettingChanged",
+          "edgeType": "call"
+        },
+        {
+          "name": "ISettingColor",
+          "edgeType": "type"
+        },
+        {
+          "name": "saveSettingsBulk",
+          "edgeType": "call"
+        },
+        {
+          "name": "service.configurations",
+          "edgeType": "rest_route"
+        }
+      ]
+    },
+    {
+      "type": "function",
+      "name": "fetchSettings",
+      "exported": false,
+      "line": 39,
+      "endLine": 57,
+      "signature": "async function fetchSettings( query: Parameters<typeof Settings.find>[0], sort: FindOptions<ISetting>['sort'], offset: FindOptions<ISetting>['skip'], count: FindOptions<ISetting>['limit'], fields: FindOptions<ISetting>['projection'], ): Promise<{ settings: ISetting[]; totalCount: number }>",
+      "calls": [
+        {
+          "name": "findPaginated",
+          "edgeType": "call"
+        },
+        {
+          "name": "all",
+          "edgeType": "call"
+        },
+        {
+          "name": "toArray",
+          "edgeType": "call"
+        },
+        {
+          "name": "fetch-settings",
+          "edgeType": "event_emit"
+        },
+        {
+          "name": "FindOptions",
+          "edgeType": "type"
+        },
+        {
+          "name": "ISetting",
+          "edgeType": "type"
+        }
+      ]
+    }
+  ],
+  "imports": [
+    {
+      "module": "@rocket.chat/core-typings",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/core-typings",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/models",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/rest-typings",
+      "resolved": "external"
+    },
+    {
+      "module": "meteor/meteor",
+      "resolved": "external"
+    },
+    {
+      "module": "mongodb",
+      "resolved": "external"
+    },
+    {
+      "module": "underscore",
+      "resolved": "external"
+    },
+    {
+      "module": "../../../app/lib/server/functions/saveSettingsBulk",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/app/lib/server/functions/saveSettingsBulk.ts"
+    },
+    {
+      "module": "../../../app/lib/server/lib/checkSettingValueBonds",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/app/lib/server/lib/checkSettingValueBonds.ts"
+    },
+    {
+      "module": "../../../app/lib/server/lib/notifyListener",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/app/lib/server/lib/notifyListener.ts"
+    },
+    {
+      "module": "../../../app/lib/server/methods/addOAuthService",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/app/lib/server/methods/addOAuthService.ts"
+    },
+    {
+      "module": "../../../app/settings/server",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/app/settings/server/index.ts"
+    },
+    {
+      "module": "../../../app/settings/server/raw",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/app/settings/server/raw.ts"
+    },
+    {
+      "module": "../../lib/authorization/hasPermission",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/server/lib/authorization/hasPermission.ts"
+    },
+    {
+      "module": "../../lib/shared/disableCustomScripts",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/server/lib/shared/disableCustomScripts.ts"
+    },
+    {
+      "module": "../../settings/lib/auditedSettingUpdates",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/server/settings/lib/auditedSettingUpdates.ts"
+    },
+    {
+      "module": "../api",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/server/api/api.ts"
+    },
+    {
+      "module": "../lib/getPaginationItems",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/server/api/lib/getPaginationItems.ts"
+    }
+  ]
+}

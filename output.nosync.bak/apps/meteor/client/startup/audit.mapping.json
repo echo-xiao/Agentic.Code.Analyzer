@@ -1,0 +1,122 @@
+{
+  "sourcePath": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/client/startup/audit.tsx",
+  "symbols": [
+    {
+      "type": "module",
+      "name": "audit",
+      "exported": false,
+      "line": 1,
+      "endLine": 87,
+      "signature": "audit",
+      "calls": [
+        {
+          "name": "onToggledFeature",
+          "edgeType": "call"
+        },
+        {
+          "name": "defineRoutes",
+          "edgeType": "call"
+        },
+        {
+          "name": "wrap",
+          "edgeType": "call"
+        },
+        {
+          "name": "unregisterAuditRoutes",
+          "edgeType": "call"
+        },
+        {
+          "name": "MainLayout",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "PermissionGuard",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "SettingsProvider",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "AuditPage",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "AuditLogPage",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "SecurityLogsPage",
+          "edgeType": "jsx"
+        }
+      ]
+    },
+    {
+      "type": "variable_function",
+      "name": "PermissionGuard",
+      "exported": false,
+      "line": 35,
+      "endLine": 39,
+      "signature": "({ children, permission }: PermissionGuardProps) =>",
+      "calls": [
+        {
+          "name": "hasAllPermission",
+          "edgeType": "call"
+        },
+        {
+          "name": "NotAuthorizedPage",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "PermissionGuardProps",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "type",
+      "name": "PermissionGuardProps",
+      "line": 33,
+      "endLine": 33,
+      "signature": "export type PermissionGuardProps ="
+    }
+  ],
+  "imports": [
+    {
+      "module": "react",
+      "resolved": "external"
+    },
+    {
+      "module": "react",
+      "resolved": "external"
+    },
+    {
+      "module": "../../app/authorization/client",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/app/authorization/client/index.ts"
+    },
+    {
+      "module": "../lib/appLayout",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/client/lib/appLayout.tsx"
+    },
+    {
+      "module": "../lib/onToggledFeature",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/client/lib/onToggledFeature.ts"
+    },
+    {
+      "module": "../providers/RouterProvider",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/client/providers/RouterProvider.tsx"
+    },
+    {
+      "module": "../providers/SettingsProvider",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/client/providers/SettingsProvider.tsx"
+    },
+    {
+      "module": "../views/notAuthorized/NotAuthorizedPage",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/client/views/notAuthorized/NotAuthorizedPage.tsx"
+    },
+    {
+      "module": "../views/root/MainLayout",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/client/views/root/MainLayout/index.ts"
+    }
+  ]
+}

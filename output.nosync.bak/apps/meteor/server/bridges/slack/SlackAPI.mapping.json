@@ -1,0 +1,351 @@
+{
+  "sourcePath": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/server/bridges/slack/SlackAPI.ts",
+  "symbols": [
+    {
+      "type": "class",
+      "name": "SlackAPI",
+      "exported": true,
+      "line": 7,
+      "endLine": 253,
+      "signature": "export class SlackAPI",
+      "calls": []
+    },
+    {
+      "type": "method",
+      "name": "getChannels",
+      "exported": true,
+      "qualifiedName": "SlackAPI.getChannels",
+      "line": 12,
+      "endLine": 38,
+      "signature": "async getChannels(cursor = null)",
+      "containerClass": "SlackAPI",
+      "calls": [
+        {
+          "name": "fetch",
+          "edgeType": "call"
+        },
+        {
+          "name": "json",
+          "edgeType": "call"
+        },
+        {
+          "name": "isArray",
+          "edgeType": "call"
+        },
+        {
+          "name": "concat",
+          "edgeType": "call"
+        },
+        {
+          "name": "getChannels",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "getGroups",
+      "exported": true,
+      "qualifiedName": "SlackAPI.getGroups",
+      "line": 16,
+      "endLine": 42,
+      "signature": "async getGroups(cursor = null)",
+      "containerClass": "SlackAPI",
+      "calls": [
+        {
+          "name": "fetch",
+          "edgeType": "call"
+        },
+        {
+          "name": "json",
+          "edgeType": "call"
+        },
+        {
+          "name": "isArray",
+          "edgeType": "call"
+        },
+        {
+          "name": "concat",
+          "edgeType": "call"
+        },
+        {
+          "name": "getGroups",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "getRoomInfo",
+      "exported": true,
+      "qualifiedName": "SlackAPI.getRoomInfo",
+      "line": 20,
+      "endLine": 34,
+      "signature": "async getRoomInfo(roomId)",
+      "containerClass": "SlackAPI",
+      "calls": [
+        {
+          "name": "fetch",
+          "edgeType": "call"
+        },
+        {
+          "name": "json",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "getMembers",
+      "exported": true,
+      "qualifiedName": "SlackAPI.getMembers",
+      "line": 24,
+      "endLine": 52,
+      "signature": "async getMembers(channelId)",
+      "containerClass": "SlackAPI",
+      "calls": [
+        {
+          "name": "getRoomInfo",
+          "edgeType": "call"
+        },
+        {
+          "name": "fetch",
+          "edgeType": "call"
+        },
+        {
+          "name": "json",
+          "edgeType": "call"
+        },
+        {
+          "name": "isArray",
+          "edgeType": "call"
+        },
+        {
+          "name": "concat",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "react",
+      "exported": true,
+      "qualifiedName": "SlackAPI.react",
+      "line": 28,
+      "endLine": 40,
+      "signature": "async react(data)",
+      "containerClass": "SlackAPI",
+      "calls": [
+        {
+          "name": "fetch",
+          "edgeType": "call"
+        },
+        {
+          "name": "json",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "removeReaction",
+      "exported": true,
+      "qualifiedName": "SlackAPI.removeReaction",
+      "line": 32,
+      "endLine": 44,
+      "signature": "async removeReaction(data)",
+      "containerClass": "SlackAPI",
+      "calls": [
+        {
+          "name": "fetch",
+          "edgeType": "call"
+        },
+        {
+          "name": "json",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "removeMessage",
+      "exported": true,
+      "qualifiedName": "SlackAPI.removeMessage",
+      "line": 36,
+      "endLine": 48,
+      "signature": "async removeMessage(data)",
+      "containerClass": "SlackAPI",
+      "calls": [
+        {
+          "name": "fetch",
+          "edgeType": "call"
+        },
+        {
+          "name": "json",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "sendMessage",
+      "exported": true,
+      "qualifiedName": "SlackAPI.sendMessage",
+      "line": 40,
+      "endLine": 51,
+      "signature": "async sendMessage(data)",
+      "containerClass": "SlackAPI",
+      "calls": [
+        {
+          "name": "fetch",
+          "edgeType": "call"
+        },
+        {
+          "name": "json",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "updateMessage",
+      "exported": true,
+      "qualifiedName": "SlackAPI.updateMessage",
+      "line": 44,
+      "endLine": 56,
+      "signature": "async updateMessage(data)",
+      "containerClass": "SlackAPI",
+      "calls": [
+        {
+          "name": "fetch",
+          "edgeType": "call"
+        },
+        {
+          "name": "json",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "getHistory",
+      "exported": true,
+      "qualifiedName": "SlackAPI.getHistory",
+      "line": 48,
+      "endLine": 59,
+      "signature": "async getHistory(options)",
+      "containerClass": "SlackAPI",
+      "calls": [
+        {
+          "name": "fetch",
+          "edgeType": "call"
+        },
+        {
+          "name": "json",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "getPins",
+      "exported": true,
+      "qualifiedName": "SlackAPI.getPins",
+      "line": 52,
+      "endLine": 65,
+      "signature": "async getPins(channelId)",
+      "containerClass": "SlackAPI",
+      "calls": [
+        {
+          "name": "fetch",
+          "edgeType": "call"
+        },
+        {
+          "name": "json",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "getUser",
+      "exported": true,
+      "qualifiedName": "SlackAPI.getUser",
+      "line": 56,
+      "endLine": 69,
+      "signature": "async getUser(userId)",
+      "containerClass": "SlackAPI",
+      "calls": [
+        {
+          "name": "fetch",
+          "edgeType": "call"
+        },
+        {
+          "name": "json",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "verifyToken",
+      "exported": true,
+      "qualifiedName": "SlackAPI.verifyToken",
+      "line": 60,
+      "endLine": 71,
+      "signature": "static async verifyToken(token)",
+      "containerClass": "SlackAPI",
+      "calls": [
+        {
+          "name": "fetch",
+          "edgeType": "call"
+        },
+        {
+          "name": "json",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "verifyAppCredentials",
+      "exported": true,
+      "qualifiedName": "SlackAPI.verifyAppCredentials",
+      "line": 64,
+      "endLine": 77,
+      "signature": "static async verifyAppCredentials({ botToken, appToken })",
+      "containerClass": "SlackAPI",
+      "calls": [
+        {
+          "name": "fetch",
+          "edgeType": "call"
+        },
+        {
+          "name": "json",
+          "edgeType": "call"
+        },
+        {
+          "name": "verifyToken",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "constructor",
+      "exported": true,
+      "qualifiedName": "SlackAPI.constructor",
+      "line": 8,
+      "endLine": 10,
+      "signature": "constructor(apiOrBotToken)",
+      "containerClass": "SlackAPI",
+      "calls": []
+    }
+  ],
+  "imports": [
+    {
+      "module": "@rocket.chat/server-fetch",
+      "resolved": "external"
+    }
+  ]
+}

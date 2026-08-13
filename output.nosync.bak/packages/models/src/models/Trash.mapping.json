@@ -1,0 +1,65 @@
+{
+  "sourcePath": "/Users/echoooooo/Desktop/code/Rocket.Chat/packages/models/src/models/Trash.ts",
+  "symbols": [
+    {
+      "type": "class",
+      "name": "TrashRaw",
+      "exported": true,
+      "line": 6,
+      "endLine": 22,
+      "signature": "export class TrashRaw extends BaseRaw<RocketChatRecordDeleted<any>>",
+      "calls": [
+        {
+          "name": "BaseRaw",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "modelIndexes",
+      "exported": true,
+      "qualifiedName": "TrashRaw.modelIndexes",
+      "line": 15,
+      "endLine": 21,
+      "signature": "protected override modelIndexes(): IndexDescription[] | undefined",
+      "containerClass": "TrashRaw",
+      "calls": [
+        {
+          "name": "IndexDescription",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "constructor",
+      "exported": true,
+      "qualifiedName": "TrashRaw.constructor",
+      "line": 7,
+      "endLine": 13,
+      "signature": "constructor(db: Db)",
+      "containerClass": "TrashRaw",
+      "calls": [
+        {
+          "name": "Db",
+          "edgeType": "type"
+        }
+      ]
+    }
+  ],
+  "imports": [
+    {
+      "module": "@rocket.chat/core-typings",
+      "resolved": "external"
+    },
+    {
+      "module": "mongodb",
+      "resolved": "external"
+    },
+    {
+      "module": "./BaseRaw",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/packages/models/src/models/BaseRaw.ts"
+    }
+  ]
+}

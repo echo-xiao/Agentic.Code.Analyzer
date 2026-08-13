@@ -1,0 +1,89 @@
+{
+  "sourcePath": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/tests/e2e/page-objects/admin-email-inboxes.ts",
+  "symbols": [
+    {
+      "type": "class",
+      "name": "AdminEmailInboxes",
+      "exported": true,
+      "line": 5,
+      "endLine": 65,
+      "signature": "export class AdminEmailInboxes extends Admin",
+      "calls": [
+        {
+          "name": "Admin",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "itemRow",
+      "exported": true,
+      "qualifiedName": "AdminEmailInboxes.itemRow",
+      "line": 56,
+      "endLine": 58,
+      "signature": "itemRow(name: string): Locator",
+      "containerClass": "AdminEmailInboxes",
+      "calls": [
+        {
+          "name": "locator",
+          "edgeType": "call"
+        },
+        {
+          "name": "Locator",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "deleteEmailInboxByName",
+      "exported": true,
+      "qualifiedName": "AdminEmailInboxes.deleteEmailInboxByName",
+      "line": 60,
+      "endLine": 64,
+      "signature": "async deleteEmailInboxByName(name: string): Promise<void>",
+      "containerClass": "AdminEmailInboxes",
+      "calls": [
+        {
+          "name": "click",
+          "edgeType": "call"
+        },
+        {
+          "name": "itemRow",
+          "edgeType": "call"
+        },
+        {
+          "name": "confirmDelete",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "constructor",
+      "exported": true,
+      "qualifiedName": "AdminEmailInboxes.constructor",
+      "line": 6,
+      "endLine": 8,
+      "signature": "constructor(page: Page)",
+      "containerClass": "AdminEmailInboxes",
+      "calls": [
+        {
+          "name": "Page",
+          "edgeType": "type"
+        }
+      ]
+    }
+  ],
+  "imports": [
+    {
+      "module": "@playwright/test",
+      "resolved": "external"
+    },
+    {
+      "module": "./admin",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/tests/e2e/page-objects/admin.ts"
+    }
+  ]
+}

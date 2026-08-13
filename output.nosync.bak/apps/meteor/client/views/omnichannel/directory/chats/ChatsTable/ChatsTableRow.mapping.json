@@ -1,0 +1,205 @@
+{
+  "sourcePath": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/client/views/omnichannel/directory/chats/ChatsTable/ChatsTableRow.tsx",
+  "symbols": [
+    {
+      "type": "variable_function",
+      "name": "ChatsTableRow",
+      "exported": false,
+      "line": 19,
+      "endLine": 99,
+      "signature": "(room: IOmnichannelRoomWithDepartment) =>",
+      "calls": [
+        {
+          "name": "useTranslation",
+          "edgeType": "call"
+        },
+        {
+          "name": "useOmnichannelPriorities",
+          "edgeType": "call"
+        },
+        {
+          "name": "useTimeFromNow",
+          "edgeType": "call"
+        },
+        {
+          "name": "useFormatDate",
+          "edgeType": "call"
+        },
+        {
+          "name": "useOmnichannelSource",
+          "edgeType": "call"
+        },
+        {
+          "name": "usePermission",
+          "edgeType": "call"
+        },
+        {
+          "name": "useOmnichannelDirectoryRouter",
+          "edgeType": "call"
+        },
+        {
+          "name": "useStableCallback",
+          "edgeType": "call"
+        },
+        {
+          "name": "navigate",
+          "edgeType": "call"
+        },
+        {
+          "name": "onRowClick",
+          "edgeType": "call"
+        },
+        {
+          "name": "map",
+          "edgeType": "call"
+        },
+        {
+          "name": "getSourceLabel",
+          "edgeType": "call"
+        },
+        {
+          "name": "getTimeFromNow",
+          "edgeType": "call"
+        },
+        {
+          "name": "formatDate",
+          "edgeType": "call"
+        },
+        {
+          "name": "getStatusText",
+          "edgeType": "call"
+        },
+        {
+          "name": "GenericTableRow",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "GenericTableCell",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "Box",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "Tag",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "PriorityIcon",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "OmnichannelRoomIcon",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "OmnichannelVerificationTag",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "RoomActivityIcon",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "RemoveChatButton",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "_id",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "tag",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "priorityWeight",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "source",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "verified",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "room",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "IOmnichannelRoomWithDepartment",
+          "edgeType": "type"
+        }
+      ]
+    }
+  ],
+  "imports": [
+    {
+      "module": "@rocket.chat/core-typings",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/fuselage",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/fuselage-hooks",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/ui-client",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/ui-contexts",
+      "resolved": "external"
+    },
+    {
+      "module": "react-i18next",
+      "resolved": "external"
+    },
+    {
+      "module": "./RemoveChatButton",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/client/views/omnichannel/directory/chats/ChatsTable/RemoveChatButton.tsx"
+    },
+    {
+      "module": "../../../../../components/RoomIcon/OmnichannelRoomIcon",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/client/components/RoomIcon/OmnichannelRoomIcon/index.tsx"
+    },
+    {
+      "module": "../../../../../hooks/useFormatDate",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/client/hooks/useFormatDate.ts"
+    },
+    {
+      "module": "../../../../../hooks/useTimeFromNow",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/client/hooks/useTimeFromNow.ts"
+    },
+    {
+      "module": "../../../components/OmnichannelVerificationTag",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/client/views/omnichannel/components/OmnichannelVerificationTag.tsx"
+    },
+    {
+      "module": "../../../components/RoomActivityIcon",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/client/views/omnichannel/components/RoomActivityIcon.tsx"
+    },
+    {
+      "module": "../../../hooks/useOmnichannelPriorities",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/client/views/omnichannel/hooks/useOmnichannelPriorities.ts"
+    },
+    {
+      "module": "../../../hooks/useOmnichannelSource",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/client/views/omnichannel/hooks/useOmnichannelSource.ts"
+    },
+    {
+      "module": "../../../priorities/PriorityIcon",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/client/views/omnichannel/priorities/PriorityIcon.tsx"
+    },
+    {
+      "module": "../../hooks/useOmnichannelDirectoryRouter",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/client/views/omnichannel/directory/hooks/useOmnichannelDirectoryRouter.ts"
+    }
+  ]
+}

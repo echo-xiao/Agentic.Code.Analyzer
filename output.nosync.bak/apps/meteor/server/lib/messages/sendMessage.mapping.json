@@ -1,0 +1,298 @@
+{
+  "sourcePath": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/server/lib/messages/sendMessage.ts",
+  "symbols": [
+    {
+      "type": "function",
+      "name": "prepareMessageObject",
+      "exported": true,
+      "line": 190,
+      "endLine": 218,
+      "signature": "export function prepareMessageObject( message: Partial<IMessage>, rid: IRoom['_id'], user: { _id: string; username?: string; name?: string }, ): asserts message is IMessage",
+      "calls": [
+        {
+          "name": "test",
+          "edgeType": "call"
+        },
+        {
+          "name": "Date",
+          "edgeType": "new"
+        },
+        {
+          "name": "IMessage",
+          "edgeType": "type"
+        },
+        {
+          "name": "IRoom",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "variable_function",
+      "name": "objectMaybeIncluding",
+      "exported": false,
+      "line": 61,
+      "endLine": 75,
+      "signature": "(types: any) =>",
+      "calls": [
+        {
+          "name": "Where",
+          "edgeType": "call"
+        },
+        {
+          "name": "forEach",
+          "edgeType": "call"
+        },
+        {
+          "name": "keys",
+          "edgeType": "call"
+        },
+        {
+          "name": "check",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "variable_function",
+      "name": "validateAttachmentsFields",
+      "exported": false,
+      "line": 77,
+      "endLine": 90,
+      "signature": "(attachmentField: any) =>",
+      "calls": [
+        {
+          "name": "check",
+          "edgeType": "call"
+        },
+        {
+          "name": "objectMaybeIncluding",
+          "edgeType": "call"
+        },
+        {
+          "name": "OneOf",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "variable_function",
+      "name": "validateAttachmentsActions",
+      "exported": false,
+      "line": 81,
+      "endLine": 95,
+      "signature": "(attachmentActions: any) =>",
+      "calls": [
+        {
+          "name": "check",
+          "edgeType": "call"
+        },
+        {
+          "name": "objectMaybeIncluding",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "variable_function",
+      "name": "validateAttachment",
+      "exported": false,
+      "line": 85,
+      "endLine": 125,
+      "signature": "(attachment: any) =>",
+      "calls": [
+        {
+          "name": "check",
+          "edgeType": "call"
+        },
+        {
+          "name": "objectMaybeIncluding",
+          "edgeType": "call"
+        },
+        {
+          "name": "OneOf",
+          "edgeType": "call"
+        },
+        {
+          "name": "map",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "variable_function",
+      "name": "validateBodyAttachments",
+      "exported": false,
+      "line": 89,
+      "endLine": 89,
+      "signature": "(attachments: any[]) =>",
+      "calls": [
+        {
+          "name": "map",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "variable_function",
+      "name": "validateMessage",
+      "exported": true,
+      "line": 91,
+      "endLine": 127,
+      "signature": "async (message: any, room: any, user: any) =>",
+      "calls": [
+        {
+          "name": "check",
+          "edgeType": "call"
+        },
+        {
+          "name": "objectMaybeIncluding",
+          "edgeType": "call"
+        },
+        {
+          "name": "hasPermissionAsync",
+          "edgeType": "call"
+        },
+        {
+          "name": "isArray",
+          "edgeType": "call"
+        },
+        {
+          "name": "validateBodyAttachments",
+          "edgeType": "call"
+        },
+        {
+          "name": "validateCustomMessageFields",
+          "edgeType": "call"
+        },
+        {
+          "name": "get",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "variable_function",
+      "name": "sendMessage",
+      "exported": true,
+      "line": 108,
+      "endLine": 181,
+      "signature": "async function (user: any, message: any, room: any, options: SendMessageOptions = {})",
+      "calls": [
+        {
+          "name": "validateMessage",
+          "edgeType": "call"
+        },
+        {
+          "name": "prepareMessageObject",
+          "edgeType": "call"
+        },
+        {
+          "name": "get",
+          "edgeType": "call"
+        },
+        {
+          "name": "isLoaded",
+          "edgeType": "call"
+        },
+        {
+          "name": "triggerEvent",
+          "edgeType": "call"
+        },
+        {
+          "name": "assign",
+          "edgeType": "call"
+        },
+        {
+          "name": "beforeSave",
+          "edgeType": "call"
+        },
+        {
+          "name": "updateOne",
+          "edgeType": "call"
+        },
+        {
+          "name": "findOneById",
+          "edgeType": "call"
+        },
+        {
+          "name": "insertOne",
+          "edgeType": "call"
+        },
+        {
+          "name": "afterSaveMessage",
+          "edgeType": "call"
+        },
+        {
+          "name": "notifyOnRoomChangedById",
+          "edgeType": "call"
+        },
+        {
+          "name": "SendMessageOptions",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "type",
+      "name": "SendMessageOptions",
+      "line": 16,
+      "endLine": 20,
+      "signature": "export type SendMessageOptions ="
+    }
+  ],
+  "imports": [
+    {
+      "module": "@rocket.chat/apps",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/core-services",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/core-typings",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/models",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/tools",
+      "resolved": "external"
+    },
+    {
+      "module": "meteor/check",
+      "resolved": "external"
+    },
+    {
+      "module": "../../../app/file-upload/server",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/app/file-upload/server/index.ts"
+    },
+    {
+      "module": "../../../app/lib/server/lib/afterSaveMessage",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/app/lib/server/lib/afterSaveMessage.ts"
+    },
+    {
+      "module": "../../../app/lib/server/lib/notifyListener",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/app/lib/server/lib/notifyListener.ts"
+    },
+    {
+      "module": "../../../app/lib/server/lib/validateCustomMessageFields",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/app/lib/server/lib/validateCustomMessageFields.ts"
+    },
+    {
+      "module": "../../../app/settings/server",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/app/settings/server/index.ts"
+    },
+    {
+      "module": "../../../lib/utils/isRelativeURL",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/lib/utils/isRelativeURL.ts"
+    },
+    {
+      "module": "../authorization/hasPermission",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/server/lib/authorization/hasPermission.ts"
+    }
+  ]
+}

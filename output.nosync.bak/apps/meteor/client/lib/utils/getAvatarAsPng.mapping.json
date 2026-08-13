@@ -1,0 +1,103 @@
+{
+  "sourcePath": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/client/lib/utils/getAvatarAsPng.ts",
+  "symbols": [
+    {
+      "type": "inner_function",
+      "name": "onLoad",
+      "exported": false,
+      "qualifiedName": "getAvatarAsPng.onLoad",
+      "line": 8,
+      "endLine": 24,
+      "signature": "(): void =>",
+      "calls": [
+        {
+          "name": "createElement",
+          "edgeType": "call"
+        },
+        {
+          "name": "getContext",
+          "edgeType": "call"
+        },
+        {
+          "name": "drawImage",
+          "edgeType": "call"
+        },
+        {
+          "name": "cb",
+          "edgeType": "call"
+        },
+        {
+          "name": "toDataURL",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "inner_function",
+      "name": "onError",
+      "exported": false,
+      "qualifiedName": "getAvatarAsPng.onError",
+      "line": 26,
+      "endLine": 26,
+      "signature": "(): void =>",
+      "calls": [
+        {
+          "name": "cb",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "variable_function",
+      "name": "getAvatarAsPng",
+      "exported": true,
+      "line": 5,
+      "endLine": 33,
+      "signature": "(username: IUser['username'], cb: (dataURL: string) => void): (() => void) =>",
+      "calls": [
+        {
+          "name": "createElement",
+          "edgeType": "call"
+        },
+        {
+          "name": "getContext",
+          "edgeType": "call"
+        },
+        {
+          "name": "drawImage",
+          "edgeType": "call"
+        },
+        {
+          "name": "cb",
+          "edgeType": "call"
+        },
+        {
+          "name": "toDataURL",
+          "edgeType": "call"
+        },
+        {
+          "name": "getUserAvatarURL",
+          "edgeType": "call"
+        },
+        {
+          "name": "Image",
+          "edgeType": "new"
+        },
+        {
+          "name": "IUser",
+          "edgeType": "type"
+        }
+      ]
+    }
+  ],
+  "imports": [
+    {
+      "module": "@rocket.chat/core-typings",
+      "resolved": "external"
+    },
+    {
+      "module": "../../../app/utils/client/getUserAvatarURL",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/app/utils/client/getUserAvatarURL.ts"
+    }
+  ]
+}

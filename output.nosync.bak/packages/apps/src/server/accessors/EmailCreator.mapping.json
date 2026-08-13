@@ -1,0 +1,73 @@
+{
+  "sourcePath": "/Users/echoooooo/Desktop/code/Rocket.Chat/packages/apps/src/server/accessors/EmailCreator.ts",
+  "symbols": [
+    {
+      "type": "class",
+      "name": "EmailCreator",
+      "exported": true,
+      "line": 6,
+      "endLine": 15,
+      "signature": "export class EmailCreator implements IEmailCreator",
+      "calls": [
+        {
+          "name": "IEmailCreator",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "send",
+      "exported": true,
+      "qualifiedName": "EmailCreator.send",
+      "line": 12,
+      "endLine": 14,
+      "signature": "public async send(email: IEmail): Promise<void>",
+      "containerClass": "EmailCreator",
+      "calls": [
+        {
+          "name": "doSendEmail",
+          "edgeType": "call"
+        },
+        {
+          "name": "getEmailBridge",
+          "edgeType": "call"
+        },
+        {
+          "name": "IEmail",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "constructor",
+      "exported": true,
+      "qualifiedName": "EmailCreator.constructor",
+      "line": 7,
+      "endLine": 10,
+      "signature": "constructor( private readonly bridges: AppBridges, private readonly appId: string, )",
+      "containerClass": "EmailCreator",
+      "calls": [
+        {
+          "name": "AppBridges",
+          "edgeType": "type"
+        }
+      ]
+    }
+  ],
+  "imports": [
+    {
+      "module": "@rocket.chat/apps-engine/definition/accessors/IEmailCreator",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/apps-engine/definition/email",
+      "resolved": "external"
+    },
+    {
+      "module": "../bridges",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/packages/apps/src/server/bridges/index.ts"
+    }
+  ]
+}

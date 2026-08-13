@@ -1,0 +1,83 @@
+{
+  "sourcePath": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/app/lib/server/oauth/twitter.js",
+  "symbols": [
+    {
+      "type": "module",
+      "name": "twitter",
+      "exported": false,
+      "line": 1,
+      "endLine": 56,
+      "signature": "twitter",
+      "calls": [
+        {
+          "name": "registerAccessTokenService",
+          "edgeType": "call"
+        },
+        {
+          "name": "check",
+          "edgeType": "call"
+        },
+        {
+          "name": "ObjectIncluding",
+          "edgeType": "call"
+        },
+        {
+          "name": "getIdentity",
+          "edgeType": "call"
+        },
+        {
+          "name": "pick",
+          "edgeType": "call"
+        },
+        {
+          "name": "extend",
+          "edgeType": "call"
+        },
+        {
+          "name": "Date",
+          "edgeType": "new"
+        }
+      ]
+    },
+    {
+      "type": "variable_function",
+      "name": "getIdentity",
+      "exported": false,
+      "line": 9,
+      "endLine": 23,
+      "signature": "async function (accessToken, appId, appSecret, accessTokenSecret)",
+      "calls": [
+        {
+          "name": "verifyCredentials",
+          "edgeType": "call"
+        },
+        {
+          "name": "extend",
+          "edgeType": "call"
+        },
+        {
+          "name": "TwitterApi",
+          "edgeType": "new"
+        }
+      ]
+    }
+  ],
+  "imports": [
+    {
+      "module": "meteor/check",
+      "resolved": "external"
+    },
+    {
+      "module": "twitter-api-v2",
+      "resolved": "external"
+    },
+    {
+      "module": "underscore",
+      "resolved": "external"
+    },
+    {
+      "module": "./oauth",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/app/lib/server/oauth/oauth.ts"
+    }
+  ]
+}

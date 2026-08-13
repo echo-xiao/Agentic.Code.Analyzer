@@ -1,0 +1,77 @@
+{
+  "sourcePath": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/server/api/lib/getServerInfo.ts",
+  "symbols": [
+    {
+      "type": "function",
+      "name": "getServerInfo",
+      "exported": true,
+      "line": 10,
+      "endLine": 34,
+      "signature": "export async function getServerInfo(userId?: string): Promise<IWorkspaceInfo>",
+      "calls": [
+        {
+          "name": "hasPermissionAsync",
+          "edgeType": "call"
+        },
+        {
+          "name": "wrapPromise",
+          "edgeType": "call"
+        },
+        {
+          "name": "getCachedSupportedVersionsToken",
+          "edgeType": "call"
+        },
+        {
+          "name": "get",
+          "edgeType": "call"
+        },
+        {
+          "name": "getWorkspaceUrl",
+          "edgeType": "call"
+        },
+        {
+          "name": "getHashedWorkspaceUrl",
+          "edgeType": "call"
+        },
+        {
+          "name": "getTrimmedServerVersion",
+          "edgeType": "call"
+        },
+        {
+          "name": "IWorkspaceInfo",
+          "edgeType": "type"
+        }
+      ]
+    }
+  ],
+  "imports": [
+    {
+      "module": "@rocket.chat/core-typings",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/license",
+      "resolved": "external"
+    },
+    {
+      "module": "./getTrimmedServerVersion",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/server/api/lib/getTrimmedServerVersion.ts"
+    },
+    {
+      "module": "../../../app/settings/server",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/app/settings/server/index.ts"
+    },
+    {
+      "module": "../../../app/utils/rocketchat.info",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/app/utils/rocketchat.info"
+    },
+    {
+      "module": "../../lib/authorization/hasPermission",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/server/lib/authorization/hasPermission.ts"
+    },
+    {
+      "module": "../../lib/cloud/supportedVersionsToken/supportedVersionsToken",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/server/lib/cloud/supportedVersionsToken/supportedVersionsToken.ts"
+    }
+  ]
+}

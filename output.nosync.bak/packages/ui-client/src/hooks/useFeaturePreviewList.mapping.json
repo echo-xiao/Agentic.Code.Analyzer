@@ -1,0 +1,87 @@
+{
+  "sourcePath": "/Users/echoooooo/Desktop/code/Rocket.Chat/packages/ui-client/src/hooks/useFeaturePreviewList.ts",
+  "symbols": [
+    {
+      "type": "variable",
+      "name": "defaultFeaturesPreview",
+      "exported": true,
+      "line": 21,
+      "endLine": 40,
+      "signature": "defaultFeaturesPreview: FeaturePreviewProps[] = [",
+      "calls": []
+    },
+    {
+      "type": "variable",
+      "name": "enabledDefaultFeatures",
+      "exported": true,
+      "line": 42,
+      "endLine": 42,
+      "signature": "enabledDefaultFeatures = defaultFeaturesPreview.filter((feature) => feature.enabled)",
+      "calls": []
+    },
+    {
+      "type": "variable_function",
+      "name": "parseSetting",
+      "exported": true,
+      "line": 45,
+      "endLine": 54,
+      "signature": "(setting?: FeaturePreviewProps[] | string) =>",
+      "calls": [
+        {
+          "name": "parse",
+          "edgeType": "call"
+        },
+        {
+          "name": "FeaturePreviewProps",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "variable_function",
+      "name": "useFeaturePreviewList",
+      "exported": true,
+      "line": 49,
+      "endLine": 66,
+      "signature": "(featuresList: FeaturePreviewProps[]) =>",
+      "calls": [
+        {
+          "name": "filter",
+          "edgeType": "call"
+        },
+        {
+          "name": "find",
+          "edgeType": "call"
+        },
+        {
+          "name": "map",
+          "edgeType": "call"
+        },
+        {
+          "name": "FeaturePreviewProps",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "type",
+      "name": "FeaturesAvailable",
+      "line": 3,
+      "endLine": 3,
+      "signature": "export type FeaturesAvailable = 'secondarySidebar' | 'sidebarDrafts';"
+    },
+    {
+      "type": "type",
+      "name": "FeaturePreviewProps",
+      "line": 5,
+      "endLine": 18,
+      "signature": "export type FeaturePreviewProps ="
+    }
+  ],
+  "imports": [
+    {
+      "module": "@rocket.chat/ui-contexts",
+      "resolved": "external"
+    }
+  ]
+}

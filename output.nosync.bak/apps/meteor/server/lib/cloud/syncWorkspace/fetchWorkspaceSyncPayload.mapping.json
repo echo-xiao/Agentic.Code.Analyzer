@@ -1,0 +1,61 @@
+{
+  "sourcePath": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/server/lib/cloud/syncWorkspace/fetchWorkspaceSyncPayload.ts",
+  "symbols": [
+    {
+      "type": "function",
+      "name": "fetchWorkspaceSyncPayload",
+      "exported": true,
+      "line": 8,
+      "endLine": 42,
+      "signature": "export async function fetchWorkspaceSyncPayload({ token, data, }: { token: string; data: Cloud.WorkspaceSyncRequestPayload; }): Promise<Cloud.WorkspaceSyncResponse>",
+      "calls": [
+        {
+          "name": "get",
+          "edgeType": "call"
+        },
+        {
+          "name": "fetch",
+          "edgeType": "call"
+        },
+        {
+          "name": "json",
+          "edgeType": "call"
+        },
+        {
+          "name": "safeParse",
+          "edgeType": "call"
+        },
+        {
+          "name": "prettifyError",
+          "edgeType": "call"
+        },
+        {
+          "name": "CloudWorkspaceConnectionError",
+          "edgeType": "new"
+        }
+      ]
+    }
+  ],
+  "imports": [
+    {
+      "module": "@rocket.chat/core-typings",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/server-fetch",
+      "resolved": "external"
+    },
+    {
+      "module": "zod",
+      "resolved": "external"
+    },
+    {
+      "module": "../../../../app/settings/server",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/app/settings/server/index.ts"
+    },
+    {
+      "module": "../../../../lib/errors/CloudWorkspaceConnectionError",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/lib/errors/CloudWorkspaceConnectionError.ts"
+    }
+  ]
+}

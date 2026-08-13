@@ -1,0 +1,118 @@
+{
+  "sourcePath": "/Users/echoooooo/Desktop/code/Rocket.Chat/packages/rest-typings/src/v1/teams/index.ts",
+  "symbols": [
+    {
+      "type": "variable_function",
+      "name": "isTeamPropsWithTeamName",
+      "exported": true,
+      "line": 59,
+      "endLine": 59,
+      "signature": "<T extends TeamProps>(props: T): props is T & { teamName: string } =>",
+      "calls": [
+        {
+          "name": "TeamProps",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "variable_function",
+      "name": "isTeamPropsWithTeamId",
+      "exported": true,
+      "line": 61,
+      "endLine": 61,
+      "signature": "<T extends TeamProps>(props: T): props is T & { teamId: string } =>",
+      "calls": [
+        {
+          "name": "TeamProps",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "interface",
+      "name": "IUserInfo",
+      "line": 35,
+      "endLine": 41,
+      "signature": "interface IUserInfo"
+    },
+    {
+      "type": "interface",
+      "name": "ITeamMemberInfo",
+      "line": 42,
+      "endLine": 47,
+      "signature": "interface ITeamMemberInfo"
+    },
+    {
+      "type": "type",
+      "name": "ITeamAutocompleteResult",
+      "line": 33,
+      "endLine": 33,
+      "signature": "type ITeamAutocompleteResult = Pick<IRoom, '_id' | 'fname' | 'teamId' | 'name' | 't' | 'avatarETag'>;"
+    },
+    {
+      "type": "type",
+      "name": "TeamProps",
+      "line": 49,
+      "endLine": 57,
+      "signature": "type TeamProps ="
+    },
+    {
+      "type": "type",
+      "name": "TeamsEndpoints",
+      "line": 63,
+      "endLine": 200,
+      "signature": "export type TeamsEndpoints ="
+    }
+  ],
+  "imports": [
+    {
+      "module": "@rocket.chat/core-typings",
+      "resolved": "external"
+    },
+    {
+      "module": "./TeamsAddMembersProps",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/packages/rest-typings/src/v1/teams/TeamsAddMembersProps.ts"
+    },
+    {
+      "module": "./TeamsConvertToChannelProps",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/packages/rest-typings/src/v1/teams/TeamsConvertToChannelProps.ts"
+    },
+    {
+      "module": "./TeamsDeleteProps",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/packages/rest-typings/src/v1/teams/TeamsDeleteProps.ts"
+    },
+    {
+      "module": "./TeamsLeaveProps",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/packages/rest-typings/src/v1/teams/TeamsLeaveProps.ts"
+    },
+    {
+      "module": "./TeamsListChildren",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/packages/rest-typings/src/v1/teams/TeamsListChildren.ts"
+    },
+    {
+      "module": "./TeamsRemoveMemberProps",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/packages/rest-typings/src/v1/teams/TeamsRemoveMemberProps.ts"
+    },
+    {
+      "module": "./TeamsRemoveRoomProps",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/packages/rest-typings/src/v1/teams/TeamsRemoveRoomProps.ts"
+    },
+    {
+      "module": "./TeamsUpdateMemberProps",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/packages/rest-typings/src/v1/teams/TeamsUpdateMemberProps.ts"
+    },
+    {
+      "module": "./TeamsUpdateProps",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/packages/rest-typings/src/v1/teams/TeamsUpdateProps.ts"
+    },
+    {
+      "module": "../../helpers/PaginatedRequest",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/packages/rest-typings/src/helpers/PaginatedRequest.ts"
+    },
+    {
+      "module": "../../helpers/PaginatedResult",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/packages/rest-typings/src/helpers/PaginatedResult.ts"
+    }
+  ]
+}

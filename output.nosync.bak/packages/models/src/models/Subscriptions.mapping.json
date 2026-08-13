@@ -1,0 +1,4321 @@
+{
+  "sourcePath": "/Users/echoooooo/Desktop/code/Rocket.Chat/packages/models/src/models/Subscriptions.ts",
+  "symbols": [
+    {
+      "type": "class",
+      "name": "SubscriptionsRaw",
+      "exported": true,
+      "line": 39,
+      "endLine": 2234,
+      "signature": "export class SubscriptionsRaw extends BaseRaw<ISubscription> implements ISubscriptionsModel",
+      "calls": [
+        {
+          "name": "BaseRaw",
+          "edgeType": "type"
+        },
+        {
+          "name": "ISubscriptionsModel",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "modelIndexes",
+      "exported": true,
+      "qualifiedName": "SubscriptionsRaw.modelIndexes",
+      "line": 44,
+      "endLine": 71,
+      "signature": "protected override modelIndexes(): IndexDescription[]",
+      "containerClass": "SubscriptionsRaw",
+      "calls": [
+        {
+          "name": "IndexDescription",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "getBadgeCount",
+      "exported": true,
+      "qualifiedName": "SubscriptionsRaw.getBadgeCount",
+      "line": 48,
+      "endLine": 62,
+      "signature": "async getBadgeCount(uid: string): Promise<number>",
+      "containerClass": "SubscriptionsRaw",
+      "calls": [
+        {
+          "name": "toArray",
+          "edgeType": "call"
+        },
+        {
+          "name": "aggregate",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "findOneByRoomIdAndUserId",
+      "exported": true,
+      "qualifiedName": "SubscriptionsRaw.findOneByRoomIdAndUserId",
+      "line": 52,
+      "endLine": 59,
+      "signature": "findOneByRoomIdAndUserId(rid: string, uid: string, options: FindOptions<ISubscription> = {}): Promise<ISubscription | null>",
+      "containerClass": "SubscriptionsRaw",
+      "calls": [
+        {
+          "name": "findOne",
+          "edgeType": "call"
+        },
+        {
+          "name": "FindOptions",
+          "edgeType": "type"
+        },
+        {
+          "name": "ISubscription",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "findByUserIdAndRoomIds",
+      "exported": true,
+      "qualifiedName": "SubscriptionsRaw.findByUserIdAndRoomIds",
+      "line": 56,
+      "endLine": 65,
+      "signature": "findByUserIdAndRoomIds(userId: string, roomIds: Array<string>, options: FindOptions<ISubscription> = {}): FindCursor<ISubscription>",
+      "containerClass": "SubscriptionsRaw",
+      "calls": [
+        {
+          "name": "find",
+          "edgeType": "call"
+        },
+        {
+          "name": "FindOptions",
+          "edgeType": "type"
+        },
+        {
+          "name": "ISubscription",
+          "edgeType": "type"
+        },
+        {
+          "name": "FindCursor",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "findByRoomId",
+      "exported": true,
+      "qualifiedName": "SubscriptionsRaw.findByRoomId",
+      "line": 60,
+      "endLine": 66,
+      "signature": "findByRoomId(roomId: string, options: FindOptions<ISubscription> = {}): FindCursor<ISubscription>",
+      "containerClass": "SubscriptionsRaw",
+      "calls": [
+        {
+          "name": "find",
+          "edgeType": "call"
+        },
+        {
+          "name": "FindOptions",
+          "edgeType": "type"
+        },
+        {
+          "name": "ISubscription",
+          "edgeType": "type"
+        },
+        {
+          "name": "FindCursor",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "findUnarchivedByRoomId",
+      "exported": true,
+      "qualifiedName": "SubscriptionsRaw.findUnarchivedByRoomId",
+      "line": 64,
+      "endLine": 72,
+      "signature": "findUnarchivedByRoomId(roomId: string, options: FindOptions<ISubscription> = {}): FindCursor<ISubscription>",
+      "containerClass": "SubscriptionsRaw",
+      "calls": [
+        {
+          "name": "find",
+          "edgeType": "call"
+        },
+        {
+          "name": "FindOptions",
+          "edgeType": "type"
+        },
+        {
+          "name": "ISubscription",
+          "edgeType": "type"
+        },
+        {
+          "name": "FindCursor",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "findByRoomIdAndNotUserId",
+      "exported": true,
+      "qualifiedName": "SubscriptionsRaw.findByRoomIdAndNotUserId",
+      "line": 68,
+      "endLine": 77,
+      "signature": "findByRoomIdAndNotUserId(roomId: string, userId: string, options: FindOptions<ISubscription> = {}): FindCursor<ISubscription>",
+      "containerClass": "SubscriptionsRaw",
+      "calls": [
+        {
+          "name": "find",
+          "edgeType": "call"
+        },
+        {
+          "name": "FindOptions",
+          "edgeType": "type"
+        },
+        {
+          "name": "ISubscription",
+          "edgeType": "type"
+        },
+        {
+          "name": "FindCursor",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "findByLivechatRoomIdAndNotUserId",
+      "exported": true,
+      "qualifiedName": "SubscriptionsRaw.findByLivechatRoomIdAndNotUserId",
+      "line": 72,
+      "endLine": 81,
+      "signature": "findByLivechatRoomIdAndNotUserId(roomId: string, userId: string, options: FindOptions<ISubscription> = {}): FindCursor<ISubscription>",
+      "containerClass": "SubscriptionsRaw",
+      "calls": [
+        {
+          "name": "find",
+          "edgeType": "call"
+        },
+        {
+          "name": "FindOptions",
+          "edgeType": "type"
+        },
+        {
+          "name": "ISubscription",
+          "edgeType": "type"
+        },
+        {
+          "name": "FindCursor",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "countByRoomIdAndUserId",
+      "exported": true,
+      "qualifiedName": "SubscriptionsRaw.countByRoomIdAndUserId",
+      "line": 76,
+      "endLine": 84,
+      "signature": "countByRoomIdAndUserId(rid: string, uid: string | undefined, includeInvitations = false): Promise<number>",
+      "containerClass": "SubscriptionsRaw",
+      "calls": [
+        {
+          "name": "countDocuments",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "countUnarchivedByRoomId",
+      "exported": true,
+      "qualifiedName": "SubscriptionsRaw.countUnarchivedByRoomId",
+      "line": 80,
+      "endLine": 87,
+      "signature": "countUnarchivedByRoomId(rid: string): Promise<number>",
+      "containerClass": "SubscriptionsRaw",
+      "calls": [
+        {
+          "name": "countDocuments",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "countUnarchivedByRoomIdAndNotUserId",
+      "exported": true,
+      "qualifiedName": "SubscriptionsRaw.countUnarchivedByRoomIdAndNotUserId",
+      "line": 84,
+      "endLine": 93,
+      "signature": "countUnarchivedByRoomIdAndNotUserId(rid: string, uid: string): Promise<number>",
+      "containerClass": "SubscriptionsRaw",
+      "calls": [
+        {
+          "name": "countDocuments",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "isUserInRole",
+      "exported": true,
+      "qualifiedName": "SubscriptionsRaw.isUserInRole",
+      "line": 88,
+      "endLine": 100,
+      "signature": "async isUserInRole(uid: IUser['_id'], roleId: IRole['_id'], rid?: IRoom['_id']): Promise<boolean>",
+      "containerClass": "SubscriptionsRaw",
+      "calls": [
+        {
+          "name": "findOne",
+          "edgeType": "call"
+        },
+        {
+          "name": "IUser",
+          "edgeType": "type"
+        },
+        {
+          "name": "IRole",
+          "edgeType": "type"
+        },
+        {
+          "name": "IRoom",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "setAsReadByRoomIdAndUserId",
+      "exported": true,
+      "qualifiedName": "SubscriptionsRaw.setAsReadByRoomIdAndUserId",
+      "line": 92,
+      "endLine": 123,
+      "signature": "setAsReadByRoomIdAndUserId( rid: string, uid: string, readThreads = false, alert = false, options: FindOptions<ISubscription> = {}, ): ReturnType<BaseRaw<ISubscription>['updateOne']>",
+      "containerClass": "SubscriptionsRaw",
+      "calls": [
+        {
+          "name": "updateOne",
+          "edgeType": "call"
+        },
+        {
+          "name": "Date",
+          "edgeType": "new"
+        },
+        {
+          "name": "FindOptions",
+          "edgeType": "type"
+        },
+        {
+          "name": "ISubscription",
+          "edgeType": "type"
+        },
+        {
+          "name": "BaseRaw",
+          "edgeType": "type"
+        },
+        {
+          "name": "Filter",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "removeRolesByUserId",
+      "exported": true,
+      "qualifiedName": "SubscriptionsRaw.removeRolesByUserId",
+      "line": 102,
+      "endLine": 115,
+      "signature": "removeRolesByUserId(uid: IUser['_id'], roles: IRole['_id'][], rid: IRoom['_id']): Promise<UpdateResult>",
+      "containerClass": "SubscriptionsRaw",
+      "calls": [
+        {
+          "name": "updateOne",
+          "edgeType": "call"
+        },
+        {
+          "name": "IUser",
+          "edgeType": "type"
+        },
+        {
+          "name": "IRole",
+          "edgeType": "type"
+        },
+        {
+          "name": "IRoom",
+          "edgeType": "type"
+        },
+        {
+          "name": "UpdateResult",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "findUsersInRoles",
+      "exported": true,
+      "qualifiedName": "SubscriptionsRaw.findUsersInRoles",
+      "line": 116,
+      "endLine": 132,
+      "signature": "async findUsersInRoles<P extends Document = IUser>( roles: IRole['_id'][], rid: IRoom['_id'] | undefined, options?: FindOptions<P extends IUser ? IUser : P>, ): Promise<FindCursor<P>>",
+      "containerClass": "SubscriptionsRaw",
+      "calls": [
+        {
+          "name": "toArray",
+          "edgeType": "call"
+        },
+        {
+          "name": "find",
+          "edgeType": "call"
+        },
+        {
+          "name": "compact",
+          "edgeType": "call"
+        },
+        {
+          "name": "filter",
+          "edgeType": "call"
+        },
+        {
+          "name": "map",
+          "edgeType": "call"
+        },
+        {
+          "name": "Document",
+          "edgeType": "type"
+        },
+        {
+          "name": "IUser",
+          "edgeType": "type"
+        },
+        {
+          "name": "IRole",
+          "edgeType": "type"
+        },
+        {
+          "name": "IRoom",
+          "edgeType": "type"
+        },
+        {
+          "name": "FindOptions",
+          "edgeType": "type"
+        },
+        {
+          "name": "FindCursor",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "countUsersInRoles",
+      "exported": true,
+      "qualifiedName": "SubscriptionsRaw.countUsersInRoles",
+      "line": 124,
+      "endLine": 133,
+      "signature": "async countUsersInRoles(roles: IRole['_id'][], rid: IRoom['_id'] | undefined): Promise<number>",
+      "containerClass": "SubscriptionsRaw",
+      "calls": [
+        {
+          "name": "countDocuments",
+          "edgeType": "call"
+        },
+        {
+          "name": "IRole",
+          "edgeType": "type"
+        },
+        {
+          "name": "IRoom",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "addRolesByUserId",
+      "exported": true,
+      "qualifiedName": "SubscriptionsRaw.addRolesByUserId",
+      "line": 128,
+      "endLine": 146,
+      "signature": "addRolesByUserId(uid: IUser['_id'], roles: IRole['_id'][], rid?: IRoom['_id']): Promise<UpdateResult>",
+      "containerClass": "SubscriptionsRaw",
+      "calls": [
+        {
+          "name": "isArray",
+          "edgeType": "call"
+        },
+        {
+          "name": "warn",
+          "edgeType": "call"
+        },
+        {
+          "name": "updateOne",
+          "edgeType": "call"
+        },
+        {
+          "name": "IUser",
+          "edgeType": "type"
+        },
+        {
+          "name": "IRole",
+          "edgeType": "type"
+        },
+        {
+          "name": "IRoom",
+          "edgeType": "type"
+        },
+        {
+          "name": "UpdateResult",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "isUserInRoleScope",
+      "exported": true,
+      "qualifiedName": "SubscriptionsRaw.isUserInRoleScope",
+      "line": 132,
+      "endLine": 147,
+      "signature": "async isUserInRoleScope(uid: IUser['_id'], rid?: IRoom['_id']): Promise<boolean>",
+      "containerClass": "SubscriptionsRaw",
+      "calls": [
+        {
+          "name": "findOne",
+          "edgeType": "call"
+        },
+        {
+          "name": "IUser",
+          "edgeType": "type"
+        },
+        {
+          "name": "IRoom",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "updateAllRoomTypesByRoomId",
+      "exported": true,
+      "qualifiedName": "SubscriptionsRaw.updateAllRoomTypesByRoomId",
+      "line": 136,
+      "endLine": 138,
+      "signature": "async updateAllRoomTypesByRoomId(roomId: IRoom['_id'], roomType: RoomType): Promise<void>",
+      "containerClass": "SubscriptionsRaw",
+      "calls": [
+        {
+          "name": "updateMany",
+          "edgeType": "call"
+        },
+        {
+          "name": "IRoom",
+          "edgeType": "type"
+        },
+        {
+          "name": "RoomType",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "updateAllRoomNamesByRoomId",
+      "exported": true,
+      "qualifiedName": "SubscriptionsRaw.updateAllRoomNamesByRoomId",
+      "line": 140,
+      "endLine": 142,
+      "signature": "async updateAllRoomNamesByRoomId(roomId: IRoom['_id'], name: string, fname: string): Promise<void>",
+      "containerClass": "SubscriptionsRaw",
+      "calls": [
+        {
+          "name": "updateMany",
+          "edgeType": "call"
+        },
+        {
+          "name": "IRoom",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "findByRolesAndRoomId",
+      "exported": true,
+      "qualifiedName": "SubscriptionsRaw.findByRolesAndRoomId",
+      "line": 144,
+      "endLine": 152,
+      "signature": "findByRolesAndRoomId({ roles, rid }: { roles: string; rid?: string }, options?: FindOptions<ISubscription>): FindCursor<ISubscription>",
+      "containerClass": "SubscriptionsRaw",
+      "calls": [
+        {
+          "name": "find",
+          "edgeType": "call"
+        },
+        {
+          "name": "FindOptions",
+          "edgeType": "type"
+        },
+        {
+          "name": "ISubscription",
+          "edgeType": "type"
+        },
+        {
+          "name": "FindCursor",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "findByUserIdAndTypes",
+      "exported": true,
+      "qualifiedName": "SubscriptionsRaw.findByUserIdAndTypes",
+      "line": 148,
+      "endLine": 157,
+      "signature": "findByUserIdAndTypes(userId: string, types: ISubscription['t'][], options?: FindOptions<ISubscription>): FindCursor<ISubscription>",
+      "containerClass": "SubscriptionsRaw",
+      "calls": [
+        {
+          "name": "find",
+          "edgeType": "call"
+        },
+        {
+          "name": "ISubscription",
+          "edgeType": "type"
+        },
+        {
+          "name": "FindOptions",
+          "edgeType": "type"
+        },
+        {
+          "name": "FindCursor",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "findOpenByVisitorIds",
+      "exported": true,
+      "qualifiedName": "SubscriptionsRaw.findOpenByVisitorIds",
+      "line": 152,
+      "endLine": 159,
+      "signature": "findOpenByVisitorIds(visitorIds: string[], options?: FindOptions<ISubscription>): FindCursor<ISubscription>",
+      "containerClass": "SubscriptionsRaw",
+      "calls": [
+        {
+          "name": "find",
+          "edgeType": "call"
+        },
+        {
+          "name": "FindOptions",
+          "edgeType": "type"
+        },
+        {
+          "name": "ISubscription",
+          "edgeType": "type"
+        },
+        {
+          "name": "FindCursor",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "findByRoomIdAndNotAlertOrOpenExcludingUserIds",
+      "exported": true,
+      "qualifiedName": "SubscriptionsRaw.findByRoomIdAndNotAlertOrOpenExcludingUserIds",
+      "line": 156,
+      "endLine": 181,
+      "signature": "findByRoomIdAndNotAlertOrOpenExcludingUserIds( { roomId, uidsExclude, uidsInclude, onlyRead, }: { roomId: ISubscription['rid']; uidsExclude?: ISubscription['u']['_id'][]; uidsInclude?: ISubscription['u']['_id'][]; onlyRead: boolean; }, options?: FindOptions<ISubscription>, )",
+      "containerClass": "SubscriptionsRaw",
+      "calls": [
+        {
+          "name": "find",
+          "edgeType": "call"
+        },
+        {
+          "name": "ISubscription",
+          "edgeType": "type"
+        },
+        {
+          "name": "FindOptions",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "removeByRoomId",
+      "exported": true,
+      "qualifiedName": "SubscriptionsRaw.removeByRoomId",
+      "line": 173,
+      "endLine": 190,
+      "signature": "async removeByRoomId( roomId: ISubscription['rid'], options?: DeleteOptions & { onTrash: (doc: ISubscription) => void }, ): Promise<DeleteResult>",
+      "containerClass": "SubscriptionsRaw",
+      "calls": [
+        {
+          "name": "deleteMany",
+          "edgeType": "call"
+        },
+        {
+          "name": "incUsersCountByIds",
+          "edgeType": "call"
+        },
+        {
+          "name": "removeRoomByRoomId",
+          "edgeType": "call"
+        },
+        {
+          "name": "ISubscription",
+          "edgeType": "type"
+        },
+        {
+          "name": "DeleteOptions",
+          "edgeType": "type"
+        },
+        {
+          "name": "DeleteResult",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "findByRoomIdExcludingUserIds",
+      "exported": true,
+      "qualifiedName": "SubscriptionsRaw.findByRoomIdExcludingUserIds",
+      "line": 180,
+      "endLine": 193,
+      "signature": "findByRoomIdExcludingUserIds( roomId: ISubscription['rid'], userIds: ISubscription['u']['_id'][], options: FindOptions<ISubscription> = {}, ): FindCursor<ISubscription>",
+      "containerClass": "SubscriptionsRaw",
+      "calls": [
+        {
+          "name": "find",
+          "edgeType": "call"
+        },
+        {
+          "name": "ISubscription",
+          "edgeType": "type"
+        },
+        {
+          "name": "FindOptions",
+          "edgeType": "type"
+        },
+        {
+          "name": "FindCursor",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "findConnectedUsersExcept",
+      "exported": true,
+      "qualifiedName": "SubscriptionsRaw.findConnectedUsersExcept",
+      "line": 188,
+      "endLine": 314,
+      "signature": "async findConnectedUsersExcept( userId: string, searchTerm: string, exceptions: string[], searchFields: string[], extraConditions: Filter<IUser>, limit: number, roomType?: ISubscription['t'], { startsWith = false, endsWith = false }: { startsWith?: string | false; endsWith?: string | false } = {}, options: AggregateOptions = {}, ): Promise<SpotlightUser[]>",
+      "containerClass": "SubscriptionsRaw",
+      "calls": [
+        {
+          "name": "escapeRegExp",
+          "edgeType": "call"
+        },
+        {
+          "name": "reduce",
+          "edgeType": "call"
+        },
+        {
+          "name": "push",
+          "edgeType": "call"
+        },
+        {
+          "name": "trim",
+          "edgeType": "call"
+        },
+        {
+          "name": "toArray",
+          "edgeType": "call"
+        },
+        {
+          "name": "aggregate",
+          "edgeType": "call"
+        },
+        {
+          "name": "RegExp",
+          "edgeType": "new"
+        },
+        {
+          "name": "Filter",
+          "edgeType": "type"
+        },
+        {
+          "name": "IUser",
+          "edgeType": "type"
+        },
+        {
+          "name": "ISubscription",
+          "edgeType": "type"
+        },
+        {
+          "name": "AggregateOptions",
+          "edgeType": "type"
+        },
+        {
+          "name": "SpotlightUser",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "incUnreadForRoomIdExcludingUserIds",
+      "exported": true,
+      "qualifiedName": "SubscriptionsRaw.incUnreadForRoomIdExcludingUserIds",
+      "line": 202,
+      "endLine": 224,
+      "signature": "incUnreadForRoomIdExcludingUserIds(roomId: IRoom['_id'], userIds: IUser['_id'][], inc: number): Promise<UpdateResult | Document>",
+      "containerClass": "SubscriptionsRaw",
+      "calls": [
+        {
+          "name": "updateMany",
+          "edgeType": "call"
+        },
+        {
+          "name": "IRoom",
+          "edgeType": "type"
+        },
+        {
+          "name": "IUser",
+          "edgeType": "type"
+        },
+        {
+          "name": "UpdateResult",
+          "edgeType": "type"
+        },
+        {
+          "name": "Document",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "setAlertForRoomIdExcludingUserId",
+      "exported": true,
+      "qualifiedName": "SubscriptionsRaw.setAlertForRoomIdExcludingUserId",
+      "line": 206,
+      "endLine": 221,
+      "signature": "setAlertForRoomIdExcludingUserId(roomId: IRoom['_id'], userId: IUser['_id']): Promise<UpdateResult | Document>",
+      "containerClass": "SubscriptionsRaw",
+      "calls": [
+        {
+          "name": "updateMany",
+          "edgeType": "call"
+        },
+        {
+          "name": "IRoom",
+          "edgeType": "type"
+        },
+        {
+          "name": "IUser",
+          "edgeType": "type"
+        },
+        {
+          "name": "UpdateResult",
+          "edgeType": "type"
+        },
+        {
+          "name": "Document",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "setOpenForRoomIdExcludingUserId",
+      "exported": true,
+      "qualifiedName": "SubscriptionsRaw.setOpenForRoomIdExcludingUserId",
+      "line": 210,
+      "endLine": 225,
+      "signature": "setOpenForRoomIdExcludingUserId(roomId: IRoom['_id'], userId: IUser['_id']): Promise<UpdateResult | Document>",
+      "containerClass": "SubscriptionsRaw",
+      "calls": [
+        {
+          "name": "updateMany",
+          "edgeType": "call"
+        },
+        {
+          "name": "IRoom",
+          "edgeType": "type"
+        },
+        {
+          "name": "IUser",
+          "edgeType": "type"
+        },
+        {
+          "name": "UpdateResult",
+          "edgeType": "type"
+        },
+        {
+          "name": "Document",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "updateNameAndFnameByRoomId",
+      "exported": true,
+      "qualifiedName": "SubscriptionsRaw.updateNameAndFnameByRoomId",
+      "line": 214,
+      "endLine": 225,
+      "signature": "updateNameAndFnameByRoomId(roomId: string, name: string, fname: string): Promise<UpdateResult | Document>",
+      "containerClass": "SubscriptionsRaw",
+      "calls": [
+        {
+          "name": "updateMany",
+          "edgeType": "call"
+        },
+        {
+          "name": "UpdateResult",
+          "edgeType": "type"
+        },
+        {
+          "name": "Document",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "updateNameAndFnameByVisitorIds",
+      "exported": true,
+      "qualifiedName": "SubscriptionsRaw.updateNameAndFnameByVisitorIds",
+      "line": 218,
+      "endLine": 229,
+      "signature": "updateNameAndFnameByVisitorIds(visitorIds: string[], name: string): Promise<UpdateResult | Document>",
+      "containerClass": "SubscriptionsRaw",
+      "calls": [
+        {
+          "name": "updateMany",
+          "edgeType": "call"
+        },
+        {
+          "name": "UpdateResult",
+          "edgeType": "type"
+        },
+        {
+          "name": "Document",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "setGroupE2EKeyAndOldRoomKeys",
+      "exported": true,
+      "qualifiedName": "SubscriptionsRaw.setGroupE2EKeyAndOldRoomKeys",
+      "line": 222,
+      "endLine": 226,
+      "signature": "async setGroupE2EKeyAndOldRoomKeys(_id: string, key: string, oldRoomKeys?: ISubscription['oldRoomKeys']): Promise<UpdateResult>",
+      "containerClass": "SubscriptionsRaw",
+      "calls": [
+        {
+          "name": "updateOne",
+          "edgeType": "call"
+        },
+        {
+          "name": "ISubscription",
+          "edgeType": "type"
+        },
+        {
+          "name": "UpdateResult",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "setGroupE2EKey",
+      "exported": true,
+      "qualifiedName": "SubscriptionsRaw.setGroupE2EKey",
+      "line": 226,
+      "endLine": 230,
+      "signature": "async setGroupE2EKey(_id: string, key: string): Promise<UpdateResult>",
+      "containerClass": "SubscriptionsRaw",
+      "calls": [
+        {
+          "name": "updateOne",
+          "edgeType": "call"
+        },
+        {
+          "name": "UpdateResult",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "setGroupE2ESuggestedKey",
+      "exported": true,
+      "qualifiedName": "SubscriptionsRaw.setGroupE2ESuggestedKey",
+      "line": 230,
+      "endLine": 234,
+      "signature": "setGroupE2ESuggestedKey(uid: string, rid: string, key: string): Promise<null | WithId<ISubscription>>",
+      "containerClass": "SubscriptionsRaw",
+      "calls": [
+        {
+          "name": "findOneAndUpdate",
+          "edgeType": "call"
+        },
+        {
+          "name": "WithId",
+          "edgeType": "type"
+        },
+        {
+          "name": "ISubscription",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "setE2EKeyByUserIdAndRoomId",
+      "exported": true,
+      "qualifiedName": "SubscriptionsRaw.setE2EKeyByUserIdAndRoomId",
+      "line": 234,
+      "endLine": 239,
+      "signature": "setE2EKeyByUserIdAndRoomId(userId: string, rid: string, key: string): Promise<null | WithId<ISubscription>>",
+      "containerClass": "SubscriptionsRaw",
+      "calls": [
+        {
+          "name": "findOneAndUpdate",
+          "edgeType": "call"
+        },
+        {
+          "name": "WithId",
+          "edgeType": "type"
+        },
+        {
+          "name": "ISubscription",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "setGroupE2ESuggestedKeyAndOldRoomKeys",
+      "exported": true,
+      "qualifiedName": "SubscriptionsRaw.setGroupE2ESuggestedKeyAndOldRoomKeys",
+      "line": 238,
+      "endLine": 247,
+      "signature": "setGroupE2ESuggestedKeyAndOldRoomKeys( uid: string, rid: string, key: string, suggestedOldRoomKeys?: ISubscription['suggestedOldRoomKeys'], ): Promise<null | WithId<ISubscription>>",
+      "containerClass": "SubscriptionsRaw",
+      "calls": [
+        {
+          "name": "findOneAndUpdate",
+          "edgeType": "call"
+        },
+        {
+          "name": "ISubscription",
+          "edgeType": "type"
+        },
+        {
+          "name": "WithId",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "unsetGroupE2ESuggestedKeyAndOldRoomKeys",
+      "exported": true,
+      "qualifiedName": "SubscriptionsRaw.unsetGroupE2ESuggestedKeyAndOldRoomKeys",
+      "line": 247,
+      "endLine": 250,
+      "signature": "unsetGroupE2ESuggestedKeyAndOldRoomKeys(_id: string): Promise<UpdateResult | Document>",
+      "containerClass": "SubscriptionsRaw",
+      "calls": [
+        {
+          "name": "updateOne",
+          "edgeType": "call"
+        },
+        {
+          "name": "UpdateResult",
+          "edgeType": "type"
+        },
+        {
+          "name": "Document",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "setOnHoldByRoomId",
+      "exported": true,
+      "qualifiedName": "SubscriptionsRaw.setOnHoldByRoomId",
+      "line": 251,
+      "endLine": 253,
+      "signature": "setOnHoldByRoomId(rid: string): Promise<UpdateResult>",
+      "containerClass": "SubscriptionsRaw",
+      "calls": [
+        {
+          "name": "updateOne",
+          "edgeType": "call"
+        },
+        {
+          "name": "UpdateResult",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "unsetOnHoldByRoomId",
+      "exported": true,
+      "qualifiedName": "SubscriptionsRaw.unsetOnHoldByRoomId",
+      "line": 255,
+      "endLine": 257,
+      "signature": "unsetOnHoldByRoomId(rid: string): Promise<UpdateResult>",
+      "containerClass": "SubscriptionsRaw",
+      "calls": [
+        {
+          "name": "updateOne",
+          "edgeType": "call"
+        },
+        {
+          "name": "UpdateResult",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "findByRoomIds",
+      "exported": true,
+      "qualifiedName": "SubscriptionsRaw.findByRoomIds",
+      "line": 259,
+      "endLine": 267,
+      "signature": "findByRoomIds(roomIds: ISubscription['u']['_id'][], options?: FindOptions<ISubscription>): FindCursor<ISubscription>",
+      "containerClass": "SubscriptionsRaw",
+      "calls": [
+        {
+          "name": "find",
+          "edgeType": "call"
+        },
+        {
+          "name": "ISubscription",
+          "edgeType": "type"
+        },
+        {
+          "name": "FindOptions",
+          "edgeType": "type"
+        },
+        {
+          "name": "FindCursor",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "removeByVisitorToken",
+      "exported": true,
+      "qualifiedName": "SubscriptionsRaw.removeByVisitorToken",
+      "line": 263,
+      "endLine": 269,
+      "signature": "removeByVisitorToken(token: string): Promise<DeleteResult>",
+      "containerClass": "SubscriptionsRaw",
+      "calls": [
+        {
+          "name": "deleteMany",
+          "edgeType": "call"
+        },
+        {
+          "name": "DeleteResult",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "findByToken",
+      "exported": true,
+      "qualifiedName": "SubscriptionsRaw.findByToken",
+      "line": 267,
+      "endLine": 273,
+      "signature": "findByToken(token: string, options?: FindOptions): FindCursor<ISubscription>",
+      "containerClass": "SubscriptionsRaw",
+      "calls": [
+        {
+          "name": "find",
+          "edgeType": "call"
+        },
+        {
+          "name": "FindOptions",
+          "edgeType": "type"
+        },
+        {
+          "name": "FindCursor",
+          "edgeType": "type"
+        },
+        {
+          "name": "ISubscription",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "updateAutoTranslateById",
+      "exported": true,
+      "qualifiedName": "SubscriptionsRaw.updateAutoTranslateById",
+      "line": 271,
+      "endLine": 292,
+      "signature": "updateAutoTranslateById(_id: string, autoTranslate: boolean): Promise<UpdateResult>",
+      "containerClass": "SubscriptionsRaw",
+      "calls": [
+        {
+          "name": "updateOne",
+          "edgeType": "call"
+        },
+        {
+          "name": "UpdateResult",
+          "edgeType": "type"
+        },
+        {
+          "name": "UpdateFilter",
+          "edgeType": "type"
+        },
+        {
+          "name": "ISubscription",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "updateDraftByRoomIdAndUserId",
+      "exported": true,
+      "qualifiedName": "SubscriptionsRaw.updateDraftByRoomIdAndUserId",
+      "line": 275,
+      "endLine": 280,
+      "signature": "updateDraftByRoomIdAndUserId(rid: string, uid: string, draft: string | undefined): Promise<null | WithId<ISubscription>>",
+      "containerClass": "SubscriptionsRaw",
+      "calls": [
+        {
+          "name": "findOneAndUpdate",
+          "edgeType": "call"
+        },
+        {
+          "name": "WithId",
+          "edgeType": "type"
+        },
+        {
+          "name": "ISubscription",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "setAutoTranslateByUserId",
+      "exported": true,
+      "qualifiedName": "SubscriptionsRaw.setAutoTranslateByUserId",
+      "line": 279,
+      "endLine": 294,
+      "signature": "setAutoTranslateByUserId(userId: IUser['_id'], language: string | null): Promise<UpdateResult | Document>",
+      "containerClass": "SubscriptionsRaw",
+      "calls": [
+        {
+          "name": "then",
+          "edgeType": "call"
+        },
+        {
+          "name": "all",
+          "edgeType": "call"
+        },
+        {
+          "name": "updateMany",
+          "edgeType": "call"
+        },
+        {
+          "name": "IUser",
+          "edgeType": "type"
+        },
+        {
+          "name": "UpdateResult",
+          "edgeType": "type"
+        },
+        {
+          "name": "Document",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "findByAutoTranslateAndUserId",
+      "exported": true,
+      "qualifiedName": "SubscriptionsRaw.findByAutoTranslateAndUserId",
+      "line": 283,
+      "endLine": 294,
+      "signature": "findByAutoTranslateAndUserId( userId: ISubscription['u']['_id'], autoTranslate: ISubscription['autoTranslate'] = true, options?: FindOptions<ISubscription>, ): FindCursor<ISubscription>",
+      "containerClass": "SubscriptionsRaw",
+      "calls": [
+        {
+          "name": "find",
+          "edgeType": "call"
+        },
+        {
+          "name": "ISubscription",
+          "edgeType": "type"
+        },
+        {
+          "name": "FindOptions",
+          "edgeType": "type"
+        },
+        {
+          "name": "FindCursor",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "disableAutoTranslateByRoomId",
+      "exported": true,
+      "qualifiedName": "SubscriptionsRaw.disableAutoTranslateByRoomId",
+      "line": 291,
+      "endLine": 297,
+      "signature": "disableAutoTranslateByRoomId(roomId: IRoom['_id']): Promise<UpdateResult | Document>",
+      "containerClass": "SubscriptionsRaw",
+      "calls": [
+        {
+          "name": "updateMany",
+          "edgeType": "call"
+        },
+        {
+          "name": "IRoom",
+          "edgeType": "type"
+        },
+        {
+          "name": "UpdateResult",
+          "edgeType": "type"
+        },
+        {
+          "name": "Document",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "updateAutoTranslateLanguageById",
+      "exported": true,
+      "qualifiedName": "SubscriptionsRaw.updateAutoTranslateLanguageById",
+      "line": 295,
+      "endLine": 307,
+      "signature": "updateAutoTranslateLanguageById(_id: string, autoTranslateLanguage: string): Promise<UpdateResult>",
+      "containerClass": "SubscriptionsRaw",
+      "calls": [
+        {
+          "name": "updateOne",
+          "edgeType": "call"
+        },
+        {
+          "name": "UpdateResult",
+          "edgeType": "type"
+        },
+        {
+          "name": "UpdateFilter",
+          "edgeType": "type"
+        },
+        {
+          "name": "ISubscription",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "getAutoTranslateLanguagesByRoomAndNotUser",
+      "exported": true,
+      "qualifiedName": "SubscriptionsRaw.getAutoTranslateLanguagesByRoomAndNotUser",
+      "line": 299,
+      "endLine": 306,
+      "signature": "getAutoTranslateLanguagesByRoomAndNotUser(rid: string, userId: string): Promise<(string | undefined)[]>",
+      "containerClass": "SubscriptionsRaw",
+      "calls": [
+        {
+          "name": "distinct",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "roleBaseQuery",
+      "exported": true,
+      "qualifiedName": "SubscriptionsRaw.roleBaseQuery",
+      "line": 307,
+      "endLine": 314,
+      "signature": "roleBaseQuery(userId: string, scope?: string): Filter<ISubscription> | void",
+      "containerClass": "SubscriptionsRaw",
+      "calls": [
+        {
+          "name": "Filter",
+          "edgeType": "type"
+        },
+        {
+          "name": "ISubscription",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "findByRidWithoutE2EKey",
+      "exported": true,
+      "qualifiedName": "SubscriptionsRaw.findByRidWithoutE2EKey",
+      "line": 311,
+      "endLine": 320,
+      "signature": "findByRidWithoutE2EKey(rid: string, options: FindOptions<ISubscription>): FindCursor<ISubscription>",
+      "containerClass": "SubscriptionsRaw",
+      "calls": [
+        {
+          "name": "find",
+          "edgeType": "call"
+        },
+        {
+          "name": "FindOptions",
+          "edgeType": "type"
+        },
+        {
+          "name": "ISubscription",
+          "edgeType": "type"
+        },
+        {
+          "name": "FindCursor",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "findUsersWithPublicE2EKeyByRids",
+      "exported": true,
+      "qualifiedName": "SubscriptionsRaw.findUsersWithPublicE2EKeyByRids",
+      "line": 315,
+      "endLine": 369,
+      "signature": "findUsersWithPublicE2EKeyByRids( rids: IRoom['_id'][], excludeUserId: IUser['_id'], usersLimit = 50, ): AggregationCursor<{ rid: IRoom['_id']; users: { _id: IUser['_id']; public_key: string }[] }>",
+      "containerClass": "SubscriptionsRaw",
+      "calls": [
+        {
+          "name": "aggregate",
+          "edgeType": "call"
+        },
+        {
+          "name": "IRoom",
+          "edgeType": "type"
+        },
+        {
+          "name": "IUser",
+          "edgeType": "type"
+        },
+        {
+          "name": "AggregationCursor",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "updateAudioNotificationValueById",
+      "exported": true,
+      "qualifiedName": "SubscriptionsRaw.updateAudioNotificationValueById",
+      "line": 323,
+      "endLine": 335,
+      "signature": "updateAudioNotificationValueById(_id: string, audioNotificationValue: string): Promise<UpdateResult>",
+      "containerClass": "SubscriptionsRaw",
+      "calls": [
+        {
+          "name": "updateOne",
+          "edgeType": "call"
+        },
+        {
+          "name": "UpdateResult",
+          "edgeType": "type"
+        },
+        {
+          "name": "UpdateFilter",
+          "edgeType": "type"
+        },
+        {
+          "name": "ISubscription",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "clearAudioNotificationValueById",
+      "exported": true,
+      "qualifiedName": "SubscriptionsRaw.clearAudioNotificationValueById",
+      "line": 327,
+      "endLine": 339,
+      "signature": "clearAudioNotificationValueById(_id: string): Promise<UpdateResult>",
+      "containerClass": "SubscriptionsRaw",
+      "calls": [
+        {
+          "name": "updateOne",
+          "edgeType": "call"
+        },
+        {
+          "name": "UpdateResult",
+          "edgeType": "type"
+        },
+        {
+          "name": "UpdateFilter",
+          "edgeType": "type"
+        },
+        {
+          "name": "ISubscription",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "updateNotificationsPrefById",
+      "exported": true,
+      "qualifiedName": "SubscriptionsRaw.updateNotificationsPrefById",
+      "line": 331,
+      "endLine": 356,
+      "signature": "updateNotificationsPrefById( _id: string, notificationPref: { value: number; origin: string } | null, notificationField: keyof ISubscription, notificationPrefOrigin: keyof ISubscription, ): Promise<UpdateResult>",
+      "containerClass": "SubscriptionsRaw",
+      "calls": [
+        {
+          "name": "updateOne",
+          "edgeType": "call"
+        },
+        {
+          "name": "ISubscription",
+          "edgeType": "type"
+        },
+        {
+          "name": "UpdateResult",
+          "edgeType": "type"
+        },
+        {
+          "name": "UpdateFilter",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "updateUnreadAlertById",
+      "exported": true,
+      "qualifiedName": "SubscriptionsRaw.updateUnreadAlertById",
+      "line": 340,
+      "endLine": 352,
+      "signature": "updateUnreadAlertById(_id: string, unreadAlert: ISubscription['unreadAlert']): Promise<UpdateResult>",
+      "containerClass": "SubscriptionsRaw",
+      "calls": [
+        {
+          "name": "updateOne",
+          "edgeType": "call"
+        },
+        {
+          "name": "ISubscription",
+          "edgeType": "type"
+        },
+        {
+          "name": "UpdateResult",
+          "edgeType": "type"
+        },
+        {
+          "name": "UpdateFilter",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "updateDisableNotificationsById",
+      "exported": true,
+      "qualifiedName": "SubscriptionsRaw.updateDisableNotificationsById",
+      "line": 344,
+      "endLine": 356,
+      "signature": "updateDisableNotificationsById(_id: string, disableNotifications: boolean): Promise<UpdateResult>",
+      "containerClass": "SubscriptionsRaw",
+      "calls": [
+        {
+          "name": "updateOne",
+          "edgeType": "call"
+        },
+        {
+          "name": "UpdateResult",
+          "edgeType": "type"
+        },
+        {
+          "name": "UpdateFilter",
+          "edgeType": "type"
+        },
+        {
+          "name": "ISubscription",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "updateHideUnreadStatusById",
+      "exported": true,
+      "qualifiedName": "SubscriptionsRaw.updateHideUnreadStatusById",
+      "line": 348,
+      "endLine": 358,
+      "signature": "updateHideUnreadStatusById(_id: string, hideUnreadStatus: boolean): Promise<UpdateResult>",
+      "containerClass": "SubscriptionsRaw",
+      "calls": [
+        {
+          "name": "updateOne",
+          "edgeType": "call"
+        },
+        {
+          "name": "UpdateResult",
+          "edgeType": "type"
+        },
+        {
+          "name": "UpdateFilter",
+          "edgeType": "type"
+        },
+        {
+          "name": "ISubscription",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "updateHideMentionStatusById",
+      "exported": true,
+      "qualifiedName": "SubscriptionsRaw.updateHideMentionStatusById",
+      "line": 352,
+      "endLine": 371,
+      "signature": "updateHideMentionStatusById(_id: string, hideMentionStatus: boolean): Promise<UpdateResult>",
+      "containerClass": "SubscriptionsRaw",
+      "calls": [
+        {
+          "name": "updateOne",
+          "edgeType": "call"
+        },
+        {
+          "name": "UpdateResult",
+          "edgeType": "type"
+        },
+        {
+          "name": "UpdateFilter",
+          "edgeType": "type"
+        },
+        {
+          "name": "ISubscription",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "updateMuteGroupMentions",
+      "exported": true,
+      "qualifiedName": "SubscriptionsRaw.updateMuteGroupMentions",
+      "line": 356,
+      "endLine": 368,
+      "signature": "updateMuteGroupMentions(_id: string, muteGroupMentions: boolean): Promise<UpdateResult>",
+      "containerClass": "SubscriptionsRaw",
+      "calls": [
+        {
+          "name": "updateOne",
+          "edgeType": "call"
+        },
+        {
+          "name": "UpdateResult",
+          "edgeType": "type"
+        },
+        {
+          "name": "UpdateFilter",
+          "edgeType": "type"
+        },
+        {
+          "name": "ISubscription",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "changeDepartmentByRoomId",
+      "exported": true,
+      "qualifiedName": "SubscriptionsRaw.changeDepartmentByRoomId",
+      "line": 360,
+      "endLine": 371,
+      "signature": "changeDepartmentByRoomId(rid: string, department: string): Promise<UpdateResult>",
+      "containerClass": "SubscriptionsRaw",
+      "calls": [
+        {
+          "name": "updateOne",
+          "edgeType": "call"
+        },
+        {
+          "name": "UpdateResult",
+          "edgeType": "type"
+        },
+        {
+          "name": "UpdateFilter",
+          "edgeType": "type"
+        },
+        {
+          "name": "ISubscription",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "findAlwaysNotifyDesktopUsersByRoomId",
+      "exported": true,
+      "qualifiedName": "SubscriptionsRaw.findAlwaysNotifyDesktopUsersByRoomId",
+      "line": 364,
+      "endLine": 371,
+      "signature": "findAlwaysNotifyDesktopUsersByRoomId(roomId: string): FindCursor<ISubscription>",
+      "containerClass": "SubscriptionsRaw",
+      "calls": [
+        {
+          "name": "find",
+          "edgeType": "call"
+        },
+        {
+          "name": "FindCursor",
+          "edgeType": "type"
+        },
+        {
+          "name": "ISubscription",
+          "edgeType": "type"
+        },
+        {
+          "name": "Filter",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "findDontNotifyDesktopUsersByRoomId",
+      "exported": true,
+      "qualifiedName": "SubscriptionsRaw.findDontNotifyDesktopUsersByRoomId",
+      "line": 368,
+      "endLine": 375,
+      "signature": "findDontNotifyDesktopUsersByRoomId(roomId: string): FindCursor<ISubscription>",
+      "containerClass": "SubscriptionsRaw",
+      "calls": [
+        {
+          "name": "find",
+          "edgeType": "call"
+        },
+        {
+          "name": "FindCursor",
+          "edgeType": "type"
+        },
+        {
+          "name": "ISubscription",
+          "edgeType": "type"
+        },
+        {
+          "name": "Filter",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "findAlwaysNotifyMobileUsersByRoomId",
+      "exported": true,
+      "qualifiedName": "SubscriptionsRaw.findAlwaysNotifyMobileUsersByRoomId",
+      "line": 372,
+      "endLine": 379,
+      "signature": "findAlwaysNotifyMobileUsersByRoomId(roomId: string): FindCursor<ISubscription>",
+      "containerClass": "SubscriptionsRaw",
+      "calls": [
+        {
+          "name": "find",
+          "edgeType": "call"
+        },
+        {
+          "name": "FindCursor",
+          "edgeType": "type"
+        },
+        {
+          "name": "ISubscription",
+          "edgeType": "type"
+        },
+        {
+          "name": "Filter",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "findDontNotifyMobileUsersByRoomId",
+      "exported": true,
+      "qualifiedName": "SubscriptionsRaw.findDontNotifyMobileUsersByRoomId",
+      "line": 376,
+      "endLine": 383,
+      "signature": "findDontNotifyMobileUsersByRoomId(roomId: string): FindCursor<ISubscription>",
+      "containerClass": "SubscriptionsRaw",
+      "calls": [
+        {
+          "name": "find",
+          "edgeType": "call"
+        },
+        {
+          "name": "FindCursor",
+          "edgeType": "type"
+        },
+        {
+          "name": "ISubscription",
+          "edgeType": "type"
+        },
+        {
+          "name": "Filter",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "findWithSendEmailByRoomId",
+      "exported": true,
+      "qualifiedName": "SubscriptionsRaw.findWithSendEmailByRoomId",
+      "line": 380,
+      "endLine": 389,
+      "signature": "findWithSendEmailByRoomId(roomId: string): FindCursor<ISubscription>",
+      "containerClass": "SubscriptionsRaw",
+      "calls": [
+        {
+          "name": "find",
+          "edgeType": "call"
+        },
+        {
+          "name": "FindCursor",
+          "edgeType": "type"
+        },
+        {
+          "name": "ISubscription",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "resetUserE2EKey",
+      "exported": true,
+      "qualifiedName": "SubscriptionsRaw.resetUserE2EKey",
+      "line": 384,
+      "endLine": 395,
+      "signature": "resetUserE2EKey(userId: string): Promise<UpdateResult | Document>",
+      "containerClass": "SubscriptionsRaw",
+      "calls": [
+        {
+          "name": "updateMany",
+          "edgeType": "call"
+        },
+        {
+          "name": "UpdateResult",
+          "edgeType": "type"
+        },
+        {
+          "name": "Document",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "findByUserIdWithoutE2E",
+      "exported": true,
+      "qualifiedName": "SubscriptionsRaw.findByUserIdWithoutE2E",
+      "line": 388,
+      "endLine": 397,
+      "signature": "findByUserIdWithoutE2E(userId: string, options?: FindOptions<ISubscription>): FindCursor<ISubscription>",
+      "containerClass": "SubscriptionsRaw",
+      "calls": [
+        {
+          "name": "find",
+          "edgeType": "call"
+        },
+        {
+          "name": "FindOptions",
+          "edgeType": "type"
+        },
+        {
+          "name": "ISubscription",
+          "edgeType": "type"
+        },
+        {
+          "name": "FindCursor",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "findOneByRoomIdAndUsername",
+      "exported": true,
+      "qualifiedName": "SubscriptionsRaw.findOneByRoomIdAndUsername",
+      "line": 392,
+      "endLine": 399,
+      "signature": "findOneByRoomIdAndUsername(roomId: string, username: string, options: FindOptions<ISubscription>): Promise<ISubscription | null>",
+      "containerClass": "SubscriptionsRaw",
+      "calls": [
+        {
+          "name": "findOne",
+          "edgeType": "call"
+        },
+        {
+          "name": "FindOptions",
+          "edgeType": "type"
+        },
+        {
+          "name": "ISubscription",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "findOneByRoomNameAndUserId",
+      "exported": true,
+      "qualifiedName": "SubscriptionsRaw.findOneByRoomNameAndUserId",
+      "line": 396,
+      "endLine": 403,
+      "signature": "findOneByRoomNameAndUserId(roomName: string, userId: string): Promise<ISubscription | null>",
+      "containerClass": "SubscriptionsRaw",
+      "calls": [
+        {
+          "name": "findOne",
+          "edgeType": "call"
+        },
+        {
+          "name": "ISubscription",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "findByUserId",
+      "exported": true,
+      "qualifiedName": "SubscriptionsRaw.findByUserId",
+      "line": 401,
+      "endLine": 405,
+      "signature": "findByUserId(userId: string, options?: FindOptions<ISubscription>): FindCursor<ISubscription>",
+      "containerClass": "SubscriptionsRaw",
+      "calls": [
+        {
+          "name": "find",
+          "edgeType": "call"
+        },
+        {
+          "name": "FindOptions",
+          "edgeType": "type"
+        },
+        {
+          "name": "ISubscription",
+          "edgeType": "type"
+        },
+        {
+          "name": "FindCursor",
+          "edgeType": "type"
+        },
+        {
+          "name": "Filter",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "findByUserIdExceptType",
+      "exported": true,
+      "qualifiedName": "SubscriptionsRaw.findByUserIdExceptType",
+      "line": 407,
+      "endLine": 418,
+      "signature": "findByUserIdExceptType( userId: string, typeException: ISubscription['t'], options?: FindOptions<ISubscription>, ): FindCursor<ISubscription>",
+      "containerClass": "SubscriptionsRaw",
+      "calls": [
+        {
+          "name": "find",
+          "edgeType": "call"
+        },
+        {
+          "name": "ISubscription",
+          "edgeType": "type"
+        },
+        {
+          "name": "FindOptions",
+          "edgeType": "type"
+        },
+        {
+          "name": "FindCursor",
+          "edgeType": "type"
+        },
+        {
+          "name": "Filter",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "findByUserIdAndType",
+      "exported": true,
+      "qualifiedName": "SubscriptionsRaw.findByUserIdAndType",
+      "line": 415,
+      "endLine": 422,
+      "signature": "findByUserIdAndType(userId: string, type: ISubscription['t'], options?: FindOptions<ISubscription>): FindCursor<ISubscription>",
+      "containerClass": "SubscriptionsRaw",
+      "calls": [
+        {
+          "name": "find",
+          "edgeType": "call"
+        },
+        {
+          "name": "ISubscription",
+          "edgeType": "type"
+        },
+        {
+          "name": "FindOptions",
+          "edgeType": "type"
+        },
+        {
+          "name": "FindCursor",
+          "edgeType": "type"
+        },
+        {
+          "name": "Filter",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "findByUserIdAndRoles",
+      "exported": true,
+      "qualifiedName": "SubscriptionsRaw.findByUserIdAndRoles",
+      "line": 424,
+      "endLine": 431,
+      "signature": "findByUserIdAndRoles(userId: string, roles: string[], options?: FindOptions<ISubscription>): FindCursor<ISubscription>",
+      "containerClass": "SubscriptionsRaw",
+      "calls": [
+        {
+          "name": "find",
+          "edgeType": "call"
+        },
+        {
+          "name": "FindOptions",
+          "edgeType": "type"
+        },
+        {
+          "name": "ISubscription",
+          "edgeType": "type"
+        },
+        {
+          "name": "FindCursor",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "findByUserIdUpdatedAfter",
+      "exported": true,
+      "qualifiedName": "SubscriptionsRaw.findByUserIdUpdatedAfter",
+      "line": 428,
+      "endLine": 437,
+      "signature": "findByUserIdUpdatedAfter(userId: string, updatedAt: Date, options?: FindOptions<ISubscription>): FindCursor<ISubscription>",
+      "containerClass": "SubscriptionsRaw",
+      "calls": [
+        {
+          "name": "find",
+          "edgeType": "call"
+        },
+        {
+          "name": "FindOptions",
+          "edgeType": "type"
+        },
+        {
+          "name": "ISubscription",
+          "edgeType": "type"
+        },
+        {
+          "name": "FindCursor",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "countByRoomIdAndRoles",
+      "exported": true,
+      "qualifiedName": "SubscriptionsRaw.countByRoomIdAndRoles",
+      "line": 451,
+      "endLine": 459,
+      "signature": "countByRoomIdAndRoles(roomId: string, roles: string[]): Promise<number>",
+      "containerClass": "SubscriptionsRaw",
+      "calls": [
+        {
+          "name": "concat",
+          "edgeType": "call"
+        },
+        {
+          "name": "countDocuments",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "countByUserIdExceptType",
+      "exported": true,
+      "qualifiedName": "SubscriptionsRaw.countByUserIdExceptType",
+      "line": 455,
+      "endLine": 462,
+      "signature": "countByUserIdExceptType(userId: string, typeException: ISubscription['t']): Promise<number>",
+      "containerClass": "SubscriptionsRaw",
+      "calls": [
+        {
+          "name": "countDocuments",
+          "edgeType": "call"
+        },
+        {
+          "name": "ISubscription",
+          "edgeType": "type"
+        },
+        {
+          "name": "Filter",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "countByRoomId",
+      "exported": true,
+      "qualifiedName": "SubscriptionsRaw.countByRoomId",
+      "line": 459,
+      "endLine": 469,
+      "signature": "countByRoomId(roomId: string, options?: CountDocumentsOptions): Promise<number>",
+      "containerClass": "SubscriptionsRaw",
+      "calls": [
+        {
+          "name": "countDocuments",
+          "edgeType": "call"
+        },
+        {
+          "name": "CountDocumentsOptions",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "findByType",
+      "exported": true,
+      "qualifiedName": "SubscriptionsRaw.findByType",
+      "line": 463,
+      "endLine": 471,
+      "signature": "findByType(types: ISubscription['t'][], options?: FindOptions<ISubscription>): FindCursor<ISubscription>",
+      "containerClass": "SubscriptionsRaw",
+      "calls": [
+        {
+          "name": "find",
+          "edgeType": "call"
+        },
+        {
+          "name": "ISubscription",
+          "edgeType": "type"
+        },
+        {
+          "name": "FindOptions",
+          "edgeType": "type"
+        },
+        {
+          "name": "FindCursor",
+          "edgeType": "type"
+        },
+        {
+          "name": "Filter",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "findByTypeAndUserId",
+      "exported": true,
+      "qualifiedName": "SubscriptionsRaw.findByTypeAndUserId",
+      "line": 467,
+      "endLine": 474,
+      "signature": "findByTypeAndUserId(type: ISubscription['t'], userId: string, options?: FindOptions<ISubscription>): FindCursor<ISubscription>",
+      "containerClass": "SubscriptionsRaw",
+      "calls": [
+        {
+          "name": "find",
+          "edgeType": "call"
+        },
+        {
+          "name": "ISubscription",
+          "edgeType": "type"
+        },
+        {
+          "name": "FindOptions",
+          "edgeType": "type"
+        },
+        {
+          "name": "FindCursor",
+          "edgeType": "type"
+        },
+        {
+          "name": "Filter",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "findByRoomWithUserHighlights",
+      "exported": true,
+      "qualifiedName": "SubscriptionsRaw.findByRoomWithUserHighlights",
+      "line": 471,
+      "endLine": 478,
+      "signature": "findByRoomWithUserHighlights(roomId: string, options?: FindOptions<ISubscription>): FindCursor<ISubscription>",
+      "containerClass": "SubscriptionsRaw",
+      "calls": [
+        {
+          "name": "find",
+          "edgeType": "call"
+        },
+        {
+          "name": "FindOptions",
+          "edgeType": "type"
+        },
+        {
+          "name": "ISubscription",
+          "edgeType": "type"
+        },
+        {
+          "name": "FindCursor",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "getLastSeen",
+      "exported": true,
+      "qualifiedName": "SubscriptionsRaw.getLastSeen",
+      "line": 475,
+      "endLine": 480,
+      "signature": "async getLastSeen(options: FindOptions<ISubscription> = { projection: { _id: 0, ls: 1 } }): Promise<Date | undefined>",
+      "containerClass": "SubscriptionsRaw",
+      "calls": [
+        {
+          "name": "toArray",
+          "edgeType": "call"
+        },
+        {
+          "name": "find",
+          "edgeType": "call"
+        },
+        {
+          "name": "FindOptions",
+          "edgeType": "type"
+        },
+        {
+          "name": "ISubscription",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "findByRoomIdAndUserIds",
+      "exported": true,
+      "qualifiedName": "SubscriptionsRaw.findByRoomIdAndUserIds",
+      "line": 479,
+      "endLine": 492,
+      "signature": "findByRoomIdAndUserIds( roomId: ISubscription['rid'], userIds: ISubscription['u']['_id'][], options?: FindOptions<ISubscription>, ): FindCursor<ISubscription>",
+      "containerClass": "SubscriptionsRaw",
+      "calls": [
+        {
+          "name": "find",
+          "edgeType": "call"
+        },
+        {
+          "name": "ISubscription",
+          "edgeType": "type"
+        },
+        {
+          "name": "FindOptions",
+          "edgeType": "type"
+        },
+        {
+          "name": "FindCursor",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "findByRoomIdAndUserIdsOrAllMessages",
+      "exported": true,
+      "qualifiedName": "SubscriptionsRaw.findByRoomIdAndUserIdsOrAllMessages",
+      "line": 487,
+      "endLine": 492,
+      "signature": "findByRoomIdAndUserIdsOrAllMessages(roomId: string, userIds: string[]): FindCursor<ISubscription>",
+      "containerClass": "SubscriptionsRaw",
+      "calls": [
+        {
+          "name": "find",
+          "edgeType": "call"
+        },
+        {
+          "name": "FindCursor",
+          "edgeType": "type"
+        },
+        {
+          "name": "ISubscription",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "findByRoomIdWhenUserIdExists",
+      "exported": true,
+      "qualifiedName": "SubscriptionsRaw.findByRoomIdWhenUserIdExists",
+      "line": 491,
+      "endLine": 495,
+      "signature": "findByRoomIdWhenUserIdExists(rid: string, options?: FindOptions<ISubscription>): FindCursor<ISubscription>",
+      "containerClass": "SubscriptionsRaw",
+      "calls": [
+        {
+          "name": "find",
+          "edgeType": "call"
+        },
+        {
+          "name": "FindOptions",
+          "edgeType": "type"
+        },
+        {
+          "name": "ISubscription",
+          "edgeType": "type"
+        },
+        {
+          "name": "FindCursor",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "findByRoomIdWhenUsernameExists",
+      "exported": true,
+      "qualifiedName": "SubscriptionsRaw.findByRoomIdWhenUsernameExists",
+      "line": 495,
+      "endLine": 499,
+      "signature": "findByRoomIdWhenUsernameExists(rid: string, options?: FindOptions<ISubscription>): FindCursor<ISubscription>",
+      "containerClass": "SubscriptionsRaw",
+      "calls": [
+        {
+          "name": "find",
+          "edgeType": "call"
+        },
+        {
+          "name": "FindOptions",
+          "edgeType": "type"
+        },
+        {
+          "name": "ISubscription",
+          "edgeType": "type"
+        },
+        {
+          "name": "FindCursor",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "countByRoomIdWhenUsernameExists",
+      "exported": true,
+      "qualifiedName": "SubscriptionsRaw.countByRoomIdWhenUsernameExists",
+      "line": 499,
+      "endLine": 503,
+      "signature": "countByRoomIdWhenUsernameExists(rid: string): Promise<number>",
+      "containerClass": "SubscriptionsRaw",
+      "calls": [
+        {
+          "name": "countDocuments",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "findUnreadByUserId",
+      "exported": true,
+      "qualifiedName": "SubscriptionsRaw.findUnreadByUserId",
+      "line": 503,
+      "endLine": 512,
+      "signature": "findUnreadByUserId(userId: string): FindCursor<ISubscription>",
+      "containerClass": "SubscriptionsRaw",
+      "calls": [
+        {
+          "name": "find",
+          "edgeType": "call"
+        },
+        {
+          "name": "FindCursor",
+          "edgeType": "type"
+        },
+        {
+          "name": "ISubscription",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "getMinimumLastSeenByRoomId",
+      "exported": true,
+      "qualifiedName": "SubscriptionsRaw.getMinimumLastSeenByRoomId",
+      "line": 507,
+      "endLine": 522,
+      "signature": "getMinimumLastSeenByRoomId(rid: string): Promise<ISubscription | null>",
+      "containerClass": "SubscriptionsRaw",
+      "calls": [
+        {
+          "name": "findOne",
+          "edgeType": "call"
+        },
+        {
+          "name": "ISubscription",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "archiveByRoomId",
+      "exported": true,
+      "qualifiedName": "SubscriptionsRaw.archiveByRoomId",
+      "line": 512,
+      "endLine": 524,
+      "signature": "archiveByRoomId(roomId: string): Promise<UpdateResult | Document>",
+      "containerClass": "SubscriptionsRaw",
+      "calls": [
+        {
+          "name": "updateMany",
+          "edgeType": "call"
+        },
+        {
+          "name": "UpdateResult",
+          "edgeType": "type"
+        },
+        {
+          "name": "Document",
+          "edgeType": "type"
+        },
+        {
+          "name": "UpdateFilter",
+          "edgeType": "type"
+        },
+        {
+          "name": "ISubscription",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "findArchivedByRoomId",
+      "exported": true,
+      "qualifiedName": "SubscriptionsRaw.findArchivedByRoomId",
+      "line": 516,
+      "endLine": 518,
+      "signature": "findArchivedByRoomId(roomId: string, options?: FindOptions<ISubscription>): FindCursor<ISubscription>",
+      "containerClass": "SubscriptionsRaw",
+      "calls": [
+        {
+          "name": "find",
+          "edgeType": "call"
+        },
+        {
+          "name": "FindOptions",
+          "edgeType": "type"
+        },
+        {
+          "name": "ISubscription",
+          "edgeType": "type"
+        },
+        {
+          "name": "FindCursor",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "findArchivedByUserId",
+      "exported": true,
+      "qualifiedName": "SubscriptionsRaw.findArchivedByUserId",
+      "line": 520,
+      "endLine": 522,
+      "signature": "findArchivedByUserId(userId: string, options?: FindOptions<ISubscription>): FindCursor<ISubscription>",
+      "containerClass": "SubscriptionsRaw",
+      "calls": [
+        {
+          "name": "find",
+          "edgeType": "call"
+        },
+        {
+          "name": "FindOptions",
+          "edgeType": "type"
+        },
+        {
+          "name": "ISubscription",
+          "edgeType": "type"
+        },
+        {
+          "name": "FindCursor",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "unarchiveByIds",
+      "exported": true,
+      "qualifiedName": "SubscriptionsRaw.unarchiveByIds",
+      "line": 524,
+      "endLine": 535,
+      "signature": "unarchiveByIds(ids: string[]): Promise<UpdateResult | Document>",
+      "containerClass": "SubscriptionsRaw",
+      "calls": [
+        {
+          "name": "updateMany",
+          "edgeType": "call"
+        },
+        {
+          "name": "UpdateResult",
+          "edgeType": "type"
+        },
+        {
+          "name": "Document",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "hideByRoomIdAndUserId",
+      "exported": true,
+      "qualifiedName": "SubscriptionsRaw.hideByRoomIdAndUserId",
+      "line": 528,
+      "endLine": 543,
+      "signature": "hideByRoomIdAndUserId(roomId: string, userId: string): Promise<UpdateResult>",
+      "containerClass": "SubscriptionsRaw",
+      "calls": [
+        {
+          "name": "updateOne",
+          "edgeType": "call"
+        },
+        {
+          "name": "UpdateResult",
+          "edgeType": "type"
+        },
+        {
+          "name": "UpdateFilter",
+          "edgeType": "type"
+        },
+        {
+          "name": "ISubscription",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "setAsUnreadByRoomIdAndUserId",
+      "exported": true,
+      "qualifiedName": "SubscriptionsRaw.setAsUnreadByRoomIdAndUserId",
+      "line": 532,
+      "endLine": 548,
+      "signature": "setAsUnreadByRoomIdAndUserId(roomId: string, userId: string, firstMessageUnreadTimestamp: Date): Promise<UpdateResult>",
+      "containerClass": "SubscriptionsRaw",
+      "calls": [
+        {
+          "name": "getTime",
+          "edgeType": "call"
+        },
+        {
+          "name": "updateOne",
+          "edgeType": "call"
+        },
+        {
+          "name": "Date",
+          "edgeType": "new"
+        },
+        {
+          "name": "UpdateResult",
+          "edgeType": "type"
+        },
+        {
+          "name": "UpdateFilter",
+          "edgeType": "type"
+        },
+        {
+          "name": "ISubscription",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "setCustomFieldsDirectMessagesByUserId",
+      "exported": true,
+      "qualifiedName": "SubscriptionsRaw.setCustomFieldsDirectMessagesByUserId",
+      "line": 536,
+      "endLine": 544,
+      "signature": "setCustomFieldsDirectMessagesByUserId(userId: string, fields: Record<string, any>): Promise<UpdateResult | Document>",
+      "containerClass": "SubscriptionsRaw",
+      "calls": [
+        {
+          "name": "updateMany",
+          "edgeType": "call"
+        },
+        {
+          "name": "UpdateResult",
+          "edgeType": "type"
+        },
+        {
+          "name": "Document",
+          "edgeType": "type"
+        },
+        {
+          "name": "Filter",
+          "edgeType": "type"
+        },
+        {
+          "name": "ISubscription",
+          "edgeType": "type"
+        },
+        {
+          "name": "UpdateFilter",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "findByUserIdAndRoomType",
+      "exported": true,
+      "qualifiedName": "SubscriptionsRaw.findByUserIdAndRoomType",
+      "line": 540,
+      "endLine": 551,
+      "signature": "findByUserIdAndRoomType( userId: ISubscription['u']['_id'], type: ISubscription['t'], options?: FindOptions<ISubscription>, ): FindCursor<ISubscription>",
+      "containerClass": "SubscriptionsRaw",
+      "calls": [
+        {
+          "name": "find",
+          "edgeType": "call"
+        },
+        {
+          "name": "ISubscription",
+          "edgeType": "type"
+        },
+        {
+          "name": "FindOptions",
+          "edgeType": "type"
+        },
+        {
+          "name": "FindCursor",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "findByNameAndRoomType",
+      "exported": true,
+      "qualifiedName": "SubscriptionsRaw.findByNameAndRoomType",
+      "line": 548,
+      "endLine": 560,
+      "signature": "findByNameAndRoomType( filter: Partial<Pick<ISubscription, 'name' | 't'>>, options?: FindOptions<ISubscription>, ): FindCursor<ISubscription>",
+      "containerClass": "SubscriptionsRaw",
+      "calls": [
+        {
+          "name": "find",
+          "edgeType": "call"
+        },
+        {
+          "name": "ISubscription",
+          "edgeType": "type"
+        },
+        {
+          "name": "FindOptions",
+          "edgeType": "type"
+        },
+        {
+          "name": "FindCursor",
+          "edgeType": "type"
+        },
+        {
+          "name": "Filter",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "setFavoriteByRoomIdAndUserId",
+      "exported": true,
+      "qualifiedName": "SubscriptionsRaw.setFavoriteByRoomIdAndUserId",
+      "line": 555,
+      "endLine": 571,
+      "signature": "setFavoriteByRoomIdAndUserId(roomId: string, userId: string, favorite?: boolean): Promise<UpdateResult>",
+      "containerClass": "SubscriptionsRaw",
+      "calls": [
+        {
+          "name": "updateOne",
+          "edgeType": "call"
+        },
+        {
+          "name": "UpdateResult",
+          "edgeType": "type"
+        },
+        {
+          "name": "UpdateFilter",
+          "edgeType": "type"
+        },
+        {
+          "name": "ISubscription",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "updateNameAndAlertByRoomId",
+      "exported": true,
+      "qualifiedName": "SubscriptionsRaw.updateNameAndAlertByRoomId",
+      "line": 559,
+      "endLine": 571,
+      "signature": "updateNameAndAlertByRoomId(roomId: string, name: string, fname: string): Promise<UpdateResult | Document>",
+      "containerClass": "SubscriptionsRaw",
+      "calls": [
+        {
+          "name": "updateMany",
+          "edgeType": "call"
+        },
+        {
+          "name": "UpdateResult",
+          "edgeType": "type"
+        },
+        {
+          "name": "Document",
+          "edgeType": "type"
+        },
+        {
+          "name": "UpdateFilter",
+          "edgeType": "type"
+        },
+        {
+          "name": "ISubscription",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "updateDisplayNameByRoomId",
+      "exported": true,
+      "qualifiedName": "SubscriptionsRaw.updateDisplayNameByRoomId",
+      "line": 563,
+      "endLine": 574,
+      "signature": "updateDisplayNameByRoomId(roomId: string, fname: string): Promise<UpdateResult | Document>",
+      "containerClass": "SubscriptionsRaw",
+      "calls": [
+        {
+          "name": "updateMany",
+          "edgeType": "call"
+        },
+        {
+          "name": "UpdateResult",
+          "edgeType": "type"
+        },
+        {
+          "name": "Document",
+          "edgeType": "type"
+        },
+        {
+          "name": "UpdateFilter",
+          "edgeType": "type"
+        },
+        {
+          "name": "ISubscription",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "updateFnameByRoomId",
+      "exported": true,
+      "qualifiedName": "SubscriptionsRaw.updateFnameByRoomId",
+      "line": 567,
+      "endLine": 577,
+      "signature": "updateFnameByRoomId(rid: string, fname: string): Promise<UpdateResult | Document>",
+      "containerClass": "SubscriptionsRaw",
+      "calls": [
+        {
+          "name": "updateMany",
+          "edgeType": "call"
+        },
+        {
+          "name": "UpdateResult",
+          "edgeType": "type"
+        },
+        {
+          "name": "Document",
+          "edgeType": "type"
+        },
+        {
+          "name": "UpdateFilter",
+          "edgeType": "type"
+        },
+        {
+          "name": "ISubscription",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "updateNameAndFnameById",
+      "exported": true,
+      "qualifiedName": "SubscriptionsRaw.updateNameAndFnameById",
+      "line": 571,
+      "endLine": 587,
+      "signature": "updateNameAndFnameById( _id: string, name: string, fname: string, options?: { session?: ClientSession }, ): Promise<UpdateResult | Document>",
+      "containerClass": "SubscriptionsRaw",
+      "calls": [
+        {
+          "name": "updateMany",
+          "edgeType": "call"
+        },
+        {
+          "name": "ClientSession",
+          "edgeType": "type"
+        },
+        {
+          "name": "UpdateResult",
+          "edgeType": "type"
+        },
+        {
+          "name": "Document",
+          "edgeType": "type"
+        },
+        {
+          "name": "UpdateFilter",
+          "edgeType": "type"
+        },
+        {
+          "name": "ISubscription",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "setUserUsernameByUserId",
+      "exported": true,
+      "qualifiedName": "SubscriptionsRaw.setUserUsernameByUserId",
+      "line": 580,
+      "endLine": 590,
+      "signature": "setUserUsernameByUserId(userId: string, username: string): Promise<UpdateResult | Document>",
+      "containerClass": "SubscriptionsRaw",
+      "calls": [
+        {
+          "name": "updateMany",
+          "edgeType": "call"
+        },
+        {
+          "name": "UpdateResult",
+          "edgeType": "type"
+        },
+        {
+          "name": "Document",
+          "edgeType": "type"
+        },
+        {
+          "name": "UpdateFilter",
+          "edgeType": "type"
+        },
+        {
+          "name": "ISubscription",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "setNameForDirectRoomsWithOldName",
+      "exported": true,
+      "qualifiedName": "SubscriptionsRaw.setNameForDirectRoomsWithOldName",
+      "line": 584,
+      "endLine": 597,
+      "signature": "setNameForDirectRoomsWithOldName(oldName: string, name: string): Promise<UpdateResult | Document>",
+      "containerClass": "SubscriptionsRaw",
+      "calls": [
+        {
+          "name": "updateMany",
+          "edgeType": "call"
+        },
+        {
+          "name": "UpdateResult",
+          "edgeType": "type"
+        },
+        {
+          "name": "Document",
+          "edgeType": "type"
+        },
+        {
+          "name": "Filter",
+          "edgeType": "type"
+        },
+        {
+          "name": "ISubscription",
+          "edgeType": "type"
+        },
+        {
+          "name": "UpdateFilter",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "updateDirectNameAndFnameByName",
+      "exported": true,
+      "qualifiedName": "SubscriptionsRaw.updateDirectNameAndFnameByName",
+      "line": 588,
+      "endLine": 602,
+      "signature": "updateDirectNameAndFnameByName(name: string, newName?: string, newFname?: string): Promise<UpdateResult | Document>",
+      "containerClass": "SubscriptionsRaw",
+      "calls": [
+        {
+          "name": "updateMany",
+          "edgeType": "call"
+        },
+        {
+          "name": "UpdateResult",
+          "edgeType": "type"
+        },
+        {
+          "name": "Document",
+          "edgeType": "type"
+        },
+        {
+          "name": "Filter",
+          "edgeType": "type"
+        },
+        {
+          "name": "ISubscription",
+          "edgeType": "type"
+        },
+        {
+          "name": "UpdateFilter",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "incGroupMentionsAndUnreadForRoomIdExcludingUserId",
+      "exported": true,
+      "qualifiedName": "SubscriptionsRaw.incGroupMentionsAndUnreadForRoomIdExcludingUserId",
+      "line": 592,
+      "endLine": 617,
+      "signature": "incGroupMentionsAndUnreadForRoomIdExcludingUserId( roomId: IRoom['_id'], userId: IUser['_id'], incGroup = 1, incUnread = 1, ): Promise<UpdateResult | Document>",
+      "containerClass": "SubscriptionsRaw",
+      "calls": [
+        {
+          "name": "updateMany",
+          "edgeType": "call"
+        },
+        {
+          "name": "IRoom",
+          "edgeType": "type"
+        },
+        {
+          "name": "IUser",
+          "edgeType": "type"
+        },
+        {
+          "name": "UpdateResult",
+          "edgeType": "type"
+        },
+        {
+          "name": "Document",
+          "edgeType": "type"
+        },
+        {
+          "name": "UpdateFilter",
+          "edgeType": "type"
+        },
+        {
+          "name": "ISubscription",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "incUserMentionsAndUnreadForRoomIdAndUserIds",
+      "exported": true,
+      "qualifiedName": "SubscriptionsRaw.incUserMentionsAndUnreadForRoomIdAndUserIds",
+      "line": 601,
+      "endLine": 626,
+      "signature": "incUserMentionsAndUnreadForRoomIdAndUserIds( roomId: IRoom['_id'], userIds: IUser['_id'][], incUser = 1, incUnread = 1, ): Promise<UpdateResult | Document>",
+      "containerClass": "SubscriptionsRaw",
+      "calls": [
+        {
+          "name": "updateMany",
+          "edgeType": "call"
+        },
+        {
+          "name": "IRoom",
+          "edgeType": "type"
+        },
+        {
+          "name": "IUser",
+          "edgeType": "type"
+        },
+        {
+          "name": "UpdateResult",
+          "edgeType": "type"
+        },
+        {
+          "name": "Document",
+          "edgeType": "type"
+        },
+        {
+          "name": "UpdateFilter",
+          "edgeType": "type"
+        },
+        {
+          "name": "ISubscription",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "ignoreUser",
+      "exported": true,
+      "qualifiedName": "SubscriptionsRaw.ignoreUser",
+      "line": 610,
+      "endLine": 622,
+      "signature": "ignoreUser({ _id, ignoredUser: ignored, ignore = true }: { _id: string; ignoredUser: string; ignore?: boolean }): Promise<UpdateResult>",
+      "containerClass": "SubscriptionsRaw",
+      "calls": [
+        {
+          "name": "updateOne",
+          "edgeType": "call"
+        },
+        {
+          "name": "UpdateResult",
+          "edgeType": "type"
+        },
+        {
+          "name": "UpdateFilter",
+          "edgeType": "type"
+        },
+        {
+          "name": "ISubscription",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "setAlertForRoomIdAndUserIds",
+      "exported": true,
+      "qualifiedName": "SubscriptionsRaw.setAlertForRoomIdAndUserIds",
+      "line": 614,
+      "endLine": 628,
+      "signature": "setAlertForRoomIdAndUserIds(roomId: ISubscription['rid'], uids: ISubscription['u']['_id'][]): Promise<UpdateResult | Document>",
+      "containerClass": "SubscriptionsRaw",
+      "calls": [
+        {
+          "name": "updateMany",
+          "edgeType": "call"
+        },
+        {
+          "name": "ISubscription",
+          "edgeType": "type"
+        },
+        {
+          "name": "UpdateResult",
+          "edgeType": "type"
+        },
+        {
+          "name": "Document",
+          "edgeType": "type"
+        },
+        {
+          "name": "UpdateFilter",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "setOpenForRoomIdAndUserIds",
+      "exported": true,
+      "qualifiedName": "SubscriptionsRaw.setOpenForRoomIdAndUserIds",
+      "line": 618,
+      "endLine": 631,
+      "signature": "setOpenForRoomIdAndUserIds(roomId: string, uids: string[]): Promise<UpdateResult | Document>",
+      "containerClass": "SubscriptionsRaw",
+      "calls": [
+        {
+          "name": "updateMany",
+          "edgeType": "call"
+        },
+        {
+          "name": "UpdateResult",
+          "edgeType": "type"
+        },
+        {
+          "name": "Document",
+          "edgeType": "type"
+        },
+        {
+          "name": "UpdateFilter",
+          "edgeType": "type"
+        },
+        {
+          "name": "ISubscription",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "setLastReplyForRoomIdAndUserIds",
+      "exported": true,
+      "qualifiedName": "SubscriptionsRaw.setLastReplyForRoomIdAndUserIds",
+      "line": 622,
+      "endLine": 634,
+      "signature": "setLastReplyForRoomIdAndUserIds(roomId: IRoom['_id'], uids: IUser['_id'][], lr: Date): Promise<UpdateResult | Document>",
+      "containerClass": "SubscriptionsRaw",
+      "calls": [
+        {
+          "name": "updateMany",
+          "edgeType": "call"
+        },
+        {
+          "name": "IRoom",
+          "edgeType": "type"
+        },
+        {
+          "name": "IUser",
+          "edgeType": "type"
+        },
+        {
+          "name": "UpdateResult",
+          "edgeType": "type"
+        },
+        {
+          "name": "Document",
+          "edgeType": "type"
+        },
+        {
+          "name": "UpdateFilter",
+          "edgeType": "type"
+        },
+        {
+          "name": "ISubscription",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "setBlockedByRoomId",
+      "exported": true,
+      "qualifiedName": "SubscriptionsRaw.setBlockedByRoomId",
+      "line": 626,
+      "endLine": 650,
+      "signature": "async setBlockedByRoomId(rid: string, blocked: string, blocker: string): Promise<UpdateResult[]>",
+      "containerClass": "SubscriptionsRaw",
+      "calls": [
+        {
+          "name": "all",
+          "edgeType": "call"
+        },
+        {
+          "name": "updateOne",
+          "edgeType": "call"
+        },
+        {
+          "name": "UpdateResult",
+          "edgeType": "type"
+        },
+        {
+          "name": "UpdateFilter",
+          "edgeType": "type"
+        },
+        {
+          "name": "ISubscription",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "unsetBlockedByRoomId",
+      "exported": true,
+      "qualifiedName": "SubscriptionsRaw.unsetBlockedByRoomId",
+      "line": 630,
+      "endLine": 653,
+      "signature": "async unsetBlockedByRoomId(rid: string, blocked: string, blocker: string): Promise<UpdateResult[]>",
+      "containerClass": "SubscriptionsRaw",
+      "calls": [
+        {
+          "name": "all",
+          "edgeType": "call"
+        },
+        {
+          "name": "updateOne",
+          "edgeType": "call"
+        },
+        {
+          "name": "UpdateResult",
+          "edgeType": "type"
+        },
+        {
+          "name": "UpdateFilter",
+          "edgeType": "type"
+        },
+        {
+          "name": "ISubscription",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "updateCustomFieldsByRoomId",
+      "exported": true,
+      "qualifiedName": "SubscriptionsRaw.updateCustomFieldsByRoomId",
+      "line": 634,
+      "endLine": 644,
+      "signature": "updateCustomFieldsByRoomId(rid: string, cfields: Record<string, any>): Promise<UpdateResult | Document>",
+      "containerClass": "SubscriptionsRaw",
+      "calls": [
+        {
+          "name": "updateMany",
+          "edgeType": "call"
+        },
+        {
+          "name": "UpdateResult",
+          "edgeType": "type"
+        },
+        {
+          "name": "Document",
+          "edgeType": "type"
+        },
+        {
+          "name": "UpdateFilter",
+          "edgeType": "type"
+        },
+        {
+          "name": "ISubscription",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "updateTypeByRoomId",
+      "exported": true,
+      "qualifiedName": "SubscriptionsRaw.updateTypeByRoomId",
+      "line": 638,
+      "endLine": 648,
+      "signature": "updateTypeByRoomId(roomId: string, type: ISubscription['t']): Promise<UpdateResult | Document>",
+      "containerClass": "SubscriptionsRaw",
+      "calls": [
+        {
+          "name": "updateMany",
+          "edgeType": "call"
+        },
+        {
+          "name": "ISubscription",
+          "edgeType": "type"
+        },
+        {
+          "name": "UpdateResult",
+          "edgeType": "type"
+        },
+        {
+          "name": "Document",
+          "edgeType": "type"
+        },
+        {
+          "name": "UpdateFilter",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "addRoleById",
+      "exported": true,
+      "qualifiedName": "SubscriptionsRaw.addRoleById",
+      "line": 646,
+      "endLine": 656,
+      "signature": "addRoleById(_id: string, role: string): Promise<UpdateResult>",
+      "containerClass": "SubscriptionsRaw",
+      "calls": [
+        {
+          "name": "updateOne",
+          "edgeType": "call"
+        },
+        {
+          "name": "UpdateResult",
+          "edgeType": "type"
+        },
+        {
+          "name": "UpdateFilter",
+          "edgeType": "type"
+        },
+        {
+          "name": "ISubscription",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "removeRoleById",
+      "exported": true,
+      "qualifiedName": "SubscriptionsRaw.removeRoleById",
+      "line": 654,
+      "endLine": 664,
+      "signature": "removeRoleById(_id: string, role: string): Promise<UpdateResult>",
+      "containerClass": "SubscriptionsRaw",
+      "calls": [
+        {
+          "name": "updateOne",
+          "edgeType": "call"
+        },
+        {
+          "name": "UpdateResult",
+          "edgeType": "type"
+        },
+        {
+          "name": "UpdateFilter",
+          "edgeType": "type"
+        },
+        {
+          "name": "ISubscription",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "setArchivedForDMsWithUsername",
+      "exported": true,
+      "qualifiedName": "SubscriptionsRaw.setArchivedForDMsWithUsername",
+      "line": 658,
+      "endLine": 671,
+      "signature": "setArchivedForDMsWithUsername(username: string, archived: boolean): Promise<UpdateResult | Document>",
+      "containerClass": "SubscriptionsRaw",
+      "calls": [
+        {
+          "name": "updateMany",
+          "edgeType": "call"
+        },
+        {
+          "name": "UpdateResult",
+          "edgeType": "type"
+        },
+        {
+          "name": "Document",
+          "edgeType": "type"
+        },
+        {
+          "name": "Filter",
+          "edgeType": "type"
+        },
+        {
+          "name": "ISubscription",
+          "edgeType": "type"
+        },
+        {
+          "name": "UpdateFilter",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "setArchivedByUserId",
+      "exported": true,
+      "qualifiedName": "SubscriptionsRaw.setArchivedByUserId",
+      "line": 662,
+      "endLine": 674,
+      "signature": "setArchivedByUserId(userId: string, archived: boolean): Promise<UpdateResult | Document>",
+      "containerClass": "SubscriptionsRaw",
+      "calls": [
+        {
+          "name": "updateMany",
+          "edgeType": "call"
+        },
+        {
+          "name": "UpdateResult",
+          "edgeType": "type"
+        },
+        {
+          "name": "Document",
+          "edgeType": "type"
+        },
+        {
+          "name": "Filter",
+          "edgeType": "type"
+        },
+        {
+          "name": "ISubscription",
+          "edgeType": "type"
+        },
+        {
+          "name": "UpdateFilter",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "clearNotificationUserPreferences",
+      "exported": true,
+      "qualifiedName": "SubscriptionsRaw.clearNotificationUserPreferences",
+      "line": 666,
+      "endLine": 684,
+      "signature": "clearNotificationUserPreferences( userId: string, notificationField: string, notificationOriginField: string, ): Promise<UpdateResult | Document>",
+      "containerClass": "SubscriptionsRaw",
+      "calls": [
+        {
+          "name": "updateMany",
+          "edgeType": "call"
+        },
+        {
+          "name": "UpdateResult",
+          "edgeType": "type"
+        },
+        {
+          "name": "Document",
+          "edgeType": "type"
+        },
+        {
+          "name": "UpdateFilter",
+          "edgeType": "type"
+        },
+        {
+          "name": "ISubscription",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "updateNotificationUserPreferences",
+      "exported": true,
+      "qualifiedName": "SubscriptionsRaw.updateNotificationUserPreferences",
+      "line": 674,
+      "endLine": 695,
+      "signature": "updateNotificationUserPreferences( userId: string, userPref: string | number | boolean, notificationField: keyof ISubscription, notificationOriginField: keyof ISubscription, ): Promise<UpdateResult | Document>",
+      "containerClass": "SubscriptionsRaw",
+      "calls": [
+        {
+          "name": "updateMany",
+          "edgeType": "call"
+        },
+        {
+          "name": "ISubscription",
+          "edgeType": "type"
+        },
+        {
+          "name": "UpdateResult",
+          "edgeType": "type"
+        },
+        {
+          "name": "Document",
+          "edgeType": "type"
+        },
+        {
+          "name": "Filter",
+          "edgeType": "type"
+        },
+        {
+          "name": "UpdateFilter",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "findByUserPreferences",
+      "exported": true,
+      "qualifiedName": "SubscriptionsRaw.findByUserPreferences",
+      "line": 683,
+      "endLine": 697,
+      "signature": "findByUserPreferences( userId: string, notificationOriginField: keyof ISubscription, notificationOriginValue: 'user' | 'subscription', options?: FindOptions<ISubscription>, ): FindCursor<ISubscription>",
+      "containerClass": "SubscriptionsRaw",
+      "calls": [
+        {
+          "name": "find",
+          "edgeType": "call"
+        },
+        {
+          "name": "ISubscription",
+          "edgeType": "type"
+        },
+        {
+          "name": "FindOptions",
+          "edgeType": "type"
+        },
+        {
+          "name": "FindCursor",
+          "edgeType": "type"
+        },
+        {
+          "name": "Filter",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "updateUserHighlights",
+      "exported": true,
+      "qualifiedName": "SubscriptionsRaw.updateUserHighlights",
+      "line": 692,
+      "endLine": 704,
+      "signature": "updateUserHighlights(userId: string, userHighlights: any): Promise<UpdateResult | Document>",
+      "containerClass": "SubscriptionsRaw",
+      "calls": [
+        {
+          "name": "updateMany",
+          "edgeType": "call"
+        },
+        {
+          "name": "UpdateResult",
+          "edgeType": "type"
+        },
+        {
+          "name": "Document",
+          "edgeType": "type"
+        },
+        {
+          "name": "Filter",
+          "edgeType": "type"
+        },
+        {
+          "name": "ISubscription",
+          "edgeType": "type"
+        },
+        {
+          "name": "UpdateFilter",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "updateDirectFNameByName",
+      "exported": true,
+      "qualifiedName": "SubscriptionsRaw.updateDirectFNameByName",
+      "line": 696,
+      "endLine": 718,
+      "signature": "updateDirectFNameByName(name: string, fname: string): Promise<UpdateResult | Document>",
+      "containerClass": "SubscriptionsRaw",
+      "calls": [
+        {
+          "name": "updateMany",
+          "edgeType": "call"
+        },
+        {
+          "name": "UpdateResult",
+          "edgeType": "type"
+        },
+        {
+          "name": "Document",
+          "edgeType": "type"
+        },
+        {
+          "name": "Filter",
+          "edgeType": "type"
+        },
+        {
+          "name": "ISubscription",
+          "edgeType": "type"
+        },
+        {
+          "name": "UpdateFilter",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "createWithRoomAndUser",
+      "exported": true,
+      "qualifiedName": "SubscriptionsRaw.createWithRoomAndUser",
+      "line": 701,
+      "endLine": 733,
+      "signature": "async createWithRoomAndUser(room: IRoom, user: IUser, extraData: Partial<ISubscription> = {}): Promise<InsertOneResult<ISubscription>>",
+      "containerClass": "SubscriptionsRaw",
+      "calls": [
+        {
+          "name": "insertOne",
+          "edgeType": "call"
+        },
+        {
+          "name": "incUsersCountById",
+          "edgeType": "call"
+        },
+        {
+          "name": "includes",
+          "edgeType": "call"
+        },
+        {
+          "name": "addRoomByUserId",
+          "edgeType": "call"
+        },
+        {
+          "name": "IRoom",
+          "edgeType": "type"
+        },
+        {
+          "name": "IUser",
+          "edgeType": "type"
+        },
+        {
+          "name": "ISubscription",
+          "edgeType": "type"
+        },
+        {
+          "name": "InsertOneResult",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "createWithRoomAndManyUsers",
+      "exported": true,
+      "qualifiedName": "SubscriptionsRaw.createWithRoomAndManyUsers",
+      "line": 705,
+      "endLine": 732,
+      "signature": "async createWithRoomAndManyUsers( room: IRoom, users: { user: AtLeast<IUser, '_id' | 'username' | 'name' | 'settings'>; extraData: Record<string, any> }[] = [], ): Promise<InsertManyResult<ISubscription>>",
+      "containerClass": "SubscriptionsRaw",
+      "calls": [
+        {
+          "name": "map",
+          "edgeType": "call"
+        },
+        {
+          "name": "insertMany",
+          "edgeType": "call"
+        },
+        {
+          "name": "IRoom",
+          "edgeType": "type"
+        },
+        {
+          "name": "AtLeast",
+          "edgeType": "type"
+        },
+        {
+          "name": "IUser",
+          "edgeType": "type"
+        },
+        {
+          "name": "InsertManyResult",
+          "edgeType": "type"
+        },
+        {
+          "name": "ISubscription",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "removeByUserId",
+      "exported": true,
+      "qualifiedName": "SubscriptionsRaw.removeByUserId",
+      "line": 713,
+      "endLine": 729,
+      "signature": "async removeByUserId(userId: string): Promise<number>",
+      "containerClass": "SubscriptionsRaw",
+      "calls": [
+        {
+          "name": "map",
+          "edgeType": "call"
+        },
+        {
+          "name": "toArray",
+          "edgeType": "call"
+        },
+        {
+          "name": "findByUserId",
+          "edgeType": "call"
+        },
+        {
+          "name": "deleteMany",
+          "edgeType": "call"
+        },
+        {
+          "name": "incUsersCountNotDMsByIds",
+          "edgeType": "call"
+        },
+        {
+          "name": "removeAllRoomsByUserId",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "removeByRoomIdAndUserId",
+      "exported": true,
+      "qualifiedName": "SubscriptionsRaw.removeByRoomIdAndUserId",
+      "line": 717,
+      "endLine": 732,
+      "signature": "async removeByRoomIdAndUserId(roomId: string, userId: string): Promise<ISubscription | null>",
+      "containerClass": "SubscriptionsRaw",
+      "calls": [
+        {
+          "name": "findOneAndDelete",
+          "edgeType": "call"
+        },
+        {
+          "name": "incUsersCountById",
+          "edgeType": "call"
+        },
+        {
+          "name": "removeRoomByUserId",
+          "edgeType": "call"
+        },
+        {
+          "name": "ISubscription",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "removeInvitedByRoomIdAndUserId",
+      "exported": true,
+      "qualifiedName": "SubscriptionsRaw.removeInvitedByRoomIdAndUserId",
+      "line": 721,
+      "endLine": 729,
+      "signature": "removeInvitedByRoomIdAndUserId(roomId: string, userId: string): Promise<ISubscription | null>",
+      "containerClass": "SubscriptionsRaw",
+      "calls": [
+        {
+          "name": "findOneAndDelete",
+          "edgeType": "call"
+        },
+        {
+          "name": "ISubscription",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "removeByRoomIds",
+      "exported": true,
+      "qualifiedName": "SubscriptionsRaw.removeByRoomIds",
+      "line": 725,
+      "endLine": 731,
+      "signature": "async removeByRoomIds(rids: string[], options?: { onTrash: (doc: ISubscription) => void }): Promise<DeleteResult>",
+      "containerClass": "SubscriptionsRaw",
+      "calls": [
+        {
+          "name": "deleteMany",
+          "edgeType": "call"
+        },
+        {
+          "name": "removeRoomByRoomIds",
+          "edgeType": "call"
+        },
+        {
+          "name": "ISubscription",
+          "edgeType": "type"
+        },
+        {
+          "name": "DeleteResult",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "removeByRoomIdsAndUserId",
+      "exported": true,
+      "qualifiedName": "SubscriptionsRaw.removeByRoomIdsAndUserId",
+      "line": 729,
+      "endLine": 739,
+      "signature": "async removeByRoomIdsAndUserId(rids: string[], userId: string): Promise<number>",
+      "containerClass": "SubscriptionsRaw",
+      "calls": [
+        {
+          "name": "deleteMany",
+          "edgeType": "call"
+        },
+        {
+          "name": "incUsersCountByIds",
+          "edgeType": "call"
+        },
+        {
+          "name": "removeRoomsByRoomIdsAndUserId",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "addUnreadThreadByRoomIdAndUserIds",
+      "exported": true,
+      "qualifiedName": "SubscriptionsRaw.addUnreadThreadByRoomIdAndUserIds",
+      "line": 736,
+      "endLine": 759,
+      "signature": "async addUnreadThreadByRoomIdAndUserIds( rid: string, users: string[], tmid: string, { groupMention = false, userMention = false }: { groupMention?: boolean; userMention?: boolean } = {}, ): Promise<UpdateResult | Document | void>",
+      "containerClass": "SubscriptionsRaw",
+      "calls": [
+        {
+          "name": "updateMany",
+          "edgeType": "call"
+        },
+        {
+          "name": "UpdateResult",
+          "edgeType": "type"
+        },
+        {
+          "name": "Document",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "removeUnreadThreadByRoomIdAndUserId",
+      "exported": true,
+      "qualifiedName": "SubscriptionsRaw.removeUnreadThreadByRoomIdAndUserId",
+      "line": 745,
+      "endLine": 765,
+      "signature": "removeUnreadThreadByRoomIdAndUserId(rid: string, userId: string, tmid: string, clearAlert = false): Promise<UpdateResult>",
+      "containerClass": "SubscriptionsRaw",
+      "calls": [
+        {
+          "name": "updateOne",
+          "edgeType": "call"
+        },
+        {
+          "name": "UpdateResult",
+          "edgeType": "type"
+        },
+        {
+          "name": "UpdateFilter",
+          "edgeType": "type"
+        },
+        {
+          "name": "ISubscription",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "removeUnreadThreadsByRoomId",
+      "exported": true,
+      "qualifiedName": "SubscriptionsRaw.removeUnreadThreadsByRoomId",
+      "line": 749,
+      "endLine": 764,
+      "signature": "removeUnreadThreadsByRoomId(rid: string, tunread: string[]): Promise<UpdateResult | Document>",
+      "containerClass": "SubscriptionsRaw",
+      "calls": [
+        {
+          "name": "updateMany",
+          "edgeType": "call"
+        },
+        {
+          "name": "UpdateResult",
+          "edgeType": "type"
+        },
+        {
+          "name": "Document",
+          "edgeType": "type"
+        },
+        {
+          "name": "UpdateFilter",
+          "edgeType": "type"
+        },
+        {
+          "name": "ISubscription",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "findUnreadThreadsByRoomId",
+      "exported": true,
+      "qualifiedName": "SubscriptionsRaw.findUnreadThreadsByRoomId",
+      "line": 753,
+      "endLine": 764,
+      "signature": "findUnreadThreadsByRoomId( rid: ISubscription['rid'], tunread: ISubscription['tunread'], options?: FindOptions<ISubscription>, ): FindCursor<ISubscription>",
+      "containerClass": "SubscriptionsRaw",
+      "calls": [
+        {
+          "name": "find",
+          "edgeType": "call"
+        },
+        {
+          "name": "ISubscription",
+          "edgeType": "type"
+        },
+        {
+          "name": "FindOptions",
+          "edgeType": "type"
+        },
+        {
+          "name": "FindCursor",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "openByRoomIdAndUserId",
+      "exported": true,
+      "qualifiedName": "SubscriptionsRaw.openByRoomIdAndUserId",
+      "line": 761,
+      "endLine": 774,
+      "signature": "openByRoomIdAndUserId(roomId: string, userId: string): Promise<UpdateResult>",
+      "containerClass": "SubscriptionsRaw",
+      "calls": [
+        {
+          "name": "updateOne",
+          "edgeType": "call"
+        },
+        {
+          "name": "UpdateResult",
+          "edgeType": "type"
+        },
+        {
+          "name": "UpdateFilter",
+          "edgeType": "type"
+        },
+        {
+          "name": "ISubscription",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "findUserFederatedRoomIds",
+      "exported": true,
+      "qualifiedName": "SubscriptionsRaw.findUserFederatedRoomIds",
+      "line": 765,
+      "endLine": 792,
+      "signature": "findUserFederatedRoomIds(userId: IUser['_id']): AggregationCursor<{ _id: IRoom['_id']; externalRoomId: string }>",
+      "containerClass": "SubscriptionsRaw",
+      "calls": [
+        {
+          "name": "aggregate",
+          "edgeType": "call"
+        },
+        {
+          "name": "IUser",
+          "edgeType": "type"
+        },
+        {
+          "name": "AggregationCursor",
+          "edgeType": "type"
+        },
+        {
+          "name": "IRoom",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "findInvitedSubscription",
+      "exported": true,
+      "qualifiedName": "SubscriptionsRaw.findInvitedSubscription",
+      "line": 769,
+      "endLine": 775,
+      "signature": "async findInvitedSubscription(roomId: ISubscription['rid'], userId: ISubscription['u']['_id']): Promise<ISubscription | null>",
+      "containerClass": "SubscriptionsRaw",
+      "calls": [
+        {
+          "name": "findOne",
+          "edgeType": "call"
+        },
+        {
+          "name": "ISubscription",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "acceptInvitationById",
+      "exported": true,
+      "qualifiedName": "SubscriptionsRaw.acceptInvitationById",
+      "line": 773,
+      "endLine": 787,
+      "signature": "async acceptInvitationById(subscriptionId: string): Promise<UpdateResult>",
+      "containerClass": "SubscriptionsRaw",
+      "calls": [
+        {
+          "name": "updateOne",
+          "edgeType": "call"
+        },
+        {
+          "name": "UpdateResult",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "findOneBannedSubscription",
+      "exported": true,
+      "qualifiedName": "SubscriptionsRaw.findOneBannedSubscription",
+      "line": 777,
+      "endLine": 783,
+      "signature": "async findOneBannedSubscription(roomId: ISubscription['rid'], userId: ISubscription['u']['_id']): Promise<ISubscription | null>",
+      "containerClass": "SubscriptionsRaw",
+      "calls": [
+        {
+          "name": "findOne",
+          "edgeType": "call"
+        },
+        {
+          "name": "ISubscription",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "findBannedByRoomId",
+      "exported": true,
+      "qualifiedName": "SubscriptionsRaw.findBannedByRoomId",
+      "line": 781,
+      "endLine": 786,
+      "signature": "findBannedByRoomId(roomId: ISubscription['rid'])",
+      "containerClass": "SubscriptionsRaw",
+      "calls": [
+        {
+          "name": "find",
+          "edgeType": "call"
+        },
+        {
+          "name": "ISubscription",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "banByRoomIdAndUserId",
+      "exported": true,
+      "qualifiedName": "SubscriptionsRaw.banByRoomIdAndUserId",
+      "line": 785,
+      "endLine": 796,
+      "signature": "async banByRoomIdAndUserId(roomId: string, userId: string): Promise<UpdateResult>",
+      "containerClass": "SubscriptionsRaw",
+      "calls": [
+        {
+          "name": "updateOne",
+          "edgeType": "call"
+        },
+        {
+          "name": "UpdateResult",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "unbanByRoomIdAndUserId",
+      "exported": true,
+      "qualifiedName": "SubscriptionsRaw.unbanByRoomIdAndUserId",
+      "line": 789,
+      "endLine": 797,
+      "signature": "async unbanByRoomIdAndUserId(roomId: string, userId: string): Promise<UpdateResult>",
+      "containerClass": "SubscriptionsRaw",
+      "calls": [
+        {
+          "name": "updateOne",
+          "edgeType": "call"
+        },
+        {
+          "name": "UpdateResult",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "unbanToInvitedById",
+      "exported": true,
+      "qualifiedName": "SubscriptionsRaw.unbanToInvitedById",
+      "line": 793,
+      "endLine": 798,
+      "signature": "unbanToInvitedById(subId: string, inviter: Required<Pick<IUser, '_id' | 'username'>> & Pick<IUser, 'name'>): Promise<UpdateResult>",
+      "containerClass": "SubscriptionsRaw",
+      "calls": [
+        {
+          "name": "updateOne",
+          "edgeType": "call"
+        },
+        {
+          "name": "IUser",
+          "edgeType": "type"
+        },
+        {
+          "name": "UpdateResult",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "setAbacLastTimeCheckedByUserIdAndRoomId",
+      "exported": true,
+      "qualifiedName": "SubscriptionsRaw.setAbacLastTimeCheckedByUserIdAndRoomId",
+      "line": 797,
+      "endLine": 810,
+      "signature": "setAbacLastTimeCheckedByUserIdAndRoomId(userId: string, roomId: string, time: Date): Promise<UpdateResult>",
+      "containerClass": "SubscriptionsRaw",
+      "calls": [
+        {
+          "name": "updateOne",
+          "edgeType": "call"
+        },
+        {
+          "name": "UpdateResult",
+          "edgeType": "type"
+        },
+        {
+          "name": "UpdateFilter",
+          "edgeType": "type"
+        },
+        {
+          "name": "ISubscription",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "findJoinedByUserId",
+      "exported": true,
+      "qualifiedName": "SubscriptionsRaw.findJoinedByUserId",
+      "line": 801,
+      "endLine": 809,
+      "signature": "findJoinedByUserId<T extends Document = ISubscription>(userId: ISubscription['u']['_id'], options?: FindOptions<T>): FindCursor<T>",
+      "containerClass": "SubscriptionsRaw",
+      "calls": [
+        {
+          "name": "find",
+          "edgeType": "call"
+        },
+        {
+          "name": "Document",
+          "edgeType": "type"
+        },
+        {
+          "name": "ISubscription",
+          "edgeType": "type"
+        },
+        {
+          "name": "FindOptions",
+          "edgeType": "type"
+        },
+        {
+          "name": "FindCursor",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "constructor",
+      "exported": true,
+      "qualifiedName": "SubscriptionsRaw.constructor",
+      "line": 40,
+      "endLine": 42,
+      "signature": "constructor(db: Db, trash?: Collection<RocketChatRecordDeleted<ISubscription>>)",
+      "containerClass": "SubscriptionsRaw",
+      "calls": [
+        {
+          "name": "Db",
+          "edgeType": "type"
+        },
+        {
+          "name": "Collection",
+          "edgeType": "type"
+        },
+        {
+          "name": "RocketChatRecordDeleted",
+          "edgeType": "type"
+        },
+        {
+          "name": "ISubscription",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "class_property",
+      "name": "cachedFindByUserId",
+      "exported": true,
+      "qualifiedName": "SubscriptionsRaw.cachedFindByUserId",
+      "line": 405,
+      "endLine": 405,
+      "signature": "cachedFindByUserId = mem(this.findByUserId.bind(this),",
+      "containerClass": "SubscriptionsRaw",
+      "calls": [
+        {
+          "name": "mem",
+          "edgeType": "call"
+        },
+        {
+          "name": "bind",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "class_property",
+      "name": "findByRoomIdAndRoles",
+      "exported": true,
+      "qualifiedName": "SubscriptionsRaw.findByRoomIdAndRoles",
+      "line": 437,
+      "endLine": 449,
+      "signature": "findByRoomIdAndRoles: ISubscriptionsModel['findByRoomIdAndRoles'] = ( roomId: string, roles: string[], options?: FindOptions<ISubscription>, ) =>",
+      "containerClass": "SubscriptionsRaw",
+      "calls": [
+        {
+          "name": "concat",
+          "edgeType": "call"
+        },
+        {
+          "name": "find",
+          "edgeType": "call"
+        },
+        {
+          "name": "ISubscriptionsModel",
+          "edgeType": "type"
+        },
+        {
+          "name": "FindOptions",
+          "edgeType": "type"
+        },
+        {
+          "name": "ISubscription",
+          "edgeType": "type"
+        }
+      ]
+    }
+  ],
+  "imports": [
+    {
+      "module": "@rocket.chat/core-typings",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/model-typings",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/string-helpers",
+      "resolved": "external"
+    },
+    {
+      "module": "lodash",
+      "resolved": "external"
+    },
+    {
+      "module": "mem",
+      "resolved": "external"
+    },
+    {
+      "module": "mongodb",
+      "resolved": "external"
+    },
+    {
+      "module": "../index",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/packages/models/src/index.ts"
+    },
+    {
+      "module": "./BaseRaw",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/packages/models/src/models/BaseRaw.ts"
+    }
+  ]
+}

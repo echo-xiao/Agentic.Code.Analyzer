@@ -1,0 +1,37 @@
+{
+  "sourcePath": "/Users/echoooooo/Desktop/code/Rocket.Chat/ee/packages/federation-matrix/src/api/middlewares/isLicenseEnabled.ts",
+  "symbols": [
+    {
+      "type": "variable",
+      "name": "isLicenseEnabledMiddleware",
+      "exported": true,
+      "line": 4,
+      "endLine": 9,
+      "signature": "isLicenseEnabledMiddleware = createMiddleware(async (c, next) =>",
+      "calls": [
+        {
+          "name": "hasModule",
+          "edgeType": "call"
+        },
+        {
+          "name": "json",
+          "edgeType": "call"
+        },
+        {
+          "name": "next",
+          "edgeType": "call"
+        }
+      ]
+    }
+  ],
+  "imports": [
+    {
+      "module": "@rocket.chat/core-services",
+      "resolved": "external"
+    },
+    {
+      "module": "hono/factory",
+      "resolved": "external"
+    }
+  ]
+}

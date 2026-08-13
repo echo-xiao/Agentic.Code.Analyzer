@@ -1,0 +1,230 @@
+{
+  "sourcePath": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/client/views/navigation/sidepanel/SidePanelInternal.tsx",
+  "symbols": [
+    {
+      "type": "variable_function",
+      "name": "SidePanelInternal",
+      "exported": false,
+      "line": 27,
+      "endLine": 69,
+      "signature": "({ title, currentTab, unreadOnly, toggleUnreadOnly, rooms, ItemContentComponent }: SidePanelProps) =>",
+      "calls": [
+        {
+          "name": "useTranslation",
+          "edgeType": "call"
+        },
+        {
+          "name": "useRef",
+          "edgeType": "call"
+        },
+        {
+          "name": "useId",
+          "edgeType": "call"
+        },
+        {
+          "name": "useOpenedRoom",
+          "edgeType": "call"
+        },
+        {
+          "name": "useLayout",
+          "edgeType": "call"
+        },
+        {
+          "name": "useIsRoomFilter",
+          "edgeType": "call"
+        },
+        {
+          "name": "usePreventDefault",
+          "edgeType": "call"
+        },
+        {
+          "name": "Sidepanel",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "SidepanelHeader",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "Box",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "SidepanelHeaderTitle",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "VirtualizedScrollbars",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "IconButton",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "ToggleSwitch",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "SidePanelNoResults",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "Virtuoso",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "ItemContentComponent",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "title",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "closeSidePanel",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "unreadFieldId",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "unreadOnly",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "toggleUnreadOnly",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "ref",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "currentTab",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "rooms",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "room",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "openedRoom",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "isRoomFilter",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "SidePanelProps",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "variable_function",
+      "name": "createSidePanel",
+      "exported": true,
+      "line": 31,
+      "endLine": 45,
+      "signature": "<R extends object>( ItemContentComponent: ComponentType<{ room: R; openedRoom: ReturnType<typeof useOpenedRoom>; isRoomFilter: boolean }>, ) => // eslint-disable-next-line react/no-multi-comp, react/display-name",
+      "calls": [
+        {
+          "name": "SidePanelInternal",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "title",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "currentTab",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "unreadOnly",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "toggleUnreadOnly",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "rooms",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "ItemContentComponent",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "ComponentType",
+          "edgeType": "type"
+        },
+        {
+          "name": "SidePanelProps",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "type",
+      "name": "SidePanelProps",
+      "line": 14,
+      "endLine": 25,
+      "signature": "type SidePanelProps<R = any> ="
+    }
+  ],
+  "imports": [
+    {
+      "module": "@rocket.chat/fuselage",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/ui-client",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/ui-contexts",
+      "resolved": "external"
+    },
+    {
+      "module": "react",
+      "resolved": "external"
+    },
+    {
+      "module": "react-i18next",
+      "resolved": "external"
+    },
+    {
+      "module": "react-virtuoso",
+      "resolved": "external"
+    },
+    {
+      "module": "./SidePanelNoResults",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/client/views/navigation/sidepanel/SidePanelNoResults.tsx"
+    },
+    {
+      "module": "./SidepanelListWrapper",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/client/views/navigation/sidepanel/SidepanelListWrapper.tsx"
+    },
+    {
+      "module": "../../../lib/RoomManager",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/client/lib/RoomManager.ts"
+    },
+    {
+      "module": "../contexts/RoomsNavigationContext",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/client/views/navigation/contexts/RoomsNavigationContext.ts"
+    },
+    {
+      "module": "../sidebar/hooks/usePreventDefault",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/client/views/navigation/sidebar/hooks/usePreventDefault.ts"
+    }
+  ]
+}

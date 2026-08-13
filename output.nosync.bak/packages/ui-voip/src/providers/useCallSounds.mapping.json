@@ -1,0 +1,53 @@
+{
+  "sourcePath": "/Users/echoooooo/Desktop/code/Rocket.Chat/packages/ui-voip/src/providers/useCallSounds.ts",
+  "symbols": [
+    {
+      "type": "variable_function",
+      "name": "useCallSounds",
+      "exported": true,
+      "line": 6,
+      "endLine": 21,
+      "signature": "(state: State, subscribeCallEnded: (callback: () => void) => (() => void) | undefined) =>",
+      "calls": [
+        {
+          "name": "useCustomSound",
+          "edgeType": "call"
+        },
+        {
+          "name": "useEffect",
+          "edgeType": "call"
+        },
+        {
+          "name": "playDialer",
+          "edgeType": "call"
+        },
+        {
+          "name": "playRinger",
+          "edgeType": "call"
+        },
+        {
+          "name": "subscribeCallEnded",
+          "edgeType": "call"
+        },
+        {
+          "name": "State",
+          "edgeType": "type"
+        }
+      ]
+    }
+  ],
+  "imports": [
+    {
+      "module": "@rocket.chat/ui-contexts",
+      "resolved": "external"
+    },
+    {
+      "module": "react",
+      "resolved": "external"
+    },
+    {
+      "module": "../context/definitions",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/packages/ui-voip/src/context/definitions.ts"
+    }
+  ]
+}

@@ -1,0 +1,109 @@
+{
+  "sourcePath": "/Users/echoooooo/Desktop/code/Rocket.Chat/packages/apps-engine/src/definition/slashcommands/SlashCommandContext.ts",
+  "symbols": [
+    {
+      "type": "class",
+      "name": "SlashCommandContext",
+      "exported": true,
+      "line": 8,
+      "endLine": 39,
+      "signature": "export class SlashCommandContext",
+      "calls": []
+    },
+    {
+      "type": "method",
+      "name": "getSender",
+      "exported": true,
+      "qualifiedName": "SlashCommandContext.getSender",
+      "line": 18,
+      "endLine": 20,
+      "signature": "public getSender(): IUser",
+      "containerClass": "SlashCommandContext",
+      "calls": [
+        {
+          "name": "IUser",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "getRoom",
+      "exported": true,
+      "qualifiedName": "SlashCommandContext.getRoom",
+      "line": 23,
+      "endLine": 25,
+      "signature": "public getRoom(): IRoom",
+      "containerClass": "SlashCommandContext",
+      "calls": [
+        {
+          "name": "IRoom",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "getArguments",
+      "exported": true,
+      "qualifiedName": "SlashCommandContext.getArguments",
+      "line": 28,
+      "endLine": 30,
+      "signature": "public getArguments(): Array<string>",
+      "containerClass": "SlashCommandContext",
+      "calls": []
+    },
+    {
+      "type": "method",
+      "name": "getThreadId",
+      "exported": true,
+      "qualifiedName": "SlashCommandContext.getThreadId",
+      "line": 32,
+      "endLine": 34,
+      "signature": "public getThreadId(): string | undefined",
+      "containerClass": "SlashCommandContext",
+      "calls": []
+    },
+    {
+      "type": "method",
+      "name": "getTriggerId",
+      "exported": true,
+      "qualifiedName": "SlashCommandContext.getTriggerId",
+      "line": 36,
+      "endLine": 38,
+      "signature": "public getTriggerId(): string | undefined",
+      "containerClass": "SlashCommandContext",
+      "calls": []
+    },
+    {
+      "type": "method",
+      "name": "constructor",
+      "exported": true,
+      "qualifiedName": "SlashCommandContext.constructor",
+      "line": 9,
+      "endLine": 15,
+      "signature": "constructor( private sender: IUser, private room: IRoom, private params: Array<string>, private threadId?: string, private triggerId?: string, )",
+      "containerClass": "SlashCommandContext",
+      "calls": [
+        {
+          "name": "IUser",
+          "edgeType": "type"
+        },
+        {
+          "name": "IRoom",
+          "edgeType": "type"
+        }
+      ]
+    }
+  ],
+  "imports": [
+    {
+      "module": "../rooms",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/packages/apps-engine/src/definition/rooms/index.ts"
+    },
+    {
+      "module": "../users",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/packages/apps-engine/src/definition/users/index.ts"
+    }
+  ]
+}

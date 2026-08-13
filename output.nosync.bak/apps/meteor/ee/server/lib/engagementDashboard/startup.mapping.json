@@ -1,0 +1,87 @@
+{
+  "sourcePath": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/ee/server/lib/engagementDashboard/startup.ts",
+  "symbols": [
+    {
+      "type": "variable_function",
+      "name": "attachCallbacks",
+      "exported": true,
+      "line": 5,
+      "endLine": 14,
+      "signature": "(): void =>",
+      "calls": [
+        {
+          "name": "afterSaveMessage",
+          "edgeType": "event_listen"
+        },
+        {
+          "name": "handleMessagesSent",
+          "edgeType": "call"
+        },
+        {
+          "name": "handleMessagesDeleted",
+          "edgeType": "event_listen",
+          "event": "afterDeleteMessage"
+        },
+        {
+          "name": "handleUserCreated",
+          "edgeType": "event_listen",
+          "event": "afterCreateUser"
+        }
+      ]
+    },
+    {
+      "type": "variable_function",
+      "name": "detachCallbacks",
+      "exported": true,
+      "line": 9,
+      "endLine": 13,
+      "signature": "(): void =>",
+      "calls": [
+        {
+          "name": "remove",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "variable_function",
+      "name": "prepareAnalytics",
+      "exported": true,
+      "line": 13,
+      "endLine": 16,
+      "signature": "async (): Promise<void> =>",
+      "calls": [
+        {
+          "name": "all",
+          "edgeType": "call"
+        },
+        {
+          "name": "fillFirstDaysOfUsersIfNeeded",
+          "edgeType": "call"
+        },
+        {
+          "name": "fillFirstDaysOfMessagesIfNeeded",
+          "edgeType": "call"
+        },
+        {
+          "name": "Date",
+          "edgeType": "new"
+        }
+      ]
+    }
+  ],
+  "imports": [
+    {
+      "module": "./messages",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/ee/server/lib/engagementDashboard/messages.ts"
+    },
+    {
+      "module": "./users",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/ee/server/lib/engagementDashboard/users.ts"
+    },
+    {
+      "module": "../../../../server/lib/callbacks",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/server/lib/callbacks.ts"
+    }
+  ]
+}

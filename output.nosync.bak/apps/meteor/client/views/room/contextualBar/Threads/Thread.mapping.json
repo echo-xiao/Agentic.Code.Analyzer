@@ -1,0 +1,341 @@
+{
+  "sourcePath": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/client/views/room/contextualBar/Threads/Thread.tsx",
+  "symbols": [
+    {
+      "type": "inner_function",
+      "name": "handleBackdropClick",
+      "exported": false,
+      "qualifiedName": "Thread.handleBackdropClick",
+      "line": 60,
+      "endLine": 62,
+      "signature": "() =>",
+      "calls": [
+        {
+          "name": "closeTab",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "inner_function",
+      "name": "handleGoBack",
+      "exported": false,
+      "qualifiedName": "Thread.handleGoBack",
+      "line": 64,
+      "endLine": 66,
+      "signature": "() =>",
+      "calls": [
+        {
+          "name": "goToThreadList",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "inner_function",
+      "name": "handleToggleExpand",
+      "exported": false,
+      "qualifiedName": "Thread.handleToggleExpand",
+      "line": 68,
+      "endLine": 70,
+      "signature": "() =>",
+      "calls": [
+        {
+          "name": "setExpanded",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "inner_function",
+      "name": "handleToggleFollowing",
+      "exported": false,
+      "qualifiedName": "Thread.handleToggleFollowing",
+      "line": 72,
+      "endLine": 80,
+      "signature": "() =>",
+      "calls": [
+        {
+          "name": "mutate",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "inner_function",
+      "name": "handleClose",
+      "exported": false,
+      "qualifiedName": "Thread.handleClose",
+      "line": 82,
+      "endLine": 84,
+      "signature": "() =>",
+      "calls": [
+        {
+          "name": "closeTab",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "inner_function",
+      "name": "onDelete",
+      "exported": false,
+      "qualifiedName": "Thread.onDelete",
+      "line": 41,
+      "endLine": 43,
+      "signature": "() =>",
+      "calls": [
+        {
+          "name": "closeTab",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "inner_function",
+      "name": "onError",
+      "exported": false,
+      "qualifiedName": "Thread.onError",
+      "line": 55,
+      "endLine": 57,
+      "signature": "(error) =>",
+      "calls": [
+        {
+          "name": "dispatchToastMessage",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "variable_function",
+      "name": "Thread",
+      "exported": false,
+      "line": 36,
+      "endLine": 168,
+      "signature": "({ tmid }: ThreadProps) =>",
+      "calls": [
+        {
+          "name": "useGoToThreadList",
+          "edgeType": "call"
+        },
+        {
+          "name": "useRoomToolbox",
+          "edgeType": "call"
+        },
+        {
+          "name": "useThreadMainMessageQuery",
+          "edgeType": "call"
+        },
+        {
+          "name": "closeTab",
+          "edgeType": "call"
+        },
+        {
+          "name": "useTranslation",
+          "edgeType": "call"
+        },
+        {
+          "name": "useToastMessageDispatch",
+          "edgeType": "call"
+        },
+        {
+          "name": "useLayoutContextualBarExpanded",
+          "edgeType": "call"
+        },
+        {
+          "name": "useLocalStorage",
+          "edgeType": "call"
+        },
+        {
+          "name": "useUserId",
+          "edgeType": "call"
+        },
+        {
+          "name": "includes",
+          "edgeType": "call"
+        },
+        {
+          "name": "useToggleFollowingThreadMutation",
+          "edgeType": "call"
+        },
+        {
+          "name": "dispatchToastMessage",
+          "edgeType": "call"
+        },
+        {
+          "name": "goToThreadList",
+          "edgeType": "call"
+        },
+        {
+          "name": "setExpanded",
+          "edgeType": "call"
+        },
+        {
+          "name": "mutate",
+          "edgeType": "call"
+        },
+        {
+          "name": "getElementById",
+          "edgeType": "call"
+        },
+        {
+          "name": "createPortal",
+          "edgeType": "call"
+        },
+        {
+          "name": "Contextualbar",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "ContextualbarHeader",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "ContextualbarActions",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "ChatProvider",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "ContextualbarDialog",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "ContextualbarInnerContent",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "Box",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "ContextualbarBack",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "Skeleton",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "ThreadTitle",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "ContextualbarAction",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "ContextualbarClose",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "ThreadSkeleton",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "ThreadChat",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "ModalBackdrop",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "handleGoBack",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "handleToggleExpand",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "handleToggleFollowing",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "handleClose",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "tmid",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "handleBackdropClick",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "ThreadProps",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "type",
+      "name": "ThreadProps",
+      "line": 32,
+      "endLine": 34,
+      "signature": "type ThreadProps ="
+    }
+  ],
+  "imports": [
+    {
+      "module": "@rocket.chat/core-typings",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/css-in-js",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/fuselage",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/fuselage-hooks",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/ui-client",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/ui-contexts",
+      "resolved": "external"
+    },
+    {
+      "module": "react-dom",
+      "resolved": "external"
+    },
+    {
+      "module": "./components/ThreadChat",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/client/views/room/contextualBar/Threads/components/ThreadChat.tsx"
+    },
+    {
+      "module": "./components/ThreadSkeleton",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/client/views/room/contextualBar/Threads/components/ThreadSkeleton.tsx"
+    },
+    {
+      "module": "./components/ThreadTitle",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/client/views/room/contextualBar/Threads/components/ThreadTitle.tsx"
+    },
+    {
+      "module": "./hooks/useThreadMainMessageQuery",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/client/views/room/contextualBar/Threads/hooks/useThreadMainMessageQuery.ts"
+    },
+    {
+      "module": "./hooks/useToggleFollowingThreadMutation",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/client/views/room/contextualBar/Threads/hooks/useToggleFollowingThreadMutation.ts"
+    },
+    {
+      "module": "../../hooks/useGoToThreadList",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/client/views/room/hooks/useGoToThreadList.ts"
+    },
+    {
+      "module": "../../providers/ChatProvider",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/client/views/room/providers/ChatProvider.tsx"
+    }
+  ]
+}

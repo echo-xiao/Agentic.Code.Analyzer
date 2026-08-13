@@ -1,0 +1,61 @@
+{
+  "sourcePath": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/ee/server/api/v1/middlewares/license.ts",
+  "symbols": [
+    {
+      "type": "variable_function",
+      "name": "license",
+      "exported": true,
+      "line": 6,
+      "endLine": 32,
+      "signature": "(options: TypedOptions, licenseManager: LicenseManager): MiddlewareHandler =>",
+      "calls": [
+        {
+          "name": "next",
+          "edgeType": "call"
+        },
+        {
+          "name": "every",
+          "edgeType": "call"
+        },
+        {
+          "name": "hasModule",
+          "edgeType": "call"
+        },
+        {
+          "name": "json",
+          "edgeType": "call"
+        },
+        {
+          "name": "TypedOptions",
+          "edgeType": "type"
+        },
+        {
+          "name": "LicenseManager",
+          "edgeType": "type"
+        },
+        {
+          "name": "MiddlewareHandler",
+          "edgeType": "type"
+        },
+        {
+          "name": "FailureResult",
+          "edgeType": "type"
+        }
+      ]
+    }
+  ],
+  "imports": [
+    {
+      "module": "@rocket.chat/license",
+      "resolved": "external"
+    },
+    {
+      "module": "hono",
+      "resolved": "external"
+    },
+    {
+      "module": "../../../../../server/api/definition",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/server/api/definition.ts"
+    }
+  ]
+}

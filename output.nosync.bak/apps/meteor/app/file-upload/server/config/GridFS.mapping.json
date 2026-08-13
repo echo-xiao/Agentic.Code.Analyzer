@@ -1,0 +1,298 @@
+{
+  "sourcePath": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/app/file-upload/server/config/GridFS.ts",
+  "symbols": [
+    {
+      "type": "module",
+      "name": "GridFS",
+      "exported": false,
+      "line": 1,
+      "endLine": 210,
+      "signature": "GridFS",
+      "calls": [
+        {
+          "name": "configureUploadsStore",
+          "edgeType": "call"
+        },
+        {
+          "name": "getStores",
+          "edgeType": "call"
+        },
+        {
+          "name": "addExtensionTo",
+          "edgeType": "call"
+        },
+        {
+          "name": "setHeader",
+          "edgeType": "call"
+        },
+        {
+          "name": "getContentDisposition",
+          "edgeType": "call"
+        },
+        {
+          "name": "encodeURIComponent",
+          "edgeType": "call"
+        },
+        {
+          "name": "toUTCString",
+          "edgeType": "call"
+        },
+        {
+          "name": "readFromGridFS",
+          "edgeType": "call"
+        },
+        {
+          "name": "copyFromGridFS",
+          "edgeType": "call"
+        },
+        {
+          "name": "FileUploadClass",
+          "edgeType": "new"
+        }
+      ]
+    },
+    {
+      "type": "class",
+      "name": "ExtractRange",
+      "exported": false,
+      "line": 16,
+      "endLine": 57,
+      "signature": "class ExtractRange extends stream.Transform",
+      "calls": []
+    },
+    {
+      "type": "method",
+      "name": "_transform",
+      "exported": false,
+      "qualifiedName": "ExtractRange._transform",
+      "line": 31,
+      "endLine": 56,
+      "signature": "override _transform(chunk: any, _enc: BufferEncoding, cb: TransformCallback)",
+      "containerClass": "ExtractRange",
+      "calls": [
+        {
+          "name": "end",
+          "edgeType": "call"
+        },
+        {
+          "name": "slice",
+          "edgeType": "call"
+        },
+        {
+          "name": "push",
+          "edgeType": "call"
+        },
+        {
+          "name": "cb",
+          "edgeType": "call"
+        },
+        {
+          "name": "BufferEncoding",
+          "edgeType": "type"
+        },
+        {
+          "name": "TransformCallback",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "constructor",
+      "exported": false,
+      "qualifiedName": "ExtractRange.constructor",
+      "line": 23,
+      "endLine": 29,
+      "signature": "constructor(options: TransformOptions & { start: number; stop: number })",
+      "containerClass": "ExtractRange",
+      "calls": [
+        {
+          "name": "TransformOptions",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "variable_function",
+      "name": "readFromGridFS",
+      "exported": false,
+      "line": 33,
+      "endLine": 97,
+      "signature": "async function ( storeName: string | undefined, fileId: string, file: IUpload, req: http.IncomingMessage, res: http.ServerResponse, )",
+      "calls": [
+        {
+          "name": "getStore",
+          "edgeType": "call"
+        },
+        {
+          "name": "getReadStream",
+          "edgeType": "call"
+        },
+        {
+          "name": "forEach",
+          "edgeType": "call"
+        },
+        {
+          "name": "error",
+          "edgeType": "event_listen"
+        },
+        {
+          "name": "call",
+          "edgeType": "call"
+        },
+        {
+          "name": "end",
+          "edgeType": "call"
+        },
+        {
+          "name": "close",
+          "edgeType": "event_listen"
+        },
+        {
+          "name": "end",
+          "edgeType": "event_emit"
+        },
+        {
+          "name": "transformRead",
+          "edgeType": "call"
+        },
+        {
+          "name": "getFileRange",
+          "edgeType": "call"
+        },
+        {
+          "name": "setRangeHeaders",
+          "edgeType": "call"
+        },
+        {
+          "name": "debug",
+          "edgeType": "call"
+        },
+        {
+          "name": "pipe",
+          "edgeType": "call"
+        },
+        {
+          "name": "isArray",
+          "edgeType": "call"
+        },
+        {
+          "name": "match",
+          "edgeType": "call"
+        },
+        {
+          "name": "setHeader",
+          "edgeType": "call"
+        },
+        {
+          "name": "removeHeader",
+          "edgeType": "call"
+        },
+        {
+          "name": "writeHead",
+          "edgeType": "call"
+        },
+        {
+          "name": "createGzip",
+          "edgeType": "call"
+        },
+        {
+          "name": "createDeflate",
+          "edgeType": "call"
+        },
+        {
+          "name": "ExtractRange",
+          "edgeType": "new"
+        },
+        {
+          "name": "IUpload",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "variable_function",
+      "name": "copyFromGridFS",
+      "exported": false,
+      "line": 43,
+      "endLine": 59,
+      "signature": "async function (storeName: string | undefined, fileId: string, file: IUpload, out: stream.Writable)",
+      "calls": [
+        {
+          "name": "getStore",
+          "edgeType": "call"
+        },
+        {
+          "name": "getReadStream",
+          "edgeType": "call"
+        },
+        {
+          "name": "forEach",
+          "edgeType": "call"
+        },
+        {
+          "name": "error",
+          "edgeType": "event_listen"
+        },
+        {
+          "name": "call",
+          "edgeType": "call"
+        },
+        {
+          "name": "end",
+          "edgeType": "call"
+        },
+        {
+          "name": "pipe",
+          "edgeType": "call"
+        },
+        {
+          "name": "IUpload",
+          "edgeType": "type"
+        }
+      ]
+    }
+  ],
+  "imports": [
+    {
+      "module": "node:http",
+      "resolved": "external"
+    },
+    {
+      "module": "node:stream",
+      "resolved": "external"
+    },
+    {
+      "module": "node:stream",
+      "resolved": "external"
+    },
+    {
+      "module": "node:zlib",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/core-typings",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/logger",
+      "resolved": "external"
+    },
+    {
+      "module": "./helper",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/app/file-upload/server/config/helper.ts"
+    },
+    {
+      "module": "../../../../server/ufs",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/server/ufs/index.ts"
+    },
+    {
+      "module": "../lib/FileUpload",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/app/file-upload/server/lib/FileUpload.ts"
+    },
+    {
+      "module": "../lib/ranges",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/app/file-upload/server/lib/ranges.ts"
+    }
+  ]
+}

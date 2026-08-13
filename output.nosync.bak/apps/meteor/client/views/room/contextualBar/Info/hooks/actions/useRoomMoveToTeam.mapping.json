@@ -1,0 +1,120 @@
+{
+  "sourcePath": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/client/views/room/contextualBar/Info/hooks/actions/useRoomMoveToTeam.tsx",
+  "symbols": [
+    {
+      "type": "inner_function",
+      "name": "onConfirm",
+      "exported": false,
+      "qualifiedName": "useRoomMoveToTeam.onConfirm",
+      "line": 20,
+      "endLine": 33,
+      "signature": "async (teamId: IRoom['teamId']) =>",
+      "calls": [
+        {
+          "name": "moveChannelToTeam",
+          "edgeType": "call"
+        },
+        {
+          "name": "dispatchToastMessage",
+          "edgeType": "call"
+        },
+        {
+          "name": "setModal",
+          "edgeType": "call"
+        },
+        {
+          "name": "IRoom",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "variable_function",
+      "name": "useRoomMoveToTeam",
+      "exported": true,
+      "line": 9,
+      "endLine": 39,
+      "signature": "(room: IRoom) =>",
+      "calls": [
+        {
+          "name": "useTranslation",
+          "edgeType": "call"
+        },
+        {
+          "name": "useSetModal",
+          "edgeType": "call"
+        },
+        {
+          "name": "useToastMessageDispatch",
+          "edgeType": "call"
+        },
+        {
+          "name": "useCanEditRoom",
+          "edgeType": "call"
+        },
+        {
+          "name": "isRoomFederated",
+          "edgeType": "call"
+        },
+        {
+          "name": "useEndpoint",
+          "edgeType": "call"
+        },
+        {
+          "name": "useStableCallback",
+          "edgeType": "call"
+        },
+        {
+          "name": "moveChannelToTeam",
+          "edgeType": "call"
+        },
+        {
+          "name": "dispatchToastMessage",
+          "edgeType": "call"
+        },
+        {
+          "name": "setModal",
+          "edgeType": "call"
+        },
+        {
+          "name": "ChannelToTeamModal",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "onConfirm",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "IRoom",
+          "edgeType": "type"
+        }
+      ]
+    }
+  ],
+  "imports": [
+    {
+      "module": "@rocket.chat/core-typings",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/core-typings",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/fuselage-hooks",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/ui-contexts",
+      "resolved": "external"
+    },
+    {
+      "module": "../../ChannelToTeamModal",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/client/views/room/contextualBar/Info/ChannelToTeamModal/index.ts"
+    },
+    {
+      "module": "../useCanEditRoom",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/client/views/room/contextualBar/Info/hooks/useCanEditRoom.ts"
+    }
+  ]
+}

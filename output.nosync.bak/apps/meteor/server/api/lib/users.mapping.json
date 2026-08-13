@@ -1,0 +1,235 @@
+{
+  "sourcePath": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/server/api/lib/users.ts",
+  "symbols": [
+    {
+      "type": "function",
+      "name": "findUsersToAutocomplete",
+      "exported": true,
+      "line": 12,
+      "endLine": 63,
+      "signature": "export async function findUsersToAutocomplete({ uid, selector, }: { uid: string; selector: { exceptions: Required<IUser>['username'][]; conditions: Filter<IUser>; term: string }; }): Promise<{ items: UserAutoComplete[]; }>",
+      "calls": [
+        {
+          "name": "split",
+          "edgeType": "call"
+        },
+        {
+          "name": "trim",
+          "edgeType": "call"
+        },
+        {
+          "name": "get",
+          "edgeType": "call"
+        },
+        {
+          "name": "findConnectedUsersExcept",
+          "edgeType": "call"
+        },
+        {
+          "name": "forEach",
+          "edgeType": "call"
+        },
+        {
+          "name": "push",
+          "edgeType": "call"
+        },
+        {
+          "name": "hasPermissionAsync",
+          "edgeType": "call"
+        },
+        {
+          "name": "concat",
+          "edgeType": "call"
+        },
+        {
+          "name": "toArray",
+          "edgeType": "call"
+        },
+        {
+          "name": "findActiveByUsernameOrNameRegexWithExceptionsAndConditions",
+          "edgeType": "call"
+        },
+        {
+          "name": "escapeRegExp",
+          "edgeType": "call"
+        },
+        {
+          "name": "RegExp",
+          "edgeType": "new"
+        },
+        {
+          "name": "IUser",
+          "edgeType": "type"
+        },
+        {
+          "name": "Filter",
+          "edgeType": "type"
+        },
+        {
+          "name": "UserAutoComplete",
+          "edgeType": "type"
+        },
+        {
+          "name": "FindOptions",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "function",
+      "name": "getInclusiveFields",
+      "exported": true,
+      "line": 27,
+      "endLine": 37,
+      "signature": "export function getInclusiveFields(query: Record<string, 1 | 0>): Record<string, 1>",
+      "calls": [
+        {
+          "name": "create",
+          "edgeType": "call"
+        },
+        {
+          "name": "entries",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "function",
+      "name": "getNonEmptyFields",
+      "exported": true,
+      "line": 35,
+      "endLine": 53,
+      "signature": "export function getNonEmptyFields(fields: Record<string, 1 | 0>): Record<string, 1 | 0>",
+      "calls": [
+        {
+          "name": "keys",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "function",
+      "name": "getNonEmptyQuery",
+      "exported": true,
+      "line": 43,
+      "endLine": 57,
+      "signature": "export function getNonEmptyQuery<T extends IUser>(query: Mongo.Query<T> | undefined | null, canSeeAllUserInfo?: boolean): Mongo.Query<T>",
+      "calls": [
+        {
+          "name": "push",
+          "edgeType": "call"
+        },
+        {
+          "name": "keys",
+          "edgeType": "call"
+        },
+        {
+          "name": "IUser",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "function",
+      "name": "findPaginatedUsersByStatus",
+      "exported": true,
+      "line": 60,
+      "endLine": 165,
+      "signature": "export async function findPaginatedUsersByStatus({ uid, offset, count, sort, status, roles, searchTerm, hasLoggedIn, type, inactiveReason, }: FindPaginatedUsersByStatusProps)",
+      "calls": [
+        {
+          "name": "hasPermissionAsync",
+          "edgeType": "call"
+        },
+        {
+          "name": "trim",
+          "edgeType": "call"
+        },
+        {
+          "name": "escapeRegExp",
+          "edgeType": "call"
+        },
+        {
+          "name": "includes",
+          "edgeType": "call"
+        },
+        {
+          "name": "assign",
+          "edgeType": "call"
+        },
+        {
+          "name": "findPaginated",
+          "edgeType": "call"
+        },
+        {
+          "name": "all",
+          "edgeType": "call"
+        },
+        {
+          "name": "toArray",
+          "edgeType": "call"
+        },
+        {
+          "name": "FindPaginatedUsersByStatusProps",
+          "edgeType": "type"
+        },
+        {
+          "name": "Filter",
+          "edgeType": "type"
+        },
+        {
+          "name": "IUser",
+          "edgeType": "type"
+        },
+        {
+          "name": "RootFilterOperators",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "type",
+      "name": "UserAutoComplete",
+      "line": 10,
+      "endLine": 10,
+      "signature": "type UserAutoComplete = Required<Pick<IUser, '_id' | 'name' | 'username' | 'nickname' | 'status' | 'avatarETag'>>;"
+    },
+    {
+      "type": "type",
+      "name": "FindPaginatedUsersByStatusProps",
+      "line": 47,
+      "endLine": 58,
+      "signature": "type FindPaginatedUsersByStatusProps ="
+    }
+  ],
+  "imports": [
+    {
+      "module": "@rocket.chat/core-typings",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/models",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/string-helpers",
+      "resolved": "external"
+    },
+    {
+      "module": "meteor/mongo",
+      "resolved": "external"
+    },
+    {
+      "module": "mongodb",
+      "resolved": "external"
+    },
+    {
+      "module": "../../../app/settings/server",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/app/settings/server/index.ts"
+    },
+    {
+      "module": "../../lib/authorization/hasPermission",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/server/lib/authorization/hasPermission.ts"
+    }
+  ]
+}

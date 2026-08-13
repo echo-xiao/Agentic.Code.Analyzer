@@ -1,0 +1,833 @@
+{
+  "sourcePath": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/ee/server/models/raw/LivechatRooms.ts",
+  "symbols": [
+    {
+      "type": "class",
+      "name": "LivechatRoomsRawEE",
+      "exported": true,
+      "line": 78,
+      "endLine": 764,
+      "signature": "export class LivechatRoomsRawEE extends LivechatRoomsRaw implements ILivechatRoomsModel",
+      "calls": [
+        {
+          "name": "LivechatRoomsRaw",
+          "edgeType": "type"
+        },
+        {
+          "name": "ILivechatRoomsModel",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "countPrioritizedRooms",
+      "exported": true,
+      "qualifiedName": "LivechatRoomsRawEE.countPrioritizedRooms",
+      "line": 83,
+      "endLine": 85,
+      "signature": "override countPrioritizedRooms(): Promise<number>",
+      "containerClass": "LivechatRoomsRawEE",
+      "calls": [
+        {
+          "name": "countDocuments",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "countRoomsWithSla",
+      "exported": true,
+      "qualifiedName": "LivechatRoomsRawEE.countRoomsWithSla",
+      "line": 87,
+      "endLine": 89,
+      "signature": "override countRoomsWithSla(): Promise<number>",
+      "containerClass": "LivechatRoomsRawEE",
+      "calls": [
+        {
+          "name": "countDocuments",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "countRoomsWithTranscriptSent",
+      "exported": true,
+      "qualifiedName": "LivechatRoomsRawEE.countRoomsWithTranscriptSent",
+      "line": 91,
+      "endLine": 93,
+      "signature": "override countRoomsWithTranscriptSent(): Promise<number>",
+      "containerClass": "LivechatRoomsRawEE",
+      "calls": [
+        {
+          "name": "countDocuments",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "unsetAllPredictedVisitorAbandonment",
+      "exported": true,
+      "qualifiedName": "LivechatRoomsRawEE.unsetAllPredictedVisitorAbandonment",
+      "line": 95,
+      "endLine": 106,
+      "signature": "override async unsetAllPredictedVisitorAbandonment(): Promise<void>",
+      "containerClass": "LivechatRoomsRawEE",
+      "calls": [
+        {
+          "name": "then",
+          "edgeType": "call"
+        },
+        {
+          "name": "updateMany",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "setOnHoldByRoomId",
+      "exported": true,
+      "qualifiedName": "LivechatRoomsRawEE.setOnHoldByRoomId",
+      "line": 99,
+      "endLine": 101,
+      "signature": "override setOnHoldByRoomId(roomId: string): Promise<UpdateResult>",
+      "containerClass": "LivechatRoomsRawEE",
+      "calls": [
+        {
+          "name": "updateOne",
+          "edgeType": "call"
+        },
+        {
+          "name": "UpdateResult",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "unsetOnHoldByRoomId",
+      "exported": true,
+      "qualifiedName": "LivechatRoomsRawEE.unsetOnHoldByRoomId",
+      "line": 103,
+      "endLine": 105,
+      "signature": "override unsetOnHoldByRoomId(roomId: string): Promise<UpdateResult>",
+      "containerClass": "LivechatRoomsRawEE",
+      "calls": [
+        {
+          "name": "updateOne",
+          "edgeType": "call"
+        },
+        {
+          "name": "UpdateResult",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "unsetOnHoldAndPredictedVisitorAbandonmentByRoomId",
+      "exported": true,
+      "qualifiedName": "LivechatRoomsRawEE.unsetOnHoldAndPredictedVisitorAbandonmentByRoomId",
+      "line": 107,
+      "endLine": 119,
+      "signature": "override unsetOnHoldAndPredictedVisitorAbandonmentByRoomId(roomId: string): Promise<UpdateResult>",
+      "containerClass": "LivechatRoomsRawEE",
+      "calls": [
+        {
+          "name": "updateOne",
+          "edgeType": "call"
+        },
+        {
+          "name": "UpdateResult",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "setSlaForRoomById",
+      "exported": true,
+      "qualifiedName": "LivechatRoomsRawEE.setSlaForRoomById",
+      "line": 111,
+      "endLine": 128,
+      "signature": "override setSlaForRoomById( roomId: string, sla: Pick<IOmnichannelServiceLevelAgreements, '_id' | 'dueTimeInMinutes'>, ): Promise<UpdateResult | Document>",
+      "containerClass": "LivechatRoomsRawEE",
+      "calls": [
+        {
+          "name": "updateOne",
+          "edgeType": "call"
+        },
+        {
+          "name": "IOmnichannelServiceLevelAgreements",
+          "edgeType": "type"
+        },
+        {
+          "name": "UpdateResult",
+          "edgeType": "type"
+        },
+        {
+          "name": "Document",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "removeSlaFromRoomById",
+      "exported": true,
+      "qualifiedName": "LivechatRoomsRawEE.removeSlaFromRoomById",
+      "line": 118,
+      "endLine": 132,
+      "signature": "override removeSlaFromRoomById(roomId: string): Promise<UpdateResult | Document>",
+      "containerClass": "LivechatRoomsRawEE",
+      "calls": [
+        {
+          "name": "updateOne",
+          "edgeType": "call"
+        },
+        {
+          "name": "UpdateResult",
+          "edgeType": "type"
+        },
+        {
+          "name": "Document",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "bulkRemoveSlaFromRoomsById",
+      "exported": true,
+      "qualifiedName": "LivechatRoomsRawEE.bulkRemoveSlaFromRoomsById",
+      "line": 122,
+      "endLine": 136,
+      "signature": "override bulkRemoveSlaFromRoomsById(slaId: string): Promise<UpdateResult | Document>",
+      "containerClass": "LivechatRoomsRawEE",
+      "calls": [
+        {
+          "name": "updateMany",
+          "edgeType": "call"
+        },
+        {
+          "name": "UpdateResult",
+          "edgeType": "type"
+        },
+        {
+          "name": "Document",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "findOpenBySlaId",
+      "exported": true,
+      "qualifiedName": "LivechatRoomsRawEE.findOpenBySlaId",
+      "line": 126,
+      "endLine": 139,
+      "signature": "override findOpenBySlaId( slaId: string, options: FindOptions<IOmnichannelRoom>, extraQuery?: Filter<IOmnichannelRoom>, ): FindCursor<IOmnichannelRoom>",
+      "containerClass": "LivechatRoomsRawEE",
+      "calls": [
+        {
+          "name": "find",
+          "edgeType": "call"
+        },
+        {
+          "name": "FindOptions",
+          "edgeType": "type"
+        },
+        {
+          "name": "IOmnichannelRoom",
+          "edgeType": "type"
+        },
+        {
+          "name": "Filter",
+          "edgeType": "type"
+        },
+        {
+          "name": "FindCursor",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "setPriorityByRoomId",
+      "exported": true,
+      "qualifiedName": "LivechatRoomsRawEE.setPriorityByRoomId",
+      "line": 134,
+      "endLine": 138,
+      "signature": "override async setPriorityByRoomId(roomId: string, priority: Pick<ILivechatPriority, '_id' | 'sortItem'>): Promise<UpdateResult>",
+      "containerClass": "LivechatRoomsRawEE",
+      "calls": [
+        {
+          "name": "updateOne",
+          "edgeType": "call"
+        },
+        {
+          "name": "ILivechatPriority",
+          "edgeType": "type"
+        },
+        {
+          "name": "UpdateResult",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "unsetPriorityByRoomId",
+      "exported": true,
+      "qualifiedName": "LivechatRoomsRawEE.unsetPriorityByRoomId",
+      "line": 138,
+      "endLine": 150,
+      "signature": "override async unsetPriorityByRoomId(roomId: string): Promise<UpdateResult>",
+      "containerClass": "LivechatRoomsRawEE",
+      "calls": [
+        {
+          "name": "updateOne",
+          "edgeType": "call"
+        },
+        {
+          "name": "UpdateResult",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "getPredictedVisitorAbandonmentByRoomIdUpdateQuery",
+      "exported": true,
+      "qualifiedName": "LivechatRoomsRawEE.getPredictedVisitorAbandonmentByRoomIdUpdateQuery",
+      "line": 142,
+      "endLine": 147,
+      "signature": "override getPredictedVisitorAbandonmentByRoomIdUpdateQuery( date: Date, roomUpdater: Updater<IOmnichannelRoom> = this.getUpdater(), ): Updater<IOmnichannelRoom>",
+      "containerClass": "LivechatRoomsRawEE",
+      "calls": [
+        {
+          "name": "getUpdater",
+          "edgeType": "call"
+        },
+        {
+          "name": "set",
+          "edgeType": "call"
+        },
+        {
+          "name": "Updater",
+          "edgeType": "type"
+        },
+        {
+          "name": "IOmnichannelRoom",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "setPredictedVisitorAbandonmentByRoomId",
+      "exported": true,
+      "qualifiedName": "LivechatRoomsRawEE.setPredictedVisitorAbandonmentByRoomId",
+      "line": 149,
+      "endLine": 160,
+      "signature": "override setPredictedVisitorAbandonmentByRoomId(rid: string, willBeAbandonedAt: Date): Promise<UpdateResult>",
+      "containerClass": "LivechatRoomsRawEE",
+      "calls": [
+        {
+          "name": "updateOne",
+          "edgeType": "call"
+        },
+        {
+          "name": "UpdateResult",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "findAbandonedOpenRooms",
+      "exported": true,
+      "qualifiedName": "LivechatRoomsRawEE.findAbandonedOpenRooms",
+      "line": 153,
+      "endLine": 161,
+      "signature": "override findAbandonedOpenRooms(date: Date, extraQuery?: Filter<IOmnichannelRoom>): FindCursor<IOmnichannelRoom>",
+      "containerClass": "LivechatRoomsRawEE",
+      "calls": [
+        {
+          "name": "find",
+          "edgeType": "call"
+        },
+        {
+          "name": "Filter",
+          "edgeType": "type"
+        },
+        {
+          "name": "IOmnichannelRoom",
+          "edgeType": "type"
+        },
+        {
+          "name": "FindCursor",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "unsetPredictedVisitorAbandonmentByRoomId",
+      "exported": true,
+      "qualifiedName": "LivechatRoomsRawEE.unsetPredictedVisitorAbandonmentByRoomId",
+      "line": 157,
+      "endLine": 166,
+      "signature": "override async unsetPredictedVisitorAbandonmentByRoomId(roomId: string): Promise<UpdateResult>",
+      "containerClass": "LivechatRoomsRawEE",
+      "calls": [
+        {
+          "name": "updateOne",
+          "edgeType": "call"
+        },
+        {
+          "name": "UpdateResult",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "associateRoomsWithDepartmentToUnit",
+      "exported": true,
+      "qualifiedName": "LivechatRoomsRawEE.associateRoomsWithDepartmentToUnit",
+      "line": 161,
+      "endLine": 195,
+      "signature": "override async associateRoomsWithDepartmentToUnit(departments: string[], unitId: string): Promise<void>",
+      "containerClass": "LivechatRoomsRawEE",
+      "calls": [
+        {
+          "name": "updateMany",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "removeUnitAssociationFromRooms",
+      "exported": true,
+      "qualifiedName": "LivechatRoomsRawEE.removeUnitAssociationFromRooms",
+      "line": 165,
+      "endLine": 171,
+      "signature": "override async removeUnitAssociationFromRooms(unitId: string): Promise<void>",
+      "containerClass": "LivechatRoomsRawEE",
+      "calls": [
+        {
+          "name": "updateMany",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "updateDepartmentAncestorsById",
+      "exported": true,
+      "qualifiedName": "LivechatRoomsRawEE.updateDepartmentAncestorsById",
+      "line": 169,
+      "endLine": 175,
+      "signature": "override async updateDepartmentAncestorsById(rid: string, departmentAncestors?: string[])",
+      "containerClass": "LivechatRoomsRawEE",
+      "calls": [
+        {
+          "name": "updateOne",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "getConversationsBySource",
+      "exported": true,
+      "qualifiedName": "LivechatRoomsRawEE.getConversationsBySource",
+      "line": 173,
+      "endLine": 223,
+      "signature": "override getConversationsBySource(start: Date, end: Date, extraQuery: Filter<IOmnichannelRoom>): AggregationCursor<ReportResult>",
+      "containerClass": "LivechatRoomsRawEE",
+      "calls": [
+        {
+          "name": "aggregate",
+          "edgeType": "call"
+        },
+        {
+          "name": "readSecondaryPreferred",
+          "edgeType": "call"
+        },
+        {
+          "name": "Filter",
+          "edgeType": "type"
+        },
+        {
+          "name": "IOmnichannelRoom",
+          "edgeType": "type"
+        },
+        {
+          "name": "AggregationCursor",
+          "edgeType": "type"
+        },
+        {
+          "name": "ReportResult",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "getConversationsByStatus",
+      "exported": true,
+      "qualifiedName": "LivechatRoomsRawEE.getConversationsByStatus",
+      "line": 177,
+      "endLine": 282,
+      "signature": "override getConversationsByStatus(start: Date, end: Date, extraQuery: Filter<IOmnichannelRoom>): AggregationCursor<ReportResult>",
+      "containerClass": "LivechatRoomsRawEE",
+      "calls": [
+        {
+          "name": "aggregate",
+          "edgeType": "call"
+        },
+        {
+          "name": "readSecondaryPreferred",
+          "edgeType": "call"
+        },
+        {
+          "name": "Filter",
+          "edgeType": "type"
+        },
+        {
+          "name": "IOmnichannelRoom",
+          "edgeType": "type"
+        },
+        {
+          "name": "AggregationCursor",
+          "edgeType": "type"
+        },
+        {
+          "name": "ReportResult",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "getConversationsByDepartment",
+      "exported": true,
+      "qualifiedName": "LivechatRoomsRawEE.getConversationsByDepartment",
+      "line": 181,
+      "endLine": 256,
+      "signature": "override getConversationsByDepartment( start: Date, end: Date, sort: Record<string, 1 | -1>, extraQuery: Filter<IOmnichannelRoom>, ): AggregationCursor<ReportResult>",
+      "containerClass": "LivechatRoomsRawEE",
+      "calls": [
+        {
+          "name": "aggregate",
+          "edgeType": "call"
+        },
+        {
+          "name": "readSecondaryPreferred",
+          "edgeType": "call"
+        },
+        {
+          "name": "Filter",
+          "edgeType": "type"
+        },
+        {
+          "name": "IOmnichannelRoom",
+          "edgeType": "type"
+        },
+        {
+          "name": "AggregationCursor",
+          "edgeType": "type"
+        },
+        {
+          "name": "ReportResult",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "getTotalConversationsWithoutDepartmentBetweenDates",
+      "exported": true,
+      "qualifiedName": "LivechatRoomsRawEE.getTotalConversationsWithoutDepartmentBetweenDates",
+      "line": 190,
+      "endLine": 206,
+      "signature": "override getTotalConversationsWithoutDepartmentBetweenDates( start: Date, end: Date, extraQuery: Filter<IOmnichannelRoom>, ): Promise<number>",
+      "containerClass": "LivechatRoomsRawEE",
+      "calls": [
+        {
+          "name": "countDocuments",
+          "edgeType": "call"
+        },
+        {
+          "name": "Filter",
+          "edgeType": "type"
+        },
+        {
+          "name": "IOmnichannelRoom",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "getConversationsByTags",
+      "exported": true,
+      "qualifiedName": "LivechatRoomsRawEE.getConversationsByTags",
+      "line": 198,
+      "endLine": 260,
+      "signature": "override getConversationsByTags( start: Date, end: Date, sort: Record<string, 1 | -1>, extraQuery: Filter<IOmnichannelRoom>, ): AggregationCursor<ReportResult>",
+      "containerClass": "LivechatRoomsRawEE",
+      "calls": [
+        {
+          "name": "aggregate",
+          "edgeType": "call"
+        },
+        {
+          "name": "readSecondaryPreferred",
+          "edgeType": "call"
+        },
+        {
+          "name": "Filter",
+          "edgeType": "type"
+        },
+        {
+          "name": "IOmnichannelRoom",
+          "edgeType": "type"
+        },
+        {
+          "name": "AggregationCursor",
+          "edgeType": "type"
+        },
+        {
+          "name": "ReportResult",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "getConversationsWithoutTagsBetweenDate",
+      "exported": true,
+      "qualifiedName": "LivechatRoomsRawEE.getConversationsWithoutTagsBetweenDate",
+      "line": 207,
+      "endLine": 228,
+      "signature": "override getConversationsWithoutTagsBetweenDate(start: Date, end: Date, extraQuery: Filter<IOmnichannelRoom>): Promise<number>",
+      "containerClass": "LivechatRoomsRawEE",
+      "calls": [
+        {
+          "name": "countDocuments",
+          "edgeType": "call"
+        },
+        {
+          "name": "Filter",
+          "edgeType": "type"
+        },
+        {
+          "name": "IOmnichannelRoom",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "getConversationsByAgents",
+      "exported": true,
+      "qualifiedName": "LivechatRoomsRawEE.getConversationsByAgents",
+      "line": 211,
+      "endLine": 281,
+      "signature": "override getConversationsByAgents( start: Date, end: Date, sort: Record<string, 1 | -1>, extraQuery: Filter<IOmnichannelRoom>, ): AggregationCursor<ReportResult>",
+      "containerClass": "LivechatRoomsRawEE",
+      "calls": [
+        {
+          "name": "aggregate",
+          "edgeType": "call"
+        },
+        {
+          "name": "readSecondaryPreferred",
+          "edgeType": "call"
+        },
+        {
+          "name": "Filter",
+          "edgeType": "type"
+        },
+        {
+          "name": "IOmnichannelRoom",
+          "edgeType": "type"
+        },
+        {
+          "name": "AggregationCursor",
+          "edgeType": "type"
+        },
+        {
+          "name": "ReportResult",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "getTotalConversationsWithoutAgentsBetweenDate",
+      "exported": true,
+      "qualifiedName": "LivechatRoomsRawEE.getTotalConversationsWithoutAgentsBetweenDate",
+      "line": 220,
+      "endLine": 232,
+      "signature": "override getTotalConversationsWithoutAgentsBetweenDate(start: Date, end: Date, extraQuery: Filter<IOmnichannelRoom>): Promise<number>",
+      "containerClass": "LivechatRoomsRawEE",
+      "calls": [
+        {
+          "name": "countDocuments",
+          "edgeType": "call"
+        },
+        {
+          "name": "Filter",
+          "edgeType": "type"
+        },
+        {
+          "name": "IOmnichannelRoom",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "updateMergedContactIds",
+      "exported": true,
+      "qualifiedName": "LivechatRoomsRawEE.updateMergedContactIds",
+      "line": 224,
+      "endLine": 230,
+      "signature": "override updateMergedContactIds( contactIdsThatWereMerged: ILivechatContact['_id'][], newContactId: ILivechatContact['_id'], options?: UpdateOptions, ): Promise<UpdateResult | Document>",
+      "containerClass": "LivechatRoomsRawEE",
+      "calls": [
+        {
+          "name": "updateMany",
+          "edgeType": "call"
+        },
+        {
+          "name": "ILivechatContact",
+          "edgeType": "type"
+        },
+        {
+          "name": "UpdateOptions",
+          "edgeType": "type"
+        },
+        {
+          "name": "UpdateResult",
+          "edgeType": "type"
+        },
+        {
+          "name": "Document",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "findClosedRoomsByContactAndSourcePaginated",
+      "exported": true,
+      "qualifiedName": "LivechatRoomsRawEE.findClosedRoomsByContactAndSourcePaginated",
+      "line": 232,
+      "endLine": 251,
+      "signature": "override findClosedRoomsByContactAndSourcePaginated({ contactId, source, options = {}, }: { contactId: string; source?: string; options?: FindOptions; }): FindPaginated<FindCursor<IOmnichannelRoom>>",
+      "containerClass": "LivechatRoomsRawEE",
+      "calls": [
+        {
+          "name": "findPaginated",
+          "edgeType": "call"
+        },
+        {
+          "name": "escapeRegExp",
+          "edgeType": "call"
+        },
+        {
+          "name": "RegExp",
+          "edgeType": "new"
+        },
+        {
+          "name": "FindOptions",
+          "edgeType": "type"
+        },
+        {
+          "name": "FindPaginated",
+          "edgeType": "type"
+        },
+        {
+          "name": "FindCursor",
+          "edgeType": "type"
+        },
+        {
+          "name": "IOmnichannelRoom",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "constructor",
+      "exported": true,
+      "qualifiedName": "LivechatRoomsRawEE.constructor",
+      "line": 79,
+      "endLine": 81,
+      "signature": "constructor(db: Db, trash?: Collection<RocketChatRecordDeleted<IOmnichannelRoom>>)",
+      "containerClass": "LivechatRoomsRawEE",
+      "calls": [
+        {
+          "name": "Db",
+          "edgeType": "type"
+        },
+        {
+          "name": "Collection",
+          "edgeType": "type"
+        },
+        {
+          "name": "RocketChatRecordDeleted",
+          "edgeType": "type"
+        },
+        {
+          "name": "IOmnichannelRoom",
+          "edgeType": "type"
+        }
+      ]
+    }
+  ],
+  "imports": [
+    {
+      "module": "@rocket.chat/core-typings",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/core-typings",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/model-typings",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/models",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/models",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/string-helpers",
+      "resolved": "external"
+    },
+    {
+      "module": "mongodb",
+      "resolved": "external"
+    },
+    {
+      "module": "../../../../server/database/readSecondaryPreferred",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/server/database/readSecondaryPreferred.ts"
+    }
+  ]
+}

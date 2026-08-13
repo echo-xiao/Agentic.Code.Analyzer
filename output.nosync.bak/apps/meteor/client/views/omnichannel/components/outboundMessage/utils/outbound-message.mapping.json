@@ -1,0 +1,155 @@
+{
+  "sourcePath": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/client/views/omnichannel/components/outboundMessage/utils/outbound-message.ts",
+  "symbols": [
+    {
+      "type": "variable_function",
+      "name": "isRecipientStepValid",
+      "exported": true,
+      "line": 14,
+      "endLine": 16,
+      "signature": "(data: Partial<SubmitPayload>): data is Required<RecipientFormSubmitPayload> =>",
+      "calls": [
+        {
+          "name": "SubmitPayload",
+          "edgeType": "type"
+        },
+        {
+          "name": "RecipientFormSubmitPayload",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "variable_function",
+      "name": "isMessageStepValid",
+      "exported": true,
+      "line": 18,
+      "endLine": 20,
+      "signature": "(data: Partial<SubmitPayload>): data is Required<MessageFormSubmitPayload> =>",
+      "calls": [
+        {
+          "name": "SubmitPayload",
+          "edgeType": "type"
+        },
+        {
+          "name": "MessageFormSubmitPayload",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "variable_function",
+      "name": "isRepliesStepValid",
+      "exported": true,
+      "line": 22,
+      "endLine": 24,
+      "signature": "(data: Partial<SubmitPayload>): data is RepliesFormSubmitPayload =>",
+      "calls": [
+        {
+          "name": "SubmitPayload",
+          "edgeType": "type"
+        },
+        {
+          "name": "RepliesFormSubmitPayload",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "variable_function",
+      "name": "formatParameterForOutboundMessage",
+      "exported": false,
+      "line": 26,
+      "endLine": 33,
+      "signature": "(parameter: TemplateParameter): CoreTemplateParameter =>",
+      "calls": [
+        {
+          "name": "TemplateParameter",
+          "edgeType": "type"
+        },
+        {
+          "name": "CoreTemplateParameter",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "variable_function",
+      "name": "formatOutboundMessageComponents",
+      "exported": false,
+      "line": 30,
+      "endLine": 41,
+      "signature": "( components: IOutboundProviderTemplate['components'], parameters: TemplateParameters, ): TemplateComponent[] =>",
+      "calls": [
+        {
+          "name": "map",
+          "edgeType": "call"
+        },
+        {
+          "name": "IOutboundProviderTemplate",
+          "edgeType": "type"
+        },
+        {
+          "name": "TemplateParameters",
+          "edgeType": "type"
+        },
+        {
+          "name": "TemplateComponent",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "variable_function",
+      "name": "formatOutboundMessagePayload",
+      "exported": true,
+      "line": 37,
+      "endLine": 68,
+      "signature": "({ recipient, sender, template, type = 'template', templateParameters, departmentId, agentId, }: { type: IOutboundMessage['type']; recipient: string; sender: string; template: IOutboundProviderTemplate; templateParameters: TemplateParameters; departmentId?: string; agentId?: string; }): IOutboundMessage =>",
+      "calls": [
+        {
+          "name": "formatOutboundMessageComponents",
+          "edgeType": "call"
+        },
+        {
+          "name": "IOutboundMessage",
+          "edgeType": "type"
+        },
+        {
+          "name": "IOutboundProviderTemplate",
+          "edgeType": "type"
+        },
+        {
+          "name": "TemplateParameters",
+          "edgeType": "type"
+        }
+      ]
+    }
+  ],
+  "imports": [
+    {
+      "module": "@rocket.chat/core-typings",
+      "resolved": "external"
+    },
+    {
+      "module": "../components/OutboundMessageWizard/forms",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/client/views/omnichannel/components/outboundMessage/components/OutboundMessageWizard/forms/index.ts"
+    },
+    {
+      "module": "../components/OutboundMessageWizard/forms/MessageForm",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/client/views/omnichannel/components/outboundMessage/components/OutboundMessageWizard/forms/MessageForm/index.ts"
+    },
+    {
+      "module": "../components/OutboundMessageWizard/forms/RecipientForm/RecipientForm",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/client/views/omnichannel/components/outboundMessage/components/OutboundMessageWizard/forms/RecipientForm/RecipientForm.tsx"
+    },
+    {
+      "module": "../components/OutboundMessageWizard/forms/RepliesForm",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/client/views/omnichannel/components/outboundMessage/components/OutboundMessageWizard/forms/RepliesForm/index.ts"
+    },
+    {
+      "module": "../types/template",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/client/views/omnichannel/components/outboundMessage/types/template.ts"
+    }
+  ]
+}

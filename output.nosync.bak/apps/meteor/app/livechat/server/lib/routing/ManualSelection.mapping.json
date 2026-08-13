@@ -1,0 +1,90 @@
+{
+  "sourcePath": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/app/livechat/server/lib/routing/ManualSelection.ts",
+  "symbols": [
+    {
+      "type": "module",
+      "name": "ManualSelection",
+      "exported": false,
+      "line": 1,
+      "endLine": 35,
+      "signature": "ManualSelection",
+      "calls": [
+        {
+          "name": "registerMethod",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "class",
+      "name": "ManualSelection",
+      "exported": false,
+      "line": 14,
+      "endLine": 32,
+      "signature": "class ManualSelection implements IRoutingMethod",
+      "calls": [
+        {
+          "name": "IRoutingMethod",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "getNextAgent",
+      "exported": false,
+      "qualifiedName": "ManualSelection.getNextAgent",
+      "line": 29,
+      "endLine": 31,
+      "signature": "getNextAgent(_department?: string, _excludeAgent?: string): Promise<SelectedAgent | null | undefined>",
+      "containerClass": "ManualSelection",
+      "calls": [
+        {
+          "name": "resolve",
+          "edgeType": "call"
+        },
+        {
+          "name": "SelectedAgent",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "constructor",
+      "exported": false,
+      "qualifiedName": "ManualSelection.constructor",
+      "line": 17,
+      "endLine": 27,
+      "signature": "constructor()",
+      "containerClass": "ManualSelection",
+      "calls": []
+    },
+    {
+      "type": "class_property",
+      "name": "config",
+      "exported": false,
+      "qualifiedName": "ManualSelection.config",
+      "line": 15,
+      "endLine": 15,
+      "signature": "config: RoutingMethodConfig;",
+      "containerClass": "ManualSelection",
+      "calls": [
+        {
+          "name": "RoutingMethodConfig",
+          "edgeType": "type"
+        }
+      ]
+    }
+  ],
+  "imports": [
+    {
+      "module": "@rocket.chat/core-typings",
+      "resolved": "external"
+    },
+    {
+      "module": "../RoutingManager",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/app/livechat/server/lib/RoutingManager.ts"
+    }
+  ]
+}

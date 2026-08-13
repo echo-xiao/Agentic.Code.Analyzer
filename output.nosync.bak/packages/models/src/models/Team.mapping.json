@@ -1,0 +1,433 @@
+{
+  "sourcePath": "/Users/echoooooo/Desktop/code/Rocket.Chat/packages/models/src/models/Team.ts",
+  "symbols": [
+    {
+      "type": "class",
+      "name": "TeamRaw",
+      "exported": true,
+      "line": 7,
+      "endLine": 222,
+      "signature": "export class TeamRaw extends BaseRaw<ITeam> implements ITeamModel",
+      "calls": [
+        {
+          "name": "BaseRaw",
+          "edgeType": "type"
+        },
+        {
+          "name": "ITeamModel",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "modelIndexes",
+      "exported": true,
+      "qualifiedName": "TeamRaw.modelIndexes",
+      "line": 12,
+      "endLine": 14,
+      "signature": "protected override modelIndexes(): IndexDescription[]",
+      "containerClass": "TeamRaw",
+      "calls": [
+        {
+          "name": "IndexDescription",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "findByNames",
+      "exported": true,
+      "qualifiedName": "TeamRaw.findByNames",
+      "line": 22,
+      "endLine": 30,
+      "signature": "findByNames<P extends Document>( names: Array<string>, options?: undefined | FindOptions<ITeam> | FindOptions<P extends ITeam ? ITeam : P>, ): FindCursor<P> | FindCursor<ITeam>",
+      "containerClass": "TeamRaw",
+      "calls": [
+        {
+          "name": "find",
+          "edgeType": "call"
+        },
+        {
+          "name": "Document",
+          "edgeType": "type"
+        },
+        {
+          "name": "FindOptions",
+          "edgeType": "type"
+        },
+        {
+          "name": "ITeam",
+          "edgeType": "type"
+        },
+        {
+          "name": "FindCursor",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "findByIds",
+      "exported": true,
+      "qualifiedName": "TeamRaw.findByIds",
+      "line": 39,
+      "endLine": 49,
+      "signature": "findByIds<P extends Document>( ids: Array<string>, options?: undefined | FindOptions<ITeam> | FindOptions<P extends ITeam ? ITeam : P>, query?: Filter<ITeam>, ): FindCursor<P> | FindCursor<ITeam>",
+      "containerClass": "TeamRaw",
+      "calls": [
+        {
+          "name": "find",
+          "edgeType": "call"
+        },
+        {
+          "name": "Document",
+          "edgeType": "type"
+        },
+        {
+          "name": "FindOptions",
+          "edgeType": "type"
+        },
+        {
+          "name": "ITeam",
+          "edgeType": "type"
+        },
+        {
+          "name": "Filter",
+          "edgeType": "type"
+        },
+        {
+          "name": "FindCursor",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "findByIdsPaginated",
+      "exported": true,
+      "qualifiedName": "TeamRaw.findByIdsPaginated",
+      "line": 47,
+      "endLine": 57,
+      "signature": "findByIdsPaginated( ids: Array<string>, options?: undefined | FindOptions<ITeam>, query?: Filter<ITeam>, ): FindPaginated<FindCursor<ITeam>>",
+      "containerClass": "TeamRaw",
+      "calls": [
+        {
+          "name": "findPaginated",
+          "edgeType": "call"
+        },
+        {
+          "name": "FindOptions",
+          "edgeType": "type"
+        },
+        {
+          "name": "ITeam",
+          "edgeType": "type"
+        },
+        {
+          "name": "Filter",
+          "edgeType": "type"
+        },
+        {
+          "name": "FindPaginated",
+          "edgeType": "type"
+        },
+        {
+          "name": "FindCursor",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "findByIdsAndType",
+      "exported": true,
+      "qualifiedName": "TeamRaw.findByIdsAndType",
+      "line": 65,
+      "endLine": 74,
+      "signature": "findByIdsAndType<P extends Document>( ids: Array<string>, type: TeamType, options?: undefined | FindOptions<ITeam> | FindOptions<P extends ITeam ? ITeam : P>, ): FindCursor<P> | FindCursor<ITeam>",
+      "containerClass": "TeamRaw",
+      "calls": [
+        {
+          "name": "find",
+          "edgeType": "call"
+        },
+        {
+          "name": "Document",
+          "edgeType": "type"
+        },
+        {
+          "name": "TeamType",
+          "edgeType": "type"
+        },
+        {
+          "name": "FindOptions",
+          "edgeType": "type"
+        },
+        {
+          "name": "ITeam",
+          "edgeType": "type"
+        },
+        {
+          "name": "FindCursor",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "findByType",
+      "exported": true,
+      "qualifiedName": "TeamRaw.findByType",
+      "line": 79,
+      "endLine": 87,
+      "signature": "findByType<P extends Document>( type: number, options?: undefined | FindOptions<ITeam> | FindOptions<P extends ITeam ? ITeam : P>, ): FindCursor<ITeam> | FindCursor<P>",
+      "containerClass": "TeamRaw",
+      "calls": [
+        {
+          "name": "find",
+          "edgeType": "call"
+        },
+        {
+          "name": "Document",
+          "edgeType": "type"
+        },
+        {
+          "name": "FindOptions",
+          "edgeType": "type"
+        },
+        {
+          "name": "ITeam",
+          "edgeType": "type"
+        },
+        {
+          "name": "FindCursor",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "findByNameAndTeamIds",
+      "exported": true,
+      "qualifiedName": "TeamRaw.findByNameAndTeamIds",
+      "line": 96,
+      "endLine": 132,
+      "signature": "findByNameAndTeamIds<P extends Document>( name: string | RegExp, teamIds: Array<string>, options?: undefined | FindOptions<ITeam> | FindOptions<P extends ITeam ? ITeam : P>, ): FindCursor<P> | FindCursor<ITeam>",
+      "containerClass": "TeamRaw",
+      "calls": [
+        {
+          "name": "find",
+          "edgeType": "call"
+        },
+        {
+          "name": "Document",
+          "edgeType": "type"
+        },
+        {
+          "name": "FindOptions",
+          "edgeType": "type"
+        },
+        {
+          "name": "ITeam",
+          "edgeType": "type"
+        },
+        {
+          "name": "FindCursor",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "findOneByName",
+      "exported": true,
+      "qualifiedName": "TeamRaw.findOneByName",
+      "line": 110,
+      "endLine": 118,
+      "signature": "findOneByName<P extends Document>( name: string | RegExp, options?: undefined | FindOptions<ITeam> | FindOptions<P extends ITeam ? ITeam : P>, ): Promise<P | null> | Promise<ITeam | null>",
+      "containerClass": "TeamRaw",
+      "calls": [
+        {
+          "name": "findOne",
+          "edgeType": "call"
+        },
+        {
+          "name": "Document",
+          "edgeType": "type"
+        },
+        {
+          "name": "FindOptions",
+          "edgeType": "type"
+        },
+        {
+          "name": "ITeam",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "findOneByMainRoomId",
+      "exported": true,
+      "qualifiedName": "TeamRaw.findOneByMainRoomId",
+      "line": 123,
+      "endLine": 128,
+      "signature": "findOneByMainRoomId<P extends Document>( roomId: string, options?: undefined | FindOptions<ITeam> | FindOptions<P extends ITeam ? ITeam : P>, ): Promise<P | null> | Promise<ITeam | null>",
+      "containerClass": "TeamRaw",
+      "calls": [
+        {
+          "name": "findOne",
+          "edgeType": "call"
+        },
+        {
+          "name": "Document",
+          "edgeType": "type"
+        },
+        {
+          "name": "FindOptions",
+          "edgeType": "type"
+        },
+        {
+          "name": "ITeam",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "updateMainRoomForTeam",
+      "exported": true,
+      "qualifiedName": "TeamRaw.updateMainRoomForTeam",
+      "line": 130,
+      "endLine": 141,
+      "signature": "updateMainRoomForTeam(id: string, roomId: string): Promise<UpdateResult>",
+      "containerClass": "TeamRaw",
+      "calls": [
+        {
+          "name": "updateOne",
+          "edgeType": "call"
+        },
+        {
+          "name": "UpdateResult",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "deleteOneById",
+      "exported": true,
+      "qualifiedName": "TeamRaw.deleteOneById",
+      "line": 134,
+      "endLine": 138,
+      "signature": "deleteOneById(id: string): Promise<DeleteResult>",
+      "containerClass": "TeamRaw",
+      "calls": [
+        {
+          "name": "deleteOne",
+          "edgeType": "call"
+        },
+        {
+          "name": "DeleteResult",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "deleteOneByName",
+      "exported": true,
+      "qualifiedName": "TeamRaw.deleteOneByName",
+      "line": 138,
+      "endLine": 140,
+      "signature": "deleteOneByName(name: string): Promise<DeleteResult>",
+      "containerClass": "TeamRaw",
+      "calls": [
+        {
+          "name": "deleteOne",
+          "edgeType": "call"
+        },
+        {
+          "name": "DeleteResult",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "updateNameAndType",
+      "exported": true,
+      "qualifiedName": "TeamRaw.updateNameAndType",
+      "line": 142,
+      "endLine": 160,
+      "signature": "updateNameAndType(teamId: string, nameAndType: { name?: string; type?: TeamType }): Promise<UpdateResult>",
+      "containerClass": "TeamRaw",
+      "calls": [
+        {
+          "name": "assign",
+          "edgeType": "call"
+        },
+        {
+          "name": "updateOne",
+          "edgeType": "call"
+        },
+        {
+          "name": "TeamType",
+          "edgeType": "type"
+        },
+        {
+          "name": "UpdateResult",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "constructor",
+      "exported": true,
+      "qualifiedName": "TeamRaw.constructor",
+      "line": 8,
+      "endLine": 10,
+      "signature": "constructor(db: Db, trash?: Collection<RocketChatRecordDeleted<ITeam>>)",
+      "containerClass": "TeamRaw",
+      "calls": [
+        {
+          "name": "Db",
+          "edgeType": "type"
+        },
+        {
+          "name": "Collection",
+          "edgeType": "type"
+        },
+        {
+          "name": "RocketChatRecordDeleted",
+          "edgeType": "type"
+        },
+        {
+          "name": "ITeam",
+          "edgeType": "type"
+        }
+      ]
+    }
+  ],
+  "imports": [
+    {
+      "module": "@rocket.chat/core-typings",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/model-typings",
+      "resolved": "external"
+    },
+    {
+      "module": "mongodb",
+      "resolved": "external"
+    },
+    {
+      "module": "./BaseRaw",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/packages/models/src/models/BaseRaw.ts"
+    }
+  ]
+}

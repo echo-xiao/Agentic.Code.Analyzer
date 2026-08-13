@@ -1,0 +1,99 @@
+{
+  "sourcePath": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/client/views/room/composer/hooks/useMessageComposerMergedRefs.ts",
+  "symbols": [
+    {
+      "type": "variable_function",
+      "name": "isRefCallback",
+      "exported": false,
+      "line": 4,
+      "endLine": 4,
+      "signature": "<T>(x: unknown): x is RefCallback<T> =>",
+      "calls": [
+        {
+          "name": "RefCallback",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "variable_function",
+      "name": "isMutableRefObject",
+      "exported": false,
+      "line": 5,
+      "endLine": 5,
+      "signature": "<T>(x: unknown): x is MutableRefObject<T> =>",
+      "calls": [
+        {
+          "name": "MutableRefObject",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "variable_function",
+      "name": "setRef",
+      "exported": true,
+      "line": 7,
+      "endLine": 16,
+      "signature": "<T>(ref: Ref<T> | undefined, refValue: T) =>",
+      "calls": [
+        {
+          "name": "isRefCallback",
+          "edgeType": "call"
+        },
+        {
+          "name": "ref",
+          "edgeType": "call"
+        },
+        {
+          "name": "isMutableRefObject",
+          "edgeType": "call"
+        },
+        {
+          "name": "Ref",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "variable_function",
+      "name": "useMessageComposerMergedRefs",
+      "exported": true,
+      "line": 18,
+      "endLine": 23,
+      "signature": "<T>(...refs: (Ref<T> | undefined)[]): RefCallback<T> =>",
+      "calls": [
+        {
+          "name": "useCallback",
+          "edgeType": "call"
+        },
+        {
+          "name": "forEach",
+          "edgeType": "call"
+        },
+        {
+          "name": "setRef",
+          "edgeType": "call"
+        },
+        {
+          "name": "Ref",
+          "edgeType": "type"
+        },
+        {
+          "name": "RefCallback",
+          "edgeType": "type"
+        }
+      ]
+    }
+  ],
+  "imports": [
+    {
+      "module": "react",
+      "resolved": "external"
+    },
+    {
+      "module": "react",
+      "resolved": "external"
+    }
+  ]
+}

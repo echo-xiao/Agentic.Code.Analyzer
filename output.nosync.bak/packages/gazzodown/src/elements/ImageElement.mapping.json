@@ -1,0 +1,86 @@
+{
+  "sourcePath": "/Users/echoooooo/Desktop/code/Rocket.Chat/packages/gazzodown/src/elements/ImageElement.tsx",
+  "symbols": [
+    {
+      "type": "variable_function",
+      "name": "flattenMarkup",
+      "exported": false,
+      "line": 6,
+      "endLine": 38,
+      "signature": "( markup: | MessageParser.Timestamp | MessageParser.Markup | MessageParser.InlineCode | MessageParser.Link | MessageParser.Emoji | MessageParser.ChannelMention | MessageParser.UserMention, ): string =>",
+      "calls": [
+        {
+          "name": "join",
+          "edgeType": "call"
+        },
+        {
+          "name": "map",
+          "edgeType": "call"
+        },
+        {
+          "name": "flattenMarkup",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "variable_function",
+      "name": "ImageElement",
+      "exported": false,
+      "line": 28,
+      "endLine": 37,
+      "signature": "({ src, alt }: ImageElementProps) =>",
+      "calls": [
+        {
+          "name": "useMemo",
+          "edgeType": "call"
+        },
+        {
+          "name": "flattenMarkup",
+          "edgeType": "call"
+        },
+        {
+          "name": "sanitizeUrl",
+          "edgeType": "call"
+        },
+        {
+          "name": "safeSrc",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "plainAlt",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "style",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "ImageElementProps",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "type",
+      "name": "ImageElementProps",
+      "line": 23,
+      "endLine": 26,
+      "signature": "export type ImageElementProps ="
+    }
+  ],
+  "imports": [
+    {
+      "module": "@rocket.chat/message-parser",
+      "resolved": "external"
+    },
+    {
+      "module": "react",
+      "resolved": "external"
+    },
+    {
+      "module": "./sanitizeUrl",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/packages/gazzodown/src/elements/sanitizeUrl.ts"
+    }
+  ]
+}

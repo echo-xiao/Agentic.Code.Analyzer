@@ -1,0 +1,219 @@
+{
+  "sourcePath": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/tests/e2e/page-objects/omnichannel/omnichannel-business-hours.ts",
+  "symbols": [
+    {
+      "type": "class",
+      "name": "OmnichannelBusinessHoursTable",
+      "exported": false,
+      "line": 7,
+      "endLine": 11,
+      "signature": "class OmnichannelBusinessHoursTable extends Table",
+      "calls": [
+        {
+          "name": "Table",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "constructor",
+      "exported": false,
+      "qualifiedName": "OmnichannelBusinessHoursTable.constructor",
+      "line": 8,
+      "endLine": 10,
+      "signature": "constructor(page: Page)",
+      "containerClass": "OmnichannelBusinessHoursTable",
+      "calls": [
+        {
+          "name": "getByRole",
+          "edgeType": "call"
+        },
+        {
+          "name": "Page",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "class",
+      "name": "OmnichannelBusinessHours",
+      "exported": true,
+      "line": 13,
+      "endLine": 66,
+      "signature": "export class OmnichannelBusinessHours extends OmnichannelAdmin",
+      "calls": [
+        {
+          "name": "OmnichannelAdmin",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "deleteBusinessHour",
+      "exported": true,
+      "qualifiedName": "OmnichannelBusinessHours.deleteBusinessHour",
+      "line": 48,
+      "endLine": 51,
+      "signature": "async deleteBusinessHour(name: string)",
+      "containerClass": "OmnichannelBusinessHours",
+      "calls": [
+        {
+          "name": "click",
+          "edgeType": "call"
+        },
+        {
+          "name": "getByRole",
+          "edgeType": "call"
+        },
+        {
+          "name": "findRowByName",
+          "edgeType": "call"
+        },
+        {
+          "name": "confirmDelete",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "getCheckboxByLabel",
+      "exported": true,
+      "qualifiedName": "OmnichannelBusinessHours.getCheckboxByLabel",
+      "line": 52,
+      "endLine": 54,
+      "signature": "getCheckboxByLabel(name: string): Locator",
+      "containerClass": "OmnichannelBusinessHours",
+      "calls": [
+        {
+          "name": "locator",
+          "edgeType": "call"
+        },
+        {
+          "name": "getByRole",
+          "edgeType": "call"
+        },
+        {
+          "name": "Locator",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "findDepartmentsChipOption",
+      "exported": true,
+      "qualifiedName": "OmnichannelBusinessHours.findDepartmentsChipOption",
+      "line": 56,
+      "endLine": 58,
+      "signature": "findDepartmentsChipOption(name: string)",
+      "containerClass": "OmnichannelBusinessHours",
+      "calls": [
+        {
+          "name": "getByRole",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "selectDepartment",
+      "exported": true,
+      "qualifiedName": "OmnichannelBusinessHours.selectDepartment",
+      "line": 60,
+      "endLine": 64,
+      "signature": "async selectDepartment(name: string)",
+      "containerClass": "OmnichannelBusinessHours",
+      "calls": [
+        {
+          "name": "click",
+          "edgeType": "call"
+        },
+        {
+          "name": "fill",
+          "edgeType": "call"
+        },
+        {
+          "name": "selectOption",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "constructor",
+      "exported": true,
+      "qualifiedName": "OmnichannelBusinessHours.constructor",
+      "line": 18,
+      "endLine": 22,
+      "signature": "constructor(page: Page)",
+      "containerClass": "OmnichannelBusinessHours",
+      "calls": [
+        {
+          "name": "OmnichannelBusinessHoursTable",
+          "edgeType": "new"
+        },
+        {
+          "name": "Listbox",
+          "edgeType": "new"
+        },
+        {
+          "name": "Page",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "class_property",
+      "name": "table",
+      "exported": true,
+      "qualifiedName": "OmnichannelBusinessHours.table",
+      "line": 14,
+      "endLine": 14,
+      "signature": "readonly table: OmnichannelBusinessHoursTable;",
+      "containerClass": "OmnichannelBusinessHours",
+      "calls": [
+        {
+          "name": "OmnichannelBusinessHoursTable",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "class_property",
+      "name": "listbox",
+      "exported": true,
+      "qualifiedName": "OmnichannelBusinessHours.listbox",
+      "line": 16,
+      "endLine": 16,
+      "signature": "readonly listbox: Listbox;",
+      "containerClass": "OmnichannelBusinessHours",
+      "calls": [
+        {
+          "name": "Listbox",
+          "edgeType": "type"
+        }
+      ]
+    }
+  ],
+  "imports": [
+    {
+      "module": "@playwright/test",
+      "resolved": "external"
+    },
+    {
+      "module": "./omnichannel-admin",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/tests/e2e/page-objects/omnichannel/omnichannel-admin.ts"
+    },
+    {
+      "module": "../fragments/listbox",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/tests/e2e/page-objects/fragments/listbox.ts"
+    },
+    {
+      "module": "../fragments/table",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/tests/e2e/page-objects/fragments/table.ts"
+    }
+  ]
+}

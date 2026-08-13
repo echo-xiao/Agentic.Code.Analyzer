@@ -1,0 +1,398 @@
+{
+  "sourcePath": "/Users/echoooooo/Desktop/code/Rocket.Chat/packages/ui-voip/src/hooks/useDevicePermissionPrompt.tsx",
+  "symbols": [
+    {
+      "type": "class",
+      "name": "PermissionRequestCancelledCallRejectedError",
+      "exported": true,
+      "line": 56,
+      "endLine": 61,
+      "signature": "export class PermissionRequestCancelledCallRejectedError extends Error",
+      "calls": []
+    },
+    {
+      "type": "method",
+      "name": "constructor",
+      "exported": true,
+      "qualifiedName": "PermissionRequestCancelledCallRejectedError.constructor",
+      "line": 57,
+      "endLine": 60,
+      "signature": "constructor(message: string)",
+      "containerClass": "PermissionRequestCancelledCallRejectedError",
+      "calls": []
+    },
+    {
+      "type": "variable_function",
+      "name": "getModalType",
+      "exported": false,
+      "line": 30,
+      "endLine": 48,
+      "signature": "( actionType: UseDevicePermissionPromptProps['actionType'], state: Exclude<PermissionState, 'granted'>, ): PermissionFlowModalType =>",
+      "calls": [
+        {
+          "name": "UseDevicePermissionPromptProps",
+          "edgeType": "type"
+        },
+        {
+          "name": "PermissionState",
+          "edgeType": "type"
+        },
+        {
+          "name": "PermissionFlowModalType",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "variable_function",
+      "name": "stopTracks",
+      "exported": true,
+      "line": 37,
+      "endLine": 41,
+      "signature": "(stream: MediaStream) =>",
+      "calls": [
+        {
+          "name": "forEach",
+          "edgeType": "call"
+        },
+        {
+          "name": "getTracks",
+          "edgeType": "call"
+        },
+        {
+          "name": "stop",
+          "edgeType": "call"
+        },
+        {
+          "name": "MediaStream",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "inner_function",
+      "name": "onAccept",
+      "exported": false,
+      "qualifiedName": "useDevicePermissionPrompt2.onAccept",
+      "line": 72,
+      "endLine": 94,
+      "signature": "(stream: MediaStream) =>",
+      "calls": [
+        {
+          "name": "forEach",
+          "edgeType": "call"
+        },
+        {
+          "name": "getTracks",
+          "edgeType": "call"
+        },
+        {
+          "name": "getSettings",
+          "edgeType": "call"
+        },
+        {
+          "name": "then",
+          "edgeType": "call"
+        },
+        {
+          "name": "enumerateDevices",
+          "edgeType": "call"
+        },
+        {
+          "name": "find",
+          "edgeType": "call"
+        },
+        {
+          "name": "setInputMediaDevice",
+          "edgeType": "call"
+        },
+        {
+          "name": "resolve",
+          "edgeType": "call"
+        },
+        {
+          "name": "MediaStream",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "inner_function",
+      "name": "onConfirm",
+      "exported": false,
+      "qualifiedName": "useDevicePermissionPrompt2.onConfirm",
+      "line": 109,
+      "endLine": 121,
+      "signature": "() =>",
+      "calls": [
+        {
+          "name": "requestDevice",
+          "edgeType": "call"
+        },
+        {
+          "name": "reject",
+          "edgeType": "call"
+        },
+        {
+          "name": "setModal",
+          "edgeType": "call"
+        },
+        {
+          "name": "onAccept",
+          "edgeType": "call"
+        },
+        {
+          "name": "PermissionFlowModal",
+          "edgeType": "jsx"
+        }
+      ]
+    },
+    {
+      "type": "inner_function",
+      "name": "onCancel",
+      "exported": false,
+      "qualifiedName": "useDevicePermissionPrompt2.onCancel",
+      "line": 125,
+      "endLine": 131,
+      "signature": "() =>",
+      "calls": [
+        {
+          "name": "reject",
+          "edgeType": "call"
+        },
+        {
+          "name": "setModal",
+          "edgeType": "call"
+        },
+        {
+          "name": "PermissionRequestCancelledCallRejectedError",
+          "edgeType": "new"
+        }
+      ]
+    },
+    {
+      "type": "inner_function",
+      "name": "onReject",
+      "exported": false,
+      "qualifiedName": "useDevicePermissionPrompt2.onReject",
+      "line": 111,
+      "endLine": 114,
+      "signature": "(...args) =>",
+      "calls": [
+        {
+          "name": "reject",
+          "edgeType": "call"
+        },
+        {
+          "name": "setModal",
+          "edgeType": "call"
+        },
+        {
+          "name": "PermissionFlowModal",
+          "edgeType": "jsx"
+        }
+      ]
+    },
+    {
+      "type": "inner_function",
+      "name": "onAccept",
+      "exported": false,
+      "qualifiedName": "useDevicePermissionPrompt2.onAccept",
+      "line": 115,
+      "endLine": 118,
+      "signature": "(...args) =>",
+      "calls": [
+        {
+          "name": "onAccept",
+          "edgeType": "call"
+        },
+        {
+          "name": "setModal",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "variable_function",
+      "name": "useDevicePermissionPrompt2",
+      "exported": true,
+      "line": 47,
+      "endLine": 137,
+      "signature": "() =>",
+      "calls": [
+        {
+          "name": "useMediaDeviceMicrophonePermission",
+          "edgeType": "call"
+        },
+        {
+          "name": "useSetModal",
+          "edgeType": "call"
+        },
+        {
+          "name": "useSetInputMediaDevice",
+          "edgeType": "call"
+        },
+        {
+          "name": "useQueryClient",
+          "edgeType": "call"
+        },
+        {
+          "name": "useSelectedDevices",
+          "edgeType": "call"
+        },
+        {
+          "name": "useCallback",
+          "edgeType": "call"
+        },
+        {
+          "name": "invalidateQueries",
+          "edgeType": "call"
+        },
+        {
+          "name": "_resolve",
+          "edgeType": "call"
+        },
+        {
+          "name": "forEach",
+          "edgeType": "call"
+        },
+        {
+          "name": "getTracks",
+          "edgeType": "call"
+        },
+        {
+          "name": "getSettings",
+          "edgeType": "call"
+        },
+        {
+          "name": "then",
+          "edgeType": "call"
+        },
+        {
+          "name": "enumerateDevices",
+          "edgeType": "call"
+        },
+        {
+          "name": "find",
+          "edgeType": "call"
+        },
+        {
+          "name": "setInputMediaDevice",
+          "edgeType": "call"
+        },
+        {
+          "name": "resolve",
+          "edgeType": "call"
+        },
+        {
+          "name": "requestDevice",
+          "edgeType": "call"
+        },
+        {
+          "name": "reject",
+          "edgeType": "call"
+        },
+        {
+          "name": "setModal",
+          "edgeType": "call"
+        },
+        {
+          "name": "onAccept",
+          "edgeType": "call"
+        },
+        {
+          "name": "getModalType",
+          "edgeType": "call"
+        },
+        {
+          "name": "PermissionFlowModal",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "modalType",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "onCancel",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "onConfirm",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "PermissionRequestCancelledCallRejectedError",
+          "edgeType": "new"
+        },
+        {
+          "name": "MediaStreamConstraints",
+          "edgeType": "type"
+        },
+        {
+          "name": "MediaStream",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "type",
+      "name": "OnAccept",
+      "line": 7,
+      "endLine": 7,
+      "signature": "type OnAccept = (stream: MediaStream) => void;"
+    },
+    {
+      "type": "type",
+      "name": "OnReject",
+      "line": 8,
+      "endLine": 8,
+      "signature": "type OnReject = (error?: DOMException) => void;"
+    },
+    {
+      "type": "type",
+      "name": "DeviceChangePromptProps",
+      "line": 10,
+      "endLine": 14,
+      "signature": "type DeviceChangePromptProps ="
+    },
+    {
+      "type": "type",
+      "name": "OutgoingPromptProps",
+      "line": 16,
+      "endLine": 20,
+      "signature": "type OutgoingPromptProps ="
+    },
+    {
+      "type": "type",
+      "name": "IncomingPromptProps",
+      "line": 22,
+      "endLine": 26,
+      "signature": "type IncomingPromptProps ="
+    },
+    {
+      "type": "type",
+      "name": "UseDevicePermissionPromptProps",
+      "line": 28,
+      "endLine": 28,
+      "signature": "type UseDevicePermissionPromptProps = DeviceChangePromptProps | OutgoingPromptProps | IncomingPromptProps;"
+    }
+  ],
+  "imports": [
+    {
+      "module": "@rocket.chat/ui-contexts",
+      "resolved": "external"
+    },
+    {
+      "module": "@tanstack/react-query",
+      "resolved": "external"
+    },
+    {
+      "module": "react",
+      "resolved": "external"
+    },
+    {
+      "module": "../views",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/packages/ui-voip/src/views/index.ts"
+    }
+  ]
+}

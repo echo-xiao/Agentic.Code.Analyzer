@@ -1,0 +1,152 @@
+{
+  "sourcePath": "/Users/echoooooo/Desktop/code/Rocket.Chat/packages/livechat/src/components/Tooltip/TooltipTrigger.tsx",
+  "symbols": [
+    {
+      "type": "inner_function",
+      "name": "onMouseEnter",
+      "exported": false,
+      "qualifiedName": "TooltipTrigger.onMouseEnter",
+      "line": 19,
+      "endLine": 19,
+      "signature": "(event: MouseEvent<any>) =>",
+      "calls": [
+        {
+          "name": "showTooltip",
+          "edgeType": "call"
+        },
+        {
+          "name": "MouseEvent",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "inner_function",
+      "name": "onMouseLeave",
+      "exported": false,
+      "qualifiedName": "TooltipTrigger.onMouseLeave",
+      "line": 20,
+      "endLine": 20,
+      "signature": "() =>",
+      "calls": [
+        {
+          "name": "hideTooltip",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "inner_function",
+      "name": "onFocusCapture",
+      "exported": false,
+      "qualifiedName": "TooltipTrigger.onFocusCapture",
+      "line": 21,
+      "endLine": 21,
+      "signature": "(event: FocusEvent<any>) =>",
+      "calls": [
+        {
+          "name": "showTooltip",
+          "edgeType": "call"
+        },
+        {
+          "name": "FocusEvent",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "inner_function",
+      "name": "onBlurCapture",
+      "exported": false,
+      "qualifiedName": "TooltipTrigger.onBlurCapture",
+      "line": 22,
+      "endLine": 22,
+      "signature": "() =>",
+      "calls": [
+        {
+          "name": "hideTooltip",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "variable_function",
+      "name": "TooltipTrigger",
+      "exported": false,
+      "line": 14,
+      "endLine": 28,
+      "signature": "({ children, content, placement }: TooltipTriggerProps) =>",
+      "calls": [
+        {
+          "name": "map",
+          "edgeType": "call"
+        },
+        {
+          "name": "toChildArray",
+          "edgeType": "call"
+        },
+        {
+          "name": "cloneElement",
+          "edgeType": "call"
+        },
+        {
+          "name": "showTooltip",
+          "edgeType": "call"
+        },
+        {
+          "name": "hideTooltip",
+          "edgeType": "call"
+        },
+        {
+          "name": "TooltipContext.Consumer",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "TooltipTriggerProps",
+          "edgeType": "type"
+        },
+        {
+          "name": "VNode",
+          "edgeType": "type"
+        },
+        {
+          "name": "MouseEvent",
+          "edgeType": "type"
+        },
+        {
+          "name": "FocusEvent",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "type",
+      "name": "TooltipTriggerProps",
+      "line": 8,
+      "endLine": 12,
+      "signature": "export type TooltipTriggerProps ="
+    }
+  ],
+  "imports": [
+    {
+      "module": "preact",
+      "resolved": "external"
+    },
+    {
+      "module": "preact",
+      "resolved": "external"
+    },
+    {
+      "module": "preact/compat",
+      "resolved": "external"
+    },
+    {
+      "module": "./Tooltip",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/packages/livechat/src/components/Tooltip/Tooltip.tsx"
+    },
+    {
+      "module": "./TooltipContext",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/packages/livechat/src/components/Tooltip/TooltipContext.ts"
+    }
+  ]
+}

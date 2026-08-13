@@ -1,0 +1,81 @@
+{
+  "sourcePath": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/app/2fa/server/lib/totp.ts",
+  "symbols": [
+    {
+      "type": "variable",
+      "name": "TOTP",
+      "exported": true,
+      "line": 8,
+      "endLine": 78,
+      "signature": "TOTP =",
+      "calls": [
+        {
+          "name": "generateSecret",
+          "edgeType": "call"
+        },
+        {
+          "name": "otpauthURL",
+          "edgeType": "call"
+        },
+        {
+          "name": "SHA256",
+          "edgeType": "call"
+        },
+        {
+          "name": "indexOf",
+          "edgeType": "call"
+        },
+        {
+          "name": "splice",
+          "edgeType": "call"
+        },
+        {
+          "name": "update2FABackupCodesByUserId",
+          "edgeType": "call"
+        },
+        {
+          "name": "get",
+          "edgeType": "call"
+        },
+        {
+          "name": "verifyDelta",
+          "edgeType": "call"
+        },
+        {
+          "name": "verify",
+          "edgeType": "call"
+        },
+        {
+          "name": "id",
+          "edgeType": "call"
+        },
+        {
+          "name": "push",
+          "edgeType": "call"
+        }
+      ]
+    }
+  ],
+  "imports": [
+    {
+      "module": "@rocket.chat/models",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/random",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/sha256",
+      "resolved": "external"
+    },
+    {
+      "module": "speakeasy",
+      "resolved": "external"
+    },
+    {
+      "module": "../../../settings/server",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/app/settings/server/index.ts"
+    }
+  ]
+}

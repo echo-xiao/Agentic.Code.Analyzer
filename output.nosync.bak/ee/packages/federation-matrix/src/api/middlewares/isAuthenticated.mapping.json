@@ -1,0 +1,65 @@
+{
+  "sourcePath": "/Users/echoooooo/Desktop/code/Rocket.Chat/ee/packages/federation-matrix/src/api/middlewares/isAuthenticated.ts",
+  "symbols": [
+    {
+      "type": "variable_function",
+      "name": "isAuthenticatedMiddleware",
+      "exported": true,
+      "line": 5,
+      "endLine": 39,
+      "signature": "() =>",
+      "calls": [
+        {
+          "name": "createMiddleware",
+          "edgeType": "call"
+        },
+        {
+          "name": "json",
+          "edgeType": "call"
+        },
+        {
+          "name": "clone",
+          "edgeType": "call"
+        },
+        {
+          "name": "header",
+          "edgeType": "call"
+        },
+        {
+          "name": "verifyRequestSignature",
+          "edgeType": "call"
+        },
+        {
+          "name": "set",
+          "edgeType": "call"
+        },
+        {
+          "name": "next",
+          "edgeType": "call"
+        },
+        {
+          "name": "URL",
+          "edgeType": "new"
+        },
+        {
+          "name": "Context",
+          "edgeType": "type"
+        }
+      ]
+    }
+  ],
+  "imports": [
+    {
+      "module": "@rocket.chat/federation-sdk",
+      "resolved": "external"
+    },
+    {
+      "module": "hono",
+      "resolved": "external"
+    },
+    {
+      "module": "hono/factory",
+      "resolved": "external"
+    }
+  ]
+}

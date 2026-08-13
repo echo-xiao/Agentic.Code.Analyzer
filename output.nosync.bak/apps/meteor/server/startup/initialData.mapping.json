@@ -1,0 +1,251 @@
+{
+  "sourcePath": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/server/startup/initialData.ts",
+  "symbols": [
+    {
+      "type": "module",
+      "name": "initialData",
+      "exported": false,
+      "line": 1,
+      "endLine": 258,
+      "signature": "initialData",
+      "calls": [
+        {
+          "name": "startup",
+          "edgeType": "call"
+        },
+        {
+          "name": "get",
+          "edgeType": "call"
+        },
+        {
+          "name": "findOneById",
+          "edgeType": "call"
+        },
+        {
+          "name": "createWithIdTypeAndName",
+          "edgeType": "call"
+        },
+        {
+          "name": "updateValueById",
+          "edgeType": "call"
+        },
+        {
+          "name": "notifyOnSettingChangedById",
+          "edgeType": "call"
+        },
+        {
+          "name": "create",
+          "edgeType": "call"
+        },
+        {
+          "name": "addUserRolesAsync",
+          "edgeType": "call"
+        },
+        {
+          "name": "getBinaryAsync",
+          "edgeType": "call"
+        },
+        {
+          "name": "from",
+          "edgeType": "call"
+        },
+        {
+          "name": "getStore",
+          "edgeType": "call"
+        },
+        {
+          "name": "deleteByName",
+          "edgeType": "call"
+        },
+        {
+          "name": "insert",
+          "edgeType": "call"
+        },
+        {
+          "name": "setAvatarData",
+          "edgeType": "call"
+        },
+        {
+          "name": "log",
+          "edgeType": "call"
+        },
+        {
+          "name": "insertAdminUserFromEnv",
+          "edgeType": "call"
+        },
+        {
+          "name": "parse",
+          "edgeType": "call"
+        },
+        {
+          "name": "red",
+          "edgeType": "call"
+        },
+        {
+          "name": "green",
+          "edgeType": "call"
+        },
+        {
+          "name": "stringify",
+          "edgeType": "call"
+        },
+        {
+          "name": "addUserToDefaultChannels",
+          "edgeType": "call"
+        },
+        {
+          "name": "countUsersInRole",
+          "edgeType": "call"
+        },
+        {
+          "name": "getOldest",
+          "edgeType": "call"
+        },
+        {
+          "name": "removeById",
+          "edgeType": "call"
+        },
+        {
+          "name": "findOneByEmailAddress",
+          "edgeType": "call"
+        },
+        {
+          "name": "checkUsernameAvailability",
+          "edgeType": "call"
+        },
+        {
+          "name": "setPasswordAsync",
+          "edgeType": "call"
+        },
+        {
+          "name": "addCallHistoryTestData",
+          "edgeType": "call"
+        },
+        {
+          "name": "IUser",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "function",
+      "name": "insertAdminUserFromEnv",
+      "exported": true,
+      "line": 16,
+      "endLine": 84,
+      "signature": "export async function insertAdminUserFromEnv()",
+      "calls": [
+        {
+          "name": "countUsersInRole",
+          "edgeType": "call"
+        },
+        {
+          "name": "log",
+          "edgeType": "call"
+        },
+        {
+          "name": "green",
+          "edgeType": "call"
+        },
+        {
+          "name": "validateEmail",
+          "edgeType": "call"
+        },
+        {
+          "name": "findOneByEmailAddress",
+          "edgeType": "call"
+        },
+        {
+          "name": "red",
+          "edgeType": "call"
+        },
+        {
+          "name": "get",
+          "edgeType": "call"
+        },
+        {
+          "name": "test",
+          "edgeType": "call"
+        },
+        {
+          "name": "checkUsernameAvailability",
+          "edgeType": "call"
+        },
+        {
+          "name": "create",
+          "edgeType": "call"
+        },
+        {
+          "name": "setPasswordAsync",
+          "edgeType": "call"
+        },
+        {
+          "name": "addUserRolesAsync",
+          "edgeType": "call"
+        },
+        {
+          "name": "RegExp",
+          "edgeType": "new"
+        },
+        {
+          "name": "IUser",
+          "edgeType": "type"
+        }
+      ]
+    }
+  ],
+  "imports": [
+    {
+      "module": "@rocket.chat/core-typings",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/models",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/tools",
+      "resolved": "external"
+    },
+    {
+      "module": "colors/safe",
+      "resolved": "external"
+    },
+    {
+      "module": "meteor/accounts-base",
+      "resolved": "external"
+    },
+    {
+      "module": "meteor/meteor",
+      "resolved": "external"
+    },
+    {
+      "module": "./callHistoryTestData",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/server/startup/callHistoryTestData.ts"
+    },
+    {
+      "module": "../../app/file-upload/server",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/app/file-upload/server/index.ts"
+    },
+    {
+      "module": "../../app/lib/server/lib/notifyListener",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/app/lib/server/lib/notifyListener.ts"
+    },
+    {
+      "module": "../../app/settings/server",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/app/settings/server/index.ts"
+    },
+    {
+      "module": "../lib/roles/addUserRoles",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/server/lib/roles/addUserRoles.ts"
+    },
+    {
+      "module": "../lib/rooms/addUserToDefaultChannels",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/server/lib/rooms/addUserToDefaultChannels.ts"
+    },
+    {
+      "module": "../lib/users/checkUsernameAvailability",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/server/lib/users/checkUsernameAvailability.ts"
+    }
+  ]
+}

@@ -1,0 +1,54 @@
+{
+  "sourcePath": "/Users/echoooooo/Desktop/code/Rocket.Chat/packages/model-typings/src/models/IBaseModel.ts",
+  "symbols": [
+    {
+      "type": "interface",
+      "name": "IBaseModel",
+      "line": 44,
+      "endLine": 133,
+      "signature": "export interface IBaseModel< T extends"
+    },
+    {
+      "type": "type",
+      "name": "DefaultFields",
+      "line": 28,
+      "endLine": 28,
+      "signature": "export type DefaultFields<Base> = Partial<Record<keyof Base, 1>> | Partial<Record<keyof Base, 0>> | void;"
+    },
+    {
+      "type": "type",
+      "name": "ResultFields",
+      "line": 29,
+      "endLine": 33,
+      "signature": "export type ResultFields<Base, Defaults> = Defaults extends void"
+    },
+    {
+      "type": "type",
+      "name": "InsertionModel",
+      "line": 35,
+      "endLine": 37,
+      "signature": "export type InsertionModel<T> = EnhancedOmit<OptionalId<T>, '_updatedAt'> &"
+    },
+    {
+      "type": "type",
+      "name": "FindPaginated",
+      "line": 39,
+      "endLine": 42,
+      "signature": "export type FindPaginated<C> ="
+    }
+  ],
+  "imports": [
+    {
+      "module": "@rocket.chat/core-typings",
+      "resolved": "external"
+    },
+    {
+      "module": "mongodb",
+      "resolved": "external"
+    },
+    {
+      "module": "../updater",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/packages/model-typings/src/updater.ts"
+    }
+  ]
+}

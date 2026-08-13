@@ -1,0 +1,707 @@
+{
+  "sourcePath": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/app/importer/server/classes/converters/UserConverter.ts",
+  "symbols": [
+    {
+      "type": "class",
+      "name": "UserConverter",
+      "exported": true,
+      "line": 30,
+      "endLine": 430,
+      "signature": "export class UserConverter extends RecordConverter<IImportUserRecord, UserConverterOptions & RecordConverterOptions>",
+      "calls": [
+        {
+          "name": "RecordConverter",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "convertRecord",
+      "exported": true,
+      "qualifiedName": "UserConverter.convertRecord",
+      "line": 35,
+      "endLine": 56,
+      "signature": "protected override async convertRecord(record: IImportUserRecord): Promise<boolean | undefined>",
+      "containerClass": "UserConverter",
+      "calls": [
+        {
+          "name": "filter",
+          "edgeType": "call"
+        },
+        {
+          "name": "findExistingUser",
+          "edgeType": "call"
+        },
+        {
+          "name": "skipRecord",
+          "edgeType": "call"
+        },
+        {
+          "name": "insertOrUpdateUser",
+          "edgeType": "call"
+        },
+        {
+          "name": "IImportUserRecord",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "convertData",
+      "exported": true,
+      "qualifiedName": "UserConverter.convertData",
+      "line": 39,
+      "endLine": 55,
+      "signature": "override async convertData(userCallbacks: IConversionCallbacks = {}): Promise<void>",
+      "containerClass": "UserConverter",
+      "calls": [
+        {
+          "name": "clear",
+          "edgeType": "call"
+        },
+        {
+          "name": "batchConversion",
+          "edgeType": "call"
+        },
+        {
+          "name": "convertData",
+          "edgeType": "call"
+        },
+        {
+          "name": "IConversionCallbacks",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "batchConversion",
+      "exported": true,
+      "qualifiedName": "UserConverter.batchConversion",
+      "line": 43,
+      "endLine": 76,
+      "signature": "public async batchConversion({ afterBatchFn, ...callbacks }: IConversionCallbacks = {}): Promise<void>",
+      "containerClass": "UserConverter",
+      "calls": [
+        {
+          "name": "iterateRecords",
+          "edgeType": "call"
+        },
+        {
+          "name": "filter",
+          "edgeType": "call"
+        },
+        {
+          "name": "buildUserBatch",
+          "edgeType": "call"
+        },
+        {
+          "name": "clear",
+          "edgeType": "call"
+        },
+        {
+          "name": "insertUserBatch",
+          "edgeType": "call"
+        },
+        {
+          "name": "forEach",
+          "edgeType": "call"
+        },
+        {
+          "name": "Set",
+          "edgeType": "new"
+        },
+        {
+          "name": "IConversionCallbacks",
+          "edgeType": "type"
+        },
+        {
+          "name": "IImportUser",
+          "edgeType": "type"
+        },
+        {
+          "name": "IImportUserRecord",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "insertUserBatch",
+      "exported": true,
+      "qualifiedName": "UserConverter.insertUserBatch",
+      "line": 47,
+      "endLine": 65,
+      "signature": "private async insertUserBatch(users: IUser[], { afterBatchFn }: IConversionCallbacks): Promise<string[]>",
+      "containerClass": "UserConverter",
+      "calls": [
+        {
+          "name": "values",
+          "edgeType": "call"
+        },
+        {
+          "name": "insertMany",
+          "edgeType": "call"
+        },
+        {
+          "name": "afterBatchFn",
+          "edgeType": "call"
+        },
+        {
+          "name": "min",
+          "edgeType": "call"
+        },
+        {
+          "name": "IUser",
+          "edgeType": "type"
+        },
+        {
+          "name": "IConversionCallbacks",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "findExistingUser",
+      "exported": true,
+      "qualifiedName": "UserConverter.findExistingUser",
+      "line": 51,
+      "endLine": 64,
+      "signature": "async findExistingUser(data: IImportUser): Promise<IUser | null | undefined>",
+      "containerClass": "UserConverter",
+      "calls": [
+        {
+          "name": "findOneByEmailAddress",
+          "edgeType": "call"
+        },
+        {
+          "name": "findOneByUsernameIgnoringCase",
+          "edgeType": "call"
+        },
+        {
+          "name": "IImportUser",
+          "edgeType": "type"
+        },
+        {
+          "name": "IUser",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "addUserImportId",
+      "exported": true,
+      "qualifiedName": "UserConverter.addUserImportId",
+      "line": 55,
+      "endLine": 63,
+      "signature": "addUserImportId(updateData: Record<string, any>, userData: IImportUser): void",
+      "containerClass": "UserConverter",
+      "calls": [
+        {
+          "name": "IImportUser",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "addUserEmails",
+      "exported": true,
+      "qualifiedName": "UserConverter.addUserEmails",
+      "line": 59,
+      "endLine": 77,
+      "signature": "addUserEmails(updateData: Record<string, any>, userData: IImportUser, existingEmails: Array<IUserEmail>): void",
+      "containerClass": "UserConverter",
+      "calls": [
+        {
+          "name": "Boolean",
+          "edgeType": "call"
+        },
+        {
+          "name": "find",
+          "edgeType": "call"
+        },
+        {
+          "name": "push",
+          "edgeType": "call"
+        },
+        {
+          "name": "IImportUser",
+          "edgeType": "type"
+        },
+        {
+          "name": "IUserEmail",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "addUserServices",
+      "exported": true,
+      "qualifiedName": "UserConverter.addUserServices",
+      "line": 63,
+      "endLine": 83,
+      "signature": "addUserServices(updateData: Record<string, any>, userData: IImportUser): void",
+      "containerClass": "UserConverter",
+      "calls": [
+        {
+          "name": "IImportUser",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "addCustomFields",
+      "exported": true,
+      "qualifiedName": "UserConverter.addCustomFields",
+      "line": 67,
+      "endLine": 92,
+      "signature": "addCustomFields(updateData: Record<string, any>, userData: IImportUser): void",
+      "containerClass": "UserConverter",
+      "calls": [
+        {
+          "name": "hasOwnProperty",
+          "edgeType": "call"
+        },
+        {
+          "name": "isArray",
+          "edgeType": "call"
+        },
+        {
+          "name": "subset",
+          "edgeType": "call"
+        },
+        {
+          "name": "IImportUser",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "insertOrUpdateUser",
+      "exported": true,
+      "qualifiedName": "UserConverter.insertOrUpdateUser",
+      "line": 71,
+      "endLine": 101,
+      "signature": "async insertOrUpdateUser(existingUser: IUser | null | undefined, data: IImportUser): Promise<void>",
+      "containerClass": "UserConverter",
+      "calls": [
+        {
+          "name": "map",
+          "edgeType": "call"
+        },
+        {
+          "name": "filter",
+          "edgeType": "call"
+        },
+        {
+          "name": "generateUsernameSuggestion",
+          "edgeType": "call"
+        },
+        {
+          "name": "updateUser",
+          "edgeType": "call"
+        },
+        {
+          "name": "guessNameFromUsername",
+          "edgeType": "call"
+        },
+        {
+          "name": "insertUser",
+          "edgeType": "call"
+        },
+        {
+          "name": "findOneById",
+          "edgeType": "call"
+        },
+        {
+          "name": "addUserToDefaultChannels",
+          "edgeType": "call"
+        },
+        {
+          "name": "IUser",
+          "edgeType": "type"
+        },
+        {
+          "name": "IImportUser",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "updateUser",
+      "exported": true,
+      "qualifiedName": "UserConverter.updateUser",
+      "line": 75,
+      "endLine": 147,
+      "signature": "async updateUser(existingUser: IUser, userData: IImportUser): Promise<void>",
+      "containerClass": "UserConverter",
+      "calls": [
+        {
+          "name": "Boolean",
+          "edgeType": "call"
+        },
+        {
+          "name": "assign",
+          "edgeType": "call"
+        },
+        {
+          "name": "create",
+          "edgeType": "call"
+        },
+        {
+          "name": "addCustomFields",
+          "edgeType": "call"
+        },
+        {
+          "name": "addUserServices",
+          "edgeType": "call"
+        },
+        {
+          "name": "addUserImportId",
+          "edgeType": "call"
+        },
+        {
+          "name": "addUserEmails",
+          "edgeType": "call"
+        },
+        {
+          "name": "keys",
+          "edgeType": "call"
+        },
+        {
+          "name": "updateOne",
+          "edgeType": "call"
+        },
+        {
+          "name": "setUtcOffset",
+          "edgeType": "call"
+        },
+        {
+          "name": "saveUserIdentity",
+          "edgeType": "call"
+        },
+        {
+          "name": "addUser",
+          "edgeType": "call"
+        },
+        {
+          "name": "setUserActiveStatus",
+          "edgeType": "call"
+        },
+        {
+          "name": "notifyOnUserChange",
+          "edgeType": "call"
+        },
+        {
+          "name": "IUser",
+          "edgeType": "type"
+        },
+        {
+          "name": "IImportUser",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "hashPassword",
+      "exported": true,
+      "qualifiedName": "UserConverter.hashPassword",
+      "line": 79,
+      "endLine": 81,
+      "signature": "async hashPassword(password: string): Promise<string>",
+      "containerClass": "UserConverter",
+      "calls": [
+        {
+          "name": "bcryptHash",
+          "edgeType": "call"
+        },
+        {
+          "name": "SHA256",
+          "edgeType": "call"
+        },
+        {
+          "name": "_bcryptRounds",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "generateTempPassword",
+      "exported": true,
+      "qualifiedName": "UserConverter.generateTempPassword",
+      "line": 83,
+      "endLine": 85,
+      "signature": "generateTempPassword(userData: IImportUser): string",
+      "containerClass": "UserConverter",
+      "calls": [
+        {
+          "name": "generateTempPassword",
+          "edgeType": "call"
+        },
+        {
+          "name": "IImportUser",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "buildNewUserObject",
+      "exported": true,
+      "qualifiedName": "UserConverter.buildNewUserObject",
+      "line": 87,
+      "endLine": 115,
+      "signature": "async buildNewUserObject(userData: IImportUser): Promise<Partial<IUser>>",
+      "containerClass": "UserConverter",
+      "calls": [
+        {
+          "name": "map",
+          "edgeType": "call"
+        },
+        {
+          "name": "keys",
+          "edgeType": "call"
+        },
+        {
+          "name": "hashPassword",
+          "edgeType": "call"
+        },
+        {
+          "name": "generateTempPassword",
+          "edgeType": "call"
+        },
+        {
+          "name": "IImportUser",
+          "edgeType": "type"
+        },
+        {
+          "name": "IUser",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "buildUserBatch",
+      "exported": true,
+      "qualifiedName": "UserConverter.buildUserBatch",
+      "line": 91,
+      "endLine": 117,
+      "signature": "private async buildUserBatch(usersData: IImportUser[]): Promise<IUser[]>",
+      "containerClass": "UserConverter",
+      "calls": [
+        {
+          "name": "all",
+          "edgeType": "call"
+        },
+        {
+          "name": "map",
+          "edgeType": "call"
+        },
+        {
+          "name": "buildNewUserObject",
+          "edgeType": "call"
+        },
+        {
+          "name": "id",
+          "edgeType": "call"
+        },
+        {
+          "name": "Date",
+          "edgeType": "new"
+        },
+        {
+          "name": "IImportUser",
+          "edgeType": "type"
+        },
+        {
+          "name": "IUser",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "insertUser",
+      "exported": true,
+      "qualifiedName": "UserConverter.insertUser",
+      "line": 95,
+      "endLine": 115,
+      "signature": "async insertUser(userData: IImportUser): Promise<IUser['_id']>",
+      "containerClass": "UserConverter",
+      "calls": [
+        {
+          "name": "buildNewUserObject",
+          "edgeType": "call"
+        },
+        {
+          "name": "insertUserDoc",
+          "edgeType": "call"
+        },
+        {
+          "name": "IImportUser",
+          "edgeType": "type"
+        },
+        {
+          "name": "IUser",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "guessNameFromUsername",
+      "exported": true,
+      "qualifiedName": "UserConverter.guessNameFromUsername",
+      "line": 99,
+      "endLine": 105,
+      "signature": "protected guessNameFromUsername(username: string): string",
+      "containerClass": "UserConverter",
+      "calls": [
+        {
+          "name": "replace",
+          "edgeType": "call"
+        },
+        {
+          "name": "toUpperCase",
+          "edgeType": "call"
+        },
+        {
+          "name": "toLowerCase",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "getDataType",
+      "exported": true,
+      "qualifiedName": "UserConverter.getDataType",
+      "line": 103,
+      "endLine": 105,
+      "signature": "protected override getDataType(): 'user'",
+      "containerClass": "UserConverter",
+      "calls": []
+    },
+    {
+      "type": "class_property",
+      "name": "insertedIds",
+      "exported": true,
+      "qualifiedName": "UserConverter.insertedIds",
+      "line": 31,
+      "endLine": 31,
+      "signature": "private insertedIds = new Set<IUser['_id']>();",
+      "containerClass": "UserConverter",
+      "calls": [
+        {
+          "name": "Set",
+          "edgeType": "new"
+        },
+        {
+          "name": "IUser",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "class_property",
+      "name": "updatedIds",
+      "exported": true,
+      "qualifiedName": "UserConverter.updatedIds",
+      "line": 33,
+      "endLine": 33,
+      "signature": "private updatedIds = new Set<IUser['_id']>();",
+      "containerClass": "UserConverter",
+      "calls": [
+        {
+          "name": "Set",
+          "edgeType": "new"
+        },
+        {
+          "name": "IUser",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "type",
+      "name": "UserConverterOptions",
+      "line": 18,
+      "endLine": 28,
+      "signature": "export type UserConverterOptions ="
+    }
+  ],
+  "imports": [
+    {
+      "module": "@rocket.chat/core-typings",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/models",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/random",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/sha256",
+      "resolved": "external"
+    },
+    {
+      "module": "bcrypt",
+      "resolved": "external"
+    },
+    {
+      "module": "meteor/accounts-base",
+      "resolved": "external"
+    },
+    {
+      "module": "./RecordConverter",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/app/importer/server/classes/converters/RecordConverter.ts"
+    },
+    {
+      "module": "./generateTempPassword",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/app/importer/server/classes/converters/generateTempPassword.ts"
+    },
+    {
+      "module": "../../../../../server/lib/callbacks",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/server/lib/callbacks.ts"
+    },
+    {
+      "module": "../../../../../server/lib/rooms/addUserToDefaultChannels",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/server/lib/rooms/addUserToDefaultChannels.ts"
+    },
+    {
+      "module": "../../../../../server/lib/users/getUsernameSuggestion",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/server/lib/users/getUsernameSuggestion.ts"
+    },
+    {
+      "module": "../../../../../server/lib/users/saveUserIdentity",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/server/lib/users/saveUserIdentity.ts"
+    },
+    {
+      "module": "../../../../../server/lib/users/setUserActiveStatus",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/server/lib/users/setUserActiveStatus.ts"
+    },
+    {
+      "module": "../../../../lib/server/lib/notifyListener",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/app/lib/server/lib/notifyListener.ts"
+    },
+    {
+      "module": "../../definitions/IConversionCallbacks",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/app/importer/server/definitions/IConversionCallbacks.ts"
+    }
+  ]
+}

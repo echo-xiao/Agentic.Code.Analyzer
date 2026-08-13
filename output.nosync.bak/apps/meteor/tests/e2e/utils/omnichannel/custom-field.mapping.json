@@ -1,0 +1,108 @@
+{
+  "sourcePath": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/tests/e2e/utils/omnichannel/custom-field.ts",
+  "symbols": [
+    {
+      "type": "variable_function",
+      "name": "removeCustomField",
+      "exported": true,
+      "line": 7,
+      "endLine": 11,
+      "signature": "(api: BaseTest['api'], id: string) =>",
+      "calls": [
+        {
+          "name": "post",
+          "edgeType": "call"
+        },
+        {
+          "name": "BaseTest",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "variable_function",
+      "name": "setVisitorCustomFieldValue",
+      "exported": true,
+      "line": 11,
+      "endLine": 26,
+      "signature": "async ( api: BaseTest['api'], params: { token: string; customFieldId: string; value: string; overwrite?: boolean }, ) =>",
+      "calls": [
+        {
+          "name": "post",
+          "edgeType": "call"
+        },
+        {
+          "name": "ok",
+          "edgeType": "call"
+        },
+        {
+          "name": "status",
+          "edgeType": "call"
+        },
+        {
+          "name": "json",
+          "edgeType": "call"
+        },
+        {
+          "name": "BaseTest",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "variable_function",
+      "name": "createCustomField",
+      "exported": true,
+      "line": 18,
+      "endLine": 48,
+      "signature": "async (api: BaseTest['api'], overwrites: Partial<CustomField>) =>",
+      "calls": [
+        {
+          "name": "post",
+          "edgeType": "call"
+        },
+        {
+          "name": "ok",
+          "edgeType": "call"
+        },
+        {
+          "name": "status",
+          "edgeType": "call"
+        },
+        {
+          "name": "json",
+          "edgeType": "call"
+        },
+        {
+          "name": "removeCustomField",
+          "edgeType": "call"
+        },
+        {
+          "name": "BaseTest",
+          "edgeType": "type"
+        },
+        {
+          "name": "CustomField",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "type",
+      "name": "CustomField",
+      "line": 5,
+      "endLine": 5,
+      "signature": "type CustomField = Omit<ILivechatCustomField, '_id' | '_updatedAt'> &"
+    }
+  ],
+  "imports": [
+    {
+      "module": "@rocket.chat/core-typings",
+      "resolved": "external"
+    },
+    {
+      "module": "../test",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/tests/e2e/utils/test.ts"
+    }
+  ]
+}

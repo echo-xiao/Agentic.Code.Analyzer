@@ -1,0 +1,119 @@
+{
+  "sourcePath": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/client/hooks/roomActions/useMediaCallRoomAction.ts",
+  "symbols": [
+    {
+      "type": "variable_function",
+      "name": "getPeerId",
+      "exported": false,
+      "line": 11,
+      "endLine": 24,
+      "signature": "(uids: string[], ownUserId: string | undefined) =>",
+      "calls": [
+        {
+          "name": "filter",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "variable_function",
+      "name": "useMediaCallRoomAction",
+      "exported": true,
+      "line": 15,
+      "endLine": 62,
+      "signature": "() =>",
+      "calls": [
+        {
+          "name": "useRoom",
+          "edgeType": "call"
+        },
+        {
+          "name": "useRoomSubscription",
+          "edgeType": "call"
+        },
+        {
+          "name": "useUserId",
+          "edgeType": "call"
+        },
+        {
+          "name": "isRoomFederated",
+          "edgeType": "call"
+        },
+        {
+          "name": "useUserAvatarPath",
+          "edgeType": "call"
+        },
+        {
+          "name": "getPeerId",
+          "edgeType": "call"
+        },
+        {
+          "name": "useUserInfoQuery",
+          "edgeType": "call"
+        },
+        {
+          "name": "useMemo",
+          "edgeType": "call"
+        },
+        {
+          "name": "getAvatarUrl",
+          "edgeType": "call"
+        },
+        {
+          "name": "useMediaCallAction",
+          "edgeType": "call"
+        },
+        {
+          "name": "action",
+          "edgeType": "call"
+        },
+        {
+          "name": "PeerInfo",
+          "edgeType": "type"
+        },
+        {
+          "name": "RoomToolboxActionConfig",
+          "edgeType": "type"
+        },
+        {
+          "name": "TranslationKey",
+          "edgeType": "type"
+        }
+      ]
+    }
+  ],
+  "imports": [
+    {
+      "module": "@rocket.chat/core-typings",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/ui-contexts",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/ui-contexts",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/ui-voip",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/ui-voip",
+      "resolved": "external"
+    },
+    {
+      "module": "react",
+      "resolved": "external"
+    },
+    {
+      "module": "../../views/room/contexts/RoomContext",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/client/views/room/contexts/RoomContext.ts"
+    },
+    {
+      "module": "../useUserInfoQuery",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/client/hooks/useUserInfoQuery.ts"
+    }
+  ]
+}

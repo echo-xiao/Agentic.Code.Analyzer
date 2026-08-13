@@ -1,0 +1,242 @@
+{
+  "sourcePath": "/Users/echoooooo/Desktop/code/Rocket.Chat/packages/instance-status/src/index.ts",
+  "symbols": [
+    {
+      "type": "function",
+      "name": "start",
+      "exported": false,
+      "line": 19,
+      "endLine": 22,
+      "signature": "function start()",
+      "calls": [
+        {
+          "name": "stop",
+          "edgeType": "call"
+        },
+        {
+          "name": "ping",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "function",
+      "name": "stop",
+      "exported": false,
+      "line": 23,
+      "endLine": 29,
+      "signature": "function stop()",
+      "calls": [
+        {
+          "name": "clearInterval",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "function",
+      "name": "registerInstance",
+      "exported": false,
+      "line": 54,
+      "endLine": 71,
+      "signature": "async function registerInstance(name: string, extraInformation: Partial<IInstanceStatus['extraInformation']>): Promise<unknown>",
+      "calls": [
+        {
+          "name": "createIndexes",
+          "edgeType": "call"
+        },
+        {
+          "name": "upsertInstance",
+          "edgeType": "call"
+        },
+        {
+          "name": "id",
+          "edgeType": "call"
+        },
+        {
+          "name": "start",
+          "edgeType": "call"
+        },
+        {
+          "name": "onExit",
+          "edgeType": "event_listen",
+          "event": "exit"
+        },
+        {
+          "name": "IInstanceStatus",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "function",
+      "name": "unregisterInstance",
+      "exported": false,
+      "line": 58,
+      "endLine": 67,
+      "signature": "async function unregisterInstance()",
+      "calls": [
+        {
+          "name": "removeInstanceById",
+          "edgeType": "call"
+        },
+        {
+          "name": "id",
+          "edgeType": "call"
+        },
+        {
+          "name": "stop",
+          "edgeType": "call"
+        },
+        {
+          "name": "removeListener",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "function",
+      "name": "updateConnections",
+      "exported": false,
+      "line": 62,
+      "endLine": 64,
+      "signature": "async function updateConnections(connections: number)",
+      "calls": [
+        {
+          "name": "updateConnections",
+          "edgeType": "call"
+        },
+        {
+          "name": "id",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "function",
+      "name": "ping",
+      "exported": false,
+      "line": 66,
+      "endLine": 72,
+      "signature": "async function ping()",
+      "calls": [
+        {
+          "name": "setDocumentHeartbeat",
+          "edgeType": "call"
+        },
+        {
+          "name": "registerInstance",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "function",
+      "name": "onExit",
+      "exported": false,
+      "line": 70,
+      "endLine": 72,
+      "signature": "async function onExit()",
+      "calls": [
+        {
+          "name": "unregisterInstance",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "variable",
+      "name": "defaultPingInterval",
+      "exported": true,
+      "line": 6,
+      "endLine": 6,
+      "signature": "defaultPingInterval = parseInt(String(process.env.MULTIPLE_INSTANCES_PING_INTERVAL)) || 10",
+      "calls": []
+    },
+    {
+      "type": "variable",
+      "name": "indexExpire",
+      "exported": true,
+      "line": 7,
+      "endLine": 7,
+      "signature": "indexExpire = (parseInt(String(process.env.MULTIPLE_INSTANCES_EXPIRE)) || Math.ceil((defaultPingInterval * 3) / 60)) * 60",
+      "calls": [
+        {
+          "name": "ceil",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "variable_function",
+      "name": "id",
+      "exported": false,
+      "line": 10,
+      "endLine": 10,
+      "signature": "(): IInstanceStatus['_id'] =>",
+      "calls": [
+        {
+          "name": "IInstanceStatus",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "variable_function",
+      "name": "createIndexes",
+      "exported": false,
+      "line": 27,
+      "endLine": 52,
+      "signature": "async () =>",
+      "calls": [
+        {
+          "name": "then",
+          "edgeType": "call"
+        },
+        {
+          "name": "catch",
+          "edgeType": "call"
+        },
+        {
+          "name": "indexes",
+          "edgeType": "call"
+        },
+        {
+          "name": "some",
+          "edgeType": "call"
+        },
+        {
+          "name": "dropIndex",
+          "edgeType": "call"
+        },
+        {
+          "name": "createIndex",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "variable",
+      "name": "InstanceStatus",
+      "exported": true,
+      "line": 51,
+      "endLine": 57,
+      "signature": "InstanceStatus =",
+      "calls": []
+    }
+  ],
+  "imports": [
+    {
+      "module": "node:crypto",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/core-typings",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/models",
+      "resolved": "external"
+    }
+  ]
+}

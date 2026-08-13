@@ -1,0 +1,157 @@
+{
+  "sourcePath": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/client/views/room/body/hooks/useFileUploadDropTarget.ts",
+  "symbols": [
+    {
+      "type": "variable_function",
+      "name": "useFileUploadDropTarget",
+      "exported": true,
+      "line": 12,
+      "endLine": 96,
+      "signature": "(): readonly [ fileUploadTriggerProps: { onDragEnter: (event: DragEvent<Element>) => void; }, fileUploadOverlayProps: { visible: boolean; onDismiss: () => void; enabled: boolean; reason?: ReactNode; }, ] =>",
+      "calls": [
+        {
+          "name": "useRoom",
+          "edgeType": "call"
+        },
+        {
+          "name": "useDropTarget",
+          "edgeType": "call"
+        },
+        {
+          "name": "useIsRoomOverMacLimit",
+          "edgeType": "call"
+        },
+        {
+          "name": "useTranslation",
+          "edgeType": "call"
+        },
+        {
+          "name": "useSetting",
+          "edgeType": "call"
+        },
+        {
+          "name": "useUser",
+          "edgeType": "call"
+        },
+        {
+          "name": "usePermission",
+          "edgeType": "call"
+        },
+        {
+          "name": "useMemo",
+          "edgeType": "call"
+        },
+        {
+          "name": "readOnly",
+          "edgeType": "call"
+        },
+        {
+          "name": "useChat",
+          "edgeType": "call"
+        },
+        {
+          "name": "useRoomSubscription",
+          "edgeType": "call"
+        },
+        {
+          "name": "useSyncExternalStore",
+          "edgeType": "call"
+        },
+        {
+          "name": "useStableCallback",
+          "edgeType": "call"
+        },
+        {
+          "name": "forEach",
+          "edgeType": "call"
+        },
+        {
+          "name": "has",
+          "edgeType": "call"
+        },
+        {
+          "name": "push",
+          "edgeType": "call"
+        },
+        {
+          "name": "getUniqueFiles",
+          "edgeType": "call"
+        },
+        {
+          "name": "map",
+          "edgeType": "call"
+        },
+        {
+          "name": "from",
+          "edgeType": "call"
+        },
+        {
+          "name": "defineProperty",
+          "edgeType": "call"
+        },
+        {
+          "name": "getMimeType",
+          "edgeType": "call"
+        },
+        {
+          "name": "uploadFiles",
+          "edgeType": "call"
+        },
+        {
+          "name": "Set",
+          "edgeType": "new"
+        },
+        {
+          "name": "DragEvent",
+          "edgeType": "type"
+        },
+        {
+          "name": "ReactNode",
+          "edgeType": "type"
+        },
+        {
+          "name": "File",
+          "edgeType": "type"
+        }
+      ]
+    }
+  ],
+  "imports": [
+    {
+      "module": "@rocket.chat/fuselage-hooks",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/ui-contexts",
+      "resolved": "external"
+    },
+    {
+      "module": "react",
+      "resolved": "external"
+    },
+    {
+      "module": "react",
+      "resolved": "external"
+    },
+    {
+      "module": "./useDropTarget",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/client/views/room/body/hooks/useDropTarget.ts"
+    },
+    {
+      "module": "../../../../lib/rooms/roomCoordinator",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/client/lib/rooms/roomCoordinator.tsx"
+    },
+    {
+      "module": "../../../omnichannel/hooks/useIsRoomOverMacLimit",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/client/views/omnichannel/hooks/useIsRoomOverMacLimit.ts"
+    },
+    {
+      "module": "../../contexts/ChatContext",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/client/views/room/contexts/ChatContext.ts"
+    },
+    {
+      "module": "../../contexts/RoomContext",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/client/views/room/contexts/RoomContext.ts"
+    }
+  ]
+}

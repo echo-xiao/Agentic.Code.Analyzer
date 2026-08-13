@@ -1,0 +1,96 @@
+{
+  "sourcePath": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/app/livechat/server/lib/stream/agentStatus.ts",
+  "symbols": [
+    {
+      "type": "module",
+      "name": "agentStatus",
+      "exported": false,
+      "line": 1,
+      "endLine": 87,
+      "signature": "agentStatus",
+      "calls": [
+        {
+          "name": "watch",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "variable",
+      "name": "monitorAgents",
+      "exported": true,
+      "line": 9,
+      "endLine": 9,
+      "signature": "monitorAgents = false",
+      "calls": []
+    },
+    {
+      "type": "variable",
+      "name": "onlineAgents",
+      "exported": true,
+      "line": 33,
+      "endLine": 86,
+      "signature": "onlineAgents =",
+      "calls": [
+        {
+          "name": "exists",
+          "edgeType": "call"
+        },
+        {
+          "name": "has",
+          "edgeType": "call"
+        },
+        {
+          "name": "get",
+          "edgeType": "call"
+        },
+        {
+          "name": "delete",
+          "edgeType": "call"
+        },
+        {
+          "name": "set",
+          "edgeType": "call"
+        },
+        {
+          "name": "closeOpenChats",
+          "edgeType": "call"
+        },
+        {
+          "name": "forwardOpenChats",
+          "edgeType": "call"
+        },
+        {
+          "name": "error",
+          "edgeType": "call"
+        },
+        {
+          "name": "Set",
+          "edgeType": "new"
+        },
+        {
+          "name": "Map",
+          "edgeType": "new"
+        }
+      ]
+    }
+  ],
+  "imports": [
+    {
+      "module": "@rocket.chat/logger",
+      "resolved": "external"
+    },
+    {
+      "module": "../../../../settings/server",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/app/settings/server/index.ts"
+    },
+    {
+      "module": "../closeRoom",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/app/livechat/server/lib/closeRoom.ts"
+    },
+    {
+      "module": "../transfer",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/app/livechat/server/lib/transfer.ts"
+    }
+  ]
+}

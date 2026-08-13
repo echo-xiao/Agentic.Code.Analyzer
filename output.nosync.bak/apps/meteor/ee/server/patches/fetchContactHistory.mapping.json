@@ -1,0 +1,45 @@
+{
+  "sourcePath": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/ee/server/patches/fetchContactHistory.ts",
+  "symbols": [
+    {
+      "type": "module",
+      "name": "fetchContactHistory",
+      "exported": false,
+      "line": 1,
+      "endLine": 22,
+      "signature": "fetchContactHistory",
+      "calls": [
+        {
+          "name": "patch",
+          "edgeType": "call"
+        },
+        {
+          "name": "next",
+          "edgeType": "call"
+        },
+        {
+          "name": "findClosedRoomsByContactAndSourcePaginated",
+          "edgeType": "call"
+        },
+        {
+          "name": "hasModule",
+          "edgeType": "call"
+        }
+      ]
+    }
+  ],
+  "imports": [
+    {
+      "module": "@rocket.chat/license",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/models",
+      "resolved": "external"
+    },
+    {
+      "module": "../../../app/livechat/server/lib/contacts/getContactHistory",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/app/livechat/server/lib/contacts/getContactHistory.ts"
+    }
+  ]
+}

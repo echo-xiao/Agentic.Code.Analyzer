@@ -1,0 +1,89 @@
+{
+  "sourcePath": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/server/api/v1/omnichannel/lib/users.ts",
+  "symbols": [
+    {
+      "type": "function",
+      "name": "findUsers",
+      "exported": false,
+      "line": 11,
+      "endLine": 74,
+      "signature": "async function findUsers({ role, text, onlyAvailable = false, excludeId, showIdleAgents = true, pagination: { offset, count, sort }, }: { role: IRole['_id']; text?: string; onlyAvailable?: boolean; excludeId?: string; showIdleAgents?: boolean; pagination: { offset: number; count: number; sort: any }; }): Promise<{ users: ILivechatAgent[]; count: number; offset: number; total: number }>",
+      "calls": [
+        {
+          "name": "escapeRegExp",
+          "edgeType": "call"
+        },
+        {
+          "name": "push",
+          "edgeType": "call"
+        },
+        {
+          "name": "findAgentsWithDepartments",
+          "edgeType": "call"
+        },
+        {
+          "name": "RegExp",
+          "edgeType": "new"
+        },
+        {
+          "name": "IRole",
+          "edgeType": "type"
+        },
+        {
+          "name": "ILivechatAgent",
+          "edgeType": "type"
+        },
+        {
+          "name": "FilterOperators",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "function",
+      "name": "findAgents",
+      "exported": true,
+      "line": 28,
+      "endLine": 53,
+      "signature": "export async function findAgents({ text, onlyAvailable = false, excludeId, showIdleAgents = true, pagination: { offset, count, sort }, }: { text?: string; onlyAvailable: boolean; excludeId?: string; showIdleAgents?: boolean; pagination: { offset: number; count: number; sort: any }; }): Promise<ReturnType<typeof findUsers>>",
+      "calls": [
+        {
+          "name": "findUsers",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "function",
+      "name": "findManagers",
+      "exported": true,
+      "line": 44,
+      "endLine": 60,
+      "signature": "export async function findManagers({ text, pagination: { offset, count, sort }, }: { text?: string; pagination: { offset: number; count: number; sort: any }; }): Promise<ReturnType<typeof findUsers>>",
+      "calls": [
+        {
+          "name": "findUsers",
+          "edgeType": "call"
+        }
+      ]
+    }
+  ],
+  "imports": [
+    {
+      "module": "@rocket.chat/core-typings",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/models",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/string-helpers",
+      "resolved": "external"
+    },
+    {
+      "module": "mongodb",
+      "resolved": "external"
+    }
+  ]
+}

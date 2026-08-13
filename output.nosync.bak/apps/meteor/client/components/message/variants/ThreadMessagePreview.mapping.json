@@ -1,0 +1,265 @@
+{
+  "sourcePath": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/client/components/message/variants/ThreadMessagePreview.tsx",
+  "symbols": [
+    {
+      "type": "module",
+      "name": "ThreadMessagePreview",
+      "exported": false,
+      "line": 1,
+      "endLine": 148,
+      "signature": "ThreadMessagePreview",
+      "calls": [
+        {
+          "name": "memo",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "inner_function",
+      "name": "handleThreadClick",
+      "exported": false,
+      "qualifiedName": "ThreadMessagePreview.handleThreadClick",
+      "line": 61,
+      "endLine": 71,
+      "signature": "() =>",
+      "calls": [
+        {
+          "name": "goToThread",
+          "edgeType": "call"
+        },
+        {
+          "name": "toggleSelected",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "variable_function",
+      "name": "ThreadMessagePreview",
+      "exported": false,
+      "line": 42,
+      "endLine": 145,
+      "signature": "({ message, showUserAvatar, sequential, ...props }: ThreadMessagePreviewProps) =>",
+      "calls": [
+        {
+          "name": "useParentMessage",
+          "edgeType": "call"
+        },
+        {
+          "name": "useShowTranslated",
+          "edgeType": "call"
+        },
+        {
+          "name": "useTranslation",
+          "edgeType": "call"
+        },
+        {
+          "name": "useIsSelecting",
+          "edgeType": "call"
+        },
+        {
+          "name": "useToggleSelect",
+          "edgeType": "call"
+        },
+        {
+          "name": "useIsSelectedMessage",
+          "edgeType": "call"
+        },
+        {
+          "name": "useCountSelected",
+          "edgeType": "call"
+        },
+        {
+          "name": "getType",
+          "edgeType": "call"
+        },
+        {
+          "name": "useMessageBody",
+          "edgeType": "call"
+        },
+        {
+          "name": "isParsedMessage",
+          "edgeType": "call"
+        },
+        {
+          "name": "useGoToThread",
+          "edgeType": "call"
+        },
+        {
+          "name": "goToThread",
+          "edgeType": "call"
+        },
+        {
+          "name": "toggleSelected",
+          "edgeType": "call"
+        },
+        {
+          "name": "getCheckboxLabel",
+          "edgeType": "call"
+        },
+        {
+          "name": "handleThreadClick",
+          "edgeType": "call"
+        },
+        {
+          "name": "text",
+          "edgeType": "call"
+        },
+        {
+          "name": "ThreadMessage",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "ThreadMessageRow",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "ThreadMessageLeftContainer",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "ThreadMessageContainer",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "ThreadMessageOrigin",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "ThreadMessageBody",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "ThreadMessageIconThread",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "ThreadMessagePreviewBody",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "MessageStatusIndicatorItem",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "Skeleton",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "ThreadMessageUnfollow",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "MessageAvatar",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "Emoji",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "CheckBox",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "handleThreadClick",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "isSelected",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "toggleSelected",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "checkboxLabel",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "message",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "ThreadMessagePreviewProps",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "type",
+      "name": "ThreadMessagePreviewProps",
+      "line": 36,
+      "endLine": 40,
+      "signature": "export type ThreadMessagePreviewProps ="
+    }
+  ],
+  "imports": [
+    {
+      "module": "@rocket.chat/core-typings",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/fuselage",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/message-types",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/ui-avatar",
+      "resolved": "external"
+    },
+    {
+      "module": "react",
+      "resolved": "external"
+    },
+    {
+      "module": "react",
+      "resolved": "external"
+    },
+    {
+      "module": "react-i18next",
+      "resolved": "external"
+    },
+    {
+      "module": "../../../views/room/MessageList/contexts/SelectedMessagesContext",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/client/views/room/MessageList/contexts/SelectedMessagesContext.tsx"
+    },
+    {
+      "module": "../../../views/room/MessageList/hooks/useMessageBody",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/client/views/room/MessageList/hooks/useMessageBody.ts"
+    },
+    {
+      "module": "../../../views/room/MessageList/hooks/useParentMessage",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/client/views/room/MessageList/hooks/useParentMessage.ts"
+    },
+    {
+      "module": "../../../views/room/MessageList/lib/isParsedMessage",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/client/views/room/MessageList/lib/isParsedMessage.ts"
+    },
+    {
+      "module": "../../../views/room/hooks/useGoToThread",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/client/views/room/hooks/useGoToThread.ts"
+    },
+    {
+      "module": "../../Emoji",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/client/components/Emoji.tsx"
+    },
+    {
+      "module": "../list/MessageListContext",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/client/components/message/list/MessageListContext.tsx"
+    },
+    {
+      "module": "./threadPreview/ThreadMessagePreviewBody",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/client/components/message/variants/threadPreview/ThreadMessagePreviewBody.tsx"
+    },
+    {
+      "module": "../helpers/getCheckboxLabel",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/client/components/message/helpers/getCheckboxLabel.tsx"
+    }
+  ]
+}

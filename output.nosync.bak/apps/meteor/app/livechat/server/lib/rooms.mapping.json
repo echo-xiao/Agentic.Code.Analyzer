@@ -1,0 +1,397 @@
+{
+  "sourcePath": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/app/livechat/server/lib/rooms.ts",
+  "symbols": [
+    {
+      "type": "function",
+      "name": "getRoom",
+      "exported": true,
+      "line": 49,
+      "endLine": 83,
+      "signature": "export async function getRoom( guest: ILivechatVisitor, message: Pick<IMessage, 'rid' | 'msg' | 'token'>, roomInfo: IOmnichannelRoomInfo, agent?: SelectedAgent, extraData?: IOmnichannelRoomExtraData, )",
+      "calls": [
+        {
+          "name": "get",
+          "edgeType": "call"
+        },
+        {
+          "name": "debug",
+          "edgeType": "call"
+        },
+        {
+          "name": "findOneById",
+          "edgeType": "call"
+        },
+        {
+          "name": "isChannelBlocked",
+          "edgeType": "call"
+        },
+        {
+          "name": "makeVisitorAssociation",
+          "edgeType": "call"
+        },
+        {
+          "name": "createRoom",
+          "edgeType": "call"
+        },
+        {
+          "name": "ILivechatVisitor",
+          "edgeType": "type"
+        },
+        {
+          "name": "IMessage",
+          "edgeType": "type"
+        },
+        {
+          "name": "IOmnichannelRoomInfo",
+          "edgeType": "type"
+        },
+        {
+          "name": "SelectedAgent",
+          "edgeType": "type"
+        },
+        {
+          "name": "IOmnichannelRoomExtraData",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "function",
+      "name": "createRoom",
+      "exported": true,
+      "line": 59,
+      "endLine": 115,
+      "signature": "export async function createRoom({ visitor, message, rid, roomInfo, agent, extraData, }: { visitor: ILivechatVisitor; message?: string; rid?: string; roomInfo: IOmnichannelRoomInfo; agent?: SelectedAgent; extraData?: IOmnichannelRoomExtraData; })",
+      "calls": [
+        {
+          "name": "get",
+          "edgeType": "call"
+        },
+        {
+          "name": "isChannelBlocked",
+          "edgeType": "call"
+        },
+        {
+          "name": "makeVisitorAssociation",
+          "edgeType": "call"
+        },
+        {
+          "name": "checkDefaultAgentOnNewRoom",
+          "edgeType": "call"
+        },
+        {
+          "name": "getRequiredDepartment",
+          "edgeType": "call"
+        },
+        {
+          "name": "debug",
+          "edgeType": "call"
+        },
+        {
+          "name": "requestRoom",
+          "edgeType": "call"
+        },
+        {
+          "name": "setRoomIdByToken",
+          "edgeType": "call"
+        },
+        {
+          "name": "ILivechatVisitor",
+          "edgeType": "type"
+        },
+        {
+          "name": "IOmnichannelRoomInfo",
+          "edgeType": "type"
+        },
+        {
+          "name": "SelectedAgent",
+          "edgeType": "type"
+        },
+        {
+          "name": "IOmnichannelRoomExtraData",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "function",
+      "name": "saveRoomInfo",
+      "exported": true,
+      "line": 77,
+      "endLine": 151,
+      "signature": "export async function saveRoomInfo( roomData: { _id: string; topic?: string; tags?: string[]; livechatData?: { [k: string]: string }; // For priority and SLA, if the value is blank (ie \"\"), then system will remove the priority or SLA from the room priorityId?: string; slaId?: string; }, guestData?: { _id: string; name?: string; email?: string; phone?: string; livechatData?: { [k: string]: string }",
+      "calls": [
+        {
+          "name": "debug",
+          "edgeType": "call"
+        },
+        {
+          "name": "hasPermissionAsync",
+          "edgeType": "call"
+        },
+        {
+          "name": "keys",
+          "edgeType": "call"
+        },
+        {
+          "name": "findByScope",
+          "edgeType": "call"
+        },
+        {
+          "name": "hasOwnProperty",
+          "edgeType": "call"
+        },
+        {
+          "name": "trim",
+          "edgeType": "call"
+        },
+        {
+          "name": "test",
+          "edgeType": "call"
+        },
+        {
+          "name": "saveRoomById",
+          "edgeType": "call"
+        },
+        {
+          "name": "setImmediate",
+          "edgeType": "call"
+        },
+        {
+          "name": "triggerEvent",
+          "edgeType": "call"
+        },
+        {
+          "name": "all",
+          "edgeType": "call"
+        },
+        {
+          "name": "setFnameById",
+          "edgeType": "call"
+        },
+        {
+          "name": "setNameByRoomId",
+          "edgeType": "call"
+        },
+        {
+          "name": "updateDisplayNameByRoomId",
+          "edgeType": "call"
+        },
+        {
+          "name": "notifyOnLivechatInquiryChangedByRoom",
+          "edgeType": "call"
+        },
+        {
+          "name": "notifyOnSubscriptionChangedByRoomId",
+          "edgeType": "call"
+        },
+        {
+          "name": "notifyOnRoomChangedById",
+          "edgeType": "call"
+        },
+        {
+          "name": "RegExp",
+          "edgeType": "new"
+        }
+      ]
+    },
+    {
+      "type": "function",
+      "name": "returnRoomAsInquiry",
+      "exported": true,
+      "line": 99,
+      "endLine": 147,
+      "signature": "export async function returnRoomAsInquiry(room: IOmnichannelRoom, departmentId?: string, overrideTransferData: Partial<TransferData> = {})",
+      "calls": [
+        {
+          "name": "debug",
+          "edgeType": "call"
+        },
+        {
+          "name": "isWithinMACLimit",
+          "edgeType": "call"
+        },
+        {
+          "name": "findOneById",
+          "edgeType": "call"
+        },
+        {
+          "name": "findOne",
+          "edgeType": "call"
+        },
+        {
+          "name": "setLastMessageById",
+          "edgeType": "call"
+        },
+        {
+          "name": "normalizeTransferredByData",
+          "edgeType": "call"
+        },
+        {
+          "name": "saveTransferHistory",
+          "edgeType": "call"
+        },
+        {
+          "name": "unassignAgent",
+          "edgeType": "call"
+        },
+        {
+          "name": "error",
+          "edgeType": "call"
+        },
+        {
+          "name": "livechat:afterReturnRoomAsInquiry",
+          "edgeType": "event_emit"
+        },
+        {
+          "name": "IOmnichannelRoom",
+          "edgeType": "type"
+        },
+        {
+          "name": "TransferData",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "function",
+      "name": "removeOmnichannelRoom",
+      "exported": true,
+      "line": 103,
+      "endLine": 147,
+      "signature": "export async function removeOmnichannelRoom(rid: string)",
+      "calls": [
+        {
+          "name": "debug",
+          "edgeType": "call"
+        },
+        {
+          "name": "check",
+          "edgeType": "call"
+        },
+        {
+          "name": "findOneById",
+          "edgeType": "call"
+        },
+        {
+          "name": "isOmnichannelRoom",
+          "edgeType": "call"
+        },
+        {
+          "name": "findOneByRoomId",
+          "edgeType": "call"
+        },
+        {
+          "name": "allSettled",
+          "edgeType": "call"
+        },
+        {
+          "name": "removeByRoomId",
+          "edgeType": "call"
+        },
+        {
+          "name": "notifyOnSubscriptionChanged",
+          "edgeType": "call"
+        },
+        {
+          "name": "removeById",
+          "edgeType": "call"
+        },
+        {
+          "name": "notifyOnLivechatInquiryChanged",
+          "edgeType": "call"
+        },
+        {
+          "name": "notifyOnRoomChanged",
+          "edgeType": "call"
+        },
+        {
+          "name": "error",
+          "edgeType": "call"
+        }
+      ]
+    }
+  ],
+  "imports": [
+    {
+      "module": "@rocket.chat/apps",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/core-services",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/core-typings",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/core-typings",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/models",
+      "resolved": "external"
+    },
+    {
+      "module": "meteor/meteor",
+      "resolved": "external"
+    },
+    {
+      "module": "./Helper",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/app/livechat/server/lib/Helper.ts"
+    },
+    {
+      "module": "./QueueManager",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/app/livechat/server/lib/QueueManager.ts"
+    },
+    {
+      "module": "./RoutingManager",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/app/livechat/server/lib/RoutingManager.ts"
+    },
+    {
+      "module": "./Visitors",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/app/livechat/server/lib/Visitors.ts"
+    },
+    {
+      "module": "./departmentsLib",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/app/livechat/server/lib/departmentsLib.ts"
+    },
+    {
+      "module": "./hooks",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/app/livechat/server/lib/hooks.ts"
+    },
+    {
+      "module": "./logger",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/app/livechat/server/lib/logger.ts"
+    },
+    {
+      "module": "./transfer",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/app/livechat/server/lib/transfer.ts"
+    },
+    {
+      "module": "../../../../lib/utils/stringUtils",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/lib/utils/stringUtils.ts"
+    },
+    {
+      "module": "../../../../server/lib/authorization/hasPermission",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/server/lib/authorization/hasPermission.ts"
+    },
+    {
+      "module": "../../../../server/lib/callbacks",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/server/lib/callbacks.ts"
+    },
+    {
+      "module": "../../../lib/server/lib/notifyListener",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/app/lib/server/lib/notifyListener.ts"
+    },
+    {
+      "module": "../../../settings/server",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/app/settings/server/index.ts"
+    },
+    {
+      "module": "../../../utils/lib/i18n",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/app/utils/lib/i18n.ts"
+    }
+  ]
+}

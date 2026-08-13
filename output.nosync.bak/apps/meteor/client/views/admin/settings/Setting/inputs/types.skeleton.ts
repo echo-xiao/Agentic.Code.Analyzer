@@ -1,0 +1,24 @@
+## File: apps/meteor/client/views/admin/settings/Setting/inputs/types.ts
+
+```typescript
+import type { ReactNode } from 'react';
+
+export type SettingInputProps<V = string, R = V> = {
+	_id: string;
+	label: ReactNode;
+	value?: V;
+	packageValue: V;
+	placeholder?: string;
+	readonly?: boolean;
+	autocomplete?: boolean;
+	disabled: boolean;
+	required?: boolean;
+	hint?: string;
+	editor?: string;
+	hasResetButton: boolean;
+	onChangeValue: (value: R) => void;
+	onResetButtonClick?: () => void;
+	onChangeEditor?: (value: string | undefined) => void;
+};
+
+```

@@ -1,0 +1,149 @@
+{
+  "sourcePath": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/app/importer-pending-avatars/server/PendingAvatarImporter.ts",
+  "symbols": [
+    {
+      "type": "class",
+      "name": "PendingAvatarImporter",
+      "exported": true,
+      "line": 8,
+      "endLine": 75,
+      "signature": "export class PendingAvatarImporter extends Importer",
+      "calls": [
+        {
+          "name": "Importer",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "prepareFileCount",
+      "exported": true,
+      "qualifiedName": "PendingAvatarImporter.prepareFileCount",
+      "line": 9,
+      "endLine": 34,
+      "signature": "async prepareFileCount()",
+      "containerClass": "PendingAvatarImporter",
+      "calls": [
+        {
+          "name": "debug",
+          "edgeType": "call"
+        },
+        {
+          "name": "updateProgress",
+          "edgeType": "call"
+        },
+        {
+          "name": "countAllUsersWithPendingAvatar",
+          "edgeType": "call"
+        },
+        {
+          "name": "updateRecord",
+          "edgeType": "call"
+        },
+        {
+          "name": "reportProgress",
+          "edgeType": "call"
+        },
+        {
+          "name": "setImmediate",
+          "edgeType": "call"
+        },
+        {
+          "name": "startImport",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "startImport",
+      "exported": true,
+      "qualifiedName": "PendingAvatarImporter.startImport",
+      "line": 13,
+      "endLine": 51,
+      "signature": "override async startImport(importSelection: IImporterShortSelection): Promise<ImporterProgress>",
+      "containerClass": "PendingAvatarImporter",
+      "calls": [
+        {
+          "name": "findAllUsersWithPendingAvatar",
+          "edgeType": "call"
+        },
+        {
+          "name": "startsWith",
+          "edgeType": "call"
+        },
+        {
+          "name": "setAvatarFromServiceWithValidation",
+          "edgeType": "call"
+        },
+        {
+          "name": "updateOne",
+          "edgeType": "call"
+        },
+        {
+          "name": "warn",
+          "edgeType": "call"
+        },
+        {
+          "name": "addCountCompleted",
+          "edgeType": "call"
+        },
+        {
+          "name": "error",
+          "edgeType": "call"
+        },
+        {
+          "name": "isCursorNotFoundError",
+          "edgeType": "call"
+        },
+        {
+          "name": "info",
+          "edgeType": "call"
+        },
+        {
+          "name": "startImport",
+          "edgeType": "call"
+        },
+        {
+          "name": "updateProgress",
+          "edgeType": "call"
+        },
+        {
+          "name": "getProgress",
+          "edgeType": "call"
+        },
+        {
+          "name": "IImporterShortSelection",
+          "edgeType": "type"
+        },
+        {
+          "name": "ImporterProgress",
+          "edgeType": "type"
+        }
+      ]
+    }
+  ],
+  "imports": [
+    {
+      "module": "@rocket.chat/core-typings",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/models",
+      "resolved": "external"
+    },
+    {
+      "module": "../../../server/lib/users/setUserAvatar",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/server/lib/users/setUserAvatar.ts"
+    },
+    {
+      "module": "../../importer/server",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/app/importer/server/index.ts"
+    },
+    {
+      "module": "../../importer/server/classes/ImporterProgress",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/app/importer/server/classes/ImporterProgress.ts"
+    }
+  ]
+}

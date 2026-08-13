@@ -1,0 +1,105 @@
+{
+  "sourcePath": "/Users/echoooooo/Desktop/code/Rocket.Chat/packages/apps/src/server/bridges/EmailBridge.ts",
+  "symbols": [
+    {
+      "type": "class",
+      "name": "EmailBridge",
+      "exported": true,
+      "line": 8,
+      "endLine": 31,
+      "signature": "export abstract class EmailBridge extends BaseBridge",
+      "calls": [
+        {
+          "name": "BaseBridge",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "doSendEmail",
+      "exported": true,
+      "qualifiedName": "EmailBridge.doSendEmail",
+      "line": 9,
+      "endLine": 13,
+      "signature": "public async doSendEmail(email: IEmail, appId: string): Promise<void>",
+      "containerClass": "EmailBridge",
+      "calls": [
+        {
+          "name": "hasWritePermission",
+          "edgeType": "call"
+        },
+        {
+          "name": "sendEmail",
+          "edgeType": "call"
+        },
+        {
+          "name": "IEmail",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "sendEmail",
+      "exported": true,
+      "qualifiedName": "EmailBridge.sendEmail",
+      "line": 13,
+      "endLine": 13,
+      "signature": "protected abstract sendEmail(email: IEmail, appId: string): Promise<void>;",
+      "containerClass": "EmailBridge",
+      "calls": [
+        {
+          "name": "IEmail",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "hasWritePermission",
+      "exported": true,
+      "qualifiedName": "EmailBridge.hasWritePermission",
+      "line": 15,
+      "endLine": 28,
+      "signature": "private hasWritePermission(appId: string): boolean",
+      "containerClass": "EmailBridge",
+      "calls": [
+        {
+          "name": "hasPermission",
+          "edgeType": "call"
+        },
+        {
+          "name": "notifyAboutError",
+          "edgeType": "call"
+        },
+        {
+          "name": "PermissionDeniedError",
+          "edgeType": "new"
+        }
+      ]
+    }
+  ],
+  "imports": [
+    {
+      "module": "@rocket.chat/apps-engine/definition/email",
+      "resolved": "external"
+    },
+    {
+      "module": "./BaseBridge",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/packages/apps/src/server/bridges/BaseBridge.ts"
+    },
+    {
+      "module": "../errors/PermissionDeniedError",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/packages/apps/src/server/errors/PermissionDeniedError.ts"
+    },
+    {
+      "module": "../managers/AppPermissionManager",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/packages/apps/src/server/managers/AppPermissionManager.ts"
+    },
+    {
+      "module": "../permissions/AppPermissions",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/packages/apps/src/server/permissions/AppPermissions.ts"
+    }
+  ]
+}

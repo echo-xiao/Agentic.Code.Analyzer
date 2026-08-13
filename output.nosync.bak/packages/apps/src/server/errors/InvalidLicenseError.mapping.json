@@ -1,0 +1,36 @@
+{
+  "sourcePath": "/Users/echoooooo/Desktop/code/Rocket.Chat/packages/apps/src/server/errors/InvalidLicenseError.ts",
+  "symbols": [
+    {
+      "type": "class",
+      "name": "InvalidLicenseError",
+      "exported": true,
+      "line": 3,
+      "endLine": 7,
+      "signature": "export class InvalidLicenseError extends Error",
+      "calls": []
+    },
+    {
+      "type": "method",
+      "name": "constructor",
+      "exported": true,
+      "qualifiedName": "InvalidLicenseError.constructor",
+      "line": 4,
+      "endLine": 6,
+      "signature": "public constructor(public readonly validationResult: AppLicenseValidationResult)",
+      "containerClass": "InvalidLicenseError",
+      "calls": [
+        {
+          "name": "AppLicenseValidationResult",
+          "edgeType": "type"
+        }
+      ]
+    }
+  ],
+  "imports": [
+    {
+      "module": "../marketplace/license/AppLicenseValidationResult",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/packages/apps/src/server/marketplace/license/AppLicenseValidationResult.ts"
+    }
+  ]
+}

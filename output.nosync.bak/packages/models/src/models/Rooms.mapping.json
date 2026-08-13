@@ -1,0 +1,4988 @@
+{
+  "sourcePath": "/Users/echoooooo/Desktop/code/Rocket.Chat/packages/models/src/models/Rooms.ts",
+  "symbols": [
+    {
+      "type": "class",
+      "name": "RoomsRaw",
+      "exported": true,
+      "line": 36,
+      "endLine": 2378,
+      "signature": "export class RoomsRaw extends BaseRaw<IRoom> implements IRoomsModel",
+      "calls": [
+        {
+          "name": "BaseRaw",
+          "edgeType": "type"
+        },
+        {
+          "name": "IRoomsModel",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "modelIndexes",
+      "exported": true,
+      "qualifiedName": "RoomsRaw.modelIndexes",
+      "line": 41,
+      "endLine": 119,
+      "signature": "override modelIndexes(): IndexDescription[]",
+      "containerClass": "RoomsRaw",
+      "calls": [
+        {
+          "name": "IndexDescription",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "isAbacAttributeInUse",
+      "exported": true,
+      "qualifiedName": "RoomsRaw.isAbacAttributeInUse",
+      "line": 45,
+      "endLine": 61,
+      "signature": "async isAbacAttributeInUse(key: string, values: string[]): Promise<boolean>",
+      "containerClass": "RoomsRaw",
+      "calls": [
+        {
+          "name": "findOne",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "findOneByRoomIdAndUserId",
+      "exported": true,
+      "qualifiedName": "RoomsRaw.findOneByRoomIdAndUserId",
+      "line": 49,
+      "endLine": 56,
+      "signature": "findOneByRoomIdAndUserId(rid: IRoom['_id'], uid: IUser['_id'], options: FindOptions<IRoom> = {}): Promise<IRoom | null>",
+      "containerClass": "RoomsRaw",
+      "calls": [
+        {
+          "name": "findOne",
+          "edgeType": "call"
+        },
+        {
+          "name": "IRoom",
+          "edgeType": "type"
+        },
+        {
+          "name": "IUser",
+          "edgeType": "type"
+        },
+        {
+          "name": "FindOptions",
+          "edgeType": "type"
+        },
+        {
+          "name": "Filter",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "findManyByRoomIds",
+      "exported": true,
+      "qualifiedName": "RoomsRaw.findManyByRoomIds",
+      "line": 53,
+      "endLine": 61,
+      "signature": "findManyByRoomIds(roomIds: Array<IRoom['_id']>, options: FindOptions<IRoom> = {}): FindCursor<IRoom>",
+      "containerClass": "RoomsRaw",
+      "calls": [
+        {
+          "name": "find",
+          "edgeType": "call"
+        },
+        {
+          "name": "IRoom",
+          "edgeType": "type"
+        },
+        {
+          "name": "FindOptions",
+          "edgeType": "type"
+        },
+        {
+          "name": "FindCursor",
+          "edgeType": "type"
+        },
+        {
+          "name": "Filter",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "findManyArchivedByRoomIds",
+      "exported": true,
+      "qualifiedName": "RoomsRaw.findManyArchivedByRoomIds",
+      "line": 57,
+      "endLine": 66,
+      "signature": "findManyArchivedByRoomIds(roomIds: Array<IRoom['_id']>, options: FindOptions<IRoom> = {}): FindCursor<IRoom>",
+      "containerClass": "RoomsRaw",
+      "calls": [
+        {
+          "name": "find",
+          "edgeType": "call"
+        },
+        {
+          "name": "IRoom",
+          "edgeType": "type"
+        },
+        {
+          "name": "FindOptions",
+          "edgeType": "type"
+        },
+        {
+          "name": "FindCursor",
+          "edgeType": "type"
+        },
+        {
+          "name": "Filter",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "findPaginatedByIds",
+      "exported": true,
+      "qualifiedName": "RoomsRaw.findPaginatedByIds",
+      "line": 61,
+      "endLine": 71,
+      "signature": "findPaginatedByIds( roomIds: Array<IRoom['_id']>, options: FindOptions<IRoom> = {}, ): FindPaginated<FindCursor<IRoom & { isLastOwner?: boolean }>>",
+      "containerClass": "RoomsRaw",
+      "calls": [
+        {
+          "name": "findPaginated",
+          "edgeType": "call"
+        },
+        {
+          "name": "IRoom",
+          "edgeType": "type"
+        },
+        {
+          "name": "FindOptions",
+          "edgeType": "type"
+        },
+        {
+          "name": "FindPaginated",
+          "edgeType": "type"
+        },
+        {
+          "name": "FindCursor",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "getMostRecentAverageChatDurationTime",
+      "exported": true,
+      "qualifiedName": "RoomsRaw.getMostRecentAverageChatDurationTime",
+      "line": 68,
+      "endLine": 96,
+      "signature": "async getMostRecentAverageChatDurationTime( numberMostRecentChats: number, department?: string, ): Promise<{ props: { _id: IRoom['_id']; avgChatDuration: number } }>",
+      "containerClass": "RoomsRaw",
+      "calls": [
+        {
+          "name": "toArray",
+          "edgeType": "call"
+        },
+        {
+          "name": "aggregate",
+          "edgeType": "call"
+        },
+        {
+          "name": "readSecondaryPreferred",
+          "edgeType": "call"
+        },
+        {
+          "name": "IRoom",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "findByNameOrFnameContainingAndTypes",
+      "exported": true,
+      "qualifiedName": "RoomsRaw.findByNameOrFnameContainingAndTypes",
+      "line": 75,
+      "endLine": 117,
+      "signature": "findByNameOrFnameContainingAndTypes( name: NonNullable<IRoom['name']>, types: Array<IRoom['t']>, discussion = false, teams = false, options: FindOptions<IRoom> = {}, ): FindPaginated<FindCursor<IRoom>>",
+      "containerClass": "RoomsRaw",
+      "calls": [
+        {
+          "name": "trim",
+          "edgeType": "call"
+        },
+        {
+          "name": "escapeRegExp",
+          "edgeType": "call"
+        },
+        {
+          "name": "findPaginated",
+          "edgeType": "call"
+        },
+        {
+          "name": "RegExp",
+          "edgeType": "new"
+        },
+        {
+          "name": "IRoom",
+          "edgeType": "type"
+        },
+        {
+          "name": "FindOptions",
+          "edgeType": "type"
+        },
+        {
+          "name": "FindPaginated",
+          "edgeType": "type"
+        },
+        {
+          "name": "FindCursor",
+          "edgeType": "type"
+        },
+        {
+          "name": "Filter",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "findPrivateRoomsAndTeamsPaginated",
+      "exported": true,
+      "qualifiedName": "RoomsRaw.findPrivateRoomsAndTeamsPaginated",
+      "line": 85,
+      "endLine": 103,
+      "signature": "findPrivateRoomsAndTeamsPaginated(name: NonNullable<IRoom['name']>, options: FindOptions<IRoom> = {}): FindPaginated<FindCursor<IRoom>>",
+      "containerClass": "RoomsRaw",
+      "calls": [
+        {
+          "name": "trim",
+          "edgeType": "call"
+        },
+        {
+          "name": "escapeRegExp",
+          "edgeType": "call"
+        },
+        {
+          "name": "findPaginated",
+          "edgeType": "call"
+        },
+        {
+          "name": "RegExp",
+          "edgeType": "new"
+        },
+        {
+          "name": "IRoom",
+          "edgeType": "type"
+        },
+        {
+          "name": "FindOptions",
+          "edgeType": "type"
+        },
+        {
+          "name": "FindPaginated",
+          "edgeType": "type"
+        },
+        {
+          "name": "FindCursor",
+          "edgeType": "type"
+        },
+        {
+          "name": "Filter",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "findByTeamId",
+      "exported": true,
+      "qualifiedName": "RoomsRaw.findByTeamId",
+      "line": 89,
+      "endLine": 98,
+      "signature": "findByTeamId(teamId: ITeam['_id'], options: FindOptions<IRoom> = {}): FindCursor<IRoom>",
+      "containerClass": "RoomsRaw",
+      "calls": [
+        {
+          "name": "find",
+          "edgeType": "call"
+        },
+        {
+          "name": "ITeam",
+          "edgeType": "type"
+        },
+        {
+          "name": "FindOptions",
+          "edgeType": "type"
+        },
+        {
+          "name": "IRoom",
+          "edgeType": "type"
+        },
+        {
+          "name": "FindCursor",
+          "edgeType": "type"
+        },
+        {
+          "name": "Filter",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "countByTeamId",
+      "exported": true,
+      "qualifiedName": "RoomsRaw.countByTeamId",
+      "line": 93,
+      "endLine": 102,
+      "signature": "countByTeamId(teamId: ITeam['_id']): Promise<number>",
+      "containerClass": "RoomsRaw",
+      "calls": [
+        {
+          "name": "countDocuments",
+          "edgeType": "call"
+        },
+        {
+          "name": "ITeam",
+          "edgeType": "type"
+        },
+        {
+          "name": "Filter",
+          "edgeType": "type"
+        },
+        {
+          "name": "IRoom",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "findPaginatedByTeamIdContainingNameAndDefault",
+      "exported": true,
+      "qualifiedName": "RoomsRaw.findPaginatedByTeamIdContainingNameAndDefault",
+      "line": 97,
+      "endLine": 115,
+      "signature": "findPaginatedByTeamIdContainingNameAndDefault( teamId: ITeam['_id'], name: IRoom['name'], teamDefault: boolean, ids: Array<IRoom['_id']> | undefined, options: FindOptions<IRoom> = {}, ): FindPaginated<FindCursor<IRoom>>",
+      "containerClass": "RoomsRaw",
+      "calls": [
+        {
+          "name": "escapeRegExp",
+          "edgeType": "call"
+        },
+        {
+          "name": "findPaginated",
+          "edgeType": "call"
+        },
+        {
+          "name": "RegExp",
+          "edgeType": "new"
+        },
+        {
+          "name": "ITeam",
+          "edgeType": "type"
+        },
+        {
+          "name": "IRoom",
+          "edgeType": "type"
+        },
+        {
+          "name": "FindOptions",
+          "edgeType": "type"
+        },
+        {
+          "name": "FindPaginated",
+          "edgeType": "type"
+        },
+        {
+          "name": "FindCursor",
+          "edgeType": "type"
+        },
+        {
+          "name": "Filter",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "findByTeamIdAndRoomsId",
+      "exported": true,
+      "qualifiedName": "RoomsRaw.findByTeamIdAndRoomsId",
+      "line": 107,
+      "endLine": 116,
+      "signature": "findByTeamIdAndRoomsId(teamId: ITeam['_id'], rids: Array<IRoom['_id']>, options: FindOptions<IRoom> = {}): FindCursor<IRoom>",
+      "containerClass": "RoomsRaw",
+      "calls": [
+        {
+          "name": "find",
+          "edgeType": "call"
+        },
+        {
+          "name": "ITeam",
+          "edgeType": "type"
+        },
+        {
+          "name": "IRoom",
+          "edgeType": "type"
+        },
+        {
+          "name": "FindOptions",
+          "edgeType": "type"
+        },
+        {
+          "name": "FindCursor",
+          "edgeType": "type"
+        },
+        {
+          "name": "Filter",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "findRoomsByNameOrFnameStarting",
+      "exported": true,
+      "qualifiedName": "RoomsRaw.findRoomsByNameOrFnameStarting",
+      "line": 111,
+      "endLine": 129,
+      "signature": "findRoomsByNameOrFnameStarting(name: NonNullable<IRoom['name']>, options: FindOptions<IRoom> = {}): FindCursor<IRoom>",
+      "containerClass": "RoomsRaw",
+      "calls": [
+        {
+          "name": "trim",
+          "edgeType": "call"
+        },
+        {
+          "name": "escapeRegExp",
+          "edgeType": "call"
+        },
+        {
+          "name": "find",
+          "edgeType": "call"
+        },
+        {
+          "name": "RegExp",
+          "edgeType": "new"
+        },
+        {
+          "name": "IRoom",
+          "edgeType": "type"
+        },
+        {
+          "name": "FindOptions",
+          "edgeType": "type"
+        },
+        {
+          "name": "FindCursor",
+          "edgeType": "type"
+        },
+        {
+          "name": "Filter",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "findRoomsWithoutDiscussionsByRoomIds",
+      "exported": true,
+      "qualifiedName": "RoomsRaw.findRoomsWithoutDiscussionsByRoomIds",
+      "line": 115,
+      "endLine": 149,
+      "signature": "findRoomsWithoutDiscussionsByRoomIds( name: NonNullable<IRoom['name']>, roomIds: Array<IRoom['_id']>, options: FindOptions<IRoom> = {}, ): FindCursor<IRoom>",
+      "containerClass": "RoomsRaw",
+      "calls": [
+        {
+          "name": "trim",
+          "edgeType": "call"
+        },
+        {
+          "name": "escapeRegExp",
+          "edgeType": "call"
+        },
+        {
+          "name": "find",
+          "edgeType": "call"
+        },
+        {
+          "name": "RegExp",
+          "edgeType": "new"
+        },
+        {
+          "name": "IRoom",
+          "edgeType": "type"
+        },
+        {
+          "name": "FindOptions",
+          "edgeType": "type"
+        },
+        {
+          "name": "FindCursor",
+          "edgeType": "type"
+        },
+        {
+          "name": "Filter",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "findPaginatedRoomsWithoutDiscussionsByRoomIds",
+      "exported": true,
+      "qualifiedName": "RoomsRaw.findPaginatedRoomsWithoutDiscussionsByRoomIds",
+      "line": 123,
+      "endLine": 158,
+      "signature": "findPaginatedRoomsWithoutDiscussionsByRoomIds( name: NonNullable<IRoom['name']>, roomIds: Array<IRoom['_id']>, options: FindOptions<IRoom> = {}, ): FindPaginated<FindCursor<IRoom>>",
+      "containerClass": "RoomsRaw",
+      "calls": [
+        {
+          "name": "trim",
+          "edgeType": "call"
+        },
+        {
+          "name": "escapeRegExp",
+          "edgeType": "call"
+        },
+        {
+          "name": "findPaginated",
+          "edgeType": "call"
+        },
+        {
+          "name": "RegExp",
+          "edgeType": "new"
+        },
+        {
+          "name": "IRoom",
+          "edgeType": "type"
+        },
+        {
+          "name": "FindOptions",
+          "edgeType": "type"
+        },
+        {
+          "name": "FindPaginated",
+          "edgeType": "type"
+        },
+        {
+          "name": "FindCursor",
+          "edgeType": "type"
+        },
+        {
+          "name": "Filter",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "findChannelAndGroupListWithoutTeamsByNameStartingByOwner",
+      "exported": true,
+      "qualifiedName": "RoomsRaw.findChannelAndGroupListWithoutTeamsByNameStartingByOwner",
+      "line": 131,
+      "endLine": 152,
+      "signature": "findChannelAndGroupListWithoutTeamsByNameStartingByOwner( name: IRoom['name'], groupsToAccept: Array<IRoom['_id']>, options: FindOptions<IRoom> = {}, ): FindCursor<IRoom>",
+      "containerClass": "RoomsRaw",
+      "calls": [
+        {
+          "name": "trim",
+          "edgeType": "call"
+        },
+        {
+          "name": "escapeRegExp",
+          "edgeType": "call"
+        },
+        {
+          "name": "find",
+          "edgeType": "call"
+        },
+        {
+          "name": "RegExp",
+          "edgeType": "new"
+        },
+        {
+          "name": "IRoom",
+          "edgeType": "type"
+        },
+        {
+          "name": "FindOptions",
+          "edgeType": "type"
+        },
+        {
+          "name": "FindCursor",
+          "edgeType": "type"
+        },
+        {
+          "name": "Filter",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "unsetTeamId",
+      "exported": true,
+      "qualifiedName": "RoomsRaw.unsetTeamId",
+      "line": 139,
+      "endLine": 150,
+      "signature": "unsetTeamId(teamId: ITeam['_id'], options: UpdateOptions = {}): Promise<Document | UpdateResult>",
+      "containerClass": "RoomsRaw",
+      "calls": [
+        {
+          "name": "updateMany",
+          "edgeType": "call"
+        },
+        {
+          "name": "ITeam",
+          "edgeType": "type"
+        },
+        {
+          "name": "UpdateOptions",
+          "edgeType": "type"
+        },
+        {
+          "name": "Document",
+          "edgeType": "type"
+        },
+        {
+          "name": "UpdateResult",
+          "edgeType": "type"
+        },
+        {
+          "name": "Filter",
+          "edgeType": "type"
+        },
+        {
+          "name": "IRoom",
+          "edgeType": "type"
+        },
+        {
+          "name": "UpdateFilter",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "unsetTeamById",
+      "exported": true,
+      "qualifiedName": "RoomsRaw.unsetTeamById",
+      "line": 143,
+      "endLine": 145,
+      "signature": "unsetTeamById(rid: IRoom['_id'], options: UpdateOptions = {}): Promise<UpdateResult>",
+      "containerClass": "RoomsRaw",
+      "calls": [
+        {
+          "name": "updateOne",
+          "edgeType": "call"
+        },
+        {
+          "name": "IRoom",
+          "edgeType": "type"
+        },
+        {
+          "name": "UpdateOptions",
+          "edgeType": "type"
+        },
+        {
+          "name": "UpdateResult",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "setTeamById",
+      "exported": true,
+      "qualifiedName": "RoomsRaw.setTeamById",
+      "line": 147,
+      "endLine": 154,
+      "signature": "setTeamById( rid: IRoom['_id'], teamId: ITeam['_id'], teamDefault: IRoom['teamDefault'], options: UpdateOptions = {}, ): Promise<UpdateResult>",
+      "containerClass": "RoomsRaw",
+      "calls": [
+        {
+          "name": "updateOne",
+          "edgeType": "call"
+        },
+        {
+          "name": "IRoom",
+          "edgeType": "type"
+        },
+        {
+          "name": "ITeam",
+          "edgeType": "type"
+        },
+        {
+          "name": "UpdateOptions",
+          "edgeType": "type"
+        },
+        {
+          "name": "UpdateResult",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "setTeamMainById",
+      "exported": true,
+      "qualifiedName": "RoomsRaw.setTeamMainById",
+      "line": 156,
+      "endLine": 158,
+      "signature": "setTeamMainById(rid: IRoom['_id'], teamId: ITeam['_id'], options: UpdateOptions = {}): Promise<UpdateResult>",
+      "containerClass": "RoomsRaw",
+      "calls": [
+        {
+          "name": "updateOne",
+          "edgeType": "call"
+        },
+        {
+          "name": "IRoom",
+          "edgeType": "type"
+        },
+        {
+          "name": "ITeam",
+          "edgeType": "type"
+        },
+        {
+          "name": "UpdateOptions",
+          "edgeType": "type"
+        },
+        {
+          "name": "UpdateResult",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "setTeamByIds",
+      "exported": true,
+      "qualifiedName": "RoomsRaw.setTeamByIds",
+      "line": 160,
+      "endLine": 162,
+      "signature": "setTeamByIds(rids: Array<IRoom['_id']>, teamId: ITeam['_id'], options: UpdateOptions = {}): Promise<Document | UpdateResult>",
+      "containerClass": "RoomsRaw",
+      "calls": [
+        {
+          "name": "updateMany",
+          "edgeType": "call"
+        },
+        {
+          "name": "IRoom",
+          "edgeType": "type"
+        },
+        {
+          "name": "ITeam",
+          "edgeType": "type"
+        },
+        {
+          "name": "UpdateOptions",
+          "edgeType": "type"
+        },
+        {
+          "name": "Document",
+          "edgeType": "type"
+        },
+        {
+          "name": "UpdateResult",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "setTeamDefaultById",
+      "exported": true,
+      "qualifiedName": "RoomsRaw.setTeamDefaultById",
+      "line": 164,
+      "endLine": 170,
+      "signature": "setTeamDefaultById( rid: IRoom['_id'], teamDefault: NonNullable<IRoom['teamDefault']>, options: UpdateOptions = {}, ): Promise<UpdateResult>",
+      "containerClass": "RoomsRaw",
+      "calls": [
+        {
+          "name": "updateOne",
+          "edgeType": "call"
+        },
+        {
+          "name": "IRoom",
+          "edgeType": "type"
+        },
+        {
+          "name": "UpdateOptions",
+          "edgeType": "type"
+        },
+        {
+          "name": "UpdateResult",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "getChannelsWithNumberOfMessagesBetweenDateQuery",
+      "exported": true,
+      "qualifiedName": "RoomsRaw.getChannelsWithNumberOfMessagesBetweenDateQuery",
+      "line": 172,
+      "endLine": 293,
+      "signature": "getChannelsWithNumberOfMessagesBetweenDateQuery({ types, start, end, startOfLastWeek, endOfLastWeek, options, }: { types: Array<IRoom['t']>; start: number; end: number; startOfLastWeek: number; endOfLastWeek: number; options?: any; })",
+      "containerClass": "RoomsRaw",
+      "calls": [
+        {
+          "name": "push",
+          "edgeType": "call"
+        },
+        {
+          "name": "IRoom",
+          "edgeType": "type"
+        },
+        {
+          "name": "Collection",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "findChannelsByTypesWithNumberOfMessagesBetweenDate",
+      "exported": true,
+      "qualifiedName": "RoomsRaw.findChannelsByTypesWithNumberOfMessagesBetweenDate",
+      "line": 190,
+      "endLine": 203,
+      "signature": "findChannelsByTypesWithNumberOfMessagesBetweenDate(params: { types: Array<IRoom['t']>; start: number; end: number; startOfLastWeek: number; endOfLastWeek: number; options?: any; }): AggregationCursor<IChannelsWithNumberOfMessagesBetweenDate>",
+      "containerClass": "RoomsRaw",
+      "calls": [
+        {
+          "name": "getChannelsWithNumberOfMessagesBetweenDateQuery",
+          "edgeType": "call"
+        },
+        {
+          "name": "aggregate",
+          "edgeType": "call"
+        },
+        {
+          "name": "readSecondaryPreferred",
+          "edgeType": "call"
+        },
+        {
+          "name": "IRoom",
+          "edgeType": "type"
+        },
+        {
+          "name": "AggregationCursor",
+          "edgeType": "type"
+        },
+        {
+          "name": "IChannelsWithNumberOfMessagesBetweenDate",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "findOneByNameOrFname",
+      "exported": true,
+      "qualifiedName": "RoomsRaw.findOneByNameOrFname",
+      "line": 201,
+      "endLine": 214,
+      "signature": "findOneByNameOrFname(name: NonNullable<IRoom['name']>, options: FindOptions<IRoom> = {}): Promise<IRoom | null>",
+      "containerClass": "RoomsRaw",
+      "calls": [
+        {
+          "name": "findOne",
+          "edgeType": "call"
+        },
+        {
+          "name": "IRoom",
+          "edgeType": "type"
+        },
+        {
+          "name": "FindOptions",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "findOneByJoinCodeAndId",
+      "exported": true,
+      "qualifiedName": "RoomsRaw.findOneByJoinCodeAndId",
+      "line": 205,
+      "endLine": 212,
+      "signature": "findOneByJoinCodeAndId(joinCode: string, rid: IRoom['_id'], options: FindOptions<IRoom> = {}): Promise<IRoom | null>",
+      "containerClass": "RoomsRaw",
+      "calls": [
+        {
+          "name": "findOne",
+          "edgeType": "call"
+        },
+        {
+          "name": "IRoom",
+          "edgeType": "type"
+        },
+        {
+          "name": "FindOptions",
+          "edgeType": "type"
+        },
+        {
+          "name": "Filter",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "findOneByNonValidatedName",
+      "exported": true,
+      "qualifiedName": "RoomsRaw.findOneByNonValidatedName",
+      "line": 209,
+      "endLine": 216,
+      "signature": "async findOneByNonValidatedName(name: NonNullable<IRoom['name']>, options: FindOptions<IRoom> = {})",
+      "containerClass": "RoomsRaw",
+      "calls": [
+        {
+          "name": "findOneByNameOrFname",
+          "edgeType": "call"
+        },
+        {
+          "name": "findOneByName",
+          "edgeType": "call"
+        },
+        {
+          "name": "IRoom",
+          "edgeType": "type"
+        },
+        {
+          "name": "FindOptions",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "findOneByName",
+      "exported": true,
+      "qualifiedName": "RoomsRaw.findOneByName",
+      "line": 213,
+      "endLine": 215,
+      "signature": "findOneByName(name: NonNullable<IRoom['name']>, options: FindOptions<IRoom> = {}): Promise<IRoom | null>",
+      "containerClass": "RoomsRaw",
+      "calls": [
+        {
+          "name": "findOne",
+          "edgeType": "call"
+        },
+        {
+          "name": "IRoom",
+          "edgeType": "type"
+        },
+        {
+          "name": "FindOptions",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "findDefaultRoomsForTeam",
+      "exported": true,
+      "qualifiedName": "RoomsRaw.findDefaultRoomsForTeam",
+      "line": 217,
+      "endLine": 225,
+      "signature": "findDefaultRoomsForTeam(teamId: ITeam['_id']): FindCursor<IRoom>",
+      "containerClass": "RoomsRaw",
+      "calls": [
+        {
+          "name": "find",
+          "edgeType": "call"
+        },
+        {
+          "name": "ITeam",
+          "edgeType": "type"
+        },
+        {
+          "name": "FindCursor",
+          "edgeType": "type"
+        },
+        {
+          "name": "IRoom",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "incUsersCountByIds",
+      "exported": true,
+      "qualifiedName": "RoomsRaw.incUsersCountByIds",
+      "line": 221,
+      "endLine": 235,
+      "signature": "incUsersCountByIds(ids: Array<IRoom['_id']>, inc = 1, options?: UpdateOptions): Promise<Document | UpdateResult>",
+      "containerClass": "RoomsRaw",
+      "calls": [
+        {
+          "name": "updateMany",
+          "edgeType": "call"
+        },
+        {
+          "name": "IRoom",
+          "edgeType": "type"
+        },
+        {
+          "name": "UpdateOptions",
+          "edgeType": "type"
+        },
+        {
+          "name": "Document",
+          "edgeType": "type"
+        },
+        {
+          "name": "UpdateResult",
+          "edgeType": "type"
+        },
+        {
+          "name": "Filter",
+          "edgeType": "type"
+        },
+        {
+          "name": "UpdateFilter",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "allRoomSourcesCount",
+      "exported": true,
+      "qualifiedName": "RoomsRaw.allRoomSourcesCount",
+      "line": 225,
+      "endLine": 242,
+      "signature": "allRoomSourcesCount(): AggregationCursor<{ _id: Required<IOmnichannelGenericRoom['source']>; count: number }>",
+      "containerClass": "RoomsRaw",
+      "calls": [
+        {
+          "name": "aggregate",
+          "edgeType": "call"
+        },
+        {
+          "name": "AggregationCursor",
+          "edgeType": "type"
+        },
+        {
+          "name": "IOmnichannelGenericRoom",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "findByBroadcast",
+      "exported": true,
+      "qualifiedName": "RoomsRaw.findByBroadcast",
+      "line": 229,
+      "endLine": 236,
+      "signature": "findByBroadcast(options: FindOptions<IRoom> = {}): FindCursor<IRoom>",
+      "containerClass": "RoomsRaw",
+      "calls": [
+        {
+          "name": "find",
+          "edgeType": "call"
+        },
+        {
+          "name": "FindOptions",
+          "edgeType": "type"
+        },
+        {
+          "name": "IRoom",
+          "edgeType": "type"
+        },
+        {
+          "name": "FindCursor",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "countByBroadcast",
+      "exported": true,
+      "qualifiedName": "RoomsRaw.countByBroadcast",
+      "line": 233,
+      "endLine": 240,
+      "signature": "countByBroadcast(options?: CountDocumentsOptions): Promise<number>",
+      "containerClass": "RoomsRaw",
+      "calls": [
+        {
+          "name": "countDocuments",
+          "edgeType": "call"
+        },
+        {
+          "name": "CountDocumentsOptions",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "setAsFederated",
+      "exported": true,
+      "qualifiedName": "RoomsRaw.setAsFederated",
+      "line": 237,
+      "endLine": 239,
+      "signature": "setAsFederated(roomId: IRoom['_id'], { mrid, origin }: { mrid: string; origin: string }): Promise<UpdateResult>",
+      "containerClass": "RoomsRaw",
+      "calls": [
+        {
+          "name": "updateOne",
+          "edgeType": "call"
+        },
+        {
+          "name": "IRoom",
+          "edgeType": "type"
+        },
+        {
+          "name": "UpdateResult",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "setRoomTypeById",
+      "exported": true,
+      "qualifiedName": "RoomsRaw.setRoomTypeById",
+      "line": 241,
+      "endLine": 243,
+      "signature": "setRoomTypeById(roomId: IRoom['_id'], roomType: IRoom['t']): Promise<UpdateResult>",
+      "containerClass": "RoomsRaw",
+      "calls": [
+        {
+          "name": "updateOne",
+          "edgeType": "call"
+        },
+        {
+          "name": "IRoom",
+          "edgeType": "type"
+        },
+        {
+          "name": "UpdateResult",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "setRoomNameById",
+      "exported": true,
+      "qualifiedName": "RoomsRaw.setRoomNameById",
+      "line": 245,
+      "endLine": 247,
+      "signature": "setRoomNameById(roomId: IRoom['_id'], name: IRoom['name']): Promise<UpdateResult>",
+      "containerClass": "RoomsRaw",
+      "calls": [
+        {
+          "name": "updateOne",
+          "edgeType": "call"
+        },
+        {
+          "name": "IRoom",
+          "edgeType": "type"
+        },
+        {
+          "name": "UpdateResult",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "setFnameById",
+      "exported": true,
+      "qualifiedName": "RoomsRaw.setFnameById",
+      "line": 249,
+      "endLine": 259,
+      "signature": "setFnameById(_id: IRoom['_id'], fname: IRoom['fname']): Promise<UpdateResult>",
+      "containerClass": "RoomsRaw",
+      "calls": [
+        {
+          "name": "updateOne",
+          "edgeType": "call"
+        },
+        {
+          "name": "IRoom",
+          "edgeType": "type"
+        },
+        {
+          "name": "UpdateResult",
+          "edgeType": "type"
+        },
+        {
+          "name": "Filter",
+          "edgeType": "type"
+        },
+        {
+          "name": "UpdateFilter",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "setRoomTopicById",
+      "exported": true,
+      "qualifiedName": "RoomsRaw.setRoomTopicById",
+      "line": 253,
+      "endLine": 255,
+      "signature": "setRoomTopicById(roomId: IRoom['_id'], topic: IRoom['description']): Promise<UpdateResult>",
+      "containerClass": "RoomsRaw",
+      "calls": [
+        {
+          "name": "updateOne",
+          "edgeType": "call"
+        },
+        {
+          "name": "IRoom",
+          "edgeType": "type"
+        },
+        {
+          "name": "UpdateResult",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "findByE2E",
+      "exported": true,
+      "qualifiedName": "RoomsRaw.findByE2E",
+      "line": 257,
+      "endLine": 264,
+      "signature": "findByE2E(options: FindOptions<IRoom> = {}): FindCursor<IRoom>",
+      "containerClass": "RoomsRaw",
+      "calls": [
+        {
+          "name": "find",
+          "edgeType": "call"
+        },
+        {
+          "name": "FindOptions",
+          "edgeType": "type"
+        },
+        {
+          "name": "IRoom",
+          "edgeType": "type"
+        },
+        {
+          "name": "FindCursor",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "countByE2E",
+      "exported": true,
+      "qualifiedName": "RoomsRaw.countByE2E",
+      "line": 261,
+      "endLine": 268,
+      "signature": "countByE2E(options?: CountDocumentsOptions): Promise<number>",
+      "containerClass": "RoomsRaw",
+      "calls": [
+        {
+          "name": "countDocuments",
+          "edgeType": "call"
+        },
+        {
+          "name": "CountDocumentsOptions",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "findE2ERoomById",
+      "exported": true,
+      "qualifiedName": "RoomsRaw.findE2ERoomById",
+      "line": 265,
+      "endLine": 273,
+      "signature": "findE2ERoomById(roomId: IRoom['_id'], options: FindOptions<IRoom> = {}): Promise<IRoom | null>",
+      "containerClass": "RoomsRaw",
+      "calls": [
+        {
+          "name": "findOne",
+          "edgeType": "call"
+        },
+        {
+          "name": "IRoom",
+          "edgeType": "type"
+        },
+        {
+          "name": "FindOptions",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "findRoomsInsideTeams",
+      "exported": true,
+      "qualifiedName": "RoomsRaw.findRoomsInsideTeams",
+      "line": 269,
+      "endLine": 275,
+      "signature": "findRoomsInsideTeams(autoJoin = false): FindCursor<IRoom>",
+      "containerClass": "RoomsRaw",
+      "calls": [
+        {
+          "name": "find",
+          "edgeType": "call"
+        },
+        {
+          "name": "FindCursor",
+          "edgeType": "type"
+        },
+        {
+          "name": "IRoom",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "countRoomsInsideTeams",
+      "exported": true,
+      "qualifiedName": "RoomsRaw.countRoomsInsideTeams",
+      "line": 273,
+      "endLine": 279,
+      "signature": "countRoomsInsideTeams(autoJoin = false): Promise<number>",
+      "containerClass": "RoomsRaw",
+      "calls": [
+        {
+          "name": "countDocuments",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "countByType",
+      "exported": true,
+      "qualifiedName": "RoomsRaw.countByType",
+      "line": 277,
+      "endLine": 279,
+      "signature": "countByType(t: IRoom['t']): Promise<number>",
+      "containerClass": "RoomsRaw",
+      "calls": [
+        {
+          "name": "countDocuments",
+          "edgeType": "call"
+        },
+        {
+          "name": "IRoom",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "findPaginatedByNameOrFNameAndRoomIdsIncludingTeamRooms",
+      "exported": true,
+      "qualifiedName": "RoomsRaw.findPaginatedByNameOrFNameAndRoomIdsIncludingTeamRooms",
+      "line": 281,
+      "endLine": 330,
+      "signature": "findPaginatedByNameOrFNameAndRoomIdsIncludingTeamRooms( searchTerm: RegExp | null, teamIds: Array<ITeam['_id']>, roomIds: Array<IRoom['_id']>, options: FindOptions<IRoom> = {}, ): FindPaginated<FindCursor<IRoom>>",
+      "containerClass": "RoomsRaw",
+      "calls": [
+        {
+          "name": "findPaginated",
+          "edgeType": "call"
+        },
+        {
+          "name": "ITeam",
+          "edgeType": "type"
+        },
+        {
+          "name": "IRoom",
+          "edgeType": "type"
+        },
+        {
+          "name": "FindOptions",
+          "edgeType": "type"
+        },
+        {
+          "name": "FindPaginated",
+          "edgeType": "type"
+        },
+        {
+          "name": "FindCursor",
+          "edgeType": "type"
+        },
+        {
+          "name": "Filter",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "findPaginatedContainingNameOrFNameInIdsAsTeamMain",
+      "exported": true,
+      "qualifiedName": "RoomsRaw.findPaginatedContainingNameOrFNameInIdsAsTeamMain",
+      "line": 290,
+      "endLine": 328,
+      "signature": "findPaginatedContainingNameOrFNameInIdsAsTeamMain( searchTerm: RegExp | null, rids: Array<IRoom['_id']>, options: FindOptions<IRoom> = {}, ): FindPaginated<FindCursor<IRoom>>",
+      "containerClass": "RoomsRaw",
+      "calls": [
+        {
+          "name": "push",
+          "edgeType": "call"
+        },
+        {
+          "name": "findPaginated",
+          "edgeType": "call"
+        },
+        {
+          "name": "IRoom",
+          "edgeType": "type"
+        },
+        {
+          "name": "FindOptions",
+          "edgeType": "type"
+        },
+        {
+          "name": "FindPaginated",
+          "edgeType": "type"
+        },
+        {
+          "name": "FindCursor",
+          "edgeType": "type"
+        },
+        {
+          "name": "Filter",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "findPaginatedByTypeAndIds",
+      "exported": true,
+      "qualifiedName": "RoomsRaw.findPaginatedByTypeAndIds",
+      "line": 298,
+      "endLine": 311,
+      "signature": "findPaginatedByTypeAndIds( type: IRoom['t'], ids: Array<IRoom['_id']>, options: FindOptions<IRoom> = {}, ): FindPaginated<FindCursor<IRoom>>",
+      "containerClass": "RoomsRaw",
+      "calls": [
+        {
+          "name": "findPaginated",
+          "edgeType": "call"
+        },
+        {
+          "name": "IRoom",
+          "edgeType": "type"
+        },
+        {
+          "name": "FindOptions",
+          "edgeType": "type"
+        },
+        {
+          "name": "FindPaginated",
+          "edgeType": "type"
+        },
+        {
+          "name": "FindCursor",
+          "edgeType": "type"
+        },
+        {
+          "name": "Filter",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "findOneDirectRoomContainingAllUserIDs",
+      "exported": true,
+      "qualifiedName": "RoomsRaw.findOneDirectRoomContainingAllUserIDs",
+      "line": 306,
+      "endLine": 319,
+      "signature": "findOneDirectRoomContainingAllUserIDs(uid: IDirectMessageRoom['uids'], options: FindOptions<IRoom> = {}): Promise<IRoom | null>",
+      "containerClass": "RoomsRaw",
+      "calls": [
+        {
+          "name": "findOne",
+          "edgeType": "call"
+        },
+        {
+          "name": "IDirectMessageRoom",
+          "edgeType": "type"
+        },
+        {
+          "name": "FindOptions",
+          "edgeType": "type"
+        },
+        {
+          "name": "IRoom",
+          "edgeType": "type"
+        },
+        {
+          "name": "Filter",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "findFederatedRooms",
+      "exported": true,
+      "qualifiedName": "RoomsRaw.findFederatedRooms",
+      "line": 310,
+      "endLine": 316,
+      "signature": "findFederatedRooms(options: FindOptions<IRoom> = {}): FindCursor<IRoomFederated>",
+      "containerClass": "RoomsRaw",
+      "calls": [
+        {
+          "name": "find",
+          "edgeType": "call"
+        },
+        {
+          "name": "FindOptions",
+          "edgeType": "type"
+        },
+        {
+          "name": "IRoom",
+          "edgeType": "type"
+        },
+        {
+          "name": "FindCursor",
+          "edgeType": "type"
+        },
+        {
+          "name": "IRoomFederated",
+          "edgeType": "type"
+        },
+        {
+          "name": "Filter",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "findFederatedByIds",
+      "exported": true,
+      "qualifiedName": "RoomsRaw.findFederatedByIds",
+      "line": 314,
+      "endLine": 321,
+      "signature": "findFederatedByIds<T extends Document = IRoomNativeFederated>(ids: Array<IRoom['_id']>, options: FindOptions<T> = {}): FindCursor<T>",
+      "containerClass": "RoomsRaw",
+      "calls": [
+        {
+          "name": "find",
+          "edgeType": "call"
+        },
+        {
+          "name": "Document",
+          "edgeType": "type"
+        },
+        {
+          "name": "IRoomNativeFederated",
+          "edgeType": "type"
+        },
+        {
+          "name": "IRoom",
+          "edgeType": "type"
+        },
+        {
+          "name": "FindOptions",
+          "edgeType": "type"
+        },
+        {
+          "name": "FindCursor",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "findOneFederatedByMrid",
+      "exported": true,
+      "qualifiedName": "RoomsRaw.findOneFederatedByMrid",
+      "line": 318,
+      "endLine": 325,
+      "signature": "findOneFederatedByMrid(mrid: string, options: FindOptions<IRoomFederated> = {}): Promise<IRoomFederated | null>",
+      "containerClass": "RoomsRaw",
+      "calls": [
+        {
+          "name": "findOne",
+          "edgeType": "call"
+        },
+        {
+          "name": "FindOptions",
+          "edgeType": "type"
+        },
+        {
+          "name": "IRoomFederated",
+          "edgeType": "type"
+        },
+        {
+          "name": "Filter",
+          "edgeType": "type"
+        },
+        {
+          "name": "IRoom",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "findCountOfRoomsWithActiveCalls",
+      "exported": true,
+      "qualifiedName": "RoomsRaw.findCountOfRoomsWithActiveCalls",
+      "line": 322,
+      "endLine": 329,
+      "signature": "findCountOfRoomsWithActiveCalls(): Promise<number>",
+      "containerClass": "RoomsRaw",
+      "calls": [
+        {
+          "name": "countDocuments",
+          "edgeType": "call"
+        },
+        {
+          "name": "Filter",
+          "edgeType": "type"
+        },
+        {
+          "name": "IRoom",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "findBiggestFederatedRoomInNumberOfUsers",
+      "exported": true,
+      "qualifiedName": "RoomsRaw.findBiggestFederatedRoomInNumberOfUsers",
+      "line": 326,
+      "endLine": 330,
+      "signature": "async findBiggestFederatedRoomInNumberOfUsers(options?: FindOptions<IRoom>): Promise<IRoom | undefined>",
+      "containerClass": "RoomsRaw",
+      "calls": [
+        {
+          "name": "findFederatedRoomByAmountOfUsers",
+          "edgeType": "call"
+        },
+        {
+          "name": "FindOptions",
+          "edgeType": "type"
+        },
+        {
+          "name": "IRoom",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "findFederatedRoomByAmountOfUsers",
+      "exported": true,
+      "qualifiedName": "RoomsRaw.findFederatedRoomByAmountOfUsers",
+      "line": 330,
+      "endLine": 343,
+      "signature": "async findFederatedRoomByAmountOfUsers(options?: FindOptions<IRoom>, asc = true): Promise<IRoom | undefined>",
+      "containerClass": "RoomsRaw",
+      "calls": [
+        {
+          "name": "shift",
+          "edgeType": "call"
+        },
+        {
+          "name": "toArray",
+          "edgeType": "call"
+        },
+        {
+          "name": "limit",
+          "edgeType": "call"
+        },
+        {
+          "name": "sort",
+          "edgeType": "call"
+        },
+        {
+          "name": "find",
+          "edgeType": "call"
+        },
+        {
+          "name": "FindOptions",
+          "edgeType": "type"
+        },
+        {
+          "name": "IRoom",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "findSmallestFederatedRoomInNumberOfUsers",
+      "exported": true,
+      "qualifiedName": "RoomsRaw.findSmallestFederatedRoomInNumberOfUsers",
+      "line": 334,
+      "endLine": 338,
+      "signature": "async findSmallestFederatedRoomInNumberOfUsers(options?: FindOptions<IRoom>): Promise<IRoom | undefined>",
+      "containerClass": "RoomsRaw",
+      "calls": [
+        {
+          "name": "findFederatedRoomByAmountOfUsers",
+          "edgeType": "call"
+        },
+        {
+          "name": "FindOptions",
+          "edgeType": "type"
+        },
+        {
+          "name": "IRoom",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "countFederatedRooms",
+      "exported": true,
+      "qualifiedName": "RoomsRaw.countFederatedRooms",
+      "line": 338,
+      "endLine": 340,
+      "signature": "async countFederatedRooms(): Promise<number>",
+      "containerClass": "RoomsRaw",
+      "calls": [
+        {
+          "name": "countDocuments",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "incMsgCountById",
+      "exported": true,
+      "qualifiedName": "RoomsRaw.incMsgCountById",
+      "line": 342,
+      "endLine": 352,
+      "signature": "incMsgCountById(_id: IRoom['_id'], inc = 1): Promise<UpdateResult>",
+      "containerClass": "RoomsRaw",
+      "calls": [
+        {
+          "name": "updateOne",
+          "edgeType": "call"
+        },
+        {
+          "name": "IRoom",
+          "edgeType": "type"
+        },
+        {
+          "name": "UpdateResult",
+          "edgeType": "type"
+        },
+        {
+          "name": "Filter",
+          "edgeType": "type"
+        },
+        {
+          "name": "UpdateFilter",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "getIncMsgCountUpdateQuery",
+      "exported": true,
+      "qualifiedName": "RoomsRaw.getIncMsgCountUpdateQuery",
+      "line": 346,
+      "endLine": 348,
+      "signature": "getIncMsgCountUpdateQuery(inc: number, roomUpdater: Updater<IRoom>): Updater<IRoom>",
+      "containerClass": "RoomsRaw",
+      "calls": [
+        {
+          "name": "inc",
+          "edgeType": "call"
+        },
+        {
+          "name": "Updater",
+          "edgeType": "type"
+        },
+        {
+          "name": "IRoom",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "decreaseMessageCountById",
+      "exported": true,
+      "qualifiedName": "RoomsRaw.decreaseMessageCountById",
+      "line": 350,
+      "endLine": 352,
+      "signature": "decreaseMessageCountById(_id: IRoom['_id'], count = 1)",
+      "containerClass": "RoomsRaw",
+      "calls": [
+        {
+          "name": "incMsgCountById",
+          "edgeType": "call"
+        },
+        {
+          "name": "IRoom",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "findOneByIdOrName",
+      "exported": true,
+      "qualifiedName": "RoomsRaw.findOneByIdOrName",
+      "line": 354,
+      "endLine": 367,
+      "signature": "findOneByIdOrName(_idOrName: IRoom['_id'] | IRoom['name'], options: FindOptions<IRoom> = {}): Promise<IRoom | null>",
+      "containerClass": "RoomsRaw",
+      "calls": [
+        {
+          "name": "findOne",
+          "edgeType": "call"
+        },
+        {
+          "name": "IRoom",
+          "edgeType": "type"
+        },
+        {
+          "name": "FindOptions",
+          "edgeType": "type"
+        },
+        {
+          "name": "Filter",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "findOneByIdAndType",
+      "exported": true,
+      "qualifiedName": "RoomsRaw.findOneByIdAndType",
+      "line": 358,
+      "endLine": 364,
+      "signature": "findOneByIdAndType<T extends Document = IRoom>( roomId: IRoom['_id'], type: IRoom['t'], options: FindOptions<T> = {} as FindOptions<T>, ): Promise<T | null>",
+      "containerClass": "RoomsRaw",
+      "calls": [
+        {
+          "name": "findOne",
+          "edgeType": "call"
+        },
+        {
+          "name": "Document",
+          "edgeType": "type"
+        },
+        {
+          "name": "IRoom",
+          "edgeType": "type"
+        },
+        {
+          "name": "FindOptions",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "setReactionsInLastMessage",
+      "exported": true,
+      "qualifiedName": "RoomsRaw.setReactionsInLastMessage",
+      "line": 366,
+      "endLine": 368,
+      "signature": "setReactionsInLastMessage(roomId: IRoom['_id'], reactions: IMessage['reactions']): Promise<UpdateResult>",
+      "containerClass": "RoomsRaw",
+      "calls": [
+        {
+          "name": "updateOne",
+          "edgeType": "call"
+        },
+        {
+          "name": "IRoom",
+          "edgeType": "type"
+        },
+        {
+          "name": "IMessage",
+          "edgeType": "type"
+        },
+        {
+          "name": "UpdateResult",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "unsetReactionsInLastMessage",
+      "exported": true,
+      "qualifiedName": "RoomsRaw.unsetReactionsInLastMessage",
+      "line": 370,
+      "endLine": 372,
+      "signature": "unsetReactionsInLastMessage(roomId: IRoom['_id']): Promise<UpdateResult>",
+      "containerClass": "RoomsRaw",
+      "calls": [
+        {
+          "name": "updateOne",
+          "edgeType": "call"
+        },
+        {
+          "name": "IRoom",
+          "edgeType": "type"
+        },
+        {
+          "name": "UpdateResult",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "unsetAllImportIds",
+      "exported": true,
+      "qualifiedName": "RoomsRaw.unsetAllImportIds",
+      "line": 374,
+      "endLine": 388,
+      "signature": "unsetAllImportIds(): Promise<Document | UpdateResult>",
+      "containerClass": "RoomsRaw",
+      "calls": [
+        {
+          "name": "updateMany",
+          "edgeType": "call"
+        },
+        {
+          "name": "Document",
+          "edgeType": "type"
+        },
+        {
+          "name": "UpdateResult",
+          "edgeType": "type"
+        },
+        {
+          "name": "Filter",
+          "edgeType": "type"
+        },
+        {
+          "name": "IRoom",
+          "edgeType": "type"
+        },
+        {
+          "name": "UpdateFilter",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "updateLastMessageStar",
+      "exported": true,
+      "qualifiedName": "RoomsRaw.updateLastMessageStar",
+      "line": 378,
+      "endLine": 397,
+      "signature": "updateLastMessageStar(roomId: IRoom['_id'], userId: IUser['_id'], starred: boolean): Promise<UpdateResult>",
+      "containerClass": "RoomsRaw",
+      "calls": [
+        {
+          "name": "updateOne",
+          "edgeType": "call"
+        },
+        {
+          "name": "IRoom",
+          "edgeType": "type"
+        },
+        {
+          "name": "IUser",
+          "edgeType": "type"
+        },
+        {
+          "name": "UpdateResult",
+          "edgeType": "type"
+        },
+        {
+          "name": "UpdateFilter",
+          "edgeType": "type"
+        },
+        {
+          "name": "Filter",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "setLastMessagePinned",
+      "exported": true,
+      "qualifiedName": "RoomsRaw.setLastMessagePinned",
+      "line": 382,
+      "endLine": 399,
+      "signature": "setLastMessagePinned( roomId: IRoom['_id'], pinnedBy: IMessage['pinnedBy'], pinned: IMessage['pinned'], pinnedAt: IMessage['pinnedAt'], ): Promise<UpdateResult>",
+      "containerClass": "RoomsRaw",
+      "calls": [
+        {
+          "name": "updateOne",
+          "edgeType": "call"
+        },
+        {
+          "name": "Date",
+          "edgeType": "new"
+        },
+        {
+          "name": "IRoom",
+          "edgeType": "type"
+        },
+        {
+          "name": "IMessage",
+          "edgeType": "type"
+        },
+        {
+          "name": "UpdateResult",
+          "edgeType": "type"
+        },
+        {
+          "name": "Filter",
+          "edgeType": "type"
+        },
+        {
+          "name": "UpdateFilter",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "setLastMessageAsRead",
+      "exported": true,
+      "qualifiedName": "RoomsRaw.setLastMessageAsRead",
+      "line": 391,
+      "endLine": 402,
+      "signature": "setLastMessageAsRead(roomId: IRoom['_id']): Promise<UpdateResult>",
+      "containerClass": "RoomsRaw",
+      "calls": [
+        {
+          "name": "updateOne",
+          "edgeType": "call"
+        },
+        {
+          "name": "IRoom",
+          "edgeType": "type"
+        },
+        {
+          "name": "UpdateResult",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "setDescriptionById",
+      "exported": true,
+      "qualifiedName": "RoomsRaw.setDescriptionById",
+      "line": 395,
+      "endLine": 405,
+      "signature": "setDescriptionById(_id: IRoom['_id'], description: IRoom['description']): Promise<UpdateResult>",
+      "containerClass": "RoomsRaw",
+      "calls": [
+        {
+          "name": "updateOne",
+          "edgeType": "call"
+        },
+        {
+          "name": "IRoom",
+          "edgeType": "type"
+        },
+        {
+          "name": "UpdateResult",
+          "edgeType": "type"
+        },
+        {
+          "name": "Filter",
+          "edgeType": "type"
+        },
+        {
+          "name": "UpdateFilter",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "setReadOnlyById",
+      "exported": true,
+      "qualifiedName": "RoomsRaw.setReadOnlyById",
+      "line": 399,
+      "endLine": 410,
+      "signature": "setReadOnlyById(_id: IRoom['_id'], readOnly: NonNullable<IRoom['ro']>): Promise<UpdateResult>",
+      "containerClass": "RoomsRaw",
+      "calls": [
+        {
+          "name": "updateOne",
+          "edgeType": "call"
+        },
+        {
+          "name": "IRoom",
+          "edgeType": "type"
+        },
+        {
+          "name": "UpdateResult",
+          "edgeType": "type"
+        },
+        {
+          "name": "Filter",
+          "edgeType": "type"
+        },
+        {
+          "name": "UpdateFilter",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "setDmReadOnlyByUserId",
+      "exported": true,
+      "qualifiedName": "RoomsRaw.setDmReadOnlyByUserId",
+      "line": 403,
+      "endLine": 426,
+      "signature": "setDmReadOnlyByUserId( _id: IRoom['_id'], ids: Array<IRoom['_id']>, readOnly: NonNullable<IRoom['ro']>, reactWhenReadOnly: NonNullable<IRoom['reactWhenReadOnly']>, ): Promise<Document | UpdateResult>",
+      "containerClass": "RoomsRaw",
+      "calls": [
+        {
+          "name": "isArray",
+          "edgeType": "call"
+        },
+        {
+          "name": "updateMany",
+          "edgeType": "call"
+        },
+        {
+          "name": "IRoom",
+          "edgeType": "type"
+        },
+        {
+          "name": "Document",
+          "edgeType": "type"
+        },
+        {
+          "name": "UpdateResult",
+          "edgeType": "type"
+        },
+        {
+          "name": "Filter",
+          "edgeType": "type"
+        },
+        {
+          "name": "UpdateFilter",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "getDirectConversationsByUserId",
+      "exported": true,
+      "qualifiedName": "RoomsRaw.getDirectConversationsByUserId",
+      "line": 412,
+      "endLine": 414,
+      "signature": "getDirectConversationsByUserId(_id: IRoom['_id'], options: FindOptions<IRoom> = {}): FindCursor<IRoom>",
+      "containerClass": "RoomsRaw",
+      "calls": [
+        {
+          "name": "find",
+          "edgeType": "call"
+        },
+        {
+          "name": "IRoom",
+          "edgeType": "type"
+        },
+        {
+          "name": "FindOptions",
+          "edgeType": "type"
+        },
+        {
+          "name": "FindCursor",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "setAllowReactingWhenReadOnlyById",
+      "exported": true,
+      "qualifiedName": "RoomsRaw.setAllowReactingWhenReadOnlyById",
+      "line": 417,
+      "endLine": 427,
+      "signature": "setAllowReactingWhenReadOnlyById(_id: IRoom['_id'], allowReacting: NonNullable<IRoom['reactWhenReadOnly']>): Promise<UpdateResult>",
+      "containerClass": "RoomsRaw",
+      "calls": [
+        {
+          "name": "updateOne",
+          "edgeType": "call"
+        },
+        {
+          "name": "IRoom",
+          "edgeType": "type"
+        },
+        {
+          "name": "UpdateResult",
+          "edgeType": "type"
+        },
+        {
+          "name": "Filter",
+          "edgeType": "type"
+        },
+        {
+          "name": "UpdateFilter",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "setAvatarData",
+      "exported": true,
+      "qualifiedName": "RoomsRaw.setAvatarData",
+      "line": 421,
+      "endLine": 430,
+      "signature": "setAvatarData(_id: IRoom['_id'], origin: string, etag: IRoom['avatarETag']): Promise<UpdateResult>",
+      "containerClass": "RoomsRaw",
+      "calls": [
+        {
+          "name": "updateOne",
+          "edgeType": "call"
+        },
+        {
+          "name": "IRoom",
+          "edgeType": "type"
+        },
+        {
+          "name": "UpdateResult",
+          "edgeType": "type"
+        },
+        {
+          "name": "UpdateFilter",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "unsetAvatarData",
+      "exported": true,
+      "qualifiedName": "RoomsRaw.unsetAvatarData",
+      "line": 425,
+      "endLine": 436,
+      "signature": "unsetAvatarData(_id: IRoom['_id']): Promise<UpdateResult>",
+      "containerClass": "RoomsRaw",
+      "calls": [
+        {
+          "name": "now",
+          "edgeType": "call"
+        },
+        {
+          "name": "updateOne",
+          "edgeType": "call"
+        },
+        {
+          "name": "IRoom",
+          "edgeType": "type"
+        },
+        {
+          "name": "UpdateResult",
+          "edgeType": "type"
+        },
+        {
+          "name": "UpdateFilter",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "setSystemMessagesById",
+      "exported": true,
+      "qualifiedName": "RoomsRaw.setSystemMessagesById",
+      "line": 429,
+      "endLine": 447,
+      "signature": "setSystemMessagesById(_id: IRoom['_id'], systemMessages: IRoom['sysMes']): Promise<UpdateResult>",
+      "containerClass": "RoomsRaw",
+      "calls": [
+        {
+          "name": "isArray",
+          "edgeType": "call"
+        },
+        {
+          "name": "updateOne",
+          "edgeType": "call"
+        },
+        {
+          "name": "IRoom",
+          "edgeType": "type"
+        },
+        {
+          "name": "UpdateResult",
+          "edgeType": "type"
+        },
+        {
+          "name": "Filter",
+          "edgeType": "type"
+        },
+        {
+          "name": "UpdateFilter",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "setE2eKeyId",
+      "exported": true,
+      "qualifiedName": "RoomsRaw.setE2eKeyId",
+      "line": 433,
+      "endLine": 445,
+      "signature": "setE2eKeyId(_id: IRoom['_id'], e2eKeyId: IRoom['e2eKeyId'], options: UpdateOptions = {}): Promise<UpdateResult>",
+      "containerClass": "RoomsRaw",
+      "calls": [
+        {
+          "name": "updateOne",
+          "edgeType": "call"
+        },
+        {
+          "name": "IRoom",
+          "edgeType": "type"
+        },
+        {
+          "name": "UpdateOptions",
+          "edgeType": "type"
+        },
+        {
+          "name": "UpdateResult",
+          "edgeType": "type"
+        },
+        {
+          "name": "Filter",
+          "edgeType": "type"
+        },
+        {
+          "name": "UpdateFilter",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "findOneByImportId",
+      "exported": true,
+      "qualifiedName": "RoomsRaw.findOneByImportId",
+      "line": 437,
+      "endLine": 441,
+      "signature": "findOneByImportId(_id: IRoom['_id'], options: FindOptions<IRoom> = {}): Promise<IRoom | null>",
+      "containerClass": "RoomsRaw",
+      "calls": [
+        {
+          "name": "findOne",
+          "edgeType": "call"
+        },
+        {
+          "name": "IRoom",
+          "edgeType": "type"
+        },
+        {
+          "name": "FindOptions",
+          "edgeType": "type"
+        },
+        {
+          "name": "Filter",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "findOneByNameAndNotId",
+      "exported": true,
+      "qualifiedName": "RoomsRaw.findOneByNameAndNotId",
+      "line": 441,
+      "endLine": 448,
+      "signature": "findOneByNameAndNotId(name: NonNullable<IRoom['name']>, rid: IRoom['_id']): Promise<IRoom | null>",
+      "containerClass": "RoomsRaw",
+      "calls": [
+        {
+          "name": "findOne",
+          "edgeType": "call"
+        },
+        {
+          "name": "IRoom",
+          "edgeType": "type"
+        },
+        {
+          "name": "Filter",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "findOneByDisplayName",
+      "exported": true,
+      "qualifiedName": "RoomsRaw.findOneByDisplayName",
+      "line": 445,
+      "endLine": 449,
+      "signature": "findOneByDisplayName(fname: IRoom['fname'], options: FindOptions<IRoom> = {}): Promise<IRoom | null>",
+      "containerClass": "RoomsRaw",
+      "calls": [
+        {
+          "name": "findOne",
+          "edgeType": "call"
+        },
+        {
+          "name": "IRoom",
+          "edgeType": "type"
+        },
+        {
+          "name": "FindOptions",
+          "edgeType": "type"
+        },
+        {
+          "name": "Filter",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "findOneByNameAndType",
+      "exported": true,
+      "qualifiedName": "RoomsRaw.findOneByNameAndType",
+      "line": 449,
+      "endLine": 466,
+      "signature": "findOneByNameAndType( name: NonNullable<IRoom['name']>, type: IRoom['t'], options: FindOptions<IRoom> = {}, includeFederatedRooms = false, ): Promise<IRoom | null>",
+      "containerClass": "RoomsRaw",
+      "calls": [
+        {
+          "name": "findOne",
+          "edgeType": "call"
+        },
+        {
+          "name": "IRoom",
+          "edgeType": "type"
+        },
+        {
+          "name": "FindOptions",
+          "edgeType": "type"
+        },
+        {
+          "name": "Filter",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "findById",
+      "exported": true,
+      "qualifiedName": "RoomsRaw.findById",
+      "line": 459,
+      "endLine": 461,
+      "signature": "findById(roomId: IRoom['_id'], options: FindOptions<IRoom> = {}): Promise<IRoom | null>",
+      "containerClass": "RoomsRaw",
+      "calls": [
+        {
+          "name": "findOne",
+          "edgeType": "call"
+        },
+        {
+          "name": "IRoom",
+          "edgeType": "type"
+        },
+        {
+          "name": "FindOptions",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "findByIds",
+      "exported": true,
+      "qualifiedName": "RoomsRaw.findByIds",
+      "line": 463,
+      "endLine": 465,
+      "signature": "findByIds(roomIds: Array<IRoom['_id']>, options: FindOptions<IRoom> = {}): FindCursor<IRoom>",
+      "containerClass": "RoomsRaw",
+      "calls": [
+        {
+          "name": "find",
+          "edgeType": "call"
+        },
+        {
+          "name": "IRoom",
+          "edgeType": "type"
+        },
+        {
+          "name": "FindOptions",
+          "edgeType": "type"
+        },
+        {
+          "name": "FindCursor",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "findByType",
+      "exported": true,
+      "qualifiedName": "RoomsRaw.findByType",
+      "line": 467,
+      "endLine": 471,
+      "signature": "findByType(type: IRoom['t'], options: FindOptions<IRoom> = {}): FindCursor<IRoom>",
+      "containerClass": "RoomsRaw",
+      "calls": [
+        {
+          "name": "find",
+          "edgeType": "call"
+        },
+        {
+          "name": "IRoom",
+          "edgeType": "type"
+        },
+        {
+          "name": "FindOptions",
+          "edgeType": "type"
+        },
+        {
+          "name": "FindCursor",
+          "edgeType": "type"
+        },
+        {
+          "name": "Filter",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "findByTypeInIds",
+      "exported": true,
+      "qualifiedName": "RoomsRaw.findByTypeInIds",
+      "line": 471,
+      "endLine": 480,
+      "signature": "findByTypeInIds(type: IRoom['t'], ids: Array<IRoom['_id']>, options: FindOptions<IRoom> = {}): FindCursor<IRoom>",
+      "containerClass": "RoomsRaw",
+      "calls": [
+        {
+          "name": "find",
+          "edgeType": "call"
+        },
+        {
+          "name": "IRoom",
+          "edgeType": "type"
+        },
+        {
+          "name": "FindOptions",
+          "edgeType": "type"
+        },
+        {
+          "name": "FindCursor",
+          "edgeType": "type"
+        },
+        {
+          "name": "Filter",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "findPrivateRoomsByIdsWithAbacAttributes",
+      "exported": true,
+      "qualifiedName": "RoomsRaw.findPrivateRoomsByIdsWithAbacAttributes",
+      "line": 475,
+      "endLine": 483,
+      "signature": "findPrivateRoomsByIdsWithAbacAttributes(ids: Array<IRoom['_id']>, options: FindOptions<IRoom> = {}): FindCursor<IRoom>",
+      "containerClass": "RoomsRaw",
+      "calls": [
+        {
+          "name": "find",
+          "edgeType": "call"
+        },
+        {
+          "name": "IRoom",
+          "edgeType": "type"
+        },
+        {
+          "name": "FindOptions",
+          "edgeType": "type"
+        },
+        {
+          "name": "FindCursor",
+          "edgeType": "type"
+        },
+        {
+          "name": "Filter",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "findAllPrivateRoomsWithAbacAttributes",
+      "exported": true,
+      "qualifiedName": "RoomsRaw.findAllPrivateRoomsWithAbacAttributes",
+      "line": 479,
+      "endLine": 486,
+      "signature": "findAllPrivateRoomsWithAbacAttributes(options: FindOptions<IRoom> = {}): FindCursor<IRoom>",
+      "containerClass": "RoomsRaw",
+      "calls": [
+        {
+          "name": "find",
+          "edgeType": "call"
+        },
+        {
+          "name": "FindOptions",
+          "edgeType": "type"
+        },
+        {
+          "name": "IRoom",
+          "edgeType": "type"
+        },
+        {
+          "name": "FindCursor",
+          "edgeType": "type"
+        },
+        {
+          "name": "Filter",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "findBySubscriptionUserId",
+      "exported": true,
+      "qualifiedName": "RoomsRaw.findBySubscriptionUserId",
+      "line": 483,
+      "endLine": 508,
+      "signature": "async findBySubscriptionUserId(userId: IUser['_id'], options: FindOptions<IRoom> = {}): Promise<FindCursor<IRoom>>",
+      "containerClass": "RoomsRaw",
+      "calls": [
+        {
+          "name": "map",
+          "edgeType": "call"
+        },
+        {
+          "name": "toArray",
+          "edgeType": "call"
+        },
+        {
+          "name": "findByUserId",
+          "edgeType": "call"
+        },
+        {
+          "name": "find",
+          "edgeType": "call"
+        },
+        {
+          "name": "IUser",
+          "edgeType": "type"
+        },
+        {
+          "name": "FindOptions",
+          "edgeType": "type"
+        },
+        {
+          "name": "IRoom",
+          "edgeType": "type"
+        },
+        {
+          "name": "FindCursor",
+          "edgeType": "type"
+        },
+        {
+          "name": "Filter",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "findBySubscriptionUserIdUpdatedAfter",
+      "exported": true,
+      "qualifiedName": "RoomsRaw.findBySubscriptionUserIdUpdatedAfter",
+      "line": 487,
+      "endLine": 519,
+      "signature": "async findBySubscriptionUserIdUpdatedAfter( userId: IUser['_id'], _updatedAt: IRoom['_updatedAt'], options: FindOptions<IRoom> = {}, ): Promise<FindCursor<IRoom>>",
+      "containerClass": "RoomsRaw",
+      "calls": [
+        {
+          "name": "map",
+          "edgeType": "call"
+        },
+        {
+          "name": "toArray",
+          "edgeType": "call"
+        },
+        {
+          "name": "findByUserId",
+          "edgeType": "call"
+        },
+        {
+          "name": "find",
+          "edgeType": "call"
+        },
+        {
+          "name": "IUser",
+          "edgeType": "type"
+        },
+        {
+          "name": "IRoom",
+          "edgeType": "type"
+        },
+        {
+          "name": "FindOptions",
+          "edgeType": "type"
+        },
+        {
+          "name": "FindCursor",
+          "edgeType": "type"
+        },
+        {
+          "name": "Filter",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "findByNameAndTypeNotDefault",
+      "exported": true,
+      "qualifiedName": "RoomsRaw.findByNameAndTypeNotDefault",
+      "line": 495,
+      "endLine": 529,
+      "signature": "findByNameAndTypeNotDefault( name: IRoom['name'] | RegExp, type: IRoom['t'], options: FindOptions<IRoom> = {}, includeFederatedRooms = false, ): FindCursor<IRoom>",
+      "containerClass": "RoomsRaw",
+      "calls": [
+        {
+          "name": "find",
+          "edgeType": "call"
+        },
+        {
+          "name": "IRoom",
+          "edgeType": "type"
+        },
+        {
+          "name": "FindOptions",
+          "edgeType": "type"
+        },
+        {
+          "name": "FindCursor",
+          "edgeType": "type"
+        },
+        {
+          "name": "Filter",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "findByNameOrFNameAndTypesNotInIds",
+      "exported": true,
+      "qualifiedName": "RoomsRaw.findByNameOrFNameAndTypesNotInIds",
+      "line": 505,
+      "endLine": 559,
+      "signature": "findByNameOrFNameAndTypesNotInIds( name: IRoom['name'] | RegExp, types: Array<IRoom['t']>, ids: Array<IRoom['_id']>, options: FindOptions<IRoom> = {}, includeFederatedRooms = false, ): FindCursor<IRoom>",
+      "containerClass": "RoomsRaw",
+      "calls": [
+        {
+          "name": "find",
+          "edgeType": "call"
+        },
+        {
+          "name": "IRoom",
+          "edgeType": "type"
+        },
+        {
+          "name": "FindOptions",
+          "edgeType": "type"
+        },
+        {
+          "name": "FindCursor",
+          "edgeType": "type"
+        },
+        {
+          "name": "Filter",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "findByDefaultAndTypes",
+      "exported": true,
+      "qualifiedName": "RoomsRaw.findByDefaultAndTypes",
+      "line": 515,
+      "endLine": 524,
+      "signature": "findByDefaultAndTypes(defaultValue: boolean, types: Array<IRoom['t']>, options: FindOptions<IRoom> = {}): FindCursor<IRoom>",
+      "containerClass": "RoomsRaw",
+      "calls": [
+        {
+          "name": "find",
+          "edgeType": "call"
+        },
+        {
+          "name": "IRoom",
+          "edgeType": "type"
+        },
+        {
+          "name": "FindOptions",
+          "edgeType": "type"
+        },
+        {
+          "name": "FindCursor",
+          "edgeType": "type"
+        },
+        {
+          "name": "Filter",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "findDirectRoomContainingAllUsernames",
+      "exported": true,
+      "qualifiedName": "RoomsRaw.findDirectRoomContainingAllUsernames",
+      "line": 519,
+      "endLine": 530,
+      "signature": "findDirectRoomContainingAllUsernames( usernames: NonNullable<IRoom['usernames']>, options: FindOptions<IRoom> = {}, ): Promise<IRoom | null>",
+      "containerClass": "RoomsRaw",
+      "calls": [
+        {
+          "name": "findOne",
+          "edgeType": "call"
+        },
+        {
+          "name": "IRoom",
+          "edgeType": "type"
+        },
+        {
+          "name": "FindOptions",
+          "edgeType": "type"
+        },
+        {
+          "name": "Filter",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "findByTypeAndName",
+      "exported": true,
+      "qualifiedName": "RoomsRaw.findByTypeAndName",
+      "line": 526,
+      "endLine": 533,
+      "signature": "findByTypeAndName(type: IRoom['t'], name: NonNullable<IRoom['name']>, options: FindOptions<IRoom> = {}): Promise<IRoom | null>",
+      "containerClass": "RoomsRaw",
+      "calls": [
+        {
+          "name": "findOne",
+          "edgeType": "call"
+        },
+        {
+          "name": "IRoom",
+          "edgeType": "type"
+        },
+        {
+          "name": "FindOptions",
+          "edgeType": "type"
+        },
+        {
+          "name": "Filter",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "findByTypeAndNameOrId",
+      "exported": true,
+      "qualifiedName": "RoomsRaw.findByTypeAndNameOrId",
+      "line": 530,
+      "endLine": 541,
+      "signature": "findByTypeAndNameOrId( type: IRoom['t'], identifier: NonNullable<IRoom['name'] | IRoom['_id']>, options: FindOptions<IRoom> = {}, ): Promise<IRoom | null>",
+      "containerClass": "RoomsRaw",
+      "calls": [
+        {
+          "name": "findOne",
+          "edgeType": "call"
+        },
+        {
+          "name": "IRoom",
+          "edgeType": "type"
+        },
+        {
+          "name": "FindOptions",
+          "edgeType": "type"
+        },
+        {
+          "name": "Filter",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "findByTypeAndNameContaining",
+      "exported": true,
+      "qualifiedName": "RoomsRaw.findByTypeAndNameContaining",
+      "line": 538,
+      "endLine": 547,
+      "signature": "findByTypeAndNameContaining(type: IRoom['t'], name: NonNullable<IRoom['name']>, options: FindOptions<IRoom> = {}): FindCursor<IRoom>",
+      "containerClass": "RoomsRaw",
+      "calls": [
+        {
+          "name": "trim",
+          "edgeType": "call"
+        },
+        {
+          "name": "escapeRegExp",
+          "edgeType": "call"
+        },
+        {
+          "name": "find",
+          "edgeType": "call"
+        },
+        {
+          "name": "RegExp",
+          "edgeType": "new"
+        },
+        {
+          "name": "IRoom",
+          "edgeType": "type"
+        },
+        {
+          "name": "FindOptions",
+          "edgeType": "type"
+        },
+        {
+          "name": "FindCursor",
+          "edgeType": "type"
+        },
+        {
+          "name": "Filter",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "findByTypeInIdsAndNameContaining",
+      "exported": true,
+      "qualifiedName": "RoomsRaw.findByTypeInIdsAndNameContaining",
+      "line": 542,
+      "endLine": 559,
+      "signature": "findByTypeInIdsAndNameContaining( type: IRoom['t'], ids: Array<IRoom['_id']>, name: NonNullable<IRoom['name']>, options: FindOptions<IRoom> = {}, ): FindCursor<IRoom>",
+      "containerClass": "RoomsRaw",
+      "calls": [
+        {
+          "name": "trim",
+          "edgeType": "call"
+        },
+        {
+          "name": "escapeRegExp",
+          "edgeType": "call"
+        },
+        {
+          "name": "find",
+          "edgeType": "call"
+        },
+        {
+          "name": "RegExp",
+          "edgeType": "new"
+        },
+        {
+          "name": "IRoom",
+          "edgeType": "type"
+        },
+        {
+          "name": "FindOptions",
+          "edgeType": "type"
+        },
+        {
+          "name": "FindCursor",
+          "edgeType": "type"
+        },
+        {
+          "name": "Filter",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "findGroupDMsByUids",
+      "exported": true,
+      "qualifiedName": "RoomsRaw.findGroupDMsByUids",
+      "line": 551,
+      "endLine": 559,
+      "signature": "findGroupDMsByUids(uids: NonNullable<IRoom['uids']>, options: FindOptions<IDirectMessageRoom> = {}): FindCursor<IDirectMessageRoom>",
+      "containerClass": "RoomsRaw",
+      "calls": [
+        {
+          "name": "find",
+          "edgeType": "call"
+        },
+        {
+          "name": "IRoom",
+          "edgeType": "type"
+        },
+        {
+          "name": "FindOptions",
+          "edgeType": "type"
+        },
+        {
+          "name": "IDirectMessageRoom",
+          "edgeType": "type"
+        },
+        {
+          "name": "FindCursor",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "countGroupDMsByUids",
+      "exported": true,
+      "qualifiedName": "RoomsRaw.countGroupDMsByUids",
+      "line": 555,
+      "endLine": 560,
+      "signature": "countGroupDMsByUids(uids: NonNullable<IRoom['uids']>): Promise<number>",
+      "containerClass": "RoomsRaw",
+      "calls": [
+        {
+          "name": "countDocuments",
+          "edgeType": "call"
+        },
+        {
+          "name": "IRoom",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "find1On1ByUserId",
+      "exported": true,
+      "qualifiedName": "RoomsRaw.find1On1ByUserId",
+      "line": 559,
+      "endLine": 567,
+      "signature": "find1On1ByUserId(userId: IRoom['_id'], options: FindOptions<IRoom> = {}): FindCursor<IRoom>",
+      "containerClass": "RoomsRaw",
+      "calls": [
+        {
+          "name": "find",
+          "edgeType": "call"
+        },
+        {
+          "name": "IRoom",
+          "edgeType": "type"
+        },
+        {
+          "name": "FindOptions",
+          "edgeType": "type"
+        },
+        {
+          "name": "FindCursor",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "findByUsernamesOrUids",
+      "exported": true,
+      "qualifiedName": "RoomsRaw.findByUsernamesOrUids",
+      "line": 563,
+      "endLine": 565,
+      "signature": "findByUsernamesOrUids(uids: IRoom['u']['_id'][], usernames: IRoom['u']['username'][]): FindCursor<IRoom>",
+      "containerClass": "RoomsRaw",
+      "calls": [
+        {
+          "name": "find",
+          "edgeType": "call"
+        },
+        {
+          "name": "IRoom",
+          "edgeType": "type"
+        },
+        {
+          "name": "FindCursor",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "findDMsByUids",
+      "exported": true,
+      "qualifiedName": "RoomsRaw.findDMsByUids",
+      "line": 567,
+      "endLine": 569,
+      "signature": "findDMsByUids(uids: IRoom['u']['_id'][]): FindCursor<IRoom>",
+      "containerClass": "RoomsRaw",
+      "calls": [
+        {
+          "name": "find",
+          "edgeType": "call"
+        },
+        {
+          "name": "IRoom",
+          "edgeType": "type"
+        },
+        {
+          "name": "FindCursor",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "addImportIds",
+      "exported": true,
+      "qualifiedName": "RoomsRaw.addImportIds",
+      "line": 572,
+      "endLine": 584,
+      "signature": "addImportIds(_id: IRoom['_id'], importIds: string[]): Promise<UpdateResult>",
+      "containerClass": "RoomsRaw",
+      "calls": [
+        {
+          "name": "concat",
+          "edgeType": "call"
+        },
+        {
+          "name": "updateOne",
+          "edgeType": "call"
+        },
+        {
+          "name": "IRoom",
+          "edgeType": "type"
+        },
+        {
+          "name": "UpdateResult",
+          "edgeType": "type"
+        },
+        {
+          "name": "Filter",
+          "edgeType": "type"
+        },
+        {
+          "name": "UpdateFilter",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "archiveById",
+      "exported": true,
+      "qualifiedName": "RoomsRaw.archiveById",
+      "line": 576,
+      "endLine": 586,
+      "signature": "archiveById(_id: IRoom['_id']): Promise<UpdateResult>",
+      "containerClass": "RoomsRaw",
+      "calls": [
+        {
+          "name": "updateOne",
+          "edgeType": "call"
+        },
+        {
+          "name": "IRoom",
+          "edgeType": "type"
+        },
+        {
+          "name": "UpdateResult",
+          "edgeType": "type"
+        },
+        {
+          "name": "Filter",
+          "edgeType": "type"
+        },
+        {
+          "name": "UpdateFilter",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "unarchiveById",
+      "exported": true,
+      "qualifiedName": "RoomsRaw.unarchiveById",
+      "line": 580,
+      "endLine": 590,
+      "signature": "unarchiveById(_id: IRoom['_id']): Promise<UpdateResult>",
+      "containerClass": "RoomsRaw",
+      "calls": [
+        {
+          "name": "updateOne",
+          "edgeType": "call"
+        },
+        {
+          "name": "IRoom",
+          "edgeType": "type"
+        },
+        {
+          "name": "UpdateResult",
+          "edgeType": "type"
+        },
+        {
+          "name": "Filter",
+          "edgeType": "type"
+        },
+        {
+          "name": "UpdateFilter",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "setNameById",
+      "exported": true,
+      "qualifiedName": "RoomsRaw.setNameById",
+      "line": 584,
+      "endLine": 595,
+      "signature": "setNameById(_id: IRoom['_id'], name: IRoom['name'], fname: IRoom['fname']): Promise<UpdateResult>",
+      "containerClass": "RoomsRaw",
+      "calls": [
+        {
+          "name": "updateOne",
+          "edgeType": "call"
+        },
+        {
+          "name": "IRoom",
+          "edgeType": "type"
+        },
+        {
+          "name": "UpdateResult",
+          "edgeType": "type"
+        },
+        {
+          "name": "Filter",
+          "edgeType": "type"
+        },
+        {
+          "name": "UpdateFilter",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "setIncMsgCountAndSetLastMessageUpdateQuery",
+      "exported": true,
+      "qualifiedName": "RoomsRaw.setIncMsgCountAndSetLastMessageUpdateQuery",
+      "line": 588,
+      "endLine": 601,
+      "signature": "setIncMsgCountAndSetLastMessageUpdateQuery( inc: number, lastMessage: IMessage, shouldStoreLastMessage: boolean, roomUpdater: Updater<IRoom>, ): Updater<IRoom>",
+      "containerClass": "RoomsRaw",
+      "calls": [
+        {
+          "name": "set",
+          "edgeType": "call"
+        },
+        {
+          "name": "inc",
+          "edgeType": "call"
+        },
+        {
+          "name": "IMessage",
+          "edgeType": "type"
+        },
+        {
+          "name": "Updater",
+          "edgeType": "type"
+        },
+        {
+          "name": "IRoom",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "incUsersCountById",
+      "exported": true,
+      "qualifiedName": "RoomsRaw.incUsersCountById",
+      "line": 597,
+      "endLine": 607,
+      "signature": "incUsersCountById(_id: IRoom['_id'], inc = 1): Promise<UpdateResult>",
+      "containerClass": "RoomsRaw",
+      "calls": [
+        {
+          "name": "updateOne",
+          "edgeType": "call"
+        },
+        {
+          "name": "IRoom",
+          "edgeType": "type"
+        },
+        {
+          "name": "UpdateResult",
+          "edgeType": "type"
+        },
+        {
+          "name": "Filter",
+          "edgeType": "type"
+        },
+        {
+          "name": "UpdateFilter",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "incUsersCountNotDMsByIds",
+      "exported": true,
+      "qualifiedName": "RoomsRaw.incUsersCountNotDMsByIds",
+      "line": 602,
+      "endLine": 617,
+      "signature": "incUsersCountNotDMsByIds(ids: Array<IRoom['_id']>, inc = 1): Promise<Document | UpdateResult>",
+      "containerClass": "RoomsRaw",
+      "calls": [
+        {
+          "name": "updateMany",
+          "edgeType": "call"
+        },
+        {
+          "name": "IRoom",
+          "edgeType": "type"
+        },
+        {
+          "name": "Document",
+          "edgeType": "type"
+        },
+        {
+          "name": "UpdateResult",
+          "edgeType": "type"
+        },
+        {
+          "name": "Filter",
+          "edgeType": "type"
+        },
+        {
+          "name": "UpdateFilter",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "getLastMessageUpdateQuery",
+      "exported": true,
+      "qualifiedName": "RoomsRaw.getLastMessageUpdateQuery",
+      "line": 606,
+      "endLine": 608,
+      "signature": "getLastMessageUpdateQuery(lastMessage: IRoom['lastMessage'], roomUpdater: Updater<IRoom>): Updater<IRoom>",
+      "containerClass": "RoomsRaw",
+      "calls": [
+        {
+          "name": "set",
+          "edgeType": "call"
+        },
+        {
+          "name": "IRoom",
+          "edgeType": "type"
+        },
+        {
+          "name": "Updater",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "resetLastMessageById",
+      "exported": true,
+      "qualifiedName": "RoomsRaw.resetLastMessageById",
+      "line": 610,
+      "endLine": 619,
+      "signature": "async resetLastMessageById(_id: IRoom['_id'], lastMessage: IRoom['lastMessage'] | null, msgCountDelta?: number): Promise<UpdateResult>",
+      "containerClass": "RoomsRaw",
+      "calls": [
+        {
+          "name": "updateOne",
+          "edgeType": "call"
+        },
+        {
+          "name": "IRoom",
+          "edgeType": "type"
+        },
+        {
+          "name": "UpdateResult",
+          "edgeType": "type"
+        },
+        {
+          "name": "Filter",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "replaceUsername",
+      "exported": true,
+      "qualifiedName": "RoomsRaw.replaceUsername",
+      "line": 614,
+      "endLine": 624,
+      "signature": "replaceUsername(previousUsername: IUser['username'], username: IUser['username']): Promise<Document | UpdateResult>",
+      "containerClass": "RoomsRaw",
+      "calls": [
+        {
+          "name": "updateMany",
+          "edgeType": "call"
+        },
+        {
+          "name": "IUser",
+          "edgeType": "type"
+        },
+        {
+          "name": "Document",
+          "edgeType": "type"
+        },
+        {
+          "name": "UpdateResult",
+          "edgeType": "type"
+        },
+        {
+          "name": "Filter",
+          "edgeType": "type"
+        },
+        {
+          "name": "IRoom",
+          "edgeType": "type"
+        },
+        {
+          "name": "UpdateFilter",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "replaceMutedUsername",
+      "exported": true,
+      "qualifiedName": "RoomsRaw.replaceMutedUsername",
+      "line": 618,
+      "endLine": 628,
+      "signature": "replaceMutedUsername(previousUsername: IUser['username'], username: IUser['username']): Promise<Document | UpdateResult>",
+      "containerClass": "RoomsRaw",
+      "calls": [
+        {
+          "name": "updateMany",
+          "edgeType": "call"
+        },
+        {
+          "name": "IUser",
+          "edgeType": "type"
+        },
+        {
+          "name": "Document",
+          "edgeType": "type"
+        },
+        {
+          "name": "UpdateResult",
+          "edgeType": "type"
+        },
+        {
+          "name": "Filter",
+          "edgeType": "type"
+        },
+        {
+          "name": "IRoom",
+          "edgeType": "type"
+        },
+        {
+          "name": "UpdateFilter",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "replaceUsernameOfUserByUserId",
+      "exported": true,
+      "qualifiedName": "RoomsRaw.replaceUsernameOfUserByUserId",
+      "line": 622,
+      "endLine": 632,
+      "signature": "replaceUsernameOfUserByUserId(userId: IUser['_id'], username: IUser['username']): Promise<Document | UpdateResult>",
+      "containerClass": "RoomsRaw",
+      "calls": [
+        {
+          "name": "updateMany",
+          "edgeType": "call"
+        },
+        {
+          "name": "IUser",
+          "edgeType": "type"
+        },
+        {
+          "name": "Document",
+          "edgeType": "type"
+        },
+        {
+          "name": "UpdateResult",
+          "edgeType": "type"
+        },
+        {
+          "name": "Filter",
+          "edgeType": "type"
+        },
+        {
+          "name": "IRoom",
+          "edgeType": "type"
+        },
+        {
+          "name": "UpdateFilter",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "setJoinCodeById",
+      "exported": true,
+      "qualifiedName": "RoomsRaw.setJoinCodeById",
+      "line": 626,
+      "endLine": 649,
+      "signature": "setJoinCodeById(_id: IRoom['_id'], joinCode: string): Promise<UpdateResult>",
+      "containerClass": "RoomsRaw",
+      "calls": [
+        {
+          "name": "trim",
+          "edgeType": "call"
+        },
+        {
+          "name": "updateOne",
+          "edgeType": "call"
+        },
+        {
+          "name": "IRoom",
+          "edgeType": "type"
+        },
+        {
+          "name": "UpdateResult",
+          "edgeType": "type"
+        },
+        {
+          "name": "UpdateFilter",
+          "edgeType": "type"
+        },
+        {
+          "name": "Filter",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "setTypeById",
+      "exported": true,
+      "qualifiedName": "RoomsRaw.setTypeById",
+      "line": 630,
+      "endLine": 642,
+      "signature": "setTypeById(_id: IRoom['_id'], type: IRoom['t']): Promise<UpdateResult>",
+      "containerClass": "RoomsRaw",
+      "calls": [
+        {
+          "name": "updateOne",
+          "edgeType": "call"
+        },
+        {
+          "name": "IRoom",
+          "edgeType": "type"
+        },
+        {
+          "name": "UpdateResult",
+          "edgeType": "type"
+        },
+        {
+          "name": "Filter",
+          "edgeType": "type"
+        },
+        {
+          "name": "UpdateFilter",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "setTopicById",
+      "exported": true,
+      "qualifiedName": "RoomsRaw.setTopicById",
+      "line": 634,
+      "endLine": 644,
+      "signature": "setTopicById(_id: IRoom['_id'], topic: IRoom['topic']): Promise<UpdateResult>",
+      "containerClass": "RoomsRaw",
+      "calls": [
+        {
+          "name": "updateOne",
+          "edgeType": "call"
+        },
+        {
+          "name": "IRoom",
+          "edgeType": "type"
+        },
+        {
+          "name": "UpdateResult",
+          "edgeType": "type"
+        },
+        {
+          "name": "Filter",
+          "edgeType": "type"
+        },
+        {
+          "name": "UpdateFilter",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "setAnnouncementById",
+      "exported": true,
+      "qualifiedName": "RoomsRaw.setAnnouncementById",
+      "line": 638,
+      "endLine": 653,
+      "signature": "setAnnouncementById( _id: IRoom['_id'], announcement: IRoom['announcement'], announcementDetails: IRoom['announcementDetails'], ): Promise<UpdateResult>",
+      "containerClass": "RoomsRaw",
+      "calls": [
+        {
+          "name": "updateOne",
+          "edgeType": "call"
+        },
+        {
+          "name": "IRoom",
+          "edgeType": "type"
+        },
+        {
+          "name": "UpdateResult",
+          "edgeType": "type"
+        },
+        {
+          "name": "Filter",
+          "edgeType": "type"
+        },
+        {
+          "name": "UpdateFilter",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "setCustomFieldsById",
+      "exported": true,
+      "qualifiedName": "RoomsRaw.setCustomFieldsById",
+      "line": 646,
+      "endLine": 656,
+      "signature": "setCustomFieldsById(_id: IRoom['_id'], customFields: IRoom['customFields']): Promise<UpdateResult>",
+      "containerClass": "RoomsRaw",
+      "calls": [
+        {
+          "name": "updateOne",
+          "edgeType": "call"
+        },
+        {
+          "name": "IRoom",
+          "edgeType": "type"
+        },
+        {
+          "name": "UpdateResult",
+          "edgeType": "type"
+        },
+        {
+          "name": "Filter",
+          "edgeType": "type"
+        },
+        {
+          "name": "UpdateFilter",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "muteUsernameByRoomId",
+      "exported": true,
+      "qualifiedName": "RoomsRaw.muteUsernameByRoomId",
+      "line": 650,
+      "endLine": 663,
+      "signature": "muteUsernameByRoomId(_id: IRoom['_id'], username: IUser['username']): Promise<UpdateResult>",
+      "containerClass": "RoomsRaw",
+      "calls": [
+        {
+          "name": "updateOne",
+          "edgeType": "call"
+        },
+        {
+          "name": "IRoom",
+          "edgeType": "type"
+        },
+        {
+          "name": "IUser",
+          "edgeType": "type"
+        },
+        {
+          "name": "UpdateResult",
+          "edgeType": "type"
+        },
+        {
+          "name": "Filter",
+          "edgeType": "type"
+        },
+        {
+          "name": "UpdateFilter",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "muteReadOnlyUsernameByRoomId",
+      "exported": true,
+      "qualifiedName": "RoomsRaw.muteReadOnlyUsernameByRoomId",
+      "line": 654,
+      "endLine": 664,
+      "signature": "muteReadOnlyUsernameByRoomId(_id: IRoom['_id'], username: IUser['username']): Promise<UpdateResult>",
+      "containerClass": "RoomsRaw",
+      "calls": [
+        {
+          "name": "updateOne",
+          "edgeType": "call"
+        },
+        {
+          "name": "IRoom",
+          "edgeType": "type"
+        },
+        {
+          "name": "IUser",
+          "edgeType": "type"
+        },
+        {
+          "name": "UpdateResult",
+          "edgeType": "type"
+        },
+        {
+          "name": "Filter",
+          "edgeType": "type"
+        },
+        {
+          "name": "UpdateFilter",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "unmuteMutedUsernameByRoomId",
+      "exported": true,
+      "qualifiedName": "RoomsRaw.unmuteMutedUsernameByRoomId",
+      "line": 658,
+      "endLine": 668,
+      "signature": "unmuteMutedUsernameByRoomId(_id: IRoom['_id'], username: IUser['username']): Promise<UpdateResult>",
+      "containerClass": "RoomsRaw",
+      "calls": [
+        {
+          "name": "updateOne",
+          "edgeType": "call"
+        },
+        {
+          "name": "IRoom",
+          "edgeType": "type"
+        },
+        {
+          "name": "IUser",
+          "edgeType": "type"
+        },
+        {
+          "name": "UpdateResult",
+          "edgeType": "type"
+        },
+        {
+          "name": "Filter",
+          "edgeType": "type"
+        },
+        {
+          "name": "UpdateFilter",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "unmuteReadOnlyUsernameByRoomId",
+      "exported": true,
+      "qualifiedName": "RoomsRaw.unmuteReadOnlyUsernameByRoomId",
+      "line": 662,
+      "endLine": 675,
+      "signature": "unmuteReadOnlyUsernameByRoomId(_id: string, username: string): Promise<UpdateResult>",
+      "containerClass": "RoomsRaw",
+      "calls": [
+        {
+          "name": "updateOne",
+          "edgeType": "call"
+        },
+        {
+          "name": "UpdateResult",
+          "edgeType": "type"
+        },
+        {
+          "name": "Filter",
+          "edgeType": "type"
+        },
+        {
+          "name": "IRoom",
+          "edgeType": "type"
+        },
+        {
+          "name": "UpdateFilter",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "saveFeaturedById",
+      "exported": true,
+      "qualifiedName": "RoomsRaw.saveFeaturedById",
+      "line": 666,
+      "endLine": 677,
+      "signature": "saveFeaturedById(_id: IRoom['_id'], featured: string | boolean): Promise<UpdateResult>",
+      "containerClass": "RoomsRaw",
+      "calls": [
+        {
+          "name": "includes",
+          "edgeType": "call"
+        },
+        {
+          "name": "updateOne",
+          "edgeType": "call"
+        },
+        {
+          "name": "IRoom",
+          "edgeType": "type"
+        },
+        {
+          "name": "UpdateResult",
+          "edgeType": "type"
+        },
+        {
+          "name": "Filter",
+          "edgeType": "type"
+        },
+        {
+          "name": "UpdateFilter",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "saveDefaultById",
+      "exported": true,
+      "qualifiedName": "RoomsRaw.saveDefaultById",
+      "line": 670,
+      "endLine": 680,
+      "signature": "saveDefaultById(_id: IRoom['_id'], defaultValue: boolean): Promise<UpdateResult>",
+      "containerClass": "RoomsRaw",
+      "calls": [
+        {
+          "name": "updateOne",
+          "edgeType": "call"
+        },
+        {
+          "name": "IRoom",
+          "edgeType": "type"
+        },
+        {
+          "name": "UpdateResult",
+          "edgeType": "type"
+        },
+        {
+          "name": "Filter",
+          "edgeType": "type"
+        },
+        {
+          "name": "UpdateFilter",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "saveFavoriteById",
+      "exported": true,
+      "qualifiedName": "RoomsRaw.saveFavoriteById",
+      "line": 674,
+      "endLine": 683,
+      "signature": "saveFavoriteById(_id: IRoom['_id'], favorite: IRoom['favorite'], defaultValue: boolean): Promise<UpdateResult>",
+      "containerClass": "RoomsRaw",
+      "calls": [
+        {
+          "name": "updateOne",
+          "edgeType": "call"
+        },
+        {
+          "name": "IRoom",
+          "edgeType": "type"
+        },
+        {
+          "name": "UpdateResult",
+          "edgeType": "type"
+        },
+        {
+          "name": "Filter",
+          "edgeType": "type"
+        },
+        {
+          "name": "UpdateFilter",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "saveRetentionEnabledById",
+      "exported": true,
+      "qualifiedName": "RoomsRaw.saveRetentionEnabledById",
+      "line": 678,
+      "endLine": 690,
+      "signature": "saveRetentionEnabledById(_id: IRoom['_id'], value: boolean): Promise<UpdateResult>",
+      "containerClass": "RoomsRaw",
+      "calls": [
+        {
+          "name": "updateOne",
+          "edgeType": "call"
+        },
+        {
+          "name": "IRoom",
+          "edgeType": "type"
+        },
+        {
+          "name": "UpdateResult",
+          "edgeType": "type"
+        },
+        {
+          "name": "Filter",
+          "edgeType": "type"
+        },
+        {
+          "name": "UpdateFilter",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "saveRetentionMaxAgeById",
+      "exported": true,
+      "qualifiedName": "RoomsRaw.saveRetentionMaxAgeById",
+      "line": 682,
+      "endLine": 692,
+      "signature": "saveRetentionMaxAgeById(_id: IRoom['_id'], value = 30): Promise<UpdateResult>",
+      "containerClass": "RoomsRaw",
+      "calls": [
+        {
+          "name": "updateOne",
+          "edgeType": "call"
+        },
+        {
+          "name": "IRoom",
+          "edgeType": "type"
+        },
+        {
+          "name": "UpdateResult",
+          "edgeType": "type"
+        },
+        {
+          "name": "Filter",
+          "edgeType": "type"
+        },
+        {
+          "name": "UpdateFilter",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "saveRetentionExcludePinnedById",
+      "exported": true,
+      "qualifiedName": "RoomsRaw.saveRetentionExcludePinnedById",
+      "line": 686,
+      "endLine": 696,
+      "signature": "saveRetentionExcludePinnedById(_id: IRoom['_id'], value: boolean): Promise<UpdateResult>",
+      "containerClass": "RoomsRaw",
+      "calls": [
+        {
+          "name": "updateOne",
+          "edgeType": "call"
+        },
+        {
+          "name": "IRoom",
+          "edgeType": "type"
+        },
+        {
+          "name": "UpdateResult",
+          "edgeType": "type"
+        },
+        {
+          "name": "Filter",
+          "edgeType": "type"
+        },
+        {
+          "name": "UpdateFilter",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "saveRetentionIgnoreThreadsById",
+      "exported": true,
+      "qualifiedName": "RoomsRaw.saveRetentionIgnoreThreadsById",
+      "line": 690,
+      "endLine": 700,
+      "signature": "saveRetentionIgnoreThreadsById(_id: IRoom['_id'], value: boolean): Promise<UpdateResult>",
+      "containerClass": "RoomsRaw",
+      "calls": [
+        {
+          "name": "updateOne",
+          "edgeType": "call"
+        },
+        {
+          "name": "IRoom",
+          "edgeType": "type"
+        },
+        {
+          "name": "UpdateResult",
+          "edgeType": "type"
+        },
+        {
+          "name": "Filter",
+          "edgeType": "type"
+        },
+        {
+          "name": "UpdateFilter",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "saveRetentionFilesOnlyById",
+      "exported": true,
+      "qualifiedName": "RoomsRaw.saveRetentionFilesOnlyById",
+      "line": 694,
+      "endLine": 704,
+      "signature": "saveRetentionFilesOnlyById(_id: IRoom['_id'], value: boolean): Promise<UpdateResult>",
+      "containerClass": "RoomsRaw",
+      "calls": [
+        {
+          "name": "updateOne",
+          "edgeType": "call"
+        },
+        {
+          "name": "IRoom",
+          "edgeType": "type"
+        },
+        {
+          "name": "UpdateResult",
+          "edgeType": "type"
+        },
+        {
+          "name": "Filter",
+          "edgeType": "type"
+        },
+        {
+          "name": "UpdateFilter",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "saveRetentionOverrideGlobalById",
+      "exported": true,
+      "qualifiedName": "RoomsRaw.saveRetentionOverrideGlobalById",
+      "line": 698,
+      "endLine": 708,
+      "signature": "saveRetentionOverrideGlobalById(_id: IRoom['_id'], value: boolean): Promise<UpdateResult>",
+      "containerClass": "RoomsRaw",
+      "calls": [
+        {
+          "name": "updateOne",
+          "edgeType": "call"
+        },
+        {
+          "name": "IRoom",
+          "edgeType": "type"
+        },
+        {
+          "name": "UpdateResult",
+          "edgeType": "type"
+        },
+        {
+          "name": "Filter",
+          "edgeType": "type"
+        },
+        {
+          "name": "UpdateFilter",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "saveEncryptedById",
+      "exported": true,
+      "qualifiedName": "RoomsRaw.saveEncryptedById",
+      "line": 702,
+      "endLine": 712,
+      "signature": "saveEncryptedById(_id: IRoom['_id'], value: boolean): Promise<UpdateResult>",
+      "containerClass": "RoomsRaw",
+      "calls": [
+        {
+          "name": "updateOne",
+          "edgeType": "call"
+        },
+        {
+          "name": "IRoom",
+          "edgeType": "type"
+        },
+        {
+          "name": "UpdateResult",
+          "edgeType": "type"
+        },
+        {
+          "name": "Filter",
+          "edgeType": "type"
+        },
+        {
+          "name": "UpdateFilter",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "updateAbacConfigurationById",
+      "exported": true,
+      "qualifiedName": "RoomsRaw.updateAbacConfigurationById",
+      "line": 706,
+      "endLine": 716,
+      "signature": "updateAbacConfigurationById(_id: IRoom['_id'], value: boolean): Promise<UpdateResult>",
+      "containerClass": "RoomsRaw",
+      "calls": [
+        {
+          "name": "updateOne",
+          "edgeType": "call"
+        },
+        {
+          "name": "IRoom",
+          "edgeType": "type"
+        },
+        {
+          "name": "UpdateResult",
+          "edgeType": "type"
+        },
+        {
+          "name": "Filter",
+          "edgeType": "type"
+        },
+        {
+          "name": "UpdateFilter",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "setAbacAttributesById",
+      "exported": true,
+      "qualifiedName": "RoomsRaw.setAbacAttributesById",
+      "line": 710,
+      "endLine": 712,
+      "signature": "setAbacAttributesById(_id: IRoom['_id'], attributes: NonNullable<IRoom['abacAttributes']>): Promise<IRoom | null>",
+      "containerClass": "RoomsRaw",
+      "calls": [
+        {
+          "name": "findOneAndUpdate",
+          "edgeType": "call"
+        },
+        {
+          "name": "IRoom",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "unsetAbacAttributesById",
+      "exported": true,
+      "qualifiedName": "RoomsRaw.unsetAbacAttributesById",
+      "line": 714,
+      "endLine": 716,
+      "signature": "unsetAbacAttributesById(_id: IRoom['_id']): Promise<UpdateResult>",
+      "containerClass": "RoomsRaw",
+      "calls": [
+        {
+          "name": "updateOne",
+          "edgeType": "call"
+        },
+        {
+          "name": "IRoom",
+          "edgeType": "type"
+        },
+        {
+          "name": "UpdateResult",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "updateSingleAbacAttributeValuesById",
+      "exported": true,
+      "qualifiedName": "RoomsRaw.updateSingleAbacAttributeValuesById",
+      "line": 718,
+      "endLine": 728,
+      "signature": "updateSingleAbacAttributeValuesById(_id: IRoom['_id'], key: string, values: string[]): Promise<UpdateResult>",
+      "containerClass": "RoomsRaw",
+      "calls": [
+        {
+          "name": "updateOne",
+          "edgeType": "call"
+        },
+        {
+          "name": "IRoom",
+          "edgeType": "type"
+        },
+        {
+          "name": "UpdateResult",
+          "edgeType": "type"
+        },
+        {
+          "name": "Filter",
+          "edgeType": "type"
+        },
+        {
+          "name": "UpdateFilter",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "insertAbacAttributeIfNotExistsById",
+      "exported": true,
+      "qualifiedName": "RoomsRaw.insertAbacAttributeIfNotExistsById",
+      "line": 722,
+      "endLine": 728,
+      "signature": "insertAbacAttributeIfNotExistsById(_id: IRoom['_id'], key: string, values: string[]): Promise<IRoom | null>",
+      "containerClass": "RoomsRaw",
+      "calls": [
+        {
+          "name": "findOneAndUpdate",
+          "edgeType": "call"
+        },
+        {
+          "name": "IRoom",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "updateAbacAttributeValuesArrayFilteredById",
+      "exported": true,
+      "qualifiedName": "RoomsRaw.updateAbacAttributeValuesArrayFilteredById",
+      "line": 726,
+      "endLine": 732,
+      "signature": "updateAbacAttributeValuesArrayFilteredById(_id: IRoom['_id'], key: string, values: string[]): Promise<IRoom | null>",
+      "containerClass": "RoomsRaw",
+      "calls": [
+        {
+          "name": "findOneAndUpdate",
+          "edgeType": "call"
+        },
+        {
+          "name": "IRoom",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "removeAbacAttributeByRoomIdAndKey",
+      "exported": true,
+      "qualifiedName": "RoomsRaw.removeAbacAttributeByRoomIdAndKey",
+      "line": 730,
+      "endLine": 738,
+      "signature": "removeAbacAttributeByRoomIdAndKey(_id: IRoom['_id'], key: string): Promise<UpdateResult>",
+      "containerClass": "RoomsRaw",
+      "calls": [
+        {
+          "name": "updateOne",
+          "edgeType": "call"
+        },
+        {
+          "name": "IRoom",
+          "edgeType": "type"
+        },
+        {
+          "name": "UpdateResult",
+          "edgeType": "type"
+        },
+        {
+          "name": "Filter",
+          "edgeType": "type"
+        },
+        {
+          "name": "UpdateFilter",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "updateGroupDMsRemovingUsernamesByUsername",
+      "exported": true,
+      "qualifiedName": "RoomsRaw.updateGroupDMsRemovingUsernamesByUsername",
+      "line": 734,
+      "endLine": 749,
+      "signature": "updateGroupDMsRemovingUsernamesByUsername(username: string, userId: string): Promise<Document | UpdateResult>",
+      "containerClass": "RoomsRaw",
+      "calls": [
+        {
+          "name": "updateMany",
+          "edgeType": "call"
+        },
+        {
+          "name": "Document",
+          "edgeType": "type"
+        },
+        {
+          "name": "UpdateResult",
+          "edgeType": "type"
+        },
+        {
+          "name": "Filter",
+          "edgeType": "type"
+        },
+        {
+          "name": "IRoom",
+          "edgeType": "type"
+        },
+        {
+          "name": "UpdateFilter",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "createWithIdTypeAndName",
+      "exported": true,
+      "qualifiedName": "RoomsRaw.createWithIdTypeAndName",
+      "line": 738,
+      "endLine": 764,
+      "signature": "async createWithIdTypeAndName( _id: IRoom['_id'], type: IRoom['t'], name: IRoom['name'], extraData?: Record<string, unknown>, ): Promise<IRoom>",
+      "containerClass": "RoomsRaw",
+      "calls": [
+        {
+          "name": "assign",
+          "edgeType": "call"
+        },
+        {
+          "name": "insertOne",
+          "edgeType": "call"
+        },
+        {
+          "name": "Date",
+          "edgeType": "new"
+        },
+        {
+          "name": "IRoom",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "createWithFullRoomData",
+      "exported": true,
+      "qualifiedName": "RoomsRaw.createWithFullRoomData",
+      "line": 747,
+      "endLine": 755,
+      "signature": "async createWithFullRoomData(room: Omit<IRoom, '_id' | '_updatedAt'>): Promise<IRoom>",
+      "containerClass": "RoomsRaw",
+      "calls": [
+        {
+          "name": "insertOne",
+          "edgeType": "call"
+        },
+        {
+          "name": "Date",
+          "edgeType": "new"
+        },
+        {
+          "name": "IRoom",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "removeById",
+      "exported": true,
+      "qualifiedName": "RoomsRaw.removeById",
+      "line": 752,
+      "endLine": 756,
+      "signature": "override removeById(_id: IRoom['_id']): Promise<DeleteResult>",
+      "containerClass": "RoomsRaw",
+      "calls": [
+        {
+          "name": "deleteOne",
+          "edgeType": "call"
+        },
+        {
+          "name": "IRoom",
+          "edgeType": "type"
+        },
+        {
+          "name": "DeleteResult",
+          "edgeType": "type"
+        },
+        {
+          "name": "Filter",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "removeByIds",
+      "exported": true,
+      "qualifiedName": "RoomsRaw.removeByIds",
+      "line": 756,
+      "endLine": 758,
+      "signature": "override removeByIds(ids: Array<IRoom['_id']>): Promise<DeleteResult>",
+      "containerClass": "RoomsRaw",
+      "calls": [
+        {
+          "name": "deleteMany",
+          "edgeType": "call"
+        },
+        {
+          "name": "IRoom",
+          "edgeType": "type"
+        },
+        {
+          "name": "DeleteResult",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "removeDirectRoomContainingUsername",
+      "exported": true,
+      "qualifiedName": "RoomsRaw.removeDirectRoomContainingUsername",
+      "line": 760,
+      "endLine": 768,
+      "signature": "removeDirectRoomContainingUsername(username: string): Promise<DeleteResult>",
+      "containerClass": "RoomsRaw",
+      "calls": [
+        {
+          "name": "deleteMany",
+          "edgeType": "call"
+        },
+        {
+          "name": "DeleteResult",
+          "edgeType": "type"
+        },
+        {
+          "name": "Filter",
+          "edgeType": "type"
+        },
+        {
+          "name": "IRoom",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "countDiscussions",
+      "exported": true,
+      "qualifiedName": "RoomsRaw.countDiscussions",
+      "line": 764,
+      "endLine": 766,
+      "signature": "countDiscussions(): Promise<number>",
+      "containerClass": "RoomsRaw",
+      "calls": [
+        {
+          "name": "countDocuments",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "getSubscribedRoomIdsWithoutE2EKeys",
+      "exported": true,
+      "qualifiedName": "RoomsRaw.getSubscribedRoomIdsWithoutE2EKeys",
+      "line": 768,
+      "endLine": 800,
+      "signature": "async getSubscribedRoomIdsWithoutE2EKeys(uid: IUser['_id']): Promise<IRoom['_id'][]>",
+      "containerClass": "RoomsRaw",
+      "calls": [
+        {
+          "name": "map",
+          "edgeType": "call"
+        },
+        {
+          "name": "toArray",
+          "edgeType": "call"
+        },
+        {
+          "name": "aggregate",
+          "edgeType": "call"
+        },
+        {
+          "name": "IUser",
+          "edgeType": "type"
+        },
+        {
+          "name": "IRoom",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "addUserIdToE2EEQueueByRoomIds",
+      "exported": true,
+      "qualifiedName": "RoomsRaw.addUserIdToE2EEQueueByRoomIds",
+      "line": 772,
+      "endLine": 796,
+      "signature": "addUserIdToE2EEQueueByRoomIds(roomIds: IRoom['_id'][], uid: IUser['_id']): Promise<Document | UpdateResult>",
+      "containerClass": "RoomsRaw",
+      "calls": [
+        {
+          "name": "updateMany",
+          "edgeType": "call"
+        },
+        {
+          "name": "Date",
+          "edgeType": "new"
+        },
+        {
+          "name": "IRoom",
+          "edgeType": "type"
+        },
+        {
+          "name": "IUser",
+          "edgeType": "type"
+        },
+        {
+          "name": "Document",
+          "edgeType": "type"
+        },
+        {
+          "name": "UpdateResult",
+          "edgeType": "type"
+        },
+        {
+          "name": "Filter",
+          "edgeType": "type"
+        },
+        {
+          "name": "UpdateFilter",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "removeUsersFromE2EEQueueByRoomId",
+      "exported": true,
+      "qualifiedName": "RoomsRaw.removeUsersFromE2EEQueueByRoomId",
+      "line": 776,
+      "endLine": 801,
+      "signature": "async removeUsersFromE2EEQueueByRoomId(roomId: IRoom['_id'], uids: IUser['_id'][]): Promise<Document | UpdateResult>",
+      "containerClass": "RoomsRaw",
+      "calls": [
+        {
+          "name": "updateMany",
+          "edgeType": "call"
+        },
+        {
+          "name": "IRoom",
+          "edgeType": "type"
+        },
+        {
+          "name": "IUser",
+          "edgeType": "type"
+        },
+        {
+          "name": "Document",
+          "edgeType": "type"
+        },
+        {
+          "name": "UpdateResult",
+          "edgeType": "type"
+        },
+        {
+          "name": "Filter",
+          "edgeType": "type"
+        },
+        {
+          "name": "UpdateFilter",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "removeUserFromE2EEQueue",
+      "exported": true,
+      "qualifiedName": "RoomsRaw.removeUserFromE2EEQueue",
+      "line": 780,
+      "endLine": 793,
+      "signature": "async removeUserFromE2EEQueue(uid: IUser['_id']): Promise<Document | UpdateResult>",
+      "containerClass": "RoomsRaw",
+      "calls": [
+        {
+          "name": "updateMany",
+          "edgeType": "call"
+        },
+        {
+          "name": "IUser",
+          "edgeType": "type"
+        },
+        {
+          "name": "Document",
+          "edgeType": "type"
+        },
+        {
+          "name": "UpdateResult",
+          "edgeType": "type"
+        },
+        {
+          "name": "Filter",
+          "edgeType": "type"
+        },
+        {
+          "name": "IRoom",
+          "edgeType": "type"
+        },
+        {
+          "name": "UpdateFilter",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "findChildrenOfTeam",
+      "exported": true,
+      "qualifiedName": "RoomsRaw.findChildrenOfTeam",
+      "line": 784,
+      "endLine": 863,
+      "signature": "findChildrenOfTeam( teamId: string, teamRoomId: string, userId: string, filter?: string, type?: 'channels' | 'discussions', options?: FindOptions<IRoom>, ): AggregationCursor<{ totalCount: { count: number }[]; paginatedResults: IRoom[] }>",
+      "containerClass": "RoomsRaw",
+      "calls": [
+        {
+          "name": "escapeRegExp",
+          "edgeType": "call"
+        },
+        {
+          "name": "aggregate",
+          "edgeType": "call"
+        },
+        {
+          "name": "RegExp",
+          "edgeType": "new"
+        },
+        {
+          "name": "FindOptions",
+          "edgeType": "type"
+        },
+        {
+          "name": "IRoom",
+          "edgeType": "type"
+        },
+        {
+          "name": "AggregationCursor",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "findAllByTypesAndDiscussionAndTeam",
+      "exported": true,
+      "qualifiedName": "RoomsRaw.findAllByTypesAndDiscussionAndTeam",
+      "line": 795,
+      "endLine": 820,
+      "signature": "findAllByTypesAndDiscussionAndTeam( filters: { types?: Array<IRoom['t']>; discussions?: boolean; teams?: boolean; } = {}, options: FindOptions<IRoom> = {}, ): FindCursor<IRoom>",
+      "containerClass": "RoomsRaw",
+      "calls": [
+        {
+          "name": "find",
+          "edgeType": "call"
+        },
+        {
+          "name": "IRoom",
+          "edgeType": "type"
+        },
+        {
+          "name": "FindOptions",
+          "edgeType": "type"
+        },
+        {
+          "name": "FindCursor",
+          "edgeType": "type"
+        },
+        {
+          "name": "Filter",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "resetRoomKeyAndSetE2EEQueueByRoomId",
+      "exported": true,
+      "qualifiedName": "RoomsRaw.resetRoomKeyAndSetE2EEQueueByRoomId",
+      "line": 806,
+      "endLine": 816,
+      "signature": "resetRoomKeyAndSetE2EEQueueByRoomId( roomId: string, e2eKeyId: string, e2eQueue?: IRoom['usersWaitingForE2EKeys'], ): Promise<null | WithId<IRoom>>",
+      "containerClass": "RoomsRaw",
+      "calls": [
+        {
+          "name": "findOneAndUpdate",
+          "edgeType": "call"
+        },
+        {
+          "name": "isArray",
+          "edgeType": "call"
+        },
+        {
+          "name": "IRoom",
+          "edgeType": "type"
+        },
+        {
+          "name": "WithId",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "markRolePrioritesCreatedForRoom",
+      "exported": true,
+      "qualifiedName": "RoomsRaw.markRolePrioritesCreatedForRoom",
+      "line": 814,
+      "endLine": 816,
+      "signature": "markRolePrioritesCreatedForRoom(rid: IRoom['_id'], version: number): Promise<UpdateResult>",
+      "containerClass": "RoomsRaw",
+      "calls": [
+        {
+          "name": "updateOne",
+          "edgeType": "call"
+        },
+        {
+          "name": "IRoom",
+          "edgeType": "type"
+        },
+        {
+          "name": "UpdateResult",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "hasCreatedRolePrioritiesForRoom",
+      "exported": true,
+      "qualifiedName": "RoomsRaw.hasCreatedRolePrioritiesForRoom",
+      "line": 818,
+      "endLine": 820,
+      "signature": "async hasCreatedRolePrioritiesForRoom(rid: IRoom['_id'], syncVersion: number)",
+      "containerClass": "RoomsRaw",
+      "calls": [
+        {
+          "name": "countDocuments",
+          "edgeType": "call"
+        },
+        {
+          "name": "IRoom",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "countDistinctFederationRoomsExcluding",
+      "exported": true,
+      "qualifiedName": "RoomsRaw.countDistinctFederationRoomsExcluding",
+      "line": 822,
+      "endLine": 825,
+      "signature": "async countDistinctFederationRoomsExcluding(_serverNames: string[] = []): Promise<string[]>",
+      "containerClass": "RoomsRaw",
+      "calls": []
+    },
+    {
+      "type": "method",
+      "name": "countAbacEnabled",
+      "exported": true,
+      "qualifiedName": "RoomsRaw.countAbacEnabled",
+      "line": 826,
+      "endLine": 828,
+      "signature": "countAbacEnabled(): Promise<number>",
+      "containerClass": "RoomsRaw",
+      "calls": [
+        {
+          "name": "countDocuments",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "removeUserReferenceFromDMsById",
+      "exported": true,
+      "qualifiedName": "RoomsRaw.removeUserReferenceFromDMsById",
+      "line": 830,
+      "endLine": 844,
+      "signature": "removeUserReferenceFromDMsById(roomId: string, username: string, userId: string): Promise<UpdateResult>",
+      "containerClass": "RoomsRaw",
+      "calls": [
+        {
+          "name": "updateOne",
+          "edgeType": "call"
+        },
+        {
+          "name": "UpdateResult",
+          "edgeType": "type"
+        },
+        {
+          "name": "Filter",
+          "edgeType": "type"
+        },
+        {
+          "name": "IRoom",
+          "edgeType": "type"
+        },
+        {
+          "name": "UpdateFilter",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "constructor",
+      "exported": true,
+      "qualifiedName": "RoomsRaw.constructor",
+      "line": 37,
+      "endLine": 39,
+      "signature": "constructor(db: Db, trash?: Collection<RocketChatRecordDeleted<IRoom>>)",
+      "containerClass": "RoomsRaw",
+      "calls": [
+        {
+          "name": "Db",
+          "edgeType": "type"
+        },
+        {
+          "name": "Collection",
+          "edgeType": "type"
+        },
+        {
+          "name": "RocketChatRecordDeleted",
+          "edgeType": "type"
+        },
+        {
+          "name": "IRoom",
+          "edgeType": "type"
+        }
+      ]
+    }
+  ],
+  "imports": [
+    {
+      "module": "@rocket.chat/core-typings",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/model-typings",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/string-helpers",
+      "resolved": "external"
+    },
+    {
+      "module": "mongodb",
+      "resolved": "external"
+    },
+    {
+      "module": "../index",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/packages/models/src/index.ts"
+    },
+    {
+      "module": "./BaseRaw",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/packages/models/src/models/BaseRaw.ts"
+    },
+    {
+      "module": "../readSecondaryPreferred",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/packages/models/src/readSecondaryPreferred.ts"
+    },
+    {
+      "module": "../updater",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/packages/models/src/updater.ts"
+    }
+  ]
+}

@@ -1,0 +1,458 @@
+{
+  "sourcePath": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/app/lib/server/lib/notifyUsersOnMessage.ts",
+  "symbols": [
+    {
+      "type": "module",
+      "name": "notifyUsersOnMessage",
+      "exported": false,
+      "line": 1,
+      "endLine": 232,
+      "signature": "notifyUsersOnMessage",
+      "calls": [
+        {
+          "name": "afterSaveMessage",
+          "edgeType": "event_listen"
+        },
+        {
+          "name": "notifyUsersOnMessage",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "function",
+      "name": "getMentions",
+      "exported": true,
+      "line": 16,
+      "endLine": 46,
+      "signature": "export async function getMentions(message: IMessage): Promise<{ toAll: boolean; toHere: boolean; mentionIds: string[] }>",
+      "calls": [
+        {
+          "name": "some",
+          "edgeType": "call"
+        },
+        {
+          "name": "filter",
+          "edgeType": "call"
+        },
+        {
+          "name": "map",
+          "edgeType": "call"
+        },
+        {
+          "name": "includes",
+          "edgeType": "call"
+        },
+        {
+          "name": "beforeGetMentions",
+          "edgeType": "event_emit"
+        },
+        {
+          "name": "IMessage",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "function",
+      "name": "updateUsersSubscriptions",
+      "exported": false,
+      "line": 59,
+      "endLine": 121,
+      "signature": "async function updateUsersSubscriptions(message: IMessage, room: IRoom): Promise<void>",
+      "calls": [
+        {
+          "name": "all",
+          "edgeType": "call"
+        },
+        {
+          "name": "getMentions",
+          "edgeType": "call"
+        },
+        {
+          "name": "getUserIdsFromHighlights",
+          "edgeType": "call"
+        },
+        {
+          "name": "getUnreadSettingCount",
+          "edgeType": "call"
+        },
+        {
+          "name": "getUserMentions",
+          "edgeType": "call"
+        },
+        {
+          "name": "getGroupMentions",
+          "edgeType": "call"
+        },
+        {
+          "name": "toArray",
+          "edgeType": "call"
+        },
+        {
+          "name": "findByRoomIdAndNotAlertOrOpenExcludingUserIds",
+          "edgeType": "call"
+        },
+        {
+          "name": "incUserMentionsAndUnreadForRoomIdAndUserIds",
+          "edgeType": "call"
+        },
+        {
+          "name": "incGroupMentionsAndUnreadForRoomIdExcludingUserId",
+          "edgeType": "call"
+        },
+        {
+          "name": "incUnreadForRoomIdExcludingUserIds",
+          "edgeType": "call"
+        },
+        {
+          "name": "setAlertForRoomIdExcludingUserId",
+          "edgeType": "call"
+        },
+        {
+          "name": "setOpenForRoomIdExcludingUserId",
+          "edgeType": "call"
+        },
+        {
+          "name": "forEach",
+          "edgeType": "call"
+        },
+        {
+          "name": "includes",
+          "edgeType": "call"
+        },
+        {
+          "name": "notifyOnSubscriptionChanged",
+          "edgeType": "call"
+        },
+        {
+          "name": "setAsReadByRoomIdAndUserId",
+          "edgeType": "call"
+        },
+        {
+          "name": "notifyOnSubscriptionChangedByRoomIdAndUserId",
+          "edgeType": "call"
+        },
+        {
+          "name": "Set",
+          "edgeType": "new"
+        },
+        {
+          "name": "IMessage",
+          "edgeType": "type"
+        },
+        {
+          "name": "IRoom",
+          "edgeType": "type"
+        },
+        {
+          "name": "UnreadCountType",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "function",
+      "name": "updateThreadUsersSubscriptions",
+      "exported": true,
+      "line": 63,
+      "endLine": 75,
+      "signature": "export async function updateThreadUsersSubscriptions(message: IMessage, replies: IUser['_id'][]): Promise<void>",
+      "calls": [
+        {
+          "name": "all",
+          "edgeType": "call"
+        },
+        {
+          "name": "setAlertForRoomIdAndUserIds",
+          "edgeType": "call"
+        },
+        {
+          "name": "setOpenForRoomIdAndUserIds",
+          "edgeType": "call"
+        },
+        {
+          "name": "setLastReplyForRoomIdAndUserIds",
+          "edgeType": "call"
+        },
+        {
+          "name": "some",
+          "edgeType": "call"
+        },
+        {
+          "name": "notifyOnSubscriptionChangedByRoomIdAndUserIds",
+          "edgeType": "call"
+        },
+        {
+          "name": "Set",
+          "edgeType": "new"
+        },
+        {
+          "name": "Date",
+          "edgeType": "new"
+        },
+        {
+          "name": "IMessage",
+          "edgeType": "type"
+        },
+        {
+          "name": "IUser",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "function",
+      "name": "notifyUsersOnMessage",
+      "exported": true,
+      "line": 67,
+      "endLine": 104,
+      "signature": "export async function notifyUsersOnMessage(message: IMessage, room: IRoom, roomUpdater: Updater<IRoom>): Promise<IMessage>",
+      "calls": [
+        {
+          "name": "isEditedMessage",
+          "edgeType": "call"
+        },
+        {
+          "name": "abs",
+          "edgeType": "call"
+        },
+        {
+          "name": "diff",
+          "edgeType": "call"
+        },
+        {
+          "name": "moment",
+          "edgeType": "call"
+        },
+        {
+          "name": "now",
+          "edgeType": "call"
+        },
+        {
+          "name": "getIncMsgCountUpdateQuery",
+          "edgeType": "call"
+        },
+        {
+          "name": "get",
+          "edgeType": "call"
+        },
+        {
+          "name": "getLastMessageUpdateQuery",
+          "edgeType": "call"
+        },
+        {
+          "name": "setIncMsgCountAndSetLastMessageUpdateQuery",
+          "edgeType": "call"
+        },
+        {
+          "name": "updateUsersSubscriptions",
+          "edgeType": "call"
+        },
+        {
+          "name": "IMessage",
+          "edgeType": "type"
+        },
+        {
+          "name": "IRoom",
+          "edgeType": "type"
+        },
+        {
+          "name": "Updater",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "function",
+      "name": "notifyUsersOnSystemMessage",
+      "exported": true,
+      "line": 71,
+      "endLine": 83,
+      "signature": "export async function notifyUsersOnSystemMessage(message: IMessage, room: IRoom): Promise<IMessage>",
+      "calls": [
+        {
+          "name": "getUpdater",
+          "edgeType": "call"
+        },
+        {
+          "name": "setIncMsgCountAndSetLastMessageUpdateQuery",
+          "edgeType": "call"
+        },
+        {
+          "name": "get",
+          "edgeType": "call"
+        },
+        {
+          "name": "hasChanges",
+          "edgeType": "call"
+        },
+        {
+          "name": "updateFromUpdater",
+          "edgeType": "call"
+        },
+        {
+          "name": "updateUsersSubscriptions",
+          "edgeType": "call"
+        },
+        {
+          "name": "IMessage",
+          "edgeType": "type"
+        },
+        {
+          "name": "IRoom",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "variable_function",
+      "name": "getGroupMentions",
+      "exported": false,
+      "line": 22,
+      "endLine": 25,
+      "signature": "(roomType: RoomType, unreadCount: Exclude<UnreadCountType, 'user_mentions_only'>): number =>",
+      "calls": [
+        {
+          "name": "includes",
+          "edgeType": "call"
+        },
+        {
+          "name": "RoomType",
+          "edgeType": "type"
+        },
+        {
+          "name": "UnreadCountType",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "variable_function",
+      "name": "getUserMentions",
+      "exported": false,
+      "line": 26,
+      "endLine": 29,
+      "signature": "(roomType: RoomType, unreadCount: Exclude<UnreadCountType, 'group_mentions_only'>): number =>",
+      "calls": [
+        {
+          "name": "includes",
+          "edgeType": "call"
+        },
+        {
+          "name": "RoomType",
+          "edgeType": "type"
+        },
+        {
+          "name": "UnreadCountType",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "variable_function",
+      "name": "getUserIdsFromHighlights",
+      "exported": true,
+      "line": 30,
+      "endLine": 39,
+      "signature": "async (rid: IRoom['_id'], message: IMessage): Promise<string[]> =>",
+      "calls": [
+        {
+          "name": "toArray",
+          "edgeType": "call"
+        },
+        {
+          "name": "findByRoomWithUserHighlights",
+          "edgeType": "call"
+        },
+        {
+          "name": "map",
+          "edgeType": "call"
+        },
+        {
+          "name": "filter",
+          "edgeType": "call"
+        },
+        {
+          "name": "messageContainsHighlight",
+          "edgeType": "call"
+        },
+        {
+          "name": "IRoom",
+          "edgeType": "type"
+        },
+        {
+          "name": "IMessage",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "variable_function",
+      "name": "getUnreadSettingCount",
+      "exported": false,
+      "line": 34,
+      "endLine": 48,
+      "signature": "(roomType: RoomType): UnreadCountType =>",
+      "calls": [
+        {
+          "name": "get",
+          "edgeType": "call"
+        },
+        {
+          "name": "RoomType",
+          "edgeType": "type"
+        },
+        {
+          "name": "UnreadCountType",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "type",
+      "name": "UnreadCountType",
+      "line": 20,
+      "endLine": 20,
+      "signature": "type UnreadCountType = 'all_messages' | 'user_mentions_only' | 'group_mentions_only' | 'user_and_group_mentions_only';"
+    }
+  ],
+  "imports": [
+    {
+      "module": "@rocket.chat/core-typings",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/core-typings",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/models",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/models",
+      "resolved": "external"
+    },
+    {
+      "module": "moment",
+      "resolved": "external"
+    },
+    {
+      "module": "./notifyListener",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/app/lib/server/lib/notifyListener.ts"
+    },
+    {
+      "module": "../../../../server/lib/callbacks",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/server/lib/callbacks.ts"
+    },
+    {
+      "module": "../../../settings/server",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/app/settings/server/index.ts"
+    },
+    {
+      "module": "../functions/notifications/messageContainsHighlight",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/app/lib/server/functions/notifications/messageContainsHighlight.ts"
+    }
+  ]
+}

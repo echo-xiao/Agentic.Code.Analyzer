@@ -1,0 +1,84 @@
+{
+  "sourcePath": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/server/services/room/hooks/BeforeFederationActions.ts",
+  "symbols": [
+    {
+      "type": "class",
+      "name": "FederationActions",
+      "exported": true,
+      "line": 6,
+      "endLine": 30,
+      "signature": "export class FederationActions",
+      "calls": []
+    },
+    {
+      "type": "method",
+      "name": "shouldPerformFederationAction",
+      "exported": true,
+      "qualifiedName": "FederationActions.shouldPerformFederationAction",
+      "line": 7,
+      "endLine": 17,
+      "signature": "public static shouldPerformFederationAction(room: IRoom): room is IRoomNativeFederated",
+      "containerClass": "FederationActions",
+      "calls": [
+        {
+          "name": "isRoomFederated",
+          "edgeType": "call"
+        },
+        {
+          "name": "isRoomNativeFederated",
+          "edgeType": "call"
+        },
+        {
+          "name": "IRoom",
+          "edgeType": "type"
+        },
+        {
+          "name": "IRoomNativeFederated",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "blockIfRoomFederatedButServiceNotReady",
+      "exported": true,
+      "qualifiedName": "FederationActions.blockIfRoomFederatedButServiceNotReady",
+      "line": 11,
+      "endLine": 21,
+      "signature": "public static blockIfRoomFederatedButServiceNotReady(room: IRoom)",
+      "containerClass": "FederationActions",
+      "calls": [
+        {
+          "name": "isRoomFederated",
+          "edgeType": "call"
+        },
+        {
+          "name": "isRoomNativeFederated",
+          "edgeType": "call"
+        },
+        {
+          "name": "throwIfFederationNotEnabled",
+          "edgeType": "call"
+        },
+        {
+          "name": "IRoom",
+          "edgeType": "type"
+        }
+      ]
+    }
+  ],
+  "imports": [
+    {
+      "module": "@rocket.chat/core-typings",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/core-typings",
+      "resolved": "external"
+    },
+    {
+      "module": "../../federation/utils",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/server/services/federation/utils.ts"
+    }
+  ]
+}

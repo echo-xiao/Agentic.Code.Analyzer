@@ -1,0 +1,85 @@
+{
+  "sourcePath": "/Users/echoooooo/Desktop/code/Rocket.Chat/packages/apps/tests/test-data/bridges/uploadBridge.ts",
+  "symbols": [
+    {
+      "type": "class",
+      "name": "TestUploadBridge",
+      "exported": true,
+      "line": 6,
+      "endLine": 18,
+      "signature": "export class TestUploadBridge extends UploadBridge",
+      "calls": [
+        {
+          "name": "UploadBridge",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "getById",
+      "exported": true,
+      "qualifiedName": "TestUploadBridge.getById",
+      "line": 7,
+      "endLine": 9,
+      "signature": "public getById(id: string, appId: string): Promise<IUpload>",
+      "containerClass": "TestUploadBridge",
+      "calls": [
+        {
+          "name": "IUpload",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "getBuffer",
+      "exported": true,
+      "qualifiedName": "TestUploadBridge.getBuffer",
+      "line": 11,
+      "endLine": 13,
+      "signature": "public getBuffer(upload: IUpload, appId: string): Promise<Buffer>",
+      "containerClass": "TestUploadBridge",
+      "calls": [
+        {
+          "name": "IUpload",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "createUpload",
+      "exported": true,
+      "qualifiedName": "TestUploadBridge.createUpload",
+      "line": 15,
+      "endLine": 17,
+      "signature": "public createUpload(details: IUploadDetails, buffer: Buffer, appId: string): Promise<IUpload>",
+      "containerClass": "TestUploadBridge",
+      "calls": [
+        {
+          "name": "IUploadDetails",
+          "edgeType": "type"
+        },
+        {
+          "name": "IUpload",
+          "edgeType": "type"
+        }
+      ]
+    }
+  ],
+  "imports": [
+    {
+      "module": "@rocket.chat/apps-engine/definition/uploads",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/apps-engine/definition/uploads/IUploadDetails",
+      "resolved": "external"
+    },
+    {
+      "module": "../../../src/server/bridges/UploadBridge",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/packages/apps/src/server/bridges/UploadBridge.ts"
+    }
+  ]
+}

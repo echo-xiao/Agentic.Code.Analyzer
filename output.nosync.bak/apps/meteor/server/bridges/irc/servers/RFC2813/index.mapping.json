@@ -1,0 +1,310 @@
+{
+  "sourcePath": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/server/bridges/irc/servers/RFC2813/index.js",
+  "symbols": [
+    {
+      "type": "module",
+      "name": "index",
+      "exported": false,
+      "line": 1,
+      "endLine": 196,
+      "signature": "index",
+      "calls": [
+        {
+          "name": "inherits",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "class",
+      "name": "RFC2813",
+      "exported": true,
+      "line": 13,
+      "endLine": 191,
+      "signature": "class RFC2813",
+      "calls": []
+    },
+    {
+      "type": "method",
+      "name": "setupSocket",
+      "exported": true,
+      "qualifiedName": "RFC2813.setupSocket",
+      "line": 31,
+      "endLine": 47,
+      "signature": "setupSocket()",
+      "containerClass": "RFC2813",
+      "calls": [
+        {
+          "name": "setNoDelay",
+          "edgeType": "call"
+        },
+        {
+          "name": "setEncoding",
+          "edgeType": "call"
+        },
+        {
+          "name": "setKeepAlive",
+          "edgeType": "call"
+        },
+        {
+          "name": "data",
+          "edgeType": "event_listen"
+        },
+        {
+          "name": "bind",
+          "edgeType": "call"
+        },
+        {
+          "name": "connect",
+          "edgeType": "event_listen"
+        },
+        {
+          "name": "error",
+          "edgeType": "event_listen"
+        },
+        {
+          "name": "error",
+          "edgeType": "call"
+        },
+        {
+          "name": "timeout",
+          "edgeType": "event_listen"
+        },
+        {
+          "name": "log",
+          "edgeType": "call"
+        },
+        {
+          "name": "close",
+          "edgeType": "event_listen"
+        },
+        {
+          "name": "onReceiveFromLocal",
+          "edgeType": "event_listen"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "log",
+      "exported": true,
+      "qualifiedName": "RFC2813.log",
+      "line": 38,
+      "endLine": 46,
+      "signature": "log(message)",
+      "containerClass": "RFC2813",
+      "calls": [
+        {
+          "name": "info",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "register",
+      "exported": true,
+      "qualifiedName": "RFC2813.register",
+      "line": 45,
+      "endLine": 57,
+      "signature": "register()",
+      "containerClass": "RFC2813",
+      "calls": [
+        {
+          "name": "log",
+          "edgeType": "call"
+        },
+        {
+          "name": "setupSocket",
+          "edgeType": "call"
+        },
+        {
+          "name": "connect",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "disconnect",
+      "exported": true,
+      "qualifiedName": "RFC2813.disconnect",
+      "line": 52,
+      "endLine": 61,
+      "signature": "disconnect()",
+      "containerClass": "RFC2813",
+      "calls": [
+        {
+          "name": "log",
+          "edgeType": "call"
+        },
+        {
+          "name": "destroy",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "onConnect",
+      "exported": true,
+      "qualifiedName": "RFC2813.onConnect",
+      "line": 59,
+      "endLine": 72,
+      "signature": "onConnect()",
+      "containerClass": "RFC2813",
+      "calls": [
+        {
+          "name": "log",
+          "edgeType": "call"
+        },
+        {
+          "name": "write",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "write",
+      "exported": true,
+      "qualifiedName": "RFC2813.write",
+      "line": 66,
+      "endLine": 81,
+      "signature": "write(command)",
+      "containerClass": "RFC2813",
+      "calls": [
+        {
+          "name": "join",
+          "edgeType": "call"
+        },
+        {
+          "name": "log",
+          "edgeType": "call"
+        },
+        {
+          "name": "write",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "onReceiveFromPeer",
+      "exported": true,
+      "qualifiedName": "RFC2813.onReceiveFromPeer",
+      "line": 77,
+      "endLine": 112,
+      "signature": "onReceiveFromPeer(chunk)",
+      "containerClass": "RFC2813",
+      "calls": [
+        {
+          "name": "concat",
+          "edgeType": "call"
+        },
+        {
+          "name": "split",
+          "edgeType": "call"
+        },
+        {
+          "name": "pop",
+          "edgeType": "call"
+        },
+        {
+          "name": "from",
+          "edgeType": "call"
+        },
+        {
+          "name": "forEach",
+          "edgeType": "call"
+        },
+        {
+          "name": "startsWith",
+          "edgeType": "call"
+        },
+        {
+          "name": "parseMessage",
+          "edgeType": "call"
+        },
+        {
+          "name": "log",
+          "edgeType": "call"
+        },
+        {
+          "name": "call",
+          "edgeType": "call"
+        },
+        {
+          "name": "peerCommand",
+          "edgeType": "event_emit"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "onReceiveFromLocal",
+      "exported": true,
+      "qualifiedName": "RFC2813.onReceiveFromLocal",
+      "line": 88,
+      "endLine": 96,
+      "signature": "onReceiveFromLocal(command, parameters)",
+      "containerClass": "RFC2813",
+      "calls": [
+        {
+          "name": "log",
+          "edgeType": "call"
+        },
+        {
+          "name": "call",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "constructor",
+      "exported": true,
+      "qualifiedName": "RFC2813.constructor",
+      "line": 14,
+      "endLine": 26,
+      "signature": "constructor(config)",
+      "containerClass": "RFC2813",
+      "calls": [
+        {
+          "name": "from",
+          "edgeType": "call"
+        }
+      ]
+    }
+  ],
+  "imports": [
+    {
+      "module": "node:events",
+      "resolved": "external"
+    },
+    {
+      "module": "node:net",
+      "resolved": "external"
+    },
+    {
+      "module": "node:util",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/logger",
+      "resolved": "external"
+    },
+    {
+      "module": "./localCommandHandlers",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/server/bridges/irc/servers/RFC2813/localCommandHandlers.ts"
+    },
+    {
+      "module": "./parseMessage",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/server/bridges/irc/servers/RFC2813/parseMessage.ts"
+    },
+    {
+      "module": "./peerCommandHandlers",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/server/bridges/irc/servers/RFC2813/peerCommandHandlers.ts"
+    }
+  ]
+}

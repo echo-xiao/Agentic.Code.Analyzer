@@ -1,0 +1,109 @@
+{
+  "sourcePath": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/server/configuration/configureBoilerplate.ts",
+  "symbols": [
+    {
+      "type": "module",
+      "name": "configureBoilerplate",
+      "exported": false,
+      "line": 1,
+      "endLine": 62,
+      "signature": "configureBoilerplate",
+      "calls": [
+        {
+          "name": "keys",
+          "edgeType": "call"
+        },
+        {
+          "name": "apply",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "function",
+      "name": "getWebAppHash",
+      "exported": true,
+      "line": 10,
+      "endLine": 21,
+      "signature": "export function getWebAppHash(arch: string): string | undefined",
+      "calls": [
+        {
+          "name": "digest",
+          "edgeType": "call"
+        },
+        {
+          "name": "update",
+          "edgeType": "call"
+        },
+        {
+          "name": "createHash",
+          "edgeType": "call"
+        },
+        {
+          "name": "stringify",
+          "edgeType": "call"
+        },
+        {
+          "name": "encodeURIComponent",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "function",
+      "name": "configureBoilerplate",
+      "exported": true,
+      "line": 23,
+      "endLine": 52,
+      "signature": "export function configureBoilerplate(settings: ICachedSettings): void",
+      "calls": [
+        {
+          "name": "watch",
+          "edgeType": "call"
+        },
+        {
+          "name": "bindEnvironment",
+          "edgeType": "call"
+        },
+        {
+          "name": "trim",
+          "edgeType": "call"
+        },
+        {
+          "name": "replace",
+          "edgeType": "call"
+        },
+        {
+          "name": "match",
+          "edgeType": "call"
+        },
+        {
+          "name": "generateBoilerplate",
+          "edgeType": "call"
+        },
+        {
+          "name": "ICachedSettings",
+          "edgeType": "type"
+        }
+      ]
+    }
+  ],
+  "imports": [
+    {
+      "module": "node:crypto",
+      "resolved": "external"
+    },
+    {
+      "module": "meteor/meteor",
+      "resolved": "external"
+    },
+    {
+      "module": "meteor/webapp",
+      "resolved": "external"
+    },
+    {
+      "module": "../../app/settings/server/CachedSettings",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/app/settings/server/CachedSettings.ts"
+    }
+  ]
+}

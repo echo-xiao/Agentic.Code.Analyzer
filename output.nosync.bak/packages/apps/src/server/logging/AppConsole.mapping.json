@@ -1,0 +1,428 @@
+{
+  "sourcePath": "/Users/echoooooo/Desktop/code/Rocket.Chat/packages/apps/src/server/logging/AppConsole.ts",
+  "symbols": [
+    {
+      "type": "class",
+      "name": "AppConsole",
+      "exported": true,
+      "line": 8,
+      "endLine": 121,
+      "signature": "export class AppConsole implements ILogger",
+      "calls": [
+        {
+          "name": "ILogger",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "toStorageEntry",
+      "exported": true,
+      "qualifiedName": "AppConsole.toStorageEntry",
+      "line": 9,
+      "endLine": 19,
+      "signature": "public static toStorageEntry(appId: string, logger: AppConsole): ILoggerStorageEntry",
+      "containerClass": "AppConsole",
+      "calls": [
+        {
+          "name": "getMethod",
+          "edgeType": "call"
+        },
+        {
+          "name": "getEntries",
+          "edgeType": "call"
+        },
+        {
+          "name": "getStartTime",
+          "edgeType": "call"
+        },
+        {
+          "name": "getEndTime",
+          "edgeType": "call"
+        },
+        {
+          "name": "getTotalTime",
+          "edgeType": "call"
+        },
+        {
+          "name": "Date",
+          "edgeType": "new"
+        },
+        {
+          "name": "AppConsole",
+          "edgeType": "type"
+        },
+        {
+          "name": "ILoggerStorageEntry",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "debug",
+      "exported": true,
+      "qualifiedName": "AppConsole.debug",
+      "line": 25,
+      "endLine": 27,
+      "signature": "public debug(...items: Array<any>): void",
+      "containerClass": "AppConsole",
+      "calls": [
+        {
+          "name": "addEntry",
+          "edgeType": "call"
+        },
+        {
+          "name": "getFunc",
+          "edgeType": "call"
+        },
+        {
+          "name": "get",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "info",
+      "exported": true,
+      "qualifiedName": "AppConsole.info",
+      "line": 29,
+      "endLine": 31,
+      "signature": "public info(...items: Array<any>): void",
+      "containerClass": "AppConsole",
+      "calls": [
+        {
+          "name": "addEntry",
+          "edgeType": "call"
+        },
+        {
+          "name": "getFunc",
+          "edgeType": "call"
+        },
+        {
+          "name": "get",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "log",
+      "exported": true,
+      "qualifiedName": "AppConsole.log",
+      "line": 33,
+      "endLine": 35,
+      "signature": "public log(...items: Array<any>): void",
+      "containerClass": "AppConsole",
+      "calls": [
+        {
+          "name": "addEntry",
+          "edgeType": "call"
+        },
+        {
+          "name": "getFunc",
+          "edgeType": "call"
+        },
+        {
+          "name": "get",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "warn",
+      "exported": true,
+      "qualifiedName": "AppConsole.warn",
+      "line": 37,
+      "endLine": 39,
+      "signature": "public warn(...items: Array<any>): void",
+      "containerClass": "AppConsole",
+      "calls": [
+        {
+          "name": "addEntry",
+          "edgeType": "call"
+        },
+        {
+          "name": "getFunc",
+          "edgeType": "call"
+        },
+        {
+          "name": "get",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "error",
+      "exported": true,
+      "qualifiedName": "AppConsole.error",
+      "line": 41,
+      "endLine": 43,
+      "signature": "public error(...items: Array<any>): void",
+      "containerClass": "AppConsole",
+      "calls": [
+        {
+          "name": "addEntry",
+          "edgeType": "call"
+        },
+        {
+          "name": "getFunc",
+          "edgeType": "call"
+        },
+        {
+          "name": "get",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "success",
+      "exported": true,
+      "qualifiedName": "AppConsole.success",
+      "line": 45,
+      "endLine": 47,
+      "signature": "public success(...items: Array<any>): void",
+      "containerClass": "AppConsole",
+      "calls": [
+        {
+          "name": "addEntry",
+          "edgeType": "call"
+        },
+        {
+          "name": "getFunc",
+          "edgeType": "call"
+        },
+        {
+          "name": "get",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "getEntries",
+      "exported": true,
+      "qualifiedName": "AppConsole.getEntries",
+      "line": 49,
+      "endLine": 51,
+      "signature": "public getEntries(): Array<ILogEntry>",
+      "containerClass": "AppConsole",
+      "calls": [
+        {
+          "name": "from",
+          "edgeType": "call"
+        },
+        {
+          "name": "ILogEntry",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "getMethod",
+      "exported": true,
+      "qualifiedName": "AppConsole.getMethod",
+      "line": 53,
+      "endLine": 55,
+      "signature": "public getMethod(): `${AppMethod}`",
+      "containerClass": "AppConsole",
+      "calls": [
+        {
+          "name": "AppMethod",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "getStartTime",
+      "exported": true,
+      "qualifiedName": "AppConsole.getStartTime",
+      "line": 57,
+      "endLine": 59,
+      "signature": "public getStartTime(): Date",
+      "containerClass": "AppConsole",
+      "calls": []
+    },
+    {
+      "type": "method",
+      "name": "getEndTime",
+      "exported": true,
+      "qualifiedName": "AppConsole.getEndTime",
+      "line": 61,
+      "endLine": 63,
+      "signature": "public getEndTime(): Date",
+      "containerClass": "AppConsole",
+      "calls": [
+        {
+          "name": "Date",
+          "edgeType": "new"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "getTotalTime",
+      "exported": true,
+      "qualifiedName": "AppConsole.getTotalTime",
+      "line": 65,
+      "endLine": 67,
+      "signature": "public getTotalTime(): number",
+      "containerClass": "AppConsole",
+      "calls": [
+        {
+          "name": "getTime",
+          "edgeType": "call"
+        },
+        {
+          "name": "getEndTime",
+          "edgeType": "call"
+        },
+        {
+          "name": "getStartTime",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "addEntry",
+      "exported": true,
+      "qualifiedName": "AppConsole.addEntry",
+      "line": 69,
+      "endLine": 90,
+      "signature": "private addEntry(severity: LogMessageSeverity, caller: string, ...items: Array<any>): void",
+      "containerClass": "AppConsole",
+      "calls": [
+        {
+          "name": "map",
+          "edgeType": "call"
+        },
+        {
+          "name": "stringify",
+          "edgeType": "call"
+        },
+        {
+          "name": "getOwnPropertyNames",
+          "edgeType": "call"
+        },
+        {
+          "name": "parse",
+          "edgeType": "call"
+        },
+        {
+          "name": "push",
+          "edgeType": "call"
+        },
+        {
+          "name": "Date",
+          "edgeType": "new"
+        },
+        {
+          "name": "LogMessageSeverity",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "getFunc",
+      "exported": true,
+      "qualifiedName": "AppConsole.getFunc",
+      "line": 73,
+      "endLine": 93,
+      "signature": "private getFunc(stack: Array<stackTrace.StackFrame>): string",
+      "containerClass": "AppConsole",
+      "calls": [
+        {
+          "name": "getMethodName",
+          "edgeType": "call"
+        },
+        {
+          "name": "getFunctionName",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "constructor",
+      "exported": true,
+      "qualifiedName": "AppConsole.constructor",
+      "line": 19,
+      "endLine": 23,
+      "signature": "constructor(method: `${AppMethod}`)",
+      "containerClass": "AppConsole",
+      "calls": [
+        {
+          "name": "Date",
+          "edgeType": "new"
+        },
+        {
+          "name": "AppMethod",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "class_property",
+      "name": "method",
+      "exported": true,
+      "qualifiedName": "AppConsole.method",
+      "line": 13,
+      "endLine": 13,
+      "signature": "public method: `$",
+      "containerClass": "AppConsole",
+      "calls": [
+        {
+          "name": "AppMethod",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "class_property",
+      "name": "entries",
+      "exported": true,
+      "qualifiedName": "AppConsole.entries",
+      "line": 15,
+      "endLine": 15,
+      "signature": "private entries: Array<ILogEntry>;",
+      "containerClass": "AppConsole",
+      "calls": [
+        {
+          "name": "ILogEntry",
+          "edgeType": "type"
+        }
+      ]
+    }
+  ],
+  "imports": [
+    {
+      "module": "@rocket.chat/apps-engine/definition/accessors",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/apps-engine/definition/accessors",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/apps-engine/definition/metadata",
+      "resolved": "external"
+    },
+    {
+      "module": "stack-trace",
+      "resolved": "external"
+    },
+    {
+      "module": "./ILoggerStorageEntry",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/packages/apps/src/server/logging/ILoggerStorageEntry.ts"
+    }
+  ]
+}

@@ -1,0 +1,192 @@
+{
+  "sourcePath": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/app/integrations/server/lib/isolated-vm/buildSandbox.ts",
+  "symbols": [
+    {
+      "type": "variable_function",
+      "name": "proxyObject",
+      "exported": false,
+      "line": 8,
+      "endLine": 40,
+      "signature": "(obj: Record<string, any>, forbiddenKeys: string[] = []): Record<string, any> =>",
+      "calls": [
+        {
+          "name": "copyObject",
+          "edgeType": "call"
+        },
+        {
+          "name": "includes",
+          "edgeType": "call"
+        },
+        {
+          "name": "resolve",
+          "edgeType": "call"
+        },
+        {
+          "name": "makeTransferable",
+          "edgeType": "call"
+        },
+        {
+          "name": "reject",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "variable_function",
+      "name": "copyObject",
+      "exported": false,
+      "line": 12,
+      "endLine": 48,
+      "signature": "(obj: Record<string, any> | any[]): Record<string, any> | any[] =>",
+      "calls": [
+        {
+          "name": "isArray",
+          "edgeType": "call"
+        },
+        {
+          "name": "map",
+          "edgeType": "call"
+        },
+        {
+          "name": "copyData",
+          "edgeType": "call"
+        },
+        {
+          "name": "proxyObject",
+          "edgeType": "call"
+        },
+        {
+          "name": "isSemiTransferable",
+          "edgeType": "call"
+        },
+        {
+          "name": "copyObject",
+          "edgeType": "call"
+        },
+        {
+          "name": "from",
+          "edgeType": "call"
+        },
+        {
+          "name": "keys",
+          "edgeType": "call"
+        },
+        {
+          "name": "fromEntries",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "variable_function",
+      "name": "isTransferable",
+      "exported": false,
+      "line": 17,
+      "endLine": 40,
+      "signature": "(data: any): data is ivm.Transferable =>",
+      "calls": [
+        {
+          "name": "includes",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "variable_function",
+      "name": "isSemiTransferable",
+      "exported": false,
+      "line": 22,
+      "endLine": 22,
+      "signature": "(data: any) =>",
+      "calls": []
+    },
+    {
+      "type": "variable_function",
+      "name": "copyData",
+      "exported": false,
+      "line": 24,
+      "endLine": 24,
+      "signature": "<T extends ivm.Transferable | Record<string, any> | any[]>(data: T) =>",
+      "calls": [
+        {
+          "name": "isTransferable",
+          "edgeType": "call"
+        },
+        {
+          "name": "copyObject",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "variable_function",
+      "name": "makeTransferable",
+      "exported": false,
+      "line": 25,
+      "endLine": 25,
+      "signature": "(data: any) =>",
+      "calls": [
+        {
+          "name": "isTransferable",
+          "edgeType": "call"
+        },
+        {
+          "name": "copyInto",
+          "edgeType": "call"
+        },
+        {
+          "name": "copyObject",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "variable_function",
+      "name": "buildSandbox",
+      "exported": true,
+      "line": 27,
+      "endLine": 43,
+      "signature": "(context: Context) =>",
+      "calls": [
+        {
+          "name": "setSync",
+          "edgeType": "call"
+        },
+        {
+          "name": "derefInto",
+          "edgeType": "call"
+        },
+        {
+          "name": "makeTransferable",
+          "edgeType": "call"
+        },
+        {
+          "name": "fetch",
+          "edgeType": "call"
+        },
+        {
+          "name": "Context",
+          "edgeType": "type"
+        }
+      ]
+    }
+  ],
+  "imports": [
+    {
+      "module": "node:events",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/server-fetch",
+      "resolved": "external"
+    },
+    {
+      "module": "isolated-vm",
+      "resolved": "external"
+    },
+    {
+      "module": "../../../../../lib/utils/stringUtils",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/lib/utils/stringUtils.ts"
+    }
+  ]
+}

@@ -1,0 +1,75 @@
+{
+  "sourcePath": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/app/utils/server/functions/isDocker.ts",
+  "symbols": [
+    {
+      "type": "function",
+      "name": "hasDockerEnv",
+      "exported": false,
+      "line": 3,
+      "endLine": 10,
+      "signature": "function hasDockerEnv(): boolean",
+      "calls": [
+        {
+          "name": "statSync",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "function",
+      "name": "hasDockerCGroup",
+      "exported": false,
+      "line": 7,
+      "endLine": 13,
+      "signature": "function hasDockerCGroup(): boolean",
+      "calls": [
+        {
+          "name": "indexOf",
+          "edgeType": "call"
+        },
+        {
+          "name": "readFileSync",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "function",
+      "name": "check",
+      "exported": false,
+      "line": 11,
+      "endLine": 13,
+      "signature": "function check(): boolean",
+      "calls": [
+        {
+          "name": "hasDockerEnv",
+          "edgeType": "call"
+        },
+        {
+          "name": "hasDockerCGroup",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "variable_function",
+      "name": "isDocker",
+      "exported": true,
+      "line": 16,
+      "endLine": 22,
+      "signature": "function (): boolean",
+      "calls": [
+        {
+          "name": "check",
+          "edgeType": "call"
+        }
+      ]
+    }
+  ],
+  "imports": [
+    {
+      "module": "node:fs",
+      "resolved": "external"
+    }
+  ]
+}

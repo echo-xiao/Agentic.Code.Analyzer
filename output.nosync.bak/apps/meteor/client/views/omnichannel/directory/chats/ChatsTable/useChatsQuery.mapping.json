@@ -1,0 +1,117 @@
+{
+  "sourcePath": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/client/views/omnichannel/directory/chats/ChatsTable/useChatsQuery.ts",
+  "symbols": [
+    {
+      "type": "variable_function",
+      "name": "sortDir",
+      "exported": false,
+      "line": 24,
+      "endLine": 24,
+      "signature": "(sortDir: 'asc' | 'desc'): 1 | -1 =>",
+      "calls": []
+    },
+    {
+      "type": "variable_function",
+      "name": "useChatsQuery",
+      "exported": true,
+      "line": 26,
+      "endLine": 97,
+      "signature": "() =>",
+      "calls": [
+        {
+          "name": "useUserId",
+          "edgeType": "call"
+        },
+        {
+          "name": "usePermission",
+          "edgeType": "call"
+        },
+        {
+          "name": "useCallback",
+          "edgeType": "call"
+        },
+        {
+          "name": "stringify",
+          "edgeType": "call"
+        },
+        {
+          "name": "sortDir",
+          "edgeType": "call"
+        },
+        {
+          "name": "toISOString",
+          "edgeType": "call"
+        },
+        {
+          "name": "startOfDay",
+          "edgeType": "call"
+        },
+        {
+          "name": "parse",
+          "edgeType": "call"
+        },
+        {
+          "name": "endOfDay",
+          "edgeType": "call"
+        },
+        {
+          "name": "map",
+          "edgeType": "call"
+        },
+        {
+          "name": "keys",
+          "edgeType": "call"
+        },
+        {
+          "name": "fromEntries",
+          "edgeType": "call"
+        },
+        {
+          "name": "filter",
+          "edgeType": "call"
+        },
+        {
+          "name": "entries",
+          "edgeType": "call"
+        },
+        {
+          "name": "Date",
+          "edgeType": "new"
+        },
+        {
+          "name": "ChatsFiltersQuery",
+          "edgeType": "type"
+        },
+        {
+          "name": "CurrentChatQuery",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "type",
+      "name": "CurrentChatQuery",
+      "line": 7,
+      "endLine": 22,
+      "signature": "type CurrentChatQuery ="
+    }
+  ],
+  "imports": [
+    {
+      "module": "@rocket.chat/ui-contexts",
+      "resolved": "external"
+    },
+    {
+      "module": "date-fns",
+      "resolved": "external"
+    },
+    {
+      "module": "react",
+      "resolved": "external"
+    },
+    {
+      "module": "../../contexts/ChatsContext",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/client/views/omnichannel/directory/contexts/ChatsContext.ts"
+    }
+  ]
+}

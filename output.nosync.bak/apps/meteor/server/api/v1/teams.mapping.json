@@ -1,0 +1,368 @@
+{
+  "sourcePath": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/server/api/v1/teams.ts",
+  "symbols": [
+    {
+      "type": "module",
+      "name": "teams",
+      "exported": false,
+      "line": 1,
+      "endLine": 820,
+      "signature": "teams",
+      "calls": [
+        {
+          "name": "teams.convertToChannel",
+          "edgeType": "rest_route"
+        },
+        {
+          "name": "post",
+          "edgeType": "call"
+        },
+        {
+          "name": "getTeamByIdOrName",
+          "edgeType": "call"
+        },
+        {
+          "name": "failure",
+          "edgeType": "call"
+        },
+        {
+          "name": "hasPermissionAsync",
+          "edgeType": "call"
+        },
+        {
+          "name": "forbidden",
+          "edgeType": "call"
+        },
+        {
+          "name": "getMatchingTeamRooms",
+          "edgeType": "call"
+        },
+        {
+          "name": "eraseRoom",
+          "edgeType": "call"
+        },
+        {
+          "name": "all",
+          "edgeType": "call"
+        },
+        {
+          "name": "unsetTeamIdOfRooms",
+          "edgeType": "call"
+        },
+        {
+          "name": "removeAllMembersFromTeam",
+          "edgeType": "call"
+        },
+        {
+          "name": "deleteById",
+          "edgeType": "call"
+        },
+        {
+          "name": "success",
+          "edgeType": "call"
+        },
+        {
+          "name": "teams.addRooms",
+          "edgeType": "rest_route"
+        },
+        {
+          "name": "addRooms",
+          "edgeType": "call"
+        },
+        {
+          "name": "teams.removeRoom",
+          "edgeType": "rest_route"
+        },
+        {
+          "name": "removeRoom",
+          "edgeType": "call"
+        },
+        {
+          "name": "teams.updateRoom",
+          "edgeType": "rest_route"
+        },
+        {
+          "name": "getOneByRoomId",
+          "edgeType": "call"
+        },
+        {
+          "name": "get",
+          "edgeType": "call"
+        },
+        {
+          "name": "findOneByIdAndType",
+          "edgeType": "call"
+        },
+        {
+          "name": "updateRoom",
+          "edgeType": "call"
+        },
+        {
+          "name": "teams.listRooms",
+          "edgeType": "rest_route"
+        },
+        {
+          "name": "getPaginationItems",
+          "edgeType": "call"
+        },
+        {
+          "name": "listRooms",
+          "edgeType": "call"
+        },
+        {
+          "name": "teams.listRoomsOfUser",
+          "edgeType": "rest_route"
+        },
+        {
+          "name": "listRoomsOfUser",
+          "edgeType": "call"
+        },
+        {
+          "name": "teams.listChildren",
+          "edgeType": "rest_route"
+        },
+        {
+          "name": "compile",
+          "edgeType": "call"
+        },
+        {
+          "name": "parseJsonQuery",
+          "edgeType": "call"
+        },
+        {
+          "name": "getTeamByIdOrNameOrParentRoom",
+          "edgeType": "call"
+        },
+        {
+          "name": "notFound",
+          "edgeType": "call"
+        },
+        {
+          "name": "listChildren",
+          "edgeType": "call"
+        },
+        {
+          "name": "teams.members",
+          "edgeType": "rest_route"
+        },
+        {
+          "name": "escapeRegExp",
+          "edgeType": "call"
+        },
+        {
+          "name": "members",
+          "edgeType": "call"
+        },
+        {
+          "name": "RegExp",
+          "edgeType": "new"
+        },
+        {
+          "name": "teams.addMembers",
+          "edgeType": "rest_route"
+        },
+        {
+          "name": "hasAtLeastOnePermissionAsync",
+          "edgeType": "call"
+        },
+        {
+          "name": "addMembers",
+          "edgeType": "call"
+        },
+        {
+          "name": "teams.updateMember",
+          "edgeType": "rest_route"
+        },
+        {
+          "name": "updateMember",
+          "edgeType": "call"
+        },
+        {
+          "name": "teams.removeMember",
+          "edgeType": "rest_route"
+        },
+        {
+          "name": "findOneActiveById",
+          "edgeType": "call"
+        },
+        {
+          "name": "removeMembers",
+          "edgeType": "call"
+        },
+        {
+          "name": "map",
+          "edgeType": "call"
+        },
+        {
+          "name": "removeUserFromRoom",
+          "edgeType": "call"
+        },
+        {
+          "name": "teams.leave",
+          "edgeType": "rest_route"
+        },
+        {
+          "name": "teams.info",
+          "edgeType": "rest_route"
+        },
+        {
+          "name": "findOneById",
+          "edgeType": "call"
+        },
+        {
+          "name": "canAccessRoomAsync",
+          "edgeType": "call"
+        },
+        {
+          "name": "ITeam",
+          "edgeType": "type"
+        },
+        {
+          "name": "teams.delete",
+          "edgeType": "rest_route"
+        },
+        {
+          "name": "eraseTeam",
+          "edgeType": "call"
+        },
+        {
+          "name": "teams.autocomplete",
+          "edgeType": "rest_route"
+        },
+        {
+          "name": "autocomplete",
+          "edgeType": "call"
+        },
+        {
+          "name": "ITeamAutocompleteResult",
+          "edgeType": "type"
+        },
+        {
+          "name": "teams.update",
+          "edgeType": "rest_route"
+        },
+        {
+          "name": "update",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "variable_function",
+      "name": "getTeamByIdOrName",
+      "exported": false,
+      "line": 152,
+      "endLine": 162,
+      "signature": "async (params: { teamId: string } | { teamName: string }): Promise<ITeam | null> =>",
+      "calls": [
+        {
+          "name": "getOneById",
+          "edgeType": "call"
+        },
+        {
+          "name": "getOneByName",
+          "edgeType": "call"
+        },
+        {
+          "name": "ITeam",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "variable_function",
+      "name": "getTeamByIdOrNameOrParentRoom",
+      "exported": false,
+      "line": 418,
+      "endLine": 431,
+      "signature": "async ( params: { teamId: string } | { teamName: string } | { roomId: string }, ): Promise<Pick<ITeam, 'type' | 'roomId' | '_id'> | null> =>",
+      "calls": [
+        {
+          "name": "getOneById",
+          "edgeType": "call"
+        },
+        {
+          "name": "getOneByName",
+          "edgeType": "call"
+        },
+        {
+          "name": "getOneByRoomId",
+          "edgeType": "call"
+        },
+        {
+          "name": "ITeam",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "type",
+      "name": "TeamsEndpoints",
+      "line": 797,
+      "endLine": 797,
+      "signature": "export type TeamsEndpoints = ExtractRoutesFromAPI<typeof teamsEndpoints>;"
+    }
+  ],
+  "imports": [
+    {
+      "module": "@rocket.chat/core-services",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/core-services",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/core-typings",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/models",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/rest-typings",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/string-helpers",
+      "resolved": "external"
+    },
+    {
+      "module": "../../../app/authorization/server",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/app/authorization/server/index.ts"
+    },
+    {
+      "module": "../../../app/settings/server",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/app/settings/server/index.ts"
+    },
+    {
+      "module": "../../lib/authorization/hasPermission",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/server/lib/authorization/hasPermission.ts"
+    },
+    {
+      "module": "../../lib/eraseRoom",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/server/lib/eraseRoom.ts"
+    },
+    {
+      "module": "../../lib/rooms/removeUserFromRoom",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/server/lib/rooms/removeUserFromRoom.ts"
+    },
+    {
+      "module": "../ApiClass",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/server/api/ApiClass.ts"
+    },
+    {
+      "module": "../api",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/server/api/api.ts"
+    },
+    {
+      "module": "../lib/eraseTeam",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/server/api/lib/eraseTeam.ts"
+    },
+    {
+      "module": "../lib/getPaginationItems",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/server/api/lib/getPaginationItems.ts"
+    }
+  ]
+}

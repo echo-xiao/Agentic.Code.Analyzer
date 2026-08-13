@@ -1,0 +1,188 @@
+{
+  "sourcePath": "/Users/echoooooo/Desktop/code/Rocket.Chat/packages/apps/base-runtime/src/lib/room.ts",
+  "symbols": [
+    {
+      "type": "class",
+      "name": "Room",
+      "exported": true,
+      "line": 17,
+      "endLine": 118,
+      "signature": "export class Room",
+      "calls": []
+    },
+    {
+      "type": "method",
+      "name": "getUsernames",
+      "exported": true,
+      "qualifiedName": "Room.getUsernames",
+      "line": 98,
+      "endLine": 105,
+      "signature": "public async getUsernames(): Promise<Array<string>>",
+      "containerClass": "Room",
+      "calls": [
+        {
+          "name": "doGetUsernamesOfRoomById",
+          "edgeType": "call"
+        },
+        {
+          "name": "getInternalBridge",
+          "edgeType": "call"
+        },
+        {
+          "name": "getBridges",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "toJSON",
+      "exported": true,
+      "qualifiedName": "Room.toJSON",
+      "line": 102,
+      "endLine": 104,
+      "signature": "public toJSON()",
+      "containerClass": "Room",
+      "calls": []
+    },
+    {
+      "type": "method",
+      "name": "toString",
+      "exported": true,
+      "qualifiedName": "Room.toString",
+      "line": 106,
+      "endLine": 108,
+      "signature": "public toString()",
+      "containerClass": "Room",
+      "calls": []
+    },
+    {
+      "type": "method",
+      "name": "valueOf",
+      "exported": true,
+      "qualifiedName": "Room.valueOf",
+      "line": 110,
+      "endLine": 112,
+      "signature": "public valueOf()",
+      "containerClass": "Room",
+      "calls": []
+    },
+    {
+      "type": "method",
+      "name": "constructor",
+      "exported": true,
+      "qualifiedName": "Room.constructor",
+      "line": 67,
+      "endLine": 76,
+      "signature": "public constructor(room: IRoom, manager: IRoomManager)",
+      "containerClass": "Room",
+      "calls": [
+        {
+          "name": "assign",
+          "edgeType": "call"
+        },
+        {
+          "name": "defineProperty",
+          "edgeType": "call"
+        },
+        {
+          "name": "IRoom",
+          "edgeType": "type"
+        },
+        {
+          "name": "IRoomManager",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "class_property",
+      "name": "type",
+      "exported": true,
+      "qualifiedName": "Room.type",
+      "line": 24,
+      "endLine": 24,
+      "signature": "public type: RoomType | undefined;",
+      "containerClass": "Room",
+      "calls": [
+        {
+          "name": "RoomType",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "class_property",
+      "name": "creator",
+      "exported": true,
+      "qualifiedName": "Room.creator",
+      "line": 26,
+      "endLine": 26,
+      "signature": "public creator: IUser | undefined;",
+      "containerClass": "Room",
+      "calls": [
+        {
+          "name": "IUser",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "class_property",
+      "name": "abacAttributes",
+      "exported": true,
+      "qualifiedName": "Room.abacAttributes",
+      "line": 46,
+      "endLine": 46,
+      "signature": "public abacAttributes?: IAbacAttributeDefinition[];",
+      "containerClass": "Room",
+      "calls": [
+        {
+          "name": "IAbacAttributeDefinition",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "class_property",
+      "name": "[PrivateManager]",
+      "exported": true,
+      "qualifiedName": "Room.[PrivateManager]",
+      "line": 50,
+      "endLine": 50,
+      "signature": "private [PrivateManager]: IRoomManager | undefined;",
+      "containerClass": "Room",
+      "calls": [
+        {
+          "name": "IRoomManager",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "interface",
+      "name": "IRoomManager",
+      "line": 7,
+      "endLine": 13,
+      "signature": "interface IRoomManager"
+    }
+  ],
+  "imports": [
+    {
+      "module": "@rocket.chat/apps-engine/definition/abac/AbacAttributes",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/apps-engine/definition/rooms/IRoom",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/apps-engine/definition/rooms/RoomType",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/apps-engine/definition/users/IUser",
+      "resolved": "external"
+    }
+  ]
+}

@@ -1,0 +1,483 @@
+{
+  "sourcePath": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/client/views/admin/customEmoji/EditCustomEmoji.tsx",
+  "symbols": [
+    {
+      "type": "inner_function",
+      "name": "handleSave",
+      "exported": false,
+      "qualifiedName": "EditCustomEmoji.handleSave",
+      "line": 77,
+      "endLine": 96,
+      "signature": "async () =>",
+      "calls": [
+        {
+          "name": "setErrors",
+          "edgeType": "call"
+        },
+        {
+          "name": "append",
+          "edgeType": "call"
+        },
+        {
+          "name": "saveAction",
+          "edgeType": "call"
+        },
+        {
+          "name": "FormData",
+          "edgeType": "new"
+        }
+      ]
+    },
+    {
+      "type": "inner_function",
+      "name": "handleDeleteButtonClick",
+      "exported": false,
+      "qualifiedName": "EditCustomEmoji.handleDeleteButtonClick",
+      "line": 111,
+      "endLine": 125,
+      "signature": "() =>",
+      "calls": [
+        {
+          "name": "deleteAction",
+          "edgeType": "call"
+        },
+        {
+          "name": "setModal",
+          "edgeType": "call"
+        },
+        {
+          "name": "GenericModal",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "handleDelete",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "handleCancel",
+          "edgeType": "jsx"
+        }
+      ]
+    },
+    {
+      "type": "inner_function",
+      "name": "handleDelete",
+      "exported": false,
+      "qualifiedName": "EditCustomEmoji.handleDelete",
+      "line": 112,
+      "endLine": 114,
+      "signature": "async () =>",
+      "calls": [
+        {
+          "name": "deleteAction",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "inner_function",
+      "name": "handleCancel",
+      "exported": false,
+      "qualifiedName": "EditCustomEmoji.handleCancel",
+      "line": 116,
+      "endLine": 118,
+      "signature": "() =>",
+      "calls": [
+        {
+          "name": "setModal",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "inner_function",
+      "name": "handleChangeAliases",
+      "exported": false,
+      "qualifiedName": "EditCustomEmoji.handleChangeAliases",
+      "line": 127,
+      "endLine": 134,
+      "signature": "(e: ChangeEvent<HTMLInputElement>) =>",
+      "calls": [
+        {
+          "name": "setErrors",
+          "edgeType": "call"
+        },
+        {
+          "name": "setAliases",
+          "edgeType": "call"
+        },
+        {
+          "name": "ChangeEvent",
+          "edgeType": "type"
+        },
+        {
+          "name": "HTMLInputElement",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "inner_function",
+      "name": "handleChangeName",
+      "exported": false,
+      "qualifiedName": "EditCustomEmoji.handleChangeName",
+      "line": 140,
+      "endLine": 146,
+      "signature": "(e: ChangeEvent<HTMLInputElement>): void =>",
+      "calls": [
+        {
+          "name": "setErrors",
+          "edgeType": "call"
+        },
+        {
+          "name": "setName",
+          "edgeType": "call"
+        },
+        {
+          "name": "ChangeEvent",
+          "edgeType": "type"
+        },
+        {
+          "name": "HTMLInputElement",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "inner_function",
+      "name": "onSuccess",
+      "exported": false,
+      "qualifiedName": "EditCustomEmoji.onSuccess",
+      "line": 70,
+      "endLine": 74,
+      "signature": "() =>",
+      "calls": [
+        {
+          "name": "dispatchToastMessage",
+          "edgeType": "call"
+        },
+        {
+          "name": "onChange",
+          "edgeType": "call"
+        },
+        {
+          "name": "close",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "inner_function",
+      "name": "onSuccess",
+      "exported": false,
+      "qualifiedName": "EditCustomEmoji.onSuccess",
+      "line": 101,
+      "endLine": 103,
+      "signature": "() =>",
+      "calls": [
+        {
+          "name": "dispatchToastMessage",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "inner_function",
+      "name": "onSettled",
+      "exported": false,
+      "qualifiedName": "EditCustomEmoji.onSettled",
+      "line": 104,
+      "endLine": 108,
+      "signature": "() =>",
+      "calls": [
+        {
+          "name": "onChange",
+          "edgeType": "call"
+        },
+        {
+          "name": "setModal",
+          "edgeType": "call"
+        },
+        {
+          "name": "close",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "variable_function",
+      "name": "EditCustomEmoji",
+      "exported": false,
+      "line": 36,
+      "endLine": 198,
+      "signature": "({ close, onChange, data, ...props }: EditCustomEmojiProps) =>",
+      "calls": [
+        {
+          "name": "useTranslation",
+          "edgeType": "call"
+        },
+        {
+          "name": "useSetModal",
+          "edgeType": "call"
+        },
+        {
+          "name": "useAbsoluteUrl",
+          "edgeType": "call"
+        },
+        {
+          "name": "useState",
+          "edgeType": "call"
+        },
+        {
+          "name": "join",
+          "edgeType": "call"
+        },
+        {
+          "name": "useMemo",
+          "edgeType": "call"
+        },
+        {
+          "name": "createObjectURL",
+          "edgeType": "call"
+        },
+        {
+          "name": "absoluteUrl",
+          "edgeType": "call"
+        },
+        {
+          "name": "encodeURIComponent",
+          "edgeType": "call"
+        },
+        {
+          "name": "useEffect",
+          "edgeType": "call"
+        },
+        {
+          "name": "setName",
+          "edgeType": "call"
+        },
+        {
+          "name": "setAliases",
+          "edgeType": "call"
+        },
+        {
+          "name": "useEndpointUploadMutation",
+          "edgeType": "call"
+        },
+        {
+          "name": "dispatchToastMessage",
+          "edgeType": "call"
+        },
+        {
+          "name": "onChange",
+          "edgeType": "call"
+        },
+        {
+          "name": "close",
+          "edgeType": "call"
+        },
+        {
+          "name": "useCallback",
+          "edgeType": "call"
+        },
+        {
+          "name": "setErrors",
+          "edgeType": "call"
+        },
+        {
+          "name": "append",
+          "edgeType": "call"
+        },
+        {
+          "name": "saveAction",
+          "edgeType": "call"
+        },
+        {
+          "name": "useToastMessageDispatch",
+          "edgeType": "call"
+        },
+        {
+          "name": "useEndpointMutation",
+          "edgeType": "call"
+        },
+        {
+          "name": "setModal",
+          "edgeType": "call"
+        },
+        {
+          "name": "deleteAction",
+          "edgeType": "call"
+        },
+        {
+          "name": "useSingleFileInput",
+          "edgeType": "call"
+        },
+        {
+          "name": "GenericModal",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "ContextualbarScrollableContent",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "FieldGroup",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "Field",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "FieldLabel",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "FieldRow",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "FieldError",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "Box",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "Margins",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "ContextualbarFooter",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "ButtonGroup",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "Button",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "TextInput",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "IconButton",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "handleDelete",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "handleCancel",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "name",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "handleChangeName",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "aliases",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "handleChangeAliases",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "clickUpload",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "newEmojiPreview",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "close",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "handleSave",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "handleDeleteButtonClick",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "FormData",
+          "edgeType": "new"
+        },
+        {
+          "name": "EditCustomEmojiProps",
+          "edgeType": "type"
+        },
+        {
+          "name": "Blob",
+          "edgeType": "type"
+        },
+        {
+          "name": "ChangeEvent",
+          "edgeType": "type"
+        },
+        {
+          "name": "HTMLInputElement",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "type",
+      "name": "EditCustomEmojiProps",
+      "line": 24,
+      "endLine": 34,
+      "signature": "export type EditCustomEmojiProps ="
+    }
+  ],
+  "imports": [
+    {
+      "module": "@rocket.chat/fuselage",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/ui-client",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/ui-contexts",
+      "resolved": "external"
+    },
+    {
+      "module": "react",
+      "resolved": "external"
+    },
+    {
+      "module": "react",
+      "resolved": "external"
+    },
+    {
+      "module": "react-i18next",
+      "resolved": "external"
+    },
+    {
+      "module": "../../../hooks/useEndpointMutation",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/client/hooks/useEndpointMutation.ts"
+    },
+    {
+      "module": "../../../hooks/useEndpointUploadMutation",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/client/hooks/useEndpointUploadMutation.ts"
+    },
+    {
+      "module": "../../../hooks/useSingleFileInput",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/client/hooks/useSingleFileInput.ts"
+    }
+  ]
+}

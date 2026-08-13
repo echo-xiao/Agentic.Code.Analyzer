@@ -1,0 +1,237 @@
+{
+  "sourcePath": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/app/authentication/server/lib/restrictLoginAttempts.ts",
+  "symbols": [
+    {
+      "type": "variable_function",
+      "name": "notifyFailedLogin",
+      "exported": false,
+      "line": 14,
+      "endLine": 47,
+      "signature": "async (ipOrUsername: string, blockedUntil: Date, failedAttempts: number): Promise<void> =>",
+      "calls": [
+        {
+          "name": "get",
+          "edgeType": "call"
+        },
+        {
+          "name": "error",
+          "edgeType": "call"
+        },
+        {
+          "name": "findOneByNameOrFname",
+          "edgeType": "call"
+        },
+        {
+          "name": "findOneById",
+          "edgeType": "call"
+        },
+        {
+          "name": "sendMessage",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "variable_function",
+      "name": "isValidLoginAttemptByIp",
+      "exported": true,
+      "line": 18,
+      "endLine": 65,
+      "signature": "async (ip: string): Promise<boolean> =>",
+      "calls": [
+        {
+          "name": "split",
+          "edgeType": "call"
+        },
+        {
+          "name": "get",
+          "edgeType": "call"
+        },
+        {
+          "name": "includes",
+          "edgeType": "call"
+        },
+        {
+          "name": "findLastFailedAttemptByIp",
+          "edgeType": "call"
+        },
+        {
+          "name": "addMinutesToADate",
+          "edgeType": "call"
+        },
+        {
+          "name": "findLastSuccessfulAttemptByIp",
+          "edgeType": "call"
+        },
+        {
+          "name": "max",
+          "edgeType": "call"
+        },
+        {
+          "name": "getTime",
+          "edgeType": "call"
+        },
+        {
+          "name": "countFailedAttemptsByIpSince",
+          "edgeType": "call"
+        },
+        {
+          "name": "notifyFailedLogin",
+          "edgeType": "call"
+        },
+        {
+          "name": "Date",
+          "edgeType": "new"
+        }
+      ]
+    },
+    {
+      "type": "variable_function",
+      "name": "isValidAttemptByUser",
+      "exported": true,
+      "line": 22,
+      "endLine": 69,
+      "signature": "async (login: ILoginAttempt): Promise<boolean> =>",
+      "calls": [
+        {
+          "name": "get",
+          "edgeType": "call"
+        },
+        {
+          "name": "findLastFailedAttemptByUsername",
+          "edgeType": "call"
+        },
+        {
+          "name": "addMinutesToADate",
+          "edgeType": "call"
+        },
+        {
+          "name": "findLastSuccessfulAttemptByUsername",
+          "edgeType": "call"
+        },
+        {
+          "name": "max",
+          "edgeType": "call"
+        },
+        {
+          "name": "getTime",
+          "edgeType": "call"
+        },
+        {
+          "name": "countFailedAttemptsByUsernameSince",
+          "edgeType": "call"
+        },
+        {
+          "name": "notifyFailedLogin",
+          "edgeType": "call"
+        },
+        {
+          "name": "Date",
+          "edgeType": "new"
+        },
+        {
+          "name": "ILoginAttempt",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "variable_function",
+      "name": "saveFailedLoginAttempts",
+      "exported": true,
+      "line": 26,
+      "endLine": 38,
+      "signature": "async (login: ILoginAttempt): Promise<void> =>",
+      "calls": [
+        {
+          "name": "insertOne",
+          "edgeType": "call"
+        },
+        {
+          "name": "getClientAddress",
+          "edgeType": "call"
+        },
+        {
+          "name": "Date",
+          "edgeType": "new"
+        },
+        {
+          "name": "ILoginAttempt",
+          "edgeType": "type"
+        },
+        {
+          "name": "IServerEvent",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "variable_function",
+      "name": "saveSuccessfulLogin",
+      "exported": true,
+      "line": 30,
+      "endLine": 42,
+      "signature": "async (login: ILoginAttempt): Promise<void> =>",
+      "calls": [
+        {
+          "name": "insertOne",
+          "edgeType": "call"
+        },
+        {
+          "name": "getClientAddress",
+          "edgeType": "call"
+        },
+        {
+          "name": "Date",
+          "edgeType": "new"
+        },
+        {
+          "name": "ILoginAttempt",
+          "edgeType": "type"
+        },
+        {
+          "name": "IServerEvent",
+          "edgeType": "type"
+        }
+      ]
+    }
+  ],
+  "imports": [
+    {
+      "module": "@rocket.chat/core-typings",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/core-typings",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/logger",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/models",
+      "resolved": "external"
+    },
+    {
+      "module": "../../../../lib/utils/addMinutesToADate",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/lib/utils/addMinutesToADate.ts"
+    },
+    {
+      "module": "../../../../server/lib/getClientAddress",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/server/lib/getClientAddress.ts"
+    },
+    {
+      "module": "../../../../server/lib/messages/sendMessage",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/server/lib/messages/sendMessage.ts"
+    },
+    {
+      "module": "../../../settings/server",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/app/settings/server/index.ts"
+    },
+    {
+      "module": "../ILoginAttempt",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/app/authentication/server/ILoginAttempt.ts"
+    }
+  ]
+}

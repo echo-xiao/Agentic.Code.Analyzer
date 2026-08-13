@@ -1,0 +1,56 @@
+{
+  "sourcePath": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/client/views/room/body/hooks/useStoreScrollPosition.ts",
+  "symbols": [
+    {
+      "type": "function",
+      "name": "useStoreScrollPosition",
+      "exported": true,
+      "line": 13,
+      "endLine": 29,
+      "signature": "export function useStoreScrollPosition({ rid, isAtBottom, virtualizerRef }: UseStoreScrollPositionProps)",
+      "calls": [
+        {
+          "name": "useDebouncedCallback",
+          "edgeType": "call"
+        },
+        {
+          "name": "getStore",
+          "edgeType": "call"
+        },
+        {
+          "name": "update",
+          "edgeType": "call"
+        },
+        {
+          "name": "UseStoreScrollPositionProps",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "type",
+      "name": "UseStoreScrollPositionProps",
+      "line": 7,
+      "endLine": 11,
+      "signature": "type UseStoreScrollPositionProps ="
+    }
+  ],
+  "imports": [
+    {
+      "module": "@rocket.chat/fuselage-hooks",
+      "resolved": "external"
+    },
+    {
+      "module": "react",
+      "resolved": "external"
+    },
+    {
+      "module": "virtua",
+      "resolved": "external"
+    },
+    {
+      "module": "../../../../lib/RoomManager",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/client/lib/RoomManager.ts"
+    }
+  ]
+}

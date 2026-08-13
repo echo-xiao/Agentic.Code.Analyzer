@@ -1,0 +1,1366 @@
+{
+  "sourcePath": "/Users/echoooooo/Desktop/code/Rocket.Chat/packages/mock-providers/src/MockedAppRootBuilder.tsx",
+  "symbols": [
+    {
+      "type": "class",
+      "name": "MockedAppRootBuilder",
+      "exported": true,
+      "line": 96,
+      "endLine": 844,
+      "signature": "export class MockedAppRootBuilder",
+      "calls": []
+    },
+    {
+      "type": "method",
+      "name": "wrap",
+      "exported": true,
+      "qualifiedName": "MockedAppRootBuilder.wrap",
+      "line": 293,
+      "endLine": 296,
+      "signature": "wrap(wrapper: (children: ReactNode) => ReactNode): this",
+      "containerClass": "MockedAppRootBuilder",
+      "calls": [
+        {
+          "name": "push",
+          "edgeType": "call"
+        },
+        {
+          "name": "ReactNode",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "withEndpoint",
+      "exported": true,
+      "qualifiedName": "MockedAppRootBuilder.withEndpoint",
+      "line": 297,
+      "endLine": 322,
+      "signature": "withEndpoint<TMethod extends Method, TPathPattern extends PathPattern>( method: TMethod, pathPattern: TPathPattern, response: ( params: OperationParams<TMethod, TPathPattern>, ) => Serialized<OperationResult<TMethod, TPathPattern>> | Promise<Serialized<OperationResult<TMethod, TPathPattern>>>, ): this",
+      "containerClass": "MockedAppRootBuilder",
+      "calls": [
+        {
+          "name": "resolve",
+          "edgeType": "call"
+        },
+        {
+          "name": "response",
+          "edgeType": "call"
+        },
+        {
+          "name": "innerFn",
+          "edgeType": "call"
+        },
+        {
+          "name": "Method",
+          "edgeType": "type"
+        },
+        {
+          "name": "PathPattern",
+          "edgeType": "type"
+        },
+        {
+          "name": "TMethod",
+          "edgeType": "type"
+        },
+        {
+          "name": "TPathPattern",
+          "edgeType": "type"
+        },
+        {
+          "name": "OperationParams",
+          "edgeType": "type"
+        },
+        {
+          "name": "Serialized",
+          "edgeType": "type"
+        },
+        {
+          "name": "OperationResult",
+          "edgeType": "type"
+        },
+        {
+          "name": "UrlParams",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "withStream",
+      "exported": true,
+      "qualifiedName": "MockedAppRootBuilder.withStream",
+      "line": 307,
+      "endLine": 329,
+      "signature": "withStream<N extends StreamNames>(streamName: N, ref: StreamControllerRef<N>): this",
+      "containerClass": "MockedAppRootBuilder",
+      "calls": [
+        {
+          "name": "has",
+          "edgeType": "call"
+        },
+        {
+          "name": "innerFn",
+          "edgeType": "call"
+        },
+        {
+          "name": "StreamNames",
+          "edgeType": "type"
+        },
+        {
+          "name": "StreamControllerRef",
+          "edgeType": "type"
+        },
+        {
+          "name": "ServerContextValue",
+          "edgeType": "type"
+        },
+        {
+          "name": "StreamKeys",
+          "edgeType": "type"
+        },
+        {
+          "name": "StreamerCallbackArgs",
+          "edgeType": "type"
+        },
+        {
+          "name": "AllStreamerEventKeys",
+          "edgeType": "type"
+        },
+        {
+          "name": "StreamerCallback",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "withMethod",
+      "exported": true,
+      "qualifiedName": "MockedAppRootBuilder.withMethod",
+      "line": 311,
+      "endLine": 332,
+      "signature": "withMethod<TMethodName extends ServerMethodName>(methodName: TMethodName, response: () => ServerMethodReturn<TMethodName>): this",
+      "containerClass": "MockedAppRootBuilder",
+      "calls": [
+        {
+          "name": "resolve",
+          "edgeType": "call"
+        },
+        {
+          "name": "response",
+          "edgeType": "call"
+        },
+        {
+          "name": "innerFn",
+          "edgeType": "call"
+        },
+        {
+          "name": "ServerMethodName",
+          "edgeType": "type"
+        },
+        {
+          "name": "TMethodName",
+          "edgeType": "type"
+        },
+        {
+          "name": "ServerMethodReturn",
+          "edgeType": "type"
+        },
+        {
+          "name": "ServerMethodParameters",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "withPermission",
+      "exported": true,
+      "qualifiedName": "MockedAppRootBuilder.withPermission",
+      "line": 315,
+      "endLine": 365,
+      "signature": "withPermission(permission: string): this",
+      "containerClass": "MockedAppRootBuilder",
+      "calls": [
+        {
+          "name": "innerFn",
+          "edgeType": "call"
+        },
+        {
+          "name": "includes",
+          "edgeType": "call"
+        },
+        {
+          "name": "innerFn2",
+          "edgeType": "call"
+        },
+        {
+          "name": "innerFn3",
+          "edgeType": "call"
+        },
+        {
+          "name": "ObjectId",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "withJohnDoe",
+      "exported": true,
+      "qualifiedName": "MockedAppRootBuilder.withJohnDoe",
+      "line": 319,
+      "endLine": 335,
+      "signature": "withJohnDoe(overrides: Partial<IUser> = {}): this",
+      "containerClass": "MockedAppRootBuilder",
+      "calls": [
+        {
+          "name": "Date",
+          "edgeType": "new"
+        },
+        {
+          "name": "IUser",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "withAnonymous",
+      "exported": true,
+      "qualifiedName": "MockedAppRootBuilder.withAnonymous",
+      "line": 323,
+      "endLine": 328,
+      "signature": "withAnonymous(): this",
+      "containerClass": "MockedAppRootBuilder",
+      "calls": []
+    },
+    {
+      "type": "method",
+      "name": "withUser",
+      "exported": true,
+      "qualifiedName": "MockedAppRootBuilder.withUser",
+      "line": 327,
+      "endLine": 332,
+      "signature": "withUser(user: IUser): this",
+      "containerClass": "MockedAppRootBuilder",
+      "calls": [
+        {
+          "name": "IUser",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "withUsers",
+      "exported": true,
+      "qualifiedName": "MockedAppRootBuilder.withUsers",
+      "line": 331,
+      "endLine": 337,
+      "signature": "withUsers(users: IUser[]): this",
+      "containerClass": "MockedAppRootBuilder",
+      "calls": [
+        {
+          "name": "forEach",
+          "edgeType": "call"
+        },
+        {
+          "name": "IUser",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "withSubscriptions",
+      "exported": true,
+      "qualifiedName": "MockedAppRootBuilder.withSubscriptions",
+      "line": 335,
+      "endLine": 339,
+      "signature": "withSubscriptions(subscriptions: SubscriptionWithRoom[]): this",
+      "containerClass": "MockedAppRootBuilder",
+      "calls": [
+        {
+          "name": "SubscriptionWithRoom",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "withSubscription",
+      "exported": true,
+      "qualifiedName": "MockedAppRootBuilder.withSubscription",
+      "line": 339,
+      "endLine": 343,
+      "signature": "withSubscription(subscription: SubscriptionWithRoom): this",
+      "containerClass": "MockedAppRootBuilder",
+      "calls": [
+        {
+          "name": "SubscriptionWithRoom",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "withRoom",
+      "exported": true,
+      "qualifiedName": "MockedAppRootBuilder.withRoom",
+      "line": 343,
+      "endLine": 347,
+      "signature": "withRoom(room: IRoom): this",
+      "containerClass": "MockedAppRootBuilder",
+      "calls": [
+        {
+          "name": "IRoom",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "withRouter",
+      "exported": true,
+      "qualifiedName": "MockedAppRootBuilder.withRouter",
+      "line": 347,
+      "endLine": 350,
+      "signature": "withRouter(overrides: Partial<ContextType<typeof RouterContext>>): this",
+      "containerClass": "MockedAppRootBuilder",
+      "calls": [
+        {
+          "name": "ContextType",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "withRouteParameter",
+      "exported": true,
+      "qualifiedName": "MockedAppRootBuilder.withRouteParameter",
+      "line": 351,
+      "endLine": 355,
+      "signature": "withRouteParameter(name: string, value: string): this",
+      "containerClass": "MockedAppRootBuilder",
+      "calls": [
+        {
+          "name": "innerFn",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "withRole",
+      "exported": true,
+      "qualifiedName": "MockedAppRootBuilder.withRole",
+      "line": 355,
+      "endLine": 378,
+      "signature": "withRole(role: string): this",
+      "containerClass": "MockedAppRootBuilder",
+      "calls": [
+        {
+          "name": "push",
+          "edgeType": "call"
+        },
+        {
+          "name": "innerFn",
+          "edgeType": "call"
+        },
+        {
+          "name": "ObjectId",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "withSetting",
+      "exported": true,
+      "qualifiedName": "MockedAppRootBuilder.withSetting",
+      "line": 359,
+      "endLine": 400,
+      "signature": "withSetting(id: string, value: SettingValue, settingStructure?: Partial<ISetting>): this",
+      "containerClass": "MockedAppRootBuilder",
+      "calls": [
+        {
+          "name": "innerFn",
+          "edgeType": "call"
+        },
+        {
+          "name": "set",
+          "edgeType": "call"
+        },
+        {
+          "name": "get",
+          "edgeType": "call"
+        },
+        {
+          "name": "createPredicateFromFilter",
+          "edgeType": "call"
+        },
+        {
+          "name": "filter",
+          "edgeType": "call"
+        },
+        {
+          "name": "from",
+          "edgeType": "call"
+        },
+        {
+          "name": "values",
+          "edgeType": "call"
+        },
+        {
+          "name": "WeakMap",
+          "edgeType": "new"
+        },
+        {
+          "name": "SettingValue",
+          "edgeType": "type"
+        },
+        {
+          "name": "ISetting",
+          "edgeType": "type"
+        },
+        {
+          "name": "SettingsContextQuery",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "withUserPreference",
+      "exported": true,
+      "qualifiedName": "MockedAppRootBuilder.withUserPreference",
+      "line": 363,
+      "endLine": 380,
+      "signature": "withUserPreference(id: string | ObjectId, value: unknown): this",
+      "containerClass": "MockedAppRootBuilder",
+      "calls": [
+        {
+          "name": "innerFn",
+          "edgeType": "call"
+        },
+        {
+          "name": "ObjectId",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "withIncomingCalls",
+      "exported": true,
+      "qualifiedName": "MockedAppRootBuilder.withIncomingCalls",
+      "line": 367,
+      "endLine": 385,
+      "signature": "withIncomingCalls(calls: DirectCallData[]): this",
+      "containerClass": "MockedAppRootBuilder",
+      "calls": [
+        {
+          "name": "innerFn",
+          "edgeType": "call"
+        },
+        {
+          "name": "DirectCallData",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "withOpenModal",
+      "exported": true,
+      "qualifiedName": "MockedAppRootBuilder.withOpenModal",
+      "line": 371,
+      "endLine": 375,
+      "signature": "withOpenModal(modal: ReactNode)",
+      "containerClass": "MockedAppRootBuilder",
+      "calls": [
+        {
+          "name": "ReactNode",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "withAudioInputDevices",
+      "exported": true,
+      "qualifiedName": "MockedAppRootBuilder.withAudioInputDevices",
+      "line": 375,
+      "endLine": 382,
+      "signature": "withAudioInputDevices(devices: Device[]): this",
+      "containerClass": "MockedAppRootBuilder",
+      "calls": [
+        {
+          "name": "Device",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "withAudioOutputDevices",
+      "exported": true,
+      "qualifiedName": "MockedAppRootBuilder.withAudioOutputDevices",
+      "line": 379,
+      "endLine": 386,
+      "signature": "withAudioOutputDevices(devices: Device[]): this",
+      "containerClass": "MockedAppRootBuilder",
+      "calls": [
+        {
+          "name": "Device",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "withMicrophonePermissionState",
+      "exported": true,
+      "qualifiedName": "MockedAppRootBuilder.withMicrophonePermissionState",
+      "line": 383,
+      "endLine": 390,
+      "signature": "withMicrophonePermissionState(status: PermissionStatus): this",
+      "containerClass": "MockedAppRootBuilder",
+      "calls": [
+        {
+          "name": "PermissionStatus",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "withTranslations",
+      "exported": true,
+      "qualifiedName": "MockedAppRootBuilder.withTranslations",
+      "line": 401,
+      "endLine": 416,
+      "signature": "withTranslations(lng: string, ns: string, resources: Record<string, string>): this",
+      "containerClass": "MockedAppRootBuilder",
+      "calls": [
+        {
+          "name": "addResources",
+          "edgeType": "call"
+        },
+        {
+          "name": "entries",
+          "edgeType": "call"
+        },
+        {
+          "name": "addResource",
+          "edgeType": "call"
+        },
+        {
+          "name": "addResources",
+          "edgeType": "event_listen",
+          "event": "initialized"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "withDefaultLanguage",
+      "exported": true,
+      "qualifiedName": "MockedAppRootBuilder.withDefaultLanguage",
+      "line": 407,
+      "endLine": 418,
+      "signature": "withDefaultLanguage(lng: string): this",
+      "containerClass": "MockedAppRootBuilder",
+      "calls": [
+        {
+          "name": "changeLanguage",
+          "edgeType": "call"
+        },
+        {
+          "name": "initialized",
+          "edgeType": "event_listen"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "withServerContext",
+      "exported": true,
+      "qualifiedName": "MockedAppRootBuilder.withServerContext",
+      "line": 411,
+      "endLine": 414,
+      "signature": "withServerContext(partial: Partial<ServerContextValue>): this",
+      "containerClass": "MockedAppRootBuilder",
+      "calls": [
+        {
+          "name": "ServerContextValue",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "withQueryClient",
+      "exported": true,
+      "qualifiedName": "MockedAppRootBuilder.withQueryClient",
+      "line": 415,
+      "endLine": 418,
+      "signature": "withQueryClient(client: QueryClient): this",
+      "containerClass": "MockedAppRootBuilder",
+      "calls": [
+        {
+          "name": "QueryClient",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "build",
+      "exported": true,
+      "qualifiedName": "MockedAppRootBuilder.build",
+      "line": 419,
+      "endLine": 566,
+      "signature": "build(): JSXElementConstructor<{ children: ReactNode }>",
+      "containerClass": "MockedAppRootBuilder",
+      "calls": [
+        {
+          "name": "map",
+          "edgeType": "call"
+        },
+        {
+          "name": "of",
+          "edgeType": "call"
+        },
+        {
+          "name": "changeLanguage",
+          "edgeType": "call"
+        },
+        {
+          "name": "assign",
+          "edgeType": "call"
+        },
+        {
+          "name": "exists",
+          "edgeType": "call"
+        },
+        {
+          "name": "onStoreChange",
+          "edgeType": "event_listen",
+          "event": "update-modal"
+        },
+        {
+          "name": "init",
+          "edgeType": "call"
+        },
+        {
+          "name": "useReducer",
+          "edgeType": "call"
+        },
+        {
+          "name": "reduceTranslation",
+          "edgeType": "call"
+        },
+        {
+          "name": "useEffect",
+          "edgeType": "call"
+        },
+        {
+          "name": "updateTranslation",
+          "edgeType": "event_listen",
+          "event": "initialized"
+        },
+        {
+          "name": "updateTranslation",
+          "edgeType": "event_listen",
+          "event": "languageChanged"
+        },
+        {
+          "name": "off",
+          "edgeType": "call"
+        },
+        {
+          "name": "useSyncExternalStore",
+          "edgeType": "call"
+        },
+        {
+          "name": "reject",
+          "edgeType": "call"
+        },
+        {
+          "name": "reduce",
+          "edgeType": "call"
+        },
+        {
+          "name": "wrapper",
+          "edgeType": "call"
+        },
+        {
+          "name": "QueryClientProvider",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "ServerContext.Provider",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "RouterContext.Provider",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "SettingsContext.Provider",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "I18nextProvider",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "TranslationContext.Provider",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "UserContext.Provider",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "AuthenticationContext.Provider",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "MockedDeviceContext",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "ModalContext.Provider",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "AuthorizationContext.Provider",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "UserPresenceContext.Provider",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "ActionManagerContext.Provider",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "VideoConfContext.Provider",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "queryClient",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "server",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "router",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "settings",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "i18n",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "translation",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "user",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "authentication",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "modal",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "authorization",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "userPresence",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "videoConf",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "Set",
+          "edgeType": "new"
+        },
+        {
+          "name": "JSXElementConstructor",
+          "edgeType": "type"
+        },
+        {
+          "name": "ReactNode",
+          "edgeType": "type"
+        },
+        {
+          "name": "ContextType",
+          "edgeType": "type"
+        },
+        {
+          "name": "TranslationKey",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "buildStoryDecorator",
+      "exported": true,
+      "qualifiedName": "MockedAppRootBuilder.buildStoryDecorator",
+      "line": 423,
+      "endLine": 428,
+      "signature": "buildStoryDecorator(): Decorator",
+      "containerClass": "MockedAppRootBuilder",
+      "calls": [
+        {
+          "name": "build",
+          "edgeType": "call"
+        },
+        {
+          "name": "fn",
+          "edgeType": "call"
+        },
+        {
+          "name": "WrapperComponent",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "Decorator",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "class_property",
+      "name": "_settings",
+      "exported": true,
+      "qualifiedName": "MockedAppRootBuilder._settings",
+      "line": 97,
+      "endLine": 97,
+      "signature": "private _settings: Map<string, ISetting> = new Map();",
+      "containerClass": "MockedAppRootBuilder",
+      "calls": [
+        {
+          "name": "Map",
+          "edgeType": "new"
+        },
+        {
+          "name": "ISetting",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "class_property",
+      "name": "wrappers",
+      "exported": true,
+      "qualifiedName": "MockedAppRootBuilder.wrappers",
+      "line": 99,
+      "endLine": 99,
+      "signature": "private wrappers: Array<(children: ReactNode) => ReactNode> = [];",
+      "containerClass": "MockedAppRootBuilder",
+      "calls": [
+        {
+          "name": "ReactNode",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "class_property",
+      "name": "server",
+      "exported": true,
+      "qualifiedName": "MockedAppRootBuilder.server",
+      "line": 101,
+      "endLine": 131,
+      "signature": "private server: ContextType<typeof ServerContext> =",
+      "containerClass": "MockedAppRootBuilder",
+      "calls": [
+        {
+          "name": "reject",
+          "edgeType": "call"
+        },
+        {
+          "name": "ContextType",
+          "edgeType": "type"
+        },
+        {
+          "name": "Method",
+          "edgeType": "type"
+        },
+        {
+          "name": "PathPattern",
+          "edgeType": "type"
+        },
+        {
+          "name": "TMethod",
+          "edgeType": "type"
+        },
+        {
+          "name": "TPathPattern",
+          "edgeType": "type"
+        },
+        {
+          "name": "UrlParams",
+          "edgeType": "type"
+        },
+        {
+          "name": "OperationParams",
+          "edgeType": "type"
+        },
+        {
+          "name": "Serialized",
+          "edgeType": "type"
+        },
+        {
+          "name": "OperationResult",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "class_property",
+      "name": "router",
+      "exported": true,
+      "qualifiedName": "MockedAppRootBuilder.router",
+      "line": 133,
+      "endLine": 146,
+      "signature": "private router: ContextType<typeof RouterContext> =",
+      "containerClass": "MockedAppRootBuilder",
+      "calls": [
+        {
+          "name": "ContextType",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "class_property",
+      "name": "settings",
+      "exported": true,
+      "qualifiedName": "MockedAppRootBuilder.settings",
+      "line": 148,
+      "endLine": 153,
+      "signature": "private settings: Mutable<ContextType<typeof SettingsContext>> =",
+      "containerClass": "MockedAppRootBuilder",
+      "calls": [
+        {
+          "name": "Mutable",
+          "edgeType": "type"
+        },
+        {
+          "name": "ContextType",
+          "edgeType": "type"
+        },
+        {
+          "name": "SettingsContextQuery",
+          "edgeType": "type"
+        },
+        {
+          "name": "ISetting",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "class_property",
+      "name": "user",
+      "exported": true,
+      "qualifiedName": "MockedAppRootBuilder.user",
+      "line": 155,
+      "endLine": 167,
+      "signature": "private user: ContextType<typeof UserContext> =",
+      "containerClass": "MockedAppRootBuilder",
+      "calls": [
+        {
+          "name": "reject",
+          "edgeType": "call"
+        },
+        {
+          "name": "ContextType",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "class_property",
+      "name": "userPresence",
+      "exported": true,
+      "qualifiedName": "MockedAppRootBuilder.userPresence",
+      "line": 169,
+      "endLine": 171,
+      "signature": "private userPresence: ContextType<typeof UserPresenceContext> =",
+      "containerClass": "MockedAppRootBuilder",
+      "calls": [
+        {
+          "name": "ContextType",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "class_property",
+      "name": "videoConf",
+      "exported": true,
+      "qualifiedName": "MockedAppRootBuilder.videoConf",
+      "line": 173,
+      "endLine": 213,
+      "signature": "private videoConf: ContextType<typeof VideoConfContext> =",
+      "containerClass": "MockedAppRootBuilder",
+      "calls": [
+        {
+          "name": "ContextType",
+          "edgeType": "type"
+        },
+        {
+          "name": "VideoConfPopupPayload",
+          "edgeType": "type"
+        },
+        {
+          "name": "IRoom",
+          "edgeType": "type"
+        },
+        {
+          "name": "ProviderCapabilities",
+          "edgeType": "type"
+        },
+        {
+          "name": "CallPreferences",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "class_property",
+      "name": "room",
+      "exported": true,
+      "qualifiedName": "MockedAppRootBuilder.room",
+      "line": 215,
+      "endLine": 215,
+      "signature": "private room: IRoom | undefined = undefined;",
+      "containerClass": "MockedAppRootBuilder",
+      "calls": [
+        {
+          "name": "IRoom",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "class_property",
+      "name": "subscriptions",
+      "exported": true,
+      "qualifiedName": "MockedAppRootBuilder.subscriptions",
+      "line": 217,
+      "endLine": 217,
+      "signature": "private subscriptions: SubscriptionWithRoom[] | undefined = undefined;",
+      "containerClass": "MockedAppRootBuilder",
+      "calls": [
+        {
+          "name": "SubscriptionWithRoom",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "class_property",
+      "name": "subscription",
+      "exported": true,
+      "qualifiedName": "MockedAppRootBuilder.subscription",
+      "line": 219,
+      "endLine": 219,
+      "signature": "private subscription: SubscriptionWithRoom | undefined = undefined;",
+      "containerClass": "MockedAppRootBuilder",
+      "calls": [
+        {
+          "name": "SubscriptionWithRoom",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "class_property",
+      "name": "modal",
+      "exported": true,
+      "qualifiedName": "MockedAppRootBuilder.modal",
+      "line": 221,
+      "endLine": 232,
+      "signature": "private modal: ModalContextValue =",
+      "containerClass": "MockedAppRootBuilder",
+      "calls": [
+        {
+          "name": "update-modal",
+          "edgeType": "event_emit"
+        },
+        {
+          "name": "ModalContextValue",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "class_property",
+      "name": "authorization",
+      "exported": true,
+      "qualifiedName": "MockedAppRootBuilder.authorization",
+      "line": 234,
+      "endLine": 245,
+      "signature": "private authorization: ContextType<typeof AuthorizationContext> = (() =>",
+      "containerClass": "MockedAppRootBuilder",
+      "calls": [
+        {
+          "name": "Map",
+          "edgeType": "new"
+        },
+        {
+          "name": "ContextType",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "class_property",
+      "name": "authServices",
+      "exported": true,
+      "qualifiedName": "MockedAppRootBuilder.authServices",
+      "line": 247,
+      "endLine": 247,
+      "signature": "private authServices: LoginService[] = [];",
+      "containerClass": "MockedAppRootBuilder",
+      "calls": [
+        {
+          "name": "LoginService",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "class_property",
+      "name": "authentication",
+      "exported": true,
+      "qualifiedName": "MockedAppRootBuilder.authentication",
+      "line": 249,
+      "endLine": 264,
+      "signature": "private authentication: ContextType<typeof AuthenticationContext> =",
+      "containerClass": "MockedAppRootBuilder",
+      "calls": [
+        {
+          "name": "resolve",
+          "edgeType": "call"
+        },
+        {
+          "name": "reject",
+          "edgeType": "call"
+        },
+        {
+          "name": "ContextType",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "class_property",
+      "name": "events",
+      "exported": true,
+      "qualifiedName": "MockedAppRootBuilder.events",
+      "line": 266,
+      "endLine": 266,
+      "signature": "private events = new Emitter<MockedAppRootEvents>();",
+      "containerClass": "MockedAppRootBuilder",
+      "calls": [
+        {
+          "name": "Emitter",
+          "edgeType": "new"
+        },
+        {
+          "name": "MockedAppRootEvents",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "class_property",
+      "name": "deviceContext",
+      "exported": true,
+      "qualifiedName": "MockedAppRootBuilder.deviceContext",
+      "line": 268,
+      "endLine": 277,
+      "signature": "private deviceContext: Partial<ContextType<typeof DeviceContext>> =",
+      "containerClass": "MockedAppRootBuilder",
+      "calls": [
+        {
+          "name": "ContextType",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "class_property",
+      "name": "_providedQueryClient",
+      "exported": true,
+      "qualifiedName": "MockedAppRootBuilder._providedQueryClient",
+      "line": 279,
+      "endLine": 279,
+      "signature": "private _providedQueryClient: QueryClient | undefined;",
+      "containerClass": "MockedAppRootBuilder",
+      "calls": [
+        {
+          "name": "QueryClient",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "class_property",
+      "name": "i18n",
+      "exported": true,
+      "qualifiedName": "MockedAppRootBuilder.i18n",
+      "line": 387,
+      "endLine": 399,
+      "signature": "private i18n = createInstance(",
+      "containerClass": "MockedAppRootBuilder",
+      "calls": [
+        {
+          "name": "use",
+          "edgeType": "call"
+        },
+        {
+          "name": "createInstance",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "type",
+      "name": "Mutable",
+      "line": 59,
+      "endLine": 61,
+      "signature": "type Mutable<T> ="
+    },
+    {
+      "type": "type",
+      "name": "ExtractKeys",
+      "line": 68,
+      "endLine": 76,
+      "signature": "type ExtractKeys<T, N extends string> = T extends readonly (infer U)[] ? U extends"
+    },
+    {
+      "type": "type",
+      "name": "AllStreamerEventKeys",
+      "line": 79,
+      "endLine": 81,
+      "signature": "type AllStreamerEventKeys ="
+    },
+    {
+      "type": "type",
+      "name": "MockedAppRootEvents",
+      "line": 83,
+      "endLine": 85,
+      "signature": "type MockedAppRootEvents ="
+    },
+    {
+      "type": "type",
+      "name": "StreamControllerRef",
+      "line": 87,
+      "endLine": 92,
+      "signature": "export type StreamControllerRef<N extends StreamNames> ="
+    }
+  ],
+  "imports": [
+    {
+      "module": "@rocket.chat/core-typings",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/ddp-client",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/emitter",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/i18n/dist/languages",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/mongo-adapter",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/rest-typings",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/ui-contexts",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/ui-contexts",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/ui-video-conf",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/ui-video-conf",
+      "resolved": "external"
+    },
+    {
+      "module": "@storybook/react",
+      "resolved": "external"
+    },
+    {
+      "module": "@tanstack/react-query",
+      "resolved": "external"
+    },
+    {
+      "module": "i18next",
+      "resolved": "external"
+    },
+    {
+      "module": "mongodb",
+      "resolved": "external"
+    },
+    {
+      "module": "react",
+      "resolved": "external"
+    },
+    {
+      "module": "react",
+      "resolved": "external"
+    },
+    {
+      "module": "react-i18next",
+      "resolved": "external"
+    },
+    {
+      "module": "./MockedDeviceContext",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/packages/mock-providers/src/MockedDeviceContext.tsx"
+    }
+  ]
+}

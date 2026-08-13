@@ -1,0 +1,33 @@
+{
+  "sourcePath": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/client/views/omnichannel/sidebarItems.tsx",
+  "symbols": [
+    {
+      "type": "variable",
+      "name": "{\n\tregisterSidebarItem: registerOmnichannelSidebarItem,\n\tunregisterSidebarItem,\n\tgetSidebarItems: getOmnichannelSidebarItems,\n\tsubscribeToSidebarItems: subscribeToOmnichannelSidebarItems,\n}",
+      "exported": true,
+      "line": 4,
+      "endLine": 88,
+      "signature": "",
+      "calls": [
+        {
+          "name": "hasPermission",
+          "edgeType": "call"
+        },
+        {
+          "name": "hasAtLeastOnePermission",
+          "edgeType": "call"
+        }
+      ]
+    }
+  ],
+  "imports": [
+    {
+      "module": "../../../app/authorization/client",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/app/authorization/client/index.ts"
+    },
+    {
+      "module": "../../lib/createSidebarItems",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/client/lib/createSidebarItems.ts"
+    }
+  ]
+}

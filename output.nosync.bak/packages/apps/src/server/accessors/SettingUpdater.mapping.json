@@ -1,0 +1,129 @@
+{
+  "sourcePath": "/Users/echoooooo/Desktop/code/Rocket.Chat/packages/apps/src/server/accessors/SettingUpdater.ts",
+  "symbols": [
+    {
+      "type": "class",
+      "name": "SettingUpdater",
+      "exported": true,
+      "line": 10,
+      "endLine": 67,
+      "signature": "export class SettingUpdater implements ISettingUpdater",
+      "calls": [
+        {
+          "name": "ISettingUpdater",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "updateValue",
+      "exported": true,
+      "qualifiedName": "SettingUpdater.updateValue",
+      "line": 23,
+      "endLine": 38,
+      "signature": "public async updateValue(id: ISetting['id'], value: ISetting['value']): Promise<void>",
+      "containerClass": "SettingUpdater",
+      "calls": [
+        {
+          "name": "getID",
+          "edgeType": "call"
+        },
+        {
+          "name": "getStorageItem",
+          "edgeType": "call"
+        },
+        {
+          "name": "getAppSetting",
+          "edgeType": "call"
+        },
+        {
+          "name": "updateAppSetting",
+          "edgeType": "call"
+        },
+        {
+          "name": "Date",
+          "edgeType": "new"
+        },
+        {
+          "name": "ISetting",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "updateSelectOptions",
+      "exported": true,
+      "qualifiedName": "SettingUpdater.updateSelectOptions",
+      "line": 34,
+      "endLine": 53,
+      "signature": "public async updateSelectOptions(id: ISetting['id'], values: ISetting['values']): Promise<void>",
+      "containerClass": "SettingUpdater",
+      "calls": [
+        {
+          "name": "getID",
+          "edgeType": "call"
+        },
+        {
+          "name": "getStorageItem",
+          "edgeType": "call"
+        },
+        {
+          "name": "getAppSetting",
+          "edgeType": "call"
+        },
+        {
+          "name": "updateAppSetting",
+          "edgeType": "call"
+        },
+        {
+          "name": "Date",
+          "edgeType": "new"
+        },
+        {
+          "name": "ISetting",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "constructor",
+      "exported": true,
+      "qualifiedName": "SettingUpdater.constructor",
+      "line": 11,
+      "endLine": 14,
+      "signature": "constructor( private readonly app: ProxiedApp, private readonly manager: AppSettingsManager, )",
+      "containerClass": "SettingUpdater",
+      "calls": [
+        {
+          "name": "ProxiedApp",
+          "edgeType": "type"
+        },
+        {
+          "name": "AppSettingsManager",
+          "edgeType": "type"
+        }
+      ]
+    }
+  ],
+  "imports": [
+    {
+      "module": "@rocket.chat/apps-engine/definition/accessors/ISettingUpdater",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/apps-engine/definition/settings",
+      "resolved": "external"
+    },
+    {
+      "module": "../ProxiedApp",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/packages/apps/src/server/ProxiedApp.ts"
+    },
+    {
+      "module": "../managers",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/packages/apps/src/server/managers/index.ts"
+    }
+  ]
+}

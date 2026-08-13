@@ -1,0 +1,163 @@
+{
+  "sourcePath": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/client/startup/startup.ts",
+  "symbols": [
+    {
+      "type": "module",
+      "name": "startup",
+      "exported": false,
+      "line": 1,
+      "endLine": 158,
+      "signature": "startup",
+      "calls": [
+        {
+          "name": "onLoggedIn",
+          "edgeType": "call"
+        },
+        {
+          "name": "getState",
+          "edgeType": "call"
+        },
+        {
+          "name": "synchronizeUserData",
+          "edgeType": "call"
+        },
+        {
+          "name": "getTimezoneOffset",
+          "edgeType": "call"
+        },
+        {
+          "name": "users.setPreferences",
+          "edgeType": "rest_call"
+        },
+        {
+          "name": "post",
+          "edgeType": "call"
+        },
+        {
+          "name": "emitStatusChange",
+          "edgeType": "call"
+        },
+        {
+          "name": "getStoredItem",
+          "edgeType": "call"
+        },
+        {
+          "name": "ensureConnectedAndAuthenticated",
+          "edgeType": "call"
+        },
+        {
+          "name": "isAuthError",
+          "edgeType": "call"
+        },
+        {
+          "name": "clearStoredCredentials",
+          "edgeType": "call"
+        },
+        {
+          "name": "catch",
+          "edgeType": "call"
+        },
+        {
+          "name": "runUserDataSync",
+          "edgeType": "call"
+        },
+        {
+          "name": "warn",
+          "edgeType": "call"
+        },
+        {
+          "name": "syncOnce",
+          "edgeType": "call"
+        },
+        {
+          "name": "onLogout",
+          "edgeType": "call"
+        },
+        {
+          "name": "getDdpSdk",
+          "edgeType": "call"
+        },
+        {
+          "name": "Date",
+          "edgeType": "new"
+        },
+        {
+          "name": "get",
+          "edgeType": "call"
+        },
+        {
+          "name": "removeLocalUserData",
+          "edgeType": "call"
+        },
+        {
+          "name": "getItem",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "variable_function",
+      "name": "emitStatusChange",
+      "exported": false,
+      "line": 18,
+      "endLine": 22,
+      "signature": "(next: UserStatus | undefined) =>",
+      "calls": [
+        {
+          "name": "fireGlobalEvent",
+          "edgeType": "call"
+        },
+        {
+          "name": "UserStatus",
+          "edgeType": "type"
+        }
+      ]
+    }
+  ],
+  "imports": [
+    {
+      "module": "@rocket.chat/core-typings",
+      "resolved": "external"
+    },
+    {
+      "module": "highlight.js/styles/github.css",
+      "resolved": "external"
+    },
+    {
+      "module": "../../app/utils/client/lib/SDKClient",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/app/utils/client/lib/SDKClient.ts"
+    },
+    {
+      "module": "../lib/loggedIn",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/client/lib/loggedIn.ts"
+    },
+    {
+      "module": "../lib/sdk/ddpSdk",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/client/lib/sdk/ddpSdk.ts"
+    },
+    {
+      "module": "../lib/sdk/sdkTransportEnabled",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/client/lib/sdk/sdkTransportEnabled.ts"
+    },
+    {
+      "module": "../lib/sdk/storage",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/client/lib/sdk/storage.ts"
+    },
+    {
+      "module": "../lib/user",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/client/lib/user.ts"
+    },
+    {
+      "module": "../lib/userData",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/client/lib/userData.ts"
+    },
+    {
+      "module": "../lib/utils/fireGlobalEvent",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/client/lib/utils/fireGlobalEvent.ts"
+    },
+    {
+      "module": "../stores",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/client/stores/index.ts"
+    }
+  ]
+}

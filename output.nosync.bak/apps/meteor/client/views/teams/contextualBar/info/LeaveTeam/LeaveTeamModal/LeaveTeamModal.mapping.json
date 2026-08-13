@@ -1,0 +1,185 @@
+{
+  "sourcePath": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/client/views/teams/contextualBar/info/LeaveTeam/LeaveTeamModal/LeaveTeamModal.tsx",
+  "symbols": [
+    {
+      "type": "inner_function",
+      "name": "handleContinue",
+      "exported": false,
+      "qualifiedName": "LeaveTeamModal.handleContinue",
+      "line": 26,
+      "endLine": 26,
+      "signature": "() =>",
+      "calls": [
+        {
+          "name": "setStep",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "inner_function",
+      "name": "handleReturn",
+      "exported": false,
+      "qualifiedName": "LeaveTeamModal.handleReturn",
+      "line": 27,
+      "endLine": 27,
+      "signature": "() =>",
+      "calls": [
+        {
+          "name": "setStep",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "inner_function",
+      "name": "onChangeRoomSelection",
+      "exported": false,
+      "qualifiedName": "LeaveTeamModal.onChangeRoomSelection",
+      "line": 29,
+      "endLine": 37,
+      "signature": "(room: Serialized<IRoom>) =>",
+      "calls": [
+        {
+          "name": "setSelectedRooms",
+          "edgeType": "call"
+        },
+        {
+          "name": "Serialized",
+          "edgeType": "type"
+        },
+        {
+          "name": "IRoom",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "variable_function",
+      "name": "LeaveTeamModal",
+      "exported": false,
+      "line": 19,
+      "endLine": 71,
+      "signature": "({ rooms, onCancel, onConfirm }: LeaveTeamModalProps) =>",
+      "calls": [
+        {
+          "name": "useMemo",
+          "edgeType": "call"
+        },
+        {
+          "name": "useState",
+          "edgeType": "call"
+        },
+        {
+          "name": "filter",
+          "edgeType": "call"
+        },
+        {
+          "name": "useCallback",
+          "edgeType": "call"
+        },
+        {
+          "name": "setStep",
+          "edgeType": "call"
+        },
+        {
+          "name": "setSelectedRooms",
+          "edgeType": "call"
+        },
+        {
+          "name": "useStableCallback",
+          "edgeType": "call"
+        },
+        {
+          "name": "values",
+          "edgeType": "call"
+        },
+        {
+          "name": "fromEntries",
+          "edgeType": "call"
+        },
+        {
+          "name": "map",
+          "edgeType": "call"
+        },
+        {
+          "name": "LeaveTeamModalConfirmation",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "LeaveTeamModalChannels",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "selectedRooms",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "onConfirm",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "onCancel",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "rooms",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "onToggleAllRooms",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "handleContinue",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "onChangeRoomSelection",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "LeaveTeamModalProps",
+          "edgeType": "type"
+        },
+        {
+          "name": "Serialized",
+          "edgeType": "type"
+        },
+        {
+          "name": "IRoom",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "type",
+      "name": "LeaveTeamModalProps",
+      "line": 13,
+      "endLine": 17,
+      "signature": "type LeaveTeamModalProps ="
+    }
+  ],
+  "imports": [
+    {
+      "module": "@rocket.chat/core-typings",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/fuselage-hooks",
+      "resolved": "external"
+    },
+    {
+      "module": "react",
+      "resolved": "external"
+    },
+    {
+      "module": "./LeaveTeamModalChannels",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/client/views/teams/contextualBar/info/LeaveTeam/LeaveTeamModal/LeaveTeamModalChannels.tsx"
+    },
+    {
+      "module": "./LeaveTeamModalConfirmation",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/client/views/teams/contextualBar/info/LeaveTeam/LeaveTeamModal/LeaveTeamModalConfirmation.tsx"
+    }
+  ]
+}

@@ -1,0 +1,257 @@
+{
+  "sourcePath": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/client/views/omnichannel/contactInfo/ContactInfo/ReviewContactModal.tsx",
+  "symbols": [
+    {
+      "type": "inner_function",
+      "name": "handleConflicts",
+      "exported": false,
+      "qualifiedName": "ReviewContactModal.handleConflicts",
+      "line": 46,
+      "endLine": 60,
+      "signature": "async ({ name, contactManager, ...customFields }: HandleConflictsPayload) =>",
+      "calls": [
+        {
+          "name": "mutate",
+          "edgeType": "call"
+        },
+        {
+          "name": "onCancel",
+          "edgeType": "call"
+        },
+        {
+          "name": "HandleConflictsPayload",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "inner_function",
+      "name": "onSettled",
+      "exported": false,
+      "qualifiedName": "ReviewContactModal.onSettled",
+      "line": 57,
+      "endLine": 57,
+      "signature": "() =>",
+      "calls": [
+        {
+          "name": "onCancel",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "variable_function",
+      "name": "ReviewContactModal",
+      "exported": false,
+      "line": 27,
+      "endLine": 121,
+      "signature": "({ contact, onCancel }: ReviewContactModalProps) =>",
+      "calls": [
+        {
+          "name": "useTranslation",
+          "edgeType": "call"
+        },
+        {
+          "name": "useHasLicenseModule",
+          "edgeType": "call"
+        },
+        {
+          "name": "useForm",
+          "edgeType": "call"
+        },
+        {
+          "name": "useAtLeastOnePermission",
+          "edgeType": "call"
+        },
+        {
+          "name": "useCustomFieldsMetadata",
+          "edgeType": "call"
+        },
+        {
+          "name": "useReviewContact",
+          "edgeType": "call"
+        },
+        {
+          "name": "mutate",
+          "edgeType": "call"
+        },
+        {
+          "name": "onCancel",
+          "edgeType": "call"
+        },
+        {
+          "name": "useMemo",
+          "edgeType": "call"
+        },
+        {
+          "name": "mapLivechatContactConflicts",
+          "edgeType": "call"
+        },
+        {
+          "name": "values",
+          "edgeType": "call"
+        },
+        {
+          "name": "handleSubmit",
+          "edgeType": "call"
+        },
+        {
+          "name": "map",
+          "edgeType": "call"
+        },
+        {
+          "name": "GenericModal",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "FieldGroup",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "Field",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "FieldLabel",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "FieldRow",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "FieldHint",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "Box",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "FieldError",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "Controller",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "Component",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "Badge",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "onCancel",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "index",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "name",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "control",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "mappedOptions",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "value",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "onChange",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "ReviewContactModalProps",
+          "edgeType": "type"
+        },
+        {
+          "name": "HandleConflictsPayload",
+          "edgeType": "type"
+        },
+        {
+          "name": "TranslationKey",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "type",
+      "name": "ReviewContactModalProps",
+      "line": 16,
+      "endLine": 19,
+      "signature": "type ReviewContactModalProps ="
+    },
+    {
+      "type": "type",
+      "name": "HandleConflictsPayload",
+      "line": 21,
+      "endLine": 25,
+      "signature": "type HandleConflictsPayload ="
+    }
+  ],
+  "imports": [
+    {
+      "module": "@rocket.chat/core-typings",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/fuselage",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/ui-client",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/ui-contexts",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/ui-contexts",
+      "resolved": "external"
+    },
+    {
+      "module": "react",
+      "resolved": "external"
+    },
+    {
+      "module": "react-hook-form",
+      "resolved": "external"
+    },
+    {
+      "module": "react-i18next",
+      "resolved": "external"
+    },
+    {
+      "module": "../../../../../lib/mapLivechatContactConflicts",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/lib/mapLivechatContactConflicts.ts"
+    },
+    {
+      "module": "../../../../hooks/useHasLicenseModule",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/client/hooks/useHasLicenseModule.ts"
+    },
+    {
+      "module": "../../additionalForms",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/client/views/omnichannel/additionalForms.tsx"
+    },
+    {
+      "module": "../../directory/hooks/useCustomFieldsMetadata",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/client/views/omnichannel/directory/hooks/useCustomFieldsMetadata.ts"
+    },
+    {
+      "module": "../hooks/useReviewContact",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/client/views/omnichannel/contactInfo/hooks/useReviewContact.ts"
+    }
+  ]
+}

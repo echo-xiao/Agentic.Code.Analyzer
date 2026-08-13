@@ -1,0 +1,89 @@
+{
+  "sourcePath": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/client/components/message/toolbar/usePermalinkAction.ts",
+  "symbols": [
+    {
+      "type": "variable_function",
+      "name": "usePermalinkAction",
+      "exported": true,
+      "line": 10,
+      "endLine": 51,
+      "signature": "( message: IMessage, { id, context, type, order }: { context: MessageActionContext[]; order: number } & Pick<MessageActionConfig, 'id' | 'type'>, { room }: { room: IRoom }, ): MessageActionConfig | null =>",
+      "calls": [
+        {
+          "name": "useTranslation",
+          "edgeType": "call"
+        },
+        {
+          "name": "useToastMessageDispatch",
+          "edgeType": "call"
+        },
+        {
+          "name": "isE2EEMessage",
+          "edgeType": "call"
+        },
+        {
+          "name": "useMemo",
+          "edgeType": "call"
+        },
+        {
+          "name": "getPermaLink",
+          "edgeType": "call"
+        },
+        {
+          "name": "writeText",
+          "edgeType": "call"
+        },
+        {
+          "name": "dispatchToastMessage",
+          "edgeType": "call"
+        },
+        {
+          "name": "IMessage",
+          "edgeType": "type"
+        },
+        {
+          "name": "MessageActionContext",
+          "edgeType": "type"
+        },
+        {
+          "name": "MessageActionConfig",
+          "edgeType": "type"
+        },
+        {
+          "name": "IRoom",
+          "edgeType": "type"
+        }
+      ]
+    }
+  ],
+  "imports": [
+    {
+      "module": "@rocket.chat/core-typings",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/core-typings",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/ui-contexts",
+      "resolved": "external"
+    },
+    {
+      "module": "react",
+      "resolved": "external"
+    },
+    {
+      "module": "react-i18next",
+      "resolved": "external"
+    },
+    {
+      "module": "../../../../app/ui-utils/client/lib/MessageAction",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/app/ui-utils/client/lib/MessageAction.ts"
+    },
+    {
+      "module": "../../../lib/getPermaLink",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/client/lib/getPermaLink.ts"
+    }
+  ]
+}

@@ -1,0 +1,65 @@
+{
+  "sourcePath": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/client/views/admin/permissions/hooks/useFilteredPermissions.ts",
+  "symbols": [
+    {
+      "type": "variable_function",
+      "name": "useFilteredPermissions",
+      "exported": true,
+      "line": 8,
+      "endLine": 21,
+      "signature": "({ filter }: { filter: string }) =>",
+      "calls": [
+        {
+          "name": "useTranslation",
+          "edgeType": "call"
+        },
+        {
+          "name": "useMemo",
+          "edgeType": "call"
+        },
+        {
+          "name": "from",
+          "edgeType": "call"
+        },
+        {
+          "name": "values",
+          "edgeType": "call"
+        },
+        {
+          "name": "mapPermissionKeys",
+          "edgeType": "call"
+        },
+        {
+          "name": "useDebouncedValue",
+          "edgeType": "call"
+        },
+        {
+          "name": "filterPermissionKeys",
+          "edgeType": "call"
+        }
+      ]
+    }
+  ],
+  "imports": [
+    {
+      "module": "@rocket.chat/fuselage-hooks",
+      "resolved": "external"
+    },
+    {
+      "module": "react",
+      "resolved": "external"
+    },
+    {
+      "module": "react-i18next",
+      "resolved": "external"
+    },
+    {
+      "module": "../../../../stores",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/client/stores/index.ts"
+    },
+    {
+      "module": "../helpers/mapPermissionKeys",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/client/views/admin/permissions/helpers/mapPermissionKeys.ts"
+    }
+  ]
+}

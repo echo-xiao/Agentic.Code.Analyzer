@@ -1,0 +1,225 @@
+{
+  "sourcePath": "/Users/echoooooo/Desktop/code/Rocket.Chat/packages/apps/src/server/accessors/UserUpdater.ts",
+  "symbols": [
+    {
+      "type": "class",
+      "name": "UserUpdater",
+      "exported": true,
+      "line": 7,
+      "endLine": 43,
+      "signature": "export class UserUpdater implements IUserUpdater",
+      "calls": [
+        {
+          "name": "IUserUpdater",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "updateStatusText",
+      "exported": true,
+      "qualifiedName": "UserUpdater.updateStatusText",
+      "line": 13,
+      "endLine": 15,
+      "signature": "public async updateStatusText(user: IUser, statusText: IUser['statusText'])",
+      "containerClass": "UserUpdater",
+      "calls": [
+        {
+          "name": "doUpdate",
+          "edgeType": "call"
+        },
+        {
+          "name": "getUserBridge",
+          "edgeType": "call"
+        },
+        {
+          "name": "IUser",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "updateStatus",
+      "exported": true,
+      "qualifiedName": "UserUpdater.updateStatus",
+      "line": 17,
+      "endLine": 19,
+      "signature": "public async updateStatus(user: IUser, statusText: IUser['statusText'], status: UserStatusConnection)",
+      "containerClass": "UserUpdater",
+      "calls": [
+        {
+          "name": "doUpdate",
+          "edgeType": "call"
+        },
+        {
+          "name": "getUserBridge",
+          "edgeType": "call"
+        },
+        {
+          "name": "IUser",
+          "edgeType": "type"
+        },
+        {
+          "name": "UserStatusConnection",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "updateBio",
+      "exported": true,
+      "qualifiedName": "UserUpdater.updateBio",
+      "line": 21,
+      "endLine": 23,
+      "signature": "public async updateBio(user: IUser, bio: IUser['bio'])",
+      "containerClass": "UserUpdater",
+      "calls": [
+        {
+          "name": "doUpdate",
+          "edgeType": "call"
+        },
+        {
+          "name": "getUserBridge",
+          "edgeType": "call"
+        },
+        {
+          "name": "IUser",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "updateCustomFields",
+      "exported": true,
+      "qualifiedName": "UserUpdater.updateCustomFields",
+      "line": 25,
+      "endLine": 27,
+      "signature": "public async updateCustomFields(user: IUser, customFields: IUser['customFields'])",
+      "containerClass": "UserUpdater",
+      "calls": [
+        {
+          "name": "doUpdate",
+          "edgeType": "call"
+        },
+        {
+          "name": "getUserBridge",
+          "edgeType": "call"
+        },
+        {
+          "name": "IUser",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "deactivate",
+      "exported": true,
+      "qualifiedName": "UserUpdater.deactivate",
+      "line": 29,
+      "endLine": 31,
+      "signature": "public async deactivate(userId: IUser['id'], confirmRelinquish: boolean)",
+      "containerClass": "UserUpdater",
+      "calls": [
+        {
+          "name": "doDeactivate",
+          "edgeType": "call"
+        },
+        {
+          "name": "getUserBridge",
+          "edgeType": "call"
+        },
+        {
+          "name": "IUser",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "setActiveState",
+      "exported": true,
+      "qualifiedName": "UserUpdater.setActiveState",
+      "line": 33,
+      "endLine": 38,
+      "signature": "public async setActiveState( userId: IUser['id'], state: Pick<IUser, 'statusDefault' | 'statusSource' | 'statusText' | 'statusExpiresAt' | 'statusId'>, )",
+      "containerClass": "UserUpdater",
+      "calls": [
+        {
+          "name": "doSetActiveState",
+          "edgeType": "call"
+        },
+        {
+          "name": "getUserBridge",
+          "edgeType": "call"
+        },
+        {
+          "name": "IUser",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "endActiveState",
+      "exported": true,
+      "qualifiedName": "UserUpdater.endActiveState",
+      "line": 40,
+      "endLine": 42,
+      "signature": "public async endActiveState(userId: IUser['id'], statusId?: string)",
+      "containerClass": "UserUpdater",
+      "calls": [
+        {
+          "name": "doEndActiveState",
+          "edgeType": "call"
+        },
+        {
+          "name": "getUserBridge",
+          "edgeType": "call"
+        },
+        {
+          "name": "IUser",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "constructor",
+      "exported": true,
+      "qualifiedName": "UserUpdater.constructor",
+      "line": 8,
+      "endLine": 11,
+      "signature": "constructor( private readonly bridges: AppBridges, private readonly appId: string, )",
+      "containerClass": "UserUpdater",
+      "calls": [
+        {
+          "name": "AppBridges",
+          "edgeType": "type"
+        }
+      ]
+    }
+  ],
+  "imports": [
+    {
+      "module": "@rocket.chat/apps-engine/definition/accessors/IUserUpdater",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/apps-engine/definition/users",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/apps-engine/definition/users/IUser",
+      "resolved": "external"
+    },
+    {
+      "module": "../bridges",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/packages/apps/src/server/bridges/index.ts"
+    }
+  ]
+}

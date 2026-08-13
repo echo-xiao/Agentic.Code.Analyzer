@@ -1,0 +1,121 @@
+{
+  "sourcePath": "/Users/echoooooo/Desktop/code/Rocket.Chat/packages/apps/tests/test-data/bridges/videoConferenceBridge.ts",
+  "symbols": [
+    {
+      "type": "class",
+      "name": "TestsVideoConferenceBridge",
+      "exported": true,
+      "line": 6,
+      "endLine": 26,
+      "signature": "export class TestsVideoConferenceBridge extends VideoConferenceBridge",
+      "calls": [
+        {
+          "name": "VideoConferenceBridge",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "getById",
+      "exported": true,
+      "qualifiedName": "TestsVideoConferenceBridge.getById",
+      "line": 7,
+      "endLine": 9,
+      "signature": "public getById(callId: string, appId: string): Promise<VideoConference>",
+      "containerClass": "TestsVideoConferenceBridge",
+      "calls": [
+        {
+          "name": "VideoConference",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "create",
+      "exported": true,
+      "qualifiedName": "TestsVideoConferenceBridge.create",
+      "line": 11,
+      "endLine": 13,
+      "signature": "public create(call: AppVideoConference, appId: string): Promise<string>",
+      "containerClass": "TestsVideoConferenceBridge",
+      "calls": [
+        {
+          "name": "AppVideoConference",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "update",
+      "exported": true,
+      "qualifiedName": "TestsVideoConferenceBridge.update",
+      "line": 15,
+      "endLine": 17,
+      "signature": "public update(call: VideoConference, appId: string): Promise<void>",
+      "containerClass": "TestsVideoConferenceBridge",
+      "calls": [
+        {
+          "name": "VideoConference",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "registerProvider",
+      "exported": true,
+      "qualifiedName": "TestsVideoConferenceBridge.registerProvider",
+      "line": 19,
+      "endLine": 21,
+      "signature": "protected registerProvider(info: IVideoConfProvider, appId: string): Promise<void>",
+      "containerClass": "TestsVideoConferenceBridge",
+      "calls": [
+        {
+          "name": "resolve",
+          "edgeType": "call"
+        },
+        {
+          "name": "IVideoConfProvider",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "unRegisterProvider",
+      "exported": true,
+      "qualifiedName": "TestsVideoConferenceBridge.unRegisterProvider",
+      "line": 23,
+      "endLine": 25,
+      "signature": "protected unRegisterProvider(info: IVideoConfProvider, appId: string): Promise<void>",
+      "containerClass": "TestsVideoConferenceBridge",
+      "calls": [
+        {
+          "name": "resolve",
+          "edgeType": "call"
+        },
+        {
+          "name": "IVideoConfProvider",
+          "edgeType": "type"
+        }
+      ]
+    }
+  ],
+  "imports": [
+    {
+      "module": "@rocket.chat/apps-engine/definition/videoConfProviders",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/apps-engine/definition/videoConferences",
+      "resolved": "external"
+    },
+    {
+      "module": "../../../src/server/bridges",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/packages/apps/src/server/bridges/index.ts"
+    }
+  ]
+}

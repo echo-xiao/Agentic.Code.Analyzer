@@ -1,0 +1,98 @@
+{
+  "sourcePath": "/Users/echoooooo/Desktop/code/Rocket.Chat/packages/core-typings/src/ISubscription.ts",
+  "symbols": [
+    {
+      "type": "variable_function",
+      "name": "isInviteSubscription",
+      "exported": true,
+      "line": 90,
+      "endLine": 92,
+      "signature": "(subscription: ISubscription): subscription is IInviteSubscription =>",
+      "calls": [
+        {
+          "name": "ISubscription",
+          "edgeType": "type"
+        },
+        {
+          "name": "IInviteSubscription",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "variable_function",
+      "name": "isBannedSubscription",
+      "exported": true,
+      "line": 98,
+      "endLine": 100,
+      "signature": "(subscription: ISubscription): subscription is IBannedSubscription =>",
+      "calls": [
+        {
+          "name": "ISubscription",
+          "edgeType": "type"
+        },
+        {
+          "name": "IBannedSubscription",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "interface",
+      "name": "ISubscription",
+      "line": 11,
+      "endLine": 83,
+      "signature": "export interface ISubscription extends IRocketChatRecord"
+    },
+    {
+      "type": "interface",
+      "name": "IInviteSubscription",
+      "line": 85,
+      "endLine": 88,
+      "signature": "export interface IInviteSubscription extends ISubscription"
+    },
+    {
+      "type": "interface",
+      "name": "IBannedSubscription",
+      "line": 94,
+      "endLine": 96,
+      "signature": "export interface IBannedSubscription extends ISubscription"
+    },
+    {
+      "type": "type",
+      "name": "OldKey",
+      "line": 7,
+      "endLine": 7,
+      "signature": "type OldKey ="
+    },
+    {
+      "type": "type",
+      "name": "SubscriptionStatus",
+      "line": 9,
+      "endLine": 9,
+      "signature": "export type SubscriptionStatus = 'INVITED' | 'BANNED';"
+    }
+  ],
+  "imports": [
+    {
+      "module": "./IRocketChatRecord",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/packages/core-typings/src/IRocketChatRecord.ts"
+    },
+    {
+      "module": "./IRole",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/packages/core-typings/src/IRole.ts"
+    },
+    {
+      "module": "./IRoom",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/packages/core-typings/src/IRoom.ts"
+    },
+    {
+      "module": "./IUser",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/packages/core-typings/src/IUser.ts"
+    },
+    {
+      "module": "./RoomType",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/packages/core-typings/src/RoomType.ts"
+    }
+  ]
+}

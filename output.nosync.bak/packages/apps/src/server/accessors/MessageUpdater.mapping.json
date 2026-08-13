@@ -1,0 +1,97 @@
+{
+  "sourcePath": "/Users/echoooooo/Desktop/code/Rocket.Chat/packages/apps/src/server/accessors/MessageUpdater.ts",
+  "symbols": [
+    {
+      "type": "class",
+      "name": "MessageUpdater",
+      "exported": true,
+      "line": 6,
+      "endLine": 19,
+      "signature": "export class MessageUpdater implements IMessageUpdater",
+      "calls": [
+        {
+          "name": "IMessageUpdater",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "addReaction",
+      "exported": true,
+      "qualifiedName": "MessageUpdater.addReaction",
+      "line": 12,
+      "endLine": 14,
+      "signature": "public async addReaction(messageId: string, userId: string, reaction: Reaction): Promise<void>",
+      "containerClass": "MessageUpdater",
+      "calls": [
+        {
+          "name": "doAddReaction",
+          "edgeType": "call"
+        },
+        {
+          "name": "getMessageBridge",
+          "edgeType": "call"
+        },
+        {
+          "name": "Reaction",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "removeReaction",
+      "exported": true,
+      "qualifiedName": "MessageUpdater.removeReaction",
+      "line": 16,
+      "endLine": 18,
+      "signature": "public async removeReaction(messageId: string, userId: string, reaction: Reaction): Promise<void>",
+      "containerClass": "MessageUpdater",
+      "calls": [
+        {
+          "name": "doRemoveReaction",
+          "edgeType": "call"
+        },
+        {
+          "name": "getMessageBridge",
+          "edgeType": "call"
+        },
+        {
+          "name": "Reaction",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "constructor",
+      "exported": true,
+      "qualifiedName": "MessageUpdater.constructor",
+      "line": 7,
+      "endLine": 10,
+      "signature": "constructor( private readonly bridges: AppBridges, private readonly appId: string, )",
+      "containerClass": "MessageUpdater",
+      "calls": [
+        {
+          "name": "AppBridges",
+          "edgeType": "type"
+        }
+      ]
+    }
+  ],
+  "imports": [
+    {
+      "module": "@rocket.chat/apps-engine/definition/accessors/IMessageUpdater",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/apps-engine/definition/messages",
+      "resolved": "external"
+    },
+    {
+      "module": "../bridges",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/packages/apps/src/server/bridges/index.ts"
+    }
+  ]
+}

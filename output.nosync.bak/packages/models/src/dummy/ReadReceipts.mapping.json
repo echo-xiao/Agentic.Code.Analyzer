@@ -1,0 +1,200 @@
+{
+  "sourcePath": "/Users/echoooooo/Desktop/code/Rocket.Chat/packages/models/src/dummy/ReadReceipts.ts",
+  "symbols": [
+    {
+      "type": "class",
+      "name": "ReadReceiptsDummy",
+      "exported": true,
+      "line": 7,
+      "endLine": 39,
+      "signature": "export class ReadReceiptsDummy extends BaseDummy<IReadReceipt> implements IReadReceiptsModel",
+      "calls": [
+        {
+          "name": "BaseDummy",
+          "edgeType": "type"
+        },
+        {
+          "name": "IReadReceiptsModel",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "findByMessageId",
+      "exported": true,
+      "qualifiedName": "ReadReceiptsDummy.findByMessageId",
+      "line": 12,
+      "endLine": 14,
+      "signature": "findByMessageId(_messageId: string): FindCursor<IReadReceipt>",
+      "containerClass": "ReadReceiptsDummy",
+      "calls": [
+        {
+          "name": "find",
+          "edgeType": "call"
+        },
+        {
+          "name": "FindCursor",
+          "edgeType": "type"
+        },
+        {
+          "name": "IReadReceipt",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "removeByUserId",
+      "exported": true,
+      "qualifiedName": "ReadReceiptsDummy.removeByUserId",
+      "line": 16,
+      "endLine": 18,
+      "signature": "removeByUserId(_userId: string): Promise<DeleteResult>",
+      "containerClass": "ReadReceiptsDummy",
+      "calls": [
+        {
+          "name": "deleteMany",
+          "edgeType": "call"
+        },
+        {
+          "name": "DeleteResult",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "removeByRoomId",
+      "exported": true,
+      "qualifiedName": "ReadReceiptsDummy.removeByRoomId",
+      "line": 20,
+      "endLine": 22,
+      "signature": "removeByRoomId(_roomId: string): Promise<DeleteResult>",
+      "containerClass": "ReadReceiptsDummy",
+      "calls": [
+        {
+          "name": "deleteMany",
+          "edgeType": "call"
+        },
+        {
+          "name": "DeleteResult",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "removeByRoomIds",
+      "exported": true,
+      "qualifiedName": "ReadReceiptsDummy.removeByRoomIds",
+      "line": 24,
+      "endLine": 26,
+      "signature": "removeByRoomIds(_roomIds: string[]): Promise<DeleteResult>",
+      "containerClass": "ReadReceiptsDummy",
+      "calls": [
+        {
+          "name": "deleteMany",
+          "edgeType": "call"
+        },
+        {
+          "name": "DeleteResult",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "removeByMessageId",
+      "exported": true,
+      "qualifiedName": "ReadReceiptsDummy.removeByMessageId",
+      "line": 28,
+      "endLine": 30,
+      "signature": "removeByMessageId(_messageId: string): Promise<DeleteResult>",
+      "containerClass": "ReadReceiptsDummy",
+      "calls": [
+        {
+          "name": "deleteMany",
+          "edgeType": "call"
+        },
+        {
+          "name": "DeleteResult",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "removeByMessageIds",
+      "exported": true,
+      "qualifiedName": "ReadReceiptsDummy.removeByMessageIds",
+      "line": 32,
+      "endLine": 34,
+      "signature": "removeByMessageIds(_messageIds: string[]): Promise<DeleteResult>",
+      "containerClass": "ReadReceiptsDummy",
+      "calls": [
+        {
+          "name": "deleteMany",
+          "edgeType": "call"
+        },
+        {
+          "name": "DeleteResult",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "findOlderThan",
+      "exported": true,
+      "qualifiedName": "ReadReceiptsDummy.findOlderThan",
+      "line": 36,
+      "endLine": 38,
+      "signature": "findOlderThan(_date: Date): FindCursor<IReadReceipt>",
+      "containerClass": "ReadReceiptsDummy",
+      "calls": [
+        {
+          "name": "find",
+          "edgeType": "call"
+        },
+        {
+          "name": "FindCursor",
+          "edgeType": "type"
+        },
+        {
+          "name": "IReadReceipt",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "constructor",
+      "exported": true,
+      "qualifiedName": "ReadReceiptsDummy.constructor",
+      "line": 8,
+      "endLine": 10,
+      "signature": "constructor()",
+      "containerClass": "ReadReceiptsDummy",
+      "calls": []
+    }
+  ],
+  "imports": [
+    {
+      "module": "@rocket.chat/core-typings",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/model-typings",
+      "resolved": "external"
+    },
+    {
+      "module": "mongodb",
+      "resolved": "external"
+    },
+    {
+      "module": "./BaseDummy",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/packages/models/src/dummy/BaseDummy.ts"
+    }
+  ]
+}

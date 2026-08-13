@@ -1,0 +1,157 @@
+{
+  "sourcePath": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/client/apps/RealAppsEngineUIHost.ts",
+  "symbols": [
+    {
+      "type": "class",
+      "name": "RealAppsEngineUIHost",
+      "exported": true,
+      "line": 14,
+      "endLine": 71,
+      "signature": "export class RealAppsEngineUIHost extends AppsEngineUIHost",
+      "calls": [
+        {
+          "name": "AppsEngineUIHost",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "getUserAvatarUrl",
+      "exported": true,
+      "qualifiedName": "RealAppsEngineUIHost.getUserAvatarUrl",
+      "line": 23,
+      "endLine": 31,
+      "signature": "private getUserAvatarUrl(username: string)",
+      "containerClass": "RealAppsEngineUIHost",
+      "calls": [
+        {
+          "name": "getUserAvatarURL",
+          "edgeType": "call"
+        },
+        {
+          "name": "startsWith",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "getClientRoomInfo",
+      "exported": true,
+      "qualifiedName": "RealAppsEngineUIHost.getClientRoomInfo",
+      "line": 27,
+      "endLine": 54,
+      "signature": "async getClientRoomInfo(): Promise<IExternalComponentRoomInfo>",
+      "containerClass": "RealAppsEngineUIHost",
+      "calls": [
+        {
+          "name": "get",
+          "edgeType": "call"
+        },
+        {
+          "name": "groups.members",
+          "edgeType": "rest_call"
+        },
+        {
+          "name": "map",
+          "edgeType": "call"
+        },
+        {
+          "name": "getUserAvatarUrl",
+          "edgeType": "call"
+        },
+        {
+          "name": "warn",
+          "edgeType": "call"
+        },
+        {
+          "name": "IExternalComponentRoomInfo",
+          "edgeType": "type"
+        },
+        {
+          "name": "IExternalComponentUserInfo",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "getClientUserInfo",
+      "exported": true,
+      "qualifiedName": "RealAppsEngineUIHost.getClientUserInfo",
+      "line": 31,
+      "endLine": 39,
+      "signature": "async getClientUserInfo(): Promise<IExternalComponentUserInfo>",
+      "containerClass": "RealAppsEngineUIHost",
+      "calls": [
+        {
+          "name": "getUser",
+          "edgeType": "call"
+        },
+        {
+          "name": "getUserAvatarUrl",
+          "edgeType": "call"
+        },
+        {
+          "name": "IExternalComponentUserInfo",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "constructor",
+      "exported": true,
+      "qualifiedName": "RealAppsEngineUIHost.constructor",
+      "line": 17,
+      "endLine": 21,
+      "signature": "constructor()",
+      "containerClass": "RealAppsEngineUIHost",
+      "calls": [
+        {
+          "name": "replace",
+          "edgeType": "call"
+        }
+      ]
+    }
+  ],
+  "imports": [
+    {
+      "module": "@rocket.chat/apps/dist/client/AppsEngineUIHost",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/apps/dist/client/definition/IExternalComponentRoomInfo",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/apps/dist/client/definition/IExternalComponentUserInfo",
+      "resolved": "external"
+    },
+    {
+      "module": "../../app/utils/client/getUserAvatarURL",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/app/utils/client/getUserAvatarURL.ts"
+    },
+    {
+      "module": "../../app/utils/client/lib/SDKClient",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/app/utils/client/lib/SDKClient.ts"
+    },
+    {
+      "module": "../lib/RoomManager",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/client/lib/RoomManager.ts"
+    },
+    {
+      "module": "../lib/baseURI",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/client/lib/baseURI.ts"
+    },
+    {
+      "module": "../lib/user",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/client/lib/user.ts"
+    },
+    {
+      "module": "../stores",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/client/stores/index.ts"
+    }
+  ]
+}

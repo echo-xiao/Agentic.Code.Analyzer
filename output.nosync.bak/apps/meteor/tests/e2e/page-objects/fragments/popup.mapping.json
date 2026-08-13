@@ -1,0 +1,80 @@
+{
+  "sourcePath": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/tests/e2e/page-objects/fragments/popup.ts",
+  "symbols": [
+    {
+      "type": "class",
+      "name": "Popup",
+      "exported": true,
+      "line": 5,
+      "endLine": 15,
+      "signature": "export abstract class Popup",
+      "calls": []
+    },
+    {
+      "type": "method",
+      "name": "waitForDisplay",
+      "exported": true,
+      "qualifiedName": "Popup.waitForDisplay",
+      "line": 8,
+      "endLine": 10,
+      "signature": "waitForDisplay()",
+      "containerClass": "Popup",
+      "calls": [
+        {
+          "name": "toBeVisible",
+          "edgeType": "call"
+        },
+        {
+          "name": "expect",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "waitForDismissal",
+      "exported": true,
+      "qualifiedName": "Popup.waitForDismissal",
+      "line": 12,
+      "endLine": 14,
+      "signature": "waitForDismissal()",
+      "containerClass": "Popup",
+      "calls": [
+        {
+          "name": "toBeVisible",
+          "edgeType": "call"
+        },
+        {
+          "name": "expect",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "constructor",
+      "exported": true,
+      "qualifiedName": "Popup.constructor",
+      "line": 6,
+      "endLine": 6,
+      "signature": "constructor(protected root: Locator)",
+      "containerClass": "Popup",
+      "calls": [
+        {
+          "name": "Locator",
+          "edgeType": "type"
+        }
+      ]
+    }
+  ],
+  "imports": [
+    {
+      "module": "playwright-core",
+      "resolved": "external"
+    },
+    {
+      "module": "../../utils/test",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/tests/e2e/utils/test.ts"
+    }
+  ]
+}

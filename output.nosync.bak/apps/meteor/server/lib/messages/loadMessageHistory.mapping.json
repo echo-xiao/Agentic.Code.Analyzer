@@ -1,0 +1,113 @@
+{
+  "sourcePath": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/server/lib/messages/loadMessageHistory.ts",
+  "symbols": [
+    {
+      "type": "function",
+      "name": "loadMessageHistory",
+      "exported": true,
+      "line": 9,
+      "endLine": 94,
+      "signature": "export async function loadMessageHistory({ userId, rid, end, limit = 20, ls, showThreadMessages = true, offset = 0, room: providedRoom, }: { // userId is undefined if user is reading anonymously userId?: string; rid: string; end: Date | undefined; limit?: number; ls?: string | Date; showThreadMessages?: boolean; offset?: number; room?: IRoom; })",
+      "calls": [
+        {
+          "name": "findOneById",
+          "edgeType": "call"
+        },
+        {
+          "name": "get",
+          "edgeType": "call"
+        },
+        {
+          "name": "getHiddenSystemMessages",
+          "edgeType": "call"
+        },
+        {
+          "name": "toArray",
+          "edgeType": "call"
+        },
+        {
+          "name": "findVisibleByRoomIdBeforeTimestampNotContainingTypes",
+          "edgeType": "call"
+        },
+        {
+          "name": "findVisibleByRoomIdNotContainingTypes",
+          "edgeType": "call"
+        },
+        {
+          "name": "isNaN",
+          "edgeType": "call"
+        },
+        {
+          "name": "getTime",
+          "edgeType": "call"
+        },
+        {
+          "name": "all",
+          "edgeType": "call"
+        },
+        {
+          "name": "findVisibleByRoomIdBetweenTimestampsNotContainingTypes",
+          "edgeType": "call"
+        },
+        {
+          "name": "countVisibleByRoomIdBetweenTimestampsNotContainingTypes",
+          "edgeType": "call"
+        },
+        {
+          "name": "normalizeMessagesForUser",
+          "edgeType": "call"
+        },
+        {
+          "name": "computeUnread",
+          "edgeType": "call"
+        },
+        {
+          "name": "Date",
+          "edgeType": "new"
+        },
+        {
+          "name": "IRoom",
+          "edgeType": "type"
+        },
+        {
+          "name": "MessageTypesValues",
+          "edgeType": "type"
+        },
+        {
+          "name": "FindOptions",
+          "edgeType": "type"
+        },
+        {
+          "name": "IMessage",
+          "edgeType": "type"
+        }
+      ]
+    }
+  ],
+  "imports": [
+    {
+      "module": "@rocket.chat/core-typings",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/models",
+      "resolved": "external"
+    },
+    {
+      "module": "mongodb",
+      "resolved": "external"
+    },
+    {
+      "module": "../../../app/lib/server/lib/getHiddenSystemMessages",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/app/lib/server/lib/getHiddenSystemMessages.ts"
+    },
+    {
+      "module": "../../../app/settings/server/cached",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/app/settings/server/cached.ts"
+    },
+    {
+      "module": "../../../app/utils/server/lib/normalizeMessagesForUser",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/app/utils/server/lib/normalizeMessagesForUser.ts"
+    }
+  ]
+}

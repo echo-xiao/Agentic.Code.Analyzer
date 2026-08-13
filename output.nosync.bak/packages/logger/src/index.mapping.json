@@ -1,0 +1,319 @@
+{
+  "sourcePath": "/Users/echoooooo/Desktop/code/Rocket.Chat/packages/logger/src/index.ts",
+  "symbols": [
+    {
+      "type": "module",
+      "name": "index",
+      "exported": false,
+      "line": 1,
+      "endLine": 92,
+      "signature": "index",
+      "calls": [
+        {
+          "name": "changed",
+          "edgeType": "event_listen"
+        },
+        {
+          "name": "getLevel",
+          "edgeType": "call"
+        },
+        {
+          "name": "LogLevelSetting",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "class",
+      "name": "Logger",
+      "exported": true,
+      "line": 27,
+      "endLine": 91,
+      "signature": "export class Logger",
+      "calls": []
+    },
+    {
+      "type": "method",
+      "name": "section",
+      "exported": true,
+      "qualifiedName": "Logger.section",
+      "line": 38,
+      "endLine": 46,
+      "signature": "section(name: string, options: LoggerOptions = {}): MainLogger",
+      "containerClass": "Logger",
+      "calls": [
+        {
+          "name": "child",
+          "edgeType": "call"
+        },
+        {
+          "name": "changed",
+          "edgeType": "event_listen"
+        },
+        {
+          "name": "getLevel",
+          "edgeType": "call"
+        },
+        {
+          "name": "LoggerOptions",
+          "edgeType": "type"
+        },
+        {
+          "name": "MainLogger",
+          "edgeType": "type"
+        },
+        {
+          "name": "LogLevelSetting",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "level",
+      "exported": true,
+      "qualifiedName": "Logger.level",
+      "line": 42,
+      "endLine": 44,
+      "signature": "level(newLevel: string): void",
+      "containerClass": "Logger",
+      "calls": []
+    },
+    {
+      "type": "method",
+      "name": "log",
+      "exported": true,
+      "qualifiedName": "Logger.log",
+      "line": 46,
+      "endLine": 48,
+      "signature": "log(msg: object | string): void",
+      "containerClass": "Logger",
+      "calls": [
+        {
+          "name": "info",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "debug",
+      "exported": true,
+      "qualifiedName": "Logger.debug",
+      "line": 50,
+      "endLine": 52,
+      "signature": "debug(msg: object | string): void",
+      "containerClass": "Logger",
+      "calls": [
+        {
+          "name": "debug",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "info",
+      "exported": true,
+      "qualifiedName": "Logger.info",
+      "line": 54,
+      "endLine": 56,
+      "signature": "info(msg: object | string): void",
+      "containerClass": "Logger",
+      "calls": [
+        {
+          "name": "info",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "startup",
+      "exported": true,
+      "qualifiedName": "Logger.startup",
+      "line": 58,
+      "endLine": 60,
+      "signature": "startup(msg: object | string): void",
+      "containerClass": "Logger",
+      "calls": [
+        {
+          "name": "startup",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "success",
+      "exported": true,
+      "qualifiedName": "Logger.success",
+      "line": 62,
+      "endLine": 64,
+      "signature": "success(msg: object | string): void",
+      "containerClass": "Logger",
+      "calls": [
+        {
+          "name": "info",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "warn",
+      "exported": true,
+      "qualifiedName": "Logger.warn",
+      "line": 66,
+      "endLine": 68,
+      "signature": "warn(msg: object | string): void",
+      "containerClass": "Logger",
+      "calls": [
+        {
+          "name": "warn",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "error",
+      "exported": true,
+      "qualifiedName": "Logger.error",
+      "line": 70,
+      "endLine": 72,
+      "signature": "error(msg: object | string): void",
+      "containerClass": "Logger",
+      "calls": [
+        {
+          "name": "error",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "method",
+      "exported": true,
+      "qualifiedName": "Logger.method",
+      "line": 74,
+      "endLine": 76,
+      "signature": "method(msg: object | string): void",
+      "containerClass": "Logger",
+      "calls": [
+        {
+          "name": "method",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "subscription",
+      "exported": true,
+      "qualifiedName": "Logger.subscription",
+      "line": 78,
+      "endLine": 80,
+      "signature": "subscription(msg: object | string): void",
+      "containerClass": "Logger",
+      "calls": [
+        {
+          "name": "subscription",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "fatal",
+      "exported": true,
+      "qualifiedName": "Logger.fatal",
+      "line": 82,
+      "endLine": 84,
+      "signature": "fatal(err: unknown, ...args: any[]): void",
+      "containerClass": "Logger",
+      "calls": [
+        {
+          "name": "fatal",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "constructor",
+      "exported": true,
+      "qualifiedName": "Logger.constructor",
+      "line": 30,
+      "endLine": 36,
+      "signature": "constructor(loggerLabel: string, options: LoggerOptions = {})",
+      "containerClass": "Logger",
+      "calls": [
+        {
+          "name": "getPino",
+          "edgeType": "call"
+        },
+        {
+          "name": "changed",
+          "edgeType": "event_listen"
+        },
+        {
+          "name": "getLevel",
+          "edgeType": "call"
+        },
+        {
+          "name": "LoggerOptions",
+          "edgeType": "type"
+        },
+        {
+          "name": "LogLevelSetting",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "class_property",
+      "name": "logger",
+      "exported": true,
+      "qualifiedName": "Logger.logger",
+      "line": 28,
+      "endLine": 28,
+      "signature": "readonly logger: MainLogger;",
+      "containerClass": "Logger",
+      "calls": [
+        {
+          "name": "MainLogger",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "variable_function",
+      "name": "getLevel",
+      "exported": false,
+      "line": 8,
+      "endLine": 19,
+      "signature": "(level: LogLevelSetting): string =>",
+      "calls": [
+        {
+          "name": "LogLevelSetting",
+          "edgeType": "type"
+        }
+      ]
+    }
+  ],
+  "imports": [
+    {
+      "module": "./getPino",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/packages/logger/src/getPino.ts"
+    },
+    {
+      "module": "./logLevel",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/packages/logger/src/logLevel.ts"
+    },
+    {
+      "module": "./logLevel",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/packages/logger/src/logLevel.ts"
+    }
+  ]
+}

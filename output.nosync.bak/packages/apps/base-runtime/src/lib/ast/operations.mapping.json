@@ -1,0 +1,208 @@
+{
+  "sourcePath": "/Users/echoooooo/Desktop/code/Rocket.Chat/packages/apps/base-runtime/src/lib/ast/operations.ts",
+  "symbols": [
+    {
+      "type": "function",
+      "name": "getFunctionIdentifier",
+      "exported": true,
+      "line": 9,
+      "endLine": 56,
+      "signature": "export function getFunctionIdentifier(ancestors: AnyNode[], functionNodeIndex: number)",
+      "calls": [
+        {
+          "name": "AnyNode",
+          "edgeType": "type"
+        },
+        {
+          "name": "Property",
+          "edgeType": "type"
+        },
+        {
+          "name": "MethodDefinition",
+          "edgeType": "type"
+        },
+        {
+          "name": "Identifier",
+          "edgeType": "type"
+        },
+        {
+          "name": "AssignmentExpression",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "function",
+      "name": "wrapWithAwait",
+      "exported": true,
+      "line": 13,
+      "endLine": 25,
+      "signature": "export function wrapWithAwait(node: Expression)",
+      "calls": [
+        {
+          "name": "endsWith",
+          "edgeType": "call"
+        },
+        {
+          "name": "forEach",
+          "edgeType": "call"
+        },
+        {
+          "name": "keys",
+          "edgeType": "call"
+        },
+        {
+          "name": "includes",
+          "edgeType": "call"
+        },
+        {
+          "name": "Expression",
+          "edgeType": "type"
+        },
+        {
+          "name": "AwaitExpression",
+          "edgeType": "type"
+        },
+        {
+          "name": "AnyNode",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "function",
+      "name": "asyncifyScope",
+      "exported": true,
+      "line": 17,
+      "endLine": 44,
+      "signature": "export function asyncifyScope(ancestors: AnyNode[], state: WalkerState)",
+      "calls": [
+        {
+          "name": "findLastIndex",
+          "edgeType": "call"
+        },
+        {
+          "name": "getFunctionIdentifier",
+          "edgeType": "call"
+        },
+        {
+          "name": "AnyNode",
+          "edgeType": "type"
+        },
+        {
+          "name": "WalkerState",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "function",
+      "name": "buildFixModifiedFunctionsOperation",
+      "exported": true,
+      "line": 21,
+      "endLine": 58,
+      "signature": "export function buildFixModifiedFunctionsOperation(functionIdentifiers: Set<string>): FullAncestorWalkerCallback<WalkerState>",
+      "calls": [
+        {
+          "name": "has",
+          "edgeType": "call"
+        },
+        {
+          "name": "wrapWithAwait",
+          "edgeType": "call"
+        },
+        {
+          "name": "asyncifyScope",
+          "edgeType": "call"
+        },
+        {
+          "name": "FullAncestorWalkerCallback",
+          "edgeType": "type"
+        },
+        {
+          "name": "WalkerState",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "variable_function",
+      "name": "checkReassignmentOfModifiedIdentifiers",
+      "exported": true,
+      "line": 25,
+      "endLine": 67,
+      "signature": "( node, { functionIdentifiers }, _ancestors, ) =>",
+      "calls": [
+        {
+          "name": "has",
+          "edgeType": "call"
+        },
+        {
+          "name": "Identifier",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "variable_function",
+      "name": "fixLivechatIsOnlineCalls",
+      "exported": true,
+      "line": 33,
+      "endLine": 63,
+      "signature": "(node, state, ancestors) =>",
+      "calls": [
+        {
+          "name": "wrapWithAwait",
+          "edgeType": "call"
+        },
+        {
+          "name": "asyncifyScope",
+          "edgeType": "call"
+        },
+        {
+          "name": "Identifier",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "variable_function",
+      "name": "fixRoomUsernamesCalls",
+      "exported": true,
+      "line": 37,
+      "endLine": 58,
+      "signature": "(node, state, ancestors) =>",
+      "calls": [
+        {
+          "name": "wrapWithAwait",
+          "edgeType": "call"
+        },
+        {
+          "name": "asyncifyScope",
+          "edgeType": "call"
+        },
+        {
+          "name": "Identifier",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "type",
+      "name": "WalkerState",
+      "line": 4,
+      "endLine": 7,
+      "signature": "export type WalkerState ="
+    }
+  ],
+  "imports": [
+    {
+      "module": "acorn",
+      "resolved": "external"
+    },
+    {
+      "module": "acorn-walk",
+      "resolved": "external"
+    }
+  ]
+}

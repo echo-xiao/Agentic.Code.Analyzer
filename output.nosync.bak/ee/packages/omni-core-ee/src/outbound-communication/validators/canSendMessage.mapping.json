@@ -1,0 +1,83 @@
+{
+  "sourcePath": "/Users/echoooooo/Desktop/code/Rocket.Chat/ee/packages/omni-core-ee/src/outbound-communication/validators/canSendMessage.ts",
+  "symbols": [
+    {
+      "type": "function",
+      "name": "validateAgentAssignPermissions",
+      "exported": true,
+      "line": 8,
+      "endLine": 18,
+      "signature": "export async function validateAgentAssignPermissions(userId: string, agentId: string): Promise<void>",
+      "calls": [
+        {
+          "name": "hasPermission",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "function",
+      "name": "canSendOutboundMessage",
+      "exported": true,
+      "line": 12,
+      "endLine": 43,
+      "signature": "export async function canSendOutboundMessage(userId: string, agentId?: string, departmentId?: string): Promise<void>",
+      "calls": [
+        {
+          "name": "hasPermission",
+          "edgeType": "call"
+        },
+        {
+          "name": "addQueryRestrictionsToDepartmentsModel",
+          "edgeType": "call"
+        },
+        {
+          "name": "findOne",
+          "edgeType": "call"
+        },
+        {
+          "name": "validateAgentAssignPermissions",
+          "edgeType": "call"
+        },
+        {
+          "name": "findOneByAgentIdAndDepartmentId",
+          "edgeType": "call"
+        },
+        {
+          "name": "findOneAgentById",
+          "edgeType": "call"
+        },
+        {
+          "name": "FilterOperators",
+          "edgeType": "type"
+        },
+        {
+          "name": "ILivechatDepartment",
+          "edgeType": "type"
+        }
+      ]
+    }
+  ],
+  "imports": [
+    {
+      "module": "@rocket.chat/core-services",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/core-typings",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/models",
+      "resolved": "external"
+    },
+    {
+      "module": "mongodb",
+      "resolved": "external"
+    },
+    {
+      "module": "../../units/addRoleBasedRestrictionsToDepartment",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/ee/packages/omni-core-ee/src/units/addRoleBasedRestrictionsToDepartment.ts"
+    }
+  ]
+}

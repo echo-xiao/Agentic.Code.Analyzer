@@ -1,0 +1,166 @@
+{
+  "sourcePath": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/app/livechat/client/views/app/business-hours/BusinessHours.ts",
+  "symbols": [
+    {
+      "type": "class",
+      "name": "BusinessHoursManager",
+      "exported": false,
+      "line": 6,
+      "endLine": 32,
+      "signature": "class BusinessHoursManager",
+      "calls": []
+    },
+    {
+      "type": "method",
+      "name": "setBusinessHourBehavior",
+      "exported": false,
+      "qualifiedName": "BusinessHoursManager.setBusinessHourBehavior",
+      "line": 13,
+      "endLine": 15,
+      "signature": "setBusinessHourBehavior(businessHour: IBusinessHourBehavior): void",
+      "containerClass": "BusinessHoursManager",
+      "calls": [
+        {
+          "name": "registerBusinessHourBehavior",
+          "edgeType": "call"
+        },
+        {
+          "name": "IBusinessHourBehavior",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "registerBusinessHourBehavior",
+      "exported": false,
+      "qualifiedName": "BusinessHoursManager.registerBusinessHourBehavior",
+      "line": 17,
+      "endLine": 19,
+      "signature": "registerBusinessHourBehavior(behavior: IBusinessHourBehavior): void",
+      "containerClass": "BusinessHoursManager",
+      "calls": [
+        {
+          "name": "IBusinessHourBehavior",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "getTemplate",
+      "exported": false,
+      "qualifiedName": "BusinessHoursManager.getTemplate",
+      "line": 21,
+      "endLine": 23,
+      "signature": "getTemplate(): string",
+      "containerClass": "BusinessHoursManager",
+      "calls": [
+        {
+          "name": "getView",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "showCustomTemplate",
+      "exported": false,
+      "qualifiedName": "BusinessHoursManager.showCustomTemplate",
+      "line": 25,
+      "endLine": 27,
+      "signature": "showCustomTemplate(businessHourData: ILivechatBusinessHour): boolean",
+      "containerClass": "BusinessHoursManager",
+      "calls": [
+        {
+          "name": "showCustomTemplate",
+          "edgeType": "call"
+        },
+        {
+          "name": "ILivechatBusinessHour",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "showBackButton",
+      "exported": false,
+      "qualifiedName": "BusinessHoursManager.showBackButton",
+      "line": 29,
+      "endLine": 31,
+      "signature": "showBackButton(): boolean",
+      "containerClass": "BusinessHoursManager",
+      "calls": [
+        {
+          "name": "showBackButton",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "constructor",
+      "exported": false,
+      "qualifiedName": "BusinessHoursManager.constructor",
+      "line": 9,
+      "endLine": 11,
+      "signature": "constructor(businessHour: IBusinessHourBehavior)",
+      "containerClass": "BusinessHoursManager",
+      "calls": [
+        {
+          "name": "setBusinessHourBehavior",
+          "edgeType": "call"
+        },
+        {
+          "name": "IBusinessHourBehavior",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "class_property",
+      "name": "behavior",
+      "exported": false,
+      "qualifiedName": "BusinessHoursManager.behavior",
+      "line": 7,
+      "endLine": 7,
+      "signature": "private behavior: IBusinessHourBehavior;",
+      "containerClass": "BusinessHoursManager",
+      "calls": [
+        {
+          "name": "IBusinessHourBehavior",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "variable",
+      "name": "businessHourManager",
+      "exported": true,
+      "line": 34,
+      "endLine": 34,
+      "signature": "businessHourManager = new BusinessHoursManager(new SingleBusinessHourBehavior())",
+      "calls": [
+        {
+          "name": "SingleBusinessHourBehavior",
+          "edgeType": "new"
+        }
+      ]
+    }
+  ],
+  "imports": [
+    {
+      "module": "@rocket.chat/core-typings",
+      "resolved": "external"
+    },
+    {
+      "module": "./IBusinessHourBehavior",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/app/livechat/client/views/app/business-hours/IBusinessHourBehavior.ts"
+    },
+    {
+      "module": "./Single",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/app/livechat/client/views/app/business-hours/Single.ts"
+    }
+  ]
+}

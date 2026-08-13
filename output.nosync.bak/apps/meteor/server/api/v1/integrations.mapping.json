@@ -1,0 +1,229 @@
+{
+  "sourcePath": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/server/api/v1/integrations.ts",
+  "symbols": [
+    {
+      "type": "module",
+      "name": "integrations",
+      "exported": false,
+      "line": 1,
+      "endLine": 366,
+      "signature": "integrations",
+      "calls": [
+        {
+          "name": "integrations.create",
+          "edgeType": "rest_route"
+        },
+        {
+          "name": "post",
+          "edgeType": "call"
+        },
+        {
+          "name": "success",
+          "edgeType": "call"
+        },
+        {
+          "name": "addOutgoingIntegration",
+          "edgeType": "call"
+        },
+        {
+          "name": "addIncomingIntegration",
+          "edgeType": "call"
+        },
+        {
+          "name": "failure",
+          "edgeType": "call"
+        },
+        {
+          "name": "INewOutgoingIntegration",
+          "edgeType": "type"
+        },
+        {
+          "name": "INewIncomingIntegration",
+          "edgeType": "type"
+        },
+        {
+          "name": "integrations.history",
+          "edgeType": "rest_route"
+        },
+        {
+          "name": "get",
+          "edgeType": "call"
+        },
+        {
+          "name": "compile",
+          "edgeType": "call"
+        },
+        {
+          "name": "trim",
+          "edgeType": "call"
+        },
+        {
+          "name": "getPaginationItems",
+          "edgeType": "call"
+        },
+        {
+          "name": "parseJsonQuery",
+          "edgeType": "call"
+        },
+        {
+          "name": "assign",
+          "edgeType": "call"
+        },
+        {
+          "name": "mountIntegrationHistoryQueryBasedOnPermissions",
+          "edgeType": "call"
+        },
+        {
+          "name": "findPaginated",
+          "edgeType": "call"
+        },
+        {
+          "name": "all",
+          "edgeType": "call"
+        },
+        {
+          "name": "toArray",
+          "edgeType": "call"
+        },
+        {
+          "name": "IIntegrationHistory",
+          "edgeType": "type"
+        },
+        {
+          "name": "integrations.list",
+          "edgeType": "rest_route"
+        },
+        {
+          "name": "escapeRegExp",
+          "edgeType": "call"
+        },
+        {
+          "name": "mountIntegrationQueryBasedOnPermissions",
+          "edgeType": "call"
+        },
+        {
+          "name": "IIntegration",
+          "edgeType": "type"
+        },
+        {
+          "name": "Filter",
+          "edgeType": "type"
+        },
+        {
+          "name": "integrations.remove",
+          "edgeType": "rest_route"
+        },
+        {
+          "name": "findOne",
+          "edgeType": "call"
+        },
+        {
+          "name": "deleteOutgoingIntegration",
+          "edgeType": "call"
+        },
+        {
+          "name": "check",
+          "edgeType": "call"
+        },
+        {
+          "name": "ObjectIncluding",
+          "edgeType": "call"
+        },
+        {
+          "name": "deleteIncomingIntegration",
+          "edgeType": "call"
+        },
+        {
+          "name": "integrations.get",
+          "edgeType": "rest_route"
+        },
+        {
+          "name": "findOneIntegration",
+          "edgeType": "call"
+        },
+        {
+          "name": "integrations.update",
+          "edgeType": "rest_route"
+        },
+        {
+          "name": "put",
+          "edgeType": "call"
+        },
+        {
+          "name": "updateOutgoingIntegration",
+          "edgeType": "call"
+        },
+        {
+          "name": "updateIncomingIntegration",
+          "edgeType": "call"
+        }
+      ]
+    }
+  ],
+  "imports": [
+    {
+      "module": "@rocket.chat/core-typings",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/models",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/rest-typings",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/string-helpers",
+      "resolved": "external"
+    },
+    {
+      "module": "meteor/check",
+      "resolved": "external"
+    },
+    {
+      "module": "mongodb",
+      "resolved": "external"
+    },
+    {
+      "module": "../../../app/integrations/server/lib/mountQueriesBasedOnPermission",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/app/integrations/server/lib/mountQueriesBasedOnPermission.ts"
+    },
+    {
+      "module": "../../../app/integrations/server/methods/incoming/addIncomingIntegration",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/app/integrations/server/methods/incoming/addIncomingIntegration.ts"
+    },
+    {
+      "module": "../../../app/integrations/server/methods/incoming/deleteIncomingIntegration",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/app/integrations/server/methods/incoming/deleteIncomingIntegration.ts"
+    },
+    {
+      "module": "../../../app/integrations/server/methods/incoming/updateIncomingIntegration",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/app/integrations/server/methods/incoming/updateIncomingIntegration.ts"
+    },
+    {
+      "module": "../../../app/integrations/server/methods/outgoing/addOutgoingIntegration",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/app/integrations/server/methods/outgoing/addOutgoingIntegration.ts"
+    },
+    {
+      "module": "../../../app/integrations/server/methods/outgoing/deleteOutgoingIntegration",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/app/integrations/server/methods/outgoing/deleteOutgoingIntegration.ts"
+    },
+    {
+      "module": "../../../app/integrations/server/methods/outgoing/updateOutgoingIntegration",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/app/integrations/server/methods/outgoing/updateOutgoingIntegration.ts"
+    },
+    {
+      "module": "../api",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/server/api/api.ts"
+    },
+    {
+      "module": "../lib/getPaginationItems",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/server/api/lib/getPaginationItems.ts"
+    },
+    {
+      "module": "../lib/integrations",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/server/api/lib/integrations.ts"
+    }
+  ]
+}

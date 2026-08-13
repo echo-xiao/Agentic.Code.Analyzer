@@ -1,0 +1,185 @@
+{
+  "sourcePath": "/Users/echoooooo/Desktop/code/Rocket.Chat/packages/models/src/models/OAuthApps.ts",
+  "symbols": [
+    {
+      "type": "class",
+      "name": "OAuthAppsRaw",
+      "exported": true,
+      "line": 7,
+      "endLine": 67,
+      "signature": "export class OAuthAppsRaw extends BaseRaw<IOAuthApps> implements IOAuthAppsModel",
+      "calls": [
+        {
+          "name": "BaseRaw",
+          "edgeType": "type"
+        },
+        {
+          "name": "IOAuthAppsModel",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "modelIndexes",
+      "exported": true,
+      "qualifiedName": "OAuthAppsRaw.modelIndexes",
+      "line": 12,
+      "endLine": 14,
+      "signature": "override modelIndexes(): IndexDescription[]",
+      "containerClass": "OAuthAppsRaw",
+      "calls": [
+        {
+          "name": "IndexDescription",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "findOneAuthAppByIdOrClientId",
+      "exported": true,
+      "qualifiedName": "OAuthAppsRaw.findOneAuthAppByIdOrClientId",
+      "line": 16,
+      "endLine": 28,
+      "signature": "findOneAuthAppByIdOrClientId( props: { clientId: string } | { appId: string } | { _id: string }, options?: FindOptions<IOAuthApps>, ): Promise<IOAuthApps | null>",
+      "containerClass": "OAuthAppsRaw",
+      "calls": [
+        {
+          "name": "findOne",
+          "edgeType": "call"
+        },
+        {
+          "name": "FindOptions",
+          "edgeType": "type"
+        },
+        {
+          "name": "IOAuthApps",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "findOneActiveByClientId",
+      "exported": true,
+      "qualifiedName": "OAuthAppsRaw.findOneActiveByClientId",
+      "line": 23,
+      "endLine": 34,
+      "signature": "findOneActiveByClientId(clientId: string, options?: FindOptions<IOAuthApps>): Promise<IOAuthApps | null>",
+      "containerClass": "OAuthAppsRaw",
+      "calls": [
+        {
+          "name": "resolve",
+          "edgeType": "call"
+        },
+        {
+          "name": "findOne",
+          "edgeType": "call"
+        },
+        {
+          "name": "FindOptions",
+          "edgeType": "type"
+        },
+        {
+          "name": "IOAuthApps",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "updateById",
+      "exported": true,
+      "qualifiedName": "OAuthAppsRaw.updateById",
+      "line": 27,
+      "endLine": 32,
+      "signature": "updateById( _id: IOAuthApps['_id'], data: Partial<Pick<IOAuthApps, 'name' | 'active' | 'redirectUri' | '_updatedBy'>>, ): Promise<IOAuthApps | null>",
+      "containerClass": "OAuthAppsRaw",
+      "calls": [
+        {
+          "name": "findOneAndUpdate",
+          "edgeType": "call"
+        },
+        {
+          "name": "IOAuthApps",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "findOneActiveByClientIdAndClientSecret",
+      "exported": true,
+      "qualifiedName": "OAuthAppsRaw.findOneActiveByClientIdAndClientSecret",
+      "line": 34,
+      "endLine": 50,
+      "signature": "findOneActiveByClientIdAndClientSecret( clientId: string, clientSecret: string, options?: FindOptions<IOAuthApps>, ): Promise<IOAuthApps | null>",
+      "containerClass": "OAuthAppsRaw",
+      "calls": [
+        {
+          "name": "resolve",
+          "edgeType": "call"
+        },
+        {
+          "name": "findOne",
+          "edgeType": "call"
+        },
+        {
+          "name": "FindOptions",
+          "edgeType": "type"
+        },
+        {
+          "name": "IOAuthApps",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "constructor",
+      "exported": true,
+      "qualifiedName": "OAuthAppsRaw.constructor",
+      "line": 8,
+      "endLine": 10,
+      "signature": "constructor(db: Db, trash?: Collection<RocketChatRecordDeleted<IOAuthApps>>)",
+      "containerClass": "OAuthAppsRaw",
+      "calls": [
+        {
+          "name": "Db",
+          "edgeType": "type"
+        },
+        {
+          "name": "Collection",
+          "edgeType": "type"
+        },
+        {
+          "name": "RocketChatRecordDeleted",
+          "edgeType": "type"
+        },
+        {
+          "name": "IOAuthApps",
+          "edgeType": "type"
+        }
+      ]
+    }
+  ],
+  "imports": [
+    {
+      "module": "@rocket.chat/core-typings",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/model-typings",
+      "resolved": "external"
+    },
+    {
+      "module": "mongodb",
+      "resolved": "external"
+    },
+    {
+      "module": "./BaseRaw",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/packages/models/src/models/BaseRaw.ts"
+    }
+  ]
+}

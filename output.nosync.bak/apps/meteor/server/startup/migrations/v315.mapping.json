@@ -1,0 +1,57 @@
+{
+  "sourcePath": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/server/startup/migrations/v315.ts",
+  "symbols": [
+    {
+      "type": "module",
+      "name": "v315",
+      "exported": false,
+      "line": 1,
+      "endLine": 28,
+      "signature": "v315",
+      "calls": [
+        {
+          "name": "addMigration",
+          "edgeType": "call"
+        },
+        {
+          "name": "upsertPermissions",
+          "edgeType": "call"
+        },
+        {
+          "name": "findOneById",
+          "edgeType": "call"
+        },
+        {
+          "name": "updateMany",
+          "edgeType": "call"
+        },
+        {
+          "name": "deleteOne",
+          "edgeType": "call"
+        },
+        {
+          "name": "IPermission",
+          "edgeType": "type"
+        }
+      ]
+    }
+  ],
+  "imports": [
+    {
+      "module": "@rocket.chat/core-typings",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/models",
+      "resolved": "external"
+    },
+    {
+      "module": "../../lib/authorization/upsertPermissions",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/server/lib/authorization/upsertPermissions.ts"
+    },
+    {
+      "module": "../../lib/migrations",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/server/lib/migrations.ts"
+    }
+  ]
+}

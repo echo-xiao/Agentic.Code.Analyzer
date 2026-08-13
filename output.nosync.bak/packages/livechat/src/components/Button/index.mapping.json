@@ -1,0 +1,102 @@
+{
+  "sourcePath": "/Users/echoooooo/Desktop/code/Rocket.Chat/packages/livechat/src/components/Button/index.tsx",
+  "symbols": [
+    {
+      "type": "variable_function",
+      "name": "handleMouseUp",
+      "exported": false,
+      "line": 9,
+      "endLine": 10,
+      "signature": "({ target }) =>",
+      "calls": [
+        {
+          "name": "blur",
+          "edgeType": "call"
+        },
+        {
+          "name": "HTMLButtonElement",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "variable_function",
+      "name": "Button",
+      "exported": true,
+      "line": 34,
+      "endLine": 99,
+      "signature": "({ submit, form, disabled, outline, nude, danger, secondary, stack, small, loading, badge, icon, onClick, className, style = {}, children, img, full, ...props }: ButtonProps) =>",
+      "calls": [
+        {
+          "name": "useTranslation",
+          "edgeType": "call"
+        },
+        {
+          "name": "isArray",
+          "edgeType": "call"
+        },
+        {
+          "name": "createClassName",
+          "edgeType": "call"
+        },
+        {
+          "name": "assign",
+          "edgeType": "call"
+        },
+        {
+          "name": "form",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "disabled",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "onClick",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "handleMouseUp",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "ButtonProps",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "type",
+      "name": "ButtonProps",
+      "line": 12,
+      "endLine": 32,
+      "signature": "export type ButtonProps ="
+    }
+  ],
+  "imports": [
+    {
+      "module": "preact",
+      "resolved": "external"
+    },
+    {
+      "module": "preact/compat",
+      "resolved": "external"
+    },
+    {
+      "module": "preact/src/jsx",
+      "resolved": "external"
+    },
+    {
+      "module": "react-i18next",
+      "resolved": "external"
+    },
+    {
+      "module": "./styles.scss",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/packages/livechat/src/components/Button/styles.scss"
+    },
+    {
+      "module": "../../helpers/createClassName",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/packages/livechat/src/helpers/createClassName.ts"
+    }
+  ]
+}

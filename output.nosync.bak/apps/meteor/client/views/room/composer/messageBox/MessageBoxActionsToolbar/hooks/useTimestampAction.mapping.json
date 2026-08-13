@@ -1,0 +1,88 @@
+{
+  "sourcePath": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/client/views/room/composer/messageBox/MessageBoxActionsToolbar/hooks/useTimestampAction.tsx",
+  "symbols": [
+    {
+      "type": "inner_function",
+      "name": "handleClick",
+      "exported": false,
+      "qualifiedName": "useTimestampAction.handleClick",
+      "line": 12,
+      "endLine": 18,
+      "signature": "() =>",
+      "calls": [
+        {
+          "name": "setModal",
+          "edgeType": "call"
+        },
+        {
+          "name": "TimestampPickerModal",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "composer",
+          "edgeType": "jsx"
+        }
+      ]
+    },
+    {
+      "type": "variable_function",
+      "name": "useTimestampAction",
+      "exported": true,
+      "line": 8,
+      "endLine": 26,
+      "signature": "(composer: ComposerAPI | undefined): GenericMenuItemProps | undefined =>",
+      "calls": [
+        {
+          "name": "useSetModal",
+          "edgeType": "call"
+        },
+        {
+          "name": "useTranslation",
+          "edgeType": "call"
+        },
+        {
+          "name": "setModal",
+          "edgeType": "call"
+        },
+        {
+          "name": "TimestampPickerModal",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "composer",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "ComposerAPI",
+          "edgeType": "type"
+        },
+        {
+          "name": "GenericMenuItemProps",
+          "edgeType": "type"
+        }
+      ]
+    }
+  ],
+  "imports": [
+    {
+      "module": "@rocket.chat/ui-client",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/ui-contexts",
+      "resolved": "external"
+    },
+    {
+      "module": "react-i18next",
+      "resolved": "external"
+    },
+    {
+      "module": "../../../../../../components/message/toolbar/items/actions/Timestamp/TimestampPicker/TimestampPickerModal",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/client/components/message/toolbar/items/actions/Timestamp/TimestampPicker/TimestampPickerModal.tsx"
+    },
+    {
+      "module": "../../../../../../lib/chats/ChatAPI",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/client/lib/chats/ChatAPI.ts"
+    }
+  ]
+}

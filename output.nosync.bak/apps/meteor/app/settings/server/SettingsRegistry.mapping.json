@@ -1,0 +1,429 @@
+{
+  "sourcePath": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/app/settings/server/SettingsRegistry.ts",
+  "symbols": [
+    {
+      "type": "module",
+      "name": "SettingsRegistry",
+      "exported": false,
+      "line": 1,
+      "endLine": 291,
+      "signature": "SettingsRegistry",
+      "calls": [
+        {
+          "name": "forEach",
+          "edgeType": "call"
+        },
+        {
+          "name": "split",
+          "edgeType": "call"
+        },
+        {
+          "name": "trim",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "class",
+      "name": "SettingsRegistry",
+      "exported": true,
+      "line": 86,
+      "endLine": 290,
+      "signature": "export class SettingsRegistry",
+      "calls": []
+    },
+    {
+      "type": "method",
+      "name": "add",
+      "exported": true,
+      "qualifiedName": "SettingsRegistry.add",
+      "line": 101,
+      "endLine": 204,
+      "signature": "async add(_id: string, value: SettingValue, { sorter, section, group, ...options }: ISettingAddOptions = {}): Promise<void>",
+      "containerClass": "SettingsRegistry",
+      "calls": [
+        {
+          "name": "getSettingDefaults",
+          "edgeType": "call"
+        },
+        {
+          "name": "isSettingEnterprise",
+          "edgeType": "call"
+        },
+        {
+          "name": "error",
+          "edgeType": "call"
+        },
+        {
+          "name": "overwriteSetting",
+          "edgeType": "call"
+        },
+        {
+          "name": "getSetting",
+          "edgeType": "call"
+        },
+        {
+          "name": "validateSetting",
+          "edgeType": "call"
+        },
+        {
+          "name": "compareSettings",
+          "edgeType": "call"
+        },
+        {
+          "name": "keys",
+          "edgeType": "call"
+        },
+        {
+          "name": "filter",
+          "edgeType": "call"
+        },
+        {
+          "name": "includes",
+          "edgeType": "call"
+        },
+        {
+          "name": "saveUpdatedSetting",
+          "edgeType": "call"
+        },
+        {
+          "name": "set",
+          "edgeType": "call"
+        },
+        {
+          "name": "overrideSetting",
+          "edgeType": "call"
+        },
+        {
+          "name": "insertOne",
+          "edgeType": "call"
+        },
+        {
+          "name": "SettingValue",
+          "edgeType": "type"
+        },
+        {
+          "name": "ISettingAddOptions",
+          "edgeType": "type"
+        },
+        {
+          "name": "ISetting",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "addGroup",
+      "exported": true,
+      "qualifiedName": "SettingsRegistry.addGroup",
+      "line": 111,
+      "endLine": 171,
+      "signature": "async addGroup(_id: string, groupOptions: ISettingAddGroupOptions | addGroupCallback = {}, cb?: addGroupCallback): Promise<void>",
+      "containerClass": "SettingsRegistry",
+      "calls": [
+        {
+          "name": "getGroupDefaults",
+          "edgeType": "call"
+        },
+        {
+          "name": "has",
+          "edgeType": "call"
+        },
+        {
+          "name": "set",
+          "edgeType": "call"
+        },
+        {
+          "name": "insertOne",
+          "edgeType": "call"
+        },
+        {
+          "name": "call",
+          "edgeType": "call"
+        },
+        {
+          "name": "addWith",
+          "edgeType": "call"
+        },
+        {
+          "name": "sectionSetWith",
+          "edgeType": "call"
+        },
+        {
+          "name": "sectionWith",
+          "edgeType": "call"
+        },
+        {
+          "name": "groupSetWith",
+          "edgeType": "call"
+        },
+        {
+          "name": "Date",
+          "edgeType": "new"
+        },
+        {
+          "name": "ISettingAddGroupOptions",
+          "edgeType": "type"
+        },
+        {
+          "name": "ISetting",
+          "edgeType": "type"
+        },
+        {
+          "name": "ISettingAddOptions",
+          "edgeType": "type"
+        },
+        {
+          "name": "SettingValue",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "saveUpdatedSetting",
+      "exported": true,
+      "qualifiedName": "SettingsRegistry.saveUpdatedSetting",
+      "line": 115,
+      "endLine": 130,
+      "signature": "private async saveUpdatedSetting( _id: string, settingProps: Omit<Optional<ISetting, 'value'>, '_id'>, removedKeys?: string[], ): Promise<void>",
+      "containerClass": "SettingsRegistry",
+      "calls": [
+        {
+          "name": "updateOne",
+          "edgeType": "call"
+        },
+        {
+          "name": "reduce",
+          "edgeType": "call"
+        },
+        {
+          "name": "Optional",
+          "edgeType": "type"
+        },
+        {
+          "name": "ISetting",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "constructor",
+      "exported": true,
+      "qualifiedName": "SettingsRegistry.constructor",
+      "line": 93,
+      "endLine": 96,
+      "signature": "constructor({ store, model }: { store: ICachedSettings; model: ISettingsModel })",
+      "containerClass": "SettingsRegistry",
+      "calls": [
+        {
+          "name": "ICachedSettings",
+          "edgeType": "type"
+        },
+        {
+          "name": "ISettingsModel",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "class_property",
+      "name": "model",
+      "exported": true,
+      "qualifiedName": "SettingsRegistry.model",
+      "line": 87,
+      "endLine": 87,
+      "signature": "private model: ISettingsModel;",
+      "containerClass": "SettingsRegistry",
+      "calls": [
+        {
+          "name": "ISettingsModel",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "class_property",
+      "name": "store",
+      "exported": true,
+      "qualifiedName": "SettingsRegistry.store",
+      "line": 89,
+      "endLine": 89,
+      "signature": "private store: ICachedSettings;",
+      "containerClass": "SettingsRegistry",
+      "calls": [
+        {
+          "name": "ICachedSettings",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "variable",
+      "name": "SettingsEvents",
+      "exported": true,
+      "line": 36,
+      "endLine": 40,
+      "signature": "SettingsEvents = new Emitter<",
+      "calls": [
+        {
+          "name": "ISetting",
+          "edgeType": "type"
+        },
+        {
+          "name": "SettingValue",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "variable_function",
+      "name": "getGroupDefaults",
+      "exported": false,
+      "line": 42,
+      "endLine": 52,
+      "signature": "(_id: string, options: ISettingAddGroupOptions = {}): ISettingGroup =>",
+      "calls": [
+        {
+          "name": "has",
+          "edgeType": "call"
+        },
+        {
+          "name": "stringify",
+          "edgeType": "call"
+        },
+        {
+          "name": "ISettingAddGroupOptions",
+          "edgeType": "type"
+        },
+        {
+          "name": "ISettingGroup",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "variable_function",
+      "name": "compareSettingsIgnoringKeys",
+      "exported": false,
+      "line": 69,
+      "endLine": 74,
+      "signature": "(keys: Array<keyof ISetting>) =>",
+      "calls": [
+        {
+          "name": "every",
+          "edgeType": "call"
+        },
+        {
+          "name": "filter",
+          "edgeType": "call"
+        },
+        {
+          "name": "keys",
+          "edgeType": "call"
+        },
+        {
+          "name": "includes",
+          "edgeType": "call"
+        },
+        {
+          "name": "isEqual",
+          "edgeType": "call"
+        },
+        {
+          "name": "Set",
+          "edgeType": "new"
+        },
+        {
+          "name": "ISetting",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "variable",
+      "name": "compareSettings",
+      "exported": true,
+      "line": 76,
+      "endLine": 84,
+      "signature": "compareSettings = compareSettingsIgnoringKeys([",
+      "calls": []
+    },
+    {
+      "type": "type",
+      "name": "ISettingAddGroupOptions",
+      "line": 54,
+      "endLine": 54,
+      "signature": "type ISettingAddGroupOptions = Partial<ISettingGroup>;"
+    },
+    {
+      "type": "type",
+      "name": "addSectionCallback",
+      "line": 56,
+      "endLine": 59,
+      "signature": "type addSectionCallback = (this:"
+    },
+    {
+      "type": "type",
+      "name": "addGroupCallback",
+      "line": 61,
+      "endLine": 65,
+      "signature": "type addGroupCallback = (this:"
+    },
+    {
+      "type": "type",
+      "name": "ISettingAddOptions",
+      "line": 67,
+      "endLine": 67,
+      "signature": "type ISettingAddOptions = Partial<ISetting>;"
+    }
+  ],
+  "imports": [
+    {
+      "module": "@rocket.chat/core-typings",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/core-typings",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/emitter",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/model-typings",
+      "resolved": "external"
+    },
+    {
+      "module": "underscore",
+      "resolved": "external"
+    },
+    {
+      "module": "./CachedSettings",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/app/settings/server/CachedSettings.ts"
+    },
+    {
+      "module": "./functions/getSettingDefaults",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/app/settings/server/functions/getSettingDefaults.ts"
+    },
+    {
+      "module": "./functions/overrideSetting",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/app/settings/server/functions/overrideSetting.ts"
+    },
+    {
+      "module": "./functions/overwriteSetting",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/app/settings/server/functions/overwriteSetting.ts"
+    },
+    {
+      "module": "./functions/validateSetting",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/app/settings/server/functions/validateSetting.ts"
+    },
+    {
+      "module": "../../../server/lib/logger/system",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/server/lib/logger/system.ts"
+    }
+  ]
+}

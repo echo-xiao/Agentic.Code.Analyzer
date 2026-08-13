@@ -1,0 +1,17 @@
+## File: apps/meteor/client/components/UserCard/UserCardRole.tsx
+
+```typescript
+import { Box, Tag } from '@rocket.chat/fuselage';
+import type { ReactNode } from 'react';
+
+export type UserCardRoleProps = { children: ReactNode };
+
+const UserCardRole = ({ children }: UserCardRoleProps) => (
+	<Box m={2} fontScale='c2'>
+		<Tag>{children}</Tag>
+	</Box>
+);
+
+export default UserCardRole;
+
+```

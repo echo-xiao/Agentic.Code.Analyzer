@@ -1,0 +1,195 @@
+{
+  "sourcePath": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/server/publications/room/index.ts",
+  "symbols": [
+    {
+      "type": "module",
+      "name": "index",
+      "exported": false,
+      "line": 1,
+      "endLine": 100,
+      "signature": "index",
+      "calls": [
+        {
+          "name": "rooms/get",
+          "edgeType": "call"
+        },
+        {
+          "name": "getRoomByTypeAndName",
+          "edgeType": "call"
+        },
+        {
+          "name": "methods",
+          "edgeType": "call"
+        },
+        {
+          "name": "roomsGetMethod",
+          "edgeType": "call"
+        },
+        {
+          "name": "userId",
+          "edgeType": "call"
+        },
+        {
+          "name": "userAsync",
+          "edgeType": "call"
+        },
+        {
+          "name": "get",
+          "edgeType": "call"
+        },
+        {
+          "name": "getRoomFind",
+          "edgeType": "call"
+        },
+        {
+          "name": "call",
+          "edgeType": "call"
+        },
+        {
+          "name": "findByTypeAndNameOrId",
+          "edgeType": "call"
+        },
+        {
+          "name": "canAccessRoomAsync",
+          "edgeType": "call"
+        },
+        {
+          "name": "hasPermissionAsync",
+          "edgeType": "call"
+        },
+        {
+          "name": "roomMap",
+          "edgeType": "call"
+        },
+        {
+          "name": "ServerMethods",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "variable_function",
+      "name": "roomMap",
+      "exported": false,
+      "line": 24,
+      "endLine": 26,
+      "signature": "(record: IRoom | IOmnichannelRoom) =>",
+      "calls": [
+        {
+          "name": "pick",
+          "edgeType": "call"
+        },
+        {
+          "name": "keys",
+          "edgeType": "call"
+        },
+        {
+          "name": "IRoom",
+          "edgeType": "type"
+        },
+        {
+          "name": "IOmnichannelRoom",
+          "edgeType": "type"
+        },
+        {
+          "name": "PublicRoom",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "variable_function",
+      "name": "roomsGetMethod",
+      "exported": true,
+      "line": 28,
+      "endLine": 46,
+      "signature": "async (userId?: string | null, updatedAt?: Date): Promise<IRoom[] | { update: IRoom[]; remove: IRoom[] }> =>",
+      "calls": [
+        {
+          "name": "get",
+          "edgeType": "call"
+        },
+        {
+          "name": "toArray",
+          "edgeType": "call"
+        },
+        {
+          "name": "findByDefaultAndTypes",
+          "edgeType": "call"
+        },
+        {
+          "name": "findBySubscriptionUserIdUpdatedAfter",
+          "edgeType": "call"
+        },
+        {
+          "name": "trashFindDeletedAfter",
+          "edgeType": "call"
+        },
+        {
+          "name": "findBySubscriptionUserId",
+          "edgeType": "call"
+        },
+        {
+          "name": "IRoom",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "type",
+      "name": "PublicRoomField",
+      "line": 13,
+      "endLine": 13,
+      "signature": "type PublicRoomField = keyof typeof roomFields;"
+    },
+    {
+      "type": "type",
+      "name": "PublicRoom",
+      "line": 14,
+      "endLine": 14,
+      "signature": "type PublicRoom = Pick<IRoom, PublicRoomField & keyof IRoom> & Pick<IOmnichannelRoom, PublicRoomField & keyof IOmnichannelRoom>;"
+    }
+  ],
+  "imports": [
+    {
+      "module": "@rocket.chat/core-typings",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/ddp-client",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/models",
+      "resolved": "external"
+    },
+    {
+      "module": "meteor/meteor",
+      "resolved": "external"
+    },
+    {
+      "module": "underscore",
+      "resolved": "external"
+    },
+    {
+      "module": "../../../app/authorization/server",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/app/authorization/server/index.ts"
+    },
+    {
+      "module": "../../../app/settings/server",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/app/settings/server/index.ts"
+    },
+    {
+      "module": "../../../lib/publishFields",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/lib/publishFields.ts"
+    },
+    {
+      "module": "../../lib/authorization/hasPermission",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/server/lib/authorization/hasPermission.ts"
+    },
+    {
+      "module": "../../lib/rooms/roomCoordinator",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/server/lib/rooms/roomCoordinator.ts"
+    }
+  ]
+}

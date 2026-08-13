@@ -1,0 +1,73 @@
+{
+  "sourcePath": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/app/statistics/server/lib/getContactVerificationStatistics.ts",
+  "symbols": [
+    {
+      "type": "function",
+      "name": "getContactVerificationStatistics",
+      "exported": true,
+      "line": 6,
+      "endLine": 41,
+      "signature": "export async function getContactVerificationStatistics(): Promise<IStats['contactVerification']>",
+      "calls": [
+        {
+          "name": "all",
+          "edgeType": "call"
+        },
+        {
+          "name": "estimatedDocumentCount",
+          "edgeType": "call"
+        },
+        {
+          "name": "countUnknown",
+          "edgeType": "call"
+        },
+        {
+          "name": "toArray",
+          "edgeType": "call"
+        },
+        {
+          "name": "getStatistics",
+          "edgeType": "call"
+        },
+        {
+          "name": "countBlocked",
+          "edgeType": "call"
+        },
+        {
+          "name": "countFullyBlocked",
+          "edgeType": "call"
+        },
+        {
+          "name": "countVerified",
+          "edgeType": "call"
+        },
+        {
+          "name": "countContactsWithoutChannels",
+          "edgeType": "call"
+        },
+        {
+          "name": "get",
+          "edgeType": "call"
+        },
+        {
+          "name": "IStats",
+          "edgeType": "type"
+        }
+      ]
+    }
+  ],
+  "imports": [
+    {
+      "module": "@rocket.chat/core-typings",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/models",
+      "resolved": "external"
+    },
+    {
+      "module": "../../../settings/server",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/app/settings/server/index.ts"
+    }
+  ]
+}

@@ -1,0 +1,254 @@
+{
+  "sourcePath": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/server/lib/messages/processWebhookMessage.ts",
+  "symbols": [
+    {
+      "type": "function",
+      "name": "processWebhookMessage",
+      "exported": true,
+      "line": 144,
+      "endLine": 204,
+      "signature": "export async function processWebhookMessage( messageObj: Payload & { /** * If true, the response will be sent separately for each channel. Messages will be sent to other channels even if one or more fails. If false or not provided, messages would not be sent to any channel if one or more fails. */ separateResponse?: boolean; }, user: RequiredField<IUser, 'username'>, defaultValues: DefaultValues =",
+      "calls": [
+        {
+          "name": "ensureArray",
+          "edgeType": "call"
+        },
+        {
+          "name": "isArray",
+          "edgeType": "call"
+        },
+        {
+          "name": "warn",
+          "edgeType": "call"
+        },
+        {
+          "name": "buildMessage",
+          "edgeType": "call"
+        },
+        {
+          "name": "slice",
+          "edgeType": "call"
+        },
+        {
+          "name": "getRoomWithOptionToJoin",
+          "edgeType": "call"
+        },
+        {
+          "name": "validateRoomMessagePermissionsAsync",
+          "edgeType": "call"
+        },
+        {
+          "name": "validateWebhookMessage",
+          "edgeType": "call"
+        },
+        {
+          "name": "push",
+          "edgeType": "call"
+        },
+        {
+          "name": "sendMessage",
+          "edgeType": "call"
+        },
+        {
+          "name": "removeEmpty",
+          "edgeType": "call"
+        },
+        {
+          "name": "Set",
+          "edgeType": "new"
+        },
+        {
+          "name": "Payload",
+          "edgeType": "type"
+        },
+        {
+          "name": "RequiredField",
+          "edgeType": "type"
+        },
+        {
+          "name": "IUser",
+          "edgeType": "type"
+        },
+        {
+          "name": "DefaultValues",
+          "edgeType": "type"
+        },
+        {
+          "name": "IRoom",
+          "edgeType": "type"
+        },
+        {
+          "name": "WebhookResponseItem",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "variable_function",
+      "name": "validateWebhookMessage",
+      "exported": true,
+      "line": 44,
+      "endLine": 51,
+      "signature": "async (message: Partial<IMessage>, room: IRoom | null, user: IUser) =>",
+      "calls": [
+        {
+          "name": "get",
+          "edgeType": "call"
+        },
+        {
+          "name": "validateMessage",
+          "edgeType": "call"
+        },
+        {
+          "name": "IMessage",
+          "edgeType": "type"
+        },
+        {
+          "name": "IRoom",
+          "edgeType": "type"
+        },
+        {
+          "name": "IUser",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "variable_function",
+      "name": "getRoomWithOptionToJoin",
+      "exported": false,
+      "line": 48,
+      "endLine": 90,
+      "signature": "async (channelType: string, channelValue: string, user: IUser) =>",
+      "calls": [
+        {
+          "name": "getRoomByNameOrIdWithOptionToJoin",
+          "edgeType": "call"
+        },
+        {
+          "name": "IUser",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "variable_function",
+      "name": "buildMessage",
+      "exported": false,
+      "line": 52,
+      "endLine": 85,
+      "signature": "(messageObj: Payload, defaultValues: DefaultValues) =>",
+      "calls": [
+        {
+          "name": "trim",
+          "edgeType": "call"
+        },
+        {
+          "name": "isEmpty",
+          "edgeType": "call"
+        },
+        {
+          "name": "isArray",
+          "edgeType": "call"
+        },
+        {
+          "name": "Payload",
+          "edgeType": "type"
+        },
+        {
+          "name": "DefaultValues",
+          "edgeType": "type"
+        },
+        {
+          "name": "IMessage",
+          "edgeType": "type"
+        },
+        {
+          "name": "MessageAttachment",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "type",
+      "name": "Payload",
+      "line": 14,
+      "endLine": 31,
+      "signature": "type Payload ="
+    },
+    {
+      "type": "type",
+      "name": "DefaultValues",
+      "line": 33,
+      "endLine": 38,
+      "signature": "type DefaultValues ="
+    },
+    {
+      "type": "type",
+      "name": "WebhookSuccessItem",
+      "line": 40,
+      "endLine": 40,
+      "signature": "export type WebhookSuccessItem ="
+    },
+    {
+      "type": "type",
+      "name": "WebhookFailureItem",
+      "line": 41,
+      "endLine": 41,
+      "signature": "export type WebhookFailureItem ="
+    },
+    {
+      "type": "type",
+      "name": "WebhookResponseItem",
+      "line": 42,
+      "endLine": 42,
+      "signature": "export type WebhookResponseItem = WebhookFailureItem | WebhookSuccessItem;"
+    }
+  ],
+  "imports": [
+    {
+      "module": "@rocket.chat/core-typings",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/tools",
+      "resolved": "external"
+    },
+    {
+      "module": "meteor/meteor",
+      "resolved": "external"
+    },
+    {
+      "module": "underscore",
+      "resolved": "external"
+    },
+    {
+      "module": "./sendMessage",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/server/lib/messages/sendMessage.ts"
+    },
+    {
+      "module": "../../../app/settings/server",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/app/settings/server/index.ts"
+    },
+    {
+      "module": "../../../lib/utils/arrayUtils",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/lib/utils/arrayUtils.ts"
+    },
+    {
+      "module": "../../../lib/utils/stringUtils",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/lib/utils/stringUtils.ts"
+    },
+    {
+      "module": "../authorization/canSendMessage",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/server/lib/authorization/canSendMessage.ts"
+    },
+    {
+      "module": "../logger/system",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/server/lib/logger/system.ts"
+    },
+    {
+      "module": "../rooms/getRoomByNameOrIdWithOptionToJoin",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/server/lib/rooms/getRoomByNameOrIdWithOptionToJoin.ts"
+    }
+  ]
+}

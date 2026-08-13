@@ -1,0 +1,202 @@
+{
+  "sourcePath": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/server/api/api.ts",
+  "symbols": [
+    {
+      "type": "module",
+      "name": "api",
+      "exported": false,
+      "line": 1,
+      "endLine": 127,
+      "signature": "api",
+      "calls": [
+        {
+          "name": "watch",
+          "edgeType": "call"
+        },
+        {
+          "name": "setLimitedCustomFields",
+          "edgeType": "call"
+        },
+        {
+          "name": "parse",
+          "edgeType": "call"
+        },
+        {
+          "name": "filter",
+          "edgeType": "call"
+        },
+        {
+          "name": "keys",
+          "edgeType": "call"
+        },
+        {
+          "name": "warn",
+          "edgeType": "call"
+        },
+        {
+          "name": "reloadRoutesToRefreshRateLimiter",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "variable",
+      "name": "defaultRateLimiterOptions",
+      "exported": true,
+      "line": 28,
+      "endLine": 31,
+      "signature": "defaultRateLimiterOptions: RateLimiterOptions =",
+      "calls": [
+        {
+          "name": "get",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "variable_function",
+      "name": "createApi",
+      "exported": false,
+      "line": 33,
+      "endLine": 40,
+      "signature": "function _createApi(options: { version?: string; useDefaultAuth?: true } = {}): APIClass",
+      "calls": [
+        {
+          "name": "APIClass",
+          "edgeType": "new"
+        },
+        {
+          "name": "APIClass",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "variable",
+      "name": "API",
+      "exported": true,
+      "line": 37,
+      "endLine": 72,
+      "signature": "API:",
+      "calls": [
+        {
+          "name": "createApi",
+          "edgeType": "call"
+        },
+        {
+          "name": "RocketChatAPIRouter",
+          "edgeType": "new"
+        }
+      ]
+    },
+    {
+      "type": "variable_function",
+      "name": "startRestAPI",
+      "exported": true,
+      "line": 97,
+      "endLine": 118,
+      "signature": "() =>",
+      "calls": [
+        {
+          "name": "use",
+          "edgeType": "call"
+        },
+        {
+          "name": "metricsMiddleware",
+          "edgeType": "call"
+        },
+        {
+          "name": "cors",
+          "edgeType": "call"
+        },
+        {
+          "name": "loggerMiddleware",
+          "edgeType": "call"
+        },
+        {
+          "name": "RegExp",
+          "edgeType": "new"
+        }
+      ]
+    },
+    {
+      "type": "type",
+      "name": "Prettify",
+      "line": 19,
+      "endLine": 21,
+      "signature": "export type Prettify<T> ="
+    },
+    {
+      "type": "type",
+      "name": "RateLimiterOptions",
+      "line": 23,
+      "endLine": 26,
+      "signature": "export type RateLimiterOptions ="
+    },
+    {
+      "type": "type",
+      "name": "ExtractApiClassEndpoints",
+      "line": 101,
+      "endLine": 102,
+      "signature": "export type ExtractApiClassEndpoints<TApi extends APIClass<any>> = TApi extends APIClass<any, infer TOperations> ? (TOperations extends"
+    }
+  ],
+  "imports": [
+    {
+      "module": "@rocket.chat/core-typings",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/http-router",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/logger",
+      "resolved": "external"
+    },
+    {
+      "module": "express",
+      "resolved": "external"
+    },
+    {
+      "module": "meteor/webapp",
+      "resolved": "external"
+    },
+    {
+      "module": "./ApiClass",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/server/api/ApiClass.ts"
+    },
+    {
+      "module": "./router",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/server/api/router.ts"
+    },
+    {
+      "module": "./v1/middlewares/cors",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/server/api/v1/middlewares/cors.ts"
+    },
+    {
+      "module": "./v1/middlewares/logger",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/server/api/v1/middlewares/logger.ts"
+    },
+    {
+      "module": "./v1/middlewares/metrics",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/server/api/v1/middlewares/metrics.ts"
+    },
+    {
+      "module": "./v1/middlewares/remoteAddressMiddleware",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/server/api/v1/middlewares/remoteAddressMiddleware.ts"
+    },
+    {
+      "module": "./v1/middlewares/tracer",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/server/api/v1/middlewares/tracer.ts"
+    },
+    {
+      "module": "../../app/metrics/server",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/app/metrics/server/index.ts"
+    },
+    {
+      "module": "../../app/settings/server",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/app/settings/server/index.ts"
+    }
+  ]
+}

@@ -1,0 +1,93 @@
+{
+  "sourcePath": "/Users/echoooooo/Desktop/code/Rocket.Chat/packages/gazzodown/src/blocks/TableBlock.tsx",
+  "symbols": [
+    {
+      "type": "variable_function",
+      "name": "toAlign",
+      "exported": false,
+      "line": 13,
+      "endLine": 24,
+      "signature": "(align: MessageParser.TableCell['align']): 'start' | 'center' | 'end' | undefined =>",
+      "calls": []
+    },
+    {
+      "type": "variable_function",
+      "name": "TableBlock",
+      "exported": false,
+      "line": 17,
+      "endLine": 40,
+      "signature": "({ header, rows }: TableBlockProps) =>",
+      "calls": [
+        {
+          "name": "map",
+          "edgeType": "call"
+        },
+        {
+          "name": "toAlign",
+          "edgeType": "call"
+        },
+        {
+          "name": "Table",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "TableHead",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "TableRow",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "TableCell",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "InlineElements",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "TableBody",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "index",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "rowIndex",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "cellIndex",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "TableBlockProps",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "type",
+      "name": "TableBlockProps",
+      "line": 6,
+      "endLine": 9,
+      "signature": "export type TableBlockProps ="
+    }
+  ],
+  "imports": [
+    {
+      "module": "@rocket.chat/fuselage",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/message-parser",
+      "resolved": "external"
+    },
+    {
+      "module": "../elements/InlineElements",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/packages/gazzodown/src/elements/InlineElements.tsx"
+    }
+  ]
+}

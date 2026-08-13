@@ -1,0 +1,1201 @@
+{
+  "sourcePath": "/Users/echoooooo/Desktop/code/Rocket.Chat/packages/ddp-client/src/livechat/LivechatClientImpl.ts",
+  "symbols": [
+    {
+      "type": "class",
+      "name": "LivechatClientImpl",
+      "exported": true,
+      "line": 42,
+      "endLine": 380,
+      "signature": "export class LivechatClientImpl extends DDPSDK implements LivechatStream, LivechatEndpoints",
+      "calls": [
+        {
+          "name": "DDPSDK",
+          "edgeType": "type"
+        },
+        {
+          "name": "LivechatStream",
+          "edgeType": "type"
+        },
+        {
+          "name": "LivechatEndpoints",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "subscribeRoom",
+      "exported": true,
+      "qualifiedName": "LivechatClientImpl.subscribeRoom",
+      "line": 53,
+      "endLine": 59,
+      "signature": "subscribeRoom(rid: string)",
+      "containerClass": "LivechatClientImpl",
+      "calls": [
+        {
+          "name": "all",
+          "edgeType": "call"
+        },
+        {
+          "name": "onRoomMessage",
+          "edgeType": "call"
+        },
+        {
+          "name": "message",
+          "edgeType": "event_emit"
+        },
+        {
+          "name": "onRoomUserActivity",
+          "edgeType": "call"
+        },
+        {
+          "name": "userActivity",
+          "edgeType": "event_emit"
+        },
+        {
+          "name": "onRoomDeleteMessage",
+          "edgeType": "call"
+        },
+        {
+          "name": "delete",
+          "edgeType": "event_emit"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "onMessage",
+      "exported": true,
+      "qualifiedName": "LivechatClientImpl.onMessage",
+      "line": 57,
+      "endLine": 59,
+      "signature": "onMessage(cb: (...args: StreamerCallbackArgs<'room-messages', string>) => void): () => void",
+      "containerClass": "LivechatClientImpl",
+      "calls": [
+        {
+          "name": "message",
+          "edgeType": "event_listen"
+        },
+        {
+          "name": "cb",
+          "edgeType": "call"
+        },
+        {
+          "name": "StreamerCallbackArgs",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "onUserActivity",
+      "exported": true,
+      "qualifiedName": "LivechatClientImpl.onUserActivity",
+      "line": 61,
+      "endLine": 63,
+      "signature": "onUserActivity(cb: (username: string, events: string[]) => void): () => void",
+      "containerClass": "LivechatClientImpl",
+      "calls": [
+        {
+          "name": "userActivity",
+          "edgeType": "event_listen"
+        },
+        {
+          "name": "cb",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "onRoomMessage",
+      "exported": true,
+      "qualifiedName": "LivechatClientImpl.onRoomMessage",
+      "line": 65,
+      "endLine": 67,
+      "signature": "onRoomMessage(rid: string, cb: (...args: StreamerCallbackArgs<'room-messages', string>) => void)",
+      "containerClass": "LivechatClientImpl",
+      "calls": [
+        {
+          "name": "room-messages",
+          "edgeType": "stream_sub"
+        },
+        {
+          "name": "stream",
+          "edgeType": "call"
+        },
+        {
+          "name": "StreamerCallbackArgs",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "onRoomUserActivity",
+      "exported": true,
+      "qualifiedName": "LivechatClientImpl.onRoomUserActivity",
+      "line": 69,
+      "endLine": 71,
+      "signature": "onRoomUserActivity(rid: string, cb: (...args: StreamerCallbackArgs<'notify-room', `${string}/user-activity`>) => void)",
+      "containerClass": "LivechatClientImpl",
+      "calls": [
+        {
+          "name": "notify-room",
+          "edgeType": "stream_sub"
+        },
+        {
+          "name": "stream",
+          "edgeType": "call"
+        },
+        {
+          "name": "StreamerCallbackArgs",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "onRoomDeleteMessage",
+      "exported": true,
+      "qualifiedName": "LivechatClientImpl.onRoomDeleteMessage",
+      "line": 73,
+      "endLine": 75,
+      "signature": "onRoomDeleteMessage(rid: string, cb: (...args: StreamerCallbackArgs<'notify-room', `${string}/deleteMessage`>) => void)",
+      "containerClass": "LivechatClientImpl",
+      "calls": [
+        {
+          "name": "notify-room",
+          "edgeType": "stream_sub"
+        },
+        {
+          "name": "stream",
+          "edgeType": "call"
+        },
+        {
+          "name": "StreamerCallbackArgs",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "onAgentChange",
+      "exported": true,
+      "qualifiedName": "LivechatClientImpl.onAgentChange",
+      "line": 77,
+      "endLine": 83,
+      "signature": "onAgentChange(rid: string, cb: (data: LivechatRoomEvents<'agentData'>) => void): () => void",
+      "containerClass": "LivechatClientImpl",
+      "calls": [
+        {
+          "name": "livechat-room",
+          "edgeType": "stream_sub"
+        },
+        {
+          "name": "stream",
+          "edgeType": "call"
+        },
+        {
+          "name": "cb",
+          "edgeType": "call"
+        },
+        {
+          "name": "LivechatRoomEvents",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "onAgentStatusChange",
+      "exported": true,
+      "qualifiedName": "LivechatClientImpl.onAgentStatusChange",
+      "line": 81,
+      "endLine": 87,
+      "signature": "onAgentStatusChange(rid: string, cb: (data: LivechatRoomEvents<'agentStatus'>) => void): () => void",
+      "containerClass": "LivechatClientImpl",
+      "calls": [
+        {
+          "name": "livechat-room",
+          "edgeType": "stream_sub"
+        },
+        {
+          "name": "stream",
+          "edgeType": "call"
+        },
+        {
+          "name": "cb",
+          "edgeType": "call"
+        },
+        {
+          "name": "LivechatRoomEvents",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "onQueuePositionChange",
+      "exported": true,
+      "qualifiedName": "LivechatClientImpl.onQueuePositionChange",
+      "line": 85,
+      "endLine": 91,
+      "signature": "onQueuePositionChange(rid: string, cb: (data: LivechatRoomEvents<'queueData' | 'agentData'>) => void): () => void",
+      "containerClass": "LivechatClientImpl",
+      "calls": [
+        {
+          "name": "livechat-room",
+          "edgeType": "stream_sub"
+        },
+        {
+          "name": "stream",
+          "edgeType": "call"
+        },
+        {
+          "name": "cb",
+          "edgeType": "call"
+        },
+        {
+          "name": "LivechatRoomEvents",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "onVisitorChange",
+      "exported": true,
+      "qualifiedName": "LivechatClientImpl.onVisitorChange",
+      "line": 89,
+      "endLine": 95,
+      "signature": "onVisitorChange(rid: string, cb: (data: LivechatRoomEvents<'visitorData'>) => void): () => void",
+      "containerClass": "LivechatClientImpl",
+      "calls": [
+        {
+          "name": "livechat-room",
+          "edgeType": "stream_sub"
+        },
+        {
+          "name": "stream",
+          "edgeType": "call"
+        },
+        {
+          "name": "cb",
+          "edgeType": "call"
+        },
+        {
+          "name": "LivechatRoomEvents",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "notifyVisitorActivity",
+      "exported": true,
+      "qualifiedName": "LivechatClientImpl.notifyVisitorActivity",
+      "line": 93,
+      "endLine": 95,
+      "signature": "notifyVisitorActivity(rid: string, username: string, activity: string[])",
+      "containerClass": "LivechatClientImpl",
+      "calls": [
+        {
+          "name": "stream-notify-room",
+          "edgeType": "call"
+        },
+        {
+          "name": "callAsync",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "notifyCallDeclined",
+      "exported": true,
+      "qualifiedName": "LivechatClientImpl.notifyCallDeclined",
+      "line": 97,
+      "endLine": 99,
+      "signature": "notifyCallDeclined(rid: string)",
+      "containerClass": "LivechatClientImpl",
+      "calls": [
+        {
+          "name": "stream-notify-room",
+          "edgeType": "call"
+        },
+        {
+          "name": "callAsync",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "config",
+      "exported": true,
+      "qualifiedName": "LivechatClientImpl.config",
+      "line": 103,
+      "endLine": 108,
+      "signature": "async config( params: OperationParams<'GET', '/v1/livechat/config'>, ): Promise<Serialized<OperationResult<'GET', '/v1/livechat/config'>['config']>>",
+      "containerClass": "LivechatClientImpl",
+      "calls": [
+        {
+          "name": "livechat/config",
+          "edgeType": "rest_call"
+        },
+        {
+          "name": "get",
+          "edgeType": "call"
+        },
+        {
+          "name": "OperationParams",
+          "edgeType": "type"
+        },
+        {
+          "name": "Serialized",
+          "edgeType": "type"
+        },
+        {
+          "name": "OperationResult",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "room",
+      "exported": true,
+      "qualifiedName": "LivechatClientImpl.room",
+      "line": 109,
+      "endLine": 128,
+      "signature": "async room(params: OperationParams<'GET', '/v1/livechat/room'>): Promise<Serialized<IOmnichannelRoom>>",
+      "containerClass": "LivechatClientImpl",
+      "calls": [
+        {
+          "name": "livechat/room",
+          "edgeType": "rest_call"
+        },
+        {
+          "name": "get",
+          "edgeType": "call"
+        },
+        {
+          "name": "isRoomObject",
+          "edgeType": "call"
+        },
+        {
+          "name": "OperationParams",
+          "edgeType": "type"
+        },
+        {
+          "name": "Serialized",
+          "edgeType": "type"
+        },
+        {
+          "name": "IOmnichannelRoom",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "visitor",
+      "exported": true,
+      "qualifiedName": "LivechatClientImpl.visitor",
+      "line": 113,
+      "endLine": 121,
+      "signature": "visitor( params: OperationParams<'GET', '/v1/livechat/visitor'>, ): Promise<Serialized<OperationResult<'GET', '/v1/livechat/visitor'>['visitor']>>",
+      "containerClass": "LivechatClientImpl",
+      "calls": [
+        {
+          "name": "get",
+          "edgeType": "call"
+        },
+        {
+          "name": "OperationParams",
+          "edgeType": "type"
+        },
+        {
+          "name": "Serialized",
+          "edgeType": "type"
+        },
+        {
+          "name": "OperationResult",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "nextAgent",
+      "exported": true,
+      "qualifiedName": "LivechatClientImpl.nextAgent",
+      "line": 119,
+      "endLine": 126,
+      "signature": "nextAgent( params: OperationParams<'GET', '/v1/livechat/agent.next/:token'>, ): Promise<Serialized<OperationResult<'GET', '/v1/livechat/agent.next/:token'>>>",
+      "containerClass": "LivechatClientImpl",
+      "calls": [
+        {
+          "name": "get",
+          "edgeType": "call"
+        },
+        {
+          "name": "OperationParams",
+          "edgeType": "type"
+        },
+        {
+          "name": "Serialized",
+          "edgeType": "type"
+        },
+        {
+          "name": "OperationResult",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "agent",
+      "exported": true,
+      "qualifiedName": "LivechatClientImpl.agent",
+      "line": 125,
+      "endLine": 131,
+      "signature": "async agent(rid: string): Promise<Serialized<OperationResult<'GET', '/v1/livechat/agent.info/:rid/:token'>['agent']>>",
+      "containerClass": "LivechatClientImpl",
+      "calls": [
+        {
+          "name": "get",
+          "edgeType": "call"
+        },
+        {
+          "name": "Serialized",
+          "edgeType": "type"
+        },
+        {
+          "name": "OperationResult",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "message",
+      "exported": true,
+      "qualifiedName": "LivechatClientImpl.message",
+      "line": 129,
+      "endLine": 137,
+      "signature": "message( id: string, params: OperationParams<'GET', '/v1/livechat/message/:_id'>, ): Promise<Serialized<OperationResult<'GET', '/v1/livechat/message/:_id'>>>",
+      "containerClass": "LivechatClientImpl",
+      "calls": [
+        {
+          "name": "get",
+          "edgeType": "call"
+        },
+        {
+          "name": "OperationParams",
+          "edgeType": "type"
+        },
+        {
+          "name": "Serialized",
+          "edgeType": "type"
+        },
+        {
+          "name": "OperationResult",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "loadMessages",
+      "exported": true,
+      "qualifiedName": "LivechatClientImpl.loadMessages",
+      "line": 136,
+      "endLine": 145,
+      "signature": "async loadMessages( rid: string, params: OperationParams<'GET', '/v1/livechat/messages.history/:rid'>, ): Promise<Serialized<OperationResult<'GET', '/v1/livechat/messages.history/:rid'>['messages']>>",
+      "containerClass": "LivechatClientImpl",
+      "calls": [
+        {
+          "name": "get",
+          "edgeType": "call"
+        },
+        {
+          "name": "OperationParams",
+          "edgeType": "type"
+        },
+        {
+          "name": "Serialized",
+          "edgeType": "type"
+        },
+        {
+          "name": "OperationResult",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "transferChat",
+      "exported": true,
+      "qualifiedName": "LivechatClientImpl.transferChat",
+      "line": 145,
+      "endLine": 156,
+      "signature": "transferChat({ rid, department, }: { rid: string; department: string; }): Promise<Serialized<OperationResult<'POST', '/v1/livechat/visitor/department.transfer'>>>",
+      "containerClass": "LivechatClientImpl",
+      "calls": [
+        {
+          "name": "livechat/visitor/department.transfer",
+          "edgeType": "rest_call"
+        },
+        {
+          "name": "post",
+          "edgeType": "call"
+        },
+        {
+          "name": "Serialized",
+          "edgeType": "type"
+        },
+        {
+          "name": "OperationResult",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "grantVisitor",
+      "exported": true,
+      "qualifiedName": "LivechatClientImpl.grantVisitor",
+      "line": 155,
+      "endLine": 161,
+      "signature": "async grantVisitor( guest: OperationParams<'POST', '/v1/livechat/visitor'>, ): Promise<Serialized<OperationResult<'POST', '/v1/livechat/visitor'>>>",
+      "containerClass": "LivechatClientImpl",
+      "calls": [
+        {
+          "name": "livechat/visitor",
+          "edgeType": "rest_call"
+        },
+        {
+          "name": "post",
+          "edgeType": "call"
+        },
+        {
+          "name": "OperationParams",
+          "edgeType": "type"
+        },
+        {
+          "name": "Serialized",
+          "edgeType": "type"
+        },
+        {
+          "name": "OperationResult",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "login",
+      "exported": true,
+      "qualifiedName": "LivechatClientImpl.login",
+      "line": 161,
+      "endLine": 163,
+      "signature": "login(guest: OperationParams<'POST', '/v1/livechat/visitor'>)",
+      "containerClass": "LivechatClientImpl",
+      "calls": [
+        {
+          "name": "grantVisitor",
+          "edgeType": "call"
+        },
+        {
+          "name": "OperationParams",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "closeChat",
+      "exported": true,
+      "qualifiedName": "LivechatClientImpl.closeChat",
+      "line": 165,
+      "endLine": 170,
+      "signature": "closeChat({ rid }: { rid: string }): Promise<Serialized<OperationResult<'POST', '/v1/livechat/room.close'>>>",
+      "containerClass": "LivechatClientImpl",
+      "calls": [
+        {
+          "name": "livechat/room.close",
+          "edgeType": "rest_call"
+        },
+        {
+          "name": "post",
+          "edgeType": "call"
+        },
+        {
+          "name": "Serialized",
+          "edgeType": "type"
+        },
+        {
+          "name": "OperationResult",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "chatSurvey",
+      "exported": true,
+      "qualifiedName": "LivechatClientImpl.chatSurvey",
+      "line": 169,
+      "endLine": 176,
+      "signature": "chatSurvey( params: OperationParams<'POST', '/v1/livechat/room.survey'>, ): Promise<Serialized<OperationResult<'POST', '/v1/livechat/room.survey'>>>",
+      "containerClass": "LivechatClientImpl",
+      "calls": [
+        {
+          "name": "livechat/room.survey",
+          "edgeType": "rest_call"
+        },
+        {
+          "name": "post",
+          "edgeType": "call"
+        },
+        {
+          "name": "OperationParams",
+          "edgeType": "type"
+        },
+        {
+          "name": "Serialized",
+          "edgeType": "type"
+        },
+        {
+          "name": "OperationResult",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "sendMessage",
+      "exported": true,
+      "qualifiedName": "LivechatClientImpl.sendMessage",
+      "line": 175,
+      "endLine": 182,
+      "signature": "sendMessage( params: OperationParams<'POST', '/v1/livechat/message'>, ): Promise<Serialized<OperationResult<'POST', '/v1/livechat/message'>>>",
+      "containerClass": "LivechatClientImpl",
+      "calls": [
+        {
+          "name": "livechat/message",
+          "edgeType": "rest_call"
+        },
+        {
+          "name": "post",
+          "edgeType": "call"
+        },
+        {
+          "name": "OperationParams",
+          "edgeType": "type"
+        },
+        {
+          "name": "Serialized",
+          "edgeType": "type"
+        },
+        {
+          "name": "OperationResult",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "sendOfflineMessage",
+      "exported": true,
+      "qualifiedName": "LivechatClientImpl.sendOfflineMessage",
+      "line": 181,
+      "endLine": 185,
+      "signature": "sendOfflineMessage( params: OperationParams<'POST', '/v1/livechat/offline.message'>, ): Promise<Serialized<OperationResult<'POST', '/v1/livechat/offline.message'>>>",
+      "containerClass": "LivechatClientImpl",
+      "calls": [
+        {
+          "name": "livechat/offline.message",
+          "edgeType": "rest_call"
+        },
+        {
+          "name": "post",
+          "edgeType": "call"
+        },
+        {
+          "name": "OperationParams",
+          "edgeType": "type"
+        },
+        {
+          "name": "Serialized",
+          "edgeType": "type"
+        },
+        {
+          "name": "OperationResult",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "sendVisitorNavigation",
+      "exported": true,
+      "qualifiedName": "LivechatClientImpl.sendVisitorNavigation",
+      "line": 187,
+      "endLine": 191,
+      "signature": "sendVisitorNavigation( params: OperationParams<'POST', '/v1/livechat/page.visited'>, ): Promise<Serialized<OperationResult<'POST', '/v1/livechat/page.visited'>>>",
+      "containerClass": "LivechatClientImpl",
+      "calls": [
+        {
+          "name": "livechat/page.visited",
+          "edgeType": "rest_call"
+        },
+        {
+          "name": "post",
+          "edgeType": "call"
+        },
+        {
+          "name": "OperationParams",
+          "edgeType": "type"
+        },
+        {
+          "name": "Serialized",
+          "edgeType": "type"
+        },
+        {
+          "name": "OperationResult",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "requestTranscript",
+      "exported": true,
+      "qualifiedName": "LivechatClientImpl.requestTranscript",
+      "line": 193,
+      "endLine": 198,
+      "signature": "requestTranscript(email: string, { rid }: { rid: string }): Promise<Serialized<OperationResult<'POST', '/v1/livechat/transcript'>>>",
+      "containerClass": "LivechatClientImpl",
+      "calls": [
+        {
+          "name": "livechat/transcript",
+          "edgeType": "rest_call"
+        },
+        {
+          "name": "post",
+          "edgeType": "call"
+        },
+        {
+          "name": "Serialized",
+          "edgeType": "type"
+        },
+        {
+          "name": "OperationResult",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "sendCustomField",
+      "exported": true,
+      "qualifiedName": "LivechatClientImpl.sendCustomField",
+      "line": 197,
+      "endLine": 201,
+      "signature": "sendCustomField( params: OperationParams<'POST', '/v1/livechat/custom.field'>, ): Promise<Serialized<OperationResult<'POST', '/v1/livechat/custom.field'>>>",
+      "containerClass": "LivechatClientImpl",
+      "calls": [
+        {
+          "name": "livechat/custom.field",
+          "edgeType": "rest_call"
+        },
+        {
+          "name": "post",
+          "edgeType": "call"
+        },
+        {
+          "name": "OperationParams",
+          "edgeType": "type"
+        },
+        {
+          "name": "Serialized",
+          "edgeType": "type"
+        },
+        {
+          "name": "OperationResult",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "sendCustomFields",
+      "exported": true,
+      "qualifiedName": "LivechatClientImpl.sendCustomFields",
+      "line": 203,
+      "endLine": 207,
+      "signature": "sendCustomFields( params: OperationParams<'POST', '/v1/livechat/custom.fields'>, ): Promise<Serialized<OperationResult<'POST', '/v1/livechat/custom.fields'>>>",
+      "containerClass": "LivechatClientImpl",
+      "calls": [
+        {
+          "name": "livechat/custom.fields",
+          "edgeType": "rest_call"
+        },
+        {
+          "name": "post",
+          "edgeType": "call"
+        },
+        {
+          "name": "OperationParams",
+          "edgeType": "type"
+        },
+        {
+          "name": "Serialized",
+          "edgeType": "type"
+        },
+        {
+          "name": "OperationResult",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "updateVisitorStatus",
+      "exported": true,
+      "qualifiedName": "LivechatClientImpl.updateVisitorStatus",
+      "line": 209,
+      "endLine": 215,
+      "signature": "async updateVisitorStatus(newStatus: string): Promise<Serialized<OperationResult<'POST', '/v1/livechat/visitor.status'>['status']>>",
+      "containerClass": "LivechatClientImpl",
+      "calls": [
+        {
+          "name": "livechat/visitor.status",
+          "edgeType": "rest_call"
+        },
+        {
+          "name": "post",
+          "edgeType": "call"
+        },
+        {
+          "name": "Serialized",
+          "edgeType": "type"
+        },
+        {
+          "name": "OperationResult",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "uploadFile",
+      "exported": true,
+      "qualifiedName": "LivechatClientImpl.uploadFile",
+      "line": 213,
+      "endLine": 237,
+      "signature": "uploadFile(rid: string, file: File): Promise<ProgressEvent<EventTarget>>",
+      "containerClass": "LivechatClientImpl",
+      "calls": [
+        {
+          "name": "reject",
+          "edgeType": "call"
+        },
+        {
+          "name": "upload",
+          "edgeType": "call"
+        },
+        {
+          "name": "File",
+          "edgeType": "type"
+        },
+        {
+          "name": "ProgressEvent",
+          "edgeType": "type"
+        },
+        {
+          "name": "EventTarget",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "sendUiInteraction",
+      "exported": true,
+      "qualifiedName": "LivechatClientImpl.sendUiInteraction",
+      "line": 217,
+      "endLine": 225,
+      "signature": "async sendUiInteraction( payload: OperationParams<'POST', '/apps/ui.interaction/:id'>, appId: string, ): Promise<Serialized<OperationResult<'POST', '/apps/ui.interaction/:id'>>>",
+      "containerClass": "LivechatClientImpl",
+      "calls": [
+        {
+          "name": "post",
+          "edgeType": "call"
+        },
+        {
+          "name": "OperationParams",
+          "edgeType": "type"
+        },
+        {
+          "name": "Serialized",
+          "edgeType": "type"
+        },
+        {
+          "name": "OperationResult",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "deleteMessage",
+      "exported": true,
+      "qualifiedName": "LivechatClientImpl.deleteMessage",
+      "line": 226,
+      "endLine": 231,
+      "signature": "deleteMessage(id: string, { rid }: { rid: string }): Promise<Serialized<OperationResult<'DELETE', '/v1/livechat/message/:_id'>>>",
+      "containerClass": "LivechatClientImpl",
+      "calls": [
+        {
+          "name": "delete",
+          "edgeType": "call"
+        },
+        {
+          "name": "Serialized",
+          "edgeType": "type"
+        },
+        {
+          "name": "OperationResult",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "deleteVisitor",
+      "exported": true,
+      "qualifiedName": "LivechatClientImpl.deleteVisitor",
+      "line": 230,
+      "endLine": 235,
+      "signature": "deleteVisitor(): Promise<Serialized<OperationResult<'DELETE', '/v1/livechat/visitor'>>>",
+      "containerClass": "LivechatClientImpl",
+      "calls": [
+        {
+          "name": "delete",
+          "edgeType": "call"
+        },
+        {
+          "name": "Serialized",
+          "edgeType": "type"
+        },
+        {
+          "name": "OperationResult",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "editMessage",
+      "exported": true,
+      "qualifiedName": "LivechatClientImpl.editMessage",
+      "line": 236,
+      "endLine": 241,
+      "signature": "editMessage( id: string, params: OperationParams<'PUT', '/v1/livechat/message/:_id'>, ): Promise<Serialized<OperationResult<'PUT', '/v1/livechat/message/:_id'>>>",
+      "containerClass": "LivechatClientImpl",
+      "calls": [
+        {
+          "name": "put",
+          "edgeType": "call"
+        },
+        {
+          "name": "OperationParams",
+          "edgeType": "type"
+        },
+        {
+          "name": "Serialized",
+          "edgeType": "type"
+        },
+        {
+          "name": "OperationResult",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "unsubscribeAll",
+      "exported": true,
+      "qualifiedName": "LivechatClientImpl.unsubscribeAll",
+      "line": 243,
+      "endLine": 246,
+      "signature": "unsubscribeAll(): Promise<unknown>",
+      "containerClass": "LivechatClientImpl",
+      "calls": [
+        {
+          "name": "from",
+          "edgeType": "call"
+        },
+        {
+          "name": "keys",
+          "edgeType": "call"
+        },
+        {
+          "name": "all",
+          "edgeType": "call"
+        },
+        {
+          "name": "map",
+          "edgeType": "call"
+        },
+        {
+          "name": "unsubscribe",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "create",
+      "exported": true,
+      "qualifiedName": "LivechatClientImpl.create",
+      "line": 247,
+      "endLine": 270,
+      "signature": "static override create(url: string, retryOptions = { retryCount: 3, retryTime: 10000 }): LivechatClientImpl",
+      "containerClass": "LivechatClientImpl",
+      "calls": [
+        {
+          "name": "create",
+          "edgeType": "call"
+        },
+        {
+          "name": "replace",
+          "edgeType": "call"
+        },
+        {
+          "name": "connected",
+          "edgeType": "event_listen"
+        },
+        {
+          "name": "entries",
+          "edgeType": "call"
+        },
+        {
+          "name": "subscribeWithId",
+          "edgeType": "call"
+        },
+        {
+          "name": "DDPDispatcher",
+          "edgeType": "new"
+        },
+        {
+          "name": "ClientStreamImpl",
+          "edgeType": "new"
+        },
+        {
+          "name": "AccountImpl",
+          "edgeType": "new"
+        },
+        {
+          "name": "RestClient",
+          "edgeType": "new"
+        },
+        {
+          "name": "LivechatClientImpl",
+          "edgeType": "new"
+        },
+        {
+          "name": "LivechatClientImpl",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "class_property",
+      "name": "ev",
+      "exported": true,
+      "qualifiedName": "LivechatClientImpl.ev",
+      "line": 47,
+      "endLine": 51,
+      "signature": "private ev = new Emitter<",
+      "containerClass": "LivechatClientImpl",
+      "calls": [
+        {
+          "name": "Emitter",
+          "edgeType": "new"
+        },
+        {
+          "name": "StreamerCallbackArgs",
+          "edgeType": "type"
+        }
+      ]
+    }
+  ],
+  "imports": [
+    {
+      "module": "@rocket.chat/api-client",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/core-typings",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/emitter",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/rest-typings",
+      "resolved": "external"
+    },
+    {
+      "module": "../ClientStream",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/packages/ddp-client/src/ClientStream.ts"
+    },
+    {
+      "module": "../Connection",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/packages/ddp-client/src/Connection.ts"
+    },
+    {
+      "module": "../DDPDispatcher",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/packages/ddp-client/src/DDPDispatcher.ts"
+    },
+    {
+      "module": "../DDPSDK",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/packages/ddp-client/src/DDPSDK.ts"
+    },
+    {
+      "module": "../TimeoutControl",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/packages/ddp-client/src/TimeoutControl.ts"
+    },
+    {
+      "module": "../types/Account",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/packages/ddp-client/src/types/Account.ts"
+    },
+    {
+      "module": "../types/ClientStream",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/packages/ddp-client/src/types/ClientStream.ts"
+    },
+    {
+      "module": "../types/DDPClient",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/packages/ddp-client/src/types/DDPClient.ts"
+    },
+    {
+      "module": "../types/methods",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/packages/ddp-client/src/types/methods.ts"
+    },
+    {
+      "module": "../types/streams",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/packages/ddp-client/src/types/streams.ts"
+    },
+    {
+      "module": "./types/LivechatSDK",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/packages/ddp-client/src/livechat/types/LivechatSDK.ts"
+    }
+  ]
+}

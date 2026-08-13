@@ -1,0 +1,71 @@
+{
+  "sourcePath": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/server/lib/logger/logPayloads.ts",
+  "symbols": [
+    {
+      "type": "variable",
+      "name": "getMethodArgs",
+      "exported": true,
+      "line": 7,
+      "endLine": 24,
+      "signature": "getMethodArgs = LOG_METHOD_PAYLOAD === 'false' && LOG_REST_METHOD_PAYLOADS === 'false' ? (): null => null : (method: string, args: any[]):",
+      "calls": [
+        {
+          "name": "slice",
+          "edgeType": "call"
+        },
+        {
+          "name": "map",
+          "edgeType": "call"
+        },
+        {
+          "name": "omit",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "variable",
+      "name": "getRestPayload",
+      "exported": true,
+      "line": 26,
+      "endLine": 41,
+      "signature": "getRestPayload = LOG_REST_PAYLOAD === 'false' && LOG_REST_METHOD_PAYLOADS === 'false' ? (): Promise<null> => Promise.resolve(null) : async (request: HonoRequest): Promise<",
+      "calls": [
+        {
+          "name": "resolve",
+          "edgeType": "call"
+        },
+        {
+          "name": "includes",
+          "edgeType": "call"
+        },
+        {
+          "name": "header",
+          "edgeType": "call"
+        },
+        {
+          "name": "json",
+          "edgeType": "call"
+        },
+        {
+          "name": "clone",
+          "edgeType": "call"
+        },
+        {
+          "name": "HonoRequest",
+          "edgeType": "type"
+        }
+      ]
+    }
+  ],
+  "imports": [
+    {
+      "module": "hono",
+      "resolved": "external"
+    },
+    {
+      "module": "../../../lib/utils/omit",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/lib/utils/omit.ts"
+    }
+  ]
+}

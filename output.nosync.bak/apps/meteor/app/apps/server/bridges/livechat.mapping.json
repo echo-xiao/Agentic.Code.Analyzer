@@ -1,0 +1,1101 @@
+{
+  "sourcePath": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/app/apps/server/bridges/livechat.ts",
+  "symbols": [
+    {
+      "type": "class",
+      "name": "AppLivechatBridge",
+      "exported": true,
+      "line": 38,
+      "endLine": 416,
+      "signature": "export class AppLivechatBridge extends LivechatBridge",
+      "calls": [
+        {
+          "name": "LivechatBridge",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "isOnline",
+      "exported": true,
+      "qualifiedName": "AppLivechatBridge.isOnline",
+      "line": 43,
+      "endLine": 47,
+      "signature": "protected isOnline(departmentId?: string): boolean",
+      "containerClass": "AppLivechatBridge",
+      "calls": [
+        {
+          "name": "deasyncPromise",
+          "edgeType": "call"
+        },
+        {
+          "name": "online",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "isOnlineAsync",
+      "exported": true,
+      "qualifiedName": "AppLivechatBridge.isOnlineAsync",
+      "line": 47,
+      "endLine": 49,
+      "signature": "protected async isOnlineAsync(departmentId?: string): Promise<boolean>",
+      "containerClass": "AppLivechatBridge",
+      "calls": [
+        {
+          "name": "online",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "createMessage",
+      "exported": true,
+      "qualifiedName": "AppLivechatBridge.createMessage",
+      "line": 51,
+      "endLine": 77,
+      "signature": "protected async createMessage(message: IAppsLivechatMessage, appId: string): Promise<string>",
+      "containerClass": "AppLivechatBridge",
+      "calls": [
+        {
+          "name": "debugLog",
+          "edgeType": "call"
+        },
+        {
+          "name": "convertAppVisitor",
+          "edgeType": "call"
+        },
+        {
+          "name": "get",
+          "edgeType": "call"
+        },
+        {
+          "name": "getConverters",
+          "edgeType": "call"
+        },
+        {
+          "name": "convertAppMessage",
+          "edgeType": "call"
+        },
+        {
+          "name": "sendMessage",
+          "edgeType": "call"
+        },
+        {
+          "name": "getNameSlug",
+          "edgeType": "call"
+        },
+        {
+          "name": "getOneById",
+          "edgeType": "call"
+        },
+        {
+          "name": "getManager",
+          "edgeType": "call"
+        },
+        {
+          "name": "IAppsLivechatMessage",
+          "edgeType": "type"
+        },
+        {
+          "name": "ILivechatMessage",
+          "edgeType": "type"
+        },
+        {
+          "name": "ILivechatVisitor",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "getMessageById",
+      "exported": true,
+      "qualifiedName": "AppLivechatBridge.getMessageById",
+      "line": 55,
+      "endLine": 62,
+      "signature": "protected async getMessageById(messageId: string, appId: string): Promise<IAppsLivechatMessage>",
+      "containerClass": "AppLivechatBridge",
+      "calls": [
+        {
+          "name": "debugLog",
+          "edgeType": "call"
+        },
+        {
+          "name": "convertById",
+          "edgeType": "call"
+        },
+        {
+          "name": "get",
+          "edgeType": "call"
+        },
+        {
+          "name": "getConverters",
+          "edgeType": "call"
+        },
+        {
+          "name": "IAppsLivechatMessage",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "updateMessage",
+      "exported": true,
+      "qualifiedName": "AppLivechatBridge.updateMessage",
+      "line": 59,
+      "endLine": 69,
+      "signature": "protected async updateMessage(message: IAppsLivechatMessage, appId: string): Promise<void>",
+      "containerClass": "AppLivechatBridge",
+      "calls": [
+        {
+          "name": "debugLog",
+          "edgeType": "call"
+        },
+        {
+          "name": "convertAppMessage",
+          "edgeType": "call"
+        },
+        {
+          "name": "get",
+          "edgeType": "call"
+        },
+        {
+          "name": "getConverters",
+          "edgeType": "call"
+        },
+        {
+          "name": "updateMessage",
+          "edgeType": "call"
+        },
+        {
+          "name": "IAppsLivechatMessage",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "createRoom",
+      "exported": true,
+      "qualifiedName": "AppLivechatBridge.createRoom",
+      "line": 63,
+      "endLine": 101,
+      "signature": "protected async createRoom( visitor: IVisitor, agent: IUser, appId: string, { source, customFields }: IExtraRoomParams = {}, ): Promise<ILivechatRoom>",
+      "containerClass": "AppLivechatBridge",
+      "calls": [
+        {
+          "name": "debugLog",
+          "edgeType": "call"
+        },
+        {
+          "name": "getAgentInfo",
+          "edgeType": "call"
+        },
+        {
+          "name": "get",
+          "edgeType": "call"
+        },
+        {
+          "name": "createRoom",
+          "edgeType": "call"
+        },
+        {
+          "name": "convertAppVisitor",
+          "edgeType": "call"
+        },
+        {
+          "name": "getConverters",
+          "edgeType": "call"
+        },
+        {
+          "name": "getName",
+          "edgeType": "call"
+        },
+        {
+          "name": "getOneById",
+          "edgeType": "call"
+        },
+        {
+          "name": "getManager",
+          "edgeType": "call"
+        },
+        {
+          "name": "convertRoom",
+          "edgeType": "call"
+        },
+        {
+          "name": "IVisitor",
+          "edgeType": "type"
+        },
+        {
+          "name": "IUser",
+          "edgeType": "type"
+        },
+        {
+          "name": "IExtraRoomParams",
+          "edgeType": "type"
+        },
+        {
+          "name": "ILivechatRoom",
+          "edgeType": "type"
+        },
+        {
+          "name": "SelectedAgent",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "closeRoom",
+      "exported": true,
+      "qualifiedName": "AppLivechatBridge.closeRoom",
+      "line": 72,
+      "endLine": 88,
+      "signature": "protected async closeRoom(room: ILivechatRoom, comment: string, closer: IUser | undefined, appId: string): Promise<boolean>",
+      "containerClass": "AppLivechatBridge",
+      "calls": [
+        {
+          "name": "debugLog",
+          "edgeType": "call"
+        },
+        {
+          "name": "convertToRocketChat",
+          "edgeType": "call"
+        },
+        {
+          "name": "get",
+          "edgeType": "call"
+        },
+        {
+          "name": "getConverters",
+          "edgeType": "call"
+        },
+        {
+          "name": "convertAppVisitor",
+          "edgeType": "call"
+        },
+        {
+          "name": "convertAppRoom",
+          "edgeType": "call"
+        },
+        {
+          "name": "closeRoom",
+          "edgeType": "call"
+        },
+        {
+          "name": "ILivechatRoom",
+          "edgeType": "type"
+        },
+        {
+          "name": "IUser",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "findOpenRoomsByAgentId",
+      "exported": true,
+      "qualifiedName": "AppLivechatBridge.findOpenRoomsByAgentId",
+      "line": 76,
+      "endLine": 85,
+      "signature": "protected async findOpenRoomsByAgentId(agentId: string, appId: string): Promise<ILivechatRoom[]>",
+      "containerClass": "AppLivechatBridge",
+      "calls": [
+        {
+          "name": "debugLog",
+          "edgeType": "call"
+        },
+        {
+          "name": "toArray",
+          "edgeType": "call"
+        },
+        {
+          "name": "findOpenByAgent",
+          "edgeType": "call"
+        },
+        {
+          "name": "all",
+          "edgeType": "call"
+        },
+        {
+          "name": "map",
+          "edgeType": "call"
+        },
+        {
+          "name": "convertRoom",
+          "edgeType": "call"
+        },
+        {
+          "name": "get",
+          "edgeType": "call"
+        },
+        {
+          "name": "getConverters",
+          "edgeType": "call"
+        },
+        {
+          "name": "ILivechatRoom",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "countOpenRoomsByAgentId",
+      "exported": true,
+      "qualifiedName": "AppLivechatBridge.countOpenRoomsByAgentId",
+      "line": 80,
+      "endLine": 88,
+      "signature": "protected async countOpenRoomsByAgentId(agentId: string, appId: string): Promise<number>",
+      "containerClass": "AppLivechatBridge",
+      "calls": [
+        {
+          "name": "debugLog",
+          "edgeType": "call"
+        },
+        {
+          "name": "countOpenByAgent",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "findRooms",
+      "exported": true,
+      "qualifiedName": "AppLivechatBridge.findRooms",
+      "line": 84,
+      "endLine": 103,
+      "signature": "protected async findRooms(visitor: IVisitor, departmentId: string | null, appId: string): Promise<Array<ILivechatRoom>>",
+      "containerClass": "AppLivechatBridge",
+      "calls": [
+        {
+          "name": "debugLog",
+          "edgeType": "call"
+        },
+        {
+          "name": "livechat.applyRoomRestrictions",
+          "edgeType": "event_emit"
+        },
+        {
+          "name": "toArray",
+          "edgeType": "call"
+        },
+        {
+          "name": "findOpenByVisitorTokenAndDepartmentId",
+          "edgeType": "call"
+        },
+        {
+          "name": "findOpenByVisitorToken",
+          "edgeType": "call"
+        },
+        {
+          "name": "all",
+          "edgeType": "call"
+        },
+        {
+          "name": "map",
+          "edgeType": "call"
+        },
+        {
+          "name": "convertRoom",
+          "edgeType": "call"
+        },
+        {
+          "name": "get",
+          "edgeType": "call"
+        },
+        {
+          "name": "getConverters",
+          "edgeType": "call"
+        },
+        {
+          "name": "IVisitor",
+          "edgeType": "type"
+        },
+        {
+          "name": "ILivechatRoom",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "createVisitor",
+      "exported": true,
+      "qualifiedName": "AppLivechatBridge.createVisitor",
+      "line": 92,
+      "endLine": 116,
+      "signature": "protected async createVisitor(visitor: IVisitor, appId: string): Promise<string>",
+      "containerClass": "AppLivechatBridge",
+      "calls": [
+        {
+          "name": "debugLog",
+          "edgeType": "call"
+        },
+        {
+          "name": "registerGuest",
+          "edgeType": "call"
+        },
+        {
+          "name": "get",
+          "edgeType": "call"
+        },
+        {
+          "name": "IVisitor",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "createAndReturnVisitor",
+      "exported": true,
+      "qualifiedName": "AppLivechatBridge.createAndReturnVisitor",
+      "line": 96,
+      "endLine": 120,
+      "signature": "protected async createAndReturnVisitor(visitor: IVisitor, appId: string): Promise<IVisitor | undefined>",
+      "containerClass": "AppLivechatBridge",
+      "calls": [
+        {
+          "name": "debugLog",
+          "edgeType": "call"
+        },
+        {
+          "name": "map",
+          "edgeType": "call"
+        },
+        {
+          "name": "registerGuest",
+          "edgeType": "call"
+        },
+        {
+          "name": "get",
+          "edgeType": "call"
+        },
+        {
+          "name": "convertVisitor",
+          "edgeType": "call"
+        },
+        {
+          "name": "getConverters",
+          "edgeType": "call"
+        },
+        {
+          "name": "IVisitor",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "transferVisitor",
+      "exported": true,
+      "qualifiedName": "AppLivechatBridge.transferVisitor",
+      "line": 100,
+      "endLine": 142,
+      "signature": "protected async transferVisitor(visitor: IVisitor, transferData: ILivechatTransferData, appId: string): Promise<boolean>",
+      "containerClass": "AppLivechatBridge",
+      "calls": [
+        {
+          "name": "debugLog",
+          "edgeType": "call"
+        },
+        {
+          "name": "findOneByAppId",
+          "edgeType": "call"
+        },
+        {
+          "name": "findOneAgentById",
+          "edgeType": "call"
+        },
+        {
+          "name": "transfer",
+          "edgeType": "call"
+        },
+        {
+          "name": "convertAppRoom",
+          "edgeType": "call"
+        },
+        {
+          "name": "get",
+          "edgeType": "call"
+        },
+        {
+          "name": "getConverters",
+          "edgeType": "call"
+        },
+        {
+          "name": "convertAppVisitor",
+          "edgeType": "call"
+        },
+        {
+          "name": "IVisitor",
+          "edgeType": "type"
+        },
+        {
+          "name": "ILivechatTransferData",
+          "edgeType": "type"
+        },
+        {
+          "name": "IOmnichannelRoom",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "findVisitors",
+      "exported": true,
+      "qualifiedName": "AppLivechatBridge.findVisitors",
+      "line": 104,
+      "endLine": 116,
+      "signature": "protected async findVisitors(query: object, appId: string): Promise<Array<IVisitor>>",
+      "containerClass": "AppLivechatBridge",
+      "calls": [
+        {
+          "name": "debugLog",
+          "edgeType": "call"
+        },
+        {
+          "name": "isDebugging",
+          "edgeType": "call"
+        },
+        {
+          "name": "warn",
+          "edgeType": "call"
+        },
+        {
+          "name": "all",
+          "edgeType": "call"
+        },
+        {
+          "name": "map",
+          "edgeType": "call"
+        },
+        {
+          "name": "toArray",
+          "edgeType": "call"
+        },
+        {
+          "name": "findEnabled",
+          "edgeType": "call"
+        },
+        {
+          "name": "convertVisitor",
+          "edgeType": "call"
+        },
+        {
+          "name": "get",
+          "edgeType": "call"
+        },
+        {
+          "name": "getConverters",
+          "edgeType": "call"
+        },
+        {
+          "name": "IVisitor",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "findVisitorById",
+      "exported": true,
+      "qualifiedName": "AppLivechatBridge.findVisitorById",
+      "line": 108,
+      "endLine": 112,
+      "signature": "protected async findVisitorById(id: string, appId: string): Promise<IVisitor | undefined>",
+      "containerClass": "AppLivechatBridge",
+      "calls": [
+        {
+          "name": "debugLog",
+          "edgeType": "call"
+        },
+        {
+          "name": "convertById",
+          "edgeType": "call"
+        },
+        {
+          "name": "get",
+          "edgeType": "call"
+        },
+        {
+          "name": "getConverters",
+          "edgeType": "call"
+        },
+        {
+          "name": "IVisitor",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "findVisitorByEmail",
+      "exported": true,
+      "qualifiedName": "AppLivechatBridge.findVisitorByEmail",
+      "line": 112,
+      "endLine": 119,
+      "signature": "protected async findVisitorByEmail(email: string, appId: string): Promise<IVisitor | undefined>",
+      "containerClass": "AppLivechatBridge",
+      "calls": [
+        {
+          "name": "debugLog",
+          "edgeType": "call"
+        },
+        {
+          "name": "convertVisitor",
+          "edgeType": "call"
+        },
+        {
+          "name": "get",
+          "edgeType": "call"
+        },
+        {
+          "name": "getConverters",
+          "edgeType": "call"
+        },
+        {
+          "name": "findOneGuestByEmailAddress",
+          "edgeType": "call"
+        },
+        {
+          "name": "IVisitor",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "findVisitorByToken",
+      "exported": true,
+      "qualifiedName": "AppLivechatBridge.findVisitorByToken",
+      "line": 116,
+      "endLine": 123,
+      "signature": "protected async findVisitorByToken(token: string, appId: string): Promise<IVisitor | undefined>",
+      "containerClass": "AppLivechatBridge",
+      "calls": [
+        {
+          "name": "debugLog",
+          "edgeType": "call"
+        },
+        {
+          "name": "convertVisitor",
+          "edgeType": "call"
+        },
+        {
+          "name": "get",
+          "edgeType": "call"
+        },
+        {
+          "name": "getConverters",
+          "edgeType": "call"
+        },
+        {
+          "name": "getVisitorByToken",
+          "edgeType": "call"
+        },
+        {
+          "name": "IVisitor",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "findVisitorByPhoneNumber",
+      "exported": true,
+      "qualifiedName": "AppLivechatBridge.findVisitorByPhoneNumber",
+      "line": 120,
+      "endLine": 127,
+      "signature": "protected async findVisitorByPhoneNumber(phoneNumber: string, appId: string): Promise<IVisitor | undefined>",
+      "containerClass": "AppLivechatBridge",
+      "calls": [
+        {
+          "name": "debugLog",
+          "edgeType": "call"
+        },
+        {
+          "name": "convertVisitor",
+          "edgeType": "call"
+        },
+        {
+          "name": "get",
+          "edgeType": "call"
+        },
+        {
+          "name": "getConverters",
+          "edgeType": "call"
+        },
+        {
+          "name": "findOneVisitorByPhone",
+          "edgeType": "call"
+        },
+        {
+          "name": "IVisitor",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "resolveVisitor",
+      "exported": true,
+      "qualifiedName": "AppLivechatBridge.resolveVisitor",
+      "line": 124,
+      "endLine": 138,
+      "signature": "protected async resolveVisitor( externalId: Omit<IVisitorExternalIdentifier, 'appId'>, contactData: ResolveVisitorContactData | undefined, appId: string, ): Promise<IVisitor | undefined>",
+      "containerClass": "AppLivechatBridge",
+      "calls": [
+        {
+          "name": "debugLog",
+          "edgeType": "call"
+        },
+        {
+          "name": "resolveVisitor",
+          "edgeType": "call"
+        },
+        {
+          "name": "convertVisitor",
+          "edgeType": "call"
+        },
+        {
+          "name": "get",
+          "edgeType": "call"
+        },
+        {
+          "name": "getConverters",
+          "edgeType": "call"
+        },
+        {
+          "name": "IVisitorExternalIdentifier",
+          "edgeType": "type"
+        },
+        {
+          "name": "ResolveVisitorContactData",
+          "edgeType": "type"
+        },
+        {
+          "name": "IVisitor",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "updateVisitorExternalId",
+      "exported": true,
+      "qualifiedName": "AppLivechatBridge.updateVisitorExternalId",
+      "line": 132,
+      "endLine": 142,
+      "signature": "protected async updateVisitorExternalId( visitorId: string, externalId: Omit<IVisitorExternalIdentifier, 'appId'>, appId: string, ): Promise<IVisitor | undefined>",
+      "containerClass": "AppLivechatBridge",
+      "calls": [
+        {
+          "name": "debugLog",
+          "edgeType": "call"
+        },
+        {
+          "name": "updateExternalIdById",
+          "edgeType": "call"
+        },
+        {
+          "name": "convertVisitor",
+          "edgeType": "call"
+        },
+        {
+          "name": "get",
+          "edgeType": "call"
+        },
+        {
+          "name": "getConverters",
+          "edgeType": "call"
+        },
+        {
+          "name": "IVisitorExternalIdentifier",
+          "edgeType": "type"
+        },
+        {
+          "name": "IVisitor",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "findDepartmentByIdOrName",
+      "exported": true,
+      "qualifiedName": "AppLivechatBridge.findDepartmentByIdOrName",
+      "line": 140,
+      "endLine": 147,
+      "signature": "protected async findDepartmentByIdOrName(value: string, appId: string): Promise<IDepartment | undefined>",
+      "containerClass": "AppLivechatBridge",
+      "calls": [
+        {
+          "name": "debugLog",
+          "edgeType": "call"
+        },
+        {
+          "name": "convertDepartment",
+          "edgeType": "call"
+        },
+        {
+          "name": "get",
+          "edgeType": "call"
+        },
+        {
+          "name": "getConverters",
+          "edgeType": "call"
+        },
+        {
+          "name": "findOneByIdOrName",
+          "edgeType": "call"
+        },
+        {
+          "name": "IDepartment",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "findDepartmentsEnabledWithAgents",
+      "exported": true,
+      "qualifiedName": "AppLivechatBridge.findDepartmentsEnabledWithAgents",
+      "line": 144,
+      "endLine": 152,
+      "signature": "protected async findDepartmentsEnabledWithAgents(appId: string): Promise<Array<IDepartment>>",
+      "containerClass": "AppLivechatBridge",
+      "calls": [
+        {
+          "name": "debugLog",
+          "edgeType": "call"
+        },
+        {
+          "name": "get",
+          "edgeType": "call"
+        },
+        {
+          "name": "getConverters",
+          "edgeType": "call"
+        },
+        {
+          "name": "bind",
+          "edgeType": "call"
+        },
+        {
+          "name": "all",
+          "edgeType": "call"
+        },
+        {
+          "name": "map",
+          "edgeType": "call"
+        },
+        {
+          "name": "toArray",
+          "edgeType": "call"
+        },
+        {
+          "name": "findEnabledWithAgents",
+          "edgeType": "call"
+        },
+        {
+          "name": "IDepartment",
+          "edgeType": "type"
+        },
+        {
+          "name": "ILivechatDepartment",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "_fetchLivechatRoomMessages",
+      "exported": true,
+      "qualifiedName": "AppLivechatBridge._fetchLivechatRoomMessages",
+      "line": 148,
+      "endLine": 158,
+      "signature": "protected async _fetchLivechatRoomMessages(appId: string, roomId: string): Promise<Array<IAppsEngineMessage>>",
+      "containerClass": "AppLivechatBridge",
+      "calls": [
+        {
+          "name": "debugLog",
+          "edgeType": "call"
+        },
+        {
+          "name": "get",
+          "edgeType": "call"
+        },
+        {
+          "name": "getConverters",
+          "edgeType": "call"
+        },
+        {
+          "name": "getRoomMessages",
+          "edgeType": "call"
+        },
+        {
+          "name": "all",
+          "edgeType": "call"
+        },
+        {
+          "name": "toArray",
+          "edgeType": "call"
+        },
+        {
+          "name": "map",
+          "edgeType": "call"
+        },
+        {
+          "name": "convertMessage",
+          "edgeType": "call"
+        },
+        {
+          "name": "IAppsEngineMessage",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "setCustomFields",
+      "exported": true,
+      "qualifiedName": "AppLivechatBridge.setCustomFields",
+      "line": 152,
+      "endLine": 159,
+      "signature": "protected async setCustomFields( data: { token: IVisitor['token']; key: string; value: string; overwrite: boolean }, appId: string, ): Promise<number>",
+      "containerClass": "AppLivechatBridge",
+      "calls": [
+        {
+          "name": "debugLog",
+          "edgeType": "call"
+        },
+        {
+          "name": "setCustomFields",
+          "edgeType": "call"
+        },
+        {
+          "name": "IVisitor",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "constructor",
+      "exported": true,
+      "qualifiedName": "AppLivechatBridge.constructor",
+      "line": 39,
+      "endLine": 41,
+      "signature": "constructor(private readonly orch: IAppServerOrchestrator)",
+      "containerClass": "AppLivechatBridge",
+      "calls": [
+        {
+          "name": "IAppServerOrchestrator",
+          "edgeType": "type"
+        }
+      ]
+    }
+  ],
+  "imports": [
+    {
+      "module": "@rocket.chat/apps",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/apps/dist/server/bridges/LivechatBridge",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/apps-engine/definition/accessors/ILivechatCreator",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/apps-engine/definition/livechat",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/apps-engine/definition/messages",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/apps-engine/definition/users",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/core-typings",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/core-typings",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/models",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/omni-core",
+      "resolved": "external"
+    },
+    {
+      "module": "../../../../server/deasync/deasync",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/server/deasync/deasync.ts"
+    },
+    {
+      "module": "../../../../server/lib/callbacks",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/server/lib/callbacks.ts"
+    },
+    {
+      "module": "../../../livechat/server/lib/closeRoom",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/app/livechat/server/lib/closeRoom.ts"
+    },
+    {
+      "module": "../../../livechat/server/lib/custom-fields",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/app/livechat/server/lib/custom-fields.ts"
+    },
+    {
+      "module": "../../../livechat/server/lib/getRoomMessages",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/app/livechat/server/lib/getRoomMessages.ts"
+    },
+    {
+      "module": "../../../livechat/server/lib/localTypes",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/app/livechat/server/lib/localTypes.ts"
+    },
+    {
+      "module": "../../../livechat/server/lib/messages",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/app/livechat/server/lib/messages.ts"
+    },
+    {
+      "module": "../../../livechat/server/lib/resolveVisitor",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/app/livechat/server/lib/resolveVisitor.ts"
+    },
+    {
+      "module": "../../../livechat/server/lib/rooms",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/app/livechat/server/lib/rooms.ts"
+    },
+    {
+      "module": "../../../livechat/server/lib/service-status",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/app/livechat/server/lib/service-status.ts"
+    },
+    {
+      "module": "../../../livechat/server/lib/transfer",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/app/livechat/server/lib/transfer.ts"
+    },
+    {
+      "module": "../../../settings/server",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/app/settings/server/index.ts"
+    }
+  ]
+}

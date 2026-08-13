@@ -1,0 +1,327 @@
+{
+  "sourcePath": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/client/components/message/variants/RoomMessage.tsx",
+  "symbols": [
+    {
+      "type": "module",
+      "name": "RoomMessage",
+      "exported": false,
+      "line": 1,
+      "endLine": 153,
+      "signature": "RoomMessage",
+      "calls": [
+        {
+          "name": "memo",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "variable_function",
+      "name": "getAriaLabelledBy",
+      "exported": false,
+      "line": 39,
+      "endLine": 61,
+      "signature": "({ readReceiptEnabled, messageId, sequential, }: { readReceiptEnabled: boolean; messageId: string; sequential: boolean; }) =>",
+      "calls": [
+        {
+          "name": "push",
+          "edgeType": "call"
+        },
+        {
+          "name": "join",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "inner_function",
+      "name": "handleKeyDown",
+      "exported": false,
+      "qualifiedName": "RoomMessage.handleKeyDown",
+      "line": 79,
+      "endLine": 86,
+      "signature": "(e: KeyboardEvent<HTMLDivElement>) =>",
+      "calls": [
+        {
+          "name": "preventDefault",
+          "edgeType": "call"
+        },
+        {
+          "name": "toggleSelected",
+          "edgeType": "call"
+        },
+        {
+          "name": "KeyboardEvent",
+          "edgeType": "type"
+        },
+        {
+          "name": "HTMLDivElement",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "variable_function",
+      "name": "RoomMessage",
+      "exported": false,
+      "line": 51,
+      "endLine": 138,
+      "signature": "({ message, showUserAvatar, sequential, all, mention, unread, context, ignoredUser, searchText, ...props }: RoomMessageProps) =>",
+      "calls": [
+        {
+          "name": "useTranslation",
+          "edgeType": "call"
+        },
+        {
+          "name": "useUserId",
+          "edgeType": "call"
+        },
+        {
+          "name": "useIsMessageHighlight",
+          "edgeType": "call"
+        },
+        {
+          "name": "useToggle",
+          "edgeType": "call"
+        },
+        {
+          "name": "useUserCard",
+          "edgeType": "call"
+        },
+        {
+          "name": "useIsSelecting",
+          "edgeType": "call"
+        },
+        {
+          "name": "useToggleSelect",
+          "edgeType": "call"
+        },
+        {
+          "name": "useIsSelectedMessage",
+          "edgeType": "call"
+        },
+        {
+          "name": "useMessageListReadReceipts",
+          "edgeType": "call"
+        },
+        {
+          "name": "useCountSelected",
+          "edgeType": "call"
+        },
+        {
+          "name": "preventDefault",
+          "edgeType": "call"
+        },
+        {
+          "name": "toggleSelected",
+          "edgeType": "call"
+        },
+        {
+          "name": "getCheckboxLabel",
+          "edgeType": "call"
+        },
+        {
+          "name": "getAriaLabelledBy",
+          "edgeType": "call"
+        },
+        {
+          "name": "openUserCard",
+          "edgeType": "call"
+        },
+        {
+          "name": "Message",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "MessageLeftContainer",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "MessageContainer",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "MessageAvatar",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "Emoji",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "CheckBox",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "StatusIndicators",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "MessageHeader",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "IgnoredContent",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "RoomMessageContent",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "MessageToolbarHolder",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "handleKeyDown",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "selected",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "editing",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "sequential",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "unread",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "toggleSelected",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "checkboxLabel",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "message",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "toggleDisplayIgnoredMessage",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "mention",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "all",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "searchText",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "context",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "RoomMessageProps",
+          "edgeType": "type"
+        },
+        {
+          "name": "KeyboardEvent",
+          "edgeType": "type"
+        },
+        {
+          "name": "HTMLDivElement",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "type",
+      "name": "RoomMessageProps",
+      "line": 27,
+      "endLine": 37,
+      "signature": "export type RoomMessageProps ="
+    }
+  ],
+  "imports": [
+    {
+      "module": "@rocket.chat/core-typings",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/fuselage",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/fuselage-hooks",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/ui-avatar",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/ui-contexts",
+      "resolved": "external"
+    },
+    {
+      "module": "react",
+      "resolved": "external"
+    },
+    {
+      "module": "react",
+      "resolved": "external"
+    },
+    {
+      "module": "react-i18next",
+      "resolved": "external"
+    },
+    {
+      "module": "../../../../app/ui-utils/client/lib/MessageAction",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/app/ui-utils/client/lib/MessageAction.ts"
+    },
+    {
+      "module": "../../../views/room/MessageList/contexts/MessageHighlightContext",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/client/views/room/MessageList/contexts/MessageHighlightContext.tsx"
+    },
+    {
+      "module": "../../../views/room/MessageList/contexts/SelectedMessagesContext",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/client/views/room/MessageList/contexts/SelectedMessagesContext.tsx"
+    },
+    {
+      "module": "../../Emoji",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/client/components/Emoji.tsx"
+    },
+    {
+      "module": "../IgnoredContent",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/client/components/message/IgnoredContent.tsx"
+    },
+    {
+      "module": "../MessageHeader",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/client/components/message/MessageHeader.tsx"
+    },
+    {
+      "module": "../MessageToolbarHolder",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/client/components/message/MessageToolbarHolder.tsx"
+    },
+    {
+      "module": "../StatusIndicators",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/client/components/message/StatusIndicators.tsx"
+    },
+    {
+      "module": "./room/RoomMessageContent",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/client/components/message/variants/room/RoomMessageContent.tsx"
+    },
+    {
+      "module": "../helpers/getCheckboxLabel",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/client/components/message/helpers/getCheckboxLabel.tsx"
+    },
+    {
+      "module": "../list/MessageListContext",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/client/components/message/list/MessageListContext.tsx"
+    }
+  ]
+}

@@ -1,0 +1,77 @@
+{
+  "sourcePath": "/Users/echoooooo/Desktop/code/Rocket.Chat/packages/apps/src/server/runtime/base/bundler.ts",
+  "symbols": [
+    {
+      "type": "function",
+      "name": "bundleLegacyApp",
+      "exported": true,
+      "line": 12,
+      "endLine": 90,
+      "signature": "export async function bundleLegacyApp(appPackage: IParseAppPackageResult)",
+      "calls": [
+        {
+          "name": "build",
+          "edgeType": "call"
+        },
+        {
+          "name": "onResolve",
+          "edgeType": "call"
+        },
+        {
+          "name": "concat",
+          "edgeType": "call"
+        },
+        {
+          "name": "join",
+          "edgeType": "call"
+        },
+        {
+          "name": "dirname",
+          "edgeType": "call"
+        },
+        {
+          "name": "test",
+          "edgeType": "call"
+        },
+        {
+          "name": "replace",
+          "edgeType": "call"
+        },
+        {
+          "name": "onLoad",
+          "edgeType": "call"
+        },
+        {
+          "name": "IParseAppPackageResult",
+          "edgeType": "type"
+        },
+        {
+          "name": "PluginBuild",
+          "edgeType": "type"
+        },
+        {
+          "name": "OnResolveArgs",
+          "edgeType": "type"
+        },
+        {
+          "name": "OnLoadArgs",
+          "edgeType": "type"
+        }
+      ]
+    }
+  ],
+  "imports": [
+    {
+      "module": "node:path",
+      "resolved": "external"
+    },
+    {
+      "module": "esbuild",
+      "resolved": "external"
+    },
+    {
+      "module": "../../compiler",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/packages/apps/src/server/compiler/index.ts"
+    }
+  ]
+}

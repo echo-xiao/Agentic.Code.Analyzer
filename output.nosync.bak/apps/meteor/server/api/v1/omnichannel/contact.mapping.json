@@ -1,0 +1,236 @@
+{
+  "sourcePath": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/server/api/v1/omnichannel/contact.ts",
+  "symbols": [
+    {
+      "type": "module",
+      "name": "contact",
+      "exported": false,
+      "line": 1,
+      "endLine": 270,
+      "signature": "contact",
+      "calls": [
+        {
+          "name": "omnichannel/contact",
+          "edgeType": "rest_route"
+        },
+        {
+          "name": "addRoute",
+          "edgeType": "call"
+        },
+        {
+          "name": "check",
+          "edgeType": "call"
+        },
+        {
+          "name": "Maybe",
+          "edgeType": "call"
+        },
+        {
+          "name": "registerContact",
+          "edgeType": "call"
+        },
+        {
+          "name": "success",
+          "edgeType": "call"
+        },
+        {
+          "name": "findOneEnabledById",
+          "edgeType": "call"
+        },
+        {
+          "name": "omnichannel/contact.search",
+          "edgeType": "rest_route"
+        },
+        {
+          "name": "parse",
+          "edgeType": "call"
+        },
+        {
+          "name": "keys",
+          "edgeType": "call"
+        },
+        {
+          "name": "toArray",
+          "edgeType": "call"
+        },
+        {
+          "name": "findMatchingCustomFieldsByIds",
+          "edgeType": "call"
+        },
+        {
+          "name": "fromEntries",
+          "edgeType": "call"
+        },
+        {
+          "name": "map",
+          "edgeType": "call"
+        },
+        {
+          "name": "escapeRegExp",
+          "edgeType": "call"
+        },
+        {
+          "name": "findOneByEmailAndPhoneAndCustomField",
+          "edgeType": "call"
+        },
+        {
+          "name": "RegExp",
+          "edgeType": "new"
+        },
+        {
+          "name": "omnichannel/contacts",
+          "edgeType": "rest_route"
+        },
+        {
+          "name": "createContact",
+          "edgeType": "call"
+        },
+        {
+          "name": "omnichannel/contacts.update",
+          "edgeType": "rest_route"
+        },
+        {
+          "name": "updateContact",
+          "edgeType": "call"
+        },
+        {
+          "name": "removeEmpty",
+          "edgeType": "call"
+        },
+        {
+          "name": "omnichannel/contacts.conflicts",
+          "edgeType": "rest_route"
+        },
+        {
+          "name": "resolveContactConflicts",
+          "edgeType": "call"
+        },
+        {
+          "name": "omnichannel/contacts.get",
+          "edgeType": "rest_route"
+        },
+        {
+          "name": "notFound",
+          "edgeType": "call"
+        },
+        {
+          "name": "omnichannel/contacts.search",
+          "edgeType": "rest_route"
+        },
+        {
+          "name": "getPaginationItems",
+          "edgeType": "call"
+        },
+        {
+          "name": "parseJsonQuery",
+          "edgeType": "call"
+        },
+        {
+          "name": "getContacts",
+          "edgeType": "call"
+        },
+        {
+          "name": "omnichannel/contacts.checkExistence",
+          "edgeType": "rest_route"
+        },
+        {
+          "name": "countByContactInfo",
+          "edgeType": "call"
+        },
+        {
+          "name": "omnichannel/contacts.history",
+          "edgeType": "rest_route"
+        },
+        {
+          "name": "getContactHistory",
+          "edgeType": "call"
+        },
+        {
+          "name": "omnichannel/contacts.channels",
+          "edgeType": "rest_route"
+        },
+        {
+          "name": "getContactChannelsGrouped",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "type",
+      "name": "OmnichannelContactsEndpoints",
+      "line": 264,
+      "endLine": 264,
+      "signature": "type OmnichannelContactsEndpoints = ExtractRoutesFromAPI<typeof omnichannelContactsEndpoints>;"
+    }
+  ],
+  "imports": [
+    {
+      "module": "@rocket.chat/models",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/rest-typings",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/string-helpers",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/tools",
+      "resolved": "external"
+    },
+    {
+      "module": "meteor/check",
+      "resolved": "external"
+    },
+    {
+      "module": "meteor/meteor",
+      "resolved": "external"
+    },
+    {
+      "module": "../..",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/server/api/index.ts"
+    },
+    {
+      "module": "../../../../app/livechat/server/lib/contacts/createContact",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/app/livechat/server/lib/contacts/createContact.ts"
+    },
+    {
+      "module": "../../../../app/livechat/server/lib/contacts/disableContact",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/app/livechat/server/lib/contacts/disableContact.ts"
+    },
+    {
+      "module": "../../../../app/livechat/server/lib/contacts/getContactChannelsGrouped",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/app/livechat/server/lib/contacts/getContactChannelsGrouped.ts"
+    },
+    {
+      "module": "../../../../app/livechat/server/lib/contacts/getContactHistory",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/app/livechat/server/lib/contacts/getContactHistory.ts"
+    },
+    {
+      "module": "../../../../app/livechat/server/lib/contacts/getContacts",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/app/livechat/server/lib/contacts/getContacts.ts"
+    },
+    {
+      "module": "../../../../app/livechat/server/lib/contacts/registerContact",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/app/livechat/server/lib/contacts/registerContact.ts"
+    },
+    {
+      "module": "../../../../app/livechat/server/lib/contacts/resolveContactConflicts",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/app/livechat/server/lib/contacts/resolveContactConflicts.ts"
+    },
+    {
+      "module": "../../../../app/livechat/server/lib/contacts/updateContact",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/app/livechat/server/lib/contacts/updateContact.ts"
+    },
+    {
+      "module": "../../ApiClass",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/server/api/ApiClass.ts"
+    },
+    {
+      "module": "../../lib/getPaginationItems",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/server/api/lib/getPaginationItems.ts"
+    }
+  ]
+}

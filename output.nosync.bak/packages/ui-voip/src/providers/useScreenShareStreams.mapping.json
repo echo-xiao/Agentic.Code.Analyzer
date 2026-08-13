@@ -1,0 +1,105 @@
+{
+  "sourcePath": "/Users/echoooooo/Desktop/code/Rocket.Chat/packages/ui-voip/src/providers/useScreenShareStreams.ts",
+  "symbols": [
+    {
+      "type": "variable_function",
+      "name": "getStreamWrappers",
+      "exported": false,
+      "line": 6,
+      "endLine": 31,
+      "signature": "(instance?: MediaSignalingSession) =>",
+      "calls": [
+        {
+          "name": "getState",
+          "edgeType": "call"
+        },
+        {
+          "name": "getMediaStream",
+          "edgeType": "call"
+        },
+        {
+          "name": "error",
+          "edgeType": "call"
+        },
+        {
+          "name": "MediaSignalingSession",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "variable_function",
+      "name": "areStreamsEqual",
+      "exported": false,
+      "line": 10,
+      "endLine": 18,
+      "signature": "(a?: IMediaStreamWrapper, b?: IMediaStreamWrapper) =>",
+      "calls": [
+        {
+          "name": "IMediaStreamWrapper",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "variable_function",
+      "name": "useScreenShareStreams",
+      "exported": true,
+      "line": 14,
+      "endLine": 53,
+      "signature": "(instance?: MediaSignalingSession) =>",
+      "calls": [
+        {
+          "name": "useState",
+          "edgeType": "call"
+        },
+        {
+          "name": "useEffect",
+          "edgeType": "call"
+        },
+        {
+          "name": "setStreams",
+          "edgeType": "call"
+        },
+        {
+          "name": "getStreamWrappers",
+          "edgeType": "call"
+        },
+        {
+          "name": "areStreamsEqual",
+          "edgeType": "call"
+        },
+        {
+          "name": "syncRemoteStream",
+          "edgeType": "call"
+        },
+        {
+          "name": "sessionStateChange",
+          "edgeType": "event_listen"
+        },
+        {
+          "name": "MediaSignalingSession",
+          "edgeType": "type"
+        },
+        {
+          "name": "MediaCallStreams",
+          "edgeType": "type"
+        }
+      ]
+    }
+  ],
+  "imports": [
+    {
+      "module": "@rocket.chat/media-signaling",
+      "resolved": "external"
+    },
+    {
+      "module": "react",
+      "resolved": "external"
+    },
+    {
+      "module": "../context/MediaCallViewContext",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/packages/ui-voip/src/context/MediaCallViewContext.ts"
+    }
+  ]
+}

@@ -1,0 +1,123 @@
+{
+  "sourcePath": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/server/lib/resetUserE2EKey.ts",
+  "symbols": [
+    {
+      "type": "function",
+      "name": "resetUserE2EEncriptionKey",
+      "exported": true,
+      "line": 59,
+      "endLine": 84,
+      "signature": "export async function resetUserE2EEncriptionKey(uid: string, notifyUser: boolean): Promise<boolean>",
+      "calls": [
+        {
+          "name": "sendResetNotification",
+          "edgeType": "call"
+        },
+        {
+          "name": "isUserIdFederated",
+          "edgeType": "call"
+        },
+        {
+          "name": "user.forceLogout",
+          "edgeType": "event_emit"
+        },
+        {
+          "name": "all",
+          "edgeType": "call"
+        },
+        {
+          "name": "resetE2EKey",
+          "edgeType": "call"
+        },
+        {
+          "name": "resetUserE2EKey",
+          "edgeType": "call"
+        },
+        {
+          "name": "removeUserFromE2EEQueue",
+          "edgeType": "call"
+        },
+        {
+          "name": "notifyOnSubscriptionChangedByUserId",
+          "edgeType": "call"
+        },
+        {
+          "name": "unsetLoginTokens",
+          "edgeType": "call"
+        },
+        {
+          "name": "notifyOnUserChange",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "variable_function",
+      "name": "sendResetNotification",
+      "exported": false,
+      "line": 11,
+      "endLine": 57,
+      "signature": "async function (uid: string): Promise<void>",
+      "calls": [
+        {
+          "name": "findOneById",
+          "edgeType": "call"
+        },
+        {
+          "name": "get",
+          "edgeType": "call"
+        },
+        {
+          "name": "map",
+          "edgeType": "call"
+        },
+        {
+          "name": "filter",
+          "edgeType": "call"
+        },
+        {
+          "name": "getFixedT",
+          "edgeType": "call"
+        },
+        {
+          "name": "send",
+          "edgeType": "call"
+        }
+      ]
+    }
+  ],
+  "imports": [
+    {
+      "module": "@rocket.chat/core-services",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/models",
+      "resolved": "external"
+    },
+    {
+      "module": "meteor/meteor",
+      "resolved": "external"
+    },
+    {
+      "module": "./i18n",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/server/lib/i18n.ts"
+    },
+    {
+      "module": "./isUserIdFederated",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/server/lib/isUserIdFederated.ts"
+    },
+    {
+      "module": "../../app/lib/server/lib/notifyListener",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/app/lib/server/lib/notifyListener.ts"
+    },
+    {
+      "module": "../../app/mailer/server/api",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/app/mailer/server/api.ts"
+    },
+    {
+      "module": "../../app/settings/server",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/app/settings/server/index.ts"
+    }
+  ]
+}

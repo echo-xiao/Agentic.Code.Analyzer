@@ -1,0 +1,155 @@
+{
+  "sourcePath": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/server/bridges/webdav/methods/addWebdavAccount.ts",
+  "symbols": [
+    {
+      "type": "module",
+      "name": "addWebdavAccount",
+      "exported": false,
+      "line": 1,
+      "endLine": 154,
+      "signature": "addWebdavAccount",
+      "calls": [
+        {
+          "name": "addWebdavAccount",
+          "edgeType": "call"
+        },
+        {
+          "name": "addWebdavAccountByToken",
+          "edgeType": "call"
+        },
+        {
+          "name": "methods",
+          "edgeType": "call"
+        },
+        {
+          "name": "userId",
+          "edgeType": "call"
+        },
+        {
+          "name": "get",
+          "edgeType": "call"
+        },
+        {
+          "name": "check",
+          "edgeType": "call"
+        },
+        {
+          "name": "ObjectIncluding",
+          "edgeType": "call"
+        },
+        {
+          "name": "Maybe",
+          "edgeType": "call"
+        },
+        {
+          "name": "findOneByUserIdServerUrlAndUsername",
+          "edgeType": "call"
+        },
+        {
+          "name": "stat",
+          "edgeType": "call"
+        },
+        {
+          "name": "insertOne",
+          "edgeType": "call"
+        },
+        {
+          "name": "notify.webdav",
+          "edgeType": "event_emit"
+        },
+        {
+          "name": "WebdavClientAdapter",
+          "edgeType": "new"
+        },
+        {
+          "name": "ServerMethods",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "variable_function",
+      "name": "addWebdavAccountByToken",
+      "exported": true,
+      "line": 19,
+      "endLine": 78,
+      "signature": "async (userId: string, data: IWebdavAccountPayload): Promise<boolean> =>",
+      "calls": [
+        {
+          "name": "get",
+          "edgeType": "call"
+        },
+        {
+          "name": "check",
+          "edgeType": "call"
+        },
+        {
+          "name": "ObjectIncluding",
+          "edgeType": "call"
+        },
+        {
+          "name": "Optional",
+          "edgeType": "call"
+        },
+        {
+          "name": "Maybe",
+          "edgeType": "call"
+        },
+        {
+          "name": "stat",
+          "edgeType": "call"
+        },
+        {
+          "name": "updateOne",
+          "edgeType": "call"
+        },
+        {
+          "name": "notify.webdav",
+          "edgeType": "event_emit"
+        },
+        {
+          "name": "WebdavClientAdapter",
+          "edgeType": "new"
+        },
+        {
+          "name": "IWebdavAccountPayload",
+          "edgeType": "type"
+        }
+      ]
+    }
+  ],
+  "imports": [
+    {
+      "module": "@rocket.chat/core-services",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/core-typings",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/ddp-client",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/models",
+      "resolved": "external"
+    },
+    {
+      "module": "meteor/check",
+      "resolved": "external"
+    },
+    {
+      "module": "meteor/meteor",
+      "resolved": "external"
+    },
+    {
+      "module": "../../../../app/settings/server",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/app/settings/server/index.ts"
+    },
+    {
+      "module": "../lib/webdavClientAdapter",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/server/bridges/webdav/lib/webdavClientAdapter.ts"
+    }
+  ]
+}

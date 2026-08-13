@@ -1,0 +1,74 @@
+{
+  "sourcePath": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/client/views/omnichannel/directory/contexts/ChatsContext.ts",
+  "symbols": [
+    {
+      "type": "variable",
+      "name": "initialValues",
+      "exported": true,
+      "line": 17,
+      "endLine": 26,
+      "signature": "initialValues: ChatsFiltersQuery =",
+      "calls": []
+    },
+    {
+      "type": "variable",
+      "name": "ChatsContext",
+      "exported": true,
+      "line": 46,
+      "endLine": 62,
+      "signature": "ChatsContext = createContext<ChatsContextValue>(",
+      "calls": [
+        {
+          "name": "ChatsContextValue",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "variable_function",
+      "name": "useChatsContext",
+      "exported": true,
+      "line": 64,
+      "endLine": 71,
+      "signature": "(): ChatsContextValue =>",
+      "calls": [
+        {
+          "name": "useContext",
+          "edgeType": "call"
+        },
+        {
+          "name": "ChatsContextValue",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "type",
+      "name": "ChatsFiltersQuery",
+      "line": 5,
+      "endLine": 15,
+      "signature": "export type ChatsFiltersQuery ="
+    },
+    {
+      "type": "type",
+      "name": "ChatsContextValue",
+      "line": 28,
+      "endLine": 44,
+      "signature": "export type ChatsContextValue ="
+    }
+  ],
+  "imports": [
+    {
+      "module": "@rocket.chat/fuselage",
+      "resolved": "external"
+    },
+    {
+      "module": "react",
+      "resolved": "external"
+    },
+    {
+      "module": "react",
+      "resolved": "external"
+    }
+  ]
+}

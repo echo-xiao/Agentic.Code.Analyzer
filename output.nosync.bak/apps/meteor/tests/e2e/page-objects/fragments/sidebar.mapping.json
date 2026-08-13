@@ -1,0 +1,496 @@
+{
+  "sourcePath": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/tests/e2e/page-objects/fragments/sidebar.ts",
+  "symbols": [
+    {
+      "type": "class",
+      "name": "Sidebar",
+      "exported": true,
+      "line": 5,
+      "endLine": 19,
+      "signature": "export abstract class Sidebar",
+      "calls": []
+    },
+    {
+      "type": "method",
+      "name": "waitForDismissal",
+      "exported": true,
+      "qualifiedName": "Sidebar.waitForDismissal",
+      "line": 12,
+      "endLine": 14,
+      "signature": "waitForDismissal()",
+      "containerClass": "Sidebar",
+      "calls": [
+        {
+          "name": "toBeVisible",
+          "edgeType": "call"
+        },
+        {
+          "name": "expect",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "waitForDisplay",
+      "exported": true,
+      "qualifiedName": "Sidebar.waitForDisplay",
+      "line": 16,
+      "endLine": 18,
+      "signature": "waitForDisplay()",
+      "containerClass": "Sidebar",
+      "calls": [
+        {
+          "name": "toBeVisible",
+          "edgeType": "call"
+        },
+        {
+          "name": "expect",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "constructor",
+      "exported": true,
+      "qualifiedName": "Sidebar.constructor",
+      "line": 6,
+      "endLine": 6,
+      "signature": "constructor(protected root: Locator)",
+      "containerClass": "Sidebar",
+      "calls": [
+        {
+          "name": "Locator",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "class",
+      "name": "RoomSidebar",
+      "exported": true,
+      "line": 23,
+      "endLine": 121,
+      "signature": "export class RoomSidebar extends Sidebar",
+      "calls": [
+        {
+          "name": "Sidebar",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "getSidebarItemByName",
+      "exported": true,
+      "qualifiedName": "RoomSidebar.getSidebarItemByName",
+      "line": 59,
+      "endLine": 61,
+      "signature": "getSidebarItemByName(name: string)",
+      "containerClass": "RoomSidebar",
+      "calls": [
+        {
+          "name": "filter",
+          "edgeType": "call"
+        },
+        {
+          "name": "getByRole",
+          "edgeType": "call"
+        },
+        {
+          "name": "getByText",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "getFilterItemByName",
+      "exported": true,
+      "qualifiedName": "RoomSidebar.getFilterItemByName",
+      "line": 63,
+      "endLine": 65,
+      "signature": "getFilterItemByName(name: string): Locator",
+      "containerClass": "RoomSidebar",
+      "calls": [
+        {
+          "name": "filter",
+          "edgeType": "call"
+        },
+        {
+          "name": "getByRole",
+          "edgeType": "call"
+        },
+        {
+          "name": "getByText",
+          "edgeType": "call"
+        },
+        {
+          "name": "Locator",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "getSidebarListItem",
+      "exported": true,
+      "qualifiedName": "RoomSidebar.getSidebarListItem",
+      "line": 67,
+      "endLine": 69,
+      "signature": "getSidebarListItem(name: string): Locator",
+      "containerClass": "RoomSidebar",
+      "calls": [
+        {
+          "name": "filter",
+          "edgeType": "call"
+        },
+        {
+          "name": "getByRole",
+          "edgeType": "call"
+        },
+        {
+          "name": "getByText",
+          "edgeType": "call"
+        },
+        {
+          "name": "Locator",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "markItemAsUnread",
+      "exported": true,
+      "qualifiedName": "RoomSidebar.markItemAsUnread",
+      "line": 91,
+      "endLine": 96,
+      "signature": "async markItemAsUnread(item: Locator): Promise<void>",
+      "containerClass": "RoomSidebar",
+      "calls": [
+        {
+          "name": "hover",
+          "edgeType": "call"
+        },
+        {
+          "name": "focus",
+          "edgeType": "call"
+        },
+        {
+          "name": "click",
+          "edgeType": "call"
+        },
+        {
+          "name": "getByRole",
+          "edgeType": "call"
+        },
+        {
+          "name": "Locator",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "getCollapseGroupByName",
+      "exported": true,
+      "qualifiedName": "RoomSidebar.getCollapseGroupByName",
+      "line": 95,
+      "endLine": 97,
+      "signature": "getCollapseGroupByName(name: string): Locator",
+      "containerClass": "RoomSidebar",
+      "calls": [
+        {
+          "name": "filter",
+          "edgeType": "call"
+        },
+        {
+          "name": "getByRole",
+          "edgeType": "call"
+        },
+        {
+          "name": "Locator",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "getItemUnreadBadge",
+      "exported": true,
+      "qualifiedName": "RoomSidebar.getItemUnreadBadge",
+      "line": 99,
+      "endLine": 101,
+      "signature": "getItemUnreadBadge(item: Locator): Locator",
+      "containerClass": "RoomSidebar",
+      "calls": [
+        {
+          "name": "getByRole",
+          "edgeType": "call"
+        },
+        {
+          "name": "Locator",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "getBadgeIndicator",
+      "exported": true,
+      "qualifiedName": "RoomSidebar.getBadgeIndicator",
+      "line": 103,
+      "endLine": 105,
+      "signature": "getBadgeIndicator(name: string, title: string): Locator",
+      "containerClass": "RoomSidebar",
+      "calls": [
+        {
+          "name": "getByTitle",
+          "edgeType": "call"
+        },
+        {
+          "name": "getSidebarItemByName",
+          "edgeType": "call"
+        },
+        {
+          "name": "Locator",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "selectPriority",
+      "exported": true,
+      "qualifiedName": "RoomSidebar.selectPriority",
+      "line": 107,
+      "endLine": 113,
+      "signature": "async selectPriority(name: string, priority: string)",
+      "containerClass": "RoomSidebar",
+      "calls": [
+        {
+          "name": "getSidebarItemByName",
+          "edgeType": "call"
+        },
+        {
+          "name": "hover",
+          "edgeType": "call"
+        },
+        {
+          "name": "focus",
+          "edgeType": "call"
+        },
+        {
+          "name": "click",
+          "edgeType": "call"
+        },
+        {
+          "name": "getByRole",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "getSidebarListItemByName",
+      "exported": true,
+      "qualifiedName": "RoomSidebar.getSidebarListItemByName",
+      "line": 111,
+      "endLine": 113,
+      "signature": "getSidebarListItemByName(name: string): Locator",
+      "containerClass": "RoomSidebar",
+      "calls": [
+        {
+          "name": "filter",
+          "edgeType": "call"
+        },
+        {
+          "name": "getByRole",
+          "edgeType": "call"
+        },
+        {
+          "name": "getSidebarItemByName",
+          "edgeType": "call"
+        },
+        {
+          "name": "Locator",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "constructor",
+      "exported": true,
+      "qualifiedName": "RoomSidebar.constructor",
+      "line": 24,
+      "endLine": 26,
+      "signature": "constructor(protected page: Page)",
+      "containerClass": "RoomSidebar",
+      "calls": [
+        {
+          "name": "getByRole",
+          "edgeType": "call"
+        },
+        {
+          "name": "Page",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "class",
+      "name": "AdminSidebar",
+      "exported": true,
+      "line": 116,
+      "endLine": 129,
+      "signature": "export class AdminSidebar extends Sidebar",
+      "calls": [
+        {
+          "name": "Sidebar",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "close",
+      "exported": true,
+      "qualifiedName": "AdminSidebar.close",
+      "line": 125,
+      "endLine": 128,
+      "signature": "async close(): Promise<void>",
+      "containerClass": "AdminSidebar",
+      "calls": [
+        {
+          "name": "click",
+          "edgeType": "call"
+        },
+        {
+          "name": "waitForDismissal",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "constructor",
+      "exported": true,
+      "qualifiedName": "AdminSidebar.constructor",
+      "line": 117,
+      "endLine": 119,
+      "signature": "constructor(page: Page)",
+      "containerClass": "AdminSidebar",
+      "calls": [
+        {
+          "name": "getByRole",
+          "edgeType": "call"
+        },
+        {
+          "name": "Page",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "class",
+      "name": "AccountSidebar",
+      "exported": true,
+      "line": 130,
+      "endLine": 143,
+      "signature": "export class AccountSidebar extends Sidebar",
+      "calls": [
+        {
+          "name": "Sidebar",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "close",
+      "exported": true,
+      "qualifiedName": "AccountSidebar.close",
+      "line": 139,
+      "endLine": 142,
+      "signature": "async close(): Promise<void>",
+      "containerClass": "AccountSidebar",
+      "calls": [
+        {
+          "name": "click",
+          "edgeType": "call"
+        },
+        {
+          "name": "waitForDismissal",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "constructor",
+      "exported": true,
+      "qualifiedName": "AccountSidebar.constructor",
+      "line": 131,
+      "endLine": 133,
+      "signature": "constructor(page: Page)",
+      "containerClass": "AccountSidebar",
+      "calls": [
+        {
+          "name": "getByRole",
+          "edgeType": "call"
+        },
+        {
+          "name": "Page",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "class",
+      "name": "OmnichannelSidebar",
+      "exported": true,
+      "line": 144,
+      "endLine": 212,
+      "signature": "export class OmnichannelSidebar extends Sidebar",
+      "calls": [
+        {
+          "name": "Sidebar",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "constructor",
+      "exported": true,
+      "qualifiedName": "OmnichannelSidebar.constructor",
+      "line": 145,
+      "endLine": 147,
+      "signature": "constructor(page: Page)",
+      "containerClass": "OmnichannelSidebar",
+      "calls": [
+        {
+          "name": "getByRole",
+          "edgeType": "call"
+        },
+        {
+          "name": "Page",
+          "edgeType": "type"
+        }
+      ]
+    }
+  ],
+  "imports": [
+    {
+      "module": "@playwright/test",
+      "resolved": "external"
+    },
+    {
+      "module": "../../utils/test",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/tests/e2e/utils/test.ts"
+    }
+  ]
+}

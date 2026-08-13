@@ -1,0 +1,184 @@
+{
+  "sourcePath": "/Users/echoooooo/Desktop/code/Rocket.Chat/packages/ui-voip/src/providers/useMediaSession.ts",
+  "symbols": [
+    {
+      "type": "variable_function",
+      "name": "getExtensionFromInstanceContact",
+      "exported": true,
+      "line": 25,
+      "endLine": 31,
+      "signature": "(contact: CallContact): string | undefined =>",
+      "calls": [
+        {
+          "name": "CallContact",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "variable_function",
+      "name": "deriveConnectionStateFromCallState",
+      "exported": false,
+      "line": 29,
+      "endLine": 41,
+      "signature": "(callState: CallState): ConnectionState =>",
+      "calls": [
+        {
+          "name": "CallState",
+          "edgeType": "type"
+        },
+        {
+          "name": "ConnectionState",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "variable_function",
+      "name": "reducer",
+      "exported": false,
+      "line": 33,
+      "endLine": 87,
+      "signature": "( reducerState: SessionState, action: | { type: 'reset'; } | { type: 'selectPeer'; payload: { peerInfo?: PeerInfo }; } | { type: 'toggleWidget'; payload: { peerInfo?: PeerInfo }; } | { type: 'instance_updated'; payload: SessionState; } | { type: 'status_updated'; payload?: { status?: UserStatus }; }, ): SessionState =>",
+      "calls": [
+        {
+          "name": "SessionState",
+          "edgeType": "type"
+        },
+        {
+          "name": "PeerInfo",
+          "edgeType": "type"
+        },
+        {
+          "name": "UserStatus",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "variable_function",
+      "name": "useMediaSession",
+      "exported": true,
+      "line": 65,
+      "endLine": 217,
+      "signature": "(instance?: MediaSignalingSession): MediaSessionStateWithWidgetControls =>",
+      "calls": [
+        {
+          "name": "useReducer",
+          "edgeType": "call"
+        },
+        {
+          "name": "useUserAvatarPath",
+          "edgeType": "call"
+        },
+        {
+          "name": "useEffect",
+          "edgeType": "call"
+        },
+        {
+          "name": "dispatch",
+          "edgeType": "call"
+        },
+        {
+          "name": "getState",
+          "edgeType": "call"
+        },
+        {
+          "name": "deriveWidgetStateFromCallState",
+          "edgeType": "call"
+        },
+        {
+          "name": "deriveConnectionStateFromCallState",
+          "edgeType": "call"
+        },
+        {
+          "name": "derivePeerInfoFromInstanceContact",
+          "edgeType": "call"
+        },
+        {
+          "name": "getAvatarUrl",
+          "edgeType": "call"
+        },
+        {
+          "name": "updateSessionState",
+          "edgeType": "event_listen",
+          "event": "sessionStateChange"
+        },
+        {
+          "name": "updateSessionState",
+          "edgeType": "event_listen",
+          "event": "hiddenCall"
+        },
+        {
+          "name": "updateSessionState",
+          "edgeType": "call"
+        },
+        {
+          "name": "forEach",
+          "edgeType": "call"
+        },
+        {
+          "name": "offCb",
+          "edgeType": "call"
+        },
+        {
+          "name": "useCallback",
+          "edgeType": "call"
+        },
+        {
+          "name": "useUserPresence",
+          "edgeType": "call"
+        },
+        {
+          "name": "MediaSignalingSession",
+          "edgeType": "type"
+        },
+        {
+          "name": "MediaSessionStateWithWidgetControls",
+          "edgeType": "type"
+        },
+        {
+          "name": "PeerInfo",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "type",
+      "name": "MediaSessionStateWithWidgetControls",
+      "line": 59,
+      "endLine": 63,
+      "signature": "export type MediaSessionStateWithWidgetControls ="
+    }
+  ],
+  "imports": [
+    {
+      "module": "@rocket.chat/core-typings",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/media-signaling",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/ui-contexts",
+      "resolved": "external"
+    },
+    {
+      "module": "react",
+      "resolved": "external"
+    },
+    {
+      "module": "../context/definitions",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/packages/ui-voip/src/context/definitions.ts"
+    },
+    {
+      "module": "../utils/derivePeerInfoFromInstanceContact",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/packages/ui-voip/src/utils/derivePeerInfoFromInstanceContact.ts"
+    },
+    {
+      "module": "../utils/deriveWidgetStateFromCallState",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/packages/ui-voip/src/utils/deriveWidgetStateFromCallState.ts"
+    }
+  ]
+}

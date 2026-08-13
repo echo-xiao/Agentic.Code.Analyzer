@@ -1,0 +1,102 @@
+{
+  "sourcePath": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/client/views/admin/engagementDashboard/users/useWeeklyChatActivity.ts",
+  "symbols": [
+    {
+      "type": "function",
+      "name": "endOfDayUTC",
+      "exported": false,
+      "line": 10,
+      "endLine": 12,
+      "signature": "function endOfDayUTC(d: Date): Date",
+      "calls": [
+        {
+          "name": "UTC",
+          "edgeType": "call"
+        },
+        {
+          "name": "getUTCFullYear",
+          "edgeType": "call"
+        },
+        {
+          "name": "getUTCMonth",
+          "edgeType": "call"
+        },
+        {
+          "name": "getUTCDate",
+          "edgeType": "call"
+        },
+        {
+          "name": "Date",
+          "edgeType": "new"
+        }
+      ]
+    },
+    {
+      "type": "variable_function",
+      "name": "useWeeklyChatActivity",
+      "exported": true,
+      "line": 14,
+      "endLine": 39,
+      "signature": "({ displacement, utc }: UseWeeklyChatActivityOptions) =>",
+      "calls": [
+        {
+          "name": "useEndpoint",
+          "edgeType": "call"
+        },
+        {
+          "name": "useQuery",
+          "edgeType": "call"
+        },
+        {
+          "name": "endOfDayUTC",
+          "edgeType": "call"
+        },
+        {
+          "name": "endOfDay",
+          "edgeType": "call"
+        },
+        {
+          "name": "subWeeks",
+          "edgeType": "call"
+        },
+        {
+          "name": "getWeeklyChatActivity",
+          "edgeType": "call"
+        },
+        {
+          "name": "toISOString",
+          "edgeType": "call"
+        },
+        {
+          "name": "Date",
+          "edgeType": "new"
+        },
+        {
+          "name": "UseWeeklyChatActivityOptions",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "type",
+      "name": "UseWeeklyChatActivityOptions",
+      "line": 5,
+      "endLine": 8,
+      "signature": "type UseWeeklyChatActivityOptions ="
+    }
+  ],
+  "imports": [
+    {
+      "module": "@rocket.chat/ui-contexts",
+      "resolved": "external"
+    },
+    {
+      "module": "@tanstack/react-query",
+      "resolved": "external"
+    },
+    {
+      "module": "date-fns",
+      "resolved": "external"
+    }
+  ]
+}

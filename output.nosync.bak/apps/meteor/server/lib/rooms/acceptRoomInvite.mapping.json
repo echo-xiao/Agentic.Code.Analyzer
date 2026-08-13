@@ -1,0 +1,101 @@
+{
+  "sourcePath": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/server/lib/rooms/acceptRoomInvite.ts",
+  "symbols": [
+    {
+      "type": "variable_function",
+      "name": "performAcceptRoomInvite",
+      "exported": true,
+      "line": 20,
+      "endLine": 61,
+      "signature": "async ( room: IRoom, subscription: ISubscription, user: IUser & { username: string }, ): Promise<void> =>",
+      "calls": [
+        {
+          "name": "findOneById",
+          "edgeType": "call"
+        },
+        {
+          "name": "beforeJoinRoom",
+          "edgeType": "event_emit"
+        },
+        {
+          "name": "beforeAddedToRoom",
+          "edgeType": "event_emit"
+        },
+        {
+          "name": "triggerEvent",
+          "edgeType": "call"
+        },
+        {
+          "name": "acceptInvitationById",
+          "edgeType": "call"
+        },
+        {
+          "name": "notifyOnSubscriptionChangedById",
+          "edgeType": "call"
+        },
+        {
+          "name": "saveSystemMessage",
+          "edgeType": "call"
+        },
+        {
+          "name": "nextTick",
+          "edgeType": "call"
+        },
+        {
+          "name": "afterAddedToRoom",
+          "edgeType": "event_emit"
+        },
+        {
+          "name": "afterJoinRoom",
+          "edgeType": "event_emit"
+        },
+        {
+          "name": "IRoom",
+          "edgeType": "type"
+        },
+        {
+          "name": "ISubscription",
+          "edgeType": "type"
+        },
+        {
+          "name": "IUser",
+          "edgeType": "type"
+        }
+      ]
+    }
+  ],
+  "imports": [
+    {
+      "module": "@rocket.chat/apps",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/apps-engine/definition/exceptions",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/core-services",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/core-typings",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/models",
+      "resolved": "external"
+    },
+    {
+      "module": "meteor/meteor",
+      "resolved": "external"
+    },
+    {
+      "module": "../../../app/lib/server/lib/notifyListener",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/app/lib/server/lib/notifyListener.ts"
+    },
+    {
+      "module": "../callbacks",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/server/lib/callbacks.ts"
+    }
+  ]
+}

@@ -1,0 +1,232 @@
+{
+  "sourcePath": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/client/lib/parseMessageTextToAstMarkdown.ts",
+  "symbols": [
+    {
+      "type": "variable_function",
+      "name": "parseMessageTextToAstMarkdown",
+      "exported": true,
+      "line": 35,
+      "endLine": 59,
+      "signature": "< TMessage extends IMessage & Partial<ITranslatedMessage> = IMessage & Partial<ITranslatedMessage>, >( message: TMessage, parseOptions: Options, autoTranslateOptions: AutoTranslateOptions, ): MessageWithMdEnforced =>",
+      "calls": [
+        {
+          "name": "removePossibleNullMessageValues",
+          "edgeType": "call"
+        },
+        {
+          "name": "isTranslatedMessage",
+          "edgeType": "call"
+        },
+        {
+          "name": "showAutoTranslate",
+          "edgeType": "call"
+        },
+        {
+          "name": "isE2EEMessage",
+          "edgeType": "call"
+        },
+        {
+          "name": "textToMessageToken",
+          "edgeType": "call"
+        },
+        {
+          "name": "parseMessageAttachments",
+          "edgeType": "call"
+        },
+        {
+          "name": "IMessage",
+          "edgeType": "type"
+        },
+        {
+          "name": "ITranslatedMessage",
+          "edgeType": "type"
+        },
+        {
+          "name": "TMessage",
+          "edgeType": "type"
+        },
+        {
+          "name": "Options",
+          "edgeType": "type"
+        },
+        {
+          "name": "AutoTranslateOptions",
+          "edgeType": "type"
+        },
+        {
+          "name": "MessageWithMdEnforced",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "variable_function",
+      "name": "parseMessageAttachment",
+      "exported": true,
+      "line": 45,
+      "endLine": 76,
+      "signature": "<T extends MessageAttachment>( attachment: T, parseOptions: Options, autoTranslateOptions: { autoTranslateLanguage?: string; translated: boolean }, ): T =>",
+      "calls": [
+        {
+          "name": "isQuoteAttachment",
+          "edgeType": "call"
+        },
+        {
+          "name": "parseMessageAttachments",
+          "edgeType": "call"
+        },
+        {
+          "name": "isTranslatedAttachment",
+          "edgeType": "call"
+        },
+        {
+          "name": "isFileAttachment",
+          "edgeType": "call"
+        },
+        {
+          "name": "isEncryptedMessageAttachment",
+          "edgeType": "call"
+        },
+        {
+          "name": "textToMessageToken",
+          "edgeType": "call"
+        },
+        {
+          "name": "MessageAttachment",
+          "edgeType": "type"
+        },
+        {
+          "name": "Options",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "variable_function",
+      "name": "parseMessageAttachments",
+      "exported": true,
+      "line": 53,
+      "endLine": 57,
+      "signature": "<T extends MessageAttachment>( attachments: T[], parseOptions: Options, autoTranslateOptions: { autoTranslateLanguage?: string; translated: boolean }, ): T[] =>",
+      "calls": [
+        {
+          "name": "map",
+          "edgeType": "call"
+        },
+        {
+          "name": "parseMessageAttachment",
+          "edgeType": "call"
+        },
+        {
+          "name": "MessageAttachment",
+          "edgeType": "type"
+        },
+        {
+          "name": "Options",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "variable_function",
+      "name": "isNotNullOrUndefined",
+      "exported": false,
+      "line": 59,
+      "endLine": 59,
+      "signature": "(value: unknown): boolean =>",
+      "calls": []
+    },
+    {
+      "type": "variable_function",
+      "name": "removePossibleNullMessageValues",
+      "exported": true,
+      "line": 64,
+      "endLine": 86,
+      "signature": "<TMessage extends IMessage = IMessage>({ editedBy, editedAt, emoji, avatar, alias, customFields, groupable, attachments, reactions, ...message }: any): TMessage =>",
+      "calls": [
+        {
+          "name": "isNotNullOrUndefined",
+          "edgeType": "call"
+        },
+        {
+          "name": "IMessage",
+          "edgeType": "type"
+        },
+        {
+          "name": "TMessage",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "variable_function",
+      "name": "textToMessageToken",
+      "exported": false,
+      "line": 88,
+      "endLine": 101,
+      "signature": "(textOrRoot: string | Root, parseOptions: Options): Root =>",
+      "calls": [
+        {
+          "name": "isParsedMessage",
+          "edgeType": "call"
+        },
+        {
+          "name": "parse",
+          "edgeType": "call"
+        },
+        {
+          "name": "slice",
+          "edgeType": "call"
+        },
+        {
+          "name": "Root",
+          "edgeType": "type"
+        },
+        {
+          "name": "Options",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "type",
+      "name": "WithRequiredProperty",
+      "line": 16,
+      "endLine": 18,
+      "signature": "type WithRequiredProperty<Type, Key extends keyof Type> = Omit<Type, Key> &"
+    },
+    {
+      "type": "type",
+      "name": "MessageWithMdEnforced",
+      "line": 20,
+      "endLine": 24,
+      "signature": "export type MessageWithMdEnforced<TMessage extends IMessage & Partial<ITranslatedMessage> = IMessage & Partial<ITranslatedMessage>> = WithRequiredProperty<TMessage, 'md'> &"
+    }
+  ],
+  "imports": [
+    {
+      "module": "@rocket.chat/core-typings",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/core-typings",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/message-parser",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/message-parser",
+      "resolved": "external"
+    },
+    {
+      "module": "../views/room/MessageList/hooks/useAutoTranslate",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/client/views/room/MessageList/hooks/useAutoTranslate.ts"
+    },
+    {
+      "module": "../views/room/MessageList/lib/isParsedMessage",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/client/views/room/MessageList/lib/isParsedMessage.ts"
+    }
+  ]
+}

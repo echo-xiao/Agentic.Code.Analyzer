@@ -1,0 +1,240 @@
+{
+  "sourcePath": "/Users/echoooooo/Desktop/code/Rocket.Chat/ee/packages/abac/src/clients/virtru/VirtruClient.ts",
+  "symbols": [
+    {
+      "type": "class",
+      "name": "VirtruClient",
+      "exported": true,
+      "line": 13,
+      "endLine": 117,
+      "signature": "export class VirtruClient",
+      "calls": []
+    },
+    {
+      "type": "method",
+      "name": "updateConfig",
+      "exported": true,
+      "qualifiedName": "VirtruClient.updateConfig",
+      "line": 22,
+      "endLine": 25,
+      "signature": "updateConfig(config: IVirtruPDPConfig): void",
+      "containerClass": "VirtruClient",
+      "calls": [
+        {
+          "name": "IVirtruPDPConfig",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "getConfig",
+      "exported": true,
+      "qualifiedName": "VirtruClient.getConfig",
+      "line": 26,
+      "endLine": 29,
+      "signature": "getConfig(): PublicVirtruConfig",
+      "containerClass": "VirtruClient",
+      "calls": [
+        {
+          "name": "PublicVirtruConfig",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "isAvailable",
+      "exported": true,
+      "qualifiedName": "VirtruClient.isAvailable",
+      "line": 30,
+      "endLine": 51,
+      "signature": "async isAvailable(): Promise<boolean>",
+      "containerClass": "VirtruClient",
+      "calls": [
+        {
+          "name": "serverFetch",
+          "edgeType": "call"
+        },
+        {
+          "name": "json",
+          "edgeType": "call"
+        },
+        {
+          "name": "info",
+          "edgeType": "call"
+        },
+        {
+          "name": "warn",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "getClientToken",
+      "exported": true,
+      "qualifiedName": "VirtruClient.getClientToken",
+      "line": 34,
+      "endLine": 63,
+      "signature": "private async getClientToken(): Promise<string>",
+      "containerClass": "VirtruClient",
+      "calls": [
+        {
+          "name": "now",
+          "edgeType": "call"
+        },
+        {
+          "name": "serverFetch",
+          "edgeType": "call"
+        },
+        {
+          "name": "json",
+          "edgeType": "call"
+        },
+        {
+          "name": "URLSearchParams",
+          "edgeType": "new"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "getClientTokenForHealthCheck",
+      "exported": true,
+      "qualifiedName": "VirtruClient.getClientTokenForHealthCheck",
+      "line": 38,
+      "endLine": 41,
+      "signature": "async getClientTokenForHealthCheck(): Promise<string>",
+      "containerClass": "VirtruClient",
+      "calls": [
+        {
+          "name": "getClientToken",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "apiCall",
+      "exported": true,
+      "qualifiedName": "VirtruClient.apiCall",
+      "line": 42,
+      "endLine": 67,
+      "signature": "async apiCall<T>(endpoint: string, body: unknown): Promise<T>",
+      "containerClass": "VirtruClient",
+      "calls": [
+        {
+          "name": "getClientToken",
+          "edgeType": "call"
+        },
+        {
+          "name": "debug",
+          "edgeType": "call"
+        },
+        {
+          "name": "serverFetch",
+          "edgeType": "call"
+        },
+        {
+          "name": "stringify",
+          "edgeType": "call"
+        },
+        {
+          "name": "catch",
+          "edgeType": "call"
+        },
+        {
+          "name": "text",
+          "edgeType": "call"
+        },
+        {
+          "name": "error",
+          "edgeType": "call"
+        },
+        {
+          "name": "json",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "constructor",
+      "exported": true,
+      "qualifiedName": "VirtruClient.constructor",
+      "line": 18,
+      "endLine": 20,
+      "signature": "constructor(config: IVirtruPDPConfig)",
+      "containerClass": "VirtruClient",
+      "calls": [
+        {
+          "name": "IVirtruPDPConfig",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "class_property",
+      "name": "tokenCache",
+      "exported": true,
+      "qualifiedName": "VirtruClient.tokenCache",
+      "line": 14,
+      "endLine": 14,
+      "signature": "private tokenCache: ITokenCache | null = null;",
+      "containerClass": "VirtruClient",
+      "calls": [
+        {
+          "name": "ITokenCache",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "class_property",
+      "name": "config",
+      "exported": true,
+      "qualifiedName": "VirtruClient.config",
+      "line": 16,
+      "endLine": 16,
+      "signature": "private config: IVirtruPDPConfig;",
+      "containerClass": "VirtruClient",
+      "calls": [
+        {
+          "name": "IVirtruPDPConfig",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "variable",
+      "name": "HEALTH_CHECK_TIMEOUT",
+      "exported": true,
+      "line": 8,
+      "endLine": 8,
+      "signature": "HEALTH_CHECK_TIMEOUT = 5000",
+      "calls": []
+    },
+    {
+      "type": "type",
+      "name": "PublicVirtruConfig",
+      "line": 11,
+      "endLine": 11,
+      "signature": "type PublicVirtruConfig = Pick<IVirtruPDPConfig, 'baseUrl' | 'defaultEntityKey' | 'attributeNamespace' | 'clientId'>;"
+    }
+  ],
+  "imports": [
+    {
+      "module": "@rocket.chat/server-fetch",
+      "resolved": "external"
+    },
+    {
+      "module": "../../logger",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/ee/packages/abac/src/logger.ts"
+    },
+    {
+      "module": "../../pdp/types",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/ee/packages/abac/src/pdp/types.ts"
+    }
+  ]
+}

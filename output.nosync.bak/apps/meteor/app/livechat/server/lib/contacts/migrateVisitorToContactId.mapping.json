@@ -1,0 +1,77 @@
+{
+  "sourcePath": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/app/livechat/server/lib/contacts/migrateVisitorToContactId.ts",
+  "symbols": [
+    {
+      "type": "function",
+      "name": "migrateVisitorToContactId",
+      "exported": true,
+      "line": 11,
+      "endLine": 55,
+      "signature": "export async function migrateVisitorToContactId({ visitor, source, requireRoom = true, }: { visitor: ILivechatVisitor; source: IOmnichannelSource; requireRoom?: boolean; }): Promise<ILivechatContact['_id'] | null>",
+      "calls": [
+        {
+          "name": "findNewestByContactVisitorAssociation",
+          "edgeType": "call"
+        },
+        {
+          "name": "findContactMatchingVisitor",
+          "edgeType": "call"
+        },
+        {
+          "name": "debug",
+          "edgeType": "call"
+        },
+        {
+          "name": "createContactFromVisitor",
+          "edgeType": "call"
+        },
+        {
+          "name": "mergeVisitorIntoContact",
+          "edgeType": "call"
+        },
+        {
+          "name": "setContactByVisitorAssociation",
+          "edgeType": "call"
+        },
+        {
+          "name": "ILivechatVisitor",
+          "edgeType": "type"
+        },
+        {
+          "name": "IOmnichannelSource",
+          "edgeType": "type"
+        },
+        {
+          "name": "ILivechatContact",
+          "edgeType": "type"
+        },
+        {
+          "name": "IOmnichannelRoom",
+          "edgeType": "type"
+        }
+      ]
+    }
+  ],
+  "imports": [
+    {
+      "module": "@rocket.chat/core-typings",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/models",
+      "resolved": "external"
+    },
+    {
+      "module": "../logger",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/app/livechat/server/lib/logger.ts"
+    },
+    {
+      "module": "./ContactMerger",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/app/livechat/server/lib/contacts/ContactMerger.ts"
+    },
+    {
+      "module": "./createContactFromVisitor",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/app/livechat/server/lib/contacts/createContactFromVisitor.ts"
+    }
+  ]
+}

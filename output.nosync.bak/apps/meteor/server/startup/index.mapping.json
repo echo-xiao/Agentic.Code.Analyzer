@@ -1,0 +1,97 @@
+{
+  "sourcePath": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/server/startup/index.ts",
+  "symbols": [
+    {
+      "type": "variable_function",
+      "name": "startup",
+      "exported": true,
+      "line": 16,
+      "endLine": 27,
+      "signature": "async () =>",
+      "calls": [
+        {
+          "name": "performMigrationProcedure",
+          "edgeType": "call"
+        },
+        {
+          "name": "generateFederationKeys",
+          "edgeType": "call"
+        },
+        {
+          "name": "setImmediate",
+          "edgeType": "call"
+        },
+        {
+          "name": "startCronJobs",
+          "edgeType": "call"
+        },
+        {
+          "name": "ensureMessagesTextIndex",
+          "edgeType": "call"
+        },
+        {
+          "name": "isRunningMs",
+          "edgeType": "call"
+        }
+      ]
+    }
+  ],
+  "imports": [
+    {
+      "module": "./appcache",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/server/startup/appcache.ts"
+    },
+    {
+      "module": "./callbacks",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/server/startup/callbacks.ts"
+    },
+    {
+      "module": "./cron",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/server/startup/cron.ts"
+    },
+    {
+      "module": "./ensureMessagesTextIndex",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/server/startup/ensureMessagesTextIndex.ts"
+    },
+    {
+      "module": "./initialData",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/server/startup/initialData.ts"
+    },
+    {
+      "module": "./serverRunning",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/server/startup/serverRunning.ts"
+    },
+    {
+      "module": "./coreApps",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/server/startup/coreApps.ts"
+    },
+    {
+      "module": "./generateKeys",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/server/startup/generateKeys.ts"
+    },
+    {
+      "module": "./presenceTroubleshoot",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/server/startup/presenceTroubleshoot.ts"
+    },
+    {
+      "module": "../hooks",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/server/hooks/index.ts"
+    },
+    {
+      "module": "../lib/rooms/roomTypes",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/server/lib/rooms/roomTypes/index.ts"
+    },
+    {
+      "module": "../lib/settingsRegenerator",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/server/lib/settingsRegenerator.ts"
+    },
+    {
+      "module": "./migrations",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/server/startup/migrations/index.ts"
+    },
+    {
+      "module": "../lib/isRunningMs",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/server/lib/isRunningMs.ts"
+    }
+  ]
+}

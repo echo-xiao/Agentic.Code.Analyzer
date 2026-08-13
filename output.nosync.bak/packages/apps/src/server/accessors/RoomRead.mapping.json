@@ -1,0 +1,385 @@
+{
+  "sourcePath": "/Users/echoooooo/Desktop/code/Rocket.Chat/packages/apps/src/server/accessors/RoomRead.ts",
+  "symbols": [
+    {
+      "type": "class",
+      "name": "RoomRead",
+      "exported": true,
+      "line": 9,
+      "endLine": 112,
+      "signature": "export class RoomRead implements IRoomRead",
+      "calls": [
+        {
+          "name": "IRoomRead",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "getById",
+      "exported": true,
+      "qualifiedName": "RoomRead.getById",
+      "line": 15,
+      "endLine": 17,
+      "signature": "public getById(id: string): Promise<IRoom>",
+      "containerClass": "RoomRead",
+      "calls": [
+        {
+          "name": "doGetById",
+          "edgeType": "call"
+        },
+        {
+          "name": "IRoom",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "getCreatorUserById",
+      "exported": true,
+      "qualifiedName": "RoomRead.getCreatorUserById",
+      "line": 19,
+      "endLine": 21,
+      "signature": "public getCreatorUserById(id: string): Promise<IUser>",
+      "containerClass": "RoomRead",
+      "calls": [
+        {
+          "name": "doGetCreatorById",
+          "edgeType": "call"
+        },
+        {
+          "name": "IUser",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "getByName",
+      "exported": true,
+      "qualifiedName": "RoomRead.getByName",
+      "line": 23,
+      "endLine": 25,
+      "signature": "public getByName(name: string): Promise<IRoom>",
+      "containerClass": "RoomRead",
+      "calls": [
+        {
+          "name": "doGetByName",
+          "edgeType": "call"
+        },
+        {
+          "name": "IRoom",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "getCreatorUserByName",
+      "exported": true,
+      "qualifiedName": "RoomRead.getCreatorUserByName",
+      "line": 27,
+      "endLine": 29,
+      "signature": "public getCreatorUserByName(name: string): Promise<IUser>",
+      "containerClass": "RoomRead",
+      "calls": [
+        {
+          "name": "doGetCreatorByName",
+          "edgeType": "call"
+        },
+        {
+          "name": "IUser",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "getMessages",
+      "exported": true,
+      "qualifiedName": "RoomRead.getMessages",
+      "line": 31,
+      "endLine": 44,
+      "signature": "public getMessages(roomId: string, options: Partial<GetMessagesOptions> = {}): Promise<IMessageRaw[]>",
+      "containerClass": "RoomRead",
+      "calls": [
+        {
+          "name": "isFinite",
+          "edgeType": "call"
+        },
+        {
+          "name": "validateSort",
+          "edgeType": "call"
+        },
+        {
+          "name": "doGetMessages",
+          "edgeType": "call"
+        },
+        {
+          "name": "GetMessagesOptions",
+          "edgeType": "type"
+        },
+        {
+          "name": "IMessageRaw",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "getMembers",
+      "exported": true,
+      "qualifiedName": "RoomRead.getMembers",
+      "line": 35,
+      "endLine": 37,
+      "signature": "public getMembers(roomId: string): Promise<Array<IUser>>",
+      "containerClass": "RoomRead",
+      "calls": [
+        {
+          "name": "doGetMembers",
+          "edgeType": "call"
+        },
+        {
+          "name": "IUser",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "getAllRooms",
+      "exported": true,
+      "qualifiedName": "RoomRead.getAllRooms",
+      "line": 39,
+      "endLine": 49,
+      "signature": "public getAllRooms(filters: GetRoomsFilters = {}, { limit = 100, skip = 0 }: GetRoomsOptions = {}): Promise<Array<IRoomRaw> | undefined>",
+      "containerClass": "RoomRead",
+      "calls": [
+        {
+          "name": "isFinite",
+          "edgeType": "call"
+        },
+        {
+          "name": "doGetAllRooms",
+          "edgeType": "call"
+        },
+        {
+          "name": "GetRoomsFilters",
+          "edgeType": "type"
+        },
+        {
+          "name": "GetRoomsOptions",
+          "edgeType": "type"
+        },
+        {
+          "name": "IRoomRaw",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "getDirectByUsernames",
+      "exported": true,
+      "qualifiedName": "RoomRead.getDirectByUsernames",
+      "line": 43,
+      "endLine": 45,
+      "signature": "public getDirectByUsernames(usernames: Array<string>): Promise<IRoom>",
+      "containerClass": "RoomRead",
+      "calls": [
+        {
+          "name": "doGetDirectByUsernames",
+          "edgeType": "call"
+        },
+        {
+          "name": "IRoom",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "getModerators",
+      "exported": true,
+      "qualifiedName": "RoomRead.getModerators",
+      "line": 47,
+      "endLine": 49,
+      "signature": "public getModerators(roomId: string): Promise<Array<IUser>>",
+      "containerClass": "RoomRead",
+      "calls": [
+        {
+          "name": "doGetModerators",
+          "edgeType": "call"
+        },
+        {
+          "name": "IUser",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "getOwners",
+      "exported": true,
+      "qualifiedName": "RoomRead.getOwners",
+      "line": 51,
+      "endLine": 53,
+      "signature": "public getOwners(roomId: string): Promise<Array<IUser>>",
+      "containerClass": "RoomRead",
+      "calls": [
+        {
+          "name": "doGetOwners",
+          "edgeType": "call"
+        },
+        {
+          "name": "IUser",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "getLeaders",
+      "exported": true,
+      "qualifiedName": "RoomRead.getLeaders",
+      "line": 55,
+      "endLine": 57,
+      "signature": "public getLeaders(roomId: string): Promise<Array<IUser>>",
+      "containerClass": "RoomRead",
+      "calls": [
+        {
+          "name": "doGetLeaders",
+          "edgeType": "call"
+        },
+        {
+          "name": "IUser",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "getUnreadByUser",
+      "exported": true,
+      "qualifiedName": "RoomRead.getUnreadByUser",
+      "line": 59,
+      "endLine": 75,
+      "signature": "public async getUnreadByUser(roomId: string, uid: string, options: Partial<GetMessagesOptions> = {}): Promise<IMessageRaw[]>",
+      "containerClass": "RoomRead",
+      "calls": [
+        {
+          "name": "trim",
+          "edgeType": "call"
+        },
+        {
+          "name": "isFinite",
+          "edgeType": "call"
+        },
+        {
+          "name": "validateSort",
+          "edgeType": "call"
+        },
+        {
+          "name": "doGetUnreadByUser",
+          "edgeType": "call"
+        },
+        {
+          "name": "GetMessagesOptions",
+          "edgeType": "type"
+        },
+        {
+          "name": "IMessageRaw",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "getUserUnreadMessageCount",
+      "exported": true,
+      "qualifiedName": "RoomRead.getUserUnreadMessageCount",
+      "line": 63,
+      "endLine": 65,
+      "signature": "public getUserUnreadMessageCount(roomId: string, uid: string): Promise<number>",
+      "containerClass": "RoomRead",
+      "calls": [
+        {
+          "name": "doGetUserUnreadMessageCount",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "validateSort",
+      "exported": true,
+      "qualifiedName": "RoomRead.validateSort",
+      "line": 68,
+      "endLine": 78,
+      "signature": "private validateSort(sort: Record<string, unknown>)",
+      "containerClass": "RoomRead",
+      "calls": [
+        {
+          "name": "forEach",
+          "edgeType": "call"
+        },
+        {
+          "name": "entries",
+          "edgeType": "call"
+        },
+        {
+          "name": "includes",
+          "edgeType": "call"
+        },
+        {
+          "name": "join",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "constructor",
+      "exported": true,
+      "qualifiedName": "RoomRead.constructor",
+      "line": 10,
+      "endLine": 13,
+      "signature": "constructor( private roomBridge: RoomBridge, private appId: string, )",
+      "containerClass": "RoomRead",
+      "calls": [
+        {
+          "name": "RoomBridge",
+          "edgeType": "type"
+        }
+      ]
+    }
+  ],
+  "imports": [
+    {
+      "module": "@rocket.chat/apps-engine/definition/accessors",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/apps-engine/definition/messages",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/apps-engine/definition/rooms",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/apps-engine/definition/users",
+      "resolved": "external"
+    },
+    {
+      "module": "../bridges",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/packages/apps/src/server/bridges/index.ts"
+    },
+    {
+      "module": "../bridges/RoomBridge",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/packages/apps/src/server/bridges/RoomBridge.ts"
+    }
+  ]
+}

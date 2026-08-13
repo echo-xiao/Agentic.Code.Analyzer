@@ -1,0 +1,97 @@
+{
+  "sourcePath": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/tests/e2e/page-objects/fragments/modals/disable-room-encryption-modal.ts",
+  "symbols": [
+    {
+      "type": "class",
+      "name": "DisableRoomEncryptionModal",
+      "exported": true,
+      "line": 6,
+      "endLine": 23,
+      "signature": "export class DisableRoomEncryptionModal extends Modal",
+      "calls": [
+        {
+          "name": "Modal",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "disable",
+      "exported": true,
+      "qualifiedName": "DisableRoomEncryptionModal.disable",
+      "line": 18,
+      "endLine": 22,
+      "signature": "async disable()",
+      "containerClass": "DisableRoomEncryptionModal",
+      "calls": [
+        {
+          "name": "click",
+          "edgeType": "call"
+        },
+        {
+          "name": "waitForDismissal",
+          "edgeType": "call"
+        },
+        {
+          "name": "dismissToast",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "constructor",
+      "exported": true,
+      "qualifiedName": "DisableRoomEncryptionModal.constructor",
+      "line": 9,
+      "endLine": 12,
+      "signature": "constructor(page: Page)",
+      "containerClass": "DisableRoomEncryptionModal",
+      "calls": [
+        {
+          "name": "getByRole",
+          "edgeType": "call"
+        },
+        {
+          "name": "ToastMessages",
+          "edgeType": "new"
+        },
+        {
+          "name": "Page",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "class_property",
+      "name": "toastMessages",
+      "exported": true,
+      "qualifiedName": "DisableRoomEncryptionModal.toastMessages",
+      "line": 7,
+      "endLine": 7,
+      "signature": "private readonly toastMessages: ToastMessages;",
+      "containerClass": "DisableRoomEncryptionModal",
+      "calls": [
+        {
+          "name": "ToastMessages",
+          "edgeType": "type"
+        }
+      ]
+    }
+  ],
+  "imports": [
+    {
+      "module": "playwright-core",
+      "resolved": "external"
+    },
+    {
+      "module": "./modal",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/tests/e2e/page-objects/fragments/modals/modal.ts"
+    },
+    {
+      "module": "../toast-messages",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/tests/e2e/page-objects/fragments/toast-messages.ts"
+    }
+  ]
+}

@@ -1,0 +1,69 @@
+{
+  "sourcePath": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/tests/e2e/page-objects/fragments/modals/delete-account-modal.ts",
+  "symbols": [
+    {
+      "type": "class",
+      "name": "DeleteAccountModal",
+      "exported": true,
+      "line": 5,
+      "endLine": 36,
+      "signature": "export class DeleteAccountModal extends Modal",
+      "calls": [
+        {
+          "name": "Modal",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "confirmDelete",
+      "exported": true,
+      "qualifiedName": "DeleteAccountModal.confirmDelete",
+      "line": 18,
+      "endLine": 23,
+      "signature": "async confirmDelete({ waitForDismissal = true } = {}): Promise<void>",
+      "containerClass": "DeleteAccountModal",
+      "calls": [
+        {
+          "name": "click",
+          "edgeType": "call"
+        },
+        {
+          "name": "waitForDismissal",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "constructor",
+      "exported": true,
+      "qualifiedName": "DeleteAccountModal.constructor",
+      "line": 6,
+      "endLine": 8,
+      "signature": "constructor(page: Page)",
+      "containerClass": "DeleteAccountModal",
+      "calls": [
+        {
+          "name": "getByRole",
+          "edgeType": "call"
+        },
+        {
+          "name": "Page",
+          "edgeType": "type"
+        }
+      ]
+    }
+  ],
+  "imports": [
+    {
+      "module": "playwright-core",
+      "resolved": "external"
+    },
+    {
+      "module": "./modal",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/tests/e2e/page-objects/fragments/modals/modal.ts"
+    }
+  ]
+}

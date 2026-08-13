@@ -1,0 +1,73 @@
+{
+  "sourcePath": "/Users/echoooooo/Desktop/code/Rocket.Chat/ee/packages/media-calls/src/server/signals/getSignalsForExistingCall.ts",
+  "symbols": [
+    {
+      "type": "function",
+      "name": "getSignalsForExistingCall",
+      "exported": true,
+      "line": 9,
+      "endLine": 35,
+      "signature": "export async function getSignalsForExistingCall(call: IMediaCall, uid: IUser['_id'], contractId: string): Promise<ServerMediaCallSignal[]>",
+      "calls": [
+        {
+          "name": "getCallRoleForUser",
+          "edgeType": "call"
+        },
+        {
+          "name": "push",
+          "edgeType": "call"
+        },
+        {
+          "name": "getNewCallSignal",
+          "edgeType": "call"
+        },
+        {
+          "name": "getStateNotification",
+          "edgeType": "call"
+        },
+        {
+          "name": "getInitialOfferSignal",
+          "edgeType": "call"
+        },
+        {
+          "name": "IMediaCall",
+          "edgeType": "type"
+        },
+        {
+          "name": "IUser",
+          "edgeType": "type"
+        },
+        {
+          "name": "ServerMediaCallSignal",
+          "edgeType": "type"
+        }
+      ]
+    }
+  ],
+  "imports": [
+    {
+      "module": "@rocket.chat/core-typings",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/media-signaling",
+      "resolved": "external"
+    },
+    {
+      "module": "./getNewCallSignal",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/ee/packages/media-calls/src/server/signals/getNewCallSignal.ts"
+    },
+    {
+      "module": "../getCallRoleForUser",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/ee/packages/media-calls/src/server/getCallRoleForUser.ts"
+    },
+    {
+      "module": "./getInitialOfferSignal",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/ee/packages/media-calls/src/server/signals/getInitialOfferSignal.ts"
+    },
+    {
+      "module": "./getStateNotification",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/ee/packages/media-calls/src/server/signals/getStateNotification.ts"
+    }
+  ]
+}

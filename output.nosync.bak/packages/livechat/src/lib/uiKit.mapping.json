@@ -1,0 +1,134 @@
+{
+  "sourcePath": "/Users/echoooooo/Desktop/code/Rocket.Chat/packages/livechat/src/lib/uiKit.js",
+  "symbols": [
+    {
+      "type": "variable",
+      "name": "UIKitInteractionType",
+      "exported": true,
+      "line": 4,
+      "endLine": 9,
+      "signature": "UIKitInteractionType =",
+      "calls": []
+    },
+    {
+      "type": "variable",
+      "name": "UIKitIncomingInteractionType",
+      "exported": true,
+      "line": 11,
+      "endLine": 15,
+      "signature": "UIKitIncomingInteractionType =",
+      "calls": []
+    },
+    {
+      "type": "variable",
+      "name": "UIKitIncomingInteractionContainerType",
+      "exported": true,
+      "line": 17,
+      "endLine": 20,
+      "signature": "UIKitIncomingInteractionContainerType =",
+      "calls": []
+    },
+    {
+      "type": "variable_function",
+      "name": "invalidateTriggerId",
+      "exported": false,
+      "line": 28,
+      "endLine": 32,
+      "signature": "(id) =>",
+      "calls": [
+        {
+          "name": "get",
+          "edgeType": "call"
+        },
+        {
+          "name": "delete",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "variable_function",
+      "name": "generateTriggerId",
+      "exported": false,
+      "line": 32,
+      "endLine": 37,
+      "signature": "(appId) =>",
+      "calls": [
+        {
+          "name": "createRandomId",
+          "edgeType": "call"
+        },
+        {
+          "name": "set",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "variable_function",
+      "name": "handlePayloadUserInteraction",
+      "exported": false,
+      "line": 36,
+      "endLine": 95,
+      "signature": "(type, { /* appId,*/ triggerId, ...data }) =>",
+      "calls": [
+        {
+          "name": "has",
+          "edgeType": "call"
+        },
+        {
+          "name": "invalidateTriggerId",
+          "edgeType": "call"
+        },
+        {
+          "name": "includes",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "variable_function",
+      "name": "triggerAction",
+      "exported": true,
+      "line": 40,
+      "endLine": 73,
+      "signature": "async ({ appId, type, actionId, rid, mid, viewId, container, payload }) =>",
+      "calls": [
+        {
+          "name": "generateTriggerId",
+          "edgeType": "call"
+        },
+        {
+          "name": "race",
+          "edgeType": "call"
+        },
+        {
+          "name": "sendUiInteraction",
+          "edgeType": "call"
+        },
+        {
+          "name": "reject",
+          "edgeType": "call"
+        },
+        {
+          "name": "handlePayloadUserInteraction",
+          "edgeType": "call"
+        },
+        {
+          "name": "invalidateTriggerId",
+          "edgeType": "call"
+        }
+      ]
+    }
+  ],
+  "imports": [
+    {
+      "module": "../api",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/packages/livechat/src/api.ts"
+    },
+    {
+      "module": "./random",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/packages/livechat/src/lib/random.ts"
+    }
+  ]
+}

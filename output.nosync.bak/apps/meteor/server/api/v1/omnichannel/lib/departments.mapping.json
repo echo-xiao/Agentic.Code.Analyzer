@@ -1,0 +1,306 @@
+{
+  "sourcePath": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/server/api/v1/omnichannel/lib/departments.ts",
+  "symbols": [
+    {
+      "type": "function",
+      "name": "findDepartments",
+      "exported": true,
+      "line": 40,
+      "endLine": 75,
+      "signature": "export async function findDepartments({ userId, onlyMyDepartments = false, text, enabled, excludeDepartmentId, showArchived = false, pagination: { offset, count, sort }, }: FindDepartmentParams): Promise<PaginatedResult<{ departments: ILivechatDepartment[] }>>",
+      "calls": [
+        {
+          "name": "Boolean",
+          "edgeType": "call"
+        },
+        {
+          "name": "escapeRegExp",
+          "edgeType": "call"
+        },
+        {
+          "name": "applyDepartmentRestrictions",
+          "edgeType": "call"
+        },
+        {
+          "name": "findPaginated",
+          "edgeType": "call"
+        },
+        {
+          "name": "all",
+          "edgeType": "call"
+        },
+        {
+          "name": "toArray",
+          "edgeType": "call"
+        },
+        {
+          "name": "RegExp",
+          "edgeType": "new"
+        },
+        {
+          "name": "FindDepartmentParams",
+          "edgeType": "type"
+        },
+        {
+          "name": "PaginatedResult",
+          "edgeType": "type"
+        },
+        {
+          "name": "ILivechatDepartment",
+          "edgeType": "type"
+        },
+        {
+          "name": "FilterOperators",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "function",
+      "name": "findArchivedDepartments",
+      "exported": true,
+      "line": 52,
+      "endLine": 84,
+      "signature": "export async function findArchivedDepartments({ userId, onlyMyDepartments = false, text, excludeDepartmentId, pagination: { offset, count, sort }, }: FindDepartmentParams): Promise<PaginatedResult<{ departments: ILivechatDepartment[] }>>",
+      "calls": [
+        {
+          "name": "escapeRegExp",
+          "edgeType": "call"
+        },
+        {
+          "name": "applyDepartmentRestrictions",
+          "edgeType": "call"
+        },
+        {
+          "name": "findPaginated",
+          "edgeType": "call"
+        },
+        {
+          "name": "all",
+          "edgeType": "call"
+        },
+        {
+          "name": "toArray",
+          "edgeType": "call"
+        },
+        {
+          "name": "RegExp",
+          "edgeType": "new"
+        },
+        {
+          "name": "FindDepartmentParams",
+          "edgeType": "type"
+        },
+        {
+          "name": "PaginatedResult",
+          "edgeType": "type"
+        },
+        {
+          "name": "ILivechatDepartment",
+          "edgeType": "type"
+        },
+        {
+          "name": "FilterOperators",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "function",
+      "name": "findDepartmentById",
+      "exported": true,
+      "line": 62,
+      "endLine": 88,
+      "signature": "export async function findDepartmentById({ userId, departmentId, includeAgents = true, onlyMyDepartments = false, }: FindDepartmentByIdParams): Promise<{ department: ILivechatDepartment | null; agents?: ILivechatDepartmentAgents[]; }>",
+      "calls": [
+        {
+          "name": "hasPermissionAsync",
+          "edgeType": "call"
+        },
+        {
+          "name": "applyDepartmentRestrictions",
+          "edgeType": "call"
+        },
+        {
+          "name": "findOne",
+          "edgeType": "call"
+        },
+        {
+          "name": "toArray",
+          "edgeType": "call"
+        },
+        {
+          "name": "findByDepartmentId",
+          "edgeType": "call"
+        },
+        {
+          "name": "FindDepartmentByIdParams",
+          "edgeType": "type"
+        },
+        {
+          "name": "ILivechatDepartment",
+          "edgeType": "type"
+        },
+        {
+          "name": "ILivechatDepartmentAgents",
+          "edgeType": "type"
+        },
+        {
+          "name": "FilterOperators",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "function",
+      "name": "findDepartmentsToAutocomplete",
+      "exported": true,
+      "line": 74,
+      "endLine": 101,
+      "signature": "export async function findDepartmentsToAutocomplete({ uid, selector, onlyMyDepartments = false, showArchived = false, }: FindDepartmentToAutocompleteParams): Promise<{ items: ILivechatDepartment[] }>",
+      "calls": [
+        {
+          "name": "applyDepartmentRestrictions",
+          "edgeType": "call"
+        },
+        {
+          "name": "toArray",
+          "edgeType": "call"
+        },
+        {
+          "name": "findByNameRegexWithExceptionsAndConditions",
+          "edgeType": "call"
+        },
+        {
+          "name": "FindDepartmentToAutocompleteParams",
+          "edgeType": "type"
+        },
+        {
+          "name": "ILivechatDepartment",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "function",
+      "name": "findDepartmentAgents",
+      "exported": true,
+      "line": 83,
+      "endLine": 101,
+      "signature": "export async function findDepartmentAgents({ departmentId, pagination: { offset, count, sort }, }: FindDepartmentAgentsParams): Promise<PaginatedResult<{ agents: ILivechatDepartmentAgents[] }>>",
+      "calls": [
+        {
+          "name": "findAgentsByDepartmentId",
+          "edgeType": "call"
+        },
+        {
+          "name": "all",
+          "edgeType": "call"
+        },
+        {
+          "name": "toArray",
+          "edgeType": "call"
+        },
+        {
+          "name": "FindDepartmentAgentsParams",
+          "edgeType": "type"
+        },
+        {
+          "name": "PaginatedResult",
+          "edgeType": "type"
+        },
+        {
+          "name": "ILivechatDepartmentAgents",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "function",
+      "name": "findDepartmentsBetweenIds",
+      "exported": true,
+      "line": 90,
+      "endLine": 99,
+      "signature": "export async function findDepartmentsBetweenIds({ ids, fields, }: { ids: string[]; fields: Record<string, unknown>; }): Promise<{ departments: ILivechatDepartment[] }>",
+      "calls": [
+        {
+          "name": "toArray",
+          "edgeType": "call"
+        },
+        {
+          "name": "findInIds",
+          "edgeType": "call"
+        },
+        {
+          "name": "ILivechatDepartment",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "type",
+      "name": "Pagination",
+      "line": 10,
+      "endLine": 10,
+      "signature": "type Pagination<T extends Document> ="
+    },
+    {
+      "type": "type",
+      "name": "FindDepartmentParams",
+      "line": 11,
+      "endLine": 18,
+      "signature": "type FindDepartmentParams ="
+    },
+    {
+      "type": "type",
+      "name": "FindDepartmentByIdParams",
+      "line": 19,
+      "endLine": 24,
+      "signature": "type FindDepartmentByIdParams ="
+    },
+    {
+      "type": "type",
+      "name": "FindDepartmentToAutocompleteParams",
+      "line": 25,
+      "endLine": 34,
+      "signature": "type FindDepartmentToAutocompleteParams ="
+    },
+    {
+      "type": "type",
+      "name": "FindDepartmentAgentsParams",
+      "line": 35,
+      "endLine": 38,
+      "signature": "type FindDepartmentAgentsParams ="
+    }
+  ],
+  "imports": [
+    {
+      "module": "@rocket.chat/core-typings",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/models",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/omni-core",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/rest-typings",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/string-helpers",
+      "resolved": "external"
+    },
+    {
+      "module": "mongodb",
+      "resolved": "external"
+    },
+    {
+      "module": "../../../../lib/authorization/hasPermission",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/server/lib/authorization/hasPermission.ts"
+    }
+  ]
+}

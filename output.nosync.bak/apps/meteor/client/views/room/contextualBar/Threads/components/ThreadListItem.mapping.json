@@ -1,0 +1,165 @@
+{
+  "sourcePath": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/client/views/room/contextualBar/Threads/components/ThreadListItem.tsx",
+  "symbols": [
+    {
+      "type": "module",
+      "name": "ThreadListItem",
+      "exported": false,
+      "line": 1,
+      "endLine": 72,
+      "signature": "ThreadListItem",
+      "calls": [
+        {
+          "name": "memo",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "inner_function",
+      "name": "handleListItemClick",
+      "exported": false,
+      "qualifiedName": "ThreadListItem.handleListItemClick",
+      "line": 31,
+      "endLine": 36,
+      "signature": "(event: MouseEvent<HTMLElement>): void =>",
+      "calls": [
+        {
+          "name": "preventDefault",
+          "edgeType": "call"
+        },
+        {
+          "name": "stopPropagation",
+          "edgeType": "call"
+        },
+        {
+          "name": "onClick",
+          "edgeType": "call"
+        },
+        {
+          "name": "MouseEvent",
+          "edgeType": "type"
+        },
+        {
+          "name": "HTMLElement",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "variable_function",
+      "name": "ThreadListItem",
+      "exported": false,
+      "line": 20,
+      "endLine": 69,
+      "signature": "({ thread, unread, unreadUser, unreadGroup, onClick }: ThreadListItemProps) =>",
+      "calls": [
+        {
+          "name": "useUserId",
+          "edgeType": "call"
+        },
+        {
+          "name": "useDecryptedMessage",
+          "edgeType": "call"
+        },
+        {
+          "name": "normalizeThreadMessage",
+          "edgeType": "call"
+        },
+        {
+          "name": "includes",
+          "edgeType": "call"
+        },
+        {
+          "name": "useSetting",
+          "edgeType": "call"
+        },
+        {
+          "name": "useCallback",
+          "edgeType": "call"
+        },
+        {
+          "name": "preventDefault",
+          "edgeType": "call"
+        },
+        {
+          "name": "stopPropagation",
+          "edgeType": "call"
+        },
+        {
+          "name": "onClick",
+          "edgeType": "call"
+        },
+        {
+          "name": "ThreadListMessage",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "following",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "handleListItemClick",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "ThreadListItemProps",
+          "edgeType": "type"
+        },
+        {
+          "name": "MouseEvent",
+          "edgeType": "type"
+        },
+        {
+          "name": "HTMLElement",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "type",
+      "name": "ThreadListItemProps",
+      "line": 12,
+      "endLine": 18,
+      "signature": "type ThreadListItemProps ="
+    }
+  ],
+  "imports": [
+    {
+      "module": "@rocket.chat/core-typings",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/css-in-js",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/fuselage",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/ui-contexts",
+      "resolved": "external"
+    },
+    {
+      "module": "react",
+      "resolved": "external"
+    },
+    {
+      "module": "react",
+      "resolved": "external"
+    },
+    {
+      "module": "./ThreadListMessage",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/client/views/room/contextualBar/Threads/components/ThreadListMessage.tsx"
+    },
+    {
+      "module": "../../../../../hooks/useDecryptedMessage",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/client/hooks/useDecryptedMessage.ts"
+    },
+    {
+      "module": "../../../../../lib/normalizeThreadMessage",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/client/lib/normalizeThreadMessage.tsx"
+    }
+  ]
+}

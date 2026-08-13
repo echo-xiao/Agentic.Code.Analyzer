@@ -1,0 +1,239 @@
+{
+  "sourcePath": "/Users/echoooooo/Desktop/code/Rocket.Chat/packages/livechat/src/lib/triggerUtils.ts",
+  "symbols": [
+    {
+      "type": "variable_function",
+      "name": "isAgentWithInfo",
+      "exported": false,
+      "line": 15,
+      "endLine": 15,
+      "signature": "(agent: any): agent is Serialized<ILivechatAgent> =>",
+      "calls": [
+        {
+          "name": "Serialized",
+          "edgeType": "type"
+        },
+        {
+          "name": "ILivechatAgent",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "variable_function",
+      "name": "getNextAgentFromQueue",
+      "exported": false,
+      "line": 17,
+      "endLine": 43,
+      "signature": "async () =>",
+      "calls": [
+        {
+          "name": "now",
+          "edgeType": "call"
+        },
+        {
+          "name": "nextAgent",
+          "edgeType": "call"
+        },
+        {
+          "name": "isAgentWithInfo",
+          "edgeType": "call"
+        },
+        {
+          "name": "reject",
+          "edgeType": "call"
+        },
+        {
+          "name": "setState",
+          "edgeType": "call"
+        },
+        {
+          "name": "Agent",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "variable_function",
+      "name": "getAgent",
+      "exported": true,
+      "line": 21,
+      "endLine": 51,
+      "signature": "async (triggerAction: ILivechatTriggerAction): Promise<AgentPromise> =>",
+      "calls": [
+        {
+          "name": "resolve",
+          "edgeType": "call"
+        },
+        {
+          "name": "getNextAgentFromQueue",
+          "edgeType": "call"
+        },
+        {
+          "name": "reject",
+          "edgeType": "call"
+        },
+        {
+          "name": "ILivechatTriggerAction",
+          "edgeType": "type"
+        },
+        {
+          "name": "AgentPromise",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "variable_function",
+      "name": "upsertMessage",
+      "exported": true,
+      "line": 25,
+      "endLine": 36,
+      "signature": "async (message: Record<string, unknown>) =>",
+      "calls": [
+        {
+          "name": "setState",
+          "edgeType": "call"
+        },
+        {
+          "name": "upsert",
+          "edgeType": "call"
+        },
+        {
+          "name": "getTime",
+          "edgeType": "call"
+        },
+        {
+          "name": "processUnread",
+          "edgeType": "call"
+        },
+        {
+          "name": "Date",
+          "edgeType": "new"
+        }
+      ]
+    },
+    {
+      "type": "variable_function",
+      "name": "removeMessage",
+      "exported": true,
+      "line": 29,
+      "endLine": 32,
+      "signature": "async (messageId: string) =>",
+      "calls": [
+        {
+          "name": "setState",
+          "edgeType": "call"
+        },
+        {
+          "name": "filter",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "variable_function",
+      "name": "removeTriggerMessage",
+      "exported": true,
+      "line": 33,
+      "endLine": 36,
+      "signature": "async (messageId: string) =>",
+      "calls": [
+        {
+          "name": "setState",
+          "edgeType": "call"
+        },
+        {
+          "name": "filter",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "variable_function",
+      "name": "hasTriggerCondition",
+      "exported": true,
+      "line": 37,
+      "endLine": 39,
+      "signature": "(conditionName: ILivechatTriggerType) =>",
+      "calls": [
+        {
+          "name": "some",
+          "edgeType": "call"
+        },
+        {
+          "name": "ILivechatTriggerType",
+          "edgeType": "type"
+        },
+        {
+          "name": "ILivechatTrigger",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "variable_function",
+      "name": "isInIframe",
+      "exported": true,
+      "line": 41,
+      "endLine": 41,
+      "signature": "() =>",
+      "calls": []
+    },
+    {
+      "type": "variable_function",
+      "name": "requestTriggerMessages",
+      "exported": true,
+      "line": 43,
+      "endLine": 69,
+      "signature": "async ({ triggerId, token, metadata = {}, fallbackMessage, }: { triggerId: string; token: string; metadata: Record<string, string>; fallbackMessage?: string; }) =>",
+      "calls": [
+        {
+          "name": "reduce",
+          "edgeType": "call"
+        },
+        {
+          "name": "entries",
+          "edgeType": "call"
+        },
+        {
+          "name": "post",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "type",
+      "name": "AgentPromise",
+      "line": 9,
+      "endLine": 9,
+      "signature": "type AgentPromise ="
+    }
+  ],
+  "imports": [
+    {
+      "module": "@rocket.chat/core-typings",
+      "resolved": "external"
+    },
+    {
+      "module": "../api",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/packages/livechat/src/api.ts"
+    },
+    {
+      "module": "./main",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/packages/livechat/src/lib/main.ts"
+    },
+    {
+      "module": "../definitions/agents",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/packages/livechat/src/definitions/agents.ts"
+    },
+    {
+      "module": "../helpers/upsert",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/packages/livechat/src/helpers/upsert.ts"
+    },
+    {
+      "module": "../store",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/packages/livechat/src/store/index.tsx"
+    }
+  ]
+}

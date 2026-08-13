@@ -1,0 +1,153 @@
+{
+  "sourcePath": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/server/api/v1/omnichannel/visitors.ts",
+  "symbols": [
+    {
+      "type": "module",
+      "name": "visitors",
+      "exported": false,
+      "line": 1,
+      "endLine": 196,
+      "signature": "visitors",
+      "calls": [
+        {
+          "name": "livechat/visitors.info",
+          "edgeType": "rest_route"
+        },
+        {
+          "name": "addRoute",
+          "edgeType": "call"
+        },
+        {
+          "name": "findVisitorInfo",
+          "edgeType": "call"
+        },
+        {
+          "name": "success",
+          "edgeType": "call"
+        },
+        {
+          "name": "livechat/visitors.pagesVisited/:roomId",
+          "edgeType": "rest_route"
+        },
+        {
+          "name": "getPaginationItems",
+          "edgeType": "call"
+        },
+        {
+          "name": "parseJsonQuery",
+          "edgeType": "call"
+        },
+        {
+          "name": "findVisitedPages",
+          "edgeType": "call"
+        },
+        {
+          "name": "livechat/visitors.chatHistory/room/:roomId/visitor/:visitorId",
+          "edgeType": "rest_route"
+        },
+        {
+          "name": "findChatHistory",
+          "edgeType": "call"
+        },
+        {
+          "name": "livechat/visitors.searchChats/room/:roomId/visitor/:visitorId",
+          "edgeType": "rest_route"
+        },
+        {
+          "name": "searchChats",
+          "edgeType": "call"
+        },
+        {
+          "name": "livechat/visitors.autocomplete",
+          "edgeType": "rest_route"
+        },
+        {
+          "name": "findVisitorsToAutocomplete",
+          "edgeType": "call"
+        },
+        {
+          "name": "parse",
+          "edgeType": "call"
+        },
+        {
+          "name": "livechat/visitors.search",
+          "edgeType": "rest_route"
+        },
+        {
+          "name": "escapeRegExp",
+          "edgeType": "call"
+        },
+        {
+          "name": "findVisitorsByEmailOrPhoneOrNameOrUsernameOrCustomField",
+          "edgeType": "call"
+        },
+        {
+          "name": "RegExp",
+          "edgeType": "new"
+        },
+        {
+          "name": "livechat/:rid/messages",
+          "edgeType": "rest_route"
+        },
+        {
+          "name": "findOneById",
+          "edgeType": "call"
+        },
+        {
+          "name": "canAccessRoomAsync",
+          "edgeType": "call"
+        },
+        {
+          "name": "findLivechatClosedMessages",
+          "edgeType": "call"
+        },
+        {
+          "name": "all",
+          "edgeType": "call"
+        },
+        {
+          "name": "toArray",
+          "edgeType": "call"
+        },
+        {
+          "name": "normalizeMessagesForUser",
+          "edgeType": "call"
+        }
+      ]
+    }
+  ],
+  "imports": [
+    {
+      "module": "@rocket.chat/models",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/rest-typings",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/string-helpers",
+      "resolved": "external"
+    },
+    {
+      "module": "../..",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/server/api/index.ts"
+    },
+    {
+      "module": "./lib/visitors",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/server/api/v1/omnichannel/lib/visitors.ts"
+    },
+    {
+      "module": "../../../../app/authorization/server",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/app/authorization/server/index.ts"
+    },
+    {
+      "module": "../../../../app/utils/server/lib/normalizeMessagesForUser",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/app/utils/server/lib/normalizeMessagesForUser.ts"
+    },
+    {
+      "module": "../../lib/getPaginationItems",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/server/api/lib/getPaginationItems.ts"
+    }
+  ]
+}

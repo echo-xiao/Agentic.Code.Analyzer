@@ -1,0 +1,142 @@
+{
+  "sourcePath": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/app/ui-message/client/messageBox/messageBoxFormatting.ts",
+  "symbols": [
+    {
+      "type": "variable_function",
+      "name": "isPromptButton",
+      "exported": true,
+      "line": 32,
+      "endLine": 32,
+      "signature": "(button: FormattingButton): button is PromptButton =>",
+      "calls": [
+        {
+          "name": "FormattingButton",
+          "edgeType": "type"
+        },
+        {
+          "name": "PromptButton",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "variable",
+      "name": "formattingButtons",
+      "exported": true,
+      "line": 34,
+      "endLine": 106,
+      "signature": "formattingButtons: ReadonlyArray<FormattingButton> = [",
+      "calls": [
+        {
+          "name": "substring",
+          "edgeType": "call"
+        },
+        {
+          "name": "close",
+          "edgeType": "call"
+        },
+        {
+          "name": "focus",
+          "edgeType": "call"
+        },
+        {
+          "name": "flushSync",
+          "edgeType": "call"
+        },
+        {
+          "name": "onClose",
+          "edgeType": "call"
+        },
+        {
+          "name": "replaceText",
+          "edgeType": "call"
+        },
+        {
+          "name": "setCursorToEnd",
+          "edgeType": "call"
+        },
+        {
+          "name": "open",
+          "edgeType": "call"
+        },
+        {
+          "name": "peek",
+          "edgeType": "call"
+        },
+        {
+          "name": "ComposerAPI",
+          "edgeType": "type"
+        },
+        {
+          "name": "TranslationKey",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "type",
+      "name": "FormattingButtonDefault",
+      "line": 10,
+      "endLine": 10,
+      "signature": "type FormattingButtonDefault ="
+    },
+    {
+      "type": "type",
+      "name": "TextButton",
+      "line": 12,
+      "endLine": 15,
+      "signature": "type TextButton ="
+    },
+    {
+      "type": "type",
+      "name": "PatternButton",
+      "line": 17,
+      "endLine": 23,
+      "signature": "type PatternButton ="
+    },
+    {
+      "type": "type",
+      "name": "PromptButton",
+      "line": 25,
+      "endLine": 28,
+      "signature": "type PromptButton ="
+    },
+    {
+      "type": "type",
+      "name": "FormattingButton",
+      "line": 30,
+      "endLine": 30,
+      "signature": "export type FormattingButton = PatternButton | PromptButton | TextButton;"
+    }
+  ],
+  "imports": [
+    {
+      "module": "@rocket.chat/icons",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/ui-client",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/ui-contexts",
+      "resolved": "external"
+    },
+    {
+      "module": "react-dom",
+      "resolved": "external"
+    },
+    {
+      "module": "./AddLinkComposerActionModal",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/app/ui-message/client/messageBox/AddLinkComposerActionModal.tsx"
+    },
+    {
+      "module": "../../../../client/lib/chats/ChatAPI",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/client/lib/chats/ChatAPI.ts"
+    },
+    {
+      "module": "../../../../client/lib/settings",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/client/lib/settings/index.ts"
+    }
+  ]
+}

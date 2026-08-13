@@ -1,0 +1,120 @@
+{
+  "sourcePath": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/app/importer/server/classes/ImportersContainer.ts",
+  "symbols": [
+    {
+      "type": "class",
+      "name": "ImportersContainer",
+      "exported": true,
+      "line": 4,
+      "endLine": 27,
+      "signature": "export class ImportersContainer",
+      "calls": []
+    },
+    {
+      "type": "method",
+      "name": "add",
+      "exported": true,
+      "qualifiedName": "ImportersContainer.add",
+      "line": 11,
+      "endLine": 18,
+      "signature": "add({ key, name, importer, visible }: Omit<ImporterInfo, 'visible'> & { visible?: boolean })",
+      "containerClass": "ImportersContainer",
+      "calls": [
+        {
+          "name": "set",
+          "edgeType": "call"
+        },
+        {
+          "name": "ImporterInfo",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "get",
+      "exported": true,
+      "qualifiedName": "ImportersContainer.get",
+      "line": 15,
+      "endLine": 17,
+      "signature": "get(key: string): ImporterInfo | undefined",
+      "containerClass": "ImportersContainer",
+      "calls": [
+        {
+          "name": "get",
+          "edgeType": "call"
+        },
+        {
+          "name": "ImporterInfo",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "getAllVisible",
+      "exported": true,
+      "qualifiedName": "ImportersContainer.getAllVisible",
+      "line": 19,
+      "endLine": 21,
+      "signature": "getAllVisible(): ImporterInfo[]",
+      "containerClass": "ImportersContainer",
+      "calls": [
+        {
+          "name": "filter",
+          "edgeType": "call"
+        },
+        {
+          "name": "from",
+          "edgeType": "call"
+        },
+        {
+          "name": "values",
+          "edgeType": "call"
+        },
+        {
+          "name": "ImporterInfo",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "constructor",
+      "exported": true,
+      "qualifiedName": "ImportersContainer.constructor",
+      "line": 7,
+      "endLine": 9,
+      "signature": "constructor()",
+      "containerClass": "ImportersContainer",
+      "calls": [
+        {
+          "name": "Map",
+          "edgeType": "new"
+        }
+      ]
+    },
+    {
+      "type": "class_property",
+      "name": "importers",
+      "exported": true,
+      "qualifiedName": "ImportersContainer.importers",
+      "line": 5,
+      "endLine": 5,
+      "signature": "private importers: Map<ImporterInfo['key'], ImporterInfo>;",
+      "containerClass": "ImportersContainer",
+      "calls": [
+        {
+          "name": "ImporterInfo",
+          "edgeType": "type"
+        }
+      ]
+    }
+  ],
+  "imports": [
+    {
+      "module": "../definitions/ImporterInfo",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/app/importer/server/definitions/ImporterInfo.ts"
+    }
+  ]
+}

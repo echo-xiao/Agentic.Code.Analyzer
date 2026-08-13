@@ -1,0 +1,79 @@
+{
+  "sourcePath": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/app/meteor-accounts-saml/server/lib/signature/signatureAlgorithms.ts",
+  "symbols": [
+    {
+      "type": "function",
+      "name": "getSigAlgKeyIfSupported",
+      "exported": true,
+      "line": 14,
+      "endLine": 20,
+      "signature": "export function getSigAlgKeyIfSupported(key: string): SigAlgKey | null",
+      "calls": [
+        {
+          "name": "SigAlgKey",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "function",
+      "name": "getSigAlgKeyByURI",
+      "exported": true,
+      "line": 20,
+      "endLine": 28,
+      "signature": "export function getSigAlgKeyByURI(algURI: string): SigAlgKey | null",
+      "calls": [
+        {
+          "name": "entries",
+          "edgeType": "call"
+        },
+        {
+          "name": "SigAlgKey",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "function",
+      "name": "getSigAlgURIByKey",
+      "exported": true,
+      "line": 26,
+      "endLine": 28,
+      "signature": "export function getSigAlgURIByKey(key: string): SigAlgURI | null",
+      "calls": [
+        {
+          "name": "SigAlgURI",
+          "edgeType": "type"
+        },
+        {
+          "name": "SigAlgKey",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "variable",
+      "name": "signatureAlgorithms",
+      "exported": true,
+      "line": 1,
+      "endLine": 6,
+      "signature": "signatureAlgorithms =",
+      "calls": []
+    },
+    {
+      "type": "type",
+      "name": "SigAlgKey",
+      "line": 8,
+      "endLine": 8,
+      "signature": "export type SigAlgKey = keyof typeof signatureAlgorithms;"
+    },
+    {
+      "type": "type",
+      "name": "SigAlgURI",
+      "line": 10,
+      "endLine": 10,
+      "signature": "export type SigAlgURI = (typeof signatureAlgorithms)[SigAlgKey];"
+    }
+  ],
+  "imports": []
+}

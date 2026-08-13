@@ -1,0 +1,106 @@
+{
+  "sourcePath": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/server/publications/spotlight.ts",
+  "symbols": [
+    {
+      "type": "module",
+      "name": "spotlight",
+      "exported": false,
+      "line": 1,
+      "endLine": 90,
+      "signature": "spotlight",
+      "calls": [
+        {
+          "name": "spotlight",
+          "edgeType": "call"
+        },
+        {
+          "name": "methods",
+          "edgeType": "call"
+        },
+        {
+          "name": "method",
+          "edgeType": "call"
+        },
+        {
+          "name": "spotlightMethod",
+          "edgeType": "call"
+        },
+        {
+          "name": "ServerMethods",
+          "edgeType": "type"
+        },
+        {
+          "name": "addRule",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "variable_function",
+      "name": "spotlightMethod",
+      "exported": true,
+      "line": 38,
+      "endLine": 70,
+      "signature": "async ({ text, usernames = [], type = { users: true, rooms: true, mentions: false, includeFederatedRooms: false }, rid, userId, }: { text: string; usernames?: string[]; type?: SpotlightType; rid?: string; userId?: string | null; }) =>",
+      "calls": [
+        {
+          "name": "startsWith",
+          "edgeType": "call"
+        },
+        {
+          "name": "slice",
+          "edgeType": "call"
+        },
+        {
+          "name": "all",
+          "edgeType": "call"
+        },
+        {
+          "name": "searchUsers",
+          "edgeType": "call"
+        },
+        {
+          "name": "searchRooms",
+          "edgeType": "call"
+        },
+        {
+          "name": "Spotlight",
+          "edgeType": "new"
+        },
+        {
+          "name": "SpotlightType",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "type",
+      "name": "SpotlightType",
+      "line": 8,
+      "endLine": 13,
+      "signature": "type SpotlightType ="
+    }
+  ],
+  "imports": [
+    {
+      "module": "@rocket.chat/ddp-client",
+      "resolved": "external"
+    },
+    {
+      "module": "meteor/ddp-rate-limiter",
+      "resolved": "external"
+    },
+    {
+      "module": "meteor/meteor",
+      "resolved": "external"
+    },
+    {
+      "module": "../../app/lib/server/lib/deprecationWarningLogger",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/app/lib/server/lib/deprecationWarningLogger.ts"
+    },
+    {
+      "module": "../lib/spotlight",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/server/lib/spotlight.ts"
+    }
+  ]
+}

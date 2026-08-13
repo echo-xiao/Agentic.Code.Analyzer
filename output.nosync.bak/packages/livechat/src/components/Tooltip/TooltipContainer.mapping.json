@@ -1,0 +1,159 @@
+{
+  "sourcePath": "/Users/echoooooo/Desktop/code/Rocket.Chat/packages/livechat/src/components/Tooltip/TooltipContainer.tsx",
+  "symbols": [
+    {
+      "type": "class",
+      "name": "TooltipContainer",
+      "exported": true,
+      "line": 18,
+      "endLine": 69,
+      "signature": "class TooltipContainer extends Component<TooltipContainerProps, TooltipContainerState>",
+      "calls": [
+        {
+          "name": "Component",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "UNSAFE_componentWillReceiveProps",
+      "exported": true,
+      "qualifiedName": "TooltipContainer.UNSAFE_componentWillReceiveProps",
+      "line": 48,
+      "endLine": 59,
+      "signature": "UNSAFE_componentWillReceiveProps(props: TooltipContainerProps)",
+      "containerClass": "TooltipContainer",
+      "calls": [
+        {
+          "name": "showTooltip",
+          "edgeType": "call"
+        },
+        {
+          "name": "TooltipContainerProps",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "render",
+      "exported": true,
+      "qualifiedName": "TooltipContainer.render",
+      "line": 52,
+      "endLine": 59,
+      "signature": "render({ children }: TooltipContainerProps)",
+      "containerClass": "TooltipContainer",
+      "calls": [
+        {
+          "name": "TooltipContext.Provider",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "TooltipContext.Consumer",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "TooltipContainerProps",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "class_property",
+      "name": "state",
+      "exported": true,
+      "qualifiedName": "TooltipContainer.state",
+      "line": 19,
+      "endLine": 24,
+      "signature": "override state: TooltipContainerState =",
+      "containerClass": "TooltipContainer",
+      "calls": [
+        {
+          "name": "TooltipContainerState",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "class_property",
+      "name": "showTooltip",
+      "exported": true,
+      "qualifiedName": "TooltipContainer.showTooltip",
+      "line": 26,
+      "endLine": 42,
+      "signature": "showTooltip = ( event: any,",
+      "containerClass": "TooltipContainer",
+      "calls": [
+        {
+          "name": "getBoundingClientRect",
+          "edgeType": "call"
+        },
+        {
+          "name": "setState",
+          "edgeType": "call"
+        },
+        {
+          "name": "Tooltip",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "placement",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "triggerBounds",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "Placement",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "class_property",
+      "name": "hideTooltip",
+      "exported": true,
+      "qualifiedName": "TooltipContainer.hideTooltip",
+      "line": 44,
+      "endLine": 46,
+      "signature": "hideTooltip = () =>",
+      "containerClass": "TooltipContainer",
+      "calls": [
+        {
+          "name": "setState",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "type",
+      "name": "TooltipContainerProps",
+      "line": 6,
+      "endLine": 8,
+      "signature": "export type TooltipContainerProps ="
+    },
+    {
+      "type": "type",
+      "name": "TooltipContainerState",
+      "line": 10,
+      "endLine": 16,
+      "signature": "type TooltipContainerState ="
+    }
+  ],
+  "imports": [
+    {
+      "module": "preact",
+      "resolved": "external"
+    },
+    {
+      "module": "./Tooltip",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/packages/livechat/src/components/Tooltip/Tooltip.tsx"
+    },
+    {
+      "module": "./TooltipContext",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/packages/livechat/src/components/Tooltip/TooltipContext.ts"
+    }
+  ]
+}

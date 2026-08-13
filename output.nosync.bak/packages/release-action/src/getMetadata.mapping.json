@@ -1,0 +1,123 @@
+{
+  "sourcePath": "/Users/echoooooo/Desktop/code/Rocket.Chat/packages/release-action/src/getMetadata.ts",
+  "symbols": [
+    {
+      "type": "function",
+      "name": "getMongoVersion",
+      "exported": true,
+      "line": 7,
+      "endLine": 21,
+      "signature": "export async function getMongoVersion(cwd: string)",
+      "calls": [
+        {
+          "name": "readFile",
+          "edgeType": "call"
+        },
+        {
+          "name": "join",
+          "edgeType": "call"
+        },
+        {
+          "name": "match",
+          "edgeType": "call"
+        },
+        {
+          "name": "split",
+          "edgeType": "call"
+        },
+        {
+          "name": "replace",
+          "edgeType": "call"
+        },
+        {
+          "name": "error",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "function",
+      "name": "getNodeNpmVersions",
+      "exported": true,
+      "line": 11,
+      "endLine": 15,
+      "signature": "export async function getNodeNpmVersions(cwd: string): Promise<{ node: string; yarn: string; npm: string }>",
+      "calls": [
+        {
+          "name": "readPackageJson",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "function",
+      "name": "getAppsEngineVersion",
+      "exported": true,
+      "line": 15,
+      "endLine": 23,
+      "signature": "export async function getAppsEngineVersion(cwd: string)",
+      "calls": [
+        {
+          "name": "readPackageJson",
+          "edgeType": "call"
+        },
+        {
+          "name": "join",
+          "edgeType": "call"
+        },
+        {
+          "name": "error",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "function",
+      "name": "getDenoVersion",
+      "exported": true,
+      "line": 19,
+      "endLine": 34,
+      "signature": "export async function getDenoVersion(cwd: string)",
+      "calls": [
+        {
+          "name": "readFile",
+          "edgeType": "call"
+        },
+        {
+          "name": "join",
+          "edgeType": "call"
+        },
+        {
+          "name": "split",
+          "edgeType": "call"
+        },
+        {
+          "name": "replace",
+          "edgeType": "call"
+        },
+        {
+          "name": "error",
+          "edgeType": "call"
+        }
+      ]
+    }
+  ],
+  "imports": [
+    {
+      "module": "node:fs/promises",
+      "resolved": "external"
+    },
+    {
+      "module": "node:os",
+      "resolved": "external"
+    },
+    {
+      "module": "node:path",
+      "resolved": "external"
+    },
+    {
+      "module": "./utils",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/packages/release-action/src/utils.ts"
+    }
+  ]
+}

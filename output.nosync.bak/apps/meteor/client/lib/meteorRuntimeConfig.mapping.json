@@ -1,0 +1,57 @@
+{
+  "sourcePath": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/client/lib/meteorRuntimeConfig.ts",
+  "symbols": [
+    {
+      "type": "variable_function",
+      "name": "getConfig",
+      "exported": false,
+      "line": 7,
+      "endLine": 12,
+      "signature": "(): { ROOT_URL?: string; ROOT_URL_PATH_PREFIX?: string } | undefined =>",
+      "calls": []
+    },
+    {
+      "type": "variable_function",
+      "name": "getRootUrl",
+      "exported": true,
+      "line": 11,
+      "endLine": 11,
+      "signature": "(): string | undefined =>",
+      "calls": [
+        {
+          "name": "getConfig",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "variable_function",
+      "name": "getRootUrlPathPrefix",
+      "exported": true,
+      "line": 13,
+      "endLine": 13,
+      "signature": "(): string =>",
+      "calls": [
+        {
+          "name": "getConfig",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "variable_function",
+      "name": "setRootUrl",
+      "exported": true,
+      "line": 15,
+      "endLine": 20,
+      "signature": "(value: string): void =>",
+      "calls": [
+        {
+          "name": "getConfig",
+          "edgeType": "call"
+        }
+      ]
+    }
+  ],
+  "imports": []
+}

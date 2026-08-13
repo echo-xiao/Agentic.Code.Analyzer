@@ -1,0 +1,109 @@
+{
+  "sourcePath": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/server/api/v1/middlewares/metrics.ts",
+  "symbols": [
+    {
+      "type": "variable_function",
+      "name": "metricsMiddleware",
+      "exported": true,
+      "line": 7,
+      "endLine": 59,
+      "signature": "({ basePathRegex, api, settings, endpointTimeSummary, endpointTimeHistogram, responseSizeHistogram, activeRequestsGauge, }: { basePathRegex?: RegExp; api: APIClass; settings: CachedSettings; endpointTimeSummary: Summary; endpointTimeHistogram: Histogram; responseSizeHistogram: Histogram; activeRequestsGauge: Gauge; }): MiddlewareHandler =>",
+      "calls": [
+        {
+          "name": "startTimer",
+          "edgeType": "call"
+        },
+        {
+          "name": "toLowerCase",
+          "edgeType": "call"
+        },
+        {
+          "name": "inc",
+          "edgeType": "call"
+        },
+        {
+          "name": "next",
+          "edgeType": "call"
+        },
+        {
+          "name": "dec",
+          "edgeType": "call"
+        },
+        {
+          "name": "replace",
+          "edgeType": "call"
+        },
+        {
+          "name": "startsWith",
+          "edgeType": "call"
+        },
+        {
+          "name": "decodeURIComponent",
+          "edgeType": "call"
+        },
+        {
+          "name": "rocketchatRestApiEnd",
+          "edgeType": "call"
+        },
+        {
+          "name": "get",
+          "edgeType": "call"
+        },
+        {
+          "name": "header",
+          "edgeType": "call"
+        },
+        {
+          "name": "rocketchatRestApiHistEnd",
+          "edgeType": "call"
+        },
+        {
+          "name": "observe",
+          "edgeType": "call"
+        },
+        {
+          "name": "APIClass",
+          "edgeType": "type"
+        },
+        {
+          "name": "CachedSettings",
+          "edgeType": "type"
+        },
+        {
+          "name": "Summary",
+          "edgeType": "type"
+        },
+        {
+          "name": "Histogram",
+          "edgeType": "type"
+        },
+        {
+          "name": "Gauge",
+          "edgeType": "type"
+        },
+        {
+          "name": "MiddlewareHandler",
+          "edgeType": "type"
+        }
+      ]
+    }
+  ],
+  "imports": [
+    {
+      "module": "hono",
+      "resolved": "external"
+    },
+    {
+      "module": "prom-client",
+      "resolved": "external"
+    },
+    {
+      "module": "../../../../app/settings/server/CachedSettings",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/app/settings/server/CachedSettings.ts"
+    },
+    {
+      "module": "../../ApiClass",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/server/api/ApiClass.ts"
+    }
+  ]
+}

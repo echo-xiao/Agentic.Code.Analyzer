@@ -1,0 +1,109 @@
+{
+  "sourcePath": "/Users/echoooooo/Desktop/code/Rocket.Chat/packages/core-typings/src/ServerAudit/IAuditServerAbacAction.ts",
+  "symbols": [
+    {
+      "type": "interface",
+      "name": "IServerEventAbacSubjectAttributeChanged",
+      "line": 33,
+      "endLine": 38,
+      "signature": "export interface IServerEventAbacSubjectAttributeChanged extends IAuditServerEventType<"
+    },
+    {
+      "type": "interface",
+      "name": "IServerEventAbacObjectAttributeChanged",
+      "line": 40,
+      "endLine": 49,
+      "signature": "export interface IServerEventAbacObjectAttributeChanged extends IAuditServerEventType< |"
+    },
+    {
+      "type": "interface",
+      "name": "IServerEventAbacAttributeChanged",
+      "line": 51,
+      "endLine": 60,
+      "signature": "export interface IServerEventAbacAttributeChanged extends IAuditServerEventType< |"
+    },
+    {
+      "type": "interface",
+      "name": "IServerEventAbacActionPerformed",
+      "line": 62,
+      "endLine": 71,
+      "signature": "export interface IServerEventAbacActionPerformed extends IAuditServerEventType< |"
+    },
+    {
+      "type": "interface",
+      "name": "IServerEventAbacObjectAttributesRemoved",
+      "line": 73,
+      "endLine": 82,
+      "signature": "export interface IServerEventAbacObjectAttributesRemoved extends IAuditServerEventType< |"
+    },
+    {
+      "type": "interface",
+      "name": "IServerEventAbacAttributeStoreSwitched",
+      "line": 84,
+      "endLine": 92,
+      "signature": "export interface IServerEventAbacAttributeStoreSwitched extends IAuditServerEventType< |"
+    },
+    {
+      "type": "type",
+      "name": "MinimalUser",
+      "line": 3,
+      "endLine": 3,
+      "signature": "export type MinimalUser = Pick<IUser, 'username'> & Optional<Pick<IUser, '_id'>, '_id'>;"
+    },
+    {
+      "type": "type",
+      "name": "MinimalRoom",
+      "line": 4,
+      "endLine": 4,
+      "signature": "export type MinimalRoom = Pick<IRoom, '_id' | 'name'>;"
+    },
+    {
+      "type": "type",
+      "name": "AbacAuditReason",
+      "line": 6,
+      "endLine": 13,
+      "signature": "export type AbacAuditReason ="
+    },
+    {
+      "type": "type",
+      "name": "AbacPdpType",
+      "line": 15,
+      "endLine": 15,
+      "signature": "export type AbacPdpType = 'local' | 'virtru';"
+    },
+    {
+      "type": "type",
+      "name": "AbacAttributeStoreType",
+      "line": 17,
+      "endLine": 17,
+      "signature": "export type AbacAttributeStoreType = 'local' | 'virtru';"
+    },
+    {
+      "type": "type",
+      "name": "AbacActionPerformed",
+      "line": 19,
+      "endLine": 19,
+      "signature": "export type AbacActionPerformed = 'revoked-object-access' | 'granted-object-access';"
+    },
+    {
+      "type": "type",
+      "name": "AbacAttributeDefinitionChangeType",
+      "line": 21,
+      "endLine": 30,
+      "signature": "export type AbacAttributeDefinitionChangeType ="
+    },
+    {
+      "type": "type",
+      "name": "AbacAuditServerEventKey",
+      "line": 96,
+      "endLine": 96,
+      "signature": "export type AbacAuditServerEventKey = Extract<keyof IServerEvents, `abac.$"
+    }
+  ],
+  "imports": [
+    {
+      "module": "..",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/packages/core-typings/src/index.ts"
+    }
+  ]
+}

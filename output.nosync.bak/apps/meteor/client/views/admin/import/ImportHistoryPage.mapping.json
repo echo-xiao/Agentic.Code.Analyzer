@@ -1,0 +1,300 @@
+{
+  "sourcePath": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/client/views/admin/import/ImportHistoryPage.tsx",
+  "symbols": [
+    {
+      "type": "inner_function",
+      "name": "handleNewImportClick",
+      "exported": false,
+      "qualifiedName": "ImportHistoryPage.handleNewImportClick",
+      "line": 54,
+      "endLine": 56,
+      "signature": "() =>",
+      "calls": [
+        {
+          "name": "navigate",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "inner_function",
+      "name": "onError",
+      "exported": false,
+      "qualifiedName": "ImportHistoryPage.onError",
+      "line": 60,
+      "endLine": 63,
+      "signature": "(error) =>",
+      "calls": [
+        {
+          "name": "error",
+          "edgeType": "call"
+        },
+        {
+          "name": "dispatchToastMessage",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "inner_function",
+      "name": "onSuccess",
+      "exported": false,
+      "qualifiedName": "ImportHistoryPage.onSuccess",
+      "line": 64,
+      "endLine": 78,
+      "signature": "({ count }) =>",
+      "calls": [
+        {
+          "name": "invalidateQueries",
+          "edgeType": "call"
+        },
+        {
+          "name": "dispatchToastMessage",
+          "edgeType": "call"
+        },
+        {
+          "name": "navigate",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "inner_function",
+      "name": "onError",
+      "exported": false,
+      "qualifiedName": "ImportHistoryPage.onError",
+      "line": 83,
+      "endLine": 86,
+      "signature": "(error) =>",
+      "calls": [
+        {
+          "name": "error",
+          "edgeType": "call"
+        },
+        {
+          "name": "dispatchToastMessage",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "inner_function",
+      "name": "onSuccess",
+      "exported": false,
+      "qualifiedName": "ImportHistoryPage.onSuccess",
+      "line": 87,
+      "endLine": 101,
+      "signature": "({ count }) =>",
+      "calls": [
+        {
+          "name": "invalidateQueries",
+          "edgeType": "call"
+        },
+        {
+          "name": "dispatchToastMessage",
+          "edgeType": "call"
+        },
+        {
+          "name": "navigate",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "function",
+      "name": "ImportHistoryPage",
+      "exported": true,
+      "line": 13,
+      "endLine": 202,
+      "signature": "function ImportHistoryPage()",
+      "calls": [
+        {
+          "name": "useQueryClient",
+          "edgeType": "call"
+        },
+        {
+          "name": "useTranslation",
+          "edgeType": "call"
+        },
+        {
+          "name": "useToastMessageDispatch",
+          "edgeType": "call"
+        },
+        {
+          "name": "useEndpoint",
+          "edgeType": "call"
+        },
+        {
+          "name": "useRouter",
+          "edgeType": "call"
+        },
+        {
+          "name": "useQuery",
+          "edgeType": "call"
+        },
+        {
+          "name": "getCurrentImportOperation",
+          "edgeType": "call"
+        },
+        {
+          "name": "getLatestImportOperations",
+          "edgeType": "call"
+        },
+        {
+          "name": "useMemo",
+          "edgeType": "call"
+        },
+        {
+          "name": "some",
+          "edgeType": "call"
+        },
+        {
+          "name": "navigate",
+          "edgeType": "call"
+        },
+        {
+          "name": "useMutation",
+          "edgeType": "call"
+        },
+        {
+          "name": "downloadPendingFiles",
+          "edgeType": "call"
+        },
+        {
+          "name": "error",
+          "edgeType": "call"
+        },
+        {
+          "name": "dispatchToastMessage",
+          "edgeType": "call"
+        },
+        {
+          "name": "invalidateQueries",
+          "edgeType": "call"
+        },
+        {
+          "name": "downloadPendingAvatars",
+          "edgeType": "call"
+        },
+        {
+          "name": "useMediaQuery",
+          "edgeType": "call"
+        },
+        {
+          "name": "mutate",
+          "edgeType": "call"
+        },
+        {
+          "name": "from",
+          "edgeType": "call"
+        },
+        {
+          "name": "map",
+          "edgeType": "call"
+        },
+        {
+          "name": "filter",
+          "edgeType": "call"
+        },
+        {
+          "name": "Page",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "PageHeader",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "ButtonGroup",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "Button",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "PageScrollableContentWithShadow",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "Table",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "TableHead",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "TableRow",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "TableCell",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "TableBody",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "ImportOperationSummarySkeleton",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "ImportOperationSummary",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "isLoading",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "handleNewImportClick",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "small",
+          "edgeType": "jsx"
+        }
+      ]
+    }
+  ],
+  "imports": [
+    {
+      "module": "@rocket.chat/fuselage",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/fuselage-hooks",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/ui-client",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/ui-contexts",
+      "resolved": "external"
+    },
+    {
+      "module": "@tanstack/react-query",
+      "resolved": "external"
+    },
+    {
+      "module": "react",
+      "resolved": "external"
+    },
+    {
+      "module": "./ImportOperationSummary",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/client/views/admin/import/ImportOperationSummary.tsx"
+    },
+    {
+      "module": "./ImportOperationSummarySkeleton",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/client/views/admin/import/ImportOperationSummarySkeleton.tsx"
+    },
+    {
+      "module": "../../../../app/importer/lib/ImporterProgressStep",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/app/importer/lib/ImporterProgressStep.ts"
+    }
+  ]
+}

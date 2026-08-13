@@ -1,0 +1,45 @@
+{
+  "sourcePath": "/Users/echoooooo/Desktop/code/Rocket.Chat/packages/ui-voip/src/providers/useWidgetExternalControlSignalListener.ts",
+  "symbols": [
+    {
+      "type": "variable_function",
+      "name": "useWidgetExternalControlSignalListener",
+      "exported": true,
+      "line": 6,
+      "endLine": 12,
+      "signature": "<T extends keyof Signals>(signal: T, callback: EventHandlerOf<Signals, T>) =>",
+      "calls": [
+        {
+          "name": "useMediaCallInstance",
+          "edgeType": "call"
+        },
+        {
+          "name": "useEffect",
+          "edgeType": "call"
+        },
+        {
+          "name": "Signals",
+          "edgeType": "type"
+        },
+        {
+          "name": "EventHandlerOf",
+          "edgeType": "type"
+        }
+      ]
+    }
+  ],
+  "imports": [
+    {
+      "module": "@rocket.chat/emitter",
+      "resolved": "external"
+    },
+    {
+      "module": "react",
+      "resolved": "external"
+    },
+    {
+      "module": "../context/MediaCallInstanceContext",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/packages/ui-voip/src/context/MediaCallInstanceContext.ts"
+    }
+  ]
+}

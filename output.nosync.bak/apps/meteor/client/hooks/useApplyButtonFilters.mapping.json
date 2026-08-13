@@ -1,0 +1,159 @@
+{
+  "sourcePath": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/client/hooks/useApplyButtonFilters.ts",
+  "symbols": [
+    {
+      "type": "variable_function",
+      "name": "applyRoomFilter",
+      "exported": false,
+      "line": 30,
+      "endLine": 33,
+      "signature": "(button: IUIActionButton, room: IRoom): boolean =>",
+      "calls": [
+        {
+          "name": "some",
+          "edgeType": "call"
+        },
+        {
+          "name": "IUIActionButton",
+          "edgeType": "type"
+        },
+        {
+          "name": "IRoom",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "variable_function",
+      "name": "applyCategoryFilter",
+      "exported": false,
+      "line": 34,
+      "endLine": 42,
+      "signature": "(button: IUIActionButton, category: string): boolean =>",
+      "calls": [
+        {
+          "name": "IUIActionButton",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "variable_function",
+      "name": "useApplyButtonFilters",
+      "exported": true,
+      "line": 38,
+      "endLine": 49,
+      "signature": "(category = 'default'): ((button: IUIActionButton) => boolean) =>",
+      "calls": [
+        {
+          "name": "useRoom",
+          "edgeType": "call"
+        },
+        {
+          "name": "useApplyButtonAuthFilter",
+          "edgeType": "call"
+        },
+        {
+          "name": "useCallback",
+          "edgeType": "call"
+        },
+        {
+          "name": "applyAuthFilter",
+          "edgeType": "call"
+        },
+        {
+          "name": "applyRoomFilter",
+          "edgeType": "call"
+        },
+        {
+          "name": "applyCategoryFilter",
+          "edgeType": "call"
+        },
+        {
+          "name": "IUIActionButton",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "variable_function",
+      "name": "useApplyButtonAuthFilter",
+      "exported": true,
+      "line": 42,
+      "endLine": 60,
+      "signature": "(): ((button: IUIActionButton) => boolean) =>",
+      "calls": [
+        {
+          "name": "useUserId",
+          "edgeType": "call"
+        },
+        {
+          "name": "useContext",
+          "edgeType": "call"
+        },
+        {
+          "name": "useCallback",
+          "edgeType": "call"
+        },
+        {
+          "name": "queryAllPermissions",
+          "edgeType": "call"
+        },
+        {
+          "name": "queryAtLeastOnePermission",
+          "edgeType": "call"
+        },
+        {
+          "name": "every",
+          "edgeType": "call"
+        },
+        {
+          "name": "queryRole",
+          "edgeType": "call"
+        },
+        {
+          "name": "some",
+          "edgeType": "call"
+        },
+        {
+          "name": "IUIActionButton",
+          "edgeType": "type"
+        },
+        {
+          "name": "IRoom",
+          "edgeType": "type"
+        }
+      ]
+    }
+  ],
+  "imports": [
+    {
+      "module": "@rocket.chat/apps-engine/definition/ui",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/apps-engine/definition/ui",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/core-typings",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/core-typings",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/ui-contexts",
+      "resolved": "external"
+    },
+    {
+      "module": "react",
+      "resolved": "external"
+    },
+    {
+      "module": "../views/room/contexts/RoomContext",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/client/views/room/contexts/RoomContext.ts"
+    }
+  ]
+}

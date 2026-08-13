@@ -1,0 +1,266 @@
+{
+  "sourcePath": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/client/lib/userStatuses.ts",
+  "symbols": [
+    {
+      "type": "class",
+      "name": "UserStatuses",
+      "exported": true,
+      "line": 15,
+      "endLine": 90,
+      "signature": "export class UserStatuses implements Iterable<UserStatusDescriptor>",
+      "calls": [
+        {
+          "name": "Iterable",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "delete",
+      "exported": true,
+      "qualifiedName": "UserStatuses.delete",
+      "line": 30,
+      "endLine": 32,
+      "signature": "public delete(id: string): void",
+      "containerClass": "UserStatuses",
+      "calls": [
+        {
+          "name": "delete",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "put",
+      "exported": true,
+      "qualifiedName": "UserStatuses.put",
+      "line": 34,
+      "endLine": 36,
+      "signature": "public put(customUserStatus: UserStatusDescriptor): void",
+      "containerClass": "UserStatuses",
+      "calls": [
+        {
+          "name": "set",
+          "edgeType": "call"
+        },
+        {
+          "name": "UserStatusDescriptor",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "createFromCustom",
+      "exported": true,
+      "qualifiedName": "UserStatuses.createFromCustom",
+      "line": 38,
+      "endLine": 49,
+      "signature": "public createFromCustom(customUserStatus: Omit<ICustomUserStatus, '_updatedAt'>): UserStatusDescriptor",
+      "containerClass": "UserStatuses",
+      "calls": [
+        {
+          "name": "isValidType",
+          "edgeType": "call"
+        },
+        {
+          "name": "ICustomUserStatus",
+          "edgeType": "type"
+        },
+        {
+          "name": "UserStatusDescriptor",
+          "edgeType": "type"
+        },
+        {
+          "name": "UserStatus",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "isValidType",
+      "exported": true,
+      "qualifiedName": "UserStatuses.isValidType",
+      "line": 42,
+      "endLine": 44,
+      "signature": "public isValidType(type: string): type is UserStatus",
+      "containerClass": "UserStatuses",
+      "calls": [
+        {
+          "name": "includes",
+          "edgeType": "call"
+        },
+        {
+          "name": "values",
+          "edgeType": "call"
+        },
+        {
+          "name": "UserStatus",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "[Symbol.iterator]",
+      "exported": true,
+      "qualifiedName": "UserStatuses.[Symbol.iterator]",
+      "line": 46,
+      "endLine": 52,
+      "signature": "public *[Symbol.iterator]()",
+      "containerClass": "UserStatuses",
+      "calls": [
+        {
+          "name": "values",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "sync",
+      "exported": true,
+      "qualifiedName": "UserStatuses.sync",
+      "line": 50,
+      "endLine": 59,
+      "signature": "public async sync(listCustomUserStatus: UserStatusLister)",
+      "containerClass": "UserStatuses",
+      "calls": [
+        {
+          "name": "listCustomUserStatus",
+          "edgeType": "call"
+        },
+        {
+          "name": "put",
+          "edgeType": "call"
+        },
+        {
+          "name": "createFromCustom",
+          "edgeType": "call"
+        },
+        {
+          "name": "UserStatusLister",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "watch",
+      "exported": true,
+      "qualifiedName": "UserStatuses.watch",
+      "line": 54,
+      "endLine": 69,
+      "signature": "public watch(stream: UserStatusStreamer, cb?: () => void)",
+      "containerClass": "UserStatuses",
+      "calls": [
+        {
+          "name": "stream",
+          "edgeType": "call"
+        },
+        {
+          "name": "put",
+          "edgeType": "call"
+        },
+        {
+          "name": "createFromCustom",
+          "edgeType": "call"
+        },
+        {
+          "name": "cb",
+          "edgeType": "call"
+        },
+        {
+          "name": "delete",
+          "edgeType": "call"
+        },
+        {
+          "name": "unsubscribeUpdate",
+          "edgeType": "call"
+        },
+        {
+          "name": "unsubscribeDelete",
+          "edgeType": "call"
+        },
+        {
+          "name": "UserStatusStreamer",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "class_property",
+      "name": "store",
+      "exported": true,
+      "qualifiedName": "UserStatuses.store",
+      "line": 18,
+      "endLine": 28,
+      "signature": "private store: Map<UserStatusDescriptor['id'], UserStatusDescriptor> = new Map( [UserStatus.ONLINE, UserStatus.AWAY, UserStatus.BUSY, UserStatus.OFFLINE].map((status) => [ status,",
+      "containerClass": "UserStatuses",
+      "calls": [
+        {
+          "name": "map",
+          "edgeType": "call"
+        },
+        {
+          "name": "Map",
+          "edgeType": "new"
+        },
+        {
+          "name": "UserStatusDescriptor",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "variable",
+      "name": "userStatuses",
+      "exported": true,
+      "line": 59,
+      "endLine": 59,
+      "signature": "userStatuses = new UserStatuses()",
+      "calls": []
+    },
+    {
+      "type": "type",
+      "name": "UserStatusDescriptor",
+      "line": 4,
+      "endLine": 9,
+      "signature": "export type UserStatusDescriptor ="
+    },
+    {
+      "type": "type",
+      "name": "UserStatusStreamCallback",
+      "line": 11,
+      "endLine": 11,
+      "signature": "export type UserStatusStreamCallback = (data:"
+    },
+    {
+      "type": "type",
+      "name": "UserStatusStreamer",
+      "line": 12,
+      "endLine": 12,
+      "signature": "export type UserStatusStreamer = (event: 'updateCustomUserStatus' | 'deleteCustomUserStatus', cb: UserStatusStreamCallback) => () => void;"
+    },
+    {
+      "type": "type",
+      "name": "UserStatusLister",
+      "line": 13,
+      "endLine": 13,
+      "signature": "export type UserStatusLister = () => Promise<ICustomUserStatus[] | null | undefined>;"
+    }
+  ],
+  "imports": [
+    {
+      "module": "@rocket.chat/core-typings",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/core-typings",
+      "resolved": "external"
+    }
+  ]
+}

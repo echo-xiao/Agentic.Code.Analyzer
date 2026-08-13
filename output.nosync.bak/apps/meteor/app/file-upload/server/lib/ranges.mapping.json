@@ -1,0 +1,77 @@
+{
+  "sourcePath": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/app/file-upload/server/lib/ranges.ts",
+  "symbols": [
+    {
+      "type": "function",
+      "name": "getByteRange",
+      "exported": false,
+      "line": 5,
+      "endLine": 17,
+      "signature": "function getByteRange(header?: string)",
+      "calls": [
+        {
+          "name": "match",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "function",
+      "name": "getFileRange",
+      "exported": true,
+      "line": 9,
+      "endLine": 20,
+      "signature": "export function getFileRange(file: IUpload, req: http.IncomingMessage)",
+      "calls": [
+        {
+          "name": "getByteRange",
+          "edgeType": "call"
+        },
+        {
+          "name": "IUpload",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "variable_function",
+      "name": "setRangeHeaders",
+      "exported": true,
+      "line": 14,
+      "endLine": 39,
+      "signature": "function ( range: { start: number; stop: number; outOfRange?: boolean } | undefined, file: IUpload, res: http.ServerResponse, )",
+      "calls": [
+        {
+          "name": "removeHeader",
+          "edgeType": "call"
+        },
+        {
+          "name": "setHeader",
+          "edgeType": "call"
+        },
+        {
+          "name": "writeHead",
+          "edgeType": "call"
+        },
+        {
+          "name": "end",
+          "edgeType": "call"
+        },
+        {
+          "name": "IUpload",
+          "edgeType": "type"
+        }
+      ]
+    }
+  ],
+  "imports": [
+    {
+      "module": "node:http",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/core-typings",
+      "resolved": "external"
+    }
+  ]
+}

@@ -1,0 +1,65 @@
+{
+  "sourcePath": "/Users/echoooooo/Desktop/code/Rocket.Chat/packages/fuselage-ui-kit/src/blocks/VideoConferenceBlock/hooks/useVideoConfDataStream.ts",
+  "symbols": [
+    {
+      "type": "variable_function",
+      "name": "useVideoConfDataStream",
+      "exported": true,
+      "line": 8,
+      "endLine": 27,
+      "signature": "({ rid, callId }: { rid: IRoom['_id']; callId: string }) =>",
+      "calls": [
+        {
+          "name": "useQueryClient",
+          "edgeType": "call"
+        },
+        {
+          "name": "useStream",
+          "edgeType": "call"
+        },
+        {
+          "name": "useEffect",
+          "edgeType": "call"
+        },
+        {
+          "name": "subscribeNotifyRoom",
+          "edgeType": "call"
+        },
+        {
+          "name": "invalidateQueries",
+          "edgeType": "call"
+        },
+        {
+          "name": "useVideoConfData",
+          "edgeType": "call"
+        },
+        {
+          "name": "IRoom",
+          "edgeType": "type"
+        }
+      ]
+    }
+  ],
+  "imports": [
+    {
+      "module": "@rocket.chat/core-typings",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/ui-contexts",
+      "resolved": "external"
+    },
+    {
+      "module": "@tanstack/react-query",
+      "resolved": "external"
+    },
+    {
+      "module": "react",
+      "resolved": "external"
+    },
+    {
+      "module": "./useVideoConfData",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/packages/fuselage-ui-kit/src/blocks/VideoConferenceBlock/hooks/useVideoConfData.ts"
+    }
+  ]
+}

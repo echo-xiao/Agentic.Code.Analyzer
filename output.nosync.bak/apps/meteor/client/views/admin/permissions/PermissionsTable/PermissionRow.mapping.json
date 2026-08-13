@@ -1,0 +1,160 @@
+{
+  "sourcePath": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/client/views/admin/permissions/PermissionsTable/PermissionRow.tsx",
+  "symbols": [
+    {
+      "type": "module",
+      "name": "PermissionRow",
+      "exported": false,
+      "line": 1,
+      "endLine": 62,
+      "signature": "PermissionRow",
+      "calls": [
+        {
+          "name": "memo",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "variable_function",
+      "name": "getName",
+      "exported": false,
+      "line": 12,
+      "endLine": 25,
+      "signature": "(t: TFunction, permission: IPermission): string =>",
+      "calls": [
+        {
+          "name": "TFunction",
+          "edgeType": "type"
+        },
+        {
+          "name": "IPermission",
+          "edgeType": "type"
+        },
+        {
+          "name": "TranslationKey",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "variable_function",
+      "name": "PermissionRow",
+      "exported": false,
+      "line": 23,
+      "endLine": 48,
+      "signature": "({ permission, roleList, onGrant, onRemove }: PermissionRowProps) =>",
+      "calls": [
+        {
+          "name": "useTranslation",
+          "edgeType": "call"
+        },
+        {
+          "name": "useChangeRole",
+          "edgeType": "call"
+        },
+        {
+          "name": "getName",
+          "edgeType": "call"
+        },
+        {
+          "name": "map",
+          "edgeType": "call"
+        },
+        {
+          "name": "GenericTableRow",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "GenericTableCell",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "RoleCell",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "permissionId",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "roleId",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "name",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "description",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "roles",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "changeRole",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "permissionName",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "PermissionRowProps",
+          "edgeType": "type"
+        },
+        {
+          "name": "TranslationKey",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "type",
+      "name": "PermissionRowProps",
+      "line": 16,
+      "endLine": 21,
+      "signature": "export type PermissionRowProps ="
+    }
+  ],
+  "imports": [
+    {
+      "module": "@rocket.chat/core-typings",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/ui-client",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/ui-contexts",
+      "resolved": "external"
+    },
+    {
+      "module": "i18next",
+      "resolved": "external"
+    },
+    {
+      "module": "react",
+      "resolved": "external"
+    },
+    {
+      "module": "react-i18next",
+      "resolved": "external"
+    },
+    {
+      "module": "./RoleCell",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/client/views/admin/permissions/PermissionsTable/RoleCell.tsx"
+    },
+    {
+      "module": "../../../../../app/authorization/lib",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/app/authorization/lib/index.ts"
+    },
+    {
+      "module": "../hooks/useChangeRole",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/client/views/admin/permissions/hooks/useChangeRole.ts"
+    }
+  ]
+}

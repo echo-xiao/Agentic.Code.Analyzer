@@ -1,0 +1,89 @@
+{
+  "sourcePath": "/Users/echoooooo/Desktop/code/Rocket.Chat/packages/apps/src/server/accessors/OAuthAppsReader.ts",
+  "symbols": [
+    {
+      "type": "class",
+      "name": "OAuthAppsReader",
+      "exported": true,
+      "line": 6,
+      "endLine": 19,
+      "signature": "export class OAuthAppsReader implements IOAuthAppsReader",
+      "calls": [
+        {
+          "name": "IOAuthAppsReader",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "getOAuthAppById",
+      "exported": true,
+      "qualifiedName": "OAuthAppsReader.getOAuthAppById",
+      "line": 12,
+      "endLine": 14,
+      "signature": "public async getOAuthAppById(id: string): Promise<IOAuthApp>",
+      "containerClass": "OAuthAppsReader",
+      "calls": [
+        {
+          "name": "doGetByid",
+          "edgeType": "call"
+        },
+        {
+          "name": "IOAuthApp",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "getOAuthAppByName",
+      "exported": true,
+      "qualifiedName": "OAuthAppsReader.getOAuthAppByName",
+      "line": 16,
+      "endLine": 18,
+      "signature": "public async getOAuthAppByName(name: string): Promise<Array<IOAuthApp>>",
+      "containerClass": "OAuthAppsReader",
+      "calls": [
+        {
+          "name": "doGetByName",
+          "edgeType": "call"
+        },
+        {
+          "name": "IOAuthApp",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "constructor",
+      "exported": true,
+      "qualifiedName": "OAuthAppsReader.constructor",
+      "line": 7,
+      "endLine": 10,
+      "signature": "constructor( private readonly oauthAppsBridge: OAuthAppsBridge, private readonly appId: string, )",
+      "containerClass": "OAuthAppsReader",
+      "calls": [
+        {
+          "name": "OAuthAppsBridge",
+          "edgeType": "type"
+        }
+      ]
+    }
+  ],
+  "imports": [
+    {
+      "module": "@rocket.chat/apps-engine/definition/accessors/IOAuthApp",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/apps-engine/definition/accessors/IOAuthAppsReader",
+      "resolved": "external"
+    },
+    {
+      "module": "../bridges/OAuthAppsBridge",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/packages/apps/src/server/bridges/OAuthAppsBridge.ts"
+    }
+  ]
+}

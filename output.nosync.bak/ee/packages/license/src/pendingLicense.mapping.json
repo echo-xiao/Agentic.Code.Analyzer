@@ -1,0 +1,105 @@
+{
+  "sourcePath": "/Users/echoooooo/Desktop/code/Rocket.Chat/ee/packages/license/src/pendingLicense.ts",
+  "symbols": [
+    {
+      "type": "function",
+      "name": "setPendingLicense",
+      "exported": true,
+      "line": 4,
+      "endLine": 9,
+      "signature": "export function setPendingLicense(this: LicenseManager, encryptedLicense: string)",
+      "calls": [
+        {
+          "name": "info",
+          "edgeType": "call"
+        },
+        {
+          "name": "LicenseManager",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "function",
+      "name": "applyPendingLicense",
+      "exported": true,
+      "line": 8,
+      "endLine": 13,
+      "signature": "export async function applyPendingLicense(this: LicenseManager)",
+      "calls": [
+        {
+          "name": "info",
+          "edgeType": "call"
+        },
+        {
+          "name": "setLicense",
+          "edgeType": "call"
+        },
+        {
+          "name": "LicenseManager",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "function",
+      "name": "hasPendingLicense",
+      "exported": true,
+      "line": 12,
+      "endLine": 14,
+      "signature": "export function hasPendingLicense(this: LicenseManager)",
+      "calls": [
+        {
+          "name": "Boolean",
+          "edgeType": "call"
+        },
+        {
+          "name": "LicenseManager",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "function",
+      "name": "isPendingLicense",
+      "exported": true,
+      "line": 16,
+      "endLine": 18,
+      "signature": "export function isPendingLicense(this: LicenseManager, encryptedLicense: string)",
+      "calls": [
+        {
+          "name": "LicenseManager",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "function",
+      "name": "clearPendingLicense",
+      "exported": true,
+      "line": 20,
+      "endLine": 26,
+      "signature": "export function clearPendingLicense(this: LicenseManager)",
+      "calls": [
+        {
+          "name": "info",
+          "edgeType": "call"
+        },
+        {
+          "name": "LicenseManager",
+          "edgeType": "type"
+        }
+      ]
+    }
+  ],
+  "imports": [
+    {
+      "module": "./license",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/ee/packages/license/src/license.ts"
+    },
+    {
+      "module": "./logger",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/ee/packages/license/src/logger.ts"
+    }
+  ]
+}

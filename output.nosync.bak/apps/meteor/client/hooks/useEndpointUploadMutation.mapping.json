@@ -1,0 +1,103 @@
+{
+  "sourcePath": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/client/hooks/useEndpointUploadMutation.ts",
+  "symbols": [
+    {
+      "type": "inner_function",
+      "name": "onError",
+      "exported": false,
+      "qualifiedName": "useEndpointUploadMutation.onError",
+      "line": 34,
+      "endLine": 36,
+      "signature": "(error) =>",
+      "calls": [
+        {
+          "name": "dispatchToastMessage",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "variable_function",
+      "name": "useEndpointUploadMutation",
+      "exported": true,
+      "line": 8,
+      "endLine": 39,
+      "signature": "<TPathPattern extends PathPattern, TData extends UploadResult = UploadResult>( endpoint: TPathPattern, options?: UseEndpointUploadOptions<TData>, ) =>",
+      "calls": [
+        {
+          "name": "useUpload",
+          "edgeType": "call"
+        },
+        {
+          "name": "useToastMessageDispatch",
+          "edgeType": "call"
+        },
+        {
+          "name": "useMutation",
+          "edgeType": "call"
+        },
+        {
+          "name": "sendData",
+          "edgeType": "call"
+        },
+        {
+          "name": "dispatchToastMessage",
+          "edgeType": "call"
+        },
+        {
+          "name": "PathPattern",
+          "edgeType": "type"
+        },
+        {
+          "name": "UploadResult",
+          "edgeType": "type"
+        },
+        {
+          "name": "TPathPattern",
+          "edgeType": "type"
+        },
+        {
+          "name": "UseEndpointUploadOptions",
+          "edgeType": "type"
+        },
+        {
+          "name": "TData",
+          "edgeType": "type"
+        },
+        {
+          "name": "PathFor",
+          "edgeType": "type"
+        },
+        {
+          "name": "FormData",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "type",
+      "name": "UseEndpointUploadOptions",
+      "line": 6,
+      "endLine": 6,
+      "signature": "type UseEndpointUploadOptions<TData extends UploadResult> = Omit<UseMutationOptions<TData, Error, FormData>, 'mutationFn'>;"
+    }
+  ],
+  "imports": [
+    {
+      "module": "@rocket.chat/rest-typings",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/ui-contexts",
+      "resolved": "external"
+    },
+    {
+      "module": "@tanstack/react-query",
+      "resolved": "external"
+    },
+    {
+      "module": "i18next",
+      "resolved": "external"
+    }
+  ]
+}

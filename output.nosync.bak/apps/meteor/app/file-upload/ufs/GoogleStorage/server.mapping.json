@@ -1,0 +1,167 @@
+{
+  "sourcePath": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/app/file-upload/ufs/GoogleStorage/server.ts",
+  "symbols": [
+    {
+      "type": "class",
+      "name": "GoogleStorageStore",
+      "exported": false,
+      "line": 25,
+      "endLine": 160,
+      "signature": "class GoogleStorageStore extends UploadFS.Store",
+      "calls": []
+    },
+    {
+      "type": "method",
+      "name": "constructor",
+      "exported": false,
+      "qualifiedName": "GoogleStorageStore.constructor",
+      "line": 28,
+      "endLine": 159,
+      "signature": "constructor(options: GStoreOptions)",
+      "containerClass": "GoogleStorageStore",
+      "calls": [
+        {
+          "name": "trim",
+          "edgeType": "call"
+        },
+        {
+          "name": "bucket",
+          "edgeType": "call"
+        },
+        {
+          "name": "getUrlExpiryTimeSpanWithFallback",
+          "edgeType": "call"
+        },
+        {
+          "name": "now",
+          "edgeType": "call"
+        },
+        {
+          "name": "getSignedUrl",
+          "edgeType": "call"
+        },
+        {
+          "name": "file",
+          "edgeType": "call"
+        },
+        {
+          "name": "getPath",
+          "edgeType": "call"
+        },
+        {
+          "name": "check",
+          "edgeType": "call"
+        },
+        {
+          "name": "id",
+          "edgeType": "call"
+        },
+        {
+          "name": "insertOne",
+          "edgeType": "call"
+        },
+        {
+          "name": "getCollection",
+          "edgeType": "call"
+        },
+        {
+          "name": "findOne",
+          "edgeType": "call"
+        },
+        {
+          "name": "delete",
+          "edgeType": "call"
+        },
+        {
+          "name": "error",
+          "edgeType": "call"
+        },
+        {
+          "name": "createReadStream",
+          "edgeType": "call"
+        },
+        {
+          "name": "createWriteStream",
+          "edgeType": "call"
+        },
+        {
+          "name": "Storage",
+          "edgeType": "new"
+        },
+        {
+          "name": "GStoreOptions",
+          "edgeType": "type"
+        },
+        {
+          "name": "GetSignedUrlConfig",
+          "edgeType": "type"
+        },
+        {
+          "name": "IUpload",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "class_property",
+      "name": "getPath",
+      "exported": false,
+      "qualifiedName": "GoogleStorageStore.getPath",
+      "line": 26,
+      "endLine": 26,
+      "signature": "protected getPath: (file: Omit<IUpload, '_updatedAt'>) => string;",
+      "containerClass": "GoogleStorageStore",
+      "calls": [
+        {
+          "name": "IUpload",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "type",
+      "name": "GStoreOptions",
+      "line": 12,
+      "endLine": 23,
+      "signature": "type GStoreOptions = StoreOptions &"
+    }
+  ],
+  "imports": [
+    {
+      "module": "@google-cloud/storage",
+      "resolved": "external"
+    },
+    {
+      "module": "@google-cloud/storage",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/core-typings",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/random",
+      "resolved": "external"
+    },
+    {
+      "module": "meteor/check",
+      "resolved": "external"
+    },
+    {
+      "module": "../../../../server/lib/logger/system",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/server/lib/logger/system.ts"
+    },
+    {
+      "module": "../../../../server/ufs",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/server/ufs/index.ts"
+    },
+    {
+      "module": "../../../../server/ufs/ufs-store",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/server/ufs/ufs-store.ts"
+    },
+    {
+      "module": "../../server/lib/urlExpiry",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/app/file-upload/server/lib/urlExpiry.ts"
+    }
+  ]
+}

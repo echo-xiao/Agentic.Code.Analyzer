@@ -1,0 +1,584 @@
+{
+  "sourcePath": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/client/router/page.ts",
+  "symbols": [
+    {
+      "type": "class",
+      "name": "Context",
+      "exported": true,
+      "line": 6,
+      "endLine": 50,
+      "signature": "export class Context",
+      "calls": []
+    },
+    {
+      "type": "method",
+      "name": "pushState",
+      "exported": true,
+      "qualifiedName": "Context.pushState",
+      "line": 42,
+      "endLine": 44,
+      "signature": "pushState()",
+      "containerClass": "Context",
+      "calls": [
+        {
+          "name": "pushState",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "save",
+      "exported": true,
+      "qualifiedName": "Context.save",
+      "line": 46,
+      "endLine": 49,
+      "signature": "save()",
+      "containerClass": "Context",
+      "calls": [
+        {
+          "name": "replaceState",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "constructor",
+      "exported": true,
+      "qualifiedName": "Context.constructor",
+      "line": 21,
+      "endLine": 40,
+      "signature": "constructor(page: Page, path: string, state?: State)",
+      "containerClass": "Context",
+      "calls": [
+        {
+          "name": "getBase",
+          "edgeType": "call"
+        },
+        {
+          "name": "indexOf",
+          "edgeType": "call"
+        },
+        {
+          "name": "replace",
+          "edgeType": "call"
+        },
+        {
+          "name": "decodeURLEncodedURIComponent",
+          "edgeType": "call"
+        },
+        {
+          "name": "slice",
+          "edgeType": "call"
+        },
+        {
+          "name": "split",
+          "edgeType": "call"
+        },
+        {
+          "name": "Page",
+          "edgeType": "type"
+        },
+        {
+          "name": "State",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "class_property",
+      "name": "state",
+      "exported": true,
+      "qualifiedName": "Context.state",
+      "line": 15,
+      "endLine": 15,
+      "signature": "state: State;",
+      "containerClass": "Context",
+      "calls": [
+        {
+          "name": "State",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "class",
+      "name": "Route",
+      "exported": false,
+      "line": 34,
+      "endLine": 72,
+      "signature": "class Route",
+      "calls": []
+    },
+    {
+      "type": "method",
+      "name": "match",
+      "exported": false,
+      "qualifiedName": "Route.match",
+      "line": 46,
+      "endLine": 63,
+      "signature": "match(path: string, params: Record<string, string>): boolean",
+      "containerClass": "Route",
+      "calls": [
+        {
+          "name": "indexOf",
+          "edgeType": "call"
+        },
+        {
+          "name": "slice",
+          "edgeType": "call"
+        },
+        {
+          "name": "exec",
+          "edgeType": "call"
+        },
+        {
+          "name": "decodeURIComponent",
+          "edgeType": "call"
+        },
+        {
+          "name": "decodeURLEncodedURIComponent",
+          "edgeType": "call"
+        },
+        {
+          "name": "call",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "constructor",
+      "exported": false,
+      "qualifiedName": "Route.constructor",
+      "line": 39,
+      "endLine": 44,
+      "signature": "constructor( path: string, private readonly fn: (ctx: Context) => void, )",
+      "containerClass": "Route",
+      "calls": [
+        {
+          "name": "pathToRegexp",
+          "edgeType": "call"
+        },
+        {
+          "name": "Context",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "class_property",
+      "name": "keys",
+      "exported": false,
+      "qualifiedName": "Route.keys",
+      "line": 37,
+      "endLine": 37,
+      "signature": "private readonly keys: Key[] = [];",
+      "containerClass": "Route",
+      "calls": [
+        {
+          "name": "Key",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "class_property",
+      "name": "callback",
+      "exported": false,
+      "qualifiedName": "Route.callback",
+      "line": 50,
+      "endLine": 56,
+      "signature": "readonly callback = (ctx: Context, next: () => void) =>",
+      "containerClass": "Route",
+      "calls": [
+        {
+          "name": "match",
+          "edgeType": "call"
+        },
+        {
+          "name": "fn",
+          "edgeType": "call"
+        },
+        {
+          "name": "next",
+          "edgeType": "call"
+        },
+        {
+          "name": "Context",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "class",
+      "name": "Page",
+      "exported": true,
+      "line": 59,
+      "endLine": 208,
+      "signature": "export class Page",
+      "calls": []
+    },
+    {
+      "type": "method",
+      "name": "registerRoute",
+      "exported": true,
+      "qualifiedName": "Page.registerRoute",
+      "line": 66,
+      "endLine": 69,
+      "signature": "registerRoute(path: string, callback: (ctx: Context) => void): void",
+      "containerClass": "Page",
+      "calls": [
+        {
+          "name": "push",
+          "edgeType": "call"
+        },
+        {
+          "name": "Route",
+          "edgeType": "new"
+        },
+        {
+          "name": "Context",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "clearRoutes",
+      "exported": true,
+      "qualifiedName": "Page.clearRoutes",
+      "line": 70,
+      "endLine": 72,
+      "signature": "clearRoutes()",
+      "containerClass": "Page",
+      "calls": []
+    },
+    {
+      "type": "method",
+      "name": "start",
+      "exported": true,
+      "qualifiedName": "Page.start",
+      "line": 74,
+      "endLine": 84,
+      "signature": "start()",
+      "containerClass": "Page",
+      "calls": [
+        {
+          "name": "addEventListener",
+          "edgeType": "call"
+        },
+        {
+          "name": "replace",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "stop",
+      "exported": true,
+      "qualifiedName": "Page.stop",
+      "line": 78,
+      "endLine": 84,
+      "signature": "stop()",
+      "containerClass": "Page",
+      "calls": [
+        {
+          "name": "removeEventListener",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "show",
+      "exported": true,
+      "qualifiedName": "Page.show",
+      "line": 131,
+      "endLine": 146,
+      "signature": "show( this: this, path: string, { state, dispatch = true, push = true, reload = false }: { state?: State; dispatch?: boolean; push?: boolean; reload?: boolean } = {}, )",
+      "containerClass": "Page",
+      "calls": [
+        {
+          "name": "split",
+          "edgeType": "call"
+        },
+        {
+          "name": "replace",
+          "edgeType": "call"
+        },
+        {
+          "name": "join",
+          "edgeType": "call"
+        },
+        {
+          "name": "dispatch",
+          "edgeType": "call"
+        },
+        {
+          "name": "pushState",
+          "edgeType": "call"
+        },
+        {
+          "name": "Context",
+          "edgeType": "new"
+        },
+        {
+          "name": "State",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "replace",
+      "exported": true,
+      "qualifiedName": "Page.replace",
+      "line": 139,
+      "endLine": 150,
+      "signature": "replace(this: this, path: string, { state, dispatch = true }: { state?: State; dispatch?: boolean } = {})",
+      "containerClass": "Page",
+      "calls": [
+        {
+          "name": "split",
+          "edgeType": "call"
+        },
+        {
+          "name": "replace",
+          "edgeType": "call"
+        },
+        {
+          "name": "join",
+          "edgeType": "call"
+        },
+        {
+          "name": "save",
+          "edgeType": "call"
+        },
+        {
+          "name": "dispatch",
+          "edgeType": "call"
+        },
+        {
+          "name": "Context",
+          "edgeType": "new"
+        },
+        {
+          "name": "State",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "dispatch",
+      "exported": true,
+      "qualifiedName": "Page.dispatch",
+      "line": 143,
+      "endLine": 156,
+      "signature": "dispatch(ctx: Context)",
+      "containerClass": "Page",
+      "calls": [
+        {
+          "name": "unhandled",
+          "edgeType": "call"
+        },
+        {
+          "name": "callback",
+          "edgeType": "call"
+        },
+        {
+          "name": "nextEnter",
+          "edgeType": "call"
+        },
+        {
+          "name": "Context",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "unhandled",
+      "exported": true,
+      "qualifiedName": "Page.unhandled",
+      "line": 147,
+      "endLine": 153,
+      "signature": "private unhandled(ctx: Context)",
+      "containerClass": "Page",
+      "calls": [
+        {
+          "name": "stop",
+          "edgeType": "call"
+        },
+        {
+          "name": "Context",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "getBase",
+      "exported": true,
+      "qualifiedName": "Page.getBase",
+      "line": 153,
+      "endLine": 155,
+      "signature": "getBase()",
+      "containerClass": "Page",
+      "calls": []
+    },
+    {
+      "type": "method",
+      "name": "setBase",
+      "exported": true,
+      "qualifiedName": "Page.setBase",
+      "line": 157,
+      "endLine": 159,
+      "signature": "setBase(path: string)",
+      "containerClass": "Page",
+      "calls": []
+    },
+    {
+      "type": "class_property",
+      "name": "routes",
+      "exported": true,
+      "qualifiedName": "Page.routes",
+      "line": 60,
+      "endLine": 60,
+      "signature": "routes: Route[] = [];",
+      "containerClass": "Page",
+      "calls": [
+        {
+          "name": "Route",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "class_property",
+      "name": "onclick",
+      "exported": true,
+      "qualifiedName": "Page.onclick",
+      "line": 82,
+      "endLine": 121,
+      "signature": "private readonly onclick = (e: MouseEvent) =>",
+      "containerClass": "Page",
+      "calls": [
+        {
+          "name": "closest",
+          "edgeType": "call"
+        },
+        {
+          "name": "hasAttribute",
+          "edgeType": "call"
+        },
+        {
+          "name": "getAttribute",
+          "edgeType": "call"
+        },
+        {
+          "name": "isSVGAElement",
+          "edgeType": "call"
+        },
+        {
+          "name": "getBase",
+          "edgeType": "call"
+        },
+        {
+          "name": "indexOf",
+          "edgeType": "call"
+        },
+        {
+          "name": "slice",
+          "edgeType": "call"
+        },
+        {
+          "name": "preventDefault",
+          "edgeType": "call"
+        },
+        {
+          "name": "show",
+          "edgeType": "call"
+        },
+        {
+          "name": "URL",
+          "edgeType": "new"
+        },
+        {
+          "name": "MouseEvent",
+          "edgeType": "type"
+        },
+        {
+          "name": "HTMLAnchorElement",
+          "edgeType": "type"
+        },
+        {
+          "name": "SVGAElement",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "class_property",
+      "name": "onpopstate",
+      "exported": true,
+      "qualifiedName": "Page.onpopstate",
+      "line": 123,
+      "endLine": 129,
+      "signature": "private readonly onpopstate = (e: PopStateEvent) =>",
+      "containerClass": "Page",
+      "calls": [
+        {
+          "name": "replace",
+          "edgeType": "call"
+        },
+        {
+          "name": "show",
+          "edgeType": "call"
+        },
+        {
+          "name": "PopStateEvent",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "function",
+      "name": "decodeURLEncodedURIComponent",
+      "exported": false,
+      "line": 164,
+      "endLine": 168,
+      "signature": "function decodeURLEncodedURIComponent(val: string): string",
+      "calls": [
+        {
+          "name": "decodeURIComponent",
+          "edgeType": "call"
+        },
+        {
+          "name": "replace",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "type",
+      "name": "State",
+      "line": 4,
+      "endLine": 4,
+      "signature": "type State ="
+    }
+  ],
+  "imports": [
+    {
+      "module": "path-to-regexp",
+      "resolved": "external"
+    },
+    {
+      "module": "path-to-regexp",
+      "resolved": "external"
+    }
+  ]
+}

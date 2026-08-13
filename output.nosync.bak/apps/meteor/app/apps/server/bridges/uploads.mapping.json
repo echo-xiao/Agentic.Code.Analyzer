@@ -1,0 +1,211 @@
+{
+  "sourcePath": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/app/apps/server/bridges/uploads.ts",
+  "symbols": [
+    {
+      "type": "class",
+      "name": "AppUploadBridge",
+      "exported": true,
+      "line": 18,
+      "endLine": 65,
+      "signature": "export class AppUploadBridge extends UploadBridge",
+      "calls": [
+        {
+          "name": "UploadBridge",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "getById",
+      "exported": true,
+      "qualifiedName": "AppUploadBridge.getById",
+      "line": 23,
+      "endLine": 29,
+      "signature": "protected async getById(id: string, appId: string): Promise<IUpload>",
+      "containerClass": "AppUploadBridge",
+      "calls": [
+        {
+          "name": "debugLog",
+          "edgeType": "call"
+        },
+        {
+          "name": "convertById",
+          "edgeType": "call"
+        },
+        {
+          "name": "get",
+          "edgeType": "call"
+        },
+        {
+          "name": "getConverters",
+          "edgeType": "call"
+        },
+        {
+          "name": "IUpload",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "getBuffer",
+      "exported": true,
+      "qualifiedName": "AppUploadBridge.getBuffer",
+      "line": 27,
+      "endLine": 39,
+      "signature": "protected async getBuffer(upload: IUpload, appId: string): Promise<Buffer>",
+      "containerClass": "AppUploadBridge",
+      "calls": [
+        {
+          "name": "debugLog",
+          "edgeType": "call"
+        },
+        {
+          "name": "convertToRocketChat",
+          "edgeType": "call"
+        },
+        {
+          "name": "get",
+          "edgeType": "call"
+        },
+        {
+          "name": "getConverters",
+          "edgeType": "call"
+        },
+        {
+          "name": "getBuffer",
+          "edgeType": "call"
+        },
+        {
+          "name": "IUpload",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "createUpload",
+      "exported": true,
+      "qualifiedName": "AppUploadBridge.createUpload",
+      "line": 31,
+      "endLine": 50,
+      "signature": "protected async createUpload(details: IUploadDetails, buffer: Buffer, appId: string): Promise<IUpload>",
+      "containerClass": "AppUploadBridge",
+      "calls": [
+        {
+          "name": "debugLog",
+          "edgeType": "call"
+        },
+        {
+          "name": "getStore",
+          "edgeType": "call"
+        },
+        {
+          "name": "determineFileType",
+          "edgeType": "call"
+        },
+        {
+          "name": "insert",
+          "edgeType": "call"
+        },
+        {
+          "name": "getUploadDetails",
+          "edgeType": "call"
+        },
+        {
+          "name": "sendFileLivechatMessage",
+          "edgeType": "call"
+        },
+        {
+          "name": "sendFileMessage",
+          "edgeType": "call"
+        },
+        {
+          "name": "convertToApp",
+          "edgeType": "call"
+        },
+        {
+          "name": "get",
+          "edgeType": "call"
+        },
+        {
+          "name": "getConverters",
+          "edgeType": "call"
+        },
+        {
+          "name": "IUploadDetails",
+          "edgeType": "type"
+        },
+        {
+          "name": "IUpload",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "constructor",
+      "exported": true,
+      "qualifiedName": "AppUploadBridge.constructor",
+      "line": 19,
+      "endLine": 21,
+      "signature": "constructor(private readonly orch: IAppServerOrchestrator)",
+      "containerClass": "AppUploadBridge",
+      "calls": [
+        {
+          "name": "IAppServerOrchestrator",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "variable_function",
+      "name": "getUploadDetails",
+      "exported": false,
+      "line": 11,
+      "endLine": 17,
+      "signature": "(details: IUploadDetails): Partial<IUploadDetails> =>",
+      "calls": [
+        {
+          "name": "IUploadDetails",
+          "edgeType": "type"
+        }
+      ]
+    }
+  ],
+  "imports": [
+    {
+      "module": "@rocket.chat/apps",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/apps/dist/server/bridges/UploadBridge",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/apps-engine/definition/uploads",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/apps-engine/definition/uploads/IUploadDetails",
+      "resolved": "external"
+    },
+    {
+      "module": "../../../../ee/lib/misc/determineFileType",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/ee/lib/misc/determineFileType.ts"
+    },
+    {
+      "module": "../../../file-upload/server",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/app/file-upload/server/index.ts"
+    },
+    {
+      "module": "../../../file-upload/server/methods/sendFileMessage",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/app/file-upload/server/methods/sendFileMessage.ts"
+    },
+    {
+      "module": "../../../livechat/server/methods/sendFileLivechatMessage",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/app/livechat/server/methods/sendFileLivechatMessage.ts"
+    }
+  ]
+}

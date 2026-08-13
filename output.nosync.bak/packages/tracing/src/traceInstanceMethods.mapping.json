@@ -1,0 +1,59 @@
+{
+  "sourcePath": "/Users/echoooooo/Desktop/code/Rocket.Chat/packages/tracing/src/traceInstanceMethods.ts",
+  "symbols": [
+    {
+      "type": "function",
+      "name": "traceInstanceMethods",
+      "exported": true,
+      "line": 12,
+      "endLine": 44,
+      "signature": "export function traceInstanceMethods<T extends object>(instance: T, ignoreMethods: string[] = []): T",
+      "calls": [
+        {
+          "name": "includes",
+          "edgeType": "call"
+        },
+        {
+          "name": "apply",
+          "edgeType": "call"
+        },
+        {
+          "name": "tracerActiveSpan",
+          "edgeType": "call"
+        },
+        {
+          "name": "getArguments",
+          "edgeType": "call"
+        },
+        {
+          "name": "get",
+          "edgeType": "call"
+        },
+        {
+          "name": "Proxy",
+          "edgeType": "new"
+        }
+      ]
+    },
+    {
+      "type": "variable_function",
+      "name": "getArguments",
+      "exported": false,
+      "line": 3,
+      "endLine": 10,
+      "signature": "(args: any[]): any[] =>",
+      "calls": [
+        {
+          "name": "map",
+          "edgeType": "call"
+        }
+      ]
+    }
+  ],
+  "imports": [
+    {
+      "module": ".",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/packages/tracing/src/index.ts"
+    }
+  ]
+}

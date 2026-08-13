@@ -1,0 +1,839 @@
+{
+  "sourcePath": "/Users/echoooooo/Desktop/code/Rocket.Chat/packages/http-router/src/Router.ts",
+  "symbols": [
+    {
+      "type": "class",
+      "name": "AbstractRouter",
+      "exported": true,
+      "line": 77,
+      "endLine": 79,
+      "signature": "export abstract class AbstractRouter<TActionCallback = (c: Context) => Promise<ResponseSchema<TypedOptions>>>",
+      "calls": []
+    },
+    {
+      "type": "method",
+      "name": "convertActionToHandler",
+      "exported": true,
+      "qualifiedName": "AbstractRouter.convertActionToHandler",
+      "line": 78,
+      "endLine": 78,
+      "signature": "protected abstract convertActionToHandler(action: TActionCallback, logger: Logger): (c: Context) => Promise<ResponseSchema<TypedOptions>>;",
+      "containerClass": "AbstractRouter",
+      "calls": [
+        {
+          "name": "TActionCallback",
+          "edgeType": "type"
+        },
+        {
+          "name": "Logger",
+          "edgeType": "type"
+        },
+        {
+          "name": "Context",
+          "edgeType": "type"
+        },
+        {
+          "name": "ResponseSchema",
+          "edgeType": "type"
+        },
+        {
+          "name": "TypedOptions",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "class",
+      "name": "Router",
+      "exported": true,
+      "line": 89,
+      "endLine": 442,
+      "signature": "export class Router< TBasePath extends string, TOperations extends",
+      "calls": [
+        {
+          "name": "AbstractRouter",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "registerTypedRoutes",
+      "exported": true,
+      "qualifiedName": "Router.registerTypedRoutes",
+      "line": 105,
+      "endLine": 155,
+      "signature": "protected registerTypedRoutes< TSubPathPattern extends string, TOptions extends TypedOptions, TPathPattern extends `${TBasePath}/${TSubPathPattern}`, >(method: Method, subpath: TSubPathPattern, options: TOptions): void",
+      "containerClass": "Router",
+      "calls": [
+        {
+          "name": "replaceAll",
+          "edgeType": "call"
+        },
+        {
+          "name": "toLowerCase",
+          "edgeType": "call"
+        },
+        {
+          "name": "fromEntries",
+          "edgeType": "call"
+        },
+        {
+          "name": "map",
+          "edgeType": "call"
+        },
+        {
+          "name": "entries",
+          "edgeType": "call"
+        },
+        {
+          "name": "TypedOptions",
+          "edgeType": "type"
+        },
+        {
+          "name": "TBasePath",
+          "edgeType": "type"
+        },
+        {
+          "name": "TSubPathPattern",
+          "edgeType": "type"
+        },
+        {
+          "name": "Method",
+          "edgeType": "type"
+        },
+        {
+          "name": "TOptions",
+          "edgeType": "type"
+        },
+        {
+          "name": "TPathPattern",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "parseBodyParams",
+      "exported": true,
+      "qualifiedName": "Router.parseBodyParams",
+      "line": 113,
+      "endLine": 131,
+      "signature": "protected async parseBodyParams({ request }: { request: HonoRequest }): Promise<NonNullable<unknown>>",
+      "containerClass": "Router",
+      "calls": [
+        {
+          "name": "header",
+          "edgeType": "call"
+        },
+        {
+          "name": "includes",
+          "edgeType": "call"
+        },
+        {
+          "name": "json",
+          "edgeType": "call"
+        },
+        {
+          "name": "clone",
+          "edgeType": "call"
+        },
+        {
+          "name": "formData",
+          "edgeType": "call"
+        },
+        {
+          "name": "fromEntries",
+          "edgeType": "call"
+        },
+        {
+          "name": "entries",
+          "edgeType": "call"
+        },
+        {
+          "name": "HonoRequest",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "parseQueryParams",
+      "exported": true,
+      "qualifiedName": "Router.parseQueryParams",
+      "line": 117,
+      "endLine": 119,
+      "signature": "protected parseQueryParams(request: HonoRequest)",
+      "containerClass": "Router",
+      "calls": [
+        {
+          "name": "parseQueryParams",
+          "edgeType": "call"
+        },
+        {
+          "name": "split",
+          "edgeType": "call"
+        },
+        {
+          "name": "HonoRequest",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "method",
+      "exported": true,
+      "qualifiedName": "Router.method",
+      "line": 121,
+      "endLine": 269,
+      "signature": "protected method<TSubPathPattern extends string, TOptions extends TypedOptions>( method: Method, subpath: TSubPathPattern, options: TOptions, ...actions: MiddlewareHandlerListAndActionHandler<TOptions, TActionCallback> ): Router<TBasePath, TOperations, TActionCallback>",
+      "containerClass": "Router",
+      "calls": [
+        {
+          "name": "splitArray",
+          "edgeType": "call"
+        },
+        {
+          "name": "convertActionToHandler",
+          "edgeType": "call"
+        },
+        {
+          "name": "replace",
+          "edgeType": "call"
+        },
+        {
+          "name": "toLowerCase",
+          "edgeType": "call"
+        },
+        {
+          "name": "parseQueryParams",
+          "edgeType": "call"
+        },
+        {
+          "name": "set",
+          "edgeType": "call"
+        },
+        {
+          "name": "warn",
+          "edgeType": "call"
+        },
+        {
+          "name": "json",
+          "edgeType": "call"
+        },
+        {
+          "name": "validatorFn",
+          "edgeType": "call"
+        },
+        {
+          "name": "join",
+          "edgeType": "call"
+        },
+        {
+          "name": "map",
+          "edgeType": "call"
+        },
+        {
+          "name": "parseBodyParams",
+          "edgeType": "call"
+        },
+        {
+          "name": "convertedAction",
+          "edgeType": "call"
+        },
+        {
+          "name": "responseValidatorFn",
+          "edgeType": "call"
+        },
+        {
+          "name": "coerceDatesToStrings",
+          "edgeType": "call"
+        },
+        {
+          "name": "keys",
+          "edgeType": "call"
+        },
+        {
+          "name": "entries",
+          "edgeType": "call"
+        },
+        {
+          "name": "fromEntries",
+          "edgeType": "call"
+        },
+        {
+          "name": "includes",
+          "edgeType": "call"
+        },
+        {
+          "name": "isContentLess",
+          "edgeType": "call"
+        },
+        {
+          "name": "status",
+          "edgeType": "call"
+        },
+        {
+          "name": "forEach",
+          "edgeType": "call"
+        },
+        {
+          "name": "header",
+          "edgeType": "call"
+        },
+        {
+          "name": "body",
+          "edgeType": "call"
+        },
+        {
+          "name": "match",
+          "edgeType": "call"
+        },
+        {
+          "name": "stringify",
+          "edgeType": "call"
+        },
+        {
+          "name": "registerTypedRoutes",
+          "edgeType": "call"
+        },
+        {
+          "name": "TypedOptions",
+          "edgeType": "type"
+        },
+        {
+          "name": "Method",
+          "edgeType": "type"
+        },
+        {
+          "name": "TSubPathPattern",
+          "edgeType": "type"
+        },
+        {
+          "name": "TOptions",
+          "edgeType": "type"
+        },
+        {
+          "name": "MiddlewareHandlerListAndActionHandler",
+          "edgeType": "type"
+        },
+        {
+          "name": "TActionCallback",
+          "edgeType": "type"
+        },
+        {
+          "name": "Router",
+          "edgeType": "type"
+        },
+        {
+          "name": "TBasePath",
+          "edgeType": "type"
+        },
+        {
+          "name": "TOperations",
+          "edgeType": "type"
+        },
+        {
+          "name": "MiddlewareHandler",
+          "edgeType": "type"
+        },
+        {
+          "name": "Lowercase",
+          "edgeType": "type"
+        },
+        {
+          "name": "Context",
+          "edgeType": "type"
+        },
+        {
+          "name": "ResponseSchema",
+          "edgeType": "type"
+        },
+        {
+          "name": "InnerRouter",
+          "edgeType": "type"
+        },
+        {
+          "name": "StatusCode",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "convertActionToHandler",
+      "exported": true,
+      "qualifiedName": "Router.convertActionToHandler",
+      "line": 130,
+      "endLine": 134,
+      "signature": "protected convertActionToHandler(action: TActionCallback, _logger: Logger): (c: Context) => Promise<ResponseSchema<TypedOptions>>",
+      "containerClass": "Router",
+      "calls": [
+        {
+          "name": "TActionCallback",
+          "edgeType": "type"
+        },
+        {
+          "name": "Logger",
+          "edgeType": "type"
+        },
+        {
+          "name": "Context",
+          "edgeType": "type"
+        },
+        {
+          "name": "ResponseSchema",
+          "edgeType": "type"
+        },
+        {
+          "name": "TypedOptions",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "get",
+      "exported": true,
+      "qualifiedName": "Router.get",
+      "line": 134,
+      "endLine": 148,
+      "signature": "get<TSubPathPattern extends string, TOptions extends TypedOptions, TPathPattern extends `${TBasePath}/${TSubPathPattern}`>( subpath: TSubPathPattern, options: TOptions, ...action: MiddlewareHandlerListAndActionHandler<TOptions, TActionCallback> ): Router< TBasePath, | TOperations | ({ method: 'GET'; path: TPathPattern; } & Omit<TOptions, 'response'>), TActionCallback >",
+      "containerClass": "Router",
+      "calls": [
+        {
+          "name": "method",
+          "edgeType": "call"
+        },
+        {
+          "name": "TypedOptions",
+          "edgeType": "type"
+        },
+        {
+          "name": "TBasePath",
+          "edgeType": "type"
+        },
+        {
+          "name": "TSubPathPattern",
+          "edgeType": "type"
+        },
+        {
+          "name": "TOptions",
+          "edgeType": "type"
+        },
+        {
+          "name": "MiddlewareHandlerListAndActionHandler",
+          "edgeType": "type"
+        },
+        {
+          "name": "TActionCallback",
+          "edgeType": "type"
+        },
+        {
+          "name": "Router",
+          "edgeType": "type"
+        },
+        {
+          "name": "TOperations",
+          "edgeType": "type"
+        },
+        {
+          "name": "TPathPattern",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "post",
+      "exported": true,
+      "qualifiedName": "Router.post",
+      "line": 150,
+      "endLine": 164,
+      "signature": "post<TSubPathPattern extends string, TOptions extends TypedOptions, TPathPattern extends `${TBasePath}/${TSubPathPattern}`>( subpath: TSubPathPattern, options: TOptions, ...action: MiddlewareHandlerListAndActionHandler<TOptions, TActionCallback> ): Router< TBasePath, | TOperations | ({ method: 'POST'; path: TPathPattern; } & Omit<TOptions, 'response'>), TActionCallback >",
+      "containerClass": "Router",
+      "calls": [
+        {
+          "name": "method",
+          "edgeType": "call"
+        },
+        {
+          "name": "TypedOptions",
+          "edgeType": "type"
+        },
+        {
+          "name": "TBasePath",
+          "edgeType": "type"
+        },
+        {
+          "name": "TSubPathPattern",
+          "edgeType": "type"
+        },
+        {
+          "name": "TOptions",
+          "edgeType": "type"
+        },
+        {
+          "name": "MiddlewareHandlerListAndActionHandler",
+          "edgeType": "type"
+        },
+        {
+          "name": "TActionCallback",
+          "edgeType": "type"
+        },
+        {
+          "name": "Router",
+          "edgeType": "type"
+        },
+        {
+          "name": "TOperations",
+          "edgeType": "type"
+        },
+        {
+          "name": "TPathPattern",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "put",
+      "exported": true,
+      "qualifiedName": "Router.put",
+      "line": 166,
+      "endLine": 180,
+      "signature": "put<TSubPathPattern extends string, TOptions extends TypedOptions, TPathPattern extends `${TBasePath}/${TSubPathPattern}`>( subpath: TSubPathPattern, options: TOptions, ...action: MiddlewareHandlerListAndActionHandler<TOptions, TActionCallback> ): Router< TBasePath, | TOperations | ({ method: 'PUT'; path: TPathPattern; } & Omit<TOptions, 'response'>), TActionCallback >",
+      "containerClass": "Router",
+      "calls": [
+        {
+          "name": "method",
+          "edgeType": "call"
+        },
+        {
+          "name": "TypedOptions",
+          "edgeType": "type"
+        },
+        {
+          "name": "TBasePath",
+          "edgeType": "type"
+        },
+        {
+          "name": "TSubPathPattern",
+          "edgeType": "type"
+        },
+        {
+          "name": "TOptions",
+          "edgeType": "type"
+        },
+        {
+          "name": "MiddlewareHandlerListAndActionHandler",
+          "edgeType": "type"
+        },
+        {
+          "name": "TActionCallback",
+          "edgeType": "type"
+        },
+        {
+          "name": "Router",
+          "edgeType": "type"
+        },
+        {
+          "name": "TOperations",
+          "edgeType": "type"
+        },
+        {
+          "name": "TPathPattern",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "delete",
+      "exported": true,
+      "qualifiedName": "Router.delete",
+      "line": 182,
+      "endLine": 196,
+      "signature": "delete<TSubPathPattern extends string, TOptions extends TypedOptions, TPathPattern extends `${TBasePath}/${TSubPathPattern}`>( subpath: TSubPathPattern, options: TOptions, ...action: MiddlewareHandlerListAndActionHandler<TOptions, TActionCallback> ): Router< TBasePath, | TOperations | ({ method: 'DELETE'; path: TPathPattern; } & Omit<TOptions, 'response'>), TActionCallback >",
+      "containerClass": "Router",
+      "calls": [
+        {
+          "name": "method",
+          "edgeType": "call"
+        },
+        {
+          "name": "TypedOptions",
+          "edgeType": "type"
+        },
+        {
+          "name": "TBasePath",
+          "edgeType": "type"
+        },
+        {
+          "name": "TSubPathPattern",
+          "edgeType": "type"
+        },
+        {
+          "name": "TOptions",
+          "edgeType": "type"
+        },
+        {
+          "name": "MiddlewareHandlerListAndActionHandler",
+          "edgeType": "type"
+        },
+        {
+          "name": "TActionCallback",
+          "edgeType": "type"
+        },
+        {
+          "name": "Router",
+          "edgeType": "type"
+        },
+        {
+          "name": "TOperations",
+          "edgeType": "type"
+        },
+        {
+          "name": "TPathPattern",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "use",
+      "exported": true,
+      "qualifiedName": "Router.use",
+      "line": 206,
+      "endLine": 219,
+      "signature": "use(innerRouter: unknown): any",
+      "containerClass": "Router",
+      "calls": [
+        {
+          "name": "fromEntries",
+          "edgeType": "call"
+        },
+        {
+          "name": "map",
+          "edgeType": "call"
+        },
+        {
+          "name": "entries",
+          "edgeType": "call"
+        },
+        {
+          "name": "route",
+          "edgeType": "call"
+        },
+        {
+          "name": "use",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "getHonoRouter",
+      "exported": true,
+      "qualifiedName": "Router.getHonoRouter",
+      "line": 225,
+      "endLine": 227,
+      "signature": "getHonoRouter(): InnerRouter",
+      "containerClass": "Router",
+      "calls": [
+        {
+          "name": "InnerRouter",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "constructor",
+      "exported": true,
+      "qualifiedName": "Router.constructor",
+      "line": 98,
+      "endLine": 101,
+      "signature": "constructor(readonly base: TBasePath)",
+      "containerClass": "Router",
+      "calls": [
+        {
+          "name": "Hono",
+          "edgeType": "new"
+        },
+        {
+          "name": "TBasePath",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "class_property",
+      "name": "innerRouter",
+      "exported": true,
+      "qualifiedName": "Router.innerRouter",
+      "line": 96,
+      "endLine": 96,
+      "signature": "protected innerRouter: InnerRouter;",
+      "containerClass": "Router",
+      "calls": [
+        {
+          "name": "InnerRouter",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "class_property",
+      "name": "typedRoutes",
+      "exported": true,
+      "qualifiedName": "Router.typedRoutes",
+      "line": 102,
+      "endLine": 102,
+      "signature": "public typedRoutes: Record<string, Record<string, Route>> =",
+      "containerClass": "Router",
+      "calls": [
+        {
+          "name": "Route",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "function",
+      "name": "splitArray",
+      "exported": false,
+      "line": 20,
+      "endLine": 24,
+      "signature": "function splitArray<T, U>(arr: [...T[], U]): [T[], U]",
+      "calls": [
+        {
+          "name": "slice",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "function",
+      "name": "coerceDatesToStrings",
+      "exported": false,
+      "line": 24,
+      "endLine": 40,
+      "signature": "function coerceDatesToStrings(obj: unknown): unknown",
+      "calls": [
+        {
+          "name": "isArray",
+          "edgeType": "call"
+        },
+        {
+          "name": "map",
+          "edgeType": "call"
+        },
+        {
+          "name": "entries",
+          "edgeType": "call"
+        },
+        {
+          "name": "toISOString",
+          "edgeType": "call"
+        },
+        {
+          "name": "coerceDatesToStrings",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "type",
+      "name": "MiddlewareHandlerListAndActionHandler",
+      "line": 15,
+      "endLine": 18,
+      "signature": "type MiddlewareHandlerListAndActionHandler<TOptions extends TypedOptions, TContext = (c: Context) => Promise<ResponseSchema<TOptions>>> = ["
+    },
+    {
+      "type": "type",
+      "name": "Route",
+      "line": 28,
+      "endLine": 59,
+      "signature": "export type Route ="
+    },
+    {
+      "type": "type",
+      "name": "InnerRouter",
+      "line": 65,
+      "endLine": 71,
+      "signature": "type InnerRouter = Hono<"
+    },
+    {
+      "type": "type",
+      "name": "Prettify",
+      "line": 213,
+      "endLine": 215,
+      "signature": "type Prettify<T> ="
+    },
+    {
+      "type": "type",
+      "name": "ConcatPathOptions",
+      "line": 217,
+      "endLine": 231,
+      "signature": "type ConcatPathOptions< TPath extends string, TOptions extends"
+    },
+    {
+      "type": "type",
+      "name": "Filter",
+      "line": 233,
+      "endLine": 237,
+      "signature": "type Filter< TOther extends"
+    },
+    {
+      "type": "type",
+      "name": "ExtractRouterEndpoints",
+      "line": 239,
+      "endLine": 240,
+      "signature": "export type ExtractRouterEndpoints<TRoute extends Router<any, any, any>> ="
+    }
+  ],
+  "imports": [
+    {
+      "module": "@rocket.chat/logger",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/rest-typings",
+      "resolved": "external"
+    },
+    {
+      "module": "ajv",
+      "resolved": "external"
+    },
+    {
+      "module": "express",
+      "resolved": "external"
+    },
+    {
+      "module": "hono",
+      "resolved": "external"
+    },
+    {
+      "module": "hono",
+      "resolved": "external"
+    },
+    {
+      "module": "hono/utils/http-status",
+      "resolved": "external"
+    },
+    {
+      "module": "./definition",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/packages/http-router/src/definition.ts"
+    },
+    {
+      "module": "./middlewares/honoAdapterForExpress",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/packages/http-router/src/middlewares/honoAdapterForExpress.ts"
+    },
+    {
+      "module": "./parseQueryParams",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/packages/http-router/src/parseQueryParams.ts"
+    }
+  ]
+}

@@ -1,0 +1,87 @@
+{
+  "sourcePath": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/ee/app/livechat-enterprise/server/hooks/scheduleAutoTransfer.ts",
+  "symbols": [
+    {
+      "type": "module",
+      "name": "scheduleAutoTransfer",
+      "exported": false,
+      "line": 1,
+      "endLine": 80,
+      "signature": "scheduleAutoTransfer",
+      "calls": [
+        {
+          "name": "watch",
+          "edgeType": "call"
+        },
+        {
+          "name": "remove",
+          "edgeType": "call"
+        },
+        {
+          "name": "afterOmnichannelSaveMessage",
+          "edgeType": "event_listen"
+        },
+        {
+          "name": "unscheduleRoom",
+          "edgeType": "call"
+        },
+        {
+          "name": "handleAfterCloseRoom",
+          "edgeType": "event_listen",
+          "event": "livechat.closeRoom"
+        },
+        {
+          "name": "IMessage",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "variable_function",
+      "name": "handleAfterCloseRoom",
+      "exported": false,
+      "line": 15,
+      "endLine": 34,
+      "signature": "async (params: LivechatCloseCallbackParams): Promise<LivechatCloseCallbackParams> =>",
+      "calls": [
+        {
+          "name": "unscheduleRoom",
+          "edgeType": "call"
+        },
+        {
+          "name": "LivechatCloseCallbackParams",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "type",
+      "name": "LivechatCloseCallbackParams",
+      "line": 8,
+      "endLine": 11,
+      "signature": "type LivechatCloseCallbackParams ="
+    }
+  ],
+  "imports": [
+    {
+      "module": "@rocket.chat/core-typings",
+      "resolved": "external"
+    },
+    {
+      "module": "../../../../../app/livechat/server/lib/localTypes",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/app/livechat/server/lib/localTypes.ts"
+    },
+    {
+      "module": "../../../../../app/settings/server",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/app/settings/server/index.ts"
+    },
+    {
+      "module": "../../../../../server/lib/callbacks",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/server/lib/callbacks.ts"
+    },
+    {
+      "module": "../lib/AutoTransferChatScheduler",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/ee/app/livechat-enterprise/server/lib/AutoTransferChatScheduler.ts"
+    }
+  ]
+}

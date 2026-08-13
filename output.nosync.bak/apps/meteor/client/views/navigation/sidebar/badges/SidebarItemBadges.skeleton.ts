@@ -1,0 +1,22 @@
+## File: apps/meteor/client/views/navigation/sidebar/badges/SidebarItemBadges.tsx
+
+```typescript
+import { isInviteSubscription } from '@rocket.chat/core-typings';
+import type { SubscriptionWithRoom } from '@rocket.chat/ui-contexts';
+
+import UnreadBadge from './UnreadBadge';
+import InvitationBadge from '../../../../components/InvitationBadge';
+import { useUnreadDisplay } from '../hooks/useUnreadDisplay';
+
+export type SidebarItemBadgesProps = {
+	room: SubscriptionWithRoom;
+	roomTitle?: string;
+};
+
+const SidebarItemBadges = ({ room, roomTitle }: SidebarItemBadgesProps) => {
+    /* Implementation Hidden */
+};
+
+export default SidebarItemBadges;
+
+```

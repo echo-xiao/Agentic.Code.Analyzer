@@ -1,0 +1,56 @@
+{
+  "sourcePath": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/app/search/server/events/EventService.ts",
+  "symbols": [
+    {
+      "type": "class",
+      "name": "EventService",
+      "exported": true,
+      "line": 4,
+      "endLine": 19,
+      "signature": "export class EventService",
+      "calls": []
+    },
+    {
+      "type": "method",
+      "name": "_pushError",
+      "exported": true,
+      "qualifiedName": "EventService._pushError",
+      "line": 5,
+      "endLine": 12,
+      "signature": "_pushError(name: string, value: string, _payload?: unknown)",
+      "containerClass": "EventService",
+      "calls": [
+        {
+          "name": "debug",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "promoteEvent",
+      "exported": true,
+      "qualifiedName": "EventService.promoteEvent",
+      "line": 9,
+      "endLine": 13,
+      "signature": "promoteEvent(name: string, value: string, payload?: unknown)",
+      "containerClass": "EventService",
+      "calls": [
+        {
+          "name": "_pushError",
+          "edgeType": "call"
+        }
+      ]
+    }
+  ],
+  "imports": [
+    {
+      "module": "../logger/logger",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/app/search/server/logger/logger.ts"
+    },
+    {
+      "module": "../service",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/app/search/server/service/index.ts"
+    }
+  ]
+}

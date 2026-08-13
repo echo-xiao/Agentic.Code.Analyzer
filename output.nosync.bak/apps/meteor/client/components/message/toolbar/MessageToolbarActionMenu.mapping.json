@@ -1,0 +1,283 @@
+{
+  "sourcePath": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/client/components/message/toolbar/MessageToolbarActionMenu.tsx",
+  "symbols": [
+    {
+      "type": "variable_function",
+      "name": "MessageToolbarActionMenu",
+      "exported": false,
+      "line": 44,
+      "endLine": 147,
+      "signature": "({ message, context, room, subscription, onChangeMenuVisibility }: MessageToolbarActionMenuProps) =>",
+      "calls": [
+        {
+          "name": "useWebDAVMessageAction",
+          "edgeType": "call"
+        },
+        {
+          "name": "useNewDiscussionMessageAction",
+          "edgeType": "call"
+        },
+        {
+          "name": "useUnpinMessageAction",
+          "edgeType": "call"
+        },
+        {
+          "name": "usePinMessageAction",
+          "edgeType": "call"
+        },
+        {
+          "name": "useStarMessageAction",
+          "edgeType": "call"
+        },
+        {
+          "name": "useUnstarMessageAction",
+          "edgeType": "call"
+        },
+        {
+          "name": "usePermalinkAction",
+          "edgeType": "call"
+        },
+        {
+          "name": "useFollowMessageAction",
+          "edgeType": "call"
+        },
+        {
+          "name": "useUnFollowMessageAction",
+          "edgeType": "call"
+        },
+        {
+          "name": "useMarkAsUnreadMessageAction",
+          "edgeType": "call"
+        },
+        {
+          "name": "useTranslateAction",
+          "edgeType": "call"
+        },
+        {
+          "name": "useViewOriginalTranslationAction",
+          "edgeType": "call"
+        },
+        {
+          "name": "useReplyInDMAction",
+          "edgeType": "call"
+        },
+        {
+          "name": "useCopyAction",
+          "edgeType": "call"
+        },
+        {
+          "name": "useEditMessageAction",
+          "edgeType": "call"
+        },
+        {
+          "name": "useDeleteMessageAction",
+          "edgeType": "call"
+        },
+        {
+          "name": "useReportMessageAction",
+          "edgeType": "call"
+        },
+        {
+          "name": "useShowMessageReactionsAction",
+          "edgeType": "call"
+        },
+        {
+          "name": "useReadReceiptsDetailsAction",
+          "edgeType": "call"
+        },
+        {
+          "name": "useLayoutHiddenActions",
+          "edgeType": "call"
+        },
+        {
+          "name": "sort",
+          "edgeType": "call"
+        },
+        {
+          "name": "filter",
+          "edgeType": "call"
+        },
+        {
+          "name": "includes",
+          "edgeType": "call"
+        },
+        {
+          "name": "useMessageActionAppsActionButtons",
+          "edgeType": "call"
+        },
+        {
+          "name": "useId",
+          "edgeType": "call"
+        },
+        {
+          "name": "useTranslation",
+          "edgeType": "call"
+        },
+        {
+          "name": "isE2EEMessage",
+          "edgeType": "call"
+        },
+        {
+          "name": "map",
+          "edgeType": "call"
+        },
+        {
+          "name": "reduce",
+          "edgeType": "call"
+        },
+        {
+          "name": "find",
+          "edgeType": "call"
+        },
+        {
+          "name": "push",
+          "edgeType": "call"
+        },
+        {
+          "name": "GenericMenu",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "onChangeMenuVisibility",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "groupOptions",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "MessageToolbarActionMenuProps",
+          "edgeType": "type"
+        },
+        {
+          "name": "MessageActionSection",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "type",
+      "name": "MessageActionSection",
+      "line": 30,
+      "endLine": 34,
+      "signature": "type MessageActionSection ="
+    },
+    {
+      "type": "type",
+      "name": "MessageToolbarActionMenuProps",
+      "line": 36,
+      "endLine": 42,
+      "signature": "export type MessageToolbarActionMenuProps ="
+    }
+  ],
+  "imports": [
+    {
+      "module": "@rocket.chat/core-typings",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/tools",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/ui-client",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/ui-contexts",
+      "resolved": "external"
+    },
+    {
+      "module": "react",
+      "resolved": "external"
+    },
+    {
+      "module": "react-i18next",
+      "resolved": "external"
+    },
+    {
+      "module": "./useCopyAction",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/client/components/message/toolbar/useCopyAction.ts"
+    },
+    {
+      "module": "./useDeleteMessageAction",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/client/components/message/toolbar/useDeleteMessageAction.ts"
+    },
+    {
+      "module": "./useEditMessageAction",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/client/components/message/toolbar/useEditMessageAction.ts"
+    },
+    {
+      "module": "./useFollowMessageAction",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/client/components/message/toolbar/useFollowMessageAction.ts"
+    },
+    {
+      "module": "./useMarkAsUnreadMessageAction",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/client/components/message/toolbar/useMarkAsUnreadMessageAction.ts"
+    },
+    {
+      "module": "./useMessageActionAppsActionButtons",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/client/components/message/toolbar/useMessageActionAppsActionButtons.ts"
+    },
+    {
+      "module": "./useNewDiscussionMessageAction",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/client/components/message/toolbar/useNewDiscussionMessageAction.tsx"
+    },
+    {
+      "module": "./usePermalinkAction",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/client/components/message/toolbar/usePermalinkAction.ts"
+    },
+    {
+      "module": "./usePinMessageAction",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/client/components/message/toolbar/usePinMessageAction.tsx"
+    },
+    {
+      "module": "./useReadReceiptsDetailsAction",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/client/components/message/toolbar/useReadReceiptsDetailsAction.tsx"
+    },
+    {
+      "module": "./useReplyInDMAction",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/client/components/message/toolbar/useReplyInDMAction.ts"
+    },
+    {
+      "module": "./useReportMessageAction",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/client/components/message/toolbar/useReportMessageAction.tsx"
+    },
+    {
+      "module": "./useShowMessageReactionsAction",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/client/components/message/toolbar/useShowMessageReactionsAction.tsx"
+    },
+    {
+      "module": "./useStarMessageAction",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/client/components/message/toolbar/useStarMessageAction.ts"
+    },
+    {
+      "module": "./useTranslateAction",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/client/components/message/toolbar/useTranslateAction.ts"
+    },
+    {
+      "module": "./useUnFollowMessageAction",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/client/components/message/toolbar/useUnFollowMessageAction.ts"
+    },
+    {
+      "module": "./useUnpinMessageAction",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/client/components/message/toolbar/useUnpinMessageAction.ts"
+    },
+    {
+      "module": "./useUnstarMessageAction",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/client/components/message/toolbar/useUnstarMessageAction.ts"
+    },
+    {
+      "module": "./useViewOriginalTranslationAction",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/client/components/message/toolbar/useViewOriginalTranslationAction.ts"
+    },
+    {
+      "module": "./useWebDAVMessageAction",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/client/components/message/toolbar/useWebDAVMessageAction.tsx"
+    },
+    {
+      "module": "../../../../app/ui-utils/client/lib/MessageAction",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/app/ui-utils/client/lib/MessageAction.ts"
+    }
+  ]
+}

@@ -1,0 +1,98 @@
+{
+  "sourcePath": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/server/routes/avatar/middlewares/browserVersion.ts",
+  "symbols": [
+    {
+      "type": "variable_function",
+      "name": "isIEOlderThan11",
+      "exported": true,
+      "line": 12,
+      "endLine": 17,
+      "signature": "(userAgent: ReturnType<typeof parser>) =>",
+      "calls": []
+    },
+    {
+      "type": "variable_function",
+      "name": "handleBrowserVersionCheck",
+      "exported": true,
+      "line": 16,
+      "endLine": 144,
+      "signature": "(request: IncomingMessage, res: ServerResponse, next: NextFunction) =>",
+      "calls": [
+        {
+          "name": "get",
+          "edgeType": "call"
+        },
+        {
+          "name": "next",
+          "edgeType": "call"
+        },
+        {
+          "name": "parser",
+          "edgeType": "call"
+        },
+        {
+          "name": "isIEOlderThan11",
+          "edgeType": "call"
+        },
+        {
+          "name": "setHeader",
+          "edgeType": "call"
+        },
+        {
+          "name": "write",
+          "edgeType": "call"
+        },
+        {
+          "name": "getURL",
+          "edgeType": "call"
+        },
+        {
+          "name": "end",
+          "edgeType": "call"
+        },
+        {
+          "name": "IncomingMessage",
+          "edgeType": "type"
+        },
+        {
+          "name": "ServerResponse",
+          "edgeType": "type"
+        },
+        {
+          "name": "NextFunction",
+          "edgeType": "type"
+        },
+        {
+          "name": "IIncomingMessage",
+          "edgeType": "type"
+        }
+      ]
+    }
+  ],
+  "imports": [
+    {
+      "module": "node:http",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/core-typings",
+      "resolved": "external"
+    },
+    {
+      "module": "connect",
+      "resolved": "external"
+    },
+    {
+      "module": "meteor/ostrio:cookies",
+      "resolved": "external"
+    },
+    {
+      "module": "ua-parser-js",
+      "resolved": "external"
+    },
+    {
+      "module": "../../../../app/utils/server/getURL",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/app/utils/server/getURL.ts"
+    }
+  ]
+}

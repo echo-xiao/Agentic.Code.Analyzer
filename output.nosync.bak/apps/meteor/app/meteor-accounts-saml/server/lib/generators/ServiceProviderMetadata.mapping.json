@@ -1,0 +1,132 @@
+{
+  "sourcePath": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/app/meteor-accounts-saml/server/lib/generators/ServiceProviderMetadata.ts",
+  "symbols": [
+    {
+      "type": "class",
+      "name": "ServiceProviderMetadata",
+      "exported": true,
+      "line": 13,
+      "endLine": 53,
+      "signature": "export class ServiceProviderMetadata",
+      "calls": []
+    },
+    {
+      "type": "method",
+      "name": "generate",
+      "exported": true,
+      "qualifiedName": "ServiceProviderMetadata.generate",
+      "line": 14,
+      "endLine": 17,
+      "signature": "public static generate(serviceProviderOptions: IServiceProviderOptions): string",
+      "containerClass": "ServiceProviderMetadata",
+      "calls": [
+        {
+          "name": "getData",
+          "edgeType": "call"
+        },
+        {
+          "name": "fillTemplateData",
+          "edgeType": "call"
+        },
+        {
+          "name": "metadataTemplate",
+          "edgeType": "call"
+        },
+        {
+          "name": "IServiceProviderOptions",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "certificateTagTemplate",
+      "exported": true,
+      "qualifiedName": "ServiceProviderMetadata.certificateTagTemplate",
+      "line": 18,
+      "endLine": 28,
+      "signature": "private static certificateTagTemplate(serviceProviderOptions: IServiceProviderOptions): string",
+      "containerClass": "ServiceProviderMetadata",
+      "calls": [
+        {
+          "name": "IServiceProviderOptions",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "metadataTemplate",
+      "exported": true,
+      "qualifiedName": "ServiceProviderMetadata.metadataTemplate",
+      "line": 22,
+      "endLine": 29,
+      "signature": "private static metadataTemplate(serviceProviderOptions: IServiceProviderOptions): string",
+      "containerClass": "ServiceProviderMetadata",
+      "calls": [
+        {
+          "name": "certificateTagTemplate",
+          "edgeType": "call"
+        },
+        {
+          "name": "fillTemplateData",
+          "edgeType": "call"
+        },
+        {
+          "name": "IServiceProviderOptions",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "getData",
+      "exported": true,
+      "qualifiedName": "ServiceProviderMetadata.getData",
+      "line": 26,
+      "endLine": 38,
+      "signature": "private static getData(serviceProviderOptions: IServiceProviderOptions): IMetadataVariables",
+      "containerClass": "ServiceProviderMetadata",
+      "calls": [
+        {
+          "name": "normalizeCert",
+          "edgeType": "call"
+        },
+        {
+          "name": "absoluteUrl",
+          "edgeType": "call"
+        },
+        {
+          "name": "IServiceProviderOptions",
+          "edgeType": "type"
+        },
+        {
+          "name": "IMetadataVariables",
+          "edgeType": "type"
+        }
+      ]
+    }
+  ],
+  "imports": [
+    {
+      "module": "meteor/meteor",
+      "resolved": "external"
+    },
+    {
+      "module": "../../definition/IMetadataVariables",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/app/meteor-accounts-saml/server/definition/IMetadataVariables.ts"
+    },
+    {
+      "module": "../../definition/IServiceProviderOptions",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/app/meteor-accounts-saml/server/definition/IServiceProviderOptions.ts"
+    },
+    {
+      "module": "../Utils",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/app/meteor-accounts-saml/server/lib/Utils.ts"
+    },
+    {
+      "module": "../constants",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/app/meteor-accounts-saml/server/lib/constants.ts"
+    }
+  ]
+}

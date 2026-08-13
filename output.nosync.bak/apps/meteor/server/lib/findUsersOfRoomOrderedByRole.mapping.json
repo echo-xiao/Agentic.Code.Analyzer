@@ -1,0 +1,103 @@
+{
+  "sourcePath": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/server/lib/findUsersOfRoomOrderedByRole.ts",
+  "symbols": [
+    {
+      "type": "function",
+      "name": "findUsersOfRoomOrderedByRole",
+      "exported": true,
+      "line": 23,
+      "endLine": 140,
+      "signature": "export async function findUsersOfRoomOrderedByRole({ rid, status, skip = 0, limit = 0, filter = '', sort = {}, exceptions = [], extraQuery = [], }: FindUsersParam): Promise<{ members: UserWithRoleAndSubscriptionData[]; total: number }>",
+      "calls": [
+        {
+          "name": "split",
+          "edgeType": "call"
+        },
+        {
+          "name": "trim",
+          "edgeType": "call"
+        },
+        {
+          "name": "get",
+          "edgeType": "call"
+        },
+        {
+          "name": "escapeRegExp",
+          "edgeType": "call"
+        },
+        {
+          "name": "map",
+          "edgeType": "call"
+        },
+        {
+          "name": "aggregate",
+          "edgeType": "call"
+        },
+        {
+          "name": "getCollectionName",
+          "edgeType": "call"
+        },
+        {
+          "name": "all",
+          "edgeType": "call"
+        },
+        {
+          "name": "toArray",
+          "edgeType": "call"
+        },
+        {
+          "name": "countDocuments",
+          "edgeType": "call"
+        },
+        {
+          "name": "RegExp",
+          "edgeType": "new"
+        },
+        {
+          "name": "FindUsersParam",
+          "edgeType": "type"
+        },
+        {
+          "name": "UserWithRoleAndSubscriptionData",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "type",
+      "name": "FindUsersParam",
+      "line": 8,
+      "endLine": 17,
+      "signature": "type FindUsersParam ="
+    },
+    {
+      "type": "type",
+      "name": "UserWithRoleAndSubscriptionData",
+      "line": 19,
+      "endLine": 21,
+      "signature": "type UserWithRoleAndSubscriptionData = IUser &"
+    }
+  ],
+  "imports": [
+    {
+      "module": "@rocket.chat/core-typings",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/models",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/string-helpers",
+      "resolved": "external"
+    },
+    {
+      "module": "mongodb",
+      "resolved": "external"
+    },
+    {
+      "module": "../../app/settings/server",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/app/settings/server/index.ts"
+    }
+  ]
+}

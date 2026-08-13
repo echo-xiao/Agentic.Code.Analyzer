@@ -1,0 +1,53 @@
+{
+  "sourcePath": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/uikit-playground/src/Context/createCtx.tsx",
+  "symbols": [
+    {
+      "type": "function",
+      "name": "createCtx",
+      "exported": true,
+      "line": 6,
+      "endLine": 17,
+      "signature": "export default function createCtx<ActionType>(reducer: Reducer<initialStateType, ActionType>, initialState: initialStateType)",
+      "calls": [
+        {
+          "name": "createContext",
+          "edgeType": "call"
+        },
+        {
+          "name": "useReducer",
+          "edgeType": "call"
+        },
+        {
+          "name": "Reducer",
+          "edgeType": "type"
+        },
+        {
+          "name": "ActionType",
+          "edgeType": "type"
+        },
+        {
+          "name": "Dispatch",
+          "edgeType": "type"
+        },
+        {
+          "name": "ReactNode",
+          "edgeType": "type"
+        }
+      ]
+    }
+  ],
+  "imports": [
+    {
+      "module": "react",
+      "resolved": "external"
+    },
+    {
+      "module": "react",
+      "resolved": "external"
+    },
+    {
+      "module": "./initialState",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/uikit-playground/src/Context/initialState.ts"
+    }
+  ]
+}

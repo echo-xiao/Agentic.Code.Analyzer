@@ -1,0 +1,49 @@
+{
+  "sourcePath": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/client/hooks/useUserPresenceListener.ts",
+  "symbols": [
+    {
+      "type": "variable_function",
+      "name": "useUserPresenceListener",
+      "exported": true,
+      "line": 9,
+      "endLine": 26,
+      "signature": "(): void =>",
+      "calls": [
+        {
+          "name": "useStreamAll",
+          "edgeType": "call"
+        },
+        {
+          "name": "useEffect",
+          "edgeType": "call"
+        },
+        {
+          "name": "subscribe",
+          "edgeType": "call"
+        },
+        {
+          "name": "notify",
+          "edgeType": "call"
+        }
+      ]
+    }
+  ],
+  "imports": [
+    {
+      "module": "@rocket.chat/core-typings",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/ui-contexts",
+      "resolved": "external"
+    },
+    {
+      "module": "react",
+      "resolved": "external"
+    },
+    {
+      "module": "../lib/presence",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/client/lib/presence.ts"
+    }
+  ]
+}

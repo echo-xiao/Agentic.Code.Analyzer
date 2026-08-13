@@ -1,0 +1,206 @@
+{
+  "sourcePath": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/client/components/message/toolbar/items/actions/Timestamp/TimestampPicker/TimestampPickerModal.tsx",
+  "symbols": [
+    {
+      "type": "inner_function",
+      "name": "onSubmit",
+      "exported": false,
+      "qualifiedName": "TimestampPickerModal.onSubmit",
+      "line": 46,
+      "endLine": 53,
+      "signature": "(data: TimestampForm) =>",
+      "calls": [
+        {
+          "name": "dateToISOString",
+          "edgeType": "call"
+        },
+        {
+          "name": "generateTimestampMarkup",
+          "edgeType": "call"
+        },
+        {
+          "name": "insertText",
+          "edgeType": "call"
+        },
+        {
+          "name": "onClose",
+          "edgeType": "call"
+        },
+        {
+          "name": "TimestampForm",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "variable_function",
+      "name": "TimestampPickerModal",
+      "exported": true,
+      "line": 26,
+      "endLine": 75,
+      "signature": "({ onClose, composer }: TimestampPickerProps) =>",
+      "calls": [
+        {
+          "name": "useTranslation",
+          "edgeType": "call"
+        },
+        {
+          "name": "useForm",
+          "edgeType": "call"
+        },
+        {
+          "name": "watch",
+          "edgeType": "call"
+        },
+        {
+          "name": "dateToISOString",
+          "edgeType": "call"
+        },
+        {
+          "name": "generateTimestampMarkup",
+          "edgeType": "call"
+        },
+        {
+          "name": "insertText",
+          "edgeType": "call"
+        },
+        {
+          "name": "onClose",
+          "edgeType": "call"
+        },
+        {
+          "name": "handleSubmit",
+          "edgeType": "call"
+        },
+        {
+          "name": "GenericModal",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "Box",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "Preview",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "Controller",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "DatePicker",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "TimePicker",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "FormatSelector",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "TimezoneSelector",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "onClose",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "currentDate",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "currentFormat",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "currentTimezone",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "control",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "Date",
+          "edgeType": "new"
+        },
+        {
+          "name": "TimestampPickerProps",
+          "edgeType": "type"
+        },
+        {
+          "name": "TimestampForm",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "type",
+      "name": "TimestampForm",
+      "line": 15,
+      "endLine": 19,
+      "signature": "type TimestampForm ="
+    },
+    {
+      "type": "type",
+      "name": "TimestampPickerProps",
+      "line": 21,
+      "endLine": 24,
+      "signature": "type TimestampPickerProps ="
+    }
+  ],
+  "imports": [
+    {
+      "module": "@rocket.chat/fuselage",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/ui-client",
+      "resolved": "external"
+    },
+    {
+      "module": "react-hook-form",
+      "resolved": "external"
+    },
+    {
+      "module": "react-i18next",
+      "resolved": "external"
+    },
+    {
+      "module": "./DatePicker",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/client/components/message/toolbar/items/actions/Timestamp/TimestampPicker/DatePicker.tsx"
+    },
+    {
+      "module": "./FormatSelector",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/client/components/message/toolbar/items/actions/Timestamp/TimestampPicker/FormatSelector.tsx"
+    },
+    {
+      "module": "./Preview",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/client/components/message/toolbar/items/actions/Timestamp/TimestampPicker/Preview.tsx"
+    },
+    {
+      "module": "./TimePicker",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/client/components/message/toolbar/items/actions/Timestamp/TimestampPicker/TimePicker.tsx"
+    },
+    {
+      "module": "./TimezoneSelector",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/client/components/message/toolbar/items/actions/Timestamp/TimestampPicker/TimezoneSelector.tsx"
+    },
+    {
+      "module": "../../../../../../../lib/chats/ChatAPI",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/client/lib/chats/ChatAPI.ts"
+    },
+    {
+      "module": "../../../../../../../lib/utils/timestamp/conversion",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/client/lib/utils/timestamp/conversion.ts"
+    },
+    {
+      "module": "../../../../../../../lib/utils/timestamp/types",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/client/lib/utils/timestamp/types.ts"
+    }
+  ]
+}

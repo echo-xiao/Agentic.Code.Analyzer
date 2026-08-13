@@ -1,0 +1,288 @@
+{
+  "sourcePath": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/client/sidebar/header/MatrixFederationSearch/MatrixFederationManageServerModal.tsx",
+  "symbols": [
+    {
+      "type": "variable_function",
+      "name": "getErrorKey",
+      "exported": false,
+      "line": 32,
+      "endLine": 42,
+      "signature": "(error: any): TranslationKey | undefined =>",
+      "calls": [
+        {
+          "name": "TranslationKey",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "inner_function",
+      "name": "onSuccess",
+      "exported": false,
+      "qualifiedName": "MatrixFederationAddServerModal.onSuccess",
+      "line": 53,
+      "endLine": 58,
+      "signature": "async () =>",
+      "calls": [
+        {
+          "name": "invalidateQueries",
+          "edgeType": "call"
+        },
+        {
+          "name": "setModal",
+          "edgeType": "call"
+        },
+        {
+          "name": "MatrixFederationSearch",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "serverName",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "onClickClose",
+          "edgeType": "jsx"
+        }
+      ]
+    },
+    {
+      "type": "inner_function",
+      "name": "onError",
+      "exported": false,
+      "qualifiedName": "MatrixFederationAddServerModal.onError",
+      "line": 60,
+      "endLine": 67,
+      "signature": "(error) =>",
+      "calls": [
+        {
+          "name": "getErrorKey",
+          "edgeType": "call"
+        },
+        {
+          "name": "dispatchToastMessage",
+          "edgeType": "call"
+        },
+        {
+          "name": "setErrorKey",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "variable_function",
+      "name": "MatrixFederationAddServerModal",
+      "exported": false,
+      "line": 36,
+      "endLine": 110,
+      "signature": "({ onClickClose }: MatrixFederationAddServerModalProps) =>",
+      "calls": [
+        {
+          "name": "useTranslation",
+          "edgeType": "call"
+        },
+        {
+          "name": "useEndpoint",
+          "edgeType": "call"
+        },
+        {
+          "name": "useState",
+          "edgeType": "call"
+        },
+        {
+          "name": "useSetModal",
+          "edgeType": "call"
+        },
+        {
+          "name": "useQueryClient",
+          "edgeType": "call"
+        },
+        {
+          "name": "useToastMessageDispatch",
+          "edgeType": "call"
+        },
+        {
+          "name": "useMutation",
+          "edgeType": "call"
+        },
+        {
+          "name": "addMatrixServer",
+          "edgeType": "call"
+        },
+        {
+          "name": "invalidateQueries",
+          "edgeType": "call"
+        },
+        {
+          "name": "setModal",
+          "edgeType": "call"
+        },
+        {
+          "name": "getErrorKey",
+          "edgeType": "call"
+        },
+        {
+          "name": "dispatchToastMessage",
+          "edgeType": "call"
+        },
+        {
+          "name": "setErrorKey",
+          "edgeType": "call"
+        },
+        {
+          "name": "useMatrixServerList",
+          "edgeType": "call"
+        },
+        {
+          "name": "setServerName",
+          "edgeType": "call"
+        },
+        {
+          "name": "addServer",
+          "edgeType": "call"
+        },
+        {
+          "name": "Modal",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "ModalHeader",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "ModalTitle",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "ModalContent",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "Field",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "FieldLabel",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "FieldRow",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "Button",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "FieldError",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "FieldHint",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "ModalFooter",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "ButtonGroup",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "MatrixFederationSearch",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "ModalClose",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "TextInput",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "Divider",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "MatrixFederationRemoveServerList",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "serverName",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "onClickClose",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "isPending",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "MatrixFederationAddServerModalProps",
+          "edgeType": "type"
+        },
+        {
+          "name": "TranslationKey",
+          "edgeType": "type"
+        },
+        {
+          "name": "ChangeEvent",
+          "edgeType": "type"
+        },
+        {
+          "name": "HTMLInputElement",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "type",
+      "name": "MatrixFederationAddServerModalProps",
+      "line": 28,
+      "endLine": 30,
+      "signature": "export type MatrixFederationAddServerModalProps ="
+    }
+  ],
+  "imports": [
+    {
+      "module": "@rocket.chat/fuselage",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/ui-contexts",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/ui-contexts",
+      "resolved": "external"
+    },
+    {
+      "module": "@tanstack/react-query",
+      "resolved": "external"
+    },
+    {
+      "module": "react",
+      "resolved": "external"
+    },
+    {
+      "module": "react",
+      "resolved": "external"
+    },
+    {
+      "module": "./MatrixFederationRemoveServerList",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/client/sidebar/header/MatrixFederationSearch/MatrixFederationRemoveServerList.tsx"
+    },
+    {
+      "module": "./MatrixFederationSearch",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/client/sidebar/header/MatrixFederationSearch/MatrixFederationSearch.tsx"
+    },
+    {
+      "module": "./useMatrixServerList",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/client/sidebar/header/MatrixFederationSearch/useMatrixServerList.ts"
+    }
+  ]
+}

@@ -1,0 +1,240 @@
+{
+  "sourcePath": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/client/views/admin/ABAC/AdminABACPage.tsx",
+  "symbols": [
+    {
+      "type": "variable_function",
+      "name": "AdminABACPage",
+      "exported": false,
+      "line": 26,
+      "endLine": 113,
+      "signature": "({ shouldShowWarning }: AdminABACPageProps) =>",
+      "calls": [
+        {
+          "name": "useTranslation",
+          "edgeType": "call"
+        },
+        {
+          "name": "useRouter",
+          "edgeType": "call"
+        },
+        {
+          "name": "useRouteParameter",
+          "edgeType": "call"
+        },
+        {
+          "name": "useExternalLink",
+          "edgeType": "call"
+        },
+        {
+          "name": "useIsABACAvailable",
+          "edgeType": "call"
+        },
+        {
+          "name": "useSetting",
+          "edgeType": "call"
+        },
+        {
+          "name": "useLdapSync",
+          "edgeType": "call"
+        },
+        {
+          "name": "useABACTabPermissions",
+          "edgeType": "call"
+        },
+        {
+          "name": "useStableCallback",
+          "edgeType": "call"
+        },
+        {
+          "name": "navigate",
+          "edgeType": "call"
+        },
+        {
+          "name": "getRouteParameters",
+          "edgeType": "call"
+        },
+        {
+          "name": "learnMore",
+          "edgeType": "call"
+        },
+        {
+          "name": "handleCloseContextualbar",
+          "edgeType": "call"
+        },
+        {
+          "name": "Page",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "PageHeader",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "ButtonGroup",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "Button",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "Box",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "Callout",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "PageContent",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "ContextualbarDialog",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "Trans",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "AdminABACTabs",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "SettingsPage",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "AttributesPage",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "RoomsPage",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "LogsPage",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "AttributesContextualBar",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "AttributesContextualBarWithData",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "RoomsContextualBar",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "RoomsContextualBarWithData",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "isSyncDisabled",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "handleSyncNow",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "_id",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "AdminABACPageProps",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "type",
+      "name": "AdminABACPageProps",
+      "line": 22,
+      "endLine": 24,
+      "signature": "export type AdminABACPageProps ="
+    }
+  ],
+  "imports": [
+    {
+      "module": "@rocket.chat/fuselage",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/fuselage-hooks",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/ui-client",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/ui-contexts",
+      "resolved": "external"
+    },
+    {
+      "module": "react-i18next",
+      "resolved": "external"
+    },
+    {
+      "module": "./ABACAttributesTab/AttributesContextualBar",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/client/views/admin/ABAC/ABACAttributesTab/AttributesContextualBar.tsx"
+    },
+    {
+      "module": "./ABACAttributesTab/AttributesContextualBarWithData",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/client/views/admin/ABAC/ABACAttributesTab/AttributesContextualBarWithData.tsx"
+    },
+    {
+      "module": "./ABACAttributesTab/AttributesPage",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/client/views/admin/ABAC/ABACAttributesTab/AttributesPage.tsx"
+    },
+    {
+      "module": "./ABACLogsTab/LogsPage",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/client/views/admin/ABAC/ABACLogsTab/LogsPage.tsx"
+    },
+    {
+      "module": "./ABACRoomsTab/RoomsContextualBar",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/client/views/admin/ABAC/ABACRoomsTab/RoomsContextualBar.tsx"
+    },
+    {
+      "module": "./ABACRoomsTab/RoomsContextualBarWithData",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/client/views/admin/ABAC/ABACRoomsTab/RoomsContextualBarWithData.tsx"
+    },
+    {
+      "module": "./ABACRoomsTab/RoomsPage",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/client/views/admin/ABAC/ABACRoomsTab/RoomsPage.tsx"
+    },
+    {
+      "module": "./ABACSettingTab/SettingsPage",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/client/views/admin/ABAC/ABACSettingTab/SettingsPage.tsx"
+    },
+    {
+      "module": "./AdminABACTabs",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/client/views/admin/ABAC/AdminABACTabs.tsx"
+    },
+    {
+      "module": "./hooks/useABACTabPermissions",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/client/views/admin/ABAC/hooks/useABACTabPermissions.ts"
+    },
+    {
+      "module": "./hooks/useIsABACAvailable",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/client/views/admin/ABAC/hooks/useIsABACAvailable.ts"
+    },
+    {
+      "module": "../../../hooks/useExternalLink",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/client/hooks/useExternalLink.ts"
+    },
+    {
+      "module": "../../../hooks/useLdapSync",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/client/hooks/useLdapSync.tsx"
+    },
+    {
+      "module": "../../../lib/links",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/client/lib/links.ts"
+    }
+  ]
+}

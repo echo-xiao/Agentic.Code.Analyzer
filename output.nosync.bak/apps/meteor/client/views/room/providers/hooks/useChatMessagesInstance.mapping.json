@@ -1,0 +1,113 @@
+{
+  "sourcePath": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/client/views/room/providers/hooks/useChatMessagesInstance.ts",
+  "symbols": [
+    {
+      "type": "function",
+      "name": "useChatMessagesInstance",
+      "exported": true,
+      "line": 13,
+      "endLine": 48,
+      "signature": "export function useChatMessagesInstance({ rid, tmid, encrypted, }: { rid: IRoom['_id']; tmid?: IMessage['_id']; encrypted: IRoom['encrypted']; }): ChatAPI",
+      "calls": [
+        {
+          "name": "useUserId",
+          "edgeType": "call"
+        },
+        {
+          "name": "useRoomSubscription",
+          "edgeType": "call"
+        },
+        {
+          "name": "useUiKitActionManager",
+          "edgeType": "call"
+        },
+        {
+          "name": "useE2EERoomState",
+          "edgeType": "call"
+        },
+        {
+          "name": "useInstance",
+          "edgeType": "call"
+        },
+        {
+          "name": "release",
+          "edgeType": "call"
+        },
+        {
+          "name": "useEffect",
+          "edgeType": "call"
+        },
+        {
+          "name": "subscribeToMessages",
+          "edgeType": "call"
+        },
+        {
+          "name": "updateSubscription",
+          "edgeType": "call"
+        },
+        {
+          "name": "useEmojiPicker",
+          "edgeType": "call"
+        },
+        {
+          "name": "ChatMessages",
+          "edgeType": "new"
+        },
+        {
+          "name": "IRoom",
+          "edgeType": "type"
+        },
+        {
+          "name": "IMessage",
+          "edgeType": "type"
+        },
+        {
+          "name": "ChatAPI",
+          "edgeType": "type"
+        }
+      ]
+    }
+  ],
+  "imports": [
+    {
+      "module": "@rocket.chat/core-typings",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/ui-contexts",
+      "resolved": "external"
+    },
+    {
+      "module": "react",
+      "resolved": "external"
+    },
+    {
+      "module": "./useInstance",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/client/views/room/providers/hooks/useInstance.ts"
+    },
+    {
+      "module": "../../../../../app/ui/client/lib/ChatMessages",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/app/ui/client/lib/ChatMessages.ts"
+    },
+    {
+      "module": "../../../../contexts/EmojiPickerContext",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/client/contexts/EmojiPickerContext.ts"
+    },
+    {
+      "module": "../../../../lib/chats/ChatAPI",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/client/lib/chats/ChatAPI.ts"
+    },
+    {
+      "module": "../../../../uikit/hooks/useUiKitActionManager",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/client/uikit/hooks/useUiKitActionManager.ts"
+    },
+    {
+      "module": "../../contexts/RoomContext",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/client/views/room/contexts/RoomContext.ts"
+    },
+    {
+      "module": "../../hooks/useE2EERoomState",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/client/views/room/hooks/useE2EERoomState.ts"
+    }
+  ]
+}

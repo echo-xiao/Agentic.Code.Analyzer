@@ -1,0 +1,74 @@
+{
+  "sourcePath": "/Users/echoooooo/Desktop/code/Rocket.Chat/packages/patch-injection/src/midleware.ts",
+  "symbols": [
+    {
+      "type": "function",
+      "name": "withMiddleware",
+      "exported": true,
+      "line": 4,
+      "endLine": 36,
+      "signature": "export function withMiddleware<F extends (...args: any[]) => any>(fn: F)",
+      "calls": [
+        {
+          "name": "reduce",
+          "edgeType": "call"
+        },
+        {
+          "name": "middleware",
+          "edgeType": "call"
+        },
+        {
+          "name": "next",
+          "edgeType": "call"
+        },
+        {
+          "name": "fn",
+          "edgeType": "call"
+        },
+        {
+          "name": "buildRunner",
+          "edgeType": "call"
+        },
+        {
+          "name": "push",
+          "edgeType": "call"
+        },
+        {
+          "name": "indexOf",
+          "edgeType": "call"
+        },
+        {
+          "name": "splice",
+          "edgeType": "call"
+        },
+        {
+          "name": "runner",
+          "edgeType": "call"
+        },
+        {
+          "name": "assign",
+          "edgeType": "call"
+        },
+        {
+          "name": "Middleware",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "type",
+      "name": "Middleware",
+      "line": 1,
+      "endLine": 1,
+      "signature": "type Middleware<F extends (...args: any[]) => any> = (ctx: Parameters<F>, next: NextFunction<F>) => ReturnType<F>;"
+    },
+    {
+      "type": "type",
+      "name": "NextFunction",
+      "line": 2,
+      "endLine": 2,
+      "signature": "type NextFunction<F extends (...args: any[]) => any> = (...args: Parameters<F> | []) => ReturnType<F>;"
+    }
+  ],
+  "imports": []
+}

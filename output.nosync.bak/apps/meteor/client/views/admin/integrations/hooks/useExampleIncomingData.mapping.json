@@ -1,0 +1,56 @@
+{
+  "sourcePath": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/client/views/admin/integrations/hooks/useExampleIncomingData.ts",
+  "symbols": [
+    {
+      "type": "function",
+      "name": "useExampleData",
+      "exported": true,
+      "line": 10,
+      "endLine": 32,
+      "signature": "export function useExampleData({ additionalFields, url, }: UseExampleDataParams): [integrationObj: Partial<INewIncomingIntegration>, curl: string]",
+      "calls": [
+        {
+          "name": "useAbsoluteUrl",
+          "edgeType": "call"
+        },
+        {
+          "name": "useMemo",
+          "edgeType": "call"
+        },
+        {
+          "name": "stringify",
+          "edgeType": "call"
+        },
+        {
+          "name": "UseExampleDataParams",
+          "edgeType": "type"
+        },
+        {
+          "name": "INewIncomingIntegration",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "type",
+      "name": "UseExampleDataParams",
+      "line": 5,
+      "endLine": 8,
+      "signature": "type UseExampleDataParams ="
+    }
+  ],
+  "imports": [
+    {
+      "module": "@rocket.chat/core-typings",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/ui-contexts",
+      "resolved": "external"
+    },
+    {
+      "module": "react",
+      "resolved": "external"
+    }
+  ]
+}

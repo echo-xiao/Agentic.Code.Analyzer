@@ -1,0 +1,154 @@
+{
+  "sourcePath": "/Users/echoooooo/Desktop/code/Rocket.Chat/packages/ddp-client/src/TimeoutControl.ts",
+  "symbols": [
+    {
+      "type": "class",
+      "name": "TimeoutControl",
+      "exported": true,
+      "line": 17,
+      "endLine": 86,
+      "signature": "export class TimeoutControl extends Emitter<",
+      "calls": [
+        {
+          "name": "Emitter",
+          "edgeType": "type"
+        },
+        {
+          "name": "TimeoutControlEvents",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "reset",
+      "exported": true,
+      "qualifiedName": "TimeoutControl.reset",
+      "line": 39,
+      "endLine": 48,
+      "signature": "reset()",
+      "containerClass": "TimeoutControl",
+      "calls": [
+        {
+          "name": "timeout",
+          "edgeType": "event_emit"
+        },
+        {
+          "name": "heartbeat",
+          "edgeType": "event_emit"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "stop",
+      "exported": true,
+      "qualifiedName": "TimeoutControl.stop",
+      "line": 43,
+      "endLine": 50,
+      "signature": "stop()",
+      "containerClass": "TimeoutControl",
+      "calls": []
+    },
+    {
+      "type": "method",
+      "name": "create",
+      "exported": true,
+      "qualifiedName": "TimeoutControl.create",
+      "line": 47,
+      "endLine": 73,
+      "signature": "static create(ddp: DDPClient, connection: Connection, timeout?: number, heartbeat?: number): TimeoutControl",
+      "containerClass": "TimeoutControl",
+      "calls": [
+        {
+          "name": "heartbeat",
+          "edgeType": "event_listen"
+        },
+        {
+          "name": "ping",
+          "edgeType": "call"
+        },
+        {
+          "name": "timeout",
+          "edgeType": "event_listen"
+        },
+        {
+          "name": "close",
+          "edgeType": "call"
+        },
+        {
+          "name": "onMessage",
+          "edgeType": "call"
+        },
+        {
+          "name": "reset",
+          "edgeType": "call"
+        },
+        {
+          "name": "close",
+          "edgeType": "event_listen"
+        },
+        {
+          "name": "stop",
+          "edgeType": "call"
+        },
+        {
+          "name": "disconnected",
+          "edgeType": "event_listen"
+        },
+        {
+          "name": "connected",
+          "edgeType": "event_listen"
+        },
+        {
+          "name": "TimeoutControl",
+          "edgeType": "new"
+        },
+        {
+          "name": "DDPClient",
+          "edgeType": "type"
+        },
+        {
+          "name": "Connection",
+          "edgeType": "type"
+        },
+        {
+          "name": "TimeoutControl",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "constructor",
+      "exported": true,
+      "qualifiedName": "TimeoutControl.constructor",
+      "line": 28,
+      "endLine": 37,
+      "signature": "constructor( readonly timeout: number = 60_000, readonly heartbeat: number = timeout / 2, )",
+      "containerClass": "TimeoutControl",
+      "calls": []
+    },
+    {
+      "type": "interface",
+      "name": "TimeoutControlEvents",
+      "line": 6,
+      "endLine": 15,
+      "signature": "export interface TimeoutControlEvents extends Emitter<"
+    }
+  ],
+  "imports": [
+    {
+      "module": "@rocket.chat/emitter",
+      "resolved": "external"
+    },
+    {
+      "module": "./Connection",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/packages/ddp-client/src/Connection.ts"
+    },
+    {
+      "module": "./types/DDPClient",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/packages/ddp-client/src/types/DDPClient.ts"
+    }
+  ]
+}

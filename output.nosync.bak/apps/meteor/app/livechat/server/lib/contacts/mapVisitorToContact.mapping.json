@@ -1,0 +1,65 @@
+{
+  "sourcePath": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/app/livechat/server/lib/contacts/mapVisitorToContact.ts",
+  "symbols": [
+    {
+      "type": "function",
+      "name": "mapVisitorToContact",
+      "exported": true,
+      "line": 8,
+      "endLine": 40,
+      "signature": "export async function mapVisitorToContact(visitor: ILivechatVisitor, source: IOmnichannelSource): Promise<CreateContactParams>",
+      "calls": [
+        {
+          "name": "map",
+          "edgeType": "call"
+        },
+        {
+          "name": "validateCustomFields",
+          "edgeType": "call"
+        },
+        {
+          "name": "getAllowedCustomFields",
+          "edgeType": "call"
+        },
+        {
+          "name": "getContactManagerIdByUsername",
+          "edgeType": "call"
+        },
+        {
+          "name": "ILivechatVisitor",
+          "edgeType": "type"
+        },
+        {
+          "name": "IOmnichannelSource",
+          "edgeType": "type"
+        },
+        {
+          "name": "CreateContactParams",
+          "edgeType": "type"
+        }
+      ]
+    }
+  ],
+  "imports": [
+    {
+      "module": "@rocket.chat/core-typings",
+      "resolved": "external"
+    },
+    {
+      "module": "./createContact",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/app/livechat/server/lib/contacts/createContact.ts"
+    },
+    {
+      "module": "./getAllowedCustomFields",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/app/livechat/server/lib/contacts/getAllowedCustomFields.ts"
+    },
+    {
+      "module": "./getContactManagerIdByUsername",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/app/livechat/server/lib/contacts/getContactManagerIdByUsername.ts"
+    },
+    {
+      "module": "./validateCustomFields",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/app/livechat/server/lib/contacts/validateCustomFields.ts"
+    }
+  ]
+}

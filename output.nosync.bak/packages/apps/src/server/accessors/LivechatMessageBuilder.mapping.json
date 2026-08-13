@@ -1,0 +1,582 @@
+{
+  "sourcePath": "/Users/echoooooo/Desktop/code/Rocket.Chat/packages/apps/src/server/accessors/LivechatMessageBuilder.ts",
+  "symbols": [
+    {
+      "type": "class",
+      "name": "LivechatMessageBuilder",
+      "exported": true,
+      "line": 12,
+      "endLine": 192,
+      "signature": "export class LivechatMessageBuilder implements ILivechatMessageBuilder",
+      "calls": [
+        {
+          "name": "ILivechatMessageBuilder",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "setData",
+      "exported": true,
+      "qualifiedName": "LivechatMessageBuilder.setData",
+      "line": 22,
+      "endLine": 27,
+      "signature": "public setData(data: ILivechatMessage): ILivechatMessageBuilder",
+      "containerClass": "LivechatMessageBuilder",
+      "calls": [
+        {
+          "name": "ILivechatMessage",
+          "edgeType": "type"
+        },
+        {
+          "name": "ILivechatMessageBuilder",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "setRoom",
+      "exported": true,
+      "qualifiedName": "LivechatMessageBuilder.setRoom",
+      "line": 26,
+      "endLine": 29,
+      "signature": "public setRoom(room: IRoom): ILivechatMessageBuilder",
+      "containerClass": "LivechatMessageBuilder",
+      "calls": [
+        {
+          "name": "IRoom",
+          "edgeType": "type"
+        },
+        {
+          "name": "ILivechatMessageBuilder",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "getRoom",
+      "exported": true,
+      "qualifiedName": "LivechatMessageBuilder.getRoom",
+      "line": 30,
+      "endLine": 32,
+      "signature": "public getRoom(): IRoom",
+      "containerClass": "LivechatMessageBuilder",
+      "calls": [
+        {
+          "name": "IRoom",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "setSender",
+      "exported": true,
+      "qualifiedName": "LivechatMessageBuilder.setSender",
+      "line": 34,
+      "endLine": 39,
+      "signature": "public setSender(sender: IUser): ILivechatMessageBuilder",
+      "containerClass": "LivechatMessageBuilder",
+      "calls": [
+        {
+          "name": "IUser",
+          "edgeType": "type"
+        },
+        {
+          "name": "ILivechatMessageBuilder",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "getSender",
+      "exported": true,
+      "qualifiedName": "LivechatMessageBuilder.getSender",
+      "line": 38,
+      "endLine": 40,
+      "signature": "public getSender(): IUser",
+      "containerClass": "LivechatMessageBuilder",
+      "calls": [
+        {
+          "name": "IUser",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "setText",
+      "exported": true,
+      "qualifiedName": "LivechatMessageBuilder.setText",
+      "line": 42,
+      "endLine": 45,
+      "signature": "public setText(text: string): ILivechatMessageBuilder",
+      "containerClass": "LivechatMessageBuilder",
+      "calls": [
+        {
+          "name": "ILivechatMessageBuilder",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "getText",
+      "exported": true,
+      "qualifiedName": "LivechatMessageBuilder.getText",
+      "line": 46,
+      "endLine": 48,
+      "signature": "public getText(): string",
+      "containerClass": "LivechatMessageBuilder",
+      "calls": []
+    },
+    {
+      "type": "method",
+      "name": "setEmojiAvatar",
+      "exported": true,
+      "qualifiedName": "LivechatMessageBuilder.setEmojiAvatar",
+      "line": 50,
+      "endLine": 53,
+      "signature": "public setEmojiAvatar(emoji: string): ILivechatMessageBuilder",
+      "containerClass": "LivechatMessageBuilder",
+      "calls": [
+        {
+          "name": "ILivechatMessageBuilder",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "getEmojiAvatar",
+      "exported": true,
+      "qualifiedName": "LivechatMessageBuilder.getEmojiAvatar",
+      "line": 54,
+      "endLine": 56,
+      "signature": "public getEmojiAvatar(): string",
+      "containerClass": "LivechatMessageBuilder",
+      "calls": []
+    },
+    {
+      "type": "method",
+      "name": "setAvatarUrl",
+      "exported": true,
+      "qualifiedName": "LivechatMessageBuilder.setAvatarUrl",
+      "line": 58,
+      "endLine": 61,
+      "signature": "public setAvatarUrl(avatarUrl: string): ILivechatMessageBuilder",
+      "containerClass": "LivechatMessageBuilder",
+      "calls": [
+        {
+          "name": "ILivechatMessageBuilder",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "getAvatarUrl",
+      "exported": true,
+      "qualifiedName": "LivechatMessageBuilder.getAvatarUrl",
+      "line": 62,
+      "endLine": 64,
+      "signature": "public getAvatarUrl(): string",
+      "containerClass": "LivechatMessageBuilder",
+      "calls": []
+    },
+    {
+      "type": "method",
+      "name": "setUsernameAlias",
+      "exported": true,
+      "qualifiedName": "LivechatMessageBuilder.setUsernameAlias",
+      "line": 66,
+      "endLine": 69,
+      "signature": "public setUsernameAlias(alias: string): ILivechatMessageBuilder",
+      "containerClass": "LivechatMessageBuilder",
+      "calls": [
+        {
+          "name": "ILivechatMessageBuilder",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "getUsernameAlias",
+      "exported": true,
+      "qualifiedName": "LivechatMessageBuilder.getUsernameAlias",
+      "line": 70,
+      "endLine": 72,
+      "signature": "public getUsernameAlias(): string",
+      "containerClass": "LivechatMessageBuilder",
+      "calls": []
+    },
+    {
+      "type": "method",
+      "name": "addAttachment",
+      "exported": true,
+      "qualifiedName": "LivechatMessageBuilder.addAttachment",
+      "line": 74,
+      "endLine": 81,
+      "signature": "public addAttachment(attachment: IMessageAttachment): ILivechatMessageBuilder",
+      "containerClass": "LivechatMessageBuilder",
+      "calls": [
+        {
+          "name": "push",
+          "edgeType": "call"
+        },
+        {
+          "name": "IMessageAttachment",
+          "edgeType": "type"
+        },
+        {
+          "name": "ILivechatMessageBuilder",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "setAttachments",
+      "exported": true,
+      "qualifiedName": "LivechatMessageBuilder.setAttachments",
+      "line": 78,
+      "endLine": 81,
+      "signature": "public setAttachments(attachments: Array<IMessageAttachment>): ILivechatMessageBuilder",
+      "containerClass": "LivechatMessageBuilder",
+      "calls": [
+        {
+          "name": "IMessageAttachment",
+          "edgeType": "type"
+        },
+        {
+          "name": "ILivechatMessageBuilder",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "getAttachments",
+      "exported": true,
+      "qualifiedName": "LivechatMessageBuilder.getAttachments",
+      "line": 82,
+      "endLine": 84,
+      "signature": "public getAttachments(): Array<IMessageAttachment>",
+      "containerClass": "LivechatMessageBuilder",
+      "calls": [
+        {
+          "name": "IMessageAttachment",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "replaceAttachment",
+      "exported": true,
+      "qualifiedName": "LivechatMessageBuilder.replaceAttachment",
+      "line": 86,
+      "endLine": 97,
+      "signature": "public replaceAttachment(position: number, attachment: IMessageAttachment): ILivechatMessageBuilder",
+      "containerClass": "LivechatMessageBuilder",
+      "calls": [
+        {
+          "name": "IMessageAttachment",
+          "edgeType": "type"
+        },
+        {
+          "name": "ILivechatMessageBuilder",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "removeAttachment",
+      "exported": true,
+      "qualifiedName": "LivechatMessageBuilder.removeAttachment",
+      "line": 90,
+      "endLine": 102,
+      "signature": "public removeAttachment(position: number): ILivechatMessageBuilder",
+      "containerClass": "LivechatMessageBuilder",
+      "calls": [
+        {
+          "name": "splice",
+          "edgeType": "call"
+        },
+        {
+          "name": "ILivechatMessageBuilder",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "setEditor",
+      "exported": true,
+      "qualifiedName": "LivechatMessageBuilder.setEditor",
+      "line": 94,
+      "endLine": 97,
+      "signature": "public setEditor(user: IUser): ILivechatMessageBuilder",
+      "containerClass": "LivechatMessageBuilder",
+      "calls": [
+        {
+          "name": "IUser",
+          "edgeType": "type"
+        },
+        {
+          "name": "ILivechatMessageBuilder",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "getEditor",
+      "exported": true,
+      "qualifiedName": "LivechatMessageBuilder.getEditor",
+      "line": 98,
+      "endLine": 100,
+      "signature": "public getEditor(): IUser",
+      "containerClass": "LivechatMessageBuilder",
+      "calls": [
+        {
+          "name": "IUser",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "setGroupable",
+      "exported": true,
+      "qualifiedName": "LivechatMessageBuilder.setGroupable",
+      "line": 102,
+      "endLine": 105,
+      "signature": "public setGroupable(groupable: boolean): ILivechatMessageBuilder",
+      "containerClass": "LivechatMessageBuilder",
+      "calls": [
+        {
+          "name": "ILivechatMessageBuilder",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "getGroupable",
+      "exported": true,
+      "qualifiedName": "LivechatMessageBuilder.getGroupable",
+      "line": 106,
+      "endLine": 108,
+      "signature": "public getGroupable(): boolean",
+      "containerClass": "LivechatMessageBuilder",
+      "calls": []
+    },
+    {
+      "type": "method",
+      "name": "setParseUrls",
+      "exported": true,
+      "qualifiedName": "LivechatMessageBuilder.setParseUrls",
+      "line": 110,
+      "endLine": 113,
+      "signature": "public setParseUrls(parseUrls: boolean): ILivechatMessageBuilder",
+      "containerClass": "LivechatMessageBuilder",
+      "calls": [
+        {
+          "name": "ILivechatMessageBuilder",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "getParseUrls",
+      "exported": true,
+      "qualifiedName": "LivechatMessageBuilder.getParseUrls",
+      "line": 114,
+      "endLine": 116,
+      "signature": "public getParseUrls(): boolean",
+      "containerClass": "LivechatMessageBuilder",
+      "calls": []
+    },
+    {
+      "type": "method",
+      "name": "setToken",
+      "exported": true,
+      "qualifiedName": "LivechatMessageBuilder.setToken",
+      "line": 118,
+      "endLine": 121,
+      "signature": "public setToken(token: string): ILivechatMessageBuilder",
+      "containerClass": "LivechatMessageBuilder",
+      "calls": [
+        {
+          "name": "ILivechatMessageBuilder",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "getToken",
+      "exported": true,
+      "qualifiedName": "LivechatMessageBuilder.getToken",
+      "line": 122,
+      "endLine": 124,
+      "signature": "public getToken(): string",
+      "containerClass": "LivechatMessageBuilder",
+      "calls": []
+    },
+    {
+      "type": "method",
+      "name": "setVisitor",
+      "exported": true,
+      "qualifiedName": "LivechatMessageBuilder.setVisitor",
+      "line": 126,
+      "endLine": 131,
+      "signature": "public setVisitor(visitor: IVisitor): ILivechatMessageBuilder",
+      "containerClass": "LivechatMessageBuilder",
+      "calls": [
+        {
+          "name": "IVisitor",
+          "edgeType": "type"
+        },
+        {
+          "name": "ILivechatMessageBuilder",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "getVisitor",
+      "exported": true,
+      "qualifiedName": "LivechatMessageBuilder.getVisitor",
+      "line": 130,
+      "endLine": 132,
+      "signature": "public getVisitor(): IVisitor",
+      "containerClass": "LivechatMessageBuilder",
+      "calls": [
+        {
+          "name": "IVisitor",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "getMessage",
+      "exported": true,
+      "qualifiedName": "LivechatMessageBuilder.getMessage",
+      "line": 134,
+      "endLine": 144,
+      "signature": "public getMessage(): ILivechatMessage",
+      "containerClass": "LivechatMessageBuilder",
+      "calls": [
+        {
+          "name": "ILivechatMessage",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "getMessageBuilder",
+      "exported": true,
+      "qualifiedName": "LivechatMessageBuilder.getMessageBuilder",
+      "line": 138,
+      "endLine": 140,
+      "signature": "public getMessageBuilder(): IMessageBuilder",
+      "containerClass": "LivechatMessageBuilder",
+      "calls": [
+        {
+          "name": "MessageBuilder",
+          "edgeType": "new"
+        },
+        {
+          "name": "IMessageBuilder",
+          "edgeType": "type"
+        },
+        {
+          "name": "IMessage",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "constructor",
+      "exported": true,
+      "qualifiedName": "LivechatMessageBuilder.constructor",
+      "line": 17,
+      "endLine": 20,
+      "signature": "constructor(message?: ILivechatMessage)",
+      "containerClass": "LivechatMessageBuilder",
+      "calls": [
+        {
+          "name": "ILivechatMessage",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "class_property",
+      "name": "msg",
+      "exported": true,
+      "qualifiedName": "LivechatMessageBuilder.msg",
+      "line": 15,
+      "endLine": 15,
+      "signature": "private msg: ILivechatMessage;",
+      "containerClass": "LivechatMessageBuilder",
+      "calls": [
+        {
+          "name": "ILivechatMessage",
+          "edgeType": "type"
+        }
+      ]
+    }
+  ],
+  "imports": [
+    {
+      "module": "@rocket.chat/apps-engine/definition/accessors",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/apps-engine/definition/livechat/ILivechatMessage",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/apps-engine/definition/livechat/IVisitor",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/apps-engine/definition/messages",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/apps-engine/definition/metadata",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/apps-engine/definition/rooms",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/apps-engine/definition/rooms",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/apps-engine/definition/users",
+      "resolved": "external"
+    },
+    {
+      "module": "./MessageBuilder",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/packages/apps/src/server/accessors/MessageBuilder.ts"
+    }
+  ]
+}

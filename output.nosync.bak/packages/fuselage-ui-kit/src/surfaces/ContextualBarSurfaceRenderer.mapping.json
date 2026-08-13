@@ -1,0 +1,88 @@
+{
+  "sourcePath": "/Users/echoooooo/Desktop/code/Rocket.Chat/packages/fuselage-ui-kit/src/surfaces/ContextualBarSurfaceRenderer.tsx",
+  "symbols": [
+    {
+      "type": "class",
+      "name": "ContextualBarSurfaceRenderer",
+      "exported": true,
+      "line": 8,
+      "endLine": 28,
+      "signature": "export class ContextualBarSurfaceRenderer extends FuselageSurfaceRenderer",
+      "calls": [
+        {
+          "name": "FuselageSurfaceRenderer",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "tab_navigation",
+      "exported": true,
+      "qualifiedName": "ContextualBarSurfaceRenderer.tab_navigation",
+      "line": 17,
+      "endLine": 27,
+      "signature": "tab_navigation(block: UiKit.ExperimentalTabNavigationBlock, context: UiKit.BlockContext, index: number): ReactNode",
+      "containerClass": "ContextualBarSurfaceRenderer",
+      "calls": [
+        {
+          "name": "AppIdProvider",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "TabNavigationBlock",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "index",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "block",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "context",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "ReactNode",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "constructor",
+      "exported": true,
+      "qualifiedName": "ContextualBarSurfaceRenderer.constructor",
+      "line": 9,
+      "endLine": 11,
+      "signature": "public constructor()",
+      "containerClass": "ContextualBarSurfaceRenderer",
+      "calls": []
+    }
+  ],
+  "imports": [
+    {
+      "module": "@rocket.chat/ui-kit",
+      "resolved": "external"
+    },
+    {
+      "module": "react",
+      "resolved": "external"
+    },
+    {
+      "module": "./FuselageSurfaceRenderer",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/packages/fuselage-ui-kit/src/surfaces/FuselageSurfaceRenderer.tsx"
+    },
+    {
+      "module": "../blocks/TabNavigationBlock",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/packages/fuselage-ui-kit/src/blocks/TabNavigationBlock.tsx"
+    },
+    {
+      "module": "../contexts/AppIdContext",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/packages/fuselage-ui-kit/src/contexts/AppIdContext.tsx"
+    }
+  ]
+}

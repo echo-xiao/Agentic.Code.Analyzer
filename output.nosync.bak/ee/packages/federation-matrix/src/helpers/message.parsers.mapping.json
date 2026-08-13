@@ -1,0 +1,362 @@
+{
+  "sourcePath": "/Users/echoooooo/Desktop/code/Rocket.Chat/ee/packages/federation-matrix/src/helpers/message.parsers.ts",
+  "symbols": [
+    {
+      "type": "variable_function",
+      "name": "escapeHtml",
+      "exported": false,
+      "line": 22,
+      "endLine": 23,
+      "signature": "(text: string): string =>",
+      "calls": [
+        {
+          "name": "replace",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "variable_function",
+      "name": "stripHtml",
+      "exported": false,
+      "line": 25,
+      "endLine": 25,
+      "signature": "(html: string, keep: string[] = []): string =>",
+      "calls": [
+        {
+          "name": "sanitizeHtml",
+          "edgeType": "call"
+        },
+        {
+          "name": "includes",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "variable_function",
+      "name": "createMentionHtml",
+      "exported": false,
+      "line": 27,
+      "endLine": 27,
+      "signature": "(id: string): string =>",
+      "calls": []
+    },
+    {
+      "type": "variable_function",
+      "name": "extractAnchors",
+      "exported": false,
+      "line": 29,
+      "endLine": 29,
+      "signature": "(html: string) =>",
+      "calls": [
+        {
+          "name": "from",
+          "edgeType": "call"
+        },
+        {
+          "name": "matchAll",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "variable_function",
+      "name": "extractMentions",
+      "exported": false,
+      "line": 31,
+      "endLine": 46,
+      "signature": "(html: string, homeServerDomain: string, senderExternalId: string) =>",
+      "calls": [
+        {
+          "name": "map",
+          "edgeType": "call"
+        },
+        {
+          "name": "filter",
+          "edgeType": "call"
+        },
+        {
+          "name": "extractAnchors",
+          "edgeType": "call"
+        },
+        {
+          "name": "includes",
+          "edgeType": "call"
+        },
+        {
+          "name": "match",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "variable_function",
+      "name": "replaceMentions",
+      "exported": false,
+      "line": 48,
+      "endLine": 73,
+      "signature": "(message: string, mentions: Array<{ mention: string; realName: string }>): string =>",
+      "calls": [
+        {
+          "name": "replace",
+          "edgeType": "call"
+        },
+        {
+          "name": "search",
+          "edgeType": "call"
+        },
+        {
+          "name": "slice",
+          "edgeType": "call"
+        },
+        {
+          "name": "startsWith",
+          "edgeType": "call"
+        },
+        {
+          "name": "trim",
+          "edgeType": "call"
+        },
+        {
+          "name": "RegExp",
+          "edgeType": "new"
+        }
+      ]
+    },
+    {
+      "type": "variable_function",
+      "name": "replaceWithMentionPills",
+      "exported": false,
+      "line": 52,
+      "endLine": 56,
+      "signature": "async (message: string, regex: RegExp, createPill: (match: string) => string): Promise<string> =>",
+      "calls": [
+        {
+          "name": "from",
+          "edgeType": "call"
+        },
+        {
+          "name": "matchAll",
+          "edgeType": "call"
+        },
+        {
+          "name": "createPill",
+          "edgeType": "call"
+        },
+        {
+          "name": "trimStart",
+          "edgeType": "call"
+        },
+        {
+          "name": "replace",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "variable_function",
+      "name": "stripQuotePrefix",
+      "exported": false,
+      "line": 56,
+      "endLine": 63,
+      "signature": "(message: string): string =>",
+      "calls": [
+        {
+          "name": "split",
+          "edgeType": "call"
+        },
+        {
+          "name": "findIndex",
+          "edgeType": "call"
+        },
+        {
+          "name": "startsWith",
+          "edgeType": "call"
+        },
+        {
+          "name": "trim",
+          "edgeType": "call"
+        },
+        {
+          "name": "join",
+          "edgeType": "call"
+        },
+        {
+          "name": "slice",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "variable_function",
+      "name": "createReplyContent",
+      "exported": false,
+      "line": 60,
+      "endLine": 77,
+      "signature": "(roomId: string, event: MatrixEvent, textBody: string, htmlBody: string): MatrixMessageContent =>",
+      "calls": [
+        {
+          "name": "escapeHtml",
+          "edgeType": "call"
+        },
+        {
+          "name": "join",
+          "edgeType": "call"
+        },
+        {
+          "name": "split",
+          "edgeType": "call"
+        },
+        {
+          "name": "MatrixEvent",
+          "edgeType": "type"
+        },
+        {
+          "name": "MatrixMessageContent",
+          "edgeType": "type"
+        },
+        {
+          "name": "EventID",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "variable_function",
+      "name": "toInternalMessageFormat",
+      "exported": true,
+      "line": 64,
+      "endLine": 74,
+      "signature": "({ rawMessage, formattedMessage, homeServerDomain, senderExternalId, }: { rawMessage: string; formattedMessage: string; homeServerDomain: string; senderExternalId: string; }): string =>",
+      "calls": [
+        {
+          "name": "replaceMentions",
+          "edgeType": "call"
+        },
+        {
+          "name": "extractMentions",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "variable_function",
+      "name": "toInternalQuoteMessageFormat",
+      "exported": true,
+      "line": 76,
+      "endLine": 96,
+      "signature": "async ({ homeServerDomain, formattedMessage, rawMessage, messageToReplyToUrl, senderExternalId, }: { messageToReplyToUrl: string; formattedMessage: string; rawMessage: string; homeServerDomain: string; senderExternalId: string; }): Promise<string> =>",
+      "calls": [
+        {
+          "name": "forEach",
+          "edgeType": "call"
+        },
+        {
+          "name": "replace",
+          "edgeType": "call"
+        },
+        {
+          "name": "stripHtml",
+          "edgeType": "call"
+        },
+        {
+          "name": "replaceMentions",
+          "edgeType": "call"
+        },
+        {
+          "name": "stripQuotePrefix",
+          "edgeType": "call"
+        },
+        {
+          "name": "extractMentions",
+          "edgeType": "call"
+        },
+        {
+          "name": "RegExp",
+          "edgeType": "new"
+        }
+      ]
+    },
+    {
+      "type": "variable_function",
+      "name": "toExternalMessageFormat",
+      "exported": true,
+      "line": 92,
+      "endLine": 107,
+      "signature": "async ({ externalRoomId, homeServerDomain, message, }: { message: string; externalRoomId: string; homeServerDomain: string; }): Promise<string> =>",
+      "calls": [
+        {
+          "name": "replaceWithMentionPills",
+          "edgeType": "call"
+        },
+        {
+          "name": "createMentionHtml",
+          "edgeType": "call"
+        },
+        {
+          "name": "trim",
+          "edgeType": "call"
+        },
+        {
+          "name": "replace",
+          "edgeType": "call"
+        },
+        {
+          "name": "parse",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "variable_function",
+      "name": "toExternalQuoteMessageFormat",
+      "exported": true,
+      "line": 104,
+      "endLine": 129,
+      "signature": "async ({ message, eventToReplyTo, externalRoomId, homeServerDomain, originalEventSender, }: { externalRoomId: string; eventToReplyTo: string; originalEventSender: string; message: string; homeServerDomain: string; }): Promise<{ message: string; formattedMessage: string }> =>",
+      "calls": [
+        {
+          "name": "parse",
+          "edgeType": "call"
+        },
+        {
+          "name": "toExternalMessageFormat",
+          "edgeType": "call"
+        },
+        {
+          "name": "createReplyContent",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "type",
+      "name": "MatrixMessageContent",
+      "line": 5,
+      "endLine": 5,
+      "signature": "type MatrixMessageContent = HomeserverEventSignatures['homeserver.matrix.message']['event']['content'] &"
+    },
+    {
+      "type": "type",
+      "name": "MatrixEvent",
+      "line": 7,
+      "endLine": 11,
+      "signature": "type MatrixEvent ="
+    }
+  ],
+  "imports": [
+    {
+      "module": "@rocket.chat/federation-sdk",
+      "resolved": "external"
+    },
+    {
+      "module": "marked",
+      "resolved": "external"
+    },
+    {
+      "module": "sanitize-html",
+      "resolved": "external"
+    }
+  ]
+}

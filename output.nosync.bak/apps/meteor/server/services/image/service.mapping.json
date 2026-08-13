@@ -1,0 +1,245 @@
+{
+  "sourcePath": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/server/services/image/service.ts",
+  "symbols": [
+    {
+      "type": "class",
+      "name": "MediaService",
+      "exported": true,
+      "line": 12,
+      "endLine": 107,
+      "signature": "export class MediaService extends ServiceClassInternal implements IMediaService",
+      "calls": [
+        {
+          "name": "ServiceClassInternal",
+          "edgeType": "type"
+        },
+        {
+          "name": "IMediaService",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "resizeFromBuffer",
+      "exported": true,
+      "qualifiedName": "MediaService.resizeFromBuffer",
+      "line": 36,
+      "endLine": 47,
+      "signature": "async resizeFromBuffer( input: Buffer, width: number, height: number, keepType: boolean, blur: boolean, enlarge: boolean, fit?: keyof sharp.FitEnum | undefined, ): Promise<ResizeResult>",
+      "containerClass": "MediaService",
+      "calls": [
+        {
+          "name": "bufferToStream",
+          "edgeType": "call"
+        },
+        {
+          "name": "resizeFromStream",
+          "edgeType": "call"
+        },
+        {
+          "name": "ResizeResult",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "resizeFromStream",
+      "exported": true,
+      "qualifiedName": "MediaService.resizeFromStream",
+      "line": 48,
+      "endLine": 79,
+      "signature": "async resizeFromStream( input: stream.Stream, width: number, height: number, keepType: boolean, blur: boolean, enlarge: boolean, fit?: keyof sharp.FitEnum | undefined, ): Promise<ResizeResult>",
+      "containerClass": "MediaService",
+      "calls": [
+        {
+          "name": "resize",
+          "edgeType": "call"
+        },
+        {
+          "name": "sharp",
+          "edgeType": "call"
+        },
+        {
+          "name": "jpeg",
+          "edgeType": "call"
+        },
+        {
+          "name": "blur",
+          "edgeType": "call"
+        },
+        {
+          "name": "toBuffer",
+          "edgeType": "call"
+        },
+        {
+          "name": "pipe",
+          "edgeType": "call"
+        },
+        {
+          "name": "ResizeResult",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "isImage",
+      "exported": true,
+      "qualifiedName": "MediaService.isImage",
+      "line": 60,
+      "endLine": 66,
+      "signature": "async isImage(buff: Buffer): Promise<boolean>",
+      "containerClass": "MediaService",
+      "calls": [
+        {
+          "name": "fromBuffer",
+          "edgeType": "call"
+        },
+        {
+          "name": "isSvgImage",
+          "edgeType": "call"
+        },
+        {
+          "name": "has",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "isSvgImage",
+      "exported": true,
+      "qualifiedName": "MediaService.isSvgImage",
+      "line": 64,
+      "endLine": 66,
+      "signature": "isSvgImage(buff: Buffer): boolean",
+      "containerClass": "MediaService",
+      "calls": [
+        {
+          "name": "isSvg",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "stripExifFromBuffer",
+      "exported": true,
+      "qualifiedName": "MediaService.stripExifFromBuffer",
+      "line": 68,
+      "endLine": 70,
+      "signature": "stripExifFromBuffer(buffer: Buffer): Promise<Buffer>",
+      "containerClass": "MediaService",
+      "calls": [
+        {
+          "name": "streamToBuffer",
+          "edgeType": "call"
+        },
+        {
+          "name": "stripExifFromImageStream",
+          "edgeType": "call"
+        },
+        {
+          "name": "bufferToStream",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "stripExifFromImageStream",
+      "exported": true,
+      "qualifiedName": "MediaService.stripExifFromImageStream",
+      "line": 72,
+      "endLine": 74,
+      "signature": "stripExifFromImageStream(stream: stream.Stream): Readable",
+      "containerClass": "MediaService",
+      "calls": [
+        {
+          "name": "pipe",
+          "edgeType": "call"
+        },
+        {
+          "name": "ExifTransformer",
+          "edgeType": "new"
+        },
+        {
+          "name": "Readable",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "bufferToStream",
+      "exported": true,
+      "qualifiedName": "MediaService.bufferToStream",
+      "line": 76,
+      "endLine": 80,
+      "signature": "private bufferToStream(buffer: Buffer): stream.PassThrough",
+      "containerClass": "MediaService",
+      "calls": [
+        {
+          "name": "end",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "class_property",
+      "name": "imageExts",
+      "exported": true,
+      "qualifiedName": "MediaService.imageExts",
+      "line": 15,
+      "endLine": 34,
+      "signature": "private imageExts = new Set([",
+      "containerClass": "MediaService",
+      "calls": [
+        {
+          "name": "Set",
+          "edgeType": "new"
+        }
+      ]
+    }
+  ],
+  "imports": [
+    {
+      "module": "node:stream",
+      "resolved": "external"
+    },
+    {
+      "module": "node:stream",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/core-services",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/core-services",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/tools",
+      "resolved": "external"
+    },
+    {
+      "module": "exif-be-gone",
+      "resolved": "external"
+    },
+    {
+      "module": "file-type",
+      "resolved": "external"
+    },
+    {
+      "module": "is-svg",
+      "resolved": "external"
+    },
+    {
+      "module": "sharp",
+      "resolved": "external"
+    }
+  ]
+}

@@ -1,0 +1,87 @@
+{
+  "sourcePath": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/app/search/server/search.internalService.ts",
+  "symbols": [
+    {
+      "type": "module",
+      "name": "search.internalService",
+      "exported": false,
+      "line": 1,
+      "endLine": 46,
+      "signature": "search.internalService",
+      "calls": [
+        {
+          "name": "watch",
+          "edgeType": "call"
+        },
+        {
+          "name": "registerService",
+          "edgeType": "call"
+        },
+        {
+          "name": "destroyService",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "class",
+      "name": "Search",
+      "exported": false,
+      "line": 8,
+      "endLine": 35,
+      "signature": "class Search extends ServiceClassInternal",
+      "calls": [
+        {
+          "name": "ServiceClassInternal",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "constructor",
+      "exported": false,
+      "qualifiedName": "Search.constructor",
+      "line": 13,
+      "endLine": 34,
+      "signature": "constructor()",
+      "containerClass": "Search",
+      "calls": [
+        {
+          "name": "onEvent",
+          "edgeType": "call"
+        },
+        {
+          "name": "promoteEvent",
+          "edgeType": "call"
+        },
+        {
+          "name": "findOneById",
+          "edgeType": "call"
+        }
+      ]
+    }
+  ],
+  "imports": [
+    {
+      "module": "@rocket.chat/core-services",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/models",
+      "resolved": "external"
+    },
+    {
+      "module": "./events",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/app/search/server/events/index.ts"
+    },
+    {
+      "module": "./service",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/app/search/server/service/index.ts"
+    },
+    {
+      "module": "../../settings/server",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/app/settings/server/index.ts"
+    }
+  ]
+}

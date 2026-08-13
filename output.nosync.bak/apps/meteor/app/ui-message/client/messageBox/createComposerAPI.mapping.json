@@ -1,0 +1,255 @@
+{
+  "sourcePath": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/app/ui-message/client/messageBox/createComposerAPI.ts",
+  "symbols": [
+    {
+      "type": "variable_function",
+      "name": "createComposerAPI",
+      "exported": true,
+      "line": 13,
+      "endLine": 368,
+      "signature": "( input: HTMLTextAreaElement, persistDraft: (value: string) => void, initialDraft: string, quoteChainLimit: number, composerRef: RefObject<HTMLElement | null>, { rid, tmid }: { rid: string; tmid?: string }, ): ComposerAPI =>",
+      "calls": [
+        {
+          "name": "setValue",
+          "edgeType": "call"
+        },
+        {
+          "name": "dispatchEvent",
+          "edgeType": "call"
+        },
+        {
+          "name": "withDebouncing",
+          "edgeType": "call"
+        },
+        {
+          "name": "persistDraft",
+          "edgeType": "call"
+        },
+        {
+          "name": "quotedMessagesUpdate",
+          "edgeType": "event_emit"
+        },
+        {
+          "name": "focus",
+          "edgeType": "call"
+        },
+        {
+          "name": "selection",
+          "edgeType": "call"
+        },
+        {
+          "name": "execCommand",
+          "edgeType": "call"
+        },
+        {
+          "name": "substring",
+          "edgeType": "call"
+        },
+        {
+          "name": "setSelectionRange",
+          "edgeType": "call"
+        },
+        {
+          "name": "triggerEvent",
+          "edgeType": "call"
+        },
+        {
+          "name": "setText",
+          "edgeType": "call"
+        },
+        {
+          "name": "filter",
+          "edgeType": "call"
+        },
+        {
+          "name": "limitQuoteChain",
+          "edgeType": "call"
+        },
+        {
+          "name": "notifyQuotedMessagesUpdate",
+          "edgeType": "call"
+        },
+        {
+          "name": "callback",
+          "edgeType": "event_listen",
+          "event": "quotedMessagesUpdate"
+        },
+        {
+          "name": "callback",
+          "edgeType": "event_listen",
+          "event": "editing"
+        },
+        {
+          "name": "editing",
+          "edgeType": "event_emit"
+        },
+        {
+          "name": "callback",
+          "edgeType": "event_listen",
+          "event": "recording"
+        },
+        {
+          "name": "recording",
+          "edgeType": "event_emit"
+        },
+        {
+          "name": "callback",
+          "edgeType": "event_listen",
+          "event": "recordingVideo"
+        },
+        {
+          "name": "recordingVideo",
+          "edgeType": "event_emit"
+        },
+        {
+          "name": "callback",
+          "edgeType": "event_listen",
+          "event": "mircophoneDenied"
+        },
+        {
+          "name": "mircophoneDenied",
+          "edgeType": "event_emit"
+        },
+        {
+          "name": "setEditing",
+          "edgeType": "call"
+        },
+        {
+          "name": "condition",
+          "edgeType": "call"
+        },
+        {
+          "name": "formatting",
+          "edgeType": "event_emit"
+        },
+        {
+          "name": "recompute",
+          "edgeType": "call"
+        },
+        {
+          "name": "observe",
+          "edgeType": "call"
+        },
+        {
+          "name": "callback",
+          "edgeType": "event_listen",
+          "event": "formatting"
+        },
+        {
+          "name": "removeEventListener",
+          "edgeType": "call"
+        },
+        {
+          "name": "stopFormatterSubscription",
+          "edgeType": "call"
+        },
+        {
+          "name": "slice",
+          "edgeType": "call"
+        },
+        {
+          "name": "indexOf",
+          "edgeType": "call"
+        },
+        {
+          "name": "insertText",
+          "edgeType": "call"
+        },
+        {
+          "name": "replace",
+          "edgeType": "call"
+        },
+        {
+          "name": "addEventListener",
+          "edgeType": "call"
+        },
+        {
+          "name": "blur",
+          "edgeType": "call"
+        },
+        {
+          "name": "createUploadsAPI",
+          "edgeType": "call"
+        },
+        {
+          "name": "Event",
+          "edgeType": "new"
+        },
+        {
+          "name": "Date",
+          "edgeType": "new"
+        },
+        {
+          "name": "Emitter",
+          "edgeType": "new"
+        },
+        {
+          "name": "HTMLTextAreaElement",
+          "edgeType": "type"
+        },
+        {
+          "name": "RefObject",
+          "edgeType": "type"
+        },
+        {
+          "name": "HTMLElement",
+          "edgeType": "type"
+        },
+        {
+          "name": "ComposerAPI",
+          "edgeType": "type"
+        },
+        {
+          "name": "IMessage",
+          "edgeType": "type"
+        },
+        {
+          "name": "FormattingButton",
+          "edgeType": "type"
+        }
+      ]
+    }
+  ],
+  "imports": [
+    {
+      "module": "@rocket.chat/core-typings",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/emitter",
+      "resolved": "external"
+    },
+    {
+      "module": "react",
+      "resolved": "external"
+    },
+    {
+      "module": "./limitQuoteChain",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/app/ui-message/client/messageBox/limitQuoteChain.ts"
+    },
+    {
+      "module": "./messageBoxFormatting",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/app/ui-message/client/messageBox/messageBoxFormatting.ts"
+    },
+    {
+      "module": "./messageBoxFormatting",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/app/ui-message/client/messageBox/messageBoxFormatting.ts"
+    },
+    {
+      "module": "../../../../client/lib/chats/ChatAPI",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/client/lib/chats/ChatAPI.ts"
+    },
+    {
+      "module": "../../../../client/lib/chats/uploads",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/client/lib/chats/uploads.ts"
+    },
+    {
+      "module": "../../../../client/lib/settings",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/client/lib/settings/index.ts"
+    },
+    {
+      "module": "../../../../lib/utils/highOrderFunctions",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/lib/utils/highOrderFunctions.ts"
+    }
+  ]
+}

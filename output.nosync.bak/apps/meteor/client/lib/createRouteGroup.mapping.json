@@ -1,0 +1,137 @@
+{
+  "sourcePath": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/client/lib/createRouteGroup.tsx",
+  "symbols": [
+    {
+      "type": "variable_function",
+      "name": "createRouteGroup",
+      "exported": true,
+      "line": 24,
+      "endLine": 81,
+      "signature": "<TGroupName extends GroupName>( name: TGroupName, prefix: NoInfer<GroupPrefix<TGroupName>>, RouterComponent: ElementType<{ children?: ReactNode; }>, ) =>",
+      "calls": [
+        {
+          "name": "defineRoutes",
+          "edgeType": "call"
+        },
+        {
+          "name": "wrap",
+          "edgeType": "call"
+        },
+        {
+          "name": "register",
+          "edgeType": "call"
+        },
+        {
+          "name": "unregister",
+          "edgeType": "call"
+        },
+        {
+          "name": "MainLayout",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "RouterComponent",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "RouteComponent",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "GroupName",
+          "edgeType": "type"
+        },
+        {
+          "name": "TGroupName",
+          "edgeType": "type"
+        },
+        {
+          "name": "NoInfer",
+          "edgeType": "type"
+        },
+        {
+          "name": "GroupPrefix",
+          "edgeType": "type"
+        },
+        {
+          "name": "ElementType",
+          "edgeType": "type"
+        },
+        {
+          "name": "ReactNode",
+          "edgeType": "type"
+        },
+        {
+          "name": "RouteNamesOf",
+          "edgeType": "type"
+        },
+        {
+          "name": "TrimPrefix",
+          "edgeType": "type"
+        },
+        {
+          "name": "IRouterPaths",
+          "edgeType": "type"
+        },
+        {
+          "name": "TRouteName",
+          "edgeType": "type"
+        },
+        {
+          "name": "RouterPathPattern",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "type",
+      "name": "GroupName",
+      "line": 8,
+      "endLine": 8,
+      "signature": "type GroupName = 'omnichannel' | 'marketplace' | 'account' | 'admin';"
+    },
+    {
+      "type": "type",
+      "name": "GroupPrefix",
+      "line": 10,
+      "endLine": 10,
+      "signature": "type GroupPrefix<TGroupName extends GroupName> = IRouterPaths[`$"
+    },
+    {
+      "type": "type",
+      "name": "RouteNamesOf",
+      "line": 12,
+      "endLine": 20,
+      "signature": "type RouteNamesOf<TGroupName extends GroupName> = ( | keyof"
+    },
+    {
+      "type": "type",
+      "name": "TrimPrefix",
+      "line": 22,
+      "endLine": 22,
+      "signature": "type TrimPrefix<T, P extends string> = T extends `$"
+    }
+  ],
+  "imports": [
+    {
+      "module": "@rocket.chat/ui-contexts",
+      "resolved": "external"
+    },
+    {
+      "module": "react",
+      "resolved": "external"
+    },
+    {
+      "module": "./appLayout",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/client/lib/appLayout.tsx"
+    },
+    {
+      "module": "../providers/RouterProvider",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/client/providers/RouterProvider.tsx"
+    },
+    {
+      "module": "../views/root/MainLayout",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/client/views/root/MainLayout/index.ts"
+    }
+  ]
+}

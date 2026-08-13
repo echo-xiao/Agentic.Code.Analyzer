@@ -1,0 +1,70 @@
+{
+  "sourcePath": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/client/providers/CustomSoundProvider/lib/helpers.ts",
+  "symbols": [
+    {
+      "type": "variable_function",
+      "name": "getAssetUrl",
+      "exported": true,
+      "line": 5,
+      "endLine": 5,
+      "signature": "(asset: string, params?: Record<string, any>) =>",
+      "calls": [
+        {
+          "name": "getURL",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "variable_function",
+      "name": "getCustomSoundURL",
+      "exported": true,
+      "line": 7,
+      "endLine": 9,
+      "signature": "(sound: Pick<ICustomSound, '_id' | 'extension'> & Pick<Partial<ICustomSound>, 'random'>) =>",
+      "calls": [
+        {
+          "name": "getAssetUrl",
+          "edgeType": "call"
+        },
+        {
+          "name": "ICustomSound",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "variable",
+      "name": "soundTranslationKeys",
+      "exported": true,
+      "line": 12,
+      "endLine": 26,
+      "signature": "soundTranslationKeys: Record<string, string> =",
+      "calls": []
+    },
+    {
+      "type": "variable",
+      "name": "defaultSounds",
+      "exported": true,
+      "line": 28,
+      "endLine": 47,
+      "signature": "defaultSounds: Omit<ICustomSound, '_updatedAt'>[] = [",
+      "calls": [
+        {
+          "name": "getAssetUrl",
+          "edgeType": "call"
+        }
+      ]
+    }
+  ],
+  "imports": [
+    {
+      "module": "@rocket.chat/core-typings",
+      "resolved": "external"
+    },
+    {
+      "module": "../../../../app/utils/client",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/app/utils/client/index.ts"
+    }
+  ]
+}

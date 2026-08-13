@@ -1,0 +1,313 @@
+{
+  "sourcePath": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/client/views/marketplace/hooks/useInstallApp.tsx",
+  "symbols": [
+    {
+      "type": "inner_function",
+      "name": "handleAppPermissionsReview",
+      "exported": false,
+      "qualifiedName": "useInstallApp.handleAppPermissionsReview",
+      "line": 82,
+      "endLine": 90,
+      "signature": "async (permissions: AppPermission[], appFile: File, appId?: string) =>",
+      "calls": [
+        {
+          "name": "setModal",
+          "edgeType": "call"
+        },
+        {
+          "name": "sendFile",
+          "edgeType": "call"
+        },
+        {
+          "name": "AppPermissionsReviewModal",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "permissions",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "cancelAction",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "AppPermission",
+          "edgeType": "type"
+        },
+        {
+          "name": "File",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "inner_function",
+      "name": "onSuccess",
+      "exported": false,
+      "qualifiedName": "useInstallApp.onSuccess",
+      "line": 46,
+      "endLine": 55,
+      "signature": "(data: { app: App }) =>",
+      "calls": [
+        {
+          "name": "navigate",
+          "edgeType": "call"
+        },
+        {
+          "name": "App",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "inner_function",
+      "name": "onError",
+      "exported": false,
+      "qualifiedName": "useInstallApp.onError",
+      "line": 57,
+      "endLine": 59,
+      "signature": "(e) =>",
+      "calls": [
+        {
+          "name": "handleAPIError",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "inner_function",
+      "name": "onSettled",
+      "exported": false,
+      "qualifiedName": "useInstallApp.onSettled",
+      "line": 61,
+      "endLine": 65,
+      "signature": "() =>",
+      "calls": [
+        {
+          "name": "setInstalling",
+          "edgeType": "call"
+        },
+        {
+          "name": "setModal",
+          "edgeType": "call"
+        },
+        {
+          "name": "reloadAppsList",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "variable_function",
+      "name": "useInstallApp",
+      "exported": true,
+      "line": 17,
+      "endLine": 138,
+      "signature": "(file: File): { install: () => void; isInstalling: boolean } =>",
+      "calls": [
+        {
+          "name": "useAppsReload",
+          "edgeType": "call"
+        },
+        {
+          "name": "useSetModal",
+          "edgeType": "call"
+        },
+        {
+          "name": "useRouter",
+          "edgeType": "call"
+        },
+        {
+          "name": "useAppsCountQuery",
+          "edgeType": "call"
+        },
+        {
+          "name": "useUpload",
+          "edgeType": "call"
+        },
+        {
+          "name": "useIsEnterprise",
+          "edgeType": "call"
+        },
+        {
+          "name": "useState",
+          "edgeType": "call"
+        },
+        {
+          "name": "useMutation",
+          "edgeType": "call"
+        },
+        {
+          "name": "append",
+          "edgeType": "call"
+        },
+        {
+          "name": "stringify",
+          "edgeType": "call"
+        },
+        {
+          "name": "uploadUpdateEndpoint",
+          "edgeType": "call"
+        },
+        {
+          "name": "uploadAppEndpoint",
+          "edgeType": "call"
+        },
+        {
+          "name": "navigate",
+          "edgeType": "call"
+        },
+        {
+          "name": "handleAPIError",
+          "edgeType": "call"
+        },
+        {
+          "name": "setInstalling",
+          "edgeType": "call"
+        },
+        {
+          "name": "setModal",
+          "edgeType": "call"
+        },
+        {
+          "name": "reloadAppsList",
+          "edgeType": "call"
+        },
+        {
+          "name": "useCallback",
+          "edgeType": "call"
+        },
+        {
+          "name": "getApp",
+          "edgeType": "call"
+        },
+        {
+          "name": "sendFile",
+          "edgeType": "call"
+        },
+        {
+          "name": "isAppInstalled",
+          "edgeType": "call"
+        },
+        {
+          "name": "handleAppPermissionsReview",
+          "edgeType": "call"
+        },
+        {
+          "name": "getManifestFromZippedApp",
+          "edgeType": "call"
+        },
+        {
+          "name": "handleInstallError",
+          "edgeType": "call"
+        },
+        {
+          "name": "cancelAction",
+          "edgeType": "call"
+        },
+        {
+          "name": "extractManifestFromAppFile",
+          "edgeType": "call"
+        },
+        {
+          "name": "uploadFile",
+          "edgeType": "call"
+        },
+        {
+          "name": "AppPermissionsReviewModal",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "AppExemptModal",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "AppUpdateModal",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "permissions",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "cancelAction",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "FormData",
+          "edgeType": "new"
+        },
+        {
+          "name": "File",
+          "edgeType": "type"
+        },
+        {
+          "name": "AppPermission",
+          "edgeType": "type"
+        },
+        {
+          "name": "App",
+          "edgeType": "type"
+        }
+      ]
+    }
+  ],
+  "imports": [
+    {
+      "module": "@rocket.chat/core-typings",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/ui-contexts",
+      "resolved": "external"
+    },
+    {
+      "module": "@tanstack/react-query",
+      "resolved": "external"
+    },
+    {
+      "module": "react",
+      "resolved": "external"
+    },
+    {
+      "module": "./useAppsReload",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/client/views/marketplace/hooks/useAppsReload.ts"
+    },
+    {
+      "module": "../../../apps/orchestrator",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/client/apps/orchestrator.ts"
+    },
+    {
+      "module": "../../../hooks/useIsEnterprise",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/client/hooks/useIsEnterprise.ts"
+    },
+    {
+      "module": "../AppExemptModal",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/client/views/marketplace/AppExemptModal.tsx"
+    },
+    {
+      "module": "../AppPermissionsReviewModal",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/client/views/marketplace/AppPermissionsReviewModal.tsx"
+    },
+    {
+      "module": "../AppUpdateModal",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/client/views/marketplace/AppUpdateModal.tsx"
+    },
+    {
+      "module": "./useAppsCountQuery",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/client/views/marketplace/hooks/useAppsCountQuery.ts"
+    },
+    {
+      "module": "../helpers/handleAPIError",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/client/views/marketplace/helpers/handleAPIError.ts"
+    },
+    {
+      "module": "../helpers/handleInstallError",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/client/views/marketplace/helpers/handleInstallError.ts"
+    },
+    {
+      "module": "../lib/getManifestFromZippedApp",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/client/views/marketplace/lib/getManifestFromZippedApp.ts"
+    }
+  ]
+}

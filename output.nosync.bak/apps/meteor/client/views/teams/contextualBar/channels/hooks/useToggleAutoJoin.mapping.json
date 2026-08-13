@@ -1,0 +1,96 @@
+{
+  "sourcePath": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/client/views/teams/contextualBar/channels/hooks/useToggleAutoJoin.ts",
+  "symbols": [
+    {
+      "type": "inner_function",
+      "name": "handleToggleAutoJoin",
+      "exported": false,
+      "qualifiedName": "useToggleAutoJoin.handleToggleAutoJoin",
+      "line": 13,
+      "endLine": 43,
+      "signature": "async () =>",
+      "calls": [
+        {
+          "name": "updateRoomEndpoint",
+          "edgeType": "call"
+        },
+        {
+          "name": "dispatchToastMessage",
+          "edgeType": "call"
+        },
+        {
+          "name": "getRoomName",
+          "edgeType": "call"
+        },
+        {
+          "name": "reload",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "variable_function",
+      "name": "useToggleAutoJoin",
+      "exported": true,
+      "line": 7,
+      "endLine": 46,
+      "signature": "(room: IRoom, { reload, mainRoom }: { reload?: () => void; mainRoom: IRoom }) =>",
+      "calls": [
+        {
+          "name": "useToastMessageDispatch",
+          "edgeType": "call"
+        },
+        {
+          "name": "useEndpoint",
+          "edgeType": "call"
+        },
+        {
+          "name": "usePermission",
+          "edgeType": "call"
+        },
+        {
+          "name": "useSetting",
+          "edgeType": "call"
+        },
+        {
+          "name": "updateRoomEndpoint",
+          "edgeType": "call"
+        },
+        {
+          "name": "dispatchToastMessage",
+          "edgeType": "call"
+        },
+        {
+          "name": "getRoomName",
+          "edgeType": "call"
+        },
+        {
+          "name": "reload",
+          "edgeType": "call"
+        },
+        {
+          "name": "IRoom",
+          "edgeType": "type"
+        }
+      ]
+    }
+  ],
+  "imports": [
+    {
+      "module": "@rocket.chat/core-typings",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/ui-contexts",
+      "resolved": "external"
+    },
+    {
+      "module": "i18next",
+      "resolved": "external"
+    },
+    {
+      "module": "../../../../../lib/rooms/roomCoordinator",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/client/lib/rooms/roomCoordinator.tsx"
+    }
+  ]
+}

@@ -1,0 +1,135 @@
+{
+  "sourcePath": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/client/views/mediaCallHistory/MediaCallHistoryExternal.tsx",
+  "symbols": [
+    {
+      "type": "variable_function",
+      "name": "getExternalContact",
+      "exported": true,
+      "line": 21,
+      "endLine": 29,
+      "signature": "(item: ExternalCallEndpointData['item']): CallHistoryExternalContact | CallHistoryUnknownContact =>",
+      "calls": [
+        {
+          "name": "ExternalCallEndpointData",
+          "edgeType": "type"
+        },
+        {
+          "name": "CallHistoryExternalContact",
+          "edgeType": "type"
+        },
+        {
+          "name": "CallHistoryUnknownContact",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "variable_function",
+      "name": "isExternalCallHistoryItem",
+      "exported": true,
+      "line": 25,
+      "endLine": 27,
+      "signature": "(data: { item: Serialized<CallHistoryItem> }): data is ExternalCallEndpointData =>",
+      "calls": [
+        {
+          "name": "Serialized",
+          "edgeType": "type"
+        },
+        {
+          "name": "CallHistoryItem",
+          "edgeType": "type"
+        },
+        {
+          "name": "ExternalCallEndpointData",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "variable_function",
+      "name": "MediaCallHistoryExternal",
+      "exported": false,
+      "line": 29,
+      "endLine": 53,
+      "signature": "({ data, onClose }: MediaCallHistoryExternalProps) =>",
+      "calls": [
+        {
+          "name": "useMemo",
+          "edgeType": "call"
+        },
+        {
+          "name": "getExternalContact",
+          "edgeType": "call"
+        },
+        {
+          "name": "usePeekMediaSessionState",
+          "edgeType": "call"
+        },
+        {
+          "name": "useWidgetExternalControls",
+          "edgeType": "call"
+        },
+        {
+          "name": "toggleWidget",
+          "edgeType": "call"
+        },
+        {
+          "name": "CallHistoryContextualBar",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "onClose",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "actions",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "contact",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "historyData",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "Date",
+          "edgeType": "new"
+        },
+        {
+          "name": "MediaCallHistoryExternalProps",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "type",
+      "name": "ExternalCallEndpointData",
+      "line": 11,
+      "endLine": 14,
+      "signature": "type ExternalCallEndpointData = Serialized<"
+    },
+    {
+      "type": "type",
+      "name": "MediaCallHistoryExternalProps",
+      "line": 16,
+      "endLine": 19,
+      "signature": "export type MediaCallHistoryExternalProps ="
+    }
+  ],
+  "imports": [
+    {
+      "module": "@rocket.chat/core-typings",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/ui-voip",
+      "resolved": "external"
+    },
+    {
+      "module": "react",
+      "resolved": "external"
+    }
+  ]
+}

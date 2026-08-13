@@ -1,0 +1,92 @@
+{
+  "sourcePath": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/client/views/marketplace/hooks/useAppsCountQuery.ts",
+  "symbols": [
+    {
+      "type": "function",
+      "name": "isMarketplaceRouteContext",
+      "exported": true,
+      "line": 7,
+      "endLine": 9,
+      "signature": "export function isMarketplaceRouteContext(context: string): context is MarketplaceRouteContext",
+      "calls": [
+        {
+          "name": "includes",
+          "edgeType": "call"
+        },
+        {
+          "name": "MarketplaceRouteContext",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "variable_function",
+      "name": "useAppsCountQuery",
+      "exported": true,
+      "line": 11,
+      "endLine": 34,
+      "signature": "(context: MarketplaceRouteContext) =>",
+      "calls": [
+        {
+          "name": "useEndpoint",
+          "edgeType": "call"
+        },
+        {
+          "name": "useQuery",
+          "edgeType": "call"
+        },
+        {
+          "name": "getAppsCount",
+          "edgeType": "call"
+        },
+        {
+          "name": "MarketplaceRouteContext",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "variable_function",
+      "name": "useInvalidateAppsCountQueryCallback",
+      "exported": true,
+      "line": 15,
+      "endLine": 22,
+      "signature": "() =>",
+      "calls": [
+        {
+          "name": "useQueryClient",
+          "edgeType": "call"
+        },
+        {
+          "name": "useCallback",
+          "edgeType": "call"
+        },
+        {
+          "name": "invalidateQueries",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "type",
+      "name": "MarketplaceRouteContext",
+      "line": 5,
+      "endLine": 5,
+      "signature": "export type MarketplaceRouteContext = 'private' | 'explore' | 'installed' | 'premium' | 'requested' | 'details';"
+    }
+  ],
+  "imports": [
+    {
+      "module": "@rocket.chat/ui-contexts",
+      "resolved": "external"
+    },
+    {
+      "module": "@tanstack/react-query",
+      "resolved": "external"
+    },
+    {
+      "module": "react",
+      "resolved": "external"
+    }
+  ]
+}

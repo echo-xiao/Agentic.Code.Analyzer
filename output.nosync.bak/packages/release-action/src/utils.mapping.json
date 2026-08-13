@@ -1,0 +1,247 @@
+{
+  "sourcePath": "/Users/echoooooo/Desktop/code/Rocket.Chat/packages/release-action/src/utils.ts",
+  "symbols": [
+    {
+      "type": "function",
+      "name": "getChangelogEntry",
+      "exported": true,
+      "line": 19,
+      "endLine": 62,
+      "signature": "export function getChangelogEntry(changelog: string, version: string)",
+      "calls": [
+        {
+          "name": "parse",
+          "edgeType": "call"
+        },
+        {
+          "name": "use",
+          "edgeType": "call"
+        },
+        {
+          "name": "unified",
+          "edgeType": "call"
+        },
+        {
+          "name": "mdastToString",
+          "edgeType": "call"
+        },
+        {
+          "name": "match",
+          "edgeType": "call"
+        },
+        {
+          "name": "toLowerCase",
+          "edgeType": "call"
+        },
+        {
+          "name": "max",
+          "edgeType": "call"
+        },
+        {
+          "name": "slice",
+          "edgeType": "call"
+        },
+        {
+          "name": "stringify",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "function",
+      "name": "readPackageJson",
+      "exported": true,
+      "line": 23,
+      "endLine": 26,
+      "signature": "export async function readPackageJson(cwd: string)",
+      "calls": [
+        {
+          "name": "resolve",
+          "edgeType": "call"
+        },
+        {
+          "name": "parse",
+          "edgeType": "call"
+        },
+        {
+          "name": "readFile",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "function",
+      "name": "getUpdateFilesList",
+      "exported": false,
+      "line": 27,
+      "endLine": 39,
+      "signature": "async function getUpdateFilesList(cwd: string): Promise<string[]>",
+      "calls": [
+        {
+          "name": "readPackageJson",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "function",
+      "name": "bumpFileVersions",
+      "exported": true,
+      "line": 31,
+      "endLine": 43,
+      "signature": "export async function bumpFileVersions(cwd: string, oldVersion: string, newVersion: string)",
+      "calls": [
+        {
+          "name": "getUpdateFilesList",
+          "edgeType": "call"
+        },
+        {
+          "name": "all",
+          "edgeType": "call"
+        },
+        {
+          "name": "map",
+          "edgeType": "call"
+        },
+        {
+          "name": "join",
+          "edgeType": "call"
+        },
+        {
+          "name": "readFile",
+          "edgeType": "call"
+        },
+        {
+          "name": "writeFile",
+          "edgeType": "call"
+        },
+        {
+          "name": "replace",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "function",
+      "name": "createBumpFile",
+      "exported": true,
+      "line": 35,
+      "endLine": 46,
+      "signature": "export async function createBumpFile(cwd: string, pkgName: string)",
+      "calls": [
+        {
+          "name": "join",
+          "edgeType": "call"
+        },
+        {
+          "name": "now",
+          "edgeType": "call"
+        },
+        {
+          "name": "writeFile",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "function",
+      "name": "getEngineVersionsMd",
+      "exported": true,
+      "line": 39,
+      "endLine": 53,
+      "signature": "export async function getEngineVersionsMd(cwd: string)",
+      "calls": [
+        {
+          "name": "getNodeNpmVersions",
+          "edgeType": "call"
+        },
+        {
+          "name": "getAppsEngineVersion",
+          "edgeType": "call"
+        },
+        {
+          "name": "getDenoVersion",
+          "edgeType": "call"
+        },
+        {
+          "name": "getMongoVersion",
+          "edgeType": "call"
+        },
+        {
+          "name": "join",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "function",
+      "name": "isPreRelease",
+      "exported": true,
+      "line": 43,
+      "endLine": 53,
+      "signature": "export function isPreRelease(cwd: string)",
+      "calls": [
+        {
+          "name": "accessSync",
+          "edgeType": "call"
+        },
+        {
+          "name": "resolve",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "function",
+      "name": "createTempReleaseNotes",
+      "exported": true,
+      "line": 47,
+      "endLine": 58,
+      "signature": "export function createTempReleaseNotes(version: string, releaseBody: string)",
+      "calls": []
+    },
+    {
+      "type": "variable",
+      "name": "BumpLevels",
+      "exported": true,
+      "line": 12,
+      "endLine": 17,
+      "signature": "BumpLevels =",
+      "calls": []
+    }
+  ],
+  "imports": [
+    {
+      "module": "node:fs",
+      "resolved": "external"
+    },
+    {
+      "module": "node:fs/promises",
+      "resolved": "external"
+    },
+    {
+      "module": "node:path",
+      "resolved": "external"
+    },
+    {
+      "module": "mdast-util-to-string",
+      "resolved": "external"
+    },
+    {
+      "module": "remark-parse",
+      "resolved": "external"
+    },
+    {
+      "module": "remark-stringify",
+      "resolved": "external"
+    },
+    {
+      "module": "unified",
+      "resolved": "external"
+    },
+    {
+      "module": "./getMetadata",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/packages/release-action/src/getMetadata.ts"
+    }
+  ]
+}

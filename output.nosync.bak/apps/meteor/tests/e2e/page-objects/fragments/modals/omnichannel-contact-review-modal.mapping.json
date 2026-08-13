@@ -1,0 +1,141 @@
+{
+  "sourcePath": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/tests/e2e/page-objects/fragments/modals/omnichannel-contact-review-modal.ts",
+  "symbols": [
+    {
+      "type": "class",
+      "name": "OmnichannelContactReviewModal",
+      "exported": true,
+      "line": 7,
+      "endLine": 27,
+      "signature": "export class OmnichannelContactReviewModal extends Modal",
+      "calls": [
+        {
+          "name": "Modal",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "getFieldByName",
+      "exported": true,
+      "qualifiedName": "OmnichannelContactReviewModal.getFieldByName",
+      "line": 15,
+      "endLine": 17,
+      "signature": "private getFieldByName(name: string): Locator",
+      "containerClass": "OmnichannelContactReviewModal",
+      "calls": [
+        {
+          "name": "getByLabel",
+          "edgeType": "call"
+        },
+        {
+          "name": "Locator",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "solveConfirmation",
+      "exported": true,
+      "qualifiedName": "OmnichannelContactReviewModal.solveConfirmation",
+      "line": 19,
+      "endLine": 26,
+      "signature": "async solveConfirmation(field: string, value: string)",
+      "containerClass": "OmnichannelContactReviewModal",
+      "calls": [
+        {
+          "name": "click",
+          "edgeType": "call"
+        },
+        {
+          "name": "getFieldByName",
+          "edgeType": "call"
+        },
+        {
+          "name": "selectOption",
+          "edgeType": "call"
+        },
+        {
+          "name": "waitForResponse",
+          "edgeType": "call"
+        },
+        {
+          "name": "save",
+          "edgeType": "call"
+        },
+        {
+          "name": "toBe",
+          "edgeType": "call"
+        },
+        {
+          "name": "expect",
+          "edgeType": "call"
+        },
+        {
+          "name": "status",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "constructor",
+      "exported": true,
+      "qualifiedName": "OmnichannelContactReviewModal.constructor",
+      "line": 10,
+      "endLine": 13,
+      "signature": "constructor(page: Page)",
+      "containerClass": "OmnichannelContactReviewModal",
+      "calls": [
+        {
+          "name": "getByRole",
+          "edgeType": "call"
+        },
+        {
+          "name": "Listbox",
+          "edgeType": "new"
+        },
+        {
+          "name": "Page",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "class_property",
+      "name": "listbox",
+      "exported": true,
+      "qualifiedName": "OmnichannelContactReviewModal.listbox",
+      "line": 8,
+      "endLine": 8,
+      "signature": "readonly listbox: Listbox;",
+      "containerClass": "OmnichannelContactReviewModal",
+      "calls": [
+        {
+          "name": "Listbox",
+          "edgeType": "type"
+        }
+      ]
+    }
+  ],
+  "imports": [
+    {
+      "module": "@playwright/test",
+      "resolved": "external"
+    },
+    {
+      "module": "./modal",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/tests/e2e/page-objects/fragments/modals/modal.ts"
+    },
+    {
+      "module": "../../../utils/test",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/tests/e2e/utils/test.ts"
+    },
+    {
+      "module": "../listbox",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/tests/e2e/page-objects/fragments/listbox.ts"
+    }
+  ]
+}

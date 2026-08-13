@@ -1,0 +1,727 @@
+{
+  "sourcePath": "/Users/echoooooo/Desktop/code/Rocket.Chat/ee/packages/abac/src/pdp/VirtruPDP.ts",
+  "symbols": [
+    {
+      "type": "class",
+      "name": "VirtruPDP",
+      "exported": true,
+      "line": 39,
+      "endLine": 444,
+      "signature": "export class VirtruPDP implements IPolicyDecisionPoint",
+      "calls": [
+        {
+          "name": "IPolicyDecisionPoint",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "isAvailable",
+      "exported": true,
+      "qualifiedName": "VirtruPDP.isAvailable",
+      "line": 46,
+      "endLine": 48,
+      "signature": "async isAvailable(): Promise<boolean>",
+      "containerClass": "VirtruPDP",
+      "calls": [
+        {
+          "name": "isAvailable",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "getHealthStatus",
+      "exported": true,
+      "qualifiedName": "VirtruPDP.getHealthStatus",
+      "line": 50,
+      "endLine": 55,
+      "signature": "async getHealthStatus(): Promise<void>",
+      "containerClass": "VirtruPDP",
+      "calls": [
+        {
+          "name": "checkPlatformHealth",
+          "edgeType": "call"
+        },
+        {
+          "name": "checkIdpConnectivity",
+          "edgeType": "call"
+        },
+        {
+          "name": "checkAuthorizedAccess",
+          "edgeType": "call"
+        },
+        {
+          "name": "info",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "checkIdpConnectivity",
+      "exported": true,
+      "qualifiedName": "VirtruPDP.checkIdpConnectivity",
+      "line": 54,
+      "endLine": 63,
+      "signature": "private async checkIdpConnectivity(): Promise<string>",
+      "containerClass": "VirtruPDP",
+      "calls": [
+        {
+          "name": "getClientTokenForHealthCheck",
+          "edgeType": "call"
+        },
+        {
+          "name": "info",
+          "edgeType": "call"
+        },
+        {
+          "name": "warn",
+          "edgeType": "call"
+        },
+        {
+          "name": "PdpHealthCheckError",
+          "edgeType": "new"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "checkPlatformHealth",
+      "exported": true,
+      "qualifiedName": "VirtruPDP.checkPlatformHealth",
+      "line": 58,
+      "endLine": 81,
+      "signature": "private async checkPlatformHealth(): Promise<void>",
+      "containerClass": "VirtruPDP",
+      "calls": [
+        {
+          "name": "getConfig",
+          "edgeType": "call"
+        },
+        {
+          "name": "serverFetch",
+          "edgeType": "call"
+        },
+        {
+          "name": "json",
+          "edgeType": "call"
+        },
+        {
+          "name": "info",
+          "edgeType": "call"
+        },
+        {
+          "name": "warn",
+          "edgeType": "call"
+        },
+        {
+          "name": "PdpHealthCheckError",
+          "edgeType": "new"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "checkAuthorizedAccess",
+      "exported": true,
+      "qualifiedName": "VirtruPDP.checkAuthorizedAccess",
+      "line": 62,
+      "endLine": 84,
+      "signature": "private async checkAuthorizedAccess(token: string): Promise<void>",
+      "containerClass": "VirtruPDP",
+      "calls": [
+        {
+          "name": "getConfig",
+          "edgeType": "call"
+        },
+        {
+          "name": "serverFetch",
+          "edgeType": "call"
+        },
+        {
+          "name": "stringify",
+          "edgeType": "call"
+        },
+        {
+          "name": "info",
+          "edgeType": "call"
+        },
+        {
+          "name": "warn",
+          "edgeType": "call"
+        },
+        {
+          "name": "PdpHealthCheckError",
+          "edgeType": "new"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "getDecisionBulk",
+      "exported": true,
+      "qualifiedName": "VirtruPDP.getDecisionBulk",
+      "line": 66,
+      "endLine": 100,
+      "signature": "private async getDecisionBulk( requests: Array<IGetDecisionBulkRequest | null>, ): Promise<Array<{ resourceDecisions?: IResourceDecision[] } | undefined>>",
+      "containerClass": "VirtruPDP",
+      "calls": [
+        {
+          "name": "pLimit",
+          "edgeType": "call"
+        },
+        {
+          "name": "push",
+          "edgeType": "call"
+        },
+        {
+          "name": "slice",
+          "edgeType": "call"
+        },
+        {
+          "name": "all",
+          "edgeType": "call"
+        },
+        {
+          "name": "map",
+          "edgeType": "call"
+        },
+        {
+          "name": "limit",
+          "edgeType": "call"
+        },
+        {
+          "name": "filter",
+          "edgeType": "call"
+        },
+        {
+          "name": "apiCall",
+          "edgeType": "call"
+        },
+        {
+          "name": "debug",
+          "edgeType": "call"
+        },
+        {
+          "name": "flat",
+          "edgeType": "call"
+        },
+        {
+          "name": "IGetDecisionBulkRequest",
+          "edgeType": "type"
+        },
+        {
+          "name": "IResourceDecision",
+          "edgeType": "type"
+        },
+        {
+          "name": "IGetDecisionBulkResponse",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "canAccessObject",
+      "exported": true,
+      "qualifiedName": "VirtruPDP.canAccessObject",
+      "line": 72,
+      "endLine": 130,
+      "signature": "async canAccessObject( room: AtLeast<IRoom, '_id' | 'abacAttributes'>, user: AtLeast<IUser, '_id'>, ): Promise<{ granted: boolean; userToRemove?: IUser }>",
+      "containerClass": "VirtruPDP",
+      "calls": [
+        {
+          "name": "getConfig",
+          "edgeType": "call"
+        },
+        {
+          "name": "findOneById",
+          "edgeType": "call"
+        },
+        {
+          "name": "getUserEntityKey",
+          "edgeType": "call"
+        },
+        {
+          "name": "warn",
+          "edgeType": "call"
+        },
+        {
+          "name": "getDecisionBulk",
+          "edgeType": "call"
+        },
+        {
+          "name": "buildEntityIdentifier",
+          "edgeType": "call"
+        },
+        {
+          "name": "buildAttributeFqns",
+          "edgeType": "call"
+        },
+        {
+          "name": "debug",
+          "edgeType": "call"
+        },
+        {
+          "name": "AtLeast",
+          "edgeType": "type"
+        },
+        {
+          "name": "IRoom",
+          "edgeType": "type"
+        },
+        {
+          "name": "IUser",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "checkUsernamesMatchAttributes",
+      "exported": true,
+      "qualifiedName": "VirtruPDP.checkUsernamesMatchAttributes",
+      "line": 79,
+      "endLine": 125,
+      "signature": "async checkUsernamesMatchAttributes(usernames: string[], attributes: IAbacAttributeDefinition[], object: IRoom): Promise<void>",
+      "containerClass": "VirtruPDP",
+      "calls": [
+        {
+          "name": "getConfig",
+          "edgeType": "call"
+        },
+        {
+          "name": "toArray",
+          "edgeType": "call"
+        },
+        {
+          "name": "findByUsernames",
+          "edgeType": "call"
+        },
+        {
+          "name": "buildAttributeFqns",
+          "edgeType": "call"
+        },
+        {
+          "name": "getUserEntityKey",
+          "edgeType": "call"
+        },
+        {
+          "name": "push",
+          "edgeType": "call"
+        },
+        {
+          "name": "buildEntityIdentifier",
+          "edgeType": "call"
+        },
+        {
+          "name": "getDecisionBulk",
+          "edgeType": "call"
+        },
+        {
+          "name": "some",
+          "edgeType": "call"
+        },
+        {
+          "name": "OnlyCompliantCanBeAddedToRoomError",
+          "edgeType": "new"
+        },
+        {
+          "name": "IAbacAttributeDefinition",
+          "edgeType": "type"
+        },
+        {
+          "name": "IRoom",
+          "edgeType": "type"
+        },
+        {
+          "name": "IGetDecisionBulkRequest",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "onRoomAttributesChanged",
+      "exported": true,
+      "qualifiedName": "VirtruPDP.onRoomAttributesChanged",
+      "line": 83,
+      "endLine": 135,
+      "signature": "async onRoomAttributesChanged( room: AtLeast<IRoom, '_id' | 't' | 'teamMain' | 'abacAttributes'>, newAttributes: IAbacAttributeDefinition[], ): Promise<IUser[]>",
+      "containerClass": "VirtruPDP",
+      "calls": [
+        {
+          "name": "findActiveByRoomIds",
+          "edgeType": "call"
+        },
+        {
+          "name": "getConfig",
+          "edgeType": "call"
+        },
+        {
+          "name": "buildAttributeFqns",
+          "edgeType": "call"
+        },
+        {
+          "name": "getUserEntityKey",
+          "edgeType": "call"
+        },
+        {
+          "name": "warn",
+          "edgeType": "call"
+        },
+        {
+          "name": "push",
+          "edgeType": "call"
+        },
+        {
+          "name": "buildEntityIdentifier",
+          "edgeType": "call"
+        },
+        {
+          "name": "getDecisionBulk",
+          "edgeType": "call"
+        },
+        {
+          "name": "map",
+          "edgeType": "call"
+        },
+        {
+          "name": "getDeniedSubjects",
+          "edgeType": "call"
+        },
+        {
+          "name": "AtLeast",
+          "edgeType": "type"
+        },
+        {
+          "name": "IRoom",
+          "edgeType": "type"
+        },
+        {
+          "name": "IAbacAttributeDefinition",
+          "edgeType": "type"
+        },
+        {
+          "name": "IUser",
+          "edgeType": "type"
+        },
+        {
+          "name": "IGetDecisionBulkRequest",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "evaluateUserRooms",
+      "exported": true,
+      "qualifiedName": "VirtruPDP.evaluateUserRooms",
+      "line": 90,
+      "endLine": 140,
+      "signature": "async evaluateUserRooms( entries: Array<{ user: Pick<IUser, '_id' | 'emails' | 'username'>; rooms: AtLeast<IRoom, '_id' | 'abacAttributes'>[]; }>, ): Promise<NonCompliantPair[]>",
+      "containerClass": "VirtruPDP",
+      "calls": [
+        {
+          "name": "getConfig",
+          "edgeType": "call"
+        },
+        {
+          "name": "getUserEntityKey",
+          "edgeType": "call"
+        },
+        {
+          "name": "warn",
+          "edgeType": "call"
+        },
+        {
+          "name": "push",
+          "edgeType": "call"
+        },
+        {
+          "name": "buildEntityIdentifier",
+          "edgeType": "call"
+        },
+        {
+          "name": "buildAttributeFqns",
+          "edgeType": "call"
+        },
+        {
+          "name": "getDecisionBulk",
+          "edgeType": "call"
+        },
+        {
+          "name": "getDeniedSubjects",
+          "edgeType": "call"
+        },
+        {
+          "name": "IUser",
+          "edgeType": "type"
+        },
+        {
+          "name": "AtLeast",
+          "edgeType": "type"
+        },
+        {
+          "name": "IRoom",
+          "edgeType": "type"
+        },
+        {
+          "name": "NonCompliantPair",
+          "edgeType": "type"
+        },
+        {
+          "name": "IGetDecisionBulkRequest",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "reevaluateUsers",
+      "exported": true,
+      "qualifiedName": "VirtruPDP.reevaluateUsers",
+      "line": 99,
+      "endLine": 122,
+      "signature": "async reevaluateUsers(users: ReevaluationUser[]): Promise<NonCompliantPair[]>",
+      "containerClass": "VirtruPDP",
+      "calls": [
+        {
+          "name": "flatMap",
+          "edgeType": "call"
+        },
+        {
+          "name": "findPrivateRoomsByIdsWithAbacAttributes",
+          "edgeType": "call"
+        },
+        {
+          "name": "set",
+          "edgeType": "call"
+        },
+        {
+          "name": "filter",
+          "edgeType": "call"
+        },
+        {
+          "name": "map",
+          "edgeType": "call"
+        },
+        {
+          "name": "get",
+          "edgeType": "call"
+        },
+        {
+          "name": "evaluateUserRooms",
+          "edgeType": "call"
+        },
+        {
+          "name": "Set",
+          "edgeType": "new"
+        },
+        {
+          "name": "Map",
+          "edgeType": "new"
+        },
+        {
+          "name": "ReevaluationUser",
+          "edgeType": "type"
+        },
+        {
+          "name": "NonCompliantPair",
+          "edgeType": "type"
+        },
+        {
+          "name": "IRoom",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "onSubjectAttributesChanged",
+      "exported": true,
+      "qualifiedName": "VirtruPDP.onSubjectAttributesChanged",
+      "line": 103,
+      "endLine": 154,
+      "signature": "async onSubjectAttributesChanged(user: IUser, _next: IAbacAttributeDefinition[]): Promise<IRoom[]>",
+      "containerClass": "VirtruPDP",
+      "calls": [
+        {
+          "name": "toArray",
+          "edgeType": "call"
+        },
+        {
+          "name": "findPrivateRoomsByIdsWithAbacAttributes",
+          "edgeType": "call"
+        },
+        {
+          "name": "getConfig",
+          "edgeType": "call"
+        },
+        {
+          "name": "getUserEntityKey",
+          "edgeType": "call"
+        },
+        {
+          "name": "warn",
+          "edgeType": "call"
+        },
+        {
+          "name": "map",
+          "edgeType": "call"
+        },
+        {
+          "name": "buildEntityIdentifier",
+          "edgeType": "call"
+        },
+        {
+          "name": "buildAttributeFqns",
+          "edgeType": "call"
+        },
+        {
+          "name": "getDecisionBulk",
+          "edgeType": "call"
+        },
+        {
+          "name": "forEach",
+          "edgeType": "call"
+        },
+        {
+          "name": "every",
+          "edgeType": "call"
+        },
+        {
+          "name": "push",
+          "edgeType": "call"
+        },
+        {
+          "name": "IUser",
+          "edgeType": "type"
+        },
+        {
+          "name": "IAbacAttributeDefinition",
+          "edgeType": "type"
+        },
+        {
+          "name": "IRoom",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "constructor",
+      "exported": true,
+      "qualifiedName": "VirtruPDP.constructor",
+      "line": 42,
+      "endLine": 44,
+      "signature": "constructor(client: VirtruClient)",
+      "containerClass": "VirtruPDP",
+      "calls": [
+        {
+          "name": "VirtruClient",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "class_property",
+      "name": "client",
+      "exported": true,
+      "qualifiedName": "VirtruPDP.client",
+      "line": 40,
+      "endLine": 40,
+      "signature": "private client: VirtruClient;",
+      "containerClass": "VirtruPDP",
+      "calls": [
+        {
+          "name": "VirtruClient",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "variable_function",
+      "name": "getDeniedSubjects",
+      "exported": true,
+      "line": 23,
+      "endLine": 37,
+      "signature": "<T extends { user: Pick<IUser, '_id'>; room: Pick<IRoom, '_id'> }>( responses: Array<{ resourceDecisions?: IResourceDecision[] } | undefined>, subjects: T[], ): T[] =>",
+      "calls": [
+        {
+          "name": "filter",
+          "edgeType": "call"
+        },
+        {
+          "name": "some",
+          "edgeType": "call"
+        },
+        {
+          "name": "warn",
+          "edgeType": "call"
+        },
+        {
+          "name": "IUser",
+          "edgeType": "type"
+        },
+        {
+          "name": "IRoom",
+          "edgeType": "type"
+        },
+        {
+          "name": "IResourceDecision",
+          "edgeType": "type"
+        }
+      ]
+    }
+  ],
+  "imports": [
+    {
+      "module": "@rocket.chat/core-typings",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/models",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/server-fetch",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/tools",
+      "resolved": "external"
+    },
+    {
+      "module": "p-limit",
+      "resolved": "external"
+    },
+    {
+      "module": "../errors",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/ee/packages/abac/src/errors.ts"
+    },
+    {
+      "module": "../logger",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/ee/packages/abac/src/logger.ts"
+    },
+    {
+      "module": "./types",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/ee/packages/abac/src/pdp/types.ts"
+    },
+    {
+      "module": "../clients/virtru/VirtruClient",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/ee/packages/abac/src/clients/virtru/VirtruClient.ts"
+    },
+    {
+      "module": "../clients/virtru/VirtruClient",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/ee/packages/abac/src/clients/virtru/VirtruClient.ts"
+    },
+    {
+      "module": "../clients/virtru/identity",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/ee/packages/abac/src/clients/virtru/identity.ts"
+    }
+  ]
+}

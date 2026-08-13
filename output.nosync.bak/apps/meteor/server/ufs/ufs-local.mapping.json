@@ -1,0 +1,168 @@
+{
+  "sourcePath": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/server/ufs/ufs-local.ts",
+  "symbols": [
+    {
+      "type": "class",
+      "name": "LocalStore",
+      "exported": true,
+      "line": 18,
+      "endLine": 108,
+      "signature": "export class LocalStore extends Store",
+      "calls": [
+        {
+          "name": "Store",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "getFilePath",
+      "exported": true,
+      "qualifiedName": "LocalStore.getFilePath",
+      "line": 104,
+      "endLine": 107,
+      "signature": "override async getFilePath(fileId: string, fileParam?: IUpload): Promise<string>",
+      "containerClass": "LocalStore",
+      "calls": [
+        {
+          "name": "findOne",
+          "edgeType": "call"
+        },
+        {
+          "name": "getCollection",
+          "edgeType": "call"
+        },
+        {
+          "name": "getPath",
+          "edgeType": "call"
+        },
+        {
+          "name": "IUpload",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "constructor",
+      "exported": true,
+      "qualifiedName": "LocalStore.constructor",
+      "line": 21,
+      "endLine": 102,
+      "signature": "constructor(options: LocalStoreOptions)",
+      "containerClass": "LocalStore",
+      "calls": [
+        {
+          "name": "stat",
+          "edgeType": "call"
+        },
+        {
+          "name": "catch",
+          "edgeType": "call"
+        },
+        {
+          "name": "then",
+          "edgeType": "call"
+        },
+        {
+          "name": "mkdirp",
+          "edgeType": "call"
+        },
+        {
+          "name": "info",
+          "edgeType": "call"
+        },
+        {
+          "name": "error",
+          "edgeType": "call"
+        },
+        {
+          "name": "chmod",
+          "edgeType": "call"
+        },
+        {
+          "name": "getFilePath",
+          "edgeType": "call"
+        },
+        {
+          "name": "unlink",
+          "edgeType": "call"
+        },
+        {
+          "name": "isNativeError",
+          "edgeType": "call"
+        },
+        {
+          "name": "removeById",
+          "edgeType": "call"
+        },
+        {
+          "name": "assign",
+          "edgeType": "call"
+        },
+        {
+          "name": "createReadStream",
+          "edgeType": "call"
+        },
+        {
+          "name": "createWriteStream",
+          "edgeType": "call"
+        },
+        {
+          "name": "TypeError",
+          "edgeType": "new"
+        },
+        {
+          "name": "LocalStoreOptions",
+          "edgeType": "type"
+        },
+        {
+          "name": "IUpload",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "type",
+      "name": "LocalStoreOptions",
+      "line": 12,
+      "endLine": 16,
+      "signature": "type LocalStoreOptions = StoreOptions &"
+    }
+  ],
+  "imports": [
+    {
+      "module": "node:fs",
+      "resolved": "external"
+    },
+    {
+      "module": "node:fs/promises",
+      "resolved": "external"
+    },
+    {
+      "module": "node:util/types",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/core-typings",
+      "resolved": "external"
+    },
+    {
+      "module": "mkdirp",
+      "resolved": "external"
+    },
+    {
+      "module": "./ufs",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/server/ufs/ufs.ts"
+    },
+    {
+      "module": "./ufs-store",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/server/ufs/ufs-store.ts"
+    },
+    {
+      "module": "./ufs-store",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/server/ufs/ufs-store.ts"
+    }
+  ]
+}

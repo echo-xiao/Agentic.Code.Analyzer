@@ -1,0 +1,85 @@
+{
+  "sourcePath": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/app/apps/server/bridges/email.ts",
+  "symbols": [
+    {
+      "type": "class",
+      "name": "AppEmailBridge",
+      "exported": true,
+      "line": 8,
+      "endLine": 23,
+      "signature": "export class AppEmailBridge extends EmailBridge",
+      "calls": [
+        {
+          "name": "EmailBridge",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "sendEmail",
+      "exported": true,
+      "qualifiedName": "AppEmailBridge.sendEmail",
+      "line": 13,
+      "endLine": 22,
+      "signature": "protected async sendEmail(email: IEmail, appId: string): Promise<void>",
+      "containerClass": "AppEmailBridge",
+      "calls": [
+        {
+          "name": "debugLog",
+          "edgeType": "call"
+        },
+        {
+          "name": "get",
+          "edgeType": "call"
+        },
+        {
+          "name": "send",
+          "edgeType": "call"
+        },
+        {
+          "name": "IEmail",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "constructor",
+      "exported": true,
+      "qualifiedName": "AppEmailBridge.constructor",
+      "line": 9,
+      "endLine": 11,
+      "signature": "constructor(private readonly orch: IAppServerOrchestrator)",
+      "containerClass": "AppEmailBridge",
+      "calls": [
+        {
+          "name": "IAppServerOrchestrator",
+          "edgeType": "type"
+        }
+      ]
+    }
+  ],
+  "imports": [
+    {
+      "module": "@rocket.chat/apps",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/apps/dist/server/bridges/EmailBridge",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/apps-engine/definition/email",
+      "resolved": "external"
+    },
+    {
+      "module": "../../../mailer/server/api",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/app/mailer/server/api.ts"
+    },
+    {
+      "module": "../../../settings/server",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/app/settings/server/index.ts"
+    }
+  ]
+}

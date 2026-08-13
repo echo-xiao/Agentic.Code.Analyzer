@@ -1,0 +1,177 @@
+{
+  "sourcePath": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/app/apps/server/bridges/activation.ts",
+  "symbols": [
+    {
+      "type": "class",
+      "name": "AppActivationBridge",
+      "exported": true,
+      "line": 7,
+      "endLine": 42,
+      "signature": "export class AppActivationBridge extends ActivationBridge",
+      "calls": [
+        {
+          "name": "ActivationBridge",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "appAdded",
+      "exported": true,
+      "qualifiedName": "AppActivationBridge.appAdded",
+      "line": 12,
+      "endLine": 18,
+      "signature": "protected async appAdded(_app: ProxiedApp): Promise<void>",
+      "containerClass": "AppActivationBridge",
+      "calls": [
+        {
+          "name": "ProxiedApp",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "appUpdated",
+      "exported": true,
+      "qualifiedName": "AppActivationBridge.appUpdated",
+      "line": 16,
+      "endLine": 21,
+      "signature": "protected async appUpdated(_app: ProxiedApp): Promise<void>",
+      "containerClass": "AppActivationBridge",
+      "calls": [
+        {
+          "name": "ProxiedApp",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "appRemoved",
+      "exported": true,
+      "qualifiedName": "AppActivationBridge.appRemoved",
+      "line": 20,
+      "endLine": 22,
+      "signature": "protected async appRemoved(app: ProxiedApp): Promise<void>",
+      "containerClass": "AppActivationBridge",
+      "calls": [
+        {
+          "name": "appRemoved",
+          "edgeType": "call"
+        },
+        {
+          "name": "getNotifier",
+          "edgeType": "call"
+        },
+        {
+          "name": "getID",
+          "edgeType": "call"
+        },
+        {
+          "name": "ProxiedApp",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "appStatusChanged",
+      "exported": true,
+      "qualifiedName": "AppActivationBridge.appStatusChanged",
+      "line": 24,
+      "endLine": 30,
+      "signature": "protected async appStatusChanged(app: ProxiedApp, status: AppStatus): Promise<void>",
+      "containerClass": "AppActivationBridge",
+      "calls": [
+        {
+          "name": "includes",
+          "edgeType": "call"
+        },
+        {
+          "name": "updateStatusByAppId",
+          "edgeType": "call"
+        },
+        {
+          "name": "getID",
+          "edgeType": "call"
+        },
+        {
+          "name": "appStatusUpdated",
+          "edgeType": "call"
+        },
+        {
+          "name": "getNotifier",
+          "edgeType": "call"
+        },
+        {
+          "name": "ProxiedApp",
+          "edgeType": "type"
+        },
+        {
+          "name": "AppStatus",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "actionsChanged",
+      "exported": true,
+      "qualifiedName": "AppActivationBridge.actionsChanged",
+      "line": 28,
+      "endLine": 30,
+      "signature": "protected async actionsChanged(): Promise<void>",
+      "containerClass": "AppActivationBridge",
+      "calls": [
+        {
+          "name": "actionsChanged",
+          "edgeType": "call"
+        },
+        {
+          "name": "getNotifier",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "constructor",
+      "exported": true,
+      "qualifiedName": "AppActivationBridge.constructor",
+      "line": 8,
+      "endLine": 10,
+      "signature": "constructor(private readonly orch: IAppServerOrchestrator)",
+      "containerClass": "AppActivationBridge",
+      "calls": [
+        {
+          "name": "IAppServerOrchestrator",
+          "edgeType": "type"
+        }
+      ]
+    }
+  ],
+  "imports": [
+    {
+      "module": "@rocket.chat/apps",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/apps/dist/server/ProxiedApp",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/apps/dist/server/bridges/AppActivationBridge",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/core-typings",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/models",
+      "resolved": "external"
+    }
+  ]
+}

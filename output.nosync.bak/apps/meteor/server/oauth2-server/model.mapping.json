@@ -1,0 +1,352 @@
+{
+  "sourcePath": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/server/oauth2-server/model.ts",
+  "symbols": [
+    {
+      "type": "class",
+      "name": "Model",
+      "exported": true,
+      "line": 17,
+      "endLine": 285,
+      "signature": "export class Model implements AuthorizationCodeModel, RefreshTokenModel",
+      "calls": [
+        {
+          "name": "AuthorizationCodeModel",
+          "edgeType": "type"
+        },
+        {
+          "name": "RefreshTokenModel",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "verifyScope",
+      "exported": true,
+      "qualifiedName": "Model.verifyScope",
+      "line": 26,
+      "endLine": 37,
+      "signature": "async verifyScope(token: Token, scope: string | string[]): Promise<boolean>",
+      "containerClass": "Model",
+      "calls": [
+        {
+          "name": "log",
+          "edgeType": "call"
+        },
+        {
+          "name": "isArray",
+          "edgeType": "call"
+        },
+        {
+          "name": "filter",
+          "edgeType": "call"
+        },
+        {
+          "name": "includes",
+          "edgeType": "call"
+        },
+        {
+          "name": "Token",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "getAccessToken",
+      "exported": true,
+      "qualifiedName": "Model.getAccessToken",
+      "line": 30,
+      "endLine": 61,
+      "signature": "async getAccessToken(accessToken: string): Promise<Token | Falsey>",
+      "containerClass": "Model",
+      "calls": [
+        {
+          "name": "log",
+          "edgeType": "call"
+        },
+        {
+          "name": "findOneByAccessToken",
+          "edgeType": "call"
+        },
+        {
+          "name": "getClient",
+          "edgeType": "call"
+        },
+        {
+          "name": "findOneActiveById",
+          "edgeType": "call"
+        },
+        {
+          "name": "Token",
+          "edgeType": "type"
+        },
+        {
+          "name": "Falsey",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "getClient",
+      "exported": true,
+      "qualifiedName": "Model.getClient",
+      "line": 34,
+      "endLine": 57,
+      "signature": "async getClient(clientId: string, clientSecret?: string): Promise<Client | Falsey>",
+      "containerClass": "Model",
+      "calls": [
+        {
+          "name": "log",
+          "edgeType": "call"
+        },
+        {
+          "name": "findOneActiveByClientId",
+          "edgeType": "call"
+        },
+        {
+          "name": "findOneActiveByClientIdAndClientSecret",
+          "edgeType": "call"
+        },
+        {
+          "name": "split",
+          "edgeType": "call"
+        },
+        {
+          "name": "Client",
+          "edgeType": "type"
+        },
+        {
+          "name": "Falsey",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "getAuthorizationCode",
+      "exported": true,
+      "qualifiedName": "Model.getAuthorizationCode",
+      "line": 38,
+      "endLine": 68,
+      "signature": "async getAuthorizationCode(authorizationCode: string): Promise<AuthorizationCode | Falsey>",
+      "containerClass": "Model",
+      "calls": [
+        {
+          "name": "log",
+          "edgeType": "call"
+        },
+        {
+          "name": "findOneByAuthCode",
+          "edgeType": "call"
+        },
+        {
+          "name": "getClient",
+          "edgeType": "call"
+        },
+        {
+          "name": "AuthorizationCode",
+          "edgeType": "type"
+        },
+        {
+          "name": "Falsey",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "saveAuthorizationCode",
+      "exported": true,
+      "qualifiedName": "Model.saveAuthorizationCode",
+      "line": 42,
+      "endLine": 83,
+      "signature": "async saveAuthorizationCode( code: Pick<AuthorizationCode, 'authorizationCode' | 'expiresAt' | 'redirectUri' | 'scope'>, client: Client, user: User, ): Promise<AuthorizationCode | Falsey>",
+      "containerClass": "Model",
+      "calls": [
+        {
+          "name": "log",
+          "edgeType": "call"
+        },
+        {
+          "name": "updateOne",
+          "edgeType": "call"
+        },
+        {
+          "name": "AuthorizationCode",
+          "edgeType": "type"
+        },
+        {
+          "name": "Client",
+          "edgeType": "type"
+        },
+        {
+          "name": "User",
+          "edgeType": "type"
+        },
+        {
+          "name": "Falsey",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "saveToken",
+      "exported": true,
+      "qualifiedName": "Model.saveToken",
+      "line": 50,
+      "endLine": 92,
+      "signature": "async saveToken(token: Token, client: Client, user: User): Promise<Token | Falsey>",
+      "containerClass": "Model",
+      "calls": [
+        {
+          "name": "log",
+          "edgeType": "call"
+        },
+        {
+          "name": "insertOne",
+          "edgeType": "call"
+        },
+        {
+          "name": "Token",
+          "edgeType": "type"
+        },
+        {
+          "name": "Client",
+          "edgeType": "type"
+        },
+        {
+          "name": "User",
+          "edgeType": "type"
+        },
+        {
+          "name": "Falsey",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "getRefreshToken",
+      "exported": true,
+      "qualifiedName": "Model.getRefreshToken",
+      "line": 54,
+      "endLine": 95,
+      "signature": "async getRefreshToken(refreshToken: string): Promise<RefreshToken | Falsey>",
+      "containerClass": "Model",
+      "calls": [
+        {
+          "name": "log",
+          "edgeType": "call"
+        },
+        {
+          "name": "findOneByRefreshToken",
+          "edgeType": "call"
+        },
+        {
+          "name": "getClient",
+          "edgeType": "call"
+        },
+        {
+          "name": "findOneActiveById",
+          "edgeType": "call"
+        },
+        {
+          "name": "RefreshToken",
+          "edgeType": "type"
+        },
+        {
+          "name": "Falsey",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "revokeToken",
+      "exported": true,
+      "qualifiedName": "Model.revokeToken",
+      "line": 58,
+      "endLine": 75,
+      "signature": "async revokeToken(token: RefreshToken | Token): Promise<boolean>",
+      "containerClass": "Model",
+      "calls": [
+        {
+          "name": "log",
+          "edgeType": "call"
+        },
+        {
+          "name": "deleteOne",
+          "edgeType": "call"
+        },
+        {
+          "name": "RefreshToken",
+          "edgeType": "type"
+        },
+        {
+          "name": "Token",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "revokeAuthorizationCode",
+      "exported": true,
+      "qualifiedName": "Model.revokeAuthorizationCode",
+      "line": 62,
+      "endLine": 68,
+      "signature": "async revokeAuthorizationCode(code: AuthorizationCode): Promise<boolean>",
+      "containerClass": "Model",
+      "calls": [
+        {
+          "name": "log",
+          "edgeType": "call"
+        },
+        {
+          "name": "deleteOne",
+          "edgeType": "call"
+        },
+        {
+          "name": "AuthorizationCode",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "constructor",
+      "exported": true,
+      "qualifiedName": "Model.constructor",
+      "line": 22,
+      "endLine": 24,
+      "signature": "constructor(config: ModelConfig = {})",
+      "containerClass": "Model",
+      "calls": [
+        {
+          "name": "ModelConfig",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "type",
+      "name": "ModelConfig",
+      "line": 13,
+      "endLine": 15,
+      "signature": "export type ModelConfig ="
+    }
+  ],
+  "imports": [
+    {
+      "module": "@node-oauth/oauth2-server",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/models",
+      "resolved": "external"
+    }
+  ]
+}

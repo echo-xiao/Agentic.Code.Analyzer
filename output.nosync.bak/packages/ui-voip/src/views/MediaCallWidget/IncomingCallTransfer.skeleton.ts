@@ -1,0 +1,16 @@
+## File: packages/ui-voip/src/views/MediaCallWidget/IncomingCallTransfer.tsx
+
+```typescript
+import { Button, ButtonGroup } from '@rocket.chat/fuselage';
+import { useTranslation } from 'react-i18next';
+
+import { DevicePicker, PeerInfo, Widget, WidgetFooter, WidgetHandle, WidgetHeader, WidgetContent, WidgetInfo } from '../../components';
+import { useMediaCallView } from '../../context/MediaCallViewContext';
+
+const IncomingCallTransfer = () => {
+    /* Implementation Hidden */
+};
+
+export default IncomingCallTransfer;
+
+```

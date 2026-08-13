@@ -1,0 +1,65 @@
+{
+  "sourcePath": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/client/views/omnichannel/reports/components/PieChart.tsx",
+  "symbols": [
+    {
+      "type": "variable_function",
+      "name": "PieChart",
+      "exported": true,
+      "line": 14,
+      "endLine": 59,
+      "signature": "({ data, width, height, colors, }: { data: { label: string; value: number; id: string; color?: string }[]; width: number; height: number; colors?: ComponentProps<typeof Pie>['colors']; }) =>",
+      "calls": [
+        {
+          "name": "useBreakpoints",
+          "edgeType": "call"
+        },
+        {
+          "name": "includes",
+          "edgeType": "call"
+        },
+        {
+          "name": "Tooltip",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "Pie",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "data",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "REPORTS_CHARTS_THEME",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "ComponentProps",
+          "edgeType": "type"
+        }
+      ]
+    }
+  ],
+  "imports": [
+    {
+      "module": "@nivo/pie",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/fuselage",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/fuselage-hooks",
+      "resolved": "external"
+    },
+    {
+      "module": "react",
+      "resolved": "external"
+    },
+    {
+      "module": "./constants",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/client/views/omnichannel/reports/components/constants.ts"
+    }
+  ]
+}

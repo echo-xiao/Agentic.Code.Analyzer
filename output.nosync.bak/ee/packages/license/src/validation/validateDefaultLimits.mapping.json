@@ -1,0 +1,54 @@
+{
+  "sourcePath": "/Users/echoooooo/Desktop/code/Rocket.Chat/ee/packages/license/src/validation/validateDefaultLimits.ts",
+  "symbols": [
+    {
+      "type": "function",
+      "name": "validateDefaultLimits",
+      "exported": true,
+      "line": 25,
+      "endLine": 27,
+      "signature": "export async function validateDefaultLimits(this: LicenseManager, options: LicenseValidationOptions): Promise<BehaviorWithContext[]>",
+      "calls": [
+        {
+          "name": "call",
+          "edgeType": "call"
+        },
+        {
+          "name": "LicenseManager",
+          "edgeType": "type"
+        },
+        {
+          "name": "LicenseValidationOptions",
+          "edgeType": "type"
+        },
+        {
+          "name": "BehaviorWithContext",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "variable",
+      "name": "defaultLimits",
+      "exported": true,
+      "line": 6,
+      "endLine": 23,
+      "signature": "defaultLimits:",
+      "calls": []
+    }
+  ],
+  "imports": [
+    {
+      "module": "@rocket.chat/core-typings",
+      "resolved": "external"
+    },
+    {
+      "module": "../license",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/ee/packages/license/src/license.ts"
+    },
+    {
+      "module": "./validateLimits",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/ee/packages/license/src/validation/validateLimits.ts"
+    }
+  ]
+}

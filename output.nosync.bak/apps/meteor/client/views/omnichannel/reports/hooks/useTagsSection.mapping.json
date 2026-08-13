@@ -1,0 +1,115 @@
+{
+  "sourcePath": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/client/views/omnichannel/reports/hooks/useTagsSection.ts",
+  "symbols": [
+    {
+      "type": "variable_function",
+      "name": "formatChartData",
+      "exported": false,
+      "line": 20,
+      "endLine": 24,
+      "signature": "(data: { label: string; value: number }[] | undefined = []) =>",
+      "calls": [
+        {
+          "name": "map",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "variable_function",
+      "name": "useTagsSection",
+      "exported": true,
+      "line": 26,
+      "endLine": 79,
+      "signature": "() =>",
+      "calls": [
+        {
+          "name": "useTranslation",
+          "edgeType": "call"
+        },
+        {
+          "name": "usePeriodSelectorStorage",
+          "edgeType": "call"
+        },
+        {
+          "name": "useEndpoint",
+          "edgeType": "call"
+        },
+        {
+          "name": "useQuery",
+          "edgeType": "call"
+        },
+        {
+          "name": "getPeriodRange",
+          "edgeType": "call"
+        },
+        {
+          "name": "getConversationsByTags",
+          "edgeType": "call"
+        },
+        {
+          "name": "toISOString",
+          "edgeType": "call"
+        },
+        {
+          "name": "formatChartData",
+          "edgeType": "call"
+        },
+        {
+          "name": "formatPeriodDescription",
+          "edgeType": "call"
+        },
+        {
+          "name": "useDefaultDownload",
+          "edgeType": "call"
+        },
+        {
+          "name": "useMemo",
+          "edgeType": "call"
+        }
+      ]
+    }
+  ],
+  "imports": [
+    {
+      "module": "@rocket.chat/fuselage",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/ui-contexts",
+      "resolved": "external"
+    },
+    {
+      "module": "@tanstack/react-query",
+      "resolved": "external"
+    },
+    {
+      "module": "react",
+      "resolved": "external"
+    },
+    {
+      "module": "react-i18next",
+      "resolved": "external"
+    },
+    {
+      "module": "./useDefaultDownload",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/client/views/omnichannel/reports/hooks/useDefaultDownload.ts"
+    },
+    {
+      "module": "../../../../components/dashboards/periods",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/client/components/dashboards/periods.ts"
+    },
+    {
+      "module": "../../../../components/dashboards/usePeriodSelectorStorage",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/client/components/dashboards/usePeriodSelectorStorage.ts"
+    },
+    {
+      "module": "../components/constants",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/client/views/omnichannel/reports/components/constants.ts"
+    },
+    {
+      "module": "../utils/formatPeriodDescription",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/client/views/omnichannel/reports/utils/formatPeriodDescription.ts"
+    }
+  ]
+}

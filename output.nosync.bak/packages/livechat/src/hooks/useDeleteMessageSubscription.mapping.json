@@ -1,0 +1,63 @@
+{
+  "sourcePath": "/Users/echoooooo/Desktop/code/Rocket.Chat/packages/livechat/src/hooks/useDeleteMessageSubscription.ts",
+  "symbols": [
+    {
+      "type": "variable_function",
+      "name": "deleteMessage",
+      "exported": false,
+      "line": 7,
+      "endLine": 11,
+      "signature": "(messageId: string) =>",
+      "calls": [
+        {
+          "name": "setState",
+          "edgeType": "call"
+        },
+        {
+          "name": "filter",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "variable_function",
+      "name": "useDeleteMessageSubscription",
+      "exported": true,
+      "line": 11,
+      "endLine": 22,
+      "signature": "(rid: string) =>",
+      "calls": [
+        {
+          "name": "useStream",
+          "edgeType": "call"
+        },
+        {
+          "name": "useEffect",
+          "edgeType": "call"
+        },
+        {
+          "name": "stream",
+          "edgeType": "call"
+        },
+        {
+          "name": "deleteMessage",
+          "edgeType": "call"
+        }
+      ]
+    }
+  ],
+  "imports": [
+    {
+      "module": "@rocket.chat/ui-contexts",
+      "resolved": "external"
+    },
+    {
+      "module": "preact/hooks",
+      "resolved": "external"
+    },
+    {
+      "module": "../store",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/packages/livechat/src/store/index.tsx"
+    }
+  ]
+}

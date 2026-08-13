@@ -1,0 +1,210 @@
+{
+  "sourcePath": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/client/providers/EmojiPickerProvider/EmojiPickerProvider.tsx",
+  "symbols": [
+    {
+      "type": "inner_function",
+      "name": "handlePreview",
+      "exported": false,
+      "qualifiedName": "EmojiPickerProvider.handlePreview",
+      "line": 83,
+      "endLine": 90,
+      "signature": "(emoji: string, name: string) =>",
+      "calls": [
+        {
+          "name": "setEmojiToPreview",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "inner_function",
+      "name": "handleRemovePreview",
+      "exported": false,
+      "qualifiedName": "EmojiPickerProvider.handleRemovePreview",
+      "line": 94,
+      "endLine": 94,
+      "signature": "() =>",
+      "calls": [
+        {
+          "name": "setEmojiToPreview",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "variable_function",
+      "name": "EmojiPickerProvider",
+      "exported": false,
+      "line": 17,
+      "endLine": 143,
+      "signature": "({ children }: EmojiPickerProviderProps) =>",
+      "calls": [
+        {
+          "name": "useState",
+          "edgeType": "call"
+        },
+        {
+          "name": "useDebouncedState",
+          "edgeType": "call"
+        },
+        {
+          "name": "useLocalStorage",
+          "edgeType": "call"
+        },
+        {
+          "name": "getFrequentEmoji",
+          "edgeType": "call"
+        },
+        {
+          "name": "map",
+          "edgeType": "call"
+        },
+        {
+          "name": "useStableCallback",
+          "edgeType": "call"
+        },
+        {
+          "name": "_setQuickReactions",
+          "edgeType": "call"
+        },
+        {
+          "name": "useMemo",
+          "edgeType": "call"
+        },
+        {
+          "name": "createEmojiListByCategorySubscription",
+          "edgeType": "call"
+        },
+        {
+          "name": "useSyncExternalStore",
+          "edgeType": "call"
+        },
+        {
+          "name": "useUpdateCustomEmoji",
+          "edgeType": "call"
+        },
+        {
+          "name": "useCallback",
+          "edgeType": "call"
+        },
+        {
+          "name": "some",
+          "edgeType": "call"
+        },
+        {
+          "name": "sort",
+          "edgeType": "call"
+        },
+        {
+          "name": "min",
+          "edgeType": "call"
+        },
+        {
+          "name": "max",
+          "edgeType": "call"
+        },
+        {
+          "name": "setFrequentEmojis",
+          "edgeType": "call"
+        },
+        {
+          "name": "addFrequentEmojis",
+          "edgeType": "call"
+        },
+        {
+          "name": "indexOf",
+          "edgeType": "call"
+        },
+        {
+          "name": "splice",
+          "edgeType": "call"
+        },
+        {
+          "name": "unshift",
+          "edgeType": "call"
+        },
+        {
+          "name": "setRecentEmojis",
+          "edgeType": "call"
+        },
+        {
+          "name": "setEmojiPicker",
+          "edgeType": "call"
+        },
+        {
+          "name": "callback",
+          "edgeType": "call"
+        },
+        {
+          "name": "setEmojiToPreview",
+          "edgeType": "call"
+        },
+        {
+          "name": "EmojiPickerContext.Provider",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "EmojiPicker",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "ref",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "contextValue",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "EmojiPickerProviderProps",
+          "edgeType": "type"
+        },
+        {
+          "name": "ReactNode",
+          "edgeType": "type"
+        },
+        {
+          "name": "ContextType",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "type",
+      "name": "EmojiPickerProviderProps",
+      "line": 15,
+      "endLine": 15,
+      "signature": "export type EmojiPickerProviderProps ="
+    }
+  ],
+  "imports": [
+    {
+      "module": "@rocket.chat/fuselage-hooks",
+      "resolved": "external"
+    },
+    {
+      "module": "react",
+      "resolved": "external"
+    },
+    {
+      "module": "react",
+      "resolved": "external"
+    },
+    {
+      "module": "./useUpdateCustomEmoji",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/client/providers/EmojiPickerProvider/useUpdateCustomEmoji.ts"
+    },
+    {
+      "module": "../../../app/emoji/client",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/app/emoji/client/index.ts"
+    },
+    {
+      "module": "../../contexts/EmojiPickerContext",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/client/contexts/EmojiPickerContext.ts"
+    },
+    {
+      "module": "../../views/composer/EmojiPicker",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/client/views/composer/EmojiPicker/index.ts"
+    }
+  ]
+}

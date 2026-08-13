@@ -1,0 +1,49 @@
+{
+  "sourcePath": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/client/lib/chats/flows/replyBroadcast.ts",
+  "symbols": [
+    {
+      "type": "variable_function",
+      "name": "replyBroadcast",
+      "exported": true,
+      "line": 7,
+      "endLine": 17,
+      "signature": "async (_chat: ChatAPI, message: IMessage) =>",
+      "calls": [
+        {
+          "name": "getSearchParameters",
+          "edgeType": "call"
+        },
+        {
+          "name": "openRouteLink",
+          "edgeType": "call"
+        },
+        {
+          "name": "ChatAPI",
+          "edgeType": "type"
+        },
+        {
+          "name": "IMessage",
+          "edgeType": "type"
+        }
+      ]
+    }
+  ],
+  "imports": [
+    {
+      "module": "@rocket.chat/core-typings",
+      "resolved": "external"
+    },
+    {
+      "module": "../../../providers/RouterProvider",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/client/providers/RouterProvider.tsx"
+    },
+    {
+      "module": "../../rooms/roomCoordinator",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/client/lib/rooms/roomCoordinator.tsx"
+    },
+    {
+      "module": "../ChatAPI",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/client/lib/chats/ChatAPI.ts"
+    }
+  ]
+}

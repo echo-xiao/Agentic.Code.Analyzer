@@ -1,0 +1,45 @@
+{
+  "sourcePath": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/server/lib/roles/createOrUpdateProtectedRole.ts",
+  "symbols": [
+    {
+      "type": "variable_function",
+      "name": "createOrUpdateProtectedRoleAsync",
+      "exported": true,
+      "line": 4,
+      "endLine": 32,
+      "signature": "async ( roleId: string, roleData: AtLeast<Omit<IRole, '_id' | 'protected'>, 'name'>, ): Promise<void> =>",
+      "calls": [
+        {
+          "name": "findOneById",
+          "edgeType": "call"
+        },
+        {
+          "name": "updateById",
+          "edgeType": "call"
+        },
+        {
+          "name": "insertOne",
+          "edgeType": "call"
+        },
+        {
+          "name": "AtLeast",
+          "edgeType": "type"
+        },
+        {
+          "name": "IRole",
+          "edgeType": "type"
+        }
+      ]
+    }
+  ],
+  "imports": [
+    {
+      "module": "@rocket.chat/core-typings",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/models",
+      "resolved": "external"
+    }
+  ]
+}

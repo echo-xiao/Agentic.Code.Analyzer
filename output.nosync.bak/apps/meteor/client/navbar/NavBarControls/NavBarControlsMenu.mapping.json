@@ -1,0 +1,84 @@
+{
+  "sourcePath": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/client/navbar/NavBarControls/NavBarControlsMenu.tsx",
+  "symbols": [
+    {
+      "type": "variable_function",
+      "name": "NavBarControlsMenu",
+      "exported": false,
+      "line": 16,
+      "endLine": 46,
+      "signature": "({ omnichannelItems, isPressed, callItem, callHistoryItem, ...props }: NavBarControlsMenuProps) =>",
+      "calls": [
+        {
+          "name": "useTranslation",
+          "edgeType": "call"
+        },
+        {
+          "name": "useOmnichannelEnabled",
+          "edgeType": "call"
+        },
+        {
+          "name": "filter",
+          "edgeType": "call"
+        },
+        {
+          "name": "GenericMenu",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "sections",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "NavBarItem",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "isPressed",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "NavBarControlsMenuProps",
+          "edgeType": "type"
+        },
+        {
+          "name": "GenericMenuItemProps",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "type",
+      "name": "NavBarControlsMenuProps",
+      "line": 9,
+      "endLine": 14,
+      "signature": "export type NavBarControlsMenuProps = Omit<HTMLAttributes<HTMLElement>, 'is'> &"
+    }
+  ],
+  "imports": [
+    {
+      "module": "@rocket.chat/fuselage",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/ui-client",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/ui-client",
+      "resolved": "external"
+    },
+    {
+      "module": "react",
+      "resolved": "external"
+    },
+    {
+      "module": "react-i18next",
+      "resolved": "external"
+    },
+    {
+      "module": "../../views/omnichannel/hooks/useOmnichannelEnabled",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/client/views/omnichannel/hooks/useOmnichannelEnabled.ts"
+    }
+  ]
+}

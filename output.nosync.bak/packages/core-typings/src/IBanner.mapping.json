@@ -1,0 +1,123 @@
+{
+  "sourcePath": "/Users/echoooooo/Desktop/code/Rocket.Chat/packages/core-typings/src/IBanner.ts",
+  "symbols": [
+    {
+      "type": "variable",
+      "name": "IBannerSchema",
+      "exported": true,
+      "line": 13,
+      "endLine": 33,
+      "signature": "IBannerSchema = IRocketChatRecordSchema.extend(",
+      "calls": [
+        {
+          "name": "array",
+          "edgeType": "call"
+        },
+        {
+          "name": "enum",
+          "edgeType": "call"
+        },
+        {
+          "name": "meta",
+          "edgeType": "call"
+        },
+        {
+          "name": "optional",
+          "edgeType": "call"
+        },
+        {
+          "name": "string",
+          "edgeType": "call"
+        },
+        {
+          "name": "union",
+          "edgeType": "call"
+        },
+        {
+          "name": "object",
+          "edgeType": "call"
+        },
+        {
+          "name": "custom",
+          "edgeType": "call"
+        },
+        {
+          "name": "boolean",
+          "edgeType": "call"
+        },
+        {
+          "name": "record",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "variable_function",
+      "name": "isInactiveBanner",
+      "exported": true,
+      "line": 42,
+      "endLine": 42,
+      "signature": "(banner: IBanner): banner is InactiveBanner =>",
+      "calls": [
+        {
+          "name": "IBanner",
+          "edgeType": "type"
+        },
+        {
+          "name": "InactiveBanner",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "interface",
+      "name": "IBanner",
+      "line": 35,
+      "endLine": 35,
+      "signature": "export interface IBanner extends z.infer<typeof IBannerSchema>, IRocketChatRecord"
+    },
+    {
+      "type": "interface",
+      "name": "IBannerDismiss",
+      "line": 44,
+      "endLine": 49,
+      "signature": "export interface IBannerDismiss extends IRocketChatRecord"
+    },
+    {
+      "type": "type",
+      "name": "InactiveBanner",
+      "line": 37,
+      "endLine": 40,
+      "signature": "export type InactiveBanner = IBanner &"
+    },
+    {
+      "type": "enum",
+      "name": "BannerPlatform",
+      "line": 8,
+      "endLine": 11,
+      "signature": "export enum BannerPlatform"
+    }
+  ],
+  "imports": [
+    {
+      "module": "@rocket.chat/ui-kit",
+      "resolved": "external"
+    },
+    {
+      "module": "zod",
+      "resolved": "external"
+    },
+    {
+      "module": "./IRocketChatRecord",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/packages/core-typings/src/IRocketChatRecord.ts"
+    },
+    {
+      "module": "./IUser",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/packages/core-typings/src/IUser.ts"
+    },
+    {
+      "module": "./utils",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/packages/core-typings/src/utils.ts"
+    }
+  ]
+}

@@ -1,0 +1,113 @@
+{
+  "sourcePath": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/app/2fa/server/code/TOTPCheck.ts",
+  "symbols": [
+    {
+      "type": "class",
+      "name": "TOTPCheck",
+      "exported": true,
+      "line": 7,
+      "endLine": 45,
+      "signature": "export class TOTPCheck implements ICodeCheck",
+      "calls": [
+        {
+          "name": "ICodeCheck",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "isEnabled",
+      "exported": true,
+      "qualifiedName": "TOTPCheck.isEnabled",
+      "line": 10,
+      "endLine": 16,
+      "signature": "public isEnabled(user: IUser): boolean",
+      "containerClass": "TOTPCheck",
+      "calls": [
+        {
+          "name": "get",
+          "edgeType": "call"
+        },
+        {
+          "name": "IUser",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "verify",
+      "exported": true,
+      "qualifiedName": "TOTPCheck.verify",
+      "line": 14,
+      "endLine": 29,
+      "signature": "public async verify(user: IUser, code: string): Promise<boolean>",
+      "containerClass": "TOTPCheck",
+      "calls": [
+        {
+          "name": "isEnabled",
+          "edgeType": "call"
+        },
+        {
+          "name": "verify",
+          "edgeType": "call"
+        },
+        {
+          "name": "IUser",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "processInvalidCode",
+      "exported": true,
+      "qualifiedName": "TOTPCheck.processInvalidCode",
+      "line": 18,
+      "endLine": 23,
+      "signature": "public async processInvalidCode(): Promise<IProcessInvalidCodeResult>",
+      "containerClass": "TOTPCheck",
+      "calls": [
+        {
+          "name": "IProcessInvalidCodeResult",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "maxFaildedAttemtpsReached",
+      "exported": true,
+      "qualifiedName": "TOTPCheck.maxFaildedAttemtpsReached",
+      "line": 22,
+      "endLine": 24,
+      "signature": "public async maxFaildedAttemtpsReached(_user: IUser): Promise<boolean>",
+      "containerClass": "TOTPCheck",
+      "calls": [
+        {
+          "name": "IUser",
+          "edgeType": "type"
+        }
+      ]
+    }
+  ],
+  "imports": [
+    {
+      "module": "@rocket.chat/core-typings",
+      "resolved": "external"
+    },
+    {
+      "module": "./ICodeCheck",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/app/2fa/server/code/ICodeCheck.ts"
+    },
+    {
+      "module": "../../../settings/server",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/app/settings/server/index.ts"
+    },
+    {
+      "module": "../lib/totp",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/app/2fa/server/lib/totp.ts"
+    }
+  ]
+}

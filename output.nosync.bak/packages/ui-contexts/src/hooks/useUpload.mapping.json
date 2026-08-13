@@ -1,0 +1,53 @@
+{
+  "sourcePath": "/Users/echoooooo/Desktop/code/Rocket.Chat/packages/ui-contexts/src/hooks/useUpload.ts",
+  "symbols": [
+    {
+      "type": "variable_function",
+      "name": "useUpload",
+      "exported": true,
+      "line": 7,
+      "endLine": 10,
+      "signature": "(endpoint: PathFor<'POST'>): ((formData: any) => Promise<UploadResult> | { promise: Promise<UploadResult> }) =>",
+      "calls": [
+        {
+          "name": "useContext",
+          "edgeType": "call"
+        },
+        {
+          "name": "useCallback",
+          "edgeType": "call"
+        },
+        {
+          "name": "uploadToEndpoint",
+          "edgeType": "call"
+        },
+        {
+          "name": "PathFor",
+          "edgeType": "type"
+        },
+        {
+          "name": "UploadResult",
+          "edgeType": "type"
+        }
+      ]
+    }
+  ],
+  "imports": [
+    {
+      "module": "@rocket.chat/rest-typings",
+      "resolved": "external"
+    },
+    {
+      "module": "react",
+      "resolved": "external"
+    },
+    {
+      "module": "../ServerContext",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/packages/ui-contexts/src/ServerContext.ts"
+    },
+    {
+      "module": "../ServerContext",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/packages/ui-contexts/src/ServerContext.ts"
+    }
+  ]
+}

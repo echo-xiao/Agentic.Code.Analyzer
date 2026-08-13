@@ -1,0 +1,153 @@
+{
+  "sourcePath": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/server/services/uikit-core-app/service.ts",
+  "symbols": [
+    {
+      "type": "class",
+      "name": "UiKitCoreAppService",
+      "exported": true,
+      "line": 26,
+      "endLine": 61,
+      "signature": "export class UiKitCoreAppService extends ServiceClassInternal implements IUiKitCoreAppService",
+      "calls": [
+        {
+          "name": "ServiceClassInternal",
+          "edgeType": "type"
+        },
+        {
+          "name": "IUiKitCoreAppService",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "isRegistered",
+      "exported": true,
+      "qualifiedName": "UiKitCoreAppService.isRegistered",
+      "line": 29,
+      "endLine": 31,
+      "signature": "async isRegistered(appId: string): Promise<boolean>",
+      "containerClass": "UiKitCoreAppService",
+      "calls": [
+        {
+          "name": "has",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "blockAction",
+      "exported": true,
+      "qualifiedName": "UiKitCoreAppService.blockAction",
+      "line": 33,
+      "endLine": 40,
+      "signature": "async blockAction(payload: UiKitCoreAppBlockActionPayload)",
+      "containerClass": "UiKitCoreAppService",
+      "calls": [
+        {
+          "name": "getAppModule",
+          "edgeType": "call"
+        },
+        {
+          "name": "blockAction",
+          "edgeType": "call"
+        },
+        {
+          "name": "UiKitCoreAppBlockActionPayload",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "viewClosed",
+      "exported": true,
+      "qualifiedName": "UiKitCoreAppService.viewClosed",
+      "line": 37,
+      "endLine": 44,
+      "signature": "async viewClosed(payload: UiKitCoreAppViewClosedPayload)",
+      "containerClass": "UiKitCoreAppService",
+      "calls": [
+        {
+          "name": "getAppModule",
+          "edgeType": "call"
+        },
+        {
+          "name": "viewClosed",
+          "edgeType": "call"
+        },
+        {
+          "name": "UiKitCoreAppViewClosedPayload",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "viewSubmit",
+      "exported": true,
+      "qualifiedName": "UiKitCoreAppService.viewSubmit",
+      "line": 41,
+      "endLine": 50,
+      "signature": "async viewSubmit(payload: UiKitCoreAppViewSubmitPayload)",
+      "containerClass": "UiKitCoreAppService",
+      "calls": [
+        {
+          "name": "getAppModule",
+          "edgeType": "call"
+        },
+        {
+          "name": "viewSubmit",
+          "edgeType": "call"
+        },
+        {
+          "name": "UiKitCoreAppViewSubmitPayload",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "variable_function",
+      "name": "getAppModule",
+      "exported": false,
+      "line": 12,
+      "endLine": 20,
+      "signature": "(appId: string) =>",
+      "calls": [
+        {
+          "name": "get",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "variable_function",
+      "name": "registerCoreApp",
+      "exported": true,
+      "line": 16,
+      "endLine": 18,
+      "signature": "(module: IUiKitCoreApp): void =>",
+      "calls": [
+        {
+          "name": "set",
+          "edgeType": "call"
+        },
+        {
+          "name": "IUiKitCoreApp",
+          "edgeType": "type"
+        }
+      ]
+    }
+  ],
+  "imports": [
+    {
+      "module": "@rocket.chat/core-services",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/core-services",
+      "resolved": "external"
+    }
+  ]
+}

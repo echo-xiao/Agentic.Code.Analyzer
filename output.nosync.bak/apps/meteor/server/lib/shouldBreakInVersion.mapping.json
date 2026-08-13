@@ -1,0 +1,37 @@
+{
+  "sourcePath": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/server/lib/shouldBreakInVersion.ts",
+  "symbols": [
+    {
+      "type": "variable_function",
+      "name": "shouldBreakInVersion",
+      "exported": true,
+      "line": 6,
+      "endLine": 6,
+      "signature": "(version: DeprecationLoggerNextPlannedVersion) =>",
+      "calls": [
+        {
+          "name": "gte",
+          "edgeType": "call"
+        },
+        {
+          "name": "DeprecationLoggerNextPlannedVersion",
+          "edgeType": "type"
+        }
+      ]
+    }
+  ],
+  "imports": [
+    {
+      "module": "semver",
+      "resolved": "external"
+    },
+    {
+      "module": "../../app/lib/server/lib/deprecationWarningLogger",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/app/lib/server/lib/deprecationWarningLogger.ts"
+    },
+    {
+      "module": "../../app/utils/rocketchat.info",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/app/utils/rocketchat.info"
+    }
+  ]
+}

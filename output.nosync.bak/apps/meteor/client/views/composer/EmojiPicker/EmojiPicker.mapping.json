@@ -1,0 +1,609 @@
+{
+  "sourcePath": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/client/views/composer/EmojiPicker/EmojiPicker.tsx",
+  "symbols": [
+    {
+      "type": "inner_function",
+      "name": "handleSelectEmoji",
+      "exported": false,
+      "qualifiedName": "EmojiPicker.handleSelectEmoji",
+      "line": 105,
+      "endLine": 129,
+      "signature": "(event: MouseEvent<HTMLElement>) =>",
+      "calls": [
+        {
+          "name": "stopPropagation",
+          "edgeType": "call"
+        },
+        {
+          "name": "hasOwnProperty",
+          "edgeType": "call"
+        },
+        {
+          "name": "setSearchTerm",
+          "edgeType": "call"
+        },
+        {
+          "name": "onPickEmoji",
+          "edgeType": "call"
+        },
+        {
+          "name": "addRecentEmoji",
+          "edgeType": "call"
+        },
+        {
+          "name": "onClose",
+          "edgeType": "call"
+        },
+        {
+          "name": "MouseEvent",
+          "edgeType": "type"
+        },
+        {
+          "name": "HTMLElement",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "inner_function",
+      "name": "handleSearch",
+      "exported": false,
+      "qualifiedName": "EmojiPicker.handleSearch",
+      "line": 135,
+      "endLine": 146,
+      "signature": "(e: ChangeEvent<HTMLInputElement>) =>",
+      "calls": [
+        {
+          "name": "setSearchTerm",
+          "edgeType": "call"
+        },
+        {
+          "name": "setCurrentCategory",
+          "edgeType": "call"
+        },
+        {
+          "name": "setSearching",
+          "edgeType": "call"
+        },
+        {
+          "name": "getEmojisBySearchTerm",
+          "edgeType": "call"
+        },
+        {
+          "name": "filter",
+          "edgeType": "call"
+        },
+        {
+          "name": "setSearchResults",
+          "edgeType": "call"
+        },
+        {
+          "name": "ChangeEvent",
+          "edgeType": "type"
+        },
+        {
+          "name": "HTMLInputElement",
+          "edgeType": "type"
+        },
+        {
+          "name": "EmojiItem",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "inner_function",
+      "name": "handleKeyDown",
+      "exported": false,
+      "qualifiedName": "EmojiPicker.handleKeyDown",
+      "line": 148,
+      "endLine": 152,
+      "signature": "(e: KeyboardEvent<HTMLInputElement>) =>",
+      "calls": [
+        {
+          "name": "onClose",
+          "edgeType": "call"
+        },
+        {
+          "name": "KeyboardEvent",
+          "edgeType": "type"
+        },
+        {
+          "name": "HTMLInputElement",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "inner_function",
+      "name": "handleLoadMore",
+      "exported": false,
+      "qualifiedName": "EmojiPicker.handleLoadMore",
+      "line": 154,
+      "endLine": 156,
+      "signature": "() =>",
+      "calls": [
+        {
+          "name": "setCustomItemsLimit",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "inner_function",
+      "name": "handleScroll",
+      "exported": false,
+      "qualifiedName": "EmojiPicker.handleScroll",
+      "line": 158,
+      "endLine": 170,
+      "signature": "(range: ListRange) =>",
+      "calls": [
+        {
+          "name": "find",
+          "edgeType": "call"
+        },
+        {
+          "name": "setCurrentCategory",
+          "edgeType": "call"
+        },
+        {
+          "name": "ListRange",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "inner_function",
+      "name": "handleGoToCategory",
+      "exported": false,
+      "qualifiedName": "EmojiPicker.handleGoToCategory",
+      "line": 172,
+      "endLine": 181,
+      "signature": "(category: string) =>",
+      "calls": [
+        {
+          "name": "setSearching",
+          "edgeType": "call"
+        },
+        {
+          "name": "find",
+          "edgeType": "call"
+        },
+        {
+          "name": "scrollToIndex",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "inner_function",
+      "name": "handleGoToAddCustom",
+      "exported": false,
+      "qualifiedName": "EmojiPicker.handleGoToAddCustom",
+      "line": 183,
+      "endLine": 186,
+      "signature": "() =>",
+      "calls": [
+        {
+          "name": "push",
+          "edgeType": "call"
+        },
+        {
+          "name": "onClose",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "variable_function",
+      "name": "EmojiPicker",
+      "exported": false,
+      "line": 34,
+      "endLine": 244,
+      "signature": "({ reference, onClose, onPickEmoji }: EmojiPickerProps) =>",
+      "calls": [
+        {
+          "name": "useTranslation",
+          "edgeType": "call"
+        },
+        {
+          "name": "useRef",
+          "edgeType": "call"
+        },
+        {
+          "name": "useIsVisible",
+          "edgeType": "call"
+        },
+        {
+          "name": "useMergedRefs",
+          "edgeType": "call"
+        },
+        {
+          "name": "getCategoriesList",
+          "edgeType": "call"
+        },
+        {
+          "name": "usePermission",
+          "edgeType": "call"
+        },
+        {
+          "name": "useRoute",
+          "edgeType": "call"
+        },
+        {
+          "name": "useState",
+          "edgeType": "call"
+        },
+        {
+          "name": "usePreviewEmoji",
+          "edgeType": "call"
+        },
+        {
+          "name": "useEmojiPickerData",
+          "edgeType": "call"
+        },
+        {
+          "name": "useEffect",
+          "edgeType": "call"
+        },
+        {
+          "name": "handleRemovePreview",
+          "edgeType": "call"
+        },
+        {
+          "name": "useMediaQuery",
+          "edgeType": "call"
+        },
+        {
+          "name": "useOutsideClick",
+          "edgeType": "call"
+        },
+        {
+          "name": "useLayoutEffect",
+          "edgeType": "call"
+        },
+        {
+          "name": "getBoundingClientRect",
+          "edgeType": "call"
+        },
+        {
+          "name": "observe",
+          "edgeType": "call"
+        },
+        {
+          "name": "disconnect",
+          "edgeType": "call"
+        },
+        {
+          "name": "focus",
+          "edgeType": "call"
+        },
+        {
+          "name": "stopPropagation",
+          "edgeType": "call"
+        },
+        {
+          "name": "hasOwnProperty",
+          "edgeType": "call"
+        },
+        {
+          "name": "setSearchTerm",
+          "edgeType": "call"
+        },
+        {
+          "name": "onPickEmoji",
+          "edgeType": "call"
+        },
+        {
+          "name": "addRecentEmoji",
+          "edgeType": "call"
+        },
+        {
+          "name": "onClose",
+          "edgeType": "call"
+        },
+        {
+          "name": "setCurrentCategory",
+          "edgeType": "call"
+        },
+        {
+          "name": "setSearching",
+          "edgeType": "call"
+        },
+        {
+          "name": "getEmojisBySearchTerm",
+          "edgeType": "call"
+        },
+        {
+          "name": "filter",
+          "edgeType": "call"
+        },
+        {
+          "name": "setSearchResults",
+          "edgeType": "call"
+        },
+        {
+          "name": "setCustomItemsLimit",
+          "edgeType": "call"
+        },
+        {
+          "name": "find",
+          "edgeType": "call"
+        },
+        {
+          "name": "scrollToIndex",
+          "edgeType": "call"
+        },
+        {
+          "name": "push",
+          "edgeType": "call"
+        },
+        {
+          "name": "map",
+          "edgeType": "call"
+        },
+        {
+          "name": "handleGoToCategory",
+          "edgeType": "call"
+        },
+        {
+          "name": "EmojiPickerDropdown",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "EmojiPickerContainer",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "EmojiPickerHeader",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "EmojiPickerCategoryHeader",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "EmojiPickerListArea",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "EmojiPickerPreviewArea",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "Button",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "ToneSelectorWrapper",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "EmojiPickerFooter",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "TextInput",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "Icon",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "EmojiPickerCategoryItem",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "Divider",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "SearchingResult",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "CategoriesResult",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "EmojiPickerPreview",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "ToneSelector",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "emojiContainerRef",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "handleKeyDown",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "mergedTextInputRef",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "searchTerm",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "handleSearch",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "category",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "searchResults",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "handleSelectEmoji",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "virtuosoRef",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "emojiListByCategory",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "customItemsLimit",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "handleLoadMore",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "handleScroll",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "handleGoToAddCustom",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "actualTone",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "setActualTone",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "ResizeObserver",
+          "edgeType": "new"
+        },
+        {
+          "name": "EmojiPickerProps",
+          "edgeType": "type"
+        },
+        {
+          "name": "VirtuosoHandle",
+          "edgeType": "type"
+        },
+        {
+          "name": "HTMLDivElement",
+          "edgeType": "type"
+        },
+        {
+          "name": "HTMLInputElement",
+          "edgeType": "type"
+        },
+        {
+          "name": "EmojiItem",
+          "edgeType": "type"
+        },
+        {
+          "name": "MouseEvent",
+          "edgeType": "type"
+        },
+        {
+          "name": "HTMLElement",
+          "edgeType": "type"
+        },
+        {
+          "name": "ChangeEvent",
+          "edgeType": "type"
+        },
+        {
+          "name": "KeyboardEvent",
+          "edgeType": "type"
+        },
+        {
+          "name": "ListRange",
+          "edgeType": "type"
+        },
+        {
+          "name": "RefObject",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "type",
+      "name": "EmojiPickerProps",
+      "line": 28,
+      "endLine": 32,
+      "signature": "export type EmojiPickerProps ="
+    }
+  ],
+  "imports": [
+    {
+      "module": "@rocket.chat/fuselage",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/fuselage-hooks",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/ui-client",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/ui-contexts",
+      "resolved": "external"
+    },
+    {
+      "module": "react",
+      "resolved": "external"
+    },
+    {
+      "module": "react",
+      "resolved": "external"
+    },
+    {
+      "module": "react-virtuoso",
+      "resolved": "external"
+    },
+    {
+      "module": "./CategoriesResult",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/client/views/composer/EmojiPicker/CategoriesResult.tsx"
+    },
+    {
+      "module": "./EmojiPickerCategoryItem",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/client/views/composer/EmojiPicker/EmojiPickerCategoryItem.tsx"
+    },
+    {
+      "module": "./EmojiPickerDropDown",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/client/views/composer/EmojiPicker/EmojiPickerDropDown.tsx"
+    },
+    {
+      "module": "./SearchingResult",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/client/views/composer/EmojiPicker/SearchingResult.tsx"
+    },
+    {
+      "module": "./ToneSelector",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/client/views/composer/EmojiPicker/ToneSelector/index.ts"
+    },
+    {
+      "module": "./ToneSelector/ToneSelectorWrapper",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/client/views/composer/EmojiPicker/ToneSelector/ToneSelectorWrapper.tsx"
+    },
+    {
+      "module": "../../../../app/emoji/client",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/app/emoji/client/index.ts"
+    },
+    {
+      "module": "../../../../app/emoji/client",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/app/emoji/client/index.ts"
+    },
+    {
+      "module": "../../../contexts/EmojiPickerContext",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/client/contexts/EmojiPickerContext.ts"
+    },
+    {
+      "module": "../../room/hooks/useIsVisible",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/client/views/room/hooks/useIsVisible.ts"
+    }
+  ]
+}

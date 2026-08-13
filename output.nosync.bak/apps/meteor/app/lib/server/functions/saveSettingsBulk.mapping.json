@@ -1,0 +1,190 @@
+{
+  "sourcePath": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/app/lib/server/functions/saveSettingsBulk.ts",
+  "symbols": [
+    {
+      "type": "variable_function",
+      "name": "checkInteger",
+      "exported": false,
+      "line": 24,
+      "endLine": 30,
+      "signature": "(value: ISetting['value']) =>",
+      "calls": [
+        {
+          "name": "isInteger",
+          "edgeType": "call"
+        },
+        {
+          "name": "ISetting",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "variable_function",
+      "name": "saveSettingsBulk",
+      "exported": true,
+      "line": 34,
+      "endLine": 139,
+      "signature": "async ( uid: string, params: { _id: ISetting['_id']; value: ISetting['value']; editor?: ISettingColor['editor'] }[], audit: SaveSettingsAudit, ): Promise<void> =>",
+      "calls": [
+        {
+          "name": "hasPermissionAsync",
+          "edgeType": "call"
+        },
+        {
+          "name": "find",
+          "edgeType": "call"
+        },
+        {
+          "name": "findOneById",
+          "edgeType": "call"
+        },
+        {
+          "name": "get",
+          "edgeType": "call"
+        },
+        {
+          "name": "push",
+          "edgeType": "call"
+        },
+        {
+          "name": "all",
+          "edgeType": "call"
+        },
+        {
+          "name": "map",
+          "edgeType": "call"
+        },
+        {
+          "name": "check",
+          "edgeType": "call"
+        },
+        {
+          "name": "getSettingPermissionId",
+          "edgeType": "call"
+        },
+        {
+          "name": "disableCustomScripts",
+          "edgeType": "call"
+        },
+        {
+          "name": "test",
+          "edgeType": "call"
+        },
+        {
+          "name": "OneOf",
+          "edgeType": "call"
+        },
+        {
+          "name": "checkInteger",
+          "edgeType": "call"
+        },
+        {
+          "name": "checkSettingValueBounds",
+          "edgeType": "call"
+        },
+        {
+          "name": "isSettingCode",
+          "edgeType": "call"
+        },
+        {
+          "name": "updateAuditedByUser",
+          "edgeType": "call"
+        },
+        {
+          "name": "auditSettingOperation",
+          "edgeType": "call"
+        },
+        {
+          "name": "Boolean",
+          "edgeType": "call"
+        },
+        {
+          "name": "isSettingColor",
+          "edgeType": "call"
+        },
+        {
+          "name": "updateOptionsById",
+          "edgeType": "call"
+        },
+        {
+          "name": "forEach",
+          "edgeType": "call"
+        },
+        {
+          "name": "notifyOnSettingChangedById",
+          "edgeType": "call"
+        },
+        {
+          "name": "ISetting",
+          "edgeType": "type"
+        },
+        {
+          "name": "ISettingColor",
+          "edgeType": "type"
+        },
+        {
+          "name": "SaveSettingsAudit",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "type",
+      "name": "SaveSettingsAudit",
+      "line": 28,
+      "endLine": 32,
+      "signature": "export type SaveSettingsAudit ="
+    }
+  ],
+  "imports": [
+    {
+      "module": "@rocket.chat/core-typings",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/core-typings",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/models",
+      "resolved": "external"
+    },
+    {
+      "module": "meteor/check",
+      "resolved": "external"
+    },
+    {
+      "module": "meteor/meteor",
+      "resolved": "external"
+    },
+    {
+      "module": "../../../../server/lib/authorization/hasPermission",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/server/lib/authorization/hasPermission.ts"
+    },
+    {
+      "module": "../../../../server/lib/shared/disableCustomScripts",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/server/lib/shared/disableCustomScripts.ts"
+    },
+    {
+      "module": "../../../../server/settings/lib/auditedSettingUpdates",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/server/settings/lib/auditedSettingUpdates.ts"
+    },
+    {
+      "module": "../../../authorization/lib",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/app/authorization/lib/index.ts"
+    },
+    {
+      "module": "../../../settings/server",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/app/settings/server/index.ts"
+    },
+    {
+      "module": "../lib/checkSettingValueBonds",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/app/lib/server/lib/checkSettingValueBonds.ts"
+    },
+    {
+      "module": "../lib/notifyListener",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/app/lib/server/lib/notifyListener.ts"
+    }
+  ]
+}

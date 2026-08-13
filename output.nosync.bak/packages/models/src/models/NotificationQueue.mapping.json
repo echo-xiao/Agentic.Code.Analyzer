@@ -1,0 +1,189 @@
+{
+  "sourcePath": "/Users/echoooooo/Desktop/code/Rocket.Chat/packages/models/src/models/NotificationQueue.ts",
+  "symbols": [
+    {
+      "type": "class",
+      "name": "NotificationQueueRaw",
+      "exported": true,
+      "line": 7,
+      "endLine": 102,
+      "signature": "export class NotificationQueueRaw extends BaseRaw<INotification> implements INotificationQueueModel",
+      "calls": [
+        {
+          "name": "BaseRaw",
+          "edgeType": "type"
+        },
+        {
+          "name": "INotificationQueueModel",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "modelIndexes",
+      "exported": true,
+      "qualifiedName": "NotificationQueueRaw.modelIndexes",
+      "line": 12,
+      "endLine": 20,
+      "signature": "protected override modelIndexes(): IndexDescription[]",
+      "containerClass": "NotificationQueueRaw",
+      "calls": [
+        {
+          "name": "IndexDescription",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "unsetSendingById",
+      "exported": true,
+      "qualifiedName": "NotificationQueueRaw.unsetSendingById",
+      "line": 16,
+      "endLine": 25,
+      "signature": "unsetSendingById(_id: string): Promise<UpdateResult>",
+      "containerClass": "NotificationQueueRaw",
+      "calls": [
+        {
+          "name": "updateOne",
+          "edgeType": "call"
+        },
+        {
+          "name": "UpdateResult",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "setErrorById",
+      "exported": true,
+      "qualifiedName": "NotificationQueueRaw.setErrorById",
+      "line": 20,
+      "endLine": 34,
+      "signature": "setErrorById(_id: string, error: any): Promise<UpdateResult>",
+      "containerClass": "NotificationQueueRaw",
+      "calls": [
+        {
+          "name": "updateOne",
+          "edgeType": "call"
+        },
+        {
+          "name": "UpdateResult",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "clearScheduleByUserId",
+      "exported": true,
+      "qualifiedName": "NotificationQueueRaw.clearScheduleByUserId",
+      "line": 24,
+      "endLine": 36,
+      "signature": "clearScheduleByUserId(uid: string): Promise<UpdateResult | Document>",
+      "containerClass": "NotificationQueueRaw",
+      "calls": [
+        {
+          "name": "updateMany",
+          "edgeType": "call"
+        },
+        {
+          "name": "UpdateResult",
+          "edgeType": "type"
+        },
+        {
+          "name": "Document",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "clearQueueByUserId",
+      "exported": true,
+      "qualifiedName": "NotificationQueueRaw.clearQueueByUserId",
+      "line": 28,
+      "endLine": 34,
+      "signature": "async clearQueueByUserId(uid: string): Promise<number | undefined>",
+      "containerClass": "NotificationQueueRaw",
+      "calls": [
+        {
+          "name": "deleteMany",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "findNextInQueueOrExpired",
+      "exported": true,
+      "qualifiedName": "NotificationQueueRaw.findNextInQueueOrExpired",
+      "line": 32,
+      "endLine": 62,
+      "signature": "async findNextInQueueOrExpired(expired: Date): Promise<INotification | null>",
+      "containerClass": "NotificationQueueRaw",
+      "calls": [
+        {
+          "name": "findOneAndUpdate",
+          "edgeType": "call"
+        },
+        {
+          "name": "Date",
+          "edgeType": "new"
+        },
+        {
+          "name": "INotification",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "constructor",
+      "exported": true,
+      "qualifiedName": "NotificationQueueRaw.constructor",
+      "line": 8,
+      "endLine": 10,
+      "signature": "constructor(db: Db, trash?: Collection<RocketChatRecordDeleted<INotification>>)",
+      "containerClass": "NotificationQueueRaw",
+      "calls": [
+        {
+          "name": "Db",
+          "edgeType": "type"
+        },
+        {
+          "name": "Collection",
+          "edgeType": "type"
+        },
+        {
+          "name": "RocketChatRecordDeleted",
+          "edgeType": "type"
+        },
+        {
+          "name": "INotification",
+          "edgeType": "type"
+        }
+      ]
+    }
+  ],
+  "imports": [
+    {
+      "module": "@rocket.chat/core-typings",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/model-typings",
+      "resolved": "external"
+    },
+    {
+      "module": "mongodb",
+      "resolved": "external"
+    },
+    {
+      "module": "./BaseRaw",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/packages/models/src/models/BaseRaw.ts"
+    }
+  ]
+}

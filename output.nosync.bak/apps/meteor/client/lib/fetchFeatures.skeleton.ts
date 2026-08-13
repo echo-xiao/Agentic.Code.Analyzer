@@ -1,0 +1,12 @@
+## File: apps/meteor/client/lib/fetchFeatures.ts
+
+```typescript
+import { whenLoggedIn } from './loggedIn';
+import { sdk } from '../../app/utils/client/lib/SDKClient';
+
+export const fetchFeatures = (): Promise<string[]> =>
+	whenLoggedIn()
+		.then(() => sdk.rest.get('/v1/licenses.info', {}))
+		.then(({ license }) => license.activeModules);
+
+```

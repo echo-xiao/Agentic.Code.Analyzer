@@ -1,0 +1,214 @@
+{
+  "sourcePath": "/Users/echoooooo/Desktop/code/Rocket.Chat/packages/ddp-client/src/DDPDispatcher.ts",
+  "symbols": [
+    {
+      "type": "class",
+      "name": "DDPDispatcher",
+      "exported": true,
+      "line": 16,
+      "endLine": 116,
+      "signature": "export class DDPDispatcher extends MinimalDDPClient",
+      "calls": [
+        {
+          "name": "MinimalDDPClient",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "dispatch",
+      "exported": true,
+      "qualifiedName": "DDPDispatcher.dispatch",
+      "line": 19,
+      "endLine": 38,
+      "signature": "override dispatch(payload: OutgoingPayload, options?: { wait?: boolean })",
+      "containerClass": "DDPDispatcher",
+      "calls": [
+        {
+          "name": "send",
+          "edgeType": "event_emit"
+        },
+        {
+          "name": "wait",
+          "edgeType": "call"
+        },
+        {
+          "name": "pushItem",
+          "edgeType": "call"
+        },
+        {
+          "name": "OutgoingPayload",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "wait",
+      "exported": true,
+      "qualifiedName": "DDPDispatcher.wait",
+      "line": 23,
+      "endLine": 32,
+      "signature": "wait(block: MethodPayload)",
+      "containerClass": "DDPDispatcher",
+      "calls": [
+        {
+          "name": "push",
+          "edgeType": "call"
+        },
+        {
+          "name": "sendOutstandingBlocks",
+          "edgeType": "call"
+        },
+        {
+          "name": "MethodPayload",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "pushItem",
+      "exported": true,
+      "qualifiedName": "DDPDispatcher.pushItem",
+      "line": 27,
+      "endLine": 45,
+      "signature": "private pushItem(item: MethodPayload)",
+      "containerClass": "DDPDispatcher",
+      "calls": [
+        {
+          "name": "tail",
+          "edgeType": "call"
+        },
+        {
+          "name": "push",
+          "edgeType": "call"
+        },
+        {
+          "name": "sendOutstandingBlocks",
+          "edgeType": "call"
+        },
+        {
+          "name": "MethodPayload",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "tail",
+      "exported": true,
+      "qualifiedName": "DDPDispatcher.tail",
+      "line": 31,
+      "endLine": 33,
+      "signature": "private tail()",
+      "containerClass": "DDPDispatcher",
+      "calls": []
+    },
+    {
+      "type": "method",
+      "name": "sendOutstandingBlocks",
+      "exported": true,
+      "qualifiedName": "DDPDispatcher.sendOutstandingBlocks",
+      "line": 35,
+      "endLine": 52,
+      "signature": "private sendOutstandingBlocks()",
+      "containerClass": "DDPDispatcher",
+      "calls": [
+        {
+          "name": "forEach",
+          "edgeType": "call"
+        },
+        {
+          "name": "send",
+          "edgeType": "event_emit"
+        },
+        {
+          "name": "shift",
+          "edgeType": "call"
+        },
+        {
+          "name": "sendOutstandingBlocks",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "removeItem",
+      "exported": true,
+      "qualifiedName": "DDPDispatcher.removeItem",
+      "line": 39,
+      "endLine": 60,
+      "signature": "removeItem(item: MethodPayload)",
+      "containerClass": "DDPDispatcher",
+      "calls": [
+        {
+          "name": "indexOf",
+          "edgeType": "call"
+        },
+        {
+          "name": "splice",
+          "edgeType": "call"
+        },
+        {
+          "name": "shift",
+          "edgeType": "call"
+        },
+        {
+          "name": "sendOutstandingBlocks",
+          "edgeType": "call"
+        },
+        {
+          "name": "MethodPayload",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "class_property",
+      "name": "queue",
+      "exported": true,
+      "qualifiedName": "DDPDispatcher.queue",
+      "line": 17,
+      "endLine": 17,
+      "signature": "queue: Queue = [];",
+      "containerClass": "DDPDispatcher",
+      "calls": [
+        {
+          "name": "Queue",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "type",
+      "name": "Blocks",
+      "line": 9,
+      "endLine": 12,
+      "signature": "type Blocks ="
+    },
+    {
+      "type": "type",
+      "name": "Queue",
+      "line": 14,
+      "endLine": 14,
+      "signature": "type Queue = Blocks[];"
+    }
+  ],
+  "imports": [
+    {
+      "module": "./MinimalDDPClient",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/packages/ddp-client/src/MinimalDDPClient.ts"
+    },
+    {
+      "module": "./types/OutgoingPayload",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/packages/ddp-client/src/types/OutgoingPayload.ts"
+    },
+    {
+      "module": "./types/methodsPayloads",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/packages/ddp-client/src/types/methodsPayloads.ts"
+    }
+  ]
+}

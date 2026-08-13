@@ -1,0 +1,60 @@
+{
+  "sourcePath": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/server/services/messages/hooks/BeforeSavePreventMention.ts",
+  "symbols": [
+    {
+      "type": "class",
+      "name": "BeforeSavePreventMention",
+      "exported": true,
+      "line": 6,
+      "endLine": 38,
+      "signature": "export class BeforeSavePreventMention",
+      "calls": []
+    },
+    {
+      "type": "method",
+      "name": "preventMention",
+      "exported": true,
+      "qualifiedName": "BeforeSavePreventMention.preventMention",
+      "line": 7,
+      "endLine": 37,
+      "signature": "async preventMention({ message, user, mention, permission, }: { message: IMessage; user: Pick<IUser, '_id' | 'username' | 'name' | 'language'>; mention: 'here' | 'all'; permission: string; }): Promise<boolean>",
+      "containerClass": "BeforeSavePreventMention",
+      "calls": [
+        {
+          "name": "some",
+          "edgeType": "call"
+        },
+        {
+          "name": "hasPermission",
+          "edgeType": "call"
+        },
+        {
+          "name": "MeteorError",
+          "edgeType": "new"
+        },
+        {
+          "name": "IMessage",
+          "edgeType": "type"
+        },
+        {
+          "name": "IUser",
+          "edgeType": "type"
+        }
+      ]
+    }
+  ],
+  "imports": [
+    {
+      "module": "@rocket.chat/core-services",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/core-typings",
+      "resolved": "external"
+    },
+    {
+      "module": "../../../lib/i18n",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/server/lib/i18n.ts"
+    }
+  ]
+}

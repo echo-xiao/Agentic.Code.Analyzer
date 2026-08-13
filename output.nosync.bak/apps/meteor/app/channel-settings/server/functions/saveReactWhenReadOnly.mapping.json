@@ -1,0 +1,45 @@
+{
+  "sourcePath": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/app/channel-settings/server/functions/saveReactWhenReadOnly.ts",
+  "symbols": [
+    {
+      "type": "variable_function",
+      "name": "saveReactWhenReadOnly",
+      "exported": true,
+      "line": 6,
+      "endLine": 28,
+      "signature": "async function ( rid: string, allowReact: boolean, user: { _id: string; username: string; }, sendMessage = true, )",
+      "calls": [
+        {
+          "name": "test",
+          "edgeType": "call"
+        },
+        {
+          "name": "setAllowReactingWhenReadOnlyById",
+          "edgeType": "call"
+        },
+        {
+          "name": "saveSystemMessage",
+          "edgeType": "call"
+        }
+      ]
+    }
+  ],
+  "imports": [
+    {
+      "module": "@rocket.chat/core-services",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/models",
+      "resolved": "external"
+    },
+    {
+      "module": "meteor/check",
+      "resolved": "external"
+    },
+    {
+      "module": "meteor/meteor",
+      "resolved": "external"
+    }
+  ]
+}

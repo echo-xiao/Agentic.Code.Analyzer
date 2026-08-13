@@ -1,0 +1,120 @@
+{
+  "sourcePath": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/client/views/omnichannel/additionalForms/AutoCompleteUnit.tsx",
+  "symbols": [
+    {
+      "type": "variable_function",
+      "name": "AutoCompleteUnit",
+      "exported": false,
+      "line": 20,
+      "endLine": 61,
+      "signature": "({ id, value, disabled = false, error, placeholder, haveNone, onChange, onLoadItems = () => undefined, }: AutoCompleteUnitProps) =>",
+      "calls": [
+        {
+          "name": "useTranslation",
+          "edgeType": "call"
+        },
+        {
+          "name": "useState",
+          "edgeType": "call"
+        },
+        {
+          "name": "useDebouncedValue",
+          "edgeType": "call"
+        },
+        {
+          "name": "useUnitsList",
+          "edgeType": "call"
+        },
+        {
+          "name": "useStableCallback",
+          "edgeType": "call"
+        },
+        {
+          "name": "useEffect",
+          "edgeType": "call"
+        },
+        {
+          "name": "handleLoadItems",
+          "edgeType": "call"
+        },
+        {
+          "name": "fetchNextPage",
+          "edgeType": "call"
+        },
+        {
+          "name": "PaginatedSelectFiltered",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "id",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "error",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "unitsFilter",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "disabled",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "onChange",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "unitsList",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "value",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "AutoCompleteUnitProps",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "type",
+      "name": "AutoCompleteUnitProps",
+      "line": 10,
+      "endLine": 18,
+      "signature": "export type AutoCompleteUnitProps = Omit< ComponentProps<typeof PaginatedSelectFiltered>, 'filter' | 'setFilter' | 'options' | 'endReached' | 'renderItem' > &"
+    }
+  ],
+  "imports": [
+    {
+      "module": "@rocket.chat/fuselage",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/fuselage-hooks",
+      "resolved": "external"
+    },
+    {
+      "module": "react",
+      "resolved": "external"
+    },
+    {
+      "module": "react",
+      "resolved": "external"
+    },
+    {
+      "module": "react-i18next",
+      "resolved": "external"
+    },
+    {
+      "module": "../hooks/useUnitsList",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/client/views/omnichannel/hooks/useUnitsList.ts"
+    },
+    {
+      "module": "../hooks/useUnitsList",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/client/views/omnichannel/hooks/useUnitsList.ts"
+    }
+  ]
+}

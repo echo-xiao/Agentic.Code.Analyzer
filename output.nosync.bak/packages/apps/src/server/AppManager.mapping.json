@@ -1,0 +1,2652 @@
+{
+  "sourcePath": "/Users/echoooooo/Desktop/code/Rocket.Chat/packages/apps/src/server/AppManager.ts",
+  "symbols": [
+    {
+      "type": "class",
+      "name": "AppManager",
+      "exported": true,
+      "line": 72,
+      "endLine": 1233,
+      "signature": "export class AppManager",
+      "calls": []
+    },
+    {
+      "type": "method",
+      "name": "getTempFilePath",
+      "exported": true,
+      "qualifiedName": "AppManager.getTempFilePath",
+      "line": 179,
+      "endLine": 181,
+      "signature": "public getTempFilePath(): string",
+      "containerClass": "AppManager",
+      "calls": []
+    },
+    {
+      "type": "method",
+      "name": "getStorage",
+      "exported": true,
+      "qualifiedName": "AppManager.getStorage",
+      "line": 184,
+      "endLine": 186,
+      "signature": "public getStorage(): AppMetadataStorage",
+      "containerClass": "AppManager",
+      "calls": [
+        {
+          "name": "AppMetadataStorage",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "getLogStorage",
+      "exported": true,
+      "qualifiedName": "AppManager.getLogStorage",
+      "line": 189,
+      "endLine": 191,
+      "signature": "public getLogStorage(): AppLogStorage",
+      "containerClass": "AppManager",
+      "calls": [
+        {
+          "name": "AppLogStorage",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "getParser",
+      "exported": true,
+      "qualifiedName": "AppManager.getParser",
+      "line": 194,
+      "endLine": 196,
+      "signature": "public getParser(): AppPackageParser",
+      "containerClass": "AppManager",
+      "calls": [
+        {
+          "name": "AppPackageParser",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "getCompiler",
+      "exported": true,
+      "qualifiedName": "AppManager.getCompiler",
+      "line": 199,
+      "endLine": 201,
+      "signature": "public getCompiler(): AppCompiler",
+      "containerClass": "AppManager",
+      "calls": [
+        {
+          "name": "AppCompiler",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "getAccessorManager",
+      "exported": true,
+      "qualifiedName": "AppManager.getAccessorManager",
+      "line": 204,
+      "endLine": 206,
+      "signature": "public getAccessorManager(): AppAccessorManager",
+      "containerClass": "AppManager",
+      "calls": [
+        {
+          "name": "AppAccessorManager",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "getBridges",
+      "exported": true,
+      "qualifiedName": "AppManager.getBridges",
+      "line": 209,
+      "endLine": 211,
+      "signature": "public getBridges(): AppBridges",
+      "containerClass": "AppManager",
+      "calls": [
+        {
+          "name": "AppBridges",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "getListenerManager",
+      "exported": true,
+      "qualifiedName": "AppManager.getListenerManager",
+      "line": 214,
+      "endLine": 216,
+      "signature": "public getListenerManager(): AppListenerManager",
+      "containerClass": "AppManager",
+      "calls": [
+        {
+          "name": "AppListenerManager",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "getCommandManager",
+      "exported": true,
+      "qualifiedName": "AppManager.getCommandManager",
+      "line": 219,
+      "endLine": 221,
+      "signature": "public getCommandManager(): AppSlashCommandManager",
+      "containerClass": "AppManager",
+      "calls": [
+        {
+          "name": "AppSlashCommandManager",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "getVideoConfProviderManager",
+      "exported": true,
+      "qualifiedName": "AppManager.getVideoConfProviderManager",
+      "line": 223,
+      "endLine": 225,
+      "signature": "public getVideoConfProviderManager(): AppVideoConfProviderManager",
+      "containerClass": "AppManager",
+      "calls": [
+        {
+          "name": "AppVideoConfProviderManager",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "getOutboundCommunicationProviderManager",
+      "exported": true,
+      "qualifiedName": "AppManager.getOutboundCommunicationProviderManager",
+      "line": 227,
+      "endLine": 229,
+      "signature": "public getOutboundCommunicationProviderManager(): AppOutboundCommunicationProviderManager",
+      "containerClass": "AppManager",
+      "calls": [
+        {
+          "name": "AppOutboundCommunicationProviderManager",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "getLicenseManager",
+      "exported": true,
+      "qualifiedName": "AppManager.getLicenseManager",
+      "line": 231,
+      "endLine": 233,
+      "signature": "public getLicenseManager(): AppLicenseManager",
+      "containerClass": "AppManager",
+      "calls": [
+        {
+          "name": "AppLicenseManager",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "getApiManager",
+      "exported": true,
+      "qualifiedName": "AppManager.getApiManager",
+      "line": 236,
+      "endLine": 238,
+      "signature": "public getApiManager(): AppApiManager",
+      "containerClass": "AppManager",
+      "calls": [
+        {
+          "name": "AppApiManager",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "getExternalComponentManager",
+      "exported": true,
+      "qualifiedName": "AppManager.getExternalComponentManager",
+      "line": 241,
+      "endLine": 243,
+      "signature": "public getExternalComponentManager(): AppExternalComponentManager",
+      "containerClass": "AppManager",
+      "calls": [
+        {
+          "name": "AppExternalComponentManager",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "getSettingsManager",
+      "exported": true,
+      "qualifiedName": "AppManager.getSettingsManager",
+      "line": 246,
+      "endLine": 248,
+      "signature": "public getSettingsManager(): AppSettingsManager",
+      "containerClass": "AppManager",
+      "calls": [
+        {
+          "name": "AppSettingsManager",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "getSchedulerManager",
+      "exported": true,
+      "qualifiedName": "AppManager.getSchedulerManager",
+      "line": 250,
+      "endLine": 252,
+      "signature": "public getSchedulerManager(): AppSchedulerManager",
+      "containerClass": "AppManager",
+      "calls": [
+        {
+          "name": "AppSchedulerManager",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "getUIActionButtonManager",
+      "exported": true,
+      "qualifiedName": "AppManager.getUIActionButtonManager",
+      "line": 254,
+      "endLine": 256,
+      "signature": "public getUIActionButtonManager(): UIActionButtonManager",
+      "containerClass": "AppManager",
+      "calls": [
+        {
+          "name": "UIActionButtonManager",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "getSignatureManager",
+      "exported": true,
+      "qualifiedName": "AppManager.getSignatureManager",
+      "line": 258,
+      "endLine": 260,
+      "signature": "public getSignatureManager(): AppSignatureManager",
+      "containerClass": "AppManager",
+      "calls": [
+        {
+          "name": "AppSignatureManager",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "getRuntime",
+      "exported": true,
+      "qualifiedName": "AppManager.getRuntime",
+      "line": 262,
+      "endLine": 264,
+      "signature": "public getRuntime(): AppRuntimeManager",
+      "containerClass": "AppManager",
+      "calls": [
+        {
+          "name": "AppRuntimeManager",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "areAppsLoaded",
+      "exported": true,
+      "qualifiedName": "AppManager.areAppsLoaded",
+      "line": 267,
+      "endLine": 269,
+      "signature": "public areAppsLoaded(): boolean",
+      "containerClass": "AppManager",
+      "calls": []
+    },
+    {
+      "type": "method",
+      "name": "setSourceStorage",
+      "exported": true,
+      "qualifiedName": "AppManager.setSourceStorage",
+      "line": 271,
+      "endLine": 273,
+      "signature": "public setSourceStorage(storage: AppSourceStorage): void",
+      "containerClass": "AppManager",
+      "calls": [
+        {
+          "name": "AppSourceStorage",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "load",
+      "exported": true,
+      "qualifiedName": "AppManager.load",
+      "line": 280,
+      "endLine": 309,
+      "signature": "public async load(): Promise<boolean>",
+      "containerClass": "AppManager",
+      "calls": [
+        {
+          "name": "retrieveAll",
+          "edgeType": "call"
+        },
+        {
+          "name": "values",
+          "edgeType": "call"
+        },
+        {
+          "name": "fetch",
+          "edgeType": "call"
+        },
+        {
+          "name": "unpackageApp",
+          "edgeType": "call"
+        },
+        {
+          "name": "getParser",
+          "edgeType": "call"
+        },
+        {
+          "name": "toSandBox",
+          "edgeType": "call"
+        },
+        {
+          "name": "getCompiler",
+          "edgeType": "call"
+        },
+        {
+          "name": "set",
+          "edgeType": "call"
+        },
+        {
+          "name": "warn",
+          "edgeType": "call"
+        },
+        {
+          "name": "error",
+          "edgeType": "call"
+        },
+        {
+          "name": "ProxiedApp",
+          "edgeType": "new"
+        },
+        {
+          "name": "EmptyRuntime",
+          "edgeType": "new"
+        },
+        {
+          "name": "IAppStorageItem",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "enableAll",
+      "exported": true,
+      "qualifiedName": "AppManager.enableAll",
+      "line": 284,
+      "endLine": 333,
+      "signature": "public async enableAll(): Promise<Array<AppFabricationFulfillment>>",
+      "containerClass": "AppManager",
+      "calls": [
+        {
+          "name": "values",
+          "edgeType": "call"
+        },
+        {
+          "name": "setAppInfo",
+          "edgeType": "call"
+        },
+        {
+          "name": "getInfo",
+          "edgeType": "call"
+        },
+        {
+          "name": "setImplementedInterfaces",
+          "edgeType": "call"
+        },
+        {
+          "name": "getImplementationList",
+          "edgeType": "call"
+        },
+        {
+          "name": "setApp",
+          "edgeType": "call"
+        },
+        {
+          "name": "push",
+          "edgeType": "call"
+        },
+        {
+          "name": "isDisabled",
+          "edgeType": "call"
+        },
+        {
+          "name": "getStatus",
+          "edgeType": "call"
+        },
+        {
+          "name": "validateLicense",
+          "edgeType": "call"
+        },
+        {
+          "name": "catch",
+          "edgeType": "call"
+        },
+        {
+          "name": "initializeApp",
+          "edgeType": "call"
+        },
+        {
+          "name": "areRequiredSettingsSet",
+          "edgeType": "call"
+        },
+        {
+          "name": "getStorageItem",
+          "edgeType": "call"
+        },
+        {
+          "name": "setStatus",
+          "edgeType": "call"
+        },
+        {
+          "name": "isEnabled",
+          "edgeType": "call"
+        },
+        {
+          "name": "getPreviousStatus",
+          "edgeType": "call"
+        },
+        {
+          "name": "enableApp",
+          "edgeType": "call"
+        },
+        {
+          "name": "isError",
+          "edgeType": "call"
+        },
+        {
+          "name": "lockEssentialEvents",
+          "edgeType": "call"
+        },
+        {
+          "name": "clearAppActionButtons",
+          "edgeType": "call"
+        },
+        {
+          "name": "getID",
+          "edgeType": "call"
+        },
+        {
+          "name": "AppFabricationFulfillment",
+          "edgeType": "new"
+        },
+        {
+          "name": "AppFabricationFulfillment",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "unload",
+      "exported": true,
+      "qualifiedName": "AppManager.unload",
+      "line": 288,
+      "endLine": 312,
+      "signature": "public async unload(isManual: boolean): Promise<void>",
+      "containerClass": "AppManager",
+      "calls": [
+        {
+          "name": "values",
+          "edgeType": "call"
+        },
+        {
+          "name": "getStatus",
+          "edgeType": "call"
+        },
+        {
+          "name": "purgeAppConfig",
+          "edgeType": "call"
+        },
+        {
+          "name": "isDisabled",
+          "edgeType": "call"
+        },
+        {
+          "name": "disable",
+          "edgeType": "call"
+        },
+        {
+          "name": "getID",
+          "edgeType": "call"
+        },
+        {
+          "name": "releaseEssentialEvents",
+          "edgeType": "call"
+        },
+        {
+          "name": "stopApp",
+          "edgeType": "call"
+        },
+        {
+          "name": "getRuntimeController",
+          "edgeType": "call"
+        },
+        {
+          "name": "clear",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "get",
+      "exported": true,
+      "qualifiedName": "AppManager.get",
+      "line": 293,
+      "endLine": 343,
+      "signature": "public async get(filter?: IGetAppsFilter): Promise<ProxiedApp[]>",
+      "containerClass": "AppManager",
+      "calls": [
+        {
+          "name": "forEach",
+          "edgeType": "call"
+        },
+        {
+          "name": "push",
+          "edgeType": "call"
+        },
+        {
+          "name": "values",
+          "edgeType": "call"
+        },
+        {
+          "name": "isEnabled",
+          "edgeType": "call"
+        },
+        {
+          "name": "getStatus",
+          "edgeType": "call"
+        },
+        {
+          "name": "isDisabled",
+          "edgeType": "call"
+        },
+        {
+          "name": "filter",
+          "edgeType": "call"
+        },
+        {
+          "name": "includes",
+          "edgeType": "call"
+        },
+        {
+          "name": "getID",
+          "edgeType": "call"
+        },
+        {
+          "name": "getInstallationSource",
+          "edgeType": "call"
+        },
+        {
+          "name": "getName",
+          "edgeType": "call"
+        },
+        {
+          "name": "test",
+          "edgeType": "call"
+        },
+        {
+          "name": "IGetAppsFilter",
+          "edgeType": "type"
+        },
+        {
+          "name": "ProxiedApp",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "getOneById",
+      "exported": true,
+      "qualifiedName": "AppManager.getOneById",
+      "line": 298,
+      "endLine": 300,
+      "signature": "public getOneById(appId: string): ProxiedApp",
+      "containerClass": "AppManager",
+      "calls": [
+        {
+          "name": "get",
+          "edgeType": "call"
+        },
+        {
+          "name": "ProxiedApp",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "getPermissionsById",
+      "exported": true,
+      "qualifiedName": "AppManager.getPermissionsById",
+      "line": 302,
+      "endLine": 311,
+      "signature": "public getPermissionsById(appId: string): Array<IPermission>",
+      "containerClass": "AppManager",
+      "calls": [
+        {
+          "name": "get",
+          "edgeType": "call"
+        },
+        {
+          "name": "getStorageItem",
+          "edgeType": "call"
+        },
+        {
+          "name": "IPermission",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "enable",
+      "exported": true,
+      "qualifiedName": "AppManager.enable",
+      "line": 306,
+      "endLine": 332,
+      "signature": "public async enable(id: string): Promise<boolean>",
+      "containerClass": "AppManager",
+      "calls": [
+        {
+          "name": "get",
+          "edgeType": "call"
+        },
+        {
+          "name": "getStatus",
+          "edgeType": "call"
+        },
+        {
+          "name": "isEnabled",
+          "edgeType": "call"
+        },
+        {
+          "name": "retrieveOne",
+          "edgeType": "call"
+        },
+        {
+          "name": "runStartUpProcess",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "disable",
+      "exported": true,
+      "qualifiedName": "AppManager.disable",
+      "line": 310,
+      "endLine": 339,
+      "signature": "public async disable(id: string, status: AppStatus = AppStatus.DISABLED, silent?: boolean): Promise<boolean>",
+      "containerClass": "AppManager",
+      "calls": [
+        {
+          "name": "isDisabled",
+          "edgeType": "call"
+        },
+        {
+          "name": "get",
+          "edgeType": "call"
+        },
+        {
+          "name": "isEnabled",
+          "edgeType": "call"
+        },
+        {
+          "name": "getStatus",
+          "edgeType": "call"
+        },
+        {
+          "name": "catch",
+          "edgeType": "call"
+        },
+        {
+          "name": "call",
+          "edgeType": "call"
+        },
+        {
+          "name": "warn",
+          "edgeType": "call"
+        },
+        {
+          "name": "purgeAppConfig",
+          "edgeType": "call"
+        },
+        {
+          "name": "setStatus",
+          "edgeType": "call"
+        },
+        {
+          "name": "retrieveOne",
+          "edgeType": "call"
+        },
+        {
+          "name": "getStorageItem",
+          "edgeType": "call"
+        },
+        {
+          "name": "validateLicense",
+          "edgeType": "call"
+        },
+        {
+          "name": "AppStatus",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "migrate",
+      "exported": true,
+      "qualifiedName": "AppManager.migrate",
+      "line": 314,
+      "endLine": 343,
+      "signature": "public async migrate(id: string): Promise<boolean>",
+      "containerClass": "AppManager",
+      "calls": [
+        {
+          "name": "get",
+          "edgeType": "call"
+        },
+        {
+          "name": "catch",
+          "edgeType": "call"
+        },
+        {
+          "name": "call",
+          "edgeType": "call"
+        },
+        {
+          "name": "warn",
+          "edgeType": "call"
+        },
+        {
+          "name": "purgeAppConfig",
+          "edgeType": "call"
+        },
+        {
+          "name": "retrieveOne",
+          "edgeType": "call"
+        },
+        {
+          "name": "getStorageItem",
+          "edgeType": "call"
+        },
+        {
+          "name": "validateLicense",
+          "edgeType": "call"
+        },
+        {
+          "name": "signApp",
+          "edgeType": "call"
+        },
+        {
+          "name": "getSignatureManager",
+          "edgeType": "call"
+        },
+        {
+          "name": "updatePartialAndReturnDocument",
+          "edgeType": "call"
+        },
+        {
+          "name": "updateLocal",
+          "edgeType": "call"
+        },
+        {
+          "name": "doAppUpdated",
+          "edgeType": "call"
+        },
+        {
+          "name": "getAppActivationBridge",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "addLocal",
+      "exported": true,
+      "qualifiedName": "AppManager.addLocal",
+      "line": 318,
+      "endLine": 337,
+      "signature": "public async addLocal(appId: string): Promise<void>",
+      "containerClass": "AppManager",
+      "calls": [
+        {
+          "name": "retrieveOne",
+          "edgeType": "call"
+        },
+        {
+          "name": "fetch",
+          "edgeType": "call"
+        },
+        {
+          "name": "unpackageApp",
+          "edgeType": "call"
+        },
+        {
+          "name": "getParser",
+          "edgeType": "call"
+        },
+        {
+          "name": "toSandBox",
+          "edgeType": "call"
+        },
+        {
+          "name": "getCompiler",
+          "edgeType": "call"
+        },
+        {
+          "name": "set",
+          "edgeType": "call"
+        },
+        {
+          "name": "getID",
+          "edgeType": "call"
+        },
+        {
+          "name": "loadOne",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "add",
+      "exported": true,
+      "qualifiedName": "AppManager.add",
+      "line": 322,
+      "endLine": 422,
+      "signature": "public async add(appPackage: Buffer, installationParameters: IAppInstallParameters): Promise<AppFabricationFulfillment>",
+      "containerClass": "AppManager",
+      "calls": [
+        {
+          "name": "unpackageApp",
+          "edgeType": "call"
+        },
+        {
+          "name": "getParser",
+          "edgeType": "call"
+        },
+        {
+          "name": "setAppInfo",
+          "edgeType": "call"
+        },
+        {
+          "name": "setImplementedInterfaces",
+          "edgeType": "call"
+        },
+        {
+          "name": "getValues",
+          "edgeType": "call"
+        },
+        {
+          "name": "store",
+          "edgeType": "call"
+        },
+        {
+          "name": "push",
+          "edgeType": "call"
+        },
+        {
+          "name": "remove",
+          "edgeType": "call"
+        },
+        {
+          "name": "setStorageError",
+          "edgeType": "call"
+        },
+        {
+          "name": "toSandBox",
+          "edgeType": "call"
+        },
+        {
+          "name": "getCompiler",
+          "edgeType": "call"
+        },
+        {
+          "name": "all",
+          "edgeType": "call"
+        },
+        {
+          "name": "map",
+          "edgeType": "call"
+        },
+        {
+          "name": "undoer",
+          "edgeType": "call"
+        },
+        {
+          "name": "catch",
+          "edgeType": "call"
+        },
+        {
+          "name": "stopRuntime",
+          "edgeType": "call"
+        },
+        {
+          "name": "getRuntime",
+          "edgeType": "call"
+        },
+        {
+          "name": "getRuntimeController",
+          "edgeType": "call"
+        },
+        {
+          "name": "createAppUser",
+          "edgeType": "call"
+        },
+        {
+          "name": "removeAppUser",
+          "edgeType": "call"
+        },
+        {
+          "name": "setAppUserError",
+          "edgeType": "call"
+        },
+        {
+          "name": "signApp",
+          "edgeType": "call"
+        },
+        {
+          "name": "getSignatureManager",
+          "edgeType": "call"
+        },
+        {
+          "name": "create",
+          "edgeType": "call"
+        },
+        {
+          "name": "getStorageItem",
+          "edgeType": "call"
+        },
+        {
+          "name": "set",
+          "edgeType": "call"
+        },
+        {
+          "name": "getID",
+          "edgeType": "call"
+        },
+        {
+          "name": "setApp",
+          "edgeType": "call"
+        },
+        {
+          "name": "doAppAdded",
+          "edgeType": "call"
+        },
+        {
+          "name": "getAppActivationBridge",
+          "edgeType": "call"
+        },
+        {
+          "name": "installApp",
+          "edgeType": "call"
+        },
+        {
+          "name": "runStartUpProcess",
+          "edgeType": "call"
+        },
+        {
+          "name": "initializeApp",
+          "edgeType": "call"
+        },
+        {
+          "name": "AppFabricationFulfillment",
+          "edgeType": "new"
+        },
+        {
+          "name": "IAppInstallParameters",
+          "edgeType": "type"
+        },
+        {
+          "name": "AppFabricationFulfillment",
+          "edgeType": "type"
+        },
+        {
+          "name": "IAppStorageItem",
+          "edgeType": "type"
+        },
+        {
+          "name": "ProxiedApp",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "remove",
+      "exported": true,
+      "qualifiedName": "AppManager.remove",
+      "line": 332,
+      "endLine": 344,
+      "signature": "public async remove(id: string, uninstallationParameters: IAppUninstallParameters): Promise<ProxiedApp>",
+      "containerClass": "AppManager",
+      "calls": [
+        {
+          "name": "get",
+          "edgeType": "call"
+        },
+        {
+          "name": "uninstallApp",
+          "edgeType": "call"
+        },
+        {
+          "name": "removeLocal",
+          "edgeType": "call"
+        },
+        {
+          "name": "catch",
+          "edgeType": "call"
+        },
+        {
+          "name": "doAppRemoved",
+          "edgeType": "call"
+        },
+        {
+          "name": "getAppActivationBridge",
+          "edgeType": "call"
+        },
+        {
+          "name": "IAppUninstallParameters",
+          "edgeType": "type"
+        },
+        {
+          "name": "ProxiedApp",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "removeLocal",
+      "exported": true,
+      "qualifiedName": "AppManager.removeLocal",
+      "line": 340,
+      "endLine": 360,
+      "signature": "public async removeLocal(id: string): Promise<void>",
+      "containerClass": "AppManager",
+      "calls": [
+        {
+          "name": "get",
+          "edgeType": "call"
+        },
+        {
+          "name": "isEnabled",
+          "edgeType": "call"
+        },
+        {
+          "name": "getStatus",
+          "edgeType": "call"
+        },
+        {
+          "name": "disable",
+          "edgeType": "call"
+        },
+        {
+          "name": "purgeAppConfig",
+          "edgeType": "call"
+        },
+        {
+          "name": "releaseEssentialEvents",
+          "edgeType": "call"
+        },
+        {
+          "name": "removeAppUser",
+          "edgeType": "call"
+        },
+        {
+          "name": "purge",
+          "edgeType": "call"
+        },
+        {
+          "name": "getPersistenceBridge",
+          "edgeType": "call"
+        },
+        {
+          "name": "getID",
+          "edgeType": "call"
+        },
+        {
+          "name": "remove",
+          "edgeType": "call"
+        },
+        {
+          "name": "catch",
+          "edgeType": "call"
+        },
+        {
+          "name": "getStorageItem",
+          "edgeType": "call"
+        },
+        {
+          "name": "stopRuntime",
+          "edgeType": "call"
+        },
+        {
+          "name": "getRuntime",
+          "edgeType": "call"
+        },
+        {
+          "name": "getRuntimeController",
+          "edgeType": "call"
+        },
+        {
+          "name": "delete",
+          "edgeType": "call"
+        },
+        {
+          "name": "IInternalPersistenceBridge",
+          "edgeType": "type"
+        },
+        {
+          "name": "PersistenceBridge",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "update",
+      "exported": true,
+      "qualifiedName": "AppManager.update",
+      "line": 344,
+      "endLine": 429,
+      "signature": "public async update( appPackage: Buffer, permissionsGranted: Array<IPermission>, updateOptions: { loadApp?: boolean; user?: IUser } = { loadApp: true }, ): Promise<AppFabricationFulfillment>",
+      "containerClass": "AppManager",
+      "calls": [
+        {
+          "name": "unpackageApp",
+          "edgeType": "call"
+        },
+        {
+          "name": "getParser",
+          "edgeType": "call"
+        },
+        {
+          "name": "setAppInfo",
+          "edgeType": "call"
+        },
+        {
+          "name": "setImplementedInterfaces",
+          "edgeType": "call"
+        },
+        {
+          "name": "getValues",
+          "edgeType": "call"
+        },
+        {
+          "name": "retrieveOne",
+          "edgeType": "call"
+        },
+        {
+          "name": "catch",
+          "edgeType": "call"
+        },
+        {
+          "name": "disable",
+          "edgeType": "call"
+        },
+        {
+          "name": "update",
+          "edgeType": "call"
+        },
+        {
+          "name": "setStorageError",
+          "edgeType": "call"
+        },
+        {
+          "name": "signApp",
+          "edgeType": "call"
+        },
+        {
+          "name": "updatePartialAndReturnDocument",
+          "edgeType": "call"
+        },
+        {
+          "name": "stopRuntime",
+          "edgeType": "call"
+        },
+        {
+          "name": "getRuntime",
+          "edgeType": "call"
+        },
+        {
+          "name": "getRuntimeController",
+          "edgeType": "call"
+        },
+        {
+          "name": "get",
+          "edgeType": "call"
+        },
+        {
+          "name": "toSandBox",
+          "edgeType": "call"
+        },
+        {
+          "name": "getCompiler",
+          "edgeType": "call"
+        },
+        {
+          "name": "createAppUser",
+          "edgeType": "call"
+        },
+        {
+          "name": "setAppUserError",
+          "edgeType": "call"
+        },
+        {
+          "name": "setApp",
+          "edgeType": "call"
+        },
+        {
+          "name": "isEnabled",
+          "edgeType": "call"
+        },
+        {
+          "name": "updateAndStartupLocal",
+          "edgeType": "call"
+        },
+        {
+          "name": "updateAndInitializeLocal",
+          "edgeType": "call"
+        },
+        {
+          "name": "doAppUpdated",
+          "edgeType": "call"
+        },
+        {
+          "name": "getAppActivationBridge",
+          "edgeType": "call"
+        },
+        {
+          "name": "updateApp",
+          "edgeType": "call"
+        },
+        {
+          "name": "AppFabricationFulfillment",
+          "edgeType": "new"
+        },
+        {
+          "name": "IPermission",
+          "edgeType": "type"
+        },
+        {
+          "name": "IUser",
+          "edgeType": "type"
+        },
+        {
+          "name": "AppFabricationFulfillment",
+          "edgeType": "type"
+        },
+        {
+          "name": "IAppStorageItem",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "updateLocal",
+      "exported": true,
+      "qualifiedName": "AppManager.updateLocal",
+      "line": 361,
+      "endLine": 384,
+      "signature": "async updateLocal(stored: IAppStorageItem, appPackageOrInstance: ProxiedApp | Buffer): Promise<ProxiedApp>",
+      "containerClass": "AppManager",
+      "calls": [
+        {
+          "name": "unpackageApp",
+          "edgeType": "call"
+        },
+        {
+          "name": "getParser",
+          "edgeType": "call"
+        },
+        {
+          "name": "catch",
+          "edgeType": "call"
+        },
+        {
+          "name": "stopRuntime",
+          "edgeType": "call"
+        },
+        {
+          "name": "getRuntime",
+          "edgeType": "call"
+        },
+        {
+          "name": "getRuntimeController",
+          "edgeType": "call"
+        },
+        {
+          "name": "get",
+          "edgeType": "call"
+        },
+        {
+          "name": "toSandBox",
+          "edgeType": "call"
+        },
+        {
+          "name": "getCompiler",
+          "edgeType": "call"
+        },
+        {
+          "name": "purgeAppConfig",
+          "edgeType": "call"
+        },
+        {
+          "name": "set",
+          "edgeType": "call"
+        },
+        {
+          "name": "getID",
+          "edgeType": "call"
+        },
+        {
+          "name": "IAppStorageItem",
+          "edgeType": "type"
+        },
+        {
+          "name": "ProxiedApp",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "updateAndStartupLocal",
+      "exported": true,
+      "qualifiedName": "AppManager.updateAndStartupLocal",
+      "line": 365,
+      "endLine": 368,
+      "signature": "public async updateAndStartupLocal(stored: IAppStorageItem, appPackageOrInstance: ProxiedApp | Buffer, silenceStatus = true)",
+      "containerClass": "AppManager",
+      "calls": [
+        {
+          "name": "updateLocal",
+          "edgeType": "call"
+        },
+        {
+          "name": "runStartUpProcess",
+          "edgeType": "call"
+        },
+        {
+          "name": "IAppStorageItem",
+          "edgeType": "type"
+        },
+        {
+          "name": "ProxiedApp",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "updateAndInitializeLocal",
+      "exported": true,
+      "qualifiedName": "AppManager.updateAndInitializeLocal",
+      "line": 369,
+      "endLine": 372,
+      "signature": "public async updateAndInitializeLocal(stored: IAppStorageItem, appPackageOrInstance: ProxiedApp | Buffer)",
+      "containerClass": "AppManager",
+      "calls": [
+        {
+          "name": "updateLocal",
+          "edgeType": "call"
+        },
+        {
+          "name": "initializeApp",
+          "edgeType": "call"
+        },
+        {
+          "name": "IAppStorageItem",
+          "edgeType": "type"
+        },
+        {
+          "name": "ProxiedApp",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "getLanguageContent",
+      "exported": true,
+      "qualifiedName": "AppManager.getLanguageContent",
+      "line": 373,
+      "endLine": 385,
+      "signature": "public getLanguageContent(): { [key: string]: object }",
+      "containerClass": "AppManager",
+      "calls": [
+        {
+          "name": "create",
+          "edgeType": "call"
+        },
+        {
+          "name": "forEach",
+          "edgeType": "call"
+        },
+        {
+          "name": "getStorageItem",
+          "edgeType": "call"
+        },
+        {
+          "name": "keys",
+          "edgeType": "call"
+        },
+        {
+          "name": "assign",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "changeStatus",
+      "exported": true,
+      "qualifiedName": "AppManager.changeStatus",
+      "line": 377,
+      "endLine": 416,
+      "signature": "public async changeStatus(appId: string, status: AppStatus): Promise<ProxiedApp>",
+      "containerClass": "AppManager",
+      "calls": [
+        {
+          "name": "get",
+          "edgeType": "call"
+        },
+        {
+          "name": "getStorageItem",
+          "edgeType": "call"
+        },
+        {
+          "name": "isEnabled",
+          "edgeType": "call"
+        },
+        {
+          "name": "getStatus",
+          "edgeType": "call"
+        },
+        {
+          "name": "enable",
+          "edgeType": "call"
+        },
+        {
+          "name": "getID",
+          "edgeType": "call"
+        },
+        {
+          "name": "updateStatus",
+          "edgeType": "call"
+        },
+        {
+          "name": "disable",
+          "edgeType": "call"
+        },
+        {
+          "name": "AppStatus",
+          "edgeType": "type"
+        },
+        {
+          "name": "ProxiedApp",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "updateAppsMarketplaceInfo",
+      "exported": true,
+      "qualifiedName": "AppManager.updateAppsMarketplaceInfo",
+      "line": 381,
+      "endLine": 450,
+      "signature": "public async updateAppsMarketplaceInfo(appsOverview: Array<{ latest: IMarketplaceInfo }>): Promise<void>",
+      "containerClass": "AppManager",
+      "calls": [
+        {
+          "name": "catch",
+          "edgeType": "call"
+        },
+        {
+          "name": "all",
+          "edgeType": "call"
+        },
+        {
+          "name": "map",
+          "edgeType": "call"
+        },
+        {
+          "name": "get",
+          "edgeType": "call"
+        },
+        {
+          "name": "getStorageItem",
+          "edgeType": "call"
+        },
+        {
+          "name": "signApp",
+          "edgeType": "call"
+        },
+        {
+          "name": "getSignatureManager",
+          "edgeType": "call"
+        },
+        {
+          "name": "updatePartialAndReturnDocument",
+          "edgeType": "call"
+        },
+        {
+          "name": "forEach",
+          "edgeType": "call"
+        },
+        {
+          "name": "push",
+          "edgeType": "call"
+        },
+        {
+          "name": "then",
+          "edgeType": "call"
+        },
+        {
+          "name": "validateLicense",
+          "edgeType": "call"
+        },
+        {
+          "name": "getStatus",
+          "edgeType": "call"
+        },
+        {
+          "name": "setStatus",
+          "edgeType": "call"
+        },
+        {
+          "name": "error",
+          "edgeType": "call"
+        },
+        {
+          "name": "purgeAppConfig",
+          "edgeType": "call"
+        },
+        {
+          "name": "getPreviousStatus",
+          "edgeType": "call"
+        },
+        {
+          "name": "updateStatus",
+          "edgeType": "call"
+        },
+        {
+          "name": "IMarketplaceInfo",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "loadOne",
+      "exported": true,
+      "qualifiedName": "AppManager.loadOne",
+      "line": 390,
+      "endLine": 410,
+      "signature": "public async loadOne(appId: string, silenceStatus = false): Promise<ProxiedApp>",
+      "containerClass": "AppManager",
+      "calls": [
+        {
+          "name": "get",
+          "edgeType": "call"
+        },
+        {
+          "name": "getStorageItem",
+          "edgeType": "call"
+        },
+        {
+          "name": "initializeApp",
+          "edgeType": "call"
+        },
+        {
+          "name": "areRequiredSettingsSet",
+          "edgeType": "call"
+        },
+        {
+          "name": "setStatus",
+          "edgeType": "call"
+        },
+        {
+          "name": "isDisabled",
+          "edgeType": "call"
+        },
+        {
+          "name": "getStatus",
+          "edgeType": "call"
+        },
+        {
+          "name": "isEnabled",
+          "edgeType": "call"
+        },
+        {
+          "name": "getPreviousStatus",
+          "edgeType": "call"
+        },
+        {
+          "name": "enableApp",
+          "edgeType": "call"
+        },
+        {
+          "name": "ProxiedApp",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "runStartUpProcess",
+      "exported": true,
+      "qualifiedName": "AppManager.runStartUpProcess",
+      "line": 394,
+      "endLine": 408,
+      "signature": "private async runStartUpProcess(storageItem: IAppStorageItem, app: ProxiedApp, silenceStatus: boolean): Promise<boolean>",
+      "containerClass": "AppManager",
+      "calls": [
+        {
+          "name": "getStatus",
+          "edgeType": "call"
+        },
+        {
+          "name": "initializeApp",
+          "edgeType": "call"
+        },
+        {
+          "name": "areRequiredSettingsSet",
+          "edgeType": "call"
+        },
+        {
+          "name": "setStatus",
+          "edgeType": "call"
+        },
+        {
+          "name": "enableApp",
+          "edgeType": "call"
+        },
+        {
+          "name": "IAppStorageItem",
+          "edgeType": "type"
+        },
+        {
+          "name": "ProxiedApp",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "installApp",
+      "exported": true,
+      "qualifiedName": "AppManager.installApp",
+      "line": 398,
+      "endLine": 415,
+      "signature": "private async installApp(app: ProxiedApp, user: IUser): Promise<boolean>",
+      "containerClass": "AppManager",
+      "calls": [
+        {
+          "name": "call",
+          "edgeType": "call"
+        },
+        {
+          "name": "setStatus",
+          "edgeType": "call"
+        },
+        {
+          "name": "ProxiedApp",
+          "edgeType": "type"
+        },
+        {
+          "name": "IUser",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "updateApp",
+      "exported": true,
+      "qualifiedName": "AppManager.updateApp",
+      "line": 402,
+      "endLine": 418,
+      "signature": "private async updateApp(app: ProxiedApp, user: IUser | null, oldAppVersion: string): Promise<boolean>",
+      "containerClass": "AppManager",
+      "calls": [
+        {
+          "name": "call",
+          "edgeType": "call"
+        },
+        {
+          "name": "setStatus",
+          "edgeType": "call"
+        },
+        {
+          "name": "ProxiedApp",
+          "edgeType": "type"
+        },
+        {
+          "name": "IUser",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "initializeApp",
+      "exported": true,
+      "qualifiedName": "AppManager.initializeApp",
+      "line": 406,
+      "endLine": 437,
+      "signature": "private async initializeApp(app: ProxiedApp, silenceStatus = false): Promise<boolean>",
+      "containerClass": "AppManager",
+      "calls": [
+        {
+          "name": "validateLicense",
+          "edgeType": "call"
+        },
+        {
+          "name": "validateInstallation",
+          "edgeType": "call"
+        },
+        {
+          "name": "call",
+          "edgeType": "call"
+        },
+        {
+          "name": "setStatus",
+          "edgeType": "call"
+        },
+        {
+          "name": "registerCommands",
+          "edgeType": "call"
+        },
+        {
+          "name": "getID",
+          "edgeType": "call"
+        },
+        {
+          "name": "purgeAppConfig",
+          "edgeType": "call"
+        },
+        {
+          "name": "ProxiedApp",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "purgeAppConfig",
+      "exported": true,
+      "qualifiedName": "AppManager.purgeAppConfig",
+      "line": 410,
+      "endLine": 429,
+      "signature": "private async purgeAppConfig(app: ProxiedApp, opts: IPurgeAppConfigOpts = {})",
+      "containerClass": "AppManager",
+      "calls": [
+        {
+          "name": "cleanUp",
+          "edgeType": "call"
+        },
+        {
+          "name": "getID",
+          "edgeType": "call"
+        },
+        {
+          "name": "unregisterCommands",
+          "edgeType": "call"
+        },
+        {
+          "name": "unregisterListeners",
+          "edgeType": "call"
+        },
+        {
+          "name": "lockEssentialEvents",
+          "edgeType": "call"
+        },
+        {
+          "name": "unregisterExternalComponents",
+          "edgeType": "call"
+        },
+        {
+          "name": "unregisterApis",
+          "edgeType": "call"
+        },
+        {
+          "name": "purifyApp",
+          "edgeType": "call"
+        },
+        {
+          "name": "clearAppActionButtons",
+          "edgeType": "call"
+        },
+        {
+          "name": "unregisterProviders",
+          "edgeType": "call"
+        },
+        {
+          "name": "ProxiedApp",
+          "edgeType": "type"
+        },
+        {
+          "name": "IPurgeAppConfigOpts",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "areRequiredSettingsSet",
+      "exported": true,
+      "qualifiedName": "AppManager.areRequiredSettingsSet",
+      "line": 418,
+      "endLine": 436,
+      "signature": "private areRequiredSettingsSet(storageItem: IAppStorageItem): boolean",
+      "containerClass": "AppManager",
+      "calls": [
+        {
+          "name": "keys",
+          "edgeType": "call"
+        },
+        {
+          "name": "IAppStorageItem",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "enableApp",
+      "exported": true,
+      "qualifiedName": "AppManager.enableApp",
+      "line": 422,
+      "endLine": 470,
+      "signature": "private async enableApp(app: ProxiedApp, silenceStatus = false): Promise<boolean>",
+      "containerClass": "AppManager",
+      "calls": [
+        {
+          "name": "validateLicense",
+          "edgeType": "call"
+        },
+        {
+          "name": "validateInstallation",
+          "edgeType": "call"
+        },
+        {
+          "name": "call",
+          "edgeType": "call"
+        },
+        {
+          "name": "warn",
+          "edgeType": "call"
+        },
+        {
+          "name": "getID",
+          "edgeType": "call"
+        },
+        {
+          "name": "error",
+          "edgeType": "call"
+        },
+        {
+          "name": "registerExternalComponents",
+          "edgeType": "call"
+        },
+        {
+          "name": "registerApis",
+          "edgeType": "call"
+        },
+        {
+          "name": "registerListeners",
+          "edgeType": "call"
+        },
+        {
+          "name": "releaseEssentialEvents",
+          "edgeType": "call"
+        },
+        {
+          "name": "registerProviders",
+          "edgeType": "call"
+        },
+        {
+          "name": "purgeAppConfig",
+          "edgeType": "call"
+        },
+        {
+          "name": "setStatus",
+          "edgeType": "call"
+        },
+        {
+          "name": "ProxiedApp",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "createAppUser",
+      "exported": true,
+      "qualifiedName": "AppManager.createAppUser",
+      "line": 426,
+      "endLine": 448,
+      "signature": "private async createAppUser(appInfo: IAppInfo): Promise<string>",
+      "containerClass": "AppManager",
+      "calls": [
+        {
+          "name": "getAppUser",
+          "edgeType": "call"
+        },
+        {
+          "name": "getUserBridge",
+          "edgeType": "call"
+        },
+        {
+          "name": "create",
+          "edgeType": "call"
+        },
+        {
+          "name": "IAppInfo",
+          "edgeType": "type"
+        },
+        {
+          "name": "IInternalUserBridge",
+          "edgeType": "type"
+        },
+        {
+          "name": "UserBridge",
+          "edgeType": "type"
+        },
+        {
+          "name": "IUser",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "removeAppUser",
+      "exported": true,
+      "qualifiedName": "AppManager.removeAppUser",
+      "line": 430,
+      "endLine": 438,
+      "signature": "private async removeAppUser(app: ProxiedApp): Promise<boolean>",
+      "containerClass": "AppManager",
+      "calls": [
+        {
+          "name": "getAppUser",
+          "edgeType": "call"
+        },
+        {
+          "name": "getUserBridge",
+          "edgeType": "call"
+        },
+        {
+          "name": "getID",
+          "edgeType": "call"
+        },
+        {
+          "name": "remove",
+          "edgeType": "call"
+        },
+        {
+          "name": "ProxiedApp",
+          "edgeType": "type"
+        },
+        {
+          "name": "IInternalUserBridge",
+          "edgeType": "type"
+        },
+        {
+          "name": "UserBridge",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "uninstallApp",
+      "exported": true,
+      "qualifiedName": "AppManager.uninstallApp",
+      "line": 434,
+      "endLine": 451,
+      "signature": "private async uninstallApp(app: ProxiedApp, user: IUser): Promise<boolean>",
+      "containerClass": "AppManager",
+      "calls": [
+        {
+          "name": "call",
+          "edgeType": "call"
+        },
+        {
+          "name": "setStatus",
+          "edgeType": "call"
+        },
+        {
+          "name": "ProxiedApp",
+          "edgeType": "type"
+        },
+        {
+          "name": "IUser",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "constructor",
+      "exported": true,
+      "qualifiedName": "AppManager.constructor",
+      "line": 120,
+      "endLine": 172,
+      "signature": "constructor({ metadataStorage, logStorage, bridges, sourceStorage, tempFilePath }: IAppManagerDeps)",
+      "containerClass": "AppManager",
+      "calls": [
+        {
+          "name": "Map",
+          "edgeType": "new"
+        },
+        {
+          "name": "AppPackageParser",
+          "edgeType": "new"
+        },
+        {
+          "name": "AppCompiler",
+          "edgeType": "new"
+        },
+        {
+          "name": "AppAccessorManager",
+          "edgeType": "new"
+        },
+        {
+          "name": "AppListenerManager",
+          "edgeType": "new"
+        },
+        {
+          "name": "AppSlashCommandManager",
+          "edgeType": "new"
+        },
+        {
+          "name": "AppApiManager",
+          "edgeType": "new"
+        },
+        {
+          "name": "AppExternalComponentManager",
+          "edgeType": "new"
+        },
+        {
+          "name": "AppSettingsManager",
+          "edgeType": "new"
+        },
+        {
+          "name": "AppLicenseManager",
+          "edgeType": "new"
+        },
+        {
+          "name": "AppSchedulerManager",
+          "edgeType": "new"
+        },
+        {
+          "name": "UIActionButtonManager",
+          "edgeType": "new"
+        },
+        {
+          "name": "AppVideoConfProviderManager",
+          "edgeType": "new"
+        },
+        {
+          "name": "AppOutboundCommunicationProviderManager",
+          "edgeType": "new"
+        },
+        {
+          "name": "AppSignatureManager",
+          "edgeType": "new"
+        },
+        {
+          "name": "AppRuntimeManager",
+          "edgeType": "new"
+        },
+        {
+          "name": "IAppManagerDeps",
+          "edgeType": "type"
+        },
+        {
+          "name": "ProxiedApp",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "class_property",
+      "name": "Instance",
+      "exported": true,
+      "qualifiedName": "AppManager.Instance",
+      "line": 73,
+      "endLine": 73,
+      "signature": "public static Instance: AppManager;",
+      "containerClass": "AppManager",
+      "calls": [
+        {
+          "name": "AppManager",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "class_property",
+      "name": "apps",
+      "exported": true,
+      "qualifiedName": "AppManager.apps",
+      "line": 76,
+      "endLine": 76,
+      "signature": "private readonly apps: Map<string, ProxiedApp>;",
+      "containerClass": "AppManager",
+      "calls": [
+        {
+          "name": "ProxiedApp",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "class_property",
+      "name": "appMetadataStorage",
+      "exported": true,
+      "qualifiedName": "AppManager.appMetadataStorage",
+      "line": 78,
+      "endLine": 78,
+      "signature": "private readonly appMetadataStorage: AppMetadataStorage;",
+      "containerClass": "AppManager",
+      "calls": [
+        {
+          "name": "AppMetadataStorage",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "class_property",
+      "name": "appSourceStorage",
+      "exported": true,
+      "qualifiedName": "AppManager.appSourceStorage",
+      "line": 80,
+      "endLine": 80,
+      "signature": "private appSourceStorage: AppSourceStorage;",
+      "containerClass": "AppManager",
+      "calls": [
+        {
+          "name": "AppSourceStorage",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "class_property",
+      "name": "logStorage",
+      "exported": true,
+      "qualifiedName": "AppManager.logStorage",
+      "line": 82,
+      "endLine": 82,
+      "signature": "private readonly logStorage: AppLogStorage;",
+      "containerClass": "AppManager",
+      "calls": [
+        {
+          "name": "AppLogStorage",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "class_property",
+      "name": "bridges",
+      "exported": true,
+      "qualifiedName": "AppManager.bridges",
+      "line": 84,
+      "endLine": 84,
+      "signature": "private readonly bridges: AppBridges;",
+      "containerClass": "AppManager",
+      "calls": [
+        {
+          "name": "AppBridges",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "class_property",
+      "name": "parser",
+      "exported": true,
+      "qualifiedName": "AppManager.parser",
+      "line": 86,
+      "endLine": 86,
+      "signature": "private readonly parser: AppPackageParser;",
+      "containerClass": "AppManager",
+      "calls": [
+        {
+          "name": "AppPackageParser",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "class_property",
+      "name": "compiler",
+      "exported": true,
+      "qualifiedName": "AppManager.compiler",
+      "line": 88,
+      "endLine": 88,
+      "signature": "private readonly compiler: AppCompiler;",
+      "containerClass": "AppManager",
+      "calls": [
+        {
+          "name": "AppCompiler",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "class_property",
+      "name": "accessorManager",
+      "exported": true,
+      "qualifiedName": "AppManager.accessorManager",
+      "line": 90,
+      "endLine": 90,
+      "signature": "private readonly accessorManager: AppAccessorManager;",
+      "containerClass": "AppManager",
+      "calls": [
+        {
+          "name": "AppAccessorManager",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "class_property",
+      "name": "listenerManager",
+      "exported": true,
+      "qualifiedName": "AppManager.listenerManager",
+      "line": 92,
+      "endLine": 92,
+      "signature": "private readonly listenerManager: AppListenerManager;",
+      "containerClass": "AppManager",
+      "calls": [
+        {
+          "name": "AppListenerManager",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "class_property",
+      "name": "commandManager",
+      "exported": true,
+      "qualifiedName": "AppManager.commandManager",
+      "line": 94,
+      "endLine": 94,
+      "signature": "private readonly commandManager: AppSlashCommandManager;",
+      "containerClass": "AppManager",
+      "calls": [
+        {
+          "name": "AppSlashCommandManager",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "class_property",
+      "name": "apiManager",
+      "exported": true,
+      "qualifiedName": "AppManager.apiManager",
+      "line": 96,
+      "endLine": 96,
+      "signature": "private readonly apiManager: AppApiManager;",
+      "containerClass": "AppManager",
+      "calls": [
+        {
+          "name": "AppApiManager",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "class_property",
+      "name": "externalComponentManager",
+      "exported": true,
+      "qualifiedName": "AppManager.externalComponentManager",
+      "line": 98,
+      "endLine": 98,
+      "signature": "private readonly externalComponentManager: AppExternalComponentManager;",
+      "containerClass": "AppManager",
+      "calls": [
+        {
+          "name": "AppExternalComponentManager",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "class_property",
+      "name": "settingsManager",
+      "exported": true,
+      "qualifiedName": "AppManager.settingsManager",
+      "line": 100,
+      "endLine": 100,
+      "signature": "private readonly settingsManager: AppSettingsManager;",
+      "containerClass": "AppManager",
+      "calls": [
+        {
+          "name": "AppSettingsManager",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "class_property",
+      "name": "licenseManager",
+      "exported": true,
+      "qualifiedName": "AppManager.licenseManager",
+      "line": 102,
+      "endLine": 102,
+      "signature": "private readonly licenseManager: AppLicenseManager;",
+      "containerClass": "AppManager",
+      "calls": [
+        {
+          "name": "AppLicenseManager",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "class_property",
+      "name": "schedulerManager",
+      "exported": true,
+      "qualifiedName": "AppManager.schedulerManager",
+      "line": 104,
+      "endLine": 104,
+      "signature": "private readonly schedulerManager: AppSchedulerManager;",
+      "containerClass": "AppManager",
+      "calls": [
+        {
+          "name": "AppSchedulerManager",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "class_property",
+      "name": "uiActionButtonManager",
+      "exported": true,
+      "qualifiedName": "AppManager.uiActionButtonManager",
+      "line": 106,
+      "endLine": 106,
+      "signature": "private readonly uiActionButtonManager: UIActionButtonManager;",
+      "containerClass": "AppManager",
+      "calls": [
+        {
+          "name": "UIActionButtonManager",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "class_property",
+      "name": "videoConfProviderManager",
+      "exported": true,
+      "qualifiedName": "AppManager.videoConfProviderManager",
+      "line": 108,
+      "endLine": 108,
+      "signature": "private readonly videoConfProviderManager: AppVideoConfProviderManager;",
+      "containerClass": "AppManager",
+      "calls": [
+        {
+          "name": "AppVideoConfProviderManager",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "class_property",
+      "name": "outboundCommunicationProviderManager",
+      "exported": true,
+      "qualifiedName": "AppManager.outboundCommunicationProviderManager",
+      "line": 110,
+      "endLine": 110,
+      "signature": "private readonly outboundCommunicationProviderManager: AppOutboundCommunicationProviderManager;",
+      "containerClass": "AppManager",
+      "calls": [
+        {
+          "name": "AppOutboundCommunicationProviderManager",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "class_property",
+      "name": "signatureManager",
+      "exported": true,
+      "qualifiedName": "AppManager.signatureManager",
+      "line": 112,
+      "endLine": 112,
+      "signature": "private readonly signatureManager: AppSignatureManager;",
+      "containerClass": "AppManager",
+      "calls": [
+        {
+          "name": "AppSignatureManager",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "class_property",
+      "name": "runtime",
+      "exported": true,
+      "qualifiedName": "AppManager.runtime",
+      "line": 114,
+      "endLine": 114,
+      "signature": "private readonly runtime: AppRuntimeManager;",
+      "containerClass": "AppManager",
+      "calls": [
+        {
+          "name": "AppRuntimeManager",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "variable_function",
+      "name": "getPermissionsByAppId",
+      "exported": true,
+      "line": 389,
+      "endLine": 395,
+      "signature": "(appId: string) =>",
+      "calls": [
+        {
+          "name": "error",
+          "edgeType": "call"
+        },
+        {
+          "name": "getPermissionsById",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "interface",
+      "name": "IAppInstallParameters",
+      "line": 42,
+      "endLine": 47,
+      "signature": "export interface IAppInstallParameters"
+    },
+    {
+      "type": "interface",
+      "name": "IAppUninstallParameters",
+      "line": 49,
+      "endLine": 51,
+      "signature": "export interface IAppUninstallParameters"
+    },
+    {
+      "type": "interface",
+      "name": "IAppManagerDeps",
+      "line": 53,
+      "endLine": 64,
+      "signature": "export interface IAppManagerDeps"
+    },
+    {
+      "type": "interface",
+      "name": "IPurgeAppConfigOpts",
+      "line": 66,
+      "endLine": 70,
+      "signature": "interface IPurgeAppConfigOpts"
+    }
+  ],
+  "imports": [
+    {
+      "module": "node:buffer",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/apps-engine/definition/AppStatus",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/apps-engine/definition/metadata",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/apps-engine/definition/metadata",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/apps-engine/definition/permissions/IPermission",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/apps-engine/definition/users",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/apps-engine/definition/users",
+      "resolved": "external"
+    },
+    {
+      "module": "./IGetAppsFilter",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/packages/apps/src/server/IGetAppsFilter.ts"
+    },
+    {
+      "module": "./ProxiedApp",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/packages/apps/src/server/ProxiedApp.ts"
+    },
+    {
+      "module": "./bridges",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/packages/apps/src/server/bridges/index.ts"
+    },
+    {
+      "module": "./bridges",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/packages/apps/src/server/bridges/index.ts"
+    },
+    {
+      "module": "./bridges/IInternalPersistenceBridge",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/packages/apps/src/server/bridges/IInternalPersistenceBridge.ts"
+    },
+    {
+      "module": "./bridges/IInternalUserBridge",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/packages/apps/src/server/bridges/IInternalUserBridge.ts"
+    },
+    {
+      "module": "./compiler",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/packages/apps/src/server/compiler/index.ts"
+    },
+    {
+      "module": "./errors",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/packages/apps/src/server/errors/index.ts"
+    },
+    {
+      "module": "./errors/InvalidInstallationError",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/packages/apps/src/server/errors/InvalidInstallationError.ts"
+    },
+    {
+      "module": "./managers",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/packages/apps/src/server/managers/index.ts"
+    },
+    {
+      "module": "./managers/AppOutboundCommunicationProviderManager",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/packages/apps/src/server/managers/AppOutboundCommunicationProviderManager.ts"
+    },
+    {
+      "module": "./managers/AppRuntimeManager",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/packages/apps/src/server/managers/AppRuntimeManager.ts"
+    },
+    {
+      "module": "./managers/AppSignatureManager",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/packages/apps/src/server/managers/AppSignatureManager.ts"
+    },
+    {
+      "module": "./managers/UIActionButtonManager",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/packages/apps/src/server/managers/UIActionButtonManager.ts"
+    },
+    {
+      "module": "./marketplace",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/packages/apps/src/server/marketplace/index.ts"
+    },
+    {
+      "module": "./permissions/AppPermissions",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/packages/apps/src/server/permissions/AppPermissions.ts"
+    },
+    {
+      "module": "./runtime/EmptyRuntime",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/packages/apps/src/server/runtime/EmptyRuntime.ts"
+    },
+    {
+      "module": "./storage",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/packages/apps/src/server/storage/index.ts"
+    },
+    {
+      "module": "./storage",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/packages/apps/src/server/storage/index.ts"
+    },
+    {
+      "module": "./storage/AppSourceStorage",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/packages/apps/src/server/storage/AppSourceStorage.ts"
+    },
+    {
+      "module": "./storage/IAppStorageItem",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/packages/apps/src/server/storage/IAppStorageItem.ts"
+    }
+  ]
+}

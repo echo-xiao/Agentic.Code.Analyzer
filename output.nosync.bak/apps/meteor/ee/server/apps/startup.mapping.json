@@ -1,0 +1,89 @@
+{
+  "sourcePath": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/ee/server/apps/startup.ts",
+  "symbols": [
+    {
+      "type": "variable_function",
+      "name": "startupApp",
+      "exported": true,
+      "line": 7,
+      "endLine": 83,
+      "signature": "async function startupApp()",
+      "calls": [
+        {
+          "name": "addGroup",
+          "edgeType": "call"
+        },
+        {
+          "name": "section",
+          "edgeType": "call"
+        },
+        {
+          "name": "migratePrivateApps",
+          "edgeType": "call"
+        },
+        {
+          "name": "disablePrivateApps",
+          "edgeType": "call"
+        },
+        {
+          "name": "disableMarketplaceApps",
+          "edgeType": "call"
+        },
+        {
+          "name": "onInvalidateLicense",
+          "edgeType": "call"
+        },
+        {
+          "name": "onRemoveLicense",
+          "edgeType": "call"
+        },
+        {
+          "name": "onModule",
+          "edgeType": "call"
+        },
+        {
+          "name": "initialize",
+          "edgeType": "call"
+        },
+        {
+          "name": "load",
+          "edgeType": "call"
+        },
+        {
+          "name": "change",
+          "edgeType": "call"
+        },
+        {
+          "name": "setStorage",
+          "edgeType": "call"
+        },
+        {
+          "name": "getAppSourceStorage",
+          "edgeType": "call"
+        },
+        {
+          "name": "setFileSystemStoragePath",
+          "edgeType": "call"
+        }
+      ]
+    }
+  ],
+  "imports": [
+    {
+      "module": "@rocket.chat/license",
+      "resolved": "external"
+    },
+    {
+      "module": "./orchestrator",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/ee/server/apps/orchestrator.ts"
+    },
+    {
+      "module": "../../../app/settings/server",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/app/settings/server/index.ts"
+    },
+    {
+      "module": "../lib/apps/disableAppsWithAddonsCallback",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/ee/server/lib/apps/disableAppsWithAddonsCallback.ts"
+    }
+  ]
+}

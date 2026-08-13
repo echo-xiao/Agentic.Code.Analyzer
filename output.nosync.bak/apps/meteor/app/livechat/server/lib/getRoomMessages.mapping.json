@@ -1,0 +1,45 @@
+{
+  "sourcePath": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/app/livechat/server/lib/getRoomMessages.ts",
+  "symbols": [
+    {
+      "type": "function",
+      "name": "getRoomMessages",
+      "exported": true,
+      "line": 5,
+      "endLine": 23,
+      "signature": "export async function getRoomMessages({ rid }: { rid: string })",
+      "calls": [
+        {
+          "name": "findOneById",
+          "edgeType": "call"
+        },
+        {
+          "name": "findVisibleByRoomIdNotContainingTypes",
+          "edgeType": "call"
+        },
+        {
+          "name": "IRoom",
+          "edgeType": "type"
+        },
+        {
+          "name": "MessageTypesValues",
+          "edgeType": "type"
+        }
+      ]
+    }
+  ],
+  "imports": [
+    {
+      "module": "@rocket.chat/core-typings",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/models",
+      "resolved": "external"
+    },
+    {
+      "module": "meteor/meteor",
+      "resolved": "external"
+    }
+  ]
+}

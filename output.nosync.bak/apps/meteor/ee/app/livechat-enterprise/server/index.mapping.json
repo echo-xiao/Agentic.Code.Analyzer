@@ -1,0 +1,129 @@
+{
+  "sourcePath": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/ee/app/livechat-enterprise/server/index.ts",
+  "symbols": [
+    {
+      "type": "module",
+      "name": "index",
+      "exported": false,
+      "line": 1,
+      "endLine": 40,
+      "signature": "index",
+      "calls": [
+        {
+          "name": "patchOmniCore",
+          "edgeType": "call"
+        },
+        {
+          "name": "onLicense",
+          "edgeType": "call"
+        },
+        {
+          "name": "startup",
+          "edgeType": "call"
+        },
+        {
+          "name": "createSettings",
+          "edgeType": "call"
+        },
+        {
+          "name": "createPermissions",
+          "edgeType": "call"
+        },
+        {
+          "name": "createDefaultPriorities",
+          "edgeType": "call"
+        }
+      ]
+    }
+  ],
+  "imports": [
+    {
+      "module": "@rocket.chat/license",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/omni-core-ee",
+      "resolved": "external"
+    },
+    {
+      "module": "meteor/meteor",
+      "resolved": "external"
+    },
+    {
+      "module": "./hooks/afterTakeInquiry",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/ee/app/livechat-enterprise/server/hooks/afterTakeInquiry.ts"
+    },
+    {
+      "module": "./hooks/beforeNewInquiry",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/ee/app/livechat-enterprise/server/hooks/beforeNewInquiry.ts"
+    },
+    {
+      "module": "./hooks/beforeNewRoom",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/ee/app/livechat-enterprise/server/hooks/beforeNewRoom.ts"
+    },
+    {
+      "module": "./hooks/beforeRoutingChat",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/ee/app/livechat-enterprise/server/hooks/beforeRoutingChat.ts"
+    },
+    {
+      "module": "./hooks/checkAgentBeforeTakeInquiry",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/ee/app/livechat-enterprise/server/hooks/checkAgentBeforeTakeInquiry.ts"
+    },
+    {
+      "module": "./hooks/handleNextAgentPreferredEvents",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/ee/app/livechat-enterprise/server/hooks/handleNextAgentPreferredEvents.ts"
+    },
+    {
+      "module": "./hooks/onCheckRoomParamsApi",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/ee/app/livechat-enterprise/server/hooks/onCheckRoomParamsApi.ts"
+    },
+    {
+      "module": "./hooks/onLoadConfigApi",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/ee/app/livechat-enterprise/server/hooks/onLoadConfigApi.ts"
+    },
+    {
+      "module": "./hooks/onSaveVisitorInfo",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/ee/app/livechat-enterprise/server/hooks/onSaveVisitorInfo.ts"
+    },
+    {
+      "module": "./hooks/scheduleAutoTransfer",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/ee/app/livechat-enterprise/server/hooks/scheduleAutoTransfer.ts"
+    },
+    {
+      "module": "./hooks/resumeOnHold",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/ee/app/livechat-enterprise/server/hooks/resumeOnHold.ts"
+    },
+    {
+      "module": "./hooks/afterOnHold",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/ee/app/livechat-enterprise/server/hooks/afterOnHold.ts"
+    },
+    {
+      "module": "./hooks/onTransferFailure",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/ee/app/livechat-enterprise/server/hooks/onTransferFailure.ts"
+    },
+    {
+      "module": "./lib/routing/LoadBalancing",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/ee/app/livechat-enterprise/server/lib/routing/LoadBalancing.ts"
+    },
+    {
+      "module": "./lib/routing/LoadRotation",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/ee/app/livechat-enterprise/server/lib/routing/LoadRotation.ts"
+    },
+    {
+      "module": "./lib/AutoCloseOnHoldScheduler",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/ee/app/livechat-enterprise/server/lib/AutoCloseOnHoldScheduler.ts"
+    },
+    {
+      "module": "./business-hour",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/ee/app/livechat-enterprise/server/business-hour/index.ts"
+    },
+    {
+      "module": "../../../server/api/v1/omnichannel",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/ee/server/api/v1/omnichannel/index.ts"
+    },
+    {
+      "module": "./priorities",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/ee/app/livechat-enterprise/server/priorities.ts"
+    }
+  ]
+}

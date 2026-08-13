@@ -1,0 +1,449 @@
+{
+  "sourcePath": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/client/apps/orchestrator.ts",
+  "symbols": [
+    {
+      "type": "class",
+      "name": "AppClientOrchestrator",
+      "exported": false,
+      "line": 17,
+      "endLine": 181,
+      "signature": "class AppClientOrchestrator",
+      "calls": []
+    },
+    {
+      "type": "method",
+      "name": "load",
+      "exported": false,
+      "qualifiedName": "AppClientOrchestrator.load",
+      "line": 30,
+      "endLine": 34,
+      "signature": "public async load(): Promise<void>",
+      "containerClass": "AppClientOrchestrator",
+      "calls": []
+    },
+    {
+      "type": "method",
+      "name": "getAppClientManager",
+      "exported": false,
+      "qualifiedName": "AppClientOrchestrator.getAppClientManager",
+      "line": 34,
+      "endLine": 36,
+      "signature": "public getAppClientManager(): AppClientManager",
+      "containerClass": "AppClientOrchestrator",
+      "calls": [
+        {
+          "name": "AppClientManager",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "handleError",
+      "exported": false,
+      "qualifiedName": "AppClientOrchestrator.handleError",
+      "line": 38,
+      "endLine": 45,
+      "signature": "public handleError(error: unknown): void",
+      "containerClass": "AppClientOrchestrator",
+      "calls": [
+        {
+          "name": "hasAtLeastOnePermission",
+          "edgeType": "call"
+        },
+        {
+          "name": "dispatchToastMessage",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "getInstalledApps",
+      "exported": false,
+      "qualifiedName": "AppClientOrchestrator.getInstalledApps",
+      "line": 42,
+      "endLine": 50,
+      "signature": "public async getInstalledApps(): Promise<App[]>",
+      "containerClass": "AppClientOrchestrator",
+      "calls": [
+        {
+          "name": "apps/installed",
+          "edgeType": "rest_call"
+        },
+        {
+          "name": "get",
+          "edgeType": "call"
+        },
+        {
+          "name": "App",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "getAppsFromMarketplace",
+      "exported": false,
+      "qualifiedName": "AppClientOrchestrator.getAppsFromMarketplace",
+      "line": 46,
+      "endLine": 80,
+      "signature": "public async getAppsFromMarketplace(isAdminUser?: boolean): Promise<{ apps: App[]; error?: unknown }>",
+      "containerClass": "AppClientOrchestrator",
+      "calls": [
+        {
+          "name": "apps/marketplace",
+          "edgeType": "rest_call"
+        },
+        {
+          "name": "get",
+          "edgeType": "call"
+        },
+        {
+          "name": "isErrorObject",
+          "edgeType": "call"
+        },
+        {
+          "name": "isArray",
+          "edgeType": "call"
+        },
+        {
+          "name": "map",
+          "edgeType": "call"
+        },
+        {
+          "name": "App",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "getAppsOnBundle",
+      "exported": false,
+      "qualifiedName": "AppClientOrchestrator.getAppsOnBundle",
+      "line": 50,
+      "endLine": 53,
+      "signature": "public async getAppsOnBundle(bundleId: string): Promise<App[]>",
+      "containerClass": "AppClientOrchestrator",
+      "calls": [
+        {
+          "name": "get",
+          "edgeType": "call"
+        },
+        {
+          "name": "App",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "getApp",
+      "exported": false,
+      "qualifiedName": "AppClientOrchestrator.getApp",
+      "line": 54,
+      "endLine": 57,
+      "signature": "public async getApp(appId: string): Promise<App>",
+      "containerClass": "AppClientOrchestrator",
+      "calls": [
+        {
+          "name": "get",
+          "edgeType": "call"
+        },
+        {
+          "name": "App",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "setAppSettings",
+      "exported": false,
+      "qualifiedName": "AppClientOrchestrator.setAppSettings",
+      "line": 58,
+      "endLine": 60,
+      "signature": "public async setAppSettings(appId: string, settings: ISetting[]): Promise<void>",
+      "containerClass": "AppClientOrchestrator",
+      "calls": [
+        {
+          "name": "post",
+          "edgeType": "call"
+        },
+        {
+          "name": "ISetting",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "installApp",
+      "exported": false,
+      "qualifiedName": "AppClientOrchestrator.installApp",
+      "line": 62,
+      "endLine": 70,
+      "signature": "public async installApp(appId: string, version: string, permissionsGranted?: IPermission[]): Promise<App>",
+      "containerClass": "AppClientOrchestrator",
+      "calls": [
+        {
+          "name": "apps",
+          "edgeType": "rest_call"
+        },
+        {
+          "name": "post",
+          "edgeType": "call"
+        },
+        {
+          "name": "IPermission",
+          "edgeType": "type"
+        },
+        {
+          "name": "App",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "updateApp",
+      "exported": false,
+      "qualifiedName": "AppClientOrchestrator.updateApp",
+      "line": 66,
+      "endLine": 78,
+      "signature": "public async updateApp(appId: string, version: string, permissionsGranted?: IPermission[]): Promise<App>",
+      "containerClass": "AppClientOrchestrator",
+      "calls": [
+        {
+          "name": "post",
+          "edgeType": "call"
+        },
+        {
+          "name": "IPermission",
+          "edgeType": "type"
+        },
+        {
+          "name": "App",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "buildExternalUrl",
+      "exported": false,
+      "qualifiedName": "AppClientOrchestrator.buildExternalUrl",
+      "line": 70,
+      "endLine": 82,
+      "signature": "public async buildExternalUrl(appId: string, purchaseType: 'buy' | 'subscription' = 'buy', details = false): Promise<IAppExternalURL>",
+      "containerClass": "AppClientOrchestrator",
+      "calls": [
+        {
+          "name": "apps/buildExternalUrl",
+          "edgeType": "rest_call"
+        },
+        {
+          "name": "get",
+          "edgeType": "call"
+        },
+        {
+          "name": "IAppExternalURL",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "buildExternalAppRequest",
+      "exported": false,
+      "qualifiedName": "AppClientOrchestrator.buildExternalAppRequest",
+      "line": 74,
+      "endLine": 83,
+      "signature": "public async buildExternalAppRequest(appId: string)",
+      "containerClass": "AppClientOrchestrator",
+      "calls": [
+        {
+          "name": "apps/buildExternalAppRequest",
+          "edgeType": "rest_call"
+        },
+        {
+          "name": "get",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "buildIncompatibleExternalUrl",
+      "exported": false,
+      "qualifiedName": "AppClientOrchestrator.buildIncompatibleExternalUrl",
+      "line": 78,
+      "endLine": 90,
+      "signature": "public async buildIncompatibleExternalUrl(appId: string, appVersion: string, action: string): Promise<IAppExternalURL>",
+      "containerClass": "AppClientOrchestrator",
+      "calls": [
+        {
+          "name": "apps/incompatibleModal",
+          "edgeType": "rest_call"
+        },
+        {
+          "name": "get",
+          "edgeType": "call"
+        },
+        {
+          "name": "IAppExternalURL",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "getCategories",
+      "exported": false,
+      "qualifiedName": "AppClientOrchestrator.getCategories",
+      "line": 82,
+      "endLine": 90,
+      "signature": "public async getCategories(): Promise<Serialized<ICategory[]>>",
+      "containerClass": "AppClientOrchestrator",
+      "calls": [
+        {
+          "name": "apps/categories",
+          "edgeType": "rest_call"
+        },
+        {
+          "name": "get",
+          "edgeType": "call"
+        },
+        {
+          "name": "isArray",
+          "edgeType": "call"
+        },
+        {
+          "name": "Serialized",
+          "edgeType": "type"
+        },
+        {
+          "name": "ICategory",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "constructor",
+      "exported": false,
+      "qualifiedName": "AppClientOrchestrator.constructor",
+      "line": 24,
+      "endLine": 28,
+      "signature": "constructor()",
+      "containerClass": "AppClientOrchestrator",
+      "calls": [
+        {
+          "name": "RealAppsEngineUIHost",
+          "edgeType": "new"
+        },
+        {
+          "name": "AppClientManager",
+          "edgeType": "new"
+        }
+      ]
+    },
+    {
+      "type": "class_property",
+      "name": "_appClientUIHost",
+      "exported": false,
+      "qualifiedName": "AppClientOrchestrator._appClientUIHost",
+      "line": 18,
+      "endLine": 18,
+      "signature": "private _appClientUIHost: AppsEngineUIHost;",
+      "containerClass": "AppClientOrchestrator",
+      "calls": [
+        {
+          "name": "AppsEngineUIHost",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "class_property",
+      "name": "_manager",
+      "exported": false,
+      "qualifiedName": "AppClientOrchestrator._manager",
+      "line": 20,
+      "endLine": 20,
+      "signature": "private _manager: AppClientManager;",
+      "containerClass": "AppClientOrchestrator",
+      "calls": [
+        {
+          "name": "AppClientManager",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "variable_function",
+      "name": "isErrorObject",
+      "exported": false,
+      "line": 14,
+      "endLine": 15,
+      "signature": "(e: unknown): e is { error: string } =>",
+      "calls": []
+    },
+    {
+      "type": "variable",
+      "name": "AppClientOrchestratorInstance",
+      "exported": true,
+      "line": 85,
+      "endLine": 85,
+      "signature": "AppClientOrchestratorInstance = new AppClientOrchestrator()",
+      "calls": []
+    }
+  ],
+  "imports": [
+    {
+      "module": "@rocket.chat/apps/dist/client/AppClientManager",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/apps/dist/client/AppsEngineUIHost",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/apps-engine/definition/permissions/IPermission",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/apps-engine/definition/settings",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/core-typings",
+      "resolved": "external"
+    },
+    {
+      "module": "./@types/IOrchestrator",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/client/apps/@types/IOrchestrator.ts"
+    },
+    {
+      "module": "./RealAppsEngineUIHost",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/client/apps/RealAppsEngineUIHost.ts"
+    },
+    {
+      "module": "../../app/authorization/client",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/app/authorization/client/index.ts"
+    },
+    {
+      "module": "../../app/utils/client/lib/SDKClient",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/app/utils/client/lib/SDKClient.ts"
+    },
+    {
+      "module": "../lib/toast",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/client/lib/toast.ts"
+    },
+    {
+      "module": "../views/marketplace/types",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/client/views/marketplace/types.ts"
+    }
+  ]
+}

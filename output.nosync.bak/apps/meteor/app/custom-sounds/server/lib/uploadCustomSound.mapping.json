@@ -1,0 +1,93 @@
+{
+  "sourcePath": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/app/custom-sounds/server/lib/uploadCustomSound.ts",
+  "symbols": [
+    {
+      "type": "variable_function",
+      "name": "uploadCustomSound",
+      "exported": true,
+      "line": 9,
+      "endLine": 44,
+      "signature": "async ( buffer: Buffer, contentType: string, soundData: RequiredField<ICustomSoundData, '_id'>, ): Promise<void> =>",
+      "calls": [
+        {
+          "name": "bufferToStream",
+          "edgeType": "call"
+        },
+        {
+          "name": "deleteFile",
+          "edgeType": "call"
+        },
+        {
+          "name": "createWriteStream",
+          "edgeType": "call"
+        },
+        {
+          "name": "error",
+          "edgeType": "event_listen"
+        },
+        {
+          "name": "reject",
+          "edgeType": "call"
+        },
+        {
+          "name": "destroy",
+          "edgeType": "call"
+        },
+        {
+          "name": "end",
+          "edgeType": "event_listen"
+        },
+        {
+          "name": "findOneById",
+          "edgeType": "call"
+        },
+        {
+          "name": "notify.updateCustomSound",
+          "edgeType": "event_emit"
+        },
+        {
+          "name": "resolve",
+          "edgeType": "call"
+        },
+        {
+          "name": "pipe",
+          "edgeType": "call"
+        },
+        {
+          "name": "RequiredField",
+          "edgeType": "type"
+        },
+        {
+          "name": "ICustomSoundData",
+          "edgeType": "type"
+        }
+      ]
+    }
+  ],
+  "imports": [
+    {
+      "module": "@rocket.chat/core-services",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/core-typings",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/models",
+      "resolved": "external"
+    },
+    {
+      "module": "../../../file/server",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/app/file/server/index.ts"
+    },
+    {
+      "module": "../methods/insertOrUpdateSound",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/app/custom-sounds/server/methods/insertOrUpdateSound.ts"
+    },
+    {
+      "module": "../startup/custom-sounds",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/app/custom-sounds/server/startup/custom-sounds.ts"
+    }
+  ]
+}

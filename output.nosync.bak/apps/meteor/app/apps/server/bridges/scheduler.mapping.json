@@ -1,0 +1,395 @@
+{
+  "sourcePath": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/app/apps/server/bridges/scheduler.ts",
+  "symbols": [
+    {
+      "type": "class",
+      "name": "AppSchedulerBridge",
+      "exported": true,
+      "line": 33,
+      "endLine": 201,
+      "signature": "export class AppSchedulerBridge extends SchedulerBridge",
+      "calls": [
+        {
+          "name": "SchedulerBridge",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "registerProcessors",
+      "exported": true,
+      "qualifiedName": "AppSchedulerBridge.registerProcessors",
+      "line": 57,
+      "endLine": 95,
+      "signature": "protected async registerProcessors(processors: Array<IProcessor> = [], appId: string): Promise<void | Array<string>>",
+      "containerClass": "AppSchedulerBridge",
+      "calls": [
+        {
+          "name": "debugLog",
+          "edgeType": "call"
+        },
+        {
+          "name": "forEach",
+          "edgeType": "call"
+        },
+        {
+          "name": "define",
+          "edgeType": "call"
+        },
+        {
+          "name": "_callProcessor",
+          "edgeType": "call"
+        },
+        {
+          "name": "push",
+          "edgeType": "call"
+        },
+        {
+          "name": "scheduleOnceAfterRegister",
+          "edgeType": "call"
+        },
+        {
+          "name": "scheduleRecurring",
+          "edgeType": "call"
+        },
+        {
+          "name": "error",
+          "edgeType": "call"
+        },
+        {
+          "name": "getRocketChatLogger",
+          "edgeType": "call"
+        },
+        {
+          "name": "all",
+          "edgeType": "call"
+        },
+        {
+          "name": "IProcessor",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "scheduleOnce",
+      "exported": true,
+      "qualifiedName": "AppSchedulerBridge.scheduleOnce",
+      "line": 64,
+      "endLine": 73,
+      "signature": "protected async scheduleOnce({ id, when, data }: IOnetimeSchedule, appId: string): Promise<void | string>",
+      "containerClass": "AppSchedulerBridge",
+      "calls": [
+        {
+          "name": "debugLog",
+          "edgeType": "call"
+        },
+        {
+          "name": "startScheduler",
+          "edgeType": "call"
+        },
+        {
+          "name": "schedule",
+          "edgeType": "call"
+        },
+        {
+          "name": "decorateJobData",
+          "edgeType": "call"
+        },
+        {
+          "name": "error",
+          "edgeType": "call"
+        },
+        {
+          "name": "getRocketChatLogger",
+          "edgeType": "call"
+        },
+        {
+          "name": "IOnetimeSchedule",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "scheduleOnceAfterRegister",
+      "exported": true,
+      "qualifiedName": "AppSchedulerBridge.scheduleOnceAfterRegister",
+      "line": 68,
+      "endLine": 73,
+      "signature": "private async scheduleOnceAfterRegister(job: IOnetimeSchedule, appId: string): Promise<void | string>",
+      "containerClass": "AppSchedulerBridge",
+      "calls": [
+        {
+          "name": "jobs",
+          "edgeType": "call"
+        },
+        {
+          "name": "scheduleOnce",
+          "edgeType": "call"
+        },
+        {
+          "name": "IOnetimeSchedule",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "scheduleRecurring",
+      "exported": true,
+      "qualifiedName": "AppSchedulerBridge.scheduleRecurring",
+      "line": 84,
+      "endLine": 98,
+      "signature": "protected async scheduleRecurring( { id, interval, skipImmediate = false, data }: IRecurringSchedule, appId: string, ): Promise<void | string>",
+      "containerClass": "AppSchedulerBridge",
+      "calls": [
+        {
+          "name": "debugLog",
+          "edgeType": "call"
+        },
+        {
+          "name": "startScheduler",
+          "edgeType": "call"
+        },
+        {
+          "name": "every",
+          "edgeType": "call"
+        },
+        {
+          "name": "decorateJobData",
+          "edgeType": "call"
+        },
+        {
+          "name": "error",
+          "edgeType": "call"
+        },
+        {
+          "name": "getRocketChatLogger",
+          "edgeType": "call"
+        },
+        {
+          "name": "IRecurringSchedule",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "cancelJob",
+      "exported": true,
+      "qualifiedName": "AppSchedulerBridge.cancelJob",
+      "line": 99,
+      "endLine": 116,
+      "signature": "protected async cancelJob(jobId: string, appId: string): Promise<void>",
+      "containerClass": "AppSchedulerBridge",
+      "calls": [
+        {
+          "name": "debugLog",
+          "edgeType": "call"
+        },
+        {
+          "name": "startScheduler",
+          "edgeType": "call"
+        },
+        {
+          "name": "split",
+          "edgeType": "call"
+        },
+        {
+          "name": "cancel",
+          "edgeType": "call"
+        },
+        {
+          "name": "error",
+          "edgeType": "call"
+        },
+        {
+          "name": "getRocketChatLogger",
+          "edgeType": "call"
+        },
+        {
+          "name": "ObjectId",
+          "edgeType": "new"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "cancelAllJobs",
+      "exported": true,
+      "qualifiedName": "AppSchedulerBridge.cancelAllJobs",
+      "line": 110,
+      "endLine": 119,
+      "signature": "protected async cancelAllJobs(appId: string): Promise<void>",
+      "containerClass": "AppSchedulerBridge",
+      "calls": [
+        {
+          "name": "debugLog",
+          "edgeType": "call"
+        },
+        {
+          "name": "startScheduler",
+          "edgeType": "call"
+        },
+        {
+          "name": "cancel",
+          "edgeType": "call"
+        },
+        {
+          "name": "error",
+          "edgeType": "call"
+        },
+        {
+          "name": "getRocketChatLogger",
+          "edgeType": "call"
+        },
+        {
+          "name": "RegExp",
+          "edgeType": "new"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "startScheduler",
+      "exported": true,
+      "qualifiedName": "AppSchedulerBridge.startScheduler",
+      "line": 114,
+      "endLine": 119,
+      "signature": "public async startScheduler(): Promise<void>",
+      "containerClass": "AppSchedulerBridge",
+      "calls": [
+        {
+          "name": "start",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "decorateJobData",
+      "exported": true,
+      "qualifiedName": "AppSchedulerBridge.decorateJobData",
+      "line": 118,
+      "endLine": 120,
+      "signature": "private decorateJobData(jobData: object | undefined, appId: string): object",
+      "containerClass": "AppSchedulerBridge",
+      "calls": [
+        {
+          "name": "assign",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "constructor",
+      "exported": true,
+      "qualifiedName": "AppSchedulerBridge.constructor",
+      "line": 38,
+      "endLine": 47,
+      "signature": "constructor(private readonly orch: IAppServerOrchestrator)",
+      "containerClass": "AppSchedulerBridge",
+      "calls": [
+        {
+          "name": "db",
+          "edgeType": "call"
+        },
+        {
+          "name": "defaultRemoteCollectionDriver",
+          "edgeType": "call"
+        },
+        {
+          "name": "Agenda",
+          "edgeType": "new"
+        },
+        {
+          "name": "IAppServerOrchestrator",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "class_property",
+      "name": "scheduler",
+      "exported": true,
+      "qualifiedName": "AppSchedulerBridge.scheduler",
+      "line": 36,
+      "endLine": 36,
+      "signature": "private scheduler: Agenda;",
+      "containerClass": "AppSchedulerBridge",
+      "calls": [
+        {
+          "name": "Agenda",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "function",
+      "name": "_callProcessor",
+      "exported": false,
+      "line": 10,
+      "endLine": 27,
+      "signature": "function _callProcessor(processor: IProcessor['processor']): (job: Job) => Promise<void>",
+      "calls": [
+        {
+          "name": "then",
+          "edgeType": "call"
+        },
+        {
+          "name": "cancel",
+          "edgeType": "call"
+        },
+        {
+          "name": "IProcessor",
+          "edgeType": "type"
+        },
+        {
+          "name": "Job",
+          "edgeType": "type"
+        },
+        {
+          "name": "IJobContext",
+          "edgeType": "type"
+        }
+      ]
+    }
+  ],
+  "imports": [
+    {
+      "module": "@rocket.chat/agenda",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/agenda",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/apps",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/apps/dist/server/bridges/SchedulerBridge",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/apps-engine/definition/scheduler",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/apps-engine/definition/scheduler",
+      "resolved": "external"
+    },
+    {
+      "module": "bson",
+      "resolved": "external"
+    },
+    {
+      "module": "meteor/mongo",
+      "resolved": "external"
+    }
+  ]
+}

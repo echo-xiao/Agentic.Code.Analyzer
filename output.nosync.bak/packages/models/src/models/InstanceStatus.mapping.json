@@ -1,0 +1,193 @@
+{
+  "sourcePath": "/Users/echoooooo/Desktop/code/Rocket.Chat/packages/models/src/models/InstanceStatus.ts",
+  "symbols": [
+    {
+      "type": "class",
+      "name": "InstanceStatusRaw",
+      "exported": true,
+      "line": 7,
+      "endLine": 64,
+      "signature": "export class InstanceStatusRaw extends BaseRaw<IInstanceStatus> implements IInstanceStatusModel",
+      "calls": [
+        {
+          "name": "BaseRaw",
+          "edgeType": "type"
+        },
+        {
+          "name": "IInstanceStatusModel",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "getActiveInstanceCount",
+      "exported": true,
+      "qualifiedName": "InstanceStatusRaw.getActiveInstanceCount",
+      "line": 17,
+      "endLine": 19,
+      "signature": "async getActiveInstanceCount(): Promise<number>",
+      "containerClass": "InstanceStatusRaw",
+      "calls": [
+        {
+          "name": "countDocuments",
+          "edgeType": "call"
+        },
+        {
+          "name": "now",
+          "edgeType": "call"
+        },
+        {
+          "name": "uptime",
+          "edgeType": "call"
+        },
+        {
+          "name": "Date",
+          "edgeType": "new"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "watchActiveInstances",
+      "exported": true,
+      "qualifiedName": "InstanceStatusRaw.watchActiveInstances",
+      "line": 21,
+      "endLine": 23,
+      "signature": "watchActiveInstances(): ChangeStream<IInstanceStatus>",
+      "containerClass": "InstanceStatusRaw",
+      "calls": [
+        {
+          "name": "watch",
+          "edgeType": "call"
+        },
+        {
+          "name": "ChangeStream",
+          "edgeType": "type"
+        },
+        {
+          "name": "IInstanceStatus",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "removeInstanceById",
+      "exported": true,
+      "qualifiedName": "InstanceStatusRaw.removeInstanceById",
+      "line": 25,
+      "endLine": 27,
+      "signature": "async removeInstanceById(_id: IInstanceStatus['_id']): Promise<DeleteResult>",
+      "containerClass": "InstanceStatusRaw",
+      "calls": [
+        {
+          "name": "deleteOne",
+          "edgeType": "call"
+        },
+        {
+          "name": "IInstanceStatus",
+          "edgeType": "type"
+        },
+        {
+          "name": "DeleteResult",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "setDocumentHeartbeat",
+      "exported": true,
+      "qualifiedName": "InstanceStatusRaw.setDocumentHeartbeat",
+      "line": 29,
+      "endLine": 31,
+      "signature": "async setDocumentHeartbeat(documentId: string): Promise<UpdateResult>",
+      "containerClass": "InstanceStatusRaw",
+      "calls": [
+        {
+          "name": "updateOne",
+          "edgeType": "call"
+        },
+        {
+          "name": "UpdateResult",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "upsertInstance",
+      "exported": true,
+      "qualifiedName": "InstanceStatusRaw.upsertInstance",
+      "line": 33,
+      "endLine": 50,
+      "signature": "async upsertInstance(instance: Partial<IInstanceStatus>): Promise<IInstanceStatus | null>",
+      "containerClass": "InstanceStatusRaw",
+      "calls": [
+        {
+          "name": "findOneAndUpdate",
+          "edgeType": "call"
+        },
+        {
+          "name": "IInstanceStatus",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "updateConnections",
+      "exported": true,
+      "qualifiedName": "InstanceStatusRaw.updateConnections",
+      "line": 37,
+      "endLine": 48,
+      "signature": "async updateConnections(_id: IInstanceStatus['_id'], conns: number)",
+      "containerClass": "InstanceStatusRaw",
+      "calls": [
+        {
+          "name": "updateOne",
+          "edgeType": "call"
+        },
+        {
+          "name": "IInstanceStatus",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "constructor",
+      "exported": true,
+      "qualifiedName": "InstanceStatusRaw.constructor",
+      "line": 8,
+      "endLine": 15,
+      "signature": "constructor(db: Db)",
+      "containerClass": "InstanceStatusRaw",
+      "calls": [
+        {
+          "name": "Db",
+          "edgeType": "type"
+        }
+      ]
+    }
+  ],
+  "imports": [
+    {
+      "module": "@rocket.chat/core-typings",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/model-typings",
+      "resolved": "external"
+    },
+    {
+      "module": "mongodb",
+      "resolved": "external"
+    },
+    {
+      "module": "./BaseRaw",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/packages/models/src/models/BaseRaw.ts"
+    }
+  ]
+}

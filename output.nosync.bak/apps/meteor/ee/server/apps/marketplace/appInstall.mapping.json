@@ -1,0 +1,68 @@
+{
+  "sourcePath": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/ee/server/apps/marketplace/appInstall.ts",
+  "symbols": [
+    {
+      "type": "function",
+      "name": "notifyMarketplace",
+      "exported": true,
+      "line": 18,
+      "endLine": 58,
+      "signature": "export async function notifyMarketplace(action: MarketplaceNotificationType, appInfo: IAppInfo): Promise<void>",
+      "calls": [
+        {
+          "name": "getWorkspaceAccessToken",
+          "edgeType": "call"
+        },
+        {
+          "name": "get",
+          "edgeType": "call"
+        },
+        {
+          "name": "fetch",
+          "edgeType": "call"
+        },
+        {
+          "name": "getMarketplaceClient",
+          "edgeType": "call"
+        },
+        {
+          "name": "MarketplaceNotificationType",
+          "edgeType": "type"
+        },
+        {
+          "name": "IAppInfo",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "type",
+      "name": "MarketplaceNotificationType",
+      "line": 8,
+      "endLine": 8,
+      "signature": "type MarketplaceNotificationType = 'install' | 'update' | 'uninstall';"
+    }
+  ],
+  "imports": [
+    {
+      "module": "@rocket.chat/apps-engine/definition/metadata",
+      "resolved": "external"
+    },
+    {
+      "module": "../../../../app/cloud/server",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/app/cloud/server/index.ts"
+    },
+    {
+      "module": "../../../../app/settings/server",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/app/settings/server/index.ts"
+    },
+    {
+      "module": "../../../../app/utils/rocketchat.info",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/app/utils/rocketchat.info"
+    },
+    {
+      "module": "../orchestrator",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/ee/server/apps/orchestrator.ts"
+    }
+  ]
+}

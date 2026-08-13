@@ -1,0 +1,49 @@
+{
+  "sourcePath": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/server/lib/dataExport/copyFileUpload.ts",
+  "symbols": [
+    {
+      "type": "variable_function",
+      "name": "copyFileUpload",
+      "exported": true,
+      "line": 7,
+      "endLine": 14,
+      "signature": "async (attachmentData: Pick<FileProp, '_id' | 'name'>, assetsPath: string): Promise<void> =>",
+      "calls": [
+        {
+          "name": "findOneById",
+          "edgeType": "call"
+        },
+        {
+          "name": "copy",
+          "edgeType": "call"
+        },
+        {
+          "name": "joinPath",
+          "edgeType": "call"
+        },
+        {
+          "name": "FileProp",
+          "edgeType": "type"
+        }
+      ]
+    }
+  ],
+  "imports": [
+    {
+      "module": "@rocket.chat/core-typings",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/models",
+      "resolved": "external"
+    },
+    {
+      "module": "../../../app/file-upload/server",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/app/file-upload/server/index.ts"
+    },
+    {
+      "module": "../fileUtils",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/server/lib/fileUtils.ts"
+    }
+  ]
+}

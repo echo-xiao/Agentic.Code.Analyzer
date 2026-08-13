@@ -1,0 +1,125 @@
+{
+  "sourcePath": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/app/markdown/lib/parser/original/code.js",
+  "symbols": [
+    {
+      "type": "variable_function",
+      "name": "inlinecode",
+      "exported": false,
+      "line": 10,
+      "endLine": 20,
+      "signature": "(message) =>",
+      "calls": [
+        {
+          "name": "replace",
+          "edgeType": "call"
+        },
+        {
+          "name": "addAsToken",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "variable_function",
+      "name": "codeblocks",
+      "exported": false,
+      "line": 14,
+      "endLine": 70,
+      "signature": "(message) =>",
+      "calls": [
+        {
+          "name": "match",
+          "edgeType": "call"
+        },
+        {
+          "name": "split",
+          "edgeType": "call"
+        },
+        {
+          "name": "indexOf",
+          "edgeType": "call"
+        },
+        {
+          "name": "includes",
+          "edgeType": "call"
+        },
+        {
+          "name": "from",
+          "edgeType": "call"
+        },
+        {
+          "name": "listLanguages",
+          "edgeType": "call"
+        },
+        {
+          "name": "trim",
+          "edgeType": "call"
+        },
+        {
+          "name": "unescapeHTML",
+          "edgeType": "call"
+        },
+        {
+          "name": "register",
+          "edgeType": "call"
+        },
+        {
+          "name": "highlight",
+          "edgeType": "call"
+        },
+        {
+          "name": "error",
+          "edgeType": "call"
+        },
+        {
+          "name": "highlightAuto",
+          "edgeType": "call"
+        },
+        {
+          "name": "addAsToken",
+          "edgeType": "call"
+        },
+        {
+          "name": "join",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "variable_function",
+      "name": "code",
+      "exported": true,
+      "line": 18,
+      "endLine": 25,
+      "signature": "(message) =>",
+      "calls": [
+        {
+          "name": "trim",
+          "edgeType": "call"
+        },
+        {
+          "name": "codeblocks",
+          "edgeType": "call"
+        },
+        {
+          "name": "inlinecode",
+          "edgeType": "call"
+        }
+      ]
+    }
+  ],
+  "imports": [
+    {
+      "module": "@rocket.chat/string-helpers",
+      "resolved": "external"
+    },
+    {
+      "module": "./token",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/app/markdown/lib/parser/original/token.ts"
+    },
+    {
+      "module": "../../hljs",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/app/markdown/lib/hljs.ts"
+    }
+  ]
+}

@@ -1,0 +1,145 @@
+{
+  "sourcePath": "/Users/echoooooo/Desktop/code/Rocket.Chat/packages/models/src/models/UserDataFiles.ts",
+  "symbols": [
+    {
+      "type": "class",
+      "name": "UserDataFilesRaw",
+      "exported": true,
+      "line": 7,
+      "endLine": 34,
+      "signature": "export class UserDataFilesRaw extends BaseUploadModelRaw implements IUserDataFilesModel",
+      "calls": [
+        {
+          "name": "BaseUploadModelRaw",
+          "edgeType": "type"
+        },
+        {
+          "name": "IUserDataFilesModel",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "modelIndexes",
+      "exported": true,
+      "qualifiedName": "UserDataFilesRaw.modelIndexes",
+      "line": 12,
+      "endLine": 14,
+      "signature": "protected override modelIndexes(): IndexDescription[]",
+      "containerClass": "UserDataFilesRaw",
+      "calls": [
+        {
+          "name": "modelIndexes",
+          "edgeType": "call"
+        },
+        {
+          "name": "IndexDescription",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "findLastFileByUser",
+      "exported": true,
+      "qualifiedName": "UserDataFilesRaw.findLastFileByUser",
+      "line": 16,
+      "endLine": 23,
+      "signature": "findLastFileByUser(userId: string, options: FindOptions<IUserDataFile> = {}): Promise<IUserDataFile | null>",
+      "containerClass": "UserDataFilesRaw",
+      "calls": [
+        {
+          "name": "findOne",
+          "edgeType": "call"
+        },
+        {
+          "name": "FindOptions",
+          "edgeType": "type"
+        },
+        {
+          "name": "IUserDataFile",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "create",
+      "exported": true,
+      "qualifiedName": "UserDataFilesRaw.create",
+      "line": 21,
+      "endLine": 28,
+      "signature": "create(data: IUserDataFile): Promise<InsertOneResult<WithId<IUserDataFile>>>",
+      "containerClass": "UserDataFilesRaw",
+      "calls": [
+        {
+          "name": "insertOne",
+          "edgeType": "call"
+        },
+        {
+          "name": "Date",
+          "edgeType": "new"
+        },
+        {
+          "name": "IUserDataFile",
+          "edgeType": "type"
+        },
+        {
+          "name": "InsertOneResult",
+          "edgeType": "type"
+        },
+        {
+          "name": "WithId",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "constructor",
+      "exported": true,
+      "qualifiedName": "UserDataFilesRaw.constructor",
+      "line": 8,
+      "endLine": 10,
+      "signature": "constructor(db: Db, trash?: Collection<RocketChatRecordDeleted<IUserDataFile>>)",
+      "containerClass": "UserDataFilesRaw",
+      "calls": [
+        {
+          "name": "Db",
+          "edgeType": "type"
+        },
+        {
+          "name": "Collection",
+          "edgeType": "type"
+        },
+        {
+          "name": "RocketChatRecordDeleted",
+          "edgeType": "type"
+        },
+        {
+          "name": "IUserDataFile",
+          "edgeType": "type"
+        }
+      ]
+    }
+  ],
+  "imports": [
+    {
+      "module": "@rocket.chat/core-typings",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/model-typings",
+      "resolved": "external"
+    },
+    {
+      "module": "mongodb",
+      "resolved": "external"
+    },
+    {
+      "module": "./BaseUploadModel",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/packages/models/src/models/BaseUploadModel.ts"
+    }
+  ]
+}

@@ -1,0 +1,294 @@
+{
+  "sourcePath": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/client/views/admin/integrations/incoming/EditIncomingWebhook.tsx",
+  "symbols": [
+    {
+      "type": "variable_function",
+      "name": "getInitialValue",
+      "exported": false,
+      "line": 27,
+      "endLine": 39,
+      "signature": "(webhookData: Serialized<IIncomingIntegration> | undefined): EditIncomingWebhookFormData =>",
+      "calls": [
+        {
+          "name": "join",
+          "edgeType": "call"
+        },
+        {
+          "name": "Serialized",
+          "edgeType": "type"
+        },
+        {
+          "name": "IIncomingIntegration",
+          "edgeType": "type"
+        },
+        {
+          "name": "EditIncomingWebhookFormData",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "inner_function",
+      "name": "handleDeleteIntegration",
+      "exported": false,
+      "qualifiedName": "EditIncomingWebhook.handleDeleteIntegration",
+      "line": 65,
+      "endLine": 79,
+      "signature": "() =>",
+      "calls": [
+        {
+          "name": "mutate",
+          "edgeType": "call"
+        },
+        {
+          "name": "setModal",
+          "edgeType": "call"
+        },
+        {
+          "name": "GenericModal",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "onDelete",
+          "edgeType": "jsx"
+        }
+      ]
+    },
+    {
+      "type": "inner_function",
+      "name": "onDelete",
+      "exported": false,
+      "qualifiedName": "EditIncomingWebhook.onDelete",
+      "line": 66,
+      "endLine": 72,
+      "signature": "async () =>",
+      "calls": [
+        {
+          "name": "mutate",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "inner_function",
+      "name": "handleSave",
+      "exported": false,
+      "qualifiedName": "EditIncomingWebhook.handleSave",
+      "line": 81,
+      "endLine": 88,
+      "signature": "async (formValues: EditIncomingWebhookFormData) =>",
+      "calls": [
+        {
+          "name": "mutate",
+          "edgeType": "call"
+        },
+        {
+          "name": "EditIncomingWebhookFormData",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "variable_function",
+      "name": "EditIncomingWebhook",
+      "exported": false,
+      "line": 47,
+      "endLine": 132,
+      "signature": "({ webhookData }: EditIncomingWebhookProps) =>",
+      "calls": [
+        {
+          "name": "useTranslation",
+          "edgeType": "call"
+        },
+        {
+          "name": "useRouter",
+          "edgeType": "call"
+        },
+        {
+          "name": "useSetModal",
+          "edgeType": "call"
+        },
+        {
+          "name": "useRouteParameter",
+          "edgeType": "call"
+        },
+        {
+          "name": "useDeleteIntegration",
+          "edgeType": "call"
+        },
+        {
+          "name": "useUpdateIntegration",
+          "edgeType": "call"
+        },
+        {
+          "name": "useCreateIntegration",
+          "edgeType": "call"
+        },
+        {
+          "name": "useForm",
+          "edgeType": "call"
+        },
+        {
+          "name": "getInitialValue",
+          "edgeType": "call"
+        },
+        {
+          "name": "useCallback",
+          "edgeType": "call"
+        },
+        {
+          "name": "mutate",
+          "edgeType": "call"
+        },
+        {
+          "name": "setModal",
+          "edgeType": "call"
+        },
+        {
+          "name": "useId",
+          "edgeType": "call"
+        },
+        {
+          "name": "navigate",
+          "edgeType": "call"
+        },
+        {
+          "name": "handleSubmit",
+          "edgeType": "call"
+        },
+        {
+          "name": "reset",
+          "edgeType": "call"
+        },
+        {
+          "name": "GenericModal",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "Page",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "PageHeader",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "ButtonGroup",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "Button",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "Tabs",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "TabsItem",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "PageScrollableContentWithShadow",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "FormProvider",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "PageFooter",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "IncomingWebhookForm",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "onDelete",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "handleDeleteIntegration",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "formId",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "webhookData",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "isDirty",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "EditIncomingWebhookProps",
+          "edgeType": "type"
+        },
+        {
+          "name": "EditIncomingWebhookFormData",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "type",
+      "name": "EditIncomingWebhookFormData",
+      "line": 13,
+      "endLine": 25,
+      "signature": "export type EditIncomingWebhookFormData ="
+    },
+    {
+      "type": "type",
+      "name": "EditIncomingWebhookProps",
+      "line": 43,
+      "endLine": 45,
+      "signature": "export type EditIncomingWebhookProps ="
+    }
+  ],
+  "imports": [
+    {
+      "module": "@rocket.chat/core-typings",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/fuselage",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/ui-client",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/ui-contexts",
+      "resolved": "external"
+    },
+    {
+      "module": "react",
+      "resolved": "external"
+    },
+    {
+      "module": "react-hook-form",
+      "resolved": "external"
+    },
+    {
+      "module": "./IncomingWebhookForm",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/client/views/admin/integrations/incoming/IncomingWebhookForm.tsx"
+    },
+    {
+      "module": "../hooks/useCreateIntegration",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/client/views/admin/integrations/hooks/useCreateIntegration.ts"
+    },
+    {
+      "module": "../hooks/useDeleteIntegration",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/client/views/admin/integrations/hooks/useDeleteIntegration.ts"
+    },
+    {
+      "module": "../hooks/useUpdateIntegration",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/client/views/admin/integrations/hooks/useUpdateIntegration.ts"
+    }
+  ]
+}

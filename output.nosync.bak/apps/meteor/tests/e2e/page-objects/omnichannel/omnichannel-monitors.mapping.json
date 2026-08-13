@@ -1,0 +1,215 @@
+{
+  "sourcePath": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/tests/e2e/page-objects/omnichannel/omnichannel-monitors.ts",
+  "symbols": [
+    {
+      "type": "class",
+      "name": "OmnichannelMonitorsTable",
+      "exported": false,
+      "line": 7,
+      "endLine": 11,
+      "signature": "class OmnichannelMonitorsTable extends Table",
+      "calls": [
+        {
+          "name": "Table",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "constructor",
+      "exported": false,
+      "qualifiedName": "OmnichannelMonitorsTable.constructor",
+      "line": 8,
+      "endLine": 10,
+      "signature": "constructor(page: Page)",
+      "containerClass": "OmnichannelMonitorsTable",
+      "calls": [
+        {
+          "name": "getByRole",
+          "edgeType": "call"
+        },
+        {
+          "name": "Page",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "class",
+      "name": "OmnichannelMonitors",
+      "exported": true,
+      "line": 13,
+      "endLine": 50,
+      "signature": "export class OmnichannelMonitors extends OmnichannelAdmin",
+      "calls": [
+        {
+          "name": "OmnichannelAdmin",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "btnRemoveByName",
+      "exported": true,
+      "qualifiedName": "OmnichannelMonitors.btnRemoveByName",
+      "line": 32,
+      "endLine": 34,
+      "signature": "private btnRemoveByName(name: string): Locator",
+      "containerClass": "OmnichannelMonitors",
+      "calls": [
+        {
+          "name": "getByRole",
+          "edgeType": "call"
+        },
+        {
+          "name": "findRowByName",
+          "edgeType": "call"
+        },
+        {
+          "name": "Locator",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "selectMonitor",
+      "exported": true,
+      "qualifiedName": "OmnichannelMonitors.selectMonitor",
+      "line": 36,
+      "endLine": 39,
+      "signature": "private async selectMonitor(name: string)",
+      "containerClass": "OmnichannelMonitors",
+      "calls": [
+        {
+          "name": "fill",
+          "edgeType": "call"
+        },
+        {
+          "name": "selectOption",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "removeMonitor",
+      "exported": true,
+      "qualifiedName": "OmnichannelMonitors.removeMonitor",
+      "line": 40,
+      "endLine": 43,
+      "signature": "async removeMonitor(name: string)",
+      "containerClass": "OmnichannelMonitors",
+      "calls": [
+        {
+          "name": "click",
+          "edgeType": "call"
+        },
+        {
+          "name": "btnRemoveByName",
+          "edgeType": "call"
+        },
+        {
+          "name": "confirmDelete",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "addMonitor",
+      "exported": true,
+      "qualifiedName": "OmnichannelMonitors.addMonitor",
+      "line": 44,
+      "endLine": 47,
+      "signature": "async addMonitor(name: string)",
+      "containerClass": "OmnichannelMonitors",
+      "calls": [
+        {
+          "name": "selectMonitor",
+          "edgeType": "call"
+        },
+        {
+          "name": "click",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "constructor",
+      "exported": true,
+      "qualifiedName": "OmnichannelMonitors.constructor",
+      "line": 18,
+      "endLine": 22,
+      "signature": "constructor(page: Page)",
+      "containerClass": "OmnichannelMonitors",
+      "calls": [
+        {
+          "name": "OmnichannelMonitorsTable",
+          "edgeType": "new"
+        },
+        {
+          "name": "Listbox",
+          "edgeType": "new"
+        },
+        {
+          "name": "Page",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "class_property",
+      "name": "table",
+      "exported": true,
+      "qualifiedName": "OmnichannelMonitors.table",
+      "line": 14,
+      "endLine": 14,
+      "signature": "readonly table: OmnichannelMonitorsTable;",
+      "containerClass": "OmnichannelMonitors",
+      "calls": [
+        {
+          "name": "OmnichannelMonitorsTable",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "class_property",
+      "name": "listbox",
+      "exported": true,
+      "qualifiedName": "OmnichannelMonitors.listbox",
+      "line": 16,
+      "endLine": 16,
+      "signature": "readonly listbox: Listbox;",
+      "containerClass": "OmnichannelMonitors",
+      "calls": [
+        {
+          "name": "Listbox",
+          "edgeType": "type"
+        }
+      ]
+    }
+  ],
+  "imports": [
+    {
+      "module": "@playwright/test",
+      "resolved": "external"
+    },
+    {
+      "module": "./omnichannel-admin",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/tests/e2e/page-objects/omnichannel/omnichannel-admin.ts"
+    },
+    {
+      "module": "../fragments/listbox",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/tests/e2e/page-objects/fragments/listbox.ts"
+    },
+    {
+      "module": "../fragments/table",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/tests/e2e/page-objects/fragments/table.ts"
+    }
+  ]
+}

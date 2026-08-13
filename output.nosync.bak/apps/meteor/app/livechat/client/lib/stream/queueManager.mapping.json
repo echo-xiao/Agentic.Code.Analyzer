@@ -1,0 +1,479 @@
+{
+  "sourcePath": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/app/livechat/client/lib/stream/queueManager.ts",
+  "symbols": [
+    {
+      "type": "variable_function",
+      "name": "processInquiryEvent",
+      "exported": false,
+      "line": 42,
+      "endLine": 51,
+      "signature": "async (args: unknown): Promise<void> =>",
+      "calls": [
+        {
+          "name": "InquiryEventArgs",
+          "edgeType": "type"
+        },
+        {
+          "name": "ILivechatInquiryRecord",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "variable_function",
+      "name": "invalidateRoomQueries",
+      "exported": false,
+      "line": 46,
+      "endLine": 52,
+      "signature": "async (rid: string) =>",
+      "calls": [
+        {
+          "name": "all",
+          "edgeType": "call"
+        },
+        {
+          "name": "invalidateQueries",
+          "edgeType": "call"
+        },
+        {
+          "name": "room",
+          "edgeType": "call"
+        },
+        {
+          "name": "info",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "variable_function",
+      "name": "removeInquiry",
+      "exported": false,
+      "line": 50,
+      "endLine": 53,
+      "signature": "async (inquiry: ILivechatInquiryRecord) =>",
+      "calls": [
+        {
+          "name": "discard",
+          "edgeType": "call"
+        },
+        {
+          "name": "getState",
+          "edgeType": "call"
+        },
+        {
+          "name": "invalidateQueries",
+          "edgeType": "call"
+        },
+        {
+          "name": "ILivechatInquiryRecord",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "variable_function",
+      "name": "getInquiriesFromAPI",
+      "exported": false,
+      "line": 56,
+      "endLine": 60,
+      "signature": "async () =>",
+      "calls": [
+        {
+          "name": "peek",
+          "edgeType": "call"
+        },
+        {
+          "name": "livechat/inquiries.queuedForUser",
+          "edgeType": "rest_call"
+        },
+        {
+          "name": "get",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "variable_function",
+      "name": "removeListenerOfDepartment",
+      "exported": false,
+      "line": 60,
+      "endLine": 63,
+      "signature": "(departmentId: ILivechatDepartment['_id']) =>",
+      "calls": [
+        {
+          "name": "stop",
+          "edgeType": "call"
+        },
+        {
+          "name": "delete",
+          "edgeType": "call"
+        },
+        {
+          "name": "ILivechatDepartment",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "variable_function",
+      "name": "appendListenerToDepartment",
+      "exported": false,
+      "line": 64,
+      "endLine": 70,
+      "signature": "(departmentId: ILivechatDepartment['_id']) =>",
+      "calls": [
+        {
+          "name": "livechat-inquiry-queue-observer",
+          "edgeType": "stream_sub"
+        },
+        {
+          "name": "stream",
+          "edgeType": "call"
+        },
+        {
+          "name": "processInquiryEvent",
+          "edgeType": "call"
+        },
+        {
+          "name": "removeListenerOfDepartment",
+          "edgeType": "call"
+        },
+        {
+          "name": "ILivechatDepartment",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "variable_function",
+      "name": "addListenerForeachDepartment",
+      "exported": false,
+      "line": 67,
+      "endLine": 70,
+      "signature": "(departments: ILivechatDepartment['_id'][] = []) =>",
+      "calls": [
+        {
+          "name": "map",
+          "edgeType": "call"
+        },
+        {
+          "name": "appendListenerToDepartment",
+          "edgeType": "call"
+        },
+        {
+          "name": "forEach",
+          "edgeType": "call"
+        },
+        {
+          "name": "cleanup",
+          "edgeType": "call"
+        },
+        {
+          "name": "ILivechatDepartment",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "variable_function",
+      "name": "updateInquiries",
+      "exported": false,
+      "line": 71,
+      "endLine": 83,
+      "signature": "async (inquiries: Serialized<ILivechatInquiryRecord>[] = []) =>",
+      "calls": [
+        {
+          "name": "forEach",
+          "edgeType": "call"
+        },
+        {
+          "name": "merge",
+          "edgeType": "call"
+        },
+        {
+          "name": "getState",
+          "edgeType": "call"
+        },
+        {
+          "name": "mapMessageFromApi",
+          "edgeType": "call"
+        },
+        {
+          "name": "Date",
+          "edgeType": "new"
+        },
+        {
+          "name": "Serialized",
+          "edgeType": "type"
+        },
+        {
+          "name": "ILivechatInquiryRecord",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "variable_function",
+      "name": "getAgentsDepartments",
+      "exported": false,
+      "line": 85,
+      "endLine": 88,
+      "signature": "async (userId: IOmnichannelAgent['_id']) =>",
+      "calls": [
+        {
+          "name": "get",
+          "edgeType": "call"
+        },
+        {
+          "name": "IOmnichannelAgent",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "variable_function",
+      "name": "removeGlobalListener",
+      "exported": false,
+      "line": 89,
+      "endLine": 89,
+      "signature": "() =>",
+      "calls": [
+        {
+          "name": "stop",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "variable_function",
+      "name": "addGlobalListener",
+      "exported": false,
+      "line": 91,
+      "endLine": 96,
+      "signature": "() =>",
+      "calls": [
+        {
+          "name": "livechat-inquiry-queue-observer",
+          "edgeType": "stream_sub"
+        },
+        {
+          "name": "stream",
+          "edgeType": "call"
+        },
+        {
+          "name": "processInquiryEvent",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "variable_function",
+      "name": "removeAgentListener",
+      "exported": false,
+      "line": 95,
+      "endLine": 97,
+      "signature": "(userId: IOmnichannelAgent['_id']) =>",
+      "calls": [
+        {
+          "name": "stop",
+          "edgeType": "call"
+        },
+        {
+          "name": "IOmnichannelAgent",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "variable_function",
+      "name": "addAgentListener",
+      "exported": false,
+      "line": 99,
+      "endLine": 104,
+      "signature": "(userId: IOmnichannelAgent['_id']) =>",
+      "calls": [
+        {
+          "name": "livechat-inquiry-queue-observer",
+          "edgeType": "stream_sub"
+        },
+        {
+          "name": "stream",
+          "edgeType": "call"
+        },
+        {
+          "name": "processInquiryEvent",
+          "edgeType": "call"
+        },
+        {
+          "name": "removeAgentListener",
+          "edgeType": "call"
+        },
+        {
+          "name": "IOmnichannelAgent",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "variable_function",
+      "name": "subscribe",
+      "exported": false,
+      "line": 103,
+      "endLine": 138,
+      "signature": "async (userId: IOmnichannelAgent['_id']) =>",
+      "calls": [
+        {
+          "name": "livechat/config/routing",
+          "edgeType": "rest_call"
+        },
+        {
+          "name": "get",
+          "edgeType": "call"
+        },
+        {
+          "name": "map",
+          "edgeType": "call"
+        },
+        {
+          "name": "getAgentsDepartments",
+          "edgeType": "call"
+        },
+        {
+          "name": "addAgentListener",
+          "edgeType": "call"
+        },
+        {
+          "name": "addListenerForeachDepartment",
+          "edgeType": "call"
+        },
+        {
+          "name": "addGlobalListener",
+          "edgeType": "call"
+        },
+        {
+          "name": "updateInquiries",
+          "edgeType": "call"
+        },
+        {
+          "name": "getInquiriesFromAPI",
+          "edgeType": "call"
+        },
+        {
+          "name": "refetchInquiries",
+          "edgeType": "call"
+        },
+        {
+          "name": "observe",
+          "edgeType": "call"
+        },
+        {
+          "name": "discardAll",
+          "edgeType": "call"
+        },
+        {
+          "name": "getState",
+          "edgeType": "call"
+        },
+        {
+          "name": "removeGlobalListener",
+          "edgeType": "call"
+        },
+        {
+          "name": "cleanAgentListener",
+          "edgeType": "call"
+        },
+        {
+          "name": "cleanDepartmentListeners",
+          "edgeType": "call"
+        },
+        {
+          "name": "globalCleanup",
+          "edgeType": "call"
+        },
+        {
+          "name": "unobserveInquiryCount",
+          "edgeType": "call"
+        },
+        {
+          "name": "clear",
+          "edgeType": "call"
+        },
+        {
+          "name": "dispatchToastMessage",
+          "edgeType": "call"
+        },
+        {
+          "name": "IOmnichannelAgent",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "variable",
+      "name": "initializeLivechatInquiryStream",
+      "exported": true,
+      "line": 107,
+      "endLine": 114,
+      "signature": "initializeLivechatInquiryStream = (() =>",
+      "calls": [
+        {
+          "name": "cleanUp",
+          "edgeType": "call"
+        },
+        {
+          "name": "subscribe",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "type",
+      "name": "InquiryEventType",
+      "line": 39,
+      "endLine": 39,
+      "signature": "type InquiryEventType = keyof typeof events;"
+    },
+    {
+      "type": "type",
+      "name": "InquiryEventArgs",
+      "line": 40,
+      "endLine": 40,
+      "signature": "type InquiryEventArgs ="
+    }
+  ],
+  "imports": [
+    {
+      "module": "@rocket.chat/core-typings",
+      "resolved": "external"
+    },
+    {
+      "module": "../../../../../client/hooks/useLivechatInquiryStore",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/client/hooks/useLivechatInquiryStore.ts"
+    },
+    {
+      "module": "../../../../../client/lib/queryClient",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/client/lib/queryClient.ts"
+    },
+    {
+      "module": "../../../../../client/lib/queryKeys",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/client/lib/queryKeys.ts"
+    },
+    {
+      "module": "../../../../../client/lib/settings",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/client/lib/settings/index.ts"
+    },
+    {
+      "module": "../../../../../client/lib/toast",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/client/lib/toast.ts"
+    },
+    {
+      "module": "../../../../../client/lib/utils/mapMessageFromApi",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/client/lib/utils/mapMessageFromApi.ts"
+    },
+    {
+      "module": "../../../../utils/client/lib/SDKClient",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/app/utils/client/lib/SDKClient.ts"
+    }
+  ]
+}

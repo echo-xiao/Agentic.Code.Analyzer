@@ -1,0 +1,224 @@
+{
+  "sourcePath": "/Users/echoooooo/Desktop/code/Rocket.Chat/packages/ui-client/src/components/Modal/ModalBackdrop.tsx",
+  "symbols": [
+    {
+      "type": "variable_function",
+      "name": "useEscapeKey",
+      "exported": false,
+      "line": 5,
+      "endLine": 22,
+      "signature": "(onDismiss: (() => void) | undefined): void =>",
+      "calls": [
+        {
+          "name": "useEffect",
+          "edgeType": "call"
+        },
+        {
+          "name": "stopPropagation",
+          "edgeType": "call"
+        },
+        {
+          "name": "onDismiss",
+          "edgeType": "call"
+        },
+        {
+          "name": "addEventListener",
+          "edgeType": "call"
+        },
+        {
+          "name": "removeEventListener",
+          "edgeType": "call"
+        },
+        {
+          "name": "KeyboardEvent",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "variable_function",
+      "name": "isAtBackdropChildren",
+      "exported": false,
+      "line": 9,
+      "endLine": 14,
+      "signature": "(e: MouseEvent, ref: RefObject<HTMLElement | null>): boolean =>",
+      "calls": [
+        {
+          "name": "Boolean",
+          "edgeType": "call"
+        },
+        {
+          "name": "contains",
+          "edgeType": "call"
+        },
+        {
+          "name": "MouseEvent",
+          "edgeType": "type"
+        },
+        {
+          "name": "RefObject",
+          "edgeType": "type"
+        },
+        {
+          "name": "HTMLElement",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "inner_function",
+      "name": "onMouseDown",
+      "exported": false,
+      "qualifiedName": "useOutsideClick.onMouseDown",
+      "line": 16,
+      "endLine": 24,
+      "signature": "(e: MouseEvent) =>",
+      "calls": [
+        {
+          "name": "isAtBackdropChildren",
+          "edgeType": "call"
+        },
+        {
+          "name": "MouseEvent",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "inner_function",
+      "name": "onMouseUp",
+      "exported": false,
+      "qualifiedName": "useOutsideClick.onMouseUp",
+      "line": 28,
+      "endLine": 42,
+      "signature": "(e: MouseEvent) =>",
+      "calls": [
+        {
+          "name": "isAtBackdropChildren",
+          "edgeType": "call"
+        },
+        {
+          "name": "stopPropagation",
+          "edgeType": "call"
+        },
+        {
+          "name": "onDismiss",
+          "edgeType": "call"
+        },
+        {
+          "name": "MouseEvent",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "variable_function",
+      "name": "useOutsideClick",
+      "exported": false,
+      "line": 13,
+      "endLine": 50,
+      "signature": "(ref: RefObject<HTMLElement | null>, onDismiss: (() => void) | undefined) =>",
+      "calls": [
+        {
+          "name": "useRef",
+          "edgeType": "call"
+        },
+        {
+          "name": "useCallback",
+          "edgeType": "call"
+        },
+        {
+          "name": "isAtBackdropChildren",
+          "edgeType": "call"
+        },
+        {
+          "name": "stopPropagation",
+          "edgeType": "call"
+        },
+        {
+          "name": "onDismiss",
+          "edgeType": "call"
+        },
+        {
+          "name": "RefObject",
+          "edgeType": "type"
+        },
+        {
+          "name": "HTMLElement",
+          "edgeType": "type"
+        },
+        {
+          "name": "MouseEvent",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "variable_function",
+      "name": "ModalBackdrop",
+      "exported": false,
+      "line": 22,
+      "endLine": 43,
+      "signature": "({ children, onDismiss }: ModalBackdropProps) =>",
+      "calls": [
+        {
+          "name": "useRef",
+          "edgeType": "call"
+        },
+        {
+          "name": "useEscapeKey",
+          "edgeType": "call"
+        },
+        {
+          "name": "useOutsideClick",
+          "edgeType": "call"
+        },
+        {
+          "name": "Box",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "ref",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "onMouseDown",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "onMouseUp",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "ModalBackdropProps",
+          "edgeType": "type"
+        },
+        {
+          "name": "HTMLDivElement",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "type",
+      "name": "ModalBackdropProps",
+      "line": 17,
+      "endLine": 20,
+      "signature": "type ModalBackdropProps ="
+    }
+  ],
+  "imports": [
+    {
+      "module": "@rocket.chat/fuselage",
+      "resolved": "external"
+    },
+    {
+      "module": "react",
+      "resolved": "external"
+    },
+    {
+      "module": "react",
+      "resolved": "external"
+    }
+  ]
+}

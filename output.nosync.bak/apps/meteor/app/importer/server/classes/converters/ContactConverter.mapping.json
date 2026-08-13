@@ -1,0 +1,128 @@
+{
+  "sourcePath": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/app/importer/server/classes/converters/ContactConverter.ts",
+  "symbols": [
+    {
+      "type": "class",
+      "name": "ContactConverter",
+      "exported": true,
+      "line": 9,
+      "endLine": 42,
+      "signature": "export class ContactConverter extends RecordConverter<IImportContactRecord>",
+      "calls": [
+        {
+          "name": "RecordConverter",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "convertCustomFields",
+      "exported": true,
+      "qualifiedName": "ContactConverter.convertCustomFields",
+      "line": 10,
+      "endLine": 17,
+      "signature": "protected async convertCustomFields(customFields: IImportContact['customFields']): Promise<IImportContact['customFields']>",
+      "containerClass": "ContactConverter",
+      "calls": [
+        {
+          "name": "getAllowedCustomFields",
+          "edgeType": "call"
+        },
+        {
+          "name": "validateCustomFields",
+          "edgeType": "call"
+        },
+        {
+          "name": "IImportContact",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "convertRecord",
+      "exported": true,
+      "qualifiedName": "ContactConverter.convertRecord",
+      "line": 14,
+      "endLine": 28,
+      "signature": "protected override async convertRecord(record: IImportContactRecord): Promise<boolean>",
+      "containerClass": "ContactConverter",
+      "calls": [
+        {
+          "name": "createContact",
+          "edgeType": "call"
+        },
+        {
+          "name": "generateNewContactName",
+          "edgeType": "call"
+        },
+        {
+          "name": "convertCustomFields",
+          "edgeType": "call"
+        },
+        {
+          "name": "getIdOfUsername",
+          "edgeType": "call"
+        },
+        {
+          "name": "IImportContactRecord",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "generateNewContactName",
+      "exported": true,
+      "qualifiedName": "ContactConverter.generateNewContactName",
+      "line": 18,
+      "endLine": 20,
+      "signature": "protected async generateNewContactName(): Promise<string>",
+      "containerClass": "ContactConverter",
+      "calls": [
+        {
+          "name": "getNextVisitorUsername",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "getDataType",
+      "exported": true,
+      "qualifiedName": "ContactConverter.getDataType",
+      "line": 22,
+      "endLine": 24,
+      "signature": "protected override getDataType(): 'contact'",
+      "containerClass": "ContactConverter",
+      "calls": []
+    }
+  ],
+  "imports": [
+    {
+      "module": "@rocket.chat/core-typings",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/models",
+      "resolved": "external"
+    },
+    {
+      "module": "./RecordConverter",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/app/importer/server/classes/converters/RecordConverter.ts"
+    },
+    {
+      "module": "../../../../livechat/server/lib/contacts/createContact",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/app/livechat/server/lib/contacts/createContact.ts"
+    },
+    {
+      "module": "../../../../livechat/server/lib/contacts/getAllowedCustomFields",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/app/livechat/server/lib/contacts/getAllowedCustomFields.ts"
+    },
+    {
+      "module": "../../../../livechat/server/lib/contacts/validateCustomFields",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/app/livechat/server/lib/contacts/validateCustomFields.ts"
+    }
+  ]
+}

@@ -1,0 +1,71 @@
+{
+  "sourcePath": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/client/views/hooks/useRoomBannedUsers.ts",
+  "symbols": [
+    {
+      "type": "variable_function",
+      "name": "useRoomBannedUsers",
+      "exported": true,
+      "line": 15,
+      "endLine": 41,
+      "signature": "({ rid, limit = 50, enabled = true }: UseRoomBannedUsersProps) =>",
+      "calls": [
+        {
+          "name": "useEndpoint",
+          "edgeType": "call"
+        },
+        {
+          "name": "useInfiniteQuery",
+          "edgeType": "call"
+        },
+        {
+          "name": "bannedUsers",
+          "edgeType": "call"
+        },
+        {
+          "name": "getBannedUsers",
+          "edgeType": "call"
+        },
+        {
+          "name": "flatMap",
+          "edgeType": "call"
+        },
+        {
+          "name": "UseRoomBannedUsersProps",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "type",
+      "name": "BannedUser",
+      "line": 7,
+      "endLine": 7,
+      "signature": "export type BannedUser = RequiredField<Pick<IUser, '_id' | 'username' | 'name'>, '_id' | 'username'>;"
+    },
+    {
+      "type": "type",
+      "name": "UseRoomBannedUsersProps",
+      "line": 9,
+      "endLine": 13,
+      "signature": "type UseRoomBannedUsersProps ="
+    }
+  ],
+  "imports": [
+    {
+      "module": "@rocket.chat/core-typings",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/ui-contexts",
+      "resolved": "external"
+    },
+    {
+      "module": "@tanstack/react-query",
+      "resolved": "external"
+    },
+    {
+      "module": "../../lib/queryKeys",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/client/lib/queryKeys.ts"
+    }
+  ]
+}

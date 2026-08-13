@@ -1,0 +1,105 @@
+{
+  "sourcePath": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/server/lib/messages/parseUrlsInMessage.ts",
+  "symbols": [
+    {
+      "type": "variable_function",
+      "name": "prepareUrl",
+      "exported": false,
+      "line": 8,
+      "endLine": 12,
+      "signature": "(url: string, previewUrls: string[] | undefined) =>",
+      "calls": [
+        {
+          "name": "includes",
+          "edgeType": "call"
+        },
+        {
+          "name": "get",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "variable_function",
+      "name": "prepareUrls",
+      "exported": false,
+      "line": 14,
+      "endLine": 14,
+      "signature": "(urls: string[], previewUrls?: string[]) =>",
+      "calls": [
+        {
+          "name": "map",
+          "edgeType": "call"
+        },
+        {
+          "name": "prepareUrl",
+          "edgeType": "call"
+        },
+        {
+          "name": "Set",
+          "edgeType": "new"
+        }
+      ]
+    },
+    {
+      "type": "variable_function",
+      "name": "parseUrlsInMessage",
+      "exported": true,
+      "line": 16,
+      "endLine": 37,
+      "signature": "( message: AtLeast<IMessage, 'msg' | 'md'> & { parseUrls?: boolean; }, previewUrls?: string[], ) =>",
+      "calls": [
+        {
+          "name": "extractUrlsFromMessageAST",
+          "edgeType": "call"
+        },
+        {
+          "name": "prepareUrls",
+          "edgeType": "call"
+        },
+        {
+          "name": "code",
+          "edgeType": "call"
+        },
+        {
+          "name": "match",
+          "edgeType": "call"
+        },
+        {
+          "name": "getMessageUrlRegex",
+          "edgeType": "call"
+        },
+        {
+          "name": "AtLeast",
+          "edgeType": "type"
+        },
+        {
+          "name": "IMessage",
+          "edgeType": "type"
+        }
+      ]
+    }
+  ],
+  "imports": [
+    {
+      "module": "@rocket.chat/core-typings",
+      "resolved": "external"
+    },
+    {
+      "module": "./extractUrlsFromMessageAST",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/server/lib/messages/extractUrlsFromMessageAST.ts"
+    },
+    {
+      "module": "../../../app/markdown/server",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/app/markdown/server/index.ts"
+    },
+    {
+      "module": "../../../app/settings/server",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/app/settings/server/index.ts"
+    },
+    {
+      "module": "../../../lib/getMessageUrlRegex",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/lib/getMessageUrlRegex.ts"
+    }
+  ]
+}

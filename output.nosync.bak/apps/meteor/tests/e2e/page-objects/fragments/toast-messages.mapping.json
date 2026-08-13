@@ -1,0 +1,112 @@
+{
+  "sourcePath": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/tests/e2e/page-objects/fragments/toast-messages.ts",
+  "symbols": [
+    {
+      "type": "class",
+      "name": "ToastMessages",
+      "exported": true,
+      "line": 5,
+      "endLine": 29,
+      "signature": "export class ToastMessages",
+      "calls": []
+    },
+    {
+      "type": "method",
+      "name": "dismissToast",
+      "exported": true,
+      "qualifiedName": "ToastMessages.dismissToast",
+      "line": 13,
+      "endLine": 16,
+      "signature": "async dismissToast(type: 'success' | 'error' = 'success')",
+      "containerClass": "ToastMessages",
+      "calls": [
+        {
+          "name": "click",
+          "edgeType": "call"
+        },
+        {
+          "name": "getByRole",
+          "edgeType": "call"
+        },
+        {
+          "name": "last",
+          "edgeType": "call"
+        },
+        {
+          "name": "move",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "waitForDisplay",
+      "exported": true,
+      "qualifiedName": "ToastMessages.waitForDisplay",
+      "line": 17,
+      "endLine": 27,
+      "signature": "waitForDisplay({ type, message }: { type: 'success' | 'error'; message?: string } = { type: 'success' })",
+      "containerClass": "ToastMessages",
+      "calls": [
+        {
+          "name": "toBeVisible",
+          "edgeType": "call"
+        },
+        {
+          "name": "expect",
+          "edgeType": "call"
+        },
+        {
+          "name": "locator",
+          "edgeType": "call"
+        },
+        {
+          "name": "last",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "constructor",
+      "exported": true,
+      "qualifiedName": "ToastMessages.constructor",
+      "line": 6,
+      "endLine": 6,
+      "signature": "constructor(private readonly page: Page)",
+      "containerClass": "ToastMessages",
+      "calls": [
+        {
+          "name": "Page",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "class_property",
+      "name": "toastByType",
+      "exported": true,
+      "qualifiedName": "ToastMessages.toastByType",
+      "line": 10,
+      "endLine": 13,
+      "signature": "private readonly toastByType =",
+      "containerClass": "ToastMessages",
+      "calls": [
+        {
+          "name": "locator",
+          "edgeType": "call"
+        }
+      ]
+    }
+  ],
+  "imports": [
+    {
+      "module": "@playwright/test",
+      "resolved": "external"
+    },
+    {
+      "module": "../../utils/test",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/tests/e2e/utils/test.ts"
+    }
+  ]
+}

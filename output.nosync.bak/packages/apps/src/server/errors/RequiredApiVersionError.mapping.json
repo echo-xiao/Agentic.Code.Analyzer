@@ -1,0 +1,44 @@
+{
+  "sourcePath": "/Users/echoooooo/Desktop/code/Rocket.Chat/packages/apps/src/server/errors/RequiredApiVersionError.ts",
+  "symbols": [
+    {
+      "type": "class",
+      "name": "RequiredApiVersionError",
+      "exported": true,
+      "line": 4,
+      "endLine": 20,
+      "signature": "export class RequiredApiVersionError implements Error",
+      "calls": []
+    },
+    {
+      "type": "method",
+      "name": "constructor",
+      "exported": true,
+      "qualifiedName": "RequiredApiVersionError.constructor",
+      "line": 9,
+      "endLine": 19,
+      "signature": "constructor(info: IAppInfo, versionInstalled: string)",
+      "containerClass": "RequiredApiVersionError",
+      "calls": [
+        {
+          "name": "gt",
+          "edgeType": "call"
+        },
+        {
+          "name": "IAppInfo",
+          "edgeType": "type"
+        }
+      ]
+    }
+  ],
+  "imports": [
+    {
+      "module": "@rocket.chat/apps-engine/definition/metadata",
+      "resolved": "external"
+    },
+    {
+      "module": "semver",
+      "resolved": "external"
+    }
+  ]
+}

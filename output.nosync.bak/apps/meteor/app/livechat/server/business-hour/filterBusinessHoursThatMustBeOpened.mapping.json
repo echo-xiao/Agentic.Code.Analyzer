@@ -1,0 +1,69 @@
+{
+  "sourcePath": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/app/livechat/server/business-hour/filterBusinessHoursThatMustBeOpened.ts",
+  "symbols": [
+    {
+      "type": "variable_function",
+      "name": "filterBusinessHoursThatMustBeOpened",
+      "exported": true,
+      "line": 4,
+      "endLine": 52,
+      "signature": "async ( businessHours: Omit<ILivechatBusinessHour, '_updatedAt'>[], ): Promise<Pick<ILivechatBusinessHour, '_id' | 'type'>[]> =>",
+      "calls": [
+        {
+          "name": "moment",
+          "edgeType": "call"
+        },
+        {
+          "name": "format",
+          "edgeType": "call"
+        },
+        {
+          "name": "map",
+          "edgeType": "call"
+        },
+        {
+          "name": "filter",
+          "edgeType": "call"
+        },
+        {
+          "name": "some",
+          "edgeType": "call"
+        },
+        {
+          "name": "isAfter",
+          "edgeType": "call"
+        },
+        {
+          "name": "subtract",
+          "edgeType": "call"
+        },
+        {
+          "name": "isBefore",
+          "edgeType": "call"
+        },
+        {
+          "name": "diff",
+          "edgeType": "call"
+        },
+        {
+          "name": "isSameOrAfter",
+          "edgeType": "call"
+        },
+        {
+          "name": "ILivechatBusinessHour",
+          "edgeType": "type"
+        }
+      ]
+    }
+  ],
+  "imports": [
+    {
+      "module": "@rocket.chat/core-typings",
+      "resolved": "external"
+    },
+    {
+      "module": "moment",
+      "resolved": "external"
+    }
+  ]
+}

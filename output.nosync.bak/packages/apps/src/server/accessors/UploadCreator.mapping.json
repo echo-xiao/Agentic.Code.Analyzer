@@ -1,0 +1,101 @@
+{
+  "sourcePath": "/Users/echoooooo/Desktop/code/Rocket.Chat/packages/apps/src/server/accessors/UploadCreator.ts",
+  "symbols": [
+    {
+      "type": "class",
+      "name": "UploadCreator",
+      "exported": true,
+      "line": 8,
+      "endLine": 29,
+      "signature": "export class UploadCreator implements IUploadCreator",
+      "calls": [
+        {
+          "name": "IUploadCreator",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "uploadBuffer",
+      "exported": true,
+      "qualifiedName": "UploadCreator.uploadBuffer",
+      "line": 14,
+      "endLine": 28,
+      "signature": "public async uploadBuffer(buffer: Buffer, descriptor: IUploadDescriptor): Promise<IUpload>",
+      "containerClass": "UploadCreator",
+      "calls": [
+        {
+          "name": "hasOwn",
+          "edgeType": "call"
+        },
+        {
+          "name": "doGetAppUser",
+          "edgeType": "call"
+        },
+        {
+          "name": "getUserBridge",
+          "edgeType": "call"
+        },
+        {
+          "name": "doCreateUpload",
+          "edgeType": "call"
+        },
+        {
+          "name": "getUploadBridge",
+          "edgeType": "call"
+        },
+        {
+          "name": "IUploadDescriptor",
+          "edgeType": "type"
+        },
+        {
+          "name": "IUpload",
+          "edgeType": "type"
+        },
+        {
+          "name": "IUploadDetails",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "constructor",
+      "exported": true,
+      "qualifiedName": "UploadCreator.constructor",
+      "line": 9,
+      "endLine": 12,
+      "signature": "constructor( private readonly bridges: AppBridges, private readonly appId: string, )",
+      "containerClass": "UploadCreator",
+      "calls": [
+        {
+          "name": "AppBridges",
+          "edgeType": "type"
+        }
+      ]
+    }
+  ],
+  "imports": [
+    {
+      "module": "@rocket.chat/apps-engine/definition/accessors",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/apps-engine/definition/uploads",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/apps-engine/definition/uploads/IUploadDescriptor",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/apps-engine/definition/uploads/IUploadDetails",
+      "resolved": "external"
+    },
+    {
+      "module": "../bridges",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/packages/apps/src/server/bridges/index.ts"
+    }
+  ]
+}

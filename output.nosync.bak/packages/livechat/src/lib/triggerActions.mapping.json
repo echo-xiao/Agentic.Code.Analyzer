@@ -1,0 +1,248 @@
+{
+  "sourcePath": "/Users/echoooooo/Desktop/code/Rocket.Chat/packages/livechat/src/lib/triggerActions.ts",
+  "symbols": [
+    {
+      "type": "inner_function",
+      "name": "onVisitorRegistered",
+      "exported": false,
+      "qualifiedName": "sendMessageAction.onVisitorRegistered",
+      "line": 45,
+      "endLine": 48,
+      "signature": "async () =>",
+      "calls": [
+        {
+          "name": "removeMessage",
+          "edgeType": "call"
+        },
+        {
+          "name": "off",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "variable_function",
+      "name": "sendMessageAction",
+      "exported": true,
+      "line": 11,
+      "endLine": 52,
+      "signature": "async (_: string, action: ILivechatSendMessageAction, condition: ILivechatTriggerCondition) =>",
+      "calls": [
+        {
+          "name": "getAgent",
+          "edgeType": "call"
+        },
+        {
+          "name": "toISOString",
+          "edgeType": "call"
+        },
+        {
+          "name": "createToken",
+          "edgeType": "call"
+        },
+        {
+          "name": "upsertMessage",
+          "edgeType": "call"
+        },
+        {
+          "name": "setState",
+          "edgeType": "call"
+        },
+        {
+          "name": "parentCall",
+          "edgeType": "call"
+        },
+        {
+          "name": "normalizeAgent",
+          "edgeType": "call"
+        },
+        {
+          "name": "route",
+          "edgeType": "call"
+        },
+        {
+          "name": "removeMessage",
+          "edgeType": "call"
+        },
+        {
+          "name": "off",
+          "edgeType": "call"
+        },
+        {
+          "name": "onVisitorRegistered",
+          "edgeType": "event_listen",
+          "event": "chat-visitor-registered"
+        },
+        {
+          "name": "Date",
+          "edgeType": "new"
+        },
+        {
+          "name": "ILivechatSendMessageAction",
+          "edgeType": "type"
+        },
+        {
+          "name": "ILivechatTriggerCondition",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "inner_function",
+      "name": "onVisitorRegistered",
+      "exported": false,
+      "qualifiedName": "sendMessageExternalServiceAction.onVisitorRegistered",
+      "line": 72,
+      "endLine": 75,
+      "signature": "async () =>",
+      "calls": [
+        {
+          "name": "all",
+          "edgeType": "call"
+        },
+        {
+          "name": "map",
+          "edgeType": "call"
+        },
+        {
+          "name": "removeMessage",
+          "edgeType": "call"
+        },
+        {
+          "name": "off",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "variable_function",
+      "name": "sendMessageExternalServiceAction",
+      "exported": true,
+      "line": 15,
+      "endLine": 84,
+      "signature": "async ( triggerId: string, action: ILivechatUseExternalServiceAction, condition: ILivechatTriggerCondition, ) =>",
+      "calls": [
+        {
+          "name": "getAgent",
+          "edgeType": "call"
+        },
+        {
+          "name": "setState",
+          "edgeType": "call"
+        },
+        {
+          "name": "requestTriggerMessages",
+          "edgeType": "call"
+        },
+        {
+          "name": "map",
+          "edgeType": "call"
+        },
+        {
+          "name": "sort",
+          "edgeType": "call"
+        },
+        {
+          "name": "toISOString",
+          "edgeType": "call"
+        },
+        {
+          "name": "createToken",
+          "edgeType": "call"
+        },
+        {
+          "name": "all",
+          "edgeType": "call"
+        },
+        {
+          "name": "upsertMessage",
+          "edgeType": "call"
+        },
+        {
+          "name": "parentCall",
+          "edgeType": "call"
+        },
+        {
+          "name": "normalizeAgent",
+          "edgeType": "call"
+        },
+        {
+          "name": "route",
+          "edgeType": "call"
+        },
+        {
+          "name": "removeMessage",
+          "edgeType": "call"
+        },
+        {
+          "name": "off",
+          "edgeType": "call"
+        },
+        {
+          "name": "onVisitorRegistered",
+          "edgeType": "event_listen",
+          "event": "chat-visitor-registered"
+        },
+        {
+          "name": "filter",
+          "edgeType": "call"
+        },
+        {
+          "name": "Date",
+          "edgeType": "new"
+        },
+        {
+          "name": "ILivechatUseExternalServiceAction",
+          "edgeType": "type"
+        },
+        {
+          "name": "ILivechatTriggerCondition",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "variable",
+      "name": "actions",
+      "exported": true,
+      "line": 23,
+      "endLine": 26,
+      "signature": "actions =",
+      "calls": []
+    }
+  ],
+  "imports": [
+    {
+      "module": "@rocket.chat/core-typings",
+      "resolved": "external"
+    },
+    {
+      "module": "preact-router",
+      "resolved": "external"
+    },
+    {
+      "module": "../store",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/packages/livechat/src/store/index.tsx"
+    },
+    {
+      "module": "./api",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/packages/livechat/src/lib/api.ts"
+    },
+    {
+      "module": "./parentCall",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/packages/livechat/src/lib/parentCall.ts"
+    },
+    {
+      "module": "./random",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/packages/livechat/src/lib/random.ts"
+    },
+    {
+      "module": "./triggerUtils",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/packages/livechat/src/lib/triggerUtils.ts"
+    },
+    {
+      "module": "./triggers",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/packages/livechat/src/lib/triggers.ts"
+    }
+  ]
+}

@@ -1,0 +1,37 @@
+{
+  "sourcePath": "/Users/echoooooo/Desktop/code/Rocket.Chat/packages/ui-contexts/src/hooks/useSetting.ts",
+  "symbols": [
+    {
+      "type": "function",
+      "name": "useSetting",
+      "exported": true,
+      "line": 10,
+      "endLine": 13,
+      "signature": "export function useSetting<TValue>(settingId: ISetting['_id'], fallbackValue?: TValue): TValue | undefined",
+      "calls": [
+        {
+          "name": "useSettingStructure",
+          "edgeType": "call"
+        },
+        {
+          "name": "ISetting",
+          "edgeType": "type"
+        },
+        {
+          "name": "TValue",
+          "edgeType": "type"
+        }
+      ]
+    }
+  ],
+  "imports": [
+    {
+      "module": "@rocket.chat/core-typings",
+      "resolved": "external"
+    },
+    {
+      "module": "./useSettingStructure",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/packages/ui-contexts/src/hooks/useSettingStructure.ts"
+    }
+  ]
+}

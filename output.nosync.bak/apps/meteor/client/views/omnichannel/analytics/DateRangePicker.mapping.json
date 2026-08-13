@@ -1,0 +1,354 @@
+{
+  "sourcePath": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/client/views/omnichannel/analytics/DateRangePicker.tsx",
+  "symbols": [
+    {
+      "type": "variable_function",
+      "name": "formatToDateInput",
+      "exported": false,
+      "line": 13,
+      "endLine": 13,
+      "signature": "(date: Date) =>",
+      "calls": [
+        {
+          "name": "format",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "variable_function",
+      "name": "getTodayDate",
+      "exported": false,
+      "line": 15,
+      "endLine": 15,
+      "signature": "() =>",
+      "calls": [
+        {
+          "name": "formatToDateInput",
+          "edgeType": "call"
+        },
+        {
+          "name": "Date",
+          "edgeType": "new"
+        }
+      ]
+    },
+    {
+      "type": "variable_function",
+      "name": "getMonthRange",
+      "exported": false,
+      "line": 17,
+      "endLine": 25,
+      "signature": "(monthsToSubtractFromToday: number) =>",
+      "calls": [
+        {
+          "name": "startOfMonth",
+          "edgeType": "call"
+        },
+        {
+          "name": "subMonths",
+          "edgeType": "call"
+        },
+        {
+          "name": "endOfMonth",
+          "edgeType": "call"
+        },
+        {
+          "name": "formatToDateInput",
+          "edgeType": "call"
+        },
+        {
+          "name": "Date",
+          "edgeType": "new"
+        }
+      ]
+    },
+    {
+      "type": "variable_function",
+      "name": "getWeekRange",
+      "exported": false,
+      "line": 21,
+      "endLine": 27,
+      "signature": "(daysToSubtractFromStart: number, daysToSubtractFromEnd: number) =>",
+      "calls": [
+        {
+          "name": "formatToDateInput",
+          "edgeType": "call"
+        },
+        {
+          "name": "subDays",
+          "edgeType": "call"
+        },
+        {
+          "name": "Date",
+          "edgeType": "new"
+        }
+      ]
+    },
+    {
+      "type": "inner_function",
+      "name": "onClick",
+      "exported": false,
+      "qualifiedName": "DateRangePicker.onClick",
+      "line": 68,
+      "endLine": 70,
+      "signature": "() =>",
+      "calls": [
+        {
+          "name": "handleRange",
+          "edgeType": "call"
+        },
+        {
+          "name": "getWeekRange",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "inner_function",
+      "name": "onClick",
+      "exported": false,
+      "qualifiedName": "DateRangePicker.onClick",
+      "line": 76,
+      "endLine": 78,
+      "signature": "() =>",
+      "calls": [
+        {
+          "name": "handleRange",
+          "edgeType": "call"
+        },
+        {
+          "name": "getWeekRange",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "inner_function",
+      "name": "onClick",
+      "exported": false,
+      "qualifiedName": "DateRangePicker.onClick",
+      "line": 84,
+      "endLine": 86,
+      "signature": "() =>",
+      "calls": [
+        {
+          "name": "handleRange",
+          "edgeType": "call"
+        },
+        {
+          "name": "getWeekRange",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "inner_function",
+      "name": "onClick",
+      "exported": false,
+      "qualifiedName": "DateRangePicker.onClick",
+      "line": 92,
+      "endLine": 94,
+      "signature": "() =>",
+      "calls": [
+        {
+          "name": "handleRange",
+          "edgeType": "call"
+        },
+        {
+          "name": "getWeekRange",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "inner_function",
+      "name": "onClick",
+      "exported": false,
+      "qualifiedName": "DateRangePicker.onClick",
+      "line": 100,
+      "endLine": 102,
+      "signature": "() =>",
+      "calls": [
+        {
+          "name": "handleRange",
+          "edgeType": "call"
+        },
+        {
+          "name": "getMonthRange",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "inner_function",
+      "name": "onClick",
+      "exported": false,
+      "qualifiedName": "DateRangePicker.onClick",
+      "line": 108,
+      "endLine": 110,
+      "signature": "() =>",
+      "calls": [
+        {
+          "name": "handleRange",
+          "edgeType": "call"
+        },
+        {
+          "name": "getMonthRange",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "variable_function",
+      "name": "DateRangePicker",
+      "exported": false,
+      "line": 25,
+      "endLine": 141,
+      "signature": "({ onChange = () => undefined, ...props }: DateRangePickerProps) =>",
+      "calls": [
+        {
+          "name": "useTranslation",
+          "edgeType": "call"
+        },
+        {
+          "name": "useMemo",
+          "edgeType": "call"
+        },
+        {
+          "name": "getTodayDate",
+          "edgeType": "call"
+        },
+        {
+          "name": "useState",
+          "edgeType": "call"
+        },
+        {
+          "name": "useStableCallback",
+          "edgeType": "call"
+        },
+        {
+          "name": "setRange",
+          "edgeType": "call"
+        },
+        {
+          "name": "onChange",
+          "edgeType": "call"
+        },
+        {
+          "name": "useEffect",
+          "edgeType": "call"
+        },
+        {
+          "name": "handleRange",
+          "edgeType": "call"
+        },
+        {
+          "name": "getWeekRange",
+          "edgeType": "call"
+        },
+        {
+          "name": "getMonthRange",
+          "edgeType": "call"
+        },
+        {
+          "name": "Box",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "Field",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "FieldLabel",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "FieldRow",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "InputBox",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "GenericMenu",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "handleStart",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "todayDate",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "start",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "handleEnd",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "end",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "options",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "DateRangePickerProps",
+          "edgeType": "type"
+        },
+        {
+          "name": "ChangeEvent",
+          "edgeType": "type"
+        },
+        {
+          "name": "HTMLInputElement",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "type",
+      "name": "DateRangePickerProps",
+      "line": 9,
+      "endLine": 11,
+      "signature": "export type DateRangePickerProps = Omit<ComponentProps<typeof Box>, 'onChange'> &"
+    }
+  ],
+  "imports": [
+    {
+      "module": "@rocket.chat/fuselage",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/fuselage-hooks",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/ui-client",
+      "resolved": "external"
+    },
+    {
+      "module": "date-fns",
+      "resolved": "external"
+    },
+    {
+      "module": "react",
+      "resolved": "external"
+    },
+    {
+      "module": "react",
+      "resolved": "external"
+    },
+    {
+      "module": "react-i18next",
+      "resolved": "external"
+    }
+  ]
+}

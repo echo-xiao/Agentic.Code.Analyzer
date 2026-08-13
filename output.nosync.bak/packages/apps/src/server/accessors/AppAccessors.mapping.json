@@ -1,0 +1,97 @@
+{
+  "sourcePath": "/Users/echoooooo/Desktop/code/Rocket.Chat/packages/apps/src/server/accessors/AppAccessors.ts",
+  "symbols": [
+    {
+      "type": "class",
+      "name": "AppAccessors",
+      "exported": true,
+      "line": 8,
+      "endLine": 40,
+      "signature": "export class AppAccessors implements IAppAccessors",
+      "calls": [
+        {
+          "name": "IAppAccessors",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "constructor",
+      "exported": true,
+      "qualifiedName": "AppAccessors.constructor",
+      "line": 13,
+      "endLine": 19,
+      "signature": "constructor( manager: AppManager, private readonly appId: string, )",
+      "containerClass": "AppAccessors",
+      "calls": [
+        {
+          "name": "getAccessorManager",
+          "edgeType": "call"
+        },
+        {
+          "name": "getApiManager",
+          "edgeType": "call"
+        },
+        {
+          "name": "AppManager",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "class_property",
+      "name": "accessorManager",
+      "exported": true,
+      "qualifiedName": "AppAccessors.accessorManager",
+      "line": 9,
+      "endLine": 9,
+      "signature": "private accessorManager: AppAccessorManager;",
+      "containerClass": "AppAccessors",
+      "calls": [
+        {
+          "name": "AppAccessorManager",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "class_property",
+      "name": "apiManager",
+      "exported": true,
+      "qualifiedName": "AppAccessors.apiManager",
+      "line": 11,
+      "endLine": 11,
+      "signature": "private apiManager: AppApiManager;",
+      "containerClass": "AppAccessors",
+      "calls": [
+        {
+          "name": "AppApiManager",
+          "edgeType": "type"
+        }
+      ]
+    }
+  ],
+  "imports": [
+    {
+      "module": "@rocket.chat/apps-engine/definition/accessors",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/apps-engine/definition/api",
+      "resolved": "external"
+    },
+    {
+      "module": "../AppManager",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/packages/apps/src/server/AppManager.ts"
+    },
+    {
+      "module": "../managers/AppAccessorManager",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/packages/apps/src/server/managers/AppAccessorManager.ts"
+    },
+    {
+      "module": "../managers/AppApiManager",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/packages/apps/src/server/managers/AppApiManager.ts"
+    }
+  ]
+}

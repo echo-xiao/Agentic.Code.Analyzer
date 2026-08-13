@@ -1,0 +1,41 @@
+{
+  "sourcePath": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/client/views/root/hooks/useNotificationPermission.ts",
+  "symbols": [
+    {
+      "type": "variable_function",
+      "name": "useNotificationPermission",
+      "exported": true,
+      "line": 5,
+      "endLine": 21,
+      "signature": "() =>",
+      "calls": [
+        {
+          "name": "useStableCallback",
+          "edgeType": "call"
+        },
+        {
+          "name": "requestPermission",
+          "edgeType": "call"
+        },
+        {
+          "name": "change",
+          "edgeType": "event_emit"
+        },
+        {
+          "name": "query",
+          "edgeType": "call"
+        }
+      ]
+    }
+  ],
+  "imports": [
+    {
+      "module": "@rocket.chat/fuselage-hooks",
+      "resolved": "external"
+    },
+    {
+      "module": "../../../lib/notificationManager",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/client/lib/notificationManager.ts"
+    }
+  ]
+}

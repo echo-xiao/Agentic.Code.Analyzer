@@ -1,0 +1,165 @@
+{
+  "sourcePath": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/server/lib/users/checkUsernameAvailability.ts",
+  "symbols": [
+    {
+      "type": "module",
+      "name": "checkUsernameAvailability",
+      "exported": false,
+      "line": 1,
+      "endLine": 66,
+      "signature": "checkUsernameAvailability",
+      "calls": [
+        {
+          "name": "watch",
+          "edgeType": "call"
+        },
+        {
+          "name": "map",
+          "edgeType": "call"
+        },
+        {
+          "name": "concat",
+          "edgeType": "call"
+        },
+        {
+          "name": "split",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "variable_function",
+      "name": "toRegExp",
+      "exported": false,
+      "line": 12,
+      "endLine": 12,
+      "signature": "(username: string): RegExp =>",
+      "calls": [
+        {
+          "name": "trim",
+          "edgeType": "call"
+        },
+        {
+          "name": "escapeRegExp",
+          "edgeType": "call"
+        },
+        {
+          "name": "RegExp",
+          "edgeType": "new"
+        }
+      ]
+    },
+    {
+      "type": "variable_function",
+      "name": "usernameIsBlocked",
+      "exported": false,
+      "line": 18,
+      "endLine": 19,
+      "signature": "(username: string, usernameBlackList: RegExp[]): boolean | number =>",
+      "calls": [
+        {
+          "name": "some",
+          "edgeType": "call"
+        },
+        {
+          "name": "test",
+          "edgeType": "call"
+        },
+        {
+          "name": "trim",
+          "edgeType": "call"
+        },
+        {
+          "name": "escapeRegExp",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "variable_function",
+      "name": "checkUsernameAvailabilityWithValidation",
+      "exported": true,
+      "line": 21,
+      "endLine": 40,
+      "signature": "async function (userId: string, username: string): Promise<boolean>",
+      "calls": [
+        {
+          "name": "findOneById",
+          "edgeType": "call"
+        },
+        {
+          "name": "get",
+          "edgeType": "call"
+        },
+        {
+          "name": "checkUsernameAvailability",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "variable_function",
+      "name": "checkUsernameAvailability",
+      "exported": true,
+      "line": 25,
+      "endLine": 48,
+      "signature": "async function (username: string): Promise<boolean>",
+      "calls": [
+        {
+          "name": "usernameIsBlocked",
+          "edgeType": "call"
+        },
+        {
+          "name": "validateName",
+          "edgeType": "call"
+        },
+        {
+          "name": "escape",
+          "edgeType": "call"
+        },
+        {
+          "name": "findOneByUsernameIgnoringCase",
+          "edgeType": "call"
+        },
+        {
+          "name": "getOneByName",
+          "edgeType": "call"
+        },
+        {
+          "name": "toRegExp",
+          "edgeType": "call"
+        }
+      ]
+    }
+  ],
+  "imports": [
+    {
+      "module": "@rocket.chat/core-services",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/models",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/string-helpers",
+      "resolved": "external"
+    },
+    {
+      "module": "meteor/meteor",
+      "resolved": "external"
+    },
+    {
+      "module": "underscore",
+      "resolved": "external"
+    },
+    {
+      "module": "../../../app/settings/server",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/app/settings/server/index.ts"
+    },
+    {
+      "module": "../shared/validateName",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/server/lib/shared/validateName.ts"
+    }
+  ]
+}

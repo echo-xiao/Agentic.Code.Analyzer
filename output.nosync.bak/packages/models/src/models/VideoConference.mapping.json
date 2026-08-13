@@ -1,0 +1,577 @@
+{
+  "sourcePath": "/Users/echoooooo/Desktop/code/Rocket.Chat/packages/models/src/models/VideoConference.ts",
+  "symbols": [
+    {
+      "type": "class",
+      "name": "VideoConferenceRaw",
+      "exported": true,
+      "line": 25,
+      "endLine": 305,
+      "signature": "export class VideoConferenceRaw extends BaseRaw<VideoConference> implements IVideoConferenceModel",
+      "calls": [
+        {
+          "name": "BaseRaw",
+          "edgeType": "type"
+        },
+        {
+          "name": "IVideoConferenceModel",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "modelIndexes",
+      "exported": true,
+      "qualifiedName": "VideoConferenceRaw.modelIndexes",
+      "line": 30,
+      "endLine": 36,
+      "signature": "protected override modelIndexes(): IndexDescription[]",
+      "containerClass": "VideoConferenceRaw",
+      "calls": [
+        {
+          "name": "IndexDescription",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "findPaginatedByRoomId",
+      "exported": true,
+      "qualifiedName": "VideoConferenceRaw.findPaginatedByRoomId",
+      "line": 34,
+      "endLine": 49,
+      "signature": "public findPaginatedByRoomId( rid: IRoom['_id'], { offset, count }: { offset?: number; count?: number } = {}, ): FindPaginated<FindCursor<VideoConference>>",
+      "containerClass": "VideoConferenceRaw",
+      "calls": [
+        {
+          "name": "findPaginated",
+          "edgeType": "call"
+        },
+        {
+          "name": "IRoom",
+          "edgeType": "type"
+        },
+        {
+          "name": "FindPaginated",
+          "edgeType": "type"
+        },
+        {
+          "name": "FindCursor",
+          "edgeType": "type"
+        },
+        {
+          "name": "VideoConference",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "findAllLongRunning",
+      "exported": true,
+      "qualifiedName": "VideoConferenceRaw.findAllLongRunning",
+      "line": 41,
+      "endLine": 57,
+      "signature": "public async findAllLongRunning(minDate: Date): Promise<FindCursor<Pick<VideoConference, '_id'>>>",
+      "containerClass": "VideoConferenceRaw",
+      "calls": [
+        {
+          "name": "find",
+          "edgeType": "call"
+        },
+        {
+          "name": "FindCursor",
+          "edgeType": "type"
+        },
+        {
+          "name": "VideoConference",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "countByTypeAndStatus",
+      "exported": true,
+      "qualifiedName": "VideoConferenceRaw.countByTypeAndStatus",
+      "line": 45,
+      "endLine": 57,
+      "signature": "public async countByTypeAndStatus( type: VideoConference['type'], status: VideoConferenceStatus, options: CountDocumentsOptions, ): Promise<number>",
+      "containerClass": "VideoConferenceRaw",
+      "calls": [
+        {
+          "name": "countDocuments",
+          "edgeType": "call"
+        },
+        {
+          "name": "VideoConference",
+          "edgeType": "type"
+        },
+        {
+          "name": "VideoConferenceStatus",
+          "edgeType": "type"
+        },
+        {
+          "name": "CountDocumentsOptions",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "createDirect",
+      "exported": true,
+      "qualifiedName": "VideoConferenceRaw.createDirect",
+      "line": 53,
+      "endLine": 69,
+      "signature": "public async createDirect({ providerName, ...callDetails }: Pick<VideoConference, 'rid' | 'createdBy' | 'providerName'>): Promise<string>",
+      "containerClass": "VideoConferenceRaw",
+      "calls": [
+        {
+          "name": "toLowerCase",
+          "edgeType": "call"
+        },
+        {
+          "name": "insertOne",
+          "edgeType": "call"
+        },
+        {
+          "name": "Date",
+          "edgeType": "new"
+        },
+        {
+          "name": "VideoConference",
+          "edgeType": "type"
+        },
+        {
+          "name": "InsertionModel",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "createGroup",
+      "exported": true,
+      "qualifiedName": "VideoConferenceRaw.createGroup",
+      "line": 60,
+      "endLine": 76,
+      "signature": "public async createGroup({ providerName, ...callDetails }: Required<Pick<IGroupVideoConference, 'rid' | 'title' | 'createdBy' | 'providerName' | 'ringing'>>): Promise<string>",
+      "containerClass": "VideoConferenceRaw",
+      "calls": [
+        {
+          "name": "toLowerCase",
+          "edgeType": "call"
+        },
+        {
+          "name": "insertOne",
+          "edgeType": "call"
+        },
+        {
+          "name": "Date",
+          "edgeType": "new"
+        },
+        {
+          "name": "IGroupVideoConference",
+          "edgeType": "type"
+        },
+        {
+          "name": "InsertionModel",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "createLivechat",
+      "exported": true,
+      "qualifiedName": "VideoConferenceRaw.createLivechat",
+      "line": 67,
+      "endLine": 82,
+      "signature": "public async createLivechat({ providerName, ...callDetails }: Required<Pick<ILivechatVideoConference, 'rid' | 'createdBy' | 'providerName'>>): Promise<string>",
+      "containerClass": "VideoConferenceRaw",
+      "calls": [
+        {
+          "name": "toLowerCase",
+          "edgeType": "call"
+        },
+        {
+          "name": "insertOne",
+          "edgeType": "call"
+        },
+        {
+          "name": "Date",
+          "edgeType": "new"
+        },
+        {
+          "name": "ILivechatVideoConference",
+          "edgeType": "type"
+        },
+        {
+          "name": "InsertionModel",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "createVoIP",
+      "exported": true,
+      "qualifiedName": "VideoConferenceRaw.createVoIP",
+      "line": 74,
+      "endLine": 79,
+      "signature": "public async createVoIP(call: InsertionModel<IVoIPVideoConference>): Promise<string | undefined>",
+      "containerClass": "VideoConferenceRaw",
+      "calls": [
+        {
+          "name": "findOneAndUpdate",
+          "edgeType": "call"
+        },
+        {
+          "name": "InsertionModel",
+          "edgeType": "type"
+        },
+        {
+          "name": "IVoIPVideoConference",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "updateOneById",
+      "exported": true,
+      "qualifiedName": "VideoConferenceRaw.updateOneById",
+      "line": 78,
+      "endLine": 84,
+      "signature": "public updateOneById( _id: string, update: UpdateFilter<VideoConference> | Partial<VideoConference>, options?: UpdateOptions, ): Promise<UpdateResult>",
+      "containerClass": "VideoConferenceRaw",
+      "calls": [
+        {
+          "name": "updateOne",
+          "edgeType": "call"
+        },
+        {
+          "name": "UpdateFilter",
+          "edgeType": "type"
+        },
+        {
+          "name": "VideoConference",
+          "edgeType": "type"
+        },
+        {
+          "name": "UpdateOptions",
+          "edgeType": "type"
+        },
+        {
+          "name": "UpdateResult",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "setEndedById",
+      "exported": true,
+      "qualifiedName": "VideoConferenceRaw.setEndedById",
+      "line": 86,
+      "endLine": 93,
+      "signature": "public async setEndedById(callId: string, endedBy?: { _id: string; name: string; username: string }, endedAt?: Date): Promise<void>",
+      "containerClass": "VideoConferenceRaw",
+      "calls": [
+        {
+          "name": "updateOneById",
+          "edgeType": "call"
+        },
+        {
+          "name": "Date",
+          "edgeType": "new"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "setDataById",
+      "exported": true,
+      "qualifiedName": "VideoConferenceRaw.setDataById",
+      "line": 90,
+      "endLine": 94,
+      "signature": "public async setDataById(callId: string, data: Partial<Omit<VideoConference, '_id'>>): Promise<void>",
+      "containerClass": "VideoConferenceRaw",
+      "calls": [
+        {
+          "name": "updateOneById",
+          "edgeType": "call"
+        },
+        {
+          "name": "VideoConference",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "setRingingById",
+      "exported": true,
+      "qualifiedName": "VideoConferenceRaw.setRingingById",
+      "line": 94,
+      "endLine": 100,
+      "signature": "public async setRingingById(callId: string, ringing: boolean): Promise<void>",
+      "containerClass": "VideoConferenceRaw",
+      "calls": [
+        {
+          "name": "updateOneById",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "setStatusById",
+      "exported": true,
+      "qualifiedName": "VideoConferenceRaw.setStatusById",
+      "line": 98,
+      "endLine": 104,
+      "signature": "public async setStatusById(callId: string, status: VideoConference['status']): Promise<void>",
+      "containerClass": "VideoConferenceRaw",
+      "calls": [
+        {
+          "name": "updateOneById",
+          "edgeType": "call"
+        },
+        {
+          "name": "VideoConference",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "setUrlById",
+      "exported": true,
+      "qualifiedName": "VideoConferenceRaw.setUrlById",
+      "line": 102,
+      "endLine": 108,
+      "signature": "public async setUrlById(callId: string, url: string): Promise<void>",
+      "containerClass": "VideoConferenceRaw",
+      "calls": [
+        {
+          "name": "updateOneById",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "setProviderDataById",
+      "exported": true,
+      "qualifiedName": "VideoConferenceRaw.setProviderDataById",
+      "line": 106,
+      "endLine": 120,
+      "signature": "public async setProviderDataById(callId: string, providerData: Record<string, any> | undefined): Promise<void>",
+      "containerClass": "VideoConferenceRaw",
+      "calls": [
+        {
+          "name": "updateOneById",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "addUserById",
+      "exported": true,
+      "qualifiedName": "VideoConferenceRaw.addUserById",
+      "line": 110,
+      "endLine": 125,
+      "signature": "public async addUserById( callId: string, user: Required<Pick<IUser, '_id' | 'name' | 'username' | 'avatarETag'>> & { ts?: Date }, ): Promise<void>",
+      "containerClass": "VideoConferenceRaw",
+      "calls": [
+        {
+          "name": "updateOneById",
+          "edgeType": "call"
+        },
+        {
+          "name": "Date",
+          "edgeType": "new"
+        },
+        {
+          "name": "IUser",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "setMessageById",
+      "exported": true,
+      "qualifiedName": "VideoConferenceRaw.setMessageById",
+      "line": 117,
+      "endLine": 124,
+      "signature": "public async setMessageById(callId: string, messageType: keyof VideoConference['messages'], messageId: string): Promise<void>",
+      "containerClass": "VideoConferenceRaw",
+      "calls": [
+        {
+          "name": "updateOneById",
+          "edgeType": "call"
+        },
+        {
+          "name": "VideoConference",
+          "edgeType": "type"
+        },
+        {
+          "name": "UpdateFilter",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "updateUserReferences",
+      "exported": true,
+      "qualifiedName": "VideoConferenceRaw.updateUserReferences",
+      "line": 121,
+      "endLine": 157,
+      "signature": "public async updateUserReferences(userId: IUser['_id'], username: IUser['username'], name: IUser['name']): Promise<void>",
+      "containerClass": "VideoConferenceRaw",
+      "calls": [
+        {
+          "name": "updateMany",
+          "edgeType": "call"
+        },
+        {
+          "name": "IUser",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "increaseAnonymousCount",
+      "exported": true,
+      "qualifiedName": "VideoConferenceRaw.increaseAnonymousCount",
+      "line": 125,
+      "endLine": 134,
+      "signature": "public async increaseAnonymousCount(callId: IGroupVideoConference['_id']): Promise<void>",
+      "containerClass": "VideoConferenceRaw",
+      "calls": [
+        {
+          "name": "updateOne",
+          "edgeType": "call"
+        },
+        {
+          "name": "IGroupVideoConference",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "setDiscussionRidById",
+      "exported": true,
+      "qualifiedName": "VideoConferenceRaw.setDiscussionRidById",
+      "line": 129,
+      "endLine": 131,
+      "signature": "public async setDiscussionRidById(callId: string, discussionRid: IRoom['_id']): Promise<void>",
+      "containerClass": "VideoConferenceRaw",
+      "calls": [
+        {
+          "name": "updateOne",
+          "edgeType": "call"
+        },
+        {
+          "name": "IRoom",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "unsetDiscussionRidById",
+      "exported": true,
+      "qualifiedName": "VideoConferenceRaw.unsetDiscussionRidById",
+      "line": 133,
+      "endLine": 135,
+      "signature": "public async unsetDiscussionRidById(callId: string): Promise<void>",
+      "containerClass": "VideoConferenceRaw",
+      "calls": [
+        {
+          "name": "updateOne",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "unsetDiscussionRid",
+      "exported": true,
+      "qualifiedName": "VideoConferenceRaw.unsetDiscussionRid",
+      "line": 137,
+      "endLine": 148,
+      "signature": "public async unsetDiscussionRid(discussionRid: IRoom['_id']): Promise<void>",
+      "containerClass": "VideoConferenceRaw",
+      "calls": [
+        {
+          "name": "updateMany",
+          "edgeType": "call"
+        },
+        {
+          "name": "IRoom",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "constructor",
+      "exported": true,
+      "qualifiedName": "VideoConferenceRaw.constructor",
+      "line": 26,
+      "endLine": 28,
+      "signature": "constructor(db: Db, trash?: Collection<RocketChatRecordDeleted<VideoConference>>)",
+      "containerClass": "VideoConferenceRaw",
+      "calls": [
+        {
+          "name": "Db",
+          "edgeType": "type"
+        },
+        {
+          "name": "Collection",
+          "edgeType": "type"
+        },
+        {
+          "name": "RocketChatRecordDeleted",
+          "edgeType": "type"
+        },
+        {
+          "name": "VideoConference",
+          "edgeType": "type"
+        }
+      ]
+    }
+  ],
+  "imports": [
+    {
+      "module": "@rocket.chat/core-typings",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/core-typings",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/model-typings",
+      "resolved": "external"
+    },
+    {
+      "module": "mongodb",
+      "resolved": "external"
+    },
+    {
+      "module": "./BaseRaw",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/packages/models/src/models/BaseRaw.ts"
+    }
+  ]
+}

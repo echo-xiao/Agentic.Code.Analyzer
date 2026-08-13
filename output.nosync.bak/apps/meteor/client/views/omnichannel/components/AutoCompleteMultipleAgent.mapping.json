@@ -1,0 +1,114 @@
+{
+  "sourcePath": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/client/views/omnichannel/components/AutoCompleteMultipleAgent.tsx",
+  "symbols": [
+    {
+      "type": "module",
+      "name": "AutoCompleteMultipleAgent",
+      "exported": false,
+      "line": 1,
+      "endLine": 62,
+      "signature": "AutoCompleteMultipleAgent",
+      "calls": [
+        {
+          "name": "memo",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "variable_function",
+      "name": "AutoCompleteMultipleAgent",
+      "exported": false,
+      "line": 20,
+      "endLine": 59,
+      "signature": "({ value, error, placeholder, excludeId, showIdleAgents = true, onlyAvailable = false, withTitle = false, onChange, ...props }: AutoCompleteMultipleAgentProps) =>",
+      "calls": [
+        {
+          "name": "useState",
+          "edgeType": "call"
+        },
+        {
+          "name": "useDebouncedValue",
+          "edgeType": "call"
+        },
+        {
+          "name": "useAgentsList",
+          "edgeType": "call"
+        },
+        {
+          "name": "fetchNextPage",
+          "edgeType": "call"
+        },
+        {
+          "name": "PaginatedMultiSelectFiltered",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "withTitle",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "value",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "error",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "placeholder",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "onChange",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "agentsFilter",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "agentsItems",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "AutoCompleteMultipleAgentProps",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "type",
+      "name": "AutoCompleteMultipleAgentProps",
+      "line": 9,
+      "endLine": 18,
+      "signature": "export type AutoCompleteMultipleAgentProps = Omit< ComponentProps<typeof PaginatedMultiSelectFiltered>, 'options' | 'renderItem' | 'setFilter' | 'filter' | 'endReached' | 'value' | 'onChange' > &"
+    }
+  ],
+  "imports": [
+    {
+      "module": "@rocket.chat/fuselage",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/fuselage",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/fuselage-hooks",
+      "resolved": "external"
+    },
+    {
+      "module": "react",
+      "resolved": "external"
+    },
+    {
+      "module": "react",
+      "resolved": "external"
+    },
+    {
+      "module": "../hooks/useAgentsList",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/client/views/omnichannel/hooks/useAgentsList.ts"
+    }
+  ]
+}

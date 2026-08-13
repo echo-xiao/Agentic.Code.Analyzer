@@ -1,0 +1,52 @@
+{
+  "sourcePath": "/Users/echoooooo/Desktop/code/Rocket.Chat/packages/apps/src/lib/SecureFields.ts",
+  "symbols": [
+    {
+      "type": "function",
+      "name": "secureFieldsMapper",
+      "exported": true,
+      "line": 11,
+      "endLine": 15,
+      "signature": "export function secureFieldsMapper<T extends Record<string, unknown>>( mapper: (object: T) => SecureFieldDescriptor<T, keyof T>[] | undefined, )",
+      "calls": [
+        {
+          "name": "SecureFieldDescriptor",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "function",
+      "name": "hasSecureFields",
+      "exported": true,
+      "line": 17,
+      "endLine": 19,
+      "signature": "export function hasSecureFields(object: unknown): boolean",
+      "calls": []
+    },
+    {
+      "type": "variable",
+      "name": "kSecureFields",
+      "exported": true,
+      "line": 7,
+      "endLine": 7,
+      "signature": "kSecureFields = '@@SecureFields'",
+      "calls": []
+    },
+    {
+      "type": "type",
+      "name": "SecureFieldDescriptor",
+      "line": 1,
+      "endLine": 5,
+      "signature": "export type SecureFieldDescriptor<T extends Record<string, unknown>, K extends keyof T> ="
+    },
+    {
+      "type": "type",
+      "name": "WithSecureFields",
+      "line": 9,
+      "endLine": 9,
+      "signature": "export type WithSecureFields<T extends Record<string, unknown>> = T &"
+    }
+  ],
+  "imports": []
+}

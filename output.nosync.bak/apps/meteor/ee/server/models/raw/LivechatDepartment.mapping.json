@@ -1,0 +1,373 @@
+{
+  "sourcePath": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/ee/server/models/raw/LivechatDepartment.ts",
+  "symbols": [
+    {
+      "type": "class",
+      "name": "LivechatDepartmentEE",
+      "exported": true,
+      "line": 38,
+      "endLine": 134,
+      "signature": "export class LivechatDepartmentEE extends LivechatDepartmentRaw implements ILivechatDepartmentModel",
+      "calls": [
+        {
+          "name": "LivechatDepartmentRaw",
+          "edgeType": "type"
+        },
+        {
+          "name": "ILivechatDepartmentModel",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "removeDepartmentFromForwardListById",
+      "exported": true,
+      "qualifiedName": "LivechatDepartmentEE.removeDepartmentFromForwardListById",
+      "line": 43,
+      "endLine": 45,
+      "signature": "override async removeDepartmentFromForwardListById(departmentId: string): Promise<void>",
+      "containerClass": "LivechatDepartmentEE",
+      "calls": [
+        {
+          "name": "updateMany",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "unfilteredFind",
+      "exported": true,
+      "qualifiedName": "LivechatDepartmentEE.unfilteredFind",
+      "line": 47,
+      "endLine": 49,
+      "signature": "override unfilteredFind(query: Filter<ILivechatDepartment>, options: FindOptions<ILivechatDepartment>): FindCursor<ILivechatDepartment>",
+      "containerClass": "LivechatDepartmentEE",
+      "calls": [
+        {
+          "name": "find",
+          "edgeType": "call"
+        },
+        {
+          "name": "Filter",
+          "edgeType": "type"
+        },
+        {
+          "name": "ILivechatDepartment",
+          "edgeType": "type"
+        },
+        {
+          "name": "FindOptions",
+          "edgeType": "type"
+        },
+        {
+          "name": "FindCursor",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "unfilteredFindOne",
+      "exported": true,
+      "qualifiedName": "LivechatDepartmentEE.unfilteredFindOne",
+      "line": 51,
+      "endLine": 56,
+      "signature": "override unfilteredFindOne( query: Filter<ILivechatDepartment>, options: FindOptions<ILivechatDepartment>, ): Promise<ILivechatDepartment | null>",
+      "containerClass": "LivechatDepartmentEE",
+      "calls": [
+        {
+          "name": "findOne",
+          "edgeType": "call"
+        },
+        {
+          "name": "Filter",
+          "edgeType": "type"
+        },
+        {
+          "name": "ILivechatDepartment",
+          "edgeType": "type"
+        },
+        {
+          "name": "FindOptions",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "unfilteredUpdate",
+      "exported": true,
+      "qualifiedName": "LivechatDepartmentEE.unfilteredUpdate",
+      "line": 58,
+      "endLine": 64,
+      "signature": "override unfilteredUpdate( query: Filter<ILivechatDepartment>, update: UpdateFilter<ILivechatDepartment>, options: FindOptions<ILivechatDepartment>, ): Promise<UpdateResult>",
+      "containerClass": "LivechatDepartmentEE",
+      "calls": [
+        {
+          "name": "updateOne",
+          "edgeType": "call"
+        },
+        {
+          "name": "Filter",
+          "edgeType": "type"
+        },
+        {
+          "name": "ILivechatDepartment",
+          "edgeType": "type"
+        },
+        {
+          "name": "UpdateFilter",
+          "edgeType": "type"
+        },
+        {
+          "name": "FindOptions",
+          "edgeType": "type"
+        },
+        {
+          "name": "UpdateResult",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "unfilteredRemove",
+      "exported": true,
+      "qualifiedName": "LivechatDepartmentEE.unfilteredRemove",
+      "line": 66,
+      "endLine": 68,
+      "signature": "override unfilteredRemove(query: Filter<ILivechatDepartment>): Promise<DeleteResult>",
+      "containerClass": "LivechatDepartmentEE",
+      "calls": [
+        {
+          "name": "deleteOne",
+          "edgeType": "call"
+        },
+        {
+          "name": "Filter",
+          "edgeType": "type"
+        },
+        {
+          "name": "ILivechatDepartment",
+          "edgeType": "type"
+        },
+        {
+          "name": "DeleteResult",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "createOrUpdateDepartment",
+      "exported": true,
+      "qualifiedName": "LivechatDepartmentEE.createOrUpdateDepartment",
+      "line": 70,
+      "endLine": 72,
+      "signature": "override createOrUpdateDepartment(_id: string | null, data: LivechatDepartmentDTO): Promise<ILivechatDepartment>",
+      "containerClass": "LivechatDepartmentEE",
+      "calls": [
+        {
+          "name": "createOrUpdateDepartment",
+          "edgeType": "call"
+        },
+        {
+          "name": "LivechatDepartmentDTO",
+          "edgeType": "type"
+        },
+        {
+          "name": "ILivechatDepartment",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "removeParentAndAncestorById",
+      "exported": true,
+      "qualifiedName": "LivechatDepartmentEE.removeParentAndAncestorById",
+      "line": 74,
+      "endLine": 76,
+      "signature": "override removeParentAndAncestorById(id: string): Promise<UpdateResult | Document>",
+      "containerClass": "LivechatDepartmentEE",
+      "calls": [
+        {
+          "name": "updateMany",
+          "edgeType": "call"
+        },
+        {
+          "name": "UpdateResult",
+          "edgeType": "type"
+        },
+        {
+          "name": "Document",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "findActiveByUnitIds",
+      "exported": true,
+      "qualifiedName": "LivechatDepartmentEE.findActiveByUnitIds",
+      "line": 78,
+      "endLine": 89,
+      "signature": "override findActiveByUnitIds<T extends Document = ILivechatDepartment>(unitIds: string[], options: FindOptions<T> = {}): FindCursor<T>",
+      "containerClass": "LivechatDepartmentEE",
+      "calls": [
+        {
+          "name": "find",
+          "edgeType": "call"
+        },
+        {
+          "name": "Document",
+          "edgeType": "type"
+        },
+        {
+          "name": "ILivechatDepartment",
+          "edgeType": "type"
+        },
+        {
+          "name": "FindOptions",
+          "edgeType": "type"
+        },
+        {
+          "name": "FindCursor",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "findEnabledWithAgentsAndBusinessUnit",
+      "exported": true,
+      "qualifiedName": "LivechatDepartmentEE.findEnabledWithAgentsAndBusinessUnit",
+      "line": 82,
+      "endLine": 91,
+      "signature": "override findEnabledWithAgentsAndBusinessUnit<T extends Document = ILivechatDepartment>( businessUnit?: string, projection?: FindOptions<T>['projection'], ): FindCursor<T>",
+      "containerClass": "LivechatDepartmentEE",
+      "calls": [
+        {
+          "name": "findEnabledWithAgents",
+          "edgeType": "call"
+        },
+        {
+          "name": "findActiveByUnitIds",
+          "edgeType": "call"
+        },
+        {
+          "name": "Document",
+          "edgeType": "type"
+        },
+        {
+          "name": "ILivechatDepartment",
+          "edgeType": "type"
+        },
+        {
+          "name": "FindOptions",
+          "edgeType": "type"
+        },
+        {
+          "name": "FindCursor",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "findByParentId",
+      "exported": true,
+      "qualifiedName": "LivechatDepartmentEE.findByParentId",
+      "line": 89,
+      "endLine": 91,
+      "signature": "override findByParentId(parentId: string, options?: FindOptions<ILivechatDepartment>): FindCursor<ILivechatDepartment>",
+      "containerClass": "LivechatDepartmentEE",
+      "calls": [
+        {
+          "name": "find",
+          "edgeType": "call"
+        },
+        {
+          "name": "FindOptions",
+          "edgeType": "type"
+        },
+        {
+          "name": "ILivechatDepartment",
+          "edgeType": "type"
+        },
+        {
+          "name": "FindCursor",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "findAgentsByBusinessHourId",
+      "exported": true,
+      "qualifiedName": "LivechatDepartmentEE.findAgentsByBusinessHourId",
+      "line": 93,
+      "endLine": 120,
+      "signature": "override findAgentsByBusinessHourId(businessHourId: string): AggregationCursor<{ agentIds: string[] }>",
+      "containerClass": "LivechatDepartmentEE",
+      "calls": [
+        {
+          "name": "aggregate",
+          "edgeType": "call"
+        },
+        {
+          "name": "AggregationCursor",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "constructor",
+      "exported": true,
+      "qualifiedName": "LivechatDepartmentEE.constructor",
+      "line": 39,
+      "endLine": 41,
+      "signature": "constructor(db: Db, trash?: Collection<RocketChatRecordDeleted<ILivechatDepartment>>)",
+      "containerClass": "LivechatDepartmentEE",
+      "calls": [
+        {
+          "name": "Db",
+          "edgeType": "type"
+        },
+        {
+          "name": "Collection",
+          "edgeType": "type"
+        },
+        {
+          "name": "RocketChatRecordDeleted",
+          "edgeType": "type"
+        },
+        {
+          "name": "ILivechatDepartment",
+          "edgeType": "type"
+        }
+      ]
+    }
+  ],
+  "imports": [
+    {
+      "module": "@rocket.chat/core-typings",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/model-typings",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/models",
+      "resolved": "external"
+    },
+    {
+      "module": "mongodb",
+      "resolved": "external"
+    }
+  ]
+}

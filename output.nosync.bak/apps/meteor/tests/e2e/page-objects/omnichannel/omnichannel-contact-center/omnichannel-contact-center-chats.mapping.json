@@ -1,0 +1,623 @@
+{
+  "sourcePath": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/tests/e2e/page-objects/omnichannel/omnichannel-contact-center/omnichannel-contact-center-chats.ts",
+  "symbols": [
+    {
+      "type": "class",
+      "name": "OmnichannelConversationFlexTab",
+      "exported": false,
+      "line": 9,
+      "endLine": 22,
+      "signature": "class OmnichannelConversationFlexTab extends FlexTab",
+      "calls": [
+        {
+          "name": "FlexTab",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "openChat",
+      "exported": false,
+      "qualifiedName": "OmnichannelConversationFlexTab.openChat",
+      "line": 18,
+      "endLine": 21,
+      "signature": "async openChat()",
+      "containerClass": "OmnichannelConversationFlexTab",
+      "calls": [
+        {
+          "name": "click",
+          "edgeType": "call"
+        },
+        {
+          "name": "waitForDismissal",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "constructor",
+      "exported": false,
+      "qualifiedName": "OmnichannelConversationFlexTab.constructor",
+      "line": 10,
+      "endLine": 12,
+      "signature": "constructor(page: Page)",
+      "containerClass": "OmnichannelConversationFlexTab",
+      "calls": [
+        {
+          "name": "getByRole",
+          "edgeType": "call"
+        },
+        {
+          "name": "Page",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "class",
+      "name": "OmnichannelChatsFilters",
+      "exported": true,
+      "line": 23,
+      "endLine": 115,
+      "signature": "export class OmnichannelChatsFilters extends FlexTab",
+      "calls": [
+        {
+          "name": "FlexTab",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "selectServedBy",
+      "exported": true,
+      "qualifiedName": "OmnichannelChatsFilters.selectServedBy",
+      "line": 67,
+      "endLine": 72,
+      "signature": "async selectServedBy(option: string)",
+      "containerClass": "OmnichannelChatsFilters",
+      "calls": [
+        {
+          "name": "click",
+          "edgeType": "call"
+        },
+        {
+          "name": "fill",
+          "edgeType": "call"
+        },
+        {
+          "name": "selectOption",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "selectStatus",
+      "exported": true,
+      "qualifiedName": "OmnichannelChatsFilters.selectStatus",
+      "line": 71,
+      "endLine": 75,
+      "signature": "async selectStatus(option: string)",
+      "containerClass": "OmnichannelChatsFilters",
+      "calls": [
+        {
+          "name": "click",
+          "edgeType": "call"
+        },
+        {
+          "name": "selectOption",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "selectDepartment",
+      "exported": true,
+      "qualifiedName": "OmnichannelChatsFilters.selectDepartment",
+      "line": 75,
+      "endLine": 81,
+      "signature": "async selectDepartment(option: string)",
+      "containerClass": "OmnichannelChatsFilters",
+      "calls": [
+        {
+          "name": "click",
+          "edgeType": "call"
+        },
+        {
+          "name": "fill",
+          "edgeType": "call"
+        },
+        {
+          "name": "selectOption",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "selectTag",
+      "exported": true,
+      "qualifiedName": "OmnichannelChatsFilters.selectTag",
+      "line": 79,
+      "endLine": 85,
+      "signature": "async selectTag(option: string)",
+      "containerClass": "OmnichannelChatsFilters",
+      "calls": [
+        {
+          "name": "click",
+          "edgeType": "call"
+        },
+        {
+          "name": "fill",
+          "edgeType": "call"
+        },
+        {
+          "name": "selectOption",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "removeTag",
+      "exported": true,
+      "qualifiedName": "OmnichannelChatsFilters.removeTag",
+      "line": 83,
+      "endLine": 88,
+      "signature": "async removeTag(option: string)",
+      "containerClass": "OmnichannelChatsFilters",
+      "calls": [
+        {
+          "name": "click",
+          "edgeType": "call"
+        },
+        {
+          "name": "selectOption",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "selectUnit",
+      "exported": true,
+      "qualifiedName": "OmnichannelChatsFilters.selectUnit",
+      "line": 87,
+      "endLine": 92,
+      "signature": "async selectUnit(unitName: string)",
+      "containerClass": "OmnichannelChatsFilters",
+      "calls": [
+        {
+          "name": "click",
+          "edgeType": "call"
+        },
+        {
+          "name": "fill",
+          "edgeType": "call"
+        },
+        {
+          "name": "selectOption",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "addTag",
+      "exported": true,
+      "qualifiedName": "OmnichannelChatsFilters.addTag",
+      "line": 91,
+      "endLine": 95,
+      "signature": "async addTag(option: string)",
+      "containerClass": "OmnichannelChatsFilters",
+      "calls": [
+        {
+          "name": "click",
+          "edgeType": "call"
+        },
+        {
+          "name": "selectOption",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "constructor",
+      "exported": true,
+      "qualifiedName": "OmnichannelChatsFilters.constructor",
+      "line": 26,
+      "endLine": 29,
+      "signature": "constructor(page: Page)",
+      "containerClass": "OmnichannelChatsFilters",
+      "calls": [
+        {
+          "name": "getByRole",
+          "edgeType": "call"
+        },
+        {
+          "name": "Listbox",
+          "edgeType": "new"
+        },
+        {
+          "name": "Page",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "class_property",
+      "name": "listbox",
+      "exported": true,
+      "qualifiedName": "OmnichannelChatsFilters.listbox",
+      "line": 24,
+      "endLine": 24,
+      "signature": "readonly listbox: Listbox;",
+      "containerClass": "OmnichannelChatsFilters",
+      "calls": [
+        {
+          "name": "Listbox",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "class",
+      "name": "OmnichannelContactCenterChatsTable",
+      "exported": false,
+      "line": 95,
+      "endLine": 103,
+      "signature": "class OmnichannelContactCenterChatsTable extends Table",
+      "calls": [
+        {
+          "name": "Table",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "btnRemoveByName",
+      "exported": false,
+      "qualifiedName": "OmnichannelContactCenterChatsTable.btnRemoveByName",
+      "line": 100,
+      "endLine": 102,
+      "signature": "btnRemoveByName(name: string): Locator",
+      "containerClass": "OmnichannelContactCenterChatsTable",
+      "calls": [
+        {
+          "name": "getByRole",
+          "edgeType": "call"
+        },
+        {
+          "name": "findRowByName",
+          "edgeType": "call"
+        },
+        {
+          "name": "Locator",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "constructor",
+      "exported": false,
+      "qualifiedName": "OmnichannelContactCenterChatsTable.constructor",
+      "line": 96,
+      "endLine": 98,
+      "signature": "constructor(page: Page)",
+      "containerClass": "OmnichannelContactCenterChatsTable",
+      "calls": [
+        {
+          "name": "getByRole",
+          "edgeType": "call"
+        },
+        {
+          "name": "Page",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "class",
+      "name": "OmnichannelContactCenterChats",
+      "exported": true,
+      "line": 105,
+      "endLine": 157,
+      "signature": "export class OmnichannelContactCenterChats extends OmnichannelContactCenter",
+      "calls": [
+        {
+          "name": "OmnichannelContactCenter",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "removeChatByName",
+      "exported": true,
+      "qualifiedName": "OmnichannelContactCenterChats.removeChatByName",
+      "line": 122,
+      "endLine": 125,
+      "signature": "async removeChatByName(name: string)",
+      "containerClass": "OmnichannelContactCenterChats",
+      "calls": [
+        {
+          "name": "click",
+          "edgeType": "call"
+        },
+        {
+          "name": "btnRemoveByName",
+          "edgeType": "call"
+        },
+        {
+          "name": "confirm",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "openChat",
+      "exported": true,
+      "qualifiedName": "OmnichannelContactCenterChats.openChat",
+      "line": 126,
+      "endLine": 131,
+      "signature": "async openChat(name: string)",
+      "containerClass": "OmnichannelContactCenterChats",
+      "calls": [
+        {
+          "name": "fill",
+          "edgeType": "call"
+        },
+        {
+          "name": "click",
+          "edgeType": "call"
+        },
+        {
+          "name": "findRowByName",
+          "edgeType": "call"
+        },
+        {
+          "name": "openChat",
+          "edgeType": "call"
+        },
+        {
+          "name": "waitFor",
+          "edgeType": "call"
+        },
+        {
+          "name": "locator",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "btnStatusChip",
+      "exported": true,
+      "qualifiedName": "OmnichannelContactCenterChats.btnStatusChip",
+      "line": 134,
+      "endLine": 136,
+      "signature": "btnStatusChip(name: string): Locator",
+      "containerClass": "OmnichannelContactCenterChats",
+      "calls": [
+        {
+          "name": "getByRole",
+          "edgeType": "call"
+        },
+        {
+          "name": "Locator",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "btnServedByChip",
+      "exported": true,
+      "qualifiedName": "OmnichannelContactCenterChats.btnServedByChip",
+      "line": 138,
+      "endLine": 140,
+      "signature": "btnServedByChip(name: string): Locator",
+      "containerClass": "OmnichannelContactCenterChats",
+      "calls": [
+        {
+          "name": "getByRole",
+          "edgeType": "call"
+        },
+        {
+          "name": "Locator",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "btnDepartmentChip",
+      "exported": true,
+      "qualifiedName": "OmnichannelContactCenterChats.btnDepartmentChip",
+      "line": 142,
+      "endLine": 144,
+      "signature": "btnDepartmentChip(name: string): Locator",
+      "containerClass": "OmnichannelContactCenterChats",
+      "calls": [
+        {
+          "name": "getByRole",
+          "edgeType": "call"
+        },
+        {
+          "name": "Locator",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "btnSearchChip",
+      "exported": true,
+      "qualifiedName": "OmnichannelContactCenterChats.btnSearchChip",
+      "line": 146,
+      "endLine": 148,
+      "signature": "btnSearchChip(name: string): Locator",
+      "containerClass": "OmnichannelContactCenterChats",
+      "calls": [
+        {
+          "name": "getByRole",
+          "edgeType": "call"
+        },
+        {
+          "name": "Locator",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "btnUnitsChip",
+      "exported": true,
+      "qualifiedName": "OmnichannelContactCenterChats.btnUnitsChip",
+      "line": 150,
+      "endLine": 152,
+      "signature": "btnUnitsChip(name: string): Locator",
+      "containerClass": "OmnichannelContactCenterChats",
+      "calls": [
+        {
+          "name": "getByRole",
+          "edgeType": "call"
+        },
+        {
+          "name": "Locator",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "constructor",
+      "exported": true,
+      "qualifiedName": "OmnichannelContactCenterChats.constructor",
+      "line": 114,
+      "endLine": 120,
+      "signature": "constructor(page: Page)",
+      "containerClass": "OmnichannelContactCenterChats",
+      "calls": [
+        {
+          "name": "OmnichannelChatsFilters",
+          "edgeType": "new"
+        },
+        {
+          "name": "OmnichannelConfirmRemoveChat",
+          "edgeType": "new"
+        },
+        {
+          "name": "OmnichannelConversationFlexTab",
+          "edgeType": "new"
+        },
+        {
+          "name": "OmnichannelContactCenterChatsTable",
+          "edgeType": "new"
+        },
+        {
+          "name": "Page",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "class_property",
+      "name": "filters",
+      "exported": true,
+      "qualifiedName": "OmnichannelContactCenterChats.filters",
+      "line": 106,
+      "endLine": 106,
+      "signature": "readonly filters: OmnichannelChatsFilters;",
+      "containerClass": "OmnichannelContactCenterChats",
+      "calls": [
+        {
+          "name": "OmnichannelChatsFilters",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "class_property",
+      "name": "confirmRemoveChatModal",
+      "exported": true,
+      "qualifiedName": "OmnichannelContactCenterChats.confirmRemoveChatModal",
+      "line": 108,
+      "endLine": 108,
+      "signature": "readonly confirmRemoveChatModal: OmnichannelConfirmRemoveChat;",
+      "containerClass": "OmnichannelContactCenterChats",
+      "calls": [
+        {
+          "name": "OmnichannelConfirmRemoveChat",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "class_property",
+      "name": "conversation",
+      "exported": true,
+      "qualifiedName": "OmnichannelContactCenterChats.conversation",
+      "line": 110,
+      "endLine": 110,
+      "signature": "readonly conversation: OmnichannelConversationFlexTab;",
+      "containerClass": "OmnichannelContactCenterChats",
+      "calls": [
+        {
+          "name": "OmnichannelConversationFlexTab",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "class_property",
+      "name": "table",
+      "exported": true,
+      "qualifiedName": "OmnichannelContactCenterChats.table",
+      "line": 112,
+      "endLine": 112,
+      "signature": "readonly table: OmnichannelContactCenterChatsTable;",
+      "containerClass": "OmnichannelContactCenterChats",
+      "calls": [
+        {
+          "name": "OmnichannelContactCenterChatsTable",
+          "edgeType": "type"
+        }
+      ]
+    }
+  ],
+  "imports": [
+    {
+      "module": "@playwright/test",
+      "resolved": "external"
+    },
+    {
+      "module": "./omnichannel-contact-center",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/tests/e2e/page-objects/omnichannel/omnichannel-contact-center/omnichannel-contact-center.ts"
+    },
+    {
+      "module": "../../fragments/flextabs/flextab",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/tests/e2e/page-objects/fragments/flextabs/flextab.ts"
+    },
+    {
+      "module": "../../fragments/listbox",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/tests/e2e/page-objects/fragments/listbox.ts"
+    },
+    {
+      "module": "../../fragments/modals",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/tests/e2e/page-objects/fragments/modals/index.ts"
+    },
+    {
+      "module": "../../fragments/table",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/tests/e2e/page-objects/fragments/table.ts"
+    }
+  ]
+}

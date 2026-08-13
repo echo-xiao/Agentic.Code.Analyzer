@@ -1,0 +1,69 @@
+{
+  "sourcePath": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/server/services/call-history/service.ts",
+  "symbols": [
+    {
+      "type": "class",
+      "name": "CallHistoryService",
+      "exported": true,
+      "line": 5,
+      "endLine": 39,
+      "signature": "export class CallHistoryService extends ServiceClassInternal implements ICallHistoryService",
+      "calls": [
+        {
+          "name": "ServiceClassInternal",
+          "edgeType": "type"
+        },
+        {
+          "name": "ICallHistoryService",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "search",
+      "exported": true,
+      "qualifiedName": "CallHistoryService.search",
+      "line": 8,
+      "endLine": 38,
+      "signature": "public async search( uid: IUser['_id'], filters: { searchTerm?: string; direction?: CallHistoryItem['direction']; inStates?: CallHistoryItem['state'][]; }, pagination: { count: number; offset: number; sort?: Record<string, 1 | -1>; }, ): Promise<{ items: CallHistoryItem[]; total: number }>",
+      "containerClass": "CallHistoryService",
+      "calls": [
+        {
+          "name": "findAllByUserIdAndSearchFilters",
+          "edgeType": "call"
+        },
+        {
+          "name": "all",
+          "edgeType": "call"
+        },
+        {
+          "name": "toArray",
+          "edgeType": "call"
+        },
+        {
+          "name": "IUser",
+          "edgeType": "type"
+        },
+        {
+          "name": "CallHistoryItem",
+          "edgeType": "type"
+        }
+      ]
+    }
+  ],
+  "imports": [
+    {
+      "module": "@rocket.chat/core-services",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/core-typings",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/models",
+      "resolved": "external"
+    }
+  ]
+}

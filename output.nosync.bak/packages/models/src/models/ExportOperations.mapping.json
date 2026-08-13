@@ -1,0 +1,213 @@
+{
+  "sourcePath": "/Users/echoooooo/Desktop/code/Rocket.Chat/packages/models/src/models/ExportOperations.ts",
+  "symbols": [
+    {
+      "type": "class",
+      "name": "ExportOperationsRaw",
+      "exported": true,
+      "line": 7,
+      "endLine": 79,
+      "signature": "export class ExportOperationsRaw extends BaseRaw<IExportOperation> implements IExportOperationsModel",
+      "calls": [
+        {
+          "name": "BaseRaw",
+          "edgeType": "type"
+        },
+        {
+          "name": "IExportOperationsModel",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "modelIndexes",
+      "exported": true,
+      "qualifiedName": "ExportOperationsRaw.modelIndexes",
+      "line": 12,
+      "endLine": 14,
+      "signature": "protected override modelIndexes(): IndexDescription[]",
+      "containerClass": "ExportOperationsRaw",
+      "calls": [
+        {
+          "name": "IndexDescription",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "findOnePending",
+      "exported": true,
+      "qualifiedName": "ExportOperationsRaw.findOnePending",
+      "line": 16,
+      "endLine": 22,
+      "signature": "findOnePending(): Promise<IExportOperation | null>",
+      "containerClass": "ExportOperationsRaw",
+      "calls": [
+        {
+          "name": "findOne",
+          "edgeType": "call"
+        },
+        {
+          "name": "IExportOperation",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "create",
+      "exported": true,
+      "qualifiedName": "ExportOperationsRaw.create",
+      "line": 20,
+      "endLine": 27,
+      "signature": "async create(data: IExportOperation): Promise<string>",
+      "containerClass": "ExportOperationsRaw",
+      "calls": [
+        {
+          "name": "insertOne",
+          "edgeType": "call"
+        },
+        {
+          "name": "Date",
+          "edgeType": "new"
+        },
+        {
+          "name": "IExportOperation",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "findLastOperationByUser",
+      "exported": true,
+      "qualifiedName": "ExportOperationsRaw.findLastOperationByUser",
+      "line": 24,
+      "endLine": 31,
+      "signature": "findLastOperationByUser(userId: string, fullExport = false): Promise<IExportOperation | null>",
+      "containerClass": "ExportOperationsRaw",
+      "calls": [
+        {
+          "name": "findOne",
+          "edgeType": "call"
+        },
+        {
+          "name": "IExportOperation",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "findAllPendingBeforeMyRequest",
+      "exported": true,
+      "qualifiedName": "ExportOperationsRaw.findAllPendingBeforeMyRequest",
+      "line": 28,
+      "endLine": 35,
+      "signature": "findAllPendingBeforeMyRequest(requestDay: Date): FindCursor<IExportOperation>",
+      "containerClass": "ExportOperationsRaw",
+      "calls": [
+        {
+          "name": "find",
+          "edgeType": "call"
+        },
+        {
+          "name": "FindCursor",
+          "edgeType": "type"
+        },
+        {
+          "name": "IExportOperation",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "countAllPendingBeforeMyRequest",
+      "exported": true,
+      "qualifiedName": "ExportOperationsRaw.countAllPendingBeforeMyRequest",
+      "line": 32,
+      "endLine": 39,
+      "signature": "countAllPendingBeforeMyRequest(requestDay: Date): Promise<number>",
+      "containerClass": "ExportOperationsRaw",
+      "calls": [
+        {
+          "name": "countDocuments",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "updateOperation",
+      "exported": true,
+      "qualifiedName": "ExportOperationsRaw.updateOperation",
+      "line": 36,
+      "endLine": 54,
+      "signature": "updateOperation(data: IExportOperation): Promise<UpdateResult>",
+      "containerClass": "ExportOperationsRaw",
+      "calls": [
+        {
+          "name": "updateOne",
+          "edgeType": "call"
+        },
+        {
+          "name": "IExportOperation",
+          "edgeType": "type"
+        },
+        {
+          "name": "UpdateResult",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "constructor",
+      "exported": true,
+      "qualifiedName": "ExportOperationsRaw.constructor",
+      "line": 8,
+      "endLine": 10,
+      "signature": "constructor(db: Db, trash?: Collection<RocketChatRecordDeleted<IExportOperation>>)",
+      "containerClass": "ExportOperationsRaw",
+      "calls": [
+        {
+          "name": "Db",
+          "edgeType": "type"
+        },
+        {
+          "name": "Collection",
+          "edgeType": "type"
+        },
+        {
+          "name": "RocketChatRecordDeleted",
+          "edgeType": "type"
+        },
+        {
+          "name": "IExportOperation",
+          "edgeType": "type"
+        }
+      ]
+    }
+  ],
+  "imports": [
+    {
+      "module": "@rocket.chat/core-typings",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/model-typings",
+      "resolved": "external"
+    },
+    {
+      "module": "mongodb",
+      "resolved": "external"
+    },
+    {
+      "module": "./BaseRaw",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/packages/models/src/models/BaseRaw.ts"
+    }
+  ]
+}

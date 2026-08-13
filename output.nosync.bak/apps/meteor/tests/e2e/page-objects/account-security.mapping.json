@@ -1,0 +1,185 @@
+{
+  "sourcePath": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/tests/e2e/page-objects/account-security.ts",
+  "symbols": [
+    {
+      "type": "class",
+      "name": "AccountSecurity",
+      "exported": true,
+      "line": 6,
+      "endLine": 107,
+      "signature": "export class AccountSecurity extends Account",
+      "calls": [
+        {
+          "name": "Account",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "goto",
+      "exported": true,
+      "qualifiedName": "AccountSecurity.goto",
+      "line": 14,
+      "endLine": 16,
+      "signature": "goto()",
+      "containerClass": "AccountSecurity",
+      "calls": [
+        {
+          "name": "goto",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "waitForSecurityPage",
+      "exported": true,
+      "qualifiedName": "AccountSecurity.waitForSecurityPage",
+      "line": 18,
+      "endLine": 20,
+      "signature": "async waitForSecurityPage()",
+      "containerClass": "AccountSecurity",
+      "calls": [
+        {
+          "name": "waitFor",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "changePassword",
+      "exported": true,
+      "qualifiedName": "AccountSecurity.changePassword",
+      "line": 82,
+      "endLine": 87,
+      "signature": "async changePassword(newPassword: string, confirmPassword: string, currentPassword: string)",
+      "containerClass": "AccountSecurity",
+      "calls": [
+        {
+          "name": "fill",
+          "edgeType": "call"
+        },
+        {
+          "name": "click",
+          "edgeType": "call"
+        },
+        {
+          "name": "enterPassword",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "resetE2EEPassword",
+      "exported": true,
+      "qualifiedName": "AccountSecurity.resetE2EEPassword",
+      "line": 86,
+      "endLine": 91,
+      "signature": "async resetE2EEPassword()",
+      "containerClass": "AccountSecurity",
+      "calls": [
+        {
+          "name": "click",
+          "edgeType": "call"
+        },
+        {
+          "name": "dismissToast",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "setE2EEPassword",
+      "exported": true,
+      "qualifiedName": "AccountSecurity.setE2EEPassword",
+      "line": 90,
+      "endLine": 96,
+      "signature": "async setE2EEPassword(newPassword: string)",
+      "containerClass": "AccountSecurity",
+      "calls": [
+        {
+          "name": "click",
+          "edgeType": "call"
+        },
+        {
+          "name": "fill",
+          "edgeType": "call"
+        },
+        {
+          "name": "dismissToast",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "close",
+      "exported": true,
+      "qualifiedName": "AccountSecurity.close",
+      "line": 94,
+      "endLine": 96,
+      "signature": "async close()",
+      "containerClass": "AccountSecurity",
+      "calls": [
+        {
+          "name": "close",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "constructor",
+      "exported": true,
+      "qualifiedName": "AccountSecurity.constructor",
+      "line": 9,
+      "endLine": 12,
+      "signature": "constructor(page: Page)",
+      "containerClass": "AccountSecurity",
+      "calls": [
+        {
+          "name": "EnterPasswordModal",
+          "edgeType": "new"
+        },
+        {
+          "name": "Page",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "class_property",
+      "name": "enterPasswordModal",
+      "exported": true,
+      "qualifiedName": "AccountSecurity.enterPasswordModal",
+      "line": 7,
+      "endLine": 7,
+      "signature": "private readonly enterPasswordModal: EnterPasswordModal;",
+      "containerClass": "AccountSecurity",
+      "calls": [
+        {
+          "name": "EnterPasswordModal",
+          "edgeType": "type"
+        }
+      ]
+    }
+  ],
+  "imports": [
+    {
+      "module": "@playwright/test",
+      "resolved": "external"
+    },
+    {
+      "module": "./account",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/tests/e2e/page-objects/account.ts"
+    },
+    {
+      "module": "./fragments/modals",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/tests/e2e/page-objects/fragments/modals/index.ts"
+    }
+  ]
+}

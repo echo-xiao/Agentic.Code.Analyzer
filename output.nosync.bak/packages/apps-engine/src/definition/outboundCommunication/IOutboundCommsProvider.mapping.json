@@ -1,0 +1,70 @@
+{
+  "sourcePath": "/Users/echoooooo/Desktop/code/Rocket.Chat/packages/apps-engine/src/definition/outboundCommunication/IOutboundCommsProvider.ts",
+  "symbols": [
+    {
+      "type": "variable",
+      "name": "ValidOutboundProviderList",
+      "exported": true,
+      "line": 35,
+      "endLine": 35,
+      "signature": "ValidOutboundProviderList = ['phone', 'email'] as const",
+      "calls": []
+    },
+    {
+      "type": "interface",
+      "name": "IOutboundMessageProviderBase",
+      "line": 13,
+      "endLine": 19,
+      "signature": "interface IOutboundMessageProviderBase"
+    },
+    {
+      "type": "interface",
+      "name": "IOutboundPhoneMessageProvider",
+      "line": 21,
+      "endLine": 24,
+      "signature": "export interface IOutboundPhoneMessageProvider extends IOutboundMessageProviderBase"
+    },
+    {
+      "type": "interface",
+      "name": "IOutboundEmailMessageProvider",
+      "line": 29,
+      "endLine": 31,
+      "signature": "export interface IOutboundEmailMessageProvider extends IOutboundMessageProviderBase"
+    },
+    {
+      "type": "type",
+      "name": "ProviderMetadata",
+      "line": 5,
+      "endLine": 11,
+      "signature": "export type ProviderMetadata ="
+    },
+    {
+      "type": "type",
+      "name": "IOutboundMessageProviders",
+      "line": 33,
+      "endLine": 33,
+      "signature": "export type IOutboundMessageProviders = IOutboundPhoneMessageProvider | IOutboundEmailMessageProvider;"
+    },
+    {
+      "type": "type",
+      "name": "ValidOutboundProvider",
+      "line": 37,
+      "endLine": 37,
+      "signature": "export type ValidOutboundProvider = (typeof ValidOutboundProviderList)[number];"
+    }
+  ],
+  "imports": [
+    {
+      "module": "../accessors",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/packages/apps-engine/src/definition/accessors/index.ts"
+    },
+    {
+      "module": "./IOutboundMessage",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/packages/apps-engine/src/definition/outboundCommunication/IOutboundMessage.ts"
+    },
+    {
+      "module": "./IOutboundProviderTemplate",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/packages/apps-engine/src/definition/outboundCommunication/IOutboundProviderTemplate.ts"
+    }
+  ]
+}

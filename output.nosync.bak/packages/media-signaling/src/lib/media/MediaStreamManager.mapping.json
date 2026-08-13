@@ -1,0 +1,481 @@
+{
+  "sourcePath": "/Users/echoooooo/Desktop/code/Rocket.Chat/packages/media-signaling/src/lib/media/MediaStreamManager.ts",
+  "symbols": [
+    {
+      "type": "class",
+      "name": "MediaStreamManager",
+      "exported": true,
+      "line": 8,
+      "endLine": 127,
+      "signature": "export class MediaStreamManager implements IMediaStreamManager",
+      "calls": [
+        {
+          "name": "IMediaStreamManager",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "stopRemoteStreams",
+      "exported": true,
+      "qualifiedName": "MediaStreamManager.stopRemoteStreams",
+      "line": 30,
+      "endLine": 33,
+      "signature": "public stopRemoteStreams(): void",
+      "containerClass": "MediaStreamManager",
+      "calls": [
+        {
+          "name": "stop",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "setRemoteIds",
+      "exported": true,
+      "qualifiedName": "MediaStreamManager.setRemoteIds",
+      "line": 34,
+      "endLine": 44,
+      "signature": "public setRemoteIds(streams: MediaStreamIdentification[]): void",
+      "containerClass": "MediaStreamManager",
+      "calls": [
+        {
+          "name": "debug",
+          "edgeType": "call"
+        },
+        {
+          "name": "getRemoteStreamByTag",
+          "edgeType": "call"
+        },
+        {
+          "name": "addRemoteId",
+          "edgeType": "call"
+        },
+        {
+          "name": "MediaStreamIdentification",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "getLocalStreamIds",
+      "exported": true,
+      "qualifiedName": "MediaStreamManager.getLocalStreamIds",
+      "line": 38,
+      "endLine": 43,
+      "signature": "public getLocalStreamIds(): MediaStreamIdentification[]",
+      "containerClass": "MediaStreamManager",
+      "calls": [
+        {
+          "name": "map",
+          "edgeType": "call"
+        },
+        {
+          "name": "getLocalStreams",
+          "edgeType": "call"
+        },
+        {
+          "name": "MediaStreamIdentification",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "addRemoteTrack",
+      "exported": true,
+      "qualifiedName": "MediaStreamManager.addRemoteTrack",
+      "line": 42,
+      "endLine": 50,
+      "signature": "public addRemoteTrack(track: MediaStreamTrack, streams: readonly MediaStream[]): void",
+      "containerClass": "MediaStreamManager",
+      "calls": [
+        {
+          "name": "debug",
+          "edgeType": "call"
+        },
+        {
+          "name": "findStreamWrappersForRemoteTrack",
+          "edgeType": "call"
+        },
+        {
+          "name": "setTrack",
+          "edgeType": "call"
+        },
+        {
+          "name": "MediaStreamTrack",
+          "edgeType": "type"
+        },
+        {
+          "name": "MediaStream",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "getStreams",
+      "exported": true,
+      "qualifiedName": "MediaStreamManager.getStreams",
+      "line": 46,
+      "endLine": 48,
+      "signature": "public getStreams(): MediaStreamWrapper[]",
+      "containerClass": "MediaStreamManager",
+      "calls": [
+        {
+          "name": "getLocalStreams",
+          "edgeType": "call"
+        },
+        {
+          "name": "getRemoteStreams",
+          "edgeType": "call"
+        },
+        {
+          "name": "MediaStreamWrapper",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "getLocalStreams",
+      "exported": true,
+      "qualifiedName": "MediaStreamManager.getLocalStreams",
+      "line": 50,
+      "endLine": 52,
+      "signature": "public getLocalStreams(): MediaStreamWrapper[]",
+      "containerClass": "MediaStreamManager",
+      "calls": [
+        {
+          "name": "MediaStreamWrapper",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "getRemoteStreams",
+      "exported": true,
+      "qualifiedName": "MediaStreamManager.getRemoteStreams",
+      "line": 54,
+      "endLine": 56,
+      "signature": "public getRemoteStreams(): MediaStreamWrapper[]",
+      "containerClass": "MediaStreamManager",
+      "calls": [
+        {
+          "name": "MediaStreamWrapper",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "getLocalStreamByTag",
+      "exported": true,
+      "qualifiedName": "MediaStreamManager.getLocalStreamByTag",
+      "line": 58,
+      "endLine": 60,
+      "signature": "public getLocalStreamByTag(tag: string): MediaStreamWrapper | null",
+      "containerClass": "MediaStreamManager",
+      "calls": [
+        {
+          "name": "find",
+          "edgeType": "call"
+        },
+        {
+          "name": "getLocalStreams",
+          "edgeType": "call"
+        },
+        {
+          "name": "MediaStreamWrapper",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "getRemoteStreamByTag",
+      "exported": true,
+      "qualifiedName": "MediaStreamManager.getRemoteStreamByTag",
+      "line": 62,
+      "endLine": 64,
+      "signature": "public getRemoteStreamByTag(tag: string): MediaStreamWrapper | null",
+      "containerClass": "MediaStreamManager",
+      "calls": [
+        {
+          "name": "find",
+          "edgeType": "call"
+        },
+        {
+          "name": "getRemoteStreams",
+          "edgeType": "call"
+        },
+        {
+          "name": "MediaStreamWrapper",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "hasAllRequiredTracks",
+      "exported": true,
+      "qualifiedName": "MediaStreamManager.hasAllRequiredTracks",
+      "line": 66,
+      "endLine": 68,
+      "signature": "public hasAllRequiredTracks(): boolean",
+      "containerClass": "MediaStreamManager",
+      "calls": [
+        {
+          "name": "hasAudio",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "findStreamWrappersForRemoteTrack",
+      "exported": true,
+      "qualifiedName": "MediaStreamManager.findStreamWrappersForRemoteTrack",
+      "line": 70,
+      "endLine": 89,
+      "signature": "private findStreamWrappersForRemoteTrack(track: MediaStreamTrack, streams: readonly MediaStream[]): MediaStreamWrapper[]",
+      "containerClass": "MediaStreamManager",
+      "calls": [
+        {
+          "name": "filter",
+          "edgeType": "call"
+        },
+        {
+          "name": "map",
+          "edgeType": "call"
+        },
+        {
+          "name": "getRemoteStreamById",
+          "edgeType": "call"
+        },
+        {
+          "name": "Boolean",
+          "edgeType": "call"
+        },
+        {
+          "name": "debug",
+          "edgeType": "call"
+        },
+        {
+          "name": "MediaStreamTrack",
+          "edgeType": "type"
+        },
+        {
+          "name": "MediaStream",
+          "edgeType": "type"
+        },
+        {
+          "name": "MediaStreamWrapper",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "createStream",
+      "exported": true,
+      "qualifiedName": "MediaStreamManager.createStream",
+      "line": 74,
+      "endLine": 87,
+      "signature": "private createStream(remote: boolean, tag: string): MediaStreamWrapper",
+      "containerClass": "MediaStreamManager",
+      "calls": [
+        {
+          "name": "trackChanged",
+          "edgeType": "event_listen"
+        },
+        {
+          "name": "debug",
+          "edgeType": "call"
+        },
+        {
+          "name": "streamChanged",
+          "edgeType": "event_emit"
+        },
+        {
+          "name": "stateChanged",
+          "edgeType": "event_listen"
+        },
+        {
+          "name": "MediaStreamWrapper",
+          "edgeType": "new"
+        },
+        {
+          "name": "MediaStreamWrapper",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "getRemoteStreamById",
+      "exported": true,
+      "qualifiedName": "MediaStreamManager.getRemoteStreamById",
+      "line": 78,
+      "endLine": 80,
+      "signature": "private getRemoteStreamById(id: string): MediaStreamWrapper | null",
+      "containerClass": "MediaStreamManager",
+      "calls": [
+        {
+          "name": "find",
+          "edgeType": "call"
+        },
+        {
+          "name": "getRemoteStreams",
+          "edgeType": "call"
+        },
+        {
+          "name": "hasRemoteId",
+          "edgeType": "call"
+        },
+        {
+          "name": "MediaStreamWrapper",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "constructor",
+      "exported": true,
+      "qualifiedName": "MediaStreamManager.constructor",
+      "line": 19,
+      "endLine": 28,
+      "signature": "constructor( protected readonly peer: RTCPeerConnection, protected readonly logger?: IMediaSignalLogger, )",
+      "containerClass": "MediaStreamManager",
+      "calls": [
+        {
+          "name": "createStream",
+          "edgeType": "call"
+        },
+        {
+          "name": "Emitter",
+          "edgeType": "new"
+        },
+        {
+          "name": "RTCPeerConnection",
+          "edgeType": "type"
+        },
+        {
+          "name": "IMediaSignalLogger",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "class_property",
+      "name": "emitter",
+      "exported": true,
+      "qualifiedName": "MediaStreamManager.emitter",
+      "line": 9,
+      "endLine": 9,
+      "signature": "public readonly emitter: Emitter<MediaStreamManagerEvents>;",
+      "containerClass": "MediaStreamManager",
+      "calls": [
+        {
+          "name": "Emitter",
+          "edgeType": "type"
+        },
+        {
+          "name": "MediaStreamManagerEvents",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "class_property",
+      "name": "mainLocal",
+      "exported": true,
+      "qualifiedName": "MediaStreamManager.mainLocal",
+      "line": 11,
+      "endLine": 11,
+      "signature": "public readonly mainLocal: MediaStreamWrapper;",
+      "containerClass": "MediaStreamManager",
+      "calls": [
+        {
+          "name": "MediaStreamWrapper",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "class_property",
+      "name": "screenShareLocal",
+      "exported": true,
+      "qualifiedName": "MediaStreamManager.screenShareLocal",
+      "line": 13,
+      "endLine": 13,
+      "signature": "public readonly screenShareLocal: MediaStreamWrapper;",
+      "containerClass": "MediaStreamManager",
+      "calls": [
+        {
+          "name": "MediaStreamWrapper",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "class_property",
+      "name": "mainRemote",
+      "exported": true,
+      "qualifiedName": "MediaStreamManager.mainRemote",
+      "line": 15,
+      "endLine": 15,
+      "signature": "public readonly mainRemote: MediaStreamWrapper;",
+      "containerClass": "MediaStreamManager",
+      "calls": [
+        {
+          "name": "MediaStreamWrapper",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "class_property",
+      "name": "screenShareRemote",
+      "exported": true,
+      "qualifiedName": "MediaStreamManager.screenShareRemote",
+      "line": 17,
+      "endLine": 17,
+      "signature": "public readonly screenShareRemote: MediaStreamWrapper;",
+      "containerClass": "MediaStreamManager",
+      "calls": [
+        {
+          "name": "MediaStreamWrapper",
+          "edgeType": "type"
+        }
+      ]
+    }
+  ],
+  "imports": [
+    {
+      "module": "@rocket.chat/emitter",
+      "resolved": "external"
+    },
+    {
+      "module": "./MediaStreamWrapper",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/packages/media-signaling/src/lib/media/MediaStreamWrapper.ts"
+    },
+    {
+      "module": "../../definition",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/packages/media-signaling/src/definition/index.ts"
+    },
+    {
+      "module": "../../definition/media/IMediaStreamManager",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/packages/media-signaling/src/definition/media/IMediaStreamManager.ts"
+    },
+    {
+      "module": "../../definition/media/MediaStreamIdentification",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/packages/media-signaling/src/definition/media/MediaStreamIdentification.ts"
+    }
+  ]
+}

@@ -1,0 +1,114 @@
+{
+  "sourcePath": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/server/lib/logger/showBox.ts",
+  "symbols": [
+    {
+      "type": "function",
+      "name": "showBox",
+      "exported": false,
+      "line": 12,
+      "endLine": 35,
+      "signature": "function showBox(title: string, message: string, color?: LogColors): void",
+      "calls": [
+        {
+          "name": "split",
+          "edgeType": "call"
+        },
+        {
+          "name": "apply",
+          "edgeType": "call"
+        },
+        {
+          "name": "map",
+          "edgeType": "call"
+        },
+        {
+          "name": "repeat",
+          "edgeType": "call"
+        },
+        {
+          "name": "push",
+          "edgeType": "call"
+        },
+        {
+          "name": "lrpad",
+          "edgeType": "call"
+        },
+        {
+          "name": "forEach",
+          "edgeType": "call"
+        },
+        {
+          "name": "padEnd",
+          "edgeType": "call"
+        },
+        {
+          "name": "log",
+          "edgeType": "call"
+        },
+        {
+          "name": "LogColors",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "function",
+      "name": "showErrorBox",
+      "exported": true,
+      "line": 16,
+      "endLine": 18,
+      "signature": "export function showErrorBox(title: string, message: string): void",
+      "calls": [
+        {
+          "name": "showBox",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "function",
+      "name": "showSuccessBox",
+      "exported": true,
+      "line": 20,
+      "endLine": 22,
+      "signature": "export function showSuccessBox(title: string, message: string): void",
+      "calls": [
+        {
+          "name": "showBox",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "function",
+      "name": "showWarningBox",
+      "exported": true,
+      "line": 24,
+      "endLine": 26,
+      "signature": "export function showWarningBox(title: string, message: string): void",
+      "calls": [
+        {
+          "name": "showBox",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "type",
+      "name": "LogColors",
+      "line": 10,
+      "endLine": 10,
+      "signature": "type LogColors = 'white' | 'blue' | 'green' | 'magenta' | 'red';"
+    }
+  ],
+  "imports": [
+    {
+      "module": "colorette",
+      "resolved": "external"
+    },
+    {
+      "module": "../../../lib/utils/stringUtils",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/lib/utils/stringUtils.ts"
+    }
+  ]
+}

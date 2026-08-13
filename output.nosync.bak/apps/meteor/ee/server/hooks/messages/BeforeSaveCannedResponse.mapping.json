@@ -1,0 +1,144 @@
+{
+  "sourcePath": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/ee/server/hooks/messages/BeforeSaveCannedResponse.ts",
+  "symbols": [
+    {
+      "type": "class",
+      "name": "BeforeSaveCannedResponse",
+      "exported": true,
+      "line": 30,
+      "endLine": 93,
+      "signature": "export class BeforeSaveCannedResponse",
+      "calls": []
+    },
+    {
+      "type": "method",
+      "name": "replacePlaceholders",
+      "exported": true,
+      "qualifiedName": "BeforeSaveCannedResponse.replacePlaceholders",
+      "line": 41,
+      "endLine": 92,
+      "signature": "async replacePlaceholders({ message, room, user, }: { message: IMessage; room: IRoom; user: Pick<IUser, '_id' | 'username' | 'name' | 'emails' | 'language'>; }): Promise<IMessage>",
+      "containerClass": "BeforeSaveCannedResponse",
+      "calls": [
+        {
+          "name": "isOmnichannelRoom",
+          "edgeType": "call"
+        },
+        {
+          "name": "isILivechatVisitor",
+          "edgeType": "call"
+        },
+        {
+          "name": "getUser",
+          "edgeType": "call"
+        },
+        {
+          "name": "reduce",
+          "edgeType": "call"
+        },
+        {
+          "name": "keys",
+          "edgeType": "call"
+        },
+        {
+          "name": "getAgent",
+          "edgeType": "call"
+        },
+        {
+          "name": "getVisitor",
+          "edgeType": "call"
+        },
+        {
+          "name": "get",
+          "edgeType": "call"
+        },
+        {
+          "name": "replace",
+          "edgeType": "call"
+        },
+        {
+          "name": "resolve",
+          "edgeType": "call"
+        },
+        {
+          "name": "RegExp",
+          "edgeType": "new"
+        },
+        {
+          "name": "IMessage",
+          "edgeType": "type"
+        },
+        {
+          "name": "IRoom",
+          "edgeType": "type"
+        },
+        {
+          "name": "IUser",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "class_property",
+      "name": "getUser",
+      "exported": true,
+      "qualifiedName": "BeforeSaveCannedResponse.getUser",
+      "line": 33,
+      "endLine": 35,
+      "signature": "private getUser = mem((userId: string) => Users.findOneById(userId,",
+      "containerClass": "BeforeSaveCannedResponse",
+      "calls": [
+        {
+          "name": "mem",
+          "edgeType": "call"
+        },
+        {
+          "name": "findOneById",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "class_property",
+      "name": "getVisitor",
+      "exported": true,
+      "qualifiedName": "BeforeSaveCannedResponse.getVisitor",
+      "line": 37,
+      "endLine": 39,
+      "signature": "private getVisitor = mem((visitorId: string) => LivechatVisitors.findOneEnabledById(visitorId),",
+      "containerClass": "BeforeSaveCannedResponse",
+      "calls": [
+        {
+          "name": "mem",
+          "edgeType": "call"
+        },
+        {
+          "name": "findOneEnabledById",
+          "edgeType": "call"
+        }
+      ]
+    }
+  ],
+  "imports": [
+    {
+      "module": "@rocket.chat/core-typings",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/core-typings",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/models",
+      "resolved": "external"
+    },
+    {
+      "module": "lodash.get",
+      "resolved": "external"
+    },
+    {
+      "module": "mem",
+      "resolved": "external"
+    }
+  ]
+}

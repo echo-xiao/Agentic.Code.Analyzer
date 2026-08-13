@@ -1,0 +1,274 @@
+{
+  "sourcePath": "/Users/echoooooo/Desktop/code/Rocket.Chat/ee/packages/presence/src/lib/PresenceReaper.ts",
+  "symbols": [
+    {
+      "type": "class",
+      "name": "PresenceReaper",
+      "exported": true,
+      "line": 30,
+      "endLine": 135,
+      "signature": "export class PresenceReaper",
+      "calls": []
+    },
+    {
+      "type": "method",
+      "name": "start",
+      "exported": true,
+      "qualifiedName": "PresenceReaper.start",
+      "line": 48,
+      "endLine": 56,
+      "signature": "public start()",
+      "containerClass": "PresenceReaper",
+      "calls": [
+        {
+          "name": "catch",
+          "edgeType": "call"
+        },
+        {
+          "name": "error",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "stop",
+      "exported": true,
+      "qualifiedName": "PresenceReaper.stop",
+      "line": 52,
+      "endLine": 60,
+      "signature": "public stop()",
+      "containerClass": "PresenceReaper",
+      "calls": [
+        {
+          "name": "clearInterval",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "run",
+      "exported": true,
+      "qualifiedName": "PresenceReaper.run",
+      "line": 56,
+      "endLine": 81,
+      "signature": "public async run(): Promise<void>",
+      "containerClass": "PresenceReaper",
+      "calls": [
+        {
+          "name": "now",
+          "edgeType": "call"
+        },
+        {
+          "name": "find",
+          "edgeType": "call"
+        },
+        {
+          "name": "processDocument",
+          "edgeType": "call"
+        },
+        {
+          "name": "flushBatch",
+          "edgeType": "call"
+        },
+        {
+          "name": "clear",
+          "edgeType": "call"
+        },
+        {
+          "name": "Date",
+          "edgeType": "new"
+        },
+        {
+          "name": "Map",
+          "edgeType": "new"
+        },
+        {
+          "name": "ReaperPlan",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "processDocument",
+      "exported": true,
+      "qualifiedName": "PresenceReaper.processDocument",
+      "line": 60,
+      "endLine": 74,
+      "signature": "private processDocument(sessionDoc: IUserSession, cutoffDate: Date, changeMap: Map<string, ReaperPlan>): void",
+      "containerClass": "PresenceReaper",
+      "calls": [
+        {
+          "name": "filter",
+          "edgeType": "call"
+        },
+        {
+          "name": "isNonEmptyArray",
+          "edgeType": "call"
+        },
+        {
+          "name": "set",
+          "edgeType": "call"
+        },
+        {
+          "name": "map",
+          "edgeType": "call"
+        },
+        {
+          "name": "IUserSession",
+          "edgeType": "type"
+        },
+        {
+          "name": "ReaperPlan",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "flushBatch",
+      "exported": true,
+      "qualifiedName": "PresenceReaper.flushBatch",
+      "line": 64,
+      "endLine": 87,
+      "signature": "private async flushBatch(changeMap: Map<string, ReaperPlan>): Promise<void>",
+      "containerClass": "PresenceReaper",
+      "calls": [
+        {
+          "name": "values",
+          "edgeType": "call"
+        },
+        {
+          "name": "push",
+          "edgeType": "call"
+        },
+        {
+          "name": "isNonEmptyArray",
+          "edgeType": "call"
+        },
+        {
+          "name": "bulkWrite",
+          "edgeType": "call"
+        },
+        {
+          "name": "onUpdate",
+          "edgeType": "call"
+        },
+        {
+          "name": "map",
+          "edgeType": "call"
+        },
+        {
+          "name": "ReaperPlan",
+          "edgeType": "type"
+        },
+        {
+          "name": "AnyBulkWriteOperation",
+          "edgeType": "type"
+        },
+        {
+          "name": "IUserSession",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "constructor",
+      "exported": true,
+      "qualifiedName": "PresenceReaper.constructor",
+      "line": 41,
+      "endLine": 46,
+      "signature": "constructor(options: ReaperOptions)",
+      "containerClass": "PresenceReaper",
+      "calls": [
+        {
+          "name": "ReaperOptions",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "class_property",
+      "name": "onUpdate",
+      "exported": true,
+      "qualifiedName": "PresenceReaper.onUpdate",
+      "line": 37,
+      "endLine": 37,
+      "signature": "private onUpdate: ReaperCallback;",
+      "containerClass": "PresenceReaper",
+      "calls": [
+        {
+          "name": "ReaperCallback",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "variable_function",
+      "name": "isNonEmptyArray",
+      "exported": false,
+      "line": 20,
+      "endLine": 20,
+      "signature": "<T>(arr: T[]): arr is NonEmptyArray<T> =>",
+      "calls": [
+        {
+          "name": "NonEmptyArray",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "type",
+      "name": "ReaperPlan",
+      "line": 10,
+      "endLine": 14,
+      "signature": "type ReaperPlan ="
+    },
+    {
+      "type": "type",
+      "name": "NonEmptyArray",
+      "line": 16,
+      "endLine": 18,
+      "signature": "type NonEmptyArray<T> = Omit<[T, ...T[]], 'map'> &"
+    },
+    {
+      "type": "type",
+      "name": "ReaperCallback",
+      "line": 22,
+      "endLine": 22,
+      "signature": "type ReaperCallback = (userIds: NonEmptyArray<string>) => Promise<void>;"
+    },
+    {
+      "type": "type",
+      "name": "ReaperOptions",
+      "line": 24,
+      "endLine": 28,
+      "signature": "type ReaperOptions ="
+    }
+  ],
+  "imports": [
+    {
+      "module": "node:timers",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/core-typings",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/logger",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/models",
+      "resolved": "external"
+    },
+    {
+      "module": "mongodb",
+      "resolved": "external"
+    }
+  ]
+}

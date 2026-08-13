@@ -1,0 +1,213 @@
+{
+  "sourcePath": "/Users/echoooooo/Desktop/code/Rocket.Chat/packages/web-ui-registration/src/components/LoginSwitchLanguageFooter.tsx",
+  "symbols": [
+    {
+      "type": "variable_function",
+      "name": "useSuggestedLanguages",
+      "exported": false,
+      "line": 10,
+      "endLine": 36,
+      "signature": "({ browserLanguage = normalizeLanguage(window.navigator.language ?? 'en'), }: { browserLanguage?: string; }) =>",
+      "calls": [
+        {
+          "name": "normalizeLanguage",
+          "edgeType": "call"
+        },
+        {
+          "name": "useLanguages",
+          "edgeType": "call"
+        },
+        {
+          "name": "useLanguage",
+          "edgeType": "call"
+        },
+        {
+          "name": "useSetting",
+          "edgeType": "call"
+        },
+        {
+          "name": "useMemo",
+          "edgeType": "call"
+        },
+        {
+          "name": "map",
+          "edgeType": "call"
+        },
+        {
+          "name": "from",
+          "edgeType": "call"
+        },
+        {
+          "name": "find",
+          "edgeType": "call"
+        },
+        {
+          "name": "filter",
+          "edgeType": "call"
+        },
+        {
+          "name": "useTranslation",
+          "edgeType": "call"
+        },
+        {
+          "name": "useEffect",
+          "edgeType": "call"
+        },
+        {
+          "name": "loadLanguages",
+          "edgeType": "call"
+        },
+        {
+          "name": "Set",
+          "edgeType": "new"
+        },
+        {
+          "name": "TranslationLanguage",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "inner_function",
+      "name": "handleSwitchLanguageClick",
+      "exported": false,
+      "qualifiedName": "LoginSwitchLanguageFooter.handleSwitchLanguageClick",
+      "line": 29,
+      "endLine": 35,
+      "signature": "(language: TranslationLanguage) =>",
+      "calls": [
+        {
+          "name": "preventDefault",
+          "edgeType": "call"
+        },
+        {
+          "name": "loadLanguage",
+          "edgeType": "call"
+        },
+        {
+          "name": "setPreferedLanguage",
+          "edgeType": "call"
+        },
+        {
+          "name": "TranslationLanguage",
+          "edgeType": "type"
+        },
+        {
+          "name": "UIEvent",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "variable_function",
+      "name": "LoginSwitchLanguageFooter",
+      "exported": false,
+      "line": 22,
+      "endLine": 59,
+      "signature": "({ browserLanguage = normalizeLanguage(window.navigator.language ?? 'en'), }: LoginSwitchLanguageFooterProps) =>",
+      "calls": [
+        {
+          "name": "normalizeLanguage",
+          "edgeType": "call"
+        },
+        {
+          "name": "useLoadLanguage",
+          "edgeType": "call"
+        },
+        {
+          "name": "useSuggestedLanguages",
+          "edgeType": "call"
+        },
+        {
+          "name": "useLocalStorage",
+          "edgeType": "call"
+        },
+        {
+          "name": "preventDefault",
+          "edgeType": "call"
+        },
+        {
+          "name": "loadLanguage",
+          "edgeType": "call"
+        },
+        {
+          "name": "setPreferedLanguage",
+          "edgeType": "call"
+        },
+        {
+          "name": "map",
+          "edgeType": "call"
+        },
+        {
+          "name": "handleSwitchLanguageClick",
+          "edgeType": "call"
+        },
+        {
+          "name": "HorizontalWizardLayoutCaption",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "Button",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "Trans",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "LoginSwitchLanguageFooterProps",
+          "edgeType": "type"
+        },
+        {
+          "name": "TranslationLanguage",
+          "edgeType": "type"
+        },
+        {
+          "name": "UIEvent",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "type",
+      "name": "LoginSwitchLanguageFooterProps",
+      "line": 18,
+      "endLine": 20,
+      "signature": "type LoginSwitchLanguageFooterProps ="
+    }
+  ],
+  "imports": [
+    {
+      "module": "@rocket.chat/fuselage",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/fuselage-hooks",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/layout",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/tools",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/ui-contexts",
+      "resolved": "external"
+    },
+    {
+      "module": "react",
+      "resolved": "external"
+    },
+    {
+      "module": "react",
+      "resolved": "external"
+    },
+    {
+      "module": "react-i18next",
+      "resolved": "external"
+    }
+  ]
+}

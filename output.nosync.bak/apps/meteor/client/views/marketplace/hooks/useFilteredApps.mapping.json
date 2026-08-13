@@ -1,0 +1,125 @@
+{
+  "sourcePath": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/client/views/marketplace/hooks/useFilteredApps.ts",
+  "symbols": [
+    {
+      "type": "variable_function",
+      "name": "useFilteredApps",
+      "exported": true,
+      "line": 15,
+      "endLine": 130,
+      "signature": "({ text, current, itemsPerPage, categories = [], purchaseType, sortingMethod, status, context, }: { text: string; current: number; itemsPerPage: number; categories: string[]; purchaseType: string; isEnterpriseOnly?: boolean; sortingMethod: string; status: string; context?: string; }) =>",
+      "calls": [
+        {
+          "name": "useApps",
+          "edgeType": "call"
+        },
+        {
+          "name": "toSorted",
+          "edgeType": "call"
+        },
+        {
+          "name": "sortAppsByAlphabeticalOrInverseOrder",
+          "edgeType": "call"
+        },
+        {
+          "name": "sortAppsByClosestOrFarthestModificationDate",
+          "edgeType": "call"
+        },
+        {
+          "name": "filter",
+          "edgeType": "call"
+        },
+        {
+          "name": "includes",
+          "edgeType": "call"
+        },
+        {
+          "name": "Boolean",
+          "edgeType": "call"
+        },
+        {
+          "name": "reduce",
+          "edgeType": "call"
+        },
+        {
+          "name": "currentFilterFunction",
+          "edgeType": "call"
+        },
+        {
+          "name": "pipeAppsFilter",
+          "edgeType": "call"
+        },
+        {
+          "name": "filterAppsByCategories",
+          "edgeType": "call"
+        },
+        {
+          "name": "filterAppsByText",
+          "edgeType": "call"
+        },
+        {
+          "name": "slice",
+          "edgeType": "call"
+        },
+        {
+          "name": "PaginatedResult",
+          "edgeType": "type"
+        },
+        {
+          "name": "App",
+          "edgeType": "type"
+        }
+      ]
+    }
+  ],
+  "imports": [
+    {
+      "module": "@rocket.chat/rest-typings",
+      "resolved": "external"
+    },
+    {
+      "module": "./useApps",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/client/views/marketplace/hooks/useApps.ts"
+    },
+    {
+      "module": "../helpers/filterAppsByCategories",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/client/views/marketplace/helpers/filterAppsByCategories.ts"
+    },
+    {
+      "module": "../helpers/filterAppsByDisabled",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/client/views/marketplace/helpers/filterAppsByDisabled.ts"
+    },
+    {
+      "module": "../helpers/filterAppsByEnabled",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/client/views/marketplace/helpers/filterAppsByEnabled.ts"
+    },
+    {
+      "module": "../helpers/filterAppsByEnterprise",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/client/views/marketplace/helpers/filterAppsByEnterprise.ts"
+    },
+    {
+      "module": "../helpers/filterAppsByFree",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/client/views/marketplace/helpers/filterAppsByFree.ts"
+    },
+    {
+      "module": "../helpers/filterAppsByPaid",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/client/views/marketplace/helpers/filterAppsByPaid.ts"
+    },
+    {
+      "module": "../helpers/filterAppsByText",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/client/views/marketplace/helpers/filterAppsByText.ts"
+    },
+    {
+      "module": "../helpers/sortAppsByAlphabeticalOrInverseOrder",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/client/views/marketplace/helpers/sortAppsByAlphabeticalOrInverseOrder.ts"
+    },
+    {
+      "module": "../helpers/sortAppsByClosestOrFarthestModificationDate",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/client/views/marketplace/helpers/sortAppsByClosestOrFarthestModificationDate.ts"
+    },
+    {
+      "module": "../types",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/client/views/marketplace/types.ts"
+    }
+  ]
+}

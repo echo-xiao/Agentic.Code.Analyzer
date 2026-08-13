@@ -1,0 +1,541 @@
+{
+  "sourcePath": "/Users/echoooooo/Desktop/code/Rocket.Chat/packages/models/src/models/Roles.ts",
+  "symbols": [
+    {
+      "type": "class",
+      "name": "RolesRaw",
+      "exported": true,
+      "line": 8,
+      "endLine": 276,
+      "signature": "export class RolesRaw extends BaseRaw<IRole> implements IRolesModel",
+      "calls": [
+        {
+          "name": "BaseRaw",
+          "edgeType": "type"
+        },
+        {
+          "name": "IRolesModel",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "findByUpdatedDate",
+      "exported": true,
+      "qualifiedName": "RolesRaw.findByUpdatedDate",
+      "line": 13,
+      "endLine": 19,
+      "signature": "findByUpdatedDate(updatedAfterDate: Date, options?: FindOptions<IRole>): FindCursor<IRole>",
+      "containerClass": "RolesRaw",
+      "calls": [
+        {
+          "name": "find",
+          "edgeType": "call"
+        },
+        {
+          "name": "Date",
+          "edgeType": "new"
+        },
+        {
+          "name": "FindOptions",
+          "edgeType": "type"
+        },
+        {
+          "name": "IRole",
+          "edgeType": "type"
+        },
+        {
+          "name": "FindCursor",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "isUserInRoles",
+      "exported": true,
+      "qualifiedName": "RolesRaw.isUserInRoles",
+      "line": 17,
+      "endLine": 43,
+      "signature": "async isUserInRoles(userId: IUser['_id'], roles: IRole['_id'][], scope?: IRoom['_id']): Promise<boolean>",
+      "containerClass": "RolesRaw",
+      "calls": [
+        {
+          "name": "findOneById",
+          "edgeType": "call"
+        },
+        {
+          "name": "isUserInRole",
+          "edgeType": "call"
+        },
+        {
+          "name": "IUser",
+          "edgeType": "type"
+        },
+        {
+          "name": "IRole",
+          "edgeType": "type"
+        },
+        {
+          "name": "IRoom",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "findOneByIdOrName",
+      "exported": true,
+      "qualifiedName": "RolesRaw.findOneByIdOrName",
+      "line": 30,
+      "endLine": 43,
+      "signature": "findOneByIdOrName<P>(_idOrName: IRole['_id'], options?: any): Promise<IRole | P | null>",
+      "containerClass": "RolesRaw",
+      "calls": [
+        {
+          "name": "findOne",
+          "edgeType": "call"
+        },
+        {
+          "name": "IRole",
+          "edgeType": "type"
+        },
+        {
+          "name": "Filter",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "findOneByName",
+      "exported": true,
+      "qualifiedName": "RolesRaw.findOneByName",
+      "line": 34,
+      "endLine": 40,
+      "signature": "async findOneByName<P = IRole>(name: IRole['name'], options?: any): Promise<IRole | P | null>",
+      "containerClass": "RolesRaw",
+      "calls": [
+        {
+          "name": "findOne",
+          "edgeType": "call"
+        },
+        {
+          "name": "IRole",
+          "edgeType": "type"
+        },
+        {
+          "name": "Filter",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "findInIds",
+      "exported": true,
+      "qualifiedName": "RolesRaw.findInIds",
+      "line": 38,
+      "endLine": 46,
+      "signature": "findInIds<P>(ids: IRole['_id'][], options?: FindOptions<IRole>): P extends Pick<IRole, '_id'> ? FindCursor<P> : FindCursor<IRole>",
+      "containerClass": "RolesRaw",
+      "calls": [
+        {
+          "name": "find",
+          "edgeType": "call"
+        },
+        {
+          "name": "IRole",
+          "edgeType": "type"
+        },
+        {
+          "name": "FindOptions",
+          "edgeType": "type"
+        },
+        {
+          "name": "FindCursor",
+          "edgeType": "type"
+        },
+        {
+          "name": "Filter",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "findInIdsOrNames",
+      "exported": true,
+      "qualifiedName": "RolesRaw.findInIdsOrNames",
+      "line": 42,
+      "endLine": 62,
+      "signature": "findInIdsOrNames<P>( _idsOrNames: IRole['_id'][], options?: FindOptions<IRole>, ): P extends Pick<IRole, '_id'> ? FindCursor<P> : FindCursor<IRole>",
+      "containerClass": "RolesRaw",
+      "calls": [
+        {
+          "name": "find",
+          "edgeType": "call"
+        },
+        {
+          "name": "IRole",
+          "edgeType": "type"
+        },
+        {
+          "name": "FindOptions",
+          "edgeType": "type"
+        },
+        {
+          "name": "FindCursor",
+          "edgeType": "type"
+        },
+        {
+          "name": "Filter",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "findAllExceptIds",
+      "exported": true,
+      "qualifiedName": "RolesRaw.findAllExceptIds",
+      "line": 49,
+      "endLine": 57,
+      "signature": "findAllExceptIds<P>(ids: IRole['_id'][], options?: FindOptions<IRole>): P extends Pick<IRole, '_id'> ? FindCursor<P> : FindCursor<IRole>",
+      "containerClass": "RolesRaw",
+      "calls": [
+        {
+          "name": "find",
+          "edgeType": "call"
+        },
+        {
+          "name": "IRole",
+          "edgeType": "type"
+        },
+        {
+          "name": "FindOptions",
+          "edgeType": "type"
+        },
+        {
+          "name": "FindCursor",
+          "edgeType": "type"
+        },
+        {
+          "name": "Filter",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "findByScope",
+      "exported": true,
+      "qualifiedName": "RolesRaw.findByScope",
+      "line": 53,
+      "endLine": 59,
+      "signature": "findByScope(scope: IRole['scope'], options?: FindOptions<IRole>): FindCursor<IRole>",
+      "containerClass": "RolesRaw",
+      "calls": [
+        {
+          "name": "find",
+          "edgeType": "call"
+        },
+        {
+          "name": "IRole",
+          "edgeType": "type"
+        },
+        {
+          "name": "FindOptions",
+          "edgeType": "type"
+        },
+        {
+          "name": "FindCursor",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "countByScope",
+      "exported": true,
+      "qualifiedName": "RolesRaw.countByScope",
+      "line": 57,
+      "endLine": 63,
+      "signature": "countByScope(scope: IRole['scope'], options?: CountDocumentsOptions): Promise<number>",
+      "containerClass": "RolesRaw",
+      "calls": [
+        {
+          "name": "countDocuments",
+          "edgeType": "call"
+        },
+        {
+          "name": "IRole",
+          "edgeType": "type"
+        },
+        {
+          "name": "CountDocumentsOptions",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "findCustomRoles",
+      "exported": true,
+      "qualifiedName": "RolesRaw.findCustomRoles",
+      "line": 61,
+      "endLine": 67,
+      "signature": "findCustomRoles(options?: FindOptions<IRole>): FindCursor<IRole>",
+      "containerClass": "RolesRaw",
+      "calls": [
+        {
+          "name": "find",
+          "edgeType": "call"
+        },
+        {
+          "name": "FindOptions",
+          "edgeType": "type"
+        },
+        {
+          "name": "IRole",
+          "edgeType": "type"
+        },
+        {
+          "name": "FindCursor",
+          "edgeType": "type"
+        },
+        {
+          "name": "Filter",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "countCustomRoles",
+      "exported": true,
+      "qualifiedName": "RolesRaw.countCustomRoles",
+      "line": 65,
+      "endLine": 71,
+      "signature": "countCustomRoles(options?: CountDocumentsOptions): Promise<number>",
+      "containerClass": "RolesRaw",
+      "calls": [
+        {
+          "name": "countDocuments",
+          "edgeType": "call"
+        },
+        {
+          "name": "CountDocumentsOptions",
+          "edgeType": "type"
+        },
+        {
+          "name": "Filter",
+          "edgeType": "type"
+        },
+        {
+          "name": "IRole",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "updateById",
+      "exported": true,
+      "qualifiedName": "RolesRaw.updateById",
+      "line": 69,
+      "endLine": 95,
+      "signature": "async updateById( _id: IRole['_id'], name: IRole['name'], scope: IRole['scope'], description: IRole['description'] = '', mandatory2fa: IRole['mandatory2fa'] = false, ): Promise<IRole>",
+      "containerClass": "RolesRaw",
+      "calls": [
+        {
+          "name": "findOneAndUpdate",
+          "edgeType": "call"
+        },
+        {
+          "name": "log",
+          "edgeType": "call"
+        },
+        {
+          "name": "IRole",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "findUsersInRole",
+      "exported": true,
+      "qualifiedName": "RolesRaw.findUsersInRole",
+      "line": 90,
+      "endLine": 112,
+      "signature": "async findUsersInRole<P extends Document>( roleId: IRole['_id'], scope: IRoom['_id'] | undefined, options?: any, ): Promise<FindCursor<IUser | P>>",
+      "containerClass": "RolesRaw",
+      "calls": [
+        {
+          "name": "findOneById",
+          "edgeType": "call"
+        },
+        {
+          "name": "findUsersInRoles",
+          "edgeType": "call"
+        },
+        {
+          "name": "Document",
+          "edgeType": "type"
+        },
+        {
+          "name": "IRole",
+          "edgeType": "type"
+        },
+        {
+          "name": "IRoom",
+          "edgeType": "type"
+        },
+        {
+          "name": "FindCursor",
+          "edgeType": "type"
+        },
+        {
+          "name": "IUser",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "countUsersInRole",
+      "exported": true,
+      "qualifiedName": "RolesRaw.countUsersInRole",
+      "line": 98,
+      "endLine": 112,
+      "signature": "async countUsersInRole(roleId: IRole['_id'], scope?: IRoom['_id']): Promise<number>",
+      "containerClass": "RolesRaw",
+      "calls": [
+        {
+          "name": "findOneById",
+          "edgeType": "call"
+        },
+        {
+          "name": "countUsersInRoles",
+          "edgeType": "call"
+        },
+        {
+          "name": "IRole",
+          "edgeType": "type"
+        },
+        {
+          "name": "IRoom",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "createWithRandomId",
+      "exported": true,
+      "qualifiedName": "RolesRaw.createWithRandomId",
+      "line": 102,
+      "endLine": 124,
+      "signature": "async createWithRandomId( name: IRole['name'], scope: IRole['scope'] = 'Users', description = '', protectedRole = true, mandatory2fa = false, ): Promise<IRole>",
+      "containerClass": "RolesRaw",
+      "calls": [
+        {
+          "name": "insertOne",
+          "edgeType": "call"
+        },
+        {
+          "name": "Date",
+          "edgeType": "new"
+        },
+        {
+          "name": "IRole",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "canAddUserToRole",
+      "exported": true,
+      "qualifiedName": "RolesRaw.canAddUserToRole",
+      "line": 112,
+      "endLine": 129,
+      "signature": "async canAddUserToRole(uid: IUser['_id'], roleId: IRole['_id'], scope?: IRoom['_id']): Promise<boolean>",
+      "containerClass": "RolesRaw",
+      "calls": [
+        {
+          "name": "findOne",
+          "edgeType": "call"
+        },
+        {
+          "name": "isUserInRoleScope",
+          "edgeType": "call"
+        },
+        {
+          "name": "IUser",
+          "edgeType": "type"
+        },
+        {
+          "name": "IRole",
+          "edgeType": "type"
+        },
+        {
+          "name": "IRoom",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "constructor",
+      "exported": true,
+      "qualifiedName": "RolesRaw.constructor",
+      "line": 9,
+      "endLine": 11,
+      "signature": "constructor(db: Db, trash?: Collection<RocketChatRecordDeleted<IRole>>)",
+      "containerClass": "RolesRaw",
+      "calls": [
+        {
+          "name": "Db",
+          "edgeType": "type"
+        },
+        {
+          "name": "Collection",
+          "edgeType": "type"
+        },
+        {
+          "name": "RocketChatRecordDeleted",
+          "edgeType": "type"
+        },
+        {
+          "name": "IRole",
+          "edgeType": "type"
+        }
+      ]
+    }
+  ],
+  "imports": [
+    {
+      "module": "@rocket.chat/core-typings",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/model-typings",
+      "resolved": "external"
+    },
+    {
+      "module": "mongodb",
+      "resolved": "external"
+    },
+    {
+      "module": "../index",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/packages/models/src/index.ts"
+    },
+    {
+      "module": "./BaseRaw",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/packages/models/src/models/BaseRaw.ts"
+    }
+  ]
+}

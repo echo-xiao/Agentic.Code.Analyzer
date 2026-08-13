@@ -1,0 +1,27 @@
+## File: apps/meteor/client/components/RoomIcon/OmnichannelRoomIcon/OmnichannelCoreSourceRoomIcon.tsx
+
+```typescript
+import type { IOmnichannelSource } from '@rocket.chat/core-typings';
+import { Icon } from '@rocket.chat/fuselage';
+import type { ComponentProps } from 'react';
+
+const iconMap = {
+	widget: 'livechat',
+	email: 'mail',
+	sms: 'sms',
+	app: 'headset',
+	api: 'headset',
+	other: 'headset',
+} as const;
+
+export type OmnichannelCoreSourceRoomIconProps = {
+	source: IOmnichannelSource;
+	color: ComponentProps<typeof Icon>['color'];
+	size: ComponentProps<typeof Icon>['size'];
+};
+
+export const OmnichannelCoreSourceRoomIcon = ({ source, color, size }: OmnichannelCoreSourceRoomIconProps) => {
+    /* Implementation Hidden */
+};
+
+```

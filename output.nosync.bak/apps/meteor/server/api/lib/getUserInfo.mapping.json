@@ -1,0 +1,221 @@
+{
+  "sourcePath": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/server/api/lib/getUserInfo.ts",
+  "symbols": [
+    {
+      "type": "function",
+      "name": "getUserInfo",
+      "exported": true,
+      "line": 87,
+      "endLine": 117,
+      "signature": "export async function getUserInfo(me: IUser, pullPreferences = true): Promise<IMeApiUser>",
+      "calls": [
+        {
+          "name": "isVerifiedEmail",
+          "edgeType": "call"
+        },
+        {
+          "name": "filterOutdatedVersionUpdateBanners",
+          "edgeType": "call"
+        },
+        {
+          "name": "getUserPreferences",
+          "edgeType": "call"
+        },
+        {
+          "name": "getUserCalendar",
+          "edgeType": "call"
+        },
+        {
+          "name": "getURL",
+          "edgeType": "call"
+        },
+        {
+          "name": "isOAuthUser",
+          "edgeType": "call"
+        },
+        {
+          "name": "Boolean",
+          "edgeType": "call"
+        },
+        {
+          "name": "IUser",
+          "edgeType": "type"
+        },
+        {
+          "name": "IMeApiUser",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "variable_function",
+      "name": "isVerifiedEmail",
+      "exported": false,
+      "line": 9,
+      "endLine": 15,
+      "signature": "(me: IUser): false | IUserEmail | undefined =>",
+      "calls": [
+        {
+          "name": "isArray",
+          "edgeType": "call"
+        },
+        {
+          "name": "find",
+          "edgeType": "call"
+        },
+        {
+          "name": "IUser",
+          "edgeType": "type"
+        },
+        {
+          "name": "IUserEmail",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "variable_function",
+      "name": "getUserPreferences",
+      "exported": false,
+      "line": 13,
+      "endLine": 24,
+      "signature": "async (me: IUser): Promise<Record<string, unknown>> =>",
+      "calls": [
+        {
+          "name": "getByRegexp",
+          "edgeType": "call"
+        },
+        {
+          "name": "trim",
+          "edgeType": "call"
+        },
+        {
+          "name": "replace",
+          "edgeType": "call"
+        },
+        {
+          "name": "getUserPreference",
+          "edgeType": "call"
+        },
+        {
+          "name": "RegExp",
+          "edgeType": "new"
+        },
+        {
+          "name": "IUser",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "variable_function",
+      "name": "filterOutdatedVersionUpdateBanners",
+      "exported": false,
+      "line": 17,
+      "endLine": 32,
+      "signature": "(banners: NonNullable<IUser['banners']>): IUser['banners'] =>",
+      "calls": [
+        {
+          "name": "fromEntries",
+          "edgeType": "call"
+        },
+        {
+          "name": "filter",
+          "edgeType": "call"
+        },
+        {
+          "name": "entries",
+          "edgeType": "call"
+        },
+        {
+          "name": "startsWith",
+          "edgeType": "call"
+        },
+        {
+          "name": "replace",
+          "edgeType": "call"
+        },
+        {
+          "name": "valid",
+          "edgeType": "call"
+        },
+        {
+          "name": "lte",
+          "edgeType": "call"
+        },
+        {
+          "name": "IUser",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "variable_function",
+      "name": "getUserCalendar",
+      "exported": false,
+      "line": 28,
+      "endLine": 59,
+      "signature": "(email: false | IUserEmail | undefined): IUserCalendar =>",
+      "calls": [
+        {
+          "name": "get",
+          "edgeType": "call"
+        },
+        {
+          "name": "pop",
+          "edgeType": "call"
+        },
+        {
+          "name": "split",
+          "edgeType": "call"
+        },
+        {
+          "name": "includes",
+          "edgeType": "call"
+        },
+        {
+          "name": "parse",
+          "edgeType": "call"
+        },
+        {
+          "name": "error",
+          "edgeType": "call"
+        },
+        {
+          "name": "IUserEmail",
+          "edgeType": "type"
+        },
+        {
+          "name": "IUserCalendar",
+          "edgeType": "type"
+        }
+      ]
+    }
+  ],
+  "imports": [
+    {
+      "module": "@rocket.chat/core-typings",
+      "resolved": "external"
+    },
+    {
+      "module": "semver",
+      "resolved": "external"
+    },
+    {
+      "module": "../../../app/settings/server",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/app/settings/server/index.ts"
+    },
+    {
+      "module": "../../../app/utils/rocketchat.info",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/app/utils/rocketchat.info"
+    },
+    {
+      "module": "../../../app/utils/server/getURL",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/app/utils/server/getURL.ts"
+    },
+    {
+      "module": "../../../app/utils/server/lib/getUserPreference",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/app/utils/server/lib/getUserPreference.ts"
+    }
+  ]
+}

@@ -1,0 +1,64 @@
+{
+  "sourcePath": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/server/services/messages/hooks/BeforeFederationActions.ts",
+  "symbols": [
+    {
+      "type": "class",
+      "name": "FederationActions",
+      "exported": true,
+      "line": 6,
+      "endLine": 18,
+      "signature": "export class FederationActions",
+      "calls": []
+    },
+    {
+      "type": "method",
+      "name": "shouldPerformAction",
+      "exported": true,
+      "qualifiedName": "FederationActions.shouldPerformAction",
+      "line": 7,
+      "endLine": 17,
+      "signature": "public static shouldPerformAction(_message: IMessage, room: AtLeast<IRoom, 'federated'>): boolean",
+      "containerClass": "FederationActions",
+      "calls": [
+        {
+          "name": "isRoomFederated",
+          "edgeType": "call"
+        },
+        {
+          "name": "isRoomNativeFederated",
+          "edgeType": "call"
+        },
+        {
+          "name": "isFederationEnabled",
+          "edgeType": "call"
+        },
+        {
+          "name": "IMessage",
+          "edgeType": "type"
+        },
+        {
+          "name": "AtLeast",
+          "edgeType": "type"
+        },
+        {
+          "name": "IRoom",
+          "edgeType": "type"
+        }
+      ]
+    }
+  ],
+  "imports": [
+    {
+      "module": "@rocket.chat/core-typings",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/core-typings",
+      "resolved": "external"
+    },
+    {
+      "module": "../../federation/utils",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/server/services/federation/utils.ts"
+    }
+  ]
+}

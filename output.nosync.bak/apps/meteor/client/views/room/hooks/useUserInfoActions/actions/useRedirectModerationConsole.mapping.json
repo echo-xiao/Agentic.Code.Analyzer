@@ -1,0 +1,61 @@
+{
+  "sourcePath": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/client/views/room/hooks/useUserInfoActions/actions/useRedirectModerationConsole.ts",
+  "symbols": [
+    {
+      "type": "variable_function",
+      "name": "useRedirectModerationConsole",
+      "exported": true,
+      "line": 7,
+      "endLine": 27,
+      "signature": "(uid: IUser['_id']): UserInfoAction | undefined =>",
+      "calls": [
+        {
+          "name": "useTranslation",
+          "edgeType": "call"
+        },
+        {
+          "name": "usePermission",
+          "edgeType": "call"
+        },
+        {
+          "name": "useRoute",
+          "edgeType": "call"
+        },
+        {
+          "name": "push",
+          "edgeType": "call"
+        },
+        {
+          "name": "IUser",
+          "edgeType": "type"
+        },
+        {
+          "name": "UserInfoAction",
+          "edgeType": "type"
+        },
+        {
+          "name": "UserInfoActionType",
+          "edgeType": "type"
+        }
+      ]
+    }
+  ],
+  "imports": [
+    {
+      "module": "@rocket.chat/core-typings",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/ui-contexts",
+      "resolved": "external"
+    },
+    {
+      "module": "react-i18next",
+      "resolved": "external"
+    },
+    {
+      "module": "../useUserInfoActions",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/client/views/room/hooks/useUserInfoActions/useUserInfoActions.ts"
+    }
+  ]
+}

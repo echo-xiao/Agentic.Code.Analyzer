@@ -1,0 +1,68 @@
+{
+  "sourcePath": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/app/livechat/server/lib/contacts/createContact.ts",
+  "symbols": [
+    {
+      "type": "function",
+      "name": "createContact",
+      "exported": true,
+      "line": 21,
+      "endLine": 52,
+      "signature": "export async function createContact({ name, emails, phones, customFields: receivedCustomFields = {}, lastChat, contactManager, channels = [], unknown, importIds, shouldValidateCustomFields = true, }: CreateContactParams): Promise<string>",
+      "calls": [
+        {
+          "name": "validateContactManager",
+          "edgeType": "call"
+        },
+        {
+          "name": "validateCustomFields",
+          "edgeType": "call"
+        },
+        {
+          "name": "getAllowedCustomFields",
+          "edgeType": "call"
+        },
+        {
+          "name": "insertContact",
+          "edgeType": "call"
+        },
+        {
+          "name": "map",
+          "edgeType": "call"
+        },
+        {
+          "name": "CreateContactParams",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "type",
+      "name": "CreateContactParams",
+      "line": 8,
+      "endLine": 19,
+      "signature": "export type CreateContactParams ="
+    }
+  ],
+  "imports": [
+    {
+      "module": "@rocket.chat/core-typings",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/models",
+      "resolved": "external"
+    },
+    {
+      "module": "./getAllowedCustomFields",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/app/livechat/server/lib/contacts/getAllowedCustomFields.ts"
+    },
+    {
+      "module": "./validateContactManager",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/app/livechat/server/lib/contacts/validateContactManager.ts"
+    },
+    {
+      "module": "./validateCustomFields",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/app/livechat/server/lib/contacts/validateCustomFields.ts"
+    }
+  ]
+}

@@ -1,0 +1,73 @@
+{
+  "sourcePath": "/Users/echoooooo/Desktop/code/Rocket.Chat/packages/ui-voip/src/components/Keypad/Keypad.stories.tsx",
+  "symbols": [
+    {
+      "type": "module",
+      "name": "Keypad.stories",
+      "exported": false,
+      "line": 1,
+      "endLine": 21,
+      "signature": "Keypad.stories",
+      "calls": [
+        {
+          "name": "Meta",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "variable",
+      "name": "KeypadStory",
+      "exported": true,
+      "line": 10,
+      "endLine": 12,
+      "signature": "KeypadStory: StoryObj<typeof Keypad> =",
+      "calls": [
+        {
+          "name": "log",
+          "edgeType": "call"
+        },
+        {
+          "name": "Keypad",
+          "edgeType": "jsx"
+        }
+      ]
+    },
+    {
+      "type": "variable",
+      "name": "KeypadStoryWithTone",
+      "exported": true,
+      "line": 14,
+      "endLine": 20,
+      "signature": "KeypadStoryWithTone: StoryObj<typeof Keypad> =",
+      "calls": [
+        {
+          "name": "useTonePlayer",
+          "edgeType": "call"
+        },
+        {
+          "name": "playTone",
+          "edgeType": "call"
+        },
+        {
+          "name": "Keypad",
+          "edgeType": "jsx"
+        }
+      ]
+    }
+  ],
+  "imports": [
+    {
+      "module": "@storybook/react",
+      "resolved": "external"
+    },
+    {
+      "module": "./Keypad",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/packages/ui-voip/src/components/Keypad/Keypad.tsx"
+    },
+    {
+      "module": "../../hooks/useTonePlayer",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/packages/ui-voip/src/hooks/useTonePlayer.ts"
+    }
+  ]
+}

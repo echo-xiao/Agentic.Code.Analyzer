@@ -1,0 +1,105 @@
+{
+  "sourcePath": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/tests/mocks/data/outbound-message.ts",
+  "symbols": [
+    {
+      "type": "variable_function",
+      "name": "createFakeProvider",
+      "exported": true,
+      "line": 5,
+      "endLine": 11,
+      "signature": "(overrides: Partial<IOutboundProvider> = {}): IOutboundProvider =>",
+      "calls": [
+        {
+          "name": "uuid",
+          "edgeType": "call"
+        },
+        {
+          "name": "name",
+          "edgeType": "call"
+        },
+        {
+          "name": "IOutboundProvider",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "variable_function",
+      "name": "createFakeProviderMetadata",
+      "exported": true,
+      "line": 13,
+      "endLine": 23,
+      "signature": "(overrides: Partial<IOutboundProviderMetadata> = {}): IOutboundProviderMetadata =>",
+      "calls": [
+        {
+          "name": "createFakeProvider",
+          "edgeType": "call"
+        },
+        {
+          "name": "number",
+          "edgeType": "call"
+        },
+        {
+          "name": "createFakeOutboundTemplate",
+          "edgeType": "call"
+        },
+        {
+          "name": "IOutboundProviderMetadata",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "variable_function",
+      "name": "createFakeOutboundTemplate",
+      "exported": true,
+      "line": 17,
+      "endLine": 56,
+      "signature": "(overrides: Partial<IOutboundProviderTemplate> = {}): IOutboundProviderTemplate =>",
+      "calls": [
+        {
+          "name": "uuid",
+          "edgeType": "call"
+        },
+        {
+          "name": "capitalize",
+          "edgeType": "call"
+        },
+        {
+          "name": "catchPhraseAdjective",
+          "edgeType": "call"
+        },
+        {
+          "name": "buzzNoun",
+          "edgeType": "call"
+        },
+        {
+          "name": "toISOString",
+          "edgeType": "call"
+        },
+        {
+          "name": "Date",
+          "edgeType": "new"
+        },
+        {
+          "name": "IOutboundProviderTemplate",
+          "edgeType": "type"
+        }
+      ]
+    }
+  ],
+  "imports": [
+    {
+      "module": "@faker-js/faker",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/core-typings",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/string-helpers",
+      "resolved": "external"
+    }
+  ]
+}

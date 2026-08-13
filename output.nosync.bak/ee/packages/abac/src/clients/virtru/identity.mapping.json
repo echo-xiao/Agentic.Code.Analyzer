@@ -1,0 +1,130 @@
+{
+  "sourcePath": "/Users/echoooooo/Desktop/code/Rocket.Chat/ee/packages/abac/src/clients/virtru/identity.ts",
+  "symbols": [
+    {
+      "type": "function",
+      "name": "buildEntityIdentifier",
+      "exported": true,
+      "line": 7,
+      "endLine": 12,
+      "signature": "export function buildEntityIdentifier(defaultEntityKey: EntityKeyType, entityKey: string): IEntityIdentifier",
+      "calls": [
+        {
+          "name": "EntityKeyType",
+          "edgeType": "type"
+        },
+        {
+          "name": "IEntityIdentifier",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "function",
+      "name": "getUserEntityKey",
+      "exported": true,
+      "line": 11,
+      "endLine": 18,
+      "signature": "export function getUserEntityKey(defaultEntityKey: EntityKeyType, user: Pick<IUser, '_id' | 'emails' | 'username'>): string | undefined",
+      "calls": [
+        {
+          "name": "find",
+          "edgeType": "call"
+        },
+        {
+          "name": "EntityKeyType",
+          "edgeType": "type"
+        },
+        {
+          "name": "IUser",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "function",
+      "name": "buildAttributeFqns",
+      "exported": true,
+      "line": 15,
+      "endLine": 20,
+      "signature": "export function buildAttributeFqns(attributeNamespace: string, attributes: IAbacAttributeDefinition[]): string[]",
+      "calls": [
+        {
+          "name": "flatMap",
+          "edgeType": "call"
+        },
+        {
+          "name": "map",
+          "edgeType": "call"
+        },
+        {
+          "name": "IAbacAttributeDefinition",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "function",
+      "name": "parseAttributeFqns",
+      "exported": true,
+      "line": 21,
+      "endLine": 37,
+      "signature": "export function parseAttributeFqns(fqns: string[]): { attributes: IAbacAttributeDefinition[]; malformed: string[] }",
+      "calls": [
+        {
+          "name": "exec",
+          "edgeType": "call"
+        },
+        {
+          "name": "push",
+          "edgeType": "call"
+        },
+        {
+          "name": "get",
+          "edgeType": "call"
+        },
+        {
+          "name": "set",
+          "edgeType": "call"
+        },
+        {
+          "name": "map",
+          "edgeType": "call"
+        },
+        {
+          "name": "entries",
+          "edgeType": "call"
+        },
+        {
+          "name": "Map",
+          "edgeType": "new"
+        },
+        {
+          "name": "Set",
+          "edgeType": "new"
+        },
+        {
+          "name": "IAbacAttributeDefinition",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "type",
+      "name": "EntityKeyType",
+      "line": 5,
+      "endLine": 5,
+      "signature": "export type EntityKeyType = 'emailAddress' | 'oidcIdentifier';"
+    }
+  ],
+  "imports": [
+    {
+      "module": "@rocket.chat/core-typings",
+      "resolved": "external"
+    },
+    {
+      "module": "../../pdp/types",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/ee/packages/abac/src/pdp/types.ts"
+    }
+  ]
+}

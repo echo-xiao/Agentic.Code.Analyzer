@@ -1,0 +1,67 @@
+{
+  "sourcePath": "/Users/echoooooo/Desktop/code/Rocket.Chat/packages/apps/tests/test-data/bridges/internalBridge.ts",
+  "symbols": [
+    {
+      "type": "class",
+      "name": "TestsInternalBridge",
+      "exported": true,
+      "line": 5,
+      "endLine": 17,
+      "signature": "export class TestsInternalBridge implements IInternalBridge",
+      "calls": [
+        {
+          "name": "IInternalBridge",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "doGetUsernamesOfRoomByIdSync",
+      "exported": true,
+      "qualifiedName": "TestsInternalBridge.doGetUsernamesOfRoomByIdSync",
+      "line": 6,
+      "endLine": 8,
+      "signature": "public doGetUsernamesOfRoomByIdSync(roomId: string): Array<string>",
+      "containerClass": "TestsInternalBridge",
+      "calls": []
+    },
+    {
+      "type": "method",
+      "name": "doGetUsernamesOfRoomById",
+      "exported": true,
+      "qualifiedName": "TestsInternalBridge.doGetUsernamesOfRoomById",
+      "line": 10,
+      "endLine": 12,
+      "signature": "public doGetUsernamesOfRoomById(roomId: string): Promise<Array<string>>",
+      "containerClass": "TestsInternalBridge",
+      "calls": []
+    },
+    {
+      "type": "method",
+      "name": "doGetWorkspacePublicKey",
+      "exported": true,
+      "qualifiedName": "TestsInternalBridge.doGetWorkspacePublicKey",
+      "line": 14,
+      "endLine": 16,
+      "signature": "public doGetWorkspacePublicKey(): Promise<ISetting>",
+      "containerClass": "TestsInternalBridge",
+      "calls": [
+        {
+          "name": "ISetting",
+          "edgeType": "type"
+        }
+      ]
+    }
+  ],
+  "imports": [
+    {
+      "module": "@rocket.chat/apps-engine/definition/settings",
+      "resolved": "external"
+    },
+    {
+      "module": "../../../src/server/bridges",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/packages/apps/src/server/bridges/index.ts"
+    }
+  ]
+}

@@ -1,0 +1,133 @@
+{
+  "sourcePath": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/app/importer-omnichannel-contacts/server/ContactImporter.ts",
+  "symbols": [
+    {
+      "type": "class",
+      "name": "ContactImporter",
+      "exported": true,
+      "line": 12,
+      "endLine": 48,
+      "signature": "export class ContactImporter extends Importer",
+      "calls": [
+        {
+          "name": "Importer",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "prepareUsingLocalFile",
+      "exported": true,
+      "qualifiedName": "ContactImporter.prepareUsingLocalFile",
+      "line": 21,
+      "endLine": 47,
+      "signature": "override async prepareUsingLocalFile(fullFilePath: string): Promise<ImporterProgress>",
+      "containerClass": "ContactImporter",
+      "calls": [
+        {
+          "name": "debug",
+          "edgeType": "call"
+        },
+        {
+          "name": "clearImportData",
+          "edgeType": "call"
+        },
+        {
+          "name": "progressUpdated",
+          "edgeType": "call"
+        },
+        {
+          "name": "updateProgress",
+          "edgeType": "call"
+        },
+        {
+          "name": "readFileSync",
+          "edgeType": "call"
+        },
+        {
+          "name": "csvParser",
+          "edgeType": "call"
+        },
+        {
+          "name": "call",
+          "edgeType": "call"
+        },
+        {
+          "name": "error",
+          "edgeType": "call"
+        },
+        {
+          "name": "updateRecord",
+          "edgeType": "call"
+        },
+        {
+          "name": "getProgress",
+          "edgeType": "call"
+        },
+        {
+          "name": "ImporterProgress",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "constructor",
+      "exported": true,
+      "qualifiedName": "ContactImporter.constructor",
+      "line": 15,
+      "endLine": 19,
+      "signature": "constructor(info: ImporterInfo, importRecord: IImport, converterOptions: ConverterOptions = {})",
+      "containerClass": "ContactImporter",
+      "calls": [
+        {
+          "name": "ImporterInfo",
+          "edgeType": "type"
+        },
+        {
+          "name": "IImport",
+          "edgeType": "type"
+        },
+        {
+          "name": "ConverterOptions",
+          "edgeType": "type"
+        }
+      ]
+    }
+  ],
+  "imports": [
+    {
+      "module": "node:fs",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/core-typings",
+      "resolved": "external"
+    },
+    {
+      "module": "csv-parse/lib/sync",
+      "resolved": "external"
+    },
+    {
+      "module": "./addParsedContacts",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/app/importer-omnichannel-contacts/server/addParsedContacts.ts"
+    },
+    {
+      "module": "../../importer/server",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/app/importer/server/index.ts"
+    },
+    {
+      "module": "../../importer/server/classes/ImportDataConverter",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/app/importer/server/classes/ImportDataConverter.ts"
+    },
+    {
+      "module": "../../importer/server/classes/ImporterProgress",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/app/importer/server/classes/ImporterProgress.ts"
+    },
+    {
+      "module": "../../importer/server/definitions/ImporterInfo",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/app/importer/server/definitions/ImporterInfo.ts"
+    }
+  ]
+}

@@ -1,0 +1,256 @@
+{
+  "sourcePath": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/client/views/teams/contextualBar/channels/TeamsChannels.tsx",
+  "symbols": [
+    {
+      "type": "variable_function",
+      "name": "TeamsChannels",
+      "exported": false,
+      "line": 42,
+      "endLine": 154,
+      "signature": "({ loading, channels = [], mainRoom, text, type, setText, setType, onClickClose, onClickAddExisting, onClickCreateNew, total, loadMoreItems, onClickView, reload, }: TeamsChannelsProps) =>",
+      "calls": [
+        {
+          "name": "useTranslation",
+          "edgeType": "call"
+        },
+        {
+          "name": "useAutoFocus",
+          "edgeType": "call"
+        },
+        {
+          "name": "useMemo",
+          "edgeType": "call"
+        },
+        {
+          "name": "useStableCallback",
+          "edgeType": "call"
+        },
+        {
+          "name": "loadMoreItems",
+          "edgeType": "call"
+        },
+        {
+          "name": "useDebouncedCallback",
+          "edgeType": "call"
+        },
+        {
+          "name": "lm",
+          "edgeType": "call"
+        },
+        {
+          "name": "setType",
+          "edgeType": "call"
+        },
+        {
+          "name": "ContextualbarDialog",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "ContextualbarHeader",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "ContextualbarTitle",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "ContextualbarSection",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "Box",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "ContextualbarContent",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "VirtualizedScrollbars",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "ContextualbarFooter",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "ButtonGroup",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "Button",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "ContextualbarIcon",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "ContextualbarClose",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "TextInput",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "Icon",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "Select",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "Throbber",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "ContextualbarEmptyContent",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "Virtuoso",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "InfiniteListAnchor",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "TeamsChannelItem",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "onClickClose",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "text",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "inputRef",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "setText",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "type",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "options",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "total",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "channels",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "loadMoreChannels",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "onClickView",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "data",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "mainRoom",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "reload",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "index",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "onClickAddExisting",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "onClickCreateNew",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "TeamsChannelsProps",
+          "edgeType": "type"
+        },
+        {
+          "name": "HTMLInputElement",
+          "edgeType": "type"
+        },
+        {
+          "name": "SelectOption",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "type",
+      "name": "TeamsChannelsProps",
+      "line": 25,
+      "endLine": 40,
+      "signature": "type TeamsChannelsProps ="
+    }
+  ],
+  "imports": [
+    {
+      "module": "@rocket.chat/core-typings",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/fuselage",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/fuselage",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/fuselage-hooks",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/ui-client",
+      "resolved": "external"
+    },
+    {
+      "module": "react",
+      "resolved": "external"
+    },
+    {
+      "module": "react",
+      "resolved": "external"
+    },
+    {
+      "module": "react-i18next",
+      "resolved": "external"
+    },
+    {
+      "module": "react-virtuoso",
+      "resolved": "external"
+    },
+    {
+      "module": "./TeamsChannelItem",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/client/views/teams/contextualBar/channels/TeamsChannelItem.tsx"
+    },
+    {
+      "module": "../../../../components/InfiniteListAnchor",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/client/components/InfiniteListAnchor.tsx"
+    }
+  ]
+}

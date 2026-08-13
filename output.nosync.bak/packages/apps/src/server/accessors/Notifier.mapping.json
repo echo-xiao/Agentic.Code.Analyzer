@@ -1,0 +1,177 @@
+{
+  "sourcePath": "/Users/echoooooo/Desktop/code/Rocket.Chat/packages/apps/src/server/accessors/Notifier.ts",
+  "symbols": [
+    {
+      "type": "class",
+      "name": "Notifier",
+      "exported": true,
+      "line": 11,
+      "endLine": 54,
+      "signature": "export class Notifier implements INotifier",
+      "calls": [
+        {
+          "name": "INotifier",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "notifyUser",
+      "exported": true,
+      "qualifiedName": "Notifier.notifyUser",
+      "line": 18,
+      "endLine": 26,
+      "signature": "public async notifyUser(user: IUser, message: IMessage): Promise<void>",
+      "containerClass": "Notifier",
+      "calls": [
+        {
+          "name": "doGetAppUser",
+          "edgeType": "call"
+        },
+        {
+          "name": "doNotifyUser",
+          "edgeType": "call"
+        },
+        {
+          "name": "IUser",
+          "edgeType": "type"
+        },
+        {
+          "name": "IMessage",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "notifyRoom",
+      "exported": true,
+      "qualifiedName": "Notifier.notifyRoom",
+      "line": 22,
+      "endLine": 30,
+      "signature": "public async notifyRoom(room: IRoom, message: IMessage): Promise<void>",
+      "containerClass": "Notifier",
+      "calls": [
+        {
+          "name": "doGetAppUser",
+          "edgeType": "call"
+        },
+        {
+          "name": "doNotifyRoom",
+          "edgeType": "call"
+        },
+        {
+          "name": "IRoom",
+          "edgeType": "type"
+        },
+        {
+          "name": "IMessage",
+          "edgeType": "type"
+        },
+        {
+          "name": "IUser",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "typing",
+      "exported": true,
+      "qualifiedName": "Notifier.typing",
+      "line": 26,
+      "endLine": 37,
+      "signature": "public async typing(options: ITypingOptions): Promise<() => Promise<void>>",
+      "containerClass": "Notifier",
+      "calls": [
+        {
+          "name": "doGetAppUser",
+          "edgeType": "call"
+        },
+        {
+          "name": "doTyping",
+          "edgeType": "call"
+        },
+        {
+          "name": "ITypingOptions",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "getMessageBuilder",
+      "exported": true,
+      "qualifiedName": "Notifier.getMessageBuilder",
+      "line": 30,
+      "endLine": 32,
+      "signature": "public getMessageBuilder(): IMessageBuilder",
+      "containerClass": "Notifier",
+      "calls": [
+        {
+          "name": "MessageBuilder",
+          "edgeType": "new"
+        },
+        {
+          "name": "IMessageBuilder",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "constructor",
+      "exported": true,
+      "qualifiedName": "Notifier.constructor",
+      "line": 12,
+      "endLine": 16,
+      "signature": "constructor( private readonly userBridge: UserBridge, private readonly msgBridge: MessageBridge, private readonly appId: string, )",
+      "containerClass": "Notifier",
+      "calls": [
+        {
+          "name": "UserBridge",
+          "edgeType": "type"
+        },
+        {
+          "name": "MessageBridge",
+          "edgeType": "type"
+        }
+      ]
+    }
+  ],
+  "imports": [
+    {
+      "module": "@rocket.chat/apps-engine/definition/accessors",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/apps-engine/definition/accessors/INotifier",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/apps-engine/definition/accessors/INotifier",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/apps-engine/definition/messages",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/apps-engine/definition/rooms",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/apps-engine/definition/users",
+      "resolved": "external"
+    },
+    {
+      "module": "../bridges",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/packages/apps/src/server/bridges/index.ts"
+    },
+    {
+      "module": "./MessageBuilder",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/packages/apps/src/server/accessors/MessageBuilder.ts"
+    }
+  ]
+}

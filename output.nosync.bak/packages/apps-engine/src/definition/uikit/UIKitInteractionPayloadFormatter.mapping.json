@@ -1,0 +1,169 @@
+{
+  "sourcePath": "/Users/echoooooo/Desktop/code/Rocket.Chat/packages/apps-engine/src/definition/uikit/UIKitInteractionPayloadFormatter.ts",
+  "symbols": [
+    {
+      "type": "function",
+      "name": "isModalInteraction",
+      "exported": false,
+      "line": 15,
+      "endLine": 17,
+      "signature": "function isModalInteraction(type: IUIKitInteraction['type']): type is IUIKitModalInteraction['type']",
+      "calls": [
+        {
+          "name": "includes",
+          "edgeType": "call"
+        },
+        {
+          "name": "IUIKitInteraction",
+          "edgeType": "type"
+        },
+        {
+          "name": "IUIKitModalInteraction",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "function",
+      "name": "formatModalInteraction",
+      "exported": true,
+      "line": 19,
+      "endLine": 36,
+      "signature": "export function formatModalInteraction(view: IUIKitModalViewParam, context: IUIKitInteraction): IUIKitModalInteraction",
+      "calls": [
+        {
+          "name": "isModalInteraction",
+          "edgeType": "call"
+        },
+        {
+          "name": "uuid",
+          "edgeType": "call"
+        },
+        {
+          "name": "IUIKitModalViewParam",
+          "edgeType": "type"
+        },
+        {
+          "name": "IUIKitInteraction",
+          "edgeType": "type"
+        },
+        {
+          "name": "IUIKitModalInteraction",
+          "edgeType": "type"
+        },
+        {
+          "name": "IUIKitSurface",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "function",
+      "name": "isContextualBarInteraction",
+      "exported": false,
+      "line": 23,
+      "endLine": 29,
+      "signature": "function isContextualBarInteraction(type: IUIKitInteraction['type']): type is IUIKitContextualBarInteraction['type']",
+      "calls": [
+        {
+          "name": "includes",
+          "edgeType": "call"
+        },
+        {
+          "name": "IUIKitInteraction",
+          "edgeType": "type"
+        },
+        {
+          "name": "IUIKitContextualBarInteraction",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "function",
+      "name": "formatContextualBarInteraction",
+      "exported": true,
+      "line": 27,
+      "endLine": 47,
+      "signature": "export function formatContextualBarInteraction( view: IUIKitContextualBarViewParam, context: IUIKitInteraction, ): IUIKitContextualBarInteraction",
+      "calls": [
+        {
+          "name": "isContextualBarInteraction",
+          "edgeType": "call"
+        },
+        {
+          "name": "uuid",
+          "edgeType": "call"
+        },
+        {
+          "name": "IUIKitContextualBarViewParam",
+          "edgeType": "type"
+        },
+        {
+          "name": "IUIKitInteraction",
+          "edgeType": "type"
+        },
+        {
+          "name": "IUIKitContextualBarInteraction",
+          "edgeType": "type"
+        },
+        {
+          "name": "IUIKitSurface",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "function",
+      "name": "formatErrorInteraction",
+      "exported": true,
+      "line": 34,
+      "endLine": 46,
+      "signature": "export function formatErrorInteraction(errorInteraction: IUIKitErrorInteractionParam, context: IUIKitInteraction): IUIKitErrorInteraction",
+      "calls": [
+        {
+          "name": "IUIKitErrorInteractionParam",
+          "edgeType": "type"
+        },
+        {
+          "name": "IUIKitInteraction",
+          "edgeType": "type"
+        },
+        {
+          "name": "IUIKitErrorInteraction",
+          "edgeType": "type"
+        }
+      ]
+    }
+  ],
+  "imports": [
+    {
+      "module": "uuid",
+      "resolved": "external"
+    },
+    {
+      "module": "./IUIKitInteractionType",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/packages/apps-engine/src/definition/uikit/IUIKitInteractionType.ts"
+    },
+    {
+      "module": "./IUIKitInteractionType",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/packages/apps-engine/src/definition/uikit/IUIKitInteractionType.ts"
+    },
+    {
+      "module": "./IUIKitSurface",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/packages/apps-engine/src/definition/uikit/IUIKitSurface.ts"
+    },
+    {
+      "module": "./IUIKitSurface",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/packages/apps-engine/src/definition/uikit/IUIKitSurface.ts"
+    },
+    {
+      "module": "./UIKitInteractionResponder",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/packages/apps-engine/src/definition/uikit/UIKitInteractionResponder.ts"
+    },
+    {
+      "module": "../accessors/IUIController",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/packages/apps-engine/src/definition/accessors/IUIController.ts"
+    }
+  ]
+}

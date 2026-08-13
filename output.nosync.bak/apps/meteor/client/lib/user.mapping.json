@@ -1,0 +1,65 @@
+{
+  "sourcePath": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/client/lib/user.ts",
+  "symbols": [
+    {
+      "type": "variable",
+      "name": "userIdStore",
+      "exported": true,
+      "line": 9,
+      "endLine": 9,
+      "signature": "userIdStore = create<IUser['_id'] | undefined>(() => undefined)",
+      "calls": [
+        {
+          "name": "IUser",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "variable_function",
+      "name": "getUserId",
+      "exported": true,
+      "line": 11,
+      "endLine": 11,
+      "signature": "() =>",
+      "calls": [
+        {
+          "name": "getState",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "variable_function",
+      "name": "getUser",
+      "exported": true,
+      "line": 13,
+      "endLine": 17,
+      "signature": "() =>",
+      "calls": [
+        {
+          "name": "getUserId",
+          "edgeType": "call"
+        },
+        {
+          "name": "get",
+          "edgeType": "call"
+        }
+      ]
+    }
+  ],
+  "imports": [
+    {
+      "module": "@rocket.chat/core-typings",
+      "resolved": "external"
+    },
+    {
+      "module": "zustand",
+      "resolved": "external"
+    },
+    {
+      "module": "../stores",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/client/stores/index.ts"
+    }
+  ]
+}

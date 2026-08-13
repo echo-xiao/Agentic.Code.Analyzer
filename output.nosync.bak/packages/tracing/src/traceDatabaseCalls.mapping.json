@@ -1,0 +1,97 @@
+{
+  "sourcePath": "/Users/echoooooo/Desktop/code/Rocket.Chat/packages/tracing/src/traceDatabaseCalls.ts",
+  "symbols": [
+    {
+      "type": "variable_function",
+      "name": "initDatabaseTracing",
+      "exported": true,
+      "line": 5,
+      "endLine": 68,
+      "signature": "(tracer: Tracer, client: MongoClient) =>",
+      "calls": [
+        {
+          "name": "commandStarted",
+          "edgeType": "event_listen"
+        },
+        {
+          "name": "getSpan",
+          "edgeType": "call"
+        },
+        {
+          "name": "active",
+          "edgeType": "call"
+        },
+        {
+          "name": "startSpan",
+          "edgeType": "call"
+        },
+        {
+          "name": "stringify",
+          "edgeType": "call"
+        },
+        {
+          "name": "set",
+          "edgeType": "call"
+        },
+        {
+          "name": "commandSucceeded",
+          "edgeType": "event_listen"
+        },
+        {
+          "name": "has",
+          "edgeType": "call"
+        },
+        {
+          "name": "get",
+          "edgeType": "call"
+        },
+        {
+          "name": "delete",
+          "edgeType": "call"
+        },
+        {
+          "name": "end",
+          "edgeType": "call"
+        },
+        {
+          "name": "commandFailed",
+          "edgeType": "event_listen"
+        },
+        {
+          "name": "recordException",
+          "edgeType": "call"
+        },
+        {
+          "name": "setStatus",
+          "edgeType": "call"
+        },
+        {
+          "name": "Map",
+          "edgeType": "new"
+        },
+        {
+          "name": "Tracer",
+          "edgeType": "type"
+        },
+        {
+          "name": "MongoClient",
+          "edgeType": "type"
+        }
+      ]
+    }
+  ],
+  "imports": [
+    {
+      "module": "@opentelemetry/api",
+      "resolved": "external"
+    },
+    {
+      "module": "@opentelemetry/api",
+      "resolved": "external"
+    },
+    {
+      "module": "mongodb",
+      "resolved": "external"
+    }
+  ]
+}

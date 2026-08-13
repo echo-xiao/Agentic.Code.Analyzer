@@ -1,0 +1,56 @@
+{
+  "sourcePath": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/client/views/room/lib/getRoomDirectives.ts",
+  "symbols": [
+    {
+      "type": "variable_function",
+      "name": "getRoomDirectives",
+      "exported": true,
+      "line": 18,
+      "endLine": 65,
+      "signature": "({ room, showingUserId, userSubscription, }: { room: IRoom; showingUserId: IUser['_id']; userSubscription?: ISubscription; }): getRoomDirectiesType =>",
+      "calls": [
+        {
+          "name": "getRoomDirectives",
+          "edgeType": "call"
+        },
+        {
+          "name": "allowMemberAction",
+          "edgeType": "call"
+        },
+        {
+          "name": "IRoom",
+          "edgeType": "type"
+        },
+        {
+          "name": "IUser",
+          "edgeType": "type"
+        },
+        {
+          "name": "ISubscription",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "type",
+      "name": "getRoomDirectiesType",
+      "line": 6,
+      "endLine": 16,
+      "signature": "type getRoomDirectiesType ="
+    }
+  ],
+  "imports": [
+    {
+      "module": "@rocket.chat/core-typings",
+      "resolved": "external"
+    },
+    {
+      "module": "../../../../definition/IRoomTypeConfig",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/definition/IRoomTypeConfig.ts"
+    },
+    {
+      "module": "../../../lib/rooms/roomCoordinator",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/client/lib/rooms/roomCoordinator.tsx"
+    }
+  ]
+}

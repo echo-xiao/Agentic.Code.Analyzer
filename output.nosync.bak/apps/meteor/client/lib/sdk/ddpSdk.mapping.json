@@ -1,0 +1,364 @@
+{
+  "sourcePath": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/client/lib/sdk/ddpSdk.ts",
+  "symbols": [
+    {
+      "type": "module",
+      "name": "ddpSdk",
+      "exported": false,
+      "line": 1,
+      "endLine": 333,
+      "signature": "ddpSdk",
+      "calls": [
+        {
+          "name": "isSdkTransportEnabled",
+          "edgeType": "call"
+        },
+        {
+          "name": "info",
+          "edgeType": "call"
+        },
+        {
+          "name": "getDdpSdk",
+          "edgeType": "call"
+        },
+        {
+          "name": "bind",
+          "edgeType": "call"
+        },
+        {
+          "name": "originalLogin",
+          "edgeType": "call"
+        },
+        {
+          "name": "isAuthError",
+          "edgeType": "call"
+        },
+        {
+          "name": "ensureConnectedAndAuthenticated",
+          "edgeType": "call"
+        },
+        {
+          "name": "teardownAuthenticatedConnection",
+          "edgeType": "call"
+        },
+        {
+          "name": "onEmailVerificationLink",
+          "edgeType": "call"
+        },
+        {
+          "name": "emailVerificationLink",
+          "edgeType": "event_emit"
+        },
+        {
+          "name": "onPageLoadLogin",
+          "edgeType": "call"
+        },
+        {
+          "name": "pageLoadLogin",
+          "edgeType": "event_emit"
+        }
+      ]
+    },
+    {
+      "type": "variable_function",
+      "name": "stripTrailingSlash",
+      "exported": false,
+      "line": 14,
+      "endLine": 14,
+      "signature": "(value: string): string =>",
+      "calls": [
+        {
+          "name": "endsWith",
+          "edgeType": "call"
+        },
+        {
+          "name": "slice",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "variable_function",
+      "name": "computeDdpUrl",
+      "exported": false,
+      "line": 16,
+      "endLine": 20,
+      "signature": "(): string =>",
+      "calls": [
+        {
+          "name": "getRootUrl",
+          "edgeType": "call"
+        },
+        {
+          "name": "stripTrailingSlash",
+          "edgeType": "call"
+        },
+        {
+          "name": "replace",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "variable_function",
+      "name": "applyEjsonEncoding",
+      "exported": false,
+      "line": 23,
+      "endLine": 28,
+      "signature": "(sdk: DDPSDK): void =>",
+      "calls": [
+        {
+          "name": "DDPSDK",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "variable_function",
+      "name": "startConnect",
+      "exported": false,
+      "line": 27,
+      "endLine": 35,
+      "signature": "(sdk: DDPSDK): Promise<unknown> =>",
+      "calls": [
+        {
+          "name": "catch",
+          "edgeType": "call"
+        },
+        {
+          "name": "connect",
+          "edgeType": "call"
+        },
+        {
+          "name": "warn",
+          "edgeType": "call"
+        },
+        {
+          "name": "DDPSDK",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "variable_function",
+      "name": "waitForConnected",
+      "exported": false,
+      "line": 31,
+      "endLine": 39,
+      "signature": "(sdk: DDPSDK): Promise<void> =>",
+      "calls": [
+        {
+          "name": "resolve",
+          "edgeType": "call"
+        },
+        {
+          "name": "connected",
+          "edgeType": "event_listen"
+        },
+        {
+          "name": "stop",
+          "edgeType": "call"
+        },
+        {
+          "name": "DDPSDK",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "variable_function",
+      "name": "getDdpSdk",
+      "exported": true,
+      "line": 35,
+      "endLine": 60,
+      "signature": "(): DDPSDK =>",
+      "calls": [
+        {
+          "name": "create",
+          "edgeType": "call"
+        },
+        {
+          "name": "computeDdpUrl",
+          "edgeType": "call"
+        },
+        {
+          "name": "createMeteorBackedStorage",
+          "edgeType": "call"
+        },
+        {
+          "name": "warn",
+          "edgeType": "call"
+        },
+        {
+          "name": "applyEjsonEncoding",
+          "edgeType": "call"
+        },
+        {
+          "name": "startConnect",
+          "edgeType": "call"
+        },
+        {
+          "name": "createMeteorBackedSdk",
+          "edgeType": "call"
+        },
+        {
+          "name": "DDPSDK",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "variable_function",
+      "name": "readStoredLoginToken",
+      "exported": false,
+      "line": 39,
+      "endLine": 39,
+      "signature": "(): string | null =>",
+      "calls": [
+        {
+          "name": "getStoredItem",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "variable_function",
+      "name": "ensureConnectedAndAuthenticated",
+      "exported": true,
+      "line": 43,
+      "endLine": 119,
+      "signature": "async (): Promise<void> =>",
+      "calls": [
+        {
+          "name": "getDdpSdk",
+          "edgeType": "call"
+        },
+        {
+          "name": "startConnect",
+          "edgeType": "call"
+        },
+        {
+          "name": "waitForConnected",
+          "edgeType": "call"
+        },
+        {
+          "name": "readStoredLoginToken",
+          "edgeType": "call"
+        },
+        {
+          "name": "loginWithToken",
+          "edgeType": "call"
+        },
+        {
+          "name": "isAuthError",
+          "edgeType": "call"
+        },
+        {
+          "name": "clearStoredCredentials",
+          "edgeType": "call"
+        },
+        {
+          "name": "warn",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "variable_function",
+      "name": "clearStoredCredentials",
+      "exported": true,
+      "line": 56,
+      "endLine": 61,
+      "signature": "(): void =>",
+      "calls": [
+        {
+          "name": "removeStoredItem",
+          "edgeType": "call"
+        },
+        {
+          "name": "setUserId",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "variable_function",
+      "name": "isAuthError",
+      "exported": true,
+      "line": 60,
+      "endLine": 76,
+      "signature": "(error: unknown): boolean =>",
+      "calls": []
+    },
+    {
+      "type": "variable_function",
+      "name": "adoptAccountFromMeteorLoginResult",
+      "exported": true,
+      "line": 81,
+      "endLine": 96,
+      "signature": "(result: unknown): void =>",
+      "calls": [
+        {
+          "name": "getDdpSdk",
+          "edgeType": "call"
+        },
+        {
+          "name": "Date",
+          "edgeType": "new"
+        }
+      ]
+    },
+    {
+      "type": "variable_function",
+      "name": "teardownAuthenticatedConnection",
+      "exported": false,
+      "line": 85,
+      "endLine": 95,
+      "signature": "(): void =>",
+      "calls": [
+        {
+          "name": "close",
+          "edgeType": "call"
+        }
+      ]
+    }
+  ],
+  "imports": [
+    {
+      "module": "@rocket.chat/ddp-client",
+      "resolved": "external"
+    },
+    {
+      "module": "ejson",
+      "resolved": "external"
+    },
+    {
+      "module": "meteor/accounts-base",
+      "resolved": "external"
+    },
+    {
+      "module": "meteor/meteor",
+      "resolved": "external"
+    },
+    {
+      "module": "./meteorBackedSdk",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/client/lib/sdk/meteorBackedSdk.ts"
+    },
+    {
+      "module": "./sdkTransportEnabled",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/client/lib/sdk/sdkTransportEnabled.ts"
+    },
+    {
+      "module": "../meteorRuntimeConfig",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/client/lib/meteorRuntimeConfig.ts"
+    },
+    {
+      "module": "./storage",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/client/lib/sdk/storage.ts"
+    },
+    {
+      "module": "../user",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/client/lib/user.ts"
+    }
+  ]
+}

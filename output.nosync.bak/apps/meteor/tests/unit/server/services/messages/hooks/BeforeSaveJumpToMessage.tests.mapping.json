@@ -1,0 +1,156 @@
+{
+  "sourcePath": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/tests/unit/server/services/messages/hooks/BeforeSaveJumpToMessage.tests.ts",
+  "symbols": [
+    {
+      "type": "module",
+      "name": "BeforeSaveJumpToMessage.tests",
+      "exported": false,
+      "line": 1,
+      "endLine": 735,
+      "signature": "BeforeSaveJumpToMessage.tests",
+      "calls": [
+        {
+          "name": "describe",
+          "edgeType": "call"
+        },
+        {
+          "name": "it",
+          "edgeType": "call"
+        },
+        {
+          "name": "createMessage",
+          "edgeType": "call"
+        },
+        {
+          "name": "createRoom",
+          "edgeType": "call"
+        },
+        {
+          "name": "createAttachmentForMessageURLs",
+          "edgeType": "call"
+        },
+        {
+          "name": "createUser",
+          "edgeType": "call"
+        },
+        {
+          "name": "property",
+          "edgeType": "call"
+        },
+        {
+          "name": "expect",
+          "edgeType": "call"
+        },
+        {
+          "name": "length",
+          "edgeType": "call"
+        },
+        {
+          "name": "lengthOf",
+          "edgeType": "call"
+        },
+        {
+          "name": "include",
+          "edgeType": "call"
+        },
+        {
+          "name": "countDeep",
+          "edgeType": "call"
+        },
+        {
+          "name": "eq",
+          "edgeType": "call"
+        },
+        {
+          "name": "BeforeSaveJumpToMessage",
+          "edgeType": "new"
+        },
+        {
+          "name": "Date",
+          "edgeType": "new"
+        }
+      ]
+    },
+    {
+      "type": "variable_function",
+      "name": "createMessage",
+      "exported": false,
+      "line": 6,
+      "endLine": 17,
+      "signature": "(msg?: string, extra: Partial<IMessage> = {}) =>",
+      "calls": [
+        {
+          "name": "Date",
+          "edgeType": "new"
+        },
+        {
+          "name": "IMessage",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "variable_function",
+      "name": "createUser",
+      "exported": false,
+      "line": 19,
+      "endLine": 24,
+      "signature": "(username?: string) =>",
+      "calls": []
+    },
+    {
+      "type": "variable_function",
+      "name": "createRoom",
+      "exported": false,
+      "line": 26,
+      "endLine": 38,
+      "signature": "(extra: any = {}): any =>",
+      "calls": [
+        {
+          "name": "Date",
+          "edgeType": "new"
+        }
+      ]
+    },
+    {
+      "type": "variable_function",
+      "name": "countDeep",
+      "exported": false,
+      "line": 40,
+      "endLine": 50,
+      "signature": "(msg: any, deep = 1): number =>",
+      "calls": [
+        {
+          "name": "isArray",
+          "edgeType": "call"
+        },
+        {
+          "name": "reduce",
+          "edgeType": "call"
+        },
+        {
+          "name": "max",
+          "edgeType": "call"
+        },
+        {
+          "name": "countDeep",
+          "edgeType": "call"
+        }
+      ]
+    }
+  ],
+  "imports": [
+    {
+      "module": "@rocket.chat/core-typings",
+      "resolved": "external"
+    },
+    {
+      "module": "chai",
+      "resolved": "external"
+    },
+    {
+      "module": "../../../../../../server/services/messages/hooks/BeforeSaveJumpToMessage",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/server/services/messages/hooks/BeforeSaveJumpToMessage.ts"
+    }
+  ]
+}

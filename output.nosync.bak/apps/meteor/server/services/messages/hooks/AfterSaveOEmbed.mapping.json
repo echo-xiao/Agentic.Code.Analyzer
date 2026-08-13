@@ -1,0 +1,466 @@
+{
+  "sourcePath": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/server/services/messages/hooks/AfterSaveOEmbed.ts",
+  "symbols": [
+    {
+      "type": "variable_function",
+      "name": "getCharset",
+      "exported": false,
+      "line": 30,
+      "endLine": 62,
+      "signature": "function (contentType: string, body: Buffer): string",
+      "calls": [
+        {
+          "name": "detect",
+          "edgeType": "call"
+        },
+        {
+          "name": "toLowerCase",
+          "edgeType": "call"
+        },
+        {
+          "name": "match",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "variable_function",
+      "name": "toUtf8",
+      "exported": false,
+      "line": 34,
+      "endLine": 36,
+      "signature": "function (contentType: string, body: Buffer): string",
+      "calls": [
+        {
+          "name": "decode",
+          "edgeType": "call"
+        },
+        {
+          "name": "getCharset",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "variable_function",
+      "name": "getUrlContent",
+      "exported": false,
+      "line": 38,
+      "endLine": 150,
+      "signature": "async (urlObj: URL, redirectCount = 5): Promise<OEmbedUrlContent> =>",
+      "calls": [
+        {
+          "name": "entries",
+          "edgeType": "call"
+        },
+        {
+          "name": "map",
+          "edgeType": "call"
+        },
+        {
+          "name": "filter",
+          "edgeType": "call"
+        },
+        {
+          "name": "split",
+          "edgeType": "call"
+        },
+        {
+          "name": "replace",
+          "edgeType": "call"
+        },
+        {
+          "name": "get",
+          "edgeType": "call"
+        },
+        {
+          "name": "toLowerCase",
+          "edgeType": "call"
+        },
+        {
+          "name": "includes",
+          "edgeType": "call"
+        },
+        {
+          "name": "ipRangeCheck",
+          "edgeType": "call"
+        },
+        {
+          "name": "some",
+          "edgeType": "call"
+        },
+        {
+          "name": "test",
+          "edgeType": "call"
+        },
+        {
+          "name": "isIgnoredHost",
+          "edgeType": "call"
+        },
+        {
+          "name": "beforeGetUrlContent",
+          "edgeType": "call"
+        },
+        {
+          "name": "debug",
+          "edgeType": "call"
+        },
+        {
+          "name": "now",
+          "edgeType": "call"
+        },
+        {
+          "name": "fetch",
+          "edgeType": "call"
+        },
+        {
+          "name": "push",
+          "edgeType": "call"
+        },
+        {
+          "name": "warn",
+          "edgeType": "call"
+        },
+        {
+          "name": "concat",
+          "edgeType": "call"
+        },
+        {
+          "name": "fromEntries",
+          "edgeType": "call"
+        },
+        {
+          "name": "toUtf8",
+          "edgeType": "call"
+        },
+        {
+          "name": "Map",
+          "edgeType": "new"
+        },
+        {
+          "name": "RegExp",
+          "edgeType": "new"
+        },
+        {
+          "name": "URL",
+          "edgeType": "type"
+        },
+        {
+          "name": "OEmbedUrlContent",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "variable_function",
+      "name": "parseUrl",
+      "exported": false,
+      "line": 42,
+      "endLine": 75,
+      "signature": "async function (url: string): Promise<{ urlPreview: MessageUrl; foundMeta: boolean }>",
+      "calls": [
+        {
+          "name": "isAbsoluteURL",
+          "edgeType": "call"
+        },
+        {
+          "name": "getUrlMetaWithCache",
+          "edgeType": "call"
+        },
+        {
+          "name": "isOEmbedUrlWithMetadata",
+          "edgeType": "call"
+        },
+        {
+          "name": "getRelevantMetaTags",
+          "edgeType": "call"
+        },
+        {
+          "name": "insertMaxWidthInOembedHtml",
+          "edgeType": "call"
+        },
+        {
+          "name": "MessageUrl",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "variable_function",
+      "name": "getUrlMeta",
+      "exported": false,
+      "line": 46,
+      "endLine": 114,
+      "signature": "async function ( url: string, withFragment?: boolean, ): Promise<OEmbedUrlWithMetadata | OEmbedUrlContentResult | undefined>",
+      "calls": [
+        {
+          "name": "debug",
+          "edgeType": "call"
+        },
+        {
+          "name": "set",
+          "edgeType": "call"
+        },
+        {
+          "name": "getUrlContent",
+          "edgeType": "call"
+        },
+        {
+          "name": "error",
+          "edgeType": "call"
+        },
+        {
+          "name": "unescape",
+          "edgeType": "call"
+        },
+        {
+          "name": "replace",
+          "edgeType": "call"
+        },
+        {
+          "name": "escapeMeta",
+          "edgeType": "call"
+        },
+        {
+          "name": "camelCase",
+          "edgeType": "call"
+        },
+        {
+          "name": "getUrlMeta",
+          "edgeType": "call"
+        },
+        {
+          "name": "forEach",
+          "edgeType": "call"
+        },
+        {
+          "name": "keys",
+          "edgeType": "call"
+        },
+        {
+          "name": "afterParseUrlContent",
+          "edgeType": "call"
+        },
+        {
+          "name": "URL",
+          "edgeType": "new"
+        },
+        {
+          "name": "OEmbedUrlWithMetadata",
+          "edgeType": "type"
+        },
+        {
+          "name": "OEmbedUrlContentResult",
+          "edgeType": "type"
+        },
+        {
+          "name": "OEmbedUrlContent",
+          "edgeType": "type"
+        },
+        {
+          "name": "OEmbedMeta",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "variable_function",
+      "name": "getUrlMetaWithCache",
+      "exported": false,
+      "line": 53,
+      "endLine": 79,
+      "signature": "async function ( url: string, withFragment?: boolean, ): Promise<OEmbedUrlWithMetadata | undefined | OEmbedUrlContentResult>",
+      "calls": [
+        {
+          "name": "debug",
+          "edgeType": "call"
+        },
+        {
+          "name": "findOneById",
+          "edgeType": "call"
+        },
+        {
+          "name": "getUrlMeta",
+          "edgeType": "call"
+        },
+        {
+          "name": "createWithIdAndData",
+          "edgeType": "call"
+        },
+        {
+          "name": "error",
+          "edgeType": "call"
+        },
+        {
+          "name": "OEmbedUrlWithMetadata",
+          "edgeType": "type"
+        },
+        {
+          "name": "OEmbedUrlContentResult",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "variable_function",
+      "name": "getRelevantMetaTags",
+      "exported": false,
+      "line": 60,
+      "endLine": 72,
+      "signature": "function (metaObj: OEmbedMeta): Record<string, string> | void",
+      "calls": [
+        {
+          "name": "forEach",
+          "edgeType": "call"
+        },
+        {
+          "name": "keys",
+          "edgeType": "call"
+        },
+        {
+          "name": "test",
+          "edgeType": "call"
+        },
+        {
+          "name": "toLowerCase",
+          "edgeType": "call"
+        },
+        {
+          "name": "trim",
+          "edgeType": "call"
+        },
+        {
+          "name": "OEmbedMeta",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "variable_function",
+      "name": "insertMaxWidthInOembedHtml",
+      "exported": false,
+      "line": 64,
+      "endLine": 65,
+      "signature": "(oembedHtml?: string): string | undefined =>",
+      "calls": [
+        {
+          "name": "replace",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "variable_function",
+      "name": "rocketUrlParser",
+      "exported": false,
+      "line": 67,
+      "endLine": 106,
+      "signature": "async function (message: IMessage): Promise<IMessage>",
+      "calls": [
+        {
+          "name": "debug",
+          "edgeType": "call"
+        },
+        {
+          "name": "get",
+          "edgeType": "call"
+        },
+        {
+          "name": "isArray",
+          "edgeType": "call"
+        },
+        {
+          "name": "filter",
+          "edgeType": "call"
+        },
+        {
+          "name": "includes",
+          "edgeType": "call"
+        },
+        {
+          "name": "parseUrl",
+          "edgeType": "call"
+        },
+        {
+          "name": "assign",
+          "edgeType": "call"
+        },
+        {
+          "name": "setUrlsById",
+          "edgeType": "call"
+        },
+        {
+          "name": "IMessage",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "variable",
+      "name": "OEmbed",
+      "exported": true,
+      "line": 71,
+      "endLine": 77,
+      "signature": "OEmbed:",
+      "calls": []
+    }
+  ],
+  "imports": [
+    {
+      "module": "@rocket.chat/core-typings",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/core-typings",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/logger",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/models",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/server-fetch",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/tools",
+      "resolved": "external"
+    },
+    {
+      "module": "he",
+      "resolved": "external"
+    },
+    {
+      "module": "iconv-lite",
+      "resolved": "external"
+    },
+    {
+      "module": "ip-range-check",
+      "resolved": "external"
+    },
+    {
+      "module": "jschardet",
+      "resolved": "external"
+    },
+    {
+      "module": "lodash",
+      "resolved": "external"
+    },
+    {
+      "module": "../../../../app/settings/server",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/app/settings/server/index.ts"
+    },
+    {
+      "module": "../../../../app/utils/rocketchat.info",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/app/utils/rocketchat.info"
+    },
+    {
+      "module": "../lib/oembed/providers",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/server/services/messages/lib/oembed/providers.ts"
+    }
+  ]
+}

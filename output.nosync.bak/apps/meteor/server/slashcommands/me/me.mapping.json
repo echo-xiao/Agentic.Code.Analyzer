@@ -1,0 +1,45 @@
+{
+  "sourcePath": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/server/slashcommands/me/me.ts",
+  "symbols": [
+    {
+      "type": "module",
+      "name": "me",
+      "exported": false,
+      "line": 1,
+      "endLine": 24,
+      "signature": "me",
+      "calls": [
+        {
+          "name": "me",
+          "edgeType": "event_listen"
+        },
+        {
+          "name": "trim",
+          "edgeType": "call"
+        },
+        {
+          "name": "executeSendMessage",
+          "edgeType": "call"
+        },
+        {
+          "name": "SlashCommandCallbackParams",
+          "edgeType": "type"
+        }
+      ]
+    }
+  ],
+  "imports": [
+    {
+      "module": "@rocket.chat/core-typings",
+      "resolved": "external"
+    },
+    {
+      "module": "../../../app/lib/server/methods/sendMessage",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/app/lib/server/methods/sendMessage.ts"
+    },
+    {
+      "module": "../../../app/utils/server/slashCommand",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/app/utils/server/slashCommand.ts"
+    }
+  ]
+}

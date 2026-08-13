@@ -1,0 +1,513 @@
+{
+  "sourcePath": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/tests/e2e/page-objects/fragments/flextabs/room-info-flextab.ts",
+  "symbols": [
+    {
+      "type": "class",
+      "name": "ConfirmLeaveRoomModal",
+      "exported": false,
+      "line": 8,
+      "endLine": 21,
+      "signature": "class ConfirmLeaveRoomModal extends Modal",
+      "calls": [
+        {
+          "name": "Modal",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "confirmLeave",
+      "exported": false,
+      "qualifiedName": "ConfirmLeaveRoomModal.confirmLeave",
+      "line": 17,
+      "endLine": 20,
+      "signature": "async confirmLeave()",
+      "containerClass": "ConfirmLeaveRoomModal",
+      "calls": [
+        {
+          "name": "click",
+          "edgeType": "call"
+        },
+        {
+          "name": "waitForDismissal",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "constructor",
+      "exported": false,
+      "qualifiedName": "ConfirmLeaveRoomModal.constructor",
+      "line": 9,
+      "endLine": 11,
+      "signature": "constructor(page: Page)",
+      "containerClass": "ConfirmLeaveRoomModal",
+      "calls": [
+        {
+          "name": "getByRole",
+          "edgeType": "call"
+        },
+        {
+          "name": "Page",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "class",
+      "name": "RoomInfoFlexTab",
+      "exported": true,
+      "line": 22,
+      "endLine": 62,
+      "signature": "export class RoomInfoFlexTab extends FlexTab",
+      "calls": [
+        {
+          "name": "FlexTab",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "leaveRoom",
+      "exported": true,
+      "qualifiedName": "RoomInfoFlexTab.leaveRoom",
+      "line": 52,
+      "endLine": 55,
+      "signature": "async leaveRoom()",
+      "containerClass": "RoomInfoFlexTab",
+      "calls": [
+        {
+          "name": "click",
+          "edgeType": "call"
+        },
+        {
+          "name": "confirmLeave",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "deleteRoom",
+      "exported": true,
+      "qualifiedName": "RoomInfoFlexTab.deleteRoom",
+      "line": 56,
+      "endLine": 60,
+      "signature": "async deleteRoom()",
+      "containerClass": "RoomInfoFlexTab",
+      "calls": [
+        {
+          "name": "click",
+          "edgeType": "call"
+        },
+        {
+          "name": "selectMenuItem",
+          "edgeType": "call"
+        },
+        {
+          "name": "confirmDelete",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "constructor",
+      "exported": true,
+      "qualifiedName": "RoomInfoFlexTab.constructor",
+      "line": 29,
+      "endLine": 34,
+      "signature": "constructor(root: Locator)",
+      "containerClass": "RoomInfoFlexTab",
+      "calls": [
+        {
+          "name": "page",
+          "edgeType": "call"
+        },
+        {
+          "name": "MenuMore",
+          "edgeType": "new"
+        },
+        {
+          "name": "ConfirmLeaveRoomModal",
+          "edgeType": "new"
+        },
+        {
+          "name": "ConfirmDeleteRoomModal",
+          "edgeType": "new"
+        },
+        {
+          "name": "Locator",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "class_property",
+      "name": "menu",
+      "exported": true,
+      "qualifiedName": "RoomInfoFlexTab.menu",
+      "line": 23,
+      "endLine": 23,
+      "signature": "readonly menu: MenuMore;",
+      "containerClass": "RoomInfoFlexTab",
+      "calls": [
+        {
+          "name": "MenuMore",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "class_property",
+      "name": "confirmLeaveModal",
+      "exported": true,
+      "qualifiedName": "RoomInfoFlexTab.confirmLeaveModal",
+      "line": 25,
+      "endLine": 25,
+      "signature": "readonly confirmLeaveModal: ConfirmLeaveRoomModal;",
+      "containerClass": "RoomInfoFlexTab",
+      "calls": [
+        {
+          "name": "ConfirmLeaveRoomModal",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "class_property",
+      "name": "confirmDeleteModal",
+      "exported": true,
+      "qualifiedName": "RoomInfoFlexTab.confirmDeleteModal",
+      "line": 27,
+      "endLine": 27,
+      "signature": "readonly confirmDeleteModal: ConfirmDeleteRoomModal;",
+      "containerClass": "RoomInfoFlexTab",
+      "calls": [
+        {
+          "name": "ConfirmDeleteRoomModal",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "class",
+      "name": "ConfirmConvertIntoChannelModal",
+      "exported": false,
+      "line": 58,
+      "endLine": 71,
+      "signature": "class ConfirmConvertIntoChannelModal extends Modal",
+      "calls": [
+        {
+          "name": "Modal",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "confirmConvert",
+      "exported": false,
+      "qualifiedName": "ConfirmConvertIntoChannelModal.confirmConvert",
+      "line": 67,
+      "endLine": 70,
+      "signature": "async confirmConvert()",
+      "containerClass": "ConfirmConvertIntoChannelModal",
+      "calls": [
+        {
+          "name": "click",
+          "edgeType": "call"
+        },
+        {
+          "name": "waitForDismissal",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "constructor",
+      "exported": false,
+      "qualifiedName": "ConfirmConvertIntoChannelModal.constructor",
+      "line": 59,
+      "endLine": 61,
+      "signature": "constructor(page: Page)",
+      "containerClass": "ConfirmConvertIntoChannelModal",
+      "calls": [
+        {
+          "name": "getByRole",
+          "edgeType": "call"
+        },
+        {
+          "name": "Page",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "class",
+      "name": "TeamInfoFlexTab",
+      "exported": true,
+      "line": 72,
+      "endLine": 94,
+      "signature": "export class TeamInfoFlexTab extends RoomInfoFlexTab",
+      "calls": [
+        {
+          "name": "RoomInfoFlexTab",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "deleteTeam",
+      "exported": true,
+      "qualifiedName": "TeamInfoFlexTab.deleteTeam",
+      "line": 83,
+      "endLine": 87,
+      "signature": "async deleteTeam()",
+      "containerClass": "TeamInfoFlexTab",
+      "calls": [
+        {
+          "name": "click",
+          "edgeType": "call"
+        },
+        {
+          "name": "selectMenuItem",
+          "edgeType": "call"
+        },
+        {
+          "name": "confirmDelete",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "convertIntoChannel",
+      "exported": true,
+      "qualifiedName": "TeamInfoFlexTab.convertIntoChannel",
+      "line": 87,
+      "endLine": 91,
+      "signature": "async convertIntoChannel()",
+      "containerClass": "TeamInfoFlexTab",
+      "calls": [
+        {
+          "name": "click",
+          "edgeType": "call"
+        },
+        {
+          "name": "selectMenuItem",
+          "edgeType": "call"
+        },
+        {
+          "name": "confirmConvert",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "constructor",
+      "exported": true,
+      "qualifiedName": "TeamInfoFlexTab.constructor",
+      "line": 77,
+      "endLine": 81,
+      "signature": "constructor(page: Page)",
+      "containerClass": "TeamInfoFlexTab",
+      "calls": [
+        {
+          "name": "getByRole",
+          "edgeType": "call"
+        },
+        {
+          "name": "ConfirmDeleteTeamModal",
+          "edgeType": "new"
+        },
+        {
+          "name": "ConfirmConvertIntoChannelModal",
+          "edgeType": "new"
+        },
+        {
+          "name": "Page",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "class_property",
+      "name": "confirmDeleteTeamModal",
+      "exported": true,
+      "qualifiedName": "TeamInfoFlexTab.confirmDeleteTeamModal",
+      "line": 73,
+      "endLine": 73,
+      "signature": "readonly confirmDeleteTeamModal: ConfirmDeleteTeamModal;",
+      "containerClass": "TeamInfoFlexTab",
+      "calls": [
+        {
+          "name": "ConfirmDeleteTeamModal",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "class_property",
+      "name": "confirmConvertIntoChannelModal",
+      "exported": true,
+      "qualifiedName": "TeamInfoFlexTab.confirmConvertIntoChannelModal",
+      "line": 75,
+      "endLine": 75,
+      "signature": "readonly confirmConvertIntoChannelModal: ConfirmConvertIntoChannelModal;",
+      "containerClass": "TeamInfoFlexTab",
+      "calls": [
+        {
+          "name": "ConfirmConvertIntoChannelModal",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "class",
+      "name": "OmnichannelRoomInfoFlexTab",
+      "exported": true,
+      "line": 90,
+      "endLine": 110,
+      "signature": "export class OmnichannelRoomInfoFlexTab extends RoomInfoFlexTab",
+      "calls": [
+        {
+          "name": "RoomInfoFlexTab",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "getInfo",
+      "exported": true,
+      "qualifiedName": "OmnichannelRoomInfoFlexTab.getInfo",
+      "line": 95,
+      "endLine": 97,
+      "signature": "getInfo(value: string): Locator",
+      "containerClass": "OmnichannelRoomInfoFlexTab",
+      "calls": [
+        {
+          "name": "locator",
+          "edgeType": "call"
+        },
+        {
+          "name": "Locator",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "getLabel",
+      "exported": true,
+      "qualifiedName": "OmnichannelRoomInfoFlexTab.getLabel",
+      "line": 99,
+      "endLine": 101,
+      "signature": "getLabel(label: string): Locator",
+      "containerClass": "OmnichannelRoomInfoFlexTab",
+      "calls": [
+        {
+          "name": "locator",
+          "edgeType": "call"
+        },
+        {
+          "name": "Locator",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "getInfoByLabel",
+      "exported": true,
+      "qualifiedName": "OmnichannelRoomInfoFlexTab.getInfoByLabel",
+      "line": 103,
+      "endLine": 105,
+      "signature": "getInfoByLabel(label: string): Locator",
+      "containerClass": "OmnichannelRoomInfoFlexTab",
+      "calls": [
+        {
+          "name": "getByLabel",
+          "edgeType": "call"
+        },
+        {
+          "name": "Locator",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "getTagInfoByLabel",
+      "exported": true,
+      "qualifiedName": "OmnichannelRoomInfoFlexTab.getTagInfoByLabel",
+      "line": 107,
+      "endLine": 109,
+      "signature": "getTagInfoByLabel(label: string): Locator",
+      "containerClass": "OmnichannelRoomInfoFlexTab",
+      "calls": [
+        {
+          "name": "getByText",
+          "edgeType": "call"
+        },
+        {
+          "name": "getByRole",
+          "edgeType": "call"
+        },
+        {
+          "name": "Locator",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "constructor",
+      "exported": true,
+      "qualifiedName": "OmnichannelRoomInfoFlexTab.constructor",
+      "line": 91,
+      "endLine": 93,
+      "signature": "constructor(page: Page)",
+      "containerClass": "OmnichannelRoomInfoFlexTab",
+      "calls": [
+        {
+          "name": "getByRole",
+          "edgeType": "call"
+        },
+        {
+          "name": "Page",
+          "edgeType": "type"
+        }
+      ]
+    }
+  ],
+  "imports": [
+    {
+      "module": "@playwright/test",
+      "resolved": "external"
+    },
+    {
+      "module": "./flextab",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/tests/e2e/page-objects/fragments/flextabs/flextab.ts"
+    },
+    {
+      "module": "../menu",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/tests/e2e/page-objects/fragments/menu.ts"
+    },
+    {
+      "module": "../modals",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/tests/e2e/page-objects/fragments/modals/index.ts"
+    },
+    {
+      "module": "../modals/modal",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/tests/e2e/page-objects/fragments/modals/modal.ts"
+    }
+  ]
+}

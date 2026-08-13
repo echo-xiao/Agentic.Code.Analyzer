@@ -1,0 +1,123 @@
+{
+  "sourcePath": "/Users/echoooooo/Desktop/code/Rocket.Chat/packages/ui-client/src/hooks/useDocumentTitle.ts",
+  "symbols": [
+    {
+      "type": "variable_function",
+      "name": "useReactiveDocumentTitle",
+      "exported": false,
+      "line": 13,
+      "endLine": 21,
+      "signature": "(): string =>",
+      "calls": [
+        {
+          "name": "useSyncExternalStore",
+          "edgeType": "call"
+        },
+        {
+          "name": "useCallback",
+          "edgeType": "call"
+        },
+        {
+          "name": "callback",
+          "edgeType": "event_listen",
+          "event": "change"
+        },
+        {
+          "name": "join",
+          "edgeType": "call"
+        },
+        {
+          "name": "map",
+          "edgeType": "call"
+        },
+        {
+          "name": "reverse",
+          "edgeType": "call"
+        },
+        {
+          "name": "from",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "variable_function",
+      "name": "useReactiveDocumentTitleKey",
+      "exported": false,
+      "line": 23,
+      "endLine": 31,
+      "signature": "(): string =>",
+      "calls": [
+        {
+          "name": "useSyncExternalStore",
+          "edgeType": "call"
+        },
+        {
+          "name": "useCallback",
+          "edgeType": "call"
+        },
+        {
+          "name": "callback",
+          "edgeType": "event_listen",
+          "event": "change"
+        },
+        {
+          "name": "join",
+          "edgeType": "call"
+        },
+        {
+          "name": "map",
+          "edgeType": "call"
+        },
+        {
+          "name": "filter",
+          "edgeType": "call"
+        },
+        {
+          "name": "from",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "variable_function",
+      "name": "useDocumentTitle",
+      "exported": true,
+      "line": 33,
+      "endLine": 53,
+      "signature": "(documentTitle?: string, refocus = true) =>",
+      "calls": [
+        {
+          "name": "useEffect",
+          "edgeType": "call"
+        },
+        {
+          "name": "change",
+          "edgeType": "event_emit"
+        },
+        {
+          "name": "delete",
+          "edgeType": "call"
+        },
+        {
+          "name": "useReactiveDocumentTitle",
+          "edgeType": "call"
+        },
+        {
+          "name": "useReactiveDocumentTitleKey",
+          "edgeType": "call"
+        }
+      ]
+    }
+  ],
+  "imports": [
+    {
+      "module": "@rocket.chat/emitter",
+      "resolved": "external"
+    },
+    {
+      "module": "react",
+      "resolved": "external"
+    }
+  ]
+}

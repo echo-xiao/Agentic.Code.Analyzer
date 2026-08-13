@@ -1,0 +1,203 @@
+{
+  "sourcePath": "/Users/echoooooo/Desktop/code/Rocket.Chat/packages/livechat/src/lib/customFields.ts",
+  "symbols": [
+    {
+      "type": "class",
+      "name": "CustomFields",
+      "exported": false,
+      "line": 5,
+      "endLine": 92,
+      "signature": "class CustomFields",
+      "calls": []
+    },
+    {
+      "type": "method",
+      "name": "init",
+      "exported": false,
+      "qualifiedName": "CustomFields.init",
+      "line": 20,
+      "endLine": 30,
+      "signature": "init()",
+      "containerClass": "CustomFields",
+      "calls": [
+        {
+          "name": "handleStoreChange",
+          "edgeType": "event_listen",
+          "event": "change"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "reset",
+      "exported": false,
+      "qualifiedName": "CustomFields.reset",
+      "line": 24,
+      "endLine": 28,
+      "signature": "reset()",
+      "containerClass": "CustomFields",
+      "calls": [
+        {
+          "name": "off",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "handleStoreChange",
+      "exported": false,
+      "qualifiedName": "CustomFields.handleStoreChange",
+      "line": 28,
+      "endLine": 42,
+      "signature": "handleStoreChange([state]: [StoreState])",
+      "containerClass": "CustomFields",
+      "calls": [
+        {
+          "name": "processCustomFields",
+          "edgeType": "call"
+        },
+        {
+          "name": "StoreState",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "addToQueue",
+      "exported": false,
+      "qualifiedName": "CustomFields.addToQueue",
+      "line": 32,
+      "endLine": 40,
+      "signature": "addToQueue(key: string, value: string, overwrite: boolean)",
+      "containerClass": "CustomFields",
+      "calls": [
+        {
+          "name": "setState",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "getQueue",
+      "exported": false,
+      "qualifiedName": "CustomFields.getQueue",
+      "line": 36,
+      "endLine": 38,
+      "signature": "getQueue()",
+      "containerClass": "CustomFields",
+      "calls": []
+    },
+    {
+      "type": "method",
+      "name": "clearQueue",
+      "exported": false,
+      "qualifiedName": "CustomFields.clearQueue",
+      "line": 40,
+      "endLine": 42,
+      "signature": "clearQueue()",
+      "containerClass": "CustomFields",
+      "calls": [
+        {
+          "name": "setState",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "processCustomFields",
+      "exported": false,
+      "qualifiedName": "CustomFields.processCustomFields",
+      "line": 44,
+      "endLine": 51,
+      "signature": "processCustomFields()",
+      "containerClass": "CustomFields",
+      "calls": [
+        {
+          "name": "getQueue",
+          "edgeType": "call"
+        },
+        {
+          "name": "forEach",
+          "edgeType": "call"
+        },
+        {
+          "name": "entries",
+          "edgeType": "call"
+        },
+        {
+          "name": "setCustomField",
+          "edgeType": "call"
+        },
+        {
+          "name": "clearQueue",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "setCustomField",
+      "exported": false,
+      "qualifiedName": "CustomFields.setCustomField",
+      "line": 48,
+      "endLine": 58,
+      "signature": "setCustomField(key: string, value: string, overwrite = true)",
+      "containerClass": "CustomFields",
+      "calls": [
+        {
+          "name": "addToQueue",
+          "edgeType": "call"
+        },
+        {
+          "name": "sendCustomField",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "constructor",
+      "exported": false,
+      "qualifiedName": "CustomFields.constructor",
+      "line": 12,
+      "endLine": 18,
+      "signature": "constructor()",
+      "containerClass": "CustomFields",
+      "calls": []
+    },
+    {
+      "type": "class_property",
+      "name": "instance",
+      "exported": false,
+      "qualifiedName": "CustomFields.instance",
+      "line": 6,
+      "endLine": 6,
+      "signature": "static instance: CustomFields;",
+      "containerClass": "CustomFields",
+      "calls": [
+        {
+          "name": "CustomFields",
+          "edgeType": "type"
+        }
+      ]
+    }
+  ],
+  "imports": [
+    {
+      "module": "../api",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/packages/livechat/src/api.ts"
+    },
+    {
+      "module": "../store",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/packages/livechat/src/store/index.tsx"
+    },
+    {
+      "module": "../store",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/packages/livechat/src/store/index.tsx"
+    }
+  ]
+}

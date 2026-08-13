@@ -1,0 +1,821 @@
+{
+  "sourcePath": "/Users/echoooooo/Desktop/code/Rocket.Chat/packages/livechat/src/routes/Chat/container.js",
+  "symbols": [
+    {
+      "type": "module",
+      "name": "container",
+      "exported": false,
+      "line": 1,
+      "endLine": 426,
+      "signature": "container",
+      "calls": [
+        {
+          "name": "withTranslation",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "class",
+      "name": "ChatContainer",
+      "exported": false,
+      "line": 45,
+      "endLine": 423,
+      "signature": "class ChatContainer extends Component",
+      "calls": [
+        {
+          "name": "Component",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "handleConnectingAgentAlert",
+      "exported": false,
+      "qualifiedName": "ChatContainer.handleConnectingAgentAlert",
+      "line": 320,
+      "endLine": 335,
+      "signature": "async handleConnectingAgentAlert(connecting, message)",
+      "containerClass": "ChatContainer",
+      "calls": [
+        {
+          "name": "filter",
+          "edgeType": "call"
+        },
+        {
+          "name": "push",
+          "edgeType": "call"
+        },
+        {
+          "name": "dispatch",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "handleQueueMessage",
+      "exported": false,
+      "qualifiedName": "ChatContainer.handleQueueMessage",
+      "line": 324,
+      "endLine": 351,
+      "signature": "async handleQueueMessage(connecting, queueInfo)",
+      "containerClass": "ChatContainer",
+      "calls": [
+        {
+          "name": "toISOString",
+          "edgeType": "call"
+        },
+        {
+          "name": "dispatch",
+          "edgeType": "call"
+        },
+        {
+          "name": "upsert",
+          "edgeType": "call"
+        },
+        {
+          "name": "Date",
+          "edgeType": "new"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "componentDidMount",
+      "exported": false,
+      "qualifiedName": "ChatContainer.componentDidMount",
+      "line": 328,
+      "endLine": 332,
+      "signature": "async componentDidMount()",
+      "containerClass": "ChatContainer",
+      "calls": [
+        {
+          "name": "checkConnectingAgent",
+          "edgeType": "call"
+        },
+        {
+          "name": "loadMessages",
+          "edgeType": "call"
+        },
+        {
+          "name": "processUnread",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "componentDidUpdate",
+      "exported": false,
+      "qualifiedName": "ChatContainer.componentDidUpdate",
+      "line": 332,
+      "endLine": 357,
+      "signature": "async componentDidUpdate(prevProps)",
+      "containerClass": "ChatContainer",
+      "calls": [
+        {
+          "name": "filter",
+          "edgeType": "call"
+        },
+        {
+          "name": "canRenderMessage",
+          "edgeType": "call"
+        },
+        {
+          "name": "shouldMarkAsUnread",
+          "edgeType": "call"
+        },
+        {
+          "name": "getLastReadMessage",
+          "edgeType": "call"
+        },
+        {
+          "name": "dispatch",
+          "edgeType": "call"
+        },
+        {
+          "name": "checkConnectingAgent",
+          "edgeType": "call"
+        },
+        {
+          "name": "checkRoom",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "componentWillUnmount",
+      "exported": false,
+      "qualifiedName": "ChatContainer.componentWillUnmount",
+      "line": 336,
+      "endLine": 338,
+      "signature": "componentWillUnmount()",
+      "containerClass": "ChatContainer",
+      "calls": [
+        {
+          "name": "handleConnectingAgentAlert",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "class_property",
+      "name": "checkConnectingAgent",
+      "exported": false,
+      "qualifiedName": "ChatContainer.checkConnectingAgent",
+      "line": 54,
+      "endLine": 69,
+      "signature": "checkConnectingAgent = async () =>",
+      "containerClass": "ChatContainer",
+      "calls": [
+        {
+          "name": "handleQueueMessage",
+          "edgeType": "call"
+        },
+        {
+          "name": "handleConnectingAgentAlert",
+          "edgeType": "call"
+        },
+        {
+          "name": "normalizeQueueAlert",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "class_property",
+      "name": "grantUser",
+      "exported": false,
+      "qualifiedName": "ChatContainer.grantUser",
+      "line": 80,
+      "endLine": 98,
+      "signature": "grantUser = async () =>",
+      "containerClass": "ChatContainer",
+      "calls": [
+        {
+          "name": "grantVisitor",
+          "edgeType": "call"
+        },
+        {
+          "name": "dispatch",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "class_property",
+      "name": "getRoom",
+      "exported": false,
+      "qualifiedName": "ChatContainer.getRoom",
+      "line": 100,
+      "endLine": 132,
+      "signature": "getRoom = async () =>",
+      "containerClass": "ChatContainer",
+      "calls": [
+        {
+          "name": "getGreetingMessages",
+          "edgeType": "call"
+        },
+        {
+          "name": "dispatch",
+          "edgeType": "call"
+        },
+        {
+          "name": "defaultRoomParams",
+          "edgeType": "call"
+        },
+        {
+          "name": "room",
+          "edgeType": "call"
+        },
+        {
+          "name": "initRoom",
+          "edgeType": "call"
+        },
+        {
+          "name": "parentCall",
+          "edgeType": "call"
+        },
+        {
+          "name": "createToken",
+          "edgeType": "call"
+        },
+        {
+          "name": "push",
+          "edgeType": "call"
+        },
+        {
+          "name": "runCallbackEventEmitter",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "class_property",
+      "name": "handleTop",
+      "exported": false,
+      "qualifiedName": "ChatContainer.handleTop",
+      "line": 134,
+      "endLine": 136,
+      "signature": "handleTop = () =>",
+      "containerClass": "ChatContainer",
+      "calls": [
+        {
+          "name": "loadMoreMessages",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "class_property",
+      "name": "startTyping",
+      "exported": false,
+      "qualifiedName": "ChatContainer.startTyping",
+      "line": 138,
+      "endLine": 141,
+      "signature": "startTyping = throttle(async (",
+      "containerClass": "ChatContainer",
+      "calls": [
+        {
+          "name": "throttle",
+          "edgeType": "call"
+        },
+        {
+          "name": "notifyVisitorActivity",
+          "edgeType": "call"
+        },
+        {
+          "name": "stopTypingDebounced",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "class_property",
+      "name": "stopTyping",
+      "exported": false,
+      "qualifiedName": "ChatContainer.stopTyping",
+      "line": 143,
+      "endLine": 143,
+      "signature": "stopTyping = (",
+      "containerClass": "ChatContainer",
+      "calls": [
+        {
+          "name": "notifyVisitorActivity",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "class_property",
+      "name": "stopTypingDebounced",
+      "exported": false,
+      "qualifiedName": "ChatContainer.stopTypingDebounced",
+      "line": 145,
+      "endLine": 145,
+      "signature": "stopTypingDebounced = debounce(this.stopTyping, 5000);",
+      "containerClass": "ChatContainer",
+      "calls": [
+        {
+          "name": "debounce",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "class_property",
+      "name": "handleChangeText",
+      "exported": false,
+      "qualifiedName": "ChatContainer.handleChangeText",
+      "line": 147,
+      "endLine": 154,
+      "signature": "handleChangeText = async () =>",
+      "containerClass": "ChatContainer",
+      "calls": [
+        {
+          "name": "startTyping",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "class_property",
+      "name": "handleSubmit",
+      "exported": false,
+      "qualifiedName": "ChatContainer.handleSubmit",
+      "line": 156,
+      "endLine": 174,
+      "signature": "handleSubmit = async (msg) =>",
+      "containerClass": "ChatContainer",
+      "calls": [
+        {
+          "name": "trim",
+          "edgeType": "call"
+        },
+        {
+          "name": "grantUser",
+          "edgeType": "call"
+        },
+        {
+          "name": "getRoom",
+          "edgeType": "call"
+        },
+        {
+          "name": "stop",
+          "edgeType": "call"
+        },
+        {
+          "name": "all",
+          "edgeType": "call"
+        },
+        {
+          "name": "stopTyping",
+          "edgeType": "call"
+        },
+        {
+          "name": "sendMessage",
+          "edgeType": "call"
+        },
+        {
+          "name": "createToken",
+          "edgeType": "call"
+        },
+        {
+          "name": "dispatch",
+          "edgeType": "call"
+        },
+        {
+          "name": "push",
+          "edgeType": "call"
+        },
+        {
+          "name": "notifyVisitorActivity",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "class_property",
+      "name": "doFileUpload",
+      "exported": false,
+      "qualifiedName": "ChatContainer.doFileUpload",
+      "line": 176,
+      "endLine": 198,
+      "signature": "doFileUpload = async (rid, file) =>",
+      "containerClass": "ChatContainer",
+      "calls": [
+        {
+          "name": "uploadFile",
+          "edgeType": "call"
+        },
+        {
+          "name": "createToken",
+          "edgeType": "call"
+        },
+        {
+          "name": "dispatch",
+          "edgeType": "call"
+        },
+        {
+          "name": "push",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "class_property",
+      "name": "handleUpload",
+      "exported": false,
+      "qualifiedName": "ChatContainer.handleUpload",
+      "line": 200,
+      "endLine": 219,
+      "signature": "handleUpload = async (files) =>",
+      "containerClass": "ChatContainer",
+      "calls": [
+        {
+          "name": "createToken",
+          "edgeType": "call"
+        },
+        {
+          "name": "dispatch",
+          "edgeType": "call"
+        },
+        {
+          "name": "push",
+          "edgeType": "call"
+        },
+        {
+          "name": "grantUser",
+          "edgeType": "call"
+        },
+        {
+          "name": "getRoom",
+          "edgeType": "call"
+        },
+        {
+          "name": "forEach",
+          "edgeType": "call"
+        },
+        {
+          "name": "doFileUpload",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "class_property",
+      "name": "handleSoundStop",
+      "exported": false,
+      "qualifiedName": "ChatContainer.handleSoundStop",
+      "line": 221,
+      "endLine": 224,
+      "signature": "handleSoundStop = async () =>",
+      "containerClass": "ChatContainer",
+      "calls": [
+        {
+          "name": "dispatch",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "class_property",
+      "name": "onChangeDepartment",
+      "exported": false,
+      "qualifiedName": "ChatContainer.onChangeDepartment",
+      "line": 226,
+      "endLine": 228,
+      "signature": "onChangeDepartment = () =>",
+      "containerClass": "ChatContainer",
+      "calls": [
+        {
+          "name": "route",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "class_property",
+      "name": "onFinishChat",
+      "exported": false,
+      "qualifiedName": "ChatContainer.onFinishChat",
+      "line": 230,
+      "endLine": 258,
+      "signature": "onFinishChat = async () =>",
+      "containerClass": "ChatContainer",
+      "calls": [
+        {
+          "name": "confirm",
+          "edgeType": "call"
+        },
+        {
+          "name": "dispatch",
+          "edgeType": "call"
+        },
+        {
+          "name": "closeChat",
+          "edgeType": "call"
+        },
+        {
+          "name": "error",
+          "edgeType": "call"
+        },
+        {
+          "name": "createToken",
+          "edgeType": "call"
+        },
+        {
+          "name": "push",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "class_property",
+      "name": "onRemoveUserData",
+      "exported": false,
+      "qualifiedName": "ChatContainer.onRemoveUserData",
+      "line": 260,
+      "endLine": 284,
+      "signature": "onRemoveUserData = async () =>",
+      "containerClass": "ChatContainer",
+      "calls": [
+        {
+          "name": "confirm",
+          "edgeType": "call"
+        },
+        {
+          "name": "dispatch",
+          "edgeType": "call"
+        },
+        {
+          "name": "deleteVisitor",
+          "edgeType": "call"
+        },
+        {
+          "name": "error",
+          "edgeType": "call"
+        },
+        {
+          "name": "createToken",
+          "edgeType": "call"
+        },
+        {
+          "name": "push",
+          "edgeType": "call"
+        },
+        {
+          "name": "loadConfig",
+          "edgeType": "call"
+        },
+        {
+          "name": "route",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "class_property",
+      "name": "canSwitchDepartment",
+      "exported": false,
+      "qualifiedName": "ChatContainer.canSwitchDepartment",
+      "line": 286,
+      "endLine": 289,
+      "signature": "canSwitchDepartment = () =>",
+      "containerClass": "ChatContainer",
+      "calls": [
+        {
+          "name": "filter",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "class_property",
+      "name": "registrationRequired",
+      "exported": false,
+      "qualifiedName": "ChatContainer.registrationRequired",
+      "line": 301,
+      "endLine": 314,
+      "signature": "registrationRequired = () =>",
+      "containerClass": "ChatContainer",
+      "calls": [
+        {
+          "name": "filter",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "class_property",
+      "name": "onRegisterUser",
+      "exported": false,
+      "qualifiedName": "ChatContainer.onRegisterUser",
+      "line": 316,
+      "endLine": 316,
+      "signature": "onRegisterUser = () => route('/register');",
+      "containerClass": "ChatContainer",
+      "calls": [
+        {
+          "name": "route",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "class_property",
+      "name": "showOptionsMenu",
+      "exported": false,
+      "qualifiedName": "ChatContainer.showOptionsMenu",
+      "line": 318,
+      "endLine": 318,
+      "signature": "showOptionsMenu = () => this.canSwitchDepartment() || this.canFinishChat() || this.canRemoveUserData();",
+      "containerClass": "ChatContainer",
+      "calls": [
+        {
+          "name": "canSwitchDepartment",
+          "edgeType": "call"
+        },
+        {
+          "name": "canFinishChat",
+          "edgeType": "call"
+        },
+        {
+          "name": "canRemoveUserData",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "class_property",
+      "name": "render",
+      "exported": false,
+      "qualifiedName": "ChatContainer.render",
+      "line": 340,
+      "endLine": 359,
+      "signature": "render = (",
+      "containerClass": "ChatContainer",
+      "calls": [
+        {
+          "name": "showOptionsMenu",
+          "edgeType": "call"
+        },
+        {
+          "name": "canSwitchDepartment",
+          "edgeType": "call"
+        },
+        {
+          "name": "canFinishChat",
+          "edgeType": "call"
+        },
+        {
+          "name": "canRemoveUserData",
+          "edgeType": "call"
+        },
+        {
+          "name": "registrationRequired",
+          "edgeType": "call"
+        },
+        {
+          "name": "ChatWrapper",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "Chat",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "getAvatarUrl",
+          "edgeType": "jsx"
+        }
+      ]
+    },
+    {
+      "type": "variable_function",
+      "name": "ChatWrapper",
+      "exported": false,
+      "line": 29,
+      "endLine": 43,
+      "signature": "({ children, rid }) =>",
+      "calls": [
+        {
+          "name": "useRoomMessagesSubscription",
+          "edgeType": "call"
+        },
+        {
+          "name": "useUserActivitySubscription",
+          "edgeType": "call"
+        },
+        {
+          "name": "useDeleteMessageSubscription",
+          "edgeType": "call"
+        },
+        {
+          "name": "useAgentChangeSubscription",
+          "edgeType": "call"
+        },
+        {
+          "name": "useAgentStatusChangeSubscription",
+          "edgeType": "call"
+        },
+        {
+          "name": "useQueuePositionChangeSubscription",
+          "edgeType": "call"
+        }
+      ]
+    }
+  ],
+  "imports": [
+    {
+      "module": "preact",
+      "resolved": "external"
+    },
+    {
+      "module": "preact-router",
+      "resolved": "external"
+    },
+    {
+      "module": "react-i18next",
+      "resolved": "external"
+    },
+    {
+      "module": "./component",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/packages/livechat/src/routes/Chat/component.ts"
+    },
+    {
+      "module": "../../api",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/packages/livechat/src/api.ts"
+    },
+    {
+      "module": "../../components/Modal",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/packages/livechat/src/components/Modal/index.ts"
+    },
+    {
+      "module": "../../helpers/baseUrl",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/packages/livechat/src/helpers/baseUrl.ts"
+    },
+    {
+      "module": "../../helpers/canRenderMessage",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/packages/livechat/src/helpers/canRenderMessage.ts"
+    },
+    {
+      "module": "../../helpers/debounce",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/packages/livechat/src/helpers/debounce.ts"
+    },
+    {
+      "module": "../../helpers/throttle",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/packages/livechat/src/helpers/throttle.ts"
+    },
+    {
+      "module": "../../helpers/upsert",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/packages/livechat/src/helpers/upsert.ts"
+    },
+    {
+      "module": "../../hooks/livechatRoomSubscriptionHooks",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/packages/livechat/src/hooks/livechatRoomSubscriptionHooks.ts"
+    },
+    {
+      "module": "../../hooks/useDeleteMessageSubscription",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/packages/livechat/src/hooks/useDeleteMessageSubscription.ts"
+    },
+    {
+      "module": "../../hooks/useRoomMessagesSubscription",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/packages/livechat/src/hooks/useRoomMessagesSubscription.ts"
+    },
+    {
+      "module": "../../hooks/useUserActivitySubscription",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/packages/livechat/src/hooks/useUserActivitySubscription.ts"
+    },
+    {
+      "module": "../../lib/api",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/packages/livechat/src/lib/api.ts"
+    },
+    {
+      "module": "../../lib/constants",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/packages/livechat/src/lib/constants.ts"
+    },
+    {
+      "module": "../../lib/main",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/packages/livechat/src/lib/main.ts"
+    },
+    {
+      "module": "../../lib/parentCall",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/packages/livechat/src/lib/parentCall.ts"
+    },
+    {
+      "module": "../../lib/random",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/packages/livechat/src/lib/random.ts"
+    },
+    {
+      "module": "../../lib/room",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/packages/livechat/src/lib/room.ts"
+    },
+    {
+      "module": "../../store",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/packages/livechat/src/store/index.tsx"
+    }
+  ]
+}

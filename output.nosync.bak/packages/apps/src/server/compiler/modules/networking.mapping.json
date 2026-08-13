@@ -1,0 +1,101 @@
+{
+  "sourcePath": "/Users/echoooooo/Desktop/code/Rocket.Chat/packages/apps/src/server/compiler/modules/networking.ts",
+  "symbols": [
+    {
+      "type": "variable_function",
+      "name": "moduleHandlerFactory",
+      "exported": true,
+      "line": 18,
+      "endLine": 36,
+      "signature": "(module: string) =>",
+      "calls": [
+        {
+          "name": "includes",
+          "edgeType": "call"
+        },
+        {
+          "name": "hasPermission",
+          "edgeType": "call"
+        },
+        {
+          "name": "get",
+          "edgeType": "call"
+        },
+        {
+          "name": "ForbiddenNativeModuleAccess",
+          "edgeType": "new"
+        },
+        {
+          "name": "PermissionDeniedError",
+          "edgeType": "new"
+        },
+        {
+          "name": "ProxyHandler",
+          "edgeType": "type"
+        },
+        {
+          "name": "NetworkingLibs",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "type",
+      "name": "IHttp",
+      "line": 10,
+      "endLine": 10,
+      "signature": "type IHttp = typeof http;"
+    },
+    {
+      "type": "type",
+      "name": "IHttps",
+      "line": 11,
+      "endLine": 11,
+      "signature": "type IHttps = typeof https;"
+    },
+    {
+      "type": "type",
+      "name": "INet",
+      "line": 12,
+      "endLine": 12,
+      "signature": "type INet = typeof net;"
+    },
+    {
+      "type": "type",
+      "name": "NetworkingLibs",
+      "line": 14,
+      "endLine": 14,
+      "signature": "type NetworkingLibs = IHttp | IHttps | INet;"
+    }
+  ],
+  "imports": [
+    {
+      "module": "node:http",
+      "resolved": "external"
+    },
+    {
+      "module": "node:https",
+      "resolved": "external"
+    },
+    {
+      "module": "node:net",
+      "resolved": "external"
+    },
+    {
+      "module": ".",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/packages/apps/src/server/compiler/modules/index.ts"
+    },
+    {
+      "module": "../../errors/PermissionDeniedError",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/packages/apps/src/server/errors/PermissionDeniedError.ts"
+    },
+    {
+      "module": "../../managers/AppPermissionManager",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/packages/apps/src/server/managers/AppPermissionManager.ts"
+    },
+    {
+      "module": "../../permissions/AppPermissions",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/packages/apps/src/server/permissions/AppPermissions.ts"
+    }
+  ]
+}

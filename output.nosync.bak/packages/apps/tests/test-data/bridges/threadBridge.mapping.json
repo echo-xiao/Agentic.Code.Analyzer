@@ -1,0 +1,45 @@
+{
+  "sourcePath": "/Users/echoooooo/Desktop/code/Rocket.Chat/packages/apps/tests/test-data/bridges/threadBridge.ts",
+  "symbols": [
+    {
+      "type": "class",
+      "name": "TestsThreadBridge",
+      "exported": true,
+      "line": 5,
+      "endLine": 9,
+      "signature": "export class TestsThreadBridge extends ThreadBridge",
+      "calls": [
+        {
+          "name": "ThreadBridge",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "getById",
+      "exported": true,
+      "qualifiedName": "TestsThreadBridge.getById",
+      "line": 6,
+      "endLine": 8,
+      "signature": "public getById(messageId: string, appId: string): Promise<Array<IMessage>>",
+      "containerClass": "TestsThreadBridge",
+      "calls": [
+        {
+          "name": "IMessage",
+          "edgeType": "type"
+        }
+      ]
+    }
+  ],
+  "imports": [
+    {
+      "module": "@rocket.chat/apps-engine/definition/messages",
+      "resolved": "external"
+    },
+    {
+      "module": "../../../src/server/bridges/ThreadBridge",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/packages/apps/src/server/bridges/ThreadBridge.ts"
+    }
+  ]
+}

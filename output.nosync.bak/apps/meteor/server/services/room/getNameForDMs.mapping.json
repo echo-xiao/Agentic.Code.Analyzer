@@ -1,0 +1,112 @@
+{
+  "sourcePath": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/server/services/room/getNameForDMs.ts",
+  "symbols": [
+    {
+      "type": "function",
+      "name": "getNameForDMs",
+      "exported": true,
+      "line": 18,
+      "endLine": 33,
+      "signature": "export function getNameForDMs(members: AtLeast<IUser, '_id' | 'name' | 'username'>[]): NameMap",
+      "calls": [
+        {
+          "name": "sort",
+          "edgeType": "call"
+        },
+        {
+          "name": "localeCompare",
+          "edgeType": "call"
+        },
+        {
+          "name": "filter",
+          "edgeType": "call"
+        },
+        {
+          "name": "getFname",
+          "edgeType": "call"
+        },
+        {
+          "name": "getName",
+          "edgeType": "call"
+        },
+        {
+          "name": "AtLeast",
+          "edgeType": "type"
+        },
+        {
+          "name": "IUser",
+          "edgeType": "type"
+        },
+        {
+          "name": "NameMap",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "variable_function",
+      "name": "getFname",
+      "exported": false,
+      "line": 3,
+      "endLine": 8,
+      "signature": "(members: AtLeast<IUser, 'name' | 'username'>[]): string | undefined =>",
+      "calls": [
+        {
+          "name": "join",
+          "edgeType": "call"
+        },
+        {
+          "name": "map",
+          "edgeType": "call"
+        },
+        {
+          "name": "AtLeast",
+          "edgeType": "type"
+        },
+        {
+          "name": "IUser",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "variable_function",
+      "name": "getName",
+      "exported": false,
+      "line": 6,
+      "endLine": 11,
+      "signature": "(members: AtLeast<IUser, 'name' | 'username'>[]): string | undefined =>",
+      "calls": [
+        {
+          "name": "join",
+          "edgeType": "call"
+        },
+        {
+          "name": "map",
+          "edgeType": "call"
+        },
+        {
+          "name": "AtLeast",
+          "edgeType": "type"
+        },
+        {
+          "name": "IUser",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "type",
+      "name": "NameMap",
+      "line": 10,
+      "endLine": 10,
+      "signature": "type NameMap ="
+    }
+  ],
+  "imports": [
+    {
+      "module": "@rocket.chat/core-typings",
+      "resolved": "external"
+    }
+  ]
+}

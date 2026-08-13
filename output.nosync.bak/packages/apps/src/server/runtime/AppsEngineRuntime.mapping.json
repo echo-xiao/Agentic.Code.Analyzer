@@ -1,0 +1,118 @@
+{
+  "sourcePath": "/Users/echoooooo/Desktop/code/Rocket.Chat/packages/apps/src/server/runtime/AppsEngineRuntime.ts",
+  "symbols": [
+    {
+      "type": "class",
+      "name": "AppsEngineRuntime",
+      "exported": true,
+      "line": 11,
+      "endLine": 23,
+      "signature": "export abstract class AppsEngineRuntime",
+      "calls": []
+    },
+    {
+      "type": "method",
+      "name": "runCode",
+      "exported": true,
+      "qualifiedName": "AppsEngineRuntime.runCode",
+      "line": 12,
+      "endLine": 14,
+      "signature": "public static async runCode(_code: string, _sandbox?: Record<string, any>, _options?: IAppsEngineRuntimeOptions): Promise<any>",
+      "containerClass": "AppsEngineRuntime",
+      "calls": [
+        {
+          "name": "IAppsEngineRuntimeOptions",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "runCodeSync",
+      "exported": true,
+      "qualifiedName": "AppsEngineRuntime.runCodeSync",
+      "line": 16,
+      "endLine": 18,
+      "signature": "public static runCodeSync(_code: string, _sandbox?: Record<string, any>, _options?: IAppsEngineRuntimeOptions): any",
+      "containerClass": "AppsEngineRuntime",
+      "calls": [
+        {
+          "name": "IAppsEngineRuntimeOptions",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "runInSandbox",
+      "exported": true,
+      "qualifiedName": "AppsEngineRuntime.runInSandbox",
+      "line": 22,
+      "endLine": 22,
+      "signature": "public abstract runInSandbox(code: string, sandbox?: Record<string, any>, options?: IAppsEngineRuntimeOptions): Promise<any>;",
+      "containerClass": "AppsEngineRuntime",
+      "calls": [
+        {
+          "name": "IAppsEngineRuntimeOptions",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "constructor",
+      "exported": true,
+      "qualifiedName": "AppsEngineRuntime.constructor",
+      "line": 20,
+      "endLine": 20,
+      "signature": "constructor(_app: App, _customRequire: (module: string) => any)",
+      "containerClass": "AppsEngineRuntime",
+      "calls": [
+        {
+          "name": "App",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "function",
+      "name": "getFilenameForApp",
+      "exported": true,
+      "line": 7,
+      "endLine": 9,
+      "signature": "export function getFilenameForApp(filename: string): string",
+      "calls": []
+    },
+    {
+      "type": "variable",
+      "name": "APPS_ENGINE_RUNTIME_DEFAULT_TIMEOUT",
+      "exported": true,
+      "line": 3,
+      "endLine": 3,
+      "signature": "APPS_ENGINE_RUNTIME_DEFAULT_TIMEOUT = 1000",
+      "calls": []
+    },
+    {
+      "type": "variable",
+      "name": "APPS_ENGINE_RUNTIME_FILE_PREFIX",
+      "exported": true,
+      "line": 5,
+      "endLine": 5,
+      "signature": "APPS_ENGINE_RUNTIME_FILE_PREFIX = '$RocketChat_App$'",
+      "calls": []
+    },
+    {
+      "type": "interface",
+      "name": "IAppsEngineRuntimeOptions",
+      "line": 27,
+      "endLine": 31,
+      "signature": "export interface IAppsEngineRuntimeOptions"
+    }
+  ],
+  "imports": [
+    {
+      "module": "@rocket.chat/apps-engine/definition/App",
+      "resolved": "external"
+    }
+  ]
+}

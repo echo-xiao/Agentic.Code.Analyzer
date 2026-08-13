@@ -1,0 +1,169 @@
+{
+  "sourcePath": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/ee/server/local-services/ldap/service.ts",
+  "symbols": [
+    {
+      "type": "class",
+      "name": "LDAPEEService",
+      "exported": true,
+      "line": 8,
+      "endLine": 38,
+      "signature": "export class LDAPEEService extends ServiceClassInternal implements ILDAPEEService",
+      "calls": [
+        {
+          "name": "ServiceClassInternal",
+          "edgeType": "type"
+        },
+        {
+          "name": "ILDAPEEService",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "sync",
+      "exported": true,
+      "qualifiedName": "LDAPEEService.sync",
+      "line": 11,
+      "endLine": 13,
+      "signature": "async sync(): Promise<void>",
+      "containerClass": "LDAPEEService",
+      "calls": [
+        {
+          "name": "sync",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "syncAvatars",
+      "exported": true,
+      "qualifiedName": "LDAPEEService.syncAvatars",
+      "line": 15,
+      "endLine": 17,
+      "signature": "async syncAvatars(): Promise<void>",
+      "containerClass": "LDAPEEService",
+      "calls": [
+        {
+          "name": "syncAvatars",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "syncAvatarAndAbacAttributes",
+      "exported": true,
+      "qualifiedName": "LDAPEEService.syncAvatarAndAbacAttributes",
+      "line": 19,
+      "endLine": 21,
+      "signature": "async syncAvatarAndAbacAttributes(): Promise<void>",
+      "containerClass": "LDAPEEService",
+      "calls": [
+        {
+          "name": "syncAvatarAndAbacAttributes",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "syncLogout",
+      "exported": true,
+      "qualifiedName": "LDAPEEService.syncLogout",
+      "line": 23,
+      "endLine": 25,
+      "signature": "async syncLogout(): Promise<void>",
+      "containerClass": "LDAPEEService",
+      "calls": [
+        {
+          "name": "syncLogout",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "syncAbacAttributes",
+      "exported": true,
+      "qualifiedName": "LDAPEEService.syncAbacAttributes",
+      "line": 27,
+      "endLine": 29,
+      "signature": "async syncAbacAttributes(): Promise<void>",
+      "containerClass": "LDAPEEService",
+      "calls": [
+        {
+          "name": "syncAbacAttributes",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "syncUsersAbacAttributes",
+      "exported": true,
+      "qualifiedName": "LDAPEEService.syncUsersAbacAttributes",
+      "line": 31,
+      "endLine": 33,
+      "signature": "async syncUsersAbacAttributes(users: FindCursor<IUser>): Promise<void>",
+      "containerClass": "LDAPEEService",
+      "calls": [
+        {
+          "name": "syncUsersAbacAttributes",
+          "edgeType": "call"
+        },
+        {
+          "name": "FindCursor",
+          "edgeType": "type"
+        },
+        {
+          "name": "IUser",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "syncUsersAbacAttributesByIds",
+      "exported": true,
+      "qualifiedName": "LDAPEEService.syncUsersAbacAttributesByIds",
+      "line": 35,
+      "endLine": 37,
+      "signature": "async syncUsersAbacAttributesByIds(userIds: string[]): Promise<void>",
+      "containerClass": "LDAPEEService",
+      "calls": [
+        {
+          "name": "syncUsersAbacAttributes",
+          "edgeType": "call"
+        },
+        {
+          "name": "findUsersByIdentifiers",
+          "edgeType": "call"
+        }
+      ]
+    }
+  ],
+  "imports": [
+    {
+      "module": "@rocket.chat/core-services",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/core-typings",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/models",
+      "resolved": "external"
+    },
+    {
+      "module": "mongodb",
+      "resolved": "external"
+    },
+    {
+      "module": "../../lib/ldap/Manager",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/ee/server/lib/ldap/Manager.ts"
+    }
+  ]
+}

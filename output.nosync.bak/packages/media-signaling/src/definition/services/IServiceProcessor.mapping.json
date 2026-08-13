@@ -1,0 +1,46 @@
+{
+  "sourcePath": "/Users/echoooooo/Desktop/code/Rocket.Chat/packages/media-signaling/src/definition/services/IServiceProcessor.ts",
+  "symbols": [
+    {
+      "type": "interface",
+      "name": "IServiceProcessor",
+      "line": 19,
+      "endLine": 26,
+      "signature": "export interface IServiceProcessor< ServiceStateMap extends DefaultServiceStateMap = DefaultServiceStateMap, ServiceUniqueEvents = Record<never, never>, >"
+    },
+    {
+      "type": "type",
+      "name": "DefaultServiceStateMap",
+      "line": 3,
+      "endLine": 3,
+      "signature": "export type DefaultServiceStateMap = Record<string, unknown>;"
+    },
+    {
+      "type": "type",
+      "name": "ServiceStateEvent",
+      "line": 5,
+      "endLine": 7,
+      "signature": "export type ServiceStateEvent<ServiceStateMap extends DefaultServiceStateMap, K extends keyof ServiceStateMap = keyof ServiceStateMap> ="
+    },
+    {
+      "type": "type",
+      "name": "ServiceStateValue",
+      "line": 9,
+      "endLine": 12,
+      "signature": "export type ServiceStateValue<ServiceStateMap extends DefaultServiceStateMap, K extends keyof ServiceStateMap> = ServiceStateEvent<"
+    },
+    {
+      "type": "type",
+      "name": "ServiceProcessorEvents",
+      "line": 14,
+      "endLine": 17,
+      "signature": "export type ServiceProcessorEvents<ServiceStateMap extends DefaultServiceStateMap> ="
+    }
+  ],
+  "imports": [
+    {
+      "module": "@rocket.chat/emitter",
+      "resolved": "external"
+    }
+  ]
+}

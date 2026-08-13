@@ -1,0 +1,158 @@
+{
+  "sourcePath": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/client/views/room/ShareLocation/ShareLocationModal.tsx",
+  "symbols": [
+    {
+      "type": "inner_function",
+      "name": "onConfirm",
+      "exported": false,
+      "qualifiedName": "ShareLocationModal.onConfirm",
+      "line": 38,
+      "endLine": 58,
+      "signature": "(): void =>",
+      "calls": [
+        {
+          "name": "sendMessage",
+          "edgeType": "call"
+        },
+        {
+          "name": "dispatchToast",
+          "edgeType": "call"
+        },
+        {
+          "name": "onClose",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "inner_function",
+      "name": "onConfirmRequestLocation",
+      "exported": false,
+      "qualifiedName": "ShareLocationModal.onConfirmRequestLocation",
+      "line": 60,
+      "endLine": 68,
+      "signature": "async (): Promise<void> =>",
+      "calls": [
+        {
+          "name": "getGeolocationPosition",
+          "edgeType": "call"
+        },
+        {
+          "name": "setQueryData",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "variable_function",
+      "name": "ShareLocationModal",
+      "exported": false,
+      "line": 16,
+      "endLine": 95,
+      "signature": "({ rid, tmid, onClose }: ShareLocationModalProps) =>",
+      "calls": [
+        {
+          "name": "useTranslation",
+          "edgeType": "call"
+        },
+        {
+          "name": "useToastMessageDispatch",
+          "edgeType": "call"
+        },
+        {
+          "name": "useQuery",
+          "edgeType": "call"
+        },
+        {
+          "name": "getGeolocationPosition",
+          "edgeType": "call"
+        },
+        {
+          "name": "useQueryClient",
+          "edgeType": "call"
+        },
+        {
+          "name": "useEndpoint",
+          "edgeType": "call"
+        },
+        {
+          "name": "sendMessage",
+          "edgeType": "call"
+        },
+        {
+          "name": "dispatchToast",
+          "edgeType": "call"
+        },
+        {
+          "name": "onClose",
+          "edgeType": "call"
+        },
+        {
+          "name": "setQueryData",
+          "edgeType": "call"
+        },
+        {
+          "name": "GenericModal",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "MapView",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "onConfirmRequestLocation",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "onClose",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "onConfirm",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "ShareLocationModalProps",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "type",
+      "name": "ShareLocationModalProps",
+      "line": 10,
+      "endLine": 14,
+      "signature": "type ShareLocationModalProps ="
+    }
+  ],
+  "imports": [
+    {
+      "module": "@rocket.chat/core-typings",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/ui-client",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/ui-contexts",
+      "resolved": "external"
+    },
+    {
+      "module": "@tanstack/react-query",
+      "resolved": "external"
+    },
+    {
+      "module": "./getGeolocationPermission",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/client/views/room/ShareLocation/getGeolocationPermission.ts"
+    },
+    {
+      "module": "./getGeolocationPosition",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/client/views/room/ShareLocation/getGeolocationPosition.ts"
+    },
+    {
+      "module": "../../../components/message/content/location/MapView",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/client/components/message/content/location/MapView.tsx"
+    }
+  ]
+}

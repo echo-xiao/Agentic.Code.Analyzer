@@ -1,0 +1,49 @@
+{
+  "sourcePath": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/client/lib/utils/setMessageJumpQueryStringParameter.ts",
+  "symbols": [
+    {
+      "type": "variable_function",
+      "name": "setMessageJumpQueryStringParameter",
+      "exported": true,
+      "line": 6,
+      "endLine": 17,
+      "signature": "async (msg: IMessage['_id'] | null, context?: 'jumpToUnread') =>",
+      "calls": [
+        {
+          "name": "getSearchParameters",
+          "edgeType": "call"
+        },
+        {
+          "name": "navigate",
+          "edgeType": "call"
+        },
+        {
+          "name": "URL",
+          "edgeType": "new"
+        },
+        {
+          "name": "IMessage",
+          "edgeType": "type"
+        },
+        {
+          "name": "LocationPathname",
+          "edgeType": "type"
+        }
+      ]
+    }
+  ],
+  "imports": [
+    {
+      "module": "@rocket.chat/core-typings",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/ui-contexts",
+      "resolved": "external"
+    },
+    {
+      "module": "../../providers/RouterProvider",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/client/providers/RouterProvider.tsx"
+    }
+  ]
+}

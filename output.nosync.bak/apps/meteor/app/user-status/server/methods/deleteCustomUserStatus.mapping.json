@@ -1,0 +1,79 @@
+{
+  "sourcePath": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/app/user-status/server/methods/deleteCustomUserStatus.ts",
+  "symbols": [
+    {
+      "type": "module",
+      "name": "deleteCustomUserStatus",
+      "exported": false,
+      "line": 1,
+      "endLine": 41,
+      "signature": "deleteCustomUserStatus",
+      "calls": [
+        {
+          "name": "deleteCustomUserStatus",
+          "edgeType": "call"
+        },
+        {
+          "name": "methods",
+          "edgeType": "call"
+        },
+        {
+          "name": "method",
+          "edgeType": "call"
+        },
+        {
+          "name": "ServerMethods",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "variable_function",
+      "name": "deleteCustomUserStatus",
+      "exported": true,
+      "line": 16,
+      "endLine": 29,
+      "signature": "async (userId: string, userStatusID: string): Promise<boolean> =>",
+      "calls": [
+        {
+          "name": "hasPermissionAsync",
+          "edgeType": "call"
+        },
+        {
+          "name": "findOneAndDeleteById",
+          "edgeType": "call"
+        },
+        {
+          "name": "user.deleteCustomStatus",
+          "edgeType": "event_emit"
+        }
+      ]
+    }
+  ],
+  "imports": [
+    {
+      "module": "@rocket.chat/core-services",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/ddp-client",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/models",
+      "resolved": "external"
+    },
+    {
+      "module": "meteor/meteor",
+      "resolved": "external"
+    },
+    {
+      "module": "../../../../server/lib/authorization/hasPermission",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/server/lib/authorization/hasPermission.ts"
+    },
+    {
+      "module": "../../../lib/server/lib/deprecationWarningLogger",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/app/lib/server/lib/deprecationWarningLogger.ts"
+    }
+  ]
+}

@@ -1,0 +1,58 @@
+{
+  "sourcePath": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/app/statistics/server/functions/updateStatsCounter.ts",
+  "symbols": [
+    {
+      "type": "module",
+      "name": "updateStatsCounter",
+      "exported": false,
+      "line": 1,
+      "endLine": 18,
+      "signature": "updateStatsCounter",
+      "calls": [
+        {
+          "name": "register",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "function",
+      "name": "updateCounter",
+      "exported": true,
+      "line": 8,
+      "endLine": 15,
+      "signature": "export function updateCounter(data: updateCounterDataType): void",
+      "calls": [
+        {
+          "name": "incrementValueById",
+          "edgeType": "call"
+        },
+        {
+          "name": "notifyOnSettingChanged",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "type",
+      "name": "updateCounterDataType",
+      "line": 6,
+      "endLine": 6,
+      "signature": "type updateCounterDataType ="
+    }
+  ],
+  "imports": [
+    {
+      "module": "@rocket.chat/models",
+      "resolved": "external"
+    },
+    {
+      "module": "../../../lib/server/lib/notifyListener",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/app/lib/server/lib/notifyListener.ts"
+    },
+    {
+      "module": "../lib/telemetryEvents",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/app/statistics/server/lib/telemetryEvents.ts"
+    }
+  ]
+}

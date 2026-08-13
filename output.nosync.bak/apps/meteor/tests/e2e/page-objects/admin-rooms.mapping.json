@@ -1,0 +1,113 @@
+{
+  "sourcePath": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/tests/e2e/page-objects/admin-rooms.ts",
+  "symbols": [
+    {
+      "type": "class",
+      "name": "AdminRooms",
+      "exported": true,
+      "line": 6,
+      "endLine": 33,
+      "signature": "export class AdminRooms extends Admin",
+      "calls": [
+        {
+          "name": "Admin",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "getRoomRow",
+      "exported": true,
+      "qualifiedName": "AdminRooms.getRoomRow",
+      "line": 22,
+      "endLine": 24,
+      "signature": "getRoomRow(name?: string): Locator",
+      "containerClass": "AdminRooms",
+      "calls": [
+        {
+          "name": "getByRole",
+          "edgeType": "call"
+        },
+        {
+          "name": "Locator",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "dropdownFilterRoomType",
+      "exported": true,
+      "qualifiedName": "AdminRooms.dropdownFilterRoomType",
+      "line": 30,
+      "endLine": 32,
+      "signature": "dropdownFilterRoomType(text = 'All rooms'): Locator",
+      "containerClass": "AdminRooms",
+      "calls": [
+        {
+          "name": "getByRole",
+          "edgeType": "call"
+        },
+        {
+          "name": "Locator",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "constructor",
+      "exported": true,
+      "qualifiedName": "AdminRooms.constructor",
+      "line": 9,
+      "endLine": 12,
+      "signature": "constructor(page: Page)",
+      "containerClass": "AdminRooms",
+      "calls": [
+        {
+          "name": "getByRole",
+          "edgeType": "call"
+        },
+        {
+          "name": "EditAdminRoomFlexTab",
+          "edgeType": "new"
+        },
+        {
+          "name": "Page",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "class_property",
+      "name": "editRoom",
+      "exported": true,
+      "qualifiedName": "AdminRooms.editRoom",
+      "line": 7,
+      "endLine": 7,
+      "signature": "readonly editRoom: EditAdminRoomFlexTab;",
+      "containerClass": "AdminRooms",
+      "calls": [
+        {
+          "name": "EditAdminRoomFlexTab",
+          "edgeType": "type"
+        }
+      ]
+    }
+  ],
+  "imports": [
+    {
+      "module": "@playwright/test",
+      "resolved": "external"
+    },
+    {
+      "module": "./admin",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/tests/e2e/page-objects/admin.ts"
+    },
+    {
+      "module": "./fragments/flextabs",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/tests/e2e/page-objects/fragments/flextabs/index.ts"
+    }
+  ]
+}

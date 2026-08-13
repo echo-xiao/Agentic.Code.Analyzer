@@ -1,0 +1,337 @@
+{
+  "sourcePath": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/client/views/admin/EditableSettingsContext.ts",
+  "symbols": [
+    {
+      "type": "variable_function",
+      "name": "compareSettings",
+      "exported": true,
+      "line": 14,
+      "endLine": 24,
+      "signature": "(a: EditableSetting, b: EditableSetting): number =>",
+      "calls": [
+        {
+          "name": "localeCompare",
+          "edgeType": "call"
+        },
+        {
+          "name": "EditableSetting",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "variable_function",
+      "name": "performSettingQuery",
+      "exported": true,
+      "line": 18,
+      "endLine": 38,
+      "signature": "( query: | string | { _id: string; value: unknown; } | { _id: string; value: unknown; }[] | undefined, settings: ISetting[], ) =>",
+      "calls": [
+        {
+          "name": "concat",
+          "edgeType": "call"
+        },
+        {
+          "name": "parse",
+          "edgeType": "call"
+        },
+        {
+          "name": "every",
+          "edgeType": "call"
+        },
+        {
+          "name": "some",
+          "edgeType": "call"
+        },
+        {
+          "name": "createPredicateFromFilter",
+          "edgeType": "call"
+        },
+        {
+          "name": "ISetting",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "variable",
+      "name": "EditableSettingsContext",
+      "exported": true,
+      "line": 60,
+      "endLine": 67,
+      "signature": "EditableSettingsContext = createContext<EditableSettingsContextValue>(",
+      "calls": [
+        {
+          "name": "create",
+          "edgeType": "call"
+        },
+        {
+          "name": "EditableSettingsContextValue",
+          "edgeType": "type"
+        },
+        {
+          "name": "IEditableSettingsState",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "variable_function",
+      "name": "useEditableSetting",
+      "exported": true,
+      "line": 69,
+      "endLine": 73,
+      "signature": "(_id: ISetting['_id']): EditableSetting | undefined =>",
+      "calls": [
+        {
+          "name": "useContext",
+          "edgeType": "call"
+        },
+        {
+          "name": "useEditableSettingsStore",
+          "edgeType": "call"
+        },
+        {
+          "name": "find",
+          "edgeType": "call"
+        },
+        {
+          "name": "ISetting",
+          "edgeType": "type"
+        },
+        {
+          "name": "EditableSetting",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "variable_function",
+      "name": "useEditableSettings",
+      "exported": true,
+      "line": 73,
+      "endLine": 97,
+      "signature": "(query: EditableSettingsContextQuery): EditableSetting[] =>",
+      "calls": [
+        {
+          "name": "useContext",
+          "edgeType": "call"
+        },
+        {
+          "name": "useEditableSettingsStore",
+          "edgeType": "call"
+        },
+        {
+          "name": "useShallow",
+          "edgeType": "call"
+        },
+        {
+          "name": "sort",
+          "edgeType": "call"
+        },
+        {
+          "name": "filter",
+          "edgeType": "call"
+        },
+        {
+          "name": "EditableSettingsContextQuery",
+          "edgeType": "type"
+        },
+        {
+          "name": "EditableSetting",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "variable_function",
+      "name": "useEditableSettingsGroupSections",
+      "exported": true,
+      "line": 77,
+      "endLine": 92,
+      "signature": "(_id: ISetting['_id'], tab?: ISetting['_id']): string[] =>",
+      "calls": [
+        {
+          "name": "useContext",
+          "edgeType": "call"
+        },
+        {
+          "name": "useEditableSettingsStore",
+          "edgeType": "call"
+        },
+        {
+          "name": "useShallow",
+          "edgeType": "call"
+        },
+        {
+          "name": "from",
+          "edgeType": "call"
+        },
+        {
+          "name": "map",
+          "edgeType": "call"
+        },
+        {
+          "name": "sort",
+          "edgeType": "call"
+        },
+        {
+          "name": "filter",
+          "edgeType": "call"
+        },
+        {
+          "name": "Set",
+          "edgeType": "new"
+        },
+        {
+          "name": "ISetting",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "variable_function",
+      "name": "useEditableSettingsGroupTabs",
+      "exported": true,
+      "line": 81,
+      "endLine": 96,
+      "signature": "(_id: ISetting['_id']): ISetting['_id'][] =>",
+      "calls": [
+        {
+          "name": "useContext",
+          "edgeType": "call"
+        },
+        {
+          "name": "useEditableSettingsStore",
+          "edgeType": "call"
+        },
+        {
+          "name": "useShallow",
+          "edgeType": "call"
+        },
+        {
+          "name": "from",
+          "edgeType": "call"
+        },
+        {
+          "name": "map",
+          "edgeType": "call"
+        },
+        {
+          "name": "sort",
+          "edgeType": "call"
+        },
+        {
+          "name": "filter",
+          "edgeType": "call"
+        },
+        {
+          "name": "Set",
+          "edgeType": "new"
+        },
+        {
+          "name": "ISetting",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "variable_function",
+      "name": "useEditableSettingsDispatch",
+      "exported": true,
+      "line": 85,
+      "endLine": 88,
+      "signature": "(): ((changes: Partial<EditableSetting>[]) => void) =>",
+      "calls": [
+        {
+          "name": "useContext",
+          "edgeType": "call"
+        },
+        {
+          "name": "useEditableSettingsStore",
+          "edgeType": "call"
+        },
+        {
+          "name": "EditableSetting",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "variable_function",
+      "name": "useEditableSettingVisibilityQuery",
+      "exported": true,
+      "line": 89,
+      "endLine": 98,
+      "signature": "(query?: ISetting['enableQuery'] | ISetting['displayQuery']): boolean =>",
+      "calls": [
+        {
+          "name": "useContext",
+          "edgeType": "call"
+        },
+        {
+          "name": "useEditableSettingsStore",
+          "edgeType": "call"
+        },
+        {
+          "name": "performSettingQuery",
+          "edgeType": "call"
+        },
+        {
+          "name": "ISetting",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "interface",
+      "name": "IEditableSettingsState",
+      "line": 49,
+      "endLine": 54,
+      "signature": "export interface IEditableSettingsState"
+    },
+    {
+      "type": "type",
+      "name": "EditableSetting",
+      "line": 7,
+      "endLine": 12,
+      "signature": "export type EditableSetting = ISetting &"
+    },
+    {
+      "type": "type",
+      "name": "EditableSettingsContextQuery",
+      "line": 35,
+      "endLine": 47,
+      "signature": "type EditableSettingsContextQuery = |"
+    },
+    {
+      "type": "type",
+      "name": "EditableSettingsContextValue",
+      "line": 56,
+      "endLine": 58,
+      "signature": "export type EditableSettingsContextValue ="
+    }
+  ],
+  "imports": [
+    {
+      "module": "@rocket.chat/core-typings",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/mongo-adapter",
+      "resolved": "external"
+    },
+    {
+      "module": "react",
+      "resolved": "external"
+    },
+    {
+      "module": "zustand",
+      "resolved": "external"
+    },
+    {
+      "module": "zustand/shallow",
+      "resolved": "external"
+    }
+  ]
+}

@@ -1,0 +1,80 @@
+{
+  "sourcePath": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/client/views/omnichannel/components/outboundMessage/components/RecipientSelect.tsx",
+  "symbols": [
+    {
+      "type": "variable_function",
+      "name": "RecipientSelect",
+      "exported": false,
+      "line": 15,
+      "endLine": 29,
+      "signature": "({ contact, type, value, disabled, onChange, ...props }: RecipientSelectProps) =>",
+      "calls": [
+        {
+          "name": "useMemo",
+          "edgeType": "call"
+        },
+        {
+          "name": "map",
+          "edgeType": "call"
+        },
+        {
+          "name": "formatPhoneNumber",
+          "edgeType": "call"
+        },
+        {
+          "name": "Select",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "disabled",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "value",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "options",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "onChange",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "RecipientSelectProps",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "type",
+      "name": "RecipientSelectProps",
+      "line": 8,
+      "endLine": 13,
+      "signature": "type RecipientSelectProps = Omit<ComponentProps<typeof Select>, 'options' | 'onChange' | 'value'> &"
+    }
+  ],
+  "imports": [
+    {
+      "module": "@rocket.chat/core-typings",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/fuselage",
+      "resolved": "external"
+    },
+    {
+      "module": "react",
+      "resolved": "external"
+    },
+    {
+      "module": "react",
+      "resolved": "external"
+    },
+    {
+      "module": "../../../../../lib/formatPhoneNumber",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/client/lib/formatPhoneNumber.ts"
+    }
+  ]
+}

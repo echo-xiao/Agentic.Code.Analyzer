@@ -1,0 +1,87 @@
+{
+  "sourcePath": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/app/livechat/server/business-hour/closeBusinessHour.ts",
+  "symbols": [
+    {
+      "type": "variable_function",
+      "name": "closeBusinessHourByAgentIds",
+      "exported": true,
+      "line": 9,
+      "endLine": 22,
+      "signature": "async ( businessHourId: ILivechatBusinessHour['_id'], agentIds: IUser['_id'][], ): Promise<void> =>",
+      "calls": [
+        {
+          "name": "debug",
+          "edgeType": "call"
+        },
+        {
+          "name": "slice",
+          "edgeType": "call"
+        },
+        {
+          "name": "removeBusinessHourByAgentIds",
+          "edgeType": "call"
+        },
+        {
+          "name": "makeAgentsUnavailableBasedOnBusinessHour",
+          "edgeType": "call"
+        },
+        {
+          "name": "ILivechatBusinessHour",
+          "edgeType": "type"
+        },
+        {
+          "name": "IUser",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "variable",
+      "name": "closeBusinessHour",
+      "exported": true,
+      "line": 16,
+      "endLine": 19,
+      "signature": "closeBusinessHour = makeFunction(async (businessHour: Pick<ILivechatBusinessHour, '_id' | 'type'>): Promise<void> =>",
+      "calls": [
+        {
+          "name": "getAgentIdsForBusinessHour",
+          "edgeType": "call"
+        },
+        {
+          "name": "closeBusinessHourByAgentIds",
+          "edgeType": "call"
+        },
+        {
+          "name": "ILivechatBusinessHour",
+          "edgeType": "type"
+        }
+      ]
+    }
+  ],
+  "imports": [
+    {
+      "module": "@rocket.chat/core-typings",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/models",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/patch-injection",
+      "resolved": "external"
+    },
+    {
+      "module": "./Helper",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/app/livechat/server/business-hour/Helper.ts"
+    },
+    {
+      "module": "./getAgentIdsForBusinessHour",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/app/livechat/server/business-hour/getAgentIdsForBusinessHour.ts"
+    },
+    {
+      "module": "../lib/logger",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/app/livechat/server/lib/logger.ts"
+    }
+  ]
+}

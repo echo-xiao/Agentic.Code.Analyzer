@@ -1,0 +1,393 @@
+{
+  "sourcePath": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/server/services/apps-engine/service.ts",
+  "symbols": [
+    {
+      "type": "class",
+      "name": "AppsEngineNoNodesFoundError",
+      "exported": true,
+      "line": 14,
+      "endLine": 18,
+      "signature": "export class AppsEngineNoNodesFoundError extends Error",
+      "calls": []
+    },
+    {
+      "type": "method",
+      "name": "constructor",
+      "exported": true,
+      "qualifiedName": "AppsEngineNoNodesFoundError.constructor",
+      "line": 15,
+      "endLine": 17,
+      "signature": "constructor(message = 'Not enough Apps-Engine nodes in deployment')",
+      "containerClass": "AppsEngineNoNodesFoundError",
+      "calls": []
+    },
+    {
+      "type": "class",
+      "name": "AppsEngineService",
+      "exported": true,
+      "line": 20,
+      "endLine": 250,
+      "signature": "export class AppsEngineService extends ServiceClassInternal implements IAppsEngineService",
+      "calls": [
+        {
+          "name": "ServiceClassInternal",
+          "edgeType": "type"
+        },
+        {
+          "name": "IAppsEngineService",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "isInitialized",
+      "exported": true,
+      "qualifiedName": "AppsEngineService.isInitialized",
+      "line": 168,
+      "endLine": 170,
+      "signature": "isInitialized(): boolean",
+      "containerClass": "AppsEngineService",
+      "calls": [
+        {
+          "name": "Boolean",
+          "edgeType": "call"
+        },
+        {
+          "name": "isInitialized",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "getApps",
+      "exported": true,
+      "qualifiedName": "AppsEngineService.getApps",
+      "line": 172,
+      "endLine": 174,
+      "signature": "async getApps(query: IGetAppsFilter): Promise<IAppInfo[] | undefined>",
+      "containerClass": "AppsEngineService",
+      "calls": [
+        {
+          "name": "map",
+          "edgeType": "call"
+        },
+        {
+          "name": "get",
+          "edgeType": "call"
+        },
+        {
+          "name": "getManager",
+          "edgeType": "call"
+        },
+        {
+          "name": "getInfo",
+          "edgeType": "call"
+        },
+        {
+          "name": "IGetAppsFilter",
+          "edgeType": "type"
+        },
+        {
+          "name": "IAppInfo",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "getAppStorageItemById",
+      "exported": true,
+      "qualifiedName": "AppsEngineService.getAppStorageItemById",
+      "line": 176,
+      "endLine": 184,
+      "signature": "async getAppStorageItemById(appId: string): Promise<IAppStorageItem | undefined>",
+      "containerClass": "AppsEngineService",
+      "calls": [
+        {
+          "name": "getOneById",
+          "edgeType": "call"
+        },
+        {
+          "name": "getManager",
+          "edgeType": "call"
+        },
+        {
+          "name": "getStorageItem",
+          "edgeType": "call"
+        },
+        {
+          "name": "IAppStorageItem",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "getAppsStatusLocal",
+      "exported": true,
+      "qualifiedName": "AppsEngineService.getAppsStatusLocal",
+      "line": 180,
+      "endLine": 193,
+      "signature": "async getAppsStatusLocal(): Promise<{ status: AppStatus; appId: string }[]>",
+      "containerClass": "AppsEngineService",
+      "calls": [
+        {
+          "name": "get",
+          "edgeType": "call"
+        },
+        {
+          "name": "getManager",
+          "edgeType": "call"
+        },
+        {
+          "name": "all",
+          "edgeType": "call"
+        },
+        {
+          "name": "map",
+          "edgeType": "call"
+        },
+        {
+          "name": "getStatus",
+          "edgeType": "call"
+        },
+        {
+          "name": "getID",
+          "edgeType": "call"
+        },
+        {
+          "name": "AppStatus",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "getAppsStatusInNodes",
+      "exported": true,
+      "qualifiedName": "AppsEngineService.getAppsStatusInNodes",
+      "line": 184,
+      "endLine": 232,
+      "signature": "async getAppsStatusInNodes(): Promise<AppStatusReport>",
+      "containerClass": "AppsEngineService",
+      "calls": [
+        {
+          "name": "isRunningMs",
+          "edgeType": "call"
+        },
+        {
+          "name": "find",
+          "edgeType": "call"
+        },
+        {
+          "name": "nodeList",
+          "edgeType": "call"
+        },
+        {
+          "name": "$node.services",
+          "edgeType": "call"
+        },
+        {
+          "name": "call",
+          "edgeType": "call"
+        },
+        {
+          "name": "map",
+          "edgeType": "call"
+        },
+        {
+          "name": "apps-engine.getAppsStatusLocal",
+          "edgeType": "call"
+        },
+        {
+          "name": "forEach",
+          "edgeType": "call"
+        },
+        {
+          "name": "push",
+          "edgeType": "call"
+        },
+        {
+          "name": "all",
+          "edgeType": "call"
+        },
+        {
+          "name": "AppsEngineNoNodesFoundError",
+          "edgeType": "new"
+        },
+        {
+          "name": "AppStatusReport",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "constructor",
+      "exported": true,
+      "qualifiedName": "AppsEngineService.constructor",
+      "line": 23,
+      "endLine": 166,
+      "signature": "constructor()",
+      "containerClass": "AppsEngineService",
+      "calls": [
+        {
+          "name": "onEvent",
+          "edgeType": "call"
+        },
+        {
+          "name": "triggerEvent",
+          "edgeType": "call"
+        },
+        {
+          "name": "debug",
+          "edgeType": "call"
+        },
+        {
+          "name": "getRocketChatLogger",
+          "edgeType": "call"
+        },
+        {
+          "name": "getOneById",
+          "edgeType": "call"
+        },
+        {
+          "name": "getManager",
+          "edgeType": "call"
+        },
+        {
+          "name": "info",
+          "edgeType": "call"
+        },
+        {
+          "name": "addLocal",
+          "edgeType": "call"
+        },
+        {
+          "name": "removeLocal",
+          "edgeType": "call"
+        },
+        {
+          "name": "id",
+          "edgeType": "call"
+        },
+        {
+          "name": "retrieveOne",
+          "edgeType": "call"
+        },
+        {
+          "name": "getStorage",
+          "edgeType": "call"
+        },
+        {
+          "name": "fetch",
+          "edgeType": "call"
+        },
+        {
+          "name": "getAppSourceStorage",
+          "edgeType": "call"
+        },
+        {
+          "name": "isEnabled",
+          "edgeType": "call"
+        },
+        {
+          "name": "updateAndStartupLocal",
+          "edgeType": "call"
+        },
+        {
+          "name": "updateAndInitializeLocal",
+          "edgeType": "call"
+        },
+        {
+          "name": "getStatus",
+          "edgeType": "call"
+        },
+        {
+          "name": "catch",
+          "edgeType": "call"
+        },
+        {
+          "name": "enable",
+          "edgeType": "call"
+        },
+        {
+          "name": "isDisabled",
+          "edgeType": "call"
+        },
+        {
+          "name": "disable",
+          "edgeType": "call"
+        },
+        {
+          "name": "getStorageItem",
+          "edgeType": "call"
+        },
+        {
+          "name": "stringify",
+          "edgeType": "call"
+        },
+        {
+          "name": "updateAppSetting",
+          "edgeType": "call"
+        },
+        {
+          "name": "getSettingsManager",
+          "edgeType": "call"
+        },
+        {
+          "name": "AppStatus",
+          "edgeType": "type"
+        }
+      ]
+    }
+  ],
+  "imports": [
+    {
+      "module": "@rocket.chat/apps",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/apps/dist/server/IGetAppsFilter",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/apps/dist/server/storage/IAppStorageItem",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/apps-engine/definition/AppStatus",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/apps-engine/definition/AppStatus",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/apps-engine/definition/metadata",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/core-services",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/core-services",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/instance-status",
+      "resolved": "external"
+    },
+    {
+      "module": "../../lib/isRunningMs",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/server/lib/isRunningMs.ts"
+    },
+    {
+      "module": "../../lib/logger/system",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/server/lib/logger/system.ts"
+    }
+  ]
+}

@@ -1,0 +1,245 @@
+{
+  "sourcePath": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/tests/unit/app/meteor-accounts-saml/data.ts",
+  "symbols": [
+    {
+      "type": "variable",
+      "name": "serviceProviderOptions",
+      "exported": true,
+      "line": 3,
+      "endLine": 28,
+      "signature": "serviceProviderOptions: IServiceProviderOptions =",
+      "calls": []
+    },
+    {
+      "type": "variable",
+      "name": "simpleMetadata",
+      "exported": true,
+      "line": 30,
+      "endLine": 37,
+      "signature": "simpleMetadata = `<?xml version=\"1.0\"?>",
+      "calls": []
+    },
+    {
+      "type": "variable",
+      "name": "metadataWithCertificate",
+      "exported": true,
+      "line": 39,
+      "endLine": 56,
+      "signature": "metadataWithCertificate = `<?xml version=\"1.0\"?>",
+      "calls": []
+    },
+    {
+      "type": "variable",
+      "name": "invalidXml",
+      "exported": true,
+      "line": 58,
+      "endLine": 58,
+      "signature": "invalidXml = 'not a xml file'",
+      "calls": []
+    },
+    {
+      "type": "variable",
+      "name": "randomXml",
+      "exported": true,
+      "line": 60,
+      "endLine": 64,
+      "signature": "randomXml = `<?xml version=\"1.0\"?>",
+      "calls": []
+    },
+    {
+      "type": "variable",
+      "name": "simpleLogoutRequest",
+      "exported": true,
+      "line": 66,
+      "endLine": 70,
+      "signature": "simpleLogoutRequest = `<samlp:LogoutRequest xmlns:samlp=\"urn:oasis:names:tc:SAML:2.0:protocol\" xmlns:saml=\"urn:oasis:names:tc:SAML:2.0:assertion\" ID=\"_e9c0751f722b4506c667d634a7c28126cdbfa80118\" Version=\"2.0\" IssueInstant=\"[INSTANT]\" Destination=\"http://localhost:3000/_saml/logout/test-sp/\" NotOnOrAfter=\"[NotOnOrAfter]\">",
+      "calls": []
+    },
+    {
+      "type": "variable",
+      "name": "invalidLogoutRequest",
+      "exported": true,
+      "line": 72,
+      "endLine": 75,
+      "signature": "invalidLogoutRequest = `<samlp:LogoutRequest xmlns:samlp=\"urn:oasis:names:tc:SAML:2.0:protocol\" xmlns:saml=\"urn:oasis:names:tc:SAML:2.0:assertion\" ID=\"_e9c0751f722b4506c667d634a7c28126cdbfa80118\" Version=\"2.0\" IssueInstant=\"[INSTANT]\" Destination=\"http://localhost:3000/_saml/logout/test-sp/\" NotOnOrAfter=\"[NotOnOrAfter]\">",
+      "calls": []
+    },
+    {
+      "type": "variable",
+      "name": "simpleLogoutResponse",
+      "exported": true,
+      "line": 77,
+      "endLine": 82,
+      "signature": "simpleLogoutResponse = `<samlp:LogoutResponse xmlns:samlp=\"urn:oasis:names:tc:SAML:2.0:protocol\" xmlns:saml=\"urn:oasis:names:tc:SAML:2.0:assertion\" ID=\"_804853615e31dd9b2fb54a71faa09d95a370003574\" Version=\"2.0\" IssueInstant=\"[INSTANT]\" Destination=\"http://localhost:3000/_saml/logout/test-sp/\" InResponseTo=\"_id-6530db3fcd23dc42a31c\">",
+      "calls": []
+    },
+    {
+      "type": "variable",
+      "name": "invalidLogoutResponse",
+      "exported": true,
+      "line": 84,
+      "endLine": 86,
+      "signature": "invalidLogoutResponse = `<samlp:LogoutResponse xmlns:samlp=\"urn:oasis:names:tc:SAML:2.0:protocol\" xmlns:saml=\"urn:oasis:names:tc:SAML:2.0:assertion\" ID=\"_804853615e31dd9b2fb54a71faa09d95a370003574\" Version=\"2.0\" IssueInstant=\"[INSTANT]\" Destination=\"http://localhost:3000/_saml/logout/test-sp/\" InResponseTo=\"_id-6530db3fcd23dc42a31c\">",
+      "calls": []
+    },
+    {
+      "type": "variable",
+      "name": "simpleSamlResponse",
+      "exported": true,
+      "line": 125,
+      "endLine": 129,
+      "signature": "simpleSamlResponse = `$",
+      "calls": []
+    },
+    {
+      "type": "variable",
+      "name": "samlResponseAssertionId",
+      "exported": true,
+      "line": 131,
+      "endLine": 131,
+      "signature": "samlResponseAssertionId = '_assertionwithconditions00000000000000001'",
+      "calls": []
+    },
+    {
+      "type": "variable",
+      "name": "samlResponseWithConditions",
+      "exported": true,
+      "line": 151,
+      "endLine": 155,
+      "signature": "samlResponseWithConditions = `$",
+      "calls": []
+    },
+    {
+      "type": "variable",
+      "name": "samlResponseMissingStatus",
+      "exported": true,
+      "line": 157,
+      "endLine": 160,
+      "signature": "samlResponseMissingStatus = `$",
+      "calls": []
+    },
+    {
+      "type": "variable",
+      "name": "samlResponseMissingAssertion",
+      "exported": true,
+      "line": 162,
+      "endLine": 165,
+      "signature": "samlResponseMissingAssertion = `$",
+      "calls": []
+    },
+    {
+      "type": "variable",
+      "name": "samlResponseFailedStatus",
+      "exported": true,
+      "line": 167,
+      "endLine": 173,
+      "signature": "samlResponseFailedStatus = `$",
+      "calls": []
+    },
+    {
+      "type": "variable",
+      "name": "samlResponseMultipleAssertions",
+      "exported": true,
+      "line": 175,
+      "endLine": 180,
+      "signature": "samlResponseMultipleAssertions = `$",
+      "calls": []
+    },
+    {
+      "type": "variable",
+      "name": "samlResponseMultipleIssuers",
+      "exported": true,
+      "line": 182,
+      "endLine": 208,
+      "signature": "samlResponseMultipleIssuers = `$",
+      "calls": []
+    },
+    {
+      "type": "variable",
+      "name": "samlResponseValidSignatures",
+      "exported": true,
+      "line": 282,
+      "endLine": 290,
+      "signature": "samlResponseValidSignatures = `<samlp:Response xmlns:samlp=\"urn:oasis:names:tc:SAML:2.0:protocol\" xmlns:saml=\"urn:oasis:names:tc:SAML:2.0:assertion\" ID=\"_31dd75023c1537f1016f835db64c18fee89d9db561\" Version=\"2.0\" IssueInstant=\"2020-06-03T17:55:29Z\" Destination=\"http://localhost:3000/_saml/validate/test-sp\" InResponseTo=\"id-L9qm86X4eez8a75G4\"><saml:Issuer>http://localhost:8080/simplesaml/saml2/idp/m",
+      "calls": []
+    },
+    {
+      "type": "variable",
+      "name": "samlResponseValidAssertionSignature",
+      "exported": true,
+      "line": 292,
+      "endLine": 300,
+      "signature": "samlResponseValidAssertionSignature = `<samlp:Response xmlns:samlp=\"urn:oasis:names:tc:SAML:2.0:protocol\" xmlns:saml=\"urn:oasis:names:tc:SAML:2.0:assertion\" ID=\"_31dd75023c1537f1016f835db64c18fee89d9db561\" Version=\"2.0\" IssueInstant=\"2020-06-03T17:55:29Z\" Destination=\"http://localhost:3000/_saml/validate/test-sp\" InResponseTo=\"id-L9qm86X4eez8a75G4\"><saml:Issuer>http://localhost:8080/simplesaml/sam",
+      "calls": []
+    },
+    {
+      "type": "variable",
+      "name": "samlResponse",
+      "exported": true,
+      "line": 302,
+      "endLine": 307,
+      "signature": "samlResponse = `$",
+      "calls": []
+    },
+    {
+      "type": "variable",
+      "name": "duplicatedSamlResponse",
+      "exported": true,
+      "line": 309,
+      "endLine": 309,
+      "signature": "duplicatedSamlResponse = `$",
+      "calls": []
+    },
+    {
+      "type": "variable",
+      "name": "encryptedResponse",
+      "exported": true,
+      "line": 311,
+      "endLine": 319,
+      "signature": "encryptedResponse = `<samlp:Response xmlns:samlp=\"urn:oasis:names:tc:SAML:2.0:protocol\" xmlns:saml=\"urn:oasis:names:tc:SAML:2.0:assertion\" ID=\"_5b4a6127022221e262764e9d9ebe70a65eebb479d1\" Version=\"2.0\" IssueInstant=\"2020-06-03T21:49:15Z\" Destination=\"http://localhost:3000/_saml/validate/test-sp\" InResponseTo=\"id-4P5wYktKCyK5ZXurQ\"><saml:Issuer>http://localhost:8080/simplesaml/saml2/idp/metadata.ph",
+      "calls": []
+    },
+    {
+      "type": "variable",
+      "name": "profile",
+      "exported": true,
+      "line": 321,
+      "endLine": 338,
+      "signature": "profile =",
+      "calls": []
+    },
+    {
+      "type": "variable",
+      "name": "certificate",
+      "exported": true,
+      "line": 340,
+      "endLine": 358,
+      "signature": "certificate = `MIIDXTCCAkWgAwIBAgIJALmVVuDWu4NYMA0GCSqGSIb3DQEBCwUAMEUxCzAJBgNV",
+      "calls": []
+    },
+    {
+      "type": "variable",
+      "name": "privateKey",
+      "exported": true,
+      "line": 360,
+      "endLine": 387,
+      "signature": "privateKey = `-----BEGIN PRIVATE KEY-----",
+      "calls": []
+    },
+    {
+      "type": "variable",
+      "name": "privateKeyCert",
+      "exported": true,
+      "line": 389,
+      "endLine": 413,
+      "signature": "privateKeyCert = `-----BEGIN CERTIFICATE-----",
+      "calls": []
+    }
+  ],
+  "imports": [
+    {
+      "module": "../../../../app/meteor-accounts-saml/server/definition/IServiceProviderOptions",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/app/meteor-accounts-saml/server/definition/IServiceProviderOptions.ts"
+    }
+  ]
+}

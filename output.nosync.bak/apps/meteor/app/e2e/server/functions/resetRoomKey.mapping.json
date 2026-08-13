@@ -1,0 +1,179 @@
+{
+  "sourcePath": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/app/e2e/server/functions/resetRoomKey.ts",
+  "symbols": [
+    {
+      "type": "function",
+      "name": "resetRoomKey",
+      "exported": true,
+      "line": 7,
+      "endLine": 89,
+      "signature": "export async function resetRoomKey(roomId: string, userId: string, newRoomKey: string, newRoomKeyId: string)",
+      "calls": [
+        {
+          "name": "findOneById",
+          "edgeType": "call"
+        },
+        {
+          "name": "find",
+          "edgeType": "call"
+        },
+        {
+          "name": "replicateMongoSlice",
+          "edgeType": "call"
+        },
+        {
+          "name": "push",
+          "edgeType": "call"
+        },
+        {
+          "name": "keys",
+          "edgeType": "call"
+        },
+        {
+          "name": "pushToLimit",
+          "edgeType": "call"
+        },
+        {
+          "name": "writeAndNotify",
+          "edgeType": "call"
+        },
+        {
+          "name": "resetRoomKeyAndSetE2EEQueueByRoomId",
+          "edgeType": "call"
+        },
+        {
+          "name": "setE2EKeyByUserIdAndRoomId",
+          "edgeType": "call"
+        },
+        {
+          "name": "notifyOnSubscriptionChanged",
+          "edgeType": "call"
+        },
+        {
+          "name": "notifyOnRoomChanged",
+          "edgeType": "call"
+        },
+        {
+          "name": "Date",
+          "edgeType": "new"
+        },
+        {
+          "name": "IUser",
+          "edgeType": "type"
+        },
+        {
+          "name": "IRoom",
+          "edgeType": "type"
+        },
+        {
+          "name": "AnyBulkWriteOperation",
+          "edgeType": "type"
+        },
+        {
+          "name": "ISubscription",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "function",
+      "name": "pushToLimit",
+      "exported": true,
+      "line": 11,
+      "endLine": 19,
+      "signature": "export function pushToLimit( arr: NonNullable<IRoom['usersWaitingForE2EKeys']>, item: NonNullable<IRoom['usersWaitingForE2EKeys']>[number], limit = 50, )",
+      "calls": [
+        {
+          "name": "push",
+          "edgeType": "call"
+        },
+        {
+          "name": "IRoom",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "function",
+      "name": "writeAndNotify",
+      "exported": false,
+      "line": 19,
+      "endLine": 26,
+      "signature": "async function writeAndNotify(updateOps: AnyBulkWriteOperation<ISubscription>[], notifySubs: ISubscription[])",
+      "calls": [
+        {
+          "name": "bulkWrite",
+          "edgeType": "call"
+        },
+        {
+          "name": "forEach",
+          "edgeType": "call"
+        },
+        {
+          "name": "notifyOnSubscriptionChanged",
+          "edgeType": "call"
+        },
+        {
+          "name": "AnyBulkWriteOperation",
+          "edgeType": "type"
+        },
+        {
+          "name": "ISubscription",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "function",
+      "name": "replicateMongoSlice",
+      "exported": true,
+      "line": 23,
+      "endLine": 36,
+      "signature": "export function replicateMongoSlice(keyId: string, sub: ISubscription)",
+      "calls": [
+        {
+          "name": "toSorted",
+          "edgeType": "call"
+        },
+        {
+          "name": "getTime",
+          "edgeType": "call"
+        },
+        {
+          "name": "unshift",
+          "edgeType": "call"
+        },
+        {
+          "name": "slice",
+          "edgeType": "call"
+        },
+        {
+          "name": "Date",
+          "edgeType": "new"
+        },
+        {
+          "name": "ISubscription",
+          "edgeType": "type"
+        }
+      ]
+    }
+  ],
+  "imports": [
+    {
+      "module": "@rocket.chat/core-typings",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/models",
+      "resolved": "external"
+    },
+    {
+      "module": "mongodb",
+      "resolved": "external"
+    },
+    {
+      "module": "../../../lib/server/lib/notifyListener",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/app/lib/server/lib/notifyListener.ts"
+    }
+  ]
+}

@@ -1,0 +1,96 @@
+{
+  "sourcePath": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/client/views/admin/users/hooks/useConfirmOwnerChanges.tsx",
+  "symbols": [
+    {
+      "type": "inner_function",
+      "name": "handleConfirm",
+      "exported": false,
+      "qualifiedName": "useConfirmOwnerChanges.handleConfirm",
+      "line": 21,
+      "endLine": 25,
+      "signature": "async (): Promise<void> =>",
+      "calls": [
+        {
+          "name": "action",
+          "edgeType": "call"
+        },
+        {
+          "name": "setModal",
+          "edgeType": "call"
+        },
+        {
+          "name": "onChange",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "variable_function",
+      "name": "useConfirmOwnerChanges",
+      "exported": true,
+      "line": 6,
+      "endLine": 40,
+      "signature": "(): (( action: (confirm?: boolean) => Promise<void>, modalProps: Pick<ComponentProps<typeof ConfirmOwnerChangeWarningModal>, 'contentTitle' | 'confirmText'>, onChange: () => void, ) => Promise<void>) =>",
+      "calls": [
+        {
+          "name": "useSetModal",
+          "edgeType": "call"
+        },
+        {
+          "name": "useToastMessageDispatch",
+          "edgeType": "call"
+        },
+        {
+          "name": "action",
+          "edgeType": "call"
+        },
+        {
+          "name": "setModal",
+          "edgeType": "call"
+        },
+        {
+          "name": "onChange",
+          "edgeType": "call"
+        },
+        {
+          "name": "dispatchToastMessage",
+          "edgeType": "call"
+        },
+        {
+          "name": "ConfirmOwnerChangeWarningModal",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "shouldChangeOwner",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "shouldBeRemoved",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "handleConfirm",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "ComponentProps",
+          "edgeType": "type"
+        }
+      ]
+    }
+  ],
+  "imports": [
+    {
+      "module": "@rocket.chat/ui-contexts",
+      "resolved": "external"
+    },
+    {
+      "module": "react",
+      "resolved": "external"
+    },
+    {
+      "module": "../../../../components/ConfirmOwnerChangeModal",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/client/components/ConfirmOwnerChangeModal.tsx"
+    }
+  ]
+}

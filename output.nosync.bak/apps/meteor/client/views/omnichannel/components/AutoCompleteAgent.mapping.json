@@ -1,0 +1,98 @@
+{
+  "sourcePath": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/client/views/omnichannel/components/AutoCompleteAgent.tsx",
+  "symbols": [
+    {
+      "type": "module",
+      "name": "AutoCompleteAgent",
+      "exported": false,
+      "line": 1,
+      "endLine": 58,
+      "signature": "AutoCompleteAgent",
+      "calls": [
+        {
+          "name": "memo",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "variable_function",
+      "name": "AutoCompleteAgent",
+      "exported": false,
+      "line": 21,
+      "endLine": 55,
+      "signature": "({ value, haveAll = false, haveNoAgentsSelectedOption = false, excludeId, showIdleAgents = true, onlyAvailable = false, onChange, ...props }: AutoCompleteAgentProps) =>",
+      "calls": [
+        {
+          "name": "useState",
+          "edgeType": "call"
+        },
+        {
+          "name": "useDebouncedValue",
+          "edgeType": "call"
+        },
+        {
+          "name": "useAgentsList",
+          "edgeType": "call"
+        },
+        {
+          "name": "fetchNextPage",
+          "edgeType": "call"
+        },
+        {
+          "name": "PaginatedSelectFiltered",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "value",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "agentsFilter",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "agentsItems",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "onChange",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "AutoCompleteAgentProps",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "type",
+      "name": "AutoCompleteAgentProps",
+      "line": 8,
+      "endLine": 19,
+      "signature": "export type AutoCompleteAgentProps = Omit< ComponentProps<typeof PaginatedSelectFiltered>, 'filter' | 'setFilter' | 'options' | 'endReached' | 'renderItem' > &"
+    }
+  ],
+  "imports": [
+    {
+      "module": "@rocket.chat/fuselage",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/fuselage-hooks",
+      "resolved": "external"
+    },
+    {
+      "module": "react",
+      "resolved": "external"
+    },
+    {
+      "module": "react",
+      "resolved": "external"
+    },
+    {
+      "module": "../hooks/useAgentsList",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/client/views/omnichannel/hooks/useAgentsList.ts"
+    }
+  ]
+}

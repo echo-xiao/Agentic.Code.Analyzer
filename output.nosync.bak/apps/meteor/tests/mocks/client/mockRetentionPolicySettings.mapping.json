@@ -1,0 +1,37 @@
+{
+  "sourcePath": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/tests/mocks/client/mockRetentionPolicySettings.ts",
+  "symbols": [
+    {
+      "type": "variable_function",
+      "name": "createRenteionPolicySettingsMock",
+      "exported": true,
+      "line": 3,
+      "endLine": 37,
+      "signature": "({ enabled = true, filesOnly = false, doNotPrunePinned = false, appliesToChannels = false, TTLChannels = 60000, appliesToGroups = false, TTLGroups = 60000, appliesToDMs = false, TTLDMs = 60000, precision = '0', advancedPrecision = false, advancedPrecisionCron = '*/30 * * * *', } = {}) =>",
+      "calls": [
+        {
+          "name": "build",
+          "edgeType": "call"
+        },
+        {
+          "name": "withSetting",
+          "edgeType": "call"
+        },
+        {
+          "name": "withTranslations",
+          "edgeType": "call"
+        },
+        {
+          "name": "mockAppRoot",
+          "edgeType": "call"
+        }
+      ]
+    }
+  ],
+  "imports": [
+    {
+      "module": "@rocket.chat/mock-providers",
+      "resolved": "external"
+    }
+  ]
+}

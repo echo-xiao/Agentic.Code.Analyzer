@@ -1,0 +1,107 @@
+{
+  "sourcePath": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/server/lib/authorization/getUsersInRole.ts",
+  "symbols": [
+    {
+      "type": "function",
+      "name": "getUsersInRole",
+      "exported": true,
+      "line": 17,
+      "endLine": 24,
+      "signature": "export function getUsersInRole<P = IUser>( roleId: IRole['_id'], scope: string | undefined, options?: any | undefined, ): Promise<FindCursor<IUser | P>>",
+      "calls": [
+        {
+          "name": "findUsersInRole",
+          "edgeType": "call"
+        },
+        {
+          "name": "IUser",
+          "edgeType": "type"
+        },
+        {
+          "name": "IRole",
+          "edgeType": "type"
+        },
+        {
+          "name": "FindCursor",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "function",
+      "name": "getUsersInRolePaginated",
+      "exported": true,
+      "line": 25,
+      "endLine": 50,
+      "signature": "export async function getUsersInRolePaginated( roleId: IRole['_id'], scope: string | undefined, options?: any | undefined, ): Promise<FindPaginated<FindCursor<IUser>>>",
+      "calls": [
+        {
+          "name": "findOneById",
+          "edgeType": "call"
+        },
+        {
+          "name": "toArray",
+          "edgeType": "call"
+        },
+        {
+          "name": "map",
+          "edgeType": "call"
+        },
+        {
+          "name": "findByRolesAndRoomId",
+          "edgeType": "call"
+        },
+        {
+          "name": "findPaginated",
+          "edgeType": "call"
+        },
+        {
+          "name": "compact",
+          "edgeType": "call"
+        },
+        {
+          "name": "findPaginatedUsersInRoles",
+          "edgeType": "call"
+        },
+        {
+          "name": "IRole",
+          "edgeType": "type"
+        },
+        {
+          "name": "FindPaginated",
+          "edgeType": "type"
+        },
+        {
+          "name": "FindCursor",
+          "edgeType": "type"
+        },
+        {
+          "name": "IUser",
+          "edgeType": "type"
+        }
+      ]
+    }
+  ],
+  "imports": [
+    {
+      "module": "@rocket.chat/core-typings",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/model-typings",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/models",
+      "resolved": "external"
+    },
+    {
+      "module": "lodash",
+      "resolved": "external"
+    },
+    {
+      "module": "mongodb",
+      "resolved": "external"
+    }
+  ]
+}

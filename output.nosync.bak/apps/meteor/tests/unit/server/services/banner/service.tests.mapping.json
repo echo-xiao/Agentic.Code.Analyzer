@@ -1,0 +1,241 @@
+{
+  "sourcePath": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/tests/unit/server/services/banner/service.tests.ts",
+  "symbols": [
+    {
+      "type": "module",
+      "name": "service.tests",
+      "exported": false,
+      "line": 1,
+      "endLine": 150,
+      "signature": "service.tests",
+      "calls": [
+        {
+          "name": "describe",
+          "edgeType": "call"
+        },
+        {
+          "name": "before",
+          "edgeType": "call"
+        },
+        {
+          "name": "registerModel",
+          "edgeType": "call"
+        },
+        {
+          "name": "afterEach",
+          "edgeType": "call"
+        },
+        {
+          "name": "restore",
+          "edgeType": "call"
+        },
+        {
+          "name": "it",
+          "edgeType": "call"
+        },
+        {
+          "name": "an",
+          "edgeType": "call"
+        },
+        {
+          "name": "expect",
+          "edgeType": "call"
+        },
+        {
+          "name": "replace",
+          "edgeType": "call"
+        },
+        {
+          "name": "returns",
+          "edgeType": "call"
+        },
+        {
+          "name": "findCursorFactory",
+          "edgeType": "call"
+        },
+        {
+          "name": "resolve",
+          "edgeType": "call"
+        },
+        {
+          "name": "getBannersForUser",
+          "edgeType": "call"
+        },
+        {
+          "name": "equal",
+          "edgeType": "call"
+        },
+        {
+          "name": "lengthOf",
+          "edgeType": "call"
+        },
+        {
+          "name": "BannerService",
+          "edgeType": "new"
+        },
+        {
+          "name": "IBanner",
+          "edgeType": "type"
+        },
+        {
+          "name": "IBannerDismiss",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "class",
+      "name": "BannerModel",
+      "exported": false,
+      "line": 11,
+      "endLine": 20,
+      "signature": "class BannerModel extends BaseRaw<any>",
+      "calls": [
+        {
+          "name": "BaseRaw",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "findActiveByRoleOrId",
+      "exported": false,
+      "qualifiedName": "BannerModel.findActiveByRoleOrId",
+      "line": 12,
+      "endLine": 19,
+      "signature": "findActiveByRoleOrId( _roles: string[], _platform: BannerPlatform, _bannerId?: string, _options?: FindOptions<IBanner>, ): FindCursor<IBanner>",
+      "containerClass": "BannerModel",
+      "calls": [
+        {
+          "name": "BannerPlatform",
+          "edgeType": "type"
+        },
+        {
+          "name": "FindOptions",
+          "edgeType": "type"
+        },
+        {
+          "name": "IBanner",
+          "edgeType": "type"
+        },
+        {
+          "name": "FindCursor",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "class",
+      "name": "BannerDismissModel",
+      "exported": false,
+      "line": 22,
+      "endLine": 26,
+      "signature": "class BannerDismissModel extends BaseRaw<any>",
+      "calls": [
+        {
+          "name": "BaseRaw",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "findByUserIdAndBannerId",
+      "exported": false,
+      "qualifiedName": "BannerDismissModel.findByUserIdAndBannerId",
+      "line": 23,
+      "endLine": 25,
+      "signature": "findByUserIdAndBannerId(): FindCursor<Pick<IBannerDismiss, 'bannerId'>>",
+      "containerClass": "BannerDismissModel",
+      "calls": [
+        {
+          "name": "FindCursor",
+          "edgeType": "type"
+        },
+        {
+          "name": "IBannerDismiss",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "class",
+      "name": "UserModel",
+      "exported": false,
+      "line": 28,
+      "endLine": 32,
+      "signature": "class UserModel extends BaseRaw<any>",
+      "calls": [
+        {
+          "name": "BaseRaw",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "findOneById",
+      "exported": false,
+      "qualifiedName": "UserModel.findOneById",
+      "line": 29,
+      "endLine": 31,
+      "signature": "override findOneById(): Promise<any>",
+      "containerClass": "UserModel",
+      "calls": [
+        {
+          "name": "resolve",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "function",
+      "name": "findCursorFactory",
+      "exported": false,
+      "line": 34,
+      "endLine": 38,
+      "signature": "function findCursorFactory<T>(items: T[]): FindCursor<T>",
+      "calls": [
+        {
+          "name": "resolve",
+          "edgeType": "call"
+        },
+        {
+          "name": "FindCursor",
+          "edgeType": "type"
+        }
+      ]
+    }
+  ],
+  "imports": [
+    {
+      "module": "@rocket.chat/core-typings",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/models",
+      "resolved": "external"
+    },
+    {
+      "module": "chai",
+      "resolved": "external"
+    },
+    {
+      "module": "mocha",
+      "resolved": "external"
+    },
+    {
+      "module": "mongodb",
+      "resolved": "external"
+    },
+    {
+      "module": "proxyquire",
+      "resolved": "external"
+    },
+    {
+      "module": "sinon",
+      "resolved": "external"
+    }
+  ]
+}

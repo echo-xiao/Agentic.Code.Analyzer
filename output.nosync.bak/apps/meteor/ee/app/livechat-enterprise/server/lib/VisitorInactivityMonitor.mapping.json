@@ -1,0 +1,445 @@
+{
+  "sourcePath": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/ee/app/livechat-enterprise/server/lib/VisitorInactivityMonitor.ts",
+  "symbols": [
+    {
+      "type": "class",
+      "name": "VisitorInactivityMonitor",
+      "exported": true,
+      "line": 16,
+      "endLine": 188,
+      "signature": "export class VisitorInactivityMonitor",
+      "calls": []
+    },
+    {
+      "type": "method",
+      "name": "start",
+      "exported": true,
+      "qualifiedName": "VisitorInactivityMonitor.start",
+      "line": 36,
+      "endLine": 43,
+      "signature": "async start()",
+      "containerClass": "VisitorInactivityMonitor",
+      "calls": [
+        {
+          "name": "_startMonitoring",
+          "edgeType": "call"
+        },
+        {
+          "name": "_initializeMessageCache",
+          "edgeType": "call"
+        },
+        {
+          "name": "findOneById",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "_startMonitoring",
+      "exported": true,
+      "qualifiedName": "VisitorInactivityMonitor._startMonitoring",
+      "line": 40,
+      "endLine": 49,
+      "signature": "private async _startMonitoring()",
+      "containerClass": "VisitorInactivityMonitor",
+      "calls": [
+        {
+          "name": "isRunning",
+          "edgeType": "call"
+        },
+        {
+          "name": "debug",
+          "edgeType": "call"
+        },
+        {
+          "name": "handleAbandonedRooms",
+          "edgeType": "call"
+        },
+        {
+          "name": "info",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "stop",
+      "exported": true,
+      "qualifiedName": "VisitorInactivityMonitor.stop",
+      "line": 44,
+      "endLine": 52,
+      "signature": "async stop()",
+      "containerClass": "VisitorInactivityMonitor",
+      "calls": [
+        {
+          "name": "isRunning",
+          "edgeType": "call"
+        },
+        {
+          "name": "remove",
+          "edgeType": "call"
+        },
+        {
+          "name": "info",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "isRunning",
+      "exported": true,
+      "qualifiedName": "VisitorInactivityMonitor.isRunning",
+      "line": 48,
+      "endLine": 50,
+      "signature": "isRunning()",
+      "containerClass": "VisitorInactivityMonitor",
+      "calls": []
+    },
+    {
+      "type": "method",
+      "name": "_initializeMessageCache",
+      "exported": true,
+      "qualifiedName": "VisitorInactivityMonitor._initializeMessageCache",
+      "line": 52,
+      "endLine": 54,
+      "signature": "_initializeMessageCache()",
+      "containerClass": "VisitorInactivityMonitor",
+      "calls": [
+        {
+          "name": "clear",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "_getDepartmentAbandonedCustomMessage",
+      "exported": true,
+      "qualifiedName": "VisitorInactivityMonitor._getDepartmentAbandonedCustomMessage",
+      "line": 56,
+      "endLine": 70,
+      "signature": "async _getDepartmentAbandonedCustomMessage(departmentId: string)",
+      "containerClass": "VisitorInactivityMonitor",
+      "calls": [
+        {
+          "name": "has",
+          "edgeType": "call"
+        },
+        {
+          "name": "get",
+          "edgeType": "call"
+        },
+        {
+          "name": "findOneById",
+          "edgeType": "call"
+        },
+        {
+          "name": "error",
+          "edgeType": "call"
+        },
+        {
+          "name": "set",
+          "edgeType": "call"
+        },
+        {
+          "name": "ILivechatDepartment",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "closeRooms",
+      "exported": true,
+      "qualifiedName": "VisitorInactivityMonitor.closeRooms",
+      "line": 60,
+      "endLine": 72,
+      "signature": "async closeRooms(room: IOmnichannelRoom)",
+      "containerClass": "VisitorInactivityMonitor",
+      "calls": [
+        {
+          "name": "getDefaultAbandonedCustomMessage",
+          "edgeType": "call"
+        },
+        {
+          "name": "_getDepartmentAbandonedCustomMessage",
+          "edgeType": "call"
+        },
+        {
+          "name": "closeRoom",
+          "edgeType": "call"
+        },
+        {
+          "name": "notifyOnRoomChangedById",
+          "edgeType": "call"
+        },
+        {
+          "name": "info",
+          "edgeType": "call"
+        },
+        {
+          "name": "IOmnichannelRoom",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "placeRoomOnHold",
+      "exported": true,
+      "qualifiedName": "VisitorInactivityMonitor.placeRoomOnHold",
+      "line": 64,
+      "endLine": 78,
+      "signature": "async placeRoomOnHold(room: IOmnichannelRoom)",
+      "containerClass": "VisitorInactivityMonitor",
+      "calls": [
+        {
+          "name": "getDefaultAbandonedCustomMessage",
+          "edgeType": "call"
+        },
+        {
+          "name": "allSettled",
+          "edgeType": "call"
+        },
+        {
+          "name": "placeRoomOnHold",
+          "edgeType": "call"
+        },
+        {
+          "name": "unsetPredictedVisitorAbandonmentByRoomId",
+          "edgeType": "call"
+        },
+        {
+          "name": "map",
+          "edgeType": "call"
+        },
+        {
+          "name": "filter",
+          "edgeType": "call"
+        },
+        {
+          "name": "error",
+          "edgeType": "call"
+        },
+        {
+          "name": "notifyOnRoomChangedById",
+          "edgeType": "call"
+        },
+        {
+          "name": "IOmnichannelRoom",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "handleAbandonedRooms",
+      "exported": true,
+      "qualifiedName": "VisitorInactivityMonitor.handleAbandonedRooms",
+      "line": 68,
+      "endLine": 100,
+      "signature": "async handleAbandonedRooms()",
+      "containerClass": "VisitorInactivityMonitor",
+      "calls": [
+        {
+          "name": "get",
+          "edgeType": "call"
+        },
+        {
+          "name": "livechat.applyRoomRestrictions",
+          "edgeType": "event_emit"
+        },
+        {
+          "name": "forEach",
+          "edgeType": "call"
+        },
+        {
+          "name": "findAbandonedOpenRooms",
+          "edgeType": "call"
+        },
+        {
+          "name": "info",
+          "edgeType": "call"
+        },
+        {
+          "name": "push",
+          "edgeType": "call"
+        },
+        {
+          "name": "closeRooms",
+          "edgeType": "call"
+        },
+        {
+          "name": "placeRoomOnHold",
+          "edgeType": "call"
+        },
+        {
+          "name": "allSettled",
+          "edgeType": "call"
+        },
+        {
+          "name": "map",
+          "edgeType": "call"
+        },
+        {
+          "name": "filter",
+          "edgeType": "call"
+        },
+        {
+          "name": "error",
+          "edgeType": "call"
+        },
+        {
+          "name": "_initializeMessageCache",
+          "edgeType": "call"
+        },
+        {
+          "name": "Date",
+          "edgeType": "new"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "getDefaultAbandonedCustomMessage",
+      "exported": true,
+      "qualifiedName": "VisitorInactivityMonitor.getDefaultAbandonedCustomMessage",
+      "line": 72,
+      "endLine": 105,
+      "signature": "private async getDefaultAbandonedCustomMessage(abandonmentAction: 'close' | 'on-hold', visitorId: string)",
+      "containerClass": "VisitorInactivityMonitor",
+      "calls": [
+        {
+          "name": "findOneEnabledById",
+          "edgeType": "call"
+        },
+        {
+          "name": "error",
+          "edgeType": "call"
+        },
+        {
+          "name": "get",
+          "edgeType": "call"
+        },
+        {
+          "name": "ILivechatVisitor",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "constructor",
+      "exported": true,
+      "qualifiedName": "VisitorInactivityMonitor.constructor",
+      "line": 29,
+      "endLine": 34,
+      "signature": "constructor()",
+      "containerClass": "VisitorInactivityMonitor",
+      "calls": [
+        {
+          "name": "section",
+          "edgeType": "call"
+        },
+        {
+          "name": "Map",
+          "edgeType": "new"
+        }
+      ]
+    },
+    {
+      "type": "class_property",
+      "name": "user",
+      "exported": true,
+      "qualifiedName": "VisitorInactivityMonitor.user",
+      "line": 23,
+      "endLine": 23,
+      "signature": "user: IUser;",
+      "containerClass": "VisitorInactivityMonitor",
+      "calls": [
+        {
+          "name": "IUser",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "class_property",
+      "name": "logger",
+      "exported": true,
+      "qualifiedName": "VisitorInactivityMonitor.logger",
+      "line": 25,
+      "endLine": 25,
+      "signature": "logger: MainLogger;",
+      "containerClass": "VisitorInactivityMonitor",
+      "calls": [
+        {
+          "name": "MainLogger",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "variable_function",
+      "name": "isPromiseRejectedResult",
+      "exported": false,
+      "line": 14,
+      "endLine": 14,
+      "signature": "(result: any): result is PromiseRejectedResult =>",
+      "calls": [
+        {
+          "name": "PromiseRejectedResult",
+          "edgeType": "type"
+        }
+      ]
+    }
+  ],
+  "imports": [
+    {
+      "module": "@rocket.chat/core-services",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/core-typings",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/cron",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/logger",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/models",
+      "resolved": "external"
+    },
+    {
+      "module": "./logger",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/ee/app/livechat-enterprise/server/lib/logger.ts"
+    },
+    {
+      "module": "../../../../../app/lib/server/lib/notifyListener",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/app/lib/server/lib/notifyListener.ts"
+    },
+    {
+      "module": "../../../../../app/livechat/server/lib/closeRoom",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/app/livechat/server/lib/closeRoom.ts"
+    },
+    {
+      "module": "../../../../../app/settings/server",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/app/settings/server/index.ts"
+    },
+    {
+      "module": "../../../../../server/lib/callbacks",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/server/lib/callbacks.ts"
+    },
+    {
+      "module": "../../../../../server/lib/i18n",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/server/lib/i18n.ts"
+    }
+  ]
+}

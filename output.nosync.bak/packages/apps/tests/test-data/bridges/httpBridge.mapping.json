@@ -1,0 +1,57 @@
+{
+  "sourcePath": "/Users/echoooooo/Desktop/code/Rocket.Chat/packages/apps/tests/test-data/bridges/httpBridge.ts",
+  "symbols": [
+    {
+      "type": "class",
+      "name": "TestsHttpBridge",
+      "exported": true,
+      "line": 6,
+      "endLine": 16,
+      "signature": "export class TestsHttpBridge extends HttpBridge",
+      "calls": [
+        {
+          "name": "HttpBridge",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "call",
+      "exported": true,
+      "qualifiedName": "TestsHttpBridge.call",
+      "line": 7,
+      "endLine": 15,
+      "signature": "public call(info: IHttpBridgeRequestInfo): Promise<IHttpResponse>",
+      "containerClass": "TestsHttpBridge",
+      "calls": [
+        {
+          "name": "resolve",
+          "edgeType": "call"
+        },
+        {
+          "name": "IHttpBridgeRequestInfo",
+          "edgeType": "type"
+        },
+        {
+          "name": "IHttpResponse",
+          "edgeType": "type"
+        }
+      ]
+    }
+  ],
+  "imports": [
+    {
+      "module": "@rocket.chat/apps-engine/definition/accessors",
+      "resolved": "external"
+    },
+    {
+      "module": "../../../src/server/bridges",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/packages/apps/src/server/bridges/index.ts"
+    },
+    {
+      "module": "../../../src/server/bridges",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/packages/apps/src/server/bridges/index.ts"
+    }
+  ]
+}

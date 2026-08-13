@@ -1,0 +1,90 @@
+{
+  "sourcePath": "/Users/echoooooo/Desktop/code/Rocket.Chat/packages/ui-voip/src/components/PeerInfo/InternalUser.tsx",
+  "symbols": [
+    {
+      "type": "variable_function",
+      "name": "getRemoteStatusText",
+      "exported": false,
+      "line": 15,
+      "endLine": 20,
+      "signature": "(slots?: Slot[]) =>",
+      "calls": [
+        {
+          "name": "join",
+          "edgeType": "call"
+        },
+        {
+          "name": "map",
+          "edgeType": "call"
+        },
+        {
+          "name": "Slot",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "variable_function",
+      "name": "InternalUser",
+      "exported": false,
+      "line": 19,
+      "endLine": 46,
+      "signature": "({ displayName, avatarUrl, callerId, status, slots, remoteMuted }: InternalUserProps) =>",
+      "calls": [
+        {
+          "name": "getRemoteStatusText",
+          "edgeType": "call"
+        },
+        {
+          "name": "Box",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "Avatar",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "Icon",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "StatusBullet",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "avatarUrl",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "status",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "InternalUserProps",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "type",
+      "name": "InternalUserProps",
+      "line": 6,
+      "endLine": 13,
+      "signature": "type InternalUserProps ="
+    }
+  ],
+  "imports": [
+    {
+      "module": "@rocket.chat/core-typings",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/fuselage",
+      "resolved": "external"
+    },
+    {
+      "module": "./useInfoSlots",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/packages/ui-voip/src/components/PeerInfo/useInfoSlots.ts"
+    }
+  ]
+}

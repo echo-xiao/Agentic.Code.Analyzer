@@ -1,0 +1,240 @@
+{
+  "sourcePath": "/Users/echoooooo/Desktop/code/Rocket.Chat/packages/apps/base-runtime/src/lib/accessors/notifier.ts",
+  "symbols": [
+    {
+      "type": "class",
+      "name": "Notifier",
+      "exported": true,
+      "line": 13,
+      "endLine": 80,
+      "signature": "export class Notifier implements INotifier",
+      "calls": [
+        {
+          "name": "INotifier",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "notifyUser",
+      "exported": true,
+      "qualifiedName": "Notifier.notifyUser",
+      "line": 20,
+      "endLine": 28,
+      "signature": "public async notifyUser(user: IUser, message: IMessage): Promise<void>",
+      "containerClass": "Notifier",
+      "calls": [
+        {
+          "name": "getAppUser",
+          "edgeType": "call"
+        },
+        {
+          "name": "callMessageBridge",
+          "edgeType": "call"
+        },
+        {
+          "name": "get",
+          "edgeType": "call"
+        },
+        {
+          "name": "IUser",
+          "edgeType": "type"
+        },
+        {
+          "name": "IMessage",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "notifyRoom",
+      "exported": true,
+      "qualifiedName": "Notifier.notifyRoom",
+      "line": 24,
+      "endLine": 32,
+      "signature": "public async notifyRoom(room: IRoom, message: IMessage): Promise<void>",
+      "containerClass": "Notifier",
+      "calls": [
+        {
+          "name": "getAppUser",
+          "edgeType": "call"
+        },
+        {
+          "name": "callMessageBridge",
+          "edgeType": "call"
+        },
+        {
+          "name": "get",
+          "edgeType": "call"
+        },
+        {
+          "name": "IRoom",
+          "edgeType": "type"
+        },
+        {
+          "name": "IMessage",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "typing",
+      "exported": true,
+      "qualifiedName": "Notifier.typing",
+      "line": 28,
+      "endLine": 43,
+      "signature": "public async typing(options: ITypingOptions): Promise<() => Promise<void>>",
+      "containerClass": "Notifier",
+      "calls": [
+        {
+          "name": "getAppUser",
+          "edgeType": "call"
+        },
+        {
+          "name": "get",
+          "edgeType": "call"
+        },
+        {
+          "name": "callMessageBridge",
+          "edgeType": "call"
+        },
+        {
+          "name": "ITypingOptions",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "getMessageBuilder",
+      "exported": true,
+      "qualifiedName": "Notifier.getMessageBuilder",
+      "line": 32,
+      "endLine": 34,
+      "signature": "public getMessageBuilder(): IMessageBuilder",
+      "containerClass": "Notifier",
+      "calls": [
+        {
+          "name": "MessageBuilder",
+          "edgeType": "new"
+        },
+        {
+          "name": "IMessageBuilder",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "callMessageBridge",
+      "exported": true,
+      "qualifiedName": "Notifier.callMessageBridge",
+      "line": 36,
+      "endLine": 43,
+      "signature": "private async callMessageBridge(method: string, params: Array<unknown>): Promise<void>",
+      "containerClass": "Notifier",
+      "calls": [
+        {
+          "name": "catch",
+          "edgeType": "call"
+        },
+        {
+          "name": "senderFn",
+          "edgeType": "call"
+        },
+        {
+          "name": "formatErrorResponse",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "getAppUser",
+      "exported": true,
+      "qualifiedName": "Notifier.getAppUser",
+      "line": 40,
+      "endLine": 49,
+      "signature": "private async getAppUser(): Promise<IUser | undefined>",
+      "containerClass": "Notifier",
+      "calls": [
+        {
+          "name": "catch",
+          "edgeType": "call"
+        },
+        {
+          "name": "senderFn",
+          "edgeType": "call"
+        },
+        {
+          "name": "get",
+          "edgeType": "call"
+        },
+        {
+          "name": "formatErrorResponse",
+          "edgeType": "call"
+        },
+        {
+          "name": "IUser",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "constructor",
+      "exported": true,
+      "qualifiedName": "Notifier.constructor",
+      "line": 16,
+      "endLine": 18,
+      "signature": "constructor(senderFn: typeof Messenger.sendRequest)",
+      "containerClass": "Notifier",
+      "calls": []
+    }
+  ],
+  "imports": [
+    {
+      "module": "@rocket.chat/apps-engine/definition/accessors",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/apps-engine/definition/accessors/INotifier",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/apps-engine/definition/accessors/INotifier",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/apps-engine/definition/messages",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/apps-engine/definition/rooms",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/apps-engine/definition/users",
+      "resolved": "external"
+    },
+    {
+      "module": "./builders/MessageBuilder",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/packages/apps/base-runtime/src/lib/accessors/builders/MessageBuilder.ts"
+    },
+    {
+      "module": "../../AppObjectRegistry",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/packages/apps/base-runtime/src/AppObjectRegistry.ts"
+    },
+    {
+      "module": "../messenger",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/packages/apps/base-runtime/src/lib/messenger.ts"
+    },
+    {
+      "module": "./formatResponseErrorHandler",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/packages/apps/base-runtime/src/lib/accessors/formatResponseErrorHandler.ts"
+    }
+  ]
+}

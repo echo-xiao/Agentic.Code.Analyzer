@@ -1,0 +1,105 @@
+{
+  "sourcePath": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/ee/app/license/server/airGappedRestrictions.ts",
+  "symbols": [
+    {
+      "type": "module",
+      "name": "airGappedRestrictions",
+      "exported": false,
+      "line": 1,
+      "endLine": 44,
+      "signature": "airGappedRestrictions",
+      "calls": [
+        {
+          "name": "remainingDays",
+          "edgeType": "event_listen"
+        },
+        {
+          "name": "updateRestrictionSetting",
+          "edgeType": "call"
+        },
+        {
+          "name": "sendRocketCatWarningToAdmins",
+          "edgeType": "call"
+        },
+        {
+          "name": "onValidateLicense",
+          "edgeType": "call"
+        },
+        {
+          "name": "findLastStatsToken",
+          "edgeType": "call"
+        },
+        {
+          "name": "computeRestriction",
+          "edgeType": "call"
+        },
+        {
+          "name": "onRemoveLicense",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "variable_function",
+      "name": "updateRestrictionSetting",
+      "exported": false,
+      "line": 9,
+      "endLine": 14,
+      "signature": "async (remainingDays: number) =>",
+      "calls": [
+        {
+          "name": "updateAuditedBySystem",
+          "edgeType": "call"
+        },
+        {
+          "name": "notifyOnSettingChangedById",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "variable_function",
+      "name": "sendRocketCatWarningToAdmins",
+      "exported": false,
+      "line": 13,
+      "endLine": 25,
+      "signature": "async (remainingDays: number) =>",
+      "calls": [
+        {
+          "name": "isWarningPeriod",
+          "edgeType": "call"
+        },
+        {
+          "name": "sendMessagesToAdmins",
+          "edgeType": "call"
+        }
+      ]
+    }
+  ],
+  "imports": [
+    {
+      "module": "@rocket.chat/license",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/models",
+      "resolved": "external"
+    },
+    {
+      "module": "../../../../app/lib/server/lib/notifyListener",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/app/lib/server/lib/notifyListener.ts"
+    },
+    {
+      "module": "../../../../server/lib/i18n",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/server/lib/i18n.ts"
+    },
+    {
+      "module": "../../../../server/lib/sendMessagesToAdmins",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/server/lib/sendMessagesToAdmins.ts"
+    },
+    {
+      "module": "../../../../server/settings/lib/auditedSettingUpdates",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/server/settings/lib/auditedSettingUpdates.ts"
+    }
+  ]
+}

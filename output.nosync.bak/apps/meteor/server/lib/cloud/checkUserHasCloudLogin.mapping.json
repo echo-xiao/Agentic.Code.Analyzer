@@ -1,0 +1,33 @@
+{
+  "sourcePath": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/server/lib/cloud/checkUserHasCloudLogin.ts",
+  "symbols": [
+    {
+      "type": "function",
+      "name": "checkUserHasCloudLogin",
+      "exported": true,
+      "line": 5,
+      "endLine": 23,
+      "signature": "export async function checkUserHasCloudLogin(userId: string)",
+      "calls": [
+        {
+          "name": "retrieveRegistrationStatus",
+          "edgeType": "call"
+        },
+        {
+          "name": "findOneById",
+          "edgeType": "call"
+        }
+      ]
+    }
+  ],
+  "imports": [
+    {
+      "module": "@rocket.chat/models",
+      "resolved": "external"
+    },
+    {
+      "module": "./retrieveRegistrationStatus",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/server/lib/cloud/retrieveRegistrationStatus.ts"
+    }
+  ]
+}

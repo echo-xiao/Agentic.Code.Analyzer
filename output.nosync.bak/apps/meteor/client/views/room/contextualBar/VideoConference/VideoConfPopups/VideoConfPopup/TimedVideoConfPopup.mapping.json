@@ -1,0 +1,244 @@
+{
+  "sourcePath": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/client/views/room/contextualBar/VideoConference/VideoConfPopups/VideoConfPopup/TimedVideoConfPopup.tsx",
+  "symbols": [
+    {
+      "type": "inner_function",
+      "name": "handleConfirm",
+      "exported": false,
+      "qualifiedName": "TimedVideoConfPopup.handleConfirm",
+      "line": 46,
+      "endLine": 48,
+      "signature": "(): void =>",
+      "calls": [
+        {
+          "name": "acceptCall",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "inner_function",
+      "name": "handleClose",
+      "exported": false,
+      "qualifiedName": "TimedVideoConfPopup.handleClose",
+      "line": 50,
+      "endLine": 57,
+      "signature": "(id: string): void =>",
+      "calls": [
+        {
+          "name": "rejectCall",
+          "edgeType": "call"
+        },
+        {
+          "name": "abortCall",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "inner_function",
+      "name": "handleMute",
+      "exported": false,
+      "qualifiedName": "TimedVideoConfPopup.handleMute",
+      "line": 59,
+      "endLine": 61,
+      "signature": "(): void =>",
+      "calls": [
+        {
+          "name": "dismissCall",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "inner_function",
+      "name": "handleStartCall",
+      "exported": false,
+      "qualifiedName": "TimedVideoConfPopup.handleStartCall",
+      "line": 63,
+      "endLine": 66,
+      "signature": "async (): Promise<void> =>",
+      "calls": [
+        {
+          "name": "setStarting",
+          "edgeType": "call"
+        },
+        {
+          "name": "startCall",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "variable_function",
+      "name": "TimedVideoConfPopup",
+      "exported": false,
+      "line": 27,
+      "endLine": 77,
+      "signature": "({ id, rid, isReceiving = false, isCalling = false, position }: TimedVideoConfPopupProps) =>",
+      "calls": [
+        {
+          "name": "useState",
+          "edgeType": "call"
+        },
+        {
+          "name": "useVideoConfAcceptCall",
+          "edgeType": "call"
+        },
+        {
+          "name": "useVideoConfAbortCall",
+          "edgeType": "call"
+        },
+        {
+          "name": "useVideoConfRejectIncomingCall",
+          "edgeType": "call"
+        },
+        {
+          "name": "useVideoConfDismissCall",
+          "edgeType": "call"
+        },
+        {
+          "name": "useVideoConfStartCall",
+          "edgeType": "call"
+        },
+        {
+          "name": "useVideoConfDismissOutgoing",
+          "edgeType": "call"
+        },
+        {
+          "name": "useFocusManager",
+          "edgeType": "call"
+        },
+        {
+          "name": "useUserRoom",
+          "edgeType": "call"
+        },
+        {
+          "name": "useEffect",
+          "edgeType": "call"
+        },
+        {
+          "name": "focusFirst",
+          "edgeType": "call"
+        },
+        {
+          "name": "acceptCall",
+          "edgeType": "call"
+        },
+        {
+          "name": "rejectCall",
+          "edgeType": "call"
+        },
+        {
+          "name": "abortCall",
+          "edgeType": "call"
+        },
+        {
+          "name": "dismissCall",
+          "edgeType": "call"
+        },
+        {
+          "name": "setStarting",
+          "edgeType": "call"
+        },
+        {
+          "name": "startCall",
+          "edgeType": "call"
+        },
+        {
+          "name": "IncomingPopup",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "OutgoingPopup",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "StartCallPopup",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "room",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "id",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "position",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "handleClose",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "handleMute",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "handleConfirm",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "starting",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "dismissOutgoing",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "handleStartCall",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "TimedVideoConfPopupProps",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "type",
+      "name": "TimedVideoConfPopupProps",
+      "line": 18,
+      "endLine": 25,
+      "signature": "export type TimedVideoConfPopupProps ="
+    }
+  ],
+  "imports": [
+    {
+      "module": "@react-aria/focus",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/core-typings",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/ui-contexts",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/ui-video-conf",
+      "resolved": "external"
+    },
+    {
+      "module": "react",
+      "resolved": "external"
+    },
+    {
+      "module": "./IncomingPopup",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/client/views/room/contextualBar/VideoConference/VideoConfPopups/VideoConfPopup/IncomingPopup.tsx"
+    },
+    {
+      "module": "./OutgoingPopup",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/client/views/room/contextualBar/VideoConference/VideoConfPopups/VideoConfPopup/OutgoingPopup.tsx"
+    },
+    {
+      "module": "./StartCallPopup",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/client/views/room/contextualBar/VideoConference/VideoConfPopups/VideoConfPopup/StartCallPopup.tsx"
+    }
+  ]
+}

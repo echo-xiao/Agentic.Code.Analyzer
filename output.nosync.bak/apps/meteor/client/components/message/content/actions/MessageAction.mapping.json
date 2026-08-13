@@ -1,0 +1,90 @@
+{
+  "sourcePath": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/client/components/message/content/actions/MessageAction.tsx",
+  "symbols": [
+    {
+      "type": "variable_function",
+      "name": "resolveLegacyIcon",
+      "exported": false,
+      "line": 6,
+      "endLine": 12,
+      "signature": "(legacyIcon: IconName | `icon-${IconName | 'videocam'}`): IconName =>",
+      "calls": [
+        {
+          "name": "replace",
+          "edgeType": "call"
+        },
+        {
+          "name": "IconName",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "variable_function",
+      "name": "MessageAction",
+      "exported": false,
+      "line": 19,
+      "endLine": 29,
+      "signature": "({ icon, methodId, i18nLabel, label, runAction, danger }: MessageActionProps) =>",
+      "calls": [
+        {
+          "name": "useTranslation",
+          "edgeType": "call"
+        },
+        {
+          "name": "resolveLegacyIcon",
+          "edgeType": "call"
+        },
+        {
+          "name": "runAction",
+          "edgeType": "call"
+        },
+        {
+          "name": "Button",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "resolvedIcon",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "methodId",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "danger",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "MessageActionProps",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "type",
+      "name": "MessageActionProps",
+      "line": 10,
+      "endLine": 17,
+      "signature": "export type MessageActionProps ="
+    }
+  ],
+  "imports": [
+    {
+      "module": "@rocket.chat/fuselage",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/icons",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/ui-contexts",
+      "resolved": "external"
+    },
+    {
+      "module": "react-i18next",
+      "resolved": "external"
+    }
+  ]
+}

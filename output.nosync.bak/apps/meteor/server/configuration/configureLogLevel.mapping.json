@@ -1,0 +1,49 @@
+{
+  "sourcePath": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/server/configuration/configureLogLevel.ts",
+  "symbols": [
+    {
+      "type": "function",
+      "name": "configureLogLevel",
+      "exported": true,
+      "line": 6,
+      "endLine": 17,
+      "signature": "export async function configureLogLevel(settings: ICachedSettings)",
+      "calls": [
+        {
+          "name": "getValueById",
+          "edgeType": "call"
+        },
+        {
+          "name": "changed",
+          "edgeType": "event_emit"
+        },
+        {
+          "name": "watch",
+          "edgeType": "call"
+        },
+        {
+          "name": "ICachedSettings",
+          "edgeType": "type"
+        },
+        {
+          "name": "LogLevelSetting",
+          "edgeType": "type"
+        }
+      ]
+    }
+  ],
+  "imports": [
+    {
+      "module": "@rocket.chat/logger",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/models",
+      "resolved": "external"
+    },
+    {
+      "module": "../../app/settings/server/CachedSettings",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/app/settings/server/CachedSettings.ts"
+    }
+  ]
+}

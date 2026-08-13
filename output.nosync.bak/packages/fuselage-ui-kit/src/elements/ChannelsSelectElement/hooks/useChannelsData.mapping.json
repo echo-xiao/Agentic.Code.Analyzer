@@ -1,0 +1,66 @@
+{
+  "sourcePath": "/Users/echoooooo/Desktop/code/Rocket.Chat/packages/fuselage-ui-kit/src/elements/ChannelsSelectElement/hooks/useChannelsData.ts",
+  "symbols": [
+    {
+      "type": "variable_function",
+      "name": "generateQuery",
+      "exported": false,
+      "line": 8,
+      "endLine": 12,
+      "signature": "( term = '', ): { selector: string; } =>",
+      "calls": [
+        {
+          "name": "stringify",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "variable_function",
+      "name": "useChannelsData",
+      "exported": true,
+      "line": 14,
+      "endLine": 35,
+      "signature": "({ filter }: useChannelsDataProps) =>",
+      "calls": [
+        {
+          "name": "useEndpoint",
+          "edgeType": "call"
+        },
+        {
+          "name": "useQuery",
+          "edgeType": "call"
+        },
+        {
+          "name": "getRooms",
+          "edgeType": "call"
+        },
+        {
+          "name": "generateQuery",
+          "edgeType": "call"
+        },
+        {
+          "name": "map",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "type",
+      "name": "useChannelsDataProps",
+      "line": 4,
+      "endLine": 6,
+      "signature": "type useChannelsDataProps ="
+    }
+  ],
+  "imports": [
+    {
+      "module": "@rocket.chat/ui-contexts",
+      "resolved": "external"
+    },
+    {
+      "module": "@tanstack/react-query",
+      "resolved": "external"
+    }
+  ]
+}

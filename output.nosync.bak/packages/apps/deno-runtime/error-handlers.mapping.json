@@ -1,0 +1,69 @@
+{
+  "sourcePath": "/Users/echoooooo/Desktop/code/Rocket.Chat/packages/apps/deno-runtime/error-handlers.ts",
+  "symbols": [
+    {
+      "type": "function",
+      "name": "unhandledRejectionListener",
+      "exported": true,
+      "line": 3,
+      "endLine": 12,
+      "signature": "export function unhandledRejectionListener(event: PromiseRejectionEvent)",
+      "calls": [
+        {
+          "name": "preventDefault",
+          "edgeType": "call"
+        },
+        {
+          "name": "sendNotification",
+          "edgeType": "call"
+        },
+        {
+          "name": "PromiseRejectionEvent",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "function",
+      "name": "unhandledExceptionListener",
+      "exported": true,
+      "line": 7,
+      "endLine": 16,
+      "signature": "export function unhandledExceptionListener(event: ErrorEvent)",
+      "calls": [
+        {
+          "name": "preventDefault",
+          "edgeType": "call"
+        },
+        {
+          "name": "sendNotification",
+          "edgeType": "call"
+        },
+        {
+          "name": "ErrorEvent",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "function",
+      "name": "registerErrorListeners",
+      "exported": true,
+      "line": 11,
+      "endLine": 14,
+      "signature": "export default function registerErrorListeners()",
+      "calls": [
+        {
+          "name": "addEventListener",
+          "edgeType": "call"
+        }
+      ]
+    }
+  ],
+  "imports": [
+    {
+      "module": "@rocket.chat/apps/base-runtime/lib/messenger",
+      "resolved": "external"
+    }
+  ]
+}

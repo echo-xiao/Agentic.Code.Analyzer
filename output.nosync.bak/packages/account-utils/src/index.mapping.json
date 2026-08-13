@@ -1,0 +1,33 @@
+{
+  "sourcePath": "/Users/echoooooo/Desktop/code/Rocket.Chat/packages/account-utils/src/index.ts",
+  "symbols": [
+    {
+      "type": "function",
+      "name": "hashLoginToken",
+      "exported": true,
+      "line": 3,
+      "endLine": 7,
+      "signature": "export function hashLoginToken(loginToken: string): string",
+      "calls": [
+        {
+          "name": "createHash",
+          "edgeType": "call"
+        },
+        {
+          "name": "update",
+          "edgeType": "call"
+        },
+        {
+          "name": "digest",
+          "edgeType": "call"
+        }
+      ]
+    }
+  ],
+  "imports": [
+    {
+      "module": "node:crypto",
+      "resolved": "external"
+    }
+  ]
+}

@@ -1,0 +1,282 @@
+{
+  "sourcePath": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/client/components/message/variants/room/RoomMessageContent.tsx",
+  "symbols": [
+    {
+      "type": "module",
+      "name": "RoomMessageContent",
+      "exported": false,
+      "line": 1,
+      "endLine": 139,
+      "signature": "RoomMessageContent",
+      "calls": [
+        {
+          "name": "memo",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "variable_function",
+      "name": "RoomMessageContent",
+      "exported": false,
+      "line": 34,
+      "endLine": 136,
+      "signature": "({ message, unread, all, mention, searchText }: RoomMessageContentProps) =>",
+      "calls": [
+        {
+          "name": "isE2EEMessage",
+          "edgeType": "call"
+        },
+        {
+          "name": "useOembedLayout",
+          "edgeType": "call"
+        },
+        {
+          "name": "useSubscriptionFromMessageQuery",
+          "edgeType": "call"
+        },
+        {
+          "name": "useUserId",
+          "edgeType": "call"
+        },
+        {
+          "name": "useMessageListReadReceipts",
+          "edgeType": "call"
+        },
+        {
+          "name": "useUserPresence",
+          "edgeType": "call"
+        },
+        {
+          "name": "useChat",
+          "edgeType": "call"
+        },
+        {
+          "name": "useTranslation",
+          "edgeType": "call"
+        },
+        {
+          "name": "useNormalizedMessage",
+          "edgeType": "call"
+        },
+        {
+          "name": "filter",
+          "edgeType": "call"
+        },
+        {
+          "name": "isQuoteAttachment",
+          "edgeType": "call"
+        },
+        {
+          "name": "map",
+          "edgeType": "call"
+        },
+        {
+          "name": "keys",
+          "edgeType": "call"
+        },
+        {
+          "name": "isThreadMainMessage",
+          "edgeType": "call"
+        },
+        {
+          "name": "Boolean",
+          "edgeType": "call"
+        },
+        {
+          "name": "indexOf",
+          "edgeType": "call"
+        },
+        {
+          "name": "isDiscussionMessage",
+          "edgeType": "call"
+        },
+        {
+          "name": "MessageBody",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "Attachments",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "MessageContentBody",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "UiKitMessageBlock",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "UrlPreviews",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "MessageActions",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "Reactions",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "ThreadMetrics",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "DiscussionMetrics",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "Location",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "BroadcastMetrics",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "ReadReceiptIndicator",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "quotes",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "searchText",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "attachments",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "normalizedMessage",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "unread",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "mention",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "all",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "RoomMessageContentProps",
+          "edgeType": "type"
+        },
+        {
+          "name": "TranslationKey",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "type",
+      "name": "RoomMessageContentProps",
+      "line": 26,
+      "endLine": 32,
+      "signature": "export type RoomMessageContentProps ="
+    }
+  ],
+  "imports": [
+    {
+      "module": "@rocket.chat/core-typings",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/core-typings",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/fuselage",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/ui-contexts",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/ui-contexts",
+      "resolved": "external"
+    },
+    {
+      "module": "react",
+      "resolved": "external"
+    },
+    {
+      "module": "react-i18next",
+      "resolved": "external"
+    },
+    {
+      "module": "../../../../views/room/contexts/ChatContext",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/client/views/room/contexts/ChatContext.ts"
+    },
+    {
+      "module": "../../MessageContentBody",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/client/components/message/MessageContentBody.tsx"
+    },
+    {
+      "module": "../../ReadReceiptIndicator",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/client/components/message/ReadReceiptIndicator.tsx"
+    },
+    {
+      "module": "../../content/Attachments",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/client/components/message/content/Attachments.tsx"
+    },
+    {
+      "module": "../../content/BroadcastMetrics",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/client/components/message/content/BroadcastMetrics.tsx"
+    },
+    {
+      "module": "../../content/DiscussionMetrics",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/client/components/message/content/DiscussionMetrics.tsx"
+    },
+    {
+      "module": "../../content/Location",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/client/components/message/content/Location.tsx"
+    },
+    {
+      "module": "../../content/MessageActions",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/client/components/message/content/MessageActions.tsx"
+    },
+    {
+      "module": "../../content/Reactions",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/client/components/message/content/Reactions.tsx"
+    },
+    {
+      "module": "../../content/ThreadMetrics",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/client/components/message/content/ThreadMetrics.tsx"
+    },
+    {
+      "module": "../../content/UrlPreviews",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/client/components/message/content/UrlPreviews.tsx"
+    },
+    {
+      "module": "../../hooks/useNormalizedMessage",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/client/components/message/hooks/useNormalizedMessage.ts"
+    },
+    {
+      "module": "../../hooks/useOembedLayout",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/client/components/message/hooks/useOembedLayout.ts"
+    },
+    {
+      "module": "../../hooks/useSubscriptionFromMessageQuery",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/client/components/message/hooks/useSubscriptionFromMessageQuery.ts"
+    },
+    {
+      "module": "../../list/MessageListContext",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/client/components/message/list/MessageListContext.tsx"
+    },
+    {
+      "module": "../../uikit/UiKitMessageBlock",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/client/components/message/uikit/UiKitMessageBlock.tsx"
+    }
+  ]
+}

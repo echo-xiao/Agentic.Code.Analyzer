@@ -1,0 +1,131 @@
+{
+  "sourcePath": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/client/views/admin/settings/Setting/inputs/SelectSettingInput.tsx",
+  "symbols": [
+    {
+      "type": "inner_function",
+      "name": "handleChange",
+      "exported": false,
+      "qualifiedName": "SelectSettingInput.handleChange",
+      "line": 29,
+      "endLine": 31,
+      "signature": "(value: string): void =>",
+      "calls": [
+        {
+          "name": "onChangeValue",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "function",
+      "name": "SelectSettingInput",
+      "exported": true,
+      "line": 12,
+      "endLine": 56,
+      "signature": "function SelectSettingInput({ _id, label, value, hint, placeholder, readonly, autocomplete, disabled, required, values = [], hasResetButton, onChangeValue, onResetButtonClick, }: SelectSettingInputProps)",
+      "calls": [
+        {
+          "name": "useTranslation",
+          "edgeType": "call"
+        },
+        {
+          "name": "onChangeValue",
+          "edgeType": "call"
+        },
+        {
+          "name": "handleChange",
+          "edgeType": "call"
+        },
+        {
+          "name": "map",
+          "edgeType": "call"
+        },
+        {
+          "name": "Field",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "FieldRow",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "FieldLabel",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "FieldHint",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "ResetSettingButton",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "Select",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "_id",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "required",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "onResetButtonClick",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "value",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "placeholder",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "disabled",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "readonly",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "SelectSettingInputProps",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "type",
+      "name": "SelectSettingInputProps",
+      "line": 8,
+      "endLine": 10,
+      "signature": "export type SelectSettingInputProps = SettingInputProps &"
+    }
+  ],
+  "imports": [
+    {
+      "module": "@rocket.chat/fuselage",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/ui-contexts",
+      "resolved": "external"
+    },
+    {
+      "module": "react-i18next",
+      "resolved": "external"
+    },
+    {
+      "module": "../ResetSettingButton",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/client/views/admin/settings/Setting/ResetSettingButton/index.ts"
+    },
+    {
+      "module": "./types",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/client/views/admin/settings/Setting/inputs/types.ts"
+    }
+  ]
+}

@@ -1,0 +1,520 @@
+{
+  "sourcePath": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/server/email/IMAPInterceptor.ts",
+  "symbols": [
+    {
+      "type": "class",
+      "name": "IMAPInterceptor",
+      "exported": true,
+      "line": 25,
+      "endLine": 243,
+      "signature": "export class IMAPInterceptor extends EventEmitter",
+      "calls": []
+    },
+    {
+      "type": "method",
+      "name": "openInbox",
+      "exported": true,
+      "qualifiedName": "IMAPInterceptor.openInbox",
+      "line": 66,
+      "endLine": 77,
+      "signature": "openInbox(): Promise<IMAP.Box>",
+      "containerClass": "IMAPInterceptor",
+      "calls": [
+        {
+          "name": "reject",
+          "edgeType": "call"
+        },
+        {
+          "name": "resolve",
+          "edgeType": "call"
+        },
+        {
+          "name": "openBox",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "start",
+      "exported": true,
+      "qualifiedName": "IMAPInterceptor.start",
+      "line": 70,
+      "endLine": 95,
+      "signature": "async start(): Promise<void>",
+      "containerClass": "IMAPInterceptor",
+      "calls": [
+        {
+          "name": "ready",
+          "edgeType": "event_listen"
+        },
+        {
+          "name": "isActive",
+          "edgeType": "call"
+        },
+        {
+          "name": "info",
+          "edgeType": "call"
+        },
+        {
+          "name": "openInbox",
+          "edgeType": "call"
+        },
+        {
+          "name": "mail",
+          "edgeType": "event_listen"
+        },
+        {
+          "name": "catch",
+          "edgeType": "call"
+        },
+        {
+          "name": "getEmails",
+          "edgeType": "call"
+        },
+        {
+          "name": "debug",
+          "edgeType": "call"
+        },
+        {
+          "name": "error",
+          "edgeType": "call"
+        },
+        {
+          "name": "error",
+          "edgeType": "event_listen"
+        },
+        {
+          "name": "reconnect",
+          "edgeType": "call"
+        },
+        {
+          "name": "close",
+          "edgeType": "event_listen"
+        },
+        {
+          "name": "connect",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "isActive",
+      "exported": true,
+      "qualifiedName": "IMAPInterceptor.isActive",
+      "line": 74,
+      "endLine": 76,
+      "signature": "isActive(): boolean",
+      "containerClass": "IMAPInterceptor",
+      "calls": []
+    },
+    {
+      "type": "method",
+      "name": "stop",
+      "exported": true,
+      "qualifiedName": "IMAPInterceptor.stop",
+      "line": 78,
+      "endLine": 84,
+      "signature": "stop(callback = new Function()): void",
+      "containerClass": "IMAPInterceptor",
+      "calls": [
+        {
+          "name": "stopWithNoStopBackoff",
+          "edgeType": "call"
+        },
+        {
+          "name": "Function",
+          "edgeType": "new"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "stopWithNoStopBackoff",
+      "exported": true,
+      "qualifiedName": "IMAPInterceptor.stopWithNoStopBackoff",
+      "line": 82,
+      "endLine": 93,
+      "signature": "private stopWithNoStopBackoff(callback = new Function()): void",
+      "containerClass": "IMAPInterceptor",
+      "calls": [
+        {
+          "name": "debug",
+          "edgeType": "call"
+        },
+        {
+          "name": "removeAllListeners",
+          "edgeType": "call"
+        },
+        {
+          "name": "end",
+          "edgeType": "event_listen"
+        },
+        {
+          "name": "callback",
+          "edgeType": "call"
+        },
+        {
+          "name": "end",
+          "edgeType": "call"
+        },
+        {
+          "name": "error",
+          "edgeType": "event_listen"
+        },
+        {
+          "name": "error",
+          "edgeType": "call"
+        },
+        {
+          "name": "Function",
+          "edgeType": "new"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "reconnect",
+      "exported": true,
+      "qualifiedName": "IMAPInterceptor.reconnect",
+      "line": 86,
+      "endLine": 105,
+      "signature": "async reconnect(): Promise<void>",
+      "containerClass": "IMAPInterceptor",
+      "calls": [
+        {
+          "name": "isActive",
+          "edgeType": "call"
+        },
+        {
+          "name": "canRetry",
+          "edgeType": "call"
+        },
+        {
+          "name": "info",
+          "edgeType": "call"
+        },
+        {
+          "name": "stop",
+          "edgeType": "call"
+        },
+        {
+          "name": "selfDisable",
+          "edgeType": "call"
+        },
+        {
+          "name": "stopWithNoStopBackoff",
+          "edgeType": "call"
+        },
+        {
+          "name": "start",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "imapSearch",
+      "exported": true,
+      "qualifiedName": "IMAPInterceptor.imapSearch",
+      "line": 90,
+      "endLine": 101,
+      "signature": "imapSearch(): Promise<number[]>",
+      "containerClass": "IMAPInterceptor",
+      "calls": [
+        {
+          "name": "reject",
+          "edgeType": "call"
+        },
+        {
+          "name": "resolve",
+          "edgeType": "call"
+        },
+        {
+          "name": "search",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "parseEmails",
+      "exported": true,
+      "qualifiedName": "IMAPInterceptor.parseEmails",
+      "line": 94,
+      "endLine": 105,
+      "signature": "parseEmails(stream: NodeJS.ReadableStream, _info: ImapMessageBodyInfo): Promise<ParsedMail>",
+      "containerClass": "IMAPInterceptor",
+      "calls": [
+        {
+          "name": "reject",
+          "edgeType": "call"
+        },
+        {
+          "name": "resolve",
+          "edgeType": "call"
+        },
+        {
+          "name": "simpleParser",
+          "edgeType": "call"
+        },
+        {
+          "name": "wrap",
+          "edgeType": "call"
+        },
+        {
+          "name": "Readable",
+          "edgeType": "new"
+        },
+        {
+          "name": "ImapMessageBodyInfo",
+          "edgeType": "type"
+        },
+        {
+          "name": "ParsedMail",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "imapFetch",
+      "exported": true,
+      "qualifiedName": "IMAPInterceptor.imapFetch",
+      "line": 98,
+      "endLine": 138,
+      "signature": "imapFetch(emailIds: number[]): Promise<number[]>",
+      "containerClass": "IMAPInterceptor",
+      "calls": [
+        {
+          "name": "push",
+          "edgeType": "call"
+        },
+        {
+          "name": "simpleParser",
+          "edgeType": "call"
+        },
+        {
+          "name": "wrap",
+          "edgeType": "call"
+        },
+        {
+          "name": "error",
+          "edgeType": "call"
+        },
+        {
+          "name": "email",
+          "edgeType": "event_emit"
+        },
+        {
+          "name": "addFlags",
+          "edgeType": "call"
+        },
+        {
+          "name": "warn",
+          "edgeType": "call"
+        },
+        {
+          "name": "bodycb",
+          "edgeType": "event_listen",
+          "event": "body"
+        },
+        {
+          "name": "reject",
+          "edgeType": "call"
+        },
+        {
+          "name": "resolve",
+          "edgeType": "call"
+        },
+        {
+          "name": "fetch",
+          "edgeType": "call"
+        },
+        {
+          "name": "messagecb",
+          "edgeType": "event_listen",
+          "event": "message"
+        },
+        {
+          "name": "errorcb",
+          "edgeType": "event_listen",
+          "event": "error"
+        },
+        {
+          "name": "endcb",
+          "edgeType": "event_listen",
+          "event": "end"
+        },
+        {
+          "name": "Readable",
+          "edgeType": "new"
+        },
+        {
+          "name": "ImapMessage",
+          "edgeType": "type"
+        },
+        {
+          "name": "ImapMessageBodyInfo",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "getEmails",
+      "exported": true,
+      "qualifiedName": "IMAPInterceptor.getEmails",
+      "line": 103,
+      "endLine": 106,
+      "signature": "async getEmails(): Promise<void>",
+      "containerClass": "IMAPInterceptor",
+      "calls": [
+        {
+          "name": "imapSearch",
+          "edgeType": "call"
+        },
+        {
+          "name": "imapFetch",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "canRetry",
+      "exported": true,
+      "qualifiedName": "IMAPInterceptor.canRetry",
+      "line": 107,
+      "endLine": 109,
+      "signature": "canRetry(): boolean",
+      "containerClass": "IMAPInterceptor",
+      "calls": []
+    },
+    {
+      "type": "method",
+      "name": "selfDisable",
+      "exported": true,
+      "qualifiedName": "IMAPInterceptor.selfDisable",
+      "line": 111,
+      "endLine": 123,
+      "signature": "async selfDisable(): Promise<void>",
+      "containerClass": "IMAPInterceptor",
+      "calls": [
+        {
+          "name": "info",
+          "edgeType": "call"
+        },
+        {
+          "name": "setDisabledById",
+          "edgeType": "call"
+        },
+        {
+          "name": "notifyOnEmailInboxChanged",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "constructor",
+      "exported": true,
+      "qualifiedName": "IMAPInterceptor.constructor",
+      "line": 38,
+      "endLine": 64,
+      "signature": "constructor( imapConfig: IMAP.Config, private options: IMAPOptions = { deleteAfterRead: false, filter: ['UNSEEN'], markSeen: true, maxRetries: 10, }, id: string, )",
+      "containerClass": "IMAPInterceptor",
+      "calls": [
+        {
+          "name": "error",
+          "edgeType": "event_listen"
+        },
+        {
+          "name": "error",
+          "edgeType": "call"
+        },
+        {
+          "name": "start",
+          "edgeType": "call"
+        },
+        {
+          "name": "IMAP",
+          "edgeType": "new"
+        },
+        {
+          "name": "IMAPOptions",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "class_property",
+      "name": "imap",
+      "exported": true,
+      "qualifiedName": "IMAPInterceptor.imap",
+      "line": 26,
+      "endLine": 26,
+      "signature": "private imap: IMAP;",
+      "containerClass": "IMAPInterceptor",
+      "calls": [
+        {
+          "name": "IMAP",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "interface",
+      "name": "IMAPInterceptor",
+      "line": 21,
+      "endLine": 23,
+      "signature": "export declare interface IMAPInterceptor"
+    },
+    {
+      "type": "type",
+      "name": "IMAPOptions",
+      "line": 13,
+      "endLine": 19,
+      "signature": "type IMAPOptions ="
+    }
+  ],
+  "imports": [
+    {
+      "module": "node:events",
+      "resolved": "external"
+    },
+    {
+      "module": "node:stream",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/models",
+      "resolved": "external"
+    },
+    {
+      "module": "imap",
+      "resolved": "external"
+    },
+    {
+      "module": "imap",
+      "resolved": "external"
+    },
+    {
+      "module": "mailparser",
+      "resolved": "external"
+    },
+    {
+      "module": "mailparser",
+      "resolved": "external"
+    },
+    {
+      "module": "../../app/lib/server/lib/notifyListener",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/app/lib/server/lib/notifyListener.ts"
+    },
+    {
+      "module": "../features/EmailInbox/logger",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/server/features/EmailInbox/logger.ts"
+    }
+  ]
+}

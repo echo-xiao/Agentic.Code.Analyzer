@@ -1,0 +1,127 @@
+{
+  "sourcePath": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/ee/server/startup/federation.ts",
+  "symbols": [
+    {
+      "type": "variable_function",
+      "name": "configureFederation",
+      "exported": false,
+      "line": 15,
+      "endLine": 38,
+      "signature": "async () =>",
+      "calls": [
+        {
+          "name": "hasModule",
+          "edgeType": "call"
+        },
+        {
+          "name": "get",
+          "edgeType": "call"
+        },
+        {
+          "name": "configureFederationMatrixSettings",
+          "edgeType": "call"
+        },
+        {
+          "name": "id",
+          "edgeType": "call"
+        },
+        {
+          "name": "error",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "variable_function",
+      "name": "startFederationService",
+      "exported": true,
+      "line": 19,
+      "endLine": 60,
+      "signature": "async (): Promise<void> =>",
+      "calls": [
+        {
+          "name": "registerService",
+          "edgeType": "call"
+        },
+        {
+          "name": "registerFederationRoutes",
+          "edgeType": "call"
+        },
+        {
+          "name": "broadcast",
+          "edgeType": "event_listen"
+        },
+        {
+          "name": "endsWith",
+          "edgeType": "call"
+        },
+        {
+          "name": "split",
+          "edgeType": "call"
+        },
+        {
+          "name": "notifyUserTyping",
+          "edgeType": "call"
+        },
+        {
+          "name": "includes",
+          "edgeType": "call"
+        },
+        {
+          "name": "watchMultiple",
+          "edgeType": "call"
+        },
+        {
+          "name": "configureFederation",
+          "edgeType": "call"
+        },
+        {
+          "name": "setupFederationMatrix",
+          "edgeType": "call"
+        },
+        {
+          "name": "error",
+          "edgeType": "call"
+        },
+        {
+          "name": "FederationMatrix",
+          "edgeType": "new"
+        }
+      ]
+    }
+  ],
+  "imports": [
+    {
+      "module": "@rocket.chat/core-services",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/federation-matrix",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/instance-status",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/license",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/logger",
+      "resolved": "external"
+    },
+    {
+      "module": "../../../app/settings/server",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/app/settings/server/index.ts"
+    },
+    {
+      "module": "../../../server/modules/streamer/streamer.module",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/server/modules/streamer/streamer.module.ts"
+    },
+    {
+      "module": "../api/federation",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/ee/server/api/federation.ts"
+    }
+  ]
+}

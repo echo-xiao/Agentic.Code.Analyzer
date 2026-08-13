@@ -1,0 +1,300 @@
+{
+  "sourcePath": "/Users/echoooooo/Desktop/code/Rocket.Chat/packages/ui-voip/src/hooks/useTonePlayer.ts",
+  "symbols": [
+    {
+      "type": "class",
+      "name": "TonePlayer",
+      "exported": false,
+      "line": 3,
+      "endLine": 78,
+      "signature": "class TonePlayer",
+      "calls": []
+    },
+    {
+      "type": "method",
+      "name": "setSinkId",
+      "exported": false,
+      "qualifiedName": "TonePlayer.setSinkId",
+      "line": 36,
+      "endLine": 41,
+      "signature": "public async setSinkId(sinkId: string)",
+      "containerClass": "TonePlayer",
+      "calls": [
+        {
+          "name": "setSinkId",
+          "edgeType": "call"
+        },
+        {
+          "name": "warn",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "setupOscillator",
+      "exported": false,
+      "qualifiedName": "TonePlayer.setupOscillator",
+      "line": 40,
+      "endLine": 45,
+      "signature": "public static setupOscillator(audioCtx: AudioContext, filter: AudioNode)",
+      "containerClass": "TonePlayer",
+      "calls": [
+        {
+          "name": "createOscillator",
+          "edgeType": "call"
+        },
+        {
+          "name": "connect",
+          "edgeType": "call"
+        },
+        {
+          "name": "AudioContext",
+          "edgeType": "type"
+        },
+        {
+          "name": "AudioNode",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "play",
+      "exported": false,
+      "qualifiedName": "TonePlayer.play",
+      "line": 44,
+      "endLine": 65,
+      "signature": "public play(highFreq: number, lowFreq: number, durationMs?: number)",
+      "containerClass": "TonePlayer",
+      "calls": [
+        {
+          "name": "setupOscillator",
+          "edgeType": "call"
+        },
+        {
+          "name": "start",
+          "edgeType": "call"
+        },
+        {
+          "name": "catch",
+          "edgeType": "call"
+        },
+        {
+          "name": "play",
+          "edgeType": "call"
+        },
+        {
+          "name": "warn",
+          "edgeType": "call"
+        },
+        {
+          "name": "stop",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "destroy",
+      "exported": false,
+      "qualifiedName": "TonePlayer.destroy",
+      "line": 48,
+      "endLine": 52,
+      "signature": "public destroy()",
+      "containerClass": "TonePlayer",
+      "calls": [
+        {
+          "name": "close",
+          "edgeType": "call"
+        },
+        {
+          "name": "pause",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "constructor",
+      "exported": false,
+      "qualifiedName": "TonePlayer.constructor",
+      "line": 14,
+      "endLine": 34,
+      "signature": "constructor()",
+      "containerClass": "TonePlayer",
+      "calls": [
+        {
+          "name": "createMediaStreamDestination",
+          "edgeType": "call"
+        },
+        {
+          "name": "createGain",
+          "edgeType": "call"
+        },
+        {
+          "name": "createBiquadFilter",
+          "edgeType": "call"
+        },
+        {
+          "name": "connect",
+          "edgeType": "call"
+        },
+        {
+          "name": "AudioContext",
+          "edgeType": "new"
+        },
+        {
+          "name": "Audio",
+          "edgeType": "new"
+        }
+      ]
+    },
+    {
+      "type": "class_property",
+      "name": "audioContext",
+      "exported": false,
+      "qualifiedName": "TonePlayer.audioContext",
+      "line": 4,
+      "endLine": 4,
+      "signature": "private audioContext: AudioContext;",
+      "containerClass": "TonePlayer",
+      "calls": [
+        {
+          "name": "AudioContext",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "class_property",
+      "name": "audioElement",
+      "exported": false,
+      "qualifiedName": "TonePlayer.audioElement",
+      "line": 6,
+      "endLine": 6,
+      "signature": "private audioElement: HTMLAudioElement;",
+      "containerClass": "TonePlayer",
+      "calls": [
+        {
+          "name": "HTMLAudioElement",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "class_property",
+      "name": "gainNode",
+      "exported": false,
+      "qualifiedName": "TonePlayer.gainNode",
+      "line": 8,
+      "endLine": 8,
+      "signature": "private gainNode: GainNode;",
+      "containerClass": "TonePlayer",
+      "calls": [
+        {
+          "name": "GainNode",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "class_property",
+      "name": "filter",
+      "exported": false,
+      "qualifiedName": "TonePlayer.filter",
+      "line": 10,
+      "endLine": 10,
+      "signature": "private filter: BiquadFilterNode;",
+      "containerClass": "TonePlayer",
+      "calls": [
+        {
+          "name": "BiquadFilterNode",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "class_property",
+      "name": "destination",
+      "exported": false,
+      "qualifiedName": "TonePlayer.destination",
+      "line": 12,
+      "endLine": 12,
+      "signature": "private destination: MediaStreamAudioDestinationNode;",
+      "containerClass": "TonePlayer",
+      "calls": [
+        {
+          "name": "MediaStreamAudioDestinationNode",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "variable_function",
+      "name": "isValidTone",
+      "exported": true,
+      "line": 50,
+      "endLine": 52,
+      "signature": "(tone: string): tone is keyof typeof DIGIT_TONE_MAP =>",
+      "calls": [
+        {
+          "name": "includes",
+          "edgeType": "call"
+        },
+        {
+          "name": "keys",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "variable_function",
+      "name": "useTonePlayer",
+      "exported": true,
+      "line": 54,
+      "endLine": 79,
+      "signature": "(sinkId?: string) =>",
+      "calls": [
+        {
+          "name": "useRef",
+          "edgeType": "call"
+        },
+        {
+          "name": "useEffect",
+          "edgeType": "call"
+        },
+        {
+          "name": "destroy",
+          "edgeType": "call"
+        },
+        {
+          "name": "setSinkId",
+          "edgeType": "call"
+        },
+        {
+          "name": "useCallback",
+          "edgeType": "call"
+        },
+        {
+          "name": "play",
+          "edgeType": "call"
+        },
+        {
+          "name": "TonePlayer",
+          "edgeType": "new"
+        },
+        {
+          "name": "TonePlayer",
+          "edgeType": "type"
+        }
+      ]
+    }
+  ],
+  "imports": [
+    {
+      "module": "react",
+      "resolved": "external"
+    }
+  ]
+}

@@ -1,0 +1,25 @@
+## File: apps/meteor/ee/server/apps/marketplace/appInstall.ts
+
+```typescript
+import type { IAppInfo } from '@rocket.chat/apps-engine/definition/metadata';
+
+import { getWorkspaceAccessToken } from '../../../../app/cloud/server';
+import { settings } from '../../../../app/settings/server';
+import { Info } from '../../../../app/utils/rocketchat.info';
+import { Apps } from '../orchestrator';
+
+type MarketplaceNotificationType = 'install' | 'update' | 'uninstall';
+
+/**
+ * Notify the marketplace about an app install, update, or uninstall event.
+ *
+ * Attempts to POST a notification to the marketplace client at `v1/apps/{id}/install` containing the action, app metadata, Rocket.Chat and engine versions, and site URL. If a workspace access token is available it is included in the Authorization header. Any errors encountered while obtaining the token, reading settings, or sending the request are ignored.
+ *
+ * @param action - The marketplace event type: 'install', 'update', or 'uninstall'
+ * @param appInfo - App metadata (including `id`, `name`, `nameSlug`, and `version`) to include in the notification
+ */
+export async function notifyMarketplace(action: MarketplaceNotificationType, appInfo: IAppInfo): Promise<void> {
+    /* Implementation Hidden */
+}
+
+```

@@ -1,0 +1,565 @@
+{
+  "sourcePath": "/Users/echoooooo/Desktop/code/Rocket.Chat/ee/packages/media-calls/src/server/MediaCallServer.ts",
+  "symbols": [
+    {
+      "type": "class",
+      "name": "MediaCallServer",
+      "exported": true,
+      "line": 31,
+      "endLine": 262,
+      "signature": "export class MediaCallServer implements IMediaCallServer",
+      "calls": [
+        {
+          "name": "IMediaCallServer",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "receiveSignal",
+      "exported": true,
+      "qualifiedName": "MediaCallServer.receiveSignal",
+      "line": 55,
+      "endLine": 57,
+      "signature": "public async receiveSignal(fromUid: IUser['_id'], signal: ClientMediaSignal, options: SignalProcessingOptions = {}): Promise<void>",
+      "containerClass": "MediaCallServer",
+      "calls": [
+        {
+          "name": "processSignal",
+          "edgeType": "call"
+        },
+        {
+          "name": "IUser",
+          "edgeType": "type"
+        },
+        {
+          "name": "ClientMediaSignal",
+          "edgeType": "type"
+        },
+        {
+          "name": "SignalProcessingOptions",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "sendSignal",
+      "exported": true,
+      "qualifiedName": "MediaCallServer.sendSignal",
+      "line": 59,
+      "endLine": 63,
+      "signature": "public sendSignal(toUid: IUser['_id'], signal: ServerMediaSignal): void",
+      "containerClass": "MediaCallServer",
+      "calls": [
+        {
+          "name": "debug",
+          "edgeType": "call"
+        },
+        {
+          "name": "stripSensitiveDataFromSignal",
+          "edgeType": "call"
+        },
+        {
+          "name": "signalRequest",
+          "edgeType": "event_emit"
+        },
+        {
+          "name": "IUser",
+          "edgeType": "type"
+        },
+        {
+          "name": "ServerMediaSignal",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "reportCallUpdate",
+      "exported": true,
+      "qualifiedName": "MediaCallServer.reportCallUpdate",
+      "line": 63,
+      "endLine": 67,
+      "signature": "public reportCallUpdate(params: { callId: string; dtmf?: ClientMediaSignalBody<'dtmf'> }): void",
+      "containerClass": "MediaCallServer",
+      "calls": [
+        {
+          "name": "debug",
+          "edgeType": "call"
+        },
+        {
+          "name": "callUpdated",
+          "edgeType": "event_emit"
+        },
+        {
+          "name": "ClientMediaSignalBody",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "updateCallHistory",
+      "exported": true,
+      "qualifiedName": "MediaCallServer.updateCallHistory",
+      "line": 67,
+      "endLine": 71,
+      "signature": "public updateCallHistory(params: { callId: string }): void",
+      "containerClass": "MediaCallServer",
+      "calls": [
+        {
+          "name": "debug",
+          "edgeType": "call"
+        },
+        {
+          "name": "historyUpdate",
+          "edgeType": "event_emit"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "sendPushNotification",
+      "exported": true,
+      "qualifiedName": "MediaCallServer.sendPushNotification",
+      "line": 71,
+      "endLine": 78,
+      "signature": "public sendPushNotification(params: { callId: string; event: VoipPushNotificationEventType }): void",
+      "containerClass": "MediaCallServer",
+      "calls": [
+        {
+          "name": "debug",
+          "edgeType": "call"
+        },
+        {
+          "name": "pushNotificationRequest",
+          "edgeType": "event_emit"
+        },
+        {
+          "name": "VoipPushNotificationEventType",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "requestCall",
+      "exported": true,
+      "qualifiedName": "MediaCallServer.requestCall",
+      "line": 75,
+      "endLine": 103,
+      "signature": "public async requestCall(params: InternalCallParams): Promise<void>",
+      "containerClass": "MediaCallServer",
+      "calls": [
+        {
+          "name": "parseCallContacts",
+          "edgeType": "call"
+        },
+        {
+          "name": "createCall",
+          "edgeType": "call"
+        },
+        {
+          "name": "error",
+          "edgeType": "call"
+        },
+        {
+          "name": "info",
+          "edgeType": "call"
+        },
+        {
+          "name": "sendSignal",
+          "edgeType": "call"
+        },
+        {
+          "name": "InternalCallParams",
+          "edgeType": "type"
+        },
+        {
+          "name": "CallRejectedReason",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "createCall",
+      "exported": true,
+      "qualifiedName": "MediaCallServer.createCall",
+      "line": 79,
+      "endLine": 88,
+      "signature": "public async createCall(params: InternalCallParams): Promise<void>",
+      "containerClass": "MediaCallServer",
+      "calls": [
+        {
+          "name": "debug",
+          "edgeType": "call"
+        },
+        {
+          "name": "createOutgoingCall",
+          "edgeType": "call"
+        },
+        {
+          "name": "createCall",
+          "edgeType": "call"
+        },
+        {
+          "name": "InternalCallParams",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "receiveCallUpdate",
+      "exported": true,
+      "qualifiedName": "MediaCallServer.receiveCallUpdate",
+      "line": 83,
+      "endLine": 85,
+      "signature": "public receiveCallUpdate(params: { callId: string; dtmf?: ClientMediaSignalBody<'dtmf'> }): void",
+      "containerClass": "MediaCallServer",
+      "calls": [
+        {
+          "name": "reactToCallUpdate",
+          "edgeType": "call"
+        },
+        {
+          "name": "ClientMediaSignalBody",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "hangupExpiredCalls",
+      "exported": true,
+      "qualifiedName": "MediaCallServer.hangupExpiredCalls",
+      "line": 87,
+      "endLine": 89,
+      "signature": "public async hangupExpiredCalls(): Promise<void>",
+      "containerClass": "MediaCallServer",
+      "calls": [
+        {
+          "name": "hangupExpiredCalls",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "scheduleExpirationCheck",
+      "exported": true,
+      "qualifiedName": "MediaCallServer.scheduleExpirationCheck",
+      "line": 91,
+      "endLine": 93,
+      "signature": "public scheduleExpirationCheck(): void",
+      "containerClass": "MediaCallServer",
+      "calls": [
+        {
+          "name": "scheduleExpirationCheck",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "configure",
+      "exported": true,
+      "qualifiedName": "MediaCallServer.configure",
+      "line": 95,
+      "endLine": 99,
+      "signature": "public configure(settings: IMediaCallServerSettings): void",
+      "containerClass": "MediaCallServer",
+      "calls": [
+        {
+          "name": "debug",
+          "edgeType": "call"
+        },
+        {
+          "name": "configure",
+          "edgeType": "call"
+        },
+        {
+          "name": "IMediaCallServerSettings",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "permissionCheck",
+      "exported": true,
+      "qualifiedName": "MediaCallServer.permissionCheck",
+      "line": 99,
+      "endLine": 101,
+      "signature": "public async permissionCheck(uid: IUser['_id'], callType: 'internal' | 'external' | 'any'): Promise<boolean>",
+      "containerClass": "MediaCallServer",
+      "calls": [
+        {
+          "name": "permissionCheck",
+          "edgeType": "call"
+        },
+        {
+          "name": "IUser",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "isFeatureAvailableForUser",
+      "exported": true,
+      "qualifiedName": "MediaCallServer.isFeatureAvailableForUser",
+      "line": 103,
+      "endLine": 105,
+      "signature": "public isFeatureAvailableForUser(uid: IUser['_id'], feature: CallFeature): boolean",
+      "containerClass": "MediaCallServer",
+      "calls": [
+        {
+          "name": "isFeatureAvailableForUser",
+          "edgeType": "call"
+        },
+        {
+          "name": "IUser",
+          "edgeType": "type"
+        },
+        {
+          "name": "CallFeature",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "parseCallContacts",
+      "exported": true,
+      "qualifiedName": "MediaCallServer.parseCallContacts",
+      "line": 115,
+      "endLine": 186,
+      "signature": "private async parseCallContacts(params: InternalCallParams): Promise<InternalCallParams>",
+      "containerClass": "MediaCallServer",
+      "calls": [
+        {
+          "name": "Boolean",
+          "edgeType": "call"
+        },
+        {
+          "name": "warn",
+          "edgeType": "call"
+        },
+        {
+          "name": "permissionCheck",
+          "edgeType": "call"
+        },
+        {
+          "name": "debug",
+          "edgeType": "call"
+        },
+        {
+          "name": "getContactForActor",
+          "edgeType": "call"
+        },
+        {
+          "name": "getCalleeContactOptions",
+          "edgeType": "call"
+        },
+        {
+          "name": "CallRejectedError",
+          "edgeType": "new"
+        },
+        {
+          "name": "InternalCallParams",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "getCalleeContactOptions",
+      "exported": true,
+      "qualifiedName": "MediaCallServer.getCalleeContactOptions",
+      "line": 119,
+      "endLine": 146,
+      "signature": "private getCalleeContactOptions(): GetActorContactOptions",
+      "containerClass": "MediaCallServer",
+      "calls": [
+        {
+          "name": "GetActorContactOptions",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "constructor",
+      "exported": true,
+      "qualifiedName": "MediaCallServer.constructor",
+      "line": 40,
+      "endLine": 53,
+      "signature": "constructor()",
+      "containerClass": "MediaCallServer",
+      "calls": [
+        {
+          "name": "getDefaultSettings",
+          "edgeType": "call"
+        },
+        {
+          "name": "signalRequest",
+          "edgeType": "event_listen"
+        },
+        {
+          "name": "sendSignal",
+          "edgeType": "call"
+        },
+        {
+          "name": "callRequest",
+          "edgeType": "event_listen"
+        },
+        {
+          "name": "catch",
+          "edgeType": "call"
+        },
+        {
+          "name": "requestCall",
+          "edgeType": "call"
+        },
+        {
+          "name": "Emitter",
+          "edgeType": "new"
+        },
+        {
+          "name": "SipServerSession",
+          "edgeType": "new"
+        },
+        {
+          "name": "GlobalSignalProcessor",
+          "edgeType": "new"
+        }
+      ]
+    },
+    {
+      "type": "class_property",
+      "name": "session",
+      "exported": true,
+      "qualifiedName": "MediaCallServer.session",
+      "line": 32,
+      "endLine": 32,
+      "signature": "private session: SipServerSession;",
+      "containerClass": "MediaCallServer",
+      "calls": [
+        {
+          "name": "SipServerSession",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "class_property",
+      "name": "signalProcessor",
+      "exported": true,
+      "qualifiedName": "MediaCallServer.signalProcessor",
+      "line": 34,
+      "endLine": 34,
+      "signature": "private signalProcessor: GlobalSignalProcessor;",
+      "containerClass": "MediaCallServer",
+      "calls": [
+        {
+          "name": "GlobalSignalProcessor",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "class_property",
+      "name": "settings",
+      "exported": true,
+      "qualifiedName": "MediaCallServer.settings",
+      "line": 36,
+      "endLine": 36,
+      "signature": "private settings: IMediaCallServerSettings;",
+      "containerClass": "MediaCallServer",
+      "calls": [
+        {
+          "name": "IMediaCallServerSettings",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "class_property",
+      "name": "emitter",
+      "exported": true,
+      "qualifiedName": "MediaCallServer.emitter",
+      "line": 38,
+      "endLine": 38,
+      "signature": "public emitter: Emitter<MediaCallServerEvents>;",
+      "containerClass": "MediaCallServer",
+      "calls": [
+        {
+          "name": "Emitter",
+          "edgeType": "type"
+        },
+        {
+          "name": "MediaCallServerEvents",
+          "edgeType": "type"
+        }
+      ]
+    }
+  ],
+  "imports": [
+    {
+      "module": "@rocket.chat/core-typings",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/emitter",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/media-signaling",
+      "resolved": "external"
+    },
+    {
+      "module": "./CallDirector",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/ee/packages/media-calls/src/server/CallDirector.ts"
+    },
+    {
+      "module": "./getDefaultSettings",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/ee/packages/media-calls/src/server/getDefaultSettings.ts"
+    },
+    {
+      "module": "./stripSensitiveData",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/ee/packages/media-calls/src/server/stripSensitiveData.ts"
+    },
+    {
+      "module": "../definition/IMediaCallServer",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/ee/packages/media-calls/src/definition/IMediaCallServer.ts"
+    },
+    {
+      "module": "../definition/common",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/ee/packages/media-calls/src/definition/common.ts"
+    },
+    {
+      "module": "../definition/common",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/ee/packages/media-calls/src/definition/common.ts"
+    },
+    {
+      "module": "../internal/InternalCallProvider",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/ee/packages/media-calls/src/internal/InternalCallProvider.ts"
+    },
+    {
+      "module": "../internal/SignalProcessor",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/ee/packages/media-calls/src/internal/SignalProcessor.ts"
+    },
+    {
+      "module": "../logger",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/ee/packages/media-calls/src/logger.ts"
+    },
+    {
+      "module": "../sip/Session",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/ee/packages/media-calls/src/sip/Session.ts"
+    }
+  ]
+}

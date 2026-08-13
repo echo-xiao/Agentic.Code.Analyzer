@@ -1,0 +1,119 @@
+{
+  "sourcePath": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/server/lib/rooms/syncRolePrioritiesForRoomIfRequired.ts",
+  "symbols": [
+    {
+      "type": "function",
+      "name": "assignRoomRolePrioritiesFromMap",
+      "exported": false,
+      "line": 10,
+      "endLine": 35,
+      "signature": "async function assignRoomRolePrioritiesFromMap(userIdAndRoomRolePrioritiesMap: Map<IUser['_id'], IUser['roomRolePriorities']>)",
+      "calls": [
+        {
+          "name": "initializeUnorderedBulkOp",
+          "edgeType": "call"
+        },
+        {
+          "name": "forEach",
+          "edgeType": "call"
+        },
+        {
+          "name": "delete",
+          "edgeType": "call"
+        },
+        {
+          "name": "reduce",
+          "edgeType": "call"
+        },
+        {
+          "name": "entries",
+          "edgeType": "call"
+        },
+        {
+          "name": "updateOne",
+          "edgeType": "call"
+        },
+        {
+          "name": "find",
+          "edgeType": "call"
+        },
+        {
+          "name": "execute",
+          "edgeType": "call"
+        },
+        {
+          "name": "IUser",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "variable_function",
+      "name": "syncRolePrioritiesForRoomIfRequired",
+      "exported": true,
+      "line": 14,
+      "endLine": 47,
+      "signature": "async (rid: IRoom['_id']) =>",
+      "calls": [
+        {
+          "name": "hasCreatedRolePrioritiesForRoom",
+          "edgeType": "call"
+        },
+        {
+          "name": "batchSize",
+          "edgeType": "call"
+        },
+        {
+          "name": "find",
+          "edgeType": "call"
+        },
+        {
+          "name": "calculateRoomRolePriorityFromRoles",
+          "edgeType": "call"
+        },
+        {
+          "name": "get",
+          "edgeType": "call"
+        },
+        {
+          "name": "set",
+          "edgeType": "call"
+        },
+        {
+          "name": "assignRoomRolePrioritiesFromMap",
+          "edgeType": "call"
+        },
+        {
+          "name": "markRolePrioritesCreatedForRoom",
+          "edgeType": "call"
+        },
+        {
+          "name": "Map",
+          "edgeType": "new"
+        },
+        {
+          "name": "IRoom",
+          "edgeType": "type"
+        },
+        {
+          "name": "IUser",
+          "edgeType": "type"
+        }
+      ]
+    }
+  ],
+  "imports": [
+    {
+      "module": "@rocket.chat/core-typings",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/models",
+      "resolved": "external"
+    },
+    {
+      "module": "../../../lib/roles/calculateRoomRolePriorityFromRoles",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/lib/roles/calculateRoomRolePriorityFromRoles.ts"
+    }
+  ]
+}

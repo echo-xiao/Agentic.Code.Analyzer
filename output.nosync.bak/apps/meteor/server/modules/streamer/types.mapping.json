@@ -1,0 +1,67 @@
+{
+  "sourcePath": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/server/modules/streamer/types.ts",
+  "symbols": [
+    {
+      "type": "interface",
+      "name": "IPublication",
+      "line": 5,
+      "endLine": 45,
+      "signature": "export interface IPublication"
+    },
+    {
+      "type": "interface",
+      "name": "IRules",
+      "line": 49,
+      "endLine": 51,
+      "signature": "export interface IRules"
+    },
+    {
+      "type": "interface",
+      "name": "IStreamer",
+      "line": 66,
+      "endLine": 103,
+      "signature": "export interface IStreamer<N extends StreamNames>"
+    },
+    {
+      "type": "interface",
+      "name": "IStreamerConstructor",
+      "line": 105,
+      "endLine": 107,
+      "signature": "export interface IStreamerConstructor"
+    },
+    {
+      "type": "type",
+      "name": "Connection",
+      "line": 3,
+      "endLine": 3,
+      "signature": "export type Connection = any;"
+    },
+    {
+      "type": "type",
+      "name": "Rule",
+      "line": 47,
+      "endLine": 47,
+      "signature": "export type Rule<K extends string = string> = (this: IPublication, eventName: K, ...args: any) => Promise<boolean | object>;"
+    },
+    {
+      "type": "type",
+      "name": "DDPSubscription",
+      "line": 53,
+      "endLine": 56,
+      "signature": "export type DDPSubscription ="
+    },
+    {
+      "type": "type",
+      "name": "TransformMessage",
+      "line": 58,
+      "endLine": 64,
+      "signature": "export type TransformMessage = ("
+    }
+  ],
+  "imports": [
+    {
+      "module": "@rocket.chat/ddp-client",
+      "resolved": "external"
+    }
+  ]
+}

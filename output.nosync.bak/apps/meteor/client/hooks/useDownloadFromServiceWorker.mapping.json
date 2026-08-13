@@ -1,0 +1,177 @@
+{
+  "sourcePath": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/client/hooks/useDownloadFromServiceWorker.ts",
+  "symbols": [
+    {
+      "type": "module",
+      "name": "useDownloadFromServiceWorker",
+      "exported": false,
+      "line": 1,
+      "endLine": 65,
+      "signature": "useDownloadFromServiceWorker",
+      "calls": [
+        {
+          "name": "addEventListener",
+          "edgeType": "call"
+        },
+        {
+          "name": "event.data.id",
+          "edgeType": "event_emit"
+        },
+        {
+          "name": "ArrayBuffer",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "variable_function",
+      "name": "registerDownloadForUid",
+      "exported": true,
+      "line": 21,
+      "endLine": 25,
+      "signature": "(uid: string, t: TFunction, title?: string) =>",
+      "calls": [
+        {
+          "name": "downloadAs",
+          "edgeType": "call"
+        },
+        {
+          "name": "Blob",
+          "edgeType": "new"
+        },
+        {
+          "name": "TFunction",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "variable_function",
+      "name": "forAttachmentDownload",
+      "exported": true,
+      "line": 25,
+      "endLine": 39,
+      "signature": "(uid: string, href: string, controller?: ServiceWorker | null) =>",
+      "calls": [
+        {
+          "name": "postMessage",
+          "edgeType": "call"
+        },
+        {
+          "name": "ServiceWorker",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "inner_function",
+      "name": "onContextMenu",
+      "exported": false,
+      "qualifiedName": "useDownloadFromServiceWorker.onContextMenu",
+      "line": 40,
+      "endLine": 40,
+      "signature": "(e: MouseEvent) =>",
+      "calls": [
+        {
+          "name": "preventDefault",
+          "edgeType": "call"
+        },
+        {
+          "name": "MouseEvent",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "inner_function",
+      "name": "onClick",
+      "exported": false,
+      "qualifiedName": "useDownloadFromServiceWorker.onClick",
+      "line": 41,
+      "endLine": 46,
+      "signature": "(e: MouseEvent) =>",
+      "calls": [
+        {
+          "name": "preventDefault",
+          "edgeType": "call"
+        },
+        {
+          "name": "forAttachmentDownload",
+          "edgeType": "call"
+        },
+        {
+          "name": "MouseEvent",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "variable_function",
+      "name": "useDownloadFromServiceWorker",
+      "exported": true,
+      "line": 29,
+      "endLine": 50,
+      "signature": "(href: string, title?: string) =>",
+      "calls": [
+        {
+          "name": "useId",
+          "edgeType": "call"
+        },
+        {
+          "name": "useTranslation",
+          "edgeType": "call"
+        },
+        {
+          "name": "useEffect",
+          "edgeType": "call"
+        },
+        {
+          "name": "registerDownloadForUid",
+          "edgeType": "call"
+        },
+        {
+          "name": "useCallback",
+          "edgeType": "call"
+        },
+        {
+          "name": "preventDefault",
+          "edgeType": "call"
+        },
+        {
+          "name": "forAttachmentDownload",
+          "edgeType": "call"
+        },
+        {
+          "name": "MouseEvent",
+          "edgeType": "type"
+        }
+      ]
+    }
+  ],
+  "imports": [
+    {
+      "module": "@rocket.chat/emitter",
+      "resolved": "external"
+    },
+    {
+      "module": "i18next",
+      "resolved": "external"
+    },
+    {
+      "module": "react",
+      "resolved": "external"
+    },
+    {
+      "module": "react",
+      "resolved": "external"
+    },
+    {
+      "module": "react-i18next",
+      "resolved": "external"
+    },
+    {
+      "module": "../lib/download",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/client/lib/download.ts"
+    }
+  ]
+}

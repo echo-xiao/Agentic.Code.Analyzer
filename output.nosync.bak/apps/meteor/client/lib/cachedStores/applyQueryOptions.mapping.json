@@ -1,0 +1,111 @@
+{
+  "sourcePath": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/client/lib/cachedStores/applyQueryOptions.ts",
+  "symbols": [
+    {
+      "type": "variable_function",
+      "name": "convertSort",
+      "exported": false,
+      "line": 18,
+      "endLine": 35,
+      "signature": "(original: OriginalStructure): SortObject =>",
+      "calls": [
+        {
+          "name": "forEach",
+          "edgeType": "call"
+        },
+        {
+          "name": "keys",
+          "edgeType": "call"
+        },
+        {
+          "name": "push",
+          "edgeType": "call"
+        },
+        {
+          "name": "OriginalStructure",
+          "edgeType": "type"
+        },
+        {
+          "name": "SortObject",
+          "edgeType": "type"
+        },
+        {
+          "name": "SortField",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "variable_function",
+      "name": "applyQueryOptions",
+      "exported": true,
+      "line": 22,
+      "endLine": 40,
+      "signature": "<T extends Record<string, any>>(records: T[], options: FindOptions): T[] =>",
+      "calls": [
+        {
+          "name": "pipe",
+          "edgeType": "call"
+        },
+        {
+          "name": "convertSort",
+          "edgeType": "call"
+        },
+        {
+          "name": "sortByField",
+          "edgeType": "call"
+        },
+        {
+          "name": "slice",
+          "edgeType": "call"
+        },
+        {
+          "name": "apply",
+          "edgeType": "call"
+        },
+        {
+          "name": "FindOptions",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "type",
+      "name": "OriginalStructure",
+      "line": 5,
+      "endLine": 5,
+      "signature": "type OriginalStructure = FindOptions['sort'];"
+    },
+    {
+      "type": "type",
+      "name": "SortField",
+      "line": 7,
+      "endLine": 7,
+      "signature": "type SortField = 'lm' | 'lowerCaseFName' | 'lowerCaseName';"
+    },
+    {
+      "type": "type",
+      "name": "SortDirection",
+      "line": 8,
+      "endLine": 8,
+      "signature": "type SortDirection = -1 | 1;"
+    },
+    {
+      "type": "type",
+      "name": "SortObject",
+      "line": 10,
+      "endLine": 13,
+      "signature": "type SortObject ="
+    }
+  ],
+  "imports": [
+    {
+      "module": "@rocket.chat/ui-contexts",
+      "resolved": "external"
+    },
+    {
+      "module": "./pipe",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/client/lib/cachedStores/pipe.ts"
+    }
+  ]
+}

@@ -1,0 +1,401 @@
+{
+  "sourcePath": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/client/providers/ServerProvider.tsx",
+  "symbols": [
+    {
+      "type": "variable_function",
+      "name": "callMethod",
+      "exported": false,
+      "line": 26,
+      "endLine": 29,
+      "signature": "<MethodName extends ServerMethodName>( methodName: MethodName, ...args: ServerMethodParameters<MethodName> ): Promise<ServerMethodReturn<MethodName>> =>",
+      "calls": [
+        {
+          "name": "call",
+          "edgeType": "call"
+        },
+        {
+          "name": "ServerMethodName",
+          "edgeType": "type"
+        },
+        {
+          "name": "MethodName",
+          "edgeType": "type"
+        },
+        {
+          "name": "ServerMethodParameters",
+          "edgeType": "type"
+        },
+        {
+          "name": "ServerMethodReturn",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "variable_function",
+      "name": "callEndpoint",
+      "exported": false,
+      "line": 31,
+      "endLine": 62,
+      "signature": "<TMethod extends Method, TPathPattern extends PathPattern>({ method, pathPattern, keys, params, signal, }: { method: TMethod; pathPattern: TPathPattern; keys: UrlParams<TPathPattern>; params: OperationParams<TMethod, TPathPattern>; signal?: AbortSignal; }): Promise<Serialized<OperationResult<TMethod, TPathPattern>>> =>",
+      "calls": [
+        {
+          "name": "compile",
+          "edgeType": "call"
+        },
+        {
+          "name": "get",
+          "edgeType": "call"
+        },
+        {
+          "name": "post",
+          "edgeType": "call"
+        },
+        {
+          "name": "put",
+          "edgeType": "call"
+        },
+        {
+          "name": "delete",
+          "edgeType": "call"
+        },
+        {
+          "name": "Method",
+          "edgeType": "type"
+        },
+        {
+          "name": "PathPattern",
+          "edgeType": "type"
+        },
+        {
+          "name": "TMethod",
+          "edgeType": "type"
+        },
+        {
+          "name": "TPathPattern",
+          "edgeType": "type"
+        },
+        {
+          "name": "UrlParams",
+          "edgeType": "type"
+        },
+        {
+          "name": "OperationParams",
+          "edgeType": "type"
+        },
+        {
+          "name": "AbortSignal",
+          "edgeType": "type"
+        },
+        {
+          "name": "Serialized",
+          "edgeType": "type"
+        },
+        {
+          "name": "OperationResult",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "variable_function",
+      "name": "uploadToEndpoint",
+      "exported": false,
+      "line": 47,
+      "endLine": 47,
+      "signature": "(endpoint: PathFor<'POST'>, formData: any): Promise<UploadResult> =>",
+      "calls": [
+        {
+          "name": "post",
+          "edgeType": "call"
+        },
+        {
+          "name": "PathFor",
+          "edgeType": "type"
+        },
+        {
+          "name": "UploadResult",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "variable_function",
+      "name": "getStream",
+      "exported": false,
+      "line": 49,
+      "endLine": 58,
+      "signature": "<N extends StreamNames>( streamName: N, _options?: { retransmit?: boolean | undefined; retransmitToSelf?: boolean | undefined; }, ) =>",
+      "calls": [
+        {
+          "name": "stream",
+          "edgeType": "call"
+        },
+        {
+          "name": "StreamNames",
+          "edgeType": "type"
+        },
+        {
+          "name": "StreamKeys",
+          "edgeType": "type"
+        },
+        {
+          "name": "StreamerCallbackArgs",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "variable_function",
+      "name": "getStreamAll",
+      "exported": false,
+      "line": 60,
+      "endLine": 63,
+      "signature": "<N extends StreamNames>(streamName: N) =>",
+      "calls": [
+        {
+          "name": "onAnyStreamEvent",
+          "edgeType": "call"
+        },
+        {
+          "name": "StreamNames",
+          "edgeType": "type"
+        },
+        {
+          "name": "StreamerEvents",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "variable_function",
+      "name": "writeStream",
+      "exported": false,
+      "line": 65,
+      "endLine": 66,
+      "signature": "<N extends StreamNames, K extends StreamKeys<N>>(streamName: N, streamKey: K, ...args: StreamerCallbackArgs<N, K>) =>",
+      "calls": [
+        {
+          "name": "StreamNames",
+          "edgeType": "type"
+        },
+        {
+          "name": "StreamKeys",
+          "edgeType": "type"
+        },
+        {
+          "name": "StreamerCallbackArgs",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "variable_function",
+      "name": "sdkStatusToMeteor",
+      "exported": false,
+      "line": 91,
+      "endLine": 110,
+      "signature": "(sdkStatus: string, meteor: CombinedStatus): CombinedStatus =>",
+      "calls": [
+        {
+          "name": "CombinedStatus",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "variable_function",
+      "name": "isStatusEqual",
+      "exported": false,
+      "line": 105,
+      "endLine": 106,
+      "signature": "(a: CombinedStatus, b: CombinedStatus): boolean =>",
+      "calls": [
+        {
+          "name": "CombinedStatus",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "variable_function",
+      "name": "ensureStatusBridge",
+      "exported": false,
+      "line": 112,
+      "endLine": 121,
+      "signature": "(): void =>",
+      "calls": [
+        {
+          "name": "connection",
+          "edgeType": "event_listen"
+        },
+        {
+          "name": "getDdpSdk",
+          "edgeType": "call"
+        },
+        {
+          "name": "computeStatus",
+          "edgeType": "call"
+        },
+        {
+          "name": "isStatusEqual",
+          "edgeType": "call"
+        },
+        {
+          "name": "forEach",
+          "edgeType": "call"
+        },
+        {
+          "name": "cb",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "variable_function",
+      "name": "subscribeStatus",
+      "exported": false,
+      "line": 116,
+      "endLine": 132,
+      "signature": "(cb: () => void): (() => void) =>",
+      "calls": [
+        {
+          "name": "ensureStatusBridge",
+          "edgeType": "call"
+        },
+        {
+          "name": "computeStatus",
+          "edgeType": "call"
+        },
+        {
+          "name": "isStatusEqual",
+          "edgeType": "call"
+        },
+        {
+          "name": "cb",
+          "edgeType": "call"
+        },
+        {
+          "name": "delete",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "variable_function",
+      "name": "getStatusSnapshot",
+      "exported": false,
+      "line": 120,
+      "endLine": 120,
+      "signature": "(): CombinedStatus =>",
+      "calls": [
+        {
+          "name": "CombinedStatus",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "variable_function",
+      "name": "ServerProvider",
+      "exported": false,
+      "line": 124,
+      "endLine": 148,
+      "signature": "({ children }: ServerProviderProps) =>",
+      "calls": [
+        {
+          "name": "useSyncExternalStore",
+          "edgeType": "call"
+        },
+        {
+          "name": "useMemo",
+          "edgeType": "call"
+        },
+        {
+          "name": "ServerContext.Provider",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "value",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "ServerProviderProps",
+          "edgeType": "type"
+        },
+        {
+          "name": "ServerContextValue",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "type",
+      "name": "CombinedStatus",
+      "line": 89,
+      "endLine": 89,
+      "signature": "type CombinedStatus = ReturnType<typeof Meteor.status>;"
+    },
+    {
+      "type": "type",
+      "name": "ServerProviderProps",
+      "line": 122,
+      "endLine": 122,
+      "signature": "export type ServerProviderProps ="
+    }
+  ],
+  "imports": [
+    {
+      "module": "@rocket.chat/core-typings",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/ddp-client",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/rest-typings",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/ui-contexts",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/ui-contexts",
+      "resolved": "external"
+    },
+    {
+      "module": "meteor/meteor",
+      "resolved": "external"
+    },
+    {
+      "module": "path-to-regexp",
+      "resolved": "external"
+    },
+    {
+      "module": "react",
+      "resolved": "external"
+    },
+    {
+      "module": "../../app/utils/client/lib/SDKClient",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/app/utils/client/lib/SDKClient.ts"
+    },
+    {
+      "module": "../../app/utils/rocketchat.info",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/app/utils/rocketchat.info"
+    },
+    {
+      "module": "../lib/absoluteUrl",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/client/lib/absoluteUrl.ts"
+    },
+    {
+      "module": "../lib/sdk/ddpSdk",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/client/lib/sdk/ddpSdk.ts"
+    },
+    {
+      "module": "../lib/sdk/sdkTransportEnabled",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/client/lib/sdk/sdkTransportEnabled.ts"
+    }
+  ]
+}

@@ -1,0 +1,97 @@
+{
+  "sourcePath": "/Users/echoooooo/Desktop/code/Rocket.Chat/packages/apps/tests/test-data/storage/TestSourceStorage.ts",
+  "symbols": [
+    {
+      "type": "class",
+      "name": "TestSourceStorage",
+      "exported": true,
+      "line": 4,
+      "endLine": 20,
+      "signature": "export class TestSourceStorage extends AppSourceStorage",
+      "calls": [
+        {
+          "name": "AppSourceStorage",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "store",
+      "exported": true,
+      "qualifiedName": "TestSourceStorage.store",
+      "line": 5,
+      "endLine": 7,
+      "signature": "public async store(item: IAppStorageItem, zip: Buffer): Promise<string>",
+      "containerClass": "TestSourceStorage",
+      "calls": [
+        {
+          "name": "IAppStorageItem",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "fetch",
+      "exported": true,
+      "qualifiedName": "TestSourceStorage.fetch",
+      "line": 9,
+      "endLine": 11,
+      "signature": "public async fetch(item: IAppStorageItem): Promise<Buffer>",
+      "containerClass": "TestSourceStorage",
+      "calls": [
+        {
+          "name": "from",
+          "edgeType": "call"
+        },
+        {
+          "name": "IAppStorageItem",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "update",
+      "exported": true,
+      "qualifiedName": "TestSourceStorage.update",
+      "line": 13,
+      "endLine": 15,
+      "signature": "public async update(item: IAppStorageItem, zip: Buffer): Promise<string>",
+      "containerClass": "TestSourceStorage",
+      "calls": [
+        {
+          "name": "IAppStorageItem",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "remove",
+      "exported": true,
+      "qualifiedName": "TestSourceStorage.remove",
+      "line": 17,
+      "endLine": 19,
+      "signature": "public async remove(item: IAppStorageItem): Promise<void>",
+      "containerClass": "TestSourceStorage",
+      "calls": [
+        {
+          "name": "IAppStorageItem",
+          "edgeType": "type"
+        }
+      ]
+    }
+  ],
+  "imports": [
+    {
+      "module": "../../../src/server/storage",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/packages/apps/src/server/storage/index.ts"
+    },
+    {
+      "module": "../../../src/server/storage",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/packages/apps/src/server/storage/index.ts"
+    }
+  ]
+}

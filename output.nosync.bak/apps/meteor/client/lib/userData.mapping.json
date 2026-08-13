@@ -1,0 +1,189 @@
+{
+  "sourcePath": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/client/lib/userData.ts",
+  "symbols": [
+    {
+      "type": "variable",
+      "name": "useUserDataSyncReady",
+      "exported": true,
+      "line": 8,
+      "endLine": 8,
+      "signature": "useUserDataSyncReady = create(() => false)",
+      "calls": []
+    },
+    {
+      "type": "variable_function",
+      "name": "updateUser",
+      "exported": false,
+      "line": 38,
+      "endLine": 55,
+      "signature": "(userData: IUser): void =>",
+      "calls": [
+        {
+          "name": "get",
+          "edgeType": "call"
+        },
+        {
+          "name": "getTime",
+          "edgeType": "call"
+        },
+        {
+          "name": "store",
+          "edgeType": "call"
+        },
+        {
+          "name": "keys",
+          "edgeType": "call"
+        },
+        {
+          "name": "update",
+          "edgeType": "call"
+        },
+        {
+          "name": "IUser",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "variable_function",
+      "name": "synchronizeUserData",
+      "exported": true,
+      "line": 43,
+      "endLine": 158,
+      "signature": "async (uid: IUser['_id']): Promise<RawUserData | void> =>",
+      "calls": [
+        {
+          "name": "remove",
+          "edgeType": "call"
+        },
+        {
+          "name": "cancel",
+          "edgeType": "call"
+        },
+        {
+          "name": "notify-user",
+          "edgeType": "stream_sub"
+        },
+        {
+          "name": "stream",
+          "edgeType": "call"
+        },
+        {
+          "name": "store",
+          "edgeType": "call"
+        },
+        {
+          "name": "createTransformFromUpdateFilter",
+          "edgeType": "call"
+        },
+        {
+          "name": "update",
+          "edgeType": "call"
+        },
+        {
+          "name": "delete",
+          "edgeType": "call"
+        },
+        {
+          "name": "ready",
+          "edgeType": "call"
+        },
+        {
+          "name": "me",
+          "edgeType": "rest_call"
+        },
+        {
+          "name": "get",
+          "edgeType": "call"
+        },
+        {
+          "name": "isNaN",
+          "edgeType": "call"
+        },
+        {
+          "name": "getTime",
+          "edgeType": "call"
+        },
+        {
+          "name": "updateUser",
+          "edgeType": "call"
+        },
+        {
+          "name": "map",
+          "edgeType": "call"
+        },
+        {
+          "name": "Boolean",
+          "edgeType": "call"
+        },
+        {
+          "name": "now",
+          "edgeType": "call"
+        },
+        {
+          "name": "setState",
+          "edgeType": "call"
+        },
+        {
+          "name": "Date",
+          "edgeType": "new"
+        },
+        {
+          "name": "IUser",
+          "edgeType": "type"
+        },
+        {
+          "name": "RawUserData",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "variable_function",
+      "name": "removeLocalUserData",
+      "exported": true,
+      "line": 47,
+      "endLine": 50,
+      "signature": "() =>",
+      "calls": [
+        {
+          "name": "replaceAll",
+          "edgeType": "call"
+        },
+        {
+          "name": "clear",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "type",
+      "name": "RawUserData",
+      "line": 10,
+      "endLine": 36,
+      "signature": "type RawUserData = Serialized< Pick< IUser, | '_id' | 'type' | 'name' | 'username' | 'emails' | 'status' | 'statusDefault' | 'statusText' | 'statusExpiresAt' | 'statusConnection' | 'avatarOrigin' | 'utcOffset' | 'language' | 'settings' | 'roles' | 'active' | 'defaultRoom' | 'customFields' | 'oauth' | 'createdAt' | '_updatedAt' | 'avatarETag' > &"
+    }
+  ],
+  "imports": [
+    {
+      "module": "@rocket.chat/core-typings",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/mongo-adapter",
+      "resolved": "external"
+    },
+    {
+      "module": "zustand",
+      "resolved": "external"
+    },
+    {
+      "module": "../../app/utils/client/lib/SDKClient",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/app/utils/client/lib/SDKClient.ts"
+    },
+    {
+      "module": "../stores",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/client/stores/index.ts"
+    }
+  ]
+}

@@ -1,0 +1,153 @@
+{
+  "sourcePath": "/Users/echoooooo/Desktop/code/Rocket.Chat/packages/models/src/models/OAuthRefreshTokens.ts",
+  "symbols": [
+    {
+      "type": "class",
+      "name": "OAuthRefreshTokensRaw",
+      "exported": true,
+      "line": 7,
+      "endLine": 30,
+      "signature": "export class OAuthRefreshTokensRaw extends BaseRaw<IOAuthRefreshToken> implements IOAuthRefreshTokensModel",
+      "calls": [
+        {
+          "name": "BaseRaw",
+          "edgeType": "type"
+        },
+        {
+          "name": "IOAuthRefreshTokensModel",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "modelIndexes",
+      "exported": true,
+      "qualifiedName": "OAuthRefreshTokensRaw.modelIndexes",
+      "line": 12,
+      "endLine": 14,
+      "signature": "override modelIndexes(): IndexDescription[]",
+      "containerClass": "OAuthRefreshTokensRaw",
+      "calls": [
+        {
+          "name": "IndexDescription",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "findOneByRefreshToken",
+      "exported": true,
+      "qualifiedName": "OAuthRefreshTokensRaw.findOneByRefreshToken",
+      "line": 16,
+      "endLine": 21,
+      "signature": "findOneByRefreshToken(refreshToken: string, options?: FindOptions<IOAuthRefreshToken>): Promise<IOAuthRefreshToken | null>",
+      "containerClass": "OAuthRefreshTokensRaw",
+      "calls": [
+        {
+          "name": "resolve",
+          "edgeType": "call"
+        },
+        {
+          "name": "findOne",
+          "edgeType": "call"
+        },
+        {
+          "name": "FindOptions",
+          "edgeType": "type"
+        },
+        {
+          "name": "IOAuthRefreshToken",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "deleteByUserId",
+      "exported": true,
+      "qualifiedName": "OAuthRefreshTokensRaw.deleteByUserId",
+      "line": 20,
+      "endLine": 22,
+      "signature": "async deleteByUserId(userId: string): Promise<DeleteResult>",
+      "containerClass": "OAuthRefreshTokensRaw",
+      "calls": [
+        {
+          "name": "deleteMany",
+          "edgeType": "call"
+        },
+        {
+          "name": "DeleteResult",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "deleteByUserIds",
+      "exported": true,
+      "qualifiedName": "OAuthRefreshTokensRaw.deleteByUserIds",
+      "line": 24,
+      "endLine": 26,
+      "signature": "async deleteByUserIds(userIds: string[]): Promise<DeleteResult>",
+      "containerClass": "OAuthRefreshTokensRaw",
+      "calls": [
+        {
+          "name": "deleteMany",
+          "edgeType": "call"
+        },
+        {
+          "name": "DeleteResult",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "constructor",
+      "exported": true,
+      "qualifiedName": "OAuthRefreshTokensRaw.constructor",
+      "line": 8,
+      "endLine": 10,
+      "signature": "constructor(db: Db, trash?: Collection<RocketChatRecordDeleted<IOAuthRefreshToken>>)",
+      "containerClass": "OAuthRefreshTokensRaw",
+      "calls": [
+        {
+          "name": "Db",
+          "edgeType": "type"
+        },
+        {
+          "name": "Collection",
+          "edgeType": "type"
+        },
+        {
+          "name": "RocketChatRecordDeleted",
+          "edgeType": "type"
+        },
+        {
+          "name": "IOAuthRefreshToken",
+          "edgeType": "type"
+        }
+      ]
+    }
+  ],
+  "imports": [
+    {
+      "module": "@rocket.chat/core-typings",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/model-typings",
+      "resolved": "external"
+    },
+    {
+      "module": "mongodb",
+      "resolved": "external"
+    },
+    {
+      "module": "./BaseRaw",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/packages/models/src/models/BaseRaw.ts"
+    }
+  ]
+}

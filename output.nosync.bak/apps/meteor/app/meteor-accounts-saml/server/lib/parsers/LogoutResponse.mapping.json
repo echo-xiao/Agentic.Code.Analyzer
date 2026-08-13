@@ -1,0 +1,140 @@
+{
+  "sourcePath": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/app/meteor-accounts-saml/server/lib/parsers/LogoutResponse.ts",
+  "symbols": [
+    {
+      "type": "class",
+      "name": "LogoutResponseParser",
+      "exported": true,
+      "line": 9,
+      "endLine": 66,
+      "signature": "export class LogoutResponseParser",
+      "calls": []
+    },
+    {
+      "type": "method",
+      "name": "validate",
+      "exported": true,
+      "qualifiedName": "LogoutResponseParser.validate",
+      "line": 16,
+      "endLine": 57,
+      "signature": "public async validate(envelope: SAMLRedirectEnvelope<'SAMLResponse'>, callback: ILogoutResponseValidateCallback): Promise<void>",
+      "containerClass": "LogoutResponseParser",
+      "calls": [
+        {
+          "name": "log",
+          "edgeType": "call"
+        },
+        {
+          "name": "verifySignature",
+          "edgeType": "call"
+        },
+        {
+          "name": "callback",
+          "edgeType": "call"
+        },
+        {
+          "name": "parseFromString",
+          "edgeType": "call"
+        },
+        {
+          "name": "getElementsByTagNameNS",
+          "edgeType": "call"
+        },
+        {
+          "name": "getAttribute",
+          "edgeType": "call"
+        },
+        {
+          "name": "validateStatus",
+          "edgeType": "call"
+        },
+        {
+          "name": "SAMLRedirectEnvelope",
+          "edgeType": "type"
+        },
+        {
+          "name": "ILogoutResponseValidateCallback",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "verifySignature",
+      "exported": true,
+      "qualifiedName": "LogoutResponseParser.verifySignature",
+      "line": 20,
+      "endLine": 26,
+      "signature": "private verifySignature(envelope: SAMLRedirectEnvelope<'SAMLResponse'>): boolean",
+      "containerClass": "LogoutResponseParser",
+      "calls": [
+        {
+          "name": "validateRedirectSignature",
+          "edgeType": "call"
+        },
+        {
+          "name": "SAMLRedirectEnvelope",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "constructor",
+      "exported": true,
+      "qualifiedName": "LogoutResponseParser.constructor",
+      "line": 12,
+      "endLine": 14,
+      "signature": "constructor(serviceProviderOptions: IServiceProviderOptions)",
+      "containerClass": "LogoutResponseParser",
+      "calls": [
+        {
+          "name": "IServiceProviderOptions",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "class_property",
+      "name": "serviceProviderOptions",
+      "exported": true,
+      "qualifiedName": "LogoutResponseParser.serviceProviderOptions",
+      "line": 10,
+      "endLine": 10,
+      "signature": "serviceProviderOptions: IServiceProviderOptions;",
+      "containerClass": "LogoutResponseParser",
+      "calls": [
+        {
+          "name": "IServiceProviderOptions",
+          "edgeType": "type"
+        }
+      ]
+    }
+  ],
+  "imports": [
+    {
+      "module": "@xmldom/xmldom",
+      "resolved": "external"
+    },
+    {
+      "module": "../../definition/IServiceProviderOptions",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/app/meteor-accounts-saml/server/definition/IServiceProviderOptions.ts"
+    },
+    {
+      "module": "../../definition/SAMLEnvelope",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/app/meteor-accounts-saml/server/definition/SAMLEnvelope.ts"
+    },
+    {
+      "module": "../../definition/callbacks",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/app/meteor-accounts-saml/server/definition/callbacks.ts"
+    },
+    {
+      "module": "../Utils",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/app/meteor-accounts-saml/server/lib/Utils.ts"
+    },
+    {
+      "module": "../signature/validateRedirectSignature",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/app/meteor-accounts-saml/server/lib/signature/validateRedirectSignature.ts"
+    }
+  ]
+}

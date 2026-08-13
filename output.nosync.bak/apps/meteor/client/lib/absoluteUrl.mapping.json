@@ -1,0 +1,88 @@
+{
+  "sourcePath": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/client/lib/absoluteUrl.ts",
+  "symbols": [
+    {
+      "type": "module",
+      "name": "absoluteUrl",
+      "exported": false,
+      "line": 1,
+      "endLine": 60,
+      "signature": "absoluteUrl",
+      "calls": [
+        {
+          "name": "AbsoluteUrlOptions",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "function",
+      "name": "absoluteUrl",
+      "exported": true,
+      "line": 12,
+      "endLine": 46,
+      "signature": "export function absoluteUrl(path?: string, options?: AbsoluteUrlOptions): string",
+      "calls": [
+        {
+          "name": "test",
+          "edgeType": "call"
+        },
+        {
+          "name": "endsWith",
+          "edgeType": "call"
+        },
+        {
+          "name": "startsWith",
+          "edgeType": "call"
+        },
+        {
+          "name": "slice",
+          "edgeType": "call"
+        },
+        {
+          "name": "replace",
+          "edgeType": "call"
+        },
+        {
+          "name": "AbsoluteUrlOptions",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "function",
+      "name": "_relativeToSiteRootUrl",
+      "exported": true,
+      "line": 21,
+      "endLine": 27,
+      "signature": "export function _relativeToSiteRootUrl(link: string): string",
+      "calls": [
+        {
+          "name": "startsWith",
+          "edgeType": "call"
+        },
+        {
+          "name": "getRootUrlPathPrefix",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "type",
+      "name": "AbsoluteUrlOptions",
+      "line": 6,
+      "endLine": 10,
+      "signature": "type AbsoluteUrlOptions ="
+    }
+  ],
+  "imports": [
+    {
+      "module": "./baseURI",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/client/lib/baseURI.ts"
+    },
+    {
+      "module": "./meteorRuntimeConfig",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/client/lib/meteorRuntimeConfig.ts"
+    }
+  ]
+}

@@ -1,0 +1,93 @@
+{
+  "sourcePath": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/app/2fa/server/methods/validateTempToken.ts",
+  "symbols": [
+    {
+      "type": "module",
+      "name": "validateTempToken",
+      "exported": false,
+      "line": 1,
+      "endLine": 78,
+      "signature": "validateTempToken",
+      "calls": [
+        {
+          "name": "2fa:validateTempToken",
+          "edgeType": "call"
+        },
+        {
+          "name": "methods",
+          "edgeType": "call"
+        },
+        {
+          "name": "userId",
+          "edgeType": "call"
+        },
+        {
+          "name": "userAsync",
+          "edgeType": "call"
+        },
+        {
+          "name": "verify",
+          "edgeType": "call"
+        },
+        {
+          "name": "generateCodes",
+          "edgeType": "call"
+        },
+        {
+          "name": "enable2FAAndSetSecretAndCodesByUserId",
+          "edgeType": "call"
+        },
+        {
+          "name": "_hashLoginToken",
+          "edgeType": "call"
+        },
+        {
+          "name": "removeNonPATLoginTokensExcept",
+          "edgeType": "call"
+        },
+        {
+          "name": "notifyOnUserChangeAsync",
+          "edgeType": "call"
+        },
+        {
+          "name": "findOneById",
+          "edgeType": "call"
+        },
+        {
+          "name": "notifyOnUserChange",
+          "edgeType": "call"
+        },
+        {
+          "name": "ServerMethods",
+          "edgeType": "type"
+        }
+      ]
+    }
+  ],
+  "imports": [
+    {
+      "module": "@rocket.chat/ddp-client",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/models",
+      "resolved": "external"
+    },
+    {
+      "module": "meteor/accounts-base",
+      "resolved": "external"
+    },
+    {
+      "module": "meteor/meteor",
+      "resolved": "external"
+    },
+    {
+      "module": "../../../lib/server/lib/notifyListener",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/app/lib/server/lib/notifyListener.ts"
+    },
+    {
+      "module": "../lib/totp",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/app/2fa/server/lib/totp.ts"
+    }
+  ]
+}

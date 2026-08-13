@@ -1,0 +1,41 @@
+## File: apps/meteor/server/methods/toggleFavorite.ts
+
+```typescript
+import type { IRoom } from '@rocket.chat/core-typings';
+import type { ServerMethods } from '@rocket.chat/ddp-client';
+import { Subscriptions } from '@rocket.chat/models';
+import { Match, check } from 'meteor/check';
+import { Meteor } from 'meteor/meteor';
+
+import { methodDeprecationLogger } from '../../app/lib/server/lib/deprecationWarningLogger';
+import { notifyOnSubscriptionChangedByRoomIdAndUserId } from '../../app/lib/server/lib/notifyListener';
+
+declare module '@rocket.chat/ddp-client' {
+	// eslint-disable-next-line @typescript-eslint/naming-convention
+	interface ServerMethods {
+		toggleFavorite(rid: IRoom['_id'], favorite?: boolean): Promise<number>;
+	}
+}
+
+export const toggleFavoriteMethod = async (userId: string, rid: IRoom['_id'], favorite?: boolean): Promise<number> => {
+    /* Implementation Hidden */
+};
+
+Meteor.methods<ServerMethods>({
+	async toggleFavorite(rid, favorite) {
+		methodDeprecationLogger.method('toggleFavorite', '9.0.0', '/v1/rooms.favorite');
+		check(rid, String);
+		check(favorite, Match.Optional(Boolean));
+		const userId = Meteor.userId();
+
+		if (!userId) {
+			throw new Meteor.Error('error-invalid-user', 'Invalid user', {
+				method: 'toggleFavorite',
+			});
+		}
+
+		return toggleFavoriteMethod(userId, rid, favorite);
+	},
+});
+
+```

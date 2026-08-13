@@ -1,0 +1,77 @@
+{
+  "sourcePath": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/server/lib/users/setStatusText.ts",
+  "symbols": [
+    {
+      "type": "function",
+      "name": "setStatusText",
+      "exported": true,
+      "line": 9,
+      "endLine": 45,
+      "signature": "export async function setStatusText( user: Pick<IUser, '_id' | 'username' | 'name' | 'status' | 'roles' | 'statusText'>, statusText: string, { updater, session, emit = true, }: { updater?: Updater<IUser>; session?: ClientSession; emit?: boolean; } = {}, ): Promise<boolean>",
+      "calls": [
+        {
+          "name": "substr",
+          "edgeType": "call"
+        },
+        {
+          "name": "trim",
+          "edgeType": "call"
+        },
+        {
+          "name": "set",
+          "edgeType": "call"
+        },
+        {
+          "name": "updateStatusText",
+          "edgeType": "call"
+        },
+        {
+          "name": "onceTransactionCommitedSuccessfully",
+          "edgeType": "call"
+        },
+        {
+          "name": "presence.status",
+          "edgeType": "event_emit"
+        },
+        {
+          "name": "IUser",
+          "edgeType": "type"
+        },
+        {
+          "name": "Updater",
+          "edgeType": "type"
+        },
+        {
+          "name": "ClientSession",
+          "edgeType": "type"
+        }
+      ]
+    }
+  ],
+  "imports": [
+    {
+      "module": "@rocket.chat/core-services",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/core-typings",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/models",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/models",
+      "resolved": "external"
+    },
+    {
+      "module": "mongodb",
+      "resolved": "external"
+    },
+    {
+      "module": "../../database/utils",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/server/database/utils.ts"
+    }
+  ]
+}

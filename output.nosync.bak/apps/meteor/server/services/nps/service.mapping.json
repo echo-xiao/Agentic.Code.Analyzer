@@ -1,0 +1,257 @@
+{
+  "sourcePath": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/server/services/nps/service.ts",
+  "symbols": [
+    {
+      "type": "class",
+      "name": "NPSService",
+      "exported": true,
+      "line": 13,
+      "endLine": 192,
+      "signature": "export class NPSService extends ServiceClassInternal implements INPSService",
+      "calls": [
+        {
+          "name": "ServiceClassInternal",
+          "edgeType": "type"
+        },
+        {
+          "name": "INPSService",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "create",
+      "exported": true,
+      "qualifiedName": "NPSService.create",
+      "line": 16,
+      "endLine": 48,
+      "signature": "async create(nps: NPSCreatePayload): Promise<boolean>",
+      "containerClass": "NPSService",
+      "calls": [
+        {
+          "name": "get",
+          "edgeType": "call"
+        },
+        {
+          "name": "findOne",
+          "edgeType": "call"
+        },
+        {
+          "name": "create",
+          "edgeType": "call"
+        },
+        {
+          "name": "getBannerForAdmins",
+          "edgeType": "call"
+        },
+        {
+          "name": "notifyAdmins",
+          "edgeType": "call"
+        },
+        {
+          "name": "save",
+          "edgeType": "call"
+        },
+        {
+          "name": "error",
+          "edgeType": "call"
+        },
+        {
+          "name": "Date",
+          "edgeType": "new"
+        },
+        {
+          "name": "NPSCreatePayload",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "sendResults",
+      "exported": true,
+      "qualifiedName": "NPSService.sendResults",
+      "line": 20,
+      "endLine": 111,
+      "signature": "async sendResults(): Promise<void>",
+      "containerClass": "NPSService",
+      "calls": [
+        {
+          "name": "get",
+          "edgeType": "call"
+        },
+        {
+          "name": "getOpenExpiredAlreadySending",
+          "edgeType": "call"
+        },
+        {
+          "name": "getOpenExpiredAndStartSending",
+          "edgeType": "call"
+        },
+        {
+          "name": "countByNpsId",
+          "edgeType": "call"
+        },
+        {
+          "name": "toArray",
+          "edgeType": "call"
+        },
+        {
+          "name": "findNotSentByNpsId",
+          "edgeType": "call"
+        },
+        {
+          "name": "countByNpsIdAndStatus",
+          "edgeType": "call"
+        },
+        {
+          "name": "updateStatusById",
+          "edgeType": "call"
+        },
+        {
+          "name": "updateOldSendingToNewByNpsId",
+          "edgeType": "call"
+        },
+        {
+          "name": "sendResults",
+          "edgeType": "call"
+        },
+        {
+          "name": "all",
+          "edgeType": "call"
+        },
+        {
+          "name": "map",
+          "edgeType": "call"
+        },
+        {
+          "name": "findOneAndUpdate",
+          "edgeType": "call"
+        },
+        {
+          "name": "filter",
+          "edgeType": "call"
+        },
+        {
+          "name": "sendNpsResults",
+          "edgeType": "call"
+        },
+        {
+          "name": "updateVotesToSent",
+          "edgeType": "call"
+        },
+        {
+          "name": "Date",
+          "edgeType": "new"
+        },
+        {
+          "name": "INpsVote",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "vote",
+      "exported": true,
+      "qualifiedName": "NPSService.vote",
+      "line": 24,
+      "endLine": 68,
+      "signature": "async vote({ userId, npsId, roles, score, comment }: NPSVotePayload): Promise<void>",
+      "containerClass": "NPSService",
+      "calls": [
+        {
+          "name": "get",
+          "edgeType": "call"
+        },
+        {
+          "name": "findOneById",
+          "edgeType": "call"
+        },
+        {
+          "name": "digest",
+          "edgeType": "call"
+        },
+        {
+          "name": "update",
+          "edgeType": "call"
+        },
+        {
+          "name": "createHash",
+          "edgeType": "call"
+        },
+        {
+          "name": "save",
+          "edgeType": "call"
+        },
+        {
+          "name": "Date",
+          "edgeType": "new"
+        },
+        {
+          "name": "NPSVotePayload",
+          "edgeType": "type"
+        },
+        {
+          "name": "INps",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "closeOpenSurveys",
+      "exported": true,
+      "qualifiedName": "NPSService.closeOpenSurveys",
+      "line": 28,
+      "endLine": 30,
+      "signature": "async closeOpenSurveys(): Promise<void>",
+      "containerClass": "NPSService",
+      "calls": [
+        {
+          "name": "closeAllByStatus",
+          "edgeType": "call"
+        }
+      ]
+    }
+  ],
+  "imports": [
+    {
+      "module": "node:crypto",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/core-services",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/core-services",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/core-typings",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/core-typings",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/models",
+      "resolved": "external"
+    },
+    {
+      "module": "./notification",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/server/services/nps/notification.ts"
+    },
+    {
+      "module": "./sendNpsResults",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/server/services/nps/sendNpsResults.ts"
+    },
+    {
+      "module": "../../lib/logger/system",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/server/lib/logger/system.ts"
+    }
+  ]
+}

@@ -1,0 +1,836 @@
+{
+  "sourcePath": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/server/api/v1/users.ts",
+  "symbols": [
+    {
+      "type": "module",
+      "name": "users",
+      "exported": false,
+      "line": 1,
+      "endLine": 2088,
+      "signature": "users",
+      "calls": [
+        {
+          "name": "users.getAvatar",
+          "edgeType": "rest_route"
+        },
+        {
+          "name": "addRoute",
+          "edgeType": "call"
+        },
+        {
+          "name": "getUserFromParams",
+          "edgeType": "call"
+        },
+        {
+          "name": "getURL",
+          "edgeType": "call"
+        },
+        {
+          "name": "set",
+          "edgeType": "call"
+        },
+        {
+          "name": "users.update",
+          "edgeType": "rest_route"
+        },
+        {
+          "name": "post",
+          "edgeType": "call"
+        },
+        {
+          "name": "validateNameChars",
+          "edgeType": "call"
+        },
+        {
+          "name": "failure",
+          "edgeType": "call"
+        },
+        {
+          "name": "get",
+          "edgeType": "call"
+        },
+        {
+          "name": "saveUser",
+          "edgeType": "call"
+        },
+        {
+          "name": "executeSetUserActiveStatus",
+          "edgeType": "call"
+        },
+        {
+          "name": "Boolean",
+          "edgeType": "call"
+        },
+        {
+          "name": "parseJsonQuery",
+          "edgeType": "call"
+        },
+        {
+          "name": "findOneById",
+          "edgeType": "call"
+        },
+        {
+          "name": "success",
+          "edgeType": "call"
+        },
+        {
+          "name": "UserChangedAuditStore",
+          "edgeType": "new"
+        },
+        {
+          "name": "users.updateOwnBasicInfo",
+          "edgeType": "rest_route"
+        },
+        {
+          "name": "call",
+          "edgeType": "call"
+        },
+        {
+          "name": "getUserInfo",
+          "edgeType": "call"
+        },
+        {
+          "name": "hasPermissionAsync",
+          "edgeType": "call"
+        },
+        {
+          "name": "saveUserPreferences",
+          "edgeType": "call"
+        },
+        {
+          "name": "isUserFromParams",
+          "edgeType": "call"
+        },
+        {
+          "name": "forbidden",
+          "edgeType": "call"
+        },
+        {
+          "name": "setUserAvatar",
+          "edgeType": "call"
+        },
+        {
+          "name": "getUploadFormData",
+          "edgeType": "call"
+        },
+        {
+          "name": "findOneByUsernameIgnoringCase",
+          "edgeType": "call"
+        },
+        {
+          "name": "validateCustomFields",
+          "edgeType": "call"
+        },
+        {
+          "name": "canEditExtension",
+          "edgeType": "call"
+        },
+        {
+          "name": "saveCustomFieldsWithoutValidation",
+          "edgeType": "call"
+        },
+        {
+          "name": "IUser",
+          "edgeType": "type"
+        },
+        {
+          "name": "users.delete",
+          "edgeType": "rest_route"
+        },
+        {
+          "name": "compile",
+          "edgeType": "call"
+        },
+        {
+          "name": "deleteUser",
+          "edgeType": "call"
+        },
+        {
+          "name": "users.deleteOwnAccount",
+          "edgeType": "rest_route"
+        },
+        {
+          "name": "deleteUserOwnAccount",
+          "edgeType": "call"
+        },
+        {
+          "name": "users.setActiveStatus",
+          "edgeType": "rest_route"
+        },
+        {
+          "name": "users.deactivateIdle",
+          "edgeType": "rest_route"
+        },
+        {
+          "name": "setDate",
+          "edgeType": "call"
+        },
+        {
+          "name": "getDate",
+          "edgeType": "call"
+        },
+        {
+          "name": "toArray",
+          "edgeType": "call"
+        },
+        {
+          "name": "map",
+          "edgeType": "call"
+        },
+        {
+          "name": "findActiveNotLoggedInAfterWithRole",
+          "edgeType": "call"
+        },
+        {
+          "name": "setActiveNotLoggedInAfterWithRole",
+          "edgeType": "call"
+        },
+        {
+          "name": "all",
+          "edgeType": "call"
+        },
+        {
+          "name": "deleteByUserIds",
+          "edgeType": "call"
+        },
+        {
+          "name": "forEach",
+          "edgeType": "call"
+        },
+        {
+          "name": "notifyOnUserChange",
+          "edgeType": "call"
+        },
+        {
+          "name": "Date",
+          "edgeType": "new"
+        },
+        {
+          "name": "users.info",
+          "edgeType": "rest_route"
+        },
+        {
+          "name": "getFullUserDataByUniqueSearchTerm",
+          "edgeType": "call"
+        },
+        {
+          "name": "findByUserId",
+          "edgeType": "call"
+        },
+        {
+          "name": "users.list",
+          "edgeType": "rest_route"
+        },
+        {
+          "name": "getPaginationItems",
+          "edgeType": "call"
+        },
+        {
+          "name": "getNonEmptyFields",
+          "edgeType": "call"
+        },
+        {
+          "name": "getInclusiveFields",
+          "edgeType": "call"
+        },
+        {
+          "name": "keys",
+          "edgeType": "call"
+        },
+        {
+          "name": "getNonEmptyQuery",
+          "edgeType": "call"
+        },
+        {
+          "name": "escapeRegExp",
+          "edgeType": "call"
+        },
+        {
+          "name": "isValidQuery",
+          "edgeType": "call"
+        },
+        {
+          "name": "filter",
+          "edgeType": "call"
+        },
+        {
+          "name": "includes",
+          "edgeType": "call"
+        },
+        {
+          "name": "join",
+          "edgeType": "call"
+        },
+        {
+          "name": "aggregate",
+          "edgeType": "call"
+        },
+        {
+          "name": "users.listByStatus",
+          "edgeType": "rest_route"
+        },
+        {
+          "name": "findPaginatedUsersByStatus",
+          "edgeType": "call"
+        },
+        {
+          "name": "users.sendWelcomeEmail",
+          "edgeType": "rest_route"
+        },
+        {
+          "name": "isSMTPConfigured",
+          "edgeType": "call"
+        },
+        {
+          "name": "findOneByEmailAddress",
+          "edgeType": "call"
+        },
+        {
+          "name": "trim",
+          "edgeType": "call"
+        },
+        {
+          "name": "sendWelcomeEmail",
+          "edgeType": "call"
+        },
+        {
+          "name": "MeteorError",
+          "edgeType": "new"
+        },
+        {
+          "name": "users.register",
+          "edgeType": "rest_route"
+        },
+        {
+          "name": "validateUsername",
+          "edgeType": "call"
+        },
+        {
+          "name": "checkUsernameAvailability",
+          "edgeType": "call"
+        },
+        {
+          "name": "checkEmailAvailability",
+          "edgeType": "call"
+        },
+        {
+          "name": "registerUser",
+          "edgeType": "call"
+        },
+        {
+          "name": "setUsernameWithValidation",
+          "edgeType": "call"
+        },
+        {
+          "name": "saveCustomFields",
+          "edgeType": "call"
+        },
+        {
+          "name": "users.resetAvatar",
+          "edgeType": "rest_route"
+        },
+        {
+          "name": "resetAvatar",
+          "edgeType": "call"
+        },
+        {
+          "name": "users.getPreferences",
+          "edgeType": "rest_route"
+        },
+        {
+          "name": "toUpperCase",
+          "edgeType": "call"
+        },
+        {
+          "name": "users.forgotPassword",
+          "edgeType": "rest_route"
+        },
+        {
+          "name": "sendForgotPasswordEmail",
+          "edgeType": "call"
+        },
+        {
+          "name": "toLowerCase",
+          "edgeType": "call"
+        },
+        {
+          "name": "generateUsernameSuggestion",
+          "edgeType": "call"
+        },
+        {
+          "name": "users.checkUsernameAvailability",
+          "edgeType": "rest_route"
+        },
+        {
+          "name": "checkUsernameAvailabilityWithValidation",
+          "edgeType": "call"
+        },
+        {
+          "name": "generatePersonalAccessTokenOfUser",
+          "edgeType": "call"
+        },
+        {
+          "name": "regeneratePersonalAccessTokenOfUser",
+          "edgeType": "call"
+        },
+        {
+          "name": "getLoginTokensByUserId",
+          "edgeType": "call"
+        },
+        {
+          "name": "toISOString",
+          "edgeType": "call"
+        },
+        {
+          "name": "removePersonalAccessTokenOfUser",
+          "edgeType": "call"
+        },
+        {
+          "name": "ILoginToken",
+          "edgeType": "type"
+        },
+        {
+          "name": "IPersonalAccessToken",
+          "edgeType": "type"
+        },
+        {
+          "name": "users.2fa.enableEmail",
+          "edgeType": "rest_route"
+        },
+        {
+          "name": "some",
+          "edgeType": "call"
+        },
+        {
+          "name": "enableEmail2FAByUserId",
+          "edgeType": "call"
+        },
+        {
+          "name": "_hashLoginToken",
+          "edgeType": "call"
+        },
+        {
+          "name": "removeNonPATLoginTokensExcept",
+          "edgeType": "call"
+        },
+        {
+          "name": "notifyOnUserChangeAsync",
+          "edgeType": "call"
+        },
+        {
+          "name": "disableEmail2FAByUserId",
+          "edgeType": "call"
+        },
+        {
+          "name": "getUserForCheck",
+          "edgeType": "call"
+        },
+        {
+          "name": "sendEmailCode",
+          "edgeType": "call"
+        },
+        {
+          "name": "users.sendConfirmationEmail",
+          "edgeType": "rest_route"
+        },
+        {
+          "name": "catch",
+          "edgeType": "call"
+        },
+        {
+          "name": "sendConfirmationEmail",
+          "edgeType": "call"
+        },
+        {
+          "name": "error",
+          "edgeType": "call"
+        },
+        {
+          "name": "users.presence",
+          "edgeType": "rest_route"
+        },
+        {
+          "name": "findPresenceUsersByIds",
+          "edgeType": "call"
+        },
+        {
+          "name": "isArray",
+          "edgeType": "call"
+        },
+        {
+          "name": "split",
+          "edgeType": "call"
+        },
+        {
+          "name": "now",
+          "edgeType": "call"
+        },
+        {
+          "name": "findNotIdUpdatedFrom",
+          "edgeType": "call"
+        },
+        {
+          "name": "findUsersNotOffline",
+          "edgeType": "call"
+        },
+        {
+          "name": "users.requestDataDownload",
+          "edgeType": "rest_route"
+        },
+        {
+          "name": "requestDataDownload",
+          "edgeType": "call"
+        },
+        {
+          "name": "find",
+          "edgeType": "call"
+        },
+        {
+          "name": "getTime",
+          "edgeType": "call"
+        },
+        {
+          "name": "getLoginExpirationInMs",
+          "edgeType": "call"
+        },
+        {
+          "name": "IExportOperation",
+          "edgeType": "type"
+        },
+        {
+          "name": "users.autocomplete",
+          "edgeType": "rest_route"
+        },
+        {
+          "name": "parse",
+          "edgeType": "call"
+        },
+        {
+          "name": "findUsersToAutocomplete",
+          "edgeType": "call"
+        },
+        {
+          "name": "Filter",
+          "edgeType": "type"
+        },
+        {
+          "name": "users.removeOtherTokens",
+          "edgeType": "rest_route"
+        },
+        {
+          "name": "removeNonLoginTokensExcept",
+          "edgeType": "call"
+        },
+        {
+          "name": "resetUserE2EEncriptionKey",
+          "edgeType": "call"
+        },
+        {
+          "name": "resetTOTP",
+          "edgeType": "call"
+        },
+        {
+          "name": "users.listTeams",
+          "edgeType": "rest_route"
+        },
+        {
+          "name": "check",
+          "edgeType": "call"
+        },
+        {
+          "name": "ObjectIncluding",
+          "edgeType": "call"
+        },
+        {
+          "name": "Maybe",
+          "edgeType": "call"
+        },
+        {
+          "name": "findBySubscribedUserIds",
+          "edgeType": "call"
+        },
+        {
+          "name": "unsetLoginTokens",
+          "edgeType": "call"
+        },
+        {
+          "name": "logoutAllByUserId",
+          "edgeType": "call"
+        },
+        {
+          "name": "users.getPresence",
+          "edgeType": "rest_route"
+        },
+        {
+          "name": "OneOf",
+          "edgeType": "call"
+        },
+        {
+          "name": "isNaN",
+          "edgeType": "call"
+        },
+        {
+          "name": "setStatus",
+          "edgeType": "call"
+        },
+        {
+          "name": "UserStatus",
+          "edgeType": "type"
+        },
+        {
+          "name": "watch",
+          "edgeType": "call"
+        },
+        {
+          "name": "updateRateLimiterDictionaryForRoute",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "type",
+      "name": "UsersEndpoints",
+      "line": 2082,
+      "endLine": 2082,
+      "signature": "type UsersEndpoints = ExtractRoutesFromAPI<typeof usersEndpoints>;"
+    }
+  ],
+  "imports": [
+    {
+      "module": "@rocket.chat/core-services",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/core-typings",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/models",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/rest-typings",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/string-helpers",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/tools",
+      "resolved": "external"
+    },
+    {
+      "module": "meteor/accounts-base",
+      "resolved": "external"
+    },
+    {
+      "module": "meteor/check",
+      "resolved": "external"
+    },
+    {
+      "module": "meteor/meteor",
+      "resolved": "external"
+    },
+    {
+      "module": "mongodb",
+      "resolved": "external"
+    },
+    {
+      "module": "../../../app/2fa/server/code",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/app/2fa/server/code/index.ts"
+    },
+    {
+      "module": "../../../app/2fa/server/functions/resetTOTP",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/app/2fa/server/functions/resetTOTP.ts"
+    },
+    {
+      "module": "../../../app/lib/server/lib/notifyListener",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/app/lib/server/lib/notifyListener.ts"
+    },
+    {
+      "module": "../../../app/lib/server/methods/createToken",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/app/lib/server/methods/createToken.ts"
+    },
+    {
+      "module": "../../../app/lib/server/methods/deleteUserOwnAccount",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/app/lib/server/methods/deleteUserOwnAccount.ts"
+    },
+    {
+      "module": "../../../app/settings/server",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/app/settings/server/index.ts"
+    },
+    {
+      "module": "../../../app/utils/server/functions/isSMTPConfigured",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/app/utils/server/functions/isSMTPConfigured.ts"
+    },
+    {
+      "module": "../../../app/utils/server/getURL",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/app/utils/server/getURL.ts"
+    },
+    {
+      "module": "../../../imports/personal-access-tokens/server/api/methods/generateToken",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/imports/personal-access-tokens/server/api/methods/generateToken.ts"
+    },
+    {
+      "module": "../../../imports/personal-access-tokens/server/api/methods/regenerateToken",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/imports/personal-access-tokens/server/api/methods/regenerateToken.ts"
+    },
+    {
+      "module": "../../../imports/personal-access-tokens/server/api/methods/removeToken",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/imports/personal-access-tokens/server/api/methods/removeToken.ts"
+    },
+    {
+      "module": "../../lib/auditServerEvents/userChanged",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/server/lib/auditServerEvents/userChanged.ts"
+    },
+    {
+      "module": "../../lib/authorization/hasPermission",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/server/lib/authorization/hasPermission.ts"
+    },
+    {
+      "module": "../../lib/i18n",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/server/lib/i18n.ts"
+    },
+    {
+      "module": "../../lib/logger/system",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/server/lib/logger/system.ts"
+    },
+    {
+      "module": "../../lib/resetUserE2EKey",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/server/lib/resetUserE2EKey.ts"
+    },
+    {
+      "module": "../../lib/shared/validateNameChars",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/server/lib/shared/validateNameChars.ts"
+    },
+    {
+      "module": "../../lib/users/checkEmailAvailability",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/server/lib/users/checkEmailAvailability.ts"
+    },
+    {
+      "module": "../../lib/users/checkUsernameAvailability",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/server/lib/users/checkUsernameAvailability.ts"
+    },
+    {
+      "module": "../../lib/users/deleteUser",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/server/lib/users/deleteUser.ts"
+    },
+    {
+      "module": "../../lib/users/getAvatarSuggestionForUser",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/server/lib/users/getAvatarSuggestionForUser.ts"
+    },
+    {
+      "module": "../../lib/users/getFullUserData",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/server/lib/users/getFullUserData.ts"
+    },
+    {
+      "module": "../../lib/users/getUsernameSuggestion",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/server/lib/users/getUsernameSuggestion.ts"
+    },
+    {
+      "module": "../../lib/users/saveCustomFields",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/server/lib/users/saveCustomFields.ts"
+    },
+    {
+      "module": "../../lib/users/saveCustomFieldsWithoutValidation",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/server/lib/users/saveCustomFieldsWithoutValidation.ts"
+    },
+    {
+      "module": "../../lib/users/saveUser",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/server/lib/users/saveUser/index.ts"
+    },
+    {
+      "module": "../../lib/users/saveUser/sendUserEmail",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/server/lib/users/saveUser/sendUserEmail.ts"
+    },
+    {
+      "module": "../../lib/users/saveUser/validateUserEditing",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/server/lib/users/saveUser/validateUserEditing.ts"
+    },
+    {
+      "module": "../../lib/users/setUserAvatar",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/server/lib/users/setUserAvatar.ts"
+    },
+    {
+      "module": "../../lib/users/setUsername",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/server/lib/users/setUsername.ts"
+    },
+    {
+      "module": "../../lib/users/validateCustomFields",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/server/lib/users/validateCustomFields.ts"
+    },
+    {
+      "module": "../../lib/users/validateUsername",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/server/lib/users/validateUsername.ts"
+    },
+    {
+      "module": "../../methods/registerUser",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/server/methods/registerUser.ts"
+    },
+    {
+      "module": "../../methods/requestDataDownload",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/server/methods/requestDataDownload.ts"
+    },
+    {
+      "module": "../../methods/resetAvatar",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/server/methods/resetAvatar.ts"
+    },
+    {
+      "module": "../../methods/saveUserPreferences",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/server/methods/saveUserPreferences.ts"
+    },
+    {
+      "module": "../../methods/saveUserProfile",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/server/methods/saveUserProfile.ts"
+    },
+    {
+      "module": "../../methods/sendConfirmationEmail",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/server/methods/sendConfirmationEmail.ts"
+    },
+    {
+      "module": "../../methods/sendForgotPasswordEmail",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/server/methods/sendForgotPasswordEmail.ts"
+    },
+    {
+      "module": "../../methods/setUserActiveStatus",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/server/methods/setUserActiveStatus.ts"
+    },
+    {
+      "module": "../ApiClass",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/server/api/ApiClass.ts"
+    },
+    {
+      "module": "../api",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/server/api/api.ts"
+    },
+    {
+      "module": "../lib/getPaginationItems",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/server/api/lib/getPaginationItems.ts"
+    },
+    {
+      "module": "../lib/getUploadFormData",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/server/api/lib/getUploadFormData.ts"
+    },
+    {
+      "module": "../lib/getUserFromParams",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/server/api/lib/getUserFromParams.ts"
+    },
+    {
+      "module": "../lib/getUserInfo",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/server/api/lib/getUserInfo.ts"
+    },
+    {
+      "module": "../lib/isUserFromParams",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/server/api/lib/isUserFromParams.ts"
+    },
+    {
+      "module": "../lib/isValidQuery",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/server/api/lib/isValidQuery.ts"
+    },
+    {
+      "module": "../lib/users",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/server/api/lib/users.ts"
+    }
+  ]
+}

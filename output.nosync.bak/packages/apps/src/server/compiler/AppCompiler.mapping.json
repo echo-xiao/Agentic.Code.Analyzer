@@ -1,0 +1,104 @@
+{
+  "sourcePath": "/Users/echoooooo/Desktop/code/Rocket.Chat/packages/apps/src/server/compiler/AppCompiler.ts",
+  "symbols": [
+    {
+      "type": "class",
+      "name": "AppCompiler",
+      "exported": true,
+      "line": 8,
+      "endLine": 30,
+      "signature": "export class AppCompiler",
+      "calls": []
+    },
+    {
+      "type": "method",
+      "name": "normalizeStorageFiles",
+      "exported": true,
+      "qualifiedName": "AppCompiler.normalizeStorageFiles",
+      "line": 9,
+      "endLine": 17,
+      "signature": "public normalizeStorageFiles(files: { [key: string]: string }): { [key: string]: string }",
+      "containerClass": "AppCompiler",
+      "calls": [
+        {
+          "name": "forEach",
+          "edgeType": "call"
+        },
+        {
+          "name": "entries",
+          "edgeType": "call"
+        },
+        {
+          "name": "replace",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "toSandBox",
+      "exported": true,
+      "qualifiedName": "AppCompiler.toSandBox",
+      "line": 13,
+      "endLine": 23,
+      "signature": "public async toSandBox(manager: AppManager, storage: IAppStorageItem, packageResult: IParseAppPackageResult): Promise<ProxiedApp>",
+      "containerClass": "AppCompiler",
+      "calls": [
+        {
+          "name": "normalize",
+          "edgeType": "call"
+        },
+        {
+          "name": "startRuntimeForApp",
+          "edgeType": "call"
+        },
+        {
+          "name": "getRuntime",
+          "edgeType": "call"
+        },
+        {
+          "name": "ProxiedApp",
+          "edgeType": "new"
+        },
+        {
+          "name": "AppManager",
+          "edgeType": "type"
+        },
+        {
+          "name": "IAppStorageItem",
+          "edgeType": "type"
+        },
+        {
+          "name": "IParseAppPackageResult",
+          "edgeType": "type"
+        },
+        {
+          "name": "ProxiedApp",
+          "edgeType": "type"
+        }
+      ]
+    }
+  ],
+  "imports": [
+    {
+      "module": "node:path",
+      "resolved": "external"
+    },
+    {
+      "module": "../AppManager",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/packages/apps/src/server/AppManager.ts"
+    },
+    {
+      "module": "../ProxiedApp",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/packages/apps/src/server/ProxiedApp.ts"
+    },
+    {
+      "module": "../storage",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/packages/apps/src/server/storage/index.ts"
+    },
+    {
+      "module": "./IParseAppPackageResult",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/packages/apps/src/server/compiler/IParseAppPackageResult.ts"
+    }
+  ]
+}

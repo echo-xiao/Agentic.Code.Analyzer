@@ -1,0 +1,96 @@
+{
+  "sourcePath": "/Users/echoooooo/Desktop/code/Rocket.Chat/packages/core-typings/src/ISession.ts",
+  "symbols": [
+    {
+      "type": "interface",
+      "name": "ISessionDevice",
+      "line": 5,
+      "endLine": 14,
+      "signature": "export interface ISessionDevice"
+    },
+    {
+      "type": "interface",
+      "name": "ISession",
+      "line": 16,
+      "endLine": 37,
+      "signature": "export interface ISession extends IRocketChatRecord"
+    },
+    {
+      "type": "type",
+      "name": "SessionAggregationResult",
+      "line": 39,
+      "endLine": 43,
+      "signature": "type SessionAggregationResult ="
+    },
+    {
+      "type": "type",
+      "name": "UserSessionAggregationResult",
+      "line": 45,
+      "endLine": 47,
+      "signature": "export type UserSessionAggregationResult = SessionAggregationResult &"
+    },
+    {
+      "type": "type",
+      "name": "DeviceSessionAggregationResult",
+      "line": 49,
+      "endLine": 51,
+      "signature": "export type DeviceSessionAggregationResult = SessionAggregationResult &"
+    },
+    {
+      "type": "type",
+      "name": "OSSessionAggregationResult",
+      "line": 53,
+      "endLine": 55,
+      "signature": "export type OSSessionAggregationResult = SessionAggregationResult &"
+    },
+    {
+      "type": "type",
+      "name": "UserSessionAggregation",
+      "line": 57,
+      "endLine": 61,
+      "signature": "export type UserSessionAggregation = Pick<ISession, '_id'> &"
+    },
+    {
+      "type": "type",
+      "name": "DeviceSessionAggregation",
+      "line": 63,
+      "endLine": 69,
+      "signature": "export type DeviceSessionAggregation = Pick<ISession, '_id'> &"
+    },
+    {
+      "type": "type",
+      "name": "OSSessionAggregation",
+      "line": 71,
+      "endLine": 76,
+      "signature": "export type OSSessionAggregation = Pick<ISession, '_id'> &"
+    },
+    {
+      "type": "type",
+      "name": "DeviceManagementSession",
+      "line": 78,
+      "endLine": 80,
+      "signature": "export type DeviceManagementSession = Pick<ISession, '_id' | 'sessionId' | 'device' | 'host' | 'ip' | 'logoutAt' | 'userId' | 'loginAt'> &"
+    },
+    {
+      "type": "type",
+      "name": "DeviceManagementPopulatedSession",
+      "line": 82,
+      "endLine": 84,
+      "signature": "export type DeviceManagementPopulatedSession = DeviceManagementSession &"
+    }
+  ],
+  "imports": [
+    {
+      "module": "./IRocketChatRecord",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/packages/core-typings/src/IRocketChatRecord.ts"
+    },
+    {
+      "module": "./IRole",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/packages/core-typings/src/IRole.ts"
+    },
+    {
+      "module": "./IUser",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/packages/core-typings/src/IUser.ts"
+    }
+  ]
+}

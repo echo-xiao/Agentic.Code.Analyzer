@@ -1,0 +1,105 @@
+{
+  "sourcePath": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/client/views/omnichannel/components/AutoCompleteContact/useContactsList.ts",
+  "symbols": [
+    {
+      "type": "variable_function",
+      "name": "formatContactItem",
+      "exported": false,
+      "line": 20,
+      "endLine": 24,
+      "signature": "(contact: Serialized<ILivechatContactWithManagerData>): ContactOption =>",
+      "calls": [
+        {
+          "name": "Serialized",
+          "edgeType": "type"
+        },
+        {
+          "name": "ILivechatContactWithManagerData",
+          "edgeType": "type"
+        },
+        {
+          "name": "ContactOption",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "variable_function",
+      "name": "useContactsList",
+      "exported": true,
+      "line": 26,
+      "endLine": 52,
+      "signature": "(options: ContactOptions) =>",
+      "calls": [
+        {
+          "name": "useEndpoint",
+          "edgeType": "call"
+        },
+        {
+          "name": "useInfiniteQuery",
+          "edgeType": "call"
+        },
+        {
+          "name": "contacts",
+          "edgeType": "call"
+        },
+        {
+          "name": "getContacts",
+          "edgeType": "call"
+        },
+        {
+          "name": "map",
+          "edgeType": "call"
+        },
+        {
+          "name": "flatMap",
+          "edgeType": "call"
+        },
+        {
+          "name": "ContactOptions",
+          "edgeType": "type"
+        },
+        {
+          "name": "ContactOption",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "type",
+      "name": "ContactOption",
+      "line": 8,
+      "endLine": 11,
+      "signature": "export type ContactOption = Serialized<ILivechatContactWithManagerData> &"
+    },
+    {
+      "type": "type",
+      "name": "ContactOptions",
+      "line": 13,
+      "endLine": 16,
+      "signature": "type ContactOptions ="
+    }
+  ],
+  "imports": [
+    {
+      "module": "@rocket.chat/core-typings",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/rest-typings",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/ui-contexts",
+      "resolved": "external"
+    },
+    {
+      "module": "@tanstack/react-query",
+      "resolved": "external"
+    },
+    {
+      "module": "../../../../lib/queryKeys",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/client/lib/queryKeys.ts"
+    }
+  ]
+}

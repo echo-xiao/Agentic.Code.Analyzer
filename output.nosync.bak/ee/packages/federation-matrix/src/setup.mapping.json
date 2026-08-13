@@ -1,0 +1,85 @@
+{
+  "sourcePath": "/Users/echoooooo/Desktop/code/Rocket.Chat/ee/packages/federation-matrix/src/setup.ts",
+  "symbols": [
+    {
+      "type": "function",
+      "name": "validateDomain",
+      "exported": false,
+      "line": 8,
+      "endLine": 33,
+      "signature": "function validateDomain(domain: string): boolean",
+      "calls": [
+        {
+          "name": "trim",
+          "edgeType": "call"
+        },
+        {
+          "name": "error",
+          "edgeType": "call"
+        },
+        {
+          "name": "toLowerCase",
+          "edgeType": "call"
+        },
+        {
+          "name": "URL",
+          "edgeType": "new"
+        }
+      ]
+    },
+    {
+      "type": "function",
+      "name": "configureFederationMatrixSettings",
+      "exported": true,
+      "line": 12,
+      "endLine": 79,
+      "signature": "export function configureFederationMatrixSettings(settings: { instanceId: string; domain: string; signingKey: string; signingAlgorithm: string; signingVersion: string; allowedEncryptedRooms: boolean; allowedNonPrivateRooms: boolean; processEDUTyping: boolean; processEDUPresence: boolean; processEDUReceipt: boolean; })",
+      "calls": [
+        {
+          "name": "validateDomain",
+          "edgeType": "call"
+        },
+        {
+          "name": "setConfig",
+          "edgeType": "call"
+        },
+        {
+          "name": "split",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "function",
+      "name": "setupFederationMatrix",
+      "exported": true,
+      "line": 27,
+      "endLine": 36,
+      "signature": "export async function setupFederationMatrix()",
+      "calls": [
+        {
+          "name": "init",
+          "edgeType": "call"
+        },
+        {
+          "name": "registerEvents",
+          "edgeType": "call"
+        }
+      ]
+    }
+  ],
+  "imports": [
+    {
+      "module": "@rocket.chat/federation-sdk",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/logger",
+      "resolved": "external"
+    },
+    {
+      "module": "./events",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/ee/packages/federation-matrix/src/events/index.ts"
+    }
+  ]
+}

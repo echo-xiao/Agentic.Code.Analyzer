@@ -1,0 +1,221 @@
+{
+  "sourcePath": "/Users/echoooooo/Desktop/code/Rocket.Chat/packages/models/src/models/MediaCallChannels.ts",
+  "symbols": [
+    {
+      "type": "class",
+      "name": "MediaCallChannelsRaw",
+      "exported": true,
+      "line": 7,
+      "endLine": 72,
+      "signature": "export class MediaCallChannelsRaw extends BaseRaw<IMediaCallChannel> implements IMediaCallChannelsModel",
+      "calls": [
+        {
+          "name": "BaseRaw",
+          "edgeType": "type"
+        },
+        {
+          "name": "IMediaCallChannelsModel",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "modelIndexes",
+      "exported": true,
+      "qualifiedName": "MediaCallChannelsRaw.modelIndexes",
+      "line": 12,
+      "endLine": 19,
+      "signature": "protected override modelIndexes(): IndexDescription[]",
+      "containerClass": "MediaCallChannelsRaw",
+      "calls": [
+        {
+          "name": "IndexDescription",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "findOneByCallIdAndSignedActor",
+      "exported": true,
+      "qualifiedName": "MediaCallChannelsRaw.findOneByCallIdAndSignedActor",
+      "line": 16,
+      "endLine": 30,
+      "signature": "public findOneByCallIdAndSignedActor<T extends Document = IMediaCallChannel>( params: MediaCallSignedActor & { callId: string }, options?: FindOptions<T>, ): Promise<T | null>",
+      "containerClass": "MediaCallChannelsRaw",
+      "calls": [
+        {
+          "name": "findOne",
+          "edgeType": "call"
+        },
+        {
+          "name": "Document",
+          "edgeType": "type"
+        },
+        {
+          "name": "IMediaCallChannel",
+          "edgeType": "type"
+        },
+        {
+          "name": "MediaCallSignedActor",
+          "edgeType": "type"
+        },
+        {
+          "name": "FindOptions",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "updateOneById",
+      "exported": true,
+      "qualifiedName": "MediaCallChannelsRaw.updateOneById",
+      "line": 23,
+      "endLine": 29,
+      "signature": "public updateOneById( _id: string, update: UpdateFilter<IMediaCallChannel> | Partial<IMediaCallChannel>, options?: UpdateOptions, ): Promise<UpdateResult>",
+      "containerClass": "MediaCallChannelsRaw",
+      "calls": [
+        {
+          "name": "updateOne",
+          "edgeType": "call"
+        },
+        {
+          "name": "UpdateFilter",
+          "edgeType": "type"
+        },
+        {
+          "name": "IMediaCallChannel",
+          "edgeType": "type"
+        },
+        {
+          "name": "UpdateOptions",
+          "edgeType": "type"
+        },
+        {
+          "name": "UpdateResult",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "createOrUpdateChannel",
+      "exported": true,
+      "qualifiedName": "MediaCallChannelsRaw.createOrUpdateChannel",
+      "line": 31,
+      "endLine": 49,
+      "signature": "public createOrUpdateChannel(channel: InsertionModel<IMediaCallChannel>): Promise<IMediaCallChannel | null>",
+      "containerClass": "MediaCallChannelsRaw",
+      "calls": [
+        {
+          "name": "findOneAndUpdate",
+          "edgeType": "call"
+        },
+        {
+          "name": "InsertionModel",
+          "edgeType": "type"
+        },
+        {
+          "name": "IMediaCallChannel",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "setState",
+      "exported": true,
+      "qualifiedName": "MediaCallChannelsRaw.setState",
+      "line": 35,
+      "endLine": 37,
+      "signature": "public async setState(_id: string, state: IMediaCallChannel['state']): Promise<UpdateResult>",
+      "containerClass": "MediaCallChannelsRaw",
+      "calls": [
+        {
+          "name": "updateOneById",
+          "edgeType": "call"
+        },
+        {
+          "name": "IMediaCallChannel",
+          "edgeType": "type"
+        },
+        {
+          "name": "UpdateResult",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "setActiveById",
+      "exported": true,
+      "qualifiedName": "MediaCallChannelsRaw.setActiveById",
+      "line": 39,
+      "endLine": 41,
+      "signature": "public async setActiveById(_id: string): Promise<UpdateResult>",
+      "containerClass": "MediaCallChannelsRaw",
+      "calls": [
+        {
+          "name": "updateOne",
+          "edgeType": "call"
+        },
+        {
+          "name": "Date",
+          "edgeType": "new"
+        },
+        {
+          "name": "UpdateResult",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "constructor",
+      "exported": true,
+      "qualifiedName": "MediaCallChannelsRaw.constructor",
+      "line": 8,
+      "endLine": 10,
+      "signature": "constructor(db: Db, trash?: Collection<RocketChatRecordDeleted<IMediaCallChannel>>)",
+      "containerClass": "MediaCallChannelsRaw",
+      "calls": [
+        {
+          "name": "Db",
+          "edgeType": "type"
+        },
+        {
+          "name": "Collection",
+          "edgeType": "type"
+        },
+        {
+          "name": "RocketChatRecordDeleted",
+          "edgeType": "type"
+        },
+        {
+          "name": "IMediaCallChannel",
+          "edgeType": "type"
+        }
+      ]
+    }
+  ],
+  "imports": [
+    {
+      "module": "@rocket.chat/core-typings",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/model-typings",
+      "resolved": "external"
+    },
+    {
+      "module": "mongodb",
+      "resolved": "external"
+    },
+    {
+      "module": "./BaseRaw",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/packages/models/src/models/BaseRaw.ts"
+    }
+  ]
+}

@@ -1,0 +1,70 @@
+{
+  "sourcePath": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/app/importer/lib/ImporterProgressStep.ts",
+  "symbols": [
+    {
+      "type": "variable",
+      "name": "ProgressStep",
+      "exported": true,
+      "line": 4,
+      "endLine": 29,
+      "signature": "ProgressStep = Object.freeze(",
+      "calls": [
+        {
+          "name": "IImportProgress",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "variable",
+      "name": "ImportWaitingStates",
+      "exported": true,
+      "line": 31,
+      "endLine": 31,
+      "signature": "ImportWaitingStates: IImportProgress['step'][] = [ProgressStep.NEW, ProgressStep.UPLOADING, ProgressStep.DOWNLOADING_FILE]",
+      "calls": []
+    },
+    {
+      "type": "variable",
+      "name": "ImportFileReadyStates",
+      "exported": true,
+      "line": 33,
+      "endLine": 33,
+      "signature": "ImportFileReadyStates: IImportProgress['step'][] = [ProgressStep.FILE_LOADED]",
+      "calls": []
+    },
+    {
+      "type": "variable",
+      "name": "ImportPreparingStartedStates",
+      "exported": true,
+      "line": 35,
+      "endLine": 41,
+      "signature": "ImportPreparingStartedStates: IImportProgress['step'][] = [",
+      "calls": []
+    },
+    {
+      "type": "variable",
+      "name": "ImportingStartedStates",
+      "exported": true,
+      "line": 43,
+      "endLine": 51,
+      "signature": "ImportingStartedStates: IImportProgress['step'][] = [",
+      "calls": []
+    },
+    {
+      "type": "variable",
+      "name": "ImportingErrorStates",
+      "exported": true,
+      "line": 53,
+      "endLine": 53,
+      "signature": "ImportingErrorStates: IImportProgress['step'][] = [ProgressStep.ERROR, ProgressStep.CANCELLED]",
+      "calls": []
+    }
+  ],
+  "imports": [
+    {
+      "module": "@rocket.chat/core-typings",
+      "resolved": "external"
+    }
+  ]
+}

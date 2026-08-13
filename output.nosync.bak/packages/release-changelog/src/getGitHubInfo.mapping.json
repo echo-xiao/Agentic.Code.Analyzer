@@ -1,0 +1,92 @@
+{
+  "sourcePath": "/Users/echoooooo/Desktop/code/Rocket.Chat/packages/release-changelog/src/getGitHubInfo.ts",
+  "symbols": [
+    {
+      "type": "function",
+      "name": "makeQuery",
+      "exported": false,
+      "line": 11,
+      "endLine": 66,
+      "signature": "function makeQuery(repos: ReposWithCommitsAndPRsToFetch)",
+      "calls": [
+        {
+          "name": "join",
+          "edgeType": "call"
+        },
+        {
+          "name": "map",
+          "edgeType": "call"
+        },
+        {
+          "name": "keys",
+          "edgeType": "call"
+        },
+        {
+          "name": "stringify",
+          "edgeType": "call"
+        },
+        {
+          "name": "split",
+          "edgeType": "call"
+        },
+        {
+          "name": "ReposWithCommitsAndPRsToFetch",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "function",
+      "name": "getCommitInfo",
+      "exported": true,
+      "line": 81,
+      "endLine": 130,
+      "signature": "export async function getCommitInfo(request: { commit: string; repo: string; pr?: number }): Promise<{ pull?: { number: number; url: string; }; author: { association: string; login: string; url: string; }; }>",
+      "calls": [
+        {
+          "name": "test",
+          "edgeType": "call"
+        },
+        {
+          "name": "load",
+          "edgeType": "call"
+        },
+        {
+          "name": "match",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "type",
+      "name": "RequestData",
+      "line": 6,
+      "endLine": 6,
+      "signature": "type RequestData ="
+    },
+    {
+      "type": "type",
+      "name": "RequestDataResponse",
+      "line": 7,
+      "endLine": 7,
+      "signature": "type RequestDataResponse ="
+    },
+    {
+      "type": "type",
+      "name": "ReposWithCommitsAndPRsToFetch",
+      "line": 9,
+      "endLine": 9,
+      "signature": "type ReposWithCommitsAndPRsToFetch = Record<string, ("
+    }
+  ],
+  "imports": [
+    {
+      "module": "dataloader",
+      "resolved": "external"
+    },
+    {
+      "module": "node-fetch",
+      "resolved": "external"
+    }
+  ]
+}

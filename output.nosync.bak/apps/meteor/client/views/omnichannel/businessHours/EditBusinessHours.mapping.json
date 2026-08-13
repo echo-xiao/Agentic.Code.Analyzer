@@ -1,0 +1,238 @@
+{
+  "sourcePath": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/client/views/omnichannel/businessHours/EditBusinessHours.tsx",
+  "symbols": [
+    {
+      "type": "variable_function",
+      "name": "getInitialData",
+      "exported": false,
+      "line": 16,
+      "endLine": 31,
+      "signature": "(businessHourData: Serialized<ILivechatBusinessHour> | undefined) =>",
+      "calls": [
+        {
+          "name": "canonicalizeTimezone",
+          "edgeType": "call"
+        },
+        {
+          "name": "map",
+          "edgeType": "call"
+        },
+        {
+          "name": "filter",
+          "edgeType": "call"
+        },
+        {
+          "name": "defaultWorkHours",
+          "edgeType": "call"
+        },
+        {
+          "name": "Serialized",
+          "edgeType": "type"
+        },
+        {
+          "name": "ILivechatBusinessHour",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "variable_function",
+      "name": "EditBusinessHours",
+      "exported": false,
+      "line": 38,
+      "endLine": 114,
+      "signature": "({ businessHourData, type }: EditBusinessHoursProps) =>",
+      "calls": [
+        {
+          "name": "useTranslation",
+          "edgeType": "call"
+        },
+        {
+          "name": "useToastMessageDispatch",
+          "edgeType": "call"
+        },
+        {
+          "name": "useIsSingleBusinessHours",
+          "edgeType": "call"
+        },
+        {
+          "name": "useEndpoint",
+          "edgeType": "call"
+        },
+        {
+          "name": "useRemoveBusinessHour",
+          "edgeType": "call"
+        },
+        {
+          "name": "useRouter",
+          "edgeType": "call"
+        },
+        {
+          "name": "useForm",
+          "edgeType": "call"
+        },
+        {
+          "name": "getInitialData",
+          "edgeType": "call"
+        },
+        {
+          "name": "useStableCallback",
+          "edgeType": "call"
+        },
+        {
+          "name": "join",
+          "edgeType": "call"
+        },
+        {
+          "name": "map",
+          "edgeType": "call"
+        },
+        {
+          "name": "saveBusinessHour",
+          "edgeType": "call"
+        },
+        {
+          "name": "dispatchToastMessage",
+          "edgeType": "call"
+        },
+        {
+          "name": "navigate",
+          "edgeType": "call"
+        },
+        {
+          "name": "useId",
+          "edgeType": "call"
+        },
+        {
+          "name": "handleRemove",
+          "edgeType": "call"
+        },
+        {
+          "name": "handleSubmit",
+          "edgeType": "call"
+        },
+        {
+          "name": "reset",
+          "edgeType": "call"
+        },
+        {
+          "name": "Page",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "PageHeader",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "ButtonGroup",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "Button",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "PageScrollableContentWithShadow",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "Box",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "FormProvider",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "PageFooter",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "BusinessHoursForm",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "formId",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "type",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "isDirty",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "EditBusinessHoursProps",
+          "edgeType": "type"
+        },
+        {
+          "name": "BusinessHoursFormData",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "type",
+      "name": "EditBusinessHoursProps",
+      "line": 33,
+      "endLine": 36,
+      "signature": "export type EditBusinessHoursProps ="
+    }
+  ],
+  "imports": [
+    {
+      "module": "@rocket.chat/core-typings",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/fuselage",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/fuselage-hooks",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/tools",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/ui-client",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/ui-contexts",
+      "resolved": "external"
+    },
+    {
+      "module": "react",
+      "resolved": "external"
+    },
+    {
+      "module": "react-hook-form",
+      "resolved": "external"
+    },
+    {
+      "module": "./BusinessHoursForm",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/client/views/omnichannel/businessHours/BusinessHoursForm.tsx"
+    },
+    {
+      "module": "./BusinessHoursForm",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/client/views/omnichannel/businessHours/BusinessHoursForm.tsx"
+    },
+    {
+      "module": "./mapBusinessHoursForm",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/client/views/omnichannel/businessHours/mapBusinessHoursForm.ts"
+    },
+    {
+      "module": "./useIsSingleBusinessHours",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/client/views/omnichannel/businessHours/useIsSingleBusinessHours.ts"
+    },
+    {
+      "module": "./useRemoveBusinessHour",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/client/views/omnichannel/businessHours/useRemoveBusinessHour.tsx"
+    }
+  ]
+}

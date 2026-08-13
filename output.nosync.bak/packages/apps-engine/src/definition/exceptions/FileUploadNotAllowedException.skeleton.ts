@@ -1,0 +1,17 @@
+## File: packages/apps-engine/src/definition/exceptions/FileUploadNotAllowedException.ts
+
+```typescript
+import { AppsEngineException } from './AppsEngineException';
+
+/**
+ * This exception informs the host system that an
+ * app has determined that a file upload is not
+ * allowed to be completed.
+ *
+ * Currently it is expected to be thrown by the
+ * following events:
+ * - IPreFileUpload
+ */
+export class FileUploadNotAllowedException extends AppsEngineException {}
+
+```

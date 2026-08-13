@@ -1,0 +1,33 @@
+{
+  "sourcePath": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/lib/getUserDisplayNames.ts",
+  "symbols": [
+    {
+      "type": "variable_function",
+      "name": "getUserDisplayNames",
+      "exported": true,
+      "line": 8,
+      "endLine": 20,
+      "signature": "( name: IUser['name'], username: IUser['username'], useRealName: boolean, ): [nameOrUsername: string, username?: string] =>",
+      "calls": [
+        {
+          "name": "normalizeUsername",
+          "edgeType": "call"
+        },
+        {
+          "name": "IUser",
+          "edgeType": "type"
+        }
+      ]
+    }
+  ],
+  "imports": [
+    {
+      "module": "@rocket.chat/core-typings",
+      "resolved": "external"
+    },
+    {
+      "module": "./utils/normalizeUsername",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/lib/utils/normalizeUsername.ts"
+    }
+  ]
+}

@@ -1,0 +1,193 @@
+{
+  "sourcePath": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/tests/e2e/page-objects/fragments/modals/edit-status-modal.ts",
+  "symbols": [
+    {
+      "type": "class",
+      "name": "EditStatusModal",
+      "exported": true,
+      "line": 6,
+      "endLine": 97,
+      "signature": "export class EditStatusModal extends Modal",
+      "calls": [
+        {
+          "name": "Modal",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "selectStatusType",
+      "exported": true,
+      "qualifiedName": "EditStatusModal.selectStatusType",
+      "line": 46,
+      "endLine": 49,
+      "signature": "async selectStatusType(status: string): Promise<void>",
+      "containerClass": "EditStatusModal",
+      "calls": [
+        {
+          "name": "click",
+          "edgeType": "call"
+        },
+        {
+          "name": "getByRole",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "setStatusMessage",
+      "exported": true,
+      "qualifiedName": "EditStatusModal.setStatusMessage",
+      "line": 50,
+      "endLine": 52,
+      "signature": "async setStatusMessage(message: string): Promise<void>",
+      "containerClass": "EditStatusModal",
+      "calls": [
+        {
+          "name": "fill",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "selectDuration",
+      "exported": true,
+      "qualifiedName": "EditStatusModal.selectDuration",
+      "line": 54,
+      "endLine": 57,
+      "signature": "async selectDuration(duration: string): Promise<void>",
+      "containerClass": "EditStatusModal",
+      "calls": [
+        {
+          "name": "click",
+          "edgeType": "call"
+        },
+        {
+          "name": "getByRole",
+          "edgeType": "call"
+        },
+        {
+          "name": "RegExp",
+          "edgeType": "new"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "changeStatusMessage",
+      "exported": true,
+      "qualifiedName": "EditStatusModal.changeStatusMessage",
+      "line": 58,
+      "endLine": 64,
+      "signature": "async changeStatusMessage(statusMessage?: string): Promise<void>",
+      "containerClass": "EditStatusModal",
+      "calls": [
+        {
+          "name": "setStatusMessage",
+          "edgeType": "call"
+        },
+        {
+          "name": "save",
+          "edgeType": "call"
+        },
+        {
+          "name": "dismissToast",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "setStatusWithExpiration",
+      "exported": true,
+      "qualifiedName": "EditStatusModal.setStatusWithExpiration",
+      "line": 62,
+      "endLine": 90,
+      "signature": "async setStatusWithExpiration({ message, statusType, duration, customDate, customTime, }: { message?: string; statusType?: string; duration: string; customDate?: string; customTime?: string; }): Promise<void>",
+      "containerClass": "EditStatusModal",
+      "calls": [
+        {
+          "name": "selectStatusType",
+          "edgeType": "call"
+        },
+        {
+          "name": "setStatusMessage",
+          "edgeType": "call"
+        },
+        {
+          "name": "selectDuration",
+          "edgeType": "call"
+        },
+        {
+          "name": "fill",
+          "edgeType": "call"
+        },
+        {
+          "name": "save",
+          "edgeType": "call"
+        },
+        {
+          "name": "dismissToast",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "constructor",
+      "exported": true,
+      "qualifiedName": "EditStatusModal.constructor",
+      "line": 9,
+      "endLine": 12,
+      "signature": "constructor(page: Page)",
+      "containerClass": "EditStatusModal",
+      "calls": [
+        {
+          "name": "getByRole",
+          "edgeType": "call"
+        },
+        {
+          "name": "ToastMessages",
+          "edgeType": "new"
+        },
+        {
+          "name": "Page",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "class_property",
+      "name": "toastMessages",
+      "exported": true,
+      "qualifiedName": "EditStatusModal.toastMessages",
+      "line": 7,
+      "endLine": 7,
+      "signature": "readonly toastMessages: ToastMessages;",
+      "containerClass": "EditStatusModal",
+      "calls": [
+        {
+          "name": "ToastMessages",
+          "edgeType": "type"
+        }
+      ]
+    }
+  ],
+  "imports": [
+    {
+      "module": "playwright-core",
+      "resolved": "external"
+    },
+    {
+      "module": "./modal",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/tests/e2e/page-objects/fragments/modals/modal.ts"
+    },
+    {
+      "module": "../toast-messages",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/tests/e2e/page-objects/fragments/toast-messages.ts"
+    }
+  ]
+}

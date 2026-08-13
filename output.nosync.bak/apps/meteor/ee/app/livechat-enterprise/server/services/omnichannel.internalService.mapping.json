@@ -1,0 +1,329 @@
+{
+  "sourcePath": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/ee/app/livechat-enterprise/server/services/omnichannel.internalService.ts",
+  "symbols": [
+    {
+      "type": "class",
+      "name": "OmnichannelEE",
+      "exported": true,
+      "line": 19,
+      "endLine": 208,
+      "signature": "export class OmnichannelEE extends ServiceClassInternal implements IOmnichannelEEService",
+      "calls": [
+        {
+          "name": "ServiceClassInternal",
+          "edgeType": "type"
+        },
+        {
+          "name": "IOmnichannelEEService",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "placeRoomOnHold",
+      "exported": true,
+      "qualifiedName": "OmnichannelEE.placeRoomOnHold",
+      "line": 31,
+      "endLine": 75,
+      "signature": "async placeRoomOnHold( room: Pick<IOmnichannelRoom, '_id' | 't' | 'open' | 'onHold'>, comment: string, onHoldBy: Pick<IUser, '_id' | 'username' | 'name'>, )",
+      "containerClass": "OmnichannelEE",
+      "calls": [
+        {
+          "name": "debug",
+          "edgeType": "call"
+        },
+        {
+          "name": "isOmnichannelRoom",
+          "edgeType": "call"
+        },
+        {
+          "name": "get",
+          "edgeType": "call"
+        },
+        {
+          "name": "all",
+          "edgeType": "call"
+        },
+        {
+          "name": "setOnHoldByRoomId",
+          "edgeType": "call"
+        },
+        {
+          "name": "saveSystemMessage",
+          "edgeType": "call"
+        },
+        {
+          "name": "notifyOnRoomChangedById",
+          "edgeType": "call"
+        },
+        {
+          "name": "notifyOnSubscriptionChangedByRoomId",
+          "edgeType": "call"
+        },
+        {
+          "name": "livechat:afterOnHold",
+          "edgeType": "event_emit"
+        },
+        {
+          "name": "IOmnichannelRoom",
+          "edgeType": "type"
+        },
+        {
+          "name": "IUser",
+          "edgeType": "type"
+        },
+        {
+          "name": "IOmnichannelSystemMessage",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "resumeRoomOnHold",
+      "exported": true,
+      "qualifiedName": "OmnichannelEE.resumeRoomOnHold",
+      "line": 39,
+      "endLine": 94,
+      "signature": "async resumeRoomOnHold( room: Pick<IOmnichannelRoom, '_id' | 't' | 'open' | 'onHold' | 'servedBy'>, comment: string, resumeBy: Pick<IUser, '_id' | 'username' | 'name'>, clientAction = false, )",
+      "containerClass": "OmnichannelEE",
+      "calls": [
+        {
+          "name": "debug",
+          "edgeType": "call"
+        },
+        {
+          "name": "isOmnichannelRoom",
+          "edgeType": "call"
+        },
+        {
+          "name": "error",
+          "edgeType": "call"
+        },
+        {
+          "name": "findOneByRoomId",
+          "edgeType": "call"
+        },
+        {
+          "name": "attemptToAssignRoomToServingAgentElseQueueIt",
+          "edgeType": "call"
+        },
+        {
+          "name": "all",
+          "edgeType": "call"
+        },
+        {
+          "name": "unsetOnHoldByRoomId",
+          "edgeType": "call"
+        },
+        {
+          "name": "saveSystemMessage",
+          "edgeType": "call"
+        },
+        {
+          "name": "notifyOnRoomChangedById",
+          "edgeType": "call"
+        },
+        {
+          "name": "notifyOnSubscriptionChangedByRoomId",
+          "edgeType": "call"
+        },
+        {
+          "name": "livechat:afterOnHoldChatResumed",
+          "edgeType": "event_emit"
+        },
+        {
+          "name": "IOmnichannelRoom",
+          "edgeType": "type"
+        },
+        {
+          "name": "IUser",
+          "edgeType": "type"
+        },
+        {
+          "name": "IOmnichannelSystemMessage",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "attemptToAssignRoomToServingAgentElseQueueIt",
+      "exported": true,
+      "qualifiedName": "OmnichannelEE.attemptToAssignRoomToServingAgentElseQueueIt",
+      "line": 48,
+      "endLine": 90,
+      "signature": "private async attemptToAssignRoomToServingAgentElseQueueIt({ room, inquiry, servingAgent, clientAction, }: { room: Pick<IOmnichannelRoom, '_id'>; inquiry: ILivechatInquiryRecord; servingAgent: NonNullable<IOmnichannelRoom['servedBy']>; clientAction: boolean; })",
+      "containerClass": "OmnichannelEE",
+      "calls": [
+        {
+          "name": "livechat.checkAgentBeforeTakeInquiry",
+          "edgeType": "event_emit"
+        },
+        {
+          "name": "error",
+          "edgeType": "call"
+        },
+        {
+          "name": "removeCurrentAgentFromRoom",
+          "edgeType": "call"
+        },
+        {
+          "name": "findOneById",
+          "edgeType": "call"
+        },
+        {
+          "name": "queueInquiry",
+          "edgeType": "call"
+        },
+        {
+          "name": "IOmnichannelRoom",
+          "edgeType": "type"
+        },
+        {
+          "name": "ILivechatInquiryRecord",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "removeCurrentAgentFromRoom",
+      "exported": true,
+      "qualifiedName": "OmnichannelEE.removeCurrentAgentFromRoom",
+      "line": 62,
+      "endLine": 91,
+      "signature": "private async removeCurrentAgentFromRoom({ room, inquiry, }: { room: Pick<IOmnichannelRoom, '_id'>; inquiry: ILivechatInquiryRecord; }): Promise<void>",
+      "containerClass": "OmnichannelEE",
+      "calls": [
+        {
+          "name": "debug",
+          "edgeType": "call"
+        },
+        {
+          "name": "all",
+          "edgeType": "call"
+        },
+        {
+          "name": "removeAgentByRoomId",
+          "edgeType": "call"
+        },
+        {
+          "name": "queueInquiryAndRemoveDefaultAgent",
+          "edgeType": "call"
+        },
+        {
+          "name": "removeAllRoomSubscriptions",
+          "edgeType": "call"
+        },
+        {
+          "name": "notifyOnLivechatInquiryChangedById",
+          "edgeType": "call"
+        },
+        {
+          "name": "dispatchAgentDelegated",
+          "edgeType": "call"
+        },
+        {
+          "name": "notifyOnRoomChangedById",
+          "edgeType": "call"
+        },
+        {
+          "name": "Date",
+          "edgeType": "new"
+        },
+        {
+          "name": "IOmnichannelRoom",
+          "edgeType": "type"
+        },
+        {
+          "name": "ILivechatInquiryRecord",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "constructor",
+      "exported": true,
+      "qualifiedName": "OmnichannelEE.constructor",
+      "line": 26,
+      "endLine": 29,
+      "signature": "constructor()",
+      "containerClass": "OmnichannelEE",
+      "calls": [
+        {
+          "name": "Logger",
+          "edgeType": "new"
+        }
+      ]
+    },
+    {
+      "type": "class_property",
+      "name": "logger",
+      "exported": true,
+      "qualifiedName": "OmnichannelEE.logger",
+      "line": 24,
+      "endLine": 24,
+      "signature": "logger: Logger;",
+      "containerClass": "OmnichannelEE",
+      "calls": [
+        {
+          "name": "Logger",
+          "edgeType": "type"
+        }
+      ]
+    }
+  ],
+  "imports": [
+    {
+      "module": "@rocket.chat/core-services",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/core-services",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/core-typings",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/core-typings",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/logger",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/models",
+      "resolved": "external"
+    },
+    {
+      "module": "../../../../../app/lib/server/lib/notifyListener",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/app/lib/server/lib/notifyListener.ts"
+    },
+    {
+      "module": "../../../../../app/livechat/server/lib/Helper",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/app/livechat/server/lib/Helper.ts"
+    },
+    {
+      "module": "../../../../../app/livechat/server/lib/QueueManager",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/app/livechat/server/lib/QueueManager.ts"
+    },
+    {
+      "module": "../../../../../app/livechat/server/lib/RoutingManager",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/app/livechat/server/lib/RoutingManager.ts"
+    },
+    {
+      "module": "../../../../../app/settings/server",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/app/settings/server/index.ts"
+    },
+    {
+      "module": "../../../../../server/lib/callbacks",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/server/lib/callbacks.ts"
+    }
+  ]
+}

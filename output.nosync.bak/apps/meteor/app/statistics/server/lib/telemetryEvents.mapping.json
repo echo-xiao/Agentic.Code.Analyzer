@@ -1,0 +1,115 @@
+{
+  "sourcePath": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/app/statistics/server/lib/telemetryEvents.ts",
+  "symbols": [
+    {
+      "type": "class",
+      "name": "TelemetryEvent",
+      "exported": false,
+      "line": 6,
+      "endLine": 21,
+      "signature": "class TelemetryEvent implements ITelemetryEvent",
+      "calls": [
+        {
+          "name": "ITelemetryEvent",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "register",
+      "exported": false,
+      "qualifiedName": "TelemetryEvent.register",
+      "line": 9,
+      "endLine": 11,
+      "signature": "register<T extends TelemetryEvents>(name: T, fn: TelemetryEventFunction<T>): void",
+      "containerClass": "TelemetryEvent",
+      "calls": [
+        {
+          "name": "set",
+          "edgeType": "call"
+        },
+        {
+          "name": "TelemetryEvents",
+          "edgeType": "type"
+        },
+        {
+          "name": "TelemetryEventFunction",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "call",
+      "exported": false,
+      "qualifiedName": "TelemetryEvent.call",
+      "line": 13,
+      "endLine": 20,
+      "signature": "call<T extends TelemetryEvents>(eventName: T, data: TelemetryMap[T]): TelemetryEventResponse",
+      "containerClass": "TelemetryEvent",
+      "calls": [
+        {
+          "name": "get",
+          "edgeType": "call"
+        },
+        {
+          "name": "fn",
+          "edgeType": "call"
+        },
+        {
+          "name": "TelemetryEvents",
+          "edgeType": "type"
+        },
+        {
+          "name": "TelemetryMap",
+          "edgeType": "type"
+        },
+        {
+          "name": "TelemetryEventResponse",
+          "edgeType": "type"
+        },
+        {
+          "name": "TelemetryEventFunction",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "class_property",
+      "name": "events",
+      "exported": false,
+      "qualifiedName": "TelemetryEvent.events",
+      "line": 7,
+      "endLine": 7,
+      "signature": "private events = new Map<string, (...args: any[]) => any>();",
+      "containerClass": "TelemetryEvent",
+      "calls": [
+        {
+          "name": "Map",
+          "edgeType": "new"
+        }
+      ]
+    },
+    {
+      "type": "type",
+      "name": "TelemetryEventResponse",
+      "line": 3,
+      "endLine": 3,
+      "signature": "type TelemetryEventResponse = Promise<any> | void;"
+    },
+    {
+      "type": "type",
+      "name": "TelemetryEventFunction",
+      "line": 4,
+      "endLine": 4,
+      "signature": "type TelemetryEventFunction<T extends TelemetryEvents> = (data: TelemetryMap[T]) => TelemetryEventResponse;"
+    }
+  ],
+  "imports": [
+    {
+      "module": "@rocket.chat/core-services",
+      "resolved": "external"
+    }
+  ]
+}

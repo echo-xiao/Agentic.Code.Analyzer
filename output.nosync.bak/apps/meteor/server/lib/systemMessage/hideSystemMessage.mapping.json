@@ -1,0 +1,55 @@
+{
+  "sourcePath": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/server/lib/systemMessage/hideSystemMessage.ts",
+  "symbols": [
+    {
+      "type": "variable_function",
+      "name": "isMutedUnmuted",
+      "exported": true,
+      "line": 3,
+      "endLine": 5,
+      "signature": "(messageType: string): boolean =>",
+      "calls": []
+    },
+    {
+      "type": "variable_function",
+      "name": "isMessageRemoved",
+      "exported": true,
+      "line": 7,
+      "endLine": 7,
+      "signature": "(messageType: string): boolean =>",
+      "calls": []
+    },
+    {
+      "type": "variable_function",
+      "name": "shouldHideSystemMessage",
+      "exported": true,
+      "line": 9,
+      "endLine": 15,
+      "signature": "(messageType: MessageTypesValues, hideSystemMessage?: MessageTypesValues[]): boolean =>",
+      "calls": [
+        {
+          "name": "isMessageRemoved",
+          "edgeType": "call"
+        },
+        {
+          "name": "includes",
+          "edgeType": "call"
+        },
+        {
+          "name": "isMutedUnmuted",
+          "edgeType": "call"
+        },
+        {
+          "name": "MessageTypesValues",
+          "edgeType": "type"
+        }
+      ]
+    }
+  ],
+  "imports": [
+    {
+      "module": "@rocket.chat/core-typings",
+      "resolved": "external"
+    }
+  ]
+}

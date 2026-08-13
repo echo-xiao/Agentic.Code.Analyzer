@@ -1,0 +1,117 @@
+{
+  "sourcePath": "/Users/echoooooo/Desktop/code/Rocket.Chat/packages/core-services/src/lib/mongo.ts",
+  "symbols": [
+    {
+      "type": "function",
+      "name": "connectDb",
+      "exported": false,
+      "line": 9,
+      "endLine": 20,
+      "signature": "function connectDb(options?: MongoClientOptions): Promise<MongoClient>",
+      "calls": [
+        {
+          "name": "isTracingEnabled",
+          "edgeType": "call"
+        },
+        {
+          "name": "catch",
+          "edgeType": "call"
+        },
+        {
+          "name": "connect",
+          "edgeType": "call"
+        },
+        {
+          "name": "error",
+          "edgeType": "call"
+        },
+        {
+          "name": "exit",
+          "edgeType": "call"
+        },
+        {
+          "name": "MongoClient",
+          "edgeType": "new"
+        },
+        {
+          "name": "MongoClientOptions",
+          "edgeType": "type"
+        },
+        {
+          "name": "MongoClient",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "function",
+      "name": "getTrashCollection",
+      "exported": true,
+      "line": 32,
+      "endLine": 38,
+      "signature": "export async function getTrashCollection<T extends Document>(): Promise<Collection<T>>",
+      "calls": [
+        {
+          "name": "getConnection",
+          "edgeType": "call"
+        },
+        {
+          "name": "collection",
+          "edgeType": "call"
+        },
+        {
+          "name": "Document",
+          "edgeType": "type"
+        },
+        {
+          "name": "Collection",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "variable",
+      "name": "getConnection",
+      "exported": true,
+      "line": 15,
+      "endLine": 30,
+      "signature": "getConnection = ((): ((options?: MongoClientOptions) => Promise<",
+      "calls": [
+        {
+          "name": "connectDb",
+          "edgeType": "call"
+        },
+        {
+          "name": "db",
+          "edgeType": "call"
+        },
+        {
+          "name": "MongoClientOptions",
+          "edgeType": "type"
+        },
+        {
+          "name": "Db",
+          "edgeType": "type"
+        },
+        {
+          "name": "MongoClient",
+          "edgeType": "type"
+        }
+      ]
+    }
+  ],
+  "imports": [
+    {
+      "module": "@rocket.chat/tracing",
+      "resolved": "external"
+    },
+    {
+      "module": "mongodb",
+      "resolved": "external"
+    },
+    {
+      "module": "mongodb",
+      "resolved": "external"
+    }
+  ]
+}

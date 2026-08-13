@@ -1,0 +1,53 @@
+{
+  "sourcePath": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/client/views/room/MessageList/lib/isMessageSequential.ts",
+  "symbols": [
+    {
+      "type": "variable_function",
+      "name": "isMessageSequential",
+      "exported": true,
+      "line": 7,
+      "endLine": 36,
+      "signature": "(current: IMessage, previous: IMessage | undefined, groupingRange: number): boolean =>",
+      "calls": [
+        {
+          "name": "isSystemMessage",
+          "edgeType": "call"
+        },
+        {
+          "name": "includes",
+          "edgeType": "call"
+        },
+        {
+          "name": "differenceInSeconds",
+          "edgeType": "call"
+        },
+        {
+          "name": "isMessageNewDay",
+          "edgeType": "call"
+        },
+        {
+          "name": "IMessage",
+          "edgeType": "type"
+        }
+      ]
+    }
+  ],
+  "imports": [
+    {
+      "module": "@rocket.chat/core-typings",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/message-types",
+      "resolved": "external"
+    },
+    {
+      "module": "date-fns",
+      "resolved": "external"
+    },
+    {
+      "module": "./isMessageNewDay",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/client/views/room/MessageList/lib/isMessageNewDay.ts"
+    }
+  ]
+}

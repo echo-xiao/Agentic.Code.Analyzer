@@ -1,0 +1,189 @@
+{
+  "sourcePath": "/Users/echoooooo/Desktop/code/Rocket.Chat/ee/packages/abac/src/store/LocalAttributeStore.ts",
+  "symbols": [
+    {
+      "type": "class",
+      "name": "LocalAttributeStore",
+      "exported": true,
+      "line": 10,
+      "endLine": 58,
+      "signature": "export class LocalAttributeStore implements IAttributeStore",
+      "calls": [
+        {
+          "name": "IAttributeStore",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "list",
+      "exported": true,
+      "qualifiedName": "LocalAttributeStore.list",
+      "line": 11,
+      "endLine": 38,
+      "signature": "async list(_actor: AbacActor | undefined, opts?: ListAttributesOptions): Promise<ListAttributesResult>",
+      "containerClass": "LocalAttributeStore",
+      "calls": [
+        {
+          "name": "push",
+          "edgeType": "call"
+        },
+        {
+          "name": "escapeRegExp",
+          "edgeType": "call"
+        },
+        {
+          "name": "findPaginated",
+          "edgeType": "call"
+        },
+        {
+          "name": "toArray",
+          "edgeType": "call"
+        },
+        {
+          "name": "RegExp",
+          "edgeType": "new"
+        },
+        {
+          "name": "AbacActor",
+          "edgeType": "type"
+        },
+        {
+          "name": "ListAttributesOptions",
+          "edgeType": "type"
+        },
+        {
+          "name": "ListAttributesResult",
+          "edgeType": "type"
+        },
+        {
+          "name": "Document",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "validateAssignable",
+      "exported": true,
+      "qualifiedName": "LocalAttributeStore.validateAssignable",
+      "line": 15,
+      "endLine": 17,
+      "signature": "async validateAssignable(attrs: IAbacAttributeDefinition[], _actor: AbacActor): Promise<void>",
+      "containerClass": "LocalAttributeStore",
+      "calls": [
+        {
+          "name": "ensureAttributeDefinitionsExist",
+          "edgeType": "call"
+        },
+        {
+          "name": "IAbacAttributeDefinition",
+          "edgeType": "type"
+        },
+        {
+          "name": "AbacActor",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "entitlementsOf",
+      "exported": true,
+      "qualifiedName": "LocalAttributeStore.entitlementsOf",
+      "line": 19,
+      "endLine": 21,
+      "signature": "async entitlementsOf(_actor: AbacActor): Promise<AttributeEntitlements>",
+      "containerClass": "LocalAttributeStore",
+      "calls": [
+        {
+          "name": "Map",
+          "edgeType": "new"
+        },
+        {
+          "name": "AbacActor",
+          "edgeType": "type"
+        },
+        {
+          "name": "AttributeEntitlements",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "scopeRoomsPage",
+      "exported": true,
+      "qualifiedName": "LocalAttributeStore.scopeRoomsPage",
+      "line": 23,
+      "endLine": 28,
+      "signature": "async scopeRoomsPage<T extends Pick<IRoom, '_id' | 'abacAttributes'>>( rooms: T[], _actor: AbacActor, ): Promise<Array<T & IRoomAbacRedaction>>",
+      "containerClass": "LocalAttributeStore",
+      "calls": [
+        {
+          "name": "IRoom",
+          "edgeType": "type"
+        },
+        {
+          "name": "AbacActor",
+          "edgeType": "type"
+        },
+        {
+          "name": "IRoomAbacRedaction",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "assertCanModifyRoom",
+      "exported": true,
+      "qualifiedName": "LocalAttributeStore.assertCanModifyRoom",
+      "line": 30,
+      "endLine": 32,
+      "signature": "async assertCanModifyRoom(_room: Pick<IRoom, '_id' | 'abacAttributes'>, _actor: AbacActor): Promise<void>",
+      "containerClass": "LocalAttributeStore",
+      "calls": [
+        {
+          "name": "IRoom",
+          "edgeType": "type"
+        },
+        {
+          "name": "AbacActor",
+          "edgeType": "type"
+        }
+      ]
+    }
+  ],
+  "imports": [
+    {
+      "module": "@rocket.chat/core-services",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/core-typings",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/models",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/string-helpers",
+      "resolved": "external"
+    },
+    {
+      "module": "mongodb",
+      "resolved": "external"
+    },
+    {
+      "module": "../helper",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/ee/packages/abac/src/helper.ts"
+    },
+    {
+      "module": "./types",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/ee/packages/abac/src/store/types.ts"
+    }
+  ]
+}

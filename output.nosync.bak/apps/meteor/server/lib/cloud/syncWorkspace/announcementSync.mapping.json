@@ -1,0 +1,135 @@
+{
+  "sourcePath": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/server/lib/cloud/syncWorkspace/announcementSync.ts",
+  "symbols": [
+    {
+      "type": "function",
+      "name": "announcementSync",
+      "exported": true,
+      "line": 54,
+      "endLine": 104,
+      "signature": "export async function announcementSync()",
+      "calls": [
+        {
+          "name": "retrieveRegistrationStatus",
+          "edgeType": "call"
+        },
+        {
+          "name": "getWorkspaceAccessToken",
+          "edgeType": "call"
+        },
+        {
+          "name": "buildWorkspaceRegistrationData",
+          "edgeType": "call"
+        },
+        {
+          "name": "fetchCloudAnnouncementsSync",
+          "edgeType": "call"
+        },
+        {
+          "name": "handleNpsOnWorkspaceSync",
+          "edgeType": "call"
+        },
+        {
+          "name": "handleAnnouncementsOnWorkspaceSync",
+          "edgeType": "call"
+        },
+        {
+          "name": "info",
+          "edgeType": "call"
+        },
+        {
+          "name": "error",
+          "edgeType": "call"
+        },
+        {
+          "name": "CloudWorkspaceRegistrationError",
+          "edgeType": "new"
+        },
+        {
+          "name": "CloudWorkspaceAccessTokenEmptyError",
+          "edgeType": "new"
+        }
+      ]
+    },
+    {
+      "type": "variable_function",
+      "name": "fetchCloudAnnouncementsSync",
+      "exported": false,
+      "line": 14,
+      "endLine": 52,
+      "signature": "async ({ token, data, }: { token: string; data: Cloud.WorkspaceSyncRequestPayload; }): Promise<Cloud.WorkspaceCommsResponsePayload> =>",
+      "calls": [
+        {
+          "name": "get",
+          "edgeType": "call"
+        },
+        {
+          "name": "fetch",
+          "edgeType": "call"
+        },
+        {
+          "name": "json",
+          "edgeType": "call"
+        },
+        {
+          "name": "safeParse",
+          "edgeType": "call"
+        },
+        {
+          "name": "prettifyError",
+          "edgeType": "call"
+        },
+        {
+          "name": "CloudWorkspaceConnectionError",
+          "edgeType": "new"
+        }
+      ]
+    }
+  ],
+  "imports": [
+    {
+      "module": "@rocket.chat/core-typings",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/server-fetch",
+      "resolved": "external"
+    },
+    {
+      "module": "zod",
+      "resolved": "external"
+    },
+    {
+      "module": "../../../../app/settings/server",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/app/settings/server/index.ts"
+    },
+    {
+      "module": "../../../../lib/errors/CloudWorkspaceConnectionError",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/lib/errors/CloudWorkspaceConnectionError.ts"
+    },
+    {
+      "module": "../../../../lib/errors/CloudWorkspaceRegistrationError",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/lib/errors/CloudWorkspaceRegistrationError.ts"
+    },
+    {
+      "module": "../../logger/system",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/server/lib/logger/system.ts"
+    },
+    {
+      "module": "../buildRegistrationData",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/server/lib/cloud/buildRegistrationData.ts"
+    },
+    {
+      "module": "../getWorkspaceAccessToken",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/server/lib/cloud/getWorkspaceAccessToken.ts"
+    },
+    {
+      "module": "../retrieveRegistrationStatus",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/server/lib/cloud/retrieveRegistrationStatus.ts"
+    },
+    {
+      "module": "./handleCommsSync",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/server/lib/cloud/syncWorkspace/handleCommsSync.ts"
+    }
+  ]
+}

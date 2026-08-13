@@ -1,0 +1,150 @@
+{
+  "sourcePath": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/client/views/admin/subscription/components/UsagePieGraph.tsx",
+  "symbols": [
+    {
+      "type": "module",
+      "name": "UsagePieGraph",
+      "exported": false,
+      "line": 1,
+      "endLine": 110,
+      "signature": "UsagePieGraph",
+      "calls": [
+        {
+          "name": "memo",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "variable_function",
+      "name": "graphColors",
+      "exported": false,
+      "line": 12,
+      "endLine": 15,
+      "signature": "(color: CSSProperties['color']): GraphColorsReturn =>",
+      "calls": [
+        {
+          "name": "CSSProperties",
+          "edgeType": "type"
+        },
+        {
+          "name": "GraphColorsReturn",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "variable_function",
+      "name": "UsagePieGraph",
+      "exported": false,
+      "line": 31,
+      "endLine": 107,
+      "signature": "({ used = 0, total = 0, label, color, size = 140 }: UsagePieGraphProps) =>",
+      "calls": [
+        {
+          "name": "useTranslation",
+          "edgeType": "call"
+        },
+        {
+          "name": "useMemo",
+          "edgeType": "call"
+        },
+        {
+          "name": "useCallback",
+          "edgeType": "call"
+        },
+        {
+          "name": "graphColors",
+          "edgeType": "call"
+        },
+        {
+          "name": "useLocalePercentage",
+          "edgeType": "call"
+        },
+        {
+          "name": "Box",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "Pie",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "parsedData",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "getColor",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "size",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "UsagePieGraphProps",
+          "edgeType": "type"
+        },
+        {
+          "name": "GraphData",
+          "edgeType": "type"
+        },
+        {
+          "name": "DatumId",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "type",
+      "name": "GraphColorsReturn",
+      "line": 10,
+      "endLine": 10,
+      "signature": "type GraphColorsReturn ="
+    },
+    {
+      "type": "type",
+      "name": "UsagePieGraphProps",
+      "line": 17,
+      "endLine": 23,
+      "signature": "export type UsagePieGraphProps ="
+    },
+    {
+      "type": "type",
+      "name": "GraphData",
+      "line": 25,
+      "endLine": 29,
+      "signature": "type GraphData = Array<"
+    }
+  ],
+  "imports": [
+    {
+      "module": "@nivo/pie",
+      "resolved": "external"
+    },
+    {
+      "module": "@nivo/pie",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/fuselage",
+      "resolved": "external"
+    },
+    {
+      "module": "react",
+      "resolved": "external"
+    },
+    {
+      "module": "react",
+      "resolved": "external"
+    },
+    {
+      "module": "react-i18next",
+      "resolved": "external"
+    },
+    {
+      "module": "../../../../hooks/useLocalePercentage",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/client/hooks/useLocalePercentage.ts"
+    }
+  ]
+}

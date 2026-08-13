@@ -1,0 +1,361 @@
+{
+  "sourcePath": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/client/views/navigation/providers/RoomsNavigationProvider.tsx",
+  "symbols": [
+    {
+      "type": "variable_function",
+      "name": "updateGroupUnreadInfo",
+      "exported": false,
+      "line": 42,
+      "endLine": 51,
+      "signature": "(room: SubscriptionWithRoom, current: GroupedUnreadInfoData): GroupedUnreadInfoData =>",
+      "calls": [
+        {
+          "name": "SubscriptionWithRoom",
+          "edgeType": "type"
+        },
+        {
+          "name": "GroupedUnreadInfoData",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "variable_function",
+      "name": "hasMention",
+      "exported": false,
+      "line": 46,
+      "endLine": 47,
+      "signature": "(room: SubscriptionWithRoom) =>",
+      "calls": [
+        {
+          "name": "SubscriptionWithRoom",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "variable_function",
+      "name": "useRoomsGroups",
+      "exported": false,
+      "line": 51,
+      "endLine": 145,
+      "signature": "(): [RoomsNavigationGroup, UnreadGroupDataMap] =>",
+      "calls": [
+        {
+          "name": "useOmnichannelEnabled",
+          "edgeType": "call"
+        },
+        {
+          "name": "useUserPreference",
+          "edgeType": "call"
+        },
+        {
+          "name": "useSetting",
+          "edgeType": "call"
+        },
+        {
+          "name": "useSortQueryOptions",
+          "edgeType": "call"
+        },
+        {
+          "name": "useUserSubscriptions",
+          "edgeType": "call"
+        },
+        {
+          "name": "useQueuedInquiries",
+          "edgeType": "call"
+        },
+        {
+          "name": "useDebouncedValue",
+          "edgeType": "call"
+        },
+        {
+          "name": "useMemo",
+          "edgeType": "call"
+        },
+        {
+          "name": "set",
+          "edgeType": "call"
+        },
+        {
+          "name": "get",
+          "edgeType": "call"
+        },
+        {
+          "name": "has",
+          "edgeType": "call"
+        },
+        {
+          "name": "getGroupSet",
+          "edgeType": "call"
+        },
+        {
+          "name": "isUnreadSubscription",
+          "edgeType": "call"
+        },
+        {
+          "name": "getEmptyUnreadInfo",
+          "edgeType": "call"
+        },
+        {
+          "name": "updateGroupUnreadInfo",
+          "edgeType": "call"
+        },
+        {
+          "name": "forEach",
+          "edgeType": "call"
+        },
+        {
+          "name": "isOmnichannelRoom",
+          "edgeType": "call"
+        },
+        {
+          "name": "setGroupRoom",
+          "edgeType": "call"
+        },
+        {
+          "name": "hasMention",
+          "edgeType": "call"
+        },
+        {
+          "name": "isDiscussion",
+          "edgeType": "call"
+        },
+        {
+          "name": "isTeamRoom",
+          "edgeType": "call"
+        },
+        {
+          "name": "isPrivateRoom",
+          "edgeType": "call"
+        },
+        {
+          "name": "isPublicRoom",
+          "edgeType": "call"
+        },
+        {
+          "name": "isDirectMessageRoom",
+          "edgeType": "call"
+        },
+        {
+          "name": "Map",
+          "edgeType": "new"
+        },
+        {
+          "name": "Set",
+          "edgeType": "new"
+        },
+        {
+          "name": "RoomsNavigationGroup",
+          "edgeType": "type"
+        },
+        {
+          "name": "UnreadGroupDataMap",
+          "edgeType": "type"
+        },
+        {
+          "name": "AllGroupsKeys",
+          "edgeType": "type"
+        },
+        {
+          "name": "SubscriptionWithRoom",
+          "edgeType": "type"
+        },
+        {
+          "name": "AllGroupsKeysWithUnread",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "variable_function",
+      "name": "RoomsNavigationContextProvider",
+      "exported": false,
+      "line": 57,
+      "endLine": 130,
+      "signature": "({ children }: RoomsNavigationContextProviderProps) =>",
+      "calls": [
+        {
+          "name": "useLayout",
+          "edgeType": "call"
+        },
+        {
+          "name": "useSidePanelParentRid",
+          "edgeType": "call"
+        },
+        {
+          "name": "useSidePanelFilter",
+          "edgeType": "call"
+        },
+        {
+          "name": "useStableCallback",
+          "edgeType": "call"
+        },
+        {
+          "name": "openSidePanel",
+          "edgeType": "call"
+        },
+        {
+          "name": "setCurrentFilter",
+          "edgeType": "call"
+        },
+        {
+          "name": "getFilterKey",
+          "edgeType": "call"
+        },
+        {
+          "name": "setParentRoom",
+          "edgeType": "call"
+        },
+        {
+          "name": "useRoomsGroups",
+          "edgeType": "call"
+        },
+        {
+          "name": "find",
+          "edgeType": "call"
+        },
+        {
+          "name": "getState",
+          "edgeType": "call"
+        },
+        {
+          "name": "includes",
+          "edgeType": "call"
+        },
+        {
+          "name": "isTeamRoom",
+          "edgeType": "call"
+        },
+        {
+          "name": "setFilter",
+          "edgeType": "call"
+        },
+        {
+          "name": "isDirectMessageRoom",
+          "edgeType": "call"
+        },
+        {
+          "name": "Boolean",
+          "edgeType": "call"
+        },
+        {
+          "name": "useEffect",
+          "edgeType": "call"
+        },
+        {
+          "name": "handleRoomOpened",
+          "edgeType": "event_listen",
+          "event": "opened"
+        },
+        {
+          "name": "useMemo",
+          "edgeType": "call"
+        },
+        {
+          "name": "RoomsNavigationContext.Provider",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "contextValue",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "RoomsNavigationContextProviderProps",
+          "edgeType": "type"
+        },
+        {
+          "name": "AllGroupsKeys",
+          "edgeType": "type"
+        },
+        {
+          "name": "IRoom",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "type",
+      "name": "useRoomsGroupsReturnType",
+      "line": 33,
+      "endLine": 40,
+      "signature": "export type useRoomsGroupsReturnType ="
+    },
+    {
+      "type": "type",
+      "name": "UnreadGroupDataMap",
+      "line": 49,
+      "endLine": 49,
+      "signature": "type UnreadGroupDataMap = Map<AllGroupsKeys, GroupedUnreadInfoData>;"
+    },
+    {
+      "type": "type",
+      "name": "RoomsNavigationContextProviderProps",
+      "line": 55,
+      "endLine": 55,
+      "signature": "export type RoomsNavigationContextProviderProps ="
+    }
+  ],
+  "imports": [
+    {
+      "module": "@rocket.chat/core-typings",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/core-typings",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/fuselage-hooks",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/ui-contexts",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/ui-contexts",
+      "resolved": "external"
+    },
+    {
+      "module": "react",
+      "resolved": "external"
+    },
+    {
+      "module": "react",
+      "resolved": "external"
+    },
+    {
+      "module": "../../../hooks/useSortQueryOptions",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/client/hooks/useSortQueryOptions.ts"
+    },
+    {
+      "module": "../../../lib/RoomManager",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/client/lib/RoomManager.ts"
+    },
+    {
+      "module": "../../../stores",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/client/stores/index.ts"
+    },
+    {
+      "module": "../../omnichannel/hooks/useOmnichannelEnabled",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/client/views/omnichannel/hooks/useOmnichannelEnabled.ts"
+    },
+    {
+      "module": "../../omnichannel/hooks/useQueuedInquiries",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/client/views/omnichannel/hooks/useQueuedInquiries.ts"
+    },
+    {
+      "module": "../contexts/RoomsNavigationContext",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/client/views/navigation/contexts/RoomsNavigationContext.ts"
+    },
+    {
+      "module": "../contexts/RoomsNavigationContext",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/client/views/navigation/contexts/RoomsNavigationContext.ts"
+    },
+    {
+      "module": "../hooks/useSidePanelParentRid",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/client/views/navigation/hooks/useSidePanelParentRid.ts"
+    }
+  ]
+}

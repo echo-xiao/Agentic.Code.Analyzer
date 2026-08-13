@@ -1,0 +1,37 @@
+{
+  "sourcePath": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/server/cron/start.ts",
+  "symbols": [
+    {
+      "type": "variable_function",
+      "name": "startCron",
+      "exported": true,
+      "line": 4,
+      "endLine": 6,
+      "signature": "async () =>",
+      "calls": [
+        {
+          "name": "start",
+          "edgeType": "call"
+        },
+        {
+          "name": "db",
+          "edgeType": "call"
+        },
+        {
+          "name": "defaultRemoteCollectionDriver",
+          "edgeType": "call"
+        }
+      ]
+    }
+  ],
+  "imports": [
+    {
+      "module": "@rocket.chat/cron",
+      "resolved": "external"
+    },
+    {
+      "module": "meteor/mongo",
+      "resolved": "external"
+    }
+  ]
+}

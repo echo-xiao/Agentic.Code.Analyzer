@@ -1,0 +1,68 @@
+{
+  "sourcePath": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/client/navbar/NavBarPagesGroup/hooks/useCreateRoomModal.tsx",
+  "symbols": [
+    {
+      "type": "inner_function",
+      "name": "handleClose",
+      "exported": false,
+      "qualifiedName": "useCreateRoomModal.handleClose",
+      "line": 9,
+      "endLine": 11,
+      "signature": "(): void =>",
+      "calls": [
+        {
+          "name": "setModal",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "variable_function",
+      "name": "useCreateRoomModal",
+      "exported": true,
+      "line": 5,
+      "endLine": 15,
+      "signature": "(Component: FC<any>): (() => void) =>",
+      "calls": [
+        {
+          "name": "useSetModal",
+          "edgeType": "call"
+        },
+        {
+          "name": "useStableCallback",
+          "edgeType": "call"
+        },
+        {
+          "name": "setModal",
+          "edgeType": "call"
+        },
+        {
+          "name": "Component",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "handleClose",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "FC",
+          "edgeType": "type"
+        }
+      ]
+    }
+  ],
+  "imports": [
+    {
+      "module": "@rocket.chat/fuselage-hooks",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/ui-contexts",
+      "resolved": "external"
+    },
+    {
+      "module": "react",
+      "resolved": "external"
+    }
+  ]
+}

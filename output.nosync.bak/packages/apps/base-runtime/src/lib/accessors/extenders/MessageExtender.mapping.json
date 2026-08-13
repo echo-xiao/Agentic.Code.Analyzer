@@ -1,0 +1,169 @@
+{
+  "sourcePath": "/Users/echoooooo/Desktop/code/Rocket.Chat/packages/apps/base-runtime/src/lib/accessors/extenders/MessageExtender.ts",
+  "symbols": [
+    {
+      "type": "class",
+      "name": "MessageExtender",
+      "exported": true,
+      "line": 6,
+      "endLine": 60,
+      "signature": "export class MessageExtender implements IMessageExtender",
+      "calls": [
+        {
+          "name": "IMessageExtender",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "addCustomField",
+      "exported": true,
+      "qualifiedName": "MessageExtender.addCustomField",
+      "line": 17,
+      "endLine": 33,
+      "signature": "public addCustomField(key: string, value: unknown): IMessageExtender",
+      "containerClass": "MessageExtender",
+      "calls": [
+        {
+          "name": "includes",
+          "edgeType": "call"
+        },
+        {
+          "name": "IMessageExtender",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "addAttachment",
+      "exported": true,
+      "qualifiedName": "MessageExtender.addAttachment",
+      "line": 21,
+      "endLine": 27,
+      "signature": "public addAttachment(attachment: IMessageAttachment): IMessageExtender",
+      "containerClass": "MessageExtender",
+      "calls": [
+        {
+          "name": "ensureAttachment",
+          "edgeType": "call"
+        },
+        {
+          "name": "push",
+          "edgeType": "call"
+        },
+        {
+          "name": "IMessageAttachment",
+          "edgeType": "type"
+        },
+        {
+          "name": "IMessageExtender",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "addAttachments",
+      "exported": true,
+      "qualifiedName": "MessageExtender.addAttachments",
+      "line": 25,
+      "endLine": 31,
+      "signature": "public addAttachments(attachments: Array<IMessageAttachment>): IMessageExtender",
+      "containerClass": "MessageExtender",
+      "calls": [
+        {
+          "name": "ensureAttachment",
+          "edgeType": "call"
+        },
+        {
+          "name": "concat",
+          "edgeType": "call"
+        },
+        {
+          "name": "IMessageAttachment",
+          "edgeType": "type"
+        },
+        {
+          "name": "IMessageExtender",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "getMessage",
+      "exported": true,
+      "qualifiedName": "MessageExtender.getMessage",
+      "line": 29,
+      "endLine": 31,
+      "signature": "public getMessage(): IMessage",
+      "containerClass": "MessageExtender",
+      "calls": [
+        {
+          "name": "structuredClone",
+          "edgeType": "call"
+        },
+        {
+          "name": "IMessage",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "ensureAttachment",
+      "exported": true,
+      "qualifiedName": "MessageExtender.ensureAttachment",
+      "line": 33,
+      "endLine": 37,
+      "signature": "private ensureAttachment(): void",
+      "containerClass": "MessageExtender",
+      "calls": [
+        {
+          "name": "isArray",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "constructor",
+      "exported": true,
+      "qualifiedName": "MessageExtender.constructor",
+      "line": 9,
+      "endLine": 15,
+      "signature": "constructor(private msg: IMessage)",
+      "containerClass": "MessageExtender",
+      "calls": [
+        {
+          "name": "isArray",
+          "edgeType": "call"
+        },
+        {
+          "name": "IMessage",
+          "edgeType": "type"
+        }
+      ]
+    }
+  ],
+  "imports": [
+    {
+      "module": "@rocket.chat/apps-engine/definition/accessors/IMessageExtender",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/apps-engine/definition/messages/IMessage",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/apps-engine/definition/messages/IMessageAttachment",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/apps-engine/definition/metadata/RocketChatAssociations",
+      "resolved": "external"
+    }
+  ]
+}

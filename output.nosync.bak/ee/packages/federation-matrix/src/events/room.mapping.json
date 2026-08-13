@@ -1,0 +1,73 @@
+{
+  "sourcePath": "/Users/echoooooo/Desktop/code/Rocket.Chat/ee/packages/federation-matrix/src/events/room.ts",
+  "symbols": [
+    {
+      "type": "function",
+      "name": "room",
+      "exported": true,
+      "line": 7,
+      "endLine": 87,
+      "signature": "export function room()",
+      "calls": [
+        {
+          "name": "homeserver.matrix.room.name",
+          "edgeType": "event_listen"
+        },
+        {
+          "name": "findOne",
+          "edgeType": "call"
+        },
+        {
+          "name": "findOneByUsername",
+          "edgeType": "call"
+        },
+        {
+          "name": "saveRoomName",
+          "edgeType": "call"
+        },
+        {
+          "name": "homeserver.matrix.room.topic",
+          "edgeType": "event_listen"
+        },
+        {
+          "name": "saveRoomTopic",
+          "edgeType": "call"
+        },
+        {
+          "name": "homeserver.matrix.room.role",
+          "edgeType": "event_listen"
+        },
+        {
+          "name": "getConfig",
+          "edgeType": "call"
+        },
+        {
+          "name": "getUsernameServername",
+          "edgeType": "call"
+        },
+        {
+          "name": "addUserRoleRoomScoped",
+          "edgeType": "call"
+        }
+      ]
+    }
+  ],
+  "imports": [
+    {
+      "module": "@rocket.chat/core-services",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/federation-sdk",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/models",
+      "resolved": "external"
+    },
+    {
+      "module": "../helpers/getUsernameServername",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/ee/packages/federation-matrix/src/helpers/getUsernameServername.ts"
+    }
+  ]
+}

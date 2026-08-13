@@ -1,0 +1,148 @@
+{
+  "sourcePath": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/client/components/message/content/ThreadMetrics.tsx",
+  "symbols": [
+    {
+      "type": "variable_function",
+      "name": "ThreadMetrics",
+      "exported": false,
+      "line": 29,
+      "endLine": 66,
+      "signature": "({ unread, mention, all, rid, mid, counter, participants, following, lm }: ThreadMetricsProps) =>",
+      "calls": [
+        {
+          "name": "useTranslation",
+          "edgeType": "call"
+        },
+        {
+          "name": "useTimeAgo",
+          "edgeType": "call"
+        },
+        {
+          "name": "useGoToThread",
+          "edgeType": "call"
+        },
+        {
+          "name": "useResizeObserver",
+          "edgeType": "call"
+        },
+        {
+          "name": "goToThread",
+          "edgeType": "call"
+        },
+        {
+          "name": "format",
+          "edgeType": "call"
+        },
+        {
+          "name": "MessageBlock",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "MessageMetrics",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "MessageMetricsReply",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "MessageMetricsItem",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "MessageMetricsItemLabel",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "ThreadMetricsFollow",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "ThreadMetricsParticipants",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "MessageMetricsItemIcon",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "ref",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "rid",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "mid",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "unread",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "mention",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "all",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "following",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "participants",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "ThreadMetricsProps",
+          "edgeType": "type"
+        },
+        {
+          "name": "HTMLDivElement",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "type",
+      "name": "ThreadMetricsProps",
+      "line": 17,
+      "endLine": 27,
+      "signature": "export type ThreadMetricsProps ="
+    }
+  ],
+  "imports": [
+    {
+      "module": "@rocket.chat/fuselage",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/fuselage-hooks",
+      "resolved": "external"
+    },
+    {
+      "module": "react-i18next",
+      "resolved": "external"
+    },
+    {
+      "module": "./ThreadMetricsFollow",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/client/components/message/content/ThreadMetricsFollow.tsx"
+    },
+    {
+      "module": "./ThreadMetricsParticipants",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/client/components/message/content/ThreadMetricsParticipants.tsx"
+    },
+    {
+      "module": "../../../hooks/useTimeAgo",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/client/hooks/useTimeAgo.ts"
+    },
+    {
+      "module": "../../../views/room/hooks/useGoToThread",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/client/views/room/hooks/useGoToThread.ts"
+    }
+  ]
+}

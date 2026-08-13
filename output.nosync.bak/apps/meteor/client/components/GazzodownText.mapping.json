@@ -1,0 +1,276 @@
+{
+  "sourcePath": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/client/components/GazzodownText.tsx",
+  "symbols": [
+    {
+      "type": "module",
+      "name": "GazzodownText",
+      "exported": false,
+      "line": 1,
+      "endLine": 145,
+      "signature": "GazzodownText",
+      "calls": [
+        {
+          "name": "memo",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "inner_function",
+      "name": "onUserMentionClick",
+      "exported": false,
+      "qualifiedName": "GazzodownText.onUserMentionClick",
+      "line": 78,
+      "endLine": 88,
+      "signature": "({ username }: UserMention) =>",
+      "calls": [
+        {
+          "name": "stopPropagation",
+          "edgeType": "call"
+        },
+        {
+          "name": "openUserCard",
+          "edgeType": "call"
+        },
+        {
+          "name": "UserMention",
+          "edgeType": "type"
+        },
+        {
+          "name": "UIEvent",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "inner_function",
+      "name": "onChannelMentionClick",
+      "exported": false,
+      "qualifiedName": "GazzodownText.onChannelMentionClick",
+      "line": 100,
+      "endLine": 115,
+      "signature": "({ _id: rid }: ChannelMention) =>",
+      "calls": [
+        {
+          "name": "fireGlobalEvent",
+          "edgeType": "call"
+        },
+        {
+          "name": "buildRoutePath",
+          "edgeType": "call"
+        },
+        {
+          "name": "stopPropagation",
+          "edgeType": "call"
+        },
+        {
+          "name": "goToRoom",
+          "edgeType": "call"
+        },
+        {
+          "name": "ChannelMention",
+          "edgeType": "type"
+        },
+        {
+          "name": "UIEvent",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "variable_function",
+      "name": "GazzodownText",
+      "exported": false,
+      "line": 28,
+      "endLine": 142,
+      "signature": "({ mentions, channels, searchText, children }: GazzodownTextProps) =>",
+      "calls": [
+        {
+          "name": "useLocalStorage",
+          "edgeType": "call"
+        },
+        {
+          "name": "useMessageListHighlights",
+          "edgeType": "call"
+        },
+        {
+          "name": "useUserCard",
+          "edgeType": "call"
+        },
+        {
+          "name": "useMemo",
+          "edgeType": "call"
+        },
+        {
+          "name": "join",
+          "edgeType": "call"
+        },
+        {
+          "name": "map",
+          "edgeType": "call"
+        },
+        {
+          "name": "replace",
+          "edgeType": "call"
+        },
+        {
+          "name": "escapeRegExp",
+          "edgeType": "call"
+        },
+        {
+          "name": "useUserPreference",
+          "edgeType": "call"
+        },
+        {
+          "name": "Boolean",
+          "edgeType": "call"
+        },
+        {
+          "name": "useMessageListShowRealName",
+          "edgeType": "call"
+        },
+        {
+          "name": "useUserId",
+          "edgeType": "call"
+        },
+        {
+          "name": "useCallback",
+          "edgeType": "call"
+        },
+        {
+          "name": "normalizeUsername",
+          "edgeType": "call"
+        },
+        {
+          "name": "find",
+          "edgeType": "call"
+        },
+        {
+          "name": "filterUser",
+          "edgeType": "call"
+        },
+        {
+          "name": "filterTeam",
+          "edgeType": "call"
+        },
+        {
+          "name": "stopPropagation",
+          "edgeType": "call"
+        },
+        {
+          "name": "openUserCard",
+          "edgeType": "call"
+        },
+        {
+          "name": "useGoToRoom",
+          "edgeType": "call"
+        },
+        {
+          "name": "useLayout",
+          "edgeType": "call"
+        },
+        {
+          "name": "useRouter",
+          "edgeType": "call"
+        },
+        {
+          "name": "fireGlobalEvent",
+          "edgeType": "call"
+        },
+        {
+          "name": "buildRoutePath",
+          "edgeType": "call"
+        },
+        {
+          "name": "goToRoom",
+          "edgeType": "call"
+        },
+        {
+          "name": "MarkupInteractionContext.Provider",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "RegExp",
+          "edgeType": "new"
+        },
+        {
+          "name": "GazzodownTextProps",
+          "edgeType": "type"
+        },
+        {
+          "name": "UserMention",
+          "edgeType": "type"
+        },
+        {
+          "name": "UIEvent",
+          "edgeType": "type"
+        },
+        {
+          "name": "ChannelMention",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "type",
+      "name": "GazzodownTextProps",
+      "line": 16,
+      "endLine": 26,
+      "signature": "export type GazzodownTextProps ="
+    }
+  ],
+  "imports": [
+    {
+      "module": "@rocket.chat/core-typings",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/fuselage-hooks",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/gazzodown",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/gazzodown",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/string-helpers",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/ui-contexts",
+      "resolved": "external"
+    },
+    {
+      "module": "react",
+      "resolved": "external"
+    },
+    {
+      "module": "react",
+      "resolved": "external"
+    },
+    {
+      "module": "../../lib/utils/normalizeUsername",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/lib/utils/normalizeUsername.ts"
+    },
+    {
+      "module": "../lib/utils/detectEmoji",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/client/lib/utils/detectEmoji.ts"
+    },
+    {
+      "module": "../lib/utils/fireGlobalEvent",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/client/lib/utils/fireGlobalEvent.ts"
+    },
+    {
+      "module": "./message/list/MessageListContext",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/client/components/message/list/MessageListContext.tsx"
+    },
+    {
+      "module": "../views/room/hooks/useGoToRoom",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/client/views/room/hooks/useGoToRoom.ts"
+    }
+  ]
+}

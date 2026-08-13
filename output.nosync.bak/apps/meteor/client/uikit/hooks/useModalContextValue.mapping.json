@@ -1,0 +1,91 @@
+{
+  "sourcePath": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/client/uikit/hooks/useModalContextValue.ts",
+  "symbols": [
+    {
+      "type": "variable_function",
+      "name": "useModalContextValue",
+      "exported": true,
+      "line": 29,
+      "endLine": 70,
+      "signature": "({ view, errors, values, updateValues }: UseModalContextValueParams): UseModalContextValueReturn =>",
+      "calls": [
+        {
+          "name": "useUiKitActionManager",
+          "edgeType": "call"
+        },
+        {
+          "name": "useMemo",
+          "edgeType": "call"
+        },
+        {
+          "name": "bind",
+          "edgeType": "call"
+        },
+        {
+          "name": "useDebouncedCallback",
+          "edgeType": "call"
+        },
+        {
+          "name": "includes",
+          "edgeType": "call"
+        },
+        {
+          "name": "emit",
+          "edgeType": "call"
+        },
+        {
+          "name": "updateValues",
+          "edgeType": "call"
+        },
+        {
+          "name": "UseModalContextValueParams",
+          "edgeType": "type"
+        },
+        {
+          "name": "UseModalContextValueReturn",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "type",
+      "name": "UseModalContextValueParams",
+      "line": 9,
+      "endLine": 25,
+      "signature": "type UseModalContextValueParams ="
+    },
+    {
+      "type": "type",
+      "name": "UseModalContextValueReturn",
+      "line": 27,
+      "endLine": 27,
+      "signature": "type UseModalContextValueReturn = ContextType<typeof UiKitContext>;"
+    }
+  ],
+  "imports": [
+    {
+      "module": "@rocket.chat/fuselage-hooks",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/fuselage-ui-kit",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/ui-kit",
+      "resolved": "external"
+    },
+    {
+      "module": "react",
+      "resolved": "external"
+    },
+    {
+      "module": "react",
+      "resolved": "external"
+    },
+    {
+      "module": "./useUiKitActionManager",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/client/uikit/hooks/useUiKitActionManager.ts"
+    }
+  ]
+}

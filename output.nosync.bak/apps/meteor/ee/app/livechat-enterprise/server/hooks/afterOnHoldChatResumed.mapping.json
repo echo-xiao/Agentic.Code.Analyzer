@@ -1,0 +1,67 @@
+{
+  "sourcePath": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/ee/app/livechat-enterprise/server/hooks/afterOnHoldChatResumed.ts",
+  "symbols": [
+    {
+      "type": "module",
+      "name": "afterOnHoldChatResumed",
+      "exported": false,
+      "line": 1,
+      "endLine": 28,
+      "signature": "afterOnHoldChatResumed",
+      "calls": [
+        {
+          "name": "handleAfterOnHoldChatResumed",
+          "edgeType": "event_listen",
+          "event": "livechat:afterOnHoldChatResumed"
+        }
+      ]
+    },
+    {
+      "type": "variable_function",
+      "name": "handleAfterOnHoldChatResumed",
+      "exported": false,
+      "line": 9,
+      "endLine": 20,
+      "signature": "async (room: IRoom): Promise<IRoom> =>",
+      "calls": [
+        {
+          "name": "debug",
+          "edgeType": "call"
+        },
+        {
+          "name": "unscheduleRoom",
+          "edgeType": "call"
+        },
+        {
+          "name": "IRoom",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "type",
+      "name": "IRoom",
+      "line": 7,
+      "endLine": 7,
+      "signature": "type IRoom = Pick<IOmnichannelRoom, '_id'>;"
+    }
+  ],
+  "imports": [
+    {
+      "module": "@rocket.chat/core-typings",
+      "resolved": "external"
+    },
+    {
+      "module": "../../../../../server/lib/callbacks",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/server/lib/callbacks.ts"
+    },
+    {
+      "module": "../lib/AutoCloseOnHoldScheduler",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/ee/app/livechat-enterprise/server/lib/AutoCloseOnHoldScheduler.ts"
+    },
+    {
+      "module": "../lib/logger",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/ee/app/livechat-enterprise/server/lib/logger.ts"
+    }
+  ]
+}

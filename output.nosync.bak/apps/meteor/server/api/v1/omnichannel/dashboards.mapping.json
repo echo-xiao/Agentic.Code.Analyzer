@@ -1,0 +1,148 @@
+{
+  "sourcePath": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/server/api/v1/omnichannel/dashboards.ts",
+  "symbols": [
+    {
+      "type": "module",
+      "name": "dashboards",
+      "exported": false,
+      "line": 1,
+      "endLine": 297,
+      "signature": "dashboards",
+      "calls": [
+        {
+          "name": "livechat/analytics/dashboards/conversation-totalizers",
+          "edgeType": "rest_route"
+        },
+        {
+          "name": "addRoute",
+          "edgeType": "call"
+        },
+        {
+          "name": "isNaN",
+          "edgeType": "call"
+        },
+        {
+          "name": "parse",
+          "edgeType": "call"
+        },
+        {
+          "name": "failure",
+          "edgeType": "call"
+        },
+        {
+          "name": "findOneById",
+          "edgeType": "call"
+        },
+        {
+          "name": "getConversationsMetricsAsyncCached",
+          "edgeType": "call"
+        },
+        {
+          "name": "success",
+          "edgeType": "call"
+        },
+        {
+          "name": "livechat/analytics/dashboards/agents-productivity-totalizers",
+          "edgeType": "rest_route"
+        },
+        {
+          "name": "getAgentsProductivityMetricsAsyncCached",
+          "edgeType": "call"
+        },
+        {
+          "name": "livechat/analytics/dashboards/chats-totalizers",
+          "edgeType": "rest_route"
+        },
+        {
+          "name": "getChatsMetricsAsyncCached",
+          "edgeType": "call"
+        },
+        {
+          "name": "Date",
+          "edgeType": "new"
+        },
+        {
+          "name": "livechat/analytics/dashboards/productivity-totalizers",
+          "edgeType": "rest_route"
+        },
+        {
+          "name": "getProductivityMetricsAsyncCached",
+          "edgeType": "call"
+        },
+        {
+          "name": "livechat/analytics/dashboards/charts/chats",
+          "edgeType": "rest_route"
+        },
+        {
+          "name": "findAllChatsStatusAsyncCached",
+          "edgeType": "call"
+        },
+        {
+          "name": "livechat/analytics/dashboards/charts/chats-per-agent",
+          "edgeType": "rest_route"
+        },
+        {
+          "name": "findAllChatMetricsByAgentAsyncCached",
+          "edgeType": "call"
+        },
+        {
+          "name": "livechat/analytics/dashboards/charts/agents-status",
+          "edgeType": "rest_route"
+        },
+        {
+          "name": "findAllAgentsStatusAsyncCached",
+          "edgeType": "call"
+        },
+        {
+          "name": "livechat/analytics/dashboards/charts/chats-per-department",
+          "edgeType": "rest_route"
+        },
+        {
+          "name": "findAllChatMetricsByDepartmentAsyncCached",
+          "edgeType": "call"
+        },
+        {
+          "name": "livechat/analytics/dashboards/charts/timings",
+          "edgeType": "rest_route"
+        },
+        {
+          "name": "findAllResponseTimeMetricsAsyncCached",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "type",
+      "name": "LivechatAnalyticsEndpoints",
+      "line": 291,
+      "endLine": 291,
+      "signature": "type LivechatAnalyticsEndpoints = ExtractRoutesFromAPI<typeof livechatAnalyticsEndpoints>;"
+    }
+  ],
+  "imports": [
+    {
+      "module": "@rocket.chat/core-services",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/models",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/rest-typings",
+      "resolved": "external"
+    },
+    {
+      "module": "../..",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/server/api/index.ts"
+    },
+    {
+      "module": "../../../../app/livechat/server/lib/analytics/dashboards",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/app/livechat/server/lib/analytics/dashboards.ts"
+    },
+    {
+      "module": "../../ApiClass",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/server/api/ApiClass.ts"
+    }
+  ]
+}

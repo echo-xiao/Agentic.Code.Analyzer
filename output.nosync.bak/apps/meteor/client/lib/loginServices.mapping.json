@@ -1,0 +1,325 @@
+{
+  "sourcePath": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/client/lib/loginServices.ts",
+  "symbols": [
+    {
+      "type": "class",
+      "name": "LoginServices",
+      "exported": false,
+      "line": 18,
+      "endLine": 150,
+      "signature": "class LoginServices extends Emitter<LoginServicesEvents>",
+      "calls": [
+        {
+          "name": "Emitter",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "setServices",
+      "exported": false,
+      "qualifiedName": "LoginServices.setServices",
+      "line": 43,
+      "endLine": 57,
+      "signature": "private setServices(state: LoadState, services: LoginServiceConfiguration[])",
+      "containerClass": "LoginServices",
+      "calls": [
+        {
+          "name": "generateServiceButtons",
+          "edgeType": "call"
+        },
+        {
+          "name": "loaded",
+          "edgeType": "event_emit"
+        },
+        {
+          "name": "error",
+          "edgeType": "call"
+        },
+        {
+          "name": "LoadState",
+          "edgeType": "type"
+        },
+        {
+          "name": "LoginServiceConfiguration",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "generateServiceButtons",
+      "exported": false,
+      "qualifiedName": "LoginServices.generateServiceButtons",
+      "line": 47,
+      "endLine": 69,
+      "signature": "private generateServiceButtons(): void",
+      "containerClass": "LoginServices",
+      "calls": [
+        {
+          "name": "filter",
+          "edgeType": "call"
+        },
+        {
+          "name": "sort",
+          "edgeType": "call"
+        },
+        {
+          "name": "localeCompare",
+          "edgeType": "call"
+        },
+        {
+          "name": "map",
+          "edgeType": "call"
+        },
+        {
+          "name": "capitalize",
+          "edgeType": "call"
+        },
+        {
+          "name": "changed",
+          "edgeType": "event_emit"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "getLoginService",
+      "exported": false,
+      "qualifiedName": "LoginServices.getLoginService",
+      "line": 51,
+      "endLine": 57,
+      "signature": "public getLoginService<T extends Partial<LoginServiceConfiguration> = LoginServiceConfiguration>(serviceName: string): T | undefined",
+      "containerClass": "LoginServices",
+      "calls": [
+        {
+          "name": "find",
+          "edgeType": "call"
+        },
+        {
+          "name": "LoginServiceConfiguration",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "loadLoginService",
+      "exported": false,
+      "qualifiedName": "LoginServices.loadLoginService",
+      "line": 55,
+      "endLine": 67,
+      "signature": "public async loadLoginService<T extends Partial<LoginServiceConfiguration> = LoginServiceConfiguration>( serviceName: string, ): Promise<T | undefined>",
+      "containerClass": "LoginServices",
+      "calls": [
+        {
+          "name": "getLoginService",
+          "edgeType": "call"
+        },
+        {
+          "name": "onLoad",
+          "edgeType": "call"
+        },
+        {
+          "name": "resolve",
+          "edgeType": "call"
+        },
+        {
+          "name": "reject",
+          "edgeType": "call"
+        },
+        {
+          "name": "LoginServiceConfiguration",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "getLoginServiceButtons",
+      "exported": false,
+      "qualifiedName": "LoginServices.getLoginServiceButtons",
+      "line": 65,
+      "endLine": 73,
+      "signature": "public getLoginServiceButtons(): LoginService[]",
+      "containerClass": "LoginServices",
+      "calls": [
+        {
+          "name": "loadServices",
+          "edgeType": "call"
+        },
+        {
+          "name": "LoginService",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "onLoad",
+      "exported": false,
+      "qualifiedName": "LoginServices.onLoad",
+      "line": 69,
+      "endLine": 78,
+      "signature": "public onLoad(callback: (services: LoginServiceConfiguration[]) => void): () => void",
+      "containerClass": "LoginServices",
+      "calls": [
+        {
+          "name": "callback",
+          "edgeType": "call"
+        },
+        {
+          "name": "loadServices",
+          "edgeType": "call"
+        },
+        {
+          "name": "callback",
+          "edgeType": "event_listen",
+          "event": "loaded"
+        },
+        {
+          "name": "off",
+          "edgeType": "call"
+        },
+        {
+          "name": "LoginServiceConfiguration",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "loadServices",
+      "exported": false,
+      "qualifiedName": "LoginServices.loadServices",
+      "line": 73,
+      "endLine": 92,
+      "signature": "public async loadServices(): Promise<void>",
+      "containerClass": "LoginServices",
+      "calls": [
+        {
+          "name": "service.configurations",
+          "edgeType": "rest_call"
+        },
+        {
+          "name": "get",
+          "edgeType": "call"
+        },
+        {
+          "name": "setServices",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "class_property",
+      "name": "services",
+      "exported": false,
+      "qualifiedName": "LoginServices.services",
+      "line": 21,
+      "endLine": 21,
+      "signature": "private services: LoginServiceConfiguration[] = [];",
+      "containerClass": "LoginServices",
+      "calls": [
+        {
+          "name": "LoginServiceConfiguration",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "class_property",
+      "name": "serviceButtons",
+      "exported": false,
+      "qualifiedName": "LoginServices.serviceButtons",
+      "line": 23,
+      "endLine": 23,
+      "signature": "private serviceButtons: LoginService[] = [];",
+      "containerClass": "LoginServices",
+      "calls": [
+        {
+          "name": "LoginService",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "class_property",
+      "name": "state",
+      "exported": false,
+      "qualifiedName": "LoginServices.state",
+      "line": 25,
+      "endLine": 25,
+      "signature": "private state: LoadState = 'none';",
+      "containerClass": "LoginServices",
+      "calls": [
+        {
+          "name": "LoadState",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "class_property",
+      "name": "config",
+      "exported": false,
+      "qualifiedName": "LoginServices.config",
+      "line": 27,
+      "endLine": 41,
+      "signature": "private config: Record<string, Partial<LoginService>> =",
+      "containerClass": "LoginServices",
+      "calls": [
+        {
+          "name": "LoginService",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "variable",
+      "name": "loginServices",
+      "exported": true,
+      "line": 78,
+      "endLine": 78,
+      "signature": "loginServices = new LoginServices()",
+      "calls": []
+    },
+    {
+      "type": "type",
+      "name": "LoginServicesEvents",
+      "line": 8,
+      "endLine": 11,
+      "signature": "type LoginServicesEvents ="
+    },
+    {
+      "type": "type",
+      "name": "LoadState",
+      "line": 13,
+      "endLine": 13,
+      "signature": "type LoadState = 'loaded' | 'loading' | 'error' | 'none';"
+    }
+  ],
+  "imports": [
+    {
+      "module": "@rocket.chat/core-typings",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/emitter",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/string-helpers",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/ui-contexts",
+      "resolved": "external"
+    },
+    {
+      "module": "../../app/utils/client/lib/SDKClient",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/app/utils/client/lib/SDKClient.ts"
+    }
+  ]
+}

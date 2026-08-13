@@ -1,0 +1,63 @@
+{
+  "sourcePath": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/app/lib/server/lib/bugsnag.ts",
+  "symbols": [
+    {
+      "type": "module",
+      "name": "bugsnag",
+      "exported": false,
+      "line": 1,
+      "endLine": 44,
+      "signature": "bugsnag",
+      "calls": [
+        {
+          "name": "watch",
+          "edgeType": "call"
+        },
+        {
+          "name": "start",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "function",
+      "name": "_bugsnagDebug",
+      "exported": false,
+      "line": 12,
+      "endLine": 28,
+      "signature": "function _bugsnagDebug(message: any, stack: any, ...args: any): void",
+      "calls": [
+        {
+          "name": "notify",
+          "edgeType": "call"
+        },
+        {
+          "name": "originalMeteorDebug",
+          "edgeType": "call"
+        }
+      ]
+    }
+  ],
+  "imports": [
+    {
+      "module": "@bugsnag/js",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/logger",
+      "resolved": "external"
+    },
+    {
+      "module": "meteor/meteor",
+      "resolved": "external"
+    },
+    {
+      "module": "../../../settings/server",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/app/settings/server/index.ts"
+    },
+    {
+      "module": "../../../utils/rocketchat.info",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/app/utils/rocketchat.info"
+    }
+  ]
+}

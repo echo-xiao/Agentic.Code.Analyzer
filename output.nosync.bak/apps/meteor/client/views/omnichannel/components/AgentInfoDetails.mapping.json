@@ -1,0 +1,52 @@
+{
+  "sourcePath": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/client/views/omnichannel/components/AgentInfoDetails.tsx",
+  "symbols": [
+    {
+      "type": "variable_function",
+      "name": "AgentInfoDetails",
+      "exported": false,
+      "line": 12,
+      "endLine": 35,
+      "signature": "({ name, shortName, status = <UserStatus.Offline />, ...props }: AgentInfoDetailsProps) =>",
+      "calls": [
+        {
+          "name": "Box",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "UserStatus.Offline",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "name",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "AgentInfoDetailsProps",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "type",
+      "name": "AgentInfoDetailsProps",
+      "line": 6,
+      "endLine": 10,
+      "signature": "export type AgentInfoDetailsProps = ComponentProps<typeof Box> &"
+    }
+  ],
+  "imports": [
+    {
+      "module": "@rocket.chat/fuselage",
+      "resolved": "external"
+    },
+    {
+      "module": "react",
+      "resolved": "external"
+    },
+    {
+      "module": "../../../components/UserStatus",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/client/components/UserStatus/index.ts"
+    }
+  ]
+}

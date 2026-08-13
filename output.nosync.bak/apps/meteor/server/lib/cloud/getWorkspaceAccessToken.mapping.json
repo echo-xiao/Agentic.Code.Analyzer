@@ -1,0 +1,182 @@
+{
+  "sourcePath": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/server/lib/cloud/getWorkspaceAccessToken.ts",
+  "symbols": [
+    {
+      "type": "class",
+      "name": "CloudWorkspaceAccessTokenError",
+      "exported": true,
+      "line": 62,
+      "endLine": 66,
+      "signature": "export class CloudWorkspaceAccessTokenError extends Error",
+      "calls": []
+    },
+    {
+      "type": "method",
+      "name": "constructor",
+      "exported": true,
+      "qualifiedName": "CloudWorkspaceAccessTokenError.constructor",
+      "line": 63,
+      "endLine": 65,
+      "signature": "constructor()",
+      "containerClass": "CloudWorkspaceAccessTokenError",
+      "calls": []
+    },
+    {
+      "type": "class",
+      "name": "CloudWorkspaceAccessTokenEmptyError",
+      "exported": true,
+      "line": 76,
+      "endLine": 80,
+      "signature": "export class CloudWorkspaceAccessTokenEmptyError extends Error",
+      "calls": []
+    },
+    {
+      "type": "method",
+      "name": "constructor",
+      "exported": true,
+      "qualifiedName": "CloudWorkspaceAccessTokenEmptyError.constructor",
+      "line": 77,
+      "endLine": 79,
+      "signature": "constructor()",
+      "containerClass": "CloudWorkspaceAccessTokenEmptyError",
+      "calls": []
+    },
+    {
+      "type": "function",
+      "name": "getWorkspaceAccessToken",
+      "exported": true,
+      "line": 22,
+      "endLine": 60,
+      "signature": "export async function getWorkspaceAccessToken(forceNew = false, scope = '', save = true, throwOnError = false): Promise<string>",
+      "calls": [
+        {
+          "name": "retrieveRegistrationStatus",
+          "edgeType": "call"
+        },
+        {
+          "name": "join",
+          "edgeType": "call"
+        },
+        {
+          "name": "getCredentialByScope",
+          "edgeType": "call"
+        },
+        {
+          "name": "hasWorkspaceAccessTokenExpired",
+          "edgeType": "call"
+        },
+        {
+          "name": "debug",
+          "edgeType": "call"
+        },
+        {
+          "name": "getWorkspaceAccessTokenWithScope",
+          "edgeType": "call"
+        },
+        {
+          "name": "updateCredentialByScope",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "function",
+      "name": "getWorkspaceAccessTokenOrThrow",
+      "exported": true,
+      "line": 46,
+      "endLine": 54,
+      "signature": "export async function getWorkspaceAccessTokenOrThrow(forceNew = false, scope = '', save = true): Promise<string>",
+      "calls": [
+        {
+          "name": "getWorkspaceAccessToken",
+          "edgeType": "call"
+        },
+        {
+          "name": "CloudWorkspaceAccessTokenEmptyError",
+          "edgeType": "new"
+        }
+      ]
+    },
+    {
+      "type": "variable_function",
+      "name": "hasWorkspaceAccessTokenExpired",
+      "exported": false,
+      "line": 9,
+      "endLine": 9,
+      "signature": "(credentials: IWorkspaceCredentials): boolean =>",
+      "calls": [
+        {
+          "name": "Date",
+          "edgeType": "new"
+        },
+        {
+          "name": "IWorkspaceCredentials",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "variable_function",
+      "name": "isAbortError",
+      "exported": true,
+      "line": 32,
+      "endLine": 38,
+      "signature": "(error: unknown): error is { type: 'AbortError' } =>",
+      "calls": []
+    },
+    {
+      "type": "variable_function",
+      "name": "generateWorkspaceBearerHttpHeaderOrThrow",
+      "exported": true,
+      "line": 46,
+      "endLine": 55,
+      "signature": "async ( forceNew = false, scope = '', save = true, ): Promise<{ Authorization: string }> =>",
+      "calls": [
+        {
+          "name": "getWorkspaceAccessTokenOrThrow",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "variable_function",
+      "name": "generateWorkspaceBearerHttpHeader",
+      "exported": true,
+      "line": 54,
+      "endLine": 68,
+      "signature": "async ( forceNew = false, scope = '', save = true, ): Promise<{ Authorization: string } | undefined> =>",
+      "calls": [
+        {
+          "name": "getWorkspaceAccessToken",
+          "edgeType": "call"
+        }
+      ]
+    }
+  ],
+  "imports": [
+    {
+      "module": "@rocket.chat/core-typings",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/models",
+      "resolved": "external"
+    },
+    {
+      "module": "./getWorkspaceAccessTokenWithScope",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/server/lib/cloud/getWorkspaceAccessTokenWithScope.ts"
+    },
+    {
+      "module": "./retrieveRegistrationStatus",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/server/lib/cloud/retrieveRegistrationStatus.ts"
+    },
+    {
+      "module": "../../../app/cloud/server/oauthScopes",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/app/cloud/server/oauthScopes.ts"
+    },
+    {
+      "module": "../logger/system",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/server/lib/logger/system.ts"
+    }
+  ]
+}

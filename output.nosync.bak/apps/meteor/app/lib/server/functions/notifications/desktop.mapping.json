@@ -1,0 +1,83 @@
+{
+  "sourcePath": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/app/lib/server/functions/notifications/desktop.ts",
+  "symbols": [
+    {
+      "type": "function",
+      "name": "notifyDesktopUser",
+      "exported": true,
+      "line": 18,
+      "endLine": 73,
+      "signature": "export async function notifyDesktopUser({ userId, user, message, room, duration, notificationMessage, audioNotificationValue, }: { userId: string; user: AtLeast<IUser, '_id' | 'name' | 'username'>; message: IMessage | Pick<IMessage, 'u'>; room: IRoom; duration?: number; notificationMessage: string; audioNotificationValue?: string; }): Promise<void>",
+      "calls": [
+        {
+          "name": "getNotificationDetails",
+          "edgeType": "call"
+        },
+        {
+          "name": "getRoomDirectives",
+          "edgeType": "call"
+        },
+        {
+          "name": "inc",
+          "edgeType": "call"
+        },
+        {
+          "name": "notify.desktop",
+          "edgeType": "event_emit"
+        },
+        {
+          "name": "AtLeast",
+          "edgeType": "type"
+        },
+        {
+          "name": "IUser",
+          "edgeType": "type"
+        },
+        {
+          "name": "IMessage",
+          "edgeType": "type"
+        },
+        {
+          "name": "IRoom",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "function",
+      "name": "shouldNotifyDesktop",
+      "exported": true,
+      "line": 38,
+      "endLine": 88,
+      "signature": "export function shouldNotifyDesktop({ disableAllMessageNotifications, status, statusConnection, desktopNotifications, hasMentionToAll, hasMentionToHere, isHighlighted, hasMentionToUser, hasReplyToThread, roomType, isThread, }: { disableAllMessageNotifications: boolean; status: string; statusConnection: string; desktopNotifications: string | undefined; hasMentionToAll: boolean; hasMentionToHere: bo",
+      "calls": [
+        {
+          "name": "get",
+          "edgeType": "call"
+        }
+      ]
+    }
+  ],
+  "imports": [
+    {
+      "module": "@rocket.chat/core-services",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/core-typings",
+      "resolved": "external"
+    },
+    {
+      "module": "../../../../../server/lib/rooms/roomCoordinator",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/server/lib/rooms/roomCoordinator.ts"
+    },
+    {
+      "module": "../../../../metrics/server",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/app/metrics/server/index.ts"
+    },
+    {
+      "module": "../../../../settings/server",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/app/settings/server/index.ts"
+    }
+  ]
+}

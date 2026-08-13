@@ -1,0 +1,262 @@
+{
+  "sourcePath": "/Users/echoooooo/Desktop/code/Rocket.Chat/packages/ddp-client/src/DDPSDK.ts",
+  "symbols": [
+    {
+      "type": "class",
+      "name": "DDPSDK",
+      "exported": true,
+      "line": 30,
+      "endLine": 147,
+      "signature": "export class DDPSDK implements SDK",
+      "calls": [
+        {
+          "name": "SDK",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "call",
+      "exported": true,
+      "qualifiedName": "DDPSDK.call",
+      "line": 39,
+      "endLine": 41,
+      "signature": "call(method: string, ...params: unknown[])",
+      "containerClass": "DDPSDK",
+      "calls": [
+        {
+          "name": "callAsync",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "stream",
+      "exported": true,
+      "qualifiedName": "DDPSDK.stream",
+      "line": 43,
+      "endLine": 72,
+      "signature": "stream(name: string, data: unknown, cb: (...data: PublicationPayloads['fields']['args']) => void)",
+      "containerClass": "DDPSDK",
+      "calls": [
+        {
+          "name": "isArray",
+          "edgeType": "call"
+        },
+        {
+          "name": "bind",
+          "edgeType": "call"
+        },
+        {
+          "name": "stop",
+          "edgeType": "call"
+        },
+        {
+          "name": "onCollection",
+          "edgeType": "call"
+        },
+        {
+          "name": "isValidPayload",
+          "edgeType": "call"
+        },
+        {
+          "name": "cb",
+          "edgeType": "call"
+        },
+        {
+          "name": "assign",
+          "edgeType": "call"
+        },
+        {
+          "name": "forEach",
+          "edgeType": "call"
+        },
+        {
+          "name": "fn",
+          "edgeType": "call"
+        },
+        {
+          "name": "PublicationPayloads",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "create",
+      "exported": true,
+      "qualifiedName": "DDPSDK.create",
+      "line": 63,
+      "endLine": 98,
+      "signature": "static create(url: string, retryOptions = { retryCount: 1, retryTime: 100 }): DDPSDK",
+      "containerClass": "DDPSDK",
+      "calls": [
+        {
+          "name": "create",
+          "edgeType": "call"
+        },
+        {
+          "name": "connected",
+          "edgeType": "event_listen"
+        },
+        {
+          "name": "loginWithToken",
+          "edgeType": "call"
+        },
+        {
+          "name": "forEach",
+          "edgeType": "call"
+        },
+        {
+          "name": "entries",
+          "edgeType": "call"
+        },
+        {
+          "name": "subscribeWithId",
+          "edgeType": "call"
+        },
+        {
+          "name": "DDPDispatcher",
+          "edgeType": "new"
+        },
+        {
+          "name": "ClientStreamImpl",
+          "edgeType": "new"
+        },
+        {
+          "name": "AccountImpl",
+          "edgeType": "new"
+        },
+        {
+          "name": "DDPSDK",
+          "edgeType": "new"
+        },
+        {
+          "name": "DDPSDK",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "createAndConnect",
+      "exported": true,
+      "qualifiedName": "DDPSDK.createAndConnect",
+      "line": 80,
+      "endLine": 86,
+      "signature": "static async createAndConnect(url: string, retryOptions = { retryCount: 1, retryTime: 100 }): Promise<DDPSDK>",
+      "containerClass": "DDPSDK",
+      "calls": [
+        {
+          "name": "create",
+          "edgeType": "call"
+        },
+        {
+          "name": "connect",
+          "edgeType": "call"
+        },
+        {
+          "name": "DDPSDK",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "constructor",
+      "exported": true,
+      "qualifiedName": "DDPSDK.constructor",
+      "line": 31,
+      "endLine": 37,
+      "signature": "constructor( readonly connection: Connection, readonly client: ClientStream, readonly account: Account, readonly timeoutControl: TimeoutControl, readonly rest: RestClient, )",
+      "containerClass": "DDPSDK",
+      "calls": [
+        {
+          "name": "Connection",
+          "edgeType": "type"
+        },
+        {
+          "name": "ClientStream",
+          "edgeType": "type"
+        },
+        {
+          "name": "Account",
+          "edgeType": "type"
+        },
+        {
+          "name": "TimeoutControl",
+          "edgeType": "type"
+        },
+        {
+          "name": "RestClient",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "variable_function",
+      "name": "isValidPayload",
+      "exported": false,
+      "line": 23,
+      "endLine": 28,
+      "signature": "(data: unknown): data is PublicationPayloads =>",
+      "calls": [
+        {
+          "name": "PublicationPayloads",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "interface",
+      "name": "PublicationPayloads",
+      "line": 13,
+      "endLine": 21,
+      "signature": "interface PublicationPayloads"
+    }
+  ],
+  "imports": [
+    {
+      "module": "@rocket.chat/api-client",
+      "resolved": "external"
+    },
+    {
+      "module": "./ClientStream",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/packages/ddp-client/src/ClientStream.ts"
+    },
+    {
+      "module": "./Connection",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/packages/ddp-client/src/Connection.ts"
+    },
+    {
+      "module": "./Connection",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/packages/ddp-client/src/Connection.ts"
+    },
+    {
+      "module": "./DDPDispatcher",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/packages/ddp-client/src/DDPDispatcher.ts"
+    },
+    {
+      "module": "./TimeoutControl",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/packages/ddp-client/src/TimeoutControl.ts"
+    },
+    {
+      "module": "./types/Account",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/packages/ddp-client/src/types/Account.ts"
+    },
+    {
+      "module": "./types/Account",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/packages/ddp-client/src/types/Account.ts"
+    },
+    {
+      "module": "./types/ClientStream",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/packages/ddp-client/src/types/ClientStream.ts"
+    },
+    {
+      "module": "./types/SDK",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/packages/ddp-client/src/types/SDK.ts"
+    }
+  ]
+}

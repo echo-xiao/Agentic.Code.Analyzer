@@ -1,0 +1,76 @@
+{
+  "sourcePath": "/Users/echoooooo/Desktop/code/Rocket.Chat/packages/fuselage-ui-kit/src/utils/extractInitialStateFromLayout.ts",
+  "symbols": [
+    {
+      "type": "variable_function",
+      "name": "isActionableElement",
+      "exported": false,
+      "line": 7,
+      "endLine": 8,
+      "signature": "(element: UiKit.BlockElement | UiKit.TextObject): element is UiKit.ActionableElement =>",
+      "calls": []
+    },
+    {
+      "type": "variable_function",
+      "name": "reduceInitialValuesFromLayoutBlock",
+      "exported": false,
+      "line": 10,
+      "endLine": 32,
+      "signature": "(state: { [actionId: string]: Value }, block: UiKit.LayoutBlock) =>",
+      "calls": [
+        {
+          "name": "hasElement",
+          "edgeType": "call"
+        },
+        {
+          "name": "isActionableElement",
+          "edgeType": "call"
+        },
+        {
+          "name": "getInitialValue",
+          "edgeType": "call"
+        },
+        {
+          "name": "hasElements",
+          "edgeType": "call"
+        },
+        {
+          "name": "Value",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "variable_function",
+      "name": "extractInitialStateFromLayout",
+      "exported": true,
+      "line": 14,
+      "endLine": 14,
+      "signature": "(blocks: UiKit.LayoutBlock[]) =>",
+      "calls": [
+        {
+          "name": "reduce",
+          "edgeType": "call"
+        }
+      ]
+    }
+  ],
+  "imports": [
+    {
+      "module": "@rocket.chat/ui-kit",
+      "resolved": "external"
+    },
+    {
+      "module": "./getInitialValue",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/packages/fuselage-ui-kit/src/utils/getInitialValue.ts"
+    },
+    {
+      "module": "./hasElement",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/packages/fuselage-ui-kit/src/utils/hasElement.ts"
+    },
+    {
+      "module": "./hasElements",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/packages/fuselage-ui-kit/src/utils/hasElements.ts"
+    }
+  ]
+}

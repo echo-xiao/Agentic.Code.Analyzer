@@ -1,0 +1,155 @@
+{
+  "sourcePath": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/client/views/room/contextualBar/BannedUsers/BannedUsersItem.tsx",
+  "symbols": [
+    {
+      "type": "inner_function",
+      "name": "onClick",
+      "exported": false,
+      "qualifiedName": "BannedUsersItem.onClick",
+      "line": 31,
+      "endLine": 31,
+      "signature": "() =>",
+      "calls": [
+        {
+          "name": "onClickUnban",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "variable_function",
+      "name": "BannedUsersItem",
+      "exported": false,
+      "line": 18,
+      "endLine": 51,
+      "signature": "({ user, useRealName, onClickUnban }: BannedUsersItemProps) =>",
+      "calls": [
+        {
+          "name": "useTranslation",
+          "edgeType": "call"
+        },
+        {
+          "name": "getUserDisplayNames",
+          "edgeType": "call"
+        },
+        {
+          "name": "startsWith",
+          "edgeType": "call"
+        },
+        {
+          "name": "includes",
+          "edgeType": "call"
+        },
+        {
+          "name": "useMemo",
+          "edgeType": "call"
+        },
+        {
+          "name": "onClickUnban",
+          "edgeType": "call"
+        },
+        {
+          "name": "normalizeUsername",
+          "edgeType": "call"
+        },
+        {
+          "name": "Box",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "Option",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "OptionAvatar",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "OptionColumn",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "OptionContent",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "OptionDescription",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "OptionMenu",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "UserAvatar",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "Icon",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "ReactiveUserStatus",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "GenericMenu",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "options",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "BannedUsersItemProps",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "type",
+      "name": "BannedUsersItemProps",
+      "line": 12,
+      "endLine": 16,
+      "signature": "type BannedUsersItemProps ="
+    }
+  ],
+  "imports": [
+    {
+      "module": "@rocket.chat/fuselage",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/ui-avatar",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/ui-client",
+      "resolved": "external"
+    },
+    {
+      "module": "react",
+      "resolved": "external"
+    },
+    {
+      "module": "react-i18next",
+      "resolved": "external"
+    },
+    {
+      "module": "../../../../../lib/getUserDisplayNames",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/lib/getUserDisplayNames.ts"
+    },
+    {
+      "module": "../../../../../lib/utils/normalizeUsername",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/lib/utils/normalizeUsername.ts"
+    },
+    {
+      "module": "../../../../components/UserStatus",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/client/components/UserStatus/index.ts"
+    },
+    {
+      "module": "../../../hooks/useRoomBannedUsers",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/client/views/hooks/useRoomBannedUsers.ts"
+    }
+  ]
+}

@@ -1,0 +1,33 @@
+{
+  "sourcePath": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/app/lib/server/lib/validateCustomMessageFields.ts",
+  "symbols": [
+    {
+      "type": "variable_function",
+      "name": "validateCustomMessageFields",
+      "exported": true,
+      "line": 21,
+      "endLine": 42,
+      "signature": "({ customFields, messageCustomFieldsEnabled, messageCustomFields, }: { customFields: Record<string, any>; messageCustomFieldsEnabled: boolean; messageCustomFields: string; }) =>",
+      "calls": [
+        {
+          "name": "customFieldsValidate",
+          "edgeType": "call"
+        },
+        {
+          "name": "validate",
+          "edgeType": "call"
+        }
+      ]
+    }
+  ],
+  "imports": [
+    {
+      "module": "@rocket.chat/rest-typings",
+      "resolved": "external"
+    },
+    {
+      "module": "mem",
+      "resolved": "external"
+    }
+  ]
+}

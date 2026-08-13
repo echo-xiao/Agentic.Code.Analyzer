@@ -1,0 +1,130 @@
+{
+  "sourcePath": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/client/views/teams/contextualBar/TeamAutocomplete/TeamAutocomplete.tsx",
+  "symbols": [
+    {
+      "type": "module",
+      "name": "TeamAutocomplete",
+      "exported": false,
+      "line": 1,
+      "endLine": 51,
+      "signature": "TeamAutocomplete",
+      "calls": [
+        {
+          "name": "memo",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "variable_function",
+      "name": "TeamAutocomplete",
+      "exported": false,
+      "line": 10,
+      "endLine": 48,
+      "signature": "({ value, onChange, ...props }: TeamAutocompleteProps) =>",
+      "calls": [
+        {
+          "name": "useState",
+          "edgeType": "call"
+        },
+        {
+          "name": "useEndpoint",
+          "edgeType": "call"
+        },
+        {
+          "name": "useQuery",
+          "edgeType": "call"
+        },
+        {
+          "name": "teamsAutoCompleteEndpoint",
+          "edgeType": "call"
+        },
+        {
+          "name": "useMemo",
+          "edgeType": "call"
+        },
+        {
+          "name": "map",
+          "edgeType": "call"
+        },
+        {
+          "name": "Box",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "AutoComplete",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "RoomAvatar",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "Option",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "value",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "onChange",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "filter",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "setFilter",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "room",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "options",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "TeamAutocompleteProps",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "type",
+      "name": "TeamAutocompleteProps",
+      "line": 8,
+      "endLine": 8,
+      "signature": "type TeamAutocompleteProps = Omit<ComponentProps<typeof AutoComplete>, 'filter'>;"
+    }
+  ],
+  "imports": [
+    {
+      "module": "@rocket.chat/fuselage",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/ui-avatar",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/ui-contexts",
+      "resolved": "external"
+    },
+    {
+      "module": "@tanstack/react-query",
+      "resolved": "external"
+    },
+    {
+      "module": "react",
+      "resolved": "external"
+    },
+    {
+      "module": "react",
+      "resolved": "external"
+    }
+  ]
+}

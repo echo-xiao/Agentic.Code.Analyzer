@@ -1,0 +1,107 @@
+{
+  "sourcePath": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/imports/personal-access-tokens/server/api/methods/regenerateToken.ts",
+  "symbols": [
+    {
+      "type": "module",
+      "name": "regenerateToken",
+      "exported": false,
+      "line": 1,
+      "endLine": 57,
+      "signature": "regenerateToken",
+      "calls": [
+        {
+          "name": "personalAccessTokens:regenerateToken",
+          "edgeType": "call"
+        },
+        {
+          "name": "methods",
+          "edgeType": "call"
+        },
+        {
+          "name": "twoFactorRequired",
+          "edgeType": "call"
+        },
+        {
+          "name": "userId",
+          "edgeType": "call"
+        },
+        {
+          "name": "regeneratePersonalAccessTokenOfUser",
+          "edgeType": "call"
+        },
+        {
+          "name": "ServerMethods",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "variable_function",
+      "name": "regeneratePersonalAccessTokenOfUser",
+      "exported": true,
+      "line": 17,
+      "endLine": 43,
+      "signature": "async (tokenName: string, userId: string): Promise<string> =>",
+      "calls": [
+        {
+          "name": "hasPermissionAsync",
+          "edgeType": "call"
+        },
+        {
+          "name": "findPersonalAccessTokenByTokenNameAndUserId",
+          "edgeType": "call"
+        },
+        {
+          "name": "removePersonalAccessTokenOfUser",
+          "edgeType": "call"
+        },
+        {
+          "name": "find",
+          "edgeType": "call"
+        },
+        {
+          "name": "isPersonalAccessToken",
+          "edgeType": "call"
+        },
+        {
+          "name": "generatePersonalAccessTokenOfUser",
+          "edgeType": "call"
+        }
+      ]
+    }
+  ],
+  "imports": [
+    {
+      "module": "meteor/meteor",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/ddp-client",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/models",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/core-typings",
+      "resolved": "external"
+    },
+    {
+      "module": "../../../../../server/lib/authorization/hasPermission",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/server/lib/authorization/hasPermission.ts"
+    },
+    {
+      "module": "../../../../../app/2fa/server/twoFactorRequired",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/app/2fa/server/twoFactorRequired.ts"
+    },
+    {
+      "module": "./removeToken",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/imports/personal-access-tokens/server/api/methods/removeToken.ts"
+    },
+    {
+      "module": "./generateToken",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/imports/personal-access-tokens/server/api/methods/generateToken.ts"
+    }
+  ]
+}

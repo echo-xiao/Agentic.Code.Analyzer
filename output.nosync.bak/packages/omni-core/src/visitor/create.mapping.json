@@ -1,0 +1,104 @@
+{
+  "sourcePath": "/Users/echoooooo/Desktop/code/Rocket.Chat/packages/omni-core/src/visitor/create.ts",
+  "symbols": [
+    {
+      "type": "variable",
+      "name": "registerGuest",
+      "exported": true,
+      "line": 17,
+      "endLine": 118,
+      "signature": "registerGuest = makeFunction( async (",
+      "calls": [
+        {
+          "name": "debug",
+          "edgeType": "call"
+        },
+        {
+          "name": "toLowerCase",
+          "edgeType": "call"
+        },
+        {
+          "name": "trim",
+          "edgeType": "call"
+        },
+        {
+          "name": "validateEmail",
+          "edgeType": "call"
+        },
+        {
+          "name": "findContactByEmailAndContactManager",
+          "edgeType": "call"
+        },
+        {
+          "name": "findOneOnlineAgentById",
+          "edgeType": "call"
+        },
+        {
+          "name": "getVisitorByToken",
+          "edgeType": "call"
+        },
+        {
+          "name": "findOneByIdOrName",
+          "edgeType": "call"
+        },
+        {
+          "name": "findOneVisitorByPhone",
+          "edgeType": "call"
+        },
+        {
+          "name": "findOneGuestByEmailAddress",
+          "edgeType": "call"
+        },
+        {
+          "name": "getNextVisitorUsername",
+          "edgeType": "call"
+        },
+        {
+          "name": "updateOneByIdOrToken",
+          "edgeType": "call"
+        },
+        {
+          "name": "Date",
+          "edgeType": "new"
+        },
+        {
+          "name": "RegisterGuestType",
+          "edgeType": "type"
+        },
+        {
+          "name": "ILivechatVisitor",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "type",
+      "name": "RegisterGuestType",
+      "line": 9,
+      "endLine": 15,
+      "signature": "type RegisterGuestType = Partial<Pick<ILivechatVisitor, 'token' | 'name' | 'department' | 'status' | 'username'>> &"
+    }
+  ],
+  "imports": [
+    {
+      "module": "@rocket.chat/core-typings",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/logger",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/models",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/patch-injection",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/tools",
+      "resolved": "external"
+    }
+  ]
+}

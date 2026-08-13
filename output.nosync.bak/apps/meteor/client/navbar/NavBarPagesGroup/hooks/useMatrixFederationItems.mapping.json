@@ -1,0 +1,64 @@
+{
+  "sourcePath": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/client/navbar/NavBarPagesGroup/hooks/useMatrixFederationItems.ts",
+  "symbols": [
+    {
+      "type": "inner_function",
+      "name": "onClick",
+      "exported": false,
+      "qualifiedName": "useMatrixFederationItems.onClick",
+      "line": 20,
+      "endLine": 22,
+      "signature": "() =>",
+      "calls": [
+        {
+          "name": "searchFederatedRooms",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "variable_function",
+      "name": "useMatrixFederationItems",
+      "exported": true,
+      "line": 7,
+      "endLine": 26,
+      "signature": "({ isMatrixEnabled, }: { isMatrixEnabled: string | number | boolean | null | undefined; }): GenericMenuItemProps[] =>",
+      "calls": [
+        {
+          "name": "useTranslation",
+          "edgeType": "call"
+        },
+        {
+          "name": "useCreateRoomModal",
+          "edgeType": "call"
+        },
+        {
+          "name": "searchFederatedRooms",
+          "edgeType": "call"
+        },
+        {
+          "name": "GenericMenuItemProps",
+          "edgeType": "type"
+        }
+      ]
+    }
+  ],
+  "imports": [
+    {
+      "module": "@rocket.chat/ui-client",
+      "resolved": "external"
+    },
+    {
+      "module": "react-i18next",
+      "resolved": "external"
+    },
+    {
+      "module": "./useCreateRoomModal",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/client/navbar/NavBarPagesGroup/hooks/useCreateRoomModal.tsx"
+    },
+    {
+      "module": "../../../sidebar/header/MatrixFederationSearch",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/client/sidebar/header/MatrixFederationSearch/index.ts"
+    }
+  ]
+}

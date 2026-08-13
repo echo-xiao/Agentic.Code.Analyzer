@@ -1,0 +1,378 @@
+{
+  "sourcePath": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/server/services/omnichannel-analytics/ChartData.ts",
+  "symbols": [
+    {
+      "type": "class",
+      "name": "ChartData",
+      "exported": true,
+      "line": 20,
+      "endLine": 154,
+      "signature": "export class ChartData",
+      "calls": []
+    },
+    {
+      "type": "method",
+      "name": "isActionAllowed",
+      "exported": true,
+      "qualifiedName": "ChartData.isActionAllowed",
+      "line": 23,
+      "endLine": 36,
+      "signature": "isActionAllowed(action: string | undefined): action is ChartDataValidActions",
+      "containerClass": "ChartData",
+      "calls": [
+        {
+          "name": "includes",
+          "edgeType": "call"
+        },
+        {
+          "name": "ChartDataValidActions",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "callAction",
+      "exported": true,
+      "qualifiedName": "ChartData.callAction",
+      "line": 27,
+      "endLine": 46,
+      "signature": "callAction<T extends ChartDataValidActions>(action: T, ...args: [DateParam, string?, Filter<IOmnichannelRoom>?])",
+      "containerClass": "ChartData",
+      "calls": [
+        {
+          "name": "Total_conversations",
+          "edgeType": "call"
+        },
+        {
+          "name": "Avg_chat_duration",
+          "edgeType": "call"
+        },
+        {
+          "name": "Total_messages",
+          "edgeType": "call"
+        },
+        {
+          "name": "Avg_first_response_time",
+          "edgeType": "call"
+        },
+        {
+          "name": "Avg_reaction_time",
+          "edgeType": "call"
+        },
+        {
+          "name": "Best_first_response_time",
+          "edgeType": "call"
+        },
+        {
+          "name": "Avg_response_time",
+          "edgeType": "call"
+        },
+        {
+          "name": "ChartDataValidActions",
+          "edgeType": "type"
+        },
+        {
+          "name": "DateParam",
+          "edgeType": "type"
+        },
+        {
+          "name": "Filter",
+          "edgeType": "type"
+        },
+        {
+          "name": "IOmnichannelRoom",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "Total_conversations",
+      "exported": true,
+      "qualifiedName": "ChartData.Total_conversations",
+      "line": 31,
+      "endLine": 34,
+      "signature": "async Total_conversations(date: DateParam, departmentId?: string, extraQuery: Filter<IOmnichannelRoom> = {})",
+      "containerClass": "ChartData",
+      "calls": [
+        {
+          "name": "getTotalConversationsBetweenDate",
+          "edgeType": "call"
+        },
+        {
+          "name": "DateParam",
+          "edgeType": "type"
+        },
+        {
+          "name": "Filter",
+          "edgeType": "type"
+        },
+        {
+          "name": "IOmnichannelRoom",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "Avg_chat_duration",
+      "exported": true,
+      "qualifiedName": "ChartData.Avg_chat_duration",
+      "line": 35,
+      "endLine": 48,
+      "signature": "async Avg_chat_duration(date: DateParam, departmentId?: string, extraQuery: Filter<IOmnichannelRoom> = {})",
+      "containerClass": "ChartData",
+      "calls": [
+        {
+          "name": "forEach",
+          "edgeType": "call"
+        },
+        {
+          "name": "getAnalyticsMetricsBetweenDate",
+          "edgeType": "call"
+        },
+        {
+          "name": "round",
+          "edgeType": "call"
+        },
+        {
+          "name": "DateParam",
+          "edgeType": "type"
+        },
+        {
+          "name": "Filter",
+          "edgeType": "type"
+        },
+        {
+          "name": "IOmnichannelRoom",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "Total_messages",
+      "exported": true,
+      "qualifiedName": "ChartData.Total_messages",
+      "line": 39,
+      "endLine": 53,
+      "signature": "async Total_messages(date: DateParam, departmentId?: string, extraQuery: Filter<IOmnichannelRoom> = {})",
+      "containerClass": "ChartData",
+      "calls": [
+        {
+          "name": "forEach",
+          "edgeType": "call"
+        },
+        {
+          "name": "getAnalyticsMetricsBetweenDateWithMessages",
+          "edgeType": "call"
+        },
+        {
+          "name": "DateParam",
+          "edgeType": "type"
+        },
+        {
+          "name": "Filter",
+          "edgeType": "type"
+        },
+        {
+          "name": "IOmnichannelRoom",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "Avg_first_response_time",
+      "exported": true,
+      "qualifiedName": "ChartData.Avg_first_response_time",
+      "line": 43,
+      "endLine": 55,
+      "signature": "async Avg_first_response_time(date: DateParam, departmentId?: string, extraQuery: Filter<IOmnichannelRoom> = {})",
+      "containerClass": "ChartData",
+      "calls": [
+        {
+          "name": "forEach",
+          "edgeType": "call"
+        },
+        {
+          "name": "getAnalyticsMetricsBetweenDate",
+          "edgeType": "call"
+        },
+        {
+          "name": "round",
+          "edgeType": "call"
+        },
+        {
+          "name": "DateParam",
+          "edgeType": "type"
+        },
+        {
+          "name": "Filter",
+          "edgeType": "type"
+        },
+        {
+          "name": "IOmnichannelRoom",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "Best_first_response_time",
+      "exported": true,
+      "qualifiedName": "ChartData.Best_first_response_time",
+      "line": 47,
+      "endLine": 61,
+      "signature": "async Best_first_response_time(date: DateParam, departmentId?: string, extraQuery: Filter<IOmnichannelRoom> = {})",
+      "containerClass": "ChartData",
+      "calls": [
+        {
+          "name": "forEach",
+          "edgeType": "call"
+        },
+        {
+          "name": "getAnalyticsMetricsBetweenDate",
+          "edgeType": "call"
+        },
+        {
+          "name": "min",
+          "edgeType": "call"
+        },
+        {
+          "name": "round",
+          "edgeType": "call"
+        },
+        {
+          "name": "DateParam",
+          "edgeType": "type"
+        },
+        {
+          "name": "Filter",
+          "edgeType": "type"
+        },
+        {
+          "name": "IOmnichannelRoom",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "Avg_response_time",
+      "exported": true,
+      "qualifiedName": "ChartData.Avg_response_time",
+      "line": 51,
+      "endLine": 64,
+      "signature": "async Avg_response_time(date: DateParam, departmentId?: string, extraQuery: Filter<IOmnichannelRoom> = {})",
+      "containerClass": "ChartData",
+      "calls": [
+        {
+          "name": "forEach",
+          "edgeType": "call"
+        },
+        {
+          "name": "getAnalyticsMetricsBetweenDate",
+          "edgeType": "call"
+        },
+        {
+          "name": "round",
+          "edgeType": "call"
+        },
+        {
+          "name": "DateParam",
+          "edgeType": "type"
+        },
+        {
+          "name": "Filter",
+          "edgeType": "type"
+        },
+        {
+          "name": "IOmnichannelRoom",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "Avg_reaction_time",
+      "exported": true,
+      "qualifiedName": "ChartData.Avg_reaction_time",
+      "line": 55,
+      "endLine": 68,
+      "signature": "async Avg_reaction_time(date: DateParam, departmentId?: string, extraQuery: Filter<IOmnichannelRoom> = {})",
+      "containerClass": "ChartData",
+      "calls": [
+        {
+          "name": "forEach",
+          "edgeType": "call"
+        },
+        {
+          "name": "getAnalyticsMetricsBetweenDate",
+          "edgeType": "call"
+        },
+        {
+          "name": "round",
+          "edgeType": "call"
+        },
+        {
+          "name": "DateParam",
+          "edgeType": "type"
+        },
+        {
+          "name": "Filter",
+          "edgeType": "type"
+        },
+        {
+          "name": "IOmnichannelRoom",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "constructor",
+      "exported": true,
+      "qualifiedName": "ChartData.constructor",
+      "line": 21,
+      "endLine": 21,
+      "signature": "constructor(private readonly roomsModel: ILivechatRoomsModel)",
+      "containerClass": "ChartData",
+      "calls": [
+        {
+          "name": "ILivechatRoomsModel",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "type",
+      "name": "ChartDataValidActions",
+      "line": 6,
+      "endLine": 13,
+      "signature": "type ChartDataValidActions ="
+    },
+    {
+      "type": "type",
+      "name": "DateParam",
+      "line": 15,
+      "endLine": 18,
+      "signature": "type DateParam ="
+    }
+  ],
+  "imports": [
+    {
+      "module": "@rocket.chat/core-typings",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/model-typings",
+      "resolved": "external"
+    },
+    {
+      "module": "mongodb",
+      "resolved": "external"
+    }
+  ]
+}

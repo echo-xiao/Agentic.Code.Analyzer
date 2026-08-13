@@ -1,0 +1,57 @@
+{
+  "sourcePath": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/tests/e2e/page-objects/home-discussion.ts",
+  "symbols": [
+    {
+      "type": "class",
+      "name": "HomeDiscussion",
+      "exported": true,
+      "line": 6,
+      "endLine": 11,
+      "signature": "export class HomeDiscussion extends HomeChannel",
+      "calls": [
+        {
+          "name": "HomeChannel",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "constructor",
+      "exported": true,
+      "qualifiedName": "HomeDiscussion.constructor",
+      "line": 7,
+      "endLine": 10,
+      "signature": "constructor(page: Page)",
+      "containerClass": "HomeDiscussion",
+      "calls": [
+        {
+          "name": "getByRole",
+          "edgeType": "call"
+        },
+        {
+          "name": "RoomInfoFlexTab",
+          "edgeType": "new"
+        },
+        {
+          "name": "Page",
+          "edgeType": "type"
+        }
+      ]
+    }
+  ],
+  "imports": [
+    {
+      "module": "@playwright/test",
+      "resolved": "external"
+    },
+    {
+      "module": "./fragments",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/tests/e2e/page-objects/fragments/index.ts"
+    },
+    {
+      "module": "./home-channel",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/tests/e2e/page-objects/home-channel.ts"
+    }
+  ]
+}

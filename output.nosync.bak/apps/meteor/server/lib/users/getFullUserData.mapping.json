@@ -1,0 +1,182 @@
+{
+  "sourcePath": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/server/lib/users/getFullUserData.ts",
+  "symbols": [
+    {
+      "type": "module",
+      "name": "getFullUserData",
+      "exported": false,
+      "line": 1,
+      "endLine": 145,
+      "signature": "getFullUserData",
+      "calls": [
+        {
+          "name": "watch",
+          "edgeType": "call"
+        },
+        {
+          "name": "trim",
+          "edgeType": "call"
+        },
+        {
+          "name": "parse",
+          "edgeType": "call"
+        },
+        {
+          "name": "forEach",
+          "edgeType": "call"
+        },
+        {
+          "name": "keys",
+          "edgeType": "call"
+        },
+        {
+          "name": "warn",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "function",
+      "name": "getFullUserDataByUniqueSearchTerm",
+      "exported": true,
+      "line": 87,
+      "endLine": 144,
+      "signature": "export async function getFullUserDataByUniqueSearchTerm( userId: string, searchValue: string, searchType: 'id' | 'username' | 'importId' | 'email' | 'freeSwitchExtension', ): Promise<IUser | null>",
+      "calls": [
+        {
+          "name": "findOneById",
+          "edgeType": "call"
+        },
+        {
+          "name": "includes",
+          "edgeType": "call"
+        },
+        {
+          "name": "some",
+          "edgeType": "call"
+        },
+        {
+          "name": "toLowerCase",
+          "edgeType": "call"
+        },
+        {
+          "name": "trim",
+          "edgeType": "call"
+        },
+        {
+          "name": "hasPermissionAsync",
+          "edgeType": "call"
+        },
+        {
+          "name": "getFields",
+          "edgeType": "call"
+        },
+        {
+          "name": "get",
+          "edgeType": "call"
+        },
+        {
+          "name": "findTargetUser",
+          "edgeType": "call"
+        },
+        {
+          "name": "IUser",
+          "edgeType": "type"
+        },
+        {
+          "name": "IUserEmail",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "variable",
+      "name": "defaultFields",
+      "exported": true,
+      "line": 10,
+      "endLine": 28,
+      "signature": "defaultFields =",
+      "calls": []
+    },
+    {
+      "type": "variable",
+      "name": "fullFields",
+      "exported": true,
+      "line": 30,
+      "endLine": 41,
+      "signature": "fullFields =",
+      "calls": []
+    },
+    {
+      "type": "variable_function",
+      "name": "getCustomFields",
+      "exported": false,
+      "line": 72,
+      "endLine": 72,
+      "signature": "(canViewAllInfo: boolean): Record<string, 0 | 1> =>",
+      "calls": []
+    },
+    {
+      "type": "variable_function",
+      "name": "getFields",
+      "exported": false,
+      "line": 74,
+      "endLine": 78,
+      "signature": "(canViewAllInfo: boolean): Record<string, 0 | 1> =>",
+      "calls": [
+        {
+          "name": "getCustomFields",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "variable_function",
+      "name": "findTargetUser",
+      "exported": false,
+      "line": 80,
+      "endLine": 85,
+      "signature": "(type: string, value: string, opts: any) =>",
+      "calls": [
+        {
+          "name": "findOneByImportId",
+          "edgeType": "call"
+        },
+        {
+          "name": "findOneByEmailAddress",
+          "edgeType": "call"
+        },
+        {
+          "name": "findOneByFreeSwitchExtension",
+          "edgeType": "call"
+        },
+        {
+          "name": "findOneByIdOrUsername",
+          "edgeType": "call"
+        }
+      ]
+    }
+  ],
+  "imports": [
+    {
+      "module": "@rocket.chat/core-typings",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/logger",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/models",
+      "resolved": "external"
+    },
+    {
+      "module": "../../../app/settings/server",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/app/settings/server/index.ts"
+    },
+    {
+      "module": "../authorization/hasPermission",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/server/lib/authorization/hasPermission.ts"
+    }
+  ]
+}

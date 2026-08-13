@@ -1,0 +1,211 @@
+{
+  "sourcePath": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/client/views/admin/workspace/VersionCard/modals/RegisterWorkspaceSetupModal/RegisterWorkspaceSetupStepTwoModal.tsx",
+  "symbols": [
+    {
+      "type": "variable_function",
+      "name": "setIntervalTime",
+      "exported": false,
+      "line": 33,
+      "endLine": 33,
+      "signature": "(interval?: number): number =>",
+      "calls": []
+    },
+    {
+      "type": "inner_function",
+      "name": "handleBackFromConfirmation",
+      "exported": false,
+      "qualifiedName": "RegisterWorkspaceSetupStepTwoModal.handleBackFromConfirmation",
+      "line": 42,
+      "endLine": 42,
+      "signature": "(): void =>",
+      "calls": [
+        {
+          "name": "setStep",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "inner_function",
+      "name": "handleResendRegistrationEmail",
+      "exported": false,
+      "qualifiedName": "RegisterWorkspaceSetupStepTwoModal.handleResendRegistrationEmail",
+      "line": 44,
+      "endLine": 51,
+      "signature": "async () =>",
+      "calls": [
+        {
+          "name": "createRegistrationIntent",
+          "edgeType": "call"
+        },
+        {
+          "name": "dispatchToastMessage",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "variable_function",
+      "name": "RegisterWorkspaceSetupStepTwoModal",
+      "exported": false,
+      "line": 35,
+      "endLine": 121,
+      "signature": "({ email, step, setStep, onClose, intentData, onSuccess, ...props }: Props) =>",
+      "calls": [
+        {
+          "name": "useTranslation",
+          "edgeType": "call"
+        },
+        {
+          "name": "useToastMessageDispatch",
+          "edgeType": "call"
+        },
+        {
+          "name": "useEndpoint",
+          "edgeType": "call"
+        },
+        {
+          "name": "setStep",
+          "edgeType": "call"
+        },
+        {
+          "name": "createRegistrationIntent",
+          "edgeType": "call"
+        },
+        {
+          "name": "dispatchToastMessage",
+          "edgeType": "call"
+        },
+        {
+          "name": "useCallback",
+          "edgeType": "call"
+        },
+        {
+          "name": "cloudConfirmationPoll",
+          "edgeType": "call"
+        },
+        {
+          "name": "onSuccess",
+          "edgeType": "call"
+        },
+        {
+          "name": "log",
+          "edgeType": "call"
+        },
+        {
+          "name": "useEffect",
+          "edgeType": "call"
+        },
+        {
+          "name": "getConfirmation",
+          "edgeType": "call"
+        },
+        {
+          "name": "setIntervalTime",
+          "edgeType": "call"
+        },
+        {
+          "name": "clearInterval",
+          "edgeType": "call"
+        },
+        {
+          "name": "Modal",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "ModalHeader",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "ModalHeaderText",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "ModalTagline",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "ModalTitle",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "ModalContent",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "Box",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "Trans",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "Field",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "FieldLabel",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "FieldRow",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "ModalFooter",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "ModalClose",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "TextInput",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "onClose",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "handleResendRegistrationEmail",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "handleBackFromConfirmation",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "Props",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "type",
+      "name": "Props",
+      "line": 20,
+      "endLine": 31,
+      "signature": "type Props ="
+    }
+  ],
+  "imports": [
+    {
+      "module": "@rocket.chat/fuselage",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/ui-contexts",
+      "resolved": "external"
+    },
+    {
+      "module": "react",
+      "resolved": "external"
+    },
+    {
+      "module": "react-i18next",
+      "resolved": "external"
+    }
+  ]
+}

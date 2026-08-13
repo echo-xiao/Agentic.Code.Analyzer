@@ -1,0 +1,314 @@
+{
+  "sourcePath": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/client/views/omnichannel/components/outboundMessage/components/OutboundMessageWizard/forms/RecipientForm/RecipientForm.tsx",
+  "symbols": [
+    {
+      "type": "variable_function",
+      "name": "RecipientForm",
+      "exported": false,
+      "line": 43,
+      "endLine": 227,
+      "signature": "(props: RecipientFormProps) =>",
+      "calls": [
+        {
+          "name": "useToastBarDispatch",
+          "edgeType": "call"
+        },
+        {
+          "name": "useForm",
+          "edgeType": "call"
+        },
+        {
+          "name": "useId",
+          "edgeType": "call"
+        },
+        {
+          "name": "useWatch",
+          "edgeType": "call"
+        },
+        {
+          "name": "useTranslation",
+          "edgeType": "call"
+        },
+        {
+          "name": "useEndpoint",
+          "edgeType": "call"
+        },
+        {
+          "name": "useMemo",
+          "edgeType": "call"
+        },
+        {
+          "name": "renderActions",
+          "edgeType": "call"
+        },
+        {
+          "name": "useQuery",
+          "edgeType": "call"
+        },
+        {
+          "name": "contact",
+          "edgeType": "call"
+        },
+        {
+          "name": "getContact",
+          "edgeType": "call"
+        },
+        {
+          "name": "outboundProviderMetadata",
+          "edgeType": "call"
+        },
+        {
+          "name": "getProvider",
+          "edgeType": "call"
+        },
+        {
+          "name": "keys",
+          "edgeType": "call"
+        },
+        {
+          "name": "useStableCallback",
+          "edgeType": "call"
+        },
+        {
+          "name": "trigger",
+          "edgeType": "call"
+        },
+        {
+          "name": "setValue",
+          "edgeType": "call"
+        },
+        {
+          "name": "useEffect",
+          "edgeType": "call"
+        },
+        {
+          "name": "clearErrors",
+          "edgeType": "call"
+        },
+        {
+          "name": "validateContactField",
+          "edgeType": "call"
+        },
+        {
+          "name": "validateProviderField",
+          "edgeType": "call"
+        },
+        {
+          "name": "onDirty",
+          "edgeType": "call"
+        },
+        {
+          "name": "all",
+          "edgeType": "call"
+        },
+        {
+          "name": "then",
+          "edgeType": "call"
+        },
+        {
+          "name": "refetchContact",
+          "edgeType": "call"
+        },
+        {
+          "name": "resolve",
+          "edgeType": "call"
+        },
+        {
+          "name": "refetchProvider",
+          "edgeType": "call"
+        },
+        {
+          "name": "onSubmit",
+          "edgeType": "call"
+        },
+        {
+          "name": "dispatchToastMessage",
+          "edgeType": "call"
+        },
+        {
+          "name": "handleSubmit",
+          "edgeType": "call"
+        },
+        {
+          "name": "Form",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "Scrollable",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "FieldGroup",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "Box",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "Button",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "ContactField",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "ChannelField",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "RecipientField",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "SenderField",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "recipientFormId",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "control",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "isFetchingContact",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "refetchContact",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "contact",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "isFetchingProvider",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "refetchProvider",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "provider",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "isSubmitting",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "ContactNotFoundError",
+          "edgeType": "new"
+        },
+        {
+          "name": "ProviderNotFoundError",
+          "edgeType": "new"
+        },
+        {
+          "name": "RecipientFormProps",
+          "edgeType": "type"
+        },
+        {
+          "name": "RecipientFormData",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "type",
+      "name": "RecipientFormData",
+      "line": 20,
+      "endLine": 25,
+      "signature": "export type RecipientFormData ="
+    },
+    {
+      "type": "type",
+      "name": "RecipientFormSubmitPayload",
+      "line": 27,
+      "endLine": 34,
+      "signature": "export type RecipientFormSubmitPayload ="
+    },
+    {
+      "type": "type",
+      "name": "RecipientFormProps",
+      "line": 36,
+      "endLine": 41,
+      "signature": "type RecipientFormProps ="
+    }
+  ],
+  "imports": [
+    {
+      "module": "@rocket.chat/core-typings",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/fuselage",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/fuselage-hooks",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/fuselage-toastbar",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/ui-contexts",
+      "resolved": "external"
+    },
+    {
+      "module": "@tanstack/react-query",
+      "resolved": "external"
+    },
+    {
+      "module": "react",
+      "resolved": "external"
+    },
+    {
+      "module": "react",
+      "resolved": "external"
+    },
+    {
+      "module": "react-hook-form",
+      "resolved": "external"
+    },
+    {
+      "module": "react-i18next",
+      "resolved": "external"
+    },
+    {
+      "module": "./components/ChannelField",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/client/views/omnichannel/components/outboundMessage/components/OutboundMessageWizard/forms/RecipientForm/components/ChannelField.tsx"
+    },
+    {
+      "module": "./components/ContactField",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/client/views/omnichannel/components/outboundMessage/components/OutboundMessageWizard/forms/RecipientForm/components/ContactField.tsx"
+    },
+    {
+      "module": "./components/RecipientField",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/client/views/omnichannel/components/outboundMessage/components/OutboundMessageWizard/forms/RecipientForm/components/RecipientField.tsx"
+    },
+    {
+      "module": "./components/SenderField",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/client/views/omnichannel/components/outboundMessage/components/OutboundMessageWizard/forms/RecipientForm/components/SenderField.tsx"
+    },
+    {
+      "module": "../../../../../../../../lib/queryKeys",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/client/lib/queryKeys.ts"
+    },
+    {
+      "module": "../../components/OutboundMessageForm",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/client/views/omnichannel/components/outboundMessage/components/OutboundMessageWizard/components/OutboundMessageForm.tsx"
+    },
+    {
+      "module": "../../utils/errors",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/client/views/omnichannel/components/outboundMessage/components/OutboundMessageWizard/utils/errors.ts"
+    }
+  ]
+}

@@ -1,0 +1,133 @@
+{
+  "sourcePath": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/client/views/root/hooks/loggedIn/useFingerprintChange.tsx",
+  "symbols": [
+    {
+      "type": "variable_function",
+      "name": "reducer",
+      "exported": false,
+      "line": 9,
+      "endLine": 23,
+      "signature": "( state: { openModal: boolean; openConfirmation: boolean; newWorkspace?: boolean }, action: { type: 'openModal' | 'openConfirmation' | 'closeModal'; newWorkspace?: boolean }, ) =>",
+      "calls": []
+    },
+    {
+      "type": "inner_function",
+      "name": "onSuccess",
+      "exported": false,
+      "qualifiedName": "useFingerprintChange.onSuccess",
+      "line": 39,
+      "endLine": 44,
+      "signature": "({ setDeploymentAs }) =>",
+      "calls": [
+        {
+          "name": "dispatchToastMessage",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "variable_function",
+      "name": "useFingerprintChange",
+      "exported": true,
+      "line": 16,
+      "endLine": 89,
+      "signature": "() =>",
+      "calls": [
+        {
+          "name": "useTranslation",
+          "edgeType": "call"
+        },
+        {
+          "name": "useToastMessageDispatch",
+          "edgeType": "call"
+        },
+        {
+          "name": "useRole",
+          "edgeType": "call"
+        },
+        {
+          "name": "useSetModal",
+          "edgeType": "call"
+        },
+        {
+          "name": "useSetting",
+          "edgeType": "call"
+        },
+        {
+          "name": "useEndpoint",
+          "edgeType": "call"
+        },
+        {
+          "name": "useReducer",
+          "edgeType": "call"
+        },
+        {
+          "name": "useMutation",
+          "edgeType": "call"
+        },
+        {
+          "name": "fingerprintEndpoint",
+          "edgeType": "call"
+        },
+        {
+          "name": "dispatchToastMessage",
+          "edgeType": "call"
+        },
+        {
+          "name": "useEffect",
+          "edgeType": "call"
+        },
+        {
+          "name": "dispatch",
+          "edgeType": "call"
+        },
+        {
+          "name": "setModal",
+          "edgeType": "call"
+        },
+        {
+          "name": "fingerPrintMutation",
+          "edgeType": "call"
+        },
+        {
+          "name": "FingerprintChangeModal",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "FingerprintChangeModalConfirmation",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "newWorkspace",
+          "edgeType": "jsx"
+        }
+      ]
+    }
+  ],
+  "imports": [
+    {
+      "module": "@rocket.chat/ui-contexts",
+      "resolved": "external"
+    },
+    {
+      "module": "@tanstack/react-query",
+      "resolved": "external"
+    },
+    {
+      "module": "react",
+      "resolved": "external"
+    },
+    {
+      "module": "react-i18next",
+      "resolved": "external"
+    },
+    {
+      "module": "../../../../components/FingerprintChangeModal",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/client/components/FingerprintChangeModal.tsx"
+    },
+    {
+      "module": "../../../../components/FingerprintChangeModalConfirmation",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/client/components/FingerprintChangeModalConfirmation.tsx"
+    }
+  ]
+}

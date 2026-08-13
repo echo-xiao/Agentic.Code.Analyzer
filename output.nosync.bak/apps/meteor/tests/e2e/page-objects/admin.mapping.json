@@ -1,0 +1,203 @@
+{
+  "sourcePath": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/tests/e2e/page-objects/admin.ts",
+  "symbols": [
+    {
+      "type": "class",
+      "name": "Admin",
+      "exported": true,
+      "line": 27,
+      "endLine": 75,
+      "signature": "export abstract class Admin",
+      "calls": []
+    },
+    {
+      "type": "method",
+      "name": "getAccordionBtnByName",
+      "exported": true,
+      "qualifiedName": "Admin.getAccordionBtnByName",
+      "line": 60,
+      "endLine": 62,
+      "signature": "getAccordionBtnByName(name: string): Locator",
+      "containerClass": "Admin",
+      "calls": [
+        {
+          "name": "getByRole",
+          "edgeType": "call"
+        },
+        {
+          "name": "Locator",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "adminSectionButton",
+      "exported": true,
+      "qualifiedName": "Admin.adminSectionButton",
+      "line": 64,
+      "endLine": 66,
+      "signature": "async adminSectionButton(href: AdminSectionsHref): Promise<Locator>",
+      "containerClass": "Admin",
+      "calls": [
+        {
+          "name": "locator",
+          "edgeType": "call"
+        },
+        {
+          "name": "AdminSectionsHref",
+          "edgeType": "type"
+        },
+        {
+          "name": "Locator",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "findFileRowByUsername",
+      "exported": true,
+      "qualifiedName": "Admin.findFileRowByUsername",
+      "line": 68,
+      "endLine": 70,
+      "signature": "findFileRowByUsername(username: string)",
+      "containerClass": "Admin",
+      "calls": [
+        {
+          "name": "locator",
+          "edgeType": "call"
+        },
+        {
+          "name": "getByRole",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "findFileCheckboxByUsername",
+      "exported": true,
+      "qualifiedName": "Admin.findFileCheckboxByUsername",
+      "line": 72,
+      "endLine": 74,
+      "signature": "findFileCheckboxByUsername(username: string)",
+      "containerClass": "Admin",
+      "calls": [
+        {
+          "name": "locator",
+          "edgeType": "call"
+        },
+        {
+          "name": "findFileRowByUsername",
+          "edgeType": "call"
+        },
+        {
+          "name": "getByRole",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "constructor",
+      "exported": true,
+      "qualifiedName": "Admin.constructor",
+      "line": 34,
+      "endLine": 38,
+      "signature": "constructor(protected page: Page)",
+      "containerClass": "Admin",
+      "calls": [
+        {
+          "name": "getByRole",
+          "edgeType": "call"
+        },
+        {
+          "name": "AdminSidebar",
+          "edgeType": "new"
+        },
+        {
+          "name": "ConfirmDeleteModal",
+          "edgeType": "new"
+        },
+        {
+          "name": "ToastMessages",
+          "edgeType": "new"
+        },
+        {
+          "name": "Page",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "class_property",
+      "name": "sidebar",
+      "exported": true,
+      "qualifiedName": "Admin.sidebar",
+      "line": 28,
+      "endLine": 28,
+      "signature": "readonly sidebar: AdminSidebar;",
+      "containerClass": "Admin",
+      "calls": [
+        {
+          "name": "AdminSidebar",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "class_property",
+      "name": "deleteModal",
+      "exported": true,
+      "qualifiedName": "Admin.deleteModal",
+      "line": 30,
+      "endLine": 30,
+      "signature": "readonly deleteModal: ConfirmDeleteModal;",
+      "containerClass": "Admin",
+      "calls": [
+        {
+          "name": "ConfirmDeleteModal",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "class_property",
+      "name": "toastMessage",
+      "exported": true,
+      "qualifiedName": "Admin.toastMessage",
+      "line": 32,
+      "endLine": 32,
+      "signature": "readonly toastMessage: ToastMessages;",
+      "containerClass": "Admin",
+      "calls": [
+        {
+          "name": "ToastMessages",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "enum",
+      "name": "AdminSectionsHref",
+      "line": 6,
+      "endLine": 26,
+      "signature": "export enum AdminSectionsHref"
+    }
+  ],
+  "imports": [
+    {
+      "module": "@playwright/test",
+      "resolved": "external"
+    },
+    {
+      "module": "./fragments",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/tests/e2e/page-objects/fragments/index.ts"
+    },
+    {
+      "module": "./fragments/modals",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/tests/e2e/page-objects/fragments/modals/index.ts"
+    }
+  ]
+}

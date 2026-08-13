@@ -1,0 +1,55 @@
+{
+  "sourcePath": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/lib/roles/calculateRoomRolePriorityFromRoles.ts",
+  "symbols": [
+    {
+      "type": "variable_function",
+      "name": "getRoomRolePriorityForRole",
+      "exported": true,
+      "line": 9,
+      "endLine": 10,
+      "signature": "(role: IRole['_id']): number =>",
+      "calls": [
+        {
+          "name": "IRole",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "variable_function",
+      "name": "calculateRoomRolePriorityFromRoles",
+      "exported": true,
+      "line": 17,
+      "endLine": 18,
+      "signature": "(roles: IRole['_id'][]): number =>",
+      "calls": [
+        {
+          "name": "reduce",
+          "edgeType": "call"
+        },
+        {
+          "name": "min",
+          "edgeType": "call"
+        },
+        {
+          "name": "getRoomRolePriorityForRole",
+          "edgeType": "call"
+        },
+        {
+          "name": "IRole",
+          "edgeType": "type"
+        }
+      ]
+    }
+  ],
+  "imports": [
+    {
+      "module": "@rocket.chat/core-typings",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/core-typings",
+      "resolved": "external"
+    }
+  ]
+}

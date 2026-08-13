@@ -1,0 +1,307 @@
+{
+  "sourcePath": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/tests/data/chat.helper.ts",
+  "symbols": [
+    {
+      "type": "variable_function",
+      "name": "sendSimpleMessage",
+      "exported": true,
+      "line": 6,
+      "endLine": 34,
+      "signature": "({ roomId, text = 'test message', tmid, userCredentials = credentials, }: { roomId: IRoom['_id']; text?: string; tmid?: IMessage['_id']; userCredentials?: Credentials; }) =>",
+      "calls": [
+        {
+          "name": "send",
+          "edgeType": "call"
+        },
+        {
+          "name": "set",
+          "edgeType": "call"
+        },
+        {
+          "name": "post",
+          "edgeType": "call"
+        },
+        {
+          "name": "api",
+          "edgeType": "call"
+        },
+        {
+          "name": "IRoom",
+          "edgeType": "type"
+        },
+        {
+          "name": "IMessage",
+          "edgeType": "type"
+        },
+        {
+          "name": "Credentials",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "variable_function",
+      "name": "sendMessage",
+      "exported": true,
+      "line": 20,
+      "endLine": 31,
+      "signature": "({ message, requestCredentials, }: { message: { rid: IRoom['_id']; msg: string } & Partial<Omit<IMessage, 'rid' | 'msg'>>; requestCredentials?: Credentials; }) =>",
+      "calls": [
+        {
+          "name": "send",
+          "edgeType": "call"
+        },
+        {
+          "name": "set",
+          "edgeType": "call"
+        },
+        {
+          "name": "post",
+          "edgeType": "call"
+        },
+        {
+          "name": "api",
+          "edgeType": "call"
+        },
+        {
+          "name": "IRoom",
+          "edgeType": "type"
+        },
+        {
+          "name": "IMessage",
+          "edgeType": "type"
+        },
+        {
+          "name": "Credentials",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "variable_function",
+      "name": "starMessage",
+      "exported": true,
+      "line": 30,
+      "endLine": 35,
+      "signature": "({ messageId, requestCredentials }: { messageId: IMessage['_id']; requestCredentials?: Credentials }) =>",
+      "calls": [
+        {
+          "name": "send",
+          "edgeType": "call"
+        },
+        {
+          "name": "set",
+          "edgeType": "call"
+        },
+        {
+          "name": "post",
+          "edgeType": "call"
+        },
+        {
+          "name": "api",
+          "edgeType": "call"
+        },
+        {
+          "name": "IMessage",
+          "edgeType": "type"
+        },
+        {
+          "name": "Credentials",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "variable_function",
+      "name": "pinMessage",
+      "exported": true,
+      "line": 34,
+      "endLine": 47,
+      "signature": "({ messageId, requestCredentials, unpin = false, }: { messageId: IMessage['_id']; requestCredentials?: Credentials; unpin?: boolean; }) =>",
+      "calls": [
+        {
+          "name": "send",
+          "edgeType": "call"
+        },
+        {
+          "name": "set",
+          "edgeType": "call"
+        },
+        {
+          "name": "post",
+          "edgeType": "call"
+        },
+        {
+          "name": "api",
+          "edgeType": "call"
+        },
+        {
+          "name": "IMessage",
+          "edgeType": "type"
+        },
+        {
+          "name": "Credentials",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "variable_function",
+      "name": "deleteMessage",
+      "exported": true,
+      "line": 46,
+      "endLine": 58,
+      "signature": "({ roomId, msgId }: { roomId: IRoom['_id']; msgId: IMessage['_id'] }) =>",
+      "calls": [
+        {
+          "name": "send",
+          "edgeType": "call"
+        },
+        {
+          "name": "set",
+          "edgeType": "call"
+        },
+        {
+          "name": "post",
+          "edgeType": "call"
+        },
+        {
+          "name": "api",
+          "edgeType": "call"
+        },
+        {
+          "name": "IRoom",
+          "edgeType": "type"
+        },
+        {
+          "name": "IMessage",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "variable_function",
+      "name": "getMessageById",
+      "exported": true,
+      "line": 50,
+      "endLine": 64,
+      "signature": "({ msgId }: { msgId: IMessage['_id'] }) =>",
+      "calls": [
+        {
+          "name": "end",
+          "edgeType": "call"
+        },
+        {
+          "name": "set",
+          "edgeType": "call"
+        },
+        {
+          "name": "query",
+          "edgeType": "call"
+        },
+        {
+          "name": "get",
+          "edgeType": "call"
+        },
+        {
+          "name": "api",
+          "edgeType": "call"
+        },
+        {
+          "name": "resolve",
+          "edgeType": "call"
+        },
+        {
+          "name": "IMessage",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "variable_function",
+      "name": "followMessage",
+      "exported": true,
+      "line": 54,
+      "endLine": 59,
+      "signature": "({ msgId, requestCredentials }: { msgId: IMessage['_id']; requestCredentials?: Credentials }) =>",
+      "calls": [
+        {
+          "name": "send",
+          "edgeType": "call"
+        },
+        {
+          "name": "set",
+          "edgeType": "call"
+        },
+        {
+          "name": "post",
+          "edgeType": "call"
+        },
+        {
+          "name": "api",
+          "edgeType": "call"
+        },
+        {
+          "name": "IMessage",
+          "edgeType": "type"
+        },
+        {
+          "name": "Credentials",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "variable_function",
+      "name": "updateMessage",
+      "exported": true,
+      "line": 58,
+      "endLine": 73,
+      "signature": "({ msgId, requestCredentials, updatedMessage, roomId, }: { msgId: IMessage['_id']; requestCredentials?: Credentials; updatedMessage: string; roomId?: IRoom['_id']; }) =>",
+      "calls": [
+        {
+          "name": "send",
+          "edgeType": "call"
+        },
+        {
+          "name": "set",
+          "edgeType": "call"
+        },
+        {
+          "name": "post",
+          "edgeType": "call"
+        },
+        {
+          "name": "api",
+          "edgeType": "call"
+        },
+        {
+          "name": "IMessage",
+          "edgeType": "type"
+        },
+        {
+          "name": "Credentials",
+          "edgeType": "type"
+        },
+        {
+          "name": "IRoom",
+          "edgeType": "type"
+        }
+      ]
+    }
+  ],
+  "imports": [
+    {
+      "module": "@rocket.chat/api-client",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/core-typings",
+      "resolved": "external"
+    },
+    {
+      "module": "./api-data",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/tests/data/api-data.ts"
+    }
+  ]
+}

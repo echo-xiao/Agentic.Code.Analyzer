@@ -1,0 +1,119 @@
+{
+  "sourcePath": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/client/views/omnichannel/analytics/InterchangeableChart.tsx",
+  "symbols": [
+    {
+      "type": "variable_function",
+      "name": "getChartTooltips",
+      "exported": false,
+      "line": 11,
+      "endLine": 34,
+      "signature": "(chartName: string) =>",
+      "calls": [
+        {
+          "name": "secondsToHHMMSS",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "variable_function",
+      "name": "InterchangeableChart",
+      "exported": false,
+      "line": 15,
+      "endLine": 96,
+      "signature": "({ departmentId, dateRange, chartName, ...props }: { departmentId: string; dateRange: { start: string; end: string }; chartName: string; flexShrink: number; h: string; w: string; alignSelf: string; }) =>",
+      "calls": [
+        {
+          "name": "useTranslation",
+          "edgeType": "call"
+        },
+        {
+          "name": "useToastMessageDispatch",
+          "edgeType": "call"
+        },
+        {
+          "name": "useRef",
+          "edgeType": "call"
+        },
+        {
+          "name": "useEndpoint",
+          "edgeType": "call"
+        },
+        {
+          "name": "useStableCallback",
+          "edgeType": "call"
+        },
+        {
+          "name": "getChartTooltips",
+          "edgeType": "call"
+        },
+        {
+          "name": "loadData",
+          "edgeType": "call"
+        },
+        {
+          "name": "drawLineChart",
+          "edgeType": "call"
+        },
+        {
+          "name": "dispatchToastMessage",
+          "edgeType": "call"
+        },
+        {
+          "name": "useEffect",
+          "edgeType": "call"
+        },
+        {
+          "name": "draw",
+          "edgeType": "call"
+        },
+        {
+          "name": "Chart",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "canvas",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "HTMLCanvasElement",
+          "edgeType": "type"
+        }
+      ]
+    }
+  ],
+  "imports": [
+    {
+      "module": "@rocket.chat/fuselage-hooks",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/ui-contexts",
+      "resolved": "external"
+    },
+    {
+      "module": "chart.js",
+      "resolved": "external"
+    },
+    {
+      "module": "react",
+      "resolved": "external"
+    },
+    {
+      "module": "react-i18next",
+      "resolved": "external"
+    },
+    {
+      "module": "../../../../app/livechat/client/lib/chartHandler",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/app/livechat/client/lib/chartHandler.ts"
+    },
+    {
+      "module": "../../../../lib/utils/secondsToHHMMSS",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/lib/utils/secondsToHHMMSS.ts"
+    },
+    {
+      "module": "../realTimeMonitoring/charts/Chart",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/client/views/omnichannel/realTimeMonitoring/charts/Chart.tsx"
+    }
+  ]
+}

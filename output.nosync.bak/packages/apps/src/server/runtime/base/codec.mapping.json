@@ -1,0 +1,91 @@
+{
+  "sourcePath": "/Users/echoooooo/Desktop/code/Rocket.Chat/packages/apps/src/server/runtime/base/codec.ts",
+  "symbols": [
+    {
+      "type": "module",
+      "name": "codec",
+      "exported": false,
+      "line": 1,
+      "endLine": 79,
+      "signature": "codec",
+      "calls": [
+        {
+          "name": "register",
+          "edgeType": "call"
+        },
+        {
+          "name": "Uint8Array",
+          "edgeType": "new"
+        },
+        {
+          "name": "Uint8Array",
+          "edgeType": "type"
+        },
+        {
+          "name": "from",
+          "edgeType": "call"
+        },
+        {
+          "name": "hasSecureFields",
+          "edgeType": "call"
+        },
+        {
+          "name": "encode",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "variable_function",
+      "name": "newEncoder",
+      "exported": true,
+      "line": 74,
+      "endLine": 74,
+      "signature": "() =>",
+      "calls": [
+        {
+          "name": "_Encoder",
+          "edgeType": "new"
+        }
+      ]
+    },
+    {
+      "type": "variable_function",
+      "name": "newDecoder",
+      "exported": true,
+      "line": 75,
+      "endLine": 75,
+      "signature": "() =>",
+      "calls": [
+        {
+          "name": "_Decoder",
+          "edgeType": "new"
+        }
+      ]
+    },
+    {
+      "type": "type",
+      "name": "Encoder",
+      "line": 77,
+      "endLine": 77,
+      "signature": "export type Encoder = _Encoder;"
+    },
+    {
+      "type": "type",
+      "name": "Decoder",
+      "line": 78,
+      "endLine": 78,
+      "signature": "export type Decoder = _Decoder;"
+    }
+  ],
+  "imports": [
+    {
+      "module": "@msgpack/msgpack",
+      "resolved": "external"
+    },
+    {
+      "module": "../../../lib/SecureFields",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/packages/apps/src/lib/SecureFields.ts"
+    }
+  ]
+}

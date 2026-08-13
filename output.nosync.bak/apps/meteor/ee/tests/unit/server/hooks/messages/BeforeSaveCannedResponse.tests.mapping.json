@@ -1,0 +1,175 @@
+{
+  "sourcePath": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/ee/tests/unit/server/hooks/messages/BeforeSaveCannedResponse.tests.ts",
+  "symbols": [
+    {
+      "type": "module",
+      "name": "BeforeSaveCannedResponse.tests",
+      "exported": false,
+      "line": 1,
+      "endLine": 169,
+      "signature": "BeforeSaveCannedResponse.tests",
+      "calls": [
+        {
+          "name": "describe",
+          "edgeType": "call"
+        },
+        {
+          "name": "before",
+          "edgeType": "call"
+        },
+        {
+          "name": "registerModel",
+          "edgeType": "call"
+        },
+        {
+          "name": "it",
+          "edgeType": "call"
+        },
+        {
+          "name": "replacePlaceholders",
+          "edgeType": "call"
+        },
+        {
+          "name": "createMessage",
+          "edgeType": "call"
+        },
+        {
+          "name": "createRoom",
+          "edgeType": "call"
+        },
+        {
+          "name": "createUser",
+          "edgeType": "call"
+        },
+        {
+          "name": "property",
+          "edgeType": "call"
+        },
+        {
+          "name": "expect",
+          "edgeType": "call"
+        },
+        {
+          "name": "spy",
+          "edgeType": "call"
+        },
+        {
+          "name": "LivechatVisitorsModel",
+          "edgeType": "new"
+        },
+        {
+          "name": "UsersModel",
+          "edgeType": "new"
+        },
+        {
+          "name": "BeforeSaveCannedResponse",
+          "edgeType": "new"
+        }
+      ]
+    },
+    {
+      "type": "class",
+      "name": "LivechatVisitorsModel",
+      "exported": false,
+      "line": 35,
+      "endLine": 39,
+      "signature": "class LivechatVisitorsModel extends BaseRaw<any>",
+      "calls": [
+        {
+          "name": "BaseRaw",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "findOneEnabledById",
+      "exported": false,
+      "qualifiedName": "LivechatVisitorsModel.findOneEnabledById",
+      "line": 36,
+      "endLine": 38,
+      "signature": "findOneEnabledById()",
+      "containerClass": "LivechatVisitorsModel",
+      "calls": []
+    },
+    {
+      "type": "class",
+      "name": "UsersModel",
+      "exported": false,
+      "line": 41,
+      "endLine": 47,
+      "signature": "class UsersModel extends BaseRaw<any>",
+      "calls": [
+        {
+          "name": "BaseRaw",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "findOneById",
+      "exported": false,
+      "qualifiedName": "UsersModel.findOneById",
+      "line": 42,
+      "endLine": 46,
+      "signature": "override async findOneById()",
+      "containerClass": "UsersModel",
+      "calls": []
+    },
+    {
+      "type": "variable_function",
+      "name": "createMessage",
+      "exported": false,
+      "line": 8,
+      "endLine": 19,
+      "signature": "(msg?: string, extra: any = {}) =>",
+      "calls": [
+        {
+          "name": "Date",
+          "edgeType": "new"
+        }
+      ]
+    },
+    {
+      "type": "variable_function",
+      "name": "createRoom",
+      "exported": false,
+      "line": 21,
+      "endLine": 25,
+      "signature": "(extra: any = {}) =>",
+      "calls": []
+    },
+    {
+      "type": "variable_function",
+      "name": "createUser",
+      "exported": false,
+      "line": 27,
+      "endLine": 33,
+      "signature": "(extra: any = {}) =>",
+      "calls": []
+    }
+  ],
+  "imports": [
+    {
+      "module": "@rocket.chat/models",
+      "resolved": "external"
+    },
+    {
+      "module": "chai",
+      "resolved": "external"
+    },
+    {
+      "module": "mocha",
+      "resolved": "external"
+    },
+    {
+      "module": "sinon",
+      "resolved": "external"
+    },
+    {
+      "module": "../../../../../server/hooks/messages/BeforeSaveCannedResponse",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/ee/server/hooks/messages/BeforeSaveCannedResponse.ts"
+    }
+  ]
+}

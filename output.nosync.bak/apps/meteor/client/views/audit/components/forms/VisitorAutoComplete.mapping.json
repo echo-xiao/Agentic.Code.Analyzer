@@ -1,0 +1,118 @@
+{
+  "sourcePath": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/client/views/audit/components/forms/VisitorAutoComplete.tsx",
+  "symbols": [
+    {
+      "type": "module",
+      "name": "VisitorAutoComplete",
+      "exported": false,
+      "line": 1,
+      "endLine": 40,
+      "signature": "VisitorAutoComplete",
+      "calls": [
+        {
+          "name": "memo",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "variable_function",
+      "name": "VisitorAutoComplete",
+      "exported": false,
+      "line": 9,
+      "endLine": 37,
+      "signature": "({ value, onChange, ...props }: VisitorAutoCompleteProps) =>",
+      "calls": [
+        {
+          "name": "useState",
+          "edgeType": "call"
+        },
+        {
+          "name": "useEndpoint",
+          "edgeType": "call"
+        },
+        {
+          "name": "useQuery",
+          "edgeType": "call"
+        },
+        {
+          "name": "performVisitorSearch",
+          "edgeType": "call"
+        },
+        {
+          "name": "stringify",
+          "edgeType": "call"
+        },
+        {
+          "name": "useMemo",
+          "edgeType": "call"
+        },
+        {
+          "name": "map",
+          "edgeType": "call"
+        },
+        {
+          "name": "AutoComplete",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "Option",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "value",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "onChange",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "filter",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "setFilter",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "options",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "VisitorAutoCompleteProps",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "type",
+      "name": "VisitorAutoCompleteProps",
+      "line": 7,
+      "endLine": 7,
+      "signature": "export type VisitorAutoCompleteProps = Omit<ComponentProps<typeof AutoComplete>, 'filter'>;"
+    }
+  ],
+  "imports": [
+    {
+      "module": "@rocket.chat/fuselage",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/ui-contexts",
+      "resolved": "external"
+    },
+    {
+      "module": "@tanstack/react-query",
+      "resolved": "external"
+    },
+    {
+      "module": "react",
+      "resolved": "external"
+    },
+    {
+      "module": "react",
+      "resolved": "external"
+    }
+  ]
+}

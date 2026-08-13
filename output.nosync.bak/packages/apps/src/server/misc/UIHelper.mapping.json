@@ -1,0 +1,56 @@
+{
+  "sourcePath": "/Users/echoooooo/Desktop/code/Rocket.Chat/packages/apps/src/server/misc/UIHelper.ts",
+  "symbols": [
+    {
+      "type": "class",
+      "name": "UIHelper",
+      "exported": true,
+      "line": 6,
+      "endLine": 32,
+      "signature": "export class UIHelper",
+      "calls": []
+    },
+    {
+      "type": "method",
+      "name": "assignIds",
+      "exported": true,
+      "qualifiedName": "UIHelper.assignIds",
+      "line": 13,
+      "endLine": 31,
+      "signature": "public static assignIds(blocks: Array<IBlock | LayoutBlock>, appId: string): Array<IBlock | LayoutBlock>",
+      "containerClass": "UIHelper",
+      "calls": [
+        {
+          "name": "forEach",
+          "edgeType": "call"
+        },
+        {
+          "name": "randomUUID",
+          "edgeType": "call"
+        },
+        {
+          "name": "IBlock",
+          "edgeType": "type"
+        },
+        {
+          "name": "LayoutBlock",
+          "edgeType": "type"
+        }
+      ]
+    }
+  ],
+  "imports": [
+    {
+      "module": "node:crypto",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/apps-engine/definition/uikit",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/ui-kit",
+      "resolved": "external"
+    }
+  ]
+}

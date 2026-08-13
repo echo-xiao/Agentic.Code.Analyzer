@@ -1,0 +1,52 @@
+{
+  "sourcePath": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/client/views/audit/hooks/useAuditForm.ts",
+  "symbols": [
+    {
+      "type": "variable_function",
+      "name": "useAuditForm",
+      "exported": true,
+      "line": 18,
+      "endLine": 32,
+      "signature": "() =>",
+      "calls": [
+        {
+          "name": "useForm",
+          "edgeType": "call"
+        },
+        {
+          "name": "createStartOfToday",
+          "edgeType": "call"
+        },
+        {
+          "name": "createEndOfToday",
+          "edgeType": "call"
+        },
+        {
+          "name": "AuditFields",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "type",
+      "name": "AuditFields",
+      "line": 6,
+      "endLine": 16,
+      "signature": "export type AuditFields ="
+    }
+  ],
+  "imports": [
+    {
+      "module": "@rocket.chat/core-typings",
+      "resolved": "external"
+    },
+    {
+      "module": "react-hook-form",
+      "resolved": "external"
+    },
+    {
+      "module": "../utils/dateRange",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/client/views/audit/utils/dateRange.ts"
+    }
+  ]
+}

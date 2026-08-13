@@ -1,0 +1,657 @@
+{
+  "sourcePath": "/Users/echoooooo/Desktop/code/Rocket.Chat/packages/apps-engine/src/definition/uikit/blocks/BlockBuilder.ts",
+  "symbols": [
+    {
+      "type": "class",
+      "name": "BlockBuilder",
+      "exported": true,
+      "line": 51,
+      "endLine": 204,
+      "signature": "export class BlockBuilder",
+      "calls": []
+    },
+    {
+      "type": "method",
+      "name": "addSectionBlock",
+      "exported": true,
+      "qualifiedName": "BlockBuilder.addSectionBlock",
+      "line": 58,
+      "endLine": 62,
+      "signature": "public addSectionBlock(block: SectionBlockParam): BlockBuilder",
+      "containerClass": "BlockBuilder",
+      "calls": [
+        {
+          "name": "addBlock",
+          "edgeType": "call"
+        },
+        {
+          "name": "SectionBlockParam",
+          "edgeType": "type"
+        },
+        {
+          "name": "BlockBuilder",
+          "edgeType": "type"
+        },
+        {
+          "name": "ISectionBlock",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "addImageBlock",
+      "exported": true,
+      "qualifiedName": "BlockBuilder.addImageBlock",
+      "line": 62,
+      "endLine": 66,
+      "signature": "public addImageBlock(block: ImageBlockParam): BlockBuilder",
+      "containerClass": "BlockBuilder",
+      "calls": [
+        {
+          "name": "addBlock",
+          "edgeType": "call"
+        },
+        {
+          "name": "ImageBlockParam",
+          "edgeType": "type"
+        },
+        {
+          "name": "BlockBuilder",
+          "edgeType": "type"
+        },
+        {
+          "name": "IImageBlock",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "addDividerBlock",
+      "exported": true,
+      "qualifiedName": "BlockBuilder.addDividerBlock",
+      "line": 66,
+      "endLine": 70,
+      "signature": "public addDividerBlock(): BlockBuilder",
+      "containerClass": "BlockBuilder",
+      "calls": [
+        {
+          "name": "addBlock",
+          "edgeType": "call"
+        },
+        {
+          "name": "BlockBuilder",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "addActionsBlock",
+      "exported": true,
+      "qualifiedName": "BlockBuilder.addActionsBlock",
+      "line": 70,
+      "endLine": 74,
+      "signature": "public addActionsBlock(block: ActionsBlockParam): BlockBuilder",
+      "containerClass": "BlockBuilder",
+      "calls": [
+        {
+          "name": "addBlock",
+          "edgeType": "call"
+        },
+        {
+          "name": "ActionsBlockParam",
+          "edgeType": "type"
+        },
+        {
+          "name": "BlockBuilder",
+          "edgeType": "type"
+        },
+        {
+          "name": "IActionsBlock",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "addContextBlock",
+      "exported": true,
+      "qualifiedName": "BlockBuilder.addContextBlock",
+      "line": 74,
+      "endLine": 78,
+      "signature": "public addContextBlock(block: ContextBlockParam): BlockBuilder",
+      "containerClass": "BlockBuilder",
+      "calls": [
+        {
+          "name": "addBlock",
+          "edgeType": "call"
+        },
+        {
+          "name": "ContextBlockParam",
+          "edgeType": "type"
+        },
+        {
+          "name": "BlockBuilder",
+          "edgeType": "type"
+        },
+        {
+          "name": "IContextBlock",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "addInputBlock",
+      "exported": true,
+      "qualifiedName": "BlockBuilder.addInputBlock",
+      "line": 78,
+      "endLine": 82,
+      "signature": "public addInputBlock(block: InputBlockParam): BlockBuilder",
+      "containerClass": "BlockBuilder",
+      "calls": [
+        {
+          "name": "addBlock",
+          "edgeType": "call"
+        },
+        {
+          "name": "InputBlockParam",
+          "edgeType": "type"
+        },
+        {
+          "name": "BlockBuilder",
+          "edgeType": "type"
+        },
+        {
+          "name": "IInputBlock",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "addConditionalBlock",
+      "exported": true,
+      "qualifiedName": "BlockBuilder.addConditionalBlock",
+      "line": 82,
+      "endLine": 88,
+      "signature": "public addConditionalBlock(innerBlocks: BlockBuilder | Array<IBlock>, condition?: IConditionalBlockFilters): BlockBuilder",
+      "containerClass": "BlockBuilder",
+      "calls": [
+        {
+          "name": "getBlocks",
+          "edgeType": "call"
+        },
+        {
+          "name": "addBlock",
+          "edgeType": "call"
+        },
+        {
+          "name": "BlockBuilder",
+          "edgeType": "type"
+        },
+        {
+          "name": "IBlock",
+          "edgeType": "type"
+        },
+        {
+          "name": "IConditionalBlockFilters",
+          "edgeType": "type"
+        },
+        {
+          "name": "IConditionalBlock",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "getBlocks",
+      "exported": true,
+      "qualifiedName": "BlockBuilder.getBlocks",
+      "line": 86,
+      "endLine": 88,
+      "signature": "public getBlocks()",
+      "containerClass": "BlockBuilder",
+      "calls": []
+    },
+    {
+      "type": "method",
+      "name": "newPlainTextObject",
+      "exported": true,
+      "qualifiedName": "BlockBuilder.newPlainTextObject",
+      "line": 90,
+      "endLine": 96,
+      "signature": "public newPlainTextObject(text: string, emoji = false): ITextObject",
+      "containerClass": "BlockBuilder",
+      "calls": [
+        {
+          "name": "ITextObject",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "newMarkdownTextObject",
+      "exported": true,
+      "qualifiedName": "BlockBuilder.newMarkdownTextObject",
+      "line": 94,
+      "endLine": 99,
+      "signature": "public newMarkdownTextObject(text: string): ITextObject",
+      "containerClass": "BlockBuilder",
+      "calls": [
+        {
+          "name": "ITextObject",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "newButtonElement",
+      "exported": true,
+      "qualifiedName": "BlockBuilder.newButtonElement",
+      "line": 98,
+      "endLine": 103,
+      "signature": "public newButtonElement(info: ButtonElementParam): IButtonElement",
+      "containerClass": "BlockBuilder",
+      "calls": [
+        {
+          "name": "newInteractiveElement",
+          "edgeType": "call"
+        },
+        {
+          "name": "ButtonElementParam",
+          "edgeType": "type"
+        },
+        {
+          "name": "IButtonElement",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "newImageElement",
+      "exported": true,
+      "qualifiedName": "BlockBuilder.newImageElement",
+      "line": 102,
+      "endLine": 107,
+      "signature": "public newImageElement(info: ImageElementParam): IImageElement",
+      "containerClass": "BlockBuilder",
+      "calls": [
+        {
+          "name": "ImageElementParam",
+          "edgeType": "type"
+        },
+        {
+          "name": "IImageElement",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "newOverflowMenuElement",
+      "exported": true,
+      "qualifiedName": "BlockBuilder.newOverflowMenuElement",
+      "line": 106,
+      "endLine": 111,
+      "signature": "public newOverflowMenuElement(info: OverflowMenuElementParam): IOverflowMenuElement",
+      "containerClass": "BlockBuilder",
+      "calls": [
+        {
+          "name": "newInteractiveElement",
+          "edgeType": "call"
+        },
+        {
+          "name": "OverflowMenuElementParam",
+          "edgeType": "type"
+        },
+        {
+          "name": "IOverflowMenuElement",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "newPlainTextInputElement",
+      "exported": true,
+      "qualifiedName": "BlockBuilder.newPlainTextInputElement",
+      "line": 110,
+      "endLine": 115,
+      "signature": "public newPlainTextInputElement(info: PlainTextInputElementParam): IPlainTextInputElement",
+      "containerClass": "BlockBuilder",
+      "calls": [
+        {
+          "name": "newInputElement",
+          "edgeType": "call"
+        },
+        {
+          "name": "PlainTextInputElementParam",
+          "edgeType": "type"
+        },
+        {
+          "name": "IPlainTextInputElement",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "newStaticSelectElement",
+      "exported": true,
+      "qualifiedName": "BlockBuilder.newStaticSelectElement",
+      "line": 114,
+      "endLine": 119,
+      "signature": "public newStaticSelectElement(info: StaticSelectElementParam): IStaticSelectElement",
+      "containerClass": "BlockBuilder",
+      "calls": [
+        {
+          "name": "newSelectElement",
+          "edgeType": "call"
+        },
+        {
+          "name": "StaticSelectElementParam",
+          "edgeType": "type"
+        },
+        {
+          "name": "IStaticSelectElement",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "newMultiStaticElement",
+      "exported": true,
+      "qualifiedName": "BlockBuilder.newMultiStaticElement",
+      "line": 118,
+      "endLine": 123,
+      "signature": "public newMultiStaticElement(info: MultiStaticSelectElementParam): IMultiStaticSelectElement",
+      "containerClass": "BlockBuilder",
+      "calls": [
+        {
+          "name": "newSelectElement",
+          "edgeType": "call"
+        },
+        {
+          "name": "MultiStaticSelectElementParam",
+          "edgeType": "type"
+        },
+        {
+          "name": "IMultiStaticSelectElement",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "newInteractiveElement",
+      "exported": true,
+      "qualifiedName": "BlockBuilder.newInteractiveElement",
+      "line": 122,
+      "endLine": 128,
+      "signature": "private newInteractiveElement<T extends IInteractiveElement>(element: T): T",
+      "containerClass": "BlockBuilder",
+      "calls": [
+        {
+          "name": "generateActionId",
+          "edgeType": "call"
+        },
+        {
+          "name": "IInteractiveElement",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "newInputElement",
+      "exported": true,
+      "qualifiedName": "BlockBuilder.newInputElement",
+      "line": 126,
+      "endLine": 132,
+      "signature": "private newInputElement<T extends IInputElement>(element: T): T",
+      "containerClass": "BlockBuilder",
+      "calls": [
+        {
+          "name": "generateActionId",
+          "edgeType": "call"
+        },
+        {
+          "name": "IInputElement",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "newSelectElement",
+      "exported": true,
+      "qualifiedName": "BlockBuilder.newSelectElement",
+      "line": 130,
+      "endLine": 136,
+      "signature": "private newSelectElement<T extends ISelectElement>(element: T): T",
+      "containerClass": "BlockBuilder",
+      "calls": [
+        {
+          "name": "generateActionId",
+          "edgeType": "call"
+        },
+        {
+          "name": "ISelectElement",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "addBlock",
+      "exported": true,
+      "qualifiedName": "BlockBuilder.addBlock",
+      "line": 134,
+      "endLine": 142,
+      "signature": "private addBlock(block: IBlock): void",
+      "containerClass": "BlockBuilder",
+      "calls": [
+        {
+          "name": "generateBlockId",
+          "edgeType": "call"
+        },
+        {
+          "name": "push",
+          "edgeType": "call"
+        },
+        {
+          "name": "IBlock",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "generateBlockId",
+      "exported": true,
+      "qualifiedName": "BlockBuilder.generateBlockId",
+      "line": 138,
+      "endLine": 140,
+      "signature": "private generateBlockId(): string",
+      "containerClass": "BlockBuilder",
+      "calls": [
+        {
+          "name": "uuid",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "generateActionId",
+      "exported": true,
+      "qualifiedName": "BlockBuilder.generateActionId",
+      "line": 142,
+      "endLine": 144,
+      "signature": "private generateActionId(): string",
+      "containerClass": "BlockBuilder",
+      "calls": [
+        {
+          "name": "uuid",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "constructor",
+      "exported": true,
+      "qualifiedName": "BlockBuilder.constructor",
+      "line": 54,
+      "endLine": 56,
+      "signature": "constructor(private readonly appId: string)",
+      "containerClass": "BlockBuilder",
+      "calls": []
+    },
+    {
+      "type": "class_property",
+      "name": "blocks",
+      "exported": true,
+      "qualifiedName": "BlockBuilder.blocks",
+      "line": 52,
+      "endLine": 52,
+      "signature": "private readonly blocks: Array<IBlock>;",
+      "containerClass": "BlockBuilder",
+      "calls": [
+        {
+          "name": "IBlock",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "type",
+      "name": "BlockFunctionParameter",
+      "line": 30,
+      "endLine": 30,
+      "signature": "type BlockFunctionParameter<T extends IBlock> = Omit<T, 'type'>;"
+    },
+    {
+      "type": "type",
+      "name": "ElementFunctionParameter",
+      "line": 31,
+      "endLine": 33,
+      "signature": "type ElementFunctionParameter<T extends IBlockElement> = T extends IInteractiveElement"
+    },
+    {
+      "type": "type",
+      "name": "SectionBlockParam",
+      "line": 35,
+      "endLine": 35,
+      "signature": "type SectionBlockParam = BlockFunctionParameter<ISectionBlock>;"
+    },
+    {
+      "type": "type",
+      "name": "ImageBlockParam",
+      "line": 36,
+      "endLine": 36,
+      "signature": "type ImageBlockParam = BlockFunctionParameter<IImageBlock>;"
+    },
+    {
+      "type": "type",
+      "name": "ActionsBlockParam",
+      "line": 37,
+      "endLine": 37,
+      "signature": "type ActionsBlockParam = BlockFunctionParameter<IActionsBlock>;"
+    },
+    {
+      "type": "type",
+      "name": "ContextBlockParam",
+      "line": 38,
+      "endLine": 38,
+      "signature": "type ContextBlockParam = BlockFunctionParameter<IContextBlock>;"
+    },
+    {
+      "type": "type",
+      "name": "InputBlockParam",
+      "line": 39,
+      "endLine": 39,
+      "signature": "type InputBlockParam = BlockFunctionParameter<IInputBlock>;"
+    },
+    {
+      "type": "type",
+      "name": "ButtonElementParam",
+      "line": 41,
+      "endLine": 41,
+      "signature": "type ButtonElementParam = ElementFunctionParameter<IButtonElement>;"
+    },
+    {
+      "type": "type",
+      "name": "ImageElementParam",
+      "line": 42,
+      "endLine": 42,
+      "signature": "type ImageElementParam = ElementFunctionParameter<IImageElement>;"
+    },
+    {
+      "type": "type",
+      "name": "OverflowMenuElementParam",
+      "line": 43,
+      "endLine": 43,
+      "signature": "type OverflowMenuElementParam = ElementFunctionParameter<IOverflowMenuElement>;"
+    },
+    {
+      "type": "type",
+      "name": "PlainTextInputElementParam",
+      "line": 44,
+      "endLine": 44,
+      "signature": "type PlainTextInputElementParam = ElementFunctionParameter<IPlainTextInputElement>;"
+    },
+    {
+      "type": "type",
+      "name": "StaticSelectElementParam",
+      "line": 45,
+      "endLine": 45,
+      "signature": "type StaticSelectElementParam = ElementFunctionParameter<IStaticSelectElement>;"
+    },
+    {
+      "type": "type",
+      "name": "MultiStaticSelectElementParam",
+      "line": 46,
+      "endLine": 46,
+      "signature": "type MultiStaticSelectElementParam = ElementFunctionParameter<IMultiStaticSelectElement>;"
+    }
+  ],
+  "imports": [
+    {
+      "module": "uuid",
+      "resolved": "external"
+    },
+    {
+      "module": "./Blocks",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/packages/apps-engine/src/definition/uikit/blocks/Blocks.ts"
+    },
+    {
+      "module": "./Blocks",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/packages/apps-engine/src/definition/uikit/blocks/Blocks.ts"
+    },
+    {
+      "module": "./Elements",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/packages/apps-engine/src/definition/uikit/blocks/Elements.ts"
+    },
+    {
+      "module": "./Elements",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/packages/apps-engine/src/definition/uikit/blocks/Elements.ts"
+    },
+    {
+      "module": "./Objects",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/packages/apps-engine/src/definition/uikit/blocks/Objects.ts"
+    },
+    {
+      "module": "./Objects",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/packages/apps-engine/src/definition/uikit/blocks/Objects.ts"
+    }
+  ]
+}

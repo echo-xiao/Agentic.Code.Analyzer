@@ -1,0 +1,643 @@
+{
+  "sourcePath": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/app/importer/server/classes/ImportDataConverter.ts",
+  "symbols": [
+    {
+      "type": "class",
+      "name": "ImportDataConverter",
+      "exported": true,
+      "line": 16,
+      "endLine": 180,
+      "signature": "export class ImportDataConverter",
+      "calls": []
+    },
+    {
+      "type": "method",
+      "name": "getRecordConverterOptions",
+      "exported": true,
+      "qualifiedName": "ImportDataConverter.getRecordConverterOptions",
+      "line": 45,
+      "endLine": 51,
+      "signature": "protected getRecordConverterOptions(): RecordConverterOptions",
+      "containerClass": "ImportDataConverter",
+      "calls": [
+        {
+          "name": "pick",
+          "edgeType": "call"
+        },
+        {
+          "name": "RecordConverterOptions",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "getUserConverterOptions",
+      "exported": true,
+      "qualifiedName": "ImportDataConverter.getUserConverterOptions",
+      "line": 49,
+      "endLine": 66,
+      "signature": "protected getUserConverterOptions(): UserConverterOptions",
+      "containerClass": "ImportDataConverter",
+      "calls": [
+        {
+          "name": "pick",
+          "edgeType": "call"
+        },
+        {
+          "name": "UserConverterOptions",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "initializeUserConverter",
+      "exported": true,
+      "qualifiedName": "ImportDataConverter.initializeUserConverter",
+      "line": 53,
+      "endLine": 60,
+      "signature": "protected initializeUserConverter(logger: Logger): void",
+      "containerClass": "ImportDataConverter",
+      "calls": [
+        {
+          "name": "getRecordConverterOptions",
+          "edgeType": "call"
+        },
+        {
+          "name": "getUserConverterOptions",
+          "edgeType": "call"
+        },
+        {
+          "name": "UserConverter",
+          "edgeType": "new"
+        },
+        {
+          "name": "Logger",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "initializeContactConverter",
+      "exported": true,
+      "qualifiedName": "ImportDataConverter.initializeContactConverter",
+      "line": 57,
+      "endLine": 63,
+      "signature": "protected initializeContactConverter(logger: Logger): void",
+      "containerClass": "ImportDataConverter",
+      "calls": [
+        {
+          "name": "getRecordConverterOptions",
+          "edgeType": "call"
+        },
+        {
+          "name": "ContactConverter",
+          "edgeType": "new"
+        },
+        {
+          "name": "Logger",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "initializeRoomConverter",
+      "exported": true,
+      "qualifiedName": "ImportDataConverter.initializeRoomConverter",
+      "line": 61,
+      "endLine": 67,
+      "signature": "protected initializeRoomConverter(logger: Logger): void",
+      "containerClass": "ImportDataConverter",
+      "calls": [
+        {
+          "name": "getRecordConverterOptions",
+          "edgeType": "call"
+        },
+        {
+          "name": "RoomConverter",
+          "edgeType": "new"
+        },
+        {
+          "name": "Logger",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "initializeMessageConverter",
+      "exported": true,
+      "qualifiedName": "ImportDataConverter.initializeMessageConverter",
+      "line": 65,
+      "endLine": 71,
+      "signature": "protected initializeMessageConverter(logger: Logger): void",
+      "containerClass": "ImportDataConverter",
+      "calls": [
+        {
+          "name": "getRecordConverterOptions",
+          "edgeType": "call"
+        },
+        {
+          "name": "MessageConverter",
+          "edgeType": "new"
+        },
+        {
+          "name": "Logger",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "addContact",
+      "exported": true,
+      "qualifiedName": "ImportDataConverter.addContact",
+      "line": 69,
+      "endLine": 71,
+      "signature": "async addContact(data: IImportContact): Promise<void>",
+      "containerClass": "ImportDataConverter",
+      "calls": [
+        {
+          "name": "addObject",
+          "edgeType": "call"
+        },
+        {
+          "name": "IImportContact",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "addUser",
+      "exported": true,
+      "qualifiedName": "ImportDataConverter.addUser",
+      "line": 73,
+      "endLine": 75,
+      "signature": "async addUser(data: IImportUser): Promise<void>",
+      "containerClass": "ImportDataConverter",
+      "calls": [
+        {
+          "name": "addObject",
+          "edgeType": "call"
+        },
+        {
+          "name": "IImportUser",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "addChannel",
+      "exported": true,
+      "qualifiedName": "ImportDataConverter.addChannel",
+      "line": 77,
+      "endLine": 79,
+      "signature": "async addChannel(data: IImportChannel): Promise<void>",
+      "containerClass": "ImportDataConverter",
+      "calls": [
+        {
+          "name": "addObject",
+          "edgeType": "call"
+        },
+        {
+          "name": "IImportChannel",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "addMessage",
+      "exported": true,
+      "qualifiedName": "ImportDataConverter.addMessage",
+      "line": 81,
+      "endLine": 85,
+      "signature": "async addMessage(data: IImportMessage, useQuickInsert = false): Promise<void>",
+      "containerClass": "ImportDataConverter",
+      "calls": [
+        {
+          "name": "addObject",
+          "edgeType": "call"
+        },
+        {
+          "name": "IImportMessage",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "convertContacts",
+      "exported": true,
+      "qualifiedName": "ImportDataConverter.convertContacts",
+      "line": 85,
+      "endLine": 87,
+      "signature": "async convertContacts(callbacks: IConversionCallbacks): Promise<void>",
+      "containerClass": "ImportDataConverter",
+      "calls": [
+        {
+          "name": "convertData",
+          "edgeType": "call"
+        },
+        {
+          "name": "IConversionCallbacks",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "convertUsers",
+      "exported": true,
+      "qualifiedName": "ImportDataConverter.convertUsers",
+      "line": 89,
+      "endLine": 91,
+      "signature": "async convertUsers(callbacks: IConversionCallbacks): Promise<void>",
+      "containerClass": "ImportDataConverter",
+      "calls": [
+        {
+          "name": "convertData",
+          "edgeType": "call"
+        },
+        {
+          "name": "IConversionCallbacks",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "convertChannels",
+      "exported": true,
+      "qualifiedName": "ImportDataConverter.convertChannels",
+      "line": 93,
+      "endLine": 95,
+      "signature": "async convertChannels(startedByUserId: string, callbacks: IConversionCallbacks): Promise<void>",
+      "containerClass": "ImportDataConverter",
+      "calls": [
+        {
+          "name": "convertChannels",
+          "edgeType": "call"
+        },
+        {
+          "name": "IConversionCallbacks",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "convertMessages",
+      "exported": true,
+      "qualifiedName": "ImportDataConverter.convertMessages",
+      "line": 97,
+      "endLine": 99,
+      "signature": "async convertMessages(callbacks: MessageConversionCallbacks): Promise<void>",
+      "containerClass": "ImportDataConverter",
+      "calls": [
+        {
+          "name": "convertData",
+          "edgeType": "call"
+        },
+        {
+          "name": "MessageConversionCallbacks",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "convertData",
+      "exported": true,
+      "qualifiedName": "ImportDataConverter.convertData",
+      "line": 101,
+      "endLine": 110,
+      "signature": "async convertData(startedByUserId: string, callbacks: IConversionCallbacks = {}): Promise<void>",
+      "containerClass": "ImportDataConverter",
+      "calls": [
+        {
+          "name": "convertUsers",
+          "edgeType": "call"
+        },
+        {
+          "name": "convertContacts",
+          "edgeType": "call"
+        },
+        {
+          "name": "convertChannels",
+          "edgeType": "call"
+        },
+        {
+          "name": "convertMessages",
+          "edgeType": "call"
+        },
+        {
+          "name": "nextTick",
+          "edgeType": "call"
+        },
+        {
+          "name": "clearSuccessfullyImportedData",
+          "edgeType": "call"
+        },
+        {
+          "name": "IConversionCallbacks",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "getAllConverters",
+      "exported": true,
+      "qualifiedName": "ImportDataConverter.getAllConverters",
+      "line": 105,
+      "endLine": 107,
+      "signature": "protected getAllConverters(): RecordConverter<IImportRecord>[]",
+      "containerClass": "ImportDataConverter",
+      "calls": [
+        {
+          "name": "RecordConverter",
+          "edgeType": "type"
+        },
+        {
+          "name": "IImportRecord",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "clearImportData",
+      "exported": true,
+      "qualifiedName": "ImportDataConverter.clearImportData",
+      "line": 109,
+      "endLine": 116,
+      "signature": "public async clearImportData(): Promise<void>",
+      "containerClass": "ImportDataConverter",
+      "calls": [
+        {
+          "name": "deleteMany",
+          "edgeType": "call"
+        },
+        {
+          "name": "all",
+          "edgeType": "call"
+        },
+        {
+          "name": "map",
+          "edgeType": "call"
+        },
+        {
+          "name": "getAllConverters",
+          "edgeType": "call"
+        },
+        {
+          "name": "clearImportData",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "clearSuccessfullyImportedData",
+      "exported": true,
+      "qualifiedName": "ImportDataConverter.clearSuccessfullyImportedData",
+      "line": 113,
+      "endLine": 123,
+      "signature": "async clearSuccessfullyImportedData(): Promise<void>",
+      "containerClass": "ImportDataConverter",
+      "calls": [
+        {
+          "name": "deleteMany",
+          "edgeType": "call"
+        },
+        {
+          "name": "all",
+          "edgeType": "call"
+        },
+        {
+          "name": "map",
+          "edgeType": "call"
+        },
+        {
+          "name": "getAllConverters",
+          "edgeType": "call"
+        },
+        {
+          "name": "clearSuccessfullyImportedData",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "abort",
+      "exported": true,
+      "qualifiedName": "ImportDataConverter.abort",
+      "line": 117,
+      "endLine": 121,
+      "signature": "public abort(): void",
+      "containerClass": "ImportDataConverter",
+      "calls": [
+        {
+          "name": "forEach",
+          "edgeType": "call"
+        },
+        {
+          "name": "getAllConverters",
+          "edgeType": "call"
+        }
+      ]
+    },
+    {
+      "type": "method",
+      "name": "constructor",
+      "exported": true,
+      "qualifiedName": "ImportDataConverter.constructor",
+      "line": 33,
+      "endLine": 43,
+      "signature": "constructor(logger: Logger, options?: ConverterOptions)",
+      "containerClass": "ImportDataConverter",
+      "calls": [
+        {
+          "name": "initializeUserConverter",
+          "edgeType": "call"
+        },
+        {
+          "name": "initializeContactConverter",
+          "edgeType": "call"
+        },
+        {
+          "name": "initializeRoomConverter",
+          "edgeType": "call"
+        },
+        {
+          "name": "initializeMessageConverter",
+          "edgeType": "call"
+        },
+        {
+          "name": "Logger",
+          "edgeType": "type"
+        },
+        {
+          "name": "ConverterOptions",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "class_property",
+      "name": "_options",
+      "exported": true,
+      "qualifiedName": "ImportDataConverter._options",
+      "line": 17,
+      "endLine": 17,
+      "signature": "protected _options: ConverterOptions;",
+      "containerClass": "ImportDataConverter",
+      "calls": [
+        {
+          "name": "ConverterOptions",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "class_property",
+      "name": "_userConverter",
+      "exported": true,
+      "qualifiedName": "ImportDataConverter._userConverter",
+      "line": 19,
+      "endLine": 19,
+      "signature": "protected _userConverter: UserConverter;",
+      "containerClass": "ImportDataConverter",
+      "calls": [
+        {
+          "name": "UserConverter",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "class_property",
+      "name": "_roomConverter",
+      "exported": true,
+      "qualifiedName": "ImportDataConverter._roomConverter",
+      "line": 21,
+      "endLine": 21,
+      "signature": "protected _roomConverter: RoomConverter;",
+      "containerClass": "ImportDataConverter",
+      "calls": [
+        {
+          "name": "RoomConverter",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "class_property",
+      "name": "_messageConverter",
+      "exported": true,
+      "qualifiedName": "ImportDataConverter._messageConverter",
+      "line": 23,
+      "endLine": 23,
+      "signature": "protected _messageConverter: MessageConverter;",
+      "containerClass": "ImportDataConverter",
+      "calls": [
+        {
+          "name": "MessageConverter",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "class_property",
+      "name": "_contactConverter",
+      "exported": true,
+      "qualifiedName": "ImportDataConverter._contactConverter",
+      "line": 25,
+      "endLine": 25,
+      "signature": "protected _contactConverter: ContactConverter;",
+      "containerClass": "ImportDataConverter",
+      "calls": [
+        {
+          "name": "ContactConverter",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "class_property",
+      "name": "_cache",
+      "exported": true,
+      "qualifiedName": "ImportDataConverter._cache",
+      "line": 27,
+      "endLine": 27,
+      "signature": "protected _cache = new ConverterCache();",
+      "containerClass": "ImportDataConverter",
+      "calls": [
+        {
+          "name": "ConverterCache",
+          "edgeType": "new"
+        }
+      ]
+    },
+    {
+      "type": "type",
+      "name": "ConverterOptions",
+      "line": 14,
+      "endLine": 14,
+      "signature": "export type ConverterOptions = UserConverterOptions & Omit<RecordConverterOptions, 'deleteDbData'>;"
+    }
+  ],
+  "imports": [
+    {
+      "module": "@rocket.chat/core-typings",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/logger",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/models",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/tools",
+      "resolved": "external"
+    },
+    {
+      "module": "../definitions/IConversionCallbacks",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/app/importer/server/definitions/IConversionCallbacks.ts"
+    },
+    {
+      "module": "./converters/ContactConverter",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/app/importer/server/classes/converters/ContactConverter.ts"
+    },
+    {
+      "module": "./converters/ConverterCache",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/app/importer/server/classes/converters/ConverterCache.ts"
+    },
+    {
+      "module": "./converters/MessageConverter",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/app/importer/server/classes/converters/MessageConverter.ts"
+    },
+    {
+      "module": "./converters/RecordConverter",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/app/importer/server/classes/converters/RecordConverter.ts"
+    },
+    {
+      "module": "./converters/RoomConverter",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/app/importer/server/classes/converters/RoomConverter.ts"
+    },
+    {
+      "module": "./converters/UserConverter",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/app/importer/server/classes/converters/UserConverter.ts"
+    }
+  ]
+}

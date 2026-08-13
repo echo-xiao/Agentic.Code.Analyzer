@@ -1,0 +1,164 @@
+{
+  "sourcePath": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/client/views/room/RoomInvite.tsx",
+  "symbols": [
+    {
+      "type": "variable_function",
+      "name": "RoomInvite",
+      "exported": false,
+      "line": 23,
+      "endLine": 59,
+      "signature": "({ room, subscription, userId, ...props }: RoomInviteProps) =>",
+      "calls": [
+        {
+          "name": "useTranslation",
+          "edgeType": "call"
+        },
+        {
+          "name": "useQueryClient",
+          "edgeType": "call"
+        },
+        {
+          "name": "useRoomInvitation",
+          "edgeType": "call"
+        },
+        {
+          "name": "isRoomFederated",
+          "edgeType": "call"
+        },
+        {
+          "name": "useGoToHomeOnRemoved",
+          "edgeType": "call"
+        },
+        {
+          "name": "useStableCallback",
+          "edgeType": "call"
+        },
+        {
+          "name": "invalidateQueries",
+          "edgeType": "call"
+        },
+        {
+          "name": "room",
+          "edgeType": "call"
+        },
+        {
+          "name": "subscription",
+          "edgeType": "call"
+        },
+        {
+          "name": "roomReference",
+          "edgeType": "call"
+        },
+        {
+          "name": "useEffect",
+          "edgeType": "call"
+        },
+        {
+          "name": "RoomLayout",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "Header",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "RoomInviteBody",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "room",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "subscription",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "infoLink",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "isPending",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "acceptInvite",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "rejectInvite",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "RoomInviteProps",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "type",
+      "name": "RoomInviteProps",
+      "line": 17,
+      "endLine": 21,
+      "signature": "type RoomInviteProps = Omit<ComponentProps<typeof RoomLayout>, 'header' | 'body' | 'aside'> &"
+    }
+  ],
+  "imports": [
+    {
+      "module": "@rocket.chat/core-typings",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/core-typings",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/fuselage-hooks",
+      "resolved": "external"
+    },
+    {
+      "module": "@tanstack/react-query",
+      "resolved": "external"
+    },
+    {
+      "module": "react",
+      "resolved": "external"
+    },
+    {
+      "module": "react-i18next",
+      "resolved": "external"
+    },
+    {
+      "module": "./Header",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/client/views/room/Header/index.ts"
+    },
+    {
+      "module": "./body/RoomInviteBody",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/client/views/room/body/RoomInviteBody.tsx"
+    },
+    {
+      "module": "./body/hooks/useGoToHomeOnRemoved",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/client/views/room/body/hooks/useGoToHomeOnRemoved.ts"
+    },
+    {
+      "module": "./contexts/RoomContext",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/client/views/room/contexts/RoomContext.ts"
+    },
+    {
+      "module": "./hooks/useRoomInvitation",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/client/views/room/hooks/useRoomInvitation.ts"
+    },
+    {
+      "module": "./layout/RoomLayout",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/client/views/room/layout/RoomLayout.tsx"
+    },
+    {
+      "module": "../../lib/links",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/client/lib/links.ts"
+    },
+    {
+      "module": "../../lib/queryKeys",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/client/lib/queryKeys.ts"
+    }
+  ]
+}

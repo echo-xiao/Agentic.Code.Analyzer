@@ -1,0 +1,69 @@
+{
+  "sourcePath": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/server/bridges/webdav/lib/uploadFileToWebdav.ts",
+  "symbols": [
+    {
+      "type": "variable_function",
+      "name": "uploadFileToWebdav",
+      "exported": true,
+      "line": 7,
+      "endLine": 21,
+      "signature": "async (accountId: IWebdavAccount['_id'], fileData: string | Buffer, name: string): Promise<void> =>",
+      "calls": [
+        {
+          "name": "findOneById",
+          "edgeType": "call"
+        },
+        {
+          "name": "isBuffer",
+          "edgeType": "call"
+        },
+        {
+          "name": "from",
+          "edgeType": "call"
+        },
+        {
+          "name": "getWebdavCredentials",
+          "edgeType": "call"
+        },
+        {
+          "name": "catch",
+          "edgeType": "call"
+        },
+        {
+          "name": "createDirectory",
+          "edgeType": "call"
+        },
+        {
+          "name": "putFileContents",
+          "edgeType": "call"
+        },
+        {
+          "name": "WebdavClientAdapter",
+          "edgeType": "new"
+        },
+        {
+          "name": "IWebdavAccount",
+          "edgeType": "type"
+        }
+      ]
+    }
+  ],
+  "imports": [
+    {
+      "module": "@rocket.chat/core-typings",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/models",
+      "resolved": "external"
+    },
+    {
+      "module": "./getWebdavCredentials",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/server/bridges/webdav/lib/getWebdavCredentials.ts"
+    },
+    {
+      "module": "./webdavClientAdapter",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/server/bridges/webdav/lib/webdavClientAdapter.ts"
+    }
+  ]
+}

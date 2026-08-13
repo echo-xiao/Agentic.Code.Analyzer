@@ -18,7 +18,7 @@ import { GENERATOR_VERSION } from '../config.js';
 import type { WorkspacePackage } from './workspace.js';
 import { collectDefs, enclosingDefId, relFileOf, type Def } from './defs.js';
 import { bindReference, referenceNodesOf, type StaticEdgeKind } from './binding.js';
-import { extractSlots, type Slot, type Unbound } from './idioms.js';
+import { extractSlots, type Slot, type Unbound, type Variant } from './idioms.js';
 import { extractOverrides, type OverrideSite } from './overrides.js';
 
 export type EdgeKind = StaticEdgeKind | 'registers' | 'dispatches' | 'handles';
@@ -50,7 +50,7 @@ const isTestFile = (rel: string): boolean => {
 };
 
 function processFile(
-    sf: SourceFile, repoRoot: string, keyspaceScope: string,
+    sf: SourceFile, repoRoot: string, keyspaceScope: string, variant: Variant,
     out: { defs: Def[]; edges: Edge[]; slots: Slot[]; unbound: Unbound[]; stats: Shard['stats'] },
 ): void {
     const { defs, ranges } = collectDefs(sf, repoRoot);
@@ -76,7 +76,7 @@ function processFile(
         }
     }
 
-    const { slots, unbound } = extractSlots(sf, { repoRoot, keyspaceScope });
+    const { slots, unbound } = extractSlots(sf, { repoRoot, keyspaceScope, variant });
     out.slots.push(...slots);
     out.unbound.push(...unbound);
     out.stats.unbound += unbound.length;
@@ -122,6 +122,12 @@ export function buildShard(pkg: WorkspacePackage, repoRoot: string, packages: Wo
     // difference from reading as an idiom regression.
     const keyspaceScope = `${pkg.id}@extractor-v${GENERATOR_VERSION}`;
 
+    // The same service class is registered twice in this repo: once inside the monolith and once
+    // as a standalone process under ee/apps. Both registrations are real, they just belong to
+    // different deployments, and merging them into one graph claims a topology that never exists.
+    // Measured: 22 of the api.call keys are registered from both.
+    const variant: Variant = /(^|\/)ee\/apps\//.test(pkg.id + '/') ? 'microservices' : 'monolith';
+
     const out = {
         defs: [] as Def[], edges: [] as Edge[], slots: [] as Slot[], unbound: [] as Unbound[],
         stats: { bound: 0, external: 0, unbound: 0 },
@@ -147,7 +153,7 @@ export function buildShard(pkg: WorkspacePackage, repoRoot: string, packages: Wo
             if (isTestFile(rel)) continue;
             files.push(rel);
             ownFiles.push(sf);
-            processFile(sf, repoRoot, keyspaceScope, out);
+            processFile(sf, repoRoot, keyspaceScope, variant, out);
         } catch (e) {
             failedFiles.push(rel);
             console.error(`[graph-build] ${rel}: ${(e as Error).message}`);

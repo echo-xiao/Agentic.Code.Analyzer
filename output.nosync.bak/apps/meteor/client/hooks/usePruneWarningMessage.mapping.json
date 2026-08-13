@@ -1,0 +1,186 @@
+{
+  "sourcePath": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/client/hooks/usePruneWarningMessage.ts",
+  "symbols": [
+    {
+      "type": "variable_function",
+      "name": "getMessage",
+      "exported": false,
+      "line": 13,
+      "endLine": 21,
+      "signature": "({ filesOnly, excludePinned }: { filesOnly: boolean; excludePinned: boolean }): TranslationKey =>",
+      "calls": [
+        {
+          "name": "TranslationKey",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "variable_function",
+      "name": "getNextRunDate",
+      "exported": false,
+      "line": 18,
+      "endLine": 32,
+      "signature": "({ enableAdvancedCronTimer, cronPrecision, advancedCronTimer, }: { enableAdvancedCronTimer: boolean; cronPrecision: CronPrecisionSetting; advancedCronTimer: string; }) =>",
+      "calls": [
+        {
+          "name": "sendAt",
+          "edgeType": "call"
+        },
+        {
+          "name": "getCronAdvancedTimerFromPrecisionSetting",
+          "edgeType": "call"
+        },
+        {
+          "name": "CronPrecisionSetting",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "variable_function",
+      "name": "useNextRunDate",
+      "exported": false,
+      "line": 30,
+      "endLine": 67,
+      "signature": "({ enableAdvancedCronTimer, advancedCronTimer, cronPrecision, }: { enableAdvancedCronTimer: boolean; cronPrecision: CronPrecisionSetting; advancedCronTimer: string; }) =>",
+      "calls": [
+        {
+          "name": "useSafely",
+          "edgeType": "call"
+        },
+        {
+          "name": "useState",
+          "edgeType": "call"
+        },
+        {
+          "name": "getNextRunDate",
+          "edgeType": "call"
+        },
+        {
+          "name": "useLanguage",
+          "edgeType": "call"
+        },
+        {
+          "name": "useEffect",
+          "edgeType": "call"
+        },
+        {
+          "name": "valueOf",
+          "edgeType": "call"
+        },
+        {
+          "name": "now",
+          "edgeType": "call"
+        },
+        {
+          "name": "setNextRunDate",
+          "edgeType": "call"
+        },
+        {
+          "name": "intlFormat",
+          "edgeType": "call"
+        },
+        {
+          "name": "Date",
+          "edgeType": "new"
+        },
+        {
+          "name": "CronPrecisionSetting",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "variable_function",
+      "name": "usePruneWarningMessage",
+      "exported": true,
+      "line": 42,
+      "endLine": 68,
+      "signature": "(room: IRoom) =>",
+      "calls": [
+        {
+          "name": "useRetentionPolicy",
+          "edgeType": "call"
+        },
+        {
+          "name": "useSetting",
+          "edgeType": "call"
+        },
+        {
+          "name": "useTranslation",
+          "edgeType": "call"
+        },
+        {
+          "name": "getMessage",
+          "edgeType": "call"
+        },
+        {
+          "name": "useNextRunDate",
+          "edgeType": "call"
+        },
+        {
+          "name": "useFormattedRelativeTime",
+          "edgeType": "call"
+        },
+        {
+          "name": "IRoom",
+          "edgeType": "type"
+        },
+        {
+          "name": "CronPrecisionSetting",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "type",
+      "name": "CronPrecisionSetting",
+      "line": 17,
+      "endLine": 17,
+      "signature": "type CronPrecisionSetting = '0' | '1' | '2' | '3';"
+    }
+  ],
+  "imports": [
+    {
+      "module": "@rocket.chat/core-typings",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/fuselage-hooks",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/ui-contexts",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/ui-contexts",
+      "resolved": "external"
+    },
+    {
+      "module": "cron",
+      "resolved": "external"
+    },
+    {
+      "module": "date-fns",
+      "resolved": "external"
+    },
+    {
+      "module": "react",
+      "resolved": "external"
+    },
+    {
+      "module": "./useFormattedRelativeTime",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/client/hooks/useFormattedRelativeTime.ts"
+    },
+    {
+      "module": "../../lib/getCronAdvancedTimerFromPrecisionSetting",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/lib/getCronAdvancedTimerFromPrecisionSetting.ts"
+    },
+    {
+      "module": "../views/room/hooks/useRetentionPolicy",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/client/views/room/hooks/useRetentionPolicy.ts"
+    }
+  ]
+}

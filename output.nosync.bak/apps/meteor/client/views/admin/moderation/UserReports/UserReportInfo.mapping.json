@@ -1,0 +1,228 @@
+{
+  "sourcePath": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/client/views/admin/moderation/UserReports/UserReportInfo.tsx",
+  "symbols": [
+    {
+      "type": "variable_function",
+      "name": "UserReportInfo",
+      "exported": false,
+      "line": 30,
+      "endLine": 124,
+      "signature": "({ userId }: UserReportInfoProps) =>",
+      "calls": [
+        {
+          "name": "useTranslation",
+          "edgeType": "call"
+        },
+        {
+          "name": "useEndpoint",
+          "edgeType": "call"
+        },
+        {
+          "name": "useFormatDate",
+          "edgeType": "call"
+        },
+        {
+          "name": "useQuery",
+          "edgeType": "call"
+        },
+        {
+          "name": "getUserReports",
+          "edgeType": "call"
+        },
+        {
+          "name": "useMemo",
+          "edgeType": "call"
+        },
+        {
+          "name": "normalizeUsername",
+          "edgeType": "call"
+        },
+        {
+          "name": "map",
+          "edgeType": "call"
+        },
+        {
+          "name": "reloadUsersReports",
+          "edgeType": "call"
+        },
+        {
+          "name": "join",
+          "edgeType": "call"
+        },
+        {
+          "name": "formatDateAndTime",
+          "edgeType": "call"
+        },
+        {
+          "name": "Box",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "StatesTitle",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "StatesActions",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "StatesAction",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "ContextualbarScrollableContent",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "FieldGroup",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "Field",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "FieldLabel",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "FieldRow",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "UserCardRole",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "Callout",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "ContextualbarFooter",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "UserColumn",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "StatesIcon",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "FormSkeleton",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "ReportReason",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "GenericNoResults",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "UserContextFooter",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "dataUpdatedAt",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "normalizedUsername",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "name",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "index",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "ind",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "userId",
+          "edgeType": "jsx"
+        },
+        {
+          "name": "Date",
+          "edgeType": "new"
+        },
+        {
+          "name": "UserReportInfoProps",
+          "edgeType": "type"
+        }
+      ]
+    },
+    {
+      "type": "type",
+      "name": "UserReportInfoProps",
+      "line": 28,
+      "endLine": 28,
+      "signature": "export type UserReportInfoProps ="
+    }
+  ],
+  "imports": [
+    {
+      "module": "@rocket.chat/fuselage",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/ui-client",
+      "resolved": "external"
+    },
+    {
+      "module": "@rocket.chat/ui-contexts",
+      "resolved": "external"
+    },
+    {
+      "module": "@tanstack/react-query",
+      "resolved": "external"
+    },
+    {
+      "module": "react",
+      "resolved": "external"
+    },
+    {
+      "module": "react-i18next",
+      "resolved": "external"
+    },
+    {
+      "module": "./UserContextFooter",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/client/views/admin/moderation/UserReports/UserContextFooter.tsx"
+    },
+    {
+      "module": "../../../../../lib/utils/normalizeUsername",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/lib/utils/normalizeUsername.ts"
+    },
+    {
+      "module": "../../../../components/GenericNoResults",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/client/components/GenericNoResults/index.ts"
+    },
+    {
+      "module": "../../../../components/Skeleton",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/client/components/Skeleton.tsx"
+    },
+    {
+      "module": "../../../../components/UserCard",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/client/components/UserCard/index.ts"
+    },
+    {
+      "module": "../../../../hooks/useFormatDate",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/client/hooks/useFormatDate.ts"
+    },
+    {
+      "module": "../helpers/ReportReason",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/client/views/admin/moderation/helpers/ReportReason.tsx"
+    },
+    {
+      "module": "../helpers/UserColumn",
+      "resolved": "/Users/echoooooo/Desktop/code/Rocket.Chat/apps/meteor/client/views/admin/moderation/helpers/UserColumn.tsx"
+    }
+  ]
+}
