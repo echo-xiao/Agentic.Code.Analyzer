@@ -229,6 +229,43 @@ test('rest: client path and server route normalize to the same key', () => {
     assert.deepEqual(rest.map((s) => s.role).sort(), ['dispatch', 'register']);
 });
 
+test('rest: a route on a self-constructed API instance carries that instance base path', () => {
+    const p = project({
+        'ApiClass.ts': `
+            // Generic on its base path, as the real one is: APIClass<'/apps'>.
+            export class APIClass<TBasePath extends string = ''> {
+                constructor(props: { apiPath?: string; version?: string }) { void props; }
+                addRoute(subpath: string, options: any, endpoints?: any) {}
+            }
+            export const API = { ApiClass: APIClass, v1: new APIClass<'/v1'>({ version: 'v1' }) };
+        `,
+        'useEndpoint.ts': `export function useEndpoint(method: string, path: string) { return async () => {}; }`,
+        // The shape in ee/server/apps/communication/rest.ts: a class builds its own ApiClass with
+        // the prefix in the CONSTRUCTOR, then registers bare sub-paths against it. Without reading
+        // that prefix the server key is ':id/screenshots' and the client's is
+        // 'apps/:id/screenshots' — the same route counted as two keys that never join.
+        'appsRest.ts': `
+            import { API, APIClass } from './ApiClass';
+            export class AppsRestApi {
+                public api: APIClass<'/apps'>;
+                async loadAPI() {
+                    this.api = new API.ApiClass({ apiPath: '', version: 'apps' });
+                    this.api.addRoute(':id/screenshots', {}, { get() {} });
+                }
+            }
+        `,
+        'client.ts': `
+            import { useEndpoint } from './useEndpoint';
+            export const screenshots = useEndpoint('GET', '/v1/apps/:id/screenshots');
+        `,
+    });
+
+    const keys = allSlots(p).filter((s) => s.space === 'rest').map((s) => s.key);
+
+    assert.deepEqual([...new Set(keys)], ['apps/:id/screenshots']);
+    assert.equal(keys.length, 2);
+});
+
 test('rest: the HTTP verb is not the key', () => {
     const p = project({
         'useEndpoint.ts': `export function useEndpoint(method: string, path: string) { return async () => {}; }`,

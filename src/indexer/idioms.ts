@@ -268,6 +268,59 @@ function handlerOf(args: Node[], keyIndex: number, repoRoot: string, at: string)
     return undefined;
 }
 
+// The receiver's base path, when the receiver is an API instance built with the prefix in its
+// CONSTRUCTOR rather than in the route argument.
+//
+//   api = new API.ApiClass({ apiPath: '', version: 'apps' })
+//   this.api.addRoute(':id/screenshots', ...)          -> apps/:id/screenshots
+//
+// Without it the server registers ':id/screenshots' while the client asks for
+// 'apps/:id/screenshots', and one route is counted as two keys that never join. Measured on the
+// real repo: 20 of the 28 REST keys with a dispatch side and no registration were this.
+function basePathOfReceiver(callee: Node, repoRoot: string): string {
+    if (!Node.isPropertyAccessExpression(callee)) return '';
+    const recv = callee.getExpression();
+    const decl = canonicalDecl(Node.isPropertyAccessExpression(recv) ? recv.getNameNode() : recv, repoRoot)?.decl;
+    if (!decl) return '';
+
+    // The prefix may sit in the type argument: `public api: APIClass<'/apps'>`. That is the most
+    // direct source when there is one, and it survives the assignment happening elsewhere.
+    const typeNode = (decl as any).getTypeNode?.();
+    if (typeNode && Node.isTypeReference(typeNode)) {
+        const arg = typeNode.getTypeArguments()[0];
+        const text = arg?.getText().replace(/^['\"`]|['\"`]$/g, '') ?? '';
+        if (text && text !== 'string') return text.replace(/^\//, '');
+    }
+
+    // Otherwise the constructor call. It is NOT always a property initializer: the real
+    // AppsRestApi declares `public api: APIClass<'/apps'>` and assigns `this.api = new ...` inside
+    // an async loadAPI() method, so a getInitializer()-only lookup finds nothing — which is how
+    // the first version of this passed its fixture and changed nothing on the repo.
+    let init: Node | undefined = (decl as any).getInitializer?.();
+    if (!init) {
+        const owner = decl.getFirstAncestor(a => Node.isClassDeclaration(a));
+        const name = (decl as any).getName?.();
+        owner?.forEachDescendant(n => {
+            if (init || !Node.isBinaryExpression(n)) return;
+            const lhs = n.getLeft();
+            if (!Node.isPropertyAccessExpression(lhs) || lhs.getName() !== name) return;
+            const rhs = n.getRight();
+            if (Node.isNewExpression(rhs)) init = rhs;
+        });
+    }
+    if (!init || !Node.isNewExpression(init)) return '';
+
+    const arg = init.getArguments()[0];
+    if (!arg || !Node.isObjectLiteralExpression(arg)) return '';
+    const read = (name: string): string => {
+        const prop = arg.getProperty(name);
+        const value = prop && (prop as any).getInitializer?.();
+        return literalOf(value) ?? '';
+    };
+    // Mirrors ApiClass's own rule: [apiPath, version].filter(Boolean).join('/')
+    return [read('apiPath'), read('version')].filter(Boolean).join('/');
+}
+
 const literalOf = (n: Node | undefined): string | null =>
     n && (Node.isStringLiteral(n) || Node.isNoSubstitutionTemplateLiteral(n)) ? n.getLiteralValue() : null;
 
@@ -371,7 +424,9 @@ export function extractSlots(sf: SourceFile, opts: ExtractOpts): { slots: Slot[]
             }
             return;
         }
-        emit(i, key, at, declId,
+        // A base path only exists on the registration side; the client always writes the full path.
+        const base = i.space === 'rest' && i.role === 'register' ? basePathOfReceiver(callee, repoRoot) : '';
+        emit(i, base ? `${base}/${key.replace(/^\//, '')}` : key, at, declId,
             i.role === 'register' ? handlerOf(args, i.argIndex, repoRoot, at) : undefined);
     });
 
