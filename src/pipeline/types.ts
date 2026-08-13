@@ -1,6 +1,10 @@
 // Shared pipeline types. Data flows: RoutedSection[] -> Chain[] (one per admitted section)
 // -> ChainSkeleton[] -> read order (all major node ids) -> Material[] -> answer + QuestionTrace.
-import type { LegacyEdgeType as EdgeType } from '../indexer/state.js';
+import type { LegacyEdgeType, EdgeType as DefEdgeType } from '../indexer/state.js';
+
+// Both unions while the two builders coexist: the name-keyed one still emits the twelve legacy
+// kinds, the definition-keyed one emits the seven real ones. Narrows to DefEdgeType at the cutover.
+type EdgeType = LegacyEdgeType | DefEdgeType;
 
 export interface RoutedSection { path: string; rank: number }
 
@@ -33,6 +37,12 @@ export interface SiblingGroup { key: string; refs: SiblingRef[]; total: number }
 
 export interface SkeletonNode {
     id: string;                      // "1a", "2c" — chain number + letter; '' for non-major
+    // Definition id. A node IS a definition, so nothing downstream has to locate it by name:
+    // the reader opens defs[defId].file at its recorded line range.
+    defId?: string;
+    // Set when this definition's registry key has a second implementation. An edge into the CE
+    // class looks complete on its own, and under a licence the EE class is what runs.
+    overrides?: import('../indexer/overrides.js').Override[];
     symbol: string;
     file: string;                    // '' for dispatch pseudo-nodes
     line: number;
