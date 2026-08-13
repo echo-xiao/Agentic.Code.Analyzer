@@ -20,6 +20,13 @@ const def = (sym: string, ...files: string[]) => {
         });
     }
 };
+const localVar = (sym: string, file: string) => {
+    const id = `${file}#${sym}`;
+    GLOBAL_INDEX.defs.set(id, {
+        id, file, name: sym, qualifiedName: sym, kind: 'variable',
+        line: 1, endLine: 1, signature: '', exported: false,
+    });
+};
 const routed = (...paths: string[]) => paths.map((path, i) => ({ path, rank: i + 1 }));
 
 beforeEach(() => resetGlobalIndex());
@@ -213,4 +220,18 @@ test('buildPools drops a page whose subsections cite only test files', () => {
     def('helper', 'apps/meteor/tests/e2e/helper.ts');
     const pools = buildPools(routed('P › Testing'), [sec('P', 'Testing', ['apps/meteor/tests/e2e/helper.ts'])]);
     assert.deepEqual(pools[0].symbols, []);
+});
+
+test('a local variable inside a function body is never a chain entry', () => {
+    // 32.8% of all definitions are non-exported variables — every `const key = ...` inside every
+    // function body. They are legitimate edge targets, but as seeds they drown the entry points:
+    // measured on claude-04-e2e-encryption, all nine chains seeded on `key`, `keys`, `keyID`,
+    // `KEY_ID` and other locals, and the whole question read 360 tokens.
+    def('encryptMessageContent', 'a/e2ee.ts');
+    localVar('key', 'a/e2ee.ts');
+    localVar('keys', 'a/e2ee.ts');
+
+    const pools = buildPools(routed('P › S'), [sec('P', 'S', ['a/e2ee.ts'])]);
+
+    assert.deepEqual(pools[0].symbols.map(s => s.symbol), ['encryptMessageContent']);
 });

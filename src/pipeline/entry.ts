@@ -109,6 +109,24 @@ export interface Pool {
 
 // Chains are per page: subsections of one page routinely cite the same files, so a chain per
 // subsection would produce near-identical trees.
+// What can start a chain. A definition is an edge target whatever its kind, but only a named
+// entry point is worth walking FROM.
+//
+// Non-exported variables are 32.8% of all definitions — every `const key = ...` inside every
+// function body. Under the name-keyed index they were diluted, because dozens of local `key`s
+// collapsed into one entry that lost the pool competition. Keyed by definition they are all
+// distinct candidates, and they swamp the real entry points: measured on
+// claude-04-e2e-encryption, all nine chains seeded on `key`, `keys`, `keyID` and `KEY_ID`, and the
+// whole question read 360 tokens against 16,698 before.
+function isEntryCandidate(def: { kind: string; exported: boolean }): boolean {
+    if (def.kind === 'module') return false;          // one per file, no body worth reading
+    if (def.kind === 'function' || def.kind === 'method' || def.kind === 'class') return true;
+    if (def.kind === 'interface' || def.kind === 'type' || def.kind === 'enum') return true;
+    // A variable or property is an entry only when it is exported: `export const sendMessage =
+    // async () => {...}` is an entry point, `const key = ...` three lines into a method is not.
+    return def.exported;
+}
+
 export function buildPools(routed: RoutedSection[], sections: WikiSubsection[]): Pool[] {
     const byPage = new Map<string, WikiSubsection[]>();
     for (const r of routed) {
@@ -132,8 +150,8 @@ export function buildPools(routed: RoutedSection[], sections: WikiSubsection[]):
         // reading, and named by basename 59 different index.ts files collided into one symbol.
         const byName = new Map<string, string[]>();
         for (const def of GLOBAL_INDEX.defs.values()) {
-            if (def.kind === 'module') continue;
             if (!fileSet.has(def.file)) continue;
+            if (!isEntryCandidate(def)) continue;
             const hits = byName.get(def.name);
             if (hits) { if (!hits.includes(def.file)) hits.push(def.file); }
             else byName.set(def.name, [def.file]);

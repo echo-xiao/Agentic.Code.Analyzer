@@ -25,9 +25,13 @@ export interface DefSkeletonOpts {
     siblingMax?: number;
 }
 
+// Identical to the name-keyed builder's, deliberately. A regression run compares one variable at
+// a time, and the first attempt at this file invented its own defaults — maxNodesPerChain 40
+// against 200 — which capped every chain and showed up as a 47% drop in major nodes that had
+// nothing to do with the graph.
 const DEFAULTS: Required<DefSkeletonOpts> = {
-    maxDepth: 6, upstreamMaxDepth: 3, maxChildrenPerNode: 6, maxNodesPerChain: 40,
-    hotFanIn: 25, upstreamWeight: 0.8, siblingMax: 12,
+    maxDepth: 6, upstreamMaxDepth: 3, maxChildrenPerNode: 8, maxNodesPerChain: 200,
+    hotFanIn: 25, upstreamWeight: 0.7, siblingMax: 12,
 };
 
 // Same three tiers as before: a string-dispatch hop is the most informative, a type reference the
