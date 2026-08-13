@@ -12,8 +12,7 @@
 import * as fs from 'fs';
 import * as path from 'path';
 import * as glob from 'glob';
-
-export const SECTIONS_DIR = path.resolve('data/deepwiki/sections');
+import { SECTIONS_DIR } from './content.js';
 
 // `[apps/meteor/x.ts:12-34]()` — the inline, line-anchored citation form. The plain
 // `- [path](path)` bullets in each page's header list are page-wide and carry no position, so

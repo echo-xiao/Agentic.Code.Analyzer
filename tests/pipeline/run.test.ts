@@ -5,9 +5,7 @@ import { runQuestion } from '../../src/pipeline/run.js';
 import { FakeLlm } from '../../src/pipeline/llm.js';
 import type { WikiSubsection } from '../../src/deepwiki/sections.js';
 
-const ABS = '/abs/Rocket.Chat/apps/meteor/app/lib/server/sendMessage.ts';
 const REL = 'apps/meteor/app/lib/server/sendMessage.ts';
-const HELPER_ABS = '/abs/Rocket.Chat/apps/meteor/app/lib/server/helper.ts';
 const HELPER_REL = 'apps/meteor/app/lib/server/helper.ts';
 
 const sections: WikiSubsection[] = [

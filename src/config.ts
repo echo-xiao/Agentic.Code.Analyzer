@@ -13,7 +13,6 @@ export const TARGET_SRC_DIR = process.env.ROCKET_CHAT_SRC
 // (~50M, 15k files) regenerable build artifact; syncing it to iCloud wastes bandwidth and the
 // upload storm throttles the thousands of small-file reads during an index rebuild.
 export const OUTPUT_DIR = path.join(PROJECT_ROOT, 'output.nosync');
-export const CACHE_FILE = path.join(OUTPUT_DIR, '.hash_cache.json');
 // The index has no other record of which revision it describes. Without it, a deleted file is
 // invisible to incremental update and its symbols survive forever (measured: 714 orphans, 8.3%).
 export const INDEX_META_FILE = path.join(OUTPUT_DIR, '.index-meta.json');
@@ -22,14 +21,6 @@ export const INDEX_META_FILE = path.join(OUTPUT_DIR, '.index-meta.json');
 // graph directory and rebuilds every time, and never reads this. Do not go looking for the cache
 // logic it used to drive.
 export const GENERATOR_VERSION = '12';
-
-export function getOutputPaths(sourceFile: string): { skeletonPath: string; mappingPath: string } {
-    const rel = path.relative(TARGET_SRC_DIR, sourceFile).replace(/\.(tsx?|js)$/, '');
-    return {
-        skeletonPath: path.join(OUTPUT_DIR, rel + '.skeleton.ts'),
-        mappingPath: path.join(OUTPUT_DIR, rel + '.mapping.json'),
-    };
-}
 
 // One graph shard per workspace package, plus one reduced dispatch artifact. Replaces the 7851
 // per-file mapping/skeleton pairs: the shards are the cache, so there is no second serialization.
