@@ -14,7 +14,7 @@ import { readShards, readDispatch, loadGlobalIndex } from '../indexer/graph-stor
 import { route } from './routing.js';
 import { buildChains, buildPools, pickSeeds } from './entry.js';
 import { loadAllSections, type WikiSubsection } from '../deepwiki/sections.js';
-import { renderSkeletons, resetSkeletonCaches } from './skeleton.js';
+import { renderSkeletons } from './render.js';
 import { buildCandidates } from './candidates.js';
 import { selectChains } from './select.js';
 import { packMaterials } from './reading.js';
@@ -50,7 +50,7 @@ export async function runQuestion(qid: string, question: string, deps: Deps): Pr
 
     // Every seed becomes a candidate; the quota is spent after expansion, once the redundant
     // chains are visible. Expansion is in-memory graph work -- 3s for all 34 questions.
-    resetSkeletonCaches();
+
     const { kept: candidates, expanded, droppedRedundant } =
         buildCandidates(buildChains(routed, sections, question), pools, question);
     const chains = candidates.map(c => c.chain);

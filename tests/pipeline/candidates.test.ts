@@ -5,7 +5,6 @@ import * as os from 'os';
 import * as path from 'path';
 import { GLOBAL_INDEX, resetGlobalIndex } from '../../src/indexer/state.js';
 import { buildCandidates, majorsOf } from '../../src/pipeline/candidates.js';
-import { resetSkeletonCaches } from '../../src/pipeline/skeleton.js';
 import type { Pool } from '../../src/pipeline/entry.js';
 import type { Chain, ChainSkeleton, SkeletonNode } from '../../src/pipeline/types.js';
 
@@ -44,7 +43,6 @@ const pool = (pageId: string, files: string[]): Pool => ({ pageId, sections: [],
 
 beforeEach(() => {
     resetGlobalIndex();
-    resetSkeletonCaches();
 });
 
 // entry -> mid -> {leafA, leafB}, all in one file, so a chain seeded at `mid` expands into a

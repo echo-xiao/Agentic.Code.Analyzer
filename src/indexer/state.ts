@@ -18,16 +18,6 @@ export type EdgeType =
     // proxified service ends at a signature with no body: 634 such dead ends, 2332 edges absorbed.
     | 'implements';
 
-// The twelve-value union the old text-matching extractor emitted. Kept only until its consumers
-// (extract-edges.ts, indexer/skeleton.ts, the pipeline's name-keyed traversal) are removed in the
-// cutover; nothing new may produce these.
-export type LegacyEdgeType =
-    | 'call' | 'jsx' | 'new' | 'event_emit' | 'event_listen' | 'pubsub_publish' | 'pubsub_subscribe'
-    | 'rest_call' | 'rest_route' | 'stream_def' | 'stream_sub' | 'type';
-
-export interface CallEdge { name: string; edgeType: LegacyEdgeType; event?: string }
-export interface CallerRef { caller: string; file: string; edgeType: LegacyEdgeType }
-
 export interface IndexStats {
     bound: number;
     external: number;
@@ -50,12 +40,6 @@ export const GLOBAL_INDEX = {
     allFiles:  new Set<string>(),
     stats:     { bound: 0, external: 0, unbound: 0, failedFiles: 0, droppedEdges: 0 } as IndexStats,
 
-    // --- legacy, name-keyed. Deleted in the cutover along with their last reader. ---
-    // They stay for now so the new store can land without dragging the whole pipeline with it:
-    // every symptom in the design traces to these three being keyed by bare name.
-    symbols:        new Map<string, Set<string>>(),
-    fileDependents: new Map<string, Set<string>>(),
-    callGraph:      new Map<string, Array<CallerRef>>(),
 };
 
 export function resetGlobalIndex(): void {
@@ -67,7 +51,4 @@ export function resetGlobalIndex(): void {
     GLOBAL_INDEX.overrides.clear();
     GLOBAL_INDEX.allFiles.clear();
     GLOBAL_INDEX.stats = { bound: 0, external: 0, unbound: 0, failedFiles: 0, droppedEdges: 0 };
-    GLOBAL_INDEX.symbols.clear();
-    GLOBAL_INDEX.fileDependents.clear();
-    GLOBAL_INDEX.callGraph.clear();
 }

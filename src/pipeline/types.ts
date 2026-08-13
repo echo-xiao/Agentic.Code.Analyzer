@@ -1,10 +1,6 @@
 // Shared pipeline types. Data flows: RoutedSection[] -> Chain[] (one per admitted section)
 // -> ChainSkeleton[] -> read order (all major node ids) -> Material[] -> answer + QuestionTrace.
-import type { LegacyEdgeType, EdgeType as DefEdgeType } from '../indexer/state.js';
-
-// Both unions while the two builders coexist: the name-keyed one still emits the twelve legacy
-// kinds, the definition-keyed one emits the seven real ones. Narrows to DefEdgeType at the cutover.
-type EdgeType = LegacyEdgeType | DefEdgeType;
+import type { EdgeType } from '../indexer/state.js';
 
 export interface RoutedSection { path: string; rank: number }
 
@@ -28,7 +24,9 @@ export type ChainMode = 'flow' | 'impact';
 // 'dispatch' is a pseudo-node: a string-dispatch KEY (event name / normalized route / pubsub /
 // streamer), not a real symbol. It has no definition site and no body -- it exists to carry the
 // sibling group of everything wired to that key.
-export type NodeKind = 'major' | 'passthrough' | 'hotleaf' | 'boundary' | 'type' | 'dispatch';
+// No 'boundary': a package hop is an ordinary edge now. It existed because the traversal cut any
+// edge leaving the anchor's top-level path, which discarded 40.5% of unambiguous edges.
+export type NodeKind = 'major' | 'passthrough' | 'hotleaf' | 'type' | 'dispatch';
 
 export type Direction = 'down' | 'up';
 

@@ -17,7 +17,11 @@ export const CACHE_FILE = path.join(OUTPUT_DIR, '.hash_cache.json');
 // The index has no other record of which revision it describes. Without it, a deleted file is
 // invisible to incremental update and its symbols survive forever (measured: 714 orphans, 8.3%).
 export const INDEX_META_FILE = path.join(OUTPUT_DIR, '.index-meta.json');
-export const GENERATOR_VERSION = '11';   // was '10' — P1 adds a chunk field to mapping, requires a full-repo regeneration
+// Artefact format version, and the calibration marker inside `keyspaceScope`
+// (`repo@extractor-v12`). It is NOT a cache-invalidation switch any more: buildGraph clears the
+// graph directory and rebuilds every time, and never reads this. Do not go looking for the cache
+// logic it used to drive.
+export const GENERATOR_VERSION = '12';
 
 export function getOutputPaths(sourceFile: string): { skeletonPath: string; mappingPath: string } {
     const rel = path.relative(TARGET_SRC_DIR, sourceFile).replace(/\.(tsx?|js)$/, '');
