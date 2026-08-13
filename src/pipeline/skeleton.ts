@@ -6,7 +6,7 @@
 // turning around mid-chain -- they hang off dispatch-key pseudo-nodes, see buildSiblingIndex.
 import * as fs from 'fs';
 import { GLOBAL_INDEX } from '../indexer/state.js';
-import type { EdgeType, CallerRef } from '../indexer/state.js';
+import type { LegacyEdgeType as EdgeType, CallerRef } from '../indexer/state.js';
 import { relPath } from '../engine/common.js';
 import { questionTokens, symbolTokens } from './entry.js';
 import type { Chain, ChainMode, ChainSkeleton, SkeletonNode, SiblingGroup, SiblingRef, Direction } from './types.js';

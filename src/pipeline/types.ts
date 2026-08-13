@@ -1,6 +1,6 @@
 // Shared pipeline types. Data flows: RoutedSection[] -> Chain[] (one per admitted section)
 // -> ChainSkeleton[] -> read order (all major node ids) -> Material[] -> answer + QuestionTrace.
-import type { EdgeType } from '../indexer/state.js';
+import type { LegacyEdgeType as EdgeType } from '../indexer/state.js';
 
 export interface RoutedSection { path: string; rank: number }
 

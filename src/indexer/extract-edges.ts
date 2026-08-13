@@ -3,7 +3,7 @@
 // (event_emit/listen · pubsub · rest_call/route · stream · call · type). Pure: node → CallEdge[].
 // Consumed by skeleton.ts's process* methods (per-symbol edge lists).
 import { Node, SyntaxKind } from 'ts-morph';
-import type { CallEdge, EdgeType } from './state.js';
+import type { CallEdge, LegacyEdgeType } from './state.js';
 
 const BUILTIN_IGNORE = new Set([
     'console', 'Math', 'Object', 'Array', 'String', 'Number', 'JSON',
@@ -28,7 +28,7 @@ const CALLBACKS_LISTEN_METHODS = new Set(['add', 'addFrom']);
 export function extractCalls(node: any): CallEdge[] {
         const calls = new Map<string, CallEdge>();
 
-        const add = (name: string, edgeType: EdgeType, event?: string) => {
+        const add = (name: string, edgeType: LegacyEdgeType, event?: string) => {
             if (!name || name.length <= 1 || BUILTIN_IGNORE.has(name)) return;
             const key = event ? `${name}:${edgeType}:${event}` : `${name}:${edgeType}`;
             if (!calls.has(key)) calls.set(key, { name, edgeType, ...(event ? { event } : {}) });

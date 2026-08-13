@@ -27,6 +27,10 @@ export function getOutputPaths(sourceFile: string): { skeletonPath: string; mapp
     };
 }
 
+// One graph shard per workspace package, plus one reduced dispatch artifact. Replaces the 7851
+// per-file mapping/skeleton pairs: the shards are the cache, so there is no second serialization.
+export const GRAPH_DIR = path.join(OUTPUT_DIR, 'graph');
+
 export const DATA_DIR = path.join(PROJECT_ROOT, 'data');
 
 // Single source of truth for "is this file part of the index". Two consumers:
