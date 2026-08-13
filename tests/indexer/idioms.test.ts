@@ -97,6 +97,43 @@ test('callbacks: alias import and this.callbacks reach the same decl as a plain 
     assert.equal([...decls][0], 'callbacksBase.ts#Callbacks.add');
 });
 
+test('callbacks: overload signatures collapse to one decl', () => {
+    const p = project({
+        // The real callbacksBase.ts declares `add` four times (three overload signatures plus the
+        // implementation) and `run` four times. getSymbol().getDeclarations() returns all of them,
+        // and [0] is a signature, not the implementation — so an idiom matching only the
+        // implementation, or a slot keyed on whichever declaration the checker happened to return,
+        // splits one registry into four.
+        'callbacksBase.ts': `
+            export class Callbacks {
+                add(hook: string, callback: () => void): void;
+                add(hook: string, callback: () => void, priority: number): void;
+                add(hook: string, callback: (...args: any[]) => any, priority?: number, id?: string) {}
+                run(hook: string): void;
+                run(hook: string, ...args: any[]) {}
+            }
+            export const callbacks = new Callbacks();
+        `,
+        'notify.ts': `
+            import { callbacks } from './callbacksBase';
+            callbacks.add('afterSaveMessage', () => {});
+            callbacks.add('afterSaveMessage', () => {}, 100);
+        `,
+        'sender.ts': `
+            import { callbacks } from './callbacksBase';
+            export function send() { callbacks.run('afterSaveMessage', 1); }
+        `,
+    });
+
+    const slots = allSlots(p);
+    const decls = [...new Set(slots.map((s) => s.decl))].sort();
+
+    // Two decls total — one per role — not six.
+    assert.deepEqual(decls, ['callbacksBase.ts#Callbacks.add', 'callbacksBase.ts#Callbacks.run']);
+    assert.equal(slots.filter((s) => s.role === 'register').length, 2);
+    assert.equal(slots.filter((s) => s.role === 'dispatch').length, 1);
+});
+
 test('callbacks: a same-named add on an unrelated class produces no slot', () => {
     const p = project({
         'callbacksBase.ts': CALLBACKS_BASE,
