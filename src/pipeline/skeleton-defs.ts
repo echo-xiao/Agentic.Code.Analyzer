@@ -36,6 +36,8 @@ const DEFAULTS: Required<DefSkeletonOpts> = {
 
 // Same three tiers as before: a string-dispatch hop is the most informative, a type reference the
 // least. Only the names changed with the edge kinds.
+// `implements` sits with `call` rather than with `type`: arriving at an interface and stepping to
+// its implementation is a real transfer of control, not a type reference.
 const edgeWeight = (e: EdgeType): number =>
     e === 'registers' || e === 'dispatches' || e === 'handles' ? 1.0 : e === 'type' ? 0.1 : 0.6;
 

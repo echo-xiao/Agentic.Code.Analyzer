@@ -11,7 +11,12 @@ import type { Override } from './overrides.js';
 // Four static kinds plus three dispatch kinds. The old twelve-value union conflated registries
 // (callbacks and service events shared `event_emit`) and stored a handler in the same field as a
 // key, so the same edge type meant different things depending on the call site.
-export type EdgeType = 'call' | 'new' | 'jsx' | 'type' | 'registers' | 'dispatches' | 'handles';
+export type EdgeType =
+    | 'call' | 'new' | 'jsx' | 'type'
+    | 'registers' | 'dispatches' | 'handles'
+    // Interface or abstract member -> the class member implementing it. Without it a call on a
+    // proxified service ends at a signature with no body: 634 such dead ends, 2332 edges absorbed.
+    | 'implements';
 
 // The twelve-value union the old text-matching extractor emitted. Kept only until its consumers
 // (extract-edges.ts, indexer/skeleton.ts, the pipeline's name-keyed traversal) are removed in the

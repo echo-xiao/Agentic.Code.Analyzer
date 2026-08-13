@@ -20,10 +20,19 @@ import { collectDefs, enclosingDefId, relFileOf, type Def } from './defs.js';
 import { bindReference, referenceNodesOf, type StaticEdgeKind } from './binding.js';
 import { extractSlots, type Slot, type Unbound, type Variant } from './idioms.js';
 import { extractOverrides, type OverrideSite } from './overrides.js';
+import { implementationEdges } from './impl-edges.js';
 
-export type EdgeKind = StaticEdgeKind | 'registers' | 'dispatches' | 'handles';
+export type EdgeKind = StaticEdgeKind | 'registers' | 'dispatches' | 'handles' | 'implements';
 
-export interface Edge { from: string; to: string; kind: EdgeKind }
+export interface Edge {
+    from: string;
+    to: string;
+    kind: EdgeKind;
+    // How many classes implement the same member, on `implements` edges only. Carried so the
+    // renderer can show a fork: an edge that arrives at one of several implementations and says
+    // nothing about the others is the same failure as silently picking one.
+    implCount?: number;
+}
 export type { Slot, Unbound, OverrideSite };
 
 export interface Shard {
@@ -80,6 +89,13 @@ function processFile(
     out.slots.push(...slots);
     out.unbound.push(...unbound);
     out.stats.unbound += unbound.length;
+
+    // Produced by the shard that owns the IMPLEMENTATION, not the one that owns the interface: the
+    // interface is visible from here through the injected workspace paths, while the reverse is not,
+    // and emitting from one side only keeps a cross-package pair from being written twice.
+    for (const e of implementationEdges(sf, repoRoot)) {
+        out.edges.push({ from: e.from, to: e.to, kind: 'implements', implCount: e.implCount });
+    }
 }
 
 // Workspace packages are source-only: none of them is built, and each package.json points `main`

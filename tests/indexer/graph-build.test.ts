@@ -134,3 +134,23 @@ test('a shard carries the slot and override sections the dispatch side fills in'
     assert.equal(shard.package, 'packages/p');
     assert.deepEqual(shard.failedFiles, []);
 });
+
+test('an implements edge carries how many classes implement the member', () => {
+    const { root, packages } = mkRepo({
+        'packages/core': { 'src/index.ts': 'export interface IStore { save(x: unknown): void }\n' },
+        'apps/web': {
+            'src/a.ts': 'import type { IStore } from "@t/core";\n' +
+                        'export class MemoryStore implements IStore { save(x: unknown) { void x; } }\n',
+            'src/b.ts': 'import type { IStore } from "@t/core";\n' +
+                        'export class DiskStore implements IStore { save(x: unknown) { void x; } }\n',
+        },
+    });
+    const web = packages.find(p => p.id === 'apps/web')!;
+
+    const impl = buildShard(web, root, packages).edges.filter(e => e.kind === 'implements');
+
+    // Two implementations, and both edges say so. Dropping the count on the way into the shard
+    // leaves the graph looking like each call has one destination.
+    assert.equal(impl.length, 2);
+    assert.deepEqual([...new Set(impl.map(e => e.implCount))], [2]);
+});

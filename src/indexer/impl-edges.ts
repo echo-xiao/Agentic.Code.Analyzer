@@ -64,27 +64,36 @@ function declaredMembers(cls: Node, repoRoot: string): Array<{ name: string; def
     return out;
 }
 
-// How many classes in this Program implement a given member. Counted across the whole Program
-// rather than the file, because the implementations of one interface routinely sit in different
-// packages — that is the case this module exists for.
-function countImplementers(sf: SourceFile, memberDefId: string, repoRoot: string): number {
-    let n = 0;
+// How many classes implement each member, built once per Program and cached.
+//
+// The first version counted per member by rescanning every class in the Program, which is
+// O(members x classes x members) and ran past five minutes on apps/meteor against 98 seconds
+// without it. One pass over the classes, keyed by member, is O(classes x members).
+const implCountCache = new WeakMap<object, Map<string, number>>();
+
+function implCounts(sf: SourceFile, repoRoot: string): Map<string, number> {
+    const project = sf.getProject() as unknown as object;
+    const cached = implCountCache.get(project);
+    if (cached) return cached;
+
+    const counts = new Map<string, number>();
     for (const other of sf.getProject().getSourceFiles()) {
         if (other.getFilePath().includes('/node_modules/')) continue;
         for (const cls of other.getClasses()) {
-            const declared = declaredMembers(cls, repoRoot);
-            if (!declared.some(d => d.defId === memberDefId)) continue;
-            const name = declared.find(d => d.defId === memberDefId)!.name;
-            const impl = cls.getMethod(name);
-            if (impl && impl.getBody()) n++;
+            for (const { name, defId } of declaredMembers(cls, repoRoot)) {
+                const impl = cls.getMethod(name);
+                if (!impl || !impl.getBody()) continue;
+                counts.set(defId, (counts.get(defId) ?? 0) + 1);
+            }
         }
     }
-    return n;
+    implCountCache.set(project, counts);
+    return counts;
 }
 
 export function implementationEdges(sf: SourceFile, repoRoot: string): ImplEdge[] {
     const edges: ImplEdge[] = [];
-    const counts = new Map<string, number>();
+    let counts: Map<string, number> | null = null;
 
     for (const cls of sf.getClasses()) {
         for (const { name, defId: memberDefId } of declaredMembers(cls, repoRoot)) {
@@ -93,12 +102,8 @@ export function implementationEdges(sf: SourceFile, repoRoot: string): ImplEdge[
             const to = defIdOfDeclaration(impl, repoRoot);
             if (!to || to === memberDefId) continue;
 
-            let implCount = counts.get(memberDefId) ?? 0;
-            if (implCount === 0) {
-                implCount = countImplementers(sf, memberDefId, repoRoot);
-                counts.set(memberDefId, implCount);
-            }
-            edges.push({ from: memberDefId, to, implCount: Math.max(1, implCount) });
+            counts ??= implCounts(sf, repoRoot);             // only when this file has any
+            edges.push({ from: memberDefId, to, implCount: Math.max(1, counts.get(memberDefId) ?? 1) });
         }
     }
     return edges;
