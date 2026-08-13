@@ -10,7 +10,7 @@
 import '../eval/utils/load-env.js';   // side effect: .env -> process.env, before GeminiClient reads the key
 import * as fs from 'fs';
 import * as path from 'path';
-import { ensureIndex } from '../indexer/index.js';
+import { readShards, readDispatch, loadGlobalIndex } from '../indexer/graph-store.js';
 import { route } from './routing.js';
 import { buildChains, buildPools, pickSeeds } from './entry.js';
 import { loadAllSections, type WikiSubsection } from '../deepwiki/sections.js';
@@ -137,7 +137,15 @@ if (isMain) {
     const filter = arg('filter') ?? '';
     const limit = Number(arg('limit') ?? Infinity);
     const budget = arg('budget') !== undefined ? Number(arg('budget')) : undefined;
-    await ensureIndex();
+    // The graph shards are the index; `npm run build:graph` regenerates them. Loading is a read
+    // of 71 files, so there is no cache to warm and no per-file mapping to re-parse.
+    const shards = readShards();
+    if (shards.length === 0) {
+        console.error('No graph shards found. Run: npx tsx -e "import(\'./src/indexer/build-graph.js\').then(m => m.buildGraph({ progress: true }))"');
+        process.exit(1);
+    }
+    loadGlobalIndex(shards, readDispatch());
+    console.error(`index: ${shards.length} shards`);
     const sections = loadAllSections();
     const cases = loadTestcases(TESTCASES_PATH).flat.filter(c => c.id.includes(filter)).slice(0, limit);
     const rows: RunRow[] = [];

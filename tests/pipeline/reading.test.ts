@@ -1,6 +1,6 @@
 import { test } from 'node:test';
 import assert from 'node:assert/strict';
-import { packMaterials, fallbackRead } from '../../src/pipeline/reading.js';
+import { packMaterials } from '../../src/pipeline/reading.js';
 import { GLOBAL_INDEX } from '../../src/indexer/state.js';
 import type { SkeletonNode } from '../../src/pipeline/types.js';
 
@@ -33,4 +33,17 @@ test('packMaterials records ids whose read failed outright', () => {
 test('packMaterials packs a repeated id once', () => {
     const { materials } = packMaterials(['1a', '1a', '1b'], table, 100000, { readFn });
     assert.deepEqual(materials.map(m => m.nodeId), ['1a', '1b']);
+});
+
+test('a node with no definition id reads nothing rather than guessing a file', () => {
+    // The default read this replaces took files[0] for the bare name and returned a blind 60-line
+    // window, handed to the model as that symbol's implementation with no signal it was a guess.
+    // Reading nothing is the honest outcome, and it lands in `unread` where attribution sees it.
+    const orphan = node('9z', 'orphan');
+    delete (orphan as { defId?: string }).defId;
+
+    const { materials, unread } = packMaterials(['9z'], new Map([['9z', orphan]]), 24000);
+
+    assert.deepEqual(materials, []);
+    assert.deepEqual(unread, ['9z']);
 });
