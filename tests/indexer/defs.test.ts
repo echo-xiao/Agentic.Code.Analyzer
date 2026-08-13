@@ -4,7 +4,7 @@ import * as fs from 'fs';
 import * as os from 'os';
 import * as path from 'path';
 import { Project, SyntaxKind } from 'ts-morph';
-import { collectDefs, defIdOfDeclaration, enclosingDefId, relFileOf } from '../../src/indexer/defs.js';
+import { collectDefs, defIdOfDeclaration, enclosingDefId, relFileOf, canonicalDeclaration, declarationsOf } from '../../src/indexer/defs.js';
 
 const root = fs.mkdtempSync(path.join(os.tmpdir(), 'defs-'));
 const load = (rel: string, body: string) => {
@@ -126,4 +126,38 @@ test('every id defIdOfDeclaration produces is present in collectDefs', () => {
 
 test('relFileOf is repo-relative with forward slashes and no leading slash', () => {
     assert.equal(relFileOf(path.join(root, 'src/x/y.ts'), root), 'src/x/y.ts');
+});
+
+test('overload signatures resolve to one canonical declaration, the first', () => {
+    const sf = load('src/overloads.ts', [
+        'export class Auth {',
+        '  has(uid: string): boolean;',
+        '  has(uid: string, rid: string): boolean;',
+        '  has(uid: string, rid?: string) { return Boolean(uid && rid); }',
+        '}',
+        'export function callIt(a: Auth) { return a.has("u"); }',
+    ].join('\n'));
+
+    const call = sf.getDescendantsOfKind(SyntaxKind.CallExpression)
+        .find(c => c.getExpression().getText() === 'a.has')!;
+    const nameNode = call.getExpression().asKindOrThrow(SyntaxKind.PropertyAccessExpression).getNameNode();
+    const chosen = canonicalDeclaration(declarationsOf(nameNode));
+
+    // Whichever declaration a caller binds to must be the same one an edge leaves from. When two
+    // parts of the system pick differently, the edge arrives at one node and departs from another,
+    // which reads as a healthy graph and a broken chain — measured once at 8.6% of same-package
+    // edges before the def rules were unified.
+    assert.equal(defIdOfDeclaration(chosen!, root), 'src/overloads.ts#Auth.has');
+});
+
+test('canonicalDeclaration never compares positions across files', () => {
+    const a = load('src/merged-a.ts', 'export interface Thing { go(): void }');
+    const b = load('src/merged-b.ts', 'export interface Thing { go(): void }');
+    const declA = a.getInterfaceOrThrow('Thing').getMethods()[0];
+    const declB = b.getInterfaceOrThrow('Thing').getMethods()[0];
+
+    // Two files, two declarations. The result must be stable and must come from one file, not be
+    // whichever happened to have the smaller offset.
+    const picked = canonicalDeclaration([declB, declA]);
+    assert.equal(picked!.getSourceFile().getFilePath(), declB.getSourceFile().getFilePath());
 });

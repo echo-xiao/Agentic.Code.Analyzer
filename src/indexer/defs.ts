@@ -179,3 +179,32 @@ export function enclosingDefId(pos: number, ranges: DefRange[]): string | null {
     }
     return best?.id ?? null;
 }
+
+// The one declaration a symbol is identified by, everywhere.
+//
+// A symbol routinely has several declarations: overload signatures, an implementation, and
+// declaration merging across files (`Meteor.methods` resolves to both @types/meteor and the repo's
+// own .d.ts). Whoever picks must pick the SAME one every time, or two parts of the system end up
+// talking about different nodes — an edge arriving at one declaration while the edge leaving
+// starts from another, which reads as a healthy graph and a broken chain.
+//
+// Rule: prefer a declaration the repo owns, then the earliest in that file. Positions are only
+// comparable within one file, so they are never compared across files.
+export function canonicalDeclaration(decls: Node[]): Node | undefined {
+    if (decls.length === 0) return undefined;
+    const owned = decls.filter(d => !d.getSourceFile().getFilePath().includes('/node_modules/'));
+    const pool = owned.length > 0 ? owned : decls;
+    const file = pool[0].getSourceFile().getFilePath();
+    const sameFile = pool.filter(d => d.getSourceFile().getFilePath() === file);
+    return sameFile.sort((a, b) => a.getStart() - b.getStart())[0];
+}
+
+// The declarations of a symbol, following an import alias to what it actually names.
+export function declarationsOf(node: Node): Node[] {
+    let symbol;
+    try { symbol = node.getSymbol(); } catch { return []; }
+    if (!symbol) return [];
+    let target = symbol;
+    try { target = symbol.getAliasedSymbol() ?? symbol; } catch { /* not an alias */ }
+    return target.getDeclarations();
+}

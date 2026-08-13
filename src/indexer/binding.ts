@@ -10,7 +10,7 @@
 // counted, and dropped. It is never guessed by name.
 import { Node, SourceFile, SyntaxKind } from 'ts-morph';
 import * as path from 'path';
-import { defIdOfDeclaration } from './defs.js';
+import { canonicalDeclaration, declarationsOf, defIdOfDeclaration } from './defs.js';
 
 export type StaticEdgeKind = 'call' | 'new' | 'jsx' | 'type';
 
@@ -30,25 +30,24 @@ function isInsideRepo(declFile: string, repoRoot: string): boolean {
 }
 
 export function bindReference(node: Node, repoRoot: string): Bind {
-    let symbol;
-    try { symbol = node.getSymbol(); } catch { return { kind: 'unbound', reason: 'checker threw' }; }
-    if (!symbol) return { kind: 'unbound', reason: 'no symbol' };
+    let decls: Node[];
+    try { decls = declarationsOf(node); } catch { return { kind: 'unbound', reason: 'checker threw' }; }
+    if (decls.length === 0) {
+        let hasSymbol = false;
+        try { hasSymbol = node.getSymbol() !== undefined; } catch { /* ignore */ }
+        return { kind: 'unbound', reason: hasSymbol ? 'no declarations' : 'no symbol' };
+    }
 
-    // Import aliases point at the local binding; the aliased symbol is the real declaration.
-    let target = symbol;
-    try { target = symbol.getAliasedSymbol() ?? symbol; } catch { /* not an alias */ }
-
-    const decls = target.getDeclarations();
-    if (decls.length === 0) return { kind: 'unbound', reason: 'no declarations' };
-
-    // Overloads and declaration merging give several declarations; the first one inside the repo
-    // is the project's own, and anything else is ambient or third-party.
+    // Overloads and declaration merging give several declarations. The canonical one is chosen by
+    // a single shared rule, so that whatever an edge arrives at is what an edge leaves from —
+    // see canonicalDeclaration.
+    const inRepo = decls.filter(d => isInsideRepo(d.getSourceFile().getFilePath(), repoRoot));
     let inRepoWithoutDef: Node | null = null;
-    for (const decl of decls) {
-        if (!isInsideRepo(decl.getSourceFile().getFilePath(), repoRoot)) continue;
-        const defId = defIdOfDeclaration(decl, repoRoot);
+    if (inRepo.length > 0) {
+        const chosen = canonicalDeclaration(inRepo);
+        const defId = chosen ? defIdOfDeclaration(chosen, repoRoot) : null;
         if (defId !== null) return { kind: 'def', defId };
-        if (inRepoWithoutDef === null) inRepoWithoutDef = decl;
+        inRepoWithoutDef = chosen ?? inRepo[0];
     }
 
     // The declaration is ours but is not a node kind that can be an edge target: a destructured

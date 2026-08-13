@@ -14,7 +14,7 @@
 // matched 0 rows, and the dispatch inventory itself files REST under a path that no longer exists
 // (`app/api/server/ApiClass.ts`; the class is at `server/api/ApiClass.ts`).
 import { Node, SourceFile, SyntaxKind } from 'ts-morph';
-import { collectDefs, defIdOfDeclaration, enclosingDefId, relFileOf } from './defs.js';
+import { canonicalDeclaration, collectDefs, declarationsOf, defIdOfDeclaration, enclosingDefId, relFileOf } from './defs.js';
 import { bindReference } from './binding.js';
 
 export type Space =
@@ -211,24 +211,14 @@ function writtenName(callee: Node): string | null {
 // back splits one registry into four. The first declaration also keeps the id free of the `~n`
 // ordinal suffix, and adding an overload later does not renumber it.
 function canonicalDecl(node: Node, repoRoot: string): { decl: Node; defId: string } | null {
-    let symbol;
-    try { symbol = node.getSymbol(); } catch { return null; }
-    if (!symbol) return null;
-    let target = symbol;
-    try { target = symbol.getAliasedSymbol() ?? symbol; } catch { /* not an alias */ }
-
-    const usable = target.getDeclarations().filter(d => defIdOfDeclaration(d, repoRoot) !== null);
+    let usable: Node[];
+    try { usable = declarationsOf(node).filter(d => defIdOfDeclaration(d, repoRoot) !== null); }
+    catch { return null; }
     if (usable.length === 0) return null;
 
-    // Positions are only comparable within one file, and a symbol can be declared in several —
-    // `Meteor.methods` resolves to both @types/meteor and the repo's own augmentation. Prefer a
-    // declaration the repo owns, then the earliest in that file.
-    const own = usable.filter(d => !d.getSourceFile().getFilePath().includes('/node_modules/'));
-    const decls = (own.length > 0 ? own : usable).sort((a, b) => a.getStart() - b.getStart());
-
-    const decl = decls[0];
-    const defId = defIdOfDeclaration(decl, repoRoot)!;
-    return { decl, defId };
+    const decl = canonicalDeclaration(usable);
+    if (!decl) return null;
+    return { decl, defId: defIdOfDeclaration(decl, repoRoot)! };
 }
 
 // Name of the type behind an expression, if the checker can give one.
