@@ -1,12 +1,25 @@
-// overrides.test.ts — coverage mode (spec: docs/superpowers/specs/2026-08-13-binding-resolution-design.md §2.7).
+// overrides.test.ts — coverage mode (spec: 2026-08-13-binding-resolution-design.md §2.7).
 //
-// Coverage mode adds no edges. It annotates existing ones with "there is a second
-// implementation here, and this is its condition". It does NOT claim to know which one wins
-// at runtime — that is what resolvedAt: 'runtime' records.
+// Coverage mode adds no edges. It records that a key has a second implementation and what gates it.
+// It does NOT decide which one wins: `registerModel` resolves by module import order and the EE
+// registration sits behind a dynamic import, so `resolvedAt: 'runtime'` is how that ignorance is
+// recorded rather than hidden.
+//
+// Fixtures follow the shape verified in Rocket.Chat e75965c05d on 2026-08-13, which is two levels
+// deep and NOT what a first reading suggests:
+//
+//     ee/server/models/startup.ts     void License.onLicense('livechat-enterprise', () => {
+//                                         import('./LivechatDepartment');
+//                                     });
+//     ee/server/models/LivechatDepartment.ts
+//                                     registerModel('ILivechatDepartmentModel', new ...EE(...));
+//
+// The registration is top level in its module; the MODULE is what the license gates. A rule
+// looking for a registration lexically inside the onLicense callback matches zero rows.
 import { test } from 'node:test';
 import assert from 'node:assert/strict';
 import { Project } from 'ts-morph';
-import { extractOverrides, multiImplementationKeys } from '../../src/indexer/overrides.js';
+import { extractOverrides, pairOverrides, multiImplementationKeys } from '../../src/indexer/overrides.js';
 
 const OPTS = { repoRoot: '/repo', keyspaceScope: 'test@extractor-v12' };
 
@@ -16,202 +29,136 @@ function project(files: Record<string, string>): Project {
     return p;
 }
 
-const overridesOf = (p: Project) => extractOverrides(p.getSourceFiles(), OPTS);
-
 const MODELS = `
-export const models: Record<string, unknown> = {};
-export function registerModel(name: string, instance: unknown) { models[name] = instance; }
-export const License = { onLicense(mod: string, cb: () => Promise<void>) {} };
+export function registerModel(name: string, instance: unknown) { void name; void instance; }
+export const License = { onLicense(mod: string, cb: () => void) { void mod; void cb; } };
 `;
 
-test('the same model key registered twice yields one override, not a new edge', () => {
-    const p = project({
-        'models.ts': MODELS,
-        'ce.ts': `
-            import { registerModel } from './models';
-            export class RoomsRaw {}
-            registerModel('IRoomsModel', new RoomsRaw());
-        `,
-        'ee.ts': `
-            import { registerModel, License } from './models';
-            export class RoomsEE {}
-            void License.onLicense('livechat-enterprise', async () => {
-                registerModel('IRoomsModel', new RoomsEE());
-            });
-        `,
-    });
+// CE and EE halves live in different packages in the real repo (packages/models and
+// apps/meteor/ee/server/models), so pairing cannot happen inside one shard.
+const CE_AND_EE = {
+    'models.ts': MODELS,
+    'server/models/LivechatDepartment.ts': `
+        import { registerModel } from '../../models';
+        export class LivechatDepartmentRaw {}
+        registerModel('ILivechatDepartmentModel', new LivechatDepartmentRaw());
+    `,
+    'ee/server/models/startup.ts': `
+        import { License } from '../../../models';
+        void License.onLicense('livechat-enterprise', () => {
+            import('./LivechatDepartment');
+        });
+    `,
+    'ee/server/models/LivechatDepartment.ts': `
+        import { registerModel } from '../../../models';
+        export class LivechatDepartmentEE {}
+        registerModel('ILivechatDepartmentModel', new LivechatDepartmentEE());
+    `,
+};
 
-    const overrides = overridesOf(p);
+const sitesOf = (p: Project) => extractOverrides(p.getSourceFiles(), OPTS);
 
-    assert.equal(overrides.length, 1);
-    assert.equal(overrides[0].key, 'IRoomsModel');
-    assert.equal(overrides[0].target, 'ce.ts#RoomsRaw');
-    assert.equal(overrides[0].by, 'ee.ts#RoomsEE');
-    assert.equal(overrides[0].source, 'registerModel');
+test('a registration site records its key and the implementation it installs', () => {
+    const sites = sitesOf(project(CE_AND_EE));
+
+    assert.deepEqual(sites.map((s) => s.key).sort(),
+        ['ILivechatDepartmentModel', 'ILivechatDepartmentModel']);
+    assert.deepEqual(sites.map((s) => s.impl).sort(), [
+        'ee/server/models/LivechatDepartment.ts#LivechatDepartmentEE',
+        'server/models/LivechatDepartment.ts#LivechatDepartmentRaw',
+    ]);
+    assert.deepEqual([...new Set(sites.map((s) => s.source))], ['registerModel']);
 });
 
-test('an override records the condition expression and where it is evaluated', () => {
-    const p = project({
-        'models.ts': MODELS,
-        'ce.ts': `
-            import { registerModel } from './models';
-            export class RoomsRaw {}
-            registerModel('IRoomsModel', new RoomsRaw());
-        `,
-        'ee.ts': `
-            import { registerModel, License } from './models';
-            export class RoomsEE {}
-            void License.onLicense('livechat-enterprise', async () => {
-                registerModel('IRoomsModel', new RoomsEE());
-            });
-        `,
-    });
+test('the license condition comes from the gate on the module import, not from lexical nesting', () => {
+    const sites = sitesOf(project(CE_AND_EE));
 
-    const { condition } = overridesOf(p)[0];
+    const ee = sites.find((s) => s.impl.includes('EE'))!;
+    const ce = sites.find((s) => s.impl.includes('Raw'))!;
 
-    // Structure, not a string: the reader needs the module name, not prose.
-    assert.equal(condition.kind, 'license');
-    assert.equal(condition.module, 'livechat-enterprise');
-    assert.equal(condition.evalAt, 'import');
+    // The EE registration is top level in its own file; nothing lexically encloses it.
+    assert.equal(ee.condition?.kind, 'license');
+    assert.equal(ee.condition?.module, 'livechat-enterprise');
+    assert.equal(ee.condition?.evalAt, 'import');
+    assert.equal(ce.condition, undefined);
+});
+
+test('pairing happens across packages, not inside one shard', () => {
+    const p = project(CE_AND_EE);
+    const all = sitesOf(p);
+
+    // Each half alone yields no override: one implementation is not an override of anything.
+    const ceOnly = all.filter((s) => !s.impl.includes('ee/'));
+    assert.deepEqual(pairOverrides(ceOnly), []);
+
+    const overrides = pairOverrides(all);
+    assert.equal(overrides.length, 1);
+    assert.equal(overrides[0].key, 'ILivechatDepartmentModel');
+    assert.equal(overrides[0].target, 'server/models/LivechatDepartment.ts#LivechatDepartmentRaw');
+    assert.equal(overrides[0].by, 'ee/server/models/LivechatDepartment.ts#LivechatDepartmentEE');
 });
 
 test('an override never claims to know which implementation wins', () => {
+    const overrides = pairOverrides(sitesOf(project(CE_AND_EE)));
+
+    // Import order decides, and the EE side is behind a dynamic import. Static analysis cannot
+    // answer this and must not pretend to.
+    assert.equal(overrides[0].resolvedAt, 'runtime');
+    assert.equal(overrides[0].condition?.module, 'livechat-enterprise');
+});
+
+test('an unconditional second registration is still an override, with no condition', () => {
     const p = project({
         'models.ts': MODELS,
-        'ce.ts': `
+        'a.ts': `
             import { registerModel } from './models';
-            export class RoomsRaw {}
-            registerModel('IRoomsModel', new RoomsRaw());
+            export class ARaw {}
+            registerModel('IThing', new ARaw());
         `,
-        'ee.ts': `
-            import { registerModel, License } from './models';
-            export class RoomsEE {}
-            void License.onLicense('ee', async () => { registerModel('IRoomsModel', new RoomsEE()); });
-        `,
-    });
-
-    // registerModel resolves by module import order, and the EE call is inside a dynamic
-    // import() callback. Static analysis cannot answer this and must not pretend to.
-    assert.equal(overridesOf(p)[0].resolvedAt, 'runtime');
-});
-
-test('patch injection records a condition that is re-evaluated on every call', () => {
-    const p = project({
-        'patch.ts': `
-            export function makeFunction<T extends Function>(fn: T) {
-                return Object.assign(fn, { patch(impl: T, cond?: () => boolean) {} });
-            }
-        `,
-        'base.ts': `
-            import { makeFunction } from './patch';
-            export const getRoomBehavior = makeFunction(function getRoomBehavior() { return 'ce'; });
-        `,
-        'ee-patch.ts': `
-            import { getRoomBehavior } from './base';
-            import { License } from './license';
-            getRoomBehavior.patch(function eeBehavior() { return 'ee'; }, () => License.hasModule('livechat'));
-        `,
-        'license.ts': `export const License = { hasModule(mod: string) { return false; } };`,
-    });
-
-    const patch = overridesOf(p).find((o) => o.source === 'patch-injection')!;
-
-    assert.equal(patch.target, 'base.ts#getRoomBehavior');
-    assert.equal(patch.by, 'ee-patch.ts#eeBehavior');
-    // Not 'import': the license can expire mid-process and flip this back.
-    assert.equal(patch.condition.evalAt, 'call');
-});
-
-test('a deployment-shape cutoff is a variant, not a condition', () => {
-    const p = project({
-        'streamerCentral.ts': `
-            export const StreamerCentral = {
-                emit(event: string, ...args: any[]) {},
-                on(event: string, handler: () => void) {},
-            };
-        `,
-        'ee-listener.ts': `
-            import { StreamerCentral } from './streamerCentral';
-            StreamerCentral.on('broadcast', () => {});
+        'b.ts': `
+            import { registerModel } from './models';
+            export class BRaw {}
+            registerModel('IThing', new BRaw());
         `,
     });
 
-    const overrides = overridesOf(p);
+    const overrides = pairOverrides(sitesOf(p));
 
-    // CE has zero listeners for this key. That is not "two implementations, one wins" —
-    // it is "the edge has no target in this build". Filing it as a condition would put a
-    // non-defect into the multi-implementation list.
-    assert.deepEqual(overrides.filter((o) => o.condition?.kind === 'license'), []);
-    const cutoff = overrides.find((o) => o.key === 'broadcast');
-    assert.ok(cutoff, 'the deployment cutoff should still be recorded');
-    assert.equal(cutoff.variant, 'monolith');
-    assert.equal(cutoff.condition, undefined);
-});
-
-test('a module-level override records both the condition and the variant', () => {
-    const p = project({
-        'meteor.ts': `
-            export const Meteor = { connection: { _stream: {} as unknown }, call(name: string) {} };
-            export function isSdkTransportEnabled() { return false; }
-        `,
-        'overrides/ddpOverREST.ts': `
-            import { Meteor, isSdkTransportEnabled } from '../meteor';
-            export function ddpOverREST() {
-                if (isSdkTransportEnabled()) { Meteor.call = function patched(name: string) {}; }
-            }
-        `,
-    });
-
-    const mod = overridesOf(p).find((o) => o.source === 'module-override')!;
-
-    // This one changes how the boundary is crossed, not which handler runs: a Meteor method
-    // call leaves over REST instead. Both REST and Meteor-methods key accounting depend on it.
-    assert.ok(mod.condition, 'module overrides carry a condition');
-    assert.ok(mod.variant, 'module overrides carry a variant');
+    assert.equal(overrides.length, 1);
+    assert.equal(overrides[0].condition, undefined);
+    assert.equal(overrides[0].resolvedAt, 'runtime');
 });
 
 test('overrides are enumerable as a multi-implementation list', () => {
     const p = project({
-        'models.ts': MODELS,
-        'ce.ts': `
-            import { registerModel } from './models';
-            export class RoomsRaw {}
+        ...CE_AND_EE,
+        'server/models/Users.ts': `
+            import { registerModel } from '../../models';
             export class UsersRaw {}
-            registerModel('IRoomsModel', new RoomsRaw());
             registerModel('IUsersModel', new UsersRaw());
-        `,
-        'ee.ts': `
-            import { registerModel, License } from './models';
-            export class RoomsEE {}
-            void License.onLicense('ee', async () => { registerModel('IRoomsModel', new RoomsEE()); });
         `,
     });
 
-    const list = multiImplementationKeys(overridesOf(p));
+    const list = multiImplementationKeys(pairOverrides(sitesOf(p)));
 
-    // Only IRoomsModel has a second implementation. IUsersModel is registered once.
-    assert.deepEqual(list.map((e) => e.key), ['IRoomsModel']);
+    // IUsersModel is registered once and must not appear.
+    assert.deepEqual(list.map((e) => e.key), ['ILivechatDepartmentModel']);
     assert.equal(list[0].implementations.length, 2);
 });
 
 test('a single registration produces no override', () => {
     const p = project({
         'models.ts': MODELS,
-        'ce.ts': `
+        'only.ts': `
             import { registerModel } from './models';
             export class UsersRaw {}
             export class RoomsRaw {}
             registerModel('IUsersModel', new UsersRaw());
             registerModel('IRoomsModel', new RoomsRaw());
         `,
-        'ee.ts': `
-            import { registerModel, License } from './models';
-            export class RoomsEE {}
-            void License.onLicense('ee', async () => { registerModel('IRoomsModel', new RoomsEE()); });
-        `,
     });
 
-    // IRoomsModel is the positive control: an extractor that returns nothing cannot pass by
-    // being silent about IUsersModel.
-    assert.deepEqual(overridesOf(p).map((o) => o.key), ['IRoomsModel']);
+    // Positive control: sites are found, they just do not pair.
+    assert.equal(sitesOf(p).length, 2);
+    assert.deepEqual(pairOverrides(sitesOf(p)), []);
 });

@@ -19,12 +19,12 @@ import type { WorkspacePackage } from './workspace.js';
 import { collectDefs, enclosingDefId, relFileOf, type Def } from './defs.js';
 import { bindReference, referenceNodesOf, type StaticEdgeKind } from './binding.js';
 import { extractSlots, type Slot, type Unbound } from './idioms.js';
-import { extractOverrides, type Override } from './overrides.js';
+import { extractOverrides, type OverrideSite } from './overrides.js';
 
 export type EdgeKind = StaticEdgeKind | 'registers' | 'dispatches' | 'handles';
 
 export interface Edge { from: string; to: string; kind: EdgeKind }
-export type { Slot, Unbound, Override };
+export type { Slot, Unbound, OverrideSite };
 
 export interface Shard {
     package: string;
@@ -34,7 +34,7 @@ export interface Shard {
     defs: Def[];
     edges: Edge[];
     slots: Slot[];
-    overrides: Override[];
+    overrides: OverrideSite[];
     unbound: Unbound[];
     // Files whose processing threw. Their defs may already be pushed while their edges and slots are
     // incomplete, and nothing else in the shard tells that apart from a file that genuinely has few
@@ -154,9 +154,10 @@ export function buildShard(pkg: WorkspacePackage, repoRoot: string, packages: Wo
         }
     }
 
-    // Coverage mode reads the whole package at once: "this key has a second implementation" is a
-    // statement about a set of files, not about one file.
-    let overrides: Override[] = [];
+    // Coverage mode reads the whole package at once, and even that is not enough: a key's CE and
+    // EE halves sit in different packages, so the shard carries raw registration SITES and the
+    // pairing happens in the global reduce.
+    let overrides: OverrideSite[] = [];
     try {
         overrides = extractOverrides(ownFiles, { repoRoot, keyspaceScope });
     } catch (e) {
