@@ -356,16 +356,22 @@ test('api.call: slots carry the deployment variant', () => {
 
 test('meteor-methods: the key is the object property name, not an argument', () => {
     const p = project({
-        'meteor.ts': `
-            export const Meteor = {
-                methods(handlers: Record<string, Function>) {},
-                call(name: string, ...args: any[]) {},
-            };
+        // Faithful to the real repo: Meteor is not declared in the repo's own source. It resolves
+        // to two .d.ts files — @types/meteor under node_modules and the repo's own augmentation
+        // under definition/externals. Declaring a local meteor.ts here (as this fixture first did)
+        // hides the only hard part of this trunk.
+        'definition/externals/meteor/meteor.d.ts': `
+            declare module 'meteor/meteor' {
+                export namespace Meteor {
+                    function methods(handlers: Record<string, Function>): void;
+                    function call(name: string, ...args: unknown[]): unknown;
+                }
+            }
         `,
         'rooms.ts': `
-            import { Meteor } from './meteor';
+            import { Meteor } from 'meteor/meteor';
             Meteor.methods({
-                'rooms.get'(params: any) { return params; },
+                'rooms.get'(params: unknown) { return params; },
                 'rooms.leave'(rid: string) { return rid; },
             });
         `,
@@ -373,31 +379,36 @@ test('meteor-methods: the key is the object property name, not an argument', () 
 
     const slots = slotsIn(p, 'rooms.ts');
 
-    // Form 1b: the existing argIndex-based slot extraction produces nothing here.
+    // Form 1b: the argIndex-based extraction produces nothing here — the key is a property name.
     assert.deepEqual(slots.map((s) => s.key).sort(), ['rooms.get', 'rooms.leave']);
     assert.deepEqual([...new Set(slots.map((s) => s.role))], ['register']);
     assert.deepEqual([...new Set(slots.map((s) => s.form))], ['1b']);
+    // Each handler is the method that implements it, so the edge has somewhere to go.
+    assert.deepEqual(slots.map((s) => s.handler).sort(),
+        ['rooms.ts#rooms.get', 'rooms.ts#rooms.leave'].sort());
 });
 
-test('meteor-methods: Meteor.call is the dispatch side', () => {
+test('meteor-methods: a computed property name is unbound, never guessed', () => {
     const p = project({
-        'meteor.ts': `
-            export const Meteor = {
-                methods(handlers: Record<string, Function>) {},
-                call(name: string, ...args: any[]) {},
-            };
+        'definition/externals/meteor/meteor.d.ts': `
+            declare module 'meteor/meteor' {
+                export namespace Meteor {
+                    function methods(handlers: Record<string, Function>): void;
+                }
+            }
         `,
-        'client.ts': `
-            import { Meteor } from './meteor';
-            export function leave(rid: string) { Meteor.call('rooms.leave', rid); }
+        'dynamic.ts': `
+            import { Meteor } from 'meteor/meteor';
+            const prefix = 'rooms';
+            Meteor.methods({ [\`\${prefix}.get\`]() { return 1; } });
         `,
     });
 
-    const slots = slotsIn(p, 'client.ts');
+    const { slots, unbound } = extractSlots(p.getSourceFileOrThrow('/repo/dynamic.ts'), OPTS);
 
-    assert.equal(slots.length, 1);
-    assert.equal(slots[0].role, 'dispatch');
-    assert.equal(slots[0].key, 'rooms.leave');
+    assert.deepEqual(slots, []);
+    assert.equal(unbound.length, 1);
+    assert.equal(unbound[0].reason, 'non-literal-key');
 });
 
 test('a non-literal key is reported as unbound instead of guessed', () => {

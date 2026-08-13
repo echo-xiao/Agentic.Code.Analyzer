@@ -47,6 +47,11 @@ function kindOf(decl: Node): DefKind | null {
 
 function ownName(decl: Node): string | null {
     if (decl.getKind() === SyntaxKind.Constructor) return 'constructor';
+    // A quoted member name (`{ 'rooms.get'() {} }`) answers getName() with its source text,
+    // quotes included. Left in, the id reads `file#'rooms.get'` and never joins with the
+    // dispatch side's plain `rooms.get`.
+    const nameNode = (decl as any).getNameNode?.();
+    if (nameNode && Node.isStringLiteral(nameNode)) return nameNode.getLiteralValue() || null;
     const name = (decl as any).getName?.();
     if (typeof name !== 'string' || name.length === 0) return null;
     // A destructuring VariableDeclaration answers getName() with its pattern text, so

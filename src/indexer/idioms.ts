@@ -151,12 +151,12 @@ export const IDIOMS: Idiom[] = [
     idiom({
         id: 'meteor-methods-register', space: 'meteor-methods', role: 'register', argIndex: 0,
         realm: 'server', form: '1b', keyResolution: 'literal-union',
-        file: /(^|\/)meteor(\.ts)?$/, names: ['methods'],
+        file: /(^|\/)meteor\.d\.ts$/, names: ['methods'],
     }),
     idiom({
         id: 'meteor-methods-call', space: 'meteor-methods', role: 'dispatch', argIndex: 0,
         realm: 'client', form: '1a', keyResolution: 'literal-union',
-        file: /(^|\/)meteor(\.ts)?$/, names: ['call'],
+        file: /(^|\/)meteor\.d\.ts$/, names: ['call'],
     }),
 
     // Out of scope (spec §2.2): kept because it already works and costs nothing, never counted.
@@ -203,10 +203,14 @@ function canonicalDecl(node: Node, repoRoot: string): { decl: Node; defId: strin
     let target = symbol;
     try { target = symbol.getAliasedSymbol() ?? symbol; } catch { /* not an alias */ }
 
-    const decls = target.getDeclarations()
-        .filter(d => defIdOfDeclaration(d, repoRoot) !== null)
-        .sort((a, b) => a.getStart() - b.getStart());
-    if (decls.length === 0) return null;
+    const usable = target.getDeclarations().filter(d => defIdOfDeclaration(d, repoRoot) !== null);
+    if (usable.length === 0) return null;
+
+    // Positions are only comparable within one file, and a symbol can be declared in several —
+    // `Meteor.methods` resolves to both @types/meteor and the repo's own augmentation. Prefer a
+    // declaration the repo owns, then the earliest in that file.
+    const own = usable.filter(d => !d.getSourceFile().getFilePath().includes('/node_modules/'));
+    const decls = (own.length > 0 ? own : usable).sort((a, b) => a.getStart() - b.getStart());
 
     const decl = decls[0];
     const defId = defIdOfDeclaration(decl, repoRoot)!;
@@ -299,7 +303,25 @@ export function extractSlots(sf: SourceFile, opts: ExtractOpts): { slots: Slot[]
         const args: Node[] = (node as any).getArguments?.() ?? [];
         const arg = args[i.argIndex];
 
-        if (i.form === '1b') return;          // object-property keys: their own task
+        // Form 1b: `Meteor.methods({ 'rooms.get'() {} })`. The key is a PROPERTY NAME, so the
+        // argIndex-based path below produces nothing at all for this trunk.
+        if (i.form === '1b') {
+            const obj = args[i.argIndex];
+            if (!obj || !Node.isObjectLiteralExpression(obj)) return;
+            for (const prop of obj.getProperties()) {
+                const nameNode = (prop as any).getNameNode?.();
+                if (nameNode && Node.isComputedPropertyName(nameNode)) {
+                    unbound.push({ at, text: prop.getText().slice(0, 120), reason: 'non-literal-key' });
+                    continue;
+                }
+                const key = nameNode && Node.isStringLiteral(nameNode)
+                    ? nameNode.getLiteralValue()
+                    : (prop as any).getName?.();
+                if (typeof key !== 'string' || key.length === 0) continue;
+                emit(i, key, at, canonical!.defId, defIdOfDeclaration(prop, repoRoot) ?? at);
+            }
+            return;
+        }
         if (i.form === '1d') return;          // reflection over the instance: its own task
 
         const key = literalOf(arg);
