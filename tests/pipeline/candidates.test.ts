@@ -143,3 +143,20 @@ test('past the floor, remaining slots go to the highest lexical score across poo
     // floor: P's best (hi) and Q's best (mid2); the last slot then goes to lo
     assert.deepEqual(kept.map(c => c.chain.seed.symbol), ['hi', 'mid2', 'lo']);
 });
+
+test('redundancy compares definitions, not name-and-file pairs', () => {
+    const barrel = write('packages/core-services/src/index.ts',
+        'export const Settings = { get(k: string) { return k; } };\nexport const Auth = { check() { return true; } };\n');
+    const other = write('apps/meteor/server/settings.ts', 'export function saveSetting() { return 1; }\n');
+    def('Settings', barrel);
+    def('Auth', barrel);
+    def('saveSetting', other);
+
+    const a = { chain: chain(1, 'Settings', rel(barrel)), skeleton: {} as never, majors: new Set(['packages/core-services/src/index.ts#Settings', 'packages/core-services/src/index.ts#Auth']) };
+    const b = { chain: chain(2, 'saveSetting', rel(other)), skeleton: {} as never, majors: new Set(['apps/meteor/server/settings.ts#saveSetting']) };
+
+    // Keyed by symbol@file a barrel's chain swallowed unrelated chains whole: new-21 kept a
+    // one-node chain and dropped chains of 20 and 10 nodes. Definition ids do not collide that way.
+    assert.equal(majorsOf({ roots: [{ kind: 'major', defId: 'x.ts#f', symbol: 'f', file: 'x.ts', children: [] }] } as never).has('x.ts#f'), true);
+    assert.equal([...a.majors].every(m => b.majors.has(m)), false);
+});

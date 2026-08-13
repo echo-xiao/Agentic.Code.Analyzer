@@ -32,7 +32,11 @@ function findEntryDef(symbol: string, file: string): string {
 export function majorsOf(skeleton: ChainSkeleton): Set<string> {
     const acc = new Set<string>();
     const walk = (n: SkeletonNode) => {
-        if (n.kind === 'major') acc.add(`${n.symbol}@${n.file}`);
+        // By definition id, not `symbol@file`. A barrel module exports dozens of service objects
+        // under one file, so a chain seeded there covered other chains' nodes by coincidence and
+        // the redundancy check dropped them: new-21 kept a 1-node chain and discarded chains of 20
+        // and 10 nodes.
+        if (n.kind === 'major') acc.add(n.defId ?? `${n.symbol}@${n.file}`);
         n.children.forEach(walk);
     };
     skeleton.roots.forEach(walk);
