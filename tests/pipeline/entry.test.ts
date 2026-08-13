@@ -1,6 +1,6 @@
 import { test, beforeEach } from 'node:test';
 import assert from 'node:assert/strict';
-import { GLOBAL_INDEX } from '../../src/indexer/state.js';
+import { GLOBAL_INDEX, resetGlobalIndex } from '../../src/indexer/state.js';
 import {
     lexicalScore, questionTokens, symbolTokens, tokenizeQuestion,
     chooseFile, buildPools, pickSeeds, buildChains, SEEDS_PER_POOL, MAX_SEEDS_PER_POOL,
@@ -9,11 +9,20 @@ import type { WikiSubsection } from '../../src/deepwiki/sections.js';
 
 const sec = (pageId: string, heading: string, sources: string[], prose = ''): WikiSubsection =>
     ({ pageId, heading, path: `${pageId} › ${heading}`, sources, prose });
-const def = (sym: string, ...files: string[]) =>
-    GLOBAL_INDEX.symbols.set(sym, new Set(files.map(f => `/abs/Rocket.Chat/${f}`)));
+// One definition per (symbol, file): the index is keyed by definition, so a symbol declared in
+// three files is three entries rather than one entry with a file list.
+const def = (sym: string, ...files: string[]) => {
+    for (const file of files) {
+        const id = `${file}#${sym}`;
+        GLOBAL_INDEX.defs.set(id, {
+            id, file, name: sym, qualifiedName: sym, kind: 'function',
+            line: 1, endLine: 5, signature: '', exported: true,
+        });
+    }
+};
 const routed = (...paths: string[]) => paths.map((path, i) => ({ path, rank: i + 1 }));
 
-beforeEach(() => { GLOBAL_INDEX.symbols.clear(); GLOBAL_INDEX.callGraph.clear(); GLOBAL_INDEX.fileDependents.clear(); });
+beforeEach(() => resetGlobalIndex());
 
 test('tokenizeQuestion drops stopwords; symbolTokens splits sub-words', () => {
     assert.deepEqual(tokenizeQuestion('How is a message sent on the client side in Rocket.Chat?'),

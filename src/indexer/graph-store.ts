@@ -59,6 +59,7 @@ export function loadGlobalIndex(shards: Shard[], dispatch: DispatchArtifact | nu
             else GLOBAL_INDEX.byName.set(def.name, [def.id]);
         }
         for (const f of shard.files) GLOBAL_INDEX.allFiles.add(f);
+
         GLOBAL_INDEX.stats.bound += shard.stats.bound;
         GLOBAL_INDEX.stats.external += shard.stats.external;
         GLOBAL_INDEX.stats.unbound += shard.stats.unbound;

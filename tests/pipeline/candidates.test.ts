@@ -3,7 +3,7 @@ import assert from 'node:assert/strict';
 import * as fs from 'fs';
 import * as os from 'os';
 import * as path from 'path';
-import { GLOBAL_INDEX } from '../../src/indexer/state.js';
+import { GLOBAL_INDEX, resetGlobalIndex } from '../../src/indexer/state.js';
 import { buildCandidates, majorsOf } from '../../src/pipeline/candidates.js';
 import { resetSkeletonCaches } from '../../src/pipeline/skeleton.js';
 import type { Pool } from '../../src/pipeline/entry.js';
@@ -17,20 +17,33 @@ const write = (rel: string, body: string): string => {
     fs.writeFileSync(abs, body);
     return abs;
 };
+// The index is keyed by definition, and a Chain's seed carries a repo-relative file, so the
+// fixtures build ids the same way the pipeline does: `<file>#<symbol>`.
+const rel = (abs: string) => abs.replace(/^.*?Rocket\.Chat\//, '');
 const def = (sym: string, abs: string) => {
-    if (!GLOBAL_INDEX.symbols.has(sym)) GLOBAL_INDEX.symbols.set(sym, new Set());
-    GLOBAL_INDEX.symbols.get(sym)!.add(abs);
+    const file = rel(abs);
+    const id = `${file}#${sym}`;
+    GLOBAL_INDEX.defs.set(id, {
+        id, file, name: sym, qualifiedName: sym, kind: 'function',
+        line: 1, endLine: 5, signature: '', exported: true,
+    });
+    GLOBAL_INDEX.byName.set(sym, [...(GLOBAL_INDEX.byName.get(sym) ?? []), id]);
+    return id;
 };
+// Direction matches the graph: caller -> callee.
 const edge = (callee: string, caller: string, file: string) => {
-    if (!GLOBAL_INDEX.callGraph.has(callee)) GLOBAL_INDEX.callGraph.set(callee, []);
-    GLOBAL_INDEX.callGraph.get(callee)!.push({ caller, file, edgeType: 'call' });
+    const from = `${rel(file)}#${caller}`;
+    const to = [...GLOBAL_INDEX.defs.keys()].find(k => k.endsWith(`#${callee}`)) ?? `${rel(file)}#${callee}`;
+    const e = { from, to, kind: 'call' as const };
+    GLOBAL_INDEX.out.set(from, [...(GLOBAL_INDEX.out.get(from) ?? []), e]);
+    GLOBAL_INDEX.in.set(to, [...(GLOBAL_INDEX.in.get(to) ?? []), e]);
 };
 const chain = (id: number, symbol: string, file: string, score = 1, pageId = 'P'): Chain =>
     ({ id, pageId, sections: [`${pageId} › S`], label: `${pageId} › S · ${symbol}`, seed: { symbol, file }, score, tied: false, prose: '' });
 const pool = (pageId: string, files: string[]): Pool => ({ pageId, sections: [], files, symbols: [] });
 
 beforeEach(() => {
-    GLOBAL_INDEX.symbols.clear(); GLOBAL_INDEX.callGraph.clear(); GLOBAL_INDEX.fileDependents.clear();
+    resetGlobalIndex();
     resetSkeletonCaches();
 });
 

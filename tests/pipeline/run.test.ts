@@ -1,6 +1,6 @@
 import { test, beforeEach } from 'node:test';
 import assert from 'node:assert/strict';
-import { GLOBAL_INDEX } from '../../src/indexer/state.js';
+import { GLOBAL_INDEX, resetGlobalIndex } from '../../src/indexer/state.js';
 import { runQuestion } from '../../src/pipeline/run.js';
 import { FakeLlm } from '../../src/pipeline/llm.js';
 import type { WikiSubsection } from '../../src/deepwiki/sections.js';
@@ -8,15 +8,27 @@ import type { WikiSubsection } from '../../src/deepwiki/sections.js';
 const ABS = '/abs/Rocket.Chat/apps/meteor/app/lib/server/sendMessage.ts';
 const REL = 'apps/meteor/app/lib/server/sendMessage.ts';
 const HELPER_ABS = '/abs/Rocket.Chat/apps/meteor/app/lib/server/helper.ts';
+const HELPER_REL = 'apps/meteor/app/lib/server/helper.ts';
 
 const sections: WikiSubsection[] = [
     { pageId: 'msg-page', heading: 'Message Sending Workflow', path: 'msg-page › Message Sending Workflow', sources: [REL], prose: 'the send flow' },
 ];
 const readFn = () => ({ text: 'const x = 1;', startLine: 1, endLine: 1 });
 
+// One definition per (symbol, file). `rel` is what the index stores; the pipeline no longer
+// resolves a name to a file, so nothing here needs an absolute path.
+const putDef = (rel: string, name: string) => {
+    const id = `${rel}#${name}`;
+    GLOBAL_INDEX.defs.set(id, {
+        id, file: rel, name, qualifiedName: name, kind: 'function',
+        line: 1, endLine: 5, signature: '', exported: true,
+    });
+    return id;
+};
+
 beforeEach(() => {
-    GLOBAL_INDEX.symbols.clear(); GLOBAL_INDEX.callGraph.clear(); GLOBAL_INDEX.fileDependents.clear();
-    GLOBAL_INDEX.symbols.set('sendMessage', new Set([ABS]));
+    resetGlobalIndex();
+    putDef(REL, 'sendMessage');
 });
 
 test('runQuestion wires every stage with exactly 3 LLM calls', async () => {
@@ -32,7 +44,7 @@ test('runQuestion wires every stage with exactly 3 LLM calls', async () => {
 });
 
 test('runQuestion records pool stats, including pages whose pool scored zero', async () => {
-    GLOBAL_INDEX.symbols.set('rateLimiter', new Set(['/abs/Rocket.Chat/apps/meteor/api/rest.ts']));
+    putDef('apps/meteor/api/rest.ts', 'rateLimiter');
     const twoSections: WikiSubsection[] = [
         sections[0],
         { pageId: 'api-page', heading: 'Rate Limiting', path: 'api-page › Rate Limiting', sources: ['apps/meteor/api/rest.ts'], prose: '' },
@@ -66,8 +78,10 @@ test('runQuestion records routing.promptTokens from the first call only', async 
 });
 
 test('runQuestion reads every major node, chain root first', async () => {
-    GLOBAL_INDEX.symbols.set('helper', new Set([HELPER_ABS]));
-    GLOBAL_INDEX.callGraph.set('helper', [{ caller: 'sendMessage', file: ABS, edgeType: 'call' }]);
+    const helper = putDef(HELPER_REL, 'helper');
+    const sender = `${REL}#sendMessage`;
+    GLOBAL_INDEX.out.set(sender, [{ from: sender, to: helper, kind: 'call' }]);
+    GLOBAL_INDEX.in.set(helper, [{ from: sender, to: helper, kind: 'call' }]);
     const llm = new FakeLlm(['msg-page › Message Sending Workflow', '1', '答案']);
     const row = await runQuestion('q5', 'how is a message sent?', {
         llm, sections, deepwikiFn: async () => 'b', budgetTokens: 24000, readFn,

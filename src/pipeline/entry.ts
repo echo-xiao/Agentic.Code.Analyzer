@@ -126,15 +126,19 @@ export function buildPools(routed: RoutedSection[], sections: WikiSubsection[]):
         // seed from a test utility, and the answer had to note the real handler was missing.
         const files = [...new Set(secs.flatMap(s => s.sources))].filter(f => !isTestPath(f));
         const fileSet = new Set(files);
-        const symbols: Array<{ symbol: string; files: string[] }> = [];
-        for (const [symbol, absFiles] of GLOBAL_INDEX.symbols) {
-            const hits: string[] = [];
-            for (const abs of absFiles) {
-                const rel = relPath(abs);
-                if (fileSet.has(rel) && !hits.includes(rel)) hits.push(rel);
-            }
-            if (hits.length > 0) symbols.push({ symbol, files: hits });
+        // Built from definitions rather than from a name -> files map. A definition already knows
+        // its file, so this walks the index once instead of scanning every name in the repo, and
+        // the module pseudo-definitions are skipped: every file has one, none has a body worth
+        // reading, and named by basename 59 different index.ts files collided into one symbol.
+        const byName = new Map<string, string[]>();
+        for (const def of GLOBAL_INDEX.defs.values()) {
+            if (def.kind === 'module') continue;
+            if (!fileSet.has(def.file)) continue;
+            const hits = byName.get(def.name);
+            if (hits) { if (!hits.includes(def.file)) hits.push(def.file); }
+            else byName.set(def.name, [def.file]);
         }
+        const symbols = [...byName].map(([symbol, files]) => ({ symbol, files }));
         pools.push({ pageId, sections: secs, files, symbols });
     }
     return pools;

@@ -7,7 +7,8 @@
 // major set was wholly contained in a bigger chain's -- 23% of the slots, on questions where the
 // quota was the binding constraint (10 of 34 hit it).
 import { MAX_CHAINS } from './entry.js';
-import { buildChainSkeleton } from './skeleton.js';
+import { buildChainSkeletonByDef } from './skeleton-defs.js';
+import { GLOBAL_INDEX } from '../indexer/state.js';
 import type { Pool } from './entry.js';
 import type { Chain, ChainSkeleton, SkeletonNode } from './types.js';
 
@@ -15,6 +16,17 @@ export interface Candidate {
     chain: Chain;
     skeleton: ChainSkeleton;
     majors: Set<string>;             // "symbol@file" of every major node, the unit of redundancy
+}
+
+// A seed names a symbol in a file, but the definition's qualified name can be longer than the
+// symbol — `ChatAPI.flows.sendMessage` for a method, `outer.inner` for a nested function. Prefer
+// an exact id, then the shortest qualified name in that file, which is the outermost declaration.
+function findEntryDef(symbol: string, file: string): string {
+    const exact = `${file}#${symbol}`;
+    if (GLOBAL_INDEX.defs.has(exact)) return exact;
+    const inFile = (GLOBAL_INDEX.byName.get(symbol) ?? []).filter(id => id.startsWith(`${file}#`));
+    if (inFile.length > 0) return inFile.sort((a, b) => a.length - b.length)[0];
+    return (GLOBAL_INDEX.byName.get(symbol) ?? [])[0] ?? exact;
 }
 
 export function majorsOf(skeleton: ChainSkeleton): Set<string> {
@@ -81,11 +93,16 @@ export function buildCandidates(
     question: string,
     quota = MAX_CHAINS,
 ): { kept: Candidate[]; expanded: number; droppedRedundant: number } {
+    // The seed is still chosen by name — that is chain entry's job and the one place a name has
+    // to become something. From here on the walk is by definition, so the seed's (symbol, file)
+    // pair is turned into the id of the definition it names.
     const cands: Candidate[] = chains.map(chain => {
-        const skeleton = buildChainSkeleton(chain, {
-            chainFiles: new Set(pools.find(p => p.pageId === chain.pageId)?.files ?? []),
-            prose: chain.prose || undefined,
-        }, question);
+        const entryDefId = `${chain.seed.file}#${chain.seed.symbol}`;
+        const skeleton = buildChainSkeletonByDef(
+            chain,
+            GLOBAL_INDEX.defs.has(entryDefId) ? entryDefId : findEntryDef(chain.seed.symbol, chain.seed.file),
+            {}, question, chain.prose || undefined,
+        );
         return { chain, skeleton, majors: majorsOf(skeleton) };
     });
 
