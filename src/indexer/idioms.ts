@@ -1,4 +1,4 @@
-// idioms.ts — the six communication trunks (spec: 2026-08-13-binding-resolution-design.md §二).
+// idioms.ts — the six communication trunks (spec: 2026-08-13-binding-resolution-design.md, §2).
 //
 // Six registries carry every cross-module hop in the target repo: in-process events (callbacks),
 // inter-service events (service-events) and RPC (api.call), client->server (REST, Meteor methods),
