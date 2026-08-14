@@ -31,7 +31,8 @@ test('parseSelectReply ignores unknown ids and duplicates', () => {
 });
 
 test('parseSelectReply tolerates prose around the numbers', () => {
-    assert.deepEqual(parseSelectReply('保留链 1 和链 3。', chains).kept, [1, 3]);
+    // Digits are the only thing parsed, so prose around them -- in any language -- is ignored.
+    assert.deepEqual(parseSelectReply('keep chain 1 and chain 3.', chains).kept, [1, 3]);
 });
 
 // Dropping is irreversible, so an unparseable reply must not cost the run all of its material.
