@@ -12,14 +12,12 @@ test('buildAnswerPrompt groups materials by chain and states their line ranges',
     assert.ok(p.includes('Chain 1') && p.includes('apps/meteor/app/lib/server/a.ts:40-90'));
 });
 
-// The prompt used to demand a language, per-chain organisation and a file:line after every claim
-// so the trace would show up inside the answer. The report carries the skeleton and the recap now,
-// so those constraints are gone; citation checking survives only as a diagnostic. The CJK guard is
-// what catches a reintroduced language constraint -- every such constraint this prompt ever had was
-// written in Chinese.
+// The prompt used to demand Chinese, per-chain organisation and a file:line after every claim so
+// the trace would show up inside the answer. The report carries the skeleton and the recap now,
+// so those constraints are gone; citation checking survives only as a diagnostic.
 test('buildAnswerPrompt imposes no output-format constraints', () => {
     const p = buildAnswerPrompt('q', chains, mats);
-    assert.ok(!/[\u4e00-\u9fa5]/.test(p), 'the prompt must not constrain the output language');
+    assert.ok(!/答案|中文|按途径|每个论断/.test(p));
 });
 
 test('buildAnswerPrompt: chainProse renders as background notes with an explicit do-not-cite instruction', () => {
@@ -38,14 +36,14 @@ test('buildAnswerPrompt: without chainProse, output is unchanged from before (no
 
 test('validateCitations flags citations outside the materials', () => {
     const { valid, fabricated } = validateCitations(
-        'entry at apps/meteor/app/lib/server/a.ts:52, see also apps/meteor/fake.ts:10 and apps/meteor/app/lib/server/a.ts:300', mats);
+        '入口在 apps/meteor/app/lib/server/a.ts:52，另见 apps/meteor/fake.ts:10 和 apps/meteor/app/lib/server/a.ts:300', mats);
     assert.deepEqual(valid, ['apps/meteor/app/lib/server/a.ts:52']);
     assert.deepEqual(fabricated, ['apps/meteor/fake.ts:10', 'apps/meteor/app/lib/server/a.ts:300']);
 });
 
 test('generateAnswer returns the llm text plus fabrication report', async () => {
-    const r = await generateAnswer('q', chains, mats, new FakeLlm(['ANSWER apps/meteor/app/lib/server/a.ts:52']));
-    assert.ok(r.answer.includes('ANSWER'));
+    const r = await generateAnswer('q', chains, mats, new FakeLlm(['答案 apps/meteor/app/lib/server/a.ts:52']));
+    assert.ok(r.answer.includes('答案'));
     assert.deepEqual(r.citations.fabricated, []);
 });
 
@@ -67,7 +65,7 @@ test('buildAnswerPrompt: without skeletonText, no skeleton section appears', () 
 });
 
 test('generateAnswer forwards skeletonText into the prompt it sends', async () => {
-    const llm = new FakeLlm(['ANSWER apps/meteor/app/lib/server/a.ts:52']);
+    const llm = new FakeLlm(['答案 apps/meteor/app/lib/server/a.ts:52']);
     const seen: string[] = [];
     const spy = { calls: 0, promptTokensEst: 0, generate: async (p: string) => { seen.push(p); return llm.generate(p); } };
     await generateAnswer('q', chains, mats, spy, undefined, 'Chain 1 (msg):\n  [1a] sendMessage  a.ts:1');

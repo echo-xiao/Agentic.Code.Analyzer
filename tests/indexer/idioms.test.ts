@@ -1,4 +1,4 @@
-// idioms.test.ts — the six communication trunks (spec: docs/superpowers/specs/2026-08-13-binding-resolution-design.md, §2).
+// idioms.test.ts — the six communication trunks (spec: docs/superpowers/specs/2026-08-13-binding-resolution-design.md §二).
 //
 // These tests pin the contract of the idiom table: match by *declaration*, never by call-site text.
 // Fixtures are in-memory ts-morph projects, so they run without Rocket.Chat's node_modules.
