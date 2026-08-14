@@ -88,56 +88,6 @@ chain can cross the gap. `dispatch-budget.json` records these counts as a ratche
 numbers fall below the recorded baseline fails, which is how a broken idiom gets caught instead
 of silently zeroing out a channel.
 
-#### Every one-sided key was traced back to source
-
-A key that is registered but never dispatched — or dispatched but never registered — is either a
-real gap in the model or a real property of the codebase. Assuming the former produces phantom
-bugs; assuming the latter hides real ones. So each channel's one-sided keys were read in the
-target repository until the count was explained.
-
-| channel | keys | reg. sites | disp. sites | both sides | reg. only | disp. only | verdict |
-|---|---:|---:|---:|---:|---:|---:|---|
-| rest | 624 | 622 | 472 | 322 | 289 | 13 | **model defect, fixed** |
-| api-call | 270 | 292 | 0 | 0 | 270 | 0 | expected |
-| meteor-methods | 193 | 190 | 41 | 35 | 155 | 3 | **model defect, fixed** |
-| callbacks | 86 | 134 | 122 | 70 | 3 | 13 | property of the codebase |
-| service-events | 72 | 97 | 182 | 63 | 7 | 2 | expected |
-| streamer | 16 | 16 | 70 | 10 | 6 | 0 | property of the codebase |
-
-**rest** — the first reading of this gap was wrong. The actual defect: `AppsRestApi` constructs
-`new API.ApiClass({ apiPath: '', version: 'apps' })` and carries its prefix in a type argument
-plus an assignment inside the method body, so `addRoute(':id/screenshots')` registered only the
-bare sub-path and one route became two keys. Fixed — 15 routes merged; the remaining 13 are other
-instances of the same construction pattern (federation ×5, apps ×4, livechat ×3, `im.leave`).
-
-**api-call** — the single call site in the repository is
-``api.call(`${ns}.${prop}`)``, a template string that correctly lands in *unbound*; callers reach
-services through a typed `Proxy`, which resolves to ordinary static edges instead. Verified
-end to end. Fixing this also surfaced that `variant` was never assigned, so the 22 keys registered
-once in the monolith and once in microservices were collapsing into one graph; deployment variant
-is now derived from the package path.
-
-**meteor-methods** — the idiom keyed on `Meteor.call`, which occurs **zero** times in the real
-code. The actual spellings are `useMethod` (32), `sdk.call` (11) and `callAsync` (1). After the
-fix, the three remaining dispatch-only keys are Meteor's own built-ins (`login`,
-`resetPassword`, `stream-notify-room`).
-
-**callbacks** — the 13 dispatch-only keys are empty extension points: `beforeMuteUser`,
-`afterAddToRoom`, `onCreateUser` and others are declared in the hook type union and `run()` in
-product code, with no `.add()` anywhere in the repository. They are reserved for enterprise
-builds and third-party apps. Read one by one.
-
-**service-events** — more dispatch sites than registration sites is the expected shape; one event
-is broadcast from many places.
-
-**streamer** — checked for the opposite failure, an idiom matching too much: all 70 dispatch
-sites land on channels that are genuinely registered, and the 6 channels with no subscriber
-(`local`, `apps-engine`, `room-data`, `notify-room-users`) have no `useStream` on any client,
-confirming they are server-only.
-
-Two of the six channels turned out to hold defects, both found by refusing to accept a one-sided
-count as normal. Neither would have been visible from the totals alone.
-
 ### Interfaces
 
 Rocket.Chat reaches most core capability through `proxify<IAuthorization>('authorization')`, so a
@@ -225,9 +175,3 @@ The largest single cause is outline coverage, not code analysis. The high-fan-in
 sharpest self-inflicted one: a node with more than 25 callers is treated as a utility and left
 unexpanded, which is right for `trim` and wrong for `hasPermissionAsync` (225 callers) when the
 question is about permissions.
-
-That zero is the point of the work described above. The graph layer is the part that has been
-verified from two directions — every dispatch channel's one-sided keys traced back to source, and
-the interface dead-ends measured before and after — and it is the one layer that no longer
-produces failures. What remains is above it: which sections the outline covers, which chains
-selection keeps, and which nodes the skeleton is willing to expand.
