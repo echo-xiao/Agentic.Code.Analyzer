@@ -1,4 +1,5 @@
 """Stdlib-only tests for lint_outline. Run: python3 -m unittest discover -s .claude/skills/repo-wiki-outline/scripts -p 'test_*.py'"""
+import re
 import unittest
 import lint_outline as L
 
@@ -172,9 +173,13 @@ def results(text):
 
 class StructureTest(unittest.TestCase):
     def test_good_outline_passes_every_hard_check(self):
-        for label, ok, detail, sev in L.check_structure(L.parse_outline(GOOD)):
-            if sev == "HARD":
-                self.assertTrue(ok, f"{label}: {detail}")
+        checks = L.check_structure(L.parse_outline(GOOD))
+        hard = [c for c in checks if c[3] == "HARD"]
+        # Floor is the count check_structure actually emits for GOOD (10, as of this
+        # writing) so an empty or truncated result list can't make this test pass vacuously.
+        self.assertGreaterEqual(len(hard), 10)
+        for label, ok, detail, sev in hard:
+            self.assertTrue(ok, f"{label}: {detail}")
 
     def test_tree_and_contracts_must_match(self):
         broken = GOOD.replace("&nbsp;&nbsp;&nbsp;2.2  API layer\n", "")
@@ -205,13 +210,44 @@ class StructureTest(unittest.TestCase):
         self.assertFalse(results(flat)["budgets are not uniform"][0])
 
     def test_budget_spread_is_reported_not_gated(self):
-        sev = {label: s for label, _, _, s in L.check_structure(L.parse_outline(GOOD))}
-        self.assertEqual(sev["budget spread"], "SOFT")
+        checks = {label: (detail, s) for label, _, detail, s in
+                   L.check_structure(L.parse_outline(GOOD))}
+        detail, sev = checks["budget spread"]
+        self.assertEqual(sev, "SOFT")
+        # GOOD's six budget_tokens values (700, 800, 1500, 2200, 1200, 900) have population
+        # stdev 514.5116 and mean 1216.6667, so CV = 514.5116 / 1216.6667 = 0.4229, which the
+        # implementation formats to two decimal places.
+        self.assertEqual(detail, "CV=0.42")
 
     def test_numbering_gap_is_caught(self):
         broken = GOOD.replace("## 4 Practice", "## 5 Practice") \
                      .replace("**4  Practice**", "**5  Practice**")
         self.assertFalse(results(broken)["top-level numbering is contiguous"][0])
+
+    def test_related_target_resolves_with_filename_style_ref(self):
+        # "related targets resolve" used rstrip(".md") -- a character-set strip, not a
+        # suffix strip -- to pull the page number out of a filename-style related value.
+        # The existing suite only ever put bare numbers in `related`, so this parsing path
+        # had zero coverage. Exercise it both ways: one target that resolves to a real page
+        # and one that is genuinely dangling, now via removesuffix(".md").
+        resolvable = GOOD.replace('related: []\nbudget_tokens: 700',
+                                   'related: ["2.1-data-layer.md"]\nbudget_tokens: 700')
+        self.assertTrue(results(resolvable)["related targets resolve"][0])
+
+        dangling = GOOD.replace('related: []\nbudget_tokens: 700',
+                                 'related: ["9.9-missing-page.md"]\nbudget_tokens: 700')
+        self.assertFalse(results(dangling)["related targets resolve"][0])
+
+    def test_empty_section_landing_is_caught(self):
+        # `children` is only built from numbers containing ".", so a section-landing with
+        # zero children never showed up in it and the 2-8 check could never see it.
+        broken = GOOD.replace("&nbsp;&nbsp;&nbsp;2.1  Data layer\n", "") \
+                     .replace("&nbsp;&nbsp;&nbsp;2.2  API layer\n", "")
+        broken = re.sub(r"## 2\.1 Data layer\n\n```yaml.*?```\n\n\*\*Brief:\*\* x\n\n", "",
+                         broken, flags=re.S)
+        broken = re.sub(r"## 2\.2 API layer\n\n```yaml.*?```\n\n\*\*Brief:\*\* x\n\n", "",
+                         broken, flags=re.S)
+        self.assertFalse(results(broken)["each section holds 2-8 children"][0])
 
 
 if __name__ == "__main__":

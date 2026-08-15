@@ -158,6 +158,11 @@ def check_structure(p):
 
     add("4-8 top-level sections", 4 <= len(tops) <= 8, str(len(tops)))
     off = [f"{t}:{c}" for t, c in children.items() if not 2 <= c <= 8]
+    # A section-landing with zero children never gets a `children` entry (the Counter is
+    # built only from numbers that contain a "."), so it would otherwise dodge this check
+    # entirely. A top-level `page` leaf with no children is legitimate and must stay unflagged.
+    off += [f"{t}:0" for t in tops
+            if children[t] == 0 and pages[t]["kind"] == "section-landing"]
     add("each section holds 2-8 children", not off, ", ".join(off), "SOFT")
 
     thin = [n for n, v in pages.items() if len(v["answers"]) < 2]
@@ -168,7 +173,7 @@ def check_structure(p):
     add("no question is claimed twice", not dupes, "; ".join(dupes[:3]))
 
     dangling = [f"{n}->{r}" for n, v in pages.items() for r in v["related"]
-                if r.rstrip(".md").split("-")[0] not in nums and r not in nums]
+                if r.removesuffix(".md").split("-")[0] not in nums and r not in nums]
     add("related targets resolve", not dangling, "; ".join(dangling[:5]), "SOFT")
 
     # Upstream's rule is qualitative -- "budgets must visibly vary", "uniform budgets =
