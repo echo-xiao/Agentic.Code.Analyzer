@@ -1,0 +1,218 @@
+"""Stdlib-only tests for lint_outline. Run: python3 -m unittest discover -s .claude/skills/repo-wiki-outline/scripts -p 'test_*.py'"""
+import unittest
+import lint_outline as L
+
+GOOD = """# Repo Wiki
+
+Last indexed: 15 August 2026 (abc1234)
+4 个章节 · 6 个页面 · 预算 7,300 tokens
+
+---
+
+**1  Overview**
+
+**2  Structure**
+&nbsp;&nbsp;&nbsp;2.1  Data layer
+&nbsp;&nbsp;&nbsp;2.2  API layer
+
+**3  Domain**
+
+**4  Practice**
+
+---
+
+# Part 2
+
+## 1 Overview
+
+```yaml
+title: "Overview"
+kind: page
+status: stub
+covers:
+  - "packages/a/**"
+  - "packages/b/**"
+answers:
+  - "What is this?"
+  - "Where do I start?"
+related: []
+budget_tokens: 700
+source_commit: "abc1234"
+```
+
+**Brief:** x
+
+## 2 Structure
+
+```yaml
+title: "Structure"
+kind: section-landing
+status: stub
+covers:
+  - "packages/a/**"
+answers:
+  - "How is it built?"
+  - "What are the layers?"
+related: ["2.1"]
+budget_tokens: 800
+source_commit: "abc1234"
+```
+
+**Brief:** x
+
+## 2.1 Data layer
+
+```yaml
+title: "Data layer"
+kind: page
+status: stub
+covers:
+  - "packages/b/**"
+  - "packages/c/**"
+answers:
+  - "Where is data read?"
+  - "How are models registered?"
+related: ["2"]
+budget_tokens: 1500
+source_commit: "abc1234"
+```
+
+**Brief:** x
+
+## 2.2 API layer
+
+```yaml
+title: "API layer"
+kind: page
+status: stub
+covers:
+  - "packages/c/**"
+answers:
+  - "How is a route registered?"
+  - "Where does auth happen?"
+related: []
+budget_tokens: 2200
+source_commit: "abc1234"
+```
+
+**Brief:** x
+
+## 3 Domain
+
+```yaml
+title: "Domain"
+kind: page
+status: stub
+covers:
+  - "packages/a/**"
+  - "packages/c/**"
+answers:
+  - "What does the product actually do?"
+  - "Which capability owns which endpoint?"
+related: ["2"]
+budget_tokens: 1200
+source_commit: "abc1234"
+```
+
+**Brief:** x
+
+## 4 Practice
+
+```yaml
+title: "Practice"
+kind: page
+status: stub
+covers:
+  - "packages/a/**"
+  - "packages/b/**"
+answers:
+  - "How do I build and test this?"
+  - "How is a release cut?"
+related: []
+budget_tokens: 900
+source_commit: "abc1234"
+```
+
+**Brief:** x
+
+---
+
+# Part 3
+
+Arc: orientation yes; structure yes; domain yes; practice yes; reference none
+(evidence absent).
+"""
+
+
+class ParseTest(unittest.TestCase):
+    def test_header_and_counts(self):
+        p = L.parse_outline(GOOD)
+        self.assertEqual(p["header"]["sha"], "abc1234")
+        self.assertEqual(len(p["pages"]), 6)
+        self.assertEqual(len(p["tree"]), 6)
+
+    def test_fields_parsed(self):
+        p = L.parse_outline(GOOD)
+        page = p["pages"]["2.1"]
+        self.assertEqual(page["title"], "Data layer")
+        self.assertEqual(page["kind"], "page")
+        self.assertEqual(page["covers"], ["packages/b/**", "packages/c/**"])
+        self.assertEqual(len(page["answers"]), 2)
+        self.assertEqual(page["budget_tokens"], 1500)
+
+    def test_notes_captured(self):
+        p = L.parse_outline(GOOD)
+        self.assertIn("orientation", p["notes"])
+
+
+def results(text):
+    return {label: (ok, detail) for label, ok, detail, _ in
+            L.check_structure(L.parse_outline(text))}
+
+
+class StructureTest(unittest.TestCase):
+    def test_good_outline_passes_every_hard_check(self):
+        for label, ok, detail, sev in L.check_structure(L.parse_outline(GOOD)):
+            if sev == "HARD":
+                self.assertTrue(ok, f"{label}: {detail}")
+
+    def test_tree_and_contracts_must_match(self):
+        broken = GOOD.replace("&nbsp;&nbsp;&nbsp;2.2  API layer\n", "")
+        self.assertFalse(results(broken)["tree matches contract blocks"][0])
+
+    def test_orphan_second_level_is_caught(self):
+        broken = GOOD.replace("## 2.1 Data layer", "## 9.1 Data layer") \
+                     .replace("2.1  Data layer", "9.1  Data layer")
+        self.assertFalse(results(broken)["every N.M has its parent section"][0])
+
+    def test_section_with_children_must_be_landing(self):
+        broken = GOOD.replace('title: "Structure"\nkind: section-landing',
+                              'title: "Structure"\nkind: page')
+        self.assertFalse(results(broken)["a section with children is a section-landing"][0])
+
+    def test_duplicate_question_is_caught(self):
+        broken = GOOD.replace('"Where is data read?"', '"What is this?"')
+        self.assertFalse(results(broken)["no question is claimed twice"][0])
+
+    def test_thin_answers_caught(self):
+        broken = GOOD.replace('  - "Where do I start?"\n', "")
+        self.assertFalse(results(broken)["every page answers >=2 questions"][0])
+
+    def test_uniform_budget_is_caught(self):
+        flat = GOOD
+        for old in ("700", "800", "1500", "2200", "1200", "900"):
+            flat = flat.replace(f"budget_tokens: {old}", "budget_tokens: 1000")
+        self.assertFalse(results(flat)["budgets are not uniform"][0])
+
+    def test_budget_spread_is_reported_not_gated(self):
+        sev = {label: s for label, _, _, s in L.check_structure(L.parse_outline(GOOD))}
+        self.assertEqual(sev["budget spread"], "SOFT")
+
+    def test_numbering_gap_is_caught(self):
+        broken = GOOD.replace("## 4 Practice", "## 5 Practice") \
+                     .replace("**4  Practice**", "**5  Practice**")
+        self.assertFalse(results(broken)["top-level numbering is contiguous"][0])
+
+
+if __name__ == "__main__":
+    unittest.main()
