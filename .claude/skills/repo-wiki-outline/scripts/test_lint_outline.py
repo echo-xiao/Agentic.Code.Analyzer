@@ -250,5 +250,49 @@ class StructureTest(unittest.TestCase):
         self.assertFalse(results(broken)["each section holds 2-8 children"][0])
 
 
+FILES = {"packages/a/x.ts", "packages/b/y.ts", "packages/b/z.ts", "packages/c/w.ts"}
+ALLOWED = {"packages/a/**", "packages/b/**", "packages/c/**", "packages/d/**"}
+MODEL = {"dispatch": {"cross_module_index": [
+    {"id": "rest|a/one", "keys": 2, "modules": 3, "reg": "packages/a/x.ts"},
+    {"id": "rest|d/two", "keys": 1, "modules": 2, "reg": "packages/d/absent.ts"},
+]}}
+
+
+def ev(text, files=FILES, allowed=ALLOWED, model=MODEL):
+    return {label: (ok, detail) for label, ok, detail, _ in
+            L.check_evidence(L.parse_outline(text), files, allowed, model)}
+
+
+class EvidenceTest(unittest.TestCase):
+    def test_expand_is_recursive(self):
+        self.assertEqual(L.expand("packages/b/**", FILES),
+                         {"packages/b/y.ts", "packages/b/z.ts"})
+
+    def test_good_outline_passes_hard_evidence_checks(self):
+        for label, ok, detail, sev in L.check_evidence(
+                L.parse_outline(GOOD), FILES, ALLOWED, MODEL):
+            if sev == "HARD":
+                self.assertTrue(ok, f"{label}: {detail}")
+
+    def test_glob_outside_candidate_list_is_caught(self):
+        broken = GOOD.replace('"packages/c/**"', '"packages/invented/**"')
+        self.assertFalse(ev(broken)["every glob comes from the candidate list"][0])
+
+    def test_glob_matching_nothing_is_caught(self):
+        broken = GOOD.replace('"packages/c/**"', '"packages/d/**"')
+        self.assertFalse(ev(broken)["every glob matches >=1 indexed file"][0])
+
+    def test_capability_placement_is_reported_not_gated(self):
+        res = {label: (ok, detail, sev) for label, ok, detail, sev in
+               L.check_evidence(L.parse_outline(GOOD), FILES, ALLOWED, MODEL)}
+        label = "capability placement rate"
+        self.assertEqual(res[label][2], "SOFT")
+        self.assertIn("1/2", res[label][1])
+
+    def test_arc_accounting_requires_every_position(self):
+        broken = GOOD.replace("practice yes; ", "")
+        self.assertFalse(ev(broken)["derivation notes account for every arc position"][0])
+
+
 if __name__ == "__main__":
     unittest.main()

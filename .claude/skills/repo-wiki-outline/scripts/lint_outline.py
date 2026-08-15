@@ -193,3 +193,146 @@ def check_structure(p):
 
     add("page count", True, str(len(pages)), "SOFT")
     return out
+
+
+def load_index(graph_dir):
+    files = set()
+    for name in os.listdir(graph_dir):
+        if not name.endswith(".json") or name.startswith("_"):
+            continue
+        with open(os.path.join(graph_dir, name)) as fh:
+            shard = json.load(fh)
+        for entry in shard.get("files", []):
+            path = entry if isinstance(entry, str) else (entry.get("path") or entry.get("file"))
+            if path and not is_test(path):
+                files.add(path)
+        for d in shard.get("defs", []):
+            if not is_test(d["file"]):
+                files.add(d["file"])
+    return files
+
+
+def expand(glob_pat, files):
+    """`a/b/**` means everything under a/b. fnmatch does not let `**` cross separators,
+    so the trailing-`/**` form -- the only form the candidate list emits -- is handled
+    directly."""
+    if glob_pat.endswith("/**"):
+        prefix = glob_pat[:-2]
+        return {f for f in files if f.startswith(prefix)}
+    return {f for f in files if f == glob_pat}
+
+
+def check_evidence(p, files, allowed, model):
+    out, add = new_checklist()
+    pages = p["pages"]
+    claimed, per_page, bad, empty = set(), {}, [], []
+    for num, v in pages.items():
+        got = set()
+        for g in v["covers"]:
+            if g not in allowed:
+                bad.append(f"{num}: {g}")
+            hits = expand(g, files)
+            if not hits:
+                empty.append(f"{num}: {g}")
+            got |= hits
+        per_page[num] = got
+        claimed |= got
+
+    add("every glob comes from the candidate list", not bad, "; ".join(bad[:6]))
+    # E13: the evidence-free rule, stated mechanically. No subject is banned by name.
+    add("every glob matches >=1 indexed file", not empty, "; ".join(empty[:6]))
+
+    pct = len(claimed) / len(files) * 100 if files else 0
+    add("coverage", True, f"{len(claimed)}/{len(files)} = {pct:.1f}%", "SOFT")
+
+    # Capability placement: derived wholly from the model, never from a hand-written list
+    # of expected features. Reported, not gated -- picking a pass mark would be picking an
+    # answer.
+    index = (model.get("dispatch") or {}).get("cross_module_index") or []
+    placed = [g for g in index if g.get("reg") and g["reg"] in claimed]
+    missed = [g for g in index if not (g.get("reg") and g["reg"] in claimed)]
+    rate = f"{len(placed)}/{len(index)}"
+    if index:
+        rate += f" = {len(placed) / len(index) * 100:.1f}%"
+    add("capability placement rate", True, rate, "SOFT")
+    if missed:
+        add("unplaced capabilities", True,
+            "; ".join(f"{g['id']}({g.get('reg') or 'no register file'})" for g in missed[:10]),
+            "SOFT")
+
+    # E14: the arc is a reporting duty. This checks that Part 3 mentions every position,
+    # not that any position produced a section.
+    notes = p["notes"].lower()
+    unaccounted = [a for a in ARC_POSITIONS if a not in notes]
+    add("derivation notes account for every arc position",
+        not unaccounted, "missing: " + ", ".join(unaccounted))
+
+    # Directory echo applies to pages that own exactly one recursive glob. Landing pages
+    # legitimately do, so they are exempt.
+    leaves = [n for n, v in pages.items() if v["kind"] == "page"]
+    echo = [n for n in leaves
+            if len(pages[n]["covers"]) == 1 and pages[n]["covers"][0].endswith("/**")]
+    ratio = len(echo) / len(leaves) * 100 if leaves else 0
+    add("<=40% of pages are a single-directory echo", ratio <= 40, f"{ratio:.0f}%")
+
+    tops = [n for n in pages if "." not in n]
+    first = min(tops, key=int) if tops else None
+    if first:
+        add("the first section stays under 800 tokens",
+            pages[first]["budget_tokens"] < 800,
+            str(pages[first]["budget_tokens"]), "SOFT")
+    return out
+
+
+def main():
+    ap = argparse.ArgumentParser()
+    ap.add_argument("--wiki", default="output.nosync/wiki-spine.md")
+    ap.add_argument("--graph", default="output.nosync/graph")
+    ap.add_argument("--candidates", default="/tmp/glob_candidates.json")
+    ap.add_argument("--model", default="/tmp/repo_model.json")
+    ap.add_argument("--budget", type=int, default=80000)
+    args = ap.parse_args()
+
+    with open(args.wiki) as fh:
+        parsed = parse_outline(fh.read())
+    with open(args.candidates) as fh:
+        allowed = {c["glob"] for c in json.load(fh)["candidates"]}
+    model = {}
+    if os.path.exists(args.model):
+        with open(args.model) as fh:
+            model = json.load(fh)
+    files = load_index(args.graph)
+
+    checks = check_structure(parsed) + check_evidence(parsed, files, allowed, model)
+
+    total = sum(v["budget_tokens"] for v in parsed["pages"].values())
+    checks.append(("budget total within +-15%",
+                   abs(total - args.budget) <= args.budget * 0.15,
+                   f"{total} vs {args.budget}", "SOFT"))
+
+    failed = False
+    for severity in ("HARD", "SOFT"):
+        print(f"\n== {severity} ==")
+        for label, ok, detail, sev in checks:
+            if sev != severity:
+                continue
+            mark = "ok " if ok else ("FAIL" if severity == "HARD" else "warn")
+            print(f"  [{mark}] {label}" + (f"  -- {detail}" if detail else ""))
+            if severity == "HARD" and not ok:
+                failed = True
+
+    claimed = set()
+    for v in parsed["pages"].values():
+        for g in v["covers"]:
+            claimed |= expand(g, files)
+    unclaimed = files - claimed
+    if unclaimed:
+        top = collections.Counter("/".join(f.split("/")[:3]) for f in unclaimed)
+        print(f"\n== unclaimed ({len(unclaimed)} files) -- each needs a reason in Part 3 ==")
+        for k, v in top.most_common(12):
+            print(f"  {v:5d}  {k}")
+    return 1 if failed else 0
+
+
+if __name__ == "__main__":
+    sys.exit(main())
