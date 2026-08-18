@@ -1,35 +1,32 @@
-#!/usr/bin/env npx tsx
-// Orchestrator: route -> pools/entries -> skeleton -> read -> answer. Fixed 2 LLM calls per
-// question; a 6s pause between questions keeps a 2-call question inside Gemini free-tier RPM.
+// Orchestrator: route -> pools/entries -> skeleton -> read -> answer. Fixed 3 LLM calls per
+// question. Entry-agnostic: the benchmark loop lives in cli.ts and the MCP server in
+// ../mcp/server.ts, so nothing here loads .env, an index, or a testcase file.
 //
 // No path-selection call (removed 2026-08-06): it was measurably inert -- the deterministic
 // backfill re-added every major node the model had skipped, so a question where it checked 1 of
 // 40 nodes and one where it checked 14 produced an identical answer prompt. The skeleton text
 // goes into the answer prompt instead, so the model can narrate the whole path including the
 // pass-through, boundary and dispatch nodes that have no body at all.
-import '../eval/utils/load-env.js';   // side effect: .env -> process.env, before GeminiClient reads the key
-import * as fs from 'fs';
-import * as path from 'path';
-import { readShards, readDispatch, loadGlobalIndex } from '../indexer/graph-store.js';
 import { route } from './routing.js';
 import { buildChains, buildPools, pickSeeds } from './entry.js';
-import { loadAllSections, type WikiSubsection } from '../deepwiki/sections.js';
+import type { WikiSubsection } from '../deepwiki/sections.js';
 import { renderSkeletons } from './render.js';
 import { buildCandidates } from './candidates.js';
 import { selectChains } from './select.js';
 import { packMaterials } from './reading.js';
 import { generateAnswer } from './answer.js';
-import { renderReport, nextReportPath, type RunRow } from './report.js';
-import { GeminiClient, type LlmClient } from './llm.js';
-import { askDeepWiki } from '../deepwiki/ask.js';
-import { loadTestcases } from '../eval/utils/load-testcases.js';
-import { TESTCASES_PATH } from '../eval/utils/truth-io.js';
+import type { RunRow } from './report.js';
+import type { LlmClient } from './llm.js';
 import type { QuestionTrace, SkeletonNode, PoolStat } from './types.js';
 
 interface Deps {
     llm: LlmClient;
     sections: WikiSubsection[];
-    deepwikiFn: (qid: string, q: string) => Promise<string>;
+    // Optional: the DeepWiki baseline is the benchmark report's comparison column, not part of
+    // answering. The MCP entry omits it -- its per-question cache is keyed by benchmark qid and
+    // can never hit for a free-form question, so it would mean a live third-party request on
+    // every call for a column nobody reads.
+    deepwikiFn?: (qid: string, q: string) => Promise<string>;
     readFn?: (n: SkeletonNode) => { text: string; startLine: number; endLine: number } | null;
     budgetTokens?: number;
 }
@@ -120,46 +117,15 @@ export async function runQuestion(qid: string, question: string, deps: Deps): Pr
         llm: { calls: llm.calls, promptTokensEst: llm.promptTokensEst },
     };
 
-    let deepwiki: string;
-    try {
-        deepwiki = await deps.deepwikiFn(qid, question);
-    } catch (e) {
-        // The DeepWiki baseline is a comparison column, not load-bearing: a transport/parse
-        // failure there must never sink the whole question and the LLM calls already spent on it.
-        deepwiki = `(DeepWiki baseline unavailable: ${e instanceof Error ? e.message : String(e)})`;
+    let deepwiki = '';
+    if (deps.deepwikiFn) {
+        try {
+            deepwiki = await deps.deepwikiFn(qid, question);
+        } catch (e) {
+            // The DeepWiki baseline is a comparison column, not load-bearing: a transport/parse
+            // failure there must never sink the whole question and the LLM calls already spent on it.
+            deepwiki = `(DeepWiki baseline unavailable: ${e instanceof Error ? e.message : String(e)})`;
+        }
     }
     return { trace, answer, citations, deepwiki };
-}
-
-const isMain = process.argv[1]?.endsWith('run.ts');
-if (isMain) {
-    const arg = (name: string) => process.argv.find(a => a.startsWith(`--${name}=`))?.split('=')[1];
-    const filter = arg('filter') ?? '';
-    const limit = Number(arg('limit') ?? Infinity);
-    const budget = arg('budget') !== undefined ? Number(arg('budget')) : undefined;
-    // The graph shards are the index; `npm run build:graph` regenerates them. Loading is a read
-    // of 71 files, so there is no cache to warm and no per-file mapping to re-parse.
-    const shards = readShards();
-    if (shards.length === 0) {
-        console.error('No graph shards found. Run: npx tsx -e "import(\'./src/indexer/build-graph.js\').then(m => m.buildGraph({ progress: true }))"');
-        process.exit(1);
-    }
-    loadGlobalIndex(shards, readDispatch());
-    console.error(`index: ${shards.length} shards`);
-    const sections = loadAllSections();
-    const cases = loadTestcases(TESTCASES_PATH).flat.filter(c => c.id.includes(filter)).slice(0, limit);
-    const rows: RunRow[] = [];
-    for (const c of cases) {
-        const llm = new GeminiClient();                                           // fresh counter per question
-        console.error(`[${c.id}] ...`);
-        try {
-            rows.push(await runQuestion(c.id, c.question, { llm, sections, deepwikiFn: askDeepWiki, budgetTokens: budget }));
-        } catch (e) { console.error(`[${c.id}] FAILED: ${e}`); }
-        await new Promise(r => setTimeout(r, 6000));
-    }
-    const runsDir = 'runs';
-    fs.mkdirSync(runsDir, { recursive: true });
-    const file = nextReportPath(runsDir);
-    fs.writeFileSync(file, renderReport(rows));
-    console.error(`Wrote ${file} (${rows.length} questions)`);
 }

@@ -107,3 +107,14 @@ test('runQuestion: a deepwikiFn that throws still resolves with the run row', as
     assert.ok(row.deepwiki.includes('mcp down'));
     assert.ok(row.answer.includes('答案'));
 });
+
+// The MCP entry omits the baseline: its per-question cache is keyed by benchmark qid and can
+// never hit for a free-form question, so keeping it would mean a live third-party request on
+// every call for a column nobody reads.
+test('runQuestion: omitting deepwikiFn skips the baseline entirely', async () => {
+    const llm = new FakeLlm(['msg-page › Message Sending Workflow', '1', '答案']);
+    const row = await runQuestion('q8', 'how is a message sent?', { llm, sections, readFn });
+    assert.equal(row.deepwiki, '');
+    assert.ok(row.answer.includes('答案'));
+    assert.equal(row.trace.llm.calls, 3);
+});

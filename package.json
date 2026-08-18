@@ -7,7 +7,7 @@
     "prewarm": "NODE_OPTIONS=\"--max-old-space-size=8192\" npx tsx src/indexer/prewarm.ts",
     "truth": "npx tsx src/eval/truth.ts",
     "test": "tsx --test 'tests/**/*.test.ts'",
-    "ask": "npx tsx src/pipeline/run.ts"
+    "ask": "npx tsx src/pipeline/cli.ts"
   },
   "dependencies": {
     "@anthropic-ai/sdk": "^0.110.0",
